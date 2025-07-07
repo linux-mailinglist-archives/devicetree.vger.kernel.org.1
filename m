@@ -1,139 +1,149 @@
-Return-Path: <devicetree+bounces-193763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEE96AFB94C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 18:57:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 294D9AFB9B3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 19:15:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00E5B1882B11
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 16:56:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 283DA16DECA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B9D225A2C8;
-	Mon,  7 Jul 2025 16:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="AWuU6+aZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2600B21B9CE;
+	Mon,  7 Jul 2025 17:15:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B212F28751E;
-	Mon,  7 Jul 2025 16:56:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AF91DE89B;
+	Mon,  7 Jul 2025 17:15:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751907373; cv=none; b=ovlYLJsEZ8L3wCDb8nwtm/a9GZ7GgCGJyR3i9G+lz8tsm1y5bLCKSxxvb3qybHJdos5fLnSSmcUArIHIn7A7+MDpuzGQZureSPhpe2P18qscyVHWiS1+fBrVHyWyBwZ3EaThz733O9Apf7kvcb3f66tJVgCDrm6uB+qWQ9iCGV4=
+	t=1751908521; cv=none; b=CgfIu0TJyg7WWrn62vp+YHZs8OMn33AFT45W+zFB4bcKE3F4Q25MsHZ7oFiF0zuaBNf7db4gjYkdZTwuw7P2OZ0FzXqL0BbptNw+PWgwrc/b6MpISUBdZAZZA1rpGuna9+CX/Ip0YS1L9mmbVLERPnhw/61d3GaCMB/d3iyCuGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751907373; c=relaxed/simple;
-	bh=FuhQRwae2dk7G2AhenzzCQyoD4r0rqCJ8I0IX1Jo0Hs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=Xho9xutw61BSthU9KTshd9b/xhnN+7H0RNWdzz0H7bthWiXMWhkxxGV3k5eRIrKweZP6cZ+La0nRxAcVIRJqr0/kuoT4JxS989SltWt5/P4IU1+H9Mcx45ysSoMEeZhk7fz7t6numdvZOHO7YCaPhzPavzaX6EbpkNpCi1nGF5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=AWuU6+aZ; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 567Gu44A908297;
-	Mon, 7 Jul 2025 11:56:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1751907364;
-	bh=b36WFNYgCnf2wZ3ZE31CeZaXfFAr68TP9LxpTPxnTN8=;
-	h=From:Date:Subject:To:CC;
-	b=AWuU6+aZDmyZEWFiNoNHmuH+UerIrQMyF4PqYVqsLnbIx/t2boirOZGOTxUlQzuP8
-	 2COK1J3yEfREu/Ew6DTdUBmcJx2sMJdVJAqTl4IryyRmHfEHSmZ/rpkuM7hba55lK+
-	 sSj5NYzxYMGZ1HZ6c7GvSzBOd+Zovawb1abc2uh0=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 567Gu42U2402220
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 7 Jul 2025 11:56:04 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 7
- Jul 2025 11:56:04 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 7 Jul 2025 11:56:04 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 567Gu4gR547055;
-	Mon, 7 Jul 2025 11:56:04 -0500
-From: Bryan Brattlof <bb@ti.com>
-Date: Mon, 7 Jul 2025 11:55:13 -0500
-Subject: [PATCH] arm64: dts: ti: k3-am62a7-sk: fix pinmux for main_uart1
+	s=arc-20240116; t=1751908521; c=relaxed/simple;
+	bh=ZSCK7w44JmsX0Wyn5E85NYbQ0N5E71LQIaQGd0NzzGM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JJ8+XJuRK6HbHHnxdj4KmyWs8ZQ8mN/cfRaXZr0f0iPxTTE4cUT0NTnUPsJgLZ78RbKQ/2jEiBcD6i9mL9JJrrftQUw7gvwaKrvW8YnCO/L7kaLS576dIsaGfE9sUuM0gtkAvHrVCmxZ6+YnlepNZMijqzQtsCiZjODK5oCA9FI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 259CC168F;
+	Mon,  7 Jul 2025 10:15:06 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E195F3F66E;
+	Mon,  7 Jul 2025 10:15:15 -0700 (PDT)
+Date: Mon, 7 Jul 2025 18:15:13 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
+ <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH net 0/2] allwinner: a523: Rename emac0 to gmac0
+Message-ID: <20250707181513.6efc6558@donnerap.manchester.arm.com>
+In-Reply-To: <CAGb2v64vxtAVi3QK3a=mvDz2u+gKQ6XPMN-JB46eEuwfusMG2w@mail.gmail.com>
+References: <20250628054438.2864220-1-wens@kernel.org>
+	<20250705083600.2916bf0c@minigeek.lan>
+	<CAGb2v64My=A_Jw+CBCsqno3SsSSTtBFKXOrgLv+Nyq_z5oeYBg@mail.gmail.com>
+	<e9c5949d-9ac5-4b33-810d-b716ccce5fe9@lunn.ch>
+	<20250706002223.128ff760@minigeek.lan>
+	<CAGb2v64vxtAVi3QK3a=mvDz2u+gKQ6XPMN-JB46eEuwfusMG2w@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250707-uart-fixes-v1-1-8164147218b0@ti.com>
-X-B4-Tracking: v=1; b=H4sIAPD7a2gC/x2LQQqAIBQFrxJ/naBSCV0lWkg9628stCIQ796n5
- TAzhTISI9PYFEp4OPMRBUzb0LL7uEHxKkxW21477dTt06UCv8hqQIB13viAjmQ4E34h/TTX+gG
- xEitPXAAAAA==
-X-Change-ID: 20250707-uart-fixes-6efe27a1afe4
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hong Guan <hguan@ti.com>,
-        <stable@vger.kernel.org>, Bryan Brattlof <bb@ti.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1598; i=bb@ti.com;
- h=from:subject:message-id; bh=ky+qAaXdZ2TyedNW6YBu3RSJ2GrAWRzNmuzuYfCVs1E=;
- b=owNCWmg5MUFZJlNZgbBUjAAAaH////dv/z93P/vY72H6OOtvO7l/3d+93eejRbuK/Vjx+fewA
- RsYGKAHqAAA0DRoDTQD1AAaD1AAAA0HqAAA0aAAepoaA09T1PJBppgyjeiiBkaDQAPSMg00BiZG
- QBkBpo0aNAwRhHpBo00aNAyNGQMQ0ANAMnpNMTRmUCAeiD0QNAxMjEwhoyGBNGgaaZGmQ0ZGmRh
- NDIDEMQAAaaBiBiaMgAAYAANBtwQuRiJwsyXl5sOWRahGUMvwa6siTQE+IvJCDAjtX5kWq9Op4y
- OmXiR/M9WvLEjDaWQEsdM+KA4QXx408bJBhCFaIUGJRq3bU5D48/wV1V1pYGcp+CtgdVSHCl/es
- XNA+vYqyVzpx57PLN448CMX2uI5r0L7BByG3THPGCH3k4PkxCufmoIMQwUFbGntA+1H9FuTvaSI
- 7c0BcC9E+8zk2rjDdEj40i7fizPc5CfuNWDS75NIhe5hqYlaoBzQh5aZITGc6c54VwYukx8lzkM
- Ur+1Oott3cdr7+lUoWTedMVIiUZeR9bYaVFDCbLZIEsovWsLxSCjGhlwwiNCSNkxDO1rgOw7Mdk
- iTsHU0Oarl4f4UKBcBnvZbQZUEEjh9+li/4mRbCnex3FIHkPiAJQ+OLVB3SPB5bxkpCAaxPikMO
- P/xdyRThQkIGwVIwA==
-X-Developer-Key: i=bb@ti.com; a=openpgp;
- fpr=D3D177E40A38DF4D1853FEEF41B90D5D71D56CE0
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-From: Hong Guan <hguan@ti.com>
+On Sun, 6 Jul 2025 21:14:09 +0800
+Chen-Yu Tsai <wens@kernel.org> wrote:
 
-The &main_uart1, which is reserved for TIFS firmware traces, is routed
-to the onboard FT4232 via a FET swich which is connected to pin A21 and
-B21 of the SoC and not E17 and C17. Fix it.
+Hi,
 
-Fixes: cf39ff15cc01a ("arm64: dts: ti: k3-am62a7-sk: Describe main_uart1 and wkup_uart")
-Cc: stable@vger.kernel.org
-Signed-off-by: Hong Guan <hguan@ti.com>
-[bb@ti.com: expanded commit message]
-Signed-off-by: Bryan Brattlof <bb@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> On Sun, Jul 6, 2025 at 7:23=E2=80=AFAM Andre Przywara <andre.przywara@arm=
+.com> wrote:
+> >
+> > On Sat, 5 Jul 2025 17:53:17 +0200
+> > Andrew Lunn <andrew@lunn.ch> wrote:
+> >
+> > Hi Andrew,
+> > =20
+> > > > So it's really whatever Allwinner wants to call it. I would rather =
+have
+> > > > the names follow the datasheet than us making some scheme up. =20
+> > >
+> > > Are the datasheets publicly available? =20
+> >
+> > We collect them in the sunxi wiki (see the links below), but just to
+> > make sure:
+> > I am not disputing that GMAC is the name mentioned in the A523 manual,
+> > and would have probably been the right name to use originally - even
+> > though it's not very consistent, as the same IP is called EMAC in the
+> > older SoCs' manuals. I am also not against renaming identifiers or even
+> > (internal) DT labels. But the problem here is that the renaming affects
+> > the DT compatible string and the pinctrl function name, both of which
+> > are used as an interface between the devicetree and its users, which is
+> > not only the Linux kernel, but also U-Boot and other OSes like the BSDs=
+. =20
+>=20
+> I reiterate my position: they are not stable until they actually hit a
+> release. This provides some time to fix mistakes before they are set in
+> stone.
+>=20
+> > In this particular case we would probably get away with it, because
+> > it's indeed very early in the development cycle for this SoC, but for
+> > instance the "emac0" function name is already used in some U-Boot
+> > patch series on the list:
+> > https://lore.kernel.org/linux-sunxi/20250323113544.7933-18-andre.przywa=
+ra@arm.com/
+> >
+> > If we REALLY need to rename this, it wouldn't be the end of the world,
+> > but would create some churn on the U-Boot side.
+> >
+> > I just wanted to point out that any changes to the DT bindings have
+> > some impact to other projects, even if they are proposed as a coherent
+> > series on the Linux side. Hence my question if this is really necessary=
+. =20
+>=20
+> For the compatible string, I can live with having a comment in the binding
+> stating the name used in the datasheet for reference.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index 3a8b45272526037b364e6e39886fcc9199114105..f11284b3fe8e23b4c48d8d2f3a7202e80dc57370 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -301,8 +301,8 @@ AM62AX_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (D15) UART0_TXD */
- 
- 	main_uart1_pins_default: main-uart1-default-pins {
- 		pinctrl-single,pins = <
--			AM62AX_IOPAD(0x01e8, PIN_INPUT, 1) /* (C17) I2C1_SCL.UART1_RXD */
--			AM62AX_IOPAD(0x01ec, PIN_OUTPUT, 1) /* (E17) I2C1_SDA.UART1_TXD */
-+			AM62AX_IOPAD(0x01ac, PIN_INPUT, 2) /* (B21) MCASP0_AFSR.UART1_RXD */
-+			AM62AX_IOPAD(0x01b0, PIN_OUTPUT, 2) /* (A21) MCASP0_ACLKR.UART1_TXD */
- 			AM62AX_IOPAD(0x0194, PIN_INPUT, 2) /* (C19) MCASP0_AXR3.UART1_CTSn */
- 			AM62AX_IOPAD(0x0198, PIN_OUTPUT, 2) /* (B19) MCASP0_AXR2.UART1_RTSn */
- 		>;
+For the compatible string going with a fallback name, I can live with
+renaming it ;-)
 
----
-base-commit: 036cc33070b35754f45da50d81f8c3c85191c8b7
-change-id: 20250707-uart-fixes-6efe27a1afe4
+> For the pinctrl stuff, which is the contentious bit here, I thought the
+> whole idea of the newer pinctrl bindings is that the driver uses
+> "allwinner,pinmux" instead of "function". I think having both being valid
+> is confusing, and likely to cause conflicts later on. If we're going to
+> use the hardware register values in the device tree, I'd really like them
+> to be the only source of truth. The commit message for the binding also
+> sort of suggests that "allwinner,pinmux" is the part that matters.
 
-Best regards,
--- 
-Bryan Brattlof <bb@ti.com>
+Yes, it should be, but it turns out to be convenient for U-Boot to
+continue using the old method - until someone writes a driver for the new
+schema. And a function name is still mandatory, it's just mostly for
+reference now (so would indeed be fine to rename).
 
+So if you really insist on this: please go ahead and merge it, so that
+the 6.16 release contains the new name.
+
+But please note my silent protest about those cosmetic name changes in the
+DT realm, which establishes an interface reaching beyond just the Linux
+kernel. When it comes to new boards, the U-Boot DT sync process is rather
+slow, so I really am eager to cherry-pick -rc1 DTs already, instead of
+waiting another 7 weeks - which bites me in this case. It's not merged
+yet, so is fine in this case, but I would really like to avoid similar
+hiccups in the future.
+
+Cheers,
+Andre.
 
