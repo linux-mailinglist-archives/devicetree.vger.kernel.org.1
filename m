@@ -1,94 +1,200 @@
-Return-Path: <devicetree+bounces-193663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E20AFB3E5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:05:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 869BBAFB3E3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:04:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73CF84231FC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 13:02:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FA331AA059B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 13:05:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8B2D29B228;
-	Mon,  7 Jul 2025 13:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57E4529B22F;
+	Mon,  7 Jul 2025 13:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="XJjnYEq9"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="OsO71f3k";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="lJarg4NF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
+Received: from fhigh-b3-smtp.messagingengine.com (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1578C29AAF7
-	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 13:03:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E23D6275867;
+	Mon,  7 Jul 2025 13:04:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751893390; cv=none; b=MDBtFqfBALLHeDnYU5V6x/ZapUI6oPdTuNJYCSM+UiAcS8SoijYHNLr/xA40pdgjNDdxkyQw3vK4FFMGhBUaUD42jsKuySCIpf56FdRhJjtW7Ok8pAW9ynXoLNKkSi8c4pD+dCrXf+uOgErc51WWo3Pq1d7Fs4gxRz8xB+X0XLQ=
+	t=1751893482; cv=none; b=kxSGUFlWiLH8Oz1gK51g44fQEkkpb3Zf+zc8JRIbgtWOONsnxGFqMCCLWmI3FiVvyYlBcAHUcJPkdCBkMhQKU0c8JI5UisV+IL/UIAm5LBaWuMJ7LeTzmtkM9gF1/Ep3NYytJStbCyBqWNN1yErZ7JFgQrx0i5XduCgr4aEXuis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751893390; c=relaxed/simple;
-	bh=mrnFaKGus2WtvZtHVXHa7d0mdUSaJF5FamWa4/acV0A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aMOGi9hZaWI+Ub3YX/orZXasy1TW9HuGEar9NHbqnWwnGztnCBUlv4/6TJ0Rdmct5nVyf6vkM36RjyiTVVNmVTOhRwj74kEyhys8j7ntWAUsAsiGBdTcsxbB4Yjh5JFMHXeSoNTfzPIGB6RlbIIh8ka04o73b4P6U4yfUJq/1G0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=XJjnYEq9; arc=none smtp.client-ip=91.218.175.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <25360415-bd91-4523-b0a6-664d22ba9f37@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1751893376;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TCV91GQv8wBvsbXZEB5eJKaglsk0gzDKuhgyVMjdx3A=;
-	b=XJjnYEq9/siVHn71lng8+uLXl175KinoAbXFrTaCEjpz6PRRF2Xxne+MqqiEQ/y2Bdwxjd
-	yN11QmxAwrC6UiaLw8KksCdGpny4IojU4uqD9jIYT+v9CqKsJObD8rrnxXPEAGQBROYwE9
-	yaD86UXkxrjlkXuZQDuJBZmoFfrz2N4=
-Date: Mon, 7 Jul 2025 14:02:51 +0100
+	s=arc-20240116; t=1751893482; c=relaxed/simple;
+	bh=YvMqK8+O9BvdtDqAeuWnEmxWsI/E7JAhxBCSL5Mcq9A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KYsElPWGu3xBU8+gbsv1uJMjqpzKdbT1+betWPqDAw8gyAhQ73baXJeaxFctxF1EK/KxYEYIL30fFJ/uGKF4+sFn31PExN9SKESe09yEdClrkWvfvWDtF5xnlbYpZzWkndHwydwBW7969Da6T2Ep5CJaBqgvWc91nD0OxS51ObQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=OsO71f3k; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=lJarg4NF; arc=none smtp.client-ip=202.12.124.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id C84497A01D9;
+	Mon,  7 Jul 2025 09:04:38 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-10.internal (MEProxy); Mon, 07 Jul 2025 09:04:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1751893478;
+	 x=1751979878; bh=2oqFgoF7+sGP4MfFFa3XS0/hygDNP0/Cfs/DpHziMSE=; b=
+	OsO71f3k5vGJAKb96eTuQqHp02wR+BxrglYvVSLUHRYHpWqGQqU4ZGi1QxjrVmsJ
+	ecAP0xD1aa3+GK2An06b0bCRcAflwJGRI8fDgivdlesiLcOCvOmvCilBg3OPpCHm
+	YpwmHKjM2KkN5ylcraAW2Gvm//eaZShRHNRCNsT48gq7UW6RKzrRlnKOug6lMveo
+	3FVvK+YfhrsFAd2D2SrmoX5GHsXihdu3JvhDbwf5vesmR6YlFT0HV0ps+0TA3hFu
+	UvL80tNe+hTG2cfivs3KCq6tBtD6GsPOJAuEOAvP//CuDpW7C4dZ6YrDY0dBWsjJ
+	DdvNAO4cZzEP8s5CHPPLpg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751893478; x=
+	1751979878; bh=2oqFgoF7+sGP4MfFFa3XS0/hygDNP0/Cfs/DpHziMSE=; b=l
+	Jarg4NFbJHnqAyTQTDzQLmuCKeDHO7KFRgleyziW1ky0wUGEuRuXthtKwxS/gdc0
+	xdLrrQYjEbGR7QD+B3S0rcrJl5+Yfhx0xdwkfDzt14WizLvkp0ryNScHc+QXuKwG
+	dektJi5/eIYglKwMLnRUR79OXMO/ybm/AIqvOk97Ml+gOT5xiFWtTKbSMCiqSUGH
+	x7MJqq4GegXQQXdOLyHL4oc3BfYXS0cuQipUHK4t9g5Z+Zcg6nDNCT4/4EgqU3xt
+	ZU9fN1I1zcoxNLjf3Ju5T+ScvzHQ4lhXVdyDCQSPSCPJBlwVjIxDW08e9ZC29mkY
+	RECR2qLtZJgzXVPMg2rew==
+X-ME-Sender: <xms:5sVraIFrCr5u4XqPZERUo8uL7ex-oLvUvqWBmzelIyEewMZKD9X3qA>
+    <xme:5sVraGg6MGiSd5Ytd0JgPy3uHn_BOteLxtVUGNGIeY0h0VpVYavzgC9HUyVcC-_2m
+    _Pk1W2rxmQvj72jH8k>
+X-ME-Received: <xmr:5sVraDBMmpnrvv0BN1D6GNoWI8OTiguucNRBeqSfNz4hTGo9vl5trCZDQoA-lJO5XlghZ_TpzcBfLPIO16BLwr3rejApv0irsw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdefudekkecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhikhhlrghs
+    ucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrg
+    hssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepfefhleelhfffjefg
+    fedugfegjeelhfevheeikefhueelgfdtfeeuhefftddvleeinecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhu
+    nhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepke
+    dpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepghgvvghrtheslhhinhhugidqmhei
+    kehkrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtth
+    hopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgu
+    theskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgrrhgvkhdrvhgrshhuthdorhgvnh
+    gvshgrshesmhgrihhlsghogidrohhrghdprhgtphhtthhopehlrghurhgvnhhtrdhpihhn
+    tghhrghrthesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtoheplhhinhhugi
+    dqrhgvnhgvshgrshdqshhotgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthho
+    peguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:5sVraAThKGY5OsvBi1Rw9LaiYS6Sc4jtpyjX9p_ULDkFvjorSdu_jg>
+    <xmx:5sVraAVH9VMUMYuHRHMi1qNLvddg7TXUYGnHfEqNly0XCjCnYvD1sQ>
+    <xmx:5sVraBeQ93L7w4bXU-IuCk84gpdr3F2Ouj7nPdFCEahXOorbmFf6gQ>
+    <xmx:5sVraEK5nTPQwUeDXdIjSOGBG0bIOUTtkkXbPVooMZ0Oi-x1o0wS6g>
+    <xmx:5sVraK_g1Q0TuUogpc-QyBKk2nTMJm7wc0aMqvqXYvZPpA-JwrTtLuDd>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 7 Jul 2025 09:04:37 -0400 (EDT)
+Date: Mon, 7 Jul 2025 15:04:35 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] arm64: dts: renesas: sparrow-hawk: Add overlay
+ for IMX219 on J1
+Message-ID: <20250707130435.GA1410739@ragnatech.se>
+References: <20250704100734.3387856-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250704100734.3387856-3-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdX-1KJ4yrNeNT1SYqvfrn+XEjWuMxQkNTKJ5j9+fxgDdw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next v13 12/12] dpll: zl3073x: Add support to get/set
- frequency on pins
-To: Jiri Pirko <jiri@resnulli.us>, Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Jason Gunthorpe <jgg@ziepe.ca>,
- Shannon Nelson <shannon.nelson@amd.com>, Dave Jiang <dave.jiang@intel.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
-References: <20250704182202.1641943-1-ivecera@redhat.com>
- <20250704182202.1641943-13-ivecera@redhat.com>
- <idzmiaubwlnkzds2jbminyr46vuqo37nz5twj7f2yytn4aqoff@r34cm3qpd5mj>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-In-Reply-To: <idzmiaubwlnkzds2jbminyr46vuqo37nz5twj7f2yytn4aqoff@r34cm3qpd5mj>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdX-1KJ4yrNeNT1SYqvfrn+XEjWuMxQkNTKJ5j9+fxgDdw@mail.gmail.com>
 
-On 07/07/2025 09:32, Jiri Pirko wrote:
-> Fri, Jul 04, 2025 at 08:22:02PM +0200, ivecera@redhat.com wrote:
+Hi Geert,
+
+On 2025-07-07 13:47:32 +0200, Geert Uytterhoeven wrote:
+> Hi Niklas,
 > 
-> [...]
+> On Fri, 4 Jul 2025 at 12:08, Niklas Söderlund
+> <niklas.soderlund+renesas@ragnatech.se> wrote:
+> > Add an overlay to connect an IMX219 camera sensor to the J1 connector.
+> > The IMX219 utilizes 2 CSI-2 D-PHY lanes. This enables the video capture
+> > pipeline behind the CSI40 Rx to be enabled to process images from the
+> > sensor.
+> >
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 > 
->> +static int
->> +zl3073x_dpll_input_pin_frequency_set(const struct dpll_pin *dpll_pin,
->> +				     void *pin_priv,
->> +				     const struct dpll_device *dpll,
->> +				     void *dpll_priv, u64 frequency,
->> +				     struct netlink_ext_ack *extack)
+> Thanks for your patch!
+
+Thanks for your review.
+
+
 > 
-> Unrelated to this patch, but ny idea why we don't implement
-> "FREQUENCY_CAN_CHANGE" capability. I think we are missing it.
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx219.dtso
 > 
-Do you mean that some DPLLs may implement fixed frequency pins and
-we have to signal it back to user-space?
+> > +/* Page 29 / CSI_IF_CN */
+> > +&csi40 {
+> > +       status = "okay";
+> > +
+> > +       ports {
+> > +               port {
+> 
+> The base arch/arm64/boot/dts/renesas/r8a779g0.dtsi has "port@0".
+
+Indeed, this should be port@, will fix.
+
+> Still, this is applied to the correct node?
+
+As far as I can tell it did, and the cameras worked as expected.
+
+> 
+>     $ dtx_diff --color
+> arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk{,-camera-j1-imx219}.dtb
+>     [...]
+> 
+>                                     port@0 {
+>                                             reg = <0x00>;
+>     +
+>     +                                       endpoint {
+>     +                                               bus-type = <0x04>;
+>     +                                               clock-lanes = <0x00>;
+>     +                                               data-lanes = <0x01 0x02>;
+>     +                                               phandle = <0xf2>;
+>     +                                               remote-endpoint = <0xf3>;
+>     +                                       };
+>                                     };
+> 
+>                                     port@1 {
+>     [...]
+> 
+> > +                       csi40_in: endpoint {
+> > +                               bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+> > +                               clock-lanes = <0>;
+> > +                               data-lanes = <1 2>;
+> > +                               remote-endpoint = <&imx219_j1_out>;
+> > +                       };
+> > +               };
+> > +       };
+> > +};
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+
+-- 
+Kind Regards,
+Niklas Söderlund
 
