@@ -1,126 +1,194 @@
-Return-Path: <devicetree+bounces-193439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C55AFA899
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 02:32:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D98ABAFA8C2
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 03:18:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E7EB18960E8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 00:32:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 701D71898D7F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 01:19:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D76136358;
-	Mon,  7 Jul 2025 00:32:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CjjWRng1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DEA7083C;
+	Mon,  7 Jul 2025 01:18:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F4C4A3E;
-	Mon,  7 Jul 2025 00:32:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60BEB10E4;
+	Mon,  7 Jul 2025 01:18:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751848330; cv=none; b=b064k9ZegOhxasT5Ogkg8jKzHIj3nfqmZJXNavrS12+2DDw0XcUM4dczlBEogLMl1N2vtw5HybIloGalU4FX/rPMXw8tHARVsN6ICriZOLso+Yb2txemsTrWYyK+zBmOUUY50pRFC3ufqfCGCfNSeoYvn3yzwXLT6Ictzx9WLf4=
+	t=1751851119; cv=none; b=Tn47S87XJx8YsfgrLJpc0kWnsVH6OJ9nrUdQiVM95IjOEnUE0eN+xZLfrE+eFJmJ5sbO4SiT8s2/72AHNs8EVNiI/WRhsHWQDTG3m0KJGbMPaXCXXlznjE0oaHQprqsRAcF5QZS5VdR0LRfsNozhU0t0gGskVVZ334RjKkEL2/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751848330; c=relaxed/simple;
-	bh=mhbc0WemYmG8rm7InaTf8LWaoJtr9oPrFfMT15Fe94M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mTksE7dLb7SjJVrCCEHZ1iN2LMp4Ukn+HmArQuispl76FtbaJdl//wjIeWGReRW4zK8vOyKG/5TxXT+WOi2+O61DCzsH/98f81oCV7HWyD0K9qZabJ5sboGOe7Lw7ruRPhCZO8AGVOS6c/QUqTnw3KnhZ/M94I/P5ScohvTdKaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CjjWRng1; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-7fd35b301bdso2612464a12.2;
-        Sun, 06 Jul 2025 17:32:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751848329; x=1752453129; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=waNYge1pVnAmfDAo+Scw1VWP79dyDXSW85JWJajzOys=;
-        b=CjjWRng1/yBXsTo8SS37DCSs8xrIraEdFmcXWtmpgSEFgD1CvB73e6navO8Toh21MS
-         NdZGYBa5GLFcX23OKkDoNEwpu10Ivd0DfxAy4yCwd2DnMfX8tEbfOVZaEDDHmNnHJG3z
-         mIIhR4zwPcz2yMIbHnsylteqDWseHgdiv0F431IRxMD5gv97Dixnl/0e7kkVTQ2G4lSS
-         pXUP+P9OuCk5VHY6d6/QkXwd3crCvKXlx4S9lHizObKbfcZYagN1JPWp5RY9BdbZiagj
-         FDtfQzGYEDpKOeHop9vcPnPEr8MhTDR74H1RufXd56JcSS2IDf2I6RiAT4+Wvt20tKb+
-         154Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751848329; x=1752453129;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=waNYge1pVnAmfDAo+Scw1VWP79dyDXSW85JWJajzOys=;
-        b=u3yfmRRmb+zUthNqKpiy3UWvHFvWi4k1Of1ppDxmSJdznXk1zBBYAxAsM769go6RgQ
-         rKdB5+Wa5obpRkwcuov8x5/N9a0zXdsuhcZYyAl4dCdgRgHCodgp6IWToJI9bDTctSEq
-         dj/x+QRP6RQhQDL4Rm9XH8lQFKm807/fzPOqUF9kh68ENaKoVh26gCqtNTETjrtnA5oS
-         L6pqQnmURXPZV6ggW85Yik6Y4AhKmanILYI0lW1xeaV7Aj4QjcMjvhKPn3/FVmIEPFA/
-         L7fFVS2fE5PJkh0SBwYGWNCWfwLtmz2W4oBI/v4mcxIVjCp9xBkqoDUANxWTIMZYq/55
-         Ahuw==
-X-Forwarded-Encrypted: i=1; AJvYcCWdfVe5O5TSZPQshZaqO7HXCNXPJScluz924WsTVwuJ+eZhVekxLbODFSRQNs5BjS+HuzZ0KBSbm9TqOdY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxI1uxZTBRh2otaVHUHFroYorqBiT3NuzIuAaYvv5GRrDdMQMwR
-	oQCKyqgsW5ou2S3bmawLaIcH2doA4Jm64LASezprNw004gQvcJQsHHmc
-X-Gm-Gg: ASbGncvOsESkTg570DPG/tUjEihS11sSgZephZxYdlZqFSo6Aw30GfoUTK4P8vOENYH
-	SFcd82UKy1Won9vBanoSrasi7cvJJmT+ZPX82mowfyqUQUaYaU5HIhlCOGAH8n7dV6+w6sYrdCf
-	D7JNijA3n3wrcJlxRGB6JCvtpiyz0AHDwDvDtFMHX/e8AFWoX6QgZ2Rx4I+NQhFziMrjhXzgVPA
-	/Cu2VDU8Sg3nvSw7TSNBPpDXnkJ/vIqsTNQ9Tdv/ol9OqYbdK/d49iQvwjqcpMlurwI1jTiSg5q
-	s1taSnONCyakEHYpwbud1UeRBg3heSFKrrQJGsgL+Hw7lNJTPSdDeKyTS4Dy0Q==
-X-Google-Smtp-Source: AGHT+IEJfwXHQNDfml8NzaqLJBaxvkA9HUYq+A9+IyCh9ibIK7D1D9K8y86d2uYsm2pa9DcODEISyg==
-X-Received: by 2002:a17:90b:3c8f:b0:312:1d2d:18e2 with SMTP id 98e67ed59e1d1-31aac4b2f1cmr15485476a91.20.1751848328607;
-        Sun, 06 Jul 2025 17:32:08 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-31a9cc66830sm10477012a91.16.2025.07.06.17.32.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Jul 2025 17:32:08 -0700 (PDT)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Longbin Li <looong.bin@gmail.com>,
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Yixun Lan <dlan@gentoo.org>
-Subject: Re: [PATCH 0/2] riscv: dts: sophgo: sg2044: add PCIe device node
-Date: Mon,  7 Jul 2025 08:31:59 +0800
-Message-ID: <175184826045.122679.3644918560620246720.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250618015851.272188-1-inochiama@gmail.com>
-References: <20250618015851.272188-1-inochiama@gmail.com>
+	s=arc-20240116; t=1751851119; c=relaxed/simple;
+	bh=nYmHBfKC1In8qDW3GIo2UwVe9MvCXebLZr99Zm4j1bM=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GtYHOW0HZoYMzxkGQ5JcwFEO+55nSH43GNGRhAvArbOEqBOPgOzL1YwkLzd6XW1VIuA9yteTDsZ6iSj/K/3WFwaK1ffO6kMHz0CuqxfdE7Olw93u6ElyMzPgRwxhohYBkbfLj/WUoVikkU/sFc5Gku5wFpwJnl7GiMuQnwuY/vk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 7 Jul
+ 2025 09:18:26 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Mon, 7 Jul 2025 09:18:26 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+	<andrew@codeconstruct.com.au>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Mo Elbadry <elbadrym@google.com>, "Rom
+ Lemarchand" <romlem@google.com>, William Kennington <wak@google.com>, "Yuxiao
+ Zhang" <yuxiaozhang@google.com>, <wthai@nvidia.com>, <leohu@nvidia.com>,
+	<dkodihalli@nvidia.com>, <spuranik@nvidia.com>
+Subject: [PATCH v11 0/3] Add support for AST2700 clk driver
+Date: Mon, 7 Jul 2025 09:18:23 +0800
+Message-ID: <20250707011826.3719229-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Wed, 18 Jun 2025 09:58:47 +0800, Inochi Amaoto wrote:
-> As the PCIe driver is merged, add device node of PCIe device and MSI
-> device for SG2044.
-> 
-> Inochi Amaoto (2):
->   riscv: dts: sophgo: sg2044: add MSI device support for SG2044
->   riscv: dts: sophgo: sg2044: add PCIe device support for SG2044
-> 
-> [...]
+This patch series is add clk driver for AST2700.
 
-Applied to for-next, thanks!
+AST2700 is the 8th generation of Integrated Remote Management Processor
+introduced by ASPEED Technology Inc. Which is Board Management controller
+(BMC) SoC family. AST2700 have two SoC connected, one is SoC0, another
+is SoC1, it has it's own scu, this driver inlcude SCU0 and SCU1 driver.
 
-[1/2] riscv: dts: sophgo: sg2044: add MSI device support for SG2044
-      https://github.com/sophgo/linux/commit/29ce381d6bc61b23024c6ee42a5745d4becb28c1
-[2/2] riscv: dts: sophgo: sg2044: add PCIe device support for SG2044
-      https://github.com/sophgo/linux/commit/55fd09df36d7c6ae59d82a7df5072827f65a0eb4
+v11:
+-update patch(1/3) commit message subject prefix dt-binding: to dt-bindings:
 
-Thanks,
-Inochi
+v10:
+-aspeed,ast2700-scu.h:
+-add SOC0_CLK_AHBMUX, SOC0_CLK_MPHYSRC, SOC0_CLK_U2PHY_REFCLKSRC,
+ SOC1_CLK_I3C.
+-clk-ast2700.c
+-add #include <linux/auxiliary_bus.h>
+-remove #include <soc/aspeed/reset-aspeed.h>
+-use devm_auxiliary_device_create replace aspeed_reset_controller_register
+-reset-aspeed.c:
+-remove aspeed_reset_unregister_adev, aspeed_reset_adev_release,
+ aspeed_reset_controller_register.
+-compatible name change reset_aspeed.reset0/1 -> clk_ast2700.reset0/1
+-remove reset-aspeed.h
+
+v9:
+-aspeed,ast2700-scu.h: no change.
+add more clear commit description.
+-clk-ast2700.c:
+add inlcude bitfield.h
+remove redundant clk_parent_data soc0_mpll_div8/soc0_ahb/uart13clk/
+uart14clk/uart15clk/uart16clk/soc1_ahb/d_clk_sels
+
+v8:
+-aspeed,ast2700-scu.h: remove no use soc0 clock, add new clock
+-clk-ast2700.c: remove include <linux/auxiliary_bus.h>,
+include <linux/clk-provider.h>, include <linux/of_address.h>
+-clk-ast2700.c: add include <linux/mod_devicetable.h>
+-clk-ast2700.c: modify include <soc/aspeed/reset-aspeed.h> order before
+dt-bindings
+-clk-ast2700.c: modify define to be tabbed out space
+-clk-ast2700.c: add union struct for each clk type
+	union {
+		struct ast2700_clk_fixed_factor_data factor;
+		struct ast2700_clk_fixed_rate_data rate;
+		struct ast2700_clk_gate_data gate;
+		struct ast2700_clk_div_data div;
+		struct ast2700_clk_pll_data pll;
+		struct ast2700_clk_mux_data mux;
+	} data;
+-clk-ast2700.c: modify clk_data = device_get_match_data(dev);
+-clk-ast2700.c: modify builtin_platform_driver_probe to 
+arch_initcall(clk_ast2700_init)
+-clk-ast2700.c: ast2700_clk_hw_register_hpll explain: scu010[4:2],
+scu010[4:2] = 010, hpll force 1.8Ghz
+scu010[4:2] = 011, hpll force 1.7Ghz
+scu010[4:2] = 110, hpll force 1.2Ghz
+scu010[4:2] = 111, hpll force 800Mhz
+others depend on hpll parameter register setting.
+
+v7:
+-reset-aspeed.h: fix declare static inline aspeed_reset_controller_register
+if the function is not used.
+
+v6:
+-patch-2: add reset-aspeed.h
+-reset-aspeed: add include cleanup.h for guard()
+-reset-aspeed: change ids name clk_aspeed to reset_aspeed
+-reset-aspeed: move aspeed_reset_controller_register,
+aspeed_reset_adev_release, aspeed_reset_unregister_adev from clk-ast2700.c
+-reset-aspeed: drop base check, since it check in clk-ast2700.c
+-clk-ast2700: sync each gate name from *clk to *clk-gate name.
+-clk-ast2700: add CLK_GATE_ASPEED to diff clk_hw_register_gate and
+ast2700_clk_hw_register_gate.
+
+v5:
+-patch-2 Kconfig: add select AUXILIARY_BUS
+-reset-aspeed: #define to_aspeed_reset(p) turn into static inline function.
+-reset-aspeed: modify spin_lock_irqsave to guard(spinlock_irqsave)
+-reset-aspeed: remove unnecessary parentheses.
+-clk-ast2700: use <linux/units.h> and refrain from define clk
+
+v4:
+-yaml: keep size-cells=<1>.
+-merge clk,reset dt binding header with yaml the same patch.
+-rename clk,reset dt binding header to aspeed,ast2700-scu.h
+-reset-aspeed: update tables tabs sapces to consistent spaces.
+-reset-aspeed: remove no use dev_set_drvdata.
+-clk-ast2700: modify reset_name to const int scu in struct clk_data.
+-clk-ast2700: use scu number in clk_data generate reset_name for reset
+ driver register.
+-clk-ast2700: fix pll number mix up scu0,scu1.
+-clk-ast2700: update dt-binding clock include file.
+
+v3:
+-yaml: v2 missing send yaml patch, v3 add.
+-yaml: drop 64bits address example.
+-yaml: add discription about soc0 and soc1
+-dt-bindings: remove (), *_NUMS, reserved.
+-dt-bindings: remove dulipated define number.
+-dt-bindings: merge clk and reset to be one patch.
+-reset-aspeed: add auxiliary device for reset driver.
+-clk-ast2700: modify reset to be auxiliary add.
+-clk-ast2700: modify to be platform driver.
+-clk-ast2700: modify each clk to const clk array.
+
+v2:
+-yaml: drop 64bits address example.
+-yaml: add discription about soc0 and soc1
+-dt-bindings: remove (), *_NUMS, reserved.
+-dt-bindings: remove dulipated define number
+-clk-ast2700: drop WARN_ON, weird comment.
+
+Ryan Chen (3):
+  dt-bindings: clock: ast2700: modify soc0/1 clock define
+  reset: aspeed: register AST2700 reset auxiliary bus device
+  clk: aspeed: add AST2700 clock driver
+
+ drivers/clk/Kconfig                           |    8 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/clk-ast2700.c                     | 1138 +++++++++++++++++
+ drivers/reset/Kconfig                         |    7 +
+ drivers/reset/Makefile                        |    1 +
+ drivers/reset/reset-aspeed.c                  |  253 ++++
+ .../dt-bindings/clock/aspeed,ast2700-scu.h    |    4 +
+ 7 files changed, 1412 insertions(+)
+ create mode 100644 drivers/clk/clk-ast2700.c
+ create mode 100644 drivers/reset/reset-aspeed.c
+
+-- 
+2.34.1
 
 
