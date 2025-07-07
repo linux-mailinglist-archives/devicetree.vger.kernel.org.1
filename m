@@ -1,120 +1,178 @@
-Return-Path: <devicetree+bounces-193769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04E9FAFBA0B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 19:42:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01265AFBA19
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 19:48:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 465CD1AA4797
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:42:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAA397AB083
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:47:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69A412E88A6;
-	Mon,  7 Jul 2025 17:42:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 929041C6FE8;
+	Mon,  7 Jul 2025 17:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ABDOEf3I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="os957C1b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5BD12E2644;
-	Mon,  7 Jul 2025 17:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 607AF219EB;
+	Mon,  7 Jul 2025 17:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751910131; cv=none; b=kOFiWdhLWgCE08fam31HJtXKcpWO4ydVs0lxcRv+mWvPXudrvR76bGnciiIjD0o3BfQyBh272VikDVZrwKkGT7azMAK/mBsT+D8KkAb64tcZfe6xwut8lw0FnPSUsnDYZQZTDkTFH5iiltt5zL9mLz39GuZNqLV6PqmmBtAoEGU=
+	t=1751910508; cv=none; b=CKzTpb8GmYp3B5P/t7R1UJE18zzAGcW+QRjmpgNdyQsiGaGD2B1R/wowBzwhsyXvcRjBW9wymsNYZP13HcudQ4mz238V5j1m77+Ww/beRgLFhzJTSs9lQmTvzI2gUr5qnS0YIjRopJJgJ3RwQCajc/ZWu/RT0oK6gmxYK0HBOFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751910131; c=relaxed/simple;
-	bh=BcRJsM9iy/XMPZrWki3/WFSDgpuo7Zx4XQLpPLhix74=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VWK3lZtcOGna4iSGMKjcc293U6JLup7ESrBW0i4L591tVvQZ67NyuSJbWXAUvYF+sKvEPcQ++X/zd+sQrvij78fPaIxWY/4ki7aKGOH2EFBo8oy1puqk/JezTZ3h4Lqt4DkgMQm6KJYJUL9JdCRW89/gMWCdHFMj3rMjWyf+Cck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ABDOEf3I; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e812fc35985so2804107276.0;
-        Mon, 07 Jul 2025 10:42:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751910129; x=1752514929; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=42jtsUDXPCPmNytXrx59THHUxajHEyTomBc5xpmWMc0=;
-        b=ABDOEf3IUGHC/HErXGiIfHLXtMFA7tCrzNJYIrgndc0vaD4XQjvev/SQvK8XeJMNWv
-         lBxr2qIp/7Pk6Mm1n2Hu80ctuvG6NQ+j5bnGj1kWwhdRtU3GhGESwiHx4N8oiR6PuTFu
-         4wUFvqEAYm8ed3d+fpDjJ2gHvvV/3dja/nga7ZR8/gBJShIInqq1wUhJS8L1Kuawq48l
-         4SEcZBs65yoYR8TlAvuGKOkDDlfHGYhNqXGoSl3WN9hY7eFvOhT7b52G+DzgmQiCoPmN
-         aB9NG5jJ1zsFfZFflvITH+oAGX1keso5eiFo3ujLQ23NHkyn7Q/WlqFToyh5fMuUZYNh
-         1A7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751910129; x=1752514929;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=42jtsUDXPCPmNytXrx59THHUxajHEyTomBc5xpmWMc0=;
-        b=NsNX7z/f5KT1nfZYA6gr71aVFi12avEa6rvdP+0H4PdBcSoZ9/O6MYv7Q9u3ELsSf1
-         vWaRVpbQjHx9YhY7IpCHk5MNPhZyJdqoEF8xqZLzRCEE6Ek0bHEKZ8luNuukrbnypAQZ
-         ygwBcNuZO5Frn8qfujvaIY+LShg4Mm2NpTRLzdcsPCrASc9JLDbmDoBU5J3zKGgTAWOT
-         dJbsudyEFkRH5FvBNSEtuT+VMVkSbB62tjK99s7SuxJPBlyXDRYrgrTlJQ2rdpv4AaGP
-         O58rQz9ZDp9/5g9kWCEiElA0RFw8Kh51yByWQGN+Yt0MFBgGXgvxXyJDvIwvieEsfKJr
-         8+7w==
-X-Forwarded-Encrypted: i=1; AJvYcCUSvMGpqiqkSia3JGfWIne7djbpD6eaC10YBf98rSy8F7fTQgmwN+k6HsRfhAh9NKsVd7HNsh41B4gjQw==@vger.kernel.org, AJvYcCWA2cY35jjYB0PruZQlPnPm0X4s1CyZfcEFFFHnPjCdtJq9OEykuPPKa+I+2zFV00yLqSKrzEomRiRI1FDc@vger.kernel.org, AJvYcCXYeqgnD1XFHu8WhDqFQTfSlYR68+MmRsF0E2wgJIUkH9SsKeHBUe9CAv3fTHrvTwW/+jcvirn3EQ6U@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5NTpwnL3hKqfk5CxUJLDzK7vorcsAx8kqxc8fhj65Dbfr/8vE
-	uo1Vkq5fiUmG9XwP48+RYHvgxMwsgn5sBm0GWMoC2ari/fuUqXXr53xjXjbIYGEOH4/uenmFQ9b
-	47zG3P8gigWvBBAJT5Zq2J/4eSiyXiCI=
-X-Gm-Gg: ASbGncuDO2dbvog8JVczWaffa3ATbVHlwBnTnkybDt8Yg9cpVM85hUoS060lJiUHcF8
-	c0zRzeZxuRuDWdhqTTUhsf9DzAVKRZFa2JCldcRvgDdFMNpsl4mVUTnnT4eW8mQojf4P7wtRU2X
-	/tbZYpXefI0xZHfcCnUJGsLTJsQy3hLUncZfLvgKQuuj4kJ6ZDKclRMeSA
-X-Google-Smtp-Source: AGHT+IGdu+lUB6aYqtWH4AiO6Py1SgyDO+jxiLBNa4PCqXrusbUeunWL1E2NWxsWS+1ctn1q5K5//624lv0vLW+ua3Q=
-X-Received: by 2002:a05:690c:f8e:b0:70c:c013:f2f with SMTP id
- 00721157ae682-7179e44d3e9mr7404627b3.35.1751910128762; Mon, 07 Jul 2025
- 10:42:08 -0700 (PDT)
+	s=arc-20240116; t=1751910508; c=relaxed/simple;
+	bh=38upJ0pBmugxSPEcajDjCdYu6uxaRBbEaf1xbSZkXf0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qocBKYFgGGE0uDjyvdcbShCoITjg4iqp+5Ww+3AwhpY6ZaXwCq7rtb1vTksImboFHKARMQEScf1TmkimBI623FpF7yUbGFz4MlcFHDotHE/btqyzCOFhLlxyyOwFUQn/kkKMBxD0iAMyx2DOmDYOn7mOX1N9z+XmGLui0Am3qp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=os957C1b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8961C4CEE3;
+	Mon,  7 Jul 2025 17:48:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751910507;
+	bh=38upJ0pBmugxSPEcajDjCdYu6uxaRBbEaf1xbSZkXf0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=os957C1breH45JkDqec35f+bijw+a347H8WDo7aK13x1cy5gOJd1yWN38gQkRRg+2
+	 ZSPJlwCHTmGB1Xf5WQ97u0/Ix5Hpf3Bll9bfx14z2enp62GBUByr4MiHWZkHwmYStJ
+	 aB6ToCbi2rihE9faNY98tTQIAbtiPwrPeHZrRQOUFX+xpesWNIk4AwNp7du5lxEwyk
+	 iCy6JjMuouIDHF8cTPKbDbflY2Yo30USAgOIRsxCW2aiEoVG0JpCl9zI6J0GWN+VVQ
+	 GalYCFjww5qjDlI2GrISCf4SpHITlq/mDEGeMp7QQESQZ5X0TGFoOH79tsam5Crwtw
+	 EW7yjnRtKR46Q==
+Date: Mon, 7 Jul 2025 18:48:15 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <lars@metafoo.de>, <Michael.Hennerich@analog.com>, <dlechner@baylibre.com>,
+ <nuno.sa@analog.com>, <andy@kernel.org>, <andriy.shevchenko@intel.com>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <broonie@kernel.org>,
+ <lgirdwood@gmail.com>, <marcelo.schmitt1@gmail.com>
+Subject: Re: [PATCH v8 00/12] iio: adc: Add support for AD4170 series of
+ ADCs
+Message-ID: <20250707184815.36386379@jic23-huawei>
+In-Reply-To: <cover.1751895245.git.marcelo.schmitt@analog.com>
+References: <cover.1751895245.git.marcelo.schmitt@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250706214111.45687-1-rosenp@gmail.com> <8c6f18ca47bf0dd78b6675d8b94000679b6c75cd.camel@sipsolutions.net>
-In-Reply-To: <8c6f18ca47bf0dd78b6675d8b94000679b6c75cd.camel@sipsolutions.net>
-From: Rosen Penev <rosenp@gmail.com>
-Date: Mon, 7 Jul 2025 10:41:58 -0700
-X-Gm-Features: Ac12FXwpmQW7d4a2Au2Yz5auZhjQPGBnlW83MkM8UJ0V9bkuM1yY9_y20XPBBjc
-Message-ID: <CAKxU2N9vs5o4tj-9KxCHKevWU+J9wv+ZCOeD8o602y1GY8FzNw@mail.gmail.com>
-Subject: Re: [PATCH 0/6] wifi: rt2x00: add OF bindings + cleanup
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: linux-wireless@vger.kernel.org, yangshiji66@qq.com, ansuelsmth@gmail.com, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Stanislaw Gruszka <stf_xl@wp.pl>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	"open list:MIPS" <linux-mips@vger.kernel.org>, 
-	"moderated list:ARM/Mediatek SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jul 7, 2025 at 2:01=E2=80=AFAM Johannes Berg <johannes@sipsolutions=
-.net> wrote:
->
-> On Sun, 2025-07-06 at 14:41 -0700, Rosen Penev wrote:
-> > It doesn't even compile. Added OF bindings, documentation, and other
-> > stuff to hopefully this doesn't happen again.
-> >
-> > Rosen Penev (6):
-> >   wifi: rt2x00: fix compilation
-> >
->
-> That was half covered by Felix already, and really shouldn't do two
-> things at the same time anyway.
-Just saw what you're talking about. That's gonna be annoying though.
-The COMPILE_TEST commit will cause compilation to fail and the bot to
-complain before Felix' patch gets merged.
->
-> Also please add [PATCH wireless] or [PATCH wireless-next] prefix when
-> you submit patches, to make it clear where the series is targeted. In
-> this case, you probably should've split it up, but Felix already covered
-> the immediate bug.
-Will do.
->
-> johannes
+On Mon, 7 Jul 2025 10:49:46 -0300
+Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+
+> Hi,
+> 
+> AD4170-4 v8 most significant differences from v7 is the timestamp patch comes
+> earlier in the series and struct ad4170_state fields have been rearranged
+> to better align to cache line boundaries.
+> 
+> Jonathan, I see you have applied v7 to testing. Thank you. Though, if still
+> possible to pick v8 instead, that will provide patches with fewer line removals.
+> Totally fine if you prefer to keep v7, though.
+Ok. Replaced v7 with v8.
+
+Thanks,
+
+J
+> 
+> Thank you to all reviewers of previous versions.
+> 
+> v8 has:
+> 
+> Patch 1 adds device tree documentation for the parts.
+> Patch 2 adds basic device support.
+> Patch 3 adds support for calibration scale.
+> Patch 4 adds support for calibration bias.
+> Patch 5 adds sinc5+avg to filter_type_available IIO ABI documentation.
+> Patch 6 adds support for sample frequency along with filter type configuration.
+> Patch 7 adds support for buffered ADC reading.
+> Patch 8 (was patch 12 on v7) adds timestamp channel
+> Patch 9 adds clock provider support
+> Patch 10 adds GPIO controller support.
+> Patch 11 adds internal temperature sensor support.
+> Patch 12 adds support for external RTD and bridge circuit sensors.
+> 
+> Despite the updates, no functional change has been made in v8.
+> This patch series was generated using the "histogram diff" algorithm
+> (git format-patch --histogram option).
+> 
+> Change log v7 -> v8
+> 
+> [Generic changes]
+> - Update patches to make struct ad4170_state fields align well with both 32
+>   and 64-bit size cache lines after all patches are applied.
+> 
+> [Device tree changes]
+> - Updated device name in patch description (AD4170 -> AD4170-4).
+> - Removed extra blank line at the end of the doc.
+> 
+> [Basic driver patch]
+> - Early declare and use sensor type local variable to reduce diff in ext sensor patch.
+> - Make early check of IIO chan type to reduce diff in temperature support patch.
+> - Dropped 'int_pin_sel' field from struct ad4170_state. int_pin_sel is now local.
+> - Renamed AD4170_MAX_CHANNELS -> AD4170_MAX_ADC_CHANNELS for better readability.
+> 
+> [Timestamp channel patch]
+> - Moved from end of the series to right after buffer support patch.
+> - Reworked timestamp patch so it doesn't add 'num_adc_chans' field to struct ad4170_state.
+> 
+> [Internal temperature sensor patch]
+> - Reduced number of line removals in code diff.
+> 
+> [External sensor patch]
+> - Reworded external sensor support patch description.
+> - Reduced number of line removals in code diff.
+> - Updated ad4170_parse_external_sensor() param: u8 s_type -> unsigned int s_type.
+> 
+> 
+> Link to v7: https://lore.kernel.org/linux-iio/cover.1751289747.git.marcelo.schmitt@analog.com/
+> Link to v6: https://lore.kernel.org/linux-iio/cover.1750258776.git.marcelo.schmitt@analog.com/
+> Link to v5: https://lore.kernel.org/linux-iio/cover.1749582679.git.marcelo.schmitt@analog.com/ 
+> Link to v4: https://lore.kernel.org/linux-iio/cover.1748829860.git.marcelo.schmitt@analog.com/
+> Link to v3: https://lore.kernel.org/linux-iio/cover.1747083143.git.marcelo.schmitt@analog.com/
+> Link to v2: https://lore.kernel.org/linux-iio/cover.1745841276.git.marcelo.schmitt@analog.com/
+> Link to v1: https://lore.kernel.org/linux-iio/cover.1744200264.git.marcelo.schmitt@analog.com/
+> 
+> 
+> Ana-Maria Cusco (1):
+>   iio: adc: Add basic support for AD4170-4
+> 
+> Marcelo Schmitt (11):
+>   dt-bindings: iio: adc: Add AD4170-4
+>   iio: adc: ad4170-4: Add support for calibration gain
+>   iio: adc: ad4170-4: Add support for calibration bias
+>   Documentation: ABI: IIO: Add sinc5+avg to the filter_type_available
+>     list
+>   iio: adc: ad4170-4: Add digital filter and sample frequency config
+>     support
+>   iio: adc: ad4170-4: Add support for buffered data capture
+>   iio: adc: ad4170-4: Add timestamp channel
+>   iio: adc: ad4170-4: Add clock provider support
+>   iio: adc: ad4170-4: Add GPIO controller support
+>   iio: adc: ad4170-4: Add support for internal temperature sensor
+>   iio: adc: ad4170-4: Add support for weigh scale, thermocouple, and RTD
+>     sens
+> 
+>  Documentation/ABI/testing/sysfs-bus-iio       |    1 +
+>  .../bindings/iio/adc/adi,ad4170-4.yaml        |  554 +++
+>  MAINTAINERS                                   |    8 +
+>  drivers/iio/adc/Kconfig                       |   16 +
+>  drivers/iio/adc/Makefile                      |    1 +
+>  drivers/iio/adc/ad4170-4.c                    | 3027 +++++++++++++++++
+>  6 files changed, 3607 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4170-4.yaml
+>  create mode 100644 drivers/iio/adc/ad4170-4.c
+> 
+> 
+> base-commit: 66ffb9f5accc6769d1ea7b9d7ac4c5ec477f9575
+
 
