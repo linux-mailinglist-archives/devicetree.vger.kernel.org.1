@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-193825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A1A7AFBE07
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 00:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D11AFBE0A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 00:02:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6195D1656FC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 22:02:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75DFE16613D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 22:02:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A0728B3F9;
-	Mon,  7 Jul 2025 22:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CD7B28CF61;
+	Mon,  7 Jul 2025 22:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ro92zX6/"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rDVrAfrC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7341D289376
-	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 22:02:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA64528A1EA
+	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 22:02:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751925738; cv=none; b=QMvbhZz7epKOapln3okJi0o3MSTzMd9X4Z4/ToLn0riGSb8/EG4QrFOiBCe83BCKE3ax19mgxGdRvSRrGMuGONqTh3PLTLetqyE6P9xscz/HobPJpHTTkbXb6pBPUdEll3N8cLv0QxnmlfRb773XxZs4IIVLtwbQeTeqTxZK9IQ=
+	t=1751925739; cv=none; b=pm4yvi6TpXqkcs2/pTSTs1DalsTtIk6ERYM9WKO+M+N+/kauMigYzE45PTVjgU+gJhJKKk3IX5VsXg64hI+QqunnRDNr4vsXGrGKef10UYGzkyJH9pmgf0QNi8iV9fWTqmTmAq29+g1O3ty1/NgUA/sND47o5X2B8Pw6ptJj8g4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751925738; c=relaxed/simple;
-	bh=U63+hVcGdAhCrCBPzO6XFzhjfIMyc/+qKWMUmgBFHZg=;
+	s=arc-20240116; t=1751925739; c=relaxed/simple;
+	bh=M5CKuRv5NLhRjmqjKZwutyQJJfBH+MYMBM/Ul0kGuFA=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=oiNCfrvn8aGBndAQzDjj5htKVCbIx0VCizrObMMDNvKNtJIGUhMHt7TM488XxqpTl0TbzGP4g32xVzS8L1bjDawXhuRRF4rXOGuXqFf+VtHseSjfdruVCLsnJDdsSu3f7hwdpH2S9NyYLyvmRh6EzqNOddQAgo2KfVKgfuoj2z8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ro92zX6/; arc=none smtp.client-ip=209.85.210.180
+	 MIME-Version:Content-Type; b=Desi5j+qD+uMGHXaQpXSHxuOiP71g9UhA+AuXNmOAHs9zs0ylEFYT5fn7pdLBSBTd98PP4U5JpJM+qOG0E0R7O2s7JbZysbYmYJIxlMsqtsi99af4tYunvA+yPbtl81N1f3lIgeHPaGKz39/vnCXKdlZOVxGQCmF9O3KFKdm76g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rDVrAfrC; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-748d982e92cso2308655b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 15:02:16 -0700 (PDT)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-234fcadde3eso54183715ad.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 15:02:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751925735; x=1752530535; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751925737; x=1752530537; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=g7bXLBC/9PX9YVcxygXI1zQaPaaYKOdSLh+6mu0LXDY=;
-        b=ro92zX6/dG4C2qL0Ym/MPLhLtHrtVkeIwKvTpVrQMT7sUEtN1XH5xLAadQCGS3X9X+
-         vPMzdUA1mHpg2c2eJBBSbYXYC7oPQG1x/R55uSshz53cI6gQYJXNL/Yj+Tx4g5YiqJy9
-         vyiwCF7goCAVUl9Te7fWNiIOICgKzQmujfYgEJNNRGIGCMQra8+zvrlvgQ+pvJ0ri4KV
-         3glb5ETc1j7fcTcbnxeBWiFVbgBmzXIBgDhpjBY/Nh7Juc+6v0MqCQr/RQXFGCipABkL
-         w69vBwB/2q2rE+etGoYos+b9U87OItC3F+R8ICRlc6gLjt1GsUDW8Zmt9CqPOIYikovz
-         U5jg==
+        bh=iMU0RXTncBQjVBF/K4IRgwydOyiiWJEg1TYIRfHWA68=;
+        b=rDVrAfrCOyRYGsEZfy+QI0QWn51zHFTZcYb+/9qjX8eCoOuqsMSI6czsUjUJkRcM2g
+         9Qnp3epWgrxYkddWTVb28DEqWj1+P2x2oB5bRGF+A+cSz4DIdTm8Ew0hDLwVrkr95NYj
+         hAvzgAj2J/O1tGZTHzon8AnhWqVWamRQBgNclNPtYUMkrAQD3OUQh8WlUfb2B94HgsZJ
+         JlnicNLhwDQFRTG418/EGOTBpYEvtZVaCHDpKTwSuoc2ypdy3pADhoTGOWSK5/fsu0SS
+         bCeh5QuiWrxoGZRgXBmM5Cyj9LApq7yEGPH28Dqme81V005+AGzLaiELMseEwtzQ3SAu
+         d+XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751925735; x=1752530535;
+        d=1e100.net; s=20230601; t=1751925737; x=1752530537;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=g7bXLBC/9PX9YVcxygXI1zQaPaaYKOdSLh+6mu0LXDY=;
-        b=Czjae9LX9Yla+oDmrZe6jJf1Cc1rbQrdzsqnEa6sgR9Kme47VgqucFy0HQubRH/UM6
-         EjrYsMKX5kpWYpaTxbXe5XB4TVdHZtZ9TrjMvPRUq+usguU4l+DPW/EiaGvSnkRLPCt2
-         EEDTRQMEvHWEQ583MjAPW9ruXspc3ehgUMznxHK5oFmYJfeUIyzXIdie8vLZIHDYP4qV
-         9/2EWx9gjMKUTKyWqPjJTfnppzwKGoS1oI5xgWUbBp5tnLTG7ToAv4Ow94LI4XuQckKl
-         a0rgYReegi7+D66Tl1w7Htb3fWWj1WcFd2a0IW5ryWPMbC9+xkYYhmtOcsjia5FyjLKs
-         O0JQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUK4z3/CbVyAf93xaepbLr3lE/ABo6UBWFmbu82zGlgyWrSO0KmHh9AKgxA7hJFEdAiDPi3zHb0hqz+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyjaDd9odLvIYzmj8KxOr/oCb5otBXrfkrYDkVwaJjDOUZ2GSxl
-	iXnPWPNar5vX2X99Swi5BWGw/BCFRxYR6xQE0BqXs4DBdcxke7fnVlILJsdYisorHIc=
-X-Gm-Gg: ASbGncusdFmGz+6vbmdRb1eRT9H7PAr+CBxRuOCy0eoMd3pRetB/z45v+MsJiXFEf/v
-	gy6VGdYnyKPAaJESKTM3LRNLd5YdFXlqTSmRe3WATsUuJERyxQXfPhp4qYKUOcipkmk4DbdKUbF
-	rBzTlJQ7ybxX6DxgQsIiaUSSlGmuaIcTyYgyJLm1OT4dymfcRnvk5jTIvD0NWjXglv8/b9GEnMF
-	+oQOiH9ZYcUEA1VcKiGjIm7HoCW7vqZtTnj5y5kejUuPSfnPVae1KKgMQR3krE0ZxGeZkkA13ne
-	mPRW9wvk4Hnue92Q7FblF7fIZ4bBJT9Ux4YfhmhzS5l2leRiCnQVh54YTz6k
-X-Google-Smtp-Source: AGHT+IH2E4VCCHXWLNSHKY0ptSlDn6FXFLO/VUWKKVCVfMN8qIO4HFHA+oy01iANm4u8NULqGn280A==
-X-Received: by 2002:a05:6a20:e68d:b0:220:21bf:b112 with SMTP id adf61e73a8af0-22b42c05e4fmr1144292637.13.1751925735386;
-        Mon, 07 Jul 2025 15:02:15 -0700 (PDT)
+        bh=iMU0RXTncBQjVBF/K4IRgwydOyiiWJEg1TYIRfHWA68=;
+        b=qGhoiel1xWHhSqnl5YJ52qhCbbapAmd/+pWI55GfhAsuuT6b0u+o9FcVUG+Ybzt04w
+         V1ENf3bB5ruq4vc2GR8Y9cwgK8yX3HbcXq3vR6Sd0ETIIU5kj+bMR/MQW4zCs9lc0zxW
+         F1z66ZyQg/eIBoBCR1gan40SP+ZAdLmEVbfVxPrmNe4zNHU9QonRZBFWqoJ1aSDzfK0n
+         TUozhoYSJeFzfsW79N8iuBKofkOe5uOaqU4RkGNj+uXR/ADgGbRPpUWVwb0pqsIda6GM
+         6V8vlThT6YtPNObNRpvf9yO1UrkQbQ1rjAKrM7dqxNnbPsMEvAtDzW9U8/9jccQZO6ty
+         YeXg==
+X-Forwarded-Encrypted: i=1; AJvYcCXwIHoW/dOxAZs/fiE1gFjOGfI2Fvrs5PLG0Zz0w1+Jwi9bV3Pp79M3Bciwne21oGFUKmsSyPM0WBQE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLBJbLCEdG7+7dQ4PEKxJ3TpXfSIAuGVBmBK5e7gLIkpcAKXUP
+	YtZJZu7anNTtwqFFOZZEfoPpIvPGIut2IQoaOUTaEJ0zDvzEfkGxGpd9htevcBD46yE=
+X-Gm-Gg: ASbGncu6A8ZW/LsF6vBGIsvh3c73mjQgYGXvOCRVY2cqLVsI5eUnYfAiDJ0Is+c+wDm
+	3GrRFfL5Do6sFjtL01nNSSTaSCbQpyygk/FHebjoYeCoJtN/FIoVIKLDob+OEPl2XL+E5nYMNMf
+	rza45wI2Gvc9IurD+6kZYiHUHr/RfDAp1GUOuJppuf9/e4VSB0p1G+yjWzSx+VVnvfiW8Kiz/ZY
+	PfF/pyhxBg4c/8ZFWdnmW/AadhdtruV2I1aYMLa5HdzTpDtnRMGxhRSpUcQfcfo0HP9OBf6vFUh
+	RmyeajEF4GOOLmf3Tk61llLOi+N0CEioQRXuWAQkYfRV/hikaLUnkp5OauFW
+X-Google-Smtp-Source: AGHT+IF3ndJoSXBRWTscm4ArK+g7LkuzRAE2xYB7+hLKI3vLBOrqbLkXRpnWS+dMztiRe4cFppAyPw==
+X-Received: by 2002:a17:903:2b06:b0:234:db06:ac0 with SMTP id d9443c01a7336-23c875c0237mr213191825ad.45.1751925737144;
+        Mon, 07 Jul 2025 15:02:17 -0700 (PDT)
 Received: from localhost ([71.212.208.158])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74ce42cefe4sm9419763b3a.157.2025.07.07.15.02.14
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c8455ebb0sm92692555ad.120.2025.07.07.15.02.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jul 2025 15:02:14 -0700 (PDT)
+        Mon, 07 Jul 2025 15:02:15 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
 To: tony@atomide.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
- Felix Brack <fb@ltec.ch>
-Cc: linux-kernel@vger.kernel.org
-In-Reply-To: <20250529135324.182868-1-fb@ltec.ch>
-References: <20250529135324.182868-1-fb@ltec.ch>
-Subject: Re: [PATCH] ARM: dts: am335x-pdu001: Fix RS-485 transceiver
- switching
-Message-Id: <175192573416.520018.17662868630583209501.b4-ty@baylibre.com>
-Date: Mon, 07 Jul 2025 15:02:14 -0700
+ conor+dt@kernel.org, Albin Tornqvist <albin.tornqvist@codiax.se>
+Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250624114839.1465115-2-albin.tornqvist@codiax.se>
+References: <20250624114839.1465115-1-albin.tornqvist@codiax.se>
+ <20250624114839.1465115-2-albin.tornqvist@codiax.se>
+Subject: Re: [PATCH] arm: dts: ti: omap: Fixup pinheader typo
+Message-Id: <175192573551.520018.5675346389036429336.b4-ty@baylibre.com>
+Date: Mon, 07 Jul 2025 15:02:15 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,25 +94,20 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.3-dev-d7477
 
 
-On Thu, 29 May 2025 15:53:24 +0200, Felix Brack wrote:
-> The wiring of the RS-485 transceiver of UART0 of the PDU-001 board
-> allows sending or receiving date exclusively. In other words: no
-> character transmitted will ever be received.
-> Hence the tx-filter counter in the OMAP serial driver can't work
-> correctly as it relies on receiving the transmitted characters.
-> This in turn will prevent reception of data unless we disable the
-> tx-filter counter.
-> This patch disables the tx-filter counter by enabling the DTS setting
-> rs485-rx-during-tx. This might sound like the opposite to be done but
-> it uses the enabling of rs485-rx-during-tx not for receiving the data
-> transmitted but for disabling the tx-fiter counter.
+On Tue, 24 Jun 2025 13:48:39 +0200, Albin Tornqvist wrote:
+> This commit fixes a typo introduced in commit
+> ee368a10d0df ("ARM: dts: am335x-boneblack.dts: unique gpio-line-names").
+> gpio0_7 is located on the P9 header on the BBB.
+> This was verified with a BeagleBone Black by toggling the pin and
+> checking with a multimeter that it corresponds to pin 42 on the P9
+> header.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] ARM: dts: am335x-pdu001: Fix RS-485 transceiver switching
-      commit: 539e87dd661f5ce321019c27ab15cad55345e429
+[1/1] arm: dts: ti: omap: Fixup pinheader typo
+      commit: a3a4be32b69c99fc20a66e0de83b91f8c882bf4c
 
 Best regards,
 -- 
