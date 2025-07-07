@@ -1,152 +1,113 @@
-Return-Path: <devicetree+bounces-193772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A777AFBA30
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 19:55:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF463AFBA48
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 20:00:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E964E17DC2E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:55:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB6297AEC6F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:59:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7502638BF;
-	Mon,  7 Jul 2025 17:55:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86BF2641D8;
+	Mon,  7 Jul 2025 18:00:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZK9sXsM8"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="njgJvhn+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90ED8262FF9;
-	Mon,  7 Jul 2025 17:55:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36BFA1ACECE;
+	Mon,  7 Jul 2025 18:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751910928; cv=none; b=Lv9Idxod27+g/j1OZQUil+SYqOYeq/N+4l4MyvzK10Ptt557sEvP+O7Ov35PU78ralfxDc84N3Wku3sEqc6w6Y52tjVgOs8Nz/GhrPZNGQ78/uMJm0uXhw5I3L/Nc7EwAdGOkirWHftcrJshe+HEWSYVJ8sz8QBBf2WhFkPLZHw=
+	t=1751911226; cv=none; b=qcedhUo7x56wy9c5GzkANF2HpxbN4JfMsBkxhZcFC5s5DOYfgaXxEazvxACK034epLMMYPLG2zphn8T6RZCUsEck0+s/vDR3KC12RLzcrj5kYUZ3v1I4/Kxjtu09Z+eg0yDdoXEldLDVeUeTf6iqWWnVMea/7AYfHTAbd8HXAJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751910928; c=relaxed/simple;
-	bh=4i3GwwYmMwd8rgyfXHO3jnhHMlDIeHEAOL0OdWiCZs0=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=DwAO9ZwII/seu+66VnQO4dNZI8aPIHqPGESuG1mGNcyASmww1dTQtLdOUlwCDH3+z/8xrVPmKcotq9UCIhgbQYklLuJLLl7iVUbR3b8cNm7wsSddt6P1JLkq9p0m5u6q9JmlFIekvIKKez8MUIVtBNoGvPgi0cnfj8euvXgRoZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZK9sXsM8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0731EC4CEF1;
-	Mon,  7 Jul 2025 17:55:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751910928;
-	bh=4i3GwwYmMwd8rgyfXHO3jnhHMlDIeHEAOL0OdWiCZs0=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ZK9sXsM8/2KLy4877qvvhXzU663uegkJK0fCwXksNxOOSx49qQic8lwOQ1jCddztZ
-	 xkXUryp9zl0ZVQUAd5SWytFQCGbNBaAOpe+z9MMasq2x06hI2Cl+5Z37wj1fbAoZrh
-	 55aHAfof3fOKnGn8LBjX1TWs7ZRHvZlgKUi2qh6vZdAJ/izndrVP68pvXxH21o85X5
-	 /HaOtlzbWOQcTDCDvxPbCHh0PdRw9xJFDOQgcDqRwCygmjk+baWyPZms4NiUew8cHb
-	 KdqSxP50knRFjCxQZIueoMEP8J/0vE12M3npqwyue4LEHAvIshFXbwEWIrToOEjJ/U
-	 VQJpIfWB/ePdw==
-Date: Mon, 07 Jul 2025 12:55:27 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1751911226; c=relaxed/simple;
+	bh=r6NZBrffWzNw7dte2+xmTPvu0PfUvX4a7JkEhaiWhLk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VdlgSPQUB19+EqbCPFP7vaWECq5R/DZ7vYv3mLBzj5AZWRQUwLhHy3hzihjd06GUlRADRDkrVYut4dB0U4BVuYRE2WsMzkNxCsKxSdMoYIvj7nibi6Gok+O36IUpsHxq9U23Ca4PeWbnpvBFImOdRpuOxG80ECYsyhS/AI03pcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=njgJvhn+; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 567I041n929153;
+	Mon, 7 Jul 2025 13:00:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751911204;
+	bh=jO9NDpDqasebT3fzKzOHXV7PwCeXf/Izih3UInLmNzQ=;
+	h=From:To:CC:Subject:Date;
+	b=njgJvhn+e72Egv+TaF+cymQrjgNP0QztjvQkfnySlLWww39bWZnDMJ4DFsoaMdgVr
+	 V/EM5EiMA0FECIOIEaOqEXjctxHyEROy8ixWscDbM/3Tn6iTRBLFQw8OX8VufL9CAq
+	 KKV4l139PMgW6DapELUKyT/IatIIAks1tWUsCCx4=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 567I04Eq1620340
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 7 Jul 2025 13:00:04 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 7
+ Jul 2025 13:00:02 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 7 Jul 2025 13:00:02 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 567I02QL345700;
+	Mon, 7 Jul 2025 13:00:02 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
+Subject: [PATCH v3 0/2] Add reaction control in rti
+Date: Mon, 7 Jul 2025 13:00:00 -0500
+Message-ID: <20250707180002.3918865-1-jm@ti.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, linux-kernel@vger.kernel.org, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
- devicetree@vger.kernel.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-sunxi@lists.linux.dev, 
- Alexandre Ghiti <alex@ghiti.fr>, linux-riscv@lists.infradead.org
-To: Lukas Schmid <lukas.schmid@netcube.li>
-In-Reply-To: <20250706183601.157523-1-lukas.schmid@netcube.li>
-References: <20250706183601.157523-1-lukas.schmid@netcube.li>
-Message-Id: <175191074348.3364659.3018850166698272326.robh@kernel.org>
-Subject: Re: [PATCH v2 0/5] Add support for NetCube Systems Nagami SoM and
- its carrier boards
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+This allows for reaction control in rti driver. Since AM62L SoC [0]
+does not have WWD reset output routed to a ESM module like all other
+K3 SoC's and has a reset signal routed to the reset HW block, add a new
+compatible for AM62L and configure reset reaction for AM62L SoC instead
+of NMI.
 
-On Sun, 06 Jul 2025 20:35:53 +0200, Lukas Schmid wrote:
-> This series adds support for the NetCube Systems Nagami SoM and its
-> associated carrier boards, the Nagami Basic Carrier and the Nagami Keypad
-> Carrier.
-> 
-> Changes in v2:
->  - Squash the binding patches into one patch
->  - Fix formatting of the phy node in the SoM dtsi
->  - Add description on where the phy is located in the SoM dtsi
->  - Fix the phy address in the SoM dtsi
->  - Move the carrier bindings into the same description as enums
-> 
-> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
-> ---
-> Lukas Schmid (5):
->   dt-bindings: arm: sunxi: Add NetCube Systems Nagami SoM and carrier
->     board bindings
->   riscv: dts: allwinner: d1s-t113: Add pinctrl's required by NetCube
->     Systems Nagami SoM
->   ARM: dts: sunxi: add support for NetCube Systems Nagami SoM
->   ARM: dts: sunxi: add support for NetCube Systems Nagami Basic Carrier
->   ARM: dts: sunxi: add support for NetCube Systems Nagami Keypad Carrier
-> 
->  .../devicetree/bindings/arm/sunxi.yaml        |  17 ++
->  arch/arm/boot/dts/allwinner/Makefile          |   3 +
->  ...n8i-t113s-netcube-nagami-basic-carrier.dts |  63 +++++
->  ...8i-t113s-netcube-nagami-keypad-carrier.dts | 165 +++++++++++++
->  .../allwinner/sun8i-t113s-netcube-nagami.dtsi | 227 ++++++++++++++++++
->  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  36 +++
->  6 files changed, 511 insertions(+)
->  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-basic-carrier.dts
->  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
->  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami.dtsi
-> 
-> --
-> 2.39.5
-> 
-> 
-> 
-> 
+This patch has been tested on AM62L EVM [1].
 
+Changes since v2:
+- Pick Krzysztof's tag
+- Take Andrew's sugestions from v2 for patch 2/2
+ -> switch to device_get_match_data
+ -> fix comment and assignment of reaction variable logic in rti_wdt_start
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+v2: https://lore.kernel.org/linux-devicetree/20250625143338.2381726-1-jm@ti.com/
+v1-resend: https://lore.kernel.org/linux-devicetree/20250624202605.1333645-1-jm@ti.com/
+v1: https://lore.kernel.org/linux-devicetree/20250624194509.1314095-1-jm@ti.com/
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+[0] https://www.ti.com/product/AM62L
+[1] https://www.ti.com/tool/TMDS62LEVM
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Judith Mendez (2):
+  dt-bindings: watchdog: ti,rti-wdt: Add ti,am62l-rti-wdt compatible
+  watchdog: rti_wdt: Add reaction control
 
-  pip3 install dtschema --upgrade
+ .../bindings/watchdog/ti,rti-wdt.yaml         |  1 +
+ drivers/watchdog/rti_wdt.c                    | 32 ++++++++++++++++---
+ 2 files changed, 29 insertions(+), 4 deletions(-)
 
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250704 (exact match)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/allwinner/' for 20250706183601.157523-1-lukas.schmid@netcube.li:
-
-arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dtb: dcxo-clk (fixed-clock): 'clock-frequency' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
-arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dtb: gpio@20 (microchip,mcp23008): Unevaluated properties are not allowed ('interrupt-names' was unexpected)
-	from schema $id: http://devicetree.org/schemas/pinctrl/microchip,mcp23s08.yaml#
-arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dtb: usb@4100000 (allwinner,sun20i-d1-musb): dr_mode:0: 'device' is not one of ['host', 'otg', 'peripheral']
-	from schema $id: http://devicetree.org/schemas/usb/allwinner,sun4i-a10-musb.yaml#
-arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dtb: status-led (leds-group-multicolor): $nodename:0: 'status-led' does not match '^multi-led(@[0-9a-f])?$'
-	from schema $id: http://devicetree.org/schemas/leds/leds-group-multicolor.yaml#
-arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dtb: status-led (leds-group-multicolor): Unevaluated properties are not allowed ('color', 'function' were unexpected)
-	from schema $id: http://devicetree.org/schemas/leds/leds-group-multicolor.yaml#
-arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-basic-carrier.dtb: dcxo-clk (fixed-clock): 'clock-frequency' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
-
-
-
-
+-- 
+2.49.0
 
 
