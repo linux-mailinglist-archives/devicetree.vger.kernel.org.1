@@ -1,116 +1,105 @@
-Return-Path: <devicetree+bounces-193826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D11AFBE0A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 00:02:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06D30AFBE3B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 00:29:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75DFE16613D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 22:02:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAA7218987FF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 22:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CD7B28CF61;
-	Mon,  7 Jul 2025 22:02:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rDVrAfrC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B274E25D535;
+	Mon,  7 Jul 2025 22:29:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA64528A1EA
-	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 22:02:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3982186A;
+	Mon,  7 Jul 2025 22:29:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751925739; cv=none; b=pm4yvi6TpXqkcs2/pTSTs1DalsTtIk6ERYM9WKO+M+N+/kauMigYzE45PTVjgU+gJhJKKk3IX5VsXg64hI+QqunnRDNr4vsXGrGKef10UYGzkyJH9pmgf0QNi8iV9fWTqmTmAq29+g1O3ty1/NgUA/sND47o5X2B8Pw6ptJj8g4=
+	t=1751927358; cv=none; b=cld3INtt372+Xc2DxIOPKs27ScJ+NusaEejOo69FsbGCivo1zRZewVRWYRg8tq8RJxgOauBGUy4xctIK2MzLKYTiGwufElOQkP10aTNCWr2FJ86uikcpqUgcHqOYKQUPBo/LS9sp3fdg8QEs+xzSplEqO0jDKOdQZPznR1f7JFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751925739; c=relaxed/simple;
-	bh=M5CKuRv5NLhRjmqjKZwutyQJJfBH+MYMBM/Ul0kGuFA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Desi5j+qD+uMGHXaQpXSHxuOiP71g9UhA+AuXNmOAHs9zs0ylEFYT5fn7pdLBSBTd98PP4U5JpJM+qOG0E0R7O2s7JbZysbYmYJIxlMsqtsi99af4tYunvA+yPbtl81N1f3lIgeHPaGKz39/vnCXKdlZOVxGQCmF9O3KFKdm76g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rDVrAfrC; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-234fcadde3eso54183715ad.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 15:02:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751925737; x=1752530537; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iMU0RXTncBQjVBF/K4IRgwydOyiiWJEg1TYIRfHWA68=;
-        b=rDVrAfrCOyRYGsEZfy+QI0QWn51zHFTZcYb+/9qjX8eCoOuqsMSI6czsUjUJkRcM2g
-         9Qnp3epWgrxYkddWTVb28DEqWj1+P2x2oB5bRGF+A+cSz4DIdTm8Ew0hDLwVrkr95NYj
-         hAvzgAj2J/O1tGZTHzon8AnhWqVWamRQBgNclNPtYUMkrAQD3OUQh8WlUfb2B94HgsZJ
-         JlnicNLhwDQFRTG418/EGOTBpYEvtZVaCHDpKTwSuoc2ypdy3pADhoTGOWSK5/fsu0SS
-         bCeh5QuiWrxoGZRgXBmM5Cyj9LApq7yEGPH28Dqme81V005+AGzLaiELMseEwtzQ3SAu
-         d+XQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751925737; x=1752530537;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iMU0RXTncBQjVBF/K4IRgwydOyiiWJEg1TYIRfHWA68=;
-        b=qGhoiel1xWHhSqnl5YJ52qhCbbapAmd/+pWI55GfhAsuuT6b0u+o9FcVUG+Ybzt04w
-         V1ENf3bB5ruq4vc2GR8Y9cwgK8yX3HbcXq3vR6Sd0ETIIU5kj+bMR/MQW4zCs9lc0zxW
-         F1z66ZyQg/eIBoBCR1gan40SP+ZAdLmEVbfVxPrmNe4zNHU9QonRZBFWqoJ1aSDzfK0n
-         TUozhoYSJeFzfsW79N8iuBKofkOe5uOaqU4RkGNj+uXR/ADgGbRPpUWVwb0pqsIda6GM
-         6V8vlThT6YtPNObNRpvf9yO1UrkQbQ1rjAKrM7dqxNnbPsMEvAtDzW9U8/9jccQZO6ty
-         YeXg==
-X-Forwarded-Encrypted: i=1; AJvYcCXwIHoW/dOxAZs/fiE1gFjOGfI2Fvrs5PLG0Zz0w1+Jwi9bV3Pp79M3Bciwne21oGFUKmsSyPM0WBQE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLBJbLCEdG7+7dQ4PEKxJ3TpXfSIAuGVBmBK5e7gLIkpcAKXUP
-	YtZJZu7anNTtwqFFOZZEfoPpIvPGIut2IQoaOUTaEJ0zDvzEfkGxGpd9htevcBD46yE=
-X-Gm-Gg: ASbGncu6A8ZW/LsF6vBGIsvh3c73mjQgYGXvOCRVY2cqLVsI5eUnYfAiDJ0Is+c+wDm
-	3GrRFfL5Do6sFjtL01nNSSTaSCbQpyygk/FHebjoYeCoJtN/FIoVIKLDob+OEPl2XL+E5nYMNMf
-	rza45wI2Gvc9IurD+6kZYiHUHr/RfDAp1GUOuJppuf9/e4VSB0p1G+yjWzSx+VVnvfiW8Kiz/ZY
-	PfF/pyhxBg4c/8ZFWdnmW/AadhdtruV2I1aYMLa5HdzTpDtnRMGxhRSpUcQfcfo0HP9OBf6vFUh
-	RmyeajEF4GOOLmf3Tk61llLOi+N0CEioQRXuWAQkYfRV/hikaLUnkp5OauFW
-X-Google-Smtp-Source: AGHT+IF3ndJoSXBRWTscm4ArK+g7LkuzRAE2xYB7+hLKI3vLBOrqbLkXRpnWS+dMztiRe4cFppAyPw==
-X-Received: by 2002:a17:903:2b06:b0:234:db06:ac0 with SMTP id d9443c01a7336-23c875c0237mr213191825ad.45.1751925737144;
-        Mon, 07 Jul 2025 15:02:17 -0700 (PDT)
-Received: from localhost ([71.212.208.158])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c8455ebb0sm92692555ad.120.2025.07.07.15.02.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jul 2025 15:02:15 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: tony@atomide.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, Albin Tornqvist <albin.tornqvist@codiax.se>
-Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250624114839.1465115-2-albin.tornqvist@codiax.se>
-References: <20250624114839.1465115-1-albin.tornqvist@codiax.se>
- <20250624114839.1465115-2-albin.tornqvist@codiax.se>
-Subject: Re: [PATCH] arm: dts: ti: omap: Fixup pinheader typo
-Message-Id: <175192573551.520018.5675346389036429336.b4-ty@baylibre.com>
-Date: Mon, 07 Jul 2025 15:02:15 -0700
+	s=arc-20240116; t=1751927358; c=relaxed/simple;
+	bh=MDF8zUlS1Pi0x+G3G5UDKyYb4IezZltpmz4zl1fscw4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=owZXkTXi+RPvvXBGrLK4d1ZomjhXnldGpw2XZXLyNrD06PFRzpbE6AtsUosUmR0nPf/mIURVToYLKsytTBjs4AkRgSjHG14AZ0GZGaBsSdFULsGEIrvzlVtSOypuSniPlNVhw0PdMyzKF6WxLcjl3RF0N9/bFLVJGQzWyz70B0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.48.207])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 156F6340F39;
+	Mon, 07 Jul 2025 22:29:14 +0000 (UTC)
+Date: Mon, 7 Jul 2025 22:29:10 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Guodong Xu <guodong@riscstar.com>, ukleinek@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+	drew@pdp7.com, inochiama@gmail.com, geert+renesas@glider.be,
+	heylenay@4d2.org, tglx@linutronix.de, hal.feng@starfivetech.com,
+	unicorn_wang@outlook.com, duje.mihanovic@skole.hr,
+	heikki.krogerus@linux.intel.com, elder@riscstar.com,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH v3 6/6] riscv: defconfig: Enable PWM support for SpacemiT
+ K1 SoC
+Message-ID: <20250707222910-GYC408198@gentoo>
+References: <20250429085048.1310409-1-guodong@riscstar.com>
+ <20250429085048.1310409-7-guodong@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3-dev-d7477
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250429085048.1310409-7-guodong@riscstar.com>
 
+Hi Conor,
+  Can you take this patch? I've checked with riscv's tree for-next
+branch, it's still applicable and meet the "savedefconfig" criteria.
+  Thanks
 
-On Tue, 24 Jun 2025 13:48:39 +0200, Albin Tornqvist wrote:
-> This commit fixes a typo introduced in commit
-> ee368a10d0df ("ARM: dts: am335x-boneblack.dts: unique gpio-line-names").
-> gpio0_7 is located on the P9 header on the BBB.
-> This was verified with a BeagleBone Black by toggling the pin and
-> checking with a multimeter that it corresponds to pin 42 on the P9
-> header.
+On 16:50 Tue 29 Apr     , Guodong Xu wrote:
+> Enable CONFIG_PWM and CONFIG_PWM_PXA in the defconfig
+> to support the PWM controller used on the SpacemiT K1 SoC.
 > 
-> [...]
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+Reviewed-by: Yixun Lan <dlan@gentoo.org>
 
-Applied, thanks!
+> ---
+> v3: No change
+> v2: Changed PWM_PXA from built-in to a loadable module (=m)
+> 
+>  arch/riscv/configs/defconfig | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
+> index 3c8e16d71e17..3c4d9bb8f01e 100644
+> --- a/arch/riscv/configs/defconfig
+> +++ b/arch/riscv/configs/defconfig
+> @@ -257,6 +257,8 @@ CONFIG_RPMSG_CTRL=y
+>  CONFIG_RPMSG_VIRTIO=y
+>  CONFIG_PM_DEVFREQ=y
+>  CONFIG_IIO=y
+> +CONFIG_PWM=y
+> +CONFIG_PWM_PXA=m
+>  CONFIG_THEAD_C900_ACLINT_SSWI=y
+>  CONFIG_PHY_SUN4I_USB=m
+>  CONFIG_PHY_STARFIVE_JH7110_DPHY_RX=m
+> -- 
+> 2.43.0
+> 
 
-[1/1] arm: dts: ti: omap: Fixup pinheader typo
-      commit: a3a4be32b69c99fc20a66e0de83b91f8c882bf4c
-
-Best regards,
 -- 
-Kevin Hilman <khilman@baylibre.com>
-
+Yixun Lan (dlan)
 
