@@ -1,125 +1,160 @@
-Return-Path: <devicetree+bounces-193560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0673AFAE86
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C220AAFAE8B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:24:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42B9A4A0578
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:21:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13CD317F9E2
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:24:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F22279DD7;
-	Mon,  7 Jul 2025 08:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0B128A1F8;
+	Mon,  7 Jul 2025 08:24:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ZFXZbWai"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="i4QqyX4Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 694D31DDC2A
-	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 08:21:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC7825B1CB
+	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 08:24:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751876507; cv=none; b=W/Kv28KdIIqdXOhHnwTTMKtEXmzeCIiVnPgKp5xvSZQsK02jyBCijbpLofdCF7IEGYDcPsBt5slQEaqZ8PwETGHNH/5h36AsCVODpwN2qsk5Oz6BZKk8P2rCYPBICFRC+rhlJ7UqA4OqnWs+RJPmCvKKVcNivz5YFseiYcqNI00=
+	t=1751876672; cv=none; b=E+qvDQ0rQaLX4WFImTte/onxWqLRdYmn2/TAeZ6E69ZYNCNoMi9w77bW2Jm41COUviKZfNMI983bDMRuPe4hAiW3xZO3dxHr6hQbbSeRZee0xfAKLOP3iLirKXEgO9wnuNPyFoi4V7wDbq3L6z/04tN62xzzzLaHOB3fN5GwpYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751876507; c=relaxed/simple;
-	bh=/oKrqKaCPqGjDAiu1q1q/zy8gihlawhcd8LJ/wh7Ezs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gxRJXsIvhuDgun6yZlsPv0XRf40Xk8m64n/QQ2pSPQHR1uYAoUiseQQl2p7AJ/2vpbPb2J+B28Hgu5+CtsfD3fn/DeXWP7pEXG3Vrpx1bw6Rqf48SSznk9U2hxOsVP8CzKVERb2038gYcWEI/e3woc/os9PeBFvRpEBBkFG0gpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ZFXZbWai; arc=none smtp.client-ip=1.95.21.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=vyklAUbbO9HgYSarbfvrSepbaUCt1uYyW4m9xUB5+0U=;
-	b=ZFXZbWaiUtmErHFH9CffaxylkyhJZiklvZF3zyWzwJbFsFIqCcji6E+nRqzpcS
-	CqdA8hk9foYTKXTFj1/3HhRH8184sstDUTL8/ePOtJqQZAJF1d0P/0Pzgre5lwbo
-	JViGqloIsfAZFnZ73mJUe2vHDpqMrcWZm8t8IFu0qJna8=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDXfxBsg2toWId5AA--.22061S3;
-	Mon, 07 Jul 2025 16:21:02 +0800 (CST)
-Date: Mon, 7 Jul 2025 16:21:00 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Xu Yang <xu.yang_2@nxp.com>, Frank Li <Frank.Li@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, jun.li@nxp.com
-Subject: Re: [PATCH] arm64: dts: imx95: add some USB3 PHY tuning properties
-Message-ID: <aGuDbE1_9Sbug-NH@dragon>
-References: <20250627031348.3455547-1-xu.yang_2@nxp.com>
+	s=arc-20240116; t=1751876672; c=relaxed/simple;
+	bh=08f1MgkJS/MdrAG/JH0e1/2zkyJyP2K7GUuU9LnySrc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pMNQejjAw5EU1ha/Mdwh4jly8HHZwqLVlfCrK3QXiKnRRp8eDoOYPLcBG+MbeEu6ZTg1/Pp51jcjsVRc7unrDQzvUEqVTYSlWmUcgG5L6KPvSAFyyC7903GWaF7VNIKEoCKxuOFJxZ34G0My/z7hS4B5Kg4WmlYaVwlJNXa/IxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=i4QqyX4Z; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 566ML7xs001169
+	for <devicetree@vger.kernel.org>; Mon, 7 Jul 2025 08:24:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MbM0Na9BGNYEY76leSiVEoIRTJwjEgEbW28UaU8pTrc=; b=i4QqyX4ZhQI6uWob
+	/5qiPClMeuKoOkZlPichiL69OnNlj8hk6lULpnkN1J1VZo1mjErOEnbqc2wFahFt
+	iNUSOt/kxErcAiLvl4mgN5oKSfJX90zPTo9Zip6pBuQw3WIkMPVFl//ZiksqlZNB
+	/uT/Cs77uHam+gIKPG1kHUJNsG8knQoteP1R1iI6tCQYzqgxMICwn1jjvdt0BSb6
+	OTUuuu7l4/uW1/SZz1zIFAIRDs/XY+HERQgR/F2aySgwXUdIChbHCwiXtP9msLUM
+	3jDEWjhEIrf6hA8nXLQO7IuMBeUe2plDJRrw7nuSyrAKUtBWjBgLAqi0nv/9NvOU
+	8MtIjg==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47pv97b20d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 08:24:30 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7d094e04aa4so52104985a.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 01:24:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751876669; x=1752481469;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MbM0Na9BGNYEY76leSiVEoIRTJwjEgEbW28UaU8pTrc=;
+        b=MRx/tHS1qO+BfvhXL89S8o0KYzatYAMtPK/sWKfCBaMyUfMVSLZ3l+hOnRygDDSu4/
+         bq3pP/zdf9u7XTPw8xw2rU92k0C3zMZ6OL+8pahioV85D/VBBkQGYL5P+EiGq8JQggMu
+         EcxQY590rJTNCYKM2qNsPeyxI+08oo0WphBE/Y7dfeMbDqYEBLLrtsk0Gr6OWvzk8Lw4
+         iG5/naEgowpc0ECJ2UqIYl3DUvZ3EgmoRjY1qLJ1a8mnEOuamh73lnQaNJhohOnGAsx3
+         OnnwxrcbLLw2QuLww65+/sXPlQc8XIWKRfLCp54T5X9EvWBFCPIMeph9N0I+b0qELzr4
+         m6WQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUdfYO59aZFm8EQ3oouaU0v98X5/eNMK5StRv3hUIgVbQqSJ/VDsQ0H4jDHiSeowIg8fhea8pd5luxD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPynOf9+qpBAmPh6XDLGPJgA2tPjvhYTZVTjFlHwUSLl+zLF84
+	UZBkkSClNfSxMmhiim2lE68ntjyLtCoJC8kgmTTYLaEkG8h+IgFIt322TyFBj/bIzAvWewcNjTy
+	IQYmqfefGmAUY2xB4KPbiGrkjh8eBjPWkPgWltNUuglDSqFOl5mk+FFG1pv2+XTmZ
+X-Gm-Gg: ASbGncvYlwYTrWvJXgbEyeMjLDx6awc6/8A0mvwOSelqgHMdFiGrjY1pjG2zaw3+wRR
+	0jKR3dgPPvkW36H6ChNQ3oo9K+xmy4nCNru0A59VFVDldvP51KZR9kKi/d5o8henOCgq6uRDUVR
+	lh0Cm7HqPU7mEp8lA6X6R0Ah1HC4tcMwJ2pLrubOnl4D957H5OIQAd8RJimb/GKOiDCCTyNkxPD
+	G6A7w8eJgp9qfq16CLnoPTsRiq6eYFTwwOnNxEch3PBBKzPSRScHZwqCqUFj7R8JwfN6t1gIqhq
+	/A76pikD9LZYQWwzfPex+q7z3MSNxtv60DhUMjNkYtnbrZQ+iRDIryBsW7XrgmUQsE+5IKG2uLK
+	XP6c=
+X-Received: by 2002:a05:622a:8356:b0:4a9:a2d2:5cd6 with SMTP id d75a77b69052e-4a9a2d2634cmr41323291cf.6.1751876669219;
+        Mon, 07 Jul 2025 01:24:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEAhUSYigL5oM1altpor3qk4P5f5OHAvNg9UYt6fOM60gyonRu+BrBPx55Xo/pckv1Ovocl8w==
+X-Received: by 2002:a05:622a:8356:b0:4a9:a2d2:5cd6 with SMTP id d75a77b69052e-4a9a2d2634cmr41323171cf.6.1751876668843;
+        Mon, 07 Jul 2025 01:24:28 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f66e8c31sm668150966b.18.2025.07.07.01.24.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Jul 2025 01:24:28 -0700 (PDT)
+Message-ID: <17aa8f1f-f293-4ba8-a947-08d9b3618f5b@oss.qualcomm.com>
+Date: Mon, 7 Jul 2025 10:24:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250627031348.3455547-1-xu.yang_2@nxp.com>
-X-CM-TRANSID:Ms8vCgDXfxBsg2toWId5AA--.22061S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7KF1kKw47tF1rGw1DXF45GFg_yoW8ZrW3pr
-	4kCFsrXr1fKF1fC3s2qF18Kr98Jan3G3srurWUWr1UKrZxZrnrtF4ftF4fWw4j9r4xua1r
-	WF1kuF97ZrnFgw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jowZcUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRyDZWhrVpmjQQAAsd
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc8180x: modernize MDSS device
+ definition
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov
+ <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250704-mdss-schema-v1-0-e978e4e73e14@oss.qualcomm.com>
+ <20250704-mdss-schema-v1-4-e978e4e73e14@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250704-mdss-schema-v1-4-e978e4e73e14@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=FrUF/3rq c=1 sm=1 tr=0 ts=686b843e cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=UvoLlU4ym182rRgf1HoA:9
+ a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA3MDA0NyBTYWx0ZWRfX+a6q7Mk48xP6
+ TYaQrRv/CF0C71T3UBUykepgMXsuEfJU96QUMWJvOv13lm5nAjL3Qga9IQ74Vf+CPaPNRx5/511
+ khJjo03oQhh5snvzfIpdIwFNQ9MraHbv9m2TYLgS1sizfgoJrG2Y88l3T4p0/PF/dqKkGaFHNXK
+ VNtJ5Tv5Jg0aUBLbvIQTTvqdlbTYQkbR/hBOz26OYJfmYMeeVaf4pgmLtOOXqYSEjNNtVFi+tns
+ XP2YQ1rT6fNlR0IVWcuAnswxc2F5jY8hzxoO8Kqsv5pVdRB9vKkhp6HiIjLJXsS22y7/6xkTQHk
+ Rj7bGYqLMQgp50ZLgVIRnmv+X8n2JMCzxzbXP33IQi8IlND1zcv1bwewSUXobgf4UZcktbtkVPG
+ Jdo+s8AjiSBa6Qx0n5engWSH1soWqhZeajs2IiNKKgvbSwCldKWIqXlmXfn/n23q4+p5LrsT
+X-Proofpoint-GUID: jlRI9WhaRK6yywNBubkzkZTTyu19zoJu
+X-Proofpoint-ORIG-GUID: jlRI9WhaRK6yywNBubkzkZTTyu19zoJu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-07_01,2025-07-07_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 clxscore=1015 mlxscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 lowpriorityscore=0 phishscore=0 malwarescore=0
+ adultscore=0 mlxlogscore=884 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507070047
 
-On Fri, Jun 27, 2025 at 11:13:48AM +0800, Xu Yang wrote:
-> Add some USB3 PHY tuning properties to imx95-15x15-evk and
-> imx95-19x19-evk boards to improve USB signal quality.
+On 7/4/25 6:31 PM, Dmitry Baryshkov wrote:
+> Follow the lead of other platforms and update DT description of the MDSS
+> device:
 > 
-> Reviewed-by: Jun Li <jun.li@nxp.com>
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> - Use generic node names (dislpay-subsystem, display-controller, phy)
+>   instead of the platform-specific ones (mdss, mdp, dsi-phy)
+> - Add platform-specific compatible string to DSI controllers.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts | 6 +++++-
->  arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts | 4 ++++
->  2 files changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-> index 6c47f4b47356..b26e9db7832a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-> @@ -1069,8 +1069,12 @@ usb3_data_hs: endpoint {
->  };
->  
->  &usb3_phy {
-> -	orientation-switch;
-> +	fsl,phy-pcs-tx-deemph-3p5db-attenuation-db = <17>;
-> +	fsl,phy-pcs-tx-swing-full-percent = <100>;
->  	fsl,phy-tx-preemp-amp-tune-microamp = <600>;
-> +	fsl,phy-tx-vboost-level-microvolt = <1156>;
-> +	fsl,phy-tx-vref-tune-percent = <100>;
-> +	orientation-switch;
->  	status = "okay";
 
-It conflicts with what I applied from Frank [1].
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Shawn
-
-[1] https://lkml.org/lkml/2025/6/6/920
-
->  
->  	port {
-> diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> index 6886ea766655..e212f12f869a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> @@ -514,7 +514,11 @@ usb3_data_hs: endpoint {
->  };
->  
->  &usb3_phy {
-> +	fsl,phy-pcs-tx-deemph-3p5db-attenuation-db = <17>;
-> +	fsl,phy-pcs-tx-swing-full-percent = <100>;
->  	fsl,phy-tx-preemp-amp-tune-microamp = <600>;
-> +	fsl,phy-tx-vboost-level-microvolt = <1156>;
-> +	fsl,phy-tx-vref-tune-percent = <100>;
->  	orientation-switch;
->  	status = "okay";
->  
-> -- 
-> 2.34.1
-> 
-
+Konrad
 
