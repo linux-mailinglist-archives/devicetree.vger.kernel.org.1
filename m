@@ -1,111 +1,78 @@
-Return-Path: <devicetree+bounces-193784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1CC9AFBB96
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 21:13:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD0F2AFBBED
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 21:53:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAEE17AD921
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 19:11:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA53C7B2A12
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 19:52:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25944264F9C;
-	Mon,  7 Jul 2025 19:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4D92673AF;
+	Mon,  7 Jul 2025 19:53:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IhRBkAHj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uu2LUz5g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4937F19755B;
-	Mon,  7 Jul 2025 19:12:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A060194094;
+	Mon,  7 Jul 2025 19:53:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751915578; cv=none; b=UpnY8pY/C9Ej+GcvlcQN/SbDPPmonKTpTbplwhX2LH8c7qavKC4d1PGUx98rl41aR6JacJYU0quu9Sr4Xx/+jLt/kP/+0Sk1f28m/nwrzcxJpAWyMvQ8xcy9eBAOenXo07Khx6kURgXmVJjgFyjq9G3STteftSQOVQgPu3eS/Js=
+	t=1751918017; cv=none; b=npUFU5fU5toii9gVtAvPWM7jDfnPgfVxFims38aJbpTN/udp0RjJNuPQWlHCtMY5SCEOwJLjWv14O3I1HzgPMGcRvEONngRrzTuEMIeK81OPNWqymeANGK5fJX9LPG5/JKlzWR48Dt1y2G8aSzVJlEl2HBTI+RAKJo/PYohwPJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751915578; c=relaxed/simple;
-	bh=nsxpHC86mW8xx3W4Taj3Nyp6PVYWXkXcHnSRvy7t7CE=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hVguf0YBam4iEnB9vtrhU8UkKrHmlgsc9A63T9t3B0Ga49s3hp6YpZSwKmX/YmkIvUSHTQSvWq+22AeTYcccJObSoGZz9aKit167sUCSvFDfvyqzjrj24Dga9gHODHS/7Jhi6hnK2GssdKJO/dV4+TQvSRj8o3gJtFj3hVp2ELs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IhRBkAHj; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 567JCpAn298267;
-	Mon, 7 Jul 2025 14:12:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1751915571;
-	bh=7adI8oLB0BAnpxxs1jA0XuZRc/jv21LnPErqeKfN2DM=;
-	h=From:To:CC:Subject:Date;
-	b=IhRBkAHj2RuICYLsXCliyqj/+a+np/jaUyvRykqvzob1ifFgVbwLk1oPZiE8fp/cR
-	 MSFroq7OCSDTKWNQ7HoXMhIAxvOIKQSgzSKLJR15xoyeWnsk2CHRs1LMF+xBkx2sSl
-	 ZIZ7rOdHe0vRCKDlxHIxDVp1K4gEJVWhAP8K3RE8=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 567JCp3u288048
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 7 Jul 2025 14:12:51 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 7
- Jul 2025 14:12:50 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 7 Jul 2025 14:12:50 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 567JCok1735887;
-	Mon, 7 Jul 2025 14:12:50 -0500
-From: Judith Mendez <jm@ti.com>
-To: Judith Mendez <jm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] arm64: dts: ti: k3-am62-main: Remove eMMC High Speed DDR support
-Date: Mon, 7 Jul 2025 14:12:50 -0500
-Message-ID: <20250707191250.3953990-1-jm@ti.com>
-X-Mailer: git-send-email 2.49.0
+	s=arc-20240116; t=1751918017; c=relaxed/simple;
+	bh=gYG6DTBWMK46GKc/R8YrHZbxB8McYHlJaxPaoMQWFJs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Sft/UuNpALiydPCMwKwI1cNmpXJAM5E96PEEjVrtVam6+cRNJF4k726f0Ot1edRUyJ6Q8vtVW0iEHv+tc/yXdZzZPS9hq5z4ib+vJZM4yGrOZUBoLUEVMYMCO73aVPlMLZLU3HNOKpRcc5qlywDyhv5CVFO8FHKB0P/ezPsAWfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uu2LUz5g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6ED6C4CEEF;
+	Mon,  7 Jul 2025 19:53:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751918016;
+	bh=gYG6DTBWMK46GKc/R8YrHZbxB8McYHlJaxPaoMQWFJs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=uu2LUz5gv2fyvuaFKZiLimQvQT5SUAlqcCNcZ+P7WmzI70VmZ+6UlylHV971wm401
+	 QYVFwc5p7wMbj/E6AalC35K1v5vIFeyDU+JUxNrQFmG4RoK45NYE8a66UjyNEGFMWc
+	 F7XTFuB308bejaoJdXCfXpnKG6dvX7gq5G43n6+2i7ESI9oZIjoXayhmU2xbjCh7KD
+	 p/wB170emV+PYUO40rceUnrziVrjcHheJeUNoYO/SGBlIONkwj7T0s6Mo0UXebMHxX
+	 2dX5TeSHUT11RkTOxOUVOZC3ObNiNAzH5VO4j1L6t7pI/OisnsjShP39jhd8GHg4/R
+	 PFOQowSlfVEeg==
+Date: Mon, 7 Jul 2025 12:53:35 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Kamil =?UTF-8?B?SG9yw6Fr?= - 2N <kamilh@axis.com>
+Cc: <florian.fainelli@broadcom.com>,
+ <bcm-kernel-feedback-list@broadcom.com>, <andrew@lunn.ch>,
+ <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <davem@davemloft.net>,
+ <edumazet@google.com>, <pabeni@redhat.com>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <netdev@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <f.fainelli@gmail.com>, <robh@kernel.org>, <andrew+netdev@lunn.ch>,
+ <horms@kernel.org>, <corbet@lwn.net>, <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH net v6 0/4] net: phy: bcm54811: Fix the PHY
+ initialization
+Message-ID: <20250707125335.213ed1d7@kernel.org>
+In-Reply-To: <20250704083512.853748-1-kamilh@axis.com>
+References: <20250704083512.853748-1-kamilh@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-For eMMC, High Speed DDR mode is not supported [0], so remove
-mmc-ddr-1_8v flag which adds the capability.
+On Fri, 4 Jul 2025 10:35:08 +0200 Kamil Hor=C3=A1k - 2N wrote:
+> Fix the bcm54811 PHY driver initialization for MII-Lite.
 
-[0] https://www.ti.com/lit/gpn/am625
-Fixes: c37c58fdeb8a ("arm64: dts: ti: k3-am62: Add more peripheral nodes")
-Cc: stable@vger.kernel.org
-Signed-off-by: Judith Mendez <jm@ti.com>
----
-Changes since v1:
-- patch was split from series [0]
-
-v1[0]: https://lore.kernel.org/linux-mmc/20250624221230.1952291-1-jm@ti.com/
----
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index 9e0b6eee9ac7..120ba8f9dd0e 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -553,7 +553,6 @@ sdhci0: mmc@fa10000 {
- 		clocks = <&k3_clks 57 5>, <&k3_clks 57 6>;
- 		clock-names = "clk_ahb", "clk_xin";
- 		bus-width = <8>;
--		mmc-ddr-1_8v;
- 		mmc-hs200-1_8v;
- 		ti,clkbuf-sel = <0x7>;
- 		ti,otap-del-sel-legacy = <0x0>;
--- 
-2.49.0
-
+Sorry for the delay, I went AFK for the long weekend shortly after
+responding to v5. IIUC bcm54811 basically never worked, so I think
+net-next is appropriate for the whole series. Please rebase and strip
+the Fixes tags.
+--=20
+pw-bot: cr
 
