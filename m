@@ -1,193 +1,461 @@
-Return-Path: <devicetree+bounces-194197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F23B7AFD3CE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 19:01:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4806BAFD3FF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 19:02:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E8231C40733
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:58:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2533A1882A13
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:59:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B29962E5B0E;
-	Tue,  8 Jul 2025 16:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B54AD2E5B2C;
+	Tue,  8 Jul 2025 16:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iwiVprnC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OnEqJjd8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CFF4202F70
-	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 16:56:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8292DECBD;
+	Tue,  8 Jul 2025 16:58:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751993821; cv=none; b=vETiUBaEq+Wp37iCsfI2ywqnU/fJYfQUBi3Ux3JSUIiZ4naS3gNHDbyMR9c8crgHPuf23kJaUeeXiiP4WqTHJkLI/e9o+UMnc6rNUelMMI5BsUsrU2zNVG6X+y9yD9s6l31JutGyQVb5aKAiVu9beQ9be14kjS97dzrapg6XvEo=
+	t=1751993909; cv=none; b=LJ6jStrih8vvbC14P5bwFesfQStVmlCnMYkmxRGRzMzcPYTCfyL8nwAqZBzrFvuo3cLnThEYhSy/QNwa6Vd7mZTMqiojr6/lVWGA/XjOOvrgMzt36nH8KVDPq8J77rz6MQpzM803cs4lsqvaNe2lrNL3NJzN7gXqJZoRdvKIygM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751993821; c=relaxed/simple;
-	bh=Jg6cutNa4wTuOT/R/PBaYwp8fpjwjRddjQ2/p/+s89Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=b7vSIBdzOsgSXpEZ+zNZnboFBOR7TVpHsAQZ0xBOvrWGWvH2ihSAC8PsWa0dO1vb6AN+/3o6fwpyd7jzYrWhrAjP3/DTU/bnMy01q2r2mcLxNrdJVvbFfbxBxze+EYD+ewbVsqye+ZRqT2WNUEkazhPIQxHOPlDwkY47ByCTsBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iwiVprnC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 568AAEoe032758
-	for <devicetree@vger.kernel.org>; Tue, 8 Jul 2025 16:56:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=WUhkVAeGLeKaNSN8AVmxhb1CINCnyT16ePT
-	Qp8qzBLo=; b=iwiVprnCBim/pwSuMC2ak0jO/SCNNEk1dfljlHQhWFV+RgIOSF4
-	8x3VNb2cq8DoWzS89s3B6KkAcAl1ipKr3WKRXAIkHdGQpcQj3/jXijAW5hH5tWpG
-	uBiRHMEW295kD/8BKmBk07afQsRghZbajQtd7fzdBoZwmUJpLqutx8nzlPtHxDPr
-	bHOPEHbnJ25GctFoOxrFMhv1D1M/GunAJaav3VOwcTzCZyGe+sZ/JHjihnISRCEF
-	l2ceBzAgFKx9WwXAr9gC+lpEzinunNt8OYtFgdfVfvzrLWEd0gVxB5eaEeXBLu05
-	/k/Ek5M0xtlTYTnYlQMkttVxBHsyUcmIaqg==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47psrkqv78-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 16:56:59 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2355651d204so41070965ad.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 09:56:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751993818; x=1752598618;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WUhkVAeGLeKaNSN8AVmxhb1CINCnyT16ePTQp8qzBLo=;
-        b=hVhjYtDgZMTG5+D1+/GQhK4TONsz7ng994+nokuKAmOBEl5S6Y6PEUIqMmQINIIzQ4
-         G5eVJ29UlrI+82maCcHAOkjAhGkQlCfoutcS8xdZbPPTcqTDib53ej4UR+y5eZbFjbXe
-         6zlkrx/SEcTejx2PF6d/ie7Db9YXceUxSzqokeXV0o2J6CQDHXNTQLYa0ypnnQAcst75
-         PlAJV3y/bwmTRHWaWHOudgaiYGN7Im8udWAmc1I0aDiXKbePIiNweOnAOcYmqgdLcu0B
-         b5Sngd+AdN/Ro+MbLMzWMXNOMhFQKMElsRb5Y7YBPJCfHjPlak2xph8/rv11RTdLptnt
-         Qllw==
-X-Forwarded-Encrypted: i=1; AJvYcCXewOWDinbPov4GVuVGvaWZtJjEpkymsYPL5ZLDUdvHaSELcRKjWz0BwhXIeoNWvB07Zb0m26JVZu5v@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzw9oh8C6ar96Rf5RNUOj7WIQPIzMHPD5ijMkWd9RgaR0f3ayps
-	QRqOWTMH4W95L7hXWTLRO7HNHc66BShNyYsDUEeelMt/VSomJziZsEkIWvcuaF23A/ZVbn1Z75i
-	yFxTpfEZgzwGKUN3+w1EGJBQSRZL7rjN62FLelIbAcb4iHj6VdkT48VMnPLQPgRv5
-X-Gm-Gg: ASbGncvBuJusmXNS6CXBnIobVs7vXJznlYT1Q2ncXlLAhspiEgMTR3UM7v9YcnsjmTO
-	wMgeqMvzbPOqNxXkImT0MXBYvy5txspeVCeQrzNq0KsQr1HzyBXoOjJDcUlYsff5NUFNfokprY2
-	LftjDRsRK+HlyT9cNwzAmhgg5KvdtRh8W8rPFr3tqDapG0J+QXnsCfVeaQkWT+I/P77qLR3GYV+
-	6Y1omJlWt2mf8o7Gzxm9tcuVDcvmSI4weubSx6Hc2stZ45vEO+ghWobrlF9M8H/AmfyddgX6g6E
-	iZBYeNsTaYCo6QP5M+asIe3GY4vIC2ISGe+uLSN48Ex/Yt1Yu4isNtiyjqAoCHxgJat7pHP4Iov
-	ZXAAEboYuwA==
-X-Received: by 2002:a17:903:2352:b0:234:bca7:292e with SMTP id d9443c01a7336-23dd982c7a1mr3703875ad.14.1751993818319;
-        Tue, 08 Jul 2025 09:56:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFZcNw1wDJD3D+XT0Ei373cW7Pc2/gf94PN0YMqeTOB1MGWQEUOYM3VpYyc41cGoWyfIaY6gg==
-X-Received: by 2002:a17:903:2352:b0:234:bca7:292e with SMTP id d9443c01a7336-23dd982c7a1mr3703505ad.14.1751993817865;
-        Tue, 08 Jul 2025 09:56:57 -0700 (PDT)
-Received: from hu-obabatun-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c8431e4dasm124569365ad.30.2025.07.08.09.56.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jul 2025 09:56:57 -0700 (PDT)
-From: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
-To: robh@kernel.org, m.szyprowski@samsung.com
-Cc: saravanak@google.com, robin.murphy@arm.com, quic_obabatun@quicinc.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        iommu@lists.linux.dev, william.zhang@broadcom.com,
-        kernel@oss.qualcomm.com, will@kernel.org, djakov@kernel.org,
-        Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
-Subject: [PATCH] of: reserved_mem: Restructure call site for dma_contiguous_early_fixup()
-Date: Tue,  8 Jul 2025 09:56:27 -0700
-Message-Id: <20250708165627.845295-1-oreoluwa.babatunde@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1751993909; c=relaxed/simple;
+	bh=hW86NrWeyBFFv7PFlMZTvyDxbDyoRrzlqT4/PD5mIrg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NSGHaWO6bJQJJsTRyrOHmbrDxVwmLbVOKk5ClCMAcJf9QjwrGPHKs+aO/TSuxU0GY3IO8CRZPv4A8nQ1rgrNwttlcqGDQ2MkZcNVmxEzimiDyqMNwBosdrZxUNJvUIRb3XI8dezvaK/wt26J20oJEkmbEoiA6H2Hzolqty0meVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OnEqJjd8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00246C4CEED;
+	Tue,  8 Jul 2025 16:58:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751993909;
+	bh=hW86NrWeyBFFv7PFlMZTvyDxbDyoRrzlqT4/PD5mIrg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OnEqJjd8Hpu6HJuGkwu5jDtKeRJ1rCo2QCZBD5qsTFLIPiEKY395uO088RiCKBc60
+	 KX2oPpsg6yR5rI+IM780RbkB6nfV35eyYSpTRmoyhZwJ9HhDAsh06uUFfcz4LAYe/9
+	 o0sxxWNSEvy5jQdsdj1D8cUVnHp5l9d7PvXwyLEUx5XkJj4rf3NSYEgqbR16Hg1Sg/
+	 Y4wW9G3RprGItF/V5Q7wGEIEFirgv8qcJ4p9Ce4z2p6U6cvrMzi3i5575+FHp1aEK4
+	 1MUEJOwGD2Op00JHCXP+54WRHcJgxiIYC1qcaehfYblpNximjstpA1mqOh5azpZM+/
+	 K8MwQl2uyUTOA==
+Date: Tue, 8 Jul 2025 11:58:27 -0500
+From: Rob Herring <robh@kernel.org>
+To: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+Cc: lee@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	praneeth@ti.com, m-leonard@ti.com, rklein@nvidia.com
+Subject: Re: [PATCH] mfd: dt-bindings: Convert TPS65910 to DT schema
+Message-ID: <20250708165827.GA607073-robh@kernel.org>
+References: <20250702220217.155647-1-s-ramamoorthy@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: -w-Wu6ge8OaHL_DgFZFgkvPzb-nf8GY2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA4MDE0MyBTYWx0ZWRfX2Dg49A3dt23K
- b2KA8mQHIWcB8h4/P+alilPbi6P6RxPfdZdU2QyZk3BaGOq2qewA9QMbnFy2aWUfwm4tAoH3UNR
- bkIuKB+hEQl3VsEc2fd+UZSNfCIubcT1MsNaofBAxeIPJmKMUYFcJ401uVR6GnqmbbVu4xo4vjV
- 8rndc6QPuCCB0zpSEpxGs9EBbgyCRJt32JbVFxQrMAQknq6I3pSrM/CdF1b1nAAZuldfa3jVePD
- s4Brj27tsRpYe43cxVkRDK0koM7sL28S7rSyg4FXvcxghpfZwS6zasHAi9t15S5mmqXq3rmeoPO
- P0Hax4KrU3kzyDRsYdgnVFvZdAsuRd6dywKw8hRakjaiI8w+B7Eqrf8FMCPXs2ATExPOSdJwlsS
- GDrs4KkKA1XIbgF31K+o7JGH5VjB7J7HOIhGTTPhUKZDKb6gL0Y7t1bCh+X0TPTvBanMaeUW
-X-Proofpoint-GUID: -w-Wu6ge8OaHL_DgFZFgkvPzb-nf8GY2
-X-Authority-Analysis: v=2.4 cv=GtBC+l1C c=1 sm=1 tr=0 ts=686d4ddb cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=xFDPACk5BDkwkGjAhYwA:9
- a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-08_04,2025-07-07_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 clxscore=1011 spamscore=0 adultscore=0 phishscore=0 malwarescore=0
- priorityscore=1501 lowpriorityscore=0 bulkscore=0 suspectscore=0
- impostorscore=0 mlxlogscore=683 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507080143
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250702220217.155647-1-s-ramamoorthy@ti.com>
 
-Restructure the call site for dma_contiguous_early_fixup() to
-where the reserved_mem nodes are being parsed from the DT so that
-dma_mmu_remap[] is populated before dma_contiguous_remap() is called.
+On Wed, Jul 02, 2025 at 05:02:17PM -0500, Shree Ramamoorthy wrote:
+> Convert the TI TPS65910 documentation to DT schema format.
+> 
+> Fix incorrect I2C address in example: should be 0x2d.
+> 
+> TPS65910 datasheet: https://www.ti.com/lit/gpn/tps65910
+> 
+> Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+> ---
+>  .../devicetree/bindings/mfd/ti,tps65910.yaml  | 333 ++++++++++++++++++
+>  .../devicetree/bindings/mfd/tps65910.txt      | 205 -----------
+>  2 files changed, 333 insertions(+), 205 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/tps65910.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml b/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
+> new file mode 100644
+> index 000000000000..789b3c6d89cd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
+> @@ -0,0 +1,333 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI TPS65910 Power Management Integrated Circuit
+> +
+> +maintainers:
+> +  - Shree Ramamoorthy <s-ramamoorthy@ti.com>
+> +
+> +description:
+> +  TPS65910 device is a Power Management IC that provides 3 step-down converters,
+> +  1 stepup converter, and 8 LDOs. The device contains an embedded power controller (EPC),
+> +  1 GPIO, and an RTC.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,tps65910
+> +      - ti,tps65911
+> +
+> +  reg:
+> +    description: I2C slave address
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +    description: |
+> +      The first cell is the GPIO number.
+> +      The second cell is used to specify additional options <unused>.
+> +      See ../gpio/gpio.txt for more information.
 
-Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved memory regions are processed")
-Signed-off-by: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
----
- drivers/of/of_reserved_mem.c | 14 +++++++++++---
- kernel/dma/contiguous.c      |  2 --
- 2 files changed, 11 insertions(+), 5 deletions(-)
+Don't add references to old docs. Or new ones, just drop the last line.
 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 77016c0cc296..132d2c66cafc 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -25,6 +25,7 @@
- #include <linux/memblock.h>
- #include <linux/kmemleak.h>
- #include <linux/cma.h>
-+#include <linux/dma-map-ops.h>
- 
- #include "of_private.h"
- 
-@@ -175,13 +176,17 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
- 		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
- 		size = dt_mem_next_cell(dt_root_size_cells, &prop);
- 
--		if (size &&
--		    early_init_dt_reserve_memory(base, size, nomap) == 0)
-+		if (size && early_init_dt_reserve_memory(base, size, nomap) == 0) {
-+			/* Architecture specific contiguous memory fixup. */
-+			if (of_flat_dt_is_compatible(node, "shared-dma-pool"))
-+				dma_contiguous_early_fixup(base, size);
-+
- 			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
- 				uname, &base, (unsigned long)(size / SZ_1M));
--		else
-+		} else {
- 			pr_err("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
- 			       uname, &base, (unsigned long)(size / SZ_1M));
-+		}
- 
- 		len -= t_len;
- 	}
-@@ -472,6 +477,9 @@ static int __init __reserved_mem_alloc_size(unsigned long node, const char *unam
- 		       uname, (unsigned long)(size / SZ_1M));
- 		return -ENOMEM;
- 	}
-+	/* Architecture specific contiguous memory fixup. */
-+	if (of_flat_dt_is_compatible(node, "shared-dma-pool"))
-+		dma_contiguous_early_fixup(base, size);
- 
- 	/* Save region in the reserved_mem array */
- 	fdt_reserved_mem_save_node(node, uname, base, size);
-diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
-index 8df0dfaaca18..9e5d63efe7c5 100644
---- a/kernel/dma/contiguous.c
-+++ b/kernel/dma/contiguous.c
-@@ -480,8 +480,6 @@ static int __init rmem_cma_setup(struct reserved_mem *rmem)
- 		pr_err("Reserved memory: unable to setup CMA region\n");
- 		return err;
- 	}
--	/* Architecture specific contiguous memory fixup. */
--	dma_contiguous_early_fixup(rmem->base, rmem->size);
- 
- 	if (default_cma)
- 		dma_contiguous_default_area = cma;
--- 
-2.34.1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    description: Specifies the IRQ number and flags, as defined in
+> +      Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
 
+Drop the reference.
+
+> +    const: 2
+> +
+> +  ti,vmbch-threshold:
+> +    description: |
+> +      (TPS65911) Main battery charged threshold comparator.
+> +      See VMBCH_VSEL in TPS65910 datasheet.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+
+Doesn't look like an array to me...
+
+> +    minItems: 1
+> +    maxItems: 1
+> +    items:
+> +      minimum: 0
+
+0 is already the min.
+
+> +      maximum: 3
+> +
+> +  ti,vmbch2-threshold:
+> +    description: |
+> +      (TPS65911) Main battery discharged threshold comparator.
+> +      See VMBCH_VSEL in TPS65910 datasheet.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 1
+> +    items:
+> +      minimum: 0
+> +      maximum: 3
+
+Same comments here.
+
+> +
+> +  ti,en-ck32k-xtal:
+> +    type: boolean
+> +    description: Enable external 32-kHz crystal oscillator.
+> +
+> +  ti,en-gpio-sleep:
+> +    description: |
+> +      Enable sleep control for gpios.
+> +      There should be 9 entries here, one for each gpio.
+
+Don't repeat constraints in free form text.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 9
+> +    maxItems: 9
+> +    items:
+> +      minimum: 0
+> +      maximum: 1
+> +
+> +  ti,system-power-controller:
+> +    type: boolean
+> +    description: Identify whether or not this pmic controls the system power
+> +
+> +  ti,sleep-enable:
+> +    type: boolean
+> +    description: Enable SLEEP state.
+> +
+> +  ti,sleep-keep-therm:
+> +    type: boolean
+> +    description: Keep thermal monitoring on in sleep state.
+> +
+> +  ti,sleep-keep-ck32k:
+> +    type: boolean
+> +    description: Keep the 32KHz clock output on in sleep state.
+> +
+> +  ti,sleep-keep-hsclk:
+> +    type: boolean
+> +    description: Keep high speed internal clock on in sleep state.
+> +
+> +  regulators:
+> +    type: object
+> +    description: List of regulators provided by this controller.
+> +
+> +    patternProperties:
+> +      "^(vrtc|vio|vpll|vdac|vmmc|vbb|vddctrl)$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        properties:
+> +          ti,regulator-ext-sleep-control:
+> +            description: |
+> +              Enable external sleep control through external inputs:
+> +              [0 (not enabled), 1 (EN1), 2 (EN2) or 4(EN3)].
+> +              If this property is not defined, it defaults to 0 (not enabled).
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            enum: [0, 1, 2, 4, 8]
+> +        unevaluatedProperties: true
+
+false
+
+> +
+> +      "^(vdd[1-3]|vaux([1-2]|33)|vdig[1-2])$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        properties:
+> +          ti,regulator-ext-sleep-control:
+> +            description: |
+> +              Enable external sleep control through external inputs:
+> +              [0 (not enabled), 1 (EN1), 2 (EN2) or 4(EN3)].
+> +              If this property is not defined, it defaults to 0 (not enabled).
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            enum: [0, 1, 2, 4, 8]
+> +        unevaluatedProperties: true
+
+false
+
+> +
+> +      "^ldo[1-8]$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        properties:
+> +          ti,regulator-ext-sleep-control:
+> +            description: |
+> +              Enable external sleep control through external inputs:
+> +              [0 (not enabled), 1 (EN1), 2 (EN2) or 4(EN3)].
+> +              If this property is not defined, it defaults to 0 (not enabled).
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            enum: [0, 1, 2, 4, 8]
+> +        unevaluatedProperties: true
+> +
+> +    additionalProperties: true
+
+false
+
+And move above patternProperties
+
+
+> +
+> +patternProperties:
+> +  "^(vcc[1-7]-supply)|vccio-supply$":
+
+^vcc(io|[1-7])-supply$
+
+> +    description: |
+> +      Input voltage supply phandle for regulators.
+> +      These entries are required if PMIC regulators are enabled, or else it
+> +      can cause the regulator registration to fail.
+
+blank line between paragraphs.
+
+> +      If some input supply is powered through battery or always-on supply, then
+> +      it is also required to have these parameters with the proper node handle for always-on
+> +      power supply.
+> +      tps65910:
+> +          vcc1-supply: VDD1 input.
+> +          vcc2-supply: VDD2 input.
+> +          vcc3-supply: VAUX33 and VMMC input.
+> +          vcc4-supply: VAUX1 and VAUX2 input.
+> +          vcc5-supply: VPLL and VDAC input.
+> +          vcc6-supply: VDIG1 and VDIG2 input.
+> +          vcc7-supply: VRTC and VBB input.
+> +          vccio-supply: VIO input.
+> +      tps65911:
+> +          vcc1-supply: VDD1 input.
+> +          vcc2-supply: VDD2 input.
+> +          vcc3-supply: LDO6, LDO7 and LDO8 input.
+> +          vcc4-supply: LDO5 input.
+> +          vcc5-supply: LDO3 and LDO4 input.
+> +          vcc6-supply: LDO1 and LDO2 input.
+> +          vcc7-supply: VRTC input.
+> +          vccio-supply: VIO input.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +  - regulators
+> +
+> +additionalProperties: false
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,tps65910
+> +    then:
+> +      properties:
+> +        regulators:
+> +          patternProperties:
+> +            "^(ldo[1-8]|vddctrl)$": false
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,tps65911
+> +    then:
+> +      properties:
+> +        regulators:
+> +          patternProperties:
+> +            "^(vdd3|vaux([1-2]|33)|vdig[1-2])$": false
+> +            "^(vpll|vdac|vmmc|vbb)$": false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic: tps65910@2d {
+
+Indent by 4 here...
+> +          compatible = "ti,tps65910";
+
+And by 2 here. Be consistent (use 4).
+
+> +          reg = <0x2d>;
+> +          interrupt-parent = <&intc>;
+> +          interrupts = < 0 118 0x04 >;
+> +
+> +          #gpio-cells = <2>;
+> +          gpio-controller;
+> +
+> +          #interrupt-cells = <2>;
+> +          interrupt-controller;
+> +
+> +          ti,system-power-controller;
+> +
+> +          ti,vmbch-threshold = <0>;
+> +          ti,vmbch2-threshold = <0>;
+> +          ti,en-ck32k-xtal;
+> +          ti,en-gpio-sleep = <0 0 1 0 0 0 0 0 0>;
+> +
+> +          vcc1-supply = <&reg_parent>;
+> +          vcc2-supply = <&some_reg>;
+> +          vcc3-supply = <&vbat>;
+> +          vcc4-supply = <&vbat>;
+> +          vcc5-supply = <&vbat>;
+> +          vcc6-supply = <&vbat>;
+> +          vcc7-supply = <&vbat>;
+> +          vccio-supply = <&vbat>;
+> +
+> +          regulators {
+> +            vrtc_reg: vrtc {
+
+Drop unused labels
+
+> +              regulator-name = "vrtc";
+> +              regulator-always-on;
+> +            };
+> +            vio_reg: vio {
+> +              regulator-name = "vio";
+> +              regulator-min-microvolt = <1500000>;
+> +              regulator-max-microvolt = <3300000>;
+> +              regulator-always-on;
+> +              regulator-boot-on;
+> +            };
+> +            vdd1_reg: vdd1 {
+> +              regulator-name = "vdd1";
+> +              regulator-min-microvolt = < 600000>;
+> +              regulator-max-microvolt = <1500000>;
+> +              regulator-always-on;
+> +              regulator-boot-on;
+> +              ti,regulator-ext-sleep-control = <0>;
+> +            };
+> +            vdd2_reg: vdd2 {
+> +              regulator-name = "vdd2";
+> +              regulator-min-microvolt = < 600000>;
+> +              regulator-max-microvolt = <1500000>;
+> +              regulator-always-on;
+> +              regulator-boot-on;
+> +            };
+> +            vdd3_reg: vdd3 {
+> +              regulator-name = "vdd3";
+> +              regulator-min-microvolt = <5000000>;
+> +              regulator-max-microvolt = <5000000>;
+> +              regulator-always-on;
+> +            };
+> +            vdig1_reg: vdig1 {
+> +              regulator-name = "vdig1";
+> +              regulator-min-microvolt = <1200000>;
+> +              regulator-max-microvolt = <2700000>;
+> +              regulator-always-on;
+> +            };
+> +            vdig2_reg: vdig2 {
+> +              regulator-name = "vdig2";
+> +              regulator-min-microvolt = <1000000>;
+> +              regulator-max-microvolt = <1800000>;
+> +              regulator-always-on;
+> +            };
+> +            vpll_reg: vpll {
+> +              regulator-name = "vpll";
+> +              regulator-min-microvolt = <1000000>;
+> +              regulator-max-microvolt = <2500000>;
+> +              regulator-always-on;
+> +            };
+> +            vdac_reg: vdac {
+> +              regulator-name = "vdac";
+> +              regulator-min-microvolt = <1800000>;
+> +              regulator-max-microvolt = <2850000>;
+> +              regulator-always-on;
+> +            };
+> +            vaux1_reg: vaux1 {
+> +              regulator-name = "vaux1";
+> +              regulator-min-microvolt = <1800000>;
+> +              regulator-max-microvolt = <2850000>;
+> +              regulator-always-on;
+> +            };
+> +            vaux2_reg: vaux2 {
+> +              regulator-name = "vaux2";
+> +              regulator-min-microvolt = <1800000>;
+> +              regulator-max-microvolt = <3300000>;
+> +              regulator-always-on;
+> +            };
+> +            vaux33_reg: vaux33 {
+> +              regulator-name = "vaux33";
+> +              regulator-min-microvolt = <1800000>;
+> +              regulator-max-microvolt = <3300000>;
+> +              regulator-always-on;
+> +            };
+> +            vmmc_reg: vmmc {
+> +              regulator-name = "vmmc";
+> +              regulator-min-microvolt = <1800000>;
+> +              regulator-max-microvolt = <3300000>;
+> +              regulator-always-on;
+> +              regulator-boot-on;
+> +            };
+> +          };
+> +        };
+> +    };
 
