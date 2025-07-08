@@ -1,346 +1,165 @@
-Return-Path: <devicetree+bounces-193866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 192A1AFC158
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 05:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E935CAFC18C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 05:43:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0CE31897F4E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 03:22:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DAB71890826
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 03:44:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8613238C23;
-	Tue,  8 Jul 2025 03:21:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lanxincomputing-com.20200927.dkim.feishu.cn header.i=@lanxincomputing-com.20200927.dkim.feishu.cn header.b="0XFtq1rI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E2F241664;
+	Tue,  8 Jul 2025 03:43:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sg-1-37.ptr.blmpb.com (sg-1-37.ptr.blmpb.com [118.26.132.37])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B8F82367A0
-	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 03:21:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=118.26.132.37
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B0F23F299;
+	Tue,  8 Jul 2025 03:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751944896; cv=none; b=JCuZaHp34Czd7ODpgFuRJ8xNEPkVAIxi8iveGfFMVCJoT2SHBvNjMO9erhir3qHYdeoA8lS5X8U93v9HamvwjovMc1oa+TSt3zRbTcwAT01WXk1MfM3AtXoN1pX+cG2BZjF8jZh4cRTpDLSueP8xC1NveDGGlYuzW951TzbdNzQ=
+	t=1751946233; cv=none; b=OBp+CrrDr/+1MPHznYKpz5NMNIeaM8BH0mtgS/0ZEzjp5lg1SGTPn9MiyeQR1R37KchN87/Uy/O16JXtQcqkGz2pLKNhG/gUb8xFTmjEaf3N0zF4TQIK4frXqcMpKVNkAydg3iA6YyWjBtUcMhN/tx//OBDUT1RlUQiXy7eRmbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751944896; c=relaxed/simple;
-	bh=bzHv4eU31X/RdPTqcUe73N6UHOSb98BHHaw0WjDXxpg=;
-	h=Mime-Version:From:Date:Subject:In-Reply-To:Content-Type:
-	 References:To:Cc:Message-Id; b=VUao4fE5BxaBWxCzBnsxzLABhZRQNxMUJx2MqubxjdpnTF38KlQ/+6Rtp8djzGLdf1HLdlFlrEPirHkp2Eo19PTRghSO0+bNFPH1XNU14MloXXB21NFb1xe/wUa+9e/MaKkQ78qCey9DNXaEvRtveiXGSk6zK7VaG2bV4D6pb30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lanxincomputing.com; spf=pass smtp.mailfrom=lanxincomputing.com; dkim=pass (2048-bit key) header.d=lanxincomputing-com.20200927.dkim.feishu.cn header.i=@lanxincomputing-com.20200927.dkim.feishu.cn header.b=0XFtq1rI; arc=none smtp.client-ip=118.26.132.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lanxincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lanxincomputing.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=s1; d=lanxincomputing-com.20200927.dkim.feishu.cn; t=1751944882;
-  h=from:subject:mime-version:from:date:message-id:subject:to:cc:
- reply-to:content-type:mime-version:in-reply-to:message-id;
- bh=zg/YomFgWluXbABhhcO8ioOh4E5v2C7pZz7d5544dM4=;
- b=0XFtq1rI2Q6dFJwemZvO8QeXnbU32xXFv6jDcy/HA7WN8LrPqfRr/5VgvayB9MVCwBTMXU
- VJj6fRqLFra308eGJDZ4M09d20AFxzEtarTuQ7rE51jfY9g5egF8QXeNVtd9U+rxIGL8Fy
- hVVzkmv+4ZArOPqEobdrPgRiLVEF+dyFvzM6+QHDTaXGQG7Cq3sqwQ0VzFu1PUzpEQxUyB
- kk5iFmg/t46oZzorFzJnhG67UFUi3c/W09p6CSvQHbCGEuFQJAW1okA7UfDGUcPPWQNC3Q
- zll79zrgR83ICAtQ6IxXvLBFF2i6PzAgrIkYTGjPQ1hEx7SkNUhwD+d3QX+jOg==
+	s=arc-20240116; t=1751946233; c=relaxed/simple;
+	bh=qDuUJYM1LJXP6KqTu/ry7W53Diu11Fscq4h73EvMeUU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QhGd/tQELV5fWMtXkKkcwZlnQCgHUAZdp7NwV8v5N1rkDQmNSKY/NRrSbBKUe3KpflC2K4+1ff/Vt9k0kNIV3LAgOghFOmms5ldrmtd1mdMDYfRAC9XHAgTYRzgKFJmtb8YP4gBAOAlXCjS2SAjr5TFTUg0tiJdQJ8qWah1x81o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-553b60de463so3920806e87.3;
+        Mon, 07 Jul 2025 20:43:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751946229; x=1752551029;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=t6qI+uivx+bnd0zwfJl1YVkWkeyiKKg4Fij4wbpWozY=;
+        b=geKrkE/vVqDzh0dEEeQF0SGfPs5Eyp+sLQccuaH1xVBEcoC1tkUmQw/U5JLCYFmOno
+         Zy9ZMkEottngDK+FFcbC5Q6aOtkWm/SJGwKv9/scp94BbU0EiaycoXrhrZTfCeL0OLnk
+         LwBPhbPJPhRZ3p/5ZSHEvMbaC3YR3A2O/oNr5ew88CnHwbo0QsFmr8M09LH1oLAD9/zT
+         J9VLO5I6uAmmjTtUM59XKLt2tcaCOY32ac7QGkbJMYM5qQHEzkAEdKA4kA1ifmbuBPmu
+         iDiByr8J9Ee/qfOrpfu0dZfnxohGTiwaxMP7FP5gjgTM9ppje1w9zCVaedNovyRddZng
+         4Kmw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2SJs8Wpdf6MU5oECCSSu473fAn7Nl4AvIq8YZq9bxneC1+9kibR7TI9rrsS3vLFScs5GEqnKFhMUuYHtF@vger.kernel.org, AJvYcCVqVH6ZE4HYHyebpPazpgtghVjdzizqD1lilERv4Hod8xXgUQ/vXOWsIY6qKegq8q8OzKikWDT8EaKh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlyB+S/GRGTzNwDG5IslTrrZoP+fZdFR/2onboHBZDMYh+tpHv
+	fkupW9lW7ot/oiGE6SZXMysMgL4Dh9JlgxFQHBB+jxxxMsZGdDnQ+rNRJfHZTEAB
+X-Gm-Gg: ASbGncsC4h7U7mUOHdw4g5yKgbGGb1okvcnUTfn4ogSAsZ0zrbkce86+yqYo34vMt+w
+	kEibXMs9gOcKWxNnE8+RFiUdAxO071FNH1WwzhU3zhHGDm+A4c+QXt57bWKmulTl4cLyHmKm+Co
+	ozgrRr2tkh9TD2XmZSGLrO89NmEAQAroVolPyydkYy7t6Bv6YO0XT9MECg/lCsAWEEVDdmuSw1R
+	WKa5wDlH7S6xkOfJwADYDClJPwFg2oLHtHIyV9JCLma04cusLXAL10WqPySMB0SrkjFo/szjFlI
+	b1/Jr+j84aaFReo24JH6OkP/9hFIpqdWo5g/GKVVdOb/IeFd92oJ9q+MdOXHWo9qikb8FNXm1es
+	Jul7IWvblEOkYs3iVPy4=
+X-Google-Smtp-Source: AGHT+IE8YUmqN4BJzAHjcnKofP+uppUq89PP4L59a6IvpS6GAOkgKsw6DMoAPPV00+8yAKehSQN1nw==
+X-Received: by 2002:ac2:51d1:0:b0:554:f9c5:6b30 with SMTP id 2adb3069b0e04-556f13b0a35mr5227882e87.38.1751946228593;
+        Mon, 07 Jul 2025 20:43:48 -0700 (PDT)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-556383d31a6sm1529494e87.61.2025.07.07.20.43.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Jul 2025 20:43:48 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-32b7123edb9so43943691fa.2;
+        Mon, 07 Jul 2025 20:43:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW+cc5nkfmOs2Z107xAfhupN2P6oZkssIe9wzB6T5HDIVr4nI5E5VNqrxsF6UDXsR9P6ab9GpeQaBm3JJ4B@vger.kernel.org, AJvYcCWQxhXm6syhQYRxqSo664nXPKWVGiGWdLFB7Pxj71sBmCrY29YYz8jobVOKot+1z1wgWmenRb5Wo8iR@vger.kernel.org
+X-Received: by 2002:a2e:a7ca:0:b0:32c:102a:f02d with SMTP id
+ 38308e7fff4ca-32e5f61e89emr40266751fa.30.1751946228111; Mon, 07 Jul 2025
+ 20:43:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Received: from [127.0.0.1] ([116.237.111.137]) by smtp.feishu.cn with ESMTPS; Tue, 08 Jul 2025 11:21:19 +0800
-From: "Nutty Liu" <liujingqi@lanxincomputing.com>
-Date: Tue, 8 Jul 2025 11:21:16 +0800
-User-Agent: Mozilla Thunderbird
-X-Lms-Return-Path: <lba+2686c8eb0+66e1f7+vger.kernel.org+liujingqi@lanxincomputing.com>
-Subject: Re: [PATCH v3 3/3] riscv: dts: sophgo: add Sophgo SG2042_EVB_V2.0 board device tree
-In-Reply-To: <c1b6ccdc69af0c1457fc1486a6bc8a1e83671537.1751700954.git.rabenda.cn@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-References: <cover.1751700954.git.rabenda.cn@gmail.com> <c1b6ccdc69af0c1457fc1486a6bc8a1e83671537.1751700954.git.rabenda.cn@gmail.com>
-X-Original-From: Nutty Liu <liujingqi@lanxincomputing.com>
-To: "Han Gao" <rabenda.cn@gmail.com>, <devicetree@vger.kernel.org>
-Cc: "Rob Herring" <robh@kernel.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
-	"Conor Dooley" <conor+dt@kernel.org>, 
-	"Paul Walmsley" <paul.walmsley@sifive.com>, 
-	"Palmer Dabbelt" <palmer@dabbelt.com>, 
-	"Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>, 
-	"Chen Wang" <unicorn_wang@outlook.com>, 
-	"Inochi Amaoto" <inochiama@gmail.com>, 
-	"Thomas Bonnefille" <thomas.bonnefille@bootlin.com>, 
-	"Guo Ren" <guoren@kernel.org>, "Chao Wei" <chao.wei@sophgo.com>, 
-	<linux-riscv@lists.infradead.org>, <sophgo@lists.linux.dev>, 
-	<linux-kernel@vger.kernel.org>
-Message-Id: <e48c2706-86cf-4e1d-bfad-17f662f5fb75@lanxincomputing.com>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+MIME-Version: 1.0
+References: <20250706025625.2707073-1-iuncuim@gmail.com> <20250708004458.15a2feae@minigeek.lan>
+In-Reply-To: <20250708004458.15a2feae@minigeek.lan>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Tue, 8 Jul 2025 11:43:34 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67Pu7CTJx3K=3CVSbQ9mNB-4Vrq+iaA+hUWtxdwS2aD0Q@mail.gmail.com>
+X-Gm-Features: Ac12FXyZmm99FipGMPnPhGzlT7tlbKyfxwlUr8RD3z4V1vxu7PoX_X4yAfDEgUg
+Message-ID: <CAGb2v67Pu7CTJx3K=3CVSbQ9mNB-4Vrq+iaA+hUWtxdwS2aD0Q@mail.gmail.com>
+Subject: Re: [PATCH 0/2] arm64: sunxi: a523: Enable Mali GPU
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: iuncuim <iuncuim@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 7/5/2025 3:39 PM, Han Gao wrote:
-> Sophgo SG2042_EVB_V2.0 [1] is a prototype development board based on SG2042
+On Tue, Jul 8, 2025 at 7:46=E2=80=AFAM Andre Przywara <andre.przywara@arm.c=
+om> wrote:
 >
-> Currently supports serial port, sdcard/emmc, pwm, fan speed control.
+> On Sun,  6 Jul 2025 10:56:21 +0800
+> iuncuim <iuncuim@gmail.com> wrote:
 >
-> Link: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG2042-x4-EVB [1]
+> > From: Mikhail Kalashnikov <iuncuim@gmail.com>
+> >
+> > This patch adds gpu support on devices with a523 processor. Since there=
+ is
+> > no support for image output yet, the gpu is disabled after boot up.
+> >
+> > $ dmesg | grep panfrost
+> > [    3.826968] panfrost 1800000.gpu: clock rate =3D 432000000
+> > [    3.832305] panfrost 1800000.gpu: bus_clock rate =3D 200000000
+> > [    3.838353] panfrost 1800000.gpu: mali-g57 id 0x9091 major 0x0 minor=
+ 0x1
+> >                status 0x0
+> > [    3.846050] panfrost 1800000.gpu: features: 00000000,000019f7, issue=
+s:
+> >                00000001,80000400
+> > [    3.854134] panfrost 1800000.gpu: Features: L2:0x07110206 Shader:0x0=
+0000000
+> >                Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
+> > [    3.866011] panfrost 1800000.gpu: shader_present=3D0x1 l2_present=3D=
+0x1
+> > [    3.874108] [drm] Initialized panfrost 1.3.0 for 1800000.gpu on mino=
+r 0
 >
-> Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+> So what confidence do we have that this really works, apart from these
+> successful initialisation messages? Has this been shown to work with
+> some (yet-out-of-tree) DRM patches, to produce 3D rendered output? I
+> wonder if we should wait with upstreaming until we can really test this
+> on some kind of screen.
 
-Reviewed-by: Nutty Liu<liujingqi@lanxincomputing.com>
+I ran glmark2-es2-drm using vkms, and it seemed to run correctly.
+The GPU job interrupt was triggering frequently, and the GPU mmu
+interrupt was triggered twice for each run. This was with Mesa
+25.0.2 from Debian bookworm backports.
 
-Thanks,
-Nutty
+So this is sort of
 
-> ---
->   arch/riscv/boot/dts/sophgo/Makefile          |   1 +
->   arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts | 233 +++++++++++++++++++
->   2 files changed, 234 insertions(+)
->   create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
+Tested-by: Chen-Yu Tsai <wens@csie.org>
+
+If anyone has some idea about how to capture the output, I can give that
+a try.
+
+> Cheers,
+> Andre
 >
-> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-> index 6c9b29681cad..6f65526d4193 100644
-> --- a/arch/riscv/boot/dts/sophgo/Makefile
-> +++ b/arch/riscv/boot/dts/sophgo/Makefile
-> @@ -4,4 +4,5 @@ dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
->   dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-licheerv-nano-b.dtb
->   dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
->   dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-evb-v1.dtb
-> +dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-evb-v2.dtb
->   dtb-$(CONFIG_ARCH_SOPHGO) += sg2044-sophgo-srd3-10.dtb
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts b/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
-> new file mode 100644
-> index 000000000000..46980e41b886
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
-> @@ -0,0 +1,233 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2025 Sophgo Technology Inc. All rights reserved.
-> + */
-> +
-> +#include "sg2042.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +
-> +/ {
-> +	model = "Sophgo SG2042 EVB V2.0";
-> +	compatible = "sophgo,sg2042-evb-v2", "sophgo,sg2042";
-> +
-> +	chosen {
-> +		stdout-path = "serial0";
-> +	};
-> +
-> +	pwmfan: pwm-fan {
-> +		compatible = "pwm-fan";
-> +		cooling-levels = <103 128 179 230 255>;
-> +		pwms = <&pwm 0 40000 0>;
-> +		#cooling-cells = <2>;
-> +	};
-> +
-> +	thermal-zones {
-> +		soc-thermal {
-> +			polling-delay-passive = <1000>;
-> +			polling-delay = <1000>;
-> +			thermal-sensors = <&mcu 0>;
-> +
-> +			trips {
-> +				soc_active1: soc-active1 {
-> +					temperature = <30000>;
-> +					hysteresis = <8000>;
-> +					type = "active";
-> +				};
-> +
-> +				soc_active2: soc-active2 {
-> +					temperature = <58000>;
-> +					hysteresis = <12000>;
-> +					type = "active";
-> +				};
-> +
-> +				soc_active3: soc-active3 {
-> +					temperature = <70000>;
-> +					hysteresis = <10000>;
-> +					type = "active";
-> +				};
-> +
-> +				soc_hot: soc-hot {
-> +					temperature = <80000>;
-> +					hysteresis = <5000>;
-> +					type = "hot";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&soc_active1>;
-> +					cooling-device = <&pwmfan 0 1>;
-> +				};
-> +
-> +				map1 {
-> +					trip = <&soc_active2>;
-> +					cooling-device = <&pwmfan 1 2>;
-> +				};
-> +
-> +				map2 {
-> +					trip = <&soc_active3>;
-> +					cooling-device = <&pwmfan 2 3>;
-> +				};
-> +
-> +				map3 {
-> +					trip = <&soc_hot>;
-> +					cooling-device = <&pwmfan 3 4>;
-> +				};
-> +			};
-> +		};
-> +
-> +		board-thermal {
-> +			polling-delay-passive = <1000>;
-> +			polling-delay = <1000>;
-> +			thermal-sensors = <&mcu 1>;
-> +
-> +			trips {
-> +				board_active: board-active {
-> +					temperature = <75000>;
-> +					hysteresis = <8000>;
-> +					type = "active";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				map4 {
-> +					trip = <&board_active>;
-> +					cooling-device = <&pwmfan 3 4>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&cgi_main {
-> +	clock-frequency = <25000000>;
-> +};
-> +
-> +&cgi_dpll0 {
-> +	clock-frequency = <25000000>;
-> +};
-> +
-> +&cgi_dpll1 {
-> +	clock-frequency = <25000000>;
-> +};
-> +
-> +&emmc {
-> +	pinctrl-0 = <&emmc_cfg>;
-> +	pinctrl-names = "default";
-> +	bus-width = <4>;
-> +	no-sdio;
-> +	no-sd;
-> +	non-removable;
-> +	wp-inverted;
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	pinctrl-0 = <&i2c1_cfg>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	mcu: syscon@17 {
-> +		compatible = "sophgo,sg2042-hwmon-mcu";
-> +		reg = <0x17>;
-> +		#thermal-sensor-cells = <1>;
-> +	};
-> +};
-> +
-> +&gmac0 {
-> +	phy-handle = <&phy0>;
-> +	phy-mode = "rgmii-id";
-> +	status = "okay";
-> +
-> +	mdio {
-> +		phy0: phy@0 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <0>;
-> +			reset-gpios = <&port0a 27 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <100000>;
-> +			reset-deassert-us = <100000>;
-> +		};
-> +	};
-> +};
-> +
-> +&pinctrl {
-> +	emmc_cfg: sdhci-emmc-cfg {
-> +		sdhci-emmc-wp-pins {
-> +			pinmux = <PINMUX(PIN_EMMC_WP, 0)>;
-> +			bias-disable;
-> +			drive-strength-microamp = <26800>;
-> +			input-schmitt-disable;
-> +		};
-> +
-> +		sdhci-emmc-cd-pins {
-> +			pinmux = <PINMUX(PIN_EMMC_CD, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <26800>;
-> +			input-schmitt-enable;
-> +		};
-> +
-> +		sdhci-emmc-rst-pwr-pins {
-> +			pinmux = <PINMUX(PIN_EMMC_RST, 0)>,
-> +				 <PINMUX(PIN_EMMC_PWR_EN, 0)>;
-> +			bias-disable;
-> +			drive-strength-microamp = <26800>;
-> +			input-schmitt-disable;
-> +		};
-> +	};
-> +
-> +	i2c1_cfg: i2c1-cfg {
-> +		i2c1-pins {
-> +			pinmux = <PINMUX(PIN_IIC1_SDA, 0)>,
-> +				 <PINMUX(PIN_IIC1_SCL, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <26800>;
-> +			input-schmitt-enable;
-> +		};
-> +	};
-> +
-> +	sd_cfg: sdhci-sd-cfg {
-> +		sdhci-sd-cd-wp-pins {
-> +			pinmux = <PINMUX(PIN_SDIO_CD, 0)>,
-> +				 <PINMUX(PIN_SDIO_WP, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <26800>;
-> +			input-schmitt-enable;
-> +		};
-> +
-> +		sdhci-sd-rst-pwr-pins {
-> +			pinmux = <PINMUX(PIN_SDIO_RST, 0)>,
-> +				 <PINMUX(PIN_SDIO_PWR_EN, 0)>;
-> +			bias-disable;
-> +			drive-strength-microamp = <26800>;
-> +			input-schmitt-disable;
-> +		};
-> +	};
-> +
-> +	uart0_cfg: uart0-cfg {
-> +		uart0-rx-pins {
-> +			pinmux = <PINMUX(PIN_UART0_TX, 0)>,
-> +				 <PINMUX(PIN_UART0_RX, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <26800>;
-> +			input-schmitt-enable;
-> +		};
-> +	};
-> +};
-> +
-> +&sd {
-> +	pinctrl-0 = <&sd_cfg>;
-> +	pinctrl-names = "default";
-> +	bus-width = <4>;
-> +	no-sdio;
-> +	no-mmc;
-> +	wp-inverted;
-> +	status = "okay";
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-0 = <&uart0_cfg>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
+> >
+> > Tested on x96qproplus and walnutpi 2b devices.
+> >
+> > Based on v6.16-rc4 with patches:
+> > https://lore.kernel.org/all/20250628054438.2864220-1-wens@kernel.org
+> > https://lore.kernel.org/linux-sunxi/20250628161608.3072968-1-wens@kerne=
+l.org
+> > https://lore.kernel.org/linux-sunxi/20250627152918.2606728-1-wens@kerne=
+l.org/
+> >
+> >
+> > iuncuim (2):
+> >   arm64: dts: allwinner: a523: add Mali GPU node
+> >   arm64: dts: allwinner: a523: enable Mali GPU for all boards
+> >
+> >  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi    | 15 +++++++++++++++
+> >  .../boot/dts/allwinner/sun55i-a527-cubie-a5e.dts  |  5 +++++
+> >  .../boot/dts/allwinner/sun55i-h728-x96qpro+.dts   |  5 +++++
+> >  .../boot/dts/allwinner/sun55i-t527-avaota-a1.dts  |  5 +++++
+> >  .../dts/allwinner/sun55i-t527-orangepi-4a.dts     |  5 +++++
+> >  5 files changed, 35 insertions(+)
+> >
+>
 
