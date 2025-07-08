@@ -1,107 +1,77 @@
-Return-Path: <devicetree+bounces-193943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A32AFC55A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:22:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B330AFC566
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:23:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2B7617D63C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:22:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19E7F3B298D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:23:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A3E298999;
-	Tue,  8 Jul 2025 08:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36952BD025;
+	Tue,  8 Jul 2025 08:23:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dRh/2+3d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C61223DC6;
-	Tue,  8 Jul 2025 08:22:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7B501B0F1E;
+	Tue,  8 Jul 2025 08:23:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751962962; cv=none; b=hLcu4XRUrePxnhNK624E8gtc5YISERZukPG/vgZqNkRFQxNiKFk2UgKs+ASi6kNqyEUbedn4Z/fixEdBfiHrEPjj/k5jMoQ4+dLin6iYohyxbq7xruSVMQksLZTuRzdaeuGdlmc2NVNEQ9YtieuqT7XwwnpM5yTpoi/lhqDRIYU=
+	t=1751962980; cv=none; b=KVuqiFosAS86SRlG/yzBc4l+LD10qiEwAkUuUfZcWr+IusEhizLVljhDdiYZKDTeYy56DUa7VxrKOyQcFZErSmVNmrSgzGYG9PcGB7SdZTXX0uaI2PKoSbLccmf5VHYIfgex7Jrg0ouvo1ZWI+Fxr6PfMuIcKzfv+3hrA89ir/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751962962; c=relaxed/simple;
-	bh=K45xL/e5RcHsYP2b7YztImc3yubWmYwPqOvKCVSyuxk=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M3wDHmFFhJqsNAXcLMAq0nDADrwSidcxE2iSrW5NkhnbTThEK3Ezjwi/CNgadkuMfxLHmE4LNm2WsR+OCzrCoWldnOAe/PWRTOYDCM2ninL78DBDCweVgqVlaWg0bIeM4cfjH5+L7xE75u8Utq0AvEaYbWMD8VUJpwzxXSlS7yo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bbvGR4w7yz6GCk0;
-	Tue,  8 Jul 2025 16:21:51 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 762A41404C5;
-	Tue,  8 Jul 2025 16:22:36 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 8 Jul
- 2025 10:22:35 +0200
-Date: Tue, 8 Jul 2025 09:22:34 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Alireza Sanaee <alireza.sanaee@huawei.com>, <mark.rutland@arm.com>,
-	<robh@kernel.org>, <coresight@lists.linaro.org>,
-	<devicetree@vger.kernel.org>, <dianders@chromium.org>,
-	<james.clark@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-perf-users@vger.kernel.org>,
-	<linuxarm@huawei.com>, <mike.leach@linaro.org>, <ruanjinjie@huawei.com>,
-	<saravanak@google.com>, <shameerali.kolothum.thodi@huawei.com>,
-	<suzuki.poulose@arm.com>
-Subject: Re: [PATCH 2/5] arch_topology: update CPU map to use the new API
-Message-ID: <20250708092234.00006fd5@huawei.com>
-In-Reply-To: <ca58608c-c147-45a7-910f-41a7c312fd5a@kernel.org>
-References: <20250707150414.620-1-alireza.sanaee@huawei.com>
-	<20250707150414.620-3-alireza.sanaee@huawei.com>
-	<ca58608c-c147-45a7-910f-41a7c312fd5a@kernel.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1751962980; c=relaxed/simple;
+	bh=87sHydAEWp+oRdWVjEQNZfErNGUVGosh7/5/uQwaz9E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZFWeqpL3d5ZvAm5885gXXdMj6QH8DHxtUPOIFXHT7F3cTaULXWpJKECCIuAbXLAytycUcxpVD6KvX19uj/CRaWm8YNGDt6w3nmlI/4Y9a8nOvBzJziwqLG2TkskGJY51+pzz0l7wJZpmkt/oUlwGEZUjXvyfbthmvQhPNUUQKEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dRh/2+3d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF920C4CEED;
+	Tue,  8 Jul 2025 08:22:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751962980;
+	bh=87sHydAEWp+oRdWVjEQNZfErNGUVGosh7/5/uQwaz9E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dRh/2+3dpSbDU3mXL02V9eqgLR/9/4sZtwJCjb9UnIyS9raEgPUynbqYrme4jhyaU
+	 4EH3IQDu7poI1oXVtt0fmasBrSg34iiVfsJAfOu+A8Dg+yWBvbTt+auHBA5hoHBsta
+	 9Y6avuRXrHgwcb3sJbZKKuP8EHw9Z2DwT52XoyMX/R25xWTkTOX72ErCSfClRqUlW8
+	 Ckbrgkj7dJAeeFmP9cVzFh3iGu5V0fJCGo/hWCGBPuzEgAkFG+aNBW2SKa4a1orQoo
+	 eJbBqU7pzfZ4+C5H99Jfsz058HWi7YHs1QEkLrVVjIc1kcBCE9yYzovr2TXUj6TirN
+	 urUhckZQik0NA==
+Date: Tue, 8 Jul 2025 10:22:57 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Stephen Boyd <sboyd@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: qcom,spmi-pmic: Document PMIV0104
+Message-ID: <20250708-cinnamon-oriole-of-warranty-cb5ac2@krzk-bin>
+References: <20250625-sm7635-pmiv0104-v1-0-68d287c4b630@fairphone.com>
+ <20250625-sm7635-pmiv0104-v1-1-68d287c4b630@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250625-sm7635-pmiv0104-v1-1-68d287c4b630@fairphone.com>
 
-On Tue, 8 Jul 2025 08:29:43 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Wed, Jun 25, 2025 at 11:18:02AM +0200, Luca Weiss wrote:
+> Add the PMIV0104 PMIC which is found on e.g. boards with SM7635 SoCs.
 
-> On 07/07/2025 17:04, Alireza Sanaee wrote:
-> > Cleans up the cpu-map generation using the created API.
-> > 
-> > Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
-> > ---
-> >  drivers/base/arch_topology.c | 12 ++++++------
-> >  1 file changed, 6 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/base/arch_topology.c b/drivers/base/arch_topology.c
-> > index 3ebe77566788..88970f13f684 100644
-> > --- a/drivers/base/arch_topology.c
-> > +++ b/drivers/base/arch_topology.c
-> > @@ -518,23 +518,23 @@ core_initcall(free_raw_capacity);
-> >   */
-> >  static int __init get_cpu_for_node(struct device_node *node)
-> >  {
-> > +	struct device_node *cpu_node __free(device_node) = NULL;  
-> 
-> 
-> That's not a correct style anymore. What's more it is not really
-> explained anywhere. Follow standard cleanup.h rules (constructor).
+s/SM7635/Milos/ SoCs.
 
-There isn't a good solution in this case as the constructor is via
-a pointer passed as an argument. I'd just fall back to not using
-__free here and instead doing a manual put of the node in the
-paths where it is set.   That might just be the final successful
-return path - I've not checked closely.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> 
-> 
-> Best regards,
-> Krzysztof
+Best regards,
+Krzysztof
 
 
