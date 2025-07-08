@@ -1,278 +1,188 @@
-Return-Path: <devicetree+bounces-194115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB48AFCBA0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 15:16:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7319CAFCBB9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 15:20:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BCCC16FBFD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 13:13:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD39A1890804
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 13:20:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3952B2E092F;
-	Tue,  8 Jul 2025 13:11:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="mPaJp4gi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 366232DE1FC;
+	Tue,  8 Jul 2025 13:19:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C418C2DCBF7;
-	Tue,  8 Jul 2025 13:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6E32DCBFD;
+	Tue,  8 Jul 2025 13:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751980273; cv=none; b=REVi9EOTBOcxgwlITCtGpZXxcrTkU/qAZxoyyECbl+urdmiUNL1G0fUqoCfEGCXY5Gk5bjLAGm+eNoIF1gkcIfoeMdwPOLAfuBnve0GgNtMKjsbo49I3qDuAUH3ZkxoaLYE8GhWeh8CnI3ehcpRMRRNNqxDqzn1F08oNnO8iOic=
+	t=1751980796; cv=none; b=jrNuhDBPibsRAyAzTWHggqdxpT0k/DTPDKouSlL95lOcWqDOHjuIKNrwMOWbBn/HxSyyAJCwBmPTsiltLOzFnrJoP+JSs7Byk0mG9+kxu6mPLaxw0KbbJWHKT3WjMCdge4HvNqyJp7gg8ChGVdHRrzanm0CR6zQXX+1KrcaK5RE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751980273; c=relaxed/simple;
-	bh=qgK1+p+2S6x9solPSjiOTcbNhibG/PD66ABLIzslZxs=;
+	s=arc-20240116; t=1751980796; c=relaxed/simple;
+	bh=0nlY8CDQezFWuJjfY0m2t/U5Zl4jJT2CDVBEUbuyS80=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i7KqLLGNa9gO0IMnn8IFW9coZZYKXVDuwezepMNDA+j7qTRZcYkPRKFMYrmpcfW637A/imFzr95EgTIC2ubebYOF19wRcvKCgJox3aC2SU0V0yew6gOqMt5BF7bB0CckOtd93UNRvuYGLDdBU/KTXb0uh4guyrqne+9beNXwgIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=mPaJp4gi; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (mob-5-90-136-241.net.vodafone.it [5.90.136.241])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 90C7F8FA;
-	Tue,  8 Jul 2025 15:10:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1751980239;
-	bh=qgK1+p+2S6x9solPSjiOTcbNhibG/PD66ABLIzslZxs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mPaJp4gihjeQL3f6n+rZvx750swul15ViT6dkcslLqKmwVXVYlhiwx+9hB0tAwc3j
-	 XFxlkZzfLmLdPtRpMVPUmyRqbvuJ5k+zuP//UpjmuZwMX9nynUppZ/yWJyFKXt5owh
-	 o2qUi0ACA9LDEH+2iMxLLr9U1FYByRN7WmEHWZb8=
-Date: Tue, 8 Jul 2025 15:10:58 +0200
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com
-Subject: Re: [PATCH v3 2/5] media: v4l2-dev: Add helpers to run
- media_pipeline_[started|stopped]()
-Message-ID: <v3gonywym2km6u4qpsm2bkpn5n7vmvm4rdt3nfiws6mri3b7y4@gh4q5f4cmavc>
-References: <20250704-ivc-v3-0-5c45d936ef2e@ideasonboard.com>
- <20250704-ivc-v3-2-5c45d936ef2e@ideasonboard.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=iDf2n5lWtsxkQxFspKiEMe/TSqNmZAAcwYU9n1OCVKNKaiyAYcEaNviebbR1V+v9Eq+TkaxtgEzaFjYMEIvH2HKYxaFTNuw2ufLZ5xK6FTqgpcY2snlhq1Ps/c3aZoaAWmkfo2/3g/+BnkqCnMkbgyuSLarRbUKMdSYFbwfxNu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
+Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
+	by leonov.paulk.fr (Postfix) with ESMTPS id B92D31F00053;
+	Tue,  8 Jul 2025 13:19:33 +0000 (UTC)
+Received: by laika.paulk.fr (Postfix, from userid 65534)
+	id 834F3ACB310; Tue,  8 Jul 2025 13:19:32 +0000 (UTC)
+X-Spam-Level: 
+Received: from collins (unknown [192.168.1.1])
+	by laika.paulk.fr (Postfix) with ESMTPSA id E2662ACB19F;
+	Tue,  8 Jul 2025 13:19:29 +0000 (UTC)
+Date: Tue, 8 Jul 2025 15:19:27 +0200
+From: Paul Kocialkowski <paulk@sys-base.io>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 4/4] arm64: dts: allwinner: a133-liontron-h-a133l: Add
+ Ethernet support
+Message-ID: <aG0a32kcpVC6z--Y@collins>
+References: <20250707165155.581579-1-paulk@sys-base.io>
+ <20250707165155.581579-5-paulk@sys-base.io>
+ <20250708003348.58fe509f@minigeek.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/WDuu8c/WC4JUJfs"
+Content-Disposition: inline
+In-Reply-To: <20250708003348.58fe509f@minigeek.lan>
+
+
+--/WDuu8c/WC4JUJfs
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250704-ivc-v3-2-5c45d936ef2e@ideasonboard.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Dan
+Hi Andre,
 
-On Fri, Jul 04, 2025 at 12:20:19PM +0100, Daniel Scally wrote:
-> Add helpers to run the new media_pipeline_started() and
-> media_pipeline_stopped() functions. The helpers iterate over the
-> entities in the pipeline and count the number of video devices and
-> compare that to the pipeline's start_count() before acting. This
-> allows us to only run the media pipeline callbacks in the event that
-> the pipeline has had video_pipeline_start() called for each video
-> device.
->
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->
-> ---
->
-> We could take this further perhaps and include the equivalent routine
-> in video_device_pipeline[_alloc]_start()...if none of the entities
-> involved have .pipeline_started() or .pipeline_stopped() operations it
-> should be harmless, but I'm a bit reluctant to force the choice to run
-> those operations on users.
+Le Tue 08 Jul 25, 00:34, Andre Przywara a =C3=A9crit :
+> On Mon,  7 Jul 2025 18:51:55 +0200
+> Paul Kocialkowski <paulk@sys-base.io> wrote:
+>=20
+> Hi Paul,
+>=20
+> > The Liontron H-A133L board features an Ethernet controller with a
+> > JLSemi JL1101 PHY. Its reset pin is tied to the PH12 GPIO.
+> >=20
+> > Note that the reset pin must be handled as a bus-wide reset GPIO in
+> > order to let the MDIO core properly reset it before trying to read
+> > its identification registers. There's no other device on the MDIO bus.
+>=20
+> putting the PHY reset GPIO into the MDIO node is a clever solution, I
+> was struggling with putting it either in the MAC or PHY node, though
+> conceptually it would still belong in the latter, I think. But this
+> might be a more generic problem: for most other devices we activate
+> reset and clock gates *before* trying to access them, though this might
+> be historically different for Ethernet PHYs.
 
-I know I've kind of suggested that, but after all I don't think it's a
-very good idea, having this in two steps is probably better. And I
-like the fact the v4l2-dev layer operates on the video device counting
-and only relies on the mc layer for the callbacks notification.
+Yes this feels a bit unusual. Unfortunately the mdio bus performs probing on
+the PHYs before registering them as devices, which gives us no hope of
+running driver-specific code to power the PHY up.
 
->
-> Changes in v2:
->
-> 	- Adapted now media_pipeline_for_each_entity() takes an iter
-> 	  variable
-> 	- Fixed the Return: section of the kerneldoc comments
-> ---
->  drivers/media/v4l2-core/v4l2-dev.c | 57 ++++++++++++++++++++++++++++++++++++++
->  include/media/v4l2-dev.h           | 36 ++++++++++++++++++++++++
->  2 files changed, 93 insertions(+)
->
-> diff --git a/drivers/media/v4l2-core/v4l2-dev.c b/drivers/media/v4l2-core/v4l2-dev.c
-> index c369235113d98ae26c30a1aa386e7d60d541a66e..f3309f8349664f7296a95216a40dd9d9baae8d9e 100644
-> --- a/drivers/media/v4l2-core/v4l2-dev.c
-> +++ b/drivers/media/v4l2-core/v4l2-dev.c
-> @@ -1200,6 +1200,63 @@ struct media_pipeline *video_device_pipeline(struct video_device *vdev)
->  }
->  EXPORT_SYMBOL_GPL(video_device_pipeline);
->
-> +static int __video_device_pipeline_started(struct media_pipeline *pipe)
+So the only device we can hold on to is the mdio bus. I think there was an
+initial design assumption that 1 mdio bus =3D=3D 1 PHY device
 
-__function_name() is usually reserved for the non-locking version of
-function_name().
+> > The datasheet of the PHY mentions that the reset signal must be held
+> > for 1 ms to take effect. Make it 2 ms (and the same for post-delay) to
+> > be on the safe side without wasting too much time during boot.
+> >=20
+> > Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
+>=20
+> Despite the above, this looks fine, and works for me:
+>=20
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> Tested-by: Andre Przywara <andre.przywara@arm.com>
 
-This seems to be an helper only used internally by
-video_device_pipeline_started() so I would use a different name
-something like video_device_has_pipeline_started() ?
+Thanks for the review and test!
 
+Paul
 
-> +{
-> +	struct media_pipeline_entity_iter iter;
-> +	unsigned int n_video_devices = 0;
-> +	struct media_entity *entity;
-> +	int ret;
-> +
-> +	ret = media_pipeline_entity_iter_init(pipe, &iter);
-> +	if (ret)
-> +		return ret;
-> +
-> +	media_pipeline_for_each_entity(pipe, &iter, entity) {
-> +		if (entity->obj_type == MEDIA_ENTITY_TYPE_VIDEO_DEVICE)
-> +			n_video_devices++;
-> +	}
-> +
-> +	media_pipeline_entity_iter_cleanup(&iter);
-> +
-> +	return n_video_devices - pipe->start_count;
-> +}
-> +
-> +int video_device_pipeline_started(struct video_device *vdev)
-> +{
-> +	struct media_pipeline *pipe;
-> +	int ret;
-> +
-> +	pipe = video_device_pipeline(vdev);
-> +	if (!pipe)
-> +		return -ENODEV;
-> +
-> +	ret = __video_device_pipeline_started(pipe);
-> +	if (ret)
-> +		return ret;
+> Cheers,
+> Andre
+>=20
+> > ---
+> >  .../sun50i-a133-liontron-h-a133l.dts          | 19 +++++++++++++++++++
+> >  1 file changed, 19 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l=
+=2Edts b/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts
+> > index fe77178d3e33..90a50910f07b 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts
+> > @@ -65,6 +65,25 @@ &ehci1 {
+> >  	status =3D "okay";
+> >  };
+> > =20
+> > +&emac0 {
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&rmii0_pins>;
+> > +	phy-handle =3D <&rmii_phy>;
+> > +	phy-mode =3D "rmii";
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&mdio0 {
+> > +	reset-gpios =3D <&pio 7 12 GPIO_ACTIVE_LOW>; /* PH12 */
+> > +	reset-delay-us =3D <2000>;
+> > +	reset-post-delay-us =3D <2000>;
+> > +
+> > +	rmii_phy: ethernet-phy@1 {
+> > +		compatible =3D "ethernet-phy-ieee802.3-c22";
+> > +		reg =3D <1>;
+> > +	};
+> > +};
+> > +
+> >  &mmc0 {
+> >  	vmmc-supply =3D <&reg_dcdc1>;
+> >  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
+>=20
 
-I would not return ret, as it might take random values betwen
-n_video_devices and 1. See below on the return value documentation
+--=20
+Paul Kocialkowski,
 
-> +
-> +	return media_pipeline_started(pipe);
-> +}
-> +EXPORT_SYMBOL_GPL(video_device_pipeline_started);
-> +
-> +int video_device_pipeline_stopped(struct video_device *vdev)
-> +{
-> +	struct media_pipeline *pipe;
-> +	int ret;
-> +
-> +	pipe = video_device_pipeline(vdev);
-> +	if (!pipe)
-> +		return -ENODEV;
-> +
-> +	ret = __video_device_pipeline_started(pipe);
-> +	if (ret)
-> +		return ret;
+Independent contractor - sys-base - https://www.sys-base.io/
+Free software developer - https://www.paulk.fr/
 
-ditto
+Expert in multimedia, graphics and embedded hardware support with Linux.
 
-> +
-> +	media_pipeline_stopped(pipe);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(video_device_pipeline_stopped);
-> +
->  #endif /* CONFIG_MEDIA_CONTROLLER */
->
->  /*
-> diff --git a/include/media/v4l2-dev.h b/include/media/v4l2-dev.h
-> index 1b6222fab24eda96cbe459b435431c01f7259366..26b4a491024701ef47320aec6a1a680149ba4fc3 100644
-> --- a/include/media/v4l2-dev.h
-> +++ b/include/media/v4l2-dev.h
-> @@ -654,6 +654,42 @@ __must_check int video_device_pipeline_alloc_start(struct video_device *vdev);
->   */
->  struct media_pipeline *video_device_pipeline(struct video_device *vdev);
->
-> +/**
-> + * video_device_pipeline_started - Run the pipeline_started() entity operation
-> + *				   for a fully-started media pipeline
-> + * @vdev: A video device that's part of the pipeline
-> + *
-> + * This function checks whether all MEDIA_ENTITY_TYPE_VIDEO_DEVICE entities
-> + * connected to a given video device through enabled links have been marked as
+--/WDuu8c/WC4JUJfs
+Content-Type: application/pgp-signature; name=signature.asc
 
-I would use the same text as the one from video_device_pipeline_start()
+-----BEGIN PGP SIGNATURE-----
 
-" connected to a given video device through enabled links, either
-directly or indirectly,"
+iQIzBAEBCgAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAmhtGt8ACgkQhP3B6o/u
+lQxZHg/9EwszmN3aDU+OiXu8tTOc4l2TJWU+RqEc7GO8jrinRJzX901buoDkDHus
+whw1p6WJkvJLBdI8TZwJTeLcyYoM4z6KC9v3DsdGR2NYCNcYWnCeziO1r6MbKI92
+6rfFyNaXne1bALzkXaBO5BaqWHE5W+huTWUCcwJyb4NcGOMHF6X9hKh1bzXJ0ME0
+iCjaOhZaLQ9375xID4ag3bkzMj9AYQDO72J3xpLb6hujTnG3KoY/FVu4QgDLFMdz
+CmmwvMrxCp5B0FOBD9tkVs7rrKSvMUFnsu9qxhlbpC7IAs5cxzPXeptSn6wzClx2
+YHEdQ65lDRaYHyvZA0lL2r0QgYXFM/Gsh3naKH7OSAt06Q6QxOTwHsf5bp72yhKi
+VugpNBZe2/5MZ7BRbaDOuvOTbgmuS64BkCHa8hzgqNbX0OkQi1YgPrpX5IXbcW/x
+wo7KvUJgENgEokT53qBLlqgA9I6ntONo7J/eomRqDJbG4ub0VzxGf9MYf0L/YUSw
+TndjoRB0+CJa4o/LUqKM8JfRLy/SNeYyD96n/5LID2WjiVVszRcPOkazZwQgQ27g
+ABzbmBYZ3X5C6coK5/2zrdj0h0M/Av5XgMP2kbfLWei8OK+DS7lA9rAnIbr18ypI
+1Y0dDcLET7EFMS9iJaGQyTJpbkj/k5OD+Timq/ShLjadaYWaYpw=
+=At94
+-----END PGP SIGNATURE-----
 
-> + * streaming through the use of video_device_pipeline_start() or one of its
-> + * equivalent functions. If so, media_pipeline_started() is called to inform
-> + * entities in the pipeline of that fact. The intention is to provide drivers
-> + * with a shortcut for checking whether their pipeline is fully ready to start
-> + * processing data.
-
-Not really a shortcut, I would use "mechanism" instead.
-
-I would also specify that:
-
- * entities in the pipeline of that fact. The intention is to provide drivers
- * with a mechanism for checking whether their pipeline is fully ready to start
- * processing data and call the .pipeline_started() media entity operation
- * on all the entities in the pipeline.
-
-> + *
-> + * Return: The number of video devices in the pipeline remaining to be started,
-> + * or a negative error number on failure.
-
-0 for success as well
-
-I would anyway return 0 for success and a specific error code for the
-three failure cases:
--ENOMEM if allocating the iterator fails
--ENODEV if not all video devices have started
--EINVAL if media_pipeline_started() fails
-
-You can document them as (copying from iommu.h)
-
-* Return:
-* * 0            - success
-* * EINVAL       - call to pipeline_started() failed
-* * ENOMEM       - failed to allocate pipe iterator
-* * ENODEV       - pipeline not yet fully started
-
-> + */
-> +int video_device_pipeline_started(struct video_device *vdev);
-> +
-> +/**
-> + * video_device_pipeline_stopped - Run the pipeline_stopped() entity operation
-> + *				   for a fully-started media pipeline
-> + * @vdev: A video device that's part of the pipeline
-> + *
-> + * This function checks whether all MEDIA_ENTITY_TYPE_VIDEO_DEVICE entities
-> + * connected to a given video device through enabled links have been marked as
-> + * streaming through the use of video_device_pipeline_start() or one of its
-
-What is the intended semantic here ? The first video device to receive
-a streamoff() will trigger media_pipeline_stopped() or should the last
-one do that ?
-
-> + * equivalent functions. If so, media_pipeline_stopped() is called for each
-> + * entity in the pipeline. The intention is to provide drivers with a shortcut
-> + * for checking whether this video device is the first device in the pipeline
-> + * to be stopped.
-> + *
-> + * Return: The number of video devices in the pipeline remaining to be started, or a
-> + * negative error number on failure.
-> + */
-> +int video_device_pipeline_stopped(struct video_device *vdev);
-> +
->  #endif /* CONFIG_MEDIA_CONTROLLER */
->
->  #endif /* _V4L2_DEV_H */
->
-> --
-> 2.34.1
->
->
+--/WDuu8c/WC4JUJfs--
 
