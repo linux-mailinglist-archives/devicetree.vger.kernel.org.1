@@ -1,103 +1,119 @@
-Return-Path: <devicetree+bounces-194002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF0C2AFC6BF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 11:10:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1495AFC6D3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 11:14:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 116E5188EAE1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 09:10:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FDE917195D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 09:14:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6787A2BF019;
-	Tue,  8 Jul 2025 09:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AF12C08BC;
+	Tue,  8 Jul 2025 09:14:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="S9NoOUZo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (l-sdnproxy.icoremail.net [20.188.111.126])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 341DB23BD09;
-	Tue,  8 Jul 2025 09:09:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=20.188.111.126
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1EAA29B224;
+	Tue,  8 Jul 2025 09:14:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751965802; cv=none; b=F8cAP0F6AGjg6iHYmOrcOt8PvLgZbL0Y3vW6uQ/jhXF/hyr1D18qC1x+KyIE5tlFbu55QFTkHUz1u1jzmYfitmh87IO6ZAPwBKYMri9/KXiuAp2ALkwZzASiG9hGkOECus15y7OpaimzonYgIsOjqaUtkripoSjLif0dIbaf/cM=
+	t=1751966046; cv=none; b=qv+XkoH9kZfLUcylPZRu6nzJGf3RECPggGLUKgyJB8g/QAPxM6W89nCszoLqUVAtqxs0v0wcau13uViB5SU7hXtZf0xilPW2kCACB6sbaWwdDyIqWTQig1Y1/4gmkf7GlfIzy+9ewbpaPujctnpRKHaH3qOseu2QEpx40MNuC90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751965802; c=relaxed/simple;
-	bh=x8I+A7hb/9qw+eXlNU73nIGg8C5waMAV+rHPrmEgpko=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=UO+hUtFXgOfeapw0lpbinpNT63Va4WUndn992q3Ffai4/UHIt/a10chSfibI/0VVG1ppHlxT654FxipXcYD0OyJyPNCFxT6iFSsFH6dnj+QdGl6Y41i0ixVRFknWv+/TiVCDL82PqPpeJ5mbKvIdRT94EhanpvnhUwiHv6Ioojg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=20.188.111.126
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
- ajax-webmail-app2 (Coremail) ; Tue, 8 Jul 2025 17:09:46 +0800 (GMT+08:00)
-Date: Tue, 8 Jul 2025 17:09:46 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
-To: "Bo Gan" <ganboing@gmail.com>, mturquette@baylibre.com, sboyd@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: Re: [PATCH v3 2/2] clock: eswin: Add eic7700 clock driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <0f3aff5b-ff54-48a2-ae95-b344d311c3a1@gmail.com>
-References: <20250624103212.287-1-dongxuyang@eswincomputing.com>
- <20250624103314.400-1-dongxuyang@eswincomputing.com>
- <0f3aff5b-ff54-48a2-ae95-b344d311c3a1@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1751966046; c=relaxed/simple;
+	bh=P0dWyoW87zDHAA8QBh31R0pJA2SovOolIm0JyMwdVSc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Subject:Cc:From:
+	 References:In-Reply-To; b=jF3ic2uQhG0YETT1p8uwcikULDtcKwRZQ4Qq0mvtNlSstDBfosr1pP3EX5A43Jns4z3JKnhm1lwwWnInU4u+DTnKAUyU4VTk5zmfnKEsdpmNQkMcvWqd1xql+ZPZAzKygCkq+YWXl1ZDGxxgqq+NwsNtdKdcZg5EkESztVKtiW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=S9NoOUZo; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 97DF0432E9;
+	Tue,  8 Jul 2025 09:13:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1751966036;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=I+3ankCFBI8RZvTwoXY2iWc9bSbD1frozwAdknBYHsg=;
+	b=S9NoOUZodJD8PLOgSq0IbkY55tJyFJCNwF6eiUkPLcwFTtmK15t5QtlkVuqXdTaC3rWKRL
+	2wyrq93a8Hdfdchr21YdbpZ1nmtTWpSILdb91uzhk6EkZzcJv2PWXTOWSvP5JYnv8Koo4D
+	nCWnUyMpS9ztAMSnGRDpS2RiI2MZ+SduH9/g0COhAxqFjI/PSVyKhwa+o0dP9xjXEYEd2y
+	LyTxlBgFdNfQmcjeXAp3XAjJy/IjTPz5IGZHj0xblkfGNpJEe/RMbFG4lauobSvrAnaPq8
+	U5Codiy8GxS2XDwa4kvtu1sGxhe+ZQ1EG37y+bzkzswuC1MXPeHCq14tMNa0wQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Message-ID: <7a325b0b.2de1.197e94c605b.Coremail.dongxuyang@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgA31pRa4GxorO6qAA--.18310W
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAQERAmhr9m4gF
-	AAAs8
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 08 Jul 2025 11:13:55 +0200
+Message-Id: <DB6K4LIQEDW2.2IKGMK2O3WQ7A@bootlin.com>
+To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v10 08/11] gpio: max7360: Add MAX7360 gpio support
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Bartosz Golaszewski"
+ <bartosz.golaszewski@linaro.org>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+X-Mailer: aerc 0.19.0-0-gadd9e15e475d
+References: <20250530-mdb-max7360-support-v10-0-ce3b9e60a588@bootlin.com>
+ <20250530-mdb-max7360-support-v10-8-ce3b9e60a588@bootlin.com>
+ <aDny-kJqiPq-Yyx9@smile.fi.intel.com>
+In-Reply-To: <aDny-kJqiPq-Yyx9@smile.fi.intel.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdefgedvlecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggfgtgffkffvufevhffofhgjsehtqhertdertdejnecuhfhrohhmpedfofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugdfuceomhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnheptefhieehheehgeehkeeuiefgkeffvdehgeefieevgfekfedthefhtdfhheeujeefnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejiedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdefpdhrtghpthhtoheprghnughrihihrdhshhgvvhgthhgvnhhkoheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehlvggvsehkv
+ ghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrghmvghlrdgsohhuhhgrrhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhgpdhrtghpthhtohepsghrghhlsegsghguvghvrdhplh
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-SGkgQm8sCgpUaGFuayB5b3UgZm9yIHlvdXIgc3VnZ2VzdGlvbiwgaXQgaW1wcm92ZXMgb3VyIGRy
-aXZlciBkZXZlbG9wbWVudCBlZmZvcnRzLgpQZXIgeW91ciByZWNvbW1lbmRhdGlvbnMsIHdlIHdp
-bGwgb3B0aW1pemUgdGhlIGRyaXZlciBwcm9ncmFtLgoKPiBPbiA2LzI0LzI1IDAzOjMzLCBkb25n
-eHV5YW5nQGVzd2luY29tcHV0aW5nLmNvbSB3cm90ZToKPiBUaGlzIGlzIHRvdGFsbHkgd3Jvbmcg
-SSB0aGluay4gV2h5IGRvZXMgdGhlIGNsb2NrIGRyaXZlciBoYXZlIHRvIGNhcmUgYWJvdXQKPiBD
-UFUgdm9sdGFnZT8gVGhpcyBmdW5jdGlvbmFsaXR5IGJlbG9uZ3MgdG8gY3B1ZnJlcS4gWW91IGNh
-biB0YWtlIEpINzExMCBhcwo+IHJlZmVyZW5jZSBhbmQgc2VlIGhvdyBpdCdzIGRvbmU6IGh0dHBz
-Oi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDIzMDYwNjEwNTY1Ni4xMjQzNTUtNC1tYXNvbi5odW9A
-c3RhcmZpdmV0ZWNoLmNvbS8KPiBMb29raW5nIGF0IGVzd2luIHZlbmRvciB1LWJvb3QsIGl0IHNl
-ZW1zIHlvdSBoYXZlIHNvbWUgU29DIHRoYXQgY2FuIG9wZXJhdGUKPiBhdCAxLjZHaHogd2l0aG91
-dCBidW1waW5nIHRoZSB2b2x0YWdlLiBXaHkgbm90IGRvIGl0IHZpYSBvcGVyYXRpbmctcG9pbnRz
-LXYyLAo+IGxpa2UgdGhlIG90aGVyIFNvQ3M/IEl0IGNhbiB0aGVuIGJlIG92ZXJyaWRkZW4gYnkg
-Ym9hcmQgZGV2aWNlLXRyZWUgYW5kIHUtYm9vdAo+IEFsc28gdGhlIGxvZ2ljIG9mIHN3aXRjaGlu
-ZyBjbG9jayBiZWZvcmUgY2hhbmdpbmcgUExMIHNob3VsZCBiZSBkb25lIHVzaW5nCj4gbm90aWZp
-ZXI6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3IvMjAyNDA4MjYwODA0MzAuMTc5Nzg4LTIteGlu
-Z3l1Lnd1QHN0YXJmaXZldGVjaC5jb20KPiBSZW1vdmUgdW5kb2N1bWVudGVkIHBhcmFtZXRlcnMg
-c3VjaCBhcyAiY3B1X25vX2Jvb3N0XzFfNmdoeiIgYW5kCj4gImNwdS1kZWZhdWx0LWZyZXF1ZW5j
-eSIuCgpXaGVuIGhpZ2hlciBjcHUgZnJlcXVlbmN5IGlzIGFwcGxpZWQsIHRoZSBoaWdoZXIgdm9s
-dGFnZSBtdXN0IGJlwqAKY29uZmlndXJlZCBhY2NvcmRpbmdseS4gU28sIGZyb20gbXkgcGVyc3Bl
-Y3RpdmUsIGl0J3MgYmV0dGVyIHRvCmltcGxlbWVudCB0aGUgY2xrLCByZWd1bGF0b3IgYW5kIGNw
-dSBmcmVxdWVuY3kgc2VwYXJhdGVseS4KY2xrLmMgYW5kIGNsay1laWM3NzAwLmMgYXJlIHJlc3Bv
-bnNpYmxlIGZvciBzZXR0aW5nIGNsayBvbmx5LgpyZWd1bGF0b3ItZWljNzcwMC5jIGlzIGZvciB2
-b2x0YWdlIGNvbmZpZ3VyYXRpb24uCmNwdWZyZXEtZWljNzcwMC5jIGlzIGZvciBjcHUgZnJlcXVl
-bmN5IGNvbmZpZ3VyYXRpb24sIGFuZCBpdCB3aWxsIGNhbGwKdGhlIEFQSXMgb2YgY2xrIGFuZCBy
-ZWd1bGF0b3IuCgpJcyB0aGlzIHRoZSByaWdodCBhcHByb2FjaD8KCj4gT3ZlcmFsbCBJIHRoaW5r
-IHlvdSBiZXR0ZXIgZG8gc29tZSByZWFsIGNsZWFudXAgYW5kIHJlZmFjdG9yIG9mIHRoaXMgcGF0
-Y2gKPiBiZWZvcmUgc2VuZGluZyBpdCBvdXQgYWdhaW4uIFRoZSBkcml2ZXIgaXMgcXVpdGUgbG9u
-ZywgYW5kIEkgc3VnZ2VzdCB5b3Ugc2hvdWxkCj4gY29uc2lkZXIgb3B0aW1pemluZy9jb25kZW5z
-aW5nIHRoZSBsb2dpYy4gSSBndWVzcyB5b3UgcHJvYmFibHkgY2FycmllZCBvdmVyIHRoZQo+IHNh
-bWUgY29kZSBhbmQgaGFja3MgeW91IG1hZGUgZm9yIHRoZSB2ZW5kb3IgdHJlZSAoZXN3aW5jb21w
-dXRpbmcvbGludXgtc3RhYmxlKQo+IFRoZXJlJ3Mgbm8gd2F5IHRoZXkgY2FuIGJlIGFjY2VwdGVk
-IGJ5IHVwc3RyZWFtLiBUYWtlIGEgbG9vayBhdCBvdGhlciBjbGsgdHJlZQo+IGltcGxlbWVudGF0
-aW9ucyBhbmQgc3BlbmQgc29tZSByZWFsIGVmZm9ydCBmaXhpbmcgdGhlIGNvZGUuIERvbid0IGxl
-dCB0aGUKPiByZXZpZXdlcnMgZ3JvdyBpbXBhdGllbnQgYnkgb25seSBjaGFuZ2luZyBzb21ldGhp
-bmcgc3VwZXJmaWNpYWxseS4KCldlJ2xsIGltcHJvdmUgdGhlIHF1YWxpdHkgb2Ygb3VyIHJlc3Bv
-bnNlcy4KCkJlc3QgcmVnYXJkcywKWHV5YW5nCg==
+On Fri May 30, 2025 at 8:03 PM CEST, Andy Shevchenko wrote:
+> On Fri, May 30, 2025 at 12:00:16PM +0200, Mathieu Dubois-Briand wrote:
+>> Add driver for Maxim Integrated MAX7360 GPIO/GPO controller.
+>>=20
+>> Two sets of GPIOs are provided by the device:
+>> - Up to 8 GPIOs, shared with the PWM and rotary encoder functionalities.
+>>   These GPIOs also provide interrupts on input changes.
+>> - Up to 6 GPOs, on unused keypad columns pins.
+>
+> LGTM,
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+
+Thanks!
+
+>
+> ...
+>
+>> +#include <linux/gpio/driver.h>
+>
+> Do we still need this header? I mean do we have anything used from it her=
+e?
+>
+
+Yes, I believe we do, as we access gpio_chip members in
+max7360_gpo_init_valid_mask().
+
+
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
