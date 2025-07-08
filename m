@@ -1,123 +1,156 @@
-Return-Path: <devicetree+bounces-194017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F2BAAFC7BF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 12:04:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21323AFC7E1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 12:08:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 710C0188BCDC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:04:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C7BE565065
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:07:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63CA267B15;
-	Tue,  8 Jul 2025 10:03:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC75822DFB8;
+	Tue,  8 Jul 2025 10:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F6TnXjE7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bJyWLTfx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E02D2080C4;
-	Tue,  8 Jul 2025 10:03:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281BB22ACF3;
+	Tue,  8 Jul 2025 10:06:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751969037; cv=none; b=N2PMPzvvQJPiF4q5gd/sSQu93qstCdlobVULWBpalrViv1B3qCgyUy0VUc5Q5BUs0hzFcYCpFocDUqBduxotHI/DTbaUi6ORurOSD7k/UVJz7cOcfL1f+2yafS8G1RAYFMN6t6b73jjLgiLywofDhggyAYOt6coOXVhX/bpovJ4=
+	t=1751969211; cv=none; b=CJ+YvY76LV/1KwoB5v/HRuv+pXMyRn+nTUo40XAvEAYpTQirGCg+9UUs/hP8/Sl4nkOWH8l0miR2gBMN+pO+AiiliRoCpaDNU3PfH3aeWL46D49VJceSdDzPrQMp6D4EAKafeFtx3CgBLaNVap+5tWFGsRwdUo82j9v9z3Xw9S4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751969037; c=relaxed/simple;
-	bh=Y1X9PBX7qcUQ3VQhQVIFAiKTntxUOEwd/Za4bXmASfc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L5p2Mp11XTK49bO/NsVv4A5I73xZ0oela+6qzjGOBIs2Dnh5c646d4GbTceQppUQJp9Qk8pP3ygI3nbOgui/ayvz4K12vT8dwCchXna8pmrhJz4NOg2sxDd5tbHQ4cvUDebdLOLhYPL/lLSlX5LGzUB/6lsDA6ST9t07bFAeAtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F6TnXjE7; arc=none smtp.client-ip=209.85.214.176
+	s=arc-20240116; t=1751969211; c=relaxed/simple;
+	bh=DJs59o4WehjmGxNS4SUdfWEn70hAjnKKeH5GnQIdDbU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HcUHM/UflMZl1ByXVSz6X2QPD2WjNrHQmE3EIlu8IFlC2PMm3+eN0g2FPyRbX83FoJK5t4kopffO5xQmB4KkC4t0Z3V8XqaKa5mAP++J5LNnrS5JHP8AeakbIF8JpUFUsSO83D6Aw1mC1i7IDD2dW2c5aHA34U+IP+1VXSb6g14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bJyWLTfx; arc=none smtp.client-ip=209.85.210.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-237311f5a54so38477955ad.2;
-        Tue, 08 Jul 2025 03:03:56 -0700 (PDT)
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7490acf57b9so2823363b3a.2;
+        Tue, 08 Jul 2025 03:06:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751969035; x=1752573835; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lpGeu0fct+3VmHlRdU5eb8NMKV/Ar7w1D2lbejumdKs=;
-        b=F6TnXjE7EibE1OiAWTl7V7TBoP4cvVVOCpXapuOdS+mgL/0QljvhYyCaXmss5XX0uB
-         /dk1aiPi4aPixrMj/xcX9hZc7vPyuF+Ci9Rz3lNpuQuLXOgM3YKrtl2d/N8ke114krZ3
-         0Pg3LWnMPGq8AEUnorLg/O1rOtZ78JkErm8vUiCRdkJg+l/kNl5WpH2kiQ0BS35+O2m5
-         fNVtUsRlwOI2bz8sKxj+kiSKL6HhyCaaPjl0zBEWnx2y4eYbP/3sBvEQVgb0sxy6JdG4
-         H98PFh+LNNmsdSVd5dUZzeth5afVo20nhSSJhr16YkO9pfWWtbVgT24kboi6ctaObaYo
-         Yoxg==
+        d=gmail.com; s=20230601; t=1751969209; x=1752574009; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xtGT7Kvk1kcayZ2sMv2QOI6IWederxGXIfdOJOm/QhM=;
+        b=bJyWLTfxjL+mZybH016DTw4dro/FiMKvGcQLMwy0ntiaxb4yWL/RCzRxSj+OBva6TH
+         Ygul+k+e42UhT1nx242XLhAldU0QKDuIikMCdFK/hos24/4pVOddmf28FA4C4ueYD9yS
+         ufWWfV34BOibFkoMlK3x4c9r+HuBw1IQhROANBDDpJKKHf/Oadob9M34GPqcMQ+gHBCY
+         +kgRGIgHYxdoOTIf91QV/A5bo9rIFxNFhp3QCn+whFLXXD+hU3Aw8y7bQQhNB1bNz+Th
+         ArTjz4jayN8KrVoVElxH4hb0EL1423IST/8nAjaLu7pjOd8F8dX4MemoId09knANTrmN
+         H1pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751969035; x=1752573835;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lpGeu0fct+3VmHlRdU5eb8NMKV/Ar7w1D2lbejumdKs=;
-        b=HJz2GoRTJ4PY299JvQAJ8VCZbikVcG7Q1OujWmmhWUO/aFJWASwDak6fcaR+XoWc+w
-         5vOE9R9mG6l8lki0ts3aonH4GiIo4fTcDlUKsAwTU6QOsneOcKT0viDGMVtM2AZSvVhF
-         vapqkRuETFcssOg7Hr16zvIFP2OsjZGkmZ22Ik5z35/vNaKNrSUsYFyg1PRi+bixewov
-         9hfr/4B+KaRbGuDRgKCwzOSNitMiSHDGjWlE6zy3fUg8gQBKGx2EDGCviLio9eV1wh9i
-         hWvrqXIzzEB8PF9EPBK6TTcUDBmbkCXZq3axKYEn/7AhPzoh1lW4cBlVfqK7ooHdwd3p
-         QJcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVUSenDKRug8w8zOp9ZgtDrgCIwORlAGUz5b5fnHEJQxlWyDK6dLGbjdqAr40CRTmji2hZl/J5k0qaxurCI@vger.kernel.org, AJvYcCVteU8/E5ZnoZqUNN729eLogzcVATqGUtW5NnJhqXXFgZzjeOrKlxWeoqw/qADEOerd5dZiKHoGk7mEag==@vger.kernel.org, AJvYcCW2ccPGMbAm9/v82GrQanvQMadGTfmw5irW7koZuhJ8OuIQbSIqrUGw+68PWwE+9cZduMkR/rdqgjgl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBWtz+lQ7GDkv/o8yJfK6suRZbGITWtX54LUVtaPv1L5E9DHAd
-	2xpWKv0saKCmw1615+cFf32f8wlZK4jj8DatQ+fFVEOguLhLu/CAMGOhhWYOb0Pqr7j2t9p8xos
-	e4Rvcfm78cKDYYgTe1rPY0U14w6xvdgk=
-X-Gm-Gg: ASbGnct87ZJWpEfWAOUFKrR5UTBcn35zq91iZ15Ecx11RpXav8Bd0hzWrKpw8nOz0Rn
-	158fVRS0Ys5PB2grHftD84D9uaA/5yHsCKXrLgzjy+Nvci5TOyGb/9hYhFkmqNMc6lumXFW8z4l
-	fNkBZ77lOhdasvd7tFzsOIQYfMNTD1KVtV/ouYCqIN
-X-Google-Smtp-Source: AGHT+IHCEfcIS2hUnEdB9PbPmt5ZD9T64WlU2Ot8WUjUZqgiMJ9d2john/gI6sTWhRffzI0DT19R2HBQAqTyVFgmv0M=
-X-Received: by 2002:a17:903:a47:b0:23c:8f21:ac59 with SMTP id
- d9443c01a7336-23c8f21addemr149130485ad.29.1751969035426; Tue, 08 Jul 2025
- 03:03:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1751969209; x=1752574009;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xtGT7Kvk1kcayZ2sMv2QOI6IWederxGXIfdOJOm/QhM=;
+        b=Ouin41NF7EtwFZRIus1lUWP73WSETQeJCy/rXzu/ATk8GVYHmqnD0T5LK6QHCn0Of1
+         wAgZSfeR8cRq/uz7+M6jpwWrp0yZxwOV3G/NjOblsJAiWS4VQwTb/cpXqI25EzP42Lni
+         edQKqKenE0IlB1DJTLPao9BzZ2bKCNXXbfRDBBv4oJ0BTyL9A9i7vfeZlwvTmHGTtw7Y
+         XK6z43hT0+03ZiZB1gAxQJ3VJeGojE7qkytdD4JrZIvRhnsBzFkUYojQdTJJNRveDJCK
+         E2a2umCYKvGFaByXkFhwtt8ZafWuYpo9n4FvtT8rmcs+SWp2zXudJUzZl5fNNMsZ0xgG
+         EylQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVRo4nFZnukKVnXA53ZU2ZtbUASTpxl3Pu/l/UthWENKKWzsHiENTn/pqBjEYj/oMvOVbLLdYTA9VgLRAM=@vger.kernel.org, AJvYcCXzp0taV5T/9w831zATQGUvm6NYAvY8xOESxP9Cchx/yJnlcqZxUGlVqEHvIIqYVRr6Iszi6KvKlLmbJkA=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/Xy1Di6k93pfJZsIZpMfccfgxnDMH0tE/t2cKMvzADEjkuW4u
+	IypTVp4fA7impl6KbaAV2cPDZZdiMQkeJ+TVYMxSssUCzvCbcADLnI+q
+X-Gm-Gg: ASbGncs23u0L3pcU4TDAB5gjtfEveqAogHZuVHATeqpajvzBqzqpEF1PVI4U4Nq6yj3
+	h5cIoBtenKkJVHPA4RnMJH1IumN7aB79iTX3j5Z0fi9zSceX1kUUx7hmNxV5AC75V8WUfssPZfY
+	SLKJeLHpsrm+ZQE+iHdzF36wlncFDJv3SAan8fERI0OZxSepi+E/c5n8ln5alPw0WhrG/fOc+El
+	w312CSXQyXInVm3cQwV0n/KuFnkGnZ4uUgdWi0eDApKOqwxRAY0HrLnKfmTBcHue3F0GcEf9Yq0
+	cYv8GYAlWiTm93r9c9CFr6NbVfF68clhaRq8ULL85x6lx9zPFR1jVksFAPl/CkeX6DUQk1IzZlZ
+	GJk4udPsKBTI0QTlKe02qs9SjqA==
+X-Google-Smtp-Source: AGHT+IFRU9SPSrsf/41KjrBcwlW/zEtRYuveA0rctF6AoroRJA4BdYDJj+EpRvTzswKq41+iFOjpHw==
+X-Received: by 2002:a05:6a00:2794:b0:748:68dd:ecc8 with SMTP id d2e1a72fcca58-74ce65fdd7cmr20633885b3a.22.1751969209291;
+        Tue, 08 Jul 2025 03:06:49 -0700 (PDT)
+Received: from [127.0.1.1] (211-23-39-77.hinet-ip.hinet.net. [211.23.39.77])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74ce359ecd6sm11971174b3a.24.2025.07.08.03.06.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Jul 2025 03:06:48 -0700 (PDT)
+From: LiangCheng Wang <zaq14760@gmail.com>
+Subject: [PATCH 0/3] Add support for Mayqueen Pixpaper e-ink panel
+Date: Tue, 08 Jul 2025 18:06:43 +0800
+Message-Id: <20250708-drm-v1-0-45055fdadc8a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250706214111.45687-1-rosenp@gmail.com> <20250706214111.45687-4-rosenp@gmail.com>
-In-Reply-To: <20250706214111.45687-4-rosenp@gmail.com>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Tue, 8 Jul 2025 12:03:44 +0200
-X-Gm-Features: Ac12FXwhjylZMsoY4rDqa01BVMXMM5PiGD4HvSivpj3vJ2MwrtIBDDKsIP82h3Y
-Message-ID: <CAMhs-H9PcmyNsZsU_JujV0PkRmJX5HSc0TBMR05OWmhUP0ByYA@mail.gmail.com>
-Subject: Re: [PATCH 3/6] wifi: rt2800soc: allow loading from OF
-To: Rosen Penev <rosenp@gmail.com>
-Cc: linux-wireless@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>, 
-	yangshiji66@qq.com, ansuelsmth@gmail.com, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Stanislaw Gruszka <stf_xl@wp.pl>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	"open list:MIPS" <linux-mips@vger.kernel.org>, 
-	"moderated list:ARM/Mediatek SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALPtbGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDcwML3ZSiXF0zAyPDlDQDc0PTFHMloMqCotS0zAqwKdGxtbUAx0P6GFU
+ AAAA=
+X-Change-ID: 20250708-drm-6021df0715d7
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Wig Cheng <onlywig@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, 
+ linaro-mm-sig@lists.linaro.org, LiangCheng Wang <zaq14760@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751969205; l=1527;
+ i=zaq14760@gmail.com; h=from:subject:message-id;
+ bh=DJs59o4WehjmGxNS4SUdfWEn70hAjnKKeH5GnQIdDbU=;
+ b=Cddh6f7PYm3rLh7hGUFh8fC8fYCmyZAGFkavUUPQkPthhX6pajTOcq9wShhDXhev1VSDI76LZ
+ tLwkgNYMeAFA6tUsfB8XUgLmxsQn3B2llKzwxsA7f5xXXlqR0ySokmD
+X-Developer-Key: i=zaq14760@gmail.com; a=ed25519;
+ pk=5IaLhzvMqasgGPT47dsa8HEpfb0/Dv2BZC0TzSLj6E0=
 
-On Sun, Jul 6, 2025 at 11:41=E2=80=AFPM Rosen Penev <rosenp@gmail.com> wrot=
-e:
->
-> Add a single bindng to help the already present dts files load the
-> driver. More are possible but there doesn't seem to be a significant
-> difference between them to justify this.
+This patch series adds support for the Mayqueen Pixpaper e-ink display panel,
+controlled via SPI.
 
-typo: s/bindng/binding
+The series includes:
+- A new vendor-prefix entry for "mayqueen"
+- Device tree binding documentation for the Pixpaper panel
+- A DRM tiny driver implementation for the Pixpaper panel
+- A MAINTAINERS entry for the Pixpaper DRM driver and binding
 
->
-> Use wifi name per dtschema requirements.
->
-> The data field will be used to remove the custom non static probe
-> function and use of_device_get_match_data.
->
-> Signed-off-by: Rosen Penev <rosenp@gmail.com>
-> ---
->  drivers/net/wireless/ralink/rt2x00/rt2800soc.c | 7 +++++++
->  1 file changed, 7 insertions(+)
+The panel supports 122x250 resolution with XRGB8888 format and uses SPI,
+along with GPIO lines for reset, busy, and data/command control.
 
-With the typo fixed:
+The driver has been tested on:
+- Raspberry Pi 2 Model B
+with Linux kernel 6.16.
 
-Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Feedback is welcome.
+
+Best regards,  
+LiangCheng Wang  
+<zaq14760@gmail.com>
+
+Signed-off-by: LiangCheng Wang <zaq14760@gmail.com>
+---
+LiangCheng Wang (2):
+      drm: tiny: Add support for Mayqueen Pixpaper e-ink panel
+      dt-bindings: display: Add Mayqueen Pixpaper e-ink panel
+
+Wig Cheng (1):
+      dt-bindings: vendor-prefixes: Add Mayqueen name
+
+ .../bindings/display/mayqueen,pixpaper.yaml        |  63 ++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ MAINTAINERS                                        |   6 +
+ drivers/gpu/drm/tiny/Kconfig                       |  15 +
+ drivers/gpu/drm/tiny/Makefile                      |   1 +
+ drivers/gpu/drm/tiny/pixpaper.c                    | 784 +++++++++++++++++++++
+ 6 files changed, 871 insertions(+)
+---
+base-commit: d7b8f8e20813f0179d8ef519541a3527e7661d3a
+change-id: 20250708-drm-6021df0715d7
 
 Best regards,
-    Sergio Paracuellos
+-- 
+LiangCheng Wang <zaq14760@gmail.com>
+
 
