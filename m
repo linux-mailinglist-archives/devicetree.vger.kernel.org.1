@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-194277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64506AFD83D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 22:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CD48AFD855
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 22:24:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 476791C2388C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 20:21:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB9A11C242D5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 20:24:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01BAF221546;
-	Tue,  8 Jul 2025 20:21:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEFB623D28E;
+	Tue,  8 Jul 2025 20:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XhDrxV/r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="phQhR2+r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0AE14EC73;
-	Tue,  8 Jul 2025 20:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 871D31D54E2;
+	Tue,  8 Jul 2025 20:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752006064; cv=none; b=rIGvE+YB+IuLgNmWLeTP4YMzvy61vb2jL3E05sXWfS8zN/zpM+1y2zRHB76iNd3Mh0Do81SAfIUWo7kEDcm6jognH6s8WlFYw69ADq7+jfZWfl3MxpovOa7CHPbdfYd68vEG2B6ZDUl4ALj+yRxrRjUaccQgmlQclfFpZZHtn1k=
+	t=1752006182; cv=none; b=unLIfgjd1bjuHGofMGK7tSuCwk3K1bFCui9IaCmNQn6OXb9ABaBWapyDYZPSsLPW0FTRZT8FB+ktQVZ8gU3gcPK7Td4i+jE87otN9tFHAdpwLDeDrABbhcM1yKh6XEaFJZPKcuEQBbpfSKlRqyGCpqWquPcAn8vj7Zz+W/9aKXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752006064; c=relaxed/simple;
-	bh=zqx/74K4jJO3iS9rVGq5D5oA2ZIFzpVGZMwbjqdUJ7w=;
+	s=arc-20240116; t=1752006182; c=relaxed/simple;
+	bh=I2VRzsXmZPYGTLrr+78RCRNRi3ChbnEGC8YNwbiCV1w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QNTCOGEqCWJCg70BuW4VERHJcFHX28m3o4WmFnquaV+vqgmMaxDZl8R6CAsu2wcAQL/0fy8JUgqFp2V30l+oKFhnCMo+FPJSpUx0RJV+QHZ4PZGUnrTUIU4NhVTMKRxgFAgcXfy2yIFyOp1bsO4fj3sx6AH+4HSkz7W6FtZFbFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XhDrxV/r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68255C4CEF1;
-	Tue,  8 Jul 2025 20:21:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=je/jMoAm1dLegdvb3qSdyVeBMaVgtVC9OgucIQD5VwxeCcwdnmf+1kt3m7kIpa5OaXqMWOgeg0DNWnTUSdTWg9HBhfx3u9yDnDZ/Fq/6PrkeUVcRx8ti1BtWvFHBIpPjKmZ6M4b2pbMO5xWTdoQUaYAuFSR08b482rczQWVISpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=phQhR2+r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A828CC4CEED;
+	Tue,  8 Jul 2025 20:23:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752006064;
-	bh=zqx/74K4jJO3iS9rVGq5D5oA2ZIFzpVGZMwbjqdUJ7w=;
+	s=k20201202; t=1752006182;
+	bh=I2VRzsXmZPYGTLrr+78RCRNRi3ChbnEGC8YNwbiCV1w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XhDrxV/r0/d4Qt/l6j2cg6nVvYTW6x4u7+WFjvoVRbsnKdk8pTk89x2OxovWcD7Pr
-	 VsLTLprp9+kXpOAlSvcFFy+CkcKSBYu/N9TFEBwG+Zj4ULvhLA6HqM4pvRR/ne2dSC
-	 Hz00yz+oSX2tFJNq6pQ9CP9vezQ2bUUfTeUQqrlRZjdeDrQiqnI0GkA9mk4ywXZ51P
-	 1cBQiGDGxlIyqqNGZZIsDwqIiuWFbuM8FOrAXwbvEFq1Pnp2thEBb1cnNNd62DVVXc
-	 7F/cgE83diZNvyoY9CVTNhPqF1XzoPBq4V+mfnA2P6GvxuskPJs1MsahbdcUC8T6FH
-	 6eKhGEGJETL2A==
-Date: Tue, 8 Jul 2025 15:21:03 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: Add Tegra264 clock and reset
- definitions
-Message-ID: <175200606285.904555.15042694527619353999.robh@kernel.org>
-References: <20250708082814.1491230-1-thierry.reding@gmail.com>
- <20250708082814.1491230-3-thierry.reding@gmail.com>
+	b=phQhR2+rN3jJSw6/t3qvVnB+m8wEVCacr/x7z9MWz0eialAWhnwTTJRifg3FZTmg4
+	 s1EtyUdNX+IpxNr5AURU50vYdLsd3LOQDU8J0+FV1F+YHzsRFG2wP1mjvtP2p8IFYy
+	 JzusohcspLPahKDUSDkl8Y4vm/dpIjcvbPkpyaijgculqpKppRdcs8LJxRG9qNIj4z
+	 Kzgy8i5icVz3Wu7YhGmzZARtj002HNqiJ7A9qv/RsonbCjOzHnY4q5WpslnsHfQbSE
+	 FJCjklhwuqxOBO/KyhfsyAjuelxSUO5oZ4b3EgmiY3dQIPftyEPlP1d8Ss+TB9o6Wt
+	 rvJSl9qx/uYTA==
+Date: Tue, 8 Jul 2025 15:22:59 -0500
+From: Rob Herring <robh@kernel.org>
+To: Paresh Bhagat <p-bhagat@ti.com>
+Cc: nm@ti.com, vigneshr@ti.com, praneeth@ti.com, kristo@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, khasim@ti.com, v-singh1@ti.com,
+	afd@ti.com, bb@ti.com, devarsht@ti.com, s-vadapalli@ti.com,
+	andrew@lunn.ch
+Subject: Re: [PATCH v7 3/4] arm64: dts: ti: Add pinctrl entries for AM62D2
+ family of SoCs
+Message-ID: <20250708202259.GA904737-robh@kernel.org>
+References: <20250708085839.1498505-1-p-bhagat@ti.com>
+ <20250708085839.1498505-4-p-bhagat@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,31 +63,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250708082814.1491230-3-thierry.reding@gmail.com>
+In-Reply-To: <20250708085839.1498505-4-p-bhagat@ti.com>
 
-
-On Tue, 08 Jul 2025 10:28:11 +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Tue, Jul 08, 2025 at 02:28:38PM +0530, Paresh Bhagat wrote:
+> Update k3-pinctrl file to include pin definitions for AM62D2 family of
+> SoCs.
 > 
-> The BPMP firmware on Tegra264 defines a set of IDs for clock and reset
-> resources. These are not enumerations but provided by hardware, and 0 is
-> a reserved value, hence the numbering starts at 1.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
+> Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
 > ---
-> Changes in v2:
-> - drop -reset and -clock suffixes since they are redundant
-> - include all known clock and reset definitions
-> - drop U suffix for integer literals
-> - add vendor prefix to filename
+>  arch/arm64/boot/dts/ti/k3-pinctrl.h | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
->  include/dt-bindings/clock/nvidia,tegra264.h | 466 ++++++++++++++++++++
->  include/dt-bindings/reset/nvidia,tegra264.h |  92 ++++
->  2 files changed, 558 insertions(+)
->  create mode 100644 include/dt-bindings/clock/nvidia,tegra264.h
->  create mode 100644 include/dt-bindings/reset/nvidia,tegra264.h
-> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> index cac7cccc1112..0cf57179c974 100644
+> --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> @@ -63,6 +63,9 @@
+>  #define AM62AX_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+>  #define AM62AX_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
+>  
+> +#define AM62DX_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+> +#define AM62DX_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
+> +
+>  #define AM62PX_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+>  #define AM62PX_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Why is the same expression just repeated over and over? Looks like this 
+needs some refactoring.
 
 
