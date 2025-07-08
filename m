@@ -1,88 +1,237 @@
-Return-Path: <devicetree+bounces-194182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25F04AFD06B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:17:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F255AFD06E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:18:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFD78188A9D0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:17:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7232E3AFCFC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98D82E2F0D;
-	Tue,  8 Jul 2025 16:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F2EF2E0B79;
+	Tue,  8 Jul 2025 16:18:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nteUQ4Mq"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="TB0LHkGt";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="As4/7X/F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-b4-smtp.messagingengine.com (fhigh-b4-smtp.messagingengine.com [202.12.124.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C3821B199;
-	Tue,  8 Jul 2025 16:17:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73D3A21A426;
+	Tue,  8 Jul 2025 16:18:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751991423; cv=none; b=ct6m+PX7f1wKkZdL2BvxozD9eTDqm4G4g/HvTI694bwI9bE2ttjnUpQMZuWYZ17wpVmuAAa9s90eV6va2fahC2T1QV1svLZwXrCa4VC7gy98oToKs8zjEdMUkwJuLRmlI2/INB+dcvA8Q02iEL9RQlxBX2Atd25I7mKHhD/Th2I=
+	t=1751991494; cv=none; b=IExK53jByG8pwUSaCVXumzTXBVm4SVwwTE+EW4hW5Sr2aEABxNFOO2b4S6EKI6tdPiK1rvh/0M5C7oOOQCsNCQUUb8PXYtiBqseuojVvu+Gj0oqj9TfbC/jvXg86pQidxAWl0NPXrB+/2nH8Cz87QIIc631hUSgN6oLT5UQ45Fc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751991423; c=relaxed/simple;
-	bh=nbGCmYL+a3SA2RRWksLD7uACXMII0cs1xS2gIUHJeeI=;
+	s=arc-20240116; t=1751991494; c=relaxed/simple;
+	bh=dryBCeRanaSKC3KSIZdco4PvBDmkn7sbCKozEVF6TEc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ark8hvRjZx9pU9WPrntk8qP8SiHgWrAc9oMYncMAVNRgwoXFbCIgx/k9NvOV2gNRHtRkB0i+1SyQyEcqoiZvuwIBbSgT+xisXaTseJrf0Q+7N0t8AL876Fj3iEScRR4X2qpVT2sG9Tvoxke3CXeyySyodtyHl0ITPAa7CwG7KjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nteUQ4Mq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC665C4CEED;
-	Tue,  8 Jul 2025 16:17:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751991423;
-	bh=nbGCmYL+a3SA2RRWksLD7uACXMII0cs1xS2gIUHJeeI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nteUQ4MqJaaomEKaAVmOyO0KsiKqr+K9XvaCSQ8Y3SsSGh+9GrwopG/RPxPgam5h/
-	 I/grsXO8JtoslYXVSZepAC/UwZmigtruMZn+mIHTEzWbvpnj7q6MMoqZPsgbEjdA73
-	 +wfRMtVKGp0F2nMARO1vGmmJyUQxBleYTDhnauY5PNEm0MRpxdcEeHH3t1kPn5GvZ3
-	 LZ759JuwEtz0LvoGJKoktlENXDQ1680Jqh7B3WhSccqWpc9SKl2wi0aVVjdO3O0TVH
-	 PyiGbzxj8xWDB4z48EJ8nKiyMyzC6a/nRN9D57PMu2RBXYKDqonKfwmfyaFC94DRR1
-	 KAZEzGBV+If0Q==
-Date: Tue, 8 Jul 2025 11:17:01 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
-	Jagadeesh Kona <quic_jkona@quicinc.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	linux-clk@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Stefan Schmidt <stefan.schmidt@linaro.org>,
-	Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH 1/6] dt-bindings: clock: qcom,sm8450-videocc: Document
- X1E80100 compatible
-Message-ID: <175199142127.518048.16838716470013972083.robh@kernel.org>
-References: <20250701-x1e-videocc-v1-0-785d393be502@linaro.org>
- <20250701-x1e-videocc-v1-1-785d393be502@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HaR4sXHzPpjJqVUWqVTywHHPvtG/9MrA/iJW5d/IZ45Mbgx2tdSfqxzTwfx1dmPa+Gnmk7mriGUGR1vK1NP8OtmT0Amr0GLpl6M0e+FprXoiw6AxLWEsM6y5So0l8IsC4nh9yxhngJ2RGxT9nmW5wVBbH+xoUx2c4mBI7i4i0XY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=TB0LHkGt; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=As4/7X/F; arc=none smtp.client-ip=202.12.124.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-12.internal (phl-compute-12.phl.internal [10.202.2.52])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 866597A015A;
+	Tue,  8 Jul 2025 12:18:10 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-12.internal (MEProxy); Tue, 08 Jul 2025 12:18:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1751991490;
+	 x=1752077890; bh=NfROuzrJSbw2grJ6GM2uOV14LjZuQ6VaXQF3xvusaco=; b=
+	TB0LHkGt/dOUc/WZuKf5LW3+OlpqdgYjhMRxjKsXmFgsCLiI+TOrqK/J7nQCV5MD
+	SJ3qioor1CGCgdmIWGqxInuy7aHxIEw0SJEjCXXckb0vLBbvTHP3SodZIb5nyidE
+	+LsRAl0Odp4B7mgDDA5dU/Y097QkQp/9YBIONh287E5HnAxQ7vc0yACAi3LkfIiN
+	3ol8N3xfCpF+iaexzFuYwzWGZhfk1oWWuEfNwla8ls/6f6+k/Unx/i3o9UBjPXw4
+	6p1piWSCNROcrVws7pSG8XV4p7w0OWxTx7Y7UfKwNncYYQ7vJUf+ZNBrI/c9xVEI
+	ONz7kklQGzYg6K0M12qOwA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751991490; x=
+	1752077890; bh=NfROuzrJSbw2grJ6GM2uOV14LjZuQ6VaXQF3xvusaco=; b=A
+	s4/7X/F72zbPt0f5GtiVmvCs7SVdk1ZlXxCpHw9zPirMyeU6h+sFJ9mZdwXjLyYt
+	0b9ZZQ6uFrdAc4NoamM4WtIdYmzSt9NIdSw8boC+F7gr5g18M3GwwKdoQggvDlyv
+	hv9HgoAh28wJaXtQR6/fK/dbWBy9ZmySsmncx+q3V2oS+Prl/+STaEEhUqolacwl
+	mmBEmQhXjVHKclLjCKu82bWGgXtRXpJbJPb5XseRgQ0ncYbkrMMXjUh0skgGv8nV
+	7a3vpkIfY+l3RWsQEWNM32aFgB+OKzRQgPTOxCPc/zympt3itaDdELjY1KrczLUu
+	pBcGFPzldhUEIvb1wQxgQ==
+X-ME-Sender: <xms:wURtaDVHE-jNm2Olckqp-WT1INdEBZZ7iG08Cawh6T-3RNQG3L7eSA>
+    <xme:wURtaJLLTqgKAZNrYf-ygJOU_nrpbgRZg_NyuHoSuIYFwRMLtkNKf66Vi7r-wyiKW
+    0qATXkvC6MU8bDtgG0>
+X-ME-Received: <xmr:wURtaF1HuUkV37EWPVMNw9aRlXgssVR-S0PXtkdJQJHFYftuAAZcIEt7uCCADR7oPKLKalPQGYbTm0BwiN2xnzTUIV49sWFZ3w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdefhedugecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhikhhlrghs
+    ucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrg
+    hssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepffekgfdukeeghffh
+    jeetvdeitdegteeikeffieduhfegveetjeevtdffvdekffdtnecuffhomhgrihhnpehkvg
+    hrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
+    fhhrohhmpehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrg
+    htvggthhdrshgvpdhnsggprhgtphhtthhopeeipdhmohguvgepshhmthhpohhuthdprhgt
+    phhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrvhhiugesgh
+    hisghsohhnrdgurhhophgsvggrrhdrihgurdgruhdprhgtphhtthhopehsrghrrghvrghn
+    rghksehgohhoghhlvgdrtghomhdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghsse
+    hglhhiuggvrhdrsggvpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgv
+    rhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvh
+    hgvghrrdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:wURtaP7EcZGxW-AHpw9MQr0vbTt7Q3l5ghuiHe5Y-5y5_WBQ_eG7Ew>
+    <xmx:wURtaO9z4lTdnAaiMb-gd-tfdC22FxqvBvd2LtHqIuqk9Mb3nU5zZA>
+    <xmx:wURtaGVywi73B-1OKSCOyHmu0GqH6oEduiYxmWLe4xgUZLP65JZO3A>
+    <xmx:wURtaBpuFjW4AM7GFwSIx9153VWL3PMQE0mpgeDfnEii2lI8O1E51g>
+    <xmx:wkRtaI1dB9frcgUcio1bRVvesFvcnvAZAfVwJtvoq_4rUhZcrNbFMjfD>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 8 Jul 2025 12:18:09 -0400 (EDT)
+Date: Tue, 8 Jul 2025 18:18:07 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Rob Herring <robh@kernel.org>,
+	David Gibson <david@gibson.dropbear.id.au>,
+	Saravana Kannan <saravanak@google.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] checks: Remove check for graph child addresses
+Message-ID: <20250708161807.GA1830614@ragnatech.se>
+References: <20250708160201.141428-1-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250701-x1e-videocc-v1-1-785d393be502@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250708160201.141428-1-niklas.soderlund+renesas@ragnatech.se>
 
+Hello,
 
-On Tue, 01 Jul 2025 19:28:33 +0200, Stephan Gerhold wrote:
-> X1E80100 videocc is largely identical to SM8550, but needs slightly
-> different PLL frequencies. Add a separate qcom,x1e80100-videocc compatible
-> to the existing schema used for SM8550.
+This was sent to the wrong list, please ignore it. I have resent it to 
+the correct devicetree-compiler@vger.kernel.org list.
+
+Sorry for the noise.
+
+On 2025-07-08 18:02:01 +0200, Niklas Söderlund wrote:
+> The dtc graph_child_address check can't distinguish between bindings
+> where there can only be a single endpoint, and cases where there can be
+> multiple endpoints.
 > 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+> In cases where the bindings allow for multiple endpoints but only one is
+> described false warnings about unnecessary #address-cells/#size-cells
+> can be generated, but only if the endpoint described have an address of
+> 0 (A), for single endpoints with a non-zero address (B) no warnings are
+> generated.
+> 
+> A)
+>     ports {
+> 	#address-cells = <1>;
+> 	#size-cells = <0>;
+> 
+> 	port@0 {
+> 	    #address-cells = <1>;
+> 	    #size-cells = <0>;
+> 
+> 	    sourceA: endpoint@0 {
+> 		reg = <0>
+> 	    };
+> 	};
+>     };
+> 
+> B)
+>     ports {
+> 	#address-cells = <1>;
+> 	#size-cells = <0>;
+> 
+> 	port@0 {
+> 	    #address-cells = <1>;
+> 	    #size-cells = <0>;
+> 
+> 	    sourceB: endpoint@1 {
+> 		reg = <1>
+> 	    };
+> 	};
+>     };
+> 
+> Remove the check as it is somewhat redundant now that we can use schemas
+> to validate the full node.
+> 
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 > ---
->  Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Hello,
+> 
+> This started as an effort to demote this check to W=2 [1] and have then
+> moved on from there to completely remove the check in this patch per
+> David and Rob's suggestion.
+> 
+> This patch supersedes all other patches for my me in this area.
+> 
+> If this change is accepted in dtc and later checks.c synced to
+> linux/scripts/dtc/checks.c one must also drop "-Wno-graph_child_address"
+> from Documentation/devicetree/bindings/Makefile and
+> scripts/Makefile.dtbs.
+> 
+> 1.  https://lore.kernel.org/all/20250702085008.689727-1-niklas.soderlund%2Brenesas@ragnatech.se/
+> ---
+>  checks.c | 27 +--------------------------
+>  1 file changed, 1 insertion(+), 26 deletions(-)
+> 
+> diff --git a/checks.c b/checks.c
+> index 123f2eb425f4..0b1fd9f13cb4 100644
+> --- a/checks.c
+> +++ b/checks.c
+> @@ -1894,31 +1894,6 @@ static void check_graph_endpoint(struct check *c, struct dt_info *dti,
+>  }
+>  WARNING(graph_endpoint, check_graph_endpoint, NULL, &graph_nodes);
+>  
+> -static void check_graph_child_address(struct check *c, struct dt_info *dti,
+> -				      struct node *node)
+> -{
+> -	int cnt = 0;
+> -	struct node *child;
+> -
+> -	if (node->bus != &graph_ports_bus && node->bus != &graph_port_bus)
+> -		return;
+> -
+> -	for_each_child(node, child) {
+> -		struct property *prop = get_property(child, "reg");
+> -
+> -		/* No error if we have any non-zero unit address */
+> -                if (prop && propval_cell(prop) != 0 )
+> -			return;
+> -
+> -		cnt++;
+> -	}
+> -
+> -	if (cnt == 1 && node->addr_cells != -1)
+> -		FAIL(c, dti, node, "graph node has single child node '%s', #address-cells/#size-cells are not necessary",
+> -		     node->children->name);
+> -}
+> -WARNING(graph_child_address, check_graph_child_address, NULL, &graph_nodes, &graph_port, &graph_endpoint);
+> -
+>  static struct check *check_table[] = {
+>  	&duplicate_node_names, &duplicate_property_names,
+>  	&node_name_chars, &node_name_format, &property_name_chars,
+> @@ -2005,7 +1980,7 @@ static struct check *check_table[] = {
+>  
+>  	&alias_paths,
+>  
+> -	&graph_nodes, &graph_child_address, &graph_port, &graph_endpoint,
+> +	&graph_nodes, &graph_port, &graph_endpoint,
+>  
+>  	&always_fail,
+>  };
+> -- 
+> 2.50.0
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+-- 
+Kind Regards,
+Niklas Söderlund
 
