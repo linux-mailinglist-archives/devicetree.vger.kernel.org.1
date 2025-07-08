@@ -1,82 +1,167 @@
-Return-Path: <devicetree+bounces-193945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11456AFC576
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D560AFC58C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:28:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C4E84A2748
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:24:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FC865629F4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11042BE646;
-	Tue,  8 Jul 2025 08:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oh3rMP0s"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E74FE298999;
+	Tue,  8 Jul 2025 08:26:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEDB8259CBE;
-	Tue,  8 Jul 2025 08:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E2C21C179;
+	Tue,  8 Jul 2025 08:26:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751963023; cv=none; b=BgIdcb+mcmQgZ3LKFgHWiKgh9qUvdw4bqYYel64bTjQsuHIdJjM+nnCdzWwuvFWC8FVbrv1aGtiagd+6cqn6L9K05q512c2yUmxDrliSXTEB4SlfiepdwPYhLROFo9N61IsKHwVZX5WgAQDnSxjxgjxaxnmmKKHdiTLbZnvea8U=
+	t=1751963186; cv=none; b=sMMDEYEHzE506eWsb/JPww7CraCl3p8UT6rn2rxmZOTSZQ7j3Sl7DUf0vd0KxqxTA9OM3MIxzijcehgVexTbktEZnYdkomVOwgheEVT6h5primeW/LD1o16MpdeC5Ub8J73+hUncJ8BNKIhrYqy/Z73pVFBgRJrnt8Re+9lDir0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751963023; c=relaxed/simple;
-	bh=04fxKIPR7A/qlWWH38RuP8SatwNUghLoerN0uo/s0iQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UYuRu4EiOBC8qjb3OxLksKDkCI/5T10XxYMSsH5+EHoCujOlBJ9P+P0aykU+fzUix2O2iApavI4Gk/TS0rNgZOI6sCcvvrEJ+QKkPf203SiqWw7X740p+e1SkpNym70ajl1R7W/j7NVchk0LIfumF6HWqVAuDWHMFrDgmRB5Qr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oh3rMP0s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0062BC4CEED;
-	Tue,  8 Jul 2025 08:23:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751963023;
-	bh=04fxKIPR7A/qlWWH38RuP8SatwNUghLoerN0uo/s0iQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Oh3rMP0s3+3HAsTZ7OUQ0u9yqkkuo75AfyvZFwBV9NqosfYqF24aBYZMJI6h/mljv
-	 +UkXKoEjKeeBjJ9BjcvdD1lfC0fvkfiUB7VoBlwWcQf80rXGF6nAjMK4zW3afZpxFH
-	 wzMDo/EFEX1CQD3OOKGD60Z4kOa17kL6bgRB+vMQiDUyQkLfyIDys65TPj6Owp+kyn
-	 qQU5P2zScHWoeDiTkgz1bCoMblhBik5M7zepyqD1iqHOBNOhNbEoc5iUa7gxb+jX3v
-	 qF1LM+NjuQfK09E6OTOg072DA75S64r0yDqrPWXLa9pF0WT6ruA/Zr9wkmvOplODCN
-	 l5cEpQomjQ7Pg==
-Date: Tue, 8 Jul 2025 10:23:41 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: pinctrl: qcom,pmic-gpio: Add PMIV0104
- support
-Message-ID: <20250708-thundering-binturong-from-mars-417ba9@krzk-bin>
-References: <20250625-sm7635-pmiv0104-v1-0-68d287c4b630@fairphone.com>
- <20250625-sm7635-pmiv0104-v1-2-68d287c4b630@fairphone.com>
+	s=arc-20240116; t=1751963186; c=relaxed/simple;
+	bh=VzmkmgYoccWvFe3DcIW5WbhC0zuD/mh7N9zUr7ihIas=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=unfCBOyZ/Tiza8jVruG54+0fXpa9lVOgPapLBAcoySgChmLRZieKnxwnrw/XQBXl9SsURlrExRrDrX2PD6oUTi8Vr9q+iTSjR9l0Ac6deY573j4CFLjntocX9RqQ/OB4irFLTvttwZ2USdh/jTLx8s+nfEHBq/LBVkVBU1puZZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bbvLQ4KxZz6DB82;
+	Tue,  8 Jul 2025 16:25:18 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 4DA4B1404A9;
+	Tue,  8 Jul 2025 16:26:22 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 8 Jul
+ 2025 10:26:19 +0200
+Date: Tue, 8 Jul 2025 09:26:18 +0100
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Alireza Sanaee <alireza.sanaee@huawei.com>
+CC: <mark.rutland@arm.com>, <robh@kernel.org>, <coresight@lists.linaro.org>,
+	<devicetree@vger.kernel.org>, <dianders@chromium.org>,
+	<james.clark@linaro.org>, <krzk@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-perf-users@vger.kernel.org>, <linuxarm@huawei.com>,
+	<mike.leach@linaro.org>, <ruanjinjie@huawei.com>, <saravanak@google.com>,
+	<shameerali.kolothum.thodi@huawei.com>, <suzuki.poulose@arm.com>
+Subject: Re: [PATCH 1/5] of: add infra for finding CPU id from phandle
+Message-ID: <20250708092618.000067d2@huawei.com>
+In-Reply-To: <20250707150414.620-2-alireza.sanaee@huawei.com>
+References: <20250707150414.620-1-alireza.sanaee@huawei.com>
+	<20250707150414.620-2-alireza.sanaee@huawei.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250625-sm7635-pmiv0104-v1-2-68d287c4b630@fairphone.com>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-On Wed, Jun 25, 2025 at 11:18:03AM +0200, Luca Weiss wrote:
-> Update the Qualcomm Technologies, Inc. PMIC GPIO binding documentation
-> to include the compatible string for the PMIV0104 PMICs.
+On Mon, 7 Jul 2025 16:04:10 +0100
+Alireza Sanaee <alireza.sanaee@huawei.com> wrote:
+
+> Get CPU id from phandle. Many drivers get do this by getting hold of CPU
+> node first through a phandle and then find the CPU ID using the relevant
+> function. This commit encapsulates cpu node finding and improves
+> readability.
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> The API interface requires two parameters, 1) node, 2) pointer to CPU
+> node. API sets the pointer to the CPU node and allows the driver to play
+> with the CPU itself, for logging purposes for instance.
+> 
+> Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
 > ---
->  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/of/cpu.c   | 29 +++++++++++++++++++++++++++++
+>  include/linux/of.h |  9 +++++++++
+>  2 files changed, 38 insertions(+)
+> 
+> diff --git a/drivers/of/cpu.c b/drivers/of/cpu.c
+> index 5214dc3d05ae..fba17994fc20 100644
+> --- a/drivers/of/cpu.c
+> +++ b/drivers/of/cpu.c
+> @@ -173,6 +173,35 @@ int of_cpu_node_to_id(struct device_node *cpu_node)
+>  }
+>  EXPORT_SYMBOL(of_cpu_node_to_id);
+>  
+> +/**
+> + * of_cpu_phandle_to_id: Get the logical CPU number for a given device_node
+> + *
+> + * @node: Pointer to the device_node containing CPU phandle.
+> + * @cpu_np: Pointer to the device_node for CPU.
+> + * @cpu_idx: The index of the CPU in the list of CPUs.
+> + *
+> + * Return: The logical CPU number of the given CPU device_node or -ENODEV if
+> + * the CPU is not found, or if the node is NULL, it returns -1. On success,
+> + * cpu_np will always point to the retrieved CPU device_node with refcount
+> + * incremented, use of_node_put() on it when done.
+> + */
+> +int of_cpu_phandle_to_id(const struct device_node *node,
+> +			 struct device_node **cpu_np,
+> +			 uint8_t cpu_idx)
+> +{
+> +	if (!node)
+> +		return -1;
+> +
+> +	*cpu_np = of_parse_phandle(node, "cpu", 0);
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Gut feeling is that it would be useful to allow a NULL cpu_np
+for case where they don't want the cpu device_node, just the ID.
 
-Best regards,
-Krzysztof
+For that you'll need a local variable to hold the device_node
+then assign it or put it depending on whether cpu_np != NULL.
+
+
+Maybe there are no users for that pattern though.  If that's the case
+then check !node || !cpu_np for that first check. 
+
+
+> +	if (!*cpu_np)
+> +		*cpu_np = of_parse_phandle(node, "cpus", cpu_idx);
+> +			if (!*cpu_np)
+> +				return -ENODEV;
+> +
+> +	return of_cpu_node_to_id(*cpu_np);
+> +}
+> +EXPORT_SYMBOL(of_cpu_phandle_to_id);
+> +
+>  /**
+>   * of_get_cpu_state_node - Get CPU's idle state node at the given index
+>   *
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index eaf0e2a2b75c..194f1cb0f6c6 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -360,6 +360,8 @@ extern const void *of_get_property(const struct device_node *node,
+>  extern struct device_node *of_get_cpu_node(int cpu, unsigned int *thread);
+>  extern struct device_node *of_cpu_device_node_get(int cpu);
+>  extern int of_cpu_node_to_id(struct device_node *np);
+> +extern int of_cpu_phandle_to_id(const struct device_node *np,
+> +				struct device_node **cpu_np, uint8_t cpu_idx);
+>  extern struct device_node *of_get_next_cpu_node(struct device_node *prev);
+>  extern struct device_node *of_get_cpu_state_node(const struct device_node *cpu_node,
+>  						 int index);
+> @@ -662,6 +664,13 @@ static inline int of_cpu_node_to_id(struct device_node *np)
+>  	return -ENODEV;
+>  }
+>  
+> +static inline int of_cpu_phandle_to_id(const struct device_node *np,
+> +				       struct device_node **cpu_np,
+> +				       uint8_t cpu_idx)
+> +{
+> +	return -ENODEV;
+> +}
+> +
+>  static inline struct device_node *of_get_next_cpu_node(struct device_node *prev)
+>  {
+>  	return NULL;
 
 
