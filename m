@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-194178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19E97AFD02D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:09:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A37F1AFD03B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:10:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6896C7B052F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:07:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5AE23AE398
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E142E5438;
-	Tue,  8 Jul 2025 16:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D80092E427D;
+	Tue,  8 Jul 2025 16:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C+LJ2Edo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lw3AElVu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507652E5434;
-	Tue,  8 Jul 2025 16:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD2E22E4260;
+	Tue,  8 Jul 2025 16:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751990917; cv=none; b=t1zDO4GFUP8XmUdhTVNhUwVf9UTNTwnxuaNZrU1TmsXu39TTBILMWhn0cPCdXgN/0J+0857N8fMpHhDQ66lOq+7RBZpI0cmtEPBcdpbXkn0DelJXT/wHUDOHw3brqee80E/wpOxQtWUoDVz88MTarC0HD8vz6exHSbH7qoqy0xE=
+	t=1751990959; cv=none; b=OYfkEwIYCmTWR+Z5ygpWQE2EB5W/YUp3RHWTk1fFyMR+ABoTUporO+mfvv/QLVBYiynzxV3SmnWzCKRxtgUwCAULpRBThnBFhUw47PihMOxKxnZ4wnalTeCNwAEDh1i23Hkj57KMqUMZiQ9EoNtw7x19bCaz3lLODCHrjuWD9J4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751990917; c=relaxed/simple;
-	bh=QBTLFLLxhUFAfscAGxdFP/ok+pKAvAu2bYu5mW3qwzo=;
+	s=arc-20240116; t=1751990959; c=relaxed/simple;
+	bh=+dHSQ9JmLCMi6wTYdjTsY+jTAGkpsnOeqWcR/GE+OM4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IbHbWg6HMvnL5GDZ1Nckiu9QJNy+7ShlJP8xDlo+elMb2oCDwNK/44vprY4pAwAB3Wx+0AJT7MrvagWJeTuJWgxmq0qt8piD8OwghIt56nFLcU8Wc0ZZiS6BL/i9GyU9RQI7oLynLMwzhXTVrjmGvGIAauApr7Netqw4f8JpVqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C+LJ2Edo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0936C4CEED;
-	Tue,  8 Jul 2025 16:08:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q4euXsFmKc5WVWw7ltMXiqQ4s2nY5UFnX/4A5C3JSpC++oQaSVHRe6CoHT1bQY5IwjyN+6monYpS2l8ZCNgLjy8njOUKCthNO5QjJ2TdQwIHweRwCFs9//MACiL1IseERSE6RK+JmW7DMbhtryusCu+Zz1P8A+Ri4rbII4vB2eI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lw3AElVu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58905C4CEED;
+	Tue,  8 Jul 2025 16:09:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751990916;
-	bh=QBTLFLLxhUFAfscAGxdFP/ok+pKAvAu2bYu5mW3qwzo=;
+	s=k20201202; t=1751990959;
+	bh=+dHSQ9JmLCMi6wTYdjTsY+jTAGkpsnOeqWcR/GE+OM4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C+LJ2EdouAD/4xOTwU7lRUtmWU7zj/FuQ/UtIh3caLTa8r0NTSaz/IdxYyiEnDQPH
-	 JBnYcCWY+WbYDzD1EEQIZsEYtT0S4iEE48Kcu/UsfOf96YPHngTfdBrVXdJiUsdRe6
-	 GEhJa7CSBA7ZGD4SZaMXXPaX9IJBHDRti5zLE+ezpOUnNw4jdYtce68S3tjFcB9/g5
-	 Nb/C7U+X7XMvAqpJ7S8jlPaguPEhiQ6IT/4c3/T0FrOFuAxmsaCsMGfRUkRX32xT6l
-	 MeDe9LRoQeg8I11T6VV99XOIp/ZGG0ki/r06uXnUYtP0j6+F2TKzxvWPAzIU/obT1q
-	 VO0pNFimGLXlA==
-Date: Tue, 8 Jul 2025 11:08:34 -0500
+	b=lw3AElVu96ZxHWjVThIHiVkll4TVzL1PqMoXQLbAuAhrc4cqTc7XC0L7Vwfjq3QrS
+	 6ZnV0QiBVgMUN0ro8hOlA0PnBTyz/6aSsqi0QL4LLRtehw+ju0dryymSYksoCg/4o9
+	 t49p4h2FaY1xl4LCTa5Z+nfkHAQLz9fF12CoDiXsVzo1kAIZuagkWNotM8DHTOMZcX
+	 dhQbffsff+fLrpeVwg6h5b9UvhUA/KTSAXw9X9YCkVMOYpbRQhCk7Idu4CmnZPD2GT
+	 CEMlZtndH+qB8bavDB3Xvdy4VNr+WDysZUrh6pw2El6URQux3yJ76IhuKYTJtryvE6
+	 OjIJMqWrblrMA==
+Date: Tue, 8 Jul 2025 11:09:17 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Lubomir Rintel <lkundrak@v3.sk>, devicetree@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: phy: marvell,mmp2-usb-phy: Drop status from
- the example
-Message-ID: <175199091400.508698.18446134330656414688.robh@kernel.org>
-References: <20250701063636.23872-2-krzysztof.kozlowski@linaro.org>
+To: Jack Cheng <Cheng.JackHY@inventec.com>
+Cc: linux-hwmon@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, Jack Cheng <cheng.jackhy@inventec.com>,
+	Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 1/2] dt-bindings: trivial: Add q50sn12072 and q54sj108a1
+ support
+Message-ID: <175199095675.509662.6963890763247202312.robh@kernel.org>
+References: <20250701-add-support-for-q50sn12072-and-q54sn120a1-v1-0-c387baf928cb@inventec.com>
+ <20250701-add-support-for-q50sn12072-and-q54sn120a1-v1-1-c387baf928cb@inventec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250701063636.23872-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250701-add-support-for-q50sn12072-and-q54sn120a1-v1-1-c387baf928cb@inventec.com>
 
 
-On Tue, 01 Jul 2025 08:36:37 +0200, Krzysztof Kozlowski wrote:
-> Examples should not have the 'status' property and 'okay' is anyway by
-> default.
+On Tue, 01 Jul 2025 12:03:45 +0000, Jack Cheng wrote:
+> From: Jack Cheng <cheng.jackhy@inventec.com>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add support for the Delta Electronics q50sn12072 and q54sj108a1
+> 1/4 Brick DC/DC Regulated Power Modules.
+> 
+> Signed-off-by: Jack Cheng <cheng.jackhy@inventec.com>
 > ---
->  Documentation/devicetree/bindings/phy/marvell,mmp2-usb-phy.yaml | 1 -
->  1 file changed, 1 deletion(-)
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
