@@ -1,194 +1,132 @@
-Return-Path: <devicetree+bounces-194083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D964AFC9B7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 13:37:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AE52AFC9C1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 13:40:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6C257AE737
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 11:36:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7693E564EDF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 11:40:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A66A4286430;
-	Tue,  8 Jul 2025 11:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56DCB2DA77C;
+	Tue,  8 Jul 2025 11:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F8nq7PEA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BWou2GPZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F471238D53;
-	Tue,  8 Jul 2025 11:37:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3062F25E828;
+	Tue,  8 Jul 2025 11:40:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751974650; cv=none; b=dQTYX9l1+NBZwKNcmcbMfsuGvJMHkqyz1K3Mp2eNDGkWJ5zvI07yFsIFh/iu2eVw6WaepGebGc3bWY9/+2167QOgwyHmF4jrT7k+klNvBUtpMyWUUTd+rovWQitxBGRTi/bXz530S1taY75pRQAHUoGmWDpHsTmVRRVdHkhPb3g=
+	t=1751974803; cv=none; b=AwQMLt0WWXolj+gNIqnOUIetDhcw6F87wVb6Hxhf6Qs+Y05uaQ5TNgNmp/xMy9BcNldEkS5TrCCHCiiZ4B8scYL8tP98WF4ST0f4per9eVLo3T1NTJdzqXGzrp4TYSIJrIpArh2sMkVucyAeaQ3M7fn8vSuNxlje340ymP87u/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751974650; c=relaxed/simple;
-	bh=Jd1T3sx5/KDM7mM/Zz9GYUL0ia9E2nQPf9lXHvRXZmg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kvlEOsq9kjotYniE6DKqrWXaPWbY1vYX9BWcbdTbAupMpmBzo9JPqJPOVdA/JrRPvMrzjYb1s6w5P2qzUwWYCPfjPiASTUd7u89pY9M3lRVR7U7JcewGjd5qknmSGT1I6i7y4LWHbrECSxVndA838VsNsUM7Wb4+RxfYZIbqWEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F8nq7PEA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17DBFC4AF09;
-	Tue,  8 Jul 2025 11:37:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751974650;
-	bh=Jd1T3sx5/KDM7mM/Zz9GYUL0ia9E2nQPf9lXHvRXZmg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=F8nq7PEAruPGzsKz4P4NPY8fjlO12G267D+JfaTOJBlY9Sdy7wsx7gC8260kkay+s
-	 tWzPO2AFi7VgsHZQFuMTUIUB2mOlg4eLLcL1dGT+3O8jKRSOtepBQ50xTYvyVIV+dA
-	 tq2+iW1AyJQ3DPbGaAHWr8v6s4r+shU6M9vCbysNwPP98wgn91/lSxRqp/gyEmXrYd
-	 hEx55u5kpcsnUIVyciA+so3Imi2MRuaol3VWpP1b7hniyGrvJxxOOL/TT3ssfmPABK
-	 2jumotIZ4n9V/NqtlR6USayOsUh8wfkG14ZjSTr1zqhT5Nd65oQnqvoNvFuVM+CiOp
-	 BJwIOmG1igKmA==
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-607434e1821so5974963a12.0;
-        Tue, 08 Jul 2025 04:37:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUYwanICshJTPiTZGgCuUJN4/YrhBBWdFv1KKjEsF7kBk5Yw+VRgUy2CXBTt8mUqffPDiGw3wWR68vR@vger.kernel.org, AJvYcCVVeguin5XMRMfO69gJVZ0ICaraoCGSyfLul3+pVICuajWLSdf8KODdkCSJI9M85mToXtz2dMPa0HO+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCzoZnX+QgyWbOHc4LutfJWrG8+ThRlGKbifmPfcOBTjyzwWHh
-	zzoz+NB2AIHgD/uvoV6FPp2hdtQnQCjEr2xKL18YgJoq+w4ke8kNDKeD5ghVD9+WnO8lQYXchHk
-	d/pNO1jI6RdJuOfczWMG0MARuL/m3il0=
-X-Google-Smtp-Source: AGHT+IEMgxD68DfBMaanXG5eeXbGOXoBXXlNeYuvtnHciJwKTyhTsZrPo9HwnqIJqhWKZ9LIePES093KoEtz6FDlvYM=
-X-Received: by 2002:a05:6402:3591:b0:609:b5e0:598a with SMTP id
- 4fb4d7f45d1cf-60fd3491e75mr13553204a12.24.1751974648555; Tue, 08 Jul 2025
- 04:37:28 -0700 (PDT)
+	s=arc-20240116; t=1751974803; c=relaxed/simple;
+	bh=NaXF+SWgYv7kRBtwEFQbe7Bc7oXL2R98o9nJKHF8ma4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=s6b0piTVcXdCEyLcIB8ZRVERCKUZJmW2yRRGoKB7T9NceZAzGquM/a9SkVzexnwK/e9fiuu0x1srSa20VL8G5OBjnvgYLn/t0TroYFZAE57g1fDUiJJYgRIHqQ1LgahdnvMCJnvHqF8nXZdCyC7BvMnJdaZCWSZhGfxcUVGEdNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BWou2GPZ; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 568Bdl3m499007;
+	Tue, 8 Jul 2025 06:39:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751974787;
+	bh=mxl6kC3SyfXYPZI+86oINoVU7EXBLmnBKdgbQsXZOjA=;
+	h=From:To:CC:Subject:Date;
+	b=BWou2GPZiXLNX6iFcYbiJ66NJeRYAT2o/7GJQcEGFjh5LF+a948tDU0EpgTuQOcZ7
+	 /JzM2QaHJoxKVQmKDnuCgM5MmwWVVqMlpSlSGqjj7odxSM6cz5RFb72tgXHP5ifWGH
+	 swdoKqvMT0HwKdnWMsj/SEfG9c+yJygkvUf8Zbmk=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 568BdlZM3229883
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 8 Jul 2025 06:39:47 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 8
+ Jul 2025 06:39:46 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 8 Jul 2025 06:39:46 -0500
+Received: from hp-z2-tower.dhcp.ti.com (hp-z2-tower.dhcp.ti.com [172.24.227.4])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 568Bdgqi1700412;
+	Tue, 8 Jul 2025 06:39:43 -0500
+From: Hrushikesh Salunke <h-salunke@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <s-vadapalli@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <h-salunke@ti.com>, <danishanwar@ti.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-am69-sk: Add idle-states for remaining SERDES instances
+Date: Tue, 8 Jul 2025 17:09:42 +0530
+Message-ID: <20250708113942.4137917-1-h-salunke@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1750765495.git.zhoubinbin@loongson.cn> <CAPDyKFrYYdhrctvwJ=VdTRHYSLSO_MjGKfasP53muVbe1+=0ag@mail.gmail.com>
-In-Reply-To: <CAPDyKFrYYdhrctvwJ=VdTRHYSLSO_MjGKfasP53muVbe1+=0ag@mail.gmail.com>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Tue, 8 Jul 2025 19:36:59 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H5_iokrgA+efG5A9PEfCiQ-Wh2AhssnTXMzmJPE3RPtUQ@mail.gmail.com>
-X-Gm-Features: Ac12FXy7BnhlcEeIQ7dGegd_kOusW7rEMktXmQkFWtnZ5nNqQpKNzizLE72fA9E
-Message-ID: <CAAhV-H5_iokrgA+efG5A9PEfCiQ-Wh2AhssnTXMzmJPE3RPtUQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/4] LoongArch: Introduce the Loongson-2K MMC host
- controller driver
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou <zhoubb.aaron@gmail.com>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, wanghongliang@loongson.cn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Jul 3, 2025 at 8:20=E2=80=AFPM Ulf Hansson <ulf.hansson@linaro.org>=
- wrote:
->
-> On Tue, 24 Jun 2025 at 13:58, Binbin Zhou <zhoubinbin@loongson.cn> wrote:
-> >
-> > Hi all:
-> >
-> > This patchset introduce the MMC host controller on Loongson-2K series
-> > CPUs.
-> >
-> > They are similar, except for the interface characteristics and the use =
-of
-> > DMA engine, specifically, the Loongson-2K0500/Loongson-2K1000 use an
-> > externally shared APBDMA engine, while the Loongson-2K2000 uses an
-> > internally exclusive DMA.
-> >
-> > Based on this, I'm splitting the driver into two patches.
-> >
-> > List of the patchset:
-> > Patch1: bindings for Loongson-2K0500/Loongson-2K1000;
-> > Patch2: driver for MMC controller using externally shared APBDMA engine=
-;
-> > Patch3: bindings for Loongson-2K2000;
-> > Patch4: driver for MMC controller using internally exclusive DMA.
-> >
-> > Thanks.
-> >
-> > -------
-> > V4:
-> > patch(2/4):
-> >  - Code formatting;
-> >  - Fix lkp error
-> >     https://lore.kernel.org/all/202506202031.TNchn822-lkp@intel.com/
-> > patch(4/4):
-> >  - Rename function names:
-> >         ls2k1000_mmc_regmap_config -> ls2k0500_mmc_regmap_config
-> >         loongson2_mmc_reorder_cmd_data -> ls2k0500_mmc_reorder_cmd_data
-> >         loongson2_mmc_set_internal_dma -> ls2k2000_mmc_set_internal_dma
-> >  - Use macro definitions for magic numbers.
-> >
-> > Link to V3:
-> > https://lore.kernel.org/all/cover.1750216134.git.zhoubinbin@loongson.cn=
-/
-> >
-> > V3:
-> > patch(1/4):
-> >  - Rename dt-binding file as loongson,ls2k0500-mmc.yaml.
-> > patch(2/4):
-> >  - Fix lkp error;
-> >     https://lore.kernel.org/all/202505130918.uanOGxju-lkp@intel.com/
-> >  - Add regulators support for ios ops;
-> >  - Add ack_sdio_irq() callback;
-> >  - Add MMC_CAP2_SDIO_IRQ_NOTHREAD flag;
-> > patch(3/4):
-> >  - Add Ack-by tag.
-> > patch(4/4):
-> >  - Update commit for fix_data_timeout().
-> >
-> > Link to V2:
-> > https://lore.kernel.org/all/cover.1746581751.git.zhoubinbin@loongson.cn=
-/
-> >
-> > V2:
-> > patch(1/4):
-> >  - Add reg define for each reg entry.
-> >
-> > patch(2/4):
-> >  - Put all code in the c-file;
-> >  - Use mmc_from_priv() instead of host->mmc;
-> >  - Use sdio_signal_irq() instead of mmc_signal_sdio_irq();
-> >  - Use devm_mmc_alloc_host() instead of mmc_alloc_host();
-> >  - Use mmc_regulator_get_supply();
-> >
-> > patch(4/4):
-> >  - Add fix_cmd_interrupt function which is needed by Loongson-2K2000.
-> >
-> > Link to V1:
-> > https://lore.kernel.org/linux-mmc/cover.1744273956.git.zhoubinbin@loong=
-son.cn/
-> >
-> > Binbin Zhou (4):
-> >   dt-bindings: mmc: Add Loongson-2K SD/SDIO/eMMC controller binding
-> >   mmc: loongson2: Add Loongson-2K SD/SDIO controller driver
-> >   dt-bindings: mmc: loongson,ls2k0500-mmc: Add compatible for
-> >     Loongson-2K2000
-> >   mmc: loongson2: Add Loongson-2K2000 SD/SDIO/eMMC controller driver
-> >
-> >  .../bindings/mmc/loongson,ls2k0500-mmc.yaml   |  112 ++
-> >  MAINTAINERS                                   |    7 +
-> >  drivers/mmc/host/Kconfig                      |   13 +
-> >  drivers/mmc/host/Makefile                     |    1 +
-> >  drivers/mmc/host/loongson2-mmc.c              | 1029 +++++++++++++++++
-> >  5 files changed, 1162 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mmc/loongson,ls2k=
-0500-mmc.yaml
-> >  create mode 100644 drivers/mmc/host/loongson2-mmc.c
-> >
-> >
-> > base-commit: f5c755ef810009b85350884c483705bd04365370
-> > --
-> > 2.47.1
-> >
-> >
->
-> The series applied for next, thanks!
->
-> Note, I am leaving you to address/discuss Huacai's comment on patch1
-> as a new patch on top.
-Hmmm, if possible, I prefer Binbin to send a clean v5 with that
-modification. Or you modify it by yourself when applying.
+In AM69 SoC there are 4 instances of the 4 lane SERDES. So in
+"serdes_ln_ctrl" node there are total 16 entries in "mux-reg-mask"
+property. But "idle-states" is defined only for the lanes of first two
+SERDES instances. SERDES lane mapping is left at its reset state of
+"zero" for all four lanes of SERDES2 and SERDES4. The reset state of
+"zero" corresponds to the following configuration:
 
-Huacai
+Lanes 0 and 1 of SERDES2 are unused
+CPSW MAC Ports 1 and 2 mapped to lanes 2 and 3 of SERDES2
+EDP Lanes 0, 1, 2 and 3 mapped to lanes 0, 1, 2 and 3 of SERDES4
 
->
-> Kind regards
-> Uffe
+For completeness, define the "idle-states" for the lanes of remaining
+SERDES instances.
+
+Signed-off-by: Hrushikesh Salunke <h-salunke@ti.com>
+---
+This patch is based on commit
+26ffb3d6f02c  Add linux-next specific files for 20250704
+
+Changes since v1
+As pointed by out by Siddharth, setting lanes of remaining SERDES
+to "unused" will cause regression on AM69-SK as these lanes are used
+by CPSW and Display. Updated patch to set the desired values for
+remaining serdes lanes.
+
+Rebased on current next.
+
+v1: https://lore.kernel.org/all/20250609115921.2380611-1-h-salunke@ti.com/
+
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+index f28375629739..e803fa139b73 100644
+--- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+@@ -1294,8 +1294,12 @@ partition@3fc0000 {
+ &serdes_ln_ctrl {
+ 	idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>, <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
+ 		      <J784S4_SERDES0_LANE2_PCIE3_LANE0>, <J784S4_SERDES0_LANE3_USB>,
+-			<J784S4_SERDES1_LANE0_PCIE0_LANE0>, <J784S4_SERDES1_LANE1_PCIE0_LANE1>,
+-			<J784S4_SERDES1_LANE2_PCIE0_LANE2>, <J784S4_SERDES1_LANE3_PCIE0_LANE3>;
++		      <J784S4_SERDES1_LANE0_PCIE0_LANE0>, <J784S4_SERDES1_LANE1_PCIE0_LANE1>,
++		      <J784S4_SERDES1_LANE2_PCIE0_LANE2>, <J784S4_SERDES1_LANE3_PCIE0_LANE3>,
++		      <J784S4_SERDES2_LANE0_IP2_UNUSED>, <J784S4_SERDES2_LANE1_IP2_UNUSED>,
++		      <J784S4_SERDES2_LANE2_QSGMII_LANE1>, <J784S4_SERDES2_LANE3_QSGMII_LANE2>,
++		      <J784S4_SERDES4_LANE0_EDP_LANE0>, <J784S4_SERDES4_LANE1_EDP_LANE1>,
++		      <J784S4_SERDES4_LANE2_EDP_LANE2>, <J784S4_SERDES4_LANE3_EDP_LANE3>;
+ };
+ 
+ &serdes_wiz0 {
+-- 
+2.34.1
+
 
