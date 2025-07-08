@@ -1,99 +1,89 @@
-Return-Path: <devicetree+bounces-194010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CDE5AFC768
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 11:50:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8702AFC777
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 11:52:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 419D53B4C29
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 09:50:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D141168AB7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 09:52:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A9B3266B67;
-	Tue,  8 Jul 2025 09:50:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FTm54VJu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82266262FFF;
+	Tue,  8 Jul 2025 09:52:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023137.outbound.protection.outlook.com [52.101.127.137])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31FD7266581
-	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 09:50:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751968236; cv=none; b=SCka9o2oWbNtsl1W+eiio2FM6ZG3lR7IrBhOiKHs2ekplAc2S4aB4PsTRqury2P8nCFwFhxrRK3CwIjx9i2PQ7MNcTZaDzt7pt3JezOSrKI9sWYUeKNtjy4+7GjteHQ5g2YS9WTjZZKv1iFhretRyUc13jm4PdSsD/XWKu/E8GU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751968236; c=relaxed/simple;
-	bh=t89Yf7+DerPlaKJU1hIyceP0lU68DrU0bFoPmD6e0bg=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F92921FF51;
+	Tue,  8 Jul 2025 09:52:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.137
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751968324; cv=fail; b=FGeP95mca7lGeBjZYkseoC8mjL3rjXe6wvlXulBEUULu0oicxMPEHLvNB5CifWVbuxWW6ebAXWquFTqkze86qQ2JHwPvORm3sV2ywI+Ixcw79XCUfRij3LXvI+X4PsuFPR8DGK4av7bbPwgkeqSiUf3UHnyjedv2IXp64/RN6Ko=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751968324; c=relaxed/simple;
+	bh=VVaZlNF7lRmZGHMP9UxkW14za6TGGlE7/IdlrdpIrcQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AjWIYVF6mnp2ZqF8AQueOpEGFdKhJoXujF5D2BdzaIdOMprGxH4WyeoezFX7QViOdWzfnc3x16Gl6YkKj9hOxBGfLqkDh/IYERndl/jmVHRVCQ1LqqewzBiGHS3KcObX8iprPrU83BMrnbam0x3Ew5QfEOIeb+r1T92ASf2PKG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FTm54VJu; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3a575a988f9so2579245f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 02:50:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751968232; x=1752573032; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=pSJ4xbdE5FzpQMbGAihlry1r8QLUQSOrBPNupb4bNqM=;
-        b=FTm54VJuSiQiNbzwd3kzxy8AOLOtSCDQbWAHHrBtaIiUche2GQIjGBHsb+ABIaZcnN
-         eAdqxtgY5t/q+QAY4OrrvjR7kneuAg7l89nNg+T1iIWMaWd3XTa48oMFj4UUQIyg8bKT
-         wWAVsMJSWtQhNDhdxI/EBIQXLTHQpsNMuuf+FpaBBNwxQd53uun18DvuMG035eLi0ws1
-         8WClX1vWWqrXkv2kYNSg7GqNcznB/DSxnzRrJWcWB4/ivqfv3rsfYhMFNYnK6oToJdpe
-         VEb9+STRqOWvkaDhIVOD0npOo81PrsonMphPc0KQPkHlNlnZTRPSyZvSL0iGpBBTg2E2
-         SfUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751968232; x=1752573032;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pSJ4xbdE5FzpQMbGAihlry1r8QLUQSOrBPNupb4bNqM=;
-        b=MOETN7GtxXBqRrNu27HF3Xa+Qvp3SH1+wRnQxRxkG7zOMP5mzu4FM1ITDHfhF2GeQf
-         e6n4VVw/BQ8e3citDRko0hkSy0FEqF5PcywFlWjwL8KsG8dEHdcf9HcJ1+aGqHufTJE0
-         PhjLCqIA8JiboV1gFkMzHclXGpxZF8tAsupEmB85XFAkRWHXnuwMfTFrQbAr6kI70MkF
-         IY49ffXGGwVgvO6/KhJsXk+JKlRgAAp9lDlqvMvYMbnSJvg5jUc1uFfv4wfXYHb2+wYG
-         U6zcosYL6MtU1pTqE9rqkXnTehdnIWCNYiXYUCtf09iIcp3yMk1YTdfggxHvqU6UIm9y
-         lJoA==
-X-Forwarded-Encrypted: i=1; AJvYcCWOhwIPOPnoYsoH0arRgdeWhYB20rPKNSMFN6Z+bFqJGkoybRSMFFjr8ED8QdPdajgpQ/WvNhLiRwIg@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrW7uZt8qmgqopuCK23uIXJBilGCx9bxj2tbTjiMXY1XctP9ry
-	SO4uMtivzaUtIbZIVsfB4qJiN5L64aww05iZcn0htj+Mu/yqPVICmGRCWRb8+uu8QvY=
-X-Gm-Gg: ASbGnctMp6zqrPx4GNWEKOtWE3pR2esZxE+uMsNZaSb+Sp3xtRo081gt4VY4kJfJ6y6
-	dKM2BmeCt/Y2CR47q3nt8MwCs42PXqM4USdWkENIlqaybAlo0CdNpmpLmcJmjQdOoKuMXy2LDmy
-	Y+f7/TibkUPFUL+FXXvQ4S9vOmSOfHuoDKEmFNJeMwNC14KFfkxTTaoE7Pc3upr1kMxur7lqg4u
-	eUla5Gmj+bAR6BjU3NlYWJ19btYTx1hZZIwg/OUvqVCi6G0xMopr5t5h69eFCj6eBwxTAwQwjnF
-	AcKPOxu/fCUNioRRrr1ZzdFHATckGumF0ATq9cjClIdkE6jYqPxu0ieoxv/m729d25Nck2n/VMj
-	IYxQ/RjeixD9gdv8GRJv0BF6GYjmEKFxMGew=
-X-Google-Smtp-Source: AGHT+IHxZjUwhr7/XtNanwJKqQGkEPOWNVunJNfj6Cx7RTxPaIJicvhyp1mjjFMNb1tJ1wQb1OvA/Q==
-X-Received: by 2002:a05:6000:2b03:b0:3b3:e3f6:4a9b with SMTP id ffacd0b85a97d-3b5ddedc46emr1157400f8f.41.1751968232398;
-        Tue, 08 Jul 2025 02:50:32 -0700 (PDT)
-Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454cd38f092sm17559575e9.1.2025.07.08.02.50.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jul 2025 02:50:31 -0700 (PDT)
-Date: Tue, 8 Jul 2025 11:50:29 +0200
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: William McVicker <willmcvicker@google.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-kernel@vger.kernel.org,
-	Lorenzo Pieralisi <lorenzo.pieralisi@linaro.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Rob Herring <robh@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Linux-Arch <linux-arch@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH RFC] timer: of: Create a platform_device before the
- framework is initialized
-Message-ID: <aGzp5esx1SpR9aL5@mai.linaro.org>
-References: <20250625085715.889837-1-daniel.lezcano@linaro.org>
- <aGMjfxIvbCkyR5rw@google.com>
- <27644998-b089-44ae-ae5f-95f4d7cbe756@app.fastmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RbtQHcPGYdYeZbpkmhw1w//f/WXGbsbFgZmmEcCI9zMCwnYVuqUt/KebyNB2NRUb7cVQlwdLRqBVST9oEAAUdzN0By+VERkeSFzuGb2KqcHmit5nZvPKUwDBT3rCpJSOlPbTTgT3aRquBfsXdDudEM9h0byxdxtTKVXf/TT5C5k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eEhx3cCP4ZxL3/y8Bi7q+zt8z3/o3+oZesN7aNHnqFc6DwyqNFJ+qqg3MLMdLN4LRsJiYBe0mA8mlSPwLosOBEgBtHw9O2HBohGyQwrOw4Ues1xMNwNsCRCj+VM4wJ1E1JCIkDXud+AgMq4BVvIHDKaIhOgzIjTay3My9N3PnnJKktNlQTJAhBBCzsImQT1ZbEhmwcJq4qUUZY33xefmmMsWiXl/WtVI1CU8b8zooh3a10zy9zn/i98jzMI9FCUFYAacjOOMg/XvXY3HGqXPggHYz0YHUkWGAtq/A/ws4cDbp7kmyhdcIAUMbp1AWkergNJDCs4hUiLfArjR0ByCNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=be1OVpHHhSE5GAg+9vrgJi/nIoens3SkLozlJyDnxO8=;
+ b=xPUR9KJs/YGACa1mbsJUzCj3AssIS6ZxrAgfJV98Rq73kjNMN2chSwzCoZ0m7c5FK11v0tRi8U49PF/6MtUOEQw1Vek/Pun29H/CQUYtf/qLz7OA/fvjcmEK14DeOhSS32lIOaMuwJykWGxdI96Vj2EUa31TJ3fTZUP2S2nKSd5X2YR6Cokf6yt+KpEtU82cZTZVmVIz+isct6KAPZW4gyw6KMA+7aNWN3z0HIerD8sfPLJhsdkJ2aAgTSXf1dgWc2NpaEA0kFOtfI740RQZeR7e+SClJuoYtwJRnIjKG7NIyBQfJxCp5PArMZCR7igtIgLfUH3pa3wXX/esy434ew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TYCP286CA0138.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:31b::13)
+ by SEYPR06MB5085.apcprd06.prod.outlook.com (2603:1096:101:55::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.25; Tue, 8 Jul
+ 2025 09:51:56 +0000
+Received: from TY2PEPF0000AB87.apcprd03.prod.outlook.com
+ (2603:1096:400:31b:cafe::1d) by TYCP286CA0138.outlook.office365.com
+ (2603:1096:400:31b::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8922.20 via Frontend Transport; Tue,
+ 8 Jul 2025 09:51:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB87.mail.protection.outlook.com (10.167.253.6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8901.15 via Frontend Transport; Tue, 8 Jul 2025 09:51:55 +0000
+Received: from gchen (unknown [172.20.64.84])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 6D1F844C3CB4;
+	Tue,  8 Jul 2025 17:51:54 +0800 (CST)
+Date: Tue, 8 Jul 2025 09:51:53 +0000
+From: Guomin chen <guomin.chen@cixtech.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>, Arnd Bergmann <arnd@arndb.de>
+Cc: Peter Chen <peter.chen@cixtech.com>, Rob Herring <robh@kernel.org>,
+	krzk+dt@kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com, Marc Zyngier <maz@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Kajetan Puchalski <kajetan.puchalski@arm.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Guomin Chen <Guomin.Chen@cixtech.com>,
+	Gary Yang <gary.yang@cixtech.com>,
+	Lihua Liu <Lihua.Liu@cixtech.com>
+Subject: Re: [PATCH v9 5/9] mailbox: add CIX mailbox driver
+Message-ID: <aGzqOTHE0equy6m3@gchen>
+References: <20250609031627.1605851-1-peter.chen@cixtech.com>
+ <20250609031627.1605851-6-peter.chen@cixtech.com>
+ <64f39e94-7e88-49d0-8455-cd77d61d4fe2@app.fastmail.com>
+ <CABb+yY1pzut-A9Xf117AoGMze2OevWKYrH5NtWBGFBhAMZky+A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,109 +93,133 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <27644998-b089-44ae-ae5f-95f4d7cbe756@app.fastmail.com>
+In-Reply-To: <CABb+yY1pzut-A9Xf117AoGMze2OevWKYrH5NtWBGFBhAMZky+A@mail.gmail.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB87:EE_|SEYPR06MB5085:EE_
+X-MS-Office365-Filtering-Correlation-Id: d07c6970-8955-4563-ce65-08ddbe0512f0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|376014|7416014|1800799024|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ekFTQWJjc082dHF3TE5VR204RXBpekxxKzU4aFp2V0EyQUdyOWhoRVZxTS9B?=
+ =?utf-8?B?V3IxMkFieXlCbzBCaUdMWDBTbTQ4VXNsWUVSenI2TDhtS3I4WTdyazBsSWVh?=
+ =?utf-8?B?N2tteVVuRkF0Vy9Ed0VZd0ZYTndsSjhiRkg2WnlzL1ZneUhGNGJTYytGMnh0?=
+ =?utf-8?B?ZkljNzZlYzBhM2pTSG90NzlZR1RBVnhBWFVvZlE0ZHl0Uk1URVlxQWxaNG0w?=
+ =?utf-8?B?YXU2MDVBNUlYSmhVa3hwdEdNbHl1bDlReHphb3k4Yms3QjRjWlpOcXZtR0Ew?=
+ =?utf-8?B?YkZMcHIvSG5VbG4rTzJEbVhvZzRNWVA1eTJvOEhBVk5heDFmT0MvT05wc2Zs?=
+ =?utf-8?B?UHkyRmdLM0dRbE12SEp5TDkwaXJudk41bXM3dmc5QUFxS0dnc0tTRnRSS2F0?=
+ =?utf-8?B?S0VqK2ZSb1ZDcUk0RVc0OGFlU0lNQmJsUnhhd0xjeTgyNDlBMkdUWjB2ZVNk?=
+ =?utf-8?B?TmRsSEJ2cEpvWWtBRkFNQ3pXWktyZkFaT3FUUndYTkx1RUYyZVYvYlBsYjZt?=
+ =?utf-8?B?aElMSU5RMEt1bzZOZHMyR0djQTFZTVFrRy96bHVvdzZKU3pOYWFZNS9VRTRJ?=
+ =?utf-8?B?Q1BCY24zSm9MbG5zN0xKZ1A5MmhHY25aVHBDRVRxakxmeHhiT2V0b2RoK2N6?=
+ =?utf-8?B?SmVZL0NSZDQwajgrV1o1RjVqeE1ub3B3RWtqdWErTEpnSytWaXNCdGVxUGVV?=
+ =?utf-8?B?VS91ODArSTIzQWZVVWQvM0FXSk94RkhBVkRJdXdXdDlHWjFCZnlyMm04ZkFR?=
+ =?utf-8?B?QWlYdU5JeTJuR2wvOWJsNi9ucW9BYWVWRldtbHJNaVRiYVZ0c2hwTDJnbStX?=
+ =?utf-8?B?S0RPMlErR29RaHpzTHljbHRxNjVWTXh4SWowRWxDYkZhUGkzdGFMTDBLRXFZ?=
+ =?utf-8?B?UFZMYzhodjZJZFIrSWF1a3hQem5Ub01GSnJ1OGFQR3JlclY4VlhtV1htQXRR?=
+ =?utf-8?B?Z3NDbnNKUWRpaXArK2ZzR25HZzZNc3RHVEVJN3B0WWRSZkhtcDJVSTBkWElZ?=
+ =?utf-8?B?UUN0dmJvZDhNR3pZL2tNUExyb3EweXgvcTdFZm5XMlBFRVdTU01GcWwxampy?=
+ =?utf-8?B?UDRmZEtUMXFXNm9rMVJxcW1UZVRqR0drTEc3WGNNRHo4RE5pUG80MnNYS0Ev?=
+ =?utf-8?B?UkhBWjBNZWx5NFBDVUs3UDRlNFVzblZhaFRRTUhLd0QvMnRJZmFnTDZaY0JZ?=
+ =?utf-8?B?WHQ3VlVtb2s5T3ROODk4aEJEbjlEdTVuQW1nNmkxekdoeVhWNEh0RGZDU2xB?=
+ =?utf-8?B?RFNwQ3JyUkZONVhsVTNrZDJuRzJqU3ZrdEdTZTgrQVc5ZU5vWU9IbE1tVWM1?=
+ =?utf-8?B?QkxNS2g1MzFnWlBpbVJqbDRJd0lHcDI0WVJlbUFPR1lUQStPV09XU3h1ZDVZ?=
+ =?utf-8?B?OVNLYnczMkIyeE5MQlphaDNxS3I2Z0o2RVI3blMxVXYrNklhTzJEcm45Y0ln?=
+ =?utf-8?B?d2RkUWtPcWNvL2pDVlJjZ0VNTUk2eEMwcGpiWHg0QUdnUy9CNkxwMER6NTRn?=
+ =?utf-8?B?eU5iclJwQ1o3NDdwazdFRU96QzYxWmt3eHRFSW9SdVVsRmdid1J2T0ZWVVox?=
+ =?utf-8?B?aXQrenJwazFBTklIQk9qQmtkNldobkZBckV5a2Rkbnp6QURPZDFLa29YZC9o?=
+ =?utf-8?B?aWJGbGtLcnQyM3BVVmhybFcyOXFHblRxanUrUEVhc1BvL2lwaVhET0dJaHdL?=
+ =?utf-8?B?dE5FVUptU2JQMmU2TStGeFhtNm9ZUlpLTW5HT1VHZTdJOEhDRm14STNINjYr?=
+ =?utf-8?B?T2hGUUk3RUVuaERXSzlwM0dVeGVtc0ovbElCTG5JeWxNM2FmUWtIL2JiMlZU?=
+ =?utf-8?B?U0ZubCtCYVVybGorNVpNUVh3bVQzalgzUGZBaXJRSW0wV0NLeDBJNmZyTmJ6?=
+ =?utf-8?B?RDBhNjdkeGtBbm5JYkc0cEdpb0dyVTVGcHRkWU5FMU1RbDAzc0p3bWdJL3ZH?=
+ =?utf-8?B?R0hvbXAwcGl2clNlQUc4aWhDUHF2NzBBM05SeDJaWnVET2NIK0pRMXVPWW42?=
+ =?utf-8?B?aWZvL0hRRGtGTFNoelloY29MVVVtU2hmM0RYc3dyd3pLQ2MrZms1YXBqa2Na?=
+ =?utf-8?Q?ogvaVn?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(7416014)(1800799024)(82310400026);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2025 09:51:55.6383
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d07c6970-8955-4563-ce65-08ddbe0512f0
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB87.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5085
 
-On Tue, Jul 01, 2025 at 09:52:45AM +0200, Arnd Bergmann wrote:
-> On Tue, Jul 1, 2025, at 01:53, William McVicker wrote:
-> >> @@ -1550,6 +1553,8 @@ typedef void (*of_init_fn_1)(struct device_node *);
-> >>  		_OF_DECLARE(table, name, compat, fn, of_init_fn_1_ret)
-> >>  #define OF_DECLARE_2(table, name, compat, fn) \
-> >>  		_OF_DECLARE(table, name, compat, fn, of_init_fn_2)
-> >> +#define OF_DECLARE_PDEV(table, name, compat, fn) \
-> >> +		_OF_DECLARE(table, name, compat, fn, of_init_fn_pdev)
-> >
-> > To support auto-module loading you'll need to also define the
-> > MODULE_DEVICE_TABLE() as part of TIMER_OF_DECLARE_PDEV().
-> >
-> > I haven't tested the patch yet, but aside from my comment above it LGTM.
+On Fri, Jul 04, 2025 at 01:35:51PM -0500, Jassi Brar wrote:
+> [Some people who received this message don't often get email from jassisinghbrar@gmail.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
 > 
-> The patch doesn't actually have a module_platform_driver_probe()
-> yet either, so loading the module wouldn't actually do anything.
+> EXTERNAL EMAIL
 > 
-> I feel that this RFC by itself a good step in the direction we want, 
-> so Daniel should go ahead with prototyping the next two steps:
-> adding the platform_driver registration into OF_DECLARE_PDEV,
-> and converting a driver so it can be used either with the _OF_DECLARE()
-> or the platform_driver case.
+> On Fri, Jul 4, 2025 at 11:05 AM Arnd Bergmann <arnd@arndb.de> wrote:
+> >
+> > On Mon, Jun 9, 2025, at 05:16, Peter Chen wrote:
+> > > From: Guomin Chen <Guomin.Chen@cixtech.com>
+> > >
+> > > The CIX mailbox controller, used in the Cix SoCs, like sky1.
+> > > facilitates message transmission between multiple processors
+> > > within the SoC, such as the AP, PM, audio DSP, SensorHub MCU,
+> > > and others.
+> > >
+> > > Reviewed-by: Peter Chen <peter.chen@cixtech.com>
+> > > Signed-off-by: Guomin Chen <Guomin.Chen@cixtech.com>
+> > > Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> > > Signed-off-by: Lihua Liu <Lihua.Liu@cixtech.com>
+> > > Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+> >
+> > This is the only driver holding up the merge of the CIX
+> > platform, so I had a closer look myself.
+> >
+> Sorry I wasn't made aware of this. Also I normally let the drivers
+> roast until second half
+> hoping other platform folks find issues - I have reduced imposing my
+> opinions on platform
+> specific code because it is usually met with some sledge-hammer requirement.
+> 
+> >
+> > The one thing that stuck out to me is the design of
+> > having multiple types of mailbox in one driver, which
+> > feels out of scope for a simple mailbox.
+> >
+> Yes, if not all modes are used currently, maybe drop unused ones.
+> 
+Hi Jassi Brar & Arnd Bergmann
+Many thanks to both of you for your responses.
 
-I'm questioning the relevance of adding the macro when the driver is
-not compiled as a module.
+In the CIX platform, each mailbox controller is equipped with 11 channels,
+categorized into four communication types: Doorbell, REG, FIFO, and FAST.
 
-The first step of this macro is to allow the existing init functions
-to be converted to the same signature as the module probe functions in
-order to share the same code and take benefit of the devm_ variants
-function which will considerably reduce the code size of the drivers.
+The Doorbell/REG transfer modes are used for the SCMI framework,
+while the FIFO transfer mode is used for the remoteproc/rpmsg framework.
+Currently, there are no clients using the FAST mode, but there may be in the future.
 
-Then we have the following situations:
+In the CIX Sky1 SoC, there are 4 pairs of mailbox controllers (since each
+mailbox controller is unidirectional, 2 mailbox controllers are required
+to establish a single bidirectional communication link, one for receiving
+and one for transmitting):
+ AP <--> PM (using Doorbell transfer mode),
+ AP <--> SE (using REG transfer mode),
+ AP <--> DSP (using FIFO transfer mode),
+ AP <--> SensorHub (using FIFO transfer mode).
 
- 1. The driver has to be loaded very early TIMER_OF_DECLARE_PDEV
- (MODULE=no) the function timer-probe() is used
+Since this patchset is only a minimal system that includes only the necessary
+subsystems for booting, it contains only the SCMI clock client using Doorbell
+mode. Other clients using different transfer modes are not included in this
+patchset, but they will be added later.
 
- 2. The driver is a module_platform_driver() and MODULE=no, then it is
- built as a builtin_platform_driver(), we do not care about having it
- loaded by timer-probe()
+Supporting multiple types of transfer modes is a feature of this driver
+that leverages the hardware capabilities. We are not the only ones with
+a relatively complex mailbox design; for example, the NXP mailbox driver
+also supports multiple types of transfer modes.
 
- 3. The driver is a module_platform_driver() and MODULE=yes
-
-If we do the change to have the TIMER_OF_DECLARE_PDEV() adding the
-platform_driver registration when MODULE=yes but using timer-probe
-when MODULE=no, we change the initialization and we will have issues
-with timers needing resources like SCMI clocks and where the
-mechanisms rely on EPROBE_DEFER.
-
-IMO, module_platform_driver and timer_probe must be separated.
-
-Let's assume the one possible future use case with the VF PIT. This
-timer is only used on ARM but now it is also supported for the ARM64
-s32g2. For the first platform we need it very early and in the second
-case, we need it later because the architected timers are there.
-
-We should endup with:
-
-static const struct of_device_id pit_timer_of_match[] = {
-	{ .compatible = "nxp,s32g2-pit", .data = &s32g2_data },
-	{ .compatible = "nxp,s32g3-pit", .data = &s32g3_data },
-	{ }
-};
-MODULE_DEVICE_TABLE(of, pit_timer_of_match);
-
-static struct platform_driver nxp_pit_driver = {
-	.driver = {
-		.name = "nxp-pit",
-		.of_match_table = pit_timer_of_match,
-	},
-	.probe = pit_timer_probe,
-};
-module_platform_driver(nxp_pit_driver);
-
-TIMER_OF_DECLARE_PDEV(vf610, "fsl,vf610-pit", pit_timer_probe);
-
-If we change the TIMER_OF_DECLARE_PDEV to a macro which relies on
-timer_probe when MODULE=no, then the "nxp-pit" on the s32gX will fail
-to initialize because of the SCMI clocks not ready and the routine
-won't reprobe the function. This issue won't happen with
-builtin_platform_driver
-
-What about something like:
-
-TIMER_OF_DECLARE_PLATFORM_DRIVER(__name, __driver) \
-  TIMER_OF_DECLARE_PDEV(__name, __driver->probe); \
-#ifdef MODULE
-  module_platform_driver(__driver);
-#endif
-
-Then in the timer_probe() we browse the of_match_table compatibles and
-if the probe function succeed then we do of_node_set_flag(np,
-OF_POPULATED) which is supposed to prevent calling the probe function
-later.
-
-Thoughts ?
-
---
-
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Thanks
+Guomin Chen
+> 
+> Thanks.
 
