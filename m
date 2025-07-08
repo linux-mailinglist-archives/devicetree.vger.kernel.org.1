@@ -1,218 +1,239 @@
-Return-Path: <devicetree+bounces-194126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC300AFCC2D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 15:33:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2C7DAFCC3F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 15:36:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D55C77B4BD1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 13:30:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C6763B4CD5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 13:31:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 693832DEA9A;
-	Tue,  8 Jul 2025 13:28:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A292DCF71;
+	Tue,  8 Jul 2025 13:29:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JqJ2duxg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6622F220F5E;
-	Tue,  8 Jul 2025 13:28:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3955F2DCBF7;
+	Tue,  8 Jul 2025 13:29:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751981299; cv=none; b=hoeckxl7UV5YZYsSmmKCcAMOFs3EZ6RGZqym1zmXUaIInHIrQWHE+VBkIMoLkBmIlPFnIkVuvj7lpKptf510SBDZVxnIswL9Y9A7gY4tjawvhppir3eTnAzKsYDidWOrkSWP90Hqoyrjsj1PcVQYuSQcO8iU3xFxQBWx7/mayyQ=
+	t=1751981391; cv=none; b=F6vzMDWrmEAnAKLbhfzAmebyJ6OfCn0dd/sKNMMG/3kRWen5zjfd7jQxQkUaTwetS5KzlAJmO/7V5aK9u88IfJjUldauVbBE/7cbOrxcJNwudwmuoyS2wgQMVaXwIGaZK7mWdF8X1RZDbTR3fOKGhfKRrmG022abIUvXdK8B7/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751981299; c=relaxed/simple;
-	bh=1yZpcF/YahkL+DH/T9SpJ6dHIKpkpWwhLdbkP3+hyJg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bnI8QLyefaKJz7A5iHnBWwoVx5Hr1CpEtGxkQkQEJFOWVehYSCc3jQ72unHIkobflietq6Holx+GwC3tFI9TZklYde2JaZr+4TisB79WciELhiHqepqmdjwNBuClGO4koKzNrMJMkXg3wtkzB+GilnuXGeFeaDW4GpmohobNIBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-8794259ffe8so51627039f.1;
-        Tue, 08 Jul 2025 06:28:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751981291; x=1752586091;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HwXr5JQBPkaBLHWGddnnrahSfTIk8BLpRxGvjvBeRX0=;
-        b=uu8rXWcBOq+N9fkwF6BCOMztro6l1L5cN4A+FHMXeDj7f306eam3awgz1ynRbX203I
-         328egMRU37561VHPcJ5iE5AVtv3bfNV144GvjP9ACh/hgG9TvEbMqDfjz8UdhQ++7ymZ
-         WxDzB6hpdEtEZm8NFABM5yvpIgbr13tq9cKa9sGz73Duh9G/qsyOlHsIaf0qmsAqYLh7
-         rWrNhmqRkRtvAhjyg7BX0Mjy3+YrfJtaXsmFRIZcHvnKkvHWWeONkLm2F/aHt6EDTnAM
-         0PCp38oNmakNKDIhXtAkdw+L3kF/F7Ct0zvsztyD+WZ0FDsrcaz74ogcg13yZ2mQVfKI
-         PJ9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU5hwsxezmkLnhM2+Zp0wAXJNmdRw5JpsfCU6yLxs0Wqw/vKF2o+ej+f8SKpt1aAU2wfwJxOP/ZGSlDs1KX@vger.kernel.org, AJvYcCX2kd7029HXsiLf3q33LXSlEIBG/pJbdTgmkiIUqjt0zRnOT7ZdiZnaM9GOjyI5THwHPRh2ei/YOvmGaQ==@vger.kernel.org, AJvYcCX5sLfFSe4uLLdSdny1aqJDlkbAcJwngUaSSfEGQ733RahphhjrT+fe5IiXUFrenfWPyHVvpuJectvX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyrtk6uZ5PksQEKXKVscFNanxFwIxgzkA1Urpyn7ZBcNMTiHJvY
-	b2aJfKmlpBvTcga7q/4XNZ0Q+EPQgZphy76z18k/sskQeBlyfWc4vw8RiCG2cvRqBbE=
-X-Gm-Gg: ASbGncuMFf8wVkBKdd9uxze4tDpZaaVk9O8SF90tNCr2jUOSqziJ6kHKnqFWRidsNNw
-	uLZDuVjBHkHXzHbVlb+APXrIFPOAXL50FZXv2LQv9KUQ4xqzAyZPoRFDt3H4IKJKif0XhdlAvhq
-	Dc7m5ee9t4dNvAv6kzaaJn5PrYkctwjJFfd9vfpBAUQF1etPvJ1VrX3TNIOJqMgRy2ePiWrudqf
-	hnZgRjD2XIrkYnOqO5UxFtG6kjZ9NMzQ7bjBWaEl8rCfZn8cPTEFEyhOhi5L2+QPgrZGMIP2lMa
-	O3GvUu8hN4sQRSZxyDgwVI7+eJgyV/ygUjPIWbGu7/t3JViq+PNMxH1Tj14vsaR23bJA5TEPwtV
-	hs+Saj0txNjEBPB8=
-X-Google-Smtp-Source: AGHT+IE7qUsKgl5Uth7T/A1Bp8ngI7sw84zTX6ON9RqZpJk9nkhrzOKKJrHs+sgtmapH1YMqWV+knA==
-X-Received: by 2002:a05:6602:740c:b0:876:737:85da with SMTP id ca18e2360f4ac-8794c10a9cemr278744539f.0.1751981291319;
-        Tue, 08 Jul 2025 06:28:11 -0700 (PDT)
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com. [209.85.166.54])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-503b599b64asm2164119173.15.2025.07.08.06.28.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Jul 2025 06:28:10 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-8794259ffe8so51622839f.1;
-        Tue, 08 Jul 2025 06:28:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVKzCotSXFUkHlV7gWY+mZU385I48D1KjG8cLnWqWz1qQtJUTL11nVGtYr0hP9udaHafoYIqTCzhQW3Dg==@vger.kernel.org, AJvYcCW2jxc1fzehiFnB69RogO7kBPze2ExewGIVZcJqUdVEYbCzpOZ1pffkct/5iw4gR+tamLzFAy4RJfZ7@vger.kernel.org, AJvYcCWCM78DAUctphHmzBJBf2SPvMN4ob9BHUE31vT8Fpwd+zYVuNwEZ+55qIdqScqpI/fi+eiHm7kCVN7Pt8eC@vger.kernel.org
-X-Received: by 2002:a5d:94cd:0:b0:86a:441:25ca with SMTP id
- ca18e2360f4ac-8794c5a73e5mr262803939f.6.1751981289780; Tue, 08 Jul 2025
- 06:28:09 -0700 (PDT)
+	s=arc-20240116; t=1751981391; c=relaxed/simple;
+	bh=A1EKSVabl+qhk3bA2YiacxsRGtRMsWUcQIeCfGtmNdc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I/1k4hdnsJeuPFCozF1Z4uaszCRG2C6rnob7g8d5fHcAjqoVM1sF/oEY/Vmkkr67OLDabcmt+XnsWmvYF6vvByW/V/kE11esh6eGUSWHoEFds5WuoUU8t4CK6tj7zWIl1GPxQmjiMgvIYk37VUjDwBkuDgTlSp3PsZc7LiKR9xM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JqJ2duxg; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (mob-5-90-136-241.net.vodafone.it [5.90.136.241])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 48DB68FA;
+	Tue,  8 Jul 2025 15:29:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1751981360;
+	bh=A1EKSVabl+qhk3bA2YiacxsRGtRMsWUcQIeCfGtmNdc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JqJ2duxgrsQe8LeEu5tUDxUiCIg2q8v3YETbfTbrW8l5/LRLjknAhXVNoHhDsrSMw
+	 nidnBq+xYIH0v90O1FcZ+KWXRGb6nky9HASjB+kdC0vUXpYN+ov+tG6gXPFdpTSdmz
+	 /DYDyf8V+IPUHR0Yz3YfY3P2gfeqI3gqZWrX68BQ=
+Date: Tue, 8 Jul 2025 15:29:42 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com
+Subject: Re: [PATCH v3 1/5] media: mc: entity: Add pipeline_started/stopped
+ ops
+Message-ID: <3wprfbxjxteat5vxncys2u2zjkhwquxd4wldk2qka4ooz2synk@5n3zn2sqalml>
+References: <20250704-ivc-v3-0-5c45d936ef2e@ideasonboard.com>
+ <20250704-ivc-v3-1-5c45d936ef2e@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250707165155.581579-1-paulk@sys-base.io> <20250707165155.581579-5-paulk@sys-base.io>
- <20250708003348.58fe509f@minigeek.lan> <CAGb2v650h05aNvsQeQOjg63Ljcarxy2zqXnvNnjJ5+5ooGOELQ@mail.gmail.com>
- <aG0bqasOYUwwgiQY@collins>
-In-Reply-To: <aG0bqasOYUwwgiQY@collins>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Tue, 8 Jul 2025 21:27:55 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64vYEkKm8D_6r_O+fg_tR4zG1Loai1BPVO5AiE-MO=DJw@mail.gmail.com>
-X-Gm-Features: Ac12FXxFG0byldtdYQU-R8wlvBgWN23RRGAX9zRQbdtbd5Tg1tBGYvUbeASjhVY
-Message-ID: <CAGb2v64vYEkKm8D_6r_O+fg_tR4zG1Loai1BPVO5AiE-MO=DJw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: allwinner: a133-liontron-h-a133l: Add
- Ethernet support
-To: Paul Kocialkowski <paulk@sys-base.io>
-Cc: Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Linus Walleij <linus.walleij@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250704-ivc-v3-1-5c45d936ef2e@ideasonboard.com>
 
-On Tue, Jul 8, 2025 at 9:22=E2=80=AFPM Paul Kocialkowski <paulk@sys-base.io=
-> wrote:
->
-> Hi,
->
-> Le Tue 08 Jul 25, 16:18, Chen-Yu Tsai a =C3=A9crit :
-> > On Tue, Jul 8, 2025 at 7:36=E2=80=AFAM Andre Przywara <andre.przywara@a=
-rm.com> wrote:
-> > >
-> > > On Mon,  7 Jul 2025 18:51:55 +0200
-> > > Paul Kocialkowski <paulk@sys-base.io> wrote:
-> > >
-> > > Hi Paul,
-> > >
-> > > > The Liontron H-A133L board features an Ethernet controller with a
-> > > > JLSemi JL1101 PHY. Its reset pin is tied to the PH12 GPIO.
-> > > >
-> > > > Note that the reset pin must be handled as a bus-wide reset GPIO in
-> > > > order to let the MDIO core properly reset it before trying to read
-> > > > its identification registers. There's no other device on the MDIO b=
-us.
-> > >
-> > > putting the PHY reset GPIO into the MDIO node is a clever solution, I
-> > > was struggling with putting it either in the MAC or PHY node, though
-> > > conceptually it would still belong in the latter, I think. But this
-> > > might be a more generic problem: for most other devices we activate
-> > > reset and clock gates *before* trying to access them, though this mig=
-ht
-> > > be historically different for Ethernet PHYs.
-> >
-> > The phylib core has code to deal with reset GPIOs listed under the PHY =
-node.
-> > It might be worth checking why that doesn't work.
->
-> While this code does exist, it's too early to be called when the mdio bus=
- is
-> trying to probe the phy. I was also surprised the existing reset gpio sup=
-port
-> in the phylib core didn't take effect (that's how I tried to implement it=
- first)
-> only to find that the code was never called. It's only called once the ph=
-y was
-> probed and registered.
+Hi Dan
 
-OK, that's definitely weird. The code looked like it just walked the DT
-and registered PHY devices, upon which the GPIO lines would be found and
-toggled.
-
-ChenYu
-
-> Cheers,
+On Fri, Jul 04, 2025 at 12:20:18PM +0100, Daniel Scally wrote:
+> Add two new members to struct media_entity_operations, along with new
+> functions in media-entity.c to traverse a media pipeline and call the
+> new operations. The new functions are intended to be used to signal
+> to a media pipeline that it has fully started, with the entity ops
+> allowing drivers to define some action to be taken when those
+> conditions are met.
 >
-> Paul
+> The combination of the new functions and operations allows drivers
+> which are part of a multi-driver pipeline to delay actually starting
+> streaming until all of the conditions for streaming succcessfully are
+> met across all drivers.
 >
-> > OOTH, there's no code to deal with regulator supplies for PHYs.
-> >
-> > ChenYu
-> >
-> > > > The datasheet of the PHY mentions that the reset signal must be hel=
-d
-> > > > for 1 ms to take effect. Make it 2 ms (and the same for post-delay)=
- to
-> > > > be on the safe side without wasting too much time during boot.
-> > > >
-> > > > Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
-> > >
-> > > Despite the above, this looks fine, and works for me:
-> > >
-> > > Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> > > Tested-by: Andre Przywara <andre.przywara@arm.com>
-> > >
-> > > Cheers,
-> > > Andre
-> > >
-> > > > ---
-> > > >  .../sun50i-a133-liontron-h-a133l.dts          | 19 +++++++++++++++=
-++++
-> > > >  1 file changed, 19 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a=
-133l.dts b/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts
-> > > > index fe77178d3e33..90a50910f07b 100644
-> > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dt=
-s
-> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dt=
-s
-> > > > @@ -65,6 +65,25 @@ &ehci1 {
-> > > >       status =3D "okay";
-> > > >  };
-> > > >
-> > > > +&emac0 {
-> > > > +     pinctrl-names =3D "default";
-> > > > +     pinctrl-0 =3D <&rmii0_pins>;
-> > > > +     phy-handle =3D <&rmii_phy>;
-> > > > +     phy-mode =3D "rmii";
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&mdio0 {
-> > > > +     reset-gpios =3D <&pio 7 12 GPIO_ACTIVE_LOW>; /* PH12 */
-> > > > +     reset-delay-us =3D <2000>;
-> > > > +     reset-post-delay-us =3D <2000>;
-> > > > +
-> > > > +     rmii_phy: ethernet-phy@1 {
-> > > > +             compatible =3D "ethernet-phy-ieee802.3-c22";
-> > > > +             reg =3D <1>;
-> > > > +     };
-> > > > +};
-> > > > +
-> > > >  &mmc0 {
-> > > >       vmmc-supply =3D <&reg_dcdc1>;
-> > > >       cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> > >
-> > >
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> ---
+> Changes in v4:
+>
+> 	- Reverted to having the iter variable
+>
+> Changes in v3:
+>
+> 	- Dropped the iter variable now that the pipeline entity
+> 	  iterator functions don't need it.
+> 	- Updated documentation to specify Optional and return
+> 	  values
+>
+> Changes in v2:
+>
+> 	- Refactored media_pipeline_started() such that the cleanup
+> 	  function for media_pipeline_entity_iter is unconditionally
+> 	  called
+> 	- Avoided using media_entity_call() helper for operation that
+> 	  has return type void to avoid compiler warnings
+> ---
+>  drivers/media/mc/mc-entity.c | 46 ++++++++++++++++++++++++++++++++++++++++++++
+>  include/media/media-entity.h | 29 ++++++++++++++++++++++++++++
+>  2 files changed, 75 insertions(+)
+>
+> diff --git a/drivers/media/mc/mc-entity.c b/drivers/media/mc/mc-entity.c
+> index 045590905582054c46656e20463271b1f93fa6b4..d3443537d4304e12cb015630101efba22375c011 100644
+> --- a/drivers/media/mc/mc-entity.c
+> +++ b/drivers/media/mc/mc-entity.c
+> @@ -1053,6 +1053,52 @@ __media_pipeline_entity_iter_next(struct media_pipeline *pipe,
+>  }
+>  EXPORT_SYMBOL_GPL(__media_pipeline_entity_iter_next);
+>
+> +int media_pipeline_started(struct media_pipeline *pipe)
+> +{
+> +	struct media_pipeline_entity_iter iter;
+> +	struct media_entity *entity;
+> +	int ret;
+> +
+> +	ret = media_pipeline_entity_iter_init(pipe, &iter);
+> +	if (ret)
+> +		return ret;
+> +
+> +	media_pipeline_for_each_entity(pipe, &iter, entity) {
+> +		ret = media_entity_call(entity, pipeline_started);
+> +		if (ret && ret != -ENOIOCTLCMD)
+> +			break;
+> +	}
+> +
+> +	media_pipeline_entity_iter_cleanup(&iter);
+> +
+> +	ret = ret == -ENOIOCTLCMD ? 0 : ret;
+> +	if (ret)
+> +		media_pipeline_stopped(pipe);
+
+If you take my suggestion to limit the return value of
+video_device_pipeline_started() to three possible error codes, you
+could return -EINVAL here
+
+> +
+> +	return ret;
+
+and 0 here
+
+> +}
+> +EXPORT_SYMBOL_GPL(media_pipeline_started);
+> +
+> +int media_pipeline_stopped(struct media_pipeline *pipe)
+> +{
+> +	struct media_pipeline_entity_iter iter;
+> +	struct media_entity *entity;
+> +	int ret;
+> +
+> +	ret = media_pipeline_entity_iter_init(pipe, &iter);
+> +	if (ret)
+> +		return ret;
+> +
+> +	media_pipeline_for_each_entity(pipe, &iter, entity)
+> +		if (entity->ops && entity->ops->pipeline_stopped)
+> +			entity->ops->pipeline_stopped(entity);
+> +
+> +	media_pipeline_entity_iter_cleanup(&iter);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(media_pipeline_stopped);
+> +
+>  /* -----------------------------------------------------------------------------
+>   * Links management
+>   */
+> diff --git a/include/media/media-entity.h b/include/media/media-entity.h
+> index 64cf590b11343f68a456c5870ca2f32917c122f9..ad658f42357ec505c84d9479bbbf18494da7f939 100644
+> --- a/include/media/media-entity.h
+> +++ b/include/media/media-entity.h
+> @@ -269,6 +269,10 @@ struct media_pad {
+>   *			media_entity_has_pad_interdep().
+>   *			Optional: If the operation isn't implemented all pads
+>   *			will be considered as interdependent.
+> + * @pipeline_started:	Notify this entity that the pipeline it is a part of has
+> + *			been started
+> + * @pipeline_stopped:	Notify this entity that the pipeline it is a part of has
+> + *			been stopped
+
+The documentation of the other functions end with a full stop.
+If the operation is optional, I would specify it here like it's done
+for other operations
+
+>   *
+>   * .. note::
+>   *
+> @@ -284,6 +288,8 @@ struct media_entity_operations {
+>  	int (*link_validate)(struct media_link *link);
+>  	bool (*has_pad_interdep)(struct media_entity *entity, unsigned int pad0,
+>  				 unsigned int pad1);
+> +	int (*pipeline_started)(struct media_entity *entity);
+> +	void (*pipeline_stopped)(struct media_entity *entity);
+>  };
+>
+>  /**
+> @@ -1261,6 +1267,29 @@ __media_pipeline_entity_iter_next(struct media_pipeline *pipe,
+>  	     entity != NULL;							\
+>  	     entity = __media_pipeline_entity_iter_next((pipe), iter, entity))
+>
+> +/**
+> + * media_pipeline_started - Inform entities in a pipeline that it has started
+> + * @pipe:	The pipeline
+> + *
+> + * Iterate on all entities in a media pipeline and call their pipeline_started
+> + * member of media_entity_operations. Optional.
+
+I would move "Optional" to the documentation of the media entity
+
+> + *
+> + * Return: zero on success, or a negative error code passed through from an
+> + * entity's .pipeline_started() operation.
+> + */
+> +int media_pipeline_started(struct media_pipeline *pipe);
+> +
+> +/**
+> + * media_pipeline_stopped - Inform entities in a pipeline that it has stopped
+> + * @pipe:	The pipeline
+> + *
+> + * Iterate on all entities in a media pipeline and call their pipeline_stopped
+> + * member of media_entity_operations. Optional.
+> + *
+> + * Return: zero on success, or -ENOMEM if the iterator initialisation failed.
+> + */
+> +int media_pipeline_stopped(struct media_pipeline *pipe);
+> +
+>  /**
+>   * media_pipeline_alloc_start - Mark a pipeline as streaming
+>   * @pad: Starting pad
 >
 > --
-> Paul Kocialkowski,
+> 2.34.1
 >
-> Independent contractor - sys-base - https://www.sys-base.io/
-> Free software developer - https://www.paulk.fr/
 >
-> Expert in multimedia, graphics and embedded hardware support with Linux.
 
