@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-194208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E25B8AFD4D8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 19:11:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEBDDAFD4C4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 19:09:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3ABD3AD271
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:07:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DDE9161889
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FCA82E540D;
-	Tue,  8 Jul 2025 17:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117EB2DC34C;
+	Tue,  8 Jul 2025 17:08:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HPhSriLj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jGg12qPF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 180B42DCF7B;
-	Tue,  8 Jul 2025 17:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5F73BE46;
+	Tue,  8 Jul 2025 17:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751994475; cv=none; b=S13N5tndYMUo7ZLF5zIw9FCCO03Jz8KM49j0ixg00bz7Qw96KE8HObKedmiZzWAve1qrcrrmkN8QYPJ1CFJRB7TSHvnuBF/0YqskGJ64cxcxy+nNsaUw5MvbXPuwtmwAyXc+uL3q9u3gqtkErZo4JZ5t5w34yFl0nJq0gSaoNvI=
+	t=1751994494; cv=none; b=kskhSZ9FbvuZulwm6C+GQFnNnaVWMDHuyLEq72AWMeITT5hGmFohewg++GhCoVzeWtjTI8JypK8AP8zin5MaA+fewWaBFEmIyuQ0q58B1c7CWNpSI2RslCAzxkwvGcczBr7mAB97W/t/C7Qqr2HLMgAmYzKMDJ9nPv8mR4JU0xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751994475; c=relaxed/simple;
-	bh=QnEG1HbwwQTlmOz8mRAiiw1tW05XGruA++x9Dw3+Hpg=;
+	s=arc-20240116; t=1751994494; c=relaxed/simple;
+	bh=kIfjTg5LWXVTDttNhk5OvreN6YGzkggbjxzFHKAfhV0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HsXhtKr0CxmEdZHZZOYdq5xvIwdzuHac4SA0pn4iuk+bWHxuIHguK/S7auLcdQhfT+E2AXFDoOv7yIGUaps66QAfNix+HJ59xEo9gCuTWkXqNydF3aALFovDmt4yIJf7aoJ5h55rxjd7vmPAHYoNTy1I9m8dbC2y2PF4lGybJzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HPhSriLj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72FB0C4CEED;
-	Tue,  8 Jul 2025 17:07:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BVU6crRmiX4Z/R/m0fv6FqmWvJI8xBRIgeCON+v0tv/MDJOCSQnL7wcfbSIQdkP+Q/p/AoQro4DpZPKTeQb/ZxOnpfvAoZ4SzrBzlUVyVFnClG66dS1kAbp0j6gV/7+uITH/H+vLNEDbFJyoi4TJ3YJywcYdG/+O7DdWcr00SrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jGg12qPF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F08EC4CEED;
+	Tue,  8 Jul 2025 17:08:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751994474;
-	bh=QnEG1HbwwQTlmOz8mRAiiw1tW05XGruA++x9Dw3+Hpg=;
+	s=k20201202; t=1751994493;
+	bh=kIfjTg5LWXVTDttNhk5OvreN6YGzkggbjxzFHKAfhV0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HPhSriLjSCaZJ5j5pN2+2Tw6FL33qnAYlhzIYsD9lpBGyLtbSKwN0D0/BYR/vgLF9
-	 liDev3asiYZ6hQDEqfpGH2EHQ13OGIso0RAfErP0SJctBYuoI3cZjuibEY5oraCrUJ
-	 oA6NWDEtf2Y3esNZeTnAvzwuoQZXHuLIAhcDDyxBGrud0qJpp7f6XCDyls4vwiYxml
-	 M7wwx2j301mGUqrKUnkCPiKdk2mQgQibdVYDXKEDVZn3TU6zO6XMDk0q4CuUebeoY3
-	 yi865ib3LzKyTwAT8DKYp8Wai24s0C+Av80CFcibSPVGAA5p4Jebf0zbbxDIsMLVZL
-	 3U7hJXoNgZ8YQ==
-Date: Tue, 8 Jul 2025 12:07:53 -0500
+	b=jGg12qPFoH2eBehoY8Xxvnpz2e32pDK9NGOxqyR5bl/B3HQjMnUzk6O86XbysgWTG
+	 o9QtE1p3TQuwWwl3o5uYYPlJW6BOu9SebDQ7I7lgVnacdZSAvAbzJRPujeT1vUUgOw
+	 zcHkSav5iYAOJbBkGjVmEbsmT82c0z+bd2gODCdpTunXtK+BoZeDn3H+g9G5Hn+eZQ
+	 Z/u78fcGj7w1+1aOZ3Me+BEeNNfqtmxrsTumc0a8oE8Bgxc5BzXfD6d8e6a0CchhCp
+	 6zyZopWZii8LogBVTNomzZYczQhaCTTve4BY9jVKKIkvQ90vKQuR4kVcH9n350CR+G
+	 j3YRIJ49Jt8zA==
+Date: Tue, 8 Jul 2025 12:08:12 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: linux-kernel@vger.kernel.org,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	devicetree@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	kernel test robot <lkp@intel.com>,
-	Eric Dumazet <edumazet@google.com>
-Subject: Re: [PATCH net-next] net: dt-bindings: ixp4xx-ethernet: Support
- fixed links
-Message-ID: <175199447269.638971.14707251724633971542.robh@kernel.org>
-References: <20250704-ixp4xx-ethernet-binding-fix-v1-1-8ac360d5bc9b@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	Vikash Garodia <quic_vgarodia@quicinc.com>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	linux-arm-msm@vger.kernel.org,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Stefan Schmidt <stefan.schmidt@linaro.org>,
+	Dikshita Agarwal <quic_dikshita@quicinc.com>
+Subject: Re: [PATCH] dt-bindings: media: qcom,sm8550-iris: Add X1E80100
+ compatible
+Message-ID: <175199449206.639410.14178643503954926234.robh@kernel.org>
+References: <20250704-x1e-iris-v1-1-c3137d979e43@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,28 +67,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250704-ixp4xx-ethernet-binding-fix-v1-1-8ac360d5bc9b@linaro.org>
+In-Reply-To: <20250704-x1e-iris-v1-1-c3137d979e43@linaro.org>
 
 
-On Fri, 04 Jul 2025 14:54:26 +0200, Linus Walleij wrote:
-> This ethernet controller is using fixed links for DSA switches
-> in two already existing device trees, so make sure the checker
-> does not complain like this:
+On Fri, 04 Jul 2025 15:38:41 +0200, Stephan Gerhold wrote:
+> Iris in X1E80100 is pretty much identical to SM8550. We can use the same
+> firmware image and the same definitions in the driver, so just add
+> qcom,x1e80100-iris to the existing list with qcom,sm8550-iris as fallback
+> compatible.
 > 
-> intel-ixp42x-linksys-wrv54g.dtb: ethernet@c8009000 (intel,ixp4xx-ethernet):
-> 'fixed-link' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> from schema $id: http://devicetree.org/schemas/net/intel,ixp4xx-ethernet.yaml#
-> 
-> intel-ixp42x-usrobotics-usr8200.dtb: ethernet@c800a000 (intel,ixp4xx-ethernet):
-> 'fixed-link' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> from schema $id: http://devicetree.org/schemas/net/intel,ixp4xx-ethernet.yaml#
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202507040609.K9KytWBA-lkp@intel.com/
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 > ---
->  Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
