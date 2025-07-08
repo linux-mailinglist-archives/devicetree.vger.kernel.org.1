@@ -1,90 +1,133 @@
-Return-Path: <devicetree+bounces-194149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AA10AFCD6A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:23:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49735AFCD8B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:28:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DD77166AC7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 14:23:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AC66581155
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 14:26:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5749B2E06EA;
-	Tue,  8 Jul 2025 14:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7DE42DEA7D;
+	Tue,  8 Jul 2025 14:26:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GfghWuQI"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="IzdQyrzy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B462DAFD8;
-	Tue,  8 Jul 2025 14:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6402256C8D;
+	Tue,  8 Jul 2025 14:26:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.134
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751984557; cv=none; b=Z1nUi4CUhT7hr6dzJWFI9leyE0Ol1M+IlsT9zTe1b++wQGVOdX6E9TU5r5XVyl4nvwF8y/Xcp57/ANA/AUiDy1BqACpmCwxGjO3odLVbdc0/B8/A1z41XnZ8gBQrC+NcGuvhfQ2BpXYuAQrmRS4Ie/na4kJ3gm2W19dMzzgvoUA=
+	t=1751984785; cv=none; b=WQuJv/a4dT2l3yZRJqAMLdh5B/4udJMA8EL8jy+i3wUBf6cfyiQPbBbjr1EKoye2zaF4PnOM9ZNlZQ/SC3j+51yp2cK+zEgXWoOJ0J/BkFfIE7KVRkOq9V5nrLdKotLRe0q/v4ZB41vcPeZ9SolFbSGMnSxPb6wIfcBo0gV/os8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751984557; c=relaxed/simple;
-	bh=V5k/JaXc8mpxvsmuIXrPpDH+unvMwkFQt98oPfHQlhA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RcQdKfcR02hMcG5Zsu7mo1lVx2Xlkh/CHaEny2+X/ceB6JibGGpMZXIVHyru2DsVPoKmx0HKm1lqhs5TRsunoSxSdgxbno4vqdRK9MQUHEKQaeIOKNVnEV8WOacLlvg9NQBbMIa830+A7r2gvxA4h1Yb5hU/CxZxlj33LAjuIWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GfghWuQI; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=qEzEnv65Ia3FbPmkGo2RRtibcq5xmdlT4YJXZg1qp4U=; b=GfghWuQIREgXLIbeiW7+EztL62
-	+7KcSY6ERjmgfC0PoBVZmbokTO3xuN+13IzE+cGsIyV/LhaOS9Clnj+wGd2+gFuoEdtEieihZZZg2
-	gQ93DirvJkJBbioZogs3WuVO1WVWS0qISAzoo+TdOClY9j5w52BeFKBYuSTFQ+ZPEwBs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uZ9DI-000pP6-51; Tue, 08 Jul 2025 16:22:28 +0200
-Date: Tue, 8 Jul 2025 16:22:28 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Tristram.Ha@microchip.com
-Cc: Woojung Huh <woojung.huh@microchip.com>,
-	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Marek Vasut <marex@denx.de>, UNGLinuxDriver@microchip.com,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 6/6 v2] net: dsa: microchip: Setup fiber ports
- for KSZ8463
-Message-ID: <1c688ae1-5625-4598-a162-302e38dbe50e@lunn.ch>
-References: <20250708031648.6703-1-Tristram.Ha@microchip.com>
- <20250708031648.6703-7-Tristram.Ha@microchip.com>
+	s=arc-20240116; t=1751984785; c=relaxed/simple;
+	bh=eLHqOgY/Kam9Yul/6rWRwZsf9nmBsNnDW90wqEqwtKk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b52V0uxMDFdvUGOJ6fwwwI0cMKTDhS32a/dd2/27AlaX4MnjDjtWBjzB3nCUk8aNJ3/dcnV3orsoaMKrqShm9MWmqXXLAEUpwyOj/9Hv4MH/Q2H4WAyPkCi1sR1/eNw7vH22DgeojI+SNW6Jmn0c+3aaiA9/VQpQGXarjzMkdxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=IzdQyrzy; arc=none smtp.client-ip=212.227.126.134
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1751984774; x=1752589574;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=VsAlCDCkjDI7LKIRfuSagRW/75+w6kpNx/r65jw8OiY=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=IzdQyrzyOGfu4eved+6Q+dG9yRHdYsYihk8CkQMJDLZ+V3T06J8X4mRqV0oc0n74
+	 jEawsvRYO3v9mmAth6qZnxkyJj/5V+abbBU32mVe16/ZCb6hxR241a3rqkazvYA+k
+	 44gzt4jm84yPY2wSAfY618qrsMyuUbLRa07ZaqJ7a2qH3sQILBwvL5HVq3tr8g5Wn
+	 r5G3Dcgd1utvgRkMGaV5UahBS13jEWvEQ5xHvkVkk0cygy2+cmdrBqg2HkfwnPpov
+	 6HIctegfQQLWkqAlS/1CLMeXEizIE77Yh5ro+hzSGRuwoyx+TwJcnn6nNRW88Abny
+	 CurNH/yd9W/m7mDuvQ==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.192] ([91.64.235.193]) by mrelayeu.kundenserver.de
+ (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MFsAJ-1uRhZB22Pv-009Nvp; Tue, 08 Jul 2025 16:26:14 +0200
+Message-ID: <2e6dbc0a-9c96-4d53-86dd-d14321cc755d@oldschoolsolutions.biz>
+Date: Tue, 8 Jul 2025 16:26:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250708031648.6703-7-Tristram.Ha@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] arm64: dts: qcom: x1-hp-x14: Commonalize HP
+ Omnibook X14 device tree
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250705-hp-x14-x1p-v4-0-1c351dbeaf18@oldschoolsolutions.biz>
+ <20250705-hp-x14-x1p-v4-2-1c351dbeaf18@oldschoolsolutions.biz>
+ <a8d28a19-0730-48be-8e0b-21892a89aa7b@oss.qualcomm.com>
+Content-Language: en-US
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <a8d28a19-0730-48be-8e0b-21892a89aa7b@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:YR1kqGsMLO58TrYEPEMdYWi6nddhrx3NSPH2VahlGF1eKfFCmUz
+ 3S0BaQTHsVDB6GWQvDTxDrRrrtUHuA09V1Q0jiUa2qcjnxMR5Be7M+Rd25Z0AeViroqUuTf
+ I+HWCxJ63dZCQ7fdrGA5AzMlQQkvdRbReUcGl+2UbpETkfGIH1Cnyh5D0ZAPoEaKC+/P5Cu
+ 6lbXgEQJv+vOMvL04Ns1g==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:n2CNvauAuXQ=;bcpmfqmRHrXZcwZyWC8Ob7othe+
+ 9dNIsk3rtxfZFJNOgpyP8mw3kmMlaEXK1pQLZQHYGdR12KJ+iZ+MuYCqnRtoX4VCbaGIKt21z
+ 8NQtfighkuj9dAyiIy9A8FAmsKL0cB8v88/SgGtevBjJIATFzf2akxAUl8ZeuubiM/xPHTEuP
+ XV8XFATq6kEI8RaXUGcbAOzAmX0VofQYG7Y5wKjR3iG+mqK1y8zk6wjsJjGTv8Ldz9986njGD
+ SMpZnDJeozfpzWLQDOCfXzfhr4owO4FxwpvqRFxJ1jqjGwWxGoNKRoYPvH4X7w07iLYEeSSs6
+ dL5CLy4qKKTBEHGjnhqWJb2p46VKQhr9GtJdPgAQo+HvCegVunvE5MSEP1Yy8bCa1l3yv4TgF
+ Q++L9P2rSDucMYfKWQNkwN6wOVZEKCQkp+6qZIIfzeLJFQ4Z67QlPd8KSZKqpeGpTWAgB8j0n
+ BJH020XeXNwO5BEKSLjYFnRmTaqHZKSLchAcysnP6xpiYrfdLDwZQOiOhgK/g3yNjpyV+jtjb
+ 4N3GVueydGPaEU+xt2ydeKfojwkX4SgXrCgtdZym+nWcU0GAyOm+N1C0IsN4iqTAJpoUJ51p/
+ HlzMq9WFBHtHmQhK9FiEtA50TMSnoQaQlRoRRJP5I/4PqBNplEAAk75Y4l1jtYgiOLO9fjEa4
+ 4X709lDmzaJvYfHeymGU+T8xl4iXTrO64/aPQUGP2GJOvPeGyagbna4YHi/w929jb542uouje
+ wbGk+GBjsol/FD+JTMkl4sSW4lOyGdfV2vE9OkuFgj4EkLx19S3vvhNVicuHn/a7PXaI+tL/D
+ gPprVYOJBXOr69P3fY2B7CW2993qIFFetysF30GczMYeUJDwAdSSuNFY9maz66hjSlPlB/Qbf
+ w+fs71im64WdKxbvardekTmPTL8s1GSQoOEKXb+hi71a/AJWA1wVaiis7aL5M9i0uylUYI9iT
+ COLxE+vcTaXq25xq3HGe4kuoPjx/bmpXObE35I8dyYbyzJQjaZESr5P+4zkr9X0P2bNlbAGbI
+ Ac/akP2l/vGAqCETJ+MPphY9UAyNRwjncfHpKOnYxk/ApKkx7vEYCYrU4wdo0eq9sNWY6hk4L
+ kQA3Yt5W7RuHVM7/Kdye1BE5iQ19yZmo2zuZNMMJY1hVaYBCtQg1p2/I8CtVxXs1q1a2kVujx
+ 0wFuG1nbhsPZ9y4VtGIRFm/bhRpUQbwesglAgEo5lh6mlM7zEM0JHppSRZGIcVE3UrqxiGi1E
+ RW6cOnNOUiREa4oKDvJRHHJilBn+siEEHmYvxcjsNf25Be3BWB8vyo5Nn+TEZn+aSt+NupEdE
+ hYGbNpqPJ+GSSM0F1usZWlfpdiUsDG2IILcNKb47VsUxdGrhKjdo/60Ia8ntxmwjDXyLGJ7f4
+ 1B71vKV1m0We0jbeytbPPbh7CMU6manrmVT1Ne09Wo5sYpPhRgkKbGg2+YKK2YIbL5+tZQtJ4
+ qrlZ9M4zY5p64tRL3fYSFH6lakW4BarAX5cGGZD7WcmfqWvsIxd8FTYdO871qoq3vvXRKrXW0
+ J3MTZAQDBo5RftbBBjUQOKCOOTnO0frVGQbcan5Q52cqDYI9AlLdC5YFfAbBFj95Hy4p34/zu
+ 9xc2+ewvN/jZqbYAPfQmIQ9g4ishUCB
 
-On Mon, Jul 07, 2025 at 08:16:48PM -0700, Tristram.Ha@microchip.com wrote:
-> From: Tristram Ha <tristram.ha@microchip.com>
-> 
-> The fiber ports in KSZ8463 cannot be detected internally, so it requires
-> specifying that condition in the device tree.  Like the one used in
-> Micrel PHY the port link can only be read and there is no write to the
-> PHY.  The driver programs registers to operate fiber ports correctly.
-> 
-> The PTP function of the switch is also turned off as it may interfere the
-> normal operation of the MAC.
+On 7/8/25 16:17, Konrad Dybcio wrote:
+> On 7/5/25 10:31 PM, Jens Glathe via B4 Relay wrote:
+>> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>>
+>> Commonalize the HP Omnibook X14 device tree for derivation of Hamoa (x1e*/x1p6*)
+>> and Purwa (x1p4*/x1*) variants. Required because the device trees are not
+>> compatible.
+>>
+>> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>> ---
+>
+>> +&gpu {
+>> +	status = "okay";
+>> +
+>> +	zap-shader {
+> Ideally you could switch to using &gpu_zap_shader {}
+>
+> Konrad
 
-Is this PTP problem anything to do with fibre?
+Since I need a respin anyway, yeah. Will do.
 
-It seems like this should be a patch of its own, unless it does have
-something to do with fibre.
+with best regards
 
-	Andrew
+Jens
+
 
