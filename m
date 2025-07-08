@@ -1,140 +1,98 @@
-Return-Path: <devicetree+bounces-193852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E309AFC0C3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 04:20:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03E9DAFC0DF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 04:35:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E693116911E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 02:20:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FE683AF6C3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 02:34:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2FA218EA1;
-	Tue,  8 Jul 2025 02:20:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90ACC21B908;
+	Tue,  8 Jul 2025 02:35:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="ZeNYjb80"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from out-187.mta1.migadu.com (out-187.mta1.migadu.com [95.215.58.187])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE5F70825;
-	Tue,  8 Jul 2025 02:20:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FD1A1754B
+	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 02:35:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751941224; cv=none; b=qYb45mk9bB83Ex8trBUWA5mq7wWvcjNK3bwwR75znmFjoUHxG3NCEppaB4SjUSKQ6Hs1wjsADB8C5UQdKG05Z2SlFwhTKqkAQ/JnWNvTYBKhJWCkFIfiotOboR+VZsQ8aM9SrhwGHtPFClDYijk6p8rO/gra3wQ4de2GQMp0/TE=
+	t=1751942116; cv=none; b=gtumlrqIt4gIpSPEmIJTN8IzztYBX4TijG4DUI2lFSBzmlb71tmaXPoHRK6F5E3LuTeYw6EQulY7IO9kNZ6sifOZ4HEKXIkOjaeAFIIhOaTIcxXArQlFJDi3hnFehOazMtHNg9dnBj9rtMLswLjJauxfS7LeCOJmLeP9MtySnSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751941224; c=relaxed/simple;
-	bh=sn6rljpu0rRcMnoOSCho0NKqgniXWyhTWQpWa6PH9uQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hpsfzsln7qNB0ZPnWc51C9LOFkjnE9tOB+wUEY1oeNQHJ2e62jLJ4GbSEE6oNokbTa4X4cia9l2w+tzc9nuhYA/pQGkAUekfpeoalf4lNylM45w3+89tbkIxBOkDyVaCCHbJsOv1EXeExs17fuKObtb9nFkTXIceBSgN9k/ymvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.33.69] (unknown [210.73.43.2])
-	by APP-05 (Coremail) with SMTP id zQCowAA3y1s7gGxoHwLzAQ--.7093S2;
-	Tue, 08 Jul 2025 10:19:40 +0800 (CST)
-Message-ID: <8c917152-0260-4442-a944-3cc0b3356e04@iscas.ac.cn>
-Date: Tue, 8 Jul 2025 10:19:38 +0800
+	s=arc-20240116; t=1751942116; c=relaxed/simple;
+	bh=6ZSaziu808aXhHAvi5dB5ZioGbG/1cQ5MlIp2NIfDvw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=uzxgobHq5VXr4/OdznUpOmZBllIG/IGZV92kNpd7cOhV1fj0v9w2qYn+gi/E4l+AI4zhpEwlvMEqrcck9Z9SyIUHKDaz5I4C1Du+mo4VrIzpqDqawU6WP6AvH1mR3yHOzaRHRR2igS69Kf2ddYc38IbSZeoIrcfc3bvJILszw+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=ZeNYjb80; arc=none smtp.client-ip=95.215.58.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <69687d11-e872-45da-a3d1-f91ea9dfe5f6@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1751942102;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qsEV695+W3Ktwe+glBrUcXpNvSeB5zOvPCRfQ1bX6vU=;
+	b=ZeNYjb805OB7xPo0hz92zFWbjjSnTpEbrCvz2m7vgKsZdhXi7IDBT6yQ0cgrXhK7b9kw2/
+	jHxhWK3q7GVeBA1rvUq6mipqg7NRpGnm75oKnsErdootuFdw/9NaWGOvjrrp0Z1I8me5Pq
+	qR9LUOsTa1rNNWcy3jjg+Q8/i9GxfmI=
+Date: Tue, 8 Jul 2025 10:34:51 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 1/2] dt-bindings: net: Add support for
- SpacemiT K1
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
- Eric Dumazet <edumazet@google.com>, Junhui Liu <junhui.liu@pigmoral.tech>,
- Conor Dooley <conor.dooley@microchip.com>, netdev@vger.kernel.org,
- Philipp Zabel <p.zabel@pengutronix.de>, Jakub Kicinski <kuba@kernel.org>,
- linux-riscv@lists.infradead.org, Simon Horman <horms@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
- Vivian Wang <uwu@dram.page>, Yixun Lan <dlan@gentoo.org>,
- spacemit@lists.linux.dev, Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>
-References: <20250703-net-k1-emac-v4-0-686d09c4cfa8@iscas.ac.cn>
- <20250703-net-k1-emac-v4-1-686d09c4cfa8@iscas.ac.cn>
- <175153978342.612698.13197728053938266111.robh@kernel.org>
- <17733827-8038-4c85-9bb1-0148a50ca10f@iscas.ac.cn>
+Subject: Re: [PATCH] dt-bindings: net: altr,socfpga-stmmac.yaml: add minItems
+ to iommus
+To: Matthew Gerlach <matthew.gerlach@altera.com>, dinguyen@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, maxime.chevallier@bootlin.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250707154409.15527-1-matthew.gerlach@altera.com>
 Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <17733827-8038-4c85-9bb1-0148a50ca10f@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-CM-TRANSID:zQCowAA3y1s7gGxoHwLzAQ--.7093S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Zr1DCrWfKrWfJF4kAryxXwb_yoW8AF47pa
-	yak3ZIkF1qyr47Aw4avwn29a4F9r1rKFyUXF9Iqw1vqan8X3WftryS9r15u3W8ZrWxAFyY
-	vr15W3W5CFyDAF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9qb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I
-	8E87Iv6xkF7I0E14v26F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
-	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Cr0_Gr
-	1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xK
-	xwCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE14v_Gr1l42xK82IYc2Ij64vIr41l4I8I3I
-	0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWU
-	GVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI
-	0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0
-	rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r
-	4UJbIYCTnIWIevJa73UjIFyTuYvjxUkWSrDUUUU
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Yanteng Si <si.yanteng@linux.dev>
+In-Reply-To: <20250707154409.15527-1-matthew.gerlach@altera.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-On 7/3/25 20:31, Vivian Wang wrote:
->
-> On 7/3/25 18:49, Rob Herring (Arm) wrote:
->> On Thu, 03 Jul 2025 17:42:02 +0800, Vivian Wang wrote:
->>> The Ethernet MACs on SpacemiT K1 appears to be a custom design.
->>> SpacemiT
->>> refers to them as "EMAC", so let's just call them "spacemit,k1-emac".=
+在 7/7/25 11:44 PM, Matthew Gerlach 写道:
+> Add missing 'minItems: 1' to iommus property of the Altera SOCFPGA SoC
+> implementation of the Synopsys DWMAC.
+> 
+> Fixes: 6d359cf464f4 ("dt-bindings: net: Convert socfpga-dwmac bindings to yaml")
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+Reviewed-by: Yanteng Si <siyanteng@cqsoftware.com.cn>
 
->>>
->>> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
->>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->>> ---
->>> =C2=A0 .../devicetree/bindings/net/spacemit,k1-emac.yaml=C2=A0 | 81
->>> ++++++++++++++++++++++
->>> =C2=A0 1 file changed, 81 insertions(+)
->>>
->> My bot found errors running 'make dt_binding_check' on your patch:
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> Error:
->> Documentation/devicetree/bindings/net/spacemit,k1-emac.example.dts:36.=
-36-37
->> syntax error
->> FATAL ERROR: Unable to parse input tree
->
-> My bad. The example still depends on the reset bindings for the
-> constant RESET_EMAC0. I just tried with reset v12 [1] and that fixes it=
-=2E
->
-> [1]:
-> https://lore.kernel.org/spacemit/20250702113709.291748-2-elder@riscstar=
-=2Ecom/
->
-> Vivian "dramforever" Wang=C2=A0
->
-Just for the record for anyone watching this thread, I'm most likely
-going to be holding off sending the next version of this until reset v12
-(probably?) gets at least taken up by a maintainer.
-
-It's a bit of a weird situation over there since they're sending the
-reset controller stuff through the clk tree, but then it's also a
-mega-syscon situation for the K1 and that's how they decided they want
-it, so it is what it is.
-
-(The DMA bus dependency that was in v3 is all DTS changes with no
-bindings and no driver, so that could be easily handled entirely in the
-SpacemiT SoC tree, which is nice.)
-
-Vivian
-
->> [...]
+Thanks,
+Yanteng
+> ---
+>   Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+> index c5d8dfe5b801..ec34daff2aa0 100644
+> --- a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+> @@ -59,6 +59,7 @@ properties:
+>         - const: ptp_ref
+>   
+>     iommus:
+> +    minItems: 1
+>       maxItems: 2
+>   
+>     phy-mode:
 
 
