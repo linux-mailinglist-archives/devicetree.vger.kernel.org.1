@@ -1,784 +1,195 @@
-Return-Path: <devicetree+bounces-193991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55F3DAFC669
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 11:00:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65A6BAFC678
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 11:01:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEE357B293E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:58:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27769189CED9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 09:02:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1C002C08DF;
-	Tue,  8 Jul 2025 08:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DAF2153ED;
+	Tue,  8 Jul 2025 09:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UTgV3Qab"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="WWvCisVq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010006.outbound.protection.outlook.com [52.101.84.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943CE2BEFE4;
-	Tue,  8 Jul 2025 08:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751965166; cv=none; b=c4/utGDjpp4xhVyAM8byQ12LjlxmZ4zbKFDT8oT9UTM1uYOyp0hrnRIX4Of/zecVXFECxzguzeaoB3RQn81dUthxLWMYmQMPUcYZtqrEA3rERb8p2off6tmSR7jJLlkRnPMIe3jVotszclmoh4mQUxohdcG4ntXbnnrzLxWgqO0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751965166; c=relaxed/simple;
-	bh=ysfbehi07OzGB7EjAnwpOdMaqyJaxC6rfmRuOJZMv9Q=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ccWaMEwniYEnz2QAyciRkB51iK8SL8w1SxFrvAleWXqR5ZQsebVE3CT514e+lZybo6SS3L2Llrr90p8Jfx/N+BIG2TFL4vO8Y4oNuScc0WJvfsReRo2O0y0M6oa3WHo0lH7eH83UNRDQPxrOnyOcQw4VUKOQqsAyfNpynrupH6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UTgV3Qab; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5688xFCG465288;
-	Tue, 8 Jul 2025 03:59:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1751965155;
-	bh=3DrrmXgmrJl/D37JMCQ8pgZOzYSXp8jKGT3aKXtYmVI=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=UTgV3QabxptiChH9l3PprLO8IgjuDWs+9TibkFBrcgmeRTCLHEPHRbBNSHRpFJg9q
-	 vfGdkw94ZGCtIgGvVCdI4K+NQc6sleuqCx05YHDvdzPKRUW4A8Jgrg7aqdpaKJSySf
-	 NelwJyQsY+QxCHZ8s4DmA9c+z7Gt7TbQ3Xyy7jWo=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5688xFgE3113002
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 8 Jul 2025 03:59:15 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 8
- Jul 2025 03:59:14 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 8 Jul 2025 03:59:14 -0500
-Received: from localhost (ula0502350.dhcp.ti.com [172.24.227.38])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5688xE171497069;
-	Tue, 8 Jul 2025 03:59:14 -0500
-From: Paresh Bhagat <p-bhagat@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <khasim@ti.com>, <v-singh1@ti.com>, <afd@ti.com>, <bb@ti.com>,
-        <devarsht@ti.com>, <s-vadapalli@ti.com>, <andrew@lunn.ch>
-Subject: [PATCH v7 4/4] arm64: dts: ti: Add support for AM62D2-EVM
-Date: Tue, 8 Jul 2025 14:28:39 +0530
-Message-ID: <20250708085839.1498505-5-p-bhagat@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250708085839.1498505-1-p-bhagat@ti.com>
-References: <20250708085839.1498505-1-p-bhagat@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8645719D065;
+	Tue,  8 Jul 2025 09:01:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.6
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751965296; cv=fail; b=pA7lHJLsgYgc1HMqBSOlFkhdhEEiGBA1bT7ivZTiqUiAZh5gWc/ajXTwbBMvs4X0iljqBOJ6khNLytPTlO/jTuieCUrgJh0JMFL/SHxHzzc5lnWkzXf5ZxNPkSP6kWYoZaRDS+3G5H/Quofqiuy7spR46pAh+PyDOBBMIrv88XU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751965296; c=relaxed/simple;
+	bh=GpkYFd73U8SS6tnsgHsfvPw27rUUIg0ELImOl60jOT8=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=XOlTlTQZZU6zw7T8Z5YK6BbO645TpLzpHp1rT9EmwP3ABa9enbeZDvV8iNxEXg2f7gK2PslJLqzvl9j5nUfWCedNlzvLWkWM8YjthMXxyMBZlxVLbgddf7sOJtbYleAWdPyp9nM1wgelO15h04XIzQTCKUc5+lJoIfZYUQyJcpc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=2n.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=WWvCisVq; arc=fail smtp.client-ip=52.101.84.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=2n.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vbzQ7YEtWyoyLPNmW9pG25L5Jo83Jiz7ve/A14pBRkSafm3zwgGJYaJk4IRoUkSCi19gk/kImiiZ5x5vW+NeA/rROjIhRl40zDpmRWKtuUzFqVGugHdMhabjsSfU7s/cjotDXUU1V4Fu2+GYE4ZqJ/UIy99msq/YTpzC3OU5EkopDuG23row5uzyDqa3qqTx+mhrxowIEkOHFPVbItCI5nC0jFEr+Jv5ezP5EijEg8RYHJ+PrMWILlhS9xUVsTpbUL3f2drokGP38Ao7KS313rxj5iDyReQfHC6Y/2C/8dZnTUQYPAU9nLCZEMAx3vWnt7HSgz77d4O6lyRbs3v9Zg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ak+DtnYQM0ql/jKuK5zuEgzf3Xe8Sprn8ZrU1TWQ1A0=;
+ b=DRzxR7AkHby6ZGfHlL3ySn6z0hNqrx+plH5b1HNZI1SPSAWhDdCvguCLXGwBKd7K+uV9Za1mAh4hgwScf4/nnAObxdt/6Yg74WgIQIurJ1lLGbFbxOA0LKElRBRKY5DurQ+2er4shVZFGwZQStTQLogn9/tj3PabKI92BQqwkgoqzfdvu+NG/1wSgDqfoeSshirPW/gEaaaJMlbJqzuAjWF+UDGmK4CUuRPimiknl5rp3L0B6MQorj7kBiHjO/cTpsZb6SnUBas1neKKFljbNqxClaZGS6UhoVzHLnIMH1928afzk3VBj3lBuSogzo6qgZUKEl9XYBmNdlit3msrmQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=2n.com; dmarc=pass action=none header.from=axis.com; dkim=pass
+ header.d=axis.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ak+DtnYQM0ql/jKuK5zuEgzf3Xe8Sprn8ZrU1TWQ1A0=;
+ b=WWvCisVqf0gs6WBvQRpTq4mb0obdzEx5V25V2baGlOTGLwlcFiSj2Bx88OSSiil4vxFUqwaCEdt/DrEzZkLVwAb5jm/OzS/CQHMGdyhLM/Y8hrC3/3kex0vMLeFSTO1IYr+12V7NaPto+X4ahPz/nou9W1c46LkQBy7FibvhWVw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axis.com;
+Received: from DB5PR02MB10093.eurprd02.prod.outlook.com (2603:10a6:10:488::13)
+ by AM7PR02MB6226.eurprd02.prod.outlook.com (2603:10a6:20b:1b6::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.26; Tue, 8 Jul
+ 2025 09:01:31 +0000
+Received: from DB5PR02MB10093.eurprd02.prod.outlook.com
+ ([fe80::2a25:783c:e73a:a81d]) by DB5PR02MB10093.eurprd02.prod.outlook.com
+ ([fe80::2a25:783c:e73a:a81d%4]) with mapi id 15.20.8901.024; Tue, 8 Jul 2025
+ 09:01:31 +0000
+Message-ID: <727872e9-6043-4dec-9ea5-4523d9c08f18@axis.com>
+Date: Tue, 8 Jul 2025 11:01:29 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net v6 0/4] net: phy: bcm54811: Fix the PHY initialization
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+ davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+ krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ f.fainelli@gmail.com, robh@kernel.org, andrew+netdev@lunn.ch,
+ horms@kernel.org, corbet@lwn.net, linux-doc@vger.kernel.org
+References: <20250704083512.853748-1-kamilh@axis.com>
+ <20250707125335.213ed1d7@kernel.org>
+Content-Language: en-US
+From: =?UTF-8?B?S2FtaWwgSG9yw6FrICgyTik=?= <kamilh@axis.com>
+In-Reply-To: <20250707125335.213ed1d7@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0326.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:eb::19) To DB5PR02MB10093.eurprd02.prod.outlook.com
+ (2603:10a6:10:488::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB5PR02MB10093:EE_|AM7PR02MB6226:EE_
+X-MS-Office365-Filtering-Correlation-Id: 240d983f-5705-4106-594a-08ddbdfe07e7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|366016|19092799006|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?OGNHMjhPTmhoRCs4emhiekZmM0t3WGV4bTJsSktRbXh3UG9UUk1FV2NLcXEz?=
+ =?utf-8?B?V09xQW1pVTZLczYrU3ZDNWJ5Nk9XSjlFcFNNYWlhWVVrd2h5ZnRLZ25iOGtK?=
+ =?utf-8?B?VGU2R0JhdEJCK2ZMN3BxSlY1TVVRM3U5dzRXdG5sWHNOTXdsNTlmYTBsd0NO?=
+ =?utf-8?B?bFlKZ0dLdmRsd25uNnErN2JwbjFyRkljNit6NC9xOU1teXoycnlXdWx2T0lF?=
+ =?utf-8?B?eGFHMG5rdGZiSFk1djAyMUZDRU9BQlNFZEFXTnBYcnJLazJQbmRVTE9HRDhh?=
+ =?utf-8?B?S20xbW15QnRFc1EwYnZ5R2Q0VVhEdzY2d0J0UzhNUnJoMmFFMDBUMmR1ZXhs?=
+ =?utf-8?B?OUkyNEpsd0pXYk5kNEo1N3pTSVU0N1NRVEJ2S0Y5SUFsb1NzdUpVelE4T0g5?=
+ =?utf-8?B?TERWNFNuL0EwR0IwOWRTS25mVEdBckU1ZEtjQktVdGYyN3FRbU13S3drdnJk?=
+ =?utf-8?B?V1RwL01Kck8vajlNNzlDczVseFlwNGFPak9JVFczZVJvL2MrZTlES3hLaE5D?=
+ =?utf-8?B?OG03Ym1OV3JVYlFXbTl2dUJveStFdEpmU0ZHdTVOV2t4WjFlczBlZXRsM05B?=
+ =?utf-8?B?YlVXdlh5QnN0VndzSTNkQkJDMDBJQ3ZaSlJqdWhBRHlaZlAralVlNVF4V2hE?=
+ =?utf-8?B?aU9nU0RzQ2NlaUVqWUFZOGVTVHJmbVRjSVpHYXc0RHI3a01xc3FPcHhLY2Iy?=
+ =?utf-8?B?T1VKMU5yU3p4MDNzdGtMY1NIakNnWTMrTWhUSlVTaTJEUE9pWkp0ck50N3JS?=
+ =?utf-8?B?cGdOeDJZc1dpOThJOE41dXpTSDBDZ2FsZ2hHOU85L1hDMFpqRTM2ZC9jR3Bn?=
+ =?utf-8?B?dVF6V3dtcDVOZy8rbGpDc2JDaWY5aUFxYXJLdGtxcTVPOVNYV2t6cjhSMTZt?=
+ =?utf-8?B?cVFoSHUxY3h2cEN5N2tyZUZSd0s5VkF5UEVkQzFnZTF4SHk2MlZmeHhBc1hS?=
+ =?utf-8?B?MGppK3BHYWQvWXJoY1REOGVRdHA3eGlsSExIUFA0WWRpc0Q3TGE2c0FNVmor?=
+ =?utf-8?B?d0xMbXp5R3B3Q3duVTRqL0pldlpvRG4zbUNBYktUelV4b3BlL0E2T1p6ZXJT?=
+ =?utf-8?B?M2gyOHNJa1FRSjQ1M0k2dHY0Z1Y2MllZanE0alI3TFhMaDhUZUx4eGVtVjFt?=
+ =?utf-8?B?UFBuYjZWZmczMGw3R1dGNFplWmt3d0hkcUo1OExoZ3gxVmJZbStGUmdWZm44?=
+ =?utf-8?B?cTlhS0UwWDhxUy9YaDhJTFQ4TG84ZE56Wi9zeEQxenpKVit3T3kzbEZzYjhP?=
+ =?utf-8?B?b1ZkK08wVWlMTkpmcHZqZ2FVTGR4UGNQbVkwSG5jRVhZR3I1anBCOWk4ZmFU?=
+ =?utf-8?B?TUt2ZEZaNDRqV01xRThiUDM5T3poUEZtWjBwSXF3ZkFMSW9VVWtnK3J1bGIy?=
+ =?utf-8?B?QUNvemVkSXpGYzJiL0xLVjdJbGpLR3hRM0N2V0NkZjVZT3dPd0U2TERRRHRy?=
+ =?utf-8?B?UGhMZ2lqU3J0ZkRhZ3hNazV2eTA2ZSsyRi84d05Va21LN002SWQ2TDdLQzlq?=
+ =?utf-8?B?TmFDbVpJcHFtdWw4eXAvejdKOTAxb0VkRFppZzN2OGJCSDJYK0N5bXFXNjAz?=
+ =?utf-8?B?QWdMdUNuNE9Zd2V6aE5oNVU2VW9oakltSTBSL1dEanQ4QWw0YXE3Z04xa2lR?=
+ =?utf-8?B?MEJkMjF2cGVkYXRWd2VJbXBQUGdUN3RWbkV6cVYrSmM4aE1weEx6cHNNKzB3?=
+ =?utf-8?B?KytuZ0F0ZlZjaGJOVVE0Z3Fxa1VZZEFlWG9uVlJYaGdZa25EWVp4MXhzM1U0?=
+ =?utf-8?B?M0l4Vm9ucmNlWnd0bGhJSEZSbUR2M2xmVWZGT0gxcVRia0twQ0Z1MmhhNEk4?=
+ =?utf-8?B?Q3dwWUlTd3c5ZW9va1cyUmtNaDFWY2liM2JpZ3VQM1RkeUtzaGtlUUxmYmlP?=
+ =?utf-8?B?WlAzR0I3T08yZGJTcytiNGRySmlwS25JdUwrcit6NHZ0WFE9PQ==?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB5PR02MB10093.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(19092799006)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dGFCcGs4K21EUE1na0JsQmtVU3VaL2piRSs4S05BV2NZZ0VtemtURkdlMU13?=
+ =?utf-8?B?TTVocTkzb21UcWJsYm8rZWtuZmFYVU5xUitYTXJUWGoyeW1zY0EwRDFsaEpt?=
+ =?utf-8?B?eUR0MDNQY1UrRVNVK1dRR0xoV0xTQ2tLY29WaU5OWmw1WDdsY1pZNWYzalNw?=
+ =?utf-8?B?RU1lOWhPSG84YWJhaU4rbVljaFNWQ3BCKzgwMWhnaHI1UnBlTzhyczFzMDJh?=
+ =?utf-8?B?M2ZWMTNvSlZkNDhtZHBEZTVpeWpkTTlTS2MzYkxCVWtzYTkvOEhqN3pDR2Nz?=
+ =?utf-8?B?Q1ZpYkhiVERPWlAvdmc4UFBVVjVMSUwzZ2xPbFRwVVlDbGh4aEtva0RpaFow?=
+ =?utf-8?B?bDJOMDR3RmJ0RmdabUpzRGsxblJSd0ZNV2dKRTRFK0NKemtXOWxYUFJqUFUv?=
+ =?utf-8?B?V1B3SDA5ZnVsTlI3TlVCVXhWVzllTGRGSkVIbVl6YlBLN2ttMkVrQ2toQTd4?=
+ =?utf-8?B?VDg2RFhxb2pVNXE5QVFKZ1hoT3R6dDY0WFhiU1NmYTYyMUZTbFk3Uy95TmJa?=
+ =?utf-8?B?NkMwT2szUVNtZGM2SnhJNC9NckwrQW01bDd1bmNDMHJMWStldHFHZHEzQmVQ?=
+ =?utf-8?B?V1AyM0VpVVFtbEgwV1ViTmJmcitvS1BjZTNlQyt0ZnpBdC93K1M0TnFWL1VE?=
+ =?utf-8?B?ZEhvazZiL2NtQUYweTAvQkdIcWgwZ2JGTFQwM2ZsSi9xbmM5Q1BKNVd5ZGdo?=
+ =?utf-8?B?OGNIRm5TN0h6N1VOWkg2ZXE5b3gxWFB1WGRSOXpzSjFWa1UzYTRueTZQY0My?=
+ =?utf-8?B?TlA2SERXTmpNZkEydVl6VzRRaXFka1NUZFNwUlgxMnJrZWZ6eXQxSlovcVZT?=
+ =?utf-8?B?WDgvb1p4V3cyc1VWaTF5emxSL3YyRDhWbFkzbVppSEhPdkoweW5HT1RXaHd3?=
+ =?utf-8?B?ZFo4SFNLbWtrV0I2b1FsbG1EUFNRMUFrM3hiQVhmNHhHS0ZnSkVkZTV0UVlt?=
+ =?utf-8?B?bENXT054OEowZmJJWnE4dFVTbTNEWWl6cTVZSmNJanZqK1VBOTh6SlBsYUZI?=
+ =?utf-8?B?dWR4VGx5bGtzdDk1SzB4V1dZK1ZoNUpQM05aOVBCWTZRbTBUb3VHQU9Xb0Nn?=
+ =?utf-8?B?Nm80dzJNeGVUM2ZzM2hjSFZYeEVTbnNzdFhxU2VGM2Q0YWhWTmZVWGR4QjIr?=
+ =?utf-8?B?bTF5Y0ZaOUR4QUs3NTJlWEsxR2pRQ1VwQXlYOWtmY1hiN1hoR1RVM2orekcz?=
+ =?utf-8?B?OXpRVXBESTBRakpuL21YY2d0ajNLd21mais0M3hDYktRTllTT0tEczRmL3l6?=
+ =?utf-8?B?QXY3bVFqQklRS2hvVXNIL2ZYSnJwTUY5SGNwaTJhVEoyajhtNFZuZFlUd1Rl?=
+ =?utf-8?B?MlJ1T21vaGMzZHNVaXVRd1dNQjNOaUorcGw4TnpHUnB1eHpLUjFjeWRhSFhW?=
+ =?utf-8?B?Z2dSVlJ1cWJpZVpZWS9pNUxaKzNCWms1K3ZOTEo2K21xQzdpZGxJNmFRU2ZS?=
+ =?utf-8?B?OGN5WEM5VHBLc0xYQ2lGdm1ZMmc3dGJEVnYzL2xtdlMvNnJmaUhLRHZYZ2k2?=
+ =?utf-8?B?dWFSQ3BZajVFUnhTSkIyZDdNY0hlTFBuKzdQeDZUQkE2dXRJTVJxdXRxdW80?=
+ =?utf-8?B?S0pJZXNwQkxGcHpjalhGa1p3UlBnbHNmRTY5T084NFFFeHdUdkxRUkxDTkRQ?=
+ =?utf-8?B?a2RuSHdwMno1Q1hITFE5b3RUeCtwZWk5cGVIRFc1UnhtZE5OS2hrdjFLYjR3?=
+ =?utf-8?B?OC8yeTd2RnhzNXJmREMydzJnNDhiYTFNUkcvTkVMVDZsUW9yZVpYM3ZRQ1l1?=
+ =?utf-8?B?Sks3Nm9kWUFpYmRQWDV5QWcvd0JjYk5iVkxCcjFzL0phaUlqd2RSVjJyditM?=
+ =?utf-8?B?bG9CUXB4NjFFcDBFWEF1U2lXemQwemRjTmZYaS85L2JTOFdWbFUyVmtYRDZW?=
+ =?utf-8?B?OUhpU1UxdFRvSUpJZHNwK2hqT3dmNHY3K05mNEZLQTFvcjVKZ3hvM3ByaTQz?=
+ =?utf-8?B?Y3BqUXYwV1pOaGRraG9BK0MzMUZrbE5NSXhjd2hpV05vWGFSQ2wwckVPR2dG?=
+ =?utf-8?B?a1lIbHl2N0o4Q3IzWW84U0dTR2FPYTJnV0xnTjhxVHBOa2tmRyswK2FDQ2Zj?=
+ =?utf-8?B?VU5WbkJvUmNUaDBZb0NKVFhGY0RHSTZaSy9sazc4aUhVSGtsYXdFRzF2enNP?=
+ =?utf-8?Q?CXkCdbSmTEfG9efJNgBUazi6a?=
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 240d983f-5705-4106-594a-08ddbdfe07e7
+X-MS-Exchange-CrossTenant-AuthSource: DB5PR02MB10093.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2025 09:01:31.0782
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eH1u0KWv0SsQQAgMzOhnGTWIYVkdjGhh0vOt+/GjirK3yWjAqH1Mw3L/+Ilml/zu
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR02MB6226
 
-AM62D-EVM evaluation module (EVM) is a low-cost expandable platform board
-designed for AM62D2 SoC from TI. It supports the following interfaces:
 
-* 4 GB LPDDR4 RAM
-* x2 Gigabit Ethernet expansion connectors
-* x4 3.5mm TRS Audio Jack Line In
-* x4 3.5mm TRS Audio Jack Line Out
-* x2 Audio expansion connectors
-* x1 Type-A USB 2.0, x1 Type-C dual-role device (DRD) USB 2.0
-* x1 UHS-1 capable micro SD card slot
-* 32 GB eMMC Flash
-* 512 Mb OSPI NOR flash
-* x4 UARTs via USB 2.0-B
-* XDS110 for onboard JTAG debug using USB
-* Temperature sensors, user push buttons and LEDs
 
-Although AM62D2 and AM62A7 differ in peripheral capabilities example
-multimedia, VPAC, and display subsystems, the core architecture remains
-same. To reduce duplication, AM62D support reuses the AM62A dtsi and the
-necessary overrides will be handled in SOC specific dtsi file and a
-board specific dts.
+On 7/7/25 21:53, Jakub Kicinski wrote:
+> On Fri, 4 Jul 2025 10:35:08 +0200 Kamil Horák - 2N wrote:
+>> Fix the bcm54811 PHY driver initialization for MII-Lite.
+> 
+> Sorry for the delay, I went AFK for the long weekend shortly after
+> responding to v5. IIUC bcm54811 basically never worked, so I think
+> net-next is appropriate for the whole series. Please rebase and strip
+> the Fixes tags.
+OK tried to do so as best as possible. Keeping the Reviewed tags, hope 
+it is correct even when we switched to net-next.
+The PHY still initializes and runs correctly in the kernel built from 
+net-next.
 
-Add basic support for AM62D2-EVM.
-
-Schematics Link - https://www.ti.com/lit/zip/sprcal5
-
-Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Reviewed-by: Andrew Davis <afd@ti.com>
-Reviewed-by: Bryan Brattlof <bb@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile          |   3 +
- arch/arm64/boot/dts/ti/k3-am62d2-evm.dts | 615 +++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am62d2.dtsi    |  20 +
- 3 files changed, 638 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
- create mode 100644 arch/arm64/boot/dts/ti/k3-am62d2.dtsi
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index c6171de9fe88..3da3a1d1dc33 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -33,6 +33,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62-pocketbeagle2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62a7-phyboard-lyra-rdk.dtb
- 
-+# Boards with AM62Dx SoC
-+dtb-$(CONFIG_ARCH_K3) += k3-am62d2-evm.dtb
-+
- # Boards with AM62Px SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62p5-verdin-nonwifi-dahlia.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts b/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
-new file mode 100644
-index 000000000000..daea18b0bc61
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
-@@ -0,0 +1,615 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * AM62D2 EVM: https://www.ti.com/lit/zip/sprcal5
-+ *
-+ * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include "k3-am62d2.dtsi"
-+
-+/ {
-+	compatible = "ti,am62d2-evm", "ti,am62d2";
-+	model = "Texas Instruments AM62D2 EVM";
-+
-+	aliases {
-+		serial0 = &wkup_uart0;
-+		serial1 = &mcu_uart0;
-+		serial2 = &main_uart0;
-+		mmc0 = &sdhci0;
-+		mmc1 = &sdhci1;
-+		rtc0 = &wkup_rtc0;
-+		ethernet0 = &cpsw_port1;
-+		ethernet1 = &cpsw_port2;
-+	};
-+
-+	chosen {
-+		stdout-path = &main_uart0;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 4G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-+		      <0x00000008 0x80000000 0x00000000 0x80000000>;
-+		bootph-all;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* global cma region */
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			size = <0x00 0x2000000>;
-+			alloc-ranges = <0x00 0xc0000000 0x00 0x2000000>;
-+			linux,cma-default;
-+		};
-+
-+		secure_tfa_ddr: tfa@80000000 {
-+			reg = <0x00 0x80000000 0x00 0x80000>;
-+			no-map;
-+		};
-+
-+		c7x_0_dma_memory_region: c7x-dma-memory@99800000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x99800000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c7x_0_memory_region: c7x-memory@99900000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x99900000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@9b800000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9b800000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core0_memory_region: r5f-dma-memory@9b900000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9b900000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9c800000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9c900000 0x00 0xf00000>;
-+			no-map;
-+			bootph-pre-ram;
-+		};
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-+			no-map;
-+		};
-+
-+		rtos_ipc_memory_region: ipc-memories@a0000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0000000 0x00 0x01000000>;
-+			no-map;
-+		};
-+	};
-+
-+	opp-table {
-+		/* Requires VDD_CORE at 0v85 */
-+		opp-1400000000 {
-+			opp-hz = /bits/ 64 <1400000000>;
-+			opp-supported-hw = <0x01 0x0004>;
-+			clock-latency-ns = <6000000>;
-+		};
-+	};
-+
-+	vout_pd: regulator-0 {
-+		/* TPS65988 PD CONTROLLER OUTPUT */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vout_pd";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vmain_pd: regulator-1 {
-+		/* Output of TPS22811 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vmain_pd";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vout_pd>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vcc_5v0: regulator-2 {
-+		/* Output of TPS630702RNMR */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vmain_pd>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vcc_3v3_main: regulator-3 {
-+		/* output of LM5141-Q1 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_main";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vmain_pd>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vdd_mmc1: regulator-4 {
-+		/* TPS22918DBVR */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
-+		bootph-all;
-+	};
-+
-+	vcc_3v3_sys: regulator-5 {
-+		/* output of TPS222965DSGT */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_sys";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_3v3_main>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vddshv_sdio: regulator-6 {
-+		compatible = "regulator-gpio";
-+		regulator-name = "vddshv_sdio";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vddshv_sdio_pins_default>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		gpios = <&main_gpio1 31 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+		bootph-all;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usr_led_pins_default>;
-+
-+		led-0 {
-+			label = "am62d-evm:green:heartbeat";
-+			gpios = <&main_gpio1 49 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+			default-state = "off";
-+		};
-+	};
-+};
-+
-+&mcu_pmx0 {
-+	status = "okay";
-+
-+	pmic_irq_pins_default: pmic-irq-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_MCU_IOPAD(0x000, PIN_INPUT, 7) /* (E11) MCU_GPIO0_0 */
-+		>;
-+	};
-+
-+	wkup_uart0_pins_default: wkup-uart0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_MCU_IOPAD(0x0024, PIN_INPUT, 0) /* (C9) WKUP_UART0_RXD */
-+			AM62DX_MCU_IOPAD(0x0028, PIN_OUTPUT, 0) /* (E9) WKUP_UART0_TXD */
-+			AM62DX_MCU_IOPAD(0x002c, PIN_INPUT, 0) /* (C10) WKUP_UART0_CTSn */
-+			AM62DX_MCU_IOPAD(0x0030, PIN_OUTPUT, 0) /* (C8) WKUP_UART0_RTSn */
-+		>;
-+		bootph-all;
-+	};
-+};
-+
-+/* WKUP UART0 is used for DM firmware logs */
-+&wkup_uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_uart0_pins_default>;
-+	bootph-all;
-+	status = "reserved";
-+};
-+
-+&main_pmx0 {
-+	main_uart0_pins_default: main-uart0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x01c8, PIN_INPUT, 0) /* (E14) UART0_RXD */
-+			AM62DX_IOPAD(0x01cc, PIN_OUTPUT, 0) /* (D15) UART0_TXD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_i2c0_pins_default: main-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (D17) I2C0_SCL */
-+			AM62DX_IOPAD(0x01e4, PIN_INPUT_PULLUP, 0) /* (E16) I2C0_SDA */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_i2c1_pins_default: main-i2c1-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x01e8, PIN_INPUT_PULLUP, 0) /* (C17) I2C1_SCL */
-+			AM62DX_IOPAD(0x01ec, PIN_INPUT_PULLUP, 0) /* (E17) I2C1_SDA */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_i2c2_pins_default: main-i2c2-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x00b0, PIN_INPUT_PULLUP, 1) /* (M22) GPMC0_CSn2.I2C2_SCL */
-+			AM62DX_IOPAD(0x00b4, PIN_INPUT_PULLUP, 1) /* (M20) GPMC0_CSn3.I2C2_SDA */
-+		>;
-+	};
-+
-+	main_mmc0_pins_default: main-mmc0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x0220, PIN_INPUT_PULLUP, 0) /* (Y6) MMC0_CMD */
-+			AM62DX_IOPAD(0x0218, PIN_OUTPUT, 0) /* (AB7) MMC0_CLK */
-+			AM62DX_IOPAD(0x0214, PIN_INPUT_PULLUP, 0) /* (AA6) MMC0_DAT0 */
-+			AM62DX_IOPAD(0x0210, PIN_INPUT_PULLUP, 0) /* (AB6) MMC0_DAT1 */
-+			AM62DX_IOPAD(0x020c, PIN_INPUT_PULLUP, 0) /* (Y7) MMC0_DAT2 */
-+			AM62DX_IOPAD(0x0208, PIN_INPUT_PULLUP, 0) /* (AA7) MMC0_DAT3 */
-+			AM62DX_IOPAD(0x0204, PIN_INPUT_PULLUP, 0) /* (Y8) MMC0_DAT4 */
-+			AM62DX_IOPAD(0x0200, PIN_INPUT_PULLUP, 0) /* (W7) MMC0_DAT5 */
-+			AM62DX_IOPAD(0x01fc, PIN_INPUT_PULLUP, 0) /* (W9) MMC0_DAT6 */
-+			AM62DX_IOPAD(0x01f8, PIN_INPUT_PULLUP, 0) /* (AB8) MMC0_DAT7 */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_mmc1_pins_default: main-mmc1-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x023c, PIN_INPUT, 0) /* (C21) MMC1_CMD */
-+			AM62DX_IOPAD(0x0234, PIN_OUTPUT, 0) /* (E22) MMC1_CLK */
-+			AM62DX_IOPAD(0x0230, PIN_INPUT, 0) /* (B22) MMC1_DAT0 */
-+			AM62DX_IOPAD(0x022c, PIN_INPUT, 0) /* (D21) MMC1_DAT1 */
-+			AM62DX_IOPAD(0x0228, PIN_INPUT, 0) /* (C22) MMC1_DAT2 */
-+			AM62DX_IOPAD(0x0224, PIN_INPUT, 0) /* (D22) MMC1_DAT3 */
-+			AM62DX_IOPAD(0x0240, PIN_INPUT, 0) /* (E18) MMC1_SDCD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_mdio0_pins_default: main-mdio0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x160, PIN_OUTPUT, 0) /* (V12) MDIO0_MDC */
-+			AM62DX_IOPAD(0x15c, PIN_INPUT, 0) /* (V13) MDIO0_MDIO */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_rgmii1_pins_default: main-rgmii1-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x14c, PIN_INPUT, 0) /* (AB16) RGMII1_RD0 */
-+			AM62DX_IOPAD(0x150, PIN_INPUT, 0) /* (V15) RGMII1_RD1 */
-+			AM62DX_IOPAD(0x154, PIN_INPUT, 0) /* (W15) RGMII1_RD2 */
-+			AM62DX_IOPAD(0x158, PIN_INPUT, 0) /* (V14) RGMII1_RD3 */
-+			AM62DX_IOPAD(0x148, PIN_INPUT, 0) /* (AA16) RGMII1_RXC */
-+			AM62DX_IOPAD(0x144, PIN_INPUT, 0) /* (AA15) RGMII1_RX_CTL */
-+			AM62DX_IOPAD(0x134, PIN_INPUT, 0) /* (Y17) RGMII1_TD0 */
-+			AM62DX_IOPAD(0x138, PIN_INPUT, 0) /* (V16) RGMII1_TD1 */
-+			AM62DX_IOPAD(0x13c, PIN_INPUT, 0) /* (Y16) RGMII1_TD2 */
-+			AM62DX_IOPAD(0x140, PIN_INPUT, 0) /* (AA17) RGMII1_TD3 */
-+			AM62DX_IOPAD(0x0130, PIN_OUTPUT, 0) /* (AB17) RGMII1_TXC */
-+			AM62DX_IOPAD(0x012c, PIN_OUTPUT, 0) /* (W16) RGMII1_TX_CTL */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_rgmii2_pins_default: main-rgmii2-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x0184, PIN_INPUT, 0) /* (AA21) RGMII2_RD0 */
-+			AM62DX_IOPAD(0x0188, PIN_INPUT, 0) /* (Y20) RGMII2_RD1 */
-+			AM62DX_IOPAD(0x018c, PIN_INPUT, 0) /* (AB21) RGMII2_RD2 */
-+			AM62DX_IOPAD(0x0190, PIN_INPUT, 0) /* (AB20) RGMII2_RD3 */
-+			AM62DX_IOPAD(0x0180, PIN_INPUT, 0) /* (AA20) RGMII2_RXC */
-+			AM62DX_IOPAD(0x017c, PIN_INPUT, 0) /* (W18) RGMII2_RX_CTL */
-+			AM62DX_IOPAD(0x016c, PIN_INPUT, 0) /* (AA19) RGMII2_TD0 */
-+			AM62DX_IOPAD(0x0170, PIN_INPUT, 0) /* (Y18) RGMII2_TD1 */
-+			AM62DX_IOPAD(0x0174, PIN_INPUT, 0) /* (AA18) RGMII2_TD2 */
-+			AM62DX_IOPAD(0x0178, PIN_INPUT, 0) /* (W17) RGMII2_TD3 */
-+			AM62DX_IOPAD(0x0168, PIN_OUTPUT, 0) /* (AB19) RGMII2_TXC */
-+			AM62DX_IOPAD(0x0164, PIN_OUTPUT, 0) /* (Y19) RGMII2_TX_CTL */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_gpio1_ioexp_intr_pins_default: main-gpio1-ioexp-intr-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x01d4, PIN_INPUT, 7) /* (C15) UART0_RTSn.GPIO1_23 */
-+		>;
-+	};
-+
-+	vddshv_sdio_pins_default: vddshv-sdio-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x1f4, PIN_OUTPUT, 7) /* (M19) GPMC0_CLK.GPIO1_31 */
-+		>;
-+		bootph-all;
-+	};
-+
-+	usr_led_pins_default: usr-led-default-pins {
-+		pinctrl-single,pins = <
-+			AM62DX_IOPAD(0x0244, PIN_INPUT, 7) /* (D18) MMC1_SDWP.GPIO1_49 */
-+		>;
-+	};
-+};
-+
-+&mcu_gpio0 {
-+	status = "okay";
-+};
-+
-+&main_i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+	bootph-all;
-+	status = "okay";
-+
-+	typec_pd0: usb-power-controller@3f {
-+		compatible = "ti,tps6598x";
-+		reg = <0x3f>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			self-powered;
-+			data-role = "dual";
-+			power-role = "sink";
-+			port {
-+				usb_con_hs: endpoint {
-+					remote-endpoint = <&usb0_hs_ep>;
-+				};
-+			};
-+		};
-+	};
-+
-+	exp1: gpio@22 {
-+		compatible = "ti,tca6424";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&main_gpio1>;
-+		interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&main_gpio1_ioexp_intr_pins_default>;
-+		bootph-all;
-+
-+		gpio-line-names = "GPIO_CPSW2_RST", "GPIO_CPSW1_RST",
-+				  "","MMC1_SD_EN",
-+				  "VPP_EN", "GPIO_DIX_RST",
-+				  "IO_EXP_OPT_EN", "DIX_INT",
-+				  "GPIO_eMMC_RSTn", "CPLD2_DONE",
-+				  "CPLD2_INTN", "CPLD1_DONE",
-+				  "CPLD1_INTN", "USB_TYPEA_OC_INDICATION",
-+				  "PCM1_INT", "PCM2_INT",
-+				  "GPIO_PCM1_RST", "TEST_GPIO2",
-+				  "GPIO_PCM2_RST", "",
-+				  "IO_MCAN0_STB", "IO_MCAN1_STB",
-+				  "PD_I2C_IRQ", "IO_EXP_TEST_LED";
-+	};
-+
-+	exp2: gpio@20 {
-+		compatible = "ti,tca6416";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names = "PCM6240_BUF_IO_EN", "",
-+				  "CPLD1_JTAGENB", "CPLD1_PROGRAMN",
-+				  "CPLD2_JTAGENB", "CPLD2_PROGRAMN",
-+				  "", "",
-+				  "", "CPLD1_TCK",
-+				  "CPLD1_TMS", "CPLD1_TDI",
-+				  "CPLD1_TDO", "CPLD2_TCK",
-+				  "CPLD2_TMS", "CPLD2_TDI",
-+				  "CPLD2_TDO", "ADDR1_IO_EXP",
-+				  "SoC_I2C0_SCL", "SoC_I2C0_SDA";
-+	};
-+};
-+
-+&main_i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c1_pins_default>;
-+	clock-frequency = <100000>;
-+	status = "okay";
-+};
-+
-+&main_i2c2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c2_pins_default>;
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+&sdhci0 {
-+	/* eMMC */
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mmc0_pins_default>;
-+	bootph-all;
-+	status = "okay";
-+};
-+
-+&sdhci1 {
-+	/* SD/MMC */
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vddshv_sdio>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	disable-wp;
-+	bootph-all;
-+	status = "okay";
-+};
-+
-+&main_gpio0 {
-+	bootph-all;
-+	status = "okay";
-+};
-+
-+&main_gpio1 {
-+	bootph-all;
-+	status = "okay";
-+};
-+
-+&main_gpio_intr {
-+	status = "okay";
-+};
-+
-+&main_uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart0_pins_default>;
-+	bootph-all;
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	usb-role-switch;
-+
-+	port {
-+		usb0_hs_ep: endpoint {
-+			remote-endpoint = <&usb_con_hs>;
-+		};
-+	};
-+};
-+
-+&cpsw3g {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_rgmii1_pins_default>,
-+		    <&main_rgmii2_pins_default>;
-+	status = "okay";
-+
-+	cpts@3d000 {
-+		/* MAP HW3_TS_PUSH to GENF1 */
-+		ti,pps = <2 1>;
-+	};
-+};
-+
-+&cpsw_port1 {
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&cpsw3g_phy0>;
-+	status = "okay";
-+};
-+
-+&cpsw_port2 {
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&cpsw3g_phy1>;
-+	status = "okay";
-+};
-+
-+&cpsw3g_mdio {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mdio0_pins_default>;
-+	status = "okay";
-+
-+	cpsw3g_phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+
-+	cpsw3g_phy1: ethernet-phy@3 {
-+		reg = <3>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&mailbox0_cluster0 {
-+	status = "okay";
-+
-+	mbox_r5_0: mbox-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster1 {
-+	status = "okay";
-+
-+	mbox_c7x_0: mbox-c7x-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster2 {
-+	status = "okay";
-+
-+	mbox_mcu_r5_0: mbox-mcu-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&wkup_r5fss0 {
-+	status = "okay";
-+};
-+
-+&wkup_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster0 &mbox_r5_0>;
-+	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
-+			<&wkup_r5fss0_core0_memory_region>;
-+	bootph-pre-ram;
-+};
-+
-+&mcu_r5fss0 {
-+	status = "okay";
-+};
-+
-+&mcu_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster2 &mbox_mcu_r5_0>;
-+	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-+			<&mcu_r5fss0_core0_memory_region>;
-+	firmware-name = "am62d-mcu-r5f0_0-fw";
-+	status = "okay";
-+};
-+
-+&c7x_0 {
-+	mboxes = <&mailbox0_cluster1 &mbox_c7x_0>;
-+	memory-region = <&c7x_0_dma_memory_region>,
-+			<&c7x_0_memory_region>;
-+	firmware-name = "am62d-c71_0-fw";
-+	status = "okay";
-+};
-+
-+/* main_rti4 is used by C7x DSP */
-+&main_rti4 {
-+	status = "reserved";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am62d2.dtsi b/arch/arm64/boot/dts/ti/k3-am62d2.dtsi
-new file mode 100644
-index 000000000000..c7d8ab43c72f
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62d2.dtsi
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Device Tree Source for AM62D2 SoC family in Quad core configuration
-+ *
-+ * TRM: https://www.ti.com/lit/pdf/sprujd4
-+ *
-+ * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am62a7.dtsi"
-+
-+/ {
-+	model = "Texas Instruments K3 AM62D SoC";
-+	compatible = "ti,am62d2";
-+};
-+
-+/delete-node/ &vpu;   /* Video Codec is disabled in AM62D2 SoC */
-+/delete-node/ &e5010; /* JPEG Encoder is disabled in AM62D2 SoC */
--- 
-2.34.1
-
+Kamil
 
