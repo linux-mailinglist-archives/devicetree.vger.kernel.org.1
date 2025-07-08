@@ -1,261 +1,642 @@
-Return-Path: <devicetree+bounces-194283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF70AFD8F1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 22:55:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97482AFD921
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 23:05:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B90E74821AD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 20:54:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8639164F33
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 21:05:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E95241676;
-	Tue,  8 Jul 2025 20:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010D121B182;
+	Tue,  8 Jul 2025 21:05:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="zTiNDGFk"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="t7nxULEq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0128B2066CF
-	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 20:55:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79433D517;
+	Tue,  8 Jul 2025 21:05:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752008105; cv=none; b=q26rMJAMP1JfBZmE7gVZZ257iEMNR5tycitntEyWhyi5pRc9auRtUuhLVCDbGa94aMDTIT/fbwDYg5OXEi2+BuEhufGbGuvHUHSYcWM3vmbk2QlHMmOLkPE+EN4fzIaaVu2VT+UK6FErr6m5fF1JRn6RbRGrXLP152Qn3gLXN5U=
+	t=1752008706; cv=none; b=YKCPRqoV4Uhy5tBQX/Xq4Fs5g98gbXgEgduWkILmYOZNJnT75RA8H1xscu1aqFCNY1NBi+FS0zmP+P+B15VJgMrOGwbpQ8rVe3RVV5+crf/t3rupQW5wEvYm9ceJovsuJ+kGY/UODu550kOpFZQtjhPP3jZ8xJWO+UClopjIGso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752008105; c=relaxed/simple;
-	bh=kjuzGXug/D4R5GG9GyQa4tvl1oIFOIPy3Hbjs+Knt7I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iIxFLQi+yq6TEsQQWCSRlx4Ha0ypJ4MGELMYWqmLvcran+sPjQxaQu1YCBY1wAMRiGXQv85Tp0mIw0MojSDKzdq9pCKQH14e/fgfitV3qPbMdlUJdwiv9ATPCffdJbV3HoY6iDdoD97yuGVi7QvcI6nSRQ4FZvZ8mtEdzz+i0uM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=zTiNDGFk; arc=none smtp.client-ip=209.85.215.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-7fd35b301bdso5120458a12.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 13:55:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1752008103; x=1752612903; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gxJ02DChvr+wqzcbfqYcBr0RaqPB3ADatLZsLUUfYAs=;
-        b=zTiNDGFk3NmyURAanRQscpPtOx40uLlEEzpJENOpDqR2cCJQtXzZUYl7VNlVtg47fM
-         b1bHFS16IhpCXLI5GiHAfg+UN6hMPbM2CR9m/0KAEmAw/jui5s70a0x2+yEM9Y1iMMCV
-         n/JuSyXee8eKqo4ayaOFGbgg2PlbFtsplwDmvc5fBKz9BkaEvFjkC/k/CQ9dcHfgjI2z
-         NF3rYmDiHyZkWXBJfk2mohKyKiASR3n2EZXvUpyLLP5ivb9NcoRJUc0KKbF1Pd7dfOW5
-         2sJ6koju4tK0GPehyFTWZgNOwBNYNtoP6O1t1c1K1mADN/Ld/V32NxvXiddRNp1ZISQL
-         a0Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752008103; x=1752612903;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gxJ02DChvr+wqzcbfqYcBr0RaqPB3ADatLZsLUUfYAs=;
-        b=d7nJ/gRbAuLsMOp8JXnkWnjJWKL/vzH+urkIzl/aK1CelL+7UelJorc8XVqbShQmUK
-         j83Fju0iQZaUS3PaEuM500MOTOQZDO3nq8cLETkNZZS1gH/ZaKyVyh/GXb4hpscIDkc6
-         30iwyb5bHWj5jvcUgW2yGh+6IE8q22KhD4c+434bhiXzZLpLre/++IvmgFv77XREihHH
-         0CFKMPI2/v3eZQlLNH5hXD15cEWdXhTBPAGc/9xRBp3Kn/cRHPR9hYNA6pTJ1rfLZkyZ
-         EJEgiTaDPlYIzXcMMZLVrcK77TlDWXKL8FVLKtz/iGIPeGQQsnnZzVzSWsoyjz6AIrvK
-         AJgA==
-X-Forwarded-Encrypted: i=1; AJvYcCXXLZku2iMlLAwHleBcjfY1ZSVsxmnWi8mq7OO/5l01LP41P157tsZXW9KX9Vgg+z/UATVKFx9Y4W+t@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNg2jr2uruZEjwZ5q6WBGskzPuJCafKsvwrlM2teHE8Dj6aPMK
-	L5UCan0TOIT0ryMSz+uehafnt7SKaT2QdmaiyzP9usLpJpI0nnB/6iWD+gewHTzYVw==
-X-Gm-Gg: ASbGncsQVzkQt4A54Kgd5l2taDtHuf2mk0dyqu0hlk7BWDS062IVIvL9cFyZxA2y8eF
-	XdYi28NMWQmN21+BdMREGv+OBoUATT03PEj9wglgyNi9nVR15QiSiYeajE0Eml9NjgIma5bf5Ut
-	RIRSKwkVTGUy8mPpLncEik0tAxWmb+3DFQXLZyi+yjr20x48VuZCnwg18CyQ5UEzBit96/HrNnq
-	lkG/Fi0mYmYfS6joFoGEy4mJANfC5QVwmE+d2cmzS33C1n0Z03E6mRh7qbduOvAochTrKCalSI8
-	jNEihiOTYtJIJal0Xm/52VPalkPI0WarvzNy357TTstElvV2M1++R8JxPkrPjVC9VpWrh+qKh+r
-	GQHrAnQ4c0h3mvJ4lutYwqErxhDDaCZJteFu1F4JTogKn3K+7NDAhTcyJcA==
-X-Google-Smtp-Source: AGHT+IENn9KRBXLlUDYf/W80abgdynUrbIykjoaWTtbpQkehSN3ONHZRp3PyECxAzPSapU8TzEg2eA==
-X-Received: by 2002:a17:90b:3ec3:b0:311:e5b2:356b with SMTP id 98e67ed59e1d1-31c2fce1e72mr66728a91.11.1752008102930;
-        Tue, 08 Jul 2025 13:55:02 -0700 (PDT)
-Received: from ?IPV6:2a00:79e0:2e14:7:f0a:1e62:5952:b993? ([2a00:79e0:2e14:7:f0a:1e62:5952:b993])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31c21edab71sm3042106a91.43.2025.07.08.13.55.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Jul 2025 13:55:02 -0700 (PDT)
-Message-ID: <ab6c4132-a0c5-4143-b265-a9979a171646@google.com>
-Date: Tue, 8 Jul 2025 13:55:00 -0700
+	s=arc-20240116; t=1752008706; c=relaxed/simple;
+	bh=mK4hDgW9GepE/omzaVnQSsVMec83d/n9EJu5Bc5VBlo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HwwFDGbTlJRg4czgDHS8LySzXiSSJAR2riUU1DCIyHoNnOLJQNQskMsprlNgX1SUIWTuZqEMuEHURCsAAMCtPKIYVDNs6Pq6FywFOFwfpSigts2NkAzZbuRE57ikQrhMQ2e2rmbvQ+86iYPWjpfviV+nujROjEqoVs+On9Nc4/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=t7nxULEq; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 568L4m4K997516;
+	Tue, 8 Jul 2025 16:04:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752008688;
+	bh=pDqs5z0T8DJczVbO2ETf80Xh3v/Wu5nwitrXj+vsLLk=;
+	h=From:To:CC:Subject:Date;
+	b=t7nxULEqjjXedf7OY9yfpQS2gcEQfh576/aTkaQmYxHarJIxN2pp0x4Gi4T/xXrl+
+	 Fqup7u5NKkkD/CrdGYDhGEE4YVbn7Oy87MO3dMuf0xtwSJOWBsaqhZ9PAIztOHUaEa
+	 KOxU4T9KJUHHNkTL9XC1yRhPBG5bOLMgo++Qms+A=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 568L4mQv2714000
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 8 Jul 2025 16:04:48 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 8
+ Jul 2025 16:04:48 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 8 Jul 2025 16:04:48 -0500
+Received: from DMZ007XYY.dhcp.ti.com (dmz007xyy.dhcp.ti.com [128.247.29.251])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 568L4mWN2735823;
+	Tue, 8 Jul 2025 16:04:48 -0500
+From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <praneeth@ti.com>, <m-leonard@ti.com>, <rklein@nvidia.com>, <jm@ti.com>,
+        <khilman@baylibre.com>, <kory.maincent@bootlin.com>,
+        <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v2] mfd: dt-bindings: Convert TPS65910 to DT schema
+Date: Tue, 8 Jul 2025 16:04:48 -0500
+Message-ID: <20250708210448.56384-1-s-ramamoorthy@ti.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: connector: extend ports property to
- model power connections
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
- Pavel Machek <pavel@kernel.org>, Kyle Tso <kyletso@google.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20250507-batt_ops-v2-0-8d06130bffe6@google.com>
- <20250507-batt_ops-v2-1-8d06130bffe6@google.com>
- <20250514194249.GA2881453-robh@kernel.org>
- <b4a22161-8cab-4d76-a4b0-4bfd0d79cdc1@google.com>
- <z2wrzts6cgunxs5tc764izvrfi4i2d637zpt6tj5f4piry6j66@cke2yxhih6dg>
-Content-Language: en-US
-From: Amit Sunil Dhamne <amitsd@google.com>
-In-Reply-To: <z2wrzts6cgunxs5tc764izvrfi4i2d637zpt6tj5f4piry6j66@cke2yxhih6dg>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Sebastian,
+Convert the TI TPS65910 documentation to DT schema format.
 
-On 6/23/25 3:08 PM, Sebastian Reichel wrote:
-> Hi,
->
-> On Tue, May 20, 2025 at 01:10:25PM -0700, Amit Sunil Dhamne wrote:
->> Hi Rob,
->>
->> Thanks for your response!
->>
->> On 5/14/25 12:42 PM, Rob Herring wrote:
->>> On Wed, May 07, 2025 at 06:00:22PM -0700, Amit Sunil Dhamne wrote:
->>>> Extend ports property to model power lines going between connector to
->>>> charger or battery/batteries. As an example, connector VBUS can supply
->>>> power in & out of the battery for a DRP.
->>>>
->>>> Additionally, add ports property to maxim,max33359 controller example.
->>>>
->>>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
->>>> ---
->>>>   .../bindings/connector/usb-connector.yaml          | 20 +++++++++++------
->>>>   .../devicetree/bindings/usb/maxim,max33359.yaml    | 25 ++++++++++++++++++++++
->>>>   2 files changed, 38 insertions(+), 7 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>>> index 11e40d225b9f3a0d0aeea7bf764f1c00a719d615..706094f890026d324e6ece8b0c1e831d04d51eb7 100644
->>>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>>> @@ -181,16 +181,16 @@ properties:
->>>>   
->>>>     port:
->>>>       $ref: /schemas/graph.yaml#/properties/port
->>>> -    description: OF graph bindings modeling a data bus to the connector, e.g.
->>>> -      there is a single High Speed (HS) port present in this connector. If there
->>>> -      is more than one bus (several port, with 'reg' property), they can be grouped
->>>> -      under 'ports'.
->>>> +    description: OF graph binding to model a logical connection between a device
->>>> +      and connector. This connection may represent a data bus or power line. For
->>>> +      e.g. a High Speed (HS) data port present in this connector or VBUS line.
->>>> +      If there is more than one connection (several port, with 'reg' property),
->>>> +      they can be grouped under 'ports'.
->>> 'port' and 'port@0' are equivalent. So you can't be changing its
->>> definition.
->> Noted!
->>
->>
->>> I'm not sure showing a power connection with the graph is the right
->>> approach.
->> I want to provide some more context and rationale behind using this design.
->>
->>  From a hardware perspective:
->>
->> The max77759/max33359 IC has Type-C port controller, charger, fuel gauge
->> (FG) ICs. The Vbus from the connector goes to/from the TCPC and connects
->> with the charger IP via circuitry & from there on to the battery. The FG
->> is connected to the battery in parallel. As it can be seen that while
->> these IPs are interconnected, there's no direct connection of the fuel
->> gauge & the connector.
->>
->> For this feature, I am interested in getting the reference to the FG. As
->> per graph description: "...These common bindings do not contain any
->> information about the direction or type of the connections, they just
->> map their existence." This works for my case because I just want the
->> connector to be aware of the Fuel gauge device without imposing a
->> specific directionality in terms of power supplier/supplied. This is
->> also the reason why I didn't use
->> "/schemas/power/supply/power-supply.yaml#power-supplies" binding.
->>
->>> We have a binding for that already with the regulator binding.
->> I haven't explored the option of using regulator bindings. But in my
->> case I am interested in fuel gauge and unfortunately, they're modeled as
->> power_supply devices.
->  From hardware point of view there is no direct connection at all
-> between the fuel gauge and the connector. The usual hardware
-> connection is
->
-> connector -> charger -> battery
->
-> With the charger potentially supporting reverse operation to provide
-> energy from the battery to the connector (with "battery" I assume
-> a "smart" battery, so the raw cells and some kind of fuel gauge).
->
-> Thus the following example should properly document the hardware
-> connections:
->
-> ---------------------------------------
-> typec-connector {
->      /* ... */
-> };
->
-> charger {
->      /* ... */
->      power-supplies = <&connector>;
-> };
->
-> fuel-gauge {
->      /* ... */
->      power-supplies = <&charger>;
-> };
-> ---------------------------------------
+Fix incorrect I2C address in example: should be 0x2d.
 
-The hardware description is unambiguous for single power role Type-C 
-devices such as Sink only & Source only device (demonstrated by 
-inverting the relationship given in the above example).
+TPS65910 datasheet: https://www.ti.com/lit/gpn/tps65910
 
-For DRP power role, the above relationship feels semantically incorrect 
-because the illustrated relationship would not hold if the Type-C device 
-is Source for a given Type-C connection lifecycle.
+Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+---
+v1 -> v2:
+- Remove references to old docs
+- Change ti,vmbch-threshold & ti,vmbch2-threshold to uint32
+- Remove constraints from description text
+- Change all unevaluatedProperties instances to false
+- additionalProperties set to false & moved to 'regulators' property
+- Shorten regex to ^vcc(io|[1-7])-supply$
+- Add blank line between vcc(io|[1-7])-supply description paragraphs
+- Change DTS example indentation to use 4 spaces
+- Drop unused labels (vrtc_reg node) from DTS example
+---
+ .../devicetree/bindings/mfd/ti,tps65910.yaml  | 318 ++++++++++++++++++
+ .../devicetree/bindings/mfd/tps65910.txt      | 205 -----------
+ 2 files changed, 318 insertions(+), 205 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/tps65910.txt
 
-I'll add a note somewhere mentioning that for DRP, the relationship can 
-be demonstrated either like a sink or source to make it less ambiguous.
+diff --git a/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml b/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
+new file mode 100644
+index 000000000000..a2668fc30a7b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
+@@ -0,0 +1,318 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/ti,tps65910.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI TPS65910 Power Management Integrated Circuit
++
++maintainers:
++  - Shree Ramamoorthy <s-ramamoorthy@ti.com>
++
++description:
++  TPS65910 device is a Power Management IC that provides 3 step-down converters,
++  1 stepup converter, and 8 LDOs. The device contains an embedded power controller (EPC),
++  1 GPIO, and an RTC.
++
++properties:
++  compatible:
++    enum:
++      - ti,tps65910
++      - ti,tps65911
++
++  reg:
++    description: I2C slave address
++    maxItems: 1
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 2
++    description: |
++      The first cell is the GPIO number.
++      The second cell is used to specify additional options <unused>.
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    description: Specifies the IRQ number and flags
++    const: 2
++
++  ti,vmbch-threshold:
++    description: |
++      (TPS65911) Main battery charged threshold comparator.
++      See VMBCH_VSEL in TPS65910 datasheet.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++
++  ti,vmbch2-threshold:
++    description: |
++      (TPS65911) Main battery discharged threshold comparator.
++      See VMBCH_VSEL in TPS65910 datasheet.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++
++  ti,en-ck32k-xtal:
++    type: boolean
++    description: Enable external 32-kHz crystal oscillator.
++
++  ti,en-gpio-sleep:
++    description: |
++      Enable sleep control for gpios.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 9
++    maxItems: 9
++    items:
++      minimum: 0
++      maximum: 1
++
++  ti,system-power-controller:
++    type: boolean
++    description: Identify whether or not this pmic controls the system power
++
++  ti,sleep-enable:
++    type: boolean
++    description: Enable SLEEP state.
++
++  ti,sleep-keep-therm:
++    type: boolean
++    description: Keep thermal monitoring on in sleep state.
++
++  ti,sleep-keep-ck32k:
++    type: boolean
++    description: Keep the 32KHz clock output on in sleep state.
++
++  ti,sleep-keep-hsclk:
++    type: boolean
++    description: Keep high speed internal clock on in sleep state.
++
++  regulators:
++    type: object
++    additionalProperties: false
++    description: List of regulators provided by this controller.
++
++    patternProperties:
++      "^(vrtc|vio|vpll|vdac|vmmc|vbb|vddctrl)$":
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        properties:
++          ti,regulator-ext-sleep-control:
++            description: |
++              Enable external sleep control through external inputs:
++              [0 (not enabled), 1 (EN1), 2 (EN2) or 4(EN3)].
++              If this property is not defined, it defaults to 0 (not enabled).
++            $ref: /schemas/types.yaml#/definitions/uint32
++            enum: [0, 1, 2, 4, 8]
++        unevaluatedProperties: false
++
++      "^(vdd[1-3]|vaux([1-2]|33)|vdig[1-2])$":
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        properties:
++          ti,regulator-ext-sleep-control:
++            description: |
++              Enable external sleep control through external inputs:
++              [0 (not enabled), 1 (EN1), 2 (EN2) or 4(EN3)].
++              If this property is not defined, it defaults to 0 (not enabled).
++            $ref: /schemas/types.yaml#/definitions/uint32
++            enum: [0, 1, 2, 4, 8]
++        unevaluatedProperties: false
++
++      "^ldo[1-8]$":
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        properties:
++          ti,regulator-ext-sleep-control:
++            description: |
++              Enable external sleep control through external inputs:
++              [0 (not enabled), 1 (EN1), 2 (EN2) or 4(EN3)].
++              If this property is not defined, it defaults to 0 (not enabled).
++            $ref: /schemas/types.yaml#/definitions/uint32
++            enum: [0, 1, 2, 4, 8]
++        unevaluatedProperties: false
++
++patternProperties:
++  "^(vcc(io|[1-7])-supply)$":
++    description: |
++      Input voltage supply phandle for regulators.
++      These entries are required if PMIC regulators are enabled, or else it
++      can cause the regulator registration to fail.
++
++      If some input supply is powered through battery or always-on supply, then
++      it is also required to have these parameters with the proper node handle for always-on
++      power supply.
++      tps65910:
++        vcc1-supply: VDD1 input.
++        vcc2-supply: VDD2 input.
++        vcc3-supply: VAUX33 and VMMC input.
++        vcc4-supply: VAUX1 and VAUX2 input.
++        vcc5-supply: VPLL and VDAC input.
++        vcc6-supply: VDIG1 and VDIG2 input.
++        vcc7-supply: VRTC and VBB input.
++        vccio-supply: VIO input.
++      tps65911:
++        vcc1-supply: VDD1 input.
++        vcc2-supply: VDD2 input.
++        vcc3-supply: LDO6, LDO7 and LDO8 input.
++        vcc4-supply: LDO5 input.
++        vcc5-supply: LDO3 and LDO4 input.
++        vcc6-supply: LDO1 and LDO2 input.
++        vcc7-supply: VRTC input.
++        vccio-supply: VIO input.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-controller
++  - '#interrupt-cells'
++  - gpio-controller
++  - '#gpio-cells'
++  - regulators
++
++additionalProperties: false
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ti,tps65910
++    then:
++      properties:
++        regulators:
++          patternProperties:
++            "^(ldo[1-8]|vddctrl)$": false
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ti,tps65911
++    then:
++      properties:
++        regulators:
++          patternProperties:
++            "^(vdd3|vaux([1-2]|33)|vdig[1-2])$": false
++            "^(vpll|vdac|vmmc|vbb)$": false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pmic: tps65910@2d {
++            compatible = "ti,tps65910";
++            reg = <0x2d>;
++            interrupt-parent = <&intc>;
++            interrupts = < 0 118 0x04 >;
++
++            #gpio-cells = <2>;
++            gpio-controller;
++
++            #interrupt-cells = <2>;
++            interrupt-controller;
++
++            ti,system-power-controller;
++
++            ti,vmbch-threshold = <0>;
++            ti,vmbch2-threshold = <0>;
++            ti,en-ck32k-xtal;
++            ti,en-gpio-sleep = <0 0 1 0 0 0 0 0 0>;
++
++            vcc1-supply = <&reg_parent>;
++            vcc2-supply = <&some_reg>;
++            vcc3-supply = <&vbat>;
++            vcc4-supply = <&vbat>;
++            vcc5-supply = <&vbat>;
++            vcc6-supply = <&vbat>;
++            vcc7-supply = <&vbat>;
++            vccio-supply = <&vbat>;
++
++            regulators {
++                vio_reg: vio {
++                    regulator-name = "vio";
++                    regulator-min-microvolt = <1500000>;
++                    regulator-max-microvolt = <3300000>;
++                    regulator-always-on;
++                    regulator-boot-on;
++                };
++                vdd1_reg: vdd1 {
++                    regulator-name = "vdd1";
++                    regulator-min-microvolt = < 600000>;
++                    regulator-max-microvolt = <1500000>;
++                    regulator-always-on;
++                    regulator-boot-on;
++                    ti,regulator-ext-sleep-control = <0>;
++                };
++                vdd2_reg: vdd2 {
++                    regulator-name = "vdd2";
++                    regulator-min-microvolt = < 600000>;
++                    regulator-max-microvolt = <1500000>;
++                    regulator-always-on;
++                    regulator-boot-on;
++                };
++                vdd3_reg: vdd3 {
++                    regulator-name = "vdd3";
++                    regulator-min-microvolt = <5000000>;
++                    regulator-max-microvolt = <5000000>;
++                    regulator-always-on;
++                };
++                vdig1_reg: vdig1 {
++                    regulator-name = "vdig1";
++                    regulator-min-microvolt = <1200000>;
++                    regulator-max-microvolt = <2700000>;
++                    regulator-always-on;
++                };
++                vdig2_reg: vdig2 {
++                    regulator-name = "vdig2";
++                    regulator-min-microvolt = <1000000>;
++                    regulator-max-microvolt = <1800000>;
++                    regulator-always-on;
++                };
++                vpll_reg: vpll {
++                    regulator-name = "vpll";
++                    regulator-min-microvolt = <1000000>;
++                    regulator-max-microvolt = <2500000>;
++                    regulator-always-on;
++                };
++                vdac_reg: vdac {
++                    regulator-name = "vdac";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <2850000>;
++                    regulator-always-on;
++                };
++                vaux1_reg: vaux1 {
++                    regulator-name = "vaux1";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <2850000>;
++                    regulator-always-on;
++                };
++                vaux2_reg: vaux2 {
++                    regulator-name = "vaux2";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <3300000>;
++                    regulator-always-on;
++                };
++                vaux33_reg: vaux33 {
++                    regulator-name = "vaux33";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <3300000>;
++                    regulator-always-on;
++                };
++                vmmc_reg: vmmc {
++                    regulator-name = "vmmc";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <3300000>;
++                    regulator-always-on;
++                    regulator-boot-on;
++                };
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/mfd/tps65910.txt b/Documentation/devicetree/bindings/mfd/tps65910.txt
+deleted file mode 100644
+index a5ced46bbde9..000000000000
+--- a/Documentation/devicetree/bindings/mfd/tps65910.txt
++++ /dev/null
+@@ -1,205 +0,0 @@
+-TPS65910 Power Management Integrated Circuit
+-
+-Required properties:
+-- compatible: "ti,tps65910" or "ti,tps65911"
+-- reg: I2C slave address
+-- interrupts: the interrupt outputs of the controller
+-- #gpio-cells: number of cells to describe a GPIO, this should be 2.
+-  The first cell is the GPIO number.
+-  The second cell is used to specify additional options <unused>.
+-- gpio-controller: mark the device as a GPIO controller
+-- #interrupt-cells: the number of cells to describe an IRQ, this should be 2.
+-  The first cell is the IRQ number.
+-  The second cell is the flags, encoded as the trigger masks from
+-  Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+-- regulators: This is the list of child nodes that specify the regulator
+-  initialization data for defined regulators. Not all regulators for the given
+-  device need to be present. The definition for each of these nodes is defined
+-  using the standard binding for regulators found at
+-  Documentation/devicetree/bindings/regulator/regulator.txt.
+-  The regulator is matched with the regulator-compatible.
+-
+-  The valid regulator-compatible values are:
+-  tps65910: vrtc, vio, vdd1, vdd2, vdd3, vdig1, vdig2, vpll, vdac, vaux1,
+-            vaux2, vaux33, vmmc, vbb
+-  tps65911: vrtc, vio, vdd1, vdd2, vddctrl, ldo1, ldo2, ldo3, ldo4, ldo5,
+-            ldo6, ldo7, ldo8
+-
+-- xxx-supply: Input voltage supply regulator.
+-  These entries are required if regulators are enabled for a device. Missing these
+-  properties can cause the regulator registration to fail.
+-  If some of input supply is powered through battery or always-on supply then
+-  also it is require to have these parameters with proper node handle of always
+-  on power supply.
+-  tps65910:
+-	vcc1-supply: VDD1 input.
+-	vcc2-supply: VDD2 input.
+-	vcc3-supply: VAUX33 and VMMC input.
+-	vcc4-supply: VAUX1 and VAUX2 input.
+-	vcc5-supply: VPLL and VDAC input.
+-	vcc6-supply: VDIG1 and VDIG2 input.
+-	vcc7-supply: VRTC and VBB input.
+-	vccio-supply: VIO input.
+-  tps65911:
+-	vcc1-supply: VDD1 input.
+-	vcc2-supply: VDD2 input.
+-	vcc3-supply: LDO6, LDO7 and LDO8 input.
+-	vcc4-supply: LDO5 input.
+-	vcc5-supply: LDO3 and LDO4 input.
+-	vcc6-supply: LDO1 and LDO2 input.
+-	vcc7-supply: VRTC input.
+-	vccio-supply: VIO input.
+-
+-Optional properties:
+-- ti,vmbch-threshold: (tps65911) main battery charged threshold
+-  comparator. (see VMBCH_VSEL in TPS65910 datasheet)
+-- ti,vmbch2-threshold: (tps65911) main battery discharged threshold
+-  comparator. (see VMBCH_VSEL in TPS65910 datasheet)
+-- ti,en-ck32k-xtal: enable external 32-kHz crystal oscillator (see CK32K_CTRL
+-  in TPS6591X datasheet)
+-- ti,en-gpio-sleep: enable sleep control for gpios
+-  There should be 9 entries here, one for each gpio.
+-- ti,system-power-controller: Telling whether or not this pmic is controlling
+-  the system power.
+-- ti,sleep-enable: Enable SLEEP state.
+-- ti,sleep-keep-therm: Keep thermal monitoring on in sleep state.
+-- ti,sleep-keep-ck32k: Keep the 32KHz clock output on in sleep state.
+-- ti,sleep-keep-hsclk: Keep high speed internal clock on in sleep state.
+-
+-Regulator Optional properties:
+-- ti,regulator-ext-sleep-control: enable external sleep
+-  control through external inputs [0 (not enabled), 1 (EN1), 2 (EN2) or 4(EN3)]
+-  If this property is not defined, it defaults to 0 (not enabled).
+-
+-Example:
+-
+-	pmu: tps65910@d2 {
+-		compatible = "ti,tps65910";
+-		reg = <0xd2>;
+-		interrupt-parent = <&intc>;
+-		interrupts = < 0 118 0x04 >;
+-
+-		#gpio-cells = <2>;
+-		gpio-controller;
+-
+-		#interrupt-cells = <2>;
+-		interrupt-controller;
+-
+-		ti,system-power-controller;
+-
+-		ti,vmbch-threshold = 0;
+-		ti,vmbch2-threshold = 0;
+-		ti,en-ck32k-xtal;
+-		ti,en-gpio-sleep = <0 0 1 0 0 0 0 0 0>;
+-
+-		vcc1-supply = <&reg_parent>;
+-		vcc2-supply = <&some_reg>;
+-		vcc3-supply = <...>;
+-		vcc4-supply = <...>;
+-		vcc5-supply = <...>;
+-		vcc6-supply = <...>;
+-		vcc7-supply = <...>;
+-		vccio-supply = <...>;
+-
+-		regulators {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			vdd1_reg: regulator@0 {
+-				regulator-compatible = "vdd1";
+-				reg = <0>;
+-				regulator-min-microvolt = < 600000>;
+-				regulator-max-microvolt = <1500000>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-				ti,regulator-ext-sleep-control = <0>;
+-			};
+-			vdd2_reg: regulator@1 {
+-				regulator-compatible = "vdd2";
+-				reg = <1>;
+-				regulator-min-microvolt = < 600000>;
+-				regulator-max-microvolt = <1500000>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-				ti,regulator-ext-sleep-control = <4>;
+-			};
+-			vddctrl_reg: regulator@2 {
+-				regulator-compatible = "vddctrl";
+-				reg = <2>;
+-				regulator-min-microvolt = < 600000>;
+-				regulator-max-microvolt = <1400000>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-				ti,regulator-ext-sleep-control = <0>;
+-			};
+-			vio_reg: regulator@3 {
+-				regulator-compatible = "vio";
+-				reg = <3>;
+-				regulator-min-microvolt = <1500000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-				ti,regulator-ext-sleep-control = <1>;
+-			};
+-			ldo1_reg: regulator@4 {
+-				regulator-compatible = "ldo1";
+-				reg = <4>;
+-				regulator-min-microvolt = <1000000>;
+-				regulator-max-microvolt = <3300000>;
+-				ti,regulator-ext-sleep-control = <0>;
+-			};
+-			ldo2_reg: regulator@5 {
+-				regulator-compatible = "ldo2";
+-				reg = <5>;
+-				regulator-min-microvolt = <1050000>;
+-				regulator-max-microvolt = <1050000>;
+-				ti,regulator-ext-sleep-control = <0>;
+-			};
+-			ldo3_reg: regulator@6 {
+-				regulator-compatible = "ldo3";
+-				reg = <6>;
+-				regulator-min-microvolt = <1000000>;
+-				regulator-max-microvolt = <3300000>;
+-				ti,regulator-ext-sleep-control = <0>;
+-			};
+-			ldo4_reg: regulator@7 {
+-				regulator-compatible = "ldo4";
+-				reg = <7>;
+-				regulator-min-microvolt = <1000000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-always-on;
+-				ti,regulator-ext-sleep-control = <0>;
+-			};
+-			ldo5_reg: regulator@8 {
+-				regulator-compatible = "ldo5";
+-				reg = <8>;
+-				regulator-min-microvolt = <1000000>;
+-				regulator-max-microvolt = <3300000>;
+-				ti,regulator-ext-sleep-control = <0>;
+-			};
+-			ldo6_reg: regulator@9 {
+-				regulator-compatible = "ldo6";
+-				reg = <9>;
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <1200000>;
+-				ti,regulator-ext-sleep-control = <0>;
+-			};
+-			ldo7_reg: regulator@10 {
+-				regulator-compatible = "ldo7";
+-				reg = <10>;
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <1200000>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-				ti,regulator-ext-sleep-control = <1>;
+-			};
+-			ldo8_reg: regulator@11 {
+-				regulator-compatible = "ldo8";
+-				reg = <11>;
+-				regulator-min-microvolt = <1000000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-always-on;
+-				ti,regulator-ext-sleep-control = <1>;
+-			};
+-		};
+-	};
+-- 
+2.43.0
 
-
-> It means instead of the direct graph lookup for the fuel gauge,
-> you would need a function walking through the graph build by the
-> power-supplies phandles. But it also means that the DT properly
-> describes the hardware instead of adding random graph connections.
-
-Okay, will follow this approach.
-
-Thanks,
-
-Amit
-
-
->
-> Greetings,
->
-> -- Sebastian
->
->>> Perhaps the connector needs to be a supply. It's already using that
->>> binding in the supplying power to the connector case.
->> Want to clarify, in this case you mean
->> /schemas/regulator/regulator.yaml#*-supply$ right?
->>
->> Adding to my response above, the reason I don't want to impose a
->> directionality in terms of supplier/supplied is that in case of USB Dual
->> Role Port they're dynamic i.e., when USB is source, the power is
->> supplied out of the battery (battery/FG will be supplier) and in case
->> USB is sink, battery is supplied power. Whether the connector port is in
->> source or sink role is determined on a connection to connection basis.
->> Also, the knowledge of the supply direction is of no consequence for
->> this feature.
->>
->>
->> Please let me know what you think.
->>
->> Thanks,
->>
->> Amit
->>
->>
->>> Rob
 
