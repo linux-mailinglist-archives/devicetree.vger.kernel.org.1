@@ -1,169 +1,261 @@
-Return-Path: <devicetree+bounces-194281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4314BAFD86B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 22:35:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AF70AFD8F1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 22:55:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9209F568510
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 20:35:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B90E74821AD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 20:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72CE623F294;
-	Tue,  8 Jul 2025 20:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E95241676;
+	Tue,  8 Jul 2025 20:55:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FKFHl+IG"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="zTiNDGFk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D76520468E;
-	Tue,  8 Jul 2025 20:35:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0128B2066CF
+	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 20:55:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752006904; cv=none; b=VN/sonJ31rgS7J0vFQP9W5vEug1QBO/6YLOTGcKrrtobGbDPdmZevpksewmidNOux6gNElHjcWJH8VSwOrLQ5oXbPmMQJ7jTxV+B1cPzgFTT1UyBSFK2nlyhi9xbTvgD1KGoCckIuzV9ijHUjbQX+VR0ZqYWDRqZ8gs0TWEs1+0=
+	t=1752008105; cv=none; b=q26rMJAMP1JfBZmE7gVZZ257iEMNR5tycitntEyWhyi5pRc9auRtUuhLVCDbGa94aMDTIT/fbwDYg5OXEi2+BuEhufGbGuvHUHSYcWM3vmbk2QlHMmOLkPE+EN4fzIaaVu2VT+UK6FErr6m5fF1JRn6RbRGrXLP152Qn3gLXN5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752006904; c=relaxed/simple;
-	bh=Wgcm5i5ENDfwLTKBgHyGJDYTaLDQNdy2g4ZYker8EaE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i2upnbrF4HbyxH92Fj0hZzYjKzfFqvazn5uAnQmohhw+mdncESpYl1hZfkTkTLlJ6Sc/zE5mqv/bvi0eepui+HqUR3yb7Z3sHXx/ayST20JXTT+NXileRuGW+0blVeLBaNzHW9buLWix1mF+n4p2klC2K01kKRGFztPsH8xgRbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FKFHl+IG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D83B4C4CEF6;
-	Tue,  8 Jul 2025 20:35:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752006903;
-	bh=Wgcm5i5ENDfwLTKBgHyGJDYTaLDQNdy2g4ZYker8EaE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=FKFHl+IG4sBY08G2kr8mWfB1ziEG5+1m7klmEUWJD04gCmtKfLS9GsH1lQPAAHcMb
-	 0M+6T4VROIdGz2Nh7L6+s4OgeJlV7/IDbSo3lJHaIjTkg3TtEIOTuZrf3eF3ydbyd0
-	 CzqiTwa7KSjLx9wp2XQxPreHdnCYJGnl0AsgeGnQV01b5pTPPRE8157sSyNKMh2aUT
-	 +wHfevkK9IlSuSiB1Mjr7LGag/HxyfHlPCyU1AETdd9fkNxud3AoX3ACMEAVSSBaiP
-	 ZbWwp1kXtlrj0Fo/2ErO+Fdjd0n/oSvxhyd2wl0T5uBw2vDa7qcZmJJCBPA1ZSAfVb
-	 hIUspZZuJHn4w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CB5BBC8303C;
-	Tue,  8 Jul 2025 20:35:03 +0000 (UTC)
-From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
-Date: Tue, 08 Jul 2025 22:34:08 +0200
-Subject: [PATCH v5 3/3] arm64: dts: qcom: x1-hp-x14: Add support for
- X1P42100 HP Omnibook X14
+	s=arc-20240116; t=1752008105; c=relaxed/simple;
+	bh=kjuzGXug/D4R5GG9GyQa4tvl1oIFOIPy3Hbjs+Knt7I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iIxFLQi+yq6TEsQQWCSRlx4Ha0ypJ4MGELMYWqmLvcran+sPjQxaQu1YCBY1wAMRiGXQv85Tp0mIw0MojSDKzdq9pCKQH14e/fgfitV3qPbMdlUJdwiv9ATPCffdJbV3HoY6iDdoD97yuGVi7QvcI6nSRQ4FZvZ8mtEdzz+i0uM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=zTiNDGFk; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-7fd35b301bdso5120458a12.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 13:55:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1752008103; x=1752612903; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gxJ02DChvr+wqzcbfqYcBr0RaqPB3ADatLZsLUUfYAs=;
+        b=zTiNDGFk3NmyURAanRQscpPtOx40uLlEEzpJENOpDqR2cCJQtXzZUYl7VNlVtg47fM
+         b1bHFS16IhpCXLI5GiHAfg+UN6hMPbM2CR9m/0KAEmAw/jui5s70a0x2+yEM9Y1iMMCV
+         n/JuSyXee8eKqo4ayaOFGbgg2PlbFtsplwDmvc5fBKz9BkaEvFjkC/k/CQ9dcHfgjI2z
+         NF3rYmDiHyZkWXBJfk2mohKyKiASR3n2EZXvUpyLLP5ivb9NcoRJUc0KKbF1Pd7dfOW5
+         2sJ6koju4tK0GPehyFTWZgNOwBNYNtoP6O1t1c1K1mADN/Ld/V32NxvXiddRNp1ZISQL
+         a0Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752008103; x=1752612903;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gxJ02DChvr+wqzcbfqYcBr0RaqPB3ADatLZsLUUfYAs=;
+        b=d7nJ/gRbAuLsMOp8JXnkWnjJWKL/vzH+urkIzl/aK1CelL+7UelJorc8XVqbShQmUK
+         j83Fju0iQZaUS3PaEuM500MOTOQZDO3nq8cLETkNZZS1gH/ZaKyVyh/GXb4hpscIDkc6
+         30iwyb5bHWj5jvcUgW2yGh+6IE8q22KhD4c+434bhiXzZLpLre/++IvmgFv77XREihHH
+         0CFKMPI2/v3eZQlLNH5hXD15cEWdXhTBPAGc/9xRBp3Kn/cRHPR9hYNA6pTJ1rfLZkyZ
+         EJEgiTaDPlYIzXcMMZLVrcK77TlDWXKL8FVLKtz/iGIPeGQQsnnZzVzSWsoyjz6AIrvK
+         AJgA==
+X-Forwarded-Encrypted: i=1; AJvYcCXXLZku2iMlLAwHleBcjfY1ZSVsxmnWi8mq7OO/5l01LP41P157tsZXW9KX9Vgg+z/UATVKFx9Y4W+t@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNg2jr2uruZEjwZ5q6WBGskzPuJCafKsvwrlM2teHE8Dj6aPMK
+	L5UCan0TOIT0ryMSz+uehafnt7SKaT2QdmaiyzP9usLpJpI0nnB/6iWD+gewHTzYVw==
+X-Gm-Gg: ASbGncsQVzkQt4A54Kgd5l2taDtHuf2mk0dyqu0hlk7BWDS062IVIvL9cFyZxA2y8eF
+	XdYi28NMWQmN21+BdMREGv+OBoUATT03PEj9wglgyNi9nVR15QiSiYeajE0Eml9NjgIma5bf5Ut
+	RIRSKwkVTGUy8mPpLncEik0tAxWmb+3DFQXLZyi+yjr20x48VuZCnwg18CyQ5UEzBit96/HrNnq
+	lkG/Fi0mYmYfS6joFoGEy4mJANfC5QVwmE+d2cmzS33C1n0Z03E6mRh7qbduOvAochTrKCalSI8
+	jNEihiOTYtJIJal0Xm/52VPalkPI0WarvzNy357TTstElvV2M1++R8JxPkrPjVC9VpWrh+qKh+r
+	GQHrAnQ4c0h3mvJ4lutYwqErxhDDaCZJteFu1F4JTogKn3K+7NDAhTcyJcA==
+X-Google-Smtp-Source: AGHT+IENn9KRBXLlUDYf/W80abgdynUrbIykjoaWTtbpQkehSN3ONHZRp3PyECxAzPSapU8TzEg2eA==
+X-Received: by 2002:a17:90b:3ec3:b0:311:e5b2:356b with SMTP id 98e67ed59e1d1-31c2fce1e72mr66728a91.11.1752008102930;
+        Tue, 08 Jul 2025 13:55:02 -0700 (PDT)
+Received: from ?IPV6:2a00:79e0:2e14:7:f0a:1e62:5952:b993? ([2a00:79e0:2e14:7:f0a:1e62:5952:b993])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31c21edab71sm3042106a91.43.2025.07.08.13.55.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Jul 2025 13:55:02 -0700 (PDT)
+Message-ID: <ab6c4132-a0c5-4143-b265-a9979a171646@google.com>
+Date: Tue, 8 Jul 2025 13:55:00 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: connector: extend ports property to
+ model power connections
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
+ Pavel Machek <pavel@kernel.org>, Kyle Tso <kyletso@google.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20250507-batt_ops-v2-0-8d06130bffe6@google.com>
+ <20250507-batt_ops-v2-1-8d06130bffe6@google.com>
+ <20250514194249.GA2881453-robh@kernel.org>
+ <b4a22161-8cab-4d76-a4b0-4bfd0d79cdc1@google.com>
+ <z2wrzts6cgunxs5tc764izvrfi4i2d637zpt6tj5f4piry6j66@cke2yxhih6dg>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <z2wrzts6cgunxs5tc764izvrfi4i2d637zpt6tj5f4piry6j66@cke2yxhih6dg>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250708-hp-x14-x1p-v5-3-44c916efa973@oldschoolsolutions.biz>
-References: <20250708-hp-x14-x1p-v5-0-44c916efa973@oldschoolsolutions.biz>
-In-Reply-To: <20250708-hp-x14-x1p-v5-0-44c916efa973@oldschoolsolutions.biz>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752006901; l=2839;
- i=jens.glathe@oldschoolsolutions.biz; s=20240919;
- h=from:subject:message-id;
- bh=SS1iW7oT4myJxVc38sK5YLbfh87l/qiCbuk6ODbzS0s=;
- b=VbYC6pml2/dS06SPQTNIQYXoHxSz6hLJKBdxRaUnyktpQkre6jJ/aTER1xe6bLVN9fgPvc9Ry
- 2a7jwNJIaDyDaKpMNb5838j+1OGkikg1Z7lx2x8Fit9n6Cg5QxxwXES
-X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
- pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
-X-Endpoint-Received: by B4 Relay for
- jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
-X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Reply-To: jens.glathe@oldschoolsolutions.biz
 
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Hi Sebastian,
 
-These laptops are the same as the already known 14-fe0xxx models, but
-with a Purwa SoC, SKU number 14-fe1xxx. [1]
+On 6/23/25 3:08 PM, Sebastian Reichel wrote:
+> Hi,
+>
+> On Tue, May 20, 2025 at 01:10:25PM -0700, Amit Sunil Dhamne wrote:
+>> Hi Rob,
+>>
+>> Thanks for your response!
+>>
+>> On 5/14/25 12:42 PM, Rob Herring wrote:
+>>> On Wed, May 07, 2025 at 06:00:22PM -0700, Amit Sunil Dhamne wrote:
+>>>> Extend ports property to model power lines going between connector to
+>>>> charger or battery/batteries. As an example, connector VBUS can supply
+>>>> power in & out of the battery for a DRP.
+>>>>
+>>>> Additionally, add ports property to maxim,max33359 controller example.
+>>>>
+>>>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+>>>> ---
+>>>>   .../bindings/connector/usb-connector.yaml          | 20 +++++++++++------
+>>>>   .../devicetree/bindings/usb/maxim,max33359.yaml    | 25 ++++++++++++++++++++++
+>>>>   2 files changed, 38 insertions(+), 7 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>> index 11e40d225b9f3a0d0aeea7bf764f1c00a719d615..706094f890026d324e6ece8b0c1e831d04d51eb7 100644
+>>>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>> @@ -181,16 +181,16 @@ properties:
+>>>>   
+>>>>     port:
+>>>>       $ref: /schemas/graph.yaml#/properties/port
+>>>> -    description: OF graph bindings modeling a data bus to the connector, e.g.
+>>>> -      there is a single High Speed (HS) port present in this connector. If there
+>>>> -      is more than one bus (several port, with 'reg' property), they can be grouped
+>>>> -      under 'ports'.
+>>>> +    description: OF graph binding to model a logical connection between a device
+>>>> +      and connector. This connection may represent a data bus or power line. For
+>>>> +      e.g. a High Speed (HS) data port present in this connector or VBUS line.
+>>>> +      If there is more than one connection (several port, with 'reg' property),
+>>>> +      they can be grouped under 'ports'.
+>>> 'port' and 'port@0' are equivalent. So you can't be changing its
+>>> definition.
+>> Noted!
+>>
+>>
+>>> I'm not sure showing a power connection with the graph is the right
+>>> approach.
+>> I want to provide some more context and rationale behind using this design.
+>>
+>>  From a hardware perspective:
+>>
+>> The max77759/max33359 IC has Type-C port controller, charger, fuel gauge
+>> (FG) ICs. The Vbus from the connector goes to/from the TCPC and connects
+>> with the charger IP via circuitry & from there on to the battery. The FG
+>> is connected to the battery in parallel. As it can be seen that while
+>> these IPs are interconnected, there's no direct connection of the fuel
+>> gauge & the connector.
+>>
+>> For this feature, I am interested in getting the reference to the FG. As
+>> per graph description: "...These common bindings do not contain any
+>> information about the direction or type of the connections, they just
+>> map their existence." This works for my case because I just want the
+>> connector to be aware of the Fuel gauge device without imposing a
+>> specific directionality in terms of power supplier/supplied. This is
+>> also the reason why I didn't use
+>> "/schemas/power/supply/power-supply.yaml#power-supplies" binding.
+>>
+>>> We have a binding for that already with the regulator binding.
+>> I haven't explored the option of using regulator bindings. But in my
+>> case I am interested in fuel gauge and unfortunately, they're modeled as
+>> power_supply devices.
+>  From hardware point of view there is no direct connection at all
+> between the fuel gauge and the connector. The usual hardware
+> connection is
+>
+> connector -> charger -> battery
+>
+> With the charger potentially supporting reverse operation to provide
+> energy from the battery to the connector (with "battery" I assume
+> a "smart" battery, so the raw cells and some kind of fuel gauge).
+>
+> Thus the following example should properly document the hardware
+> connections:
+>
+> ---------------------------------------
+> typec-connector {
+>      /* ... */
+> };
+>
+> charger {
+>      /* ... */
+>      power-supplies = <&connector>;
+> };
+>
+> fuel-gauge {
+>      /* ... */
+>      power-supplies = <&charger>;
+> };
+> ---------------------------------------
 
-The supported features are the same as for the original Omnibook X14:
+The hardware description is unambiguous for single power role Type-C 
+devices such as Sink only & Source only device (demonstrated by 
+inverting the relationship given in the above example).
 
-- Keyboard (no function keys though)
-- Display
-- PWM brightness control
-- Touchpad
-- Touchscreen
-- PCIe ports (pcie4, pcie6a)
-- USB type-c, type-a
-- WCN6855 Wifi-6E
-- WCN6855 Bluetooth
-- ADSP and CDSP
-- X1 GPU
-- GPIO Keys (Lid switch)
-- Audio definition (works via USB and with internal speakers)
+For DRP power role, the above relationship feels semantically incorrect 
+because the illustrated relationship would not hold if the Type-C device 
+is Source for a given Type-C connection lifecycle.
 
-https://www.hp.com/us-en/shop/pdp/hp-omnibook-x-laptop-next-gen-ai-pc-14-fe100-14-a4nd1av-1#techSpecs
-
-Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
----
- arch/arm64/boot/dts/qcom/Makefile                  |  2 ++
- .../boot/dts/qcom/x1p42100-hp-omnibook-x14.dts     | 36 ++++++++++++++++++++++
- 2 files changed, 38 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 4bfa926b6a0850c3c459bcba28129c559d50a7cf..63bf3ccc11124a70efb09782b57970b274d80d49 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -333,3 +333,5 @@ x1p42100-asus-zenbook-a14-el2-dtbs	:= x1p42100-asus-zenbook-a14.dtb x1-el2.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-asus-zenbook-a14.dtb x1p42100-asus-zenbook-a14-el2.dtb
- x1p42100-crd-el2-dtbs	:= x1p42100-crd.dtb x1-el2.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-crd.dtb x1p42100-crd-el2.dtb
-+x1p42100-hp-omnibook-x14-el2-dtbs := x1p42100-hp-omnibook-x14.dtb x1-el2.dtbo
-+dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-hp-omnibook-x14.dtb x1p42100-hp-omnibook-x14-el2.dtb
-diff --git a/arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dts b/arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..4ec975f9acec30dc8a2383a4c6c15c3e1ee754e1
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dts
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "x1p42100.dtsi"
-+#include "x1e80100-pmics.dtsi"
-+#include "x1-hp-omnibook-x14.dtsi"
-+/delete-node/ &pmc8380_6;
-+/delete-node/ &pmc8380_6_thermal;
-+
-+/ {
-+	model = "HP Omnibook X 14-fe1";
-+	compatible = "hp,omnibook-x14-fe1", "qcom,x1p42100";
-+	chassis-type = "laptop";
-+};
-+
-+&gpu_zap_shader {
-+	firmware-name = "qcom/x1p42100/hp/omnibook-x14/qcdxkmsucpurwa.mbn";
-+};
-+
-+&remoteproc_adsp {
-+	firmware-name = "qcom/x1p42100/hp/omnibook-x14/qcadsp8380.mbn",
-+			"qcom/x1p42100/hp/omnibook-x14/adsp_dtbs.elf";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/x1p42100/hp/omnibook-x14/qccdsp8380.mbn",
-+			"qcom/x1p42100/hp/omnibook-x14/cdsp_dtbs.elf";
-+
-+	status = "okay";
-+};
-
--- 
-2.48.1
+I'll add a note somewhere mentioning that for DRP, the relationship can 
+be demonstrated either like a sink or source to make it less ambiguous.
 
 
+> It means instead of the direct graph lookup for the fuel gauge,
+> you would need a function walking through the graph build by the
+> power-supplies phandles. But it also means that the DT properly
+> describes the hardware instead of adding random graph connections.
+
+Okay, will follow this approach.
+
+Thanks,
+
+Amit
+
+
+>
+> Greetings,
+>
+> -- Sebastian
+>
+>>> Perhaps the connector needs to be a supply. It's already using that
+>>> binding in the supplying power to the connector case.
+>> Want to clarify, in this case you mean
+>> /schemas/regulator/regulator.yaml#*-supply$ right?
+>>
+>> Adding to my response above, the reason I don't want to impose a
+>> directionality in terms of supplier/supplied is that in case of USB Dual
+>> Role Port they're dynamic i.e., when USB is source, the power is
+>> supplied out of the battery (battery/FG will be supplier) and in case
+>> USB is sink, battery is supplied power. Whether the connector port is in
+>> source or sink role is determined on a connection to connection basis.
+>> Also, the knowledge of the supply direction is of no consequence for
+>> this feature.
+>>
+>>
+>> Please let me know what you think.
+>>
+>> Thanks,
+>>
+>> Amit
+>>
+>>
+>>> Rob
 
