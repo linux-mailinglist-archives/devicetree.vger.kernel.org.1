@@ -1,217 +1,161 @@
-Return-Path: <devicetree+bounces-194154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61576AFCE67
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:00:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD1EAFCE73
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:01:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E41FC1885AA9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 14:59:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91205189A741
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 15:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 561052E0B5D;
-	Tue,  8 Jul 2025 14:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1685E2E0B77;
+	Tue,  8 Jul 2025 15:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="T+q0A+tc"
+	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="0H92cCVW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931C22E041C
-	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 14:58:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAEDD2E040C
+	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 15:00:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751986724; cv=none; b=bYwHlCqHouxaJMOkkxo+BavrW4dYB3wCPaxBstEjp8fat6ja3JL1TZHw0uEgUSNfomqzxPeaTZK/YoZVwcHQ/GADLJDQH5YuIrO7G4zhYY+Hju2UQ+r5XFsnH3nuQrEIf4Q/Jdlc7wD8mpkk/7heHbz8+5ryAenf6GR2Kt4z6iM=
+	t=1751986822; cv=none; b=JZxn12zEcRqUieHx1BooxWvxpR0+58xrmtLA5/5LhNrMjtBOTuORK5Y0nauD919zYvRuyllBg/QymTdqiMfiv8jdcCGEdGU9gFcYQyI3KdVZLfD+Ks9INDSgBL3CQ21OUnBSjEjougWfSazh5tRLROavYJFGKn4MHnTUTu2hFw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751986724; c=relaxed/simple;
-	bh=HGTpVxEEJn+4Z8F/2vfMSUr1vMJyUPWvL7WDo/xrVN0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=luLV3sbeR+MY1MCjxMLsfSVwDlUc7bAF+kGtWc4G89F9FqPHByeTZtoncwsRqcDYnK23TbtinzWUG/AXOtHz1J1tpnyqojmBoB+gBh5av2gjXeKcQ2hDEX5GTcaBcO1fp7IvBSKWv0Nw6eAG2KsnhfZR6aCbegXzXHFPltC7gLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=T+q0A+tc; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-32ce252c3acso20266041fa.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 07:58:41 -0700 (PDT)
+	s=arc-20240116; t=1751986822; c=relaxed/simple;
+	bh=auCDOToMtdeoKV816i92zq8GG7kcE0+phv+U/FL+vwg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=D1altAN34T1ZeS6tsiy5rEcET8dEXfXRTVTOG4DnCSLSoaIuQaQHISfgIw6zloI6a1zE20P2zdTYS9Np7m33jVuZrvkBlUEoWGGkbfnfw8PoCEY8NS+bfc36KIMZBf5wlopV51V/JlFT9quLdsbDH8n8uzyFWkhVub4Xvg1lpOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=0H92cCVW; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-450ce3a2dd5so41439725e9.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 08:00:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1751986719; x=1752591519; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lsjEc9LmeMOTlM1N3xvojXwrwvOBpBec3I1iTp5IlDk=;
-        b=T+q0A+tcLVdKzFU+yOQ0k6BaEoc5AWhk6k1MsMu1cITFtwXThAqJb3RmygaNIGf31N
-         /szqbHwyxB3ZDe52XXbLvE7d0L4NhKQeysd22oYr2EbvjSnkNB7jbV82mixUCasB11aC
-         TXWBvIuoqia2FREsX6TsRxkhQefcmr9IWrw38=
+        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1751986817; x=1752591617; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=axiNVmFJf3G0tfPzjC8i75ML61tt4M701dSEBWFUhK8=;
+        b=0H92cCVWwH0ICYc4i06Pa4/l/5iF7D5Pe8AnBHR4Pj84Pk5xoYK8kvyUtYFFO6EuE1
+         WSL5r8uKXxdf7ycFeVhAskZz2n8CDPEVZKCvs4eHc7covA4URCBF0Wrrt9mHt7vXu09Y
+         5s5Vtvq9ti7ABEO4bxdAbGaVrnGm9tVu8zTew1nxt9LscDe5xS5lpP/K8XIfGqbm97S5
+         SVFkbC/Gush9yvhrYP1eyTM6RsmGWfSb8YaFYLY57vcrrwVPbgZrBZLE0TkHSAcRfUaP
+         2yTmK37FW+HVKG94VHunsC6swzNhSiqEtd/OAvAZ+pqMctg2HKthusU2qVkjTuGpbQkD
+         9cRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751986719; x=1752591519;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lsjEc9LmeMOTlM1N3xvojXwrwvOBpBec3I1iTp5IlDk=;
-        b=FRijX+gjt2HtYGrdhGSCCl9tVvu4rUhoc1xlxro92M8vL2rT4jG4n9A13yhx3qG08G
-         C7YKYYVcCaralaT89br5fVrEFF6bt6HinyUk5FXgsQDKDqF3OU0aOQ93JyUms0a5jdYA
-         st5zvn/Q4+109H8wX1PpZHgnuMgeVALhLDmydsbWlle46PmrE+stqz6NxLr+DKAy/vSb
-         WN1k8Ks8ktUKdPTL+xDfzHo6rk3VWyme7Kow3YpHZfbSjFH9SdPlmuDzAMz98tJseeR4
-         TutEeOFPeAnZUYli7zKEMxHHfgRu2bICLW9fgCXM0bBLfd3ezzqwoNM2mAQ11zMvB3Wk
-         H30Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUGHIqJgFNebXGsMKDRmKPj2/BsPRin3/DYO9Cxkui1vATlrUisvij0iyuU+79vHKjKf/cNTou3sRk2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTM+4MasCNxqEXW6NqNupBwvCuE9eQ4qpjDUIL9+3aTQ+k1YKB
-	4muQQ+Quybaf0oHoMPhZbZFrb/IJea0PJiOduJ2i0J0CKUAXkuJ5yNZM8i9MfiF66q0UOJ23hiK
-	U+HtfWxMR
-X-Gm-Gg: ASbGncs4tKvxM31v7K/623eb6IkAliOSyhN9eLFpYh1SGfWPvEADWgGfpmeEJJYp8Wi
-	l8XG3ETabxkFCHfHL+U2UZxKLuiDBqz4uWq4mO7DUjAlCTY6IvNK87NyPtD5eVvzyTKkkqVcEw3
-	IS7rYQwnRA2qdVgzlCKcf8TxqL8KGX3qXd8DcTZuYzdwUBFAiiJnA90wrxBqon4PxoJ/My+jj66
-	5Hy3jncKcHkIAsU339GTdkoOO/Z7o6BozX9wJCfCFFp/OGzsq2ipvfp6D8GS6TVXhyRD7LzhDeV
-	2LkA+xzbGPw0n/HSODKqEBuX5BeSHxRbLfwHoi4bl9sJShoiOG+sRt/vKRgJo+DwIjcRFzRyabn
-	cHmqCOYl56qmJz5kjnlyAI6g3
-X-Google-Smtp-Source: AGHT+IHi0gH9l4Rb8FCnUZh5WWRKyKT6/kemOCVZkBPlnjM5S+b4eCtSbixb0prDw1Ut5jsbz/oL6Q==
-X-Received: by 2002:a2e:bc1a:0:b0:32f:3e83:4379 with SMTP id 38308e7fff4ca-32f3e83474emr5345961fa.38.1751986719342;
-        Tue, 08 Jul 2025 07:58:39 -0700 (PDT)
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com. [209.85.167.49])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32e1afc1c87sm14556191fa.28.2025.07.08.07.58.38
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Jul 2025 07:58:38 -0700 (PDT)
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-553dceb345eso5259766e87.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 07:58:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVNB//xA/e30LrQMv5HQSS1Mw237NTvLue5YOga7nEeNKcAx3IX0ykgauNJnCyN/GgV6AJu0wSUOkr7@vger.kernel.org
-X-Received: by 2002:a05:6512:ac8:b0:553:3028:75ae with SMTP id
- 2adb3069b0e04-556de076273mr5727105e87.46.1751986718368; Tue, 08 Jul 2025
- 07:58:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1751986817; x=1752591617;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=axiNVmFJf3G0tfPzjC8i75ML61tt4M701dSEBWFUhK8=;
+        b=g7dgdBh0xAM02dnMGmh/J5M6XSI1pcVd46nufQ1ijYxn9fZpD7jCH85IhPDAJgBb6I
+         K6DeD+ENnctZVYZv6ohm2hzBscBLKRrGnM3bYqy9CaIYEz0qRQ4h0UxhDeDQ9hKgh24h
+         eXOMID8NOdisowsdF3QaaMdBm59PUW0cn3VV+h6+3+qc4BcGUWZ0nnbP1DYpOumQT960
+         01wz3vOxFu74xZe3gUZ/AlEsKZurFoNUkDxJDi5NF+/Cx8GPKkRLLSWq8tWF3AMXbF8A
+         r2IYxzWSNtPpBgauQfigJF3eilJ7hu/FvYlyyy6fmq+FwkgKgEtT7MqYZ7UxlOfyU3BV
+         BciQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVXroHNuwW+Y8nM6L5atO5sXcfrCJg8DVB5cF0ByxLjuupIv9QKIJFFkzZGPMDcWWJ7vjZFQkrKBiX6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvECQvDb7GyzeUy9vZXxUTDJJK4CiriIuU3bbp7grfuj8FVYzz
+	oeIDSlBHiO6L8ly0tr8GZEZXPo8qyV45ruk+k7RZhaEinSSW6gTxqn6AxYOEfqgTyV0=
+X-Gm-Gg: ASbGncs5qI3cRkMJJMyrNh9eqBu/i/RxMT+0P4aRpN4ACnNLBoGjzAifUrf2oP7Uc1D
+	7MFbYNEurY/WOr+O02QPnftjK2S3VJdwpAWQTqDIzISj8rIRM7qXs3ZrC5TkXsPW5Hx9x/in9HM
+	vNkZpeX3mq1HTaPjWkJ/eGZHYxVgRwucYctqadTLF+mz9aOyclKH2i9dKZ7LOUOf3M1HkdNCfsh
+	4czD/EOzC2dJ2aSqHbLtX6QsWEsOMFBSJaQgx5dhE/22X0+2e5pwYIfiMfUWlZdaGKjF1urkAC0
+	XojZxW2hQl3AwCQ46AZnbB6m0BR3SzdDMHcmWbBWDCF0SIy+ah848i164Oi3TB4jDxnksHWxG1+
+	//9I=
+X-Google-Smtp-Source: AGHT+IF3IKO4V1DflQHKzBykuLgbHSrzzPUngwbd3KG3252Ia4mo2wgTBvGidGP/BYgFBW1MlGQJ5g==
+X-Received: by 2002:a05:600c:1907:b0:442:e9ec:4654 with SMTP id 5b1f17b1804b1-454b4e76790mr147560435e9.8.1751986815686;
+        Tue, 08 Jul 2025 08:00:15 -0700 (PDT)
+Received: from [127.0.1.1] ([2a00:23c7:1d1a:9c01:f9da:8274:e1d1:97ce])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b47030b4f6sm13517433f8f.10.2025.07.08.08.00.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Jul 2025 08:00:15 -0700 (PDT)
+From: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+Subject: [PATCH v3 0/3] Add support for is31fl3236a LED controller
+Date: Tue, 08 Jul 2025 15:59:44 +0100
+Message-Id: <20250708-leds-is31fl3236a-v3-0-d68979b042dd@thegoodpenguin.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
- <20250605-uvc-orientation-v2-5-5710f9d030aa@chromium.org> <aGw_1T_Edm8--gXW@kekkonen.localdomain>
- <CANiDSCup2iRx+0RcaijSmbn04nBY4Ui9=esCPFsQzOKe=up9Gg@mail.gmail.com>
- <aGzjTRSco39mKJcf@kekkonen.localdomain> <CANiDSCsqEHTnbvzLMoe_yxi8JRzp+2PQe3ksXhD=Y3+AqC_9hw@mail.gmail.com>
- <aG0NI2V0Tfh2HZ6O@kekkonen.localdomain>
-In-Reply-To: <aG0NI2V0Tfh2HZ6O@kekkonen.localdomain>
-From: Ricardo Ribalda <ribalda@chromium.org>
-Date: Tue, 8 Jul 2025 16:58:25 +0200
-X-Gmail-Original-Message-ID: <CANiDSCu=wU_Oi7CLPcYTC3Xf_pGbDroaVitPAiAj7ND5pXy-6g@mail.gmail.com>
-X-Gm-Features: Ac12FXx3zIz7eqEIVhgOFhdr-yyA-k97hK_sQ1bucetsK4DfnOnoX-8awEd9Sp8
-Message-ID: <CANiDSCu=wU_Oi7CLPcYTC3Xf_pGbDroaVitPAiAj7ND5pXy-6g@mail.gmail.com>
-Subject: Re: [PATCH v2 05/12] media: ipu-bridge: Use v4l2_fwnode for unknown rotations
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Hans de Goede <hdegoede@redhat.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, linux-media@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGAybWgC/2WNQQqDMBBFryKzbsROmki68h7FhcSJDpVEEpUW8
+ e5Nha66fA/++zskikwJ7sUOkTZOHHwGeSnAjp0fSHCfGbBCVWlUYqI+CU7y6iaJUndCGusUOqO
+ NrSHP5kiOX2fy0WYeOS0hvs+HDb/2F6v/YxuKSjhNrr4ZZUmrZhlpCKGfyQ8r+9KGcn1CexzHB
+ z44a9S7AAAA
+X-Change-ID: 20250625-leds-is31fl3236a-39cf52f969c7
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org, 
+ Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>, 
+ Lucca Fachinetti <luccafachinetti@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751986814; l=2206;
+ i=pzalewski@thegoodpenguin.co.uk; s=20250625; h=from:subject:message-id;
+ bh=auCDOToMtdeoKV816i92zq8GG7kcE0+phv+U/FL+vwg=;
+ b=w7+2Vql/JsCl2AXiJkyymPU9MY3Bp2O/Cp5zhitl849uHP96CnE4/P7uLlyVlegPjBYWG+SYd
+ yl0DNGWPqusDkEjjSBZM7Bd7Pd1ifaPR6amWGBUAr3e8RqYasJNIaZO
+X-Developer-Key: i=pzalewski@thegoodpenguin.co.uk; a=ed25519;
+ pk=hHrwBom/yjrVTqpEvKpVXLYfxr6nqBNP16RkQopIRrI=
 
-On Tue, 8 Jul 2025 at 14:21, Sakari Ailus <sakari.ailus@linux.intel.com> wr=
-ote:
->
-> Hi Ricardo,
->
-> On Tue, Jul 08, 2025 at 02:09:28PM +0200, Ricardo Ribalda wrote:
-> > On Tue, 8 Jul 2025 at 11:22, Sakari Ailus <sakari.ailus@linux.intel.com=
-> wrote:
-> > >
-> > > Hi Ricardo,
-> > >
-> > > On Tue, Jul 08, 2025 at 11:16:25AM +0200, Ricardo Ribalda wrote:
-> > > > Hi Sakari
-> > > >
-> > > > Thanks for your review
-> > > >
-> > > > On Mon, 7 Jul 2025 at 23:45, Sakari Ailus <sakari.ailus@linux.intel=
-.com> wrote:
-> > > > >
-> > > > > Hi Ricardo,
-> > > > >
-> > > > > On Thu, Jun 05, 2025 at 05:52:58PM +0000, Ricardo Ribalda wrote:
-> > > > > > The v4l2_fwnode_device_properties contains information about th=
-e
-> > > > > > rotation. Use it if the ssdb data is inconclusive.
-> > > > >
-> > > > > As SSDB and _PLD provide the same information, are they always al=
-igned? Do
-> > > > > you have any experience on how is this actually in firmware?
-> > > >
-> > > > Not really, in ChromeOS we are pretty lucky to control the firmware=
-.
-> > > >
-> > > > @HdG Do you have some experience/opinion here?
-> > > >
-> > > > >
-> > > > > _PLD is standardised so it would seem reasonable to stick to that=
- -- if it
-> > > > > exists. Another approach could be to pick the one that doesn't tr=
-anslate to
-> > > > > a sane default (0=C2=B0).
-> > > >
-> > > > I'd rather stick to the current prioritization unless there is a
-> > > > strong argument against it. Otherwise there is a chance that we wil=
-l
-> > > > have regressions (outside CrOS)
-> > >
-> > > My point was rather there are no such rules currently for rotation: o=
-nly
-> > > SSDB was being used by the IPU bridge to obtain the rotation value,
-> > > similarly only _PLD is consulted when it comes to orientation.
-> >
-> > So something like this:?
-> >
-> > static u32 ipu_bridge_parse_rotation(struct acpi_device *adev,
-> >                                      struct ipu_sensor_ssdb *ssdb,
-> >                                      struct
-> > v4l2_fwnode_device_properties *props)
-> > {
-> >         if (props->rotation !=3D V4L2_FWNODE_PROPERTY_UNSET)
-> >                 return props->rotation;
-> >
-> >         switch (ssdb->degree) {
-> >         case IPU_SENSOR_ROTATION_NORMAL:
-> >                 return 0;
-> >         case IPU_SENSOR_ROTATION_INVERTED:
-> >                 return 180;
-> >         }
-> >
-> >         dev_warn(ADEV_DEV(adev),
-> >                  "Unknown rotation %d. Assume 0 degree rotation\n",
-> >                  ssdb->degree);
->
-> Maybe:
->
->         acpi_handle_warn(acpi_device_handle(adev), ...);
->
-> ?
->
-> >         return 0;
-> > }
->
-> Looks good to me. Maybe something similar for orientation?
+This series of patches adds support for the is31fl3236a led
+controller. The main difference between this IC and the
+is31fl3236 is that there is a new parameter/register that
+moves the operating frequency of the PWM outputs out of 
+the audible range.
 
-Do you mean using ssdb also for orientation or using acpi_handle_warn?
+To support the new register a property was added in the dt-bindings,
+as this property is at the board layout level ie. not all
+boards will have analog audio and have to worry about it.
 
+To add the new property the old .txt binding documentation was
+ported to .yaml format. There was a previous attempt to do this
+in 2024 but the original author has never acted on the feedback
+given [1]. So I have implemented changes requested in that 
+review and added his Signed-off-by.
 
-I cannot find anything related to orientation for SSDB
-https://github.com/coreboot/coreboot/blob/main/src/drivers/intel/mipi_camer=
-a/chip.h#L150
+The new functionality was tested by scoping the PWM signal. Out of
+reset the IC is in 3kHz mode, thus action is taken only if the new
+boolean value is set to true in the device tree.
 
-Am I looking in the right place?
+[1] https://lore.kernel.org/linux-leds/20240701-overview-video-34f025ede104@spud/
 
-Regards!
->
-> --
-> Regards,
->
-> Sakari Ailus
+Changes in v2:
+- Added cover letter
+- Ported dt-binding to yaml
+- Refactored driver module
+- Link to v1: https://lore.kernel.org/linux-leds/CAA6zWZ+TbcHrZaZ0ottm0s1mhCLa8TXASii47WKSLn2_zV95bw@mail.gmail.com/T/#t
 
+Changes in v3:
+- Aligned/refactored code properly in C module
+- Refactored dt-bindings yml file
+- Link to v2: https://lore.kernel.org/r/20250627-leds-is31fl3236a-v2-0-f6ef7495ce65@thegoodpenguin.co.uk
 
+Signed-off-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+---
+Lucca Fachinetti (1):
+      dt-bindings: leds: is31fl32xx: convert the binding to yaml
 
---=20
-Ricardo Ribalda
+Pawel Zalewski (2):
+      leds/leds-is31fl32xx: add support for is31fl3236a
+      dt-bindings: leds: issi,is31fl3236: add issi,22kHz-pwm property
+
+ .../devicetree/bindings/leds/issi,is31fl3236.yaml  | 104 +++++++++++++++++++++
+ .../devicetree/bindings/leds/leds-is31fl32xx.txt   |  52 -----------
+ drivers/leds/leds-is31fl32xx.c                     |  35 +++++++
+ 3 files changed, 139 insertions(+), 52 deletions(-)
+---
+base-commit: 52da431bf03b5506203bca27fe14a97895c80faf
+change-id: 20250625-leds-is31fl3236a-39cf52f969c7
+
+Best regards,
+-- 
+Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+
 
