@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-194181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F15E3AFD063
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:16:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F04AFD06B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:17:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9ADA1883C84
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:16:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFD78188A9D0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3CA2E06D2;
-	Tue,  8 Jul 2025 16:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98D82E2F0D;
+	Tue,  8 Jul 2025 16:17:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WHkDMXpm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nteUQ4Mq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D45021B199;
-	Tue,  8 Jul 2025 16:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C3821B199;
+	Tue,  8 Jul 2025 16:17:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751991390; cv=none; b=GHj671il38FS2Zrcr9RUc+6dekQ4NvRKWgLQQZpKiTtQ/c+AP4nfEOoJU9yL8CIkLt42xd97Qu1peWvtNZGUiHCpw8w6PyTQBLB48ELwqMilA3zIUNNKxZOzGcUIWm5T5wUEKF4M2vah0v9KZUoY/kxGlMQqvja/XENJYswnvew=
+	t=1751991423; cv=none; b=ct6m+PX7f1wKkZdL2BvxozD9eTDqm4G4g/HvTI694bwI9bE2ttjnUpQMZuWYZ17wpVmuAAa9s90eV6va2fahC2T1QV1svLZwXrCa4VC7gy98oToKs8zjEdMUkwJuLRmlI2/INB+dcvA8Q02iEL9RQlxBX2Atd25I7mKHhD/Th2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751991390; c=relaxed/simple;
-	bh=MlvZZ4a52AP4+QDRvUm5hDSogr1vDDiw9bguTeqre4k=;
+	s=arc-20240116; t=1751991423; c=relaxed/simple;
+	bh=nbGCmYL+a3SA2RRWksLD7uACXMII0cs1xS2gIUHJeeI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NccFFEyXZOxZIcbzWgtPX1xRdUDtQnfnn+di6RswOUqM5TXZgzXxXUhT8yQ//qFQ+Zk/ff4GVLZzdZ81qtE9xgpZhfY7Z4uN+IO4pDZKlv0JYTQopDwe0QjAiJFMhD0cCjLVGnGWn8C2OQdn30M1NowpHfunpU7hdTGDf/kTcJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WHkDMXpm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF4BEC4CEED;
-	Tue,  8 Jul 2025 16:16:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ark8hvRjZx9pU9WPrntk8qP8SiHgWrAc9oMYncMAVNRgwoXFbCIgx/k9NvOV2gNRHtRkB0i+1SyQyEcqoiZvuwIBbSgT+xisXaTseJrf0Q+7N0t8AL876Fj3iEScRR4X2qpVT2sG9Tvoxke3CXeyySyodtyHl0ITPAa7CwG7KjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nteUQ4Mq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC665C4CEED;
+	Tue,  8 Jul 2025 16:17:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751991390;
-	bh=MlvZZ4a52AP4+QDRvUm5hDSogr1vDDiw9bguTeqre4k=;
+	s=k20201202; t=1751991423;
+	bh=nbGCmYL+a3SA2RRWksLD7uACXMII0cs1xS2gIUHJeeI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WHkDMXpma6mUHWY1TvjLFbvGC4viBk4MR8OV9MrwZ/dTNKgT07LJpTY/NtXTCDXrZ
-	 dLjEZd/2stfi0fb8CD8B0SfIzQ6PTtunA4hOdl0neEM346rL6WymLLAFpuM3/xZ6Gt
-	 QO9DkRI4enn0lmHhspykXYqEdWOWahdODkBNZ0jylxzCe7tU8dP/VwqS6CGmJWrNjv
-	 EAETLzByJ4JTzHbGr3uk4fmxiyz8y26a7mwrercqkQST5xUubduncf9Zx5ya/jTpl+
-	 AsCll8GNnqL7PMZs3WvYXratllAkSary35yho11OgaklEU601N3wuM3bez/8naSIX0
-	 JoFLA4S0GU+Ww==
-Date: Tue, 8 Jul 2025 11:16:28 -0500
+	b=nteUQ4MqJaaomEKaAVmOyO0KsiKqr+K9XvaCSQ8Y3SsSGh+9GrwopG/RPxPgam5h/
+	 I/grsXO8JtoslYXVSZepAC/UwZmigtruMZn+mIHTEzWbvpnj7q6MMoqZPsgbEjdA73
+	 +wfRMtVKGp0F2nMARO1vGmmJyUQxBleYTDhnauY5PNEm0MRpxdcEeHH3t1kPn5GvZ3
+	 LZ759JuwEtz0LvoGJKoktlENXDQ1680Jqh7B3WhSccqWpc9SKl2wi0aVVjdO3O0TVH
+	 PyiGbzxj8xWDB4z48EJ8nKiyMyzC6a/nRN9D57PMu2RBXYKDqonKfwmfyaFC94DRR1
+	 KAZEzGBV+If0Q==
+Date: Tue, 8 Jul 2025 11:17:01 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org,
-	Jernej Skrabec <jernej@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Andre Przywara <andre.przywara@arm.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH RFT net-next 01/10] dt-bindings: net: sun8i-emac: Add
- A523 GMAC200 compatible
-Message-ID: <175199138810.517400.11158407408233098308.robh@kernel.org>
-References: <20250701165756.258356-1-wens@kernel.org>
- <20250701165756.258356-2-wens@kernel.org>
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	linux-clk@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stefan Schmidt <stefan.schmidt@linaro.org>,
+	Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH 1/6] dt-bindings: clock: qcom,sm8450-videocc: Document
+ X1E80100 compatible
+Message-ID: <175199142127.518048.16838716470013972083.robh@kernel.org>
+References: <20250701-x1e-videocc-v1-0-785d393be502@linaro.org>
+ <20250701-x1e-videocc-v1-1-785d393be502@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,32 +69,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250701165756.258356-2-wens@kernel.org>
+In-Reply-To: <20250701-x1e-videocc-v1-1-785d393be502@linaro.org>
 
 
-On Wed, 02 Jul 2025 00:57:47 +0800, Chen-Yu Tsai wrote:
-> From: Chen-Yu Tsai <wens@csie.org>
+On Tue, 01 Jul 2025 19:28:33 +0200, Stephan Gerhold wrote:
+> X1E80100 videocc is largely identical to SM8550, but needs slightly
+> different PLL frequencies. Add a separate qcom,x1e80100-videocc compatible
+> to the existing schema used for SM8550.
 > 
-> The Allwinner A523 SoC family has a second Ethernet controller, called
-> the GMAC200 in the BSP and T527 datasheet, and referred to as GMAC1 for
-> numbering. This controller, according to BSP sources, is fully
-> compatible with a slightly newer version of the Synopsys DWMAC core.
-> The glue layer around the controller is the same as found around older
-> DWMAC cores on Allwinner SoCs. The only slight difference is that since
-> this is the second controller on the SoC, the register for the clock
-> delay controls is at a different offset. Last, the integration includes
-> a dedicated clock gate for the memory bus and the whole thing is put in
-> a separately controllable power domain.
-> 
-> Add a compatible string entry for it, and work in the requirements for
-> a second clock and a power domain.
-> 
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 > ---
->  .../net/allwinner,sun8i-a83t-emac.yaml        | 68 ++++++++++++++++++-
->  1 file changed, 66 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
