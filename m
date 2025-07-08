@@ -1,180 +1,94 @@
-Return-Path: <devicetree+bounces-194190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD608AFD1B0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:38:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE50AAFD1CE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:40:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A7861892F95
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:36:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BE541C233FC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FEE2E49B0;
-	Tue,  8 Jul 2025 16:36:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 573EC2E54A0;
+	Tue,  8 Jul 2025 16:37:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YgL1aIwp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2022E266B;
-	Tue,  8 Jul 2025 16:36:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E9372E4985;
+	Tue,  8 Jul 2025 16:37:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751992587; cv=none; b=HaMyYRKoHjcvLkoeTToQHSodtEUOhdIk60yWmLWN1jp7t6nWJYfQ8MpJ37Iwf5QlCRq6WWjLpZrg6aUslEy1Oo6n6Q576kOEB0yiwPaDV/FnPUmKllAvvAiJat1z0yTDUOpfOv1KUmas34R6eOrCNi4j2nDZevKIwRxaSlYK1vk=
+	t=1751992648; cv=none; b=pcK0TiUcfsBrDLAqrEHsawsEcPRhwThaqWJJEp2UTSacNCr9qpbL/lp28T+Xd3KvaaPqfWb8fqhiN6v+XXq/3laKlSblnb4PjzGymn2RJYHQ15s0bPfcHSFt3dLk8loU1yGTcHlgfYv4djAyAqc2CHxOkSpESL+Mq2UiVmufwZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751992587; c=relaxed/simple;
-	bh=I0JRzGqeLnwtKf4kjJYadCFOrmuTnbGxxR/rNzuzW90=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j0TtU9f8uGaCIB3I3MC0jpnokmWq2M8SAI4Nki49YblcznZS+ghiWQRingetb3tX3H0rYAjiRiZRkrGx6+MWbpNyrr7RHhDiAcv6SUmRTnBMSj8+LykG9GMm0YGutJGOIapAdXORsho8GgDI8xD57QuIh1Llw5xrtQXkGpXncQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-32f1df5703aso24981361fa.3;
-        Tue, 08 Jul 2025 09:36:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751992578; x=1752597378;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4I7U9ozTZ1bfuxyVJsfZXgas4qwfJlXMhYg9fodydFs=;
-        b=esrWdJMGMoo+evwkMKj3bw0RiWo07qmJWQEDKEVkuceg8kLU/OPwXk3ecl1Xx5CyWd
-         EmHStFwhyALNMFOZ401Agd6XKGleThwk+pV+E3YL0MoX33pHrmIDuecOODcTjGKf3dSU
-         87OEB3QRAeK24Gdy2InQFvJuq8CUWEEY8qmr51U9W3wUVPybJWBxUlcduvQ3zd9mQNWH
-         QF9BONDDsjJasSRUKJn4xWnBSw+/xy2i6wJtD2K69zGJxsklou2Sf/2XWxckeTEy3xrK
-         jxeV5Kzmi9W1WcjLpjl43qTgszcoIieuKr7v84GtNe4L3FXmeFRlg4s2mVFDPmvi6/L6
-         TdvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW1FX9vpqa9r4Uh55ikbTvcVty/I9gS6FuHBZt6Q5pKjLw9sqq1o/2zgs97jYorHZ59rGBw47GthNlHT61b@vger.kernel.org, AJvYcCXMU5KIRF0qxBwtEy2lsFn0/lbXGoA8Pwh3PzzVFfyvoxby4DnzejFPdbg2jQpUkJWC8kvBWgBxrx90@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzh+cbFsOcN0U4Z2iMl1pByQEXRK0WjmHMGM3lzn9Uu/os3gvk+
-	aM6hJJ8cL5sSAy0yNp7scJdlgFohBGXWxDUs4/9PP2n0BYOy6Snn4UR7kZUWVY/4MgU=
-X-Gm-Gg: ASbGncvhNidsltpmdYx6RT+4RETptEPB1bGAtBO5qi0vAhbAtrJUQPI7/rhzIgY41rl
-	yQU06An4yDf+471MsCXTd/IKIzMXY/b0+dHwaJriI3qluH188uWPO73Pxcvl/a7g7l7UjKOEdWo
-	HaQocV4s9yLUZIzAp49qiVkZZmJf//RlNtDI1O7EurdujMZZn5dl/4CDmcaRgg+7Da2FoZOt2xx
-	y0ul+0yvS6uSNLaT2dqXTpfjghYihRAU7NI3sJIsxj24wtN/1z2sLrQmBrHr3qaqPJUwEy2tlKN
-	seKQZ8hKEufIlw35a/Ah3s4O7ioaQwIRUenrQ4QbzEnwZChIwbO28tIjA8MU5fZtC8EbmMgfi6E
-	zjoCOv4X019IQCj8XIjiWEGZRiA==
-X-Google-Smtp-Source: AGHT+IED/HQh+Sg7h5DewySdpWKQM4unAmZDNR/vTxmUbUXhlEWl4JiEp8887eatqGZWL2QafroTYg==
-X-Received: by 2002:a05:651c:2105:b0:32b:53b1:c8ab with SMTP id 38308e7fff4ca-32f39b07909mr16203931fa.22.1751992578331;
-        Tue, 08 Jul 2025 09:36:18 -0700 (PDT)
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com. [209.85.167.43])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32e1afc1b09sm14730801fa.27.2025.07.08.09.36.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Jul 2025 09:36:17 -0700 (PDT)
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-553b5165cf5so5522480e87.0;
-        Tue, 08 Jul 2025 09:36:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVzzdY9iTOgQRGjVNfcYZRMuJHawISfi0GLcjJ0VF/IhqqKVfkueR9mCTw1v0J9lDCOp8eW1hFD3luh@vger.kernel.org, AJvYcCXuoHqV4ETbU6okFOSVkvc/7I9535RQa8pEABy7Z++SdUsKKn9Q7BfxJlLPpimMFDnTavvYyvnsCGt7GAbS@vger.kernel.org
-X-Received: by 2002:a2e:be11:0:b0:329:4bfa:9f5a with SMTP id
- 38308e7fff4ca-32f39aa391dmr15595031fa.10.1751992576098; Tue, 08 Jul 2025
- 09:36:16 -0700 (PDT)
+	s=arc-20240116; t=1751992648; c=relaxed/simple;
+	bh=E2MH6Era3uaTUyq6UQkdrQU623x75zpfdpctt6OS6N4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h6fyATLyqz7pOUfJPlwkVirpmtK7tk6xgbWds9mGNrVIrqNtlZqYGNAXNOkWxE3irt6lunDGborS2UuD3uuCj0jms+he3PNSWKXN9MdcsdCpichQadeUCXeizCb/lqXt2WLO649bp1Z3X3LVJBaH5IRUq3eSK3eXwj421VmmxB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YgL1aIwp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FCF8C4CEF8;
+	Tue,  8 Jul 2025 16:37:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751992647;
+	bh=E2MH6Era3uaTUyq6UQkdrQU623x75zpfdpctt6OS6N4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YgL1aIwpNDOsBhu1lHtzt/gdL7gFViln6CKGKjxHod0zyR2fLCbowFPIjsmwrutLC
+	 gHob9L7dauu0Y/QYDTiGGJI9hkGHHC6LacoeIUX3k3WEkFU8qQJeUs4C/ljg4IM81I
+	 n7JF9pyG5djAD/QPmt9ZtI9jW+irROhMMzukGAgbAj343qjRffn3mkLOyzwhT3vpin
+	 2Dg9e0e6fprGw8p9Ro0/426mcziDZDyHst+e4yANb4MisqoibpC1aZ9d5hFJ5MpGTk
+	 R4ZFmdjIuUD2Jn/G/K0N870yt+zdH0MfEARHWiTriEYlNKlMqsisRY6Y74E+cvDPUf
+	 7AS8TpPrL3jhg==
+Date: Tue, 8 Jul 2025 11:37:25 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Nick Hu <nick.hu@sifive.com>
+Cc: conor+dt@kernel.org, Cyan Yang <cyan.yang@sifive.com>,
+	krzk+dt@kernel.org, Samuel Holland <samuel.holland@sifive.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: power: Add SiFive Domain Management
+ controllers
+Message-ID: <175199264440.598704.6992619905695386304.robh@kernel.org>
+References: <20250702091236.5281-1-nick.hu@sifive.com>
+ <20250702091236.5281-2-nick.hu@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250707184420.275991-1-lukas.schmid@netcube.li> <20250707184420.275991-3-lukas.schmid@netcube.li>
-In-Reply-To: <20250707184420.275991-3-lukas.schmid@netcube.li>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Wed, 9 Jul 2025 00:36:03 +0800
-X-Gmail-Original-Message-ID: <CAGb2v663GHk9jWXMBg36T6Qf8mwbnQcQ80=F+-tpbZ0Bau+79Q@mail.gmail.com>
-X-Gm-Features: Ac12FXwC7-T3WWNdeROV3cwvshauCK_N_9KnHuUIE5o3NNtisH1pHGwgJnYBNjo
-Message-ID: <CAGb2v663GHk9jWXMBg36T6Qf8mwbnQcQ80=F+-tpbZ0Bau+79Q@mail.gmail.com>
-Subject: Re: [PATCH v3 2/5] riscv: dts: allwinner: d1s-t113: Add pinctrl's
- required by NetCube Systems Nagami SoM
-To: Lukas Schmid <lukas.schmid@netcube.li>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250702091236.5281-2-nick.hu@sifive.com>
 
-On Tue, Jul 8, 2025 at 8:35=E2=80=AFAM Lukas Schmid <lukas.schmid@netcube.l=
-i> wrote:
->
-> Added the following pinctrl's used by the NetCube Systems Nagami SoM
->   * i2c2_pins
->   * i2c3_pins
->   * i2s1_pins, i2s1_din_pins, i2s1_dout_pins
->   * spi1_pins
->
-> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+
+On Wed, 02 Jul 2025 17:12:34 +0800, Nick Hu wrote:
+> SiFive Domain Management controller includes the following components
+> - SiFive Tile Management Controller
+> - SiFive Cluster Management Controller
+> - SiFive Core Complex Management Controller
+> 
+> These controllers control the clock and power domain of the
+> corresponding domain.
+> 
+> Add `- {}` for the first entry [1][2]. Once the SoCs are ready, we will
+> add the SoC compatible string at that time.
+> 
+> Links:
+> - [1] https://lore.kernel.org/lkml/20250311195953.GA14239-robh@kernel.org/
+> - [2] https://lore.kernel.org/lkml/CAKddAkAzDGL-7MbroRqQnZzPXOquUMKNuGGppqB-d_XZXbcvBA@mail.gmail.com/T/#t
+> 
+> Signed-off-by: Nick Hu <nick.hu@sifive.com>
+> Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
 > ---
->  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/ris=
-cv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> index e4175adb0..8dc3deccb 100644
-> --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> @@ -78,6 +78,36 @@ dsi_4lane_pins: dsi-4lane-pins {
->                                 function =3D "dsi";
->                         };
->
-> +                       /omit-if-no-ref/
-> +                       i2c2_pins: i2c2-pins {
-> +                               pins =3D "PD20", "PD21";
-> +                               function =3D "i2c2";
-> +                       };
-> +
-> +                       /omit-if-no-ref/
-> +                       i2c3_pins: i2c3-pins {
-> +                               pins =3D "PG10", "PG11";
-> +                               function =3D "i2c3";
-> +                       };
-> +
-> +                       /omit-if-no-ref/
-> +                       i2s1_pins: i2s1-pins {
-> +                               pins =3D "PG12", "PG13";
-> +                               function =3D "i2s1";
-> +                       };
-> +
-> +                       /omit-if-no-ref/
-> +                       i2s1_din_pins: i2s1-din-pins {
-> +                               pins =3D "PG14";
-> +                               function =3D "i2s1_din";
-> +                       };
-> +
-> +                       /omit-if-no-ref/
-> +                       i2s1_dout_pins: i2s1-dout-pins {
-> +                               pins =3D "PG15";
-> +                               function =3D "i2s1_dout";
-> +                       };
-> +
->                         /omit-if-no-ref/
->                         lcd_rgb666_pins: lcd-rgb666-pins {
->                                 pins =3D "PD0", "PD1", "PD2", "PD3", "PD4=
-", "PD5",
-> @@ -126,6 +156,12 @@ spi0_pins: spi0-pins {
->                                 function =3D "spi0";
->                         };
->
-> +                       /omit-if-no-ref/
-> +                       spi1_pins: spi1-pins {
-> +                               pins =3D "PD10", "PD11", "PD12", "PD13", =
-"PD14", "PD15";
+>  .../devicetree/bindings/power/sifive,tmc.yaml | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/sifive,tmc.yaml
+> 
 
-Could you split out the WP and HOLD pins as separate nodes. They aren't
-strictly needed for SPI, and folks might have designs that use the two
-pins for other purposes.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-
-Thanks
-ChenYu
-
-> +                               function =3D "spi1";
-> +                       };
-> +
->                         /omit-if-no-ref/
->                         uart1_pg6_pins: uart1-pg6-pins {
->                                 pins =3D "PG6", "PG7";
-> --
-> 2.39.5
->
->
->
 
