@@ -1,79 +1,104 @@
-Return-Path: <devicetree+bounces-193919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB13AFC342
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:52:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83E7BAFC346
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:52:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DE107AB2BC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:50:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D4D17AC721
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:51:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C2D22222C3;
-	Tue,  8 Jul 2025 06:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911AD222586;
+	Tue,  8 Jul 2025 06:52:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="LBCwjU1S"
+	dkim=pass (2048-bit key) header.d=sipsolutions.net header.i=@sipsolutions.net header.b="n4rnXU8Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+Received: from sipsolutions.net (s3.sipsolutions.net [168.119.38.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8D5215F5C;
-	Tue,  8 Jul 2025 06:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA85C9461;
+	Tue,  8 Jul 2025 06:52:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.38.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751957459; cv=none; b=BmJxXKOu9eyvSsT9mv7nmJeW971xie3XAH+hgrNErQx38VNjGe8mDZPwQCg+V1LuTworuCDGaNfluYP2kXOHSJcnmVzmnAANsnlJ4dpxBAPIxQpiAxdIwkYgpX6LgM5N2ECE0wH4kRUuiJrOEzsK4QYRR52aUU7p3BJvgX3Sc1w=
+	t=1751957543; cv=none; b=kzjCSOsFqclMlDB8LU7jlVOCUTIYOryDAuId2ENhAGsJBMo2/VY7WSHioKBRH+rEHIekR3zeGH7r923h/nhV0DwQenFyDURPa6nUYT6HB3AXmC4XU1EKN7O4QCWVNaapkKMb+hVs7Db7rUIMogt/ZmeufO828yit5zqeNcW4ej0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751957459; c=relaxed/simple;
-	bh=NszIzPfg+J7mLUyhSZUBtCIxa0lA1Mn/+DBmH6nBQDQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uH8EyWexcCk3VNRUIZtfTggmSrFoSulC495AW/iLQhwe9lK1i6HeJf4r5AYatlDyfIYMKzPgOpb/eNb7d+b1gZWQX13scvzZkydk0zob787XWT08kTvfAMx3vEWtxO7GpjOir0CpgeC4SNkda3NZHXe+F1sUgdhdsfEmZbtbCzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=LBCwjU1S; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=TKk5nHWGdylz6lko9xpOMyn5Y/E4mXiwt9y3ZARKnPw=;
-	b=LBCwjU1SrEDmdsfnssxd18SMkm1w7CgeCoKxoloj46sCrGbsdmPmv0qiMjUMmL
-	m8SUe6TLOW1piGGAyb39dletwHqrfVBkvNdjYF1kgrNR8bKkvKsNKHjs1c0FbDlm
-	0yiyDPQ1McLPGQcGQvr7oyQfCfAC1QrqBnn1b1V/eFGVo=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDXX_aKv2xo1nBMAA--.64566S3;
-	Tue, 08 Jul 2025 14:49:48 +0800 (CST)
-Date: Tue, 8 Jul 2025 14:49:46 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Primoz Fiser <primoz.fiser@norik.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
-Subject: Re: [PATCH v3 0/4] Initial PHYTEC i.MX93 overlays
-Message-ID: <aGy_ivfclZ_YXYui@dragon>
-References: <20250708042206.329208-1-primoz.fiser@norik.com>
+	s=arc-20240116; t=1751957543; c=relaxed/simple;
+	bh=QgkicBTpwhIu4KhwMQ9MKtUqejjyYnHk87N/snpkRoM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=f6Z4uTWaMO8GQ4FZzXFalcDreTnMfeGHcRHbPTGUVB5YSxkMBtA+6s7yJAWD68vv0bp/L9xZQuDHdrOD/gPmLAwW6bUHwpOJXWUpAdG6auTmCm00bm+XulCXTkV6/IbGQbTDVWOhPMjNyhoCAR3qqzqKZiBzqjVyD7v11cNmho4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sipsolutions.net; spf=pass smtp.mailfrom=sipsolutions.net; dkim=pass (2048-bit key) header.d=sipsolutions.net header.i=@sipsolutions.net header.b=n4rnXU8Y; arc=none smtp.client-ip=168.119.38.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sipsolutions.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sipsolutions.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=QgkicBTpwhIu4KhwMQ9MKtUqejjyYnHk87N/snpkRoM=;
+	t=1751957542; x=1753167142; b=n4rnXU8YwOUQP1z7Vh14gcY7GRmkgNNX04XcYJMzWOkDkBo
+	Mu+AHAmEoxXdFpcmUMqXq7JqihpB+qgkt+l7Ep7KLwz0ZTpxVqQu8QVKDwgHzXvMwT5EwjVZKVhQW
+	8UZR5MBi3HMvBjEeWL9nrtl4E40Lr16l23O5P4qyS6KtLLKIvVI7sqKvVhAHQbEsbNSq+sRfSOXss
+	iFDm5z2NQyARgBRjfMoF0uOMJu5kaqtXXNOsXMNXrvYVPt2o9aZ+SywBNrZxCYvViy6HCHY7BZ89e
+	EqShB7dTWdOxvmgnJ91SGR92t2xJ/Pln2Nk+07Hy+5kCwSswCfMiLaIh0QxlfxjA==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.98.2)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1uZ2BD-0000000BePp-1ddS;
+	Tue, 08 Jul 2025 08:51:54 +0200
+Message-ID: <304f48242d99fec81990d492777cb45a58aa038c.camel@sipsolutions.net>
+Subject: Re: [PATCH 0/6] wifi: rt2x00: add OF bindings + cleanup
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Rosen Penev <rosenp@gmail.com>
+Cc: linux-wireless@vger.kernel.org, yangshiji66@qq.com,
+ ansuelsmth@gmail.com,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Thomas
+ Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Stanislaw Gruszka
+ <stf_xl@wp.pl>,  "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
+ BINDINGS"	 <devicetree@vger.kernel.org>, open list
+ <linux-kernel@vger.kernel.org>,  "open list:MIPS"
+ <linux-mips@vger.kernel.org>, "moderated list:ARM/Mediatek SoC support"	
+ <linux-arm-kernel@lists.infradead.org>, "moderated list:ARM/Mediatek SoC
+ support" <linux-mediatek@lists.infradead.org>
+Date: Tue, 08 Jul 2025 08:51:44 +0200
+In-Reply-To: <CAKxU2N-XviPav1Bh0yidyMUr=QbMr=0jyYyHKc+h0oaM9vak=Q@mail.gmail.com> (sfid-20250708_005520_408645_C4B0336E)
+References: <20250706214111.45687-1-rosenp@gmail.com>
+	 <8c6f18ca47bf0dd78b6675d8b94000679b6c75cd.camel@sipsolutions.net>
+	 <CAKxU2N9vs5o4tj-9KxCHKevWU+J9wv+ZCOeD8o602y1GY8FzNw@mail.gmail.com>
+	 <b3a63d616c1ca337f6b9d14a9afaafe73bfbe8cc.camel@sipsolutions.net>
+	 <CAKxU2N-XviPav1Bh0yidyMUr=QbMr=0jyYyHKc+h0oaM9vak=Q@mail.gmail.com>
+	 (sfid-20250708_005520_408645_C4B0336E)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250708042206.329208-1-primoz.fiser@norik.com>
-X-CM-TRANSID:Mc8vCgDXX_aKv2xo1nBMAA--.64566S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUOmhFUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCxOEZWhskC2smAAAs0
+X-malware-bazaar: not-scanned
 
-On Tue, Jul 08, 2025 at 06:22:02AM +0200, Primoz Fiser wrote:
-> Primoz Fiser (4):
->   arm64: dts: imx93-phycore-som: Add RPMsg overlay
->   arm64: dts: imx93-phyboard-segin: Add PEB-EVAL-01 overlay
->   arm64: dts: imx93-phyboard-segin: Add PEB-WLBT-05 overlay
->   arm64: dts: imx93-phyboard-nash: Add PEB-WLBT-07 overlay
+On Mon, 2025-07-07 at 15:55 -0700, Rosen Penev wrote:
+> >=20
+> > Yeah well. That doesn't really mean it should be merged together though=
+,
+> > and we can pretty easily make that work by just putting the further wor=
+k
+> > in after net/wireless is merged back.
+> Looking at it again, I'm effectively removing rt2x00soc.c . Meaning
+> Felix' patch is mostly useless here.
 
-Applied all, thanks!
+But we're not going to put your changes into 6.16. They're not even
+entirely ready yet, from what I see in the thread.
 
+> It might make more sense to submit this series at a later time.
+>=20
+
+By end of the week Felix's patch should be in wireless-next too, if I
+get all the things done right...
+
+johannes
 
