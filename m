@@ -1,218 +1,167 @@
-Return-Path: <devicetree+bounces-193874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B19FAFC1AD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:23:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EDE1AFC1C9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:50:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 414304262CD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 04:22:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E053C4A3C6B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 04:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84A7B21ABD4;
-	Tue,  8 Jul 2025 04:22:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DEF92192E4;
+	Tue,  8 Jul 2025 04:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="N3dsEHbk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cko3B00D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88F71216E26;
-	Tue,  8 Jul 2025 04:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 275B8214801;
+	Tue,  8 Jul 2025 04:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751948538; cv=none; b=n3/4aSa3Fqm8tsu++218Y5983PCjvPJrr6hjECQ69azzdaeyNowwn4EAwgWLkpDA4MlSLEJxubr4gdPtgjDn59N9Uc3Ch+iA1EDZF10ajpo29C5wPM882fguhxpFqtlYJ9aGQGukS54IFGGgRbdQCC12rxKsCNJZvQp78kSFrkY=
+	t=1751950196; cv=none; b=lckDpRYv4Iav/lkgkD2qttjVxN/HmBL2uMxkKKppjehwHXsb7DvcJJNN+ArL5P0MFbT7IsZOBhU4Ywsvf3HTNikFbipMqyStSgu0b6zSDQ43/s7u/3eb8ISnqF/dopWiLTdEm3Zgw9yTAMLOz9mZfW3kVqwOMOZcoPi1ydpRy0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751948538; c=relaxed/simple;
-	bh=ulZevYqiH1chwMsT0/3qmn16lJZY3s37WSKTXbOGwDI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=C36geIPGf3nxpHXzQ6E19TsWM1rb2sFBKoepTDqcN1SFnYoR217+sGlpuU34e3p2vQQzNq9cX/0L9Pvm+68OKWso3iSR5FewojALaF5Z44m8H2OqHOar3fkhW1rlisHYzmlhAnTfz3xUOZbL/gphvkIe5hTE1t+3+rt7iejieiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=N3dsEHbk; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=TethFMbUHgsgVKgaCK7+OTC1UjdHwcUm63F7FiACyH4=; b=N3dsEHbkPG/fFzLgOrnZTEzAOh
-	NoGliEKeMzxwiVXoTM5i7umz4HxknR/N/gkoQ+MGpGHb43lg2KYQ4ANl+W5faFVkYOy5c8aEiB8dr
-	sf5yh72YfpPNTJRlpgelh6U9gND4rNKDTIqhcXe1wR34J4aXcOPIF99AS5gGMSx7IjGdwJJKKEiK7
-	oS5IWAWH2p9394mB2nDyeyfh05WJOwQsNbUNoHPPtodoizZi8IhCjrAmg2KoZUToeDVJdqWzPWLSi
-	1BWcpAlcp83/y6iAu9RKvuhRFppA31Nx2DhAicqwjByO/Do4iibfOMp8wStOu0dncH2MkttRdXqFy
-	L2OcG/7w==;
-Received: from [89.212.21.243] (port=45388 helo=localhost.localdomain)
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1uYzqK-00GO9H-1z;
-	Tue, 08 Jul 2025 06:22:07 +0200
-From: Primoz Fiser <primoz.fiser@norik.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de
-Subject: [PATCH v3 4/4] arm64: dts: imx93-phyboard-nash: Add PEB-WLBT-07 overlay
-Date: Tue,  8 Jul 2025 06:22:06 +0200
-Message-Id: <20250708042206.329208-5-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250708042206.329208-1-primoz.fiser@norik.com>
-References: <20250708042206.329208-1-primoz.fiser@norik.com>
+	s=arc-20240116; t=1751950196; c=relaxed/simple;
+	bh=9T7pJd+3AHclFZfFANxR31TEKOmHsUX4vkTKeaL5qUs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dzMccQwfkoHOf4TAxMN7tXyE0sUhSbOUjX3WeUYYSI+lPJsyNQtsXE4ucaltLHWzt+6yC23JaO3ysh1xbEkm4F8WeDVV+nbQY6fqnv3A96ACaIpE6Y7sx9SkVUTOTG2gSwJKUm9l6Y6GaS4givRcg6YMDJ1DolVh8Sr4m/3t03E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cko3B00D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A105FC4CEEF;
+	Tue,  8 Jul 2025 04:49:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751950195;
+	bh=9T7pJd+3AHclFZfFANxR31TEKOmHsUX4vkTKeaL5qUs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=cko3B00DqynR9Rxk9/uHFXSwGZTUCa0kIw+SUwlYvW5fx9uT883vvTi0IuzxL7/Zi
+	 ZTWWFXcJaZ907SXFhM7XhkJ+2iLouvXkzqH9aDhkc8VXrq415SNPzlAOre/JjZKvmp
+	 av7fbmr0hrta/XJwzekNMRF+ZDlDDpkegOwHbTZpf3fZZtq9DwF/iuDGOtWHtV5dPE
+	 Djb0XjGszCn86vbekNCVnLlpvN1q+V3FKWFt02P7aSuFLDWewZD142vYQiewOR2Q2x
+	 lujUA/lvVnQBtafHmUrZbpUqWfX35q1/thD2Lz422G6jADTzxuCR5Yq+TAf6zrqe9A
+	 qD6zrq7nIHb2A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96F08C83F0A;
+	Tue,  8 Jul 2025 04:49:55 +0000 (UTC)
+From: Mahesh Rao via B4 Relay <devnull+mahesh.rao.altera.com@kernel.org>
+Subject: [PATCH RESEND v5 0/5] stratix10: Add framework for asynchronous
+ communication with SDM
+Date: Tue, 08 Jul 2025 12:49:05 +0800
+Message-Id: <20250708-sip_svc_upstream-v5-0-9c4289256d54@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEGjbGgC/23PPW/DIBAG4L9iMZeIb+NMHZK1QztWVYThnCDVs
+ QMOahX5vxfRSkllj8cdz713QxGCh4i21Q0FSD764ZwL+VQhezLnI2Dvco0YYZJQTnH04yEme7i
+ OcQpgegy1dto2reBcovxtDND5r0K+o9f92/5lhz5+3wNcrnnD9NdsTQRsh77307ZKakMVDlaW4
+ ZOP0xC+S6xEy3RJIBhbJkgUE0y0JrKhDek4fTafEwSzyXbRErsLkq4JLAudAWmFtJlxC4E/CEy
+ tCDwLyhBthCTMAV8I4i4oSlYEkYXWusYpohtSL6+QDwJbE2QWas6cMDYH4eyfMM/zD+ZWYjruA
+ QAA
+X-Change-ID: 20250131-sip_svc_upstream-e78d8c9b4335
+To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>
+Cc: Matthew Gerlach <matthew.gerlach@altera.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751950193; l=3308;
+ i=mahesh.rao@altera.com; s=20250107; h=from:subject:message-id;
+ bh=9T7pJd+3AHclFZfFANxR31TEKOmHsUX4vkTKeaL5qUs=;
+ b=SLJzTjIhlr6Qh6T/Ov98WUWGv9QmmM+b+UzyGJzRbhgpyhfsLfOdlm9C8scGbR0Dds45Z6BIq
+ oIrESjtMLxGC2QZ2kLgdwUtxu1Bq8QicWYzt5hC+ObJf6VzEY0zDe4k
+X-Developer-Key: i=mahesh.rao@altera.com; a=ed25519;
+ pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
+X-Endpoint-Received: by B4 Relay for mahesh.rao@altera.com/20250107 with
+ auth_id=337
+X-Original-From: Mahesh Rao <mahesh.rao@altera.com>
+Reply-To: mahesh.rao@altera.com
 
-Add overlay to support PHYTEC PEB-WLBT-07 WiFi/Bluetooth evaluation
-adapter on phyBOARD-Nash-i.MX93 board. Adapter uses the u-blox MAYA-W2
-module (IW612 chipset) which is capable of Wi-Fi 6 and Bluetooth 5.4 LE.
+The patch set includes the following changes:
 
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
+- Add protection for querying memory objects in
+  multi-threaded flow.
+- Add support to generate and maintain message id
+  and client id for asynchronous communication with SDM.
+- Add framework to communicate with Secure Device
+  Manager(SDM) asynchronously by sending a request
+  and polling for response.
+- Add commands for performing Remote System Update
+  (RSU) operations asynchronously.
+- Migrate RSU driver to use the asynchronous
+  communication framework.
+
 ---
+- Link to v5: https://lore.kernel.org/r/20250620-sip_svc_upstream-v5-0-732d4ac08a32@altera.com
+
+Changes in v5:
+- Use FIELD_PREP, FIELD_GET() and GENMASK() for bit
+  manipulation for ids.
+- Bring down probing when stratix10_svc_async_init()
+  fails.
+- Other minor fixes.
+
+- Link to v4: https://lore.kernel.org/r/20250610-sip_svc_upstream-v4-0-bcd9d6089071@altera.com
+
+Changes in v4:
+- Added description for svc_mem_lock mutex.
+- Wrapped commit message and comments in source
+  code to kernel coding style as per coding style.
+- Added minor code fixes.
+- Moved variables to the top of the function
+- Removed HWMON support from in the patch-set, this
+  will be sent in a separate patch-set.
+- Added support for RSU commands to asynchronously
+  communicate with SDM.
+- Migrated RSU driver to use the supported 
+  asynchronous commands.
+
+- Link to v3: https://lore.kernel.org/r/20250526-sip_svc_upstream-v3-0-6a08a4502de3@altera.com
+
 Changes in v3:
-- fix license to match base dts
-- add Reviewed-by tag
+- Changed "Stratix 10" to "Stratix10" in the commit
+  message and in source code.
+- Simplified stratix10_svc_add_async_client() by removing
+  redundant code for async common channel initialization.
+- Fixed resource cleanup on negative path in
+  stratix10_svc_remove_async_client() and stratix10_svc_async_init().
+- Removed optional interrupt handler support, will send the patches
+  in a separate patch-set.
 
- arch/arm64/boot/dts/freescale/Makefile        |  2 +
- .../imx93-phyboard-nash-peb-wlbt-07.dtso      | 88 +++++++++++++++++++
- 2 files changed, 90 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-nash-peb-wlbt-07.dtso
+- Link to v2: https://lore.kernel.org/r/20250512-sip_svc_upstream-v2-0-fae5c45c059d@altera.com
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 3166684ab558..699c3b1d80b2 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -325,9 +325,11 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
- 
-+imx93-phyboard-nash-peb-wlbt-07-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-peb-wlbt-07.dtbo
- imx93-phyboard-segin-peb-eval-01-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-eval-01.dtbo
- imx93-phyboard-segin-peb-wlbt-05-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-wlbt-05.dtbo
- imx93-phycore-rpmsg-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-segin.dtb imx93-phycore-rpmsg.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-peb-wlbt-07.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-eval-01.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-wlbt-05.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phycore-rpmsg.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash-peb-wlbt-07.dtso b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash-peb-wlbt-07.dtso
-new file mode 100644
-index 000000000000..7381b87444e8
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash-peb-wlbt-07.dtso
-@@ -0,0 +1,88 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
-+ * Author: Primoz Fiser <primoz.fiser@norik.com>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "imx93-pinfunc.h"
-+
-+&{/} {
-+	usdhc3_pwrseq: usdhc3-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio4 29 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&lpuart5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart5>;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "nxp,88w8987-bt";
-+	};
-+};
-+
-+/*
-+ * NOTE: When uSDHC3 port is multiplexed on GPIO_IO[27:22] pads, it only
-+ * supports 50 MHz mode, due to introduction of potential variations in
-+ * trace impedance, drive strength, and timing skew. Refer to i.MX 93
-+ * Application Processors Data Sheet, Rev. 3, page 60 for more details.
-+ */
-+&usdhc3 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_usdhc3>, <&pinctrl_wlbt>;
-+	pinctrl-1 = <&pinctrl_usdhc3_sleep>, <&pinctrl_wlbt>;
-+	mmc-pwrseq = <&usdhc3_pwrseq>;
-+	bus-width = <4>;
-+	keep-power-in-suspend;
-+	non-removable;
-+	wakeup-source;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_uart5: uart5grp {
-+		fsl,pins = <
-+			MX93_PAD_DAP_TDO_TRACESWO__LPUART5_TX	0x31e
-+			MX93_PAD_DAP_TDI__LPUART5_RX		0x31e
-+			MX93_PAD_DAP_TCLK_SWCLK__LPUART5_CTS_B	0x31e
-+			MX93_PAD_DAP_TMS_SWDIO__LPUART5_RTS_B	0x31e
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO22__USDHC3_CLK		0x179e
-+			MX93_PAD_SD3_CMD__USDHC3_CMD 		0x4000178e
-+			MX93_PAD_SD3_DATA0__USDHC3_DATA0	0x4000138e
-+			MX93_PAD_SD3_DATA1__USDHC3_DATA1	0x4000138e
-+			MX93_PAD_SD3_DATA2__USDHC3_DATA2	0x4000138e
-+			MX93_PAD_SD3_DATA3__USDHC3_DATA3	0x4000138e
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_sleep: usdhc3sleepgrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO22__USDHC3_CLK		0x31e
-+			MX93_PAD_SD3_CMD__USDHC3_CMD 		0x31e
-+			MX93_PAD_SD3_DATA0__USDHC3_DATA0	0x31e
-+			MX93_PAD_SD3_DATA1__USDHC3_DATA1	0x31e
-+			MX93_PAD_SD3_DATA2__USDHC3_DATA2	0x31e
-+			MX93_PAD_SD3_DATA3__USDHC3_DATA3	0x31e
-+		>;
-+	};
-+
-+	pinctrl_wlbt: wlbtgrp {
-+		fsl,pins = <
-+			MX93_PAD_CCM_CLKO2__GPIO3_IO27		0x31e	/* WAKE_DEV */
-+			MX93_PAD_CCM_CLKO3__GPIO4_IO28		0x31e	/* WAKE_HOST */
-+			MX93_PAD_CCM_CLKO4__GPIO4_IO29		0x31e	/* PDn */
-+		>;
-+	};
-+};
+Changes in v2:
+- Added Reviewed by tag from Rob Herring for dt-binding
+  patch.
+- Resending the patch-set as there is no response from
+  the maintainers for the previous patch submission.
+
+- Link to v1: https://lore.kernel.org/r/20250422-sip_svc_upstream-v1-0-088059190f31@altera.com
+
+---
+Mahesh Rao (5):
+      firmware: stratix10-svc: Add mutex lock and unlock in stratix10 memory allocation/free
+      firmware: stratix10-svc: Implement ID pool management for asynchronous operations
+      firmware: stratix10-svc: Add initial support for asynchronous communication with Stratix10 service channel
+      firmware: stratix10-svc: Add support for RSU commands in asynchronous framework
+      firmware: stratix10-rsu: Migrate RSU driver to use stratix10 asynchronous framework.
+
+ drivers/firmware/stratix10-rsu.c                   | 272 +++---
+ drivers/firmware/stratix10-svc.c                   | 954 ++++++++++++++++++++-
+ include/linux/firmware/intel/stratix10-smc.h       |  76 ++
+ .../linux/firmware/intel/stratix10-svc-client.h    |  92 ++
+ 4 files changed, 1253 insertions(+), 141 deletions(-)
+---
+base-commit: 47633099a672fc7bfe604ef454e4f116e2c954b1
+change-id: 20250131-sip_svc_upstream-e78d8c9b4335
+
+Best regards,
 -- 
-2.34.1
+Mahesh Rao <mahesh.rao@altera.com>
+
 
 
