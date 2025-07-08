@@ -1,142 +1,177 @@
-Return-Path: <devicetree+bounces-194099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C0A2AFCA9D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 14:41:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B938DAFCAA8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 14:42:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 138877AB8DA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 12:40:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB722484D1E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 12:42:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBD0F2DC33D;
-	Tue,  8 Jul 2025 12:41:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F602DCF42;
+	Tue,  8 Jul 2025 12:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nYR1MVp2"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="dWXqJbYT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF412DBF46;
-	Tue,  8 Jul 2025 12:41:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F2B12DCBE2
+	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 12:42:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751978494; cv=none; b=XzFsqmgHwbO1G8ubcwxe04XbwUxqSrSuVZjJ1nEXfHJpenW2ipKT+qOh44Z7908qv+r0/w1it7eIk1IqUPmOTwWCogrYB811g7OCanU+3P/i3yRHJmkgtoItmswDEi6YOkLDTLqJEOF5A2c6bQqACbICQ81RddcDt4cGHfEuDbo=
+	t=1751978544; cv=none; b=pxdPNHeHmZk8k4SMi88JdzTy4fsmeYMNLZ/39lveHjm0/owjAhlfKk2Gun3mIaU9HQtLIwhewHwdKjrKFrtp4qwJquW75ZDpbdIPujTharKIxZB18Ui1LXD9IdVrj6D9D7z2qk3/cq+KygnopYn/FE7/XODH4BKOaTfwZIbajfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751978494; c=relaxed/simple;
-	bh=ig4Ya6yOKltTKYiC8Pv2VErte3GbJVlzc3MNaT1fhaA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g8KsBytmAkSo2yIga7soDEgCbTUnBeVLXmXSRY+kNxdzkhBr/HSr3jQZjlrl1VFKwwPbMwVTihZ2ruxCxFyrDpcq3pTfFkXVd2axE4+bKXTRHcY4rr9zYGu3Nz/coY6x1HZVvtxBB15/OJnQL56V2hqrdgjAoErcqTEXCSPMRc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nYR1MVp2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F57DC4CEED;
-	Tue,  8 Jul 2025 12:41:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751978494;
-	bh=ig4Ya6yOKltTKYiC8Pv2VErte3GbJVlzc3MNaT1fhaA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nYR1MVp2kV0BanibXcBlMRcZPSI01/2KxgjrggqCJG7VRBMgqL+FqUCr4X6+bY/6K
-	 pO626tYlLC25NdxTP4Gx+eetdxsV/SNki4HbjceBHVpvUmVS1qEZO5203RZ/4rUedk
-	 2y6NbD0kz/ceA277YHLIB3Q/B8CP6YTvLScJrqOOguZTEPDNBR+6Zthl8l7fMYrM/F
-	 WhwIuyGh9+eIa6zGysAf2n9fvyzTOoJ0KIBfsyhjcX9bDBpfWclzgPXum67e63NlaO
-	 2sNhVnHruWnifWmQ4w6JquQX3tiFWEvi5Y3W9o7KOfch+gpSdOtrKvKTIalL1mNlo6
-	 2oPiuC0iMylpw==
-Date: Tue, 8 Jul 2025 07:41:33 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: Haiyang Zhang <haiyangz@microsoft.com>,
-	Yunhong Jiang <yunhong.jiang@linux.intel.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Chris Oo <cho@microsoft.com>,
-	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
-	Michael Kelley <mhklinux@outlook.com>,
-	Ricardo Neri <ricardo.neri@intel.com>,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-hyperv@vger.kernel.org, x86@kernel.org
-Subject: Re: [PATCH v5 03/10] dt-bindings: reserved-memory: Wakeup Mailbox
- for Intel processors
-Message-ID: <175197849289.389672.9119321529069936382.robh@kernel.org>
-References: <20250627-rneri-wakeup-mailbox-v5-0-df547b1d196e@linux.intel.com>
- <20250627-rneri-wakeup-mailbox-v5-3-df547b1d196e@linux.intel.com>
+	s=arc-20240116; t=1751978544; c=relaxed/simple;
+	bh=OMUTx42+lxnfbmDa4w9KRyTNqE2cIBR6M9QVHF4w1fI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=pD2QgAx7dKWIExwkBbutixeMCJFcvwOCddzV9qU4m1Y8uaCQCdUFxgbuFjgazlpuBAaJ/kd/pPbwY8pGHnZ7kCQPzhPk7ok+DDqwShpgxXy4mh8rTn1XrRsYW1Hz/w0VZP2DKT4lgR51eCkQ3nKvbmv072zYx1b18eSWp3tEzCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=dWXqJbYT; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-60cc11b34f6so8623475a12.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 05:42:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1751978541; x=1752583341; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=krWI5dKupRfQc3/61VnzeAoMeO2jYhgWh27WUPDNkkI=;
+        b=dWXqJbYT4l0gvL7r8Bk7j3OlqbHVe7abqQS/crSvNpbKx0hQJa7XCbzm9vh1a6ouoN
+         65coz8Ejmlkd9cB/NUD6Oh6zz0aMNJ3NBFpTlgfWL2WG4RIZIX4w8e2GHfIX8+Dc9b9g
+         ZWzc+Vgi6AEn2o5N0LAFDJf3NtjRKjqUhcKdQt/pJNT3vfNeGrPo4yO7lguh0UGxPV/9
+         kXags8eDsrnf07OBD4OG008qKpk29DcGjytFo6HJLeVycrbINXC1a6X/jHxxTyGsRzpG
+         x57ln0NusPENSiDS5ElopQv6s5pNRZMw3Mea0PUA27J69fDkFMGkSXroci04BU2JUUXq
+         53pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751978541; x=1752583341;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=krWI5dKupRfQc3/61VnzeAoMeO2jYhgWh27WUPDNkkI=;
+        b=YTYzQOgM0GMwlCO0DE+CQnYBV0TtgFtv3vM9XDUQSTCrZyQ4Bam8eIf6YD0s4kpI+t
+         EtWkLT33I84cwICtlUmB8oizeIiE3IqYUSuvxzNaLt/5p7s2GYvl0ll8rcOapDRWEorP
+         XTG4AjQWz6M4raAXhDbOMrfidW0LdoxY4g4hVvwmv6+WR/ml8ERHeEPYjwuf3Bpm3fZn
+         wquZ9ipTJgLxb3E1mbfKytczgrg7XNc1C6FGFg68eIPV8/teYrQi+tcqaO+FKoZ5rpBZ
+         oM/+kiwKykJu1ny18lls6vlDM5CJsld5vfRVdYbzBmyCe/Wgj8+v7D/hyXhzy6cIbIFP
+         G+ug==
+X-Forwarded-Encrypted: i=1; AJvYcCViQR2aaEGhghdf6V2QKsBwI0hZR1zjg1icCurZ8NPyoCMBjMyT2Wx7rXc6L4QEVH39E6l44Ei6ggh3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpF9v1Lh+XDLYu9RngmiB8LvFgTnY1PfzC9SN4yogHNEawUJwv
+	LFxFnqIr4zpwi8/YuUmLfVeUwPzinz6FfYWNXU0Vm6rcwmFaIrk9TEmv1bwT2sBtyQhyxB0gqlv
+	WjRLF
+X-Gm-Gg: ASbGnctn3J1byI3gdmkK+K1jlB1HsFt1AlCJhDMTjQ0eJHMwSnMVBBSlKSp+u+gQ0gH
+	DqzSdhdjsmxPqU52s+/vwJs/CacMpwQCpYmeDjgghdA67dUyFarQydvEbh6jXS3liOLohZ2Vz/Z
+	H3K/PU3aCaOPfICHMQ7bvKbGl8VV/tsKfgbNYH/DFi+RGTkwZ6FpHlB7o3Ehj3rf8VYsgSn2urx
+	P9k50zenJgFSEC7kfhVVZMs5Ws7kuTw27tHwTR8gHFFu8wTkEQK6B/jfvCIiUA7rb529aCVD8uF
+	dK7ZzTAmj/Iq3TI8yS8tofGFQS+u0v8A+FhGJoTlLWoak69KJsSU90K7huzwh6Uua+onMdQ0yaH
+	+nx5O5pog7x+awaHKK0wacHldFHYxC2M=
+X-Google-Smtp-Source: AGHT+IF8+quXXledQG534WGGLgZTN7F2C1w8IIy/x0D8Dajv4m6QB5Hjruw4R2tZAmvqG+s4Kctcmg==
+X-Received: by 2002:a17:907:3f0a:b0:ad8:91e4:a931 with SMTP id a640c23a62f3a-ae6b2b34160mr265150966b.26.1751978540601;
+        Tue, 08 Jul 2025 05:42:20 -0700 (PDT)
+Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f6949cb2sm889858666b.67.2025.07.08.05.42.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Jul 2025 05:42:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250627-rneri-wakeup-mailbox-v5-3-df547b1d196e@linux.intel.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 08 Jul 2025 14:42:19 +0200
+Message-Id: <DB6OK61BL9ZS.31XB5TN5YTX62@fairphone.com>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] interconnect: qcom: Add Milos interconnect
+ provider driver
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Georgi Djakov"
+ <djakov@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250708-sm7635-icc-v2-0-e158dbadb29c@fairphone.com>
+ <20250708-sm7635-icc-v2-2-e158dbadb29c@fairphone.com>
+ <0a09fbc8-8835-4e94-862b-0baaea5ee251@oss.qualcomm.com>
+In-Reply-To: <0a09fbc8-8835-4e94-862b-0baaea5ee251@oss.qualcomm.com>
 
+On Tue Jul 8, 2025 at 1:30 PM CEST, Konrad Dybcio wrote:
+> On 7/8/25 12:20 PM, Luca Weiss wrote:
+>> Add driver for the Qualcomm interconnect buses found in Milos based
+>> platforms. The topology consists of several NoCs that are controlled by
+>> a remote processor that collects the aggregated bandwidth for each
+>> master-slave pairs.
+>>=20
+>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>> ---
+>
+> [...]
+>
+>> +static struct qcom_icc_bcm * const aggre1_noc_bcms[] =3D {
+>> +};
+>
+> You can remove the empty bcm arrays and .(num_)bcms assignments
+> for them
 
-On Fri, 27 Jun 2025 20:35:09 -0700, Ricardo Neri wrote:
-> Add DeviceTree bindings to enumerate the wakeup mailbox used in platform
-> firmware for Intel processors.
-> 
-> x86 platforms commonly boot secondary CPUs using an INIT assert, de-assert
-> followed by Start-Up IPI messages. The wakeup mailbox can be used when this
-> mechanism is unavailable.
-> 
-> The wakeup mailbox offers more control to the operating system to boot
-> secondary CPUs than a spin-table. It allows the reuse of same wakeup vector
-> for all CPUs while maintaining control over which CPUs to boot and when.
-> While it is possible to achieve the same level of control using a spin-
-> table, it would require to specify a separate `cpu-release-addr` for each
-> secondary CPU.
-> 
-> The operation and structure of the mailbox is described in the
-> Multiprocessor Wakeup Structure defined in the ACPI specification. Note
-> that this structure does not specify how to publish the mailbox to the
-> operating system (ACPI-based platform firmware uses a separate table). No
-> ACPI table is needed in DeviceTree-based firmware to enumerate the mailbox.
-> 
-> Add a `compatible` property that the operating system can use to discover
-> the mailbox. Nodes wanting to refer to the reserved memory usually define a
-> `memory-region` property. /cpus/cpu* nodes would want to refer to the
-> mailbox, but they do not have such property defined in the DeviceTree
-> specification. Moreover, it would imply that there is a memory region per
-> CPU.
-> 
-> Co-developed-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> ---
-> Changes since v4:
->  - Specified the version and section of the ACPI spec in which the
->    wakeup mailbox is defined. (Rafael)
->  - Fixed a warning from yamllint about line lengths of URLs.
-> 
-> Changes since v3:
->  - Removed redefinitions of the mailbox and instead referred to ACPI
->    specification as per discussion on LKML.
->  - Clarified that DeviceTree-based firmware do not require the use of
->    ACPI tables to enumerate the mailbox. (Rob)
->  - Described the need of using a `compatible` property.
->  - Dropped the `alignment` property. (Krzysztof, Rafael)
->  - Used a real address for the mailbox node. (Krzysztof)
-> 
-> Changes since v2:
->  - Implemented the mailbox as a reserved-memory node. Add to it a
->    `compatible` property. (Krzysztof)
->  - Explained the relationship between the mailbox and the `enable-mehod`
->    property of the CPU nodes.
->  - Expanded the documentation of the binding.
-> 
-> Changes since v1:
->  - Added more details to the description of the binding.
->  - Added requirement a new requirement for cpu@N nodes to add an
->    `enable-method`.
-> ---
->  .../reserved-memory/intel,wakeup-mailbox.yaml      | 50 ++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
-> 
+Sure!
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>
+> [...]
+>
+>> +static const struct of_device_id qnoc_of_match[] =3D {
+>> +	{ .compatible =3D "qcom,milos-aggre1-noc", .data =3D &milos_aggre1_noc=
+},
+>> +	{ .compatible =3D "qcom,milos-aggre2-noc", .data =3D &milos_aggre2_noc=
+},
+>> +	{ .compatible =3D "qcom,milos-clk-virt", .data =3D &milos_clk_virt},
+>> +	{ .compatible =3D "qcom,milos-cnoc-cfg", .data =3D &milos_cnoc_cfg},
+>> +	{ .compatible =3D "qcom,milos-cnoc-main", .data =3D &milos_cnoc_main},
+>> +	{ .compatible =3D "qcom,milos-gem-noc", .data =3D &milos_gem_noc},
+>> +	{ .compatible =3D "qcom,milos-lpass-ag-noc", .data =3D &milos_lpass_ag=
+_noc},
+>> +	{ .compatible =3D "qcom,milos-mc-virt", .data =3D &milos_mc_virt},
+>> +	{ .compatible =3D "qcom,milos-mmss-noc", .data =3D &milos_mmss_noc},
+>> +	{ .compatible =3D "qcom,milos-nsp-noc", .data =3D &milos_nsp_noc},
+>> +	{ .compatible =3D "qcom,milos-pcie-anoc", .data =3D &milos_pcie_anoc},
+>> +	{ .compatible =3D "qcom,milos-system-noc", .data =3D &milos_system_noc=
+},
+>> +	{ }
+>
+> a space before '}' would be neat
+
+There is a space :)
+
+>
+> Konrad
+>
+>> +};
+>> +MODULE_DEVICE_TABLE(of, qnoc_of_match);
+>> +
+>> +static struct platform_driver qnoc_driver =3D {
+>> +	.probe =3D qcom_icc_rpmh_probe,
+>> +	.remove =3D qcom_icc_rpmh_remove,
+>> +	.driver =3D {
+>> +		.name =3D "qnoc-milos",
+>> +		.of_match_table =3D qnoc_of_match,
+>> +		.sync_state =3D icc_sync_state,
+>
+> Are there any issues with sync_state? (hopefully not)
+
+Don't think so, I don't see any sync_state pending warnings in dmesg so
+I assume it's 'synced'? Anything I should look out for in particular?
+
+Also since it looks like I'll anyways send a v3, I've already ported the
+QoS settings, and don't think I'm seeing any issues booting up with
+that. So I'll include it with v3.
+
+Regards
+Luca
+
+>
+> Konrad
 
 
