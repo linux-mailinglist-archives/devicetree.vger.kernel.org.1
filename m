@@ -1,164 +1,223 @@
-Return-Path: <devicetree+bounces-194175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E33FAFCFFD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:02:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E93AFD000
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:03:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC9C07A11DE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:01:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B8EA1C20CA3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:03:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 630C92DAFCE;
-	Tue,  8 Jul 2025 16:02:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDD472DAFB4;
+	Tue,  8 Jul 2025 16:03:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="WLj3qSiR"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="B5rSjYFG";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Z4Ki1NQM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-b4-smtp.messagingengine.com (fhigh-b4-smtp.messagingengine.com [202.12.124.155])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC452E3B04;
-	Tue,  8 Jul 2025 16:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE4272E36E2;
+	Tue,  8 Jul 2025 16:03:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751990531; cv=none; b=FakeQmi+Pev+wyoAk14GUF9LatyKOV7An1SbFbHghbqQdJc3BBVk60jKKoGWnc/xQeYsEzSSR3d5X7sU32PVpKEgiQJK9h3wDRwI5VwqBd4X/LOqXsAxxykcvkpWFLOucXfbXvYSSEQvXJ52SOjKM1QGv0VhFZo5UsVRp7WKyuk=
+	t=1751990587; cv=none; b=VZ8RVi/XBdvQpJIj69H+v4c9qdWTT2+PWc2F8bgkfjjHJJLr21psIgjw+/2h5W7mkgklnjfCo1hjGn+k8V/S5qUOo8JIGj8ZQqClhzIFWFn2mwTsnY4/Hnxo+BaGgp/sSsID0RFsb5EuPiM+SYtFOr7IpA4FQ4woe4zEJb9Ecvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751990531; c=relaxed/simple;
-	bh=WZrn6LujtO6NsLVvITf9+xGxJYx5Oo7dKbMFr3Gtgxg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R++VwaLdnBMMsAvbJieEzQfDMX8uwyBwk15ww67mGnP9J64SCX81SayMxyoxtjOty/Hw7njYmQRCy+viWYhX9ytmNe9pN/CljVyNttXHKwxcfQSgy7sxX7oMzIrvmPATL8oiGCgMaubl4XkQ4ymjwmoxjINae42/GS44yokJtqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=WLj3qSiR; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-87f161d449dso3406714241.3;
-        Tue, 08 Jul 2025 09:02:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1751990528; x=1752595328; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jCM6ovO5L3ci76w7Yr/1xFTj1/PqUrpAr14Rz9Xck/c=;
-        b=WLj3qSiR5SZkgznkZASvXc2DQ6waXgMVD3ICBl4TUclXKzYId6FEJo9TV5+SKsbUg9
-         CgqBgwaTwZVe/fVZsUzVf8KXLoFBc12Sj6oeKl/Kw4iNPZOZZ6ayu5wZ1gobuHcbIuZ+
-         2zxm1sZcZFutKawFR4uieSTVPxzWzfvlll7Mh64M3U+VhT5ZJbJ8WP4pYuwKFmnU62/B
-         atIcnMujXXuO/FaDC0/c25Cf3eR6P412y7o1VsHE1CW7v72E4bbbtDU6VVXP/iVXfU2Y
-         8EWljzu69e9ce1QG7zQXUPE9ikD9JZ5OdQK+UxVef0SXHFlTTHIyao0psRBqDBn+1dJ/
-         E7qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751990528; x=1752595328;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jCM6ovO5L3ci76w7Yr/1xFTj1/PqUrpAr14Rz9Xck/c=;
-        b=TklCA24VTOmcYznSW7fIxot2sjK41sZV6Wn5W3H2akqarIspiizSkjKeYGLsXlxHQz
-         TeAePYg/r2kVL39SZ9pPLU1J/SMB174Rl5n/kx8GbVGdRRoRAp6fYLskJFzOhfcnB8zQ
-         TVdD6Yo4nXLMcOqDXb1Cwsz/s8OPBfsX29WAHLzER0cufQhdsIExNOylZyEiT6wEW5s4
-         k/RQEIxxoS+7aKxL+ByhC1bTid5lK00OTo83fC64KiXFVPLW9qq8gLz6Of7DIqWhzDE5
-         g0v5SiChL43RcBiaBEVVK/xbEzD813IXusxk2Of7UtY21OwPp0u1xRvx+clexYjsS8Q5
-         djHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVSTidcuzmPMmOACvickc6jKo9hmFqqYl8P97IPLkFVuEdvpuuJBbAE9PHS+ETVgX2YM0ThXGqE7vj@vger.kernel.org, AJvYcCWXA5svKY/0WFxNLN5LA2mzDe2aN2W+fcV2VytKQkj/CJ7cHXtHR9C4RpRZZoEBTNcBSDX/pXSrqe+X@vger.kernel.org, AJvYcCXR8Ki5UJsVXiLAGcUXy1SDeacai99Zar59Re1DzRCQaps1KS9o9yND+VaRCv3cKOqn018/vYdlSl2FwY46@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPrUQRntuQQlD1fGKjYUrvPeACN/3Quf9KqUsxPD2+oiV3hycH
-	L6IlWQXLZQRO5m3hL5gjSof0XRyYi2kTZEXd+4q5uLhbGuWzIICw2zpJrAcsV+j2TKc67UYvEoT
-	sOumKFTIqVyC8kyfJyh8npW6PujI46tlYG6sC
-X-Gm-Gg: ASbGnctlKfwxfukC0A7FqvQDESdsWn6OBpTfxY9hoDIOsxxou9EXfH4AlDBAC0Nv+o9
-	TSNmBopF/wkHytwIcjE1t5DSde6Bt8EZyRiHJ2iZtZ5OSTnefCoj4iXEuM5mMcMw/th9ax+khdy
-	Cq2HQditeGNINnea7E6RPlBgzNrOgkg9cjoaGhanuu1pU5x2MQEaUi+5D+dQ6yBa11VrtMfmdzR
-	yE=
-X-Google-Smtp-Source: AGHT+IENP/DbHEOmXazWnqdsKnY+LYuCikhD7sRqatVwo+/hDfRbpoohC07uCw491fbaRThr0kbx8qgWACdDFljdvmw=
-X-Received: by 2002:a17:902:daca:b0:235:f298:cbbd with SMTP id
- d9443c01a7336-23c8747eddcmr316693035ad.21.1751990517129; Tue, 08 Jul 2025
- 09:01:57 -0700 (PDT)
+	s=arc-20240116; t=1751990587; c=relaxed/simple;
+	bh=20H5LuZNgDbcrUwYu5SZ2GYXneJ5TTtVqONgj2IHgrg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kYnlY12e+Sj0GadoAw3JFZucYkC+BdTxVtGbiNYDA+5eAMmMTAeKhtwZkw9kUEM/ArmE9IOvW2KAacg7vvl6fU4vJpI5B002hhRASGshnw5J6d814HqbSVfR0K6b1FCTBDgXr44kWt327148pLK5zt194b/g4cmnKNk7wfa0vQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=B5rSjYFG; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Z4Ki1NQM; arc=none smtp.client-ip=202.12.124.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-02.internal (phl-compute-02.phl.internal [10.202.2.42])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 972877A015A;
+	Tue,  8 Jul 2025 12:03:04 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-02.internal (MEProxy); Tue, 08 Jul 2025 12:03:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1751990584; x=1752076984; bh=ZG
+	+ymZnLkvXORzQKoLZS4mUtpVfy/tQvk/yeS43XmGc=; b=B5rSjYFGWYa87XyIu/
+	wrdiej5STJV4WuANIylbw/+Zoqdc4EklmuA4Ogek2inMoN8pZ49ttNdHk4EMhwm9
+	PbciilvCaVLjjVvB7T62KLAhkc9hZE9QlUM5nwDpamay/GtOz4MJNCRNBruhSizt
+	R74U9rR8kOl22dOtaAiEDix9HWX7FJGgKG6J+95FJfQENZWakXjFhCpJhLVn7TQH
+	X38vWCJG8uXBfC31NoZH/2vCTOU/pcudBRGwHQFUjWyr/Gc/RN+sJQwOjzifwZxi
+	xXkFJ3o6m9NXgwqe/StOOhNXLQ0DSoZIHPD11iNIOYPb0/R9r0kRpXIgprPVlzpS
+	a1dQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1751990584; x=1752076984; bh=ZG+ymZnLkvXORzQKoLZS4mUtpVfy
+	/tQvk/yeS43XmGc=; b=Z4Ki1NQMTXWWaSXhb1C1+GZ0HMvrA1jdxcx1f++xrBxq
+	o5kH3V8rRkqVfCFJoTOh9I0RDbMuKjWBld2++S2S/uwW2dPU0PXjKIW6UhgZv8ln
+	f89MMrsVDCY5SbDODZfQ6LLvBWXSxx7L6THYxZhs22kI/f7ul76wlFzUb4LqWeVc
+	JjjdnnNzln/eg+A9VdM+0wwlAEIGU6BEO1koD3NuAfLUR/om9SbYuQ6407UNu4Dd
+	EoKT1busSr6QxLtYgsLjpH8muTNvYJdGm5C+Wd3Qa/ipWBJWTjJnnenhxgf2GYsv
+	EEX482BW3QI9FAy2Ab7QhLq1JBQH+sMbjmNBIFI2tg==
+X-ME-Sender: <xms:N0FtaKBHi4zFXPihn5s1QdBhMtiD_mc5NaPcKzKUVhTzbP_3aUZ6-A>
+    <xme:N0FtaBf9s1RquF2yLysRbSY8m3K_Ok0dsZXJ0FLJKryfuFjiCsW8xeyAK-vN8J4ue
+    6W4ayo67C3qAhL2hnY>
+X-ME-Received: <xmr:N0FtaJOKIn4L0xsYherthjSlzBUDpfSJ3XjmRrMXWPS9T2sM3uVyV0gBxNSd8cR0BBboNIOKNMDmaQMDJorEkTTC0Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdefheduudcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefhvfevufffkffogggtgfesthekredtredtjeenucfhrhhomheppfhikhhlrghsucfu
+    npguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghsse
+    hrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhephfeghfevgefhteduheff
+    hfejieelheekvdevffdutdelgedugeejueeffeevffdtnecuffhomhgrihhnpehkvghrnh
+    gvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
+    ohhmpehnihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrghtvggthhdrshgvpdhnsg
+    gprhgtphhtthhopeejpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehrohgshhes
+    khgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrvhhiugesghhisghsohhnrdgurhhoph
+    gsvggrrhdrihgurdgruhdprhgtphhtthhopehsrghrrghvrghnrghksehgohhoghhlvgdr
+    tghomhdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghssehglhhiuggvrhdrsggvpd
+    hrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhr
+    tghpthhtoheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvhhgvghrrdhkvghrnhgvlh
+    drohhrghdprhgtphhtthhopehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgr
+    shesrhgrghhnrghtvggthhdrshgv
+X-ME-Proxy: <xmx:N0FtaBKh9x6BGFt7coV1uygv5YEzNhUhQt0fK_IF7V4fNT_UOm4AAQ>
+    <xmx:N0FtaJK-daM_tFmdrjwf0LUra_VEheCi3Kdtmid9cscR2qUgiElHJg>
+    <xmx:N0FtaL6gtC8Vg4eDFaNBjj1zoQEusF1q7bnSxisKVN_yUDRDmi_RgA>
+    <xmx:N0FtaDcFL74FT7dYiM2altshbv4JjyQ1eX0bwUxc1cJce4BCgK8mDw>
+    <xmx:OEFtaF5ztlO1RdG3NyB5qn_Hssdup6LhK_0UZ8miRZKR26S8lwGl3qgi>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 8 Jul 2025 12:03:03 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Rob Herring <robh@kernel.org>,
+	David Gibson <david@gibson.dropbear.id.au>,
+	Saravana Kannan <saravanak@google.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH] checks: Remove check for graph child addresses
+Date: Tue,  8 Jul 2025 18:02:01 +0200
+Message-ID: <20250708160201.141428-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250704-spisg-v4-0-6b731dfbe610@amlogic.com> <20250704-spisg-v4-2-6b731dfbe610@amlogic.com>
-In-Reply-To: <20250704-spisg-v4-2-6b731dfbe610@amlogic.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 8 Jul 2025 18:01:45 +0200
-X-Gm-Features: Ac12FXzOu7a6I2ZVTETrFDoplFmbCGvI4ZO5J3eEez7q6yQ4MAf6A0pZTz-sze0
-Message-ID: <CAFBinCB4Lw04StL-kPpzKHPyETKfi5FYFipHRBDDnPdtRVDrmA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] spi: Add Amlogic SPISG driver
-To: xianwei.zhao@amlogic.com
-Cc: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
+The dtc graph_child_address check can't distinguish between bindings
+where there can only be a single endpoint, and cases where there can be
+multiple endpoints.
 
-On Fri, Jul 4, 2025 at 5:07=E2=80=AFAM Xianwei Zhao via B4 Relay
-<devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
-[...]
-> +       div->table =3D tbl;
-> +
-> +       /* Register value should not be outside of the table */
-> +       regmap_update_bits(spisg->map, SPISG_REG_CFG_BUS, CFG_CLK_DIV,
-> +                          FIELD_PREP(CFG_CLK_DIV, SPISG_CLK_DIV_MIN - 1)=
-);
-Are you doing this to prevent errors for value zero?
-If so, is CLK_DIVIDER_MAX_AT_ZERO applicable instead (it has been
-discussed for the t7 clock controller recently: [0])?
+In cases where the bindings allow for multiple endpoints but only one is
+described false warnings about unnecessary #address-cells/#size-cells
+can be generated, but only if the endpoint described have an address of
+0 (A), for single endpoints with a non-zero address (B) no warnings are
+generated.
 
-> +       /* Register clk-divider */
-> +       parent_names[0] =3D __clk_get_name(spisg->pclk);
-Instead of using __clk_get_name my suggestion is to use struct
-clk_parent_data with .fw_name set.
-If you want to simplify the code further you can use helper macros
-like CLK_HW_INIT_FW_NAME
+A)
+    ports {
+	#address-cells = <1>;
+	#size-cells = <0>;
 
-> +       snprintf(name, sizeof(name), "%s_div", dev_name(dev));
-> +       init.name =3D name;
-> +       init.ops =3D &clk_divider_ops;
-> +       init.flags =3D CLK_SET_RATE_PARENT;
-> +       init.parent_names =3D parent_names;
-> +       init.num_parents =3D 1;
-> +       div->hw.init =3D &init;
-> +
-> +       spisg->sclk =3D devm_clk_register(dev, &div->hw);
-My understanding is that devm_clk_register() is not recommended for new dri=
-vers.
-The replacement is to use devm_clk_hw_register() first, then
-devm_clk_hw_get_clk(). drivers/pwm/pwm-meson.c implements this in case
-you're looking for an example
+	port@0 {
+	    #address-cells = <1>;
+	    #size-cells = <0>;
 
+	    sourceA: endpoint@0 {
+		reg = <0>
+	    };
+	};
+    };
 
-[...]
-> +static int aml_spisg_probe(struct platform_device *pdev)
-> +{
-> +       struct spi_controller *ctlr;
-> +       struct spisg_device *spisg;
-> +       struct device *dev =3D &pdev->dev;
-> +       void __iomem *base;
-> +       int ret, irq;
-> +
-> +       const struct regmap_config aml_regmap_config =3D {
-> +               .reg_bits =3D 32,
-> +               .val_bits =3D 32,
-> +               .reg_stride =3D 4,
-> +               .max_register =3D SPISG_MAX_REG,
-> +       };
-Most regmap_configs in Amlogic drivers are static const.
-If you make it a static const then I suggest renaming the variable to
-aml_spisg_regmap_config for consistency.
+B)
+    ports {
+	#address-cells = <1>;
+	#size-cells = <0>;
 
-[...]
-> +       device_reset_optional(dev);
-I haven't checked the reset code but I think the return value still
-needs to be checked (drivers/mmc/host/meson-gx-mmc.c does so).
-Even though the reset is optional there's conditions where we must act
-for example on -EPROBE_DEFER (which must be propagated).
+	port@0 {
+	    #address-cells = <1>;
+	    #size-cells = <0>;
 
+	    sourceB: endpoint@1 {
+		reg = <1>
+	    };
+	};
+    };
 
-Best regards,
-Martin
+Remove the check as it is somewhat redundant now that we can use schemas
+to validate the full node.
 
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+---
+Hello,
 
-[0] https://lore.kernel.org/linux-amlogic/bd68352f-7f8c-4cbc-9f4f-f83645cc1=
-f70@amlogic.com/
+This started as an effort to demote this check to W=2 [1] and have then
+moved on from there to completely remove the check in this patch per
+David and Rob's suggestion.
+
+This patch supersedes all other patches for my me in this area.
+
+If this change is accepted in dtc and later checks.c synced to
+linux/scripts/dtc/checks.c one must also drop "-Wno-graph_child_address"
+from Documentation/devicetree/bindings/Makefile and
+scripts/Makefile.dtbs.
+
+1.  https://lore.kernel.org/all/20250702085008.689727-1-niklas.soderlund%2Brenesas@ragnatech.se/
+---
+ checks.c | 27 +--------------------------
+ 1 file changed, 1 insertion(+), 26 deletions(-)
+
+diff --git a/checks.c b/checks.c
+index 123f2eb425f4..0b1fd9f13cb4 100644
+--- a/checks.c
++++ b/checks.c
+@@ -1894,31 +1894,6 @@ static void check_graph_endpoint(struct check *c, struct dt_info *dti,
+ }
+ WARNING(graph_endpoint, check_graph_endpoint, NULL, &graph_nodes);
+ 
+-static void check_graph_child_address(struct check *c, struct dt_info *dti,
+-				      struct node *node)
+-{
+-	int cnt = 0;
+-	struct node *child;
+-
+-	if (node->bus != &graph_ports_bus && node->bus != &graph_port_bus)
+-		return;
+-
+-	for_each_child(node, child) {
+-		struct property *prop = get_property(child, "reg");
+-
+-		/* No error if we have any non-zero unit address */
+-                if (prop && propval_cell(prop) != 0 )
+-			return;
+-
+-		cnt++;
+-	}
+-
+-	if (cnt == 1 && node->addr_cells != -1)
+-		FAIL(c, dti, node, "graph node has single child node '%s', #address-cells/#size-cells are not necessary",
+-		     node->children->name);
+-}
+-WARNING(graph_child_address, check_graph_child_address, NULL, &graph_nodes, &graph_port, &graph_endpoint);
+-
+ static struct check *check_table[] = {
+ 	&duplicate_node_names, &duplicate_property_names,
+ 	&node_name_chars, &node_name_format, &property_name_chars,
+@@ -2005,7 +1980,7 @@ static struct check *check_table[] = {
+ 
+ 	&alias_paths,
+ 
+-	&graph_nodes, &graph_child_address, &graph_port, &graph_endpoint,
++	&graph_nodes, &graph_port, &graph_endpoint,
+ 
+ 	&always_fail,
+ };
+-- 
+2.50.0
+
 
