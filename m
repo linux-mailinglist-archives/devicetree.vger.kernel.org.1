@@ -1,50 +1,56 @@
-Return-Path: <devicetree+bounces-194160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C232AFCE9E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:10:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39383AFCEC1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:15:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C057C4276A1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 15:09:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E501166969
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 15:15:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425B82E11C3;
-	Tue,  8 Jul 2025 15:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BdYNNuvp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9835F2E0B45;
+	Tue,  8 Jul 2025 15:15:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 187252E11B6;
-	Tue,  8 Jul 2025 15:09:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B342E091A;
+	Tue,  8 Jul 2025 15:15:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751987390; cv=none; b=uwhFhhuAb/Eykhb+bRu7OOKTuUngG/NerjKG/JmNv2o0ZPBL5gW+eAn8VGHMiODo3CBDHqBbd3I1FYGpdkqSvirAZWA2M4z1wLpjlrlRsVf+GTfE8pJ8wbP+dvh6NocR4tDBNCyWvF+r8MA0gqYprtJAZEVGonYS7auzwH1b4V0=
+	t=1751987710; cv=none; b=PTIQsGc3MLtqlch8Wu4m07NABre3+ttlFZaumH77o6u0DN1VZ/khl1KZByeAgYT184MGfBrujI0WF48M/QloV9AAv7cXRrFVsWHfHGSUcCrzgkz09o58iNoZropyQpy68j0gMUBx4XORU7RTBQXFRKNVS+9VAZ3nwYut81B7XSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751987390; c=relaxed/simple;
-	bh=Obbbwl3W/HPhrDX90tjKTuctvfC+PqY+HxmknvNnqrw=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=scn+jBcmVFG88L84ISooy6fIrBmt2SZYZsBDRwyhxa9IE+1htu5bdLykKo1ywBLOt/RTjAeYvGNn589Qr6XL//KdPdSrICkz4L6rxkRYQp625NwqVR9J4jVyg3nDdnl/q8092jPFGPuruaYB7oGZDZfYTzyYgnmOGh3PHNh62WM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BdYNNuvp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95C27C4CEED;
-	Tue,  8 Jul 2025 15:09:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751987389;
-	bh=Obbbwl3W/HPhrDX90tjKTuctvfC+PqY+HxmknvNnqrw=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=BdYNNuvpVKXd+jDJfxVt2lgxXXn7O+szpMyFGVvGowV1/fR31lF/VeCFCRvhxrxAg
-	 0o8UEXGoNMRhoIO0SrxerDtvnpuZecQn4HbGnHban2BqeJFElyXP8tEVnvXikgbN3h
-	 DEI/SuB+iph1eKriiRB70HPx1+ViIVU0WOHC6m/OlKgyizdyLtkSYVKs4HC+8sijsl
-	 gplc9KvjZZ2S91WYeZYh0n5uCFmf7zf0j82YDhVXtAxv0b886hYBmMwRKEQSSD/Vgu
-	 Xacvl1npLLwiRqDND8D6Pi60lUOFMAzNFhn9i+evgm62CDE4TEuBFgtSeOrvzXVRxU
-	 lcDQIe2DkfKLQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id AE908380DBEE;
-	Tue,  8 Jul 2025 15:10:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1751987710; c=relaxed/simple;
+	bh=e/YehiYj+F1LkrXlpvP4oq7tcRL/IGEdsI/vueJDe70=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XSONyQlrKm8rraWElQf+wT/AanhS3XDAXPW4I1+iqgyCydSa8TKR97Iag1qjxKhJMQezUTQn2dnOqCI4HSqxaWBjSg/7vX6PrtIlHyUMcLo6MUguQM+N5DNxyKPBhy7SWpYO5CKeDcbFT1xpfEHFFNja+bTf1DRnNYY9pWZORp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bc4Mb0qw1z6D8hV;
+	Tue,  8 Jul 2025 23:11:55 +0800 (CST)
+Received: from frapeml500003.china.huawei.com (unknown [7.182.85.28])
+	by mail.maildlp.com (Postfix) with ESMTPS id ED09714025A;
+	Tue,  8 Jul 2025 23:15:04 +0800 (CST)
+Received: from a2303103017.china.huawei.com (10.203.177.99) by
+ frapeml500003.china.huawei.com (7.182.85.28) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 8 Jul 2025 17:15:04 +0200
+From: Alireza Sanaee <alireza.sanaee@huawei.com>
+To: <krzk@kernel.org>, <robh@kernel.org>
+CC: <coresight@lists.linaro.org>, <devicetree@vger.kernel.org>,
+	<dianders@chromium.org>, <james.clark@linaro.org>,
+	<jonathan.cameron@huawei.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-perf-users@vger.kernel.org>,
+	<linuxarm@huawei.com>, <mark.rutland@arm.com>, <mike.leach@linaro.org>,
+	<ruanjinjie@huawei.com>, <saravanak@google.com>,
+	<shameerali.kolothum.thodi@huawei.com>
+Subject: [PATCH v2 0/5] Refactoring finding CPU phandles in DT
+Date: Tue, 8 Jul 2025 16:14:57 +0100
+Message-ID: <20250708151502.561-1-alireza.sanaee@huawei.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,48 +58,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net 0/2] allwinner: a523: Rename emac0 to gmac0
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175198741250.4099273.971241156715124516.git-patchwork-notify@kernel.org>
-Date: Tue, 08 Jul 2025 15:10:12 +0000
-References: <20250628054438.2864220-1-wens@kernel.org>
-In-Reply-To: <20250628054438.2864220-1-wens@kernel.org>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andre.przywara@arm.com, wens@csie.org,
- jernej@kernel.org, samuel@sholland.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
+Content-Type: text/plain
+X-ClientProxiedBy: lhrpeml500010.china.huawei.com (7.191.174.240) To
+ frapeml500003.china.huawei.com (7.182.85.28)
 
-Hello:
+This series refactors the way CPU IDs are retrieved from the device
+tree.
 
-This series was applied to netdev/net.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Usually, there is a for loop that goes over every single CPU that can be
+avoided. This also reduces the amount of NULL pointer checks in drivers.
+I have abstracted away that loop and introduced a new function
+(of_cpu_node_to_id) for this.
 
-On Sat, 28 Jun 2025 13:44:36 +0800 you wrote:
-> From: Chen-Yu Tsai <wens@csie.org>
-> 
-> Hi folks,
-> 
-> This small series aims to align the name of the first ethernet
-> controller found on the Allwinner A523 SoC family with the name
-> found in the datasheets. It renames the compatible string and
-> any other references from "emac0" to "gmac0".
-> 
-> [...]
+This patchset is a subset of [1], where I removed content and patches
+relevant to hyper-threaded cores for DT. Based on the discussion, the
+code refactor is still useful, hence this patchset.
 
-Here is the summary with links:
-  - [net,1/2] dt-bindings: net: sun8i-emac: Rename A523 EMAC0 to GMAC0
-    https://git.kernel.org/netdev/net/c/b3603c0466a8
-  - [net,2/2] arm64: dts: allwinner: a523: Rename emac0 to gmac0
-    (no matching commit)
+Changes since v1 [2]:
+    - Rebased on top of the latest mainline.
+    - Addressed Krzysztof Kozlowski's comments -- Hopefully :-)
+    - Addressed Jonathan Cameron's comments.
 
-You are awesome, thank you!
+[1] https://lore.kernel.org/all/20250512080715.82-1-alireza.sanaee@huawei.com/
+[2] https://lore.kernel.org/all/20250707150414.620-1-alireza.sanaee@huawei.com/
+
+Alireza Sanaee (5):
+  of: add infra for finding CPU id from phandle
+  arch_topology: update CPU map to use the new API
+  coresight: cti: Use of_cpu_phandle_to_id for grabbing CPU id
+  coresight: Use of_cpu_phandle_to_id for grabbing CPU id
+  perf/arm-dsu: refactor cpu id retrieval via new API
+    of_cpu_phandle_to_id
+
+ drivers/base/arch_topology.c                  | 16 ++++----
+ .../coresight/coresight-cti-platform.c        | 14 +------
+ .../hwtracing/coresight/coresight-platform.c  | 15 +------
+ drivers/of/cpu.c                              | 40 +++++++++++++++++++
+ drivers/perf/arm_dsu_pmu.c                    |  8 +---
+ include/linux/of.h                            |  9 +++++
+ 6 files changed, 61 insertions(+), 41 deletions(-)
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.43.0
 
 
