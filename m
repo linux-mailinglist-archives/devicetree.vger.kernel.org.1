@@ -1,132 +1,199 @@
-Return-Path: <devicetree+bounces-193899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAE23AFC271
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:08:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB08AFC1FB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 07:29:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 911D7169DB1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:08:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B6AB4239E9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 05:29:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4A3E21FF2D;
-	Tue,  8 Jul 2025 06:08:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="AARM8Egs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 099D52116E9;
+	Tue,  8 Jul 2025 05:29:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D6621E08B
-	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 06:08:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0229019005E;
+	Tue,  8 Jul 2025 05:29:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751954890; cv=none; b=vAmi1OuxrtDkixh9hYooqAQp/2k5KSV0No3dRZlgrCvFdvSE/gZ1zqcjySgZQc8+2eLKcWKAkhjsLcsrNx0H4PdAjRVnhyjyurR+Rwjf/UgIF4t6brOhxMVVc9v4BK+36lkkjehe+RNAT+egn4VM3rM0jjbLSVMuBCeQhUR0j88=
+	t=1751952565; cv=none; b=tvLhMaZAkDaeuEJJKTS2ntLH99NxAd8av5Kce5ewpF2xxopeMbVKR3QSL3EABACchK1jofh+76spO50GXpriHBCOQL3eMjrZ+cvgIUSKPQzjmMT2wSGCRaD+UKm8pLrdJWgGunooT5qNKPk8/rdi8sRydBL9bKj+ciGw8mARXCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751954890; c=relaxed/simple;
-	bh=25UiW6629URZeKqWd4szAoxmIeiqK59ITssZ/WmW6N8=;
-	h=From:To:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=q0I+Z/psSbVic32kgqOPBR6ZLm36Uhl9f+RJA1G0eUdlIbH5QSMVZGU9otILQ1GANuSuEesPhAcz+qLpxXFd0sEEfFpC5QU8nnRbwqK+TPpkbt4xOeGIxdJ6ceww/ublZ25wzcIKEoTzPhIWH9cxLTAUAqq38SN5mFro7evgnxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=AARM8Egs; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250708060806epoutp0474316b8662e40234286213c7a7c9dbd1~QMa-J3OUA2790127901epoutp04I
-	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 06:08:06 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250708060806epoutp0474316b8662e40234286213c7a7c9dbd1~QMa-J3OUA2790127901epoutp04I
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1751954886;
-	bh=3p+zdleNxB6xRk4PA0vX4wiF7EshOfZNCGt0ekbxrE4=;
-	h=From:To:In-Reply-To:Subject:Date:References:From;
-	b=AARM8EgstyoyfWyL4eq5vQTpP8M+VWdAQahD+yHqVQiAU4TVAXYyg7vjPgHLfE/gL
-	 t/fmgKJfWSxJY27IjWEBJjQGctDhYe3ra1EOdmO4k7410qp41JNLgxyf/8Kfp8Yqhf
-	 FxbF9GMIQ1To9jsOyjggBa95scHa6aBbHTFUz0cM=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250708060805epcas5p34c5e724bc477b39ce43f2ad0190c11e2~QMa_xKtgX0555505555epcas5p3A;
-	Tue,  8 Jul 2025 06:08:05 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.179]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4bbrJ349PBz2SSKb; Tue,  8 Jul
-	2025 06:08:03 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250708050010epcas5p257fc957d612d63e061303608bcc1002b~QLfrkfgkS1015710157epcas5p2E;
-	Tue,  8 Jul 2025 05:00:10 +0000 (GMT)
-Received: from INBRO002520 (unknown [107.122.1.191]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250708050008epsmtip29ff3634961b9082c94f5de5773bcd1f9~QLfp-s9Ri1376613766epsmtip28;
-	Tue,  8 Jul 2025 05:00:08 +0000 (GMT)
-From: "Devang Tailor" <dev.tailor@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>,
-	<alexandre.belloni@bootlin.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <inux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <faraz.ata@samsung.com>
-In-Reply-To: <46fb0a9d-be33-46c6-98d1-501970ec8e7a@kernel.org>
-Subject: RE: [PATCH 3/3] arm64: dts: exynosautov9: add RTC DT node
-Date: Tue, 8 Jul 2025 10:30:07 +0530
-Message-ID: <156a01dbefc5$2e8203f0$8b860bd0$@samsung.com>
+	s=arc-20240116; t=1751952565; c=relaxed/simple;
+	bh=0rsn2uNMnl7vfWMCrOeKinbuO0IGrhc32D7A+bp2UiE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=B9wmu6XaPzijnCjwBu7Pd7A0wDixccywNyVJXqqheoDKnO0vobcPYsbEfe9tEaKbET4SFN8sMMFOgkT9aSU7B1tOsIaPev9XzMuKli1VA7hcGnSm/5tr5IdqDz7U2QR4uR3I9BsNpSXqjZvB8F2gd8wMibR/S0kSid46L1EJNZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 8 Jul
+ 2025 13:29:09 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 8 Jul 2025 13:29:09 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+	<andrew@codeconstruct.com.au>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Mo Elbadry <elbadrym@google.com>, "Rom
+ Lemarchand" <romlem@google.com>, William Kennington <wak@google.com>, "Yuxiao
+ Zhang" <yuxiaozhang@google.com>, <wthai@nvidia.com>, <leohu@nvidia.com>,
+	<dkodihalli@nvidia.com>, <spuranik@nvidia.com>
+Subject: [PATCH v12 0/3] Add support for AST2700 clk driver
+Date: Tue, 8 Jul 2025 13:29:06 +0800
+Message-ID: <20250708052909.4145983-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQHhFGtl4NDuGuGnv9eMR4cSGFTkLQGbtz9QAkmtjDMBFtDZJrP1e9Qg
-Content-Language: en-in
-X-CMS-MailID: 20250708050010epcas5p257fc957d612d63e061303608bcc1002b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250702051533epcas5p28698c81b7ec141938f8808393c498cb7
-References: <20250702052426.2404256-1-dev.tailor@samsung.com>
-	<CGME20250702051533epcas5p28698c81b7ec141938f8808393c498cb7@epcas5p2.samsung.com>
-	<20250702052426.2404256-4-dev.tailor@samsung.com>
-	<46fb0a9d-be33-46c6-98d1-501970ec8e7a@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi Krzysztof,
+This patch series is add clk driver for AST2700.
 
+AST2700 is the 8th generation of Integrated Remote Management Processor
+introduced by ASPEED Technology Inc. Which is Board Management controller
+(BMC) SoC family. AST2700 have two SoC connected, one is SoC0, another
+is SoC1, it has it's own scu, this driver inlcude SCU0 and SCU1 driver.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: 07 July 2025 14:53
-> To: Devang Tailor <dev.tailor@samsung.com>;
-> alexandre.belloni@bootlin.com; robh@kernel.org; krzk+dt@kernel.org;
-> conor+dt@kernel.org; alim.akhtar@samsung.com; linux-rtc@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; inux-arm-
-> kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org;
-> faraz.ata@samsung.com
-> Subject: Re: [PATCH 3/3] arm64: dts: exynosautov9: add RTC DT node
-> 
-> On 02/07/2025 07:24, Devang Tailor wrote:
-> > --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> > +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> > @@ -1633,6 +1633,16 @@ pwm: pwm@103f0000 {
-> >  			clock-names = "timers";
-> >  			status = "disabled";
-> >  		};
-> > +
-> > +		rtc: rtc@10540000 {
-> > +			compatible = "samsung,exynosautov9-rtc";
-> > +			reg = <0x10540000 0x100>;
-> > +			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-> > +				<GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> 
-> Misaligned. Should match earlier '<'.
+v12:
+-fix mistakes commit message Acked-by:Krzysztof Kozlowski
+<krzysztof.kozloski@linaro.org> to Acked-by: Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org>
 
-Will update it to match last '<' 's alignment.
+v11:
+-update patch(1/3) commit message subject prefix dt-binding: to dt-bindings:
 
-> 
-> 
-> Best regards,
-> Krzysztof
+v10:
+-aspeed,ast2700-scu.h:
+-add SOC0_CLK_AHBMUX, SOC0_CLK_MPHYSRC, SOC0_CLK_U2PHY_REFCLKSRC,
+ SOC1_CLK_I3C.
+-clk-ast2700.c
+-add #include <linux/auxiliary_bus.h>
+-remove #include <soc/aspeed/reset-aspeed.h>
+-use devm_auxiliary_device_create replace aspeed_reset_controller_register
+-reset-aspeed.c:
+-remove aspeed_reset_unregister_adev, aspeed_reset_adev_release,
+ aspeed_reset_controller_register.
+-compatible name change reset_aspeed.reset0/1 -> clk_ast2700.reset0/1
+-remove reset-aspeed.h
+
+v9:
+-aspeed,ast2700-scu.h: no change.
+add more clear commit description.
+-clk-ast2700.c:
+add inlcude bitfield.h
+remove redundant clk_parent_data soc0_mpll_div8/soc0_ahb/uart13clk/
+uart14clk/uart15clk/uart16clk/soc1_ahb/d_clk_sels
+
+v8:
+-aspeed,ast2700-scu.h: remove no use soc0 clock, add new clock
+-clk-ast2700.c: remove include <linux/auxiliary_bus.h>,
+include <linux/clk-provider.h>, include <linux/of_address.h>
+-clk-ast2700.c: add include <linux/mod_devicetable.h>
+-clk-ast2700.c: modify include <soc/aspeed/reset-aspeed.h> order before
+dt-bindings
+-clk-ast2700.c: modify define to be tabbed out space
+-clk-ast2700.c: add union struct for each clk type
+	union {
+		struct ast2700_clk_fixed_factor_data factor;
+		struct ast2700_clk_fixed_rate_data rate;
+		struct ast2700_clk_gate_data gate;
+		struct ast2700_clk_div_data div;
+		struct ast2700_clk_pll_data pll;
+		struct ast2700_clk_mux_data mux;
+	} data;
+-clk-ast2700.c: modify clk_data = device_get_match_data(dev);
+-clk-ast2700.c: modify builtin_platform_driver_probe to 
+arch_initcall(clk_ast2700_init)
+-clk-ast2700.c: ast2700_clk_hw_register_hpll explain: scu010[4:2],
+scu010[4:2] = 010, hpll force 1.8Ghz
+scu010[4:2] = 011, hpll force 1.7Ghz
+scu010[4:2] = 110, hpll force 1.2Ghz
+scu010[4:2] = 111, hpll force 800Mhz
+others depend on hpll parameter register setting.
+
+v7:
+-reset-aspeed.h: fix declare static inline aspeed_reset_controller_register
+if the function is not used.
+
+v6:
+-patch-2: add reset-aspeed.h
+-reset-aspeed: add include cleanup.h for guard()
+-reset-aspeed: change ids name clk_aspeed to reset_aspeed
+-reset-aspeed: move aspeed_reset_controller_register,
+aspeed_reset_adev_release, aspeed_reset_unregister_adev from clk-ast2700.c
+-reset-aspeed: drop base check, since it check in clk-ast2700.c
+-clk-ast2700: sync each gate name from *clk to *clk-gate name.
+-clk-ast2700: add CLK_GATE_ASPEED to diff clk_hw_register_gate and
+ast2700_clk_hw_register_gate.
+
+v5:
+-patch-2 Kconfig: add select AUXILIARY_BUS
+-reset-aspeed: #define to_aspeed_reset(p) turn into static inline function.
+-reset-aspeed: modify spin_lock_irqsave to guard(spinlock_irqsave)
+-reset-aspeed: remove unnecessary parentheses.
+-clk-ast2700: use <linux/units.h> and refrain from define clk
+
+v4:
+-yaml: keep size-cells=<1>.
+-merge clk,reset dt binding header with yaml the same patch.
+-rename clk,reset dt binding header to aspeed,ast2700-scu.h
+-reset-aspeed: update tables tabs sapces to consistent spaces.
+-reset-aspeed: remove no use dev_set_drvdata.
+-clk-ast2700: modify reset_name to const int scu in struct clk_data.
+-clk-ast2700: use scu number in clk_data generate reset_name for reset
+ driver register.
+-clk-ast2700: fix pll number mix up scu0,scu1.
+-clk-ast2700: update dt-binding clock include file.
+
+v3:
+-yaml: v2 missing send yaml patch, v3 add.
+-yaml: drop 64bits address example.
+-yaml: add discription about soc0 and soc1
+-dt-bindings: remove (), *_NUMS, reserved.
+-dt-bindings: remove dulipated define number.
+-dt-bindings: merge clk and reset to be one patch.
+-reset-aspeed: add auxiliary device for reset driver.
+-clk-ast2700: modify reset to be auxiliary add.
+-clk-ast2700: modify to be platform driver.
+-clk-ast2700: modify each clk to const clk array.
+
+v2:
+-yaml: drop 64bits address example.
+-yaml: add discription about soc0 and soc1
+-dt-bindings: remove (), *_NUMS, reserved.
+-dt-bindings: remove dulipated define number
+-clk-ast2700: drop WARN_ON, weird comment.
+
+Ryan Chen (3):
+  dt-bindings: clock: ast2700: modify soc0/1 clock define
+  reset: aspeed: register AST2700 reset auxiliary bus device
+  clk: aspeed: add AST2700 clock driver
+
+ drivers/clk/Kconfig                           |    8 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/clk-ast2700.c                     | 1138 +++++++++++++++++
+ drivers/reset/Kconfig                         |    7 +
+ drivers/reset/Makefile                        |    1 +
+ drivers/reset/reset-aspeed.c                  |  253 ++++
+ .../dt-bindings/clock/aspeed,ast2700-scu.h    |    4 +
+ 7 files changed, 1412 insertions(+)
+ create mode 100644 drivers/clk/clk-ast2700.c
+ create mode 100644 drivers/reset/reset-aspeed.c
+
+-- 
+2.34.1
 
 
