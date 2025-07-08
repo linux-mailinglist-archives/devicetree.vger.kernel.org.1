@@ -1,83 +1,93 @@
-Return-Path: <devicetree+bounces-194286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96065AFD951
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 23:10:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D86AAFD96D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 23:16:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EC457ADAFF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 21:09:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C58F1AA6460
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 21:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D181123B602;
-	Tue,  8 Jul 2025 21:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03CE42459DA;
+	Tue,  8 Jul 2025 21:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="zsHWz4PD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jXLgx+Nc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 033012248AC;
-	Tue,  8 Jul 2025 21:10:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C55062459C6;
+	Tue,  8 Jul 2025 21:15:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752009022; cv=none; b=mc9BdLhBbuFbuw//Mum93rDlKUNAydNFLLNusLIIUrBooDydhll4Kv512TWEyoOgSglMwlQ0hw9YtDEgMApNO/lngPaYAU6AL2omXnzP4R4zfMX4oRAC6FCehj0tsm9gRZCYLSNPlRUn/nGF9v0Z4diN4jH/ZiCQvB2egXyOJ/o=
+	t=1752009340; cv=none; b=VVRvNSWUCp3OKkw7w+K/zw4kpiJWi/vJG39WQC1NWevhABtIO54LIoewntB5vbKyoMb3gPiuyC2nVK20GavClQdhbm8A51DDp115dm4dUTNERXtb8j7FQJxbJmlk+F+x7d16ovT/TIMJCqsq988EikG1018Nj6QESYMhQJHW3+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752009022; c=relaxed/simple;
-	bh=TjNSylqTfYBeI591eTCyriER3zOBm5C+1PQ0B3DTr0M=;
+	s=arc-20240116; t=1752009340; c=relaxed/simple;
+	bh=EsNrzNjV1ejegXwRqHZoNtXa4eBCU0UHv2etOg/t2Cs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jy4V34iedE+0LNkNS6cqsOPD9o6PLg4TFaRxjY1ML+bN6kGJrnrzwAqNDnEZW/g7RylOvWhlgUj6rkViUwRx1iXaTNobhaMyTraACard0dJRghTRHsKtGcdXraaJrIUdKkDgk1RBksaDfjoWpbZWImtb5R18Y9Qqgldt1+j4suw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=zsHWz4PD; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=yyXS9M/fAZHQcRokoMR/G61/cwt9nzmHIW6p1L73nGU=; b=zsHWz4PDhBM7nWWUmeaUFSsXTw
-	oidB8Sl/Ghp4W9JCXAunn+v+jyjg7TOI39kBBcLRhZShcTxR3N032jjPrshIVl2U8TQoSKUL3slWT
-	d/v+V8riXUj5TFfc2rYtqTXYndpGsOP93jqMw7fHB+xE/2TDFgAsPRGq/d6y4e2q/Mp0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uZFZy-000ruN-NQ; Tue, 08 Jul 2025 23:10:18 +0200
-Date: Tue, 8 Jul 2025 23:10:18 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 3/3] arm64: dts: ti: Add support for Variscite
- VAR-SOM-AM62P Symphony Board
-Message-ID: <64ee1121-40af-4863-aece-381dd15fa678@lunn.ch>
-References: <20250708184841.72933-1-stefano.radaelli21@gmail.com>
- <20250708184841.72933-4-stefano.radaelli21@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=evyU04f1mVZLSf09j3VxH05WAqFXm8N9xu5pcLdD2+pBChlIn88MKlW3WlgFZ3/LaTytrin0EcCYwSazNhOgF1h3avgDHpz+iIkDbrgqTEAdMsmCl/lpyupiw4IvcYTmfYXhNhFFnhVXN4L8Mv+UxCnr6fn79oEf9PEoqjLBVDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jXLgx+Nc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1168CC4CEED;
+	Tue,  8 Jul 2025 21:15:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752009340;
+	bh=EsNrzNjV1ejegXwRqHZoNtXa4eBCU0UHv2etOg/t2Cs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jXLgx+Nc/Il0M8mnaWaTErBAJYW6UH/b3ChhI1LjEWZ1ml5fkzHdaCaYOl99XYH/f
+	 g1fyCkze9zHQfvieSG51xhB6PFC2OrGkDq77mm8FzJaQOQGL28nTAU6Im5pWJPQfNr
+	 xgqKcDlEBibsvEy1PMprvnPeFxlxa+i/MW9vQ5YjpWVQINxY8D89YrmlgshJrTMUJP
+	 Qn3QU3pn1T8APdplhYULYG5GDoEyHqAAUw8EvUfsB631uCVtnUbOzHcQD4jAKlGI+k
+	 uK0BTZzRanm6MTE1WDXUn9iqYvh9qBBbOzzGpGcMDpVWAee9dsresSCF62LDyVSqpa
+	 kjbm7xmjPgNnQ==
+Date: Tue, 8 Jul 2025 16:15:39 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Kamil =?iso-8859-1?Q?Hor=E1k?= - 2N <kamilh@axis.com>
+Cc: linux@armlinux.org.uk, corbet@lwn.net, linux-doc@vger.kernel.org,
+	krzk+dt@kernel.org, bcm-kernel-feedback-list@broadcom.com,
+	florian.fainelli@broadcom.com, hkallweit1@gmail.com,
+	pabeni@redhat.com, kuba@kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, andrew+netdev@lunn.ch, horms@kernel.org,
+	davem@davemloft.net, edumazet@google.com,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>, andrew@lunn.ch
+Subject: Re: [PATCH net-next v7 2/4] dt-bindings: ethernet-phy: add MII-Lite
+ phy interface type
+Message-ID: <175200933841.1032309.15245293992929519207.robh@kernel.org>
+References: <20250708090140.61355-1-kamilh@axis.com>
+ <20250708090140.61355-3-kamilh@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250708184841.72933-4-stefano.radaelli21@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250708090140.61355-3-kamilh@axis.com>
 
-> +&cpsw_port2 {
-> +	/*
-> +	 * The required RGMII TX and RX 2ns delays are implemented directly
-> +	 * in hardware via passive delay elements on the Symphony PCB.
-> +	 * No delay configuration is needed in software via PHY driver.
-> +	 */
-> +	phy-mode = "rgmii";
-> +	phy-handle = <&cpsw3g_phy1>;
-> +	status = "okay";
-> +};
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+On Tue, 08 Jul 2025 11:01:38 +0200, Kamil Horák - 2N wrote:
+> Some Broadcom PHYs are capable to operate in simplified MII mode,
+> without TXER, RXER, CRS and COL signals as defined for the MII.
+> The MII-Lite mode can be used on most Ethernet controllers with full
+> MII interface by just leaving the input signals (RXER, CRS, COL)
+> inactive. The absence of COL signal makes half-duplex link modes
+> impossible but does not interfere with BroadR-Reach link modes on
+> Broadcom PHYs, because they are all full-duplex only.
+> 
+> Add new interface type "mii-lite" to phy-connection-type enum.
+> 
+> Signed-off-by: Kamil Horák - 2N <kamilh@axis.com>
+> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> ---
+>  Documentation/devicetree/bindings/net/ethernet-controller.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-    Andrew
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
