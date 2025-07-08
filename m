@@ -1,69 +1,58 @@
-Return-Path: <devicetree+bounces-194304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 630C2AFDB5B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 00:51:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7202CAFDBCE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 01:23:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B69325845D7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 22:51:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B090D172FE9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 23:23:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E244C223DF5;
-	Tue,  8 Jul 2025 22:51:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698AD235071;
+	Tue,  8 Jul 2025 23:23:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aa4QQGD5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mUIHkohF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB73E22331C;
-	Tue,  8 Jul 2025 22:51:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A37C1E2614;
+	Tue,  8 Jul 2025 23:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752015092; cv=none; b=p9hZv1Qay+MvR0BfZiQH9y/5p6ae1CxgC6Ijzoj0licrhT/9DFhASqEw4SdIGSl2iRsWMhrfef9F1CKr4wg93XheJp5stWsUBhEdO9UrpmSDtSoJsOChgc1zVGZsYWAaKRmHFzdY9tMVn1xmPN+p6X5QGltI72TpvtnDAeXyr7Y=
+	t=1752017010; cv=none; b=EVId2NlEiCqU1em8rGitHSJRV3mdjmxj0OwjgSNgIhFmLiFfQtYiriyXQIVl3w8r8EX1suZc5z7tORGQdeUY+VqzeJo4i3p36Q/7Gy1i0PP2BgNln3P6DA4ZxxNK5pSIHVE5HLA+Ug3Iz8Ckg3Zcy5W7Rr4+6J+T7xozHaaGPLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752015092; c=relaxed/simple;
-	bh=2BPqfUcttv0EZxTvpxu93KNE1aoct6tDcUZmdKu92Yg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OndTQE6R950Z2DGGEYxRNj/IJA0fbNtGBLn1FOhCaoSFce3a69T/qfUBZd+pmb35Z8P9P/waXf+tABrg4VwBjthAAow/nkBw8ALY+Ms5VYQw3Pv73W++G4uhId03i8Qktu6nGi+PW/tG1zJZhxg5qWmbmrgJzwfsqHkopYi1Ais=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aa4QQGD5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2987EC4CEED;
-	Tue,  8 Jul 2025 22:51:26 +0000 (UTC)
+	s=arc-20240116; t=1752017010; c=relaxed/simple;
+	bh=w4ZimzqNZhwh10Nd+06BzC1zOzN4/9VkqJ3RnYLKHvY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=McKxbq+/Z7K1vwvJ9S4QJGA/9igRua6+yicjMWUe7LWMPxy0ztsq4ZeMaX8Uxq6/iklb6BEF1RS6GxxXPiBGIcnlRhB4X3dm3M6SqmCLFTXMB7cGCWE/00dxkm/e2FE7l6Tk2qFmSO6FS5+7WAzUqDvggBKtAn5DqecMaXa4ELM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mUIHkohF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 636D2C4CEED;
+	Tue,  8 Jul 2025 23:23:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752015092;
-	bh=2BPqfUcttv0EZxTvpxu93KNE1aoct6tDcUZmdKu92Yg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aa4QQGD54wYrbC2s7BDuFiJeKjRsM2Jbanil5tsAwkTfNRmM1zyCnZwjUEDPNoqBc
-	 5zgDUyuK9dWVp3U9lLa7cNqkMgp9Rf1s9vvsfNINshi/oJdnlAJacf3lLpsmTx8OS/
-	 hy80TeYUPmZgcyHcqT39+BHlDEp89SzU8wdkaDxQjXGSajMF5aNQmcNUCkszVD0rGj
-	 QC/ficGvoctYNHGOSPUDBNuqbMgIz3XEHmmyD024U1+WenPu+b+xkZMBUWaNwXCLNw
-	 1UN1iuPIAMAInnR5WclnKky8Cmf6sVLoZdEYFq/OOWWIOQm81JYrdmqiSuzj5XTYPo
-	 yKL1EbDiMECyQ==
-Date: Wed, 9 Jul 2025 00:51:24 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: FUJITA Tomonori <fujita.tomonori@gmail.com>, kuba@kernel.org,
-	gregkh@linuxfoundation.org, robh@kernel.org, saravanak@google.com,
-	alex.gaynor@gmail.com, ojeda@kernel.org, rafael@kernel.org,
-	a.hindborg@kernel.org, aliceryhl@google.com, bhelgaas@google.com,
-	bjorn3_gh@protonmail.com, boqun.feng@gmail.com,
-	david.m.ertman@intel.com, devicetree@vger.kernel.org,
-	gary@garyguo.net, ira.weiny@intel.com, kwilczynski@kernel.org,
-	leon@kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, lossin@kernel.org,
-	netdev@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	tmgross@umich.edu
-Subject: Re: [PATCH v3 0/3] rust: Build PHY device tables by using
- module_device_table macro
-Message-ID: <aG2g7HgDdvmFJpMz@pollux>
-References: <20250704041003.734033-1-fujita.tomonori@gmail.com>
- <20250707175350.1333bd59@kernel.org>
- <CANiq72=LUKSx6Sb4ks7Df6pyNMVQFnUY8Jn6TpoRQt-Eh5bt8w@mail.gmail.com>
- <20250708.195908.2135845665984133268.fujita.tomonori@gmail.com>
- <DB6OOFKHIXQB.3PYJZ49GXH8MF@kernel.org>
- <CANiq72=Cbvrcwqt6PQHwwDVTx1vnVnQ7JBzzXk+K-7Va_OVHEQ@mail.gmail.com>
+	s=k20201202; t=1752017009;
+	bh=w4ZimzqNZhwh10Nd+06BzC1zOzN4/9VkqJ3RnYLKHvY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=mUIHkohF61FUiIxcxKSxPbqqXGgBJu97d6FWMxWc0KnDUe8HOp0gIKMulN99B7kDc
+	 Cich3FKk4F9EGzXNxrqGsRrV6InbZnv1hGdYyyr026MNG+iYXA+1JIPjgHL2LpbRxR
+	 xgMcocD6w/wCU2qyiyRGisiq5bJ8wDTomGDU6XLw/CwzXQjO+8aKnc55WfG4MoOdaP
+	 1JKvEYdCFD5wACPC6WsOBGTPE9LnwxCJvCkZDsL80HxjXQvIGHzJqPubb0z0Jao1IM
+	 2pqt91E/xa/UuMUi8MoYTL9HpSiQ3xTpPMT/ViTC82x9/Sk6Ga2YihAM+HDwWfkq+2
+	 3P28BJsMz6PPA==
+Date: Tue, 8 Jul 2025 18:23:27 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Sai Krishna Musham <sai.krishna.musham@amd.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, cassel@kernel.org, lkp@intel.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, michal.simek@amd.com,
+	bharat.kumar.gogada@amd.com, thippeswamy.havalige@amd.com
+Subject: Re: [PATCH v4 2/2] PCI: amd-mdb: Add support for PCIe RP PERST#
+ signal handling
+Message-ID: <20250708232327.GA2169793@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,85 +61,170 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CANiq72=Cbvrcwqt6PQHwwDVTx1vnVnQ7JBzzXk+K-7Va_OVHEQ@mail.gmail.com>
+In-Reply-To: <20250626054906.3277029-3-sai.krishna.musham@amd.com>
 
-On Tue, Jul 08, 2025 at 08:47:13PM +0200, Miguel Ojeda wrote:
-> Thanks Danilo -- ditto. Even netdev could make sense as you said.
+On Thu, Jun 26, 2025 at 11:19:06AM +0530, Sai Krishna Musham wrote:
+> Add support for handling the AMD Versal Gen 2 MDB PCIe Root Port PERST#
+> signal via a GPIO by parsing the new PCIe bridge node to acquire the
+> reset GPIO.
 > 
-> Since it touched several subsystems and it is based on rust-next, I am
-> happy to do so, but driver-core makes sense given that is the main
-> change after all.
+> As part of this, update the interrupt controller node parsing to use
+> of_get_child_by_name() instead of of_get_next_child(), since the PCIe
+> node now has multiple children. This ensures the correct node is
+> selected during initialization.
 > 
-> So if I don't see you picking it, I will eventually do it.
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202506241020.rPD1a2Vr-lkp@intel.com/
 
-Checked again and the driver-core tree makes most sense, since we also need to
-fix up the ACPI device ID code, which is queued up in driver-core-next.
+Omit these tags.  This kernel test robot report is basically a code
+review comment that doesn't need to be acknowledged here (the robot's
+report says:
 
-I also caught a missing change in rust/kernel/driver.rs, which most likely
-slipped through by not building with CONFIG_OF. :)
+  If you fix the issue in a separate patch/commit (i.e. not just a new
+  version of the same patch/commit), kindly add following tags ...
 
-Here's the diff to fix up both, I already fixed it up on my end -- no need to
-send a new version.
+IIUC this is just a new version of the same patch, so doesn't need the
+tags.
 
---
+> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
+> ---
+> Changes in v4:
+> - Resolve kernel test robot warning.
+> https://lore.kernel.org/oe-kbuild-all/202506241020.rPD1a2Vr-lkp@intel.com/
+> - Update commit message.
+> 
+> Changes in v3:
+> - Implement amd_mdb_parse_pcie_port to parse bridge node for reset-gpios property.
+> 
+> Changes in v2:
+> - Change delay to PCIE_T_PVPERL_MS
+> 
+> v3 https://lore.kernel.org/r/20250618080931.2472366-1-sai.krishna.musham@amd.com/
+> v2 https://lore.kernel.org/r/20250429090046.1512000-1-sai.krishna.musham@amd.com/
+> v1 https://lore.kernel.org/r/20250326041507.98232-1-sai.krishna.musham@amd.com/
+> ---
+>  drivers/pci/controller/dwc/pcie-amd-mdb.c | 46 ++++++++++++++++++++++-
+>  1 file changed, 45 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-amd-mdb.c b/drivers/pci/controller/dwc/pcie-amd-mdb.c
+> index 9f7251a16d32..f011a83550b9 100644
+> --- a/drivers/pci/controller/dwc/pcie-amd-mdb.c
+> +++ b/drivers/pci/controller/dwc/pcie-amd-mdb.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/resource.h>
+>  #include <linux/types.h>
+>  
+> +#include "../../pci.h"
+>  #include "pcie-designware.h"
+>  
+>  #define AMD_MDB_TLP_IR_STATUS_MISC		0x4C0
+> @@ -56,6 +57,7 @@
+>   * @slcr: MDB System Level Control and Status Register (SLCR) base
+>   * @intx_domain: INTx IRQ domain pointer
+>   * @mdb_domain: MDB IRQ domain pointer
+> + * @perst_gpio: GPIO descriptor for PERST# signal handling
+>   * @intx_irq: INTx IRQ interrupt number
+>   */
+>  struct amd_mdb_pcie {
+> @@ -63,6 +65,7 @@ struct amd_mdb_pcie {
+>  	void __iomem			*slcr;
+>  	struct irq_domain		*intx_domain;
+>  	struct irq_domain		*mdb_domain;
+> +	struct gpio_desc		*perst_gpio;
+>  	int				intx_irq;
+>  };
+>  
+> @@ -284,7 +287,7 @@ static int amd_mdb_pcie_init_irq_domains(struct amd_mdb_pcie *pcie,
+>  	struct device_node *pcie_intc_node;
+>  	int err;
+>  
+> -	pcie_intc_node = of_get_next_child(node, NULL);
+> +	pcie_intc_node = of_get_child_by_name(node, "interrupt-controller");
+>  	if (!pcie_intc_node) {
+>  		dev_err(dev, "No PCIe Intc node found\n");
+>  		return -ENODEV;
+> @@ -402,6 +405,34 @@ static int amd_mdb_setup_irq(struct amd_mdb_pcie *pcie,
+>  	return 0;
+>  }
+>  
+> +static int amd_mdb_parse_pcie_port(struct amd_mdb_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->pci.dev;
+> +	struct device_node *pcie_port_node;
+> +
+> +	pcie_port_node = of_get_next_child_with_prefix(dev->of_node, NULL, "pcie");
+> +	if (!pcie_port_node) {
+> +		dev_err(dev, "No PCIe Bridge node found\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* Request the GPIO for PCIe reset signal and assert */
+> +	pcie->perst_gpio = devm_fwnode_gpiod_get(dev, of_fwnode_handle(pcie_port_node),
+> +						 "reset", GPIOD_OUT_HIGH, NULL);
+> +	if (IS_ERR(pcie->perst_gpio)) {
+> +		if (PTR_ERR(pcie->perst_gpio) != -ENOENT) {
+> +			of_node_put(pcie_port_node);
+> +			return dev_err_probe(dev, PTR_ERR(pcie->perst_gpio),
+> +					     "Failed to request reset GPIO\n");
+> +		}
+> +		pcie->perst_gpio = NULL;
+> +	}
+> +
+> +	of_node_put(pcie_port_node);
+> +
+> +	return 0;
+> +}
+> +
+>  static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
+>  				 struct platform_device *pdev)
+>  {
+> @@ -426,6 +457,14 @@ static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
+>  
+>  	pp->ops = &amd_mdb_pcie_host_ops;
+>  
+> +	if (pcie->perst_gpio) {
+> +		mdelay(PCIE_T_PVPERL_MS);
+> +
+> +		/* Deassert the reset signal */
+> +		gpiod_set_value_cansleep(pcie->perst_gpio, 0);
+> +		mdelay(PCIE_T_RRS_READY_MS);
+> +	}
+> +
+>  	err = dw_pcie_host_init(pp);
+>  	if (err) {
+>  		dev_err(dev, "Failed to initialize host, err=%d\n", err);
+> @@ -444,6 +483,7 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  	struct amd_mdb_pcie *pcie;
+>  	struct dw_pcie *pci;
+> +	int ret;
+>  
+>  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+>  	if (!pcie)
+> @@ -454,6 +494,10 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, pcie);
+>  
+> +	ret = amd_mdb_parse_pcie_port(pcie);
+> +	if (ret)
+> +		return ret;
 
-diff --git a/rust/kernel/acpi.rs b/rust/kernel/acpi.rs
-index 2af4d4f92924..7ae317368b00 100644
---- a/rust/kernel/acpi.rs
-+++ b/rust/kernel/acpi.rs
-@@ -2,7 +2,11 @@
+I'm not a DT expert, but doesn't this break if you run
+amd_mdb_parse_pcie_port() on a system with an existing DT that lacks
+the pcie@0,0 stanza you added to the binding in patch [1/2]?
 
- //! Advanced Configuration and Power Interface abstractions.
+I.e., amd_mdb_parse_pcie_port() will return -ENODEV in that case, and
+the probe will now fail?
 
--use crate::{bindings, device_id::RawDeviceId, prelude::*};
-+use crate::{
-+    bindings,
-+    device_id::{RawDeviceId, RawDeviceIdIndex},
-+    prelude::*,
-+};
+It's good to add new functionality, but if the driver runs with a DT
+that doesn't describe the new functionality, it should fall back to
+the previous behavior (without the new functionality) instead of
+failing completely.
 
- /// IdTable type for ACPI drivers.
- pub type IdTable<T> = &'static dyn kernel::device_id::IdTable<DeviceId, T>;
-@@ -12,13 +16,14 @@
- #[derive(Clone, Copy)]
- pub struct DeviceId(bindings::acpi_device_id);
-
--// SAFETY:
--// * `DeviceId` is a `#[repr(transparent)` wrapper of `struct acpi_device_id` and does not add
--//   additional invariants, so it's safe to transmute to `RawType`.
--// * `DRIVER_DATA_OFFSET` is the offset to the `data` field.
-+// SAFETY: `DeviceId` is a `#[repr(transparent)]` wrapper of `acpi_device_id` and does not add
-+// additional invariants, so it's safe to transmute to `RawType`.
- unsafe impl RawDeviceId for DeviceId {
-     type RawType = bindings::acpi_device_id;
-+}
-
-+// SAFETY: `DRIVER_DATA_OFFSET` is the offset to the `driver_data` field.
-+unsafe impl RawDeviceIdIndex for DeviceId {
-     const DRIVER_DATA_OFFSET: usize = core::mem::offset_of!(bindings::acpi_device_id, driver_data);
-
-     fn index(&self) -> usize {
-diff --git a/rust/kernel/driver.rs b/rust/kernel/driver.rs
-index f8dd7593e8dc..573d516b2f06 100644
---- a/rust/kernel/driver.rs
-+++ b/rust/kernel/driver.rs
-@@ -170,7 +170,7 @@ fn acpi_id_info(dev: &device::Device) -> Option<&'static Self::IdInfo> {
-                 // and does not add additional invariants, so it's safe to transmute.
-                 let id = unsafe { &*raw_id.cast::<acpi::DeviceId>() };
-
--                Some(table.info(<acpi::DeviceId as crate::device_id::RawDeviceId>::index(id)))
-+                Some(table.info(<acpi::DeviceId as crate::device_id::RawDeviceIdIndex>::index(id)))
-             }
-         }
-     }
-@@ -204,7 +204,7 @@ fn of_id_info(dev: &device::Device) -> Option<&'static Self::IdInfo> {
-                 // and does not add additional invariants, so it's safe to transmute.
-                 let id = unsafe { &*raw_id.cast::<of::DeviceId>() };
-
--                Some(table.info(<of::DeviceId as crate::device_id::RawDeviceId>::index(id)))
-+                Some(table.info(<of::DeviceId as crate::device_id::RawDeviceIdIndex>::index(id)))
-             }
-         }
-     }
-
+>  	return amd_mdb_add_pcie_port(pcie, pdev);
+>  }
+>  
+> -- 
+> 2.44.1
+> 
 
