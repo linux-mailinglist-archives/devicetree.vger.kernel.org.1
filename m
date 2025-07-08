@@ -1,137 +1,186 @@
-Return-Path: <devicetree+bounces-194019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F0DBAFC7E0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 12:08:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F55AFC7F1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 12:09:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADB2C1BC4E95
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:07:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 944C34843E8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:07:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A59269B08;
-	Tue,  8 Jul 2025 10:06:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B28926B778;
+	Tue,  8 Jul 2025 10:07:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lq4daCdl"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="freOrkbw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF472690ED;
-	Tue,  8 Jul 2025 10:06:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DDC426B74D
+	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 10:07:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751969215; cv=none; b=aUb4z+pUj/84l/drKGyotRGAnsMEMhq5MrWLyn/ZFRZWwA1va1shTQwK8tOjzr6hyBMXBSiMNZisHkdYYdvEmWaRT0UcyeB8HUkLM/mmbbp/Q0wNkMBFKbk99uDXe86Yd+yraA7GpDHips3KyMkN4296nia+C3QnqYA6K6YkbSY=
+	t=1751969226; cv=none; b=FO7woP+9r567vTCptlh7va6nxeV4dheIF35h1+4lXFRnut3t6Yi9uDBexr2ex3blMgdSrUbv+H78i+N3rGCBm5xU3wvd08CGswpdu1BKpaKftrbFUbs3MyhpkjBbbQizmoOiQuP70AFwUjnYK8ahURzB3eUBunDXSjIp8tgtyGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751969215; c=relaxed/simple;
-	bh=GmvU9NQ3n+xafVmKhQUmC4ekaryDnjcVV4VE5S+KF8Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hX6OXeDVbJqtkBwKnZW9Fl1ZqE9obR1pCmp6ddw5MZ5g6tyykC5hwmXOpNmbJhj071P/yAHoec2QICZPTcc5459qKSEtp6Kv/kYLuO0Itt8oy+OYBcX/0Dv6ey90tLucPkBXK8P6FGQgrVGf8cq237MvepmRTx1TJ7xFSmVnLg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lq4daCdl; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-74264d1832eso4928841b3a.0;
-        Tue, 08 Jul 2025 03:06:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751969213; x=1752574013; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FidiboXZ0gzp0Kec1LGu7nNmgcY3DYoC/ILAAPmTqbA=;
-        b=Lq4daCdlhOe0CKgq/2Y08Bb8KrrAalwQvBBEjamiybyhwzsp/fPcsrBiVE7H7uUw+1
-         eh5afGm+yDVEN9A37Rgk86fkjYhBbmfEgo2UH4wUId/8h8ACmE5+23PV2JxuFcdy38+i
-         kqPsMD7qX3c02RlL964Og/QPwz3TzaRiWaF7VPO5ZOSnZxGXvolLyYqVyCdpPpUJI13Z
-         1zW1DUo1gT0Wncip/Bt1j+45UWy7tsDvD0K7JcHHImxWrRwupDDGumrP1XwIFfmpZJ8U
-         lThxtKsIqQP1HlsuMI+TBbDDx7VlWfNU7GwDia6hDbqLkH8xUgmuxdRpVUvtnvAnpxFW
-         XtoA==
+	s=arc-20240116; t=1751969226; c=relaxed/simple;
+	bh=fYyHl23C7iOML4Y3XMKrYo2vQEq5oT1hriKpsmH1Ugk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EILeVuHaJ93aVEQC0hax0F0E9gROoQO9QbQcGihVz9/dIcpHR7E3xks0PAbtJlxn/NkB6jn60Pnw0JMTB4PFn4BkupevHv0vn5LkmmcPVEVolYHbnBccMTTzVOoI2DqO33p4xYwId6NXb3FILxlpjIcol1jUkk+t6ebj/AQpkq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=freOrkbw; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1751969223;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=58D8nthEMttD8EOjkycPcqwbL7GCEdeTDZ0Fg2Jn8PI=;
+	b=freOrkbwKv7La195Q1fK8fA6gKnwc7hmLTSnFoiN7nZ1AqkMaxtRB94LwscZf2rjp/4LvJ
+	i7Gx8Lc7H1/3pzCo32mK3so58ee9H+K9DfQ51xGrG7ASi2AKafqiRhQfcr/D2VxzRYiXQg
+	FrTllqqRRcdWoHCJlqbNEdKPG9bbySY=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-680-HecAAHv4P8iWoh0MDttHpA-1; Tue, 08 Jul 2025 06:07:02 -0400
+X-MC-Unique: HecAAHv4P8iWoh0MDttHpA-1
+X-Mimecast-MFC-AGG-ID: HecAAHv4P8iWoh0MDttHpA_1751969221
+Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-3a4ff581df3so1838050f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 03:07:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751969213; x=1752574013;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FidiboXZ0gzp0Kec1LGu7nNmgcY3DYoC/ILAAPmTqbA=;
-        b=F+W8whlotsvVDZs8dWTiw/MJKveMQKLl8A1qkNGb1pp23DXtPMO7GE+Mo+kMX035D7
-         sQORCswDYmAvzcayI4l3/wdtXHbaR9tw+3Jy3n2ouwB8XPa0A9f8wXdy2pJoXiq0dB5O
-         ahPl703QJSTe87lram3Sh0H9g6Ux3BufX6C5j9w6Cfory/PI44XOE9Rqvv9XGJCoZtji
-         SlO1cbhN7qqvU4DBWFDrTHme4l51YMVcdHnNTAnAbjlKUrfdX5q8nPBMTNc971EpR+qP
-         dy17sJLV7TpKl8E1R1kxEIJumRVJNX5A8TI+3evGBbpLfz22t0CLoN9kEjLzplA78jRj
-         ELRA==
-X-Forwarded-Encrypted: i=1; AJvYcCWPQzlgnQ8OWuNPJu00DLYtAPtvCvCluSttQKMOJ4wlGafAwBKE/PVZQKfgsKpIo+4b/pc5JShYW4SbpfA=@vger.kernel.org, AJvYcCWedGk9wngiCAVdb+s8az86ZUBO3nqwEvMYSrGlBMU6/WIBSvRxWY1B/1/lyIi0RW/n2kFt4uVsI5f/RF0=@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywf/XDxXyapKbJ6AZ4tmBXajfTFea8dKipnBQaAdnGXgg+qmfsP
-	WQSbfI/HeJL6V6ZPHDTdSTNubPG94E622zAdUckYOjLGji2LS+VT4HK4
-X-Gm-Gg: ASbGncu/depDLo06qkBSJPLXj2rXcAtfzmZ+e0PfVhUEX6lDTfwSxmEgfAxXmg94VSa
-	Hbljsi5psaYAmcStCUy3q10Ywcr12In3FOhuVsB+0anl+WOBCWnT/IYDbrfN+4t64TyYevG52DI
-	7gUY92sWANRV+GW9cJXjuhP0EUvuBOGzks27ZX57r12lb3q+gwUznDt9pWUFDOS/xVBudUHSYHm
-	Gx8a36iKfyWGelMhSqUTv59Vh4ETV6yugOtCGR9F4AMRCzF+B/V6YQI0tsqgHmNfOF2eym9n0Zv
-	Sxmzi1M2KqcvEFaNRRQU9TfrLEg5eWw/2pU9EYJxF819PJVpTUs3+8u1trz8WGfTxLOWLodzpd8
-	QCsQ7p0y4LlQfA3U=
-X-Google-Smtp-Source: AGHT+IFewpzclZyxnesMZaRtcMFIElw0zsDq9OvoX0V/pR5YCz8QEjnGaDAHYbxR8XFtrnVwHMlIag==
-X-Received: by 2002:a05:6a20:3d1a:b0:1f5:8a1d:3905 with SMTP id adf61e73a8af0-2260a0a3749mr26243533637.7.1751969213190;
-        Tue, 08 Jul 2025 03:06:53 -0700 (PDT)
-Received: from [127.0.1.1] (211-23-39-77.hinet-ip.hinet.net. [211.23.39.77])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74ce359ecd6sm11971174b3a.24.2025.07.08.03.06.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jul 2025 03:06:52 -0700 (PDT)
-From: LiangCheng Wang <zaq14760@gmail.com>
-Date: Tue, 08 Jul 2025 18:06:44 +0800
-Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Mayqueen name
+        d=1e100.net; s=20230601; t=1751969221; x=1752574021;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=58D8nthEMttD8EOjkycPcqwbL7GCEdeTDZ0Fg2Jn8PI=;
+        b=VcH+5E4tgT/6XQcnqg6plCewxPS58oPNtuVkfdxEbB3JPD6uLNdzVjSaHNT/O8xWs4
+         TfdiUhUopNXzJXFge4ci6gBEMi8CoWpvosG1eAFQnwF7Ip5kXYQQifZXxKFW83lCEXXy
+         VQu1D0Qp2df3rj2E7GFNR345GpnQz4hsxIY4UPV7vYHDAFT63l1+aao1/Ky73MDaclHg
+         Kp9raFeYvmvr9nbc9Av2zNU5b2admXJuwyGIS4av/a1NBv4aqNu1scC4n8O6z4LgiXy4
+         WMJZTKbO7RhzmxSRyhxnSjHro+jWxcrFJnYuhVujDMMqOgd2vhG/fXhqPuIFBcTt+5iy
+         QiKA==
+X-Forwarded-Encrypted: i=1; AJvYcCVzKw4xOPK+lJQZVi/NsbupDRg3K36+5JFhIfcIjinIETc46DWFfFAe+EYv/rqok8BFShjN1OVAyKdg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGcoidXCd0xdfqrmc8EGKkFDdNaX5Bcf8fn1sJSAmgns7aqCB2
+	qrCT/1pjfiQqEqHsZcKrx1hKy92a2zP5/scbu7xOxLVFoscRW003yJpVZPkI0qZYP1AFavpeMj9
+	0NFCzCiPrtrExl7Qpfcc5HLf+upTWwm467lgwbbTFtCqoE4Sq46sG9oetlPqT7No=
+X-Gm-Gg: ASbGncvk5D3X3xypl4123wjrwsYRxlKHZMQFKpRgPgN8K/6JU1JhcprmN2SfwyX8NV3
+	X5fURbQ7xz/dVTvr6iiwMZl0sC7HsElPs3hKDMOV1/ec2KLM7+fk9BF3Hs25oP8GRGfKZjAJ5P9
+	vQ2yfO/Hml1Rts9LDJTqye881qNhQ5N3IbQh3BnsUVJpQsty24Rw0n3yxR2DQCgC2gPp10IkpY3
+	7ViTPpUrVqV6QpPye1cxBK7Nt6AK9OhQPpnU91sfCyqSvDvT3atDFQEjedtd0+mUarhMonwVS5X
+	4lCVUGVAUrYLl0dXw5PzZDBr/bI4Y6Zq0tFktLYJjW9JIa5HZExyTtlyNNcwwCIAcrYH0g==
+X-Received: by 2002:a05:6000:2303:b0:3a5:271e:c684 with SMTP id ffacd0b85a97d-3b5de020c32mr1949634f8f.24.1751969220784;
+        Tue, 08 Jul 2025 03:07:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEtcYA73nlyPh3UUGiVwYijbG3S+DSKY5ccoYHAENjNZ6YmMjCSlj1e9xUsxHKnSmrtDCa3pg==
+X-Received: by 2002:a05:6000:2303:b0:3a5:271e:c684 with SMTP id ffacd0b85a97d-3b5de020c32mr1949573f8f.24.1751969220180;
+        Tue, 08 Jul 2025 03:07:00 -0700 (PDT)
+Received: from ?IPV6:2a0d:3344:2717:8910:b663:3b86:247e:dba2? ([2a0d:3344:2717:8910:b663:3b86:247e:dba2])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454cd2e7e89sm18221965e9.0.2025.07.08.03.06.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Jul 2025 03:06:59 -0700 (PDT)
+Message-ID: <b68a06a1-076a-4345-bbb4-7dda1cd73591@redhat.com>
+Date: Tue, 8 Jul 2025 12:06:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next v14 04/12] net: mtip: The L2 switch driver for imx287
+To: Lukasz Majewski <lukma@denx.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ davem@davemloft.net, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Stefan Wahren <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>,
+ Andrew Lunn <andrew@lunn.ch>
+References: <20250701114957.2492486-1-lukma@denx.de>
+ <20250701114957.2492486-5-lukma@denx.de>
+Content-Language: en-US
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20250701114957.2492486-5-lukma@denx.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250708-drm-v1-1-45055fdadc8a@gmail.com>
-References: <20250708-drm-v1-0-45055fdadc8a@gmail.com>
-In-Reply-To: <20250708-drm-v1-0-45055fdadc8a@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Sumit Semwal <sumit.semwal@linaro.org>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Wig Cheng <onlywig@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, 
- linaro-mm-sig@lists.linaro.org, LiangCheng Wang <zaq14760@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1751969205; l=911;
- i=zaq14760@gmail.com; h=from:subject:message-id;
- bh=7tai5uwBpFBvYaeY6h5Abr0Rx7uTXpN3nWfu/5kwtvM=;
- b=cKOZVPExWQWMyRJmZn0BRm+70Xfoj0yzcb6DNgi9bG1oPFup6NuwxO49KkRqvjhl4zWswSS4g
- vSX+gLvS9GXAbmFzUuazjZryr0Rjz/8wi5+DwzETSoIBh99pd+6B9fO
-X-Developer-Key: i=zaq14760@gmail.com; a=ed25519;
- pk=5IaLhzvMqasgGPT47dsa8HEpfb0/Dv2BZC0TzSLj6E0=
 
-From: Wig Cheng <onlywig@gmail.com>
+On 7/1/25 1:49 PM, Lukasz Majewski wrote:
+> +static int mtip_sw_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	const struct mtip_devinfo *dev_info;
+> +	struct switch_enet_private *fep;
+> +	int ret;
+> +
+> +	fep = devm_kzalloc(&pdev->dev, sizeof(*fep), GFP_KERNEL);
+> +	if (!fep)
+> +		return -ENOMEM;
+> +
+> +	dev_info = of_device_get_match_data(&pdev->dev);
+> +	if (dev_info)
+> +		fep->quirks = dev_info->quirks;
+> +
+> +	fep->pdev = pdev;
+> +	platform_set_drvdata(pdev, fep);
+> +
+> +	fep->enet_addr = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(fep->enet_addr))
+> +		return PTR_ERR(fep->enet_addr);
+> +
+> +	fep->irq = platform_get_irq_byname(pdev, "enet_switch");
+> +	if (fep->irq < 0)
+> +		return fep->irq;
+> +
+> +	ret = mtip_parse_of(fep, np);
+> +	if (ret < 0)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "OF parse error\n");
+> +
+> +	/* Create an Ethernet device instance.
+> +	 * The switch lookup address memory starts at 0x800FC000
+> +	 */
+> +	fep->hwp_enet = fep->enet_addr;
+> +	fep->hwp = fep->enet_addr + ENET_SWI_PHYS_ADDR_OFFSET;
+> +	fep->hwentry = (struct mtip_addr_table __iomem *)
+> +		(fep->hwp + MCF_ESW_LOOKUP_MEM_OFFSET);
+> +
+> +	ret = devm_regulator_get_enable_optional(&pdev->dev, "phy");
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Unable to get and enable 'phy'\n");
+> +
+> +	fep->clk_ipg = devm_clk_get_enabled(&pdev->dev, "ipg");
+> +	if (IS_ERR(fep->clk_ipg))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(fep->clk_ipg),
+> +				     "Unable to acquire 'ipg' clock\n");
+> +
+> +	fep->clk_ahb = devm_clk_get_enabled(&pdev->dev, "ahb");
+> +	if (IS_ERR(fep->clk_ahb))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(fep->clk_ahb),
+> +				     "Unable to acquire 'ahb' clock\n");
+> +
+> +	fep->clk_enet_out = devm_clk_get_optional_enabled(&pdev->dev,
+> +							  "enet_out");
+> +	if (IS_ERR(fep->clk_enet_out))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(fep->clk_enet_out),
+> +				     "Unable to acquire 'enet_out' clock\n");
+> +
+> +	/* setup MII interface for external switch ports */
+> +	mtip_enet_init(fep, 1);
+> +	mtip_enet_init(fep, 2);
+> +
+> +	spin_lock_init(&fep->learn_lock);
+> +	spin_lock_init(&fep->hw_lock);
+> +	spin_lock_init(&fep->mii_lock);
 
-Mayqueen is a Taiwan-based company primarily focused on the development
-of arm64 development boards and e-paper displays.
+`mii_lock` is apparently unused in the whole series.
 
-Signed-off-by: Wig Cheng <onlywig@gmail.com>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 5d2a7a8d3ac6c666c8b557c2ef385918e5e97bf9..9207c25a3490a3aa5cc9d513290e7890799f92cf 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -916,6 +916,8 @@ patternProperties:
-     description: Maxim Integrated Products
-   "^maxlinear,.*":
-     description: MaxLinear Inc.
-+  "^mayqueen,.*":
-+    description: Mayqueen Technologies Ltd.
-   "^mbvl,.*":
-     description: Mobiveil Inc.
-   "^mcube,.*":
-
--- 
-2.34.1
+/P
 
 
