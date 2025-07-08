@@ -1,107 +1,118 @@
-Return-Path: <devicetree+bounces-193973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03AB1AFC5F0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52A6AAFC5FF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:43:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A984F1AA2664
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:39:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AF3E188A983
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:43:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F4472BE04B;
-	Tue,  8 Jul 2025 08:39:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1A82BEC45;
+	Tue,  8 Jul 2025 08:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X1elsLSu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pfl4iBqt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19772BE038;
-	Tue,  8 Jul 2025 08:39:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECFA82BE04C;
+	Tue,  8 Jul 2025 08:43:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751963968; cv=none; b=JAbOysac5+nhiyVD2qUmoMcm8pjW6pYrpHH36fDrN45xNxfCAMTNjvy90cMF7RcyKU/kaQwFWT+T6APVnH/HS0j5XjewpOvMd1c7Z76rBU9QF0zMmQAi3J+FePPMp+FVxU8zJEOy5jHQqcDJAN1Ckvfmk3LpDIAAjLKXU2GjGGM=
+	t=1751964197; cv=none; b=MnksI++o+ed7D8fmPQWSLwv26Xa0SmfqSl7VHMz18SQtkhMy8278GOJuc3raeFiLpS+8Adv1B1frO2QhmBiLGsBbSqBSWPgWwxQETn3Hgd7IXwLZRPUUA8IkVSHKkYzbJ1tdQPTZ/s9P6xhXEpJxpNuB1Gb6WwBdJEph3aPGIH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751963968; c=relaxed/simple;
-	bh=AgF/cWa8tyl4lX11C1ELXJPj6/yeF0Nvjn6w56HxM2I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pPnMQdd66EZ32SYoiE2ih+iHO1oofCAuHQTPJsCIbrQSXBkFLtiNn50C7veN2ld9me+358orop3S3L3VBLKbt7qL6dyVeKQt1V7REwa6B2R+TE8lrPaYE7oh0LlwcR0ViWSSt87OZzNYXcuDznEmLoPHfvoS0p239/Myz0UEV0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X1elsLSu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CADF6C4CEED;
-	Tue,  8 Jul 2025 08:39:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751963968;
-	bh=AgF/cWa8tyl4lX11C1ELXJPj6/yeF0Nvjn6w56HxM2I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X1elsLSuTAVqQrj4csDgKcoib/rCgA+uxml22fkkRBDTABgwtDHHkCGH087jr0DMB
-	 CON6nvJ/lBgoCgdpXcz8MBqAfSOPEKm9HgkDb8BNyJkboISFMTgQG54ZWCWM1/nIeo
-	 qXc/FocCcUTyWjhMMP56VDYnY1azjS+LVwcy/0KM0WjXD4R+hGtQXcjfTYsnlZM3IH
-	 dm1cUvymqd++wfoTLvyfs9rQvNqTrGG4lrUuHMF696FG4IBAWDMKgSC0n5Rdt+ihyH
-	 82mYO8brI+We01pcfyRzLJywrk2oU7lwdx7KKMofCRbOXwuaWFy+b+U6si7PogTJWH
-	 cnhEpuEavWN7A==
-Date: Tue, 8 Jul 2025 10:39:25 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Stuart Burtner <sburtner@d3embedded.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Spencer Hill <shill@d3engineering.com>, Sebastian LaVine <slavine@d3engineering.com>
-Subject: Re: [PATCH 1/2] media: dt-bindings: Add Sony IMX728
-Message-ID: <20250708-kiwi-of-delightful-wholeness-cc90ea@krzk-bin>
-References: <20250625-imx728-on-6-12-v4-v1-0-cfc6e18c3e23@d3embedded.com>
- <20250625-imx728-on-6-12-v4-v1-1-cfc6e18c3e23@d3embedded.com>
+	s=arc-20240116; t=1751964197; c=relaxed/simple;
+	bh=rF+NHfGpxOoezIOHab0y+wlc1Dx2ULejgJbss/V5pj0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Wl6jCaPhqUoDagHTtiJj7u4ujWPJHNa3FXvu/HqFwGLJ32G4MI+frrkDxdUH57fOVeEa/hgzPzlIswn6IWm/8KN1BFk2zfaXCkv3XB3tXRraupBdJxHzXfgDStxviiKsvRBdlfuhw8phIaA23C5thbNIzfsq3XPgeHpybMqkDok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pfl4iBqt; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5688h5Ka460601;
+	Tue, 8 Jul 2025 03:43:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751964185;
+	bh=HJjJBaq03pKIS8WUc8G2n2rEbHLp8PdWdJmdNjoEIKg=;
+	h=From:To:CC:Subject:Date;
+	b=pfl4iBqtzSRdaN8NJcEx8QHGsGnDsZy9djJhOL/6JnPm6tAXVkbFpKp0I1s3rHhIN
+	 s8SCmIBvsiwcGZXz1mNxzYLmzDh3RQ8o0RikWFyMutumewdwweqDdwJNF4qet6oOmu
+	 ILWPB+BZ8Q+fChJG1MnvyxYDC5LjCsKvo2I+0ERM=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5688h56V1287238
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 8 Jul 2025 03:43:05 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 8
+ Jul 2025 03:43:04 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 8 Jul 2025 03:43:04 -0500
+Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5688h4x71477715;
+	Tue, 8 Jul 2025 03:43:04 -0500
+From: Chintan Vankar <c-vankar@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Tero Kristo
+	<kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
+	<nm@ti.com>,
+        <c-vankar@ti.com>
+CC: <s-vadapalli@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v5 0/4] Add bootph-all property to enable Ethernet boot
+Date: Tue, 8 Jul 2025 14:12:48 +0530
+Message-ID: <20250708084252.1028191-1-c-vankar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250625-imx728-on-6-12-v4-v1-1-cfc6e18c3e23@d3embedded.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Wed, Jun 25, 2025 at 02:20:03PM -0400, Stuart Burtner wrote:
-> Add bindings for the Sony IMX728.
-> 
-> Co-developed-by: Spencer Hill <shill@d3engineering.com>
-> Signed-off-by: Spencer Hill <shill@d3engineering.com>
-> Co-developed-by: Sebastian LaVine <slavine@d3engineering.com>
-> Signed-off-by: Sebastian LaVine <slavine@d3engineering.com>
-> Signed-off-by: Stuart Burtner <sburtner@d3embedded.com>
-> ---
->  .../devicetree/bindings/media/i2c/sony,imx728.yaml | 95 ++++++++++++++++++++++
->  MAINTAINERS                                        |  6 ++
->  2 files changed, 101 insertions(+)
+This series adds bootph-all property to necessary nodes to enable
+ethernet boot support for SK-AM68, AM62P5-SK, J722S, and SK-AM69.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series is based on commit '8d6c58332c7a' of linux-next tagged
+next-20250703.
 
-<form letter>
-This is an automated instruction, just in case, because many review
-tags are being ignored. If you know the process, just skip it entirely
-(please do not feel offended by me posting it here - no bad intentions
-intended, no patronizing, I just want to avoid wasted efforts). If you
-do not know the process, here is a short explanation:
+Link to v4: 
+https://lore.kernel.org/r/20250429072644.2400295-1-c-vankar@ti.com/
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here ('b4 trailers -u ...').
-However, there's no need to repost patches *only* to add the tags. The
-upstream maintainer will do that for tags received on the version they
-apply.
+Changes from v4 to v5: 
+- Updated [PATCH v4 2/2] by adding properties to the respective board
+  files and split [PATCH v4 2/2] for AM62P5-SK and J722S-EVM.
+- Added a new patch to enable Ethernet boot on SK-AM69.
 
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
-</form letter>
+This series is based on linux-next tagged next-20250428.
 
-Best regards,
-Krzysztof
+Chintan Vankar (4):
+  arm64: dts: ti: k3-am68-sk-base-board: Add bootph-all property to
+    enable Ethernet boot
+  arm64: dts: ti: k3-am62p5-sk: Add bootph-all property to enable
+    Ethernet boot
+  arm64: dts: ti: k3-j722s-evm: Add bootph-all property to enable
+    Ethernet boot
+  arm64: dts: ti: k3-am69-sk: Add bootph-all property to enable Ethernet
+    boot
+
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts          |  7 +++++++
+ arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 12 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts            | 12 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts          |  8 ++++++++
+ 4 files changed, 39 insertions(+)
+
+-- 
+2.34.1
 
 
