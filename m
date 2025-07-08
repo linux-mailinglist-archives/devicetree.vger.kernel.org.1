@@ -1,177 +1,106 @@
-Return-Path: <devicetree+bounces-194100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B938DAFCAA8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 14:42:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 843B3AFCAC1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 14:47:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB722484D1E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 12:42:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A47A83BC58B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 12:47:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F602DCF42;
-	Tue,  8 Jul 2025 12:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539311E5B91;
+	Tue,  8 Jul 2025 12:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="dWXqJbYT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l4KfJIjv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F2B12DCBE2
-	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 12:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24348273FE;
+	Tue,  8 Jul 2025 12:47:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751978544; cv=none; b=pxdPNHeHmZk8k4SMi88JdzTy4fsmeYMNLZ/39lveHjm0/owjAhlfKk2Gun3mIaU9HQtLIwhewHwdKjrKFrtp4qwJquW75ZDpbdIPujTharKIxZB18Ui1LXD9IdVrj6D9D7z2qk3/cq+KygnopYn/FE7/XODH4BKOaTfwZIbajfs=
+	t=1751978849; cv=none; b=mTIiC1EtyQvfrnYGElTZeh76gQ+4fxmJgyIuTBZDDinIXcyJjNOmMv+5LHoVPmijyDEFAWPnp13NgaTaKHcXzobSWksJdTYeeMBMNSzG/2qmSMSMiFzeD8EbvPIJxv5a+foxopsnTDwL/wizJ7buNR5Y1G8PDIAKMIs2SpAmI5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751978544; c=relaxed/simple;
-	bh=OMUTx42+lxnfbmDa4w9KRyTNqE2cIBR6M9QVHF4w1fI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=pD2QgAx7dKWIExwkBbutixeMCJFcvwOCddzV9qU4m1Y8uaCQCdUFxgbuFjgazlpuBAaJ/kd/pPbwY8pGHnZ7kCQPzhPk7ok+DDqwShpgxXy4mh8rTn1XrRsYW1Hz/w0VZP2DKT4lgR51eCkQ3nKvbmv072zYx1b18eSWp3tEzCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=dWXqJbYT; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-60cc11b34f6so8623475a12.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 05:42:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1751978541; x=1752583341; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=krWI5dKupRfQc3/61VnzeAoMeO2jYhgWh27WUPDNkkI=;
-        b=dWXqJbYT4l0gvL7r8Bk7j3OlqbHVe7abqQS/crSvNpbKx0hQJa7XCbzm9vh1a6ouoN
-         65coz8Ejmlkd9cB/NUD6Oh6zz0aMNJ3NBFpTlgfWL2WG4RIZIX4w8e2GHfIX8+Dc9b9g
-         ZWzc+Vgi6AEn2o5N0LAFDJf3NtjRKjqUhcKdQt/pJNT3vfNeGrPo4yO7lguh0UGxPV/9
-         kXags8eDsrnf07OBD4OG008qKpk29DcGjytFo6HJLeVycrbINXC1a6X/jHxxTyGsRzpG
-         x57ln0NusPENSiDS5ElopQv6s5pNRZMw3Mea0PUA27J69fDkFMGkSXroci04BU2JUUXq
-         53pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751978541; x=1752583341;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=krWI5dKupRfQc3/61VnzeAoMeO2jYhgWh27WUPDNkkI=;
-        b=YTYzQOgM0GMwlCO0DE+CQnYBV0TtgFtv3vM9XDUQSTCrZyQ4Bam8eIf6YD0s4kpI+t
-         EtWkLT33I84cwICtlUmB8oizeIiE3IqYUSuvxzNaLt/5p7s2GYvl0ll8rcOapDRWEorP
-         XTG4AjQWz6M4raAXhDbOMrfidW0LdoxY4g4hVvwmv6+WR/ml8ERHeEPYjwuf3Bpm3fZn
-         wquZ9ipTJgLxb3E1mbfKytczgrg7XNc1C6FGFg68eIPV8/teYrQi+tcqaO+FKoZ5rpBZ
-         oM/+kiwKykJu1ny18lls6vlDM5CJsld5vfRVdYbzBmyCe/Wgj8+v7D/hyXhzy6cIbIFP
-         G+ug==
-X-Forwarded-Encrypted: i=1; AJvYcCViQR2aaEGhghdf6V2QKsBwI0hZR1zjg1icCurZ8NPyoCMBjMyT2Wx7rXc6L4QEVH39E6l44Ei6ggh3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpF9v1Lh+XDLYu9RngmiB8LvFgTnY1PfzC9SN4yogHNEawUJwv
-	LFxFnqIr4zpwi8/YuUmLfVeUwPzinz6FfYWNXU0Vm6rcwmFaIrk9TEmv1bwT2sBtyQhyxB0gqlv
-	WjRLF
-X-Gm-Gg: ASbGnctn3J1byI3gdmkK+K1jlB1HsFt1AlCJhDMTjQ0eJHMwSnMVBBSlKSp+u+gQ0gH
-	DqzSdhdjsmxPqU52s+/vwJs/CacMpwQCpYmeDjgghdA67dUyFarQydvEbh6jXS3liOLohZ2Vz/Z
-	H3K/PU3aCaOPfICHMQ7bvKbGl8VV/tsKfgbNYH/DFi+RGTkwZ6FpHlB7o3Ehj3rf8VYsgSn2urx
-	P9k50zenJgFSEC7kfhVVZMs5Ws7kuTw27tHwTR8gHFFu8wTkEQK6B/jfvCIiUA7rb529aCVD8uF
-	dK7ZzTAmj/Iq3TI8yS8tofGFQS+u0v8A+FhGJoTlLWoak69KJsSU90K7huzwh6Uua+onMdQ0yaH
-	+nx5O5pog7x+awaHKK0wacHldFHYxC2M=
-X-Google-Smtp-Source: AGHT+IF8+quXXledQG534WGGLgZTN7F2C1w8IIy/x0D8Dajv4m6QB5Hjruw4R2tZAmvqG+s4Kctcmg==
-X-Received: by 2002:a17:907:3f0a:b0:ad8:91e4:a931 with SMTP id a640c23a62f3a-ae6b2b34160mr265150966b.26.1751978540601;
-        Tue, 08 Jul 2025 05:42:20 -0700 (PDT)
-Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f6949cb2sm889858666b.67.2025.07.08.05.42.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Jul 2025 05:42:20 -0700 (PDT)
+	s=arc-20240116; t=1751978849; c=relaxed/simple;
+	bh=rCGO6mApTdompQmSEYsdGSyr8F46ScTMMEXu3NIWbQc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VYlCU+40MuwO6+g2EJa1pa748f7UeradvZh1mJg3rPd6edgeo23pHm8axX8VRrfEVDW1SWdjNIAXcYDPs5MHMahSTTT0k4Jzp60i0vgGj+mY9Q3Sw0LJeFR7ugyQeUJ546ylopBW/oLnfszZmWvu7xvR3QsIiCs/WCKOOwbCEZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l4KfJIjv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55FD5C4CEED;
+	Tue,  8 Jul 2025 12:47:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751978848;
+	bh=rCGO6mApTdompQmSEYsdGSyr8F46ScTMMEXu3NIWbQc=;
+	h=From:Subject:Date:To:Cc:From;
+	b=l4KfJIjvedljIOwV2JCSEME72A8iX1bnxl23AsGN5/QorZd8u0SyeDbKIxsBA5IYt
+	 mtPOPXIsUJqXBjP7liZxc2IT67VNA5AIG1kvjgRf1dnxxYqqcvsP33diDKO8X0z7Dw
+	 bOYw2t54AW7VgQFB1GC4+W27weHhouXpxvbmfudM2rhA+zaxb7kKFBWhiYipjAOUlV
+	 qE6qHrif9+OAlCf8afAn3M6mSZVMXVy0CGW29QxZUpTFvaXVNa18X85Qqq9phz7qYV
+	 XJQYOvJ8HUesxnnn0XP9VYvBLJHxmp7Mvh/YuTHIA4YiZdNluOWaLapdZRbrg2fzlB
+	 A6IjrDa63ZI8Q==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH 0/3] SM8750 GPU clocks
+Date: Tue, 08 Jul 2025 14:47:19 +0200
+Message-Id: <20250708-topic-8750_gpucc-v1-0-86c86a504d47@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 08 Jul 2025 14:42:19 +0200
-Message-Id: <DB6OK61BL9ZS.31XB5TN5YTX62@fairphone.com>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] interconnect: qcom: Add Milos interconnect
- provider driver
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Georgi Djakov"
- <djakov@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250708-sm7635-icc-v2-0-e158dbadb29c@fairphone.com>
- <20250708-sm7635-icc-v2-2-e158dbadb29c@fairphone.com>
- <0a09fbc8-8835-4e94-862b-0baaea5ee251@oss.qualcomm.com>
-In-Reply-To: <0a09fbc8-8835-4e94-862b-0baaea5ee251@oss.qualcomm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFcTbWgC/x3MQQqAIBBA0avErBPMKKWrRESNU81GRSsC6e5Jy
+ 7f4P0OiyJRgqDJEujmxdwVNXQEei9tJsC0GJVUntTTi9IFRGN3JeQ8XolDUG0vbqrRtoWQh0sb
+ Pvxyn9/0Afhg+MGIAAAA=
+X-Change-ID: 20250708-topic-8750_gpucc-2e68defb27d3
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751978844; l=1147;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=rCGO6mApTdompQmSEYsdGSyr8F46ScTMMEXu3NIWbQc=;
+ b=/1aVUu8RhYFtjV1B85CTMcg4gFiwycjTfjE3MjWEZnNcinCNZmxavrPrEvJFygzObT/53xLFj
+ fxVON7J6qJNCDz7Ifwf0o3xD+2IaY+Y3CYZTmEDueQxBxJ+e+/+ffBm
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On Tue Jul 8, 2025 at 1:30 PM CEST, Konrad Dybcio wrote:
-> On 7/8/25 12:20 PM, Luca Weiss wrote:
->> Add driver for the Qualcomm interconnect buses found in Milos based
->> platforms. The topology consists of several NoCs that are controlled by
->> a remote processor that collects the aggregated bandwidth for each
->> master-slave pairs.
->>=20
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->
-> [...]
->
->> +static struct qcom_icc_bcm * const aggre1_noc_bcms[] =3D {
->> +};
->
-> You can remove the empty bcm arrays and .(num_)bcms assignments
-> for them
+This series brings a driver for GPU clock controllers (there are two
+now, but that's almost a cosmetic change) on 8750 and wires up the GPU
+SMMU instance.
 
-Sure!
+No external dependencies to the best of my knowledge.
 
->
-> [...]
->
->> +static const struct of_device_id qnoc_of_match[] =3D {
->> +	{ .compatible =3D "qcom,milos-aggre1-noc", .data =3D &milos_aggre1_noc=
-},
->> +	{ .compatible =3D "qcom,milos-aggre2-noc", .data =3D &milos_aggre2_noc=
-},
->> +	{ .compatible =3D "qcom,milos-clk-virt", .data =3D &milos_clk_virt},
->> +	{ .compatible =3D "qcom,milos-cnoc-cfg", .data =3D &milos_cnoc_cfg},
->> +	{ .compatible =3D "qcom,milos-cnoc-main", .data =3D &milos_cnoc_main},
->> +	{ .compatible =3D "qcom,milos-gem-noc", .data =3D &milos_gem_noc},
->> +	{ .compatible =3D "qcom,milos-lpass-ag-noc", .data =3D &milos_lpass_ag=
-_noc},
->> +	{ .compatible =3D "qcom,milos-mc-virt", .data =3D &milos_mc_virt},
->> +	{ .compatible =3D "qcom,milos-mmss-noc", .data =3D &milos_mmss_noc},
->> +	{ .compatible =3D "qcom,milos-nsp-noc", .data =3D &milos_nsp_noc},
->> +	{ .compatible =3D "qcom,milos-pcie-anoc", .data =3D &milos_pcie_anoc},
->> +	{ .compatible =3D "qcom,milos-system-noc", .data =3D &milos_system_noc=
-},
->> +	{ }
->
-> a space before '}' would be neat
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Konrad Dybcio (3):
+      dt-bindings: clock: qcom: Add SM8750 GPU clocks
+      clk: qcom: Add a driver for SM8750 GPU clocks
+      arm64: dts: qcom: sm8750: Add GPU clock & IOMMU nodes
 
-There is a space :)
+ .../bindings/clock/qcom,sm8450-gpucc.yaml          |   5 +
+ .../bindings/clock/qcom,sm8750-gxcc.yaml           |  58 +++
+ arch/arm64/boot/dts/qcom/sm8750.dtsi               |  63 +++
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/gpucc-sm8750.c                    | 524 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,sm8750-gpucc.h      |  53 +++
+ 7 files changed, 713 insertions(+)
+---
+base-commit: 58ba80c4740212c29a1cf9b48f588e60a7612209
+change-id: 20250708-topic-8750_gpucc-2e68defb27d3
 
->
-> Konrad
->
->> +};
->> +MODULE_DEVICE_TABLE(of, qnoc_of_match);
->> +
->> +static struct platform_driver qnoc_driver =3D {
->> +	.probe =3D qcom_icc_rpmh_probe,
->> +	.remove =3D qcom_icc_rpmh_remove,
->> +	.driver =3D {
->> +		.name =3D "qnoc-milos",
->> +		.of_match_table =3D qnoc_of_match,
->> +		.sync_state =3D icc_sync_state,
->
-> Are there any issues with sync_state? (hopefully not)
-
-Don't think so, I don't see any sync_state pending warnings in dmesg so
-I assume it's 'synced'? Anything I should look out for in particular?
-
-Also since it looks like I'll anyways send a v3, I've already ported the
-QoS settings, and don't think I'm seeing any issues booting up with
-that. So I'll include it with v3.
-
-Regards
-Luca
-
->
-> Konrad
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 
