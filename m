@@ -1,235 +1,125 @@
-Return-Path: <devicetree+bounces-194243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5683EAFD6A5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 20:47:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ADF2AFD6A9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 20:47:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 966174A79CA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:47:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA6094A7DB0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:47:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B541921CC64;
-	Tue,  8 Jul 2025 18:47:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA50D29AAF5;
+	Tue,  8 Jul 2025 18:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Do33M+Zs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T6FADIep"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-81.smtpout.orange.fr [80.12.242.81])
-	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E31BE215075;
-	Tue,  8 Jul 2025 18:46:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F426221FA0;
+	Tue,  8 Jul 2025 18:47:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752000422; cv=none; b=rmqtzgswenDBMjMM4xt5tjGmxpIUi0OVwOiZTEfpWcB7QS1shn5OzkxaLeZgtKmXO9LoR+JB3WAvXrfphy0IWS+D6G0mxup5BFYhh/NPmpT8xOCSYRw+7VDnH3KN7trGP3tUmfNvkpg87F4fmRHrWea82MkLQ4QnZWEU/n9iCH8=
+	t=1752000448; cv=none; b=TI25Jk1Cjgkzb0gd1cd72yaP1qLZYmi8h7iCWt9yctuHDWA8PAHZmo8FL5O5mh9Otkg/JkFYp2BefWYOXQ2HaMog5d7bqv37cd4irzG9WYeNFJB1j352hOva/r4ySPVrQHURClDvE7i35QTBQpDs3uPJthR/oRd+0D2SEJ5zGTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752000422; c=relaxed/simple;
-	bh=6Gn+yRNl1JrOAlZoap5OkCRx3E5efJLTHxU979QWAl4=;
-	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
-	 In-Reply-To:Content-Type; b=mDUB2HABWqqUnh5/VsAZdPr9+wrnxbfVXsxVaI/OGlVIaaV9FvZe8+EF9mIu7Vxx8Ssw6vWARXQLtEcX3Ro4xEIo+Q8ro3bMk5UDNkvLkypzRLVseuAoN2eDAYz6USciW5XyerNsnBt/8OPPzC0fXENnbsXhK/DH4NZ26tJaRUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=Do33M+Zs; arc=none smtp.client-ip=80.12.242.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
- ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
-	by smtp.orange.fr with ESMTPA
-	id ZDL6uHsjEt5czZDL7uZYyq; Tue, 08 Jul 2025 20:46:50 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1752000410;
-	bh=1KMq9z5swwEqfJUujLxgmIpabvJfx13yCUzkaCHJsSs=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To;
-	b=Do33M+ZskTXvpQmj5Ot7c3HkmJooV8IxNLxtavB3Soz8wkUWEkxkKc2D+2h8k621h
-	 iqouVHpcMleRuXDEVdruV73DATz+EaTk3MLbTmsri+6r8hxvn31OXheuVqnU3mfG3M
-	 OeZw/r7bU2X7yFDkLwDY8uiDgJG6U9lmIFHeu962ITaJ7nAG4VpjuENbgNFjwdf04t
-	 ukZxHDhK9oSPgIbGFD7mn4DIOt8Ip/GpwVwJoWC3YCl1vTdEF4xerpeXHZtkQc1Wuk
-	 wTe/GoiQpfZ34APi/VWCV+dUxRnYeXna9qb076SObnrTkm77krCb2ZJ2OmD0SpaRRY
-	 DMjYmOu7G4dAw==
-X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Tue, 08 Jul 2025 20:46:50 +0200
-X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
-Message-ID: <0406698c-6534-4aca-8994-e8a69ecee2b2@wanadoo.fr>
-Date: Tue, 8 Jul 2025 20:46:48 +0200
+	s=arc-20240116; t=1752000448; c=relaxed/simple;
+	bh=/mqj7Ed3H8Bkoymh26BH44kgyey94FHD1a9v525/9xs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=irwxGY+xR9rVgRHYWQx4UC+wjLg+GhriWxXhf/4nYsvVxm7x2HRwK0hzySzinePNSaoQwE9bwMRf+sy56dDvZLavBhkbGFCTr4gGHUiW6tBt0InB9Zb1iWxgdjyCuK8tP1vrh4LaKl4irTtwpMQcedzhWuVj0mo2ziXhJIEqGOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T6FADIep; arc=none smtp.client-ip=209.85.216.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-312a806f002so816772a91.3;
+        Tue, 08 Jul 2025 11:47:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752000446; x=1752605246; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/mqj7Ed3H8Bkoymh26BH44kgyey94FHD1a9v525/9xs=;
+        b=T6FADIepPPVjbB6Tn/P7qAnlrEy050vGGpIqYfasriBg/TF/639JGn6Ck37jklPvPS
+         I4Gf1d+fxa7dz3387t5W6RNuNMY4RbZ1tVWVJLvQHdRn3sl2/rt6Uf8BExpgza2a6dpW
+         gs4n/3l81zt3+NngARC2rpIeMT6ZloCVojYFg2eVEm1m0nJ0bMjbz5v9uwdwAme55JFJ
+         3b6vg/qRS43bQL//2ojjGD5wdKBA9AWdIy+U1pS0ND8UHpUHQ6qNUCu+mtA01+aMPIqA
+         p/RAWlulRtD6dLkUJ3cTCqtR3Av7jKJc2kEPCRPPxvkBK1LmeibAoP7BL0VcF1E6Orer
+         cM+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752000446; x=1752605246;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/mqj7Ed3H8Bkoymh26BH44kgyey94FHD1a9v525/9xs=;
+        b=sItmjYtEhtKVfPtWwdMvYvFLfxzK0FF2Rn0WFN+1tlMe5htvB+eywe83hsnbzVoNdh
+         MU1TjhaeYhhYrSHpTAbIo7szL9uMHBn7NKKAjnUwrJHKEQBYaAsuq1nJbtfAPd2+WY/x
+         fhTll4C/8FuBC541pfBNTA4xe+BIU/fxgbzxXixCEXaTV7G+gaG3fimbVIxavG9lg+aR
+         2U4RRx1sffX+g6Srk+yj8NeFW3BJLe71GnTG8c7XA7C87igB5Twp6mjFCdu2c185EX/h
+         6vkJMvN0tAPFhGxcHInszzVYo+wnz1TLRvJ1RupF+2sJkAt8tRtO8kuh2lzrzOngiwQm
+         ymfw==
+X-Forwarded-Encrypted: i=1; AJvYcCUBHLUjWzBQDcjJZr0rBHMGftfmkHVKILzdJ+JleV5Kbdhg91ASilikzgABeIw4WiKwYYEp9OpdSgvM+Xr59C4=@vger.kernel.org, AJvYcCUI+8KASJJUckt1BDqKPxjA1DuoOEL140+O7z2eKaioAsugbmA6ktHqrSVXFV0AiJUmmS4H4OEC@vger.kernel.org, AJvYcCUYoCpQAluLFyMz6efkaP1sZPGBrfR2RvLQchw8g/z8Xb3AD45V1Fed6uTv3jmpGHshHxVkNe2ldQ22@vger.kernel.org, AJvYcCVjD/vROJwnoXJ6EKQWPpSFfMiQSSM2NUEcgzrT/tA9CLjaOjLik0hvOG0qN3a/3xske6rWLye2G9Qc@vger.kernel.org, AJvYcCWGfZlv8ZoUyPrJ8j7KRFKiSYuWXg6ceEgBqXvJuwNeWSKMEE4F6LhJGpZbqPB8eR4KiHspcSjx4WumDjGm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+Ee982syI/gmejhjKunPtVvdQualBSsGBSJq5ORx1occmiyLI
+	BhnhvnXX/rhaTLlNNIDPFGrriqzYI8t4mzMdK9ns9NK6jxr6E78nxcGsA4a6rnf5mEvwZ+dfy5F
+	Iu62YMp9PC0LsblvlXXsjo1HgQQ4JNnw=
+X-Gm-Gg: ASbGnct724EsgEXVlN1/BTRhtKj6prRk0bvMz63MnEMcJP2BaRP13otRA9AKA/oPujw
+	FzVKahQ0YmlCPw9vLXMuLO5eEE0pmfuqhkdGlmiCtasJtjg6KCk1x/WyGZOoSvondNK5YNCO+HE
+	cqdGX3z2CchCFqgtn3x+S5KfVSWqdXMdoIBcK5sReRJWGt
+X-Google-Smtp-Source: AGHT+IGUVcR05B57Q2PyTCBv4j3P2juR85r1CT0ZhYq7HOZlRPbkeuFO/S7LGG5xpRMh/FmIYfXyYHyAkMtPuSrUpyE=
+X-Received: by 2002:a17:90b:3e44:b0:311:c939:c842 with SMTP id
+ 98e67ed59e1d1-31aaccd7e36mr9090114a91.7.1752000446452; Tue, 08 Jul 2025
+ 11:47:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/6] mfd: pf1550: add core driver
-References: <20250707-pf1550-v8-0-6b6eb67c03a0@savoirfairelinux.com>
- <20250707-pf1550-v8-2-6b6eb67c03a0@savoirfairelinux.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: devnull+samuel.kayode.savoirfairelinux.com@kernel.org
-Cc: Frank.li@nxp.com, abelvesa@kernel.org, abelvesa@linux.com,
- b38343@freescale.com, broonie@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, dmitry.torokhov@gmail.com, eballetbo@gmail.com,
- imx@lists.linux.dev, krzk+dt@kernel.org, lee@kernel.org,
- lgirdwood@gmail.com, linux-input@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, robh@kernel.org,
- samuel.kayode@savoirfairelinux.com, sre@kernel.org, yibin.gong@nxp.com
-In-Reply-To: <20250707-pf1550-v8-2-6b6eb67c03a0@savoirfairelinux.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250704041003.734033-1-fujita.tomonori@gmail.com>
+ <20250707175350.1333bd59@kernel.org> <CANiq72=LUKSx6Sb4ks7Df6pyNMVQFnUY8Jn6TpoRQt-Eh5bt8w@mail.gmail.com>
+ <20250708.195908.2135845665984133268.fujita.tomonori@gmail.com> <DB6OOFKHIXQB.3PYJZ49GXH8MF@kernel.org>
+In-Reply-To: <DB6OOFKHIXQB.3PYJZ49GXH8MF@kernel.org>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Tue, 8 Jul 2025 20:47:13 +0200
+X-Gm-Features: Ac12FXyuqXTkap0XT6noQoywOzfC2SM2sN6p2wIUc2hHZAxerMZXVAG3UPPF_Sg
+Message-ID: <CANiq72=Cbvrcwqt6PQHwwDVTx1vnVnQ7JBzzXk+K-7Va_OVHEQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] rust: Build PHY device tables by using
+ module_device_table macro
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: FUJITA Tomonori <fujita.tomonori@gmail.com>, kuba@kernel.org, gregkh@linuxfoundation.org, 
+	robh@kernel.org, saravanak@google.com, alex.gaynor@gmail.com, 
+	ojeda@kernel.org, rafael@kernel.org, a.hindborg@kernel.org, 
+	aliceryhl@google.com, bhelgaas@google.com, bjorn3_gh@protonmail.com, 
+	boqun.feng@gmail.com, david.m.ertman@intel.com, devicetree@vger.kernel.org, 
+	gary@garyguo.net, ira.weiny@intel.com, kwilczynski@kernel.org, 
+	leon@kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	lossin@kernel.org, netdev@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	tmgross@umich.edu
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Le 07/07/2025 à 23:37, Samuel Kayode via B4 Relay a écrit :
-> From: Samuel Kayode <samuel.kayode-4ysUXcep3aM1wj+D4I0NRVaTQe2KTcn/@public.gmane.org>
-> 
-> Add the core driver for pf1550 PMIC. There are 3 subdevices for which the
-> drivers will be added in subsequent patches.
-> 
-> Reviewed-by: Frank Li <Frank.Li-3arQi8VN3Tc@public.gmane.org>
-> Signed-off-by: Samuel Kayode <samuel.kayode-4ysUXcep3aM1wj+D4I0NRVaTQe2KTcn/@public.gmane.org>
+On Tue, Jul 8, 2025 at 2:48=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> w=
+rote:
+>
+> Had a brief look.
+>
+> There will be two trivial conflicts with the driver-core tree, which fixe=
+d up
+> some of the safety comments you modify in this series as well.
+>
+> The other way around, there is one trivial conflict with Tamir patch in t=
+he rust
+> tree fixing up an `as _` cast.
+>
+> So, either way works fine.
 
-Hi,
+Thanks Danilo -- ditto. Even netdev could make sense as you said.
 
-some nitpicks and a few real questions.
+Since it touched several subsystems and it is based on rust-next, I am
+happy to do so, but driver-core makes sense given that is the main
+change after all.
 
-CJ
+So if I don't see you picking it, I will eventually do it.
 
-...
-
-> +	/* Add top level interrupts */
-> +	ret = devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, pf1550->irq,
-> +				       IRQF_ONESHOT | IRQF_SHARED |
-> +				       IRQF_TRIGGER_FALLING,
-> +				       0, &pf1550_irq_chip,
-> +				       &pf1550->irq_data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Add regulator */
-> +	irq = regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_REGULATOR);
-
-Same as above.
-
-> +	if (irq < 0)
-> +		return dev_err_probe(pf1550->dev, irq,
-> +				     "Failed to get parent vIRQ(%d) for chip %s\n",
-> +				     PF1550_IRQ_REGULATOR, pf1550_irq_chip.name);
-> +
-> +	ret = devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
-> +				       IRQF_ONESHOT | IRQF_SHARED |
-> +				       IRQF_TRIGGER_FALLING, 0,
-> +				       &pf1550_regulator_irq_chip,
-> +				       &pf1550->irq_data_regulator);
-> +	if (ret)
-> +		return dev_err_probe(pf1550->dev, ret,
-> +				     "Failed to add %s IRQ chip\n",
-> +				     pf1550_regulator_irq_chip.name);
-> +
-> +	domain = regmap_irq_get_domain(pf1550->irq_data_regulator);
-> +
-> +	ret =  devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, regulator,
-
-2 spaces after =
-
-> +				    1, NULL, 0, domain);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Add onkey */
-> +	irq = regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_ONKEY);
-
-Same
-
-> +	if (irq < 0)
-> +		return dev_err_probe(pf1550->dev, irq,
-> +				     "Failed to get parent vIRQ(%d) for chip %s\n",
-> +				     PF1550_IRQ_ONKEY, pf1550_irq_chip.name);
-> +
-> +	ret = devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
-> +				       IRQF_ONESHOT | IRQF_SHARED |
-> +				       IRQF_TRIGGER_FALLING, 0,
-> +				       &pf1550_onkey_irq_chip,
-> +				       &pf1550->irq_data_onkey);
-> +	if (ret)
-> +		return dev_err_probe(pf1550->dev, ret,
-> +				     "Failed to add %s IRQ chip\n",
-> +				     pf1550_onkey_irq_chip.name);
-> +
-> +	domain = regmap_irq_get_domain(pf1550->irq_data_onkey);
-> +
-> +	ret =  devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, onkey, 1,
-
-2 spaces after =
-
-> +				    NULL, 0, domain);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Add battery charger */
-> +	irq = regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_CHG);
-
-This calls irq_create_mapping().
-Should irq_dispose_mapping() or another helper be called in the error 
-handling path and in the remove function, or is it already handled by a 
-devm_ function?
-
-> +	if (irq < 0)
-> +		return dev_err_probe(pf1550->dev, irq,
-> +				     "Failed to get parent vIRQ(%d) for chip %s\n",
-> +				     PF1550_IRQ_CHG, pf1550_irq_chip.name);
-> +
-> +	ret = devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
-> +				       IRQF_ONESHOT | IRQF_SHARED |
-> +				       IRQF_TRIGGER_FALLING, 0,
-> +				       &pf1550_charger_irq_chip,
-> +				       &pf1550->irq_data_charger);
-> +	if (ret)
-> +		return dev_err_probe(pf1550->dev, ret,
-> +				     "Failed to add %s IRQ chip\n",
-> +				     pf1550_charger_irq_chip.name);
-> +
-> +	domain = regmap_irq_get_domain(pf1550->irq_data_charger);
-> +
-> +	return devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, charger,
-> +				    1, NULL, 0, domain);
-> +}
-> +
-> +static int pf1550_suspend(struct device *dev)
-> +{
-> +	struct pf1550_ddata *pf1550 = dev_get_drvdata(dev);
-> +
-> +	if (device_may_wakeup(dev)) {
-> +		enable_irq_wake(pf1550->irq);
-> +		disable_irq(pf1550->irq);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int pf1550_resume(struct device *dev)
-> +{
-> +	struct pf1550_ddata *pf1550 = dev_get_drvdata(dev);
-> +
-> +	if (device_may_wakeup(dev)) {
-> +		disable_irq_wake(pf1550->irq);
-> +		enable_irq(pf1550->irq);
-
-Should this 2 lines be inverted?
-
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
-
-> +#define PF1550_CHG_LINEAR_ONLY		12
-> +#define PF1550_CHG_SNS_MASK		0xf
-> +#define PF1550_CHG_INT_MASK             0x51
-
-Space vs tab
-
-> +
-> +#define PF1550_BAT_NO_VBUS		0
-> +#define PF1550_BAT_LOW_THAN_PRECHARG	1
-
-...
-
-CJ
+Cheers,
+Miguel
 
