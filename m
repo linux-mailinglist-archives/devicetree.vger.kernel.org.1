@@ -1,212 +1,177 @@
-Return-Path: <devicetree+bounces-194071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5105FAFC96A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 13:20:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F397AFC981
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 13:23:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEA6F7A853D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 11:18:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A92C484A91
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 11:22:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130E52DC34B;
-	Tue,  8 Jul 2025 11:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 715C42D9480;
+	Tue,  8 Jul 2025 11:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="r8YfxBV0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dgo03ckA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F4BB2DBF47;
-	Tue,  8 Jul 2025 11:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394BD21FF53;
+	Tue,  8 Jul 2025 11:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751973526; cv=none; b=MTPvjgRjc+LWCBTvcB1LaAq9Wys7NLnW4NCVq6L9hb151CxODIKBXLqh7g9syNtJPGGd6HCOPkxyjKne7TYo1SKVfH0atyYSZrwbILZ6WU3ncHarEKirmadIZ71qKNDo0u/Hic62ngeidnmB/0rYwkVAzGezeBMCb30EdgZjDF4=
+	t=1751973732; cv=none; b=ey1Lc+Wp7SvCvM+1gDKNBd1A4L6MEoW0KtPjzzXmcUgU2/WJh1cjpgborviIOIwA7vLfGmbj+w346nIf4fI91KOhIapqOJwuEVzwkpd2aHVAdRhxh81ICCcYiK2SnQignOHaWAhz9WWe02AP5J/F5lw342q9RG+HzWL2lS6UtUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751973526; c=relaxed/simple;
-	bh=jM3rK3LR7ItmU8eaElmBJymsobv+3YObG+DJvjlIRJs=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hpEl9suKila9aWbGJnoPLvZqgl0kfl+/zXN3bZjT4BoyE37U+9olcPnD3R0l6eS1olaRi3lhdZchrs+2wybADunize/y79CUXKw49hrxQCL0vdfw0Fb88XEsHv3vXg9zZ/LU/vPgx5NY2Ko8oIe+lqdyZZoRTY+C2CjyQxmUpvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=r8YfxBV0; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 4aef39425bed11f0b33aeb1e7f16c2b6-20250708
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=CQdbGu3oTwc5hqt9jRWRc5/LOjUerkQxt3ZG9u6Vhds=;
-	b=r8YfxBV0fZN5XVvPf2wPxpQp2uvve5QBKIdZ0W1yi1UqtPNUyZjEvEt7mu99ZHVM0aWuS9Is00ioFoxhoUy6FVOTm77xGiRnJR6f1px3S1me+uKZUazetQ8CpDoqsY4dwEFO5xuMryk+idJopAnc6RvUTp76hg/SjZHwRheH4q8=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.2,REQID:92f6039b-978f-41be-bed6-bb37af488fa7,IP:0,UR
-	L:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:25
-X-CID-META: VersionHash:9eb4ff7,CLOUDID:1621b4bc-a91d-4696-b3f4-d8815e4c200b,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:11|97|99|83|106|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:
-	0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 4aef39425bed11f0b33aeb1e7f16c2b6-20250708
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
-	(envelope-from <darren.ye@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 13001346; Tue, 08 Jul 2025 19:18:37 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Tue, 8 Jul 2025 19:18:35 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Tue, 8 Jul 2025 19:18:34 +0800
-From: Darren.Ye <darren.ye@mediatek.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Linus
- Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>, Darren Ye
-	<darren.ye@mediatek.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 10/10] ASoC: dt-bindings: mediatek,mt8196-nau8825: Add audio sound card
-Date: Tue, 8 Jul 2025 19:16:02 +0800
-Message-ID: <20250708111806.3992-11-darren.ye@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250708111806.3992-1-darren.ye@mediatek.com>
-References: <20250708111806.3992-1-darren.ye@mediatek.com>
+	s=arc-20240116; t=1751973732; c=relaxed/simple;
+	bh=zS8WLO6yzQ/N7UZFiFhLD4awTMf8nv++SLoLX1ZDMs0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KilPePsKhFv3NYID92xCMsDQw1sH+WI+hxIPdOtfoTl2ru6iGUuBPCSsq9UZiF1PYWfnXQzQKM6giMY6kSyc8oovtw0nE7Hqd8Gfcv7CeLmn9OgyfSn3qM4xigQOJjkCBXyiPUo4dIAB4zbnCDrs3XxWOnMrMG3rq79ANBXp52o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dgo03ckA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CD5DC4CEF1;
+	Tue,  8 Jul 2025 11:22:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751973730;
+	bh=zS8WLO6yzQ/N7UZFiFhLD4awTMf8nv++SLoLX1ZDMs0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dgo03ckAclZz6xYW8idaHEIuTxYw8BTeOwb7zKfvU94tRQBRmRtwJCqCZxfzkKi/2
+	 gEqrwrBMt91NM8rUYsWJxgDZ60gb/jqc76MP5Btx2xrze2Wmbd4w31QODG78CLv6Em
+	 DBKmZ4wBLVP8/sQoXyW/I7Yd76HjZmhjwMVI9CK8MrAakkx7wUTR1xjj46JmtqNKrR
+	 1scSG69skldwDzAaQWpI446sXz9oazLWepfJpKNAgGi2w5UeqaLYT0FJOX9vu7HLg1
+	 VTS4EXqcn7zO2ne2eAGw0L9IFbcKw8PUc3t+oEroIP5xRt2xC1IqpFf8nIdv/LOfNj
+	 UvKWUYNhIFaxA==
+Date: Tue, 8 Jul 2025 16:51:55 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Anup Patel <apatel@ventanamicro.com>, Marc Zyngier <maz@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, Shuah Khan <shuah@kernel.org>, 
+	Richard Zhu <hongxing.zhu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Niklas Cassel <cassel@kernel.org>, dlemoal@kernel.org, jdmason@kudzu.us, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v19 01/10] PCI: endpoint: Set ID and of_node for function
+ driver
+Message-ID: <jx3nhhyj3dh5ivga6i3va35rz7n4disz33dtbwvbs4raqb4iww@q6m73lnwkjsf>
+References: <20250609-ep-msi-v19-0-77362eaa48fa@nxp.com>
+ <20250609-ep-msi-v19-1-77362eaa48fa@nxp.com>
+ <ne5yrjtdevmndqds4uwo2ppq6gay2wuwjouyf33lqr5g3nfkwr@lkwqlwqjqbmx>
+ <aGVE6veZm3bL0mVJ@lizhi-Precision-Tower-5810>
+ <75opnvi46fbmsnmykjwn3gmir7r3uqhzp7tfoua42cado6aopu@dmos2v2qd3jn>
+ <aGVN/5yoLumfmlDv@lizhi-Precision-Tower-5810>
+ <aGv4slE8/kmxHvlU@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+In-Reply-To: <aGv4slE8/kmxHvlU@lizhi-Precision-Tower-5810>
 
-From: Darren Ye <darren.ye@mediatek.com>
+On Mon, Jul 07, 2025 at 12:41:22PM GMT, Frank Li wrote:
+> On Wed, Jul 02, 2025 at 11:19:36AM -0400, Frank Li wrote:
+> > On Wed, Jul 02, 2025 at 08:25:17PM +0530, Manivannan Sadhasivam wrote:
+> > > On Wed, Jul 02, 2025 at 10:40:53AM GMT, Frank Li wrote:
+> > > > On Wed, Jul 02, 2025 at 04:30:48PM +0530, Manivannan Sadhasivam wrote:
+> > > > > On Mon, Jun 09, 2025 at 12:34:13PM GMT, Frank Li wrote:
+> > > > > > Set device ID as 'vfunc_no << 3 | func_no' and use
+> > > > > > 'device_set_of_node_from_dev()' to set 'of_node' the same as the EPC parent
+> > > > > > device.
+> > > > > >
+> > > > > > Currently, EPF 'of_node' is NULL, but many functions depend on 'of_node'
+> > > > > > settings, such as DMA, IOMMU, and MSI. At present, all DMA allocation
+> > > > > > functions use the EPC's device node, but they should use the EPF one.
+> > > > > > For multiple function drivers, IOMMU/MSI should be different for each
+> > > > > > function driver.
+> > > > > >
+> > > > >
+> > > > > We don't define OF node for any function, so device_set_of_node_from_dev() also
+> > > > > ends up reusing the EPC node. So how can you make use of it in multi EPF setup?
+> > > >
+> > > > In mfd devices, children devices reuse parent's of_node
+> > > > drivers/gpio/gpio-adp5585.c
+> > > > drivers/input/keyboard/adp5589-keys.c
+> > > > drivers/pwm/pwm-adp5585.c
+> > > >
+> > > > multi EPF should be similar to create multi children devices of mfd.
+> > > >
+> > >
+> > > No, they are not similar. MFD are real physical devices, but EPFs are (so far)
+> > > software based entities.
+> > >
+> > > > > I don't understand.
+> > > >
+> > > > >
+> > > > > > If multiple function devices share the same EPC device, there will be
+> > > > > > no isolation between them. Setting the ID and 'of_node' prepares for
+> > > > > > proper support.
+> > > >
+> > > > Only share the same of_node.
+> > > >
+> > > > Actually pci host bridge have similar situation, all pci ep devices reuse
+> > > > bridge's of node. framework use rid to distringuish it. EPF can use device::id
+> > > > to do similar things.
+> > > >
+> > > > Actually iommu face the similar problem. So far, there are not EP device enable
+> > > > iommu yet, because it needs special mapping.
+> > > >
+> > > > Prevously, I consider create dymatic of_node for each EPF and copy iommu/msi
+> > > > information to each children. But when I see adp5585 case, I think direct
+> > > > use parent's of_node should be simple and good enough.
+> > > >
+> > > > In future, I suggest add children dt binding for it. For example: EPF provide
+> > > > a mailbox interface. how other dts node to refer to this mailbox's phandle?
+> > > >
+> > >
+> > > As I said above, EPFs are not real devices. There is currently only one
+> > > exception, MHI, which is backed by a hardware entity. So we cannot add
+> > > devicetree nodes for EPF, unless each EPF is a hardware entity.
+> >
+> > But how resolve this problem, if a DT device need phandle to a EPF? anyway
+> > this is off topic. let go back this doorbell.
+> >
+> > It needs an of_node for EPF device, I tried many method before.
+> >
+> > Create dymatic of_node for it? MSI framework still go through to parent
+> > of_node to get such information. not big differnece as my view.
+> 
+> Actually, DMA have simular issues, just 'workaround' it now.
+> 
+> pci_epf_test_read() {
+> 	...
+> 	struct device *dma_dev = epf->epc->dev.parent;
+> 	...
+> 	dst_phys_addr = dma_map_single(dma_dev, buf, map_size,
+>                                                        DMA_FROM_DEVICE);
+> 					^^^ [1]
+> 	...
+> }
+> 
+> [1] here direct use epc->dev.parent's of node implicy. If IOMMU enable,
+> two EPF will share one IOMMU space without isolation. If add of_node(may
+> dyamatic create one). we should resolve this problem by use epf device
+> here. Difference EPF will use difference IOMMU space like MSI.
+> 
 
-Add soundcard bindings for the MT8196 SoC with the NAU8825 audio codec.
+Unless your platform comes up with a hardware based EPF, we are not going to
+have DT node for any EPF. So all EPFs have to share the same DT node of the EPC.
+So right now, it doesn't make a difference if you use a dynamic of_node or copy
+the EPC node.
 
-Signed-off-by: Darren Ye <darren.ye@mediatek.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../sound/mediatek,mt8196-nau8825.yaml        | 102 ++++++++++++++++++
- 1 file changed, 102 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8196-nau8825.yaml
+Just reuse the EPC node for now.
 
-diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8196-nau8825.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8196-nau8825.yaml
-new file mode 100644
-index 000000000000..5c4162e64004
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mediatek,mt8196-nau8825.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mediatek,mt8196-nau8825.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek MT8196 ASoC sound card
-+
-+maintainers:
-+  - Darren Ye <darren.ye@mediatek.com>
-+
-+allOf:
-+  - $ref: sound-card-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8196-nau8825-sound
-+      - mediatek,mt8196-rt5682s-sound
-+      - mediatek,mt8196-rt5650-sound
-+
-+  mediatek,platform:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle of MT8188 ASoC platform.
-+
-+patternProperties:
-+  "^dai-link-[0-9]+$":
-+    type: object
-+    description:
-+      Container for dai-link level properties and CODEC sub-nodes.
-+
-+    properties:
-+      link-name:
-+        description:
-+          This property corresponds to the name of the BE dai-link to which
-+          we are going to update parameters in this node.
-+        items:
-+          enum:
-+            - TDM_DPTX_BE
-+            - I2SOUT6_BE
-+            - I2SIN6_BE
-+            - I2SOUT4_BE
-+            - I2SOUT3_BE
-+
-+      codec:
-+        description: Holds subnode which indicates codec dai.
-+        type: object
-+        additionalProperties: false
-+        properties:
-+          sound-dai:
-+            minItems: 1
-+            maxItems: 2
-+        required:
-+          - sound-dai
-+
-+      dai-format:
-+        description: audio format.
-+        items:
-+          enum:
-+            - i2s
-+            - right_j
-+            - left_j
-+            - dsp_a
-+            - dsp_b
-+
-+      mediatek,clk-provider:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description: Indicates dai-link clock master.
-+        enum:
-+          - cpu
-+          - codec
-+
-+    additionalProperties: false
-+
-+    required:
-+      - link-name
-+
-+required:
-+  - compatible
-+  - mediatek,platform
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    sound {
-+        compatible = "mediatek,mt8196-nau8825-sound";
-+        model = "mt8196-nau8825";
-+        mediatek,platform = <&afe>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&aud_pins_default>;
-+        dai-link-0 {
-+            link-name = "I2SOUT6_BE";
-+            dai-format = "i2s";
-+            mediatek,clk-provider = "cpu";
-+            codec {
-+                sound-dai = <&nau8825>;
-+            };
-+        };
-+    };
-+
-+...
+- Mani
+
 -- 
-2.45.2
-
+மணிவண்ணன் சதாசிவம்
 
