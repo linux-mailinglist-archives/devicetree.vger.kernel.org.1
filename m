@@ -1,98 +1,90 @@
-Return-Path: <devicetree+bounces-194148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0922AFCD68
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:23:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AA10AFCD6A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:23:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A42D1BC6E56
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 14:23:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DD77166AC7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 14:23:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3E4F2E03ED;
-	Tue,  8 Jul 2025 14:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5749B2E06EA;
+	Tue,  8 Jul 2025 14:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GfghWuQI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CC82DAFD8;
-	Tue,  8 Jul 2025 14:22:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B462DAFD8;
+	Tue,  8 Jul 2025 14:22:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751984544; cv=none; b=ZVhYoI6N5qqUhSfbgTXMBPvQTkPapQmJr8Yv+y22iYoGJV/3uoU7mtzFjJFPK+1DaBa0JbWdig/1JRAMF5uPJvHGdFWqCqox/EqeopSSoaan/+WJnLAgwCMQKhaknNGKV4d3z4IFgQ+5sos6ctbqrGzKGTzA6XTs99C3oAmdxEw=
+	t=1751984557; cv=none; b=Z1nUi4CUhT7hr6dzJWFI9leyE0Ol1M+IlsT9zTe1b++wQGVOdX6E9TU5r5XVyl4nvwF8y/Xcp57/ANA/AUiDy1BqACpmCwxGjO3odLVbdc0/B8/A1z41XnZ8gBQrC+NcGuvhfQ2BpXYuAQrmRS4Ie/na4kJ3gm2W19dMzzgvoUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751984544; c=relaxed/simple;
-	bh=aYV11MEcb7GflSp3VMmGl1ZdpHTzcEkEZNG0Yj98xnw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aVhX0Ed73zou6M0+JPXiBmX7Wu4QpqVJ1E6QSYSvBIs2uQ3An48f5N702SYFtEMuw3Lg0jiEkvocc517KsTj2eWUge0uMi0LoDZtH/FJNaRhL/wJV5/XN/GbZpsiYLN4FA9VGUdQE6CCODA4qPeq9Mp8qq8U83z943QJtt5GHgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from ofsar (unknown [116.232.48.207])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 1397F340F90;
-	Tue, 08 Jul 2025 14:22:15 +0000 (UTC)
-From: Yixun Lan <dlan@gentoo.org>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	p.zabel@pengutronix.de,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	Alex Elder <elder@riscstar.com>
-Cc: Yixun Lan <dlan@gentoo.org>,
-	heylenay@4d2.org,
-	inochiama@outlook.com,
-	guodong@riscstar.com,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
+	s=arc-20240116; t=1751984557; c=relaxed/simple;
+	bh=V5k/JaXc8mpxvsmuIXrPpDH+unvMwkFQt98oPfHQlhA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RcQdKfcR02hMcG5Zsu7mo1lVx2Xlkh/CHaEny2+X/ceB6JibGGpMZXIVHyru2DsVPoKmx0HKm1lqhs5TRsunoSxSdgxbno4vqdRK9MQUHEKQaeIOKNVnEV8WOacLlvg9NQBbMIa830+A7r2gvxA4h1Yb5hU/CxZxlj33LAjuIWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GfghWuQI; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=qEzEnv65Ia3FbPmkGo2RRtibcq5xmdlT4YJXZg1qp4U=; b=GfghWuQIREgXLIbeiW7+EztL62
+	+7KcSY6ERjmgfC0PoBVZmbokTO3xuN+13IzE+cGsIyV/LhaOS9Clnj+wGd2+gFuoEdtEieihZZZg2
+	gQ93DirvJkJBbioZogs3WuVO1WVWS0qISAzoo+TdOClY9j5w52BeFKBYuSTFQ+ZPEwBs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uZ9DI-000pP6-51; Tue, 08 Jul 2025 16:22:28 +0200
+Date: Tue, 8 Jul 2025 16:22:28 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Tristram.Ha@microchip.com
+Cc: Woojung Huh <woojung.huh@microchip.com>,
+	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Marek Vasut <marex@denx.de>, UNGLinuxDriver@microchip.com,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v12 0/6] reset: spacemit: add K1 reset support
-Date: Tue,  8 Jul 2025 22:22:05 +0800
-Message-ID: <175159801109.1876819.10159207553931838865.b4-ty@gentoo.org>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250702113709.291748-1-elder@riscstar.com>
-References: <20250702113709.291748-1-elder@riscstar.com>
+Subject: Re: [PATCH net-next 6/6 v2] net: dsa: microchip: Setup fiber ports
+ for KSZ8463
+Message-ID: <1c688ae1-5625-4598-a162-302e38dbe50e@lunn.ch>
+References: <20250708031648.6703-1-Tristram.Ha@microchip.com>
+ <20250708031648.6703-7-Tristram.Ha@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250708031648.6703-7-Tristram.Ha@microchip.com>
 
-
-On Wed, 02 Jul 2025 06:37:02 -0500, Alex Elder wrote:
-> This series adds reset controller support for the SpacemiT K1 SoC.
-> A SpacemiT reset controller is implemented as an auxiliary device
-> associated with a clock controller (CCU).  A new header file
-> holds definitions used by both the clock and reset drivers.
+On Mon, Jul 07, 2025 at 08:16:48PM -0700, Tristram.Ha@microchip.com wrote:
+> From: Tristram Ha <tristram.ha@microchip.com>
 > 
-> The only change in this version is that three of the the four resets
-> associated with each PCIe port have been renamed, to align better
-> with their corresponding clocks.  This affects patches 1 and 5.
-> For example, for PCIe port 0:
+> The fiber ports in KSZ8463 cannot be detected internally, so it requires
+> specifying that condition in the device tree.  Like the one used in
+> Micrel PHY the port link can only be read and there is no write to the
+> PHY.  The driver programs registers to operate fiber ports correctly.
 > 
-> [...]
+> The PTP function of the switch is also turned off as it may interfere the
+> normal operation of the MAC.
 
-Applied, thanks!
+Is this PTP problem anything to do with fibre?
 
-[6/6] riscv: dts: spacemit: add reset support for the K1 SoC
-      https://github.com/spacemit-com/linux/commit/2c0cf4fed0f440200833ddfc24ea02de2cdc217c
+It seems like this should be a patch of its own, unless it does have
+something to do with fibre.
 
-Best regards,
--- 
-Yixun Lan
-
+	Andrew
 
