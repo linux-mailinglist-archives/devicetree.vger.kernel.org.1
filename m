@@ -1,66 +1,58 @@
-Return-Path: <devicetree+bounces-194276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69289AFD834
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 22:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64506AFD83D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 22:21:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D7A71C23288
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 20:20:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 476791C2388C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 20:21:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B11E923D2B0;
-	Tue,  8 Jul 2025 20:18:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01BAF221546;
+	Tue,  8 Jul 2025 20:21:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eZq2ZSm5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XhDrxV/r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FA3F1D54E2;
-	Tue,  8 Jul 2025 20:18:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0AE14EC73;
+	Tue,  8 Jul 2025 20:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752005888; cv=none; b=MUZEzUbo4ibu47hqdrG1Mfd8x4Sp2PiE4ILafxNO67+m/VsJoJOKB7LzSZ2owizjigtLxoggn2RHdI0aT+BqoRiCNhZ91dYGLVKD6CFYLYkgvWfl8DsxzvarVa3r4HxdDiZnltDUosjaZUjJSKFPPJErWb3sqglaa1R60+bDRC0=
+	t=1752006064; cv=none; b=rIGvE+YB+IuLgNmWLeTP4YMzvy61vb2jL3E05sXWfS8zN/zpM+1y2zRHB76iNd3Mh0Do81SAfIUWo7kEDcm6jognH6s8WlFYw69ADq7+jfZWfl3MxpovOa7CHPbdfYd68vEG2B6ZDUl4ALj+yRxrRjUaccQgmlQclfFpZZHtn1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752005888; c=relaxed/simple;
-	bh=zfkbjPg4tfTz4BD5E+6M+vCmZHxU3gsUQB6PvWPchNM=;
+	s=arc-20240116; t=1752006064; c=relaxed/simple;
+	bh=zqx/74K4jJO3iS9rVGq5D5oA2ZIFzpVGZMwbjqdUJ7w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tPiAnwL2T2sbOIAmtfd2jIJlx0AMdPWpV6sz9QIUUj8cpJAmIGyqwhtDDmbOGh0pTxgoCZsvf6qu2b6/5Jx8EdOscd/rni1+dfYXK8tCWUSt83Hrb7Ydqul/WrCwyO02dIsAOOJQuV3zV3jiJMX1ihXpbp97JFf+1GbYHynPlfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eZq2ZSm5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6534C4CEF1;
-	Tue,  8 Jul 2025 20:18:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QNTCOGEqCWJCg70BuW4VERHJcFHX28m3o4WmFnquaV+vqgmMaxDZl8R6CAsu2wcAQL/0fy8JUgqFp2V30l+oKFhnCMo+FPJSpUx0RJV+QHZ4PZGUnrTUIU4NhVTMKRxgFAgcXfy2yIFyOp1bsO4fj3sx6AH+4HSkz7W6FtZFbFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XhDrxV/r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68255C4CEF1;
+	Tue,  8 Jul 2025 20:21:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752005888;
-	bh=zfkbjPg4tfTz4BD5E+6M+vCmZHxU3gsUQB6PvWPchNM=;
+	s=k20201202; t=1752006064;
+	bh=zqx/74K4jJO3iS9rVGq5D5oA2ZIFzpVGZMwbjqdUJ7w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eZq2ZSm55e4ofOg+hNlkFpOxIV5V7eRne+d2kXkN110cHHYVQ8dYjm2LIrlDnQxCJ
-	 PhKK0uGqlbgRLeTJihMhwiMOS9emQvGv42QvUGg52nOyin7M4jlPraFnYPgaWp/UKg
-	 OvaPRBE5A2LQd5feBze+97YbboqOVJ5DaNQybooiYdcmwD0soFL4EPO60Qi34l6HVn
-	 7oCaMp0yxWDwxsJrJehhDmxEiIb7bBkQmYkRXXyxzokxkLsa1ojG4gw2Aq0VBosMFs
-	 +ajvyu23qepGhhAJtMJtLbJIGAVh2Tgrhdjpvi6eH09OJkc+fnwEJkxS0w1IoP8EDV
-	 z2YaCt8KTOgIQ==
-Date: Tue, 8 Jul 2025 15:18:06 -0500
-From: Rob Herring <robh@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/9] dt-bindings: watchdog: renesas,wdt: Add support for
- RZ/T2H and RZ/N2H
-Message-ID: <20250708201806.GA897559-robh@kernel.org>
-References: <20250707200111.329663-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250707200111.329663-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	b=XhDrxV/r0/d4Qt/l6j2cg6nVvYTW6x4u7+WFjvoVRbsnKdk8pTk89x2OxovWcD7Pr
+	 VsLTLprp9+kXpOAlSvcFFy+CkcKSBYu/N9TFEBwG+Zj4ULvhLA6HqM4pvRR/ne2dSC
+	 Hz00yz+oSX2tFJNq6pQ9CP9vezQ2bUUfTeUQqrlRZjdeDrQiqnI0GkA9mk4ywXZ51P
+	 1cBQiGDGxlIyqqNGZZIsDwqIiuWFbuM8FOrAXwbvEFq1Pnp2thEBb1cnNNd62DVVXc
+	 7F/cgE83diZNvyoY9CVTNhPqF1XzoPBq4V+mfnA2P6GvxuskPJs1MsahbdcUC8T6FH
+	 6eKhGEGJETL2A==
+Date: Tue, 8 Jul 2025 15:21:03 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] dt-bindings: Add Tegra264 clock and reset
+ definitions
+Message-ID: <175200606285.904555.15042694527619353999.robh@kernel.org>
+References: <20250708082814.1491230-1-thierry.reding@gmail.com>
+ <20250708082814.1491230-3-thierry.reding@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,96 +61,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250707200111.329663-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250708082814.1491230-3-thierry.reding@gmail.com>
 
-On Mon, Jul 07, 2025 at 09:01:03PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+On Tue, 08 Jul 2025 10:28:11 +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Extend the Renesas WDT device tree bindings to support the watchdog timer
-> found on the RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs.
+> The BPMP firmware on Tegra264 defines a set of IDs for clock and reset
+> resources. These are not enumerations but provided by hardware, and 0 is
+> a reserved value, hence the numbering starts at 1.
 > 
-> The RZ/T2H WDT is mostly compatible with the one found on the RZ/V2H(P),
-> but includes an additional register and differs in the clock division
-> ratio settings for the WDTCR[CKS] field. To reflect these differences,
-> introduce a new compatible string, "renesas,r9a09g077-wdt".
-> 
-> The binding schema is updated accordingly. On RZ/T2H, the WDT does not
-> require the "resets" property. It also requires two register regions and
-> the presence of a "power-domains" property. The "clock-names" property is
-> limited to a single entry, "pclk", for this SoC.
-> 
-> The RZ/N2H SoC uses the same WDT IP as the RZ/T2H. It is supported by
-> using "renesas,r9a09g087-wdt" as the primary compatible string, with
-> "renesas,r9a09g077-wdt" listed as a fallback to describe the shared
-> hardware features.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  .../bindings/watchdog/renesas,wdt.yaml        | 37 +++++++++++++++++--
->  1 file changed, 34 insertions(+), 3 deletions(-)
+> Changes in v2:
+> - drop -reset and -clock suffixes since they are redundant
+> - include all known clock and reset definitions
+> - drop U suffix for integer literals
+> - add vendor prefix to filename
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> index 78874b90c88c..ce439a401c12 100644
-> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> @@ -81,10 +81,17 @@ properties:
->                - renesas,r9a09g056-wdt # RZ/V2N
->            - const: renesas,r9a09g057-wdt # RZ/V2H(P)
->  
-> -      - const: renesas,r9a09g057-wdt       # RZ/V2H(P)
-> +      - enum:
-> +          - renesas,r9a09g057-wdt    # RZ/V2H(P)
-> +          - renesas,r9a09g077-wdt    # RZ/T2H
-> +
-> +      - items:
-> +          - const: renesas,r9a09g087-wdt # RZ/N2H
-> +          - const: renesas,r9a09g077-wdt # RZ/T2H
->  
->    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->  
->    interrupts:
->      minItems: 1
-> @@ -132,6 +139,7 @@ allOf:
->            compatible:
->              contains:
->                enum:
-> +                - renesas,r9a09g077-wdt
->                  - renesas,rza-wdt
->                  - renesas,rzn1-wdt
->      then:
-> @@ -183,7 +191,9 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: renesas,r9a09g057-wdt
-> +            enum:
-> +              - renesas,r9a09g057-wdt
-> +              - renesas,r9a09g077-wdt
->      then:
->        properties:
->          interrupts: false
-> @@ -192,6 +202,27 @@ allOf:
->        required:
->          - interrupts
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g077-wdt
-> +    then:
-> +      properties:
-> +        resets: false
-> +        clock-names:
-> +          items:
-> +            - const: pclk
+>  include/dt-bindings/clock/nvidia,tegra264.h | 466 ++++++++++++++++++++
+>  include/dt-bindings/reset/nvidia,tegra264.h |  92 ++++
+>  2 files changed, 558 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/nvidia,tegra264.h
+>  create mode 100644 include/dt-bindings/reset/nvidia,tegra264.h
+> 
 
-Just 'maxItems: 1' as pclk is already the defined name.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-With that,
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
