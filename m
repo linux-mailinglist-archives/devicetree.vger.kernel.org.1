@@ -1,56 +1,68 @@
-Return-Path: <devicetree+bounces-194204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8760AAFD4CE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 19:10:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14853AFD4C6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 19:09:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F3203BDD32
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:05:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCDD61886F2A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718E92253E0;
-	Tue,  8 Jul 2025 17:06:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D6D2DCF7B;
+	Tue,  8 Jul 2025 17:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bjgtPNwf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PVaTHAoU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480B5202F70;
-	Tue,  8 Jul 2025 17:06:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C637A202F70;
+	Tue,  8 Jul 2025 17:06:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751994368; cv=none; b=JhmgAaenekab4IcuYodGCP71qPIC8rsIrAsxmbtaecUp/phWVGwi9m5FofsMLyZQgG1p08KXcTItmofB8L3dq5fG5ispgyjpamkxgDeJN6zhviIkkgquCxIYnMwczdgwl9b98fknC8639JQu+7Nc/PpyNcBnY0mXEb20JizLkJQ=
+	t=1751994387; cv=none; b=O++9qehiFK8EJ92cGqms2eDOJJUJqW1dA2kup9Ksz1UU1VOfRZk1OE7GODh01idWXNFGytL+3FkSkqqTBhyYy7K624UPXVv14cyQtLa2yUUl52i7AX4ejNbiAB4uk2zh4v+T+kxb9Pk/JzEVSbDYroPxhuhmR0v4VjXZF829CZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751994368; c=relaxed/simple;
-	bh=1svJo+xPXVmx/MsVPlxucUYtpNb5vbrgISfk+bp8bwU=;
+	s=arc-20240116; t=1751994387; c=relaxed/simple;
+	bh=8ifDg8SArNC+rBce95rWN32spKeHoIWeM80KoB3c3Uw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nie8KiB4HaQ+8xPJXaawiqVJt+m9orj8sVdIYx3v43bETtrgwkbgpsuRSBR4xZ4Z5mCvOzLfTk3xWGyVwNgyGGrenpAxK5c0yfZqb2ucusYosyQUV5aD/4Cg/wW+7rN0RDLtk5cDWwhj3RT6aqLNe1RQG6johWqkVB//Bx/aWZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bjgtPNwf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C5B4C4CEED;
-	Tue,  8 Jul 2025 17:06:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MbxrUTnAQvZgf5EIFylPHSO6FMrBlQE+i8jw6et/FqhNdxjrKjteB+Jb7J7e8DOSoB0lH61PdPhxjWsfkSJi7wun38clvgIlT2Qh4MY2xYcr90bOvd3Y5ga++7qUGT/JEW6YXzq0AT8TIgW5U+B7GC3NEekU+M8pUJ0p96LHJPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PVaTHAoU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BEF2C4CEF0;
+	Tue,  8 Jul 2025 17:06:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751994367;
-	bh=1svJo+xPXVmx/MsVPlxucUYtpNb5vbrgISfk+bp8bwU=;
+	s=k20201202; t=1751994387;
+	bh=8ifDg8SArNC+rBce95rWN32spKeHoIWeM80KoB3c3Uw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bjgtPNwf1cwNP3/5gGgnqkTbZBPdDgbpmwSscp9+sO7UcmpnVlZomEI2Stnh9Sjvg
-	 m2xmvQ/7whVVeK6GxgVoNNrSVrRyDnWZ0coHxLxwSne+wp4L0lYKBx5dDrP/+ferfM
-	 8vgFjAcMMdvupzJ8FXM0YDUIrbaT+bnzM/zpdja1n7MAIOP2dBnLEE3CZn2HJ/oxLf
-	 pxm/c05vcS8H3yellF8TiTLMYQaii9i/ydaEHMb/5WLJ95zYnSDCzS9I5fooCg5R4S
-	 lUgy4BjpPonNm/qThsn8N97nSWLBCk4gK6ed5F2T9Qb0Efv/ylpOWzRXRMcyM3Z0Q0
-	 bPJxht1+i2xoQ==
-Date: Tue, 8 Jul 2025 12:06:06 -0500
+	b=PVaTHAoUeICmwkF7/uRzMNm5R5uIma512L2DDSmMoEHSRq+r44f1VNx8+S4qy8lgd
+	 8syFIHYpv1dtZt1d9EPoFSBHkLyO4i9pLwZcdro5+YkAnoSOAV8W01s6poVy4+GGtU
+	 zKW82Qb9oTr64BWdpwT+cTYcwZundZPQp/Q815t2FyvPu4w27jB3gS/dkukpom4epn
+	 0h7xTEMcmFoy1ksQOu5J9dApvmmBpywKXFRJnMTsaPyrGjP4Yz/1kSNPLVwcHe6zD4
+	 PRDrx9Dc8GgV5vsLW+dTrnqQfqFg3g37uXe9UyApaHNv+rL0Fn5HYwZsngeyEteR9P
+	 j2NIZndUpDMjA==
+Date: Tue, 8 Jul 2025 12:06:26 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: lee@kernel.org, krzk+dt@kernel.org, pavel@kernel.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	alkuor@gmail.com, conor+dt@kernel.org
-Subject: Re: [PATCH] dt-bindings: leds: ncp5623: Add 0x39 as a valid I2C
- address
-Message-ID: <175199436580.636302.13969412271190121000.robh@kernel.org>
-References: <20250703144644.2878253-1-festevam@gmail.com>
+To: iuncuim <iuncuim@gmail.com>
+Cc: Lukasz Luba <lukasz.luba@arm.com>, devicetree@vger.kernel.org,
+	Zhang Rui <rui.zhang@intel.com>, Maxime Ripard <mripard@kernel.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Yangtao Li <tiny.windzz@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Samuel Holland <samuel@sholland.org>, linux-pm@vger.kernel.org,
+	Chen-Yu Tsai <wens@csie.org>, linux-kernel@vger.kernel.org,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Vasily Khoruzhick <anarsoul@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-sunxi@lists.linux.dev,
+	Daniel Lezcano <daniel.lezcano@linaro.org>
+Subject: Re: [PATCH v2 1/8] dt-bindings: nvmem: SID: Add binding for A523 SID
+ controller
+Message-ID: <175199438588.636779.3304055956997373541.robh@kernel.org>
+References: <20250703151132.2642378-1-iuncuim@gmail.com>
+ <20250703151132.2642378-2-iuncuim@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,20 +71,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250703144644.2878253-1-festevam@gmail.com>
+In-Reply-To: <20250703151132.2642378-2-iuncuim@gmail.com>
 
 
-On Thu, 03 Jul 2025 11:46:44 -0300, Fabio Estevam wrote:
-> The NCP5623C variant has the I2C address at 0x39 according its datasheet:
+On Thu, 03 Jul 2025 23:11:25 +0800, iuncuim wrote:
+> From: Mikhail Kalashnikov <iuncuim@gmail.com>
 > 
-> https://www.mouser.com/datasheet/2/308/NCP5623C-D-64591.pdf
+> The SID controller should be compatible with A64 and others SoC with 0x200
+> offset.
 > 
-> Make 0x39 a valid I2C address in the dt-binding.
-> 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
 > ---
->  Documentation/devicetree/bindings/leds/onnn,ncp5623.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
