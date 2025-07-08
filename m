@@ -1,153 +1,174 @@
-Return-Path: <devicetree+bounces-193986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52C48AFC64E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:55:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E85CAFC661
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:59:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 527AC1AA4C9B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:55:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BCE94A6951
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:59:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C81AF2BF016;
-	Tue,  8 Jul 2025 08:55:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4597E2BEC52;
+	Tue,  8 Jul 2025 08:59:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bs06Ann6"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BEWU3Wx3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B00E1A5BB7;
-	Tue,  8 Jul 2025 08:55:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8633F220F36;
+	Tue,  8 Jul 2025 08:59:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751964926; cv=none; b=tXzscDR2JX8JwSAp10HtCRgsk9pwd33G05sTFrPhLs1JWj0cDouHWEImvcTrUkdVU+gsZ97CCT+irh75xeLFMscBadk6AjlvkIhN750OCMpvcWqnGnKtaDcJs4aa8Me/iT+qiRXuHzW/TM9/2Pmkv7c2I1d5GItM2BGujGgk7Zk=
+	t=1751965155; cv=none; b=Iq+337ju6y/3nPU9KP0JTVsL/N58s/F7y5jNgeNvXxqdBBqfoQuluvBowlBVhH0BvqZPNhd7F6wsZqHrhOM6TyebajL7Wu3D3hLu2VMzapHm13pyyKEUSvAkCUO17zMUIoUtOWuRla7sT7Zxq4fdKvQUPsDx+3TEgfyicMFujfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751964926; c=relaxed/simple;
-	bh=kpstOjw4lLF9eP2jFzFpACQzhk54uwH0eGlIjnY6txU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RSqeC8pp65sK2lZrMUfyEKWK6db3p2KIGTeIusVXN/97NDwhDXqhmyYPJuzlIIKT4vApHu/sJ989l4VVZPibljC7gM6KqjByVk9YeQs/jrThzDgjvQE+ufuNe0NrLd0Y9EXopO/pqGafxP7vz9USNek3L1FD7Kre09BcYo+PgvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bs06Ann6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30A20C4CEF8;
-	Tue,  8 Jul 2025 08:55:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751964926;
-	bh=kpstOjw4lLF9eP2jFzFpACQzhk54uwH0eGlIjnY6txU=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=Bs06Ann6YziWgddfpvw/M9gC3KlX127POufp+uJpfiasKEYtMoUHWfuj0RYCH1ger
-	 XYNiGAd6ndxVo0yNppVjsM3dwAJsJ4F1wYEzYCG75X11ynyFpM/P9KES8funbIjNwY
-	 nKUPw5xR3Q+Vo90JEk6M9KmVIGyZkm46/+iQOaWnMXbZ9qLv7SQMoXQo2ZBWlZUB60
-	 B2KBA82o/0JqdSSjzasdUI41EMFDMzzp+41sl3i5IXUocdQS9S1uPORoZYD7hyfrd2
-	 st/BVBgi+/HfF9hkEc814aDmhbAFCqfn3K9v+XhoLDuWeXS2jZHcpIWmwDZWlnDvs2
-	 nnaPCYzZWU4nQ==
-Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-879502274cfso6807639f.0;
-        Tue, 08 Jul 2025 01:55:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUxMh3zQlCg3AcOf3hNM1ZaDBNiPeXG/5wETTdhqjJcJHUKRkdmN4CA4hH/Gc6bJvgVfbVkw/SUnIAz@vger.kernel.org, AJvYcCVfrwCJcxM81syVWYSJcbuk+SKTz6bAczW0+ataKgh5MxcQdE/uF3yTnVqNPbTQb/MaOMks/4z6Oa1NzFBR@vger.kernel.org, AJvYcCVuNqkTw8UL65tsEEFhYKifcn5BTHfzi1O5fAjc8n24YylvtYE0Tczehlr7G6bjzG68sYpLzVS1JMg=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzakw+4V0HmtBtpN2FCzmGIvhYOwlc7RnhVQM4gJdrNeUl/NKX4
-	5aMO3BpJcS3DQEDPbwU4zu6XI7EfFwqICo4S7j81wr1keEa2RwvdnxBHSg5G0+Hx7/ytUeRXuSP
-	pJqBixF5Hu1qhOffVmJ7Kfz+K14Q8OYo=
-X-Google-Smtp-Source: AGHT+IF8+rXljY0T3bGeUJ9XXKLa71g9blAF0Fp8stGo0h3DgAP8zTEF2uLbmLy1XQvXT3W/Bs/Wr47ANAVaNz9utYc=
-X-Received: by 2002:a05:6602:148c:b0:864:a2e4:5fff with SMTP id
- ca18e2360f4ac-876e158bb24mr1892894139f.4.1751964925465; Tue, 08 Jul 2025
- 01:55:25 -0700 (PDT)
+	s=arc-20240116; t=1751965155; c=relaxed/simple;
+	bh=IUQ/IoZbgiF/ZH+Px9cA0W240LEAFAownvCPS2NhN8g=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=B8X9EF/jz1nPfK/B+vJhQUtAaOtV9Cs8JypNDrIUc36sc6wkiCuK/m9a7pdzW2F1bE3EVajlBeVcrh1ABoCrwM5lecr8DhTQVA74XMM9M3p18A0VzLRMKnlZFwuJjSccofXg6DHdKhOGh5ayJlAWAfSspvSznVEJ2vUk68jNr7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BEWU3Wx3; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5688x6tr1130369;
+	Tue, 8 Jul 2025 03:59:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751965146;
+	bh=05bzV+7pVgK0xkuS4bOv5lonEtNXKdCiWXnC9OjSmQY=;
+	h=From:To:CC:Subject:Date;
+	b=BEWU3Wx39ZBKdWnLEGuajRdQBMCUeH5upuTDCTvTja7v4NPzwm2mJh2WvH7Fio/n2
+	 94xKCeUiQi4jG1wejXdgKwC9DgbBzgwOUI+vR6osWy39Q3BelQSutDUEFX3HlECe79
+	 bU3aJ4qQkfgp19OcAt/Ndr4+kK8cnuFFoK6Ly20o=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5688x53j3112944
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 8 Jul 2025 03:59:06 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 8
+ Jul 2025 03:59:05 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 8 Jul 2025 03:59:05 -0500
+Received: from localhost (ula0502350.dhcp.ti.com [172.24.227.38])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5688x4Pl1787457;
+	Tue, 8 Jul 2025 03:59:05 -0500
+From: Paresh Bhagat <p-bhagat@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <khasim@ti.com>, <v-singh1@ti.com>, <afd@ti.com>, <bb@ti.com>,
+        <devarsht@ti.com>, <s-vadapalli@ti.com>, <andrew@lunn.ch>
+Subject: [PATCH v7 0/4] Add support for AM62D2 SoC and EVM
+Date: Tue, 8 Jul 2025 14:28:35 +0530
+Message-ID: <20250708085839.1498505-1-p-bhagat@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250627152918.2606728-1-wens@kernel.org> <20250627152918.2606728-2-wens@kernel.org>
- <20250708-capable-caiman-of-feminism-9dfef2@krzk-bin>
-In-Reply-To: <20250708-capable-caiman-of-feminism-9dfef2@krzk-bin>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 8 Jul 2025 16:55:03 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66SvNmWGYSfVdDfBdRjSz0mQ=f0HHFnQ9eSXSe7fVMEVg@mail.gmail.com>
-X-Gm-Features: Ac12FXzLrfMehixQaVjm6pOEjtJAPHoo0j9_l4de3O9Fupbjy73Y0-TvdN1ohlY
-Message-ID: <CAGb2v66SvNmWGYSfVdDfBdRjSz0mQ=f0HHFnQ9eSXSe7fVMEVg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: power: Add A523 PPU and PCK600 power controllers
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andre Przywara <andre.przywara@arm.com>, linux-sunxi@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Jul 8, 2025 at 4:47=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On Fri, Jun 27, 2025 at 11:29:15PM +0800, Chen-Yu Tsai wrote:
-> > From: Chen-Yu Tsai <wens@csie.org>
-> >
-> > The A523 PPU is likely the same kind of hardware seen on previous SoCs.
-> >
-> > The A523 PCK600, as the name suggests, is likely a customized version
-> > of ARM's PCK-600 power controller. Comparing the BSP driver against
-> > ARM's PPU datasheet shows that the basic registers line up, but
-> > Allwinner's hardware has some additional delay controls in the reserved
-> > register range. As such it is likely not fully compatible with the
-> > standard ARM version.
-> >
-> > Document A523 PPU and PCK600 compatibles.
-> >
-> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> > ---
-> >  .../bindings/power/allwinner,sun20i-d1-ppu.yaml   |  2 ++
-> >  .../power/allwinner,sun55i-a523-pck600.h          | 15 +++++++++++++++
-> >  .../dt-bindings/power/allwinner,sun55i-a523-ppu.h | 12 ++++++++++++
-> >  3 files changed, 29 insertions(+)
-> >  create mode 100644 include/dt-bindings/power/allwinner,sun55i-a523-pck=
-600.h
-> >  create mode 100644 include/dt-bindings/power/allwinner,sun55i-a523-ppu=
-.h
-> >
-> > diff --git a/Documentation/devicetree/bindings/power/allwinner,sun20i-d=
-1-ppu.yaml b/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-pp=
-u.yaml
-> > index f578be6a3bc8..b9f550994512 100644
-> > --- a/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.y=
-aml
-> > @@ -18,6 +18,8 @@ properties:
-> >      enum:
-> >        - allwinner,sun20i-d1-ppu
-> >        - allwinner,sun8i-v853-ppu
-> > +      - allwinner,sun55i-a523-ppu
-> > +      - allwinner,sun55i-a523-pck-600
->
-> Don't add items at the end, but placed in alphabetical order. Could be
-> natural sort if you insist, but binding does not use it.
+This patch series adds support for the AM62D SoC and its evaluation
+module (EVM) board, enable eMMC and firmware-name update for
+AM62D2-EVM board.
 
-In our other bindings [1][2] we have them sorted by family (sunXYi)
-then by SoC name. I can move sun20i-d1-ppu after sun8i-v853-ppu to get
-that ordering. Obviously "-pck-600" would come before "-ppu".
+The AM62D SoC is a high-performance Digital Signal Processing (DSP)
+device with a quad-core Cortex-A53 cluster, dual Cortex-R5F cores,
+and a Cx7 DSP core with Matrix Multiplication Accelerator (MMA).
+It features a range of peripherals, including multichannel audio
+serial ports, Ethernet, UARTs, SPI, I2C, USB, and more.
 
-Would that work for you?
+The EVM board is a low-cost, expandable platform designed for the AM62D2
+SoC, having 4GB LPDDR4 RAM, Gigabit Ethernet expansion connectors, audio
+jacks, USB ports, and more.
 
-[1] Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-contr=
-ol.yaml
-[2] Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
+This SoC is part K3 AM62x family, which includes the AM62A and AM62P
+variants. While the AM62A and AM62D are largely similar, the AM62D is
+specifically targeted for general-purpose DSP applications, whereas the
+AM62A focuses on edge AI workloads. A key distinction is that the AM62D
+does not include multimedia components such as the video encoder/decoder,
+MJPEG encoder, Vision Processing Accelerator (VPAC) for image signal
+processing, or the display subsystem. Additionally, the AM62D has a
+different pin configuration compared to the AM62A, which impacts embedded
+software development.
 
-(There are some out of order entries regardless.)
+This patch series includes updates to the dts and dtsi files, device tree
+bindings, and pin control header files to support the AM62D SoC and EVM
+board.
 
-> >    reg:
-> >      maxItems: 1
-> > diff --git a/include/dt-bindings/power/allwinner,sun55i-a523-pck600.h b=
-/include/dt-bindings/power/allwinner,sun55i-a523-pck600.h
-> > new file mode 100644
-> > index 000000000000..6b3d8ea7bb69
-> > --- /dev/null
-> > +++ b/include/dt-bindings/power/allwinner,sun55i-a523-pck600.h
->
-> Filename matching compatible (which ever one is correct).
+Bootlog-
 
-Ack. Will change to "allwinner,sun55i-a523-pck-600.h".
+SD Card
+https://gist.github.com/paresh-bhagat12/1757cc54a39f1baf883341af2a383db6
 
-Thanks
-ChenYu
+eMMC
+https://gist.github.com/paresh-bhagat12/36c756422ff71fa9568c45e9b44332f0
+
+Tech Ref Manual-https://www.ti.com/lit/pdf/sprujd4
+Schematics Link-https://www.ti.com/lit/zip/sprcal5
+
+Change Log:
+V6 -> V7:
+	- Remove alignment property from reserved memory nodes which are
+	  no-map.
+	- Updated comments regarding deletion of nodes(vpu and e5010).
+
+V5 -> V6:
+	- Deleted vpu and codec node instead of disable.
+	- Enabled heartbeat LED.
+	- Removed bootph-all property from parent nodes.
+	- Misc dts changes/correction as suggested.
+
+V4 -> V5:
+	- Added bootph-all property only in leaf node.
+	- Added a new dtsi file for am62d2 SOC.
+	- Updated commit msg and description for dt bindings patch.
+	- Updated cpsw_port node for rx internal delays. This change also
+	  depends on this series for functionality (networking)
+	  https://lore.kernel.org/r/cover.1750756583.git.matthias.schiffer@ew.tq-group.com/
+	- Updated device tree to follow ordering of properties and
+	  schematic.
+	  https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+
+V3 -> V4:
+	- Added bootph-all property at source nodes.
+	- Reuse dtsi files of am62a (instead of common files).
+	- Added eMMC support.
+	- Updated firmware name for am62d.
+
+V2 -> V3:
+	- Added bootph-all property to essential device nodes.
+	- Updated reserved memory for ATF.
+	- Introduce common dtsi files for AM62A and AM62D.
+
+V1 -> V2: Fixed indentation and build errors.
+
+Paresh Bhagat (4):
+  arm64: dts: ti: Add bootph property to nodes at source for am62a
+  dt-bindings: arm: ti: Add AM62D2 SoC and Boards
+  arm64: dts: ti: Add pinctrl entries for AM62D2 family of SoCs
+  arm64: dts: ti: Add support for AM62D2-EVM
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   6 +
+ arch/arm64/boot/dts/ti/Makefile               |   3 +
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     |  13 +
+ arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi   |   2 +
+ arch/arm64/boot/dts/ti/k3-am62d2-evm.dts      | 615 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62d2.dtsi         |  20 +
+ arch/arm64/boot/dts/ti/k3-pinctrl.h           |   3 +
+ 7 files changed, 662 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62d2.dtsi
+
+-- 
+2.34.1
+
 
