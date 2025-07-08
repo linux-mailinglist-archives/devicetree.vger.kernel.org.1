@@ -1,130 +1,100 @@
-Return-Path: <devicetree+bounces-194169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB44AAFCF98
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:47:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A200AFCFB5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:51:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA6C53B77F9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 15:47:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 391C81770BE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 15:50:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F5192E1C7A;
-	Tue,  8 Jul 2025 15:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DFFB2E06DC;
+	Tue,  8 Jul 2025 15:50:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OpHqpEe4"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="j1RQVjxw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58ACF2E040C;
-	Tue,  8 Jul 2025 15:47:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A775C221D87;
+	Tue,  8 Jul 2025 15:50:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751989650; cv=none; b=Z1OkQckhVNVfIPC1uJn9v9/h8NUI2D1eA8U0WQOYW6LGDiu4JZ7WtnzxfqWffHYy2z3Xp+BuereoWp8w9ul0zamOPUfmwn0xIMEPa8rrKFxsf1IadKD2wtAOQS9nBcum9NjxYv0IrB7PDxDTGyYGbyqZHsDdT3spz8ZAfVc/z9U=
+	t=1751989819; cv=none; b=TGPm4S6J56mLsjR/wu+qhQrJxbdmVqlqw29dhbArfRu7GIti2CjEr4l5gRIVmcGL9tNaOLaCp3DUX0MWyRY8k++nB3Gua9lUIHHotQhGm2rKpdaTFVObrY1RVEK52TIJylhOoey+ir7n5FM/LZktBtVdsKfunbwHLUMNystMjAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751989650; c=relaxed/simple;
-	bh=9FILRncBVkMcWlg7bphOJ6WLT1i1sMQ9/aj0fvNpAZE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X6vihYCez+Dg/LBI3mVPhPx6AJDYvvd1sZwVc+6eLVCmC1/iIXcl3n4T2RJknJDM1BMmWQAFeJy7Ty76hWx7bUY69o038rp72cEg0rrhEYlTNJrQmksDN43D+02UP9bmoQVatyHEZAJonxKVXKB4jZJjVuaEoJVUJWuV62T/UU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OpHqpEe4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B1F2C4CEF6;
-	Tue,  8 Jul 2025 15:47:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751989649;
-	bh=9FILRncBVkMcWlg7bphOJ6WLT1i1sMQ9/aj0fvNpAZE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OpHqpEe4OJt3bSjV0GUV+OV+vE84DzupQmimawIBkC7W8Q3987d9H0T+FmyqDObRl
-	 qaJk7QZyhb7Qrh10gnyUhjRCAnJ5asunOFgJdKK0ypjqL7oi65ly6g4FYaRRWFIpBS
-	 NuPGe4Kc0IAJzpoIRoIkmAHTxZJ3BcTJMQz2mqNhr7BjtaNGWICFOghXQA3Togbjj0
-	 1IsYpFiaeTjTiLA3LXY3hRwJCzXt7BIK8YyRG8/ja13u7CJWQYCxgzzG+DCDUxurFL
-	 2kKot4Hd5hJRA1+p745XmCkLo4s7X4KvupJiK6AZz9ZMD9aNP+Y/X5t0p83WdFfYIG
-	 NWS+0uhXE9iog==
-Date: Tue, 8 Jul 2025 10:47:28 -0500
-From: Rob Herring <robh@kernel.org>
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1751989819; c=relaxed/simple;
+	bh=lXcwdp32iiymNLFQz/K2sNz47GpZk/42dMVTvWiz2ZQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Y1ZbThhcUWQLEM86aZTAyZSuwt1EKodsJdvcoRgP02qza6jD0HqfYx5Hne6l43VUElZcpHUd/ICM5GZ+mzyeDFTepasHEPfoFC1aArE9k05NeS5acnrWBvGYCUjfUI6Etdyqz1/VVCzml4BpWq6KWygxPXhrlj2FcSEBQpxGt90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=j1RQVjxw; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1751989815;
+	bh=lXcwdp32iiymNLFQz/K2sNz47GpZk/42dMVTvWiz2ZQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=j1RQVjxwIoVnBJQKqwktgowBn2Rb1sYctGTO9LFC5kbxzwSJXNTuDeBa2c5669kxW
+	 hKhorN+7Jg5tfls4P+XvkoRizppcY4MVJ/q+OVre3i0+ZecIhl9KfoGRyXDDq8iaIG
+	 mD8HO5CcDiPIjj7l7RVzYpNnxsOay70RRPPvTirlgNXuJX591wiBMKCorhziCmiKEP
+	 0F4JBfzKCKwB/KJb0XDjfKXkjwjqESasXscCGRyvdlyfefUI7vXbkVYFtV2FL+AukZ
+	 kMjS4O6ocYfvnx4BVSeSYEukg+zhkMIdydyhUj5QJC6uFLjhUGYtqwVbE5L755M8ez
+	 CIZVqx+ZdzAAQ==
+Received: from trenzalore.hitronhub.home (unknown [23.233.251.139])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: detlev)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2541D17E0F34;
+	Tue,  8 Jul 2025 17:50:14 +0200 (CEST)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Stephen Chen <stephen@radxa.com>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 03/10] dt-bindings: display: rockchip,dw-mipi-dsi:
- Drop address/size cells
-Message-ID: <20250708154728.GA401802-robh@kernel.org>
-References: <20250629123840.34948-1-didi.debian@cknow.org>
- <20250629123840.34948-4-didi.debian@cknow.org>
+	linux-rockchip@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH] arm64: dts: rockchip: Add UFS support on the ROCK 4D
+Date: Tue,  8 Jul 2025 11:50:10 -0400
+Message-ID: <20250708155010.401446-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250629123840.34948-4-didi.debian@cknow.org>
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jun 29, 2025 at 02:34:44PM +0200, Diederik de Haas wrote:
-> When the dw-mipi-dsi binding was initially added in commit
-> a20d86e7f964 ("Documentation: dt-bindings: Add bindings for rk3288 DW MIPI DSI driver")
-> the #address-cells and #size-cells were added as required properties.
-> 
-> When the binding was converted to yaml format in commit
-> 0dac2102cf6b ("dt-bindings: display: rockchip: convert dw_mipi_dsi_rockchip.txt to yaml")
-> those properties were demoted to optional and removed from the binding
-> example.
-> 
-> As for the compatibles:
-> - rockchip,px30-mipi-dsi      removed in this patch set
-> - rockchip,rk3128-mipi-dsi    never used
-> - rockchip,rk3288-mipi-dsi    added (invalid); later removed [1]
-> - rockchip,rk3399-mipi-dsi    removed in this patch set
-> - rockchip,rk3568-mipi-dsi    never used
-> - rockchip,rv1126-mipi-dsi    proposed (invalid); never accepted [2]
-> 
-> [1] 282e2e078ba5 ("ARM: dts: rockchip: Remove #address/#size-cells from rk3288 mipi_dsi")
-> [2] https://lore.kernel.org/all/20230731110012.2913742-12-jagan@edgeble.ai/
-> 
-> The #address-cells and #size-cells are useful (and required) in the
-> ports node and for panel(s), but those properties are declared in their
-> schemas already. Now that there are no remaining users, remove these
-> properties from the Rockchip specific extensions of the Synopsys
-> DesignWare MIPI DSI host controller.
+This device supports removable UFS chips, add support for it.
 
-The change is fine, but your reasoning is flawed. These properties are 
-used if you define DSI devices on the "DSI bus" where the address of the 
-child devices are the DSI virtual channel. Often though that's just 0 
-and not really used, so you don't need it. 
+Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-The change is fine because these properties are defined in 
-dsi-controller.yaml, so specifying them here is redundant.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
+index 6756403111e70..c7b65ef588bb8 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
+@@ -730,6 +730,10 @@ &uart0 {
+ 	status = "okay";
+ };
+ 
++&ufshc {
++	status = "okay";
++};
++
+ &usb_drd1_dwc3 {
+ 	dr_mode = "host";
+ 	status = "okay";
+-- 
+2.50.0
 
-> 
-> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
-> ---
->  .../bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml     | 6 ------
->  1 file changed, 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml
-> index ccd71c5324af..0881e82deb11 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml
-> @@ -58,12 +58,6 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> -  "#address-cells":
-> -    const: 1
-> -
-> -  "#size-cells":
-> -    const: 0
-> -
->  required:
->    - compatible
->    - clocks
-> -- 
-> 2.50.0
-> 
 
