@@ -1,489 +1,401 @@
-Return-Path: <devicetree+bounces-193879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93394AFC1CC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:50:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC007AFC1D6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:58:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1003E1AA4E61
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 04:50:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9B7F424F24
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 04:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F2621A447;
-	Tue,  8 Jul 2025 04:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93791218AC4;
+	Tue,  8 Jul 2025 04:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UfniWL+P"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Xwk6umjj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53EB12192EB;
-	Tue,  8 Jul 2025 04:49:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7963243ABC
+	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 04:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751950196; cv=none; b=ECSjaOGiE+sHHfpPX8wrvpPDqTsbbHOXtqklXclNZhKV7uVj6gDsvX8ve1RXWKmuobs6jLllCGk3m3VGcOKQSrEHQAeJ2vVr8/tKxRmWhNCCGw4tIjXVd46pI3hDlz/S3s/SA+qatmL8rq0Yy3CVoIBctbqZV0Zs0TwZygWG7Y4=
+	t=1751950676; cv=none; b=Mos5I+60VDjHzSbqaUfANCABxI/rKEextoOAeEl/Fz1yfjYo9TFml7GA2nSinfDC+FTt5OHRaNYb9k9wjcNQg6HoOhvq1wo0dL97lWZmIMSU84K35xYKHuCTEUzKp3ebImXeCBQh5PLiGX14bbspmdP3y3CodzCQSQcg/FQNs/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751950196; c=relaxed/simple;
-	bh=Mg5I9GQaPwUd+79TO7AVQNChtWaRs7LbsN5ONrDkgus=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PdzUndBQPqM42k3S/rOgQ2YW8ejrcMQYi4cLBwvCsGnCEOaOLadDrcasQSB5UhCh/GnMIEq91pI5K+6+qpdhSnGYOJCfOmRnsRSoNMcGpUXrCi6D70FyHAU/MipiZ0lskOTKC7HTmQcVMiTLE8fStzAC4DApMPgfyVBHnzOlGRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UfniWL+P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E255CC4CEFF;
-	Tue,  8 Jul 2025 04:49:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751950195;
-	bh=Mg5I9GQaPwUd+79TO7AVQNChtWaRs7LbsN5ONrDkgus=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=UfniWL+Paqj5XH3tGIdVC4ib3QP09x0oldGrm5p5sn1PFKrHio1H47jmHmPRYt0dR
-	 lkBgDv4wxq/4xK6a/+n6LKj1mcZf5FgVh9zJuozYyodqpRigCpxwCyYHlT28DB6k/K
-	 XgckI7ciuj+Dh2YfXPOeaXDDawDP/L+Kq0kBxE2hZYDR0oW/RYYpketvJ93rZ638rm
-	 ZWJsWI9uuNyNOXcYiFjaoYOhhaksQ9uMK6KpqYgx22cp0Ft3MR4RV19HS+ufkQiW4s
-	 mtuLYOeY0DlcUsE2ZXUu0LNWIc6Mxq8ZoHYkZ+rIFQOHYWRCOGh0VdIjkkpkmnr3c9
-	 nucsEV6h1yWpg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D9C42C83F09;
-	Tue,  8 Jul 2025 04:49:55 +0000 (UTC)
-From: Mahesh Rao via B4 Relay <devnull+mahesh.rao.altera.com@kernel.org>
-Date: Tue, 08 Jul 2025 12:49:10 +0800
-Subject: [PATCH RESEND v5 5/5] firmware: stratix10-rsu: Migrate RSU driver
- to use stratix10 asynchronous framework.
+	s=arc-20240116; t=1751950676; c=relaxed/simple;
+	bh=nwGhH6xhkLdjP9u4mplrlzeNjq7sGact2Xr7G5UTzrg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VZp5nS2zcYcc4emOmo34Ie/AsDv0fPQuN4qmZSJOP5bn6AizWaZFNxpBPXQC2pxmcmNgVE+KnsoT6ungABY9uARs7GGdblPjFdQ0/IY1moUoRzL04MU/qO3+omaga4b/CMoHK4bSuV76oOnNFA20e3IcuHr5evOpfBTDycbeFGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Xwk6umjj; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-553b16a0e38so4254570e87.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 21:57:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1751950673; x=1752555473; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Vr5j3HktXmdBuql9hRLpcA8htD63sRgEruV9zFxQJSk=;
+        b=Xwk6umjjws3+OkDpI76uwIt6lnJKwGVOM/ZP4KtzghpNaoU77DsOwD+Y6cVIb2lys8
+         Q0jwFMV49/IOySrJFtunbbNIasmqGjhSpXC9qktUNq6/T1iCqYQrWd4OU57vijxtOegG
+         04ZsXdivfhmiadQoC1TceIQuxbs6wul/4fwM8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751950673; x=1752555473;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Vr5j3HktXmdBuql9hRLpcA8htD63sRgEruV9zFxQJSk=;
+        b=TF3NicLlwSKQrMnWdMeQD7Fmwo/yoXOzmETfhtWv4yZidaIR1Va2pXz9c1LwVQmMi6
+         iwMnxK9DvYQPrTFNWvx/piwWU7u339Qi+BuLZWTpIdtWxlnfPuKNX+pjLg2QiDp/2wwI
+         E+LAnr8XFmU+UL41WfR3Wac7Z6guUWQqhN2iYfFocLPJhIo3guZQbzBPTmbG+wibPoBv
+         YwXCRmqf7k6ZJpkZW1INcPnekBZcvnqMiJ4gHkJxYQg1nuTrGwivTnX/KCRhmsear9OC
+         wLmp5OQensPEgZlO7KMtPEzWr5WEoKbrQ0GQTtUfjhFMr0GrG4fu4DqowNUiTQkaQGTe
+         rCXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUqWHipkpPdtNARmrM7BWgnNW7ytDO4Zv6CXRQNdcCcZFr11i3J7+sDgeoqyKr3AgIFEYR83/hSKNYD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzei6tNBs3RaNkVgwWaYgMEGy51KuTDRfVOFIQU2z4fquXgXWAU
+	6icj19nS07YVgzNHhrsGNW7+EYt0h/QNWdJ6uRTWneKfowN2xd8EZ8pgOFf4TXbOqAZSwMLZiMj
+	1LtVgGGkbV8MFnOdWPHJgkcnFdOhSmGDfV65c10Pa
+X-Gm-Gg: ASbGnctwu4F3hSVM2igNz1/HuXliOS0l7Y2mj5BlNF8THdaO96dwqjewVVOYN06wMBQ
+	/DEo2RUja2ujRN2+iUmHC9iU063dRco02id1DLHAaVElPr1ad6ngr9CE5t9WH2QZXBDcUuBw4MJ
+	RiGJdyPqimEJmrVDYjQY0ChfoGSgXIRvrYyHwJIfBKX/O2do1sP1G7Ay3qO9di5jyDIHOIo80=
+X-Google-Smtp-Source: AGHT+IGiKmRVVctKEN/87vc8xFNDgCG4gqbvI6NjBIPAZYuz9GsA3JMVpKP+W+7I3VmAlOaA1Oceumi0sItLoIdM0rg=
+X-Received: by 2002:a05:6512:ad2:b0:553:a456:a0d4 with SMTP id
+ 2adb3069b0e04-557f830d866mr441986e87.15.1751950672522; Mon, 07 Jul 2025
+ 21:57:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250708-sip_svc_upstream-v5-5-9c4289256d54@altera.com>
-References: <20250708-sip_svc_upstream-v5-0-9c4289256d54@altera.com>
-In-Reply-To: <20250708-sip_svc_upstream-v5-0-9c4289256d54@altera.com>
-To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>
-Cc: Matthew Gerlach <matthew.gerlach@altera.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1751950193; l=13278;
- i=mahesh.rao@altera.com; s=20250107; h=from:subject:message-id;
- bh=kI23gIa6PngF5SYH1gAyhV6qX0hobd+0qY9aPOd8c7U=;
- b=MfN761QNAFwiOfhDZz+i5iqVjtUyfAFw05Hs1SmtqpJMK+UQmEwpgF9309+lPQERF0j/0koxy
- x5AtmpcQLx1BzRHYOiuCGajtcNPPoy8OnCDq2cpsbgAIninLzzo9vVg
-X-Developer-Key: i=mahesh.rao@altera.com; a=ed25519;
- pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
-X-Endpoint-Received: by B4 Relay for mahesh.rao@altera.com/20250107 with
- auth_id=337
-X-Original-From: Mahesh Rao <mahesh.rao@altera.com>
-Reply-To: mahesh.rao@altera.com
+References: <20250707134451.154346-1-angelogioacchino.delregno@collabora.com> <20250707134451.154346-5-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250707134451.154346-5-angelogioacchino.delregno@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 8 Jul 2025 12:57:41 +0800
+X-Gm-Features: Ac12FXxoiikXF1-TFEleSvh2qQAz2WaU9ADuyjClvcWDyJXjaLPqVQRaBRPRGBU
+Message-ID: <CAGXv+5GbcyEEBaEhB1QY5uZ-CnKpvRgOYhqv==d72KXkVSSB3g@mail.gmail.com>
+Subject: Re: [PATCH v2 4/8] regulator: Add support for MediaTek MT6363 SPMI
+ PMIC Regulators
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	lgirdwood@gmail.com, broonie@kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Mahesh Rao <mahesh.rao@altera.com>
+Hi,
 
-* Add support for asynchronous communication to the
-  RSU client channel.
-* Migrate functions that communicate with the SDM
-  to use the asynchronous framework.
+On Mon, Jul 7, 2025 at 10:29=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Add a driver for the regulators found on the MT6363 PMIC, fully
+> controlled by SPMI interface.
+> This PMIC regulates voltage with an input range of 2.6-5.0V, and
+> features 10 buck converters and 26 LDOs.
+>
+> Link: https://lore.kernel.org/r/20250624073548.29732-5-angelogioacchino.d=
+elregno@collabora.com
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  drivers/regulator/Kconfig                  |    9 +
+>  drivers/regulator/Makefile                 |    1 +
+>  drivers/regulator/mt6363-regulator.c       | 1076 ++++++++++++++++++++
+>  include/linux/regulator/mt6363-regulator.h |  326 ++++++
+>  4 files changed, 1412 insertions(+)
+>  create mode 100644 drivers/regulator/mt6363-regulator.c
+>  create mode 100644 include/linux/regulator/mt6363-regulator.h
+>
+> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+> index 81f2acd0f960..d770e51f7ad1 100644
+> --- a/drivers/regulator/Kconfig
+> +++ b/drivers/regulator/Kconfig
+> @@ -936,6 +936,15 @@ config REGULATOR_MT6360
+>           2-channel buck with Thermal Shutdown and Overload Protection
+>           6-channel High PSRR and Low Dropout LDO.
+>
+> +config REGULATOR_MT6363
+> +       tristate "MT6363 SPMI PMIC regulator driver"
+> +       depends on SPMI || COMPILE_TEST
+> +       help
+> +          Say Y here to enable support for regulators found in the Media=
+Tek
+> +          MT6363 SPMI PMIC.
+> +         This driver supports the control of different power rails of de=
+vice
+> +         through regulator interface.
+> +
+>  config REGULATOR_MT6370
+>         tristate "MT6370 SubPMIC Regulator"
+>         depends on MFD_MT6370
+> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+> index 46c0e75f6107..41eaeac5547d 100644
+> --- a/drivers/regulator/Makefile
+> +++ b/drivers/regulator/Makefile
+> @@ -111,6 +111,7 @@ obj-$(CONFIG_REGULATOR_MT6357)      +=3D mt6357-regul=
+ator.o
+>  obj-$(CONFIG_REGULATOR_MT6358) +=3D mt6358-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6359) +=3D mt6359-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6360) +=3D mt6360-regulator.o
+> +obj-$(CONFIG_REGULATOR_MT6363) +=3D mt6363-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6370) +=3D mt6370-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6380) +=3D mt6380-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6397) +=3D mt6397-regulator.o
+> diff --git a/drivers/regulator/mt6363-regulator.c b/drivers/regulator/mt6=
+363-regulator.c
+> new file mode 100644
+> index 000000000000..ea7d4e4f38cb
+> --- /dev/null
+> +++ b/drivers/regulator/mt6363-regulator.c
+> @@ -0,0 +1,1076 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// Copyright (c) 2024 MediaTek Inc.
+> +// Copyright (c) 2025 Collabora Ltd
+> +//                    AngeloGioacchino Del Regno <angelogioacchino.delre=
+gno@collabora.com>
+> +
+> +#include <linux/delay.h>
+> +#include <linux/devm-helpers.h>
+> +#include <linux/err.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <linux/regulator/driver.h>
+> +#include <linux/regulator/machine.h>
+> +#include <linux/regulator/mt6363-regulator.h>
+> +#include <linux/regulator/of_regulator.h>
+> +
+> +#define MT6363_REGULATOR_MODE_NORMAL   0
+> +#define MT6363_REGULATOR_MODE_FCCM     1
+> +#define MT6363_REGULATOR_MODE_LP       2
+> +#define MT6363_REGULATOR_MODE_ULP      3
+> +
+> +#define EN_SET_OFFSET  0x1
+> +#define EN_CLR_OFFSET  0x2
+> +#define OP_CFG_OFFSET  0x5
+> +
+> +#define NORMAL_OP_CFG  0x10
+> +#define NORMAL_OP_EN   0x800000
+> +
+> +#define OC_IRQ_ENABLE_DELAY_MS         10
+> +
+> +/* Unlock keys for TMA and BUCK_TOP */
+> +#define MT6363_TMA_UNLOCK_VALUE                0x9c9c
+> +#define MT6363_BUCK_TOP_UNLOCK_VALUE   0x5543
+> +
+> +#define MT6363_RG_BUCK_EFUSE_RSV1      0x1447
+> +#define MT6363_RG_BUCK_EFUSE_RSV1_MASK GENMASK(7, 4)
+> +
+> +enum {
+> +       MT6363_ID_VS2,
+> +       MT6363_ID_VBUCK1,
+> +       MT6363_ID_VBUCK2,
+> +       MT6363_ID_VBUCK3,
+> +       MT6363_ID_VBUCK4,
+> +       MT6363_ID_VBUCK5,
+> +       MT6363_ID_VBUCK6,
+> +       MT6363_ID_VBUCK7,
+> +       MT6363_ID_VS1,
+> +       MT6363_ID_VS3,
 
-Signed-off-by: Mahesh Rao <mahesh.rao@altera.com>
----
- drivers/firmware/stratix10-rsu.c | 272 ++++++++++++++++++++-------------------
- 1 file changed, 142 insertions(+), 130 deletions(-)
+This ordering is a bit weird. Is there any particular reason for this?
+Order of the registers perhaps?
 
-diff --git a/drivers/firmware/stratix10-rsu.c b/drivers/firmware/stratix10-rsu.c
-index 1ea39a0a76c787c6396300734b636b4b3a0ae04d..53b67b242cf0afa4102340aa099cef66b642effa 100644
---- a/drivers/firmware/stratix10-rsu.c
-+++ b/drivers/firmware/stratix10-rsu.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-  * Copyright (C) 2018-2019, Intel Corporation
-+ * Copyright (C) 2025, Altera Corporation
-  */
- 
- #include <linux/arm-smccc.h>
-@@ -14,11 +15,9 @@
- #include <linux/firmware/intel/stratix10-svc-client.h>
- #include <linux/string.h>
- #include <linux/sysfs.h>
-+#include <linux/delay.h>
- 
--#define RSU_STATE_MASK			GENMASK_ULL(31, 0)
--#define RSU_VERSION_MASK		GENMASK_ULL(63, 32)
--#define RSU_ERROR_LOCATION_MASK		GENMASK_ULL(31, 0)
--#define RSU_ERROR_DETAIL_MASK		GENMASK_ULL(63, 32)
-+#define RSU_ERASE_SIZE_MASK		GENMASK_ULL(63, 32)
- #define RSU_DCMF0_MASK			GENMASK_ULL(31, 0)
- #define RSU_DCMF1_MASK			GENMASK_ULL(63, 32)
- #define RSU_DCMF2_MASK			GENMASK_ULL(31, 0)
-@@ -35,7 +34,8 @@
- #define INVALID_DCMF_STATUS		0xFFFFFFFF
- #define INVALID_SPT_ADDRESS		0x0
- 
--#define RSU_GET_SPT_CMD			0x5A
-+#define RSU_RETRY_SLEEP_MS		(1U)
-+#define RSU_ASYNC_MSG_RETRY		(3U)
- #define RSU_GET_SPT_RESP_LEN		(4 * sizeof(unsigned int))
- 
- typedef void (*rsu_callback)(struct stratix10_svc_client *client,
-@@ -64,7 +64,6 @@ typedef void (*rsu_callback)(struct stratix10_svc_client *client,
-  * @max_retry: the preset max retry value
-  * @spt0_address: address of spt0
-  * @spt1_address: address of spt1
-- * @get_spt_response_buf: response from sdm for get_spt command
-  */
- struct stratix10_rsu_priv {
- 	struct stratix10_svc_chan *chan;
-@@ -99,47 +98,32 @@ struct stratix10_rsu_priv {
- 
- 	unsigned long spt0_address;
- 	unsigned long spt1_address;
--
--	unsigned int *get_spt_response_buf;
- };
- 
-+typedef void (*rsu_async_callback)(struct device *dev,
-+	struct stratix10_rsu_priv *priv, struct stratix10_svc_cb_data *data);
-+
- /**
-- * rsu_status_callback() - Status callback from Intel Service Layer
-- * @client: pointer to service client
-+ * rsu_async_status_callback() - Status callback from rsu_async_send()
-+ * @dev: pointer to device object
-+ * @priv: pointer to priv object
-  * @data: pointer to callback data structure
-  *
-- * Callback from Intel service layer for RSU status request. Status is
-- * only updated after a system reboot, so a get updated status call is
-- * made during driver probe.
-+ * Callback from rsu_async_send() to get the system rsu error status.
-  */
--static void rsu_status_callback(struct stratix10_svc_client *client,
--				struct stratix10_svc_cb_data *data)
-+static void rsu_async_status_callback(struct device *dev,
-+				      struct stratix10_rsu_priv *priv,
-+				      struct stratix10_svc_cb_data *data)
- {
--	struct stratix10_rsu_priv *priv = client->priv;
--	struct arm_smccc_res *res = (struct arm_smccc_res *)data->kaddr1;
--
--	if (data->status == BIT(SVC_STATUS_OK)) {
--		priv->status.version = FIELD_GET(RSU_VERSION_MASK,
--						 res->a2);
--		priv->status.state = FIELD_GET(RSU_STATE_MASK, res->a2);
--		priv->status.fail_image = res->a1;
--		priv->status.current_image = res->a0;
--		priv->status.error_location =
--			FIELD_GET(RSU_ERROR_LOCATION_MASK, res->a3);
--		priv->status.error_details =
--			FIELD_GET(RSU_ERROR_DETAIL_MASK, res->a3);
--	} else {
--		dev_err(client->dev, "COMMAND_RSU_STATUS returned 0x%lX\n",
--			res->a0);
--		priv->status.version = 0;
--		priv->status.state = 0;
--		priv->status.fail_image = 0;
--		priv->status.current_image = 0;
--		priv->status.error_location = 0;
--		priv->status.error_details = 0;
--	}
--
--	complete(&priv->completion);
-+	struct arm_smccc_1_2_regs *res = (struct arm_smccc_1_2_regs *)data->kaddr1;
-+
-+	priv->status.current_image = res->a2;
-+	priv->status.fail_image = res->a3;
-+	priv->status.state = res->a4;
-+	priv->status.version = res->a5;
-+	priv->status.error_location = res->a7;
-+	priv->status.error_details = res->a8;
-+	priv->retry_counter = res->a9;
- }
- 
- /**
-@@ -163,32 +147,6 @@ static void rsu_command_callback(struct stratix10_svc_client *client,
- 	complete(&priv->completion);
- }
- 
--/**
-- * rsu_retry_callback() - Callback from Intel service layer for getting
-- * the current image's retry counter from the firmware
-- * @client: pointer to client
-- * @data: pointer to callback data structure
-- *
-- * Callback from Intel service layer for retry counter, which is used by
-- * user to know how many times the images is still allowed to reload
-- * itself before giving up and starting RSU fail-over flow.
-- */
--static void rsu_retry_callback(struct stratix10_svc_client *client,
--			       struct stratix10_svc_cb_data *data)
--{
--	struct stratix10_rsu_priv *priv = client->priv;
--	unsigned int *counter = (unsigned int *)data->kaddr1;
--
--	if (data->status == BIT(SVC_STATUS_OK))
--		priv->retry_counter = *counter;
--	else if (data->status == BIT(SVC_STATUS_NO_SUPPORT))
--		dev_warn(client->dev, "Secure FW doesn't support retry\n");
--	else
--		dev_err(client->dev, "Failed to get retry counter %lu\n",
--			BIT(data->status));
--
--	complete(&priv->completion);
--}
- 
- /**
-  * rsu_max_retry_callback() - Callback from Intel service layer for getting
-@@ -270,34 +228,19 @@ static void rsu_dcmf_status_callback(struct stratix10_svc_client *client,
- 	complete(&priv->completion);
- }
- 
--static void rsu_get_spt_callback(struct stratix10_svc_client *client,
--				 struct stratix10_svc_cb_data *data)
-+/**
-+ * rsu_async_get_spt_table_callback() - Callback to be used by the rsu_async_send()
-+ * to retrieve the SPT table information.
-+ * @dev: pointer to device object
-+ * @priv: pointer to priv object
-+ * @data: pointer to callback data structure
-+ */
-+static void rsu_async_get_spt_table_callback(struct device *dev,
-+					     struct stratix10_rsu_priv *priv,
-+					     struct stratix10_svc_cb_data *data)
- {
--	struct stratix10_rsu_priv *priv = client->priv;
--	unsigned long *mbox_err = (unsigned long *)data->kaddr1;
--	unsigned long *resp_len = (unsigned long *)data->kaddr2;
--
--	if (data->status != BIT(SVC_STATUS_OK) || (*mbox_err) ||
--	    (*resp_len != RSU_GET_SPT_RESP_LEN))
--		goto error;
--
--	priv->spt0_address = priv->get_spt_response_buf[0];
--	priv->spt0_address <<= 32;
--	priv->spt0_address |= priv->get_spt_response_buf[1];
--
--	priv->spt1_address = priv->get_spt_response_buf[2];
--	priv->spt1_address <<= 32;
--	priv->spt1_address |= priv->get_spt_response_buf[3];
--
--	goto complete;
--
--error:
--	dev_err(client->dev, "failed to get SPTs\n");
--
--complete:
--	stratix10_svc_free_memory(priv->chan, priv->get_spt_response_buf);
--	priv->get_spt_response_buf = NULL;
--	complete(&priv->completion);
-+	priv->spt0_address = *((unsigned long *)data->kaddr1);
-+	priv->spt1_address = *((unsigned long *)data->kaddr2);
- }
- 
- /**
-@@ -329,14 +272,6 @@ static int rsu_send_msg(struct stratix10_rsu_priv *priv,
- 	if (arg)
- 		msg.arg[0] = arg;
- 
--	if (command == COMMAND_MBOX_SEND_CMD) {
--		msg.arg[1] = 0;
--		msg.payload = NULL;
--		msg.payload_length = 0;
--		msg.payload_output = priv->get_spt_response_buf;
--		msg.payload_length_output = RSU_GET_SPT_RESP_LEN;
--	}
--
- 	ret = stratix10_svc_send(priv->chan, &msg);
- 	if (ret < 0)
- 		goto status_done;
-@@ -362,6 +297,95 @@ static int rsu_send_msg(struct stratix10_rsu_priv *priv,
- 	return ret;
- }
- 
-+/**
-+ * soc64_async_callback() - Callback from Intel service layer for async requests
-+ * @ptr: pointer to the completion object
-+ */
-+static void soc64_async_callback(void *ptr)
-+{
-+	if (ptr)
-+		complete(ptr);
-+}
-+
-+/**
-+ * rsu_send_async_msg() - send an async message to Intel service layer
-+ * @dev: pointer to device object
-+ * @priv: pointer to rsu private data
-+ * @command: RSU status or update command
-+ * @arg: the request argument, notify status
-+ * @callback: function pointer for the callback (status or update)
-+ */
-+static int rsu_send_async_msg(struct device *dev, struct stratix10_rsu_priv *priv,
-+			      enum stratix10_svc_command_code command,
-+			      unsigned long arg,
-+			      rsu_async_callback callback)
-+{
-+	struct stratix10_svc_client_msg msg = {0};
-+	struct stratix10_svc_cb_data data = {0};
-+	struct completion completion;
-+	int status, index, ret;
-+	void *handle = NULL;
-+
-+	msg.command = command;
-+	msg.arg[0] = arg;
-+
-+	init_completion(&completion);
-+
-+	for (index = 0; index < RSU_ASYNC_MSG_RETRY; index++) {
-+		status = stratix10_svc_async_send(priv->chan, &msg,
-+						  &handle, soc64_async_callback,
-+						  &completion);
-+		if (status == 0)
-+			break;
-+		dev_warn(dev, "Failed to send async message\n");
-+		msleep(RSU_RETRY_SLEEP_MS);
-+	}
-+
-+	if (status && !handle) {
-+		dev_err(dev, "Failed to send async message\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	ret = wait_for_completion_io_timeout(&completion, RSU_TIMEOUT);
-+	if (ret > 0)
-+		dev_dbg(dev, "Received async interrupt\n");
-+	else if (ret == 0)
-+		dev_dbg(dev, "Timeout occurred. Trying to poll the response\n");
-+
-+	for (index = 0; index < RSU_ASYNC_MSG_RETRY; index++) {
-+		status = stratix10_svc_async_poll(priv->chan, handle, &data);
-+		if (status == -EAGAIN) {
-+			dev_dbg(dev, "Async message is still in progress\n");
-+		} else if (status < 0) {
-+			dev_alert(dev, "Failed to poll async message\n");
-+			ret = -ETIMEDOUT;
-+		} else if (status == 0) {
-+			ret = 0;
-+			break;
-+		}
-+		msleep(RSU_RETRY_SLEEP_MS);
-+	}
-+
-+	if (ret) {
-+		dev_err(dev, "Failed to get async response\n");
-+		goto status_done;
-+	}
-+
-+	if (data.status == 0) {
-+		ret = 0;
-+		if (callback)
-+			callback(dev, priv, &data);
-+	} else {
-+		dev_err(dev, "%s returned 0x%x from SDM\n", __func__,
-+			data.status);
-+		ret = -EFAULT;
-+	}
-+
-+status_done:
-+	stratix10_svc_async_done(priv->chan, handle);
-+	return ret;
-+}
-+
- /*
-  * This driver exposes some optional features of the Intel Stratix 10 SoC FPGA.
-  * The sysfs interfaces exposed here are FPGA Remote System Update (RSU)
-@@ -597,27 +621,20 @@ static ssize_t notify_store(struct device *dev,
- 	if (ret)
- 		return ret;
- 
--	ret = rsu_send_msg(priv, COMMAND_RSU_NOTIFY,
--			   status, rsu_command_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_NOTIFY, status, NULL);
- 	if (ret) {
- 		dev_err(dev, "Error, RSU notify returned %i\n", ret);
- 		return ret;
- 	}
- 
- 	/* to get the updated state */
--	ret = rsu_send_msg(priv, COMMAND_RSU_STATUS,
--			   0, rsu_status_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_STATUS, 0,
-+				 rsu_async_status_callback);
- 	if (ret) {
- 		dev_err(dev, "Error, getting RSU status %i\n", ret);
- 		return ret;
- 	}
- 
--	ret = rsu_send_msg(priv, COMMAND_RSU_RETRY, 0, rsu_retry_callback);
--	if (ret) {
--		dev_err(dev, "Error, getting RSU retry %i\n", ret);
--		return ret;
--	}
--
- 	return count;
- }
- 
-@@ -737,12 +754,19 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		return PTR_ERR(priv->chan);
- 	}
- 
-+	ret = stratix10_svc_add_async_client(priv->chan, false);
-+	if (ret) {
-+		dev_err(dev, "failed to add async client\n");
-+		stratix10_svc_free_channel(priv->chan);
-+		return ret;
-+	}
-+
- 	init_completion(&priv->completion);
- 	platform_set_drvdata(pdev, priv);
- 
- 	/* get the initial state from firmware */
--	ret = rsu_send_msg(priv, COMMAND_RSU_STATUS,
--			   0, rsu_status_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_STATUS, 0,
-+				 rsu_async_status_callback);
- 	if (ret) {
- 		dev_err(dev, "Error, getting RSU status %i\n", ret);
- 		stratix10_svc_free_channel(priv->chan);
-@@ -763,12 +787,6 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		stratix10_svc_free_channel(priv->chan);
- 	}
- 
--	ret = rsu_send_msg(priv, COMMAND_RSU_RETRY, 0, rsu_retry_callback);
--	if (ret) {
--		dev_err(dev, "Error, getting RSU retry %i\n", ret);
--		stratix10_svc_free_channel(priv->chan);
--	}
--
- 	ret = rsu_send_msg(priv, COMMAND_RSU_MAX_RETRY, 0,
- 			   rsu_max_retry_callback);
- 	if (ret) {
-@@ -776,18 +794,12 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		stratix10_svc_free_channel(priv->chan);
- 	}
- 
--	priv->get_spt_response_buf =
--		stratix10_svc_allocate_memory(priv->chan, RSU_GET_SPT_RESP_LEN);
- 
--	if (IS_ERR(priv->get_spt_response_buf)) {
--		dev_err(dev, "failed to allocate get spt buffer\n");
--	} else {
--		ret = rsu_send_msg(priv, COMMAND_MBOX_SEND_CMD,
--				   RSU_GET_SPT_CMD, rsu_get_spt_callback);
--		if (ret) {
--			dev_err(dev, "Error, getting SPT table %i\n", ret);
--			stratix10_svc_free_channel(priv->chan);
--		}
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_GET_SPT_TABLE, 0,
-+				 rsu_async_get_spt_table_callback);
-+	if (ret) {
-+		dev_err(dev, "Error, getting SPT table %i\n", ret);
-+		stratix10_svc_free_channel(priv->chan);
- 	}
- 
- 	return ret;
+> +       MT6363_ID_VBUCK1_SSHUB,
+> +       MT6363_ID_VBUCK2_SSHUB,
+> +       MT6363_ID_VBUCK4_SSHUB,
+> +       MT6363_ID_VSRAM_DIGRF,
+> +       MT6363_ID_VSRAM_MDFE,
+> +       MT6363_ID_VSRAM_MODEM,
+> +       MT6363_ID_VSRAM_CPUB,
+> +       MT6363_ID_VSRAM_CPUM,
+> +       MT6363_ID_VSRAM_CPUL,
+> +       MT6363_ID_VSRAM_APU,
+> +       MT6363_ID_VEMC,
+> +       MT6363_ID_VCN13,
+> +       MT6363_ID_VTREF18,
+> +       MT6363_ID_VAUX18,
+> +       MT6363_ID_VCN15,
+> +       MT6363_ID_VUFS18,
+> +       MT6363_ID_VIO18,
+> +       MT6363_ID_VM18,
+> +       MT6363_ID_VA15,
+> +       MT6363_ID_VRF18,
+> +       MT6363_ID_VRFIO18,
+> +       MT6363_ID_VIO075,
+> +       MT6363_ID_VUFS12,
+> +       MT6363_ID_VA12_1,
+> +       MT6363_ID_VA12_2,
+> +       MT6363_ID_VRF12,
+> +       MT6363_ID_VRF13,
+> +       MT6363_ID_VRF09,
+> +       MT6363_ID_ISINK_LOAD
+> +};
+> +
 
--- 
-2.35.3
+[...]
 
+> +#define MT6363_LDO_LINEAR_OPS(match, vreg, vops, min, max, step,       \
+> +                             en_reg, en_bit, vs_reg, vs_mask,          \
+> +                             lp_reg, lp_bit)                           \
+> +[MT6363_ID_##vreg] =3D {                                                =
+ \
+> +       .desc =3D {                                                      =
+ \
+> +               .name =3D match,                                         =
+ \
+> +               .of_match =3D of_match_ptr(match),                       =
+ \
+> +               .ops =3D &vops,                                          =
+ \
+> +               .type =3D REGULATOR_VOLTAGE,                             =
+ \
+> +               .id =3D MT6363_ID_##vreg,                                =
+ \
+> +               .owner =3D THIS_MODULE,                                  =
+ \
+> +               .n_voltages =3D (max - min) / step + 1,                  =
+ \
+> +               .min_uV =3D min,                                         =
+ \
+> +               .uV_step =3D step,                                       =
+ \
+> +               .enable_reg =3D en_reg,                                  =
+ \
+> +               .enable_mask =3D BIT(en_bit),                            =
+ \
+> +               .vsel_reg =3D vs_reg,                                    =
+ \
+> +               .vsel_mask =3D vs_mask,                                  =
+ \
+> +               .of_map_mode =3D mt6363_map_mode,                        =
+ \
+> +       },                                                              \
+> +       .lp_mode_reg =3D lp_reg,                                         =
+ \
+> +       .lp_mode_mask =3D BIT(lp_bit),                                   =
+ \
+> +       .hw_lp_mode_reg =3D MT6363_LDO_##vreg##_HW_LP_MODE,              =
+ \
+> +       .hw_lp_mode_mask =3D 0x4,                                        =
+ \
+> +}
 
+Some of the LDOs have an extra "calibration" setting that can tweak
+the output in 0.01V intervals. Could we support that. At least for
+VRF12, VRF13, VRF18, the default is an extra 0.04V. It would be
+misleading for the DT to specify 1.8V while the regulator is actually
+outputting 1.84V.
+
+You could look at the MT6358 driver to see how I implemented it.
+
+[...]
+
+> +static irqreturn_t mt6363_oc_isr(int irq, void *data)
+> +{
+> +       struct regulator_dev *rdev =3D (struct regulator_dev *)data;
+> +       struct mt6363_regulator_info *info =3D rdev_get_drvdata(rdev);
+> +
+> +       disable_irq_nosync(info->irq);
+> +
+> +       if (regulator_is_enabled_regmap(rdev))
+> +               regulator_notifier_call_chain(rdev, REGULATOR_EVENT_OVER_=
+CURRENT, NULL);
+> +
+> +       schedule_delayed_work(&info->oc_work, msecs_to_jiffies(OC_IRQ_ENA=
+BLE_DELAY_MS));
+
+Is this needed for debouncing?
+
+> +
+> +       return IRQ_HANDLED;
+> +}
+> +
+> +static int mt6363_set_ocp(struct regulator_dev *rdev, int lim, int sever=
+ity, bool enable)
+> +{
+> +       struct mt6363_regulator_info *info =3D rdev_get_drvdata(rdev);
+> +
+> +       /* MT6363 supports only enabling protection and does not support =
+limits */
+> +       if (lim || severity !=3D REGULATOR_SEVERITY_PROT || !enable)
+> +               return -EINVAL;
+> +
+> +       /* If there is no OCP interrupt, there's nothing to set */
+> +       if (info->irq <=3D 0)
+> +               return -EINVAL;
+
+-EOPNOTSUPP instead? One gives an error while the other gives a warning.
+
+> +
+> +       return devm_request_threaded_irq(&rdev->dev, info->irq, NULL,
+> +                                        mt6363_oc_isr, IRQF_ONESHOT,
+> +                                        info->desc.name, rdev);
+> +}
+> +
+
+[...]
+
+> +/* The array is indexed by id(MT6363_ID_XXX) */
+> +static struct mt6363_regulator_info mt6363_regulators[] =3D {
+> +       MT6363_BUCK("buck-vs2", VS2, 0, 1600000, 12500,
+> +                   MT6363_RG_BUCK0_EN_ADDR,
+> +                   MT6363_RG_BUCK_VS2_EN_BIT,
+> +                   MT6363_RG_BUCK_VS2_VOSEL_ADDR,
+> +                   MT6363_RG_BUCK_VS2_VOSEL_MASK,
+> +                   MT6363_RG_BUCK0_LP_ADDR,
+> +                   MT6363_RG_BUCK_VS2_LP_BIT,
+> +                   MT6363_RG_BUCK0_FCCM_ADDR,
+> +                   MT6363_RG_VS2_FCCM_BIT),
+
+All this doesn't need to be spelled out. Perhaps you could use some
+preprocessor magic to assemble all the register names so that the
+entry could be simplified to just
+
+        MT6363_BUCK("buck-vs2", VS2, 0, 1600000, 12500,
+MT6363_RG_BUCK0_FCCM_ADDR),
+
+[...]
+
+> +       MT6363_SSHUB("buck-sshub1", VBUCK1_SSHUB, 0, 1193750, 6250,
+> +                    MT6363_RG_BUCK_VBUCK1_SSHUB_EN_ADDR,
+> +                    MT6363_RG_BUCK_VBUCK1_SSHUB_VOSEL_ADDR,
+> +                    MT6363_RG_BUCK_VBUCK1_SSHUB_VOSEL_MASK),
+> +       MT6363_SSHUB("buck-sshub2", VBUCK2_SSHUB, 0, 1193750, 6250,
+> +                    MT6363_RG_BUCK_VBUCK2_SSHUB_EN_ADDR,
+> +                    MT6363_RG_BUCK_VBUCK2_SSHUB_VOSEL_ADDR,
+> +                    MT6363_RG_BUCK_VBUCK2_SSHUB_VOSEL_MASK),
+> +       MT6363_SSHUB("buck-sshub4", VBUCK4_SSHUB, 0, 1193750, 6250,
+> +                    MT6363_RG_BUCK_VBUCK4_SSHUB_EN_ADDR,
+> +                    MT6363_RG_BUCK_VBUCK4_SSHUB_VOSEL_ADDR,
+> +                    MT6363_RG_BUCK_VBUCK4_SSHUB_VOSEL_MASK),
+
+As mentioned in my reply to the binding patch, these aren't real regulators=
+.
+
+> +       MT6363_LDO_L_SC("ldo-vsram-digrf", VSRAM_DIGRF, 400000, 1193750, =
+6250,
+> +                       MT6363_RG_BUCK1_EN_ADDR,
+> +                       MT6363_RG_LDO_VSRAM_DIGRF_EN_BIT,
+> +                       MT6363_RG_LDO_VSRAM_DIGRF_VOSEL_ADDR,
+> +                       MT6363_RG_LDO_VSRAM_DIGRF_VOSEL_MASK,
+> +                       MT6363_RG_BUCK1_LP_ADDR,
+> +                       MT6363_RG_LDO_VSRAM_DIGRF_LP_BIT),
+
+Same here, these could be compressed smaller with some preprocessor magic.
+
+[...]
+
+ChenYu
 
