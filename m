@@ -1,111 +1,103 @@
-Return-Path: <devicetree+bounces-193970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50DCEAFC5D6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:37:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAFBAAFC5D9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:37:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DE3A189A23A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:37:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4800A17B662
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C662BD016;
-	Tue,  8 Jul 2025 08:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABEA22BE022;
+	Tue,  8 Jul 2025 08:37:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nPCyrBfb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9049A219A97;
-	Tue,  8 Jul 2025 08:37:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B1D929E0F4;
+	Tue,  8 Jul 2025 08:37:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751963838; cv=none; b=hBl+sia7BoO5myZgu7K1cxWoyp6BbHFehVTGJIUIeMCWzWFmyA6G5M+1RPv6apGdEsYZfEKM4hnHBnB7iRJRNGDsRHdw4u1TUilA4XTHhW5xOcO1fqMo81JAXtDhihSIqO5zVWebesXPa6GP5BZTJcaw6fluAOjbd4Uzr7tEGJo=
+	t=1751963870; cv=none; b=l/2fPzMCWlfKN2xopjvDf+vEtsWUu46OTyaXlXseVBk/zrMu5KNhxLRVmnFDoUzeZlGsIIffKygxLQwcrF3uZFiYy8U19gEiAZVxoQLOixoy4v66N4DBGMtqr5xscyOkSPCrjZsi3QzDsY3wP21TkLvxtVnYE/eC0Is8Sa4xZJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751963838; c=relaxed/simple;
-	bh=wFDxQyPXL6g3MFe3QXSf3Z855OPz+p2schpO6F/9y6g=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=G+kIkP5c6eg3j5DjZGMMhRr5O+8UWQGvZRNdYd8if4KjeqypM9kK/R1Ch/IVCJrwO8+tgaxiFCtZjx/RtWpsqsJ/wwRrzzBP3Ux9sL6lHngSp8t9xf4+YTw35A7TH7oNHIxNHIOK/hrjMwtVY0he0ZwWwDbVmL9quhVqu56HS4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bbvbK3p00z6GCjV;
-	Tue,  8 Jul 2025 16:36:29 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 54F2E140144;
-	Tue,  8 Jul 2025 16:37:14 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 8 Jul
- 2025 10:37:13 +0200
-Date: Tue, 8 Jul 2025 09:37:11 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Alireza Sanaee <alireza.sanaee@huawei.com>
-CC: <mark.rutland@arm.com>, <robh@kernel.org>, <coresight@lists.linaro.org>,
-	<devicetree@vger.kernel.org>, <dianders@chromium.org>,
-	<james.clark@linaro.org>, <krzk@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-perf-users@vger.kernel.org>, <linuxarm@huawei.com>,
-	<mike.leach@linaro.org>, <ruanjinjie@huawei.com>, <saravanak@google.com>,
-	<shameerali.kolothum.thodi@huawei.com>, <suzuki.poulose@arm.com>
-Subject: Re: [PATCH 4/5] coresight: Use of_cpu_phandle_to_id for grabbing
- CPU id
-Message-ID: <20250708093711.0000295d@huawei.com>
-In-Reply-To: <20250707150414.620-5-alireza.sanaee@huawei.com>
-References: <20250707150414.620-1-alireza.sanaee@huawei.com>
-	<20250707150414.620-5-alireza.sanaee@huawei.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1751963870; c=relaxed/simple;
+	bh=paqPxHEdzhlttb29VSY2z8qUYi4dbUOpAoAFZ9cfki8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DfFa3gDQaOiao6kwnKmZe96vLDY3prsQ8347zxmBzM6lmAyk0VSAGYA2H/8DwjWaAqm4/tojtMKF2x9wFS9LNi8aJzUp+X8Q5nKWrzM2Eq6otHgTw2HsjbVoyHc0oqFWL/HkPnVBzxbVEDaWGKM1S4uSTuBIpVEiptB6UV4gxXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nPCyrBfb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF175C4CEED;
+	Tue,  8 Jul 2025 08:37:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751963870;
+	bh=paqPxHEdzhlttb29VSY2z8qUYi4dbUOpAoAFZ9cfki8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nPCyrBfbyFocXcBr2vfBUH8EPiTc/v9Uw0Kj171Ef8kfs0hITcljpMhh569e2qyqe
+	 QN6ERv57n0PHWoY3kIi+WCa+GLZ8jqhKXMcb7hcHYamam6f+gOFyT/Lwyr9P5RIPXk
+	 ZM3QT2vMxKv6dx4myo0VfUm3ZCNN5nl4IWoijqHWPKb+JAiTsCbaY+gTxJbJCJETGj
+	 SO6K+G8D/DXuvdYQJrdX29xumEnMuUeRB+qlDU8Xd1SCRqWzr5Ge/NMpzAALw4Bniu
+	 cYC6IDKzynBFlAgdlVTN8LI4f9oCymvmQpArbCEYoVAZd68dxAsX140UQBJeusE+EY
+	 T0oe6AZCQsyqQ==
+Date: Tue, 8 Jul 2025 10:37:47 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Stuart Burtner <sburtner@d3embedded.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Spencer Hill <shill@d3engineering.com>, Sebastian LaVine <slavine@d3engineering.com>
+Subject: Re: [PATCH 0/2] media: i2c: Add driver for Sony IMX728
+Message-ID: <20250708-evasive-elephant-of-justice-ce6f5b@krzk-bin>
+References: <20250625-imx728-on-6-12-v4-v1-0-cfc6e18c3e23@d3embedded.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250625-imx728-on-6-12-v4-v1-0-cfc6e18c3e23@d3embedded.com>
 
-On Mon, 7 Jul 2025 16:04:13 +0100
-Alireza Sanaee <alireza.sanaee@huawei.com> wrote:
-
-> Use the newly created API to grab CPU id.
+On Wed, Jun 25, 2025 at 02:20:02PM -0400, Stuart Burtner wrote:
+> Hello! My name is Stuart Burtner.  I will be continuing the work done by Sebastian & Spencer
+> on this driver. I will finish this patch series and maintain this driver moving forward.
 > 
-> Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
-> ---
->  drivers/hwtracing/coresight/coresight-platform.c | 14 ++------------
->  1 file changed, 2 insertions(+), 12 deletions(-)
+> This series adds a V4L2 sensor driver for the Sony IMX728, and related
+> devicetree overlays.
 > 
-> diff --git a/drivers/hwtracing/coresight/coresight-platform.c b/drivers/hwtracing/coresight/coresight-platform.c
-> index 8192ba3279f0..f032fdbe959b 100644
-> --- a/drivers/hwtracing/coresight/coresight-platform.c
-> +++ b/drivers/hwtracing/coresight/coresight-platform.c
-> @@ -167,19 +167,9 @@ of_coresight_get_output_ports_node(const struct device_node *node)
->  
->  static int of_coresight_get_cpu(struct device *dev)
->  {
-> -	int cpu;
-> -	struct device_node *dn;
-> -
-> -	if (!dev->of_node)
-> -		return -ENODEV;
-> -
-> -	dn = of_parse_phandle(dev->of_node, "cpu", 0);
-> -	if (!dn)
-> -		return -ENODEV;
-> -
-> -	cpu = of_cpu_node_to_id(dn);
-> +	struct device_node *dn = NULL;
-> +	int cpu = of_cpu_phandle_to_id(dev->of_node, &dn, 0);
->  	of_node_put(dn);
-> -
-	Again, allowing for NULL parameter gives you simply
+> v3 [0] -> v4:
 
-	return of_cpu_phandle_to_id(dev->of_node, NULL, 0);
+So that's v4, but yout patchset subject says v1.
 
->  	return cpu;
->  }
->  
+Please version your patches correctly, e.g. use b4 or
+git format-patch -vX
+
+> - Drop set_fps() function because it doesn't actually change FPS
+> - Use "guard" instead of mutex_lock()
+> - Fix error checking on imx728->reset_gpio
+> - Fix attribution of Spencer Hill as Co-Author
+> - Fix maintainer entry for Stuart
+> - Clean up documentation for gpios, per notes from Krzysztof Kozlowski
+
+Cleanup? I asked for changes in the ABI What exactly happened?
+
+> - Removed defconfig modifications
+> 
+> [0]: https://lore.kernel.org/all/20250212195656.69528-1-slavine@d3embedded.com/
+
+That's also v1.
+
+Confusing.
+
+Best regards,
+Krzysztof
 
 
