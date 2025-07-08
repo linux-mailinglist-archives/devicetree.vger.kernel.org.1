@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-193904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F21AFC2A9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:26:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93ABBAFC2B0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:28:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89DAC3A94F5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:25:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 529ED7B288E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88E362206BC;
-	Tue,  8 Jul 2025 06:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74ED8220F30;
+	Tue,  8 Jul 2025 06:28:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WhHEtDvv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l8BZlyM6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC0421767A;
-	Tue,  8 Jul 2025 06:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D4A219EB;
+	Tue,  8 Jul 2025 06:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751955982; cv=none; b=kV8M+jlKuOb6ezkZ7Y9ZQuoTdxQDCzhVXZxxg6B9z27zP57DxD2hs00UOR99pNu/Qrm+D2u1yw/rgG4iX1tLuk6FXpgGDTkm6BgKEpgQ40Ixxgpx+jGb59y6XkOcusSaHfvZCkqrLKDktPsYQO42+XyXVmEo/uaBgppEF1/17jA=
+	t=1751956080; cv=none; b=GTVeT4XnnJ6Q04/6yfIdeJw9YptzvlOdTAEm76eWLSaxqqllXVennNkY+IiFZKtoVC/RAJk8AUAfZ/FimUeyW6kgII0WlnAaKBlXq6M4WTApz8D/mHYEMN2Zukw9fEczTq1swEgTGQaiZaCFl+zVJdgXu5zkUtrs2Bkt428bcDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751955982; c=relaxed/simple;
-	bh=L3HA/tyMA0TRaxoaUnpvv0ErFNnf684Z0UbbLl0ir8E=;
+	s=arc-20240116; t=1751956080; c=relaxed/simple;
+	bh=qi7j6qGBz5fO3sHdD7LICPSFNL5jFr91cIZy5C8dRzA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V7JRJylmkN5vbF3RyMa6gYWBmqSGEcY8p1zc+A9cDVTdPASPD6WojQQnDdWwOZQCEVKnyVzsZuZiRo57+dag2V1QX2zPQqoihApNAnbA03CbLF0TFQx3ip8Lx6qY8gySKYFWaC5yB2CuHIeDVXBL7pIWbSEGmv5QXf+6XGbpmd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WhHEtDvv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E7C7C4CEED;
-	Tue,  8 Jul 2025 06:26:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ViT75gmXOSNdzY3v8SsdtcRL7J0gBqDcCOGrIvVlPAOh4o4RXnD5w6ZW4NjluqWP5AnN0AHvz+CHau8D9UwGe2hnajtIq8xxDPTJUVX+6eav5lSYHvxS/tOcltlA6w1XhzbZaWho2CWBFrP7vs1dYKZ8VJGeiQn2DIvainqfV8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l8BZlyM6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A190DC4CEED;
+	Tue,  8 Jul 2025 06:27:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751955981;
-	bh=L3HA/tyMA0TRaxoaUnpvv0ErFNnf684Z0UbbLl0ir8E=;
+	s=k20201202; t=1751956079;
+	bh=qi7j6qGBz5fO3sHdD7LICPSFNL5jFr91cIZy5C8dRzA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WhHEtDvv4mnsqLLVj8sOF9egG/BAfoXGWWzhVZbc60cmJQvtGibRoqiziZgmR2SJk
-	 WlwyntQjoXvF80Aw4YWrQUE8Fzzlx20fC81IVSPTiwejaG75DXZhxruzfSceTJli5v
-	 Xeal4cXTCsxTKpRanOhPkdwT+Ks459V6pz4roXx4V/sJcsCYzFIeBMLDtPTI6RMW/m
-	 GX7eN5R1HfbwQwIZJp8kuFfYdW56muEBBFFmB7K+PPOqpqaC6CHDRuUDxadwdVDWfL
-	 gwPD7Mme0CFarUaKpsPSatO5B5j+YBN+R1WoUAWq5FiE0Jj4wQE0UJIogRI+xYHXzk
-	 5mwHVa0ZBXhVg==
-Message-ID: <904d1165-185e-43ac-9b52-a2f17f774e80@kernel.org>
-Date: Tue, 8 Jul 2025 08:26:17 +0200
+	b=l8BZlyM6QZ27m2RsOLpJOu+YVVx8AE7306cWuauSZDjyZVCnivcLpugyyt1hA5Q+H
+	 67M1c4nPFxyYMUfmSJuU6QoBRc/uvEP8KnSIVmUB+WhC4D1GJoZL8hMkUyse2VG1C4
+	 wl/uOnHWYx8GCyT5g0/5hxLgrNv3seRfAj4j/JuLlpbcwtLP07Nx0k83tb06E4jl38
+	 NaH7cXxfbIdX14jPz1ACghVdHc/N3YLwZrKFdhVbmPkYXB46+XHTS5Nan5xJoQt5oi
+	 wslzXyjaw+DXaiRtq5EUfGq05FEnJ1lKsXqhfrsPMEkaoGAlPj/413E2z+UKC/XaAe
+	 6PRLS1DxgeJ/Q==
+Message-ID: <4f2f2f95-d0f4-4d2f-8873-b1026340a8c9@kernel.org>
+Date: Tue, 8 Jul 2025 08:27:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 2/7] net: airoha: npu: Add NPU wlan memory
- initialization commands
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, Simon Horman <horms@kernel.org>,
- Felix Fietkau <nbd@nbd.name>
-References: <20250705-airoha-en7581-wlan-offlaod-v2-0-3cf32785e381@kernel.org>
- <20250705-airoha-en7581-wlan-offlaod-v2-2-3cf32785e381@kernel.org>
- <20250707-agile-aardwolf-of-politeness-29fead@krzk-bin>
- <aGt2L1e3xbWVoqOO@lore-desk>
- <679e6fd2-967f-4057-9ccd-92a37ecc4819@kernel.org>
- <aGvmoJ83EtYOIa0K@lore-desk>
+Subject: Re: [PATCH v3 3/4] arm64: dts: freescale: Add Mettler-Toledo
+ Snowflake V2 support
+To: Shawn Guo <shawnguo2@yeah.net>, Wojciech Dubowik <Wojciech.Dubowik@mt.com>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Kees Cook <kees@kernel.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Marek Vasut <marex@denx.de>, Frank Li <Frank.Li@nxp.com>,
+ Markus Niebel <Markus.Niebel@tq-group.com>,
+ =?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
+ Frieder Schrempf <frieder.schrempf@kontron.de>,
+ Michael Walle <mwalle@kernel.org>, Heiko Schocher <hs@denx.de>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>,
+ Max Merchel <Max.Merchel@ew.tq-group.com>,
+ Primoz Fiser <primoz.fiser@norik.com>, Tim Harvey <tharvey@gateworks.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Heiko Stuebner <heiko@sntech.de>, Caleb James DeLisle <cjd@cjdns.fr>,
+ Junhao Xie <bigfoot@classfun.cn>, Andre Przywara <andre.przywara@arm.com>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Manivannan Sadhasivam <mani@kernel.org>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-hardening@vger.kernel.org, Tobias Graemer <Tobias.Graemer@mt.com>
+References: <20250624110408.128283-1-Wojciech.Dubowik@mt.com>
+ <20250624110408.128283-4-Wojciech.Dubowik@mt.com> <aGy4qy1kN3RZ6nas@dragon>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,68 +124,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aGvmoJ83EtYOIa0K@lore-desk>
+In-Reply-To: <aGy4qy1kN3RZ6nas@dragon>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/07/2025 17:24, Lorenzo Bianconi wrote:
->> On 07/07/2025 09:24, Lorenzo Bianconi wrote:
->>>> On Sat, Jul 05, 2025 at 11:09:46PM +0200, Lorenzo Bianconi wrote:
->>>>> +
->>>>>  struct airoha_npu *airoha_npu_get(struct device *dev, dma_addr_t *stats_addr)
->>>>>  {
->>>>>  	struct platform_device *pdev;
->>>>> @@ -493,6 +573,7 @@ static int airoha_npu_probe(struct platform_device *pdev)
->>>>>  	npu->ops.ppe_deinit = airoha_npu_ppe_deinit;
->>>>>  	npu->ops.ppe_flush_sram_entries = airoha_npu_ppe_flush_sram_entries;
->>>>>  	npu->ops.ppe_foe_commit_entry = airoha_npu_foe_commit_entry;
->>>>> +	npu->ops.wlan_init_reserved_memory = airoha_npu_wlan_init_memory;
->>>>
->>>> I cannot find in your code single place calling this (later you add a
->>>> wrapper... which is not called either).
->>>>
->>>> All this looks like dead code...
->>>
->>> As pointed out in the commit log, these callbacks will be used by MT76 driver
->>> to initialize the NPU reserved memory and registers during driver probe in
->>> order to initialize the WiFi offloading. Since MT76 patches are going via
->>> the wireless tree, I needed to add these callbacks first.
->>
->> Cover letter does not link to your NPU patchset. You cannot add dead
->> code to the kernel and now it is pure dead code. Post your user - in
->> this or separate patchset.
+On 08/07/2025 08:20, Shawn Guo wrote:
+>> +
+>> +	backlight: backlight {
+>> +		compatible = "pwm-backlight";
+>> +		pwms = <&pwm1 0 500000 0>;
+>> +		power-supply = <&reg_5v>;
+>> +		brightness-levels = <0 100>;
+>> +		num-interpolated-steps = <100>;
+>> +		default-brightness-level = <100>;
+>> +		status = "okay";
 > 
-> I guess you mean the related MT76 patches are not linked in the cover-letter,
-> right? I have not posted them yet.
-> 
->>
->> Your explanation of dependency is also confusing. If these are added to
->> wireless tree (considering last experience how they rebase and cannot
->> easily handle cross tree merges), how does it solve your problem? You
->> will have it in one tree but not in the other, so still nothing...
->> That's anyway separate problem, because main issue is you add code which
->> we cannot even verify how it is being used.
-> 
-> My main point here is wireless tree can't acutally merge the MT76 patches
-> since, without the net-next ones (this series), it will not compile (so I
+> We usually use "okay" status to enable "disabled" devices.  It doesn't
+> seem to be needed here.
 
-This does not explain hiding the other part. Again - there is nothing
-weird in patchset dependencies. Weird is saying there is dependency, so
-I will not post code.
-
-> posted net-next patches as preliminary ones for MT76 changes).
-> Moreover, this is the same approach we used when we added WED support to
-> mtk_eth_soc driver and the related MT76 support.
-> However, I am fine to post the MT76 changes as RFC and just refer to it in
-> this series cover-letter. Agree? 
-> 
->>
->> So far I see ABI break, but without user cannot judge. And that's the
->> hard reason this cannot be accepted.
-> 
-> if you mean the dts changes, I will fix them in v3.
-> 
-No, I mean driver.
+I already asked for this in v2. Changelog claims it was done, but I
+believe nothing here improved and they just sent the same patchset
+wasting review effort.
 
 Best regards,
 Krzysztof
