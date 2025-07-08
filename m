@@ -1,230 +1,132 @@
-Return-Path: <devicetree+bounces-194305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7202CAFDBCE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 01:23:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0077DAFDBE9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 01:43:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B090D172FE9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 23:23:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E153D1C24171
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 23:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698AD235071;
-	Tue,  8 Jul 2025 23:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02932376E6;
+	Tue,  8 Jul 2025 23:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mUIHkohF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hNEwkhfO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A37C1E2614;
-	Tue,  8 Jul 2025 23:23:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A86221287;
+	Tue,  8 Jul 2025 23:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752017010; cv=none; b=EVId2NlEiCqU1em8rGitHSJRV3mdjmxj0OwjgSNgIhFmLiFfQtYiriyXQIVl3w8r8EX1suZc5z7tORGQdeUY+VqzeJo4i3p36Q/7Gy1i0PP2BgNln3P6DA4ZxxNK5pSIHVE5HLA+Ug3Iz8Ckg3Zcy5W7Rr4+6J+T7xozHaaGPLI=
+	t=1752018202; cv=none; b=DMeMCSW5APUYKzK31YQk5zU9ftP81lX20JHi2nm5r1QLvmoaaNg2i8OHx697/XMERvuRiXIajTj5CWNjaa2L+y9T7tiDVsNbNuCCc/RZJV6oH54Niho+7a94bqLTecKMihLmP6geluyeThUaJT6rgyA6IQrPY4Xj2Si6VuMIjPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752017010; c=relaxed/simple;
-	bh=w4ZimzqNZhwh10Nd+06BzC1zOzN4/9VkqJ3RnYLKHvY=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=McKxbq+/Z7K1vwvJ9S4QJGA/9igRua6+yicjMWUe7LWMPxy0ztsq4ZeMaX8Uxq6/iklb6BEF1RS6GxxXPiBGIcnlRhB4X3dm3M6SqmCLFTXMB7cGCWE/00dxkm/e2FE7l6Tk2qFmSO6FS5+7WAzUqDvggBKtAn5DqecMaXa4ELM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mUIHkohF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 636D2C4CEED;
-	Tue,  8 Jul 2025 23:23:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752017009;
-	bh=w4ZimzqNZhwh10Nd+06BzC1zOzN4/9VkqJ3RnYLKHvY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=mUIHkohF61FUiIxcxKSxPbqqXGgBJu97d6FWMxWc0KnDUe8HOp0gIKMulN99B7kDc
-	 Cich3FKk4F9EGzXNxrqGsRrV6InbZnv1hGdYyyr026MNG+iYXA+1JIPjgHL2LpbRxR
-	 xgMcocD6w/wCU2qyiyRGisiq5bJ8wDTomGDU6XLw/CwzXQjO+8aKnc55WfG4MoOdaP
-	 1JKvEYdCFD5wACPC6WsOBGTPE9LnwxCJvCkZDsL80HxjXQvIGHzJqPubb0z0Jao1IM
-	 2pqt91E/xa/UuMUi8MoYTL9HpSiQ3xTpPMT/ViTC82x9/Sk6Ga2YihAM+HDwWfkq+2
-	 3P28BJsMz6PPA==
-Date: Tue, 8 Jul 2025 18:23:27 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Sai Krishna Musham <sai.krishna.musham@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, cassel@kernel.org, lkp@intel.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, michal.simek@amd.com,
-	bharat.kumar.gogada@amd.com, thippeswamy.havalige@amd.com
-Subject: Re: [PATCH v4 2/2] PCI: amd-mdb: Add support for PCIe RP PERST#
- signal handling
-Message-ID: <20250708232327.GA2169793@bhelgaas>
+	s=arc-20240116; t=1752018202; c=relaxed/simple;
+	bh=Kq5ijTYz747uA6zYNY77sRKx7BtVxap2T4sA5mPV2qQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tFfIqlUdtU1/bsjJBHjejRtFPUvpe/2Lv/wsDA4eV3Ew5bTtEdmzcptbTfBruyYRGr3YLB5927p2nKUGDxoO1SMQw/F9tkhrYPAbbywFAOzR8qtavdwCNp61yywB1e3e0JNkobugeAWWkbz9suv4sLpTLWRFe9a5VX6LkfZm0jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hNEwkhfO; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752018202; x=1783554202;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=Kq5ijTYz747uA6zYNY77sRKx7BtVxap2T4sA5mPV2qQ=;
+  b=hNEwkhfOUkgP4GBvQ5uDdNP1snKmZiwfKClU47xzwnnl/NZ+qzy02wX+
+   8+qBPbCzSy85SpaceAbNCvkpejs6x1tuRLb0bYkU0Nq5LelLQ/SP66eHJ
+   V+cXC27ix4Gd4XYOv6oDKnR4rdi5M6hKAU/4bXKQwNgGMMny9B5B7Ya8r
+   UcUEfneZG7Nrlh7+p63U31be8gJdEIMeiz6ecz6eRgnZuD3ldTtGcTM3m
+   ZNdr6qfI6c0ND++gdugPkgNVRbTDYnKo4BVcZTFKnNL84waJ9PPDA7BNU
+   lRM9TipPp4Q0YgtIM27vFe//3BAf5+LVyUEkZDJPXDYAia3tVfl/aHoGD
+   w==;
+X-CSE-ConnectionGUID: KyWt2BgZSyywYVcR0lFe7w==
+X-CSE-MsgGUID: 1H7yiry+TFSBfymZkZ+SSw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="54242152"
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; 
+   d="scan'208";a="54242152"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2025 16:43:21 -0700
+X-CSE-ConnectionGUID: gy+0sCqNSRWvODfH+QWvHg==
+X-CSE-MsgGUID: DHQVWidmQaC9j4fXcFDnew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; 
+   d="scan'208";a="156202497"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.102])
+  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2025 16:43:14 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id 26E4F11F8A6;
+	Wed,  9 Jul 2025 02:43:12 +0300 (EEST)
+Date: Tue, 8 Jul 2025 23:43:12 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Mirela Rabulea <mirela.rabulea@nxp.com>
+Cc: mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+	laurent.pinchart+renesas@ideasonboard.com, robh@kernel.org,
+	krzk+dt@kernel.org, bryan.odonoghue@linaro.org,
+	laurentiu.palcu@nxp.com, robert.chiras@nxp.com,
+	jai.luthra@ideasonboard.com, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, LnxRevLi@nxp.com,
+	kieran.bingham@ideasonboard.com, hdegoede@redhat.com,
+	dave.stevenson@raspberrypi.com, mike.rudenko@gmail.com,
+	alain.volmat@foss.st.com, devicetree@vger.kernel.org,
+	conor+dt@kernel.org, alexander.stein@ew.tq-group.com,
+	umang.jain@ideasonboard.com, zhi.mao@mediatek.com, festevam@denx.de,
+	julien.vuillaumier@nxp.com
+Subject: Re: [EXT] Re: [PATCH v4 2/4] media: ox05b1s: Add omnivision OX05B1S
+ raw sensor driver
+Message-ID: <aG2tECZaT3IsOV0z@kekkonen.localdomain>
+References: <20250305094359.299895-1-mirela.rabulea@nxp.com>
+ <20250305094359.299895-3-mirela.rabulea@nxp.com>
+ <7c4379dd-e004-4e0d-85db-139c3f671edc@linux.intel.com>
+ <3df6d174-ce7d-40ff-a7e0-fb9e8a9ab435@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250626054906.3277029-3-sai.krishna.musham@amd.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3df6d174-ce7d-40ff-a7e0-fb9e8a9ab435@nxp.com>
 
-On Thu, Jun 26, 2025 at 11:19:06AM +0530, Sai Krishna Musham wrote:
-> Add support for handling the AMD Versal Gen 2 MDB PCIe Root Port PERST#
-> signal via a GPIO by parsing the new PCIe bridge node to acquire the
-> reset GPIO.
+Hi Mirela,
+
+On Tue, Jul 08, 2025 at 08:09:25PM +0300, Mirela Rabulea wrote:
+> Hi Sakari & all,
 > 
-> As part of this, update the interrupt controller node parsing to use
-> of_get_child_by_name() instead of of_get_next_child(), since the PCIe
-> node now has multiple children. This ensures the correct node is
-> selected during initialization.
+> On 6/29/25 11:30, Sakari Ailus wrote:
+> > Caution: This is an external email. Please take care when clicking links
+> > or opening attachments. When in doubt, report the message using the
+> > 'Report this email' button
+> > 
+> > 
+> > Hi Mirela,
+> > 
+> > On 3/5/25 11:43, Mirela Rabulea wrote:
+> > > +struct ox05b1s_reg {
+> > > +     u32 addr;
+> > > +     u32 data;
+> > > +};
+> > 
+> > Could you use struct reg_sequence instead, please?
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202506241020.rPD1a2Vr-lkp@intel.com/
-
-Omit these tags.  This kernel test robot report is basically a code
-review comment that doesn't need to be acknowledged here (the robot's
-report says:
-
-  If you fix the issue in a separate patch/commit (i.e. not just a new
-  version of the same patch/commit), kindly add following tags ...
-
-IIUC this is just a new version of the same patch, so doesn't need the
-tags.
-
-> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
-> ---
-> Changes in v4:
-> - Resolve kernel test robot warning.
-> https://lore.kernel.org/oe-kbuild-all/202506241020.rPD1a2Vr-lkp@intel.com/
-> - Update commit message.
+> Yes, sure, thanks for the hint.
 > 
-> Changes in v3:
-> - Implement amd_mdb_parse_pcie_port to parse bridge node for reset-gpios property.
-> 
-> Changes in v2:
-> - Change delay to PCIE_T_PVPERL_MS
-> 
-> v3 https://lore.kernel.org/r/20250618080931.2472366-1-sai.krishna.musham@amd.com/
-> v2 https://lore.kernel.org/r/20250429090046.1512000-1-sai.krishna.musham@amd.com/
-> v1 https://lore.kernel.org/r/20250326041507.98232-1-sai.krishna.musham@amd.com/
-> ---
->  drivers/pci/controller/dwc/pcie-amd-mdb.c | 46 ++++++++++++++++++++++-
->  1 file changed, 45 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-amd-mdb.c b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> index 9f7251a16d32..f011a83550b9 100644
-> --- a/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> +++ b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> @@ -18,6 +18,7 @@
->  #include <linux/resource.h>
->  #include <linux/types.h>
->  
-> +#include "../../pci.h"
->  #include "pcie-designware.h"
->  
->  #define AMD_MDB_TLP_IR_STATUS_MISC		0x4C0
-> @@ -56,6 +57,7 @@
->   * @slcr: MDB System Level Control and Status Register (SLCR) base
->   * @intx_domain: INTx IRQ domain pointer
->   * @mdb_domain: MDB IRQ domain pointer
-> + * @perst_gpio: GPIO descriptor for PERST# signal handling
->   * @intx_irq: INTx IRQ interrupt number
->   */
->  struct amd_mdb_pcie {
-> @@ -63,6 +65,7 @@ struct amd_mdb_pcie {
->  	void __iomem			*slcr;
->  	struct irq_domain		*intx_domain;
->  	struct irq_domain		*mdb_domain;
-> +	struct gpio_desc		*perst_gpio;
->  	int				intx_irq;
->  };
->  
-> @@ -284,7 +287,7 @@ static int amd_mdb_pcie_init_irq_domains(struct amd_mdb_pcie *pcie,
->  	struct device_node *pcie_intc_node;
->  	int err;
->  
-> -	pcie_intc_node = of_get_next_child(node, NULL);
-> +	pcie_intc_node = of_get_child_by_name(node, "interrupt-controller");
->  	if (!pcie_intc_node) {
->  		dev_err(dev, "No PCIe Intc node found\n");
->  		return -ENODEV;
-> @@ -402,6 +405,34 @@ static int amd_mdb_setup_irq(struct amd_mdb_pcie *pcie,
->  	return 0;
->  }
->  
-> +static int amd_mdb_parse_pcie_port(struct amd_mdb_pcie *pcie)
-> +{
-> +	struct device *dev = pcie->pci.dev;
-> +	struct device_node *pcie_port_node;
-> +
-> +	pcie_port_node = of_get_next_child_with_prefix(dev->of_node, NULL, "pcie");
-> +	if (!pcie_port_node) {
-> +		dev_err(dev, "No PCIe Bridge node found\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* Request the GPIO for PCIe reset signal and assert */
-> +	pcie->perst_gpio = devm_fwnode_gpiod_get(dev, of_fwnode_handle(pcie_port_node),
-> +						 "reset", GPIOD_OUT_HIGH, NULL);
-> +	if (IS_ERR(pcie->perst_gpio)) {
-> +		if (PTR_ERR(pcie->perst_gpio) != -ENOENT) {
-> +			of_node_put(pcie_port_node);
-> +			return dev_err_probe(dev, PTR_ERR(pcie->perst_gpio),
-> +					     "Failed to request reset GPIO\n");
-> +		}
-> +		pcie->perst_gpio = NULL;
-> +	}
-> +
-> +	of_node_put(pcie_port_node);
-> +
-> +	return 0;
-> +}
-> +
->  static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
->  				 struct platform_device *pdev)
->  {
-> @@ -426,6 +457,14 @@ static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
->  
->  	pp->ops = &amd_mdb_pcie_host_ops;
->  
-> +	if (pcie->perst_gpio) {
-> +		mdelay(PCIE_T_PVPERL_MS);
-> +
-> +		/* Deassert the reset signal */
-> +		gpiod_set_value_cansleep(pcie->perst_gpio, 0);
-> +		mdelay(PCIE_T_RRS_READY_MS);
-> +	}
-> +
->  	err = dw_pcie_host_init(pp);
->  	if (err) {
->  		dev_err(dev, "Failed to initialize host, err=%d\n", err);
-> @@ -444,6 +483,7 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct amd_mdb_pcie *pcie;
->  	struct dw_pcie *pci;
-> +	int ret;
->  
->  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
->  	if (!pcie)
-> @@ -454,6 +494,10 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
->  
->  	platform_set_drvdata(pdev, pcie);
->  
-> +	ret = amd_mdb_parse_pcie_port(pcie);
-> +	if (ret)
-> +		return ret;
+> Any other suggestions, anyone, before I send the next version?
 
-I'm not a DT expert, but doesn't this break if you run
-amd_mdb_parse_pcie_port() on a system with an existing DT that lacks
-the pcie@0,0 stanza you added to the binding in patch [1/2]?
+Do you intend to align this with the common raw sensor model? It may still
+take a while until we get those patches merged though, but the upside would
+be there's on concern of backwards compatibility. We should discuss how to
+implement HDR with that actually (Laurent is cc'd).
 
-I.e., amd_mdb_parse_pcie_port() will return -ENODEV in that case, and
-the probe will now fail?
+-- 
+Regards,
 
-It's good to add new functionality, but if the driver runs with a DT
-that doesn't describe the new functionality, it should fall back to
-the previous behavior (without the new functionality) instead of
-failing completely.
-
->  	return amd_mdb_add_pcie_port(pcie, pdev);
->  }
->  
-> -- 
-> 2.44.1
-> 
+Sakari Ailus
 
