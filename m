@@ -1,175 +1,145 @@
-Return-Path: <devicetree+bounces-193892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C96BAFC22E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 07:40:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 459E2AFC258
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:02:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2FDA1BC01F6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 05:40:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BC2D3BE530
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:01:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E7D221578;
-	Tue,  8 Jul 2025 05:39:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C827F219A97;
+	Tue,  8 Jul 2025 06:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="D/QWhK+Y"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="geoNyks+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B129D221278
-	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 05:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2183C288A8;
+	Tue,  8 Jul 2025 06:02:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751953181; cv=none; b=qfPXBklvz4t70FsPmY7K/rnlXzcalI6awW3xl3gt+8ujpzfLq/1W6PCRHCYBLODnkjR1lR17ySBDjc9HaCZCGi+gOnNSrSwC6FaGuCCdU0QBF9i1r8nFcTf11UDnlTrYZzMmWteERZBi0eJNh1QdeKvEFCisClwzGzS3R6UKpPY=
+	t=1751954535; cv=none; b=sRrPqdeL/qdtBWrGLBJ0y7PDzStBIRwyTA4z5V4BBIxkuSiWMbhydSDxAfdtQy5ElNj9qI7nBdxCI9e6T3R4Cl6C+p1Ku6aDYAigYSCS7PnHe/yftfEg/Fo0VIvkgzBdQiwR5e84vVnR9EX1mDXsx1LJOHganXALWDrCSBENoKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751953181; c=relaxed/simple;
-	bh=ownEk5dLe364vVv1oL3tRqmLqrzvEbK/2+ThZRJADx8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OaBKpPf1I7GG4i+jQdz9VlmhwgsRCYrGsby9kYqv+g32c+AG+nPixVllqCGWhKpnWS36RBQL78zLmJh2gO7B4g2xWSY2EFpee/uelHA48DxtXedWJBKkP+3sZ07CuN4a6hU/BsH63xWzVLkHBfvPSJm7b8KuxDLcAY4Q1CwPD04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=D/QWhK+Y; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 567I73Aq007129
-	for <devicetree@vger.kernel.org>; Tue, 8 Jul 2025 05:39:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	04CccGlKtJRX7YBKLRNEu8n8djxL2dzY144bh1/pQnk=; b=D/QWhK+Yv2lkz+7h
-	20e9H/ZmoWbO5mV0AZOmBSjypJ7pma48PQ2DyqQyNPUX2dko/TCEGUjLDPUfG0KA
-	DG1ueG++bbg6/jxGOMllTZSI2jcjFLLgOW+C5//hjrzsoefjg4pKlbYHRBsj5ojF
-	KdIXNtDiqs6Y5yOsGu292EshOzZ2JuLV4kYbE6V5T2lxaYFmkcHG7zV9eaMNF1gW
-	Yeq8SippwrF8ZL6oUqypRDgrLFmkxOUlWukcFjo28/J9NtKKSvh87uze5qPCRvbg
-	bR5gqEX42l02iiz/pLapZa0JqAVbMa8xW+XpWgLzFK2eM/qn0hxtzwhxC6TMa3ou
-	OBQKvQ==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47psdqufj9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 08 Jul 2025 05:39:38 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-748b4d5c045so3295101b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 22:39:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751953177; x=1752557977;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=04CccGlKtJRX7YBKLRNEu8n8djxL2dzY144bh1/pQnk=;
-        b=uXwvfzb1rhRz7y4Eee4RvMeVErUKXuY+nLWK7jENPhyMNLVIs/gk/3ngQmvsIv5wSe
-         URc9bh851ioB47QTlTL1WNyt47+dyjvhTPzapk4sjNB0q5N+lOWM+9gJf2v8AJrmNBmb
-         e+gDWjWt4rPJLY7/w1Tc4p42cp4PCSmDqsqyZ2Gm4mdT+6WQGs5m3A6J4q9fm8QdFisJ
-         ORm8eU6GVcCxfaLSX0LddPSY0h8K2tk1JYwRiRUvuM4dfqs4hMowBiNo9BRSVp4CbWCJ
-         nzEhs6C89olJoQjLBaU7EQ3L76ZitLZcvKOt1bYkwJJU/KJBbKkJHmqKj+KDhd0vUlbY
-         H94A==
-X-Forwarded-Encrypted: i=1; AJvYcCVybVJtNeZA4q/PmH61ynV2mnVjJRWRsKGNiJZGSSNtcIXDeILMA35bc7DUXdxAlzZDj8245a1myc+/@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywhr5nP5tcFcaoaLCIir1W1jz4tZNPhFvoJm/ldfCNXDXxFZBa+
-	7nMcPpWNyK3zdgI2RbRQl9IVWVlmQOgyZ9hdfcajICqaUx9Zk53iP8SEQkWzbDz0KRK1nkEFQPx
-	h9SB6oByjB1cnG/t4dpK5ZmNdVuosOJdx1fxX9foRflL1Rczxi//revYFGHw4k7Vw
-X-Gm-Gg: ASbGncvXk0wn9G6onATqd3+xwhMLh6L13/QrYht7lhbe5azfJS05C/L61CeWnhqrskp
-	YiP7VNUUmC1VkZAqt9St1czb9wfUcV5SBynGtKrdHFOmAPdLUawbYtArprVzJqMgX5Nc14H9orh
-	hSnl9SS0pffXX7oPPp6FfKhuHQdKfYicCPWLExzuUzslCvJCjnGS/DvX0v/P/CIAe84ZqwUiGp8
-	wZutbnPxketg2cNlhxuIAuAB93/JD0RQZjwXsjQTVVw3rdzIwJ510xd4Fy/722unslFK/ov/f/X
-	BQz4M0CiCY10kQwkXKA4WklLCPhL/1p7+A/vk2iV1B9rO4ht9fOvRJJMMB1MWB8n8JXnB9kSOQk
-	jt4de4JAGQGFP9RP+M7KtzoqybO3IruFTj2rHjigy9P+SpZB707UQQBN6Mw==
-X-Received: by 2002:a05:6a20:b40b:b0:215:d28e:8dc2 with SMTP id adf61e73a8af0-2260b6806demr22351432637.31.1751953177531;
-        Mon, 07 Jul 2025 22:39:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHzYSSafP4wH1VYFxgER7PuBaQuUi+K71SgzgFMWYsmO27JSdT6hwd9rluUl4bUdjd1buKy8w==
-X-Received: by 2002:a05:6a20:b40b:b0:215:d28e:8dc2 with SMTP id adf61e73a8af0-2260b6806demr22351395637.31.1751953177125;
-        Mon, 07 Jul 2025 22:39:37 -0700 (PDT)
-Received: from hu-kathirav-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b38ee450db7sm10531829a12.4.2025.07.07.22.39.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jul 2025 22:39:36 -0700 (PDT)
-From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-Date: Tue, 08 Jul 2025 11:09:16 +0530
-Subject: [PATCH v2 6/6] arm64: dts: qcom: ipq5332: Add the IMEM node
+	s=arc-20240116; t=1751954535; c=relaxed/simple;
+	bh=giYT7I/4HDvp3JpNR5592PFV8m4RxRGaeyaV9WxlkB4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=I0NQZbd1zKcmKxf9hKgsPmuiR9lWrTOb3Tn/lk7qhiurzTg+5weNVezT4ATjH2Hgpe6EQq5IMiZ9t6ty2RuZ2Fx0eB9vO13nwr+yGcxJldbuY4Rj0wpXuutVQ6keQbJOH6ELN5toxJRwd+bzdz9FKvU0xuyngfanhjlflLOlTL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=geoNyks+; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 13f5d3fa5bc111f0b33aeb1e7f16c2b6-20250708
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=SmnDLQMvlZ5p5M7y6ywDYdMNOlGcOTiBdLsaKeylsC4=;
+	b=geoNyks+i8qD7f3U50D7AdEQidRFcDS6V5+Fg8oWMRfajdG13CIZ82n4ziYha0knhLeBvf0d61ZYtjb9ML+u4I1AY6KwtL0QC8f4mCsfp2sGxxCeXyxf7QO9SypOZpO1Uyh630geSljAyo5SSMvQ8lgMC+6d0RS2POppZ9rhE9E=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.2,REQID:e2497827-cdd6-4cf9-a4b6-9a8dd67f8c75,IP:0,UR
+	L:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-25
+X-CID-META: VersionHash:9eb4ff7,CLOUDID:8572a518-744b-4ed9-9ccc-90bf001fb3bb,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 13f5d3fa5bc111f0b33aeb1e7f16c2b6-20250708
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw02.mediatek.com
+	(envelope-from <ot_zhangchao.zhang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1826436405; Tue, 08 Jul 2025 14:02:07 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Tue, 8 Jul 2025 14:02:05 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Tue, 8 Jul 2025 14:02:04 +0800
+From: Zhangchao Zhang <ot_zhangchao.zhang@mediatek.com>
+To: Marcel Holtmann <marcel@holtmann.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, Luiz Von Dentz <luiz.dentz@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>
+CC: Sean Wang <sean.wang@mediatek.com>, Jiande Lu <jiande.lu@mediatek.com>,
+	Deren Wu <deren.Wu@mediatek.com>, Chris Lu <chris.lu@mediatek.com>, Hao Qin
+	<Hao.qin@mediatek.com>, Wallace Yu <Wallace.Yu@mediatek.com>, linux-bluetooth
+	<linux-bluetooth@vger.kernel.org>, linux-kernel
+	<linux-kernel@vger.kernel.org>, linux-arm-kernel
+	<linux-arm-kernel@lists.infradead.org>, linux-mediatek
+	<linux-mediatek@lists.infradead.org>, devicetree
+	<devicetree@vger.kernel.org>, Zhangchao Zhang
+	<ot_zhangchao.zhang@mediatek.com>
+Subject: [PATCH v6 0/1] Bluetooth: mediatek: add gpio pin to reset bt
+Date: Tue, 8 Jul 2025 14:01:47 +0800
+Message-ID: <20250708060150.27375-1-ot_zhangchao.zhang@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250708-imem-v2-6-692eb92b228e@oss.qualcomm.com>
-References: <20250708-imem-v2-0-692eb92b228e@oss.qualcomm.com>
-In-Reply-To: <20250708-imem-v2-0-692eb92b228e@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1751953154; l=1207;
- i=kathiravan.thirumoorthy@oss.qualcomm.com; s=20230906;
- h=from:subject:message-id; bh=ownEk5dLe364vVv1oL3tRqmLqrzvEbK/2+ThZRJADx8=;
- b=H22kuYrHgocB3daOHf+deZbRY+2BRf73sagk7lcXCMqkr7/XrZwz366x5z1u/eK59pp+TpcNe
- tIBnjYfyonvDavNv03odNkS+6T0kCeYzGAs4A3u74EcGiyp8yn3RJPA
-X-Developer-Key: i=kathiravan.thirumoorthy@oss.qualcomm.com; a=ed25519;
- pk=xWsR7pL6ch+vdZ9MoFGEaP61JUaRf0XaZYWztbQsIiM=
-X-Authority-Analysis: v=2.4 cv=ffSty1QF c=1 sm=1 tr=0 ts=686caf1a cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=g_gtcTFTaut2jdyMrvoA:9
- a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-ORIG-GUID: EstriTH7nIjcLo8y1Hwu7YX0wfgV-Mok
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA4MDA0MyBTYWx0ZWRfXzUNEICVCssPL
- ulxY2CSRoDEhdRcqRufeIoGezzuOvkHpduhUma7AEvXo00yricOBMrUVdJGPk6PqH8r1bJ6LjCw
- bS4APa3t1sOHI5M/zMce9G45SJaxI8Vcv4dpsgw6SVPQ1Wnn7heVpNC+1nl7E9+sj3/Pnn1d7JP
- by277BxdJHY21GetVxU2Ev0ejDnvJu62pN8eMV3KDoQUA0DlyGFsuEOdoMs4x/WLhWUX/WGsOtC
- wd/qtAvHJWjrcqOqwPGFPqGoYvucsxpPb/6GMYe/2VeShmJLtvwHaOo/PQYAWouENJTmXUN42LG
- rYluMLwTM3mW+w/l0ipVhX08FlsSZyPoEigEea2k5ylhvzaIe+9WwT5Ft3dhCZ5DwEW+dxDp0TJ
- XiuDEMPx7fwczXk82PwUhhwH1Kdn02NoEy4Nmfq5BKNdQjy+V5CZMSWPhR2xkyRYb2YCnc4k
-X-Proofpoint-GUID: EstriTH7nIjcLo8y1Hwu7YX0wfgV-Mok
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-08_01,2025-07-07_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 mlxlogscore=782 mlxscore=0 bulkscore=0 priorityscore=1501
- phishscore=0 clxscore=1015 suspectscore=0 impostorscore=0 lowpriorityscore=0
- spamscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507080043
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Add the IMEM node to the device tree to extract debugging information
-like system restart reason, which is populated via IMEM. Define the
-IMEM region to enable this functionality.
+Reset Bluetooth using hardware pin via dts
 
-As described, overall IMEM region is 80KB but only initial 4KB is
-accessible by all masters in the SoC.
+Compared with the previously submitted version, the following
+information are some specific revision histories
 
-Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
----
-Changes in v2:
-- No changes
----
- arch/arm64/boot/dts/qcom/ipq5332.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+V5-->V6 modifications:
+-Add specific revisions in the changes from v4 to v5.
+-Add hardware pin title and descriptions to dt-binding submission
+   information.
+-Modify the title descriptions in the dt-binding file.
+-Add 7925 what is it.
+-Wrap the descriptions of MT7925 chip uses the USB bus appropriately.
+-Change the compatible string to mediatek,mt7925-bluetooth in
+   the dt-binding file and driver code.
+-Drop gpio-controlelr properties in the dt-binding file.
+-Modify the descriptions of the reset-gpios
+   properties in the dt-binding file.
+-Change the node information of reset-gpios in bluetooth
+   from high level valid to low level valid.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-index bd28c490415ff61624f6ff0461d79e975f2c397f..6f54f6e758309932a35d7156f32ccdf09dd36ee0 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-@@ -423,6 +423,15 @@ blsp1_spi2: spi@78b7000 {
- 			status = "disabled";
- 		};
- 
-+		sram@8600000 {
-+			compatible = "qcom,ipq5332-imem", "syscon", "simple-mfd";
-+			reg = <0x08600000 0x14000>;
-+			ranges = <0 0x08600000 0x14000>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
-+
- 		usb: usb@8af8800 {
- 			compatible = "qcom,ipq5332-dwc3", "qcom,dwc3";
- 			reg = <0x08af8800 0x400>;
+V4-->V5 modifications:
+-Correct the spelling error of word provides mentioned in V1.
+-Drop the xhci0 node and status property in the dt-binding file.
+-Modify the bt_reset tag node to bluetooth in the dt-binding file.
+-Add #gpio-cell descriptions to properties, nodes and requests.
+-Make a separate patch for the changes to dt-binding.
+
+V3-->V4 modifications:
+-Modify submission information why use hardware pin to reset Bluetooth.
+-Write historical commit information into the cover letter.
+-Modify dt binding format information and
+   the explanation text in the dt-binding file.
+
+V2-->V3 modifications:
+-Changed the capitalization of co-developer names,
+   using the correct capitalization of abbreviations and full
+   name, and corrected obvious spelling errors.
+-Add a revision history.
+-Remove the "BT Driver" in the prefix.
+-Add the bt-binding document, include inforamtion related to reset
+   pin and compatibility matching.
+-Add a comment before the schedule_delayed_work function call,
+   although schedule_delayed_work is asynchronous, there is no risk.
+   Even if it is not completed within 200ms, it will only postpone
+   the subsequent probe and will not have any impact.
+-Add a comment before the btmtk_reset_by_gpio function call,
+   if the compatibility filed or pin cannot be found in the dts
+   files, it can still reset bluetooth using software reset.
+
+V2 modifications:
+-Modify gpio to GPIO, SW to software,
+   and fix other obvious spelling errors.
 
 -- 
-2.34.1
+2.46.0
 
 
