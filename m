@@ -1,171 +1,206 @@
-Return-Path: <devicetree+bounces-194032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6437EAFC842
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 12:22:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7540DAFC84E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 12:26:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEB3B7B2E8B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:21:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB40C5613BC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 10:26:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950DD245020;
-	Tue,  8 Jul 2025 10:22:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EtfpzEtq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 401FF26562C;
+	Tue,  8 Jul 2025 10:26:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from PNYPR01CU001.outbound.protection.outlook.com (mail-centralindiaazon11020129.outbound.protection.outlook.com [52.101.225.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9624B20C000;
-	Tue,  8 Jul 2025 10:22:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751970171; cv=none; b=WUTlhUnQPuft9S5xurXUbWnQ3yTwE6iGNs7TsXNFEKz2Uf1NJ+gfyGzMUjcpCUOlcJbER03L0ittdR6s6qAUE3IdYH7x0xAS7e7wLovJg4sGhDNCOH8HngcGk1vd69AsEkeVHyNOU6eBb0Pqww45hVQO1xRozHKd7tPMbvWrrUU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751970171; c=relaxed/simple;
-	bh=YtEADF3lFuj3Z5pMye6Y/M18yeKy3rho+TrgFJuM+SI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hmlSRhb6kygx0y97caWWiB7BNw5zSwHvcxd0d0LpANqUyi/51wYk0I/AvVApr5KHNGd6yYiMw4q36Kfw7QDa1yuf9qIvP2PWWeFp4RguCZ9h5gmp3DeWbIh94slF0gx67OGIoOf/ADiViUjYl8ckPxUPuNbg1VDnBN/B4nNpRrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=EtfpzEtq; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8C81C1FCF0;
-	Tue,  8 Jul 2025 10:22:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1751970160;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zMltJK2jiEp2y6nrc3nJjItX/hovb2my2FZRg2UaWog=;
-	b=EtfpzEtq3AGL3tizdCjYquOunIRzmjz3c7QDmxkwzOBGVHg2jMrfMyjGPb0vdiCLdY7g1Y
-	4pgA9frjRF3i7RrO0o5C5UAtDjfSn3o8DnF97M6CatLSY3uDMcwSnPOP1z+rQxLbcGS6FU
-	/JLTyYRCYTC9eD2u4lkZC5KEqNZNTwvcrUASdvKiY4xx0fsiDIKmolnT5CJXaJW7EThper
-	9imBCfUN9FskkaMR2SMycsJQfFBRvIbEOfsNLwKaf+KHDQ2UwKuAEzMnQTz9iD9Hyx7gUA
-	nZHXOF+QWRVt/T9JrnG6hKrdclB042Zp21JGECQBpFVYNSeeS0aH36dIJLyPQg==
-Date: Tue, 8 Jul 2025 12:22:37 +0200
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: <Tristram.Ha@microchip.com>
-Cc: Woojung Huh <woojung.huh@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
- Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Marek Vasut <marex@denx.de>,
- <UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
- <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 6/6 v2] net: dsa: microchip: Setup fiber ports
- for KSZ8463
-Message-ID: <20250708122237.08f4dd7c@device-24.home>
-In-Reply-To: <20250708031648.6703-7-Tristram.Ha@microchip.com>
-References: <20250708031648.6703-1-Tristram.Ha@microchip.com>
-	<20250708031648.6703-7-Tristram.Ha@microchip.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE3021767A;
+	Tue,  8 Jul 2025 10:26:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.225.129
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751970401; cv=fail; b=T0ghOohybi7eODcsEKKtqRTUtWPcPkwI+1C9e5PLBwSa/DstoKMFsGxErS55HAq5K6WcQ3bfBhQ8RvpfmPQEb6l3ExdmkZU/Xu/3fRspAnN+eU7jf51lFw7PONjMLuNhpbaLi8Dyt+zt17nI1QwRuUlgpeS3uHripX2vH4LE81Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751970401; c=relaxed/simple;
+	bh=o7v88BklTWNb2GFVrXyl62OXpJtFMy7YifgJxM2z2n0=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=XOJVU4OXF7F0xNZRnkuBAkknx85QGKOk+Tokp05cPIr2itFjwtcd63oSUTNnmHrh9oxsliDnEuNl+vXyhsV19ETiEbUOjusl4kADeZq/p88Bh6gGNPK3PXbs94zt0vXg1Z+xx5pa8sOXMAKLbYmioOovb3yE86yw8oYCsaYRBek=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=fail smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=52.101.225.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DD/pPNjQY4mFJSI+BeOvslm+fCwXMA4kqaeYGO0mZdwBU0AscKtzD6YMRsmpO0mblx3By2HrEhyCH+IiICRJgRqaXD3lbywjVLsNhoKvse0kMNQVXP/+otaEqQgcIa6G1vGoSvxxkq9/u/Rnayhdt9uKIDy98Nhdx131z//yo/lSDTKjzmCU6pN09sUb4jb4He4Gsj7HosoSmvWpmZ4keHL9fyqyVKV4D+16tLto4fzZayEfuRALpxbxc76DtUJvAFsNkXo6KmlAsKWBcXsgirl1W6RXrIebnC4HmArXg03u0yrQ7tIGlhGvacajzAhuHt49Pw6O8y3IotYkeuqmsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=C+shTCWlG24OjLv6R6PxTZm5o0fMIO4MrUtP200/YPo=;
+ b=qgEafU6K4otrSwFtqtVWWiU7OKWc794ID1uKEPbEjMpvLdJBNVG3yutONd4ZtMveN8G4U03NBtylptPLw3eupNWYW1CsIak4YpUnInFBzKZRAGufwftR6y/Id56zjeS58QEW/lY8IlPbXHO+LXVifgP+oOlExjA3KK8HIDbeJiOT8HKtwpEbzds/kUW9qF+LoY2CIaaRGsLczJPP/fir/9QS+x3m2JsGCXZw2pMo129VsTHCRdOTLH7WoRPfeNRnOzfcFVywFI1YhSLMi1Swex2TyHRM+bMmHzyBeqkae/N3CLOgWed91EOoYu4sPoCa2R+6njbnYIi6SAfG57NBnw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+Received: from PN3P287MB3519.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:229::21)
+ by MAYP287MB3738.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:14d::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.27; Tue, 8 Jul
+ 2025 10:26:33 +0000
+Received: from PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5c9a:906e:318b:c418]) by PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5c9a:906e:318b:c418%6]) with mapi id 15.20.8901.024; Tue, 8 Jul 2025
+ 10:26:33 +0000
+From: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+To: sakari.ailus@linux.intel.com,
+	andriy.shevchenko@linux.intel.com,
+	krzk+dt@kernel.org
+Cc: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	=?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Matthias Fend <matthias.fend@emfend.at>,
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] media: i2c: Add ov2735 camera sensor driver
+Date: Tue,  8 Jul 2025 15:55:54 +0530
+Message-Id: <20250708102604.29261-1-hardevsinh.palaniya@siliconsignals.io>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BM1P287CA0023.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:b00:40::28) To PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:229::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdefgeegvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthejredtredtvdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegveeltddvveeuhefhvefhlefhkeevfedtgfeiudefffeiledttdfgfeeuhfeukeenucfkphepvdgrtddumegtsgduleemkegugeehmeegledttdemieehieekmedvlegsudemlegvfhehmegvkegtjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekugegheemgeeltddtmeeiheeikeemvdelsgdumeelvghfheemvgektgejpdhhvghlohepuggvvhhitggvqddvgedrhhhomhgvpdhmrghilhhfrhhomhepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudeipdhrtghpthhtohepvfhrihhsthhrrghmrdfjrgesmhhitghrohgthhhiphdrtghomhdprhgtphhtthhopeifohhojhhunhhgrdhhuhhhsehmihgtrhhotghhihhprdgtohhmpdhrtghpthhtoheprghnughrvgifs
- ehluhhnnhdrtghhpdhrtghpthhtohepohhlthgvrghnvhesghhmrghilhdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvght
-X-GND-Sasl: maxime.chevallier@bootlin.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN3P287MB3519:EE_|MAYP287MB3738:EE_
+X-MS-Office365-Filtering-Correlation-Id: 40b43521-4aed-4e99-28bc-08ddbe09e90a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|52116014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?rFMXZoG42/YrZoMb6TILnf8Aq1LCjQ+Eyv0mdupmUtRx6XzldCWKry+a+Mj/?=
+ =?us-ascii?Q?gwswLZ5hndaU0g3dZ2mSE4SzdhiEaRRk3OSoDlervlDzcbI6GvEDiXjPLv/w?=
+ =?us-ascii?Q?NwtdZJNle7viHhRalZGKRD4ntw6BTzAAa2bvL80Av9vmxfFDDHVw/31g3Mmn?=
+ =?us-ascii?Q?c9iPZM3jQ9RDeO7Neex/hwFI822tOG6sRTulepfTDocMhUnyC+1XdYihuh4x?=
+ =?us-ascii?Q?1ZArTyJbudJxo2l7/MFgkc0h6yZXvM5SrDITWcqMDC+QoPAhR1Uc2tr2dp4h?=
+ =?us-ascii?Q?iSeNK0GVe6stTHKSj7kmdhUCHy5OT+GB04ht8zV2VBxtVVLQm8rcWmt7KW/V?=
+ =?us-ascii?Q?f4m+w8MHKQgt519TUPqY3ygharuphEAqM5fsAfkzRjSWmFjiQYTuqtGMzMlb?=
+ =?us-ascii?Q?gcXsdW47oMdawhHExGDynr87xiECIg/cgJD6NVuathJhylS9CnwUmh5SMCm7?=
+ =?us-ascii?Q?dBXM4GDfaQfaD5IPPjT5dLSzSVH21wLzdJ6PI0crvq+tNWxcAjPtf+qUXm97?=
+ =?us-ascii?Q?elJYFFmMf6NEUfTExt1KCBRzOW3XvUmWpLy19eJtUvBfy8TCdv1c+05VH8vW?=
+ =?us-ascii?Q?wPLXjj34Nl7qwm90iQquUCoYjenr0TDv7goFnFvWnXig8d1KlF869WiJHG15?=
+ =?us-ascii?Q?cLDx8mAdQNZvTtpFqI+JYkEL6Smeb2ym/VG2sKe1Sqyc/YgrwZ76RSoVpG9S?=
+ =?us-ascii?Q?3v6jlvfKJ+XX1blAiag/OxyCRQhss1xIPGWZHXSdMM5L6EPKYybXkXc7EfWV?=
+ =?us-ascii?Q?BLQ2r3NoadcBky7Lol5GvVpsl6KZr+lNZ0yvHLKWE72Y3i6t3XxEHwa8QuKj?=
+ =?us-ascii?Q?IkkTk93sTP6JkPjG7TCpTmvrkJdfXnFZbBivlfWabuOv4OZ1Pqdz0+z5uo3H?=
+ =?us-ascii?Q?3ciYQnRkaXg7HGj1m8Ceaz6E/GeWW38Ysets2uD7BUbPM2Puls+0Fhud7oZc?=
+ =?us-ascii?Q?QFC5ZrIvCnegAU2kN24k4cN42x9BVtVCalJln+y8pKuXGN1qwCvg5h3mZT0t?=
+ =?us-ascii?Q?G9s9S66elgX7mJoAovYpiPR91b7ThAK1FRf/UqNjCsmyBMa+FPaIt7ZIvBSn?=
+ =?us-ascii?Q?oXrD5x5lIhWyr2ozD75pK22wXlFjZLCe61Jr6NZ6yq/1fVhj425s5a1Uia00?=
+ =?us-ascii?Q?yhLi8SuJWxcbc9E4WAHfSiu3AzaXGCcZJOxP2c5KE6WO1N2HmeVaM4y/eOwD?=
+ =?us-ascii?Q?TDBzdVmbQvq9vymaIiRE13uuN402PJIMQrRMEOFjiv/QahVHBkLFJS1QU9zI?=
+ =?us-ascii?Q?MmaAA2k1zww/VBncojaNoDa6SZ/8Oai+UViEfUcZy7rc3nL/cjQMXaSiOL0k?=
+ =?us-ascii?Q?jaHNwexCA/gPSDKXmByAN5C+m4buzD4mBM3MWrF1EyWzh2JGgNkLN1WYxYKe?=
+ =?us-ascii?Q?HtxpQH+yMCygsFzzGyL2W6ipjmB585fg3+DMfSM9Lka5a/YGuF6ufbCmnwea?=
+ =?us-ascii?Q?W6Sj6gUHMmCgXcxPKydoDP1XpPiDku2oIx5+TfJdlTyKlhzBWRBP8A=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN3P287MB3519.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?V2cb/YIy0mgn2Gn9RgfGJVxwvOHbjw1RQnTK6jmO6lAf/t/IgaCBdncftLG8?=
+ =?us-ascii?Q?DfSu+l1kRprmqT0fV53PZCdD1UZsnHzgu31j9nSlHAEINM/0AS8DDzfTH43U?=
+ =?us-ascii?Q?ifDXcA5L6yfc1Jy7sO/U1+fRHSf7p8vi+9W89GbCG5hsqZyPisiiHKK/PVyY?=
+ =?us-ascii?Q?YwE0qZojzxR2+ug1pIioE+mxXcqC4aoI6toH4ShKxTFxre6g8QqIlVZCqxYt?=
+ =?us-ascii?Q?gGDQ9iBwrnSri+fD/Ge0dk83OvNDFFGdcfFJYSbtoKqaLp2BNLj3RNieUdsd?=
+ =?us-ascii?Q?sEJ138ilnhwNmXxi/1GtlqdVyRV55LOpwqmQux27EcX3Zzz14Vy7g4zQSSmX?=
+ =?us-ascii?Q?2bjiUdbJaM4KhS5dosMKK/zcWuOCqQ4F/RfGQDC/38fk3fehyaHbZD6VihCi?=
+ =?us-ascii?Q?W5AhHDTuUp8o+XairWE6w5UFvutZq38nI9JATQoZRVMQOKmcMgoKrNA9TMkS?=
+ =?us-ascii?Q?KoWZyTw3jiyG4p0hFLahg8r+yUGHqqVxHg4fcFqxZvBAqzXkl965wIwnFxgF?=
+ =?us-ascii?Q?y9MGzaumBxuGqTYMuLn7c4koNK21jQ9Mxu5VQCtHeQrneOIoW28IhdVALVAc?=
+ =?us-ascii?Q?Lhu2QcPNgULj7wnZg1bJxjGhlaEnWF9zjMiYHx5h1CUWZ/iebS3HH15N2ajA?=
+ =?us-ascii?Q?Hy05KVGNKK/2SX5IPg99wU6AVwYe9ttdvt5fKjLeQSp0EhGyT5M2UVNz8b52?=
+ =?us-ascii?Q?5YV4VZZm3dYOxO6oCliJJfob4BfYBfGg+kbJ4E2wHFwQmdmyPfmhGzIv9R+D?=
+ =?us-ascii?Q?OFd88hHVlX24O9U2AXPK1O0lGo6gbXeLKZSFl8MHkuXTUHDIjuMpmx+s8Gxd?=
+ =?us-ascii?Q?Svt74GyYuLsKGYeOA9+eX7C1diTiIOzioyM8IygUiGYPeqLw+08Aa4aBGY8y?=
+ =?us-ascii?Q?tLsY/EKt/v+1hzjRLauhnPOTUuttuRHcT2G9/IRhytBwnroqmU31TmB9ex9h?=
+ =?us-ascii?Q?xulJbN4lGvanLBlJzP+glDVJHU0JIOqI1FXnmW4emODlo7C5YTXsvdTQ0qen?=
+ =?us-ascii?Q?lhR7VqspH3u/Xdnx38W//xPbD/G/SKmKFHmL9frebyrVZ+vi2qQtVkNHLWqu?=
+ =?us-ascii?Q?L2ZjDCvi8aoelDCTpUb0qCyFytSrzH2O3RcHwDgydgw80YnO4TryIBuHhuPL?=
+ =?us-ascii?Q?mkf0OcczunQKLB4HIB240LUUc1YsQTQXBtsJMi/mL/onAFEzcNgZKhJdtDOO?=
+ =?us-ascii?Q?CgOnTUM9UEIXjnT3OK2Mvy7caEpLqmOzqBmUQ74EAERyjpfeR49s5ock7l7M?=
+ =?us-ascii?Q?+exTvzcO4re6n0OqZF32Ldd/IgNqbGC72uQL3Qgq798aZ8JqPLJ5mkEVkUFo?=
+ =?us-ascii?Q?EDqBV8XPv+FztK0JIvOTv1GEONRjPtgvlj9s4w1Rfjaz5TdYqwTkUHrUS3iZ?=
+ =?us-ascii?Q?b42Wbt77G2tjXE7lTETA/9aNvP8b3rhKWzysZB4EnfQ/V11OBE/kFI/BdBMj?=
+ =?us-ascii?Q?ZwKSm2vZQm70Brg34zCTQQyysSNwMhDL6K3w9Z2HmYCGhzJhm/rwI8V8lMyP?=
+ =?us-ascii?Q?UXgbAR9vrYCcYCYtmwypDU+iyW3+UCPLLEXNK5DjJtL6MDaZU8mSOrph6C9i?=
+ =?us-ascii?Q?3hL3MAnzWHMV9SGLJra3rtksfSq9lO71ObI5dRQpVujKzRE5W466e+JKLKCR?=
+ =?us-ascii?Q?Z7N4ccQi2abaeGgb2LEW8Ps=3D?=
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40b43521-4aed-4e99-28bc-08ddbe09e90a
+X-MS-Exchange-CrossTenant-AuthSource: PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2025 10:26:33.4470
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qaiN4h84jN2OqkpvJtzs6hJzjyR2BA33lCjsWuTeEA0FFin+qrqgxCMbaxTJPzp72T9ViEjG7SGTUKjlAqKjrktMvZkRHejc1vjk6Rbzx+htbEvOcbfE4Lbfi9bfQjOS
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAYP287MB3738
 
-Hi Tristram,
+Add a v4l2 subdevice driver for the Omnivision OV2735 sensor.
 
-On Mon, 7 Jul 2025 20:16:48 -0700
-<Tristram.Ha@microchip.com> wrote:
+The Omnivision OV2735 is a 1/2.7-Inch CMOS image sensor with an
+active array size of 1920 x 1080.
 
-> From: Tristram Ha <tristram.ha@microchip.com>
-> 
-> The fiber ports in KSZ8463 cannot be detected internally, so it requires
-> specifying that condition in the device tree.  Like the one used in
-> Micrel PHY the port link can only be read and there is no write to the
-> PHY.  The driver programs registers to operate fiber ports correctly.
-> 
-> The PTP function of the switch is also turned off as it may interfere the
-> normal operation of the MAC.
-> 
-> Signed-off-by: Tristram Ha <tristram.ha@microchip.com>
-> ---
->  drivers/net/dsa/microchip/ksz8.c       | 26 ++++++++++++++++++++++++++
->  drivers/net/dsa/microchip/ksz_common.c |  3 +++
->  2 files changed, 29 insertions(+)
-> 
-> diff --git a/drivers/net/dsa/microchip/ksz8.c b/drivers/net/dsa/microchip/ksz8.c
-> index 904db68e11f3..1207879ef80c 100644
-> --- a/drivers/net/dsa/microchip/ksz8.c
-> +++ b/drivers/net/dsa/microchip/ksz8.c
-> @@ -1715,6 +1715,7 @@ void ksz8_config_cpu_port(struct dsa_switch *ds)
->  	const u32 *masks;
->  	const u16 *regs;
->  	u8 remote;
-> +	u8 fiber_ports = 0;
->  	int i;
->  
->  	masks = dev->info->masks;
-> @@ -1745,6 +1746,31 @@ void ksz8_config_cpu_port(struct dsa_switch *ds)
->  		else
->  			ksz_port_cfg(dev, i, regs[P_STP_CTRL],
->  				     PORT_FORCE_FLOW_CTRL, false);
-> +		if (p->fiber)
-> +			fiber_ports |= (1 << i);
-> +	}
-> +	if (ksz_is_ksz8463(dev)) {
-> +		/* Setup fiber ports. */
+The following features are supported:
+- Manual exposure an gain control support
+- vblank/hblank control support
+- Test pattern support control
+- Supported resolution: 1920 x 1080 @ 30fps (SGRBG10)
 
-What does fiber port mean ? Is it 100BaseFX ? As this configuration is
-done only for the CPU port (it seems), looks like this mode is planned
-to be used as the MAC to MAC mode on the DSA conduit. So, instead of
-using this property maybe you should implement that as handling the
-"100base-x" phy-mode ?
+The driver is tested on mainline branch v6.14-rc6 on IMX8MP Debix Model a.
 
-> +		if (fiber_ports) {
-> +			regmap_update_bits(ksz_regmap_16(dev),
-> +					   reg16(dev, KSZ8463_REG_CFG_CTRL),
-> +					   fiber_ports << PORT_COPPER_MODE_S,
-> +					   0);
-> +			regmap_update_bits(ksz_regmap_16(dev),
-> +					   reg16(dev, KSZ8463_REG_DSP_CTRL_6),
-> +					   COPPER_RECEIVE_ADJUSTMENT, 0);
-> +		}
-> +
-> +		/* Turn off PTP function as the switch's proprietary way of
-> +		 * handling timestamp is not supported in current Linux PTP
-> +		 * stack implementation.
-> +		 */
-> +		regmap_update_bits(ksz_regmap_16(dev),
-> +				   reg16(dev, KSZ8463_PTP_MSG_CONF1),
-> +				   PTP_ENABLE, 0);
-> +		regmap_update_bits(ksz_regmap_16(dev),
-> +				   reg16(dev, KSZ8463_PTP_CLK_CTRL),
-> +				   PTP_CLK_ENABLE, 0);
->  	}
->  }
->  
-> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-> index c08e6578a0df..b3153b45ced9 100644
-> --- a/drivers/net/dsa/microchip/ksz_common.c
-> +++ b/drivers/net/dsa/microchip/ksz_common.c
-> @@ -5441,6 +5441,9 @@ int ksz_switch_register(struct ksz_device *dev)
->  						&dev->ports[port_num].interface);
->  
->  				ksz_parse_rgmii_delay(dev, port_num, port);
-> +				dev->ports[port_num].fiber =
-> +					of_property_read_bool(port,
-> +							      "micrel,fiber-mode");
+v1 -> v2
 
-Shouldn't this be described in the binding ?
+- Added necessary header files
+- Corrected indentation
+- Used the ret parameter in cci_write and cci_read functions
 
->  			}
->  			of_node_put(ports);
->  		}
-Maxime
+Hardevsinh Palaniya (1):
+  media: i2c: add ov2735 image sensor driver
+
+Himanshu Bhavani (1):
+  dt-bindings: media: i2c: Add ov2735 sensor
+
+ .../bindings/media/i2c/ovti,ov2735.yaml       | 104 ++
+ MAINTAINERS                                   |   9 +
+ drivers/media/i2c/Kconfig                     |  10 +
+ drivers/media/i2c/Makefile                    |   1 +
+ drivers/media/i2c/ov2735.c                    | 908 ++++++++++++++++++
+ 5 files changed, 1032 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov2735.yaml
+ create mode 100644 drivers/media/i2c/ov2735.c
+
+-- 
+2.34.1
+
 
