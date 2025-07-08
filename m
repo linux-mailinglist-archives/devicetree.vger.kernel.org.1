@@ -1,88 +1,82 @@
-Return-Path: <devicetree+bounces-194185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52C69AFD084
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:22:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD84AAFD0B8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:26:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 681A13B54CA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:21:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16E7D562815
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F7692E4990;
-	Tue,  8 Jul 2025 16:21:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NA65KBJG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD4FC2E5409;
+	Tue,  8 Jul 2025 16:25:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D56C7269CE1;
-	Tue,  8 Jul 2025 16:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EC682E3AE3;
+	Tue,  8 Jul 2025 16:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751991716; cv=none; b=eVJM16r6tovo3cLIygCjOUZQNSW84+gHjt3RphuSWQklMh2vUzuepg8HWS40FEt91pp6QCjAlKriu4rUIustgAIq7erBpOzaUPTCEV46T8YuVpkOmm7srJysoyKwQPiiov0bgSua7szhyDezTRTPozThJst51fndMdiNXG/z5Jc=
+	t=1751991912; cv=none; b=R3/LeeJTdVrj/Mbpbbsd5aVBtczZZdh+fE+m966rOVPKBWV07qOoOH1QCHTQrSjeP1sw06lNcM792EOlc+vm0wirRkAeKuCgnkZQWkRXNF2ErAa/G68Z7apCjY/W8Y5Jqo053dRxU5qfSU37pTdZmw97stUZKY+HzLoTbzHtPkE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751991716; c=relaxed/simple;
-	bh=TLvocITXJ+jGWEc+GbjQZJFvOjFTeZesBcRy+xMkzLQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n0gopaUzuPDIEXWxZA5NoyjAcUD+y2ej0Vj0r4An5zRuKZ2CRrI6GD+di/tRLytkJGYB84nj3ZZbImvMkJ3CyM9OM0LFetnVJOvpVAY9IL66NOinJWSbz9i0u8aOrUAgU3FRYFPLlQRH77hGfeaHdEa8iSFgwcIXyVOPUsppTxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NA65KBJG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 671F0C4CEED;
-	Tue,  8 Jul 2025 16:21:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751991715;
-	bh=TLvocITXJ+jGWEc+GbjQZJFvOjFTeZesBcRy+xMkzLQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NA65KBJGSYJYKU3lzvXmQ0NFxdXb5lepEg7SeBf67E/fMjpYOu2z7L5CfqJCT9uTi
-	 zRmKSTIq4F/JojJcii5MFuS3xwUp7pJhmj6v8+nrhWJM/t9QOB8DvKQ5Msdvl9DKcZ
-	 T3lXsuGu0YJ/y989qbcWwO3yAFEJE8/bmsgV8LFoUkCkDywwtGQCVe/s5sH9EwM+Fg
-	 ylbgVtb6AJwtdN+YNBUzoBZfBvrPN4Z0kSOAKqyQ+hfDc90m4+sY7cw/JkwzY/ibGl
-	 BwMG71qA25IConRQhwsNDyqh9KEKC69gQoPOgvHGBk7vT1cIBqRUprTqEufh53cxho
-	 tcBNEXu4wgFmw==
-Date: Tue, 8 Jul 2025 11:21:54 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Stefan Schmidt <stefan.schmidt@linaro.org>,
-	Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Johan Hovold <johan@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 4/6] dt-bindings: clock: qcom,x1e80100-gcc: Add missing
- video resets
-Message-ID: <175199171363.537918.5935203140901577075.robh@kernel.org>
-References: <20250701-x1e-videocc-v1-0-785d393be502@linaro.org>
- <20250701-x1e-videocc-v1-4-785d393be502@linaro.org>
+	s=arc-20240116; t=1751991912; c=relaxed/simple;
+	bh=jIXuqcI6MOmeacEdZ0npRde57ZegIGrDkobKmJQGJWI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Lh/uk3zfdjwHiYBPwDOd7EizXaIGsxMdlz7jdhxFseM343xJXswGU+o4yg4o8FfhWHdQEAslUit1BbBqwoC50aPSIvK5cP2AFDHkzadvih0yXAkwL/nJj+MYz0zMpcVTdMl0/zmjn699yIq5aKrmCR1B78/cY7TUbRqF1U2J6E8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55564C4CEED;
+	Tue,  8 Jul 2025 16:25:12 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 398055FA91;
+	Wed,  9 Jul 2025 00:25:09 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
+ Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, 
+ Chen-Yu Tsai <wens@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+In-Reply-To: <20250628054438.2864220-1-wens@kernel.org>
+References: <20250628054438.2864220-1-wens@kernel.org>
+Subject: Re: (subset) [PATCH net 0/2] allwinner: a523: Rename emac0 to
+ gmac0
+Message-Id: <175199190916.3345282.2851662318368432777.b4-ty@csie.org>
+Date: Wed, 09 Jul 2025 00:25:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250701-x1e-videocc-v1-4-785d393be502@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-
-On Tue, 01 Jul 2025 19:28:36 +0200, Stephan Gerhold wrote:
-> Add the missing video resets that are needed for the iris video codec.
+On Sat, 28 Jun 2025 13:44:36 +0800, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
 > 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> ---
->  include/dt-bindings/clock/qcom,x1e80100-gcc.h | 2 ++
->  1 file changed, 2 insertions(+)
+> Hi folks,
 > 
+> This small series aims to align the name of the first ethernet
+> controller found on the Allwinner A523 SoC family with the name
+> found in the datasheets. It renames the compatible string and
+> any other references from "emac0" to "gmac0".
+> 
+> [...]
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Applied to sunxi/fixes-for-6.16 in local tree, thanks!
+
+[2/2] arm64: dts: allwinner: a523: Rename emac0 to gmac0
+      commit: a46b4822bed08d15a856966357a4b12273751cd3
+
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
 
 
