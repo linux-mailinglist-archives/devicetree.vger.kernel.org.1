@@ -1,344 +1,141 @@
-Return-Path: <devicetree+bounces-193869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E3A8AFC19B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:10:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 386B3AFC1A7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:22:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BABC34234E9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 04:09:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE1281AA4734
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 04:22:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5ED1238D57;
-	Tue,  8 Jul 2025 04:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A1C1206F27;
+	Tue,  8 Jul 2025 04:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BlTdrsQ0"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="Z/YRE85N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBD2E17E0
-	for <devicetree@vger.kernel.org>; Tue,  8 Jul 2025 04:09:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1941D5CC7;
+	Tue,  8 Jul 2025 04:22:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751947795; cv=none; b=QqHFfv778uf+lDsUG2TkBDDekf5laF35yaj1JdLXhIpDVv0sA1JZgQ4hDgwqDUzzU+LAs77OnvR7cBoWSJY0JhT5naHck3BRCNZ6tkuBDNvXP9TexSJ59ZKQs0eYroFKpTAMC5BPijA8i3Vo9tccXvB4lsAV90z+TeDNMrysI3g=
+	t=1751948532; cv=none; b=dDsusAt/+Dpo57+NdaD/5fqS3HUkzQUJi6f5ujBWBrixkdNWFVT7ym3KvvsVadMOMfJeLWQVsDmLqVdsyc+r2sSmj8ay6O9EVvH9SMXQ+Dh+q2x9Xov38pRyh1+ZDhqLlaLHVP9NI+5H+RdMbMmiZjOjt0+9+t/miFAaYF4xewA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751947795; c=relaxed/simple;
-	bh=ztvXHKmyWJi5j07UYL2TtAAwnohFLggOOe806CIpqmo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DXtfS0foyJ+8kMTLjMbZfwfevTrfbpevRxOXdh6vkQbFXG7aD3mQPOHlNDfK2QjOJK2SnrFdXigzGLIQ9nPI3i+OiHr1I2sz78RLanV0iInwihCNu3/Ws5pc6o2rchEweP3H3qqZZrQtutEes0vh7Hg3NW3j0k3PqV0Nakt1M8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=BlTdrsQ0; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-555163cd09aso3659694e87.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 21:09:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1751947791; x=1752552591; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=97PA7tnoUToVlQXPk0nMmVPATh2HU3vK09piMMjV8Cw=;
-        b=BlTdrsQ0or1Wn7vIUOqtWF+lXDNIHovZe8X5Jn3KXjJGITFcoS0jvSdVA2kBpTIAQj
-         LsG67uJriU42GRPWyK6hhlLy7IFhchP9WrpOfWG7Oojb9gflb+ILW4D+ABvlLrjrsF5i
-         4QBPFQPuQiiMspiu68GtL6s11EEjexsHJNY2E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751947791; x=1752552591;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=97PA7tnoUToVlQXPk0nMmVPATh2HU3vK09piMMjV8Cw=;
-        b=O+I9cMOS8rXV6w9qF/jBh+syqyHjjuex3+KWt6uqs3/J5gM9eXboD/u8c5F/8h0Bcd
-         6ucT6A9eTaw9cczf64RKB9l4WtK0dtKGl9d7rJe6C6oljHVe3SdcgUFs+HPqwxjIcI8m
-         EDiCUcz5PXlA6LLQEbCgHZVBaK7iShH4zRdeURdbjzg7j+NZdhF2id3qkqUPr10hdG4l
-         vAXbRDrWStv7mXR/4hzXWImzoJTxcodWAPS8EkxCLZGfUW1FIOIxZnnV7L+pWD3nk0nM
-         ycu6jqJBFB57lWTNIHQJ9QrQuxmEIuXoQYiXiVcremLNe7VDj0ZvybI4ivE+kPY10bpr
-         A97Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXjBdDI8a6MBFuBmvdJJHrZmafmW81ThtTmWXcZ2VXTp8BgaHmidNZC+ob27NxsyQsFniC/MiJcMsm1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxp0xNqF4Qs/DbtngMh3bkmRfVZygi/A4rCumRxPu1H92GEMlJI
-	e7FefX7gOAdeq8JFTD837aPsY9V8tor6RVKfOe7QVzD4fm2pzwyLR+GPrhoJr+tP3/dGFFXGMBf
-	R/xmUcnRpo2NGSakvY4mEFeWAWhANB6hGGX/0aDQF
-X-Gm-Gg: ASbGncts9+f9Es4SQ7ygpIo1ftHXWH+NM0TtQU0mB9kcPIDW0nAvt8XrII9puljcINg
-	5K2GB8elKoMMaWZywbxpgoOQi4Axp8nTDvELlaf81p31eGHDQ0k31zqroBYBPNheol+KpMOWbrP
-	ZbsTgIPgAqTgw1RtxjGpeyf9E4BnO3xgTl+rQgHcM2uDSmjhIFF+2X0lLJnk6/QH3U2dS0TV8=
-X-Google-Smtp-Source: AGHT+IEVujyv6lAcDWE1bZGAyeEobtReCu0A+jIigUo7aBzy2SXT5pvaXtmoXS+q6pOlLoU2IHQ9/lFEOLFDtdD+mLU=
-X-Received: by 2002:a05:6512:6c5:b0:553:ae47:6856 with SMTP id
- 2adb3069b0e04-557f8310057mr327313e87.10.1751947790882; Mon, 07 Jul 2025
- 21:09:50 -0700 (PDT)
+	s=arc-20240116; t=1751948532; c=relaxed/simple;
+	bh=wH7kVFdxJBWHzqdNvWRrLLi2+/mmEv22JjDs1P69R/U=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=OLbnkxu+Fxt6QQAafPmEAXpitzTx6/VAdcMhjQnYbp83lhPUUNMOaNd1leykDcksyKYyinlWbWNjfbYWR9kO2O2qRo9sDSipuu4CRuF3JpgYqMlxB+kWWzoSU878XbpWB6aWWE0xFr2uyLXQY6LphZ3ld4CvkRLxYhw2gixqpRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=Z/YRE85N; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=VBm2GkJ5uO7wKhQG2Z1jEPSxTV805Br2irdNbqIz7SY=; b=Z/YRE85Naxvw4MzpNJ/26p8P54
+	GLOrWbY768uIrrk7OPMrW4QBz1NETiGWLZxcjeVwr8afx9n4Alvs2FbhqpTrjsiza+mN25jxFW3b+
+	UClYzGu1AyXILiQZSa8Y0QDDHC1wCPwqJsYJOvX0R2Bsr94TJrDYDwwjP6BGitejvgalZ4LdxNAqA
+	WHYmJYAmmY73ZTm75nU0i8UWab1F0BoQPT4oiEui6nfA89QQVfvWKxS+xFLkaOAQIb2S/rR6W6TIi
+	jOoLnTwWFz3exkaSN4hctJrRGp7gmsVL3qNQVOAE7+DWTODj0DOy+4vqz6sIWdueoDOQgJSEYo7Ov
+	HvwCAJZA==;
+Received: from [89.212.21.243] (port=45388 helo=localhost.localdomain)
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1uYzqK-00GO9H-0l;
+	Tue, 08 Jul 2025 06:22:07 +0200
+From: Primoz Fiser <primoz.fiser@norik.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de
+Subject: [PATCH v3 0/4] Initial PHYTEC i.MX93 overlays
+Date: Tue,  8 Jul 2025 06:22:02 +0200
+Message-Id: <20250708042206.329208-1-primoz.fiser@norik.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250707134451.154346-1-angelogioacchino.delregno@collabora.com> <20250707134451.154346-4-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250707134451.154346-4-angelogioacchino.delregno@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 8 Jul 2025 12:09:39 +0800
-X-Gm-Features: Ac12FXzG3Dao19qlz-A1KXKkJqrEyMGo4bcZkDP1swxYmwtOwf1D0Gwc3OVNmQY
-Message-ID: <CAGXv+5FHA-Y1xyW=_UjGUDsqarXNTciGP7KnzoB2Jyj2Ft5rdQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/8] dt-bindings: regulator: Document MediaTek MT6363
- PMIC Regulators
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	lgirdwood@gmail.com, broonie@kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-Hi,
+Add initial overlays for the PHYTEC phyCORE-i.MX93 SoM based boards,
+that is the phyBOARD-Segin-i.MX93 and phyBOARD-Nash-i.MX93.
 
-On Mon, Jul 7, 2025 at 10:27=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Add bindings for the regulators found in the MediaTek MT6363 PMIC,
-> usually found in board designs using the MT6991 Dimensity 9400 and
-> on MT8196 Kompanio SoC for Chromebooks, along with the MT6316 and
-> MT6373 PMICs.
->
-> Link: https://lore.kernel.org/r/20250624073548.29732-4-angelogioacchino.d=
-elregno@collabora.com
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  .../regulator/mediatek,mt6363-regulator.yaml  | 175 ++++++++++++++++++
->  1 file changed, 175 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,=
-mt6363-regulator.yaml
->
-> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6363-=
-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt636=
-3-regulator.yaml
-> new file mode 100644
-> index 000000000000..9df57b803edb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulat=
-or.yaml
-> @@ -0,0 +1,175 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulator.y=
-aml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT6363 PMIC Regulators
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +
-> +description:
-> +  The MT6363 SPMI PMIC provides 13 BUCK and 25 LDO (Low Dropout) regulat=
-ors
-> +  and can optionally provide overcurrent warnings with one ocp interrupt
-> +  for each voltage regulator.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6363-regulator
-> +
-> +  interrupts:
-> +    description: Overcurrent warning interrupts
-> +    minItems: 1
-> +    maxItems: 38
-> +
-> +  interrupt-names:
-> +    description:
-> +      Names for the overcurrent interrupts are the same as the name
-> +      of a regulator (hence the same as each regulator's node name).
-> +      For example, the interrupt name for regulator ldo-vemc will
-> +      be "ldo-vemc".
-> +    minItems: 1
-> +    maxItems: 38
-> +    contains:
-> +      enum:
-> +        - buck-sshub1
-> +        - buck-sshub2
-> +        - buck-sshub4
-> +        - buck-vb1
-> +        - buck-vb2
-> +        - buck-vb3
-> +        - buck-vb4
-> +        - buck-vb5
-> +        - buck-vb6
-> +        - buck-vb7
-> +        - buck-vs1
-> +        - buck-vs2
-> +        - buck-vs3
-> +        - ldo-va12-1
-> +        - ldo-va12-2
-> +        - ldo-va15
-> +        - ldo-vaux18
-> +        - ldo-vcn13
-> +        - ldo-vcn15
-> +        - ldo-vemc
-> +        - ldo-vio0p75
-> +        - ldo-vio18
-> +        - ldo-vm18
-> +        - ldo-vrf0p9
-> +        - ldo-vrf12
-> +        - ldo-vrf13
-> +        - ldo-vrf18
-> +        - ldo-vrf-io18
-> +        - ldo-vsram-apu
-> +        - ldo-vsram-cpub
-> +        - ldo-vsram-cpum
-> +        - ldo-vsram-cpul
-> +        - ldo-vsram-digrf
-> +        - ldo-vsram-mdfe
-> +        - ldo-vsram-modem
-> +        - ldo-vtref18
-> +        - ldo-vufs12
-> +        - ldo-vufs18
+Overlay #1:
+ - imx93-phycore-rpmsg.dtbo
+ - add support for M33 core RPMsg on phyCORE-i.MX93 based boards
+ - applicable to both phyBOARD-Nash and phyBOARD-Segin boards
 
-To summarize my replies to the previous iteration, I think this is
-not a good representation, since a) the interrupts are internal
-to the PMIC, and it does not need to be spelled out in the DT, and
-b) this gives another meaning to the representation, it being to
-enable overcurrent protection on the given regulators. Instead
-the common regulator binding has the "regulator-over-current-protection"
-property that can be set in each regulator. IMO this is much more
-explicit.
+Overlay #2:
+ - imx93-phyboard-segin-peb-eval-01.dtbo
+ - add support for PHYTEC PEB-EVAL-01 evaluation adapter
+ - applicable to phyBOARD-Segin board
+
+Overlay #3:
+ - imx93-phyboard-segin-peb-wlbt-05.dtbo
+ - add support for PHYTEC PEB-WLBT-05 WLAN/BT adapter
+ - applicable to phyBOARD-Segin board
+
+Overlay #4: 
+ - imx93-phyboard-nash-peb-wlbt-07.dtbo
+ - add support for PHYTEC PEB-WLBT-07 WLAN/BT adapter
+ - applicable to phyBOARD-Nash board
 
 
-> +  isink-load:
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
+Changes in v3:
+- fix license to match base dts
+- add Reviewed-by tag
 
-Do we know what this is for? There's no actual output with this name.
+Link to v2: https://lore.kernel.org/all/20250707061101.1194618-1-primoz.fiser@norik.com/
 
-> +  ldo-vemc:
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +patternProperties:
-> +  "^buck-(sshub[124]|vb[1-7]|vs[1-3])$":
+Changes in v2:
+- reorder reserved memory nodes by address
 
-According to the datasheets, vb[1-7] should be vbuck[1-7].
+Link to v1: https://lore.kernel.org/all/20250619063954.1730231-1-primoz.fiser@norik.com/
 
-There are no real outputs with the name sshub*. These seem to be some
-alternate setting / mode. I don't think they should be modeled as
-separate regulators.
+Primoz Fiser (4):
+  arm64: dts: imx93-phycore-som: Add RPMsg overlay
+  arm64: dts: imx93-phyboard-segin: Add PEB-EVAL-01 overlay
+  arm64: dts: imx93-phyboard-segin: Add PEB-WLBT-05 overlay
+  arm64: dts: imx93-phyboard-nash: Add PEB-WLBT-07 overlay
 
-Also, could we drop the type from the names? There's no real need for them.
-I managed to get them removed in the MT6366 binding, and I hope we can
-continue that scheme.
+ arch/arm64/boot/dts/freescale/Makefile        | 10 ++
+ .../imx93-phyboard-nash-peb-wlbt-07.dtso      | 88 ++++++++++++++++++
+ .../imx93-phyboard-segin-peb-eval-01.dtso     | 52 +++++++++++
+ .../imx93-phyboard-segin-peb-wlbt-05.dtso     | 93 +++++++++++++++++++
+ .../dts/freescale/imx93-phycore-rpmsg.dtso    | 60 ++++++++++++
+ 5 files changed, 303 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-nash-peb-wlbt-07.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-eval-01.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-wlbt-05.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-phycore-rpmsg.dtso
 
-> +    description: Buck regulators
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    properties:
-> +      regulator-allowed-modes:
-> +        description: |
-> +          Allowed Buck regulator operating modes allowed. Valid values b=
-elow.
-> +            0 - Normal mode with automatic power saving, reducing the sw=
-itching
-> +                frequency when light load conditions are detected
-> +            1 - Forced Continuous Conduction mode (FCCM) for improved vo=
-ltage
-> +                regulation accuracy with constant switching frequency bu=
-t lower
-> +                regulator efficiency
-> +            2 - Forced Low Power mode for improved regulator efficiency,=
- used
-> +                when no heavy load is expected, does not limit the maxim=
-um out
-> +                current but unless only a light load is applied, there w=
-ill be
-> +                regulation accuracy and efficiency losses.
-> +            3 - Forced Ultra Low Power mode for ultra low load, this gre=
-atly
-> +                reduces the maximum output power, makes the regulator to=
- be
-> +                efficient only for ultra light load, and greatly reduces=
- the
-> +                quiescent current (Iq) of the buck.
-> +        maxItems: 3
-> +        items:
-> +          enum: [ 0, 1, 2, 3 ]
-> +    unevaluatedProperties: false
-> +
-> +  "^ldo-va(12-1|12-2|15)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +  "^ldo-v(aux|m|rf-io|tref)18$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +  "^ldo-vcn(13|15)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +  "^ldo-vio(0p75|18)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +  "^ldo-vrf(0p9|12|13|18)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +  "^ldo-vsram-(apu|cpub|cpum|cpul|digrf|mdfe|modem)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +  "^ldo-vufs(12|18)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
+-- 
+2.34.1
 
-Could we also describe supplies? There should be:
-
-vsys-(buck[1-7]|vs[1-3]|ldo1)-supply
-
-
-ChenYu
-
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    pmic {
-> +      interrupt-controller;
-> +      #interrupt-cells =3D <3>;
-> +
-> +      regulators {
-> +        compatible =3D "mediatek,mt6363-regulator";
-> +        interrupts =3D <4 16 IRQ_TYPE_LEVEL_HIGH>, <4 17 IRQ_TYPE_LEVEL_=
-HIGH>,
-> +                     <4 18 IRQ_TYPE_LEVEL_HIGH>, <4 19 IRQ_TYPE_LEVEL_HI=
-GH>;
-> +        interrupt-names =3D "ldo-vcn15", "ldo-vcn13", "ldo-vrf0p9", "ldo=
--vrf12";
-> +
-> +        ldo-vio18 {
-> +          regulator-name =3D "pp1800-vio18-s3";
-> +          regulator-min-microvolt =3D <1800000>;
-> +          regulator-max-microvolt =3D <1800000>;
-> +          regulator-allowed-modes =3D <0 2>;
-> +          regulator-allow-set-load;
-> +        };
-> +      };
-> +    };
-> +...
-> --
-> 2.49.0
->
->
 
