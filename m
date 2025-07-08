@@ -1,134 +1,235 @@
-Return-Path: <devicetree+bounces-194242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEC38AFD64B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 20:18:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5683EAFD6A5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 20:47:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BDED16AA2D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:18:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 966174A79CA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:47:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483BB21ADA4;
-	Tue,  8 Jul 2025 18:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B541921CC64;
+	Tue,  8 Jul 2025 18:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZgBt4z/G"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Do33M+Zs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-81.smtpout.orange.fr [80.12.242.81])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA0621ABD4;
-	Tue,  8 Jul 2025 18:18:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E31BE215075;
+	Tue,  8 Jul 2025 18:46:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751998690; cv=none; b=AUq3AHR4woo56eLktv4zIvHkIEaHAPDpEadiuOg7J7yxKtARdmDWyEwQAZIEGthLsytJ8vP27c3GHktpQaEOcL3DF19gRn/0g4YF8Ylrv4EDmE/AjP138q3QDwF3Slo7YR7n1hLBAb8kFlvwl+TE0RDaU4ahjbv9dwwdr1ePPZk=
+	t=1752000422; cv=none; b=rmqtzgswenDBMjMM4xt5tjGmxpIUi0OVwOiZTEfpWcB7QS1shn5OzkxaLeZgtKmXO9LoR+JB3WAvXrfphy0IWS+D6G0mxup5BFYhh/NPmpT8xOCSYRw+7VDnH3KN7trGP3tUmfNvkpg87F4fmRHrWea82MkLQ4QnZWEU/n9iCH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751998690; c=relaxed/simple;
-	bh=PKu6/ThVozLLn7QVgY0cNBC72u37vzczW0XG6NNicpg=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YuPQ3KsdoIvkc2IIGLPGUcIqf1n5coIRVD5Z4MVyAydrRfVWaYcnh8/qChWrRz2Au3Ssk3IaQqd5dTda0EoFbIas+LS+QcPh9vriaoB9ztB2Qbf8cUbzNSXFfhe06oLsnxQQYee6fJIepZgdZbF1fvGISxYx5Et8NZfwM1YWMVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZgBt4z/G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E936C4CEED;
-	Tue,  8 Jul 2025 18:18:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751998689;
-	bh=PKu6/ThVozLLn7QVgY0cNBC72u37vzczW0XG6NNicpg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ZgBt4z/GsgkccT31iLNkliSi4hbeCcwskRE2LCNvIscD0JNwyrcnPqREmog8m8eoZ
-	 9H/qk0MrBkhHBfgc86BKsWc9qzFeoHG0Apx1vExK2mJlewaBFFvh1zexoB+kVRL/bd
-	 cBQzlpKNXa/ao9V+3iWi7CT0uPVf657ze14JhIr0DYg8pJDeVMTpoVSn8SX6KCb8Et
-	 a5HuvvD2iWSBYVjA1UMWo8jB4oRhv7u5graujTyoR+kZXwtuciBUykYw9737QJpXcO
-	 jsQa93xKez07Z73M8PFvAkI2tP6tc1h6BBcHd3xOYKk+u+hPc609EtLd0UllqPbFBg
-	 zp67BrGbMkOnw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1uZCtK-00DrVr-N7;
-	Tue, 08 Jul 2025 19:18:07 +0100
-Date: Tue, 08 Jul 2025 19:18:06 +0100
-Message-ID: <86ms9ea6n5.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Oliver Upton <oliver.upton@linux.dev>, Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Peter Maydell <peter.maydell@linaro.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v7 00/31] Arm GICv5: Host driver implementation
-In-Reply-To: <20250703-gicv5-host-v7-0-12e71f1b3528@kernel.org>
-References: <20250703-gicv5-host-v7-0-12e71f1b3528@kernel.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1752000422; c=relaxed/simple;
+	bh=6Gn+yRNl1JrOAlZoap5OkCRx3E5efJLTHxU979QWAl4=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=mDUB2HABWqqUnh5/VsAZdPr9+wrnxbfVXsxVaI/OGlVIaaV9FvZe8+EF9mIu7Vxx8Ssw6vWARXQLtEcX3Ro4xEIo+Q8ro3bMk5UDNkvLkypzRLVseuAoN2eDAYz6USciW5XyerNsnBt/8OPPzC0fXENnbsXhK/DH4NZ26tJaRUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=Do33M+Zs; arc=none smtp.client-ip=80.12.242.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+ ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+	by smtp.orange.fr with ESMTPA
+	id ZDL6uHsjEt5czZDL7uZYyq; Tue, 08 Jul 2025 20:46:50 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1752000410;
+	bh=1KMq9z5swwEqfJUujLxgmIpabvJfx13yCUzkaCHJsSs=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=Do33M+ZskTXvpQmj5Ot7c3HkmJooV8IxNLxtavB3Soz8wkUWEkxkKc2D+2h8k621h
+	 iqouVHpcMleRuXDEVdruV73DATz+EaTk3MLbTmsri+6r8hxvn31OXheuVqnU3mfG3M
+	 OeZw/r7bU2X7yFDkLwDY8uiDgJG6U9lmIFHeu962ITaJ7nAG4VpjuENbgNFjwdf04t
+	 ukZxHDhK9oSPgIbGFD7mn4DIOt8Ip/GpwVwJoWC3YCl1vTdEF4xerpeXHZtkQc1Wuk
+	 wTe/GoiQpfZ34APi/VWCV+dUxRnYeXna9qb076SObnrTkm77krCb2ZJ2OmD0SpaRRY
+	 DMjYmOu7G4dAw==
+X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Tue, 08 Jul 2025 20:46:50 +0200
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+Message-ID: <0406698c-6534-4aca-8994-e8a69ecee2b2@wanadoo.fr>
+Date: Tue, 8 Jul 2025 20:46:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: oliver.upton@linux.dev, lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, Jonathan.Cameron@huawei.com, timothy.hayes@arm.com, bhelgaas@google.com, Liam.Howlett@oracle.com, peter.maydell@linaro.org, mark.rutland@arm.com, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/6] mfd: pf1550: add core driver
+References: <20250707-pf1550-v8-0-6b6eb67c03a0@savoirfairelinux.com>
+ <20250707-pf1550-v8-2-6b6eb67c03a0@savoirfairelinux.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: devnull+samuel.kayode.savoirfairelinux.com@kernel.org
+Cc: Frank.li@nxp.com, abelvesa@kernel.org, abelvesa@linux.com,
+ b38343@freescale.com, broonie@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dmitry.torokhov@gmail.com, eballetbo@gmail.com,
+ imx@lists.linux.dev, krzk+dt@kernel.org, lee@kernel.org,
+ lgirdwood@gmail.com, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, robh@kernel.org,
+ samuel.kayode@savoirfairelinux.com, sre@kernel.org, yibin.gong@nxp.com
+In-Reply-To: <20250707-pf1550-v8-2-6b6eb67c03a0@savoirfairelinux.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, 03 Jul 2025 11:24:50 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+Le 07/07/2025 à 23:37, Samuel Kayode via B4 Relay a écrit :
+> From: Samuel Kayode <samuel.kayode-4ysUXcep3aM1wj+D4I0NRVaTQe2KTcn/@public.gmane.org>
 > 
-> Implement the irqchip kernel driver for the Arm GICv5 architecture,
-> as described in the GICv5 beta0 specification, available at:
+> Add the core driver for pf1550 PMIC. There are 3 subdevices for which the
+> drivers will be added in subsequent patches.
 > 
-> https://developer.arm.com/documentation/aes0070
-> 
-> The GICv5 architecture is composed of multiple components:
-> 
-> - one or more IRS (Interrupt Routing Service)
-> - zero or more ITS (Interrupt Translation Service)
-> - zero or more IWB (Interrupt Wire Bridge)
-> 
-> The GICv5 host kernel driver is organized into units corresponding
-> to GICv5 components.
-> 
-> The GICv5 architecture defines the following interrupt types:
-> 
-> - PPI (PE-Private Peripheral Interrupt)
-> - SPI (Shared Peripheral Interrupt)
-> - LPI (Logical Peripheral Interrupt)
-> 
-> This series adds sysreg entries required to automatically generate
-> GICv5 registers handling code, one patch per-register.
-> 
-> This patch series is split into patches matching *logical* entities,
-> to make the review easier.
+> Reviewed-by: Frank Li <Frank.Li-3arQi8VN3Tc@public.gmane.org>
+> Signed-off-by: Samuel Kayode <samuel.kayode-4ysUXcep3aM1wj+D4I0NRVaTQe2KTcn/@public.gmane.org>
 
-[...]
+Hi,
 
-Oliver, I've pushed out a branch with these patches at [1]. Could you
-please stash it in kvmarm/next and add the KVM bits to it so that it
-can all simmer in -next for a bit?
+some nitpicks and a few real questions.
 
-Thanks,
+CJ
 
-	M.
+...
 
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/maz/arm-platforms.git gic-v5-host
+> +	/* Add top level interrupts */
+> +	ret = devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, pf1550->irq,
+> +				       IRQF_ONESHOT | IRQF_SHARED |
+> +				       IRQF_TRIGGER_FALLING,
+> +				       0, &pf1550_irq_chip,
+> +				       &pf1550->irq_data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Add regulator */
+> +	irq = regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_REGULATOR);
 
--- 
-Without deviation from the norm, progress is not possible.
+Same as above.
+
+> +	if (irq < 0)
+> +		return dev_err_probe(pf1550->dev, irq,
+> +				     "Failed to get parent vIRQ(%d) for chip %s\n",
+> +				     PF1550_IRQ_REGULATOR, pf1550_irq_chip.name);
+> +
+> +	ret = devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
+> +				       IRQF_ONESHOT | IRQF_SHARED |
+> +				       IRQF_TRIGGER_FALLING, 0,
+> +				       &pf1550_regulator_irq_chip,
+> +				       &pf1550->irq_data_regulator);
+> +	if (ret)
+> +		return dev_err_probe(pf1550->dev, ret,
+> +				     "Failed to add %s IRQ chip\n",
+> +				     pf1550_regulator_irq_chip.name);
+> +
+> +	domain = regmap_irq_get_domain(pf1550->irq_data_regulator);
+> +
+> +	ret =  devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, regulator,
+
+2 spaces after =
+
+> +				    1, NULL, 0, domain);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Add onkey */
+> +	irq = regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_ONKEY);
+
+Same
+
+> +	if (irq < 0)
+> +		return dev_err_probe(pf1550->dev, irq,
+> +				     "Failed to get parent vIRQ(%d) for chip %s\n",
+> +				     PF1550_IRQ_ONKEY, pf1550_irq_chip.name);
+> +
+> +	ret = devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
+> +				       IRQF_ONESHOT | IRQF_SHARED |
+> +				       IRQF_TRIGGER_FALLING, 0,
+> +				       &pf1550_onkey_irq_chip,
+> +				       &pf1550->irq_data_onkey);
+> +	if (ret)
+> +		return dev_err_probe(pf1550->dev, ret,
+> +				     "Failed to add %s IRQ chip\n",
+> +				     pf1550_onkey_irq_chip.name);
+> +
+> +	domain = regmap_irq_get_domain(pf1550->irq_data_onkey);
+> +
+> +	ret =  devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, onkey, 1,
+
+2 spaces after =
+
+> +				    NULL, 0, domain);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Add battery charger */
+> +	irq = regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_CHG);
+
+This calls irq_create_mapping().
+Should irq_dispose_mapping() or another helper be called in the error 
+handling path and in the remove function, or is it already handled by a 
+devm_ function?
+
+> +	if (irq < 0)
+> +		return dev_err_probe(pf1550->dev, irq,
+> +				     "Failed to get parent vIRQ(%d) for chip %s\n",
+> +				     PF1550_IRQ_CHG, pf1550_irq_chip.name);
+> +
+> +	ret = devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
+> +				       IRQF_ONESHOT | IRQF_SHARED |
+> +				       IRQF_TRIGGER_FALLING, 0,
+> +				       &pf1550_charger_irq_chip,
+> +				       &pf1550->irq_data_charger);
+> +	if (ret)
+> +		return dev_err_probe(pf1550->dev, ret,
+> +				     "Failed to add %s IRQ chip\n",
+> +				     pf1550_charger_irq_chip.name);
+> +
+> +	domain = regmap_irq_get_domain(pf1550->irq_data_charger);
+> +
+> +	return devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, charger,
+> +				    1, NULL, 0, domain);
+> +}
+> +
+> +static int pf1550_suspend(struct device *dev)
+> +{
+> +	struct pf1550_ddata *pf1550 = dev_get_drvdata(dev);
+> +
+> +	if (device_may_wakeup(dev)) {
+> +		enable_irq_wake(pf1550->irq);
+> +		disable_irq(pf1550->irq);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int pf1550_resume(struct device *dev)
+> +{
+> +	struct pf1550_ddata *pf1550 = dev_get_drvdata(dev);
+> +
+> +	if (device_may_wakeup(dev)) {
+> +		disable_irq_wake(pf1550->irq);
+> +		enable_irq(pf1550->irq);
+
+Should this 2 lines be inverted?
+
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +#define PF1550_CHG_LINEAR_ONLY		12
+> +#define PF1550_CHG_SNS_MASK		0xf
+> +#define PF1550_CHG_INT_MASK             0x51
+
+Space vs tab
+
+> +
+> +#define PF1550_BAT_NO_VBUS		0
+> +#define PF1550_BAT_LOW_THAN_PRECHARG	1
+
+...
+
+CJ
 
