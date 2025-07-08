@@ -1,144 +1,79 @@
-Return-Path: <devicetree+bounces-193918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF6DEAFC30F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:47:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EB13AFC342
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 08:52:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A5891883132
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:47:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DE107AB2BC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 06:50:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B810221F26;
-	Tue,  8 Jul 2025 06:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C2D22222C3;
+	Tue,  8 Jul 2025 06:50:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NVr3fbcC"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="LBCwjU1S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8B3220F36;
-	Tue,  8 Jul 2025 06:47:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8D5215F5C;
+	Tue,  8 Jul 2025 06:50:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751957233; cv=none; b=mguUVw5yyOxb5UdA4WJYTlYQA6ipdTCr43sQjxh3JemHVzxR0yILun+k24HQpKI8EExpHfFEH4HyeHkvUoJUxf5Z7m6Wdhckdf2+5Y/Xjkl6mvqOzolQoGhq4t7LszIwGrfJHHXPm5jezAPZfnSoND6GJ9jIi4i5L9q8xE7gzcM=
+	t=1751957459; cv=none; b=BmJxXKOu9eyvSsT9mv7nmJeW971xie3XAH+hgrNErQx38VNjGe8mDZPwQCg+V1LuTworuCDGaNfluYP2kXOHSJcnmVzmnAANsnlJ4dpxBAPIxQpiAxdIwkYgpX6LgM5N2ECE0wH4kRUuiJrOEzsK4QYRR52aUU7p3BJvgX3Sc1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751957233; c=relaxed/simple;
-	bh=7jAELWZaWdbBCClZcvuiW0BepxaHc38GJqNXNAVZdnw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BI6PMkaNFRaNWBuGQMpXN1drIIgE7Lh/ZikyOpPvC+phoARxXPYM8ckM9bTYzllrDJ9l/CHUxqSD83wdYB0rJJwk9fl5NDGRGvPExsxLkKGQrtWQqnYuW8cw88FLVQardbCpm73i7scTrWH8KA0IzlMeHy9KqMAm4VBdoZRiNNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NVr3fbcC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CCB4C4CEED;
-	Tue,  8 Jul 2025 06:47:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751957232;
-	bh=7jAELWZaWdbBCClZcvuiW0BepxaHc38GJqNXNAVZdnw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NVr3fbcCnd2UenjwNrMSNeZkWQsItnkq2HacXLhyJ9Bw5WHFJcNu55Dr9yFb37TxI
-	 0ZvVDG6k2Fw6kmLqHBGU4U7H5+04FfzPFGNZlgIkPH3qCK5BwPpQNG6vlkBG+K+r8A
-	 tXUNxdEwPzNROc8gXv9phwmXxJcZCMSXYs/iAxwqLR0JRoihgG9eXGwcyf+kBgrE5D
-	 1HID1FHS8/q1xC/tOuS0QLzgIYFZOXfGK0r9m+asjKr4+c26UfroFN3HSOduMkldoS
-	 SytEDYqEPdW7gWhhYAQpC0iMG47j/PfuNv+lxuvmILgmLCr2huqSapcDwZRl2yHwCD
-	 sA6IkBgw49gSw==
-Message-ID: <e7ad63b7-523d-4193-97b8-d33601de78f6@kernel.org>
-Date: Tue, 8 Jul 2025 08:47:08 +0200
+	s=arc-20240116; t=1751957459; c=relaxed/simple;
+	bh=NszIzPfg+J7mLUyhSZUBtCIxa0lA1Mn/+DBmH6nBQDQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uH8EyWexcCk3VNRUIZtfTggmSrFoSulC495AW/iLQhwe9lK1i6HeJf4r5AYatlDyfIYMKzPgOpb/eNb7d+b1gZWQX13scvzZkydk0zob787XWT08kTvfAMx3vEWtxO7GpjOir0CpgeC4SNkda3NZHXe+F1sUgdhdsfEmZbtbCzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=LBCwjU1S; arc=none smtp.client-ip=1.95.21.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=TKk5nHWGdylz6lko9xpOMyn5Y/E4mXiwt9y3ZARKnPw=;
+	b=LBCwjU1SrEDmdsfnssxd18SMkm1w7CgeCoKxoloj46sCrGbsdmPmv0qiMjUMmL
+	m8SUe6TLOW1piGGAyb39dletwHqrfVBkvNdjYF1kgrNR8bKkvKsNKHjs1c0FbDlm
+	0yiyDPQ1McLPGQcGQvr7oyQfCfAC1QrqBnn1b1V/eFGVo=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDXX_aKv2xo1nBMAA--.64566S3;
+	Tue, 08 Jul 2025 14:49:48 +0800 (CST)
+Date: Tue, 8 Jul 2025 14:49:46 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Primoz Fiser <primoz.fiser@norik.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
+Subject: Re: [PATCH v3 0/4] Initial PHYTEC i.MX93 overlays
+Message-ID: <aGy_ivfclZ_YXYui@dragon>
+References: <20250708042206.329208-1-primoz.fiser@norik.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/6] arm64: dts: qcom: ipq8074: Add the IMEM node
-To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250708-imem-v2-0-692eb92b228e@oss.qualcomm.com>
- <20250708-imem-v2-2-692eb92b228e@oss.qualcomm.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250708-imem-v2-2-692eb92b228e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250708042206.329208-1-primoz.fiser@norik.com>
+X-CM-TRANSID:Mc8vCgDXX_aKv2xo1nBMAA--.64566S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUOmhFUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCxOEZWhskC2smAAAs0
 
-On 08/07/2025 07:39, Kathiravan Thirumoorthy wrote:
-> Add the IMEM node to the device tree to extract debugging information
-> like system restart reason, which is populated via IMEM. Define the
-> IMEM region to enable this functionality.
-> 
-> As described, overall IMEM region is 24KB but only initial 4KB is
-> accessible by all masters in the SoC.
-> 
-> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-> ---
-> Changes in v2:
-> - Rounded off the size to 0x6000 (Konrad)
-> ---
->  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> index fffb47ec244899cf45984adbe8c4f9820bef5c5f..2ba07a02c222958b924c5bc178ac67f955088f7a 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> @@ -625,6 +625,15 @@ qpic_nand: nand-controller@79b0000 {
->  			status = "disabled";
->  		};
->  
-> +		sram@8600000 {
-> +			compatible = "qcom,ipq8074-imem", "syscon", "simple-mfd";
+On Tue, Jul 08, 2025 at 06:22:02AM +0200, Primoz Fiser wrote:
+> Primoz Fiser (4):
+>   arm64: dts: imx93-phycore-som: Add RPMsg overlay
+>   arm64: dts: imx93-phyboard-segin: Add PEB-EVAL-01 overlay
+>   arm64: dts: imx93-phyboard-segin: Add PEB-WLBT-05 overlay
+>   arm64: dts: imx93-phyboard-nash: Add PEB-WLBT-07 overlay
 
+Applied all, thanks!
 
-It is still not simple-mfd. You should post complete node with children
-or do not make it a simple-mfd.
-
-Best regards,
-Krzysztof
 
