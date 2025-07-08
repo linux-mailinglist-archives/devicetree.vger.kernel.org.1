@@ -1,98 +1,111 @@
-Return-Path: <devicetree+bounces-194195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B978AFD317
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:53:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A64CBAFD395
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 18:58:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70346173A6B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:50:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93AD416F1D1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 16:55:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B172E1C74;
-	Tue,  8 Jul 2025 16:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C822E540B;
+	Tue,  8 Jul 2025 16:55:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u4oOoADh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EHpaHR0f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71E50225414;
-	Tue,  8 Jul 2025 16:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D1F1DB127;
+	Tue,  8 Jul 2025 16:55:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751993421; cv=none; b=aODjWFPMIpPM4xEzbwUru6trQrd0h6T+e+OBSSp0JiENZCb+fLEryCBZnelh1s8q76A+Krr+1jq1XVZ98zP6xUN3HeXT7+wSnTjAQ9xeCQfNrxFxiPq1rPgFkuFlXwEMWLKQJ1KJjpHxNuKrikG2UdtvqoYBJOfddntHKPYr12c=
+	t=1751993742; cv=none; b=XLHh0/bOcl3mGj8rU5bbe1nvB7Xdb+PorOy5gjEbhmS+FYk/TvtAkUzFPpLui1V9m59ytX/HN63MeW0DxO1U915lCA86aRtqJfPjaIVGfVQB1x74q2zqC4Fv84V77Yd8DFsRDbDmVbzoQ/idMv96SnEybD7Ow2yWHDoZ41PwCOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751993421; c=relaxed/simple;
-	bh=8A40c7RkWLHp2FPC7aBzNnB7TI99rPspv5sgH1fkE8k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EqFynrS4nT+Caeyljx7JOqxVyO+8daDIT90udLw+VaFtHx5fm9MByVeKG/RsCtvTkWm9DRb4AZTTc9eBLuT2DZ++6VuelBpkAzZl8Ly2FLQfvgbzT0n+2E4gwAjFC1v0oD5S5Sydg+lyiaGAMcs6iZZWTOeRangOBEI28Gh4JnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u4oOoADh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A293C4CEF0;
-	Tue,  8 Jul 2025 16:50:16 +0000 (UTC)
+	s=arc-20240116; t=1751993742; c=relaxed/simple;
+	bh=9SPb1rRg+3+y0YQTrg9m/lWRcSKvEJxMR3VbM/EFUUA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=Prx+5ljX6Nsuim3epN7Jz/2bfr7TQFefNlr1/KqSbaS/pGoAxzyUSdgyOlOhbGkHBw3vqghTCdoBPizpxynNY5ZvA6nJ25e6u8aU8d9KmWhL+L7O4KP5ph/hEUOwHjZrt7uZKkdUSq5jTqeyssyeyxD7f7kkIbti4oYcDLD5+x4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EHpaHR0f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB01BC4CEF0;
+	Tue,  8 Jul 2025 16:55:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751993421;
-	bh=8A40c7RkWLHp2FPC7aBzNnB7TI99rPspv5sgH1fkE8k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u4oOoADhfoGvM18Nn3/ykD59LMcHlKHrizmm2uAARvweNBAoOGZOSVmcbNHR68RRO
-	 lti+FK/MwEGlTEPEUP67aAArp+eYz7Usn7oN6xCwv1n4Yo2hKGvfgea4982oM14o2k
-	 w48iC0Z6TEy3rTGSwSiytK/b6adEgxwyKDQsr/aZUC8sdt4EENGzwR4pJeBUnxrab3
-	 QQ/YWuHCyWcpOGrrwgN1wE1vUzvFn5XkpAW3XFbxGiHI8AWvDhGkPoQO4ouDrXSSyO
-	 6Yx5zdt2oq9VKNLj2dpYLHRH1UH3ZQUYVcDlq9LRnBMKB3HO2pQbOSa0aCpr3pVheB
-	 d4XnQZs/nmR7w==
-Date: Tue, 8 Jul 2025 17:50:14 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Guodong Xu <guodong@riscstar.com>, ukleinek@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
-	drew@pdp7.com, inochiama@gmail.com, geert+renesas@glider.be,
-	heylenay@4d2.org, tglx@linutronix.de, hal.feng@starfivetech.com,
-	unicorn_wang@outlook.com, duje.mihanovic@skole.hr,
-	heikki.krogerus@linux.intel.com, elder@riscstar.com,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v3 6/6] riscv: defconfig: Enable PWM support for SpacemiT
- K1 SoC
-Message-ID: <20250708-wildfowl-curtly-1993ed320572@spud>
-References: <20250429085048.1310409-1-guodong@riscstar.com>
- <20250429085048.1310409-7-guodong@riscstar.com>
- <20250707222910-GYC408198@gentoo>
+	s=k20201202; t=1751993741;
+	bh=9SPb1rRg+3+y0YQTrg9m/lWRcSKvEJxMR3VbM/EFUUA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=EHpaHR0ffbOEJLvutnq6EJZxTb4B+wsgE0ku2vZ6OGZue52AHZyXy4ClSNQErDb1A
+	 e7wui51WfrOD1y6A/38rkoxGDfxsj3KGtcUIrWFw4rT54xVXMd0v6lBBxslKek1GyN
+	 erhDuARC7u3/perdrZ31s7mVo0aRRtDORWHdjZlz0WzMWQdzaGGBoEORy61nJZxM15
+	 H/hdHI+IikZEqweykpUhM393xWfSLHwKd/fLxdCxfEu6onms3cKXezc0x4pChK3OT0
+	 iPaMKXcN0jjSwn+w/lhOPOEWidhO26xgsz6AzqZ2pfBY8BYZrkjJMyOYQzbCrw2n4u
+	 36fkHlc7ThUQg==
+Date: Tue, 8 Jul 2025 11:55:40 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+	catalin.marinas@arm.com, will@kernel.org, mturquette@baylibre.com,
+	sboyd@kernel.org, p.zabel@pengutronix.de, lizhi.hou@amd.com,
+	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH v3 7/9] arm64: dts: renesas: rzg3s-smarc-som: Update
+ dma-ranges for PCIe
+Message-ID: <20250708165540.GA2148533@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tqHe0xDpc9gw5L64"
-Content-Disposition: inline
-In-Reply-To: <20250707222910-GYC408198@gentoo>
-
-
---tqHe0xDpc9gw5L64
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20250704161410.3931884-8-claudiu.beznea.uj@bp.renesas.com>
 
-On Mon, Jul 07, 2025 at 10:29:10PM +0000, Yixun Lan wrote:
-> Hi Conor,
->   Can you take this patch? I've checked with riscv's tree for-next
-> branch, it's still applicable and meet the "savedefconfig" criteria.
+On Fri, Jul 04, 2025 at 07:14:07PM +0300, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> The first 128MB of memory is reserved on this board for secure area.
+> Update the PCIe dma-ranges property to reflect this.
 
-Sure, done.
+Can we include a sentence or two about what the "secure area" means?
+I don't know how to connect this with anything in the driver.
 
---tqHe0xDpc9gw5L64
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaG1MRgAKCRB4tDGHoIJi
-0iMqAQCkQXOHEt1A4XzvWbSQcalLMF/bZO3zekAoxRIfbLq98QEAmuuZF9e149/a
-Dr4NUIYP7HDgky9w/jvCn45mJPQCOQM=
-=tdoU
------END PGP SIGNATURE-----
-
---tqHe0xDpc9gw5L64--
+> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+> 
+> Changes in v3:
+> - collected tags
+> 
+> Changes in v2:
+> - none, this patch is new
+> 
+>  arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> index 39845faec894..1b03820a6f02 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> @@ -214,6 +214,11 @@ &sdhi2 {
+>  };
+>  #endif
+>  
+> +&pcie {
+> +	/* First 128MB is reserved for secure area. */
+> +	dma-ranges = <0x42000000 0 0x48000000 0 0x48000000 0x0 0x38000000>;
+> +};
+> +
+>  &pinctrl {
+>  #if SW_CONFIG3 == SW_ON
+>  	eth0-phy-irq-hog {
+> -- 
+> 2.43.0
+> 
 
