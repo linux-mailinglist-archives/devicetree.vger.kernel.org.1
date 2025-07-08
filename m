@@ -1,66 +1,70 @@
-Return-Path: <devicetree+bounces-194219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 875F8AFD4FF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 19:16:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84734AFD50C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 19:17:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C6C21AA54B0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:16:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B61D91AA6BCC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 17:17:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B992E6106;
-	Tue,  8 Jul 2025 17:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288672E6134;
+	Tue,  8 Jul 2025 17:16:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BOBPe097"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vDfJHdtR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D86819EED3;
-	Tue,  8 Jul 2025 17:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00EAF9E8;
+	Tue,  8 Jul 2025 17:16:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751994979; cv=none; b=PNyphXC0gqs0Zasy4r6dKkqyCdTgG0UPtBMoA2S+3mr1gDGyu6VdncBKaqA/ZhAjwD68qni4IAHaUJd0IvtfrppFXWmRyNgnptMx906pnA441DulkHBfLl1NMMdFpZezWbnTdxc8kqKA2CSstslY2Wb/pZ2Xu8ItkKXDinC3zKs=
+	t=1751995007; cv=none; b=hUj7wvPf880UeyOKycoLv0unJVRxehm9cV5zgol/L7eKBCNO1xTGPJSesyG3huRC00lbKxmWkx/mYjhbPPtqvrx4y/KIqDiNO3aM3y4jtyKkvuoiIEuLtDyYn9XnWe7hfq+naZGMiK8ExJJXa0Dswadea24PPzpuPfShxa3nbTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751994979; c=relaxed/simple;
-	bh=9BnTd3kqHiI+RLRuW2SIH7nDiSe8klvUWwh1RoroQaY=;
+	s=arc-20240116; t=1751995007; c=relaxed/simple;
+	bh=8JCM007Su614dbs0l57eUxf4MWAtqpo3iFUjAkEXeAQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZmRzQTmOBuTDo6UrwlAT2Hkb0ojvG0L3aqdvgsQRfNhlfRsjDVGqivPOvBOg2XdIxwJ/cr8Fh9UZRt1mo9wjOlYaXiOHQ/ACNSQOBO6oUV0jf0pIntdqW1BFswpexbPJYVn//mA+mTbPpgqgpDuBKIKPw5oaOZpS6YMmx9eZhB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BOBPe097; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78FB9C4CEED;
-	Tue,  8 Jul 2025 17:16:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nKj/N5x8whWtK2g8rlneAF7RiNUtI0S1gAmZwapab9trUK/O1Gzr/KgL5H66Rnm1j2z0CmRtI23JENWXc4XPkryfCmMHBnJHeO3rRPd74iSQXWlHuCgcGxhj3ntmw4Xo64c3K1k4TSAWO4T5WTvaOuLDOOfPxSGSwvW2Xun3S2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vDfJHdtR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D8B7C4CEED;
+	Tue,  8 Jul 2025 17:16:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751994978;
-	bh=9BnTd3kqHiI+RLRuW2SIH7nDiSe8klvUWwh1RoroQaY=;
+	s=k20201202; t=1751995006;
+	bh=8JCM007Su614dbs0l57eUxf4MWAtqpo3iFUjAkEXeAQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BOBPe097FZ5t6a0C9qYnF21fHnNu5epcIpuRDUjCKell5EMf45OF6TYRCrf/PtuGo
-	 7bbp7XyPxJwGxS/N4dlApJAbEoqBYTXs8IShXKgysMPjJkBVWlhGfhOb6W3olv0p4H
-	 5hGVRwyRdnlcsxBYNWh+76bNB+/R+HDW15Ss03oAzfrhlwUA0d+RvRRBHuQEinpAqW
-	 RXiUVbFFnw80AtaEQrb4uP/ezbEvygBln7JecSNcjr9zLOz/GD5AsWOt9gPFz9kUgI
-	 HBZBtxxE3+ZsI9wCDqZ9410ou+7CJY9C8p18JAXYkrkAhx5NsfzoH7AZkOo4RZ+MJg
-	 waCzbupzZPt6Q==
-Date: Tue, 8 Jul 2025 12:16:17 -0500
+	b=vDfJHdtRTlcgaUIFBLrdCi1UWjZWnGedZeU5C7IhRs0DTnUrd43Jb4WcnU3ZVH2XR
+	 maXi/ZbFcpUUa1U36gKTtdWhSMQ9mXgQhWrnrrsyjNr/SGyW9Ol6iI9qYAAHlwtX5p
+	 2M5/YD6MYvhd/TtyVkUAtsKtbTo/tx+m26kPiAnhd4senIUj4vT/Zpxg2NA2vKv1Xm
+	 +3pTopEo669j9v4NV+3G1AtFLut/nYOYojVW3wZZwPpz0M4F1qc6uPMImCdjCqDhwJ
+	 Uv/8nT4jdDruw9aEk7MkFE49Y2FsR97NSDw3ufc3RIYol+W11/7UfAvmCjFxU6mBG5
+	 6agGSBMQYKTCg==
+Date: Tue, 8 Jul 2025 12:16:45 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Paul Kocialkowski <paulk@sys-base.io>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Yong Deng <yong.deng@magewell.com>,
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Maxime Ripard <mripard@kernel.org>, Sean Paul <sean@poorly.run>,
+	linux-kernel@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Stephen Boyd <sboyd@kernel.org>, Maxime Ripard <mripard@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-media@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v8 2/9] dt-bindings: media: sun6i-a31-isp: Add optional
- interconnect properties
-Message-ID: <175199497651.649032.8001124742935274339.robh@kernel.org>
-References: <20250704154628.3468793-1-paulk@sys-base.io>
- <20250704154628.3468793-3-paulk@sys-base.io>
+	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Krishna Manikandan <quic_mkrishn@quicinc.com>,
+	freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+	Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Rob Clark <robin.clark@oss.qualcomm.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>
+Subject: Re: [PATCH 1/4] dt-bindings: display/msm: dsi-controller-main: add
+ SC8180X
+Message-ID: <175199500495.649724.17681226218267809608.robh@kernel.org>
+References: <20250704-mdss-schema-v1-0-e978e4e73e14@oss.qualcomm.com>
+ <20250704-mdss-schema-v1-1-e978e4e73e14@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,17 +73,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250704154628.3468793-3-paulk@sys-base.io>
+In-Reply-To: <20250704-mdss-schema-v1-1-e978e4e73e14@oss.qualcomm.com>
 
 
-On Fri, 04 Jul 2025 17:46:19 +0200, Paul Kocialkowski wrote:
-> An interconnect can be attached to the sun6i-a31-csi device, which is
-> useful to attach the dma memory offset. Add related properties.
+On Fri, 04 Jul 2025 19:31:53 +0300, Dmitry Baryshkov wrote:
+> Describe the SC8180X-specific compatible for the DSI controller persent
+> on the SoC. While the current DT for SC8180X doesn't use this
+> compatible, all other platforms were updated to have one. This change
+> makes SC8180X follow the lead.
 > 
-> Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
->  .../devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml  | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
