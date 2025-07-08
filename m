@@ -1,125 +1,140 @@
-Return-Path: <devicetree+bounces-193851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3B0CAFC015
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 03:36:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E309AFC0C3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 04:20:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 226854A5E75
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 01:37:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E693116911E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 02:20:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99ED91EB5FE;
-	Tue,  8 Jul 2025 01:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W0BMvpoM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2FA218EA1;
+	Tue,  8 Jul 2025 02:20:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15E6E35893;
-	Tue,  8 Jul 2025 01:36:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE5F70825;
+	Tue,  8 Jul 2025 02:20:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751938613; cv=none; b=cIC+7jAqixLWwIU9yYAi958mpaLNlyfeNmXfGf1ltHpGiqbCfR2R7iOS/B4gwNcgVpuDe1yERDzGGqc+bKrRF9x8hulRTgFv4KT6VTgnzEBz7hSFyc21dMLCgylAbtfeoDAuWmi/O7j0Zjn3ZnS+Us2WnPmk5jFfVHFd5OuID98=
+	t=1751941224; cv=none; b=qYb45mk9bB83Ex8trBUWA5mq7wWvcjNK3bwwR75znmFjoUHxG3NCEppaB4SjUSKQ6Hs1wjsADB8C5UQdKG05Z2SlFwhTKqkAQ/JnWNvTYBKhJWCkFIfiotOboR+VZsQ8aM9SrhwGHtPFClDYijk6p8rO/gra3wQ4de2GQMp0/TE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751938613; c=relaxed/simple;
-	bh=Avaxz9DSkFwEoHjjtMp8udC5ARHJAivgQoHarpXCuSY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HLjcqBd6n2M+OKHluizaFPPfW1iUOXVr4B3RoHh9v9ktf+Z6ppRYAeV1kj4H4UgYDaN8qwpgDh/qjC3RNP1kPEt2yodwk6ClvtCMHYuwpqE6HYwWLQ+mtJFc7j4wb3tamz65RwjEh9HUM6kZ2RIla8R5hN6uz/Y1Uz8m+6wvos4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W0BMvpoM; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e898fb745beso4278949276.1;
-        Mon, 07 Jul 2025 18:36:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751938611; x=1752543411; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EdPVyMeaiZRcAvUnLtrLn4eKjhsWSi1DSHgzYkr8RpU=;
-        b=W0BMvpoMd1gA2s7ws/JN2m21h/1E5cSoykmsyQJlm4DkVLBjoMhA+WLuAeqawD14Op
-         aoZJsg1x3hfOE5iNEOJFYsRiJkLTE+CuvZ2qYOj/ID6BUQRWvq/XuPWlO7dKV/3+FOhP
-         33ez2DSksuBcy67FOwBXaPZOc1TJczgM6lNsnG20l9l6j+ARcOwf+8ujPzWXk013UbIY
-         +Wg7x3zhNMngYF4HFy4wFdl94VT4LgHOScKOmohedA/1hoTrTXe2YSVNGUFilj+HPyn9
-         ylRLUgrmnjXcPtwcovcYacggUSFkqKSDMbaN2BnSmjDuMxA6/eOa62tJ8YRotofemMZT
-         xfug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751938611; x=1752543411;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EdPVyMeaiZRcAvUnLtrLn4eKjhsWSi1DSHgzYkr8RpU=;
-        b=rY1X3dc3yRrIGINoQmnijkm4DpB8SA/HT62xnE5eNxhmrx+hBCA7F0THvyCZHAc4AP
-         WExDB2lhGds8m46tinKz61dYA/sUDMV0XcoE+5SdrGi97KYl3SRfb/x+Ses1so7Ma2CW
-         2fn6Ki8fp1aY3G6Pv6jLdV0tBMWlADc2COFnu0W/ovLIEyUm8oyNT3rYyxDxB1tjUYfV
-         0cn2Dl90CkgeKJ7NqcxRdgI3K1+FgesJQZZTp8Iz510sckw+h8DvXMkBO/sJB6ydLR6c
-         aG8lpgAKCb28foffVyFJciuT9olhXnGt1JbxLNATUpDlC8Wi5/IEapu8wc+HWBibvAac
-         zx2g==
-X-Forwarded-Encrypted: i=1; AJvYcCU3FfIxjjBOKqYfNERF3bhjSoyosWuFkLHKha52JlmZQe0Yq38Uhwji1MoPOHkB1irneBA8B/Vwzu5E@vger.kernel.org, AJvYcCUDT86tY3ttMgOGZ69YU5Y0lBclYgkQq8MeHasA94Hyf3lRNS0HeOfzJKinCcM3mT1TKr8NaSbL/bX6BA==@vger.kernel.org, AJvYcCUuV7df80a5Vtqfj2hYu2XhBRZvshF64wS/TvNKZArO/Vo5Z00G9Wl9G0DC3UWDWLEonvOj7iXKr1waaFi1@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywgqq+mSp4KdzcHCd49v9gQfdCIOKVjFTKegOT2GNlEU5k4G3nr
-	gk/w1AQOz2InTWbEsUebBAaQ2Vp4o2aiHp2gjdAFR0XcXQMx5NgEQjJL5oLRYQvVqxAlWVde+11
-	LK+t4w8O0EeoQrLczr1Tib9GRjgfKMsI=
-X-Gm-Gg: ASbGncuKVQxB9cLkgOkZ0T7A9VZEP3KU93uXgm63e7ki8lMyRTs/aN3BICmKe2BuhGA
-	kSEyVJvJG7HtYHjWl4JHCe5fEvWHUq+WR6OzcAt9zYApkVIF9EEB2IOYzEej4GGtTGmUMeD/vvU
-	xMR1YntkvXiAbedgwhqlr5z0vWGT1BsTu4Ildos/4BfVw39IEkMQuOXvCw
-X-Google-Smtp-Source: AGHT+IFO1Gnx5DoyCjQ11hDnHQ411dqNvWC7iyWPTVkw3YPYOqNHtqbngJRaccnYpOD1O+rv6jI0VYqZFUnmW4/GDEk=
-X-Received: by 2002:a05:690c:6281:b0:70e:4d8:5cab with SMTP id
- 00721157ae682-717a06d14f8mr12559327b3.2.1751938610962; Mon, 07 Jul 2025
- 18:36:50 -0700 (PDT)
+	s=arc-20240116; t=1751941224; c=relaxed/simple;
+	bh=sn6rljpu0rRcMnoOSCho0NKqgniXWyhTWQpWa6PH9uQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Hpsfzsln7qNB0ZPnWc51C9LOFkjnE9tOB+wUEY1oeNQHJ2e62jLJ4GbSEE6oNokbTa4X4cia9l2w+tzc9nuhYA/pQGkAUekfpeoalf4lNylM45w3+89tbkIxBOkDyVaCCHbJsOv1EXeExs17fuKObtb9nFkTXIceBSgN9k/ymvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.33.69] (unknown [210.73.43.2])
+	by APP-05 (Coremail) with SMTP id zQCowAA3y1s7gGxoHwLzAQ--.7093S2;
+	Tue, 08 Jul 2025 10:19:40 +0800 (CST)
+Message-ID: <8c917152-0260-4442-a944-3cc0b3356e04@iscas.ac.cn>
+Date: Tue, 8 Jul 2025 10:19:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250706214111.45687-1-rosenp@gmail.com> <20250706214111.45687-7-rosenp@gmail.com>
- <aGxyD3mtzdNZPPnx@makrotopia.org>
-In-Reply-To: <aGxyD3mtzdNZPPnx@makrotopia.org>
-From: Rosen Penev <rosenp@gmail.com>
-Date: Mon, 7 Jul 2025 18:36:40 -0700
-X-Gm-Features: Ac12FXx7wdzhMSpG9qsFW5oZq8dvKPM90aqNfnrzqCYvgI2qkd94oIBt5lbPXeQ
-Message-ID: <CAKxU2N8cLYm5if7TJ_YMnQ0V9n3E6GSk_F-tYkqOpNfeDA5a-w@mail.gmail.com>
-Subject: Re: [PATCH 6/6] MIPS: dts: ralink: mt7628a: add wifi binding
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: linux-wireless@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>, 
-	yangshiji66@qq.com, ansuelsmth@gmail.com, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Stanislaw Gruszka <stf_xl@wp.pl>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	"open list:MIPS" <linux-mips@vger.kernel.org>, 
-	"moderated list:ARM/Mediatek SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v4 1/2] dt-bindings: net: Add support for
+ SpacemiT K1
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
+ Eric Dumazet <edumazet@google.com>, Junhui Liu <junhui.liu@pigmoral.tech>,
+ Conor Dooley <conor.dooley@microchip.com>, netdev@vger.kernel.org,
+ Philipp Zabel <p.zabel@pengutronix.de>, Jakub Kicinski <kuba@kernel.org>,
+ linux-riscv@lists.infradead.org, Simon Horman <horms@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
+ Vivian Wang <uwu@dram.page>, Yixun Lan <dlan@gentoo.org>,
+ spacemit@lists.linux.dev, Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>
+References: <20250703-net-k1-emac-v4-0-686d09c4cfa8@iscas.ac.cn>
+ <20250703-net-k1-emac-v4-1-686d09c4cfa8@iscas.ac.cn>
+ <175153978342.612698.13197728053938266111.robh@kernel.org>
+ <17733827-8038-4c85-9bb1-0148a50ca10f@iscas.ac.cn>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <17733827-8038-4c85-9bb1-0148a50ca10f@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-CM-TRANSID:zQCowAA3y1s7gGxoHwLzAQ--.7093S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Zr1DCrWfKrWfJF4kAryxXwb_yoW8AF47pa
+	yak3ZIkF1qyr47Aw4avwn29a4F9r1rKFyUXF9Iqw1vqan8X3WftryS9r15u3W8ZrWxAFyY
+	vr15W3W5CFyDAF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9qb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I
+	8E87Iv6xkF7I0E14v26F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Cr0_Gr
+	1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xK
+	xwCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE14v_Gr1l42xK82IYc2Ij64vIr41l4I8I3I
+	0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWU
+	GVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI
+	0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0
+	rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJbIYCTnIWIevJa73UjIFyTuYvjxUkWSrDUUUU
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-On Mon, Jul 7, 2025 at 6:19=E2=80=AFPM Daniel Golle <daniel@makrotopia.org>=
- wrote:
+On 7/3/25 20:31, Vivian Wang wrote:
 >
-> On Sun, Jul 06, 2025 at 02:41:11PM -0700, Rosen Penev wrote:
-> > MT7620A devices all contain a wifi device as part of the SOC. Add it
-> > here to get it working.
-> >
-> > Signed-off-by: Rosen Penev <rosenp@gmail.com>
-> > ---
-> >  arch/mips/boot/dts/ralink/mt7620a.dtsi | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
+> On 7/3/25 18:49, Rob Herring (Arm) wrote:
+>> On Thu, 03 Jul 2025 17:42:02 +0800, Vivian Wang wrote:
+>>> The Ethernet MACs on SpacemiT K1 appears to be a custom design.
+>>> SpacemiT
+>>> refers to them as "EMAC", so let's just call them "spacemit,k1-emac".=
+
+>>>
+>>> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>>> ---
+>>> =C2=A0 .../devicetree/bindings/net/spacemit,k1-emac.yaml=C2=A0 | 81
+>>> ++++++++++++++++++++++
+>>> =C2=A0 1 file changed, 81 insertions(+)
+>>>
+>> My bot found errors running 'make dt_binding_check' on your patch:
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> Error:
+>> Documentation/devicetree/bindings/net/spacemit,k1-emac.example.dts:36.=
+36-37
+>> syntax error
+>> FATAL ERROR: Unable to parse input tree
 >
-> The commit title
+> My bad. The example still depends on the reset bindings for the
+> constant RESET_EMAC0. I just tried with reset v12 [1] and that fixes it=
+=2E
 >
-> MIPS: dts: ralink: mt7628a: add wifi binding
-That is embarrassing. I'm blaming my new Linux setup.
+> [1]:
+> https://lore.kernel.org/spacemit/20250702113709.291748-2-elder@riscstar=
+=2Ecom/
 >
-> seems wrong as the commit (correctly) touches mt7620a.dtsi and not
-> mt7628a.dtsi (which would be wrong as the WiFi part of MT7628A is
-> already supported by the mt76 driver and part of the device tree).
-> Also the word 'binding' seems wrong in this context, you are adding
-> a node to the device tree, not to the device tree bindings.
+> Vivian "dramforever" Wang=C2=A0
 >
-> I'd hence suggest to change the commit title to
->
-> MIPS: dts: ralink: mt7620a: add wifi
-Will do
+Just for the record for anyone watching this thread, I'm most likely
+going to be holding off sending the next version of this until reset v12
+(probably?) gets at least taken up by a maintainer.
+
+It's a bit of a weird situation over there since they're sending the
+reset controller stuff through the clk tree, but then it's also a
+mega-syscon situation for the K1 and that's how they decided they want
+it, so it is what it is.
+
+(The DMA bus dependency that was in v3 is all DTS changes with no
+bindings and no driver, so that could be easily handled entirely in the
+SpacemiT SoC tree, which is nice.)
+
+Vivian
+
+>> [...]
+
 
