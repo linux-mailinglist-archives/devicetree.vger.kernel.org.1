@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-194258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEFC0AFD741
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 21:41:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2771AFD771
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 21:47:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CABEF3AF067
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 19:41:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22EE93B8982
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 19:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A29C2222D4;
-	Tue,  8 Jul 2025 19:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED1472459C6;
+	Tue,  8 Jul 2025 19:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="kxT+3aTk"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="cOSM5In7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2081.outbound.protection.outlook.com [40.107.94.81])
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2072.outbound.protection.outlook.com [40.107.93.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E23B1DDA24;
-	Tue,  8 Jul 2025 19:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3950F24500A;
+	Tue,  8 Jul 2025 19:45:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.72
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752003711; cv=fail; b=QBjNTgIFPa4FeRpCwG88dxV3k5lS79Iga+xaTvcciHL8ULaqx509Ck3KN92s46Jq2xR6dcy0vIU8tK/7+pobNaOs/N6xA9SVnkun511W/EqT75sQ2p5bP9PM2mCmdslAOBtzDpVshEYdki7bVl/OS4LcL4zmMgLcDRXa13yAshk=
+	t=1752003949; cv=fail; b=kuuGH9BWMOHYk3I1Thddingo5JeRytbqzBB/IAa1SvxzCHtiX4oRe8kS3T18O0LCNcsk/p2RE6e1KMv2LNCw50Wzl/GjjEYx6Slq6GG5giwSILgP50QAZLSkAlRY20swqaNDkWNoLUkRdDBeUl48niEav1mTEEMMyjuFuzwhQng=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752003711; c=relaxed/simple;
-	bh=s2bXWUVSxKyiHXkseqzWGaVr1bQQvaGTTI/AXRuEr18=;
+	s=arc-20240116; t=1752003949; c=relaxed/simple;
+	bh=rc2Xd22XEfXmdFP+W/hVLxiIku+mahHyvI3pZyz/bkI=;
 	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=KNJBply6Y84sYWJrWUT+U+Cuhj84SR162R+olzhiM7zlYemRlECWWEmqzeh3kH2olPFn5TrQtgarJTuAfF/+oKKR7qesfsetZTH3icbmQZd2yVE4pHWhxZ5MsQiCOjyJ/SA1YAPPoe0DW54hIwiQprWrlqFovYXHYBlObW6jrfg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=kxT+3aTk; arc=fail smtp.client-ip=40.107.94.81
+	 Content-Type:MIME-Version; b=GyeLlAIUBCIl6RMKoIcNX926jf2POr1L5CXoLYJ/RqjGMEJaSQL0qpeBy7UxT1X/AG64+BLzRAKq8/FRk/fbo/5bpYSMweqL5o2UuJAqUQtZDxdbH2/znL3280ZnL/KqnPSHdlFmW1CMgP028AN/aketObAoYYB9dmFEoIFol0A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=cOSM5In7; arc=fail smtp.client-ip=40.107.93.72
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iwZ7KUxA4vZJf2c0/E85fo6GcsZaFiQg4ChWuU3eUClVsF5ykDlyO+/xEfJRPE1XWjri30qymgpOHyDPup+db6Jc2NYd+cmr4JkNGL1Hltji3h6I1wb1UadhIvzStcXo8jhwAa7TvHnNoom/YG6A27zsl/62mbB9ayBUwAEDeNJyTETkzeHw12cNoE0YwlMiR+xxga2TCpydKhBNSalcn0OXZgVDZjWW8MQ0tTS2PLNvKVH1b+SP3EicOK2v0AE+OjFVeDgbaVAjrWvREy+mfG3Y9JSs952Gdb3JaDlTnvk/CnrZDG9YGQo+0WU7NpvKG/O0nrRWqYxNtibQIw4qGA==
+ b=UrzKO8bmOpXDWo8PEOK5FmAZfniQmjGJonhGjW479yAgZWX+hJXxC6+6QK9iq7uGs+J85VnJsukowFbP0FuNoLOA6sParxIP0T9ZlHHsdbWl/7zzOCs1tiGLZq3q6bYSaqUSUoQ9dh7gun5/XlUfYQq97VqoeUauZ+z4+5CRQ7DdR78Z/zOMMYJmud6+qIK32FuXyWZv3Gm1AyUu04LFh7DdKpu8pfT6axhEu/9mn/UtnDhXSM30R9O7GAeB3sStnkWR8dDidAknYim+in8/rvGlkVDMczS7H810AkIqFXKhRAEHcSWeu5ig4EgzfXnvE7JqJ4erU3mKvZ9M9wJkYg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3I97mhFhrYNLFMiTu023R1TimrRf6x5LUajm9a84cNk=;
- b=gu6+vcxcpBu5DOhzo1gO1vFH6dRiQV/Wf6j2INuag4c4l3GLpNqVcVhjkFv3nRzYKCqp+Me06zUIt+NPMb0VLbj6RFeu6yFVQZn77tzTvn3dfYHlxoMroxMPYeROYfcEy3RyKKnG4sBLDg61W574NW91wxPSz0uYaYvLiYqRnMe6KHutVtiMmlvBZHV6OxzAxFg2Am2vTAUwgMQSPqHSN0D980500RlW6YtpH8z2MPA7yYrlDcyqtver1Nw4xQ+bFW9PlG6LRsUcU1lCCSPE9uyLU8soitjnlvq5HY1gvA/611etouKN5rLzfFX6QO/BptQ/dmbHVjP5q11Rw6Z60w==
+ bh=0ej1OpGJYwJuz5oAL4fpfOyQVfr60rcrb4Z9H5JEbcg=;
+ b=hjAGsvhDvAdDSizT9X3nFS8yGHaXLUZI51GeRwnI8tXlubIvSCHZWFOQurMbXpbmzg6duAr2vkx51EYgO7Iq9Xma+u+ZpCT4BZjX590YkPckSu3w+6NMBF0fbESsd4qedW5tCNemsAIUuTLiGrWjs+4G6b5FNoa0wfEmKTEhqYX68MkYSL2LVE+SwaRBeE533Da8L09GWfDslilu+jv/XX7OSIZkLP/7oNHSS837WIu4jmyPn+rFMI/pkhx5Fz6gbIFePFQG8Kmnvb7H+A7JgXMlmIP1uJ2NDjABmkYTGacUmbJsiHKbbnH5Ey9NFJNcG00pyf2Svk0n1S35g17gGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=microchip.com; dmarc=pass action=none
  header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3I97mhFhrYNLFMiTu023R1TimrRf6x5LUajm9a84cNk=;
- b=kxT+3aTkf5aG6KlKvXl/9UTJBta/42yE6VlotMkLyexyivwhp04oyUrbR6wja6SXuoo0+4LOFS6it5D1qvgCFwSYHAAUZsnfdDfKwhWuOEAVyOjmqnLrLKsNa+8DxOPBEXgRGgKMph5TManS9OllkeR0Fkbv6uaIVEQj3y4ed83eDZwcRkTv1lmJcCChT58REnIKvEfe2NHABD9lq4/cdfvt9TctmqMb7WAkXPM2Q8Vmc3aimv8Sf5euk1orTN8BwbdoFSuW3eCpdz0tbWzJSgF1gjKt5WcLtWfD0Mr9R36uRKRzU+ehe80UC/Lwch+eH50LcQL+of1wx3pulRq1zw==
+ bh=0ej1OpGJYwJuz5oAL4fpfOyQVfr60rcrb4Z9H5JEbcg=;
+ b=cOSM5In7hZ+Enx6lbf6HrFlzfm/iDG3l3BRflR0+xIyG/1MiDX3wl1B4lFPKWH8jjjFoGHd6kEP7k0dOl2sMoKCMqb4RBOu9txHEUiYXE6qKOvnR/t/9okGZYz33G+/HO8kLk+85tbrLBy0dkEtrpCTu13gGlIv3gR64PQUVLlrS583DNVwZ9jNPbzJ3Pp7ZG6VUmSCsYPs7F9xugX4xHztEs3PPWSdkpHW9MoR4uFqtRxItvck/FxiGLbgt/mO64JNuNfLAr2PLhhK5nq3I6OOBLs6e6Zlbv4zx4yAIP6Ef+flTVfDxSq0gO1rKgYeYx4hiLuRvlm5HqSC3kCEWWQ==
 Received: from DM3PR11MB8736.namprd11.prod.outlook.com (2603:10b6:0:47::9) by
  DS7PR11MB7807.namprd11.prod.outlook.com (2603:10b6:8:e3::8) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8901.26; Tue, 8 Jul 2025 19:41:46 +0000
+ 15.20.8901.26; Tue, 8 Jul 2025 19:45:44 +0000
 Received: from DM3PR11MB8736.namprd11.prod.outlook.com
  ([fe80::b929:8bd0:1449:67f0]) by DM3PR11MB8736.namprd11.prod.outlook.com
  ([fe80::b929:8bd0:1449:67f0%6]) with mapi id 15.20.8857.036; Tue, 8 Jul 2025
- 19:41:45 +0000
+ 19:45:44 +0000
 From: <Tristram.Ha@microchip.com>
-To: <andrew@lunn.ch>
-CC: <Woojung.Huh@microchip.com>, <olteanv@gmail.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <davem@davemloft.net>,
-	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-	<marex@denx.de>, <UNGLinuxDriver@microchip.com>,
+To: <maxime.chevallier@bootlin.com>
+CC: <Woojung.Huh@microchip.com>, <andrew@lunn.ch>, <olteanv@gmail.com>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <marex@denx.de>, <UNGLinuxDriver@microchip.com>,
 	<devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>
 Subject: RE: [PATCH net-next 6/6 v2] net: dsa: microchip: Setup fiber ports
  for KSZ8463
 Thread-Topic: [PATCH net-next 6/6 v2] net: dsa: microchip: Setup fiber ports
  for KSZ8463
-Thread-Index: AQHb77bM67Dkv0j6akiDuvLgerj6T7QoSAkAgABY8BA=
-Date: Tue, 8 Jul 2025 19:41:45 +0000
+Thread-Index: AQHb77bM67Dkv0j6akiDuvLgerj6T7QoBQaAgACcTtA=
+Date: Tue, 8 Jul 2025 19:45:44 +0000
 Message-ID:
- <DM3PR11MB8736EEBC7BC57DA69DA56218EC4EA@DM3PR11MB8736.namprd11.prod.outlook.com>
+ <DM3PR11MB8736DE8A01523BD67AF73766EC4EA@DM3PR11MB8736.namprd11.prod.outlook.com>
 References: <20250708031648.6703-1-Tristram.Ha@microchip.com>
- <20250708031648.6703-7-Tristram.Ha@microchip.com>
- <1c688ae1-5625-4598-a162-302e38dbe50e@lunn.ch>
-In-Reply-To: <1c688ae1-5625-4598-a162-302e38dbe50e@lunn.ch>
+	<20250708031648.6703-7-Tristram.Ha@microchip.com>
+ <20250708122237.08f4dd7c@device-24.home>
+In-Reply-To: <20250708122237.08f4dd7c@device-24.home>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach:
@@ -82,68 +82,68 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=microchip.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: DM3PR11MB8736:EE_|DS7PR11MB7807:EE_
-x-ms-office365-filtering-correlation-id: ccac8d01-3840-451e-5bb6-08ddbe577908
+x-ms-office365-filtering-correlation-id: e6dbd4d9-a996-480e-5426-08ddbe580747
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam:
  BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018;
 x-microsoft-antispam-message-info:
- =?us-ascii?Q?5Yk0FtC/B+2bqyb688Y+vHg9UHTZwFBcB+YU76smm4c+2x0UZ9rcoSU5oz7H?=
- =?us-ascii?Q?ufKN05jPZH8NAGbrfL5BhyD1alWtLNghLuSos7oEzpExZl7QnHRemV//nXf+?=
- =?us-ascii?Q?9akpnqCxdOYm7igmHmzQVoVz54usBxAs/+qUDQ+qvF7VqSvM+q7pX1P2I/lR?=
- =?us-ascii?Q?5VMKTTqgFRzfmyP9PLZtfzKsQpV0UKwQdO20kOfDZRvUeL+dp93MTj6iIvl1?=
- =?us-ascii?Q?durobucd+6J1ODH+0D4ZkK66wre3dL/TQI9lThEHPzN65PF9186nSgo6XSr2?=
- =?us-ascii?Q?22zZVrApbOfdn22zPlv9rM2eh08HsX8v//oChqnEzAsoNtDOwinMmlwPwdDo?=
- =?us-ascii?Q?J764nwkuoO81Zc1MZms0BDW7TQKxGmkuUPQhayCpsHifoKUjs8r6W08XETiC?=
- =?us-ascii?Q?qXLZgwcSF8yGJpsF8uzh8yCjjWIOY0SJhSUFKlNo0Xem999+BEbgP0LONJPT?=
- =?us-ascii?Q?CF1ZzxvI7+JHSxXVBQs33HOU4rctgyV4JB0Lr0/rQ7WGOoNOJhNKyxFcp1AS?=
- =?us-ascii?Q?qH/0icgs1sp18Q9i91Uonn47yqq6RHWkin8dVuJH6h7D6A6VObEtM3bdMY8a?=
- =?us-ascii?Q?9vg6MtG+Y26mq99y4++moltXA3C2ISOORl7L3oTReLrrn6RSHsoy4XfvQvxy?=
- =?us-ascii?Q?hlpNBCzGHxPdHEKD3UUtxLTTbshTKJSGL3ifDaZevT9b2nk0oJeeIpddOBs5?=
- =?us-ascii?Q?koKzL5T/uvoM6vfW4mkb8mTQ1pi56w08Wq+z8gkHac+pceCDhWPEECBmSHcX?=
- =?us-ascii?Q?1MT+t58wrYb76u4F9kvKuCw09cpl4NkYiIPpR+5IiohzAyCyYyGdc6F+udwT?=
- =?us-ascii?Q?dWU4m5x3bp69RK9UeQTWKbyh8xXoxhF7fj6sdfDKm1cJjGWNnQbVnGb643xd?=
- =?us-ascii?Q?aBTMe/Cf9k6N2AgLbEBFNX+Szk6ADTQE/iKhtGt53aU/bacBi+Nl0O10UbbP?=
- =?us-ascii?Q?Lklzh4j+ZNqBoQaxvH/ReMg1qownJdLN9Lpz/eZvDnlJ1eJo8PDP5Zhtfzyz?=
- =?us-ascii?Q?VksXksVZGBNsyZauvR14Iz6ZX7G1kWg2VpJ0GUFre2E89ar1fAbmyS5ZA49Q?=
- =?us-ascii?Q?3B78iPZSfc1uGPwsKo+0dksc5fZbRAh0QklK3kQWoMV6vQ/4ukKPw2KNqC9x?=
- =?us-ascii?Q?97YgxKtYzbxTTlqv+NdqwOL/+2bV3hnWpRI2rb1SaDWOkehXE5ykgmj6sjbJ?=
- =?us-ascii?Q?ENx2/9oJdSBp/9TieKh2usN6G47KEIXtExmTrpjI1nDC98WZCTUVZRa21MhJ?=
- =?us-ascii?Q?Q71duk55fKvSbCpFNZ/yk0ZZdBQbWCiWNIaSmFEqo9aghrWy8iGd1R1ixeNv?=
- =?us-ascii?Q?FegO57ETMsAuoJ5pHX2B/kAiHtDi819yyLrZJQwAOX9dWPc+fisqQDHnlWk2?=
- =?us-ascii?Q?1zxJxlCoHN7fZ5KuR7E+54tNdnXJB4oQPYNAeJYpHuVVohGVnYfcRBxExBm3?=
- =?us-ascii?Q?FvSaix2hATnyHnhFyC7hHL+NCY70W2x/4UR0KdEhTAWQ2hJCQtF4CQ=3D=3D?=
+ =?us-ascii?Q?4AYPk2hLYcNgbdZR1ls8RAkIPf2bEovQQT/a5kB4aX96HEFiB/iD2Mc/n3OQ?=
+ =?us-ascii?Q?SO8FvClEwqFw3a1FFetwFM/+mLfOE54M8d3j4/jlH3UDUVjtyPHgOYZ4dk2T?=
+ =?us-ascii?Q?aDR71npJVn+Dd2rGd7rADFKXYawdve4fUVM3in7ZEJ9ylaqXDRr25u5CzhHL?=
+ =?us-ascii?Q?C32UOo2dHPHMlVpfazU5FZdwkRHIk3ad3t16YLTSWr/DeadoNMtql6d/aKed?=
+ =?us-ascii?Q?LPt+GlOVur3QdJSdYYAm5g2yGOzz4a6Vx/HT+D2B/y42qmIftYzJ5yA23MVn?=
+ =?us-ascii?Q?xG4dpdpxiLi3MK8/LjQsfXEvHp/Q6cHH3wkjJ0Ap4LqxiYp6ZZHDa6JcC6Q8?=
+ =?us-ascii?Q?bkRb7dbUFrk6uW5u0iCIsuN6ir4D7yarsO8IHlAqB7dElp3ax+TrNxtiYooM?=
+ =?us-ascii?Q?Qn7vypA5kEqRD63nJ8y+fNnaC+MVyIVV4dwUvyugZJhcpXBIT0tXGUSel6yK?=
+ =?us-ascii?Q?x9MdjBjOm2pzQQgeNBEqSN5sBha6KFvAhRQGbqg9F12lLHQ0E38Njb8aC0Vm?=
+ =?us-ascii?Q?to1Nk+Chq+pOLP4AND0xJ2CValTAlXlK1WDS2veCKABEAyp9hPWzFU5LARRv?=
+ =?us-ascii?Q?3PtXlw3rJ8Zvct1JVOfoVloRHu1rHhOd6fwU9L6BiVK57i+2w4HIkwsjfKzC?=
+ =?us-ascii?Q?qpCQcP8jFERpRtL2kXxPKP78L+fJGhJDH3Ik14aPKxYqvT7HBOE7hbjKVI2l?=
+ =?us-ascii?Q?ngqYoizzpV/YNTCfcuPU1YWsFZwzSLvOBobdM4i5FM3VdB5n3jDyaAkvTQcZ?=
+ =?us-ascii?Q?lHPWRqcBE0VG7xoDQDovTB1Uxpzs2Iayn50wJ8Q4OiQl/3mYb/7Eh6sEeulE?=
+ =?us-ascii?Q?PJe6E6lRLr4vXLTe+YdNLXbOr24LWzyU/1KwkI/AmGzVQ0kkcQC8u5uIPzs4?=
+ =?us-ascii?Q?qY8+f41S2Y/2LO39Che3bxsfSNudnOEU6v+4Q1svS0F8CzQ8G2m7Dm3V0tqy?=
+ =?us-ascii?Q?l3+IDp8Dd0UqMha57w9k3C31v2eBJlWPdC6/QAXNl/WPEo8h3B6aanV8ZHvU?=
+ =?us-ascii?Q?2MsY65YuGOFSxjZxgj/qKe88/2qGF9DzXbxuUOmvIDdWfeeYWX60r4X9dbE1?=
+ =?us-ascii?Q?b51paGeDD1Xgg2RIgvSySIuDx9GomV9A7NbWJ7xuG6xD56lpUyLZSLBukoj9?=
+ =?us-ascii?Q?EwLYDpI7FBJpJXgFqkuQqC+fWFspTKbcIUgnAGEMgvmMia8iNh7FZzS8F4Gu?=
+ =?us-ascii?Q?iOyjTRRcaWW3KFXmSVnuMSAiGG36gyf6/IjoMHXFMVV++zQN0iYMetWnqKmG?=
+ =?us-ascii?Q?thbzhEciKa+b5/c1keXMIENS0JekHb6Sjbk6ZuDEge1qSGOdWYtXJqYVl6uK?=
+ =?us-ascii?Q?Uq2Ti3iLdllEFvQkgHqyM4xal6+wPuhNPvaxvzl3OoT0UgpmlbfWTb2RoS0+?=
+ =?us-ascii?Q?B7TScvAYskDRWXxaWsFKAXzzEvQ0BFYBCVkNhvv31qzXSWsrFXh8sJh9Uk0B?=
+ =?us-ascii?Q?8nhV2YtNbFL75xtILJO7SCsS6nIv3UpkkZVu8vUWoWM/Y5nPnFxyAw=3D=3D?=
 x-forefront-antispam-report:
  CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR11MB8736.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?Btpt+mSbxjdtRhPgHPHlPFZl2VvAqaqZ4GGf4f2JMPVqwV8bjjdAbu1e84ig?=
- =?us-ascii?Q?A+pq3N2LDNDZDNwXaz67OS4YEdjs40fK+EVwhq7vQlJhtMF5L4pYMyQwpmsm?=
- =?us-ascii?Q?NL+9YdxK4BdHp68FwQWzdTtzoe1P/KKdK174xNS5jjIslSoq2+yOIueG/ODt?=
- =?us-ascii?Q?0oYqU2sve62P39ywax5F9Zj/w2Q1b92kuI6x5ksXT2sgFRnZ/ki456l+XtkK?=
- =?us-ascii?Q?qxHI2UccutF2uQR7XyWdcf3DPbSbIm8G+rIIj4nrziMJ8WC1o34flEoPIMnY?=
- =?us-ascii?Q?2Ah5DE18zdP7frezILRLeHd8+qkNBYrpHJvnXvVME0y161YF0OZGpd98TjDS?=
- =?us-ascii?Q?0zfRzxS90ECk8U3Zb71ku9U4WDGFhVpNgbtSUrRyoUlKpyCt9qzQ8NxuW1TA?=
- =?us-ascii?Q?o40NEOEfVtHICqmcxzXzj4uO7CFId2zqLXBCUgrgeCVGZ+tKR02NWFJDg9OA?=
- =?us-ascii?Q?+MxYFik7NXku6t7APCFh46ynw1nM+XNzWypzE7PfGY4exy/8gRk/9Jha4KMw?=
- =?us-ascii?Q?6ArTP/rw4PIA8vUOAIIuCTppcA2T63F/DK7lY57Edl4YBM3EQqEAbeB2SVIg?=
- =?us-ascii?Q?DmReHelgA7qohnUHYtMXqRMlTBZO2iklRU/8ZqUrBk5POZbMIypZAyDrSG3P?=
- =?us-ascii?Q?PMu8aeey8e2IRYulvv8OpFtmgD5sTg0/25OB2d1RZWYmhjwxvm5t2/x+zgyB?=
- =?us-ascii?Q?jlKNb27HFkKdRzc3/p7bab3LIuPVEOVZI3IAGd9St7b6ag1MNIq4kJnoj+HC?=
- =?us-ascii?Q?z1oc/JtrNo83AZmeEbcAqZ6MghuMapmVntXSD5s1Enn2+frSKsaCQYw9OoVk?=
- =?us-ascii?Q?23h0UE83tUZDluNh2VM2tmGRmwRwv4Cva0o5MOWGy6/2ZDfW8iuLUhz40vxd?=
- =?us-ascii?Q?gHSmXssax+AQhgoGQnxboh29qlYJ1A3lIHuxJ4rzlFqGC4idqFOGGzmu9+3S?=
- =?us-ascii?Q?Zf7UaYcd2Fu6VfHgykL9I0KN+bumNqV75XktMkIJY5/RKAweT5aNzBM/Ui+4?=
- =?us-ascii?Q?+Hr2RxeUigslktXe7E+18VJkFKsUCoDpvz4/c1JnXh83ArVT9tczs9k2Nvnq?=
- =?us-ascii?Q?gT9nNooGrWexG284nPVoRuNAfGn/lajjsU0ofiMBSFHwLRKWza4onbkdcdrF?=
- =?us-ascii?Q?MBUZkEtGqonmP7Z1WFZpzcG/g1nkIta5L6NZ9uum8pT0TTiiZrogPXNTxnbr?=
- =?us-ascii?Q?sn+sCLdxAgRHTLQ/obpzAYJuX8vCOOkT/kV4JCCL1Zb+CmESVVCoxtwKn08J?=
- =?us-ascii?Q?IYY8+Qr72bQl0ZKpCx5RTEhHZf93e2e7pxp0B5got3HuJabYW5wQZbOrS/Ya?=
- =?us-ascii?Q?ey9eJoaxcpXgvv2C+ugu9IffLtgm3JTR0YLdoVB5RHKazUz5pMdCrJpXCUiq?=
- =?us-ascii?Q?1DjceWPJxrPss/LD7QWRztoDdZNFyr7MhyWZ9sPd9oMmoqIviznapUswEUdZ?=
- =?us-ascii?Q?5VBfS8huMloxxQX/OrqBE2K24RrKEYBbjPF61VuwxuQNSZtWwlzFSqoZItjg?=
- =?us-ascii?Q?E/HOMZxhD9eb1zjmeYvYI9952G8IpfFcDv+C4IDq4ueynyNlaK75yhhQxiB2?=
- =?us-ascii?Q?lJryi12ajfNH/dIcMftrrNOyOSPMCEnYVkCyCtMf?=
+ =?us-ascii?Q?RH5JhT23E92IeCY7eD8teUc3LZiwhIpEidU59rDGKk3fIqMbFfDetq9M3g8c?=
+ =?us-ascii?Q?HWzkY1cNU5iHMMK8rIFBwnI1l/SX4o++1YnKXCzVsWyvgpqtmEo8TkxgeMx9?=
+ =?us-ascii?Q?O9sDK6llpMa4wcGjOXI6D1V/S/x7eU/mqiBMFA3JexKBhuQYPie/GrvHIGwE?=
+ =?us-ascii?Q?LhNPeBRweyNxs7PJPdQsZdBLS/P2eZdHIcgLM5VxYwecdD4+7nnaNMl/OPwV?=
+ =?us-ascii?Q?JHdK9MzGDWAwwxed8lmTJjSY0eLjFsTpuXKYAJFP4w4UPYgm5bAJzC4ZG0ET?=
+ =?us-ascii?Q?Aca4MY5kHx7g2njwx/v1TQU7GZwwxjF2EIl3/yjpMENalK0cO50rGADiIxiy?=
+ =?us-ascii?Q?sqAawJIgXz6fdiErwDvcU9lU7f/E7QvhioF7i1UTHL8LGglhdLt/jFxuez17?=
+ =?us-ascii?Q?h9/Aqf2yYUcwYKnNcfiYeoByTaLc7g2tJgO0WuO3ZqCln+eL+KqMOtMERP+a?=
+ =?us-ascii?Q?P0e8wWFwiXTmSQNSedsH1YjwkH1tCvZ77zoUxa3lnxT1HlciE2/+WRNwgxmS?=
+ =?us-ascii?Q?3SaIKC5bbIxCXVNGHAVC6SEhz92FLnWM8WYbVT6vLFKnkOGLRlQW+w0i+Cd8?=
+ =?us-ascii?Q?AIBbJOmdUA3VTrxcxhncMdCATbYqYGBw2fto5oSeHJIoZZMAUw/i7CFc4WB/?=
+ =?us-ascii?Q?cbdQmpx/8dqtejFzC452T7bKBo4h4hIGctO93S9pLMr2wUuNabVBzlsj16uB?=
+ =?us-ascii?Q?zuBipDQF7He5mgmM7xtQjJnKqWGcAHTR5nOjsxkIvfNB+UFrvyX3T1cpUhFI?=
+ =?us-ascii?Q?tahtjQ2ebAJmmaSK/QZAoIDS3EcDMaz5stuHJSBWfRTmGFZG0T5aAVBmpPyM?=
+ =?us-ascii?Q?7l7N6OHySMvnxsESc3sjXqu4b8ZfPNsLiL3UvU0Q4/TZRsJ4zBscqzRqdjxE?=
+ =?us-ascii?Q?5AZKf965jqZrxHDGmRVOJwb/tDfupb0M4A3z1gapEZS9ciZdV3VzxE66K+ob?=
+ =?us-ascii?Q?UmCm3w7FC5M39iiSjpHNgeJ2qyB/UCzj1FUd95OQwzwvxbkdoJqiy03j9nCT?=
+ =?us-ascii?Q?ev9qbhaVulJqwFUuXxi/dd/8Cm6qjMuWjCyPAJy88ZIwIJKRqIdXG/QphUar?=
+ =?us-ascii?Q?I3rmEou4ymBpspLIX0rpH02RLDrJp6Lvs3PJMgvkPSTJTj+hD1HonlSXTuKy?=
+ =?us-ascii?Q?8N6LUTneFtmQ6LPahJL0b95YTVYDal12SLVdg90+nZCQ29uugDddtJApvYJF?=
+ =?us-ascii?Q?iI/H9MBAbw2JgqIr1aXvWEO9U3kRsTdLjwm6pG3OKrzdyjfHj68Dr1IneQXD?=
+ =?us-ascii?Q?1PhdpODh6P1VsMZ8ITrsSTvhwePCbbkaTB+BMRg14PnIoCGPSSnlVg5+hEp4?=
+ =?us-ascii?Q?eSCu92CQB4c00yigdE6vxqtmCWsC7Tc6H2QEd+mMzvLYpyllK/mcFXsqAD8Y?=
+ =?us-ascii?Q?TGZym6rRsCGHiBgDnu7PctK4p3HwtNt3emdHGg4LgR0BB69ubOyw7owoUwCS?=
+ =?us-ascii?Q?QxGIwf4SZh0GD5+Xwbdwgakp2Qpree13rbXoweKwIweG6c+Rrvly923PD/Rp?=
+ =?us-ascii?Q?slwDxZs1XsuTywdaHHEsNOf8S1LFmaA/Q4e1b63i5VujKZQEXdODcoFZLy96?=
+ =?us-ascii?Q?xZolgYpXhtyzQIf5zvwcc91nXnOg8Vao4lCwAjpg?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
@@ -155,15 +155,22 @@ MIME-Version: 1.0
 X-OriginatorOrg: microchip.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM3PR11MB8736.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ccac8d01-3840-451e-5bb6-08ddbe577908
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2025 19:41:45.8202
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6dbd4d9-a996-480e-5426-08ddbe580747
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2025 19:45:44.4795
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nQU1X2VlvTG+/ga2udzF9rtEka+WI0CUEpvTlMCvcuV9MKr3SAJwFgxyPTV+sNCstwK+ixelZzmZOYoS7QlK01wFcJLipO3Ab3kWk/QFJgw=
+X-MS-Exchange-CrossTenant-userprincipalname: lIkHfv2wahkpqOHYRox46Ff4uoPquguM0hhhROsoZ+WmbT0e3wuMtVCoBLZ+r4acIrONhxtlDYn9pzId7N9LL5mv5GDmOz51saK02tzaqlY=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7807
 
+> Hi Tristram,
+>=20
+> On Mon, 7 Jul 2025 20:16:48 -0700
+> <Tristram.Ha@microchip.com> wrote:
+>=20
+> > From: Tristram Ha <tristram.ha@microchip.com>
+> >
 > > The fiber ports in KSZ8463 cannot be detected internally, so it require=
 s
 > > specifying that condition in the device tree.  Like the one used in
@@ -173,13 +180,100 @@ s
 > > The PTP function of the switch is also turned off as it may interfere t=
 he
 > > normal operation of the MAC.
+> >
+> > Signed-off-by: Tristram Ha <tristram.ha@microchip.com>
+> > ---
+> >  drivers/net/dsa/microchip/ksz8.c       | 26 ++++++++++++++++++++++++++
+> >  drivers/net/dsa/microchip/ksz_common.c |  3 +++
+> >  2 files changed, 29 insertions(+)
+> >
+> > diff --git a/drivers/net/dsa/microchip/ksz8.c b/drivers/net/dsa/microch=
+ip/ksz8.c
+> > index 904db68e11f3..1207879ef80c 100644
+> > --- a/drivers/net/dsa/microchip/ksz8.c
+> > +++ b/drivers/net/dsa/microchip/ksz8.c
+> > @@ -1715,6 +1715,7 @@ void ksz8_config_cpu_port(struct dsa_switch *ds)
+> >       const u32 *masks;
+> >       const u16 *regs;
+> >       u8 remote;
+> > +     u8 fiber_ports =3D 0;
+> >       int i;
+> >
+> >       masks =3D dev->info->masks;
+> > @@ -1745,6 +1746,31 @@ void ksz8_config_cpu_port(struct dsa_switch *ds)
+> >               else
+> >                       ksz_port_cfg(dev, i, regs[P_STP_CTRL],
+> >                                    PORT_FORCE_FLOW_CTRL, false);
+> > +             if (p->fiber)
+> > +                     fiber_ports |=3D (1 << i);
+> > +     }
+> > +     if (ksz_is_ksz8463(dev)) {
+> > +             /* Setup fiber ports. */
 >=20
-> Is this PTP problem anything to do with fibre?
+> What does fiber port mean ? Is it 100BaseFX ? As this configuration is
+> done only for the CPU port (it seems), looks like this mode is planned
+> to be used as the MAC to MAC mode on the DSA conduit. So, instead of
+> using this property maybe you should implement that as handling the
+> "100base-x" phy-mode ?
 >=20
-> It seems like this should be a patch of its own, unless it does have
-> something to do with fibre.
+> > +             if (fiber_ports) {
+> > +                     regmap_update_bits(ksz_regmap_16(dev),
+> > +                                        reg16(dev, KSZ8463_REG_CFG_CTR=
+L),
+> > +                                        fiber_ports << PORT_COPPER_MOD=
+E_S,
+> > +                                        0);
+> > +                     regmap_update_bits(ksz_regmap_16(dev),
+> > +                                        reg16(dev, KSZ8463_REG_DSP_CTR=
+L_6),
+> > +                                        COPPER_RECEIVE_ADJUSTMENT, 0);
+> > +             }
+> > +
+> > +             /* Turn off PTP function as the switch's proprietary way =
+of
+> > +              * handling timestamp is not supported in current Linux P=
+TP
+> > +              * stack implementation.
+> > +              */
+> > +             regmap_update_bits(ksz_regmap_16(dev),
+> > +                                reg16(dev, KSZ8463_PTP_MSG_CONF1),
+> > +                                PTP_ENABLE, 0);
+> > +             regmap_update_bits(ksz_regmap_16(dev),
+> > +                                reg16(dev, KSZ8463_PTP_CLK_CTRL),
+> > +                                PTP_CLK_ENABLE, 0);
+> >       }
+> >  }
+> >
+> > diff --git a/drivers/net/dsa/microchip/ksz_common.c
+> b/drivers/net/dsa/microchip/ksz_common.c
+> > index c08e6578a0df..b3153b45ced9 100644
+> > --- a/drivers/net/dsa/microchip/ksz_common.c
+> > +++ b/drivers/net/dsa/microchip/ksz_common.c
+> > @@ -5441,6 +5441,9 @@ int ksz_switch_register(struct ksz_device *dev)
+> >                                               &dev->ports[port_num].int=
+erface);
+> >
+> >                               ksz_parse_rgmii_delay(dev, port_num, port=
+);
+> > +                             dev->ports[port_num].fiber =3D
+> > +                                     of_property_read_bool(port,
+> > +                                                           "micrel,fib=
+er-mode");
+>=20
+> Shouldn't this be described in the binding ?
+>=20
+> >                       }
+> >                       of_node_put(ports);
+> >               }
 
-This is kind of the initial setup operation for KSZ8463.  I can break it
-up into 2 patches.
+The "micrel,fiber-mode" is described in Documentation/devicetree/
+bindings/net/micrel.txt.
+
+Some old KSZ88XX switches have option of using fiber in a port running
+100base-fx.  Typically they have a register indicating that configuration
+and the driver just treats the port as having a PHY and reads the link
+status and speed as normal except there is no write to those PHY related
+registers.  KSZ8463 does not have that option so the driver needs to be
+told.
 
 
