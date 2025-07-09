@@ -1,87 +1,63 @@
-Return-Path: <devicetree+bounces-194631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7845AFED15
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 17:07:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F231BAFED39
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 17:10:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 664C3188CE3F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:03:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11ED51886F45
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:09:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 473D82E5421;
-	Wed,  9 Jul 2025 15:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 231452D8380;
+	Wed,  9 Jul 2025 15:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Xti7dCmR"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FAWPm5uy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D6B1156F4A;
-	Wed,  9 Jul 2025 15:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7322E2678;
+	Wed,  9 Jul 2025 15:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752073371; cv=none; b=GIEqm/bJ8U0O/U+DDU7AcqgNvIATDFtJN+i26h3IzvvuZvVnkFN5zKamizJRl1jfe4I0iwgaejGzFzQsfMNys/96p1e8oWAIc1tW6I8UakFNBm2ofMQiprPweVj7KSTiznnAcMABoiFeDPYGjrUNSnJABdyo+ErVqNoRlL9uBrs=
+	t=1752073762; cv=none; b=IL+wygg+pgY45xR1gtSYAl3EzGMkfOwhOm2E9t/zB3MQlmSVDV4Ivr2b6I85uInM6WgT25ebMMnOPRJ47xcjq/+U462VO3iJ7Ir581U/dCxFPFffU9ykWg8uZbdJXHbNxdcjPX3rsyRDtholFpYeStrniL8Sqyn6U40oPZo2kT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752073371; c=relaxed/simple;
-	bh=UmvOJsqQeOZo6uv2hXfptlbOgxzKjfEBeTjZ5Q0Wrbk=;
+	s=arc-20240116; t=1752073762; c=relaxed/simple;
+	bh=pPy2FKFkThlDVPMouYhG0qFiHsCT6VIKIzN17kas5VE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EHgmdKr4rKBWl2IrC10cEAdnTgxUWm13ooljYQj1MW3AO9UIsj/Upg86dF3olIGvfQkId0VpuLdXHa8vy13aSxEYD5RhJzCwTuci7flJcBEgrkS7ScLNyyrR88yvZFQ6kp1Y37cKBxfLl+ftkHylNRfC1M9UmYqGCXElPGcsnh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Xti7dCmR; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1752073370; x=1783609370;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UmvOJsqQeOZo6uv2hXfptlbOgxzKjfEBeTjZ5Q0Wrbk=;
-  b=Xti7dCmRGe/emyFj6larF/be3LQjGY35LjBdjMpDuAlOdvf5lW92+ABy
-   soEDeBOYHVetFACzR39o/73BMh7GIJXHG3mnmFcedfuO6HrrWp0D//LWS
-   z5kGe3U/8tm3DotRxBzqN6bIfovDY3YMoR9PuUtqmBxvq8TN43zYYPfnb
-   P98rpBZACIm4RqDOwulC7Sc2I8XE2iN0aDNb+VU9gQ2hfJrZBlgFMHv7Q
-   AZ/wyLA8CUMHUF8Brho6DIEFmX98JpOo/VAVTmoIH5K2tWJqlN7PCMtYK
-   b8Wwt0zleFpID3llvv/+QkrqCldYbRQd0ziBWrCK2Y36EFC1As+3RtKBD
-   A==;
-X-CSE-ConnectionGUID: dtZxLbw0RbmFjcXgtgPrbg==
-X-CSE-MsgGUID: ldKpLS8iSaq0i1Zh9RUJyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="65035753"
-X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; 
-   d="scan'208";a="65035753"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jul 2025 08:02:49 -0700
-X-CSE-ConnectionGUID: jQGMFmdxT2arjTPo/Z/l4A==
-X-CSE-MsgGUID: m/zVlW8/THqyehHj9WGIWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; 
-   d="scan'208";a="155431612"
-Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 09 Jul 2025 08:02:40 -0700
-Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uZWJh-0003eF-2o;
-	Wed, 09 Jul 2025 15:02:37 +0000
-Date: Wed, 9 Jul 2025 23:02:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: LiangCheng Wang <zaq14760@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=f6K3fltPj76vU0tEaGOt6lMAfOGgJY2gCjKsiAoEA5Jv/r6Pf1mRNiGLVxSZZKi7s4MkAAFtuEOAsL4UDCeDUZou/2Z/qhKdcCrAek2zWfy5o/oTqNGXn9qI1W2tw4hTTktfiXHoJ/vhwWpbAcuuUzKTPG4mXWAEda4S1vwjgZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FAWPm5uy; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=5fTnbnfI2D0SW9Wd78YXcLrbOHt8ziweqWLL9StcYkQ=; b=FAWPm5uy6nPc15hpxU3RR511Jg
+	Tc8DelvKLdVlYFxHWtnEt/iAWsIh+jdVvO1PmXKMvvJ8CeE+UqxXKz9HctVZkPkvV7IDZMKkqOLZS
+	dtwVH/SZHK7vsK7b1bZSPVjbf3ArK81Px1Jns8WQv17ZTkbeId18fpJmmHcOpVK1y0vQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uZWQ9-000xH4-4l; Wed, 09 Jul 2025 17:09:17 +0200
+Date: Wed, 9 Jul 2025 17:09:17 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Wig Cheng <onlywig@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
-	LiangCheng Wang <zaq14760@gmail.com>
-Subject: Re: [PATCH 2/3] drm: tiny: Add support for Mayqueen Pixpaper e-ink
- panel
-Message-ID: <202507092231.FtZkMync-lkp@intel.com>
-References: <20250708-drm-v1-2-45055fdadc8a@gmail.com>
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
+	Lee Jones <lee@kernel.org>, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH 4/9] gpio: regmap: add the .get_direction() callback
+Message-ID: <0d0e9cee-2aaa-402d-a811-8c4704aadd74@lunn.ch>
+References: <20250709112658.1987608-1-ioana.ciornei@nxp.com>
+ <20250709112658.1987608-5-ioana.ciornei@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,46 +66,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250708-drm-v1-2-45055fdadc8a@gmail.com>
+In-Reply-To: <20250709112658.1987608-5-ioana.ciornei@nxp.com>
 
-Hi LiangCheng,
+On Wed, Jul 09, 2025 at 02:26:53PM +0300, Ioana Ciornei wrote:
+> There are GPIO controllers such as the one present in the LX2160ARDB
+> QIXIS CPLD which are single register fixed-direction. This cannot be
+> modeled using the gpio-regmap as-is since there is no way to
+> present the true direction of a GPIO line.
+> 
+> In order to make this use case possible, add a new callback to the
+> gpio_config structure - .get_direction() - which can be used by user
+> drivers to provide the fixed direction per GPIO line.
+> 
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> ---
+>  drivers/gpio/gpio-regmap.c  | 17 ++++++++++++++++-
+>  include/linux/gpio/regmap.h |  3 +++
+>  2 files changed, 19 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpio/gpio-regmap.c b/drivers/gpio/gpio-regmap.c
+> index 87c4225784cf..dac2acb26655 100644
+> --- a/drivers/gpio/gpio-regmap.c
+> +++ b/drivers/gpio/gpio-regmap.c
+> @@ -32,6 +32,8 @@ struct gpio_regmap {
+>  	unsigned int reg_dir_in_base;
+>  	unsigned int reg_dir_out_base;
+>  
+> +	int (*get_direction)(struct gpio_regmap *gpio, unsigned int offset);
+> +
 
-kernel test robot noticed the following build warnings:
+This is not my area, so i will deffer to the GPIO
+Maintainers. However, it is not clear to me what get_direction()
+should return. Is it the current direction, or the supported
+directions? Maybe it should be called get_fixed_direction()?
 
-[auto build test WARNING on d7b8f8e20813f0179d8ef519541a3527e7661d3a]
+I then wounder how it will be implemented. Since it is fixed, it is
+probably just a constant bitmap, and you look at the offset bit in
+this batmap? At minimum a ready made helper could be provided, or
+rather than have this op, just provide the bitmap, and gpio-regmap.c
+can look at the bit in the bitmap?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/LiangCheng-Wang/dt-bindings-vendor-prefixes-Add-Mayqueen-name/20250708-180933
-base:   d7b8f8e20813f0179d8ef519541a3527e7661d3a
-patch link:    https://lore.kernel.org/r/20250708-drm-v1-2-45055fdadc8a%40gmail.com
-patch subject: [PATCH 2/3] drm: tiny: Add support for Mayqueen Pixpaper e-ink panel
-config: sparc-randconfig-r112-20250709 (https://download.01.org/0day-ci/archive/20250709/202507092231.FtZkMync-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 14.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20250709/202507092231.FtZkMync-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507092231.FtZkMync-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/tiny/pixpaper.c:85:10: sparse: sparse: Initializer entry defined twice
-   drivers/gpu/drm/tiny/pixpaper.c:86:9: sparse:   also defined here
-   drivers/gpu/drm/tiny/pixpaper.c:601:10: sparse: sparse: Initializer entry defined twice
-   drivers/gpu/drm/tiny/pixpaper.c:606:10: sparse:   also defined here
-
-vim +85 drivers/gpu/drm/tiny/pixpaper.c
-
-    80	
-    81	static const struct drm_plane_funcs pixpaper_plane_funcs = {
-    82		.update_plane = drm_atomic_helper_update_plane,
-    83		.disable_plane = drm_atomic_helper_disable_plane,
-    84		.destroy = drm_plane_cleanup,
-  > 85		.reset = drm_atomic_helper_plane_reset,
-    86		DRM_GEM_SHADOW_PLANE_FUNCS,
-    87	};
-    88	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+	Andrew
 
