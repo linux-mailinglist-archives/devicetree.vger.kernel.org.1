@@ -1,312 +1,179 @@
-Return-Path: <devicetree+bounces-194681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D566AFF1D6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 21:29:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAF6CAFF1C2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 21:25:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3BA71882450
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 19:29:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A39F218955DB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 19:25:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20DD223FC41;
-	Wed,  9 Jul 2025 19:29:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 306DB23FC66;
+	Wed,  9 Jul 2025 19:25:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=juniper.net header.i=@juniper.net header.b="0vnAWCQd";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=juniper.net header.i=@juniper.net header.b="KnvsyZ29"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cv4D78Ud"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00273201.pphosted.com (mx0b-00273201.pphosted.com [67.231.152.164])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E37218EA1;
-	Wed,  9 Jul 2025 19:28:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.152.164
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752089340; cv=fail; b=W5oUQF6Ziqx1szccCpjUxrCn5Tz3dl/HOiUKycQ56r3LWQmr6yb/Ju3XlCyRbUvnMTUtVpBcR2oJjo7Q2ZAtTSIdg0iibaPalGKQWOlxLGPoC7oVOOW9mSCeyLfQQ1bKApMhZeHZtlSMPF4DbFSDs3vltZDB9SmBBoXmKsWMWY8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752089340; c=relaxed/simple;
-	bh=GvPpSQyvgNzIgEiSW1dkkbDiNS8hUgzbYDQLndKceeM=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dLUKLe6m6hQyWd5O7f/PuucGKcLs2YvGI63gko1bjPOoUMK75EBZe7txi5oLnQ2A9/RpSq/e8PREoTkb1BJuqX9YV9LYBtFfB7SbVbFL+u2Bi4lWlTsIA9EHW7hD/DI3pcz2Akeif7c4iV10PxNcCsU5jbXGiEgaMbQgPGXaDSg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=juniper.net; spf=pass smtp.mailfrom=juniper.net; dkim=pass (2048-bit key) header.d=juniper.net header.i=@juniper.net header.b=0vnAWCQd; dkim=fail (0-bit key) header.d=juniper.net header.i=@juniper.net header.b=KnvsyZ29 reason="key not found in DNS"; arc=fail smtp.client-ip=67.231.152.164
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=juniper.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=juniper.net
-Received: from pps.filterd (m0108163.ppops.net [127.0.0.1])
-	by mx0b-00273201.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 569J6m7r025731;
-	Wed, 9 Jul 2025 12:25:24 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=juniper.net; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=PPS1017; bh=2yUDeV39xzy8BlITii4kNhu3
-	rpEwWyfVcL/NG8iE5p4=; b=0vnAWCQdjHFi6wjWcxbFjDdUMyrsnosJVqyNG4+N
-	LTkow17jiYTpkcP69120s7jCFVuGWW5Nh4nMlwwoh8mfuZyLluYulBVyxRM+X2km
-	DEA7Lor0Vy2n+RrctIZJY/vQMcnwj7hl33P0K3tnwJHawAsJ7bM5IVCJbFbJpP5b
-	TPvtuTPe5JBU1udSYCd/mU3w+9E6xC9JI8UEjIdiObGGR7yiANmoJCTasb8xhbai
-	CQUoD2p86YAhgfUde7IesYCopiXOCEnHzI2AoYN8oPh9le5k5IHxLMHTF1vNH3XN
-	/rTY8XPE6BluqfwMDF42l5fhMs1jnooeE8qnFCpDiuK+qA==
-Received: from bn1pr04cu002.outbound.protection.outlook.com (mail-eastus2azon11020115.outbound.protection.outlook.com [52.101.56.115])
-	by mx0b-00273201.pphosted.com (PPS) with ESMTPS id 47s612bw6r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Jul 2025 12:25:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vdVqUr5gNiLb/rsV6ZlwpDEC4uwS/9epjewqk5Pc9QYDoXU4hnad1uwi1YKTHUvxSbitldsg+VxFBzYSizpS5DQEq9Li29zhxoZZYvWOebMo86iwhfNB5vLdSteLgrAbc1kwgadKxU3V1L70raoAiSUintym+Q/+4KDl0q+3jR3JK+XX0So/iB31U5rb0qIDIaHho1Sr7kJZAE4a6Ym1Tyl1bBqYtc15/zNPJbLZ68vpl3EVrY+Wsu9+GJ2klYYu+W08l6YG+zcBG8KKfICTQi9dzFVkYOW25lD0fC8FfABFteC/8wN+2yOKSReVRkRXKTAnn6o0lfOFHSKzaOphmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2yUDeV39xzy8BlITii4kNhu3rpEwWyfVcL/NG8iE5p4=;
- b=Wk42RIKYbR5jNHO1SLEWBB/u3v96adC98Dx1BJcJq8qoB2bo5fFxO7WcOgJqEftdPXADzkNXU4TloQkwmOa+iRGLuk+/TMZVL0XyZkLYJ7JumZ3iRcNQVCAIfQPark30IowzdkuIDmssDbdevA7Y4hgM7D4pxvbJ6Sgf34eudLHGfI7s2ZHBUKg/7VbNpkpOAeSonABejEbUCpkEy/Z4Sv4/Nz6wCO4N7afRywgNuvdfukEV5SmFr2yhi5/G8UoRaE12+MtyjdddMLn2BLDLN7XrFwKEyN2+A/noPcZasDb6qAUiBUdykjTgBKPC4yK09OApcSOT4DYnFR9xl33vGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 66.129.239.15) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=juniper.net; dmarc=fail (p=reject sp=reject pct=100)
- action=oreject header.from=juniper.net; dkim=none (message not signed);
- arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=juniper.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2yUDeV39xzy8BlITii4kNhu3rpEwWyfVcL/NG8iE5p4=;
- b=KnvsyZ29bkZYhg8bHyIdOwQMxu3CFAxRfjvYPAvK7ht7tWvlqC/4VOKgYv5H/UUoyxiIflhjpgUp4vXtcnct6YhANkXWeIa/4JJI/HJ/w+jaxNzri0jeuTQdGeor0FXdtZWNgSvgZtVhX2PHO3aTJxbv6qn78wxwbleKWsa7zfI=
-Received: from SJ0PR13CA0132.namprd13.prod.outlook.com (2603:10b6:a03:2c6::17)
- by MN6PR05MB10971.namprd05.prod.outlook.com (2603:10b6:208:4f9::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.26; Wed, 9 Jul
- 2025 19:25:22 +0000
-Received: from CO1PEPF000044F0.namprd05.prod.outlook.com
- (2603:10b6:a03:2c6:cafe::4f) by SJ0PR13CA0132.outlook.office365.com
- (2603:10b6:a03:2c6::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8922.21 via Frontend Transport; Wed,
- 9 Jul 2025 19:25:21 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
- 66.129.239.15) smtp.mailfrom=juniper.net; dkim=none (message not signed)
- header.d=none;dmarc=fail action=oreject header.from=juniper.net;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- juniper.net discourages use of 66.129.239.15 as permitted sender)
-Received: from p-exchfe-eqx-02.jnpr.net (66.129.239.15) by
- CO1PEPF000044F0.mail.protection.outlook.com (10.167.241.70) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8922.22 via Frontend Transport; Wed, 9 Jul 2025 19:25:21 +0000
-Received: from p-exchbe-eqx-02.jnpr.net (10.104.9.15) by
- p-exchfe-eqx-02.jnpr.net (10.104.9.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Wed, 9 Jul 2025 14:25:21 -0500
-Received: from p-mailhub01.juniper.net (10.104.20.6) by
- p-exchbe-eqx-02.jnpr.net (10.104.9.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Wed, 9 Jul 2025 14:25:21 -0500
-Received: from buildcontainer.juniper.net (qnc-bas-srv120c.juniper.net [10.46.0.14])
-	by p-mailhub01.juniper.net (8.14.4/8.11.3) with ESMTP id 569JPI1t004067;
-	Wed, 9 Jul 2025 12:25:19 -0700
-	(envelope-from makb@juniper.net)
-From: Brian Mak <makb@juniper.net>
-To: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Dave Hansen <dave.hansen@linux.intel.com>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        Andrew Morton <akpm@linux-foundation.org>, Baoquan He <bhe@redhat.com>,
-        Rob Herring <robh@kernel.org>, Saravana Kannan
-	<saravanak@google.com>,
-        <x86@kernel.org>, <kexec@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Brian Mak <makb@juniper.net>
-Subject: [PATCH] x86/kexec: Carry forward the boot DTB on kexec
-Date: Wed, 9 Jul 2025 12:20:35 -0700
-Message-ID: <20250709192035.271687-1-makb@juniper.net>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996FA23C4FA
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 19:25:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752089135; cv=none; b=s4IAhhFzftOwQkIlr1dizANPJmvlAzP0X2BgWurCpuzEZRPIUi1uTp/ZY+3DHghrkfg7cEJvriWOEvEXQBu0CrykLSjvSlDw2E0f6aPVaUtEcAcEAiTBgvJtEaBeFpx7QrnM/C7nQG7VO5xvqGj7zaGexXmktwwknwMF2uu/zkE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752089135; c=relaxed/simple;
+	bh=Czk5thyzfF1At6el/WvxrhoAQf01IpUl3TQKZoKmkrM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R5YWH01eZe3BVKLDeyD1CDgbBRxVWm5jjmrHOb4Qn73u9A6ESGRCClR60jVKaUhPSAFUWdA+bYHTD8z6mm7YfRQiADO91A1ibZv+V7yYllQtKHrDBhpBjb5lvZHwXXjiOn8YE6s/EEdofCLDgVNEmbhaBfYfbjw1qqE+ct/6xXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cv4D78Ud; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 569CowHI014516
+	for <devicetree@vger.kernel.org>; Wed, 9 Jul 2025 19:25:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LxJmEoIV/L+emefvsrdmnd313iEFnFzJl4/I7Di1mus=; b=cv4D78Ud1X3h/gCs
+	qPMaz+TMm9VS3DqFYLrBAG6epgV7AnecF3VKdYafxnq96U7AvPb/Byy6ohPh8nKA
+	dQgUz8NI44qwhmy5kw9rdwcNIzb+AFXLESYBSLjEfFsAJvyXIJYRAi2oz0AU0C+d
+	ynxwrAJgUO1lRJZ3HjzWZ+nb/vWFjjv7WkEJp7jlNLznJzOs0pAUlS7aWrN0AFxh
+	MXM6hd8lJsUfzK4/WJroEX9eLavgIqZLx8B1jpReiJPX1KiQk9sN/YBfw4/kv2Bl
+	o6GMXRPVDe203Sar8X8p50i/mATIj3PkrixRVGhNjdBkaMmvJi8wUNbh+VsuV1+K
+	DZmPmw==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47r9b134x0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 19:25:32 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7d09a3b806aso4056285a.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 12:25:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752089131; x=1752693931;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LxJmEoIV/L+emefvsrdmnd313iEFnFzJl4/I7Di1mus=;
+        b=g+jv5TLsbBWwfSE2hvMZw2eXfZa+s8wpmhTCEpm1s55wftl3DzhmF9+9wi6qFKXEo/
+         mOdH0pHKONsM4k4LLW40qxqmimuOiyoR0TDO15jHOC0HDWHG7ctg0fCuhHW/IHPD5zpw
+         dkSai5fZkaZ+fRFbhYeiTDZdKXkYgWbx6gACMua1HtOanx2Fwpy604qw7uzfVJli/LvJ
+         6Ntbs19lYZPvMiz7s/G8cQhyEp2Mv7dcBzABZzD5jQEwIksjJTxM4ik3beLEc6LZdRgz
+         hAhLLL8ego2UQXrvV5MEpGVT0cwkER/imn8lEuaDrXGjXIgVEFUNFYioV5NpzKXR2Rv2
+         Jq5g==
+X-Forwarded-Encrypted: i=1; AJvYcCUnbwzXpUAzc+QHIq/LkuQvhnaxAZ3qBlbcjPMkI15oM2c5XLqmrWykyV1ChOmV1kCi8GH/XY4EWfK4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzg/yYfxM9nLC7yf+SN7wcqTBCB/R/0DQI40hYtQGhpDfZ5vvx8
+	P/zXFrh2naH6gkPA9O7/MJuCHJKM8gJ77Is9vAJrEejiNJVBh0ghle4TnUcmVmygpW6sfL2nXej
+	vrz1p3Zd6cgKKM9ZSQkX+JaGhNsMCkLbxMpcagLBOMnK7n2mTpGQ7QjPSVbHltRXd
+X-Gm-Gg: ASbGnctWxmBbRMwOMu+IJrMCOaFB51e4DC4TKi3IAuBkKaGRmyii/vRAQQoKI0yPepL
+	swBl0M+zhKy7B4toNySvHO9Ph1UkcZve3GRgeqsKA9S21c+g+YbskssbyAGlC+ZMvHHIYRlJ0LX
+	t39aVeyR3sSf1IAWdMwq0I3GDeHN/c21H0V7FQrwthj6k6zUZbeQBIBnSB+sqLXx6xKe3CCjSP6
+	WEwfJ92YSnIND8db3sCQZJ5x7XYkNhmHKMM7x44k4JcPzqyt5BcvhCPrS2WtzJXEmJEyGiE0t6N
+	aDAXByCXlitrT7SxHy3CKKNGfzEd8UkRA/cd14YQa9BPjVPTb8ZXmMsqdCJxTng2OIT4KKvJ6MM
+	O0Lo=
+X-Received: by 2002:a05:620a:4396:b0:7d4:5cdc:81e2 with SMTP id af79cd13be357-7db8a26a97amr207083585a.13.1752089131437;
+        Wed, 09 Jul 2025 12:25:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEF0lD4eFqC8H6SYk9QlZhxremi9oqzguzRcKWuEh7z55IS83KvKx0SZBgDPwxIqBeKKCCbcQ==
+X-Received: by 2002:a05:620a:4396:b0:7d4:5cdc:81e2 with SMTP id af79cd13be357-7db8a26a97amr207081385a.13.1752089131024;
+        Wed, 09 Jul 2025 12:25:31 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f6b5e7c2sm1159545866b.148.2025.07.09.12.25.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jul 2025 12:25:30 -0700 (PDT)
+Message-ID: <f5ea9bc1-7617-4573-a10e-3499161a7819@oss.qualcomm.com>
+Date: Wed, 9 Jul 2025 21:25:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044F0:EE_|MN6PR05MB10971:EE_
-X-MS-Office365-Filtering-Correlation-Id: 26374f2f-45de-4f5b-0b3e-08ddbf1e58ee
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|7416014|376014|82310400026|1800799024|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?St3/YkUifaIm1IdpT5skuLARBy1qA96/cNou8CDDV0k9c8cWTTwHP14eDDdH?=
- =?us-ascii?Q?nQisORnwRj/DcipX2jYxnbmiN1MaNGWrPE/2OO6G2NBgcNh3v6YBV/PyRtce?=
- =?us-ascii?Q?VOh2hmink2gdVA3hyR2xvYsIY6Dn9FZOuefI6kG7W6bx7HUFdYJK46ELLLfj?=
- =?us-ascii?Q?GziSZ8Vs2nq+OYuDeYEdcttvfT9ge/YLYC/uDOKrfMYD2+lPmAVsuG82gNPN?=
- =?us-ascii?Q?lkau7xzKVh1HB+0/F8PYTEik+6tnrtmtt9SCRmRw7XdFJftpig/FAtebYgcO?=
- =?us-ascii?Q?XyrH5eGerinbEm4IcwYH9JTp6+1agLcuYnt6zo2a5y41qT44wAnFxdgGYgdS?=
- =?us-ascii?Q?JcZI4SG7NamI8bt3zSG+80oBBTNHwoHjV26I97zpLjcImC3bQZMFuxddwuO6?=
- =?us-ascii?Q?5MgJJc0yfBgt7vkOHF9ZxN3MUpMaK7v+R/2aqrnFvGkh8R5cBD66nXmOok1g?=
- =?us-ascii?Q?EnGQ4Gb9RhTaKUyKShDv44AVmm7l4jutuYHGPoOR9vu6KwhleArwJf+JyY5Z?=
- =?us-ascii?Q?IIggzPDG4fZ3HjrEYj0f6lzy6NNet2Etwtws1C1FASIVZYfsR7h6oGlR+SWM?=
- =?us-ascii?Q?6FylsLuMVPsdqeSvA+qEUbCJa0/4o36zwAjvf1yGp69OE7ZyKJ7lL8MM7TZ8?=
- =?us-ascii?Q?dv3y62wsh5P5x4rzpEh+DjirUZ+cC8rq5pkWQJpZzxyH0eipfHVgDzBdTr3O?=
- =?us-ascii?Q?ffTQLnRPUm+XK9uf9ADZHiF2Z8NJY6C9vh2kUChjFiPVqU93KgV0Ke2vbMGo?=
- =?us-ascii?Q?rrH5ETjhGEzdfYiIc34rq3YgsCe6eCq8COKQkrh0lvbjbPE8jMNr5zNf+HkZ?=
- =?us-ascii?Q?WRwYfHvpqY+kJf8jV5x16Ubk3QJAKdSZ7hfmprKUcjociwZnKUfHONFWQ2Ys?=
- =?us-ascii?Q?wHM+Q4eBG3LBDryTyp41qg8jPHFBXqawSCcauwGYNEC2Q42e86l4sMcTxw+Y?=
- =?us-ascii?Q?qGTIyAZGVFTR2ZT1ytSzeIUo1esGAXMy0bMQ2tcr12uwIWJ0wWpxEgf2XxYp?=
- =?us-ascii?Q?rtLESDt4KO058j2hRQbEx2lDxFhm2UP3keIPT7AlYw77jx8P73FJJuWTZLA6?=
- =?us-ascii?Q?hPp8jUF2ZxZ36tVxaQdVRv5M6/90SLkXG5gyR23AymVtuYxUz+mg8iZFPNL0?=
- =?us-ascii?Q?3mgaVFiGRGd+d5j5RZ4RlAMAYfXHIZyaDpjatkpGKrmgOLhJJ3pwc6ir7P4h?=
- =?us-ascii?Q?leZEKq5mKLTjIP48MCBaYwfY+ErgSEzTcky7egwq1/Kl3iaPOTEXCfKB4qos?=
- =?us-ascii?Q?wtvBK6jdkolrDAT9BIAEbFCOLr6jpZccHNB+6gpvTC8S+DH1CZN0IGO/XyXd?=
- =?us-ascii?Q?PiM4ExEsmnVTYxu1q5+aCIFx8UKn8BgKJ3oXw+xS4oOuxdU90UEAxhcSI5tA?=
- =?us-ascii?Q?EAreM3XNhmgiv+GIKvDMSEgosc/QU4FQsscg91CkMJBrZBvmHKehRZ3ASCFm?=
- =?us-ascii?Q?tuOnJFwWDBjaTya91NmtHU2tz/aMOM15adNgdbG9AnHfPXKQNhFOwuxTdq3/?=
- =?us-ascii?Q?rVgyRM7ZmeG2eHVqiY3sYXRqd0To03rtQfISC/XiilrGnYlhcGdUs7IXGw?=
- =?us-ascii?Q?=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:66.129.239.15;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:p-exchfe-eqx-02.jnpr.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(7416014)(376014)(82310400026)(1800799024)(921020);DIR:OUT;SFP:1102;
-X-OriginatorOrg: juniper.net
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2025 19:25:21.7823
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26374f2f-45de-4f5b-0b3e-08ddbf1e58ee
-X-MS-Exchange-CrossTenant-Id: bea78b3c-4cdb-4130-854a-1d193232e5f4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bea78b3c-4cdb-4130-854a-1d193232e5f4;Ip=[66.129.239.15];Helo=[p-exchfe-eqx-02.jnpr.net]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000044F0.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR05MB10971
-X-Authority-Analysis: v=2.4 cv=LsuSymdc c=1 sm=1 tr=0 ts=686ec224 cx=c_pps
- a=Oahh2kgEN5ymB8sO0SiNEQ==:117 a=YQU41r7WENJiSYrYYNJVsQ==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=h8e1o3o8w34MuCiiGQrqVE4VwXA=:19
- a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
- a=Wb1JkmetP80A:10 a=s63m1ICgrNkA:10 a=rhJc5-LppCAA:10 a=OUXY8nFuAAAA:8
- a=7_5vobUxZMcRO-ldgD8A:9 a=cAcMbU7R10T-QSRYIcO_:22
-X-Proofpoint-ORIG-GUID: xU9BpbEoZ35rbkM36kt3GynB8qioRzDg
-X-Proofpoint-GUID: xU9BpbEoZ35rbkM36kt3GynB8qioRzDg
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA5MDE3NCBTYWx0ZWRfX79MMF/saEIpV
- GbwU2Qi51ynzxoGslFuQQWoaVJ5VVxa/uFTBGXyM3T1R/Z1dtV13tQ0coJhyZri9LlaKEcy4zEQ
- 8SUovek37CXqxPDYb2jOYK4mCNsV1eQIFcFlVNSkXiu0rHPW9OuFwrreWbPPBnOIjiEnkoFtG+0
- 0dEzUXJVKVcbBglnMhFWi2KcIQt9T/mkYB0NNA91UGdumuBZIFFAL+EK0nYn3mzIhTg5dWHxzuR
- DQmDGH/X5ct8wfxhe8yi/IDzSGNn8V/zHvOOwrMCcrRAVNtLUI0IE7NP390pfrbSt5jqcrcq+L6
- pgCXkEf+PmiLw/GfqjjS9rfb8LpAujU7HoKaj1rkdrMwGa+JmsIq3mnv4LrUC+exNlXupU/viNE
- aYXq/8rBw8TZVUP+rzYxi8YLlqvxcYMiq3CYohcSeGWDQ1d1e+rQ9dGvw2qNIYnt32DRd8IW
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/4] misc: fastrpc: Cleanup the domain names
+To: Ling Xu <quic_lxu5@quicinc.com>, srini@kernel.org,
+        amahesh@qti.qualcomm.com, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        arnd@arndb.de, gregkh@linuxfoundation.org
+Cc: quic_kuiw@quicinc.com, ekansh.gupta@oss.qualcomm.com,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+References: <20250709054728.1272480-1-quic_lxu5@quicinc.com>
+ <20250709054728.1272480-4-quic_lxu5@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250709054728.1272480-4-quic_lxu5@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=dYuA3WXe c=1 sm=1 tr=0 ts=686ec22c cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
+ a=UMl6nZT6BRNR5OdSVxkA:9 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+ a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA5MDE3NCBTYWx0ZWRfXx4cF3kpvQCeV
+ cFd86ecgLIEGqcYz7xTrWlx3tdPbhBu/lU0UExIz8MlF2yve7hTdszXTfYoiwa7ZdL8CF7eHD4z
+ LCska5IzrRR9E8TL90tbYv0v7WvWP1P3C7afMTO3avAnH/mqc7+SNtY51HwC0W0yJdgylg7OqLn
+ kibAIXoEIjGbIA6NQU1hEXp3gp5InT8PKdZ3q28/5rWoQ241t6jkKcTqld3fNlNEgSO3bL0Lql7
+ F9n/2tR/H2f+lGz0DUL1khV9vyVOjy5g4IP8RMk72hMjaWrIfGzPfJSc2sgy6JZR+i4B6eFVCy8
+ LKVklxyN7wq45fx4ED78sNh/4E/SFP2V3VIfJjQrKXYPbfs1gZl4oke07qXlJLKjkVwg8qrM3mC
+ 3IQRqcK8mG0tU4RX3yV5bVBJLLeUuOPSeHIEi2QXBdE5QoseCxfi6QfMjE/7+2omoEbJkonv
+X-Proofpoint-GUID: UKmEzKS-1iu4uVii6lgviazgjEYrdZL3
+X-Proofpoint-ORIG-GUID: UKmEzKS-1iu4uVii6lgviazgjEYrdZL3
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
  definitions=2025-07-09_05,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_spam_notspam policy=outbound_spam
- score=0 lowpriorityscore=0 mlxlogscore=999 priorityscore=1501 clxscore=1011
- suspectscore=0 impostorscore=0 spamscore=0 bulkscore=0 adultscore=0
- mlxscore=0 phishscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507090174
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 suspectscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0
+ priorityscore=1501 spamscore=0 adultscore=0 mlxlogscore=999 malwarescore=0
+ mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507090174
 
-The kexec_file_load syscall on x86 currently does not support passing
-a device tree blob to the new kernel.
+On 7/9/25 7:47 AM, Ling Xu wrote:
+> Currently the domain ids are added for each instance of domains, this is
+> totally not scalable approach. Clean this mess and create domain ids for
+> only domains not its instances.
+> 
+> Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+> ---
 
-To add support for this, we copy the behavior of ARM64 and PowerPC and
-copy the current boot's device tree blob for use in the new kernel. We
-do this on x86 by passing the device tree blob as a setup_data entry in
-accordance with the x86 boot protocol.
+[...]
 
-Signed-off-by: Brian Mak <makb@juniper.net>
----
- arch/x86/kernel/kexec-bzimage64.c | 46 +++++++++++++++++++++++++++++--
- 1 file changed, 43 insertions(+), 3 deletions(-)
+> @@ -2330,21 +2323,20 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>  	case ADSP_DOMAIN_ID:
+>  	case MDSP_DOMAIN_ID:
+>  	case SDSP_DOMAIN_ID:
+> -		/* Unsigned PD offloading is only supported on CDSP and CDSP1 */
+> +		/* Unsigned PD offloading is only supported on CDSP */
+>  		data->unsigned_support = false;
+> -		err = fastrpc_device_register(rdev, data, secure_dsp, domains[domain_id]);
+> +		err = fastrpc_device_register(rdev, data, secure_dsp, domain);
+>  		if (err)
+>  			goto err_free_data;
+>  		break;
+>  	case CDSP_DOMAIN_ID:
+> -	case CDSP1_DOMAIN_ID:
+>  		data->unsigned_support = true;
+>  		/* Create both device nodes so that we can allow both Signed and Unsigned PD */
+> -		err = fastrpc_device_register(rdev, data, true, domains[domain_id]);
+> +		err = fastrpc_device_register(rdev, data, true, domain);
+>  		if (err)
+>  			goto err_free_data;
+>  
+> -		err = fastrpc_device_register(rdev, data, false, domains[domain_id]);
+> +		err = fastrpc_device_register(rdev, data, false, domain);
+>  		if (err)
+>  			goto err_deregister_fdev;
+>  		break;
 
-diff --git a/arch/x86/kernel/kexec-bzimage64.c b/arch/x86/kernel/kexec-bzimage64.c
-index 24a41f0e0cf1..c24536c25f98 100644
---- a/arch/x86/kernel/kexec-bzimage64.c
-+++ b/arch/x86/kernel/kexec-bzimage64.c
-@@ -16,6 +16,8 @@
- #include <linux/kexec.h>
- #include <linux/kernel.h>
- #include <linux/mm.h>
-+#include <linux/libfdt.h>
-+#include <linux/of_fdt.h>
- #include <linux/efi.h>
- #include <linux/random.h>
- 
-@@ -212,6 +214,28 @@ setup_efi_state(struct boot_params *params, unsigned long params_load_addr,
- }
- #endif /* CONFIG_EFI */
- 
-+#ifdef CONFIG_OF_FLATTREE
-+static void setup_dtb(struct boot_params *params,
-+		      unsigned long params_load_addr,
-+		      unsigned int dtb_setup_data_offset)
-+{
-+	struct setup_data *sd = (void *)params + dtb_setup_data_offset;
-+	unsigned long setup_data_phys, dtb_len;
-+
-+	dtb_len = fdt_totalsize(initial_boot_params);
-+	sd->type = SETUP_DTB;
-+	sd->len = dtb_len;
-+
-+	/* Carry over current boot DTB with setup_data */
-+	memcpy(sd->data, initial_boot_params, dtb_len);
-+
-+	/* Add setup data */
-+	setup_data_phys = params_load_addr + dtb_setup_data_offset;
-+	sd->next = params->hdr.setup_data;
-+	params->hdr.setup_data = setup_data_phys;
-+}
-+#endif /* CONFIG_OF_FLATTREE */
-+
- static void
- setup_ima_state(const struct kimage *image, struct boot_params *params,
- 		unsigned long params_load_addr,
-@@ -336,6 +360,16 @@ setup_boot_parameters(struct kimage *image, struct boot_params *params,
- 			sizeof(struct efi_setup_data);
- #endif
- 
-+#ifdef CONFIG_OF_FLATTREE
-+	if (initial_boot_params) {
-+		setup_dtb(params, params_load_addr, setup_data_offset);
-+		setup_data_offset += sizeof(struct setup_data) +
-+				     fdt_totalsize(initial_boot_params);
-+	} else {
-+		pr_info("No DTB\n");
-+	}
-+#endif
-+
- 	if (IS_ENABLED(CONFIG_IMA_KEXEC)) {
- 		/* Setup IMA log buffer state */
- 		setup_ima_state(image, params, params_load_addr,
-@@ -529,6 +563,12 @@ static void *bzImage64_load(struct kimage *image, char *kernel,
- 				sizeof(struct setup_data) +
- 				RNG_SEED_LENGTH;
- 
-+#ifdef CONFIG_OF_FLATTREE
-+	if (initial_boot_params)
-+		kbuf.bufsz += sizeof(struct setup_data) +
-+			      fdt_totalsize(initial_boot_params);
-+#endif
-+
- 	if (IS_ENABLED(CONFIG_IMA_KEXEC))
- 		kbuf.bufsz += sizeof(struct setup_data) +
- 			      sizeof(struct ima_setup_data);
-@@ -537,7 +577,7 @@ static void *bzImage64_load(struct kimage *image, char *kernel,
- 		kbuf.bufsz += sizeof(struct setup_data) +
- 			      sizeof(struct kho_data);
- 
--	params = kzalloc(kbuf.bufsz, GFP_KERNEL);
-+	params = kvzalloc(kbuf.bufsz, GFP_KERNEL);
- 	if (!params)
- 		return ERR_PTR(-ENOMEM);
- 	efi_map_offset = params_cmdline_sz;
-@@ -647,7 +687,7 @@ static void *bzImage64_load(struct kimage *image, char *kernel,
- 	return ldata;
- 
- out_free_params:
--	kfree(params);
-+	kvfree(params);
- 	return ERR_PTR(ret);
- }
- 
-@@ -659,7 +699,7 @@ static int bzImage64_cleanup(void *loader_data)
- 	if (!ldata)
- 		return 0;
- 
--	kfree(ldata->bootparams_buf);
-+	kvfree(ldata->bootparams_buf);
- 	ldata->bootparams_buf = NULL;
- 
- 	return 0;
+Taking a step back, do we realistically need these checks at all?
+I would assume that there is a layer of security on the DSP side
+that would disallow running code in unsigned PDs on e.g. the ADSP.
 
-base-commit: d7b8f8e20813f0179d8ef519541a3527e7661d3a
--- 
-2.25.1
+What happens if one skips them and attempts doing just that?
 
+Konrad
 
