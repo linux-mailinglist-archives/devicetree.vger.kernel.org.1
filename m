@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-194567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0D7BAFE812
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:46:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A134AFE813
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:46:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1F4D4E0EDF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 11:46:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B4A55874FD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 11:46:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8682D8DAE;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 830022D94B9;
 	Wed,  9 Jul 2025 11:46:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Cq8SsObN"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="ob4PIReo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838EC277C82
-	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 11:46:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB072D77F6
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 11:46:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752061608; cv=none; b=Z78fOQJFXTy1xJ96LlRSfteiFFLvIwqQ7LBiIm47pHqj7FBUMfxd/+EHnIwTqX6qBFL6HlgzfkysHkSaa2Up98e0rNLztvscL5a2MUENQ8xzaZSZAW9ymoqpv3JLRhDgKi2iV3N1uo614AqSJdYwPjCTcbGRpRoCqt4Ar7FffOM=
+	t=1752061609; cv=none; b=JKSldsbfau4e3xnCql5qLgGvl3Eh7I3Yv2LLSTYQ35qkClfzx6JEi7C3lgsxtQMNrHnmnjkjJVTkh0NUtVnykdOFzZE4LUcjKJwkUXOJVuNfSDdiUSiJ+Aa8HquPu2DD9Dl1numk2sFaQdnobv3OeXPsKGzwg1C+WzMDUL7MQwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752061608; c=relaxed/simple;
-	bh=QyvA1Nzk0SjLU+31bm2SPti95aMonnwGc0oDKOHnSlM=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=E62OYphqejPjNyszujBjpCXcip7oJIwYTGcytXLKGijK4V8ngGMqCDIoycTGu7gJY5SXn28Der01TSNwBP4hHRzXdytqITZfNp9h0QtzOdSiH05Z45j+emV9RRHC/Qu8jMzNe5SnQNCy2usz+iWJLWMbpycCb3J25e+coMwfPC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Cq8SsObN; arc=none smtp.client-ip=209.85.208.54
+	s=arc-20240116; t=1752061609; c=relaxed/simple;
+	bh=g50h0b21o9jDK79Pni6TRJUIQF1PpFN5TZVZVqE7T6I=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=o1fTipjXsnfsJJiDjpnPM2vqFh6go1szk25f4ay5CP4XXmhOzjf1lre6DTQPoEb+VvJCcb2/mYdEgto0A4NvK8KgKw9yzuuqU8mXIg4op6FBoTENbsjF5gdhN6zW+F1BZlVTUZ4pWPRyaym6i1I8AGnUX/vBkodG/WM7rKjrCSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=ob4PIReo; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-606b58241c9so8783518a12.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 04:46:46 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-607cf70b00aso10624342a12.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 04:46:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1752061605; x=1752666405; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=D9byk3wugrhJNxEcWXLExtPl6Yl//CkYLrNeWbYR494=;
-        b=Cq8SsObN6jBPDbSirTwLQ6P73n0RFav8rTtglQi/+X1YITPNipx7nAVKwqpuQKQK49
-         2TjN8xpmwTyBSjmGLx2SUdj6PNvCkSiyYJsAnk95/7pEGDprQTF5COFyeSyQ/UQOYCB+
-         Gqd56S7s+80L+o2RRhMzq2jh1dP9XAnSmw6WYb6G0X47tySGWnCkSsuOWqrVHoUGifJW
-         Nfn0LPMi38EB2sBg4BIMx4FPNNlfgqOpwoC4HL8hicncQLNVw+p32H1WKwUgFVYFe5Rw
-         k4c+MApylsw8XeTjWX2aOkUy9tvsBnjv5ZFMeVJsF7JnGDd7Y/r9pNfaPcvwVuFOufA9
-         cKSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752061605; x=1752666405;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=fairphone.com; s=fair; t=1752061606; x=1752666406; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=D9byk3wugrhJNxEcWXLExtPl6Yl//CkYLrNeWbYR494=;
-        b=cuiZ9SjOvWjA93nPgziZNFCn+sygQCzO1QywQlBq5bS/5umASG6z1dIYBxJMp6GI2j
-         hHpbGTMM1qBnoKMXqxb65HUSz5JBsZm/3PQrdxKrYWQnFPK77LRob3aVN3OLzTrMlukN
-         Cig1kIABeXbF+uWgdeVIHvPuT0GCqiYFTNBD0SSKXlL4AhDTE3E7KUpJPVajD8UCpvX7
-         wimrk73jNTMxLwC3zuFp6jb5QlckwmDFY81SznHMgG7SZEQ8f6brt9pjHC43KQn9sugy
-         1FcPf0fkrAExGLOiasTYYtn5/gzm6HdxrA+DlPY5ZmEMXOyrUX81y33DfmHoK4PUIo7C
-         8sjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPIDRBqSikn0ABNUFDQelpEKxRNiF8V9OKyPVWYjUy/YzJy1FsmdgICJ0PzmEosnbbM0RtoeXKmF3o@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCG7Phc9ZDfA8XJB76XaKlaF7V38jnja5dP7Qt47h/q70gHSbb
-	BGdeJOkAL9WcxSN9KlQQR/PfRMdwMkXmSN2bcykO0ZWmL7gX2aZF0rXfC9W59T61CN4=
-X-Gm-Gg: ASbGnctDd5zNKxPD/clANqQ9p+aF2ohN433Xp5Hi9/iEhZ74vaAob4479gXUdvrJPbq
-	ed3Q93sq1uqN6ehJp3tI4HWBN8G74Oo1NoHZqxlLmGgybhOB2F4h9zE63Zl1Or01bK1QdyL1MAY
-	Tc3GYQIaLGkvWplD0ae4C2vUZ9znbMatAL5GiIQK1wOX8HD8JhglwfNyxKJb0v2g+gDwS0ZmDNn
-	YxW6NOxenxnhgKKVh2w9RhUoN6PSTVfsYDxXduz3Sb7M589AaiUHSdaBYogkGEdzXiUTOleCPWF
-	TtGuAHEJP07+ZnIwhL/MgvFXggEreBFdf4bji3rcNb7oGa/ujZ46iAHl692k0aeXrVeG3xDJZa9
-	3EjmwWy5CHcfOiCpma/qbbXQ1lkjhuz+DeWJcWqigAqE=
-X-Google-Smtp-Source: AGHT+IHBY4d9/GJbkWPqXT8J9DnV+IVC2JC5zKF0B4Pu1i/DLBMpRHhTFOQ7JRtodytv/0C23aztEA==
-X-Received: by 2002:a17:907:d09:b0:ae0:cadc:e745 with SMTP id a640c23a62f3a-ae6cf7898c1mr227993066b.40.1752061604773;
-        Wed, 09 Jul 2025 04:46:44 -0700 (PDT)
+        bh=YfzIi1YuPj7vEDdWX0E+BtY/lnIkWXKOrOjK3rEMMzE=;
+        b=ob4PIReobgG/pdtLop0zVpxlVA2PYJ9P9eMXRjHIQYUaF3Qi09sFBeqZMpJEL8t5tU
+         iWQLg7h+/uDgx4Nc0kBOPf41al8aNhXqqCrVpX34UwLUElU86QxdLrYNGYiL26JWvbDF
+         7dQtzM/tcyD6mvoJfflILeSgwPH2RQz1LyISs0luFddVM3WKh8JPRK7ObEB2HipTVHZa
+         prJpy57j+36OoDLtl7FjTeVzuCo5ajbqhxy1D0hXAmxzLUt0ZG6Mpa8qgW59ztvUivlF
+         WUIqC/5eBoniiYLfeQ7l+9juuhk7G1aJQ3ZdWxNsRU3LGciJJbK+g/t9rjI80MmS827x
+         LFYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752061606; x=1752666406;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YfzIi1YuPj7vEDdWX0E+BtY/lnIkWXKOrOjK3rEMMzE=;
+        b=lhf9lyqDn287jOi9JLag5Bp79asCZup9iQXfEPDIYYUIS0ArYFLWyzVNVTxwLG4PkV
+         F9Jl4BHSgoMhi5tIGaxO+eCrpFXlxHpfvolLGMsFXC3qdc50YFD2sSkaAuNHP5tX47ZX
+         DzmgJLi+yD2+EVPKazV/kWm3bTwjTxzKWuZ0EbvFb1DfNQzG6PmfcStqH8TCWiar0lAZ
+         DpSQG/Z7PXUDeLzZzzOzwumLnDWvb/3b8rM6jSKfREfMtm5WRUjL+CKrs/loFlrK1UPj
+         s03Lr6D2LOLIoLHgapGc4indWK6kgA8kXSRY1SQDWdwJfBROLl9LeDJU7bOdOuX6WKGD
+         5KhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUDJcl2v8jHxRuiqDAzAF+cv15cMXbJg11Y2e/Wij5GARc+pzXchU9K5GQEWw3Zes0MMBx1BjGeh5kx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+kOVMaOkRbAWgjivwLgdszL2R5OBM8iXdlFsLLkGkZzc0OWhh
+	ZNlCsI4x3USLUwsTkrXKAXyN6++WHsoHGMqTDZU3iyXDtp1WqS40bmD+8H/RwFnOKZs=
+X-Gm-Gg: ASbGnct/HJvYMNS268jXfbnqcvlLcYe/HPWuwt9ebI+AKto5xovLCjZ1j82vs4j2237
+	GF1uOJWNBQrJV9yHvFUPmsuoL8bQHYKt/FBfNJCCcP3fPEeQSXfHHHt03+lgPmQK50rjIxQSxjy
+	j1JsiIaId4TJPWlDT6YKMcGoG4Qd0wiZDcn0xywtLlCRXOEDDeT3GkxIAHK8+2f+uxhwKZ6hK72
+	1k7sSHCMuvV5NIbl1FqZFbVL6g6IgjW7K90O3KpFxk/bnPBme4Mij/RiUAD7lR+vKbuOQisoniV
+	lT2IGtlssMscrsI086GvACfAF+3i4GV1k8QriBhLxVZwuZ8tdBwkn6m7VQ8cJw1b1+XR/QUoRj0
+	JA0D7atESW9kzOHNPUc5Jtboojar2V5oZ
+X-Google-Smtp-Source: AGHT+IEKz0ezpWx63F7Bc9s8vjVt0t3vOlKUT+8PNrFet/P8kfDzpR48FWdx1BFlSEC/UY4y2HwISQ==
+X-Received: by 2002:a17:907:d28:b0:ad5:78ca:2126 with SMTP id a640c23a62f3a-ae6cfba40a1mr220756166b.59.1752061605839;
+        Wed, 09 Jul 2025 04:46:45 -0700 (PDT)
 Received: from otso.local (144-178-202-139.static.ef-service.nl. [144.178.202.139])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f692e4ecsm1102995266b.55.2025.07.09.04.46.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Jul 2025 04:46:44 -0700 (PDT)
+        Wed, 09 Jul 2025 04:46:45 -0700 (PDT)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Subject: [PATCH v2 0/5] Add support for PM7550 PMIC
-Date: Wed, 09 Jul 2025 13:46:31 +0200
-Message-Id: <20250709-sm7635-pmxr2230-v2-0-09777dab0a95@fairphone.com>
+Date: Wed, 09 Jul 2025 13:46:32 +0200
+Subject: [PATCH v2 1/5] dt-bindings: leds: qcom,spmi-flash-led: Add PM7550
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,11 +84,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJdWbmgC/2WNQQ6CMBBFr0JmbU2ZOhVZeQ/DouJUZgFtWkMwh
- LtbSVy5fC/576+QOQlnaKsVEs+SJUwF8FBBP7jpyUoehQE1kraoVR7P1pCK45IQjVbMRK6xrun
- xDmUVE3tZ9uKtKzxIfoX03g/m+mt/LfprzbXSCsm5y8lo8qa+eicpDmHiYx9G6LZt+wAJU/DXs
- gAAAA==
-X-Change-ID: 20250620-sm7635-pmxr2230-ee55a86a8c2b
+Message-Id: <20250709-sm7635-pmxr2230-v2-1-09777dab0a95@fairphone.com>
+References: <20250709-sm7635-pmxr2230-v2-0-09777dab0a95@fairphone.com>
+In-Reply-To: <20250709-sm7635-pmxr2230-v2-0-09777dab0a95@fairphone.com>
 To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Fenglin Wu <quic_fenglinw@quicinc.com>, 
@@ -99,45 +98,35 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-gpio@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752061604; l=1221;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752061604; l=897;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=QyvA1Nzk0SjLU+31bm2SPti95aMonnwGc0oDKOHnSlM=;
- b=jI/LuA8Et9Jz6IIYCbCbiaDVHZiqDKZl8RRZgpLS3RuN+Ax4/YMmJKN878+dc6PtGL37LqaEB
- 8y7Tzyw54BiCUEH/z2jsIb9abrcrERJIg7UyIA8WsR/u8lKqzjp6CUQ
+ bh=g50h0b21o9jDK79Pni6TRJUIQF1PpFN5TZVZVqE7T6I=;
+ b=yYYcBGUYoAJgY9qfpIoIRedVzxCinLcscXS9kcX5OTx4vF27NwVMwNcavqROL8jBlObpt3Sv9
+ PBbf1cP2EUvBF2wdpp/RhcK4BUtUajso9ei2nCw/JbzwrSW/6xkQy94
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-The PM7550 PMIC is used in conjuction with the Milos SoC. Add binding
-docs and the devicetree description for it.
+Document compatible for PM7550 Torch and Flash LED controller.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
-Changes in v2:
-- PMXR2230 -> PM7550 (Dmitry)
-- Replace some SM7635 references with Milos
-- Update critical temperature trip
-- Link to v1: https://lore.kernel.org/r/20250625-sm7635-pmxr2230-v1-0-25aa94305f31@fairphone.com
+ Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
----
-Luca Weiss (5):
-      dt-bindings: leds: qcom,spmi-flash-led: Add PM7550
-      dt-bindings: mfd: qcom-spmi-pmic: Document PM7550 PMIC
-      dt-bindings: pinctrl: qcom,pmic-gpio: Add PM7550 support
-      pinctrl: qcom: spmi: Add PM7550
-      arm64: dts: qcom: Add PM7550 PMIC
+diff --git a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+index bcf0ad4ea57ea6dbba9ce71280bc3cb9f74db83f..05250aefd38575f00dfc73263f7e4eaef38ab565 100644
+--- a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
++++ b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+@@ -24,6 +24,7 @@ properties:
+       - enum:
+           - qcom,pm6150l-flash-led
+           - qcom,pm660l-flash-led
++          - qcom,pm7550-flash-led
+           - qcom,pm8150c-flash-led
+           - qcom,pm8150l-flash-led
+           - qcom,pm8350c-flash-led
 
- .../bindings/leds/qcom,spmi-flash-led.yaml         |  1 +
- .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    |  1 +
- .../bindings/pinctrl/qcom,pmic-gpio.yaml           |  2 +
- arch/arm64/boot/dts/qcom/pm7550.dtsi               | 67 ++++++++++++++++++++++
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c           |  1 +
- 5 files changed, 72 insertions(+)
----
-base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-change-id: 20250620-sm7635-pmxr2230-ee55a86a8c2b
-
-Best regards,
 -- 
-Luca Weiss <luca.weiss@fairphone.com>
+2.50.0
 
 
