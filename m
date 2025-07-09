@@ -1,92 +1,94 @@
-Return-Path: <devicetree+bounces-194339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DB1FAFDE1B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 05:31:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D08EEAFDE91
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 05:49:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24EA51BC6D48
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 03:31:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1140188C45F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 03:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6652194A44;
-	Wed,  9 Jul 2025 03:31:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43AE01AC88B;
+	Wed,  9 Jul 2025 03:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="hTJfT3i4"
+	dkim=pass (2048-bit key) header.d=umich.edu header.i=@umich.edu header.b="c2WhWLj2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from epicurean-pwyll.relay-egress.a.mail.umich.edu (relay-egress-host.us-east-2.a.mail.umich.edu [18.217.159.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 093181F4C8D;
-	Wed,  9 Jul 2025 03:31:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF77AD517;
+	Wed,  9 Jul 2025 03:49:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.217.159.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752031881; cv=none; b=iv1NpuRbLTe7vK3epSMD5fMDS9B2aII0ZOBNk83ysUYp1RTvOr1psK0kPe8/DQDZ8q4JQERnkuZJhMJMAwIzw2w2IhBJSlh7hv0YHR1JD/H6ivPHFrWZqxv+8z0ST5VoOh1tYV7MO3jYqR2NRQOvMYVtDnTVW2rsi/znnE/MeoA=
+	t=1752032946; cv=none; b=dSiCw6THFSyQp3IABuL7Cwr0v1rZegfJzi4qLA0sNcePBiLxKz8YkN+cMYGsX0KRnVAc9NNXIWZVC4t4+OvgmbAeMcNTk363fRFrWgkEP/J0NAJVscuh7rfN+wS0wn+BntszsWsGCKMlJ5maWokFLMktUrXr1Wp4RYTxdP6S46M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752031881; c=relaxed/simple;
-	bh=VhdAlvUZfUyiLoHfSnGHdv+8Iktvv187Kvax6HkpuBo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gsnCGDVx7SEdozYHq5dxJMyKXAyZ0DT/887cRe2RP1fsJYtjVX4yIC7NOMTwwiEb//NfF2A4/lVb9+LXFiO69NiXpQguvFB3PcCZ8slK6B1cc0asEZJjDXoC+BSfrzROh+qYLdeP83P3qVCWqoX7vSCJURi67bRGgYOshj61z0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=hTJfT3i4; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id B93BC25D89;
-	Wed,  9 Jul 2025 05:31:09 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 3EKmnVBUklPl; Wed,  9 Jul 2025 05:31:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1752031868; bh=VhdAlvUZfUyiLoHfSnGHdv+8Iktvv187Kvax6HkpuBo=;
+	s=arc-20240116; t=1752032946; c=relaxed/simple;
+	bh=zjvjUcwS5qfI9jHWRzf+0fkXmbuLjmAbMYytraR6Tao=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=NhJZS7D6Anq9ooTwUr3B1njh/XUOEYgoG9N5sClGWlKjNDn0THsfA065UOyaXBG3vyryPdYY1OP0K0+TUM7OqQLAgkIYlgnQSGi7J3C6T7mkRQOYDm3Becp8jhOqXSh1HEqh0viS1Aw5vslbN1jbIPCh4jDgGdl9DwOtlqJNJe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=umich.edu; spf=pass smtp.mailfrom=umich.edu; dkim=pass (2048-bit key) header.d=umich.edu header.i=@umich.edu header.b=c2WhWLj2; arc=none smtp.client-ip=18.217.159.240
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=umich.edu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=umich.edu
+Received: from advisable-myrddin.jail.a.mail.umich.edu (ip-10-0-73-63.us-east-2.compute.internal [10.0.73.63])
+	by epicurean-pwyll.relay-egress.a.mail.umich.edu with ESMTPS
+	id 686DE6AD.359AA137.4E5FB9A4.222246;
+	Tue, 08 Jul 2025 23:49:01 -0400
+Received: from inspiring-wechuge.authn-relay.a.mail.umich.edu (ip-10-0-74-32.us-east-2.compute.internal [10.0.74.32])
+	by advisable-myrddin.jail.a.mail.umich.edu with ESMTPS
+	id 686DE47B.1ED842D5.6149EC18.933264;
+	Tue, 08 Jul 2025 23:39:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umich.edu;
+	s=relay-1; t=1752032375;
+	bh=zjvjUcwS5qfI9jHWRzf+0fkXmbuLjmAbMYytraR6Tao=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=hTJfT3i4lsyWwGvUqATGqCTf+VVuVvxScnJOqFtiKQIHJPiAQ0JIqb8BIAAlJrDZ/
-	 vJ/iWyKzRyoMVyu6GmAPAVnO+BD6ZOeAwPwm1ZjL8JkRC4n0yMRmZ5yPiGtY219/OS
-	 hGXSILKAhFrq98LQKfW9mQUpU90uBlFZAZLw6dnJPG8bsYwonXvd+vkEXoO/TeNIIh
-	 PmUGJbeS/B24SYhFTI/cpIFruE6FbEqwjDCOlvKeIWNGMJx5WIKLLWR4KSeGQT47h8
-	 yCBHRz/TTXbtxueQBRUcqiFojjukdaDQFiah5Jm3CHlOCHPEJfGS/qtsqTbKLtDJh1
-	 KZEOFY/yiOtxw==
-Date: Wed, 9 Jul 2025 03:30:57 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Chukun Pan <amadeus@jmu.edu.cn>, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/6] arm64: dts: rockchip: Add FriendlyElec NanoPi Zero2
-Message-ID: <aG3iceT_JbERhA4O@pie.lan>
-References: <20250708224921.2254116-1-jonas@kwiboo.se>
- <20250708224921.2254116-7-jonas@kwiboo.se>
+	b=c2WhWLj2RRdNo3XYLXv5lxWvlmKbu/Bul0xOA1Tw6gXVdnZCqwEgoUPCMH5W86YMm
+	 ffM1Toa2+jAj+9FeLpxlKQlZvXt761mFqXIehtfh2rRY/UiNk4t16hiw1fJCCAJ3YO
+	 axsAaSDygz4JOXhtGagWeCgl8yJbecaMrwjNVPva3HAbvNA6wJcTSqVXHp6uOhTx1m
+	 accbNpYlhCvMkura/1cobgjggz44qOLJPIPEcrAR1GBTGqr92oLODzXAKf6inK8MJ0
+	 H9xzrATJuaOOEene4+oFC5TzJC3HxaiVqTsMHEwi7xPnwT3YbkEK8WjmNIlr3SXmgJ
+	 nSjjJvQeEwa8w==
+Authentication-Results: inspiring-wechuge.authn-relay.a.mail.umich.edu; 
+	iprev=pass policy.iprev=185.104.139.75 (ip-185-104-139-75.ptr.icomera.net);
+	auth=pass smtp.auth=tmgross
+Received: from localhost (ip-185-104-139-75.ptr.icomera.net [185.104.139.75])
+	by inspiring-wechuge.authn-relay.a.mail.umich.edu with ESMTPSA
+	id 686DE474.2AFF1CF8.852C2E6.1056699;
+	Tue, 08 Jul 2025 23:39:35 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250708224921.2254116-7-jonas@kwiboo.se>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 08 Jul 2025 23:39:30 -0400
+Message-Id: <DB77N3PDLA0W.26YMMAHG8LIVF@umich.edu>
+From: "Trevor Gross" <tmgross@umich.edu>
+To: "FUJITA Tomonori" <fujita.tomonori@gmail.com>, <alex.gaynor@gmail.com>,
+ <dakr@kernel.org>, <gregkh@linuxfoundation.org>, <ojeda@kernel.org>,
+ <rafael@kernel.org>, <robh@kernel.org>, <saravanak@google.com>
+Cc: <a.hindborg@kernel.org>, <aliceryhl@google.com>, <bhelgaas@google.com>,
+ <bjorn3_gh@protonmail.com>, <boqun.feng@gmail.com>,
+ <david.m.ertman@intel.com>, <devicetree@vger.kernel.org>,
+ <gary@garyguo.net>, <ira.weiny@intel.com>, <kwilczynski@kernel.org>,
+ <leon@kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-pci@vger.kernel.org>, <lossin@kernel.org>, <netdev@vger.kernel.org>,
+ <rust-for-linux@vger.kernel.org>
+Subject: Re: [PATCH v3 3/3] rust: net::phy Change module_phy_driver macro to
+ use module_device_table macro
+X-Mailer: aerc 0.20.1
+References: <20250704041003.734033-1-fujita.tomonori@gmail.com>
+ <20250704041003.734033-4-fujita.tomonori@gmail.com>
+In-Reply-To: <20250704041003.734033-4-fujita.tomonori@gmail.com>
 
-On Tue, Jul 08, 2025 at 10:48:56PM +0000, Jonas Karlman wrote:
-> The NanoPi Zero2 is a small single board computer developed by
-> FriendlyElec, based on the Rockchip RK3528A SoC.
-> 
-> Add initial device tree for the FriendlyElec NanoPi Zero2 board.
+On Fri Jul 4, 2025 at 12:10 AM EDT, FUJITA Tomonori wrote:
+> Change module_phy_driver macro to build device tables which are
+> exported to userspace by using module_device_table macro.
+>
+> Signed-off-by: FUJITA Tomonori <fujita.tomonori@gmail.com>
 
-Tested on my NanoPi Zero 2 board, RTC could be read out, and Ethernet
-and SDMMC reaches a reasonable speed.
-
-Tested-by: Yao Zi <ziyao@disroot.org>
-
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> ---
-> Schematics: https://wiki.friendlyelec.com/wiki/images/3/37/NanoPi_Zero2_2407_SCH.pdf
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3528-nanopi-zero2.dts | 341 ++++++++++++++++++
->  2 files changed, 342 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-nanopi-zero2.dts
+Reviewed-by: Trevor Gross <tmgross@umich.edu>
 
