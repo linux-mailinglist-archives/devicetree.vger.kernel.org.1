@@ -1,277 +1,188 @@
-Return-Path: <devicetree+bounces-194589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DBE2AFE9B2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE832AFE9D3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:15:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A09F1C800C3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:10:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAEFA189AE90
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:15:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E6D82DCC03;
-	Wed,  9 Jul 2025 13:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EAF92DECB4;
+	Wed,  9 Jul 2025 13:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="QjCTdqMa"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="nvrEl5s7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f67.google.com (mail-qv1-f67.google.com [209.85.219.67])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 585862DBF47
-	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 13:10:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05579BE4A
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 13:15:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752066608; cv=none; b=MtVFSV5pLKK7M1RGqwgVfIR9Q0SaoPuE3ZD/PNZksu/jevXzTjDWdWuhEwjR5Bhi9v14p4Ex/c58ScmYx4Fd4RIY2aW1uBBtv/HN1THrF2k4CtlW+jq9K4lZwR7qXodyVcrvV3W5r7806vhZ3z/Hw3L2Qg9agVVjUSYIFKyClsg=
+	t=1752066909; cv=none; b=GkuHVk065ATYI7HGA/Le0v5B4jjmlOSt+m271PQAwWASTSpA5WK+lMbreqElYmgsKC6NfXpK0Wt1CqaKigjhdI0r1rXx5wZUu9yO/zLYbdeFtF0nHQiQMvrs0h8mp5fYz5dM57+w859hkArXEv7LkCQ5kX5As3QrffNbSNGmJYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752066608; c=relaxed/simple;
-	bh=ZAGKhcIUqrN7+rHf/oU7IFgaAgelruhHD2QUrT9iidM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=AC5LMOncrmaX11cfqlufJqMUk3zaB2UxbFbNQM1espGxDEEdatjXpxavXpl4FsOmHhbax540ZE+HZbGkXY6DfglwK0bxuwNGTlnReB7Vp2NTOfsmeHE+ivXbiGH/rae6eV3jIyrhjRm1eAqFV6H5dvGb3Lc+d9Hpu5xOyNe9cjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=QjCTdqMa; arc=none smtp.client-ip=209.85.219.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qv1-f67.google.com with SMTP id 6a1803df08f44-6f8aa9e6ffdso53744586d6.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 06:10:06 -0700 (PDT)
+	s=arc-20240116; t=1752066909; c=relaxed/simple;
+	bh=qF5/J/fKeoC6YmWBNQFQm1tBXQuS+Li1RwOwwDSZj0A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jbUFrEfeyRRTL+36hbn9p4O6juQDVgCAsqlb0tuQvMLW0FAF6HmVYkknCk+7fJfF9O7/S0utPWl4iVgWKg0jGAVrli0OiJD/P2XSMt7ZGYt4nvR3ozglMIBcl3SIPgqYxuAu7ObhlPr7CrNP7d+wvDJQvls8kvA9KzKx1ab12II=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=nvrEl5s7; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ade5a0442dfso946451866b.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 06:15:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1752066605; x=1752671405; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZAGKhcIUqrN7+rHf/oU7IFgaAgelruhHD2QUrT9iidM=;
-        b=QjCTdqMaAW+k2sow+cE92ZGUOI/+ZBDK3lcrtabSJReEm/VK6Xb+yzeJErcRZUVMm4
-         lmdL5GipQI8UD7f65EZdyF3fvJtQpx34phiYKtIEzdOZaz7Sw4RCeaeEI1TsAx+9bhg/
-         gDJHCDkgM6R0mkLwrOzrE97l/9urOcwKXgIOKiEGHXxo9JFk327hm6o1tKL93U83lAoP
-         Rtfza/LVyW8FIhCRkymzhkzuDO33PTsNsrnctFfDF9e4rQvya9R9D910ySWM0Xwx3XJz
-         iE6qwG1uRDpUkpranYO9DBTeZJ+DiIO+e05lyoSECOcl/f1hmyXsZ7PNNNx2ZL5wAIBI
-         ZI0w==
+        d=fairphone.com; s=fair; t=1752066905; x=1752671705; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GGKxqD4X4hA6oFFeMi+EohfBOVWp9WodiRasOeHtbtI=;
+        b=nvrEl5s7k4T7CeYHMNhe1IWmUAkfMTC8brJtejbXBO1VWIwyQWIorvOFFU7XrvA91n
+         O3uTKrKxnIBGKyv5jnSW6L0KctG/Fgn7NEhExS2WAGIBkleCd8iBZgrMRnBlnOsCWPj5
+         V6LLYjrtEVeVNyymR722269MwdBHyejlyTnL3bKwYZxXfIraOTORBsKY7S9VOJ2fAlUt
+         7hmqJmzkvgv1R0uwslTvrNVW5aA/A/zUW7i4r2Q2KE96KtTpQBFcGCuBLJdk/16v4mu3
+         LV7bDcmVgJeUwpLFTSUhd/YKWIUMO1Z9g3eitzZez+AbLOGdStiVUquacJQbqYmB5VU1
+         dkvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752066605; x=1752671405;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZAGKhcIUqrN7+rHf/oU7IFgaAgelruhHD2QUrT9iidM=;
-        b=aQaZkNMutiZy9AytwXK/sPtT/nCkKNShY0qpddIuhzXZ+cuYxVymqdk15dlA24PzXg
-         OfOQH6vOnXfo0C39iLXl5BRvFbmyGOQAUI2in1A0oJX5cC1DtgNem1qZFDF/zr3Vt6lA
-         e7dQFDFnLx2D08QkrAQH3Ek8bmHT9Y+4xr8GE6wIBaBuHV8rsMTrHuP1L4N07MfpOJDX
-         Mm8ubLKi+HO9IpdCO5jIFAKkzxIUqT4C+354aImLZ+S2AkFXANOM6m9L8KmEpM8WSXVL
-         mjIYL2Pd5zDAs1BhnqnNqiH3i3VLVFsWCMVsILirwPuLPOqRdXiY3FuDE3Jwk3p+Rvjw
-         mptg==
-X-Forwarded-Encrypted: i=1; AJvYcCXxQ2QS6OovaFuFtGYC2DlB7W0D7qD5s6RCyipdKtgVe4ZxbqpOtZ1jLpjdx1LSbVB4BNO47lBEZtaK@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmmyRzj3wvaB5wdvl/gmlL/s3aFbga7pYNTNXsiu4yfFMN3aBA
-	M6fB8xFH96fpBCclb/qKCFvCLLbhYv2pZqfVhBsEsUiih2bzCYCwcNoH9t1YPOL/3OE=
-X-Gm-Gg: ASbGncu70xA4iDy7zH3uOG7XxCkm6LsUHwGuW72ghOnSzL5zGPOPwgcBX+UQed8aTKm
-	RwL4olhHwbWHJlIETuRjsLcBefW1PmPoQv6x3MRTi1Y0eVVjXzznReF/H4FC9038jB1uJFjjLzX
-	COIeWLdFeAzIelIkxnD8fmOw9mxak6zg2dZNtX09KdL4CBDEBb0PnppNkTh4JZXnpsekTjhJW0F
-	O42FGVypQ+k1SgvvommGeyY2LILceTKGPmOwER5rBKdy043BzuvqilwxnSAXlqfWw/FCY3DRhqH
-	4zD3yXkVW695GzE+fzAhdctBGU6Y61o5rRsusoXZGeYCFStv+vuCQvoNOn96b5Xm8Kg=
-X-Google-Smtp-Source: AGHT+IGIuCHqZKNodo56olakSu8x5uw0f2xLhJJZfSNQfbpUkgQ6IrbD1NkWCR45DMziT4jJFNtuYg==
-X-Received: by 2002:a05:6214:590a:b0:702:d9d7:b6e2 with SMTP id 6a1803df08f44-7048b9b4b63mr37884916d6.34.1752066604935;
-        Wed, 09 Jul 2025 06:10:04 -0700 (PDT)
-Received: from ?IPv6:2606:6d00:17:b699::5ac? ([2606:6d00:17:b699::5ac])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-702c4ccd601sm91309236d6.27.2025.07.09.06.10.03
+        d=1e100.net; s=20230601; t=1752066905; x=1752671705;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GGKxqD4X4hA6oFFeMi+EohfBOVWp9WodiRasOeHtbtI=;
+        b=eKczZmj+nrn0vhHX4fMXz+OPXScqhwZY94LW1e6RxuVUYl9VORK9SghiFW3Kztg32d
+         mloFhJsgGWcd30JTyD0JmneOO+WgiPn38nGGD5xus6q++aFuc2aZDED5w3T+kMa89R2h
+         BPIkCIsW0PamMbQiDfPVnVD23X0FLTy1zAovlCpu67pPp4wcQkfK968bsdV+DovsHfS6
+         bemFPSgjzT8iag9LorH3HxAE0GQhzmarhjKiIvO1PifyCrpS8caVCCeXoMCm8ZDpR8YM
+         kh1vwl7NnPh0e+sInEW7MG3sNHyJ7neGVM550ktWDS0ix0a5Vt+tmdlyuRDlMy4bRrLV
+         JYyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWtp0dAJMu56zLbYIcIVppLqcYhOJhtJTEWvlpTvvLaZpHBcUM8JnGrzhET60cr5T8gAnlwRJCIgFa2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwM7znfGcUkfcgWvhLHWCt0tLqhahjmqyhtlrI7vMKu9xmbiXv/
+	mpFl5xLPnMUVtpiS+xh4+rbnMgToNxVp+e8iHdLhT46s5p2DHoAMlYOf4WORzcVqzT8=
+X-Gm-Gg: ASbGnctttUIRV0JY2GZnxQ7N+Op5weR8joBc82NOPEW4/syJheiLro8VDTI4S+B6tMs
+	MAnCZIYYvi+Q99KEp31GxXPECartkaiw7eL4sAD5tj6wINhEq/kgY7uvIrj/WToNkETHE3qpYm6
+	dOlih+BL0e5LqWLIyxEOjQBWiDpMMJg9WvVaEL+ti0ypwAll9j5Y6TupYJm94+8Vhh/WPb0g4Lz
+	vcQLvLGHx6VHSImJKaQmnccg9paaBJLaFobdFEC7C4sCUien79ALXaV1Qp/hgjF8UQhDVHaRcwr
+	apWSTMoAePGmuKH26e5y2oMJRArElEwjPq7w7S+8TbwUoT691u/Wmfyas2DYb71MtUx5RdEhjCF
+	8tuI1c7nkY8C33dTdUw1rei/abFaRCWwfavKCRV/EYAk=
+X-Google-Smtp-Source: AGHT+IE6E+JE7jXQBIIII1XxP3gfg7mqCW7aGQ/21aJ9MNh+dRqRpBS4qQwaX/36uvNFjS4QbYI0Nw==
+X-Received: by 2002:a17:907:a0d4:b0:ae0:a245:2fef with SMTP id a640c23a62f3a-ae6cf5c2c0bmr268677766b.20.1752066905085;
+        Wed, 09 Jul 2025 06:15:05 -0700 (PDT)
+Received: from otso.local (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f66d91ffsm1105542766b.14.2025.07.09.06.15.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Jul 2025 06:10:04 -0700 (PDT)
-Message-ID: <49e3fa834aadb37452112bb704a1a1593c1fd0b8.camel@ndufresne.ca>
-Subject: Re: [PATCH v6 0/2] dma-buf: heaps: Create a CMA heap for each CMA
- reserved region
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, Sumit Semwal
- <sumit.semwal@linaro.org>, Benjamin Gaignard	
- <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
- John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>,
- Christian =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek
- Szyprowski <m.szyprowski@samsung.com>, Robin Murphy	 <robin.murphy@arm.com>
-Cc: Andrew Davis <afd@ti.com>, Jared Kangas <jkangas@redhat.com>, Mattijs
- Korpershoek <mkorpershoek@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, 	linaro-mm-sig@lists.linaro.org,
- iommu@lists.linux.dev
-Date: Wed, 09 Jul 2025 09:10:02 -0400
-In-Reply-To: <20250709-dma-buf-ecc-heap-v6-0-dac9bf80f35d@kernel.org>
-References: <20250709-dma-buf-ecc-heap-v6-0-dac9bf80f35d@kernel.org>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0MU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAY29sbGFib3JhLmNvbT6ImQQTFg
- oAQQIbAwULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIXgBYhBO8NUoEVxMPCGgRvEtlBlFEpYHL0BQJ
- oLLLGBQkJZfd1AAoJENlBlFEpYHL0BEkA/3qkWYt99myYFSmTJUF8UB/7OroEm3vr1HRqXeQe9Qp2
- AP0bsoAe6KjEPa/pJfuJ2khrOPPHxvyt/PBNbI5BYcIABLQnTmljb2xhcyBEdWZyZXNuZSA8bmljb
- 2xhc0BuZHVmcmVzbmUuY2E+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AWIQ
- TvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyy+AUJCWX3dQAKCRDZQZRRKWBy9FJ5AQCNy8SX8DpHbLa
- cy58vgDwyIpB89mok9eWGGejY9mqpRwEAhHzs+/n5xlVlM3bqy1yHnAzJqVwqBE1D0jG0a9V6VQI=
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-FlPJGplGJlZTiMNIPwxV"
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+        Wed, 09 Jul 2025 06:15:04 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v3 0/2] Add interconnect driver for Milos
+Date: Wed, 09 Jul 2025 15:14:48 +0200
+Message-Id: <20250709-sm7635-icc-v3-0-c446203c3b3a@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEhrbmgC/12Qy27DIBBFf8ViXaoBDBiv+h9VFzwmNUptEnDdV
+ FH+vcRJlDTLO9K5OneOpGCOWEjfHEnGJZaYphrES0P8YKdPpDHUTDhwCYoDLaNWQtLoPcXWSAR
+ UioEhFdhl3MTDWvb+UfMQy5zy79q9sPP1ViMfaxZGgXauNRygZcrB28bGvBvShK8+jeRctfA7r
+ qH7h/OKI5NdcDY4bvwzfrqoZdx/13nzxe++rm+et/mv5LeFamVMEKILXui+Cjy+5AYxQTP+pLx
+ dVSAIp7lWVpvuSjhbkFaNMc59M+FhptcNooqd/gDc24+ufwEAAA==
+X-Change-ID: 20250620-sm7635-icc-e495e0e66109
+To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752066904; l=4168;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=qF5/J/fKeoC6YmWBNQFQm1tBXQuS+Li1RwOwwDSZj0A=;
+ b=a2rdDMuj/zWtBX9Ig4xAZju41zNuBNaJxhYqCmZ3hGaBpcVMQ0dsF37faFlwLK65iyNEs8MzY
+ b1cnEDIWMLyBnKDPQIahww6PB9wzKc27Rod0x8ShVj442EabPPVP5XU
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
+Add documentation and driver for the interconnect on the Milos SoC.
 
---=-FlPJGplGJlZTiMNIPwxV
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v3:
+- Add "SoC" to dt-bindings title
+- Add QoS settings
+- Remove empty bcm arrays
+- Update spacing around compatible entries
+- Link to v2: https://lore.kernel.org/r/20250708-sm7635-icc-v2-0-e158dbadb29c@fairphone.com
 
-Hi Maxime,
+Changes in v2:
+- Rebrand SM7635 to Milos as requested: https://lore.kernel.org/linux-arm-msm/aGMI1Zv6D+K+vWZL@hu-bjorande-lv.qualcomm.com/
+- Fix double colon in dt-bindings
+- Specify b4 dependency on gcc patches for dt-bindings example
+- Switch to using dynamic ICC IDs
+- Have .compatible+.data lines be one line
+- Link to v1: https://lore.kernel.org/r/20250625-sm7635-icc-v1-0-8b49200416b0@fairphone.com
 
-Le mercredi 09 juillet 2025 =C3=A0 14:44 +0200, Maxime Ripard a =C3=A9crit=
-=C2=A0:
-> Hi,
->=20
-> Here's another attempt at supporting user-space allocations from a
-> specific carved-out reserved memory region.
->=20
-> The initial problem we were discussing was that I'm currently working on
-> a platform which has a memory layout with ECC enabled. However, enabling
-> the ECC has a number of drawbacks on that platform: lower performance,
-> increased memory usage, etc. So for things like framebuffers, the
-> trade-off isn't great and thus there's a memory region with ECC disabled
-> to allocate from for such use cases.
->=20
-> After a suggestion from John, I chose to first start using heap
-> allocations flags to allow for userspace to ask for a particular ECC
-> setup. This is then backed by a new heap type that runs from reserved
-> memory chunks flagged as such, and the existing DT properties to specify
-> the ECC properties.
->=20
-> After further discussion, it was considered that flags were not the
-> right solution, and relying on the names of the heaps would be enough to
-> let userspace know the kind of buffer it deals with.
->=20
-> Thus, even though the uAPI part of it had been dropped in this second
-> version, we still needed a driver to create heaps out of carved-out memor=
-y
-> regions. In addition to the original usecase, a similar driver can be
-> found in BSPs from most vendors, so I believe it would be a useful
-> addition to the kernel.
->=20
-> Some extra discussion with Rob Herring [1] came to the conclusion that
-> some specific compatible for this is not great either, and as such an
-> new driver probably isn't called for either.
->=20
-> Some other discussions we had with John [2] also dropped some hints that
-> multiple CMA heaps might be a good idea, and some vendors seem to do
-> that too.
->=20
-> So here's another attempt that doesn't affect the device tree at all and
-> will just create a heap for every CMA reserved memory region.
+---
+Luca Weiss (2):
+      dt-bindings: interconnect: document the RPMh Network-On-Chip Interconnect in Qualcomm Milos SoC
+      interconnect: qcom: Add Milos interconnect provider driver
 
-Does that means that if we carve-out memory for a co-processor operating sy=
-stem,
-that memory region is now available to userspace to allocate from ? Or is t=
-here
-a nuance to that ?
+ .../bindings/interconnect/qcom,milos-rpmh.yaml     |  136 ++
+ drivers/interconnect/qcom/Kconfig                  |    9 +
+ drivers/interconnect/qcom/Makefile                 |    2 +
+ drivers/interconnect/qcom/milos.c                  | 1837 ++++++++++++++++++++
+ include/dt-bindings/interconnect/qcom,milos-rpmh.h |  141 ++
+ 5 files changed, 2125 insertions(+)
+---
+base-commit: b803ad80123e6efccfeeffa7cd37f98f642e37f4
+change-id: 20250620-sm7635-icc-e495e0e66109
+prerequisite-change-id: 20250620-sm7635-clocks-7699d338dc37:v2
+prerequisite-patch-id: 30b56c4075513c2b4a44b32a07f270b5cb08d098
+prerequisite-patch-id: 37be728e2df777fedd469f7da865e5a256a54b06
+prerequisite-patch-id: 32cc06fb5708d126263bc3ac132126e530f72d4a
+prerequisite-patch-id: d200c8de06976d3cfa9f1db896301019ab8a68d9
+prerequisite-patch-id: f13af5b3633a7969c35f3c1497c3968ff438aa7b
+prerequisite-patch-id: 70cc297fa29e022d4ffa74b0aad59f1ed1671e09
+prerequisite-patch-id: fb0950b5ebf9ebdbb4381762362f131544252bc7
+prerequisite-patch-id: c6593a406bcb7d9cb35bfa54b6fd8fbcaa58ae99
+prerequisite-patch-id: 6b126e92f96a5f2152d8ca296489aaf712bbaa17
+prerequisite-patch-id: 728eae32feac9247a5a822343f777ca678cd666c
+prerequisite-patch-id: 1c49368327e67c86e9e3523213c2d3f8469c226c
+prerequisite-change-id: 20250613-rework-icc-0d3b7276a798:v2
+prerequisite-patch-id: cfef14406349a8de35f9a9f52a94c27b9760c98d
+prerequisite-patch-id: 2a0f6625a75fc2672c5b5b8838daf4c1b84dae06
+prerequisite-patch-id: c43395b7274c6c4866e293378c2784e1ede5796b
+prerequisite-patch-id: dc669619c955d963b478e6c5bf691b09a9e87e5c
+prerequisite-patch-id: ec455ecaae1134984fab4ee9b0ced416c8388733
+prerequisite-patch-id: b610e2d9aab84dd752188235293267130a540363
+prerequisite-patch-id: de89fdb08c0e9794ea1c758bb8429cd8648d16e9
+prerequisite-patch-id: 50c1ce836eff66d606cb886a6e16ad09aa0c4d07
+prerequisite-patch-id: 893d74d96ade5999f853b37b46dbf45c2b602c61
+prerequisite-patch-id: 1af362b4eb70298089b1f407119831ed47d0e53a
+prerequisite-patch-id: 99fc9ac3f20c10960aeaf8f95fbab2299fc1299c
+prerequisite-patch-id: 719eac9c833b38f49f788d1f347f580523464ba5
+prerequisite-patch-id: e5897f2ff8c6a908cbf4424fe34782cdfd8e78f7
+prerequisite-patch-id: da0770cbea0b965c9cc1593f4f70316c1f06db74
+prerequisite-patch-id: 9850436dafbeb49b4046094c7cff430f8b156d18
+prerequisite-patch-id: 99f36df03d920c8e0735c6ff49b6ce24c64e1c4e
+prerequisite-patch-id: 0e282a1707f7d4daa0f997f0e908248797a085a0
+prerequisite-patch-id: a2c334a79e965882258455a9d0eaa90412ed66d4
+prerequisite-patch-id: d4ff7d798a7cf3260a91672dbabaca06e663651c
+prerequisite-patch-id: b9065de90a016b2cf7edb31a3bd1fe222344d406
+prerequisite-patch-id: 5e809c2603fb204d11a2bda4126df60ccbf46206
+prerequisite-patch-id: a5f457c883c17a5ea0f7226b4eeabc1354c965b7
+prerequisite-patch-id: fe9cbf613cf61082c75dfb358d0e362680849f17
+prerequisite-patch-id: 022a649bf46677564390068752121c6acf91cd74
+prerequisite-patch-id: 259e32af18576dbe8cff7f20633437a80f9a50f5
+prerequisite-patch-id: 76e0ce648c22ecd9e5a96d8c5c7b49d74c96fdb9
+prerequisite-patch-id: d39b4a58681c5e5699ba045d3a889d843d768262
+prerequisite-patch-id: 8e648304c8a8b21db26f1ae991abeb52a11d6ee8
 
-For other carveout, such as RK3588 HDMI receiver, that is clearly a win, gi=
-ving
-user the ability to allocate using externally supplied constraints rather t=
-hen
-having to convince the v4l2 driver to match these. While keeping the safety=
- that
-this carveout will yield valid addresses for the IP.
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
-Will there be a generic way to find out which driver/device this carveout
-belongs to ? In V4L2, only complex cameras have userspace drivers, everythi=
-ng
-else is generic code.
-
-Nicolas
-
->=20
-> It also falls nicely into the current plan we have to support cgroups in
-> DRM/KMS and v4l2, which is an additional benefit.
->=20
-> Let me know what you think,
-> Maxime
->=20
-> 1: https://lore.kernel.org/all/20250707-cobalt-dingo-of-serenity-dbf92c@h=
-ouat/
-> 2:
-> https://lore.kernel.org/all/CANDhNCroe6ZBtN_o=3Dc71kzFFaWK-fF5rCdnr9P5h1s=
-gPOWSGSw@mail.gmail.com/
->=20
-> Let me know what you think,
-> Maxime
->=20
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> ---
-> Changes in v6:
-> - Drop the new driver and allocate a CMA heap for each region now
-> - Dropped the binding
-> - Rebased on 6.16-rc5
-> - Link to v5:
-> https://lore.kernel.org/r/20250617-dma-buf-ecc-heap-v5-0-0abdc5863a4f@ker=
-nel.org
->=20
-> Changes in v5:
-> - Rebased on 6.16-rc2
-> - Switch from property to dedicated binding
-> - Link to v4:
-> https://lore.kernel.org/r/20250520-dma-buf-ecc-heap-v4-1-bd2e1f1bb42c@ker=
-nel.org
->=20
-> Changes in v4:
-> - Rebased on 6.15-rc7
-> - Map buffers only when map is actually called, not at allocation time
-> - Deal with restricted-dma-pool and shared-dma-pool
-> - Reword Kconfig options
-> - Properly report dma_map_sgtable failures
-> - Link to v3:
-> https://lore.kernel.org/r/20250407-dma-buf-ecc-heap-v3-0-97cdd36a5f29@ker=
-nel.org
->=20
-> Changes in v3:
-> - Reworked global variable patch
-> - Link to v2:
-> https://lore.kernel.org/r/20250401-dma-buf-ecc-heap-v2-0-043fd006a1af@ker=
-nel.org
->=20
-> Changes in v2:
-> - Add vmap/vunmap operations
-> - Drop ECC flags uapi
-> - Rebase on top of 6.14
-> - Link to v1:
-> https://lore.kernel.org/r/20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@ker=
-nel.org
->=20
-> ---
-> Maxime Ripard (2):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma/contiguous: Add helper to test reserve=
-d memory type
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma-buf: heaps: cma: Create CMA heap for e=
-ach CMA reserved region
->=20
-> =C2=A0drivers/dma-buf/heaps/cma_heap.c | 52
-> +++++++++++++++++++++++++++++++++++++++-
-> =C2=A0include/linux/dma-map-ops.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 13 ++++=
-++++++
-> =C2=A0kernel/dma/contiguous.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0 7 ++++++
-> =C2=A03 files changed, 71 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 47633099a672fc7bfe604ef454e4f116e2c954b1
-> change-id: 20240515-dma-buf-ecc-heap-28a311d2c94e
-> prerequisite-message-id: <20250610131231.1724627-1-jkangas@redhat.com>
-> prerequisite-patch-id: bc44be5968feb187f2bc1b8074af7209462b18e7
-> prerequisite-patch-id: f02a91b723e5ec01fbfedf3c3905218b43d432da
-> prerequisite-patch-id: e944d0a3e22f2cdf4d3b3906e5603af934696deb
->=20
-> Best regards,
-
---=-FlPJGplGJlZTiMNIPwxV
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaG5qKgAKCRDZQZRRKWBy
-9I45AQCBj0TCMQPihz2UiP5Ogn12VhminFtzBanzF6NqFNH8KAEA5amWJFCjCvXh
-CZHsD/GwiUBvhWKPUZTCeUOA8R12UAY=
-=ljqG
------END PGP SIGNATURE-----
-
---=-FlPJGplGJlZTiMNIPwxV--
 
