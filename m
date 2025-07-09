@@ -1,202 +1,153 @@
-Return-Path: <devicetree+bounces-194364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F0FFAFDFD3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:12:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BB17AFDFF1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:29:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 452BD1BC6605
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 06:12:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 974954E745E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 06:29:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB21C26B2D7;
-	Wed,  9 Jul 2025 06:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A636626C3AC;
+	Wed,  9 Jul 2025 06:29:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N1V6uSds"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IbjmRnP8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89BCF1E7C27;
-	Wed,  9 Jul 2025 06:12:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD98F26C385;
+	Wed,  9 Jul 2025 06:29:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752041546; cv=none; b=UKDRZHU9tPmlWTWQ1VogFk/JygT6qAMjt769mGb1uXIdqxdUTZeOl624did26vrAxM90YysL3jeJJPCxDs8KbAfY8BnEwuz1Y31H453LMZ8X9ggoBi53ZYx+fUNv+E9jPhymBNhbulWdNoZazC8Flxjc+BeCw5tDOOpQUFPY4Xo=
+	t=1752042565; cv=none; b=ZBk8B38rOeJ6/nY4aEPQfbFE18aSQO42YOQrZof/RGfMKh9ux3LJk0Pd7hVJ7sUyq2Vw+uxklIW+Dvc1LKjS7niobXEnwHsWdZC6tIoPZlRW9TmZQIS2lcaXezUS5FOycs30VTzFO6tU8yW60z/md3lRJKjzWmG9aYdWL4sDu/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752041546; c=relaxed/simple;
-	bh=b6fHflmKbdoQM8mgBF82jn0LzwgDIvXGI4ngEOI9Kho=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RrkYAehLCrFCtVyHziVwBzX6B3pkV6kwKafcuxNVH24AvwMbaaCX+NtKldr9EkqmCZP2c1bIkmOXHmGTP3Gq850oTlymFWB7Gb4G2c5Ev3GZ9BWf+kabKGkNOK24TR/hZnoHhJ4qPvSxBErvbuyCpy4yxrrcQlN3jr1mqyjVQNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=N1V6uSds; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B1A661FCF0;
-	Wed,  9 Jul 2025 06:12:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1752041541;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4KsS1Bbbca9XQYHQZD5JFcdb0dmQjAJZfp72T1bNefM=;
-	b=N1V6uSdsMSier0lYnfeBmwUGUxNP++lSOFVGh8ovo3TyUfJyrOMJWiFxiVxH8vJSJq1Trv
-	3sDyDQTjtNBBg2Jlyi77dJpiaOZrpzE5v/tGuXhA+Kyc7MXwqdtz9Ff0WtMhaKm4/PAPsn
-	zDwoY2Bt6stQZTDWS2YNg+Hui7CeGr0UxeNJH1k5oB49ADbef7NZfWNRRgD8c4e8DXWC9U
-	Rw7z24mcaiQp35pHC7rEZFfgNTWE01B6/5nkd0AIihjMpgcnmIsurJ+5a6AcLUhDPBVOnT
-	+xFv01g+7556/0rl/xHhBOwct960Rk6hXKlam+YPtJxLzC/EaHP+0p0Gy9hqkQ==
-Date: Wed, 9 Jul 2025 08:12:17 +0200
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: <Tristram.Ha@microchip.com>
-Cc: <Woojung.Huh@microchip.com>, <andrew@lunn.ch>, <olteanv@gmail.com>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
- <pabeni@redhat.com>, <marex@denx.de>, <UNGLinuxDriver@microchip.com>,
- <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 6/6 v2] net: dsa: microchip: Setup fiber ports
- for KSZ8463
-Message-ID: <20250709081217.368e1f7d@fedora>
-In-Reply-To: <DM3PR11MB8736DE8A01523BD67AF73766EC4EA@DM3PR11MB8736.namprd11.prod.outlook.com>
-References: <20250708031648.6703-1-Tristram.Ha@microchip.com>
-	<20250708031648.6703-7-Tristram.Ha@microchip.com>
-	<20250708122237.08f4dd7c@device-24.home>
-	<DM3PR11MB8736DE8A01523BD67AF73766EC4EA@DM3PR11MB8736.namprd11.prod.outlook.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1752042565; c=relaxed/simple;
+	bh=KjKlezOc87/x+FrYSWyzyuQtDcuJRRffC14mJhcaCuY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t+TtYhi7xZ8OD3JIuKFddbJIwYTVXevOkHuCcg6KC3mUsjdtfi7A39Q+0LY5LwzUaZSgeQAK2abWzXL2sV5rROnziicr0N4PJEDn0Nx6qWzBhRZ4Rkjg19xtBS7qYLIUuxM6962sa6PCGx/HgaPPWfyAFnLekD1DZZOqJG0SEFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IbjmRnP8; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752042564; x=1783578564;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=KjKlezOc87/x+FrYSWyzyuQtDcuJRRffC14mJhcaCuY=;
+  b=IbjmRnP847X8bCgw3f4A6Pkk+g9aJEuD96O/BlKbUDpC073CEOex1Ys1
+   tksWtqIbk4R1LFRmQCZsQFOJZNLj7EGyZqgJXgTwWZhkPLnyDWx5Vnkh3
+   RQVw07Ymj9igS013SDpKdo+ewwthGDjdjVhuSbZFoCoha1uZHY/fWfkh6
+   aQhgSysLCv+Mf9vxVy9DCqwg/ArzrElf9LX98nsBrZNVix6UfqKvYEke/
+   jIN+Jy1zNGRuxr0KtOwCBpv/mBRLINtqJxl6viVibqsgZGKv2kSvfEsSO
+   U+QzRM/HELr0zH5qvpCFpxicWBfHG3YJBRu8JgkmXUpQclUuHCljaxuTu
+   g==;
+X-CSE-ConnectionGUID: qhzJjJvDTyiJUYGtl1hm/A==
+X-CSE-MsgGUID: xjsgLRikRBaScAD5winWLw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="54435349"
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; 
+   d="scan'208";a="54435349"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2025 23:29:23 -0700
+X-CSE-ConnectionGUID: NHNnpI1PSQizcvA19THisg==
+X-CSE-MsgGUID: q/EM6XpLRR+UT0MEgoTXHA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; 
+   d="scan'208";a="186652707"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmviesa001.fm.intel.com with ESMTP; 08 Jul 2025 23:29:20 -0700
+Date: Wed, 9 Jul 2025 14:21:02 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: "Manne, Nava kishore" <nava.kishore.manne@amd.com>
+Cc: "mdf@kernel.org" <mdf@kernel.org>,
+	"hao.wu@intel.com" <hao.wu@intel.com>,
+	"yilun.xu@intel.com" <yilun.xu@intel.com>,
+	"trix@redhat.com" <trix@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"saravanak@google.com" <saravanak@google.com>,
+	"linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"git (AMD-Xilinx)" <git@amd.com>
+Subject: Re: [RFC v3 1/1] fpga-region: Introduce ConfigFS interface for
+ runtime FPGA configuration
+Message-ID: <aG4KTuLExZCMw8rC@yilunxu-OptiPlex-7050>
+References: <20250519033950.2669858-1-nava.kishore.manne@amd.com>
+ <20250519033950.2669858-2-nava.kishore.manne@amd.com>
+ <aDxrUD9YjnFkWy3M@yilunxu-OptiPlex-7050>
+ <DS7PR12MB607015CAB2781E16A4EC110ECD74A@DS7PR12MB6070.namprd12.prod.outlook.com>
+ <aEv48IZSinWjJgBt@yilunxu-OptiPlex-7050>
+ <DS7PR12MB6070BC635C899C637EDE71F3CD7CA@DS7PR12MB6070.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: 0
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdefieektdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpeforgigihhmvgcuvehhvghvrghllhhivghruceomhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeevledtvdevueehhfevhfelhfekveeftdfgiedufeffieeltddtgfefuefhueeknecukfhppedvrgdtudemtggsudelmeekugegheemgeeltddtmeeiheeikeemvdelsgdumeelvghfheemvgektgejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkegugeehmeegledttdemieehieekmedvlegsudemlegvfhehmegvkegtjedphhgvlhhopehfvgguohhrrgdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduiedprhgtphhtthhopefvrhhishhtrhgrmhdrjfgrsehmihgtrhhotghhihhprdgtohhmpdhrtghpthhtohephghoohhjuhhnghdrjfhuhhesmhhitghrohgthhhiphdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopeholhhtvggrnhhvsehgmhgri
- hhlrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvth
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DS7PR12MB6070BC635C899C637EDE71F3CD7CA@DS7PR12MB6070.namprd12.prod.outlook.com>
 
-Hi Tristram
-
-On Tue, 8 Jul 2025 19:45:44 +0000
-<Tristram.Ha@microchip.com> wrote:
-
-> > Hi Tristram,
-> > 
-> > On Mon, 7 Jul 2025 20:16:48 -0700
-> > <Tristram.Ha@microchip.com> wrote:
-> >   
-> > > From: Tristram Ha <tristram.ha@microchip.com>
-> > >
-> > > The fiber ports in KSZ8463 cannot be detected internally, so it requires
-> > > specifying that condition in the device tree.  Like the one used in
-> > > Micrel PHY the port link can only be read and there is no write to the
-> > > PHY.  The driver programs registers to operate fiber ports correctly.
-> > >
-> > > The PTP function of the switch is also turned off as it may interfere the
-> > > normal operation of the MAC.
-> > >
-> > > Signed-off-by: Tristram Ha <tristram.ha@microchip.com>
-> > > ---
-> > >  drivers/net/dsa/microchip/ksz8.c       | 26 ++++++++++++++++++++++++++
-> > >  drivers/net/dsa/microchip/ksz_common.c |  3 +++
-> > >  2 files changed, 29 insertions(+)
-> > >
-> > > diff --git a/drivers/net/dsa/microchip/ksz8.c b/drivers/net/dsa/microchip/ksz8.c
-> > > index 904db68e11f3..1207879ef80c 100644
-> > > --- a/drivers/net/dsa/microchip/ksz8.c
-> > > +++ b/drivers/net/dsa/microchip/ksz8.c
-> > > @@ -1715,6 +1715,7 @@ void ksz8_config_cpu_port(struct dsa_switch *ds)
-> > >       const u32 *masks;
-> > >       const u16 *regs;
-> > >       u8 remote;
-> > > +     u8 fiber_ports = 0;
-> > >       int i;
-> > >
-> > >       masks = dev->info->masks;
-> > > @@ -1745,6 +1746,31 @@ void ksz8_config_cpu_port(struct dsa_switch *ds)
-> > >               else
-> > >                       ksz_port_cfg(dev, i, regs[P_STP_CTRL],
-> > >                                    PORT_FORCE_FLOW_CTRL, false);
-> > > +             if (p->fiber)
-> > > +                     fiber_ports |= (1 << i);
-> > > +     }
-> > > +     if (ksz_is_ksz8463(dev)) {
-> > > +             /* Setup fiber ports. */  
-> > 
-> > What does fiber port mean ? Is it 100BaseFX ? As this configuration is
-> > done only for the CPU port (it seems), looks like this mode is planned
-> > to be used as the MAC to MAC mode on the DSA conduit. So, instead of
-> > using this property maybe you should implement that as handling the
-> > "100base-x" phy-mode ?
-> >   
-> > > +             if (fiber_ports) {
-> > > +                     regmap_update_bits(ksz_regmap_16(dev),
-> > > +                                        reg16(dev, KSZ8463_REG_CFG_CTRL),
-> > > +                                        fiber_ports << PORT_COPPER_MODE_S,
-> > > +                                        0);
-> > > +                     regmap_update_bits(ksz_regmap_16(dev),
-> > > +                                        reg16(dev, KSZ8463_REG_DSP_CTRL_6),
-> > > +                                        COPPER_RECEIVE_ADJUSTMENT, 0);
-> > > +             }
-> > > +
-> > > +             /* Turn off PTP function as the switch's proprietary way of
-> > > +              * handling timestamp is not supported in current Linux PTP
-> > > +              * stack implementation.
-> > > +              */
-> > > +             regmap_update_bits(ksz_regmap_16(dev),
-> > > +                                reg16(dev, KSZ8463_PTP_MSG_CONF1),
-> > > +                                PTP_ENABLE, 0);
-> > > +             regmap_update_bits(ksz_regmap_16(dev),
-> > > +                                reg16(dev, KSZ8463_PTP_CLK_CTRL),
-> > > +                                PTP_CLK_ENABLE, 0);
-> > >       }
-> > >  }
-> > >
-> > > diff --git a/drivers/net/dsa/microchip/ksz_common.c  
-> > b/drivers/net/dsa/microchip/ksz_common.c  
-> > > index c08e6578a0df..b3153b45ced9 100644
-> > > --- a/drivers/net/dsa/microchip/ksz_common.c
-> > > +++ b/drivers/net/dsa/microchip/ksz_common.c
-> > > @@ -5441,6 +5441,9 @@ int ksz_switch_register(struct ksz_device *dev)
-> > >                                               &dev->ports[port_num].interface);
-> > >
-> > >                               ksz_parse_rgmii_delay(dev, port_num, port);
-> > > +                             dev->ports[port_num].fiber =
-> > > +                                     of_property_read_bool(port,
-> > > +                                                           "micrel,fiber-mode");  
-> > 
-> > Shouldn't this be described in the binding ?
-> >   
-> > >                       }
-> > >                       of_node_put(ports);
-> > >               }  
+> I’ve implemented the FPGA Region ConfigFS interface with the following hierarchy:
 > 
-> The "micrel,fiber-mode" is described in Documentation/devicetree/
-> bindings/net/micrel.txt.
+> /configfs
+> └── fpga_regions             ← Registered via configfs_register_subsystem()
+>       └── region0                ← Added using configfs_add_default_group()
+>            └── my_image      ← Created via mkdir from userspace
+>                 ├── firmware    ← Write firmware name here
+>                 └── config        ← Trigger programming/unloading
 
-Yes but that's for PHYs right ? Yours is under the DSA "ports"
-node.
+Yes this is good to me.
+
+> Observation:
+> If configfs is not mounted before configfs_add_default_group() is invoked
+> (e.g., when regions are registered early via base DTB), the path
+> /configfs/fpga_regions/region0 does not appear in userspace,
+> even though it’s properly initialized in the kernel.
+> 
+> This appears to be due to how default groups function.
+> they require the configfs filesystem to be mounted prior to the group
+> addition in order to be visible. As a result, the mount order becomes
+> a strict dependency, which may affect or break early-boot FPGA flows
+> where regions are created before configfs is available.
+
+I don't have answer here. But IIUC you are describing some generic
+problem of configfs_add_default_group(). According to configfs.rst,
+subsystem is also a config_group so it doesn't make sense to me a
+subsystem works but a default subgroup can't. Unless configfs people
+have proper justification, your observation is a bug and should try to
+fix it.
 
 > 
-> Some old KSZ88XX switches have option of using fiber in a port running
-> 100base-fx.  Typically they have a register indicating that configuration
-> and the driver just treats the port as having a PHY and reads the link
-> status and speed as normal except there is no write to those PHY related
-> registers.  KSZ8463 does not have that option so the driver needs to be
-> told.
+> Proposal:
+> Use configfs_register_subsystem(&region->cfg_subsys) for each FPGA region
+> instead of relying on configfs_add_default_group().
 
-That's what I understood from your comments indeed, what thew me off
-guard is that all ports's fiber mode is configured in the
-config_cpu_port() callback.
+This seems a workaround. I don't prefer we give up on it so early...
 
-I'd like to one day be able to deprecate these
-micrel,fiber-mode/ti,fiber-mode properties in favor of the ports API
-that's being worked on, but I guess we can roll with it for now.
+Thanks,
+Yilun
 
-Maxime
-
-
+> 
+> This approach places each FPGA region directly under /configfs/region0,
+> avoiding the timing issues associated with default groups.
+> The interface becomes available as soon as configfs is mounted.
+> regardless of when the region was registered
+> (boot time via base DTB or dynamically via overlays).
+> 
+> New user hierarchy:
+> /configfs
+> └── region0              ← Region appears as its own root node
+>       └── my_image   ← Created via mkdir from userspace
+>            ├── firmware ← Write firmware name here
+>            └── config     ← Trigger programming/unloading
+> 
+> Would like to know if this approach looks good, or if there are better
+> suggestions to handle this scenario?
+> 
+> Regards,
+> Navakishore.
 
