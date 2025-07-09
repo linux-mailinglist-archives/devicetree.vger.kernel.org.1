@@ -1,110 +1,97 @@
-Return-Path: <devicetree+bounces-194324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F28E6AFDCAD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 03:02:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A212AFDD30
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 03:59:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52317582719
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 01:02:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32BE41AA60A4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 02:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8490D191484;
-	Wed,  9 Jul 2025 01:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98C5319ADBA;
+	Wed,  9 Jul 2025 01:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LZJGLBA7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="meL+6207"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9C619066D;
-	Wed,  9 Jul 2025 01:01:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC9249625;
+	Wed,  9 Jul 2025 01:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752022870; cv=none; b=PZrvAQuN1U+NaAneQ7/d1TBVnGCwXGsmTDjFqoVUYu+2sLhn08u4pqJIdUiElo2Tl2YZzj4YVMZR+YGOtJ9meqBZBMyHhRDlrhYdqBsdyvwlMCnr8rwLS3UBZLjpQV8UIlYzGX8ie7T2p3g58xjFCen/ZF/vP97xCiryJWRqt/o=
+	t=1752026388; cv=none; b=KSBMENpIAdLIv71wQ3o02AWfEzGfCn+x0JejZOH+vK8e1cimqSSr48+TSPFYg4w/2fFlYU40DumIQS9gCf/4CYt3hJ8uId1GeI4IlDUS47c2Yhv+v4xaVwnNmYa4nmyabsmEWkfjpI1EAhyA5n1a/ar/ZVnC+9MM0g6HTXsKeyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752022870; c=relaxed/simple;
-	bh=K1gtEVcxaVd2y4FMGLAeW2csYcsmmqWlWQd+W6jNQC4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t4PxXjYxajos9Rvuzn9Oe5wB1g7gpAa+dtJoakhTSW4Gu7vD2s7t9CYTN1/F8W7Pt8oglmwMCcLXOzyp3+Q9B6p2+koALt1plBOI28H1XyWWo41x2DDzsyQAhvQa+/z5qgDBuNuAqHw3Szp85/MC+veHhzDpPSgAaPqwijXL3nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LZJGLBA7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 282BDC4CEED;
-	Wed,  9 Jul 2025 01:01:08 +0000 (UTC)
+	s=arc-20240116; t=1752026388; c=relaxed/simple;
+	bh=iwE9ARpaM6sjLNPYdGBMwXNgkssGsBxoP/cDtzcIsdg=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=RYEAyZNsy0fI1yclhzmrlGMS6npGGZI43GENaoS0MiLQ0g9+Z9HKGL2F5Qwjvk8WAEXuOD273pgOaZQYkOtnNkIMJ9PSZILQDXkY7+GTVJxgJ/Afw0+JL24jNM0Y4YK7d/mF/79zaVWFhCy5km+XuFQhRXhLTP2Wq5NgcOomZ3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=meL+6207; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00CBCC4CEED;
+	Wed,  9 Jul 2025 01:59:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752022869;
-	bh=K1gtEVcxaVd2y4FMGLAeW2csYcsmmqWlWQd+W6jNQC4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=LZJGLBA7gOIUXO/NWjGr7suEmwSrwlz17LMRANZmRa8WisuRO6amGUtqRa8bxE8Jj
-	 B3mbjISZnBLf0eBNLoKDcDiLLUOGtGWaTi4cjRdX5v0oSlEZTAMu0qyHbCZqtlkbU7
-	 sftbBIqDNNAcVRlBVhqBJeOJfKBOW/I15/3vtTZfcgBinn9x+YiAVJ3Vm7xij9rgLK
-	 tpLFC7gaVV3fgQLJIw3Dfpwbk+MuA7+3HK/6j0HUXosPFdKWEnAPmd4/I4qrPYypZ+
-	 Zley5r/mZUxpJ8lz34h+OcB0NWXOs+StSoVo6J80QB7qPZdsYcV1jgt1wSuYa4vwdO
-	 fNEU0kuqVJWUQ==
-Date: Tue, 8 Jul 2025 18:01:07 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Parvathi Pudi <parvathi@couthit.com>
-Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- ssantosh@kernel.org, richardcochran@gmail.com, s.hauer@pengutronix.de,
- m-karicheri2@ti.com, glaroque@baylibre.com, afd@ti.com,
- saikrishnag@marvell.com, m-malladi@ti.com, jacob.e.keller@intel.com,
- diogo.ivo@siemens.com, javier.carrasco.cruz@gmail.com, horms@kernel.org,
- s-anna@ti.com, basharath@couthit.com, linux-arm-kernel@lists.infradead.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, vadim.fedorenko@linux.dev, pratheesh@ti.com,
- prajith@ti.com, vigneshr@ti.com, praneeth@ti.com, srk@ti.com,
- rogerq@ti.com, krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
-Subject: Re: [PATCH net-next v10 04/11] net: ti: prueth: Adds link
- detection, RX and TX support.
-Message-ID: <20250708180107.7886ea41@kernel.org>
-In-Reply-To: <20250702151756.1656470-5-parvathi@couthit.com>
-References: <20250702140633.1612269-1-parvathi@couthit.com>
-	<20250702151756.1656470-5-parvathi@couthit.com>
+	s=k20201202; t=1752026388;
+	bh=iwE9ARpaM6sjLNPYdGBMwXNgkssGsBxoP/cDtzcIsdg=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=meL+6207UGZ83PCRYpI7IC0nqosJcljyLYCQ94YWf7FkW1qxYkJlnhg3GqK4o2Y2X
+	 m7mbElRiCgp3rYZ3VfjasDN2P+Y7qkFT6FiPj7z61yL8gwknpPb1L4fKnzsBSRICfv
+	 w+xU1swc8+oyFvxd0/Ec4sn0Ym9qGJ7xpELNqAcDZkSN7XodoJVdSn6hlzjtgfFPyq
+	 95zhxmawQxgMHOICQbAIz+7FwSCZb45/nBvlDpE4imureVNUHVZ4mTbPxc5Cu7g3eA
+	 gZfYD+YuiP6rme9ysusAN0/nUgczzhVl2SGHMnoQkMqDkMf6PsXpTHRq2d4DgpvkMa
+	 tsKF7x72f18Kw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB0DC380DBEE;
+	Wed,  9 Jul 2025 02:00:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] net: dt-bindings: ixp4xx-ethernet: Support fixed
+ links
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <175202641059.192708.17191274231375047755.git-patchwork-notify@kernel.org>
+Date: Wed, 09 Jul 2025 02:00:10 +0000
+References: 
+ <20250704-ixp4xx-ethernet-binding-fix-v1-1-8ac360d5bc9b@linaro.org>
+In-Reply-To: 
+ <20250704-ixp4xx-ethernet-binding-fix-v1-1-8ac360d5bc9b@linaro.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ lkp@intel.com
 
-On Wed,  2 Jul 2025 20:47:49 +0530 Parvathi Pudi wrote:
-> +			if (emac->port_id) {
-> +				regmap_update_bits
-> +					(prueth->mii_rt,
-> +					 PRUSS_MII_RT_TXCFG1,
-> +					 PRUSS_MII_RT_TXCFG_TX_CLK_DELAY_MASK,
-> +					 delay);
+Hello:
 
-Instead of breaking the lines up like this you should factor the code
-out or find some other way to reduce the indentation.
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-> +	qid = icssm_prueth_get_tx_queue_id(emac->prueth, skb);
-> +	ret = icssm_prueth_tx_enqueue(emac, skb, qid);
-> +	if (ret) {
-> +		if (ret != -ENOBUFS && netif_msg_tx_err(emac) &&
-> +		    net_ratelimit())
-> +			netdev_err(ndev, "packet queue failed: %d\n", ret);
-> +		goto fail_tx;
-> +	}
+On Fri, 04 Jul 2025 14:54:26 +0200 you wrote:
+> This ethernet controller is using fixed links for DSA switches
+> in two already existing device trees, so make sure the checker
+> does not complain like this:
+> 
+> intel-ixp42x-linksys-wrv54g.dtb: ethernet@c8009000 (intel,ixp4xx-ethernet):
+> 'fixed-link' does not match any of the regexes: '^pinctrl-[0-9]+$'
+> from schema $id: http://devicetree.org/schemas/net/intel,ixp4xx-ethernet.yaml#
+> 
+> [...]
 
-> +	if (ret == -ENOBUFS) {
-> +		ret = NETDEV_TX_BUSY;
+Here is the summary with links:
+  - [net-next] net: dt-bindings: ixp4xx-ethernet: Support fixed links
+    https://git.kernel.org/netdev/net-next/c/f7728ea83771
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
-Something needs to stop the queue, right? Otherwise the stack will 
-send the frame right back to the driver.
-
-> +static inline void icssm_emac_finish_napi(struct prueth_emac *emac,
-> +					  struct napi_struct *napi,
-> +					  int irq)
-> +{
-> +	napi_complete(napi);
-> +	enable_irq(irq);
-
-This helper has a single caller, just put the two lines of code directly
-there. And use napi_complete_done(), please.
 
