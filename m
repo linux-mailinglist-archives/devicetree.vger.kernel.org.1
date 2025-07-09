@@ -1,163 +1,199 @@
-Return-Path: <devicetree+bounces-194546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3240AFE768
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:18:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C550AFE771
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:19:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69FAD4E58BA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 11:16:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D2365A43A8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 11:17:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9F9292B33;
-	Wed,  9 Jul 2025 11:13:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1369292B28;
+	Wed,  9 Jul 2025 11:17:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="btCO22CM"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="EQPCISu9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A37291C0E
-	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 11:13:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC0928EC15;
+	Wed,  9 Jul 2025 11:17:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752059604; cv=none; b=Qns7u2pgqhA7ZvG50Evwu8u6904wDGj1djah33lxe69Zcf05ShK1MvZgpbgPNCBMrN6l3ImmiuIJzUd5gB+4YnV5lmZ0daSVpKGH5YsFgbz2sPL8D/+iZPIXh5iSI0BuFyMXdPbMSprGIczVSlZqu60C6lnMv1N6pA6GA02DjLs=
+	t=1752059823; cv=none; b=htG3ZgZn+lwSjQ5VkAP/FpQHtpPLx0wVlb9pe9qruCOI80oATPKfjf9bD8xuZrvT7+aXvdzYDbXFZ0qu6WhFLghhRwzlBjbGlI7MD1G+F8OO/RXcpBvLCztj7MnRLo1H33ECxxIuELpDnOaAUozSsCmN0uokbPHEFXGGetW47sI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752059604; c=relaxed/simple;
-	bh=OJvIgyuj5zHbAHydPvWzJJbjCtffTewHwXPSgao+2c8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qrSdDlzRIK8n76jaT6WmVWsQwbAyC0+ZNA31VobMSt5h77iRIUD1JkTFAxKQ4N3LqbIP1vgux4/kapFH6G6z/IDrvsmJXg1Xyqnot9qEDmny+KgqFRihqRv8F8x7xF2O314RTj83t4pcGyNa3N5QNOYIFuIAyJWlhsm2TOgS23o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=btCO22CM; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ae3be3eabd8so189068466b.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 04:13:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1752059601; x=1752664401; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0ybiFFUL1Z57/CU2gYjZ2nwMXvOylKu9ZrRdZ3JW//c=;
-        b=btCO22CMagTtmaMG9WuvFmAw6yCITeeBGvy+hAwNjZk7oyerHtFDQlDRPn3OYOhl67
-         4gSDsgA8A6XROVFfeErtXiDiW0MoBfaQl0ycMx6SIDk5B7fSfIlgXDOzl4J+8irQlMGc
-         MJvvJ0jqhXNou1b1aRhg/pn9hh/8iBXfxhEUxgCtmZsLIrAlJfCIuLewXYw0UyD+RRGs
-         1xNqMThcnQ1SZPazZzsh+5B353cw1RYoYRsCinR6BCoIpg5wQm7THOeetD7NBjog2+eQ
-         rDDF78vh8gx89plcv1JBQJlkNqsgeUrkaSdr9dqzAEYn5E+em6A5IU+Ib+lPeulI3V/X
-         pTIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752059601; x=1752664401;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0ybiFFUL1Z57/CU2gYjZ2nwMXvOylKu9ZrRdZ3JW//c=;
-        b=QaHnZVIRIbdV2bJ8u06n71ucwPMKWiL86apBImjLkjbNMLHMTBLjw8IJNE9kgfFES9
-         eWRbUa6bg0bxhwJq9psLJtW8CqTPzC49f01Fzpqm6Pl5S2aSWhaGE3u4mk7nBnqKCpIz
-         LTJRZW3yCltms8lA1GaZZdztxFCYR4NQnhUdmrqtatOkDs8CZPG+Klhdeyd0wOr7u+li
-         gbzKHlo4A0UNB0uiTTLl9L7YsCHEfwGF/Q5ImUiKMxuK/2F3uWuJy2wfAaRAh8vT4fNB
-         QR8+Q8fmz1TaP7UAa7UGR6qHiuoROovqe8VnJUnoVks8GVhn4IMwtRVcaMMe+M5Rj4fG
-         GouA==
-X-Forwarded-Encrypted: i=1; AJvYcCUnxD2sxrKPqh2o0YGVvodh+/iRxv+sOF+c6EH8gNv9d8Ldbozv0nZRI2Vn6hMD4XMOkArKrMgEsOII@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrDT6g2phzYLkoG/BVgRIgWUG21X9vGMYsYMO6CoE4O6bsh4NS
-	BVVC6lmpW10vPBUr/aaWWV7EHodcg3dXz7jUKrDZXtkcuaJyEX8ChE+H4I76vMN6Go0=
-X-Gm-Gg: ASbGncv9AG83gfJME0vWCrh02CDz03nuevr4yHDVaDJgsuuAzVdnAOmaZTRLD2Aws/h
-	GTPTrgXoBQ3skp2rxM86IayPllcFwYI3abDct9jEbA1+Gjtuj1dvP/JzeZ/XLEnj4S7YQkmWCco
-	z5DqOtEP8fOvYsPADXqEzIHk/LMRxNXynu590O668vC4EU6oWeonMI7GXgfQOrNtXLS6yKvDHui
-	IX7K2Lb16yRpiwDxzcjGEez+nrdi4hmTxOhL+oCwrFlU+dC5gaDC88TKx9HohfiE79f+0UkNNy5
-	ShMFzJf7uIuChLDewyTucRf2EVLaQaidFoetOUrxr4r+2hvH7Ufh/QHf7RlZX/VmDate3Pt8yk0
-	hYOyfChH+uuwGCGG0lsscum3R4ANBbW39
-X-Google-Smtp-Source: AGHT+IHXBll9+vo07ZfbksnE8wLMF4LIAQ2GbDeL2E6iTV/VmTgWRYgEkhIVvpcQIDycxaI0d4YQZw==
-X-Received: by 2002:a17:907:3f1f:b0:ae4:123a:7fe3 with SMTP id a640c23a62f3a-ae6d142d7ddmr206899766b.20.1752059600885;
-        Wed, 09 Jul 2025 04:13:20 -0700 (PDT)
-Received: from otso.local (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6daed7d49sm27191566b.114.2025.07.09.04.13.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Jul 2025 04:13:20 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Wed, 09 Jul 2025 13:13:08 +0200
-Subject: [PATCH v3 2/2] remoteproc: qcom: pas: Add Milos remoteproc support
+	s=arc-20240116; t=1752059823; c=relaxed/simple;
+	bh=4kWrX6sfCJUuN2vXbr68Zhu993cH/l/81QTPNlOuOAI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DIC+pddwuuFSQJ1jtwpBuYXaZnTVjTv+UoYgAr4o1DtiMG31s72W4Inj34mB82kGQoelHftv2eSfB9WwECXuUuTBY56rN/09qEwGJJpc+PdJl/8tY/YIZT1Us6upQ1zVlXb2MFcc3LobxFtollq9JaV2VKINpePgfH34ISNJwyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=EQPCISu9; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4A026103972A7;
+	Wed,  9 Jul 2025 13:16:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1752059818; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=ZlieK/cQd1tQM5wheLqNTa+x9MmB1DmBV4uYwDd6FPY=;
+	b=EQPCISu9IUIpn41IpH56igNNxb+zl7xu3O7CJcvRfljgmmuBw+zQp1ve/8sHhWLw2tC9aP
+	qRLIyULgMRqX8uUG4Vzi5bpQpuab/7cM87KkCck2PnSYJynqDrJSeZgD4fH/+vxzObIYZ/
+	9IA+6yabN2KYvRhdZmQOSKm3xbHTBHLrjNejYPkmTAjp4/bcGXZ7rbBQZCRpR9quD/SOC/
+	TMl1zqcsgmXbxA6Zj4FLTJtkEk5nnEHbGqMWXRjWLkLz7/1aqAXMIYxfDSzD2aUuJTqsGm
+	Rm79++WpyhFB+Gkt5+RlxDjhK1vkTdMOB/5iFvWI0lOm7Og7w7KlUBpX0mDzUQ==
+Date: Wed, 9 Jul 2025 13:16:51 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Richard Cochran
+ <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
+ <andrew@lunn.ch>
+Subject: Re: [net-next v14 04/12] net: mtip: The L2 switch driver for imx287
+Message-ID: <20250709131651.391e11c5@wsk>
+In-Reply-To: <617d064e-99e4-491c-8fe7-d74d8174d9fb@redhat.com>
+References: <20250701114957.2492486-1-lukma@denx.de>
+	<20250701114957.2492486-5-lukma@denx.de>
+	<617d064e-99e4-491c-8fe7-d74d8174d9fb@redhat.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250709-sm7635-remoteprocs-v3-2-c943be976180@fairphone.com>
-References: <20250709-sm7635-remoteprocs-v3-0-c943be976180@fairphone.com>
-In-Reply-To: <20250709-sm7635-remoteprocs-v3-0-c943be976180@fairphone.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752059598; l=1914;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=OJvIgyuj5zHbAHydPvWzJJbjCtffTewHwXPSgao+2c8=;
- b=lHLNcjCgk/GHlzx8rQbUPfkZQox5Dk1Ek78pJsnh1xN61wmSbZQ27bMq+NZUW2SjHZuhrBEeA
- Y5xdyzw4YQSDQO/3aywFk7RFzDsgE2OuticVijqzXi7+hBnOYC8aZvW
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+Content-Type: multipart/signed; boundary="Sig_/mg/nfqRTFJ+kss8tYJWDWg=";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add the different remoteprocs found on the Milos SoC: ADSP, CDSP, MPSS
-and WPSS.
+--Sig_/mg/nfqRTFJ+kss8tYJWDWg=
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- drivers/remoteproc/qcom_q6v5_pas.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Hi Paolo,
 
-diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-index b306f223127c452f8f2d85aa0fc98db2d684feae..7cc67ee62a341d56c92bbf2e4222837c0e34cb20 100644
---- a/drivers/remoteproc/qcom_q6v5_pas.c
-+++ b/drivers/remoteproc/qcom_q6v5_pas.c
-@@ -1261,6 +1261,26 @@ static const struct adsp_data sdx55_mpss_resource = {
- 	.ssctl_id = 0x22,
- };
- 
-+static const struct adsp_data milos_cdsp_resource = {
-+	.crash_reason_smem = 601,
-+	.firmware_name = "cdsp.mbn",
-+	.dtb_firmware_name = "cdsp_dtb.mbn",
-+	.pas_id = 18,
-+	.dtb_pas_id = 0x25,
-+	.minidump_id = 7,
-+	.auto_boot = true,
-+	.proxy_pd_names = (char*[]){
-+		"cx",
-+		"mx",
-+		NULL
-+	},
-+	.load_state = "cdsp",
-+	.ssr_name = "cdsp",
-+	.sysmon_name = "cdsp",
-+	.ssctl_id = 0x17,
-+	.smem_host_id = 5,
-+};
-+
- static const struct adsp_data sm8450_mpss_resource = {
- 	.crash_reason_smem = 421,
- 	.firmware_name = "modem.mdt",
-@@ -1435,6 +1455,10 @@ static const struct adsp_data sm8750_mpss_resource = {
- };
- 
- static const struct of_device_id adsp_of_match[] = {
-+	{ .compatible = "qcom,milos-adsp-pas", .data = &sm8550_adsp_resource},
-+	{ .compatible = "qcom,milos-cdsp-pas", .data = &milos_cdsp_resource},
-+	{ .compatible = "qcom,milos-mpss-pas", .data = &sm8450_mpss_resource},
-+	{ .compatible = "qcom,milos-wpss-pas", .data = &sc7280_wpss_resource},
- 	{ .compatible = "qcom,msm8226-adsp-pil", .data = &msm8996_adsp_resource},
- 	{ .compatible = "qcom,msm8953-adsp-pil", .data = &msm8996_adsp_resource},
- 	{ .compatible = "qcom,msm8974-adsp-pil", .data = &adsp_resource_init},
+> On 7/1/25 1:49 PM, Lukasz Majewski wrote:
+> > Changes for v14:
+> > - Increase the maximal received frame size to 1536 (for VLAN)
+> > - Use spin_{un}lock_irq{save|restore} when altering dynamic table
+> > of the switch and mtip_adjust_link() as both cannot be done when
+> > switch IRQ is potentially enabled =20
+>=20
+> Why?
+>=20
+>  (the previous one alters entries in switching table
+> >   the latter one may reset the whole IP block) =20
+>=20
+> What really matters is the scope (process/atomic, bh, hardirq) of the
+> relevant callers (the functions that do acquire the given locks).
+>=20
 
--- 
-2.50.0
+Maybe I will explain the problem here case (function) by case:
+- mtip_adjust_link()
+  This function is called when link change is detected (speed, duplex,
+  up/down link).
 
+  The problem here is that:
+	1. It is called for both MTIP ports (as both are managed by
+	this driver)
+
+	2. NXP's "legacy" driver advises reset of the whole IP block
+	when such change is detected.=20
+
+	Considering the above - interrupts shall be disabled as we may
+	end up in undefined state of the IP block - especially that
+	re-configuration of switch requires interrupts initialization.
+
+
+- mtip_atable_dynamicms_learn_migration() - update of the switching
+  table
+
+	Can be called from:
+	1. function triggered when timer fires (once per 100ms)
+
+	2. mtip_switch_rx() which is called from mtip_rx_napi() callback
+	  (which is protected by net core).
+
+	It looks like the _irqsave/_irqrestore is an overkill here.
+	Both above contexts seems to not require IRQs disabled. I can
+	confirm that use of plain spin_{un}lock() functions works.
+
+>=20
+> > +/* dynamicms MAC address table learn and migration */
+> > +static void
+> > +mtip_atable_dynamicms_learn_migration(struct switch_enet_private
+> > *fep,
+> > +				      int curr_time, unsigned char
+> > *mac,
+> > +				      u8 *rx_port)
+> > +{
+> > +	u8 port =3D MTIP_PORT_FORWARDING_INIT;
+> > +	struct mtip_port_info *port_info;
+> > +	u32 rx_mac_lo =3D 0, rx_mac_hi =3D 0;
+> > +	unsigned long flags;
+> > +	int index;
+> > +
+> > +	spin_lock_irqsave(&fep->learn_lock, flags); =20
+>=20
+> If the _irqsave() part is needed (and I don't see why??!) than all the
+> other `learn_lock` users should also use such variant, unless already
+> in hardirq scope.
+>=20
+> [...]
+> > +static void mtip_adjust_link(struct net_device *dev)
+> > +{
+> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
+> > +	struct switch_enet_private *fep =3D priv->fep;
+> > +	struct phy_device *phy_dev;
+> > +	int status_change =3D 0, idx;
+> > +	unsigned long flags;
+> > +
+> > +	spin_lock_irqsave(&fep->hw_lock, flags); =20
+>=20
+> Same here.
+
+Please see the explanation above.
+
+>=20
+> /P
+>=20
+
+
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH, Managing Director: Johanna Denk,
+Tabea Lutz HRB 165235 Munich, Office: Kirchenstr.5, D-82194
+Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/mg/nfqRTFJ+kss8tYJWDWg=
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmhuT6MACgkQAR8vZIA0
+zr2sMQgAmeWdQ83p6ZlFKroGNRoittaX6hv52A6/sPC741/r5Bs6bSXR0SiYIWIQ
+oLqi0K6s1yin/VW7PCgSlxjez6pG1ZLVU0VbdU32bBZPO7cZN/gwP/9SkitR8gkB
+2LViAZYDJpPSl98Z0CL+YEgPeZ6t7si0/xJTGs0sogpDqKnCZXhebCGmWAxfKPV2
+jtf5EtJwnPezHuv1g5vLxpmZQku3LDXR6seg7M2pIOcMXWjMjulvSySvhWEjFsRx
+KHZf5seGJqEj5KXSx3LAOrzf8kGqUpXzXLzPJnnsbnLVFbRJftYLKiBPfWztFr7a
+1NJjD6ATeHM08A+mASs69xXk4XxveA==
+=fJbi
+-----END PGP SIGNATURE-----
+
+--Sig_/mg/nfqRTFJ+kss8tYJWDWg=--
 
