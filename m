@@ -1,133 +1,199 @@
-Return-Path: <devicetree+bounces-194483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FFA6AFE564
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:15:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E16F4AFE584
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:17:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F9031C47841
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:12:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83CE318879D0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 475A1288C05;
-	Wed,  9 Jul 2025 10:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3EAC289813;
+	Wed,  9 Jul 2025 10:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDTTeeaq"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="c4xztTZu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1530027FD72;
-	Wed,  9 Jul 2025 10:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01072289809;
+	Wed,  9 Jul 2025 10:14:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752055814; cv=none; b=Hx9fK2s2RqN+biaT9101IMR3tQSJlbdPCk30Fo4NxNODgiPa43DsdVxJhRsJqU4NiwxwwKpG6JM94knkhx8BguOu/tMpPu79BGnI+KnKjkpqKMB5qsdrQkTbtDJjXTFyYHEih7a5X2Riri4ErVomfr7S2njr+1O8ZLajaHAhW9w=
+	t=1752056099; cv=none; b=rBVi9ZnAiIdfIjPZJBk5jRSB5PIchtim2cWjh7T4sOcZG6ahLl0bWRiBFsmz9sfQespjITwT3PaKBQq4kmUHGSapB08fQD1Bmhj+xeQETuxA4izIIZJzyk9vCmJPGzHSsbEvVX1h3TFVedM1ZTpEV5jELvBFw1kz8+mp6DcTmh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752055814; c=relaxed/simple;
-	bh=FiKNtmlD2Pt4/xGmxziOLwjXdKFlXJgMCBJ20bdo9xU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=amdIAUFasamCrb3unw2QZ76G4H3om9N0CSiKQluD5DH5JoqdmAWfuoLj3Jy605Vb0aI1I13c6gPHncq/FFraWow8xZ7B1qti8jjLxnpQgcdNvkd5GsXZWTmDbzxiYf+lKYRULv0Fx7mwLqZ47nFSG5B2KlxuvaUNuazWFDovi1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDTTeeaq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA0E7C4CEEF;
-	Wed,  9 Jul 2025 10:10:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752055813;
-	bh=FiKNtmlD2Pt4/xGmxziOLwjXdKFlXJgMCBJ20bdo9xU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aDTTeeaqwkhUHQPaLdSyVSKeynw4z0x1Q2rya09zKRsmwz+EVJFKp6DGfVrOTamW9
-	 GFS204pi/OYsooab8FlP/B0iQHDTiL0KWNQzWoCwsr9qDdiD+pliILnA4wY9VwXwuG
-	 kx5/mq5HNw/NqAOPShNm0qfj0GiWtfA4gTzK5jouPUiCyM9lj+AxcQYNRRXL8uHSzS
-	 GVNJqENZGzZIxKDjiHKn6KQdUO/Eii6L/wQ1LvXEPjdn5iL/Ygpl/DND/PW76YCZkL
-	 S3pLAGIbDykltCEpu6CNp6Yy8MpZOoRfK+x7q2Wruc19XfiQVPRVMUcv6v/tp5Sy6/
-	 79thdkNuhVERg==
-Message-ID: <49100e59-b81c-4063-9a38-506633e86109@kernel.org>
-Date: Wed, 9 Jul 2025 12:10:07 +0200
+	s=arc-20240116; t=1752056099; c=relaxed/simple;
+	bh=es2bSzdV9IWpvgGFtHgvwYGWojC9fZkC/kNW3Hp+Xvk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VIlZlA3A+wL1671dv3A17JztMvhLtnPCnAFvD0sC1YKdaoLXm/3hxM833KDd0k3P1dAMltO7eo0W8DRgBrVzv7nFZJ4X4awyjdQyf6ocJuXxbDMcmRI68v3XUHr2MYCD+3rKTdpp6Zet2frY5FR6kv45f7rpyj0PqmrtC8F81Lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=c4xztTZu; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 57904103972A7;
+	Wed,  9 Jul 2025 12:14:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1752056094; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=ArIGCW5Bhq1y2eO/gihtnGd36bGdErSTiYHxyyM2NBo=;
+	b=c4xztTZuzEmC1w0jFD5JIzskfaeJ9Kuw87IZn0mEp30P3ef4cAo0RNNUPFV8mF+tj7sc1l
+	wC9uo6NzlEdIuVz8mVxbe6R1lsU70LUPb1CWeYW15Xguh+joIfcph1z/aboaqKC32Aney0
+	EaYFAyGCbgrSIenh5ltO4KiGVIx9pZIngqSLRyjxdaa04TgiDkuCtVzdrdlFD69x+/4rAB
+	0hMiMOsv10s8YTYMvV4ZkjmuoV3GuCnLcRHBdIZEGNfUGjaB5ss7PkkN+0Vsr8Syd6KUqf
+	g5NtmhCPPUBtGNpiuuxEXrFh9nVZYPnIzyS18FC1Ag+rKDVf+3i3NFCx7D0bQw==
+Date: Wed, 9 Jul 2025 12:14:47 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Richard Cochran
+ <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
+ <andrew@lunn.ch>
+Subject: Re: [net-next v14 04/12] net: mtip: The L2 switch driver for imx287
+Message-ID: <20250709121447.7cc2cd19@wsk>
+In-Reply-To: <b68a06a1-076a-4345-bbb4-7dda1cd73591@redhat.com>
+References: <20250701114957.2492486-1-lukma@denx.de>
+	<20250701114957.2492486-5-lukma@denx.de>
+	<b68a06a1-076a-4345-bbb4-7dda1cd73591@redhat.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/8] dt-bindings: clock: qcom,sc8280xp-lpasscc: Reference
- qcom,gcc.yaml
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
- Srinivas Kandagatla <srini@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250709-gcc-ref-fixes-v1-0-ceddde06775b@quicinc.com>
- <20250709-gcc-ref-fixes-v1-6-ceddde06775b@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250709-gcc-ref-fixes-v1-6-ceddde06775b@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; boundary="Sig_/zvP9KrePMHi5Vk1C5hBLMkR";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 09/07/2025 11:37, Satya Priya Kakitapalli wrote:
-> Reference the common qcom,gcc.yaml schema to unify the common
-> parts of the binding.
-> 
-> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-> ---
->  .../bindings/clock/qcom,sc8280xp-lpasscc.yaml           | 17 ++++-------------
->  1 file changed, 4 insertions(+), 13 deletions(-)
-> 
-NAK...
+--Sig_/zvP9KrePMHi5Vk1C5hBLMkR
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Here and on all other patches.
+Hi Paolo,
+
+> On 7/1/25 1:49 PM, Lukasz Majewski wrote:
+> > +static int mtip_sw_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device_node *np =3D pdev->dev.of_node;
+> > +	const struct mtip_devinfo *dev_info;
+> > +	struct switch_enet_private *fep;
+> > +	int ret;
+> > +
+> > +	fep =3D devm_kzalloc(&pdev->dev, sizeof(*fep), GFP_KERNEL);
+> > +	if (!fep)
+> > +		return -ENOMEM;
+> > +
+> > +	dev_info =3D of_device_get_match_data(&pdev->dev);
+> > +	if (dev_info)
+> > +		fep->quirks =3D dev_info->quirks;
+> > +
+> > +	fep->pdev =3D pdev;
+> > +	platform_set_drvdata(pdev, fep);
+> > +
+> > +	fep->enet_addr =3D devm_platform_ioremap_resource(pdev, 0);
+> > +	if (IS_ERR(fep->enet_addr))
+> > +		return PTR_ERR(fep->enet_addr);
+> > +
+> > +	fep->irq =3D platform_get_irq_byname(pdev, "enet_switch");
+> > +	if (fep->irq < 0)
+> > +		return fep->irq;
+> > +
+> > +	ret =3D mtip_parse_of(fep, np);
+> > +	if (ret < 0)
+> > +		return dev_err_probe(&pdev->dev, ret,
+> > +				     "OF parse error\n");
+> > +
+> > +	/* Create an Ethernet device instance.
+> > +	 * The switch lookup address memory starts at 0x800FC000
+> > +	 */
+> > +	fep->hwp_enet =3D fep->enet_addr;
+> > +	fep->hwp =3D fep->enet_addr + ENET_SWI_PHYS_ADDR_OFFSET;
+> > +	fep->hwentry =3D (struct mtip_addr_table __iomem *)
+> > +		(fep->hwp + MCF_ESW_LOOKUP_MEM_OFFSET);
+> > +
+> > +	ret =3D devm_regulator_get_enable_optional(&pdev->dev,
+> > "phy");
+> > +	if (ret)
+> > +		return dev_err_probe(&pdev->dev, ret,
+> > +				     "Unable to get and enable
+> > 'phy'\n"); +
+> > +	fep->clk_ipg =3D devm_clk_get_enabled(&pdev->dev, "ipg");
+> > +	if (IS_ERR(fep->clk_ipg))
+> > +		return dev_err_probe(&pdev->dev,
+> > PTR_ERR(fep->clk_ipg),
+> > +				     "Unable to acquire 'ipg'
+> > clock\n"); +
+> > +	fep->clk_ahb =3D devm_clk_get_enabled(&pdev->dev, "ahb");
+> > +	if (IS_ERR(fep->clk_ahb))
+> > +		return dev_err_probe(&pdev->dev,
+> > PTR_ERR(fep->clk_ahb),
+> > +				     "Unable to acquire 'ahb'
+> > clock\n"); +
+> > +	fep->clk_enet_out =3D
+> > devm_clk_get_optional_enabled(&pdev->dev,
+> > +
+> > "enet_out");
+> > +	if (IS_ERR(fep->clk_enet_out))
+> > +		return dev_err_probe(&pdev->dev,
+> > PTR_ERR(fep->clk_enet_out),
+> > +				     "Unable to acquire 'enet_out'
+> > clock\n"); +
+> > +	/* setup MII interface for external switch ports */
+> > +	mtip_enet_init(fep, 1);
+> > +	mtip_enet_init(fep, 2);
+> > +
+> > +	spin_lock_init(&fep->learn_lock);
+> > +	spin_lock_init(&fep->hw_lock);
+> > +	spin_lock_init(&fep->mii_lock); =20
+>=20
+> `mii_lock` is apparently unused in the whole series.
+
+Thanks for spotting it.
+
+Indeed this shall have been removed when I added support for MII
+operations' polling.
+
+>=20
+> /P
+>=20
+
+
+
 
 Best regards,
-Krzysztof
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH, Managing Director: Johanna Denk,
+Tabea Lutz HRB 165235 Munich, Office: Kirchenstr.5, D-82194
+Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/zvP9KrePMHi5Vk1C5hBLMkR
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmhuQRcACgkQAR8vZIA0
+zr1dEwf+IV70eUIk6GwhBJxy3PxgfnLpjKQlItzlkVVtQfjTSQmIlMCucw9/SW04
+2xsHcqT7V5sFWnhAViFyOtG0dRiaNToW8GdvWqwc9N4LKHYn3AkFUHmfD3lRXlqy
+Ajwsjuv4q+2yGBlQ1Uzb7/MqnWQTtk82SBhyZXtxpCO5PhQ5qiKdUD/HHyFTkpNw
+gpAqRHHk3WLxz9wCg4Kj8O/exiyLsqoiH7gNuQAAvx7OvnGaAt2O8hToAbfBdOzN
+cw1od/9oksCZqf8YKXx99bE5lVfg3s+njPD7a0c7cAFIGPlARPoVjDg/2/DYEY0H
+zc8GeKgDX8nsKtenNU09INlXdabZzg==
+=lGVH
+-----END PGP SIGNATURE-----
+
+--Sig_/zvP9KrePMHi5Vk1C5hBLMkR--
 
