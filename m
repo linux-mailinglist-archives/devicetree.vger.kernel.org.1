@@ -1,147 +1,191 @@
-Return-Path: <devicetree+bounces-194585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84B4DAFE918
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 14:37:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C48AEAFE93C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 14:45:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 326D55A5F25
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:37:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14058165AFB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C0C2DC321;
-	Wed,  9 Jul 2025 12:36:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB2FD28DB46;
+	Wed,  9 Jul 2025 12:45:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P5G3/sZs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SU8qJ591"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC762DA74C;
-	Wed,  9 Jul 2025 12:36:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AF5D28DF42;
+	Wed,  9 Jul 2025 12:45:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752064580; cv=none; b=qzBzCDMxKAwwSuAtXEvG+vQLhnMF4ruHQMqEHmLTgzx9fn5TgAcZm/Lyyy1iQ7vH674mxWqBtlY9OSYzY8q7oOrjuNHz989Zpty79DVHvQDno/X+Zr9+C8OdbfYT1wAC9/duHzHay6idTLglvrpm1Z5zUh5zy3jTH3wfd20WQQA=
+	t=1752065104; cv=none; b=LjSHeIZ+ADZYovqubxVujM6KN6MGBWWmiXDoBU7x119dsxnJT9IhEfaGOGk+xcPK8P9wen7CT2ZtEsp4lqtleA12cOdMT87xyK/OUZ2mKrvRIMIIChiMb9FABWRvxoc+BDk6AYjsmWe3/nI6jluWAuoGUfVZ/582W0rB5Y0325M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752064580; c=relaxed/simple;
-	bh=OH9RJ22f6HnRZKb1/JJVgz3oFFeduxOoMrFvKyaX/gA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C4js3QpFM5z/DjrkVwRytt64jHhm7FL8WFmEOyq3J9DuYA5VefBAnrMkzxfI1BltoOICZcb59GfM7/0o/KZA5dbQfJ8tCKIbktwiZx9qsaoce8EfiiPwKuxtW7L117/BPIB246L+YIDLtvv7FhS0gfjk7CLbtSAuxp6qEJaF7W4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P5G3/sZs; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a536ecbf6fso3005733f8f.2;
-        Wed, 09 Jul 2025 05:36:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752064577; x=1752669377; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=F7pXgh+7Em51b3M0K4QNjuqFHVDfsI4ix4PKTFQyaqo=;
-        b=P5G3/sZsW3N/vWpx0k0hJ+NtS9yI2xewausCl9tU8td/7uKQ1Il1W+H/czBgvlopnj
-         jWc4usGby0mewOtdiZxKcyZ0aOdpvwyr3AEBuxFoULIx/7sFpzvE26vEQBapec+ZDw0K
-         zMBvzBDkE+LuonZ8C5/7ebgQoLuGZCa04XSN2vUJ4B3fDxOs29QD3j5lpTcckfv6SoEK
-         u1+K1ESQB8QxTZW+6l92T+01p5HWyDJtxLkwo2xfWDFX+DbBrgrOJn68rKXuOBReBJkR
-         TR1eC1i1RHPdU+ZtYdc8VI/j9O+BLHDjto0g/AQev1cVp3btnXdk5QSBWpKVwUQ5F4HP
-         cEYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752064577; x=1752669377;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F7pXgh+7Em51b3M0K4QNjuqFHVDfsI4ix4PKTFQyaqo=;
-        b=XV0oH7hO0absI454Eb1JvA90S/sZJl3tEWTx1LaMLCNFV1LILWpNYS35bXz5JMpgTb
-         w6G4QB6s2Pi9aQWFJrEZ3fmdFe86lr3K29pGKDLfPFT0SpnXn1I/t5yrgWh5l+hYz6q0
-         T7an/YhNo7zGubKp3HDF3Yw0YGrVbXHZWD1hFnECwAgiduF94QLF1Cg3UIdblq5GhZmF
-         h2klTu/Cdey8tRhotCWL1OCHaoklys3EnFyB00yetMCSPYy6q5DG81Xaa0i36X5piTT3
-         os4+Z7eBnOvpvp4J+nujFbp+TOZtX/Th5+rl0QzHzWGSXvVoHu9F7hsuheKMOoHm6iWH
-         OsHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU6opr6Pj4KSj3ddPBnlLo0/G+Q5mF8F2Nqp8oi99+p3RcNe7lIwr7T/6cY9dy+SR1XKqyhIQGG1KJCwWM=@vger.kernel.org, AJvYcCURKxr5E26lBQLYctThgFEeOVzJ8InNTGQanXpFVF9nRqTPqLU4s4s9niFDweMjNmbPRnJYzp8DLoL6@vger.kernel.org, AJvYcCWeKNmftCSuY+hpYvO3cAfsnH2PiHmYeWOTbnOuwcFA7T1wmiLtswPfEB2wrdcryU0LO6aEUle8lTXt5naz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzevOg0ZmhsK+1ks8AkF52CF2DfeINtScXbuW1ZWM0twoExJBRC
-	Rim9zSNq+4A9MEN+tLGl/huVWEsAneaJH46AcOhv024iFU+DamRP0kqu
-X-Gm-Gg: ASbGnct9/2V1pOY8WGMXn5TywO4DA7YB0yMM5aVMF8XUCBpP5T+L8o1mhgpFAsdude4
-	TRUF1Q3CewM11HsOrVnKw43eFP/sPYYFxbVk1aNdPhCDskuJ7VVirElLL4H1af91dK+B7FY5iWA
-	u6Lz8V0dfxneq9AKihOVuspupCzPTx1nXr/uaSQuWPPQUS0aKnFSR3op15LbQpYkdgU7NdVpcqY
-	fR83nY2GtZLa42VXQT/0nR5fob7LiFTsuhEn41ElazqQiL0mtHUlO20DauUsiqKjWdEnPcsaWrU
-	uj8ZZAA7/QdIToccBeaDE/qS6BYiN7Jm4zZ4vp5eYUdCjvR4a97IF4nOgMufFt/ueL1k5DSV4eE
-	hQeV6re3cjIeRIlYEDQYxEMO+Y23au10l968NTOzxpGcTRcsMTO067NgrIvo=
-X-Google-Smtp-Source: AGHT+IF4JfTBcT8gzEYg4AtRTRbQJ48L53vM7WFCoOTGs9IyCVESFFaJ77r8MiezEnYK/dxMRlp9bw==
-X-Received: by 2002:a05:6000:4a0a:b0:3a4:e2d8:75e2 with SMTP id ffacd0b85a97d-3b5e4540b24mr2049528f8f.50.1752064576971;
-        Wed, 09 Jul 2025 05:36:16 -0700 (PDT)
-Received: from orome (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b4709c6e28sm15774029f8f.39.2025.07.09.05.36.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Jul 2025 05:36:15 -0700 (PDT)
-Date: Wed, 9 Jul 2025 14:36:13 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	David Heidelberg <david@ixit.cz>, Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/2] ARM: tegra: Add device-tree for ASUS VivoTab RT
- TF600T
-Message-ID: <u3q2aphdsmc4toqxzicgk5sjrkcyukksa5nuwccllbmm6jptj2@ld26fmpsyweh>
-References: <20250617070320.9153-1-clamor95@gmail.com>
+	s=arc-20240116; t=1752065104; c=relaxed/simple;
+	bh=5ig93j1gHmVqigZVEEovbc0sfYjFNVqIz+vVSrVJ/jo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YWxe1f4UpFQEXqrCnuBzPxILYsQejjRk+ha5DrkLaOr5+r1ZbYQj7vgTwn9G7XDTIkp5GW1rcw0Wc+HFX2s8VMLJCRut5Q8TNTquH8E+LkFEo/guW3EGk+I4OoNQwxsSnkvc9qtE2MimRUEO0Ryjknh4AMem3v9W6dWMo4TJy7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SU8qJ591; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE565C4CEEF;
+	Wed,  9 Jul 2025 12:45:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752065104;
+	bh=5ig93j1gHmVqigZVEEovbc0sfYjFNVqIz+vVSrVJ/jo=;
+	h=From:Subject:Date:To:Cc:From;
+	b=SU8qJ591v3ZuHKWkIDNsGPC/TsUVy5S48YTk8I+wA/R98cRRp92a8dBLwXVe4UUQX
+	 h62V/N4GwCQnBqvMRN/dhOkcZT7Ssfa5mggfF34/0QPOqfEmWo15hH3XTHDCU3wiCv
+	 Y6nFOpZXhmwRDr5eeybDpTrDAlJ1IaiOkbNfKDKzdx+VyQnto48W5ciawaeUsIhJpU
+	 yDA6aEdBir32pT6DCYAmKoojkdWjZ811ES/KwYqd6iRccGhxFvUMJsmphaTBKEF8KY
+	 lEtAOdiJRJQu++19on2WBnLmlaE8lMvX0qRuyl7dlwb3WeSSmgMKEoXeNZiQeAFgpn
+	 y6+6c80EJRdVg==
+From: Maxime Ripard <mripard@kernel.org>
+Subject: [PATCH v6 0/2] dma-buf: heaps: Create a CMA heap for each CMA
+ reserved region
+Date: Wed, 09 Jul 2025 14:44:50 +0200
+Message-Id: <20250709-dma-buf-ecc-heap-v6-0-dac9bf80f35d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hkv6it553fkcsq2y"
-Content-Disposition: inline
-In-Reply-To: <20250617070320.9153-1-clamor95@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEJkbmgC/33RyU7DMBAG4FeJfMaRx1uaCqG+B+LgZdKYkqbYa
+ QSq+u44KaigRBzHkr9Z/gtJGAMmsi0uJOIYUuiPudAPBXGtOe6RBp9rwhmXTIGivjPUnhuKztE
+ WzYnyjREAnrtaIsnfThGb8DGTzy+5bkMa+vg5dxhhev0HG4EyqqSz1jNZK4DdAeMR38o+7smkj
+ fxHUEwyWBF4FpgUjWdMGzDNQhC/hWpFEFmoK+e90EY1vF4I8i4ozlYESYFazxEasFZytxDUXdC
+ wNoOatjDWO7XRwsi/W1xvZ474fs6BDbdbkw5TMnNg2+Lxm2YggAsooeJS8yqP9XrIqZq0i+hbM
+ 5Su756m1KxJSHPRhWFbjLoETaNTudX1C/BYCfAjAgAA
+X-Change-ID: 20240515-dma-buf-ecc-heap-28a311d2c94e
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
+ "T.J. Mercier" <tjmercier@google.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Robin Murphy <robin.murphy@arm.com>
+Cc: Andrew Davis <afd@ti.com>, Jared Kangas <jkangas@redhat.com>, 
+ Mattijs Korpershoek <mkorpershoek@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+ iommu@lists.linux.dev, Maxime Ripard <mripard@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4178; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=5ig93j1gHmVqigZVEEovbc0sfYjFNVqIz+vVSrVJ/jo=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDBl5KT5Hp6VN1J1s9/a/8haBzfaebxOsuz9PEsiwblQvt
+ vuxue5vx1QWBmFOBlkxRZYnMmGnl7cvrnKwX/kDZg4rE8gQBi5OAZhIrCtjfeD3N8X7VM9EHM05
+ Jl/BWOmovOeVced54b2zy+tUznS/jS9Jq17zR7H35r4cp4uS0/9mMzYsKAxinxtWNtO6+rW+/f/
+ mhETDhTI+Eidjj/zu2bnbeRrH02e/PVaunM4VG3bQ2s5odSwA
+X-Developer-Key: i=mripard@kernel.org; a=openpgp;
+ fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 
+Hi,
 
---hkv6it553fkcsq2y
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1 0/2] ARM: tegra: Add device-tree for ASUS VivoTab RT
- TF600T
-MIME-Version: 1.0
+Here's another attempt at supporting user-space allocations from a
+specific carved-out reserved memory region.
 
-On Tue, Jun 17, 2025 at 10:03:18AM +0300, Svyatoslav Ryhel wrote:
-> Add device-tree for ASUS VivoTab RT TF600T, which is NVIDIA Tegra30-based
-> tablet device with Windows RT.
->=20
-> Maxim Schwalm (1):
->   dt-bindings: arm: tegra: Add Asus VivoTab RT TF600T
->=20
-> Svyatoslav Ryhel (1):
->   ARM: tegra: Add device-tree for ASUS VivoTab RT TF600T
->=20
->  .../devicetree/bindings/arm/tegra.yaml        |    4 +
->  arch/arm/boot/dts/nvidia/Makefile             |    1 +
->  .../boot/dts/nvidia/tegra30-asus-tf600t.dts   | 2500 +++++++++++++++++
->  3 files changed, 2505 insertions(+)
->  create mode 100644 arch/arm/boot/dts/nvidia/tegra30-asus-tf600t.dts
+The initial problem we were discussing was that I'm currently working on
+a platform which has a memory layout with ECC enabled. However, enabling
+the ECC has a number of drawbacks on that platform: lower performance,
+increased memory usage, etc. So for things like framebuffers, the
+trade-off isn't great and thus there's a memory region with ECC disabled
+to allocate from for such use cases.
 
-Applied, thanks.
+After a suggestion from John, I chose to first start using heap
+allocations flags to allow for userspace to ask for a particular ECC
+setup. This is then backed by a new heap type that runs from reserved
+memory chunks flagged as such, and the existing DT properties to specify
+the ECC properties.
 
-Thierry
+After further discussion, it was considered that flags were not the
+right solution, and relying on the names of the heaps would be enough to
+let userspace know the kind of buffer it deals with.
 
---hkv6it553fkcsq2y
-Content-Type: application/pgp-signature; name="signature.asc"
+Thus, even though the uAPI part of it had been dropped in this second
+version, we still needed a driver to create heaps out of carved-out memory
+regions. In addition to the original usecase, a similar driver can be
+found in BSPs from most vendors, so I believe it would be a useful
+addition to the kernel.
 
------BEGIN PGP SIGNATURE-----
+Some extra discussion with Rob Herring [1] came to the conclusion that
+some specific compatible for this is not great either, and as such an
+new driver probably isn't called for either.
 
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhuYj0ACgkQ3SOs138+
-s6EDjxAAi7QmKcrIYPm3Flr756hbDKinhzsdxxiZ+ZCEy97lFjTc2/DQyD3y/8Kf
-VdrgfzUeC2HhheMSoBhhUJFbcv0j/OjGcyN33mCr+cPEUGemeY4+ESDeuVN4lT0Y
-QeOezLzRfDR1Avvt6lfe1mkOlFLh7aR82QBWy+zSQLXuCclXrecllnd3dkQ+1+Gu
-mD7f+MVIatEGlo93u2D0gQ+WycTsrgwjLUtzrE1CJ6X2b2SlDcX+wgsdpDxxWYkg
-joJNQLwKFrlwld2UPb4zbkeBzlBiqPYZEc7I1aWjgGe1Vw9Mq2UNaWQm+0GKvtp2
-AkprFuZAmcsqCWGh0VSXC6/vimhNiZCF1TGwZP/WxTgZcka/WxBAyEyuGhUHFUAg
-PYf0uCap1tkTB1g8diRJPelLsw2tWK2Fuzy8FRY3x65x6x92em1r2sjGsqh2cjAr
-s+0pPVofYLJwV+gNd+uIB71GNIP5V9qyttTBm7iCDf94vI+kjuQfSq/uEvPwPHm2
-My6zO4UuxnQqjmlI+wcQ79B79uqUfHaSJ+LBpOx3Z5WgODkzHGfLsR48FPmZAYcd
-MAmLIL8k+lk29+HvmUk5zvaoPceFuy1paHwkkKLM2P/a9zDJavtGxFnV5Lusfenu
-QteHogap3WnZ1P7ZAHB4ZSAtg8DrRyEs8QAyhXex0D5N1Ye+ECs=
-=uTw2
------END PGP SIGNATURE-----
+Some other discussions we had with John [2] also dropped some hints that
+multiple CMA heaps might be a good idea, and some vendors seem to do
+that too.
 
---hkv6it553fkcsq2y--
+So here's another attempt that doesn't affect the device tree at all and
+will just create a heap for every CMA reserved memory region.
+
+It also falls nicely into the current plan we have to support cgroups in
+DRM/KMS and v4l2, which is an additional benefit.
+
+Let me know what you think,
+Maxime
+
+1: https://lore.kernel.org/all/20250707-cobalt-dingo-of-serenity-dbf92c@houat/
+2: https://lore.kernel.org/all/CANDhNCroe6ZBtN_o=c71kzFFaWK-fF5rCdnr9P5h1sgPOWSGSw@mail.gmail.com/
+
+Let me know what you think,
+Maxime
+
+Signed-off-by: Maxime Ripard <mripard@kernel.org>
+---
+Changes in v6:
+- Drop the new driver and allocate a CMA heap for each region now
+- Dropped the binding
+- Rebased on 6.16-rc5
+- Link to v5: https://lore.kernel.org/r/20250617-dma-buf-ecc-heap-v5-0-0abdc5863a4f@kernel.org
+
+Changes in v5:
+- Rebased on 6.16-rc2
+- Switch from property to dedicated binding
+- Link to v4: https://lore.kernel.org/r/20250520-dma-buf-ecc-heap-v4-1-bd2e1f1bb42c@kernel.org
+
+Changes in v4:
+- Rebased on 6.15-rc7
+- Map buffers only when map is actually called, not at allocation time
+- Deal with restricted-dma-pool and shared-dma-pool
+- Reword Kconfig options
+- Properly report dma_map_sgtable failures
+- Link to v3: https://lore.kernel.org/r/20250407-dma-buf-ecc-heap-v3-0-97cdd36a5f29@kernel.org
+
+Changes in v3:
+- Reworked global variable patch
+- Link to v2: https://lore.kernel.org/r/20250401-dma-buf-ecc-heap-v2-0-043fd006a1af@kernel.org
+
+Changes in v2:
+- Add vmap/vunmap operations
+- Drop ECC flags uapi
+- Rebase on top of 6.14
+- Link to v1: https://lore.kernel.org/r/20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org
+
+---
+Maxime Ripard (2):
+      dma/contiguous: Add helper to test reserved memory type
+      dma-buf: heaps: cma: Create CMA heap for each CMA reserved region
+
+ drivers/dma-buf/heaps/cma_heap.c | 52 +++++++++++++++++++++++++++++++++++++++-
+ include/linux/dma-map-ops.h      | 13 ++++++++++
+ kernel/dma/contiguous.c          |  7 ++++++
+ 3 files changed, 71 insertions(+), 1 deletion(-)
+---
+base-commit: 47633099a672fc7bfe604ef454e4f116e2c954b1
+change-id: 20240515-dma-buf-ecc-heap-28a311d2c94e
+prerequisite-message-id: <20250610131231.1724627-1-jkangas@redhat.com>
+prerequisite-patch-id: bc44be5968feb187f2bc1b8074af7209462b18e7
+prerequisite-patch-id: f02a91b723e5ec01fbfedf3c3905218b43d432da
+prerequisite-patch-id: e944d0a3e22f2cdf4d3b3906e5603af934696deb
+
+Best regards,
+-- 
+Maxime Ripard <mripard@kernel.org>
+
 
