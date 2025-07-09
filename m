@@ -1,152 +1,162 @@
-Return-Path: <devicetree+bounces-194620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80AFBAFEBCB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 16:25:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 123AAAFEC0A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 16:34:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6CFC18959BF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 14:18:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A3324E5B26
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 14:31:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B6A2DE216;
-	Wed,  9 Jul 2025 14:18:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2FCF2E5411;
+	Wed,  9 Jul 2025 14:31:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lsocBSd/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QRucI/3W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E334276025;
-	Wed,  9 Jul 2025 14:18:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443362E4264
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 14:31:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752070702; cv=none; b=iP0V1KdJB6r5i6wCgCNU8bJ1X2ahc6jeoaZ3V1qeeTHPiZ28Zm1N5chpd0kkdSV2darDsdFnmg6hxHGUtCJxGHYqxQ5d/5WrPaOl90nq7JIHblorWCBsQArZkf58x7IafCY7y9+PRZepP4I8mP850yzGIZUEHaO7KRbWcEhXGm0=
+	t=1752071513; cv=none; b=XK2Az891JZXwunby49Luh0ZBCrFeVtxbCUvuhs5eqBqCu77kpy1312IIP7BsZ6WuKG2cjug6z7g0uucsXe1owHV8/bKllJVFweNUoMUcyCrG4qcg6XwkQF617IALo9Q57ACav1286rnsd2PVP2lac1aUhLLYfvQgPsHq3EvBvpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752070702; c=relaxed/simple;
-	bh=MzY/9uE0sLVniAuH/Xh4U5HRFi1qfLBaStncG38UwSE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZL+eovRegkDzCGfdyyutjPSzNCMNeNVZXQ1gSEcOdHkmY0AqoyILp1cWA5derfjH5Y9aS3FBGCzPvixoaw7Ww9yyr8/CX6GXnaMwQHuzawQu/RJSfYPkPC/qZKv65bDW/63sOq7BLC8k4oNXUo2sSq7VBaEmxlb3zmx0x3yBROE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lsocBSd/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9196CC4CEEF;
-	Wed,  9 Jul 2025 14:18:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752070701;
-	bh=MzY/9uE0sLVniAuH/Xh4U5HRFi1qfLBaStncG38UwSE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lsocBSd/5BVyPoIOXZCRcIm0EoDsnuCYRkfI8gVBW9GjzIwgeXuWqAP45lQzmKtF6
-	 iO2qDc1O1m2HNpuPhF2crGfa2hdkTS8WkcDQS4xleJK7vVNcMXFLvnuf4E0+G+Hhd6
-	 QBJ/mSKyqm9QyQX1im1DFyKvqfvRlr6qBClXh/RRNxDik7B8Jp5zswCyvcJTKpskfS
-	 W2r35r2ODlyKSwh0lFgr64eTmkgmWv2Ki8e+IKi9/sYUK32BQLRBLw8ABB7MNvX9PS
-	 UjxJBldMUENnwLK4BP/wrcHCW6S51Krk+eI9svKbfRmuWVUrxyX4a73PdKGzf1B+MR
-	 fYf2MU2YqsDFg==
-Message-ID: <ea6f2815-5882-4fab-8372-1c252a87e09a@kernel.org>
-Date: Wed, 9 Jul 2025 16:18:17 +0200
+	s=arc-20240116; t=1752071513; c=relaxed/simple;
+	bh=7BtyFzEqdQqk9noBz1kWPn+TluwkrsvSZ+NX6r1NPy8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AAlatyMJJFm9AXG8q9gREZQy+EiLuui5qvT+QRt0SfymEFjRn2rXXpzSl10usWcE0gGpIWHzYqP+YuJaDNXfLsVVBu7Z9BTjQEVPXCWQopzG/BmPUM9r/6Kw7DsNE9MiwmIIaEXTLl7mXxz9FNGbKRrCAYcCZPHJFH9tpzxP6qQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QRucI/3W; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-237e6963f63so37135325ad.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 07:31:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752071511; x=1752676311; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8ob8aeY+0rAZIUvRDNkYhpVzGwYIQJmUrDC32TtGUBQ=;
+        b=QRucI/3WBEtNj1PSIQIauasDHPn2O4fo8LLJjA+XPGhGt+ImNgcEbisP/qnnkr0Exj
+         u+9buuKv5qJSvhF52m8zrjDddUFtQ6ZS8E+ocITf0m1FJNWJ5NirmtZOifjyn12zwQcj
+         QLE5OG+K56uose3LsboeCIZsptZ4Yt7P6DLjcdnEGP1rB+FfCyLQ9E/O0s1IbXu0io42
+         QazjadAeYA4ZOCx3ijUxAN9ejuDW4gArXMfQ7XneFXJQzGIvTR7R/l5PozeKNMLT3j93
+         PMB1tryl2ylR+gNeooe38SmImDRQT9NOB+/hisLh9w8zlhy85maDJzLFPTz4L084Ee4Z
+         fkaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752071511; x=1752676311;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8ob8aeY+0rAZIUvRDNkYhpVzGwYIQJmUrDC32TtGUBQ=;
+        b=T1D7RB2NIRUznsm1CvA4fFjilFcsAwaBULzx3nS1QxsuSXj3MVfm936oS9q3vpF4Mh
+         fSpFwyweprfdeihUEIVarzVciDcaVwJinIZ0KyniL5+Nj86dsDizd1J+obTnuxtM73Zw
+         ZO8aneg4hmWiLQ/4TuWRRceq+PUirMYhvtubL4oTDoRzURmVdPyOxC0PW58xY3H65Lel
+         obB2IDV1EMCsu6JVm5i71Asny9AaRCHU1TnIUMOxXJY33P8Pc1hOAi9bTZzMd5PlyZSZ
+         aSnXcQSfHwIdN+dCQ3e0TlUR+6g8gefTeCBrHImPrIjjJuVl4nA5czVo2r2wCKOXpyR0
+         q5VQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUAS5qVHIWlCwXpcM7S+XeQrEOz6DEKesRIn9tlSf6aB2e9+cdQdlL15pJwjZs5NfOsuwM03wKI4yss@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDJAWCIprCuseSYes0wbRDivCYPVfP98D+g5ksJF6BvQUnfkJh
+	BryLaf70K6aLgpJDDyDo/2qfwiMU0b0tsrj5x/p9eHZ2K/KRXLSYEb5UpNdP37AlFTI=
+X-Gm-Gg: ASbGnctUPlgCkxGmCKCnnWe7G5QjvfT1sB3PRQ9yz8nql8MPqq/Nw7PQBqoktRm9V30
+	zfcb3Oh1EtLhebE3aXH4oyEGsJhq7yVQH6CoLPxz7ZkuYe5bfbBeNqwU2Tq3wKWMdQfosQlltAK
+	yA7U7iJGuOKKjMWX7for8bm+FGKMP58RoDpORVnseB1gRncJRCQYNa7xAHpz2adEVc1LMNVd3Fu
+	UvEutovg3k4zCqGYM+xmV5Dpn8h78bzyVSpRgISY2Pi3PIFqSCFdRzzZwrPaplans9ezusRyx6O
+	M6WdJ3xSosGpzIQxNGV7iUl6XGG5/JnzKJUynhn87UPmm9GeFKJwHd/G526j5Zf7
+X-Google-Smtp-Source: AGHT+IEXpbvwTdHDHQUcQtVRwNjYawEjvuYkoQ5Xje633BngDr3uR9fCxc8nAve+MqnqlBJ1YgrlwQ==
+X-Received: by 2002:a17:902:e80d:b0:234:adce:3ece with SMTP id d9443c01a7336-23ddb199277mr35277255ad.11.1752071511405;
+        Wed, 09 Jul 2025 07:31:51 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:433:ec07:c2cb:e3e8])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c845bcf0fsm136242895ad.249.2025.07.09.07.31.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Jul 2025 07:31:50 -0700 (PDT)
+Date: Wed, 9 Jul 2025 08:31:48 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Iuliana Prodan <iuliana.prodan@nxp.com>,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v3 3/5] remoteproc: imx_rproc: Add support for i.MX95
+Message-ID: <aG59VPhYY5deFo_h@p14s>
+References: <20250625-imx95-rproc-1-v3-0-699031f5926d@nxp.com>
+ <20250625-imx95-rproc-1-v3-3-699031f5926d@nxp.com>
+ <aG1J2_nK-LkLQVRj@p14s>
+ <20250709074940.GA14535@nxa18884-linux>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Add reset button to NanoPi R5S
-To: Diederik de Haas <didi.debian@cknow.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250709105715.119771-1-didi.debian@cknow.org>
- <649824ea-a420-437e-ace1-2f079235c604@kernel.org>
- <DB7HDOPFOQAE.3NG4SP67ES80J@cknow.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <DB7HDOPFOQAE.3NG4SP67ES80J@cknow.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250709074940.GA14535@nxa18884-linux>
 
-On 09/07/2025 13:17, Diederik de Haas wrote:
->>>  		compatible = "gpio-leds";
->>>  		pinctrl-names = "default";
->>> @@ -127,6 +140,12 @@ eth_phy0_reset_pin: eth-phy0-reset-pin {
->>>  		};
->>>  	};
->>>  
->>> +	gpio-keys {
->>> +		gpio4_a0_k1: gpio4-a0-k1 {
->>
->> Are you sure that this passes checks?
+On Wed, Jul 09, 2025 at 03:49:40PM +0800, Peng Fan wrote:
+> Hi Mathieu,
 > 
-> I did the following:
+> On Tue, Jul 08, 2025 at 10:39:55AM -0600, Mathieu Poirier wrote:
+> >On Wed, Jun 25, 2025 at 10:23:29AM +0800, Peng Fan (OSS) wrote:
+> >> From: Peng Fan <peng.fan@nxp.com>
+> >> 
+> >> Add imx_rproc_cfg_imx95_m7 and address(TCM and DDR) mapping.
+> >> Add i.MX95 of_device_id entry.
+> >> 
+> >> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> >> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> >> ---
+> >>  drivers/remoteproc/imx_rproc.c | 25 +++++++++++++++++++++++++
+> >>  1 file changed, 25 insertions(+)
+> >> 
+> >> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
+> >> index b1a117ca5e5795554b67eb7092db2a25fc7de13b..c226f78c84ad180c69804116d6cfcab19db6aaa5 100644
+> >> --- a/drivers/remoteproc/imx_rproc.c
+> >> +++ b/drivers/remoteproc/imx_rproc.c
+> >> @@ -73,6 +73,10 @@
+> >>  
+> >>  #define IMX_SC_IRQ_GROUP_REBOOTED	5
+> >>  
+> >> +/* Must align with System Manager Firmware */
+> >> +#define IMX95_M7_CPUID			1
+> >> +#define IMX95_M7_LMID			1
+> >
+> >Any reason those aren't set in the device tree?
 > 
-> ```sh
-> export PATH=~/dev/kernel.org/dt-schema-venv/bin/:$PATH CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64
-> make distclean
-> make debarm64_defconfig
-> make CHECK_DTBS=y W=1 rockchip/rk3568-nanopi-r5s.dtb
+> Krzysztof rejected to introduce the IDs to devicetree.
+> 
+> From IRC:
+> "To me this makes no sense in current explanayton - you have 8 cores, but only
+> one can be put there, so what happens with the rest?
+> And I don't think we care about something like remote and local ID - it is
+> the same. CPUs have single number. So this looks like copy paste downstream
+> and thus solve it internally first"
+> 
+> 
+> In System Manager Firmware, CPUID is fixed and will not change.
+> LMID is also fixed as of now, we not expect customer to change LMID.
+> 
+> So with "fsl,imx95-m7", we could know the CPUID and LMID for M7, so 
+> it does not make sense to introduce new property saying "fsl,imx95-lmid"
+> and "fsl,imx95-cpuid". This should be the main concern that DT maintainers
+> reject to add properties for the IDs.
+>
 
-This looks fine.
-
-> ```
+Ok
+ 
+> Thanks,
+> Peng
 > 
-> And it did not report any issues.
-> Then booted up my NanoPi R5S and verified that with the updated dtb the
-> reset button worked.
-> 
-> If it's about the 'weird' name/label, it is what is used in the
-> schematic document I have and I asked Heiko (on IRC) if using
-> ``reset_button_pin: gpio4-a0-k1`` would not be better. That would make
-> it more descriptive while also having the schematic traceability in it.
-> The answer was no, use the form I used in this patch.
-> 
-> Am I missing checks I should've done as well?
-I meant that usually nodes, including pin controller mux/config nodes,
-have specific prefixes or suffixes. Other cases have here as well. Your
-does not.
-
-Best regards,
-Krzysztof
+> >
+> >Thanks,
+> >Mathieu
+> >
 
