@@ -1,151 +1,85 @@
-Return-Path: <devicetree+bounces-194414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 645E0AFE188
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 09:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4280CAFE194
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 09:46:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1992170F96
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 07:42:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92CA75618D3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 07:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F542737F2;
-	Wed,  9 Jul 2025 07:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABBB4265CBE;
+	Wed,  9 Jul 2025 07:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="mbX82a42"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q39oaTT7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D14271446;
-	Wed,  9 Jul 2025 07:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 707CB1E0E0B;
+	Wed,  9 Jul 2025 07:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752046945; cv=none; b=crrSihqfZK2gaIjhc+jY0MdkhhtJh9XvkSUvO58E0L3mG/cFV4UnbABKki6D0r6FlXtzNyVbhZZ1KH6QNvCIdhgCAK+X3tMmz2HT5TYkbe4N/2/bjw7lhZtcmXyy64iHoK9TeFchM6U7bs0BVZCW0v4Sz4XjimgSayOSTqUD8xo=
+	t=1752047178; cv=none; b=PGNlj/tUtoF/nLH+JY6yaMbVEmwvfEc7yfe+kq3kaZRh3cf+AGPdr83+UDlhcW2Nx661gVUeLCbGBK/lXG0vda82nSW2DWaK2pgjfHgVFerrsHrek0nctz9dOizyJZxz+BP41/c9QKTiXdl2I4VGW2hjOo/zRQ8U1ZE2v5f8C7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752046945; c=relaxed/simple;
-	bh=sn6+L9T8LXlwEPq95mr2h5m46SbrPvXWFYmA5PdDErI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=AS3TiSUnXfc7edjemjbOTN3qIgQkB3auksiFjUvziX5nUC5cEeoXNTLFu+hwKQCBp+TciZrQnO5LApdn9aF4W2A3t4oJ8v8EeqBZRt1mwvIDG/QPiPo9oxmu2Gt7bU4gvcpphs3YFuIAcmWNFur+QsEO3OSfue+tg1u6dP8vjaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=mbX82a42; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 4FA0FA0ADA;
-	Wed,  9 Jul 2025 09:42:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=ZLkoBW4KcjWj0y/G1Sqx
-	Iam+xOIBFXwFZtg/dcSN0sM=; b=mbX82a42k6kCLeTb8swKYWk9JOW9APbk9JtK
-	P4LLU8jHxUixXajRW+3Gy3ZtrGil8EH/OuUKinvpDuhVmHIcEbjtQ7YFQ3+xnixF
-	tDXrH0y+gfnaH7b4g3nezGlF1cr0ammTmb2fWP3v7HnaeDhdZI4nqQvxek24Fn07
-	l0kSzvCb/I5nu4nHoItwphCYwIi7hRGylCMjFyob/uEqRH5JVZf1/0k2AdbgJ9HN
-	vCTlymCgxXvXjxRXJNKtK2Ot4NVY8pQX5apDXDs+mJT3pKuDUDx0jov0uFVxmSAM
-	rM8seh3KRNHsiBpSlJPqJB3ankRJdRwiWBBgrdKOtt+YAoJjXwvcgT9hwue6vwO5
-	lPj/pzmYFY+ILsZWgijPqSkE31vRBaUeDwWy1r1UYiAAyct0A1nsN/oi+kBY1bsr
-	rVeOd2QU/s5meHVTbwvXwsdo8iqDzFka7rKl8pvp9NX2oGq5jIDUvr8p1+wMtC7q
-	uegsXvlHx1HeZZCHTSW1S6YsIDbkP1pGcIg53ebmcBSKoO8CRUqBXN8K8G4pKryx
-	W97rK4e7pE2HyrWWok3RyRSDrHuCmCn1TVHMgXTc1u+VoXwK9TMR0BSOTXPBln9G
-	bZDs/YSW22UjgU2A3oNvGPMzRUFR9qD57IQHF+w7V/eMTTIWcDS9hDZuvircpEt+
-	Q0HXLqc=
-From: =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?= <csokas.bence@prolan.hu>
-Date: Wed, 9 Jul 2025 09:42:02 +0200
-Subject: [PATCH v3 2/2] ARM: dts: imx6q-h100: Replace license text comment
- with SPDX identifier
+	s=arc-20240116; t=1752047178; c=relaxed/simple;
+	bh=Wwooc6QvI3kYRhEkAEkhHkOtrspGXOlhQ25M+ckDh6s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mNAURI8QYY5ngXuhvDaTaqgaWM1IKZ5/UDtHoRta+g8n+oY9MbDejvyb/gpgb2jrr/2QI758PCkrzU0/SdZLfiQ0f2OzwQEoAmCWdaf8I5wMqKIFU9DyhY9OiFEKHdQt/x3ZeOaXsrPbkGn/v+dAk2amDJevcGzNS4mU+/krP4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q39oaTT7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B652AC4CEF1;
+	Wed,  9 Jul 2025 07:46:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752047178;
+	bh=Wwooc6QvI3kYRhEkAEkhHkOtrspGXOlhQ25M+ckDh6s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=q39oaTT7JgmUspVLiFLnfUlaaB++PVEVePT5m2vVkkxes5HC4AjSnH30DyNAhn+F+
+	 KF8uoSwT2ve62Rwl7HPcULJmMQM9Y0y6MSw0EAWE1aa3/XyApqvQNlaoe7Fsgqj6W0
+	 hllNHbLHaSD229VQ5LW+5Maxddp4pAOpmIzWUHGqE5tMm8mZCtwxriCwRmVOrulx1e
+	 P5MZJOpDla8VM5U4qfeJtbH6mCob0YljtHCKLLVbLQ3qIKd/z/O0FvGH4Gx/PtI707
+	 gaNqzHnTMNEbBom9LXZJH8c5JlnD69aVb0mYhl3SFWPRpRtKv9GRABXpv4l9AoaWAK
+	 V/TGZSWy/x12g==
+Date: Wed, 9 Jul 2025 09:46:15 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au, 
+	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, horms@kernel.org, 
+	jacob.e.keller@intel.com, u.kleine-koenig@baylibre.com, hkallweit1@gmail.com, 
+	BMC-SW@aspeedtech.com
+Subject: Re: [net-next v4 1/4] dt-bindings: net: ftgmac100: Add resets
+ property
+Message-ID: <20250709-simple-blue-chinchilla-164051@krzk-bin>
+References: <20250709070809.2560688-1-jacky_chou@aspeedtech.com>
+ <20250709070809.2560688-2-jacky_chou@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-ID: <20250709-sr-som-dts-lic-v3-2-51fcbd61aef1@prolan.hu>
-References: <20250709-sr-som-dts-lic-v3-0-51fcbd61aef1@prolan.hu>
-In-Reply-To: <20250709-sr-som-dts-lic-v3-0-51fcbd61aef1@prolan.hu>
-To: Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
-	<festevam@gmail.com>
-CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	=?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?= <csokas.bence@prolan.hu>
-X-Mailer: b4 0.13.0
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1752046939;VERSION=7994;MC=1202330779;ID=98590;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A2998FD515E657160
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250709070809.2560688-2-jacky_chou@aspeedtech.com>
 
-Replace verbatim license text with a `SPDX-License-Identifier`.
+On Wed, Jul 09, 2025 at 03:08:06PM +0800, Jacky Chou wrote:
+> In Aspeed AST2600 design, the MAC internal delay on MAC register cannot
+> fully reset the RMII interfaces, it may cause the RMII incompletely.
+> Therefore, we need to add resets property to do SoC-level reset line to
+> reset the whole MAC function that includes ftgmac, RGMII and RMII.
+> 
+> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> ---
+>  .../bindings/net/faraday,ftgmac100.yaml       | 21 ++++++++++++++++---
 
-The comment header mis-attributes this license to be "X11", but the
-license text does not include the last line "Except as contained in this
-notice, the name of the X Consortium shall not be used in advertising or
-otherwise to promote the sale, use or other dealings in this Software
-without prior written authorization from the X Consortium.". Therefore,
-this license is actually equivalent to the SPDX "MIT" license (confirmed
-by text diffing).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Cc: Lucas Stach <kernel@pengutronix.de>
-Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
----
- arch/arm/boot/dts/nxp/imx/imx6q-h100.dts | 38 +-------------------------------
- 1 file changed, 1 insertion(+), 37 deletions(-)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-h100.dts b/arch/arm/boot/dts/nxp/imx/imx6q-h100.dts
-index 46e011a363e8..c6161546a34e 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6q-h100.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-h100.dts
-@@ -1,42 +1,6 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
- /*
-  * Copyright (C) 2015 Lucas Stach <kernel@pengutronix.de>
-- *
-- * This file is dual-licensed: you can use it either under the terms
-- * of the GPL or the X11 license, at your option. Note that this dual
-- * licensing only applies to this file, and not this project as a
-- * whole.
-- *
-- *  a) This file is free software; you can redistribute it and/or
-- *     modify it under the terms of the GNU General Public License
-- *     version 2 as published by the Free Software Foundation.
-- *
-- *     This file is distributed in the hope that it will be useful,
-- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *     GNU General Public License for more details.
-- *
-- * Or, alternatively,
-- *
-- *  b) Permission is hereby granted, free of charge, to any person
-- *     obtaining a copy of this software and associated documentation
-- *     files (the "Software"), to deal in the Software without
-- *     restriction, including without limitation the rights to use,
-- *     copy, modify, merge, publish, distribute, sublicense, and/or
-- *     sell copies of the Software, and to permit persons to whom the
-- *     Software is furnished to do so, subject to the following
-- *     conditions:
-- *
-- *     The above copyright notice and this permission notice shall be
-- *     included in all copies or substantial portions of the Software.
-- *
-- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
- /dts-v1/;
-
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
 
