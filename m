@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-194618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00013AFEB86
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 16:16:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AC00AFEBBF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 16:24:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F9951893D56
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 14:10:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 743A717C27F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 14:13:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED772E9ECA;
-	Wed,  9 Jul 2025 14:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CDEF298996;
+	Wed,  9 Jul 2025 14:11:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U84/UUO+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tua7tl5C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A522E7BB8;
-	Wed,  9 Jul 2025 14:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D221290092;
+	Wed,  9 Jul 2025 14:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752069997; cv=none; b=kVUuDcE+qWUA6NfCqehAIqBMoQBXi+NKw3FYxjT612yB1/zBDlYHvnOr3wZCGBTXrG8M6znwjAZ7X425lNS0qewH6P7xY3wjJM1EpSTwlpLoWQ0tKsx97CRpmDWKwGrmWal6ozznpX2GZE01MpBnCpq42JX1EBNNx6/oXmibZrs=
+	t=1752070318; cv=none; b=dtsMqOLb8oCjfpo6cTTzHG4SEEBYjBZ4A6BzYQPhv5y+G/cCgDhehzrE2wPiqh+E+OxOie5psJneNDhKn/wQf3vslxPSsFPvrv6w70lKOpe9DGSfcOyEGc61aMtEYtuQQKIN0UmXwes8SNpC+U1P9cmtPlOO7iqWkac0B6KkY7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752069997; c=relaxed/simple;
-	bh=zsceZ3e3Q3uizdRPkkkTw9psNWaSicRPXttwuALsa1A=;
+	s=arc-20240116; t=1752070318; c=relaxed/simple;
+	bh=MP8y7OgpetDh3M79PleMX8TjA4AwgjOhJ4DgQjJGgRM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RhuCNwTD8DdYDYsLnoxsly+SCFLjSblFocaw0WGPDNkuxeZczOuL23YjeNcXpLaQJn5pMPmGX1SlkyFGFIHITix7lIl0N7smU3wie9F4QuSmQ9ytkeOWd0P9rX8pag7BkOMO6JFjAogIbRGf/LLc7esQl2wrZma2zk/FXF2ulaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U84/UUO+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CF21C4CEEF;
-	Wed,  9 Jul 2025 14:06:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=utehtC1o9QLpb9I4B8if5lTjy2hBiy0JjeYA0DEd+/uR82DjQA00ndrKwEkicuQFo8GcF8uvE9NqGzYIrjzR1fu8/I9irR0nxUnxFjN7xkGeqQpcXuKxWuryhMndXaAeUTSj8kGDOjNNqWNz7426nZEYcaARHXVwlLiZey7/XEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tua7tl5C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE546C4CEEF;
+	Wed,  9 Jul 2025 14:11:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752069995;
-	bh=zsceZ3e3Q3uizdRPkkkTw9psNWaSicRPXttwuALsa1A=;
+	s=k20201202; t=1752070317;
+	bh=MP8y7OgpetDh3M79PleMX8TjA4AwgjOhJ4DgQjJGgRM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=U84/UUO+lgsVFLJlzZp03T/UT2e5GfDEdigFWYyz8Aa0IXeeiU6gi2ndzt93Gtb8z
-	 5oEuGUAtzIHe9BAv63MuxP/z/xb4sW8h2dyKO0PE94xGqFUUM6xryUn7psq2WqraJt
-	 gk3DtyiTRCW9SM8zu50aop8dr7LPgfXLv0lZ8iGbXBWsDyZCryy++UV4BzUdZMfj1o
-	 fze80VK+y1N25SgMAUsO97cGqmTmpMME0cnex7QyLjGwsCc5IMjR1uXP+wSJapz8vs
-	 7+YrrqHp5Q0QrRGVVyQf/8OXeVZht7yFdyapTHTzhHozjm1LlJnLguO9F1NY/YQpt2
-	 EaD6SbFrpXseg==
-Message-ID: <58851e92-6a06-4074-88fa-fb4f7ead2596@kernel.org>
-Date: Wed, 9 Jul 2025 16:06:29 +0200
+	b=tua7tl5CR2shKodoU+r6z3cIdXQWuEXLopgPRh9M7/cSvu8WZsSysvpY3RIWew0hZ
+	 BhkS02BGy3Xm5tojLWZB0fTzLFtPtw0fgkNtAbNbzX4FMF5Y16IKAbD217aXUSeLq8
+	 4roJ/cR+jQqWrcx4JcSg9mpL4+A/grmBIpmXjnGAntcgloJROFXXMnq04hVJeG4jIf
+	 7T26wA6gI0HXvt5snzYdiL8dZuBs+61LtxRkFIA6Ln3tOLC82njLLnIrWa/6CfHjIX
+	 d1QnjLe0C+Mt59ze3U45rzdTNh1VMIeDKVZF2r7h6EDrNToReb9p+gN3lNGC9O9qEj
+	 kKyFB5JK0PI+w==
+Message-ID: <7311e4b6-8832-46fc-94b8-4ebcb2592926@kernel.org>
+Date: Wed, 9 Jul 2025 16:11:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] MAINTAINERS: Add maintainers for Samsung PPMU driver
-To: Vivek Yadav <vivek.2311@samsung.com>, pankaj.dubey@samsung.com,
- ravi.patel@samsung.com, shradha.t@samsung.com, mturquette@baylibre.com,
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- will@kernel.org, mark.rutland@arm.com, s.nawrocki@samsung.com,
- cw00.choi@samsung.com, alim.akhtar@samsung.com, linux-fsd@tesla.com
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-perf-users@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-References: <20250708103208.79444-1-vivek.2311@samsung.com>
- <CGME20250708103246epcas5p47b446ec342f9d49361c0a9a3929bcdd2@epcas5p4.samsung.com>
- <20250708103208.79444-7-vivek.2311@samsung.com>
+Subject: Re: [PATCH 1/9] dt-bindings: gpio: add bindings for the QIXIS FPGA
+ based GPIO controller
+To: Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ Lee Jones <lee@kernel.org>, Frank Li <Frank.Li@nxp.com>
+References: <20250709112658.1987608-1-ioana.ciornei@nxp.com>
+ <20250709112658.1987608-2-ioana.ciornei@nxp.com>
+ <9aff4894-a8aa-47d2-8800-62959e064254@kernel.org>
+ <lv55xheu2glgsgey2wdupqp3cvem27afhrs3ibhzqgglf4ql6a@tzy7uwule7z4>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,38 +109,108 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250708103208.79444-7-vivek.2311@samsung.com>
+In-Reply-To: <lv55xheu2glgsgey2wdupqp3cvem27afhrs3ibhzqgglf4ql6a@tzy7uwule7z4>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/07/2025 12:32, Vivek Yadav wrote:
-> Add maintainers entry for Samsung PPMU driver
+On 09/07/2025 15:55, Ioana Ciornei wrote:
+> On Wed, Jul 09, 2025 at 02:14:47PM +0200, Krzysztof Kozlowski wrote:
+>> On 09/07/2025 13:26, Ioana Ciornei wrote:
+>>> Add a device tree binding for the QIXIS FPGA based GPIO controller.
+>>> Depending on the board, the QIXIS FPGA exposes registers which act as a
+>>> GPIO controller, each with 8 GPIO lines of fixed direction.
+>>>
+>>> Since each QIXIS FPGA layout has its particularities, add a separate
+>>> compatible string for each board/GPIO register combination supported.
+>>>
+>>> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+>>
+>> Your changelog explains patches, which is kind of redundant - we see
+>> that - but does not explain the dependency you have here between patches.
+>>
 > 
-> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
-> Signed-off-by: Vivek Yadav <vivek.2311@samsung.com>
-> ---
->  MAINTAINERS | 7 +++++++
->  1 file changed, 7 insertions(+)
+> Do you mean the logical dependency between all the components like
+> FPGAs, GPIOs etc? I can expand on that, sure. I will also update the
+> cover letter with some of the information below.
+> If this is not what you are looking for, please let me know.
+
+I meant here cover letter, not changelog. It does not explain
+dependencies between patches. You just explain what each patch is doing
+- this is completely redundant cover letter.
+
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ca11a553d412..5895b4e70c9e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -21023,6 +21023,13 @@ F:	drivers/regulator/s5m*.c
->  F:	drivers/rtc/rtc-s5m.c
->  F:	include/linux/mfd/samsung/
->  
-> +SAMSUNG PPMU DRIVER
+> Layerscape boards such as those that I update here have a QIXIS FPGA
+> accessible through I2C. This FPGA exposes a set of registers which can
+> be used to monitor the status of different components, configure muxing,
+> act as GPIO controllers etc.
+> 
+> Since the register layout that this device exposes is different on a per
+> board basis, each board has a different compatible string such as the
+> one that patch 2/9 adds - fsl,lx2160ardb-fpga.
+> 
+> Going deeper, some of these registers are acting as GPIO controllers
+> exposing status/control of different SFP cages on the board. For these
+> kind of registers the new gpio-regmap driver is added.
+> 
+>> A nit, subject: drop second/last, redundant "bindings". The
+>> "dt-bindings" prefix is already stating that these are bindings.
+>> See also:
+>> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+>>
+> 
+> Sure. Will fix.
+> 
+>>> ---
+>>>  .../bindings/gpio/fsl,fpga-gpio.yaml          | 44 +++++++++++++++++++
+>>>  1 file changed, 44 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/gpio/fsl,fpga-gpio.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/gpio/fsl,fpga-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl,fpga-gpio.yaml
+>>> new file mode 100644
+>>> index 000000000000..dc7b6c0d9b40
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/gpio/fsl,fpga-gpio.yaml
+>>> @@ -0,0 +1,44 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/gpio/fsl,fpga-gpio.yaml
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml
+>>> +
+>>> +title: GPIO controller embedded in the NXP QIXIS FPGA
+>>> +
+>>> +maintainers:
+>>> +  - Ioana Ciornei <ioana.ciornei@nxp.com>
+>>> +
+>>> +description: |
+>>> +  This module is part of the QIXIS FPGA found on some Layerscape boards such as
+>>> +  LX2160ARDB and LS1046AQDS. For more details see
+>>> +  ../board/fsl,fpga-qixis-i2c.yaml.
+>>
+>> There are no "board" bindings, so this does not feel like correct path.
+> 
+> As you have seen already in patch 2/9 there is already a dt-binding in
+> the board/ folder.
+> 
+>>
+>>> +
+>>> +  Each controller supports a maximum of 8 GPIO lines and each line has a fixed
+>>> +  direction which cannot be changed using a direction register.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - fsl,lx2160ardb-fpga-gpio-sfp2
+>>> +      - fsl,lx2160ardb-fpga-gpio-sfp3
+>>
+>> What is the difference between these?
+> 
+> The layout of the registers backing these two GPIO controllers is the
+> same but they each expose status/control of different SFP cages.
 
-PPMU for what? Exynos? Then add it in the name.
+So same devices? Why do they need separate compatibles?
 
-> +M:	Vivek Yadav <vivek.2311@samsung.com>
-> +M:	Ravi Patel <ravi.patel@samsung.com>
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/perf/samsung,ppmu-v2.yaml
-> +F:	drivers/perf/samsung/
 
-Also, this should be added to Samsung SoC maintainer entry as well.
 
 Best regards,
 Krzysztof
