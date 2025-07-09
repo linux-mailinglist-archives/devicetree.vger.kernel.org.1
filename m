@@ -1,133 +1,183 @@
-Return-Path: <devicetree+bounces-194709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F7E8AFF39B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 23:04:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F82AFF3B2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 23:08:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E9A417C18E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 21:03:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D9AA1C8368B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 21:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 177DE25A2C7;
-	Wed,  9 Jul 2025 21:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B249323A9B4;
+	Wed,  9 Jul 2025 21:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M/tnP8Vy"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="F1nQVyAE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7BF5257AC7;
-	Wed,  9 Jul 2025 21:02:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C765622D793
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 21:08:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752094972; cv=none; b=hECv9luMG/fMa1CYHNo09kTHBREVxAjJbHkf7NRWTB4BcdNqbmw0q4Im6k6qray4LT91kMUJlH6DdJL6YYFGN5M3UUYxSESCD1+e7GJQMQ5auouLTLHeUrESpskULpTjFFNS3rrGSPFyBcMSL4uIylDiIyR5YK3ZgLkJlz/Z0dU=
+	t=1752095324; cv=none; b=GPI2wkxFdAsTFJ/WP3R683KsVTukeCquzImchsA9V4p4rBWBE1kA6UYbL1hvv73m1W1tPPp0Na6VcYpzIiblWgwpOUYtOwuFqMSw79YmnG9cJ5NJ4i2rVRDi2QuijMTSGLhZsHQFouSXHmx8EQCJd+0WkwjbyKNizo935wdby3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752094972; c=relaxed/simple;
-	bh=UfZBgPNXsNVvIoKoizlLf9l//dyhqb8DPMRaq9LzZjs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OnRH9K3UpePan4Nbmilpim/xjnRb1l52e6xxkZJLCKxMq68mYqvTB6n12T8mXOhYvMHCRbc/oVDzheusyK8OumTYqona++sTte/ZtXG5o136WDWXOwhNFrZH0V2O7AHsEicnPgJhoLZF+EEqnbUPujaxnOeRQrWgzLYLE5/iIjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M/tnP8Vy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D37C1C2BCFA;
-	Wed,  9 Jul 2025 21:02:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752094970;
-	bh=UfZBgPNXsNVvIoKoizlLf9l//dyhqb8DPMRaq9LzZjs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=M/tnP8VyPPkfzJjm3qBZhzq2Fb8cd2Or2VRnWwr1QsZSkK4FvkUgb7wCEX0WSV3lM
-	 Y/XghyWKmFyg6ndUie7YYxJYaeA+cg8nefgRZLg0Apf67eZ/UKjqsTmPbeOya5yXES
-	 aPQ5D1wAglTTur4rKsaH8f1zWWg24CDXfhUVvFfvF3mz/X3h/j2icXP2rqML5y3l4o
-	 rZexCfuej3dEoyZUMHF4TSNFyYmmLAfG3XuEeIE1JUuyYKtDdi+a0DKZjVm58dbpPA
-	 XQqMn4cdUj4NBzQhplh7BPVFXAgOaKePtO2LdJXSAeQDCVTv2qbDi628GNaqrxUjwa
-	 vpEsklXQSSOKw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3182C83F09;
-	Wed,  9 Jul 2025 21:02:50 +0000 (UTC)
-From: Frank Li via B4 Relay <devnull+Frank.Li.nxp.com@kernel.org>
-Date: Wed, 09 Jul 2025 17:02:21 -0400
-Subject: [PATCH v20 9/9] arm64: dts: imx95: Add msi-map for pci-ep device
+	s=arc-20240116; t=1752095324; c=relaxed/simple;
+	bh=/sPHUll0HVA/zIYX4UgOh3ke6kfWHMxnpwreuceuMeE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Mc5tM1Ifp1z8OzxKafQcFj4f4B5jluuuDUAu+PgxiR6AYyXwrbZZfKe8NEt65ejhvwTFQYNeNhYbC0DC9riAtHHGYdwOzzBJvmSXHGIOIkeBQHcYLSryqfp3ZsTfj5jivgsMrAxWWhMcZ9xSVVcXR8Bzdg/TyxMT0FN+VsZGR6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=F1nQVyAE; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From; q=dns/txt; s=fe-e1b5cab7be; t=1752095321;
+ bh=yLPdjZGdoWUbTfAy2GwqZq8+x71kvvXbnWtl1wzXyRk=;
+ b=F1nQVyAE0MXjmaRM9CJomt9wiM5mgfw+uVBEc9jJuhZ1/vGctTd1Kd25tgDk6qYds8PF0IM8o
+ U5jaTPMi9pQ9LYsFoUM+4jfsW/a5tq5pN+j28pK7cN5Q0YuetKVQH8Tp5jOnUhA96bFl1UYcu9E
+ /Agoiv2VoYyg8Uhqp2dq3zRdqoAblBvCNYY8u5NXesBAiam74lYpuXSfibtCE7E5IE99Ev3V66D
+ QW29496d7KUC6DKTPrjuyNV9gDgNVaoUtrwU99JEFD8oN31EPWXPbBUr15HNKU4qQO+k3nAzGxj
+ 0/SrfwEKJAVJQNWa1yTrqHzlR2+J4mmpqWVAanrUKvGA==
+X-Forward-Email-ID: 686eda55c4bb2e061789d0d3
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.1.3
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Yao Zi <ziyao@disroot.org>,
+	linux-rockchip@lists.infradead.org,
+	Jonas Karlman <jonas@kwiboo.se>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Fix UART DMA support for RK3528
+Date: Wed,  9 Jul 2025 21:08:28 +0000
+Message-ID: <20250709210831.3170458-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250709-ep-msi-v20-9-43d56f9bd54a@nxp.com>
-References: <20250709-ep-msi-v20-0-43d56f9bd54a@nxp.com>
-In-Reply-To: <20250709-ep-msi-v20-0-43d56f9bd54a@nxp.com>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Thomas Gleixner <tglx@linutronix.de>, Anup Patel <apatel@ventanamicro.com>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Marc Zyngier <maz@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, 
- Shuah Khan <shuah@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>, 
- Lucas Stach <l.stach@pengutronix.de>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Cc: Niklas Cassel <cassel@kernel.org>, dlemoal@kernel.org, jdmason@kudzu.us, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-pci@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- imx@lists.linux.dev, devicetree@vger.kernel.org, 
- Niklas Cassel <cassel@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Manivannan Sadhasivam <mani@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752094968; l=973;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=wW9Nwm5vAKtBf5Pux9lo/+uSvITxDxxhF8J82uPpSQ8=;
- b=DwCDvXI2dHfwlsH95rdKs+F2c/1lzDZ414RkLAX3HFvb+CoWvLp9S117yYeOziC1x2KQAU/tq
- la73DIrVfCRCNMZgtll5F27wBhCkcCh5a+dH9c4JYZXoZt/HGW/UfR7
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-Endpoint-Received: by B4 Relay for Frank.Li@nxp.com/20240130 with
- auth_id=121
-X-Original-From: Frank Li <Frank.Li@nxp.com>
-Reply-To: Frank.Li@nxp.com
+Content-Transfer-Encoding: 8bit
 
-From: Frank Li <Frank.Li@nxp.com>
+Trying to use UART2 DMA for Bluetooth on ArmSoM Sige1 result in tx
+timeout when using dma-names = "tx", "rx" as required by the dt-binding:
 
-Add msi-map for pci-ep device.
+  Bluetooth: hci0: command 0x0c03 tx timeout
+  Bluetooth: hci0: BCM: Reset failed (-110)
 
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Change the dmas order to fix UART DMA support on RK3528.
+
+With this fixed Bluetooth can be loaded using DMA on ArmSoM Sige1:
+
+  Bluetooth: hci0: BCM: chip id 159
+  Bluetooth: hci0: BCM: features 0x0f
+  Bluetooth: hci0: BCM4362A2
+  Bluetooth: hci0: BCM4362A2 (000.017.017) build 0000
+  Bluetooth: hci0: BCM4362A2 'brcm/BCM4362A2.hcd' Patch
+  Bluetooth: hci0: BCM: features 0x0f
+  Bluetooth: hci0: BCM43752A2 UART 37.4MHz Ampak AP6398 sLNA iLNA CL1 [Version: 1091.1173]
+  Bluetooth: hci0: BCM4362A2 (000.017.017) build 1173
+
+Fixes: ab6fcb58aedf ("arm64: dts: rockchip: Add UART DMA support for RK3528")
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
-change in v20
-- add Manivannan's ACK
+This can be verified with an upcoming v2 of "arm64: dts: rockchip: Add
+ArmSoM Sige1" [1].
 
-change from v14 to v16
-- none
-
-change from v13 to v14
-- new patch
+[1] https://lore.kernel.org/r/20250708224921.2254116-5-jonas@kwiboo.se
 ---
- arch/arm64/boot/dts/freescale/imx95.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index 632631a2911224cadc16a943cdb467e091e43384..c59d11eb7a581a500d381ef96f1e44533052c2a2 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -1797,6 +1797,7 @@ pcie1_ep: pcie-ep@4c380000 {
- 			assigned-clock-rates = <3600000000>, <100000000>, <10000000>;
- 			assigned-clock-parents = <0>, <0>,
- 						 <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
-+			msi-map = <0x0 &its 0x98 0x1>;
- 			power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+index b215126efcc2..001a555c83b7 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+@@ -595,7 +595,7 @@ uart0: serial@ff9f0000 {
+ 			clocks = <&cru SCLK_UART0>, <&cru PCLK_UART0>;
+ 			clock-names = "baudclk", "apb_pclk";
+ 			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+-			dmas = <&dmac 8>, <&dmac 9>;
++			dmas = <&dmac 9>, <&dmac 8>;
+ 			reg-io-width = <4>;
+ 			reg-shift = <2>;
  			status = "disabled";
- 		};
-
+@@ -607,7 +607,7 @@ uart1: serial@ff9f8000 {
+ 			clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
+ 			clock-names = "baudclk", "apb_pclk";
+ 			interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+-			dmas = <&dmac 10>, <&dmac 11>;
++			dmas = <&dmac 11>, <&dmac 10>;
+ 			reg-io-width = <4>;
+ 			reg-shift = <2>;
+ 			status = "disabled";
+@@ -619,7 +619,7 @@ uart2: serial@ffa00000 {
+ 			clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
+ 			clock-names = "baudclk", "apb_pclk";
+ 			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+-			dmas = <&dmac 12>, <&dmac 13>;
++			dmas = <&dmac 13>, <&dmac 12>;
+ 			reg-io-width = <4>;
+ 			reg-shift = <2>;
+ 			status = "disabled";
+@@ -631,7 +631,7 @@ uart3: serial@ffa08000 {
+ 			clocks = <&cru SCLK_UART3>, <&cru PCLK_UART3>;
+ 			clock-names = "baudclk", "apb_pclk";
+ 			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+-			dmas = <&dmac 14>, <&dmac 15>;
++			dmas = <&dmac 15>, <&dmac 14>;
+ 			reg-io-width = <4>;
+ 			reg-shift = <2>;
+ 			status = "disabled";
+@@ -643,7 +643,7 @@ uart4: serial@ffa10000 {
+ 			clocks = <&cru SCLK_UART4>, <&cru PCLK_UART4>;
+ 			clock-names = "baudclk", "apb_pclk";
+ 			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+-			dmas = <&dmac 16>, <&dmac 17>;
++			dmas = <&dmac 17>, <&dmac 16>;
+ 			reg-io-width = <4>;
+ 			reg-shift = <2>;
+ 			status = "disabled";
+@@ -655,7 +655,7 @@ uart5: serial@ffa18000 {
+ 			clocks = <&cru SCLK_UART5>, <&cru PCLK_UART5>;
+ 			clock-names = "baudclk", "apb_pclk";
+ 			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+-			dmas = <&dmac 18>, <&dmac 19>;
++			dmas = <&dmac 19>, <&dmac 18>;
+ 			reg-io-width = <4>;
+ 			reg-shift = <2>;
+ 			status = "disabled";
+@@ -667,7 +667,7 @@ uart6: serial@ffa20000 {
+ 			clocks = <&cru SCLK_UART6>, <&cru PCLK_UART6>;
+ 			clock-names = "baudclk", "apb_pclk";
+ 			interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+-			dmas = <&dmac 20>, <&dmac 21>;
++			dmas = <&dmac 21>, <&dmac 20>;
+ 			reg-io-width = <4>;
+ 			reg-shift = <2>;
+ 			status = "disabled";
+@@ -679,7 +679,7 @@ uart7: serial@ffa28000 {
+ 			clocks = <&cru SCLK_UART7>, <&cru PCLK_UART7>;
+ 			clock-names = "baudclk", "apb_pclk";
+ 			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
+-			dmas = <&dmac 22>, <&dmac 23>;
++			dmas = <&dmac 23>, <&dmac 22>;
+ 			reg-io-width = <4>;
+ 			reg-shift = <2>;
+ 			status = "disabled";
 -- 
-2.34.1
-
+2.49.0
 
 
