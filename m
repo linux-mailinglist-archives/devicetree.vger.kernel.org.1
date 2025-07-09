@@ -1,160 +1,149 @@
-Return-Path: <devicetree+bounces-194466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4796CAFE4D2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:01:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F653AFE3C5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 11:13:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3F2A5A117B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:01:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CD33488106
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 09:12:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B467B28853D;
-	Wed,  9 Jul 2025 10:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="dSN2X7Wc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF947283FDC;
+	Wed,  9 Jul 2025 09:12:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C9628851C
-	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 10:00:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D08022B8D0;
+	Wed,  9 Jul 2025 09:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752055259; cv=none; b=P8Y0Fkk37VNhg1M8xy0ifFtKzdcvrGvj+BhOJ/sfR8mNXLGZBBx++6DaEbdwVQE6P7agtTSUiIG0CBHG4ajeFZYk5K9/SCleJvUlE9dx81OXTm2N+cM2krq9amPpVpqkE+BhHwvYkQXcMu48R9A2Oia27d39xnh6QqKwcxQVKzM=
+	t=1752052354; cv=none; b=A1QFSNxR3WQ90lDg7ZCXoIfutUoJKjfbNoO2oMyE86n8IcsBZnwdKWjg1tqvJ7B4VqoLOyKQI+bqn9cDdw3RPq5P5nQ24lCgvL3vDpN3sTDdBxOCdWlX7yASJxWsa0TCK257tmvDVlbyAu7/QzKzT4hy+Xv2mkd6Hz94k9dVm6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752055259; c=relaxed/simple;
-	bh=cimesBusUUV91WuSukFwoB37riuMSdtT5ntRgk2rp3U=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=jBfmktDnaj0Fxd3zNGLbhce55JT8yzzhbt4zNhj0jHYtqCw5iDcLpwDU90J3oj5ylWFt8Q3Kzgb7R+YLCCu6Mfv8GedpJkhmAoMQlDaxZnefZF8LIb2Op/HqGfccfzkQzZJUJs1YlPqyFWrAIMdjYPSQSXHNnw4a18fMZdqs3+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=dSN2X7Wc; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250709100056epoutp0274a5a9e1ab3015ca14f7a812899d74af~QjPkCpEaz0979009790epoutp02_
-	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 10:00:56 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250709100056epoutp0274a5a9e1ab3015ca14f7a812899d74af~QjPkCpEaz0979009790epoutp02_
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1752055256;
-	bh=cimesBusUUV91WuSukFwoB37riuMSdtT5ntRgk2rp3U=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=dSN2X7WclO21MRD+00fqzdIAQPqNkJqga/ywHIIPNAMFno11BpKrnoXp36kv2NYYz
-	 a3tOUk3tT59L5FmIeT3FGktatot/mLzC3+UiRuOAOzWmHHOFOGzaKt/YO9mWcz9Efw
-	 vI4OPWf7/Jg4PxLi//yPzDdrcyUerCIXZMztNFdk=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250709100055epcas5p278a3a0658d2407780cbf48dc11bb00de~QjPjdukHC2819328193epcas5p2U;
-	Wed,  9 Jul 2025 10:00:55 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.181]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4bcYQF3P8Qz6B9m5; Wed,  9 Jul
-	2025 10:00:53 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250709085353epcas5p3e1e989544692330277c3096f40df8369~QiVBscay_1273512735epcas5p3n;
-	Wed,  9 Jul 2025 08:53:53 +0000 (GMT)
-Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250709085350epsmtip25f40e8338ed740108c76c2bec86ac6d7~QiU_rvWW-2672826728epsmtip2M;
-	Wed,  9 Jul 2025 08:53:50 +0000 (GMT)
-From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
-Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
-	<neil.armstrong@linaro.org>, <kauschluss@disroot.org>,
-	<ivo.ivanov.ivanov1@gmail.com>, <m.szyprowski@samsung.com>,
-	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <20250706-diamond-crab-of-will-72205e@krzk-bin>
-Subject: RE: [PATCH v4 5/6] dt-bindings: phy: samsung,usb3-drd-phy: add
- ExynosAutov920 combo SS phy
-Date: Wed, 9 Jul 2025 14:23:49 +0530
-Message-ID: <07d501dbf0ae$ff2126a0$fd6373e0$@samsung.com>
+	s=arc-20240116; t=1752052354; c=relaxed/simple;
+	bh=8sUDd96Agv1mEgEAETS/CA8EquNQGPmkWVEZZgzzTfc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mxNJ2mY6tc3Mlnh5GWAK+WU/8BLTA0iJSyHs1vqQDWH47ce86Kt/FqStogqreLPW230PjDAKAB4wmS73yppRshK+LnQVeg/XEztcviMWY105oiAhoF8QlPLU1UGFrbLV7IUdr9H3yOMUajyMvU2j9bAZXfs4rkAaUOhxRGC0HMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-531a1fad7faso1959064e0c.2;
+        Wed, 09 Jul 2025 02:12:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752052350; x=1752657150;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J8hM0fxayIUYuh11TkzYtjTxngCIjAol0by6ipz9meI=;
+        b=f154jg0OqeOI3lQLsZlPsZbjrooh/sgvtjSExOHD6g28rclYmnUAodXdwrUAOuG0cx
+         mwVVuk8gvnn5zJKB7heVuNja8AvHu1C2qAP3ZzzKmL3ytXYFhHbY58V5bjkXJ9xY+P7l
+         W7isD9ZruIJkIMfNzTT7hVmvZxiDrVw7TedMe5cwq7NE1PCO9tlu8pmdrITd3DU0enh0
+         ZJ7WyjLXtqohBeH37M/DLEmrqijQnHCOA/7Fq9Cna0QbJxhAEsGAd6xWFWaJXplyfOWN
+         rOX4PHs0s8MsV9njYWFTJAIDsYxpeXP/KHu6VLAOjqMLiQCRZmN0MKmzbPGs6e/YDWw9
+         1JVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWn1xjkBXEgLt0JMb6bJkQ+HYnGGVGVnaetAphF/U4R9O9h84017e+w5qv5pOD2r0UeprQpFgoiVgWgIeU=@vger.kernel.org, AJvYcCX50PMCDTE5BW1fhm5g2vCNNAbl3twgSeCT8q3HPK09rj64tOpIu1cIerswGuFFPETpBY0HKC/5iWRXMn7Kp94LOj4=@vger.kernel.org, AJvYcCXYKsuX0C1MD2IySUW2xB07tw7+cCAad+tbT7KShH+lWJe3uYmIeZd1iqjGzHofiBONnv7TjZSrRjcV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzS39m8Hc8mGUYPtBXg2V10S0q6YCl4H2NqHPTtFoAIZaOYHMu/
+	vWX9Dzvq8Rfh96MSGnZh1msYiDuezUh5vZ6gEznAqB1HVYlYGZR2NDG3+sbbdOYH
+X-Gm-Gg: ASbGncudssYK1HQVdtRyHKten53kQBG0QHcgjKx1xahaKCs9bOupTQq90HXmqe4ZPy3
+	7uyXhoXT8wLgt/6Jhh42ZISYdVcqEjQLcb3gYR4s9iLQ+4GGZPKzMd02jnFcS/vFyXdKZHFdfng
+	ZEzP/fxysZgFJwAaFDZuIU8xYmfX1dDD3ea/zniy6iYafvi4vODhjZpqdVueNtfEL7qucmqeIKP
+	ahAsjcu2eND2qgYI68dLBL2lx7rnY52HWaGMtb1x2LpyXo2qAlhvBwUj+HoSroo7KXVBldBQ0Ow
+	BPvnC3xqcOZ95pvd0u/1H66FsVh+fvy1gFT7UdcP2zhIENKIOjLBCIL5/Zu4CRx3Fs+WZcwcMlE
+	obgbq0Sw47/K7S58Mf2YsS0Jm
+X-Google-Smtp-Source: AGHT+IEmrtKJv54+c81jfxeMW3PT0DeEY92deIfvc6nzpe5YuhJJo4JVWSgMGykmDmk/6od+IICZ+A==
+X-Received: by 2002:a05:6122:3c45:b0:526:7f3:16e0 with SMTP id 71dfb90a1353d-535d74037c2mr689495e0c.1.1752052349842;
+        Wed, 09 Jul 2025 02:12:29 -0700 (PDT)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-888e29155eesm84696241.2.2025.07.09.02.12.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jul 2025 02:12:28 -0700 (PDT)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-87ec4ec218fso1485470241.3;
+        Wed, 09 Jul 2025 02:12:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU778HrWrmWzQBpINw7sIpedh9s2H8Mo55uERbPm/w8p0g73UR8FlzLUsLkZ5BIZkSeUhbrrdLGsXLK@vger.kernel.org, AJvYcCURrEh6iRwYMPQsh6n1JDuzNEzwAQua8HU5KRrNbm7swR4uJ5N01W8bPZZH0XuK747GcOLX+QVU6hnJ55M=@vger.kernel.org, AJvYcCVnMwg+ELltTYp89g0rhia0KDhb2B/LxxzkRA+5LEflWRYbwkSxLZA1kq2mZRjC5peimc4FsxNTWTjCLmWWmk9aPSY=@vger.kernel.org
+X-Received: by 2002:a05:6102:38d2:b0:4e9:a2bd:b422 with SMTP id
+ ada2fe7eead31-4f5417308dbmr777556137.15.1752052347689; Wed, 09 Jul 2025
+ 02:12:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJAgQZ9LFXBZrDskwNBYris6jFv1AJ630FZAevjVggA58dhDrM15xjg
-Content-Language: en-in
-X-CMS-MailID: 20250709085353epcas5p3e1e989544692330277c3096f40df8369
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250701120009epcas5p46bc2870446c499f9c0008c1d396650bb
-References: <20250701120706.2219355-1-pritam.sutar@samsung.com>
-	<CGME20250701120009epcas5p46bc2870446c499f9c0008c1d396650bb@epcas5p4.samsung.com>
-	<20250701120706.2219355-6-pritam.sutar@samsung.com>
-	<20250706-diamond-crab-of-will-72205e@krzk-bin>
+References: <20250704-ivc-v3-0-5c45d936ef2e@ideasonboard.com>
+ <20250704-ivc-v3-4-5c45d936ef2e@ideasonboard.com> <4yt5pvsft7hgkmzsm6febhr7tp2scui6lj2gqkiwklsugb4y2l@wribzukxkpqv>
+ <f59029bb-ba62-4aaf-b53e-9a8cb4887d32@ideasonboard.com> <dy3eecuuaacidhpdcuo3nvt5gputvrvm2v7mkknngks4sppsjz@74lh37ymei7r>
+ <db08a8db-c7e5-4431-b83e-11a92ab3fe54@ideasonboard.com> <5ie24zvi6jupjn5hn3x642wmr25vleuercp4dxc6wxyatwxzke@5vpzqr7dnscv>
+In-Reply-To: <5ie24zvi6jupjn5hn3x642wmr25vleuercp4dxc6wxyatwxzke@5vpzqr7dnscv>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 9 Jul 2025 11:12:15 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVRG5dgU6Lj2eMYhEqfDs4Jw72XCki8kyL7qwi6Btbf+A@mail.gmail.com>
+X-Gm-Features: Ac12FXyKxVqE425RzwZnwNE7P_ZRXZk66fSoRdOsOOQx7KnTlXMPod7jJxMqL8A
+Message-ID: <CAMuHMdVRG5dgU6Lj2eMYhEqfDs4Jw72XCki8kyL7qwi6Btbf+A@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] media: platform: Add Renesas Input Video Control
+ block driver
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Dan Scally <dan.scally@ideasonboard.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, biju.das.jz@bp.renesas.com
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Krzysztof,
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: 06 July 2025 03:14 PM
-> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
-> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
-> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
-> andre.draszik=40linaro.org; peter.griffin=40linaro.org; neil.armstrong=40=
-linaro.org;
-> kauschluss=40disroot.org; ivo.ivanov.ivanov1=40gmail.com;
-> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com; linux-
-> phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
-amsung-
-> soc=40vger.kernel.org; rosa.pila=40samsung.com; dev.tailor=40samsung.com;
-> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
-> selvarasu.g=40samsung.com
-> Subject: Re: =5BPATCH v4 5/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
-dd
-> ExynosAutov920 combo SS phy
->=20
-> On Tue, Jul 01, 2025 at 05:37:05PM +0530, Pritam Manohar Sutar wrote:
-> > This phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
->=20
-> Agian, this?
->=20
-> > compatible to the USB3.0 SS(5Gbps). 'Add-on USB2.0' phy is required to
-> > support USB2.0 HS(480Mbps), FS(12Mbps) and LS(1.5Mbps) data rates.
-> > These two phys are combined to form a combo phy.
+On Wed, 9 Jul 2025 at 10:23, Jacopo Mondi <jacopo.mondi@ideasonboard.com> wrote:
+>   I recall Sakari in the past had opinions on platform drivers selecting
+> On Wed, Jul 09, 2025 at 09:13:51AM +0100, Dan Scally wrote:
+> > On 08/07/2025 16:51, Jacopo Mondi wrote:
+> > > On Tue, Jul 08, 2025 at 03:57:46PM +0100, Dan Scally wrote:
+> > > > > > +static int __maybe_unused rzv2h_ivc_runtime_resume(struct device *dev)
+> > > > > The driver doesn't depend or select CONFIG_PM, so this is rightfully
+> > > > > marked as __maybe_unused.
+> > > > >
+> > > > > However, it doesn't seem to me that the probe() routine manually
+> > > > > enable the peripheral, so in case of !CONFIG_PM am I wrong or the
+> > > > > device won't operate at all ?
+> > > > >
+> > > > > I would select CONFIG_PM, or otherwise call this function from the probe()
+> > > > > routine and then call pm_runtime_set_active() to inform runtime_pm
+> > > > > that the peripheral is active, and at the end of the probe routine
+> > > > > call pm_runtime_put_autosuspend(): in case of CONFIG_PM the peripheral
+> > > > > will suspend, in case of !CONFIG_PM the pm_runtime_put_autosuspend()
+> > > > > reduces to a nop leaving the peripheral enabled.
+> > > > Ack
+> > > > > I would just select CONFIG_PM tbh
+> > > > I dropped it on Philipp's suggestion in the last review; I have no strong
+> > > I only see a comment from Philipp here
+> > > https://lore.kernel.org/all/8301d2862546507303e2dba1dd61906b848552c2.camel@pengutronix.de/
+> > > about the RESET_CONTROLLER. Have I missed other comments maybe ?
+> > Oh no you're right; I misremembered. Sorry for the noise!
+> > >
+> > > > feelings to be honest, I would expect it to be enabled in any configuration
+> > > > that was intending to use this...but I suppose there's no harm accounting
+> > > > for the possibility that it won't be
+> > > no harm no, but a bit more complex handling of the device power up
+> > > sequences.
 > >
-> > Add a dedicated compatible string for USB combo SS phy found in this
-> > SoC. The SoC requires two clocks, named =22phy=22 and =22ref=22 and var=
-ious
-> > power supplies (regulators) for the internal circuitry to work.
-> > The required voltages are:
-> > * avdd075_usb - 0.75v
-> > * avdd18_usb20 - 1.8v
-> > * avdd33_usb20 - 3.3v
->=20
-> One more commitm message completely copy-pasted and completely
-> uninforming. The voltages are irrelevant. Explain the architecture. This =
-should be
-> just one patch with proper full description.
->=20
-> >
-> > Add schema only for 'USB3.1 SSP+' SS phy in this commit.
->=20
-> Why only? Add everything, describe everything, but not what voltages you =
-have
-> there but the architecture of the PHY.
->=20
+> > No problem; I'll just select CONFIG_PM.
+>
+> You can then remove __maybe_unused from the function declaration.
 
-Will combine patch 3 (combo HS phy) & 5(combo SS phy) to describe combo phy=
- and even will add some details as mentioned in cover letter.
+You could just remove them anyway, iff you would use the newer
+*_PM_OPS() instead of the old SET_*_PM_OPS().
 
-> Best regards,
-> Krzysztof
+P.S. I already converted all Renesas drivers locally, so no need to
+     start working on the conversion to *_PM_OPS() for existing
+     Renesas drivers.
 
+Gr{oetje,eeting}s,
 
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
