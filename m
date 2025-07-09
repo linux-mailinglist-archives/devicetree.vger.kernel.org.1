@@ -1,80 +1,137 @@
-Return-Path: <devicetree+bounces-194657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 319D2AFEE43
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 17:58:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EBBBAFEE88
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 18:06:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC32F1C441D9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:58:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0E8C1895E38
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 16:04:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D30F32E8E16;
-	Wed,  9 Jul 2025 15:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCF0F2EA469;
+	Wed,  9 Jul 2025 16:00:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a94vT2rt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2F9B8F40;
-	Wed,  9 Jul 2025 15:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95DCA21D3FD;
+	Wed,  9 Jul 2025 16:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752076681; cv=none; b=HN7u2hcCo8hXMTM5S09QdsEyrn4tV2pp1eeSiC/ajBH+mZDVCpYP81ezGefQSV3iCGPnV4QsU8Fq33brBWpp1W5DoI+alFrTHqUUdAIU5U9b/X5TDAOCyJh5jHRX1/VQfRWFLpA4wJ0bpzfajUS1gh8fCPC6+lYwcRWU/LU50jA=
+	t=1752076844; cv=none; b=e8mIks+Zaf2TibQcy5YRdZyLW9SlvJ7QQJrRhfpExrigeXXoiut7+toQ/M0JsTmGesCwgvB7tmoQWU9UTejn5KFp3/jdyp7xRAD6gGLBtZbsR4BwZg6OW8dYMWc9JNay4L+B99YRc/zW96yz0aq4R5RqZ4uOOmq0rNoIhcvKBTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752076681; c=relaxed/simple;
-	bh=et5xcV6fCuJA0PRpWVFHA4bGNZcLKwvKMXrwgYqXW+k=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=TrNhEDxVa/savn4qpRPBqAGj69MWRE/CJKsSw8YiS1EwuuYX0IXAh6/DNDVSlg+NM4uKgbq8m8hGzMRM/glIynQsK2hhmd9tHe63aKTjAI+ZoEE/RHv18+9Uolk1Ewe+OX/NbI3H3tRJ1VZ2LJWpg0w6IS2BBZTU2UBbz4ruhH8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70383C4CEEF;
-	Wed,  9 Jul 2025 15:58:01 +0000 (UTC)
-Received: from wens.tw (localhost [127.0.0.1])
-	by wens.tw (Postfix) with ESMTP id 6E1585FBBD;
-	Wed,  9 Jul 2025 23:57:59 +0800 (CST)
-From: Chen-Yu Tsai <wens@csie.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: lukas.schmid@netcube.li
-In-Reply-To: <20250706095804.50475-2-krzysztof.kozlowski@linaro.org>
-References: <20250706095804.50475-2-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: arm: sunxi: Combine board variants into
- enums
-Message-Id: <175207667942.3765461.12730253143033770336.b4-ty@csie.org>
-Date: Wed, 09 Jul 2025 23:57:59 +0800
+	s=arc-20240116; t=1752076844; c=relaxed/simple;
+	bh=GoEXxmA+Dj27zsd8ziX2WQulAna4dGReDWUKd8Vxl20=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qQ+WaA/KMvFgThebwLqDn5KwZoO6mjF3Zc5SrUMW7GISPFtmdECvt+QKPni+pwrksv9z2tx+tYBM1IK3FV4k1z5zSD0sXqlLo1xUbmJhS/E//LEfu4X2bAmcRXm7OmVxopj/+VEDvq+zyOMY0S4zwzeRESJQeiZXHtTRRHts3Pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a94vT2rt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28468C4CEEF;
+	Wed,  9 Jul 2025 16:00:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752076844;
+	bh=GoEXxmA+Dj27zsd8ziX2WQulAna4dGReDWUKd8Vxl20=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a94vT2rt84gZSUYEQYOq4PJimJ4WvBRG5cgCgI/HHXMOGvq1LoklWN1v+bSjK3YwO
+	 WD4vI4heZOeZKeiyAx655rLGJcSfYKonvEKJcSYu61avIOunM6F0gW9CIvz+R1WOuQ
+	 JM2+2CYd30LwBuL6wg+zqLBDfs4fMLTvHgnd40DvbwYRsPB2bghUEAtEypKrFvITRo
+	 JuxuxHeCQRavqF1LtK2SscXcJBmYA/YzA+E84z/6CZPlyOom5qZXUlZnA7lWykK9Vi
+	 Ufnbyx2q/AUC9R1Zn5D58cffCuu8PmxvvX4vqwdhq9ZwNBCcSC4cAqyAhwwSDlLaXM
+	 5xBMVXP+6nb2g==
+Date: Wed, 9 Jul 2025 17:00:39 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Nick Hu <nick.hu@sifive.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH] dt-bindings: riscv: Add SiFive vendor extensions
+ description
+Message-ID: <20250709-startup-coasting-aa58a99c5585@spud>
+References: <20250708065242.26371-1-nick.hu@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="H5XYBjydcd73WNlI"
+Content-Disposition: inline
+In-Reply-To: <20250708065242.26371-1-nick.hu@sifive.com>
 
-On Sun, 06 Jul 2025 11:58:05 +0200, Krzysztof Kozlowski wrote:
-> The common style in all bindings for enumerating similar variants is to
-> use 'enum', not 'oneOf', so all boards of same variant or using same SoM
-> should be grouped under enum.  It is more readable, more compact and
-> makes easier to find actual devices from the same family/type.  Also
-> there is completely no point to repeat the compatible in the description
-> (incircuit,icnova-a20-adb4006 implies this is "ICnova A20 ADB4006" and
-> pine64,pinephone-1.2 implies "Pine64 PinePhone (1.2)").
-> 
-> [...]
 
-Applied to sunxi/dt-for-6.17 in local tree, thanks!
+--H5XYBjydcd73WNlI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1/1] dt-bindings: arm: sunxi: Combine board variants into enums
-      commit: 9615e017464dfbe72e12e36592b7c5b65e9203fd
+On Tue, Jul 08, 2025 at 02:52:42PM +0800, Nick Hu wrote:
+> Add description for SiFive vendor extensions "xsfcflushdlone",
+> "xsfpgflushdlone" and "xsfcease".
+>=20
+> Signed-off-by: Nick Hu <nick.hu@sifive.com>
 
-Best regards,
--- 
-Chen-Yu Tsai <wens@csie.org>
+You have this, but no user or anything along with it. What's actually
+making use of this? If it's just for the SBI impl or w/e then say that.
 
+> ---
+>  .../devicetree/bindings/riscv/extensions.yaml  | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index 72c1b063fdfe..10c37c61243d 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -626,6 +626,24 @@ properties:
+>              https://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-=
+5.0.0-Datasheet.pdf
+> =20
+>          # SiFive
+> +        - const: xsfcease
+> +          description:
+> +            SiFive CEASE Instruction Extensions Specification.
+> +            See more details in
+> +            https://www.sifive.com/document-file/freedom-u740-c000-manual
+> +
+> +        - const: xsfcflushdlone
+> +          description:
+> +            SiFive L1D Cache Flush Instruction Extensions Specification.
+> +            See more details in
+> +            https://www.sifive.com/document-file/freedom-u740-c000-manual
+> +
+> +        - const: xsfpgflushdlone
+> +          description:
+> +            SiFive PGFLUSH Instruction Extensions for the power manageme=
+nt. The
+> +            CPU will flush the L1D and enter the cease state after execu=
+ting
+> +            the instruction.
+> +
+>          - const: xsfqmaccdod
+>            description:
+>              SiFive Int8 Matrix Multiplication Extensions Specification.
+> --=20
+> 2.17.1
+>=20
+
+--H5XYBjydcd73WNlI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaG6SJwAKCRB4tDGHoIJi
+0ks9AQC/Q6brAPmhJnR++6Ix8DAoDmvW23xMTc8wvhh0d6IbsAEAxM/WqT0TXydO
+bNW64h83RlVLS5t5xy7nvJakYc2suww=
+=hXLq
+-----END PGP SIGNATURE-----
+
+--H5XYBjydcd73WNlI--
 
