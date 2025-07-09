@@ -1,709 +1,712 @@
-Return-Path: <devicetree+bounces-194717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60612AFF469
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:08:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 702BFAFF485
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:17:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89C735672A2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 22:08:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E4D91C83042
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 22:18:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34364254AE1;
-	Wed,  9 Jul 2025 22:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97DB62417EF;
+	Wed,  9 Jul 2025 22:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Io1iFW0R"
+	dkim=pass (2048-bit key) header.d=lab126.com header.i=@lab126.com header.b="nj81taxy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-fw-80008.amazon.com (smtp-fw-80008.amazon.com [99.78.197.219])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBEAA25393C;
-	Wed,  9 Jul 2025 22:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3302F801;
+	Wed,  9 Jul 2025 22:17:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=99.78.197.219
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752098892; cv=none; b=rqAhNEWxd+W7wJs4S1vFUSsaqQ4T/maoRy9yKiJFwJGfqkgSolCxT/46abuj9pWgmB/zAiKX3lgaOLjLNuHVAcRus3HUQH1yO4OKdMJbuEvFTK5x/fCzN/6jaIiHFQrIW6mNcYUikYbT6x28U54yNbs7vCoitQU8AS74xyFxUzE=
+	t=1752099457; cv=none; b=cb0UxBKUfx5zLnbCn9y8F0DyRoXitK3/Nn3Pka4FV7QbyAySE4crfevj7N8yz+khWyJRgH2YPldaNs3LNxu1wn/bqpxwyU96TMyyDSBZfzoq4Q+ezYzYB3lWP0fL03nPJ2TFku/CRc+nQHTNNDB/VQdx/JUcL6l+MwxAgVh/dok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752098892; c=relaxed/simple;
-	bh=P3/U62NP6JBJFwzwIQMsdyoN8XaKzfknet1jmlB4Txs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tiz1Qnv+QCpk4eg/IojySPw88rkFFN4YYe4hH9qRwtAMG/WveBHoDmp/Runn3BfyRiuNN3o8xEZe/fTZJPS2/pEB15EEVISsZ5c1/Pk1DxOHZqlSPof/efR0pQ1wUwM4nwUvMKKi7OslJKNeTFTFW7z38jBPRGfQBjCJLhTegW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Io1iFW0R; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ae3c5f666bfso47321866b.3;
-        Wed, 09 Jul 2025 15:08:09 -0700 (PDT)
+	s=arc-20240116; t=1752099457; c=relaxed/simple;
+	bh=IPE/QsHlsag4SiKmbP4tnOiUX/t6IBwNmnBMMwAzH8o=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=L4bCogyHjZGk5oFueOnUEkQdyuSSm5DNusA2v9wk3GyE+ly+GXcqCtEQDzToc7Pk+alAQqt/DyocYgth/vJXwyu+wNCxbEWt72SZKC8Pyh51Seg2AcBoxZ8p/z5UUrUuFEXKyzWVPC8f7XCofU/7rUu71cgnnIL7b81tzAs4EOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lab126.com; spf=pass smtp.mailfrom=lab126.com; dkim=pass (2048-bit key) header.d=lab126.com header.i=@lab126.com header.b=nj81taxy; arc=none smtp.client-ip=99.78.197.219
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lab126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lab126.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752098888; x=1752703688; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8kIH0FvUst38strgAqAwO4LslgL+w1rD7BPEeGk36lY=;
-        b=Io1iFW0RlgC9xXWjLn/5twS/kCeCOBxBwi5ZL2cHj8Vu/lgiJ4r+6a9PlcwyZmEuCU
-         BwUPdDwCOU6zhi5rX9tLMC6Tuxu1s9nQGS8Gs5gBx8vTqDco+N4LKEMrHJBMKPbKIDhO
-         IWWvsi7UuYC64Gdv/54N/Pp3Y8fKgBT/NA2VJbe5CKTbeO6GA/g/sT+82wVUsl7NOovd
-         s6Sx64OCaT1a3W1ycQ0/bbvpLfRY+K4XXVbdRqJ/TLQpsh1IhsU9WO/9+nHwmCaXyAa1
-         jYQ9jPu9ZjCY3T+vuO/kgD0SSXNoqGUABrdtM+ES3AitsOv08d3PSRZrwqpCPTp/HDZS
-         gzVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752098888; x=1752703688;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8kIH0FvUst38strgAqAwO4LslgL+w1rD7BPEeGk36lY=;
-        b=UJNA63rDJ1sA1H3A1glWIhrytlfPCvEfn+pdG3dIUO83JUh5f2w8NsTWXFcKsXmpgH
-         Gdh/+Rw53gtQoY11gv08X89dEZevut+aLYZxmXzk0AeoVvhbnoadjNIf1+pOEVSxd9Wl
-         gRgt+LlM80mjMPrEcSL6mvo6lsw2BtgmK62kFrWFWPzEbxjjF/MuoaDzHhwqB4e0vbgE
-         EMKQWaaAH1d4xIHoT9YQjftRspenVQl3ZtWV8J8vieZv2zXKoEwWsRj8kPuwYITvZdew
-         FqCI0tXjIoAXn+P6YT3OWenphrjAgX8J0FPUPN/Bwu07LfQ8nmUtdswNGZcQW1FPl4nl
-         S5rw==
-X-Forwarded-Encrypted: i=1; AJvYcCVYPVMPPwODosB2BPIYlAvznJaXR+stEC9cloycwXWaMwb3hwYkhErmPKd4hQm7Cswf/4FEsqEYM7TusXg=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2VFBHlV7Heh9nzNH5ugEThWFdQwlttK/7hQTWTXwoiYgjmsCc
-	5Tj+14gnt+c9Bml+OaU5phacQEKq45fr3q6T7Kit+J5JsThSEM7A+eb8ZnjlVwnG
-X-Gm-Gg: ASbGncuQSlI5SBvH9v5lWXHqNAR2AWsnhayWYMoTA6iicmLIaHrU5II8dZ9U6R+v599
-	ZKO5babbdbObFC8ra20tAcT4NluBMgDtIKJvpWZLsPFjqNuCoxoVTKwP5x0TabFpQ5FKa103Nwj
-	M2eel7T8MRwZOopcnO8xfMYzUCnyJSHsKJOo8V5Cs9MeUgjTVJv3DV410M9h+aVZXMYbJuJPzBj
-	myE7GBvMARqrRq6C8Fc+KEgHS74RwD6dzV2MPGHXQSRKWCvtkNa9Em+Ns+U7mwQ6rWH485CGEmx
-	eWOadfkPsHMieaHbqhLz0JQyz+pLk3S/Sh6bInFc1qTWfmAlRADTfPB3vPHtSL0kDojaFWeV086
-	pR5Qg8gobPzW1M/Mx3+jpavtVjNEXOJ7wWv6EMgcg9knr6A==
-X-Google-Smtp-Source: AGHT+IEVaztWxyCPmnWA2QlJcO1+/QR7Gfg0M8GtpKmyP796XZy3AXCMevgeemhffcoXQTRBKo6uMw==
-X-Received: by 2002:a17:907:7215:b0:ae0:cae0:cb35 with SMTP id a640c23a62f3a-ae6cf7639efmr432617866b.37.1752098887617;
-        Wed, 09 Jul 2025 15:08:07 -0700 (PDT)
-Received: from Lord-Beerus.station (net-93-70-53-177.cust.vodafonedsl.it. [93.70.53.177])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e8264fbcsm10520666b.75.2025.07.09.15.08.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Jul 2025 15:08:07 -0700 (PDT)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Stefano Radaelli <stefano.radaelli21@gmail.com>,
-	Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 3/3] arm64: dts: ti: var-som-am62p: Add support for Variscite Symphony Board
-Date: Thu, 10 Jul 2025 00:07:06 +0200
-Message-ID: <20250709220714.85697-4-stefano.radaelli21@gmail.com>
+  d=lab126.com; i=@lab126.com; q=dns/txt; s=amazoncorp2;
+  t=1752099455; x=1783635455;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=6I0/pA1YJ4nL2BLkVcWVaXIQ5lSfcGJfu8j65+5jWWM=;
+  b=nj81taxyms502kdNVY7XiGO8+UxyAfKsH+8lfcuzflpcxCIUMsMPOCMg
+   KzCqZ2xWYEofRIi1KwSp5Q+2Ffqnr4hU4q/nMn2YElXQFIU6/AFpb0R8S
+   amm391d6YNtOjM8RNiFOqK8/n0YnE2zb7liNRQIpaJ6tNCYAQzNFKrMWh
+   bfSmVyL8k8SZ3Z2UmvG9d1BPE2If8fx6hXfKJse+2j30s5qgYIinThwIC
+   H4gByWsI6ydWXtzCHYm5Nx1DCF0d8dRZm8GheHIh+xLWJkUqU+LPMh/ej
+   JDqkt5ubiEkpLQmZAvjrYVffZ9ozbls3zEk03llOk2lXoFCRR+tGViqfL
+   g==;
+X-IronPort-AV: E=Sophos;i="6.16,299,1744070400"; 
+   d="scan'208";a="213696453"
+Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.25.36.214])
+  by smtp-border-fw-80008.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jul 2025 22:17:34 +0000
+Received: from EX19MTAUWC001.ant.amazon.com [10.0.38.20:61978]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.61.144:2525] with esmtp (Farcaster)
+ id c331c799-ffc8-443a-9eca-e1219f9f9c10; Wed, 9 Jul 2025 22:17:34 +0000 (UTC)
+X-Farcaster-Flow-ID: c331c799-ffc8-443a-9eca-e1219f9f9c10
+Received: from EX19D007UWB001.ant.amazon.com (10.13.138.75) by
+ EX19MTAUWC001.ant.amazon.com (10.250.64.174) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
+ Wed, 9 Jul 2025 22:17:34 +0000
+Received: from u1cb251c9c70150.ant.amazon.com (10.68.99.17) by
+ EX19D007UWB001.ant.amazon.com (10.13.138.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
+ Wed, 9 Jul 2025 22:17:33 +0000
+From: Karthik Poduval <kpoduval@lab126.com>
+To: <jyxiong@amazon.com>, <miguel.lopes@synopsys.com>, <anishkmr@amazon.com>,
+	<vkoul@kernel.org>, <kishon@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-phy@lists.infradead.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC: Karthik Poduval <kpoduval@lab126.com>
+Subject: [PATCH 1/2] phy: dw-dphy-rx: Add Synopsys DesignWare D-PHY RX
+Date: Wed, 9 Jul 2025 15:17:23 -0700
+Message-ID: <20250709221724.1276428-1-kpoduval@lab126.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250709220714.85697-1-stefano.radaelli21@gmail.com>
-References: <20250709220714.85697-1-stefano.radaelli21@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EX19D039UWA001.ant.amazon.com (10.13.139.110) To
+ EX19D007UWB001.ant.amazon.com (10.13.138.75)
 
-Add device tree support for the Variscite Symphony carrier board with
-the VAR-SOM-AM62P system on module.
+Add support for Synopsys DesignWare MIPI D-PHY RX v1.2. The driver
+supports data rates from 80Mbps to 2500Mbps.
 
-The Symphony board includes
-- uSD Card support
-- USB ports and OTG
-- Additional Gigabit Ethernet interface
-- Uart interfaces
-- OV5640 Camera support
-- GPIO Expander
-- CAN, I2C and general purpose interfaces
-
-Link: https://www.variscite.it/product/single-board-computers/symphony-board/
-
-Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Signed-off-by: Karthik Poduval <kpoduval@lab126.com>
 ---
-v2:
- - Fixed warnings and cleanup
+ drivers/phy/Kconfig       |  11 +
+ drivers/phy/Makefile      |   1 +
+ drivers/phy/phy-dw-dphy.c | 575 ++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 587 insertions(+)
+ create mode 100644 drivers/phy/phy-dw-dphy.c
 
- arch/arm64/boot/dts/ti/Makefile               |   1 +
- .../dts/ti/k3-am62p5-var-som-symphony.dts     | 563 ++++++++++++++++++
- 2 files changed, 564 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am62p5-var-som-symphony.dts
+diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+index 58c911e1b2d2..34c245ca5d12 100644
+--- a/drivers/phy/Kconfig
++++ b/drivers/phy/Kconfig
+@@ -101,6 +101,17 @@ config PHY_NXP_PTN3222
+ 	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
+ 	  Speed and High Speed.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index c6171de9fe88..f8b1ed3cbdfa 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -35,6 +35,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62a7-phyboard-lyra-rdk.dtb
- 
- # Boards with AM62Px SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am62p5-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62p5-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62p5-verdin-nonwifi-dev.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62p5-verdin-nonwifi-ivy.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-var-som-symphony.dts b/arch/arm64/boot/dts/ti/k3-am62p5-var-som-symphony.dts
++config PHY_SYNOPSYS_DW_DPHY_RX
++	tristate "Synopsys DesignWare D-PHY Rx Support"
++	depends on HAS_IOMEM && REGMAP_MMIO
++	select GENERIC_PHY
++	select GENERIC_PHY_MIPI_DPHY
++	help
++	  This option enables support for Synopsys DW MIPI D-PHY RX IP. This driver
++	  provides D-PHY functionality using Generic PHY framework and is meant to
++	  be used by MIPI CSI2 receivers over the PPI hardware interface. MIPI CSI2
++	  receivers may find this driver and use it via Generic PHY Framework API.
++
+ source "drivers/phy/allwinner/Kconfig"
+ source "drivers/phy/amlogic/Kconfig"
+ source "drivers/phy/broadcom/Kconfig"
+diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
+index c670a8dac468..ed0836adb835 100644
+--- a/drivers/phy/Makefile
++++ b/drivers/phy/Makefile
+@@ -13,6 +13,7 @@ obj-$(CONFIG_PHY_SNPS_EUSB2)		+= phy-snps-eusb2.o
+ obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
+ obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
+ obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
++obj-$(CONFIG_PHY_SYNOPSYS_DW_DPHY_RX)	+= phy-dw-dphy.o
+ obj-y					+= allwinner/	\
+ 					   amlogic/	\
+ 					   broadcom/	\
+diff --git a/drivers/phy/phy-dw-dphy.c b/drivers/phy/phy-dw-dphy.c
 new file mode 100644
-index 000000000000..99c8fd15cf64
+index 000000000000..2248f690b861
 --- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-var-som-symphony.dts
-@@ -0,0 +1,563 @@
-+// SPDX-License-Identifier: GPL-2.0
++++ b/drivers/phy/phy-dw-dphy.c
+@@ -0,0 +1,575 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
 +/*
-+ * Variscite Symphony carrier board for VAR-SOM-AM62P
++ * Copyright © 2025 Amazon.com, Inc. or its affiliates.
++ * Copyright © 2025 Synopsys, Inc. (www.synopsys.com)
++ */
++#include <linux/bitops.h>
++#include <linux/clk.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/of_address.h>
++#include <linux/of_device.h>
++#include <linux/platform_device.h>
++#include <linux/reset.h>
++#include <linux/regmap.h>
++
++#include <linux/phy/phy.h>
++#include <linux/phy/phy-mipi-dphy.h>
++
++#define KHZ (1000)
++#define MHZ (KHZ * KHZ)
++
++enum dw_dphy_reg_fields_cfg1 {
++	PHY_SHUTDOWNZ,
++	DPHY_RSTZ,
++	TEST_CLR,
++	TEST_CLK,
++	TEST_IN,
++	TEST_OUT,
++	TEST_EN,
++	DW_DPHY_RF_CFG1_MAX
++};
++
++enum dw_dphy_reg_fields_cfg2 {
++	EN_CONT_REG_UPDATE,
++	TURN_REQUEST_0,
++	TURN_DISABLE_0,
++	ENABLE_CLK,
++	FORCE_TX_STOP_MODE_0,
++	FORCE_RX_MODE,
++	BASE_DIR_0,
++	CFG_CLK_FREQ_RANGE,
++	HS_FREQ_RANGE,
++	CONT_EN,
++	DW_DPHY_RF_CFG2_MAX
++};
++
++static const struct reg_field dw_dphy_v1_2_cfg1[DW_DPHY_RF_CFG1_MAX] = {
++	[PHY_SHUTDOWNZ] = REG_FIELD(0x0, 0, 0),
++	[DPHY_RSTZ] = REG_FIELD(0x4, 0, 0),
++	[TEST_CLR] = REG_FIELD(0x10, 0, 0),
++	[TEST_CLK] = REG_FIELD(0x10, 1, 1),
++	[TEST_IN] = REG_FIELD(0x14, 0, 7),
++	[TEST_OUT] = REG_FIELD(0x14, 8, 15),
++	[TEST_EN] = REG_FIELD(0x14, 16, 16),
++};
++
++static const struct reg_field dw_dphy_v1_2_cfg2[DW_DPHY_RF_CFG2_MAX] = {
++	[EN_CONT_REG_UPDATE] = REG_FIELD(0x0, 23, 23),
++	[TURN_REQUEST_0] = REG_FIELD(0x0, 22, 22),
++	[TURN_DISABLE_0] = REG_FIELD(0x0, 21, 21),
++	[ENABLE_CLK] = REG_FIELD(0x0, 20, 20),
++	[FORCE_TX_STOP_MODE_0] = REG_FIELD(0x0, 19, 19),
++	[FORCE_RX_MODE] = REG_FIELD(0x0, 15, 18),
++	[BASE_DIR_0] = REG_FIELD(0x0, 14, 14),
++	[CFG_CLK_FREQ_RANGE] = REG_FIELD(0x0, 8, 13),
++	[HS_FREQ_RANGE] = REG_FIELD(0x0, 1, 7),
++	[CONT_EN] = REG_FIELD(0x0, 0, 0),
++};
++
++enum dphy_12bit_interface_addr {
++	RX_SYS_0 = 0x01,
++	RX_SYS_1 = 0x02,
++	RX_SYS_7 = 0x08,
++	RX_RX_STARTUP_OVR_0 = 0xe0,
++	RX_RX_STARTUP_OVR_1 = 0xe1,
++	RX_RX_STARTUP_OVR_2 = 0xe2,
++	RX_RX_STARTUP_OVR_3 = 0xe3,
++	RX_RX_STARTUP_OVR_4 = 0xe4,
++};
++
++/**
++ * struct range_dphy_gen3 - frequency range calibration structure
 + *
-+ * Copyright (C) 2021-2022 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2025 Variscite Ltd. - https://www.variscite.com/
++ * @freq: input freqency to calibration table
++ * @hsfregrange: corresponding clock to configure DW D-PHY IP
++ * @osc_freq_target: corresponding clock to configure DW D-PHY IP
++ *
++ **/
++struct range_dphy_gen3 {
++	u32 freq;
++	u8 hsfregrange;
++	u32 osc_freq_target;
++};
++
++/**
++ * struct dt_data_dw_dphy - DPHY configuration data structure
++ * @table: Pointer to array of DPHY Gen3 timing range configurations
++ * @table_size: Number of entries in the timing range table
++ * @phy_ops: Pointer to PHY operations structure containing callback functions
++ *
++ **/
++struct dt_data_dw_dphy {
++	struct range_dphy_gen3 *table;
++	int table_size;
++	const struct phy_ops *phy_ops;
++};
++
++/*
++ * DW DPHY Gen3 calibration table
 + *
 + */
-+
-+/dts-v1/;
-+
-+#include "k3-am62p5-var-som.dtsi"
-+
-+/ {
-+	model = "Variscite VAR-SOM-AM62P on Symphony-Board";
-+	compatible = "variscite,am62p-var-som-symphony", "variscite,am62p-var-som", "ti,am62p5";
-+
-+	aliases {
-+		ethernet0 = &cpsw_port1;
-+		ethernet1 = &cpsw_port2;
-+		mmc0 = &sdhci0;
-+		mmc1 = &sdhci1;
-+		mmc2 = &sdhci2;
-+		serial0 = &main_uart0;
-+		serial2 = &main_uart2;
-+		serial5 = &main_uart5;
-+		serial6 = &main_uart6;
-+		spi5 = &main_spi2;
-+		usb0 = &usb0;
-+		usb1 = &usb1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	clk_ov5640_fixed: clock-24000000 {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button-back {
-+			label = "Back";
-+			linux,code = <KEY_BACK>;
-+			gpios = <&pca9534 1 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button-home {
-+			label = "Home";
-+			linux,code = <KEY_HOME>;
-+			gpios = <&pca9534 2 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button-menu {
-+			label = "Menu";
-+			linux,code = <KEY_MENU>;
-+			gpios = <&pca9534 3 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		led-heartbeat {
-+			label = "Heartbeat";
-+			linux,default-trigger = "heartbeat";
-+			gpios = <&pca9534 0 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	reg_2p8v: regulator-2p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "2P8V";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&reg_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1P8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&reg_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	reg_1p5v: regulator-1p5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1P5V";
-+		regulator-min-microvolt = <1500000>;
-+		regulator-max-microvolt = <1500000>;
-+		vin-supply = <&reg_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	reg_sdhc1_vmmc: regulator-sdhc1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "+V3.3_SD";
-+		vin-supply = <&reg_sdhc1_vmmc_int>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpio = <&main_gpio0 30 GPIO_ACTIVE_HIGH>;
-+		bootph-all;
-+	};
-+
-+	reg_sdhc1_vmmc_int: regulator-sdhc1-int {
-+		compatible = "regulator-fixed";
-+		regulator-name = "+V3.3_SD_INT";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_sd1_vmmc>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpio = <&main_gpio0 53 GPIO_ACTIVE_HIGH>;
-+		bootph-all;
-+	};
-+
-+	reg_sdhc1_vqmmc: regulator-sdhci1-vqmmc {
-+		compatible = "regulator-gpio";
-+		regulator-name = "+V3.3_SD_VQMMC";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_sd1_vqmmc>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		gpios = <&main_gpio0 56 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+		bootph-all;
-+	};
-+
-+	reg_ov5640_buf_en: regulator-ov5640-buf-en {
-+		compatible = "regulator-fixed";
-+		regulator-name = "ov5640_buf_en";
-+		gpios = <&main_gpio0 21 GPIO_ACTIVE_HIGH>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		status="okay";
-+	};
-+
-+	transceiver1: can-phy {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
-+
-+	connector {
-+		compatible = "gpio-usb-b-connector", "usb-b-connector";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_extcon>;
-+		label = "USB-C";
-+		id-gpios = <&main_gpio1 12 GPIO_ACTIVE_HIGH>;
-+		status = "okay";
-+
-+		port {
-+			usb_con_hs: endpoint {
-+				remote-endpoint = <&typec_hs>;
-+			};
-+		};
-+	};
++struct range_dphy_gen3 range_gen3[] = {
++	{ 80, 0b0000000, 460 },	  { 90, 0b0010000, 460 },
++	{ 100, 0b0100000, 460 },  { 110, 0b0110000, 460 },
++	{ 120, 0b0000001, 460 },  { 130, 0b0010001, 460 },
++	{ 140, 0b0100001, 460 },  { 150, 0b0110001, 460 },
++	{ 160, 0b0000010, 460 },  { 170, 0b0010010, 460 },
++	{ 180, 0b0100010, 460 },  { 190, 0b0110010, 460 },
++	{ 205, 0b0000011, 460 },  { 220, 0b0010011, 460 },
++	{ 235, 0b0100011, 460 },  { 250, 0b0110011, 460 },
++	{ 275, 0b0000100, 460 },  { 300, 0b0010100, 460 },
++	{ 325, 0b0100101, 460 },  { 350, 0b0110101, 460 },
++	{ 400, 0b0000101, 460 },  { 450, 0b0010110, 460 },
++	{ 500, 0b0100110, 460 },  { 550, 0b0110111, 460 },
++	{ 600, 0b0000111, 460 },  { 650, 0b0011000, 460 },
++	{ 700, 0b0101000, 460 },  { 750, 0b0111001, 460 },
++	{ 800, 0b0001001, 460 },  { 850, 0b0011001, 460 },
++	{ 900, 0b0101001, 460 },  { 950, 0b0111010, 460 },
++	{ 1000, 0b0001010, 460 }, { 1050, 0b0011010, 460 },
++	{ 1110, 0b0101010, 460 }, { 1150, 0b0111011, 460 },
++	{ 1200, 0b0001011, 460 }, { 1250, 0b0011011, 460 },
++	{ 1300, 0b0101011, 460 }, { 1350, 0b0111100, 460 },
++	{ 1400, 0b0001100, 460 }, { 1450, 0b0011100, 460 },
++	{ 1500, 0b0101100, 460 }, { 1550, 0b0111101, 285 },
++	{ 1600, 0b0001101, 295 }, { 1650, 0b0011101, 304 },
++	{ 1700, 0b0101110, 313 }, { 1750, 0b0111110, 322 },
++	{ 1800, 0b0001110, 331 }, { 1850, 0b0011110, 341 },
++	{ 1900, 0b0101111, 350 }, { 1950, 0b0111111, 359 },
++	{ 2000, 0b0001111, 368 }, { 2050, 0b1000000, 377 },
++	{ 2100, 0b1000001, 387 }, { 2150, 0b1000010, 396 },
++	{ 2200, 0b1000011, 405 }, { 2250, 0b1000100, 414 },
++	{ 2300, 0b1000101, 423 }, { 2350, 0b1000110, 432 },
++	{ 2400, 0b1000111, 442 }, { 2450, 0b1001000, 451 },
++	{ 2500, 0b1001001, 460 }
 +};
 +
-+&cdns_csi2rx0 {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		csi0_port0: port@0 {
-+			reg = <0>;
-+			status = "okay";
-+
-+			csi2rx0_in_sensor: endpoint {
-+				remote-endpoint = <&csi2_cam0>;
-+				bus-type = <4>; /* CSI2 DPHY. */
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
++/**
++ * struct dw_dphy - DW D-PHY driver private structure
++ *
++ * @regmap: pointer to regmap
++ * @regmap_cfg1: pointer to config1 regmap
++ * @regmap_cfg2: pointer to config2 regmap
++ * @rf_cfg1: array of regfields for config1
++ * @rf_cfg2: array of regfields for config2
++ * @iomem_cfg1: MMIO address for cfg1 section
++ * @iomem_cfg2: MMIO address for cfg2 section
++ * @phy: pointer to the phy data structure
++ * @hs_clk_rate: high speed clock rate as per image sensor configuration
++ * @dt_data_dw_dphy: device tree specific data
++ *
++ **/
++struct dw_dphy {
++	struct regmap *regmap_cfg1;
++	struct regmap *regmap_cfg2;
++	struct regmap_field *rf_cfg1[DW_DPHY_RF_CFG1_MAX];
++	struct regmap_field *rf_cfg2[DW_DPHY_RF_CFG2_MAX];
++	void __iomem *iomem_cfg1;
++	void __iomem *iomem_cfg2;
++	struct phy *phy;
++	struct device *dev;
++	unsigned long hs_clk_rate;
++	struct dt_data_dw_dphy *dt_data;
 +};
 +
-+&cpsw3g {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii1>,
-+		    <&pinctrl_rgmii2>;
-+};
++/**
++ * dw_dphy_te_write - write register into test enable interface
++ *
++ * @dphy: pointer to the dw_dphy private data structure
++ * @addr: 12 bit TE address register (16 bit container)
++ * @data: 8 bit data to be written to TE register
++ *
++ **/
++static void dw_dphy_te_write(struct dw_dphy *dphy, u16 addr, u8 data)
++{
++	/* For writing the 4-bit testcode MSBs */
 +
-+&cpsw3g_mdio {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_mdio1>;
++	/* Ensure that testclk and testen is set to low */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 0);
++	regmap_field_write(dphy->rf_cfg1[TEST_EN], 0);
 +
-+	cpsw3g_phy1: ethernet-phy@5 {
-+		reg = <5>;
-+		compatible = "ethernet-phy-id0283.bc30";
-+		reset-gpios = <&pca9534 5 GPIO_ACTIVE_LOW>;
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <100000>;
-+	};
-+};
++	/* Set testen to high */
++	regmap_field_write(dphy->rf_cfg1[TEST_EN], 1);
 +
-+&cpsw_port2 {
++	/* Set testclk to high */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 1);
++
++	/* Place 0x00 in testdin */
++	regmap_field_write(dphy->rf_cfg1[TEST_IN], 0);
++
 +	/*
-+	 * The required RGMII TX and RX 2ns delays are implemented directly
-+	 * in hardware via passive delay elements on the Symphony PCB.
-+	 * No delay configuration is needed in software via PHY driver.
++	 * Set testclk to low (with the falling edge on testclk, the testdin signal
++	 * content is latched internally)
 +	 */
-+	phy-mode = "rgmii";
-+	phy-handle = <&cpsw3g_phy1>;
-+	status = "okay";
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 0);
++
++	/* Set testen to low */
++	regmap_field_write(dphy->rf_cfg1[TEST_EN], 0);
++
++	/* Place the 8-bit word corresponding to the testcode MSBs in testdin */
++	regmap_field_write(dphy->rf_cfg1[TEST_IN], (addr >> 8));
++
++	/* Set testclk to high */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 1);
++
++	/* For writing the 8-bit testcode LSBs */
++
++	/* Set testclk to low */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 0);
++
++	/* Set testen to high */
++	regmap_field_write(dphy->rf_cfg1[TEST_EN], 1);
++
++	/* Set testclk to high */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 1);
++
++	/* Place the 8-bit word test data in testdin */
++	regmap_field_write(dphy->rf_cfg1[TEST_IN], (addr & 0xff));
++
++	/*
++	 * Set testclk to low (with the falling edge on testclk, the testdin signal
++	 * content is latched internally)
++	 */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 0);
++
++	/* Set testen to low */
++	regmap_field_write(dphy->rf_cfg1[TEST_EN], 0);
++
++	/* For writing the data */
++
++	/* Place the 8-bit word corresponding to the page offset in testdin */
++	regmap_field_write(dphy->rf_cfg1[TEST_IN], data);
++
++	/* Set testclk to high (test data is programmed internally) */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 1);
++}
++
++/**
++ * dw_dphy_te_read - read register from test enable interface
++ *
++ * @dphy: pointer to the dw_dphy private data structure
++ * @addr: 12 bit TE address register (16 bit container)
++ * @returns: 8 bit data from TE register
++ **/
++static u8 dw_dphy_te_read(struct dw_dphy *dphy, u16 addr)
++{
++	u32 data;
++
++	/* For writing the 4-bit testcode MSBs */
++
++	/* Ensure that testclk and testen is set to low */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 0);
++	regmap_field_write(dphy->rf_cfg1[TEST_EN], 0);
++
++	/* Set testen to high */
++	regmap_field_write(dphy->rf_cfg1[TEST_EN], 1);
++
++	/* Set testclk to high */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 1);
++
++	/* Place 0x00 in testdin */
++	regmap_field_write(dphy->rf_cfg1[TEST_IN], 0);
++
++	/*
++	 * Set testclk to low (with the falling edge on testclk, the testdin signal
++	 * content is latched internally)
++	 */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 0);
++
++	/* Set testen to low */
++	regmap_field_write(dphy->rf_cfg1[TEST_EN], 0);
++
++	/* Place the 8-bit word corresponding to the testcode MSBs in testdin */
++	regmap_field_write(dphy->rf_cfg1[TEST_IN], (addr >> 8));
++
++	/* Set testclk to high */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 1);
++
++	/* For writing the 8-bit testcode LSBs */
++
++	/* Set testclk to low */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 0);
++
++	/* Set testen to high */
++	regmap_field_write(dphy->rf_cfg1[TEST_EN], 1);
++
++	/* Set testclk to high */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 1);
++
++	/* Place the 8-bit word test data in testdin */
++	regmap_field_write(dphy->rf_cfg1[TEST_IN], (addr & 0xff));
++
++	/*
++	 * Set testclk to low (with the falling edge on testclk, the testdin signal
++	 * content is latched internally)
++	 */
++	regmap_field_write(dphy->rf_cfg1[TEST_CLK], 0);
++
++	/* Set testen to low */
++	regmap_field_write(dphy->rf_cfg1[TEST_EN], 0);
++
++	regmap_field_read(dphy->rf_cfg1[TEST_OUT], &data);
++
++	return (u8)data;
++}
++
++/**
++ * dw_dphy_configure - configure the D-PHY
++ *
++ * @phy: pointer to the phy data structure
++ * @opts: pointer to the phy configuration options
++ * @returns 0 if success else appropriate error code
++ *
++ **/
++static int dw_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
++{
++	struct dw_dphy *dphy = phy_get_drvdata(phy);
++
++	dphy->hs_clk_rate = opts->mipi_dphy.hs_clk_rate;
++	dev_dbg(dphy->dev, "hs_clk_rate=%ld\n", dphy->hs_clk_rate);
++
++	return 0;
++}
++
++/**
++ * dw_dphy_power_on_1p2 - power on the DPHY version 1.2
++ *
++ * @phy: pointer to the phy data structure
++ * @returns 0 if success else appropriate error code
++ *
++ **/
++static int dw_dphy_power_on_1p2(struct phy *phy)
++{
++	struct dw_dphy *dphy = phy_get_drvdata(phy);
++
++	uint8_t counter_for_des_en_config_if_rw = 0x1;
++	u8 range = 0;
++
++	for (range = 0;
++	     (range < dphy->dt_data->table_size - 1) &&
++	     ((dphy->hs_clk_rate) > dphy->dt_data->table[range].freq);
++	     range++)
++		;
++
++	/* in case requested hs_clk_rate is out of range, return -EINVAL */
++	if (range >= dphy->dt_data->table_size)
++		return -EINVAL;
++
++	dev_dbg(dphy->dev, "12bit: PHY GEN 3: Freq: %ld %x\n", dphy->hs_clk_rate,
++		 range_gen3[range].hsfregrange);
++
++	regmap_field_write(dphy->rf_cfg1[DPHY_RSTZ], 0);
++	regmap_field_write(dphy->rf_cfg1[PHY_SHUTDOWNZ], 0);
++	regmap_field_write(dphy->rf_cfg1[TEST_CLR], 0);
++	regmap_field_write(dphy->rf_cfg1[TEST_CLR], 1);
++	regmap_field_write(dphy->rf_cfg1[TEST_CLR], 0);
++	regmap_field_write(dphy->rf_cfg2[CFG_CLK_FREQ_RANGE], 0x28);
++	dw_dphy_te_write(dphy, RX_SYS_1,
++			 dphy->dt_data->table[range].hsfregrange);
++	dw_dphy_te_write(dphy, RX_SYS_0, 0x20);
++	dw_dphy_te_write(dphy, RX_RX_STARTUP_OVR_2,
++			 (u8)dphy->dt_data->table[range].osc_freq_target);
++	dw_dphy_te_write(dphy, RX_RX_STARTUP_OVR_3,
++			 (u8)(dphy->dt_data->table[range].osc_freq_target >>
++			      8));
++	dw_dphy_te_write(dphy, 0xe4,
++			 (counter_for_des_en_config_if_rw << 4) | 0b1);
++
++	dw_dphy_te_write(dphy, RX_RX_STARTUP_OVR_1, 0x01);
++	dw_dphy_te_write(dphy, RX_RX_STARTUP_OVR_0, 0x80);
++
++	regmap_field_write(dphy->rf_cfg2[BASE_DIR_0], 1);
++	regmap_field_write(dphy->rf_cfg2[ENABLE_CLK], 1);
++	regmap_field_write(dphy->rf_cfg2[FORCE_RX_MODE], 0x0);
++
++	regmap_field_write(dphy->rf_cfg1[PHY_SHUTDOWNZ], 1);
++	regmap_field_write(dphy->rf_cfg1[DPHY_RSTZ], 1);
++
++	return 0;
++}
++
++/**
++ * dw_dphy_power_off - power off the DPHY
++ *
++ * @phy: pointer to the phy data structure
++ * @returns 0 if success else appropriate error code
++ *
++ **/
++static int dw_dphy_power_off(struct phy *phy)
++{
++	struct dw_dphy *dphy = phy_get_drvdata(phy);
++
++	regmap_field_write(dphy->rf_cfg1[DPHY_RSTZ], 0);
++	regmap_field_write(dphy->rf_cfg1[PHY_SHUTDOWNZ], 0);
++	return 0;
++}
++
++/**
++ * dw_dphy_ops_1p2 - PHY operations for DWC DPHY v1.2
++ * @configure: Configures DPHY timing and operation parameters
++ * @power_on: Powers on the DPHY using v1.2 specific sequence
++ * @power_off: Powers off the DPHY
++ *
++ **/
++static const struct phy_ops dw_dphy_ops_1p2 = {
++	.configure = dw_dphy_configure,
++	.power_on = dw_dphy_power_on_1p2,
++	.power_off = dw_dphy_power_off,
 +};
 +
-+&dphy0 {
-+	status = "okay";
++/**
++ * dw_dphy_1p2 - DWC DPHY v1.2 configuration instance
++ * @table: Points to range_gen3 timing parameters table
++ * @table_size: Size of range_gen3 table calculated at compile time
++ * @phy_ops: Points to v1.2 specific PHY operations structure
++ *
++ **/
++struct dt_data_dw_dphy dw_dphy_1p2 = {
++	.table = range_gen3,
++	.table_size = ARRAY_SIZE(range_gen3),
++	.phy_ops = &dw_dphy_ops_1p2,
 +};
 +
-+&mailbox0_cluster0 {
-+	mbox_r5_0: mbox-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
++/**
++ * dw_dphy_regmap_cfg1 - Register map configuration for DW DPHY
++ * @reg_bits: Width of register address in bits (32)
++ * @val_bits: Width of register value in bits (32)
++ * @reg_stride: Number of bytes between registers (4)
++ * @name: Name identifier for this register map
++ * @fast_io: Flag to indicate fast I/O operations are supported
++ *
++ **/
++static const struct regmap_config dw_dphy_regmap_cfg1 = {
++	.reg_bits = 32,
++	.val_bits = 32,
++	.reg_stride = 4,
++	.name = "dw-dhpy-cfg1",
++	.fast_io = true,
 +};
 +
-+&mailbox0_cluster1 {
-+	mbox_mcu_r5_0: mbox-mcu-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
++/**
++ * dw_dphy_regmap_cfg2 - Register map configuration for DW DPHY
++ * @reg_bits: Width of register address in bits (32)
++ * @val_bits: Width of register value in bits (32)
++ * @reg_stride: Number of bytes between registers (4)
++ * @name: Name identifier for this register map
++ * @fast_io: Flag to indicate fast I/O operations are supported
++ *
++ **/
++static const struct regmap_config dw_dphy_regmap_cfg2 = {
++	.reg_bits = 32,
++	.val_bits = 32,
++	.reg_stride = 4,
++	.name = "dw-dhpy-cfg2",
++	.fast_io = true,
 +};
 +
-+&main_i2c0{
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c0>;
-+	clock-frequency = <400000>;
++/**
++ * dw_dphy_probe - Probe and initialize DW DPHY device
++ * @pdev: Platform device pointer
++ * Return: 0 on success, negative error code on failure
++ *
++ **/
++static int dw_dphy_probe(struct platform_device *pdev)
++{
++	struct dw_dphy *dphy;
++	struct resource *res;
++	struct device *dev = &pdev->dev;
++	struct phy_provider *phy_provider;
++	int ret;
 +
-+	ov5640: camera@3c {
-+		compatible = "ovti,ov5640";
-+		reg = <0x3c>;
-+		clocks = <&clk_ov5640_fixed>;
-+		clock-names = "xclk";
-+		AVDD-supply = <&reg_2p8v>;
-+		DOVDD-supply = <&reg_1p8v>;
-+		DVDD-supply = <&reg_1p5v>;
-+		powerdown-gpios = <&main_gpio0 10 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ov5640>;
++	dphy = devm_kzalloc(&pdev->dev, sizeof(*dphy), GFP_KERNEL);
++	if (!dphy)
++		return -ENOMEM;
 +
-+		port {
-+			csi2_cam0: endpoint {
-+				remote-endpoint = <&csi2rx0_in_sensor>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
++	dphy->dt_data =
++		(struct dt_data_dw_dphy *)of_device_get_match_data(&pdev->dev);
++	dev_set_drvdata(&pdev->dev, dphy);
++	dphy->dev = &pdev->dev;
 +
-+	/* GPIO expander */
-+	pca9534: gpio@20 {
-+		compatible = "nxp,pca9534";
-+		reg = <0x20>;
-+		gpio-controller;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pca9534>;
-+		interrupt-parent = <&main_gpio1>;
-+		interrupts = <30 IRQ_TYPE_EDGE_FALLING>;
-+		#gpio-cells = <2>;
-+		status = "okay";
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	dphy->iomem_cfg1 = devm_ioremap_resource(&pdev->dev, res);
++	if (IS_ERR(dphy->iomem_cfg1))
++		return PTR_ERR(dphy->iomem_cfg1);
 +
-+		usb3-sel-hog {
-+			gpio-hog;
-+			gpios = <4 0>;
-+			output-low;
-+			line-name = "usb3_sel";
-+		};
++	dphy->regmap_cfg1 =
++		devm_regmap_init_mmio(dev, dphy->iomem_cfg1, &dw_dphy_regmap_cfg1);
++	if (IS_ERR(dphy->regmap_cfg1))
++		return PTR_ERR(dphy->regmap_cfg1);
 +
-+		eth-som-vselect-hog {
-+			gpio-hog;
-+			gpios = <6 0>;
-+			output-low;
-+			line-name = "eth-vselect";
-+		};
++	ret = devm_regmap_field_bulk_alloc(dev, dphy->regmap_cfg1, dphy->rf_cfg1,
++					   dw_dphy_v1_2_cfg1, DW_DPHY_RF_CFG1_MAX);
++	if (ret < 0) {
++		dev_err(dev, "Could not alloc RF\n");
++		return ret;
++	}
 +
-+		eth-mdio-enable-hog {
-+			gpio-hog;
-+			gpios = <7 0>;
-+			output-high;
-+			line-name = "eth-mdio-enable";
-+		};
-+	};
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
++	dphy->iomem_cfg2 = devm_ioremap_resource(&pdev->dev, res);
++	if (IS_ERR(dphy->iomem_cfg2))
++		return PTR_ERR(dphy->iomem_cfg2);
++
++	dphy->regmap_cfg2 = devm_regmap_init_mmio(dev, dphy->iomem_cfg2,
++						 &dw_dphy_regmap_cfg2);
++	if (IS_ERR(dphy->regmap_cfg2))
++		return PTR_ERR(dphy->regmap_cfg2);
++
++	ret = devm_regmap_field_bulk_alloc(dev, dphy->regmap_cfg2, dphy->rf_cfg2,
++					   dw_dphy_v1_2_cfg2, DW_DPHY_RF_CFG2_MAX);
++	if (ret < 0) {
++		dev_err(dev, "Could not alloc RF\n");
++		return ret;
++	}
++
++	dphy->phy = devm_phy_create(&pdev->dev, NULL, dphy->dt_data->phy_ops);
++	if (IS_ERR(dphy->phy)) {
++		dev_err(dev, "failed to create PHY\n");
++		return PTR_ERR(dphy->phy);
++	}
++
++	phy_set_drvdata(dphy->phy, dphy);
++	phy_provider =
++		devm_of_phy_provider_register(&pdev->dev, of_phy_simple_xlate);
++
++	return PTR_ERR_OR_ZERO(phy_provider);
++}
++
++/**
++ * dw_dphy_of_match - Device tree match table for DW DPHY
++ * @compatible: Compatible string to match device tree node
++ * @data: Pointer to configuration data for matched device
++ *
++ * Table of compatible strings and associated configuration data
++ * for supported DW DPHY variants.
++ * Currently supports:
++ * - DW DPHY v1.2 ("snps,dw-dphy-1p2")
++ *
++ **/
++static const struct of_device_id dw_dphy_of_match[] = {
++	{ .compatible = "snps,dw-dphy-1p2", .data = &dw_dphy_1p2 },
++	{ /* sentinel */ },
 +};
++MODULE_DEVICE_TABLE(of, dw_dphy_of_match);
 +
-+&main_i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	/* DS1337 RTC module */
-+	rtc@68 {
-+		compatible = "dallas,ds1337";
-+		reg = <0x68>;
-+		status = "okay";
-+	};
++/**
++ * dw_dphy_platform_driver - Platform driver structure for DW DPHY
++ * @probe: Pointer to probe function called on device discovery
++ * @driver: Core driver structure containing:
++ *         - name: Driver name used for matching and debugging
++ *         - of_match_table: Table of compatible device tree matches
++ *
++ **/
++static struct platform_driver dw_dphy_platform_driver = {
++	.probe		= dw_dphy_probe,
++	.driver		= {
++		.name		= "dw-dphy",
++		.of_match_table	= dw_dphy_of_match,
++	},
 +};
++module_platform_driver(dw_dphy_platform_driver);
 +
-+&main_mcan0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_mcan0>;
-+	phys = <&transceiver1>;
-+};
-+
-+&main_pmx0 {
-+	pinctrl_extcon: main-extcon-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x01a8, PIN_INPUT, 7) /* (F25) MCASP0_AFSX.GPIO1_12 */
-+		>;
-+	};
-+
-+	pinctrl_i2c0: main-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (B25) I2C0_SCL */
-+			AM62PX_IOPAD(0x01e4, PIN_INPUT_PULLUP, 0) /* (A24) I2C0_SDA */
-+		>;
-+	};
-+
-+	pinctrl_i2c1: main-i2c1-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x01e8, PIN_INPUT_PULLUP, 0) /* (C24) I2C1_SCL */
-+			AM62PX_IOPAD(0x01ec, PIN_INPUT_PULLUP, 0) /* (B24) I2C1_SDA */
-+		>;
-+		bootph-all;
-+	};
-+
-+	pinctrl_mcan0: main-mcan0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x01dc, PIN_INPUT, 0) /* (F20) MCAN0_RX */
-+			AM62PX_IOPAD(0x01d8, PIN_OUTPUT, 0) /* (B23) MCAN0_TX */
-+		>;
-+	};
-+
-+	pinctrl_mmc1: main-mmc1-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x023c, PIN_INPUT, 0) /* (H20) MMC1_CMD */
-+			AM62PX_IOPAD(0x0234, PIN_OUTPUT, 0) /* (J24) MMC1_CLK */
-+			AM62PX_IOPAD(0x0230, PIN_INPUT, 0) /* (H21) MMC1_DAT0 */
-+			AM62PX_IOPAD(0x022c, PIN_INPUT_PULLUP, 0) /* (H23) MMC1_DAT1 */
-+			AM62PX_IOPAD(0x0228, PIN_INPUT_PULLUP, 0) /* (H22) MMC1_DAT2 */
-+			AM62PX_IOPAD(0x0224, PIN_INPUT_PULLUP, 0) /* (H25) MMC1_DAT3 */
-+			AM62PX_IOPAD(0x0240, PIN_INPUT, 0) /* (D23) MMC1_SDCD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	pinctrl_rgmii2: main-rgmii2-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x0184, PIN_INPUT, 0) /* (E19) RGMII2_RD0 */
-+			AM62PX_IOPAD(0x0188, PIN_INPUT, 0) /* (E16) RGMII2_RD1 */
-+			AM62PX_IOPAD(0x018c, PIN_INPUT, 0) /* (E17) RGMII2_RD2 */
-+			AM62PX_IOPAD(0x0190, PIN_INPUT, 0) /* (C19) RGMII2_RD3 */
-+			AM62PX_IOPAD(0x0180, PIN_INPUT, 0) /* (D19) RGMII2_RXC */
-+			AM62PX_IOPAD(0x017c, PIN_INPUT, 0) /* (F19) RGMII2_RX_CTL */
-+			AM62PX_IOPAD(0x016c, PIN_INPUT, 0) /* (B19) RGMII2_TD0 */
-+			AM62PX_IOPAD(0x0170, PIN_INPUT, 0) /* (A21) RGMII2_TD1 */
-+			AM62PX_IOPAD(0x0174, PIN_INPUT, 0) /* (D17) RGMII2_TD2 */
-+			AM62PX_IOPAD(0x0178, PIN_INPUT, 0) /* (A19) RGMII2_TD3 */
-+			AM62PX_IOPAD(0x0168, PIN_INPUT_PULLDOWN, 0) /* (D16) RGMII2_TXC */
-+			AM62PX_IOPAD(0x0164, PIN_INPUT, 0) /* (A20) RGMII2_TX_CTL */
-+		>;
-+	};
-+
-+	pinctrl_spi2: main_spi2-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x01b0, PIN_INPUT, 1) /* (G20) MCASP0_ACLKR.SPI2_CLK */
-+			AM62PX_IOPAD(0x0194, PIN_OUTPUT, 1) /* (D25) MCASP0_AXR3.SPI2_D0 */
-+			AM62PX_IOPAD(0x0198, PIN_INPUT, 1) /* (E25) MCASP0_AXR2.SPI2_D1 */
-+			AM62PX_IOPAD(0x01ac, PIN_OUTPUT, 7) /* (G23) MCASP0_AFSR.GPIO1_13 */
-+		>;
-+	};
-+
-+	pinctrl_uart0: main-uart0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x1c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
-+			AM62PX_IOPAD(0x1cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	pinctrl_uart2: main-uart2-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x005c, PIN_INPUT_PULLUP, 2) /* (AC25) GPMC0_AD8.UART2_RXD */
-+			AM62PX_IOPAD(0x0060, PIN_OUTPUT, 2) /* (AB25) GPMC0_AD9.UART2_TXD */
-+		>;
-+	};
-+
-+	pinctrl_uart6: main-uart6-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x009c, PIN_INPUT_PULLUP, 3) /* (AD24) GPMC0_WAIT1.UART6_RXD */
-+			AM62PX_IOPAD(0x0244, PIN_OUTPUT, 1) /* (D24) MMC1_SDWP.UART6_TXD */
-+		>;
-+	};
-+
-+	pinctrl_usb1: main-usb1-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x0258, PIN_OUTPUT, 0) /* (G21) USB1_DRVVBUS */
-+		>;
-+	};
-+
-+	pinctrl_ov5640: main-ov5640-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x0028, PIN_OUTPUT, 7) /* (N20) OSPI0_D7.GPIO0_10 */
-+			AM62PX_IOPAD(0x0054, PIN_OUTPUT, 7) /* (V24) GPMC0_AD6.GPIO0_21 */
-+			AM62PX_IOPAD(0x0058, PIN_OUTPUT, 7) /* (W25) GPMC0_AD7.GPIO0_22 */
-+		>;
-+	};
-+
-+	pinctrl_pca9534: main-pca9534-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x01f0, PIN_INPUT, 7) /* (C25) EXT_REFCLK1.GPIO1_30 */
-+		>;
-+	};
-+
-+	pinctrl_sd1_vmmc: main-sd1-vmmc-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x0078, PIN_OUTPUT, 7) /* (AC24) GPMC0_AD15.GPIO0_30 */
-+			AM62PX_IOPAD(0x00d8, PIN_OUTPUT, 7) /* (AE22) VOUT0_DATA8.GPIO0_53 */
-+		>;
-+		bootph-all;
-+	};
-+
-+	pinctrl_sd1_vqmmc: main-sd1-vqmmc-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x00e4, PIN_OUTPUT, 7) /* (AE21) VOUT0_DATA11.GPIO0_56 */
-+		>;
-+		bootph-all;
-+	};
-+};
-+
-+&main_spi2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi2>;
-+	ti,pindir-d0-out-d1-in;
-+	cs-gpios = <&main_gpio1 13 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&main_uart0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart0>;
-+};
-+
-+&main_uart1 {
-+	/* Main UART1 is used by TIFS firmware */
-+	status = "reserved";
-+};
-+
-+&main_uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&main_uart6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart6>;
-+	status = "okay";
-+};
-+
-+&mcu_gpio0 {
-+	status = "reserved";
-+};
-+
-+&mcu_gpio_intr {
-+	status = "reserved";
-+};
-+
-+&mcu_r5fss0 {
-+	status = "okay";
-+};
-+
-+&mcu_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5_0>;
-+	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-+			<&mcu_r5fss0_core0_memory_region>;
-+};
-+
-+&sdhci1 {
-+	/* SD Card */
-+	vmmc-supply = <&reg_sdhc1_vmmc>;
-+	vqmmc-supply = <&reg_sdhc1_vqmmc>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_mmc1>;
-+	disable-wp;
-+	status="okay";
-+	bootph-all;
-+};
-+
-+&ti_csi2rx0 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port {
-+		typec_hs: endpoint {
-+			remote-endpoint = <&usb_con_hs>;
-+		};
-+	};
-+};
-+
-+&usb1 {
-+	dr_mode = "host";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usb1>;
-+	status = "okay";
-+};
-+
-+&usbss0 {
-+	status = "okay";
-+};
-+
-+&usbss1 {
-+	status = "okay";
-+};
-+
-+&wkup_r5fss0 {
-+	status = "okay";
-+};
-+
-+&wkup_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster0 &mbox_r5_0>;
-+	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
-+			<&wkup_r5fss0_core0_memory_region>;
-+};
-+
-+&wkup_rtc0 {
-+	status = "disabled";
-+};
-+
-+&wkup_rti0 {
-+	/* WKUP RTI0 is used by DM firmware */
-+	status = "reserved";
-+};
-+
-+&wkup_uart0 {
-+	/* WKUP UART0 is used by DM firmware */
-+	status = "reserved";
-+};
--- 
++MODULE_AUTHOR("Karthik Poduval <kpoduval@lab126.com>");
++MODULE_AUTHOR("Jason Xiong <jyxiong@amazon.com>");
++MODULE_AUTHOR("Miguel Lopes <miguel.lopes@synopsys.com>");
++MODULE_DESCRIPTION("DW D-PHY RX Driver");
++MODULE_LICENSE("GPL");
+--
 2.43.0
 
 
