@@ -1,97 +1,123 @@
-Return-Path: <devicetree+bounces-194325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A212AFDD30
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 03:59:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89171AFDD34
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 04:00:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32BE41AA60A4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 02:00:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92CD83BC7CC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 02:00:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98C5319ADBA;
-	Wed,  9 Jul 2025 01:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4112E18DB03;
+	Wed,  9 Jul 2025 02:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="meL+6207"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vPp/d4xm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC9249625;
-	Wed,  9 Jul 2025 01:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 103E1EEB3;
+	Wed,  9 Jul 2025 02:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752026388; cv=none; b=KSBMENpIAdLIv71wQ3o02AWfEzGfCn+x0JejZOH+vK8e1cimqSSr48+TSPFYg4w/2fFlYU40DumIQS9gCf/4CYt3hJ8uId1GeI4IlDUS47c2Yhv+v4xaVwnNmYa4nmyabsmEWkfjpI1EAhyA5n1a/ar/ZVnC+9MM0g6HTXsKeyM=
+	t=1752026430; cv=none; b=j2yMhlEEHrDWaO8Glgt7bXoOfOwDNKNh27JQKq7jhkz6NKfMyEpZhKUTov2hu97DmwoJryrjydI6yzCAUfBglryAVgpErtWBnID9gqLYzRsxxS16eQeHKVh/TWgF5ljlqIMmlQxe5a4xihAP8Zyrrjed9cF44nbQ+yQYc4fvCzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752026388; c=relaxed/simple;
-	bh=iwE9ARpaM6sjLNPYdGBMwXNgkssGsBxoP/cDtzcIsdg=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=RYEAyZNsy0fI1yclhzmrlGMS6npGGZI43GENaoS0MiLQ0g9+Z9HKGL2F5Qwjvk8WAEXuOD273pgOaZQYkOtnNkIMJ9PSZILQDXkY7+GTVJxgJ/Afw0+JL24jNM0Y4YK7d/mF/79zaVWFhCy5km+XuFQhRXhLTP2Wq5NgcOomZ3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=meL+6207; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00CBCC4CEED;
-	Wed,  9 Jul 2025 01:59:48 +0000 (UTC)
+	s=arc-20240116; t=1752026430; c=relaxed/simple;
+	bh=SCd2Rskvq412sYYjzoMaYjBEDDWKuLbV0h++4NRJ7Hs=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=MzWFdmobLpV3ozhmSog5jMxqQv3Quh60KD8LQ99+eDGYTMuSFFKtOvu9vo5a7tajhVhkHwG7GMu+WbmNKGMXIMvzB9EIL12b5z5IrowO2cQwl7iZo4xmu7XAV0WokzkOpjvBUfE+x2XklRN8k6M/vlUVMGt7Gf7rgj2aAw5hr3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vPp/d4xm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 614DFC4CEED;
+	Wed,  9 Jul 2025 02:00:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752026388;
-	bh=iwE9ARpaM6sjLNPYdGBMwXNgkssGsBxoP/cDtzcIsdg=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=meL+6207UGZ83PCRYpI7IC0nqosJcljyLYCQ94YWf7FkW1qxYkJlnhg3GqK4o2Y2X
-	 m7mbElRiCgp3rYZ3VfjasDN2P+Y7qkFT6FiPj7z61yL8gwknpPb1L4fKnzsBSRICfv
-	 w+xU1swc8+oyFvxd0/Ec4sn0Ym9qGJ7xpELNqAcDZkSN7XodoJVdSn6hlzjtgfFPyq
-	 95zhxmawQxgMHOICQbAIz+7FwSCZb45/nBvlDpE4imureVNUHVZ4mTbPxc5Cu7g3eA
-	 gZfYD+YuiP6rme9ysusAN0/nUgczzhVl2SGHMnoQkMqDkMf6PsXpTHRq2d4DgpvkMa
-	 tsKF7x72f18Kw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB0DC380DBEE;
-	Wed,  9 Jul 2025 02:00:11 +0000 (UTC)
+	s=k20201202; t=1752026429;
+	bh=SCd2Rskvq412sYYjzoMaYjBEDDWKuLbV0h++4NRJ7Hs=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=vPp/d4xmieKxl3KV4U+NXVMO0UtLsKDJYyTkoEpjqNWtAzrJyoM/zofD8TJXrbAPm
+	 SWnAnNcwkdNkA/zFbs1EHhiobFGc3f3wk9LJM303f27o49ETNfZRnriXDIL5rX7/tB
+	 UO9TKqLMhcq1N2vtM72KRIBoasNtxtoyas7T35Rz96orCLumUejoob5PinY1+cmdtb
+	 Dfw93GcD1O1epJevRBYtH+tuGkhau9TpxKvsp4S2GL66e5OVjBRcOMSxChCkLKzTqK
+	 J6Vg3BY7OhyWCFMaV+1F6ikOwi82usmJmxaYfqGD4hZ9aszzXiGqy9hcmb72CVO8SB
+	 YYaXQi7gnQ5BA==
+Date: Tue, 08 Jul 2025 21:00:28 -0500
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] net: dt-bindings: ixp4xx-ethernet: Support fixed
- links
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175202641059.192708.17191274231375047755.git-patchwork-notify@kernel.org>
-Date: Wed, 09 Jul 2025 02:00:10 +0000
-References: 
- <20250704-ixp4xx-ethernet-binding-fix-v1-1-8ac360d5bc9b@linaro.org>
-In-Reply-To: 
- <20250704-ixp4xx-ethernet-binding-fix-v1-1-8ac360d5bc9b@linaro.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- lkp@intel.com
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ alsa-devel@alsa-project.org, linux-samsung-soc@vger.kernel.org, 
+ krzk+dt@kernel.org, s.nawrocki@samsung.com, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, lgirdwood@gmail.com, 
+ broonie@kernel.org
+To: ew kim <ew.kim@samsung.com>
+In-Reply-To: <20250709001239.379695-1-ew.kim@samsung.com>
+References: <CGME20250709002434epcas2p29b2368f0de6c760b17565ad7f2c37a19@epcas2p2.samsung.com>
+ <20250709001239.379695-1-ew.kim@samsung.com>
+Message-Id: <175202642853.1975547.14734415377016191511.robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: Add samsung,abox-generic document
 
-Hello:
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Fri, 04 Jul 2025 14:54:26 +0200 you wrote:
-> This ethernet controller is using fixed links for DSA switches
-> in two already existing device trees, so make sure the checker
-> does not complain like this:
+On Wed, 09 Jul 2025 09:12:39 +0900, ew kim wrote:
+> Add soundcard bindings for the abox generic of exynus automotive.
 > 
-> intel-ixp42x-linksys-wrv54g.dtb: ethernet@c8009000 (intel,ixp4xx-ethernet):
-> 'fixed-link' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> from schema $id: http://devicetree.org/schemas/net/intel,ixp4xx-ethernet.yaml#
+> Signed-off-by: ew kim <ew.kim@samsung.com>
+> ---
+>  .../bindings/sound/samsung,abox-generic.yaml  | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/samsung,abox-generic.yaml
 > 
-> [...]
 
-Here is the summary with links:
-  - [net-next] net: dt-bindings: ixp4xx-ethernet: Support fixed links
-    https://git.kernel.org/netdev/net-next/c/f7728ea83771
+My bot found errors running 'make dt_binding_check' on your patch:
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/sound/samsung,abox-generic.yaml:4:6: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/sound/samsung,abox-generic.yaml:5:10: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/sound/samsung,abox-generic.yaml:43:13: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/sound/samsung,abox-generic.yaml:43:21: [error] string value is redundantly quoted with any quotes (quoted-strings)
 
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/samsung,abox-generic.yaml: maintainers:0: {'name': 'Eunwoo Kim', 'email': 'ew.kim@samsung.com'} is not of type 'string'
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/samsung,abox-generic.yaml: properties:ranges: 'anyOf' conditional failed, one must be fixed:
+	'maxItems' is a required property
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'type' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	Additional properties are not allowed ('type' was unexpected)
+		hint: Arrays must be described with a combination of minItems/maxItems/items
+	'type' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/samsung,abox-generic.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/soc/samsung/abox-generic.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/samsung,abox-generic.yaml
+Documentation/devicetree/bindings/sound/samsung,abox-generic.example.dts:26.11-18: Warning (ranges_format): /example-0/abox_generic@generic:ranges: empty "ranges" property but its #address-cells (2) differs from /example-0 (1)
+Documentation/devicetree/bindings/sound/samsung,abox-generic.example.dts:18.44-27.11: Warning (unit_address_vs_reg): /example-0/abox_generic@generic: node has a unit name, but no reg or ranges property
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/samsung,abox-generic.example.dtb: abox_generic@generic (samsung,abox_generic): ranges: True is not of type 'object'
+	from schema $id: http://devicetree.org/schemas/soc/samsung/abox-generic.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250709001239.379695-1-ew.kim@samsung.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
