@@ -1,210 +1,162 @@
-Return-Path: <devicetree+bounces-194659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDBFAAFEEC4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 18:15:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC746AFEEFF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 18:45:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BF5B5A2DC1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 16:15:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF438560A7A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 16:45:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A891FF5E3;
-	Wed,  9 Jul 2025 16:15:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611BB221FAE;
+	Wed,  9 Jul 2025 16:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="M0zqQns2"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="cvCi7unn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B5723BF9E;
-	Wed,  9 Jul 2025 16:15:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F62221567
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 16:45:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752077707; cv=none; b=t+PAouwSNPppvPArHaCdiD8TdTufY8jUmVevtiohZHhJWdWxdMXZYUJowsi77iDZKFz7Z+HLkXshcV69AbWzjzrCgDQG27fj/2h7YZwBwKDbn0sorwYe6ixAPGQU2MNeabXR0TN1NPfDZ9pQVsPRNQdfr84Wq1kQgTOZmILWTNU=
+	t=1752079538; cv=none; b=Y6qSLZQI3BGAJz3nBiWeqvPBLwWACH7gkNfWn3q6qGP3rQfyU4+tXDuL8aWcYZQYCCLiJrVm/QS3rNUbef1mttcXyKMC+lFVMGdmwis7atPS1X4KAQA+2ihj9EmRzWFToANOioKG1mkLu+XbmD4NdL+29P0s1w/+ARuRRA/VFRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752077707; c=relaxed/simple;
-	bh=q5MJlvVs0BYsHH8IXQqVqnQryijutImO2s+0pCrIfBw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=oYZRTKS+VQ/v5Hbcz+XMxc6Ft0+CY5zzjL45cWMtEbx31niebidW/ErJVbVLJ42CrAYTPYtoNNjEGJRp9LH6BuC3MIFK/9hyStQsDcWS8rtca8h8cayzjObxHPlXSSDZV6/TNlUCWovY1eaUsYmsA1eCLf6UU4zNi1vasQNCpf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=M0zqQns2; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 569GEc6i866973;
-	Wed, 9 Jul 2025 11:14:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1752077678;
-	bh=qkPRxiZdgjK9MgB5IvFZmTDsVI/VU2ccmWoC4LVxJFE=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=M0zqQns2DKphNA2swG9UqaIo7IoYKntrIGmkvc2iUARrXbP6sSF4SVaPLcI6bmHpq
-	 KQsoW6yYS/2xRJ0gCdSyZGMiLyN9HyBChbctipR+tWT94oOGuy+5NBm2z/fqSS+TKY
-	 lMC9jwXI/mEzWLNQRq8SzR9Ftci4vfIMKVhatzV0=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 569GEcTr296137
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 9 Jul 2025 11:14:38 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 9
- Jul 2025 11:14:37 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 9 Jul 2025 11:14:37 -0500
-Received: from [10.250.35.60] ([10.250.35.60])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 569GEbe1052300;
-	Wed, 9 Jul 2025 11:14:37 -0500
-Message-ID: <6045bcfb-35ef-410b-bd7c-0ca7c5c589c4@ti.com>
-Date: Wed, 9 Jul 2025 11:14:37 -0500
+	s=arc-20240116; t=1752079538; c=relaxed/simple;
+	bh=3NUThwn3t/xkBfh4xX7xH6iEkoLptPUMCqyL6R4Ax4E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M/W7BjzDyQejiKRIvNdLIACx2DfBIdBPKJydQLUS17UWG1JpmLBd1kEyrOP7yuMw44fb1c+foQ0lB+rWa/V+m8FmZCYYtQ2Q7LXhh0M4vqofdO5QlJlImBVlgfSTE1zszBWYV7meDFyWBqgfFeeVdPL+hPatYzPjbKDUg6zstPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=cvCi7unn; arc=none smtp.client-ip=209.85.222.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7d20f79a00dso11424585a.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 09:45:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1752079534; x=1752684334; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=p78QlcMtmUxArNMXSNSzK9z/0Q60UCVFZj4PTIuJazk=;
+        b=cvCi7unn5Q036ndfR/rh5LGQQNVV1Hth+ZDqx6qtNCZA7rKvX6/B4koe7fhC2Hkcd5
+         SduC8g85FxOzBPha2/OW3Ggan8dDtim9uHeU197HTgV75jAl4v+Q8i7V6XbinoM62i/7
+         w3ifxJiSNdwkcyAXCSEjiVsHinj//QFhcS29/Ums+dt2Gh+gWFDQExEdTLb0U+rMAZXZ
+         B6AqSNR15gjwXjo5Wf7a+yA5OjjAWyJvZuldOD/WniCeJk3sHv5em/afmUxv4xdpWCk3
+         93e5gaGEdPNUDTWgenxggvxkUcUPqLzbhNWZd8tAlRznfpbv1OIhbRAqcw8zgQbMBLsz
+         YLOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752079534; x=1752684334;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p78QlcMtmUxArNMXSNSzK9z/0Q60UCVFZj4PTIuJazk=;
+        b=KeHUrUz1k86L96RbQw6ClhbWa54+YFdhFFPjAajcqnNWOQuEUQa1eo4Paj9aC3Iwz9
+         WeaG8UK/IfMnzRXF2kWIIY025/xva7Y5x8LyqyAXOQxGV/5UuAZkrEyanFk2qEo4Kyuc
+         R8CUBz5ah0FVGf3UwuSIrhF/aesdctJJaMxdfLaFxdQYkr20I+GmA+0zx+bASA7DxBiZ
+         jRhnyO9qSCNbfxtzd9PYC3LG/zxKcYlKmiprRd8pdRW72bfVmvrpnSOGu0B5EpcbU/wv
+         NDFKD2FGAG7l2DyFvy3gzI0f/mzTcV7cxEd+sBcLi24otIARpF/V40be4lFQNtZMZbDc
+         yjZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUElbTawcPvurZLfL8oKXPv0BZg15dF1VpQAudQFV36TO75HlWbqGzq2dmT53Dhw5e7YIptYcWwRCEO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAoyMUCPboFAQdnMlLX4wHn+5NNL4SqPrrewRSZDG24MM/1OKk
+	kB+dYiDR8T6euShPi0CghkDaSI5qrd8CwNtpQpvFJxfGZwHuEpNR3+ODeT66Qx/sEFs=
+X-Gm-Gg: ASbGnctI86h2XEr9UC0zv4DcnUaLkIeR4Ui7cJfrHBSZWsrljFNrlX3Xxa/ewaAnU56
+	lHwjdQHFSNBAWXDi5mz3yQbWlTqtfUVqQ2YCHZmh168Dcom6Qv1MK3QHjShRl1RYEB20e9ZhjnO
+	c2awQm+yn8Qmdg6CKkfXqcVZbKVMFBJvW3qXtdW8LhTGnODWilPYmzbtkcnDGVNQYZKZSJ+fiUo
+	trk+u7JcUkooWSdeM5+1LS/NSMTBPRHws7nu/AhzmYJ5jgfn+jxmH8lFfn1+YsT0fufEV0EI/Df
+	1xaD44T/nlpKIfYVfBq8cScxIO6ZL0gNiv7O
+X-Google-Smtp-Source: AGHT+IGK03f6ZaextKn5HgBl1Cn7IIaPVEmVU0WLiCp6KHagOT5Rlof/NRcyv22KPYGKQjltoso/Xw==
+X-Received: by 2002:a05:620a:294b:b0:7d4:547b:39a2 with SMTP id af79cd13be357-7dc92c86103mr31634985a.12.1752079534564;
+        Wed, 09 Jul 2025 09:45:34 -0700 (PDT)
+Received: from ziepe.ca ([130.41.10.202])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7d5dbe8f069sm969867685a.77.2025.07.09.09.45.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Jul 2025 09:45:33 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1uZXvJ-00000007Sge-0n2C;
+	Wed, 09 Jul 2025 13:45:33 -0300
+Date: Wed, 9 Jul 2025 13:45:33 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+	nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v5 3/5] iommu: Add verisilicon IOMMU driver
+Message-ID: <20250709164533.GA1759573@ziepe.ca>
+References: <20250709085337.53697-1-benjamin.gaignard@collabora.com>
+ <20250709085337.53697-4-benjamin.gaignard@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] dma-buf: heaps: cma: Create CMA heap for each CMA
- reserved region
-To: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Sumit Semwal
-	<sumit.semwal@linaro.org>,
-        Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>,
-        Brian Starkey <Brian.Starkey@arm.com>,
-        John Stultz <jstultz@google.com>,
-        "T.J. Mercier" <tjmercier@google.com>,
-        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marek
- Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>
-CC: Jared Kangas <jkangas@redhat.com>,
-        Mattijs Korpershoek
-	<mkorpershoek@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linaro-mm-sig@lists.linaro.org>, <iommu@lists.linux.dev>
-References: <20250709-dma-buf-ecc-heap-v6-0-dac9bf80f35d@kernel.org>
- <20250709-dma-buf-ecc-heap-v6-2-dac9bf80f35d@kernel.org>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250709-dma-buf-ecc-heap-v6-2-dac9bf80f35d@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250709085337.53697-4-benjamin.gaignard@collabora.com>
 
-On 7/9/25 7:44 AM, Maxime Ripard wrote:
-> Aside from the main CMA region, it can be useful to allow userspace to
-> allocate from the other CMA reserved regions.
-> 
-> Indeed, those regions can have specific properties that can be useful to
-> a specific us-case.
-> 
-> For example, one of them platform I've been with has ECC enabled on the
-> entire memory but for a specific region. Using that region to allocate
-> framebuffers can be particular beneficial because enabling the ECC has a
-> performance and memory footprint cost.
-> 
-> Thus, exposing these regions as heaps user-space can allocate from and
-> import wherever needed allows to cover that use-case.
-> 
-> For now, only shared-dma-pools regions with the reusable property (ie,
-> backed by CMA) are supported, but eventually we'll want to support other
-> DMA pools types.
-> 
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> ---
->   drivers/dma-buf/heaps/cma_heap.c | 52 +++++++++++++++++++++++++++++++++++++++-
->   1 file changed, 51 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/dma-buf/heaps/cma_heap.c b/drivers/dma-buf/heaps/cma_heap.c
-> index 0df007111975447d555714d61ead9699287fd65a..31a18683ee25788a800f3f878fd958718a930ff7 100644
-> --- a/drivers/dma-buf/heaps/cma_heap.c
-> +++ b/drivers/dma-buf/heaps/cma_heap.c
-> @@ -19,10 +19,12 @@
->   #include <linux/err.h>
->   #include <linux/highmem.h>
->   #include <linux/io.h>
->   #include <linux/mm.h>
->   #include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_reserved_mem.h>
->   #include <linux/scatterlist.h>
->   #include <linux/slab.h>
->   #include <linux/vmalloc.h>
->   
->   #define DEFAULT_CMA_NAME "default_cma_region"
-> @@ -421,7 +423,55 @@ static int __init add_default_cma_heap(void)
->   				ERR_PTR(ret));
->   	}
->   
->   	return 0;
->   }
-> -module_init(add_default_cma_heap);
-> +
-> +static int __init add_cma_heaps(void)
+On Wed, Jul 09, 2025 at 10:53:28AM +0200, Benjamin Gaignard wrote:
+> +static int vsi_iommu_attach_device(struct iommu_domain *domain,
+> +				   struct device *dev)
 > +{
-> +	struct device_node *rmem_node;
-> +	struct device_node *node;
-> +	int ret;
+> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
+> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
+> +	unsigned long flags;
+> +	int ret = 0;
 > +
-> +	ret = add_default_cma_heap();
-
-Will this double add the default CMA region if it was declared
-using DT (reserved-memory) when all those nodes are again scanned
-through below? Might need a check in that loop for linux,cma-default.
-
-> +	if (ret)
+> +	ret = pm_runtime_resume_and_get(iommu->dev);
+> +	if (ret < 0)
 > +		return ret;
 > +
-> +	rmem_node = of_find_node_by_path("/reserved-memory");
-> +	if (!rmem_node)
-> +		goto out;
-
-Can just return here, "out" path doesn't need to put a NULL node.
-
-Andrew
-
+> +	spin_lock_irqsave(&iommu->lock, flags);
+> +	/* iommu already attached */
+> +	if (iommu->domain == domain)
+> +		goto unlock;
 > +
-> +	for_each_child_of_node(rmem_node, node) {
-> +		struct reserved_mem *rmem;
-> +		struct cma *cma;
+> +	vsi_iommu_enable(iommu, domain);
+> +	list_add_tail(&iommu->node, &vsi_domain->iommus);
+> +	iommu->domain = domain;
 > +
-> +		rmem = of_reserved_mem_lookup(node);
-> +		if (!rmem) {
-> +			ret = -EINVAL;
-> +			goto err_put_node;
-> +		}
-> +
-> +		if (!of_reserved_mem_is_contiguous(rmem))
-> +			continue;
-> +
-> +		cma = rmem->priv;
-> +		if (!cma) {
-> +			ret = -EINVAL;
-> +			goto err_put_node;
-> +		}
-> +
-> +		ret = __add_cma_heap(cma, of_node_full_name(node));
-> +		if (ret)
-> +			goto err_put_node;
-> +	}
-> +
-> +out:
-> +	of_node_put(rmem_node);
-> +	return 0;
-> +
-> +err_put_node:
-> +	of_node_put(rmem_node);
+> +unlock:
+> +	spin_unlock_irqrestore(&iommu->lock, flags);
+> +	pm_runtime_put_autosuspend(iommu->dev);
 > +	return ret;
-> +}
-> +
-> +module_init(add_cma_heaps);
->   MODULE_DESCRIPTION("DMA-BUF CMA Heap");
-> 
+
+I thought this was mentioned before, but this doesn't handle
+attach_device being called twice without an identity attach in
+between.
+
+And now the new locking doesn't protect concurrent invalidation races,
+the lock is in the wrong place.
+
+hold the domain lock across the whole sequence to hold off any
+invalidation until the linked list is consistent with the HW
+programming:
+
+ spin_lock_irqsave(&vsi_domain->lock, flags2); // Prevent invalidation
+
+ vsi_iommu_enable(iommu, domain);
+ list_del(&iommu->node);
+ list_add_tail(&iommu->node, &vsi_domain->iommus);
+
+ spin_unlock_irqrestore(&vsi_domain->lock, flags);
+
+Then remove this:
+
+ +	/* iommu already attached */
+ +	if (iommu->domain == domain)
+ +		goto unlock;
+
+Since the fix above makes it safe regardless.
+
+And, also feels like again, but vsi_iommu_enable() needs to fully
+flush the cache since the translation is being changed, shouldn't
+there also be writes to VSI_MMU_FLUSH_BASE ?
+
+Otherwise the locking change looks OK and I don't have other comments.
+
+Jason
 
