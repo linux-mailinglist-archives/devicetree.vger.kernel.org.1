@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-194376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49115AFE098
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:54:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63408AFE09F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:56:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 789E258399B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 06:54:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B4651BC736E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 06:56:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DECA926B2DA;
-	Wed,  9 Jul 2025 06:54:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E37F26C384;
+	Wed,  9 Jul 2025 06:56:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eqrLfrxI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FhTidQSg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B08D61B4153;
-	Wed,  9 Jul 2025 06:54:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA651C84D5;
+	Wed,  9 Jul 2025 06:56:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752044070; cv=none; b=AjCvZAMUUGHhrA4oJZ06nY7P+CXTdAq1QqUU9jw6+mrqKhMuB7mrpEeZRuiu5k7QWilhLSrM/vFnhMtP1oPwadc9Htxbs4flkTv6AF5kz0R/MN3Kdsv/UQYjU00u9zZGtFFNLUtgQ0rhwBJGCv3naxoWmCyvs4BPiW0VmYv5L8I=
+	t=1752044164; cv=none; b=Q4Q1Bt9RvwtNfRkCoXzpOymGihPhWQVQbWvUQMEyRTb+8tMUD92zu70GWFwlOXBZPK6M/flkBAfL6/nRVSPFwsTVyuj0a6wpFBMasNzjQwdrSB20VKo/22AlrXv1RfereuFQfwRqj7DUjwZSp6X2eh7Nj9ygxi8jeuGuxzvfcRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752044070; c=relaxed/simple;
-	bh=jSkYtAbBZp35/z4jcL3yY2+kEXDrxQhSiS5zpSyzP+Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Te69uJES/QI578g62g87Zy+2bQVu3/aMJbZpq/WuKt+tOQnAJyzAOPY0I/QjEqgNFl786pSHLUpwBJ2Kv3bWPXvaIl+15uoByrvGboRkwEq7hfPE2mtF06+hnVZQGb/7usvrej3GIjMrF8qJAZvw7HESLuV12Ca2a0Jionf1SVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eqrLfrxI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BC80C4CEF0;
-	Wed,  9 Jul 2025 06:54:26 +0000 (UTC)
+	s=arc-20240116; t=1752044164; c=relaxed/simple;
+	bh=qSylAEef+3XBtW+QsXWnOj2sVPSL5ZwmvH9BTdLETWg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HFwumXfcli2JVJmOlEw/Wa/RC+8x/fvrgmjYMPwh+PavEOjDQvquSUeVlNrklSMMtjRC8ZZWjJJThkMtWHX2LX9PprY4NBnuO9kA65z6sUnm8VL8Ozz2v+O+smV/IHJlrorhrvkhn84FSyyqlc2xL+MUhKHGFUf170ioKBs9meQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FhTidQSg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE87FC4CEF0;
+	Wed,  9 Jul 2025 06:55:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752044070;
-	bh=jSkYtAbBZp35/z4jcL3yY2+kEXDrxQhSiS5zpSyzP+Y=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=eqrLfrxIJhdGA2IsXhWrEJpqblQOzBS0DIG7bpfPkEFjfbv2ZgTlcmnuVLkSSvatt
-	 9cCXVUGd1akJACFXvD9uYvlvVgkGhbfjLlJg2bUoIlxyKPC6nFXuQN0TKPnLepa3LM
-	 bm2xvxXGLHIrrpv3KZGn8IntV5OwCzcZ6ssW92n+u7KEYxn93C3NqEfBEKtt8QKv0w
-	 eNAMvvSjJhkIk6O4JGBlu8hzxDqnNcE0XEqvitet6a5CR9Ax+OyoJYmFejqJdk7Cf+
-	 RlEfhyR7lN0mIcDlTTfj+dETee/zO7azwR7bbkw2XmxcsukunnEs9/EkSE2HBgz7hP
-	 +Zcb59XohjuSQ==
-Message-ID: <b752c340-bbb5-479f-bc2c-a9e8541509c3@kernel.org>
-Date: Wed, 9 Jul 2025 08:54:24 +0200
+	s=k20201202; t=1752044163;
+	bh=qSylAEef+3XBtW+QsXWnOj2sVPSL5ZwmvH9BTdLETWg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FhTidQSgFyLxqAxY+J0jNvvhZfgKzKKUc9LZtMwoM9BOJV/riwmJFkV8vS8y6Hkqn
+	 Yj1eQJDZPHWhwtTnGJUu5cZjZzqyu8Cv88VaFgkoUM+oXZ0xYrbBSMP/4bwe550OgR
+	 Yp0gIzMttYIQthSk1nfZRTAYlY8L6kn90cOnpcZPQLibrLNd2Cynk0hbfBLTiKTlrR
+	 581UUf5Saf0onAjtN+M7vz7zCJi1zwQ0eGcp96adi4cpTUzTqQHclkgItVBOgcwp3d
+	 hUTV3ReqhADjchj+8754qhEJZU7M1VlK74IOIn3eLVB1IVzaZzDrdeMsXooGf2pkqv
+	 prZ2iZ+BdyeAQ==
+Message-ID: <61270ce3-8172-482f-80c7-e1c6d031cbe2@kernel.org>
+Date: Wed, 9 Jul 2025 08:55:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: net: altr,socfpga-stmmac.yaml: add minItems
- to iommus
-To: Matthew Gerlach <matthew.gerlach@altera.com>, dinguyen@kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, maxime.chevallier@bootlin.com,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250707154409.15527-1-matthew.gerlach@altera.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: dsp: mediatek: add mt8196 dsp
+ document
+To: =?UTF-8?B?SGFpbG9uZyBGYW4gKOiMg+a1t+m+mSk=?= <Hailong.Fan@mediatek.com>,
+ "perex@perex.cz" <perex@perex.cz>,
+ "pierre-louis.bossart@linux.dev" <pierre-louis.bossart@linux.dev>,
+ "kai.vehmanen@linux.intel.com" <kai.vehmanen@linux.intel.com>,
+ "broonie@kernel.org" <broonie@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>, "tiwai@suse.com"
+ <tiwai@suse.com>, "robh@kernel.org" <robh@kernel.org>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "yung-chuan.liao@linux.intel.com" <yung-chuan.liao@linux.intel.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "peter.ujfalusi@linux.intel.com" <peter.ujfalusi@linux.intel.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "daniel.baluta@nxp.com" <daniel.baluta@nxp.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "ranjani.sridharan@linux.intel.com" <ranjani.sridharan@linux.intel.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+ "sound-open-firmware@alsa-project.org"
+ <sound-open-firmware@alsa-project.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20250703075632.20758-1-hailong.fan@mediatek.com>
+ <20250703075632.20758-2-hailong.fan@mediatek.com>
+ <defd70cb-4351-4b0b-b4d0-dd1ff831615c@kernel.org>
+ <a72ff8bbd8205698948bf5be2c71d93f41a20ec1.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,40 +126,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250707154409.15527-1-matthew.gerlach@altera.com>
+In-Reply-To: <a72ff8bbd8205698948bf5be2c71d93f41a20ec1.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 07/07/2025 17:44, Matthew Gerlach wrote:
-> Add missing 'minItems: 1' to iommus property of the Altera SOCFPGA SoC
-> implementation of the Synopsys DWMAC.
-
-Why? Explain why you are doing thing, not what you are doing. What is
-obvious which makes entire two-line commit msg redundant and useless.
-
-Original binding had no iommus and referenced commit does not explain
-why they appeared during conversion in the first place.
-
+On 09/07/2025 04:52, Hailong Fan (范海龙) wrote:
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: mux for dsp clock
+>>> +      - description: 26M clock
+>>> +      - description: ADSP PLL clock
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: adsp_sel
+>>
+>> Isn't this called audiodsp in other bindings?
+>>
+> Yes, but essentially it is the mux selection of the ADSP clock.
+> So, would using "adsp_sel" make it clearer?
 > 
-> Fixes: 6d359cf464f4 ("dt-bindings: net: Convert socfpga-dwmac bindings to yaml")
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
-> ---
->  Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-> index c5d8dfe5b801..ec34daff2aa0 100644
-> --- a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-> @@ -59,6 +59,7 @@ properties:
->        - const: ptp_ref
->  
->    iommus:
-> +    minItems: 1
->      maxItems: 2
-
-Why this has to be flexible on given SoC? This is weird. Same hardware
-differs somehow?
+So every new binding will come with new name? Stick to the same name if
+this is the same clock.
 
 Best regards,
 Krzysztof
