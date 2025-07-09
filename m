@@ -1,224 +1,548 @@
-Return-Path: <devicetree+bounces-194370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48F4DAFE004
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:39:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 366F0AFE1CD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:04:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B1F8580230
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 06:39:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2BC954358B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:03:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5FD826B770;
-	Wed,  9 Jul 2025 06:39:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC3B627511F;
+	Wed,  9 Jul 2025 08:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="FfQ4jwzZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WpG1NOWh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011017.outbound.protection.outlook.com [40.107.130.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F30526B747;
-	Wed,  9 Jul 2025 06:39:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752043180; cv=fail; b=S1uk+6cD9flH3nmxhL3gdO2OauEWmXoo/Ddq6yRDSQWxnVDhUlmldZS9RwsQ4wdhdI9zi62EFBkUPpesb+3MGLO7eIX/O45RVf3jrb5eoym4Qp9cQLkaamKzhhz+fwke9o1QHD0Pb6nnNSywUMRSCOIVqNM1AYPa9nnJh4bR7zc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752043180; c=relaxed/simple;
-	bh=rRqHoD4+jWn/weHGl7+eVHD1YdVT8Pikrhq//JPEwx4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=il9znrwgnvk8YCleTPADU1I8PMRFjiA2R5XL+zI+c0jZJ1OAlQiHCUV+FQVv4HqZXswO1B6ef8LTR9qQOnsNJQgaA94o7SSKmksImjsYxdjIf2Fzwl5ZDXtkX8qkHi5d0JnD9gb5QPvnNZGVA9dIFvWxscGGUllOiYAqHMTu2lA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=FfQ4jwzZ; arc=fail smtp.client-ip=40.107.130.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gNm68ofDpMkTzJ2jLRoL3a+ItFIsrA9aYXVe59Vy6S4FskmTHYSeJDE9kOJ2lSb5pDMj+Bw7Jsj5foGDUJO93BafZaILuz4JEEyID16VKHSMhUTk35Td89KK8oz/SZ86eTod/8nsF6ytzGO4yybgnPAXDnpgeEZTDvPyAijofA3pSqjaZIMg+pgyVH8BxEplUq09wULaKIpLKMMMzWe2DeMpfgN7cpdmTSoiPnVFMjeMdrRFDrsjtjNcthKKPoDW6BK24kSUadKJ1xvUPT26qFrQqUdqmGvHl/TmiJnXVKDR9kLASeSyWxDQBWamOhqE88529wFMBOgRZibSP9jAWQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8d8g0SYKmOr4v166dBx5Whp4pPSDxdmFAdP9l6JJIss=;
- b=mUyVxoovKJdUunDdfGiGqx6qgr9buKMTgcHUjJ33IogG/w2E1sOIiFlqQJkxv0yTDQNHxmPnraQVtdXlHOzX57gbhlCsVRKrS0/a2k0q43BG6CJvoZPHDZg9IDd3Fho+ahdpATHRGp+J551qZKwa0bB3Pk2DH7kFVZK5FqgLo+JzGgn8G83DmZvLe9wna3uigXSEH4p43MiZrJLxPLAq06S0r2R/Y9hrMgKRMwN45zuMF4ZrD/A1xRDMpPOrYK16KQW1W5atpkKyIa1Sa0PEoL4Ba3FR09voVvBIdQXp9qA0NkKA/q9Ag9WzicGu+xl5WU/3pC/KuQiqViokFs7/zw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8d8g0SYKmOr4v166dBx5Whp4pPSDxdmFAdP9l6JJIss=;
- b=FfQ4jwzZbLI8w/3uu0UYk8h87GmGeWnjz9oKs5HavTz8DTW1yVbx5q2W/daFvqucP8SBY25d87JDgc36G3h8kgz6eb3XdiRjSegIqm9UGN37N3E3PRttZjQa/pl5PPEY1F3xXtMahsCzHwiJO8UtfmZqytimpwEm+cMSbXtlHACLt0jCeoEFrLy/Qjgq1aoDniXsZd9HfFobnBYWDH/jt4IY9uk9YBh/erSz+WjVJTx+mN0IJ0FuUlL19W3gxjAcHrAFV6gf+yJIDXjhB/PatUw1xsiYg3tKXqvYZr69l5VYNL5cDeRX+tkGhv83tVglFc6FK/ZasvsBRin1VQv68g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DB9PR04MB8461.eurprd04.prod.outlook.com (2603:10a6:10:2cf::20)
- by GVXPR04MB9736.eurprd04.prod.outlook.com (2603:10a6:150:11c::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.26; Wed, 9 Jul
- 2025 06:39:34 +0000
-Received: from DB9PR04MB8461.eurprd04.prod.outlook.com
- ([fe80::b1b9:faa9:901b:c197]) by DB9PR04MB8461.eurprd04.prod.outlook.com
- ([fe80::b1b9:faa9:901b:c197%5]) with mapi id 15.20.8901.024; Wed, 9 Jul 2025
- 06:39:34 +0000
-Date: Wed, 9 Jul 2025 15:49:40 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Iuliana Prodan <iuliana.prodan@nxp.com>,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v3 3/5] remoteproc: imx_rproc: Add support for i.MX95
-Message-ID: <20250709074940.GA14535@nxa18884-linux>
-References: <20250625-imx95-rproc-1-v3-0-699031f5926d@nxp.com>
- <20250625-imx95-rproc-1-v3-3-699031f5926d@nxp.com>
- <aG1J2_nK-LkLQVRj@p14s>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aG1J2_nK-LkLQVRj@p14s>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-ClientProxiedBy: MA0PR01CA0018.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:80::18) To DB9PR04MB8461.eurprd04.prod.outlook.com
- (2603:10a6:10:2cf::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8894F21ADAE;
+	Wed,  9 Jul 2025 08:02:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752048169; cv=none; b=CCBY98JHWeUUFVmd9/aWMrkhN89P89ural6JqqqymXFNlMQxssLAzmb2XpvTPiXNqGKphUwqG9cRsJCz7C4O1rqgXtITyy4AvH8sdHW1wLqXM2eP/olJnhTuCxTjk0jDGf+mXGxwDYNlwMfuLKLumnJBleZRfj6VBbR9nN+kTwo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752048169; c=relaxed/simple;
+	bh=Is5ItbNqFwQvFiMymGntYFX6/M+CfWU7KxpjnIWap5w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Cd35fRwO2ZpHwEu6Ih9C+Er+XyphKgN1sOfGQ/OKHNIA8Z00Nt8Kf57y5gp1DM5QFrzV2iqbb+cxQpABMJ5K74wUerRkcvjVggwftQUiaSfbWzDWD1zYwjHW6OaSsVA9RNG1IV3Ymj+lL/8+wwVyj//qrsjbzVn9S/PfSzujzoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WpG1NOWh; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e8b3cc05665so2970780276.2;
+        Wed, 09 Jul 2025 01:02:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752048166; x=1752652966; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=yATPmOJ9OWkUtgidVpJWhXW/bSTBOOmlD2hct+WSePs=;
+        b=WpG1NOWhQHwTcqnsN7AmLieUV6K6Y1SwRLXCLynArifikIGDIYi3UYoRx+p9h3YLSG
+         zy9/3ZDYAznlLoIcixFzVoqCrJpulBOG/g7oNsbAArGlx7c3u59Avp6h0rybQM5akNtV
+         2t6Xblo8wswj3OcRYOagcykVp8gYX+Uca3nBLKVClmHlLF9b/As2WH0Ad5ztKb14Sb6B
+         ME8XdqHV6gbVoWoADkn/FMTwEVOMPE0EmrW9jypL32egBTUWclQuhKM0ovxzlcqbSF3O
+         8zecNz2pigze32BJhrYD7umpkrlndGHgQMWSTNOOswkZWzczw1WINBYLfXXUGGPglyB2
+         mt8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752048166; x=1752652966;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yATPmOJ9OWkUtgidVpJWhXW/bSTBOOmlD2hct+WSePs=;
+        b=H1bAgAc8DAYhglWrHt3AX/gprvYgaQgpbNZecj7giRFGnGPEY0PfK518M41oLui6Rp
+         TJswb+fVYV2qNMgkQny0P2nwy6xGU/gW2vQRSzs7DRTC3KPyw6dlEGzi6JNbclGiYVYd
+         kTZwJOc9FsDpcOmIpSCKiZRdsCSA1sYGOzBWvpnnum/ZCvU/eB4dZg2g3ZzcATEzrDI5
+         XEX1cKQCkrXEhccJLqLnMcK6rTnCwXYBD1eoBIK5oXvzLkgu1uF1ADjiDWjNzpgq5bd5
+         gU77VltCVTsGNZTmTehF+dDPAxpVcIsYwC+VgSwPEsVfVAw66cVCjAan2JaRQw2pVSJl
+         EQfA==
+X-Forwarded-Encrypted: i=1; AJvYcCU3pmTSzw/FLt9Kr52nBtVPGJfKe/eo9R9xbc33eLKWf41+BdgniNoND3DhUIv9OOwCArleJVSGl/BtxOU=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywu90fuIt3W1DfTnzuhdVUSq+P9p/mffZwTaU6luQoNeMWh8C6q
+	c3GrjCo0rUSCXGyXmBSjJ1ysTcwS3WsMKlouSmaqwHOn4Mfx0BGq9XeVPFnFEDk+kCjFl9GOyhG
+	b8QRA2DnEUb2z8iHlledJDMneW4Lohuw=
+X-Gm-Gg: ASbGncv36F+C09OuZGthICFH9XazZgGLg30lgLChPOmhWW2Qemt182JASxUii0vfkGd
+	haqSzFgUvvStDfakzdnLZzoaqIJNqKXm59xICcL6I5KSsIFSxSE+3utQgevupwvKVax2d+8bpsY
+	Rj4ZI+ANXGk9rJzh+b5X6xY4BlBpqdQbk/lUatNhiichsRNB5iNGLr
+X-Google-Smtp-Source: AGHT+IFGpt6J0H8CQUxjwUxnTBiD6rrHmvp65uaeZMHRsJnS4HxRTMA6MZltFxevyxDt5SjC3aYf6BLRImSwy75tylw=
+X-Received: by 2002:a05:690c:dc8:b0:70e:29af:844a with SMTP id
+ 00721157ae682-717b19647bdmr22238557b3.18.1752048166224; Wed, 09 Jul 2025
+ 01:02:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB8461:EE_|GVXPR04MB9736:EE_
-X-MS-Office365-Filtering-Correlation-Id: de55fc6c-45e4-4a03-9eae-08ddbeb35e04
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|52116014|19092799006|7416014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?bkTqu2QBkCCY+shdRyeWCFv/uWa0hDsjZqB2zi1335hGxXGxYaEgJOQVrub9?=
- =?us-ascii?Q?Xi6qqi4459Mot2NXTgo4FgEj8faAHc3MpPRc8I+VvT/ey14szl/NHV/kQgIu?=
- =?us-ascii?Q?3iCsfKDcrPE4A7WEbu5ifG4qulo0umNLQ5s2S1iIjoyDw66X3q11tInZ/W3K?=
- =?us-ascii?Q?50t+3RCtv/AiVpxgO8MBsyH9SfD0x66LRrkQQvWgEnQVu1jFHVRSFfD3D8kY?=
- =?us-ascii?Q?CJqgaofCOKv3xC11SPsxTpz1GzzZAjqFpFoVjiW6K/Z2It4J+H1bjlD8N/CV?=
- =?us-ascii?Q?5tT8DZSAuVCZiYej9MKCrS1UupZ6WOleUWaKmZd+Hu64WKdG/GAhdjnQLNm5?=
- =?us-ascii?Q?JJCtLzKFIUg6Lv0RhILWU/SDmMdI8MddtLpk+hbrHFwDYGl6ApfqmkY8pBKf?=
- =?us-ascii?Q?5O39r9OICY020MKgfR8uDaUyxcyLdIp4+lt1COmdEjGvjNLqsxvFFULUg37F?=
- =?us-ascii?Q?9DnSaCOu6l5wcWlzf2Cw+Zui+C0KGyrp/sdFCcZvvCdx9PjeKHSkSelYEl41?=
- =?us-ascii?Q?JzMQWyCbd7zpECmZIdTioM7WEhRU+OEQGyfX+gscUXEF+Isku07mtKB32G7T?=
- =?us-ascii?Q?LrQ9gewPX/xHhFGd/In1IQG4uqip8fpnNIrGGJwcq4kBBN4MiQc3ocz3TqjW?=
- =?us-ascii?Q?pzld2Qo7sBAfGyooZPIYk9bB/70ORKXCt2fsQFtmlCj2KjmRjhltnvhfhjSu?=
- =?us-ascii?Q?MUdy1ypIAzjjg6K+zWj9+TCVyTIYiIJLeVhCqLr5N3scNnbiu8qYNGRrSCyW?=
- =?us-ascii?Q?9K/fyK331zSgevAhV3WLtnVYIvpkoymABviKUdp1tStUZz3vDngjtvsm9ntl?=
- =?us-ascii?Q?ZdoxOQwsYynz+W59A4iCuqwiDQe2aKxtdGHt5Chl0WAonfowZwfUDaAOtxH1?=
- =?us-ascii?Q?H8748IVx5gNg3KKURgjqpShBTcP8zKcFjXP4aCH6cOW6JdxQQcqEbuWnFNlK?=
- =?us-ascii?Q?8emEIaSFS5rxhd9R/BwesCv28Fr17vrulMaxbFe1Dcg20wX28v7sT1hXVwVF?=
- =?us-ascii?Q?fFIUtBgNuKpWVUHT2/nI6/HDzcyCeHd/jbUbxIsdCVubCa4iFYAWtEZl2+Hp?=
- =?us-ascii?Q?wLdZ/bj4vCNX6oaL068aAElX/zc0rRvnk5XVP2Lm3C3QF18uFjnB8ulMIKhm?=
- =?us-ascii?Q?744jZd+V+9sc5uq9+9uTWle/BxhWCNGJJE1T6R3oRvfox63cnY6n7QTr9MVx?=
- =?us-ascii?Q?FKke1LaLPX+MOBIORyMF54ooPNXTp1XC0CjXbfRa/qzB8LcqPcnHrZiS/gHB?=
- =?us-ascii?Q?wcb3IyLAgAvKS4fA+YuQ084cOuOAnQTynCFJHkogQLrDXu+gjhmVxON22BQ0?=
- =?us-ascii?Q?8WmS8/7YoSQcW+3/U6t95PKIdaXUsYDqeQ2JgQ+xW8acQAkO4A/S2ByQc0Dw?=
- =?us-ascii?Q?8R1qP9hQdURLWAhUCuUsDeNfp7dzdrPa4PovKEA3dd3WI2nbQmLsJy7VIrsD?=
- =?us-ascii?Q?r8Sp0Xdo/1Imp8FdfcoeXZF1P1ZKfB1Qi2DHA5zUaynmQijtG8uOsA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8461.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(19092799006)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?eVUyc3G8p8hGUoHpJV5Xw1xE5lAj6NYpzZpJ88hzgaqfpeAoiRALa/XcR6UP?=
- =?us-ascii?Q?oZfLem/Coxvaqh3eACUcw1agJxg6VlhugqrD6wAECZl1CgEEo3WLOOl1e/VB?=
- =?us-ascii?Q?THllu0FTsl3wZWa1QnY75sRNSM86aTkbcCxjL2DBVTdI07ks4ImjhiAK8fmd?=
- =?us-ascii?Q?Tck2/JniFoKu9UJmoec9QAaHKBokgfXLMaM8SjZ0BS4WNxl5fY80FCCxcufL?=
- =?us-ascii?Q?4oEoKenaEnCk+UKrSHtDtUcbCAaj8w3rc/oK4CggGcy1VPRyJ92Q6zCr+emC?=
- =?us-ascii?Q?yB3NkxJQRAeInPayU9TquE3L2/eCdAKBFMGCbk8fktgbyB/gC1aavT72WfA9?=
- =?us-ascii?Q?90IFy/9daBEuvmOIrMbj5BN6m1fUAolWexo1i4AMcP6Elr7hEOFX/XC32LQ8?=
- =?us-ascii?Q?ISinZw7tqTUw1/2KcWgKJ7H3tvpvKDo+gkZy2YT3z4eSErKJ9Ws7FcgDwYK2?=
- =?us-ascii?Q?j0J83QjhFky3hkh1kziHwbhPzJsXJGE1QO17uKSYl/lRue5yi1ivG1QyGbx3?=
- =?us-ascii?Q?3djarnb9LoFuNJMo29NwF0z5RTg+N2kDnerjgiPEiCTa1e9BSeYF2BPyFwSB?=
- =?us-ascii?Q?84rqXx7OnwnhTZ10FLeWYUHbWJJt+BHY3D43qRkBkOIh/EXo1/rJvO3akPMk?=
- =?us-ascii?Q?7ibOAPlzXB+IRDJahmWV911HAS61GBKtFTceAq84LpRQKQoR9rLDuVO7zWcn?=
- =?us-ascii?Q?j47+GC8NVetJQOxkqcBCjQrKNW50S2DajbkD9qVdZGrOUwayIAjsXKQJDQk+?=
- =?us-ascii?Q?+5M7Xbfs7m82pOqrKmvbWL1uh+Q3FNa1TVrJ6l6UpHd4JyrDHyAC5fXqhr6m?=
- =?us-ascii?Q?aPBNTgiVSckKkOmwE6vn2qZVFLmb6I6D4ppfb6b9cI6v9jRtuuFhLg+rM6mX?=
- =?us-ascii?Q?O3Mv/KiGCmS6qncZZE/kO7ThYEJ9HpB78Xr1hIg3tSHw368kNST9xdJwG8zi?=
- =?us-ascii?Q?C5ghVmIYz+8Ympfe+JMhG9emactwQsNYpZv+9mDGxik7HWQeqI48/8gEbnYp?=
- =?us-ascii?Q?DeXXJLGdSA2/CxUi9yGOa/4FRuSOwviCU92NC+V+Hs1ZoVsOgoHKoouCBIWk?=
- =?us-ascii?Q?UIIuz0dH2lxJ7yWKDyQf9JZf8If78d7pR/x4YLNPhSRgxZdhtV9kwWEGp93p?=
- =?us-ascii?Q?WcFk0Ok+o7gLxlKtnxs4MXxm3byGBXU8ex45J1t/3vFZL6uOd720P1pR2CU+?=
- =?us-ascii?Q?U+7H22FHUi4Va/3mSYiQRfJAIOnCVRzgfk6Vs8pH01z7lHomVfmj1UfoEX8k?=
- =?us-ascii?Q?ljH7ji74AcwsfBzhVDQrN3iH5PQY19iyKLaGWuk/DWvgFr+ANU8KYIv2tCY4?=
- =?us-ascii?Q?2H922rBKizEcmOLmQmtXEmyQa0VX0ChT03D2ice0gCEpUorxbpZGaxuQdXW7?=
- =?us-ascii?Q?zoJkxjrgRWKS0t3UUmVi2I/vuDxVdLFXu1kKyqATAess8b3pvCALwaq0lNT7?=
- =?us-ascii?Q?40wBBdLMLqNGHubVGhgHe2vs/6PT8rXb46eAZ8Sack4ThTVazCNRNyjawEtg?=
- =?us-ascii?Q?q8asmkz1POBYT2M5a0/XzTnFDvQNSMXxOZq9RHTFQGfbkarIFL59qe5pZ/Lg?=
- =?us-ascii?Q?f9DDq4nSYgJPcaZzb7y9zzfvvF4P/wi4LqSfNyAI?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: de55fc6c-45e4-4a03-9eae-08ddbeb35e04
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8461.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2025 06:39:34.5709
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Gqk4Gzk54ZCgyoC5rGMnFg0EY4dDSfi9qfDtyDMU79sfLIIRIln9bujWkkcWXGSInzjPAQlepE9QcbFFnY379A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9736
+References: <20250708184841.72933-1-stefano.radaelli21@gmail.com>
+ <20250708184841.72933-3-stefano.radaelli21@gmail.com> <3ab061ca-1d2e-468f-a1c8-ac0ad0433103@ti.com>
+In-Reply-To: <3ab061ca-1d2e-468f-a1c8-ac0ad0433103@ti.com>
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Date: Wed, 9 Jul 2025 10:02:30 +0200
+X-Gm-Features: Ac12FXzoqijcYZPvK1vcDVnyFQdExXLKeRuIBSKjGuodjwZO7s0cTmbkEfYlPKc
+Message-ID: <CAK+owojKH8H30r=xm6BDM-i0mf4e+CnTERpu2YrOD7gZyY6n0w@mail.gmail.com>
+Subject: Re: [PATCH v1 2/3] arm64: dts: ti: Add support for Variscite VAR-SOM-AM62P
+To: Vignesh Raghavendra <vigneshr@ti.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Mathieu,
+Hello Vignesh,
 
-On Tue, Jul 08, 2025 at 10:39:55AM -0600, Mathieu Poirier wrote:
->On Wed, Jun 25, 2025 at 10:23:29AM +0800, Peng Fan (OSS) wrote:
->> From: Peng Fan <peng.fan@nxp.com>
->> 
->> Add imx_rproc_cfg_imx95_m7 and address(TCM and DDR) mapping.
->> Add i.MX95 of_device_id entry.
->> 
->> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
->> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->> ---
->>  drivers/remoteproc/imx_rproc.c | 25 +++++++++++++++++++++++++
->>  1 file changed, 25 insertions(+)
->> 
->> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
->> index b1a117ca5e5795554b67eb7092db2a25fc7de13b..c226f78c84ad180c69804116d6cfcab19db6aaa5 100644
->> --- a/drivers/remoteproc/imx_rproc.c
->> +++ b/drivers/remoteproc/imx_rproc.c
->> @@ -73,6 +73,10 @@
->>  
->>  #define IMX_SC_IRQ_GROUP_REBOOTED	5
->>  
->> +/* Must align with System Manager Firmware */
->> +#define IMX95_M7_CPUID			1
->> +#define IMX95_M7_LMID			1
+thank you for your corrections, I completely forgot to compile with
+the W=1 flag.
+
+I'll take care of everything,
+
+Best Regards,
+
+Stefano
+
+Il giorno mer 9 lug 2025 alle ore 06:14 Vignesh Raghavendra
+<vigneshr@ti.com> ha scritto:
 >
->Any reason those aren't set in the device tree?
-
-Krzysztof rejected to introduce the IDs to devicetree.
-
-From IRC:
-"To me this makes no sense in current explanayton - you have 8 cores, but only
-one can be put there, so what happens with the rest?
-And I don't think we care about something like remote and local ID - it is
-the same. CPUs have single number. So this looks like copy paste downstream
-and thus solve it internally first"
-
-
-In System Manager Firmware, CPUID is fixed and will not change.
-LMID is also fixed as of now, we not expect customer to change LMID.
-
-So with "fsl,imx95-m7", we could know the CPUID and LMID for M7, so 
-it does not make sense to introduce new property saying "fsl,imx95-lmid"
-and "fsl,imx95-cpuid". This should be the main concern that DT maintainers
-reject to add properties for the IDs.
-
-Thanks,
-Peng
-
 >
->Thanks,
->Mathieu
+>
+> On 09/07/25 00:18, Stefano Radaelli wrote:
+> > Add device tree support for the Variscite VAR-SOM-AM62P system on module.
+> > This SOM is designed to be used with various carrier boards.
+> >
+> > The module includes:
+> > - AM62Px Sitara MPU processor
+> > - Up to 8GB of DDR4-3733 memory
+> > - eMMC storage memory
+> > - PS6522430 chip as a Power Management Integrated circuit (PMIC)
+> > - Integrated 10/100/1000 Mbps Ethernet Transceiver Analog Devices ADIN1300
+> > - Resistive touch panel interface controller TI TSC2046
+> > - I2C interfaces
+> >
+> > Only SOM-specific peripherals are enabled by default. Carrier board
+> > specific interfaces are left disabled to be enabled in the respective
+> > carrier board device trees.
+> >
+> > Link: https://www.variscite.it/product/system-on-module-som/cortex-a53-krait/var-som-am62p-ti-sitara-am62px/
+> >
+> > Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi | 379 ++++++++++++++++++
+> >  1 file changed, 379 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
+> > new file mode 100644
+> > index 000000000000..1d4ebc484d55
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
+> > @@ -0,0 +1,379 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Common dtsi for Variscite VAR-SOM-AM62P
+> > + *
+> > + * Copyright (C) 2021-2022 Texas Instruments Incorporated - https://www.ti.com/
+> > + * Copyright (C) 2025 Variscite Ltd. - https://www.variscite.com/
+> > + *
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +#include <dt-bindings/leds/common.h>
+> > +#include <dt-bindings/pwm/pwm.h>
+> > +#include "k3-am62p5.dtsi"
+> > +
+> > +/ {
+> > +     compatible = "variscite,am62p-var-som", "ti,am62p5";
+> > +
+> > +     iw612_pwrseq: iw612_pwrseq {
+>
+> No underscore in node names please
+>
+> > +             compatible = "mmc-pwrseq-simple";
+> > +             post-power-on-delay-ms = <100>;
+> > +             power-off-delay-us = <10000>;
+> > +             reset-gpios = <&main_gpio0 54 GPIO_ACTIVE_LOW>, /* WIFI_PWR_EN */
+> > +                           <&main_gpio0 59 GPIO_ACTIVE_LOW>; /* WIFI_EN */
+> > +             status = "okay";
+> > +     };
+> > +
+> > +     emmc_pwrseq: pwrseq@0 {
+>
+> There isnt a reg property to have a unit addresss
+>
+> > +             compatible = "mmc-pwrseq-emmc";
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&emmc_pwrseq_pins>;
+> > +             reset-gpios = <&main_gpio0 49 GPIO_ACTIVE_LOW>;
+> > +     };
+> > +
+> > +     memory@80000000 {
+> > +             /* 8G RAM */
+> > +             reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
+> > +                   <0x00000008 0x80000000 0x00000001 0x80000000>;
+> > +             device_type = "memory";
+> > +             bootph-pre-ram;
+> > +     };
+> > +
+> > +     opp-table {
+> > +             /* Add 1.4GHz OPP for am62p5-sk board. Requires VDD_CORE at 0v85 */
+> > +             opp-1400000000 {
+> > +                     opp-hz = /bits/ 64 <1400000000>;
+> > +                     opp-supported-hw = <0x01 0x0004>;
+> > +                     clock-latency-ns = <6000000>;
+> > +             };
+> > +     };
+> > +
+> > +     reserved_memory: reserved-memory {
+> > +             #address-cells = <2>;
+> > +             #size-cells = <2>;
+> > +             ranges;
+> > +
+> > +             rtos_ipc_memory_region: rtos-ipc-memory@9b500000 {
+> > +                     compatible = "shared-dma-pool";
+> > +                     reg = <0x00 0x9b500000 0x00 0x00300000>;
+> > +                     no-map;
+> > +             };
+> > +
+> > +             mcu_r5fss0_core0_dma_memory_region: mcu-r5fss-dma-memory-region@9b800000 {
+> > +                     compatible = "shared-dma-pool";
+> > +                     reg = <0x00 0x9b800000 0x00 0x00100000>;
+> > +                     no-map;
+> > +             };
+> > +
+> > +             mcu_r5fss0_core0_memory_region: mcu-r5fss-memory-region@9b900000 {
+> > +                     compatible = "shared-dma-pool";
+> > +                     reg = <0x00 0x9b900000 0x00 0x00f00000>;
+> > +                     no-map;
+> > +             };
+> > +
+> > +             wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
+> > +                     compatible = "shared-dma-pool";
+> > +                     reg = <0x00 0x9c800000 0x00 0x00100000>;
+> > +                     no-map;
+> > +             };
+> > +
+> > +             wkup_r5fss0_core0_memory_region: r5f-memory@9c900000 {
+> > +                     compatible = "shared-dma-pool";
+> > +                     reg = <0x00 0x9c900000 0x00 0x01e00000>;
+> > +                     no-map;
+> > +             };
+> > +
+> > +             secure_tfa_ddr: tfa@9e780000 {
+> > +                     reg = <0x00 0x9e780000 0x00 0x80000>;
+> > +                     no-map;
+> > +             };
+> > +
+> > +             secure_ddr: optee@9e800000 {
+> > +                     reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
+> > +                     no-map;
+> > +             };
+> > +     };
+> > +
+> > +     vcc_3v3: vcc-3v3 {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "vcc_3v3";
+> > +             regulator-min-microvolt = <3300000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +     };
+> > +
+> > +     vcc_1v8: vcc-1v8 {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "vcc_1v8";
+> > +             regulator-min-microvolt = <1800000>;
+> > +             regulator-max-microvolt = <1800000>;
+> > +             vin-supply = <&vcc_3v3>;
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +     };
+> > +
+> > +     vdd_phy_3v3: regulator-8 {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "vdd_phy_3v3";
+> > +             gpios = <&main_gpio0 45 GPIO_ACTIVE_HIGH>;
+> > +             enable-active-high;
+> > +             regulator-always-on;
+> > +             status="okay";
+> > +     };
+> > +};
+> > +
+> > +&cpsw3g {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&main_rgmii1_pins_default>;
+> > +};
+> > +
+> > +&cpsw3g_mdio {
+> > +     status = "okay";
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&main_mdio1_pins_default>;
+> > +     cpsw3g_phy0: ethernet-phy@4 {
+> > +             reg = <4>;
+> > +             compatible = "ethernet-phy-id0283.bc30";
+> > +             reset-gpios = <&main_gpio0 46 GPIO_ACTIVE_LOW>;
+> > +             reset-assert-us = <10000>;
+> > +             reset-deassert-us = <100000>;
+> > +     };
+> > +};
+> > +
+> > +&cpsw_port1 {
+> > +     /*
+> > +      * The required RGMII TX and RX 2ns delays are implemented directly
+> > +      * in hardware via passive delay elements on the SOM PCB.
+> > +      * No delay configuration is needed in software via PHY driver.
+> > +      */
+> > +     phy-mode = "rgmii";
+> > +     phy-handle = <&cpsw3g_phy0>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&main_i2c2 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&main_i2c2_pins_default>;
+> > +     clock-frequency = <400000>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&main_i2c3 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&main_i2c3_pins_default>;
+> > +     clock-frequency = <400000>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&main_pmx0 {
+> > +     emmc_pwrseq_pins: pinmux_emmc_pwrseq_pins {
+>
+> Same here
+>
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x00c8, PIN_OUTPUT, 7) /* (AB23) VOUT0_DATA4.GPIO0_49 */
+> > +             >;
+> > +     };
+> > +
+> > +     main_i2c2_pins_default: main-i2c2-default-pins {
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x00b0, PIN_INPUT_PULLUP, 1) /* (T22) GPMC0_CSn2.I2C2_SCL */
+> > +                     AM62PX_IOPAD(0x00b4, PIN_INPUT_PULLUP, 1) /* (U25) GPMC0_CSn3.I2C2_SDA */
+> > +             >;
+> > +     };
+> > +
+> > +     main_i2c3_pins_default: main-i2c3-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x01d0, PIN_INPUT_PULLUP, 2) /* (A23) UART0_CTSn.I2C3_SCL */
+> > +                     AM62PX_IOPAD(0x01d4, PIN_INPUT_PULLUP, 2) /* (C22) UART0_RTSn.I2C3_SDA */
+> > +             >;
+> > +     };
+> > +
+> > +     main_mcasp1_pins_default: main-mcasp1-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x0090, PIN_INPUT, 2) /* (U24) GPMC0_BE0n_CLE.MCASP1_ACLKX */
+> > +                     AM62PX_IOPAD(0x0098, PIN_INPUT, 2) /* (AA24) GPMC0_WAIT0.MCASP1_AFSX */
+> > +                     AM62PX_IOPAD(0x008c, PIN_OUTPUT, 2) /* (T25) GPMC0_WEn.MCASP1_AXR0 */
+> > +                     AM62PX_IOPAD(0x0084, PIN_INPUT, 2) /* (R25) GPMC0_ADVn_ALE.MCASP1_AXR2 */
+> > +                     AM62PX_IOPAD(0x00a0, PIN_OUTPUT, 1) /* (P24) GPMC0_WPn.AUDIO_EXT_REFCLK1 */
+> > +             >;
+> > +     };
+> > +
+> > +     main_mdio1_pins_default: main-mdio1-pins-default {
+>
+> This fails make dtbs_check (node name needs to end in -pins)
+>
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x0160, PIN_OUTPUT, 0) /* (F17) MDIO0_MDC */
+> > +                     AM62PX_IOPAD(0x015c, PIN_INPUT, 0) /* (F16) MDIO0_MDIO */
+> > +             >;
+> > +     };
+> > +
+> > +     main_mmc2_pins_default: main-mmc2-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x0120, PIN_INPUT_PULLUP, 0) /* (K24) MMC2_CMD */
+> > +                     AM62PX_IOPAD(0x0118, PIN_INPUT_PULLDOWN, 0) /* (K21) MMC2_CLK */
+> > +                     AM62PX_IOPAD(0x011C, PIN_INPUT_PULLUP, 0) /* () MMC2_CLKLB */
+> > +                     AM62PX_IOPAD(0x0114, PIN_INPUT_PULLUP, 0) /* (K23) MMC2_DAT0 */
+> > +                     AM62PX_IOPAD(0x0110, PIN_INPUT_PULLUP, 0) /* (K22) MMC2_DAT1 */
+> > +                     AM62PX_IOPAD(0x010c, PIN_INPUT_PULLUP, 0) /* (L20) MMC2_DAT2 */
+> > +                     AM62PX_IOPAD(0x0108, PIN_INPUT_PULLUP, 0) /* (L21) MMC2_DAT3 */
+> > +             >;
+> > +     };
+> > +
+> > +     main_rgmii1_pins_default: main-rgmii1-default-pins {
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x014c, PIN_INPUT, 0) /* (B15) RGMII1_RD0 */
+> > +                     AM62PX_IOPAD(0x0150, PIN_INPUT, 0) /* (B16) RGMII1_RD1 */
+> > +                     AM62PX_IOPAD(0x0154, PIN_INPUT, 0) /* (A14) RGMII1_RD2 */
+> > +                     AM62PX_IOPAD(0x0158, PIN_INPUT, 0) /* (B14) RGMII1_RD3 */
+> > +                     AM62PX_IOPAD(0x0148, PIN_INPUT, 0) /* (A16) RGMII1_RXC */
+> > +                     AM62PX_IOPAD(0x0144, PIN_INPUT, 0) /* (A15) RGMII1_RX_CTL */
+> > +                     AM62PX_IOPAD(0x0134, PIN_INPUT, 0) /* (A18) RGMII1_TD0 */
+> > +                     AM62PX_IOPAD(0x0138, PIN_INPUT, 0) /* (C17) RGMII1_TD1 */
+> > +                     AM62PX_IOPAD(0x013c, PIN_INPUT, 0) /* (A17) RGMII1_TD2 */
+> > +                     AM62PX_IOPAD(0x0140, PIN_INPUT, 0) /* (C16) RGMII1_TD3 */
+> > +                     AM62PX_IOPAD(0x0130, PIN_INPUT, 0) /* (B17) RGMII1_TXC */
+> > +                     AM62PX_IOPAD(0x012c, PIN_INPUT, 0) /* (B18) RGMII1_TX_CTL */
+> > +             >;
+> > +             bootph-all;
+> > +     };
+> > +
+> > +     main_spi0_pins_default: main_spi0-pins-default {
+>
+> Same here
+>
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x01bc, PIN_OUTPUT, 0) /* (B21) SPI0_CLK */
+> > +                     AM62PX_IOPAD(0x01b4, PIN_OUTPUT, 0) /* (D20) SPI0_CS0 */
+> > +                     AM62PX_IOPAD(0x01c0, PIN_OUTPUT, 0) /* (B20) SPI0_D0 */
+> > +                     AM62PX_IOPAD(0x01c4, PIN_INPUT, 0) /* (C21) SPI0_D1 */
+> > +             >;
+> > +     };
+> > +
+> > +     main_uart5_pins_default: uart5-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x00ec, PIN_INPUT, 4) /* (AC21) VOUT0_DATA13.UART5_CTSn */
+> > +                     AM62PX_IOPAD(0x00e8, PIN_OUTPUT, 4) /* (AD21) VOUT0_DATA12.UART5_RTSn */
+> > +                     AM62PX_IOPAD(0x00d0, PIN_INPUT, 4) /* (AC23) VOUT0_DATA6.UART5_RXD */
+> > +                     AM62PX_IOPAD(0x00d4, PIN_OUTPUT, 4) /* (AE23) VOUT0_DATA7.UART5_TXD */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_bt: btgrp {
+>
+> More such issues
+>
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x00f4, PIN_OUTPUT, 7) /* (Y20) VOUT0_DATA15.GPIO0_60 (BT_EN) */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_restouch: restouchgrp {
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x00c4, PIN_INPUT_PULLUP, 7) /* (Y23) VOUT0_DATA3.GPIO0_48 */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_wifi: pinctrl-wifi-default {
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_IOPAD(0x00dc, PIN_OUTPUT, 7) /* (AC22) VOUT0_DATA9.GPIO0_54 - WIFI_PWR_EN - */
+> > +                     AM62PX_IOPAD(0x00f0, PIN_OUTPUT, 7) /* (AA20) VOUT0_DATA14.GPIO0_59 - WIFI_EN - */
+> > +             >;
+> > +     };
+> > +};
+> > +
+> > +&main_spi0 {
+> > +     status = "okay";
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&main_spi0_pins_default>;
+> > +     ti,pindir-d0-out-d1-in = <1>;
+> > +
+> > +     /* Resistive touch controller */
+> > +     ads7846@0 {
+> > +             compatible = "ti,ads7846";
+> > +             reg = <0>;
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&pinctrl_restouch>;
+> > +             interrupt-parent = <&main_gpio0>;
+> > +             interrupts = <48 IRQ_TYPE_EDGE_FALLING>;
+> > +             spi-max-frequency = <1500000>;
+> > +             pendown-gpio = <&main_gpio0 48 GPIO_ACTIVE_LOW>;
+> > +             ti,x-min = /bits/ 16 <125>;
+> > +             ti,x-max = /bits/ 16 <4008>;
+> > +             ti,y-min = /bits/ 16 <282>;
+> > +             ti,y-max = /bits/ 16 <3864>;
+> > +             ti,x-plate-ohms = /bits/ 16 <180>;
+> > +             ti,pressure-max = /bits/ 16 <255>;
+> > +             ti,debounce-max = /bits/ 16 <10>;
+> > +             ti,debounce-tol = /bits/ 16 <3>;
+> > +             ti,debounce-rep = /bits/ 16 <1>;
+> > +             ti,settle-delay-usec = /bits/ 16 <150>;
+> > +             ti,keep-vref-on;
+> > +             wakeup-source;
+> > +             status = "okay";
+> > +     };
+> > +};
+> > +
+> > +&main_uart5 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&main_uart5_pins_default>, <&pinctrl_bt>;
+> > +     uart-has-rtscts;
+> > +     status = "okay";
+> > +
+> > +     bluetooth_iw61x: bluetooth_iw61x {
+>
+> Please run
+> make dtbs W=1
+> make CHECK_DTBS=y
+>
+> and fix all the issues
+>
+> > +             compatible = "nxp,88w8987-bt";
+> > +             status = "okay";
+> > +     };
+> > +};
+> > +
+> > +&mcasp1 {
+> > +     status = "okay";
+> > +     #sound-dai-cells = <0>;
+> > +
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&main_mcasp1_pins_default>;
+> > +
+> > +     op-mode = <0>;          /* MCASP_IIS_MODE */
+> > +     tdm-slots = <2>;
+> > +
+> > +     serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
+> > +            1 0 2 0
+> > +            0 0 0 0
+> > +            0 0 0 0
+> > +            0 0 0 0
+> > +     >;
+> > +     tx-num-evt = <0>;
+> > +     rx-num-evt = <0>;
+> > +};
+> > +
+> > +&mcu_pmx0 {
+> > +     wkup_clkout0_pins_default: wkup_clkout0_pins_default {
+> > +             pinctrl-single,pins = <
+> > +                     AM62PX_MCU_IOPAD(0x0084, PIN_OUTPUT, 0) /* (F13) WKUP_CLKOUT0 */
+> > +             >;
+> > +     };
+> > +};
+> > +
+> > +/* eMMC */
+> > +&sdhci0 {
+> > +     status = "okay";
+> > +     ti,driver-strength-ohm = <50>;
+> > +     mmc-pwrseq = <&emmc_pwrseq>;
+> > +     disable-wp;
+> > +     bootph-all;
+> > +};
+> > +
+> > +/* WIFI */
+> > +&sdhci2 {
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&main_mmc2_pins_default>, <&pinctrl_wifi>;
+> > +     bus-width = <4>;
+> > +     disable-wp;
+> > +     non-removable;
+> > +     keep-power-in-suspend;
+> > +     mmc-pwrseq = <&iw612_pwrseq>;
+> > +     ti,fails-without-test-cd;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usbss0 {
+> > +     ti,vbus-divider;
+> > +};
+> > +
+> > +&usbss1 {
+> > +     ti,vbus-divider;
+> > +};
+>
+> --
+> Regards
+> Vignesh
+> https://ti.com/opensource
 >
 
