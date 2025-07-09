@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-194672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C42BAFF0D2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 20:23:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06936AFF0E0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 20:27:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C11217CB61
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 18:23:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56A465A59ED
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 18:27:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7010E23770D;
-	Wed,  9 Jul 2025 18:23:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D03D239085;
+	Wed,  9 Jul 2025 18:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fUS/0Qb+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QWBeZQxw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4435721767A;
-	Wed,  9 Jul 2025 18:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5150B145A1F;
+	Wed,  9 Jul 2025 18:27:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752085389; cv=none; b=NaQP3Sgy/GBOMilrf3jVG3s21kH/P9zWe+bgT8RfgGBJX8qOtfSISj1dHE7kd6Tqk7bj7AuLxAEYe6MWL6bGGk4CkH5m62o/NbFkzxnEkH/YuPWsxXYgwO/l4q7SgepWlCwG145FqLLPphe2nwqzJZyW2HplG+oQeZ9gm5GELuY=
+	t=1752085625; cv=none; b=eU+s6ixNUt8dXTFRuYLVSDFxbYIrjlW93LFkR7EGAyE+bN7TrNnAO90dB2B9rQoX0wJ+g7BBTYz1fI44GQKy4iCiU9xrtFHMmff803EoMs8LmdXU0lTr8cNjOXLRBOH7+xdnvXsyQDX72jxTApr7njRRZIk51PrEGrhA2S4wnsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752085389; c=relaxed/simple;
-	bh=H2gAt1JAj605GNuag3wMKgRumE9Q6a78O+xJcW+jX9Y=;
+	s=arc-20240116; t=1752085625; c=relaxed/simple;
+	bh=UB7QIkBRdueZ/ucMHH1IuDHFg0K94C/+SQoeb+QY6ho=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gYy2N04c9ZgteZ+ADk145SSbjW6BWoBZCwAkCd31LOraMqCILnAasAuddxlNc5Smj1U7gGXPBWOagNOC+I+iFirfCRwApz6K6qbjTbMNHs0imcoVw7kz2PAem6WYY5Dfz5HXPoT3GIFBbWrkONxO7WAwJRDM2iZ3vfgDtYKjeYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fUS/0Qb+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CD10C4CEEF;
-	Wed,  9 Jul 2025 18:23:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=diQ0dInBFU1MZxDXfqkqECoqOArsTUA10hYdyZvuvHftumFgFVfznHkAx/z0EvKgyfzDVn3X1wQ8XaSLgeKrgtDw87348zulWljt696Mw7mXgocw2YyOyagxdayvrlY7Cw5xcm7Cwigd8owEY5F2mBLgQal58shrQtZwemMvYf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QWBeZQxw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D32A9C4CEEF;
+	Wed,  9 Jul 2025 18:27:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752085388;
-	bh=H2gAt1JAj605GNuag3wMKgRumE9Q6a78O+xJcW+jX9Y=;
+	s=k20201202; t=1752085624;
+	bh=UB7QIkBRdueZ/ucMHH1IuDHFg0K94C/+SQoeb+QY6ho=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fUS/0Qb+34ZPp2I5MiJwY5fg7EwpNbq3HlZaoLR/BHQ3WgVaTKwJCPQoj5ODCeEgV
-	 iFAxSJPafDAU8nWBohxkZbULO6v1JaLRzY+4E/6Vc764pU8F0S2HR2OugtETBiktMj
-	 7PZ5ji2ctG6QMhZhAav0UpP8Rc20euOtIY/jr01eDrr2oPqCVnMCRYpV7wZQSyMGNb
-	 MreO2mx42QGIrQ+YvkverVt3CuVscGS3e/QccRg/CeRgEXP8vnI2P6rX/4HMWkzVBz
-	 CKzqWnOQZFV1mOH07dTDReOgXlq7zWXtiZb/ulwQfjton2WCtNNfgGxPzNjN0ittsB
-	 fWdbPXjBet5yA==
-Message-ID: <149f75a3-a8c2-4459-b425-56881f0100ac@kernel.org>
-Date: Wed, 9 Jul 2025 20:23:05 +0200
+	b=QWBeZQxwZASERzxDIwjW5W+0P6+iLI1k64l0zYRHwNnYQEyqvany0TzwBe5etHkK8
+	 EQfb67UbXa1cHhp0QpqVISRlJrkyKPY26krioFaIDKy8AguRRqVXwqV3ACZFW6OZNC
+	 bjKKlqE3SeC3Na6ph8iwGQRWQPqPV5OtJcR5uVoN2XTfWu7qne9QM9dLjzpmXRvnVZ
+	 hTbfA+B290u0dFvcDpa16udiwh5XG9PTW+IfFldFbNsCQcU6YopDMrhjWXvNR+H+8O
+	 EVyVsfXThD3DVnVnVTfUY0nYJBO7MbEnE43/9+eHPx7QcwVBqQQPOkXXajJJGjmays
+	 tddA4Cnc3wn4w==
+Message-ID: <e016efd6-891b-467e-8a4e-9ea53b7006a9@kernel.org>
+Date: Wed, 9 Jul 2025 20:27:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] memory: tegra: Add Tegra264 MC and EMC support
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250708105245.1516143-1-thierry.reding@gmail.com>
- <20250708105245.1516143-5-thierry.reding@gmail.com>
+Subject: Re: [PATCH RFC 1/2] dt-bindings: memory: add jedec,ddr[3-4]-channel
+ binding
+To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20250626-ddr-bindings-v1-0-cae30933c54c@foss.st.com>
+ <20250626-ddr-bindings-v1-1-cae30933c54c@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,27 +108,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250708105245.1516143-5-thierry.reding@gmail.com>
+In-Reply-To: <20250626-ddr-bindings-v1-1-cae30933c54c@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 08/07/2025 12:52, Thierry Reding wrote:
-> From: Sumit Gupta <sumitg@nvidia.com>
+On 26/06/2025 21:48, Clément Le Goffic wrote:
+> Introduce as per jdec,lpddrX-channel binding, jdec,ddr[3-4]-channel
+
+s/jdec/jedec/
+
+> binding.
 > 
-> Add support to enable Memory Controller (MC) and External Memory
-> Controller (EMC) drivers for Tegra264. The nodes for MC and EMC are
-> mostly the same as Tegra234 but differ in number of channels and
-> interrupt numbers.
-> 
-> The patch also adds the bandwidth manager definitions required for
-> Tegra264 and uses them to populate the memory client table. All of
-> these are needed to properly enable memory interconnect (ICC) support.
-> 
-> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+> ---
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    ddr_channel: ddr3-channel@0 {
+> +        compatible = "jedec,ddr3-channel";
+> +        io-width = <16>;
+
+Missing reg... or not? What was your intention
+
+
+> +    };
+> 
+
 
 Best regards,
 Krzysztof
