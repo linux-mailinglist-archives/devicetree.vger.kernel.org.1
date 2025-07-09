@@ -1,176 +1,135 @@
-Return-Path: <devicetree+bounces-194429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A89BDAFE2E4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:40:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B381AFE2FA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:42:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59D7A17EA63
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:39:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B894316A9DB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAF927E076;
-	Wed,  9 Jul 2025 08:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8153827BF7E;
+	Wed,  9 Jul 2025 08:42:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CBAfDrqg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DHILO/Pu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5554327BF7E;
-	Wed,  9 Jul 2025 08:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A70237713;
+	Wed,  9 Jul 2025 08:42:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752050372; cv=none; b=DHezp1nRo1dytI1DW4hY28pv5MxEWJogWlQID18PNLcYORCPFec7g5pWQWvZ7KfUryhhAXxIAdcA2PHU1FdDoOhtZY9IEFwoCpwoIKVZOFY3oxioFleoh8lExRAjs31BIHHbNgfKNJIPKVAkGyr8YkcVi6acvuUCoOY9p+mmQm8=
+	t=1752050569; cv=none; b=hF6rxtBMZZF6H7Ij80tHXSMWEgH1XYWMRWyCYsDVv8QGoHOLIeyVoNjkZbALLUYtrVaOvD2JE6VOj84SYrvr5FvjJ7fcZx89QjSGY2tN53jAYGHKANe8/FHTWCcdlWtGExfQgRYZIr/Y6cs5qNqQPNiWjhqPGqaMZJAnLJm/EYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752050372; c=relaxed/simple;
-	bh=t5VSNcEehMTMmquqfqCWRO5GNuFwm77JFuq0jWmOL6s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=syJHBxl7LaKZefc3NzFiuTa0cY6Imjs8/OunYFAMtWONYfNv+cwQh8D6wptg1gnAX88ofZKZh0dyL9xH9f4K0FPINrSjDqtmrf9/7pa6LM79uwujz4aOKZeFflZWSX2PnVPf06IxHWP8o3DK0bR1MP0P4YTsGrhQdzYGdWFUtXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CBAfDrqg; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1752050370; x=1783586370;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=t5VSNcEehMTMmquqfqCWRO5GNuFwm77JFuq0jWmOL6s=;
-  b=CBAfDrqggQ4aaV06iJJpmwtir5JGtrEpK3SrTqE32qyBTW6qzWeeU3Gr
-   KaUQnjvo8+uRjxkbEMggVr/lzhC/y+UJxKZZubwPwiep2J4O5OHlJ0H1/
-   9B73/hGqJM/eHNunDqcNaTBVr5uzThJaxpiVJi8WJ3GBZ360tydJcfGVS
-   wS23lmzrypgkMyLinYweuZMuaRHc9BtPiW9Ahf5RfygFkQdIML8f1WnCI
-   xf8aRv71pNlwdGvujxWGmFJeyrIivcF8OOIAO/avuNMhPrHq7SMXfpLiE
-   b+GJECJik1UX9v0XuwmOeY104HuN4yzccUn+vXcfwPgZSbUbZiJZMit+3
-   g==;
-X-CSE-ConnectionGUID: EdKEeuRqS+ScoRnmkaKP4Q==
-X-CSE-MsgGUID: Nt7oJiu2SY2AObq1cpRI4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="65757433"
-X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; 
-   d="scan'208";a="65757433"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jul 2025 01:39:22 -0700
-X-CSE-ConnectionGUID: PBDRceqkTPSbk+KI6/bZSQ==
-X-CSE-MsgGUID: g0mu55mKQvKDPVjiEO9nuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; 
-   d="scan'208";a="159755930"
-Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 09 Jul 2025 01:39:07 -0700
-Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uZQKT-0003J5-29;
-	Wed, 09 Jul 2025 08:39:01 +0000
-Date: Wed, 9 Jul 2025 16:38:07 +0800
-From: kernel test robot <lkp@intel.com>
-To: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>,
-	robh@kernel.org, m.szyprowski@samsung.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	saravanak@google.com, robin.murphy@arm.com,
-	quic_obabatun@quicinc.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-	william.zhang@broadcom.com, kernel@oss.qualcomm.com,
-	will@kernel.org, djakov@kernel.org,
-	Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
-Subject: Re: [PATCH] of: reserved_mem: Restructure call site for
- dma_contiguous_early_fixup()
-Message-ID: <202507091614.ZsQ9sH7n-lkp@intel.com>
-References: <20250708165627.845295-1-oreoluwa.babatunde@oss.qualcomm.com>
+	s=arc-20240116; t=1752050569; c=relaxed/simple;
+	bh=ZZFvlmSG8DdeZdpkA8RVUggjrKV4E9t8w9rXo+qb1SE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K8O6RoheX1hL8lKA3c+ngz3TlLxmig5d+DWFly4l3BzUAH2mKumOP3qTBPEsx37+yuUDsjsjk+D0kFXalH0gxNDeJJMvC0QkIxQvbQ2bMAQjgh9PF46YpWtTA8nq5rg9aVQie+lE5d+03T7NlqlJH31+guaMyxs2RxZr0bUrDGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DHILO/Pu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AA41C4CEEF;
+	Wed,  9 Jul 2025 08:42:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752050569;
+	bh=ZZFvlmSG8DdeZdpkA8RVUggjrKV4E9t8w9rXo+qb1SE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DHILO/PuOe8yVH6FW2fDNERUXe1W0Z57mBbHXlFK8cK21M4Zgda5LqYnhGOV5qWUl
+	 vePhTbcOClHTs79iMv9cstP3EVQHBHRXV1oV2lBO1oLnZ6yk4DWuM+vpc8ITdnE1lr
+	 Ugy19pr70gnFgVPMxcnkhZIDWcJt7fKygTLjUQkxcG4kofeS1/27rWU9Z1uagGs0sz
+	 EffQ6RwXeVAD+OxCEcdGdeYGDSpSC8LiKzjkFBo67cqt3TUQSYt7b65nwkydUGnDcR
+	 XI+fSOD4R31tB4wwhzdHTH6o2sfuSpbS1ymaIKE0cfIrqxMMbdtB0nTZ5dICOfsnyu
+	 Ao1h1anqm6O4w==
+Message-ID: <6b69c2b6-39ff-4f56-b5bb-2d1bfd8f1bc6@kernel.org>
+Date: Wed, 9 Jul 2025 10:42:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250708165627.845295-1-oreoluwa.babatunde@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: x1-hp-x14: Add support for
+ X1P42100 HP Omnibook X14
+To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250708-hp-x14-x1p-v5-0-44c916efa973@oldschoolsolutions.biz>
+ <20250708-hp-x14-x1p-v5-3-44c916efa973@oldschoolsolutions.biz>
+ <20250709-arboreal-basilisk-of-opportunity-bafaf1@krzk-bin>
+ <52b68d5e-b051-4c59-9186-eda9071c9303@oldschoolsolutions.biz>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <52b68d5e-b051-4c59-9186-eda9071c9303@oldschoolsolutions.biz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Oreoluwa,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.16-rc5 next-20250708]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Oreoluwa-Babatunde/of-reserved_mem-Restructure-call-site-for-dma_contiguous_early_fixup/20250709-005858
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250708165627.845295-1-oreoluwa.babatunde%40oss.qualcomm.com
-patch subject: [PATCH] of: reserved_mem: Restructure call site for dma_contiguous_early_fixup()
-config: i386-buildonly-randconfig-003-20250709 (https://download.01.org/0day-ci/archive/20250709/202507091614.ZsQ9sH7n-lkp@intel.com/config)
-compiler: clang version 20.1.7 (https://github.com/llvm/llvm-project 6146a88f60492b520a36f8f8f3231e15f3cc6082)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250709/202507091614.ZsQ9sH7n-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507091614.ZsQ9sH7n-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/of/of_reserved_mem.c:182:5: error: call to undeclared function 'dma_contiguous_early_fixup'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     182 |                                 dma_contiguous_early_fixup(base, size);
-         |                                 ^
-   drivers/of/of_reserved_mem.c:482:3: error: call to undeclared function 'dma_contiguous_early_fixup'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     482 |                 dma_contiguous_early_fixup(base, size);
-         |                 ^
-   2 errors generated.
+On 09/07/2025 10:09, Jens Glathe wrote:
+> Hi Krzysztof,
+> 
+> On 09.07.25 09:39, Krzysztof Kozlowski wrote:
+>> On Tue, Jul 08, 2025 at 10:34:08PM +0200, Jens Glathe wrote:
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> Odd copyrights. How could this file be published in 2023? Before the
+>> laptop was even made? And by Qualcomm? Qualcomm did nothing for this
+>> laptop on Linux - it's a Windows platform for them.
+> 
+> Ok understood, only license identifier. But I do copy from other dts(i) 
+> files, there may be unchanged portions.
 
 
-vim +/dma_contiguous_early_fixup +182 drivers/of/of_reserved_mem.c
+Then it is fine, although I really don't see much of a copy here. Every
+property is different.
 
-   150	
-   151	/*
-   152	 * __reserved_mem_reserve_reg() - reserve all memory described in 'reg' property
-   153	 */
-   154	static int __init __reserved_mem_reserve_reg(unsigned long node,
-   155						     const char *uname)
-   156	{
-   157		int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
-   158		phys_addr_t base, size;
-   159		int len;
-   160		const __be32 *prop;
-   161		bool nomap;
-   162	
-   163		prop = of_get_flat_dt_prop(node, "reg", &len);
-   164		if (!prop)
-   165			return -ENOENT;
-   166	
-   167		if (len && len % t_len != 0) {
-   168			pr_err("Reserved memory: invalid reg property in '%s', skipping node.\n",
-   169			       uname);
-   170			return -EINVAL;
-   171		}
-   172	
-   173		nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
-   174	
-   175		while (len >= t_len) {
-   176			base = dt_mem_next_cell(dt_root_addr_cells, &prop);
-   177			size = dt_mem_next_cell(dt_root_size_cells, &prop);
-   178	
-   179			if (size && early_init_dt_reserve_memory(base, size, nomap) == 0) {
-   180				/* Architecture specific contiguous memory fixup. */
-   181				if (of_flat_dt_is_compatible(node, "shared-dma-pool"))
- > 182					dma_contiguous_early_fixup(base, size);
-   183	
-   184				pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
-   185					uname, &base, (unsigned long)(size / SZ_1M));
-   186			} else {
-   187				pr_err("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
-   188				       uname, &base, (unsigned long)(size / SZ_1M));
-   189			}
-   190	
-   191			len -= t_len;
-   192		}
-   193		return 0;
-   194	}
-   195	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Krzysztof
 
