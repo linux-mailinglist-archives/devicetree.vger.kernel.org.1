@@ -1,213 +1,132 @@
-Return-Path: <devicetree+bounces-194721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24BF9AFF490
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:21:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B22E2AFF497
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:22:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64628174707
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 22:21:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09F7F3BE552
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 22:22:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D8D9243367;
-	Wed,  9 Jul 2025 22:21:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82988243367;
+	Wed,  9 Jul 2025 22:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YCQYz4yY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fKjDe8jF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE4523B63F;
-	Wed,  9 Jul 2025 22:21:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF8F0238C3D;
+	Wed,  9 Jul 2025 22:21:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752099710; cv=none; b=vFyk6YA6F4x2t4ofXncHboEPrTdQidT9sD1ixL1yRfgAY6yv46gutRnLzZRhf44gzDi5hHRaJUduxTBguhY+li+PiT/dwYctemsLoZrcS2E07A6Q4dGtKO/6dG24K4na+1cWwcDfAIQhIfxiT2DMRqDFD8LKnqillmyuOrjBM74=
+	t=1752099717; cv=none; b=IJCo58wiyVid1Ftmu2j8GujBvQX9DS5F+24wQrq4PkzAbuxPx08hPqr72d/nkVlkR98SFTZisvw84B5Nrl0yWbQMWspY2PNxwm1SGsUVIx9s3ozn/x4OORdaa3Z7w71y4d4842bdUdxnB0SSzFvlTlCs8ZBUgoPpNQS5IwRVHqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752099710; c=relaxed/simple;
-	bh=H7JcO74G2fYpropcusaVnBE6m8iTvLD1YxQmdY4upiQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=g1gm7WmjH782lfpJa+MJCdFGgUXFAwwu+qXFuCeKlzPzYnC8Lt6k+4AZq0AvoxfYVxfqc/28q80sLE4YLEZEbqhtrxhCN+Z1GLeq1kchllv8bRBh1NgJHoZslg3OLWR2BVXpwAdp8ag+CQYPUk430ZGqZ538iqEfDOD4F1VhVvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCQYz4yY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AF0C5C4CEF5;
-	Wed,  9 Jul 2025 22:21:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752099709;
-	bh=H7JcO74G2fYpropcusaVnBE6m8iTvLD1YxQmdY4upiQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=YCQYz4yYuTzk9oodxsLteQK2xXOoU08anhN8hV9BvQ6vHUmqKEH6nly9qd7t4a0DX
-	 dLLXjxNYFmOxuU1kskyFLdj2G8drv34Lw/mHSu2/FQrPJWjw3qsRuqnDOrpcympPUE
-	 LcGLiPCWx75OLBT9nfQv6bT3TIEGIxXils9uD0m20NXfAnJ8TjGBIyJoT13SIBU21K
-	 f8RYb3aasB/MUnct99zXvktM+cCWoKjeclvNNWGKZq/7DHilZgi9NjP95/D1pncAuW
-	 amXj0g+UCaOmwRsAsNHLzvVjApKpL5XKmhMXL5GK9HqarCCo3DetS2VaW4ZYIg3Xdm
-	 mqko+xqxTM39w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F62BC83F17;
-	Wed,  9 Jul 2025 22:21:49 +0000 (UTC)
-From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
-Date: Thu, 10 Jul 2025 00:21:44 +0200
-Subject: [PATCH v3 1/2] dt-bindings: gpu: Add Apple SoC GPU
+	s=arc-20240116; t=1752099717; c=relaxed/simple;
+	bh=7mpZCRqoRfCg8BZ5xo2NGCZ91F7yFHgpqNPru4vmBDk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GxTwzUqln0nW2+hg3GbIuRS1o0fxi0toZdcUJuRNfDoM0GMP6+BIX984jPo94aDpZQs6b8xmNxSrRHfPW4eu/QLDzQT6B0Cca7Ta+U9FUvJhV1ccsiFeiElW0wGLnlWytE6BmqDRjmPwc/lIys03rFzIg2Fm6c+OIQPofLRQ58E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fKjDe8jF; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a510432236so319412f8f.0;
+        Wed, 09 Jul 2025 15:21:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752099714; x=1752704514; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+FxZUJdA42/PhnEXKvZqgsEn+PSa0lrVbiYJEuvgjqw=;
+        b=fKjDe8jFkabyp4Z4W+5sjcZpHQMmYv4IwN6yEk6HEkyFRLg2kOjfVxheh3tTb9uGDY
+         24N/AgKfai7bjfQFdOgWJvYi04fCnI8X3QTO4Mqc3g0FPjobQy19AhJOuGpZfsWwOayr
+         bqgzuUNfzDVP4mes3RLQdmHJ7lrNjYJiVFcz4di+6Se9xJ7DB9sIQ5jCjhhZk+mP31tI
+         FFZ29fQNN/uXd92TTLzZThF7HHGBEsaQeQO42OljcyMDsl18EXuxgrnC+A3P7dhJjE82
+         4PtUXXLvVhRIKL+8y/nOcgI7PzcKCm7uTjEQPmL7pd8Hq52LKMLMgt06C0WdDnQva3ai
+         ypLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752099714; x=1752704514;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+FxZUJdA42/PhnEXKvZqgsEn+PSa0lrVbiYJEuvgjqw=;
+        b=icWB4jkLUmN8Oy80r7y8eq+lqwjV1C+uSr2sthuB9dDRzWcmgswmy3GgqSEiAquXBR
+         NSDqFjPjUVQJMQz/+OJwJkVcKRpmtZifHPGXVAA9X9NvJT053bNJgUjOrXSeczLKkpki
+         W5urFKYxuqkQXUbfXXKfyJU5EfLzlGWXcprBFuW5qGffBAsXXl25APuVpn4qaH+xTs2n
+         Xo9KKeRfJKupyuWoiB7w9AcQ6Xw5uNZQ0ofrKXPR9FhFIQ06viX6tLP/5G9aNkCa/KLO
+         8DkD4XcRxfiZIQ9YzUOhjp6mjonHgT0rWQCl5x+/WWLwMEisjsbjm9YR9UF2D51K84k4
+         6ypg==
+X-Forwarded-Encrypted: i=1; AJvYcCU0GzgFA44WsyYzjJjpXgmsmb0u6cCBh69INb03YKJcjF1rMmdLjg9GXDukAfNd2JTjcn3cizCzHLIGZSY=@vger.kernel.org, AJvYcCVPQbwWFoJBcxaenNKO3VCClHMJMUsa2cbLX6IDkwZx4mRzaOWujuAZM6ZrwmfoFYxI/irerh4iic80@vger.kernel.org, AJvYcCXv5ZFpulGuQiGsyCtS+A0+tRHIOCOE1v/BWdrLey4FSkpwsrkO9eMSbyvnkpYofIkCusCf/SancVb3i86i@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywjx1LDnKHHZKfdO5y2ZlNZnchHInNwfkVMyxYbv/sxV8IE4oS8
+	XkLZp4hI5hi27tuqNf2/qn69YyQa8RTp0EV1edcCzD3XbgPKLxi/ny4s
+X-Gm-Gg: ASbGncv7v9h6iyH7+5m1S+jfG/EeNb3Tc+vZMT7F5xZHCmXB9gY0Ez49bZJeHsevyIP
+	45sAEKeQfR0ChMjq9YUuPz/o52rfblXKEagZnQyb5ssquXd3UXULYFGAJaCZ+QrSd+j830FU7ZX
+	0RJNqyi7oc2ynq5mCvm6f/TTP80sZw3yTHPaKlsCZPxEm99yTCmq5Rc+JaEnNed4bSO7FZllD2/
+	2y72G+yIy6o/qI49QJRKu/jF8oMkSOQjhsiE2Ym8AJaUGV7PZFO5moVOOmHUi/gu5hdSZf+Q74p
+	VUwv1FyRl6Ebik5Ow6/d7tHyDTwU1mqTqK1EysVGb3EpbTcOAqx0Mr2vG2vmB1KOCTB0TOPrtKE
+	1kPR3Olg8z9xYokpETqcIr1iCtTcL90ATyuvP3EgskFRtCZy/E7vubA==
+X-Google-Smtp-Source: AGHT+IFJ77g60sJdBslv4i3acOTnQdrC0ON+RQ3E5pwWCZp48aJPe43eA5mQSpqLouCk8epCGwMFUg==
+X-Received: by 2002:a05:6000:41ce:b0:3a5:88cf:479e with SMTP id ffacd0b85a97d-3b5e86de861mr314847f8f.48.1752099713887;
+        Wed, 09 Jul 2025 15:21:53 -0700 (PDT)
+Received: from localhost (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3b5e8bd1924sm106305f8f.16.2025.07.09.15.21.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Jul 2025 15:21:52 -0700 (PDT)
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Thierry Reding <thierry.reding@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-tegra@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] memory: tegra: Add Tegra264 support
+Date: Thu, 10 Jul 2025 00:21:45 +0200
+Message-ID: <20250709222147.3758356-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250710-sgx-dt-v3-1-299bb3a65109@gmail.com>
-References: <20250710-sgx-dt-v3-0-299bb3a65109@gmail.com>
-In-Reply-To: <20250710-sgx-dt-v3-0-299bb3a65109@gmail.com>
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Sasha Finkelstein <fnkl.kernel@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752099708; l=4053;
- i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
- bh=ueufFqm5JgZMrOUFrDIeyDT9kbQhcJKg9fq4FWQiRKE=;
- b=+EwYGwIf1NLULyxb8K2xiug6EM5dpNzuQx4Jaj/shI8W4CfRAdYUWDxgWPFq7k1d9J1USpyN4
- ts+svCeFOh2AiWYPs60IxGgg/m1AD6VFlD61HbJbdTdvtRh9QXg1ke3
-X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
- pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
-X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
- auth_id=283
-X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Reply-To: fnkl.kernel@gmail.com
+Content-Transfer-Encoding: 8bit
 
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+From: Thierry Reding <treding@nvidia.com>
 
-Add bindings for the GPU present in Apple SoCs
+This set of patches extends the DT bindings for the memory controller
+and external memory controller for Tegra264 and add the necessary DT
+headers with memory client and stream ID definitions.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Reviewed-by: Sven Peter <sven@kernel.org>
-Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
----
- Documentation/devicetree/bindings/gpu/apple,agx.yaml | 94 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- MAINTAINERS                                          |  1 +
- 2 files changed, 95 insertions(+)
+The driver changes in patch 4 are mostly an extension of existing code
+and the bulk consists of the memory client table for the new chip as
+well as the bandwidth manager calculations.
 
-diff --git a/Documentation/devicetree/bindings/gpu/apple,agx.yaml b/Documentation/devicetree/bindings/gpu/apple,agx.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..51629b3833b0a8c296eaccdfd6d9eeef02a5bc63
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/apple,agx.yaml
-@@ -0,0 +1,94 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpu/apple,agx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Apple SoC GPU
-+
-+maintainers:
-+  - Sasha Finkelstein <fnkl.kernel@gmail.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - apple,agx-g13g
-+          - apple,agx-g13s
-+          - apple,agx-g14g
-+      - items:
-+          - enum:
-+              - apple,agx-g13c
-+              - apple,agx-g13d
-+          - const: apple,agx-g13s
-+
-+  reg:
-+    items:
-+      - description: GPU coprocessor control registers
-+      - description: GPU block MMIO registers
-+
-+  reg-names:
-+    items:
-+      - const: asc
-+      - const: sgx
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  mboxes:
-+    maxItems: 1
-+
-+  memory-region:
-+    items:
-+      - description: Region containing GPU MMU TTBs
-+      - description: Region containing GPU MMU page tables
-+      - description:
-+          Region containing a shared handoff structure for VM
-+          management coordination
-+      - description: Calibration blob. Mostly power-related configuration
-+      - description: Calibration blob. Mostly GPU-related configuration
-+      - description: Shared global variables with GPU firmware
-+
-+  memory-region-names:
-+    items:
-+      - const: ttbs
-+      - const: pagetables
-+      - const: handoff
-+      - const: hw-cal-a
-+      - const: hw-cal-b
-+      - const: globals
-+
-+  apple,firmware-abi:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 3
-+    description:
-+      macOS version the current firmware is paired with, used to pick
-+      the version of firmware ABI to be used.
-+      Bootloader will overwrite this
-+
-+required:
-+  - compatible
-+  - reg
-+  - mboxes
-+  - memory-region
-+  - apple,firmware-abi
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpu@6400000 {
-+        compatible = "apple,agx-g13g";
-+        reg = <0x6400000 0x40000>,
-+              <0x4000000 0x1000000>;
-+        reg-names = "asc", "sgx";
-+        mboxes = <&agx_mbox>;
-+        power-domains = <&ps_gfx>;
-+        memory-region = <&uat_ttbs>, <&uat_pagetables>, <&uat_handoff>,
-+                        <&gpu_hw_cal_a>, <&gpu_hw_cal_b>, <&gpu_globals>;
-+        memory-region-names = "ttbs", "pagetables", "handoff",
-+                              "hw-cal-a", "hw-cal-b", "globals";
-+
-+        apple,firmware-abi = <0 0 0>;
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a92290fffa163f9fe8fe3f04bf66426f9a894409..2a32c9c4ee355a1109a3e2031ea3663c39cc8c68 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2331,6 +2331,7 @@ F:	Documentation/devicetree/bindings/arm/apple/*
- F:	Documentation/devicetree/bindings/clock/apple,nco.yaml
- F:	Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
- F:	Documentation/devicetree/bindings/dma/apple,admac.yaml
-+F:	Documentation/devicetree/bindings/gpu/apple,agx.yaml
- F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
- F:	Documentation/devicetree/bindings/input/touchscreen/apple,z2-multitouch.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
+Changes in v2:
+- squash DT bindings patches into a single patch
+- address review comments for bindings
+- add Acked-by on patch 2
+
+Thierry
+
+Sumit Gupta (2):
+  dt-bindings: memory: tegra: Add Tegra264 support
+  memory: tegra: Add Tegra264 MC and EMC support
+
+ .../nvidia,tegra186-mc.yaml                   |  84 ++++-
+ drivers/memory/tegra/Makefile                 |   2 +
+ drivers/memory/tegra/mc.c                     |   5 +-
+ drivers/memory/tegra/mc.h                     |   9 +-
+ drivers/memory/tegra/tegra186-emc.c           |   5 +-
+ drivers/memory/tegra/tegra186.c               |  17 +-
+ drivers/memory/tegra/tegra264-bwmgr.h         |  50 +++
+ drivers/memory/tegra/tegra264.c               | 313 ++++++++++++++++++
+ include/dt-bindings/memory/nvidia,tegra264.h  | 136 ++++++++
+ 9 files changed, 613 insertions(+), 8 deletions(-)
+ create mode 100644 drivers/memory/tegra/tegra264-bwmgr.h
+ create mode 100644 drivers/memory/tegra/tegra264.c
+ create mode 100644 include/dt-bindings/memory/nvidia,tegra264.h
 
 -- 
-2.50.1
-
+2.50.0
 
 
