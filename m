@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-194602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2FDDAFEA1A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:26:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13425AFEA10
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:25:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D1365A604B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:24:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 497507B0E4F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:23:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF8A42E5B13;
-	Wed,  9 Jul 2025 13:23:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644382E5B37;
+	Wed,  9 Jul 2025 13:23:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="J83Rg085"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="KO5Q6YXO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
+Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECAB32E5414
-	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 13:23:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66FE32E54C4
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 13:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752067425; cv=none; b=NdbnwR1mr9JzI6VQtde43gwqodm3PM9OVt1AhHAkXioiwClcIv/+JprrVj/5CnVdw/BR+oYIUNH2TUusE5dy1qhbIFbVoMaUHBd9u+3l5gqN0lHqq/iYjC/OKvF/cDQ+Kfrv3pHdJrprdedWX24SP0Kz4HKgQgGyj90LKUII8TQ=
+	t=1752067426; cv=none; b=kWViwNID8d9h0vOPiFCUQ7tQmRYqFGT5QxguQuAhiltftQlx/8fsguhd0+oU199BooWQuJIAQQq7QOJjYyFd9PwXsBgY4qBnGjjyfv3APWQRAIyP/XBUC6e9/gtVucwGRV/vRoPf3CWN9+esqBktGlZki7MrsMYVnmi62f594HU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752067425; c=relaxed/simple;
-	bh=QDduJvC/5cNs1aCofqNCkLX2UcDB8NxT18fZG9lmPDM=;
+	s=arc-20240116; t=1752067426; c=relaxed/simple;
+	bh=rF0nR+ZGjjWrOatx6EGJOUBzErZKLCLRQjJyAMPB9s0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jRKtq052d6zn48dMHFLoXH7tTqkHfom0/9k2wzqTkE2QYGBa0E+6QJe5D7KQ9ScUovxQTMr7EvfJTBZVBekRRHCl3ArAwZLEasFgXyLC2SD1AIQ4gbt5u5gh9jLAmNz/0dapDeqpq265N8f9ccL6l8aLdUSDcYikLgbJzo3qv50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=J83Rg085; arc=none smtp.client-ip=91.218.175.183
+	 MIME-Version; b=hDcaUcHct2jhN801QTGt1WSbpuG6YaZAF1OUAuwPi6kAP+s9QgYhiK6uFAQwg69dZJsVDYYa+PZWHWwjzwh1163t3OWZ8b4COIG2p+Md8JhjL70jRIJBUE4WjKsWZm3LB+E/ZaXwcuswQDKbW0DhUAI3IRr0pL49MoyOpCX7FkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=KO5Q6YXO; arc=none smtp.client-ip=91.218.175.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1752067421;
+	t=1752067422;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=uYtxvQntJrQzDe3coaU4yovvxAekHNN2pEKLjqZB3iA=;
-	b=J83Rg0853eudvxnf9NiHH5SXvgmplIlEz6jQFGT5erQWarfMlMWJSsVoSHKcYMcGXSmaWj
-	nbEyMuNlMMun6XRsHbdZqYS0fVq24MirXh6ZMw0VDF+Abd/3bir6NWTFYPKY2MseM3FIXz
-	1MTJ2sosgHACtA0Sguw6Ibf0LKdwMT1PwWrI49nYWC4NRqGatvHwYxAQ+QCl9pKZR/X0Xa
-	oQGav8vmZnFtNdPaC8gEGUZDS5yJoQswWCmIZjUGL+G8iojPdus5RMrDLFUrOEoMLNWkpe
-	6cUc0yotOjjagtnTmMdv5PPLDrVqxNf0Ra6SLIJliIOh1aD9puqjcAsKdCi7+A==
+	bh=kTB3zWm7oNw70pUsCc6ZoGv3uOF6aJxYArBzhguuOPM=;
+	b=KO5Q6YXO9Ww53d6JLKzNXTcI5lzqn0g8g5lOJTUIPPa30aSWTb9EUvcSaWX6LfdFlfPWjX
+	O3KhA6IXbvUhEMahPUqdbm+RK9K2hlAWJK9x6P+maUX57YC6IgQc5tgW7uWvaZTl+0YE0B
+	cJpVzUdbCqVSkHDLdy3GmYKVTTRrqDTr4bX006HCUGpPVU2rsM2GobqkO/yszsjIFAEsCK
+	qHZwd1R/UAxrDFropMFVf2njb6zG9mVxiJ9tk7x/3K8Lfm+W1dWOs1P6Xd53KnUQafG0t9
+	6nKz6wiPLsVcwmGhb4odDy+QwnV8rhYxXu1nh96bKWLJtAx2lYI398By3NB3Mw==
 From: Diederik de Haas <didi.debian@cknow.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -57,9 +57,9 @@ Cc: Dragan Simic <dsimic@manjaro.org>,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH v4 08/10] arm64: dts: rockchip: Fix LCD panel port on rk3566-pinetab2
-Date: Wed,  9 Jul 2025 15:15:21 +0200
-Message-ID: <20250709132323.128757-9-didi.debian@cknow.org>
+Subject: [PATCH v4 09/10] arm64: dts: rockchip: Drop unneeded address+size-cells on px30
+Date: Wed,  9 Jul 2025 15:15:22 +0200
+Message-ID: <20250709132323.128757-10-didi.debian@cknow.org>
 In-Reply-To: <20250709132323.128757-1-didi.debian@cknow.org>
 References: <20250709132323.128757-1-didi.debian@cknow.org>
 Precedence: bulk
@@ -71,39 +71,43 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-The MIPI DSI connector on the PineTab2 only has 1 port with 1 endpoint,
-so drop the unit-address properties.
-
-While at it, move 'rotation' property to its proper sorting position.
+On nodes with compatible "rockchip,px30-usb2phy-grf", the #address-cells
+and #size-cells are required and consequently their child nodes should
+have unit addresses. That is not the case for the px30-pmugrf and
+px30-grf nodes, so remove them there.
 
 This fixes the following DTB validation warnings:
 
-  node has a unit name, but no reg or ranges property
+  unnecessary #address-cells/#size-cells without "ranges",
+  "dma-ranges" or child "reg" property
 
 Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/rockchip/px30.dtsi | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-index 3473b1eef5cd..d0e38412d56a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-@@ -282,11 +282,11 @@ lcd: panel@0 {
- 		reg = <0>;
- 		backlight = <&backlight>;
- 		enable-gpios = <&gpio0 RK_PC7 GPIO_ACTIVE_HIGH>;
--		rotation = <90>;
- 		power-supply = <&vcc_3v3>;
-+		rotation = <90>;
+diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
+index 5034ad8019a8..46f64cd33b9b 100644
+--- a/arch/arm64/boot/dts/rockchip/px30.dtsi
++++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
+@@ -351,8 +351,6 @@ power-domain@PX30_PD_GPU {
+ 	pmugrf: syscon@ff010000 {
+ 		compatible = "rockchip,px30-pmugrf", "syscon", "simple-mfd";
+ 		reg = <0x0 0xff010000 0x0 0x1000>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
  
--		port@0 {
--			panel_in_dsi: endpoint@0 {
-+		port {
-+			panel_in_dsi: endpoint {
- 				remote-endpoint = <&dsi0_out_con>;
- 			};
- 		};
+ 		pmu_io_domains: io-domains {
+ 			compatible = "rockchip,px30-pmu-io-voltage-domain";
+@@ -453,8 +451,6 @@ gic: interrupt-controller@ff131000 {
+ 	grf: syscon@ff140000 {
+ 		compatible = "rockchip,px30-grf", "syscon", "simple-mfd";
+ 		reg = <0x0 0xff140000 0x0 0x1000>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+ 
+ 		io_domains: io-domains {
+ 			compatible = "rockchip,px30-io-voltage-domain";
 -- 
 2.50.0
 
