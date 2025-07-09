@@ -1,245 +1,177 @@
-Return-Path: <devicetree+bounces-194730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD00FAFF4CB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:36:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50FDFAFF502
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:53:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB7D84819C0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 22:36:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC7931C8286C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 22:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC03725A342;
-	Wed,  9 Jul 2025 22:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E42A02343C9;
+	Wed,  9 Jul 2025 22:52:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="o5arJryF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nMyI7iuo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE46024DCE8;
-	Wed,  9 Jul 2025 22:35:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56534801;
+	Wed,  9 Jul 2025 22:52:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752100560; cv=none; b=JPCeZmFnS7IBpkWieITP9NQo50nkS0WNotKakHBCrQqflSu/J2g2MbHtD00wia/TThRcuikELdjaHQNWcpesa2fWsronC84lQEe8vI/4upOzLRo4gN2Tg6P0+oRkeS6V7Rtz5gSbgyDGDumc4GOjIAKuV05aylgGRBYVZVGmVAY=
+	t=1752101576; cv=none; b=QyCmEDNuz7wyo8K639/5bkQpp9m70hkg86s5NCcidhYlEPN4uBf6RXMVHBX7+vEeAm9OqNUQQwQZmSq3IicEfz239KpqiKb1/DAa5GqW2MKLAAoZwcRn2L1TvZpMv64G+vfYf+sDJ3ZTTPQVGnjcS3Cpp6ctsN3WVkHw7sY8QS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752100560; c=relaxed/simple;
-	bh=bt4X9r72r6rI1ELQrvh8+CGDgf398vlVmIs10sdnrrM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=QlyCI/QJGjr1exXyMkXQWkhxOT8NAnwTPEWZSE0mtCibhmk2wIEqbTAjD0KzEL6zsyMhsa8m9JdwewonFFuI6scVb7Qm3RlBEap5H19uc+427mwtpydAlUvjiSiMnG6y/ABjdM1fxia5S7D0xSgdXaCFSeVaPst/bTHGJP7GSpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=o5arJryF; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 569MZoE0952190;
-	Wed, 9 Jul 2025 17:35:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1752100551;
-	bh=Olm4mSIpu4FebWepzFV2T6KFHpND3n+3YfGovDjUUVU=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=o5arJryFbenrTNRAWTVSCVj9Iq3z2lIj+HnKqbtxqHK8KTZ7gLTpE+/YWQJ2JAXgH
-	 ovqW8SCaQBApuldfAVgcEfqgFtdPPT/oKNGG8BjCxCTx0FAmVbj5fXAro6+4MEFiCZ
-	 RCYTvBSQisjFrTrcZnU0sge9tRlP8L2WMfNntSaE=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 569MZo623753491
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 9 Jul 2025 17:35:50 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 9
- Jul 2025 17:35:50 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 9 Jul 2025 17:35:50 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 569MZotI520530;
-	Wed, 9 Jul 2025 17:35:50 -0500
-From: Bryan Brattlof <bb@ti.com>
-Date: Wed, 9 Jul 2025 17:35:44 -0500
-Subject: [PATCH 2/2] arm64: dts: ti: k3-am654-base-board: add boot phase
- tags
+	s=arc-20240116; t=1752101576; c=relaxed/simple;
+	bh=mduGN1yJiHucUotgWYDElpYHrjHdAOSNb8vAqPrzkHk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nxVaIBhsfkC8cOWTpV0L2BJ/cTBIPXMiDie3V0VwH/PlalgA6+TkH/nePX1n6ifmFS24H7YbZlNQyx1lfgbG+gLeMSAgb+7/p27ydzeiSaLoy6hGPhVxZZAu0v9EN9tyrtZsPGDu0AV1y1kkHCzwWwSqFJyWJQ5WrSb+UbxINwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nMyI7iuo; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-74924255af4so366225b3a.1;
+        Wed, 09 Jul 2025 15:52:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752101574; x=1752706374; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7pGyJ74sJAHPwSq0M5kKX3Ley3GiaOjrmlTbO8aXVCI=;
+        b=nMyI7iuo01uwF5wT4Q8EMp/UtCjEGR2eq/kfFUhs68pqZZzNsfJJl+Ry9XicTDAo9I
+         8DIBCzwreDGC/PEwovhcMW220gtWnaE2E3k5GZQ+qcm0xwg9aC1JiEPMUba+vy/PZ3Q4
+         AsP45v0LL4g2whmzEYvsxH1/FyTuRJx9tsHvtiF8M830k8CFlnSzaiZViG5pKOcQSQ16
+         SVBd+rIL61jWXujV5/uaLxy08gCqKZ3pGe++PQ1gkgqH84h3mr05eZiwGoQl92/Y10Ui
+         t0yrScdrYboTi05m0y8dq7/v2LWfUwqMdcB0F1vv1rYKBGmrahu+rvPVoQahYLQb14/P
+         WaUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752101574; x=1752706374;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7pGyJ74sJAHPwSq0M5kKX3Ley3GiaOjrmlTbO8aXVCI=;
+        b=AYnjcyggX+ZOLh9CGit5ssQQ/fop0CuQSGMuwF3OSSFYTU51DIM4JdHLXIKBBkyOnD
+         howO7pNbHY2j9fBpcTdqTjWtQFRJCy5JT9T7kLz7/RDcjirxqzqbaR0mPMP0LWP1OWdQ
+         jIEHo83+m0qltjxYCB1LPMZoOI/k03XpsRaTgazP4/9CnbquFbAmFyCr5aHu22/eUPtm
+         trSbLJ88ZgSbMKzwU2howccd9CZwxrj9JQzj5Ly8rHyyuwjVG5RDMFXclU08e14fDhGD
+         HI6tZebg1MVhcxt3UBR/tpYJ0vNEeErI+RKdD8N/dLpL77GyvqwE5/bXspIaNEXUSOMi
+         mnPg==
+X-Forwarded-Encrypted: i=1; AJvYcCVP2Mp0NW3iE5ukrFWlF1b2bbDFYJD4/2HksizMfaUFgKxdvJw9ZRJbZjdIiKmhTBZTkX4OUW7xM0swJrRk@vger.kernel.org, AJvYcCVQIkkZQ7ozPWgrC26i/OmUwkFHEUxCvwOV/k6zuE/r9LKVKrRewYO2uI9YVPFWqgOlowuRyENHvWAF@vger.kernel.org, AJvYcCVYD/052tjNDUYxPpQth11gd1Avj8/2TBAzRW6cITRqNYbQ0hi+eZZxmelcAQVX/KwPyXw7UdAIkXgc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHM44SkpkpF/kOiE4fsLIZEz3ug0StsiprQ5fCp6vsGTx2CMR0
+	KiRNMl0egNXUtYU8e04RfXgf+qADcjbMmFuJaminDL0ZaEAnQTvF/BEv
+X-Gm-Gg: ASbGncuJonsA+gSjPQn9gj0+IuaZmq4L+vuac48nNC+7/E+nRLNjYZ2CBnQY7yBMWMi
+	QOV+HKhVKerImBP2NbuIVow/hu8j7JAVcsTA3xyjNcbOaGDQzoo565409Fo3H+IrFTzvH97ksfS
+	UJdhaXljLBuhijgKOvhr5fWY6IjFGS57jjndIvbsMPDWYezFMgwTVYd75iWqUm52oI5P1znygNn
+	iPJCknsyozEQ8pbr7OBCyY1IkdMOxf7KoPjooNAIJXmYqjxQBz9FvDs7iottjnlwM9BQRh6KH0j
+	rzI5uc05CK3J1v72BMCazp+vwlQ38NaJnM7rK7u+sLqQzg1ILSJwVnWpYkezCRsch4BWLA1vbMI
+	=
+X-Google-Smtp-Source: AGHT+IHahCIpZmuEf3/YdV/SH/U9HkJCe0XpP5p5h+uSRbD71aZLs5Ns93G8nOL7yh7fSlnp+bdYaQ==
+X-Received: by 2002:a05:6a20:7291:b0:220:8ce7:d6b8 with SMTP id adf61e73a8af0-2300656f034mr602815637.37.1752101574383;
+        Wed, 09 Jul 2025 15:52:54 -0700 (PDT)
+Received: from [192.168.0.13] ([172.92.174.142])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b3bbe7297bcsm261744a12.73.2025.07.09.15.52.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jul 2025 15:52:53 -0700 (PDT)
+Message-ID: <97c55ec2-500b-476e-b99c-a4065b6ba574@gmail.com>
+Date: Wed, 9 Jul 2025 15:52:26 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] clock: eswin: Add eic7700 clock driver
+To: Xuyang Dong <dongxuyang@eswincomputing.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
+References: <20250624103212.287-1-dongxuyang@eswincomputing.com>
+ <20250624103314.400-1-dongxuyang@eswincomputing.com>
+ <0f3aff5b-ff54-48a2-ae95-b344d311c3a1@gmail.com>
+ <7a325b0b.2de1.197e94c605b.Coremail.dongxuyang@eswincomputing.com>
+Content-Language: en-US
+From: Bo Gan <ganboing@gmail.com>
+In-Reply-To: <7a325b0b.2de1.197e94c605b.Coremail.dongxuyang@eswincomputing.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250709-65-boot-phases-v1-2-e1f89d97a931@ti.com>
-References: <20250709-65-boot-phases-v1-0-e1f89d97a931@ti.com>
-In-Reply-To: <20250709-65-boot-phases-v1-0-e1f89d97a931@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Bryan Brattlof <bb@ti.com>
-X-Mailer: b4 0.14.2
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-The 'bootph-all' tag was added to the dt-schema to describe the various
-nodes used during the different phases of bootup with DT. Add the
-bootph-all tag to all nodes that are used in the bootloader for the
-AM654 reference board.
+Hi Xuyang
 
-UARTs used as a console, the SD and eMMC nodes along with the needed
-regulators for UHS modes, and the needed nodes for OSPI boot are all
-marked with 'bootph-all' to handle the various boot modes the board is
-capable of
+On 7/8/25 02:09, Xuyang Dong wrote:
+> Hi Bo,
+> 
+> Thank you for your suggestion, it improves our driver development efforts.
+> Per your recommendations, we will optimize the driver program.
+> 
+>> On 6/24/25 03:33, dongxuyang@eswincomputing.com wrote:
+>> This is totally wrong I think. Why does the clock driver have to care about
+>> CPU voltage? This functionality belongs to cpufreq. You can take JH7110 as
+>> reference and see how it's done: https://lore.kernel.org/all/20230606105656.124355-4-mason.huo@starfivetech.com/
+>> Looking at eswin vendor u-boot, it seems you have some SoC that can operate
+>> at 1.6Ghz without bumping the voltage. Why not do it via operating-points-v2,
+>> like the other SoCs? It can then be overridden by board device-tree and u-boot
+>> Also the logic of switching clock before changing PLL should be done using
+>> notifier: https://lore.kernel.org/r/20240826080430.179788-2-xingyu.wu@starfivetech.com
+>> Remove undocumented parameters such as "cpu_no_boost_1_6ghz" and
+>> "cpu-default-frequency".
+> 
+> When higher cpu frequency is applied, the higher voltage must be
+> configured accordingly. So, from my perspective, it's better to
+> implement the clk, regulator and cpu frequency separately.
+> clk.c and clk-eic7700.c are responsible for setting clk only.
+> regulator-eic7700.c is for voltage configuration.
+> cpufreq-eic7700.c is for cpu frequency configuration, and it will call
+> the APIs of clk and regulator.
+> 
+> Is this the right approach?
+> 
 
-Signed-off-by: Bryan Brattlof <bb@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am654-base-board.dts | 17 +++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am654-pcie-usb2.dtso |  1 +
- arch/arm64/boot/dts/ti/k3-am654-pcie-usb3.dtso |  1 +
- 3 files changed, 19 insertions(+)
+Some context for people not familiar with this SoC/Board. The regulator is not
+part of the SoC, but on the board. The GPIO pin is controlling the ratio of a
+DC/DC converter to select between 0.8V and 0.9V. I think there's no need for
+regulator-eic7700.c, and it actually would be wrong if you do it this way,
+because per your datasheet, CPU voltage can be any value within a supported
+range, and it's up to the board vendor to determine the voltage. Thus, better
+to model it with a "regulator-gpio" in the device-tree. No code change needed.
+(Assuming you have GPIO/pinctrl merged, which think you already did?)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index c30425960398ebb75ebda44726ed90cd78947d58..e589690c7c8213d5e4989942735fa53825e610f5 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -144,6 +144,7 @@ vtt_supply: regulator-3 {
- 		regulator-boot-on;
- 		vin-supply = <&vcc3v3_io>;
- 		gpio = <&wkup_gpio0 28 GPIO_ACTIVE_HIGH>;
-+		bootph-all;
- 	};
- };
- 
-@@ -155,12 +156,14 @@ AM65X_WKUP_IOPAD(0x00a4, PIN_OUTPUT, 0)	/* (AB5) WKUP_UART0_TXD */
- 			AM65X_WKUP_IOPAD(0x00c8, PIN_INPUT, 1)	/* (AC2) WKUP_GPIO0_6.WKUP_UART0_CTSn */
- 			AM65X_WKUP_IOPAD(0x00cc, PIN_OUTPUT, 1)	/* (AC1) WKUP_GPIO0_7.WKUP_UART0_RTSn */
- 		>;
-+		bootph-all;
- 	};
- 
- 	ddr_vtt_pins_default: ddr-vtt-default-pins {
- 		pinctrl-single,pins = <
- 			AM65X_WKUP_IOPAD(0x0040, PIN_OUTPUT_PULLUP, 7)	/* WKUP_GPIO0_28 */
- 		>;
-+		bootph-all;
- 	};
- 
- 	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
-@@ -168,6 +171,7 @@ wkup_i2c0_pins_default: wkup-i2c0-default-pins {
- 			AM65X_WKUP_IOPAD(0x00e0, PIN_INPUT, 0) /* (AC7) WKUP_I2C0_SCL */
- 			AM65X_WKUP_IOPAD(0x00e4, PIN_INPUT, 0) /* (AD6) WKUP_I2C0_SDA */
- 		>;
-+		bootph-all;
- 	};
- 
- 	push_button_pins_default: push-button-default-pins {
-@@ -191,6 +195,7 @@ AM65X_WKUP_IOPAD(0x0024, PIN_INPUT, 0)  /* (R2) MCU_OSPI0_D6 */
- 			AM65X_WKUP_IOPAD(0x0028, PIN_INPUT, 0)  /* (R3) MCU_OSPI0_D7 */
- 			AM65X_WKUP_IOPAD(0x002c, PIN_OUTPUT, 0) /* (R4) MCU_OSPI0_CSn0 */
- 		>;
-+		bootph-all;
- 	};
- 
- 	wkup_pca554_default: wkup-pca554-default-pins {
-@@ -206,6 +211,7 @@ AM65X_WKUP_IOPAD(0x0048, PIN_OUTPUT, 4)	/* (P5) MCU_OSPI1_D2.MCU_UART0_TXD */
- 			AM65X_WKUP_IOPAD(0x004C, PIN_INPUT, 4)	/* (P1) MCU_OSPI1_D3.MCU_UART0_CTSn */
- 			AM65X_WKUP_IOPAD(0x0054, PIN_OUTPUT, 4)	/* (N3) MCU_OSPI1_CSn1.MCU_UART0_RTSn */
- 		>;
-+		bootph-all;
- 	};
- 
- 	mcu_cpsw_pins_default: mcu-cpsw-default-pins {
-@@ -248,6 +254,7 @@ AM65X_IOPAD(0x01e8, PIN_OUTPUT, 0)	/* (AE11) UART0_TXD */
- 			AM65X_IOPAD(0x01ec, PIN_INPUT, 0)	/* (AG11) UART0_CTSn */
- 			AM65X_IOPAD(0x01f0, PIN_OUTPUT, 0)	/* (AD11) UART0_RTSn */
- 		>;
-+		bootph-all;
- 	};
- 
- 	main_i2c2_pins_default: main-i2c2-default-pins {
-@@ -281,6 +288,7 @@ AM65X_IOPAD(0x0188, PIN_INPUT_PULLUP, 0) /* (D25) MMC0_DAT7 */
- 			AM65X_IOPAD(0x01b4, PIN_INPUT_PULLUP, 0) /* (A23) MMC0_SDCD */
- 			AM65X_IOPAD(0x01b0, PIN_INPUT, 0) /* (C25) MMC0_DS */
- 		>;
-+		bootph-all;
- 	};
- 
- 	main_mmc1_pins_default: main-mmc1-default-pins {
-@@ -294,6 +302,7 @@ AM65X_IOPAD(0x02c4, PIN_INPUT_PULLUP, 0) /* (D27) MMC1_DAT3 */
- 			AM65X_IOPAD(0x02dc, PIN_INPUT_PULLUP, 0) /* (B24) MMC1_SDCD */
- 			AM65X_IOPAD(0x02e0, PIN_INPUT, 0) /* (C24) MMC1_SDWP */
- 		>;
-+		bootph-all;
- 	};
- 
- 	usb1_pins_default: usb1-default-pins {
-@@ -343,6 +352,7 @@ &main_uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_uart0_pins_default>;
- 	power-domains = <&k3_pds 146 TI_SCI_PD_SHARED>;
-+	bootph-all;
- };
- 
- &wkup_i2c0 {
-@@ -368,6 +378,7 @@ vdd_mpu: regulator@60 {
- 		ti,vsel0-state-high;
- 		ti,vsel1-state-high;
- 		ti,enable-vout-discharge;
-+		bootph-all;
- 	};
- 
- 	gpio@38 {
-@@ -456,6 +467,7 @@ &sdhci0 {
- 	bus-width = <8>;
- 	non-removable;
- 	ti,driver-strength-ohm = <50>;
-+	bootph-all;
- };
- 
- /*
-@@ -470,6 +482,7 @@ &sdhci1 {
- 	pinctrl-0 = <&main_mmc1_pins_default>;
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
-+	bootph-all;
- };
- 
- &usb1 {
-@@ -630,3 +643,7 @@ &cpsw_port1 {
- &dss {
- 	status = "disabled";
- };
-+
-+&wkup_gpio0 {
-+	bootph-all;
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-pcie-usb2.dtso b/arch/arm64/boot/dts/ti/k3-am654-pcie-usb2.dtso
-index c3cb752f8cd79459d6d321dfdf0644748514a48d..d04dd7a44008205301ea3fb3d0a883b6a6a2562b 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-pcie-usb2.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am654-pcie-usb2.dtso
-@@ -46,6 +46,7 @@ AM65X_IOPAD(0x02bc, PIN_OUTPUT, 0) /* (AD9) USB0_DRVVBUS */
- 
- &dwc3_0 {
- 	status = "okay";
-+	bootph-all;
- };
- 
- &usb0_phy {
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-pcie-usb3.dtso b/arch/arm64/boot/dts/ti/k3-am654-pcie-usb3.dtso
-index 333e423e8bb6b033f5f45c782ef0095d29983158..04393f21d712ebd95ce1a411e2ac13a56e63e57b 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-pcie-usb3.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am654-pcie-usb3.dtso
-@@ -45,6 +45,7 @@ &dwc3_0 {
- 	<&k3_clks 151 8>;      /* set PIPE3_TXB_CLK to WIZ8B2M4VSB */
- 	phys = <&serdes0 PHY_TYPE_USB3 0>;
- 	phy-names = "usb3-phy";
-+	bootph-all;
- };
- 
- &usb0 {
+For cpufreq, I don't see why it can't be just modeled by "operating-points-v2"
+just like other SoC/boards. Once complication is the 0.8/0.9 voltage selection
+I see two potential ways to solve it (assuming using opp):
 
--- 
-2.49.0
+1. Extend the opp to dynamically choose 0.8/0.9 based on your OTP settings
+2. Isolate this logic in u-boot to patch the opp-table in device-tree before
+    boot, or in grub boot scenario, also hook the EFI_DT_FIXUP protocol in
+    u-boot to patch device-tree before grub hands off to Linux
 
+For 1, you probably need to have a stable OTP layout, which doesn't vary from
+chip to chip and board to board. It also requires you to have a OTP driver in
+Linux kernel to read from OTP.
+
+2 is probably simpler and a lot easier to implement. There's also very minimal
+or virtually no code change to Linux. It's perhaps easier to do board specific
+stuff in u-boot. You can use 0.9V by default in opp-table in device-tree and
+u-boot can do the work of adjusting it down to 0.8 based on some OTP settings.
+There's also no harm if something went wrong, e.g., OTP is empty or u-boot
+doesn't implement the patching logic. In that case, you just waste some power.
+It's also possible to remove some frequencies in u-boot if that freq can't be
+achieved no matter how high the voltage.
+
+>> Overall I think you better do some real cleanup and refactor of this patch
+>> before sending it out again. The driver is quite long, and I suggest you should
+>> consider optimizing/condensing the logic. I guess you probably carried over the
+>> same code and hacks you made for the vendor tree (eswincomputing/linux-stable)
+>> There's no way they can be accepted by upstream. Take a look at other clk tree
+>> implementations and spend some real effort fixing the code. Don't let the
+>> reviewers grow impatient by only changing something superficially.
+> 
+> We'll improve the quality of our responses.
+> 
+> Best regards,
+> Xuyang
+Bo
 
