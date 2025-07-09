@@ -1,136 +1,180 @@
-Return-Path: <devicetree+bounces-194575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22C91AFE87D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:59:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB339AFE8A3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 14:14:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E0006E23A6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 11:59:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9898566ECD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:14:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 296B42D77F6;
-	Wed,  9 Jul 2025 11:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BEB62D8DC4;
+	Wed,  9 Jul 2025 12:14:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="I/l9ss5C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jx4RxIt7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE6B1FE451
-	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 11:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2417290092;
+	Wed,  9 Jul 2025 12:14:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752062383; cv=none; b=hyIBmV3PII7R5DmYXN7MumE/blP+RjNBYRmdN/tSz076Et0EOXSCpIcsWPwb7zdnl+v38E5ENEc7FQ8LOxZIqhh6JoWBmLe/EF+HPeNx9UkWoY/VtaGINqc6xzNAZTdFlgX4+qzFSb9frPR/bGB7v0khu6hfbUwm+tN8cnnXomg=
+	t=1752063294; cv=none; b=E8jhWe0byJ7CX+cqJ6Wluw9EtI5DJ3BCMeuGJO/SN5XsHgg62ZnkbQp/8wbgI5ereLP1c1m4ry+6sKIrL6DBD9n91bpSHeX3a36e083OOA2pzdMZuW6ab2X4KzbmgbFsvElydQZOnioKNP7gI7JFLa2g2ApslvISrisKZkp+0oY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752062383; c=relaxed/simple;
-	bh=9pVv9RHixO9d2u5FdY4HrMvtjdLG3sLqMZQKJyVQ/RE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=R9y5NT1JOY3UJGIaoH4RM/fcK7YoW1c9nMQFQdSljG4cNokBanUZKx4NNcDqZqlVxNI6UNhx3+panathBvD9u4zj9AACso2HI+lAiryV75H+H6zSYwVHccMByqrqmN0Ecb1fU20d3vNrpXlh9EBrYsvsBBsE75Hu0CiJp6pVbTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=I/l9ss5C; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ae3a604b43bso864349866b.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 04:59:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1752062380; x=1752667180; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VwaoJLiJYF12OSK8rGI95sJddGwuByNYIOGTk/ksVzQ=;
-        b=I/l9ss5C9PAfhDlfShQ35YWk+BRm0E17GRDikPaSam0JgAbLc7P2ns4sZtt/a4OVjg
-         rYbDpPQ0KVyUKUQSAikua41foV/Ua12/X2/pUCQyLppBr867YhrGPO1mnpzhnTsIzStj
-         ekxRxJJK3kCbTDa6KevbEF+bKhYv4R8x29hQuT/YtrSOHMAqlaqMGNs5alz1aVaA0hNZ
-         KCBMRZ60vAFAWebteaqt67asWPfIUBxKYEuYt9IbqYsqxxkifb2d8rF++zBaPUray8Kd
-         3QMI63XvglFpMilnPnKQaVVZkWl8xSMjvxmQbxieOILT2Hoo2iVGfrksdWPkBxTJDsp0
-         RXRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752062380; x=1752667180;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=VwaoJLiJYF12OSK8rGI95sJddGwuByNYIOGTk/ksVzQ=;
-        b=bTnNIKJBvSZ+FxABjhCbrb0iMHc8XarfUXhHX1z7CpKQZbvcAQDt7fy8dfFvVg2eD6
-         Qxms0poQrxA3hwEYQCpa/e5fd5zKX+loM8BF7LND9V1IuU/5vFqUC5PcgZpzjPQtP2+o
-         bMPD7wCS4Q4LmOvDt564OpfdyBeEP/aH4BHy1Jvguc9hVth2rQKdOHmvMNRCyDKPYMUl
-         REB51ENSxvI/IPR95sP2xqsXpBAkM6ZwL68S0o/G+S7wGRu+5x7ooSNwwF50hTDDnakT
-         lNDjpNbSFIHa52Ie30IqZ1uyMsu4O2L9CRHUGr9KR9VCqEhK8bcoGS4Q8lopKF0WFBbD
-         R2tA==
-X-Forwarded-Encrypted: i=1; AJvYcCVnycH9S9oFt6QzyHLvIneUS+OpmyA9YgZ1/GAi65QLb99cCsFiYf8gXBx/CqlTOW9TS/hA44cdajj9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIhw6qRJUdUgWGEmFCA816U2yauEqTpppp+XRAZUQSNBX/KgnI
-	z8S2GYpXN7qGf2hZbKX36WEd7klHSiVZLQS6XB7Bmqtpf4jVRu0LHbDOSl2jOGIo2pc=
-X-Gm-Gg: ASbGncssgfN7s1SEjhE/ZcdFqTvJujxKx8PfkT6ZA0Z14LkIMHCHMkQZMAS/XAgH66D
-	5V2UBWZ+drWJPwhhR4JJOffpDOVAxrhF7Y17QJl9beCq3FTOBAMs/JrxkrnSGhw8GWonx0Pracs
-	XyCg862/nDrL2o6AtlBgIezh0Fbz4mticf5vjnBHTp8rb9ElVGjeLJeBrqWjGu5hhzVImnOBoZy
-	5L0gUbDcb1aKuINpWF6vixoMaBN0CTuttnp8/bsUV64wuMV0LtmzVUTNnpzFr1Yvfp19bLc1H1I
-	RVn2rcut1FgjAzdclVhmC357U6Tp2n5mFn/eKhFfBvbQmnRKdvn1DDuDelGgQnvhi4ptDEfnlue
-	/3Dxg6fLf3lAnYuWxoBUV+A0fplXx1UmemX/b9i+M5A==
-X-Google-Smtp-Source: AGHT+IF5M43gbb1VPZRgUmXUN6Xh1tAveUbZcs0w5aMrTx9Nx/yzR4T2sKl+aY7FPc+zZ1BgthqpOg==
-X-Received: by 2002:a17:907:9708:b0:ae3:5f74:11fd with SMTP id a640c23a62f3a-ae6cf5e8e9bmr206052066b.23.1752062379715;
-        Wed, 09 Jul 2025 04:59:39 -0700 (PDT)
-Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6d7fc3584sm76721666b.62.2025.07.09.04.59.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Jul 2025 04:59:39 -0700 (PDT)
+	s=arc-20240116; t=1752063294; c=relaxed/simple;
+	bh=C0jnHX5ZIYrcjGrLWg1TUWOzEzr/PZY5bj2b/zzE6EQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W5lk8gDYAu0wJqeP9qDfBjfzzg6b12kWJTDKBt1mcoj9ZYTwUSTItLOer72/rhD9lh6rZVC7gWqjzX3IEXIkgWUscZQi1Y++CQ76WPquO0NFNPeNWDk2VSgIEEniGjIc1RFTVb/3ileNxWQFg8Q2okpbFdG6EdU2omkx+OrWRNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jx4RxIt7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09A8EC4CEEF;
+	Wed,  9 Jul 2025 12:14:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752063293;
+	bh=C0jnHX5ZIYrcjGrLWg1TUWOzEzr/PZY5bj2b/zzE6EQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Jx4RxIt7wS9R3IZNmxH0o8Tama+FOuHmqTgXjLmBn1XDG1wGmOgqRJqaL0NlUp8MV
+	 M5YXs8fWFXBIo7EpXsIW4U70lA4Pikt8fqfpxzJTKaMySGZ2G3ymt2bVvlvOnbbdJB
+	 1Vc327UnVCreNS7QdRAAw+keWq+r4RSZdiitqpbrwRMUDrgivtKDmmOwKOeKEz/6WY
+	 LppQGavosioDwHroRTAn4wvXQOh5ORfJ3N5aL0G3XfBT8yDxOIXtXqtNedY6ViciQC
+	 wTsvj/cIxQb5KPf+EJ9beURjN28tiHRWp5H/FXqvvzTDOnDMqetjagjOHJQpNKJ1Ti
+	 3e7QJpfBmbwNQ==
+Message-ID: <9aff4894-a8aa-47d2-8800-62959e064254@kernel.org>
+Date: Wed, 9 Jul 2025 14:14:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/9] dt-bindings: gpio: add bindings for the QIXIS FPGA
+ based GPIO controller
+To: Ioana Ciornei <ioana.ciornei@nxp.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ Lee Jones <lee@kernel.org>, Frank Li <Frank.Li@nxp.com>
+References: <20250709112658.1987608-1-ioana.ciornei@nxp.com>
+ <20250709112658.1987608-2-ioana.ciornei@nxp.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250709112658.1987608-2-ioana.ciornei@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 09 Jul 2025 13:59:38 +0200
-Message-Id: <DB7IA132RX61.200FUO5T7L3I8@fairphone.com>
-Cc: "Hans de Goede" <hdegoede@redhat.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Javier Martinez Canillas"
- <javierm@redhat.com>, "Helge Deller" <deller@gmx.de>,
- <linux-fbdev@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] drm/sysfb: simpledrm: Add support for
- interconnect paths
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
- <20250623-simple-drm-fb-icc-v2-3-f69b86cd3d7d@fairphone.com>
- <ypjcqiyfzjobg4zsm5sowjtu6ctvzgd4bvt3wpbqbb7o7f3rcm@q454aob3wwth>
-In-Reply-To: <ypjcqiyfzjobg4zsm5sowjtu6ctvzgd4bvt3wpbqbb7o7f3rcm@q454aob3wwth>
+Content-Transfer-Encoding: 7bit
 
-Hi Dmitry,
+On 09/07/2025 13:26, Ioana Ciornei wrote:
+> Add a device tree binding for the QIXIS FPGA based GPIO controller.
+> Depending on the board, the QIXIS FPGA exposes registers which act as a
+> GPIO controller, each with 8 GPIO lines of fixed direction.
+> 
+> Since each QIXIS FPGA layout has its particularities, add a separate
+> compatible string for each board/GPIO register combination supported.
+> 
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
 
-On Sun Jul 6, 2025 at 1:14 PM CEST, Dmitry Baryshkov wrote:
-> On Mon, Jun 23, 2025 at 08:44:47AM +0200, Luca Weiss wrote:
->> Some devices might require keeping an interconnect path alive so that
->> the framebuffer continues working. Add support for that by setting the
->> bandwidth requirements appropriately for all provided interconnect
->> paths.
->>=20
->> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->>  drivers/gpu/drm/sysfb/simpledrm.c | 83 ++++++++++++++++++++++++++++++++=
-+++++++
->>  1 file changed, 83 insertions(+)
->
-> If simpledrm is being replaced by a proper DRM driver (thus removing
-> those extra votes), will it prevent ICC device from reaching the sync
-> state?
+Your changelog explains patches, which is kind of redundant - we see
+that - but does not explain the dependency you have here between patches.
 
-How can I try this out? On Milos I don't have MDSS yet but I can add an
-interconnect path on another device to try it.
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-Are there some prints I can enable, or check sysfs/debugfs to see if it
-reached sync state?
+> ---
+>  .../bindings/gpio/fsl,fpga-gpio.yaml          | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/fsl,fpga-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/fsl,fpga-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl,fpga-gpio.yaml
+> new file mode 100644
+> index 000000000000..dc7b6c0d9b40
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/fsl,fpga-gpio.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/fsl,fpga-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GPIO controller embedded in the NXP QIXIS FPGA
+> +
+> +maintainers:
+> +  - Ioana Ciornei <ioana.ciornei@nxp.com>
+> +
+> +description: |
+> +  This module is part of the QIXIS FPGA found on some Layerscape boards such as
+> +  LX2160ARDB and LS1046AQDS. For more details see
+> +  ../board/fsl,fpga-qixis-i2c.yaml.
 
-I only recall seeing sync_state pending warnings in some instances, but
-never that it's synced.
+There are no "board" bindings, so this does not feel like correct path.
 
-Regards
-Luca
+> +
+> +  Each controller supports a maximum of 8 GPIO lines and each line has a fixed
+> +  direction which cannot be changed using a direction register.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,lx2160ardb-fpga-gpio-sfp2
+> +      - fsl,lx2160ardb-fpga-gpio-sfp3
+
+What is the difference between these?
+
+> +      - fsl,ls1046aqds-fpga-gpio-stat-pres2
+
+Keep list sorted.
+
+
+Best regards,
+Krzysztof
 
