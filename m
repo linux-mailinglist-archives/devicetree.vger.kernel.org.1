@@ -1,207 +1,155 @@
-Return-Path: <devicetree+bounces-194452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F2DDAFE439
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 11:37:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 723C5AFE44D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 11:39:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD4E3580380
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 09:37:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D4197B1E42
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 09:36:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539FF28642D;
-	Wed,  9 Jul 2025 09:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E182128642D;
+	Wed,  9 Jul 2025 09:38:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Vl2c3eHW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TFCqqIFJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A09B1286422;
-	Wed,  9 Jul 2025 09:37:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 061E7286422;
+	Wed,  9 Jul 2025 09:37:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752053825; cv=none; b=uiplnSvTBKkS3mDMxNkEHCaiBiGHlodphnh1uAJ5WQfl58OTGEwdgvusfKxIPAGVEh16ujfdYcz+Exr4sUTqwD4rTxmrJ+M/sDxBR/ClFQ77bUjaeUxYkl5+L10ggS3IINvASDpnf+4jlg+gtid0NI29mGeB7813+7Nr7M1OtaI=
+	t=1752053880; cv=none; b=cozxa3yxoQKCYGgd2MFW9BGqw3bP6rDoFR26k6bF3qhqSPNSYILrKyssqTtJvfjq7p1vwoT8iPyL/qiqU3ALE2gfnCnLaFycgdynibIeR3Pnc9LyFoDXGppoN7O/vWkpUiz2Tz/dkiAAvKqFyTKJT5tQRMxDxeM6P3kru/FqFPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752053825; c=relaxed/simple;
-	bh=d0jGkK6Mjl18HIJVp/ahQIiLxhwA9wSL4Pyd2Eg5xzI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EXX0d8JjD92exRtPzOzkawOK+Gru8HTMH2dwqTnRV2gOzteSRW9fJDMmmJHcOGkpCFIPHIlxc2ar4EUt88Pxslz8ezxoxEO+1hwcNZHA8puhLOUlKOgicxWifn8o3+K4T0TsH5B5wWjynMhij8QbWqjYeOu58lQyHDl6KdXuR8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=Vl2c3eHW; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-23649faf69fso46908345ad.0;
-        Wed, 09 Jul 2025 02:37:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1752053823; x=1752658623; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y+LaGhFdH15NRohN6jDSwkhz0ZXYVZii1BB9nePp2aU=;
-        b=Vl2c3eHW0k2I0VeClyygdx5+H2JtjV9ez91GY0hhbO0GTEcqdbi7C4VA1KQji9ZeZ1
-         Qc7mGabgFZportRSLiM1hHwX2Z8WUMZzjb0LQugvDkpY1pJzd4GZ97cVyk5FMyuad9vN
-         KeGO+NeUXQjDaR6wTR0xIkUX9uEroeTff4UNzaoWi1Pfrcga7tOtEa1etIMg40V031R+
-         S+HxHP5pTRgBl34JwwlhZaWj/DJ/YHOxWBCfkxqGU7DAoKFj/Y8yO6C29RaR0Y+yKAGL
-         8fAkjyIjNZLz4V/eDRwC4GXsl5B1eXeeDm/q/7EAK3RQIX0Ia0ib/b/ldtlVVgFXR+Uz
-         EobA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752053823; x=1752658623;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y+LaGhFdH15NRohN6jDSwkhz0ZXYVZii1BB9nePp2aU=;
-        b=tbH4Ijlc/AtlV/Aew+dO8MLHLgLp6DXVzFBeQHrSLCt+TTEUtu1muke2I1R4N6eltg
-         pZ5KKq8+4UcNJux9afpOr2sBzSgctsuHxt/vwxzQYaj9blJP9VLP6od15JdXsvUsa/zy
-         Q+q7ahukczdTNRXF3KCwy5iUz8uGU4ywaxSEibZHStX4HefKdRwkgVQzjr52YV0tDsAN
-         w9Si8E0BSLizV02hoc2nw4YdXGZ7ElAKpTA+uMgxY/5qr6Q1+qpuXsvtE/j08thxYPAF
-         cnhNMU6/a+Z/IbQ0LNolKzGuw6kugKCKoYBRmc5J8HGxqzPpbmpF48MxctMZL33N4GJM
-         HSdA==
-X-Forwarded-Encrypted: i=1; AJvYcCUbuBDovIRWMclHzew97MS1js2R6eOoH6FAZ7xtI+ICzk965Kf5HJBuki7CsDDj2iv74olYF78u8pE2@vger.kernel.org, AJvYcCXIclqtNI7jUwa+9twuI3OcNjhN7AD6L+rSGjPd3LCDCOAr71wXDmfg1CYwBUcNGmu9ZlcH5D7rjYuz@vger.kernel.org, AJvYcCXLc0D6PV/FPufqruONrX1xkBquWiC/UnUPZf50M+/rRLE+oi4FUfuWDM0r/o0SMk8rkljuiNLecvJw1Rhl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCQz6pIAnFTNEjo4qXcCdK20MA6kL+10N/d+vxsV/edzwefrTS
-	2lRdSpVqu21Qv6Ryspy3CKiC8wlhcfe2iStM5qzKtKiEUS+xehV3ol8dkgXAH4n+c1Nb5hJGG57
-	SpBcIVF97o42cEWYjI3wv6yHI99SR3Mw=
-X-Gm-Gg: ASbGncvT+8LFDgKKZs81uL/bTLP5glJC4tvB4FP9YlbEXJtRSEkfZLzCEKDhyVo9iKt
-	Hy+mFjXYwmOY07Bld1X033MvDoHOOsjkhKv8R2kTXjZ8mrW4gHs/oXbNBT27vMejM/SMY8Ad3n7
-	Isyd0UXAkSHuNRGiaNz9NLVDRCfp/7F0h0H+Nos7jic+UqeljKDzxrcFS+OdiaakkS56NI
-X-Google-Smtp-Source: AGHT+IEwwywvEzlRHvTTHK1G+2vz8oNtYhpg6zze2DufMOLtj4x+/BetMBVk3t85MV8wrlNO97xNtmt2R0gZv4cwXFg=
-X-Received: by 2002:a17:903:287:b0:235:f55d:99cc with SMTP id
- d9443c01a7336-23ddb198289mr32150745ad.2.1752053822733; Wed, 09 Jul 2025
- 02:37:02 -0700 (PDT)
+	s=arc-20240116; t=1752053880; c=relaxed/simple;
+	bh=R/Mrmbjqz9qW+yKtbzLUEO4ZFUbm43oyzl4LOCvlfNs=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=ti2Na8XSSEzuiR1rJ38sjWE3L56HYfEhmAS8mRHpZ25U31xLM6elNSHAeqJu081oCIrWmq19fgurBPDzftFWWVDyS5dowhub2UmeSK2UHa5SIz0toYY8nAvztEmQkj3/baRdi4BKXxcy2z4fH9+eR4I8h4hcjw/YJOdFpOA1IDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TFCqqIFJ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5698J9MQ008236;
+	Wed, 9 Jul 2025 09:37:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=pulPunlH2z/XL5p+XMl/BG
+	yq43vwvOppJpxb90Jr1sM=; b=TFCqqIFJ1E8Af9D36dr/9gD7lCJe3fYda6+e4t
+	sju2oqx0JMXl8yZKp0oo8u48UbfquveLEJrQzie6luGFk8bWlLVgZjceZDCVEen7
+	RoCyYyAFICOYdgSZcW/afYosaM1vh3f2Ohz4eJogqwZDrGLdy4guOkRnPHIAj3gy
+	U6SS7wDQJJW2qTaLojESZL1xecMHbAG97owEQx9LWVkuEskgGcRyIM2eR69DX813
+	jNpOQujb6VD6q/x5fc5/XYvXz899rXnb4f+TfyZbbFUz/KIMUFxXwrD2aZ3yw+gV
+	qmIi2ApuZt+S3MIAh1FbqJaZgwlMjsnizIbP00ndvCsckCxQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47pucn3x3q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 09 Jul 2025 09:37:54 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5699brC2024013
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 9 Jul 2025 09:37:53 GMT
+Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Wed, 9 Jul 2025 02:37:48 -0700
+From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+Subject: [PATCH 0/8] Reference the common qcom,gcc.yaml schema
+Date: Wed, 9 Jul 2025 15:07:21 +0530
+Message-ID: <20250709-gcc-ref-fixes-v1-0-ceddde06775b@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250704-spisg-v4-0-6b731dfbe610@amlogic.com> <20250704-spisg-v4-2-6b731dfbe610@amlogic.com>
- <CAFBinCB4Lw04StL-kPpzKHPyETKfi5FYFipHRBDDnPdtRVDrmA@mail.gmail.com> <646ef30f-cadb-40ab-a0ad-c493fbdb9709@amlogic.com>
-In-Reply-To: <646ef30f-cadb-40ab-a0ad-c493fbdb9709@amlogic.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Wed, 9 Jul 2025 11:36:51 +0200
-X-Gm-Features: Ac12FXzaQ629wbNl6vgvdIQIhSzEtFJGPC3mJVuls0iq3-leb4WRKCyFDDxPMKE
-Message-ID: <CAFBinCDctqZ_Q2aXOzU514nXBT45GYDHY5-V0cAmZvHkbUR0Mg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] spi: Add Amlogic SPISG driver
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFE4bmgC/xXLQQqAIBBA0avIrBsYDSm6SrQwG2s2FQoRiHdvW
+ n4ev0LhLFxgMhUyP1LkOjVsZyAe4dwZZdMGR87TQCPuMWLmhEleLtgn8t7ZYGm1oM+t9IMu89L
+ aB2hcFldfAAAA
+X-Change-ID: 20250708-gcc-ref-fixes-3f05521a10b1
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
+        "Srinivas
+ Kandagatla" <srini@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Jagadeesh
+ Kona" <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Satya Priya Kakitapalli
+	<quic_skakitap@quicinc.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=GdQXnRXL c=1 sm=1 tr=0 ts=686e3872 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8
+ a=l5o_hXXZbb6RFrwtsEIA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: ALyzEuW73nZ81luR65ePC4FsCTsBwV7m
+X-Proofpoint-ORIG-GUID: ALyzEuW73nZ81luR65ePC4FsCTsBwV7m
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA5MDA4NiBTYWx0ZWRfX5hEM786uYreh
+ o+EIUHcTGoxyTqFHhLJsOJNIZmSWIfWk6tyMFb9l2vibjEDJpwjeU8OabqMLuW2no9B0hzs2JbT
+ 0m09HknWt9LjwYazBi2N8kyyES+OcURZlhTyrRnCf+Mqo3gUBaqGE0r1Ayowue1PKt+QMhbVk3d
+ xJrODKChPHd+Gvae+givrj54exUh9An2CGalVhw1eQM69gAYPuU7MmpiYUjj8Gd076GaVxfevrD
+ oWLxZS+DRkLkbEnpuL+TgVPsrdOujLLhhv0nVn8px4c8G6cICKLyAmV7FSjn0QxIoZsNhruFfcl
+ vLMZgMPwsv/q6ZF0Tf4ZNbCwK5DpgouRRY8Th9BO069Nem9H23ZIPjoAK++rrj7Yg/KWGilZpln
+ IK+Eh9JkwdhSnTHf5rMk2CzXr34VnKPHCkquLyk7Sw2XYOPn+MLCanKJgbbYeAkMIr/TDPkN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-09_02,2025-07-08_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 phishscore=0 adultscore=0 bulkscore=0 clxscore=1011
+ spamscore=0 suspectscore=0 mlxlogscore=702 priorityscore=1501 impostorscore=0
+ malwarescore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507090086
 
-Hi,
+For all the possible Qualcomm clock controller bindings
+add qcom,gcc.yaml reference to unify the common
+parts of the binding.
 
-On Wed, Jul 9, 2025 at 8:29=E2=80=AFAM Xianwei Zhao <xianwei.zhao@amlogic.c=
-om> wrote:
->
-> Hi Martin,
->     Thanks for your reply.
->
-> On 2025/7/9 00:01, Martin Blumenstingl wrote:
-> > [ EXTERNAL EMAIL ]
-> >
-> > Hi,
-> >
-> > On Fri, Jul 4, 2025 at 5:07=E2=80=AFAM Xianwei Zhao via B4 Relay
-> > <devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
-> > [...]
-> >> +       div->table =3D tbl;
-> >> +
-> >> +       /* Register value should not be outside of the table */
-> >> +       regmap_update_bits(spisg->map, SPISG_REG_CFG_BUS, CFG_CLK_DIV,
-> >> +                          FIELD_PREP(CFG_CLK_DIV, SPISG_CLK_DIV_MIN -=
- 1));
-> > Are you doing this to prevent errors for value zero?
-> > If so, is CLK_DIVIDER_MAX_AT_ZERO applicable instead (it has been
-> > discussed for the t7 clock controller recently: [0])?
-> >
->
-> No, if add add flag CLK_DIVIDER_MAX_AT_ZERO, reg value will equals
-> divider, see
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/=
-drivers/clk/clk-divider.c?h=3Dnext-20250708
-> As follow in function _get_div.
->          "if (flags & CLK_DIVIDER_MAX_AT_ZERO)
->                  return val ? val : clk_div_mask(width) + 1;"
->
-> But here reg value adding one equals divider.
-I see, thanks.
+Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+---
+Satya Priya Kakitapalli (8):
+      dt-bindings: clock: qcom,sm8150-camcc: Reference qcom,gcc.yaml
+      dt-bindings: clock: qcom,lcc: Reference qcom,gcc.yaml
+      dt-bindings: clock: qcom,mmcc: Reference qcom,gcc.yaml
+      dt-bindings: clock: qcom,qcs404-turingcc: Reference qcom,gcc.yaml
+      dt-bindings: clock: qcom,qdu1000-ecpricc: Reference qcom,gcc.yaml
+      dt-bindings: clock: qcom,sc8280xp-lpasscc: Reference qcom,gcc.yaml
+      dt-bindings: clock: qcom,sm4450-camcc: Reference qcom,gcc.yaml
+      dt-bindings: clock: qcom,sm4450-dispcc: Reference qcom,gcc.yaml
 
-> >> +       /* Register clk-divider */
-> >> +       parent_names[0] =3D __clk_get_name(spisg->pclk);
-> > Instead of using __clk_get_name my suggestion is to use struct
-> > clk_parent_data with .fw_name set.
-> > If you want to simplify the code further you can use helper macros
-> > like CLK_HW_INIT_FW_NAME
->
-> here I don't know parent fw_name, The system does not have a
-> corresponding interface to obtain parent fw_name, only name (clk-core->na=
-me)
-The .fw_name is simply "pclk" in this case.
-That clock is then internally looked up (by the common clock
-framework) using the "clock-names" and "clocks" properties from your
-device-tree.
-
-[...]
-> >> +static int aml_spisg_probe(struct platform_device *pdev)
-> >> +{
-> >> +       struct spi_controller *ctlr;
-> >> +       struct spisg_device *spisg;
-> >> +       struct device *dev =3D &pdev->dev;
-> >> +       void __iomem *base;
-> >> +       int ret, irq;
-> >> +
-> >> +       const struct regmap_config aml_regmap_config =3D {
-> >> +               .reg_bits =3D 32,
-> >> +               .val_bits =3D 32,
-> >> +               .reg_stride =3D 4,
-> >> +               .max_register =3D SPISG_MAX_REG,
-> >> +       };
-> > Most regmap_configs in Amlogic drivers are static const.
-> > If you make it a static const then I suggest renaming the variable to
-> > aml_spisg_regmap_config for consistency.
-> >
->
-> regmap_config as a local variable, it can save space.
-Thanks, I was not aware of that.
-For documentation purposes, with the original approach:
-$ aarch64-linux-gnu-size -d drivers/spi/spi-amlogic-spisg.ko
-  text    data     bss     dec     hex filename
-  7504    1377       0    8881    22b1 drivers/spi/spi-amlogic-spisg.ko
-
-and making the regmap_config static const:
-$ aarch64-linux-gnu-size -d drivers/spi/spi-amlogic-spisg.ko
-  text    data     bss     dec     hex filename
-  7716    1377       0    9093    2385 drivers/spi/spi-amlogic-spisg.ko
-
-[...]
-> >> +       device_reset_optional(dev);
-> > I haven't checked the reset code but I think the return value still
-> > needs to be checked (drivers/mmc/host/meson-gx-mmc.c does so).
-> > Even though the reset is optional there's conditions where we must act
-> > for example on -EPROBE_DEFER (which must be propagated).
-> >
->
-> The reset might not exist for this node, see relevant yaml file.
-This part I understand. Optional however doesn't mean that we can
-simply ignore all errors.
-Let's consider the following three scenarios:
-1) reset not provided in .dtb -> we don't expect any error here
-2) reset is provided in .dtb but the reset-controller has not been
-registered -> spisg driver must propagate -EPROBE_DEFER
-3) reset is provided in .dtb but reset_control_reset (which is used
-internally in device_reset_optional) returns an error -> spisg must
-propagate this error
-
-Your code works for the first case but it doesn't consider the other two.
-That said, I'm not sure if the third case is realistic given the T7
-reset controller uses MMIO access. This may change in future though
-(if SPISG IP is the same but the reset controller changes).
-It still leaves the second case where the spisg driver should be
-probed only after the reset controller is available.
-
+ .../devicetree/bindings/clock/qcom,lcc.yaml        | 17 +++------------
+ .../devicetree/bindings/clock/qcom,mmcc.yaml       | 24 +++-------------------
+ .../bindings/clock/qcom,qcs404-turingcc.yaml       | 17 ++++-----------
+ .../bindings/clock/qcom,qdu1000-ecpricc.yaml       | 17 ++++-----------
+ .../bindings/clock/qcom,sc8280xp-lpasscc.yaml      | 17 ++++-----------
+ .../bindings/clock/qcom,sm4450-camcc.yaml          | 20 ++++--------------
+ .../bindings/clock/qcom,sm4450-dispcc.yaml         | 20 ++++--------------
+ .../bindings/clock/qcom,sm8150-camcc.yaml          | 20 ++++--------------
+ 8 files changed, 30 insertions(+), 122 deletions(-)
+---
+base-commit: 26ffb3d6f02cd0935fb9fa3db897767beee1cb2a
+change-id: 20250708-gcc-ref-fixes-3f05521a10b1
 
 Best regards,
-Martin
+-- 
+Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+
 
