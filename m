@@ -1,147 +1,145 @@
-Return-Path: <devicetree+bounces-194474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B8BDAFE54A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:13:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE9C8AFE54E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:13:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6D663AE1F6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:09:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4C1B1C44B95
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:11:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B069128A714;
-	Wed,  9 Jul 2025 10:08:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE7028B4F3;
+	Wed,  9 Jul 2025 10:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ZOFR5QYJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kgUJHCHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D565628A701;
-	Wed,  9 Jul 2025 10:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C85D280308
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 10:09:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752055706; cv=none; b=INjOdasfwC75uD5G37D+bWBmDl5xzHE3j6GP9HLdJPrZ+nR3rYerhOE0AoZKPAo+Ij7VBy1hrTF4/l8a1hGV6F+MREBN3M1CAs97FbSzj7olfYggDRGmFsWOlR6Px+zj6a9dBCfbw9OFF8xjR7CKtikH7gB/Y9P9yCXc+RDN4Zg=
+	t=1752055793; cv=none; b=ub4uWX2zsKadM9db3WC410+7gysyv7N9Hs3zW52C89Fxhl1XfRl2vABFuhdlfuQGwf+mkBtrreK8S/sP9J04XkY/r8yickUpF95FvlMWdpl207sJV6NxILR2Al+yTEwzVp1ZZXdXV4PC24I/jpNz7hybedx3qZUYKWiaOWZchcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752055706; c=relaxed/simple;
-	bh=n4/DC3bhdUZoFTEoFep2p7ibhgZD9ZHc56z5gU/C1Bs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CD/auQ331q0qnZKW6P8uwELIqeBP+L5wRpXYbCuRApBuRFm517YikDaSuQWGkgEcR63L4mUSSapMAYRbe7iS4mfv/tINts+ljx28cc/GRPOHQSDaUP1WNdUgkRnTKjz7Xmyi3JqU1Di/JkYQWoPqiFLOeB8z8apn87PMo8HoxnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ZOFR5QYJ; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 86578103972A7;
-	Wed,  9 Jul 2025 12:08:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1752055701; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=FsxQbQPIJsaYTNOu6ABUMe0d1muypWFSA2FGjsr9hv4=;
-	b=ZOFR5QYJmEImw0t8AqiKiZi5hRhUsSDtDlUVGIS/tUYksC4yoQ27YObM0jcDNKmO4vuUnH
-	pdj8Z7iZN+40EH8d9HeL2x7deLr2PBODbaRgerSiLocF5B6C8AnLAYlY6ZQXoFIXeNHmM4
-	PDk8LbWwrGlZmWNFtFU7x/BTVfF/ZHH/f8RuBrLOUkkoUbWZTP2Ew2nJki3o2zoRaQb86W
-	3YE44lWolkv7qhe8wPGRebTXD4bzsyYaTFmZsAx1vjvn46ZzK1g/vFBfoDSHbKiyd0cdLe
-	0EsKGZENUVrx6pJbJQ8lGmKaW6ruKtHDitD3pifYamAk7ljyesoF3NGy6pRD1w==
-Date: Wed, 9 Jul 2025 12:08:16 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Paolo Abeni <pabeni@redhat.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Richard Cochran
- <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
- <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>
-Subject: Re: [net-next v14 06/12] net: mtip: Add net_device_ops functions to
- the L2 switch driver
-Message-ID: <20250709120817.5b2f631a@wsk>
-In-Reply-To: <ea22a546-9381-48c3-8bb6-258fdd784ca3@redhat.com>
-References: <20250701114957.2492486-1-lukma@denx.de>
-	<20250701114957.2492486-7-lukma@denx.de>
-	<ea22a546-9381-48c3-8bb6-258fdd784ca3@redhat.com>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1752055793; c=relaxed/simple;
+	bh=2xRrbDBqjLbzQMzAMm4L8u9VN2Mq2YBHHgTCE5yPM+M=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=s36WvpFG7O6BSfI6dIoLtl2vLHxNGmerIXYs4ZdfhfAs3+E3/xE3/gTpxSOSnWto9eWYubD3DytH/TIqyW6A6LhoDdUEoOzWNXk3RBTE3ay+TyqtDYDgad7TJn7xtJTFVoXL6hLKUGBcS/LC1z6MNKyu6QQj9/3pVDCgDfqApZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kgUJHCHO; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a57c8e247cso4106533f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 03:09:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752055789; x=1752660589; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LhGPvC5ZmRo6MvYpiQ+hA4rJtB+6fwTj9VtUCIpUF0U=;
+        b=kgUJHCHOZMU1tKLCB7CE1oinHT4J9BvOfm/OIl2GEkYbuPtvvBXxDvQRg6xEBQKtnF
+         YrFm9uEBlA8R6VeLBJmhyvvfsP4GT1ynrt3ut0iWbqBDLBt1R0YOEKzrPNADqO7Awex5
+         a7Dp/gGy9SFFZPwmir8kYShzEt0R+3HOkaEDuTU6P38U22EfRnnGPkoYX5mrsU24UGYp
+         OrR6N3/e8P6SHORU/FtJ0zCrZYu1U7eaHa3B/BB5gF5KGDGXOVOFXZBrqiOZO6NHN93b
+         b0DqP5uVgbIQR9pMPl9OEt948dSOclg6bTL3JArtdMxqVb9PmGqoEjMatsWUfstd+bI+
+         6rEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752055789; x=1752660589;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LhGPvC5ZmRo6MvYpiQ+hA4rJtB+6fwTj9VtUCIpUF0U=;
+        b=QkZiZfCIUdPzix5xMD/0myg+YIXhCXqaE5b4BL8sSyDa7C2VX+iNntYfEIUyAH/luG
+         bNi+pugAQ18rK4YpbZiChN2BijHBsd8dKGAtBFWSW/PBSBrJ4al9VgjG4TiY8PJgkiio
+         unVzlMDNDzWeb6DRftth49Y+yWrhUhpMJH/GEQBh0YJG9Xz2AkmZ3p18rCWew5b32KWg
+         QQ71lhpWPLzXxeWoWCNwtR9YU0KgfXn7sB7kjiHtOtxr3InfKK/BY1IP3Q6dGQSYpYRu
+         1cB/2oVWjIq7EysbzmgOrzdN4ygdACyHC82oTM7cWs6Kb3zcJ6Err2WwAbLGGRujIP65
+         znww==
+X-Forwarded-Encrypted: i=1; AJvYcCVfc1TCxfdv95rCpQ30GV93rXb1swh5JTi9jZAnIvSrmHMPoHVPoRUSkWZ+m3QianPxIfZnTX4eUEHi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOx+qb4PelLa4t64YF/5gC6svF8Y4sArp5xe+7dSzLaqS/MzuC
+	WyPJuDMxD1LXj7Zby3Swk+osj4WJy0Ylx3YYfAgpHV316dVdZq6eVAfLGCCPq8hnM4U=
+X-Gm-Gg: ASbGnctEEii6XtODVhJAXASfGJCUkm7DatHsz3HEgEiT3PZA5u1QlJ53goeJSFd5F3T
+	uilvRMPywnfu5/gTBmjzFdGDgcjhe5rd41dxGgZ9tlGtqHKJzIPcpUI3lWwbaq3XyaumY2U+3Ju
+	2mj3LEN2gnFpoT7ElTwzQABaWI2G06KrkPeWE6hNiO7vebSVUxxHuiJjszkn0n0OZD753gH8JA6
+	LDBt4v0EcqV/ruCSNyAb9Zy1H3jGRn4Qln9QAR19x2hQ20XztRyf8/b4UyMORyq5FH3lAOXEnv+
+	qz2A2Lvs+HhULlyz0MZoTvMH1elqE4E/1LEIuXnL1/PW09qtAZvJ97fs7FRtvxQ9Tnx6vkeGsR8
+	s8w==
+X-Google-Smtp-Source: AGHT+IH23Gs+RdsiqZF1i+ig4T8HqK1WkwzKsnAcCCYZOWWyRHXe5QspHefa+kIAw8XbM9oBGVkUIw==
+X-Received: by 2002:a5d:6f1a:0:b0:3a6:d7e9:4309 with SMTP id ffacd0b85a97d-3b5e45380f3mr1416075f8f.29.1752055789438;
+        Wed, 09 Jul 2025 03:09:49 -0700 (PDT)
+Received: from [127.0.0.2] ([2a02:2454:ff21:ef41:d3be:a88a:dbb9:f905])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454d5032997sm18342105e9.7.2025.07.09.03.09.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Jul 2025 03:09:49 -0700 (PDT)
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Subject: [PATCH v2 0/6] clk: qcom: Add video clock controller and resets
+ for X1E80100
+Date: Wed, 09 Jul 2025 12:08:52 +0200
+Message-Id: <20250709-x1e-videocc-v2-0-ad1acf5674b4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/kSh+3R=zs/0/CbqzphcKx.b";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALQ/bmgC/23MywrCMBCF4VcpszaSizHqyveQLmoyaQekKRMJl
+ ZJ3N3bt8j9wvg0yMmGGW7cBY6FMaW6hDx34aZhHFBRag5baSieVWBWKQgGT90LJqKLW1p3OBtp
+ jYYy07tqjbz1Rfif+7HhRv/W/U5SQwl1sMFfzRCv1/UXzwOmYeIS+1voFWebgl6cAAAA=
+X-Change-ID: 20250701-x1e-videocc-10f1f2257463
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
+ Jagadeesh Kona <quic_jkona@quicinc.com>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abel.vesa@linaro.org>, 
+ Johan Hovold <johan@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Stefan Schmidt <stefan.schmidt@linaro.org>, linux-arm-msm@vger.kernel.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
 
---Sig_/kSh+3R=zs/0/CbqzphcKx.b
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+In preparation of adding iris (video acceleration) for Qualcomm X1E80100,
+enable support for the video clock controller and additional needed reset
+controls. Since iris in X1E is largely identical to SM8550, reuse the
+existing videocc-sm8550 driver with slightly adjusted PLL frequencies and
+adapt the reset definitions from the SM8550 GCC driver.
 
-Hi Paolo,
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+---
+Changes in v2:
+- Fix commit message of PATCH 5/6 (reset definitions are just copied as-is
+  from gcc-sm8550 actually) (Konrad)
+- PATCH 6/6: Use GCC_VIDEO_AHB for videocc instead of
+  GCC_QMIP_VIDEO_VCODEC_AHB_CLK (Konrad)
+- Link to v1: https://lore.kernel.org/r/20250701-x1e-videocc-v1-0-785d393be502@linaro.org
 
-> On 7/1/25 1:49 PM, Lukasz Majewski wrote:
-> > +static netdev_tx_t mtip_start_xmit_port(struct sk_buff *skb,
-> > +					struct net_device *dev,
-> > int port) +{
-> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
-> > +	struct switch_enet_private *fep =3D priv->fep;
-> > +	unsigned short status;
-> > +	struct cbd_t *bdp;
-> > +	void *bufaddr;
-> > +
-> > +	spin_lock(&fep->hw_lock); =20
->=20
-> mtip_start_xmit_port() runs with BH disabled. The above lock variant
-> is inconsistent with what you use in patch 4.
+---
+Stephan Gerhold (6):
+      dt-bindings: clock: qcom,sm8450-videocc: Document X1E80100 compatible
+      clk: qcom: videocc-sm8550: Allow building without SM8550/SM8560 GCC
+      clk: qcom: videocc-sm8550: Add separate frequency tables for X1E80100
+      dt-bindings: clock: qcom,x1e80100-gcc: Add missing video resets
+      clk: qcom: gcc-x1e80100: Add missing video resets
+      arm64: dts: qcom: x1e80100: Add videocc
 
-I've looked into the fec_main.c driver. They use for TX path
-__netif_tx_lock(nq, cpu); which is a simple spin_lock(). I've followed
-the same approach (as _irqsave() seems to be an overkill).
-
-This function (mtip_start_xmit_port()) is call as a callback from:
-.ndo_start_xmit (member of struct net_device_ops).
-
-IIRC net core code provides locking on this call anyway.
-
-> Please be sure to run
-> tests vs the next iteration with CONFIG_PROVE_LOCKING enabled.
-
-This is already enabled. Locking in this driver is a bit special, as
-one uDMA is used for both ports... (unlikely as in fec_main.c).
-
->=20
-> /P
->=20
-
-
-
+ .../bindings/clock/qcom,sm8450-videocc.yaml        |  1 +
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 15 +++++++++++
+ drivers/clk/qcom/Kconfig                           |  3 +--
+ drivers/clk/qcom/gcc-x1e80100.c                    |  2 ++
+ drivers/clk/qcom/videocc-sm8550.c                  | 29 ++++++++++++++++++++++
+ include/dt-bindings/clock/qcom,x1e80100-gcc.h      |  2 ++
+ 6 files changed, 50 insertions(+), 2 deletions(-)
+---
+base-commit: 0672fe83ed07387afb88653ab3b5dae4c84cf3ce
+change-id: 20250701-x1e-videocc-10f1f2257463
 
 Best regards,
+-- 
+Stephan Gerhold <stephan.gerhold@linaro.org>
 
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH, Managing Director: Johanna Denk,
-Tabea Lutz HRB 165235 Munich, Office: Kirchenstr.5, D-82194
-Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/kSh+3R=zs/0/CbqzphcKx.b
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmhuP5EACgkQAR8vZIA0
-zr2DCAgAxD7rrFXIyi+rHYv1bwydkkv0xAPwNNg4ilaG0hVeKYG1argzJUIBwp1E
-Oo/EvG2HUoBs/I83nrGq+Uk5SX6R4zqDIx/iYu+/V/9hll06UV6MmtdNW772+LRD
-slkfHgqjAAiVSfGvE1iUPZc8nkR7+0foXlv/dIeQWaYoROg2dQtK/p+X8SUMe914
-ojjlmPsxPPIbfIclJc+lIqQgrJbme2z4EYldIjK+aTfjiRtAFdnMdnCUjtqw5slO
-MpSrlAYs00wS4RS+KH+Zlp12ief5Zaw4h5H2vfX65p/2pV84RBAT9E6SL7ZC2rsh
-TYfU75uh2iv8ow1RM40r+MrWqaOCNg==
-=f3nq
------END PGP SIGNATURE-----
-
---Sig_/kSh+3R=zs/0/CbqzphcKx.b--
 
