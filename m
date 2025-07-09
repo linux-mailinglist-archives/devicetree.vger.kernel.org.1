@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-194430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B381AFE2FA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 978DCAFE2FE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:43:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B894316A9DB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:42:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9A1F4A3D1A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:43:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8153827BF7E;
-	Wed,  9 Jul 2025 08:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE27727E05B;
+	Wed,  9 Jul 2025 08:43:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DHILO/Pu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EdYhE74i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A70237713;
-	Wed,  9 Jul 2025 08:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966581FDA8C;
+	Wed,  9 Jul 2025 08:43:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752050569; cv=none; b=hF6rxtBMZZF6H7Ij80tHXSMWEgH1XYWMRWyCYsDVv8QGoHOLIeyVoNjkZbALLUYtrVaOvD2JE6VOj84SYrvr5FvjJ7fcZx89QjSGY2tN53jAYGHKANe8/FHTWCcdlWtGExfQgRYZIr/Y6cs5qNqQPNiWjhqPGqaMZJAnLJm/EYI=
+	t=1752050620; cv=none; b=OG31okWOhCr0nD+QcW5GdzR+iQQRMl/kgTzFa+0QoTzddod3ecdY0dIKD/USMb33a323Z3YVziJOOjLhjxR/dpwxLm6bm8NZ5aIiXQ+i6eQlxZH/+72oaNvo/XVN9iKPJOX11JiejtGEXlgh67zI4FZkXiXom9EKN8iRcfPO/0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752050569; c=relaxed/simple;
-	bh=ZZFvlmSG8DdeZdpkA8RVUggjrKV4E9t8w9rXo+qb1SE=;
+	s=arc-20240116; t=1752050620; c=relaxed/simple;
+	bh=LeSjouO1jlb2DKe/RcxgbmjYkeHiorrNAuQ7DJEa2rs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K8O6RoheX1hL8lKA3c+ngz3TlLxmig5d+DWFly4l3BzUAH2mKumOP3qTBPEsx37+yuUDsjsjk+D0kFXalH0gxNDeJJMvC0QkIxQvbQ2bMAQjgh9PF46YpWtTA8nq5rg9aVQie+lE5d+03T7NlqlJH31+guaMyxs2RxZr0bUrDGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DHILO/Pu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AA41C4CEEF;
-	Wed,  9 Jul 2025 08:42:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=m/mYGIr3JcmFNb7AYqMiI5rAAAfhz47ghv8d1x39A8cvpkTZDeeYm7GsFmgXa0YxvPg15atwq3DHEZBuahdCdKmuLsh+ZPOw4CBxMYDvF5rPbHU1sUe3DCh79hdMwTTbBEhGYY0I5cwlqynsmLLrteBGVSHF+VrT+tLz42oZgp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EdYhE74i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A578CC4CEF0;
+	Wed,  9 Jul 2025 08:43:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752050569;
-	bh=ZZFvlmSG8DdeZdpkA8RVUggjrKV4E9t8w9rXo+qb1SE=;
+	s=k20201202; t=1752050620;
+	bh=LeSjouO1jlb2DKe/RcxgbmjYkeHiorrNAuQ7DJEa2rs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DHILO/PuOe8yVH6FW2fDNERUXe1W0Z57mBbHXlFK8cK21M4Zgda5LqYnhGOV5qWUl
-	 vePhTbcOClHTs79iMv9cstP3EVQHBHRXV1oV2lBO1oLnZ6yk4DWuM+vpc8ITdnE1lr
-	 Ugy19pr70gnFgVPMxcnkhZIDWcJt7fKygTLjUQkxcG4kofeS1/27rWU9Z1uagGs0sz
-	 EffQ6RwXeVAD+OxCEcdGdeYGDSpSC8LiKzjkFBo67cqt3TUQSYt7b65nwkydUGnDcR
-	 XI+fSOD4R31tB4wwhzdHTH6o2sfuSpbS1ymaIKE0cfIrqxMMbdtB0nTZ5dICOfsnyu
-	 Ao1h1anqm6O4w==
-Message-ID: <6b69c2b6-39ff-4f56-b5bb-2d1bfd8f1bc6@kernel.org>
-Date: Wed, 9 Jul 2025 10:42:45 +0200
+	b=EdYhE74ilOg6KbH7QqSwKWoG8P2ORFjq3TTVZa/3AOhIhAysRt2fEPh5WYR8G0Nmp
+	 aETjnK3BFQN9OOxm/obNJKx1P6sHaC7CEI3g3uGYiPX1o2wXI2bFPxd/OhisHVBo66
+	 6Eiwd2n4WQuvFoKsJRGE3MJ+ey5NByxZOEXAHn4kPgxixTwYXXgoxPxG1a5ns8CRtl
+	 fG9zpX/39+IxuMb+FD6svf9SRb5w0X5I1Lmqg4yQcXqywab2kTtgmaJTxf/lrIXuHD
+	 cDSqlL3q39VpNulvwujdsqGJCd4JDmozg7b80QE9vsClkF6XwYm+JLT/5P3Ibci/tm
+	 dplCWipSjT8Wg==
+Message-ID: <6e5c20f3-fa31-433f-a50a-b00612bc1949@kernel.org>
+Date: Wed, 9 Jul 2025 10:43:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: x1-hp-x14: Add support for
- X1P42100 HP Omnibook X14
-To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+Subject: Re: [PATCH v1 1/3] dt-bindings: arm: ti: Add bindings for Variscite
+ VAR-SOM-AM62P
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250708-hp-x14-x1p-v5-0-44c916efa973@oldschoolsolutions.biz>
- <20250708-hp-x14-x1p-v5-3-44c916efa973@oldschoolsolutions.biz>
- <20250709-arboreal-basilisk-of-opportunity-bafaf1@krzk-bin>
- <52b68d5e-b051-4c59-9186-eda9071c9303@oldschoolsolutions.biz>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
+References: <20250708184841.72933-1-stefano.radaelli21@gmail.com>
+ <20250708184841.72933-2-stefano.radaelli21@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,28 +105,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <52b68d5e-b051-4c59-9186-eda9071c9303@oldschoolsolutions.biz>
+In-Reply-To: <20250708184841.72933-2-stefano.radaelli21@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/07/2025 10:09, Jens Glathe wrote:
-> Hi Krzysztof,
+On 08/07/2025 20:48, Stefano Radaelli wrote:
+> Add devicetree bindings for Variscite VAR-SOM-AM62P System on Module
+> and its carrier boards.
 > 
-> On 09.07.25 09:39, Krzysztof Kozlowski wrote:
->> On Tue, Jul 08, 2025 at 10:34:08PM +0200, Jens Glathe wrote:
->>> +// SPDX-License-Identifier: BSD-3-Clause
->>> +/*
->>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
->> Odd copyrights. How could this file be published in 2023? Before the
->> laptop was even made? And by Qualcomm? Qualcomm did nothing for this
->> laptop on Linux - it's a Windows platform for them.
+> Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> Ok understood, only license identifier. But I do copy from other dts(i) 
-> files, there may be unchanged portions.
+> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> index bf6003d8fb76..07d2c2ab5150 100644
+> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> @@ -100,6 +100,11 @@ properties:
+>            - const: toradex,verdin-am62p          # Verdin AM62P Module
+>            - const: ti,am62p5
+>  
+> +      - description: K3 AM62P5 SoC Variscite SOM and Carrier Boards
+> +        items:
+> +          - const: variscite,am62p-var-som
 
 
-Then it is fine, although I really don't see much of a copy here. Every
-property is different.
+SoMs cannot be used alone, at least usually. You miss boards in the list
+of compatibles. Look how other variscite boards are made.
+
+
 
 Best regards,
 Krzysztof
