@@ -1,397 +1,163 @@
-Return-Path: <devicetree+bounces-194583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAD95AFE8E4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 14:26:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 636CDAFE8F5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 14:31:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2B2E7B7F36
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:24:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 268FC1C46F06
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:31:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3EE72DA76A;
-	Wed,  9 Jul 2025 12:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 740CB2DA760;
+	Wed,  9 Jul 2025 12:31:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="KM2kJ+34"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eyymeOuC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012052.outbound.protection.outlook.com [52.101.66.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92C52DA765;
-	Wed,  9 Jul 2025 12:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752063894; cv=fail; b=S6mOrwHURzW5l2q78X2+i+EBP+6kHj0uKsYB1WalCEEvth0ByN13uvpPgJr2y2+cEqYK+Y2mYCzoszaEkmVf0QOcD3vk1Pj5qU68dyzkXRp6KYQQXyLHlHSAvlOb2OU1aDJgobZwZ456T2Xykvzt53RDzlEQv87kH+oHdynpeqw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752063894; c=relaxed/simple;
-	bh=3Kf2nX/KpRh0RBfJNeYPB2EKlaL847RJ9Vr6yg0Dr9M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LhG/7KdfJWgQ0vfOrqx1SZDGhnxaNv4/F9jkeXvi22xtxmyt/0OK9vCqX9KJJ+3OSpOupc6k38UKVVEoHyU/Dtq1c+NNdyY2E8c7FNniBNmf4AM103nF5m8YlzaYz2BeSMQvGpOse6xgf98D9qZ6G6DWpqb7rgLvf5/E41vH1oU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=KM2kJ+34; arc=fail smtp.client-ip=52.101.66.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GUsTOo+5fa28gxjW3ZAUwg/E4REiH/aUVBk969ZxxDIIGFCPlkLC+LvaHZqqJixI7qdEgrY4TWJFDG7xRvwXRyfn4KQjuFCZuifslVwI5JcqizoEQ9Xv08bEaMozKL72jUPC3MJhjtgcceXSQZi7qpWtSGm/21V/eENW1159fuPUQ1+J7+Q1FGhIBakCnjMWrxOsf/HgSrIk5O3vIH1A1JE9JI39Vy0+8XF4XgwTweoxerwlroBxEmbPFZwXTiSExqqcT7DBC5kz9qLP2KEfQ3AEUnevmDjR0gvMJ2ebfyZL6DrX5liQg9hT2ARXJ8JNcqJBUQgDM7jdp99+g7Dlkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZpJBaanlyhMvWYvId4L47PL1u7zNX6bfkbS4UW7PcoQ=;
- b=frUvcNx0hsdjmqFJp7sWIfpCd5L+row7sO755YdqxSUAVErD6B3we26AQk580Fg142xWFgprTeUVZPqYooQxTP4Cdsop8sBNbmVAFTDRnGPtMmCFes+G++E6p8MyLs7glR+YMXDLDbFtI0MsI/oKWPROxkzozPpiEcsDoixpeEWVkk1w67nEIUNTU3lTgqyNNzR032aTFgldh+pb04zfUHTrk4shSVhhT3AhXFvsTs5Ahx2Hr1LCeFaOfzyRacDJSL/8LjN4PAWnKKd42lYN9Qdui3csmib9oIZ01RbIrSyOucnA5QucvS+Fvtn51N4ZzmK6jHxpfjue0PdeJVW2+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZpJBaanlyhMvWYvId4L47PL1u7zNX6bfkbS4UW7PcoQ=;
- b=KM2kJ+34QSnt/s1NwuqRuPj4kHwQ8m7yFgcjESWvQvTfSonZb9Ap6BSHEmyDH9k+DhJLgbwGISLEVp/1/5cpAQI7kuFDfKP6PASCc7ooFw+uG44kUgTs5qsChOt8EBK5wmV9VJ3ob9I6HjhKveN6bVKMgoFMH8zADptVyDEjWCVBg42d45WBbnZpSb+VOnOlOrQZjUJL6mie3dy5XSHgUNyaVq2UoL1QkkR1V/nIe8Onlrk2Cyv1WIihGRtQrbKZOlaRG0He3JhScUWORLS9CwE82rXIqNLX3RgJoqLmnPnEAHc2G40iqJZV+fy9dO5ZZEH6WFQ/d+5RjAYuJIQD6Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AS4PR04MB9576.eurprd04.prod.outlook.com (2603:10a6:20b:4fe::12)
- by VI0PR04MB10712.eurprd04.prod.outlook.com (2603:10a6:800:261::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.26; Wed, 9 Jul
- 2025 12:24:46 +0000
-Received: from AS4PR04MB9576.eurprd04.prod.outlook.com
- ([fe80::9cf2:8eae:c3d1:2f30]) by AS4PR04MB9576.eurprd04.prod.outlook.com
- ([fe80::9cf2:8eae:c3d1:2f30%4]) with mapi id 15.20.8901.021; Wed, 9 Jul 2025
- 12:24:46 +0000
-From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-To: imx@lists.linux.dev,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: dri-devel@lists.freedesktop.org,
-	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 7/8] arm64: dts: imx943-evk: Add support for DCIF and LVDS
-Date: Wed,  9 Jul 2025 15:23:26 +0300
-Message-Id: <20250709122332.2874632-8-laurentiu.palcu@oss.nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250709122332.2874632-1-laurentiu.palcu@oss.nxp.com>
-References: <20250709122332.2874632-1-laurentiu.palcu@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR4P281CA0380.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f7::8) To AS4PR04MB9576.eurprd04.prod.outlook.com
- (2603:10a6:20b:4fe::12)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE3632DA75A;
+	Wed,  9 Jul 2025 12:31:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752064289; cv=none; b=TGZywonWtEY2ahD2snHYFQyiPlqG4p79dx7BUgi0dPosQOx85UHSsQ8N542p+i8bdPcfpKJl2HFe3L5P7FBOxf7jr56ha+CXMYoaNnQXq/nw8terb5kXUPAJzphIZxfxMKwocbXhe39N+kEPWujhaKMrHIyYSfg3oQluInBgEUQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752064289; c=relaxed/simple;
+	bh=1pfqYJyzyICeZghezgrG610OuPjosLSdxxoic9pAJq0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AqCj/I8K1Z11HuqBF9pI6oG8iwR3zvlINIeoPwlhZdqIG56eEUBWdH2HAv36FRSUx5i1rGAxej3Rw4vBLJJOuJC9yiZMYUuzJPTE4xWnL0xGdYQIns4aid6Bv0m63Ub/eQ4UxABvL6nZaS3dq1KUBmza7D/ySvfuWV7aMUtS4mI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eyymeOuC; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45363645a8eso38653605e9.1;
+        Wed, 09 Jul 2025 05:31:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752064286; x=1752669086; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=UfRoQVMGljbReBXs19E2sn1Xup7fKJ5lonhUu/4oGEs=;
+        b=eyymeOuCDqZyO6A8r4tFRyA1GNKpG17HzFCe8O+ToxODgVO+w8jU4a6TnqrHf6gSh2
+         wnOwDpGlfUvePAJeGB+nxHQaLe1eRj8F3mjGx51qMoZxd7KfDqXEl4yEAZ7ZDMatPU3V
+         4baT/NXcnbUWI1/yCaf7Eipnp22Xxif7dNTHxIFfQFy7IR8hcCmtavObtpsu0lCQbTnm
+         jRzA0OmPAZNb722MExRu77E4yx2ai6tFCbr9brkzFI1wnnZNe6Rth/O6EZF2qpaOH7tN
+         sW/BTRLFOVWEphOipL9MdH/NTZEzqWwwiDj1vGVdniFH7TIxO+Ztfvwr5bhYTBNXkloo
+         705Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752064286; x=1752669086;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UfRoQVMGljbReBXs19E2sn1Xup7fKJ5lonhUu/4oGEs=;
+        b=TO/7Z5YYobNDp/wHEGtH2L+Flcm8YYRF0O04f1MNIfDqpcSf0LhvB1dwWXRkZJC1NY
+         idG3Ki01jGvD08wpeA9zEew5Z4c2gL1C6QCxOpcWejpYdkHtX1VmEdX75c89mrkck+R6
+         8Vzb3ZZj/0cj08relSACsRZ9uYXpEelB+RS5xyLINosXxze0YKtfFLlu3g7ZbCZpvftT
+         EFCgCxzGowqPm4diDPgsbj81VNYmyXvHITMGhSLTtrauzflWmp5/H6n0yqEUDp4IUaKs
+         KbrKWAoZw6lU0K9GXCIlO8lT13kOn1w/zW77bWSnurCEoGJ5DDj8FvAUo0/KMwIoXvgU
+         WxXg==
+X-Forwarded-Encrypted: i=1; AJvYcCU7Qt2bVVTCF9eNEKlwM3pgSnYQfjR6GSqqHwYJ1UJuqHtNTBDYj/MX3O+pZZeqNIgNgEwkdtr4Shtgohae@vger.kernel.org, AJvYcCXVTshxSXUZVqTyJt399r+wzUcp/bVSAaq5eY+lQZ9E25wTFDSF6KcKVB6HMWIGoPW+J5jr2TZfhs4zuq4=@vger.kernel.org, AJvYcCXuWljE1Q5wMIYuUXe/7sbFqfsrOC7N8rGMLH0oGcaCiysXh8KqsIIb6kLDTl4TJBMTTXuJvLuwkA4R@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy40/+plIhAmg/pEconUj5XQlpA5AJqvTBhIk/XMJeVFtVBt27S
+	xlf5JAimGq9qfRcueFYUdyscygJH08PIYbGCI7MiTmDStutkEp7AmcnpzNkNgA==
+X-Gm-Gg: ASbGncu0CePCp+ucK/o6KtMImII4Ga1EqPf1lllKb+lMsyboU4S6vd9RJw97SgIdjkB
+	9MxPZlVrREkzKLiLlAdNfhmDTDYXkJ3qT3UyVdgdd1H8y4jKje1Bk0ml1I4qQY6Ukq3vxb2z9IE
+	/lvwlopc39DybWLzrzZQ9qNfL8PXW+yM+ezn4GL+Xe8jlcnAUcf8BxlLZFo6gnY2sWfu/h63UPu
+	Jr/MfzdnDQRQCGRWj9uGbDWUGfVt3togk+fU+AulOPFCRyHGkNTmcM2NhYdCe+j9cy7QbgMCXqt
+	XQt0BFXk3N2vAv+45j9FWhmwouaz4Pm6H3/4+hBHotQs01oT5ESFDFS5fQfv+xR3+lU3noCuhK1
+	2AFDkg99jbamw0wLqWgHjrOE5VHuq9YWVUlBjSCfuz3k9XYgf
+X-Google-Smtp-Source: AGHT+IHpLYTmMGsRn85E8rtAsthFXWZR8lTlpIo/NA8OR2OMn3yEsRBVdsSn9dM0e27DNVoe/djuOw==
+X-Received: by 2002:a05:600c:198c:b0:442:d9f2:c6ef with SMTP id 5b1f17b1804b1-454d52f4e20mr22132305e9.2.1752064285807;
+        Wed, 09 Jul 2025 05:31:25 -0700 (PDT)
+Received: from orome (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b47030baa5sm16061019f8f.12.2025.07.09.05.31.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Jul 2025 05:31:24 -0700 (PDT)
+Date: Wed, 9 Jul 2025 14:31:22 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Sumit Gupta <sumitg@nvidia.com>
+Cc: treding@nvidia.com, jonathanh@nvidia.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, tbergstrom@nvidia.com, 
+	bbasu@nvidia.com
+Subject: Re: [PATCH v2 0/8] Support for Tegra264 and Tegra254 in CBB driver
+Message-ID: <5xkzehwr7k3ycpd3buqahmvamn6gvaol3exv46oe7nfpj7aw3q@eze4dbhplgqa>
+References: <20250703103829.1721024-1-sumitg@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9576:EE_|VI0PR04MB10712:EE_
-X-MS-Office365-Filtering-Correlation-Id: e6cb036b-3557-4b03-2c28-08ddbee39762
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?K8KPQ5jq5E1X42sSMy/+2ThTsNgSX06DGnNXJ+MhnG3XMcVpAkWE4wanhUUl?=
- =?us-ascii?Q?p6CA2m+pL0lL2ABuBaA/6PtYPS+Nz0M150ujo3ZsnMBbNVGyJtCAw8W05R/3?=
- =?us-ascii?Q?051JHrLTk/p6icdhXvyQvqNaiSy/Z49X4yhP84EE5BKRuc9nKg7AfiO6rqko?=
- =?us-ascii?Q?w7FAte348idEKEdwLHv42kMWutzLGP3MTXS5MGHwtp0hlyIgb9uSQwkwHu+a?=
- =?us-ascii?Q?+XhgcpchL2w+mup893wrVsxvOsveVJhv4is02hH+dEe7L2QSnCX8ujmuYehu?=
- =?us-ascii?Q?U1MMvYYEIBKSO00x5TsU4wUioG7LkXvcPM0u74V25AAgi5zFu3tCSBMWGqMU?=
- =?us-ascii?Q?bXb8nvy/Tln8SvrK10snxO6aTqN8MqfIaSC+MzlyiGvwnhWnf8HGcOYGOc+F?=
- =?us-ascii?Q?o04YIU7XI6LJ14qhnaKrmuiCLbtmYdhMDoaczr75BS0065E8GqlKyYwJ6Q6s?=
- =?us-ascii?Q?bxN7SSQ1ry/p5+Rqb+yDGrLpeATsKETdXVpJsZVxqtYV3Dh15XOEHOpNkVWS?=
- =?us-ascii?Q?lF+xTMRybToypPQr9e+vbxhgK5Eogw8WV6RbPKuFA+TQJQYNvMWqoYbE0uPA?=
- =?us-ascii?Q?AkFs4HAwVGjdWLV2mXB0jRT/TJTe3NFXOUYgaQPalXpm0pwyzke15QJ09zag?=
- =?us-ascii?Q?IK1+97hQ5LfPgzTY4eMG5cwkFWfRxM4DBJZsyZBqPU6LWPvv7MgL2BX+p1OF?=
- =?us-ascii?Q?11Wb0vZFod3I4/uZB3mcDIfQYDpVrD1zG970NXIvvDRAnpGVs/VPD004WpOm?=
- =?us-ascii?Q?9Wg8YBCG6KKYy0fBgHzXeMLfkJINRxQTGeLISGHCN7FkDNQz94LiKP3WX34s?=
- =?us-ascii?Q?fCmmjns0l/kxlTdOsq0agQ6yx6ku5kKGgafx/6TkfTmLfxSf8X5kIeOYplo1?=
- =?us-ascii?Q?FEkkCS1X6rvr+3WJTo4mCeKt7v0QVqN8ZPxYnHdXE38lPRE5/khdG/LS2xi5?=
- =?us-ascii?Q?ZLdejiTd49Q5x3DvDuGHcvG9Id8D8+3eE9TzusLPNLJpqBb0W+cQQkJD4eOA?=
- =?us-ascii?Q?w0g/l9IDmPXx3l0wop7fQ4ICK1wLwqnDgjH1u1x9EDbvMLqM7bmhcVKXK3st?=
- =?us-ascii?Q?J3lHwyfRlVYK92QpgviyriYfXRKDSt/EtgVq+h2Bi22gzmL19MtFBU0x8p8i?=
- =?us-ascii?Q?S0LXJCoUXGjn/bDimUaLjM38uJDIkKK0vU06LwQDiMb8rE4xDg+R9l6xz+XX?=
- =?us-ascii?Q?qjg0l+JPuJgfz0O8gVx6DbjF4YO0qNGpt19j/JkxImEge6DvpjHfNEklR8CL?=
- =?us-ascii?Q?jglAJ4sRJTf5VkX+9SboBdMettT/6K0Rvs7kYr/feC3+aDXzSV1iu2ggxNMk?=
- =?us-ascii?Q?Fs2jDsGnY2aspMfnUsWQN9whPwb6aZlVsFVeu+4trqdpyz3pMLFDl87ziz2t?=
- =?us-ascii?Q?O2QToYGwsYdIzLBedHdg1SAA9raEds3s7FIrpHKHGo+aP4wqr+wxWEAZcM/P?=
- =?us-ascii?Q?vbzBMnEwE6M=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9576.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?gZVpT3EnrLMKxoZrXdLTIexVYG0SrI6NLFG0ET7LwZ/1vz5LVNthxeqVayR3?=
- =?us-ascii?Q?N1zHl9Up6a0RWbUTlJD+7bDW2RxtamtGAArC5+4tcx8DSfBZ1QEVBeRwM+Nj?=
- =?us-ascii?Q?R4M0lkAtugMZlW8/sRiXL/cu8kOuN+BtnGuS250bWqm3HG6A4d5rkmd1cP8F?=
- =?us-ascii?Q?mkY1EicBlCEcIWmSa6vthmlYZml7mqpgOYj5EeX+ZZcqeNyVJ9bVOxwCEC+W?=
- =?us-ascii?Q?qaJEBINGOx+Yt2JNKY3RNJO/qiNJloikXgUWIgop6SbmOPrAUmsMp+D64YoW?=
- =?us-ascii?Q?/CTUUok+6qCZ0G0g32Hvuys29YXg8GvMuWF8xYu4kma+o1fsEuPcFzQF3Nzm?=
- =?us-ascii?Q?Gtww5l/JQCcbGobZF3eA5wDegxshOQidjQDve0j+9N3y8aXVEHIwQuYOTCgu?=
- =?us-ascii?Q?t9NqKgp3++iP9Y5jZEKPtRxlpwAQcVjw+GqUGFUk93V2C6WhnZEq3REJrvKx?=
- =?us-ascii?Q?rtQT0uU1o/BUvZY4AlerhNViCVsYwWHjG2WRsWVmUK6XV7XHOTuQWOkGrjDn?=
- =?us-ascii?Q?yGTXV93rZkJNiwLJIGLUjiGXmYfqqFO+8KJmPIE543ZlQPMaJkTE66HVibyz?=
- =?us-ascii?Q?DZrtsMPQxUK8mnw8tm4FCIDCA6zrO7gV7Os0LC7ufnjF3yBJbbVbr2ivF3Fe?=
- =?us-ascii?Q?n1iSjKol2+PuIaAXvmFZ74EImbpyVEkqoKL/svz2qQOGsMpKkM/5O9h3ZnTL?=
- =?us-ascii?Q?JCGdCKdwJBvV9FHJ2XXGWmeegUZnm/Pkkc+y4gO4iezP4uZvWPQZ7dG3WALA?=
- =?us-ascii?Q?zQj8j6YPBTgBVB0TjJVGiPL/Hr/mPMEIhpc6YyCu6i6okCczly/o8DDgZ6O7?=
- =?us-ascii?Q?RUsH14lVhqKWFsYUfMA7SkceLKG+sSgB9DQH51BOtZxlC7YADXGzHhmLIKnV?=
- =?us-ascii?Q?c6+NhoTtXSGBIJ6q7F6oAPGC0SfdyILah45Wh/HsnKRDzA0z2J+xl36XTz1y?=
- =?us-ascii?Q?FQ5eO34PmnNAnu8UVRZFSeap2clN9Tjn8qAbJ+5yaFItsR0KTTTYfEYDnjx7?=
- =?us-ascii?Q?p8Iy3hkdPsEBHPlTONfYqS7DkNSs93Jov7pI04MAWmr9XE0ocegzGPXXHHf+?=
- =?us-ascii?Q?ca0d2kffz3rd7yfNbV1nFTfCXkPMqNR8Ey+BfaUCFiLkfL5fCbn9Uac5GIQM?=
- =?us-ascii?Q?t0na58qqExv8rsW8GNE17CaKE7qZn5ZAV5xvgFJwY1ENPbt7lMfLOK1tbb2b?=
- =?us-ascii?Q?+4Wxi9GsRH0kfOvfzJB4JML7pdIgDgt8cxw+Hx9GXmPwftitJ1e1SKnHVfDK?=
- =?us-ascii?Q?QxyJg3vDt2BfKVeVj/4BeiwvN+8OvV1TzSthPBtW1O/IaBVd0kS7rXaeuAFO?=
- =?us-ascii?Q?bxNO4Y2OAqeYhNfaYdikOAyPUlfBxeUBi8oIz4msGZ+1oTAyYwuo/bPdQa7Q?=
- =?us-ascii?Q?bjX0ZKVMaLOeK5n5Dck5ApNcE9b3nifOA0cY75WYlJmX02nV5oiVonb3KYeC?=
- =?us-ascii?Q?Tqc62bOxoQwEH/oDsjsfYrDvfmdOKzpv7ot/O2FU55gIKWgIJX6e1zHtnQdh?=
- =?us-ascii?Q?F/5pfpMKYBPBo3CpNtfw2RGVQpiA9TVtVuhxz22U+QgnLLGsFhY7LVfAh6iw?=
- =?us-ascii?Q?PSBYbdyv3XHyqE8wLbDcT8omUd6QLCRbxRcwwcun8jdiqHuWULsXwJ6vjJ8m?=
- =?us-ascii?Q?1g=3D=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6cb036b-3557-4b03-2c28-08ddbee39762
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9576.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2025 12:24:46.5009
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FDOsjOJKFsIzp/c+h/g/r1MbitZdISYMnub+Udbl1KP6JOuXYArY3w7a6pqZMu/zE3qIoH0+Xwhsgg0gStpowA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10712
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qncswnh7ljhekzcb"
+Content-Disposition: inline
+In-Reply-To: <20250703103829.1721024-1-sumitg@nvidia.com>
 
-Add DT nodes for DCIF and LVDS in imx943.dtsi and activate them in
-imx943-evk.dts.
 
-Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
----
- arch/arm64/boot/dts/freescale/imx943-evk.dts | 126 +++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx943.dtsi    |  56 ++++++++-
- 2 files changed, 181 insertions(+), 1 deletion(-)
+--qncswnh7ljhekzcb
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 0/8] Support for Tegra264 and Tegra254 in CBB driver
+MIME-Version: 1.0
 
-diff --git a/arch/arm64/boot/dts/freescale/imx943-evk.dts b/arch/arm64/boot/dts/freescale/imx943-evk.dts
-index c8c3eff9df1a2..e7de7ba406407 100644
---- a/arch/arm64/boot/dts/freescale/imx943-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx943-evk.dts
-@@ -125,6 +125,132 @@ memory@80000000 {
- 		reg = <0x0 0x80000000 0x0 0x80000000>;
- 		device_type = "memory";
- 	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&it6263_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&dcif {
-+	status = "okay";
-+};
-+
-+&ldb {
-+	assigned-clocks = <&scmi_clk IMX94_CLK_LDBPLL_VCO>,
-+			  <&scmi_clk IMX94_CLK_LDBPLL>;
-+	assigned-clock-rates = <4158000000>, <1039500000>;
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			lvds_out: endpoint {
-+				remote-endpoint = <&it6263_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&lpi2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-0 = <&pinctrl_lpi2c3>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	pca9548_i2c3: i2c-mux@77 {
-+		compatible = "nxp,pca9548";
-+		reg = <0x77>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c@3 {
-+			reg = <3>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			lvds-to-hdmi-bridge@4c {
-+				compatible = "ite,it6263";
-+				reg = <0x4c>;
-+				data-mapping = "jeida-24";
-+				reset-gpios = <&pcal6416_i2c3_u171 8 GPIO_ACTIVE_HIGH>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						it6263_in: endpoint {
-+							remote-endpoint = <&lvds_out>;
-+						};
-+					};
-+
-+					port@2 {
-+						reg = <2>;
-+
-+						it6263_out: endpoint {
-+							remote-endpoint = <&hdmi_connector_in>;
-+						};
-+					};
-+				};
-+			};
-+		};
-+
-+		i2c@4 {
-+			reg = <4>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c@5 {
-+			reg = <5>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c@6 {
-+			reg = <6>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c@7 {
-+			reg = <7>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
- };
- 
- &lpi2c3 {
-diff --git a/arch/arm64/boot/dts/freescale/imx943.dtsi b/arch/arm64/boot/dts/freescale/imx943.dtsi
-index 657c81b6016f2..db00a94812e18 100644
---- a/arch/arm64/boot/dts/freescale/imx943.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx943.dtsi
-@@ -148,7 +148,7 @@ l3_cache: l3-cache {
- 		};
- 	};
- 
--	clock-ldb-pll-div7 {
-+	clock_ldb_pll_div7: clock-ldb-pll-div7 {
- 		compatible = "fixed-factor-clock";
- 		#clock-cells = <0>;
- 		clocks = <&scmi_clk IMX94_CLK_LDBPLL>;
-@@ -173,10 +173,64 @@ dispmix_csr: syscon@4b010000 {
- 
- 		lvds_csr: syscon@4b0c0000 {
- 			compatible = "nxp,imx94-lvds-csr", "syscon";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 			reg = <0x0 0x4b0c0000 0x0 0x10000>;
- 			clocks = <&scmi_clk IMX94_CLK_DISPAPB>;
- 			#clock-cells = <1>;
- 			power-domains = <&scmi_devpd IMX94_PD_DISPLAY>;
-+
-+			ldb: ldb@4 {
-+				compatible = "fsl,imx94-ldb";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				reg = <0x4 0x4>, <0x8 0x4>;
-+				reg-names = "ldb", "lvds";
-+				clocks = <&lvds_csr IMX94_CLK_DISPMIX_LVDS_CLK_GATE>;
-+				clock-names = "ldb";
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						lvds_in: endpoint {
-+							remote-endpoint = <&dcif_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+					};
-+				};
-+			};
-+		};
-+
-+		dcif: display-controller@4b120000 {
-+			compatible = "nxp,imx94-dcif";
-+			reg = <0x0 0x4b120000 0x0 0x300000>;
-+			interrupts = <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "common", "bg_layer", "fg_layer";
-+			clocks = <&scmi_clk IMX94_CLK_DISPAPB>,
-+				 <&scmi_clk IMX94_CLK_DISPAXI>,
-+				 <&dispmix_csr IMX94_CLK_DISPMIX_CLK_SEL>;
-+			clock-names = "apb", "axi", "pix";
-+			assigned-clocks = <&dispmix_csr IMX94_CLK_DISPMIX_CLK_SEL>;
-+			assigned-clock-parents = <&clock_ldb_pll_div7>;
-+			power-domains = <&scmi_devpd IMX94_PD_DISPLAY>;
-+			nxp,blk-ctrl = <&dispmix_csr>;
-+			status = "disabled";
-+
-+			port {
-+				dcif_out: endpoint {
-+					remote-endpoint = <&lvds_in>;
-+				};
-+			};
- 		};
- 	};
- };
--- 
-2.46.1
+On Thu, Jul 03, 2025 at 04:08:21PM +0530, Sumit Gupta wrote:
+> This patch series adds support for Tegra264 and Tegra254 SoCs in the
+> Tegra CBB driver. It also includes a fix and some improvements to
+> make the driver more generic to add new SoC support.
+>=20
+> The patches can be applied in sequence. Patch info:
+> - Patch 1: Fix.
+> - Patch 2: Change lingo from 'Master/Slave' to 'Initiator/Target'.
+> - Patch 3 & 4: Improvements.
+> - Patch 5: New feature for HW lookup.
+> - Patch 6 & 7: Tegra264 SoC support.
+> - Patch 8: Tegra254 SoC support.
+>=20
+> ---
+> v1[1] -> v2:
+> - patch 8: change name from GB10 to Tegra254.
+> - patch 6: added ACK from Krzysztof
+>=20
+> Sumit Gupta (8):
+>   soc: tegra: cbb: clear err force register with err status
+>   soc: tegra: cbb: change master-slave to initiator-target
+>   soc: tegra: cbb: make error interrupt enable and status per SoC
+>   soc: tegra: cbb: improve handling for per SoC fabric data
+>   soc: tegra: cbb: support hw lookup to get timed out target address
+>   dt-bindings: arm: tegra: Add NVIDIA Tegra264 CBB 2.0 binding
+>   soc: tegra: cbb: add support for cbb fabrics in Tegra264
+>   soc: tegra: cbb: add support for cbb fabrics in T254
+>=20
+>  .../arm/tegra/nvidia,tegra234-cbb.yaml        |   4 +
+>  drivers/soc/tegra/cbb/tegra194-cbb.c          |  34 +-
+>  drivers/soc/tegra/cbb/tegra234-cbb.c          | 758 ++++++++++++++----
+>  3 files changed, 606 insertions(+), 190 deletions(-)
 
+Applied with a few fixups to the subject lines and commit messages.
+
+Thanks,
+Thierry
+
+--qncswnh7ljhekzcb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhuYRoACgkQ3SOs138+
+s6EQ+w//fkomOwmgUj7XFjnfa43JfwU7dy3++PHFs+YwL0vAdqNtYZKpmBUOxzWA
+yhkdvX8JReSMUBLSxcQGZKjSNzm1qvV9/gigEtyWs2BwKT3ScJwZ8POHc75tQCsY
+TyeUe4uQdRA0EV6Tw3oYWgVuQNItSSM5SpS6TV6pcr13reloIpA4HG/NxTozlU+Y
+4nZrEku7y6QAcBILJ6Fnk7K1JL+5muQSjBP4oTmvIE9uDqQ99xc0Xe1Gi5Cs7Okq
+mvcQxh6kEqBcZHevkfi8KH2I5Ep7Oxf8+LUpTZi9EtTwUM+EhVCgcj8HLoFBFP1M
+cD3zXnYdR60xtysKVtmvNjfjxRP1LEN1e8nWcqYRxfRdPFuKC+3pzgQdxOnmkg5A
+55S0sXymQHJA1KmQC6Qa25rH9hWE8hyn+7jKTXkDLfzaDW9T8R5ULhqMXyvUkLMK
+xw8wDIJxbKGgISwUPjNh0j64r8NqGdbIzSLx+xQDUeoUV+Tzd0T6hdPNux2idbAc
+DHp/GElE7AHAFCPsMSVKuIrUhJnG/UV7pW/jMSRgwB6q1adzowRpPseM6YDGXXBD
+wgi6d5HLCWN/gfN2Howvr4110mOr717ArsPyuvv1pnyl1NiNI/VPAI+QoThmDbl5
+eL1un8qO/iZ8/ck3h6eYGtOxmOL/jH2XYt13J4tGSmqiWVCpFmE=
+=Phzg
+-----END PGP SIGNATURE-----
+
+--qncswnh7ljhekzcb--
 
