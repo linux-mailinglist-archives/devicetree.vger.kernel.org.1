@@ -1,70 +1,132 @@
-Return-Path: <devicetree+bounces-194649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459E9AFEDDF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 17:36:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D6F6AFEE21
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 17:53:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2930C3B75B9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:36:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80E751C4297D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66BB92E7F04;
-	Wed,  9 Jul 2025 15:36:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372922E973E;
+	Wed,  9 Jul 2025 15:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qV/UEic+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA30EEA8;
-	Wed,  9 Jul 2025 15:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED72028FA87;
+	Wed,  9 Jul 2025 15:53:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752075414; cv=none; b=eUk896c7IA0Wj/H3fJtB7zXq6bicwrUE7+DegBARLogyMGu+kAHKn8im2rtHhJPH3E3eZSqxFb+/RFHxWTGlaaD5sO+dIDA9mEK9F9sp4nMFdFso+UMg525KrzfP0IZwfQn+2Ms8yLmfUhFsJ/exThH083s40vAkPeVWn866w9Y=
+	t=1752076427; cv=none; b=KKOrgrUtJ4TRvIJ5E7Edy9Qyd5DyKyv1aLPBMU4J58D27cPh5oClZB/8EttN3jgkrAglBbx7R3OM6rf7IWJFhOG8KjfoKvoQWF7vActUlc8T5E4MNEny7vdipJev+y6jNwDfru0QJpir7XUbm5eCdT0idtvT/dt9r9qWW6NmZw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752075414; c=relaxed/simple;
-	bh=Ra0q1YRk8dc9wL0sB8bADJNs5V8YEwxRwJMrTAmQyqQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:From:To:Subject:
-	 References:In-Reply-To; b=l1yg22UBBADTb85yEK6z/ADfdpRoK2yOf9mMbTXAH8p9qNNeRJTnDeFNhCCdFYplmoeWVkMW4T8IufvsdqwqmSY9SgmFoh7tyxSVr4Tu30zuiTYzBGIp/IwrHGRd/vFLTvyiPQfSSagnTjOxlrKX81VBGJ8U4KcjYRsqSObHkSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
-Received: from localhost (unknown [IPv6:2a02:810b:4320:1000:4685:ff:fe12:5967])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id 4F76E299;
-	Wed,  9 Jul 2025 17:36:50 +0200 (CEST)
+	s=arc-20240116; t=1752076427; c=relaxed/simple;
+	bh=RY67xBd5sUO3XFR2TQQgs/qjtaenGN5JeNcwWjGIERE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IyZuIg3JRfEHcg3kOYulx3R9U2W3Nqyp/LumkTY8fiTPDOkB4gWPzFudwajHOLWXxZMqRYYCGDII+k83WvO9T7R7P1zAautC8C954ZZ2nXSzb1YkNmwETZ8gfSiGuLyvR9XB/zJX9yXDBoyRiu2q7fKP/DwBtDVWeYzgdsD/nXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qV/UEic+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73D22C4CEF6;
+	Wed,  9 Jul 2025 15:53:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752076426;
+	bh=RY67xBd5sUO3XFR2TQQgs/qjtaenGN5JeNcwWjGIERE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=qV/UEic+NBgClUfBz1cfNkW0Vs8dXgLz1LNkXdAdMku5pyLmZGxLWDxrPuEWj9qQ5
+	 G3wFAJZLcmoc6Uwi56kl1ecu/isZ4chLIGt97wnlb48XO2LYiQgAKafL41DgahbqlK
+	 vJbXyfnbcEjQFOLnSsPLactoi2xC1dtwd5rytZwZdCXrsbr2xknxOb/AwBRMtyi/wu
+	 5+/5DEdZg+rJQSehvL60c5UArOmtji26e0pGmSydFST+Bpbpc81AiyQfqkWSBNUT4a
+	 XdCpZiZ9ZAzK6taLlnMriEeH1wbbFiZ/srkU0mUv2pd7zyrQ3gVcaRXf032XINajL/
+	 KIKebC9QeAjMQ==
+Received: by wens.tw (Postfix, from userid 1000)
+	id 2F5C85FCB4; Wed,  9 Jul 2025 23:53:44 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: [PATCH v2 0/4] allwinner: a523: Add power controllers
+Date: Wed,  9 Jul 2025 23:53:39 +0800
+Message-Id: <20250709155343.3765227-1-wens@kernel.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 09 Jul 2025 17:36:50 +0200
-Message-Id: <DB7MWBOS4YDK.2QIYX7WQ3X1KU@kernel.org>
-Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Linus Walleij"
- <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Shawn
- Guo" <shawnguo@kernel.org>, "Lee Jones" <lee@kernel.org>, "Frank Li"
- <Frank.Li@nxp.com>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Andrew Lunn" <andrew@lunn.ch>, "Ioana Ciornei" <ioana.ciornei@nxp.com>
-Subject: Re: [PATCH 4/9] gpio: regmap: add the .get_direction() callback
-X-Mailer: aerc 0.16.0
-References: <20250709112658.1987608-1-ioana.ciornei@nxp.com>
- <20250709112658.1987608-5-ioana.ciornei@nxp.com>
- <0d0e9cee-2aaa-402d-a811-8c4704aadd74@lunn.ch>
-In-Reply-To: <0d0e9cee-2aaa-402d-a811-8c4704aadd74@lunn.ch>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-> just provide the bitmap, and gpio-regmap.c can look at the bit in
-> the bitmap?
+From: Chen-Yu Tsai <wens@csie.org>
 
-I like that idea.
+Hi folks,
 
--michael
+This is v2 of my A523 power controllers series.
+
+Changes since v1:
+- Re-order compatible string entries
+- Fix name of header file to match compatible string
+- Link to v1:
+  https://lore.kernel.org/all/20250627152918.2606728-1-wens@kernel.org/
+
+This series adds the power controllers found in the Allwinner A523
+family of SoCs. There are two power controllers. One is the same type
+as those found in the D1 SoC, just with a different number of valid
+power domains. The second is (I assume) a unit based on ARM's PCK-600
+power controller. Some of the registers and values match up, but there
+are extra registers for delay controls in the PCK-600's reserved
+register range.
+
+Patch 1 adds new compatible string entries for both of these
+controllers.
+
+Patch 2 adds support for the A523 PPU to the existing D1 PPU driver.
+
+Patch 3 adds a new driver of the PCK-600 unit in the A523 SoC.
+
+Patch 4 adds device nodes for both of these controllers.
+
+
+Please have a look. The power controllers are critical for enabling more
+peripherals, such as display output, camera input, video codecs, the NPU,
+and a second DWMAC-compatible ethernet interface.
+
+
+Thanks
+ChenYu
+
+
+Chen-Yu Tsai (4):
+  dt-bindings: power: Add A523 PPU and PCK600 power controllers
+  pmdomain: sunxi: sun20i-ppu: add A523 support
+  pmdomain: sunxi: add driver for Allwinner A523's PCK-600 power
+    controller
+  arm64: dts: allwinner: a523: Add power controller device nodes
+
+ .../power/allwinner,sun20i-d1-ppu.yaml        |   4 +-
+ .../arm64/boot/dts/allwinner/sun55i-a523.dtsi |  18 ++
+ drivers/pmdomain/sunxi/Kconfig                |   8 +
+ drivers/pmdomain/sunxi/Makefile               |   1 +
+ drivers/pmdomain/sunxi/sun20i-ppu.c           |  17 ++
+ drivers/pmdomain/sunxi/sun55i-pck600.c        | 225 ++++++++++++++++++
+ .../power/allwinner,sun55i-a523-pck-600.h     |  15 ++
+ .../power/allwinner,sun55i-a523-ppu.h         |  12 +
+ 8 files changed, 299 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/pmdomain/sunxi/sun55i-pck600.c
+ create mode 100644 include/dt-bindings/power/allwinner,sun55i-a523-pck-600.h
+ create mode 100644 include/dt-bindings/power/allwinner,sun55i-a523-ppu.h
+
+-- 
+2.39.5
+
 
