@@ -1,172 +1,210 @@
-Return-Path: <devicetree+bounces-194578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90C85AFE8AE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 14:18:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D284AFE8C7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 14:23:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CB044883D9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:17:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7486716766C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:23:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A252289813;
-	Wed,  9 Jul 2025 12:18:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC372D9ED8;
+	Wed,  9 Jul 2025 12:23:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jlt2ga/y"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="KaHYqS8i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AC2B21CC4D;
-	Wed,  9 Jul 2025 12:18:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2371F2D8380
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 12:23:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752063495; cv=none; b=UskGtdwlsDxVFGfP7v1cojnho4vlojC78gqXYSqcO03xpfADKS00NjPnt7JN/g5P/ePS+8H1ICXCtv26R5MhngRRaa/mamh1BjibZDMK3razPTJ05AZUTDiFLMSVKAijYsvTyGzjY6grLo2c3QqIVGY6ffZF3VyVcNXmnXpcslU=
+	t=1752063784; cv=none; b=I7n+6T1IjZIL1iLydNLi3mDKzgWRRID34F+ydHeKa1hXnER/4pvyT376Su/1rWPh+oFynVeW3FTYTH3PZRnJjEJ7XQNlgGL3lZtlo5VmoK3c78USupiYYRM6FR24tyQanXRMRpK0t4RGalkVOaL6escR5NTfC5mC0y5X1N0ngto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752063495; c=relaxed/simple;
-	bh=LTQb/WPBpiA1G5Eo6phjdBhMW+t9CY9M2pu2tV1a/C4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mEuEhzF7gzqjaXC532HXxKkj17CXmDIFnw9hoVPFO+pLgW6zNuz/KfSzzidSl57g97S9bzFeSjMaa2PIFYB2+9PdGhV9YpUKDL7TfS/RXIkDyOYs7zEiKRcdqMX9mGOq1wD9sUV6sf7Be2EahdcqhI3UyHqbQsT6aLGZUNZd1jc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jlt2ga/y; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a5257748e1so4463599f8f.2;
-        Wed, 09 Jul 2025 05:18:13 -0700 (PDT)
+	s=arc-20240116; t=1752063784; c=relaxed/simple;
+	bh=IvC2le71PqR6iklFWS+/lEeQnMsx53wFKpG61tQVWYM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=JwD912JaZz3ofvywkavISkPrNS3ua/gNfXHLtv9LlNT3UQrj27FzuB1x1Z8rDL2oMZ//7jMTSP4Sr04yBx84LYBRusX7356ZLFWbmMPiJ8q+UilxxF6KAdyqbzJdNEX3trKIBPlqdAnt94OwvZm+QYycm1OWCaoRBFlDa88JGMo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=KaHYqS8i; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-60c60f7eeaaso8324017a12.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 05:23:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752063492; x=1752668292; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=X4q587aW3PXbLz1cLnzpc10VmfIDVk9l4eUo54HA5B8=;
-        b=jlt2ga/yMyG/NvoFVkVQzBvFK5uchqIPS9z4Su8r0qqsc6IrNLxG1BLljDV+MjczzM
-         zoauMgnS1i+Qs6q9bHZ1e2P37iJAuvX1yI/aWmafWS9nRe1miysNcW7EvMJ5H2NLknub
-         j8Z2DAY8wgnpMx8DvbK7Nrhv/66yJ//WR8lLv3d6ted+RX3u4w4Q1/OVnRu1yKoG7pLw
-         RyxiO9mkyoBojt1ZPGbHjBoaisLKLEgS8O6KZsUsyKntXMFCOIL5VfRacuxIQ+j3n6Z3
-         Z/psf6tTKUtzinS2gcvpsKzqeAsal7XzTBEfwTMNnq4+c8IP8pVWarwPBomGSkaTvPlG
-         GvOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752063492; x=1752668292;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=fairphone.com; s=fair; t=1752063780; x=1752668580; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=X4q587aW3PXbLz1cLnzpc10VmfIDVk9l4eUo54HA5B8=;
-        b=REmn4MuTMoVIbY0t6nqfxovVlg0tNkmwHSMgJzoF1szuy+8ao/HigsPuVqKcaktmyO
-         U5x8o9AZyqzaGGXydShUDqWcilP1nUTNa+yZMMo1n/I0mt5vR+xTG8H72QUo7syaLk6/
-         E+ZsYtpcpBwqcohNCsvLzcHGAas1JYBK8OJmbv4ZBeaKIH6VOefC6IrePLcYi9sPVXoW
-         z37qJuOD1WYaAorWoKKLGnwIcTk/yjueXXJCZ3dmpgNfQL+JRkdaQiKf278UGi3cstsh
-         r5gtolrqg4Yi7jpYUw8v0a2GC5Kvb5jDViyXbpEGa4UPzIkTcfgK+a0j6gvJOt161isd
-         Lm+g==
-X-Forwarded-Encrypted: i=1; AJvYcCUm1sM0lXLR7VARXEy2qyBwKfoSVFF8CppIrlrfstlsY5aqjnpxE0CSnjk3d0HvHNLiTL7wQfe/cLXCczZg@vger.kernel.org, AJvYcCVESuaaBWsDgLyrAWiTO3Lq+WDz/rTuwIsusU2Ke1zByOPzw/s51tg8pfBbrvcWq/lRcKnutUo6hZ5AlM0=@vger.kernel.org, AJvYcCVkkz3w/Hci7D+WuDrsBrBDULqjHZp3eWSNn35TELAlnf/bn1DWMhF8A4V2c9dRYnmehKtV2wAVehpb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzg1/hdOz8IBdPpNlZVgYAlqO30ps+hw/wsPyspBfF4XynigWJy
-	OQj1csGkmwftuG1okqklYE84b726cPkbMIzqeJlThk3d2UZ+szdesDyDHeLLuA==
-X-Gm-Gg: ASbGnct7klWfUPucXzKJT+7YAB1zeHcc4fECRI2fPzfjDVhzu+fWBP7+D3GsLy/XtwN
-	P8wc3BCEjw6cTHGwE0dT4IOIc+M/yKvi8Yj4NdVhjGDu5DUiQv08Hj+coDb3v5dXU+E+zHklPT+
-	Pmf/EoElTRnI2J/PdWSZiEaRrJq+ep3C8W0AlkeDJi36uyIroB5SWdcTI+MgUdIY/qHgux/0wiP
-	jfGMKgu1h9ACZUGkBr/YBDvc39DrCifUmUsVDuXFqfJjHTBvNQjfGJoAMpt3ZwtrYHnGowUlFFG
-	oqRZK+JkPF9/6hCKO1B7ZoTNJ2FL0fx+6Q7pYhPc8nzX3jEPhVXrEycNl48I79B1ZmtQu4zww82
-	VOpmQiK9mS4b/dxFQIFpO/rjCSWtxRZoW2Bhsvk0aVRyLiVhB
-X-Google-Smtp-Source: AGHT+IFEMGUeze9X3qSxYsqLrz0dFf4f23b47ds5CoRc+BsOqyfOe/ETd1/kWf2fWB8CcW0PvVMbog==
-X-Received: by 2002:a05:6000:26c4:b0:3a6:d579:ec21 with SMTP id ffacd0b85a97d-3b5e450b3c4mr1707425f8f.12.1752063491506;
-        Wed, 09 Jul 2025 05:18:11 -0700 (PDT)
-Received: from orome (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454d50329d5sm21320545e9.6.2025.07.09.05.18.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Jul 2025 05:18:10 -0700 (PDT)
-Date: Wed, 9 Jul 2025 14:18:08 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/4] memory: tegra: Add Tegra264 support
-Message-ID: <dnwxijowryyoaanvzcz4cfkpt2cejx4mnfu772utkt66fdrelk@n2prert7km4y>
-References: <20250708105245.1516143-1-thierry.reding@gmail.com>
+        bh=ROuluNw4/vejFJBCXsSXIQySN8U2GYIufRUS7I5ilA8=;
+        b=KaHYqS8iqbxYPREL2TiI/9DugiMQb0I8r/Jyi/KW/07Ltalw27bZVDaS21nDSH4XJV
+         RYGKD/G0ayvLK65G2aX1u6zLOOtZowY5IgzvN3e8RbasHVviKHVMvBcfqTN9ZuKqqbRt
+         MiLxoIkQ/V5KcTDkwWIu+dY/i8jwm084Sao3eJ5WZoATuMhjlaH8FO2/exD5qk+ipu2A
+         REDTfvZHfvTkkXuS/p0Qo9G/IiUPsoqLQizC3OT+pYQkK+xN3ifSXHMRB6iuL0oxNA9A
+         zALRpDDEW5p0o1EAHgU7pIsXGkRDpNfwubyIQRrcIz26BJDsM0COmnyAAis6s3ledH0W
+         OI5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752063780; x=1752668580;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ROuluNw4/vejFJBCXsSXIQySN8U2GYIufRUS7I5ilA8=;
+        b=lmwAp2+y+lYu//XJHrjXBbkmFgscVaM2S/e5q6zJSQYCLodoqYuXqYtbm0qBsuJ/qR
+         3UD4ZWQivGB15SZ3DoZzbfs33B0+Bmm7bQcN4cqeKftRs4E/QzMVwIPqRoZnArTrrHSw
+         BNsb/OKf5Q/1Qrakt4sGQnztGs7HlUDkjbmBjIAQH/M78eZAH7+73F2qs6ut43/OTt3o
+         TytlyhFXRFKsDrNaz8SSAGJooweFXkdKYSnWtJghUu2QNv+b5t+vPYuesw1VFDRAvBMQ
+         RgAiy/BkDPagIqF/IDBGEfz42flhqWGEUJJiesD8mCdR2WIjbV40HviCGAC2UfIfF0nN
+         QXPA==
+X-Forwarded-Encrypted: i=1; AJvYcCUMnLhYiNypbH1q5C1RC4Ada6f+HW4Ae2q8jd+U7ahA0P5AT9XkENSLM0ptyDkDeKGmlujHS1B6jJGW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+yhW1oGyIB7bcTNMtpNOL+t0p8SA6pAWYv86HEBDNnNvh8o6v
+	4x3Hy7TzEIygEfvvo/Vq20L+04iZ9ApUOfcRDQNjpByehoZ33CWfE9bEkSvztxUjNVU=
+X-Gm-Gg: ASbGncvzSU5P7y2IZkTrZmZshzohUTSTRgO8H1jD6PGTCiJCf4G3L8xTBQB1vlTJzAl
+	VxW230ndmpboQu+FnB1b21KrPzmxVpXZiA4VlhAZy+KUFTGRlyx3Up7Y29UHDQj4/lPrWfZ1gyw
+	iaWf0jdK0g87/RdjOkx1PczY7iaXlewdD3d5o2oid7JIpv6+s7iz5YxBOgGZWLNrO6kPhKxCx8p
+	Na4DPHpeMBx76gG96IHGRil13ony3rY4dAnK4jYDkSxoJV1eSdys7rhZjufHs0wOTV7oUvWvRUV
+	cCgqYNLWIt2SyA3zqUpgQ3c848F34IMVo8YcNiluouSMegEWvYsIorZJ/1cpzLlt2CdGXlleSJQ
+	rKZeYsP+jcBE+qK/sVwGKK/tFUV/U6CQ=
+X-Google-Smtp-Source: AGHT+IFoNmrlnmfODsFWZlCW/cQmQ6VYP8ewayBQbqu+4gVzC+PMHw17LB0EaYf/AmeXCy2KQcHZJg==
+X-Received: by 2002:a17:906:c045:b0:ae0:d7c7:97ee with SMTP id a640c23a62f3a-ae6cf79a055mr227716066b.41.1752063780327;
+        Wed, 09 Jul 2025 05:23:00 -0700 (PDT)
+Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f6b04d5csm1074482666b.120.2025.07.09.05.22.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jul 2025 05:23:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="h65bakmejm7mjtdl"
-Content-Disposition: inline
-In-Reply-To: <20250708105245.1516143-1-thierry.reding@gmail.com>
-
-
---h65bakmejm7mjtdl
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 0/4] memory: tegra: Add Tegra264 support
-MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 09 Jul 2025 14:22:59 +0200
+Message-Id: <DB7IRWJ1AFCT.2CVF97683XYEO@fairphone.com>
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+Cc: "Vinod Koul" <vkoul@kernel.org>, "Kishon Vijay Abraham I"
+ <kishon@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Abel Vesa"
+ <abel.vesa@linaro.org>, <~postmarketos/upstreaming@lists.sr.ht>,
+ <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: phy: qcom,snps-eusb2-repeater:
+ Document qcom,tune-res-fsdif
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250625-sm7635-eusb-repeater-v1-0-19d85541eb4c@fairphone.com>
+ <20250625-sm7635-eusb-repeater-v1-1-19d85541eb4c@fairphone.com>
+ <20250708-unicorn-of-ancient-excellence-e8945c@krzk-bin>
+ <20250708-stoic-slim-bison-ac55ee@krzk-bin>
+ <DB6J86NHFTNT.31MFYDTZ6B4O0@fairphone.com>
+ <DB7FBNQ0TYFZ.3GGPN8XXJXGRW@fairphone.com>
+ <1c7fdeca-d531-4f90-9e4c-4d8bfac67fae@kernel.org>
+In-Reply-To: <1c7fdeca-d531-4f90-9e4c-4d8bfac67fae@kernel.org>
 
-On Tue, Jul 08, 2025 at 12:52:41PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
->=20
-> This set of patches extends the DT bindings for the memory controller
-> and external memory controller for Tegra264 and add the necessary DT
-> headers with memory client and stream ID definitions.
->=20
-> The driver changes in patch 4 are mostly an extension of existing code
-> and the bulk consists of the memory client table for the new chip as
-> well as the bandwidth manager calculations.
->=20
-> Thierry
->=20
-> Sumit Gupta (3):
->   dt-bindings: memory: tegra: Add Tegra264 support
->   dt-bindings: memory: tegra: Add Tegra264 definitions
->   memory: tegra: Add Tegra264 MC and EMC support
->=20
-> Thierry Reding (1):
->   dt-bindings: memory: tegra: Add Tegra264 stream IDs
->=20
->  .../nvidia,tegra186-mc.yaml                   |  65 +++-
->  drivers/memory/tegra/Makefile                 |   2 +
->  drivers/memory/tegra/mc.c                     |   5 +-
->  drivers/memory/tegra/mc.h                     |   9 +-
->  drivers/memory/tegra/tegra186-emc.c           |   5 +-
->  drivers/memory/tegra/tegra186.c               |  17 +-
->  drivers/memory/tegra/tegra264-bwmgr.h         |  50 +++
->  drivers/memory/tegra/tegra264.c               | 313 ++++++++++++++++++
->  include/dt-bindings/memory/nvidia,tegra264.h  | 136 ++++++++
->  9 files changed, 594 insertions(+), 8 deletions(-)
->  create mode 100644 drivers/memory/tegra/tegra264-bwmgr.h
->  create mode 100644 drivers/memory/tegra/tegra264.c
->  create mode 100644 include/dt-bindings/memory/nvidia,tegra264.h
+On Wed Jul 9, 2025 at 12:16 PM CEST, Krzysztof Kozlowski wrote:
+> On 09/07/2025 11:40, Luca Weiss wrote:
+>> Hi Krzysztof,
+>>=20
+>> On Tue Jul 8, 2025 at 10:31 AM CEST, Luca Weiss wrote:
+>>> On Tue Jul 8, 2025 at 10:21 AM CEST, Krzysztof Kozlowski wrote:
+>>>> On Tue, Jul 08, 2025 at 10:13:24AM +0200, Krzysztof Kozlowski wrote:
+>>>>> On Wed, Jun 25, 2025 at 11:14:56AM +0200, Luca Weiss wrote:
+>>>>>> Document the FS Differential TX Output Resistance Tuning value found=
+ on
+>>>>>> the eUSB2 repeater on Qualcomm PMICs.
+>>>>>>
+>>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>>> ---
+>>>>>>  Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml=
+ | 6 ++++++
+>>>>>>  1 file changed, 6 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-r=
+epeater.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeat=
+er.yaml
+>>>>>> index 27f064a71c9fb8cb60e8333fb285f0510a4af94f..6bfd11657e2992735998=
+063b3ca390e04a03930d 100644
+>>>>>> --- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater=
+.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater=
+.yaml
+>>>>>> @@ -52,6 +52,12 @@ properties:
+>>>>>>      minimum: 0
+>>>>>>      maximum: 7
+>>>>>> =20
+>>>>>> +  qcom,tune-res-fsdif:
+>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint8
+>>>>>> +    description: FS Differential TX Output Resistance Tuning
+>>>>>
+>>>>> Resistance is in Ohms, tuning could be in dB, so I wonder what are th=
+e
+>>>>> actual units here. Neither commit msg nor this description helps me t=
+o
+>>>>> understand that.
+>>>>
+>>>> I checked and the values are in Ohms.
+>>>
+>>> Yes it's Ohms but not 0x00 =3D 0 ohms, and it's also an offset in ohms
+>>> from the nominal value according to the Hardware Register Description I
+>>> have, e.g. 0x7 =3D -12.1ohm from the default
+>>>
+>>> I can try and create bindings using these Ohm offset values, I didn't
+>>> worry about it too much since the other tuning values in these bindings
+>>> are also just register values, presumably from before Konrad had access
+>>> to the docs.
+>>=20
+>> I've taken some more looks, and checked how similar tuning is handled in
+>> qcom,usb-snps-femto-v2.yaml and phy-qcom-snps-femto-v2.c, and changing u=
+p
+>> the concept of tuning in the eUSB2-repeater bindings+driver is not a
+>> trivial task.
+>>=20
+>> Since this is adding just one more property in-line with the already
+>> supported properties in the bindings+driver, can we get this in as-is,
+>> and deprecate all 4 qcom,tune-* properties later with a replacement that
+>> describes the values better?
+>
+> This is a new property, so other existing properties do not matter here.
+> We cannot take new code which you already think should be deprecated.
+>
+> register-like values are acceptable for vendor properties, but that does
+> not make them usually more readable. The question is whether this should
+> be more readable for hardware engineers or anyone writing/validating
+> DTS. Is the actual resistance important or no one ever cares because you
+> paste whatever qcom told you and you do not know what should be actually
+> there?
+>
+> I can imagine the first - that some document explains you should have
+> resistance of foo because of bar, which would mean the property should
+> be more readable. But I can also imagine the second. Make your claim in
+> commit msg.
 
-Krzysztof,
+Would this text in the commit message work for you?
 
-There's a dependency between this series and a series adding device tree
-files for Tegra264 (both the driver and DTS files include the memory
-client IDs in dt-bindings/memory/nvidia,tegra264.h), so I think it'd be
-easiest for me to take the driver patches here through the Tegra tree as
-well.
+---
+Document the FS Differential TX Output Resistance Tuning value found on
+the eUSB2 repeater on Qualcomm PMICs. The tuning values have special
+meanings, being different offsets of the resistance to the default value
+in Ohms but the exact meaning is not relevant here, as the correct
+tuning is determined by hardware engineers to make sure the electrical
+properties are as expected.
+---
 
-Let me know if that works for you or not.
+I'm trying to avoid resending the whole series if we're not yet aligned
+on the wording.
 
-Thanks,
-Thierry
+Regards
+Luca
 
---h65bakmejm7mjtdl
-Content-Type: application/pgp-signature; name="signature.asc"
+>
+>> We have enough people at Qualcomm by now that should be able to do that,
+>> and have the required resources to answer any potential questions.
+> They are busy sending vendor/downstream tree patches...
+>
+> Best regards,
+> Krzysztof
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhuXgAACgkQ3SOs138+
-s6EPbQ/9ET5ytCQw/qExnetrPR7YSVS+P9xKFt4MFMY1vWr2I5vo+yNrZkg/rSGD
-1kJz3SFhyYRucknOOQ5Qkq7nxbNBbFsBFPHpJlKoD5il5qsCnItfTyVVUoggcO2R
-z+h60l4Ni92lzjRHkTJb6zsNEDd1CX1ZOFJukeAITKke72QNfeGWyglRLzI/+N50
-AmUq3WDFnXffjWaoGr8RGe2Ro8zXXcue3l07a/a4IGEZoCUE16n5QEcCAkIcRMsH
-yUfDAHzEzUgCuph0aBPjIYdr7IfPUY9+RJcTrKfnWfvok20VKDpdvlqVy/wwQ7zU
-L4YljT6LLqxdRliaBNKHQQHx+O51XJ1glDwZbRQ+SMf65Vgz3Zqf49i4iIX6kmir
-2hvShoOVcnpw26FP8a9rRwv5F1OE9ZiFdvQjRrWaT/Qd2cJlGEfgj1z3BYSOS0AL
-e59z6+5zEs0GAn6ttWaATFjh9RPEXeiz+kSFJk3rz5CY9K3MPOMKYO6eBXRX9HXz
-UBVOY6jwJ7dVenGeG7O8cHv1EXeRwxM+vRNuVDnqv3ZdgjQMljS6PH9DukPGM7hb
-OZ9wqlI7chwVusIjeYjBKV72S8PfYebWVwU3+Gc2wUbSAZIKrOhu37/ZMb02CGgT
-41dYs5M1fb3IEAJn0Hwy3P7XHt/bt0NKwspUwJRpTnxtU8nldIg=
-=PSyq
------END PGP SIGNATURE-----
-
---h65bakmejm7mjtdl--
 
