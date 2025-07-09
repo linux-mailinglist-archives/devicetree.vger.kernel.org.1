@@ -1,126 +1,151 @@
-Return-Path: <devicetree+bounces-194497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A7AAFE5EB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:37:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACD24AFE602
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:41:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDB6A1C23B26
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:37:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4436A1C419E7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F4828D827;
-	Wed,  9 Jul 2025 10:37:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF8928DB56;
+	Wed,  9 Jul 2025 10:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="whwcpcgb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eENXxyfq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD7B25A354;
-	Wed,  9 Jul 2025 10:37:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3159A258CC9;
+	Wed,  9 Jul 2025 10:40:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752057440; cv=none; b=Ggq3lCZsfJWvc92X6NeLfI7QyLzfRRRsbhSZBbMkg6xgEIb/udcOneI8WhKfcYmEvAC5Y6tXep7c1M6lhpfb/C88gbkoSYHnB5gm5Un0z/vsj9/HYLQUNhWRUQU75dvLnv12sSJd0q0Z0xdbhWJJsmeVVTXBxSnmjx0ZoRCm+M0=
+	t=1752057636; cv=none; b=tGQPkmkZp5KSoLwSsU/ILRKB7o/Is+em0vRpFZGLPPSRESP/DkLg9nuBNsMmCDXjFNsu6DJFPsMpg4XcYwTfaJO96ZB+mgUNK8wIabbWo/QMvIqUW4f6B98TonKKhqm87RliZ2XJRHcel6D7JNOTvzBcJdR8+CqOpBgbPu/h9T0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752057440; c=relaxed/simple;
-	bh=laM3VRd00aMDHYsaaq84DXgh52gc+H5jQHhkE+1TO8w=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o5kOzgRLt064eyCfLVpjfpizFo9oFBrrTsHS/1vk30EzA3d5o/7rDlHjVJG4faYGj9rOECoH5jkiQUlCK289ZEi7LZdVEOW587a7bhmEbmmBWYiYsuW4eP+dk3fEati4aswDs5rugVKX5zFZBBrLzLAHW+tac6UQot4CZvEfa8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=whwcpcgb; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 569Ab0p51188098;
-	Wed, 9 Jul 2025 05:37:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1752057420;
-	bh=iMUYSJ7xBVV0t5hQTWAsU9tTxBU1IRIZP+YZk6vKoeM=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=whwcpcgbB8u/eMt37gEb+uE9LOQ0MvfGiDOrvSfVXRX/EMYJi8Y/nJl823PEUTKRi
-	 cfQeHCC8Y/A/oIs50TNi5g43EVmsLBYrv9KJD7xFEQqJALUIgDEiIpqBEf8taR7Z1y
-	 Ur1cjhAfbxMKK08p2FleJksLpbxgH/REOE4mS/bs=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 569Ab0e8051395
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 9 Jul 2025 05:37:00 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 9
- Jul 2025 05:37:00 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 9 Jul 2025 05:37:00 -0500
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.245])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 569AauhT3789718;
-	Wed, 9 Jul 2025 05:36:57 -0500
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Parth Pancholi <parth105105@gmail.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>,
-        Parth Pancholi
-	<parth.pancholi@toradex.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-verdin: fix PWM_3_DSI GPIO direction
-Date: Wed, 9 Jul 2025 16:06:42 +0530
-Message-ID: <175205738886.920395.8483860730913081511.b4-ty@ti.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250703084534.1649594-1-parth105105@gmail.com>
-References: <20250703084534.1649594-1-parth105105@gmail.com>
+	s=arc-20240116; t=1752057636; c=relaxed/simple;
+	bh=5BXnFhOaIajj0YD05OOXe4uI6r5QquIlIbMJFoR86RQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LmqlVAlOKKbTrcV80EX/OoBBaKctIyKHXFcau1j6T5fyc+WNv3lz97eroy3zlTt+OnhZ86kxgUuW11Kdi9iF/iuUmEztsZ2Ym5KZImqr1bWUSvKsazqpsZeXu/O8UGEgS8brDJZXMYbKcXSH9y9//qpLFd/3X4aRD+HdmDHscf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eENXxyfq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6F95C4CEF6;
+	Wed,  9 Jul 2025 10:40:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752057636;
+	bh=5BXnFhOaIajj0YD05OOXe4uI6r5QquIlIbMJFoR86RQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eENXxyfqWG1t5TdEGUqbMerZAeSV9TIzGJozZBdIWWne0ST58kJDEoNYf/T0KpD57
+	 RlMpjgCvMy2FPVwftG9KkRReV3QD0gCbAnC2duYDMqXamR59shzy3ufCJa32j9SgNJ
+	 RPaUEgfUPXR9Wfukqz/SArshMUr03Jd2am4rQys35wxnifhHH669qgqkEMQle0lPMU
+	 1G6Fxy8UrExSWQ5+jCYlMCTRriqdrhcqmchqq0lE1+Z1UjmQr7ccPjXw8cXEZN0+jh
+	 uMVs0MArWFf6dHDuO2t4Wu4I7+V68az2Qazib2iHtwSSC23SUJ8ZHf9y+gPaztr3Ue
+	 /Lqa5pPfWjJpw==
+Date: Wed, 9 Jul 2025 12:40:33 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Nick Li <nick.li@foursemi.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, 
+	xiaoming.yang@foursemi.com, danyang.zheng@foursemi.com, like.xy@foxmail.com, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: Add schema for FS2104/5S audio
+ amplifiers
+Message-ID: <20250709-invisible-frigatebird-of-felicity-7e87c4@krzk-bin>
+References: <20250703035639.7252-1-nick.li@foursemi.com>
+ <20250708112901.25228-1-nick.li@foursemi.com>
+ <20250708112901.25228-3-nick.li@foursemi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250708112901.25228-3-nick.li@foursemi.com>
 
-Hi Parth Pancholi,
+On Tue, Jul 08, 2025 at 07:28:59PM +0800, Nick Li wrote:
+> +description:
+> +  The FS2104 is a 15W Inductor-Less, Stereo, Closed-Loop,
+> +  Digital Input Class-D Power Amplifier with Enhanced Signal Processing.
+> +  The FS2105S is a 30W Inductor-Less, Stereo, Closed-Loop,
+> +  Digital Input Class-D Power Amplifier with Enhanced Signal Processing.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - foursemi,fs2104
+> +          - const: foursemi,fs2105s
+> +      - enum:
+> +          - foursemi,fs2105s
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description:
+> +      I2C address of the device. Refer to datasheet for possible values
 
-On Thu, 03 Jul 2025 10:45:34 +0200, Parth Pancholi wrote:
-> PWM_3_DSI is used as the HDMI Hot-Plug Detect (HPD) GPIO for the Verdin
-> DSI-to-HDMI adapter. After the commit 33bab9d84e52 ("arm64: dts: ti:
-> k3-am62p: fix pinctrl settings"), the pin was incorrectly set as output
-> without RXACTIVE, breaking HPD detection and display functionality.
-> The issue was previously hidden and worked by chance before the mentioned
-> pinctrl fix.
-> 
-> [...]
+Now the description is entirely redundant, brings no value. Drop.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+> +
+> +  clocks:
+> +    description: The clock of I2S BCLK
 
-[1/1] arm64: dts: ti: k3-am62p-verdin: fix PWM_3_DSI GPIO direction
-      commit: b1a8daa7cf2650637f6cca6aaf014bee89672120
+This was different... Previous code was correct, this is not correct.
+And nothing in changelog explains this. Do not make random changes after
+review.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bclk
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +  pvdd-supply:
+> +    description:
+> +      Regulator for power supply(PVDD in datasheet).
+> +
+> +  dvdd-supply:
+> +    description:
+> +      Regulator for digital supply(DVDD in datasheet).
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      It's the SDZ pin in datasheet, the pin is active low,
+> +      it will power down and reset the chip to shut down state.
+> +
+> +  firmware-name:
+> +    maxItems: 1
+> +    description: |
+> +      The firmware(*.bin) contains:
+> +      a. Register initialization settings
+> +      b. DSP effect parameters
+> +      c. Multi-scene sound effect configurations(optional)
+> +      It's gernerated by FourSemi's tuning tool.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +  - firmware-name
+> +  - '#sound-dai-cells'
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Keep the same order as in list of properties. OTOH, missing supplies.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +unevaluatedProperties: false
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+Best regards,
+Krzysztof
 
 
