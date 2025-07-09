@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-194375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF15AFE07C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:50:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49115AFE098
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:54:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D15EB7B6C2A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 06:48:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 789E258399B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 06:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C74572797AB;
-	Wed,  9 Jul 2025 06:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DECA926B2DA;
+	Wed,  9 Jul 2025 06:54:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C1+NLkB4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eqrLfrxI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8425026E6E9;
-	Wed,  9 Jul 2025 06:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B08D61B4153;
+	Wed,  9 Jul 2025 06:54:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752043633; cv=none; b=GNNBV+ghxMpSwXpjmPec7/HU0X2Y4fFSYg2otp2HYFtV6cEQR0D2GWOWggbZHJY+gdNZL5cXExFwrbbAnmpm3uVS0zBXSUclY+NcDhpV+0mwhYOQEnjnjR/juLsYSUHe+Lo0QXN9UT9JrmV/qkBfOnpzMomdASvuTAD1ek1ClWE=
+	t=1752044070; cv=none; b=AjCvZAMUUGHhrA4oJZ06nY7P+CXTdAq1QqUU9jw6+mrqKhMuB7mrpEeZRuiu5k7QWilhLSrM/vFnhMtP1oPwadc9Htxbs4flkTv6AF5kz0R/MN3Kdsv/UQYjU00u9zZGtFFNLUtgQ0rhwBJGCv3naxoWmCyvs4BPiW0VmYv5L8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752043633; c=relaxed/simple;
-	bh=lusVhO9l/+FYE+cx8IBDFJefUHFaTUr8LKO82IvBdTE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n7YCvLynLr2K+x4+D1Mve64vczLn6VQWfnavf6sZzwC2KdjnAhC+Hk9CTxN6LIreKvJVmfDN9BMiAHVQBjWeto5YEk4iTQehlIxvayI5Ntby6ApGIpD/9/Uq+vE6pnZG9PLBBg9Lzz4bgAD7E+addUZMaCGm73SvVBpZouBMpwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C1+NLkB4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 501C7C4CEF0;
-	Wed,  9 Jul 2025 06:47:07 +0000 (UTC)
+	s=arc-20240116; t=1752044070; c=relaxed/simple;
+	bh=jSkYtAbBZp35/z4jcL3yY2+kEXDrxQhSiS5zpSyzP+Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Te69uJES/QI578g62g87Zy+2bQVu3/aMJbZpq/WuKt+tOQnAJyzAOPY0I/QjEqgNFl786pSHLUpwBJ2Kv3bWPXvaIl+15uoByrvGboRkwEq7hfPE2mtF06+hnVZQGb/7usvrej3GIjMrF8qJAZvw7HESLuV12Ca2a0Jionf1SVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eqrLfrxI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BC80C4CEF0;
+	Wed,  9 Jul 2025 06:54:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752043633;
-	bh=lusVhO9l/+FYE+cx8IBDFJefUHFaTUr8LKO82IvBdTE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C1+NLkB4D72le6nzM1v0hsrFaN/5MH7ENimThR2GareilKUrqmPgdPWS0ix83zOY0
-	 4R4mgXfOele+2fSWDwjW3KtJL4pH/CE8XKjm2X/9fXhUEJ9q9CsiuNIFqHYopxB9DG
-	 a0/T03V6CUronWNeZzKlW+3SUDBVA2MViq/lBc2oMbdWQsui0qQcAQsu9Aj+YSa9o0
-	 Ht05POCE7xfB/1d/hDynE7USk+oLX79Mw86/2RrnYJf3/kvRjlgYyEYiagIlXQG7+b
-	 gzALD7iCRFRvmR/YDEoA75vpZh5HJ0X3CnutsaH109jv0Yh7HTEauaXFSdscRhrWzR
-	 x2hLtL5Lv1WRg==
-Message-ID: <7f3863b5-eb7c-494e-951c-feb257bbaecf@kernel.org>
-Date: Wed, 9 Jul 2025 08:47:05 +0200
+	s=k20201202; t=1752044070;
+	bh=jSkYtAbBZp35/z4jcL3yY2+kEXDrxQhSiS5zpSyzP+Y=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=eqrLfrxIJhdGA2IsXhWrEJpqblQOzBS0DIG7bpfPkEFjfbv2ZgTlcmnuVLkSSvatt
+	 9cCXVUGd1akJACFXvD9uYvlvVgkGhbfjLlJg2bUoIlxyKPC6nFXuQN0TKPnLepa3LM
+	 bm2xvxXGLHIrrpv3KZGn8IntV5OwCzcZ6ssW92n+u7KEYxn93C3NqEfBEKtt8QKv0w
+	 eNAMvvSjJhkIk6O4JGBlu8hzxDqnNcE0XEqvitet6a5CR9Ax+OyoJYmFejqJdk7Cf+
+	 RlEfhyR7lN0mIcDlTTfj+dETee/zO7azwR7bbkw2XmxcsukunnEs9/EkSE2HBgz7hP
+	 +Zcb59XohjuSQ==
+Message-ID: <b752c340-bbb5-479f-bc2c-a9e8541509c3@kernel.org>
+Date: Wed, 9 Jul 2025 08:54:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/9] dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add
- documentation for the PCIe IP on Renesas RZ/G3S
-To: Bjorn Helgaas <helgaas@kernel.org>, Claudiu <claudiu.beznea@tuxon.dev>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
- mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, catalin.marinas@arm.com,
- will@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- p.zabel@pengutronix.de, lizhi.hou@amd.com, linux-pci@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, Claudiu Beznea
- <claudiu.beznea.uj@bp.renesas.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20250708163407.GA2149616@bhelgaas>
+Subject: Re: [PATCH] dt-bindings: net: altr,socfpga-stmmac.yaml: add minItems
+ to iommus
+To: Matthew Gerlach <matthew.gerlach@altera.com>, dinguyen@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, maxime.chevallier@bootlin.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250707154409.15527-1-matthew.gerlach@altera.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,31 +106,40 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250708163407.GA2149616@bhelgaas>
+In-Reply-To: <20250707154409.15527-1-matthew.gerlach@altera.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/07/2025 18:34, Bjorn Helgaas wrote:
-> On Fri, Jul 04, 2025 at 07:14:04PM +0300, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> The PCIe IP available on the Renesas RZ/G3S complies with the PCI Express
->> Base Specification 4.0. It is designed for root complex applications and
->> features a single-lane (x1) implementation. Add documentation for it.
-> 
->> +++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml
-> 
-> The "r9a08g045s33" in the filename seems oddly specific.  Does it
-> leave room for descendants of the current chip that will inevitably be
-> added in the future?  Most bindings are named with a fairly generic
-> family name, e.g., "fsl,layerscape", "hisilicon,kirin", "intel,
-> keembay", "samsung,exynos", etc.
-> 
+On 07/07/2025 17:44, Matthew Gerlach wrote:
+> Add missing 'minItems: 1' to iommus property of the Altera SOCFPGA SoC
+> implementation of the Synopsys DWMAC.
 
-Bindings should be named by compatible, not in a generic way, so name is
-correct. It can always grow with new compatibles even if name matches
-old one, it's not a problem.
+Why? Explain why you are doing thing, not what you are doing. What is
+obvious which makes entire two-line commit msg redundant and useless.
 
+Original binding had no iommus and referenced commit does not explain
+why they appeared during conversion in the first place.
+
+> 
+> Fixes: 6d359cf464f4 ("dt-bindings: net: Convert socfpga-dwmac bindings to yaml")
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> ---
+>  Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+> index c5d8dfe5b801..ec34daff2aa0 100644
+> --- a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+> @@ -59,6 +59,7 @@ properties:
+>        - const: ptp_ref
+>  
+>    iommus:
+> +    minItems: 1
+>      maxItems: 2
+
+Why this has to be flexible on given SoC? This is weird. Same hardware
+differs somehow?
 
 Best regards,
 Krzysztof
