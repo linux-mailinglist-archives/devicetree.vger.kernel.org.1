@@ -1,50 +1,89 @@
-Return-Path: <devicetree+bounces-194328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7743AAFDD43
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 04:09:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFE5AFDDA8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 04:47:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 886203AC4CB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 02:09:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6381D7B26FD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 02:46:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FF231A2381;
-	Wed,  9 Jul 2025 02:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4A31D516F;
+	Wed,  9 Jul 2025 02:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dm+yJ3At"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dJ5DAkru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B389182;
-	Wed,  9 Jul 2025 02:09:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3D2A1426C;
+	Wed,  9 Jul 2025 02:47:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752026985; cv=none; b=qHWlOaICtwvQ+Ltd5JhmOBbjlvqWUMntoiG/LtnxK7fk1UTasKxWXNPB6VVQDJm/w9BOEhHsjF3vJtt0M3DfofvNnUJAydhgc0pMHLRi0EAiD8KmCA/Xqc/PSOtt74Eb+HECCaOAlezpZabph3UcPiTfoGUpibhNzqVlrv7hQjQ=
+	t=1752029272; cv=none; b=chlmzY3y80woWy/rxinq2zLtAR7MYj/QwxbArhif8by/h8XJZ5mQRcNaJozj0WMrI7SzYlTi4UyzODOHJ4eR6xJ9jKy0O46TjJMZvWaCVTzv3FlG6iKjCHmdx+KWbsN7VyVHA+aGtHckPpn6XCGLUz+YKGiS5P/saQuQ+7xlLLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752026985; c=relaxed/simple;
-	bh=Tge18Np48taeWjJACOO6TUJgmCjNPLeql+dotgV6YSo=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=UZQMMG0awpdL2mwDAbOXERAAuP5MUiTi8cUaKUMVKS9ZMpjqbxKALKIuGRNyGBj45QXMbbGLmjvyRnR6lV5eVmHh4KzIPJXsp3nJpANo8Iw6kJepjnQu5JT/UZMGHdzw9zpTiCm4fNri3uehpH49oqFwHjyRyuiLZBCsKsG6wHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dm+yJ3At; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A41B7C4CEED;
-	Wed,  9 Jul 2025 02:09:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752026984;
-	bh=Tge18Np48taeWjJACOO6TUJgmCjNPLeql+dotgV6YSo=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=dm+yJ3At23CkipXs+0O1nAne2zg2jFc59qtDHBiNtXDjGIP6DETAAsgcFtZXRSqyD
-	 1b0PiyePUBi9Sf2nCD1rcnU6gDOoUdeaFqkclFOkDQhfsDzITDS+los819gXHUMkiV
-	 kvKz8Z60vQ7jM64QXUN361WZWha4m1NjeVHLEs2CbaghXbh+rgKDRSCMOybTcOzBy1
-	 RkT/wYuChpdk538c6UeN+TZsHqsp3cJuoD1+02dXsXp3uV7a2LIdONOa2WILAWpkTl
-	 5JTVCPL/X3W+1XQkGiTPoWy/ayLrJ49o1RFtvChK8FLEbg2t298+pZnCXDFXUkkeiQ
-	 DecyY+/T+Fq+Q==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 9605E380DBEE;
-	Wed,  9 Jul 2025 02:10:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1752029272; c=relaxed/simple;
+	bh=0Lv0YgrfcpDpaB58TcFFJmkkA+H7vxSRyzlBjqQoFx0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ijQK1zgsMhQieYgramCBCjqBzOQ5/T0ZkVmxAOWYc9WONZbt1Wpv/CRK9hmQEOP/l9wINIjdCjSn8hLbngXAY+jfMoSW3eX15bODpxIMiUS/zy4/n3Fr3+EMHuIkq3Ji3WE2xD8BQf6ZD1uqMbTeg/zgLLDE+yJY9LAorlPN4EQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dJ5DAkru; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b3bad2f99f5so13392a12.1;
+        Tue, 08 Jul 2025 19:47:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752029270; x=1752634070; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EvJ1DnScpBFRBlV+VAHMOyg4AZW/K+RP8CE6fW8qvjY=;
+        b=dJ5DAkruX+S+SFAInu1LtBlKs2cYWt11RvT3uCu+wHgH4Hqy+NjOunc0HoJJW9xvBs
+         I7081mQ6uSX3Y7rd00sVtKbNs06wXUIWphY3n1N2GDwz1o8ZCDucZdaShHMsIgr125pc
+         yQ2OkprPstNBac/2+L7j++LtJIEEbozu8h5WGpj6EuHV7I8KhCgBAxO2sUtwm0coQzUB
+         BhuzQKzx6G86yEao1s3pmG252aTKKrEnJbt9p3OKWydJSdhiBL8PZt6v62nY1Al06dyJ
+         tP3FRzEqYquRY1/jcMmDeeKXyhMwcbxpSRXKKdvSKBE1cLlX0xf8MrwMt3VYeF+88cpG
+         wuyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752029270; x=1752634070;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EvJ1DnScpBFRBlV+VAHMOyg4AZW/K+RP8CE6fW8qvjY=;
+        b=YmcNk9XzAgir1YnZ9nkjzYFbw2AspAXEWsapibyqnD+w7AhvRD5PucOUe1kZiWTbcu
+         2OtAU4NTB+gKPRlxfuEY05BSMMkX67+d7kQjQXHr/MvlxvnN9jnh1pYze5GKlhwCirlp
+         VIIrnMI1/bFNp+VdZJSL+Bx9uP0mLieH5xXcUuUlm5H5aukUnIv/vOuvpsZo7rq3/9l/
+         AVsRchC8BnQNMuumZympapzqTBIEnr1LMTIAwmSCXmJWrvnvuADvy6EHCYfAr2tF55Nu
+         /uJdrCTu3moxjW30aD0HMs01FKTFLZzBMHFEjUVchpdlpDadjqOVuUzMGhBOucIVMluK
+         M3Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCVLjnkGAQ4mMWSQGSl9OOmwMrgbgdWVG9aAoqeln1I2AfxVocaeC6EtMeH6BlxnDhVKyuVcjmPCxBYR8sYc@vger.kernel.org, AJvYcCVQn2c+3rb2Ie/FywQno4FnrKxDIpqz9LuGmP/5Izuj40QeK3+GiFnHndPNQW0sVhru64WMUg5F4da2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzaQD8y8p/Ii5hY6qFNRPxBp/dwg4AzXsjTsIaJ1TFisPHsYLQR
+	T3PySjNAoxurWwjAg4V1tVmv+DSQbuqU8GAn+YEmwOYPf0kEZTTSddhK
+X-Gm-Gg: ASbGncu5Y5gL8Hkf3qZXE4GUM1OCsibKGAfToqWwXlq2Fo0+RYQvaK1Q9wC7CEud5ch
+	mIA7Jqd27Na2l6Stn1v0kQgIYADs00j8d8Q/ATWN7ocyxtZwpTZ2B+fs0Qt+7O/vgWae4Q/85Wb
+	6Dr6/Z30plkLHSsCFs51y9kmVzHbnA7txIKZu+EBIkcucAxyYkOItcqOkvHXm0Xd6rvBX2hajYo
+	TCZVz2aEf9Vv14Wnp3TkWGzftawY97GunHvTNpke6fNYq/FHDQVzoNHW9f4IW0QkS3HhwlL2a2x
+	EDuooLcwYDAKV06UdtJ83w3qUVJE35uubwSXBhApBZ2gU9AZO8Fhix5N+AFoXWC6xMqIOlBbePB
+	fykI5
+X-Google-Smtp-Source: AGHT+IEHTwtKlKP5EkfXgvySIanUlWJEAddsRIGz6dpsctl6bAFefwPM0npLBBbc5B2BrlKjK76mYA==
+X-Received: by 2002:a17:90b:2f04:b0:313:d342:448c with SMTP id 98e67ed59e1d1-31c3071be6amr961883a91.17.1752029269752;
+        Tue, 08 Jul 2025 19:47:49 -0700 (PDT)
+Received: from localhost.localdomain ([207.34.150.221])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31c300b50e8sm535082a91.31.2025.07.08.19.47.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Jul 2025 19:47:49 -0700 (PDT)
+From: Kyle Hendry <kylehendrydev@gmail.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>
+Cc: Kyle Hendry <kylehendrydev@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/6] reset: bcm6345: add support for internal ephy resets on bcm63xx
+Date: Tue,  8 Jul 2025 19:47:24 -0700
+Message-ID: <20250709024740.194520-1-kylehendrydev@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,47 +91,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] dt-bindings: net: altr,socfpga-stmmac.yaml: add minItems
- to
- iommus
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175202700747.194427.6933538958086222973.git-patchwork-notify@kernel.org>
-Date: Wed, 09 Jul 2025 02:10:07 +0000
-References: <20250707154409.15527-1-matthew.gerlach@altera.com>
-In-Reply-To: <20250707154409.15527-1-matthew.gerlach@altera.com>
-To: Matthew Gerlach <matthew.gerlach@altera.com>
-Cc: dinguyen@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, maxime.chevallier@bootlin.com,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
 
-Hello:
+bcm63xx SoCs have a register in the gpio controller that controls some
+of the phy functionality. Some of the bits reset individual phys and 
+need a driver to set. 
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+The other fields in the register configure phy power and will be set
+by the network device driver. 
 
-On Mon,  7 Jul 2025 08:44:09 -0700 you wrote:
-> Add missing 'minItems: 1' to iommus property of the Altera SOCFPGA SoC
-> implementation of the Synopsys DWMAC.
-> 
-> Fixes: 6d359cf464f4 ("dt-bindings: net: Convert socfpga-dwmac bindings to yaml")
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
-> ---
->  Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml | 1 +
->  1 file changed, 1 insertion(+)
+Kyle Hendry (6):
+  reset: bcm6345: add support for bcm63xx ephy control register
+  dt-bindings: reset: add compatible for bcm63xx ephy control
+  dt-bindings: reset: add BCM63268 ephy reset definitions
+  dt-bindings: reset: add BCM6318 ephy reset definitions
+  dt-bindings: reset: add BCM6362 ephy reset definitions
+  dt-bindings: reset: add BCM6328 ephy reset definitions
 
-Here is the summary with links:
-  - dt-bindings: net: altr,socfpga-stmmac.yaml: add minItems to iommus
-    https://git.kernel.org/netdev/net-next/c/8a00a173d1a4
+ .../devicetree/bindings/reset/brcm,bcm6345-reset.yaml        | 4 +++-
+ drivers/reset/reset-bcm6345.c                                | 1 +
+ include/dt-bindings/reset/bcm6318-reset.h                    | 5 +++++
+ include/dt-bindings/reset/bcm63268-reset.h                   | 4 ++++
+ include/dt-bindings/reset/bcm6328-reset.h                    | 5 +++++
+ include/dt-bindings/reset/bcm6362-reset.h                    | 5 +++++
+ 6 files changed, 23 insertions(+), 1 deletion(-)
 
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.43.0
 
 
