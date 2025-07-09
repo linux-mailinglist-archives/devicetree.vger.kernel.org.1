@@ -1,112 +1,160 @@
-Return-Path: <devicetree+bounces-194667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6208AAFEFEE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 19:35:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A451AFF0B6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 20:18:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5ED5156576E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 17:34:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B14B3AB883
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 18:17:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F0122D4C3;
-	Wed,  9 Jul 2025 17:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A2F22D9E3;
+	Wed,  9 Jul 2025 18:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="Ot9uvKj8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FJkuOg3C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (unknown [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28CA2253AB;
-	Wed,  9 Jul 2025 17:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D05FE42A99;
+	Wed,  9 Jul 2025 18:18:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752082507; cv=none; b=rohU++IQ6s2ip2CHGMLC2KapL+6mvfJfYlOPnMiaE73pSdK5ydKYIqN7PGn5skRPVT7e2w4hnIueU+66pfG8w2ZwtlkA44Jqt6YghMgkJyNXberUSCLpPIVK49rDRj0Og2rpSFeI2kyrkb/6XvR6St9DVvsCeUfJEm0v/0deIK8=
+	t=1752085085; cv=none; b=eSRtYzqMgkbrJ44wrvfx9S0LD0+YoebNo7BWAjqBT1eE5cD6T7VIN0QUshXdfUXTh0bxVWyIoseDhTsQg0zvMU8FKFyBDZSM5zF6pWgBEQd3iqhBZ7MdTxrYJuhl4JNw0Ehfv5mHQBGbyR0M+0mp9iKs1qrnbmwBbv5eQGLjf3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752082507; c=relaxed/simple;
-	bh=+64fnXIXSgNnCIG6if9Uadk28NbjJVWxSfgeT94QG74=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gF6q8gyTZEBXhwbOFTwHIYcQIUqMcTZ9JIFM7bddx/WOxV9RL1kRBxapVSUvYzGlM2RsBz98u90FyPPGcefcIQpyXdduzwElpETeoPkbmf+ety9S9Ta1nWHfpiIj5k8CJ9m6efEDq9+y+AWXKZGFj/WZWVSBzvPFQTiIYbD1cF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=Ot9uvKj8; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=+64fnXIXSgNnCIG6if9Uadk28NbjJVWxSfgeT94QG74=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1752082383; v=1; x=1752514383;
- b=Ot9uvKj88SCNKZXhCwSLc7Mlc+19lqQn3riLUfvGUlHkwpR12dYtzxqtfXX5WgIcETyoHYb7
- 3zAcaawntNY5dakJuNcoE1wSv36nxkOGQeX3JcxmCalOcx9b7noP7k3FmYytVXu75jbrtsusvQ2
- B9ukt85xBF8QA8e7X0pQZTdQF37Slb82WPUM6haiBwPokSNNZNNYi6g0qG2RJnAia1gg02HeNAc
- +bbAWjg+znV+Km5vvE31WZ2KBKK/w0Pm3p/T8N4WCbfgnvTkBlbC/NoAmYOng2vON81cbUVH5ma
- 4sWmXdFHX1qlpqj/hc2csN530rcCW308NmGI7SLoylq9A==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id 66672483; Wed, 09 Jul 2025 19:33:03 +0200
-From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje@dujemihanovic.xyz>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, David Wronek <david@mainlining.org>,
- Karel Balej <balejk@matfyz.cz>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, soc@lists.linux.dev,
- linux-mmc@vger.kernel.org
-Subject:
- Re: [PATCH v16 1/5] dt-bindings: mmc: sdhci-pxa: restrict pinctrl to pxav1
-Date: Wed, 09 Jul 2025 19:33:01 +0200
-Message-ID: <3379810.44csPzL39Z@radijator>
-In-Reply-To: <20250709-spectacular-goat-of-tenacity-ced55a@krzk-bin>
-References:
- <20250708-pxa1908-lkml-v16-0-b4392c484180@dujemihanovic.xyz>
- <20250708-pxa1908-lkml-v16-1-b4392c484180@dujemihanovic.xyz>
- <20250709-spectacular-goat-of-tenacity-ced55a@krzk-bin>
+	s=arc-20240116; t=1752085085; c=relaxed/simple;
+	bh=S6zZ5G800kN21belO3KkHrdTmOtxbk5yt+VXUtC+gDw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TkRx2XgbfXmkShjTizdb/Lx5Bf+W8YUOI2NrtPq7H5YvnKwIxRzWEhLXb9/D2/vWxcGjgV1K+mjPINhHvk7cUCa9jnqHUaAYiPDy97/xOfp20Sc1xFh8G7UTZI2izDsdJ84JPVCysQCv03dRCSZRLfAKuIrTWSGxNPCFBdv8yJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FJkuOg3C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FFC2C4CEEF;
+	Wed,  9 Jul 2025 18:18:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752085085;
+	bh=S6zZ5G800kN21belO3KkHrdTmOtxbk5yt+VXUtC+gDw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FJkuOg3COKN7dPW4oz/ySDbAABNsJ13Cii/J71dixJEjfe0KBNp92mCrjzTgklLMy
+	 OibKFiSXySXtDhDCBKT+m5a7EayRNOU1lBSuGBg/iiedtgYmcHoKMmi1qUjwKJxDIS
+	 Zl9MwlMlcu4ndDLvw3Di5jyWZkQ57zya2+kUlj20yCaPLcuga/boz7A22wDfRRTIcZ
+	 5frOLbxu0JIp4Vyurdo102elpIUkJrsWQKRmX0aLpD+5J/Dg6o3iEZFRuS+qo0tmsR
+	 0MrDGQYV5jyWta9AlC9Sxo5pnXQq+lgfv3SgiQu5zUaNDnYhYm3CPRaiiqdhkxfHHc
+	 +H3CkSmD0ybdw==
+Message-ID: <c80bf310-8cee-4a44-8e01-472bfee1933f@kernel.org>
+Date: Wed, 9 Jul 2025 20:18:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] memory: tegra: Add Tegra264 support
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250708105245.1516143-1-thierry.reding@gmail.com>
+ <dnwxijowryyoaanvzcz4cfkpt2cejx4mnfu772utkt66fdrelk@n2prert7km4y>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <dnwxijowryyoaanvzcz4cfkpt2cejx4mnfu772utkt66fdrelk@n2prert7km4y>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wednesday, 9 July 2025 09:32:06 Central European Summer Time Krzysztof=20
-Kozlowski wrote:
-> On Tue, Jul 08, 2025 at 07:09:46PM +0200, Duje Mihanovi=C4=87 wrote:
-> > The current pinctrl properties apply only to the pxav1 controller.
->=20
-> Why they are not applicable for pxav3?
+On 09/07/2025 14:18, Thierry Reding wrote:
+> On Tue, Jul 08, 2025 at 12:52:41PM +0200, Thierry Reding wrote:
+>> From: Thierry Reding <treding@nvidia.com>
+>>
+>> This set of patches extends the DT bindings for the memory controller
+>> and external memory controller for Tegra264 and add the necessary DT
+>> headers with memory client and stream ID definitions.
+>>
+>> The driver changes in patch 4 are mostly an extension of existing code
+>> and the bulk consists of the memory client table for the new chip as
+>> well as the bandwidth manager calculations.
+>>
+>> Thierry
+>>
+>> Sumit Gupta (3):
+>>   dt-bindings: memory: tegra: Add Tegra264 support
+>>   dt-bindings: memory: tegra: Add Tegra264 definitions
+>>   memory: tegra: Add Tegra264 MC and EMC support
+>>
+>> Thierry Reding (1):
+>>   dt-bindings: memory: tegra: Add Tegra264 stream IDs
+>>
+>>  .../nvidia,tegra186-mc.yaml                   |  65 +++-
+>>  drivers/memory/tegra/Makefile                 |   2 +
+>>  drivers/memory/tegra/mc.c                     |   5 +-
+>>  drivers/memory/tegra/mc.h                     |   9 +-
+>>  drivers/memory/tegra/tegra186-emc.c           |   5 +-
+>>  drivers/memory/tegra/tegra186.c               |  17 +-
+>>  drivers/memory/tegra/tegra264-bwmgr.h         |  50 +++
+>>  drivers/memory/tegra/tegra264.c               | 313 ++++++++++++++++++
+>>  include/dt-bindings/memory/nvidia,tegra264.h  | 136 ++++++++
+>>  9 files changed, 594 insertions(+), 8 deletions(-)
+>>  create mode 100644 drivers/memory/tegra/tegra264-bwmgr.h
+>>  create mode 100644 drivers/memory/tegra/tegra264.c
+>>  create mode 100644 include/dt-bindings/memory/nvidia,tegra264.h
+> 
+> Krzysztof,
+> 
+> There's a dependency between this series and a series adding device tree
+> files for Tegra264 (both the driver and DTS files include the memory
+> client IDs in dt-bindings/memory/nvidia,tegra264.h), so I think it'd be
+> easiest for me to take the driver patches here through the Tegra tree as
+> well.
+> 
+> Let me know if that works for you or not.
 
-state_cmd_gpio is used for working around a PXA168 SDIO erratum. That SoC u=
-ses=20
-the pxav1 controller and no such erratum exists on any of the other PXA SoC=
-s.
+Works for me. I don't have anything for Tegra memory controllers and
+it's close to end of cycle. Let me look at the patches and ack/comment.
 
-> > Adding one default pinctrl node to a pxav3 controller therefore causes
-> > a schema warning.
-> >=20
-> > Check the existing properties only on pxav1. pxav2 and pxav3 may add
-> > their own set of pinctrl properties if and when needed.
->=20
-> This should be rather made complete here, because properties should be
-> defined in top-level, not in allOf: block. Strictly speaking pinctrl-xxx
-> are defined in core schema, but still the binding should follow same
-> rule - define them in top.
-
-Would it then be acceptable to declare the pinctrl properties in the top le=
-vel=20
-and define each controller's respective description: and items: in the allO=
-f:=20
-block?
-
-Regards,
-=2D-
-Duje
-
-
+Best regards,
+Krzysztof
 
