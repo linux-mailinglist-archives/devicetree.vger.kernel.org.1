@@ -1,184 +1,112 @@
-Return-Path: <devicetree+bounces-194655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5083CAFEE3D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 17:56:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC1FAAFEE3F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 17:57:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7699F5A4ADD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:56:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67863178FC6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3822E9EC0;
-	Wed,  9 Jul 2025 15:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97582E972A;
+	Wed,  9 Jul 2025 15:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="m/wnR0mE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k4SMq1lD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA09C2E9749;
-	Wed,  9 Jul 2025 15:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A3D2206B8;
+	Wed,  9 Jul 2025 15:56:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752076568; cv=none; b=tIHRWk99nxwDmeUycTNdKckewpMdmaH0Dbj/IB8cIwdyeq7ZLmfcqAATOn0itZUgHYqQddrAOha5gd4Wgc67EVDmBr5F+lOER8+7F8z1SwO+6gMn5DOvnqQ3bNEHiQXuVU4+pYxJTbVg0xNmEpoLEO7I0xhNomQDv+1LCmNSQXA=
+	t=1752076617; cv=none; b=tgQ2DkfloVKv89TrNuVEEQFjiXaICGSwevBf+5FbxT4KxLW9jEkD/PxqVFIxRZzAXRmJvfbsEyWG9G+yhu8uFRtIXjXp2JjqpgRgE1aBqp/M9T8z554GeSkitBzq0Of/klNLFEIqE3Qip6auAsieUSZ6M32X1X1Ss0Hg0ItVkyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752076568; c=relaxed/simple;
-	bh=G6jJF6k3GnUuuy4PcW4fUs7pcOeRqnQwVp5EqqLKCDw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=D5a6SFzEDT5cUhr0BS63QZAl7VP4bmiWqBhwDp1YKBsjSbxEUSHs7VcNQHGdXOwZH9pMA8lzhifaQ4SkfOJaeYrdsjXc5cAMpU9yeR77ANSMROZ8XEc9APToro/vif3c+rkfDQLk3aw8Je8xwFl79nzZNMkTWVOeHCzjzvxsdho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=m/wnR0mE; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 569FtgxY1505172;
-	Wed, 9 Jul 2025 10:55:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1752076542;
-	bh=MfT0l7g5qijaXkNJNgIEaao8kUCMjEOWRY9UATjc5Fs=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=m/wnR0mEUQArPldBkTx+ov0ZYMSWaEU3JA2vN1d+CzuxUhpF8siwhchRvgnzumej3
-	 SjD3lNbs5iG+FDBPKrEhj7llrTiTJ3YmiKitqpdUWmlXFe3+9kUVwKX7DQJ6Fs7Dgt
-	 mngh3D5MNBPGFUqXGHnDY6HOP6E+BFZMQDBJ+lp0=
-Received: from DFLE20.ent.ti.com (dfle20.ent.ti.com [10.64.6.57])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 569Ftf0v282164
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 9 Jul 2025 10:55:41 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE20.ent.ti.com
- (10.64.6.57) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.2.1748.24; Wed, 9 Jul
- 2025 10:55:41 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 9 Jul 2025 10:55:41 -0500
-Received: from [10.250.35.60] ([10.250.35.60])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 569FteH03927392;
-	Wed, 9 Jul 2025 10:55:40 -0500
-Message-ID: <8b36f958-3406-421d-ab94-5e49f911f92e@ti.com>
-Date: Wed, 9 Jul 2025 10:55:40 -0500
+	s=arc-20240116; t=1752076617; c=relaxed/simple;
+	bh=O/H+N3TO1iyF42W90FkvMaPdy1iyg2L5o65UAMgY4T0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PzZapIg7qQJVv7roXUOebP8/Sg2TimFECjFFhPXrt26EqyGouODikMKfEHBPWFEoMmkhNcxiPj7n9cMmx3D9UNzrAmqQStxRUQnWK7Jt0pBICSs40u/4sKZzJWlm+jIW+WSKcNjQ12iUZlBrl6hnTS8P2YLoR8OwnENjCCMJCFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k4SMq1lD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 408B2C4CEEF;
+	Wed,  9 Jul 2025 15:56:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752076617;
+	bh=O/H+N3TO1iyF42W90FkvMaPdy1iyg2L5o65UAMgY4T0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=k4SMq1lDl0t/cpPFrA7uow796FMW7GCeKwtQrN5wEi5zXBiXSwxFeWIdMUbzVd5U8
+	 /tblIRlrJdfQKZdoPr64vHfpPgtdz3fhQFrMloKf7NMXZuE34W2HxGhgEcNfmHMSZY
+	 tq861hDUdrgazQaM7yKEeYXZflRhGBK75t5WX5mWhufldFDQzMfW4AOxp7jfLxl5h0
+	 O8ezv6cLXuzwzFIBfudhF8WWA8f5GaL8f1aQH9vOLfSmq60HHZMSfuyDc9fNtc45pT
+	 IP9aiI2TJCh67BTt8KnMuziAjKBMiYg6I6WH8b7cANgamtSjfRZhFslDKYecXU1Qn+
+	 rdOkyQBZs4YNQ==
+Date: Wed, 9 Jul 2025 16:56:44 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Aleksander Jan Bajkowski <olek2@wp.pl>, rafael@kernel.org,
+ daniel.lezcano@linaro.org, rui.zhang@intel.com, lukasz.luba@arm.com,
+ dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ s.hauer@pengutronix.de, zhiyong.tao@mediatek.com, linux-pm@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: Add support for MT7981
+Message-ID: <20250709165644.7614ac41@jic23-huawei>
+In-Reply-To: <20250709-industrious-marigold-snake-5a3eb5@krzk-bin>
+References: <20250708220405.1072393-1-olek2@wp.pl>
+	<20250708220405.1072393-2-olek2@wp.pl>
+	<20250709-industrious-marigold-snake-5a3eb5@krzk-bin>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dma/contiguous: Add helper to test reserved memory
- type
-To: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Sumit Semwal
-	<sumit.semwal@linaro.org>,
-        Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>,
-        Brian Starkey <Brian.Starkey@arm.com>,
-        John Stultz <jstultz@google.com>,
-        "T.J. Mercier" <tjmercier@google.com>,
-        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marek
- Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>
-CC: Jared Kangas <jkangas@redhat.com>,
-        Mattijs Korpershoek
-	<mkorpershoek@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linaro-mm-sig@lists.linaro.org>, <iommu@lists.linux.dev>
-References: <20250709-dma-buf-ecc-heap-v6-0-dac9bf80f35d@kernel.org>
- <20250709-dma-buf-ecc-heap-v6-1-dac9bf80f35d@kernel.org>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250709-dma-buf-ecc-heap-v6-1-dac9bf80f35d@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 7/9/25 7:44 AM, Maxime Ripard wrote:
-> A given reserved-memory region can be of multiple types.
+On Wed, 9 Jul 2025 10:27:50 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+> On Wed, Jul 09, 2025 at 12:04:03AM +0200, Aleksander Jan Bajkowski wrote:
+> > The temperature sensor in the MT7981 is same as in the MT7986.
+> > Add compatible string for mt7981.
+> > 
+> > Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> > ---
+> >  .../devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml   | 4 ++++
+> >  1 file changed, 4 insertions(+)  
 > 
-> We have currently four types defined in the tree: contiguous, backed by
-> CMA, coherent and swiotlb, backed by their respective allocators, and a
-> platform-specific one for tegra.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> However, some users, like dma-buf heaps, might be interested in the
-> exact type of a reserved memory region they are getting. It would thus
-> be useful to have helpers to test if a given region is of a given type.
+Picked up this patch for the togreg branch of iio.git. Initially pushed out
+as testing as other stuff on there needs some test build coverage.
 > 
-> Since we only care about CMA for now though, let's create one for CMA
-> only.
+> <form letter>
+> This is an automated instruction, just in case, because many review
+> tags are being ignored. If you know the process, just skip it entirely
+> (please do not feel offended by me posting it here - no bad intentions
+> intended, no patronizing, I just want to avoid wasted efforts). If you
+> do not know the process, here is a short explanation:
 > 
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> ---
->   include/linux/dma-map-ops.h | 13 +++++++++++++
->   kernel/dma/contiguous.c     |  7 +++++++
->   2 files changed, 20 insertions(+)
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions of patchset, under or above your Signed-off-by tag, unless
+> patch changed significantly (e.g. new properties added to the DT
+> bindings). Tag is "received", when provided in a message replied to you
+> on the mailing list. Tools like b4 can help here ('b4 trailers -u ...').
+> However, there's no need to repost patches *only* to add the tags. The
+> upstream maintainer will do that for tags received on the version they
+> apply.
 > 
-> diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
-> index f48e5fb88bd5dd346094bbf2ce1b79e5f5bfe1a6..ea646acb6367bd062619b337013db221749f85ab 100644
-> --- a/include/linux/dma-map-ops.h
-> +++ b/include/linux/dma-map-ops.h
-> @@ -153,10 +153,23 @@ static inline void dma_free_contiguous(struct device *dev, struct page *page,
->   {
->   	__free_pages(page, get_order(size));
->   }
->   #endif /* CONFIG_DMA_CMA*/
->   
-> +#if defined(CONFIG_DMA_CMA) && defined(CONFIG_OF_RESERVED_MEM)
-> +struct reserved_mem;
-> +
-> +bool of_reserved_mem_is_contiguous(const struct reserved_mem *rmem);
-> +#else
-> +struct reserved_mem;
-> +
-> +static inline bool of_reserved_mem_is_contiguous(const struct reserved_mem *rmem)
-> +{
-> +	return false;
-> +}
-> +#endif
-> +
-
-Should this all go in linux/of_reserved_mem.h?
-
->   #ifdef CONFIG_DMA_DECLARE_COHERENT
->   int dma_declare_coherent_memory(struct device *dev, phys_addr_t phys_addr,
->   		dma_addr_t device_addr, size_t size);
->   void dma_release_coherent_memory(struct device *dev);
->   int dma_alloc_from_dev_coherent(struct device *dev, ssize_t size,
-> diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
-> index 8df0dfaaca18eeb0a20145512ba64425d2e7601e..ace4982e928e404315cf38551e1596f7ed445156 100644
-> --- a/kernel/dma/contiguous.c
-> +++ b/kernel/dma/contiguous.c
-> @@ -493,6 +493,13 @@ static int __init rmem_cma_setup(struct reserved_mem *rmem)
->   		&rmem->base, (unsigned long)rmem->size / SZ_1M);
->   
->   	return 0;
->   }
->   RESERVEDMEM_OF_DECLARE(cma, "shared-dma-pool", rmem_cma_setup);
-> +
-> +bool of_reserved_mem_is_contiguous(const struct reserved_mem *rmem)
-
-Needing to check where the reserved mem comes from seems wrong, it hints
-that the reserved mem region drivers, like this one, are not in full control
-of their regions. Instead of looping over all the regions in DT in the next
-patch and searching for the owner, how about the owner (this driver) call
-into __add_cma_heap() if it chooses to expose the region in that way.
-
-(I know RESERVEDMEM_OF_DECLARE callbacks are done very early and the CMA-Heap
-driver might not be able to deal with adding heaps at this point, so maybe
-keeping a table the heaps driver can later iterate over would also work).
-
-Andrew
-
-> +{
-> +	return rmem->ops == &rmem_cma_ops;
-> +}
-> +EXPORT_SYMBOL_GPL(of_reserved_mem_is_contiguous);
-> +
->   #endif
+> https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
+> </form letter>
 > 
+> Best regards,
+> Krzysztof
+> 
+
 
