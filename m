@@ -1,40 +1,56 @@
-Return-Path: <devicetree+bounces-194741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 099ADAFF57C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 01:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9568AFF586
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 01:56:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA2961C82EB9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 23:47:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B85071C23091
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 23:56:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7623B22B8A4;
-	Wed,  9 Jul 2025 23:46:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00886237A3B;
+	Wed,  9 Jul 2025 23:56:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="h4jrMKcH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2071115A8;
-	Wed,  9 Jul 2025 23:46:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2706A801
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 23:56:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752104808; cv=none; b=SEdshH0bJO9sJ7qd+Fp3vC4s5rycX5LsPP48epSJoEOODqbwpJB3Oy4eGO/NYWByEEngLGHV4lIWKsqquGlulw3gyVzbYVIV6HPXdcrpyB7XZyNcFOMB2IVijK7rymjZXoFDI7hCHpu6Yp2Km0InK/JRrriuEqgysQlc8CjLpPs=
+	t=1752105384; cv=none; b=eJWDHwox5bFd71JOl0Uy1Zu/cjOqZhbOu1k21Y5iQaGiDDbMPGEq24dcXwheLq230I66JPBQxQ6gYjTjGS7FCO8HPlIsUL1JLAQ0ao114nck7DF0+HjVb1OlwAgOcb+1e/OR8Nk/ab7/1vz5PAiLaaYoE0XpFfqPMzRW+B3m0AE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752104808; c=relaxed/simple;
-	bh=rH3qA85caV2LQXZRaSQAurqA/DMEoKvuFh9sKxnPZB0=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=mxNaiAYyjHG5kfQMQYbOqx+C/TAkCFJq6V6bUt3ORwwGPtbTzY+QUhL+urcLvmJMjJqnHLFhxH0oWD8ZHFXUAse+j/etF4Xkwn/p9Fa+cZoroaKxOK7qTZcluPEiyOIG7FiPIpuz+K67Rlds09akqxertwRXdnOWvmLKQCn9sGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D4560150C;
-	Wed,  9 Jul 2025 16:46:32 -0700 (PDT)
-Received: from [10.43.3.235] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 186AE3F66E;
-	Wed,  9 Jul 2025 16:46:41 -0700 (PDT)
-Message-ID: <043e5826-b68a-4289-bf22-79587bcdad26@arm.com>
-Date: Thu, 10 Jul 2025 00:46:42 +0100
+	s=arc-20240116; t=1752105384; c=relaxed/simple;
+	bh=wzNeuH4AgfJ+srhdUxKvu59sPMiOo4UVbGX3w1hfgNk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bO9mhpaRHcWavjAxzn8yBOvYuxcvNyyMXr0dw5TqnEFuIaMpg482viyrJTY8oj8ileL+8pTqrECL3HILCVCUpUIi5YDFuzarTtDmQjR6jLZqbIEFpEcY7zSSdCVCJw0DBIA11Cn3ENkDdmDoBpG2FzWyP0AchSzLevUCYnvyUTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=h4jrMKcH; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1752105376;
+ bh=2DQ9gjXXuEt0O2/rJn65m+kWyPKUAoslRtuiFDYcZeU=;
+ b=h4jrMKcHD1I2EfHEP26yzxFS2i4FVKkWWcmjbvoWUztsD5QaysEMctNGRV5/2in5uodXk2qEq
+ lmRYjJKDm7Fy8NNB5GApbJxQe6nWMpGW2UXyeUMlE34uUDi+7eji2GbIvyC/2l4Q50eIVQjV2Tk
+ r8MHiF1NfpjEl2fnfzVXAOirShtHk/dkWUsl9SuooErLd0U/aMeop1ZBBFMsQHmfIFyanjq6rh1
+ uP84/qxmTRJnpgnmIWnRUsSihr7dCViyfnlNpmlTiH9TwdDPtiwdG9v+Nu1LwMHS87myOeIA9bA
+ DbSJXP7S7x2pAKRoei3iIpX1IR4AMHQAdXH5wRoC5qmQ==
+X-Forward-Email-ID: 686f0196c4bb2e06178a2682
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.1.3
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <5ce03a37-1b60-4328-8d04-07bf835def94@kwiboo.se>
+Date: Thu, 10 Jul 2025 01:56:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,343 +58,121 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Andre Przywara <andre.przywara@arm.com>
-Subject: Re: [PATCH v2 3/4] pmdomain: sunxi: add driver for Allwinner A523's
- PCK-600 power controller
-To: Chen-Yu Tsai <wens@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20250709155343.3765227-1-wens@kernel.org>
- <20250709155343.3765227-4-wens@kernel.org>
+Subject: Re: [PATCH 2/6] arm64: dts: rockchip: Add Radxa ROCK 2A/2F
+To: Yao Zi <ziyao@disroot.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chukun Pan <amadeus@jmu.edu.cn>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250708224921.2254116-1-jonas@kwiboo.se>
+ <20250708224921.2254116-3-jonas@kwiboo.se> <aG3vPsUd-FPkhi-S@pie.lan>
 Content-Language: en-US
-In-Reply-To: <20250709155343.3765227-4-wens@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <aG3vPsUd-FPkhi-S@pie.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Chen-Yu,
+Hi,
 
-thanks for posting this! This is a quick first view, haven't compared 
-against the BSP bits yet....
-
-On 09/07/2025 16:53, Chen-Yu Tsai wrote:
-> From: Chen-Yu Tsai <wens@csie.org>
+On 7/9/2025 6:25 AM, Yao Zi wrote:
+> On Tue, Jul 08, 2025 at 10:48:52PM +0000, Jonas Karlman wrote:
+>> The ROCK 2A and ROCK 2F is a high-performance single board computer
+>> developed by Radxa, based on the Rockchip RK3528A SoC.
+>>
+>> Add initial device tree for the Radxa ROCK 2A and ROCK 2F boards.
+>>
+>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>> ---
+>> Schematics:
+>> - https://dl.radxa.com/rock2/2a/v1.2/radxa_rock_2a_v1.2_schematic.pdf
+>> - https://dl.radxa.com/rock2/2f/radxa_rock2f_v1.01_schematic.pdf
+>> ---
+>>  arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+>>  .../boot/dts/rockchip/rk3528-rock-2.dtsi      | 292 ++++++++++++++++++
+>>  .../boot/dts/rockchip/rk3528-rock-2a.dts      |  82 +++++
+>>  .../boot/dts/rockchip/rk3528-rock-2f.dts      |  10 +
+>>  4 files changed, 386 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
+>>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
+>>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2f.dts
+>  
+> While testing the patch on my Rock 2A board, I noticed one of my SDcard
+> that works perfectly on Radxa E20C and NanoPi Zero 2 cannot be correctly
+> read out under UHS-125-SDR mode,
 > 
-> Allwinner A523 family has a second power controller, named PCK-600 in
-> the datasheets and BSP. It is likely based on ARM's PCK-600 hardware
-> block, with some additional delay controls. The only documentation for
-> this hardware is the BSP driver. The standard registers defined in ARM's
-> Power Policy Unit Architecture Specification line up. Some extra delay
-> controls are found in the reserved range of registers.
+> 	# dd if=/dev/mmcblk1 of=/dev/null bs=4M count=4
+> 	[   18.616828] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+> 	[   19.193315] mmc1: Skipping voltage switch
+> 	[   19.202046] mmc1: tried to HW reset card, got error -110
+> 	[   19.213312] mmcblk1: recovery failed!
+> 	[   19.213709] I/O error, dev mmcblk1, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 256 prio class 0
+> 	[   19.225201] mmcblk1: recovery failed!
+> 	[   19.225530] I/O error, dev mmcblk1, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+> 	[   19.226283] Buffer I/O error on dev mmcblk1, logical block 0, async page read
+> 	dd: /dev/mmcblk1: I/O error
 > 
-> Add a driver for this power controller. Delay control register values
-> and power domain names are from the BSP driver.
+> which could be reproduced stably.
 > 
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> ---
->   drivers/pmdomain/sunxi/Kconfig         |   8 +
->   drivers/pmdomain/sunxi/Makefile        |   1 +
->   drivers/pmdomain/sunxi/sun55i-pck600.c | 225 +++++++++++++++++++++++++
->   3 files changed, 234 insertions(+)
->   create mode 100644 drivers/pmdomain/sunxi/sun55i-pck600.c
+> the SDMMC controller issued interesting messages during the tuning
+> process,
 > 
-> diff --git a/drivers/pmdomain/sunxi/Kconfig b/drivers/pmdomain/sunxi/Kconfig
-> index 43eecb3ea981..3e2b77cd9a2b 100644
-> --- a/drivers/pmdomain/sunxi/Kconfig
-> +++ b/drivers/pmdomain/sunxi/Kconfig
-> @@ -18,3 +18,11 @@ config SUN50I_H6_PRCM_PPU
->   	  Say y to enable the Allwinner H6/H616 PRCM power domain driver.
->   	  This is required to enable the Mali GPU in the H616 SoC, it is
->   	  optional for the H6.
-> +
-> +config SUN55I_PCK600
-> +	bool "Allwinner A523 PCK-600 power domain driver"
+> 	[    0.665246] mmc_host mmc1: Bus speed (slot 0) = 148500000Hz (slot req 150000000Hz, actual 148500000HZ div = 0)
+> 	[    0.851940] dwmmc_rockchip ffc30000.mmc: All phases work, using default phase 90.
+> 
+> but actually it doesn't work with phase = 90. If the frequency is
+> limited to 100MHz with max-frequency = <100000000> instead of the
+> default 150MHz, tuning results in a very different phase,
+> 
+> 	[    0.665483] mmc_host mmc1: Bus speed (slot 0) = 99600000Hz (slot req 100000000Hz, actual 99600000HZ div = 0)
+> 	[    1.166340] dwmmc_rockchip ffc30000.mmc: Successfully tuned phase to 141
+> 
+> and the card works, too. If I set rockchip,default-sample-phase to 141
+> in devicetree, the card could work at full 150MHz as well.
+> 
+> I think there's something wrong with the tuning process, or the board's
+> design cannot always run reliably at 150MHz.
+> 
+> Could you reproduce similar failures on Radxa 2A? If so, it may be
+> necessary to lower the SDMMC's maximum frequency for the board.
 
-Any particular reason this is not tristate? The driver advertises itself 
-as a platform driver module?
+I have not been able to reproduce this issue on any of my ROCK 2A or 2F
+boards, my boards seem to tune phase to around 250-265 for the sd-cards
+I tested.
 
-> +	depends on PM
-> +	select PM_GENERIC_DOMAINS
-> +	help
-> +	  Say y to enable the PCK-600 power domain driver. This saves power
-> +	  when certain peripherals, such as the video engine, are idle.
+Could you try with something like this:
 
-If I understand correctly, this driver is *required* to make use of 
-those peripherals, and the video engine is not even the most prominent 
-user. So regardless of the reset state of the power domain, I think the 
-wording should be changed, to make sure distributions activate this 
-option. At the moment it sounds highly optional. I wonder if we should 
-use "default y if ARCH_SUNXI" even.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi b/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
+index fc23c51836b15..a82791db55699 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
+@@ -285,6 +285,10 @@
+ 	status = "okay";
+ };
+ 
++&sdmmc_clk {
++	rockchip,pins = <2 RK_PA5 1 &pcfg_pull_up_drv_level_3>;
++};
++
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0m0_xfer>;
 
-> diff --git a/drivers/pmdomain/sunxi/Makefile b/drivers/pmdomain/sunxi/Makefile
-> index c1343e123759..e344b232fc9f 100644
-> --- a/drivers/pmdomain/sunxi/Makefile
-> +++ b/drivers/pmdomain/sunxi/Makefile
-> @@ -1,3 +1,4 @@
->   # SPDX-License-Identifier: GPL-2.0-only
->   obj-$(CONFIG_SUN20I_PPU)		+= sun20i-ppu.o
->   obj-$(CONFIG_SUN50I_H6_PRCM_PPU)	+= sun50i-h6-prcm-ppu.o
-> +obj-$(CONFIG_SUN55I_PCK600)		+= sun55i-pck600.o
-> diff --git a/drivers/pmdomain/sunxi/sun55i-pck600.c b/drivers/pmdomain/sunxi/sun55i-pck600.c
-> new file mode 100644
-> index 000000000000..7248f6113665
-> --- /dev/null
-> +++ b/drivers/pmdomain/sunxi/sun55i-pck600.c
-> @@ -0,0 +1,225 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Allwinner PCK-600 power domain support
 
-Can you please mention here that this device is based on the Arm PCK-600 
-IP, as done in the commit message. And say that this is a minimal 
-implementaton, just supporting the off/on states.
+Changing clk drive strength seem to be something that has been done in
+Radxa vendor kernel [1], could be something that we can include if it
+fixes your issue.
 
-Maybe also mention the relevant documentation: the "ARM CoreLink PCK‑600 
-Power Control Kit" TRM and the "Arm Power Policy Unit" architecture 
-specification (DEN0051E).
+The kernel I tested was built from [2].
 
-> + *
-> + * Copyright (c) 2025 Chen-Yu Tsai <wens@csie.org>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/container_of.h>
-> +#include <linux/device.h>
-> +#include <linux/dev_printk.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_domain.h>
-> +#include <linux/reset.h>
-> +#include <linux/slab.h>
-> +#include <linux/string_choices.h>
-> +
-> +#define PPU_PWPR    0x0
-> +#define PPU_PWSR    0x8
-> +#define	PPU_DCDR0   0x170
+[1] https://github.com/radxa/kernel/commit/e9b33cbc97a902560d3f3b43b4d36a1a0ac68a50
+[2] https://github.com/Kwiboo/linux-rockchip/commits/next-20250708-rk3528-boards/
 
-white space issue?
+Regards,
+Jonas
 
-> +#define PPU_DCDR1   0x174
-> +
-> +#define PPU_PWSR_PWR_STATUS	GENMASK(3, 0)
-
-Would just PPU_PWR_STATUS be a better name, since it's used by both the 
-PWPR and PWSR registers?
-
-> +#define PPU_POWER_MODE_ON	0x8
-> +#define PPU_POWER_MODE_OFF	0x0
-> +
-> +#define PPU_REG_SIZE	0x1000
-> +
-> +struct sunxi_pck600_desc {
-> +	const char * const *pd_names;
-> +	unsigned int num_domains;
-> +	u32 logic_power_switch0_delay_offset;
-> +	u32 logic_power_switch1_delay_offset;
-> +	u32 off2on_delay_offset;
-> +	u32 device_ctrl0_delay;
-> +	u32 device_ctrl1_delay;
-> +	u32 logic_power_switch0_delay;
-> +	u32 logic_power_switch1_delay;
-> +	u32 off2on_delay;
-
-Is there any indication that those parameters are different between 
-different SoCs? I appreciate the idea of making this future-proof, but 
-this might be a bit premature, if all SoCs use the same values?
-
-> +};
-> +
-> +struct sunxi_pck600_pd {
-> +	struct generic_pm_domain genpd;
-> +	struct sunxi_pck600 *pck;
-> +	void __iomem *base;
-> +};
-> +
-> +struct sunxi_pck600 {
-> +	struct device *dev;
-> +	struct genpd_onecell_data genpd_data;
-> +	struct sunxi_pck600_pd pds[];
-> +};
-> +
-> +#define to_sunxi_pd(gpd) container_of(gpd, struct sunxi_pck600_pd, genpd)
-> +
-> +static int sunxi_pck600_pd_set_power(struct sunxi_pck600_pd *pd, bool on)
-> +{
-> +	struct sunxi_pck600 *pck = pd->pck;
-> +	struct generic_pm_domain *genpd = &pd->genpd;
-> +	int ret;
-> +	u32 val, reg;
-> +
-> +	val = on ? PPU_POWER_MODE_ON : PPU_POWER_MODE_OFF;
-> +
-> +	reg = readl(pd->base + PPU_PWPR);
-> +	FIELD_MODIFY(PPU_PWSR_PWR_STATUS, &reg, val);
-> +	writel(reg, pd->base + PPU_PWPR);
-
-Don't we need a lock here, or is this covered by the power domain framework?
-
-Cheers,
-Andre
-
-> +
-> +	/* push write out to hardware */
-> +	reg = readl(pd->base + PPU_PWPR);
-> +
-> +	ret = readl_poll_timeout_atomic(pd->base + PPU_PWSR, reg,
-> +					FIELD_GET(PPU_PWSR_PWR_STATUS, reg) == val,
-> +					0, 10000);
-> +	if (ret)
-> +		dev_err(pck->dev, "failed to turn domain \"%s\" %s: %d\n",
-> +			genpd->name, str_on_off(on), ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int sunxi_pck600_power_on(struct generic_pm_domain *domain)
-> +{
-> +	struct sunxi_pck600_pd *pd = to_sunxi_pd(domain);
-> +
-> +	return sunxi_pck600_pd_set_power(pd, true);
-> +}
-> +
-> +static int sunxi_pck600_power_off(struct generic_pm_domain *domain)
-> +{
-> +	struct sunxi_pck600_pd *pd = to_sunxi_pd(domain);
-> +
-> +	return sunxi_pck600_pd_set_power(pd, false);
-> +}
-> +
-> +static void sunxi_pck600_pd_setup(struct sunxi_pck600_pd *pd,
-> +				  const struct sunxi_pck600_desc *desc)
-> +{
-> +	writel(desc->device_ctrl0_delay, pd->base + PPU_DCDR0);
-> +	writel(desc->device_ctrl1_delay, pd->base + PPU_DCDR1);
-> +	writel(desc->logic_power_switch0_delay,
-> +	       pd->base + desc->logic_power_switch0_delay_offset);
-> +	writel(desc->logic_power_switch1_delay,
-> +	       pd->base + desc->logic_power_switch1_delay_offset);
-> +	writel(desc->off2on_delay, pd->base + desc->off2on_delay_offset);
-> +}
-> +
-> +static int sunxi_pck600_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	const struct sunxi_pck600_desc *desc;
-> +	struct genpd_onecell_data *genpds;
-> +	struct sunxi_pck600 *pck;
-> +	struct reset_control *rst;
-> +	struct clk *clk;
-> +	void __iomem *base;
-> +	int i, ret;
-> +
-> +	desc = of_device_get_match_data(dev);
-> +
-> +	pck = devm_kzalloc(dev, struct_size(pck, pds, desc->num_domains), GFP_KERNEL);
-> +	if (!pck)
-> +		return -ENOMEM;
-> +
-> +	pck->dev = &pdev->dev;
-> +	platform_set_drvdata(pdev, pck);
-> +
-> +	genpds = &pck->genpd_data;
-> +	genpds->num_domains = desc->num_domains;
-> +	genpds->domains = devm_kcalloc(dev, desc->num_domains,
-> +				       sizeof(*genpds->domains), GFP_KERNEL);
-> +	if (!genpds->domains)
-> +		return -ENOMEM;
-> +
-> +	base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	rst = devm_reset_control_get_exclusive_released(dev, NULL);
-> +	if (IS_ERR(rst))
-> +		return dev_err_probe(dev, PTR_ERR(rst), "failed to get reset control\n");
-> +
-> +	clk = devm_clk_get_enabled(dev, NULL);
-> +	if (IS_ERR(clk))
-> +		return dev_err_probe(dev, PTR_ERR(clk), "failed to get clock\n");
-> +
-> +	for (i = 0; i < desc->num_domains; i++) {
-> +		struct sunxi_pck600_pd *pd = &pck->pds[i];
-> +
-> +		pd->genpd.name = desc->pd_names[i];
-> +		pd->genpd.power_off = sunxi_pck600_power_off;
-> +		pd->genpd.power_on = sunxi_pck600_power_on;
-> +		pd->base = base + PPU_REG_SIZE * i;
-> +
-> +		sunxi_pck600_pd_setup(pd, desc);
-> +		ret = pm_genpd_init(&pd->genpd, NULL, false);
-> +		if (ret) {
-> +			dev_err_probe(dev, ret, "failed to initialize power domain\n");
-> +			goto err_remove_pds;
-> +		}
-> +
-> +		genpds->domains[i] = &pd->genpd;
-> +	}
-> +
-> +	ret = of_genpd_add_provider_onecell(dev_of_node(dev), genpds);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "failed to add PD provider\n");
-> +		goto err_remove_pds;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_remove_pds:
-> +	for (i--; i >= 0; i--)
-> +		pm_genpd_remove(genpds->domains[i]);
-> +
-> +	return ret;
-> +}
-> +
-> +static const char * const sun55i_a523_pck600_pd_names[] = {
-> +	"VE", "GPU", "VI", "VO0", "VO1", "DE", "NAND", "PCIE"
-> +};
-> +
-> +static const struct sunxi_pck600_desc sun55i_a523_pck600_desc = {
-> +	.pd_names = sun55i_a523_pck600_pd_names,
-> +	.num_domains = ARRAY_SIZE(sun55i_a523_pck600_pd_names),
-> +	.logic_power_switch0_delay_offset = 0xc00,
-> +	.logic_power_switch1_delay_offset = 0xc04,
-> +	.off2on_delay_offset = 0xc10,
-> +	.device_ctrl0_delay = 0xffffff,
-> +	.device_ctrl1_delay = 0xffff,
-> +	.logic_power_switch0_delay = 0x8080808,
-> +	.logic_power_switch1_delay = 0x808,
-> +	.off2on_delay = 0x8
-> +};
-> +
-> +static const struct of_device_id sunxi_pck600_of_match[] = {
-> +	{
-> +		.compatible	= "allwinner,sun55i-a523-pck-600",
-> +		.data		= &sun55i_a523_pck600_desc,
-> +	},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, sunxi_pck600_of_match);
-> +
-> +static struct platform_driver sunxi_pck600_driver = {
-> +	.probe = sunxi_pck600_probe,
-> +	.driver = {
-> +		.name   = "sunxi-pck-600",
-> +		.of_match_table = sunxi_pck600_of_match,
-> +		/* Power domains cannot be removed if in use. */
-> +		.suppress_bind_attrs = true,
-> +	},
-> +};
-> +module_platform_driver(sunxi_pck600_driver);
-> +
-> +MODULE_DESCRIPTION("Allwinner PCK-600 power domain driver");
-> +MODULE_AUTHOR("Chen-Yu Tsai <wens@csie.org>");
-> +MODULE_LICENSE("GPL");
+> 
+> Regards,
+> Yao Zi
 
 
