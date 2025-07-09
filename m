@@ -1,133 +1,184 @@
-Return-Path: <devicetree+bounces-194650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30299AFEE20
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 17:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5083CAFEE3D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 17:56:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 890F34A00CA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:53:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7699F5A4ADD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 278742E92C6;
-	Wed,  9 Jul 2025 15:53:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3822E9EC0;
+	Wed,  9 Jul 2025 15:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LG1dnL7n"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="m/wnR0mE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED62F23B60A;
-	Wed,  9 Jul 2025 15:53:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA09C2E9749;
+	Wed,  9 Jul 2025 15:56:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752076427; cv=none; b=I+CMo4YYzAmpVmgZTNVJeCdwPU1mSM4i4L0kby9MHg98afk/+hE/U+/Q4N7DjgUputsMUSNZQOqtpXCDz/73btulxik20y+Lu+tecAfhneLYAEG3hGGaOdXCP0cqYEdKWnc7XA6O9MLV5jDMK40iL3FNjqf5y1QMPUZPM4jcaeY=
+	t=1752076568; cv=none; b=tIHRWk99nxwDmeUycTNdKckewpMdmaH0Dbj/IB8cIwdyeq7ZLmfcqAATOn0itZUgHYqQddrAOha5gd4Wgc67EVDmBr5F+lOER8+7F8z1SwO+6gMn5DOvnqQ3bNEHiQXuVU4+pYxJTbVg0xNmEpoLEO7I0xhNomQDv+1LCmNSQXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752076427; c=relaxed/simple;
-	bh=auLp4VPpxKVh9axnEXKMdMv55v6kyflUZ74PwOJ/8jI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Bseqt6vshyt1pkPoOh4nfy8BP/FuJCbmxbYPy6VderZ28uX1qZM7UDmwAI9RpV4zxjpGcSvs7t3VrxEtL+bDJd2YjSDincJV4N+EgTTVYtQqziegTVF80U8oBg5lnVVsST6S1Nn75gotzdB/kNOVIiKsYAxvyJEaAqXRFVqm4hw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LG1dnL7n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CD4CC4CEF1;
-	Wed,  9 Jul 2025 15:53:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752076426;
-	bh=auLp4VPpxKVh9axnEXKMdMv55v6kyflUZ74PwOJ/8jI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=LG1dnL7nG4nUS3ck9K7yd8b+l1y6z5ShY5H86pQPSZSjlx5yUkdgGMC4c+lLZKmkL
-	 rcY2xYW7ZdP3a+dPejo0S5Qrk+wwzEX9HO0pc8m6wJZ4mHqM6cEYkS78AVjUrC/FIA
-	 B/DdrJPbYb+7C50teX7uiTZfhdkR9FEDuCLh5vQA1oDbK4iX5Nv5PTyzei/w4DJ/hn
-	 1p+joPPlAt8JeaCEjOOSo0CalTl1AejkZi50+79N7Fck+E4blkD74VptzBQtW5GeDh
-	 /Hw50Ptt0/pymZz/DTIDXipeRl4/YHZC+lofDlBWvicZR9JiYe8joTTmblaQarbIKr
-	 1FnG7jaXZgT9g==
-Received: by wens.tw (Postfix, from userid 1000)
-	id 51A1C5FF71; Wed,  9 Jul 2025 23:53:44 +0800 (CST)
-From: Chen-Yu Tsai <wens@kernel.org>
-To: Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Andre Przywara <andre.przywara@arm.com>
-Subject: [PATCH v2 4/4] arm64: dts: allwinner: a523: Add power controller device nodes
-Date: Wed,  9 Jul 2025 23:53:43 +0800
-Message-Id: <20250709155343.3765227-5-wens@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250709155343.3765227-1-wens@kernel.org>
-References: <20250709155343.3765227-1-wens@kernel.org>
+	s=arc-20240116; t=1752076568; c=relaxed/simple;
+	bh=G6jJF6k3GnUuuy4PcW4fUs7pcOeRqnQwVp5EqqLKCDw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=D5a6SFzEDT5cUhr0BS63QZAl7VP4bmiWqBhwDp1YKBsjSbxEUSHs7VcNQHGdXOwZH9pMA8lzhifaQ4SkfOJaeYrdsjXc5cAMpU9yeR77ANSMROZ8XEc9APToro/vif3c+rkfDQLk3aw8Je8xwFl79nzZNMkTWVOeHCzjzvxsdho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=m/wnR0mE; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 569FtgxY1505172;
+	Wed, 9 Jul 2025 10:55:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752076542;
+	bh=MfT0l7g5qijaXkNJNgIEaao8kUCMjEOWRY9UATjc5Fs=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=m/wnR0mEUQArPldBkTx+ov0ZYMSWaEU3JA2vN1d+CzuxUhpF8siwhchRvgnzumej3
+	 SjD3lNbs5iG+FDBPKrEhj7llrTiTJ3YmiKitqpdUWmlXFe3+9kUVwKX7DQJ6Fs7Dgt
+	 mngh3D5MNBPGFUqXGHnDY6HOP6E+BFZMQDBJ+lp0=
+Received: from DFLE20.ent.ti.com (dfle20.ent.ti.com [10.64.6.57])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 569Ftf0v282164
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 9 Jul 2025 10:55:41 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE20.ent.ti.com
+ (10.64.6.57) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.2.1748.24; Wed, 9 Jul
+ 2025 10:55:41 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 9 Jul 2025 10:55:41 -0500
+Received: from [10.250.35.60] ([10.250.35.60])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 569FteH03927392;
+	Wed, 9 Jul 2025 10:55:40 -0500
+Message-ID: <8b36f958-3406-421d-ab94-5e49f911f92e@ti.com>
+Date: Wed, 9 Jul 2025 10:55:40 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dma/contiguous: Add helper to test reserved memory
+ type
+To: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Sumit Semwal
+	<sumit.semwal@linaro.org>,
+        Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>,
+        Brian Starkey <Brian.Starkey@arm.com>,
+        John Stultz <jstultz@google.com>,
+        "T.J. Mercier" <tjmercier@google.com>,
+        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Marek
+ Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>
+CC: Jared Kangas <jkangas@redhat.com>,
+        Mattijs Korpershoek
+	<mkorpershoek@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linaro-mm-sig@lists.linaro.org>, <iommu@lists.linux.dev>
+References: <20250709-dma-buf-ecc-heap-v6-0-dac9bf80f35d@kernel.org>
+ <20250709-dma-buf-ecc-heap-v6-1-dac9bf80f35d@kernel.org>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250709-dma-buf-ecc-heap-v6-1-dac9bf80f35d@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Chen-Yu Tsai <wens@csie.org>
+On 7/9/25 7:44 AM, Maxime Ripard wrote:
+> A given reserved-memory region can be of multiple types.
+> 
+> We have currently four types defined in the tree: contiguous, backed by
+> CMA, coherent and swiotlb, backed by their respective allocators, and a
+> platform-specific one for tegra.
+> 
+> However, some users, like dma-buf heaps, might be interested in the
+> exact type of a reserved memory region they are getting. It would thus
+> be useful to have helpers to test if a given region is of a given type.
+> 
+> Since we only care about CMA for now though, let's create one for CMA
+> only.
+> 
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> ---
+>   include/linux/dma-map-ops.h | 13 +++++++++++++
+>   kernel/dma/contiguous.c     |  7 +++++++
+>   2 files changed, 20 insertions(+)
+> 
+> diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
+> index f48e5fb88bd5dd346094bbf2ce1b79e5f5bfe1a6..ea646acb6367bd062619b337013db221749f85ab 100644
+> --- a/include/linux/dma-map-ops.h
+> +++ b/include/linux/dma-map-ops.h
+> @@ -153,10 +153,23 @@ static inline void dma_free_contiguous(struct device *dev, struct page *page,
+>   {
+>   	__free_pages(page, get_order(size));
+>   }
+>   #endif /* CONFIG_DMA_CMA*/
+>   
+> +#if defined(CONFIG_DMA_CMA) && defined(CONFIG_OF_RESERVED_MEM)
+> +struct reserved_mem;
+> +
+> +bool of_reserved_mem_is_contiguous(const struct reserved_mem *rmem);
+> +#else
+> +struct reserved_mem;
+> +
+> +static inline bool of_reserved_mem_is_contiguous(const struct reserved_mem *rmem)
+> +{
+> +	return false;
+> +}
+> +#endif
+> +
 
-The A523 SoC family has two power controllers, one based on the existing
-PPU, and one newer one based on ARM's PCK-600.
+Should this all go in linux/of_reserved_mem.h?
 
-Add device nodes for both of them.
+>   #ifdef CONFIG_DMA_DECLARE_COHERENT
+>   int dma_declare_coherent_memory(struct device *dev, phys_addr_t phys_addr,
+>   		dma_addr_t device_addr, size_t size);
+>   void dma_release_coherent_memory(struct device *dev);
+>   int dma_alloc_from_dev_coherent(struct device *dev, ssize_t size,
+> diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
+> index 8df0dfaaca18eeb0a20145512ba64425d2e7601e..ace4982e928e404315cf38551e1596f7ed445156 100644
+> --- a/kernel/dma/contiguous.c
+> +++ b/kernel/dma/contiguous.c
+> @@ -493,6 +493,13 @@ static int __init rmem_cma_setup(struct reserved_mem *rmem)
+>   		&rmem->base, (unsigned long)rmem->size / SZ_1M);
+>   
+>   	return 0;
+>   }
+>   RESERVEDMEM_OF_DECLARE(cma, "shared-dma-pool", rmem_cma_setup);
+> +
+> +bool of_reserved_mem_is_contiguous(const struct reserved_mem *rmem)
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
----
- arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Needing to check where the reserved mem comes from seems wrong, it hints
+that the reserved mem region drivers, like this one, are not in full control
+of their regions. Instead of looping over all the regions in DT in the next
+patch and searching for the owner, how about the owner (this driver) call
+into __add_cma_heap() if it chooses to expose the region in that way.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-index cf0bc39aab04..dd6fa22f960f 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-@@ -7,6 +7,8 @@
- #include <dt-bindings/clock/sun55i-a523-r-ccu.h>
- #include <dt-bindings/reset/sun55i-a523-ccu.h>
- #include <dt-bindings/reset/sun55i-a523-r-ccu.h>
-+#include <dt-bindings/power/allwinner,sun55i-a523-ppu.h>
-+#include <dt-bindings/power/allwinner,sun55i-a523-pck600.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -576,6 +578,14 @@ mdio0: mdio {
- 			};
- 		};
- 
-+		ppu: power-controller@7001400 {
-+			compatible = "allwinner,sun55i-a523-ppu";
-+			reg = <0x07001400 0x400>;
-+			clocks = <&r_ccu CLK_BUS_R_PPU1>;
-+			resets = <&r_ccu RST_BUS_R_PPU1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		r_ccu: clock-controller@7010000 {
- 			compatible = "allwinner,sun55i-a523-r-ccu";
- 			reg = <0x7010000 0x250>;
-@@ -622,6 +632,14 @@ r_i2c_pins: r-i2c-pins {
- 			};
- 		};
- 
-+		pck600: power-controller@7060000 {
-+			compatible = "allwinner,sun55i-a523-pck-600";
-+			reg = <0x07060000 0x8000>;
-+			clocks = <&r_ccu CLK_BUS_R_PPU0>;
-+			resets = <&r_ccu RST_BUS_R_PPU0>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		r_i2c0: i2c@7081400 {
- 			compatible = "allwinner,sun55i-a523-i2c",
- 				     "allwinner,sun8i-v536-i2c",
--- 
-2.39.5
+(I know RESERVEDMEM_OF_DECLARE callbacks are done very early and the CMA-Heap
+driver might not be able to deal with adding heaps at this point, so maybe
+keeping a table the heaps driver can later iterate over would also work).
 
+Andrew
+
+> +{
+> +	return rmem->ops == &rmem_cma_ops;
+> +}
+> +EXPORT_SYMBOL_GPL(of_reserved_mem_is_contiguous);
+> +
+>   #endif
+> 
 
