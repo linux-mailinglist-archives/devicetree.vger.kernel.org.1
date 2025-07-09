@@ -1,275 +1,155 @@
-Return-Path: <devicetree+bounces-194433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D284CAFE311
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:46:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EAA8AFE4D1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 12:01:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2210D4A4610
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 08:46:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24DD94E2BB8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 10:00:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C27280330;
-	Wed,  9 Jul 2025 08:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B91288C01;
+	Wed,  9 Jul 2025 10:00:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lHf6yrB/"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="crM7sDQ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D2A5280308;
-	Wed,  9 Jul 2025 08:46:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12BF82877F4
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 10:00:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752050781; cv=none; b=DIMcdokv+rO4d2Ogt60BBlx6SOODH0O6fbEfF9TmhRihDegnNtp5ooUMe5L+bTPqsx6H2wjq3NvaN75mhrm3han1aLh5pzeJvGMpQLwF4YT/QtlnRSgCIrPzosYvmBLYRwpSPoKuyzm5warrMywT48FUqq6WNraUVImxAnnIaww=
+	t=1752055241; cv=none; b=RIemMe+1kgUvPh6nubk9JALJbY8PxGsHcppPd8hj/1sMWflMdiAmDg/47ZxU7MOkSzs8jaLpRxxFA+XuD5IMpYVofQlVmTKyx3bgDfXkJxPJIwd9LREUn39B8yZnN4HzjEtu457GXLyc/79DMFiECo+qx+WxcViq6t5begHkYYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752050781; c=relaxed/simple;
-	bh=H3zA0YbNI9oe0U8cTcu7E1v3MSuoPJNq26p6NzpcUCc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EVOkzGW7MxasGGXZXU78BhDwKDUt8CLQqb++1egf7iu4gxagZENQREw8TefhAj2+4Uow//AYNRz54q21BDNIzxzCbLq57QMs2yUPyuUKp+24/Pw+MRbOsPbH9PdWH55pt3nvYe/NNNQtJgqBCe+TTRboU1ZQk9z5VqG5l/8/0H0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lHf6yrB/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBF65C4CEEF;
-	Wed,  9 Jul 2025 08:46:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752050781;
-	bh=H3zA0YbNI9oe0U8cTcu7E1v3MSuoPJNq26p6NzpcUCc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lHf6yrB/aci+jsZZ1CtVkpS/c0FwC0pYSwSO9nT81f6Xdx4mmHdaQSClhA3cigI6B
-	 U8Nd/e466LS7yQmXRvy5VT4YU+8BfuPxQvYIRaEv/mDDBl0Ohxn5NBfcSSEvNG4aGw
-	 JPd3GfuT8EgkbvUZIcs1Kvq7hlFZ+KAvX9B9lWjVZuhboNToElrfV/2NJmvudX0U0q
-	 eVRfV3IihLp0Sf+SuvZD2q+BrD3aOYBZn5V1Qif5SXJWJXatp7oyw/+itJxog3Ulhi
-	 /qLYKLk24aks3rlq9IIVl7dt0suYL5DYxkHY3s9IT3v/s2Mjw9qVvdRP7X0qpT7vZw
-	 7lPG5uIjJHJFQ==
-Message-ID: <0454b830-b9bf-4d04-8e91-d5c514ac4aae@kernel.org>
-Date: Wed, 9 Jul 2025 10:46:17 +0200
+	s=arc-20240116; t=1752055241; c=relaxed/simple;
+	bh=3cMxryECHbFyInj86wbRy79c+zpxeGN9+i2nNUGxS78=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=uyfTiN9eM6+j1fZTOHtg2H3NGgfiy1MeTN/MOrGm8fVdDkNBvyiUUN+kiPwyVCDXfDLzoXnShgwj93deO5HfHegJE6jKRcJWsOFaE/mG+C+aztzVVmh+Girc39NY5G2+fZ/hWLjEBlPIUb0js38Sp7e36+YHQKf4i1k8e3h4wQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=crM7sDQ1; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250709100035epoutp02c2cbceefd23522b04f1b11a53c3eb427~QjPRJQaCB0974009740epoutp023
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 10:00:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250709100035epoutp02c2cbceefd23522b04f1b11a53c3eb427~QjPRJQaCB0974009740epoutp023
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1752055235;
+	bh=8YjDIVkSzZ1qBfDNEzt6aiWfmZ06SFpmvJBdwg8GbFU=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=crM7sDQ1Uz9NtR7Lf5itnb9Kxo52UH9FjSGOjp2JkszPtedhMD5yYtuYLOW3diez/
+	 JPkFeY49RxYNNxrnIaqgsbyUhQeN8lHbywF+MaOZmR+G2WbWzqcQ5AR4mnJDBjOoQ2
+	 uzRfhHRw+oNiDyxGt4ThAj8UYDSsUzBnjC+ZaEg0=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250709100035epcas5p11cefc566289685aa4dadd35429e93d22~QjPQiuHEG1114111141epcas5p1k;
+	Wed,  9 Jul 2025 10:00:35 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.180]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4bcYPr5Dhtz6B9mD; Wed,  9 Jul
+	2025 10:00:32 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250709085159epcas5p15cd74d4ab9d7944eef406ce118768a84~QiTXJ9MsA0055000550epcas5p1N;
+	Wed,  9 Jul 2025 08:51:59 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250709085156epsmtip13f8f84df1a677aaa0f8edc8247250f7a~QiTUNkrE12100421004epsmtip1O;
+	Wed,  9 Jul 2025 08:51:55 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
+Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<neil.armstrong@linaro.org>, <kauschluss@disroot.org>,
+	<ivo.ivanov.ivanov1@gmail.com>, <m.szyprowski@samsung.com>,
+	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <20250706-grouse-of-pastoral-bloom-7d79b0@krzk-bin>
+Subject: RE: [PATCH v4 3/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 combo HS phy
+Date: Wed, 9 Jul 2025 14:21:54 +0530
+Message-ID: <07d401dbf0ae$bb0256b0$31070410$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/3] arm64: dts: ti: Add support for Variscite
- VAR-SOM-AM62P
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-References: <20250708184841.72933-1-stefano.radaelli21@gmail.com>
- <20250708184841.72933-3-stefano.radaelli21@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250708184841.72933-3-stefano.radaelli21@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJAgQZ9LFXBZrDskwNBYris6jFv1AJNRgOcAqL7pisBlv/N8LMsH/TA
+Content-Language: en-in
+X-CMS-MailID: 20250709085159epcas5p15cd74d4ab9d7944eef406ce118768a84
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250701120002epcas5p2c4d728d599a819057bcc40b724881276
+References: <20250701120706.2219355-1-pritam.sutar@samsung.com>
+	<CGME20250701120002epcas5p2c4d728d599a819057bcc40b724881276@epcas5p2.samsung.com>
+	<20250701120706.2219355-4-pritam.sutar@samsung.com>
+	<20250706-grouse-of-pastoral-bloom-7d79b0@krzk-bin>
 
-On 08/07/2025 20:48, Stefano Radaelli wrote:
-> Add device tree support for the Variscite VAR-SOM-AM62P system on module.
-> This SOM is designed to be used with various carrier boards.
-> 
-> The module includes:
-> - AM62Px Sitara MPU processor
-> - Up to 8GB of DDR4-3733 memory
-> - eMMC storage memory
-> - PS6522430 chip as a Power Management Integrated circuit (PMIC)
-> - Integrated 10/100/1000 Mbps Ethernet Transceiver Analog Devices ADIN1300
-> - Resistive touch panel interface controller TI TSC2046
-> - I2C interfaces
-> 
-> Only SOM-specific peripherals are enabled by default. Carrier board
-> specific interfaces are left disabled to be enabled in the respective
-> carrier board device trees.
-> 
-> Link: https://www.variscite.it/product/system-on-module-som/cortex-a53-krait/var-som-am62p-ti-sitara-am62px/
-> 
-> Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi | 379 ++++++++++++++++++
->  1 file changed, 379 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
-> new file mode 100644
-> index 000000000000..1d4ebc484d55
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
-> @@ -0,0 +1,379 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Common dtsi for Variscite VAR-SOM-AM62P
-> + *
-> + * Copyright (C) 2021-2022 Texas Instruments Incorporated - https://www.ti.com/
-> + * Copyright (C) 2025 Variscite Ltd. - https://www.variscite.com/
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/pwm/pwm.h>
-> +#include "k3-am62p5.dtsi"
-> +
-> +/ {
-> +	compatible = "variscite,am62p-var-som", "ti,am62p5";
-> +
-> +	iw612_pwrseq: iw612_pwrseq {
+Hi Krzysztof,
 
-Follow DTS coding style. This applies to multiple places.
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 06 July 2025 03:12 PM
+> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
+> andre.draszik=40linaro.org; peter.griffin=40linaro.org; neil.armstrong=40=
+linaro.org;
+> kauschluss=40disroot.org; ivo.ivanov.ivanov1=40gmail.com;
+> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com; linux-
+> phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
+amsung-
+> soc=40vger.kernel.org; rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
+> selvarasu.g=40samsung.com
+> Subject: Re: =5BPATCH v4 3/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
+dd
+> ExynosAutov920 combo HS phy
+>=20
+> On Tue, Jul 01, 2025 at 05:37:03PM +0530, Pritam Manohar Sutar wrote:
+> > This phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
+>=20
+> What is =22this=22? You add here HS PHY, so HS is 3.1?
+>=20
 
-Also:
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+=22this=22 means =22combo phy=22. Combo phy is combination of 2 types of th=
+e phys.=20
+1. one supports only USB3.1 SSP+ and denoted as =22samsung,exynosautov920-u=
+sb31drd-combo-ssphy=22 as in patch no 5 (combo SS phy)
+2. another supports only USB2.0 HS and termed as =22samsung,exynosautov920-=
+usbdrd-combo-hsphy=22 as in this patch (combo HS phy)
+
+> If this is the same phy, why are you adding another compatible?
+
+As explained earlier (even in cover letter), there are 3 types of the phys =
+in this SoC.
+1. one is simmilar with exynos850 and termed as =22samsung,exynosautov920-u=
+sbdrd-phy=22 as mentioned in patch no.1
+2. two phys are in combo phys as explained above (patch no 3 =5Bcombo HS ph=
+y=5D and 5=5Bcombo SS phy=5D)
+		=09
+NOTE: hs phy in combo phy in =22NOT=22 same as phy (patch no. 1 which is si=
+milar with exynos850).=20
+		=09
+These three phys (usbdrd-phy, combo-hsphy, combo-ssphy) are totally deferen=
+t =22NOT=22 same, hence added 3 three compatible for three phys.
+
+>=20
+> Best regards,
+> Krzysztof
 
 
-> +		compatible = "mmc-pwrseq-simple";
-> +		post-power-on-delay-ms = <100>;
-> +		power-off-delay-us = <10000>;
-> +		reset-gpios = <&main_gpio0 54 GPIO_ACTIVE_LOW>,	/* WIFI_PWR_EN */
-> +			      <&main_gpio0 59 GPIO_ACTIVE_LOW>;	/* WIFI_EN */
-> +		status = "okay";
-
-Why? Drop.
-
-> +	};
-> +
-> +	emmc_pwrseq: pwrseq@0 {
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-Maybe you need to update your dtschema and yamllint. Don't rely on
-distro packages for dtschema and be sure you are using the latest
-released dtschema.
-
-> +		compatible = "mmc-pwrseq-emmc";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&emmc_pwrseq_pins>;
-> +		reset-gpios = <&main_gpio0 49 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	memory@80000000 {
-> +		/* 8G RAM */
-> +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-> +		      <0x00000008 0x80000000 0x00000001 0x80000000>;
-> +		device_type = "memory";
-> +		bootph-pre-ram;
-> +	};
-> +
-> +	opp-table {
-> +		/* Add 1.4GHz OPP for am62p5-sk board. Requires VDD_CORE at 0v85 */
-> +		opp-1400000000 {
-> +			opp-hz = /bits/ 64 <1400000000>;
-> +			opp-supported-hw = <0x01 0x0004>;
-> +			clock-latency-ns = <6000000>;
-> +		};
-> +	};
-> +
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		rtos_ipc_memory_region: rtos-ipc-memory@9b500000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9b500000 0x00 0x00300000>;
-> +			no-map;
-> +		};
-> +
-> +		mcu_r5fss0_core0_dma_memory_region: mcu-r5fss-dma-memory-region@9b800000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9b800000 0x00 0x00100000>;
-> +			no-map;
-> +		};
-> +
-> +		mcu_r5fss0_core0_memory_region: mcu-r5fss-memory-region@9b900000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9b900000 0x00 0x00f00000>;
-> +			no-map;
-> +		};
-> +
-> +		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9c800000 0x00 0x00100000>;
-> +			no-map;
-> +		};
-> +
-> +		wkup_r5fss0_core0_memory_region: r5f-memory@9c900000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9c900000 0x00 0x01e00000>;
-> +			no-map;
-> +		};
-> +
-> +		secure_tfa_ddr: tfa@9e780000 {
-> +			reg = <0x00 0x9e780000 0x00 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		secure_ddr: optee@9e800000 {
-> +			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	vcc_3v3: vcc-3v3 {
-
-Please use name for all fixed regulators which matches current format
-recommendation: 'regulator-[0-9]v[0-9]'
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml?h=v6.11-rc1#n46
-
-
-Best regards,
-Krzysztof
 
