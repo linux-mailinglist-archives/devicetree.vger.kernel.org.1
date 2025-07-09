@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-194609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E2CBAFEA8D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:43:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26F19AFEAC6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:53:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 874474A5599
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:43:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF84E1C804D9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:52:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52B972DFA48;
-	Wed,  9 Jul 2025 13:43:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01BC92E2658;
+	Wed,  9 Jul 2025 13:51:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tD8hL708"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qvcq9pcz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1834A21C9ED;
-	Wed,  9 Jul 2025 13:43:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8D1D2E1C7C;
+	Wed,  9 Jul 2025 13:51:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752068623; cv=none; b=ajOLz63K/8KHeNzoTdO6bhHI9fshvi1LEvD5iWUwJU0J6QFX/sUw+mj3aCX+AjLdvhmY1tmuP0DxpzmZl1pa/cJExtGFReqZAI3Y/cH7gOF4msKdio9szljeUR1yISeJUo6X7c6jqd1EJDjbD4Ih+4WcaKKfUyQJ8YLQXS+TM98=
+	t=1752069076; cv=none; b=ev3TENt2/P0t1BV11JBLsBDtGhmTFXOd25PHr823MkCOgYY8gkr4qLclg+aU68+UiIdjbFOdLLWbGdilYbJJ6VzrD2GmZC1V28cmj9zUTaxOKNbDdxhWtrMk9mcRbJY8J/dwcC+1P0gqQ/O1T70xNE1YZXZkVRKZd7sZ/n2DHNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752068623; c=relaxed/simple;
-	bh=E1zdbjxPwboIg03CvXt86zzohIki4jb09rL8p71QZbg=;
+	s=arc-20240116; t=1752069076; c=relaxed/simple;
+	bh=7fDy/IDtzY+P10jh2FH05bGuxkbANfM+VBCgF1upyb0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X548z1Dz9fGddZza47bZXG/PSeAet+gBN6vgRhYFjr1cSytr35PdJ2uKRj1N13HKsPFD0HQ+FsOEn27XzHUXtZEXM79ob2TLW1YuN6nCXl8yx4tkWBNMLubYcTTkJNcSOhSwh2WHWcSgPxnKQSg81RkU8SMgDF9ioxraUgoH9dM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tD8hL708; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6120CC4CEEF;
-	Wed,  9 Jul 2025 13:43:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Zsq3tDrsfKNDFyoDG3hoiWk23JcFO612FTRj5qOwxk6QIyezlP8gdSjI/yXnNguo98pEk9xaVjmgQPXPeguimhe/In9IZRCfvawXurwZtqL6FGG1AuNQifxN7z4ZrejJpNoOtXiRS9Izgu8qHwJcpAIm84SxfxqrUy8gi8xmdUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qvcq9pcz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96B24C4CEEF;
+	Wed,  9 Jul 2025 13:51:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752068622;
-	bh=E1zdbjxPwboIg03CvXt86zzohIki4jb09rL8p71QZbg=;
+	s=k20201202; t=1752069076;
+	bh=7fDy/IDtzY+P10jh2FH05bGuxkbANfM+VBCgF1upyb0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tD8hL708Ygf8m7Uu1YwrBx+SHfPNsQGBGaP4jP4qvkQlfkarcIDpmTbhnpSvSC1BT
-	 RXJdrzfWR3tWmqpRPqCbDJMP2d870SBcYUEipkZxzoPKLcdg6aczmvdJGZx7BxtZV9
-	 C6r9+o7w9kd/+5jt7uJnYSioPZ3uc4Fq8FNwZRX6EX7+ABRD3SdId/5gPgXw+LJgj0
-	 7VcjcanLazbY++44Q3WN/7JWoqHIMiNq+pPoJumcHQsV+fcpwSupbIXPFOvctYYXXY
-	 MBJbejELjs7wt5jaUOxz3ICMVXz1M32q/Fn0bKLiXfW5jH0o99e468/QCc3c58u2Sy
-	 +5/X8Q5d0O29A==
-Message-ID: <2e0d815a-774a-4e31-92f1-71e0772294c7@kernel.org>
-Date: Wed, 9 Jul 2025 15:43:35 +0200
+	b=Qvcq9pczvwZs/pgT3fBuh6JlQaf/4U/OlntMStbs5+RnniDq9sAMJ0yG2swfAxW39
+	 y8Ewv6JQ0cKwsYiM5F5CFarb2VMl1A4Zz9KOnwbrN6g4zlxdy8SMvF0tZHkYUBIY9o
+	 T49meZ/NxJJH4QX6FgjKQYG/APVEpS2B+Ra3KZvbSBjQ/tupkP1RJ8w7ENyy3dt091
+	 iZc/Xmsg/6I7DASsMa+V8/BbXXEWCcvEKGG0dY9VvrSyEouwfma5wrA0tZQejNbXaY
+	 SuOk9fsXN/Ixn+BtgZQnMpWD1yOioXiEdNUuJ9UCjVttI4b7Za77oLNX+nUAh27cLe
+	 DJjV2polVNeKQ==
+Message-ID: <eda9bf92-c5f7-4f3f-92e9-9749fbb67493@kernel.org>
+Date: Wed, 9 Jul 2025 15:51:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/9] dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add
- documentation for the PCIe IP on Renesas RZ/G3S
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Claudiu <claudiu.beznea@tuxon.dev>, bhelgaas@google.com,
- lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, catalin.marinas@arm.com,
- will@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- p.zabel@pengutronix.de, lizhi.hou@amd.com, linux-pci@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, Claudiu Beznea
- <claudiu.beznea.uj@bp.renesas.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20250709132449.GA2193594@bhelgaas>
+Subject: Re: [PATCH 1/4] dt-bindings: phy: qcom,snps-eusb2-repeater: Document
+ qcom,tune-res-fsdif
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250625-sm7635-eusb-repeater-v1-0-19d85541eb4c@fairphone.com>
+ <20250625-sm7635-eusb-repeater-v1-1-19d85541eb4c@fairphone.com>
+ <20250708-unicorn-of-ancient-excellence-e8945c@krzk-bin>
+ <20250708-stoic-slim-bison-ac55ee@krzk-bin>
+ <DB6J86NHFTNT.31MFYDTZ6B4O0@fairphone.com>
+ <DB7FBNQ0TYFZ.3GGPN8XXJXGRW@fairphone.com>
+ <1c7fdeca-d531-4f90-9e4c-4d8bfac67fae@kernel.org>
+ <DB7IRWJ1AFCT.2CVF97683XYEO@fairphone.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,40 +113,93 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250709132449.GA2193594@bhelgaas>
+In-Reply-To: <DB7IRWJ1AFCT.2CVF97683XYEO@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/07/2025 15:24, Bjorn Helgaas wrote:
-> On Wed, Jul 09, 2025 at 08:47:05AM +0200, Krzysztof Kozlowski wrote:
->> On 08/07/2025 18:34, Bjorn Helgaas wrote:
->>> On Fri, Jul 04, 2025 at 07:14:04PM +0300, Claudiu wrote:
->>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 09/07/2025 14:22, Luca Weiss wrote:
+> On Wed Jul 9, 2025 at 12:16 PM CEST, Krzysztof Kozlowski wrote:
+>> On 09/07/2025 11:40, Luca Weiss wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On Tue Jul 8, 2025 at 10:31 AM CEST, Luca Weiss wrote:
+>>>> On Tue Jul 8, 2025 at 10:21 AM CEST, Krzysztof Kozlowski wrote:
+>>>>> On Tue, Jul 08, 2025 at 10:13:24AM +0200, Krzysztof Kozlowski wrote:
+>>>>>> On Wed, Jun 25, 2025 at 11:14:56AM +0200, Luca Weiss wrote:
+>>>>>>> Document the FS Differential TX Output Resistance Tuning value found on
+>>>>>>> the eUSB2 repeater on Qualcomm PMICs.
+>>>>>>>
+>>>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>>>> ---
+>>>>>>>  Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml | 6 ++++++
+>>>>>>>  1 file changed, 6 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+>>>>>>> index 27f064a71c9fb8cb60e8333fb285f0510a4af94f..6bfd11657e2992735998063b3ca390e04a03930d 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+>>>>>>> @@ -52,6 +52,12 @@ properties:
+>>>>>>>      minimum: 0
+>>>>>>>      maximum: 7
+>>>>>>>  
+>>>>>>> +  qcom,tune-res-fsdif:
+>>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint8
+>>>>>>> +    description: FS Differential TX Output Resistance Tuning
+>>>>>>
+>>>>>> Resistance is in Ohms, tuning could be in dB, so I wonder what are the
+>>>>>> actual units here. Neither commit msg nor this description helps me to
+>>>>>> understand that.
+>>>>>
+>>>>> I checked and the values are in Ohms.
 >>>>
->>>> The PCIe IP available on the Renesas RZ/G3S complies with the PCI Express
->>>> Base Specification 4.0. It is designed for root complex applications and
->>>> features a single-lane (x1) implementation. Add documentation for it.
+>>>> Yes it's Ohms but not 0x00 = 0 ohms, and it's also an offset in ohms
+>>>> from the nominal value according to the Hardware Register Description I
+>>>> have, e.g. 0x7 = -12.1ohm from the default
+>>>>
+>>>> I can try and create bindings using these Ohm offset values, I didn't
+>>>> worry about it too much since the other tuning values in these bindings
+>>>> are also just register values, presumably from before Konrad had access
+>>>> to the docs.
 >>>
->>>> +++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml
+>>> I've taken some more looks, and checked how similar tuning is handled in
+>>> qcom,usb-snps-femto-v2.yaml and phy-qcom-snps-femto-v2.c, and changing up
+>>> the concept of tuning in the eUSB2-repeater bindings+driver is not a
+>>> trivial task.
 >>>
->>> The "r9a08g045s33" in the filename seems oddly specific.  Does it
->>> leave room for descendants of the current chip that will inevitably be
->>> added in the future?  Most bindings are named with a fairly generic
->>> family name, e.g., "fsl,layerscape", "hisilicon,kirin", "intel,
->>> keembay", "samsung,exynos", etc.
->>>
+>>> Since this is adding just one more property in-line with the already
+>>> supported properties in the bindings+driver, can we get this in as-is,
+>>> and deprecate all 4 qcom,tune-* properties later with a replacement that
+>>> describes the values better?
 >>
->> Bindings should be named by compatible, not in a generic way, so name is
->> correct. It can always grow with new compatibles even if name matches
->> old one, it's not a problem.
+>> This is a new property, so other existing properties do not matter here.
+>> We cannot take new code which you already think should be deprecated.
+>>
+>> register-like values are acceptable for vendor properties, but that does
+>> not make them usually more readable. The question is whether this should
+>> be more readable for hardware engineers or anyone writing/validating
+>> DTS. Is the actual resistance important or no one ever cares because you
+>> paste whatever qcom told you and you do not know what should be actually
+>> there?
+>>
+>> I can imagine the first - that some document explains you should have
+>> resistance of foo because of bar, which would mean the property should
+>> be more readable. But I can also imagine the second. Make your claim in
+>> commit msg.
 > 
-> Ok, thanks!
+> Would this text in the commit message work for you?
 > 
-> I guess that means I'm casting shade on the "r9a08g045s33" compatible.
-> I suppose it means something to somebody.
-
-Well, I hope it matches the name of the SoC, from which the compatible
-should come :)
+> ---
+> Document the FS Differential TX Output Resistance Tuning value found on
+> the eUSB2 repeater on Qualcomm PMICs. The tuning values have special
+> meanings, being different offsets of the resistance to the default value
+> in Ohms but the exact meaning is not relevant here, as the correct
+> tuning is determined by hardware engineers to make sure the electrical
+> properties are as expected.
+> ---
+> 
+> I'm trying to avoid resending the whole series if we're not yet aligned
+> on the wording.
+Sounds fine.
 
 Best regards,
 Krzysztof
