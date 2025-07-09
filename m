@@ -1,201 +1,140 @@
-Return-Path: <devicetree+bounces-194441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1A52AFE3D3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 11:16:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F384AAFE3E4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 11:19:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A877189CCB3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 09:16:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F8EF7B360D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 09:17:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77809283FF0;
-	Wed,  9 Jul 2025 09:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4552528505F;
+	Wed,  9 Jul 2025 09:18:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MD04QiCb"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="1itLLiXC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F287325C810
-	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 09:16:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5AFA284B59
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 09:18:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752052576; cv=none; b=pwEG/LKImvqf6e43UtGprSDoZ6vbq4W6vgbvY7oFrSLcnuduvY8OndfxgsReRE6mPHKUhBGnH58XokBmwAJl6hpRmMxrGlz4Vfwd2XbIdoItpADSKc/SWpTADFYw+yN3XUv/08rEWsSdiGkHK1XSXNjVDG7e1HT1xGAiiBlXQ0o=
+	t=1752052725; cv=none; b=YsYX3gEnET28cJBvDP/KySWsfSrMzQzgCUDdB98AdVICd1e3yGb6I0oP+RxWLdmo91Ue57nUS5X/RzyqpzLQlxYGCDbvhu3umwpabR4lb/YRqzI8tgoxauA+4IayqzoYoinrrhVZk2k5hq5ZiWiumBEVf8hgZ8E3POl7YkdBtbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752052576; c=relaxed/simple;
-	bh=Wif2EAnH+uS1OueMuNGozeeBl8sbJsE1ULddgFc131Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PWpOnluGgM6YL80o2sVxlywJZA8r0Vi04kO4eCEiCN8EH9IFWKx72KekNaAEde47MV0vsGf11vHUcUYhZLDoKWkBEUlG2TTEi0Z14osmLeU1f+9hRzXbnbQAXX/ZwnWprmIyzMb1/cAtVkpx4F+MkaPbFm4O4CLc6PLClpNLWj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MD04QiCb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5697njuf008108
-	for <devicetree@vger.kernel.org>; Wed, 9 Jul 2025 09:16:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Cv1BCk8MYMc74KhkADwnTl/g1Y3GZM+AUyi9qevFM4U=; b=MD04QiCbcyupDjwl
-	uMpXji2CFwUbWFMp4gW7xRrfwrZxp4LFM7WwubrPVypwEkJ4RNX5iWmon+pTowUp
-	JSmny1owcMo9YZW1vft36dB9wAFi2pcXdOLdReDPrdxwxGwAKAmeqRlidX/FTtSw
-	p1od8/Z6bq4ShAqeq9qtDW+4MDxabq/a2vZJf0Wtl+ubakfRm42HMYLSTsI6iIyP
-	pnEhGuFJ9ArUQcl2QMnMEXzZPgX6xjC5Sj2k+zbRX7SmHTmM+9RzntQeSv7km1K5
-	dxDP2hvWQSW7EetVn/i7lzhakHkyVMw6vpYV4yYGjybvf6aSVka0Kf8ILF9f3AqI
-	RtKmNQ==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47smcg08p7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 09:16:13 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3130b8246c8so1389870a91.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 02:16:12 -0700 (PDT)
+	s=arc-20240116; t=1752052725; c=relaxed/simple;
+	bh=MV3Dv7givJVTh/7aMdoHauUQLRrYUXGf0nE/cB3bHng=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TRwrEVE1Z90RzRJ2G+XEcimDadnrLXAd+/1SmFEx4ZNhmjrTypR+lrkrFO/u/7t4u3masF78t6cNVfjDA3ld00h+aLGJ8CBOC1B8xlJ/KmgDYc0UR7wW+1QASfG5gYaswYRMpf8+uw9yRdmA7oaCWEcZz/cZfwle7DaRLWF7JXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=1itLLiXC; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ae0dffaa8b2so1039060066b.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Jul 2025 02:18:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1752052721; x=1752657521; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ddjMZCutufz18eoluPVKeaKDVNqg//G7ZHMUNzfUaUQ=;
+        b=1itLLiXC+HST0QL0upnH7R2RScphF6d1nbOoj5AoYrc1bW5LpUqRAwS4krDfotJh+U
+         f10aVpUO7wiMyt9y4qEOnlAPHr8ydS9QzOzl3uZoQfTHYj4KGmkoeIPrioXqDU7YNXyl
+         gdW83KiW0aYABmDTQGurH/vXvDdfScW6qjK6pqb0hNz7ieU1iCjq2rWBOFoJZcWng5zN
+         WkO/pVo7xtOeXAo/0uurHU58nLbsY7xe+HxD5jAqAuXibKqNu+Pz+v55ebF6OC5qvSR4
+         1fGUVqVU1j89hwYcfRsZ0WcA3AvHW7Z+QOSBH5pDvXKO2ROvCst3oxk55NQfjskeFClv
+         GdPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752052572; x=1752657372;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Cv1BCk8MYMc74KhkADwnTl/g1Y3GZM+AUyi9qevFM4U=;
-        b=gpJYL1LViUuwnjhNMCrxids0l5PLYYok0OFicsFzp0+0+cPRCdGL5tFPNmkPWFskGk
-         Vx1Ukp63DzEdQC5Tjrk3Vgpl2Q9xzWdRpCyBNZP46PhSfGdUuN21II3kQsDN0HkAKQcr
-         LNpgTH9zXIOnc6uBLRUQqMm5cN5PG56h6xR6yO1KmWjeRprVam7nAy835VNuP0BN1PTw
-         lU3jswU2XRP9Q/JB+Hw80c20oHvzZjaNTfi+dc5QtkW07fNEiOUd7pHO8VB7qNhWPpIg
-         xPFm71IHwHqoixkgqIBHVjvN1VyUXqbvw+eJ2MIPf6QFRo7kz9/DBkfyb+ZLbVfUe4Xx
-         b/Bw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7MKCv2iS/I62YAX88SnxKVysxFVIHycjCB57q/f3ChoMfbPSOV1Sg4QvEy1BD6oTBgdiIi+sU7y+o@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3lUUl3s68Ozw6aGXEXoTminlS3oEpYnCvDu+jtIFIAxYkVmg+
-	S58A7X7nymydiyz5ogYnB4fl5YEVktCWtVH+6TIOqONMl4/UP55jctut9+nLORKEgG+CHo5eqGP
-	W3QIi+ClfVwGz4yq9S9XuLtrmKNZwqX27LTlC+vsycLDeLWzfveFJWOG4qWi3bwPw
-X-Gm-Gg: ASbGncsXK0EYsGNKrRWT1Qij8rkdURy3e0+fQi2OkC2o1NhtkfRBAF4WOYFMAxczMah
-	50bOJw5G2hYcGgeXdnOUO28E05w3re/g3qqXQX2KoOqzFnHIMnkZFxq8x0oZaPDpgH4iCSBsd5K
-	nvVZTzSvH/x5yZPArgdJq6ZAS9nf0hKg2aOaM5UaJMgAPG1J9AGjRdqFIdvJoyzI5TwiJnqvCWL
-	gwRSIEOT5sPCMwLLwgVz0U1cKaifvarGElwt7zHdgkWu2qVJd37dtzSgqNihD4cJ3aj4snDA6dd
-	3DxZScVDthiC3IlTQoqfIrc0wtxghFcHK4i566fIuVBi4pH5piYj6kfpMrGuRKe3i6FO+S4CELx
-	FRsHXPfmTf8G3
-X-Received: by 2002:a17:90b:35ca:b0:312:25dd:1c8b with SMTP id 98e67ed59e1d1-31c2fcb0251mr1322491a91.2.1752052571536;
-        Wed, 09 Jul 2025 02:16:11 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGdfQoEh/GXWJ6Pu0rY5iE3WeMtosEwrdpewcGf70D85+7o6PThtirQuZHfaVGHEd9tQdVP5w==
-X-Received: by 2002:a17:90b:35ca:b0:312:25dd:1c8b with SMTP id 98e67ed59e1d1-31c2fcb0251mr1322454a91.2.1752052571046;
-        Wed, 09 Jul 2025 02:16:11 -0700 (PDT)
-Received: from [10.133.33.178] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31c30067a55sm1502877a91.14.2025.07.09.02.16.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Jul 2025 02:16:10 -0700 (PDT)
-Message-ID: <d427de7d-76ac-4e5b-b79a-3b7638a8e7fc@oss.qualcomm.com>
-Date: Wed, 9 Jul 2025 17:16:02 +0800
+        d=1e100.net; s=20230601; t=1752052721; x=1752657521;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ddjMZCutufz18eoluPVKeaKDVNqg//G7ZHMUNzfUaUQ=;
+        b=NOJ3mGaFo8aVIc36ttQ47R3iQVAUsALIvKZLp0EDGYdXlvnGLnq6IwoFKBZomgTTsz
+         xAHJVyJTxMtWug4U/TNCNQYITRyltMkThtRrJQUZ+em3b7iiWbv5C2gTmQN6cB6OZk1X
+         7O6V5lb1yzcoNaK51hECb2AdKfmBTGA840MiUYPppU2u6COMvc+Leh9uCnQcjpECYi7A
+         6uYMueCCXPGEwjRi7fhxZJ0d58YGqL3bjeaaLOr96tyr5CqfZF8oFgxKigJ5oDTF7N7c
+         CtZ7P/Cb+Sip3QXHzJVE0C247hzkLTd1nnRWMD622iApvGl+Olzc1qyEiH+BDw/shpJW
+         mp+g==
+X-Forwarded-Encrypted: i=1; AJvYcCWg0hukswB3JCXk9UDvUitw3+r4npxfEEOvJPImAyxqd5cwVXBt8ZnBCdMGkTAO5W4ikzmPGMvS1bn0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKmayCiI8uPtdK1/CFri8EMCOC9TqMP7wmV6fhmdy/vg26Wd/6
+	hgsMlXTalcPdYjAwqV/jDWzX6h6GL+NWSUEo9QgSu6CiYxITdrhogVK9AKRy/Nlqowo=
+X-Gm-Gg: ASbGncuc2Iz8Bs4V1GLfYPwCV++4rXrQIJNhNkg5/H/AcklMyqpmobLTVDNVxRsVt2P
+	Bvw6KCEcD5+ikZTl+GVF5F/l4MYXF1YMCdOEvP7oyL5GC7cpyLBE9eTMLOnP46Z9oC4QyR/Daim
+	7h1jiQR/9zISeBTsEDQ3kaLU1sdbysdbzIi77+5Ct9VEi5RjAusUlwHwyFWIVQ/swi9oCfrk9R6
+	Leqrr7oxjgLnDVBug8sYb4r0FktEGO/x5aTf5XkPFBo6hdsQOd0o7b9xnc6O3Tr6AfLprdW6Cps
+	FNc3F9lrQ30y64wRNyjGlJf6U14xqi8YhHDZ3O4qSuXCVYk/kE2vjK5KQ+MiJfup8OICm1JGvJT
+	fvcA+tzHXHnbQO9wvhJ5V5ergOFGjcYWp
+X-Google-Smtp-Source: AGHT+IGK3bAftfEkjpmdqalxkrTWESjz3MCvrr9nzk+X9vGMEXTSCOonJxgJBiArXN52o0c+vXAJuw==
+X-Received: by 2002:a17:907:7288:b0:ade:867f:1e9b with SMTP id a640c23a62f3a-ae6cf545dc8mr168060166b.9.1752052721104;
+        Wed, 09 Jul 2025 02:18:41 -0700 (PDT)
+Received: from otso.local (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f6b5e737sm1060116866b.142.2025.07.09.02.18.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Jul 2025 02:18:40 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v2 0/4] Changes for the eUSB2 PHY on Milos
+Date: Wed, 09 Jul 2025 11:18:14 +0200
+Message-Id: <20250709-sm7635-eusb-phy-v2-0-4790eeee7ae0@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] drm/msm/dp: Retry Link Training 2 with lower pattern
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        dmitry.baryshkov@oss.qualcomm.com
-Cc: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
- <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski
- <brgl@bgdev.pl>, quic_lliu6@quicinc.com,
-        quic_fangez@quicinc.com, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
-        quic_xiangxuy@quicinc.com
-References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
- <20241129-add-displayport-support-for-qcs615-platform-v1-7-09a4338d93ef@quicinc.com>
- <CAA8EJpoN1qBHyZrQJT_=e_26+tcaKRnSrhtxrK6zBP4BwpL=Hg@mail.gmail.com>
- <b4345b9e-62c6-470d-b1b0-4758cef7f175@quicinc.com>
- <xlmgdysjah3ueypdrdu5b6botvidb2wn4rfm4qpeysclscmuwy@vpfv2ymprblj>
- <b4e1ea54-ff3c-408e-8716-f48001ec9113@oss.qualcomm.com>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <b4e1ea54-ff3c-408e-8716-f48001ec9113@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=P7o6hjAu c=1 sm=1 tr=0 ts=686e335d cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=M9roUVu_bSbsc9sLP4sA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: CUi6Xr4Wdp-_jjItgtobejY9dgKSWFFd
-X-Proofpoint-GUID: CUi6Xr4Wdp-_jjItgtobejY9dgKSWFFd
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA5MDA4MSBTYWx0ZWRfX8GA21Du1ohpX
- kQK9afVP1t/gl7qEmxL3jOR1i+mGHgsLi9p/UJlqC1RZbjMhXkMRhkE9UXGg/I/8t6/na9D6SjN
- Jiej/6qAyqW4j9h1hPtn1m71YzTdyDjkfqF3oJ38Oheu0IuzdNP+dsuX9z78T5EqWbWrmBE/hWi
- S3bQ4dr8AIZeXlxqcqy9dh6k6AZy5JMlkSUzVk9UeO/I/MjU++H4u5Hh0wtpNK8lN2NAoalIHw7
- +3+ozuHDB4oQu77Sxl++de3b4vLpDJo7OuEhxdrECA15mf/VesrQIeFOVAaXa+fupuRHf5MmKaN
- /AHN1YyDAh8sNqOVpFkUlzlMrvKShzbPxPPGUUKe1POgb7Rt6FEKmHSq0cT7lxGPRNMZhO/mKXZ
- SL+InHxxWRnvhVSQ6UogSFEBE6tpasXflQb2L1oazlfXC7gzc2XbUQWkLMezqRLYXSB+MKSu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-09_02,2025-07-08_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 phishscore=0 bulkscore=0 mlxscore=0
- malwarescore=0 spamscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1015
- adultscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507090081
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANYzbmgC/2WNQQ6CMBBFr0Jm7Zi2QFFW3sOwgHaws4A2rRIJ4
+ e5WElcu30v++xskikwJ2mKDSAsn9nMGdSrAuH5+ELLNDEqoWmglME2NLmukVxowuBVtOfSDri7
+ GjhLyKkQa+X0U711mx+np43ocLPJrf636r7VIFHitbKNJaN0YeRt7jsH5mc7GT9Dt+/4BitOXv
+ bIAAAA=
+X-Change-ID: 20250620-sm7635-eusb-phy-d3bab648cdf1
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Abel Vesa <abel.vesa@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, Luca Weiss <luca.weiss@fairphone.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752052719; l=1202;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=MV3Dv7givJVTh/7aMdoHauUQLRrYUXGf0nE/cB3bHng=;
+ b=TC3jsdtAaGPDvRxWi6boglngHAlDnksgBGQq8S9tpXg1SjQUdqq4+co+KVLo05+XfgmXWX1Oz
+ gTuLU8NPuGJCMRJ3mNYWVqGXOXOuOEAav4nFKT4PSVvhJtoRakiZPKE
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
+Document the eUSB2 PHY on Milos and add some driver changes for it.
 
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v2:
+- Rebrand SM7635 to Milos as requested: https://lore.kernel.org/linux-arm-msm/aGMI1Zv6D+K+vWZL@hu-bjorande-lv.qualcomm.com/
+- Clarify commit message for "Add missing write from init sequence"
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20250625-sm7635-eusb-phy-v1-0-94d76e0667c1@fairphone.com
 
-On 5/28/2025 4:49 AM, Konrad Dybcio wrote:
-> On 12/3/24 3:07 PM, Dmitry Baryshkov wrote:
->> On Tue, Dec 03, 2024 at 04:13:22PM +0800, Xiangxu Yin wrote:
->>>
->>>
->>> On 11/29/2024 9:53 PM, Dmitry Baryshkov wrote:
->>>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
->>>>>
->>>>> Add a mechanism to retry Link Training 2 by lowering the pattern level
->>>>> when the link training #2 first attempt fails. This approach enhances
->>>>> compatibility, particularly addressing issues caused by certain hub
->>>>> configurations.
->>>>
->>>> Please reference corresponding part of the standard, describing this lowering.
->>>>
->>> Per DisplayPort 1.4a specification Section 3.5.1.2 and Table 3-10, while the standard doesn't explicitly define a TPS downgrade mechanism, it does specify:
->>
->> Anything in DP 2.1?
->>
-In the DP 2.1 spec, mainly on section '3.6.7.2 8b/10b DP Link Layer LTTPR Link Training Mandates', defined 'LTTPR shall support TPS4'.
-The other parts seems similar to the 1.4 spec.
->>> - All devices shall support TPS1 and TPS2
->>> - HDR2-capable devices shall support TPS3
->>> - HDR3-capable devices shall support TPS4
->>> While these capabilities are explicitly defined DPCD for sink devices, source device capabilities are less strictly defined, with the minimum requirement being support for TPS1 and TPS2.
->>> In QCS615 DP phy is only supporting to HBR2, we observed a critical interoperability scenario with a DP->HDMI bridge. When link training at TPS4 consistently failed, downgrading to the next lower training pattern successfully established the link and display output successfully.
->>
->> Any other driver doing such TPS lowering? Or maybe we should be
->> selecting TPS3 for HBR2-only devices?
-> 
-This logic is porting from qualcomm downstream, 
-For other device, only found in some older Tx chips like i915（intel_dp_training_pattern) used the maximum hardware-supported patterns, but not lowering.
+---
+Luca Weiss (4):
+      dt-bindings: usb: qcom,snps-dwc3: Add Milos compatible
+      dt-bindings: phy: qcom,snps-eusb2: document the Milos Synopsys eUSB2 PHY
+      phy: qcom: phy-qcom-snps-eusb2: Add missing write from init sequence
+      phy: qcom: phy-qcom-snps-eusb2: Add extra register write for Milos
 
-According to the description in DPCD table 2-232 003h, From the DP spec perspective, it appears that all supported cases should preferably adopt TPS4, as it is more robust.
-'DPRXs should support TPS4 and set this bit, regardless of whether the DPRX supports HBR3 because TPS4 is more conducive to robust link establishment than TPS2 and TPS3.
-0 = TPS4 is not supported.
-1 = TPS4 is supported (shall be supported for downstream devices with DPCD r1.4, except for eDPRXs).'
+ Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml | 1 +
+ Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml      | 3 +++
+ drivers/phy/phy-snps-eusb2.c                                   | 9 +++++++++
+ 3 files changed, 13 insertions(+)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250620-sm7635-eusb-phy-d3bab648cdf1
 
-Although maximum capability of QCS615 is HBR2, but the actual pattern supports TPS4. 
-From pure design perspective, it would be cleaner to drop this lowering in next patch. 
-> Bump, this patch looks interesting and I'd like to see it revisited if
-> it's correct
-> 
-> Konrad
-
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
 
