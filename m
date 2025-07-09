@@ -1,97 +1,77 @@
-Return-Path: <devicetree+bounces-194310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C45CFAFDC49
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 02:22:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8999AFDC5F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 02:33:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6576482F40
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 00:22:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8ACE37B25E6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 00:32:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 135B81BC2A;
-	Wed,  9 Jul 2025 00:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C147117A586;
+	Wed,  9 Jul 2025 00:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VVRdACHw"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="bkTfZT06"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AC55111A8;
-	Wed,  9 Jul 2025 00:22:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188AC146588;
+	Wed,  9 Jul 2025 00:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752020563; cv=none; b=Jy5MEpGeP2yndoyx4/ZhDhUWoxXRun5hV84EywU9npBIjwoCAsSZQE82KKl9QpKR60hS2Y9viImGjB3L+PkVN2sSvivWmLa+GFAPXKNUvP+jcnZZdJnpkYzsFbF4+iMx6QUF558Qr6uL8Rci6jHSAUenVFP4e7IgvTkemw3XEKQ=
+	t=1752021189; cv=none; b=hQ66DKN2VvLi1++5QzQKE66TKAf1EwcFVOGnfQ7/6UHXQ1A75dVzhcdKOjjYs6gvkkIKnpZW6+FlV1TWyqGoQOpVGKSmvn5B+dzx+AF6ftHnv5HMYlyP7n7R6WHUgFvzQ1VKG3GtNgUktWvPxgbId5TqrpgR43jEA/FnP9u6jMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752020563; c=relaxed/simple;
-	bh=KTdKSqfZQpOooexv+tZoAIyveRopdv0w/LkpFI9U9x4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QjXTj/22rmvy2Wh3BHx3ibnxvIRc4nG3cZAHMxHJ3Va8DAVSxd+reLK2fQbn4u1jRr2bn12QRcZ0CgALvAmIxk2dAx1IaG6x2cahUssXBz/EKDLZa3iOQqOy0qXKL7h2Z7B8XO0qgwgtRq+uf/nE6Ge4A2m4XXOhcgJOsK0I4LA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VVRdACHw; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-74ce477af25so3022521b3a.3;
-        Tue, 08 Jul 2025 17:22:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752020561; x=1752625361; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DcwWePkZ+61+GRHS7T5VOVYWhMHoHSzeV/UXG3AzxcI=;
-        b=VVRdACHw4LEBiONboMF5cnLf6bb6MWLgUe/ALCIQJiYV2AcESKyddQK7huQBvNO9sW
-         L/d3ZBoPcb/W+VWk1gVKAnTJsZrl6McOEbnVQAD9PymQkX80oSVR0zF4pQHEuUoAQ8V6
-         yKiimtSQmv4/J1Nj0dPM0FVlnDxV11EI/XlQixlAndhw0FALaiX9lvEkAnVOXf4aplib
-         m1Kt+3hv83Np+FX6qNypl+zPO2mRshQdgYuxnFQli92FfjE2ee8J2QjSZ7KHGEY4RJdf
-         oZgQuqCAcXFhqb7A31jBibVsb417UktT0Owyy2SrP4oduyP0ZJVJlLqXmFNPE7AZ0WUD
-         0zng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752020561; x=1752625361;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DcwWePkZ+61+GRHS7T5VOVYWhMHoHSzeV/UXG3AzxcI=;
-        b=ORFZTERQseKf14H4NU8fIs6l+aA/JRPEYejUHkeNlrghD44fsEFREUGCFr/GBUXKHo
-         EcY08IxTcJev3h8u/9/EMV6geOIT0OOZa/nkRSRVVGJ5Xj7y/jNjMatvqjYkTq3/2Q1z
-         ma0quGDyrsjTPlLCZ0IN2qWKshQt5WSUc1JmDoPMJ1vStR/4NFcx6G9m42Pso+kLqtuC
-         6ercyGE7kcUWBojbT98WyYoi5/XbLaxfaJMeAWr0zpStywc36nGfzSaHtLf5DlwrEzC0
-         km+x6FU2RADGyfRR98bg/qUahym0MZ+pQZfAYzvcycO8Zn2hgKRGXr1Km9JzV/H1QsG0
-         HqPg==
-X-Forwarded-Encrypted: i=1; AJvYcCUuGZ/6JstRbucAyuPYraCzynqWCmRyYbiKE5Inchpqh3BoTOmLDGEyEOj1Xn02B2bVUrUN9DYiY3wv0Dcd@vger.kernel.org, AJvYcCVKk7W6MYLS4aKbFIkGnfiu35VJVKMErMA1iRBVWQrNBaiMUjgSm7CQO0/vC44fKmt5TZ4Tdun2/hEg@vger.kernel.org, AJvYcCVd1Gbm/BdfHIDd+XfmdryoBmmR90Q3K5OcK5f6ydpH48xzJ/dOIqRG1/VpsxzS/DLc2TAbl/fi3XaRbg==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMNqArO0tqYuL3HYHnrIeQ7VMOLt0OpeW4lvXBVTVUc9Z1/ix1
-	+pqDEQjcxtnQXvfMQsGFgXgBkTssq2mES0FeUk3Z5XmJTluwjsoUBvtDpajcBqkuKrQ=
-X-Gm-Gg: ASbGnct1kTS0sp/ON51tZHXA7urFHM8HgRKD/zy/rJCvL1P2PCnW+sh4obCZKzJvH+N
-	PAg8Y62mjuxbLZrq0OtVtBodUvpOhHAeuXPG0hOnz36FCTAc7l8j+AIOzWxAYsMK3UkB9eqet8P
-	zOA2Lwz4GfInLWrbCMINCQuy3Bg/hfUuLAP7Xkg0+Psg05pEh1yFsGtQH24anGk2e+Lnj5cFFPt
-	9bk7RPcX78ky3phSwSLK1CO9tYYJl3GjXV/1y25DTAPUhG/0QFqsqerGxT3hueX04pJvayzJCTU
-	pV6joHMbcgJ3qb99gtiqQBojZ6kWW71Xe7F6CGj52w8=
-X-Google-Smtp-Source: AGHT+IEoBA4HHBIBWKsPCT2mLl7+qyWKOlyAaO+l5jgMStBRBhSbtVujXmRrrApyjtT9L32hT9oqWQ==
-X-Received: by 2002:a05:6a20:734d:b0:220:33e9:15da with SMTP id adf61e73a8af0-22cd68be5f5mr777221637.2.1752020560598;
-        Tue, 08 Jul 2025 17:22:40 -0700 (PDT)
-Received: from archlinux.lan ([2601:644:8200:dab8::1f6])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b3924868c3dsm4910400a12.23.2025.07.08.17.22.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jul 2025 17:22:40 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: linux-wireless@vger.kernel.org
-Cc: Johannes Berg <johannes@sipsolutions.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	=?UTF-8?q?Toke=20H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>,
-	Stanislaw Gruszka <stf_xl@wp.pl>,
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
-	Rosen Penev <rosenp@gmail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list),
-	linux-mips@vger.kernel.org (open list:MIPS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC support),
-	linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC support)
-Subject: [PATCH wireless-next] wifi: ath9k: ahb: add OF dependency
-Date: Tue,  8 Jul 2025 17:22:38 -0700
-Message-ID: <20250709002238.5988-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.50.0
+	s=arc-20240116; t=1752021189; c=relaxed/simple;
+	bh=xMtjFSvuZd9US/DfdTnB6PYkcqHXEdxUA7hUSCIXUB0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WhR+vjz8Lq9n7Ypy27tS+lUuspnkcnrOal9WiMhtI9ELDkQd7zb9sdbwzVoQWAW1L4HKgYGScn0jKhNqVaKIeVjNR2HWCDMKtSb4fu/UgunkLVf8V4M6kufpEG3ohuUatYiqK9Y+VFGUj2Xod1oOsAht0aaOdLXg482BWPE4v0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=bkTfZT06; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1752021188; x=1783557188;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=xMtjFSvuZd9US/DfdTnB6PYkcqHXEdxUA7hUSCIXUB0=;
+  b=bkTfZT06hLpeMK9DVvwqVRDopG1eT6CJ/+fjoXiooJP/Dw4PTFd2YXOO
+   8llAB4azWGU6pCq5ro9u9acDrhQawkKb5H6aFIrYRWeNj4ozO2Bgz+sh1
+   gEnxIXKF/8YS6OJtqWnnEaN1yTrWBGZUtTSSAOUC9Jrsp266bHGOu23Dt
+   0JI9AkbTgUQUqfaFpkmWX9dCSjdfqVNXGTvL3SBDKtuS2b5o8n+AqVfsZ
+   EMyfziCLG1MbkTO/wSWAHYZJHK4i+CKOaGKZIdZ/BPXFSSrjHEVN1wQ/U
+   VvG0dKcudbxN7Qc1U0BcQNZFuQ+FLagpQgAXJpPIc2MhNdvaq3BhTVJqP
+   A==;
+X-CSE-ConnectionGUID: CSUfBCd3SzyYJ8hslua0Vg==
+X-CSE-MsgGUID: aC7eUGMKR0uwYLt1NkGEZQ==
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; 
+   d="scan'208";a="211198513"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Jul 2025 17:33:06 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 8 Jul 2025 17:32:34 -0700
+Received: from pop-os.microchip.com (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Tue, 8 Jul 2025 17:32:33 -0700
+From: <Tristram.Ha@microchip.com>
+To: Woojung Huh <woojung.huh@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: Maxime Chevallier <maxime.chevallier@bootlin.com>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Marek Vasut
+	<marex@denx.de>, <UNGLinuxDriver@microchip.com>,
+	<devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Tristram Ha <tristram.ha@microchip.com>
+Subject: [PATCH net-next 0/7 v3] net: dsa: microchip: Add KSZ8463 switch support
+Date: Tue, 8 Jul 2025 17:32:26 -0700
+Message-ID: <20250709003234.50088-1-Tristram.Ha@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,31 +79,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-The conversion to OF missed adding a Kconfig dependency.
+From: Tristram Ha <tristram.ha@microchip.com>
 
-Fixes: 2fa490c0d7 ("wifi: ath9k: ahb: replace id_table with of")
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- Since this is for something that hasn't hit master yet, I assume
- wireless-next is the proper place for it.
- drivers/net/wireless/ath/ath9k/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This series of patches is to add KSZ8463 switch support to the KSZ DSA
+driver.
 
-diff --git a/drivers/net/wireless/ath/ath9k/Kconfig b/drivers/net/wireless/ath/ath9k/Kconfig
-index 0c47be06c153..47d570a5ca6a 100644
---- a/drivers/net/wireless/ath/ath9k/Kconfig
-+++ b/drivers/net/wireless/ath/ath9k/Kconfig
-@@ -47,7 +47,7 @@ config ATH9K_PCI
- 
- config ATH9K_AHB
- 	bool "Atheros ath9k AHB bus support"
--	depends on ATH9K
-+	depends on ATH9K && OF
- 	default n
- 	help
- 	  This option enables the AHB bus support in ath9k.
+v3
+- Replace cpu_to_be16() with swab16() to avoid compiler warning
+- Disable PTP function in a separate patch
+
+v2
+- Break the KSZ8463 driver code into several patches for easy review
+- Replace ntohs with cpu_to_be16
+
+Tristram Ha (7):
+  dt-bindings: net: dsa: microchip: Add KSZ8463 switch support
+  net: dsa: microchip: Add KSZ8463 switch support to KSZ DSA driver
+  net: dsa: microchip: Transform register for use with KSZ8463
+  net: dsa: microchip: Use different registers for KSZ8463
+  net: dsa: microchip: Write switch MAC address differently for KSZ8463
+  net: dsa: microchip: Setup fiber ports for KSZ8463
+  net: dsa: microchip: Disable PTP function of KSZ8463
+
+ .../bindings/net/dsa/microchip,ksz.yaml       |   1 +
+ drivers/net/dsa/microchip/ksz8.c              | 202 +++++++++++++++---
+ drivers/net/dsa/microchip/ksz8.h              |   4 +
+ drivers/net/dsa/microchip/ksz8_reg.h          |  49 +++++
+ drivers/net/dsa/microchip/ksz_common.c        | 168 ++++++++++++++-
+ drivers/net/dsa/microchip/ksz_common.h        | 104 +++++++--
+ drivers/net/dsa/microchip/ksz_dcb.c           |  10 +-
+ drivers/net/dsa/microchip/ksz_spi.c           |  14 ++
+ include/linux/platform_data/microchip-ksz.h   |   1 +
+ 9 files changed, 504 insertions(+), 49 deletions(-)
+
 -- 
-2.50.0
+2.34.1
 
 
