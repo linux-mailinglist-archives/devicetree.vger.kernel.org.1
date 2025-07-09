@@ -1,147 +1,365 @@
-Return-Path: <devicetree+bounces-194699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 356E2AFF334
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 22:40:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC341AFF38A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 23:03:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF2597B54E8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 20:38:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42A5E48299C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 21:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B91824466F;
-	Wed,  9 Jul 2025 20:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C2523A9AA;
+	Wed,  9 Jul 2025 21:02:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ewwjHI0S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NZZazvkD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D0F23F40A;
-	Wed,  9 Jul 2025 20:39:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E36722D793;
+	Wed,  9 Jul 2025 21:02:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752093553; cv=none; b=fPtPNnTxqqxI5HtYXNb1qv+/jW0b/Ir293NFN7eOPptN3ricdNQeZEfJWEY+iuyJLnNBtBpNuCsqZNip3zQaLJyZX5HZ2yf43ZfA1ZeFeD/N4Gttcqr97Jvfqex6BRW/KP/TBJOrh7aCu/rPHlExqzfbjud7vOJoV5XuwgpBQuQ=
+	t=1752094970; cv=none; b=BO0z7qLVKVojlnsxb8ZoAUUUC2Bgaw7heWIpqM9lYCdNiE3EoZ9ESOl6iTbpWFUUXJPs5FxPxokv/+LIuvuAjFtW8JxbScNvD+l7r2RMdmpUh7vm8Aw2KDGFNUZzT6MEijiWuCo5f+p1RTS+jbuVZp453YewWrA6LsGrVm+PuIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752093553; c=relaxed/simple;
-	bh=ieKlXhe8oEtDXZpavR3ahmGdUp+tvg3kg/Izn5Of7pg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kHW4dXPFsb8iRexkYm1q3USM7XYZuunqAoQmX9XrB+HiqL0Sm64DX3lrOBezXoFZeZYSOf2+gO5U2BBczC+fB/kCgiiFDYtnuqGq095ZDt3ickSVRcqTbGvQM4mdicdic1n6ARSRBeJ/uOYW+WBTNBmhXcoY7p9PUDr1A7yRTyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ewwjHI0S; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a575a988f9so262068f8f.0;
-        Wed, 09 Jul 2025 13:39:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752093551; x=1752698351; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LsZpIkCRwWE/FKnHg1vz7ABb7C/paVv3QEw2cKWyROc=;
-        b=ewwjHI0S7mXSaMUyJpUqkFRgFuH5mZn3EzSJy0wtG5Cf76qjt+8A6W7LqQwV8QrwHi
-         wBgTEmq054Z1e2g7KLE18f7GXeqIHN3hKkvg1k962ByFrHUxUSdTqVrs1jIrrCI6G5bE
-         qjsSRCLmzyZBRdsMjBBdTwvF8Am7QQtDYnzQo8205JiW5JcoiTyqE2L0PmHKOWEVgluz
-         FRFZFUOAz7dRUJi1GNt+8qlOv/vR9X87bT8GEMOGeCyMRGnC3iMHPy4xwWA5SePEd6ss
-         u7prP0VgPnUBt//smm7b2qhjVc7/GNHY0O+wlPOr/GPy0IBnlUHtPRkVGHHd4toSU0Ag
-         iRmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752093551; x=1752698351;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LsZpIkCRwWE/FKnHg1vz7ABb7C/paVv3QEw2cKWyROc=;
-        b=ufLlKO5ayLwS4xHdf37/cXSbLIiiVms7JGveuuJD43uXDV7a3KPkTFBie0brCvUd+H
-         ZiPf62YdutvmklQXvz4C0svuvJX6G/DSA5QxHByFKYc+TphjExExlZhPD10lE8sn3T17
-         3Ac24nKZb1i4yQg0RyQf51Jv9WM4A5gTHjms+jnUDD1RC4ykEQSLyhMX3lLaGyTx/VlR
-         GDwOC8OzTVyBDI7TjjscqdaSoTxzw42tuXEIxtULna/Yg/vL1sDcKyWaexP4ztVEhCI4
-         hmiE2rbFANQqizgg06C/mCBRMZ1fBldiCIeS3Nqw+2SIFodS67FOmsheAOJjOFoRzmPh
-         xSHA==
-X-Forwarded-Encrypted: i=1; AJvYcCUsrFrpVtwri1rQAFWHla3bPnYoT9JeGpovq9XLafBGCLymKVdqxr3HJMyUbIDMaJErZ017ZHNweV/U@vger.kernel.org, AJvYcCVOrJbXIzLon06K0lFNd/R0/LnMPrdsbjRo+kh4KqacsQz+72jMyBWoLsIYqOVqeK8ky8lkLC1xP9zlDFs=@vger.kernel.org, AJvYcCXqqtK1lddgPPEffjSbhMjONxteN+ECAFVqQdF7fnDpPV5Ecncl7T33K2vLUqfjGLmPmEzo1E0Cnrx862t2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzy5bCE7IXhGqTTDtPlFvsaWZFXFByxT33b8CapMZcZwhbno66G
-	EptTlXrRDy1k3nQ7NCssx+KAk+snD0gS1O3pc/WU1qtlCsSy7qKvbum9
-X-Gm-Gg: ASbGncvi/h+9F9y4Hm1IQvh5oqBUWquYH1GCHZk5chmvEu45N6r5eUrIaAlapJ6f3Ph
-	VaZ9nZ7kxmow2Q6rgZ/ns6qGvBNiaVPxWf8nzHIqZx6Bzm7gpiHtkGT9BiCzbaLGFrRP9vbfYan
-	X2yskrE9ZmoUfXy6R0XErtZIeEkJoa6j5vSWyIzcpQsBcaUPYbUKmLe7PWyCSmzS9twf9Sd3TxX
-	He8ZoBKySjoOuqIlNS0Xcwzuc9KKLC0N4X6fehq1ygQ0xYl8brgRNC1R6AJgrHeBX1Jghk+z4ej
-	NwBQZgcTvotwTdlck4kJgeNhkkU6Lw7M+zq+W21Rm50m6c7I7CxLlCRiCRzNOQ+FcBY7LsAstYx
-	2sn3TH9Hb5RTWSzLuFlPMcgwELXpz0aMjInmLkhKrx5SIc0n7
-X-Google-Smtp-Source: AGHT+IH+GZXcZBfZnUdMw5w3GvbFnDMARYvK2oxipIHOdjJAqJ+6kH7i2+3NatSGclfatBwYKMwapg==
-X-Received: by 2002:adf:b612:0:b0:3a5:39be:c926 with SMTP id ffacd0b85a97d-3b5e78b9450mr1077051f8f.32.1752093550545;
-        Wed, 09 Jul 2025 13:39:10 -0700 (PDT)
-Received: from orome (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b47225b5cdsm16669091f8f.85.2025.07.09.13.39.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Jul 2025 13:39:09 -0700 (PDT)
-Date: Wed, 9 Jul 2025 22:39:07 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: memory: tegra: Add Tegra264 stream IDs
-Message-ID: <vwnfnc3bsvjx6pumnlktqll3x2eqgirszekogpia4mbsbkjdvv@suswbo3udfvj>
-References: <20250708105245.1516143-1-thierry.reding@gmail.com>
- <20250708105245.1516143-4-thierry.reding@gmail.com>
- <34bec0c6-6539-415f-b18b-b0c70c1b93b8@kernel.org>
+	s=arc-20240116; t=1752094970; c=relaxed/simple;
+	bh=0C6CqP8uDT1BrHkUxrPLjHLWNd7OpgffZlo4koKPcao=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rCof4WFDMrTVgKt3iNJ50ENN6J4f+7Xv1Ol962yLqPz0Z2cLmXq7N9QhG/qU1MF/cpTmuPbC71UowypX1uUgkTAiMW/Zx/qUFyepfYcJzz3/07RvzbtzlD1BwGSZp6WaVJRb+1VK+V78+gT36K6R6CGYycwL6AasF8MTFvkehNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NZZazvkD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0D9CAC4CEF4;
+	Wed,  9 Jul 2025 21:02:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752094970;
+	bh=0C6CqP8uDT1BrHkUxrPLjHLWNd7OpgffZlo4koKPcao=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=NZZazvkDj0rh6eQs7fT2O6eTPNUiL9a8FEO+8FbnqgmQKms2Td9mfJqeY5+dtSurG
+	 ew6HAmByQk3GsqRVHLCj8rxkyMif18DbJcy5fxcurEtBaP+Vta4r7KXxy4noGZSpsK
+	 gQrFfjeFeqQlPvZKuuCe5Xv4UM3TAaXYgVj7qzTlHq+hFms12sGKLaWf5cuR830OOF
+	 M+heSDTh3r2kDSa+zXVhcDgwJL5jok4yxIMKEZQWjTi8FB9hs7iRF02LkxEMptwoVd
+	 mNScz31RoeOXWoU+UrukhhoPIaaaFttfyIVGSVd4vUAQCIxH5TA9tHlnInTelczqK8
+	 lN/UtQAfIFYmg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9F47C83F09;
+	Wed,  9 Jul 2025 21:02:49 +0000 (UTC)
+From: Frank Li via B4 Relay <devnull+Frank.Li.nxp.com@kernel.org>
+Subject: [PATCH v20 0/9] PCI: EP: Add RC-to-EP doorbell with platform MSI
+ controller
+Date: Wed, 09 Jul 2025 17:02:12 -0400
+Message-Id: <20250709-ep-msi-v20-0-43d56f9bd54a@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yegrs77m5cquiew4"
-Content-Disposition: inline
-In-Reply-To: <34bec0c6-6539-415f-b18b-b0c70c1b93b8@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIANTYbmgC/2XSS27kIBAG4KtEXo8j6kEBWeUeo1nwnHiR7lY7a
+ mUU9d0HWorBzhLEVyqq/q9pzdclr9PL09d0zbdlXc6nekD162mKb/70N89LqhcTKmRQoOZ8md/
+ XZbaBow9EAUKe6uPLNZfl81Hp9596flvWj/P136Pwjdrtdwn9XeJGs5pjTtE6DxLBv54+L8/x/
+ D61AjceEMGGuCIDJnlMzgW0e6Q7AmU3pCvywE5DVEkps0cyIMANSUWsizOImSIe2jMj4g2ZihL
+ 7aLwvIWHcIzsi2ZCtSAoUsaUkCGGPXEeoaEOu/UlUCpEK6JT2CNSoen91g2q2JpKxVSY5MhiZ6
+ wza2Jm4eEvOhCPDgUFfVp2mmokSa8LiNaoDo5H1dUFLhrBkBIcpIh/YFg2tUJnOWjacGAhAUjA
+ csgF6YGOTLR0h+hihIvDuwKQzHicpj1U7cElsi9WBmZENTbaECJEPrD3BD2YHNuQKWkaKuMDOg
+ WE5jsR1JuPeWkqMIcHsPdsyhPh+v/8H3sPR9/8DAAA=
+X-Change-ID: 20241010-ep-msi-8b4cab33b1be
+To: Kishon Vijay Abraham I <kishon@kernel.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, Anup Patel <apatel@ventanamicro.com>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Marc Zyngier <maz@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, 
+ Shuah Khan <shuah@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>, 
+ Lucas Stach <l.stach@pengutronix.de>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
+Cc: Niklas Cassel <cassel@kernel.org>, dlemoal@kernel.org, jdmason@kudzu.us, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-pci@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ imx@lists.linux.dev, devicetree@vger.kernel.org, 
+ Niklas Cassel <cassel@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ Manivannan Sadhasivam <mani@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752094968; l=12314;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=0C6CqP8uDT1BrHkUxrPLjHLWNd7OpgffZlo4koKPcao=;
+ b=OueEMdAzjieeWYHuKUTqVdsFxSH4lZKZuQ5nbtA6iL+ea+c4wFLTCBSpAedqmbH4lQTMFXSDE
+ gD2o3V4geETDUayWt1CeP3OlPn3+SlCKxt1jLHRs6N2yODEfKJCs9Uv
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-Endpoint-Received: by B4 Relay for Frank.Li@nxp.com/20240130 with
+ auth_id=121
+X-Original-From: Frank Li <Frank.Li@nxp.com>
+Reply-To: Frank.Li@nxp.com
 
+┌────────────┐   ┌───────────────────────────────────┐   ┌────────────────┐
+│            │   │                                   │   │                │
+│            │   │ PCI Endpoint                      │   │ PCI Host       │
+│            │   │                                   │   │                │
+│            │◄──┤ 1.platform_msi_domain_alloc_irqs()│   │                │
+│            │   │                                   │   │                │
+│ MSI        ├──►│ 2.write_msi_msg()                 ├──►├─BAR<n>         │
+│ Controller │   │   update doorbell register address│   │                │
+│            │   │   for BAR                         │   │                │
+│            │   │                                   │   │ 3. Write BAR<n>│
+│            │◄──┼───────────────────────────────────┼───┤                │
+│            │   │                                   │   │                │
+│            ├──►│ 4.Irq Handle                      │   │                │
+│            │   │                                   │   │                │
+│            │   │                                   │   │                │
+└────────────┘   └───────────────────────────────────┘   └────────────────┘
 
---yegrs77m5cquiew4
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/4] dt-bindings: memory: tegra: Add Tegra264 stream IDs
-MIME-Version: 1.0
+This patches based on old https://lore.kernel.org/imx/20221124055036.1630573-1-Frank.Li@nxp.com/
 
-On Wed, Jul 09, 2025 at 08:21:53PM +0200, Krzysztof Kozlowski wrote:
-> On 08/07/2025 12:52, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Add the stream IDs for various hardware blocks found on Tegra264. These
-> > are allocated as blocks of 256 IDs and each block can be subdivided for
-> > additional fine-grained isolation if needed.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  include/dt-bindings/memory/nvidia,tegra264.h | 50 ++++++++++++++++++++
->=20
-> Please squash it (you can take authorship and add co-developed), but
-> adding given bindings and bindings header for new device is one patch.
-> Not three.
+Original patch only target to vntb driver. But actually it is common
+method.
 
-Will do.
+This patches add new API to pci-epf-core, so any EP driver can use it.
+
+Previous v2 discussion here.
+https://lore.kernel.org/imx/20230911220920.1817033-1-Frank.Li@nxp.com/
+
+Changes in v20:
+- remove set epf of_node's patch and only support one epf now.
+- move imx6's patch to first
+- detail change see each patches' change log
+- Link to v19: https://lore.kernel.org/r/20250609-ep-msi-v19-0-77362eaa48fa@nxp.com
+
+Changes in v19:
+- irq part already in v6.16-rc1, only missed pcie/dts part
+- rebase to v6.16-rc1
+- update commit message for patch IMMUTABLE check.
+- Link to v18: https://lore.kernel.org/r/20250414-ep-msi-v18-0-f69b49917464@nxp.com
+
+Changes in v18:
+- pci-ep.yaml: sort property order, fix maxvalue to 0x7ffff for msi-map-mask and
+iommu-map-mask
+- Link to v17: https://lore.kernel.org/r/20250407-ep-msi-v17-0-633ab45a31d0@nxp.com
+
+Changes in v17:
+- move document part to pci-ep.yaml
+- Link to v16: https://lore.kernel.org/r/20250404-ep-msi-v16-0-d4919d68c0d0@nxp.com
+
+Changes in v16:
+- remove arm64: dts: imx95-19x19-evk: Add PCIe1 endpoint function overlay file
+because there are better patches, which under review.
+- Add document for pcie-ep msi-map usage
+- other change to see each patch's change log
+About IMMUTABLE (No change for this part, tglx provide feedback)
+> - This IMMUTABLE thing serves no purpose, because you don't randomly
+>   plug this end-point block on any MSI controller. They come as part
+>   of an SoC.
+
+"Yes and no. The problem is that the EP implementation is meant to be a
+generic library and while GIC-ITS guarantees immutability of the
+address/data pair after setup, there are architectures (x86, loongson,
+riscv) where the base MSI controller does not and immutability is only
+achieved when interrupt remapping is enabled. The latter can be disabled
+at boot-time and then the EP implementation becomes a lottery across
+affinity changes.
+
+That was my concern about this library implementation and that's why I
+asked for a mechanism to ensure that the underlying irqdomain provides a
+immutable address/data pair.
+
+So it does not matter for GIC-ITS, but in the larger picture it matters.
 
 Thanks,
-Thierry
 
---yegrs77m5cquiew4
-Content-Type: application/pgp-signature; name="signature.asc"
+        tglx
+"
 
------BEGIN PGP SIGNATURE-----
+So it does not matter for GIC-ITS, but in the larger picture it matters.
 
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhu02sACgkQ3SOs138+
-s6GbUw/7B/xXGPwCa+LIy/6i30Eb06BGCL7zvPCYMecvkOUTiyr6H+nP0gIXpEjX
-9hh4JxfznleKFXkFp7vBATmrCy3S+f4fi+/9QROwfS8GV1J0IlFVBKTk7HsqgWp8
-cps/J1/C686kQNGNx2uBzNkteVc4KZJ1hN4MzTJt24bKS4KaPJEIQz6jvcvoVhFs
-khsJf/siOeulRucKeokaUbCO9tVDH+JQNxUleh3fUv9XLX+IZbLhBPieswDvbyAd
-a35Eupfgo06OLpM8zQlbItRUeF0BT+qcDVMnEK8ZPFm114VB8eIo5yI2mz9Grs96
-1nzRYb/Le2RCYRDrnMeZx3bkvdYCV/y43Z2yw5r4uu8gxDYa0h91+Z+dHucMhi8X
-ZI8Qags8Uk084fp6pLXNAbE9ZUvY0G4EySxgUR5cggZTfSxNPwnb7ajl0qb/3zGS
-T8f5UhFn2ap3xCnWkG4/TOUfrgf+eLuLqhK6iToLL8s+/KPInEe2lET/xo7hT9E0
-BXFNh61qHLJP3foBWha7qmaESu+H85FNP5ETmnZi/rCo3Y9ITn/1K6JFA2toP7sK
-AajntvkXdQryciNrEeSfHU9BBxNDjt12sTcryAUPieZ8y9mcJGn8KJk0yQKF7rfX
-oiG7P0MRJ4+CFJsgqb/Rmsrxe6e/E8aIok08vrW7pT2IgJCzjwY=
-=9Uub
------END PGP SIGNATURE-----
+- Link to v15: https://lore.kernel.org/r/20250211-ep-msi-v15-0-bcacc1f2b1a9@nxp.com
 
---yegrs77m5cquiew4--
+Changes in v15:
+- rebase to v6.14-rc1
+- fix build issue find by kernel test robot
+- Link to v14: https://lore.kernel.org/r/20250207-ep-msi-v14-0-9671b136f2b8@nxp.com
+
+Changes in v14:
+Marc Zyngier raised concerns about adding DOMAIN_BUS_DEVICE_PCI_EP_MSI. As
+a result, the approach has been reverted to the v9 method. However, there
+are several improvements:
+
+MSI now supports msi-map in addition to msi-parent.
+  - The struct device: id is used as the endpoint function (EPF) device
+identity to map to the stream ID (sideband information).
+  - The EPC device tree source (DTS) utilizes msi-map to provide such
+information.
+  - The EPF device's of_node is set to the EPC controller’s node. This
+approach is commonly used for multi-function device (MFD) platform child
+devices, allowing them to inherit properties from the MFD device’s DTS,
+such as reset-cells and gpio-cells. This method is well-suited for the
+current case, as the EPF is inherently created/binded to the EPC and
+should inherit the EPC’s DTS node properties.
+
+Additionally:
+
+Since the basic IMX95 LUT support has already been merged into the
+mainline, a DTS and driver increment patch is added to complete the
+solution. The patch is rebased onto the latest linux-next tree and
+aligned with the new pcitest framework.
+
+- Link to v13: https://lore.kernel.org/r/20241218-ep-msi-v13-0-646e2192dc24@nxp.com
+
+Changes in v13:
+- Change to use DOMAIN_BUS_PCI_DEVICE_EP_MSI
+- Change request id as  func | vfunc << 3
+- Remove IRQ_DOMAIN_MSI_IMMUTABLE
+
+Thomas Gleixner:
+
+I hope capture all your points in review comments. If missed, let me know.
+
+- Link to v12: https://lore.kernel.org/r/20241211-ep-msi-v12-0-33d4532fa520@nxp.com
+
+Changes in v12:
+- Change to use IRQ_DOMAIN_MSI_IMMUTABLE and add help function
+irq_domain_msi_is_immuatble().
+- split PCI: endpoint: pci-ep-msi: Add MSI address/data pair mutable check to 3 patches
+- Link to v11: https://lore.kernel.org/r/20241209-ep-msi-v11-0-7434fa8397bd@nxp.com
+
+Changes in v11:
+- Change to use MSI_FLAG_MSG_IMMUTABLE
+- Link to v10: https://lore.kernel.org/r/20241204-ep-msi-v10-0-87c378dbcd6d@nxp.com
+
+Changes in v10:
+
+Thomas Gleixner:
+	There are big change in pci-ep-msi.c. I am sure if go on the
+corrent path. The key improvement is remove only 1 function devices's
+limitation.
+
+	I use new patch for imutable check, which relative additional
+feature compared to base enablement patch.
+
+- Remove patch Add msi_remove_device_irq_domain() in platform_device_msi_free_irqs_all()
+- Add new patch irqchip/gic-v3-its: Avoid overwriting msi_prepare callback if provided by msi_domain_info
+- Remove only support 1 endpoint function limiation.
+- Create one MSI domain for each endpoint function devices.
+- Use "msi-map" in pci ep controler node, instead of of msi-parent. first
+argument is
+	(func_no << 8 | vfunc_no)
+
+- Link to v9: https://lore.kernel.org/r/20241203-ep-msi-v9-0-a60dbc3f15dd@nxp.com
+
+Changes in v9
+- Add patch platform-msi: Add msi_remove_device_irq_domain() in platform_device_msi_free_irqs_all()
+- Remove patch PCI: endpoint: Add pci_epc_get_fn() API for customizable filtering
+- Remove API pci_epf_align_inbound_addr_lo_hi
+- Move doorbell_alloc in to doorbell_enable function.
+- Link to v8: https://lore.kernel.org/r/20241116-ep-msi-v8-0-6f1f68ffd1bb@nxp.com
+
+Changes in v8:
+- update helper function name to pci_epf_align_inbound_addr()
+- Link to v7: https://lore.kernel.org/r/20241114-ep-msi-v7-0-d4ac7aafbd2c@nxp.com
+
+Changes in v7:
+- Add helper function pci_epf_align_addr();
+- Link to v6: https://lore.kernel.org/r/20241112-ep-msi-v6-0-45f9722e3c2a@nxp.com
+
+Changes in v6:
+- change doorbell_addr to doorbell_offset
+- use round_down()
+- add Niklas's test by tag
+- rebase to pci/endpoint
+- Link to v5: https://lore.kernel.org/r/20241108-ep-msi-v5-0-a14951c0d007@nxp.com
+
+Changes in v5:
+- Move request_irq to epf test function driver for more flexiable user case
+- Add fixed size bar handler
+- Some minor improvememtn to see each patches's changelog.
+- Link to v4: https://lore.kernel.org/r/20241031-ep-msi-v4-0-717da2d99b28@nxp.com
+
+Changes in v4:
+- Remove patch genirq/msi: Add cleanup guard define for msi_lock_descs()/msi_unlock_descs()
+- Use new method to avoid compatible problem.
+  Add new command DOORBELL_ENABLE and DOORBELL_DISABLE.
+  pcitest -B send DOORBELL_ENABLE first, EP test function driver try to
+remap one of BAR_N (except test register bar) to ITS MSI MMIO space. Old
+driver don't support new command, so failure return, not side effect.
+  After test, DOORBELL_DISABLE command send out to recover original map, so
+pcitest bar test can pass as normal.
+- Other detail change see each patches's change log
+- Link to v3: https://lore.kernel.org/r/20241015-ep-msi-v3-0-cedc89a16c1a@nxp.com
+
+Change from v2 to v3
+- Fixed manivannan's comments
+- Move common part to pci-ep-msi.c and pci-ep-msi.h
+- rebase to 6.12-rc1
+- use RevID to distingiush old version
+
+mkdir /sys/kernel/config/pci_ep/functions/pci_epf_test/func1
+echo 16 > /sys/kernel/config/pci_ep/functions/pci_epf_test/func1/msi_interrupts
+echo 0x080c > /sys/kernel/config/pci_ep/functions/pci_epf_test/func1/deviceid
+echo 0x1957 > /sys/kernel/config/pci_ep/functions/pci_epf_test/func1/vendorid
+echo 1 > /sys/kernel/config/pci_ep/functions/pci_epf_test/func1/revid
+^^^^^^ to enable platform msi support.
+ln -s /sys/kernel/config/pci_ep/functions/pci_epf_test/func1 /sys/kernel/config/pci_ep/controllers/4c380000.pcie-ep
+
+- use new device ID, which identify support doorbell to avoid broken
+compatility.
+
+    Enable doorbell support only for PCI_DEVICE_ID_IMX8_DB, while other devices
+    keep the same behavior as before.
+
+           EP side             RC with old driver      RC with new driver
+    PCI_DEVICE_ID_IMX8_DB          no probe              doorbell enabled
+    Other device ID             doorbell disabled*       doorbell disabled*
+
+    * Behavior remains unchanged.
+
+Change from v1 to v2
+- Add missed patch for endpont/pci-epf-test.c
+- Move alloc and free to epc driver from epf.
+- Provide general help function for EPC driver to alloc platform msi irq.
+- Fixed manivannan's comments.
+
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Frank Li (9):
+      PCI: imx6: Add helper function imx_pcie_add_lut_by_rid()
+      PCI: imx6: Add LUT configuration for MSI/IOMMU in Endpoint mode
+      PCI: endpoint: Add RC-to-EP doorbell support using platform MSI controller
+      PCI: endpoint: pci-ep-msi: Add MSI address/data pair mutable check
+      PCI: endpoint: Add pci_epf_align_inbound_addr() helper for address alignment
+      PCI: endpoint: pci-epf-test: Add doorbell test support
+      misc: pci_endpoint_test: Add doorbell test case
+      selftests: pci_endpoint: Add doorbell test case
+      arm64: dts: imx95: Add msi-map for pci-ep device
+
+ Documentation/PCI/endpoint/pci-test-howto.rst      |  14 +++
+ arch/arm64/boot/dts/freescale/imx95.dtsi           |   1 +
+ drivers/misc/pci_endpoint_test.c                   |  85 ++++++++++++-
+ drivers/pci/controller/dwc/pci-imx6.c              |  25 ++--
+ drivers/pci/endpoint/Kconfig                       |   8 ++
+ drivers/pci/endpoint/Makefile                      |   1 +
+ drivers/pci/endpoint/functions/pci-epf-test.c      | 136 +++++++++++++++++++++
+ drivers/pci/endpoint/pci-ep-msi.c                  |  98 +++++++++++++++
+ drivers/pci/endpoint/pci-epf-core.c                |  44 +++++++
+ include/linux/pci-ep-msi.h                         |  28 +++++
+ include/linux/pci-epf.h                            |  18 +++
+ include/uapi/linux/pcitest.h                       |   1 +
+ .../selftests/pci_endpoint/pci_endpoint_test.c     |  28 +++++
+ 13 files changed, 478 insertions(+), 9 deletions(-)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20241010-ep-msi-8b4cab33b1be
+
+Best regards,
+--
+Frank Li <Frank.Li@nxp.com>
+
+
 
