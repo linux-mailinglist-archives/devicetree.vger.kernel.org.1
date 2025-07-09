@@ -1,112 +1,121 @@
-Return-Path: <devicetree+bounces-194727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FC5DAFF4B1
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:30:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C1EAFF4C9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:36:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D65A3B3D28
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 22:29:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30E043BE7B9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 22:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC4EE242D92;
-	Wed,  9 Jul 2025 22:30:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF73259C9C;
+	Wed,  9 Jul 2025 22:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PTOuyLPK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fZ98xm/Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2F641CAA85;
-	Wed,  9 Jul 2025 22:30:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3C4248F4F;
+	Wed,  9 Jul 2025 22:35:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752100211; cv=none; b=F6zSmKfNjhJQgkJGmBKIDMJIAaVF6FlOPX6I1jU4Y4il3RMNd0hkKsWtilnkvDOIq+oTEF3oWQDK9ET4Yx81YVhWdrc5h2PNqrmIH3Yxq28gStZOeg35fHGIYBRgPC4aWbRaYC+T5bQKR65Y38/QuX2zz7+OQdRH8mT4jWMDKxU=
+	t=1752100560; cv=none; b=WYT7mVIw9+3yG+jW3BQIDmiL5UTNIPmltjWvgImoxBr4UMJK0KG7toSBSmu3yftvWz/cmIG4/8+CP54X5Gvl3kPaWtfagUO3nscc4Q7FLWHOjM4NSsPowaGX18h7fHZdEcchDsCURhjge9HUTD73OxN6snVu/ZgsHGYw/6CyCK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752100211; c=relaxed/simple;
-	bh=xHr0SxcTTGeDN1ue6d/qY2D0xz+OPv9AcKajs1DQq90=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=gRrEJ3WDlKeYV+rAtOJCgKVYxaxwg47oXfkuvOdAyw133MDXVn5lElnhzwLTfKCdRo2rnssZx4XGf+24E4wD0fr9zLuaZDT7K1/YTEvFCO1Kr3NyotQOQXp0XIWtBL3GNa7Ugav1k5ml765fPAnej6UIil3QO0z/7Z22zB5rnjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PTOuyLPK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04E3CC4CEEF;
-	Wed,  9 Jul 2025 22:30:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752100211;
-	bh=xHr0SxcTTGeDN1ue6d/qY2D0xz+OPv9AcKajs1DQq90=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=PTOuyLPKEIvUR+suT8k+/1Ck2XqWrdas0m70vsOe6FMm5Og/ahHF0rQRSrcb14SnJ
-	 LMBvT+0iqFIbwI4vjH6c4giXZi8haH2E0bFdv+gbTkXsSrGlCmDMFW6ybv19i8+YYJ
-	 Zz9CDrMlNjkbBeep5UpnjlL2BuetozjIU0RZtYydCuwZnRQeGoAC8HuqAjUxfp+rt+
-	 B8kt3zUnn5ks84mSONbOczsJ38ndSunhqfdgTZ65h3ZrUWFHCLM9CCnjDpy9qgPFq/
-	 a7aOX4rEyyv3gzQ7UYzoxrvPAQBLn9nPjTvJXJj/SYCliMq6ctrBKHFLn/n9EPoeHU
-	 KX/MlRxnUQbqQ==
-Date: Wed, 09 Jul 2025 17:30:10 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1752100560; c=relaxed/simple;
+	bh=peENvfhu8PDHQuZQPR/nruuazxfIBAK27RUGdBY5uj0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=lFLoLuihPuTTez+Qd0L6T65ZtVgkC109enI9G+rlzIa1KzcAYjBOFkxVw13v8qRx5iDCvLLRIypwk9U4fXPmZz9d4CzE6DkKWXelJrreRrc6wyJ8/qhAkbLwmuhNW5M8nycvfEbgpr8jy7V3Diixy049J93yWJVFLE9qXxHP0yI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fZ98xm/Z; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 569MZpWP952194;
+	Wed, 9 Jul 2025 17:35:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752100551;
+	bh=kHbCKQ8p1jDj8v12ktRvQ3BglcMakSPOnDiSl02HrQo=;
+	h=From:Subject:Date:To:CC;
+	b=fZ98xm/ZlcxgcMBA5A1dOAC308+yotiLypWmprguQlkkBOsPFK421upHtzTdmst0k
+	 aOMdxOIDVaR70EgfuQBn/olgwYuBJot4hYUm4ocyMoiAG5saUspYy/pBxhc3ZW8Pky
+	 LDKCooC4qsGnqeABbMV+AP5hANoQ5diaY+0tTX3A=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 569MZorv2415886
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 9 Jul 2025 17:35:51 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 9
+ Jul 2025 17:35:50 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 9 Jul 2025 17:35:50 -0500
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 569MZoYX230289;
+	Wed, 9 Jul 2025 17:35:50 -0500
+From: Bryan Brattlof <bb@ti.com>
+Subject: [PATCH 0/2] arm64: dts: ti: k3-am65: add boot phases to critical
+ nodes
+Date: Wed, 9 Jul 2025 17:35:42 -0500
+Message-ID: <20250709-65-boot-phases-v1-0-e1f89d97a931@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, linux-remoteproc@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- ~postmarketos/upstreaming@lists.sr.ht
-To: Luca Weiss <luca.weiss@fairphone.com>
-In-Reply-To: <20250709-sm7635-remoteprocs-v3-1-c943be976180@fairphone.com>
-References: <20250709-sm7635-remoteprocs-v3-0-c943be976180@fairphone.com>
- <20250709-sm7635-remoteprocs-v3-1-c943be976180@fairphone.com>
-Message-Id: <175210021011.3927964.2963774922041119366.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: remoteproc: qcom,milos-pas:
- Document remoteprocs
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL7ubmgC/x3MQQ5AMBBA0avIrE1SFYqriMVgymxUOiKSxt01l
+ m/xfwLlKKwwFAki36ISjoyqLGDZ6dgYZc0Ga2xjnOmxbXAO4cJzJ2VFIl8TtevsOgs5OiN7ef7
+ hOL3vBycrAtNgAAAA
+X-Change-ID: 20250709-65-boot-phases-aaf3aa6db782
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Bryan Brattlof <bb@ti.com>
+X-Mailer: b4 0.14.2
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hello everyone!
 
-On Wed, 09 Jul 2025 13:13:07 +0200, Luca Weiss wrote:
-> Document the bindings for the ADSP, CDSP, MPSS and WPSS PAS on the Milos
-> (e.g. SM7635) SoC.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  .../bindings/remoteproc/qcom,milos-pas.yaml        | 201 +++++++++++++++++++++
->  1 file changed, 201 insertions(+)
-> 
+To save precious on chip RAM space during bootup 'bootph-*' flags was 
+added to the dt-schema to describe which nodes need to be present during 
+each phase of the bootup process and which can be pruned to recover RAM 
+space that would otherwise be wasted.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+This small series adds the bootph-all flags to all the boot critical 
+nodes for all boards that utilize the AM65x as well as to the AM65's 
+reference board.
 
-yamllint warnings/errors:
+Happy Hacking
+~Bryan
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/remoteproc/qcom,milos-pas.example.dts:20:18: fatal error: dt-bindings/interconnect/qcom,milos-rpmh.h: No such file or directory
-   20 |         #include <dt-bindings/interconnect/qcom,milos-rpmh.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/remoteproc/qcom,milos-pas.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1519: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+Signed-off-by: Bryan Brattlof <bb@ti.com>
+---
+Bryan Brattlof (2):
+      arm64: dts: ti: k3-am65: add boot phase tags
+      arm64: dts: ti: k3-am654-base-board: add boot phase tags
 
-doc reference errors (make refcheckdocs):
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi       |  1 +
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi        |  2 ++
+ arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi     |  5 +++++
+ arch/arm64/boot/dts/ti/k3-am654-base-board.dts | 17 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am654-pcie-usb2.dtso |  1 +
+ arch/arm64/boot/dts/ti/k3-am654-pcie-usb3.dtso |  1 +
+ 6 files changed, 27 insertions(+)
+---
+base-commit: 036cc33070b35754f45da50d81f8c3c85191c8b7
+change-id: 20250709-65-boot-phases-aaf3aa6db782
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250709-sm7635-remoteprocs-v3-1-c943be976180@fairphone.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Bryan Brattlof <bb@ti.com>
 
 
