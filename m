@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-194598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F43AFEA0C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:24:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DD38AFEA0D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 15:24:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D27716FFD0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:23:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A749B3B7E19
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 13:23:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32552E0930;
-	Wed,  9 Jul 2025 13:23:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8C52E1C6F;
+	Wed,  9 Jul 2025 13:23:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="HdrlA/dm"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="0KxKgpxq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
+Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C802DE20E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEB62DFA28
 	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 13:23:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752067419; cv=none; b=YfO0FX4EQk6pyaNIAdoCwgk1j44zfIe3akpXIGaNaomU2oYioVQvRY5EmnCLSTEvfNnSPsj8A4LpUOuAXzUTGLfOxIRsQlW1dEfpUlw++j7dyFrZNuZbclTrd4PHPIuIf56AVWEbO0Mkpf7olaeDJPzh8FCMsxHLmOEnZ+lvMtM=
+	t=1752067420; cv=none; b=ARVG0bQep2avViUmLlbZ7i8frDjUUz3VYuoTQbiH+Gnz1cpmToxZSLpKa1gbFI+QeNuJUxMTSbOXrZfsWrqWpUAinRSndYaEhqbbymqA2frNJNAm50Vq3q8+5ciEuvNq11ktjndprhWJF7PtcAniY96AoTfmJcEVwNhj/Z0BqT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752067419; c=relaxed/simple;
-	bh=J/Fe7VsW55nHtlw7aUGllk4ytzTJTWxNR274VqR29BA=;
+	s=arc-20240116; t=1752067420; c=relaxed/simple;
+	bh=++WUmsmG42FBtz0N90d+3dm2z4DuzAvjfBgwxUM5j6Q=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nSDPI+6tvdCo/NFxyBKWV18Xo7IOEhzdFIIBf+wea825IFgrbtYVXVxab4Dx5LEZylvd04tWLl9CyeE7cr7S8ZTmOK1PQBEtITi0sQHNd3jO5TGVA975I5EKeCqFjQzGYfaaOGNthM8SammIIzyY9YqvbOjh+Un+3+pjqQDTTec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=HdrlA/dm; arc=none smtp.client-ip=91.218.175.171
+	 MIME-Version; b=OjIOowfOjePzzG/K4gT0cH0XU4MbLNnzbXKbPE4yzgshx0jBp7x8oXDeJ6k7rbpoASHWZBOTpW8x6W7Lj94lkl/6IWs4bEG0m5l/+iG/9jC3gG0l/jhlCkfPncLP+zW0fqF4aLJ/KosHL92MyqGX9yeH4EyOG3UMXM8avUQ9+1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=0KxKgpxq; arc=none smtp.client-ip=91.218.175.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1752067416;
+	t=1752067417;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=LdOjVT0hxZ4MogGhHL86KxEfuOHrbi5hNR9VAR3J/Ig=;
-	b=HdrlA/dmy5Fa4JgMgEwHcOTJYaWLiae7fNQ2A05rKkMmpz1hd9A0sViJK4a02+zGuwWG6f
-	Mn2ORHj8hG9W/CjoEy+oAX3rPXznFnASAaQJSpY69ZHQKA5AyaYCCR/0RzPnwClkEfsav9
-	mH/wTD8o/R9BBb5osT4fvocY5gIxD+xp3jmj0OEU2ZUo9XC9uOP1VtDCZ1W5B0YyPlRybb
-	2tZpvKh0NeucF2Bd9Zc6bujWGqOdjOyIXjD7HDEjkKeEFK64Ymxck7LKGY8LrDK0gTG7Bs
-	c/6LOoiQiM02gNe1C1rXmIP9+eOSWRvP6AAwUJJPZh1q6E2CyFYcIJWATFlKMQ==
+	bh=JXGz2WRYkb5YR3U/LDov8OvZiUYlL4TD2HwVbGHyw/0=;
+	b=0KxKgpxqDV1ZI4oKLSpkMvqRtnjL/Nc/0t07ibxNqLThuLJHY0a6XTTv0vn6X5I/H/2CEQ
+	VSxsSzMSZUSOCUdR87HPS3j3bIe+G30YyZB7KultcBmZ6/L/otMqkMQ3kSVo+Z5bWbPfSy
+	r0Sj0QHXqIJXBt4djIxptPXk/7cPrVk7GM3OjfB7XKZmkyt62r73ZKC5/ZDMnn/Ek/D8I9
+	AyC4bxHaIbPkhhOO7GJdZO81UVctqoGVQij0JyPqTZafvlCv+8jVhEoZsWP6v0PSLadSHY
+	AMhEg8pJ6pLWXJco2PIGc9W24yWAqSs3Krjl76MT9yaHQ6pDizxcHDKslEf5bQ==
 From: Diederik de Haas <didi.debian@cknow.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -57,9 +57,9 @@ Cc: Dragan Simic <dsimic@manjaro.org>,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH v4 04/10] arm64: dts: rockchip: Simplify VOP port definition on rk3328
-Date: Wed,  9 Jul 2025 15:15:17 +0200
-Message-ID: <20250709132323.128757-5-didi.debian@cknow.org>
+Subject: [PATCH v4 05/10] arm64: dts: rockchip: Simplify edp endpoints on several rk3399 boards
+Date: Wed,  9 Jul 2025 15:15:18 +0200
+Message-ID: <20250709132323.128757-6-didi.debian@cknow.org>
 In-Reply-To: <20250709132323.128757-1-didi.debian@cknow.org>
 References: <20250709132323.128757-1-didi.debian@cknow.org>
 Precedence: bulk
@@ -71,8 +71,9 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-When there's only 1 endpoint, there is no need for a unit-address and
-removing that allows removing of related properties as well.
+The only thing actually added here is a single endpoint on edp_out,
+which is already defined in rk3399-base.dtsi, so it's simpler to just
+reference that phandle, which allows the removal of several properties.
 
 This fixes the following DTB validation warnings:
 
@@ -81,26 +82,95 @@ This fixes the following DTB validation warnings:
 
 Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3328.dtsi | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ .../boot/dts/rockchip/rk3399-gru-chromebook.dtsi | 15 ++++-----------
+ .../boot/dts/rockchip/rk3399-pinebook-pro.dts    | 15 ++++-----------
+ .../dts/rockchip/rk3399-sapphire-excavator.dts   | 16 ++++------------
+ 3 files changed, 12 insertions(+), 34 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-index 7d992c3c01ce..6438c969f9d7 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-@@ -731,11 +731,7 @@ vop: vop@ff370000 {
- 		status = "disabled";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
+index a9ea4b0daa04..9d07353df52c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
+@@ -250,18 +250,11 @@ &edp {
+ 	 */
+ 	assigned-clocks = <&cru PCLK_EDP>;
+ 	assigned-clock-rates = <24000000>;
++};
  
- 		vop_out: port {
+-	ports {
+-		edp_out: port@1 {
+-			reg = <1>;
 -			#address-cells = <1>;
 -			#size-cells = <0>;
 -
--			vop_out_hdmi: endpoint@0 {
+-			edp_out_panel: endpoint@0 {
 -				reg = <0>;
-+			vop_out_hdmi: endpoint {
- 				remote-endpoint = <&hdmi_in_vop>;
- 			};
- 		};
+-				remote-endpoint = <&panel_in_edp>;
+-			};
+-		};
++&edp_out {
++	edp_out_panel: endpoint {
++		remote-endpoint = <&panel_in_edp>;
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+index 5473070823cb..5a8551d9ffe4 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+@@ -404,18 +404,11 @@ &edp {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&edp_hpd>;
+ 	status = "okay";
++};
+ 
+-	ports {
+-		edp_out: port@1 {
+-			reg = <1>;
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			edp_out_panel: endpoint@0 {
+-				reg = <0>;
+-				remote-endpoint = <&panel_in_edp>;
+-			};
+-		};
++&edp_out {
++	edp_out_panel: endpoint {
++		remote-endpoint = <&panel_in_edp>;
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dts b/arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dts
+index fdaa8472b7a7..a4ceafe6dd7a 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dts
+@@ -142,21 +142,13 @@ sdio_pwrseq: sdio-pwrseq {
+ 
+ &edp {
+ 	status = "okay";
++};
+ 
+-	ports {
+-		edp_out: port@1 {
+-			reg = <1>;
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			edp_out_panel: endpoint@0 {
+-				reg = <0>;
+-				remote-endpoint = <&panel_in_edp>;
+-			};
+-		};
++&edp_out {
++	edp_out_panel: endpoint {
++		remote-endpoint = <&panel_in_edp>;
+ 	};
+ };
+-
+ &i2c1 {
+ 	i2c-scl-rising-time-ns = <300>;
+ 	i2c-scl-falling-time-ns = <15>;
 -- 
 2.50.0
 
