@@ -1,144 +1,134 @@
-Return-Path: <devicetree+bounces-194309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9790AFDBF9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 01:54:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4C19AFDC4D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 02:24:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEE57584ECD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jul 2025 23:54:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB6281896DD1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 00:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF6CD2376E6;
-	Tue,  8 Jul 2025 23:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E76B41F948;
+	Wed,  9 Jul 2025 00:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iHzA3Flh"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="vXa31Csq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59A7518E3F;
-	Tue,  8 Jul 2025 23:54:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3E835950
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 00:24:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752018852; cv=none; b=usKhsIY0quSSpCR97v+qXtCbea1I6rwE50Bvy4cBsWvpSLxju6arSpl/nGHzT6frPmkFgeVgPBzYuw+rIShpLt9Fnw8kCkKHKn+UO09FYvAFe4NSo4SHlhQssVHuZ2dJdi9i6+4U4SmKY3yibG7IyCzgVmJ8YrFofaFwhNJ6Lj4=
+	t=1752020655; cv=none; b=qd64wVHLD7dxTYCcDCFrJy/JPY6vw7T6NKpoMYS0d56nVyr23KiBjoS2/R9NhH6tzy5iypNJtZadCvFfWHedb06eI7hK9IIRe5o6phAPxs0I6m+OTmBV6gTeDPa5Jm1+YIBiVdsOZssUlOtpMjt3iiGCcnsgBDyvkT5N38ZBYdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752018852; c=relaxed/simple;
-	bh=0nMJ7C41R4YrKo0xC2/UiGGAaKAYM8CZRyHurLTLpw0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c/sCaKKoyjg2k+j+S0Gq3ihsuAadA8W3FwLUn817oBGWkzZvWBS+UBOT7We2tnVnSUmEe6MfnJTN2Bd9lxsFj98dVc4+feQPp8LZV6l9g5gaXeCx21hfFd8b8PvY1BlEdFl3qoX1dpCTEdKFdq7JnaRRx2EHcu+UD1R3sATfqmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iHzA3Flh; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-712be7e034cso43931927b3.0;
-        Tue, 08 Jul 2025 16:54:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752018850; x=1752623650; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LIpnI+/KkKYMz9Wfww8vVb4elUGSQP7L8IBvr/OnuBk=;
-        b=iHzA3FlhmQ7njDGu0fb1TBx9yfWtGIZ6eCcAK/9INcXoXcPNDxr7I7OPaiLr1pobjf
-         1DEu0wyj0dQL6UK/ca9XEtd1d1MLOpwBpzEbq2DlbT5A7IZCZnvFy5eYTdmLMmptrNbM
-         ZXAYZdKC+vTBD4d2WXOO3DQ9gAKvqjoTv3tmtLPYGuk/FIhTOqYS1Z5xZm8K0v3mzrtr
-         uK1aH1qYtzb4tODUt/aMQNMfqL1c537DOhJ4WcPNig+z+cpjhIwbNKoG48rH+QgFqpN7
-         pcVPIOPeHpbrW5FtuKnfQeKaXoqV6r7N2smJSCG7ARkSm7S6zBY3caFp8CRCl4B47dkH
-         XvNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752018850; x=1752623650;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LIpnI+/KkKYMz9Wfww8vVb4elUGSQP7L8IBvr/OnuBk=;
-        b=aIP+2Gem3xd0c9c7rHAUBSXnd0DXt86sgGlYZWeohub3L8McmXGCgZiJMwsQg0r//c
-         iSIrIgjg/8R/qmFLpn/84u/0H3uCsDiemVb+P9BUIKD/IL2ON/8zYC373cPiXJAkKuxB
-         RKCSnmYYxufIKPfXOBOPU2MxJK3wqjlSb4aYVoDcU+gq81IhMVBZQXNhTsq7jRrjxcG9
-         3Wu8tuHCnhtQ7UKrasisPCELodGCF4h1Eb9qj3q/3Cv4CNbFDvEPMtoR95GBSzawkXtB
-         lcxj5JdY/8+XIFSasdSZIkgyS1/E4VylTD/jeNreykifX96XjOKshi4m0KH+N8bXl0QA
-         T7Mw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOvAaUbwpP7hOEWOAj4ZsM4ruN2+AFJG6rp6+fz4kWKDk2U6MyGuFUaXEyEFlq0G7jqJaTSs0eEqarCSB5gzw=@vger.kernel.org, AJvYcCVGaMwVxV0YPK9sKO5OHZlyC5m8I9vEg8ien7VqZYbkjv+dHee+5j9aj6QY541yOynM/B/cV+TZI6BjPw==@vger.kernel.org, AJvYcCViBIr1clX5w96w97Kl7f3T85GFpqFi/seRIxGKmzjWeblAoqitP5cd8/CNaEMHXFYdfiRK58ZtqJ/P2zYK@vger.kernel.org, AJvYcCWZnu6NaAYuf5jqNSiO/ZTmHs3pGY3sAeIT4FOX8tebY84Vnzx0J8H+W/WuJa/TOTPtKm5K0XXKzTtM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPXSznygmsWuJY5nL72lca/jjz3w8dRVbp94JJiah7Aqo/8K8P
-	XobNSA7msH07V05EQ7jKwHnFhZdwejk6Ftja4krIVB6LzeeiWM6WOILrQLhzkZyvLFkt3ENugWu
-	Y9EEcCKOEvDHu5w2amu0YE7R+CnNUdYlT5f4pPNTlnA==
-X-Gm-Gg: ASbGncsGO3LvQlLaqg+wsvoqNH6AGgEfHGa3A+nQTTSHCpWtZIhFj8EI26IBnDigyR/
-	fXtIBbkXnJQGz7mK6XT/TijggYz4/7bG90Z939QxnmE1qEqTM5cz/KKcATbQAKbAFOO/w82XNbD
-	4YolOufwTpsTEoimK+6UAjFuEA/EgDuj49YsJLe5wpYNNYt622ZLw5rncEDqtUPE8ACuw=
-X-Google-Smtp-Source: AGHT+IHHnkecJrTiDBVoCM7eM4g32Pk1c3raG4mqxUk9pSpJNW1vy947mDXE0F5WHjldRJe6WxHFFxEogzvUMtezeI0=
-X-Received: by 2002:a05:690c:9c0e:b0:70e:2ba2:659d with SMTP id
- 00721157ae682-717b19634eamr9861137b3.23.1752018850202; Tue, 08 Jul 2025
- 16:54:10 -0700 (PDT)
+	s=arc-20240116; t=1752020655; c=relaxed/simple;
+	bh=MXXPtOORne6fRmHo+JAQjtJq9xauIVQ17AV2K3ja3C8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=IAgYqTe7mnSd7cb82yLM7FgO1VpZMTz/ubOIY8gnZxYDJiUalBwkHgEyTpaI/uOCaQ6OPog9Y7ekBkScSe4BIon2QJ41kx7ETWIMjOK7X3xATcKHuadD1Tc1RqtqIi71669Pgyqph7iwm0mK8lYoXk7RHhQTia6WGyKgC6aOcOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=vXa31Csq; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250709002410epoutp02618f2439da9f01db1c1c1bf8c526c418~QbX-Z9No82371523715epoutp02J
+	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 00:24:10 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250709002410epoutp02618f2439da9f01db1c1c1bf8c526c418~QbX-Z9No82371523715epoutp02J
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1752020650;
+	bh=JmtiAJIx4OJnYhoun1Y6mRhQPBpKeZEivxGm5Al8d1c=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=vXa31CsqaCNCfH042OntLj6d6RXXTHVeJfehiL4mjGpBIY6TrOKhUOdeUeOF8orss
+	 F4SDuXdTD7JOJ0NZHj30LuoNWvl8RWiPQEpqRD+HP1SYGziAtPYMT97HheycQMjx6h
+	 nI/uFdUgctefm+yfZPYsLV1sBG//+A8cFF9gxAag=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250709002410epcas2p187128c3c29a82d5752edd758cfc3b21a~QbX_3tXqI0630606306epcas2p1Z;
+	Wed,  9 Jul 2025 00:24:10 +0000 (GMT)
+Received: from epcas2p2.samsung.com (unknown [182.195.36.102]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4bcJcn2fSDz6B9mB; Wed,  9 Jul
+	2025 00:24:09 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250709002408epcas2p25248bf1a397fc308d91ffef3889c41d5~QbX9emyK01430814308epcas2p2I;
+	Wed,  9 Jul 2025 00:24:08 +0000 (GMT)
+Received: from AProject.dsn.sec.samsung.com (unknown [10.229.9.52]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250709002408epsmtip1e2456747b63928e1cc20f961d1d7e29b~QbX9b90_b3159031590epsmtip1A;
+	Wed,  9 Jul 2025 00:24:08 +0000 (GMT)
+From: ew kim <ew.kim@samsung.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: alim.akhtar@samsung.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, ew kim <ew.kim@samsung.com>
+Subject: [PATCH] arm64: dts: exynos: add abox generic for ExynosAutov920
+Date: Wed,  9 Jul 2025 09:12:10 +0900
+Message-Id: <20250709001210.379418-1-ew.kim@samsung.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250708201745.5900-1-rosenp@gmail.com> <20250708201745.5900-8-rosenp@gmail.com>
- <175201013411.1121693.17824456704959772294.robh@kernel.org>
-In-Reply-To: <175201013411.1121693.17824456704959772294.robh@kernel.org>
-From: Rosen Penev <rosenp@gmail.com>
-Date: Tue, 8 Jul 2025 16:53:59 -0700
-X-Gm-Features: Ac12FXyerQ4XgpTDcxgbBtlk_P_w9tWTj-9IUlprsdtZUPLTaj8qf2lgKgQNTww
-Message-ID: <CAKxU2N_oUgqdOymr6RRSe3KYQpXrUUFm0SvOYFogx7NOVMv5LA@mail.gmail.com>
-Subject: Re: [PATCHv2 wireless-next 7/7] dt-bindings: net: wireless: rt2800: add
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Stanislaw Gruszka <stf_xl@wp.pl>, linux-mips@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-wireless@vger.kernel.org, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Johannes Berg <johannes@sipsolutions.net>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250709002408epcas2p25248bf1a397fc308d91ffef3889c41d5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250709002408epcas2p25248bf1a397fc308d91ffef3889c41d5
+References: <CGME20250709002408epcas2p25248bf1a397fc308d91ffef3889c41d5@epcas2p2.samsung.com>
 
-On Tue, Jul 8, 2025 at 2:28=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org> =
-wrote:
->
->
-> On Tue, 08 Jul 2025 13:17:45 -0700, Rosen Penev wrote:
-> > Add device-tree bindings for the RT2800 SOC wifi device found in older
-> > Ralink/Mediatek devices.
-> >
-> > Signed-off-by: Rosen Penev <rosenp@gmail.com>
-> > ---
-> >  .../bindings/net/wireless/ralink,rt2800.yaml  | 47 +++++++++++++++++++
-> >  1 file changed, 47 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/wireless/rali=
-nk,rt2800.yaml
-> >
->
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/net/wireless/ralink,rt2800.example.dtb:=
- /example-0/wifi@110180000: failed to match any schema with compatible: ['r=
-alink,rt2880-wifi']
-ralink,rt2880-wifi vs ralink,rt2800-wifi
+Add a node for Abox generic. This driver, exynosautov920, connects to
+the SoC and allows you to configure a sound card.
 
-lovely...
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202507=
-08201745.5900-8-rosenp@gmail.com
->
-> The base for the series is generally the latest rc1. A different dependen=
-cy
-> should be noted in *this* patch.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your sch=
-ema.
->
+Signed-off-by: ew kim <ew.kim@samsung.com>
+---
+ .../boot/dts/exynos/exynosautov920-audio.dtsi | 20 +++++++++++++++++++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |  1 +
+ 2 files changed, 21 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-audio.dtsi
+
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-audio.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920-audio.dtsi
+new file mode 100644
+index 000000000000..4a1341ccdc2e
+--- /dev/null
++++ b/arch/arm64/boot/dts/exynos/exynosautov920-audio.dtsi
+@@ -0,0 +1,20 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
++ *        http://www.samsung.com/
++ *
++ * EXYNOS - Audio Device Tree source
++ */
++
++/ {
++	abox_generic: abox_generic@generic {
++		compatible = "samsung,abox_generic";
++		samsung,num-of-pcm_playback = <32>;
++		samsung,num-of-pcm_capture = <32>;
++		samsung,num-of-i2s-dummy-backend = <5>;
++		status = "disabled";
++		#address-cells = <2>;
++		#size-cells = <1>;
++		ranges;
++	};
++};
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+index 2cb8041c8a9f..6893fd36485e 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+@@ -1129,3 +1129,4 @@ timer {
+ };
+ 
+ #include "exynosautov920-pinctrl.dtsi"
++#include "exynosautov920-audio.dtsi"
+-- 
+2.25.1
+
 
