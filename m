@@ -1,166 +1,135 @@
-Return-Path: <devicetree+bounces-194719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8666CAFF488
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:18:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99511AFF48E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:21:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 029937BB93C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 22:16:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93DA51C835F9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 22:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E01762459F8;
-	Wed,  9 Jul 2025 22:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38796242D70;
+	Wed,  9 Jul 2025 22:21:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lab126.com header.i=@lab126.com header.b="ttOEq6q0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HBfvFcaZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-52004.amazon.com (smtp-fw-52004.amazon.com [52.119.213.154])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0920C245008;
-	Wed,  9 Jul 2025 22:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.119.213.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDE1238C3D;
+	Wed,  9 Jul 2025 22:21:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752099462; cv=none; b=jiLTuvpTnWSGZhow/fB4X01w5BujsRgF0Pp9LDZ8fZtKxq2DdQBGwpwusmwCrsJ9Xt76bYXmoMsMbb/PuTgCqLWtB6yYHZCLMCHNjkBqZ7xa6lkiag7ltBrolDG8TMXLUvzUgi6ykEnvXGncfaTN2rQMRBmrf9hN4BlOJArQwVc=
+	t=1752099710; cv=none; b=HcFguV4h5Uin9NEeXvn1fl+aLinITtp7XCLCtx0lpZGlLMsQjgiF8CoA7PQEW9QynjtSXT+2+O4nKWkNXwEowVREkceEGmYdvalHPA291OCre+HXj/cETmMNyk8oIHVT9FuaY/emWfIx8x+bEDwNhdGXWjT+yW81BOV+INk6/H8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752099462; c=relaxed/simple;
-	bh=i+X/LERh4rj/4tfNwclQ3Dnd+gRKxCSewwoMSwU8kWw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=R2fTQksOZ66WRKjF9prSqtLXJm6+prQZ/ncwFet6hjzo5ezcNoC/wWvUXZ9f5WxF0aQ9y+0TxsT39NdMc10lQbc8a3a6Sfa/ng+QlSSBvL6NyCrJTPXXfKIKvUjjkstQSJ1oQuXrSPfWdUx1Lv3uHsWAUhyw2F7WmidCXQFRDjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lab126.com; spf=pass smtp.mailfrom=lab126.com; dkim=pass (2048-bit key) header.d=lab126.com header.i=@lab126.com header.b=ttOEq6q0; arc=none smtp.client-ip=52.119.213.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lab126.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lab126.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=lab126.com; i=@lab126.com; q=dns/txt; s=amazoncorp2;
-  t=1752099461; x=1783635461;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=6qq6tD8G2gJnKmNebl13VtAMiIeIIKd0RBrZrx89A3w=;
-  b=ttOEq6q0FjfmyMuq0Rz+52v+lRa5mL7DI7NFyojkHtR22h6jGyXMe2x8
-   Wt5zCC/yArp5pxWCpQGgiPgwo6tWwubHg+Tay6n6UA5CJZv7D+N42sELJ
-   icqWIzPxhtdEgaD2puZmQq1IWev++sdz3BHaArLKZgYCRtwd9/D8+R3g1
-   XVzUy79GLxiTYU/LP7zzWWog4SPHvT/a8ykAT7vplr9a+yOUbhGSorRf7
-   LEmJPE6QhPwX4Sf70IWT0Cq/QPG4NBWG9gPdlED1RiXc3UWE/3JsNfU17
-   tgf5PkYZpDumL3AJ6f18H6KWuFKDEuiFViFjmsyAfh8eu9SP3+gyM0fUT
-   g==;
-X-IronPort-AV: E=Sophos;i="6.16,299,1744070400"; 
-   d="scan'208";a="316202464"
-Received: from iad12-co-svc-p1-lb1-vlan2.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.2])
-  by smtp-border-fw-52004.iad7.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jul 2025 22:17:39 +0000
-Received: from EX19MTAUWB002.ant.amazon.com [10.0.21.151:31037]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.38.16:2525] with esmtp (Farcaster)
- id d62a3060-98c9-4334-b974-36061ea67137; Wed, 9 Jul 2025 22:17:38 +0000 (UTC)
-X-Farcaster-Flow-ID: d62a3060-98c9-4334-b974-36061ea67137
-Received: from EX19D007UWB001.ant.amazon.com (10.13.138.75) by
- EX19MTAUWB002.ant.amazon.com (10.250.64.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Wed, 9 Jul 2025 22:17:38 +0000
-Received: from u1cb251c9c70150.ant.amazon.com (10.68.99.17) by
- EX19D007UWB001.ant.amazon.com (10.13.138.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Wed, 9 Jul 2025 22:17:37 +0000
-From: Karthik Poduval <kpoduval@lab126.com>
-To: <jyxiong@amazon.com>, <miguel.lopes@synopsys.com>, <anishkmr@amazon.com>,
-	<vkoul@kernel.org>, <kishon@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-phy@lists.infradead.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>
-CC: Karthik Poduval <kpoduval@lab126.com>
-Subject: [PATCH 2/2] phy: dw-dphy-rx: Add dt bindings for Synopsys MIPI D-PHY RX
-Date: Wed, 9 Jul 2025 15:17:24 -0700
-Message-ID: <20250709221724.1276428-2-kpoduval@lab126.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250709221724.1276428-1-kpoduval@lab126.com>
-References: <20250709221724.1276428-1-kpoduval@lab126.com>
+	s=arc-20240116; t=1752099710; c=relaxed/simple;
+	bh=8Py4CsLgnmpWgZRh1uEJmzkqgvbjtzPIElp16HtIFTs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EqEBWgFgsUy4RFZ7ddUBRxKm79FXEnrF35aSChxJ1t+83fZawxpftYyLGrc0kaSYH2nzGLjnp6Wfzx3EpNRureDVZ/1qIRrened75D8V1IzYi7L7nHgHSVb+Ts9ofgSL1p74UQUUj3d6O8qVpvAr/eoFm1Il0+9u0w7CbdAXDhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HBfvFcaZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A46C2C4CEEF;
+	Wed,  9 Jul 2025 22:21:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752099709;
+	bh=8Py4CsLgnmpWgZRh1uEJmzkqgvbjtzPIElp16HtIFTs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=HBfvFcaZ+8jcr+v7imsDJsg32eBayfg4OcN1N35Rb/2WdL3QWZ61xxmERhRqq4YoT
+	 zb45D1+W93gMKq0V862RxNUQXNwUotFEI3l/EokenOgRh1uklRlMJ/1gJV2z0OsbMW
+	 uQup/ezaDSDf10wOudk9RfnNP+D8xaueV+SjJ3imfb9A+FlTv+MjGCZmLACbSbyRTV
+	 VAhBh85qPsdfc/l4ZfBTW9Xis31W+f3fuwtCfmObZdhx5CmZy6ceg61B4TXBNG7wF1
+	 4NcRiWGyllrd/XjplJu4FD7gKIZYjuJmjRMCZyx85o+0IOfpTk1CU/5pLbCbqZdHfu
+	 gwc82rCxwFHig==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 912FFC83F10;
+	Wed,  9 Jul 2025 22:21:49 +0000 (UTC)
+From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
+Subject: [PATCH v3 0/2] Bindings and DTS for Apple SoC GPUs
+Date: Thu, 10 Jul 2025 00:21:43 +0200
+Message-Id: <20250710-sgx-dt-v3-0-299bb3a65109@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EX19D039UWA001.ant.amazon.com (10.13.139.110) To
- EX19D007UWB001.ant.amazon.com (10.13.138.75)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHfrbmgC/02MQQqDMBBFryKzbkomaVS66j1KF0lMdKBqSSRYx
+ Ls3WhBhNm/47y0QXSAX4V4sEFyiSOOQQV4KsJ0eWseoyQyCC8WVRBbbmTUTu2k0+aQR3EMef4L
+ zNO+h5ytzR3Eaw3fvJty+/0SJRyIh46zSiF7WtbIlf7S9pvfVjj1siSTOmjw0kTVvhKkatNL76
+ qyt6/oD8URQgdMAAAA=
+X-Change-ID: 20250531-sgx-dt-4a1ba1b3b20f
+To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Sasha Finkelstein <fnkl.kernel@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752099708; l=2111;
+ i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
+ bh=8Py4CsLgnmpWgZRh1uEJmzkqgvbjtzPIElp16HtIFTs=;
+ b=foDGSjtL1i/eBdaakPKFBpNpRz+4dnUGdroXFiKgmtpeTraJsuKgTFcqT14/2KXYfD8btZ29F
+ VgtSzPatqGjCLkIaADJVX81nV5WUK5aJBdeLBqmWQ1JDECJJphLr7mB
+X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
+X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
+ auth_id=283
+X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Reply-To: fnkl.kernel@gmail.com
 
-Add DT Bindings for Synopsys D-PHY RX, presently tested on version 1.2
+Hi.
 
-Signed-off-by: Karthik Poduval <kpoduval@lab126.com>
+This patch series adds the DT bindings and tree entries for the GPU
+present in Apple M-series SoCs. The driver itself is in Rust and
+upstream is currently missing several prerequisite bindings, so will
+be sent later.
+
+The kernel and m1n1 (bootloader) that are using those bindings are
+available at the following branches:
+Kernel: https://github.com/WhatAmISupposedToPutHere/linux/tree/starlight
+m1n1: https://github.com/WhatAmISupposedToPutHere/m1n1/tree/bootloader-cal-blobs
+
+Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
 ---
- .../bindings/phy/snps,dw-dphy-rx.yaml         | 44 +++++++++++++++++++
- MAINTAINERS                                   |  7 +++
- 2 files changed, 51 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.yaml
+Changes in v3:
+- Just adding trailers, effectively a resend
+- Link to v2: https://lore.kernel.org/r/20250613-sgx-dt-v2-0-fb2b7d1c3ff7@gmail.com
 
-diff --git a/Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.yaml b/Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.yaml
-new file mode 100644
-index 000000000000..e986b2872e1c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/snps,mipi-dphy-rx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Synopsys Designware MIPI D-PHY RX
-+
-+maintainers:
-+  - Karthik Poduval <kpoduval@lab126.com>
-+  - Jason Xiong <jyxiong@amazon.com>
-+  - Miguel Lopes <miguel.lopes@synopsys.com
-+
-+description: |
-+  These are the bindings for Synopsys Designware MIPI DPHY RX phy driver.
-+  Currently only supported phy version is v1.2.
-+
-+properties:
-+  compatible:
-+    const: snps,dw-dphy-1p2
-+
-+  '#phy-cells':
-+    const: 0
-+
-+  reg:
-+    - minItems: 2
-+    - maxItems: 2
-+
-+required:
-+  - compatible
-+  - '#phy-cells'
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dw_dphy_rx: dw-dphy@900000040 {
-+        compatible = "snps,dw-dphy-1p2";
-+        #phy-cells = <0>;
-+        reg = <0x0 0x90000040 0x0 0x20>, <0x0 0x90001000 0x0 0x8>;
-+        status = "disabled";
-+    };
-+
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b5a472a544cf..5fd5a92431bd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -24217,6 +24217,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
- F:	drivers/dma/dw-axi-dmac/
+Changes in v2:
+- s/firmware-compat/firmware-abi/
+- drop the agx-g13x compatible
+- rework reserved regions
+- Improved memory region and register descriptions
+- Link to v1: https://lore.kernel.org/r/20250611-sgx-dt-v1-0-7a11f3885c60@gmail.com
 
-+SYNOPSYS DESIGNWARE MIPI D-PHY RX DRIVER
-+M:	Karthik Poduval <kpoduval@lab126.com>
-+M:	Jason Xiong <jyxiong@amazon.com>
-+M:	Miguel Lopes <miguel.lopes@synopsys.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.yaml
-+
- SYNOPSYS DESIGNWARE DMAC DRIVER
- M:	Viresh Kumar <vireshk@kernel.org>
- R:	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
---
-2.43.0
+---
+Sasha Finkelstein (2):
+      dt-bindings: gpu: Add Apple SoC GPU
+      arm64: dts: Add Apple SoC GPU
+
+ Documentation/devicetree/bindings/gpu/apple,agx.yaml | 94 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ MAINTAINERS                                          |  1 +
+ arch/arm64/boot/dts/apple/t6000.dtsi                 |  4 ++++
+ arch/arm64/boot/dts/apple/t6001.dtsi                 |  4 ++++
+ arch/arm64/boot/dts/apple/t6002.dtsi                 |  4 ++++
+ arch/arm64/boot/dts/apple/t600x-common.dtsi          | 34 ++++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t600x-die0.dtsi            | 28 ++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8103.dtsi                 | 62 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8112.dtsi                 | 62 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 9 files changed, 293 insertions(+)
+---
+base-commit: aef17cb3d3c43854002956f24c24ec8e1a0e3546
+change-id: 20250531-sgx-dt-4a1ba1b3b20f
+
+Best regards,
+-- 
+Sasha Finkelstein <fnkl.kernel@gmail.com>
+
 
 
