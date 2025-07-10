@@ -1,115 +1,103 @@
-Return-Path: <devicetree+bounces-194774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F812AFF735
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 05:00:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1490AFF781
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 05:32:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A74CD562FBD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 02:59:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18F184A411A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 03:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5861C28136B;
-	Thu, 10 Jul 2025 03:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA8B1E573F;
+	Thu, 10 Jul 2025 03:32:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JkH1wiXJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hAoVTWu3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2327428134C;
-	Thu, 10 Jul 2025 03:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAEAB8821;
+	Thu, 10 Jul 2025 03:32:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752116405; cv=none; b=qUkMO596wFk0jpDGVmHEtIAIJiCkl6FIO65wKGcMwZd0yoo/RXgetutbsvwSZ2d5z4eoMO++PiVGdoh/0O0tyEXx2PLhTJWuB5vqHdjEPDa9C0fkN+39ay5lvGP33QbmSegVK/imPhpS5/3LPih8AltdmVX/9orxcA/PvijnZcQ=
+	t=1752118344; cv=none; b=ZTisUnhIe7gf/c6OorKfXsBNl+85c6DGaqhmYxyCVo/JoxW8rG9YNxnr9YlRjyQQttNnejuCji6wo3l8wDNCqbNcMVe23XXhErCkw+1g0WmFy0cC2H/S7gVEU0yPm+mNYF0cGvZLaZglUWEHSAEzPZgqGUa+qx+oMEeIaBMtUAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752116405; c=relaxed/simple;
-	bh=oyTTKAm8NxEW9WEWNi24ZZzDpdrF2xXPDNHBe+pVZdM=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=h16Xfu7GNQlrteCjzeyzx0fyXMwfoejz3awlcqawqYHJgsEKYVe5I6u7oXn50ILRzTOXePtHE6iESpMv7UEKlOLLzDYcDuwkV/OZnHm6m7WX+QbAyVquSYQBe74ZycVGJPGv7hhGg25kDOH/CoViel3dB8e+aW+7Hu9YOwUVXds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JkH1wiXJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D23CC4CEF0;
-	Thu, 10 Jul 2025 03:00:04 +0000 (UTC)
+	s=arc-20240116; t=1752118344; c=relaxed/simple;
+	bh=oxGPO90kQ8j+s8Nl8EgW9xfp03BNzI52lv+hwW5eeqI=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Nl3w443AZ1vp4AUFQM2M0zquYZDrTp/RkJG7Hu+o91QXDp7k/v8UrhxQE7Si/lx4aiRw0nPO9eHh5j31UoD7mFuTU5c3hNR1o1QdsSHH+PbxILmuXDKgb8HL9YD6lQ7K1QOkP+2VnGCgJvfClWmcFT0DkIfATtDPHdzDns6is64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hAoVTWu3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21A33C4CEEF;
+	Thu, 10 Jul 2025 03:32:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752116404;
-	bh=oyTTKAm8NxEW9WEWNi24ZZzDpdrF2xXPDNHBe+pVZdM=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=JkH1wiXJ3IyBrWAtBjNGvCYNwGLaFSRmUYgR/wbpGk7vVgl87dMoMS22UEbGWZff4
-	 jSr+4bFGcyxwjzNpOYp2Apy4XxH0v2RUx8hT0MF1aqLyES/4rCUwxAL7EP/yH9GxUo
-	 kvrwtTQu58fVxBt8WQ4S09nc67hqOKDxkWFx5Fyuvm2/u+5TAVcmHQYbfAY4NXXBn1
-	 jEYyB1jpRJ5c8PXW4HQpedwJkh92NEtOTBfjUt9eL0whWv7oTE7eL2WLDYQjdiVH+Y
-	 tHJZ9OKHD6moGNK2H2BZMCNfckXtXrBZMRSXtbDns2l8xxDcylAjcDyVauNdJMUSEG
-	 FKA01f7cGm4gQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33D7F383B261;
-	Thu, 10 Jul 2025 03:00:28 +0000 (UTC)
+	s=k20201202; t=1752118343;
+	bh=oxGPO90kQ8j+s8Nl8EgW9xfp03BNzI52lv+hwW5eeqI=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=hAoVTWu32BeoY6rMDV1LAW6x1InCW45cEMjW3Ok3rX1vaXaAkfIybTgrZQ6DrfF0C
+	 yK/0L8ipNICEfa/yzlJHR1Tb7iWiq42J6Ca77rFmVkfWZrqq2qlR28KIArzhoFS/zr
+	 94/tTOFTfGlTuYtNaaPkD3un3cdGZyEZqglmlHu7gRSAM6A78M5O6ICyedni4N9DpP
+	 fqTLhR+jt9PlLmKZC11MK5d9So7/BF4z11ZtMhF1z+qvTGhno21FD6eqmOV9YwdznQ
+	 rt5dVkeV6vjfS4JDzs/VVYakb8x94IE3zrb1e8qujyJ/VDt+rr2ovWlCRslG2La/db
+	 0lwpKxUzAHzWA==
+Date: Wed, 09 Jul 2025 22:32:22 -0500
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v7 0/4] net: phy: bcm54811: PHY initialization
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175211642700.969691.12423732626621793373.git-patchwork-notify@kernel.org>
-Date: Thu, 10 Jul 2025 03:00:27 +0000
-References: <20250708090140.61355-1-kamilh@axis.com>
-In-Reply-To: <20250708090140.61355-1-kamilh@axis.com>
-To: =?utf-8?q?Kamil_Hor=C3=A1k_-_2N_=3Ckamilh=40axis=2Ecom=3E?=@codeaurora.org
-Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
- andrew+netdev@lunn.ch, horms@kernel.org, corbet@lwn.net,
- linux-doc@vger.kernel.org
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, vkoul@kernel.org, anishkmr@amazon.com, 
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ jyxiong@amazon.com, miguel.lopes@synopsys.com, kishon@kernel.org, 
+ linux-phy@lists.infradead.org
+To: Karthik Poduval <kpoduval@lab126.com>
+In-Reply-To: <7f4b676678b27ea91314c834a297c1e057959b09.1752106239.git.kpoduval@lab126.com>
+References: <cover.1752106239.git.kpoduval@lab126.com>
+ <7f4b676678b27ea91314c834a297c1e057959b09.1752106239.git.kpoduval@lab126.com>
+Message-Id: <175211834224.541763.16377287764717313428.robh@kernel.org>
+Subject: Re: [PATCH v2 2/2] phy: dw-dphy-rx: Add dt bindings for Synopsys
+ MIPI D-PHY RX
 
-Hello:
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Tue, 8 Jul 2025 11:01:36 +0200 you wrote:
-> Proper bcm54811 PHY driver initialization for MII-Lite.
+On Wed, 09 Jul 2025 19:42:21 -0700, Karthik Poduval wrote:
+> Add DT Bindings for Synopsys D-PHY RX, presently tested on version 1.2
 > 
-> The bcm54811 PHY in MLP package must be setup for MII-Lite interface
-> mode by software. Normally, the PHY to MAC interface is selected in
-> hardware by setting the bootstrap pins of the PHY. However, MII and
-> MII-Lite share the same hardware setup and must be distinguished by
-> software, setting appropriate bit in a configuration register.
-> The MII-Lite interface mode is non-standard one, defined by Broadcom
-> for some of their PHYs. The MII-Lite lightness consist in omitting
-> RXER, TXER, CRS and COL signals of the standard MII interface.
-> Absence of COL them makes half-duplex links modes impossible but
-> does not interfere with Broadcom's BroadR-Reach link modes, because
-> they are full-duplex only.
-> To do it in a clean way, MII-Lite must be introduced first, including
-> its limitation to link modes (no half-duplex), because it is a
-> prerequisite for the patch #3 of this series. The patch #4 does not
-> depend on MII-Lite directly but both #3 and #4 are necessary for
-> bcm54811 to work properly without additional configuration steps to be
-> done - for example in the bootloader, before the kernel starts.
+> Signed-off-by: Karthik Poduval <kpoduval@lab126.com>
+> ---
+>  .../bindings/phy/snps,dw-dphy-rx.yaml         | 44 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.yaml
 > 
-> [...]
 
-Here is the summary with links:
-  - [net-next,v7,1/4] net: phy: MII-Lite PHY interface mode
-    https://git.kernel.org/netdev/net-next/c/67c0170566b5
-  - [net-next,v7,2/4] dt-bindings: ethernet-phy: add MII-Lite phy interface type
-    https://git.kernel.org/netdev/net-next/c/fbe937473f3a
-  - [net-next,v7,3/4] net: phy: bcm5481x: MII-Lite activation
-    https://git.kernel.org/netdev/net-next/c/34bf222824f6
-  - [net-next,v7,4/4] net: phy: bcm54811: PHY initialization
-    https://git.kernel.org/netdev/net-next/c/3117a11fff5a
+My bot found errors running 'make dt_binding_check' on your patch:
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.example.dtb: dw-dphy@900000040 (snps,dw-dphy-1p2): reg: [[0, 2415919168], [0, 32], [0, 2415923200], [0, 8]] is too long
+	from schema $id: http://devicetree.org/schemas/phy/snps,dw-dphy-rx.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/7f4b676678b27ea91314c834a297c1e057959b09.1752106239.git.kpoduval@lab126.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
