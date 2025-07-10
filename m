@@ -1,186 +1,117 @@
-Return-Path: <devicetree+bounces-194851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7E1CAFFBDA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:12:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C047AAFFBD7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:11:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CD48167946
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:11:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEA7316A19C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:11:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6748F28BAB3;
-	Thu, 10 Jul 2025 08:11:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560FF28B7FC;
+	Thu, 10 Jul 2025 08:11:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="j3oWKMIv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF8F028B7DA;
-	Thu, 10 Jul 2025 08:11:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4E4E286889
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 08:11:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752135113; cv=none; b=XPmhSZlBsgDc9LDf43iKIxoEz+xLGXr1ckLGjfNC38YmJ5dT0daX4BlEchcwL03m5gIIDab5nIA91ttDQa2hdvj+PwSuSrPGC4Ol21zUWtkxSd1CkZh3KSBT4j5FOy4FCGO+PpMwv7KVQ3epYfSj7i/aLnRsLnJGKpS0yyqzs70=
+	t=1752135098; cv=none; b=uLAe7K1ogseHK6D6P6GJnjKjJXetrxq5eDaqLSaufS2aFCxf7G3SrX4xyQ6Uliqhc4EUpkojSJxvIA6zfzNZeoUrc0EN4BHo/5ackU9GiY4ZAnNwOs8JxHXIBCtdHRe2d8veGoT2Wv62ZLFLlAp7OGTML0XRPGP7mBue/KGkVUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752135113; c=relaxed/simple;
-	bh=KdRG9hQox2LIVg5BQbJagwBCdXub17DTK0Abf1w5+Pk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Iob7tMiepsMK1OOy/NbAPZ9sE0gdysloBzprTAIq79bWfyw679SofW1zhLpG9w5Jfj3t9eypWAmktU+11Ng9QA1vMVILcWwi4vDdULQCI2nHGR24eAGXw8WTJ8RnWYmkUJdSp+3cQ6rnrwZPfGIp3jVgPydYpPEqnC66q7xuad0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=54.254.200.128
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
-X-QQ-mid: zesmtpsz8t1752135064t9362b96b
-X-QQ-Originating-IP: r3LYCXsJvRGu4NM29rklbYDyiBmQ2Aw00APHKgzq3Aw=
-Received: from localhost ( [183.17.231.23])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 10 Jul 2025 16:11:02 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 14875192277165604199
-EX-QQ-RecipientCnt: 14
-Date: Thu, 10 Jul 2025 16:11:02 +0800
-From: Nick Li <nick.li@foursemi.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
-	tiwai@suse.com, xiaoming.yang@foursemi.com,
-	danyang.zheng@foursemi.com, like.xy@foxmail.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: Add schema for FS2104/5S audio
- amplifiers
-Message-ID: <BD2D8A14FDC941B8+aG91lowfru0KiWWW@foursemi.com>
-References: <20250703035639.7252-1-nick.li@foursemi.com>
- <20250708112901.25228-1-nick.li@foursemi.com>
- <20250708112901.25228-3-nick.li@foursemi.com>
- <20250709-invisible-frigatebird-of-felicity-7e87c4@krzk-bin>
+	s=arc-20240116; t=1752135098; c=relaxed/simple;
+	bh=X7L2O1InbFvnP1XnT/qvX7QB1qmXSTQ8r73bRzTrKWk=;
+	h=From:To:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=nFWt944UjX9787fD9yoAVgjuMC2AnJmnTRVCKNGvIB3kBjAvoJFJTtRQJMtOdoPBYUcESuo/1nU7koWIth9GgaNcm+W5DQRKH530dughlmMvLTF0L7f6FHeDVK/CqzskveJjVPvPvRcsv4atXno79N2e3CIZ2kgNrEaJa8PbH3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=j3oWKMIv; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250710081133epoutp03d52bec45233a2e1fd6db48bad17493bc~Q1ZWfvToj0232702327epoutp03I
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 08:11:33 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250710081133epoutp03d52bec45233a2e1fd6db48bad17493bc~Q1ZWfvToj0232702327epoutp03I
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1752135093;
+	bh=X7L2O1InbFvnP1XnT/qvX7QB1qmXSTQ8r73bRzTrKWk=;
+	h=From:To:In-Reply-To:Subject:Date:References:From;
+	b=j3oWKMIvCRVp/Dv455YeJJmmPM/J5mmiE31MlmOozDYdqHCqHuUHcqwHVMy829xRj
+	 ohRN/B0EP3DewBQDf97AV0irRclP26ERtNCBYLVAbqYm/sp1MgH+FcBtiDkg1hvj78
+	 51UFADaM/2Co0PMP+A978xc8H+034LMIMUE2Ur1g=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250710081133epcas5p3a6c6cebcf5094ebfef37beff296a6b8b~Q1ZWJsbsT0941409414epcas5p3G;
+	Thu, 10 Jul 2025 08:11:33 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.182]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4bd6xb28lkz6B9mG; Thu, 10 Jul
+	2025 08:11:31 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250710081130epcas5p4190c82d672df991e04e0e131f6d372e1~Q1ZTyXAV51739417394epcas5p4V;
+	Thu, 10 Jul 2025 08:11:30 +0000 (GMT)
+Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250710081129epsmtip2d162f17d460245beda3d8f3d64ed8b28~Q1ZSuE_Vl0354303543epsmtip2I;
+	Thu, 10 Jul 2025 08:11:29 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>, "'Peter
+ Griffin'" <peter.griffin@linaro.org>, =?UTF-8?Q?'Andr=C3=A9_Draszik'?=
+	<andre.draszik@linaro.org>, "'Tudor Ambarus'" <tudor.ambarus@linaro.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+In-Reply-To: <20250710073443.13788-3-krzysztof.kozlowski@linaro.org>
+Subject: RE: [PATCH 1/2] arm64: tesla/google: MAINTAINERS: Reference
+ "SoC clean" maintainer profile
+Date: Thu, 10 Jul 2025 13:41:28 +0530
+Message-ID: <07e201dbf172$3de42810$b9ac7830$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250709-invisible-frigatebird-of-felicity-7e87c4@krzk-bin>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: MmIUUz9KGMMd5/Ko+h+fnJi05RQWsq8reqQBiAt6oWi59ZBkTF/AFz90
-	Z/h2SSR2NpjrPRMrsXNqumktM4Pz1/6xVSwKsmnp2CYopdv49p+XfHAfo9dbShYpE9s3gTL
-	/zHE+Vyd7bRdltaiRVGnOR5bUiT3hj4MRPAZhbW3jVXAcKbglRTJsj/vYjalkFpJWHrm/Vo
-	GvArP8Ao9I9/jhHQRthfbcbK4mM1cq5kNgo1sQcoVbMUN7/kO3FxYTQ8jNmU/SEIOcl1qUH
-	1L65sng1sAEZzrNEYDNAnBLzSywiyk36ytXoM8/2TgSAKVvnbA3CisadctPHZcp+OAJqNzV
-	p2/d0jpsKm8+/4CUfeRxCZ5FNjjYaR4n450qHfJmmQ3FXn5lL9vyPjEclgdTOa80Ga4Zc89
-	+nxOmEHz4CRY/jVLQ6q2RbHVEUDKRXnBxez8RrdvAcN6fNtLtINkhiNTrbWi36GQsWANm3B
-	Qv1+YH28gT3HUgQHK0no4d6bHCFC/vEDl4El3xiFgaL//HwnCE3+uksBP/svby2guLPX8aS
-	hUuhWRN1SpFB/R/RWSLSa9GXNci55rugKpTQOkF1NvwykErSr8JCVOi6Woj6B6Ce/UgxRy6
-	AtzjSUjkhkHoBgxWTzyqx9rqIp5urcAF7Y+FFDjMe53pxbADC9FXecvc44D4Z2O6sYuD+sz
-	kI1790MKbyPM/x8uQGSvvQ6tJ4/Ewp9YGDorqq6HReNLLDX5LHCRsjLj6a/FP6GSvAuwyYh
-	1YBTzceS2p2TenxVqiWW7Knt1jgs+5esClDChFgDZlq+/3jKPf2gSuH6fYy4oIXRbf6WR4+
-	uYJrLY/XaOGpAuyJA/1K/zI/ng5lCelkF0grgIhalmN4VZVHAXFEsn5GUzlV9FnCvaoAfgZ
-	PuMIMF3w7K8fvC29fAAqWTKAtorM4YZ7zTl12J5H9WRG3sOz2h3KyxhGNvFSHR0UsDApiPM
-	LbGLs6hy+gCrteV4MlWPTx3xI/HCMxZIHXUCkszjI011YM3PepOVxUp9nJjFU4WwTMzUdjM
-	DrH5vsy1qbyYibpps/2DFOfrEk8zVPZEFKxWxoqA==
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
-X-QQ-RECHKSPAM: 0
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-us
+Thread-Index: AQLnGEqJ0zqx5E8MZ3x+2WrPG3D23AGimcLLsgeevsA=
+X-CMS-MailID: 20250710081130epcas5p4190c82d672df991e04e0e131f6d372e1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250710073503epcas5p2ad88e48f23891c3592522dd22aee7bf9
+References: <CGME20250710073503epcas5p2ad88e48f23891c3592522dd22aee7bf9@epcas5p2.samsung.com>
+	<20250710073443.13788-3-krzysztof.kozlowski@linaro.org>
 
-On Wed, Jul 09, 2025 at 12:40:33PM +0200, Krzysztof Kozlowski wrote:
-> On Tue, Jul 08, 2025 at 07:28:59PM +0800, Nick Li wrote:
-> > +description:
-> > +  The FS2104 is a 15W Inductor-Less, Stereo, Closed-Loop,
-> > +  Digital Input Class-D Power Amplifier with Enhanced Signal Processing.
-> > +  The FS2105S is a 30W Inductor-Less, Stereo, Closed-Loop,
-> > +  Digital Input Class-D Power Amplifier with Enhanced Signal Processing.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - foursemi,fs2104
-> > +          - const: foursemi,fs2105s
-> > +      - enum:
-> > +          - foursemi,fs2105s
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +    description:
-> > +      I2C address of the device. Refer to datasheet for possible values
-> 
-> Now the description is entirely redundant, brings no value. Drop.
+Hi Krzysztof
 
-OK.
-
-> 
-> > +
-> > +  clocks:
-> > +    description: The clock of I2S BCLK
-> 
-> This was different... Previous code was correct, this is not correct.
-> And nothing in changelog explains this. Do not make random changes after
-> review.
-> 
-
-OK, I will recover it to version v1.
-
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bclk
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  '#sound-dai-cells':
-> > +    const: 0
-> > +
-> > +  pvdd-supply:
-> > +    description:
-> > +      Regulator for power supply(PVDD in datasheet).
-> > +
-> > +  dvdd-supply:
-> > +    description:
-> > +      Regulator for digital supply(DVDD in datasheet).
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +    description:
-> > +      It's the SDZ pin in datasheet, the pin is active low,
-> > +      it will power down and reset the chip to shut down state.
-> > +
-> > +  firmware-name:
-> > +    maxItems: 1
-> > +    description: |
-> > +      The firmware(*.bin) contains:
-> > +      a. Register initialization settings
-> > +      b. DSP effect parameters
-> > +      c. Multi-scene sound effect configurations(optional)
-> > +      It's gernerated by FourSemi's tuning tool.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reset-gpios
-> > +  - firmware-name
-> > +  - '#sound-dai-cells'
-> 
-> Keep the same order as in list of properties. OTOH, missing supplies.
-
-OK, we will fix the order, but the supplies may not be used as regulator,
-we mark them as required, is it OK?
-
-Best regards,
-Nick
-
-> 
-> > +
-> > +allOf:
-> > +  - $ref: dai-common.yaml#
-> > +
-> > +unevaluatedProperties: false
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
+> Sent: Thursday, July 10, 2025 1:05 PM
+> To: Peter Griffin <peter.griffin=40linaro.org>; Andr=C3=A9=20Draszik=0D=
+=0A>=20<andre.draszik=40linaro.org>;=20Tudor=20Ambarus=20<tudor.ambarus=40l=
+inaro.org>;=0D=0A>=20Alim=20Akhtar=20<alim.akhtar=40samsung.com>;=20linux-a=
+rm-=0D=0A>=20kernel=40lists.infradead.org;=20linux-samsung-soc=40vger.kerne=
+l.org;=0D=0A>=20devicetree=40vger.kernel.org;=20linux-kernel=40vger.kernel.=
+org=0D=0A>=20Cc:=20Krzysztof=20Kozlowski=20<krzysztof.kozlowski=40linaro.or=
+g>=0D=0A>=20Subject:=20=5BPATCH=201/2=5D=20arm64:=20tesla/google:=20MAINTAI=
+NERS:=20Reference=20=22SoC=0D=0A>=20clean=22=20maintainer=20profile=0D=0A>=
+=20=0D=0A>=20Effectively=20all=20Tesla=20FSD=20and=20Google=20GS101=20DTS=
+=20patches=20go=20via=20Samsung=20SoC=0D=0A>=20maintainer,=20who=20applies=
+=20the=20same=20rules=20as=20for=20Samsung=20SoC:=20DTS=20must=20be=0D=0A>=
+=20fully=20DT=20bindings=20compliant=20(=60dtbs_check=20W=3D1=60).=20=20Exi=
+sting=20sources=20already=20are=0D=0A>=20compliant,=20so=20just=20document=
+=20that=20implicit=20rule=20by=20mentioning=20respective=0D=0A>=20maintaine=
+r=20profile=20in=20their=20entries.=0D=0A>=20=0D=0A>=20Cc:=20Peter=20Griffi=
+n=20<peter.griffin=40linaro.org>=0D=0A>=20Cc:=20Andr=C3=A9=20Draszik=20<and=
+re.draszik=40linaro.org>=0D=0A>=20Cc:=20Tudor=20Ambarus=20<tudor.ambarus=40=
+linaro.org>=0D=0A>=20Cc:=20Alim=20Akhtar=20<alim.akhtar=40samsung.com>=0D=
+=0A>=20Signed-off-by:=20Krzysztof=20Kozlowski=20<krzysztof.kozlowski=40lina=
+ro.org>=0D=0A>=20---=0D=0AReviewed-by:=20Alim=20Akhtar=20<alim.akhtar=40sam=
+sung.com>=0D=0A=0D=0A=0D=0A
 
