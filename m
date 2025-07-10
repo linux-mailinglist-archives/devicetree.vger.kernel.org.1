@@ -1,144 +1,149 @@
-Return-Path: <devicetree+bounces-194762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ABEDAFF62A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 02:52:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6518AAFF62F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 02:58:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59E7E3BAD27
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:52:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8E514A2138
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:58:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E1972605;
-	Thu, 10 Jul 2025 00:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45FFC757EA;
+	Thu, 10 Jul 2025 00:58:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DXeD96cj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0398539A;
-	Thu, 10 Jul 2025 00:52:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE89539A;
+	Thu, 10 Jul 2025 00:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752108766; cv=none; b=ecLdItJNOQ8ckJQ71eBJifbv4IewbDMWLRH3Ft9ZM7vhtNAELYgPczWx9eY0Xzfe7MyygXQBBioS6Zivi50HE7Db0tNDRexScUZXJmuElkE3G3s78JoOu/+UZnF6WtGyl0QF/qbsEJXoNSabaEO/iHNXRclLiGJM2Evrad+yn/s=
+	t=1752109103; cv=none; b=UdOGcp/Cjswx+qJjZGBxzcOMtNCFNQVyrtzQKMuRxHpDMZmC3fRS1N/OCPMUSBzByctDdMsMc1EnMjWURrZzT/zLALpo5YaUKN/bQDUaRY4r2JvK7Agk0JYgl4Kn54C41zKH47ZCLGRalMnmPvXuuGO0/3O6kXKiaO9YpQv+fEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752108766; c=relaxed/simple;
-	bh=PcQOAmMRi9eC9ZiSQYO5b0e3eoTemRSNUMyF/PHyqt4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=rY2uqZm6tNjw6ftqjN+bQcEQk23ESk2yFoSQ2A1J0Mn3H3JwLXatPZNt7hK02kaucT+jukauAOwgROrVnh3fWIFo4CKS0b6BPcJMNUIs33ciaAPaUxXJhd2hxMKjkCSGGKhsH4FtTUsai/ieenSMCqRGxDPTI5N35KLSaKoXOcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
- ajax-webmail-app2 (Coremail) ; Thu, 10 Jul 2025 08:52:26 +0800 (GMT+08:00)
-Date: Thu, 10 Jul 2025 08:52:26 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
-To: "Bo Gan" <ganboing@gmail.com>, mturquette@baylibre.com, sboyd@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: Re: [PATCH v3 2/2] clock: eswin: Add eic7700 clock driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <97c55ec2-500b-476e-b99c-a4065b6ba574@gmail.com>
-References: <20250624103212.287-1-dongxuyang@eswincomputing.com>
- <20250624103314.400-1-dongxuyang@eswincomputing.com>
- <0f3aff5b-ff54-48a2-ae95-b344d311c3a1@gmail.com>
- <7a325b0b.2de1.197e94c605b.Coremail.dongxuyang@eswincomputing.com>
- <97c55ec2-500b-476e-b99c-a4065b6ba574@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1752109103; c=relaxed/simple;
+	bh=P1d0IshYGbaAr/Hr/+3PPdk883uiqvPufCBEpnmmtQE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MjaEY4tXAPIeTxWxsqZO/Bt/D9KReClKxAUH70cy4ae5+p+5ngTmEMM08Bvq8nWdFL28KNPqnOlPllf3TwBWQa9KuRKwt6baR3rq5ZWYaW3Zl/E+/jLR/JpUHrBCqQaoqOhu5TmbEM2JW3NKIUzyNhidrzHdDiNrHgiAy79qjZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DXeD96cj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48AB6C4CEEF;
+	Thu, 10 Jul 2025 00:58:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752109102;
+	bh=P1d0IshYGbaAr/Hr/+3PPdk883uiqvPufCBEpnmmtQE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DXeD96cjQYgk7BBvsbsPthJVjBguygDmr58DkUqtClTt8EYDlOo2PO4EDaT8nBO4l
+	 1htaIsnjtbK2zziciZHnyyoagRCGsofviI36cLjmtD9e9fIpsOuA85YaUDMtq/+7eD
+	 eYymN8TttJ1F3gOdwf5maxP6ljB7eeD4/NphgE+w/tSEIrYTarNMwtI10URmBjDdSy
+	 AGqsXOcoiltthV0WfAIRQhEx/YHJyxYlDSHL175fZYxZUUbteBiccq6UzGgJePXyZf
+	 8XNB4PH7ApHiVscyApAwanNQw+aCFeEOQp3VHlpMAN49Rk9o8pJoJgcbRLqjEa+zzD
+	 vNcELqwyc9hlQ==
+Date: Wed, 9 Jul 2025 19:58:21 -0500
+From: Rob Herring <robh@kernel.org>
+To: Raymond Mao <raymond.mao@linaro.org>
+Cc: linux-doc@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org
+Subject: Re: [PATCH] docs: devicetree: overlay-notes: recommend top-level
+ compatible in DTSO
+Message-ID: <20250710005821.GA94507-robh@kernel.org>
+References: <20250624181320.2810521-1-raymond.mao@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <5bbfd825.2ea1.197f1d1c88a.Coremail.dongxuyang@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgA31pTKDm9oYBCsAA--.18496W
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAgETAmhumckFf
-	QAAs8
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWkCw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250624181320.2810521-1-raymond.mao@linaro.org>
 
-SGkgQm8sCgpUaGFua3MgZm9yIHRoZSBncmVhdCBpbnB1dC13ZeKAmWxsIHdvcmsgb24gdGhlc2Ug
-Y2hhbmdlcyEKCj4gSGkgWHV5YW5nCj4gCj4gT24gNy84LzI1IDAyOjA5LCBYdXlhbmcgRG9uZyB3
-cm90ZToKPiA+IEhpIEJvLAo+ID4gCj4gPiBUaGFuayB5b3UgZm9yIHlvdXIgc3VnZ2VzdGlvbiwg
-aXQgaW1wcm92ZXMgb3VyIGRyaXZlciBkZXZlbG9wbWVudCBlZmZvcnRzLgo+ID4gUGVyIHlvdXIg
-cmVjb21tZW5kYXRpb25zLCB3ZSB3aWxsIG9wdGltaXplIHRoZSBkcml2ZXIgcHJvZ3JhbS4KPiA+
-IAo+ID4+IE9uIDYvMjQvMjUgMDM6MzMsIGRvbmd4dXlhbmdAZXN3aW5jb21wdXRpbmcuY29tIHdy
-b3RlOgo+ID4+IFRoaXMgaXMgdG90YWxseSB3cm9uZyBJIHRoaW5rLiBXaHkgZG9lcyB0aGUgY2xv
-Y2sgZHJpdmVyIGhhdmUgdG8gY2FyZSBhYm91dAo+ID4+IENQVSB2b2x0YWdlPyBUaGlzIGZ1bmN0
-aW9uYWxpdHkgYmVsb25ncyB0byBjcHVmcmVxLiBZb3UgY2FuIHRha2UgSkg3MTEwIGFzCj4gPj4g
-cmVmZXJlbmNlIGFuZCBzZWUgaG93IGl0J3MgZG9uZTogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
-YWxsLzIwMjMwNjA2MTA1NjU2LjEyNDM1NS00LW1hc29uLmh1b0BzdGFyZml2ZXRlY2guY29tLwo+
-ID4+IExvb2tpbmcgYXQgZXN3aW4gdmVuZG9yIHUtYm9vdCwgaXQgc2VlbXMgeW91IGhhdmUgc29t
-ZSBTb0MgdGhhdCBjYW4gb3BlcmF0ZQo+ID4+IGF0IDEuNkdoeiB3aXRob3V0IGJ1bXBpbmcgdGhl
-IHZvbHRhZ2UuIFdoeSBub3QgZG8gaXQgdmlhIG9wZXJhdGluZy1wb2ludHMtdjIsCj4gPj4gbGlr
-ZSB0aGUgb3RoZXIgU29Dcz8gSXQgY2FuIHRoZW4gYmUgb3ZlcnJpZGRlbiBieSBib2FyZCBkZXZp
-Y2UtdHJlZSBhbmQgdS1ib290Cj4gPj4gQWxzbyB0aGUgbG9naWMgb2Ygc3dpdGNoaW5nIGNsb2Nr
-IGJlZm9yZSBjaGFuZ2luZyBQTEwgc2hvdWxkIGJlIGRvbmUgdXNpbmcKPiA+PiBub3RpZmllcjog
-aHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvci8yMDI0MDgyNjA4MDQzMC4xNzk3ODgtMi14aW5neXUu
-d3VAc3RhcmZpdmV0ZWNoLmNvbQo+ID4+IFJlbW92ZSB1bmRvY3VtZW50ZWQgcGFyYW1ldGVycyBz
-dWNoIGFzICJjcHVfbm9fYm9vc3RfMV82Z2h6IiBhbmQKPiA+PiAiY3B1LWRlZmF1bHQtZnJlcXVl
-bmN5Ii4KPiA+IAo+ID4gV2hlbiBoaWdoZXIgY3B1IGZyZXF1ZW5jeSBpcyBhcHBsaWVkLCB0aGUg
-aGlnaGVyIHZvbHRhZ2UgbXVzdCBiZQo+ID4gY29uZmlndXJlZCBhY2NvcmRpbmdseS4gU28sIGZy
-b20gbXkgcGVyc3BlY3RpdmUsIGl0J3MgYmV0dGVyIHRvCj4gPiBpbXBsZW1lbnQgdGhlIGNsaywg
-cmVndWxhdG9yIGFuZCBjcHUgZnJlcXVlbmN5IHNlcGFyYXRlbHkuCj4gPiBjbGsuYyBhbmQgY2xr
-LWVpYzc3MDAuYyBhcmUgcmVzcG9uc2libGUgZm9yIHNldHRpbmcgY2xrIG9ubHkuCj4gPiByZWd1
-bGF0b3ItZWljNzcwMC5jIGlzIGZvciB2b2x0YWdlIGNvbmZpZ3VyYXRpb24uCj4gPiBjcHVmcmVx
-LWVpYzc3MDAuYyBpcyBmb3IgY3B1IGZyZXF1ZW5jeSBjb25maWd1cmF0aW9uLCBhbmQgaXQgd2ls
-bCBjYWxsCj4gPiB0aGUgQVBJcyBvZiBjbGsgYW5kIHJlZ3VsYXRvci4KPiA+IAo+ID4gSXMgdGhp
-cyB0aGUgcmlnaHQgYXBwcm9hY2g/Cj4gPiAKPiAKPiBTb21lIGNvbnRleHQgZm9yIHBlb3BsZSBu
-b3QgZmFtaWxpYXIgd2l0aCB0aGlzIFNvQy9Cb2FyZC4gVGhlIHJlZ3VsYXRvciBpcyBub3QKPiBw
-YXJ0IG9mIHRoZSBTb0MsIGJ1dCBvbiB0aGUgYm9hcmQuIFRoZSBHUElPIHBpbiBpcyBjb250cm9s
-bGluZyB0aGUgcmF0aW8gb2YgYQo+IERDL0RDIGNvbnZlcnRlciB0byBzZWxlY3QgYmV0d2VlbiAw
-LjhWIGFuZCAwLjlWLiBJIHRoaW5rIHRoZXJlJ3Mgbm8gbmVlZCBmb3IKPiByZWd1bGF0b3ItZWlj
-NzcwMC5jLCBhbmQgaXQgYWN0dWFsbHkgd291bGQgYmUgd3JvbmcgaWYgeW91IGRvIGl0IHRoaXMg
-d2F5LAo+IGJlY2F1c2UgcGVyIHlvdXIgZGF0YXNoZWV0LCBDUFUgdm9sdGFnZSBjYW4gYmUgYW55
-IHZhbHVlIHdpdGhpbiBhIHN1cHBvcnRlZAo+IHJhbmdlLCBhbmQgaXQncyB1cCB0byB0aGUgYm9h
-cmQgdmVuZG9yIHRvIGRldGVybWluZSB0aGUgdm9sdGFnZS4gVGh1cywgYmV0dGVyCj4gdG8gbW9k
-ZWwgaXQgd2l0aCBhICJyZWd1bGF0b3ItZ3BpbyIgaW4gdGhlIGRldmljZS10cmVlLiBObyBjb2Rl
-IGNoYW5nZSBuZWVkZWQuCj4gKEFzc3VtaW5nIHlvdSBoYXZlIEdQSU8vcGluY3RybCBtZXJnZWQs
-IHdoaWNoIHRoaW5rIHlvdSBhbHJlYWR5IGRpZD8pCj4gCj4gRm9yIGNwdWZyZXEsIEkgZG9uJ3Qg
-c2VlIHdoeSBpdCBjYW4ndCBiZSBqdXN0IG1vZGVsZWQgYnkgIm9wZXJhdGluZy1wb2ludHMtdjIi
-Cj4ganVzdCBsaWtlIG90aGVyIFNvQy9ib2FyZHMuIE9uY2UgY29tcGxpY2F0aW9uIGlzIHRoZSAw
-LjgvMC45IHZvbHRhZ2Ugc2VsZWN0aW9uCj4gSSBzZWUgdHdvIHBvdGVudGlhbCB3YXlzIHRvIHNv
-bHZlIGl0IChhc3N1bWluZyB1c2luZyBvcHApOgo+IAo+IDEuIEV4dGVuZCB0aGUgb3BwIHRvIGR5
-bmFtaWNhbGx5IGNob29zZSAwLjgvMC45IGJhc2VkIG9uIHlvdXIgT1RQIHNldHRpbmdzCj4gMi4g
-SXNvbGF0ZSB0aGlzIGxvZ2ljIGluIHUtYm9vdCB0byBwYXRjaCB0aGUgb3BwLXRhYmxlIGluIGRl
-dmljZS10cmVlIGJlZm9yZQo+ICAgICBib290LCBvciBpbiBncnViIGJvb3Qgc2NlbmFyaW8sIGFs
-c28gaG9vayB0aGUgRUZJX0RUX0ZJWFVQIHByb3RvY29sIGluCj4gICAgIHUtYm9vdCB0byBwYXRj
-aCBkZXZpY2UtdHJlZSBiZWZvcmUgZ3J1YiBoYW5kcyBvZmYgdG8gTGludXgKPiAKPiBGb3IgMSwg
-eW91IHByb2JhYmx5IG5lZWQgdG8gaGF2ZSBhIHN0YWJsZSBPVFAgbGF5b3V0LCB3aGljaCBkb2Vz
-bid0IHZhcnkgZnJvbQo+IGNoaXAgdG8gY2hpcCBhbmQgYm9hcmQgdG8gYm9hcmQuIEl0IGFsc28g
-cmVxdWlyZXMgeW91IHRvIGhhdmUgYSBPVFAgZHJpdmVyIGluCj4gTGludXgga2VybmVsIHRvIHJl
-YWQgZnJvbSBPVFAuCj4gCj4gMiBpcyBwcm9iYWJseSBzaW1wbGVyIGFuZCBhIGxvdCBlYXNpZXIg
-dG8gaW1wbGVtZW50LiBUaGVyZSdzIGFsc28gdmVyeSBtaW5pbWFsCj4gb3IgdmlydHVhbGx5IG5v
-IGNvZGUgY2hhbmdlIHRvIExpbnV4LiBJdCdzIHBlcmhhcHMgZWFzaWVyIHRvIGRvIGJvYXJkIHNw
-ZWNpZmljCj4gc3R1ZmYgaW4gdS1ib290LiBZb3UgY2FuIHVzZSAwLjlWIGJ5IGRlZmF1bHQgaW4g
-b3BwLXRhYmxlIGluIGRldmljZS10cmVlIGFuZAo+IHUtYm9vdCBjYW4gZG8gdGhlIHdvcmsgb2Yg
-YWRqdXN0aW5nIGl0IGRvd24gdG8gMC44IGJhc2VkIG9uIHNvbWUgT1RQIHNldHRpbmdzLgo+IFRo
-ZXJlJ3MgYWxzbyBubyBoYXJtIGlmIHNvbWV0aGluZyB3ZW50IHdyb25nLCBlLmcuLCBPVFAgaXMg
-ZW1wdHkgb3IgdS1ib290Cj4gZG9lc24ndCBpbXBsZW1lbnQgdGhlIHBhdGNoaW5nIGxvZ2ljLiBJ
-biB0aGF0IGNhc2UsIHlvdSBqdXN0IHdhc3RlIHNvbWUgcG93ZXIuCj4gSXQncyBhbHNvIHBvc3Np
-YmxlIHRvIHJlbW92ZSBzb21lIGZyZXF1ZW5jaWVzIGluIHUtYm9vdCBpZiB0aGF0IGZyZXEgY2Fu
-J3QgYmUKPiBhY2hpZXZlZCBubyBtYXR0ZXIgaG93IGhpZ2ggdGhlIHZvbHRhZ2UuCj4gCj4gPj4g
-T3ZlcmFsbCBJIHRoaW5rIHlvdSBiZXR0ZXIgZG8gc29tZSByZWFsIGNsZWFudXAgYW5kIHJlZmFj
-dG9yIG9mIHRoaXMgcGF0Y2gKPiA+PiBiZWZvcmUgc2VuZGluZyBpdCBvdXQgYWdhaW4uIFRoZSBk
-cml2ZXIgaXMgcXVpdGUgbG9uZywgYW5kIEkgc3VnZ2VzdCB5b3Ugc2hvdWxkCj4gPj4gY29uc2lk
-ZXIgb3B0aW1pemluZy9jb25kZW5zaW5nIHRoZSBsb2dpYy4gSSBndWVzcyB5b3UgcHJvYmFibHkg
-Y2FycmllZCBvdmVyIHRoZQo+ID4+IHNhbWUgY29kZSBhbmQgaGFja3MgeW91IG1hZGUgZm9yIHRo
-ZSB2ZW5kb3IgdHJlZSAoZXN3aW5jb21wdXRpbmcvbGludXgtc3RhYmxlKQo+ID4+IFRoZXJlJ3Mg
-bm8gd2F5IHRoZXkgY2FuIGJlIGFjY2VwdGVkIGJ5IHVwc3RyZWFtLiBUYWtlIGEgbG9vayBhdCBv
-dGhlciBjbGsgdHJlZQo+ID4+IGltcGxlbWVudGF0aW9ucyBhbmQgc3BlbmQgc29tZSByZWFsIGVm
-Zm9ydCBmaXhpbmcgdGhlIGNvZGUuIERvbid0IGxldCB0aGUKPiA+PiByZXZpZXdlcnMgZ3JvdyBp
-bXBhdGllbnQgYnkgb25seSBjaGFuZ2luZyBzb21ldGhpbmcgc3VwZXJmaWNpYWxseS4KPiA+IAo+
-ID4gV2UnbGwgaW1wcm92ZSB0aGUgcXVhbGl0eSBvZiBvdXIgcmVzcG9uc2VzLgo+ID4gCj4gPiBC
-ZXN0IHJlZ2FyZHMsCj4gPiBYdXlhbmcKPiBCbwoKQmVzdCByZWdhcmRzLApYdXlhbmcK
++devicetree-spec (because linux-doc doesn't really care)
+
+On Tue, Jun 24, 2025 at 11:13:20AM -0700, Raymond Mao wrote:
+> When managing multiple base device trees and overlays in a structured
+> way (e.g. bundled in firmware or tools), it is helpful to identify the
+> intended target base DT for each overlay, which can be done via a
+> top-level compatible string in the overlay.
+
+I think this should be more general and more specific at the same time. 
+
+You might not want to match on a top-level board/soc compatible, but 
+rather the compatible for a specific node. For example, you may have an 
+overlay for a cape, hat, etc. that applies to a connector node and that 
+connector node could be on any number of boards or even multiple 
+connectors on 1 board. That's all under development, but so far in those 
+cases we expect some sort of connector driver to apply the overlays. But 
+I think you could have the same issue of identifying which overlay files 
+are relevant. I don't think folks working on add-on boards have thought 
+that far ahead.
+
+And since we don't know the target-path up front, it is just left blank 
+so far. It would be better if we expressed *something*. Perhaps 
+'target-compatible'? Something like that would work in your case I 
+think.
+
+You'd have to be somewhat crazy, but you can bundle a bunch of 
+mutually-exclusive or unrelated overlays within a single overlay file. I 
+don't know that we want to prevent doing that. Someone might come up 
+with some not crazy reason to do that...
+
+> 
+> This patch updates the document with a note and example for this
+> practice.
+> 
+> Signed-off-by: Raymond Mao <raymond.mao@linaro.org>
+> ---
+>  Documentation/devicetree/overlay-notes.rst | 28 ++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
+> index 35e79242af9a..30b142d1b2ee 100644
+> --- a/Documentation/devicetree/overlay-notes.rst
+> +++ b/Documentation/devicetree/overlay-notes.rst
+> @@ -103,6 +103,34 @@ The above bar.dtso example modified to use target path syntax is::
+>      ---- bar.dtso --------------------------------------------------------------
+>  
+>  
+> +Overlay identification
+> +----------------------
+> +
+> +When managing overlays dynamically or bundling multiple base device trees
+> +and overlays in a single system (e.g., in firmware, initramfs, or user-space
+> +tools), it becomes important to associate each overlay with its intended
+> +target base DT.
+> +
+> +To support this, overlays should include the top-level compatible string
+> +from its base DT.
+
+The base has multiple compatible strings, so which one? Has to match on 
+any one or all of them?
+
+> +This enables higher-level software or firmware to identify which base DT
+> +an overlay is compatible with and apply it accordingly.
+> +
+> +Example usage::
+> +
+> +    ---- bar.dtso - overlay with top-level compatible string -------------------
+> +	/dts-v1/;
+> +	/plugin/;
+> +	compatible = "corp,foo";
+> +
+> +	...
+> +    ---- bar.dtso --------------------------------------------------------------
+> +
+> +This top-level compatible string is not required by the kernel overlay
+> +mechanism itself, but it is strongly recommended for managing overlays in
+> +scalable systems.
+> +
+> +
+>  Overlay in-kernel API
+>  --------------------------------
+>  
+> -- 
+> 2.25.1
+> 
 
