@@ -1,138 +1,163 @@
-Return-Path: <devicetree+bounces-195082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DCF3B0057B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:42:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD407B00582
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:45:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B96A7AE3E2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:41:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A72DF646D4F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:44:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 871C2273817;
-	Thu, 10 Jul 2025 14:42:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA3E273D89;
+	Thu, 10 Jul 2025 14:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IOGaIGFe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oCIn/on9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 526E71B78F3;
-	Thu, 10 Jul 2025 14:42:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387252727FC
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 14:45:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752158541; cv=none; b=PxFpgKOeI4WnX0r2coDi8QDARckxQ2WFP2iNQ818ErwdqEhbidwfSwC+wa76Tfv9Z2i4Lcmsb6S1zXCfvc6EvwQpoAR37ba0w7wya0uUEBM69n47/FsMDwBjXBvNZ9Nm3xXnwG1bO84y/0bqn8BZfdom2ar4igxIuQp092bcbJs=
+	t=1752158721; cv=none; b=YeL7NR4eVPWBWCtrmkhRG4fJSrclIjp7gMbr828bgqFbQcjnE+SwduThkBjpziC0hIyv/7Gl6ACwFpE4CiOIaALdXdM5U2kqAfPgt3TD8QDvJ00HQ4QHALvegAn9G1EecrL8cTCIk8R8P4lFVLojdpZqP9O/+86LT2Ep4Umloc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752158541; c=relaxed/simple;
-	bh=cGsJFEUNnvKczNc3UG/ZDVjX4WuRlfzWnHuYaO16hag=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nhGPbk4Yu+uWkmvFXtMPLw3Ql+A11covSWBg9Ugzey9ff7QLKcsikbj/LBlBuG+Szv3wLTt4Hl9cV8dHbBadbps7bMVg8cFd3xmyfMjN1bv3hH8VLpIQdRN5HZR/2re6Teyb7EKBafMJ2zGWhJFQGTmC9C7Wey1hJw/QDpzRlpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IOGaIGFe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 556F8C4CEE3;
-	Thu, 10 Jul 2025 14:42:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752158540;
-	bh=cGsJFEUNnvKczNc3UG/ZDVjX4WuRlfzWnHuYaO16hag=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IOGaIGFeaJ5ie2nPG2D1IXJK1pghqjbFqmYLOUcS8UNhHaLNWbzDdZQltnacZIZpJ
-	 pta2YMAx5b8HxAdS0vaYYjvD75Gu2Lrl465IOL8sfwggpQ+9xyYaXGBYFxtpXCtuDA
-	 JXTwWeuGywUtBTUMPBtTapwnnYm/PxOzTNRrEVhRLaPUYp1+avmUIXoWqDwLAIRD6u
-	 4n+7xZ+ag0yjWXFdyACLh/apnyuaULPxxbimhMLKrLvah21gfPm+nVENXKxvZ7AwpD
-	 AXQ8xvruLLzV0X3TmmcTCU91WS/e9UrZXa8VYm6bnFkvVkjlnUo0rrqE6lS7U5Ahjv
-	 dxrIi9aTZ27aA==
-Message-ID: <bb6bc232-cc3e-4689-952f-88cf580604fb@kernel.org>
-Date: Thu, 10 Jul 2025 16:42:16 +0200
+	s=arc-20240116; t=1752158721; c=relaxed/simple;
+	bh=GuuXNEIIHpc+OomKipbBSS2eHjtAi/KmN/JAHDNUxyc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=WCzqFfI/AkLdLLqecEZ0cmA8DiCbxV65E7ALJVHCLNORhPuee3h9/Ru/Kwm4lgHVxMco2xDoaVU+3z48N9HS72tQKqZNDlgDWwOAuWwnqFhIBoOAgNxCifp/oG6weH+bhE71fBzGK+yAansTL/gUSit68NTST6Zoows74GZRQIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oCIn/on9; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a6e2d85705so754617f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 07:45:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752158717; x=1752763517; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uzpztVBg8Kr6uCTVYsLaqFYuf7mdKz1OXaJIFB3Ydtk=;
+        b=oCIn/on9utF4YPok+p2VGklKSBD403Ij+BG8HfSHqMNQJYLJD76XgMAToTA4bJPDj1
+         EfG4LoatNTE335CrCfp3k3IhIqD+jiVOdwmtrEOZojho6Q9KgfmE5Pk4wPQqg2xLmook
+         VkPK4zu82itBzZJxoP5ZH9ZUXewXdd+FFWSnOL2JpRI4BoXfdLsy/N5puNhZdZJ3XEPu
+         rYm/1dQv8k1CdJIBvnGYR5PSQFXvRSpFASIm3OQhw4Qq1W93RpXxq+O5hs//OWKtklhF
+         qYdwToupp8/a+/OS4XcZnzcLTtSlwoCW5Dlbx3LzIe+sZBtoygoNEgOSR/DQi1BXDr13
+         tPow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752158717; x=1752763517;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=uzpztVBg8Kr6uCTVYsLaqFYuf7mdKz1OXaJIFB3Ydtk=;
+        b=nXDXhAddolVd2uvxD1j0CPkNyTBYfvSs06p5g0/oSowXtG96eNSMBBv04W4hCE+xIK
+         fBGA/GqOVbouO7C3insgO3Z74O56KaXNv59TzMFeeUFnfPY0/LsclWDh4UyRO5VGOCCv
+         cymYp8PRzI2wuVo907NgLRxKSE6hyeYjFu2kIWo2xzCvjn5XIwkWS9/9MELdT77sFMQb
+         q+s6gcQv2Z1986Gu5YAceKJK+ZanUIfgr9Cm+ZIRrVaPq38JL2f54HREkmbAUa9gWl8o
+         A2UdZDUFojknACt2XuF71o2PT7eC5yaV0nyMvozImfwlndo1xGWxDFcqgesIg6Cxrwq8
+         v5vQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUx4+oOeVSqEFJv0wEjzg5bB75FWV2rditP+m+5Q+H+BOz2jxkroTKkWlZxkQnbWsUYhaFc7JkDGDkj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQOYf6Iwpah1HrjqZrDaKIuih5iFL/U4HywJN7/mU/0RzuvGcg
+	/kFpU502mmTqgUNobp22p8470Inll+jA1lxJzE3zCGy8KlVITnd7uBgxzoArL91whzIQVxo2gVz
+	UDVkk5Fs=
+X-Gm-Gg: ASbGncv+QYfOBS1/tSswxOnv0Xg4eVSaJ0iP3EkhmoUpFPGgNsNOPc5BaclbCtNvwgN
+	6qX+OMN64QwmCL2OsfJIHRC08p0uedZ4apyl1IlYLlxQkUMQ4PNhrkrVQ4hhSAHf3/QFFjDlEFb
+	kMIXG507+W5RGErJzjaOZ30kehfiGKFG7Q9LZAhv7kudFX21biXQ/7vhkh7sVwmDsIipKDR6YCc
+	w8D4QcvaITtV+kzuONT3ck6HsDs6dV97D7sh8TJjlSj7whS3kpmHNJ/6DQXpZw60g+gAZ6n13l3
+	IehQ2BXTiTdAUqFA0+krajMN+sQ5Hwt2aqHgsbUWHE6+mHShdgNLfuLD2EIlY/reiqM=
+X-Google-Smtp-Source: AGHT+IF9BLMRIl1cpwDsXcnH1f3gWfggPdcwbBjL9LEkWjPoKOu+RvwtjCs5eMcSNOOmyzdBY+cr/g==
+X-Received: by 2002:a05:6000:250d:b0:3a4:df80:7284 with SMTP id ffacd0b85a97d-3b5e44e1fefmr6408642f8f.1.1752158717358;
+        Thu, 10 Jul 2025 07:45:17 -0700 (PDT)
+Received: from localhost ([2a00:2381:fd67:101:6c39:59e6:b76d:825])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8e1e135sm2085810f8f.72.2025.07.10.07.45.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Jul 2025 07:45:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for Variscite
- VAR-SOM-AM62P
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-References: <20250709220714.85697-1-stefano.radaelli21@gmail.com>
- <20250709220714.85697-2-stefano.radaelli21@gmail.com>
- <9b503f65-5c8c-4f04-a1b1-40d7a1202e8b@kernel.org>
- <CAK+owohgk3CkQRv_PBDWXh44X2uN3p8FWBU2t9VtmO-xzOKTow@mail.gmail.com>
- <6656b2f0-5258-4f23-8988-567a7b598497@kernel.org>
- <CAK+owogfXDNpjT5Ywcvjaegf0H8-pS109039WadhxHXHbe3GSA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAK+owogfXDNpjT5Ywcvjaegf0H8-pS109039WadhxHXHbe3GSA@mail.gmail.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Thu, 10 Jul 2025 15:45:15 +0100
+Message-Id: <DB8GFDXKQ6V1.BXX5KGBJP6YS@linaro.org>
+Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Lee Jones" <lee@kernel.org>, "Jaroslav
+ Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
+ <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Dmitry
+ Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>, "Srinivas Kandagatla"
+ <srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH 3/3] ASoC: codecs: add new pm4125 audio codec driver
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Mark Brown" <broonie@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
+ <20250626-pm4125_audio_codec_v1-v1-3-e52933c429a0@linaro.org>
+ <aF01gRFjsKgy6j4V@finisterre.sirena.org.uk>
+ <DB0YYV10UD2Q.M36VAZJOVE7V@linaro.org>
+ <af605c12-74c1-418e-9fe8-c0aa893a62bd@sirena.org.uk>
+In-Reply-To: <af605c12-74c1-418e-9fe8-c0aa893a62bd@sirena.org.uk>
 
-On 10/07/2025 15:53, Stefano Radaelli wrote:
->> Then why do you define it reversed here? How this som-factor-processor
->> is an argument to my request to use som-factor-processor?
-> 
-> I apologize for the confusion in my previous email. I made an error in
-> my explanation - our compatible strings actually follow the format
-> "processor"-"som-factor", not "som-factor"-"processor" as I
-> incorrectly stated. That's why our compatible string is
-> "variscite,am62p-var-som" (processor-som-factor), consistent with the
-> examples I provided of Variscite kernel like
-> "variscite,imx93-var-som", "variscite,imx8mp-var-som", and
-> "variscite,imx91-var-som".
+On Tue Jul 1, 2025 at 10:04 PM BST, Mark Brown wrote:
+> On Tue, Jul 01, 2025 at 08:35:42PM +0100, Alexey Klimov wrote:
+>> On Thu Jun 26, 2025 at 12:56 PM BST, Mark Brown wrote:
+>> > On Thu, Jun 26, 2025 at 12:50:31AM +0100, Alexey Klimov wrote:
+>
+>> >> +static int pm4125_micbias_control(struct snd_soc_component *componen=
+t,
+>> >> +				  int micb_num, int req, bool is_dapm)
+>> >> +{
+>> >> +	return 0;
+>> >> +}
+>
+>> > Why have this empty function which is only called from within the
+>> > driver?  At best it's making the callers look like they do something.
+>
+>> I tried to make a minimal working version that we're going to
+>> update with more patches during next submission.
+>
+> Add the callers when you need them, right now this is just noise.
+> Nobody can tell if the callers make sense since the function does
+> nothing.
 
-There are no such compatibles. There are:
+Ok, I cleaned it for the next version. Thanks.
 
-variscite,var-som-mx93
-variscite,var-som-mx8mn
+>> >> +#if defined(CONFIG_OF)
+>> >> +static const struct of_device_id pm4125_of_match[] =3D {
+>> >> +	{ .compatible =3D "qcom,pm4125-codec" },
+>> >> +	{ }
+>> >> +};
+>> >> +MODULE_DEVICE_TABLE(of, pm4125_of_match);
+>> >> +#endif
+>
+>> > Why does this compatible exist?  If the driver is instantiated from a
+>> > as a Linux software contruct it shouldn't appear in the DT.
+>
+>> Could you please elaborate a bit more? Should it be instantiated
+>> as an MFD device or platform device?
+>
+> Yes, if it's the child of a MFD then it shouldn't need to be described
+> separately in the DT.
 
-and others with exact format how I asked - var-som-<processor>.
+Currently, it is going to be described as child/slave device:
 
-Best regards,
-Krzysztof
+spmi_bus {
+	pmic@0 {
+		pmic4125_codec: codec {
+			...
+		}
+and will go probably in pm4125.dtsi which lists all child nodes with
+compatibles. Not sure if it is because each PMIC is customazable or because
+of better maintainability.
+Also, might need specific description of regulators which may vary from
+board to board. Not sure how is that supposed to be done without device
+tree description at this point.
+
+Thanks,
+Alexey
 
