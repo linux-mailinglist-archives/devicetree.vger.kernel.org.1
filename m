@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-194812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A5F1AFFA11
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:48:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6735AFFA20
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:51:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A29444A7895
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 06:48:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B41121891301
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 06:51:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82DBD22C339;
-	Thu, 10 Jul 2025 06:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01417287274;
+	Thu, 10 Jul 2025 06:50:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tnkB6qNS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WJpoT+kZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58FF6DDC1;
-	Thu, 10 Jul 2025 06:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB0C230BE1;
+	Thu, 10 Jul 2025 06:50:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752130122; cv=none; b=ZTQOZYHigk7IJJZY4yo4Js3DRsDcZGA8EF3bIJkglQ0dMoSCmMUuxUSGPMY/diEjsRxpwG3LBF/z0HWha7Zu4ePhb+h8tMxak2qvh7QQUKwaMDV2SdBa3I3wQEa/OJS6fsdSEHs/+kgYobOOu31CnvTOkKCuuI5JFA2D3Hho4JU=
+	t=1752130246; cv=none; b=K3KB1j40H5uLjr2IQ/rUEi2DtOamNVclz3a9nICpK6Bwf5LjRZ/Ia3nfTDsjqgQhedsLXc6BBfZNFvOq7Leo81u0e0A5Hap62x8YtQl1NnrAxgI7QygTOaPZLQTMZ+WVqk4OcGTjRnotUTIaMkWrmCTxP2Sk6LP9GzaXeIixCAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752130122; c=relaxed/simple;
-	bh=9Fe/JMQR4NwZmzapju1AGuKy738zJhIvHcGQ33AR1wE=;
+	s=arc-20240116; t=1752130246; c=relaxed/simple;
+	bh=aywrXs9U3oANEUISdCT7RgnHzNLcqV6QiWDf3VAO3NM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dNUwSo+GeQg7x8uFUHQoOi8ETuo8x6+zYXweFh38hhza187Dv3OmBG7NZhTAPCWx+XiBfhH6pADSqdkezrrPmweUEfS96Qjvj1azqqXDSyDcwf5HTjDVnb7F7FE2oFgMuW0CC5U7+99ewffEIyRofEWAjGknUl9odDJrvUqWwlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tnkB6qNS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E715C4CEE3;
-	Thu, 10 Jul 2025 06:48:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pVoumySL8+MM4Dl9cPcy00PIWa2lqtFwhERSOPTBDI7IOIh6dDe/xSp8Gf4gZakf9peUnd+I+kxjfBjrSGQhd96Qall5fXzjO1ZdBkPRXzBeKwWu/TtcrWl04EIwswKdIoQ5racVrXyJFUiI7mV9B12m4CSujV0Jd4OM7r/OPcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WJpoT+kZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12ECCC4CEF6;
+	Thu, 10 Jul 2025 06:50:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752130121;
-	bh=9Fe/JMQR4NwZmzapju1AGuKy738zJhIvHcGQ33AR1wE=;
+	s=k20201202; t=1752130246;
+	bh=aywrXs9U3oANEUISdCT7RgnHzNLcqV6QiWDf3VAO3NM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tnkB6qNS/XKW0+1t5MTKPUbr5ef+/JIZl1V8wJpUg6J+ouON5QodXcAKia/+ihRha
-	 hhpLGOInOW5fHYA1pDNI1N2duyOiTPIcXjJxBQkkBlgzGXGay259la4xVy9ztN/2Ov
-	 Um1px8g9Ww9SoG20qKwqzwyK5joJvWbBOwvM9ikQjLdFwJGpf5aNXxZnyOwyNGKREb
-	 uKyWOZen49v7d999FhtQKCjxmkw3BoIrtxbVHZ/a24Tdlypjnh6gIqjwZvFReLq03C
-	 DTddLM8TWIAHyjMjlpfw1WNU3koiXB405ECOsMHi7cAHB+71ceN/KJ9JBhLXLY4zS7
-	 NIHUW/+sUg8KQ==
-Message-ID: <a5726a25-9df0-453c-9e4f-c26e223940dd@kernel.org>
-Date: Thu, 10 Jul 2025 08:48:36 +0200
+	b=WJpoT+kZ/y/2m0hnj0MtGAa1QVa0yDw2OBT1UOHt6TaKMfUPq8mQOmFQj1KhVtuTA
+	 E0xn0IQpkJfynxjjwpQZpu8GNL2ZOgIUB3hnZq3SCkf8uHxwUtXOnbVevct+eo3PwW
+	 ofsvVAPIKwgrMcwLyGEdOTH3as1kuFH/AcshYh3L548MdQ2Q/KJW+S+rjmmIV61iL6
+	 IIlI8BjwtHek0P+gxWo+pL+4bvgulIMuqtI18UH726Odeonf1CuQrRfnvtCe0nnP5A
+	 Pjmy3TC+rCnNQpNfD1GmBxu3zfojal8WIoxVFTnzWUM0l83CRJ5+LK88sAa3l7PkTN
+	 gBxCEJTMxL3jA==
+Message-ID: <9b503f65-5c8c-4f04-a1b1-40d7a1202e8b@kernel.org>
+Date: Thu, 10 Jul 2025 08:50:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/3] arm64: dts: ti: Add support for Variscite
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for Variscite
  VAR-SOM-AM62P
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
  Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-References: <20250708184841.72933-1-stefano.radaelli21@gmail.com>
- <20250708184841.72933-3-stefano.radaelli21@gmail.com>
- <0454b830-b9bf-4d04-8e91-d5c514ac4aae@kernel.org>
- <CAK+owoiL8613hEqDso7cCbqw9vT-TV0eRLvJPq81ZwVDHT7rHA@mail.gmail.com>
+References: <20250709220714.85697-1-stefano.radaelli21@gmail.com>
+ <20250709220714.85697-2-stefano.radaelli21@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,18 +105,40 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAK+owoiL8613hEqDso7cCbqw9vT-TV0eRLvJPq81ZwVDHT7rHA@mail.gmail.com>
+In-Reply-To: <20250709220714.85697-2-stefano.radaelli21@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/07/2025 19:16, Stefano Radaelli wrote:
-> Hello Krzysztof,
+On 10/07/2025 00:07, Stefano Radaelli wrote:
+> Add devicetree bindings for Variscite VAR-SOM-AM62P System on Module
+> and its carrier boards.
 > 
-> thank you for your corrections, I completely forgot to compile with
-> the W=1 flag.
+> Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
+> ---
+> v2:
+>  - Add symphony carrier board compatible
+> 
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> index bf6003d8fb76..780fbb5970a5 100644
+> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> @@ -100,6 +100,12 @@ properties:
+>            - const: toradex,verdin-am62p          # Verdin AM62P Module
+>            - const: ti,am62p5
+>  
+> +      - description: K3 AM62P5 SoC Variscite SOM and Carrier Boards
+> +        items:
+> +          - const: variscite,am62p-var-som-symphony
 
-Don't top post. I did not ask to compile with W=1, but check your dtbs.
-Please read carefully instructions.
+This is named reversed. Usually Variscite names are var-som-foo and:
+https://www.variscite.com/product/system-on-module-som/cortex-a53-krait/var-som-am62p-ti-sitara-am62px/
+
+confirms this, so the compatibles should be var-som-am62p.
+
+
 
 Best regards,
 Krzysztof
