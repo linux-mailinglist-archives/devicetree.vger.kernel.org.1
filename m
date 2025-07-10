@@ -1,133 +1,159 @@
-Return-Path: <devicetree+bounces-195186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60E3FB00C01
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 21:15:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6E60B00C21
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 21:30:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9640F3BA9F9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 19:14:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EA764E63A6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 19:30:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 860872FE396;
-	Thu, 10 Jul 2025 19:13:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA02D27467F;
+	Thu, 10 Jul 2025 19:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fhZZ3o+B"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="kw7up1/5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDE92FE36D;
-	Thu, 10 Jul 2025 19:13:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752174839; cv=none; b=NcbGZEODEM9gYceUwkvXzLFnPgbloI6wJqt1rWtehb57zlq9EAIwam7Uwm4Gw1oad76b8oAGkAP+J4l8hJ/fYhhziCCPEqRqLNQ6v6LAZ7ZXCyGuJUBXpEcpkGLntW78F0OxAizhEKSG7WFP4T9cWsV5L9CbkPRKqi0seaVY54s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752174839; c=relaxed/simple;
-	bh=UfZBgPNXsNVvIoKoizlLf9l//dyhqb8DPMRaq9LzZjs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RjQQzBVkZw93Cd8TN3Steza+S5dTDRkK2KLesJc3hSYqj/Xm8GoLyz+tdRmBXRGouUGOIZR0jRnY7Wj2Qzm+tPgN30zh4Sbk8OB6eCoi4Z1cyhJZ6bv5wC+3Sw2xDDpt0YP3IZaAfDOGTZFO7LtJD2VGRZN95TT/vKP7oD7Tkk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fhZZ3o+B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 65B66C4CEF4;
-	Thu, 10 Jul 2025 19:13:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752174838;
-	bh=UfZBgPNXsNVvIoKoizlLf9l//dyhqb8DPMRaq9LzZjs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=fhZZ3o+B1YOtPqq/GZDBQRyKrQ3TA+FY7IoW3Vu6T9SZCiKzb77vnw8i9XEQipqI8
-	 WMqg8ezFZbAY1pc+/AIQxlfckXGS2K3ISIu+WtoFIWTrHQY1mZNvEzTXDGJXQh19vx
-	 6b8xfhJpsa/fCfIJbxjJm01axbc1fwN8gfUXhUdyVRY9qxvGS9/1dQEKwLKJQsEhNn
-	 e5ZN2V8W73yZkCLaWqGkx8DZlBF9jrDLv5P0EZk8CyE9O8UEsmxdSQh7KLT9Y8b/Ou
-	 U90yI9q9WncbdbxEoX5jPprj2N1ZEpuu0AD8iqg3Dgb9idLWQfhfuTEAZ2JuPxDVeV
-	 2a91VLn1XDq4A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B55AC83F22;
-	Thu, 10 Jul 2025 19:13:58 +0000 (UTC)
-From: Frank Li via B4 Relay <devnull+Frank.Li.nxp.com@kernel.org>
-Date: Thu, 10 Jul 2025 15:13:55 -0400
-Subject: [PATCH v21 9/9] arm64: dts: imx95: Add msi-map for pci-ep device
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BACE721B9F4;
+	Thu, 10 Jul 2025 19:30:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752175850; cv=pass; b=VWTnB7C/OOA2xNpDjFUQ/eHhhU1Ps7XwRdojLaA2yHPdLIDNcjtYHUdh0pD/34l1E72HL32VHkMZiNIo1hqtQ4xZaVEtR4POOENfTgwbm/fnbgHZE6K/RsBDO1rk6cYeSajpk8XvcxiqMGzeVFtyWLpi+dX3pTvFJ+rkjxy6duc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752175850; c=relaxed/simple;
+	bh=B0vHwcGOIIHb89H2gzxv6p6IhFT8hgODSk55/vhzf4U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GJgXcydhShmNBQP0hosgPDsDXjB+rCRQxVLqMKnpNTcATFdQ6EEeS4VFFsrIlxQa4opRfu6vLYA52njd3Fm56a5DDfEaHshzb6j01scebmXLczjhAWfyQoL5DIMCjvtfGBp0h42/98Ii8cVybQlbLHst6WkRkVpdlSmaUfaydRM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=kw7up1/5; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1752175820; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=I/ka+SLGhV+QGCE7fhGV9qYnglLgy9/7ibP/VHkpOEkzzlN+hYr3n1hU+m0Czd3JuzQEcq3dJutzOQDlLs4uuTOHYI/Lj8p3iXdTFweEpCXHRjKKkqLQ24u3kz7ogTT6ITQRIH8buzu3rmYlidtSoboB93yZBpHRO+aGTxnuDY4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1752175820; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=2bzdLOutw45NuzUy8PqWXaJAtp7VYXU2KwETf6FwUq4=; 
+	b=KGNFyCXuU/Eu7gI53XiCbXZ+2vpS1Ajv5tsP6P5DkQZQ7IogkRrzv2E2nSQ6QPoYGfJZFxB9rHfMFncR5gkPpshEpNmhmshWWYu93Hkr46rex2NKwDW57U5JARz8hTeTCfu6ErwawJQdGWt5x+2Gy63PfS87RHWiQxSiNu09gwk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752175820;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=2bzdLOutw45NuzUy8PqWXaJAtp7VYXU2KwETf6FwUq4=;
+	b=kw7up1/5sk7CS9DwqFvhC738rMQmLkDy+YBescJyPukKyMiQXceMUwSSbDObh1iU
+	ZFgMXP3VSkSTnRsOVkc3kmN5JNUm1ed5mQHxwFolk5+x8M8+Yi9IJdDT66VzpDBwZwD
+	9Sono6bXrQ7cofGqQpGwIZMHjH9DgKP4GZKvxFWQ=
+Received: by mx.zohomail.com with SMTPS id 1752175818697100.88359010230067;
+	Thu, 10 Jul 2025 12:30:18 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Alexey Charkov <alchark@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v6 4/7] dt-bindings: thermal: rockchip: document otp thermal trim
+Date: Thu, 10 Jul 2025 21:30:12 +0200
+Message-ID: <6505070.lOV4Wx5bFT@workhorse>
+In-Reply-To: <3592348.tdWV9SEqCh@phil>
+References:
+ <20250610-rk3576-tsadc-upstream-v6-0-b6e9efbf1015@collabora.com>
+ <20250610-rk3576-tsadc-upstream-v6-4-b6e9efbf1015@collabora.com>
+ <3592348.tdWV9SEqCh@phil>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250710-ep-msi-v21-9-57683fc7fb25@nxp.com>
-References: <20250710-ep-msi-v21-0-57683fc7fb25@nxp.com>
-In-Reply-To: <20250710-ep-msi-v21-0-57683fc7fb25@nxp.com>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Thomas Gleixner <tglx@linutronix.de>, Anup Patel <apatel@ventanamicro.com>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Marc Zyngier <maz@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, 
- Shuah Khan <shuah@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>, 
- Lucas Stach <l.stach@pengutronix.de>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Cc: Niklas Cassel <cassel@kernel.org>, dlemoal@kernel.org, jdmason@kudzu.us, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-pci@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- imx@lists.linux.dev, devicetree@vger.kernel.org, 
- Niklas Cassel <cassel@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Manivannan Sadhasivam <mani@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752174836; l=973;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=wW9Nwm5vAKtBf5Pux9lo/+uSvITxDxxhF8J82uPpSQ8=;
- b=VtcLSyohMB2FbPRKwdeAd1gT+yHIS4yjiZLuRPs9oX0oesyANEabrauubaRWQWZI0Hoa9Tyqq
- pt88S7wZQTQB5u0CTEtvjMU/70Lk/gnk03eIJ59F7pIgZX/e5D2tHlw
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-Endpoint-Received: by B4 Relay for Frank.Li@nxp.com/20240130 with
- auth_id=121
-X-Original-From: Frank Li <Frank.Li@nxp.com>
-Reply-To: Frank.Li@nxp.com
 
-From: Frank Li <Frank.Li@nxp.com>
+On Thursday, 10 July 2025 13:21:19 Central European Summer Time Heiko Stueb=
+ner wrote:
+> Am Dienstag, 10. Juni 2025, 14:32:40 Mitteleurop=C3=A4ische Sommerzeit sc=
+hrieb Nicolas Frattaroli:
+> > Several Rockchip SoCs, such as the RK3576, can store calibration trim
+> > data for thermal sensors in OTP cells. This capability should be
+> > documented.
+> >=20
+> > Such a rockchip thermal sensor may reference cell handles that store
+> > both a chip-wide trim for all the sensors, as well as cell handles
+> > for each individual sensor channel pointing to that specific sensor's
+> > trim value.
+> >=20
+> > Additionally, the thermal sensor may optionally reference cells which
+> > store the base in terms of degrees celsius and decicelsius that the trim
+> > is relative to.
+> >=20
+> > Each SoC that implements this appears to have a slightly different
+> > combination of chip-wide trim, base, base fractional part and
+> > per-channel trim, so which ones do which is documented in the bindings.
+> >=20
+> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+>=20
+> Acked-by: Heiko Stuebner <heiko@sntech.de>
+>=20
+> with one question below
+>=20
+> > ---
+> >  .../bindings/thermal/rockchip-thermal.yaml         | 61 ++++++++++++++=
+++++++++
+> >  1 file changed, 61 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal=
+=2Eyaml b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> > index 49ceed68c92ce5a32ed8d4f39bd88fd052de0e80..573f447cc26ed7100638277=
+598b0e745d436fd01 100644
+> > --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> > +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+> > @@ -40,6 +40,17 @@ properties:
+> >        - const: tsadc
+> >        - const: apb_pclk
+> > =20
+> > +  nvmem-cells:
+> > +    items:
+> > +      - description: cell handle to where the trim's base temperature =
+is stored
+> > +      - description:
+> > +          cell handle to where the trim's tenths of Celsius base value=
+ is stored
+> > +
+> > +  nvmem-cell-names:
+> > +    items:
+> > +      - const: trim_base
+> > +      - const: trim_base_frac
+> > +
+>=20
+> are we sure, we want underscores here?
+> trim-base, trim-base-frac looks somewhat nicer.
 
-Add msi-map for pci-ep device.
+a quick grep of all the bindings shows me that _ vs. - is about even.
+I'm not sure deviating from what downstream calls it, what I already
+sent, and what the already sent driver expects is really worth anyone's
+time and mailbox space for what boils down to a matter of personal
+preference.
 
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-change in v20
-- add Manivannan's ACK
+>=20
+> Heiko
+>=20
 
-change from v14 to v16
-- none
+Kind regards,
+Nicolas Frattaroli
 
-change from v13 to v14
-- new patch
----
- arch/arm64/boot/dts/freescale/imx95.dtsi | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index 632631a2911224cadc16a943cdb467e091e43384..c59d11eb7a581a500d381ef96f1e44533052c2a2 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -1797,6 +1797,7 @@ pcie1_ep: pcie-ep@4c380000 {
- 			assigned-clock-rates = <3600000000>, <100000000>, <10000000>;
- 			assigned-clock-parents = <0>, <0>,
- 						 <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
-+			msi-map = <0x0 &its 0x98 0x1>;
- 			power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
- 			status = "disabled";
- 		};
-
--- 
-2.34.1
 
 
 
