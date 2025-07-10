@@ -1,88 +1,80 @@
-Return-Path: <devicetree+bounces-195099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31735B0078A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 17:49:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21A93B00795
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 17:50:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E55F175E83
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:45:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDEDA1BC4FAA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1354B23ABA6;
-	Thu, 10 Jul 2025 15:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610E727510A;
+	Thu, 10 Jul 2025 15:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KnNb1FX5"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cTKUiOUV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60AC87464
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 15:45:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2241D7464
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 15:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752162323; cv=none; b=jDeUG2iz1Tl5XLqLeSaWRAvOsEV8NAi4MOS/KFKhnEWr19bos8LCFbuxEttbSQQArcXhpOiiaIMHApgyGgFwj3OgOE12fPbGN/hEkIT+XwP2IvW11PaJc2y/LShoQn9Ss9cNNKX8BB4ftxTNclHagygaDM7JvUJ6Nug8CQFBUgA=
+	t=1752162411; cv=none; b=k3aTwnc3qYKIx+YJpxFWck831Pqw9gZKjlUAB4iSWHdVh/InTT9gfEIpVmse5XbltRfvkzYq3vQEQHYG19y9D59qx17lOdIvuI1CSd61iTvR4eCSB/mey1bWi1Dbgb4Hp+Jb6GjHQUikFptn1agJ6iFWKrXwIVlSXs18pwyWrl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752162323; c=relaxed/simple;
-	bh=sWLNbRGR1WallWCM4ueaRFzJawzsy7FQNASnovpTbV8=;
+	s=arc-20240116; t=1752162411; c=relaxed/simple;
+	bh=sk5MkTgT33G126yLu0cU6kvmDkC6SSCYrqJIAgQRCfE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WIwV/r4sWtCropqg3xHqIY8vXEyxnBgvTko7hKcXRcY3dt1QYWJEq8h3+3BkBugrdQazA0/T5CBUWoyXz5btm3l2Q1yHid43ndm7VhQ6Czn+JrA2HDdkRSdQtPraaBOPocFKPV/7R5US3ZFGmjimHbmtKqvCQyiyheJW9DuqDEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KnNb1FX5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56A8ft0x030114
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 15:45:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2Ncm63/MfiuPbDjDVklTQd8+kupDoVzcsE+k6jeIleo=; b=KnNb1FX5hzQYi1xI
-	zA7Uh98UKUkyt/1X3LPA+iboHhUo60Q8NsuQ+j/+pYe+V7qm/tdkojBRTi5GoUkX
-	nPMaDQzL3Wy8yMmK8Bke6qmNICNdt+b+pJEo7gOKKm7moVknA276ngxWtJI9K7ux
-	hadHKYaTyBxM3ndfT+EmJPJxL4KWJbITB/2JWZbHJK6k1zpzRYszhYf366yP7Q5+
-	VLnfL+zNUfcmJk7YHDU4yqMlV+1NhXfhYElD9wD5zJ6gWVPTKY3rqFj8xjkk4Hhf
-	2hUhXMgwOTO0cGdte45iIxSOpCdFB+1zryLDHG6KpNvv0jVVCJ9ouQgDdAd50ChW
-	t9iZYQ==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47smcg5g6h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 15:45:20 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4a9af669a0cso2383341cf.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 08:45:20 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=VwTMoaVe5zoNIeRIjTrvtoRMhhNxAnnFgDxB0Ae2EX6fFzT66Z2E16k4130/NJtBcatEV4DuPLjtcEra55d1z3XdWTR3nGrjpqUH9kL2DTpBjoejTCMoGQpiTlz0r5GsHo1GfriPsgt6OP5iUcVrXJ+SYqIBtVym3PN4LaM+/h4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cTKUiOUV; arc=none smtp.client-ip=209.85.160.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-2eb6c422828so1224894fac.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 08:46:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1752162408; x=1752767208; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SxqC0ATm8XXXx24MpZdy05ScJSWmhlnLQqeCjqghw20=;
+        b=cTKUiOUVLLv23YHrNtEV0f+LoM9SAwOL4i1gcbDKw5i0qm8BB7rPTyiBcD3o9dZZB1
+         BUy5Xy2FIkhgf/+Ilq87JQGKVuVOICZkmrlyybx41j5WnN3M/rtu+poRmmbHgs67Lqgy
+         JUt89p29lbqIXrzXzeUXO3NICmX4DW5P9LbgDeSKDFZP/vaYOf/eIdea8vqboKT98v1m
+         Kmq8ttI/q09ILOCcd4azObZ+f0mT5pNtJI9c/wiqASzYeJbLkLKqrtJHgdziQBCxwfKK
+         4JwBkurH8oB4b3BzOiA7mMI481eBRIQ7J0/+0AHHxw9UGy8ZI7E65lbyA7rdQioXUxDc
+         sQaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752162318; x=1752767118;
+        d=1e100.net; s=20230601; t=1752162408; x=1752767208;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Ncm63/MfiuPbDjDVklTQd8+kupDoVzcsE+k6jeIleo=;
-        b=wvy92pArBv6CWtcYa+XtO2nBhr1FLLuTFIIq3JG3afLWdv+xmEHgq9uzVpuL5mzzKD
-         vDHf2NPFKwDMfbWDVVWykhJ8VZlYOSattHee99rx3fpVOd0brqyvhtYGhTRIn7q7lVWr
-         ekelIzjkXe/A2T8gvpYgcaxT+dTpTyvchQSj8lXfzxabqJXdjixREdMuowT+ZBG+ewt5
-         i+Bvy6Um8ySDxVyLDjIgNNfpSfz7Bs69DfteSB1nKNzJlmcDYsPtaACPUhGRNMTXADJL
-         KCjOCV+cM4buP3RdrlSHOuXh4cNOP2mVb71csN7LejxFEHLer+N/LlrC1vZxfPaNM33F
-         EGEA==
-X-Forwarded-Encrypted: i=1; AJvYcCXIh1a1FgQr+KaEv+j/DnP4ogbMXuQWmfGlQsY7VAz39cMMiiDdMAeBCCRa9M2oB0bHvsFrAbWUkJWp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrSDI/uWmOb3gJj4wzR2upQUT3vvLN6Vlu1vuEUzQDdvo5dFR6
-	U5h634nZMT+fnTR7pdhICdtw0qh37QN5UEBcrOvlI2JSeyGBPd2ujwjYqiBoRNjKiomuuV5fwei
-	2CE0HTgIHxCKtN5ylBP3aFAMImWEhq9JDwYGpwEf3QIym3/tmh5YxHcX6nK/26BJY
-X-Gm-Gg: ASbGncs7XCG10JHZ3OgONp6NlKc0O47mEgESPp/Hq7dZe4XYNn0x7AAzPj7qPhXjL0L
-	BuWoTbaYy96oIZSRgMp1I2dBMPIOzzl2lTKUky7ATZRbkHmqAKr7ZBmpBMsmEBuW4IVnA7QpuqG
-	En0VN/UmCR1XVr26buSzlE8DsYg0YgbWjU8Q3rOoeaKhMHMW33jR0U/2QOuVFywwx2oYEUOfFBy
-	7PvM53isNybQvxWk2gLIcW2GuPa0DBVvsqjGR/zkDG7LFJ/7e9SwefrcaX4IzFLlVUXjBrwJB8k
-	KG1e2bWPM+t/pJvCjWUrSOfwEiCHEouZh8hPL9PuGNVLCR/E6EBQLbAzendtGpQTfrEpa9OuVN/
-	tR+4=
-X-Received: by 2002:ac8:5e46:0:b0:4a9:f582:dc03 with SMTP id d75a77b69052e-4a9f582dfcemr10046651cf.9.1752162318050;
-        Thu, 10 Jul 2025 08:45:18 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEGMNtJ4drdObgcfuSdkFknAQN4Odw7/i1HjVhwWIis053P28UmmNK+qrTjCWD2/caZ4V7w5g==
-X-Received: by 2002:ac8:5e46:0:b0:4a9:f582:dc03 with SMTP id d75a77b69052e-4a9f582dfcemr10046111cf.9.1752162317396;
-        Thu, 10 Jul 2025 08:45:17 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e7ee44basm152828266b.42.2025.07.10.08.45.12
+        bh=SxqC0ATm8XXXx24MpZdy05ScJSWmhlnLQqeCjqghw20=;
+        b=aT8w+oJywPOoc3AIaaYzYh4tNzIs0NgYKNKEkt04N/Z0J84o9tQZ4wQMhwRmpxglZs
+         jJctu9jjV2C3pqA5dgqRdhTuy+6ULgCFL3mwU9v6P+d4i+2A2bH360rEhu4MaAWDBhe3
+         KzFsUPp5f2pd3tNt1ufqcMli/uMhfLikbpUjKF8t4CQxtieG9PGKDBFjSYHgYg0aeguh
+         utWhOeisz037lwmotBtiEqhXZpbm5hOPakAI0XRxt9UBasWCA5M0yGEk/sofCRfl8wDB
+         z8f1Ia/qMvcxJYrL0IU1pnomEh8EJNos1ziysDJvHjLIUE4cxmTNtc3ZzcU0g1oMNnUG
+         0cwg==
+X-Forwarded-Encrypted: i=1; AJvYcCWjGwEJ6qijDQQsgqqrS4QFkdikmdqoeqLlLjNxEsl61wKM5sunS3D+MdR96eg5V3+F3gf3CWXb83Vz@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXjzy05NisGmUa1Mq0fhyGceBUUjwQmmuhyX7qRL4jrO7lhmt/
+	nRLbnsqeTJdShO3lPRsw4yM0HmuVuEYM4uC4RLsm2g8e2AQJIbDcTGqm6r+61W8/m80=
+X-Gm-Gg: ASbGncuR/I0Dc0uDDiBQ3gOgPrXxOh94ZPvzDdHnA0MMW/9jne3817OEL4ZeZ7v9YSL
+	7AEgmpFVL3mDK6kHSpd3HMNNEfi6RuSORo4xug6/OwmFwwT3yBRU7CuT9p0724/W6E2h5P4RoHw
+	av9X/hNLs8dEP9jWfBhtvQkMHU/UK38RhUDXsutmfVH9KsAazJcIwI0zAoIA9r4eJ8iTGOhBSWe
+	94fUA+nPAy1Hh7vFGQaA4VJeZSJWEM5ukru4lVIVs+adcQs4CsNqzzLY8+cbZNzVKPm2wZ1fcoD
+	uMOk3l2Lw2dlw7bvbjteFS8ZJ+hG1cxlBtRHAthFwc6TPJcp6pXV9afsDYCA7go2PEtALUTyosO
+	nwg22mGAuWfe9G+gynQaOti1Q3jf1df3koTnYGcI=
+X-Google-Smtp-Source: AGHT+IGGnNYbfg3tRijwYJsTHxFrHe4ec9V4WbLcn63Mw2V3gA0rhenSRI8xr6ktDmmz0UyeTDfVCg==
+X-Received: by 2002:a05:6870:7053:10b0:2eb:9fe5:d06c with SMTP id 586e51a60fabf-2ff0c5af786mr2100280fac.3.1752162407230;
+        Thu, 10 Jul 2025 08:46:47 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:6f38:cf8f:abb1:34f7? ([2600:8803:e7e4:1d00:6f38:cf8f:abb1:34f7])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2ff116dd664sm343870fac.42.2025.07.10.08.46.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Jul 2025 08:45:16 -0700 (PDT)
-Message-ID: <4ca0df4e-7697-4cfe-ada4-6eee8224938f@oss.qualcomm.com>
-Date: Thu, 10 Jul 2025 17:45:11 +0200
+        Thu, 10 Jul 2025 08:46:46 -0700 (PDT)
+Message-ID: <2bcd758b-c2d0-488a-8ead-ec7fb39f93e2@baylibre.com>
+Date: Thu, 10 Jul 2025 10:46:44 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,215 +82,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 05/10] firmware: psci: Implement vendor-specific
- reset-types as reboot-mode
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Elliot Berman <elliotb317@gmail.com>
-Cc: Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        Andre Draszik <andre.draszik@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, Wei Xu <xuwei5@hisilicon.com>,
-        linux-rockchip@lists.infradead.org,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>
-References: <20250710-arm-psci-system_reset2-vendor-reboots-v10-0-b2d3b882be85@oss.qualcomm.com>
- <20250710-arm-psci-system_reset2-vendor-reboots-v10-5-b2d3b882be85@oss.qualcomm.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: Add calibration
+ properties
+To: Primoz Fiser <primoz.fiser@norik.com>, Haibo Chen <haibo.chen@nxp.com>,
+ Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: linux-iio@vger.kernel.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, upstream@lists.phytec.de,
+ andrej.picej@norik.com
+References: <20250710073905.1105417-1-primoz.fiser@norik.com>
+ <20250710073905.1105417-2-primoz.fiser@norik.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250710-arm-psci-system_reset2-vendor-reboots-v10-5-b2d3b882be85@oss.qualcomm.com>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250710073905.1105417-2-primoz.fiser@norik.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=P7o6hjAu c=1 sm=1 tr=0 ts=686fe010 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=GLYJuuS3cqMp142eAlYA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-ORIG-GUID: 64Qw4A2e5aZB2qOKi2nmaS0rCvDhLfWG
-X-Proofpoint-GUID: 64Qw4A2e5aZB2qOKi2nmaS0rCvDhLfWG
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzEwMDEzNiBTYWx0ZWRfX+DlCyhFN4srt
- EufPHJVVXcPWI7ZV9aw2GjactKaEP5HeTzPczj+7fJEp8DuXiqU5z0BebFBfFF9eJ+vgah+ex04
- rwDtvUKP5iOp49z884S1h4petQc0UgC1yNJnlXbydJjrpFGQiNPCD8Ic+2l0lKoDtkXkjzEm20V
- v88x0BjxCqxsf1BN8zQmr7cvkMGOeUhCwB6NpbK3pB4qOBkw5sljgNgdWVfXP+PLHtXqbll3l7N
- jQCsI9CQov2TtATHzfoLbvHOL4L9EijM8dqMraQDwtVY5a/gR2lfQIXMYSP94IlrsTGZd81gE3i
- 8uPSMZ+KYOVjT5cSiXGB63jOdHVDPET38vGXcIcWBjVtM3iifJoA1izD2pNla5a9odvb6DhhUfI
- EzxNca/NlC4svSoF+ux+ct8l9yghdteYVi+FTfQfo6Hju6kkzRD5oOWcArPmC13AszrIWuF2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-10_04,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 phishscore=0 bulkscore=0 mlxscore=0
- malwarescore=0 spamscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1015
- adultscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507100136
+Content-Transfer-Encoding: 7bit
 
-On 7/10/25 11:15 AM, Shivendra Pratap wrote:
-> SoC vendors have different types of resets which are controlled
-> through various hardware registers. For instance, Qualcomm SoC
-> may have a requirement that reboot with “bootloader” command
-> should reboot the device to bootloader flashing mode and reboot
-> with “edl” should reboot the device into Emergency flashing mode.
-> Setting up such reboots on Qualcomm devices can be inconsistent
-> across SoC platforms and may require setting different HW
-> registers, where some of these registers may not be accessible to
-> HLOS. These knobs evolve over product generations and require
-> more drivers. PSCI spec defines, SYSTEM_RESET2, vendor-specific
-> reset which can help align this requirement. Add support for PSCI
-> SYSTEM_RESET2, vendor-specific resets and align the implementation
-> to allow user-space initiated reboots to trigger these resets.
+On 7/10/25 2:39 AM, Primoz Fiser wrote:
+> From: Andrej Picej <andrej.picej@norik.com>
 > 
-> Introduce a late_initcall to register PSCI vendor-specific resets
-> as reboot-mode arguments like reset_type and cookie. For a SoC
-> where, PSCI vendor-specific system_reset2 is supported, the
-> appropriate value gets filled to reset_type and cookie during
-> this reboot-mode hook registration. If the secure firmware
-> supports PSCI system_reset2, restart notifier will make secure
-> call to trigger appropriate requested reset type.
+> Document i.MX93 ADC calibration properties and how to set them.
 > 
-> By using the above implementation, usespace will be able to issue
-> such resets using the reboot() system call with the "*arg"
-> parameter as a string based command. The commands can be defined
-> in PSCI device tree node as “reset-types” and are based on the
-> reboot-mode based commands.
-> 
-> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
 > ---
->  drivers/firmware/psci/Kconfig |  1 +
->  drivers/firmware/psci/psci.c  | 53 ++++++++++++++++++++++++++++++++++++++++++-
->  2 files changed, 53 insertions(+), 1 deletion(-)
+>  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 21 +++++++++++++++++++
+>  1 file changed, 21 insertions(+)
 > 
-> diff --git a/drivers/firmware/psci/Kconfig b/drivers/firmware/psci/Kconfig
-> index 97944168b5e66aea1e38a7eb2d4ced8348fce64b..9d65fe7b06a6429de8a26d06f9384e5c93f36e5f 100644
-> --- a/drivers/firmware/psci/Kconfig
-> +++ b/drivers/firmware/psci/Kconfig
-> @@ -1,6 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  config ARM_PSCI_FW
->  	bool
-> +	select REBOOT_MODE
+> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> index c2e5ff418920..d1c04cf85fe6 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> @@ -52,6 +52,27 @@ properties:
+>    "#io-channel-cells":
+>      const: 1
 >  
->  config ARM_PSCI_CHECKER
->  	bool "ARM PSCI checker"
-> diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
-> index 38ca190d4a22d6e7e0f06420e8478a2b0ec2fe6f..87293f78ed83eb33ba67ded73728729811693ea3 100644
-> --- a/drivers/firmware/psci/psci.c
-> +++ b/drivers/firmware/psci/psci.c
-> @@ -13,10 +13,13 @@
->  #include <linux/errno.h>
->  #include <linux/linkage.h>
->  #include <linux/of.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
->  #include <linux/pm.h>
->  #include <linux/printk.h>
->  #include <linux/psci.h>
->  #include <linux/reboot.h>
-> +#include <linux/reboot-mode.h>
->  #include <linux/slab.h>
->  #include <linux/suspend.h>
->  
-> @@ -51,6 +54,14 @@ static int resident_cpu = -1;
->  struct psci_operations psci_ops;
->  static enum arm_smccc_conduit psci_conduit = SMCCC_CONDUIT_NONE;
->  
-> +struct psci_vendor_sysreset2 {
-> +	u32 reset_type;
-> +	u32 cookie;
-> +	bool valid;
-> +};
+> +  nxp,calib-avg-en:
+> +    default: 1
+> +    description:
+> +      Enable or disable calibration averaging function (AVGEN).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
 > +
-> +static struct psci_vendor_sysreset2 vendor_reset;
+> +  nxp,calib-nr-samples:
+> +    default: 512
+> +    description:
+> +      Selects number of samples (NRSMPL) to be used during calibration.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 16, 32, 128, 512 ]
 > +
->  bool psci_tos_resident_on(int cpu)
->  {
->  	return cpu == resident_cpu;
-> @@ -309,7 +320,14 @@ static int get_set_conduit_method(const struct device_node *np)
->  static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
->  			  void *data)
->  {
-> -	if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
-> +	if (vendor_reset.valid && psci_system_reset2_supported) {
-> +		/*
-> +		 * if vendor_reset.valid is true call sys reset2 with
-> +		 * the vendor_reset(reset_type and cookie).
-> +		 */
+> +  nxp,calib-t-sample:
+> +    default: 22
+> +    description:
+> +      Selects sample time (TSAMP) of calibration conversions in ADC clock cycles
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 8, 16, 22, 32 ]
+> +
+>  required:
+>    - compatible
+>    - reg
 
-This comment repeats the line above and below it without
-bringing additional value
+This seem like things that should be set at runtime rather than
+in the devicetree. Unless there is some justification on why
+these values depend on how the chip is wired up?
 
-Konrad
-
-> +		invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2), vendor_reset.reset_type,
-> +			       vendor_reset.cookie, 0);
-> +	} else if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
->  	    psci_system_reset2_supported) {
->  		/*
->  		 * reset_type[31] = 0 (architectural)
-> @@ -547,6 +565,39 @@ static const struct platform_suspend_ops psci_suspend_ops = {
->  	.enter          = psci_system_suspend_enter,
->  };
->  
-> +static int psci_set_vendor_sys_reset2(struct reboot_mode_driver *reboot,
-> +				      u32 reset_type, u32 cookie)
-> +{
-> +	if (psci_system_reset2_supported) {
-> +		vendor_reset.reset_type = PSCI_1_1_RESET_TYPE_VENDOR_START | reset_type;
-> +		vendor_reset.cookie = cookie;
-> +		vendor_reset.valid = true;
-> +	}
-> +
-> +	return NOTIFY_DONE;
-> +}
-> +
-> +static int __init psci_init_vendor_reset(void)
-> +{
-> +	struct reboot_mode_driver *reboot;
-> +	struct device_node *np;
-> +
-> +	np = of_find_node_by_name(NULL, "reset-types");
-> +	if (!np)
-> +		return -ENODEV;
-> +
-> +	reboot = kzalloc(sizeof(*reboot), GFP_KERNEL);
-> +	if (!reboot) {
-> +		of_node_put(np);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	reboot->write_with_cookie = psci_set_vendor_sys_reset2;
-> +
-> +	return reboot_mode_register(reboot, np);
-> +}
-> +late_initcall(psci_init_vendor_reset)
-> +
->  static void __init psci_init_system_reset2(void)
->  {
->  	int ret;
-> 
 
