@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-195028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC628B00366
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:34:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 849ABB00398
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:36:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A8BE4E20BB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 13:33:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44E115A1ACA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 13:35:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70965258CE8;
-	Thu, 10 Jul 2025 13:33:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41CA2260590;
+	Thu, 10 Jul 2025 13:34:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jUJzm+YK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j8XUk71M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 414D482899;
-	Thu, 10 Jul 2025 13:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13478258CEF;
+	Thu, 10 Jul 2025 13:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752154410; cv=none; b=gXncGpGTLeSpC4pkHNq4E3mZXZclfHwibuHY5u9eVmo0/ChihNLenTelCd32NPmhSriFXGV8VNY5XBJ8GRuIDyCBfOryriYSMcLvVLv6W0g5snHJ0rUGYgo41hSg4w+sEdr5yio9avr3BXL7O0IFL044uvPYxFbN3WIrRctfPp4=
+	t=1752154454; cv=none; b=FAI5vl0AF/2lZPfkl+obu1E1b5uehZ0geqFaEIAEYEyja3gAIzzYWVnYatNmDu56ijqdc0FcGIew5iqUHKN+QlnUv2KLnkl22GAEfI4z1iduk/NkGB/2xBo3jC66U/ZMi2ap5YhHSubdXVao+RogH/tNkCwD/IHE+wZu2lFBXnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752154410; c=relaxed/simple;
-	bh=Q2kO4Y/oycTTePk3TM8auo1jZ3hHY5DEkbW5MUZk+PE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FJ1270e7TRwuI4e0w4VYN7a9TAkf+fjUzoAAIzUzqtUdkkvMIwksrNRaAWF9+p+QjiwMvrgIwchHc4p9YVZ6FhbkUJz/vp4+lgHeObbg0EPNZIxUauRN6Na1p6/JwJSTI4vU9fCwtJKe+JGQPEI3JJ0MegvAVJHolXEqKiOxQ+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jUJzm+YK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06E65C4CEE3;
-	Thu, 10 Jul 2025 13:33:14 +0000 (UTC)
+	s=arc-20240116; t=1752154454; c=relaxed/simple;
+	bh=zOHewkDTFd+vFUFT93OThrCEvn9XerBafGlxxGr0u7s=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=O5sftZnPZfkR7niWr55+RmcGal9kpBBkypkdMfgsPJAeBz8X19LndbkOPzeYokntVLq3qM+KGnvQO4+oxS/fKNhzF7M08hc2F+HgNZnRofh8Bxi2MPrmb5J50RxCZCG9l8s4injeU+WV3yWH/l3uQjLy7tVxnq92ctim6062URM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8XUk71M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48073C4CEED;
+	Thu, 10 Jul 2025 13:34:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752154409;
-	bh=Q2kO4Y/oycTTePk3TM8auo1jZ3hHY5DEkbW5MUZk+PE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jUJzm+YK4pt3e9elf4IPjgblfVRSj06kM9RizsWmebVfvV5XHQAZiahP6Prxk6OJn
-	 OFScmXKJHArvfzTIdCKy2/8+eNXhcd3IRNA4OFC0M6t/h+kwsnPY9si3GAAIyNIylm
-	 d+VpP9uVdUOKntn2XDnubPOi3yuvqRPOKRCPqxwuubGheFTELssUQ1Utth5xQWZQrV
-	 73XIh6fUBw3JlnlT0IW1Ffa6kz1huwxFVEHruFPPcKHZJhHTFp/mm1+AcnZkInXf2M
-	 wN7adrX9JxQJv9WI7YR+58HQRvxa4CRowv0HWxIqqMaLKXDDSje43HUDrhXp96f2ED
-	 CvcpDpgNlfxOA==
-Message-ID: <d870b11c-39e2-4b7a-a368-13b1c4b5a7c8@kernel.org>
-Date: Thu, 10 Jul 2025 15:33:10 +0200
+	s=k20201202; t=1752154453;
+	bh=zOHewkDTFd+vFUFT93OThrCEvn9XerBafGlxxGr0u7s=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=j8XUk71MHLmoX8lc/BCtZo4Qk+A1hx09W5WEaXVzHE5CHsWTy8NF5fIYIpuWw+Jen
+	 R1XsnztL7seHVvOAWKV4cuOCspei+OeRY3g7kKw2iMRCX4/JogzE9+jbmVTIIRtOZh
+	 OJAP2C7NvyhKQN7cnG3xOcizQqcAl2tKIugcI7l5AxJ0rpbNb+sxXJK6dRI0gaIiFp
+	 rQL8VqF+/fmE9UR6M+sW/+Zw2uC97XRKHY82bngrDHBMLmhXspj51WiiDgGaXEZFxJ
+	 l5CWz+tDiEGnukojkKWv8+jsEWqffupW83j9WvGHBCFEFsbtPq8NH2u0qIphQcqJQQ
+	 XNsgA+UX+jWOA==
+Message-ID: <b197ef12-652b-4c7a-97d2-49954e9f1384@kernel.org>
+Date: Thu, 10 Jul 2025 15:34:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,30 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: i2c: Add ov2735 sensor
-To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
- sakari.ailus@linux.intel.com, krzk+dt@kernel.org,
- kieran.bingham@ideasonboard.com
-Cc: dave.stevenson@raspberrypi.com, pratap.nirujogi@amd.com,
- laurent.pinchart@ideasonboard.com, tarang.raval@siliconsignals.io,
- Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Ricardo Ribalda <ribalda@chromium.org>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?=
- <git@apitzsch.eu>, Arnd Bergmann <arnd@arndb.de>,
- Dongcheng Yan <dongcheng.yan@intel.com>,
- Jingjing Xiong <jingjing.xiong@intel.com>,
- Matthias Fend <matthias.fend@emfend.at>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Hans de Goede <hansg@kernel.org>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250710131107.69017-1-hardevsinh.palaniya@siliconsignals.io>
- <20250710131107.69017-2-hardevsinh.palaniya@siliconsignals.io>
+Subject: Re: [PATCH v4 1/2] dt-bindings: clock: qcom,videocc: Add sc8180x
+ compatible
 From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20250710-sc8180x-videocc-dt-v4-0-07a9d9d5e0e6@quicinc.com>
+ <20250710-sc8180x-videocc-dt-v4-1-07a9d9d5e0e6@quicinc.com>
+ <c9bd8760-1c85-4aa6-9633-1f52ed4952c9@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,26 +111,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250710131107.69017-2-hardevsinh.palaniya@siliconsignals.io>
+In-Reply-To: <c9bd8760-1c85-4aa6-9633-1f52ed4952c9@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/07/2025 15:10, Hardevsinh Palaniya wrote:
-> +
-> +  clocks:
-> +    items:
-> +      - description: XVCLK clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xvclk
+On 10/07/2025 15:27, Krzysztof Kozlowski wrote:
+> On 10/07/2025 15:00, Satya Priya Kakitapalli wrote:
+>> The sc8180x video clock controller block is identical to that
+>> of sm8150. Add a new compatible string for sc8180x videocc and
+>> use sm8150 as fallback.
+>>
+>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+>> ---
+>>  .../devicetree/bindings/clock/qcom,videocc.yaml    | 23 +++++++++++++---------
+>>  1 file changed, 14 insertions(+), 9 deletions(-)
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> 
+> <form letter>
+> This is a friendly reminder during the review process.
+> 
+> It looks like you received a tag and forgot to add it.
 
-You don't use clock names here and example, so just drop the property.
-
-With this fixed:
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Apologies, wrong keyword. It is supposed to be this one:
 
 
 ---
