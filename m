@@ -1,161 +1,129 @@
-Return-Path: <devicetree+bounces-195203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7CECB00CF6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 22:22:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F0ABB00D22
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 22:31:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81E101C411D5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 20:22:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AD613A1BFB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 20:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E3B2FD586;
-	Thu, 10 Jul 2025 20:21:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A604028C016;
+	Thu, 10 Jul 2025 20:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hTF/m2jZ"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="AII+/EMZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A8DB2749D1;
-	Thu, 10 Jul 2025 20:21:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05432287265
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 20:30:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752178918; cv=none; b=m57m45OIXx8PtuWFNIehK8tjyFjRJm42LDXhJX95lZMqsNqmr4fRZiA/mAy1bDBZG6nceohT0jNZf9c8YgATB4DX4NNxBpeBteWLGEyViZ21LswOhtqwHpzM5AZcqw8w3cd/+9NrZ7NTh3tFajRS/fQwfRAy+N27t79M+VTXGfI=
+	t=1752179411; cv=none; b=geI2bl8GJcjeluz135Lk9/8w+fhcxCeSf5PpvqwsBF5w+vOzilxDZcg60MGHfeSs1aNp+52Vb+1J7LVooQ31T8oxRHlg72D5l3l6Q2XVOrHa4yfN2M3AUJqZCxwN7xjNPY7KHjV/O6XvMx9cGCRoydOroZbrPAhYOhYzEndcMT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752178918; c=relaxed/simple;
-	bh=I/H9BnWKae5+EgQRia3ov8/49jcWJjRuFEhnoiWa0Jc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cLH/W7EsCeXklYaIdN1H/L41wlFINJpHtez4FR8xDvcQzid3Cb5dpGZSUs4221v5UNnrp/SFVQ1djBp/F7SDR5YEo3iQpbV6MQ0yfl6bLgmM8hV2O+M+qwQjsfFJ9Z683JmhQD5ElfEq7Qx0Oo0MN8B4lx22pkp0EQFq4Sw5PrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hTF/m2jZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ADB5C4CEE3;
-	Thu, 10 Jul 2025 20:21:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752178918;
-	bh=I/H9BnWKae5+EgQRia3ov8/49jcWJjRuFEhnoiWa0Jc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hTF/m2jZLQEOu/55eqFOHpdTzqZ3hmyLzgZlM/2jdH2T+yBOAZ/3FLgs4XSh4Jbm6
-	 EbJm+YE6HP/0V0OCFyyFrch0U01vnjN2LP9k1THmvGDKtOx/B7SCcDEYcMiPG0BgQ+
-	 gm+OetqlRYPcK33LVX4klARbtSRfTqYDY+jmNN0giJycUZJq40Esr+DuzGD+wD1i+p
-	 TQ0ot+LL14MZSzv8HZZtcYic/eYtaSAVN48vmFjv/8MPinyf01HhYkTGD1XrsTI+0u
-	 vbvw9XbEk1vZzzKShgqUz9yyqz3KKa/JSPuHDfVsa7bEx7SS6e/XgF8QB2bdTnXCe3
-	 DpsHArr/mRIPg==
-Date: Thu, 10 Jul 2025 15:21:56 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Luca Weiss <luca.weiss@fairphone.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: document the Milos Top
- Level Mode Multiplexer
-Message-ID: <hdocf4qsja3i5qlj3qzzgfyibgbwytlkmdoc4n4lvryilez5uf@7bwnbnav3bui>
-References: <20250702-sm7635-pinctrl-v2-0-c138624b9924@fairphone.com>
- <20250702-sm7635-pinctrl-v2-1-c138624b9924@fairphone.com>
- <20250703-daring-burgundy-limpet-a1c97e@krzk-bin>
- <DB293G0PC5P8.13IW22M6DDESM@fairphone.com>
- <a453bd90-b7c7-42eb-b769-b4c87b6dac12@oss.qualcomm.com>
- <424285fb-14a0-452b-8d18-6165d2a78497@kernel.org>
- <3d3g2sq4r7pruu4c2sl2itclx7xuja6inasaicm67t4sx6u5fl@xq5g7h4rabno>
- <20250708171515.GA640511-robh@kernel.org>
+	s=arc-20240116; t=1752179411; c=relaxed/simple;
+	bh=nm20+WcNioBlerpqJbH1yLPFNhmmHlcIetfimZOi1Es=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OOa2G9aM4I/ZYeg0hc4jcrj0mQXfwhVUjZKuQFly2x3OyrU6x2eWNaLkKru+eSxuS0umpiQHjAtzL5mj0jfd/wunjNMhG2q3Xc2ZgRyV+xEsOnDokGGDR0RREaHce7EHQS3hKqlb2Zk2GKg6H5D1e8EE175dkrsg7L+Bnkc+vIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=AII+/EMZ; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From; q=dns/txt; s=fe-e1b5cab7be; t=1752179408;
+ bh=7CDUMK0C5WhusnGjADECcfU0iOU3s4nlSWfB0CUfxkE=;
+ b=AII+/EMZsso20VAsV3phQ/SCK02ZGobd7Wcw0umlGqw3vMV/kn+6ySRgzFKQRHjjNqf8NTVvx
+ /1AHTdAzrYDD4rgq8mKPksrQkfHk5U5EEGPvoFPaI08V8XdKIoEIAWmUPWpLnMRDS1nuTT5Vjk8
+ ClVKAwi+KNJpMgZF7P1VcujRoy4hG8f9DRqwvpvGdgtNobETm2OTDm6FE2RKzSbic2mdif/lYbm
+ 2nM80iTL95BsrnK4KCgQJDZ+xL8ICUEUx0SfKBUSVo5YdOfprhDxv7O2NzeJXQqhlLuw71pYoKg
+ Gv9hZ50SicN40wDOtLqhrrA5Ci233SeMF/ubNvGLdKlw==
+X-Forward-Email-ID: 687022cc5dd88a88be4f4e1b
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.1.3
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Yao Zi <ziyao@disroot.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: [PATCH v2 0/6] arm64: dts: rockchip: Add ROCK 2A/2F, Sige1 and NanoPi Zero2
+Date: Thu, 10 Jul 2025 20:29:39 +0000
+Message-ID: <20250710202958.3717181-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250708171515.GA640511-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jul 08, 2025 at 12:15:15PM -0500, Rob Herring wrote:
-> On Thu, Jul 03, 2025 at 12:31:46PM -0500, Bjorn Andersson wrote:
-> > On Thu, Jul 03, 2025 at 01:26:11PM +0200, Krzysztof Kozlowski wrote:
-> > > On 03/07/2025 12:04, Konrad Dybcio wrote:
-> > > > 
-> > > > 
-> > > > On 03-Jul-25 09:44, Luca Weiss wrote:
-> > > >> On Thu Jul 3, 2025 at 9:41 AM CEST, Krzysztof Kozlowski wrote:
-> > > >>> On Wed, Jul 02, 2025 at 05:56:16PM +0200, Luca Weiss wrote:
-> > > >>>> Document the Top Level Mode Multiplexer on the Milos Platform.
-> > > >>>
-> > > >>> What is Milos platform? Does it have some sort of model number how we
-> > > >>> usually expect? Wasn't this SM7325 or similar?
-> > > >>>
-> > 
-> > Milos is the actual name of the SoC.
-> > 
-> > > >>> The problem with such new naming that it awfully sounds like family
-> > > >>> names, so just expand the name and explain it.
-> > > >>
-> > > >> Please go argue with Bjorn/Konrad about this, wasn't my idea.
-> > > >>
-> > > >> https://lore.kernel.org/linux-arm-msm/aGMI1Zv6D+K+vWZL@hu-bjorande-lv.qualcomm.com/
-> > > >> https://lore.kernel.org/linux-arm-msm/b98d305b-247f-415b-8675-50d073452feb@oss.qualcomm.com/
-> > > > 
-> > > > Milos is the "real-est" name of this silicon. All the associated
-> > > > S[AM]|QC[MS]s are just variations of it, with different fusing.
-> > > > 
-> > > > You'll stumble upon it across e.g. firmware build strings, as
-> > > > well as in any documentation pieces.
-> > > > 
-> > > > There are various internal reasons for the switch, but the most
-> > > > obvious external-facing one is not to have the user buy a devkit
-> > > > and wonder whether they should use QCS9100 or QCS9075 DTB, and
-> > > > why there's zero drivers code for these magic numbers (they
-> > > > include SA8775P). We can simply point them to "codename" and
-> > > > all C code will refer to it as well.
-> > > 
-> > > These are different SoCs, optionally with different firmware, so they
-> > > cannot use the same top-level compatible chain. I hope you did not
-> > > propose that.
-> > > 
-> > 
-> > No they are not different SoCs, and that's the problem with the current
-> > naming scheme.
-> > 
-> > > For me list like "qcs9100, sa8775p" is clear enough, but if you want
-> > > "qcs9100, koala-bear" or "brown-bear, koala-bear" it is fine as well.
-> > > You just cannot use koala-bear for all of them.
-> > > 
-> > 
-> > It looks "clear enough", but it's wrong. The problem is that sa8775p,
-> > qca9100, and qcs9075 are the "same" hardware and firmware.
-> > 
-> > The difference between sa8775p and qcs9100 is the reserved-memory map,
-> > the difference between qcs9100 and qcs9075 is one IP block being status
-> > = "okay" vs "disabled", due to fuses.
-> > 
-> > It's exactly the same problem we first saw in QRB5165, but we let the
-> > problem explode. Now we use the names sc7280, sm7325, qcm6490, and
-> > qcs6490 for the same SoC.
-> > 
-> > Using the SoC's actual name here will remove the need for playing games
-> > with DT includes etc to try to map things to the current naming scheme.
-> > 
-> > 
-> > The one case that isn't being taking care of such naming is when there
-> > are differences in the firmware. But as can be seen in the "sc7280"
-> > familiy, those software differences doesn't align with the chosen names.
-> > And even within a given SoC, with a (overall) given firmware, the
-> > reserved-memory map ends up differing.
-> > 
-> > 
-> > So, the name of the SoC in this patch is "Milos". We already have ways
-> > of dealing with firmware and/or hardware variations within one SoC, we
-> > should use them (and refine them as necessary), rather than pretending
-> > that something like SM7325 will define those properties.
-> 
-> I for one prefer 1 compatible per die. We often don't know if that's 
-> the case, but in this case we do so let's take advantage of it. 
-> 
+This series adds dt-bindings and initial device tree for the following
+Rockchip RK3528A boards:
+- Radxa ROCK 2A/2F
+- ArmSoM Sige1
+- FriendlyElec NanoPi Zero2
 
-I like this definition, and to the best of my knowledge these are all
-examples of "it's the same die".
+The bt/wifi_reg_on pins are described in the device tree using
+rfkill-gpio nodes.
 
-Regards,
-Bjorn
+Changes in v2:
+- Limit sdmmc max-frequency to 100 MHz on ROCK 2A/2F
+- Drop clock-output-names prop from rtc node on Sige1 and NanoPi Zero2
+- Drop regulator-boot-on from usb 2.0 host regulators on Sige1
+- Add bluetooth and wifi nodes on Sige1
+- Collect t-b tag for NanoPi Zero2
+
+These boards can be booted from emmc or sd-card using the U-Boot 2025.07
+generic-rk3528 target or work-in-progress patches for these boards [1].
+
+The patch "arm64: dts: rockchip: Fix pinctrl node names for RK3528" [2]
+is recommended to remove a few CHECK_DTBS=y W=2 node_name_chars_strict
+warnings for these boards.
+
+For working bluetooth on ArmSoM Sige1 the patch "arm64: dts: rockchip:
+Fix UART DMA support for RK3528" [3] is also required.
+
+[1] https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/commits/rk3528
+[2] https://lore.kernel.org/r/20250621113859.2146400-1-jonas@kwiboo.se
+[3] https://lore.kernel.org/r/20250709210831.3170458-1-jonas@kwiboo.se
+
+Jonas Karlman (6):
+  dt-bindings: arm: rockchip: Add Radxa ROCK 2A/2F
+  arm64: dts: rockchip: Add Radxa ROCK 2A/2F
+  dt-bindings: arm: rockchip: Add ArmSoM Sige1
+  arm64: dts: rockchip: Add ArmSoM Sige1
+  dt-bindings: arm: rockchip: Add FriendlyElec NanoPi Zero2
+  arm64: dts: rockchip: Add FriendlyElec NanoPi Zero2
+
+ .../devicetree/bindings/arm/rockchip.yaml     |  17 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   4 +
+ .../boot/dts/rockchip/rk3528-armsom-sige1.dts | 467 ++++++++++++++++++
+ .../boot/dts/rockchip/rk3528-nanopi-zero2.dts | 340 +++++++++++++
+ .../boot/dts/rockchip/rk3528-rock-2.dtsi      | 293 +++++++++++
+ .../boot/dts/rockchip/rk3528-rock-2a.dts      |  82 +++
+ .../boot/dts/rockchip/rk3528-rock-2f.dts      |  10 +
+ 7 files changed, 1213 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-nanopi-zero2.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2f.dts
+
+-- 
+2.49.0
+
 
