@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-195241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA2D9B00EAA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 00:25:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 990E0B00EB9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 00:30:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F20971CA5E7D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 22:25:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEE6F4A49CF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 22:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EAEA295D99;
-	Thu, 10 Jul 2025 22:25:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7415B29993F;
+	Thu, 10 Jul 2025 22:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="swKlbdv9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pIAuBUeI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB10F2356D2;
-	Thu, 10 Jul 2025 22:25:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C60928C011;
+	Thu, 10 Jul 2025 22:30:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752186334; cv=none; b=C9P/82/cnTBUHsuwHP6FAFGIcHjHLX0rcn++teWRlH2okRlbWHtkkkdinbPKzPfp08gGjxRPU/p52EYqzad/iNLbhOrCqvTWOCgTYI5sYi/pdD8q6Q11XfKSoHAFXPnLk2Xr0Oxw81AYyTFtM8rMvRJxL8aDvWY1HUsfCj3IeI8=
+	t=1752186636; cv=none; b=n50MPqpiHiJIIYXpkr4NYergpDaSIefvazKAm3MoTp2hNKzpnvZe5FS5/v4Ne5SmttrcFfQno80Mu369+9X2+pWz/ZNTuZRsh52DanEG0xISRv/APobu2FvFdab3JgCWa3L2v7R8FHwg8nGQ7t8ggd9vf016tU28vYloNg1mVmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752186334; c=relaxed/simple;
-	bh=Hr1PsSZpPnvJkfBE+S1YATXV95Q4Fi7cxOlliarndms=;
+	s=arc-20240116; t=1752186636; c=relaxed/simple;
+	bh=XwqwZqp7HuX7RcyuJ6RcS3EZOjo+k033TS6NfqYifjg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DznZnS6cdK29So3jFXYD9zzLgqEmvGHJap3h7QdNZOHUOFS/z/yHI9X686KKejzdH25P4Nk1xuc5wSD8pi4AzPhy1o//vAZm63bRaMG+hXSJATmmM7eyxcnbToPRBEk4eSvgrOvl2e5XPAgLVGBA3e9lX2gcWHPR29E+8V2KgV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=swKlbdv9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37DE4C4CEE3;
-	Thu, 10 Jul 2025 22:25:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TYqt3b4z4Tese7LZjT3+zDAG525fSkB8xpVcpOcoiGKCh45EToKSpXMNIPU7SI0U6AlHiSPO22hd7lUe9jvvguseIbOW5R5Val+gi5rYjIgSBeqBO2AScu5A+pBFi2Ysac4mWYalMSVthu21nIDcXJhgifX38EK7CVoNKxzGaDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pIAuBUeI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F1B1C4CEE3;
+	Thu, 10 Jul 2025 22:30:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752186333;
-	bh=Hr1PsSZpPnvJkfBE+S1YATXV95Q4Fi7cxOlliarndms=;
+	s=k20201202; t=1752186635;
+	bh=XwqwZqp7HuX7RcyuJ6RcS3EZOjo+k033TS6NfqYifjg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=swKlbdv92NEPM4YCMOMscz+KSZut7oBWINT5QVkUh6EDB9LXodMhxiPLRALYWMbca
-	 6Tn78YHH2I8zkh4mlFhpmctnMVM3FfCVIMPa9CvBN/vnK9wnwnu8PnzVQ9M2uM9Yk5
-	 iO0FYXoo0pDf04oT+zlaJGu7kL1K2LhadRHp2De+TUQ5zYHPlKdekCpfSJIoQKrptj
-	 4WZ63vpSFJlUQNe5rHVQ3GX/7jDO3NVLKtJUWqH3pTvJQCxG1E3d+lGQSy/CM+2n/k
-	 0Kkc3TzGYxqE0HvtP6yLJZpsySCclAJP89kQlDydPPQbf81hzWFMuYV78tpGGqt2nI
-	 gBhh9TkW+Ak6g==
-Date: Thu, 10 Jul 2025 17:25:27 -0500
-From: Rob Herring <robh@kernel.org>
-To: Christophe Parant <c.parant@phytec.fr>
-Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	b=pIAuBUeI9kHse8pIF8gKTTgBrcwPa8tqm5mzxwbYiDTvgLLWdD5NlFqYEVmqzFRyP
+	 dHbWbVnJfaHd0bRxy8lEj+WD/L+bs8W222PdgKISqaI8kY3H3LhHgyvjjEQ4TEokV9
+	 l8p3FaOQYPuzSGj4Y445VRFrLHoUZMX3y/rwCPnkllrfM22ku9JfMR5VzHYO7KFHZD
+	 OKD5xWTLw2ImE4jv1nG7x+FS0xLpHHQ6m3IRzyfKPO5zR+MyubayiHjO1/7i35E0ou
+	 +Q52D4SrwrqD8L29YB1u6QtjZrREfLx8jeVSvcj1V9CZ1RrYG20rHD11pN+XRPljMH
+	 vFCDCTlCAMGJA==
+Date: Thu, 10 Jul 2025 17:30:34 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Jernej Skrabec <jernej@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	linux-sunxi@lists.linux.dev,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	Chen-Yu Tsai <wens@csie.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	upstream@lists.phytec.de
-Subject: Re: [PATCH v2 03/11] dt-bindings: arm: stm32: Modify STM32MP15x
- Phytec board items types
-Message-ID: <20250710222527.GA4171977-robh@kernel.org>
-References: <20250709151011.366537-1-c.parant@phytec.fr>
- <20250709151011.366537-4-c.parant@phytec.fr>
+	Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: power: Add A523 PPU and PCK600 power
+ controllers
+Message-ID: <175218663372.4188922.16230112848863911974.robh@kernel.org>
+References: <20250709155343.3765227-1-wens@kernel.org>
+ <20250709155343.3765227-2-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,50 +66,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250709151011.366537-4-c.parant@phytec.fr>
+In-Reply-To: <20250709155343.3765227-2-wens@kernel.org>
 
-On Wed, Jul 09, 2025 at 05:10:03PM +0200, Christophe Parant wrote:
-> As Phytec manages different SoM configurations with different STM32MP15
-> SoC versions, modify the phyBOARD and SoM compatible items to "enum"
-> instead of "const".
-> The description concerns PHYTEC SoM equipped with STM32MP157
-> ("st,stm32mp157" is "const").
-> Also add comments in front of the enum items to be able to identify the
-> compatible string with the phyBOARD/phyCORE names.
 
-I don't understand the point of this patch.
-
-> Signed-off-by: Christophe Parant <c.parant@phytec.fr>
+On Wed, 09 Jul 2025 23:53:40 +0800, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
+> 
+> The A523 PPU is likely the same kind of hardware seen on previous SoCs.
+> 
+> The A523 PCK600, as the name suggests, is likely a customized version
+> of ARM's PCK-600 power controller. Comparing the BSP driver against
+> ARM's PPU datasheet shows that the basic registers line up, but
+> Allwinner's hardware has some additional delay controls in the reserved
+> register range. As such it is likely not fully compatible with the
+> standard ARM version.
+> 
+> Document A523 PPU and PCK600 compatibles.
+> 
+> Also reorder the compatible string entries so they are grouped and
+> ordered by family first, then by SoC model.
+> 
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> 
 > ---
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
+> Changes since v1:
+> - Re-order compatible string entries
+> - Fix name of header file to match compatible string
+> ---
+>  .../bindings/power/allwinner,sun20i-d1-ppu.yaml   |  4 +++-
+>  .../power/allwinner,sun55i-a523-pck-600.h         | 15 +++++++++++++++
+>  .../dt-bindings/power/allwinner,sun55i-a523-ppu.h | 12 ++++++++++++
+>  3 files changed, 30 insertions(+), 1 deletion(-)
+>  create mode 100644 include/dt-bindings/power/allwinner,sun55i-a523-pck-600.h
+>  create mode 100644 include/dt-bindings/power/allwinner,sun55i-a523-ppu.h
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> index 408532504a24..fbd3d364c1f7 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> @@ -182,10 +182,12 @@ properties:
->            - const: seeed,stm32mp157c-odyssey-som
->            - const: st,stm32mp157
->  
-> -      - description: Phytec STM32MP1 SoM based Boards
-> +      - description: Phytec STM32MP157 SoM based Boards
->          items:
-> -          - const: phytec,phycore-stm32mp1-3
-> -          - const: phytec,phycore-stm32mp157c-som
-> +          - enum:
-> +              - phytec,phycore-stm32mp1-3 # phyBOARD-Sargas with phyCORE-STM32MP157C SoM
-> +          - enum:
-> +              - phytec,phycore-stm32mp157c-som # phyCORE-STM32MP157C SoM
 
-Are you going to add more entries to the enums? Wouldn't those be a 
-different SoC and a whole other 'items' list because it wouldn't be the 
-157 SoC?
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
->            - const: st,stm32mp157
->  
->        - description: Ultratronik STM32MP1 SBC based Boards
-> -- 
-> 2.34.1
-> 
 
