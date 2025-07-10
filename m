@@ -1,304 +1,136 @@
-Return-Path: <devicetree+bounces-194789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2590FAFF821
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 06:43:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46F3DAFF82F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 06:50:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 822B47A24FB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 04:41:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B11E1767D8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 04:50:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17106283680;
-	Thu, 10 Jul 2025 04:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA4E021D3C0;
+	Thu, 10 Jul 2025 04:50:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dtbg01S+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66076469D;
-	Thu, 10 Jul 2025 04:42:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589FD219A6B;
+	Thu, 10 Jul 2025 04:50:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752122583; cv=none; b=mIaMSarp3jRCYhZjMbGWH1X2zz9fJyLiZ6nPWYW4ex9O/hSfkya4px9RH0DrVJFGM25SGb8EacFByk0RoexgCJtUvHJ7f1ppQ8jFAHmwDFNeH4LntyASK+FWErV3rDVeNZ8E4RY8N/mkHqGsqbjGPhbZJEjwQCskbdZwdV6vm4Q=
+	t=1752123018; cv=none; b=cB/0cnyrQuWGmCnopPnFLsnig487QR1UkGUWu874M+SNgX/+QoXG8sS0X8qpprm/2qblIU3uSORbgh7Z7l6uJBUaN1f4niwAzO85luP038VLrP1apFtKqI4kWMs39Skc0j/0w4oMvfojayU+NagKndU68BPMc63Qi0k1GvGgDt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752122583; c=relaxed/simple;
-	bh=iLmpuC1/ySJiBRHY1OOOVBrLgw59BY+FvKgX1xDG64A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Tw8JwWuU8wzIu0VGmprlvnghc2nzAi8WxeptdUaA1kZiD+m/NdhL0MbbjtmLUcoEu9WEg64apG8QbbHy9prME8dUDywSsVoq+Mv5gsZLx9AwivDEaTTFSnYFYLp56lL4ltMArXJxkTUbCiNr4oElcnTqy8Uhi6B5LrfzpbhWWZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.108] (unknown [114.241.87.235])
-	by APP-05 (Coremail) with SMTP id zQCowADXaVqmRG9oleKwAg--.7354S2;
-	Thu, 10 Jul 2025 12:42:14 +0800 (CST)
-Message-ID: <ec29a7b6-e941-4006-9bb7-84334e6e48ea@iscas.ac.cn>
-Date: Thu, 10 Jul 2025 12:42:14 +0800
+	s=arc-20240116; t=1752123018; c=relaxed/simple;
+	bh=OEspdNkpeaGb6UthJe0zFS9Qljw+kdaXflFHboC9c60=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jQJukdn9SqYfzUhlInag3B0iAjsLQwC688PMl+DalBbDk172nqyFgPlTmj4i77K9cNntDhXOzA7cXFvDXiWqOAbAx0ZsD8zqtIkBeOZXaQp0WSl1GIULFvCzyeFblRnUdBMXns0/mJFSh06KVFbdW19bNXJZeM/b93qyGx1Fj0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dtbg01S+; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-739b3fe7ce8so586507b3a.0;
+        Wed, 09 Jul 2025 21:50:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752123016; x=1752727816; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=43W4i1GCTgED74WiEGNoHpiF4mzL+pQO2g8gssUc4vE=;
+        b=dtbg01S+pZ48VCqevTYo9vxdmCOsC++nn57PSavyRJ2z6X9UlDwBjREcT9hWuS/2LN
+         +KCG9djnDRjUY5wsI938X7BGx8vSwHJznbyV6EbJpcsA4t7SB9Ydmic38LTEQJaOrGxz
+         /P6VOhn/z7HUiyPxvAAKFA6DM/iMsyrgujCQfVv2Z05rTGrCYb6f78M7CjNVFNcYOG+8
+         2oUanx6lvPV18XwI0dLqdVJw2GlHlCeuV/MGx4aH7B/iiinYSMoa0rNCMDjw3DO+cAJo
+         FR1ln4EMW+Rdn4VuC2DsIXuehi2dwiGARdMfp11WzLbHfVeSvuOqM8p2cYUr3rVSBXc2
+         wOvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752123016; x=1752727816;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=43W4i1GCTgED74WiEGNoHpiF4mzL+pQO2g8gssUc4vE=;
+        b=eLUqj8QHJ82IU+Da7WLKeq8NT83zsk7fI9wh7/8xon/Bz1L9mF7JEqG7FwSVExznS/
+         lJ37bRmnxGHxkH5u/tIAFHeFG4vi1KTX5Ux3mzOkG/9zQhH93enUOeshwan1CFYYl72W
+         5xgqjIqMb8zAk96jFryNInAdtgmpjpFDXBYDsdzClKA1duFmgKHBSw4GzqpfwW06W+Pt
+         pQ0NP9AKGrqMDnMplEuhF9k24GypaQQO8XIu1KPK6ZVejjeWhny54YdZ5o2FddafuAgt
+         b8p6cs4Cn1HX2wikuFuCJswGGnIfvMugD+yVqKiPnBw7qbo46gFuvbEIoiUuMbdMHKNu
+         3GCg==
+X-Forwarded-Encrypted: i=1; AJvYcCW7GMKku/ZiOsiz4otE9EzuitxUFR0Qlpv/4buiV2CZx4DofNFKiw28Zr1tHKiltAKyMmB7lDYQ@vger.kernel.org, AJvYcCXm6eVR7pVO+21NguA16WNCn0inlaFOcJ/6x0BgdL/wX2NytixMNpDLTjTt5kuImIwqpSLRPp/rZwTSBVs=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTBNWJMB+k5SEXr4bE+0dh1ZLjvgHX9Rlphne4pL03EpkVa/QB
+	gFKI/ItvAHVWZlcjvYKRKm10QPGUldYiNQTxdi5XkWuwx3xQiCGeVyrB
+X-Gm-Gg: ASbGncs7dNUJBYPnYmRfC7qx61xWJmLCUMhRWhxD09Zq9i3zIicX+3jYZPnbGr5ARqf
+	g2gth7IAsB7StVl9ObWpHW+MW4tmXEq60FoP052zVILuvpefevwTznMk2v0csl1KQ1ZbDH1kI+v
+	kmgSmCUSFFi4s3E5rGZnxhBCMnYPYuXfAgz4o9pNScURS5ln+aDzbCWR1Iai2yYHJ+R5hmF/UUt
+	u63UUzIPPAa3XdUMfLvPSDoKpM6C9l+ff4JIl+qIdsSLQ2nq9gkp8Ts8LmPm/DN7bDvrYOVf3YC
+	u7pYXARXolLHnM0IBVGqhos9VjzrLmZSYXIZrx8BOHgD9SFba31gAyRqtxSlaQ==
+X-Google-Smtp-Source: AGHT+IGZnsUpzh+ZmsBVRBPZSQgS+0QwmCGnqZeIQPjP/On8etzioYUBd10sRVdO4/dKBZSQ/6l1KQ==
+X-Received: by 2002:a05:6a00:994:b0:748:fb7c:bbe0 with SMTP id d2e1a72fcca58-74ea6709f51mr8662943b3a.24.1752123016476;
+        Wed, 09 Jul 2025 21:50:16 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-74eb9f4bc51sm808024b3a.116.2025.07.09.21.50.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Jul 2025 21:50:16 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Yixun Lan <dlan@gentoo.org>,
+	Ze Huang <huangze@whut.edu.cn>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH 0/3] riscv: dts: sophgo: Add ethernet support for cv18xx
+Date: Thu, 10 Jul 2025 12:49:44 +0800
+Message-ID: <175212292374.416883.3089328739735203878.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250703021600.125550-1-inochiama@gmail.com>
+References: <20250703021600.125550-1-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 2/2] net: spacemit: Add K1 Ethernet MAC
-To: Simon Horman <horms@kernel.org>, Vivian Wang <uwu@dram.page>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Junhui Liu <junhui.liu@pigmoral.tech>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20250703-net-k1-emac-v4-0-686d09c4cfa8@iscas.ac.cn>
- <20250703-net-k1-emac-v4-2-686d09c4cfa8@iscas.ac.cn>
- <20250707100124.GC89747@horms.kernel.org>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <20250707100124.GC89747@horms.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:zQCowADXaVqmRG9oleKwAg--.7354S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3AFy5uFW7JFWkuFyfAr4Dtwb_yoWxZr17pa
-	y5Ja9Fyr4jyF1xJw4UGr48XF4ayFyxJ3W7KrWYy39IkFZ0kw1Ig34xKF13C34Durn5Ar90
-	yayUZF9xGaykGFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvmb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I
-	8E87Iv6xkF7I0E14v26F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
-	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr
-	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
-	MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r
-	4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF
-	67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2I
-	x0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2
-	z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnU
-	UI43ZEXa7IUYsSdPUUUUU==
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Simon,
+On Thu, 03 Jul 2025 10:15:55 +0800, Inochi Amaoto wrote:
+> Add device binding and dts for CV18XX series SoC.
+> 
+> Change from RFC v4:
+> - https://lore.kernel.org/all/20250701011730.136002-1-inochiama@gmail.com
+> 1. split the binding patch as a standalone series.
+> 
+> Change from RFC v3:
+> - https://lore.kernel.org/all/20250626080056.325496-1-inochiama@gmail.com
+> 1. patch 3: change internal phy id from 0 to 1
+> 
+> [...]
 
-Thanks for your suggestions.
+Applied to for-next, thanks!
 
-On 7/7/25 18:01, Simon Horman wrote:
-> On Thu, Jul 03, 2025 at 05:42:03PM +0800, Vivian Wang wrote:
->> The Ethernet MACs found on SpacemiT K1 appears to be a custom design
->> that only superficially resembles some other embedded MACs. SpacemiT
->> refers to them as "EMAC", so let's just call the driver "k1_emac".
->>
->> This driver is based on "k1x-emac" in the same directory in the vendor's
->> tree [1]. Some debugging tunables have been fixed to vendor-recommended
->> defaults, and PTP support is not included yet.
->>
->> [1]: https://github.com/spacemit-com/linux-k1x
->>
->> Tested-by: Junhui Liu <junhui.liu@pigmoral.tech>
->> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-> ...
->
->> diff --git a/drivers/net/ethernet/spacemit/k1_emac.c b/drivers/net/ethernet/spacemit/k1_emac.c
-> ...
->
->> +/**
->> + * struct emac_desc_ring - Software-side information for one descriptor ring
->> + * Same struture used for both RX and TX
-> nit: structure
+[1/3] riscv: dts: sophgo: Add ethernet device for cv18xx
+      https://github.com/sophgo/linux/commit/0100910f6ae2659c1178b3ece064c2f2e7eefbae
+[2/3] riscv: dts: sophgo: Add mdio multiplexer device for cv18xx
+      https://github.com/sophgo/linux/commit/a4fb40b240fecc3cf84e12277e5b66818a80e3ad
+[3/3] riscv: dts: sophgo: Enable ethernet device for Huashan Pi
+      https://github.com/sophgo/linux/commit/8f8de50d4bddf155b5e5c70072c3048829a90a98
 
-Thanks, will fix in next version.
-
->
->> + * @desc_addr: Virtual address to the descriptor ring memory
->> + * @desc_dma_addr: DMA address of the descriptor ring
->> + * @total_size: Size of ring in bytes
->> + * @total_cnt: Number of descriptors
->> + * @head: Next descriptor to associate a buffer with
->> + * @tail: Next descriptor to check status bit
->> + * @rx_desc_buf: Array of descriptors for RX
->> + * @tx_desc_buf: Array of descriptors for TX, with max of two buffers each
->> + */
-> ...
->
->> +static void emac_set_mac_addr(struct emac_priv *priv, const unsigned char *addr)
->> +{
->> +	emac_wr(priv, MAC_ADDRESS1_HIGH, ((addr[1] << 8) | addr[0]));
-> nit: no need for inner parentheses here,
->       the order of operations is on your side
->
-> 	emac_wr(priv, MAC_ADDRESS1_HIGH, addr[1] << 8 | addr[0]);
->
->> +	emac_wr(priv, MAC_ADDRESS1_MED, ((addr[3] << 8) | addr[2]));
->> +	emac_wr(priv, MAC_ADDRESS1_LOW, ((addr[5] << 8) | addr[4]));
->> +}
-
-I will remove unnecessary these parens in next version.
-
-> ...
->
->> +static int emac_rx_frame_status(struct emac_priv *priv, struct emac_desc *desc)
->> +{
->> +	/* Drop if not last descriptor */
->> +	if (!(desc->desc0 & RX_DESC_0_LAST_DESCRIPTOR)) {
->> +		netdev_dbg(priv->ndev, "RX not last descriptor\n");
-> Unless I am mistaken these logs can occur on the basis of user
-> (Network packet) input. If so, I think rate limited debug
-> messages are more appropriate here and below.
-
-This particular one shouldn't be, but the rest are indeed triggered 
-based on network packet input, and in any case these can happen 
-per-packet. I will make these ratelimited in the next version.
-
->> +		return RX_FRAME_DISCARD;
->> +	}
->> +
->> +	if (desc->desc0 & RX_DESC_0_FRAME_RUNT) {
->> +		netdev_dbg(priv->ndev, "RX runt frame\n");
->> +		return RX_FRAME_DISCARD;
->> +	}
->> +
->> +	if (desc->desc0 & RX_DESC_0_FRAME_CRC_ERR) {
->> +		netdev_dbg(priv->ndev, "RX frame CRC error\n");
->> +		return RX_FRAME_DISCARD;
->> +	}
->> +
->> +	if (desc->desc0 & RX_DESC_0_FRAME_MAX_LEN_ERR) {
->> +		netdev_dbg(priv->ndev, "RX frame exceeds max length\n");
->> +		return RX_FRAME_DISCARD;
->> +	}
->> +
->> +	if (desc->desc0 & RX_DESC_0_FRAME_JABBER_ERR) {
->> +		netdev_dbg(priv->ndev, "RX frame jabber error\n");
->> +		return RX_FRAME_DISCARD;
->> +	}
->> +
->> +	if (desc->desc0 & RX_DESC_0_FRAME_LENGTH_ERR) {
->> +		netdev_dbg(priv->ndev, "RX frame length error\n");
->> +		return RX_FRAME_DISCARD;
->> +	}
->> +
->> +	if (rx_frame_len(desc) <= ETH_FCS_LEN ||
->> +	    rx_frame_len(desc) > priv->dma_buf_sz) {
->> +		netdev_dbg(priv->ndev, "RX frame length unacceptable\n");
->> +		return RX_FRAME_DISCARD;
->> +	}
->> +	return RX_FRAME_OK;
->> +}
-> ...
->
->> +static int emac_resume(struct device *dev)
->> +{
->> +	struct emac_priv *priv = dev_get_drvdata(dev);
->> +	struct net_device *ndev = priv->ndev;
->> +	int ret;
->> +
->> +	ret = clk_prepare_enable(priv->bus_clk);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to enable bus clock: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	if (!netif_running(ndev))
->> +		return 0;
->> +
->> +	ret = emac_open(ndev);
->> +	if (ret)
-> Smatch flags that priv->bus_clk resources are leaked here, and I agree.
->
->> +		return ret;
->> +
->> +	netif_device_attach(ndev);
->> +	return 0;
->> +}
-> I would suggest addressing that like this.
-> (Compile tested only!)
->
-> diff --git a/drivers/net/ethernet/spacemit/k1_emac.c b/drivers/net/ethernet/spacemit/k1_emac.c
-> index 6158e776bc67..ebd02ec2bb01 100644
-> --- a/drivers/net/ethernet/spacemit/k1_emac.c
-> +++ b/drivers/net/ethernet/spacemit/k1_emac.c
-> @@ -1843,10 +1843,14 @@ static int emac_resume(struct device *dev)
->   
->   	ret = emac_open(ndev);
->   	if (ret)
-> -		return ret;
-> +		goto err_clk_disable_unprepare;
->   
->   	netif_device_attach(ndev);
->   	return 0;
-> +
-> +err_clk_disable_unprepare:
-> +	clk_disable_unprepare(priv->bus_clk);
-> +	return ret;
->   }
->   
->   static int emac_suspend(struct device *dev)
-
-Thanks for the tip. I will fix the error handling path in emac_resume 
-next version.
-
-> ...
->
->> diff --git a/drivers/net/ethernet/spacemit/k1_emac.h b/drivers/net/ethernet/spacemit/k1_emac.h
-> ...
->
->> +struct emac_hw_stats {
->> +	u32 tx_ok_pkts;
->> +	u32 tx_total_pkts;
->> +	u32 tx_ok_bytes;
->> +	u32 tx_err_pkts;
->> +	u32 tx_singleclsn_pkts;
->> +	u32 tx_multiclsn_pkts;
->> +	u32 tx_lateclsn_pkts;
->> +	u32 tx_excessclsn_pkts;
->> +	u32 tx_unicast_pkts;
->> +	u32 tx_multicast_pkts;
->> +	u32 tx_broadcast_pkts;
->> +	u32 tx_pause_pkts;
->> +	u32 rx_ok_pkts;
->> +	u32 rx_total_pkts;
->> +	u32 rx_crc_err_pkts;
->> +	u32 rx_align_err_pkts;
->> +	u32 rx_err_total_pkts;
->> +	u32 rx_ok_bytes;
->> +	u32 rx_total_bytes;
->> +	u32 rx_unicast_pkts;
->> +	u32 rx_multicast_pkts;
->> +	u32 rx_broadcast_pkts;
->> +	u32 rx_pause_pkts;
->> +	u32 rx_len_err_pkts;
->> +	u32 rx_len_undersize_pkts;
->> +	u32 rx_len_oversize_pkts;
->> +	u32 rx_len_fragment_pkts;
->> +	u32 rx_len_jabber_pkts;
->> +	u32 rx_64_pkts;
->> +	u32 rx_65_127_pkts;
->> +	u32 rx_128_255_pkts;
->> +	u32 rx_256_511_pkts;
->> +	u32 rx_512_1023_pkts;
->> +	u32 rx_1024_1518_pkts;
->> +	u32 rx_1519_plus_pkts;
->> +	u32 rx_drp_fifo_full_pkts;
->> +	u32 rx_truncate_fifo_full_pkts;
->> +};
-> Many of the stats above appear to cover stats covered by struct
-> rtnl_link_stats64, ethtool_pause_stats, struct ethtool_rmon_stats, and
-> possibly others standardised in ethtool.h. Please only report standard
-> counters using standard mechanisms. And only use get_ethtool_stats to
-> report non-standard counters.
->
-> Link: https://www.kernel.org/doc/html/v6.16-rc4/networking/statistics.html#notes-for-driver-authors
-
-I will move statistics to standard counters wherever available. Thanks 
-for the tip.
-
-And thanks again for your suggestions.
-
-Vivian "dramforever" Wang
-
-> ...
->
+Thanks,
+Inochi
 
 
