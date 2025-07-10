@@ -1,197 +1,114 @@
-Return-Path: <devicetree+bounces-195089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15045B00622
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 17:13:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C817B0062F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 17:15:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 260EF5C42F4
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:12:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 008B516AE74
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6683D274B33;
-	Thu, 10 Jul 2025 15:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DC92750FD;
+	Thu, 10 Jul 2025 15:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BfeoHFCU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lAvrWfsE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 329FB2741CF;
-	Thu, 10 Jul 2025 15:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4FFB274FED;
+	Thu, 10 Jul 2025 15:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752160292; cv=none; b=db2oUVQUqAD1TFY8nnw0RaOwKqd+/NvtXBKHkF3CoyPBphQfxi8Mi4CmxAAvP1dX3wNIei7JbbXhgrKjeLf/wekZZ0xGq2gB/WHHUFaUw+HLDjyFI7OHRjqoNy1ORGKcLhqls6IWqiBPZJvLZV4wsV6Km7HJ2XQ6x3SsPHubDv0=
+	t=1752160372; cv=none; b=qKxQFXUwF8S7zHjwTEGGbGgCvJ1udITxa7iCwk3Dqen977FoqkcrhLQA+uV8ed6UshSvWUFNLHYZNO435XzEUD7sjKAw47T+d0Kgyy7fPS1AcKr0ryeYfwB/14XOPWDMpDGUxMavDp4Z5vO8xADiReSFs3/V69OPV2DU3egxjQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752160292; c=relaxed/simple;
-	bh=sL/UzyBbLUVDCBAiHyrAL323W9iMQvgimGs92CFHnHY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uQ4y6cnn9PWt8yVbsLJ7WkV4imxk426vzg8Un/uzQ8Dupjv3CgLHAn8Z1KWcgDzschTuXTFeKuSxmJwRAF/fsr0X/+kMntbqvDB42U6CerX3Y2WDOfpPFiCmzNdKyIlKcDVNGe4t8kKMKICzSdHRO2tcmRoMtzggM3Kf6kHCh00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BfeoHFCU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68EFEC4CEE3;
-	Thu, 10 Jul 2025 15:11:31 +0000 (UTC)
+	s=arc-20240116; t=1752160372; c=relaxed/simple;
+	bh=D5Kh0lTbzRmAlY3ACU/SQlP6zoq6+IFqg+QHVrwwKgI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=MtNJ+85rWlLLHiB4O+lGDUGafcIJITxB9osrAShkJYsnYYExvTWy6TiW47IA4ZVvIrC3yV/Ws/8KpkfmmAFpQ3VNVlV7/oc3rHhr5j1X0u6DheXJY4NycdCNoddIywLmXgPTCdOPB7bLyJmYFRaDYGhVu1HVCYxVCIe0+deRvDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lAvrWfsE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A982C4CEF4;
+	Thu, 10 Jul 2025 15:12:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752160291;
-	bh=sL/UzyBbLUVDCBAiHyrAL323W9iMQvgimGs92CFHnHY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BfeoHFCUb3f/ToOEkKhwZuxJC+nQzJJd8VzbaeBYulOn94m1OcVbz01kH0AX12Sxf
-	 lRxNDwEO3tGMdT1XcZiZpoYH+RGyz0gwm7qkLaGBw5JEhvveamhNdoCVuH4+ydJHgy
-	 iFlP3CWynzxxCP4OuiQhJpr5gs0xzLYMaNYjuUYW/8rtsczKKXUmtBLGDQKl0ZaGgp
-	 /+GzuerlVVcmgxlA0MtURNyV4fY/tAU6pgq6LyCzI+KBNi2CLKcZ5AF3Z8yRHhyhNO
-	 uA33EGx9FAoko7yB9yBcKukcR8LkqgLGr0AovuUalSLPeuUknZC+89b7DU5IqfRN0j
-	 xElEA/QoReW4g==
-Date: Thu, 10 Jul 2025 17:11:29 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Andrew Davis <afd@ti.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
-	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
-	"T.J. Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, 
-	Jared Kangas <jkangas@redhat.com>, Mattijs Korpershoek <mkorpershoek@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, iommu@lists.linux.dev
-Subject: Re: [PATCH v6 2/2] dma-buf: heaps: cma: Create CMA heap for each CMA
- reserved region
-Message-ID: <20250710-tremendous-fantastic-jerboa-ff3efe@houat>
-References: <20250709-dma-buf-ecc-heap-v6-0-dac9bf80f35d@kernel.org>
- <20250709-dma-buf-ecc-heap-v6-2-dac9bf80f35d@kernel.org>
- <6045bcfb-35ef-410b-bd7c-0ca7c5c589c4@ti.com>
- <20250710-daft-secret-squid-fb3eee@houat>
- <547da8d7-1967-4c56-8bc1-da22a5283b77@ti.com>
+	s=k20201202; t=1752160372;
+	bh=D5Kh0lTbzRmAlY3ACU/SQlP6zoq6+IFqg+QHVrwwKgI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=lAvrWfsEZ8C9y0onFB8XOmQzIWx3xW9+BevTmnVPLVLLl8fbyYQ9R1u9tGHk4oagR
+	 CG2qPfwULc2joxuEGka+BO39iiqHsucVUUXUzlEG6rMs9lh1hA3VRtpz+9JPH/gElH
+	 FXqodi6EkOK1IpV9/xpQtANqqr60xLL4Hm0tjoj8UCqYPO96m1z+Z/NiUOVM+hg0O/
+	 HytO6UE5jGUrJzznCXcUY2VABeQ9yttFBQKoZnZ19d+OK7aqDhgVdf3/EBU2XxCZsl
+	 zREnCKcVDJIf+uQyCBhOgP/HWNNmU36IsBw0FGGRH34ptknaB+uC+Gx6bwUN7rdnW8
+	 V4EUBlHR0jEfQ==
+From: Mark Brown <broonie@kernel.org>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Julien Panis <jpanis@baylibre.com>, 
+ Michael Walle <mwalle@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org
+In-Reply-To: <20250703113153.2447110-1-mwalle@kernel.org>
+References: <20250703113153.2447110-1-mwalle@kernel.org>
+Subject: Re: (subset) [PATCH v3 0/8] mfd: tps6594: Add TI TPS652G1 support
+Message-Id: <175216036871.755014.4346115067078586712.b4-ty@kernel.org>
+Date: Thu, 10 Jul 2025 16:12:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="5llptdqqxzku46gv"
-Content-Disposition: inline
-In-Reply-To: <547da8d7-1967-4c56-8bc1-da22a5283b77@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-07fe9
 
+On Thu, 03 Jul 2025 13:31:45 +0200, Michael Walle wrote:
+> Add support for the TI TPS652G1 PMIC which is a stripped down
+> version of the TPS65224. Support for the latter has already been
+> merged. Refactor the regulator driver to ease adding new devices.
+> After doing that adding the TPS652G1 variant is really straight
+> forward. Some care has to be taken by the interrupt handling (of the
+> regulator part) because there interrupts are used for voltage
+> monitoring which this variant doesn't have.
+> 
+> [...]
 
---5llptdqqxzku46gv
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 2/2] dma-buf: heaps: cma: Create CMA heap for each CMA
- reserved region
-MIME-Version: 1.0
+Applied to
 
-On Thu, Jul 10, 2025 at 09:46:56AM -0500, Andrew Davis wrote:
->=20
->=20
-> On 7/10/25 2:44 AM, Maxime Ripard wrote:
-> > On Wed, Jul 09, 2025 at 11:14:37AM -0500, Andrew Davis wrote:
-> > > On 7/9/25 7:44 AM, Maxime Ripard wrote:
-> > > > Aside from the main CMA region, it can be useful to allow userspace=
- to
-> > > > allocate from the other CMA reserved regions.
-> > > >=20
-> > > > Indeed, those regions can have specific properties that can be usef=
-ul to
-> > > > a specific us-case.
-> > > >=20
-> > > > For example, one of them platform I've been with has ECC enabled on=
- the
-> > > > entire memory but for a specific region. Using that region to alloc=
-ate
-> > > > framebuffers can be particular beneficial because enabling the ECC =
-has a
-> > > > performance and memory footprint cost.
-> > > >=20
-> > > > Thus, exposing these regions as heaps user-space can allocate from =
-and
-> > > > import wherever needed allows to cover that use-case.
-> > > >=20
-> > > > For now, only shared-dma-pools regions with the reusable property (=
-ie,
-> > > > backed by CMA) are supported, but eventually we'll want to support =
-other
-> > > > DMA pools types.
-> > > >=20
-> > > > Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> > > > ---
-> > > >    drivers/dma-buf/heaps/cma_heap.c | 52 ++++++++++++++++++++++++++=
-+++++++++++++-
-> > > >    1 file changed, 51 insertions(+), 1 deletion(-)
-> > > >=20
-> > > > diff --git a/drivers/dma-buf/heaps/cma_heap.c b/drivers/dma-buf/hea=
-ps/cma_heap.c
-> > > > index 0df007111975447d555714d61ead9699287fd65a..31a18683ee25788a800=
-f3f878fd958718a930ff7 100644
-> > > > --- a/drivers/dma-buf/heaps/cma_heap.c
-> > > > +++ b/drivers/dma-buf/heaps/cma_heap.c
-> > > > @@ -19,10 +19,12 @@
-> > > >    #include <linux/err.h>
-> > > >    #include <linux/highmem.h>
-> > > >    #include <linux/io.h>
-> > > >    #include <linux/mm.h>
-> > > >    #include <linux/module.h>
-> > > > +#include <linux/of.h>
-> > > > +#include <linux/of_reserved_mem.h>
-> > > >    #include <linux/scatterlist.h>
-> > > >    #include <linux/slab.h>
-> > > >    #include <linux/vmalloc.h>
-> > > >    #define DEFAULT_CMA_NAME "default_cma_region"
-> > > > @@ -421,7 +423,55 @@ static int __init add_default_cma_heap(void)
-> > > >    				ERR_PTR(ret));
-> > > >    	}
-> > > >    	return 0;
-> > > >    }
-> > > > -module_init(add_default_cma_heap);
-> > > > +
-> > > > +static int __init add_cma_heaps(void)
-> > > > +{
-> > > > +	struct device_node *rmem_node;
-> > > > +	struct device_node *node;
-> > > > +	int ret;
-> > > > +
-> > > > +	ret =3D add_default_cma_heap();
-> > >=20
-> > > Will this double add the default CMA region if it was declared
-> > > using DT (reserved-memory) when all those nodes are again scanned
-> > > through below? Might need a check in that loop for linux,cma-default.
-> >=20
-> > Yeah, but we probably should anyway. Otherwise, if linux,cma-default
-> > ever change on a platform, we would get heaps appearing/disappearing as
-> > we reboot, which doesn't sound great from a regression perspective.
-> >=20
-> > Both would allocate from the same pool though, so we don't risk stepping
-> > into each others toes. Or am I missing something?
->
-> You are not missing anything, having both wouldn't cause anything to brea=
-k,
-> but would cause heaps to appear/disappear based on how the CMA region was
-> defined (DT vs kernel cmd line) which we should avoid.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-I'm sorry I guess I don't follow you then. It looked like you were
-arguing for avoiding double registration (under the CMA default name,
-and the region specific name).
+Thanks!
 
-I'm arguing that we should always double register to avoid
-linux,cma-default having any effect on the userspace.
+[5/8] regulator: tps6594-regulator: remove interrupt_count
+      commit: 16d1a9bf36ef649b1fdb866985b4b87584491fac
+[6/8] regulator: tps6594-regulator: remove hardcoded buck config
+      commit: 180a135eafa9e05657559bb04cc9eb6a86ca45f3
+[7/8] regulator: tps6594-regulator: refactor variant descriptions
+      commit: e64ee27abfe1e9baea14b31c0a6b6bf93ac8652c
+[8/8] regulator: tps6594-regulator: Add TI TPS652G1 PMIC regulators
+      commit: b30d390812c8559c5835f8ae5f490b38488fafc8
 
-In the latter, even if linux,cma-default isn't set at all, then the
-default CMA heap would still be registered from the command line CMA
-region.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Maxime
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
---5llptdqqxzku46gv
-Content-Type: application/pgp-signature; name="signature.asc"
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
------BEGIN PGP SIGNATURE-----
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaG/YHAAKCRAnX84Zoj2+
-dkOzAX0YmjQMGbdv6PCjknHFmYz76OztfvCzCDkZaKgqj22bbf6FqDSYrwynKxvf
-UqY8YsQBgNoAQvbnMblVR9Kaqt05A6hO/69vvLMGftbBRIaceuz5rx59oro8woK2
-px7kmMQqUg==
-=t2l2
------END PGP SIGNATURE-----
+Thanks,
+Mark
 
---5llptdqqxzku46gv--
 
