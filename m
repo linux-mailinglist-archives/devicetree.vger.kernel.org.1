@@ -1,115 +1,165 @@
-Return-Path: <devicetree+bounces-194852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BDB9AFFBE3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:13:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A973DAFFC1D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:25:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 461FA3B9F8E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:12:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D7CC3A545E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F03328BAB0;
-	Thu, 10 Jul 2025 08:13:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 752F128C86E;
+	Thu, 10 Jul 2025 08:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Z5j7IFyd"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EB61m1Y4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E85DDDC1
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 08:12:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7C228C5B0;
+	Thu, 10 Jul 2025 08:24:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752135180; cv=none; b=pWhuw7dVvAaDb2RFJN4Kk69P0t2FrJvakKu6YahaCAxsdQni5sHQkW+d1vQvuKeGr/QYIhF/4ujSgLSx+rHfOIAfjVt6ZIcVc9JtApISkcPgMbqiv0n1VtZ8hYxctDl0044GehMVR/IP/zEA4TA6IMwQrPF3cLUn0v1qAn6Uv8w=
+	t=1752135899; cv=none; b=sObWFHIvSIbLrfx9YCXL68Emgl3H3JWZoxDtB35L6UBuH+ijpozLLxGA0puaZxdxQfyeT4y+uFb2R8F2S5402vSWz0wC7Kd8Nkhjmo7X8lr5HyJz1T8itFaFIIYOM9U0oCwjzwbIT7Y4kdT6bUQ/ZnOjCkpAA22aS3cYRR+8x1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752135180; c=relaxed/simple;
-	bh=igrEsGqbHWgfoRnHL8GMmEJLcVu0uz+y9L1xOkvYOQ0=;
-	h=From:To:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=IAUceX0yD6ci9FIvW+hwRn5tWzr3bklpDE8jUGyQP2DUKdVbsTYXxS7+6NTbdcWWl5JhRd2ctpAuyMlKDFCB8FRDMxTGqBE/JeADgZlYUxohNvel+RIv2nDmVM1rm3dp2DtDLG978TOUPiYXlYCbkktnLe3HREgT0CvnLf8OEF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Z5j7IFyd; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250710081256epoutp0133b033e2e8968406ed3c98aa2e364e72~Q1ajYwVjA2708327083epoutp01i
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 08:12:56 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250710081256epoutp0133b033e2e8968406ed3c98aa2e364e72~Q1ajYwVjA2708327083epoutp01i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1752135176;
-	bh=igrEsGqbHWgfoRnHL8GMmEJLcVu0uz+y9L1xOkvYOQ0=;
-	h=From:To:In-Reply-To:Subject:Date:References:From;
-	b=Z5j7IFydb7+OQiBHLr5uH3DmpjS08QJAUq7gemSO75g37VnyCGESGHUoCJwRidtCC
-	 P2T4Duvc7Niselt2ZgXRZ27W5QNLIx7fgcWn1Jyx7yYVUlIJuP0sG6LCqgt/qsFyE4
-	 +NnQ7vcK7sEJdLgYzvtupY/hEK8ySfwVeSuzWe44=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250710081255epcas5p21ead697b95c274e7ee87d4345ed18db1~Q1aiopNU_0247902479epcas5p2u;
-	Thu, 10 Jul 2025 08:12:55 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.178]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4bd6zB012wz6B9m8; Thu, 10 Jul
-	2025 08:12:54 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250710081253epcas5p2a3e7fb2002cd567c5a9582ecc963510f~Q1ag8qnru3046530465epcas5p2x;
-	Thu, 10 Jul 2025 08:12:53 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250710081252epsmtip2e0914db4211594e8c7a3e73ae7a77381~Q1af6a2-T0391103911epsmtip2c;
-	Thu, 10 Jul 2025 08:12:52 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>, "'Peter
- Griffin'" <peter.griffin@linaro.org>, =?UTF-8?Q?'Andr=C3=A9_Draszik'?=
-	<andre.draszik@linaro.org>, "'Tudor Ambarus'" <tudor.ambarus@linaro.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-In-Reply-To: <20250710073443.13788-4-krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH 2/2] arm64: samsung: MAINTAINERS: Add Tesla FSD DTS to
- Exynos entry
-Date: Thu, 10 Jul 2025 13:42:51 +0530
-Message-ID: <0b0701dbf172$6f465e50$4dd31af0$@samsung.com>
+	s=arc-20240116; t=1752135899; c=relaxed/simple;
+	bh=RSb5FnrJfgrfcEGlCCqOZG6UrJpfA0M16YWy/6TW8TY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LOBUlGz6pwGOYRxn1XyHtooceO9gTzDTpj496JrpXI71re3JLOYTFmqSIGdoXV4e/2OyjldxBRzAID8Hk4lx8OSQBW5ANWMpozMlGJxaRAxNw7hjm38y/a6t80d5RvyzaVm7OQUJPzx39nPetFUSbGRqxzo1Jg1ie8dmTIoO+bA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EB61m1Y4; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1752135895;
+	bh=RSb5FnrJfgrfcEGlCCqOZG6UrJpfA0M16YWy/6TW8TY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=EB61m1Y4V1uZtjXAhd2IiGSshpKinfCA1OGePv9fEXzDHPyscRFrsuLqPlu7APTYq
+	 TJew8ik0BGCaLStJOBZxNWE/YVtFvtN96faslsWx0nmqFBCZgi6MBHovQQQJz910b5
+	 mUMGbgbiAxlI0lbEf2WZxJBNBQnsHFpuIBHeWx8NrtLW/BwJYsekiXX1ths9SGgypW
+	 CxLHlgbzoB26uLurKB4iHJ3jgFjtESmFoocQY6jzZlz1N3mynKD08ihx/esatu1UR2
+	 +4b0nq2m3tpVsNE51zJT5rR0IqgBjNAIRJsKbqoEgj3vHW7g4qS0DOhixkB6UrjUod
+	 JJvWnho8eoXNw==
+Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:9f5a:8ea0:8d89:78d4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: benjamin.gaignard)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id EC5D217E0FB8;
+	Thu, 10 Jul 2025 10:24:54 +0200 (CEST)
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To: joro@8bytes.org,
+	will@kernel.org,
+	robin.murphy@arm.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	nicolas.dufresne@collabora.com,
+	jgg@ziepe.ca
+Cc: iommu@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	kernel@collabora.com,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH v6 0/5] Add support for Verisilicon IOMMU used by media codec blocks
+Date: Thu, 10 Jul 2025 10:24:41 +0200
+Message-ID: <20250710082450.125585-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-us
-Thread-Index: AQGimcLLktEP7is/4GQpRecJdUJ9JQGQPoI8Ag/Dtzu0gLDqAA==
-X-CMS-MailID: 20250710081253epcas5p2a3e7fb2002cd567c5a9582ecc963510f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250710073505epcas5p1796f16f9675ac80780d174bae52a6ff5
-References: <20250710073443.13788-3-krzysztof.kozlowski@linaro.org>
-	<CGME20250710073505epcas5p1796f16f9675ac80780d174bae52a6ff5@epcas5p1.samsung.com>
-	<20250710073443.13788-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof
+Hi all,
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
-> Sent: Thursday, July 10, 2025 1:05 PM
-> To: Peter Griffin <peter.griffin=40linaro.org>; Andr=C3=A9=20Draszik=0D=
-=0A>=20<andre.draszik=40linaro.org>;=20Tudor=20Ambarus=20<tudor.ambarus=40l=
-inaro.org>;=0D=0A>=20Alim=20Akhtar=20<alim.akhtar=40samsung.com>;=20linux-a=
-rm-=0D=0A>=20kernel=40lists.infradead.org;=20linux-samsung-soc=40vger.kerne=
-l.org;=0D=0A>=20devicetree=40vger.kernel.org;=20linux-kernel=40vger.kernel.=
-org=0D=0A>=20Cc:=20Krzysztof=20Kozlowski=20<krzysztof.kozlowski=40linaro.or=
-g>=0D=0A>=20Subject:=20=5BPATCH=202/2=5D=20arm64:=20samsung:=20MAINTAINERS:=
-=20Add=20Tesla=20FSD=20DTS=20to=0D=0A>=20Exynos=20entry=0D=0A>=20=0D=0A>=20=
-Effectively=20all=20Tesla=20FSD=20DTS=20patches=20go=20via=20Samsung=20Exyn=
-os=20SoC=20maintainer,=0D=0A>=20so=20add=20the=20pattern=20to=20make=20it=
-=20obvious=20and=20reduce=20the=20chances=20patches=20won't=0D=0A>=20reach=
-=20these=20maintainers.=0D=0A>=20=0D=0ASure=0D=0A=0D=0A>=20Cc:=20Peter=20Gr=
-iffin=20<peter.griffin=40linaro.org>=0D=0A>=20Cc:=20Andr=C3=A9=20Draszik=20=
-<andre.draszik=40linaro.org>=0D=0A>=20Cc:=20Tudor=20Ambarus=20<tudor.ambaru=
-s=40linaro.org>=0D=0A>=20Cc:=20Alim=20Akhtar=20<alim.akhtar=40samsung.com>=
-=0D=0A>=20Signed-off-by:=20Krzysztof=20Kozlowski=20<krzysztof.kozlowski=40l=
-inaro.org>=0D=0A>=20---=0D=0AReviewed-by:=20Alim=20Akhtar=20<alim.akhtar=40=
-samsung.com>=0D=0A=0D=0A
+This patch series adds support for the Verisilicon IOMMU, which is found in front
+of hardware encoder and decoder blocks in several SoCs using Verisilicon IP. 
+A first implementation of this IOMMU is available on the Rockchip RK3588 SoC.
+
+Rockchip provides a driver for this hardware in their 6.1 kernel branch:
+https://github.com/rockchip-linux/kernel/blob/develop-6.1/drivers/iommu/rockchip-iommu-av1d.c
+
+This series includes:
+- a new binding for the Verisilicon IOMMU
+- a driver implementation
+- DT updates for RK3588
+
+The driver was forward-ported from Rockchip’s 6.1 implementation, 
+the prefix was renamed to vsi for generality, and several fixes were applied.
+
+AV1 decoding was tested using the stateless VPU driver and Fluster.
+The test results show a score of 205/239, which confirms that no regressions
+were introduced by this series.
+
+Feedback and testing welcome.
+
+changes in version 6:
+- rework lock schema in vsi_iommu_attach_device() so
+  it protected against concurrent invalidation.
+- flush the cache after changing of domain.
+
+changes in version 5:
+- change locking schema to use 2 spin_locks: one to protect vsi_domain
+  data and one to protect vsi_iommu structure.
+- make suspend/resume more robust by calling disable/enable function.
+- rebased on top of v6.16-rc5
+
+changes in version 4:
+- rename and reorder compatibles fields.
+- Kconfig dependencies
+- Fix the remarks done by Jason and Robin: locking, clocks, macros
+  probing, pm_runtime, atomic allocation.
+
+changes in version 3:
+- Change compatible to "rockchip,rk3588-iommu-1.2"
+- Fix compatible in .yaml
+- Update DT and driver to use "rockchip,rk3588-iommu-1.2" compatible
+- Set CONFIG_VSI_IOMMU as module in defconfig
+- Create an identity domain for the driver
+- Fix double flush issue
+- Rework attach/detach logic
+- Simplify xlate function
+- Discover iommu device like done in ARM driver
+- Remove ARM_DMA_USE_IOMMU from Kconfig
+
+changes in version 2:
+- Add a compatible "rockchip,rk3588-av1-iommu"
+- Fix clock-names in binding 
+- Remove "vsi_mmu" label in binding example.
+- Rework driver probe function
+- Remove double flush
+- Rework driver internal structures and avoid allocate
+  in xlate function.
+- Do not touch to VPU driver anymore (path removed)
+- Add a patch to enable the driver in arm64 defconfig
+
+ 
+Benjamin Gaignard (5):
+  dt-bindings: vendor-prefixes: Add Verisilicon
+  dt-bindings: iommu: verisilicon: Add binding for VSI IOMMU
+  iommu: Add verisilicon IOMMU driver
+  arm64: dts: rockchip: Add verisilicon IOMMU node on RK3588
+  arm64: defconfig: enable Verisilicon IOMMU
+
+ .../bindings/iommu/verisilicon,iommu.yaml     |  71 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  11 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/iommu/Kconfig                         |  11 +
+ drivers/iommu/Makefile                        |   1 +
+ drivers/iommu/vsi-iommu.c                     | 781 ++++++++++++++++++
+ 7 files changed, 878 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
+ create mode 100644 drivers/iommu/vsi-iommu.c
+
+-- 
+2.43.0
+
 
