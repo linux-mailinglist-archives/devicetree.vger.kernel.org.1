@@ -1,237 +1,175 @@
-Return-Path: <devicetree+bounces-195218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 225F9B00D7E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 23:09:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9E7DB00DAB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 23:19:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5F5C4E3787
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 21:09:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A73DE1CA7ED2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 21:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1BE92FD886;
-	Thu, 10 Jul 2025 21:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ABE92F4A0C;
+	Thu, 10 Jul 2025 21:19:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="YdqVQcih"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vPkUlA0N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B832274669;
-	Thu, 10 Jul 2025 21:09:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A8BD22338;
+	Thu, 10 Jul 2025 21:19:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752181762; cv=none; b=ID5zOa4LH4w/qCAJpU9S4W7qk6Xvax6hwgL/msEE3iCIq4/lErWbNNSO5iP14DkorK2xsMr7ri1K511VCeQcRPsb9eBzAFNrkNPW/pD/IBhPGjgz0GMkT50dyg9UpBwlvEPjBw0UzHV/kdQF1341qY4hhqSazNFYe+dpEcyguxE=
+	t=1752182372; cv=none; b=AVXFfqkpNQwg2OxO3MFW8P/wUsXKJJrmQgEeq0lYr3TXa0r0FIb6KzSbfo3a5Mj0A9g1Z3xtmeGSidFqGJj8bzCKR10gevjNwnbBFRBF3HHD45cQNj3VJImw5sXsmtybXABKZ0R5MHiGUWynbmum2kJd14MwvkUcKfeeQnfHaY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752181762; c=relaxed/simple;
-	bh=/m7Yvb1GQ92ZP9wcycE50DuEyBAZqjalLylQQmPR5yg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EXKbER2zVJ4TdDwcZuzKpsDf87cVmuEQrSXkOynVyWLIz3+raGRef+3clE+xJ85Zxs0PAdLr6rUGSvZRX/ab5ukQN7Zn5E5R/Yr8giBsDyIUgQaNdeoibrBRPWZ40oYOw8HUFmePyYXgi8JwLj+C+M13GOIKV1UlZPLJE6/8uwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=YdqVQcih; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id E96A0EFE;
-	Thu, 10 Jul 2025 23:08:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1752181728;
-	bh=/m7Yvb1GQ92ZP9wcycE50DuEyBAZqjalLylQQmPR5yg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YdqVQcihg4U8nFaO65GHKXvDSsXvArItXAmZ+xuYWnvXCHV2Wtfc6xO6pDbwxjyh+
-	 k9fNI/VDZ8eWgKGNdPh+lGgXWd5yvTBTPbD4ppd+Tkxl977Ux5Bpm9M1WSpTOnxf+F
-	 W9uHnJktqFpUEwhS7D1m6UgHzy3AjqMHnr9i/t2w=
-Date: Fri, 11 Jul 2025 00:08:46 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-	sakari.ailus@linux.intel.com, krzk+dt@kernel.org,
-	kieran.bingham@ideasonboard.com, dave.stevenson@raspberrypi.com,
-	pratap.nirujogi@amd.com, tarang.raval@siliconsignals.io,
-	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	=?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Matthias Fend <matthias.fend@emfend.at>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Hans de Goede <hansg@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: i2c: Add ov2735 sensor
-Message-ID: <20250710210846.GF22436@pendragon.ideasonboard.com>
-References: <20250710131107.69017-1-hardevsinh.palaniya@siliconsignals.io>
- <20250710131107.69017-2-hardevsinh.palaniya@siliconsignals.io>
- <20250710183356.GA3026892-robh@kernel.org>
+	s=arc-20240116; t=1752182372; c=relaxed/simple;
+	bh=0zK4b9WCKbhDn6z7GD5R0mIS3pwTZmyc1BLcnwDAQs4=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=WAHwIreK++6CLdMao0z0J11KwLWFkGtVAQBmGwa65Kiu1aO9ZrLXjtDmpfMxUa7pvqZLGsrQ/tfzogIof6ERYq3SYdPmg17Id0Dq5G1max3Gd9Qbh3sbVI6O8vLnQQcgptEvNibPJ8emEUEBJDqfARJXB36p/BQgvK5bWTwMN7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vPkUlA0N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8929FC4CEE3;
+	Thu, 10 Jul 2025 21:19:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752182371;
+	bh=0zK4b9WCKbhDn6z7GD5R0mIS3pwTZmyc1BLcnwDAQs4=;
+	h=Date:From:Subject:Cc:To:References:In-Reply-To:From;
+	b=vPkUlA0NUJLGY/Q4PvaaFqidAOKuSwxT+5jVUD9cwF/qy/NHVyyVRYgDzjtWs51TE
+	 TgfvcQUsC55IDISpn13HnEy7SQybmToEkjdwJDu6iiQhJ16+k+cc+5JqQ/vj4m4ToW
+	 iwjYVqttFqRRFrilkHJAj3kMi4f91IftPYkBz3+9Sg2wTit/UprIqtsoNOOs13Rc1K
+	 voWpDI6wCmV+valiZDVLyo+3C9G/cVISn5p7R4pRMdHs2LFlrbAcGt+TnTUCjNihET
+	 +Hiva66FTC+buuJJFdmDf+A+Dk/vyqoKWkVhxvpzUQq68t25OH58dtSdlTeCaWfIX0
+	 /c+ZvJbVzx/cg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250710183356.GA3026892-robh@kernel.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 10 Jul 2025 23:19:24 +0200
+Message-Id: <DB8OT5ZZ4SRO.WP5PBFLML683@kernel.org>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v10 0/7] Rust Abstractions for PWM subsystem with TH1520
+ PWM driver
+Cc: "Michal Wilczynski" <m.wilczynski@samsung.com>, "Miguel Ojeda"
+ <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Guo Ren" <guoren@kernel.org>, "Fu Wei"
+ <wefu@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Paul Walmsley"
+ <paul.walmsley@sifive.com>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
+ Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>, "Marek
+ Szyprowski" <m.szyprowski@samsung.com>, "Benno Lossin" <lossin@kernel.org>,
+ "Michael Turquette" <mturquette@baylibre.com>, "Drew Fustini"
+ <fustini@kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, <rust-for-linux@vger.kernel.org>,
+ <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski@linaro.org>
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+References: <CGME20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6@eucas1p1.samsung.com> <20250707-rust-next-pwm-working-fan-for-sending-v10-0-d0c5cf342004@samsung.com> <e8a4a821-e7e4-4bcd-a2ac-f6b684b6ceea@samsung.com> <ipvaegqlkco5qinhvn33mqvg7ev2walvs74xtzvhimxsfsfzhv@gcmpxcdtetdn> <e77eab1c-446f-4620-95be-d343684d1e95@samsung.com> <4hmb3di5x2iei43nmrykrj5wzlltrf3vrnqvexiablonbscn57@4bbsz5c76t63> <DB8I5J8ZY7QF.2D8HEN6JX4HSZ@kernel.org> <cbxpqormchajfcnf7xxopd7j7igriqus4cuu5jfvxb3mbfb5tu@qz4rc67vjyif>
+In-Reply-To: <cbxpqormchajfcnf7xxopd7j7igriqus4cuu5jfvxb3mbfb5tu@qz4rc67vjyif>
 
-On Thu, Jul 10, 2025 at 01:33:56PM -0500, Rob Herring wrote:
-> On Thu, Jul 10, 2025 at 06:40:58PM +0530, Hardevsinh Palaniya wrote:
-> > From: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-> > 
-> > Add bindings for Omnivision OV2735 sensor.
-> > 
-> > Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-> > Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-> > ---
-> >  .../bindings/media/i2c/ovti,ov2735.yaml       | 115 ++++++++++++++++++
-> >  1 file changed, 115 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov2735.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov2735.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov2735.yaml
-> > new file mode 100644
-> > index 000000000000..d9d01db88844
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov2735.yaml
-> > @@ -0,0 +1,115 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov2735.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: OmniVision OV2735 Image Sensor
-> > +
-> > +maintainers:
-> > +  - Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-> > +
-> > +description: |
-> 
-> Don't need '|' if no formatting to preserve.
-> 
-> > +  The OmniVision OV2735 is a 2MP (1920x1080) color CMOS image sensor controlled
-> > +  through an I2C-compatible SCCB bus. it outputs RAW10 format and uses a 1/2.7"
-> > +  optical format.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ovti,ov2735
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: XVCLK clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: xvclk
-> > +
-> > +  avdd-supply:
-> > +    description: Analog Domain Power Supply
-> > +
-> > +  dovdd-supply:
-> > +    description: I/O Domain Power Supply
-> > +
-> > +  dvdd-supply:
-> > +    description: Digital Domain Power Supply
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +    description: Reset Pin GPIO Control (active low)
-> > +
-> > +  enable-gpios:
-> > +    maxItems: 1
-> > +    description: |
-> 
-> Same here.
-> 
-> > +      Active-low enable pin. Labeled as 'PWDN' in the datasheet, but acts as
-> > +      an enable signal. During power rail ramp-up, the device remains powered
-> > +      down. Once power rails are stable, pulling this pin low powers on the
-> > +      device.
-> > +
-> > +  port:
-> > +    description: MIPI CSI-2 transmitter port
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          data-lanes:
-> > +            items:
-> > +              - const: 1
-> > +              - const: 2
-> > +
-> > +        required:
-> > +          - data-lanes
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - avdd-supply
-> > +  - dovdd-supply
-> > +  - dvdd-supply
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/rk3399-cru.h>
+On Thu Jul 10, 2025 at 10:57 PM CEST, Uwe Kleine-K=C3=B6nig wrote:
+> On Thu, Jul 10, 2025 at 06:06:26PM +0200, Danilo Krummrich wrote:
+>> On Thu Jul 10, 2025 at 5:25 PM CEST, Uwe Kleine-K=C3=B6nig wrote:
+>> > Hello Michal,
+>> >
+>> > On Thu, Jul 10, 2025 at 03:48:08PM +0200, Michal Wilczynski wrote:
+>> >> On 7/10/25 15:10, Uwe Kleine-K=C3=B6nig wrote:
+>> >> > On Thu, Jul 10, 2025 at 10:42:07AM +0200, Michal Wilczynski wrote:
+>> >> >> On 7/7/25 11:48, Michal Wilczynski wrote:
+>> >> >>> The series is structured as follows:
+>> >> >>>  - Expose static function pwmchip_release.
+>> >> >=20
+>> >> > Is this really necessary? I didn't try to understand the requiremen=
+ts
+>> >> > yet, but I wonder about that. If you get the pwmchip from
+>> >> > __pwmchip_add() the right thing to do to release it is to call
+>> >> > pwmchip_remove(). Feels like a layer violation.
+>> >>=20
+>> >> It's required to prevent a memory leak in a specific, critical failur=
+e
+>> >> scenario. The sequence of events is as follows:
+>> >>=20
+>> >>     pwm::Chip::new() succeeds, allocating both the C struct pwm_chip =
+and
+>> >>     the Rust drvdata.
+>> >>=20
+>> >>     pwm::Registration::register() (which calls pwmchip_add()) fails f=
+or
+>> >>     some reason.
+>> >
+>>=20
+>> (Just trying to help clear up the confusion.)
+>
+> Very appreciated!
+>
+>> > If you called pwmchip_alloc() but not yet pwmchip_add(), the right
+>> > function to call for cleanup is pwmchip_put().
+>>=20
+>> That is exactly what is happening when ARef<Chip> is dropped. If the ref=
+erence
+>> count drops to zero, pwmchip_release() is called, which frees the chip. =
+However,
+>> this would leave the driver's private data allocation behind, which is o=
+wned by
+>> the Chip instance.
+>
+> I don't understand that. The chip and the driver private data both are
+> located in the same allocation. How is this a problem of the driver
+> private data only then? The kfree() in pwmchip_release() is good enough
+> for both?!
 
-Unused.
+Not in the current abstractions, there are two allocations, one for the Chi=
+p and
+one for the driver's private data, or in other words the abstraction uses
+pwmchip_set_drvdata() and pwmchip_get_drvdata().
 
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        camera-sensor@3c {
-> > +            compatible = "ovti,ov2735";
-> > +            reg = <0x3c>;
-> > +            clocks = <&ov2735_clk>;
-> > +
-> > +            assigned-clocks = <&ov2735_clk>;
-> > +            assigned-clock-parents = <&ov2735_clk_parent>;
-> > +            assigned-clock-rates = <24000000>;
+Having a brief look at pwmchip_alloc(), it seems to me that PWM supports th=
+e
+subclassing pattern with pwmchip_priv().
 
-I think you can drop those three properties from the example, they don't
-add much value. Or you could switch to a clock generated by the SoC
-(an RK3399 based on the #include above), in which case assigning the
-rate makes sense.
+We should probably take advantage of that. Assuming we do that, the Rust
+abstraction still needs a release() callback because we still need to call
+drop_in_place() in order to get the destructor of the driver's private data
+type called. We actually missed this in DRM and I fixed it up recently [1].
 
-> > +
-> > +            avdd-supply = <&ov2735_avdd>;
-> > +            dovdd-supply = <&ov2735_dovdd>;
-> > +            dvdd-supply = <&ov2735_dvdd>;
-> > +
-> > +            reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
-> > +            enable-gpios = <&gpio2 11 GPIO_ACTIVE_LOW>;
-> > +
-> > +            port {
-> > +                cam_out: endpoint {
-> > +                    remote-endpoint = <&mipi_in_cam>;
-> > +                    data-lanes = <1 2>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
+@Michal: With the subclassing pattern the Chip structure would look like th=
+is:
 
--- 
-Regards,
+	#[repr(C)]
+	#[pin_data]
+	pub struct Chip<T> {
+	   inner: Opaque<bindings::pwm_chip>,
+	   #[pin]
+	   data: T,
+	}
 
-Laurent Pinchart
+And in the release() callback would look like this:
+
+    extern "C" fn release(ptr: *mut bindings::pwm_chip) {
+        // CAST: Casting `ptr` to `Chip<T>` is valid, since [...].
+        let this =3D ptr.cast<Chip<T>>();
+
+        // SAFETY:
+        // - When `release` runs it is guaranteed that there is no further =
+access to `this`.
+        // - `this` is valid for dropping.
+        unsafe { core::ptr::drop_in_place(this) };
+    }
+
+This is exactly what we're doing in DRM as well, I would have recommended t=
+his
+to begin with, but I didn't recognize that PWM supports subclassing. :)
+
+I recommend having a look at [2].
+
+[1] https://lore.kernel.org/all/20250629153747.72536-1-dakr@kernel.org/
+[2] https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-fixes/ru=
+st/kernel/drm/device.rs
 
