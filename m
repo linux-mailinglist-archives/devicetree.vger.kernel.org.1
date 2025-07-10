@@ -1,811 +1,418 @@
-Return-Path: <devicetree+bounces-195173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29A0AB00BB8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 20:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3CB7B00BC6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 21:03:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6E9C4E835E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 18:54:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1E0C4E6FF0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 19:03:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32E8E2FD87F;
-	Thu, 10 Jul 2025 18:54:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44206287514;
+	Thu, 10 Jul 2025 19:03:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="UDJKcirt"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="ppLsqvvk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2046.outbound.protection.outlook.com [40.107.244.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43EE52FD5A3
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 18:54:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752173688; cv=none; b=rsxZj7qIqAe3hwJ7BHAHOPJDPyXvxoQXHZ3JlpIbDS8ksFQHRsFtQxlxzZ88kWnCCaEbAlahPFrOxd0+Ydsg/XRTPCQPnTItk7dCEnSU355gzIIcBcQK7J1nECtGVOt+6N1UrsCNBZJ70qY0dvivh3k2T27w6yAdHTWkUU7cuLI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752173688; c=relaxed/simple;
-	bh=HQVUoF4ZoEkKB9rtWQEoQZf7yQVOqS/rsnMkz4UV5bk=;
-	h=From:Date:Subject:MIME-Version:Message-Id:In-Reply-To:To:Cc:
-	 Content-Type:References; b=qGNTOt79APtQucj9aq9+eCJzllb6+bI3J7IB3XW5rUQg3nUbH1buBVdTZ4JRrWDskjXo2/PTULPUm0b6LoHJd3EYNz/5VmCfW7jLmhP+iVlbqssbLQDq9qchABb2KcwdcrGcU+4G9v2B1ihaXd/c6+/aKApdqXOe1b91weQPjgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=UDJKcirt; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250710185442euoutp015a755b5b607e48f2a4596d49be0d53ab~Q_K5GOI_A1649416494euoutp01E
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 18:54:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250710185442euoutp015a755b5b607e48f2a4596d49be0d53ab~Q_K5GOI_A1649416494euoutp01E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1752173682;
-	bh=mvMiAUJsoh887oKcAQlaZaeC48aQv/PmW3IviGVsqz4=;
-	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=UDJKcirte4kIGAO+RMQNyWvJaz78gEJTA3k2WyyZrvxqhE7ie1NXsi4GJ1ylQ4LZq
-	 HB/Ru3NDhb8ilCn5A6Bn8zxHfr8zPr/GDiYkX/3/qMx5byO4ejWpyC3o5zApH3lFkS
-	 EnE2ZY46w9FCGUUcC1ZMGRpffw6psFsrM3SyYo4Y=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250710185441eucas1p2b6a028f2bf9e766120b50c8d21767788~Q_K4mnnnd2755127551eucas1p2G;
-	Thu, 10 Jul 2025 18:54:41 +0000 (GMT)
-Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
-	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250710185440eusmtip14916eec0f2aa055a9390b221467bcd45~Q_K3ZJsnA1987919879eusmtip1d;
-	Thu, 10 Jul 2025 18:54:40 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Thu, 10 Jul 2025 20:54:30 +0200
-Subject: [PATCH v11 3/3] rust: pwm: Add complete abstraction layer
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 818A321CC63;
+	Thu, 10 Jul 2025 19:03:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752174220; cv=fail; b=nKVwnewSdLtayR1GAwMYTH4VF9xsaEC8C0muNyXiCTnrh2sgT0SOesR5MV7UaqAfLgJGQMMQWH3uKvhzm8eory08PjfJnH2f7otNrVwjbr9lpR68xJj8LrAYsE6ua99huuMk5jhz1+Z0ASPPlH2JVEcCo/Y6okw0jh2FR/UL8yA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752174220; c=relaxed/simple;
+	bh=BNPQyAEi0kYSuWkHE29WJIw9hTupEO5I9SSI/1g7YuM=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=FsBysavw3wCy12OBWFDbqrfz2uOrRauGNVNuh/NF/kdZPCwnhuz3BqSKETeyyeX6f/SjgYU/fxk+M2Hj5uaGZZqWX60vW9c7I2UKCB3X7DvcQvoo5nL4fbuLzkb9gub0lp5+EU1ii9PPin3kMreq/8vBJnUxTv3mcP65ccNSV58=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=ppLsqvvk; arc=fail smtp.client-ip=40.107.244.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=s+P5803E6UzzVnM54mOxRFWc+9usTGld/XHSm8lOH6h4+zQVBjCCZe63IXPahvJxXT1O8+obfzb8fCpnb6GbdZrcojZkHJQmPDo4nHTEQT2MOyw9ttqXBLsq5wpNlw6HKUJlR735ONbsvvB91OH45QJM9MmwfZT6Yqz3+oholoAMKOd+EJiHJ4CYaADTIIFz3IRr1j1O/pm1xKiBra3fBzi9ok3FrRWX2Z9KFJUuz5apIZpMj7BmpLV0P1dU0PEeOqGZTFqyrXkCAlZHT/nPnf0m96pUTxygowk6+B7+JgJNlB0RZpEw9g9tXuTSZ6hy+NTRgPGI7EBgkQ9+tEmMzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OveTLmtpiGd+P8xmohHn0OvZvMpDxWl+VB7sp3SK8JU=;
+ b=NG5ZE5QM0XlgLjPa06eHyG148mok90lvyeQbvopImwXVCTMQxo8jtNupyHgLoP4GGt21oIP6FXZZFxmYqPJZIPfAPHbTazp58E8sznNyhnd2BA8Nd7Qh1hEmijap/Pd47sLlfFbAJPcpgk69xr01u/9baqi95Pg/Uxxn4KfNNRF9+gCYFlJsU/6inlqdriqQBO5omgcDy3fbggvMdwIviq01f6Jr0yBHkZd9h4Q2IRXNEjZb6lAqVlpxAbuYXjniDUBSpZT2qQkxS/ki9DmsCF3k2wxfjERL/omCPCFsxMHm3irRXiMcxM84SfsZozwUMsOzb/ia3QZyrJyoISvI3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OveTLmtpiGd+P8xmohHn0OvZvMpDxWl+VB7sp3SK8JU=;
+ b=ppLsqvvk8fUjMlhF7mi2xRiJeO08GnpJxQjeayfw4zE6yyP1Vo0WfLXXVKdMmhXSB0ZKAwDnIZuqnDQ2/kLTX2HxJHCZFLhqRAmT00xk1FLL2gVZWAlm12iNW/gAXvID96mvdX7FMPhubq6VDQK8TaguLV260chsggoq9y4ZTkk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BL3PR12MB6642.namprd12.prod.outlook.com (2603:10b6:208:38e::15)
+ by LV8PR12MB9232.namprd12.prod.outlook.com (2603:10b6:408:182::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.23; Thu, 10 Jul
+ 2025 19:03:36 +0000
+Received: from BL3PR12MB6642.namprd12.prod.outlook.com
+ ([fe80::aacd:a6d8:e180:46bc]) by BL3PR12MB6642.namprd12.prod.outlook.com
+ ([fe80::aacd:a6d8:e180:46bc%5]) with mapi id 15.20.8901.024; Thu, 10 Jul 2025
+ 19:03:36 +0000
+Message-ID: <eb3c843a-6762-4ac0-b863-3f500fb15b6f@amd.com>
+Date: Thu, 10 Jul 2025 13:03:33 -0600
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V1 4/9] dt-bindings: soc: xilinx: Add AI engine DT binding
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Gregory Williams <gregory.williams@amd.com>, ogabbay@kernel.org,
+ michal.simek@amd.com, robh@kernel.org
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250702155630.1737227-1-gregory.williams@amd.com>
+ <20250702155630.1737227-5-gregory.williams@amd.com>
+ <7533fd56-aeef-4685-a25f-d64b3f6a2d78@kernel.org>
+Content-Language: en-US
+From: "Williams, Gregory" <gregoryw@amd.com>
+In-Reply-To: <7533fd56-aeef-4685-a25f-d64b3f6a2d78@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SA1P222CA0130.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:806:3c2::21) To BL3PR12MB6642.namprd12.prod.outlook.com
+ (2603:10b6:208:38e::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250710-rust-next-pwm-working-fan-for-sending-v11-3-93824a16f9ec@samsung.com>
-In-Reply-To: <20250710-rust-next-pwm-working-fan-for-sending-v11-0-93824a16f9ec@samsung.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,  Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,  Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,  Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,  Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,  Michal
-	Wilczynski <m.wilczynski@samsung.com>, Drew Fustini <drew@pdp7.com>,  Guo
-	Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,  Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
-	<conor+dt@kernel.org>,  Paul Walmsley <paul.walmsley@sifive.com>,  Palmer
-	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,  Alexandre
-	Ghiti <alex@ghiti.fr>,  Marek Szyprowski <m.szyprowski@samsung.com>,  Benno
-	Lossin <lossin@kernel.org>,  Michael Turquette <mturquette@baylibre.com>, 
-	Drew Fustini <fustini@kernel.org>, Benno Lossin <lossin@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org
-X-Mailer: b4 0.15-dev
-X-CMS-MailID: 20250710185441eucas1p2b6a028f2bf9e766120b50c8d21767788
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250710185441eucas1p2b6a028f2bf9e766120b50c8d21767788
-X-EPHeader: CA
-X-CMS-RootMailID: 20250710185441eucas1p2b6a028f2bf9e766120b50c8d21767788
-References: <20250710-rust-next-pwm-working-fan-for-sending-v11-0-93824a16f9ec@samsung.com>
-	<CGME20250710185441eucas1p2b6a028f2bf9e766120b50c8d21767788@eucas1p2.samsung.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR12MB6642:EE_|LV8PR12MB9232:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24f0ae59-16a6-44e3-be58-08ddbfe478ec
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Q0dzZlhsZ3BpcE5jcER0akthY013WXhLUVlkeEs2WGJzTS96bFZlU1VpK3l3?=
+ =?utf-8?B?Njl3QllmZTZsUGt4RU9vcEZ5bzhydCtIL1lQYnkwSFVDcVBOd29wM05ES2ZI?=
+ =?utf-8?B?OU5TU2dWR29qRERKYXQzeURHZ3A5Z2pVV3J6ZGZ3eFZPMFQ5QlA4YkdTdzQ5?=
+ =?utf-8?B?Q1JsNFB0dVlha1dBVE5FMkYrS1hxM29NMWp6T1hlWUdLNXZQb3ZHRDVMUUUx?=
+ =?utf-8?B?MEZOcCtrOEF2NlRyN3VQNWJKWkhMN0trc0RQYm9NZ1YrVHgxaHY1cjRTUkZN?=
+ =?utf-8?B?N3ZTU3FrQzNQNlUwdUtVWVFTczNtcXpBWGRKUERJVGNUaEJlbkZsZkVqdUxl?=
+ =?utf-8?B?cllqQXVmOFdLYTV0MktJbFpvR285dnBtdHpnR3dlVVhYYk1zMHI1V28wWDhn?=
+ =?utf-8?B?dkZQME5KL1dud0hKZzlGR09xVVhZZ1NvQmN6RmdkMnBSWFBZZHdnM29GMVpy?=
+ =?utf-8?B?aWlZK3VGbktxZnRpKzNyajk5SVgrcFpEM09ZbFpFTGtEdG9qMHhYVFdFMTEx?=
+ =?utf-8?B?VGVhdjI2Y0s5akluQXJjOFRyb3ZPYnlGaHVJTzZwQjFLbEdKSTRoa2pGZ0JO?=
+ =?utf-8?B?dGNwVTQrYkNMUjduWU9hQzFGVzgyRFFIbTJSZng2d0F4S0pkSi9vYTBDRnhO?=
+ =?utf-8?B?OXlWSERybXJlb01tMEJWWWZVeURXWWk5RUVpcUczMlNJa1VkS0Y5UEx5Y0Y1?=
+ =?utf-8?B?bXZNL3k0aGdNOUcza29XRXMwREIvTFRTZzJRWGMwNWw5ay9rZ3lUeks4cTBZ?=
+ =?utf-8?B?YzdzdlN1ZytjbnZkVzhpYXpJMlRlSVNEYWU4Ymo0OCt3bWFhaHJNYWFSOFdz?=
+ =?utf-8?B?eW5WVzBUU3pGMEJySFdkR1V2d1RkcEtvb1dwTnc3MS85RzlESUhxOFNXKzBo?=
+ =?utf-8?B?QzBabkE3WU56Tm11QlBvNjhwa2lQemt4dUZubzRacFZBMG0yY1JBb3dWdWRN?=
+ =?utf-8?B?QXVRcDR2MlgvdFQraC9RaWF2S1RMRldrUG5ra3hDZ29VcVFOYnNwTlBSSE93?=
+ =?utf-8?B?cldhUktydUMrM0QzNlNEUkxIMTF1YmZrZGVoZ0FRczNXa0xaZFM0RVBuK2dh?=
+ =?utf-8?B?eW9pdlZ3V2JjbXFiSWljaUFGcENVK0pLbllBOUZlT3djU0JYV1VDN1h0a3dR?=
+ =?utf-8?B?bzZoKzBRb3E3dzdUTWpubWRCdEVCM2ZuZkJyOFY0WTBCM0Q3Zk54RkVhSVBT?=
+ =?utf-8?B?cTJ0TjdReFBkWkU1a1JTeXRNN2gxVFlaWm16bWhvdy9aVEU3UjRzUW5ObVQ0?=
+ =?utf-8?B?ajZseUNseGY0dytydjFCbzA2c1NOUkNHNXFhUDl6WTBNbUtYSFNJVjJaUXNK?=
+ =?utf-8?B?OGdrSXM2a1RPMVRlemRFakxqaUlnVFR4NWZrZVhaN2NWOE1pcUI3UTVHUitP?=
+ =?utf-8?B?STNabWpnMnZZUmsrTzRBekR5UXpId1JrZDZDUmlmUTd2RllRcU5YR2FWSUpW?=
+ =?utf-8?B?VTZ0MnVESnNZSmtmOWRoNkRPdHdMbzhyVEJRbXBEeWVrOW1tVlFoaDNjUCtW?=
+ =?utf-8?B?MzVlaXNEQWFCMWorOVduVzVCMlFJdmlEV3dINDkzdDBYS0tyL3N4WXBHT2JL?=
+ =?utf-8?B?bzZ5ZjlQMkx1UEI5TEFaQlRhalVDQjQvcXVRWXJtc3RSQlViQVBmMDI3ZDVn?=
+ =?utf-8?B?N05HQWExa2tJYjY1K3VycVptMy92TVN6VFpuWldGYUhpVkYwOVQ4WDNXSDJR?=
+ =?utf-8?B?ZkdYWGd3OEpXSUc2SUd3NkZVRGlVeTZHL1VNZnIranVCSVQ2RjgzbVZlaVZq?=
+ =?utf-8?B?YzE1d1RZMjY5ZElKYzExaDJ2U2R6NkZyZjduS2hMbnk4Q1g0WmRIWmtCdzMv?=
+ =?utf-8?B?aFNIT1EyMVRrVjlwYkpwU1kxMmpmZjhQNEFTdTlML1dwUll0SExaK0FTSWVu?=
+ =?utf-8?Q?OqSh/sppDHCI0?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR12MB6642.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?NldKS0JoQ2tpemtvdGRTN2UrWkhkRGRmK1FHREVXNGpFbHQwb2Rpa2I5VTJw?=
+ =?utf-8?B?d280bUtwSVh6aGprOFhiSkhBL3FPVlhEbEl6cjZNYkRwcUp1eW5kQ2VuRjR3?=
+ =?utf-8?B?K0hKZzNuSUpuaGdEVGdPQ1FzL3hDYU9KODkwUldSQzdSWi9Yc1pWNDdBZmN0?=
+ =?utf-8?B?YUc2VTFxaHJCZ3RTVTI2eXgweitXQTNLaWxTQ2p2UUZRZmpsRHVsMytJdVBU?=
+ =?utf-8?B?UVFUV3NzbE12T1I2ZHBlaEp3bjdzY1NKWFRzNm9tOHJuZDgwYlVQLzVJc1F1?=
+ =?utf-8?B?dTRyOFFiSXFXVVB0Z3pHOHpBdjJ6SU5yK2FlNm5lUTVkS240NUxQMHFSSTdv?=
+ =?utf-8?B?ZElXZmxBTENIL3RTQTlnei9NMHorWFFmbTNkQlN2S0JFYzVjbHFzbnNrM1I0?=
+ =?utf-8?B?WFZES1FWQ3ZjcUxlSUx6dG9VbDdIK2J4dkcrcXIwK3AvVHhiY3lhVmFqcmZi?=
+ =?utf-8?B?N01wV093TUMrNVVSQ3pkZjdPOUk3UTdZRVBrNUVsT1lleVNiT1JtVG5aSEtr?=
+ =?utf-8?B?cE1MOVo1MnB1MmttR2h3dkVQSENKZXM5V3JNemtDK2tZQnBzZ2g0NFE2djNh?=
+ =?utf-8?B?SjlsMC90WFNOUmtjSlViaFRwRmJ0akhhMW5SbloxeUlLQnNnaStidWhXUWdR?=
+ =?utf-8?B?cGNTdWVUWGxQVVR0ZkcxVkYrTjRScHdXKzVPRTBlV0p2Q1ZJZ0UzS3htTXc3?=
+ =?utf-8?B?dEJhMHZzZVdNaE9vZ0RBVEpuUUhvMnB3UU5pbXFMMnUxQjkrV2ZmNnN2anl5?=
+ =?utf-8?B?c1dwUEQ0NksxNGNqZUxsTkZ5bWk3bFYwdVNQVWZJWlZKWUFXdVZHZ3R5Z0hV?=
+ =?utf-8?B?Y1N5SkZDZ1pNamN4MnJmLzFoN3lKeGVpRkY3TWRsREoxdjg3NlN2T0Y1UGw5?=
+ =?utf-8?B?UTJmcEo2RVBsb1hRWmI2QnNXMEpUcUI2YjZOYTRablNUNUZEbDU3SnplcXFs?=
+ =?utf-8?B?SEZ6US9EdXE0eTdmZFNNQ1VVN0x1Tys0SzIwaXE4WmgyZ0xvS1BHa3V6S1N0?=
+ =?utf-8?B?K3lUQkdUc1NKRXd4ak9LWFgzNFQ3V1hNVEVkcHJ4a0hhUEd4TzhLeUxwNm9a?=
+ =?utf-8?B?Q3NRK0hoREtCTW1yM0lMWmZVazZ4ZlUzS2RxZ2I1RnZWVVJhbmwrVkZyeXpM?=
+ =?utf-8?B?NVVKdVRKaEtTTE10Z05nR1NVQitVQURaMmZvN0JPS1pibEFFaG5DSjIwZHBQ?=
+ =?utf-8?B?TVhoM2NLNHBneUlFZkxLK0xiRGF3M1M4NlVKa0c2UUh3clArWjZSbDdLWWcv?=
+ =?utf-8?B?cHNtYjhoRG5GZElFc0ROUEZHS1R5SUE0SUNuSDU3dEkrcWNPRXNKVkp4N2Mr?=
+ =?utf-8?B?Q2JwOGtVU3o5WFNMc2JMbURHTVZWNVc4NisrdEtIU2IxMEpRVDR3RFM3bVhX?=
+ =?utf-8?B?bGRlSzdXQmhRZWRIUjNNODE3TytMK1dxTHBsdkd6WHh0Mmx0cmljb0JCTFJM?=
+ =?utf-8?B?OTdZNXVvbWx4ZGpiZS9LcjZmeFpNOEVYT20rU0xyOEVBaDRhUDVndWNibHJu?=
+ =?utf-8?B?Y1hjbnF3Z1NwR0o2RU9jVGttd2VQc1BEMWFZc3JWZXpGWFFWRE1LSm1RcjRu?=
+ =?utf-8?B?TE5EUTZvNGRPcDNoWUIvYXN4ZVdpT3FaY1RxdnZMTmhTRkV2ekFnVm45SWtB?=
+ =?utf-8?B?T204anZCVmFGOTJWSHM5QnZKL0dSL2RneW0zRmRhV24wK2JSZndIRHZHVWVS?=
+ =?utf-8?B?OG1vZDJKem53L2xCUFYxNVQ3aUNGN3ZTRFBZaFBUWndwK1FSWGl3WGt4ZmYx?=
+ =?utf-8?B?S21xMEJ0cEFLNWZQMndPK0FaMERoVVRkUElOVnpVOFdKV2h4bmU3TTUwSHh6?=
+ =?utf-8?B?djBXK3lhZnpiNkhWNVpEdTl2aSsyeFMyaHoreFNRNWVkUjZmRDNiY1VUNEtv?=
+ =?utf-8?B?MHcwSytvU3NiUnVDYXNxanUzSmxnVlkvaTl3OUVnakVwMWRSSHYxbm53a09P?=
+ =?utf-8?B?R0NpUWc2dkhyRWxVdXVDVWhUbCsxL1J4TnhvQUJJQ2ROTGxIR3pqTVhzbUZ2?=
+ =?utf-8?B?MjdUcVIyaDRCNE9iK2E0SzJySitqUzBuRWtnNVZ4L1dZSnNrR0Z1RUdBZlFz?=
+ =?utf-8?B?QkdUZk8zVW9xc1hnaTFSYW1RVFh2R0kwcmdYdVcvcWFkdjBXbmhzYzFiVEtl?=
+ =?utf-8?Q?yTQf40323lvV2lqkx/TosvGoN?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24f0ae59-16a6-44e3-be58-08ddbfe478ec
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR12MB6642.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2025 19:03:36.0512
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: A0+qRu60sKpv3B7LSA9UCP3ou2pnbMuwmzL0wlGvtLntwVhhVXUy5kphqHM/4XpCRg5+wYxr+XWWMcon3GgeMg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9232
 
-Introduce a comprehensive abstraction layer for the PWM subsystem to
-enable writing drivers in Rust.
+On 7/3/2025 12:48 AM, Krzysztof Kozlowski wrote:
+> On 02/07/2025 17:56, Gregory Williams wrote:
+>> In the device tree, there will be device node for the AI engine device,
+>> and device nodes for the statically configured AI engine apertures.
+> 
+> No, describe the hardware, not DTS.
+> 
+>> Apertures are an isolated set of columns with in the AI engine device
+>> with their own address space and interrupt.
+>>
+>> Signed-off-by: Gregory Williams <gregory.williams@amd.com>
+>> ---
+>>  .../bindings/soc/xilinx/xlnx,ai-engine.yaml   | 151 ++++++++++++++++++
+>>  1 file changed, 151 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml b/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
+>> new file mode 100644
+>> index 000000000000..7d9a36c56366
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
+> 
+> Filename matching compatible.
+> 
+>> @@ -0,0 +1,151 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/soc/xilinx/xlnx,ai-engine.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: AMD AI Engine
+> 
+> That's really too generic...
+> 
+>> +
+>> +maintainers:
+>> +  - Gregory Williams <gregory.williams@amd.com>
+>> +
+>> +description:
+>> +  The AMD AI Engine is a tile processor with many cores (up to 400) that
+>> +  can run in parallel. The data routing between cores is configured through
+>> +  internal switches, and shim tiles interface with external interconnect, such
+>> +  as memory or PL. One AI engine device can have multiple apertures, each
+>> +  has its own address space and interrupt. At runtime application can create
+>> +  multiple partitions within an aperture which are groups of columns of AI
+>> +  engine tiles. Each AI engine partition is the minimum resetable unit for an
+>> +  AI engine application.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: xlnx,ai-engine-v2.0
+> 
+> What does v2.0 stands for? Versioning is discouraged, unless mapping is
+> well documented.
 
-Because `Device`, `Chip`, and `PwmOps` all refer to each other, they
-form a single, indivisible unit with circular dependencies. They are
-introduced together in this single commit to create a complete,
-compilable abstraction layer.
+Sure, I will remove the versioning in V2 patch.
 
-The main components are:
- - Data Wrappers: Safe, idiomatic wrappers for core C types like
-   `pwm_device`, and `pwm_chip`.
+> 
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  '#address-cells':
+>> +    const: 2
+>> +
+>> +  '#size-cells':
+>> +    const: 2
+>> +
+>> +  power-domains:
+> 
+> Missing constraints.
+> 
+>> +    description:
+>> +      Platform management node id used to request power management services
+>> +      from the firmware driver.
+> 
+> Drop description, redundant.
+> 
+>> +
+>> +  xlnx,aie-gen:
+>> +    $ref: /schemas/types.yaml#/definitions/uint8
+> 
+> Why uint8?
+> 
+>> +    description:
+>> +      Hardware generation of AI engine device. E.g. the current values supported
+>> +      are 1 (AIE) and 2 (AIEML).
+> 
+> No clue what's that, but it is implied by compatible, isn't it?
 
- - PwmOps Trait: An interface that drivers can implement to provide
-   their hardware-specific logic, mirroring the C `pwm_ops` interface.
+The driver supports multiple hardware generations. During driver probe, this value is read from the device tree and hardware generation specific
+data structures are loaded based on this value. The compatible string is the same between devices.
 
- - FFI VTable and Adapter: A bridge to connect the high-level PwmOps trait
-   to the C kernel's pwm_ops vtable.
+> 
+> Missing constraints.
+> 
+>> +
+>> +  xlnx,shim-rows:
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>> +    description:
+>> +      start row and the number of rows of SHIM tiles of the AI engine device
+> 
+> Implied by compatible.
 
- - Allocation and Lifetime Management: A high-level `Chip::new()`
-   API to safely allocate a chip and a `Registration` guard that integrates
-   with `devres` to manage the chip's registration with the PWM core.
-   An `AlwaysRefCounted` implementation and a custom release handler
-   prevent memory leaks by managing the chip's lifetime and freeing
-   driver data correctly.
+The AI Engine device can have different configurations for number of rows and column (even if it is the same hardware generation). This property
+tells the driver the size and layout of the array, this is not implied by compatible.
 
-Reviewed-by: Danilo Krummrich <dakr@kernel.org>
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- rust/kernel/pwm.rs | 667 ++++++++++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 665 insertions(+), 2 deletions(-)
+> 
+> Missing constraints.
+> 
+> 
+>> +
+>> +  xlnx,core-rows:
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>> +    description:
+>> +      start row and the number of rows of core tiles of the AI engine device
+>> +
+>> +  xlnx,mem-rows:
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>> +    description:
+>> +      start row and the number of rows of memory tiles of the AI engine device
+>> +
+> 
+> Same comments everywhere.
+> 
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - power-domains
+>> +  - xlnx,aie-gen
+>> +  - xlnx,shim-rows
+>> +  - xlnx,core-rows
+>> +  - xlnx,mem-rows
+>> +
+>> +patternProperties:
+> 
+> This goes after properties.
+> 
+>> +  "^aperture@[0-9]+$":
+>> +    type: object
+>> +    description:
+>> +      AI engine aperture which is a group of column based tiles of the
+>> +      AI engine device. Each AI engine apertures isolated from the
+>> +      other AI engine apertures. An AI engine aperture is defined by
+>> +      AMD/Xilinx platform design tools.
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        const: xlnx,ai-engine-aperture
+>> +
+>> +      reg:
+>> +        description:
+>> +          Physical base address and length of the aperture registers.
+>> +          The AI engine address space assigned to Linux is defined by
+>> +          Xilinx/AMD platform design tool.
+> 
+> Missing constraints. Description is redundant - can it be anything else?
+> 
+> Plus you clearly miss ranges.
+> 
+> 
+>> +
+>> +      interrupts:
+>> +        maxItems: 3
+>> +
+>> +      interrupt-names:
+>> +        items:
+>> +          - const: interrupt1
+>> +          - const: interrupt2
+>> +          - const: interrupt3
+> 
+> Useless names, drop entirely.
+> 
+>> +
+>> +      xlnx,columns:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +        description:
+>> +          It describes the location of the aperture. It specifies the start
+>> +          column and the number of columns. E.g. an aperture starts from
+>> +          column 0 and there are 50 columns, it will be presented as <0 50>.
+> 
+> Same comments as before
+> 
+>> +
+>> +      xlnx,node-id:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description:
+>> +          AI engine aperture node ID, which is defined by AMD/Xilinx platform
+>> +          design tool to identify the AI engine aperture in the firmware.
+> 
+> No, you do not get node ID. Recently every day a patch comes for that...
+> 
+>> +
+>> +    required:
+>> +      - compatible
+>> +      - reg
+>> +      - xlnx,columns
+>> +      - xlnx,node-id
+>> +
+>> +    additionalProperties: false
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/power/xlnx-versal-power.h>
+>> +    bus {
+>> +      #address-cells = <2>;
+>> +      #size-cells = <2>;
+>> +      ai_engine: ai-engine@20000000000 {
+>> +        compatible = "xlnx,ai-engine-v2.0";
+>> +        reg = <0x200 0x00 0x01 0x00>;
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +        power-domains = <&versal_firmware PM_DEV_AI>;
+>> +        xlnx,aie-gen = /bits/ 8 <0x1>;
+>> +        xlnx,core-rows = /bits/ 8 <1 8>;
+>> +        xlnx,mem-rows = /bits/ 8 <0 0>;
+>> +        xlnx,shim-rows = /bits/ 8 <0 1>
+> 
+> This cannot be without ranges... I am surprised it actually works, but
+> for sure was not tested and produces warnings.
+> 
+>> +
+>> +        aperture0: aperture@200000000000 {
+>> +          /* 50 columns and 8 core tile rows + 1 SHIM row */
+>> +          compatible = "xlnx,ai-engine-aperture";
+>> +          reg = <0x200 0x0 0x1 0x0>;
+>> +          interrupts = <0x0 0x94 0x4>,
+>> +                       <0x0 0x95 0x4>,
+>> +                       <0x0 0x96 0x4>;
+> Use proper flags.
+> 
+> Best regards,
+> Krzysztof
 
-diff --git a/rust/kernel/pwm.rs b/rust/kernel/pwm.rs
-index 3fad101406eac728d9b12083fad7abf7b7f89b25..3faaf05ef99d42bedd1f2df34cfca7a6541feb27 100644
---- a/rust/kernel/pwm.rs
-+++ b/rust/kernel/pwm.rs
-@@ -8,10 +8,14 @@
- 
- use crate::{
-     bindings,
-+    container_of,
-+    device::{self, Bound},
-+    devres,
-+    error::{self, to_result},
-     prelude::*,
--    types::Opaque,
-+    types::{ARef, AlwaysRefCounted, ForeignOwnable, Opaque},
- };
--use core::convert::TryFrom;
-+use core::{convert::TryFrom, marker::PhantomData, ptr::NonNull};
- 
- /// PWM polarity. Mirrors [`enum pwm_polarity`](srctree/include/linux/pwm.h).
- #[derive(Copy, Clone, Debug, PartialEq, Eq)]
-@@ -135,3 +139,662 @@ pub fn enabled(&self) -> bool {
-         self.0.enabled
-     }
- }
-+
-+/// Describes the outcome of a `round_waveform` operation.
-+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-+pub enum RoundingOutcome {
-+    /// The requested waveform was achievable exactly or by rounding values down.
-+    ExactOrRoundedDown,
-+
-+    /// The requested waveform could only be achieved by rounding up.
-+    RoundedUp,
-+}
-+
-+/// Wrapper for a PWM device [`struct pwm_device`](srctree/include/linux/pwm.h).
-+#[repr(transparent)]
-+pub struct Device(Opaque<bindings::pwm_device>);
-+
-+impl Device {
-+    /// Creates a reference to a [`Device`] from a valid C pointer.
-+    ///
-+    /// # Safety
-+    ///
-+    /// The caller must ensure that `ptr` is valid and remains valid for the lifetime of the
-+    /// returned [`Device`] reference.
-+    pub(crate) unsafe fn as_ref<'a>(ptr: *mut bindings::pwm_device) -> &'a Self {
-+        // SAFETY: The safety requirements guarantee the validity of the dereference, while the
-+        // `Device` type being transparent makes the cast ok.
-+        unsafe { &*ptr.cast::<Self>() }
-+    }
-+
-+    /// Returns a raw pointer to the underlying `pwm_device`.
-+    fn as_raw(&self) -> *mut bindings::pwm_device {
-+        self.0.get()
-+    }
-+
-+    /// Gets the hardware PWM index for this device within its chip.
-+    pub fn hwpwm(&self) -> u32 {
-+        // SAFETY: `self.as_raw()` provides a valid pointer for `self`'s lifetime.
-+        unsafe { (*self.as_raw()).hwpwm }
-+    }
-+
-+    /// Gets a reference to the parent `Chip` that this device belongs to.
-+    pub fn chip<T: ForeignOwnable>(&self) -> &Chip<T> {
-+        // SAFETY: `self.as_raw()` provides a valid pointer. (*self.as_raw()).chip
-+        // is assumed to be a valid pointer to `pwm_chip` managed by the kernel.
-+        // Chip::as_ref's safety conditions must be met.
-+        unsafe { Chip::<T>::as_ref((*self.as_raw()).chip) }
-+    }
-+
-+    /// Gets the label for this PWM device, if any.
-+    pub fn label(&self) -> Option<&CStr> {
-+        // SAFETY: self.as_raw() provides a valid pointer.
-+        let label_ptr = unsafe { (*self.as_raw()).label };
-+        if label_ptr.is_null() {
-+            None
-+        } else {
-+            // SAFETY: label_ptr is non-null and points to a C string
-+            // managed by the kernel, valid for the lifetime of the PWM device.
-+            Some(unsafe { CStr::from_char_ptr(label_ptr) })
-+        }
-+    }
-+
-+    /// Gets a copy of the board-dependent arguments for this PWM device.
-+    pub fn args(&self) -> Args {
-+        // SAFETY: self.as_raw() gives a valid pointer to `pwm_device`.
-+        // The `args` field is a valid `pwm_args` struct embedded within `pwm_device`.
-+        // `Args::from_c_ptr`'s safety conditions are met by providing this pointer.
-+        unsafe { Args::from_c_ptr(&(*self.as_raw()).args) }
-+    }
-+
-+    /// Gets a copy of the current state of this PWM device.
-+    pub fn state(&self) -> State {
-+        // SAFETY: `self.as_raw()` gives a valid pointer. `(*self.as_raw()).state`
-+        // is a valid `pwm_state` struct. `State::from_c` copies this data.
-+        State::from_c(unsafe { (*self.as_raw()).state })
-+    }
-+
-+    /// Sets the PWM waveform configuration and enables the PWM signal.
-+    pub fn set_waveform(&self, wf: &Waveform, exact: bool) -> Result {
-+        let c_wf = bindings::pwm_waveform::from(*wf);
-+
-+        // SAFETY: `self.as_raw()` provides a valid `*mut pwm_device` pointer.
-+        // `&c_wf` is a valid pointer to a `pwm_waveform` struct. The C function
-+        // handles all necessary internal locking.
-+        let ret = unsafe { bindings::pwm_set_waveform_might_sleep(self.as_raw(), &c_wf, exact) };
-+        to_result(ret)
-+    }
-+
-+    /// Queries the hardware for the configuration it would apply for a given
-+    /// request.
-+    pub fn round_waveform(&self, wf: &mut Waveform) -> Result<RoundingOutcome> {
-+        let mut c_wf = bindings::pwm_waveform::from(*wf);
-+
-+        // SAFETY: `self.as_raw()` provides a valid `*mut pwm_device` pointer.
-+        // `&mut c_wf` is a valid pointer to a mutable `pwm_waveform` struct that
-+        // the C function will update.
-+        let ret = unsafe { bindings::pwm_round_waveform_might_sleep(self.as_raw(), &mut c_wf) };
-+
-+        to_result(ret)?;
-+
-+        *wf = Waveform::from(c_wf);
-+
-+        if ret == 1 {
-+            Ok(RoundingOutcome::RoundedUp)
-+        } else {
-+            Ok(RoundingOutcome::ExactOrRoundedDown)
-+        }
-+    }
-+
-+    /// Reads the current waveform configuration directly from the hardware.
-+    pub fn get_waveform(&self) -> Result<Waveform> {
-+        let mut c_wf = bindings::pwm_waveform::default();
-+
-+        // SAFETY: `self.as_raw()` is a valid pointer. We provide a valid pointer
-+        // to a stack-allocated `pwm_waveform` struct for the kernel to fill.
-+        let ret = unsafe { bindings::pwm_get_waveform_might_sleep(self.as_raw(), &mut c_wf) };
-+
-+        to_result(ret)?;
-+
-+        Ok(Waveform::from(c_wf))
-+    }
-+}
-+
-+/// Trait defining the operations for a PWM driver.
-+pub trait PwmOps: 'static + Sized {
-+    /// The type of the owned driver data (e.g., `Pin<KBox<...>>`).
-+    type DrvData: 'static + ForeignOwnable;
-+    /// The driver-specific hardware representation of a waveform.
-+    ///
-+    /// This type must be [`Copy`], [`Default`], and fit within `PWM_WFHWSIZE`.
-+    type WfHw: Copy + Default;
-+
-+    /// Optional hook for when a PWM device is requested.
-+    fn request(
-+        _chip: &Chip<Self::DrvData>,
-+        _pwm: &Device,
-+        _parent_dev: &device::Device<Bound>,
-+    ) -> Result {
-+        Ok(())
-+    }
-+
-+    /// Optional hook for capturing a PWM signal.
-+    fn capture(
-+        _chip: &Chip<Self::DrvData>,
-+        _pwm: &Device,
-+        _result: &mut bindings::pwm_capture,
-+        _timeout: usize,
-+        _parent_dev: &device::Device<Bound>,
-+    ) -> Result {
-+        Err(ENOTSUPP)
-+    }
-+
-+    /// Convert a generic waveform to the hardware-specific representation.
-+    /// This is typically a pure calculation and does not perform I/O.
-+    fn round_waveform_tohw(
-+        _chip: &Chip<Self::DrvData>,
-+        _pwm: &Device,
-+        _wf: &Waveform,
-+    ) -> Result<(c_int, Self::WfHw)> {
-+        Err(ENOTSUPP)
-+    }
-+
-+    /// Convert a hardware-specific representation back to a generic waveform.
-+    /// This is typically a pure calculation and does not perform I/O.
-+    fn round_waveform_fromhw(
-+        _chip: &Chip<Self::DrvData>,
-+        _pwm: &Device,
-+        _wfhw: &Self::WfHw,
-+        _wf: &mut Waveform,
-+    ) -> Result<c_int> {
-+        Err(ENOTSUPP)
-+    }
-+
-+    /// Read the current hardware configuration into the hardware-specific representation.
-+    fn read_waveform(
-+        _chip: &Chip<Self::DrvData>,
-+        _pwm: &Device,
-+        _parent_dev: &device::Device<Bound>,
-+    ) -> Result<Self::WfHw> {
-+        Err(ENOTSUPP)
-+    }
-+
-+    /// Write a hardware-specific waveform configuration to the hardware.
-+    fn write_waveform(
-+        _chip: &Chip<Self::DrvData>,
-+        _pwm: &Device,
-+        _wfhw: &Self::WfHw,
-+        _parent_dev: &device::Device<Bound>,
-+    ) -> Result {
-+        Err(ENOTSUPP)
-+    }
-+}
-+/// Bridges Rust `PwmOps` to the C `pwm_ops` vtable.
-+struct Adapter<T: PwmOps> {
-+    _p: PhantomData<T>,
-+}
-+
-+impl<T: PwmOps> Adapter<T> {
-+    const VTABLE: PwmOpsVTable = create_pwm_ops::<T>();
-+
-+    /// # Safety
-+    ///
-+    /// `wfhw_ptr` must be valid for writes of `size_of::<T::WfHw>()` bytes.
-+    unsafe fn serialize_wfhw(wfhw: &T::WfHw, wfhw_ptr: *mut c_void) -> Result {
-+        let size = core::mem::size_of::<T::WfHw>();
-+        if size > bindings::PWM_WFHWSIZE as usize {
-+            return Err(EINVAL);
-+        }
-+
-+        // SAFETY: The caller ensures `wfhw_ptr` is valid for `size` bytes.
-+        unsafe {
-+            core::ptr::copy_nonoverlapping(
-+                core::ptr::from_ref::<T::WfHw>(wfhw).cast::<u8>(),
-+                wfhw_ptr.cast::<u8>(),
-+                size,
-+            );
-+        }
-+
-+        Ok(())
-+    }
-+
-+    /// # Safety
-+    ///
-+    /// `wfhw_ptr` must be valid for reads of `size_of::<T::WfHw>()` bytes.
-+    unsafe fn deserialize_wfhw(wfhw_ptr: *const c_void) -> Result<T::WfHw> {
-+        let size = core::mem::size_of::<T::WfHw>();
-+        if size > bindings::PWM_WFHWSIZE as usize {
-+            return Err(EINVAL);
-+        }
-+
-+        let mut wfhw = T::WfHw::default();
-+        // SAFETY: The caller ensures `wfhw_ptr` is valid for `size` bytes.
-+        unsafe {
-+            core::ptr::copy_nonoverlapping(
-+                wfhw_ptr.cast::<u8>(),
-+                core::ptr::from_mut::<T::WfHw>(&mut wfhw).cast::<u8>(),
-+                size,
-+            );
-+        }
-+
-+        Ok(wfhw)
-+    }
-+
-+    /// # Safety
-+    ///
-+    /// `dev` must be a valid pointer to a `bindings::device` embedded within a
-+    /// `bindings::pwm_chip`. This function is called by the device core when the
-+    /// last reference to the device is dropped.
-+    unsafe extern "C" fn release_callback(dev: *mut bindings::device) {
-+        // SAFETY: The function's contract guarantees that `dev` points to a `device`
-+        // field embedded within a valid `pwm_chip`. `container_of!` can therefore
-+        // safely calculate the address of the containing struct.
-+        let c_chip_ptr = unsafe { container_of!(dev, bindings::pwm_chip, dev) };
-+
-+        // SAFETY: `c_chip_ptr` is a valid pointer to a `pwm_chip` as established
-+        // above. Calling this FFI function is safe.
-+        let drvdata_ptr = unsafe { bindings::pwmchip_get_drvdata(c_chip_ptr) };
-+
-+        // SAFETY: `drvdata_ptr` was stored by `Chip::new` from an owned `T::DrvData`
-+        // and is guaranteed to be valid if non-null. `from_foreign` can safely
-+        // reclaim ownership to allow Rust to drop and free the data.
-+        let _owned_drvdata = unsafe { T::DrvData::from_foreign(drvdata_ptr.cast()) };
-+
-+        // Now, call the original release function to free the `pwm_chip` itself.
-+        // SAFETY: `dev` is the valid pointer passed into this callback, which is
-+        // the expected argument for `pwmchip_release`.
-+        unsafe { bindings::pwmchip_release(dev); }
-+    }
-+
-+    /// # Safety
-+    ///
-+    /// Pointers from C must be valid.
-+    unsafe extern "C" fn request_callback(
-+        c: *mut bindings::pwm_chip,
-+        p: *mut bindings::pwm_device,
-+    ) -> c_int {
-+        // SAFETY: PWM core guarentees `c` and `p` are valid pointers.
-+        let (chip, pwm) = unsafe { (Chip::<T::DrvData>::as_ref(c), Device::as_ref(p)) };
-+
-+        // SAFETY: The PWM core guarantees the parent device exists and is bound during callbacks.
-+        let bound_parent = unsafe { chip.bound_parent_device() };
-+        match T::request(chip, pwm, bound_parent) {
-+            Ok(()) => 0,
-+            Err(e) => e.to_errno(),
-+        }
-+    }
-+
-+    /// # Safety
-+    ///
-+    /// Pointers from C must be valid.
-+    unsafe extern "C" fn capture_callback(
-+        c: *mut bindings::pwm_chip,
-+        p: *mut bindings::pwm_device,
-+        res: *mut bindings::pwm_capture,
-+        timeout: usize,
-+    ) -> c_int {
-+        // SAFETY: Relies on the function's contract that `c` and `p` are valid pointers.
-+        let (chip, pwm, result) =
-+            unsafe { (Chip::<T::DrvData>::as_ref(c), Device::as_ref(p), &mut *res) };
-+
-+        // SAFETY: The PWM core guarantees the parent device exists and is bound during callbacks.
-+        let bound_parent = unsafe { chip.bound_parent_device() };
-+        match T::capture(chip, pwm, result, timeout, bound_parent) {
-+            Ok(()) => 0,
-+            Err(e) => e.to_errno(),
-+        }
-+    }
-+
-+    /// # Safety
-+    ///
-+    /// Pointers from C must be valid.
-+    unsafe extern "C" fn round_waveform_tohw_callback(
-+        c: *mut bindings::pwm_chip,
-+        p: *mut bindings::pwm_device,
-+        w: *const bindings::pwm_waveform,
-+        wh: *mut c_void,
-+    ) -> c_int {
-+        // SAFETY: Relies on the function's contract that `c` and `p` are valid pointers.
-+        let (chip, pwm, wf) = unsafe {
-+            (
-+                Chip::<T::DrvData>::as_ref(c),
-+                Device::as_ref(p),
-+                Waveform::from(*w),
-+            )
-+        };
-+        match T::round_waveform_tohw(chip, pwm, &wf) {
-+            Ok((status, wfhw)) => {
-+                // SAFETY: `wh` is valid per this function's safety contract.
-+                if unsafe { Self::serialize_wfhw(&wfhw, wh) }.is_err() {
-+                    return EINVAL.to_errno();
-+                }
-+                status
-+            }
-+            Err(e) => e.to_errno(),
-+        }
-+    }
-+
-+    /// # Safety
-+    ///
-+    /// Pointers from C must be valid.
-+    unsafe extern "C" fn round_waveform_fromhw_callback(
-+        c: *mut bindings::pwm_chip,
-+        p: *mut bindings::pwm_device,
-+        wh: *const c_void,
-+        w: *mut bindings::pwm_waveform,
-+    ) -> c_int {
-+        // SAFETY: Relies on the function's contract that `c` and `p` are valid pointers.
-+        let (chip, pwm) = unsafe { (Chip::<T::DrvData>::as_ref(c), Device::as_ref(p)) };
-+        // SAFETY: `deserialize_wfhw`'s safety contract is met by this function's contract.
-+        let wfhw = match unsafe { Self::deserialize_wfhw(wh) } {
-+            Ok(v) => v,
-+            Err(e) => return e.to_errno(),
-+        };
-+
-+        let mut rust_wf = Waveform::default();
-+        match T::round_waveform_fromhw(chip, pwm, &wfhw, &mut rust_wf) {
-+            Ok(ret) => {
-+                // SAFETY: `w` is guaranteed valid by the C caller.
-+                unsafe {
-+                    *w = rust_wf.into();
-+                };
-+                ret
-+            }
-+            Err(e) => e.to_errno(),
-+        }
-+    }
-+
-+    /// # Safety
-+    ///
-+    /// Pointers from C must be valid.
-+    unsafe extern "C" fn read_waveform_callback(
-+        c: *mut bindings::pwm_chip,
-+        p: *mut bindings::pwm_device,
-+        wh: *mut c_void,
-+    ) -> c_int {
-+        // SAFETY: Relies on the function's contract that `c` and `p` are valid pointers.
-+        let (chip, pwm) = unsafe { (Chip::<T::DrvData>::as_ref(c), Device::as_ref(p)) };
-+
-+        // SAFETY: The PWM core guarantees the parent device exists and is bound during callbacks.
-+        let bound_parent = unsafe { chip.bound_parent_device() };
-+        match T::read_waveform(chip, pwm, bound_parent) {
-+            // SAFETY: `wh` is valid per this function's safety contract.
-+            Ok(wfhw) => match unsafe { Self::serialize_wfhw(&wfhw, wh) } {
-+                Ok(()) => 0,
-+                Err(e) => e.to_errno(),
-+            },
-+            Err(e) => e.to_errno(),
-+        }
-+    }
-+
-+    /// # Safety
-+    ///
-+    /// Pointers from C must be valid.
-+    unsafe extern "C" fn write_waveform_callback(
-+        c: *mut bindings::pwm_chip,
-+        p: *mut bindings::pwm_device,
-+        wh: *const c_void,
-+    ) -> c_int {
-+        // SAFETY: Relies on the function's contract that `c` and `p` are valid pointers.
-+        let (chip, pwm) = unsafe { (Chip::<T::DrvData>::as_ref(c), Device::as_ref(p)) };
-+
-+        // SAFETY: The PWM core guarantees the parent device exists and is bound during callbacks.
-+        let bound_parent = unsafe { chip.bound_parent_device() };
-+
-+        // SAFETY: `wh` is valid per this function's safety contract.
-+        let wfhw = match unsafe { Self::deserialize_wfhw(wh) } {
-+            Ok(v) => v,
-+            Err(e) => return e.to_errno(),
-+        };
-+        match T::write_waveform(chip, pwm, &wfhw, bound_parent) {
-+            Ok(()) => 0,
-+            Err(e) => e.to_errno(),
-+        }
-+    }
-+}
-+
-+/// VTable structure wrapper for PWM operations.
-+/// Mirrors [`struct pwm_ops`](srctree/include/linux/pwm.h).
-+#[repr(transparent)]
-+pub struct PwmOpsVTable(bindings::pwm_ops);
-+
-+// SAFETY: PwmOpsVTable is Send. The vtable contains only function pointers
-+// and a size, which are simple data types that can be safely moved across
-+// threads. The thread-safety of calling these functions is handled by the
-+// kernel's locking mechanisms.
-+unsafe impl Send for PwmOpsVTable {}
-+
-+// SAFETY: PwmOpsVTable is Sync. The vtable is immutable after it is created,
-+// so it can be safely referenced and accessed concurrently by multiple threads
-+// e.g. to read the function pointers.
-+unsafe impl Sync for PwmOpsVTable {}
-+
-+impl PwmOpsVTable {
-+    /// Returns a raw pointer to the underlying `pwm_ops` struct.
-+    pub(crate) fn as_raw(&self) -> *const bindings::pwm_ops {
-+        &self.0
-+    }
-+}
-+
-+/// Creates a PWM operations vtable for a type `T` that implements `PwmOps`.
-+///
-+/// This is used to bridge Rust trait implementations to the C `struct pwm_ops`
-+/// expected by the kernel.
-+pub const fn create_pwm_ops<T: PwmOps>() -> PwmOpsVTable {
-+    // SAFETY: `core::mem::zeroed()` is unsafe. For `pwm_ops`, all fields are
-+    // `Option<extern "C" fn(...)>` or data, so a zeroed pattern (None/0) is valid initially.
-+    let mut ops: bindings::pwm_ops = unsafe { core::mem::zeroed() };
-+
-+    ops.request = Some(Adapter::<T>::request_callback);
-+    ops.capture = Some(Adapter::<T>::capture_callback);
-+
-+    ops.round_waveform_tohw = Some(Adapter::<T>::round_waveform_tohw_callback);
-+    ops.round_waveform_fromhw = Some(Adapter::<T>::round_waveform_fromhw_callback);
-+    ops.read_waveform = Some(Adapter::<T>::read_waveform_callback);
-+    ops.write_waveform = Some(Adapter::<T>::write_waveform_callback);
-+    ops.sizeof_wfhw = core::mem::size_of::<T::WfHw>();
-+
-+    PwmOpsVTable(ops)
-+}
-+
-+/// Wrapper for a PWM chip/controller ([`struct pwm_chip`](srctree/include/linux/pwm.h)).
-+#[repr(transparent)]
-+pub struct Chip<T: ForeignOwnable>(Opaque<bindings::pwm_chip>, PhantomData<T>);
-+
-+impl<T: ForeignOwnable> Chip<T> {
-+    /// Creates a reference to a [`Chip`] from a valid pointer.
-+    ///
-+    /// # Safety
-+    ///
-+    /// The caller must ensure that `ptr` is valid and remains valid for the lifetime of the
-+    /// returned [`Chip`] reference.
-+    pub(crate) unsafe fn as_ref<'a>(ptr: *mut bindings::pwm_chip) -> &'a Self {
-+        // SAFETY: The safety requirements guarantee the validity of the dereference, while the
-+        // `Chip` type being transparent makes the cast ok.
-+        unsafe { &*ptr.cast::<Self>() }
-+    }
-+
-+    /// Returns a raw pointer to the underlying `pwm_chip`.
-+    pub(crate) fn as_raw(&self) -> *mut bindings::pwm_chip {
-+        self.0.get()
-+    }
-+
-+    /// Gets the number of PWM channels (hardware PWMs) on this chip.
-+    pub fn npwm(&self) -> u32 {
-+        // SAFETY: `self.as_raw()` provides a valid pointer for `self`'s lifetime.
-+        unsafe { (*self.as_raw()).npwm }
-+    }
-+
-+    /// Returns `true` if the chip supports atomic operations for configuration.
-+    pub fn is_atomic(&self) -> bool {
-+        // SAFETY: `self.as_raw()` provides a valid pointer for `self`'s lifetime.
-+        unsafe { (*self.as_raw()).atomic }
-+    }
-+
-+    /// Returns a reference to the embedded `struct device` abstraction.
-+    pub fn device(&self) -> &device::Device {
-+        // SAFETY: `self.as_raw()` provides a valid pointer to `bindings::pwm_chip`.
-+        // The `dev` field is an instance of `bindings::device` embedded within `pwm_chip`.
-+        // Taking a pointer to this embedded field is valid.
-+        // `device::Device` is `#[repr(transparent)]`.
-+        // The lifetime of the returned reference is tied to `self`.
-+        unsafe { device::Device::as_ref(&raw mut (*self.as_raw()).dev) }
-+    }
-+
-+    /// Returns a reference to the parent device of this PWM chip's device.
-+    ///
-+    /// # Safety
-+    ///
-+    /// The caller must guarantee that the parent device exists and is bound.
-+    /// This is guaranteed by the PWM core during `PwmOps` callbacks.
-+    unsafe fn bound_parent_device(&self) -> &device::Device<Bound> {
-+        // SAFETY: Per the function's safety contract, the parent device exists.
-+        let parent = unsafe { self.device().parent().unwrap_unchecked() };
-+
-+        // SAFETY: Per the function's safety contract, the parent device is bound.
-+        // The pointer is cast from `&Device` to `&Device<Bound>`.
-+        unsafe { &*core::ptr::from_ref(parent).cast::<device::Device<Bound>>() }
-+    }
-+}
-+
-+impl<T: 'static + ForeignOwnable> Chip<T> {
-+    /// Allocates and wraps a PWM chip using `bindings::pwmchip_alloc`.
-+    ///
-+    /// Returns an [`ARef<Chip>`] managing the chip's lifetime via refcounting
-+    /// on its embedded `struct device`.
-+    pub fn new<O: PwmOps<DrvData = T>>(
-+        parent_dev: &device::Device,
-+        npwm: u32,
-+        sizeof_priv: usize,
-+        drvdata: T,
-+    ) -> Result<ARef<Self>> {
-+        // SAFETY: `parent_device_for_dev_field.as_raw()` is valid.
-+        // `bindings::pwmchip_alloc` returns a valid `*mut bindings::pwm_chip` (refcount 1)
-+        // or an ERR_PTR.
-+        let c_chip_ptr_raw =
-+            unsafe { bindings::pwmchip_alloc(parent_dev.as_raw(), npwm, sizeof_priv) };
-+
-+        let c_chip_ptr: *mut bindings::pwm_chip = error::from_err_ptr(c_chip_ptr_raw)?;
-+
-+        // Set the custom release function on the embedded device. This is the crucial step
-+        // to ensure `drvdata` is freed when the chip's refcount reaches zero, regardless
-+        // of whether `Registration::register` was called.
-+        // SAFETY: `c_chip_ptr` points to a valid chip.
-+        unsafe { (*c_chip_ptr).dev.release = Some(Adapter::<O>::release_callback); }
-+
-+        // SAFETY: `c_chip_ptr` points to a valid chip from `pwmchip_alloc`.
-+        // The `Adapter`'s `VTABLE` has a 'static lifetime, so the pointer
-+        // returned by `as_raw()` is always valid.
-+        unsafe { (*c_chip_ptr).ops = Adapter::<O>::VTABLE.as_raw(); }
-+
-+        // Cast the `*mut bindings::pwm_chip` to `*mut Chip`. This is valid because
-+        // `Chip` is `repr(transparent)` over `Opaque<bindings::pwm_chip>`, and
-+        // `Opaque<T>` is `repr(transparent)` over `T`.
-+        let chip_ptr_as_self = c_chip_ptr.cast::<Self>();
-+
-+        // SAFETY: The pointer is valid, so we can create a temporary ref to set data.
-+        let chip_ref = unsafe { &*chip_ptr_as_self };
-+        // SAFETY: `chip_ref` points to a valid chip from `pwmchip_alloc` and `drvdata` is a valid,
-+        // owned pointer from `ForeignOwnable` to be stored in the chip's private data.
-+        unsafe { bindings::pwmchip_set_drvdata(chip_ref.as_raw(), drvdata.into_foreign().cast()) }
-+
-+        // SAFETY: `chip_ptr_as_self` points to a valid `Chip` (layout-compatible with
-+        // `bindings::pwm_chip`) whose embedded device has refcount 1.
-+        // `ARef::from_raw` takes this pointer and manages it via `AlwaysRefCounted`.
-+        Ok(unsafe { ARef::from_raw(NonNull::new_unchecked(chip_ptr_as_self)) })
-+    }
-+
-+    /// Gets the *typed* driver-specific data associated with this chip's embedded device.
-+    pub fn drvdata(&self) -> T::Borrowed<'_> {
-+        // SAFETY: `self.as_raw()` gives a valid pwm_chip pointer.
-+        // `bindings::pwmchip_get_drvdata` is the C function to retrieve driver data.
-+        let ptr = unsafe { bindings::pwmchip_get_drvdata(self.as_raw()) };
-+
-+        // SAFETY: The only way to create a chip is through Chip::new, which initializes
-+        // this pointer.
-+        unsafe { T::borrow(ptr.cast()) }
-+    }
-+}
-+
-+// SAFETY: Implements refcounting for `Chip` using the embedded `struct device`.
-+unsafe impl<T: ForeignOwnable> AlwaysRefCounted for Chip<T> {
-+    #[inline]
-+    fn inc_ref(&self) {
-+        // SAFETY: `self.0.get()` points to a valid `pwm_chip` because `self` exists.
-+        // The embedded `dev` is valid. `get_device` increments its refcount.
-+        unsafe { bindings::get_device(&raw mut (*self.0.get()).dev); }
-+    }
-+
-+    #[inline]
-+    unsafe fn dec_ref(obj: NonNull<Chip<T>>) {
-+        let c_chip_ptr = obj.cast::<bindings::pwm_chip>().as_ptr();
-+
-+        // SAFETY: `obj` is a valid pointer to a `Chip` (and thus `bindings::pwm_chip`)
-+        // with a non-zero refcount. `put_device` handles decrement and final release.
-+        unsafe { bindings::put_device(&raw mut (*c_chip_ptr).dev); }
-+    }
-+}
-+
-+// SAFETY: `Chip` is a wrapper around `*mut bindings::pwm_chip`. The underlying C
-+// structure's state is managed and synchronized by the kernel's device model
-+// and PWM core locking mechanisms. Therefore, it is safe to move the `Chip`
-+// wrapper (and the pointer it contains) across threads.
-+unsafe impl<T: ForeignOwnable + Send> Send for Chip<T> {}
-+
-+// SAFETY: It is safe for multiple threads to have shared access (`&Chip`) because
-+// the `Chip` data is immutable from the Rust side without holding the appropriate
-+// kernel locks, which the C core is responsible for. Any interior mutability is
-+// handled and synchronized by the C kernel code.
-+unsafe impl<T: ForeignOwnable + Sync> Sync for Chip<T> {}
-+
-+/// A resource guard that ensures `pwmchip_remove` is called on drop.
-+///
-+/// This struct is intended to be managed by the `devres` framework by transferring its ownership
-+/// via [`Devres::register`]. This ties the lifetime of the PWM chip registration
-+/// to the lifetime of the underlying device.
-+pub struct Registration<T: ForeignOwnable> {
-+    chip: ARef<Chip<T>>,
-+}
-+
-+impl<T: 'static + ForeignOwnable + Send + Sync> Registration<T> {
-+    /// Registers a PWM chip with the PWM subsystem.
-+    ///
-+    /// Transfers its ownership to the `devres` framework, which ties its lifetime
-+    /// to the parent device.
-+    /// On unbind of the parent device, the `devres` entry will be dropped, automatically
-+    /// calling `pwmchip_remove`. This function should be called from the driver's `probe`.
-+    pub fn register(
-+        dev: &device::Device<Bound>,
-+        chip: ARef<Chip<T>>,
-+    ) -> Result {
-+	let chip_parent = chip.device().parent().ok_or(EINVAL)?;
-+        if dev.as_raw() != chip_parent.as_raw() {
-+            return Err(EINVAL);
-+        }
-+
-+        let c_chip_ptr = chip.as_raw();
-+
-+        // SAFETY: `c_chip_ptr` points to a valid chip with its ops initialized.
-+        // `__pwmchip_add` is the C function to register the chip with the PWM core.
-+        unsafe {
-+            to_result(bindings::__pwmchip_add(c_chip_ptr, core::ptr::null_mut()))?;
-+        }
-+
-+        let registration = Registration { chip };
-+
-+        devres::Devres::new_foreign_owned(dev, registration, GFP_KERNEL)
-+    }
-+}
-+
-+impl<T: ForeignOwnable> Drop for Registration<T> {
-+    fn drop(&mut self) {
-+        let chip_raw = self.chip.as_raw();
-+
-+        // SAFETY: `chip_raw` points to a chip that was successfully registered.
-+        // `bindings::pwmchip_remove` is the correct C function to unregister it.
-+        // This `drop` implementation is called automatically by `devres` on driver unbind.
-+        unsafe {
-+            bindings::pwmchip_remove(chip_raw);
-+        }
-+    }
-+}
+Thanks again for the review Krzysztof, I appreciate your time. I will address the remaining comments in a V2 patch.
 
--- 
-2.34.1
+Thanks,
+Greg
 
 
