@@ -1,110 +1,116 @@
-Return-Path: <devicetree+bounces-194847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A505AFFB87
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:01:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB9BDAFFBA5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:04:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0771E588428
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:01:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDF4C481F99
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:03:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81AF228B7D0;
-	Thu, 10 Jul 2025 08:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Uzxu+4NA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57E4328935D;
+	Thu, 10 Jul 2025 08:03:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFED2874F8
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 08:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F9D028853C;
+	Thu, 10 Jul 2025 08:03:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752134454; cv=none; b=AVKlAxKGUCv37kI000UQcM95K8GlUG8h0Ju7Q+irx4VlfXy5EVfExYDixtMLcKldrLsGp6DYsVpZuDgYvfm3W858sNnD10mvkYEW7b9dEJKp2W2etF2i0RVTjyzVrjfNY6tFpf8CkF3Fyk1lQjjbLZKRczj4+Fw8Jt5AbVfdT34=
+	t=1752134604; cv=none; b=o3lNS7DxI6WkycXfe/GpbmLYS7c9KaOgRH5bYKoAcspD6G2RIGFlB+NgIXzOumIMOjHHVEAjqh8OJzKaPM6ZIAYq+N2n1erTNym1kYgcCU6nYHddvApBP8B0OtEMhzArFVJSniB9MZQ7giNRO89f12SUC//IrJw1aKpLWaHld5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752134454; c=relaxed/simple;
-	bh=iK8IOTCXE2lrPjdoQaDJjyXlv03DESYVyObGJ/m44kA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=owQ2+S2yDBituXuou1866DrM3jECCDh79oNai6QNZscD8KRs53e8IZwUWpm3BIPfxuCkmbtCbV3ju2NnZ2c494S2XpTfju1Hj2WVt4iCDTU9AoUeFAq6pvMyWIRG2RNJaIVTVzpTg3gGMGJhdT81p6ymO2VPPR/mrKuoMiw6Jws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Uzxu+4NA; arc=none smtp.client-ip=209.85.160.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-2ea58f008e9so631215fac.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 01:00:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752134452; x=1752739252; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ToFgcIrPsT47qophkUF6t9hEDKpaWGkYpzWGaT7NuQQ=;
-        b=Uzxu+4NAdve9XcUnFWFBHCBNjqpalyRMQQ+dFqV1zfDYJhEFqifdAH4w2/3/PznNHN
-         XhOp4QrvgzAdwA4nTwqwRv3bDciGdY2BmjM2WEMHx2K7mUyz2CObhpeBoWzP8DW5yiwT
-         8OcayffK6GHXAwRFRyLmVKqYZe+5Kee6r4gDAFSgvJ+s+zJF6B0NkPpWp96SSXfD5vp5
-         mqIGf9CDXFUMaXx6K+mBxx3TUpYuCFaIqaBsxC+Ega/uMAWv8OAo19E4wk8soxxEwFfz
-         OsOTWQ0kmKPljXHsr1sOZai40cJ9lwZvQqffsLv40q5wkipMXGNg+5fPIrjIVh+i9pvR
-         iCew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752134452; x=1752739252;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ToFgcIrPsT47qophkUF6t9hEDKpaWGkYpzWGaT7NuQQ=;
-        b=wYE8optPCvdqGjVDvIeffChpv3kPfHXiwDWAtb5azUL49SK4NA28mnnUFYnqQglKt/
-         ZmVLwus3YhYy60yG+EOkILP7FT83B3jP1RAqA6HLKfnxyKu9W/z+zJgmuA0PVa/kym43
-         xW0HwXCPCdj+bgSnFeALmAl1pvVozgNkocT8RHhR5dcjfZ8rXhvarAejUCtXXIW+o+C9
-         AYyot99nBao2SZwzg7mXPCpgr61irzodMECidHxXcGwmynC0i0fOtD4MxlKUYA3BfMrv
-         3oN6wwo5TuKBBt3047RFmb9QwzhD4vcjMVOmwE/BIyEcqm7+JvjYehuBrivD6Wbq640L
-         oo+A==
-X-Forwarded-Encrypted: i=1; AJvYcCXSaomLnJH7weURWVI9cpT93PCrmiSE44GMtq8I8iav2c/D7KNIachCk/x4sdsHpYYmS0N1m9Zbl5/k@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuGWU5MESq9rbCYzjPWyOVUYTrposyDqxoFTTJfFV2w2U0D851
-	yVMZMJpX4PeahTVraUNJI8zNxpeBbXhNb1kgJIsuko7XcYtv46QMekiUMS5fBni3U0C4t/yndcy
-	jcYlrDLvk2NZCZ++txqE7Pu6tfM4knDOQcHn4JXI/GxEjOeDaqiUET1I=
-X-Gm-Gg: ASbGncvdc/12n/Es9odKmMvGT5kp5heEko3leWnkKNaDLQepF/azF+oPeOU4Z1wrwWC
-	FQobjjR0q7y96K8tL+yCg0Kxy+ibmR3mwoC0ORuuo3MQpu5k+aSXrZP63Nj6yAsj7SfR2+6e4XG
-	G2/69Kb7cQ9RigyI2+CO61BAV9MAfjqY7+ZeU15lzjgUE=
-X-Google-Smtp-Source: AGHT+IG42etH9AipEwoVy40wJMSye+NWVNGQGCdLQSYPBIHb3YYmVeD+/TNpEhAraHgVOha7QcC5U1cAMQ15bwl7bNY=
-X-Received: by 2002:a05:6870:a351:b0:2d4:ce45:6990 with SMTP id
- 586e51a60fabf-2ff10820374mr954468fac.7.1752134451671; Thu, 10 Jul 2025
- 01:00:51 -0700 (PDT)
+	s=arc-20240116; t=1752134604; c=relaxed/simple;
+	bh=vwkFwjpE+Upplw8PdIDh5qpFIDC+P4YWqyGX/LC2JuA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iXARtzT+qe+9L+R3LQq7D8ssSTFhWDAh3Zm4tikDakUyZQCFaf6aEk7lc1N5iQay43RhiVFrjcQbJ3E9SUowo8/C++oVwyswqXBbsH3RUqfSyAHHsU8kmKk8cbz7Y59+yW/+YOAeDBOlzURe88VvosFlycW6NaV6ZHF9gfK9Oos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=54.207.19.206
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
+X-QQ-mid: esmtpgz15t1752134553t6f595ebe
+X-QQ-Originating-IP: TMeCWw3VhbtL055KbbMrtfQNlR6MVhF9cJq+MR8ibLs=
+Received: from localhost ( [183.17.231.23])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 10 Jul 2025 16:02:32 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 7094107306005909391
+EX-QQ-RecipientCnt: 14
+Date: Thu, 10 Jul 2025 16:02:31 +0800
+From: Nick Li <nick.li@foursemi.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
+	tiwai@suse.com, xiaoming.yang@foursemi.com,
+	danyang.zheng@foursemi.com, like.xy@foxmail.com,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: Add schema for FS2104/5S audio
+ amplifiers
+Message-ID: <1817574C54F0A79C+aG9zl_ERp5hbxwer@foursemi.com>
+References: <20250703035639.7252-1-nick.li@foursemi.com>
+ <20250708112901.25228-1-nick.li@foursemi.com>
+ <20250708112901.25228-3-nick.li@foursemi.com>
+ <20250709-hypersonic-piculet-of-fertility-7c4a82@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250710073443.13788-3-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250710073443.13788-3-krzysztof.kozlowski@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Thu, 10 Jul 2025 09:00:40 +0100
-X-Gm-Features: Ac12FXyPZ25VVFt9KdiEcMMJ5hhaX1smahS3sKtKfS3Bife6pmJ1SYWsA7BHfaM
-Message-ID: <CADrjBPpkZf2Hc_97e+-ZX5hpCw+DubEOUNiJ6fHLx0Kq2PZ7Uw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: tesla/google: MAINTAINERS: Reference "SoC
- clean" maintainer profile
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250709-hypersonic-piculet-of-fertility-7c4a82@krzk-bin>
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: OXWhkXa0b/rw1OFVl7E7ZyFXVlAH4+lvGcEbYK7YmS6UbHTWTG50MlhE
+	gEwmPk/RA2OfIl85y5IV2dCUKUNzn2bUaK0Wx3yhBVrrv8khUHgZuA4QO1aCgYSUhTzt9qr
+	0riALQR+yfmRjbdRynC9Nstvk+pjgtUlWUofU/AdJzNiib8eRsedzjFqyvdgN0zh9OhORUq
+	Kxxo/OiMInhm/vhmcpAUgbdI5WL4nNY0V3GXZI2jXxuw1dHOaGHiQRZ3Te83ng3IUw4U3fg
+	0FU5ZuGe1Km5EWiyxk5lHaDfzqC3NTRQP8PbPxGPV2K8OAmkw0jnw4K1gMZaHflI8X+WlxT
+	PhSTUBmGKIG7GoH1xferwAgQxPLxBp2RiI5EzZ6Zsr5sWRRDWEuqZFuhz00+S3laTPh6io9
+	kOmHLsXtdgPLixkMpSs8jP6FvgvLjlEH7D8WYhmeGi6qzvr0AE7FPzgfn9wGLKEVZ9DQxPv
+	leWL/ZRvbv/ySDjMYcyqqXMniRn7EouP0olIfvpTqNNuVFnPlr2TOSK2HSGCvdGk5bZ+5SU
+	x2rh97wxKcsavCXWNBX2252LdF8n7k4JFfAVCWch3HQB20q3X7oOG5W3jW4Ep9iYRcsnCy/
+	zccoVKR2aXnXUo/E7dAZH+dAokss02v0wcKBZjose0One8BCI6bYUquobCpnfN6xshroSsZ
+	RpLhMOGbuw8DfWAgDfEFNAmTpbCR/CvINb9jLNU3CBunFI22orWaMfqz5NW2ra41bTh9M3+
+	IMMGM8ci1MmTx7wxVaoTTgibL1ZaIlkmqw2cC3Fz0JBTnRaslzo8Tuh0fvHIZ9lZQH3lfO0
+	YJZDP6Qzrmu4IaAKJVFpoH75A1H1sQy38xJjXh6kG9kd6Z8YBCAv4uGM3zuUsUzkPAPJ/tt
+	nDWN0FTFoyAMQILum036pTxQLyGecqTMxwR/lv3YOS+W2FQx/15Dv1SEebL/zGQ/beuXrnM
+	l8IdYYZXM6my1harzJu5e5BXxbzVSCbTXhwwYkHKf6Jq/lviASSMLu5SfEh5MDQvnYvpegS
+	gzdFWeky3UFboNYVJo03rKF8XrWQsG9b69rh1wwJDIZwpUUS2W
+X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
+X-QQ-RECHKSPAM: 0
 
-On Thu, 10 Jul 2025 at 08:35, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Effectively all Tesla FSD and Google GS101 DTS patches go via Samsung
-> SoC maintainer, who applies the same rules as for Samsung SoC: DTS must
-> be fully DT bindings compliant (`dtbs_check W=3D1`).  Existing sources
-> already are compliant, so just document that implicit rule by mentioning
-> respective maintainer profile in their entries.
->
-> Cc: Peter Griffin <peter.griffin@linaro.org>
-> Cc: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> Cc: Tudor Ambarus <tudor.ambarus@linaro.org>
-> Cc: Alim Akhtar <alim.akhtar@samsung.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+On Wed, Jul 09, 2025 at 12:42:35PM +0200, Krzysztof Kozlowski wrote:
+> On Tue, Jul 08, 2025 at 07:28:59PM +0800, Nick Li wrote:
+> > Add a DT schema for describing FourSemi FS2104/5S
+> > audio amplifiers which support both I2S and I2C interface.
+> > 
+> 
+> Another unexpected change from v1: subject: why did you add "schema"?
+> 
+> I asked to drop it and gave you reference explaining this. Did you read
+> it?
+> 
+> So again, same template:
+> 
+> A nit, subject: drop second/last, redundant "schema for". The
+> "dt-bindings" prefix is already stating that these are bindings in
+> schema format, because they cannot be anything else.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> 
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+Sorry, I misunderstood, I will fix it by dropping "schema for ".
+
+Best regards,
+Nick
+
+> Best regards,
+> Krzysztof
+> 
+> 
 
