@@ -1,114 +1,189 @@
-Return-Path: <devicetree+bounces-195212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0400AB00D33
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 22:35:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A33D7B00D4A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 22:40:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26E127A3EC8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 20:33:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 303984815FA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 20:40:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDFBA275B08;
-	Thu, 10 Jul 2025 20:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F8682FD896;
+	Thu, 10 Jul 2025 20:39:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="L81CRFpj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QhnowvdL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB5123BD13;
-	Thu, 10 Jul 2025 20:34:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCE82FD877;
+	Thu, 10 Jul 2025 20:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752179694; cv=none; b=hETpjzslk1CSaD94NQAmVvvJOBFxdbhZntybArAYEstjqgDanLbVvf4h0IlUStVU7jl6b6Qt5T4HbBLNY52p5a9m2wv8B1fNpKspz96gXVKTPiGFn50478+jp8QGe70bonz7S0lIiqtAQBBImqhET8In21idPwYipAV9RLUxHzY=
+	t=1752179990; cv=none; b=G9y+vapamA+/4koI/cKywRIk4RgHv51h9g789EdczcrclXa7xhRfrr6+Ji0hTdfLfi9iQo1HeGyx3NjvASX6rzeYJDDC4j7ERVyp/tnyW6kxRzAPSDxYIkoUH20pL0CAKyPZbqhIuBAK+RFc6RwZHv8fdFmhgNh5mWoEsEf0FlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752179694; c=relaxed/simple;
-	bh=gwm/BETqS9ZCGKtb3EIYk1BW28Lo76No90DkH2szew8=;
+	s=arc-20240116; t=1752179990; c=relaxed/simple;
+	bh=vUrm0DBYVmQsNEyQ5kp5t9UXVn/4E5ekId4XN8uE1E4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cwnZsa12o0yT9x03g/64loqtoJjXOT8Al3OVjh1K4j6TaO/URyLeLQp48dMGbkAMr+BENYcco7Dtjbp4QVTghOmn6ytdA9ap32kZqCcG2Kde0TzFhtFSA36tuvK+37opUEFceThYWHRtvHd10EDCuPAOXr/iIsgQUO7iBinCfCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=L81CRFpj; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 4F13D1A9A;
-	Thu, 10 Jul 2025 22:34:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1752179662;
-	bh=gwm/BETqS9ZCGKtb3EIYk1BW28Lo76No90DkH2szew8=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=kkY2Rie4nrUdBmj7OMPPrISnC0heouIDnOiP3br7eMvHFCz82Lhq45qCwBitxU1hFFa3E4D3C7Z5jwZiBe02zRbq34z7hy1fTYN5HmydZV/sL7mSkhHYJbWrpWaAxOOelCF5sB1C60pz7RyfYSbK42UW0Fcg/eJIQp8fL/qowWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QhnowvdL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2451DC4CEE3;
+	Thu, 10 Jul 2025 20:39:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752179989;
+	bh=vUrm0DBYVmQsNEyQ5kp5t9UXVn/4E5ekId4XN8uE1E4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L81CRFpj5oL8/FjSvjjDbUsSOOXdnHVu8kack2zW22u7nofbm1lEVF5x0eiTUFDjt
-	 WLg3cH2TO2Qa4TdTTkClKVP7yRjU6EDKQhTngYG+aG+Thfc/ajYbTVncCSbxiFsk0v
-	 3SMEKP2/pfKNiWYlE89bTpRajJdUBDbe2BL9fW/s=
-Date: Thu, 10 Jul 2025 23:34:21 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: linux-media@vger.kernel.org,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 06/72] ARM: dts: nxp: imx6qdl-wandboard: Replace
- clock-frequency in camera sensor node
-Message-ID: <20250710203421.GC22436@pendragon.ideasonboard.com>
-References: <20250710174808.5361-1-laurent.pinchart@ideasonboard.com>
- <20250710174808.5361-7-laurent.pinchart@ideasonboard.com>
- <aHAgHygUe6rWB/TA@lizhi-Precision-Tower-5810>
+	b=QhnowvdLwGxO5FcGiyEC/iTheG2sll0XVDRFDuo9968chhMNDZ2xDbMkK4lxAGRjE
+	 +FPhnb8SmOCleRMMKyWU9qS9Uwfz8nonGFsHNjrGIQCgH8Lq6zSbflBBCbdvno7CfL
+	 RH6/wB5hpeSJTFs3VRzwVo2/vLXpyHOGBauoRhhXcpLM1iWniCoJRuCH/uoy+GXQ6M
+	 4LfYHRF2zmPbSw8vLcMRfyntkrB3SVWSnafdSW608uHstNLzmIS/QunPLsos0oXg0g
+	 UBGfqZeMy/m1OCPJEDD0MsXyPwYup3i/fwUaauNKLYUSxu7GC4XQEQTqtNtzt8eZkz
+	 jcC90wEB2wqyA==
+Date: Thu, 10 Jul 2025 22:39:46 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Benno Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Drew Fustini <fustini@kernel.org>, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v10 0/7] Rust Abstractions for PWM subsystem with TH1520
+ PWM driver
+Message-ID: <i5ee2u45kmcb2su743th744ofnmk4lkfq44iqvfwdjwscv3bz7@pjakppae22na>
+References: <CGME20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6@eucas1p1.samsung.com>
+ <20250707-rust-next-pwm-working-fan-for-sending-v10-0-d0c5cf342004@samsung.com>
+ <e8a4a821-e7e4-4bcd-a2ac-f6b684b6ceea@samsung.com>
+ <ipvaegqlkco5qinhvn33mqvg7ev2walvs74xtzvhimxsfsfzhv@gcmpxcdtetdn>
+ <e77eab1c-446f-4620-95be-d343684d1e95@samsung.com>
+ <4hmb3di5x2iei43nmrykrj5wzlltrf3vrnqvexiablonbscn57@4bbsz5c76t63>
+ <ad17dc8a-80b7-4344-a1be-6cf780567aaa@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jtthsjazjtpn3zg5"
 Content-Disposition: inline
-In-Reply-To: <aHAgHygUe6rWB/TA@lizhi-Precision-Tower-5810>
+In-Reply-To: <ad17dc8a-80b7-4344-a1be-6cf780567aaa@samsung.com>
 
-Hi Frank,
 
-On Thu, Jul 10, 2025 at 04:18:39PM -0400, Frank Li wrote:
-> On Thu, Jul 10, 2025 at 08:47:02PM +0300, Laurent Pinchart wrote:
-> > The clock-frequency for camera sensors has been deprecated in favour of
-> > the assigned-clocks and assigned-clock-rates properties. Replace it in
-> > the device tree.
-> >
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  arch/arm/boot/dts/nxp/imx/imx6qdl-wandboard.dtsi | 5 ++++-
-> >  1 file changed, 4 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-wandboard.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-wandboard.dtsi
-> > index 26489eccd5fb..e5ac78ffb31c 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-wandboard.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-wandboard.dtsi
-> > @@ -136,8 +136,11 @@ camera@3c {
-> >  		pinctrl-names = "default";
-> >  		pinctrl-0 = <&pinctrl_ov5645>;
-> >  		reg = <0x3c>;
-> > +
-> 
-> unnecessary empty line here
+--jtthsjazjtpn3zg5
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v10 0/7] Rust Abstractions for PWM subsystem with TH1520
+ PWM driver
+MIME-Version: 1.0
 
-There's often a blank line after the reg property. I don't mind dropping
-it here if that's preferred. Same for the other patch you reviewed.
+Hello,
 
-> >  		clocks = <&clks IMX6QDL_CLK_CKO2>;
-> > -		clock-frequency = <24000000>;
-> > +		assigned-clocks = <&clks IMX6QDL_CLK_CKO2>;
-> > +		assigned-clock-rates = <24000000>;
-> > +
-> >  		vdddo-supply = <&reg_1p8v>;
-> >  		vdda-supply = <&reg_2p8v>;
-> >  		vddd-supply = <&reg_1p5v>;
+On Thu, Jul 10, 2025 at 06:58:41PM +0200, Michal Wilczynski wrote:
+> On 7/10/25 17:25, Uwe Kleine-K=F6nig wrote:
+> > On Thu, Jul 10, 2025 at 03:48:08PM +0200, Michal Wilczynski wrote:
+> >> On 7/10/25 15:10, Uwe Kleine-K=F6nig wrote:
+> >>> On Thu, Jul 10, 2025 at 10:42:07AM +0200, Michal Wilczynski wrote:
+> >>>> On 7/7/25 11:48, Michal Wilczynski wrote:
+> >>>>> The series is structured as follows:
+> >>>>>  - Expose static function pwmchip_release.
+> >>>
+> >>> Is this really necessary? I didn't try to understand the requirements
+> >>> yet, but I wonder about that. If you get the pwmchip from
+> >>> __pwmchip_add() the right thing to do to release it is to call
+> >>> pwmchip_remove(). Feels like a layer violation.
+> >>
+> >> It's required to prevent a memory leak in a specific, critical failure
+> >> scenario. The sequence of events is as follows:
+> >>
+> >>     pwm::Chip::new() succeeds, allocating both the C struct pwm_chip a=
+nd
+> >>     the Rust drvdata.
+> >>
+> >>     pwm::Registration::register() (which calls pwmchip_add()) fails for
+> >>     some reason.
+> >=20
+> > If you called pwmchip_alloc() but not yet pwmchip_add(), the right
+> > function to call for cleanup is pwmchip_put().
+> >=20
+> >>     The ARef<Chip> returned by new() is dropped, its reference count
+> >>     goes to zero, and our custom release_callback is called.
+> >>
+> >> [...]
+> >>>>> ---
+> >>>>> base-commit: 47753b5a1696283930a78aae79b29371f96f5bca
+> >>>
+> >>> I have problems applying this series and don't have this base commit =
+in
+> >>> my repo.
+> >>
+> >> Sorry for the confusion. Base commit doesn't exist in the mainline
+> >> kernel or linux-next, cause I've added some dependecies for compilatio=
+n,
+> >> like IoMem for the driver (uploaded full branch on github [1]). The
+> >> bindings however doesn't depend on anything that's not in linux-next.
+> >=20
+> > The series didn't apply to my pwm/for-next branch.
+> >=20
+> > Note that the base-commit should always be a publically known commit.
+> > See the chapter about "Base Tree Information" in git-format-patch(1).
+>=20
+> Hello Uwe,
+>=20
+> Okay, thank you for the clarification. I understand the requirement for
+> a public base commit.
+>=20
+> My intention was to include the TH1520 driver primarily as a practical
+> demonstration of the new abstractions. However the driver can't be
+> merged as is, since it depends on the unmerged IoMem series and won't
+> compile against a public commit.
+>=20
+> I will rebase the series on pwm/for-next and drop the driver and its
+> associated device tree patches for now. I'll send a new version
+> containing just the core PWM abstraction patches, which apply cleanly.
+>=20
+> I will resubmit the driver patches once their dependencies are available
+> in a public tree.
 
--- 
-Regards,
+If you base your tree on (say) v6.16-rc1, then add some Rust
+dependencies up to 47753b5a1696283930a78aae79b29371f96f5bca and then add
+your series, you just do:
 
-Laurent Pinchart
+	git format-patch --base v6.16-rc1 47753b5a1696283930a78aae79b29371f96f5bca=
+=2E.
+
+=2E This results in a base-commit line that I (and maybe also build bots)
+can use and a bunch of further lines listing the commits between
+v6.16-rc1 and 47753b5a1696283930a78aae79b29371f96f5bca that might be
+findable on lore.k.o.
+
+Best regards
+Uwe
+
+--jtthsjazjtpn3zg5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhwJQ8ACgkQj4D7WH0S
+/k5+KwgAhf54BP4kesXyQExjra+S+O0lY+TfKRFwYNc0TlA1mA4Rm+cVJOx2VqWa
+frCc5VeKCFE6+c89m85REdWNNdsSopomRCf0mrCVF+X8VkDLyCPKl3Lj7Yx0ZfVn
+RFZl4QKG9y3843FRVetY6MtTIU8DXamyeY/Pr2yFfM94BfoDgaagQGuuQzuChQ9h
+ydq075UFuzYr0pGEIMmKkNhBqPOKfy2TeahxEHiBe8pxLUugu+LMbcVeqPlcCXU1
+igrkXeJ/DfKhdGvhywQXWazl/93kK0TbRncw/zdvGgB8hbS0NXSQk/qQMDt0mvwa
+fB2HOYIpHDD3dNuiyoC/+lgbRGfHgA==
+=L5lu
+-----END PGP SIGNATURE-----
+
+--jtthsjazjtpn3zg5--
 
