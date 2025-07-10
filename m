@@ -1,163 +1,189 @@
-Return-Path: <devicetree+bounces-195083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD407B00582
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:45:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F35B0058F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:47:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A72DF646D4F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:44:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 765D11C475C6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA3E273D89;
-	Thu, 10 Jul 2025 14:45:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092A72741BC;
+	Thu, 10 Jul 2025 14:47:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oCIn/on9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pt0eVK7j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387252727FC
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 14:45:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEA32741A4;
+	Thu, 10 Jul 2025 14:47:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752158721; cv=none; b=YeL7NR4eVPWBWCtrmkhRG4fJSrclIjp7gMbr828bgqFbQcjnE+SwduThkBjpziC0hIyv/7Gl6ACwFpE4CiOIaALdXdM5U2kqAfPgt3TD8QDvJ00HQ4QHALvegAn9G1EecrL8cTCIk8R8P4lFVLojdpZqP9O/+86LT2Ep4Umloc8=
+	t=1752158840; cv=none; b=bM1DOVLX482CvT9fIfumQPZDWg7q8MvADiqVRkQGOZ4qXKaKMAlGVTf+zLC7pbgkJdC/bNpOcCVGcdabO8kfpvqb7RXDc/eYJ9Cbnc7U3zceAzvZHmVdsxQmUf9mCPd10YcauTyR0er566DJEA6503BOi7cFlFhlumZrSEJFNqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752158721; c=relaxed/simple;
-	bh=GuuXNEIIHpc+OomKipbBSS2eHjtAi/KmN/JAHDNUxyc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=WCzqFfI/AkLdLLqecEZ0cmA8DiCbxV65E7ALJVHCLNORhPuee3h9/Ru/Kwm4lgHVxMco2xDoaVU+3z48N9HS72tQKqZNDlgDWwOAuWwnqFhIBoOAgNxCifp/oG6weH+bhE71fBzGK+yAansTL/gUSit68NTST6Zoows74GZRQIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oCIn/on9; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a6e2d85705so754617f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 07:45:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752158717; x=1752763517; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uzpztVBg8Kr6uCTVYsLaqFYuf7mdKz1OXaJIFB3Ydtk=;
-        b=oCIn/on9utF4YPok+p2VGklKSBD403Ij+BG8HfSHqMNQJYLJD76XgMAToTA4bJPDj1
-         EfG4LoatNTE335CrCfp3k3IhIqD+jiVOdwmtrEOZojho6Q9KgfmE5Pk4wPQqg2xLmook
-         VkPK4zu82itBzZJxoP5ZH9ZUXewXdd+FFWSnOL2JpRI4BoXfdLsy/N5puNhZdZJ3XEPu
-         rYm/1dQv8k1CdJIBvnGYR5PSQFXvRSpFASIm3OQhw4Qq1W93RpXxq+O5hs//OWKtklhF
-         qYdwToupp8/a+/OS4XcZnzcLTtSlwoCW5Dlbx3LzIe+sZBtoygoNEgOSR/DQi1BXDr13
-         tPow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752158717; x=1752763517;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uzpztVBg8Kr6uCTVYsLaqFYuf7mdKz1OXaJIFB3Ydtk=;
-        b=nXDXhAddolVd2uvxD1j0CPkNyTBYfvSs06p5g0/oSowXtG96eNSMBBv04W4hCE+xIK
-         fBGA/GqOVbouO7C3insgO3Z74O56KaXNv59TzMFeeUFnfPY0/LsclWDh4UyRO5VGOCCv
-         cymYp8PRzI2wuVo907NgLRxKSE6hyeYjFu2kIWo2xzCvjn5XIwkWS9/9MELdT77sFMQb
-         q+s6gcQv2Z1986Gu5YAceKJK+ZanUIfgr9Cm+ZIRrVaPq38JL2f54HREkmbAUa9gWl8o
-         A2UdZDUFojknACt2XuF71o2PT7eC5yaV0nyMvozImfwlndo1xGWxDFcqgesIg6Cxrwq8
-         v5vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUx4+oOeVSqEFJv0wEjzg5bB75FWV2rditP+m+5Q+H+BOz2jxkroTKkWlZxkQnbWsUYhaFc7JkDGDkj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQOYf6Iwpah1HrjqZrDaKIuih5iFL/U4HywJN7/mU/0RzuvGcg
-	/kFpU502mmTqgUNobp22p8470Inll+jA1lxJzE3zCGy8KlVITnd7uBgxzoArL91whzIQVxo2gVz
-	UDVkk5Fs=
-X-Gm-Gg: ASbGncv+QYfOBS1/tSswxOnv0Xg4eVSaJ0iP3EkhmoUpFPGgNsNOPc5BaclbCtNvwgN
-	6qX+OMN64QwmCL2OsfJIHRC08p0uedZ4apyl1IlYLlxQkUMQ4PNhrkrVQ4hhSAHf3/QFFjDlEFb
-	kMIXG507+W5RGErJzjaOZ30kehfiGKFG7Q9LZAhv7kudFX21biXQ/7vhkh7sVwmDsIipKDR6YCc
-	w8D4QcvaITtV+kzuONT3ck6HsDs6dV97D7sh8TJjlSj7whS3kpmHNJ/6DQXpZw60g+gAZ6n13l3
-	IehQ2BXTiTdAUqFA0+krajMN+sQ5Hwt2aqHgsbUWHE6+mHShdgNLfuLD2EIlY/reiqM=
-X-Google-Smtp-Source: AGHT+IF9BLMRIl1cpwDsXcnH1f3gWfggPdcwbBjL9LEkWjPoKOu+RvwtjCs5eMcSNOOmyzdBY+cr/g==
-X-Received: by 2002:a05:6000:250d:b0:3a4:df80:7284 with SMTP id ffacd0b85a97d-3b5e44e1fefmr6408642f8f.1.1752158717358;
-        Thu, 10 Jul 2025 07:45:17 -0700 (PDT)
-Received: from localhost ([2a00:2381:fd67:101:6c39:59e6:b76d:825])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8e1e135sm2085810f8f.72.2025.07.10.07.45.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Jul 2025 07:45:16 -0700 (PDT)
+	s=arc-20240116; t=1752158840; c=relaxed/simple;
+	bh=+NET5jq87laiRAOdk2v/YwNceTh/l0Yy9qlZAWfZAKE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=kzo6w23e/Vj9XhU+IO1aQW8+30VIDpeZu71gpQingdPcrl7IPzPRT9FPC4kzweNB8qUBlSibhHvgEcVxlRuh0dC7ejKu3blKmKowboXC2knMoGdIp6nIZMz0OZxWTkj3xMRM8zE+iBUj7Z6h0pdqoEc+c+iy4HyCphlP3eAe4KY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pt0eVK7j; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56AEkxnm1801024;
+	Thu, 10 Jul 2025 09:46:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752158819;
+	bh=HI9GscUSSD2fE2PIITCexfukxvNp3vwU713gPPdAZCI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=pt0eVK7jLT+Yr6G90U0s0FMHe4FRhPJGTpeVOb+/scwsPmOw1UvwS9aSrNhSBMF0G
+	 FuyyETEKkaRasY+YAzfdoU40kOdfWipu8im+QBeFuxd7ylusBOw4Mx+0CIJzE+wvG7
+	 qlTrvYIo9nrfn2q2k7UkXwunELGPwjjHbr80Iw60=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56AEkwaI3599200
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 10 Jul 2025 09:46:58 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 10
+ Jul 2025 09:46:57 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 10 Jul 2025 09:46:57 -0500
+Received: from [10.250.35.60] ([10.250.35.60])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56AEku9q1528476;
+	Thu, 10 Jul 2025 09:46:57 -0500
+Message-ID: <547da8d7-1967-4c56-8bc1-da22a5283b77@ti.com>
+Date: Thu, 10 Jul 2025 09:46:56 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 10 Jul 2025 15:45:15 +0100
-Message-Id: <DB8GFDXKQ6V1.BXX5KGBJP6YS@linaro.org>
-Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Liam Girdwood"
- <lgirdwood@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Stephen Boyd" <sboyd@kernel.org>, "Lee Jones" <lee@kernel.org>, "Jaroslav
- Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
- <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Dmitry
- Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>, "Srinivas Kandagatla"
- <srinivas.kandagatla@oss.qualcomm.com>
-Subject: Re: [PATCH 3/3] ASoC: codecs: add new pm4125 audio codec driver
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Mark Brown" <broonie@kernel.org>
-X-Mailer: aerc 0.20.0
-References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
- <20250626-pm4125_audio_codec_v1-v1-3-e52933c429a0@linaro.org>
- <aF01gRFjsKgy6j4V@finisterre.sirena.org.uk>
- <DB0YYV10UD2Q.M36VAZJOVE7V@linaro.org>
- <af605c12-74c1-418e-9fe8-c0aa893a62bd@sirena.org.uk>
-In-Reply-To: <af605c12-74c1-418e-9fe8-c0aa893a62bd@sirena.org.uk>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] dma-buf: heaps: cma: Create CMA heap for each CMA
+ reserved region
+To: Maxime Ripard <mripard@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>,
+        Brian Starkey <Brian.Starkey@arm.com>,
+        John Stultz <jstultz@google.com>,
+        "T.J. Mercier" <tjmercier@google.com>,
+        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Marek
+ Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>, Jared Kangas <jkangas@redhat.com>,
+        Mattijs Korpershoek
+	<mkorpershoek@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linaro-mm-sig@lists.linaro.org>, <iommu@lists.linux.dev>
+References: <20250709-dma-buf-ecc-heap-v6-0-dac9bf80f35d@kernel.org>
+ <20250709-dma-buf-ecc-heap-v6-2-dac9bf80f35d@kernel.org>
+ <6045bcfb-35ef-410b-bd7c-0ca7c5c589c4@ti.com>
+ <20250710-daft-secret-squid-fb3eee@houat>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250710-daft-secret-squid-fb3eee@houat>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue Jul 1, 2025 at 10:04 PM BST, Mark Brown wrote:
-> On Tue, Jul 01, 2025 at 08:35:42PM +0100, Alexey Klimov wrote:
->> On Thu Jun 26, 2025 at 12:56 PM BST, Mark Brown wrote:
->> > On Thu, Jun 26, 2025 at 12:50:31AM +0100, Alexey Klimov wrote:
->
->> >> +static int pm4125_micbias_control(struct snd_soc_component *componen=
-t,
->> >> +				  int micb_num, int req, bool is_dapm)
->> >> +{
->> >> +	return 0;
->> >> +}
->
->> > Why have this empty function which is only called from within the
->> > driver?  At best it's making the callers look like they do something.
->
->> I tried to make a minimal working version that we're going to
->> update with more patches during next submission.
->
-> Add the callers when you need them, right now this is just noise.
-> Nobody can tell if the callers make sense since the function does
-> nothing.
 
-Ok, I cleaned it for the next version. Thanks.
 
->> >> +#if defined(CONFIG_OF)
->> >> +static const struct of_device_id pm4125_of_match[] =3D {
->> >> +	{ .compatible =3D "qcom,pm4125-codec" },
->> >> +	{ }
->> >> +};
->> >> +MODULE_DEVICE_TABLE(of, pm4125_of_match);
->> >> +#endif
->
->> > Why does this compatible exist?  If the driver is instantiated from a
->> > as a Linux software contruct it shouldn't appear in the DT.
->
->> Could you please elaborate a bit more? Should it be instantiated
->> as an MFD device or platform device?
->
-> Yes, if it's the child of a MFD then it shouldn't need to be described
-> separately in the DT.
+On 7/10/25 2:44 AM, Maxime Ripard wrote:
+> On Wed, Jul 09, 2025 at 11:14:37AM -0500, Andrew Davis wrote:
+>> On 7/9/25 7:44 AM, Maxime Ripard wrote:
+>>> Aside from the main CMA region, it can be useful to allow userspace to
+>>> allocate from the other CMA reserved regions.
+>>>
+>>> Indeed, those regions can have specific properties that can be useful to
+>>> a specific us-case.
+>>>
+>>> For example, one of them platform I've been with has ECC enabled on the
+>>> entire memory but for a specific region. Using that region to allocate
+>>> framebuffers can be particular beneficial because enabling the ECC has a
+>>> performance and memory footprint cost.
+>>>
+>>> Thus, exposing these regions as heaps user-space can allocate from and
+>>> import wherever needed allows to cover that use-case.
+>>>
+>>> For now, only shared-dma-pools regions with the reusable property (ie,
+>>> backed by CMA) are supported, but eventually we'll want to support other
+>>> DMA pools types.
+>>>
+>>> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+>>> ---
+>>>    drivers/dma-buf/heaps/cma_heap.c | 52 +++++++++++++++++++++++++++++++++++++++-
+>>>    1 file changed, 51 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/dma-buf/heaps/cma_heap.c b/drivers/dma-buf/heaps/cma_heap.c
+>>> index 0df007111975447d555714d61ead9699287fd65a..31a18683ee25788a800f3f878fd958718a930ff7 100644
+>>> --- a/drivers/dma-buf/heaps/cma_heap.c
+>>> +++ b/drivers/dma-buf/heaps/cma_heap.c
+>>> @@ -19,10 +19,12 @@
+>>>    #include <linux/err.h>
+>>>    #include <linux/highmem.h>
+>>>    #include <linux/io.h>
+>>>    #include <linux/mm.h>
+>>>    #include <linux/module.h>
+>>> +#include <linux/of.h>
+>>> +#include <linux/of_reserved_mem.h>
+>>>    #include <linux/scatterlist.h>
+>>>    #include <linux/slab.h>
+>>>    #include <linux/vmalloc.h>
+>>>    #define DEFAULT_CMA_NAME "default_cma_region"
+>>> @@ -421,7 +423,55 @@ static int __init add_default_cma_heap(void)
+>>>    				ERR_PTR(ret));
+>>>    	}
+>>>    	return 0;
+>>>    }
+>>> -module_init(add_default_cma_heap);
+>>> +
+>>> +static int __init add_cma_heaps(void)
+>>> +{
+>>> +	struct device_node *rmem_node;
+>>> +	struct device_node *node;
+>>> +	int ret;
+>>> +
+>>> +	ret = add_default_cma_heap();
+>>
+>> Will this double add the default CMA region if it was declared
+>> using DT (reserved-memory) when all those nodes are again scanned
+>> through below? Might need a check in that loop for linux,cma-default.
+> 
+> Yeah, but we probably should anyway. Otherwise, if linux,cma-default
+> ever change on a platform, we would get heaps appearing/disappearing as
+> we reboot, which doesn't sound great from a regression perspective.
+> 
+> Both would allocate from the same pool though, so we don't risk stepping
+> into each others toes. Or am I missing something?
+> 
 
-Currently, it is going to be described as child/slave device:
+You are not missing anything, having both wouldn't cause anything to break,
+but would cause heaps to appear/disappear based on how the CMA region was
+defined (DT vs kernel cmd line) which we should avoid.
 
-spmi_bus {
-	pmic@0 {
-		pmic4125_codec: codec {
-			...
-		}
-and will go probably in pm4125.dtsi which lists all child nodes with
-compatibles. Not sure if it is because each PMIC is customazable or because
-of better maintainability.
-Also, might need specific description of regulators which may vary from
-board to board. Not sure how is that supposed to be done without device
-tree description at this point.
+Andrew
 
-Thanks,
-Alexey
+>>> +	if (ret)
+>>> +		return ret;
+>>> +
+>>> +	rmem_node = of_find_node_by_path("/reserved-memory");
+>>> +	if (!rmem_node)
+>>> +		goto out;
+>>
+>> Can just return here, "out" path doesn't need to put a NULL node.
+> 
+> Oh, right. Thanks!
+> Maxime
 
