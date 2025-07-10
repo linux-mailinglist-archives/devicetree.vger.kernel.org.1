@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-194824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB045AFFAC3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:24:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCBF5AFFACB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:26:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC908641CCC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 07:23:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28C315A2365
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 07:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA840288C2A;
-	Thu, 10 Jul 2025 07:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DAE5288C27;
+	Thu, 10 Jul 2025 07:26:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HVQKw8Vz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rB+FnS+N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE764288C18;
-	Thu, 10 Jul 2025 07:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05A3921B195;
+	Thu, 10 Jul 2025 07:26:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752132245; cv=none; b=GiFE90fRSO58eVAowPV8yotOsqUalE6oOgKkYK+j8zLinF430Np89OfSis0jarQRnfOrwQk5by8DQUoOhfIIvA3ckLLJe4JN53VNymF3xhUtDYmNNVB5e+RPkr2i2WPvwix66JFGUStmJdKVcZ/fsvidaRoRRypyrFqw755MIQg=
+	t=1752132366; cv=none; b=LDvm0oN8RaaSZYUnsq0mXavsZvxi2VFuX1WyTKchU8PPwIGclv7TyXifrDRD6tWI6k4J7r86aMQe23h0s33gtuOP4Fy+oL9QZ6RRVLMTqoJgsk6uEcA7C/jU8fKgGLw+VOptQoPyd96xTHSSNiSmrHl0oRW6ZNRfKB6Trrl471w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752132245; c=relaxed/simple;
-	bh=SFkkw4ctGLrTmBRlu2RlFZWVe6en+oY/fO9F/Li48Z0=;
+	s=arc-20240116; t=1752132366; c=relaxed/simple;
+	bh=S8zzqP7m8nDKjbkX5GeKEnyhQD//kGc7olrVD3SohzA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nU46Ws4pFX2fwC0smOafcZqHhcT8S50oBo4fyXIOqeecm4P7JNne9ZhYRm2/onvkvt7h0GtSPZLES6YzgPHalzb4pSmc0OdSn+uMgmQiBs/+OR3HFp74sc2WfgTFDbhMrmWNvtGBGNHEZFW8TgscpSshI3+6fyvufCYZhtrE444=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HVQKw8Vz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7134C4CEE3;
-	Thu, 10 Jul 2025 07:24:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dRgC7QWCaedy4j2Z51l4GaYbUigdvJ6+mHY5UTd7q5zWpIiLr62Kxo0JaWZJxwrWw3xwmOii4D0+2mA2UCR6vxz4/p4voB9h5HRTBouzV/oK0Y5r3KzUIW3PI0XL8r3xxPcjaetGrz7QaVvbOVLrcUgBUGy/04urqoq9ca6uZqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rB+FnS+N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05D63C4CEE3;
+	Thu, 10 Jul 2025 07:26:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752132245;
-	bh=SFkkw4ctGLrTmBRlu2RlFZWVe6en+oY/fO9F/Li48Z0=;
+	s=k20201202; t=1752132365;
+	bh=S8zzqP7m8nDKjbkX5GeKEnyhQD//kGc7olrVD3SohzA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HVQKw8Vz982DsUsU73OrlqR9Y55+VP38DzfT2XJLoeZG00lmFYo3E39zm+suCvIKY
-	 MvGr4NkqAfQ/nqr5cy4f9Ih6aKjQhz41zdwZNFU5Mxmn7cyp6OLy/BUwh5HuCuR53+
-	 WPoe1HX25Lqs2ZuRVvTIEgyuSr1mDZci6QCMIFIOXd4d54YDlENJ3U8Mu+2xmFJ2ZE
-	 fd6v1guQRQAru2rySgrmf5dpjXHscCtVX+2Y/XuISEF0/2W3xgBgzvoOzb06kzjmx8
-	 mgth7ClVPnUpkbtuFLbMqi9+rKhtHnwTTz8Quv3S1l6j894c5fz9hlkO3JMBC3ECuy
-	 zUkLk4k+PR8xQ==
-Date: Thu, 10 Jul 2025 09:24:02 +0200
+	b=rB+FnS+NgGqBg7cfEhioIsVnv9NflbSh5+zGFkD7Q5AgHl9IJEWfX3+5wZQxvziiw
+	 wNxrOF5iE7oWRaZgbznYwWp7XMTAF6kH5htQsgEaN07x4jmt6PVhn6/duqO7Z2VDgq
+	 zMSKeMEWs7ZaumQHdsoDFlSFUuUcm7UCrI35ch8VQud98CT1DE7r1ecTnh5NPO+EgE
+	 6hyLP4kEPWPb51HRxlZtEZQgFce2WzGPYVar3OHUfA0gwQm/FJGrW0aubh2SwJ0H1O
+	 zy8tYOCpQNxpA4blXYUjXYxPc7lavF507PopQIhvqN+AGW3ofXYmSAbW5aV+rUgan0
+	 gfV8l3glDHnaA==
+Date: Thu, 10 Jul 2025 09:26:02 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Karthik Poduval <kpoduval@lab126.com>
 Cc: jyxiong@amazon.com, miguel.lopes@synopsys.com, anishkmr@amazon.com, 
 	vkoul@kernel.org, kishon@kernel.org, linux-kernel@vger.kernel.org, 
 	linux-phy@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] phy: dw-dphy-rx: Add dt bindings for Synopsys
- MIPI D-PHY RX
-Message-ID: <20250710-dainty-tarsier-from-hyperborea-ecf9d3@krzk-bin>
+Subject: Re: [PATCH v2 1/2] phy: dw-dphy-rx: Add Synopsys DesignWare D-PHY RX
+Message-ID: <20250710-sly-rigorous-silkworm-6d67ea@krzk-bin>
 References: <cover.1752106239.git.kpoduval@lab126.com>
- <7f4b676678b27ea91314c834a297c1e057959b09.1752106239.git.kpoduval@lab126.com>
+ <2383f8cf2a8f5e1b914d4cf9bd11674ed55876d2.1752106239.git.kpoduval@lab126.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,70 +60,145 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <7f4b676678b27ea91314c834a297c1e057959b09.1752106239.git.kpoduval@lab126.com>
+In-Reply-To: <2383f8cf2a8f5e1b914d4cf9bd11674ed55876d2.1752106239.git.kpoduval@lab126.com>
 
-On Wed, Jul 09, 2025 at 07:42:21PM -0700, Karthik Poduval wrote:
-> +---
-> +$id: http://devicetree.org/schemas/phy/snps,dw-dphy-rx.yaml#
-
-Filename and id should match compatible.
-
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On Wed, Jul 09, 2025 at 07:42:20PM -0700, Karthik Poduval wrote:
+> +static const struct regmap_config dw_dphy_regmap_cfg1 = {
+> +	.reg_bits = 32,
+> +	.val_bits = 32,
+> +	.reg_stride = 4,
+> +	.name = "dw-dhpy-cfg1",
+> +	.fast_io = true,
+> +};
 > +
-> +title: Synopsys Designware MIPI D-PHY RX
+> +/**
+> + * dw_dphy_regmap_cfg2 - Register map configuration for DW DPHY
+> + * @reg_bits: Width of register address in bits (32)
+> + * @val_bits: Width of register value in bits (32)
+> + * @reg_stride: Number of bytes between registers (4)
+> + * @name: Name identifier for this register map
+> + * @fast_io: Flag to indicate fast I/O operations are supported
+> + *
+> + **/
+
+Drop
+
+> +static const struct regmap_config dw_dphy_regmap_cfg2 = {
+> +	.reg_bits = 32,
+> +	.val_bits = 32,
+> +	.reg_stride = 4,
+> +	.name = "dw-dhpy-cfg2",
+> +	.fast_io = true,
+> +};
 > +
-> +maintainers:
-> +  - Karthik Poduval <kpoduval@lab126.com>
-> +  - Jason Xiong <jyxiong@amazon.com>
-> +  - Miguel Lopes <miguel.lopes@synopsys.com
+> +/**
+> + * dw_dphy_probe - Probe and initialize DW DPHY device
+> + * @pdev: Platform device pointer
+> + * Return: 0 on success, negative error code on failure
+> + *
+> + **/
+
+Drop
+
+> +static int dw_dphy_probe(struct platform_device *pdev)
+> +{
+> +	struct dw_dphy *dphy;
+> +	struct resource *res;
+> +	struct device *dev = &pdev->dev;
+> +	struct phy_provider *phy_provider;
+> +	int ret;
 > +
-> +description: |
-> +  These are the bindings for Synopsys Designware MIPI DPHY RX phy driver.
-> +  Currently only supported phy version is v1.2.
+> +	dphy = devm_kzalloc(&pdev->dev, sizeof(*dphy), GFP_KERNEL);
+> +	if (!dphy)
+> +		return -ENOMEM;
 > +
-> +properties:
-> +  compatible:
-> +    const: snps,dw-dphy-1p2
-
-You should rather use SoC compatibles.
-
+> +	dphy->dt_data =
+> +		(struct dt_data_dw_dphy *)of_device_get_match_data(&pdev->dev);
+> +	dev_set_drvdata(&pdev->dev, dphy);
+> +	dphy->dev = &pdev->dev;
 > +
-> +  '#phy-cells':
-> +    const: 0
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	dphy->iomem_cfg1 = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(dphy->iomem_cfg1))
+> +		return PTR_ERR(dphy->iomem_cfg1);
 > +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 2
-
-List the items instead
-
-And fix the order, reg goes second.
-
+> +	dphy->regmap_cfg1 =
+> +		devm_regmap_init_mmio(dev, dphy->iomem_cfg1, &dw_dphy_regmap_cfg1);
+> +	if (IS_ERR(dphy->regmap_cfg1))
+> +		return PTR_ERR(dphy->regmap_cfg1);
 > +
-> +required:
-> +  - compatible
-> +  - '#phy-cells'
-> +  - reg
-
-Here as well
-
+> +	ret = devm_regmap_field_bulk_alloc(dev, dphy->regmap_cfg1, dphy->rf_cfg1,
+> +					   dw_dphy_v1_2_cfg1, DW_DPHY_RF_CFG1_MAX);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Could not alloc RF\n");
+> +		return ret;
+> +	}
 > +
-> +additionalProperties: false
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> +	dphy->iomem_cfg2 = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(dphy->iomem_cfg2))
+> +		return PTR_ERR(dphy->iomem_cfg2);
 > +
-> +examples:
-> +  - |
-> +    dw_dphy_rx: dw-dphy@900000040 {
+> +	dphy->regmap_cfg2 = devm_regmap_init_mmio(dev, dphy->iomem_cfg2,
+> +						 &dw_dphy_regmap_cfg2);
+> +	if (IS_ERR(dphy->regmap_cfg2))
+> +		return PTR_ERR(dphy->regmap_cfg2);
+> +
+> +	ret = devm_regmap_field_bulk_alloc(dev, dphy->regmap_cfg2, dphy->rf_cfg2,
+> +					   dw_dphy_v1_2_cfg2, DW_DPHY_RF_CFG2_MAX);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Could not alloc RF\n");
+> +		return ret;
+> +	}
+> +
+> +	dphy->phy = devm_phy_create(&pdev->dev, NULL, dphy->dt_data->phy_ops);
+> +	if (IS_ERR(dphy->phy)) {
+> +		dev_err(dev, "failed to create PHY\n");
+> +		return PTR_ERR(dphy->phy);
+> +	}
+> +
+> +	phy_set_drvdata(dphy->phy, dphy);
+> +	phy_provider =
+> +		devm_of_phy_provider_register(&pdev->dev, of_phy_simple_xlate);
+> +
+> +	return PTR_ERR_OR_ZERO(phy_provider);
+> +}
+> +
+> +/**
+> + * dw_dphy_of_match - Device tree match table for DW DPHY
+> + * @compatible: Compatible string to match device tree node
+> + * @data: Pointer to configuration data for matched device
+> + *
+> + * Table of compatible strings and associated configuration data
+> + * for supported DW DPHY variants.
+> + * Currently supports:
+> + * - DW DPHY v1.2 ("snps,dw-dphy-1p2")
+> + *
+> + **/
 
-phy@
+Drop
 
-> +        compatible = "snps,dw-dphy-1p2";
-> +        #phy-cells = <0>;
-> +        reg = <0x0 0x90000040 0x0 0x20>, <0x0 0x90001000 0x0 0x8>;
-> +        status = "disabled";
+> +static const struct of_device_id dw_dphy_of_match[] = {
+> +	{ .compatible = "snps,dw-dphy-1p2", .data = &dw_dphy_1p2 },
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, dw_dphy_of_match);
+> +
+> +/**
+> + * dw_dphy_platform_driver - Platform driver structure for DW DPHY
+> + * @probe: Pointer to probe function called on device discovery
+> + * @driver: Core driver structure containing:
+> + *         - name: Driver name used for matching and debugging
+> + *         - of_match_table: Table of compatible device tree matches
+> + *
+> + **/
 
-No, drop. And fix the order of properties, see DTS coding style.
+Drop all such useless generic kerneldocs. Not helpful. Keep useful ones,
+so ones not saying obvious parts of core
 
-> +    };
+
+> +static struct platform_driver dw_dphy_platform_driver = {
+> +	.probe		= dw_dphy_probe,
 
 Best regards,
 Krzysztof
