@@ -1,201 +1,227 @@
-Return-Path: <devicetree+bounces-194743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5D26AFF58B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 02:00:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE66EAFF58F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 02:09:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B7E53A4B96
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:00:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 393C54A45DD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F2442E406;
-	Thu, 10 Jul 2025 00:00:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 477B9A32;
+	Thu, 10 Jul 2025 00:09:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="s58Zh4gn"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rF5a7frG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61842F56
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 00:00:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0F8A29;
+	Thu, 10 Jul 2025 00:09:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752105648; cv=none; b=EtbRZTHXM1F7NdtuX/9JNfGKwc44E+QE6dqCNsDg+EEn1INiXNcsYa6tEdXuY7xY/aIilJ6Bv4sh4ig/BThY1pC3Zo7MfQmOqebqvbPa5hHHhpVaNjwxx03XQV19IPfwScy7f4qN5PWgj79PAlums4WJb8tGkpS10Ep4NEvwjZc=
+	t=1752106150; cv=none; b=Xtf8BCpb4ZnR9Da99qNGfI7LLc6rDuxkt+6DFjOciIPvQYY62YpxZFZvZFP1n0DmwUPOWK2J6gG/ra8oi26SLuL+lsXySK7kdp7X9hqWSe51b4UXlDCPScNxpHxs51WHRaFU2sVgfTYCqrJr9Wf2J2LTBicH9zwziIocnS5rY2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752105648; c=relaxed/simple;
-	bh=LJYyGTSErihblfOKFi6BylxXoGQ687UZBJYL9fnodBw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s0my2KDSTap27kOVJ1n0T0vPtqL3HEzljyaFI7cBHtiYPoSReObASvyuOINRM+p1JFehJGnc/JS5a9oQmGUO2v7W1AlP2/ariTFvWznS7GdH0oMfTQuN9ZeLWCo3t3AwhLppBugd6ZuY2DsydFVT/1fas7fhYYIlhwKviO53sfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=s58Zh4gn; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1752105645;
- bh=vkPooPX6zi3QRoM9CrTsbZoAxP36NlshDQEMrww4eZw=;
- b=s58Zh4gnIKGWFrbeRU8f18J/hAnvyuw+eeEUTo7sz7iu2yXNgzOvKTMG/jY+R5OumvNQsMRXu
- 9m2xFsDdVODM/xYQJOKn6uVF2TQs0v84/IXF/I/RfRQOpf4EDChxUzT3pKeWjGA8x55OfeoaC4G
- sobIWq2gVjay0iZnZko8D5J1wVliIXluAqqEY1MbpZGBpu0ulU/XHlgAYPtGkvbTvwL/WuPyOc9
- CSKVnjQi0KCGO/QD2Z6z4W2ofXkd62sWQhYk1Dtpnj42DrpgMWBdIrUO6MbUOqMkhwxeyrM6Hql
- 530M2a3/GXVlJQBKPJCsuoQ0NwqkLdRNfD0bz8P1dEPw==
-X-Forward-Email-ID: 686f02a6cecacbdaffda9867
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.1.3
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <87c6249a-96f1-4557-b4eb-70e69e6d773f@kwiboo.se>
-Date: Thu, 10 Jul 2025 02:00:34 +0200
+	s=arc-20240116; t=1752106150; c=relaxed/simple;
+	bh=ZRa1TuL6z0JIeZdAZJweiG9RqGgswS3wpSGcj1p4BoE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=OxC7ru37LP358+uQ5p1nymt/XO2U5012KT1dq5seIjiMhXBFDnRKVx5q4deVPnWa6vMI2QRZf00rz0V22fE59V+Blekb0jQP9XNB7DwT65IVgUOVxgG0Za561b5NJqspM29xLEZtRClHesLkdRxUkfU9E3OcKQWD5P2I0sRFLQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rF5a7frG; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56A091Ex965455;
+	Wed, 9 Jul 2025 19:09:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752106141;
+	bh=E23B2sZy7p9/MMQMvZrIGEuUqSiJtl0btky7YYvriJA=;
+	h=From:Date:Subject:To:CC;
+	b=rF5a7frGeiE2KOz7GgL9/64LPGFi6uZSThdGatvQ0ERP1VKJGss7buB3QQ+tGSvJW
+	 U338Tpfkvvz9vQWzXgBWb5W5ge4FPXg0oX0TnilRn0i0G3ocGKrvzmBVBVI4aoxApp
+	 0GiCewO/jWH7UUdZ59RHdh/DWXmmrn9BIlMbXlVM=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56A091Ma2476618
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 9 Jul 2025 19:09:01 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 9
+ Jul 2025 19:09:01 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 9 Jul 2025 19:09:00 -0500
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56A090qx338248;
+	Wed, 9 Jul 2025 19:09:00 -0500
+From: Bryan Brattlof <bb@ti.com>
+Date: Wed, 9 Jul 2025 19:08:56 -0500
+Subject: [PATCH] arm64: dts: ti: k3-am62a7-sk: add boot phase tags
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] arm64: dts: rockchip: Add ArmSoM Sige1
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- robh@kernel.org, ziyao@disroot.org
-References: <20250708224921.2254116-5-jonas@kwiboo.se>
- <20250709070003.53484-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250709070003.53484-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-ID: <20250709-62a-uboot-cleanup-v1-1-70f8e6cde719@ti.com>
+X-B4-Tracking: v=1; b=H4sIAJcEb2gC/x3MQQqAIBBA0avErBuwCaW6SrSwGmsgNLQiiO6et
+ HyL/x9IHIUTdMUDkS9JEnxGVRYwrdYvjDJnAynSylCNhiyeYwgHThtbf+44NopNq8m11Qy52yM
+ 7uf9nP7zvB7Q/oUJjAAAA
+X-Change-ID: 20250623-62a-uboot-cleanup-b80e6952f91d
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Bryan Brattlof <bb@ti.com>
+X-Mailer: b4 0.14.2
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi,
+The 'bootph-all' tag was added to the dt-schema to describe the various
+nodes used during the different phases of bootup with DT. Add the
+bootph-all tag to all nodes that are used during the early stages of
+bootup by the bootloaders.
 
-On 7/9/2025 9:00 AM, Chukun Pan wrote:
-> Hi,
-> 
->> +	vcc5v0_usb1_host: regulator-5v0-vcc-usb1-host {
->> +		compatible = "regulator-fixed";
->> ...
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> ...
->> +	vcc5v0_usb2_host: regulator-5v0-vcc-usb2-host {
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> ...
-> 
-> I think these two regulators do not need boot-on?
+This includes the console UART along with the SD and eMMC nodes and its
+required regulators for the 3v3 to 1v8 transition and the various nodes
+for Ethernet booting.
 
-Agree, will remove the boot-on in v2.
+Signed-off-by: Bryan Brattlof <bb@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-> 
->> +	rfkill {
->> +		compatible = "rfkill-gpio";
->> +		label = "rfkill-wlan";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&wifi_reg_on_h>;
->> +		radio-type = "wlan";
->> +		shutdown-gpios = <&gpio1 RK_PA6 GPIO_ACTIVE_HIGH>;
->> +	};
-> 
-> Why not use mmc-pwrseq instead of rfkill?
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+index f11284b3fe8e23b4c48d8d2f3a7202e80dc57370..bb565c52dc2c6365aac1e3a62461de4aef79c51b 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+@@ -36,6 +36,7 @@ memory@80000000 {
+ 		/* 4G RAM */
+ 		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
+ 		      <0x00000008 0x80000000 0x00000000 0x80000000>;
++		bootph-all;
+ 	};
+ 
+ 	reserved-memory {
+@@ -151,6 +152,7 @@ vdd_mmc1: regulator-3 {
+ 		regulator-boot-on;
+ 		enable-active-high;
+ 		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
++		bootph-all;
+ 	};
+ 
+ 	vcc_3v3_sys: regulator-4 {
+@@ -297,6 +299,7 @@ main_uart0_pins_default: main-uart0-default-pins {
+ 			AM62AX_IOPAD(0x1c8, PIN_INPUT, 0) /* (E14) UART0_RXD */
+ 			AM62AX_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (D15) UART0_TXD */
+ 		>;
++		bootph-all;
+ 	};
+ 
+ 	main_uart1_pins_default: main-uart1-default-pins {
+@@ -320,6 +323,7 @@ main_i2c1_pins_default: main-i2c1-default-pins {
+ 			AM62AX_IOPAD(0x1e8, PIN_INPUT_PULLUP, 0) /* (B17) I2C1_SCL */
+ 			AM62AX_IOPAD(0x1ec, PIN_INPUT_PULLUP, 0) /* (A17) I2C1_SDA */
+ 		>;
++		bootph-all;
+ 	};
+ 
+ 	main_i2c2_pins_default: main-i2c2-default-pins {
+@@ -356,6 +360,7 @@ AM62AX_IOPAD(0x228, PIN_INPUT, 0) /* (C21) MMC1_DAT2 */
+ 			AM62AX_IOPAD(0x224, PIN_INPUT, 0) /* (D22) MMC1_DAT3 */
+ 			AM62AX_IOPAD(0x240, PIN_INPUT, 0) /* (D17) MMC1_SDCD */
+ 		>;
++		bootph-all;
+ 	};
+ 
+ 	usr_led_pins_default: usr-led-default-pins {
+@@ -375,6 +380,7 @@ main_mdio1_pins_default: main-mdio1-default-pins {
+ 			AM62AX_IOPAD(0x160, PIN_OUTPUT, 0) /* (V12) MDIO0_MDC */
+ 			AM62AX_IOPAD(0x15c, PIN_INPUT, 0) /* (V13) MDIO0_MDIO */
+ 		>;
++		bootph-all;
+ 	};
+ 
+ 	main_rgmii1_pins_default: main-rgmii1-default-pins {
+@@ -392,6 +398,7 @@ AM62AX_IOPAD(0x140, PIN_INPUT, 0) /* (AA17) RGMII1_TD3 */
+ 			AM62AX_IOPAD(0x130, PIN_INPUT, 0) /* (AB17) RGMII1_TXC */
+ 			AM62AX_IOPAD(0x12c, PIN_INPUT, 0) /* (W16) RGMII1_TX_CTL */
+ 		>;
++		bootph-all;
+ 	};
+ 
+ 	main_mcasp1_pins_default: main-mcasp1-default-pins {
+@@ -572,6 +579,7 @@ exp1: gpio@22 {
+ 		#interrupt-cells = <2>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&main_gpio1_ioexp_intr_pins_default>;
++		bootph-all;
+ 
+ 		gpio-line-names = "GPIO_CPSW2_RST", "GPIO_CPSW1_RST",
+ 				   "BT_EN_SOC", "MMC1_SD_EN",
+@@ -675,10 +683,12 @@ &sdhci1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_mmc1_pins_default>;
+ 	disable-wp;
++	bootph-all;
+ };
+ 
+ &main_gpio0 {
+ 	status = "okay";
++	bootph-all;
+ };
+ 
+ &main_gpio1 {
+@@ -693,6 +703,7 @@ &main_uart0 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_uart0_pins_default>;
++	bootph-all;
+ };
+ 
+ /* Main UART1 is used for TIFS firmware logs */
+@@ -737,12 +748,21 @@ &cpsw3g {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_rgmii1_pins_default>;
++
++	ethernet-ports {
++		bootph-all;
++	};
++};
++
++&phy_gmii_sel {
++	bootph-all;
+ };
+ 
+ &cpsw_port1 {
+ 	status = "okay";
+ 	phy-mode = "rgmii-rxid";
+ 	phy-handle = <&cpsw3g_phy0>;
++	bootph-all;
+ };
+ 
+ &cpsw_port2 {
+@@ -759,6 +779,7 @@ cpsw3g_phy0: ethernet-phy@0 {
+ 		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+ 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+ 		ti,min-output-impedance;
++		bootph-all;
+ 	};
+ };
+ 
 
-Not sure, have changed to use mmc-pwrseq in v2.
+---
+base-commit: 3b08f8a34a2061d89a2411d04a675b3860d4f9cc
+change-id: 20250623-62a-uboot-cleanup-b80e6952f91d
 
-> 
->> +	rfkill-bt {
->> +		compatible = "rfkill-gpio";
->> +		label = "rfkill-bt";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&bt_reg_on_h>;
->> +		radio-type = "bluetooth";
->> +		shutdown-gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
->> +	};
-> 
-> Why not use shutdown-gpios of bcm43438-bt?
-
-Sure, will use that in v2.
-
-> 
->> +&i2c0 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&i2c0m0_xfer>;
->> +	status = "okay";
->> +
->> +	hym8563: rtc@51 {
->> +		compatible = "haoyu,hym8563";
->> +		reg = <0x51>;
->> +		#clock-cells = <0>;
->> +		clock-output-names = "hym8563";
-> 
-> CLKOUT pin is not connected.
-
-Thanks, will remove the clock-output-names for the Sige1 and the NanoPi
-Zero2 in v2, #clock-cells seem to be required by the dt-bindings.
-
-> 
->> +&sdio0 {
->> +	bus-width = <4>;
->> +	cap-sd-highspeed;
->> +	cap-sdio-irq;
->> +	disable-wp;
->> +	keep-power-in-suspend;
->> +	no-mmc;
->> +	no-sd;
->> +	non-removable;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&sdio0_bus4>, <&sdio0_clk>, <&sdio0_cmd>, <&clkm1_32k_out>;
-> 
-> I recommend using clkm1_32k_out at the sdio-pwrseq node.
-
-Will do so in v2.
-
-> 
->> +	sd-uhs-sdr104;
->> +	vmmc-supply = <&vcc_3v3>;
->> +	vqmmc-supply = <&vcc_1v8>;
->> +	status = "okay";
-> 
-> Maybe `brcm,bcm4329-fmac` nodes can be added here?
-
-Will add to in v2.
-
-> 
->> +&uart2 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&uart2m1_xfer>, <&uart2m1_ctsn>, <&uart2m1_rtsn>;
->> +	uart-has-rtscts;
->> +	status = "okay";
-> 
-> You can add `brcm,bcm43438-bt` nodes here:
-> 
-> 	bluetooth {
-> 		compatible = "brcm,bcm43438-bt";
-> 		device-wakeup-gpios = <&gpio3 RK_PC3 GPIO_ACTIVE_HIGH>;
-> 		host-wakeup-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
-> 		shutdown-gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
-> 		...
-> 	};
-
-Will use something similar in v2.
-
-See [1] for fixups I am testing for v2.
-
-[1] https://github.com/Kwiboo/linux-rockchip/commits/next-20250708-rk3528-boards/
-
-Regards,
-Jonas
-
-> 
-> Thanks,
-> Chukun
-> 
-> --
-> 2.25.1
-> 
+Best regards,
+-- 
+Bryan Brattlof <bb@ti.com>
 
 
