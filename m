@@ -1,88 +1,56 @@
-Return-Path: <devicetree+bounces-194981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CCAAB00145
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:11:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A655B0014A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:12:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 962923AB0BD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 12:11:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 916351C858A7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 12:12:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B651A24DCEB;
-	Thu, 10 Jul 2025 12:10:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FFE82571A9;
+	Thu, 10 Jul 2025 12:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HC4i460z"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="BWcboYfW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E252E246799
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 12:10:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96EBD243367
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 12:11:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752149455; cv=none; b=VJWeXJijc43FSk2DK1+0HKrQZvcnvmYMfEBw+Ojd0mIlRl79BEMBshq0lS0bEOr2FAcZP8CagGTkeOo4dUo7y1vca8iTFBttTzfL7/XSo0/aat9/KBo5LNUcJvvaCNO/ee49DXQ/S17E0EI2TmDEQDgEQWdDvAWNTbIT0irgfv8=
+	t=1752149478; cv=none; b=goAWltv318l80J8dvv0BgYWfq6Fp+ENWiVNQnv68XvW3pRrQE/55ch5hEcdhyC6cm2TYM4VcOLo6rNOjOQlrFnFwZBgeg0q1pUxdyv/VVpR+4Ibl3MzT6RQrylVb+xG38lQanFNvNTZ6AGcBNIbtGpY2bmPL7gnVVZonSIBhmH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752149455; c=relaxed/simple;
-	bh=3WpSLx1lOvBgBlWtCmaes9/MUjWZbRyaDXKVUI5jEkg=;
+	s=arc-20240116; t=1752149478; c=relaxed/simple;
+	bh=CmjdvA9M9SqmEjXC4wh3Ab0CAkZBlhlktffFjr5dWEM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gaPaEP65GB+ZZjdIVnIOglq+Lg9iv1rShBosO4Iw3J5Jd3fIznZKCYjb9/VziyGRr0im/l4RoGzzVkqsW0Li63S4/fJ2TgERHE7oaCTdEdeW7xvODbxjct/0yIYeB5eVjAmbEg8KqFPpcRawRsDI9UZRNhfK73HcOFPc9lXDYjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HC4i460z; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56A8mWER016468
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 12:10:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qylshFqGhjqdpqss4EWahA3a0P0XpI5R9ccWJmm4pUM=; b=HC4i460zUPUFENA3
-	MjRi8M3dzKhyuwssANgdh7k8mfip5nLU8X7F1JLj/sxneVaa7iaUdR15UzXVOO1F
-	ImzFzHvTm3/blYiN9gmEt4eFM+SKwfcWqWcLM5UUWm+cNkd4TvGlDZQkev5fv2sT
-	TcFrMkRA6al43ifj2jkubAJs3FrUfNvtZkkkcVcB4X5gGng2otxgKTuXqt6KlQyp
-	dcUR+PaPy4JSoiLFp59cAR7s6aGWZ6mI3ejAN7yQdgXz2XAOshrFt26Xpk6Yu27Q
-	bXAA1+6Ihl0EE1FsykzY+81TpsEqFSxeR8ojjOmPNiMs9ZCfJm++Ekb9bCaLzkT1
-	Z5N+Cw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47smap4vx4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 12:10:52 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7d0976a24ceso25180985a.2
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 05:10:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752149452; x=1752754252;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qylshFqGhjqdpqss4EWahA3a0P0XpI5R9ccWJmm4pUM=;
-        b=CObB3qwqKgJk/ZKKJjZqWc3IGllWx0XL+nhp78YiGqnV1PRgS0TYjFGNd7UUDY/lCM
-         RHGXqk5NGs+PV76EJS/9mLIpMl1hXwCTqAfWsRDUJp/i/ydVt1gv/BjNOhIbUV4fuqH+
-         966WUb2J+oErUABW8ztQhyqk4SjEtzDu35yGLpFRzFRpbjU1k84DnR8v00Q25Dc2L+NL
-         arYY9whUqxa4k4o8AqqZgaZjHm/4stjsS9co9lscUktQHs6ezqw0ihoL48gfSzwaJoRR
-         oucIYsXcYSKDUpaeX6wJPA6GCApaL9hYtt74pJUIXuilVJJ5JcRGP/8NPZkY+e5K7zJN
-         5MjA==
-X-Forwarded-Encrypted: i=1; AJvYcCUQSADe5CA2VWIWo035LitzcnuaIYTzJwAgUQ0n4/8uy2QyL+SCAYHufB151rZltbtSE8YGiJjpy1nP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHFl4qmW+oY7WwEsEZWYcm44mUSScVfKSMacj+jcXspvRBdY5x
-	VkXZafQWrVS68rEwFZrMeRCggmtAPgu66ubhUeYZH4XrIcFU1UjxuWDVCAxqCqMbCe9B6Q0Ou5R
-	QaOfIA+FcaFh/aWBATkHgkOWLfIneCCZdZe6XC0dUF0beLqBFzaGUkAzpLFtkzQjD
-X-Gm-Gg: ASbGncsSHFnZrLCU6qt6M3B06G2UDaiHdaa3RoOAewmtQFVOBFoAJzg9dXG1TRiQ9CO
-	wdE1h2hbuG6DrnBqyDFjOr2PHkp+RlCdvzXZ9Ccdh+Dc/tVWsI76MdwOMzxJiwYAe/qtDoYH1ei
-	Hf08eYKciDMaVa5npIoM6I2p6oB/Nf/64hD0monbIJiYc56rMT2Y+ZdSqVS3jPqEvjLcgFXiCsG
-	lWduuLTzLabSHYCU65S35tNdj28BsvTQIiT8WnPVIatWIgBWBmR9bORbD4z0ZcdkFFJ5xaTirwf
-	8+eqvy0oLNgYxQbS1+dAbPKuMRRiqGMn8bm/PFU1WzhkjT/k4BRGLgAixVnnQvlt7l1K82xID0P
-	ZudA=
-X-Received: by 2002:a05:620a:470d:b0:7c5:687f:d79d with SMTP id af79cd13be357-7db8ec65af8mr344977585a.8.1752149451768;
-        Thu, 10 Jul 2025 05:10:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGNdXIlzeTaHsQw8JV+VNgiKFo/GTeGYtHM7NPf/e+vpsxjpM2ZxW4+HG2cXIrSvCR3dYQdRw==
-X-Received: by 2002:a05:620a:470d:b0:7c5:687f:d79d with SMTP id af79cd13be357-7db8ec65af8mr344975285a.8.1752149451347;
-        Thu, 10 Jul 2025 05:10:51 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e8294bd9sm121061566b.132.2025.07.10.05.10.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Jul 2025 05:10:50 -0700 (PDT)
-Message-ID: <7d073433-f254-4d75-a68b-d184f900294a@oss.qualcomm.com>
-Date: Thu, 10 Jul 2025 14:10:47 +0200
+	 In-Reply-To:Content-Type; b=eJFD+CMPYCcbe4Udbp4VBR08ieXihk/Fc4TfSlPW8uRb7jESocj7SeHy+fg6uKGXyoh9urBGeUcjMpkTHt62Djcy8hylChTiop4C6RsdGPcPqkG4ilpCTITGKrmDWmAkGKPeJ0Dud3qVKJkRpzYQUp86ymcbW4PG2657dPz0C0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=BWcboYfW; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1752149468;
+ bh=4ye2+oNmz8kEE5esPvhfl5gldth5gpMh/JZU9swTrNk=;
+ b=BWcboYfWlVH02XxSXAEFdKXxVjOCRRO0SEaYgpedPB1gKPiHovv/9NrZIVlHd5muThKK6NO04
+ CI1TKO4MFCcm8KMbMzkRIRkEtmZqf32Ts4GO6dl6c8xFC+nnECH+e9W3A2pS1CuXeeZ0kcznCEt
+ LeXFvHn3iifPX3rS2v26LWNU8cG+8xufG0cjAEilt0bq5rKrWrbU5IPsGscK4MewSn/QukJwny+
+ XfyN3ACDDD5XIIWgkydf3bKoNjSS8rLA34CgCCwH/RyNeDgIl7ApdYcmdX60Z51NosjrjaOVGM6
+ XLmNdxnL4KmjrRBnEesaLCdTULlnBatJtw88WfGJzjXw==
+X-Forward-Email-ID: 686fadd9ea2ef028c1d7bacc
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.1.3
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <b6f8f705-f661-46cf-9dda-6f18f8658622@kwiboo.se>
+Date: Thu, 10 Jul 2025 14:11:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,85 +58,171 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] phy: qcom: phy-qcom-snps-eusb2: Add extra register
- write for Milos
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Abel Vesa <abel.vesa@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20250709-sm7635-eusb-phy-v2-0-4790eeee7ae0@fairphone.com>
- <20250709-sm7635-eusb-phy-v2-4-4790eeee7ae0@fairphone.com>
+Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency
+ scaling support
+To: Heiko Stuebner <heiko@sntech.de>, Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250620100010.1291658-1-amadeus@jmu.edu.cn>
+ <20250620100010.1291658-2-amadeus@jmu.edu.cn> <5025631.aeNJFYEL58@phil>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250709-sm7635-eusb-phy-v2-4-4790eeee7ae0@fairphone.com>
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <5025631.aeNJFYEL58@phil>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Ar7u3P9P c=1 sm=1 tr=0 ts=686fadcc cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=KKAkSRfTAAAA:8 a=6H0WHjuAAAAA:8
- a=JvZHP73eehLcbYbFTREA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
- a=cvBusfyB2V15izCimMoJ:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-ORIG-GUID: 9wgyb5ThA5ir3yTMdtuqwkfPTqjiKyn1
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzEwMDEwNCBTYWx0ZWRfX1x8raNTxb+X2
- CIMZ//iDA1yq9ZNw6/BAk/L8rF5kPFXd4EQZN2RswmaClelugAfv9swphH+0OBcPAuFEpNPaONv
- MnW0H2aYvCdqLlAi8jLKh3mowJFbuE0hAZ4GoxuWvg/XGZjwi9ZeaxL2XrLCACDnBKzCQzsAeGP
- PIzssHQzGTvnMPX1w3I/sDlhAhfLTTpLHBc+bCzrH5xyQNMZehkqbspyL+MQKscaaTQhe2IAAwD
- 4zgMU2zmimpq7ao+KlwjmBozGjUDu2GkMlQwnpMoIQUcMRoaoh+64yDKjlSblKRZX/O/T5FSAqF
- MBdKMxnIwKbPbQFpSrNkkj2FGkgZicwMgi3OjEnu9q58tGjMYswF226IIErnplyRScRsRioHG9P
- V0WyEjV+c7JniifQKaGcqLudYAFs/FEugGNGtJmL/YsypAdSzEg/lhxY/Toa8yWqm1e07tor
-X-Proofpoint-GUID: 9wgyb5ThA5ir3yTMdtuqwkfPTqjiKyn1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-10_02,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0 spamscore=0
- impostorscore=0 suspectscore=0 mlxlogscore=999 clxscore=1015 adultscore=0
- phishscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507100104
+Content-Transfer-Encoding: 8bit
 
-On 7/9/25 11:18 AM, Luca Weiss wrote:
-> As per the downstream devicetree for Milos, add a register write for
-> QCOM_USB_PHY_CFG_CTRL_1 as per the "eUSB2 HPG version 1.0.2 update".
-> 
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
-> The downstream driver supports an arbitrary extra init sequence via
-> qcom,param-override-seq.
-> 
-> volcano-usb.dtsi has the following which is implemented in this patch:
-> 
->     /* eUSB2 HPG version 1.0.2 update */
->     qcom,param-override-seq =
->             <0x00 0x58>;
-> ---
->  drivers/phy/phy-snps-eusb2.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/phy/phy-snps-eusb2.c b/drivers/phy/phy-snps-eusb2.c
-> index e232b8b4d29100b8fee9e913e2124788af09f2aa..87fc086424ba4d9fb3ce870aa7f7971a51d4a567 100644
-> --- a/drivers/phy/phy-snps-eusb2.c
-> +++ b/drivers/phy/phy-snps-eusb2.c
-> @@ -420,6 +420,12 @@ static int qcom_snps_eusb2_hsphy_init(struct phy *p)
->  	/* set default parameters */
->  	qcom_eusb2_default_parameters(phy);
->  
-> +	if (of_device_is_compatible(p->dev.of_node, "qcom,milos-snps-eusb2-phy")) {
-> +		/* eUSB2 HPG version 1.0.2 update */
-> +		writel_relaxed(0x0, phy->base + QCOM_USB_PHY_CFG_CTRL_1);
-> +		readl_relaxed(phy->base + QCOM_USB_PHY_CFG_CTRL_1);
+Hi Heiko and Chukun,
 
-Said HPG asks to clear bits [7:1] on all targets
+On 7/10/2025 1:45 PM, Heiko Stuebner wrote:
+> Am Freitag, 20. Juni 2025, 12:00:10 Mitteleuropäische Sommerzeit schrieb Chukun Pan:
+>> By default, the CPUs on RK3528 operates at 1.5GHz. Add CPU frequency and
+>> voltage mapping to the device tree to enable dynamic scaling via cpufreq.
+>>
+>> The OPP values come from downstream kernel[1]. Both 408MHz and 600MHz
+>> frequencies use the normal PLL, so use the corresponding highest voltage.
+>>
+>> The voltage used for other frequencies can't be less than above (875mV).
+>> Therefore, 816MHz to 1200MHz also uses the corresponding highest voltage.
+> 
+> There has often been the argument that selecting a frequency that has the
+> same voltage as a faster frequency does not save any power.
+> 
+> Hence I remember that we dropped slower frequencies on other socs
+> that share the same voltage with a higher frequency.
 
-Konrad
+One possible difference here is that the actual CPU rate is controlled
+by a PVTPLL where TF-A will configure a osc ring-length based on the
+requested rate and Linux only configure the regulator voltage.
+
+I have no idea if the configuration made by TF-A will have any affect on
+power usage, but I suggest we keep all opp here because both TF-A and
+Linux is involved in configuring the CPU rate.
+
+The measured rate can typically be read from a PVTPLL status reg, it
+will be different depending on the ring-length, voltage and silicon
+quality for the rates >= 816 MHz.
+
+> 
+>>
+>> The remaining 1416MHz to 2016MHz use a voltage close to actual frequency.
+>>
+>> [1] https://github.com/rockchip-linux/kernel/blob/develop-5.10/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+>>
+>> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 64 ++++++++++++++++++++++++
+>>  1 file changed, 64 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+>> index 829f980ea353..5cb7f10b79ed 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+>> @@ -53,6 +53,7 @@ cpu0: cpu@0 {
+>>  			device_type = "cpu";
+>>  			enable-method = "psci";
+>>  			clocks = <&scmi_clk SCMI_CLK_CPU>;
+>> +			operating-points-v2 = <&cpu_opp_table>;
+>>  		};
+>>  
+>>  		cpu1: cpu@1 {
+>> @@ -61,6 +62,7 @@ cpu1: cpu@1 {
+>>  			device_type = "cpu";
+>>  			enable-method = "psci";
+>>  			clocks = <&scmi_clk SCMI_CLK_CPU>;
+>> +			operating-points-v2 = <&cpu_opp_table>;
+>>  		};
+>>  
+>>  		cpu2: cpu@2 {
+>> @@ -69,6 +71,7 @@ cpu2: cpu@2 {
+>>  			device_type = "cpu";
+>>  			enable-method = "psci";
+>>  			clocks = <&scmi_clk SCMI_CLK_CPU>;
+>> +			operating-points-v2 = <&cpu_opp_table>;
+>>  		};
+>>  
+>>  		cpu3: cpu@3 {
+>> @@ -77,6 +80,67 @@ cpu3: cpu@3 {
+>>  			device_type = "cpu";
+>>  			enable-method = "psci";
+>>  			clocks = <&scmi_clk SCMI_CLK_CPU>;
+>> +			operating-points-v2 = <&cpu_opp_table>;
+>> +		};
+>> +	};
+>> +
+>> +	cpu_opp_table: opp-table-cpu {
+
+This node should be placed after the firmware node for the nodes to be
+in alphabetical order.
+
+Regards,
+Jonas
+
+>> +		compatible = "operating-points-v2";
+>> +		opp-shared;
+>> +
+>> +		opp-408000000 {
+>> +			opp-hz = /bits/ 64 <408000000>;
+>> +			opp-microvolt = <875000 875000 1100000>;
+>> +			clock-latency-ns = <40000>;
+>> +			opp-suspend;
+>> +		};
+>> +
+>> +		opp-600000000 {
+>> +			opp-hz = /bits/ 64 <600000000>;
+>> +			opp-microvolt = <875000 875000 1100000>;
+>> +			clock-latency-ns = <40000>;
+>> +		};
+>> +
+>> +		opp-816000000 {
+>> +			opp-hz = /bits/ 64 <816000000>;
+>> +			opp-microvolt = <875000 875000 1100000>;
+>> +			clock-latency-ns = <40000>;
+>> +		};
+>> +
+>> +		opp-1008000000 {
+>> +			opp-hz = /bits/ 64 <1008000000>;
+>> +			opp-microvolt = <875000 875000 1100000>;
+>> +			clock-latency-ns = <40000>;
+>> +		};
+>> +
+>> +		opp-1200000000 {
+>> +			opp-hz = /bits/ 64 <1200000000>;
+>> +			opp-microvolt = <900000 900000 1100000>;
+>> +			clock-latency-ns = <40000>;
+>> +		};
+>> +
+>> +		opp-1416000000 {
+>> +			opp-hz = /bits/ 64 <1416000000>;
+>> +			opp-microvolt = <925000 925000 1100000>;
+>> +			clock-latency-ns = <40000>;
+>> +		};
+>> +
+>> +		opp-1608000000 {
+>> +			opp-hz = /bits/ 64 <1608000000>;
+>> +			opp-microvolt = <975000 975000 1100000>;
+>> +			clock-latency-ns = <40000>;
+>> +		};
+>> +
+>> +		opp-1800000000 {
+>> +			opp-hz = /bits/ 64 <1800000000>;
+>> +			opp-microvolt = <1037500 1037500 1100000>;
+>> +			clock-latency-ns = <40000>;
+>> +		};
+>> +
+>> +		opp-2016000000 {
+>> +			opp-hz = /bits/ 64 <2016000000>;
+>> +			opp-microvolt = <1100000 1100000 1100000>;
+>> +			clock-latency-ns = <40000>;
+>>  		};
+>>  	};
+>>  
+>>
+> 
+> 
+> 
+> 
+
 
