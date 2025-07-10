@@ -1,130 +1,116 @@
-Return-Path: <devicetree+bounces-195086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8560B005D4
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:55:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AE51B005E0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:58:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14080647AA3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:54:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4C5717A965
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32ECB273D94;
-	Thu, 10 Jul 2025 14:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02BA6273D96;
+	Thu, 10 Jul 2025 14:58:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="uhPFOwbe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jFh5d3or"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-24422.protonmail.ch (mail-24422.protonmail.ch [109.224.244.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B47B21D3E8
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 14:54:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77F60270568;
+	Thu, 10 Jul 2025 14:58:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752159286; cv=none; b=huuLgUC44uzCYGKr5EJ5uXOufO7xMSEtSu0/88KnUZXGSUVfV7MwOlQwsTzHUS7ufclwMhM4IvbIHR2oLSCvN2Ae/C0/JONas+sHpWrRk3vtt8PEpupiwvED7BlKxeKXX8k/KHJrR0EPcQrWUdVPiCio5u1yD5JDbU6U0sNxDs4=
+	t=1752159491; cv=none; b=O8E74AvR42lRoKCzeKLMwBh60rl5UwkWKSscIkQpr/AG5YHhXnCvonZ2d82I8OuD2auLcYjNTEOwjVZiPB08TA64yJ5WaW5xFcH0DiUZBTKsxlkN5V+hCD2rYe/i9zhaQpCgmkFzA6BM9LmYmV8301pzn6Ss6yqxMD90aGCmxx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752159286; c=relaxed/simple;
-	bh=/BZeJ9skQYgL/W2BpgbCzGkjhkKi61qTc1GVie0Bgso=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FVq2hunHNW/lPZkOdCqYdym2izDpC5mvXC6a7GbXXXAg5nyuyoG8bP2tBqo1bnP6pCgPpaayDPowOykKEqsqmUFTREcb45gvQ3CQom8k91S7z+5DjtFny5M3ds+shKtxWzwjSHBYbZLgwcjRFfViqU0b5AJ74DZ4y6DCJnrB/sw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=uhPFOwbe; arc=none smtp.client-ip=109.224.244.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
-	s=protonmail; t=1752159281; x=1752418481;
-	bh=8hCoJT7oSQ2+hO4Crxb7/QCTsLK+i6Ix8pOcE1yioP0=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=uhPFOwbeICsKGailuEYBwH6LRdeKbV8Yd2OFHcUz01WN1lgd/jdyXl6/fF4cXEJ5e
-	 PY6+i9bfZ7M2R9ILo6ZO3dlftaltWKXJTKrOC8Upt0TYKs6vzvSk6pa0AM1Rnpni3G
-	 /9+yFMFK+B4lb9THN2oRSu6ilVfqjYvG3HXJzfTfY8TUMcEScLh1w8Qd61MSifgdF9
-	 yG0NxcHvZ43k/qjgsgd6szdh2tlIDC+sKrBihRCzit57fep6ItGp3zx5Izh7GExYKe
-	 VrmgdXL81sMQ++NOnsNHWJUnb5lEqlPjtZoOwW6HxtERdXRbpNTdegSrWdnz6XWfj8
-	 FE780GM89Jdqw==
-Date: Thu, 10 Jul 2025 14:54:38 +0000
-To: samuel.kayode@savoirfairelinux.com
-From: Sean Nyekjaer <sean@geanix.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>, imx@lists.linux.dev, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>, Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>, Robin Gong <yibin.gong@nxp.com>, Enric Balletbo i Serra <eballetbo@gmail.com>
-Subject: Re: [PATCH v8 2/6] mfd: pf1550: add core driver
-Message-ID: <idqtxdptxq6s57r452staq3xv6zzs3i5bbapzxdlu3o7cdahaq@j257j4okrw52>
-In-Reply-To: <20250707-pf1550-v8-2-6b6eb67c03a0@savoirfairelinux.com>
-References: <20250707-pf1550-v8-0-6b6eb67c03a0@savoirfairelinux.com> <20250707-pf1550-v8-2-6b6eb67c03a0@savoirfairelinux.com>
-Feedback-ID: 134068486:user:proton
-X-Pm-Message-ID: 3c444e4d1f4130e043ffc827ffec8747504ef419
+	s=arc-20240116; t=1752159491; c=relaxed/simple;
+	bh=TH5llxzcucM0N4iq2/3TbPkFRzGjdAKzo1pDD9WbW/w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=amsD0bPrSB6iV+kftpGOY4hQ1xEWCwg+mw+KFjWg+HOSPynECJWlgQLTv9KerfZJSxprA2EUxsOFuW6gUFKLyd7KwcI64mQCXPtFIEMHCS/AhIoY9jNY8n+qSZTZ6DDhsagpIgDuMVQsmG75FSMzkO2tNQB3iHqfwuZ/R+soL2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jFh5d3or; arc=none smtp.client-ip=209.85.219.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e733e25bfc7so887907276.3;
+        Thu, 10 Jul 2025 07:58:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752159488; x=1752764288; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TH5llxzcucM0N4iq2/3TbPkFRzGjdAKzo1pDD9WbW/w=;
+        b=jFh5d3orhtf3CbVTKF//ixq1Ci/wbUn/2GBAiOyXeAhoqrRbsCAFCf/40LUKWddfRZ
+         XKNWdqJYAnlFCE9DH3fvJ162HY7A5J+7VAys8QBBgPbEuuJmUs69nhBOIC1b7CbiCFVV
+         rfHVMWOTGdtYY/SNvlb2ReRY2HyiBFIws7VunbuwHI+sIk9Az26A/nzk4R43G2AoHhU5
+         7Uv8wxUH9doh9U5WY4VZGQmRSNSYge4eGRRx+yNjEuV9wqB+WK8KEcMmM9nrbqjyeLWf
+         UHeLQymqGMDJOugIQIAS0ImAi1X79jsreVEqeynHLc68TrvA8GCi8IMIB1T2xdEZYYlQ
+         aGyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752159488; x=1752764288;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TH5llxzcucM0N4iq2/3TbPkFRzGjdAKzo1pDD9WbW/w=;
+        b=d2c9tXYA3WDTBMJC6loPiu/bNtlQksNcPuRS3zTeZnr3wfcQQiXe450CgABGONt8Bq
+         MHAGAx+n60J3Y/disIqt1q3quyWTDBXllJ1dzj5Wk4bSB7Lvi6YR1pHB9z4jmUEF+6jl
+         FpL9xSZCN2mC5K6nhFY2N7qMiZ/CUbq+TH9VumByO8U0aE1SlsVKtcJ9EMMFUGSbMjq4
+         1a2NqUG4ygiTjhv6vWqVWToJMLk1y28fXbyU96NgkF6MbwcDkuKJFScCH32kLuiPStVF
+         v2G+sGCJkVm6KwfEcWqSfi4PfbUJsz6VocPIoOwDBQ9uIzY6wxbdjo+96uyYsQo7AbYm
+         iXAg==
+X-Forwarded-Encrypted: i=1; AJvYcCVUAGKnl4fPwtDcf8nzEO1vFs5NX9ieYeVBQ2ZuZ4VaSz6FJF2H8NUm41QjVTtlz5qW/EF7FimCCBSkGUg=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzB3XgjheKxJsRfNuUZLK+Uf1E04kWyJ1lnWONWWIUZxc8BY2yc
+	CyxewKJ44Bv+R7ypMADBNDigztNaNN+MosZIW/xCZAvuBMRFJdJtnTDF2UeC08+cpM+d225Wycd
+	eF0SS7Rskf4f22DXzYXhtlkZUthHjbjoe1jhB0f8=
+X-Gm-Gg: ASbGncvgImzGVw56e4p3/l6XS8azCsH0HsfMrWimymMzXZT0pjorkLi8n8zUNISt28u
+	jLK6cvsXUfHz9tzbJrvJrz6qNc0x275VaW4xi8adVow0Sa9G2r7iwoyL9+J2+AciXSE37Lly2G8
+	yc84edjYqlRjZUqPuh9qgWspKwS8oZ8CG9jEYbD4OQGA==
+X-Google-Smtp-Source: AGHT+IGj0vOjTNls2xWvYdpalcELUUnBFKyAUZgPNeSj8dAPkHAuNVZE1EZsB1saeRuYvsZT8KRFOZRjwuNTc4TRYPQ=
+X-Received: by 2002:a05:690c:81:b0:70a:2675:70b3 with SMTP id
+ 00721157ae682-717c47441b7mr41656637b3.17.1752159488337; Thu, 10 Jul 2025
+ 07:58:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <20250709220714.85697-1-stefano.radaelli21@gmail.com>
+ <20250709220714.85697-2-stefano.radaelli21@gmail.com> <9b503f65-5c8c-4f04-a1b1-40d7a1202e8b@kernel.org>
+ <CAK+owohgk3CkQRv_PBDWXh44X2uN3p8FWBU2t9VtmO-xzOKTow@mail.gmail.com>
+ <6656b2f0-5258-4f23-8988-567a7b598497@kernel.org> <CAK+owogfXDNpjT5Ywcvjaegf0H8-pS109039WadhxHXHbe3GSA@mail.gmail.com>
+ <bb6bc232-cc3e-4689-952f-88cf580604fb@kernel.org>
+In-Reply-To: <bb6bc232-cc3e-4689-952f-88cf580604fb@kernel.org>
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Date: Thu, 10 Jul 2025 16:57:52 +0200
+X-Gm-Features: Ac12FXyzWjUawsZvzzzJnFrsRzKzTAlycLishUEj96n_UCE4I6vdCqmNJMuAVbE
+Message-ID: <CAK+owojEmcW7S8oFFjmmeT1uHn2Hyb9=16GDP2QLQ+DAEwtoPg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for Variscite VAR-SOM-AM62P
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Samuel,
+On 10/07/2025 16:42, Krzysztof Kozlowski wrote:
+> There are no such compatibles. There are:
+>
+> variscite,var-som-mx93
+> variscite,var-som-mx8mn
+>
+> and others with exact format how I asked - var-som-<processor>.
+>
 
-On Mon, Jul 07, 2025 at 05:37:21PM +0100, Samuel Kayode via B4 Relay wrote:
-> From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
->=20
-> Add the core driver for pf1550 PMIC. There are 3 subdevices for which the
-> drivers will be added in subsequent patches.
->=20
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-> ---
+You are absolutely correct, and I apologize for the confusion.
+I was incorrectly referring to our internal kernel tree instead of
+checking the mainline kernel compatibles.
 
-[...]
+Thank you for your patience in correcting me.
+I will follow your advice and use the proper mainline format
+"var-som-<processor>" for consistency with the existing Variscite compatibles
+already present in mainline, rather than our internal naming convention.
 
-> +
-> +static int pf1550_i2c_probe(struct i2c_client *i2c)
-> +{
-> +=09const struct mfd_cell *regulator =3D &pf1550_regulator_cell;
-> +=09const struct mfd_cell *charger =3D &pf1550_charger_cell;
-> +=09const struct mfd_cell *onkey =3D &pf1550_onkey_cell;
-> +=09unsigned int reg_data =3D 0, otp_data =3D 0;
-> +=09struct pf1550_ddata *pf1550;
-> +=09struct irq_domain *domain;
-> +=09int irq, ret =3D 0;
-> +
-> +=09pf1550 =3D devm_kzalloc(&i2c->dev, sizeof(*pf1550), GFP_KERNEL);
-> +=09if (!pf1550)
-> +=09=09return -ENOMEM;
-> +
-> +=09i2c_set_clientdata(i2c, pf1550);
-> +=09pf1550->dev =3D &i2c->dev;
-> +=09pf1550->irq =3D i2c->irq;
-> +
-> +=09pf1550->regmap =3D devm_regmap_init_i2c(i2c, &pf1550_regmap_config);
-> +=09if (IS_ERR(pf1550->regmap))
-> +=09=09return dev_err_probe(pf1550->dev, PTR_ERR(pf1550->regmap),
-> +=09=09=09=09     "failed to allocate register map\n");
-> +
-> +=09ret =3D regmap_read(pf1550->regmap, PF1550_PMIC_REG_DEVICE_ID, &reg_d=
-ata);
-> +=09if (ret < 0)
-> +=09=09return dev_err_probe(pf1550->dev, ret, "cannot read chip ID\n");
-> +=09if (reg_data !=3D PF1550_DEVICE_ID)
-> +=09=09return dev_err_probe(pf1550->dev, -ENODEV,
-> +=09=09=09=09     "invalid device ID: 0x%02x\n", reg_data);
-> +
-> +=09/* Regulator DVS */
-> +=09ret =3D pf1550_read_otp(pf1550, PF1550_OTP_SW2_SW3, &otp_data);
-> +=09if (ret)
-> +=09=09return ret;
-> +
-> +=09/* When clear, DVS should be enabled */
-> +=09if (!(otp_data & OTP_DVS_ENB))
-> +=09=09pf1550->dvs_enb =3D true;
-> +
+I will update the patch accordingly.
 
-Thanks for upstreaming this :)
-
-We need to handle DVS for SW1 here.
-I'm using the A6 variant that have DVS enabled for SW1 and disabled for
-SW2.
-The A1 variant have DVS for SW1 disabled...
-
-/Sean
-
+Best regards,
+Stefano
 
