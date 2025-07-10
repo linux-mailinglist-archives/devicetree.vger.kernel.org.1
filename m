@@ -1,179 +1,163 @@
-Return-Path: <devicetree+bounces-194919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B749AFFE30
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:32:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F000AAFFE4D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:37:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFFE23BDDD1
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:32:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 638BC7AE5D6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:36:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F762D3EC3;
-	Thu, 10 Jul 2025 09:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A2D92D1309;
+	Thu, 10 Jul 2025 09:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ioIYiq6m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l7M568p0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 995D72D3A6E
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 09:32:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E141820B80A;
+	Thu, 10 Jul 2025 09:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752139970; cv=none; b=KRE4auBc4ngxKCySK152DGzWkJ8VjQ8XKmp4y74n99BDbfThFXq8nhU0Dg4UzVaeYa7BcJv0MMO9WFkW9x4arvaQ/Pcg3Cuwl3yL/seHFhzxGYuNONuoo7mlpvfEQk04XeiVqP3FXoaD4OczhJZJ/KzZzlpSUQ3qq+yh2FQpBF4=
+	t=1752140252; cv=none; b=jlfoAclBM+06xcsT1kwh0dQ5LQlUOzcDw6+SOUJMefVQzfj/AK2wcrUHThXSD7yGfyZYn2/gTlHfYcz/bUCuAxFlbrePhPinrgJPsFkxBPK6UznueuuQk/JoonnTB2aXfhQvgA9pCmmE2ftEkD4gpp1ZzqkruLJr1U1WkGCtvuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752139970; c=relaxed/simple;
-	bh=/4AJhQ3AaDhcZ7WK23PKcdKMPfxtIlrU49yIOourqpM=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=VZJmNgpZLfogkU2fsQWuzSIPEvfpPyEYIsrsWw7rTtZC7pysZZvnh7HBKvqPFB7OillFm9LXvhzkFAIIebUMN25nC5jPvMdKjpxW/EX/ryqmcouW5Y/dwDGJl1r7T/FP98nja2NqsBc2nHQLKlGEDMi/p+9hJ22Bymnb0KATbOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ioIYiq6m; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3ab112dea41so448541f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 02:32:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1752139967; x=1752744767; darn=vger.kernel.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0R0Hr4CE1RY0MwuVSGpjrdEwFEFKJYZxZJ8a7zSdbcY=;
-        b=ioIYiq6m/kmQYXHEQIswz1o+pc2EQ/70S894qelGyNplel0Vz4q3vq65AHoNXFHiKb
-         2QRrTcnXrNoIRhtaih8HbG8h5wfbgQPCcDpjV4S/mkJV2XPku7zdTef59y5mm2AuIl7A
-         R4Vzew9EBvEJheWXsKfE5+JG+KqWWraJb6vfiGbVF2JLk/EyysbNBs3fy/WvUgqZPf5e
-         p2Er34UL9rCw66hUgLc+lKLad6ieBxqFCIYefq9b1RIHGlw2uFyeiXbxfeWsLDUXhsxQ
-         YUMmKRxIlNPXPfD6asv+de+RGXh75zI9VI6P9WIdlr0LlGZNBTVcNIQj7QnNGdkUtlUr
-         FrHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752139967; x=1752744767;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0R0Hr4CE1RY0MwuVSGpjrdEwFEFKJYZxZJ8a7zSdbcY=;
-        b=bEAvW2SgK60X1zi44dHn6mrZB8bVArETRxV+3EoHTEjfwI3MI22On8dlq9ltXkE0cF
-         nFdC9FOrGMJHloM5zqFWBx5wXCIzRmryW2VrrN9+3x/V/A7ms19994ZUK+li3ICLKYsz
-         UAxERnTe/nGWZ9BbR+cj+bVinNaIFz6HYU3LbbDT0tfoGZbivSWfpYL29S912Ksfu3vm
-         4f4KKXQl6Besy2zEaE8Y6daudw2fMIS2fxnvjvn0slxLBeJUrx6FIe7MHJzEvF50bC+9
-         B55pEFz00MlsmcrRv5vh0I9hM/5ZabnIrGI8DnNykkiqEZ1YHzU9a+IlumOA0is2z3/H
-         7XYw==
-X-Forwarded-Encrypted: i=1; AJvYcCXvdycHYQ4V+DpwBmcK+OguS2UQyyuQrEXvnRdKT95Nk3nLEifRQ4VylMD8QLnBKAHDX8MkT9TlS0kT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxyn8ibiG6enIlcky3mU4V4Ak9YHQXHvf/hWLhNaqfTMufK9gz3
-	zx4g7cPD78pTTXF3rumUEudOqXfwb4i10CLjUWO31bGDBhnzQCx/nS2bNnVxjGHCXrA=
-X-Gm-Gg: ASbGnctBjoXLa5OW6Jj+fA2TIsVz1b5izduUVjJ2rtQu22N4vY8fTSOKFOQJ/oiWySu
-	YE1VByQmHabeQ8hjlAoR6mGyHGA2BSKEP4IUDRkm/6oF8T/Fjy98ZQ2N5x6BlpzPsQMK+5jF6gY
-	Qwjk6VClRtfd4FPvrValzz5R0POZqrsdPkZduVJbVjzNXGn/dr9h5rEQ6WmFOX46cfSrHsY+hLt
-	dSSrFnmByasKJx87dM0q5dfDxSZL3nGWqrXvI6qo7OFAwBd/4RjkI24wcilDd27JJxySVbBbgiM
-	DEYP1jmaI4SSQIIFPT0vQ4v86LMjLaWJTo63Vw0MqqQuKgsMHq0DTM/N3IohaA==
-X-Google-Smtp-Source: AGHT+IE1D9auCg4xgGpZ6zuosoUHXOAtKOoG+1ROyX+EBevhLJgYW2QgO4A9PEzjJQELPZ9swbZlmg==
-X-Received: by 2002:a05:6000:4a12:b0:3a5:2f23:3783 with SMTP id ffacd0b85a97d-3b5e44ea414mr5599937f8f.24.1752139966897;
-        Thu, 10 Jul 2025 02:32:46 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:9fcc:5953:3d1a:6b41])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3b5e8dc3a54sm1402833f8f.39.2025.07.10.02.32.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jul 2025 02:32:46 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: jiebing chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>,
-  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>,  Jaroslav Kysela <perex@perex.cz>,
-  Takashi Iwai <tiwai@suse.com>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,  Michael Turquette
- <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,
-  jiebing.chen@amlogic.com,  linux-sound@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-arm-kernel@lists.infradead.org,  linux-amlogic@lists.infradead.org,
-  linux-clk@vger.kernel.org,  jian.xu@amlogic.com,  shuai.li@amlogic.com,
-  zhe.wang@amlogic.com
-Subject: Re: [PATCH v5 0/6] Add support for S4 audio
-In-Reply-To: <20250710-audio_drvier-v5-0-d4155f1e7464@amlogic.com> (jiebing
-	chen via's message of "Thu, 10 Jul 2025 11:35:36 +0800")
-References: <20250710-audio_drvier-v5-0-d4155f1e7464@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Thu, 10 Jul 2025 11:32:45 +0200
-Message-ID: <1jo6tspf0i.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1752140252; c=relaxed/simple;
+	bh=7JOq7FOv5bTpMZUieiLhS8U+rK+/XC/emjowf7BbJQs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YHTS3HMsxfS/8o1nnBnK5tvzDRAPBhH/xTR4RSByGbhrpcLujHseuqImStC1F75ZI96QSpoXxKoaJqQqpApH3P9we5x5UpD5XAgMVAd/QMSV4IV+TdzbP85t8x2O78KRzHmlGnyQtGA/mAmYV6wtHhfkW6Md/r9rBXJfR9yMUws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l7M568p0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBAFFC4CEE3;
+	Thu, 10 Jul 2025 09:37:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752140251;
+	bh=7JOq7FOv5bTpMZUieiLhS8U+rK+/XC/emjowf7BbJQs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l7M568p0jgUK7gJCDH7RzHUjJGHy9Fbq15HebTAhQ3RZpyCUhW+2+G8kcJZ3J/qK4
+	 vPDOGrJRfe0873OrgePF4AePyjk88yyR6Wl5OvZ9QvrhE+ksBYWQbDIQlcKCYTUVqA
+	 qcW7DNqAwmLhdYn5lTehSjOdF6C0gW0bQvQ7u0BptIM36Bc4NWlpdcKmqd5R5TJPC3
+	 6b4p/nfLtSo1KasZlGXDRrt0UqRBj0e9mZqdZvPO/sPmXt6AalS7zQkgkwLqpvJ3LX
+	 mvkYEQYFPXuwIuecH6khI1bPfD+fm9Grk+G8T+gxS7hf3CUkmI9O1txBgLVac6noFw
+	 WtnXHUzah+CPA==
+Date: Thu, 10 Jul 2025 10:37:26 +0100
+From: Lee Jones <lee@kernel.org>
+To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc: pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH V3 2/2] leds: pwm: Add optional GPIO enable pin support
+Message-ID: <20250710093726.GD1431498@google.com>
+References: <20250703035256.225289-1-Qing-wu.Li@leica-geosystems.com.cn>
+ <20250703035256.225289-2-Qing-wu.Li@leica-geosystems.com.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250703035256.225289-2-Qing-wu.Li@leica-geosystems.com.cn>
 
-On Thu 10 Jul 2025 at 11:35, jiebing chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org> wrote:
+On Thu, 03 Jul 2025, LI Qingwu wrote:
 
-> This series completes the end-to-end audio support
-> for S4 SoC from hardware bindings to driver implementation
-> and system integration.
->
-> 1 Device Tree Bindings Updates 
-> Added audio power domain support for S4 SoC.Defined mclk/sclk pad clock IDs in AXG audio bindings.
-> Add S4 audio tocodec binding support.
->
-> 2 Driver Implementation
-> Implemented S4 tocodec driver for G12A architecture.
-> Add mclk pad divider support for S4 in AXG audio clock.
->
-> 3 Device Tree Integration
-> Add Amlogic S4 audio subsystem support in arm64 DTS.
-
-Several subsystem in a single patchset spams a lot of people.
-It is not strictly necessary here.
-
-Ideally, one patchset per subsystem please.
-
->
-> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+> add support for optional GPIO-based enable pin control to PWM LED driver.
+> some PWM LED chips have a dedicated enable GPIO. This commit adds the
+> support to specify such GPIO, activating the pin when LED brightness
+> is non-zero and deactivating it when off.
+> 
+> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
 > ---
-> Changes in v5:
-> - Fix warning Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yam when make dt_binding_check
-> - The audio reg is mounted below the APB bus in dts file.
-> - Deal with pad clock in a distinct controller.
-> - Fix warning for sound/soc/meson/g12a-toacodec.c
-> - Link to v4: https://lore.kernel.org/r/20250319-audio_drvier-v4-0-686867fad719@amlogic.com
->
-> Changes in v4:
-> - fix dtb check warning 
-> - add maxItems of power domain for dt-bindings
-> - fixed audio clock pads regmap base and reg offset 
-> - use dapm widget to control tocodec bclk and mclk enable
-> - Link to v3: https://lore.kernel.org/r/20250228-audio_drvier-v3-0-dbfd30507e4c@amlogic.com
->
-> Changes in v3:
-> - remove g12a tocodec switch event
-> - Modify the incorrect title for dt-bindings
-> - Link to v2: https://lore.kernel.org/r/20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com
->
-> Changes in v2:
-> - remove tdm pad control and change tocodec base on g12a
-> - change hifipll rate to support 24bit
-> - add s4 audio clock
-> - Link to v1: https://lore.kernel.org/r/20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com
->
-> ---
-> jiebing chen (6):
->       dt-bindings: clock: meson: Add audio power domain for s4 soc
->       dt-bindings: clock: axg-audio: Add mclk and sclk pad clock ids
->       dt-bindings: Asoc: axg-audio: Add s4 audio tocodec
->       ASoC: meson: g12a-toacodec: Add s4 tocodec driver
->       clk: meson: axg-audio: Add the mclk pad div for s4 chip
->       arm64: dts: amlogic: Add Amlogic S4 Audio
->
->  .../bindings/clock/amlogic,axg-audio-clkc.yaml     |  55 ++-
->  .../bindings/sound/amlogic,g12a-toacodec.yaml      |   1 +
->  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 218 +++++++++++
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 387 ++++++++++++++++++
->  drivers/clk/meson/axg-audio.c                      | 435 ++++++++++++++++++++-
->  drivers/clk/meson/axg-audio.h                      |   6 +
->  include/dt-bindings/clock/axg-audio-clkc.h         |  11 +
->  sound/soc/meson/g12a-toacodec.c                    |  42 ++
->  8 files changed, 1152 insertions(+), 3 deletions(-)
-> ---
-> base-commit: 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
-> change-id: 20250110-audio_drvier-07a5381c494b
->
-> Best regards,
+>  drivers/leds/leds-pwm.c | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+
+Couple of nits.
+
+> diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
+> index c73134e7b9514..1397149464b35 100644
+> --- a/drivers/leds/leds-pwm.c
+> +++ b/drivers/leds/leds-pwm.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/err.h>
+>  #include <linux/pwm.h>
+>  #include <linux/slab.h>
+> +#include <linux/gpio/consumer.h>
+>  
+>  struct led_pwm {
+>  	const char	*name;
+> @@ -29,6 +30,7 @@ struct led_pwm_data {
+>  	struct led_classdev	cdev;
+>  	struct pwm_device	*pwm;
+>  	struct pwm_state	pwmstate;
+> +	struct gpio_desc	*enable_gpio;
+>  	unsigned int		active_low;
+>  };
+>  
+> @@ -51,6 +53,9 @@ static int led_pwm_set(struct led_classdev *led_cdev,
+>  	if (led_dat->active_low)
+>  		duty = led_dat->pwmstate.period - duty;
+>  
+> +	gpiod_set_value_cansleep(led_dat->enable_gpio,
+> +				 brightness == LED_OFF ? 0 : 1);
+
+Put this on one line.
+
+> +
+>  	led_dat->pwmstate.duty_cycle = duty;
+>  	/*
+>  	 * Disabling a PWM doesn't guarantee that it emits the inactive level.
+> @@ -132,6 +137,23 @@ static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
+>  		break;
+>  	}
+>  
+> +	/* Claim the GPIO as ASIS and set the value
+
+Explain what ASIS is please.
+
+> +	 * later on to honor the different default states
+> +	 */
+
+Use proper multi-line comments please.
+
+> +	led_data->enable_gpio =
+> +		devm_fwnode_gpiod_get(dev, fwnode, "enable", GPIOD_ASIS, NULL);
+
+One line please.
+
+> +
+
+Drop this line.
+
+> +	/* enable_gpio is optional */
+
+Comments start with a capital letter.
+
+Place this comment inside the second if () statement.
+
+> +	if (IS_ERR(led_data->enable_gpio)) {
+> +		if (PTR_ERR(led_data->enable_gpio) == -ENOENT)
+> +			led_data->enable_gpio = NULL;
+> +		else
+> +			return PTR_ERR(led_data->enable_gpio);
+> +	}
+> +
+> +	gpiod_direction_output(led_data->enable_gpio,
+> +			       !!led_data->cdev.brightness);
+
+One line.
+
+> +
+>  	ret = devm_led_classdev_register_ext(dev, &led_data->cdev, &init_data);
+>  	if (ret) {
+>  		dev_err(dev, "failed to register PWM led for %s: %d\n",
+> -- 
+> 2.43.0
+> 
 
 -- 
-Jerome
+Lee Jones [李琼斯]
 
