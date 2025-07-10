@@ -1,139 +1,92 @@
-Return-Path: <devicetree+bounces-194881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9731AFFD6A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:03:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A674AFFD66
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:02:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21F7E547795
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:00:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CDDAA7B5966
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0673C28FA9E;
-	Thu, 10 Jul 2025 08:58:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A97C292B4E;
+	Thu, 10 Jul 2025 08:58:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ab6/0p0c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WY9uea4B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1FF628EA53
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 08:58:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30F6328C86D;
+	Thu, 10 Jul 2025 08:58:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752137909; cv=none; b=pVApCaze+fAWRkxph4OhrrratOsKaVWI/7HiQAwopzTbHL7J1VK/wJ5febuYvtZHO7YogxxpNj6DhXYxZ0AYtS3RjaJrlCC0NywlAEN8ULxzJUnnV8mkv82uj0i9N63oiQhtxgk2pgf2suK4OhV7pbtUq0U23POCfM9XaMArSEY=
+	t=1752137936; cv=none; b=tdvutXYphvybbYvs95uKuiGtRXfbECqUxfp3a8nuvnxWN08mh27auNopFS6cWFNeAjy4ZmO+J9xI1dlEEKacyUL1qfS/p6daaAfqKNfPpE2bhXosmTB84E+GcSi3RRC97ekr7MVwYIHQFvn/Q3L+EVOkfQX46cDhAKrpSf/MfyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752137909; c=relaxed/simple;
-	bh=rbhhgm0mzzYRhk7iKypZV4vkGP7IKSBeOXegRqSG3Nc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=H0eez1/QCqMSVcL7GIWBux+AL9uEQQQaAlRJdh2p5L01touenNAnAOSoThlmVMXF/TlKVouA4cH3mpQtiN2/Ge6/U2ZKbJrnShw3gKt5KGX9r+cF/leH6dgi6ZM3tFD7A9ujiHVJ0ka0+UNZyugQW2QYw/coOc8CMDKvs4AZu0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ab6/0p0c; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3b39c46e1cfso106421f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 01:58:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752137905; x=1752742705; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AFGcDq9X9d1S3/rYRs3p2USqJvjKS3vZk8Rfjbj4Ks4=;
-        b=Ab6/0p0cZ/ZYcvJIDWUkBAuEYvZFaatoCsQhfjpkjHeXlrDRSM7Xjski19w/Oj+BqT
-         dmhlM8APqugw+XH5ziY2QjNsND9l4JjZACzik8yzsquW2PSn9I9rbPpEcjk1E9FtZWIA
-         SlVIpvaqPtxrSksPdj0kFE+17R72SC7rMVL02SuFZUaBa5/RyUgWFKeNS8PAE4IozCqV
-         vUbbqTs1g4ULWXAG0Qdcpv9OfdTugjQRvrq8DKcmP7ULJbR+5P3+fW2eRoQ4PEgWMuyY
-         ZkOo7bGYDSqqqJ389UQUPqxXWK/fybyKwfddsJ68ihBO3fBLi3n4d2A6Feon8QFuoXQf
-         24HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752137905; x=1752742705;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AFGcDq9X9d1S3/rYRs3p2USqJvjKS3vZk8Rfjbj4Ks4=;
-        b=tMAd+OvZ6rEawoika+3sI1LMpAJj/1f8Git7pDLYuDPKwZkGvrodd8/VeYouj6pkVv
-         ycxhWhHuk102i4Wn8jwzFfdJrhHQ4fhxPGCSdjmNuPlg05IaOOWMDkve+LsgDwERgRfr
-         r/A5qxEaQjcMGWC7nn+Cjf9gk94TyFLyVAc2CWVaLDDxy7l/IPyj85/mKrtVql5UzfZb
-         beqgzkZkThEwoP1Ng/DtLohfS5a88g95cOczFx8Z4Qs6SFETyayrV57DCs6+3cYF2sDF
-         HSvzwgEG5L8ucOMQkg8E5bjkITJZWKZu+QNnjcRkvshlR46/hOT53bjOlK5JSd7rFxyT
-         i/MQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXNTUE3mFnlLRtosiQaNLwfs6aCm4Ci1DlvlARASLjWPiEj7Bn6F/j20tVUL8qZlE7mhXaVY2d4rFIR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9HlmXL8el+EHCix34T1mrnpqACPRsPODi5eqj8B/OCHvazO2C
-	6x4WWPdb2xEW5W1E8Gdmh6xMBnnf8VdVGKRnLNeXUDLABfRyAQk68Dm6jiFsxXlaCI4=
-X-Gm-Gg: ASbGncvunSA6DUtP86sqSITpvHfeghE1Am6ZHBYsewoCBgZ9ezaU/Yjxc0qOxP5YL71
-	fa+Bt4bPnU0ipyjBLEVwK2cqORErfuxCiq8if9sVmdY9UmY6pNto4KOJUufvgXvaBehXlpalryH
-	4+NDlyo8JgyuzZQF69uP23ghwS9gSeCxjBwLJELOaamgO2nJvx8OOF/UUEQIfTddRoLZCJIXz1d
-	dogToOyHr8nc0TAeDY1jBeIrXZuVLuDGS9LmD2CusGGrH9ZTy8aYb5/tAD2S8AgSAxffQiptvHZ
-	jP38/BEqVOsJA+K3y4scU0hlATz1of1nhLEQwWz6aHDZTP19FRQVj5k6U1JkRAQdlwoZX06gNtU
-	=
-X-Google-Smtp-Source: AGHT+IGcF8p+1kAeeqUtTkgwKXgn6mbF97E2/bYy8J5UhMbcz5BE39eu+vDCag+9znaVA+I+mpt5CA==
-X-Received: by 2002:a05:600c:3e0f:b0:43e:94fa:4aef with SMTP id 5b1f17b1804b1-454d541463bmr21300385e9.8.1752137904953;
-        Thu, 10 Jul 2025 01:58:24 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.222.89])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454dd47543asm13248225e9.15.2025.07.10.01.58.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jul 2025 01:58:24 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] docs: dt: submitting-patches: Avoid 'schema' in subject and add an example
-Date: Thu, 10 Jul 2025 10:58:15 +0200
-Message-ID: <20250710085814.21810-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1752137936; c=relaxed/simple;
+	bh=UXD9GeP4baw6LpE0sxH7fdcWy6NpmrP6SBauhZSFCwI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=jk2phoPhnXKv2hKiZ01Js8lQaV7InTyu2Ph1IEJKTfOaQzCfwOSnqqmbDuSAmnpB/CB4MH7iE4b3xvjfReX0o+hNEERNaW9mHLbJq3YiJpgNDSeSVO6fDfLjJtFWnQ6HVchjXEES8d6PFiBI2VLevstg1GDkZ3+juWMFxyNUKAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WY9uea4B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CB4EC4CEE3;
+	Thu, 10 Jul 2025 08:58:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752137935;
+	bh=UXD9GeP4baw6LpE0sxH7fdcWy6NpmrP6SBauhZSFCwI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=WY9uea4BBapdijQgutJGxA0KKLQUMSMX8ZusOd4aFjmIMprA/Y6jRnG3vWD4XzMue
+	 t0w6+/mITal5omfRZ2uyr3ijjY+5RcnR+Bh/2Ei8sXLHppyre9QZ4Be+EJQGuOuv9x
+	 gQoc+nz5ojAq3aXVi0ZsArCQd9PP2eVrvNqMb6NiPzxnWdjPPLK4X2+42B5OjWnJcN
+	 fB7vv+2fB3JLYqtwn2wNIb07hjL1eF14kDvMJ1ztxb+iW4CCNeqmaPzTf6kTZQ7Ije
+	 /+IBfTUvenBC8MZGa3mtMknlp5ED4tr9oY8fPCGiyeBDZHNFbsorb0FcEesbn/fPSa
+	 Lq2U4m0Zk8tfA==
+From: Lee Jones <lee@kernel.org>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Julien Panis <jpanis@baylibre.com>, Michael Walle <mwalle@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org
+In-Reply-To: <20250613114518.1772109-1-mwalle@kernel.org>
+References: <20250613114518.1772109-1-mwalle@kernel.org>
+Subject: Re: (subset) [PATCH v2 0/7] mfd: tps6594: Add TI TPS652G1 support
+Message-Id: <175213793326.1429296.9106240987537536987.b4-ty@kernel.org>
+Date: Thu, 10 Jul 2025 09:58:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1577; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=rbhhgm0mzzYRhk7iKypZV4vkGP7IKSBeOXegRqSG3Nc=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBob4CmxqyCTItfrNqR2TfTiSqCnuLODTEiTFqQZ
- DOp8B7dPguJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaG+ApgAKCRDBN2bmhouD
- 1wXUD/9jbnLNFo5DR1vaPBVCZC2y3AN0nwILD45Z8ErPWmxWkPAthGPxqOLIrR2VgtFP3LhcFc4
- z2U2MScFup9bE+4AU6o1Nx99sLvegsB+B8zu8K4k+rGC4GoXDLIYChG4BbpM7jjXb9FAdFVSIFV
- CqmnRG+60jeJwSjSR5BJlBksxU3cSpzag1pW4Y2U+hpcnzgh1k00ThMCamQ6CuUK9PHS4S+3mZ0
- 1YaguuLvsETiVvxmtLlrewJ/WbGXJBwoNnN94n3uQW3E/9HYYQldXTyGHT4gcxPokFRHq+mEBtU
- 4dUFvgiSGpJWebQDh01/ULAqmlluevyG1h5NoXPdzMG+Irouc04FxZ+HwgMh0hTsqM0WpEMbxrB
- eLprM4Dsn5mAMurO7dQlnUjIZkbKZpvenwLEGwHfV7J/B5AQoIyfdHu/gbOBl9cyu4ZU0NUQ7Ua
- KPt4PQvMAui93csoYWIoV28giEA7HanPChNQvol7PE+jN+l+ZbC9bWJNc8etfqajMfY8+d39IRn
- zbT2fueaFdB88tZu91CWhplqmaaOiRC9NhKFXfUr8/FOadwjIPWEPwbuEawADbFJXNBIzCpkTyX
- jq0WvKPJLZlKRL65MGP44zJz8pbq9mrDYD7/hs62sbxHNP0JVKzv9W9Te2wMxeYIfinYXS+yys6 XWfv3OsQaGf4lug==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-c81fc
 
-Subjects should avoid also 'schema' keyword, because all bindings are
-supposed to be in DT schema format.  Effectively people get confused
-that subject should not contain anything else than device name after the
-prefix, so add a recommended example.
+On Fri, 13 Jun 2025 13:45:11 +0200, Michael Walle wrote:
+> Add support for the TI TPS652G1 PMIC which is a stripped down
+> version of the TPS65224. Support for the latter has already been
+> merged. Refactor the regulator driver to ease adding new devices.
+> After doing that adding the TPS652G1 variant is really straight
+> forward. Some care has to be taken by the interrupt handling (of the
+> regulator part) because there interrupts are used for voltage
+> monitoring which this variant doesn't have.
+> 
+> [...]
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/submitting-patches.rst | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Applied, thanks!
 
-diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
-index f3e23e69a638..bf32b784cb82 100644
---- a/Documentation/devicetree/bindings/submitting-patches.rst
-+++ b/Documentation/devicetree/bindings/submitting-patches.rst
-@@ -21,8 +21,12 @@ I. For patch submitters
-        "<binding dir>: dt-bindings: ..."
- 
-      The 80 characters of the subject are precious. It is recommended to not
--     use "Documentation" or "doc" because that is implied. All bindings are
--     docs. Repeating "binding" again should also be avoided.
-+     use "Documentation", "doc" or "schema" because that is implied. All
-+     bindings are docs and all new bindings are supposed to be in Devicetree
-+     schema format.  Repeating "binding" again should also be avoided, so for
-+     a new device it is often enough for example::
-+
-+       "dt-bindings: iio: adc: Add ROHM BD79100G"
- 
-   2) DT binding files are written in DT schema format using json-schema
-      vocabulary and YAML file format. The DT binding files must pass validation
--- 
-2.43.0
+[1/7] mfd: tps6594: Add TI TPS652G1 support
+      commit: 626bb0a45584d544d84eab909795ccb355062bcc
+[2/7] misc: tps6594-pfsm: Add TI TPS652G1 PMIC PFSM
+      commit: 9cba6a7ebf65c603b80c0b3c7fa8c7c03f1b704c
+[3/7] pinctrl: pinctrl-tps6594: Add TPS652G1 PMIC pinctrl and GPIO
+      commit: f6420de1c810e282c34de65c70e6cc6177c12394
+
+--
+Lee Jones [李琼斯]
 
 
