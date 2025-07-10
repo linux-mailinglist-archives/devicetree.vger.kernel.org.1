@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-194813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6735AFFA20
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:51:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF2CAFFA24
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:52:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B41121891301
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 06:51:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C85B04A83F5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 06:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01417287274;
-	Thu, 10 Jul 2025 06:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C7227F018;
+	Thu, 10 Jul 2025 06:52:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WJpoT+kZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gbzurl2Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB0C230BE1;
-	Thu, 10 Jul 2025 06:50:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B178DDC1;
+	Thu, 10 Jul 2025 06:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752130246; cv=none; b=K3KB1j40H5uLjr2IQ/rUEi2DtOamNVclz3a9nICpK6Bwf5LjRZ/Ia3nfTDsjqgQhedsLXc6BBfZNFvOq7Leo81u0e0A5Hap62x8YtQl1NnrAxgI7QygTOaPZLQTMZ+WVqk4OcGTjRnotUTIaMkWrmCTxP2Sk6LP9GzaXeIixCAw=
+	t=1752130326; cv=none; b=bI7NhmBcrbf+96vS/TJTpEOhc43p5B7NHyEbQWKUpdteGv00XzOY0WT2FIQ39KmWDI/b2U67lka1OH+kvHZXr/o+0r9fe0LfWl8bQ+nhue0T+a3dbgEr53pIrsp7oIGW+rbURmKo5t2elkvrDyMDdXrvmGRo249l6/CUyRMkLrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752130246; c=relaxed/simple;
-	bh=aywrXs9U3oANEUISdCT7RgnHzNLcqV6QiWDf3VAO3NM=;
+	s=arc-20240116; t=1752130326; c=relaxed/simple;
+	bh=dC2IcPrWVLFhi42ID/OGRICAdfJQWedQvGLPkTPrwvg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pVoumySL8+MM4Dl9cPcy00PIWa2lqtFwhERSOPTBDI7IOIh6dDe/xSp8Gf4gZakf9peUnd+I+kxjfBjrSGQhd96Qall5fXzjO1ZdBkPRXzBeKwWu/TtcrWl04EIwswKdIoQ5racVrXyJFUiI7mV9B12m4CSujV0Jd4OM7r/OPcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WJpoT+kZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12ECCC4CEF6;
-	Thu, 10 Jul 2025 06:50:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OJwKZCLCjrysKAn3coBVzOTPryMJfR6Y1OoqEZoN4DDbQ/Qjsm7/qRcLj3im8CNI1XbVVENrCMIRakV3spLGjmXEyS+MvpM5H912yh2tsnWqqGKCZPNr2irbX6qkzyn3n9815kvy29d2Cc/9iNtKWNMdssxnlakYmKpzgT8vwxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gbzurl2Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9D5EC4CEE3;
+	Thu, 10 Jul 2025 06:52:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752130246;
-	bh=aywrXs9U3oANEUISdCT7RgnHzNLcqV6QiWDf3VAO3NM=;
+	s=k20201202; t=1752130325;
+	bh=dC2IcPrWVLFhi42ID/OGRICAdfJQWedQvGLPkTPrwvg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WJpoT+kZ/y/2m0hnj0MtGAa1QVa0yDw2OBT1UOHt6TaKMfUPq8mQOmFQj1KhVtuTA
-	 E0xn0IQpkJfynxjjwpQZpu8GNL2ZOgIUB3hnZq3SCkf8uHxwUtXOnbVevct+eo3PwW
-	 ofsvVAPIKwgrMcwLyGEdOTH3as1kuFH/AcshYh3L548MdQ2Q/KJW+S+rjmmIV61iL6
-	 IIlI8BjwtHek0P+gxWo+pL+4bvgulIMuqtI18UH726Odeonf1CuQrRfnvtCe0nnP5A
-	 Pjmy3TC+rCnNQpNfD1GmBxu3zfojal8WIoxVFTnzWUM0l83CRJ5+LK88sAa3l7PkTN
-	 gBxCEJTMxL3jA==
-Message-ID: <9b503f65-5c8c-4f04-a1b1-40d7a1202e8b@kernel.org>
-Date: Thu, 10 Jul 2025 08:50:42 +0200
+	b=Gbzurl2YGrIoY+bLZTrjAKZtk0B4X3jQSOoZk2FAg6gKCUpgHIwCAZcK8/mZMN52o
+	 4qFq3WZi+goDW5YEnQ9GrmFvK+n4+Aa+b1cflUG5tEty5QuhASCOUNsK+C5gVmgjg3
+	 SGkI5wew66L9xhgnVMQEsbd7VtkcokUDruJb9Ux1+ToJNySw9u2h7+JSNGnfHP1yNM
+	 YYsHX5TCsBHm696lW5AbNk8wMdKnVY7KoFhQd7MmYr+6MpZ65/2LYVD/34TrCj1TOj
+	 YOLoq0ZIqowg1eYwQpc1wuoD+rE9cepK0RHPzXFSgbYLk8Lt77wrTOts4IeA9CgVx0
+	 HRe1eepsX49tQ==
+Message-ID: <b495f928-b90f-4061-a224-9b6beb690951@kernel.org>
+Date: Thu, 10 Jul 2025 08:52:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for Variscite
+Subject: Re: [PATCH v2 2/3] arm64: dts: ti: Add support for Variscite
  VAR-SOM-AM62P
 To: Stefano Radaelli <stefano.radaelli21@gmail.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
@@ -59,7 +59,7 @@ Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
 References: <20250709220714.85697-1-stefano.radaelli21@gmail.com>
- <20250709220714.85697-2-stefano.radaelli21@gmail.com>
+ <20250709220714.85697-3-stefano.radaelli21@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,39 +105,51 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250709220714.85697-2-stefano.radaelli21@gmail.com>
+In-Reply-To: <20250709220714.85697-3-stefano.radaelli21@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 10/07/2025 00:07, Stefano Radaelli wrote:
-> Add devicetree bindings for Variscite VAR-SOM-AM62P System on Module
-> and its carrier boards.
-> 
-> Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
-> ---
-> v2:
->  - Add symphony carrier board compatible
-> 
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> index bf6003d8fb76..780fbb5970a5 100644
-> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> @@ -100,6 +100,12 @@ properties:
->            - const: toradex,verdin-am62p          # Verdin AM62P Module
->            - const: ti,am62p5
->  
-> +      - description: K3 AM62P5 SoC Variscite SOM and Carrier Boards
-> +        items:
-> +          - const: variscite,am62p-var-som-symphony
+> +&main_spi0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spi0>;
+> +	ti,pindir-d0-out-d1-in;
+> +
+> +	/* Resistive touch controller */
 
-This is named reversed. Usually Variscite names are var-som-foo and:
-https://www.variscite.com/product/system-on-module-som/cortex-a53-krait/var-som-am62p-ti-sitara-am62px/
+Drop comment, it should be redundant with proper node naming.
 
-confirms this, so the compatibles should be var-som-am62p.
+> +	ads7846@0 {
 
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +		compatible = "ti,ads7846";
+> +		reg = <0>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_restouch>;
+> +		interrupt-parent = <&main_gpio0>;
+> +		interrupts = <48 IRQ_TYPE_EDGE_FALLING>;
+> +		spi-max-frequency = <1500000>;
+> +		pendown-gpio = <&main_gpio0 48 GPIO_ACTIVE_LOW>;
+> +		ti,x-min = /bits/ 16 <125>;
+> +		ti,x-max = /bits/ 16 <4008>;
+> +		ti,y-min = /bits/ 16 <282>;
+> +		ti,y-max = /bits/ 16 <3864>;
+> +		ti,x-plate-ohms = /bits/ 16 <180>;
+> +		ti,pressure-max = /bits/ 16 <255>;
+> +		ti,debounce-max = /bits/ 16 <10>;
+> +		ti,debounce-tol = /bits/ 16 <3>;
+> +		ti,debounce-rep = /bits/ 16 <1>;
+> +		ti,settle-delay-usec = /bits/ 16 <150>;
+> +		ti,keep-vref-on;
+> +		wakeup-source;
+> +		status = "okay";
+
+Why? Is it disabled anywhere?
 
 
 Best regards,
