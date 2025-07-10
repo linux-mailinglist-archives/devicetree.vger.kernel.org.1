@@ -1,118 +1,98 @@
-Return-Path: <devicetree+bounces-194932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D14FAFFE92
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:57:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2108AFFEA2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 12:00:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D2FB1BC547A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:58:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A797B3AE7B0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A63B2D5402;
-	Thu, 10 Jul 2025 09:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A54542D3EE8;
+	Thu, 10 Jul 2025 10:00:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VG5AImNd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZgH9rSM8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFCD1E505;
-	Thu, 10 Jul 2025 09:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A2A21D3CC;
+	Thu, 10 Jul 2025 10:00:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752141469; cv=none; b=gQz/wgLQasi1t/dVoVKR8WZr2XKGNxmd1wJ3iuQFNB8un4P0EHs/BrcanDE6A4fKtA4/hryhPOFlyoCmxGrRBu74nTKonu2JuPO7Z39Z1SgaOwnuDdneNhuQr4IZAuwhm21l02sCocPx+Dx2BicsLwM9L08/E7iP7giKC3/rAqU=
+	t=1752141618; cv=none; b=opgDY7qnRgR8dnG+VOUII6dwwu8vlTWoZ/hG/wpLJg4I627h6Ok4o7HNa4fwS1WRuZ00pOkQ4JQmbgOWy2bLdD7vTEYnJC2w29wt13RAepc9VaI2l9WSP6gfYWJ/xr3qVw/CJE4OrXPOgtmOG2v0MzpAOsVEK1vZz7g/V7DkCww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752141469; c=relaxed/simple;
-	bh=/yShGNEk9UTX6Yk2kGn6nqjCpqsXL4VZjFrHyVgaYm4=;
+	s=arc-20240116; t=1752141618; c=relaxed/simple;
+	bh=/HypvwY9siG+NKlMHRL055oVGuG8EQyAhL0pCkMlU9w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mekUTC0MNovBkux1h3sPbQWvNVRWr3SBBlfgPT+3DwbFmozXxdtmYa7NQvczIO7oPzrXZzUg6Bfk8DkMMkC+59qexk7Lh3kojcCgCbcg4s/NaAfyUIX/QmlFLAA1gIHf9HZDiNkZRnbgfFhn0rA4ufajGM/+X9qfaHnQQvXYgy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VG5AImNd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6018EC4CEE3;
-	Thu, 10 Jul 2025 09:57:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=K22rLD1prwSyxzKJn0UHw28ahdCyfrEjIr11q8wuIZBZFT6zpuN6lSGC7R8jmiRfZfoX1q4a2g2gCMAwwO5ERJ8daJl0KbB24QUaHSbq37RCfYU6IXL0yx2YRWaBNqoSYfJn6fgl1oRJ0uPikS/BK6rLgBIbOzkzjAJYmtA/TiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZgH9rSM8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D5E8C4CEE3;
+	Thu, 10 Jul 2025 10:00:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752141468;
-	bh=/yShGNEk9UTX6Yk2kGn6nqjCpqsXL4VZjFrHyVgaYm4=;
+	s=k20201202; t=1752141618;
+	bh=/HypvwY9siG+NKlMHRL055oVGuG8EQyAhL0pCkMlU9w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VG5AImNdHgSpHCOVk0DfMNni9YbQ7Amu1qdb3FUm4YG16wlEzTEkZ9an+o6vZs4Vc
-	 zN3V8JGFv8zzcwjl9K/n7wOf0FCXrT4zHWjE9r3SCF2Q4nfNwZdK9dcvFtCCxnNNYq
-	 /IkD1cjm8sjKIDW75jM7zlBr8X4/n92ANMREebshxAw9Lfmn9y+ZPrrg7Sgnx22RMm
-	 6erzy7aKMWqTlq4l+h6NZ6DHtV9iJ+E4SSN2KjY6h19EUCVcZc8LV9IQ5SE7HAZ1SO
-	 heNdIY2jrx/VJQ+6mZSnw/4+flNyFjFR+kep1MxireRU515/4x3sCg6Hgpauq5hCC+
-	 ZEgtj+EZfRw/A==
-Date: Thu, 10 Jul 2025 10:57:45 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Michael Walle <mwalle@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Julien Panis <jpanis@baylibre.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [GIT PULL] Immutable branch between MFD, Misc and Pinctrl due
- for the v6.17 merge window
-Message-ID: <aG-OmSNn-oULfEuB@finisterre.sirena.org.uk>
-References: <20250613114518.1772109-1-mwalle@kernel.org>
- <20250710094906.GG1431498@google.com>
+	b=ZgH9rSM81IICt1fB+Gh/KefdOe2vZUM//WOoytGXZsskl2aiuW1jIeRJfvP0KjO+Q
+	 NkUt7ktYbiCbpa9n3Qy7LnDxSOWciCUeFd7uKgWF3G3IVvNtAXKLUHJL6wxXKq35Wf
+	 BiL4LSHtwl8epTKBM5gIiEeb4PfJWxkiOb8uhS5B7YrRrO7M0Fw6s32XaMCWCyL5Nr
+	 dQ/2uAbrLwrcGcocnQb2ts39mNR46wgqefgY1v2szbMvMBP9F9XilkKrFVecZGkE+r
+	 RtN1otoRzuZD3zXw2CeDpsXtITGj5ETnBG96r7vxprVxcZ4LcMeOxLm9+iclboSwW/
+	 AtkVHqx13nI0w==
+Date: Thu, 10 Jul 2025 12:00:15 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: =?utf-8?B?w4FsdmFybyBGZXJuw6FuZGV6?= Rojas <noltari@gmail.com>
+Cc: jdelvare@suse.com, linux@roeck-us.net, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: hwmon: Add Microchip EMC2101 support
+Message-ID: <20250710-rare-realistic-fox-381781@krzk-bin>
+References: <20250709164829.3072944-1-noltari@gmail.com>
+ <20250709164829.3072944-3-noltari@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6GuKZvfhqR+w1mQg"
-Content-Disposition: inline
-In-Reply-To: <20250710094906.GG1431498@google.com>
-X-Cookie: Do not cut switchbacks.
-
-
---6GuKZvfhqR+w1mQg
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250709164829.3072944-3-noltari@gmail.com>
 
-On Thu, Jul 10, 2025 at 10:49:06AM +0100, Lee Jones wrote:
-> Enjoy!
+On Wed, Jul 09, 2025 at 06:48:28PM +0200, =C3=81lvaro Fern=C3=A1ndez Rojas =
+wrote:
+> Introduce yaml schema for Microchip emc2101 pwm fan controller with
+> temperature monitoring.
 >=20
-> The following changes since commit 19272b37aa4f83ca52bdf9c16d5d81bdd13544=
-94:
->=20
->   Linux 6.16-rc1 (2025-06-08 13:44:43 -0700)
->=20
-> are available in the Git repository at:
->=20
->   git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-misc-p=
-inctrl-v6.17
->=20
-> for you to fetch changes up to d90171bc2e5f69c038d1807e6f64fba3d1ad6bee:
->=20
->   dt-bindings: mfd: ti,tps6594: Add TI TPS652G1 PMIC (2025-07-10 10:40:21=
- +0100)
->=20
-> ----------------------------------------------------------------
-> Immutable branch between MFD, Misc and Pinctrl due for the v6.17 merge wi=
-ndow
+> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+> ---
 
-Is there some reason you didn't also pick up the regulator patches?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
---6GuKZvfhqR+w1mQg
-Content-Type: application/pgp-signature; name="signature.asc"
+<form letter>
+This is an automated instruction, just in case, because many review
+tags are being ignored. If you know the process, just skip it entirely
+(please do not feel offended by me posting it here - no bad intentions
+intended, no patronizing, I just want to avoid wasted efforts). If you
+do not know the process, here is a short explanation:
 
------BEGIN PGP SIGNATURE-----
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here ('b4 trailers -u ...').
+However, there's no need to repost patches *only* to add the tags. The
+upstream maintainer will do that for tags received on the version they
+apply.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhvjpgACgkQJNaLcl1U
-h9Cu4Qf8DFPE3vhnDpfdDE56jxlkyTLPsMOlk+NoUpDXZxF9WTZ41iXIs0A4QOiA
-RqST4Kh9fYJeE+hzkJ2a9LDniBmvCyBMUritQ5uHW75LXYt6EBO85xSmvZQwH1q5
-CaLWDsN9lv5C6XcUJLEiIaX2VuhemrCfR+CI9zyfkQHFb6wti9nUv6W062U0qZPk
-5z5mfMAmlYhEJFQ08ofdAsv7HVxkpAI+WL0xyE5s4/X8XkY5AE2FtUzNd/Jnd/do
-JoUwktNigqdcQGt2XX65PhkkzPXvKiHehGwE8pWBQXLnBcLP694yE6cgE56OD9sq
-Oxo/c4xjQpTcimdQydnPx5vAtUJ/qw==
-=qm/y
------END PGP SIGNATURE-----
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitt=
+ing-patches.rst#L591
+</form letter>
 
---6GuKZvfhqR+w1mQg--
+Best regards,
+Krzysztof
+
 
