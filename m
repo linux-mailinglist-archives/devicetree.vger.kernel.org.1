@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-194905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D09BAFFE01
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:25:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25178AFFE0C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:27:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D62FF16641B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:25:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24E1B1C26DE5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50F06291C2E;
-	Thu, 10 Jul 2025 09:24:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="beM95PWF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8953F295DB4;
+	Thu, 10 Jul 2025 09:27:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20A6E220F32;
-	Thu, 10 Jul 2025 09:24:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B334A0C;
+	Thu, 10 Jul 2025 09:27:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752139496; cv=none; b=LDduIhkvv0DHGC4y8y0KDEHWudwdTQobCsphzr7ZgYysBBUoBbq/SCZKPFxrNFP3xOvQiCp+3b97YtMBvtqZXxsEUKQqBCjnOa5ffXWM3Za4C8/KdADMoLOy5Ku6wTxT5swEERb+kFoiGR75eNjWgGSn8ldB+37s7YevNPco0MI=
+	t=1752139644; cv=none; b=ugJgzogKjnyU5WaoihbYacZlrk3/KN0Nvmgnys8JlodPQmLrWMKz4e4lM5yv0W1kuHj6tGZK8GBiKZMf4LGJqNlKDZ1Rcm0kjtb6wiP1oeAeS8SzAmCVWKesxEsx7JMDwKB+mCAzWVnpPw1ll6QQNpmcVtPRkz5kso/C42VCuxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752139496; c=relaxed/simple;
-	bh=/45peu3NvT7yg087IQ10UDKJ5n9K7DKeEA4oRGGZWNs=;
+	s=arc-20240116; t=1752139644; c=relaxed/simple;
+	bh=h+I4PESBExTwFLSyj1x6avtCbIxfti7hBaT17gq0P4c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cb8xeyt0RqnYWZmPIrZYN6H4VwXT5wl5sMP8bKQQTQBH7X4FEemcg9dwQI9g2dr3BRNTFn73uc0TfqH9aGDIFO0Wf2hOCogVkMxBAzazET77ZgLHycq3sF90inxmZZGQqiZsD8bOI2dC7So6ksH3qtjqFIh97rychZmuKe78yqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=beM95PWF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 342BCC4CEE3;
-	Thu, 10 Jul 2025 09:24:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752139495;
-	bh=/45peu3NvT7yg087IQ10UDKJ5n9K7DKeEA4oRGGZWNs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=beM95PWFxm2r486Twz81PQr1zgS6iAhoqDAROgBDSunXl2Jk6Xvp0H+VJRCHzyHQo
-	 M/c4RCCLAP2NCCfTSNLWmshbUligbKhEOSp2/fCNFybUXute9W1QUmHtRfKgl27hCx
-	 IUKVxDp4wmeG2KRc3OHddX1vmyOO7plwaMEo6GGBohhBqtRHjnOvANs4aEnki1HvwI
-	 hxyZ+WzH2wI6/L3ed2aw1ufFFH1T7eta+t47f1IjNSdwxdoWaPyMFSvzDEqdFNS7ZO
-	 Q4S2W7aZIz9K2WvKFfUeJBZvhP19jpJEySqYllU57zaABJMag+g19Ngw4yOyGn5+z+
-	 DgLlLSkPv8F7g==
-Date: Thu, 10 Jul 2025 10:24:48 +0100
-From: Lee Jones <lee@kernel.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, alexandre.belloni@bootlin.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mat.jonczyk@o2.pl, dlan@gentoo.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	troymitchell988@gmail.com, guodong@riscstar.com,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	 Content-Type:Content-Disposition:In-Reply-To; b=uET4vsm5dWRRlZQgqYfvdoaus/pdVcPaIlMr8Y68eeDWlZhRYhBZrAlybcYbUr6ilg41UQD1R2PEHgQL0oqHAP4aITvOzTv+C5dQaeqga5w3Sisfmq7v6uYTB2qy8DhvJ5LLwcTLCsbo3KhoszmnmlftqsS4AUiaO4RoWzh1/pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=15.184.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
+X-QQ-mid: esmtpsz10t1752139574t2e477d4c
+X-QQ-Originating-IP: fVANaU33qzx/j+OxAgI6zbPV9xjAYtm3YAX+hwq3ekA=
+Received: from localhost ( [183.17.231.23])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 10 Jul 2025 17:26:13 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 13541076069648255284
+EX-QQ-RecipientCnt: 14
+Date: Thu, 10 Jul 2025 17:26:12 +0800
+From: Nick Li <nick.li@foursemi.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
+	tiwai@suse.com, xiaoming.yang@foursemi.com,
+	danyang.zheng@foursemi.com, like.xy@foxmail.com,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/8] mfd: simple-mfd-i2c: specify max_register
-Message-ID: <20250710092448.GA1431498@google.com>
-References: <20250702213658.545163-1-elder@riscstar.com>
- <20250702213658.545163-3-elder@riscstar.com>
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: Add schema for FS2104/5S audio
+ amplifiers
+Message-ID: <BCEA350532C6759B+aG-HNOXmswyEHs2v@foursemi.com>
+References: <20250703035639.7252-1-nick.li@foursemi.com>
+ <20250708112901.25228-1-nick.li@foursemi.com>
+ <20250708112901.25228-3-nick.li@foursemi.com>
+ <20250709-invisible-frigatebird-of-felicity-7e87c4@krzk-bin>
+ <BD2D8A14FDC941B8+aG91lowfru0KiWWW@foursemi.com>
+ <3bb34074-8ce0-4f0e-b7c7-1d77a8cd6ea3@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,90 +64,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250702213658.545163-3-elder@riscstar.com>
+In-Reply-To: <3bb34074-8ce0-4f0e-b7c7-1d77a8cd6ea3@kernel.org>
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: NkGXhzp6HyG+sxMnQkNrON5aauU0WL52mGuy5/1yrfmyfuULqTUUMOXR
+	nf5IghGFk9cLQ28EQWn8/uInMKn7yv+x5T5o4/U6cLnn6Lo7XpGCzTljrdWslCSXX9RTgRk
+	DhNCFKVoFq+pFMLg4MR0Oz6x7JqIpMe1azXkO77CPcqdZIXg4VHFBbyhMXf528YFtX1TYwh
+	taQdlpzz4p92tR+nwPwIJ8gJu7zg3veQ1+NC+ruOuAdVmZvLle00LtVM627UAN+lv5sfXpI
+	0rkV5vo/gVtEOEeFUBm7TttejWCsXBaIfax3fDWyNanorNz5SMiwNTTD4NrOafisZ+tiwER
+	E+u+7U16hv2cBpqj85wL1+/dAumCYQzgA+s/gibwH8bdKjaBYduXnL1ErCX0FSuwcwwwEKJ
+	ai37S/pUhrcoaGHEAP2cNO9bNWTSyJFUJNu1Fj19lTF4uedJQTCt+sjb3VUOQYhNDAtCf3R
+	3b7J2tW7IuXbqsoky5Gf+20uF/LCBMx/7QsxL1XBwgNUxqtasbIP3UdUYk7BCw1ELsDsvLB
+	c12XkHLoDLY1WN7wQzogvvBjialf5zV8ZWt3rnSSjaMRmJX7TVdcjNUNC8Gvk5XGW4HBL/z
+	ISJE/fccVBk0kToGZzlK3rC8Lye+XSIzamOUEeg8T1D6k5XcvaHXIwrS9lXzcVxhW6tvIRJ
+	Dze2am5XczG7zVDjFkTOKKWQsQdLxO32ZLHsnlr1CUOu0JzuavK7Ascnpf/NjAy2s895lJV
+	8XLKtPrimXJLduqJzJVDtuO3wu+dA7km4wGtHDPDpsTqOTBywuvTjwE97cVrKlT4tAMhtQp
+	XqKzPowl3tH6elm/5CU3Vvouk4Qr0B/4rgIHDKqaaVX1QXmw7nIdZSip/e9RNxgi0jIPBPY
+	WujG0gG62hp62USi98PN1mXN5aiLPgBOS6PYop9NWN9Pf7MOOEICFyq1LSq44b6sPC2ZVJJ
+	097VRwWGGCMKijFh5VK/Dlp7MaKUMVOVBrbhgFnSjFfN1HDo+BtU7NFwnQ9H1HgnCFi7KUI
+	mCONhcOgF3m3RKdzRvo9fXhgJ2HyycVPbHFmKskV6Nd1N9fYyOHtnP9ip0XjSuWn1sWKBa6
+	32NDplcEqRC
+X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
+X-QQ-RECHKSPAM: 0
 
-On Wed, 02 Jul 2025, Alex Elder wrote:
-
-> All devices supported by simple MFD use the same 8-bit register
-> 8-bit value regmap configuration.  There is an option available
-> for a device to specify a custom configuration, but no existing
-> device uses it.
+On Thu, Jul 10, 2025 at 10:27:59AM +0200, Krzysztof Kozlowski wrote:
+> On 10/07/2025 10:11, Nick Li wrote:
+> >>> +
+> >>> +required:
+> >>> +  - compatible
+> >>> +  - reg
+> >>> +  - reset-gpios
+> >>> +  - firmware-name
+> >>> +  - '#sound-dai-cells'
+> >>
+> >> Keep the same order as in list of properties. OTOH, missing supplies.
+> > 
+> > OK, we will fix the order, but the supplies may not be used as regulator,
 > 
-> Rather than specify a "full" regmap configuration to use this
-> option, Lee Jones suggested allowing just the max_register value
-> to be specified in the simple_mfd_data structure.
+> Hm? What does it mean in terms of hardware?
 > 
-> Signed-off-by: Alex Elder <elder@riscstar.com>
-> Suggested-by: Lee Jones <lee@kernel.org>
-> ---
-> v2: - Allow max_register *and* regmap_config to be supplied
+> > we mark them as required, is it OK?
 > 
->  drivers/mfd/simple-mfd-i2c.c | 15 ++++++++++++---
->  drivers/mfd/simple-mfd-i2c.h |  1 +
->  2 files changed, 13 insertions(+), 3 deletions(-)
+> How codec driver can work without power?
+
+The power may be connected to the baterry/adapter directly,
+it may not be under the control of the software,
+in this case, the supplies are use as dummy regulators?
+
+Best regards,
+Nick
+
 > 
-> diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
-> index 22159913bea03..3f959f4f98261 100644
-> --- a/drivers/mfd/simple-mfd-i2c.c
-> +++ b/drivers/mfd/simple-mfd-i2c.c
-> @@ -33,16 +33,25 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2c)
->  {
->  	const struct simple_mfd_data *simple_mfd_data;
->  	const struct regmap_config *regmap_config;
-
-> +	struct regmap_config config;
-
-Why do we need another regmap_config?
-
-Can't we just remove the const and make use of the one above?
-
->  	struct regmap *regmap;
->  	int ret;
->  
->  	simple_mfd_data = device_get_match_data(&i2c->dev);
->  
->  	/* If no regmap_config is specified, use the default 8reg and 8val bits */
-> -	if (!simple_mfd_data || !simple_mfd_data->regmap_config)
-> +	if (simple_mfd_data) {
-> +		if (simple_mfd_data->regmap_config)
-> +			config = *simple_mfd_data->regmap_config;
-
-			regmap_config = simple_mfd_data->regmap_config;
-
-> +		else
-> +			config = regmap_config_8r_8v;
-
-			regmap_config = &regmap_config_8r_8v;
-> +
-> +		if (simple_mfd_data->max_register)
-> +			config.max_register = simple_mfd_data->max_register;
-> +		regmap_config = &config;
-> +	} else {
->  		regmap_config = &regmap_config_8r_8v;
-
-I suspect we don't need to have this line twice.
-
-Either re-jig the if () above (I suspect this explains the existing
-complexity [multiple conditions]) or pre-set regmap_config to
-regmap_config_8r_8v and only over-write it if the conditions are met.
-
-> -	else -		regmap_config = simple_mfd_data->regmap_config;
-> +	}
->  
->  	regmap = devm_regmap_init_i2c(i2c, regmap_config); if
->  	(IS_ERR(regmap)) diff --git a/drivers/mfd/simple-mfd-i2c.h
->  	b/drivers/mfd/simple-mfd-i2c.h index
->  	7cb2bdd347d97..706b6f53155ff 100644 ---
->  	a/drivers/mfd/simple-mfd-i2c.h +++
->  	b/drivers/mfd/simple-mfd-i2c.h @@ -27,6 +27,7 @@ struct
->  	simple_mfd_data { const struct regmap_config *regmap_config;
->  	const struct mfd_cell *mfd_cell; size_t mfd_cell_size; +
->  	unsigned int max_register; };
->  
->  #endif /* __MFD_SIMPLE_MFD_I2C_H */ -- 2.45.2
 > 
-
--- 
-Lee Jones [李琼斯]
+> Best regards,
+> Krzysztof
+> 
 
