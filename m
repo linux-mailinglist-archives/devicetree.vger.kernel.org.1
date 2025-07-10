@@ -1,220 +1,264 @@
-Return-Path: <devicetree+bounces-195097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54367B0075C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 17:44:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97BC3B0076C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 17:45:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D77733B6F92
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:40:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A41BE582DDC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:41:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1F0E277037;
-	Thu, 10 Jul 2025 15:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC8642749D1;
+	Thu, 10 Jul 2025 15:37:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="oDt3CBFZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cFfR0/cm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11012015.outbound.protection.outlook.com [52.101.71.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277FD274B33;
-	Thu, 10 Jul 2025 15:33:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752161598; cv=fail; b=PLb0/PQN4Rl9IdE/wCpZzjdgWmwEusbANYwsabRNknNwzTEP8oV7Oe4Xd6ScfNEMer+fPvP9wg/LVxWV50Svl5kw+PMvxRwzSHu0ZvlcJkLEooWQLXjiyJBFveNJF4NoVOH0m+V7toN1pqq8Ah8580Ammr/+4NK5vD+zKyxSfDI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752161598; c=relaxed/simple;
-	bh=DqJg6hXPEJstLrctYfeBUeZ+/CGVUlgS0+HollXB1vU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=pdBmVQEy3k7oI4E6slhz1h0t2Ar75psGTCkFumr8LedN2ZjdKNhvndldVrjmMPohyZFadGyMq5aIiezckh7gtEdvFU9qoQG6Yb7QI4ZZEKEgkwFQ4FwDgJ8wn1eFR46KywUoN1ZgrnzzbRi7v9wZcALGEY1HvxVcnkrkGR3qtI8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=oDt3CBFZ; arc=fail smtp.client-ip=52.101.71.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X3pKsqlEd0EpgRh6lpTTSfYSBvpA9ka9rFGaoAkd06xkm0lu/b7IYQ6V/nkAKF4Z+ezQkivyzPaOVO0ZLVVqKvZSaIaa+N7kP+FcvNlJEeLgxqAD+7gxIhw8KCzMm7UACm8PvzEQgGichL5urQ+MbTorhiCTjCHKB9ZT4zeYx/5kZNSE1frFXoUwhct+7K7AJ6kE0YjpfnDd9Bq2g266dNxCE3fdnVkBqss999GWqZdHkZJJMJUqEOSFuswprCbTaHZW7hpK4s1n71z+uEN9Yq/MUTCMm6a3vliL9YunhjTU5Ugnt5vka2BWzhgfj9qW1bIhs7SjRRkDEFY6ZawSTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AuTxwu4xty9p6t27whopZPjxkLn2qL+WIqfB8e8v1Bw=;
- b=cRxecToZLhv8EyfDOE8/YDNhxXIu2m/eFCGsK15P7PBvC4W5LGs6qs8ILmtDii52Vpf1ThFWo42TLHOUM0swqInBimqxvhXe2S7cEMVGpVeRZvWrbtESGxK0dZRtMyaLh13slBBwHKUbOU0Q2EuAGZMtM792UgXmKyUFub5MnByDi2sO0KnbNLexjkMVH50LMJ5qwxg+PffvnG9U5WGK5a5LTNYI/8DyGFy+ITmA7Mw8ihqKeHKcHkH88C+62Elw5Ac67CFFdBJjLrJgZ+mDVd8F0fTFfPWuxUYkX89JjoOQUKKPqsrJM6tOyVEuDZwRgF6POQyIafI/KyykKCb/rg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AuTxwu4xty9p6t27whopZPjxkLn2qL+WIqfB8e8v1Bw=;
- b=oDt3CBFZegyJhtkzdqmeqP42oboyWzuaCh+WoMDoSzzl9SdkVSzXVN4YMdus0IlGmSHwXD2kY1F2PzUvJ7XfrcUwykj+0Wy9wKTTq0aaiJIg5ryyNaYm7MBbe/j+U+ZR3bKvfeDhROXGKDWcEpEkR7mxYmbLw4BqToFG8L/MTG/GgFe+d9yxUuZ/txAc1iGiKl6apxEEAZRCg4rUsahF7bSw7VKHMLzDq+E1sZbKRenmMc2AGArZ45e9P40nk4fb4PkJcAlQLwLCqflgvzTyRgpae/wxSsKbfuA5Fgqg3rSnPUG4gJSAY2YEfUmoxKBNJ69oQVYvrcepHFqtVfYqLA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI0PR04MB10781.eurprd04.prod.outlook.com (2603:10a6:800:26c::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.26; Thu, 10 Jul
- 2025 15:33:13 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8901.023; Thu, 10 Jul 2025
- 15:33:13 +0000
-Date: Thu, 10 Jul 2025 11:33:07 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Primoz Fiser <primoz.fiser@norik.com>
-Cc: Haibo Chen <haibo.chen@nxp.com>, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-iio@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de, andrej.picej@norik.com
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: Add calibration
- properties
-Message-ID: <aG/dM1G30FDfd6hC@lizhi-Precision-Tower-5810>
-References: <20250710073905.1105417-1-primoz.fiser@norik.com>
- <20250710073905.1105417-2-primoz.fiser@norik.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250710073905.1105417-2-primoz.fiser@norik.com>
-X-ClientProxiedBy: AM0PR02CA0196.eurprd02.prod.outlook.com
- (2603:10a6:20b:28e::33) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C638927586F
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 15:37:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752161864; cv=none; b=ZeTVLJmU/yO0QsjzTlkHvE+OCCOefmBc2yX8J7SqYzsgqQWXE0S1AKB9FeqAT7DgR2cDvTUthPREHyR35DGcYAwZGy+1aHcisfDhbjqFL5OKOEr7vs8ORvqQZdMG9RFxCCF5IBfGRsz26nVKBuO6jFnI2NEbwJukSNbSALVW1C8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752161864; c=relaxed/simple;
+	bh=QwOQObB2pctndAzOHsW+e0d5hzIcqwrg+o1Xv3mv1Ck=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=qIB7SnwTD/BsfWfm8rpPbDhrwj1enWDOlH6kocVxj8qU4h5R+1RXjxFrmxho0GuQgVMnPIPhxDpdBSj29c92t+HS0cfRRVXzqSbxiuY62+0JLYy2ks7PlshhEdYmuwlu9iC8oUOnqEsCaxeJTrOeuDt3umvC53bP04cMZQUqO08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cFfR0/cm; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3ab112dea41so704326f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 08:37:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752161861; x=1752766661; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1GCMYIRIYYP0/PAurGhaaMN0CHgGvBkGkwVspybvVpo=;
+        b=cFfR0/cmJ5FwwMV4LCTX/c9A3wp/L+ANymfqAaVa8X0oyur3NMbaXYG2hNOlccUbQ3
+         nC88DrR6wGIOqZrqONe9VBhS7mdtlKrnnDY1uIOTRPD2GyfJaQdR19DpZD0YZ8gRBDIM
+         JXu6HmvoTUrO1CdA2hW113LWh39mZgwGkbYHPHn6GOQzB53DexyJc6oEEzD6O3B6opyw
+         AqCiL7N0OcgL09zMfdeU/ailbFvl7o+px+hNCnAnUMxL945CzST2FrxT+BqhBhnRuwra
+         1V2hopI13ukDL/b+yPgX7n2HM82BVMHdvDUqry489jf3Zmy3b+AdU8JT+2mmuhIYJEe/
+         Lo/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752161861; x=1752766661;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1GCMYIRIYYP0/PAurGhaaMN0CHgGvBkGkwVspybvVpo=;
+        b=wvicIrsAf3P9USl+CeBwnLC9OJ60f0qrM7XDz+szfruxiKgUoe1qUwuzVSk8f/hXvH
+         UYVo7ExGUcyPku8h4AsAs91yt0WAv+Dabegbhwo5wdvDPYh77NMOticp7STSLu5dfyDS
+         DXBvYVKAg04KJ0FMFcbZNYxQz5lrxO1MzsXJHI3xDZvBhRay9uJdRUvvjLuaIrdA4vf9
+         jky7bhyj/PF7QV48ybqPKaW5tJ/dko7bmC2yVG2pnr9ZRvY0QuuM7RUL8gOdUCa22XQQ
+         sjEOl2ucfMqAVTh0wuI4QwKnQYlrhkSIq3ca7wx/9ijEENbTgvYAGicoKQGx8MWVpUaJ
+         iSaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUvByrZ6jEVPIN5I0XM8L6jCgXiTc+cPcBWsFWzbh35CPUPBD7Co425J6oYBzSdcH8q72vBvaCZM8aM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/n5KFqmFfkVbzjL94JWSAKHkOGAFfBLj19Le31UIcDZvHTb45
+	bnE1dMO2EuI77ToQ9h/qM+DutmASRHYZkqtGJaTKEG7X5oCH+xgyuO2J+RUo7w8hpTQ=
+X-Gm-Gg: ASbGncsZY4nz4ljpKI2Fj0sMQTluW/JLKjUVo1dw4vNMYPr7ZglT1q+XkwreGs1qdMA
+	rawbpev0bVfdWk+EUt2SjMX9zFpL9hNCTEXuEEw4R/I5A6lz8m7CEzuLJv5WBp6MSbfoZv9pcDh
+	3gBzVsi8A3kmu4NgGZBg6DpQG/8h6p20ao9oYBV2NwWuzr6q5X8+1JGFlYdYwoMtsEmRd59zjwf
+	UBOKIfXVeEEGqyaL3oQ60UuFrjEzODArEc4qnwq64e66oh5L+cg/Up4Dp77HFVJgyg9MhmvLA/G
+	JCaKn7/syUP8FXIbAqM/wjoUv3hAUykCQjWIF6c2flXLzjv5VpJa7aFcdysijaDxDrA=
+X-Google-Smtp-Source: AGHT+IGw7DVfZ3GZxj+qHwr1y0PJneaT93zpwe7OGfPSm+0CYQeA+WTJUdUF6Ib1mvex15f2hc3lew==
+X-Received: by 2002:a05:6000:400e:b0:3aa:34f4:d437 with SMTP id ffacd0b85a97d-3b5e4529684mr5959353f8f.37.1752161861054;
+        Thu, 10 Jul 2025 08:37:41 -0700 (PDT)
+Received: from localhost ([2a00:2381:fd67:101:6c39:59e6:b76d:825])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454cdb549absm65784495e9.1.2025.07.10.08.37.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Jul 2025 08:37:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI0PR04MB10781:EE_
-X-MS-Office365-Filtering-Correlation-Id: d1a12265-f047-446d-5091-08ddbfc7150e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|19092799006|376014|7416014|52116014|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?c5DcHGn1hMN4yWgSsP8vxMMZn1PmnqyQuZR7R9qv6d8d0K92DCurTlpWeOEa?=
- =?us-ascii?Q?wXy8VwSjoKYnVfckVQUpj2v/KvKICk3w/Ns9h6IJqOAN2nXGZQhsTzPDplXh?=
- =?us-ascii?Q?i8oMIe4hlr3sGEWIq67L0l12H6OIAVKmYXAq34QcQh7gJD0BdoQC9kvy6POK?=
- =?us-ascii?Q?B9KB0zmcR5ksiRckdTn2bQlIlIam21nSRfzrpCcC61xM/nx+VqHRMe+eCqVT?=
- =?us-ascii?Q?1bFxnsRylKYqQLtMJy+SMsznucgIwSKCxONhkI+7TXnGefspEwaFL9552Afb?=
- =?us-ascii?Q?IMflsrAGu2yZKuFGqG+nI/bT/1lshEp3lHeo2t0g/vwNGTVvtaYbxOG0zynr?=
- =?us-ascii?Q?W535CHE/IiwRG7MsE3xK2wdoBr6+kX+q4KWWeoKcatLD4mHBzcnu2PwQEgUZ?=
- =?us-ascii?Q?UjzajArBScdUPdLA+g44GCD0fX3VLI21E5yrQzffY67jKuyzUtLsANVTatul?=
- =?us-ascii?Q?F1xD4nWVEJEAZ+coJfeMhiIIz9juRm4icWn0CAxi0RzFGzdNFr9B5IdhCPWq?=
- =?us-ascii?Q?xLODwXpZ+4ptnOz40NOIPb25FxM0icZUPv3cR+ULb/JdaeQ+sxcp8d9GYIna?=
- =?us-ascii?Q?WKa/B5FcTsk3wURmsLyzh4Cb5KFry8d+mT4EJXKOxV5BEDip+fk+Vsm+ipK6?=
- =?us-ascii?Q?xak5RaVfyPyjlAfMlhGPT5lnCNoZqw+uiGmcqQiEEedVUONibF4/vsLXz/yG?=
- =?us-ascii?Q?L5b7/ZKCEwWijc0bEC2olBT9w0y6tN1F3CbdZoRHZWE+k7/WLicRBkP6x5QJ?=
- =?us-ascii?Q?UX7aI3SGwekBXs/xgL7gA03pDp8YBomVWzl/fCm1SlCSmCuF1ZPh8P/0KH+E?=
- =?us-ascii?Q?ow4ISBH3B70g4ZyYUU3+mdSZ/ZOMwtEa4qMK5CxCt1tX2weegf7JhPpaV/gu?=
- =?us-ascii?Q?IsZecYTTI91dt+58MIb8M6MmOYuwgjRgFIk3sKzvGHoNeE/NiLMDAW34BZG1?=
- =?us-ascii?Q?MheTBdUWQd7+REKONrEFqAZ6adLBKLTe3fqln1wtEGF/GpYIA4K5O53fRTzg?=
- =?us-ascii?Q?iO0kCM95qxfxoD4FtoQHi62JGYbh4y53SY7eSa8VcjZQTuvxeCvcECwL8EIC?=
- =?us-ascii?Q?eezDKEwDZ0o0ogF4cImEAGm7ad54jO/EumL1azwl3VKHtcTPD+LIz+QIj/am?=
- =?us-ascii?Q?qdgYgUlLSL+RuGotm28yvZ20UV98Xy79umcjvcHwCTJY+NOBn2YoxS8PIO5g?=
- =?us-ascii?Q?X90eUCMAu+8J7t3pupx4x9h9r/iZWXrT8/O0j5lQO3xzbxjnG03JZbSOBSQy?=
- =?us-ascii?Q?JNMTsuNSgGYmGQitMRvequycXwvoCSl/NHfCYJPHeHH8zxw9du6iJn+Tb4Io?=
- =?us-ascii?Q?JFbOWo/vuPYzVeXsP0/P/DvOgPLWY1CUgCL5EVhs21NHnjw0Odae1W1CN/Rv?=
- =?us-ascii?Q?JD4V4g5rUAX6WV6q8Zmmybq/PxD1h9NDj+kUO6j3uBRoMoGHZROTE0s1BQak?=
- =?us-ascii?Q?rRgSf+ycGAW+H/jj33cRt4f8Zmb8BJkGQdynijIT4CF/tWg6wZlXLA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(376014)(7416014)(52116014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?NmQaC+aA67mLdc0e2kQLNCH8ur8PvBRk6ejmcS2lbakYoeLh6brkQxSiq0FP?=
- =?us-ascii?Q?mYcJ7bMDRx70ghxoTZOUxbMaYAMfM3u6NDU31SDb/H4fsB299EpE2apEYkSd?=
- =?us-ascii?Q?NtAhmH7M/PCK1gIPfbFapPO9plPujYWh5MZCTSA9UILbyC/zZmPgEaRgGIxv?=
- =?us-ascii?Q?w+nqNFiZ5GQVXza4h1fCyb4df28SPCMZ4dtSl+WXnfevNysy4shbq49h63ks?=
- =?us-ascii?Q?1K3XcLywfwpjq4x/CvNzZc/FHY5juZjsHhaixku4pWjLLLxx2j+4WO0wMT+L?=
- =?us-ascii?Q?grqGQUrXBGVj7HD9LCbX7RgGsgFxpGMIXhoQMhupgvr+k6It7EoHdOZyVH41?=
- =?us-ascii?Q?30w46G/ERLilvMlk8roKLOHDt8ZTzlUh6Fr71mh86+um7rlwaeWgWcEbjpoD?=
- =?us-ascii?Q?AT6Ps7BdYFjKSAKsUc1hjnZw8xCJQmGWZ5tS5vuGQNz/UvSmnV9hpThTjqqA?=
- =?us-ascii?Q?FdcZMmswS6naqTfz0nmmbxSKUgu5rwm7FxHEG26O6aYy6zOUhxkIsiIqv2WF?=
- =?us-ascii?Q?tGYEPKIRXtOAQXkXQct+R2jDJgvG3p3bKX2XXEgfiPPQAxunwxlysj5j9G7c?=
- =?us-ascii?Q?UPmo/7yWY9Bcd8+6W74AhgNkrJRhDgYJkknaVFI2sF302kTQ3QmY9HqBCkBa?=
- =?us-ascii?Q?rdVahD2qzK3prDG6uBJ/wYnXfCTO7RAMl1vODzi1f61kKJa0CrsfyJ+OrumI?=
- =?us-ascii?Q?ebC1hBEsJqjHV3h3Q/Y04SgDimK6+WA9edpiDI9ujgPZ+9gwg0B84d0vcNcL?=
- =?us-ascii?Q?LeuAnw2ossMZKX0pcg5VKgsjjrIdezwNyt8an/mv9ZWduP62xwnIg1ZB6G9e?=
- =?us-ascii?Q?AsPxNd8whMxw/RN7hUtO+NrZ6txP76LSQYE5+IVEjTQhW0ugkiLh//GMcgWL?=
- =?us-ascii?Q?cdr9/SLK9/qO/sqGCPgU0uLt7qobACV7Viq+xImuJgeIlzAyA/x73zgoWPss?=
- =?us-ascii?Q?bMtQE9sEb3gAH09WrS23olL9wc78ybSRz85knuu7/HNuSJyeiuNpiJGz9lhU?=
- =?us-ascii?Q?XgCPf+3Y5SBW1Q7e/g0x7Q7Tm2v1byOGnXLTNTyTKmcC/Gai2WbGopH2OCSO?=
- =?us-ascii?Q?VWM8bqaM09/pM7WarFWdFCo32gc7xd4fRNrprztF2X5JViCABTcKR1WvSSUE?=
- =?us-ascii?Q?aH/oL3Sj5kPCKY5P5Ioc6kExT1ic0mMnXuad/oinwxxuk+0uA2HrXm67We2p?=
- =?us-ascii?Q?40FeFjKmzi1sH09MGiFFTuklSjXiXidevyU3ur80iz3vKNypGxiUMYr1U5cC?=
- =?us-ascii?Q?knG4ncZyJUfbByQZp0MPWbEIih/bzfbkb0M2VK4hoR5tMjbb/jdHKEhwiJ4F?=
- =?us-ascii?Q?y46HYlfU58DQxvHPywgs0IdlEngzclRimjIJbTfr5m7lvCtkf4PkT5cdHnZl?=
- =?us-ascii?Q?VpnY2+9at/R5ynlNDos3RV88pmsYmJ94G06Oh3DQBJfmt1gBxo16kUn6PY+s?=
- =?us-ascii?Q?DlBZsUVhN3C7YaQY/KhsFJkdbjA0k/WAeeFDqKKlCrt7yFKjkQ4dvMVFBeuI?=
- =?us-ascii?Q?35LB7z0k6AXq1S1CwRSRqf+DFCgM79gv2NYFeU3/hoEWme+Wi8FJIljivSC2?=
- =?us-ascii?Q?e0WmrBP6YIrnppITaWVF6h/pAd790fPrV1CsWBY9?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1a12265-f047-446d-5091-08ddbfc7150e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2025 15:33:13.0729
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xWJ8AWRsgmmok4MYg0x3dTZPP46rLlVMDmOpz0VR6dfKDw0uLfALrzmbxpvWfJuNHVyGTq6lQqW2BT0b1AONCg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10781
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 10 Jul 2025 16:37:39 +0100
+Message-Id: <DB8HJI3YCZ9X.282HCM2QSGY0D@linaro.org>
+Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>, "Lee
+ Jones" <lee@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai"
+ <tiwai@suse.com>, <linux-arm-msm@vger.kernel.org>,
+ <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Srinivas Kandagatla"
+ <srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH 3/3] ASoC: codecs: add new pm4125 audio codec driver
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
+ <20250626-pm4125_audio_codec_v1-v1-3-e52933c429a0@linaro.org>
+ <rr2qf7hw7lkwqozguz3cv4tg7eewzk4jkxx5bieydukemjko2h@pwtrakslklvn>
+In-Reply-To: <rr2qf7hw7lkwqozguz3cv4tg7eewzk4jkxx5bieydukemjko2h@pwtrakslklvn>
 
-On Thu, Jul 10, 2025 at 09:39:03AM +0200, Primoz Fiser wrote:
-> From: Andrej Picej <andrej.picej@norik.com>
+On Thu Jun 26, 2025 at 7:19 AM BST, Krzysztof Kozlowski wrote:
+> On Thu, Jun 26, 2025 at 12:50:31AM +0100, Alexey Klimov wrote:
+>> +
+>> +static int pm4125_add_slave_components(struct pm4125_priv *pm4125,
+>> +				       struct device *dev,
+>> +				       struct component_match **matchptr)
+>> +{
+>> +	struct device_node *np =3D dev->of_node;
+>> +
+>> +	pm4125->rxnode =3D of_parse_phandle(np, "qcom,rx-device", 0);
+>> +	if (!pm4125->rxnode) {
+>> +		dev_err(dev, "Couldn't parse phandle to qcom,rx-device!\n");
+>> +		return -ENODEV;
+>> +	}
+>> +	of_node_get(pm4125->rxnode);
 >
-> Document i.MX93 ADC calibration properties and how to set them.
->
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
-> ---
->  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 21 +++++++++++++++++++
->  1 file changed, 21 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> index c2e5ff418920..d1c04cf85fe6 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> @@ -52,6 +52,27 @@ properties:
->    "#io-channel-cells":
->      const: 1
->
-> +  nxp,calib-avg-en:
-> +    default: 1
-> +    description:
-> +      Enable or disable calibration averaging function (AVGEN).
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1 ]
+> Where  do you clean this up?
 
-bool type should be enough
+Please don't tell me that this is a bug that being copied from driver
+to driver.
 
-> +
-> +  nxp,calib-nr-samples:
-> +    default: 512
-> +    description:
-> +      Selects number of samples (NRSMPL) to be used during calibration.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 16, 32, 128, 512 ]
-> +
-> +  nxp,calib-t-sample:
-> +    default: 22
-> +    description:
-> +      Selects sample time (TSAMP) of calibration conversions in ADC clock cycles
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 8, 16, 22, 32 ]
+I changed it to such flow for the next version since it seems that referenc=
+e
+should be decremented after of_parse_phandle() returns with it incremented:
 
-Need some judgement in commit message, such as difference board need
-difference nxp,calib-nr-samples value.
+rxnode =3D of_parse_phandle();
+if (!rxnode)
+	return dev_err_probe(...);
 
-Frank
-> +
->  required:
->    - compatible
->    - reg
-> --
-> 2.34.1
+component_match_add_release(..., rxnode);
+of_node_put(rxnode);
+
+
+>> +	component_match_add_release(dev, matchptr, component_release_of,
+>> +				    component_compare_of, pm4125->rxnode);
+>> +
+>> +	pm4125->txnode =3D of_parse_phandle(np, "qcom,tx-device", 0);
+>> +	if (!pm4125->txnode) {
+>> +		dev_err(dev, "Couldn't parse phandle to qcom,tx-device\n");
+>> +			return -ENODEV;
 >
+> Messed indent. This should be anyway just one line as always - return
+> dev_err_probe.
+
+I changed it for the next version as you suggested. Thanks.
+
+>> +	}
+>> +	of_node_get(pm4125->txnode);
+>
+> And this?
+>
+>> +	component_match_add_release(dev, matchptr, component_release_of,
+>> +				    component_compare_of, pm4125->txnode);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int pm4125_probe(struct platform_device *pdev)
+>> +{
+>> +	struct component_match *match =3D NULL;
+>> +	struct device *dev =3D &pdev->dev;
+>> +	struct pm4125_priv *pm4125;
+>> +	struct wcd_mbhc_config *cfg;
+>> +	int ret;
+>> +
+>> +	pm4125 =3D devm_kzalloc(dev, sizeof(*pm4125), GFP_KERNEL);
+>> +	if (!pm4125)
+>> +		return -ENOMEM;
+>> +
+>> +	dev_set_drvdata(dev, pm4125);
+>> +
+>> +	cfg =3D &pm4125->mbhc_cfg;
+>> +	cfg->swap_gnd_mic =3D pm4125_swap_gnd_mic;
+>> +
+>> +	pm4125->supplies[0].supply =3D "vdd-io";
+>> +	pm4125->supplies[1].supply =3D "vdd-cp";
+>> +	pm4125->supplies[2].supply =3D "vdd-mic-bias";
+>> +	pm4125->supplies[3].supply =3D "vdd-pa-vpos";
+>> +
+>> +	ret =3D devm_regulator_bulk_get(dev, PM4125_MAX_BULK_SUPPLY, pm4125->s=
+upplies);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed to get supplies\n");
+>> +
+>> +	ret =3D regulator_bulk_enable(PM4125_MAX_BULK_SUPPLY, pm4125->supplies=
+);
+>> +	if (ret) {
+>> +		regulator_bulk_free(PM4125_MAX_BULK_SUPPLY, pm4125->supplies);
+>
+> Double free.
+
+Thanks.
+
+>> +		return dev_err_probe(dev, ret, "Failed to enable supplies\n");
+>> +	}
+>> +
+>> +	pm4125_dt_parse_micbias_info(dev, pm4125);
+>> +
+>> +	cfg->mbhc_micbias =3D MIC_BIAS_2;
+>> +	cfg->anc_micbias =3D MIC_BIAS_2;
+>> +	cfg->v_hs_max =3D WCD_MBHC_HS_V_MAX;
+>> +	cfg->num_btn =3D PM4125_MBHC_MAX_BUTTONS;
+>> +	cfg->micb_mv =3D pm4125->micb2_mv;
+>> +	cfg->linein_th =3D 5000;
+>> +	cfg->hs_thr =3D 1700;
+>> +	cfg->hph_thr =3D 50;
+
+[..]
+
+>> +#if defined(CONFIG_OF)
+>> +static const struct of_device_id pm4125_of_match[] =3D {
+>> +	{ .compatible =3D "qcom,pm4125-codec" },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, pm4125_of_match);
+>> +#endif
+>> +
+>> +static struct platform_driver pm4125_codec_driver =3D {
+>> +	.probe =3D pm4125_probe,
+>> +	.remove =3D pm4125_remove,
+>> +	.driver =3D {
+>> +		.name =3D "pm4125_codec",
+>> +		.of_match_table =3D of_match_ptr(pm4125_of_match),
+>
+> Drop of_match_ptr and #if. We just removed it (or trying to )
+> everywhere, so why re-introducing it...
+
+Will remove it. Thanks.
+
+>> +		.suppress_bind_attrs =3D true,
+>> +	},
+>> +};
+>> +
+>> +module_platform_driver(pm4125_codec_driver);
+>> +MODULE_DESCRIPTION("PM4125 audio codec driver");
+>> +MODULE_LICENSE("GPL");
+>> diff --git a/sound/soc/codecs/pm4125.h b/sound/soc/codecs/pm4125.h
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..2c5e8218202d92a0adc49341=
+3368991a406471b0
+>> --- /dev/null
+>> +++ b/sound/soc/codecs/pm4125.h
+
+[...]
+
+>> +const u8 pm4125_reg_access_analog[
+>
+> No, you cannot have data defined in the header. This is neither style of
+> C, nor Linux kernel, nor makes any sense. What if this will be included
+> by some other unit? This is some terrible downstream style.
+>
+> Heh... you actually do include it twice, so you would see all the
+> duplicated data for no reason at all.
+
+I pulled in the change that fixes this for the next version.
+Thank you.
+
+Best regards,
+Alexey
+
 
