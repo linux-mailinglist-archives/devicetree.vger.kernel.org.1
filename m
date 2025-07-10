@@ -1,144 +1,185 @@
-Return-Path: <devicetree+bounces-194830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 980DAAFFAFF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:35:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92553AFFB03
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:36:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CC6D1C22F76
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 07:35:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DAE01C414FC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 07:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F53328A722;
-	Thu, 10 Jul 2025 07:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 515C0289344;
+	Thu, 10 Jul 2025 07:36:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AW/IwO0G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YeAF51fE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB691288C30
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 07:35:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E34D28751F;
+	Thu, 10 Jul 2025 07:36:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752132907; cv=none; b=u9JaRJZxqSZzqC7GMimg+kK0XIFqAm4AaTF2EDP46ez61JWc+yMpN1hNbiio0jwmSnEjgItbJISc1JtRR3SHQN4dXNjMoPATe6Dv5MP79EsmQhU2CfCDvbgi02HhW4hTlmzE+Uh6L2xshcqMVEyxc5PEswpgKsOfrz5JjvV+c9w=
+	t=1752132967; cv=none; b=PqIDdBJ8hBZ5HvXxWpWF85et9FRJ6FPDRaTrw7U61L1rL78SNDKYTa4AS5Asaa89zdwPAR7NNDHymjCStiXrB50805Ek5FCmxB82ce0om+UF9o0EpKDTRv0ZNtLpsdNzk6P6UGD1cknvOAHz//yd/O3F3k3sM1q+nIuPecKRS98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752132907; c=relaxed/simple;
-	bh=3YlMOIgu11vBoJjUEqiVPSS+lh9NXRYYK3t5EeYjBic=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FXBvxRVF+0ZBAepJ1jcHAXvlFrodeyPakfhdXaCJsCl52sVyRZGMBYBf0Rrjp/646ytREoK4VRxXEjCfbm9Vkmf0LID10K1zOCIZj7kY7kOAnHOuMXT1VwOQXTIHrn6bmgaqMjMYyMpIYAen6W+VNADGp5m9soVwfd3oow2171c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AW/IwO0G; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a524caf77eso84061f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 00:35:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752132901; x=1752737701; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ITUbPKjz6nt7F9zre32Uex49fG0CgP037IfGy1Dq7d8=;
-        b=AW/IwO0GKlpGOF/ZgOW6I9P+oPKXysRC3zpLkE2mQN923L8etZ2jMybkvH1YcAT+SW
-         jWRJvehIdZU0ouPIf9GJl9GedF+33wjtVkaFbD0wpXRrI9WaY0B2u///+AFfOMB8aWS5
-         yQljItfO+9ynefxNp/907bMUO78sGHq8+msGkm+xptCf79sqENd4iZJGaeqOiFPfp5Yc
-         5+Y/WRSUIXT0Vr4JfvWyc6kPRS8P5kO2OWiFIjr7bIv5ez9OLK+XGPNyLPZTlMnId4na
-         QwWdh0bJAXXDtRAGGqAWIsdx+NsEx48E7mJDXwAmWYjYR10qcrYTNQAqU/7cVGpu40Ek
-         xKwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752132901; x=1752737701;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ITUbPKjz6nt7F9zre32Uex49fG0CgP037IfGy1Dq7d8=;
-        b=lj/wU01ASuGnLrRCoo5uXj5TonMg0KrSW/BDH/Jk/+9oUIlRbSB3Xw1h78icxHSpy8
-         4GWf42DpJB58T0+1E0pn5S0UFeoRAoNOaG9+aLOdTkb3tq9WATloW1j4BYfJ1ijaAwfI
-         rwjvQ1CJcPigZpksMdYm6w6qIrVRDLzGxItl3sAPl4ewf7BiN8l1Mde75BKr7xg6akjF
-         RPlS929imTwS8QM3pfuk7MgR/uR75O263vEw6LW/0ncnThgjUIWe73cBta5IsJUi0nOl
-         Tl/ZahodYDbKKG2+UU8giVvqeo7xcWfU6RmL9pm6R5pASsF66hsy0uzOc+d4xM827dbE
-         O/gw==
-X-Forwarded-Encrypted: i=1; AJvYcCUG/ukFZT/4j9440uTcTDI1NCAtUzHmaspLDVbFy4EM3iwqyFKJxGi8phDXXHD3A8GynpDzROtYVtZI@vger.kernel.org
-X-Gm-Message-State: AOJu0YytBGA5RqSQchK4efjJIeRThgs4NWneCH/vguYxWl0svFdXc+M8
-	Ay9rcJ/cCEileM6Kldvb6p1uN/p5ipC9K1wdhA6rGfU7oKdki9gv+FMS9zdlvbRZMP1ry/AdDyX
-	lXdN7
-X-Gm-Gg: ASbGncvnFvK9GxATDvXbzXuOsMTNbTaXEtpqjks/rYCQDSWUH1909bv/97MqYpKH5Eb
-	bo4HOhCmPIF9yvtxSdnqEQdsqQ0m36UYhzCZLWRDa5NYIBvV6lpQG6n3JneSkO6DtYgNsaHKlBQ
-	YKb6NTu0Bb838X6v0aAFBVMEHHyTcXOBjtxc68arhCLgYVY7T92qjsDUYvbN1Okgt/ypLUKvOBJ
-	6SdOjmK++vY5DPRTKqm/d+sXanPsdWGOjafuLBlynWrITRMLz5Zlm+WpCYHvlCI4lSGsQqFtFPQ
-	ie0AzSExOYS17aNDWM3xv3anJFKbuw/s5i1D9YFldq2el/RGk5rxQoMVCTACF/lO+HsTemUYyGY
-	GVPp6awXrVQ==
-X-Google-Smtp-Source: AGHT+IHzDyfTOcdmYClAhYTQidw10ZwlS9z8D2W1xO1hV9teei6UadmtYmLqVDhpcn3elTELAFK7sQ==
-X-Received: by 2002:a05:6000:2406:b0:3a5:324a:a04e with SMTP id ffacd0b85a97d-3b5e447a874mr1570352f8f.0.1752132900931;
-        Thu, 10 Jul 2025 00:35:00 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.222.89])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454dd466154sm10826555e9.12.2025.07.10.00.34.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jul 2025 00:35:00 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>,
-	=?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: samsung: MAINTAINERS: Add Tesla FSD DTS to Exynos entry
-Date: Thu, 10 Jul 2025 09:34:45 +0200
-Message-ID: <20250710073443.13788-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250710073443.13788-3-krzysztof.kozlowski@linaro.org>
-References: <20250710073443.13788-3-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1752132967; c=relaxed/simple;
+	bh=mue2JFn58Xcox+gqmOTPe7zIvbnkjtHDu9euATkcNVo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZzqLAAh2F+y/kWYrxv+tDylR7wbuuSDujKQpttW01F3vVZi3NpJ70huozbXapISlNFQauizlEZdOG7E2hB5foRs9zU/So74nYiwRltQbLxnAL4qiKspdAO8eHQs0kl5vcjiIKsUP4A0gK7OpSMIRr6+FJ8MDgBuf02/jcKhXHNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YeAF51fE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F563C4CEE3;
+	Thu, 10 Jul 2025 07:36:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752132966;
+	bh=mue2JFn58Xcox+gqmOTPe7zIvbnkjtHDu9euATkcNVo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YeAF51fEBgve2cj8TTkkBVcVZftaDtNa2vKCye50KkTYB6V58VR69pEHVtJFWKj0C
+	 bYonbs/rFRWGwmUC4vqDFMRwsS4lJW0ckF329I6pYiXOsPhMDGmODpbh0qvrc2oFr+
+	 CmILLBoWy74hzGqAnBxA+sLvUVWzPod8yRi0qb04joZK0ryc+0F6YMgbNCfOWAvTPw
+	 k5w63jllp35HDD5FKBAQZdQ4BC4dE1U3G4S0hVxRZR7wwAjE8T+1viF5Ka8ud4Z60m
+	 3ssDLrhC3wMJHrxuRxMb73thEXfsgfjrH/e2S5H0eQ9cvdfKFgBrySXQRPxPoZS84Q
+	 434MPGU0K/HhQ==
+Date: Thu, 10 Jul 2025 09:36:03 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Andrew Davis <afd@ti.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
+	"T.J. Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Jared Kangas <jkangas@redhat.com>, Mattijs Korpershoek <mkorpershoek@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, iommu@lists.linux.dev
+Subject: Re: [PATCH v6 1/2] dma/contiguous: Add helper to test reserved
+ memory type
+Message-ID: <20250710-sincere-dainty-marmot-1cad58@houat>
+References: <20250709-dma-buf-ecc-heap-v6-0-dac9bf80f35d@kernel.org>
+ <20250709-dma-buf-ecc-heap-v6-1-dac9bf80f35d@kernel.org>
+ <8b36f958-3406-421d-ab94-5e49f911f92e@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=860; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=3YlMOIgu11vBoJjUEqiVPSS+lh9NXRYYK3t5EeYjBic=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBob20XQQOTWxlqLjKHNNyaH3n8/WSBNW/mnXcu0
- xFUmc6gGwmJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaG9tFwAKCRDBN2bmhouD
- 19h0D/45ArZflYDgoL5gbSjHj6laJbsN8NIETDO2vubnftED+Br8KEQ2SXkxq1iLWL27Mt+KdyL
- hQRPb7VIqm5S6kGi3DShOE1IHEy2unlB4P4ovWGVT2L/I2IG0e8BGre23UQKtbR2o8n7hrs/c+S
- 50R5h31IjXFgYNTlaGPtCCnI59pbL3pSPdVBEbI4/81/WlU6P7Vyd0gBQpFwdMAza0m89uQMBBt
- 0IAR8n09LBS95ivakTkCo9yd2+B/PuTi5WXsb5y9FWOyqYzaf+QBhxfgH4v/5uYpP31dTAUfbiD
- dtG6b9HRzGJGZ3H0QlX8kMVYulXlZCiRThwoLqNdfrxtgc0pEPicFsote7V+zSFW//E/et9jlbB
- DNpIqM3G2ba90tnxrQYjWkpYwIYQXPep15sHhxjjsi1vDidWBUwaCk6MfuqF4ag1SBygxdG3MAR
- 2fPcN+cGN6lE5C0yTT8e7xq8I8zaxNNDCq7ug+dQLrkhM4R3XZDxQRNdZtsfMf3eObcYmDV42OK
- gFiq8cUDGAV/cIAAIJ6cCvd1vNRn/l6WGXE9WAsuc3ZY89FXf5Ro+Ttcz8JB1iwYHEXxN4PHdtz
- DCAAjbWhTfFUeETPzigKWVLONKNFyGXRg6obkLo4tAPNbB7A45KNgLIvoHGiknQIJ6Mbzxm7gJZ cRotHgmER+hQ2gg==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="b2q4t2bjxzo6g2kd"
+Content-Disposition: inline
+In-Reply-To: <8b36f958-3406-421d-ab94-5e49f911f92e@ti.com>
 
-Effectively all Tesla FSD DTS patches go via Samsung Exynos SoC
-maintainer, so add the pattern to make it obvious and reduce the chances
-patches won't reach these maintainers.
 
-Cc: Peter Griffin <peter.griffin@linaro.org>
-Cc: André Draszik <andre.draszik@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+--b2q4t2bjxzo6g2kd
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 1/2] dma/contiguous: Add helper to test reserved
+ memory type
+MIME-Version: 1.0
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4073f7ac978f..a2e1d879cc01 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3205,6 +3205,7 @@ F:	arch/arm/mach-exynos*/
- F:	arch/arm/mach-s3c/
- F:	arch/arm/mach-s5p*/
- F:	arch/arm64/boot/dts/exynos/
-+F:	arch/arm64/boot/dts/tesla/
- F:	drivers/*/*/*s3c24*
- F:	drivers/*/*s3c24*
- F:	drivers/*/*s3c64xx*
--- 
-2.43.0
+Hi Andrew,
 
+On Wed, Jul 09, 2025 at 10:55:40AM -0500, Andrew Davis wrote:
+> On 7/9/25 7:44 AM, Maxime Ripard wrote:
+> > A given reserved-memory region can be of multiple types.
+> >=20
+> > We have currently four types defined in the tree: contiguous, backed by
+> > CMA, coherent and swiotlb, backed by their respective allocators, and a
+> > platform-specific one for tegra.
+> >=20
+> > However, some users, like dma-buf heaps, might be interested in the
+> > exact type of a reserved memory region they are getting. It would thus
+> > be useful to have helpers to test if a given region is of a given type.
+> >=20
+> > Since we only care about CMA for now though, let's create one for CMA
+> > only.
+> >=20
+> > Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> > ---
+> >   include/linux/dma-map-ops.h | 13 +++++++++++++
+> >   kernel/dma/contiguous.c     |  7 +++++++
+> >   2 files changed, 20 insertions(+)
+> >=20
+> > diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
+> > index f48e5fb88bd5dd346094bbf2ce1b79e5f5bfe1a6..ea646acb6367bd062619b33=
+7013db221749f85ab 100644
+> > --- a/include/linux/dma-map-ops.h
+> > +++ b/include/linux/dma-map-ops.h
+> > @@ -153,10 +153,23 @@ static inline void dma_free_contiguous(struct dev=
+ice *dev, struct page *page,
+> >   {
+> >   	__free_pages(page, get_order(size));
+> >   }
+> >   #endif /* CONFIG_DMA_CMA*/
+> > +#if defined(CONFIG_DMA_CMA) && defined(CONFIG_OF_RESERVED_MEM)
+> > +struct reserved_mem;
+> > +
+> > +bool of_reserved_mem_is_contiguous(const struct reserved_mem *rmem);
+> > +#else
+> > +struct reserved_mem;
+> > +
+> > +static inline bool of_reserved_mem_is_contiguous(const struct reserved=
+_mem *rmem)
+> > +{
+> > +	return false;
+> > +}
+> > +#endif
+> > +
+>=20
+> Should this all go in linux/of_reserved_mem.h?
+>=20
+> >   #ifdef CONFIG_DMA_DECLARE_COHERENT
+> >   int dma_declare_coherent_memory(struct device *dev, phys_addr_t phys_=
+addr,
+> >   		dma_addr_t device_addr, size_t size);
+> >   void dma_release_coherent_memory(struct device *dev);
+> >   int dma_alloc_from_dev_coherent(struct device *dev, ssize_t size,
+> > diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
+> > index 8df0dfaaca18eeb0a20145512ba64425d2e7601e..ace4982e928e404315cf385=
+51e1596f7ed445156 100644
+> > --- a/kernel/dma/contiguous.c
+> > +++ b/kernel/dma/contiguous.c
+> > @@ -493,6 +493,13 @@ static int __init rmem_cma_setup(struct reserved_m=
+em *rmem)
+> >   		&rmem->base, (unsigned long)rmem->size / SZ_1M);
+> >   	return 0;
+> >   }
+> >   RESERVEDMEM_OF_DECLARE(cma, "shared-dma-pool", rmem_cma_setup);
+> > +
+> > +bool of_reserved_mem_is_contiguous(const struct reserved_mem *rmem)
+>=20
+> Needing to check where the reserved mem comes from seems wrong, it hints
+> that the reserved mem region drivers, like this one, are not in full cont=
+rol
+> of their regions. Instead of looping over all the regions in DT in the ne=
+xt
+> patch and searching for the owner, how about the owner (this driver) call
+> into __add_cma_heap() if it chooses to expose the region in that way.
+>=20
+> (I know RESERVEDMEM_OF_DECLARE callbacks are done very early and the CMA-=
+Heap
+> driver might not be able to deal with adding heaps at this point, so maybe
+> keeping a table the heaps driver can later iterate over would also work).
+
+It's something I considered but wasn't too sure about, so I went the
+less intrusive way.
+
+I'll work on that for the next version, thanks!
+Maxime
+
+--b2q4t2bjxzo6g2kd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaG9tYwAKCRAnX84Zoj2+
+dirHAX9y8X3F+DfFYUDveJIb9DstTlSvimj5QRvPEuzVfmbJoGCEVCl3SFChG0nH
+Dl2sh0sBgJIDvY1QFYOlOAUR1G4Ec2V12xDBUeAYbip+I9SmiZyQ5mpDfHQUD4pH
+kPC3oAIFNg==
+=8N7z
+-----END PGP SIGNATURE-----
+
+--b2q4t2bjxzo6g2kd--
 
