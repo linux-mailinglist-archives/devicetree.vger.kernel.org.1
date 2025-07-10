@@ -1,228 +1,156 @@
-Return-Path: <devicetree+bounces-194982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A655B0014A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:12:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E808EB00182
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 916351C858A7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 12:12:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F13761C87456
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 12:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FFE82571A9;
-	Thu, 10 Jul 2025 12:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D81BE24E4C4;
+	Thu, 10 Jul 2025 12:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="BWcboYfW"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oJBiKqna"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96EBD243367
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 12:11:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FE6624DD12;
+	Thu, 10 Jul 2025 12:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752149478; cv=none; b=goAWltv318l80J8dvv0BgYWfq6Fp+ENWiVNQnv68XvW3pRrQE/55ch5hEcdhyC6cm2TYM4VcOLo6rNOjOQlrFnFwZBgeg0q1pUxdyv/VVpR+4Ibl3MzT6RQrylVb+xG38lQanFNvNTZ6AGcBNIbtGpY2bmPL7gnVVZonSIBhmH0=
+	t=1752150014; cv=none; b=rJGdVmQ7Ox0g6ESW/Roj2EgeK7yn/eWFKJMVJe81T4w9JRAtOm7bzSZitIM6wBWFA74o7D9KAdjXX8+jGTeVFM3Gs7WEtAYvDib58mH8VhQ4wO5ZYhB8imoqHVV4/1tHxt94PhrsEkKPCKkY/RR57innuN4SXG6saWTKo1P09os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752149478; c=relaxed/simple;
-	bh=CmjdvA9M9SqmEjXC4wh3Ab0CAkZBlhlktffFjr5dWEM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eJFD+CMPYCcbe4Udbp4VBR08ieXihk/Fc4TfSlPW8uRb7jESocj7SeHy+fg6uKGXyoh9urBGeUcjMpkTHt62Djcy8hylChTiop4C6RsdGPcPqkG4ilpCTITGKrmDWmAkGKPeJ0Dud3qVKJkRpzYQUp86ymcbW4PG2657dPz0C0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=BWcboYfW; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1752149468;
- bh=4ye2+oNmz8kEE5esPvhfl5gldth5gpMh/JZU9swTrNk=;
- b=BWcboYfWlVH02XxSXAEFdKXxVjOCRRO0SEaYgpedPB1gKPiHovv/9NrZIVlHd5muThKK6NO04
- CI1TKO4MFCcm8KMbMzkRIRkEtmZqf32Ts4GO6dl6c8xFC+nnECH+e9W3A2pS1CuXeeZ0kcznCEt
- LeXFvHn3iifPX3rS2v26LWNU8cG+8xufG0cjAEilt0bq5rKrWrbU5IPsGscK4MewSn/QukJwny+
- XfyN3ACDDD5XIIWgkydf3bKoNjSS8rLA34CgCCwH/RyNeDgIl7ApdYcmdX60Z51NosjrjaOVGM6
- XLmNdxnL4KmjrRBnEesaLCdTULlnBatJtw88WfGJzjXw==
-X-Forward-Email-ID: 686fadd9ea2ef028c1d7bacc
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 1.1.3
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <b6f8f705-f661-46cf-9dda-6f18f8658622@kwiboo.se>
-Date: Thu, 10 Jul 2025 14:11:00 +0200
+	s=arc-20240116; t=1752150014; c=relaxed/simple;
+	bh=1Ars87cWfPNJmxmVVHggBVpUXosQcIraO2lesp921A0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eAhrUhrpOoCltr04lR/JGDLztVpu7SjXeq20+DvRVZYS27WGZqAFwQGTVHftJ6PYenovP99/dw3LQiOp3YFKuC+oNKNWrn6Y+N1opd4mLAfCmZJ0lSr72t7ARaci5/XWnxIRpkaNrCJE1gex4SEHhjKIX0OSAD0Kz+onW3056Z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=oJBiKqna; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752150013; x=1783686013;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1Ars87cWfPNJmxmVVHggBVpUXosQcIraO2lesp921A0=;
+  b=oJBiKqna+//afVa5igz8zN7OT0RSBBv486V4FDd/V4vGpDZEtQ+2vOl0
+   6+m1sBIBQzpV2mJQEGwnO5NRE6XAW2pBBpuAR8U6+TW4cIfmUaXLb8Y52
+   fvFah/ptUZMANt6YYmFCr4DwNYehLxNfVYWQz3PT8mtLbMSZuLYAJLfJh
+   ZAFX8aOFjMtIfddzfCUIJcXnoe0Cd/Z0mf9ATujAvFsfRD8DGuztLejsB
+   F4tmW/b52PpIQXbwPlObGUGQHsildfW7CXkZ4Pmir8hfUeXKutd8Znvw1
+   amqtqzTmpDhLgOwZney8Am7ySenKvwiL2n5Y7APJqnMb2Vjj8NDqpdoYi
+   A==;
+X-CSE-ConnectionGUID: CizJc7eISD2nWtsYFUezwQ==
+X-CSE-MsgGUID: arGY67idTyW/mru3848Pxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="71877347"
+X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; 
+   d="scan'208";a="71877347"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2025 05:20:12 -0700
+X-CSE-ConnectionGUID: GXz77hyaR7K/tYrlBBMkog==
+X-CSE-MsgGUID: kYPUpfJ0QvqQJaA5ZICfig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; 
+   d="scan'208";a="160078428"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2025 05:20:08 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uZqFw-0000000EC0t-26Sd;
+	Thu, 10 Jul 2025 15:20:04 +0300
+Date: Thu, 10 Jul 2025 15:20:04 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Primoz Fiser <primoz.fiser@norik.com>
+Cc: Haibo Chen <haibo.chen@nxp.com>, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-iio@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de, andrej.picej@norik.com
+Subject: Re: [PATCH 2/2] iio: adc: imx93: Make calibration parameters
+ configurable
+Message-ID: <aG-v9IxJ-XAxmnyh@smile.fi.intel.com>
+References: <20250710073905.1105417-1-primoz.fiser@norik.com>
+ <20250710073905.1105417-3-primoz.fiser@norik.com>
+ <aG-GZqhABwErcEyM@smile.fi.intel.com>
+ <42dd658e-555a-43f7-a7bf-e5365d508f4a@norik.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency
- scaling support
-To: Heiko Stuebner <heiko@sntech.de>, Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250620100010.1291658-1-amadeus@jmu.edu.cn>
- <20250620100010.1291658-2-amadeus@jmu.edu.cn> <5025631.aeNJFYEL58@phil>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <5025631.aeNJFYEL58@phil>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <42dd658e-555a-43f7-a7bf-e5365d508f4a@norik.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Heiko and Chukun,
+On Thu, Jul 10, 2025 at 12:23:58PM +0200, Primoz Fiser wrote:
+> On 10. 07. 25 11:22, Andy Shevchenko wrote:
+> > On Thu, Jul 10, 2025 at 09:39:04AM +0200, Primoz Fiser wrote:
 
-On 7/10/2025 1:45 PM, Heiko Stuebner wrote:
-> Am Freitag, 20. Juni 2025, 12:00:10 Mitteleuropäische Sommerzeit schrieb Chukun Pan:
->> By default, the CPUs on RK3528 operates at 1.5GHz. Add CPU frequency and
->> voltage mapping to the device tree to enable dynamic scaling via cpufreq.
->>
->> The OPP values come from downstream kernel[1]. Both 408MHz and 600MHz
->> frequencies use the normal PLL, so use the corresponding highest voltage.
->>
->> The voltage used for other frequencies can't be less than above (875mV).
->> Therefore, 816MHz to 1200MHz also uses the corresponding highest voltage.
+...
+
+> >> +	ret = device_property_read_u32(adc->dev, "nxp,calib-avg-en", &val);
+> >> +	if (!ret) {
+> >> +		if (val != 0 && val != 1) {
+> >> +			dev_err(adc->dev, "invalid nxp,calib-avg-en: %d\n", val);
+> >> +			return -EINVAL;
+> >> +		}
+> >> +		reg = val;
+> >> +		mcr &= ~IMX93_ADC_MCR_AVGEN_MASK;
+> >> +		mcr |= FIELD_PREP(IMX93_ADC_MCR_AVGEN_MASK, reg);
+> >> +	}
+> > 
+> > Please, since it's optional, do other way around.
+> > 
+> > 	val = $DEFAUTL;
+> > 	device_property_read_u32(adc->dev, "nxp,calib-avg-en", &val);
+> > 	FIELD_MODIFY(...)
+> > 
+> > Similar approach may be used for the other properties.
 > 
-> There has often been the argument that selecting a frequency that has the
-> same voltage as a faster frequency does not save any power.
+> OK, I guess I could implement it like you suggested to explicitly set
+> the default parameter values.
 > 
-> Hence I remember that we dropped slower frequencies on other socs
-> that share the same voltage with a higher frequency.
+> But in current implementation MCR values are read at the beginning of
+> imx93_adc_calibration(), meaning calibration parameters are register POR
+> defaults. With you suggestion, we put defaults in software rather than
+> reading them from the hw directly.
 
-One possible difference here is that the actual CPU rate is controlled
-by a PVTPLL where TF-A will configure a osc ring-length based on the
-requested rate and Linux only configure the regulator voltage.
+I see, then you need to read, do FIELD_GET()/device_property_read()/FIELD_MODIFY().
+You got the idea.
 
-I have no idea if the configuration made by TF-A will have any affect on
-power usage, but I suggest we keep all opp here because both TF-A and
-Linux is involved in configuring the CPU rate.
+...
 
-The measured rate can typically be read from a PVTPLL status reg, it
-will be different depending on the ring-length, voltage and silicon
-quality for the rates >= 816 MHz.
-
+> > Please, factor out this to the function, so we won't see the direct IO in the
+> > ->probe().
 > 
->>
->> The remaining 1416MHz to 2016MHz use a voltage close to actual frequency.
->>
->> [1] https://github.com/rockchip-linux/kernel/blob/develop-5.10/arch/arm64/boot/dts/rockchip/rk3528.dtsi
->>
->> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 64 ++++++++++++++++++++++++
->>  1 file changed, 64 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
->> index 829f980ea353..5cb7f10b79ed 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
->> @@ -53,6 +53,7 @@ cpu0: cpu@0 {
->>  			device_type = "cpu";
->>  			enable-method = "psci";
->>  			clocks = <&scmi_clk SCMI_CLK_CPU>;
->> +			operating-points-v2 = <&cpu_opp_table>;
->>  		};
->>  
->>  		cpu1: cpu@1 {
->> @@ -61,6 +62,7 @@ cpu1: cpu@1 {
->>  			device_type = "cpu";
->>  			enable-method = "psci";
->>  			clocks = <&scmi_clk SCMI_CLK_CPU>;
->> +			operating-points-v2 = <&cpu_opp_table>;
->>  		};
->>  
->>  		cpu2: cpu@2 {
->> @@ -69,6 +71,7 @@ cpu2: cpu@2 {
->>  			device_type = "cpu";
->>  			enable-method = "psci";
->>  			clocks = <&scmi_clk SCMI_CLK_CPU>;
->> +			operating-points-v2 = <&cpu_opp_table>;
->>  		};
->>  
->>  		cpu3: cpu@3 {
->> @@ -77,6 +80,67 @@ cpu3: cpu@3 {
->>  			device_type = "cpu";
->>  			enable-method = "psci";
->>  			clocks = <&scmi_clk SCMI_CLK_CPU>;
->> +			operating-points-v2 = <&cpu_opp_table>;
->> +		};
->> +	};
->> +
->> +	cpu_opp_table: opp-table-cpu {
+> Sorry I don't understand this part.
+> 
+> What do you mean by factoring out this writel()?
+> 
+> Do you perhaps suggest to implement function
+> imx93_adc_configure_calibration() and put all our changes into it?
+> 
+> But we are already in imx93_adc_calibration() which is separate from
+> probe().
 
-This node should be placed after the firmware node for the nodes to be
-in alphabetical order.
+Ah, sorry for the mistakenly read the function name. Ignore this comment.
 
-Regards,
-Jonas
+-- 
+With Best Regards,
+Andy Shevchenko
 
->> +		compatible = "operating-points-v2";
->> +		opp-shared;
->> +
->> +		opp-408000000 {
->> +			opp-hz = /bits/ 64 <408000000>;
->> +			opp-microvolt = <875000 875000 1100000>;
->> +			clock-latency-ns = <40000>;
->> +			opp-suspend;
->> +		};
->> +
->> +		opp-600000000 {
->> +			opp-hz = /bits/ 64 <600000000>;
->> +			opp-microvolt = <875000 875000 1100000>;
->> +			clock-latency-ns = <40000>;
->> +		};
->> +
->> +		opp-816000000 {
->> +			opp-hz = /bits/ 64 <816000000>;
->> +			opp-microvolt = <875000 875000 1100000>;
->> +			clock-latency-ns = <40000>;
->> +		};
->> +
->> +		opp-1008000000 {
->> +			opp-hz = /bits/ 64 <1008000000>;
->> +			opp-microvolt = <875000 875000 1100000>;
->> +			clock-latency-ns = <40000>;
->> +		};
->> +
->> +		opp-1200000000 {
->> +			opp-hz = /bits/ 64 <1200000000>;
->> +			opp-microvolt = <900000 900000 1100000>;
->> +			clock-latency-ns = <40000>;
->> +		};
->> +
->> +		opp-1416000000 {
->> +			opp-hz = /bits/ 64 <1416000000>;
->> +			opp-microvolt = <925000 925000 1100000>;
->> +			clock-latency-ns = <40000>;
->> +		};
->> +
->> +		opp-1608000000 {
->> +			opp-hz = /bits/ 64 <1608000000>;
->> +			opp-microvolt = <975000 975000 1100000>;
->> +			clock-latency-ns = <40000>;
->> +		};
->> +
->> +		opp-1800000000 {
->> +			opp-hz = /bits/ 64 <1800000000>;
->> +			opp-microvolt = <1037500 1037500 1100000>;
->> +			clock-latency-ns = <40000>;
->> +		};
->> +
->> +		opp-2016000000 {
->> +			opp-hz = /bits/ 64 <2016000000>;
->> +			opp-microvolt = <1100000 1100000 1100000>;
->> +			clock-latency-ns = <40000>;
->>  		};
->>  	};
->>  
->>
-> 
-> 
-> 
-> 
 
 
