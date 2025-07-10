@@ -1,139 +1,119 @@
-Return-Path: <devicetree+bounces-194967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE0FB00071
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 13:21:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98330B00095
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 13:32:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B11D1C85F8C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:21:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E485817C547
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FEFC2E543D;
-	Thu, 10 Jul 2025 11:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D8E1E25F8;
+	Thu, 10 Jul 2025 11:32:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="oWqA3t5F"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="ttYY/QiH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29364295530;
-	Thu, 10 Jul 2025 11:21:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CE07C8EB;
+	Thu, 10 Jul 2025 11:31:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.134
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752146492; cv=none; b=Hap13xGPmR+OGj8e36l1larTM5tZJDRV1P9ycvBIYR+SltSkrg4EV5UiMPMrx3Cmi4N/inrTziCmRDYW2rZNjgrL0S3YEX6GVaYg0x0WlAPwaJSv9dsCh7C1/qqLpl/c9bEyjxKMU4pUmHIw7i6mKeFuxAdQGjUpu3XlM7nQ18g=
+	t=1752147120; cv=none; b=s6GXaOhbi7XKbeH29Eeq46bw5wPIf7Lo9YuRPjLs9sZ7MCH14vCzErBT+iC3UARdHBeFP+/A27EJwujhmbQ0boAMTimGjjigZDYajrU5UgRCRzvsG9jEmI5Aom7O49PzIDZzFaX0SlYuX+QszNli2FhYzwyD133SL681XrKno7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752146492; c=relaxed/simple;
-	bh=FlM00GdyojsKlhNyqQ60miBTBWWfQWeTdhmPstM0OXA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GMwfU8p5rEDLferd3RbE/JlaSmKOzrnk+YZIDaBTibCUlGsS/Ws++ChzlmL98jQMwYdmSBYSnRUkvdqQtvGSjAqeMmQisjQ/PONdl4gym8T/RL3O6CSMqLVngg4/6YxEnNllJEUNBsdlIjkuOrzdIvScK74aGzOHusxStoLqXJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=oWqA3t5F; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=44pTvFaVwV8DGemXvVyLFKizLr/RNUQE/CGSbN7Xx/4=; b=oWqA3t5FpiwDDXz3OxYTP0050s
-	uo4AjZyZHhIUBwCD3rcwbx1oUdmgKY/XOq8QfxELCK0s0b6ROHLFRy0hpIm1B2jYOnC2k9yQEoxyo
-	CAUJB8l3om1s7GESdPFCQaYxCQf6QF30ziZ9hTXT5L7163S4KBLqsf2hUVPUMiBfwaZxvp/QrDk31
-	Q1rNS16MOCr9O3SY3PK5WJrNZtvqKaEvgth0l6a+tQg1c3zAIyf/LWtsBsCYF7HG0mmaitsPwMeHW
-	svILvWuLii/xUsSMZYLlFz+AauuNXHNxM3oIQEetbP2yJm40YmcesL5jG8PDCGmewJtxxIPQnwACz
-	f6WwTd7Q==;
-Received: from [194.95.143.137] (helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uZpL6-0004SZ-8y; Thu, 10 Jul 2025 13:21:20 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Alexey Charkov <alchark@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Subject:
- Re: [PATCH v6 4/7] dt-bindings: thermal: rockchip: document otp thermal trim
-Date: Thu, 10 Jul 2025 13:21:19 +0200
-Message-ID: <3592348.tdWV9SEqCh@phil>
-In-Reply-To: <20250610-rk3576-tsadc-upstream-v6-4-b6e9efbf1015@collabora.com>
-References:
- <20250610-rk3576-tsadc-upstream-v6-0-b6e9efbf1015@collabora.com>
- <20250610-rk3576-tsadc-upstream-v6-4-b6e9efbf1015@collabora.com>
+	s=arc-20240116; t=1752147120; c=relaxed/simple;
+	bh=veiSIyO5h+Jn0NkjIFFPBiRxaozm4iNhyDlp5Cuuivc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m0fTIierziYdZJ20QytBmnSYV5H0qj03nTsY24y3w/FsnlwfI5gOed3VaMJhVGASTrc4yOrY434VToIyTpY/cddWL+lrMvEG534aisH6YM1BPrz0lIItSrvK9EuOw9tHUaigRHtuQkhuGwt3RrOBcBpweyy0wG4w4VUEJhAe+VQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=ttYY/QiH; arc=none smtp.client-ip=212.227.126.134
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1752147110; x=1752751910;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=veiSIyO5h+Jn0NkjIFFPBiRxaozm4iNhyDlp5Cuuivc=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=ttYY/QiHaidnzgG9zryNKG1G6yBmNBRgjM1643EMq5Q74B5xur6M7+VDYe/kufMl
+	 jn354P/V1kAnJaqt3OGTxTm/YyGlnUbiW2H07ArWL/71iZm63PEemG8pD/kOJDib9
+	 HwLYbFDBP2Bt+I72yp1MSXHr8nvX2fXE/JZwjgeJTGKptRPsvnvxvCn3KawSA5rFs
+	 jxQh/5STj42JMKuaftui4InSbR+5uHxpORqp1gses/7jeY68JWlHX2bwP0Dtj8NPw
+	 aoicZ9mXHUnHzjsU7G/aapz+XgNkRQfVmVdPPX2Ezz7HQ5juHZNFYosmp0khaPM0x
+	 yiIp7zY6woOPVt1UAg==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.107] ([62.226.41.123]) by mrelayeu.kundenserver.de
+ (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MA4ja-1uOFye1z9G-00FAtR; Thu, 10 Jul 2025 13:31:50 +0200
+Message-ID: <056c3569-02d7-4668-89d0-91a8d92814ef@oldschoolsolutions.biz>
+Date: Thu, 10 Jul 2025 13:31:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/3] arm64: dts: qcom: x1-hp-x14: Unify HP Omnibook X14
+ device tree structure
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20250710-hp-x14-x1p-v7-0-19c10c81713a@oldschoolsolutions.biz>
+ <20250710-hp-x14-x1p-v7-2-19c10c81713a@oldschoolsolutions.biz>
+ <aac2a4fb-c9e8-4e1d-b0cd-d6481dc27252@kernel.org>
+Content-Language: en-US
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <aac2a4fb-c9e8-4e1d-b0cd-d6481dc27252@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-Provags-ID: V03:K1:tpb5aofj5y62ZXBjqRcxLwNQ+Z93p7O9OB35MiIouuuv16gP1oL
+ +Hw8jXN4lD41lW2dvbEphC6yb+jeHlI9V6j0DBf+DMir+uut2TJQ3sOyOG3k0aJVndpcbcT
+ QVgxMztSsiKPztZ40cMrznnK3i1jE6x2NHYKLy9LyEAju+AmsKvFCmZNehfbBSsfnaLRT+c
+ rhXE1VzELqHV5PgBhoVrA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:6OwrPtFUynw=;e8kDEdPxcF1sDVTIBF9EnVx3sF2
+ jXbXwlTHVg9vlHqU1lpeVOw0O2u88I+80DmKQIvt804dqyFRQPYa6Z+d56G0Z/nlInalr2ezh
+ rdOGiIgn9tU/kv3NgLKRVXMaAbbA7n4fXKhsaLpjUtNQ7LtDL5oFEMToy3A6pmBa9UERXRkd1
+ WVTUj6Ka6eiIfnYHZYfqyeedduVgiwlIgPZYFytB7pBgZsJCJa7uklHaBbcOq3gN+6UMz6xPd
+ EmilTimy4dOFQraYKnSy4OFdIYpi/xIrv5BMQJiOcTFxjqHStho/B3FAJ9lp+qn4HQIpMh6FM
+ UcT/kSuvIiTkcoH7JrP7rtfIhRHEWP5QCmVXPJnEs2tzpPmaiT1vIQqCIjpXadxBMwp9S4dEb
+ zo2mzVqiGSf96YVyQtG1EVcPy5grHmRjp2cAM4yaNeELA2DrUqiezLOUp+e6csHEqTeoGTCKs
+ XC98nF6sNuWdf/TpukQtOMzF+N6jVgGrHgIKLN2R3s/xRdUI3kfwMGJXxAxnD9VOB6MuS/YiO
+ WRIog3RReAr/jC4kzK5FBhhoc5UJU8Akx3Jn+VoFccG7YTMi4P61+OPJnqjJbAG9TN1w1sxQO
+ z9w6G8+0eHTL1y4eSRn53DlzpXI0nmRm4y2zS9Z1yiPftXiIdW4FiLHA2LJDsyPGgz7EVMwyQ
+ httTvGwxKppi8d5JOMzm77eP0fcASg1Qm3ntmdVIbdRbo8AocMTwloWAw/Q0FfKCWmyA9C1Sd
+ Eb0rJ3C19WA0F4loOfSBhLAkiRPaIYD+PSNO21kmszkFMrrl90EY9UoujbySMfiH9mV8jlb3G
+ Jr3u2MJPJZq73TTVHXZobursgibhGqexEpnVJOSIFLB+ZSZYKoQ78Wi7yS9MN9A63JpEh5+hK
+ uv/uIB6TmmwWDw4F5SvS7qY+vmjg5LNIPJHKtkisS10vbUqpTY9q7olS4G4Z9UjpHBXzbHot4
+ g8Qe0DCP4ld8FRbeQjY9iNS4EHymspdilHoMBryGysFqueUdLFqdaFzybNp7Lc/i7x+jKhOGH
+ FZ9BB5eI3CxCneuyW+GMIGJ0OgRLFJTPneFFGGhj8Ey5xZH/sUL3RoM+AzLRbwMib2CwXXY8h
+ r58IDDzHn/zSw3MYoaN+qslu7xwcgDGp5q/WGSY2s+EQ57bAVOh71aI+wepiqU3X3IHJnDkGx
+ gc546UrvVp6PdkBi2wqjTLxLgnRFltJ7s0j3vH9ulUm5A4HB6hfYjYycLBcRzxWKJGCecBYBY
+ q+YRc1eCmoTlET6imj/BDln6RpLlwBr7fy01LOPPbhMtbBpKX/ycAVsSLQqb6YacAQ7+eKaNE
+ J1NvzvHi1T6ClO/nLOqcm9ZHZ0GY8t1zMhhTu9Qp+qbJwAg1NhRIfT0TgyINOdLd155h0PaYD
+ O8xQ3uxbmSyvk3LH0ZH2zhqSwhJLuV/g9LBQ2gF2TfzqxlPpyX79rv1KLxdsMyKPBhvPwRV7+
+ akrtPH6hcF9hMl+caOBP/0ZMqCghYXytmvYEMBpbpc8XZ9oU5nbt3PLa3A0J4169S00QkObcj
+ VVqq8iDPRJwvVcvv9idhry/iJgbqQO5rDl4LXHzCzD+CzBbLaEbhu7BBgCgSnQ==
 
-Am Dienstag, 10. Juni 2025, 14:32:40 Mitteleurop=C3=A4ische Sommerzeit schr=
-ieb Nicolas Frattaroli:
-> Several Rockchip SoCs, such as the RK3576, can store calibration trim
-> data for thermal sensors in OTP cells. This capability should be
-> documented.
->=20
-> Such a rockchip thermal sensor may reference cell handles that store
-> both a chip-wide trim for all the sensors, as well as cell handles
-> for each individual sensor channel pointing to that specific sensor's
-> trim value.
->=20
-> Additionally, the thermal sensor may optionally reference cells which
-> store the base in terms of degrees celsius and decicelsius that the trim
-> is relative to.
->=20
-> Each SoC that implements this appears to have a slightly different
-> combination of chip-wide trim, base, base fractional part and
-> per-channel trim, so which ones do which is documented in the bindings.
->=20
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+On 10.07.25 12:55, Krzysztof Kozlowski wrote:
+> Why am I bothering to review if you keep changing and eventually
+> dropping the tag.
 
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+Sorry about that. b4 didn't take it, and since I changed the commit=20
+message after Bryan made the suggestion, didn't know if it was still=20
+justified.
 
-with one question below
+with best regards
 
-> ---
->  .../bindings/thermal/rockchip-thermal.yaml         | 61 ++++++++++++++++=
-++++++
->  1 file changed, 61 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.y=
-aml b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-> index 49ceed68c92ce5a32ed8d4f39bd88fd052de0e80..573f447cc26ed710063827759=
-8b0e745d436fd01 100644
-> --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-> @@ -40,6 +40,17 @@ properties:
->        - const: tsadc
->        - const: apb_pclk
-> =20
-> +  nvmem-cells:
-> +    items:
-> +      - description: cell handle to where the trim's base temperature is=
- stored
-> +      - description:
-> +          cell handle to where the trim's tenths of Celsius base value i=
-s stored
-> +
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: trim_base
-> +      - const: trim_base_frac
-> +
-
-are we sure, we want underscores here?
-trim-base, trim-base-frac looks somewhat nicer.
-
-Heiko
-
+Jens
 
 
