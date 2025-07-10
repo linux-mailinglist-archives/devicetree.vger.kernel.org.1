@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-194742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9568AFF586
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 01:56:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5D26AFF58B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 02:00:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B85071C23091
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jul 2025 23:56:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B7E53A4B96
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:00:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00886237A3B;
-	Wed,  9 Jul 2025 23:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F2442E406;
+	Thu, 10 Jul 2025 00:00:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="h4jrMKcH"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="s58Zh4gn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2706A801
-	for <devicetree@vger.kernel.org>; Wed,  9 Jul 2025 23:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61842F56
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 00:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752105384; cv=none; b=eJWDHwox5bFd71JOl0Uy1Zu/cjOqZhbOu1k21Y5iQaGiDDbMPGEq24dcXwheLq230I66JPBQxQ6gYjTjGS7FCO8HPlIsUL1JLAQ0ao114nck7DF0+HjVb1OlwAgOcb+1e/OR8Nk/ab7/1vz5PAiLaaYoE0XpFfqPMzRW+B3m0AE=
+	t=1752105648; cv=none; b=EtbRZTHXM1F7NdtuX/9JNfGKwc44E+QE6dqCNsDg+EEn1INiXNcsYa6tEdXuY7xY/aIilJ6Bv4sh4ig/BThY1pC3Zo7MfQmOqebqvbPa5hHHhpVaNjwxx03XQV19IPfwScy7f4qN5PWgj79PAlums4WJb8tGkpS10Ep4NEvwjZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752105384; c=relaxed/simple;
-	bh=wzNeuH4AgfJ+srhdUxKvu59sPMiOo4UVbGX3w1hfgNk=;
+	s=arc-20240116; t=1752105648; c=relaxed/simple;
+	bh=LJYyGTSErihblfOKFi6BylxXoGQ687UZBJYL9fnodBw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bO9mhpaRHcWavjAxzn8yBOvYuxcvNyyMXr0dw5TqnEFuIaMpg482viyrJTY8oj8ileL+8pTqrECL3HILCVCUpUIi5YDFuzarTtDmQjR6jLZqbIEFpEcY7zSSdCVCJw0DBIA11Cn3ENkDdmDoBpG2FzWyP0AchSzLevUCYnvyUTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=h4jrMKcH; arc=none smtp.client-ip=149.28.215.223
+	 In-Reply-To:Content-Type; b=s0my2KDSTap27kOVJ1n0T0vPtqL3HEzljyaFI7cBHtiYPoSReObASvyuOINRM+p1JFehJGnc/JS5a9oQmGUO2v7W1AlP2/ariTFvWznS7GdH0oMfTQuN9ZeLWCo3t3AwhLppBugd6ZuY2DsydFVT/1fas7fhYYIlhwKviO53sfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=s58Zh4gn; arc=none smtp.client-ip=149.28.215.223
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
  Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1752105376;
- bh=2DQ9gjXXuEt0O2/rJn65m+kWyPKUAoslRtuiFDYcZeU=;
- b=h4jrMKcHD1I2EfHEP26yzxFS2i4FVKkWWcmjbvoWUztsD5QaysEMctNGRV5/2in5uodXk2qEq
- lmRYjJKDm7Fy8NNB5GApbJxQe6nWMpGW2UXyeUMlE34uUDi+7eji2GbIvyC/2l4Q50eIVQjV2Tk
- r8MHiF1NfpjEl2fnfzVXAOirShtHk/dkWUsl9SuooErLd0U/aMeop1ZBBFMsQHmfIFyanjq6rh1
- uP84/qxmTRJnpgnmIWnRUsSihr7dCViyfnlNpmlTiH9TwdDPtiwdG9v+Nu1LwMHS87myOeIA9bA
- DbSJXP7S7x2pAKRoei3iIpX1IR4AMHQAdXH5wRoC5qmQ==
-X-Forward-Email-ID: 686f0196c4bb2e06178a2682
+ s=fe-e1b5cab7be; t=1752105645;
+ bh=vkPooPX6zi3QRoM9CrTsbZoAxP36NlshDQEMrww4eZw=;
+ b=s58Zh4gnIKGWFrbeRU8f18J/hAnvyuw+eeEUTo7sz7iu2yXNgzOvKTMG/jY+R5OumvNQsMRXu
+ 9m2xFsDdVODM/xYQJOKn6uVF2TQs0v84/IXF/I/RfRQOpf4EDChxUzT3pKeWjGA8x55OfeoaC4G
+ sobIWq2gVjay0iZnZko8D5J1wVliIXluAqqEY1MbpZGBpu0ulU/XHlgAYPtGkvbTvwL/WuPyOc9
+ CSKVnjQi0KCGO/QD2Z6z4W2ofXkd62sWQhYk1Dtpnj42DrpgMWBdIrUO6MbUOqMkhwxeyrM6Hql
+ 530M2a3/GXVlJQBKPJCsuoQ0NwqkLdRNfD0bz8P1dEPw==
+X-Forward-Email-ID: 686f02a6cecacbdaffda9867
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
  149.28.215.223
 X-Forward-Email-Version: 1.1.3
@@ -49,8 +49,8 @@ X-Forward-Email-Website: https://forwardemail.net
 X-Complaints-To: abuse@forwardemail.net
 X-Report-Abuse: abuse@forwardemail.net
 X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <5ce03a37-1b60-4328-8d04-07bf835def94@kwiboo.se>
-Date: Thu, 10 Jul 2025 01:56:02 +0200
+Message-ID: <87c6249a-96f1-4557-b4eb-70e69e6d773f@kwiboo.se>
+Date: Thu, 10 Jul 2025 02:00:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,121 +58,144 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] arm64: dts: rockchip: Add Radxa ROCK 2A/2F
-To: Yao Zi <ziyao@disroot.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chukun Pan <amadeus@jmu.edu.cn>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250708224921.2254116-1-jonas@kwiboo.se>
- <20250708224921.2254116-3-jonas@kwiboo.se> <aG3vPsUd-FPkhi-S@pie.lan>
+Subject: Re: [PATCH 4/6] arm64: dts: rockchip: Add ArmSoM Sige1
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ robh@kernel.org, ziyao@disroot.org
+References: <20250708224921.2254116-5-jonas@kwiboo.se>
+ <20250709070003.53484-1-amadeus@jmu.edu.cn>
 Content-Language: en-US
 From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <aG3vPsUd-FPkhi-S@pie.lan>
+In-Reply-To: <20250709070003.53484-1-amadeus@jmu.edu.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 Hi,
 
-On 7/9/2025 6:25 AM, Yao Zi wrote:
-> On Tue, Jul 08, 2025 at 10:48:52PM +0000, Jonas Karlman wrote:
->> The ROCK 2A and ROCK 2F is a high-performance single board computer
->> developed by Radxa, based on the Rockchip RK3528A SoC.
->>
->> Add initial device tree for the Radxa ROCK 2A and ROCK 2F boards.
->>
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
->> ---
->> Schematics:
->> - https://dl.radxa.com/rock2/2a/v1.2/radxa_rock_2a_v1.2_schematic.pdf
->> - https://dl.radxa.com/rock2/2f/radxa_rock2f_v1.01_schematic.pdf
->> ---
->>  arch/arm64/boot/dts/rockchip/Makefile         |   2 +
->>  .../boot/dts/rockchip/rk3528-rock-2.dtsi      | 292 ++++++++++++++++++
->>  .../boot/dts/rockchip/rk3528-rock-2a.dts      |  82 +++++
->>  .../boot/dts/rockchip/rk3528-rock-2f.dts      |  10 +
->>  4 files changed, 386 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
->>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
->>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2f.dts
->  
-> While testing the patch on my Rock 2A board, I noticed one of my SDcard
-> that works perfectly on Radxa E20C and NanoPi Zero 2 cannot be correctly
-> read out under UHS-125-SDR mode,
+On 7/9/2025 9:00 AM, Chukun Pan wrote:
+> Hi,
 > 
-> 	# dd if=/dev/mmcblk1 of=/dev/null bs=4M count=4
-> 	[   18.616828] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
-> 	[   19.193315] mmc1: Skipping voltage switch
-> 	[   19.202046] mmc1: tried to HW reset card, got error -110
-> 	[   19.213312] mmcblk1: recovery failed!
-> 	[   19.213709] I/O error, dev mmcblk1, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 256 prio class 0
-> 	[   19.225201] mmcblk1: recovery failed!
-> 	[   19.225530] I/O error, dev mmcblk1, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
-> 	[   19.226283] Buffer I/O error on dev mmcblk1, logical block 0, async page read
-> 	dd: /dev/mmcblk1: I/O error
+>> +	vcc5v0_usb1_host: regulator-5v0-vcc-usb1-host {
+>> +		compatible = "regulator-fixed";
+>> ...
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> ...
+>> +	vcc5v0_usb2_host: regulator-5v0-vcc-usb2-host {
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> ...
 > 
-> which could be reproduced stably.
-> 
-> the SDMMC controller issued interesting messages during the tuning
-> process,
-> 
-> 	[    0.665246] mmc_host mmc1: Bus speed (slot 0) = 148500000Hz (slot req 150000000Hz, actual 148500000HZ div = 0)
-> 	[    0.851940] dwmmc_rockchip ffc30000.mmc: All phases work, using default phase 90.
-> 
-> but actually it doesn't work with phase = 90. If the frequency is
-> limited to 100MHz with max-frequency = <100000000> instead of the
-> default 150MHz, tuning results in a very different phase,
-> 
-> 	[    0.665483] mmc_host mmc1: Bus speed (slot 0) = 99600000Hz (slot req 100000000Hz, actual 99600000HZ div = 0)
-> 	[    1.166340] dwmmc_rockchip ffc30000.mmc: Successfully tuned phase to 141
-> 
-> and the card works, too. If I set rockchip,default-sample-phase to 141
-> in devicetree, the card could work at full 150MHz as well.
-> 
-> I think there's something wrong with the tuning process, or the board's
-> design cannot always run reliably at 150MHz.
-> 
-> Could you reproduce similar failures on Radxa 2A? If so, it may be
-> necessary to lower the SDMMC's maximum frequency for the board.
+> I think these two regulators do not need boot-on?
 
-I have not been able to reproduce this issue on any of my ROCK 2A or 2F
-boards, my boards seem to tune phase to around 250-265 for the sd-cards
-I tested.
+Agree, will remove the boot-on in v2.
 
-Could you try with something like this:
+> 
+>> +	rfkill {
+>> +		compatible = "rfkill-gpio";
+>> +		label = "rfkill-wlan";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&wifi_reg_on_h>;
+>> +		radio-type = "wlan";
+>> +		shutdown-gpios = <&gpio1 RK_PA6 GPIO_ACTIVE_HIGH>;
+>> +	};
+> 
+> Why not use mmc-pwrseq instead of rfkill?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi b/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
-index fc23c51836b15..a82791db55699 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
-@@ -285,6 +285,10 @@
- 	status = "okay";
- };
- 
-+&sdmmc_clk {
-+	rockchip,pins = <2 RK_PA5 1 &pcfg_pull_up_drv_level_3>;
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0m0_xfer>;
+Not sure, have changed to use mmc-pwrseq in v2.
 
+> 
+>> +	rfkill-bt {
+>> +		compatible = "rfkill-gpio";
+>> +		label = "rfkill-bt";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&bt_reg_on_h>;
+>> +		radio-type = "bluetooth";
+>> +		shutdown-gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
+>> +	};
+> 
+> Why not use shutdown-gpios of bcm43438-bt?
 
-Changing clk drive strength seem to be something that has been done in
-Radxa vendor kernel [1], could be something that we can include if it
-fixes your issue.
+Sure, will use that in v2.
 
-The kernel I tested was built from [2].
+> 
+>> +&i2c0 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&i2c0m0_xfer>;
+>> +	status = "okay";
+>> +
+>> +	hym8563: rtc@51 {
+>> +		compatible = "haoyu,hym8563";
+>> +		reg = <0x51>;
+>> +		#clock-cells = <0>;
+>> +		clock-output-names = "hym8563";
+> 
+> CLKOUT pin is not connected.
 
-[1] https://github.com/radxa/kernel/commit/e9b33cbc97a902560d3f3b43b4d36a1a0ac68a50
-[2] https://github.com/Kwiboo/linux-rockchip/commits/next-20250708-rk3528-boards/
+Thanks, will remove the clock-output-names for the Sige1 and the NanoPi
+Zero2 in v2, #clock-cells seem to be required by the dt-bindings.
+
+> 
+>> +&sdio0 {
+>> +	bus-width = <4>;
+>> +	cap-sd-highspeed;
+>> +	cap-sdio-irq;
+>> +	disable-wp;
+>> +	keep-power-in-suspend;
+>> +	no-mmc;
+>> +	no-sd;
+>> +	non-removable;
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&sdio0_bus4>, <&sdio0_clk>, <&sdio0_cmd>, <&clkm1_32k_out>;
+> 
+> I recommend using clkm1_32k_out at the sdio-pwrseq node.
+
+Will do so in v2.
+
+> 
+>> +	sd-uhs-sdr104;
+>> +	vmmc-supply = <&vcc_3v3>;
+>> +	vqmmc-supply = <&vcc_1v8>;
+>> +	status = "okay";
+> 
+> Maybe `brcm,bcm4329-fmac` nodes can be added here?
+
+Will add to in v2.
+
+> 
+>> +&uart2 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&uart2m1_xfer>, <&uart2m1_ctsn>, <&uart2m1_rtsn>;
+>> +	uart-has-rtscts;
+>> +	status = "okay";
+> 
+> You can add `brcm,bcm43438-bt` nodes here:
+> 
+> 	bluetooth {
+> 		compatible = "brcm,bcm43438-bt";
+> 		device-wakeup-gpios = <&gpio3 RK_PC3 GPIO_ACTIVE_HIGH>;
+> 		host-wakeup-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
+> 		shutdown-gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
+> 		...
+> 	};
+
+Will use something similar in v2.
+
+See [1] for fixups I am testing for v2.
+
+[1] https://github.com/Kwiboo/linux-rockchip/commits/next-20250708-rk3528-boards/
 
 Regards,
 Jonas
 
 > 
-> Regards,
-> Yao Zi
+> Thanks,
+> Chukun
+> 
+> --
+> 2.25.1
+> 
 
 
