@@ -1,122 +1,88 @@
-Return-Path: <devicetree+bounces-194906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25178AFFE0C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:27:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD2C4AFFE1E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:29:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24E1B1C26DE5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:27:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A7CA4A4F4F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8953F295DB4;
-	Thu, 10 Jul 2025 09:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 374212D320B;
+	Thu, 10 Jul 2025 09:27:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="2CKFRSu0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B334A0C;
-	Thu, 10 Jul 2025 09:27:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A042D130C;
+	Thu, 10 Jul 2025 09:27:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752139644; cv=none; b=ugJgzogKjnyU5WaoihbYacZlrk3/KN0Nvmgnys8JlodPQmLrWMKz4e4lM5yv0W1kuHj6tGZK8GBiKZMf4LGJqNlKDZ1Rcm0kjtb6wiP1oeAeS8SzAmCVWKesxEsx7JMDwKB+mCAzWVnpPw1ll6QQNpmcVtPRkz5kso/C42VCuxE=
+	t=1752139657; cv=none; b=RAQgc7w6Mc+r8wT82nS7S8B+tZlS/jsokZASHR3h0XOFEpfZIBH6lEtG2+Osg6hl9fFcFGbUW0aCbmfFZjcwxA9RgykBxevgWlB02w1GOeMj3GRKyni/SPWuso0nbc1hQTRkmw8wnsQvctvwbYJQxPAGFtyNb/wHLWCH++NdF/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752139644; c=relaxed/simple;
-	bh=h+I4PESBExTwFLSyj1x6avtCbIxfti7hBaT17gq0P4c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uET4vsm5dWRRlZQgqYfvdoaus/pdVcPaIlMr8Y68eeDWlZhRYhBZrAlybcYbUr6ilg41UQD1R2PEHgQL0oqHAP4aITvOzTv+C5dQaeqga5w3Sisfmq7v6uYTB2qy8DhvJ5LLwcTLCsbo3KhoszmnmlftqsS4AUiaO4RoWzh1/pw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=15.184.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
-X-QQ-mid: esmtpsz10t1752139574t2e477d4c
-X-QQ-Originating-IP: fVANaU33qzx/j+OxAgI6zbPV9xjAYtm3YAX+hwq3ekA=
-Received: from localhost ( [183.17.231.23])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 10 Jul 2025 17:26:13 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 13541076069648255284
-EX-QQ-RecipientCnt: 14
-Date: Thu, 10 Jul 2025 17:26:12 +0800
-From: Nick Li <nick.li@foursemi.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
-	tiwai@suse.com, xiaoming.yang@foursemi.com,
-	danyang.zheng@foursemi.com, like.xy@foxmail.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: Add schema for FS2104/5S audio
- amplifiers
-Message-ID: <BCEA350532C6759B+aG-HNOXmswyEHs2v@foursemi.com>
-References: <20250703035639.7252-1-nick.li@foursemi.com>
- <20250708112901.25228-1-nick.li@foursemi.com>
- <20250708112901.25228-3-nick.li@foursemi.com>
- <20250709-invisible-frigatebird-of-felicity-7e87c4@krzk-bin>
- <BD2D8A14FDC941B8+aG91lowfru0KiWWW@foursemi.com>
- <3bb34074-8ce0-4f0e-b7c7-1d77a8cd6ea3@kernel.org>
+	s=arc-20240116; t=1752139657; c=relaxed/simple;
+	bh=/ZLJcwShyR0UNJjWxzrA2qfWgMgVLz6IGN0xsy8PQlY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kog800+jov3cni/XxWWndlTnj9YyT1twW1EklTMWvRuId/WJvRZNQahpQGEyH9OdaTUSJ+KEtQHHjsT9rZjpVCMYc01EAwD6MOU+iD6cJur9JGvD/VnSWGg2XhW9Upxmg6X0v2nR8p6Qvok+coXLysTEr7TQgcG+UtN0lrsCNi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=2CKFRSu0; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=pQpm6dtBzU/F8AceyiLgn+Hz9N7iQXKzE8ZIvBelGik=; b=2CKFRSu0GzQRHXUr9+xU8MpduU
+	LAYdGhy+1ryBZXMsgkghkUedsp1FFJqEEGsErsPc175ncTWS8V+cnqM0H/aklkyIQClYzEv5DqSFu
+	sRcH0nyc8jHhjjXzWkIan/ei0c+9MM1nEbACBMm6TknxQOXW/bC3E6CDCWoPO7179zJmprHVlzopb
+	/XduZjD9hdm+LRIKozpcHyjS2y9YnFJqRwntZ7gtJb4gqyzxcKOgwu9UU7iZ8Ry621/aG/Qpo5mVK
+	OdGhUUU4pFWyl+kyHPPD7hhovFoCC6dijP+lyqlMlFpoNspV/CUiF0IYEAyQtapWYzVbitgkjU0ZE
+	FugU+b5Q==;
+Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uZnYn-0003fo-27; Thu, 10 Jul 2025 11:27:21 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	conor+dt@kernel.org,
+	didi.debian@cknow.org,
+	krzk+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable mipi dsi on rk3568-evb1-v10
+Date: Thu, 10 Jul 2025 11:27:12 +0200
+Message-ID: <175213961999.1887379.12088810918862744126.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250706113831.330799-1-andyshrk@163.com>
+References: <20250706113831.330799-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <3bb34074-8ce0-4f0e-b7c7-1d77a8cd6ea3@kernel.org>
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpsz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: NkGXhzp6HyG+sxMnQkNrON5aauU0WL52mGuy5/1yrfmyfuULqTUUMOXR
-	nf5IghGFk9cLQ28EQWn8/uInMKn7yv+x5T5o4/U6cLnn6Lo7XpGCzTljrdWslCSXX9RTgRk
-	DhNCFKVoFq+pFMLg4MR0Oz6x7JqIpMe1azXkO77CPcqdZIXg4VHFBbyhMXf528YFtX1TYwh
-	taQdlpzz4p92tR+nwPwIJ8gJu7zg3veQ1+NC+ruOuAdVmZvLle00LtVM627UAN+lv5sfXpI
-	0rkV5vo/gVtEOEeFUBm7TttejWCsXBaIfax3fDWyNanorNz5SMiwNTTD4NrOafisZ+tiwER
-	E+u+7U16hv2cBpqj85wL1+/dAumCYQzgA+s/gibwH8bdKjaBYduXnL1ErCX0FSuwcwwwEKJ
-	ai37S/pUhrcoaGHEAP2cNO9bNWTSyJFUJNu1Fj19lTF4uedJQTCt+sjb3VUOQYhNDAtCf3R
-	3b7J2tW7IuXbqsoky5Gf+20uF/LCBMx/7QsxL1XBwgNUxqtasbIP3UdUYk7BCw1ELsDsvLB
-	c12XkHLoDLY1WN7wQzogvvBjialf5zV8ZWt3rnSSjaMRmJX7TVdcjNUNC8Gvk5XGW4HBL/z
-	ISJE/fccVBk0kToGZzlK3rC8Lye+XSIzamOUEeg8T1D6k5XcvaHXIwrS9lXzcVxhW6tvIRJ
-	Dze2am5XczG7zVDjFkTOKKWQsQdLxO32ZLHsnlr1CUOu0JzuavK7Ascnpf/NjAy2s895lJV
-	8XLKtPrimXJLduqJzJVDtuO3wu+dA7km4wGtHDPDpsTqOTBywuvTjwE97cVrKlT4tAMhtQp
-	XqKzPowl3tH6elm/5CU3Vvouk4Qr0B/4rgIHDKqaaVX1QXmw7nIdZSip/e9RNxgi0jIPBPY
-	WujG0gG62hp62USi98PN1mXN5aiLPgBOS6PYop9NWN9Pf7MOOEICFyq1LSq44b6sPC2ZVJJ
-	097VRwWGGCMKijFh5VK/Dlp7MaKUMVOVBrbhgFnSjFfN1HDo+BtU7NFwnQ9H1HgnCFi7KUI
-	mCONhcOgF3m3RKdzRvo9fXhgJ2HyycVPbHFmKskV6Nd1N9fYyOHtnP9ip0XjSuWn1sWKBa6
-	32NDplcEqRC
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jul 10, 2025 at 10:27:59AM +0200, Krzysztof Kozlowski wrote:
-> On 10/07/2025 10:11, Nick Li wrote:
-> >>> +
-> >>> +required:
-> >>> +  - compatible
-> >>> +  - reg
-> >>> +  - reset-gpios
-> >>> +  - firmware-name
-> >>> +  - '#sound-dai-cells'
-> >>
-> >> Keep the same order as in list of properties. OTOH, missing supplies.
-> > 
-> > OK, we will fix the order, but the supplies may not be used as regulator,
-> 
-> Hm? What does it mean in terms of hardware?
-> 
-> > we mark them as required, is it OK?
-> 
-> How codec driver can work without power?
 
-The power may be connected to the baterry/adapter directly,
-it may not be under the control of the software,
-in this case, the supplies are use as dummy regulators?
+On Sun, 06 Jul 2025 19:38:24 +0800, Andy Yan wrote:
+> Enable the w552793baa 1080x1920 dsi panel on rk3568 evb1.
+> 
+> 
+
+Applied, thanks!
+
+[1/1] arm64: dts: rockchip: Enable mipi dsi on rk3568-evb1-v10
+      commit: 06b29cb849bc0437edd68373a1e8152f0bcd30e7
 
 Best regards,
-Nick
-
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
