@@ -1,115 +1,82 @@
-Return-Path: <devicetree+bounces-194835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1614AFFB31
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:43:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E0F5AFFB1F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:41:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91A477BAA0D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 07:39:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3B215A3FA3
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 07:41:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F146289E21;
-	Thu, 10 Jul 2025 07:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 741A828982D;
+	Thu, 10 Jul 2025 07:41:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X71MCt1m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YTtkzOjt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1669D289832
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 07:40:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4881C241661;
+	Thu, 10 Jul 2025 07:41:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752133218; cv=none; b=KaChBitGjm8/tThazA/wMCgU/ku4PK28m01yL4c12DAUHQ627gj5AgJXZnfgm4CXm+8crscwMnKGvG/iiYCAoDXUM8mh9ZcZ4nUATorgr/5V9c2uEsf6h8m6dTXX2WmhfMDjfzZ5qa1ujqCUfBuwk7fUCpHLumgv26wUE0Rq3o0=
+	t=1752133264; cv=none; b=KZjJaoTkY7lCzVvI3XLOat12C+ELjLMGaAJv+whdGeciYmUKjUwkNmUQzKZ/eR3KJ1PVobpF3pNotc/23a/uenX4r6mT9gC+FyVkYexGYfZhMhsDvE+AB31FTBZOaX9idczByD3eJv3wfnmXWhTKkcgG1Q+Hii9XQv4t82kPy7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752133218; c=relaxed/simple;
-	bh=bVSinIxBeazkKEKfcVYcVjaoUaV4wjv1lfQNu+0RDdc=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=g1UXP1VBU7xWzqvMeftPgUwcJi3A6/Rs22LIE7tOfeF7B7ngNtYxNu/0haWT2OQfspFVcUteFcWAA0Zn/sNa51qdCrgK0RAgCuONr9m8KTr3NtXjg9GsKPzLeGTKsM+/ooRP6ZI4K9xBFY0jFFFIa7KrQI761SDxCKFTf4RWKb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X71MCt1m; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-453643020bdso4440295e9.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 00:40:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752133214; x=1752738014; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bVSinIxBeazkKEKfcVYcVjaoUaV4wjv1lfQNu+0RDdc=;
-        b=X71MCt1mpk6haB6Le5wYPXgVY5IuY62UveVgmBTg4Z1xUHkWVhqUxgVCAykNzH5sfv
-         Qg9k9ds9qG9b891vVz59o5U4qS/Fm6xYrXwPQPAL2Lbv+VBVhtaWVLfIHG1MYAzpY6eU
-         4qTxjJmgfw2QGXW6bKKOcY5pa6jcZnG6OGUtVSiG6Y7AYCsD9ysJ+mZlrtiZdK52R3Lq
-         uPNk+bHsxZEVuN5IAENbdDMr/AnPo9/fFHa/lQ6BVwo7R8IVeu3BQ5U7cOHPOaojxuJA
-         jZ4W3+sP/k6UTWnilVjpdV11zobnTM6Mdab0ruxgD5tA72K6yal1NXGqa17/lHKxLCiC
-         bJtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752133214; x=1752738014;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=bVSinIxBeazkKEKfcVYcVjaoUaV4wjv1lfQNu+0RDdc=;
-        b=v2itLW1M3/k+nRiWEM2vz7VeWFR2GWnvl3Ndn0bLVntJsaBQwbDP/Yogmd7eiITces
-         iOEMpKeVVVVONzNkGlGS43uS/ob2Y2b78QMEvhXO9ZKR4N1PLmvAY/kIjeNbJQo51mk8
-         oXSGQSLKZzLtUPPQ6zUHmrSsOLD4FVEUUOr8kR1JuOEl3Eup0KkUGzEL8j2ugSAqj3tm
-         K7kmgK0YjYSH8Eo7M+HjTkKeEKr5tQBZR5f1sinDqc2481dNuaRTxhoMpSJQjlIgLgyr
-         /uQgJ7kXhFxCac+DH0GqUU3EvlqjnZ3aJ6igp5h65bZ7pCnqECeREntw7QtpJ22jyhD0
-         MvsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW4+8N8rxLb5MxXqd4YbSrfrtHjR4B7xJGtH8idzRXy2laqW4CvLSnAtw+bGsjInF66Uvz6coewAGQ0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvoRUawafmSa4d7q1TGVoVOK+elaFXQ58PCPvNKNShUMT2Wall
-	Z2Xy97TdYezqZpqfnfPB6MOSowu2dAa6For0CQ6UYfXk8BuTiWENhYhOzOtIfKnJWKI=
-X-Gm-Gg: ASbGncvtMJfI2Y/CKk4McA/jPRSS/rtVIGK+/CkNq0roFCOxI+cnjng2XTa1Y0x/gbz
-	+RZmflhI6MlCuUy6t/EOV/jHUd+c6ajnnfY9aDF0ocatKDq2Y5ZrvSEsPM4Ctnd0WZHNxkkDt65
-	x1DPXWkK7k4ZqxoqLqGRYQlhjcZnhHNuEHNY3WcKT5ELyvXVXc4XCabqbjfujJ39uBqjQIYQQIx
-	lRwNmLzyDHRUZXnWvgLrpFcFFTCWVNCLyoojuiqXxYuqP64u8PhP1QYQBtTSywgeSUZYh08twCb
-	67QKoN+94QyHYUJzDRSd1Kgih0d3Bukm3DwUCgEjsaqgbGmusOVf/y0RnXW5pslLMA==
-X-Google-Smtp-Source: AGHT+IEw2BMJU0viDmTOvkyx/B/l0UKxFSMsiQvTqQWjzJquhhrpepUjy0pyReFZsMn1allOYgvtiw==
-X-Received: by 2002:a05:600c:b85:b0:453:99f:b1b0 with SMTP id 5b1f17b1804b1-454d53a7430mr48773265e9.20.1752133214419;
-        Thu, 10 Jul 2025 00:40:14 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454dd43915dsm11113575e9.7.2025.07.10.00.40.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jul 2025 00:40:13 -0700 (PDT)
-Message-ID: <965df42623d1a1c2bac49bd9420cfb5fad672048.camel@linaro.org>
-Subject: Re: [PATCH 1/2] arm64: tesla/google: MAINTAINERS: Reference "SoC
- clean" maintainer profile
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Peter Griffin
-	 <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Alim
- Akhtar <alim.akhtar@samsung.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Thu, 10 Jul 2025 08:40:12 +0100
-In-Reply-To: <20250710073443.13788-3-krzysztof.kozlowski@linaro.org>
-References: <20250710073443.13788-3-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1+build1 
+	s=arc-20240116; t=1752133264; c=relaxed/simple;
+	bh=b2c/dVIItYgaV3VbxqZOwJymzOT16/6fke9H997b7hE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ex7yA1OHWUZrWBmQgORnleArdNyxYXx9mfWauF+RZY9DLe/RJCDrMwzQuNB7QWYTqYHjy1IVBoVbi3zo2/Ppyecbh5u1WtpU5pKY2tpVGUdq+vlJFR1nw/5/PB/sHZ62VcdamCDxJNYSKX8ZTPS/zHvqkO3a2f73loehY6gvu9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YTtkzOjt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35C17C4CEE3;
+	Thu, 10 Jul 2025 07:41:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752133263;
+	bh=b2c/dVIItYgaV3VbxqZOwJymzOT16/6fke9H997b7hE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YTtkzOjtwhWjyFFyXM2O1VXAwQSdphl3g9kFAPvCHxUo0RwSJzLghLgzRK0OtOvKb
+	 gkpT2jOMR3L62DZQ9v6RcC4n9zWCbCdEggJQwcVHgf31PmT/HB1BdWHOgUiQFp2XC9
+	 V810dqNoO5XaYyGE830hv3yFDIzCYRb9xt7zk3OBwOFasNwXbjf/xfbMQyxA1Vs+nR
+	 cUFA3V70Ag+HnAKMfroPVImGuFZHOSO4xjK4RlpBW9g33ufbqr64eNqx8f+KINJ1LI
+	 psb8kjWgTZ2supBAwdp35zBSP+cPf0SE5j/48pvDk18tTJeduQ+jNdKmk3mS+WeNxe
+	 5pzqZ2qZXMu4g==
+Date: Thu, 10 Jul 2025 09:41:01 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/3] arm64: dts: qcom: x1-hp-x14: Commonalize HP
+ Omnibook X14 device tree
+Message-ID: <20250710-horned-sandy-turkey-df269b@krzk-bin>
+References: <20250709-hp-x14-x1p-v6-0-f45cc186a62d@oldschoolsolutions.biz>
+ <20250709-hp-x14-x1p-v6-2-f45cc186a62d@oldschoolsolutions.biz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250709-hp-x14-x1p-v6-2-f45cc186a62d@oldschoolsolutions.biz>
 
-On Thu, 2025-07-10 at 09:34 +0200, Krzysztof Kozlowski wrote:
-> Effectively all Tesla FSD and Google GS101 DTS patches go via Samsung
-> SoC maintainer, who applies the same rules as for Samsung SoC: DTS must
-> be fully DT bindings compliant (`dtbs_check W=3D1`).=C2=A0 Existing sourc=
-es
-> already are compliant, so just document that implicit rule by mentioning
-> respective maintainer profile in their entries.
->=20
-> Cc: Peter Griffin <peter.griffin@linaro.org>
-> Cc: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> Cc: Tudor Ambarus <tudor.ambarus@linaro.org>
-> Cc: Alim Akhtar <alim.akhtar@samsung.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Wed, Jul 09, 2025 at 09:26:53PM +0200, Jens Glathe wrote:
+> Commonalize the HP Omnibook X14 device tree for derivation of Hamoa (x1e*/x1p6*)
+> and Purwa (x1p4*/x1*) variants. Required because the device trees are not
+> compatible.
+> 
+> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 > ---
-> =C2=A0MAINTAINERS | 2 ++
-> =C2=A01 file changed, 2 insertions(+)
+>  ...hp-omnibook-x14.dts => x1-hp-omnibook-x14.dtsi} |   27 -
+>  .../boot/dts/qcom/x1e80100-hp-omnibook-x14.dts     | 1611 +-------------------
+>  2 files changed, 35 insertions(+), 1603 deletions(-)
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
