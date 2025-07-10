@@ -1,48 +1,56 @@
-Return-Path: <devicetree+bounces-195190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF434B00C6B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 22:02:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAA1EB00C70
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 22:07:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAA7C4E7AEA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 20:01:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6AC147A98F8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 20:06:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD72241131;
-	Thu, 10 Jul 2025 20:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95A2228B400;
+	Thu, 10 Jul 2025 20:07:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jvqQXMeH"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="d2HpPcNR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45FDD3D6F;
-	Thu, 10 Jul 2025 20:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B393D6F
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 20:07:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752177723; cv=none; b=ta9Y6pGFjnPPJw4UB2x5aMVQ6wVhJ0EahMeKFQsdd5ZgHW3eT9m+n0Yp+xXBLhy/LD+EVF3midCHYF1PEdN1WF5aR2VEFDt9S3D6yGeVN+klMZ3NldUf4+SUOcOwitpHORviwJf5zpUoG5dXreB84QeXkoky7OK1niDLlpoqZ5k=
+	t=1752178045; cv=none; b=P5E4nMlNlaTPVRRYNsq1QSmw0iWZFZy2+31HCNP0GmC1Yk9sTm6m22k/3CMmHVDrWd98nOW/snjt5L4CqZ50gmKyeYDL4CxQZC/Zk2t1bJnHTchzGl2SLl2WJD8Ec0IwGsSMjoBUU6eNNAPfqOUHVQL44Tp40zN1iPArKLSXrCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752177723; c=relaxed/simple;
-	bh=Ov1Gn09ZPG7kbc6CFvLpiuhTtSdn7773uGLpPwjb6qo=;
+	s=arc-20240116; t=1752178045; c=relaxed/simple;
+	bh=evQptQ25TKfNJLtWJR+wL5hY2RYAXheXBtlhqKXD7WI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ogOZ/wvIAtfWt0DWIYOZ/K3KBhLpa146vQc931A8880YFDFgNa43cwb0fkg3EWdzsWC4nehBUu27JgwTQvOM19MnsutP6/Q97c25abuKD0g7W2EyEjENaGgl/JiYW9BB/rxZUFdEc6oU2elx9SJ3FwKYTpD+bOyX5OJFDtxVsgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jvqQXMeH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7353C4CEE3;
-	Thu, 10 Jul 2025 20:01:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752177722;
-	bh=Ov1Gn09ZPG7kbc6CFvLpiuhTtSdn7773uGLpPwjb6qo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jvqQXMeHZpO89kQcIpD7CqpIG61+ix9rEzi8WlCWGhXh8H9pcBwNv7vWfyNWs4sxA
-	 pTuI5xOJZu7qXKOlmRtxiap1bidD8Hee9Y0q6iBInH8nCmpL87GiOKXZ8lGn9BKEFk
-	 l/L8TcOtjmpZecg7//wAqMGAvStOC6NNFCGxHvLjSv/p6nKrUiGpEucHG9Zn7w77LJ
-	 3TOnB/V6RK066hUVg7TxaLz4l1XpaK6ER4Q5tlHRiy84olO6olBPyhN9s1QAHf8dsU
-	 F1j+p5hzklpKUraafF8DbcUSuIN6wcMGs3cEO3Z9CjOGeLoeOHjgK9Zn304LbhOZC+
-	 VFLgKC+78c77g==
-Message-ID: <bbd52251-a2ac-4d9a-9b3d-62f968c646bd@kernel.org>
-Date: Thu, 10 Jul 2025 22:01:56 +0200
+	 In-Reply-To:Content-Type; b=BoyduX2vYnJBtTFnoTOaBzhFLueif96e3H0ffl3MnJGBPdr+5LQ6nzWsdXRjDLGdHIQGyaql2qmSDNkervIRbZPMUTiw8H0pKgYx0U1MZM75y4unFvxGn9MsL8IqdGKTO+xd1JWRo2931HXYhxN0MtzNlb2aaq3W0biNfDO90Ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=d2HpPcNR; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1752178042;
+ bh=/1M1f0WXZO5bxuDo4DpdIlyXNWZQiDSA9GNt+SrC4Gs=;
+ b=d2HpPcNRJ2C8pxLjAUAoCM6jgNDeUlTHCTzdc0i/Axyrq0tfPLeictSK9CkeHcMuCnW+afOxW
+ p1BrdEDP8/90DHuHieqwya2hMT6MEV1FZue8IfwLAGgiFA4j95y1tg6qOZyTqjTdnVXrGq8sJ2q
+ zRzrsfpAiqR1+fkUYokGiUwXYqr3MgilgIvOEYIRpppcckZ6RtBcidQPdbsOyKcjN3QwjbMRg0W
+ VA1Pja6EQzY7LnLDQBwmN5cqc8eDON8b2loJ85dzWflUXH2lR7KjsTktNzoAPNhr4VY9rOUFybk
+ wrHFdppo4cTRr6FnmkRfcu9jZzR0RXkXFRDNaCJfOPNQ==
+X-Forward-Email-ID: 68701d735dd88a88be4f45f3
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.1.3
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <48bdfce3-d87f-43d4-8d05-837132d68ed6@kwiboo.se>
+Date: Thu, 10 Jul 2025 22:07:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,38 +58,142 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] rust: Build PHY device tables by using
- module_device_table macro
-To: FUJITA Tomonori <fujita.tomonori@gmail.com>
-Cc: miguel.ojeda.sandonis@gmail.com, kuba@kernel.org,
- gregkh@linuxfoundation.org, robh@kernel.org, saravanak@google.com,
- alex.gaynor@gmail.com, ojeda@kernel.org, rafael@kernel.org,
- a.hindborg@kernel.org, aliceryhl@google.com, bhelgaas@google.com,
- bjorn3_gh@protonmail.com, boqun.feng@gmail.com, david.m.ertman@intel.com,
- devicetree@vger.kernel.org, gary@garyguo.net, ira.weiny@intel.com,
- kwilczynski@kernel.org, leon@kernel.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, lossin@kernel.org, netdev@vger.kernel.org,
- rust-for-linux@vger.kernel.org, tmgross@umich.edu
-References: <DB6OOFKHIXQB.3PYJZ49GXH8MF@kernel.org>
- <CANiq72=Cbvrcwqt6PQHwwDVTx1vnVnQ7JBzzXk+K-7Va_OVHEQ@mail.gmail.com>
- <aG2g7HgDdvmFJpMz@pollux>
- <20250709.110837.298179611860747415.fujita.tomonori@gmail.com>
-From: Danilo Krummrich <dakr@kernel.org>
+Subject: Re: [PATCH 2/6] arm64: dts: rockchip: Add Radxa ROCK 2A/2F
+To: Yao Zi <ziyao@disroot.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chukun Pan <amadeus@jmu.edu.cn>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250708224921.2254116-1-jonas@kwiboo.se>
+ <20250708224921.2254116-3-jonas@kwiboo.se> <aG3vPsUd-FPkhi-S@pie.lan>
+ <5ce03a37-1b60-4328-8d04-07bf835def94@kwiboo.se> <aG_tTPRYZPYHMpf7@pie.lan>
 Content-Language: en-US
-In-Reply-To: <20250709.110837.298179611860747415.fujita.tomonori@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <aG_tTPRYZPYHMpf7@pie.lan>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 7/9/25 4:08 AM, FUJITA Tomonori wrote:
-> On Wed, 9 Jul 2025 00:51:24 +0200
-> Danilo Krummrich <dakr@kernel.org> wrote:
->> Here's the diff to fix up both, I already fixed it up on my end -- no need to
->> send a new version.
+On 7/10/2025 6:41 PM, Yao Zi wrote:
+> On Thu, Jul 10, 2025 at 01:56:02AM +0200, Jonas Karlman wrote:
+>> Hi,
+>>
+>> On 7/9/2025 6:25 AM, Yao Zi wrote:
+>>> On Tue, Jul 08, 2025 at 10:48:52PM +0000, Jonas Karlman wrote:
+>>>> The ROCK 2A and ROCK 2F is a high-performance single board computer
+>>>> developed by Radxa, based on the Rockchip RK3528A SoC.
+>>>>
+>>>> Add initial device tree for the Radxa ROCK 2A and ROCK 2F boards.
+>>>>
+>>>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>>>> ---
+>>>> Schematics:
+>>>> - https://dl.radxa.com/rock2/2a/v1.2/radxa_rock_2a_v1.2_schematic.pdf
+>>>> - https://dl.radxa.com/rock2/2f/radxa_rock2f_v1.01_schematic.pdf
+>>>> ---
+>>>>  arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+>>>>  .../boot/dts/rockchip/rk3528-rock-2.dtsi      | 292 ++++++++++++++++++
+>>>>  .../boot/dts/rockchip/rk3528-rock-2a.dts      |  82 +++++
+>>>>  .../boot/dts/rockchip/rk3528-rock-2f.dts      |  10 +
+>>>>  4 files changed, 386 insertions(+)
+>>>>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
+>>>>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
+>>>>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2f.dts
+>>>  
+>>> While testing the patch on my Rock 2A board, I noticed one of my SDcard
+>>> that works perfectly on Radxa E20C and NanoPi Zero 2 cannot be correctly
+>>> read out under UHS-125-SDR mode,
+>>>
+>>> 	# dd if=/dev/mmcblk1 of=/dev/null bs=4M count=4
+>>> 	[   18.616828] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+>>> 	[   19.193315] mmc1: Skipping voltage switch
+>>> 	[   19.202046] mmc1: tried to HW reset card, got error -110
+>>> 	[   19.213312] mmcblk1: recovery failed!
+>>> 	[   19.213709] I/O error, dev mmcblk1, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 256 prio class 0
+>>> 	[   19.225201] mmcblk1: recovery failed!
+>>> 	[   19.225530] I/O error, dev mmcblk1, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+>>> 	[   19.226283] Buffer I/O error on dev mmcblk1, logical block 0, async page read
+>>> 	dd: /dev/mmcblk1: I/O error
+>>>
+>>> which could be reproduced stably.
+>>>
+>>> the SDMMC controller issued interesting messages during the tuning
+>>> process,
+>>>
+>>> 	[    0.665246] mmc_host mmc1: Bus speed (slot 0) = 148500000Hz (slot req 150000000Hz, actual 148500000HZ div = 0)
+>>> 	[    0.851940] dwmmc_rockchip ffc30000.mmc: All phases work, using default phase 90.
+>>>
+>>> but actually it doesn't work with phase = 90. If the frequency is
+>>> limited to 100MHz with max-frequency = <100000000> instead of the
+>>> default 150MHz, tuning results in a very different phase,
+>>>
+>>> 	[    0.665483] mmc_host mmc1: Bus speed (slot 0) = 99600000Hz (slot req 100000000Hz, actual 99600000HZ div = 0)
+>>> 	[    1.166340] dwmmc_rockchip ffc30000.mmc: Successfully tuned phase to 141
+>>>
+>>> and the card works, too. If I set rockchip,default-sample-phase to 141
+>>> in devicetree, the card could work at full 150MHz as well.
+>>>
+>>> I think there's something wrong with the tuning process, or the board's
+>>> design cannot always run reliably at 150MHz.
+>>>
+>>> Could you reproduce similar failures on Radxa 2A? If so, it may be
+>>> necessary to lower the SDMMC's maximum frequency for the board.
+>>
+>> I have not been able to reproduce this issue on any of my ROCK 2A or 2F
+>> boards, my boards seem to tune phase to around 250-265 for the sd-cards
+>> I tested.
+>>
+>> Could you try with something like this:
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi b/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
+>> index fc23c51836b15..a82791db55699 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
+>> @@ -285,6 +285,10 @@
+>>  	status = "okay";
+>>  };
+>>  
+>> +&sdmmc_clk {
+>> +	rockchip,pins = <2 RK_PA5 1 &pcfg_pull_up_drv_level_3>;
+>> +};
+>> +
+>>  &uart0 {
+>>  	pinctrl-names = "default";
+>>  	pinctrl-0 = <&uart0m0_xfer>;
+>>
+>>
+>> Changing clk drive strength seem to be something that has been done in
+>> Radxa vendor kernel [1], could be something that we can include if it
+>> fixes your issue.
 > 
-> Thanks a lot!
+> This seems to improve the situation a little, but doesn't solve the
+> issue. Among more than ten times of testing, the tuning process only
+> worked twice.
+> 
+>> The kernel I tested was built from [2].
+> 
+> I've tried this branch as well, but things don't improve.
+> 
+> Do you consider lower the clock-frequency acceptable?
 
-Given the comments from Trevor, do you want me to wait for a respin, consider
-the few nits when applying, or apply as is?
+Sure, I will include the max-frequency = <100000000> in a v2 shortly.
 
-- Danilo
+Regards,
+Jonas
+
+> 
+>> [1] https://github.com/radxa/kernel/commit/e9b33cbc97a902560d3f3b43b4d36a1a0ac68a50
+>> [2] https://github.com/Kwiboo/linux-rockchip/commits/next-20250708-rk3528-boards/
+>>
+>> Regards,
+>> Jonas
+>>
+>>>
+>>> Regards,
+>>> Yao Zi
+>>
+> 
+> Regards,
+> Yao Zi
+
 
