@@ -1,189 +1,174 @@
-Return-Path: <devicetree+bounces-195084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4F35B0058F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E63B9B005BD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:52:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 765D11C475C6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:47:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 378941C876AE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092A72741BC;
-	Thu, 10 Jul 2025 14:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8EC8274FD3;
+	Thu, 10 Jul 2025 14:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pt0eVK7j"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="lT5EKIeC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from mail-4323.protonmail.ch (mail-4323.protonmail.ch [185.70.43.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEA32741A4;
-	Thu, 10 Jul 2025 14:47:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C349B2749C7;
+	Thu, 10 Jul 2025 14:49:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752158840; cv=none; b=bM1DOVLX482CvT9fIfumQPZDWg7q8MvADiqVRkQGOZ4qXKaKMAlGVTf+zLC7pbgkJdC/bNpOcCVGcdabO8kfpvqb7RXDc/eYJ9Cbnc7U3zceAzvZHmVdsxQmUf9mCPd10YcauTyR0er566DJEA6503BOi7cFlFhlumZrSEJFNqw=
+	t=1752158973; cv=none; b=qXwCA1ANBzEvchPCVSMnvIbhGuMQfEQqv3+ReiHzG7u86I3D9ZavALh0RyRoRdSb7d/lgkhPuoMW/oeAqhvF3+cAwxoki/ZjGW8ja7xLMH803++dGUAhoOeSqlPHaHAkkQGgIaaBdYgbr3ZHU7lSVvfcVolAoIHWHMvS3SgvMO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752158840; c=relaxed/simple;
-	bh=+NET5jq87laiRAOdk2v/YwNceTh/l0Yy9qlZAWfZAKE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kzo6w23e/Vj9XhU+IO1aQW8+30VIDpeZu71gpQingdPcrl7IPzPRT9FPC4kzweNB8qUBlSibhHvgEcVxlRuh0dC7ejKu3blKmKowboXC2knMoGdIp6nIZMz0OZxWTkj3xMRM8zE+iBUj7Z6h0pdqoEc+c+iy4HyCphlP3eAe4KY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pt0eVK7j; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56AEkxnm1801024;
-	Thu, 10 Jul 2025 09:46:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1752158819;
-	bh=HI9GscUSSD2fE2PIITCexfukxvNp3vwU713gPPdAZCI=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=pt0eVK7jLT+Yr6G90U0s0FMHe4FRhPJGTpeVOb+/scwsPmOw1UvwS9aSrNhSBMF0G
-	 FuyyETEKkaRasY+YAzfdoU40kOdfWipu8im+QBeFuxd7ylusBOw4Mx+0CIJzE+wvG7
-	 qlTrvYIo9nrfn2q2k7UkXwunELGPwjjHbr80Iw60=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56AEkwaI3599200
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 10 Jul 2025 09:46:58 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 10
- Jul 2025 09:46:57 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 10 Jul 2025 09:46:57 -0500
-Received: from [10.250.35.60] ([10.250.35.60])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56AEku9q1528476;
-	Thu, 10 Jul 2025 09:46:57 -0500
-Message-ID: <547da8d7-1967-4c56-8bc1-da22a5283b77@ti.com>
-Date: Thu, 10 Jul 2025 09:46:56 -0500
+	s=arc-20240116; t=1752158973; c=relaxed/simple;
+	bh=isscTgcBZAVVEBwnse1MUKIvJL0xJ/IuXJKT2AqzWlQ=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TEMfuLF9QqNGYrGU3oilGmRQAX9q1e0iLoXItzOG+zz9nSI9PqKYmULvQIRr9GM9fxZnw7VeiLKFbhzNo3aP22JWGINelCKGn1CdoEAcOV5bg5X5TXA7U7x3gNHzMjpkNFxIzi0fX11zSdV5Dxt70FyHzI8knoC5fOIhUgiNOCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=lT5EKIeC; arc=none smtp.client-ip=185.70.43.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
+	s=protonmail; t=1752158968; x=1752418168;
+	bh=5I8flEWvmqDd6x+t/g5P7dZT4ROh7WF5XE11abOETzc=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=lT5EKIeCBMtt/STEPtaaBBeEB1Ix3xKS6p/qK1e+XbiIrgZ+30aQ1UfrdWVs2hf/l
+	 MiaUkMt3xSoq3Iyi5qDZPu+IQxVHCbmG/SwaFRvbem0dTi8vN6c7YOXJMzsZBJAFUu
+	 +MUolG1J5OoHT0ShW5AJHttVv46gKg8OYpb4MLnOpXbqX6ebq9NR6/ChE2nSC9GRoC
+	 /cD/5toabjPu34pjkG3hIEcRwdk77h+Cmg8N8O9GFVo05Czdq5a/icKUNTBtRV65Nh
+	 d3Sd9SdU9gUe/+Z7jR0Hp7Ra5rVKGBofrOF+Eog9zu6OoKT6RTJn9G9rd7ATftnP1W
+	 V3TLsRm8mUyug==
+Date: Thu, 10 Jul 2025 14:49:21 +0000
+To: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+From: Sean Nyekjaer <sean@geanix.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>, imx@lists.linux.dev, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>, Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>, Robin Gong <yibin.gong@nxp.com>, Enric Balletbo i Serra <eballetbo@gmail.com>
+Subject: Re: [PATCH v8 3/6] regulator: pf1550: add support for regulator
+Message-ID: <ni3bmj4ye3dp3opolk466r2ayx7iuk6hhyx4pdikydizqykfx7@nc5qdok32hsm>
+In-Reply-To: <20250707-pf1550-v8-3-6b6eb67c03a0@savoirfairelinux.com>
+References: <20250707-pf1550-v8-0-6b6eb67c03a0@savoirfairelinux.com> <20250707-pf1550-v8-3-6b6eb67c03a0@savoirfairelinux.com>
+Feedback-ID: 134068486:user:proton
+X-Pm-Message-ID: 11f257d26d96d1d079ba2b2c2800d3b5475e57b2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] dma-buf: heaps: cma: Create CMA heap for each CMA
- reserved region
-To: Maxime Ripard <mripard@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>,
-        Brian Starkey <Brian.Starkey@arm.com>,
-        John Stultz <jstultz@google.com>,
-        "T.J. Mercier" <tjmercier@google.com>,
-        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marek
- Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>, Jared Kangas <jkangas@redhat.com>,
-        Mattijs Korpershoek
-	<mkorpershoek@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linaro-mm-sig@lists.linaro.org>, <iommu@lists.linux.dev>
-References: <20250709-dma-buf-ecc-heap-v6-0-dac9bf80f35d@kernel.org>
- <20250709-dma-buf-ecc-heap-v6-2-dac9bf80f35d@kernel.org>
- <6045bcfb-35ef-410b-bd7c-0ca7c5c589c4@ti.com>
- <20250710-daft-secret-squid-fb3eee@houat>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250710-daft-secret-squid-fb3eee@houat>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+Hi Samuel,
 
+On Mon, Jul 07, 2025 at 05:37:22PM +0100, Samuel Kayode wrote:
+> Add regulator support for the pf1550 PMIC.
+>=20
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Reviewed-by: Mark Brown <broonie@kernel.org>
+> Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
 
-On 7/10/25 2:44 AM, Maxime Ripard wrote:
-> On Wed, Jul 09, 2025 at 11:14:37AM -0500, Andrew Davis wrote:
->> On 7/9/25 7:44 AM, Maxime Ripard wrote:
->>> Aside from the main CMA region, it can be useful to allow userspace to
->>> allocate from the other CMA reserved regions.
->>>
->>> Indeed, those regions can have specific properties that can be useful to
->>> a specific us-case.
->>>
->>> For example, one of them platform I've been with has ECC enabled on the
->>> entire memory but for a specific region. Using that region to allocate
->>> framebuffers can be particular beneficial because enabling the ECC has a
->>> performance and memory footprint cost.
->>>
->>> Thus, exposing these regions as heaps user-space can allocate from and
->>> import wherever needed allows to cover that use-case.
->>>
->>> For now, only shared-dma-pools regions with the reusable property (ie,
->>> backed by CMA) are supported, but eventually we'll want to support other
->>> DMA pools types.
->>>
->>> Signed-off-by: Maxime Ripard <mripard@kernel.org>
->>> ---
->>>    drivers/dma-buf/heaps/cma_heap.c | 52 +++++++++++++++++++++++++++++++++++++++-
->>>    1 file changed, 51 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/dma-buf/heaps/cma_heap.c b/drivers/dma-buf/heaps/cma_heap.c
->>> index 0df007111975447d555714d61ead9699287fd65a..31a18683ee25788a800f3f878fd958718a930ff7 100644
->>> --- a/drivers/dma-buf/heaps/cma_heap.c
->>> +++ b/drivers/dma-buf/heaps/cma_heap.c
->>> @@ -19,10 +19,12 @@
->>>    #include <linux/err.h>
->>>    #include <linux/highmem.h>
->>>    #include <linux/io.h>
->>>    #include <linux/mm.h>
->>>    #include <linux/module.h>
->>> +#include <linux/of.h>
->>> +#include <linux/of_reserved_mem.h>
->>>    #include <linux/scatterlist.h>
->>>    #include <linux/slab.h>
->>>    #include <linux/vmalloc.h>
->>>    #define DEFAULT_CMA_NAME "default_cma_region"
->>> @@ -421,7 +423,55 @@ static int __init add_default_cma_heap(void)
->>>    				ERR_PTR(ret));
->>>    	}
->>>    	return 0;
->>>    }
->>> -module_init(add_default_cma_heap);
->>> +
->>> +static int __init add_cma_heaps(void)
->>> +{
->>> +	struct device_node *rmem_node;
->>> +	struct device_node *node;
->>> +	int ret;
->>> +
->>> +	ret = add_default_cma_heap();
->>
->> Will this double add the default CMA region if it was declared
->> using DT (reserved-memory) when all those nodes are again scanned
->> through below? Might need a check in that loop for linux,cma-default.
-> 
-> Yeah, but we probably should anyway. Otherwise, if linux,cma-default
-> ever change on a platform, we would get heaps appearing/disappearing as
-> we reboot, which doesn't sound great from a regression perspective.
-> 
-> Both would allocate from the same pool though, so we don't risk stepping
-> into each others toes. Or am I missing something?
-> 
+[...]
 
-You are not missing anything, having both wouldn't cause anything to break,
-but would cause heaps to appear/disappear based on how the CMA region was
-defined (DT vs kernel cmd line) which we should avoid.
+> diff --git a/drivers/regulator/pf1550-regulator.c b/drivers/regulator/pf1=
+550-regulator.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..fa8c4b17270e750e64fef9107=
+4727951511d14f3
+> --- /dev/null
+> +++ b/drivers/regulator/pf1550-regulator.c
 
-Andrew
+[...]
 
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	rmem_node = of_find_node_by_path("/reserved-memory");
->>> +	if (!rmem_node)
->>> +		goto out;
->>
->> Can just return here, "out" path doesn't need to put a NULL node.
-> 
-> Oh, right. Thanks!
-> Maxime
+> +
+> +#define PF_SW1(_chip, match, _name, mask, voltages)=09{=09\
+> +=09.desc =3D {=09\
+> +=09=09.name =3D #_name,=09\
+> +=09=09.of_match =3D of_match_ptr(match),=09\
+> +=09=09.regulators_node =3D of_match_ptr("regulators"),=09\
+> +=09=09.n_voltages =3D ARRAY_SIZE(voltages),=09\
+> +=09=09.ops =3D &pf1550_sw1_ops,=09\
+> +=09=09.type =3D REGULATOR_VOLTAGE,=09\
+> +=09=09.id =3D _chip ## _ ## _name,=09\
+> +=09=09.owner =3D THIS_MODULE,=09\
+> +=09=09.volt_table =3D voltages,=09\
+> +=09=09.vsel_reg =3D _chip ## _PMIC_REG_ ## _name ## _VOLT, \
+> +=09=09.vsel_mask =3D (mask),=09\
+> +=09},=09\
+> +=09.stby_reg =3D _chip ## _PMIC_REG_ ## _name ## _STBY_VOLT,=09\
+> +=09.stby_mask =3D (mask),=09\
+> +}
+
+This is unused.
+
+> +
+> +#define PF_SW3(_chip, match, _name, min, max, mask, step)=09{=09\
+
+[...]
+
+> +
+> +static struct pf1550_desc pf1550_regulators[] =3D {
+> +=09PF_SW3(PF1550, "sw1", SW1, 600000, 1387500, 0x3f, 12500),
+> +=09PF_SW3(PF1550, "sw2", SW2, 600000, 1387500, 0x3f, 12500),
+> +=09PF_SW3(PF1550, "sw3", SW3, 1800000, 3300000, 0xf, 100000),
+
+Seems weird they all use the PF_SW3 macro.
+
+> +=09PF_VREF(PF1550, "vrefddr", VREFDDR, 1200000),
+> +=09PF_LDO1(PF1550, "ldo1", LDO1, 0x1f, pf1550_ldo13_volts),
+> +=09PF_LDO2(PF1550, "ldo2", LDO2, 0xf, 1800000, 3300000, 100000),
+> +=09PF_LDO1(PF1550, "ldo3", LDO3, 0x1f, pf1550_ldo13_volts),
+> +};
+> +
+
+[...]
+
+> +
+> +static int pf1550_regulator_probe(struct platform_device *pdev)
+> +{
+> +=09const struct pf1550_ddata *pf1550 =3D dev_get_drvdata(pdev->dev.paren=
+t);
+> +=09struct regulator_config config =3D { };
+> +=09struct pf1550_regulator_info *info;
+> +=09int i, irq =3D -1, ret =3D 0;
+> +
+> +=09info =3D devm_kzalloc(&pdev->dev, sizeof(*info), GFP_KERNEL);
+> +=09if (!info)
+> +=09=09return -ENOMEM;
+> +
+> +=09config.regmap =3D dev_get_regmap(pf1550->dev, NULL);
+> +=09if (!config.regmap)
+> +=09=09return dev_err_probe(&pdev->dev, -ENODEV,
+> +=09=09=09=09     "failed to get parent regmap\n");
+> +
+> +=09config.dev =3D pf1550->dev;
+> +=09config.regmap =3D pf1550->regmap;
+> +=09info->dev =3D &pdev->dev;
+> +=09info->pf1550 =3D pf1550;
+> +
+> +=09memcpy(info->regulator_descs, pf1550_regulators,
+> +=09       sizeof(info->regulator_descs));
+> +
+> +=09for (i =3D 0; i < ARRAY_SIZE(pf1550_regulators); i++) {
+> +=09=09struct regulator_desc *desc;
+> +
+> +=09=09desc =3D &info->regulator_descs[i].desc;
+> +
+> +=09=09if (desc->id =3D=3D PF1550_SW2 && pf1550->dvs_enb) {
+
+We should enter here if dvs_enb =3D=3D false.
+My A6 variant reported 0.625V instead of the correct 1.35V
+
+> +=09=09=09/* OTP_SW2_DVS_ENB =3D=3D 1? */
+> +=09=09=09desc->volt_table =3D pf1550_sw12_volts;
+> +=09=09=09desc->n_voltages =3D ARRAY_SIZE(pf1550_sw12_volts);
+> +=09=09=09desc->ops =3D &pf1550_sw1_ops;
+> +=09=09}
+>
+
+/Sean
+
 
