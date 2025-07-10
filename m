@@ -1,162 +1,105 @@
-Return-Path: <devicetree+bounces-194945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D891FAFFF53
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 12:30:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD2AAFFF7F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 12:44:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75BE0188701D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:30:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1DD616E9B8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:44:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 597EA2DFA32;
-	Thu, 10 Jul 2025 10:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B014F2D97A2;
+	Thu, 10 Jul 2025 10:44:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="vCQX9qZV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i8BjSbPe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F46F2DCC08
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 10:30:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F4A51FC109;
+	Thu, 10 Jul 2025 10:44:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752143405; cv=none; b=lJm2EM4OY88gpn1G8f3Ae6QoVRl4wQM7tA6qPm2i7vzmbvX+41eOrMLledQBAywJIeS2qyXOCC0jBY/Hd67kJD5xpdSmNNX74k6c2WLREfebN3s1762/Rmo1lL20XFuM/GKmwH8Y0deSCSmE09tolcxMLgvvxq8fWwHXLPoiqo0=
+	t=1752144250; cv=none; b=VNmpA1vEXh3Uyx3vt9v85ZA9n74wqQ4kMPY4lngDw7MYiT/uaommN+LF+FMIvTk3XWC/wJEYB6E7UnBJF3+OkZBOB/iF4McXcz4NkU/RbFHsBocj1mIRuIJWut6uDDKs1lEtNriwlPKZ61YSTEd2vFkcGiAfzVfX4LOV/nGXll4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752143405; c=relaxed/simple;
-	bh=/2KLH3eIwMscTHYdhYXwjWAYCyS7MjVCkIL8YKPwd1o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=kq5flxUcBR69rLvwZQbec1B0XX/9gxPDnTnK07LUelpbi4+w4bGuNyfmDv7ekH8WUdA2vEfCBUOEw8f4rzoACmJwxaiXGfrRxpGWSazd5dScCIjV8jymbBLWaZNtW+ylC2QJJHZOD+U57g/FyLDiRCzUHZR4cj3ZnioeJL+ZefY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=vCQX9qZV; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250710103001euoutp021877e858f7b0dcbccaf4a5afa92beab3~Q3SP02D520836408364euoutp02v
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 10:30:01 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250710103001euoutp021877e858f7b0dcbccaf4a5afa92beab3~Q3SP02D520836408364euoutp02v
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1752143401;
-	bh=+/0MKjzL7c7U+Y/b7GZa1f4mm6vUapHe0WApFCOt6lU=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=vCQX9qZVyxoO/oV3tVz+ORmsXmG+4maHuY5G+RzuCIFmdspP7OXIbNKUzwDZlykVQ
-	 H1Ro6v6pDrK5EJxwLhMuRnkskZZZ136j2mHACe1Y0nFYjHPmVjgiEMPemLroNzG4hv
-	 qD5tK2lSz47Cb7ABksQgPvArvncTtY4t8uO5F4XA=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250710103000eucas1p1132d31a624653704073732606b27d1bf~Q3SPNGgEj2817228172eucas1p15;
-	Thu, 10 Jul 2025 10:30:00 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250710102959eusmtip12fb98f6fcecf28334cca8575b9476fca~Q3SOG0Nry0190601906eusmtip1u;
-	Thu, 10 Jul 2025 10:29:59 +0000 (GMT)
-Message-ID: <e494422b-b989-4dc3-9828-b080dbf4c34d@samsung.com>
-Date: Thu, 10 Jul 2025 12:29:59 +0200
+	s=arc-20240116; t=1752144250; c=relaxed/simple;
+	bh=U76VKBh/7GQv+j5gpHmYAGV6Z/RI8ugyAsaX8iKw2u0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=itViB9jmKloGH7CY9bjDv9JBqPhpiv/TbbVaQm9vwQjTW+cSH9DlaQoUKOPwHz/xz7zaoE8DuxNfivw1Ovv04n1WX4v+JfuU1ROLOELEN6Uz9+Jq3R/QqKvcZBndvo3ofl4UPsPfiyzGZFTp2W0M091EXdjIIijxhdf3XFNB4lY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i8BjSbPe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C862BC4CEE3;
+	Thu, 10 Jul 2025 10:44:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752144249;
+	bh=U76VKBh/7GQv+j5gpHmYAGV6Z/RI8ugyAsaX8iKw2u0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=i8BjSbPexN3Pw3J/0hr69DDRXMjEsyoRw7xtQcuO83Y/21Fh8KGc0i2H1oh/s6Eai
+	 sF9TPOHJoRBUPT1booxVByBHXGf8ghAfsIcWmhjdc4M+bKjbvyqGJGmG/9iPUd7aUF
+	 Zr+p9zeH6XnUv+8RsTTqB5xd9tkZVlu/gN8enDulVMiD9MrmCPqIumzly4ibm57WZb
+	 +eQMYAMwBVa84JaW4PQlcvDgjqrJmtQh9anm3kD12LWftUBJWjS8Jb1B/+iFZ6fy7L
+	 bYMTHi8+zNzQysY3sA1Q7WGXQe9KUfLIvfavIQGNPvcbLfwBKr6m4LdO9FctX+QxN7
+	 N52eelHZaKM7Q==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uZol0-000000008Ko-0AXu;
+	Thu, 10 Jul 2025 12:44:02 +0200
+Date: Thu, 10 Jul 2025 12:44:02 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com,
+	johan+linaro@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+	neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
+	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: sa8775p: remove aux clock from
+ pcie phy
+Message-ID: <aG-ZcuJXISyIZavv@hovoldconsulting.com>
+References: <20250625090048.624399-1-quic_ziyuzhan@quicinc.com>
+ <20250625090048.624399-4-quic_ziyuzhan@quicinc.com>
+ <25ddb70a-7442-4d63-9eff-d4c3ac509bbb@oss.qualcomm.com>
+ <aG-LWxKE11Ah_GS0@hovoldconsulting.com>
+ <4f963fcc-2b92-4a01-93a4-f0ae942c1b6f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 0/7] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-To: Danilo Krummrich <dakr@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
-	<ukleinek@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Guo Ren <guoren@kernel.org>, Fu Wei
-	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
-	Turquette <mturquette@baylibre.com>, Drew Fustini <fustini@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <DB8AQ15RTAJ2.3QXX8Q2FTFGCP@kernel.org>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250710103000eucas1p1132d31a624653704073732606b27d1bf
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6
-X-EPHeader: CA
-X-CMS-RootMailID: 20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6
-References: <CGME20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6@eucas1p1.samsung.com>
-	<20250707-rust-next-pwm-working-fan-for-sending-v10-0-d0c5cf342004@samsung.com>
-	<e8a4a821-e7e4-4bcd-a2ac-f6b684b6ceea@samsung.com>
-	<DB8AQ15RTAJ2.3QXX8Q2FTFGCP@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4f963fcc-2b92-4a01-93a4-f0ae942c1b6f@quicinc.com>
 
+On Thu, Jul 10, 2025 at 06:24:57PM +0800, Ziyue Zhang wrote:
+> 
+> On 7/10/2025 5:43 PM, Johan Hovold wrote:
+> > On Fri, Jun 27, 2025 at 04:50:57PM +0200, Konrad Dybcio wrote:
+> >> On 6/25/25 11:00 AM, Ziyue Zhang wrote:
+> >>> gcc_aux_clk is used in PCIe RC and it is not required in pcie phy, in
+> >>> pcie phy it should be gcc_phy_aux_clk, so remove gcc_aux_clk and
+> >>> replace it with gcc_phy_aux_clk.
+> >> GCC_PCIE_n_PHY_AUX_CLK is a downstream of the PHY's output..
+> >> are you sure the PHY should be **consuming** it too?
+> > Could we get a reply here, please?
+> >
+> > A bunch of Qualcomm SoCs in mainline do exactly this currently even
+> > though it may not be correct (and some downstream dts do not use these
+> > clocks).
 
+> After reviewing the downstream platforms, it seems that GCC_PCIE_n_PHY_AUX_CLK
+> is generally needed. Would you mind letting us know if there are any platforms
+> where this clock is not required?
 
-On 7/10/25 12:17, Danilo Krummrich wrote:
-> On Thu Jul 10, 2025 at 10:42 AM CEST, Michal Wilczynski wrote:
->> I was hoping you could clarify the intended merge path for this series,
->> as it introduces changes to both the Rust and PWM subsystems.
->>
->> Is the expectation that the Rust maintainers will take the abstraction
->> patches into the Rust tree first? Or would Uwe, as the PWM maintainer,
->> pull the entire series? Any guidance on the coordination would be very
->> helpful.
-> 
-> Except for the helpers I only see PWM code, so this is fully on Uwe's purview I
-> think.
-> 
-> I see that there is a new MAINTAINERS entry:
-> 
-> 	PWM SUBSYSTEM BINDINGS [RUST]
-> 	M:	Michal Wilczynski <m.wilczynski@samsung.com>
-> 	S:	Maintained
-> 	F:	rust/helpers/pwm.c
-> 	F:	rust/kernel/pwm.rs
-> 
-> I assume this is agreed with Uwe?
-> 
-> In case there's no agreement yet, the typical options are:
-> 
->   1) Maintain the Rust abstractions as part of the existing MAINTAINERS entry.
->      Optionally, the author can be added as another maintainer or reviewer.
-> 
->   2) Add a separate MAINTAINERS entry; patches / PRs still go through the same
->      subsystem tree.
-> 
->   3) Add a separate MAINTAINERS entry; patches don't go through the subsystem
->      tree (e.g. because the subsystem maintainers don't want to deal with it).
-> 
-> I don't recommend (3), since it's really just a fallback.
-> 
-> The above looks like (2). In this case I recommend to also add the C maintainers
-> as reviewers, such that they can easily follow along and specifiy the tree (T:).
-> 
-> But, of course, that's up to you and Uwe.
+Thanks for clarifying. I was think of sc8280xp where the downstream dt
+did not use this clock (and therefore neither is the dt in mainline
+currently). Looking again now it seems that clock may not even exist on
+this platform?
 
-Thanks, it is not agreed yet, I've included a MAINTAINERS entry, since I
-would like to help with the maintenance of the code, so I would also
-vote for the 2) option, but ultimately it's an Uwe decision so I would
-be happy to follow on anything he decides.
-
-> 
->> I understand that it may be too late in the development cycle to merge
->> the full series. If that's the case, perhaps patch 2 could be considered
->> on its own, as it hasn't received comments in the last couple of
->> revisions. As another possibility, patch 1 and patch 3 are dependent on
->> each other and could be applied as a pair, depending on your assessment.
->>
->> The RISC-V driver itself would need to wait for the IoMem series merge [1].
->>
->> [1] - https://lore.kernel.org/rust-for-linux/20250704-topics-tyr-platform_iomem-v12-0-1d3d4bd8207d@collabora.com/
->>
->> Best regards,
-> 
-> 
-
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Johan
 
