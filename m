@@ -1,146 +1,113 @@
-Return-Path: <devicetree+bounces-194954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E001FAFFFD4
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 12:55:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C4D3B0000C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 13:03:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E12B562D0F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:55:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77282B4041C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:01:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F812E0917;
-	Thu, 10 Jul 2025 10:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 166B72E6D12;
+	Thu, 10 Jul 2025 11:01:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T+NqNTBT"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="sRuyTAuP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1B5A24501E;
-	Thu, 10 Jul 2025 10:55:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565232E62C7;
+	Thu, 10 Jul 2025 11:01:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752144906; cv=none; b=r+VFoWfGi+1bD2yHvAgq9vEZH5GQDCpJOWv/6W9sDwLS0UO2mGkRlZ4BzH6BADW6l5HzE3BSeYsQ9efu/F4chm/05CJYHgcvZ5qBHwU16dSRsqmHpfNBFUsdcPufaPVQwdZu2VEp2IqYEihNhCY78GloqxKxSJHB64HXtrFqiJ4=
+	t=1752145305; cv=none; b=l8AqUtAVsbI8m/Mxwrs09mZYgmJX9hDyger9sAEGigCnzidnhwFhWcutebwEQ5BXk9IDxtwV/KO3gAJMGzoJLYq+UbGbbcKtwStU5j1g0KNJZ2N/zBjfl8fbb+JPo8C3YgR3TkCssZcOhlHogS8172Jg56jMj0rsRgiI3lG7Tfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752144906; c=relaxed/simple;
-	bh=OOr8yxV8EcvANJT9Qa+ogkgghedjEk5bH9TN1Xwqf7k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fw5QMNN3pvSvLFxGaCV/uEAvrwbPPaeNu2z5EcTVBMLf/XGLCqx5/EOWDIGd+NI6R8i5oBoOtG43bC7vyiVNmDQt/BtNpCg1QKuImTEtdI/VPGZyjjhOrjE7ccqWwPl3Lg/LlhBGqKA2o+BR+1K9sXa6xdEzdawpX5efgWSbv0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T+NqNTBT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5201FC4CEE3;
-	Thu, 10 Jul 2025 10:55:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752144905;
-	bh=OOr8yxV8EcvANJT9Qa+ogkgghedjEk5bH9TN1Xwqf7k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=T+NqNTBTqUNUBtJM3ACnXP2meUWSPsxcuU/K6ekqDxcivhmxF+QZDfr1jK5MEqVJe
-	 Y+OAWX2XclexjBBhx6i7HSWGOcL6sOAVu/xHHrlclAwXInENWUbnH95RzKUbWWXQYY
-	 rfH6057NWPmCGJ612boqB6S6rNnyH6GnuzMUBAezNIitnCZAQB/sz6AYEyjs89pmue
-	 WVS2ge1/rZ1WVj7Up3sxZOOVlYKXqZ3WkUg8OYf6ZnFiRnBQ5EzIRfqBFy6Tm91u21
-	 2GvST+ChXbUDKtx96SBuLVAWy4wsgMVEru6fTh0enChmi38uPdFPHETlos7dIyV9CM
-	 nPMuSxzyWq3zA==
-Message-ID: <aac2a4fb-c9e8-4e1d-b0cd-d6481dc27252@kernel.org>
-Date: Thu, 10 Jul 2025 12:55:01 +0200
+	s=arc-20240116; t=1752145305; c=relaxed/simple;
+	bh=m3ih0CKiEAmyDyYGH55IGo3CEY7fXZGPt1nZbslEC8I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=OivHIz5nGdnaBAke50Wp1CeVEXCMH5Mh+EINyXdrcb07hT7G11x2r+JScAIxgMmLJVKltaS04zGLZOWT70IZO2wn3Ahypw/NvDi7G172UtmtNA+1desKqSbqeC/BWfbk5AigEKXXPm+JGIsJ4q6ey+NAvllltbKyGt6zqWr11KM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=sRuyTAuP; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=h4qxOMkafipReLLQY48E2N29Bf543EIeVzEu7seHDok=; b=sRuyTAuP2+HBiTZ3U6hYz4/iEE
+	+5iW1A76Q2fbx79u9N5t2SHaCcnERTj1epE6ohrcGqip/qMTV8R3nXifRpte8gDznit2ubRWEDylZ
+	6FsbEP6IwKRlmc872peyToR5B4F7UC4N6g5YJBZZFTslgEvgIstu5rC1OE9Sdlw3jIjBWU8IWVLJL
+	4vANeGIhfXKuwE+O+sLjPaenX8bI5TwIk66pVGatiVk0Mm+IiTxVcV+kg8NJqjknf5OVVUU96u3sY
+	rf2W1T2roJ9gCzlsKwwlyAwoXjXqt8oxCiplsxcSBYiVxsQN33qeTHj8yOUoM9n7WsCMFlHjDOql2
+	vI0jJqzA==;
+Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uZp1z-0004He-RL; Thu, 10 Jul 2025 13:01:35 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: John Clark <inindev@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/2] Add FriendlyElec NanoPi M5 support for Rockchip RK3576
+Date: Thu, 10 Jul 2025 13:01:31 +0200
+Message-ID: <175214509878.1901332.11810732138496211392.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250628143229.74460-1-inindev@gmail.com>
+References: <20250628143229.74460-1-inindev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/3] arm64: dts: qcom: x1-hp-x14: Unify HP Omnibook X14
- device tree structure
-To: jens.glathe@oldschoolsolutions.biz, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250710-hp-x14-x1p-v7-0-19c10c81713a@oldschoolsolutions.biz>
- <20250710-hp-x14-x1p-v7-2-19c10c81713a@oldschoolsolutions.biz>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250710-hp-x14-x1p-v7-2-19c10c81713a@oldschoolsolutions.biz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 10/07/2025 12:50, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+
+On Sat, 28 Jun 2025 10:32:27 -0400, John Clark wrote:
+> This series adds device tree support for the FriendlyElec NanoPi M5 board,
+> powered by the Rockchip RK3576 SoC (4x Cortex-A72, 4x Cortex-A53, Mali-G52
+> MC3 GPU, 6 TOPS NPU). The patches enable basic booting and connectivity,
+> including dual 1Gbps Ethernet, USB 3.2, microSD, M.2 PCIe NVMe, and HDMI.
 > 
-> Extract common elements into a shared .dtsi file for HP Omnibook X14 to
-> support both Hamoa (x1e*/x1p6*) and Purwa (x1p4*/x1*) variants.
-> Required because the device trees are not compatible.
+> Changes in v5:
+>  - Addressed Jonas Karlman's feedback:
+>    - Added mmc0 alias for SD card
+>    - Updated regulator names to match schematic (e.g., vcc12v_dcin,
+>        vcc5v0_sys_s5, vcc3v3_m2_keym, vcc3v3_sd_s0, usb3_port2_5v,
+>        vcc5v0_usb_otg0, vcc5v_hdmi_tx)
+>    - Fixed vcc3v3_sd_s0 voltage to 3.3V
+>    - Removed unnecessary regulator-state-mem for fixed regulators
+>    - Removed vcc_5v0_device regulator
+>    - Added pinctrl for Ethernet PHY reset GPIOs in mdio0 and mdio1
+>    - Used correct pinctrl format for sdmmc and sfc1 (<&pin>)
+>    - Increased SPI flash frequency to 50 MHz
+>    - Updated LED colors (sys: red, led1/led2: green) and functions
+>        (LED_FUNCTION_HEARTBEAT, LED_FUNCTION_LAN)
+>    - Dropped rng node (enabled by default)
+>    - Omitted HDMI mode-switching GPIO (to be added later with driver
+>        support)
+>    - Updated pinctrl names to match schematic (e.g., pcie0_pwren_h,
+>        sdmmc0_pwren_h, usb3_host_pwren_h, usb_otg0_pwren_h, hp_det_l,
+>        pcie0_perstn)
 > 
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> [...]
 
-Why am I bothering to review if you keep changing and eventually
-dropping the tag.
+Applied, thanks!
 
-<form letter>
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
-
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+[1/2] dt-bindings: arm: rockchip: add FriendlyElec NanoPi M5 board
+      commit: d15e51907ef472d31af0a4f735d4597b53dc379e
+[2/2] arm64: dts: rockchip: Add FriendlyElec NanoPi M5 support
+      commit: f2a71544d56bc8de459e1df9eecf616d141cd633
 
 Best regards,
-Krzysztof
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
