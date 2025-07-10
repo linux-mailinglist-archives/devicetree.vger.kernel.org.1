@@ -1,149 +1,128 @@
-Return-Path: <devicetree+bounces-194763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6518AAFF62F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 02:58:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 508A0AFF65B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 03:09:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8E514A2138
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 00:58:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D5163B9815
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 01:08:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45FFC757EA;
-	Thu, 10 Jul 2025 00:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86AF25C810;
+	Thu, 10 Jul 2025 01:08:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DXeD96cj"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="rZB4rIyk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE89539A;
-	Thu, 10 Jul 2025 00:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 016602260C
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 01:08:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752109103; cv=none; b=UdOGcp/Cjswx+qJjZGBxzcOMtNCFNQVyrtzQKMuRxHpDMZmC3fRS1N/OCPMUSBzByctDdMsMc1EnMjWURrZzT/zLALpo5YaUKN/bQDUaRY4r2JvK7Agk0JYgl4Kn54C41zKH47ZCLGRalMnmPvXuuGO0/3O6kXKiaO9YpQv+fEM=
+	t=1752109737; cv=none; b=KD3iMeLWnoFbTTUHVnrkw/1IcPLUhQASOH3CoDONLLNuCHSfsX7bF+jNDONFn5DsM12m1jtVxlOyAbbrfv67w4KbZr/4qBBhg1Fv7bX0HV4EtQv9IlDuUeC5Kvc4hXMnSMfZSPcE9ZvlBoq6LYQBVrCOuIqfRPUraI7Fb1KA5Pk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752109103; c=relaxed/simple;
-	bh=P1d0IshYGbaAr/Hr/+3PPdk883uiqvPufCBEpnmmtQE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MjaEY4tXAPIeTxWxsqZO/Bt/D9KReClKxAUH70cy4ae5+p+5ngTmEMM08Bvq8nWdFL28KNPqnOlPllf3TwBWQa9KuRKwt6baR3rq5ZWYaW3Zl/E+/jLR/JpUHrBCqQaoqOhu5TmbEM2JW3NKIUzyNhidrzHdDiNrHgiAy79qjZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DXeD96cj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48AB6C4CEEF;
-	Thu, 10 Jul 2025 00:58:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752109102;
-	bh=P1d0IshYGbaAr/Hr/+3PPdk883uiqvPufCBEpnmmtQE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DXeD96cjQYgk7BBvsbsPthJVjBguygDmr58DkUqtClTt8EYDlOo2PO4EDaT8nBO4l
-	 1htaIsnjtbK2zziciZHnyyoagRCGsofviI36cLjmtD9e9fIpsOuA85YaUDMtq/+7eD
-	 eYymN8TttJ1F3gOdwf5maxP6ljB7eeD4/NphgE+w/tSEIrYTarNMwtI10URmBjDdSy
-	 AGqsXOcoiltthV0WfAIRQhEx/YHJyxYlDSHL175fZYxZUUbteBiccq6UzGgJePXyZf
-	 8XNB4PH7ApHiVscyApAwanNQw+aCFeEOQp3VHlpMAN49Rk9o8pJoJgcbRLqjEa+zzD
-	 vNcELqwyc9hlQ==
-Date: Wed, 9 Jul 2025 19:58:21 -0500
-From: Rob Herring <robh@kernel.org>
-To: Raymond Mao <raymond.mao@linaro.org>
-Cc: linux-doc@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org
-Subject: Re: [PATCH] docs: devicetree: overlay-notes: recommend top-level
- compatible in DTSO
-Message-ID: <20250710005821.GA94507-robh@kernel.org>
-References: <20250624181320.2810521-1-raymond.mao@linaro.org>
+	s=arc-20240116; t=1752109737; c=relaxed/simple;
+	bh=FbD+dyWJQw9d7fJye3J0/MZOz530Binm7qw42BlBT/c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LgySrKn8/fOZXgnT2GsLkNjAy3/zk9EGW4J+jxXuoZI8JBJs+2PmgrJkaToAlJ3fxTowfXSrc82gq0WYkbw18XUzwhDqqjJBSm8CKHyE6dw/KYdlgCvmI3IZeGzj9nie+ImBJuPoVC2TZm/Q7tvwnfl2W6NxCr7ae9r5kFJo33o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=rZB4rIyk; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <b34eff8d-0c14-4085-bff1-f01ff3349637@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1752109723;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IQ7oeQnXsRQ8nWk5JQ1NTJSWCTeX2lGsMRWJSN26Cvc=;
+	b=rZB4rIykMxvqdSZtMQlQY3CQFNA0HMZFuaNpe4+91cvARvipziOB4FXevzVvBR86afLYxq
+	tO0FhRvu1IulcmV36xdzkka0lDnvJAq9ES1hOJTztXlOENh1XNpHXtRNtOq1tKMpFP6BFW
+	DFGJq4ZS9vG5maTIrOWhfSMWi0XIsoA=
+Date: Thu, 10 Jul 2025 02:08:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250624181320.2810521-1-raymond.mao@linaro.org>
+Subject: Re: [PATCH net-next v3 7/7] net: dsa: microchip: Disable PTP function
+ of KSZ8463
+To: Tristram.Ha@microchip.com, olteanv@gmail.com
+Cc: Woojung.Huh@microchip.com, andrew@lunn.ch, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, maxime.chevallier@bootlin.com,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, marex@denx.de, UNGLinuxDriver@microchip.com,
+ devicetree@vger.kernel.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250709003234.50088-1-Tristram.Ha@microchip.com>
+ <20250709003234.50088-8-Tristram.Ha@microchip.com>
+ <20250709073503.kffxy4jlezoobqpf@skbuf>
+ <LV3PR11MB874269079536CDB53183760DEC49A@LV3PR11MB8742.namprd11.prod.outlook.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+In-Reply-To: <LV3PR11MB874269079536CDB53183760DEC49A@LV3PR11MB8742.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-+devicetree-spec (because linux-doc doesn't really care)
-
-On Tue, Jun 24, 2025 at 11:13:20AM -0700, Raymond Mao wrote:
-> When managing multiple base device trees and overlays in a structured
-> way (e.g. bundled in firmware or tools), it is helpful to identify the
-> intended target base DT for each overlay, which can be done via a
-> top-level compatible string in the overlay.
-
-I think this should be more general and more specific at the same time. 
-
-You might not want to match on a top-level board/soc compatible, but 
-rather the compatible for a specific node. For example, you may have an 
-overlay for a cape, hat, etc. that applies to a connector node and that 
-connector node could be on any number of boards or even multiple 
-connectors on 1 board. That's all under development, but so far in those 
-cases we expect some sort of connector driver to apply the overlays. But 
-I think you could have the same issue of identifying which overlay files 
-are relevant. I don't think folks working on add-on boards have thought 
-that far ahead.
-
-And since we don't know the target-path up front, it is just left blank 
-so far. It would be better if we expressed *something*. Perhaps 
-'target-compatible'? Something like that would work in your case I 
-think.
-
-You'd have to be somewhat crazy, but you can bundle a bunch of 
-mutually-exclusive or unrelated overlays within a single overlay file. I 
-don't know that we want to prevent doing that. Someone might come up 
-with some not crazy reason to do that...
-
+On 09/07/2025 23:59, Tristram.Ha@microchip.com wrote:
+>> On Tue, Jul 08, 2025 at 05:32:33PM -0700, Tristram.Ha@microchip.com wrote:
+>>> From: Tristram Ha <tristram.ha@microchip.com>
+>>>
+>>> The PTP function of KSZ8463 is on by default.  However, its proprietary
+>>> way of storing timestamp directly in a reserved field inside the PTP
+>>> message header is not suitable for use with the current Linux PTP stack
+>>> implementation.  It is necessary to disable the PTP function to not
+>>> interfere the normal operation of the MAC.
+>>>
+>>> Signed-off-by: Tristram Ha <tristram.ha@microchip.com>
+>>> ---
+>>>   drivers/net/dsa/microchip/ksz8.c | 11 +++++++++++
+>>>   1 file changed, 11 insertions(+)
+>>>
+>>> diff --git a/drivers/net/dsa/microchip/ksz8.c b/drivers/net/dsa/microchip/ksz8.c
+>>> index ddbd05c44ce5..fd4a000487d6 100644
+>>> --- a/drivers/net/dsa/microchip/ksz8.c
+>>> +++ b/drivers/net/dsa/microchip/ksz8.c
+>>> @@ -1761,6 +1761,17 @@ void ksz8_config_cpu_port(struct dsa_switch *ds)
+>>>                                           reg16(dev, KSZ8463_REG_DSP_CTRL_6),
+>>>                                           COPPER_RECEIVE_ADJUSTMENT, 0);
+>>>                }
+>>> +
+>>> +             /* Turn off PTP function as the switch's proprietary way of
+>>> +              * handling timestamp is not supported in current Linux PTP
+>>> +              * stack implementation.
+>>> +              */
+>>> +             regmap_update_bits(ksz_regmap_16(dev),
+>>> +                                reg16(dev, KSZ8463_PTP_MSG_CONF1),
+>>> +                                PTP_ENABLE, 0);
+>>> +             regmap_update_bits(ksz_regmap_16(dev),
+>>> +                                reg16(dev, KSZ8463_PTP_CLK_CTRL),
+>>> +                                PTP_CLK_ENABLE, 0);
+>>>        }
+>>>   }
+>>>
+>>> --
+>>> 2.34.1
+>>>
+>>
+>> What prevents the user from later enabling this through
+>> ksz_set_hwtstamp_config(HWTSTAMP_TX_ONESTEP_P2P)?
 > 
-> This patch updates the document with a note and example for this
-> practice.
+> The PTP engine in KSZ8463 is first generation.  The DSA PTP driver used
+> by KSZ9477 and LAN937X is for second generation, which uses tail tag to
+> pass along receive/transmit timestamp and port information.
 > 
-> Signed-off-by: Raymond Mao <raymond.mao@linaro.org>
-> ---
->  Documentation/devicetree/overlay-notes.rst | 28 ++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
-> index 35e79242af9a..30b142d1b2ee 100644
-> --- a/Documentation/devicetree/overlay-notes.rst
-> +++ b/Documentation/devicetree/overlay-notes.rst
-> @@ -103,6 +103,34 @@ The above bar.dtso example modified to use target path syntax is::
->      ---- bar.dtso --------------------------------------------------------------
->  
->  
-> +Overlay identification
-> +----------------------
-> +
-> +When managing overlays dynamically or bundling multiple base device trees
-> +and overlays in a single system (e.g., in firmware, initramfs, or user-space
-> +tools), it becomes important to associate each overlay with its intended
-> +target base DT.
-> +
-> +To support this, overlays should include the top-level compatible string
-> +from its base DT.
+> It is not likely the PTP driver will be updated to support KSZ8463.
+> Currently that driver code is not activated except for KSZ9477 and
+> LAN937X.
 
-The base has multiple compatible strings, so which one? Has to match on 
-any one or all of them?
+I believe Vladimir was asking about software options and the answer is
+that this switch is added with .ptp_capable = false in the patch 2.
 
-> +This enables higher-level software or firmware to identify which base DT
-> +an overlay is compatible with and apply it accordingly.
-> +
-> +Example usage::
-> +
-> +    ---- bar.dtso - overlay with top-level compatible string -------------------
-> +	/dts-v1/;
-> +	/plugin/;
-> +	compatible = "corp,foo";
-> +
-> +	...
-> +    ---- bar.dtso --------------------------------------------------------------
-> +
-> +This top-level compatible string is not required by the kernel overlay
-> +mechanism itself, but it is strongly recommended for managing overlays in
-> +scalable systems.
-> +
-> +
->  Overlay in-kernel API
->  --------------------------------
->  
-> -- 
-> 2.25.1
-> 
 
