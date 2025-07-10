@@ -1,193 +1,143 @@
-Return-Path: <devicetree+bounces-194842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 402A2AFFB56
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:50:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 445A5AFFB5E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:54:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B33C7BD34F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 07:47:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AAC84A7593
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 07:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72371286D60;
-	Thu, 10 Jul 2025 07:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A988228B4F8;
+	Thu, 10 Jul 2025 07:54:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="Vk43m7rp";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="NQl9a9qS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ONcp63FR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b7-smtp.messagingengine.com (fout-b7-smtp.messagingengine.com [202.12.124.150])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C8A1F1313;
-	Thu, 10 Jul 2025 07:48:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25616286D60
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 07:54:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752133717; cv=none; b=ZK+OWyM04ay5+DUHfrcJ5yjETjBcKvsdWOEBlHT+gKM6Ft91mduJvmXDLFmjOKb8XARI6k8RrXpyWlA7BqjUhbKyEL6DDsn6lqMlHMwtBaCSJvttrIWNsGxPSypflp0rEhSQusswmTq4A9u3odb+cj4zmDrbm/WlI296T58R5Sw=
+	t=1752134048; cv=none; b=FdJL2NbWuaS2M0YYs5ZEuMngygxseF//G4xxW77vAa16hVZSlwhQjSwKcRf0P68VMcyIxVi53VzT92gvbcCYIlaa5SxDVTQBlNlZoDwwSoA97QGc+lZBOx82T2cGhypwfN3909JXWa1DugY5s6b3vGcQCVZs+8neroGnoZKLVTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752133717; c=relaxed/simple;
-	bh=NrxJi9mtfyDGqO728dsGOwO3Lk8FmcnbL6fsms/datc=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=sydzqFuovseNy5nDIZZtBzDyJQ/qcBgipZ15x6YXdjuoXMBe3bePqEaaks/9BaZM2k7wtt47CXKzVWGjEzcPyfYZKsoupAGFQqqYjcywKAI3vF1x6iCStgA///Weo4zJtyNvtQ7ysPgGIDWu5fDgPLV1nHPq+ACO/C3KLkcrKJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=Vk43m7rp; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=NQl9a9qS; arc=none smtp.client-ip=202.12.124.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
-	by mailfout.stl.internal (Postfix) with ESMTP id 89DD01D001AA;
-	Thu, 10 Jul 2025 03:48:32 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Thu, 10 Jul 2025 03:48:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1752133712;
-	 x=1752220112; bh=VFGB/39PUQRNUuopd0MS0kGVSVfgQHVyMjplY4VKnOg=; b=
-	Vk43m7rpatUNVCIm/eUsqs4Ivfk2UAWEuI+3QdpF6tq/2p2Lh+ghW7sXZwf7ePRP
-	lp1BH169XV5kIeDOARAgRA1RkWeVcUsv5pGboRcW25/sB+En4ZlTAFgBwWAqCEBZ
-	N9xOxBE2ykDt0nVZlO/n22T/8p5uvUXSFGRb9RaHZfatZP18GgfRuciyDsrhcmbm
-	T5izMMofJ6sb6QNuY6GAVceWyMpZNCLpIMpkhU9qE5hSwxNe2bS34pCqadzKGk3V
-	B3aEQ378TjhU+DW3V7s5SRStGQvK8NOuqvkX5LHnL2qTCskFnh+RZWKx+s7ySJDf
-	A4UYNGq8sf1naJ1hGcTAmA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1752133712; x=
-	1752220112; bh=VFGB/39PUQRNUuopd0MS0kGVSVfgQHVyMjplY4VKnOg=; b=N
-	Ql9a9qSupN5QGTE+AgKygTP9In0dw1wIlfecsFJ11CmzNeXW44dST/zm5C5AUR2b
-	iSSmoJ0E6wL/POomU+JF0IfWJEsWhwtmfvVq1Pxt6gUz4jHWE49Zepy0+KHEfR88
-	698DKrgkzF5BR+Y5zvGYmiaSORLqleZ/IzjJJqF3iJ2YA/QHfap8g84DpKZjMYPi
-	JOnnhgsF8Kilim/YzjuZGNPt43Ds0VSBrXOBLPhDwJ3x7baR0v3jfUTZ9Qg99LKL
-	DcAC30i6Ohxdg1j9FLowUyK3DEhVPGivjApMA+aYkfmgGmkd7fO1EXEqbAa2b5Pj
-	/rp61DMIPZWEGWMnrRsjA==
-X-ME-Sender: <xms:TnBvaFCPUNXTh3IvTOxOLzdDHNHZNRbcvlNXqh5rRJbrXGkNso61Bg>
-    <xme:TnBvaDgBxfku5Iv_jnwEfXQWOxZj7ezk_uh2m_oMLc8idRJhArJNus_I6hZ3EKQqv
-    G8LwwXBAqKoRUK_sRc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdefleekkecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
-    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeefjedpmhhouggvpehsmhhtphhouhht
-    pdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomhdprhgtph
-    htthhopehjvghsphgvrhdrnhhilhhsshhonhesrgigihhsrdgtohhmpdhrtghpthhtohep
-    lhhinhhugidqrghrmhdqkhgvrhhnvghlsegrgihishdrtghomhdprhgtphhtthhopehmth
-    hurhhquhgvthhtvgessggrhihlihgsrhgvrdgtohhmpdhrtghpthhtohepghifkhdutddu
-    feestghorghsihgrrdgtohhmpdhrtghpthhtohephhhgkhhimhdtheestghorghsihgrrd
-    gtohhmpdhrtghpthhtohepkhgvnhhkihhmsegtohgrshhirgdrtghomhdprhgtphhtthho
-    pehkshhkgeejvdehsegtohgrshhirgdrtghomhdprhgtphhtthhopehmihhnghihohhunh
-    hgsghosegtohgrshhirgdrtghomh
-X-ME-Proxy: <xmx:TnBvaGptIpdFPbsUo13BNf8hpBhqyqysy3fq_yWLHl13xPdF6tSqxA>
-    <xmx:TnBvaGe9Vhef7xcrOIfQrP9rdJviWHKY6trwBHqDzDAQFB2ePiR0gA>
-    <xmx:TnBvaM9YcmmE4mbvyo2Gkxwpd7nYsDvTmU_J2YlrV-Dqs2KmNiNmLw>
-    <xmx:TnBvaHGUb8p777hi5CV08Iy0wnhXfH-l5giCPKNtmAy72YNH5WICTw>
-    <xmx:UHBvaOxDqHidI8CwbxD1Qo4ftx7FkbIJU0nBSF2y3Yd3Sf3_svEj6zLU>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 8E75D700065; Thu, 10 Jul 2025 03:48:30 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1752134048; c=relaxed/simple;
+	bh=LVmN9IMoThPPm55GG/XAdGDdx+9vMomvj/ki3t6YKq0=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dqSgiXeW3GZD4kqnlxmpx5u3bxFD4SXFR+AKqUzQpegcwakOYr8pRvyyGe6cF67DmAAU/fPnop//4Dt/LfGz2HW2yRpAi5HjZpyDBOhvH9Qljb3iKw49O5hK+B8HAqOxgZl4CMwCjZjaZvG72NP8PpE+WBecFdL6sknXFnBPyDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ONcp63FR; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56A1VE71031906
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 07:54:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=IZ4wqeM3mPOhLP715cEB5oc3
+	w1TFelaRzZl7u+0pw2E=; b=ONcp63FRcLZayaishEpguP+E580hCyTZWbAygcYS
+	efLIfoU2fFIzEUPhTXskUVrj1MahY4puDOw7uFh/ys2oVWZtDYakUH3BJMtdWybG
+	sdgY8l5aJPcch9UoYyML/Rkr8VRG3797uwWAB9PHqO0yiH43KI9iHJ5SwgIczXaU
+	ahly86g+neDbAYYxwsXO7ZnvomBljrwjcQrj/RzGVYnkY4VPQ+/+cboZ3SvPh7ZC
+	vHLIpYTui3COhoC6zZFV+QhFiZ2pNuMbQ0lWHU7PG3nkObdVxKb84Mr0nBzc89Cz
+	ABsSkFzr+zcj7rxJ3J9go5YdrDCCnDfqe3FpU8LfThUEXg==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47pw7qxnwa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 07:54:06 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7d0981315c8so55567985a.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 00:54:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752134045; x=1752738845;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IZ4wqeM3mPOhLP715cEB5oc3w1TFelaRzZl7u+0pw2E=;
+        b=PZ0i7oTicp6aj/69BZzU1M24RjDnDr+wTYessHwLU5abeI2NGUqol5EXeLs6c84nlM
+         ROxzTJe9LVO3YEt4MgingboIGyBCWHy+3t87PSW8UKiaGL9bdNX8H8yjajWqdS6hO4Va
+         mntuCKQ2xo1LIDiRJIDquP6DXqeZLZdBGWLsoYpr25Ll7KXhPOUt8K4WUBjHB525mrlQ
+         sdQDVfLs5oH7TGo2Cpgx6m8nAPQQp0zxCuiT9ym6ioMsrHzNEgU+iLSpkTsYf3HmbtJ4
+         1hiscNFg7RlgTzduocrAOOAhb1fQbqwlDXyD2dtR+bNOYmwgWijLLthyAFwGldVeNDst
+         8L4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUvh6lAsHnNGDGwpqZ0d7YTWxnw5+RNBV4bfMRpqyDhsZJrHmnhDiqtOKshEZqlLHMtfjamnFMn9aek@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1E6b4zUT0K/AnzjUWZOePbywEoeS0kNuiFpye4jOMKGC3fqlr
+	0GZdeg1ocYiR08SWjxwprwooJRcI7oUg79ZBQkFbiMq90XqdrES1nGcKLjzLemCzjWLMaps+fVV
+	Ejk5ahyF0Q9BL24P3Z7w26J9s0ypNdEEfFi4XssV9/HkP6p63rUZDM27yCNS4E6+O
+X-Gm-Gg: ASbGncu9oafKol6OIGFdOA09YRTr98gXTlKoFsI9vcQvK8iU93QQe8IbXdKYHT/zz5v
+	W/OuHO1MUhvpyna5VaMzRGNlYslXJ9BRD2l39oWY/lCCN23qszLwtfZcFYBCg8Z5EKXrcXi0vOp
+	pDjfollw8Ks7SWto77z8tJl3j5AU7ugXlF43eQVCEKP9AvE+cAfDvJ7MOd2yb27u6cJkeqwP1Nu
+	zY/w9NE9z+LgeEUS6jjKT5qCV3VrcOWTkL6a4SYjPepmo8FqVhWie28fB2noyn39XSw9j9SwDVv
+	qvo7xqt/YK26UN1YTPcpkVVqi6oEWJJNnshfz/r+YQiXNKLIPF9oBTw=
+X-Received: by 2002:a05:620a:1a04:b0:7d4:57c8:af59 with SMTP id af79cd13be357-7dcccbb4d3bmr259298385a.50.1752134044857;
+        Thu, 10 Jul 2025 00:54:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGug3lj6BT/YLHkKCvadb4meP/9pexcx5rHM0GbCxH95CB5isoXEHwrq8yUV95hMPU8pZzHqQ==
+X-Received: by 2002:a05:620a:1a04:b0:7d4:57c8:af59 with SMTP id af79cd13be357-7dcccbb4d3bmr259295885a.50.1752134044386;
+        Thu, 10 Jul 2025 00:54:04 -0700 (PDT)
+Received: from trex (97.red-79-144-186.dynamicip.rima-tde.net. [79.144.186.97])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454d5037fa0sm49646845e9.7.2025.07.10.00.54.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Jul 2025 00:54:03 -0700 (PDT)
+From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
+Date: Thu, 10 Jul 2025 09:54:02 +0200
+To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+Cc: bryan.odonoghue@linaro.org, quic_vgarodia@quicinc.com,
+        quic_dikshita@quicinc.com, krzk+dt@kernel.org, konradybcio@kernel.org,
+        mchehab@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+        andersson@kernel.org, amit.kucheria@oss.qualcomm.com,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 0/7] media: venus: Add QCM2290 support with AR50_LITE
+ core
+Message-ID: <aG9xmiDzSQ720SQW@trex>
+References: <20250708180530.1384330-1-jorge.ramirez@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: T040df5ea49d69849
-Date: Thu, 10 Jul 2025 09:48:10 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: ksk4725@coasia.com, "Jesper Nilsson" <jesper.nilsson@axis.com>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzk@kernel.org>,
- "Sylwester Nawrocki" <s.nawrocki@samsung.com>,
- "Chanwoo Choi" <cw00.choi@samsung.com>,
- "Alim Akhtar" <alim.akhtar@samsung.com>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- "Tomasz Figa" <tomasz.figa@gmail.com>,
- "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
- "Ravi Patel" <ravi.patel@samsung.com>, "SungMin Park" <smn1196@coasia.com>
-Cc: kenkim <kenkim@coasia.com>, "Jongshin Park" <pjsin865@coasia.com>,
- "GunWoo Kim" <gwk1013@coasia.com>, "HaGyeong Kim" <hgkim05@coasia.com>,
- "GyoungBo Min" <mingyoungbo@coasia.com>,
- "Pankaj Dubey" <pankaj.dubey@samsung.com>,
- "Shradha Todi" <shradha.t@samsung.com>, "Inbaraj E" <inbaraj.e@samsung.com>,
- "Swathi K S" <swathi.ks@samsung.com>, Hrishikesh <hrishikesh.d@samsung.com>,
- "Dongjin Yang" <dj76.yang@samsung.com>,
- "Sang Min Kim" <hypmean.kim@samsung.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-arm-kernel@axis.com, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>, soc@lists.linux.dev
-Message-Id: <5494bedb-6907-43dc-8580-04ef1e47c8d0@app.fastmail.com>
-In-Reply-To: <20250710002047.1573841-15-ksk4725@coasia.com>
-References: <20250710002047.1573841-1-ksk4725@coasia.com>
- <20250710002047.1573841-15-ksk4725@coasia.com>
-Subject: Re: [PATCH 14/16] arm64: dts: axis: Add initial device tree support
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250708180530.1384330-1-jorge.ramirez@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzEwMDA2NiBTYWx0ZWRfX+21fBuNaGcj5
+ Ckk0ElitHn8rB50anYmTpyz4oD0OCbk1/pIr5Pp0/a9dDwBTYj8ZswCtNHZTAfzmx/po8kAyVw5
+ MYbQmQn2M4e0W5aHfOPRgI1iEMVDiw6lHS9oDSil/UYjg7kdO5bSvpYXsZDTlMAccngXMX4v/M5
+ 9bYL3suSl8o5vOlnvVS1khuUUwMXGK1gJ42zvC6sPAPOOU7iyESjYEpyJBKzRVkBdNvwbSGdCtX
+ +QMjQ3jpVKKTpCgDvz9GM7jnuLXY7yEsdoUiC15Q+lVEv+0f5P//NPSgJDOumsreye+lzZOxMzo
+ nd3YeS9DLq0wQnqX234i4ZwS+rjFrtc3WECX2j6J5MxyaRluJha84rYyfvb6CJH8TEF2Db1k/LM
+ 2ocKO6ltqY5kjtRtYoMUeLsAoU2xZMVpMNoaakB+kO/nKqeAuxUI1RP7QKuDA7hJnmrEyEUW
+X-Proofpoint-GUID: j9LScTyQWdLmPKlUFAqDC_jOENtQdhH7
+X-Proofpoint-ORIG-GUID: j9LScTyQWdLmPKlUFAqDC_jOENtQdhH7
+X-Authority-Analysis: v=2.4 cv=SOBCVPvH c=1 sm=1 tr=0 ts=686f719e cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=oX6B8lV6/A+qF9mARCc04Q==:17
+ a=kj9zAlcOel0A:10 a=Wb1JkmetP80A:10 a=N7Dblu849QoN8slZYEwA:9
+ a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-09_05,2025-07-09_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 lowpriorityscore=0 bulkscore=0
+ impostorscore=0 mlxlogscore=715 mlxscore=0 phishscore=0 malwarescore=0
+ adultscore=0 suspectscore=0 spamscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507100066
 
-On Thu, Jul 10, 2025, at 02:20, ksk4725@coasia.com wrote:
-> From: sungminpark <smn1196@coasia.com>
->
-> Add initial device tree support for Axis ARTPEC-8 SoC and Grizzly board.
-> This SoC contains four cores of cortex-a53 CPUs and other various
-> peripheral IPs.
-
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fa1e04e87d1d..371005f3f41a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2320,6 +2320,20 @@ F:	drivers/crypto/axis
->  F:	drivers/mmc/host/usdhi6rol0.c
->  F:	drivers/pinctrl/pinctrl-artpec*
+On 08/07/25 20:05:23, Jorge Ramirez-Ortiz wrote:
+> Changes since v5:
+>   Two additional new patches added to the set to support video encoding.
 > 
-> +ARM/ARTPEC ARM64 MACHINE SUPPORT
-> +M:	Jesper Nilsson <jesper.nilsson@axis.com>
-> +M:	Ravi Patel <ravi.patel@samsung.com>
-> +M:	SeonGu Kang <ksk4725@coasia.com>
-> +M:	SungMin Park <smn1196@coasia.com>
-> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-> +L:	linux-samsung-soc@vger.kernel.org
-> +L:	linux-arm-kernel@axis.com
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/clock/axis,artpec*-clock.yaml
-> +F:	arch/arm64/boot/dts/axis/
-> +F:	drivers/clk/samsung/clk-artpec*.c
-> +F:	include/dt-bindings/clock/axis,artpec*-clk.h
+> - patch 1/7: Add qcm2290 dt schema
+>   - added reviewed by: Bryan O'Donoghue
+>   - added reviewed by: Krzysztof Kozlowski
+> - patch 2/7: Conditionally register video nodes
+>   - new functionality required to support AR50_LITE
 
-I'm trying to understand the SoC family tree here. I see that
-you have an entry for ARTPEC SoCs above it, which currently
-covers artpec6 (Cortex-A9, apparently not Samsung based).
+This patch needs fixing: when one of the nodes is not present and a
+system error occur, we hit a null pointer dereferrence in
+venus_sys_error_handler.
 
-Is the reason for having two entries here that artpec6/7 and
-artpec8/9 are two separate SoC families, or is this just because
-they are using 32-bit and 64-bit cores, respectively?
-
-> 
-> +config ARCH_ARTPEC
-> +	bool "Axis Communications ARTPEC SoC Family"
-> +	help
-> +	   This enables support for the ARMv8 based ARTPEC SoC Family.
-> +
-> +config ARCH_ARTPEC8
-> +	bool "Axis ARTPEC-8 SoC Platform"
-> +	depends on ARCH_ARTPEC
-> +	depends on ARCH_EXYNOS
-> +	select ARM_GIC
-> +	help
-> +	  This enables support for the Axis ARTPEC-8 SoC.
-> +
-
-I would prefer to be less fine-grained here, especially as
-it seems that ARTPEC9 is again quite similar to ARTPEC8, as
-far as I can guess from public information.
-
-Could you fold both entries into a single ARCH_ARTPEC?
-
-     Arnd
+will respin a v7 in the next few days
 
