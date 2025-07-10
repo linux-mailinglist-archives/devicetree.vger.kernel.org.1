@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-195123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D734B00938
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 18:52:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD29FB00935
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 18:52:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A013956315C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:52:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A2B6563901
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:52:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB38B2F004D;
-	Thu, 10 Jul 2025 16:51:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 655042F0050;
+	Thu, 10 Jul 2025 16:51:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="hA57riP9"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="L76XS+hK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 465822F002C
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 16:51:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D238E2F002C
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 16:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752166278; cv=none; b=KBfJdlRLjedzVOxIpQWv4OueAMSikRH6lj0I7ImugxtzuX7qFPX7t1sSA0PI8JfzSu+ZvqVeiHJjJzL/yvvabN2mr2wTl+eCgWka5CoKph43cpKsce4Xbc4BN9hjUxhNot5TJ0cZQh9a3U5M8m1/BfEqw8mjNh1PE2+5GA3gUEI=
+	t=1752166276; cv=none; b=cNnsheFnISQTUU0qIbLtX0kIMrAmBc4RnYIEXNifbS+fUH8NK0lecG1y7I6yO4fyHqSI2i+Px5LKutqdyaH29CN9XrYkOCDq2RsYEs0pRjMyR10RV3+tGbnpw09QglYTmZaTiPIP17FsAxlIUQRhZJLm6nDJuWR/C2n+NrC6XhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752166278; c=relaxed/simple;
-	bh=1/lgcU6J91Nah6llXW2IKKlaxLEotdEdEftqQWx/RQk=;
+	s=arc-20240116; t=1752166276; c=relaxed/simple;
+	bh=d90e+aG/dLPhZ45Wax0yq+hKJxVgTdMsCYq09/QZQ0s=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kXaQJYGHdchJyBK5d98Je7gomQPhOrHtSgflUeJXS0cGRm0wx3qH/XksazhLeYlhliBq9bsRtoiarTISmsl2bKz7AUrYSWmh1Z2zbhzmx+z2Wtqwe/Xm3Dia0uBqXPCTNyJq4HfyeBLwbzlptiwvVqk69WEzPqkQnM3gIaAn6V0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=hA57riP9; arc=none smtp.client-ip=34.202.193.197
+	 In-Reply-To:To:Cc; b=TSsaW/nGE1MUJW2+SX3v8A6VA14U8vTPSVdLmoKcCBBMLefCBgUr/hZMhR2zOCV67aQItNZ/ZDqFOTrkY+ps6lEA5eC3U8140nbV4YHoKJsjAir5m5BqO1SajvVxnNtTx7kRlkFwCwZjkAxB0wi7pXUhY9NkK9iG4OheB9C7hN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=L76XS+hK; arc=none smtp.client-ip=34.202.193.197
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
 Authentication-Results: purelymail.com; auth=pass
-DKIM-Signature: a=rsa-sha256; b=hA57riP9ilplNUC9lxhigzrnbuJoTuzqGA+Pf1dsLsG4sJFE6rPayh1SBGcND7paED7Zu6l/P/7/F4nXflqnFxBKA5bflQYCio8GaejZOvqaPU0sNnZ+ccgOtww5U3544sUn5aQTMmYyqvZaXMQzBAv4PdvuZg7v8Y+QUIirNYn7xbjQmjsdyMxB99QWBysmhg30BcIjWqX51DByNgLZ0M90VO1FsvOaXhXj0Y7Ze/xhcyHNa5rAP6gCQUiR5azKMCj19weRzYckd0qQkf6NCVhyzV5N/aNjHzyAYz1SePN2SyGDldYw91hbH8K5wvrLvFJQ2EV+XGU0DTrnPswo+Q==; s=purelymail3; d=purelymail.com; v=1; bh=1/lgcU6J91Nah6llXW2IKKlaxLEotdEdEftqQWx/RQk=; h=Feedback-ID:Received:From:Date:Subject:To;
+DKIM-Signature: a=rsa-sha256; b=L76XS+hKOD8ApKRkKj8a913AobIqyRrLPXK1bGS+OfVWOFrcoIZgE69W7luqJZu5heDPAnc01EOKmhaMlZ/BNO/LAX4qJx7ooFdaFKrGuQ1RMhtVZGxaEnIjAgkTWgZx0s0vgKBKDDlS6CdCo6emKCm30bsmFyc6kqomBIWaRTCx58OKPVtsLrH1Dr6iQV1WTz64crkcL04nK5EGA4eMxA5aSra/asG8juTGrrlrKBummXm4YVFxmIujkaL32CvXgh4F5HC+zxvPUwFSw3KAGO+zUmPBySDKUmLKVYMhy73bU6E22HZaso0u217jROgSTWT1ow/djKTxqg+C7P+/Vg==; s=purelymail3; d=purelymail.com; v=1; bh=d90e+aG/dLPhZ45Wax0yq+hKJxVgTdMsCYq09/QZQ0s=; h=Feedback-ID:Received:From:Date:Subject:To;
 Feedback-ID: 68247:10037:null:purelymail
 X-Pm-Original-To: devicetree@vger.kernel.org
 Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1992400030;
           (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Thu, 10 Jul 2025 16:50:39 +0000 (UTC)
+          Thu, 10 Jul 2025 16:50:41 +0000 (UTC)
 From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
-Date: Thu, 10 Jul 2025 18:50:06 +0200
-Subject: [PATCH v2 2/5] arm64: dts: exynos990: Add USB nodes
+Date: Thu, 10 Jul 2025 18:50:07 +0200
+Subject: [PATCH v2 3/5] arm64: dts: exynos990-x1s-common: Enable USB
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,7 +49,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250710-resends-july-exynos990-dt-v2-2-55033f73d1b0@mentallysanemainliners.org>
+Message-Id: <20250710-resends-july-exynos990-dt-v2-3-55033f73d1b0@mentallysanemainliners.org>
 References: <20250710-resends-july-exynos990-dt-v2-0-55033f73d1b0@mentallysanemainliners.org>
 In-Reply-To: <20250710-resends-july-exynos990-dt-v2-0-55033f73d1b0@mentallysanemainliners.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -58,69 +58,56 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Igor Belwon <igor.belwon@mentallysanemainliners.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752166235; l=1950;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752166235; l=1301;
  i=igor.belwon@mentallysanemainliners.org; s=20241206;
- h=from:subject:message-id; bh=1/lgcU6J91Nah6llXW2IKKlaxLEotdEdEftqQWx/RQk=;
- b=gNdTB+SazTGvUEOySHF1DzzjAQr3SsdgnqbRRzof8PUYQnaio5ON375X3MrWNhmc7Zsj4eNwa
- VGjsC/VeyutDl3Ja5I/egjjgQ6wh4tSkmW0HGlxxTXTycIsGd42jq36
+ h=from:subject:message-id; bh=d90e+aG/dLPhZ45Wax0yq+hKJxVgTdMsCYq09/QZQ0s=;
+ b=DJQ55NTYx9pLwW/yp6Ykfs9HFU1x2wgbHI33WReelNFvAhuJcejHgP/Lxg4gUwKeQKZrFCNmO
+ iK+FJOhdMw4CgCCEj3C/yGuZFPZOknIFosUVBCF3Hkp1j7soO0Zlcv8
 X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
  pk=qKAuSTWKTaGQM0vwBxV0p6hPKMN4vh0CwZ+bozrG5lY=
 
-Add USB controller and USB PHY controller nodes for use in
-the Exynos990 SoC.
+The x1s family uses a shared USB configuration. Enable both the
+USB PHY as well as the DWC3 controller.
 
-This SoC supports USB full-speed, high-speed and super-speed modes.
-
-Due to the inability to test PIPE3, USB super-speed is not enabled, and
-the USB PHY is only configured for UTMI+ operation for now.
+Since we do not have any PMIC for USB implemented yet, use dummy
+regulators until we do.
 
 Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
 ---
- arch/arm64/boot/dts/exynos/exynos990.dtsi | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ arch/arm64/boot/dts/exynos/exynos990-x1s-common.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos990.dtsi b/arch/arm64/boot/dts/exynos/exynos990.dtsi
-index 4446a1a54ba2de56879353c9c4a898b1d697fc13..bd5e086ac46d3010ace413e2eeb2cd30d7f7672c 100644
---- a/arch/arm64/boot/dts/exynos/exynos990.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos990.dtsi
-@@ -278,6 +278,37 @@ cmu_hsi0: clock-controller@10a00000 {
- 				      "dpgtc";
+diff --git a/arch/arm64/boot/dts/exynos/exynos990-x1s-common.dtsi b/arch/arm64/boot/dts/exynos/exynos990-x1s-common.dtsi
+index 55fa8e9e05db8af51109d20d74cbd7b9a2af38df..7b97220cccb7442dbc5a9f31ae9b9124bee85c62 100644
+--- a/arch/arm64/boot/dts/exynos/exynos990-x1s-common.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos990-x1s-common.dtsi
+@@ -27,6 +27,12 @@ framebuffer0: framebuffer@f1000000 {
  		};
+ 	};
  
-+		usbdrd_phy: phy@10c00000 {
-+			compatible = "samsung,exynos990-usbdrd-phy";
-+			reg = <0x10c00000 0x100>;
-+			clocks = <&cmu_hsi0 CLK_GOUT_HSI0_USB31DRD_ACLK_PHYCTRL>,
-+				 <&oscclk>;
-+			clock-names = "phy", "ref";
-+			samsung,pmu-syscon = <&pmu_system_controller>;
-+			#phy-cells = <1>;
-+			status = "disabled";
-+		};
++	/* TODO: Remove this once PMIC is implemented */
++	reg_dummy: regulator-0 {
++		compatible = "regulator-fixed";
++		regulator-name = "dummy_reg";
++	};
 +
-+		usbdrd: usb@10e00000 {
-+			compatible = "samsung,exynos990-dwusb3",
-+				     "samsung,exynos850-dwusb3";
-+			ranges = <0x0 0x10e00000 0x10000>;
-+			clocks = <&cmu_hsi0 CLK_GOUT_HSI0_USB31DRD_BUS_CLK_EARLY>,
-+				 <&cmu_hsi0 CLK_GOUT_HSI0_USB31DRD_USB31DRD_REF_CLK_40>;
-+			clock-names = "bus_early", "ref";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			status = "disabled";
+ 	reserved-memory {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -96,3 +102,13 @@ key_volup: key-volup-pins {
+ 		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
+ 	};
+ };
 +
-+			usbdrd_dwc3: usb@0 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0x10000>;
-+				interrupts = <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>;
-+				phys = <&usbdrd_phy 0>;
-+				phy-names = "usb2-phy";
-+			};
-+		};
++&usbdrd {
++	status = "okay";
++	vdd10-supply = <&reg_dummy>;
++	vdd33-supply = <&reg_dummy>;
++};
 +
- 		pinctrl_hsi1: pinctrl@13040000 {
- 			compatible = "samsung,exynos990-pinctrl";
- 			reg = <0x13040000 0x1000>;
++&usbdrd_phy {
++	status = "okay";
++};
 
 -- 
 2.47.2
