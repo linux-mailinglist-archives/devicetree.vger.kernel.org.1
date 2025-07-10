@@ -1,105 +1,130 @@
-Return-Path: <devicetree+bounces-194946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DD2AAFFF7F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 12:44:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6443EAFFF89
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 12:47:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1DD616E9B8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:44:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C0A61C27D3C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:47:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B014F2D97A2;
-	Thu, 10 Jul 2025 10:44:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C33B62DCF74;
+	Thu, 10 Jul 2025 10:46:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i8BjSbPe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bTiga/Ok"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F4A51FC109;
-	Thu, 10 Jul 2025 10:44:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D3F2D3ED2;
+	Thu, 10 Jul 2025 10:46:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752144250; cv=none; b=VNmpA1vEXh3Uyx3vt9v85ZA9n74wqQ4kMPY4lngDw7MYiT/uaommN+LF+FMIvTk3XWC/wJEYB6E7UnBJF3+OkZBOB/iF4McXcz4NkU/RbFHsBocj1mIRuIJWut6uDDKs1lEtNriwlPKZ61YSTEd2vFkcGiAfzVfX4LOV/nGXll4=
+	t=1752144417; cv=none; b=fE+nvP075LYTPYGSoXaU46zj3oLoQyzCCaXCnYZz0GzbwYdZGBLQ8la8C1d4mtre2Vg/gHfNz4ipiQt65dKFb8T5R8B0uk3vWuyF3+0CcHLM2T6vCHEAeJqAqBT0jnQDR0AHL/eEsECmoX/5LLQcO4GArhWS4s47WCOgtXscOBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752144250; c=relaxed/simple;
-	bh=U76VKBh/7GQv+j5gpHmYAGV6Z/RI8ugyAsaX8iKw2u0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=itViB9jmKloGH7CY9bjDv9JBqPhpiv/TbbVaQm9vwQjTW+cSH9DlaQoUKOPwHz/xz7zaoE8DuxNfivw1Ovv04n1WX4v+JfuU1ROLOELEN6Uz9+Jq3R/QqKvcZBndvo3ofl4UPsPfiyzGZFTp2W0M091EXdjIIijxhdf3XFNB4lY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i8BjSbPe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C862BC4CEE3;
-	Thu, 10 Jul 2025 10:44:09 +0000 (UTC)
+	s=arc-20240116; t=1752144417; c=relaxed/simple;
+	bh=GpS7b82GwFBy7s6Gt1hdiRaB+YScMGCEmRwAh7y5fc8=;
+	h=Content-Type:Date:Message-Id:Cc:From:To:Subject:References:
+	 In-Reply-To; b=ogPPkBapFVThhRlJYgnf3cD2Rb7gawFR8WVxlkisevmgoVQHVbdCILg1exSHEK+ZLHorsKpivjnJoug1qqtN+J2SB+0ljjq7JLZyi7WUJvayMvpdGFPXy444oHYDEKLpes4A8aKSvpWhirJ3MZXkdsh/5UX7wF34QWvKh9Dr4PM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bTiga/Ok; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E660C4CEE3;
+	Thu, 10 Jul 2025 10:46:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752144249;
-	bh=U76VKBh/7GQv+j5gpHmYAGV6Z/RI8ugyAsaX8iKw2u0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i8BjSbPexN3Pw3J/0hr69DDRXMjEsyoRw7xtQcuO83Y/21Fh8KGc0i2H1oh/s6Eai
-	 sF9TPOHJoRBUPT1booxVByBHXGf8ghAfsIcWmhjdc4M+bKjbvyqGJGmG/9iPUd7aUF
-	 Zr+p9zeH6XnUv+8RsTTqB5xd9tkZVlu/gN8enDulVMiD9MrmCPqIumzly4ibm57WZb
-	 +eQMYAMwBVa84JaW4PQlcvDgjqrJmtQh9anm3kD12LWftUBJWjS8Jb1B/+iFZ6fy7L
-	 bYMTHi8+zNzQysY3sA1Q7WGXQe9KUfLIvfavIQGNPvcbLfwBKr6m4LdO9FctX+QxN7
-	 N52eelHZaKM7Q==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uZol0-000000008Ko-0AXu;
-	Thu, 10 Jul 2025 12:44:02 +0200
-Date: Thu, 10 Jul 2025 12:44:02 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com,
-	johan+linaro@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-	neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: sa8775p: remove aux clock from
- pcie phy
-Message-ID: <aG-ZcuJXISyIZavv@hovoldconsulting.com>
-References: <20250625090048.624399-1-quic_ziyuzhan@quicinc.com>
- <20250625090048.624399-4-quic_ziyuzhan@quicinc.com>
- <25ddb70a-7442-4d63-9eff-d4c3ac509bbb@oss.qualcomm.com>
- <aG-LWxKE11Ah_GS0@hovoldconsulting.com>
- <4f963fcc-2b92-4a01-93a4-f0ae942c1b6f@quicinc.com>
+	s=k20201202; t=1752144417;
+	bh=GpS7b82GwFBy7s6Gt1hdiRaB+YScMGCEmRwAh7y5fc8=;
+	h=Date:Cc:From:To:Subject:References:In-Reply-To:From;
+	b=bTiga/Ok9S6zjGcprB4jTuGjWSz2kQxrwJAKhDC9LyDa61DxU+amsJxpRZHRmQFBZ
+	 5gxUPE4d39rO+hNiM3embVeVM7efWmdYcEw0x0pA3Cg9Q0xJbDeo1OH7IbStYVc4y/
+	 8YvChpRihJ8TzlSl4w/9qicre223sU56R1n0rcmfBX2Sa73jao5Fz/LJQXolE5UbhM
+	 PETxeWxqTd8N1c+WmUYtv8dFz2TjggKAAWPXKhKW0DsT1LzGfxB8QTAWnp7VOM814A
+	 8YkhW3nvkl0jTdxv6VrGaZcgj7J9RcQNa3ZEwMc9L2ng2QFn0QSkXuuG8hUPKI/9l/
+	 BrRAglN/p3BpQ==
+Content-Type: multipart/signed;
+ boundary=457ac7dd634462d2cae9a082cc349cd648764669cbd75127613ee86b1b98;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Thu, 10 Jul 2025 12:46:52 +0200
+Message-Id: <DB8BCV6V36YE.20KJC5V0BJ1CN@kernel.org>
+Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Arnd Bergmann"
+ <arnd@arndb.de>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Liam Girdwood" <lgirdwood@gmail.com>,
+ "Julien Panis" <jpanis@baylibre.com>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Mark Brown" <broonie@kernel.org>, "Lee Jones" <lee@kernel.org>
+Subject: Re: [GIT PULL] Immutable branch between MFD, Misc and Pinctrl due
+ for the v6.17 merge window
+X-Mailer: aerc 0.16.0
+References: <20250613114518.1772109-1-mwalle@kernel.org>
+ <20250710094906.GG1431498@google.com>
+ <aG-OmSNn-oULfEuB@finisterre.sirena.org.uk>
+In-Reply-To: <aG-OmSNn-oULfEuB@finisterre.sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4f963fcc-2b92-4a01-93a4-f0ae942c1b6f@quicinc.com>
 
-On Thu, Jul 10, 2025 at 06:24:57PM +0800, Ziyue Zhang wrote:
-> 
-> On 7/10/2025 5:43 PM, Johan Hovold wrote:
-> > On Fri, Jun 27, 2025 at 04:50:57PM +0200, Konrad Dybcio wrote:
-> >> On 6/25/25 11:00 AM, Ziyue Zhang wrote:
-> >>> gcc_aux_clk is used in PCIe RC and it is not required in pcie phy, in
-> >>> pcie phy it should be gcc_phy_aux_clk, so remove gcc_aux_clk and
-> >>> replace it with gcc_phy_aux_clk.
-> >> GCC_PCIE_n_PHY_AUX_CLK is a downstream of the PHY's output..
-> >> are you sure the PHY should be **consuming** it too?
-> > Could we get a reply here, please?
-> >
-> > A bunch of Qualcomm SoCs in mainline do exactly this currently even
-> > though it may not be correct (and some downstream dts do not use these
-> > clocks).
+--457ac7dd634462d2cae9a082cc349cd648764669cbd75127613ee86b1b98
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-> After reviewing the downstream platforms, it seems that GCC_PCIE_n_PHY_AUX_CLK
-> is generally needed. Would you mind letting us know if there are any platforms
-> where this clock is not required?
+Hi,
 
-Thanks for clarifying. I was think of sc8280xp where the downstream dt
-did not use this clock (and therefore neither is the dt in mainline
-currently). Looking again now it seems that clock may not even exist on
-this platform?
+On Thu Jul 10, 2025 at 11:57 AM CEST, Mark Brown wrote:
+> On Thu, Jul 10, 2025 at 10:49:06AM +0100, Lee Jones wrote:
+> > Enjoy!
+> >=20
+> > The following changes since commit 19272b37aa4f83ca52bdf9c16d5d81bdd135=
+4494:
+> >=20
+> >   Linux 6.16-rc1 (2025-06-08 13:44:43 -0700)
+> >=20
+> > are available in the Git repository at:
+> >=20
+> >   git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-misc=
+-pinctrl-v6.17
+> >=20
+> > for you to fetch changes up to d90171bc2e5f69c038d1807e6f64fba3d1ad6bee=
+:
+> >=20
+> >   dt-bindings: mfd: ti,tps6594: Add TI TPS652G1 PMIC (2025-07-10 10:40:=
+21 +0100)
+> >=20
+> > ----------------------------------------------------------------
+> > Immutable branch between MFD, Misc and Pinctrl due for the v6.17 merge =
+window
+>
+> Is there some reason you didn't also pick up the regulator patches?
 
-Johan
+The regulator patches don't apply on the MFD tree because there are
+two new patches [1, 2] in the regulator tree. Also my patches rely
+on them. Thus, the idea was that Lee will provide an immutable tag,
+that you can pull together with the remaining regulator patches.
+
+-michael
+
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git/commi=
+t/drivers/regulator/tps6594-regulator.c?id=3D9bb3c7df546aac38ea64c736a839ef=
+2c75297631
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git/commi=
+t/drivers/regulator/tps6594-regulator.c?id=3Dc266209eaef4fef863363557817f7d=
+6a68314321
+
+--457ac7dd634462d2cae9a082cc349cd648764669cbd75127613ee86b1b98
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaG+aHRIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/iMgAGA6gTBKL7PxV268G4uPlzwRYuvRNw/pn3g
+WbaytL0Pw/U5x+FfbbffFCCRwIjxE/GJAYCL/iHDoXzXVKlPe9V3nN3o9gPf1IKx
+kokPEU+ryQ3X5iiYJsQXeBMMM2nQdCzAWcs=
+=Ihnt
+-----END PGP SIGNATURE-----
+
+--457ac7dd634462d2cae9a082cc349cd648764669cbd75127613ee86b1b98--
 
