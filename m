@@ -1,163 +1,113 @@
-Return-Path: <devicetree+bounces-195029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 849ABB00398
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:36:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF43B003AC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:37:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44E115A1ACA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 13:35:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FAF618825E3
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 13:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41CA2260590;
-	Thu, 10 Jul 2025 13:34:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C241B259CA3;
+	Thu, 10 Jul 2025 13:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j8XUk71M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EXvWA31U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13478258CEF;
-	Thu, 10 Jul 2025 13:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964B585C5E;
+	Thu, 10 Jul 2025 13:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752154454; cv=none; b=FAI5vl0AF/2lZPfkl+obu1E1b5uehZ0geqFaEIAEYEyja3gAIzzYWVnYatNmDu56ijqdc0FcGIew5iqUHKN+QlnUv2KLnkl22GAEfI4z1iduk/NkGB/2xBo3jC66U/ZMi2ap5YhHSubdXVao+RogH/tNkCwD/IHE+wZu2lFBXnM=
+	t=1752154529; cv=none; b=VG8rDlIoY4bJDkVeco/h0IvmFw7HR5lkORNuj7aSFYITj1asoku2dOHg9iOKzcJLC1+onbcSP7j1/y47l0tI3vQ7ZsDXqEPF0YuxxqNoL32wyBxP4gS6SCjClWM5Q8ySmIM8ijIzu1TOrL89KFJiC5xuBKgXPH1U2S7fH8l56iw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752154454; c=relaxed/simple;
-	bh=zOHewkDTFd+vFUFT93OThrCEvn9XerBafGlxxGr0u7s=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=O5sftZnPZfkR7niWr55+RmcGal9kpBBkypkdMfgsPJAeBz8X19LndbkOPzeYokntVLq3qM+KGnvQO4+oxS/fKNhzF7M08hc2F+HgNZnRofh8Bxi2MPrmb5J50RxCZCG9l8s4injeU+WV3yWH/l3uQjLy7tVxnq92ctim6062URM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8XUk71M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48073C4CEED;
-	Thu, 10 Jul 2025 13:34:09 +0000 (UTC)
+	s=arc-20240116; t=1752154529; c=relaxed/simple;
+	bh=/M9ZOPzseAGnVx1rmBuaTNmSZf0uj5N2aDhVIjjH//c=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Xy3yAAAXV2SRJ31Ga1/7gzMlDsR78uYPdxV9scF791aNpjj0UT9CXALZsiZjqhZCd5MacO8lNs2VdmDoh8BkkDb3htgzsFFSssUvcVZZnLbS4AoxufE1EcaaojAkOcfitrKfOj/u8/2IWevH8K5+svNhTHbUuQ5U9ba8LZFb6+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EXvWA31U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08F8EC4CEED;
+	Thu, 10 Jul 2025 13:35:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752154453;
-	bh=zOHewkDTFd+vFUFT93OThrCEvn9XerBafGlxxGr0u7s=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=j8XUk71MHLmoX8lc/BCtZo4Qk+A1hx09W5WEaXVzHE5CHsWTy8NF5fIYIpuWw+Jen
-	 R1XsnztL7seHVvOAWKV4cuOCspei+OeRY3g7kKw2iMRCX4/JogzE9+jbmVTIIRtOZh
-	 OJAP2C7NvyhKQN7cnG3xOcizQqcAl2tKIugcI7l5AxJ0rpbNb+sxXJK6dRI0gaIiFp
-	 rQL8VqF+/fmE9UR6M+sW/+Zw2uC97XRKHY82bngrDHBMLmhXspj51WiiDgGaXEZFxJ
-	 l5CWz+tDiEGnukojkKWv8+jsEWqffupW83j9WvGHBCFEFsbtPq8NH2u0qIphQcqJQQ
-	 XNsgA+UX+jWOA==
-Message-ID: <b197ef12-652b-4c7a-97d2-49954e9f1384@kernel.org>
-Date: Thu, 10 Jul 2025 15:34:07 +0200
+	s=k20201202; t=1752154529;
+	bh=/M9ZOPzseAGnVx1rmBuaTNmSZf0uj5N2aDhVIjjH//c=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=EXvWA31UTuNtfzdaSHQ8/iRGlSJoB2uv5Cmam2Y3bRByEnwnsWarTgkRa7chW0wv0
+	 swQi+ElI9FUnSwECXBnsKhwlEvK5y825vqTFCjT5by88TfCPRUCjTNvSrQmSpWUP2M
+	 DFjmPCi2ZJNeTzLAyq0biwbXjCDzuNGJu+guyBZpevLH1ogNDUJdBHYaGRkKk7mSY3
+	 W+TjcNgpwcWL5RTx1IuMF2PdUqrahJd0bnhzjOvFZYI4yiVVXOm6W7J7WA9bmgW++Q
+	 wnBBvBNO1cDBpAkb3rsRLwDz7Q9YUzOWOD9xWXE8lAoZTEfbpmhDYOW9nNKTQFj+q1
+	 cRUcO/drvw/6w==
+Date: Thu, 10 Jul 2025 08:35:28 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: clock: qcom,videocc: Add sc8180x
- compatible
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20250710-sc8180x-videocc-dt-v4-0-07a9d9d5e0e6@quicinc.com>
- <20250710-sc8180x-videocc-dt-v4-1-07a9d9d5e0e6@quicinc.com>
- <c9bd8760-1c85-4aa6-9633-1f52ed4952c9@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <c9bd8760-1c85-4aa6-9633-1f52ed4952c9@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Charles Wang <charles.goodix@gmail.com>, devicetree@vger.kernel.org, 
+ Hans de Goede <hansg@kernel.org>, Luke Jones <luke@ljones.dev>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Jason Gunthorpe <jgg@ziepe.ca>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-input@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Ingo Molnar <mingo@kernel.org>, Eric Biggers <ebiggers@kernel.org>, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>, 
+ Len Brown <len.brown@intel.com>, Al Viro <viro@zeniv.linux.org.uk>
+To: Pengyu Luo <mitltlatltl@gmail.com>
+In-Reply-To: <20250710115733.226670-2-mitltlatltl@gmail.com>
+References: <20250710115733.226670-1-mitltlatltl@gmail.com>
+ <20250710115733.226670-2-mitltlatltl@gmail.com>
+Message-Id: <175215452823.2039713.12986563371135237841.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: goodix,gt9916: Document
+ stylus support
 
-On 10/07/2025 15:27, Krzysztof Kozlowski wrote:
-> On 10/07/2025 15:00, Satya Priya Kakitapalli wrote:
->> The sc8180x video clock controller block is identical to that
->> of sm8150. Add a new compatible string for sc8180x videocc and
->> use sm8150 as fallback.
->>
->> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
->> ---
->>  .../devicetree/bindings/clock/qcom,videocc.yaml    | 23 +++++++++++++---------
->>  1 file changed, 14 insertions(+), 9 deletions(-)
+
+On Thu, 10 Jul 2025 19:57:32 +0800, Pengyu Luo wrote:
+> Document stylus support. Optional support for DT properties:
+>   - `goodix,stylus-enable`
+>   - `goodix,stylus-pressure-level`
+>   - `touchscreen-x-mm`
+>   - `touchscreen-y-mm`
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> ---
+>  .../bindings/input/touchscreen/goodix,gt9916.yaml    | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> 
-> <form letter>
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
 
-Apologies, wrong keyword. It is supposed to be this one:
+My bot found errors running 'make dt_binding_check' on your patch:
 
+yamllint warnings/errors:
 
----
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/touchscreen/goodix,gt9916.yaml: properties:goodix,stylus-enable: 'description' is a dependency of 'type'
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
 
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
+doc reference errors (make refcheckdocs):
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250710115733.226670-2-mitltlatltl@gmail.com
 
-Full context and explanation:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Best regards,
-Krzysztof
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
