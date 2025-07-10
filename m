@@ -1,88 +1,89 @@
-Return-Path: <devicetree+bounces-194893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD34AFFDCB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:19:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E69E9AFFDC9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:18:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28CCF1662CC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:18:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A9E1643197
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:18:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7AB29B220;
-	Thu, 10 Jul 2025 09:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2346529E0E4;
+	Thu, 10 Jul 2025 09:17:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ni2uPbDR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KoMnbHJw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FB77291C2E
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 09:17:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F18295D8D
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 09:17:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752139039; cv=none; b=LSz4bYgIifUfnA6gfiHSlfeBFSYNtL/GVqtQL7B5BNcbHn2CVuH2iaxvXUSQoZTPg+846nA8RgRM6UY5mm/Mp71dua9MYvKtATpaKc+8Zbi/bzhpHkGIrpIBJqEPIPuwFfAqOmxg36cMc9K1vuU9t+LQ+SYgrjSrycXUtmgA8Ug=
+	t=1752139049; cv=none; b=Kbqq1PhoaoBP+swAH4ZhQVH6Ih7IAgUJNntaKU1OGiqTv9nG/AxS9DUsh2fIBRk+Ser4m1azyzuQeTeMr7LQYJJJZFeGpnpi+cciDY9pjG4mzRfr5/5hou1ytYnJJjRv5LOz8CDAfZ5hYHfUbh+PPZ7uLXJAK1B7rr7P3iV2ZjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752139039; c=relaxed/simple;
-	bh=khn8GMlrTtxNNR634wsCseHe/a7/+U/2qtnSEpHb+ZY=;
+	s=arc-20240116; t=1752139049; c=relaxed/simple;
+	bh=uCGaHKxMyCT6Fr1GicW0dawysRNXieqTwFGMzz+YiHM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Rzzvg7YNRSDY9/lMmTCGKH2jY7bTpaMU3vmxq9RPlr3R+AtX4CMcV+sxoxfcF2YGwjDT+jazWVKYYgdblKQ3Pe/LjqQTSHZIriicGop3cQhfG7nglcNaxJOSfoZk1ja5vvvFrmRMBM9xbsGl/7iLhAiHiTeD4qgabp6KHQwtPB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ni2uPbDR; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=BWkHtzo2FbHaJVInzE4BJvXwLL7QTm0g0easRStIjdrI1pN3PpjVKUkd2Q8d514LNhYOZQ8nMp26d0pelc9xoDPnyFndCFspfXULKmtp520Bjvndx4wtkAQ1rfYubBpa5CXAWTCRPPNaE00FlzyznxH2k/xb5T3fIcMwfaKxwAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KoMnbHJw; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56A9C9L5010419
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 09:17:16 GMT
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56A92w9u016185
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 09:17:26 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bm688pDoN1t58GLFHGhBI++/OTcmZdbP8x57uiG6loQ=; b=ni2uPbDRJeSqMnI1
-	f5s4NXc92iTmeb4IiqlqTefRpdkV3ssbPXnkVqXkAAld3lrVzQD1hX4klx2Ooj8f
-	89z5aHK6uVOdc3rE0936FhwbP75pr+yoDnkQdLYtqtjf4Sar4xpk3loikBcq+FMK
-	Cjch2UovUfMG/CMATQlqe6GOo0ToMf/kqj++zc3uQ9+bzXtydsNwW5n4FVoD+5Bq
-	fMfP7H12VkLkSD+aKEin91RVxLZIxvtZJiQJhrbRpFyboJbPSLnEmtbxNQRf+A5C
-	+IESMd4WSO4/mANV5+oUz50rfb1+fMNHA+wdy+B2XuxNBwCqx4L1RpgEaUTPS/Q8
-	vnPlQQ==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47sm9dvbk0-1
+	i1S0YgYBWkNzPgMtsFsB7pmoBXpykrq3h9FvayJsue4=; b=KoMnbHJwHusbb1Qt
+	y2PFwsxuIQm6zGmnPcpqg+sVft6aVH0zNR7Yy9ShnB3fA+GXaB0BHbyRG7zNPdgg
+	nuhvYKJK01osK5kPqkawUTY6mADECTNdPwcsys2xUYV1Wunoo7ZVGAIT5xyx8Yo0
+	vNFjzoAcU0U4L8RWM//QM1jVVyl+ryExg3Rom5uSHPZ4oqiCZBPKauSZUmaejCAE
+	MTVA7+SGRVuBGcU7HBnoU/fOVwaEVQQSDo7oAQL31zditLY+7kLpZF4Motuj39Tp
+	U7m/fVN3hkmhaDq6gUnvwABeYLVLYOyyTXbt84iDbECpQHUQSoU3eHoSM71hWA9z
+	QS3T9w==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47pvefqtjx-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 09:17:15 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-23824a9bc29so12668755ad.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 02:17:15 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 09:17:26 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2369dd58602so9257195ad.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 02:17:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752139035; x=1752743835;
+        d=1e100.net; s=20230601; t=1752139045; x=1752743845;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=bm688pDoN1t58GLFHGhBI++/OTcmZdbP8x57uiG6loQ=;
-        b=vigUjMDSMC0LW+DBbmyQQMLnlfnlx4WbezTHpVVdVVvj0LXYgDhW+iZRG8Pyx+e6PR
-         P13zFYOcxJxOxITZUYnynUmvBhMLMg/y0Jkk3RTq8/xCqLoLgquEx7ScAMDLyoA8wRW7
-         QCVVDoQZ+OCEs/map/qUCTMOJlhsYDwiqUcGGazJ2Si5WbBqnqvTFRV2oUJCvem2NWz3
-         LrCtx+6iD7ZoWEVMeus/XrljyNb3nlL1E7qVjpbqaikOPKiyz8h6rI3seoe4tlys7SrT
-         ozD6fdPIol7Tzb2cb2bQNN09y2F0y2/pl947qNOz7xYABIJuPpzPXQ/Nkrc5DWZ3EzIp
-         OxiA==
-X-Forwarded-Encrypted: i=1; AJvYcCV6g0JEHKaxsLW5qvaBAYQLXZ7hp3Xb6a4BiaO0wKrJNoYry3SY15LGUMwx0/mh97aLrVaXoCCOsYrP@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJmb5dZ+mR7Nvck6jf0YO378ON4pn4yTHuE106FDuFyJyoD71h
-	MfAn3eONYkN4oDkCCNIgJCYnXhLxh1MzvtMa2wqGuqGjagfpyWi94uoXkjjGUH/GaofDtUigiWO
-	3+yf+PvWrpkiRGf982/7+a8gO4505PertTJ1ZmE/qd1ntV9Hnjx7xW7/6AjFZNuSt
-X-Gm-Gg: ASbGncvGNlwwVQ7DA3zWf3se3XUN4w9edKXu62WVw/5bTRxLQXTyvap0DWBrFr371tA
-	2Fvn4uNEDCFYK7dPFsFDsdbSo2tpcGGYVYxDluI33qqBXW3dyclA55c2wbJWGTYgipMQdYEnfif
-	3Y+CkkndQZsswfhYTVMeXVf6+byTcLKlD7XmbUSVjK3BV8pjgVxexTkALkQ9Q63Rt6XbsutMB3s
-	0IQUf6+Tub3OZWz8n/lArS7wIL0t9YgxgcD5ML+xadtscBDNacQT91hoyn8JpDL0IyCxOanhsEZ
-	9Oq/7uC3gNofFecbEe2bk/2QEhwClXmyUgSgCNVnklFu1tlcsPnQgpjg+Ug=
-X-Received: by 2002:a17:902:cec2:b0:235:1706:1ff6 with SMTP id d9443c01a7336-23de46edf4bmr28704965ad.0.1752139034588;
-        Thu, 10 Jul 2025 02:17:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHwquEcV/DEQgNHo5i5rKIMG5wYJOS8HD0ETiQ+J8XjUT4+2RRoWOqCstZDWnrO0s1dBiyXug==
-X-Received: by 2002:a17:902:cec2:b0:235:1706:1ff6 with SMTP id d9443c01a7336-23de46edf4bmr28704665ad.0.1752139034147;
-        Thu, 10 Jul 2025 02:17:14 -0700 (PDT)
+        bh=i1S0YgYBWkNzPgMtsFsB7pmoBXpykrq3h9FvayJsue4=;
+        b=Vf4MbNPxeid27yicDYO/uCwQ9Gw/4iOHvsE7ka7WkVhRn6q9WH+TWx36is/NXDKwEy
+         EoMBYzm/oL4tQZe8S4R8B+jku+UUO6QXEpO9HZ2ZZsj7273CuepTGM7V+g4t+eRSZVTQ
+         Ip3hDFe4xSMx8U2z/Mp24EVPRBjia8EixeLO2eci9HaaS+EydGmItf8DgN9VrvWJIg2M
+         +ANPSux6Z7Bkk3OYgN2zErgFONB7vHjknA2ThWsDfA4diKBUky4uq1tcV5ZUKx8xPS1F
+         VGfxtPgoc0ZOCvUg00x8Xj96aWqaGyk2ZJLBmhp9F4F6u19pqWYQkCzWSgOg/vUhANsZ
+         HM8A==
+X-Forwarded-Encrypted: i=1; AJvYcCXeUOE3ZnYmBJjAY9gRTuFn61EAQTC+/RRAQ7JZj9LAG0pOlIHw18MBCO1Q7z+mtuM4ej8qGX5qQA8v@vger.kernel.org
+X-Gm-Message-State: AOJu0YymGmuLxzq7+/DbB2VIBvpGp7tdGA/xfkqIx1x0PWQljL0Gv5b+
+	x7CeR6HPR/i4pAPHjXF05hhI81NBu62GGN9m4h8gVEFYZx74gRkgn5hmk7Uq/64ca+cRwWTK8Im
+	I8inJrEW8L/s4aMveYxUVWsD9WloCdA09Cr9P4Apu2jWtx7rgN0mFqdV9uwTPkvSK
+X-Gm-Gg: ASbGncv+CromyWM1Pb3gfSMDeb2Zy9y2JzarJwXWmdCR8atfgpsozqcGBvqB8dTqa+c
+	AnkOfDhnoAPGKJzK/vNB/cY6k6EGhLIbzn5cUdq1jXFjNE4k+8MkRGR5h2gxw/J/gTysb111BFP
+	AxNuM0p822pkGxI0spfwxxn9wveccJCgZ9LME8ufr7jGI1XyIGjYucssfXKshF9npZY39pyzZDg
+	Mkh89bdqIGqd/XUcpVMfDq9LG1VTfn7jzvgIrymeoFzjcWJ1w9Es26hf89NlPKiqu9S5KyliaAN
+	YnrAgqb4U8fpWIqlUv7ar32RA6Jh60YSwDRdGOrDvWTd6W9lBGAgPa4eapU=
+X-Received: by 2002:a17:902:ce91:b0:236:6f5f:cab4 with SMTP id d9443c01a7336-23de47cd652mr30055215ad.5.1752139044808;
+        Thu, 10 Jul 2025 02:17:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFg4RsjrMw/RBbJfUGCCXCUR+6pZ/OBaJOmKg8tfZNS55C/Jm0lOpHvhHWh1xVUlIOgo8dYHw==
+X-Received: by 2002:a17:902:ce91:b0:236:6f5f:cab4 with SMTP id d9443c01a7336-23de47cd652mr30054705ad.5.1752139044303;
+        Thu, 10 Jul 2025 02:17:24 -0700 (PDT)
 Received: from hu-spratap-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de4341d51sm14837765ad.189.2025.07.10.02.17.04
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de4341d51sm14837765ad.189.2025.07.10.02.17.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jul 2025 02:17:13 -0700 (PDT)
+        Thu, 10 Jul 2025 02:17:23 -0700 (PDT)
 From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Date: Thu, 10 Jul 2025 14:45:46 +0530
-Subject: [PATCH v10 04/10] dt-bindings: arm: Document reboot mode magic
+Date: Thu, 10 Jul 2025 14:45:47 +0530
+Subject: [PATCH v10 05/10] firmware: psci: Implement vendor-specific
+ reset-types as reboot-mode
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,8 +91,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250710-arm-psci-system_reset2-vendor-reboots-v10-4-b2d3b882be85@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20250710-arm-psci-system_reset2-vendor-reboots-v10-5-b2d3b882be85@oss.qualcomm.com>
 References: <20250710-arm-psci-system_reset2-vendor-reboots-v10-0-b2d3b882be85@oss.qualcomm.com>
 In-Reply-To: <20250710-arm-psci-system_reset2-vendor-reboots-v10-0-b2d3b882be85@oss.qualcomm.com>
 To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
@@ -127,116 +128,173 @@ Cc: Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
         Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Elliot Berman <quic_eberman@quicinc.com>,
         Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Elliot Berman <elliot.berman@oss.qualcomm.com>
+        Srinivas Kandagatla <srini@kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752138982; l=2500;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752138982; l=4973;
  i=shivendra.pratap@oss.qualcomm.com; s=20250710; h=from:subject:message-id;
- bh=LJQmaaDtgt8TROVTUTsTmEnpeK2uj+7rigIrzNpy/l4=;
- b=iy9PU4ZJOiTEn2epqZUOkW8+Xr7tjFQnf02iWN5UFpijHHJzDb+DQE9zwiCZcqY66/IiKYTBH
- Qa8lCfgZ15ZBxIImBn1nkijQHRDyoW0jh2GQrhRaXOvI4e1VEJRpOEa
+ bh=uCGaHKxMyCT6Fr1GicW0dawysRNXieqTwFGMzz+YiHM=;
+ b=L6QqHX1809AdVxBa+yUIqV+KzAjQCF49Na14f6bM9oifTFAaCspHqvngk9jAg+lDYE0q+ZxwI
+ FcFtJ72BHDNAXJDB5RiTwPW/EJPMBTS9YMfKspKEOgWPjTlQJLQUjhd
 X-Developer-Key: i=shivendra.pratap@oss.qualcomm.com; a=ed25519;
  pk=CpsuL7yZ8NReDPhGgq6Xn/SRoa59mAvzWOW0QZoo4gw=
-X-Proofpoint-GUID: pt7meQE_tSB8ePlPL5RtOZbaJl0F5f_b
-X-Authority-Analysis: v=2.4 cv=W7k4VQWk c=1 sm=1 tr=0 ts=686f851b cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
- a=UInjrUrXc7y1C1sAkbYA:9 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-ORIG-GUID: pt7meQE_tSB8ePlPL5RtOZbaJl0F5f_b
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzEwMDA3OSBTYWx0ZWRfX55SrIGj7/jXy
- lS3fjlLcO2isAzg/ccudLQKKpnc+Mecwg5RuflMI42QJhL0y9wsOsxrM/IKsKEAID8f4Jvg4iLy
- 9AZbJU/13zHkj7ISybzHsTAajEFwf5qEn2srqRG/CI/anVZU86SitSFCYPJjsI4lJwu89FcGCU4
- /oAalFPo554MWP3vQ0/SkEKZlHJyE6gFKqeN/uZuy002NKe0nR9YVWR4Guifug4dV4dunhQrudb
- D8OeugZFyXwLWGT3y+IFHWJbDmiDpQQlUNlFKE5OGBBTICS/Oj5Jl2W5IEfoevYDBwlIRpxkeMp
- HYPhIrYIih+3zTb/mo/Ru4FKAARFNTQ1nMxZPqf0U3xigak3WUuGF3I6ujGyZD9vhRdotmucEBa
- 9FMqfriY+zZAoLze2uxgNLxa81CA6mrUakj0+5qGvVzEPVSZ8fPRrzqssut7iyrpjLUNVeJx
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzEwMDA3OSBTYWx0ZWRfXzXHHymZHkFFb
+ PvMBRBoBctpCbqDYXuPcC34LmVGDj+PaAc/Ke69VBhtDBYnbYsUcv63Nlu65iRsqbiXwuoCymZG
+ PtC6qBp/KLvEIxfnHxji4ovTVM13ro/8y+A/lNNof57haKlzyExZwUJyBMhgpm1ScC45rlQNrNt
+ HOD1RX+ToyvQvPEMa/bhsOaWt2H0bRw6HMsCrgkrqVW9xTvop3DZ85Td5wo/Zp/Ia2cZrhI5msx
+ JwAk41Ju2Y2LH3NHDkOpulu1t7b2CadtlUjjBf8DnGme6uywvVnRefIjSbPJO2aYbu1wbphznB0
+ sScIXdf5NXwJtooj441diXiVct2/f3Ykq+YKX6CcQlk3GeCp2fgjh1xepkAXJFEGiyLRHCKySnM
+ XNHAbrT99yCJAvTQ1iA+PpLaoUcUKOamlb/J7JvrzwCk7s8MbmdapgP/EbZNi5A8AdhWNVeV
+X-Authority-Analysis: v=2.4 cv=dciA3WXe c=1 sm=1 tr=0 ts=686f8526 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=eXBxmsxbH67dAx2arOIA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-GUID: Oj1tQE7fru3cDhd14f7gBGkS6TFS6ev_
+X-Proofpoint-ORIG-GUID: Oj1tQE7fru3cDhd14f7gBGkS6TFS6ev_
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
  definitions=2025-07-10_01,2025-07-09_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 lowpriorityscore=0 clxscore=1015 suspectscore=0 phishscore=0
- mlxlogscore=999 priorityscore=1501 impostorscore=0 malwarescore=0 mlxscore=0
- adultscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ clxscore=1015 malwarescore=0 suspectscore=0 impostorscore=0 phishscore=0
+ mlxscore=0 mlxlogscore=999 bulkscore=0 lowpriorityscore=0 adultscore=0
+ spamscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
  definitions=main-2507100079
 
-From: Elliot Berman <elliot.berman@oss.qualcomm.com>
+SoC vendors have different types of resets which are controlled
+through various hardware registers. For instance, Qualcomm SoC
+may have a requirement that reboot with “bootloader” command
+should reboot the device to bootloader flashing mode and reboot
+with “edl” should reboot the device into Emergency flashing mode.
+Setting up such reboots on Qualcomm devices can be inconsistent
+across SoC platforms and may require setting different HW
+registers, where some of these registers may not be accessible to
+HLOS. These knobs evolve over product generations and require
+more drivers. PSCI spec defines, SYSTEM_RESET2, vendor-specific
+reset which can help align this requirement. Add support for PSCI
+SYSTEM_RESET2, vendor-specific resets and align the implementation
+to allow user-space initiated reboots to trigger these resets.
 
-Add bindings to describe vendor-specific reboot modes. Values here
-correspond to valid parameters to vendor-specific reset types in PSCI
-SYSTEM_RESET2 call.
+Introduce a late_initcall to register PSCI vendor-specific resets
+as reboot-mode arguments like reset_type and cookie. For a SoC
+where, PSCI vendor-specific system_reset2 is supported, the
+appropriate value gets filled to reset_type and cookie during
+this reboot-mode hook registration. If the secure firmware
+supports PSCI system_reset2, restart notifier will make secure
+call to trigger appropriate requested reset type.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Elliot Berman <elliot.berman@oss.qualcomm.com>
+By using the above implementation, usespace will be able to issue
+such resets using the reboot() system call with the "*arg"
+parameter as a string based command. The commands can be defined
+in PSCI device tree node as “reset-types” and are based on the
+reboot-mode based commands.
+
 Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
 ---
- Documentation/devicetree/bindings/arm/psci.yaml | 41 +++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+ drivers/firmware/psci/Kconfig |  1 +
+ drivers/firmware/psci/psci.c  | 53 ++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 53 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
-index 7360a2849b5bd1e4cbadac533c1a7228573288d4..672fc28f69ed7cfed4baf8c2185e0cd7b2024376 100644
---- a/Documentation/devicetree/bindings/arm/psci.yaml
-+++ b/Documentation/devicetree/bindings/arm/psci.yaml
-@@ -98,6 +98,25 @@ properties:
-       [1] Kernel documentation - ARM idle states bindings
-         Documentation/devicetree/bindings/cpu/idle-states.yaml
+diff --git a/drivers/firmware/psci/Kconfig b/drivers/firmware/psci/Kconfig
+index 97944168b5e66aea1e38a7eb2d4ced8348fce64b..9d65fe7b06a6429de8a26d06f9384e5c93f36e5f 100644
+--- a/drivers/firmware/psci/Kconfig
++++ b/drivers/firmware/psci/Kconfig
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ config ARM_PSCI_FW
+ 	bool
++	select REBOOT_MODE
  
-+  reset-types:
-+    type: object
-+    $ref: /schemas/power/reset/reboot-mode.yaml#
-+    unevaluatedProperties: false
-+    properties:
-+      # "mode-normal" is just SYSTEM_RESET
-+      mode-normal: false
-+    patternProperties:
-+      "^mode-.*$":
-+        minItems: 2
-+        description: |
-+          Describes a vendor-specific reset type. The string after "mode-"
-+          maps a reboot mode to the parameters in the PSCI SYSTEM_RESET2 call.
-+
-+          Parameters are named mode-xxx = <type[, cookie]>, where xxx
-+          is the name of the magic reboot mode, type is the lower 31 bits
-+          of the reset_type. Both reset_type and cookie must be specified.
-+          The 31st bit (vendor-resets) will be implicitly set by the driver.
-+
- patternProperties:
-   "^power-domain-":
-     $ref: /schemas/power/power-domain.yaml#
-@@ -137,6 +156,15 @@ allOf:
-       required:
-         - cpu_off
-         - cpu_on
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: arm,psci-1.0
-+    then:
-+      properties:
-+        reset-types: false
+ config ARM_PSCI_CHECKER
+ 	bool "ARM PSCI checker"
+diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
+index 38ca190d4a22d6e7e0f06420e8478a2b0ec2fe6f..87293f78ed83eb33ba67ded73728729811693ea3 100644
+--- a/drivers/firmware/psci/psci.c
++++ b/drivers/firmware/psci/psci.c
+@@ -13,10 +13,13 @@
+ #include <linux/errno.h>
+ #include <linux/linkage.h>
+ #include <linux/of.h>
++#include <linux/of_platform.h>
++#include <linux/platform_device.h>
+ #include <linux/pm.h>
+ #include <linux/printk.h>
+ #include <linux/psci.h>
+ #include <linux/reboot.h>
++#include <linux/reboot-mode.h>
+ #include <linux/slab.h>
+ #include <linux/suspend.h>
  
- additionalProperties: false
+@@ -51,6 +54,14 @@ static int resident_cpu = -1;
+ struct psci_operations psci_ops;
+ static enum arm_smccc_conduit psci_conduit = SMCCC_CONDUIT_NONE;
  
-@@ -261,4 +289,17 @@ examples:
-         domain-idle-states = <&cluster_ret>, <&cluster_pwrdn>;
-       };
-     };
++struct psci_vendor_sysreset2 {
++	u32 reset_type;
++	u32 cookie;
++	bool valid;
++};
 +
-+  - |+
++static struct psci_vendor_sysreset2 vendor_reset;
 +
-+    // Case 5: SYSTEM_RESET2 vendor resets
-+    psci {
-+      compatible = "arm,psci-1.0";
-+      method = "smc";
+ bool psci_tos_resident_on(int cpu)
+ {
+ 	return cpu == resident_cpu;
+@@ -309,7 +320,14 @@ static int get_set_conduit_method(const struct device_node *np)
+ static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
+ 			  void *data)
+ {
+-	if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
++	if (vendor_reset.valid && psci_system_reset2_supported) {
++		/*
++		 * if vendor_reset.valid is true call sys reset2 with
++		 * the vendor_reset(reset_type and cookie).
++		 */
++		invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2), vendor_reset.reset_type,
++			       vendor_reset.cookie, 0);
++	} else if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
+ 	    psci_system_reset2_supported) {
+ 		/*
+ 		 * reset_type[31] = 0 (architectural)
+@@ -547,6 +565,39 @@ static const struct platform_suspend_ops psci_suspend_ops = {
+ 	.enter          = psci_system_suspend_enter,
+ };
+ 
++static int psci_set_vendor_sys_reset2(struct reboot_mode_driver *reboot,
++				      u32 reset_type, u32 cookie)
++{
++	if (psci_system_reset2_supported) {
++		vendor_reset.reset_type = PSCI_1_1_RESET_TYPE_VENDOR_START | reset_type;
++		vendor_reset.cookie = cookie;
++		vendor_reset.valid = true;
++	}
 +
-+      reset-types {
-+        mode-edl = <0 0>;
-+        mode-bootloader = <1 2>;
-+      };
-+    };
- ...
++	return NOTIFY_DONE;
++}
++
++static int __init psci_init_vendor_reset(void)
++{
++	struct reboot_mode_driver *reboot;
++	struct device_node *np;
++
++	np = of_find_node_by_name(NULL, "reset-types");
++	if (!np)
++		return -ENODEV;
++
++	reboot = kzalloc(sizeof(*reboot), GFP_KERNEL);
++	if (!reboot) {
++		of_node_put(np);
++		return -ENOMEM;
++	}
++
++	reboot->write_with_cookie = psci_set_vendor_sys_reset2;
++
++	return reboot_mode_register(reboot, np);
++}
++late_initcall(psci_init_vendor_reset)
++
+ static void __init psci_init_system_reset2(void)
+ {
+ 	int ret;
 
 -- 
 2.34.1
