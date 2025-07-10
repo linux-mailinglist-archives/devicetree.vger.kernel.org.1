@@ -1,188 +1,180 @@
-Return-Path: <devicetree+bounces-195061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5801EB004D7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:13:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A4ACB004DD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:14:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9C494878C0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:09:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D76983B8324
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:12:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12A9D27147E;
-	Thu, 10 Jul 2025 14:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1085271474;
+	Thu, 10 Jul 2025 14:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="qGEM3rnm"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="rXXLgFMh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0435242D62
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 14:09:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D5232E406;
+	Thu, 10 Jul 2025 14:12:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752156578; cv=none; b=SceKnddC8PZWjsZjJnsZtWiNg6511u4MuDM9dAP/+d3U75Vv5CtEGUo2p6MJYuuACA6SWE8LyUdJVEdnNycpAolI1NVYfGhKP2PhvpqTFjqcG/XjXgEeil/FBd6H9jHBiifmqIo8onuQJS4H1Qw/nUg3D6zEA9Cmvs52nyyVE1s=
+	t=1752156758; cv=none; b=GoA6m2JnBU9/9QIXzdmO5znH9wYl26jjaUWlv/uKZeQegL50b/UiA/GbSlU0uFFp3DqzRz+fvosA7+FeCk2QbS1Jxds4Fyar9Gjo0iTSz1IG1nVb0hV8gil4mUw8ULZwOx9G6kVEf+jZGL7YUJXoW4SNYM8a1q2hGJh3f6k7lRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752156578; c=relaxed/simple;
-	bh=2grR0mUlBz4k8clT2FNGCooSxKt52UcD68qKVQhldjU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=mC0D6QShHVxSOR5hLvHacPJuhxc1593ZrM6v0nKivGgVuTtX4L11EA5NHB1OiTWdXD04sX1dvLEfSb5rdD960Bahz09dVTRwh54MTNd1Y2rZQaooCiCi7SOGsYwmag9B2rJvSxvOdq5CQ6ZJ/u9VNEuMY7VXFTelKmjnCYHH7Ow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=qGEM3rnm; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-606b58241c9so1579532a12.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 07:09:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1752156574; x=1752761374; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zQoCinxRRh/iq3oTutQRdNZV03mKs3O7qPm/FmODtXA=;
-        b=qGEM3rnmr3pYHyOtGRuhTp+UiuEvuktsPR41C3pDeprlC0oHjAZZtLmyjV7TcYcakX
-         4F9N06Nyvhda2jVoGPtTdnMONwslv2BKVfO1LKmO8Pft7aFWt7rEavG3wcACeF8BU3cE
-         7kAOBMPD2mlkUO2+hRpAzm1jcUl7PsUDT2iXGiW3wzIAOxTZrOEEpCrRIlvjVRekJAGU
-         yndxMBpd8OjlGh8ll22Trmrk0sO+m0kSsshMRHF8ZcfUP2PD6by86ndQSnXCLvsezilU
-         HX4TmFF6IGRRE4yBFXBtOgAzARBY8hGTQmEpAi80FjYxkLEJVyuDC1IWrMul+9iw0qA9
-         WBVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752156574; x=1752761374;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zQoCinxRRh/iq3oTutQRdNZV03mKs3O7qPm/FmODtXA=;
-        b=micrI6ETpzSOUPPqqroWpaGvZ1DnFUNeYS73N+EtJkbXNPLEDGfGtROpD/9JuUWg9N
-         nC7efTboajRdXQnVMJB0YB/U/ZiSle/itOm1L8wHpXJY50ubM1mNfTrUua0X0S5u+GHI
-         QTOrVf7ZgqadSgdgzB6OJmsAt6DjlezCydRGHPg0ndGZk9V4TMdFsArktgzPYzYddCNu
-         1CD5J9PL0KlHe1hK0Q4xQcaUIBGaSYO6T93udkPth07eEEnJE96Dr08OZGXHCFKeFnJD
-         Dts5M5HrRRWu7yza6lBGwubwHfHK/VTc2Fsc5/avZZ4+qX1s9yGDpDv5NoHxuUA55BX5
-         wytg==
-X-Forwarded-Encrypted: i=1; AJvYcCXZZo9wInZ8bTKCpny2XaAb1PFme9s7ArgLZ3BbfC+puHxkBaUfXNgSwbXvrdEhK1hxY/L+qKd5E21G@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxo+LIYDiXzh9Tk4PnLjEVr61drkFVsKP6wtKb/MU7bcx1dJl5O
-	VX3/p84Ogo7RE5T0u971U339KYhlw+ouuZHIGgZH8li+JlKqbGgveeEIZen21SuvZPQ=
-X-Gm-Gg: ASbGncsTYcStH0EBpOVqk36jag8urHOUJAtWsc3tgKXcKZIHJevzn8QekALcui0fLIG
-	qFB/9D6QDGdC9E+LL1WToEDEIPqk4yTTAw+BbMCCW7QHd3+a+ZGZfxLnAOxm6KBKX9gQqTj6IsR
-	VkHaRTCNPa2UE1QZWibM+yEO0Vyeo5DODvSKnZSVgythikDMPG5A3A7VHv/iv2EvELCZSsYWjj0
-	QdRrP1vU8gUpuaH73pXA7hsuJ6oEY8QI7GdXhaNpCx8dp5hqH1BwF2PI5Hxjoz80kaekyLMFyM/
-	Lw/uajWbQHT8dXHevYor33qWUjA0Ee9cFgrTdLMd/x6IEfb+l6+/YWvBJEYgcf863NDHxNEjUJP
-	C+tuiDsghIQPzemvTsLeCQZv7CQnCU0c=
-X-Google-Smtp-Source: AGHT+IG8YxUCUZJeWu7C8W4J27oyXKY2dGnFXQnEMhNeARIfZps63JGs0OVwIsREQQAKXy3KL4OREw==
-X-Received: by 2002:a17:906:9fce:b0:ae0:b49d:9cd with SMTP id a640c23a62f3a-ae6e70fee29mr278269666b.58.1752156573823;
-        Thu, 10 Jul 2025 07:09:33 -0700 (PDT)
-Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e7e910e8sm140856366b.36.2025.07.10.07.09.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Jul 2025 07:09:33 -0700 (PDT)
+	s=arc-20240116; t=1752156758; c=relaxed/simple;
+	bh=iKozaiL9sh8jKt5+uvD5I1rVybToAX8gjy95DkqtyAQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Q181hJ/sBOH3tEEfjLa9UCw3V1uR4Df0Fan6UuGTILF76XhChZKlQ9pNSQ4wgTVzbwKW8M1RIGkHWoYWZW3Q+mffNyL/U5ZjibEKTf4PrxpGPS5xJBL8EVJ2tC3trKb9HmjU+gtiYMQrktOs1dXFX3wFxwPGURMfwt4un4bARD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=rXXLgFMh; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56ADjDNM019300;
+	Thu, 10 Jul 2025 16:12:22 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	O5ZjyQ7fcMZjAROkYAzONVq5nvoucDwT2TJdOec8s3E=; b=rXXLgFMhk1ov1Kfb
+	dTBEe6tPUeWMEyTgfS0G7zFjUM+QL0yg7etBY8ITbyxiDqeehrPFEFIabVnH/yx1
+	qr8I2upEpkvHxqa6vgQenFp9tWWNaI0MwXGXi8QRPW3UoqzL6q52qYIHSlKpKc4F
+	wUrfUNfw2SvnhcsY3LfChAtmNXnWJ5O+8jGGfjfmjwhdhedmiZdRmDzkpdS6m/UL
+	zfdirhiA/S0NKY+G8uzZPOumn34Mnw6PwL76qDPyM8YSscSBTdQNCKLmqj4uWFLY
+	031H+JPTMFXfD12CC0hDHTzVOeHA4hIa3G6QVyqnQfDg9w+TlB45QTaN7I1KpeKN
+	JBH+cg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47qf0pxty6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Jul 2025 16:12:22 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id EA7F440044;
+	Thu, 10 Jul 2025 16:11:23 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 002DFAF9A59;
+	Thu, 10 Jul 2025 16:10:46 +0200 (CEST)
+Received: from [10.48.86.182] (10.48.86.182) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 10 Jul
+ 2025 16:10:46 +0200
+Message-ID: <6e44163a-eae3-49bb-8c05-32437d517451@foss.st.com>
+Date: Thu, 10 Jul 2025 16:10:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 10 Jul 2025 16:09:33 +0200
-Message-Id: <DB8FO1H0LHQ0.2JBDBVE8JFJVC@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Wesley Cheng" <quic_wcheng@quicinc.com>, "Vinod Koul" <vkoul@kernel.org>,
- "Kishon Vijay Abraham I" <kishon@kernel.org>, "Abel Vesa"
- <abel.vesa@linaro.org>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-phy@lists.infradead.org>, "Neil Armstrong"
- <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 4/4] phy: qcom: phy-qcom-snps-eusb2: Add extra
- register write for Milos
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250709-sm7635-eusb-phy-v2-0-4790eeee7ae0@fairphone.com>
- <20250709-sm7635-eusb-phy-v2-4-4790eeee7ae0@fairphone.com>
- <7d073433-f254-4d75-a68b-d184f900294a@oss.qualcomm.com>
- <DB8DGDEN23D2.1GFB8XI0P3YLR@fairphone.com>
- <a2567891-1dd4-44ff-9853-6f9a451f0a74@oss.qualcomm.com>
-In-Reply-To: <a2567891-1dd4-44ff-9853-6f9a451f0a74@oss.qualcomm.com>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: st: fix timer used for ticks
+To: Marc Zyngier <maz@kernel.org>
+CC: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20250515151238.1.I85271ddb811a7cf73532fec90de7281cb24ce260@changeid>
+ <86ikm2f0y2.wl-maz@kernel.org>
+Content-Language: en-US
+From: Patrick DELAUNAY <patrick.delaunay@foss.st.com>
+In-Reply-To: <86ikm2f0y2.wl-maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-10_03,2025-07-09_01,2025-03-28_01
 
-On Thu Jul 10, 2025 at 2:29 PM CEST, Konrad Dybcio wrote:
-> On 7/10/25 2:25 PM, Luca Weiss wrote:
->> On Thu Jul 10, 2025 at 2:10 PM CEST, Konrad Dybcio wrote:
->>> On 7/9/25 11:18 AM, Luca Weiss wrote:
->>>> As per the downstream devicetree for Milos, add a register write for
->>>> QCOM_USB_PHY_CFG_CTRL_1 as per the "eUSB2 HPG version 1.0.2 update".
->>>>
->>>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>> ---
->>>> The downstream driver supports an arbitrary extra init sequence via
->>>> qcom,param-override-seq.
->>>>
->>>> volcano-usb.dtsi has the following which is implemented in this patch:
->>>>
->>>>     /* eUSB2 HPG version 1.0.2 update */
->>>>     qcom,param-override-seq =3D
->>>>             <0x00 0x58>;
->>>> ---
->>>>  drivers/phy/phy-snps-eusb2.c | 6 ++++++
->>>>  1 file changed, 6 insertions(+)
->>>>
->>>> diff --git a/drivers/phy/phy-snps-eusb2.c b/drivers/phy/phy-snps-eusb2=
-.c
->>>> index e232b8b4d29100b8fee9e913e2124788af09f2aa..87fc086424ba4d9fb3ce87=
-0aa7f7971a51d4a567 100644
->>>> --- a/drivers/phy/phy-snps-eusb2.c
->>>> +++ b/drivers/phy/phy-snps-eusb2.c
->>>> @@ -420,6 +420,12 @@ static int qcom_snps_eusb2_hsphy_init(struct phy =
-*p)
->>>>  	/* set default parameters */
->>>>  	qcom_eusb2_default_parameters(phy);
->>>> =20
->>>> +	if (of_device_is_compatible(p->dev.of_node, "qcom,milos-snps-eusb2-p=
-hy")) {
->>>> +		/* eUSB2 HPG version 1.0.2 update */
->>>> +		writel_relaxed(0x0, phy->base + QCOM_USB_PHY_CFG_CTRL_1);
->>>> +		readl_relaxed(phy->base + QCOM_USB_PHY_CFG_CTRL_1);
->>>
->>> Said HPG asks to clear bits [7:1] on all targets
->>=20
->> Okay, so make this unconditional and only update those bits instead of
->> writing the full register?
+Hi Mark,
+
+On 5/15/25 15:39, Marc Zyngier wrote:
+> On Thu, 15 May 2025 14:12:39 +0100,
+> Patrick Delaunay <patrick.delaunay@foss.st.com> wrote:
+>> Remove always-on on generic ARM timer as the clock source provided by
+>> STGEN is deactivated in low power mode, STOP1 by example.
+>>
+>> Fixes: 5d30d03aaf78 ("arm64: dts: st: introduce stm32mp25 SoCs family")
+>> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+>> ---
+>>
+>>   arch/arm64/boot/dts/st/stm32mp251.dtsi | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+>> index 8d87865850a7..74c5f85b800f 100644
+>> --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
+>> +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+>> @@ -150,7 +150,7 @@ timer {
+>>   			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+>>   			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+>>   			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
+>> -		always-on;
+>> +		arm,no-tick-in-suspend;
+> That's amusing, because these two properties literally describe
+> opposite behaviours (from an optimisation to a HW bug).
 >
-> Yes
->
->>=20
->> Keep the write at this location, or move the code somewhere else in the
->> function?
-> Let's simply do this instead:
->
-> diff --git a/drivers/phy/phy-snps-eusb2.c b/drivers/phy/phy-snps-eusb2.c
-> index 87f323e758d6..6c44d0366f34 100644
-> --- a/drivers/phy/phy-snps-eusb2.c
-> +++ b/drivers/phy/phy-snps-eusb2.c
-> @@ -392,7 +392,7 @@ static int qcom_snps_eusb2_hsphy_init(struct phy *p)
-> =20
->         snps_eusb2_hsphy_write_mask(phy->base, QCOM_USB_PHY_CFG_CTRL_1,
->                                     PHY_CFG_PLL_CPBIAS_CNTRL_MASK,
-> -                                   FIELD_PREP(PHY_CFG_PLL_CPBIAS_CNTRL_M=
-ASK, 0x1));
-> +                                   FIELD_PREP(PHY_CFG_PLL_CPBIAS_CNTRL_M=
-ASK, 0x0));
-> =20
->         snps_eusb2_hsphy_write_mask(phy->base, QCOM_USB_PHY_CFG_CTRL_4,
->                                     PHY_CFG_PLL_INT_CNTRL_MASK
+> I'm also pretty sure 99% of the DTs in the tree that have the
+> always-on property are wrong.
 
-Sounds reasonable, if the HPG suggests that...
+yes it was a bug in the initial device tree, detected when we implement
 
-Just asking myself why this wasn't updated in the driver but only added
-via the qcom,param-override-seq for some SoCs. But downstream is still
-downstream I guess.
+the low power support in STMicroelectronics downtream.
 
-Regards
-Luca
+
+STGEN, the root source of ARM generic timer in STM32MP25 is stopped in
+
+low power states.
+
 
 >
+>>   	};
+>>   
+>>   	soc@0 {
+> I don't want to sound rude or anything, but the guy you Cc'd on an
+> @arm.com will not reply (and hasn't been replying for almost 6 years).
+
+your not rude and It is my error, sorry
+
+I search email for "Marc Zyngier " in Linux source tree....
+
+and I use a bad address.
+
+
+For information, I upstream this patch after the remark on patch by 
+Christian Bruel:
+
+[PATCH 3/3] arm64: dts: st: add st,stm32mp2-cortex-a7-gic in intc node in stm32mp251.dtsi
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20250403122805.1574086-4-christian.bruel@foss.st.com/
+
+ >   While reviewing a DT patch of mine related to the 
+interrupt-controller, I had the following
+
+  >  comment from Marc Zyngier (GIC Maintainer) " Then while you're at 
+it, you may want to
+
+  >  consider removing the "always-on" property in the timer, because 
+I'm pretty sure the
+
+   > comparator goes down in low power mode on A53 and A35, and loses 
+its value.
+
+ >   In general, only VMs can make use of this property. "
+
+
+
 >
-> Konrad
+> Thanks,
+>
+> 	M.
+>
+
+Thanks
 
 
