@@ -1,234 +1,203 @@
-Return-Path: <devicetree+bounces-194969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05DD7B000B4
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 13:40:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1A6CB000BC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 13:45:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB3F77A8A8E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:39:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FD8454167E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:45:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AFBC241666;
-	Thu, 10 Jul 2025 11:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC08C23E226;
+	Thu, 10 Jul 2025 11:45:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZwbafXNw"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Swqb+u8N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336961A841A;
-	Thu, 10 Jul 2025 11:40:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29D4193079;
+	Thu, 10 Jul 2025 11:45:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752147634; cv=none; b=d62n12+GsyjaoOpyLatAxy9zHxdcfZoVJxOmg6349A4wNs9SFoKBHP2qH9+wiFwvbvdrKmc4XMCwmXZes5Lj1CvD/oTNXH/0301bHpY1v//bBSmJLrKepBQA2tgh17SRrLXlTZ31CJlU6Sj4dqRhZV11IQ7Nmk49lp1XAH4ujtE=
+	t=1752147953; cv=none; b=nnZbyqvMgkyLqVRdAe7nlwrTTLPRZ03I0cUlDvPh47pHqslWqagsHFWUrCDfReCV4Q8htiPhiD2yj3a5gYAa8Y0kE6fab+FJSGlT/wBCFRNxBp9nn5bQfiAS2IYjxbUKvygBNhCGsVh7paVOORpFVIXQoewG2brf0k1538YqJJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752147634; c=relaxed/simple;
-	bh=1RsuIHRRAuqcGHCQF+P/OS8tKhDFc+7jVpMSz2Nnvvg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LVUucYLg3frz5TsGRUdQqFgvddySbx3PY2cQaNVRFBs3ZrSmAKI5QTrkf/0bK0cWL16BGQJyBNLZtg6K+z0Niat77NWAcpNdQBONRqijJ5uYFCyTI/gSXumQQCn5TgGtFVa1ejLSftxCjhEUF8VXuihxuRMCZClthmK+5VKeYCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZwbafXNw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF30BC4CEE3;
-	Thu, 10 Jul 2025 11:40:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752147633;
-	bh=1RsuIHRRAuqcGHCQF+P/OS8tKhDFc+7jVpMSz2Nnvvg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZwbafXNwxIffsI5cFE+wVdo3GwQzgD9et58i9iA2Vhcrd3NamfBHDIsmyd8vhOn3/
-	 OKbc+3lMPdFOQz0+WHd3/rGT0eVDw1o6yAf0POqKsQq3WU78mY3N/3/PLEoIUpeHo5
-	 gIgReOW9YRwWW/beO4KmTdcOwixMvtzRsdfdtsu4mocg7q0eniBRLs0VsZAiYvo40A
-	 vHoP8yYegdn0seT9UVUMTV8IMTOMwAwmgRcE9vVT9D7v2OV+nW70R2D1OeUX9q2w9N
-	 v6ceJ8uA1clmxy+gXhMW2NuYJk48/l8YXAXBSzOFKC7B9per0ONphmupfawihauGOz
-	 AJ1j7GFoXCyWA==
-Date: Thu, 10 Jul 2025 13:40:25 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Frank.Li@nxp.com
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Anup Patel <apatel@ventanamicro.com>, Marc Zyngier <maz@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>,
-	Shuah Khan <shuah@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	dlemoal@kernel.org, jdmason@kudzu.us, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-kselftest@vger.kernel.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v20 0/9] PCI: EP: Add RC-to-EP doorbell with platform MSI
- controller
-Message-ID: <aG-mqWtUu9-CD43U@ryzen>
-References: <20250709-ep-msi-v20-0-43d56f9bd54a@nxp.com>
+	s=arc-20240116; t=1752147953; c=relaxed/simple;
+	bh=VzSbGFZbiAdg2Q2CosizHpRCWO4uJCXbAFHqKYELZ6w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U3eTT0iIZo2wFWH6z09ljp4WlqWV3y+H3nrdsxbixX31bZCa80B/KIUjZPmIRpxbVDBQ8y8FbZtOCNKe1+GnhgQWJM6MLrgDCV5f13p7EpDr02xO2cU58qGWmPc66pugyIZ7VHw3nfIfqRvUeoKS2tahhKpuhYBUl+N7wexieRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Swqb+u8N; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=reD0Z/OzeLLuQebkmfVULjQ6q5KpdwV263NNwktOYOs=; b=Swqb+u8NjwNq2ygF9l+WvV62ey
+	Pkv9pnKzNdO83sVwKtwjQVXeOV6gSh8xMmgNz7fZfu1UJpupxMuQbVMWIYXUtAxjPi/8pAg2sMWbl
+	PHOyY/G+UNhh/+ZUKngi4IC1BpfMnn+7VIttbB0C0UjFVDZzXbn25A/LRkYwvKFf6hDjFMBYgG+9g
+	qkm3alOdWNgnzVVecL+xxKz7QbxfnPhsbidddS3TdgttvQxvr2KlGhsUcV/pVr31IGsOcfrF9DOW+
+	no8FwUJHfq4Bj/eOSWV+0bCYbd3IOyUPozMYEA04UbE83UlTbsnID5V+mVr0woRc6WqWulZ3AfF+9
+	cDS5fPSg==;
+Received: from [194.95.143.137] (helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uZpih-0004ca-Op; Thu, 10 Jul 2025 13:45:43 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
+ Chukun Pan <amadeus@jmu.edu.cn>, Jonas Karlman <jonas@kwiboo.se>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject:
+ Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency scaling
+ support
+Date: Thu, 10 Jul 2025 13:45:43 +0200
+Message-ID: <5025631.aeNJFYEL58@phil>
+In-Reply-To: <20250620100010.1291658-2-amadeus@jmu.edu.cn>
+References:
+ <20250620100010.1291658-1-amadeus@jmu.edu.cn>
+ <20250620100010.1291658-2-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250709-ep-msi-v20-0-43d56f9bd54a@nxp.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Hello Frank,
+Am Freitag, 20. Juni 2025, 12:00:10 Mitteleurop=C3=A4ische Sommerzeit schri=
+eb Chukun Pan:
+> By default, the CPUs on RK3528 operates at 1.5GHz. Add CPU frequency and
+> voltage mapping to the device tree to enable dynamic scaling via cpufreq.
+>=20
+> The OPP values come from downstream kernel[1]. Both 408MHz and 600MHz
+> frequencies use the normal PLL, so use the corresponding highest voltage.
+>=20
+> The voltage used for other frequencies can't be less than above (875mV).
+> Therefore, 816MHz to 1200MHz also uses the corresponding highest voltage.
 
-I tested v20 of your series, but unfortunately, it still doesn't work.
+There has often been the argument that selecting a frequency that has the
+same voltage as a faster frequency does not save any power.
 
-When enabling the doorbell, the programming of the inbound iATU fails:
+Hence I remember that we dropped slower frequencies on other socs
+that share the same voltage with a higher frequency.
 
-## pci_epf_test_enable_doorbell()
-## keeps the BAR size, and BAR type of a BAR that has already been configured,
-## but changes the address translation for this BAR to redirect to the GIC ITS
-## rather than to the memory allocated by pci_epf_alloc_space()
-## (does not free the memory allocated by pci_epf_alloc_space())
-
-[   39.347502] pci_epf_test_enable_doorbell: msg hi: 0x0 msg low: 0xfe670040
-[   39.348103] pci_epf_test_enable_doorbell: base: 0xfe670000 off: 0x40
-[   39.348658] dw_pcie_ep_inbound_atu index: 1 parent_bus_addr: 0xfe670000 bar: 1 size: 0x100000
-[   39.349403] dw_pcie_prog_ep_inbound_atu parent_bus_addr: 0xfe670000 pci->region_align: 0x10000 IS_ALIGNED: 1
-[   39.350260] dw_pcie_prog_ep_inbound_atu parent_bus_addr: 0xfe670000 size: 0x100000 IS_ALIGNED: 0
-[   39.351028] rockchip-dw-pcie a40000000.pcie-ep: Failed to program IB window
-
-## pci_epf_test_disable_doorbell()
-## changes the address translation for this BAR to redirect to the memory
-## allocated by pci_epf_alloc_space() (which was never freed when enabling the
-## doorbell)
-
-[   39.351656] dw_pcie_ep_inbound_atu index: 1 parent_bus_addr: 0xa2e00000 bar: 1 size: 0x100000
-[   39.352401] dw_pcie_prog_ep_inbound_atu parent_bus_addr: 0xa2e00000 pci->region_align: 0x10000 IS_ALIGNED: 1
-[   39.353257] dw_pcie_prog_ep_inbound_atu parent_bus_addr: 0xa2e00000 size: 0x100000 IS_ALIGNED: 1
-
-
-The reason why pci_epf_test_enable_doorbell() fails is because of this check:
-https://github.com/torvalds/linux/blob/v6.16-rc5/drivers/pci/controller/dwc/pcie-designware.c#L663
-
-If you want to understand why this very important check is there, it is
-because the DWC controller requires that the physical address programmed in
-the iATU is aligned to the size of the BAR (BAR_MASK+1), see this commit:
-https://github.com/torvalds/linux/commit/129f6af747b2
-
-
-Applying the following patch on top of your v20 series makes things work as
-intended and makes the pcie_ep_doorbell.DOORBELL_TEST selftest pass for me:
-
-diff --git a/drivers/pci/endpoint/functions/pci-epf-test.c b/drivers/pci/endpoint/functions/pci-epf-test.c
-index dfdd25cfc003..7d356b0201ae 100644
---- a/drivers/pci/endpoint/functions/pci-epf-test.c
-+++ b/drivers/pci/endpoint/functions/pci-epf-test.c
-@@ -738,9 +738,9 @@ static void pci_epf_test_enable_doorbell(struct pci_epf_test *epf_test,
- 	reg->doorbell_bar = cpu_to_le32(bar);
- 
- 	msg = &epf->db_msg[0].msg;
--	ret = pci_epf_align_inbound_addr(epf, bar, ((u64)msg->address_hi << 32) | msg->address_lo,
-+	ret = pci_epf_align_inbound_addr(epf, epf->bar[bar].size,
-+					((u64)msg->address_hi << 32) | msg->address_lo,
- 					&epf_test->db_bar.phys_addr, &offset);
--
- 	if (ret)
- 		goto err_doorbell;
- 
-diff --git a/drivers/pci/endpoint/pci-epf-core.c b/drivers/pci/endpoint/pci-epf-core.c
-index c21d8e786eb3..b3d4117182e2 100644
---- a/drivers/pci/endpoint/pci-epf-core.c
-+++ b/drivers/pci/endpoint/pci-epf-core.c
-@@ -478,44 +478,36 @@ struct pci_epf *pci_epf_create(const char *name)
- EXPORT_SYMBOL_GPL(pci_epf_create);
- 
- /**
-- * pci_epf_align_inbound_addr() - Align the given address based on the BAR
-- *				 alignment requirement
-+ * pci_epf_align_inbound_addr() - Align the given address based on the BAR size
-+ *
-  * @epf: the EPF device
-+ * @bar_size: the current BAR size
-  * @addr: inbound address to be aligned
-- * @bar: the BAR number corresponding to the given addr
-- * @base: base address matching the @bar alignment requirement.
-+ * @base: base address matching the @bar_size alignment requirement.
-  * @off: offset to be added to the @base address.
-  *
-- * Helper function to align input 'addr' to base and offset, which match
-- * BAR's alignment requirement.
-+ * Helper function to align input 'addr' to base and offset, when dynamically
-+ * changing a BAR.
-  *
-  * The pci_epf_alloc_space() function already accounts for alignment. This is
-  * primarily intended for use with other memory regions not allocated by
-  * pci_epf_alloc_space(), such as peripheral register spaces or the trigger
-  * address for a platform MSI controller.
-+ *
-+ * Since this function is only used when dynamically changing a BAR (i.e. when
-+ * calling set_bar() twice, without ever calling clear_bar(), as calling
-+ * clear_bar() would clear the BAR's PCI address assigned by the host), this
-+ * function must align to the current BAR size, since we are not clearing the
-+ * BAR configuration.
-  */
--int pci_epf_align_inbound_addr(struct pci_epf *epf, enum pci_barno bar,
--			      u64 addr, dma_addr_t *base, size_t *off)
-+int pci_epf_align_inbound_addr(struct pci_epf *epf, size_t bar_size, u64 addr,
-+			      dma_addr_t *base, size_t *off)
- {
--	const struct pci_epc_features *epc_features;
--	u64 align;
--
--	if (!base || !off)
-+	if (!base || !off || !bar_size)
- 		return -EINVAL;
- 
--	epc_features = pci_epc_get_features(epf->epc, epf->func_no, epf->vfunc_no);
--	if (!epc_features) {
--		dev_err(&epf->dev, "epc_features not implemented\n");
--		return -EOPNOTSUPP;
--	}
--
--	align = epc_features->align;
--	align = align ? align : 128;
--	if (epc_features->bar[bar].type == BAR_FIXED)
--		align = max(epc_features->bar[bar].fixed_size, align);
--
--	*base = round_down(addr, align);
--	*off = addr & (align - 1);
-+	*base = round_down(addr, bar_size);
-+	*off = addr & (bar_size - 1);
- 
- 	return 0;
- }
-diff --git a/include/linux/pci-epf.h b/include/linux/pci-epf.h
-index 0ca08f0d05d7..bcc8184325d2 100644
---- a/include/linux/pci-epf.h
-+++ b/include/linux/pci-epf.h
-@@ -242,8 +242,8 @@ void *pci_epf_alloc_space(struct pci_epf *epf, size_t size, enum pci_barno bar,
- void pci_epf_free_space(struct pci_epf *epf, void *addr, enum pci_barno bar,
- 			enum pci_epc_interface_type type);
- 
--int pci_epf_align_inbound_addr(struct pci_epf *epf, enum pci_barno bar,
--			      u64 addr, dma_addr_t *base, size_t *off);
-+int pci_epf_align_inbound_addr(struct pci_epf *epf, size_t bar_size, u64 addr,
-+			      dma_addr_t *base, size_t *off);
- int pci_epf_bind(struct pci_epf *epf);
- void pci_epf_unbind(struct pci_epf *epf);
- int pci_epf_add_vepf(struct pci_epf *epf_pf, struct pci_epf *epf_vf);
+>=20
+> The remaining 1416MHz to 2016MHz use a voltage close to actual frequency.
+>=20
+> [1] https://github.com/rockchip-linux/kernel/blob/develop-5.10/arch/arm64=
+/boot/dts/rockchip/rk3528.dtsi
+>=20
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 64 ++++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/d=
+ts/rockchip/rk3528.dtsi
+> index 829f980ea353..5cb7f10b79ed 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> @@ -53,6 +53,7 @@ cpu0: cpu@0 {
+>  			device_type =3D "cpu";
+>  			enable-method =3D "psci";
+>  			clocks =3D <&scmi_clk SCMI_CLK_CPU>;
+> +			operating-points-v2 =3D <&cpu_opp_table>;
+>  		};
+> =20
+>  		cpu1: cpu@1 {
+> @@ -61,6 +62,7 @@ cpu1: cpu@1 {
+>  			device_type =3D "cpu";
+>  			enable-method =3D "psci";
+>  			clocks =3D <&scmi_clk SCMI_CLK_CPU>;
+> +			operating-points-v2 =3D <&cpu_opp_table>;
+>  		};
+> =20
+>  		cpu2: cpu@2 {
+> @@ -69,6 +71,7 @@ cpu2: cpu@2 {
+>  			device_type =3D "cpu";
+>  			enable-method =3D "psci";
+>  			clocks =3D <&scmi_clk SCMI_CLK_CPU>;
+> +			operating-points-v2 =3D <&cpu_opp_table>;
+>  		};
+> =20
+>  		cpu3: cpu@3 {
+> @@ -77,6 +80,67 @@ cpu3: cpu@3 {
+>  			device_type =3D "cpu";
+>  			enable-method =3D "psci";
+>  			clocks =3D <&scmi_clk SCMI_CLK_CPU>;
+> +			operating-points-v2 =3D <&cpu_opp_table>;
+> +		};
+> +	};
+> +
+> +	cpu_opp_table: opp-table-cpu {
+> +		compatible =3D "operating-points-v2";
+> +		opp-shared;
+> +
+> +		opp-408000000 {
+> +			opp-hz =3D /bits/ 64 <408000000>;
+> +			opp-microvolt =3D <875000 875000 1100000>;
+> +			clock-latency-ns =3D <40000>;
+> +			opp-suspend;
+> +		};
+> +
+> +		opp-600000000 {
+> +			opp-hz =3D /bits/ 64 <600000000>;
+> +			opp-microvolt =3D <875000 875000 1100000>;
+> +			clock-latency-ns =3D <40000>;
+> +		};
+> +
+> +		opp-816000000 {
+> +			opp-hz =3D /bits/ 64 <816000000>;
+> +			opp-microvolt =3D <875000 875000 1100000>;
+> +			clock-latency-ns =3D <40000>;
+> +		};
+> +
+> +		opp-1008000000 {
+> +			opp-hz =3D /bits/ 64 <1008000000>;
+> +			opp-microvolt =3D <875000 875000 1100000>;
+> +			clock-latency-ns =3D <40000>;
+> +		};
+> +
+> +		opp-1200000000 {
+> +			opp-hz =3D /bits/ 64 <1200000000>;
+> +			opp-microvolt =3D <900000 900000 1100000>;
+> +			clock-latency-ns =3D <40000>;
+> +		};
+> +
+> +		opp-1416000000 {
+> +			opp-hz =3D /bits/ 64 <1416000000>;
+> +			opp-microvolt =3D <925000 925000 1100000>;
+> +			clock-latency-ns =3D <40000>;
+> +		};
+> +
+> +		opp-1608000000 {
+> +			opp-hz =3D /bits/ 64 <1608000000>;
+> +			opp-microvolt =3D <975000 975000 1100000>;
+> +			clock-latency-ns =3D <40000>;
+> +		};
+> +
+> +		opp-1800000000 {
+> +			opp-hz =3D /bits/ 64 <1800000000>;
+> +			opp-microvolt =3D <1037500 1037500 1100000>;
+> +			clock-latency-ns =3D <40000>;
+> +		};
+> +
+> +		opp-2016000000 {
+> +			opp-hz =3D /bits/ 64 <2016000000>;
+> +			opp-microvolt =3D <1100000 1100000 1100000>;
+> +			clock-latency-ns =3D <40000>;
+>  		};
+>  	};
+> =20
+>=20
 
 
 
 
-However, the more I think about it, considering that this alignment requirement
-is inherent to the DWC controller (other controllers might not have this
-requirement), perhaps pci_epf_align_inbound_addr() should not be a function in
-pci-epf-core.c, perhaps this function would be better suited to live in
-drivers/pci/controller/dwc/pcie-designware-ep.c ?
-
-
-Kind regards,
-Niklas
 
