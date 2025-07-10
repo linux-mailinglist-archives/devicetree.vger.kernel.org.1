@@ -1,153 +1,175 @@
-Return-Path: <devicetree+bounces-195093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72777B00698
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 17:26:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEABAB006AC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 17:30:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F98416EF64
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:25:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 154113A83DC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:29:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E14B27466E;
-	Thu, 10 Jul 2025 15:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE55A2749C6;
+	Thu, 10 Jul 2025 15:30:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sbNzlHFk"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="K5IayD9K";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="IgqoPP0F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from flow-a4-smtp.messagingengine.com (flow-a4-smtp.messagingengine.com [103.168.172.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C9062741A4;
-	Thu, 10 Jul 2025 15:25:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C9351022;
+	Thu, 10 Jul 2025 15:30:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752161138; cv=none; b=lJyM1L7x5kqByMD5+dgTysGfA7KBQNIx70afqyb1nJw8m+kN00h+d8uU61lEon+naBxV2DEfY3Jx/QpU+Bd4ZD2gmS3JH9wHImkQw0HVyCBw3y9Kth/rmotJxw7C2IBTdqvVbjBP/YEWa4O5LOZHPAbINP8R7F1zAQ7vlXOHkbQ=
+	t=1752161419; cv=none; b=fy2INEodJlThGZgPigvkYymaTYGPFzv2JPT2AhT7Mec3Ulo7Mf8DXcnkoKBOyzKn0Q0cJx+Udqqkb5RzhoUWGPdMp6Cn8N54YMP5kUEbk1cNi+3fjfBzM5CphXhWRZOeZfTZUFRswhXX1sbjatamSCtmGnKY+BfRzCFjAzo0WZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752161138; c=relaxed/simple;
-	bh=D08Lkk2/aUoWyaOxgce4WKYWUMnpW+kGZF62H6dE1og=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CrRGVMfmQvtBYLU9laVjWedpwFOxRu3A95esBd+KyInBHD2IoJkbTGB1e/dr8xa5kc8jq46cZUgjeqprFqbX4fgd1lncfBTh1pKt8OXm3/vUWSM+HsMQKd/mvGWz5JvRCK/e3+eUjAQY3GCuoPQjvOikluWfbuCdxIoxzKBzQ9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sbNzlHFk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E056C4CEE3;
-	Thu, 10 Jul 2025 15:25:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752161135;
-	bh=D08Lkk2/aUoWyaOxgce4WKYWUMnpW+kGZF62H6dE1og=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sbNzlHFkSHr2wwFrXT/oCFx04FFufvhMd+QHP2p9Tx88ZCipeqOLTY2JWx5SfjmF3
-	 MAbaQK3u8fOzh5ZP6zT7KW8kjYadwCBNwALnVO/sN9ogjx74dqO4K5W+TOckaIOpB+
-	 gXyJUfoDLh9OeDZnIKiDYZXaI6uH85CQlP2kDUcpg6OIijpWE4+QS++x2pJRb3SzrK
-	 lG92meFv/whim9PpfXhf5IvlGcaSHDGi6c7j2IfOkK+Gq+9OZdrUS8X0+1/ueXRSof
-	 fsaEghgHMNELqGuwl6KfTWW+9lsKBXHKvuq/VaqMdadl+LoH74u8cV7q3QxXmrJl0z
-	 LF5h4KD7AbImw==
-Date: Thu, 10 Jul 2025 17:25:33 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Benno Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Drew Fustini <fustini@kernel.org>, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v10 0/7] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-Message-ID: <4hmb3di5x2iei43nmrykrj5wzlltrf3vrnqvexiablonbscn57@4bbsz5c76t63>
-References: <CGME20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6@eucas1p1.samsung.com>
- <20250707-rust-next-pwm-working-fan-for-sending-v10-0-d0c5cf342004@samsung.com>
- <e8a4a821-e7e4-4bcd-a2ac-f6b684b6ceea@samsung.com>
- <ipvaegqlkco5qinhvn33mqvg7ev2walvs74xtzvhimxsfsfzhv@gcmpxcdtetdn>
- <e77eab1c-446f-4620-95be-d343684d1e95@samsung.com>
+	s=arc-20240116; t=1752161419; c=relaxed/simple;
+	bh=Hx5gJn2ZSzuiEXr2+guVv+VH2sDXh3KjJ4gfQXoVnu0=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=uAKVa5QyUxQtfrrOTmzRSOgCNgrC92rC2Z1+I6EDy1XloJcRrgxmsKRt2f0Qa11YjEHP2m/u50mje3qTwe4ZbPeVtQs3mRfOBMDQKamgt+yfc/WXa8fxwa8632F1eNUrCWn0B/UuWxfrBwHVBfS71njfel9tHDYJ/hLGg8wGr7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=K5IayD9K; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=IgqoPP0F; arc=none smtp.client-ip=103.168.172.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailflow.phl.internal (Postfix) with ESMTP id 381A81380AE6;
+	Thu, 10 Jul 2025 11:30:15 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Thu, 10 Jul 2025 11:30:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1752161415;
+	 x=1752168615; bh=AYtsN1wjDw19ZCXecXpxbhgdbQXxdI7F+9XO8m7p4xo=; b=
+	K5IayD9KBwVg1gILQlSHYjf3udls02vXkLBpptYge5R+R+Moivx7JYjl22TYks76
+	MJH8LbhDcOvzsXHLaH85qaQHcqY0f6SKi4ujBYQGy4grm/wrr8E1uukFfTUvsCx7
+	oPoshtq8kYgxKCx2jpvviQzA+BOtLvWSzl0/TFsmOoFmlUOYpgMVZSTdO/9Egv6g
+	5H3Ts+my98W9tTSPwVOy8lpK1KcGMrhrJMjcNAaS8+JeBye5rYpvv8jwE4IoKtuM
+	XhhrmHSFQtTrc2u/JTvdANK9onwYdaVuf3y5vQhTFrDGJHXAKxCs1ooAZNisUVMl
+	tndsI+Stljm31W/4Xva6Lg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1752161415; x=
+	1752168615; bh=AYtsN1wjDw19ZCXecXpxbhgdbQXxdI7F+9XO8m7p4xo=; b=I
+	gqoPP0FBDqcwRSh6zLWTt/Z9BnBvNur3PAewb6oFv36a9jh72PICHYk9wxH2eKrF
+	XjxUIlP+0KJncy+Enab0Ew2aFOKt+biVNHRGnw+eBQhVHSXZ+35PKxBdkj9tRALN
+	HYZ3gIYEaWptzFjZeM8FAaY0Y8AZ3zcG7zuhTtfC2gDcbMQGlv4UDeMy5wJyrB8K
+	nATDeSL1ZVsNMRITcODUQseF5pxaAv58JsFc34HNi89sxrk8YZ/9HhZXqMdkld8C
+	9lCrmBM0g7M3Q2Jvt37Mzqu8RlMo9CO1wtfNaz0Z7n0RPhQqywCOS/+IcUIv36Xe
+	E0ByL9bZvLnNDk98Dv4rQ==
+X-ME-Sender: <xms:hNxvaP5PqC6uCz7DJF3Lf-he7nvOHA0FEA0lrKjfK2VEP1AopHSxew>
+    <xme:hNxvaE5fpl_KeVc_G6wPTalZ8ewClXZijQQuODRJLAqp0tcTf-G2ovY-a4NNobMiy
+    PhHRIep95lV-GAIrbw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdegtdekudcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeegfedpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtohepshhouhhvihhkrdgthhgrkhhrrghvrghrthihsegrrhhmrdgtohhmpd
+    hrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomhdprhgtphht
+    thhopehmrghrkhdrrhhuthhlrghnugesrghrmhdrtghomhdprhgtphhtthhopehsuhguvg
+    gvphdrhhholhhlrgesrghrmhdrtghomhdprhgtphhtthhopegrlhgvgigrnhgurhgvrdgs
+    vghllhhonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepsggtmhdqkhgvrhhnvg
+    hlqdhfvggvuggsrggtkhdqlhhishhtsegsrhhorggutghomhdrtghomhdprhgtphhtthho
+    pehflhhorhhirghnrdhfrghinhgvlhhlihessghrohgruggtohhmrdgtohhmpdhrtghpth
+    htoheprhhjuhhisegsrhhorggutghomhdrtghomhdprhgtphhtthhopehssghrrghnuggv
+    nhessghrohgruggtohhmrdgtohhm
+X-ME-Proxy: <xmx:hNxvaMVwMJ0kPtzMweGlqJFxtR32fCcqUjL93mxuIoFwYXvrvnK2-Q>
+    <xmx:hNxvaMQ4vAzsbERXmbYESjJdniu1wS8rDqBkbmHGY2L4P478HeYn2w>
+    <xmx:hNxvaIY3hERQ_hAy6KJIT2EFKx6z6XywTN0s7LmuU9zrS1399KoI_A>
+    <xmx:hNxvaJeXcJ6YZPcxekqGAUX2QhMHZOy96w_vkJJZnkICTsn0o7RYyg>
+    <xmx:h9xvaDX66XzA7KOwRJMm5KxJ8ZoExCuGvUSKgaK-nhr9G3NxT5ubYWGd>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 80820700068; Thu, 10 Jul 2025 11:30:12 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vsmmyrmvbcyclmm4"
-Content-Disposition: inline
-In-Reply-To: <e77eab1c-446f-4620-95be-d343684d1e95@samsung.com>
+X-ThreadId: T1700ebcd39f54138
+Date: Thu, 10 Jul 2025 17:29:36 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Shivendra Pratap" <shivendra.pratap@oss.qualcomm.com>,
+ "Bartosz Golaszewski" <bartosz.golaszewski@linaro.org>,
+ "Bjorn Andersson" <andersson@kernel.org>,
+ "Sebastian Reichel" <sre@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Sudeep Holla" <sudeep.holla@arm.com>,
+ "Souvik Chakravarty" <Souvik.Chakravarty@arm.com>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Andy Yan" <andy.yan@rock-chips.com>,
+ "Mark Rutland" <mark.rutland@arm.com>,
+ "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
+ "Olof Johansson" <olof@lixom.net>, "Konrad Dybcio" <konradybcio@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org, "Vinod Koul" <vkoul@kernel.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Florian Fainelli" <florian.fainelli@broadcom.com>,
+ "Elliot Berman" <elliotb317@gmail.com>
+Cc: "Stephen Boyd" <swboyd@chromium.org>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ "Alim Akhtar" <alim.akhtar@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ "Wei Xu" <xuwei5@hisilicon.com>, linux-rockchip@lists.infradead.org,
+ "Baolin Wang" <baolin.wang@linux.alibaba.com>,
+ "Sen Chu" <sen.chu@mediatek.com>, "Sean Wang" <sean.wang@mediatek.com>,
+ "Macpaul Lin" <macpaul.lin@mediatek.com>,
+ "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
+ "Ray Jui" <rjui@broadcom.com>, "Scott Branden" <sbranden@broadcom.com>,
+ bcm-kernel-feedback-list@broadcom.com,
+ "Nicolas Ferre" <nicolas.ferre@microchip.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ "Elliot Berman" <quic_eberman@quicinc.com>,
+ "Srinivas Kandagatla" <srini@kernel.org>
+Message-Id: <12c9a69c-7e27-4d43-9b1b-542e735176ec@app.fastmail.com>
+In-Reply-To: 
+ <20250710-arm-psci-system_reset2-vendor-reboots-v10-3-b2d3b882be85@oss.qualcomm.com>
+References: 
+ <20250710-arm-psci-system_reset2-vendor-reboots-v10-0-b2d3b882be85@oss.qualcomm.com>
+ <20250710-arm-psci-system_reset2-vendor-reboots-v10-3-b2d3b882be85@oss.qualcomm.com>
+Subject: Re: [PATCH v10 03/10] power: reset: reboot-mode: Add optional cookie argument
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
+On Thu, Jul 10, 2025, at 11:15, Shivendra Pratap wrote:
 
---vsmmyrmvbcyclmm4
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v10 0/7] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-MIME-Version: 1.0
+>  static int reboot_mode_notify(struct notifier_block *this,
+>  			      unsigned long mode, void *cmd)
+>  {
+>  	struct reboot_mode_driver *reboot;
+> -	unsigned int magic;
+> +	struct mode_info *info;
+> 
+>  	reboot = container_of(this, struct reboot_mode_driver, reboot_notifier);
+> -	magic = get_reboot_mode_magic(reboot, cmd);
+> -	if (magic)
+> -		reboot->write(reboot, magic);
+> +	info = get_reboot_mode_info(reboot, cmd);
+> +	if (info) {
+> +		if (info->is_cookie_valid) {
+> +			reboot->write_with_cookie(reboot, info->magic, info->cookie);
+> +		} else {
+> +			if (info->magic)
+> +				reboot->write(reboot, info->magic);
+> +		}
+> +	}
 
-Hello Michal,
+I don't quite see why we need two possible callbacks here, could
+this be done with a single '->write' callback when you either
+add another argument, or extend the existing 'magic' value
+to 64 bit?
 
-On Thu, Jul 10, 2025 at 03:48:08PM +0200, Michal Wilczynski wrote:
-> On 7/10/25 15:10, Uwe Kleine-K=F6nig wrote:
-> > On Thu, Jul 10, 2025 at 10:42:07AM +0200, Michal Wilczynski wrote:
-> >> On 7/7/25 11:48, Michal Wilczynski wrote:
-> >>> The series is structured as follows:
-> >>>  - Expose static function pwmchip_release.
-> >=20
-> > Is this really necessary? I didn't try to understand the requirements
-> > yet, but I wonder about that. If you get the pwmchip from
-> > __pwmchip_add() the right thing to do to release it is to call
-> > pwmchip_remove(). Feels like a layer violation.
->=20
-> It's required to prevent a memory leak in a specific, critical failure
-> scenario. The sequence of events is as follows:
->=20
->     pwm::Chip::new() succeeds, allocating both the C struct pwm_chip and
->     the Rust drvdata.
->=20
->     pwm::Registration::register() (which calls pwmchip_add()) fails for
->     some reason.
+There are only a couple of drivers that provide this callback,
+so it should be easy to just change them all at once.
 
-If you called pwmchip_alloc() but not yet pwmchip_add(), the right
-function to call for cleanup is pwmchip_put().
-
->     The ARef<Chip> returned by new() is dropped, its reference count
->     goes to zero, and our custom release_callback is called.
->=20
-> [...]
-> >>> ---
-> >>> base-commit: 47753b5a1696283930a78aae79b29371f96f5bca
-> >=20
-> > I have problems applying this series and don't have this base commit in
-> > my repo.
->=20
-> Sorry for the confusion. Base commit doesn't exist in the mainline
-> kernel or linux-next, cause I've added some dependecies for compilation,
-> like IoMem for the driver (uploaded full branch on github [1]). The
-> bindings however doesn't depend on anything that's not in linux-next.
-
-The series didn't apply to my pwm/for-next branch.
-
-Note that the base-commit should always be a publically known commit.
-See the chapter about "Base Tree Information" in git-format-patch(1).
-
-Best regards
-Uwe
-
---vsmmyrmvbcyclmm4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhv22oACgkQj4D7WH0S
-/k7FGwf/cqRWrlLanx6ioFRjOHNq0dg1uOzf9q5rmP+qdZZDUVpurU+JPbrTIyng
-NkftG4puPCrcs4b7Xkn7KS1bA302jmVka4SChzfg17kxpi/b5EofhGVr/ugZawtg
-bKQGDuRQTkzwXfaqAa178a7PccvyzXUL40H7MREmLIjeeo2Qvh5lMUj7NcHWjfkJ
-JtfCpq5VKkYyyxgD/M7n/0210G3ukwej2RhdWjkAwW1u09RCYBg13oy8fmtTAJkO
-+/T/7BXuRxhQDBXKM7SwRySTqcH/CkvS6xXVBT5QZya3KSNbfQM9OV3moE0GzB2u
-OabPXlh8CQ3Pwo1DFGc6g/7ZY9+Iag==
-=KUxs
------END PGP SIGNATURE-----
-
---vsmmyrmvbcyclmm4--
+     Arnd
 
