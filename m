@@ -1,50 +1,74 @@
-Return-Path: <devicetree+bounces-194767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2EDAFF6D3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 04:30:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78EE5AFF6EE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 04:42:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06E3017D052
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 02:30:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F85A4E15EE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 02:42:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18ED827FB2D;
-	Thu, 10 Jul 2025 02:30:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31AE327F18C;
+	Thu, 10 Jul 2025 02:42:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K5hQpsav"
+	dkim=pass (2048-bit key) header.d=lab126.com header.i=@lab126.com header.b="n+Njsxc6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-fw-80009.amazon.com (smtp-fw-80009.amazon.com [99.78.197.220])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E4927FB15;
-	Thu, 10 Jul 2025 02:30:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 717C3824A3;
+	Thu, 10 Jul 2025 02:42:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=99.78.197.220
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752114616; cv=none; b=sUOC6p9rsQmdCQV+PD0c3gZPGt69bo5ssKiqmXqbLWYOHxRKhYgsHa5xnIhEo4tOa4jp+qi/MbeE2h6898ubIjg8hSH+RhQLchWwCgo1JOHasxvlSf1ZRD2VD7XhMNGUPEvqwjBOc9dDTF9YZIgb3fHRQr+PhwjZn6nOhRy09uY=
+	t=1752115360; cv=none; b=KYW9ZoBvcJ7+ChppUEY901sHfFZPoDCb7rT3G7pyvUXKY2Brmkk+iPhgZO9BqPnCZuQm1dHxWNkm7+/tyjxH4d9FOzZ2kp/Lelac7clb0jDHLJia+8oyzoyTGTTozrkAj7634K83dKsmqs6pQ7gj4CeHBZBr5xsZrih4lNqJHGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752114616; c=relaxed/simple;
-	bh=2fA8pPj3CirGI1XbwELZkyUbdwGc9Cb1v77k1T5uJSQ=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=M1og2bAPgTKnfCNNQxVvyRX6D66NhCL4qoSGGO2w3UT0GvytdZJhDtWBV2FdBl5xELQVAQZNsgB8sNCg90xaXCjmTD68u8WifQojB+8jkjayHRqBAeZ0DjsNVS6VMC4/FEMka4zgc7q02cXaQg3AjS/PQtzRWQDcuGL8Vgjx/qY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K5hQpsav; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B96DC4CEEF;
-	Thu, 10 Jul 2025 02:30:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752114615;
-	bh=2fA8pPj3CirGI1XbwELZkyUbdwGc9Cb1v77k1T5uJSQ=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=K5hQpsavSiZEUBHW8GK3RSCOh2dJtoqGGFmrL67FERSZfs45a/ZzO0fEgQ/a50sXj
-	 f3f8+K8p4UdZLN19F9BpPVhVl6xHmCnInvxJpnVvlyPzWdijEPF0a0KcDhxC+OIL/P
-	 t7f+MlQtRrg8qtFnyD9pDlkvgjoK0zLEe1OcvXoybTJioTto1pw7MA12SRxxyXUmgk
-	 IY9XUD7O2y0XXWz5Rh8zvo2L9fK/uU+PyHnBt9rPWAq+3XSd/Alb83d8zwMkdR2gCD
-	 SiAfvr9HSTqeQcH99QWrEXcELekFMabCN9buadk3H78TOsmNUHOMY0HuDdHtTuKNKc
-	 ikF4oiqZzNXRw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB018383B261;
-	Thu, 10 Jul 2025 02:30:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1752115360; c=relaxed/simple;
+	bh=decLF4ryDzjQb5GPqB3kXj+yiJyVIn9WhIbk/QEXMt0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=P5wXNo+ZUskfoGdk4jpGvG1djQ5NZClGOv+JlWnj8IfWDRnP4kH1DaN/AgDnOd8o3gF+/oi5TpMW1XHxddL46XnGVayd9nRpSvtyEQzWr5ykHnWimkVsiZco9Gd4WNDIEgxsJjGPNwiSjpXGUqQPvzXIwo/sT8ivKKvWAzlzBNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lab126.com; spf=pass smtp.mailfrom=lab126.com; dkim=pass (2048-bit key) header.d=lab126.com header.i=@lab126.com header.b=n+Njsxc6; arc=none smtp.client-ip=99.78.197.220
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lab126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lab126.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=lab126.com; i=@lab126.com; q=dns/txt; s=amazoncorp2;
+  t=1752115358; x=1783651358;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=k/JkFDUEEvCJB0Q7R+nhA1YH1qvEqWEUh6x5/D78kGM=;
+  b=n+Njsxc6ziRpQVjkRMvHB3/P0pQStBBIbvqRA9/X+GfXxqCgqedlg4NQ
+   ckyBufS9fxvCOIriDWjvcLULmeobcs/TR73hpOGwxnULzNHLMCdrDc/aI
+   eIn90qfwBU15P7Fcjh3ZZd6SqY1VXzuw2OEOOr5tRaGPj8i5TBUYkCHet
+   xMmmLhHGCj7bkw5IIb9FJ8XfvU/gMF1qy1UlSH1Bg9XYvXISZug/fTzO+
+   Vvc0O8X0TK6GV48rdLi5LPq/0NWrdZLO6MjgWT9d4SmUWE37ZUrHQ88d0
+   BsKEnUasQ241I7o0TzzL8Q5z+AEchmPVJ7rMDz1wcWUaKo5WVz6MewS/t
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.16,299,1744070400"; 
+   d="scan'208";a="217757191"
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.25.36.210])
+  by smtp-border-fw-80009.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2025 02:42:38 +0000
+Received: from EX19MTAUWA002.ant.amazon.com [10.0.38.20:2059]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.26.102:2525] with esmtp (Farcaster)
+ id 0ba25972-6b97-43c7-be3f-b83544113701; Thu, 10 Jul 2025 02:42:37 +0000 (UTC)
+X-Farcaster-Flow-ID: 0ba25972-6b97-43c7-be3f-b83544113701
+Received: from EX19D007UWB001.ant.amazon.com (10.13.138.75) by
+ EX19MTAUWA002.ant.amazon.com (10.250.64.202) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
+ Thu, 10 Jul 2025 02:42:37 +0000
+Received: from u1cb251c9c70150.ant.amazon.com (10.68.99.17) by
+ EX19D007UWB001.ant.amazon.com (10.13.138.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
+ Thu, 10 Jul 2025 02:42:37 +0000
+From: Karthik Poduval <kpoduval@lab126.com>
+To: <jyxiong@amazon.com>, <miguel.lopes@synopsys.com>, <anishkmr@amazon.com>,
+	<vkoul@kernel.org>, <kishon@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-phy@lists.infradead.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC: Karthik Poduval <kpoduval@lab126.com>
+Subject: [PATCH v2 0/2] Synopsys DW DPHY Driver
+Date: Wed, 9 Jul 2025 19:42:19 -0700
+Message-ID: <cover.1752106239.git.kpoduval@lab126.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,69 +76,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v13 00/12] Add Microchip ZL3073x support (part 1)
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175211463746.963219.2173385068913716730.git-patchwork-notify@kernel.org>
-Date: Thu, 10 Jul 2025 02:30:37 +0000
-References: <20250704182202.1641943-1-ivecera@redhat.com>
-In-Reply-To: <20250704182202.1641943-1-ivecera@redhat.com>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: jiri@resnulli.us, netdev@vger.kernel.org, vadim.fedorenko@linux.dev,
- arkadiusz.kubalewski@intel.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, Prathosh.Satish@microchip.com, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, horms@kernel.org,
- corbet@lwn.net, jgg@ziepe.ca, shannon.nelson@amd.com, dave.jiang@intel.com,
- Jonathan.Cameron@huawei.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, mschmidt@redhat.com,
- poros@redhat.com
+Content-Type: text/plain
+X-ClientProxiedBy: EX19D042UWA003.ant.amazon.com (10.13.139.44) To
+ EX19D007UWB001.ant.amazon.com (10.13.138.75)
 
-Hello:
+v2: fix dt_binding_check errors
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Karthik Poduval (2):
+  phy: dw-dphy-rx: Add Synopsys DesignWare D-PHY RX
+  phy: dw-dphy-rx: Add dt bindings for Synopsys MIPI D-PHY RX
 
-On Fri,  4 Jul 2025 20:21:50 +0200 you wrote:
-> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
-> provides DPLL and PTP functionality. This series bring first part
-> that adds the core functionality and basic DPLL support.
-> 
-> The next part of the series will bring additional DPLL functionality
-> like eSync support, phase offset and frequency offset reporting and
-> phase adjustments.
-> 
-> [...]
+ .../bindings/phy/snps,dw-dphy-rx.yaml         |  44 ++
+ MAINTAINERS                                   |   7 +
+ drivers/phy/Kconfig                           |  11 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/phy-dw-dphy.c                     | 575 ++++++++++++++++++
+ 5 files changed, 638 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.yaml
+ create mode 100644 drivers/phy/phy-dw-dphy.c
 
-Here is the summary with links:
-  - [net-next,v13,01/12] dt-bindings: dpll: Add DPLL device and pin
-    https://git.kernel.org/netdev/net-next/c/0afcee10dda1
-  - [net-next,v13,02/12] dt-bindings: dpll: Add support for Microchip Azurite chip family
-    https://git.kernel.org/netdev/net-next/c/9f149c5d6dbe
-  - [net-next,v13,03/12] devlink: Add support for u64 parameters
-    https://git.kernel.org/netdev/net-next/c/c0ef14469591
-  - [net-next,v13,04/12] devlink: Add new "clock_id" generic device param
-    https://git.kernel.org/netdev/net-next/c/de9ccf2296ac
-  - [net-next,v13,05/12] dpll: Add basic Microchip ZL3073x support
-    https://git.kernel.org/netdev/net-next/c/2df8e64e01c1
-  - [net-next,v13,06/12] dpll: zl3073x: Fetch invariants during probe
-    https://git.kernel.org/netdev/net-next/c/b7d907d1f84a
-  - [net-next,v13,07/12] dpll: zl3073x: Read DPLL types and pin properties from system firmware
-    https://git.kernel.org/netdev/net-next/c/a99a9f0ebdaa
-  - [net-next,v13,08/12] dpll: zl3073x: Register DPLL devices and pins
-    https://git.kernel.org/netdev/net-next/c/75a71ecc2412
-  - [net-next,v13,09/12] dpll: zl3073x: Implement input pin selection in manual mode
-    https://git.kernel.org/netdev/net-next/c/9686c8b01676
-  - [net-next,v13,10/12] dpll: zl3073x: Add support to get/set priority on input pins
-    https://git.kernel.org/netdev/net-next/c/12ba92f0a6de
-  - [net-next,v13,11/12] dpll: zl3073x: Implement input pin state setting in automatic mode
-    https://git.kernel.org/netdev/net-next/c/bf33c93c1a16
-  - [net-next,v13,12/12] dpll: zl3073x: Add support to get/set frequency on pins
-    https://git.kernel.org/netdev/net-next/c/ce26d7ca50a5
-
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.43.0
 
 
