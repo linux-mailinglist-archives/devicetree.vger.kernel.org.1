@@ -1,87 +1,186 @@
-Return-Path: <devicetree+bounces-194849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40055AFFBCB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:09:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7E1CAFFBDA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:12:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35D0A3BE17B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:08:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CD48167946
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:11:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E358228B7C9;
-	Thu, 10 Jul 2025 08:08:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="kFcHmoUx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6748F28BAB3;
+	Thu, 10 Jul 2025 08:11:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB59226CE0;
-	Thu, 10 Jul 2025 08:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF8F028B7DA;
+	Thu, 10 Jul 2025 08:11:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752134914; cv=none; b=Vb6q01ZMsLPFeXrNZg2+I+sbIF1nZ6pqvKJPifkJQku99mXStQKOQ9EDjcGJJW5jeAS21KMbryeqgyKzjQVJJNsv9lLDHJlNGFDNHeY97PCMggl5+Eow0a/SYWFau4cFzZGUDVSyTxLVi3K/f+VPerC8V5Y5inkU4MylVyyZnuA=
+	t=1752135113; cv=none; b=XPmhSZlBsgDc9LDf43iKIxoEz+xLGXr1ckLGjfNC38YmJ5dT0daX4BlEchcwL03m5gIIDab5nIA91ttDQa2hdvj+PwSuSrPGC4Ol21zUWtkxSd1CkZh3KSBT4j5FOy4FCGO+PpMwv7KVQ3epYfSj7i/aLnRsLnJGKpS0yyqzs70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752134914; c=relaxed/simple;
-	bh=6ctZAJksvs+Z8bSZM4K5HcWTAqZv1Nvb8sFGXgBLHbg=;
+	s=arc-20240116; t=1752135113; c=relaxed/simple;
+	bh=KdRG9hQox2LIVg5BQbJagwBCdXub17DTK0Abf1w5+Pk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=envG9ddjI3xKf5GBULq39bI90mGx4i7SnHWx32qog2bNjzSpn3x1YugQSNWwSa3RIrzjZYDaBgHp18X8p2APWBoz5F585VxA9FeRTMQnJdkprLC7IDQxiKGOrAEur6nooazbYjM2WJFTxsUxnsROSWXAsn6H0hUvQW3VAEu5dac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=kFcHmoUx; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=h2M9UzPooAH4xms8AQ/UUyaHRr7orBGN4WSmNKt0TTs=; b=kFcHmoUxWcjbLkrbePzQ7yVZrF
-	FNB7PpULB3X+20i/zjqq83O44Q+yB9JeDVOek3lqoIvg8QjYO8D6HwQ07aFKlNqp2IPFCCY5JPjoh
-	Ab+lAfBWG/ImFlJT9RSwzZpyjdco/Lhnr+w7MIr3k0YTC7Ivcp7uu1Jn0irNMOTNPYbbh6fF0VV2a
-	/dSZ7kTfEbxDXVj6dVz8zqF2L1SCdA7xFYCFjSQbrmmqcBhbMCpodA6eYvpPQIrnj78bcKaNkgim1
-	aJX7EkhkbekSEb8CjE4XSz3RYW2ixDvg4wXTauiWcroWP5j3BUlmfQbqEl5aTGxN/ZPeFpZah8x9N
-	9mI5U6kA==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1uZm4f-005Olj-1u;
-	Thu, 10 Jul 2025 16:08:07 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Thu, 10 Jul 2025 20:08:05 +1200
-Date: Thu, 10 Jul 2025 20:08:05 +1200
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Alexey Romanov <romanov.alexey2000@gmail.com>
-Cc: neil.armstrong@linaro.org, clabbe@baylibre.com, davem@davemloft.net,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, linux-crypto@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v12 11/22] crypto: amlogic - Introduce hasher
-Message-ID: <aG905asYccnkO3P1@gondor.apana.org.au>
-References: <20250624135214.1355051-1-romanov.alexey2000@gmail.com>
- <20250624135214.1355051-12-romanov.alexey2000@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Iob7tMiepsMK1OOy/NbAPZ9sE0gdysloBzprTAIq79bWfyw679SofW1zhLpG9w5Jfj3t9eypWAmktU+11Ng9QA1vMVILcWwi4vDdULQCI2nHGR24eAGXw8WTJ8RnWYmkUJdSp+3cQ6rnrwZPfGIp3jVgPydYpPEqnC66q7xuad0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=54.254.200.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
+X-QQ-mid: zesmtpsz8t1752135064t9362b96b
+X-QQ-Originating-IP: r3LYCXsJvRGu4NM29rklbYDyiBmQ2Aw00APHKgzq3Aw=
+Received: from localhost ( [183.17.231.23])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 10 Jul 2025 16:11:02 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 14875192277165604199
+EX-QQ-RecipientCnt: 14
+Date: Thu, 10 Jul 2025 16:11:02 +0800
+From: Nick Li <nick.li@foursemi.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
+	tiwai@suse.com, xiaoming.yang@foursemi.com,
+	danyang.zheng@foursemi.com, like.xy@foxmail.com,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: Add schema for FS2104/5S audio
+ amplifiers
+Message-ID: <BD2D8A14FDC941B8+aG91lowfru0KiWWW@foursemi.com>
+References: <20250703035639.7252-1-nick.li@foursemi.com>
+ <20250708112901.25228-1-nick.li@foursemi.com>
+ <20250708112901.25228-3-nick.li@foursemi.com>
+ <20250709-invisible-frigatebird-of-felicity-7e87c4@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250624135214.1355051-12-romanov.alexey2000@gmail.com>
+In-Reply-To: <20250709-invisible-frigatebird-of-felicity-7e87c4@krzk-bin>
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MmIUUz9KGMMd5/Ko+h+fnJi05RQWsq8reqQBiAt6oWi59ZBkTF/AFz90
+	Z/h2SSR2NpjrPRMrsXNqumktM4Pz1/6xVSwKsmnp2CYopdv49p+XfHAfo9dbShYpE9s3gTL
+	/zHE+Vyd7bRdltaiRVGnOR5bUiT3hj4MRPAZhbW3jVXAcKbglRTJsj/vYjalkFpJWHrm/Vo
+	GvArP8Ao9I9/jhHQRthfbcbK4mM1cq5kNgo1sQcoVbMUN7/kO3FxYTQ8jNmU/SEIOcl1qUH
+	1L65sng1sAEZzrNEYDNAnBLzSywiyk36ytXoM8/2TgSAKVvnbA3CisadctPHZcp+OAJqNzV
+	p2/d0jpsKm8+/4CUfeRxCZ5FNjjYaR4n450qHfJmmQ3FXn5lL9vyPjEclgdTOa80Ga4Zc89
+	+nxOmEHz4CRY/jVLQ6q2RbHVEUDKRXnBxez8RrdvAcN6fNtLtINkhiNTrbWi36GQsWANm3B
+	Qv1+YH28gT3HUgQHK0no4d6bHCFC/vEDl4El3xiFgaL//HwnCE3+uksBP/svby2guLPX8aS
+	hUuhWRN1SpFB/R/RWSLSa9GXNci55rugKpTQOkF1NvwykErSr8JCVOi6Woj6B6Ce/UgxRy6
+	AtzjSUjkhkHoBgxWTzyqx9rqIp5urcAF7Y+FFDjMe53pxbADC9FXecvc44D4Z2O6sYuD+sz
+	kI1790MKbyPM/x8uQGSvvQ6tJ4/Ewp9YGDorqq6HReNLLDX5LHCRsjLj6a/FP6GSvAuwyYh
+	1YBTzceS2p2TenxVqiWW7Knt1jgs+5esClDChFgDZlq+/3jKPf2gSuH6fYy4oIXRbf6WR4+
+	uYJrLY/XaOGpAuyJA/1K/zI/ng5lCelkF0grgIhalmN4VZVHAXFEsn5GUzlV9FnCvaoAfgZ
+	PuMIMF3w7K8fvC29fAAqWTKAtorM4YZ7zTl12J5H9WRG3sOz2h3KyxhGNvFSHR0UsDApiPM
+	LbGLs6hy+gCrteV4MlWPTx3xI/HCMxZIHXUCkszjI011YM3PepOVxUp9nJjFU4WwTMzUdjM
+	DrH5vsy1qbyYibpps/2DFOfrEk8zVPZEFKxWxoqA==
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+X-QQ-RECHKSPAM: 0
 
-On Tue, Jun 24, 2025 at 04:52:03PM +0300, Alexey Romanov wrote:
->
-> +static int meson_fill_partial_buffer(struct hasher_ctx *ctx, unsigned int len)
-> +{
+On Wed, Jul 09, 2025 at 12:40:33PM +0200, Krzysztof Kozlowski wrote:
+> On Tue, Jul 08, 2025 at 07:28:59PM +0800, Nick Li wrote:
+> > +description:
+> > +  The FS2104 is a 15W Inductor-Less, Stereo, Closed-Loop,
+> > +  Digital Input Class-D Power Amplifier with Enhanced Signal Processing.
+> > +  The FS2105S is a 30W Inductor-Less, Stereo, Closed-Loop,
+> > +  Digital Input Class-D Power Amplifier with Enhanced Signal Processing.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - foursemi,fs2104
+> > +          - const: foursemi,fs2105s
+> > +      - enum:
+> > +          - foursemi,fs2105s
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description:
+> > +      I2C address of the device. Refer to datasheet for possible values
+> 
+> Now the description is entirely redundant, brings no value. Drop.
 
-Please use the new partial block API which removes the need to
-handle partial blocks.  See aspeed for an example.
+OK.
 
-Cheers,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+> 
+> > +
+> > +  clocks:
+> > +    description: The clock of I2S BCLK
+> 
+> This was different... Previous code was correct, this is not correct.
+> And nothing in changelog explains this. Do not make random changes after
+> review.
+> 
+
+OK, I will recover it to version v1.
+
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: bclk
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  '#sound-dai-cells':
+> > +    const: 0
+> > +
+> > +  pvdd-supply:
+> > +    description:
+> > +      Regulator for power supply(PVDD in datasheet).
+> > +
+> > +  dvdd-supply:
+> > +    description:
+> > +      Regulator for digital supply(DVDD in datasheet).
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description:
+> > +      It's the SDZ pin in datasheet, the pin is active low,
+> > +      it will power down and reset the chip to shut down state.
+> > +
+> > +  firmware-name:
+> > +    maxItems: 1
+> > +    description: |
+> > +      The firmware(*.bin) contains:
+> > +      a. Register initialization settings
+> > +      b. DSP effect parameters
+> > +      c. Multi-scene sound effect configurations(optional)
+> > +      It's gernerated by FourSemi's tuning tool.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reset-gpios
+> > +  - firmware-name
+> > +  - '#sound-dai-cells'
+> 
+> Keep the same order as in list of properties. OTOH, missing supplies.
+
+OK, we will fix the order, but the supplies may not be used as regulator,
+we mark them as required, is it OK?
+
+Best regards,
+Nick
+
+> 
+> > +
+> > +allOf:
+> > +  - $ref: dai-common.yaml#
+> > +
+> > +unevaluatedProperties: false
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
