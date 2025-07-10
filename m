@@ -1,170 +1,193 @@
-Return-Path: <devicetree+bounces-195127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE602B00964
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 18:58:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 461B1B00973
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 19:01:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A507054783F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:58:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82458168249
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 17:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F402D540D;
-	Thu, 10 Jul 2025 16:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A8C2EFDB8;
+	Thu, 10 Jul 2025 17:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="N+iQ/IgK"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="oQDLnUo2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6796C2253A7
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 16:58:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DF642A9D;
+	Thu, 10 Jul 2025 17:01:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752166727; cv=none; b=P9+GHM50ro5ZizDtSltGLQeo2S27mghcyeCxJFP8sGZy7t0vKtr0z7RswqU/eyMPsestsU6AuVmNPYpaDq9M5Qpsr3p+zBrCtDiiKEAUdHJteUrJw/hXtiCg78eaiOaCw7X8wrp/XqE3whtV5sFWSxzQ8qJ1kOxK5TAxcxwBjaY=
+	t=1752166903; cv=none; b=XAxb7uPTtrhpVj/MznDH65qFtR8PpcGLagSQdHB8wv3St4SKnlEBFS9fkUe8HpRRq+qoRdbhcXLKS15Cw8F/J17B/VAqjO/lK91uea7xGZmrOdB9FfGIRTgK/7rUHvyKfWYJku5YpQ8+TCLRE+gY6BK76lhvHJdSjsTD5B6AixM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752166727; c=relaxed/simple;
-	bh=MyftItMtY36JRBZeZdaONyuNfHOcQetVYlvXfauWP9k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=KnF1+B7vhLFulVKpzsE513lkHm/UhbV/S9WgmAvv5LTKbNWK9B6QDw9PR/tO9+QEw6INMEAYcSQfqb5ycGpgxHTbubiVv6RcRhr6CGbswqxCLOixVRIQHZoff5BQIIB75XbyQe0VCgxnF3vl/W9xgJ4gWBqCXmsNJHcnkwetVyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=N+iQ/IgK; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250710165843euoutp0216aae3a6e594aa1a9209ea41dffbf41c~Q8lodDKv31944619446euoutp02z
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 16:58:43 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250710165843euoutp0216aae3a6e594aa1a9209ea41dffbf41c~Q8lodDKv31944619446euoutp02z
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1752166723;
-	bh=ZgLkHoYpMZXGlyM12JkaB3eUvSr6n7CdDmsdbr4Effk=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=N+iQ/IgKJDR12WkLkSHfzHnREv0EVSZqpC/v+RNieKTsC8JifH8dnuKu2sW+z6FjV
-	 OwUEFYe1Ay6A/lvzDK1ycZJdVXnFfxGk9K2gSLNhFZYzkZXoBhI7thHgygQCg6n5Ki
-	 GIc/Si12W4H0WBZcklPpbKg+MTIOitNRPdoVQKuc=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250710165843eucas1p228bef8c7cfef0151b9f27161df285873~Q8ln10Tqr0901609016eucas1p2H;
-	Thu, 10 Jul 2025 16:58:43 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250710165842eusmtip2966419c222cc783df17946c63fd3c343~Q8lmxbv6y2112221122eusmtip29;
-	Thu, 10 Jul 2025 16:58:42 +0000 (GMT)
-Message-ID: <ad17dc8a-80b7-4344-a1be-6cf780567aaa@samsung.com>
-Date: Thu, 10 Jul 2025 18:58:41 +0200
+	s=arc-20240116; t=1752166903; c=relaxed/simple;
+	bh=QSzDAxfN4sppY+oXqLp+S3cjY5KSRmdh52uliVq4nZw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lKAx2LKBpvAULhGXqFhlJzKv7pOiMlVamxKsW226SWT8tg0MrK719pQkAUdJvdpmJLNzu4QRpnHl8dIK6/cyF4ib6IjBgX8u9iWlhwC1/rCNOUuLUg0ttNhRO2RJBMggQDfUWfx3VfPSGmaYf8FexTNhq64sBIh/RUdBzIaS/Oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=oQDLnUo2; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id BDE7C3D84E48;
+	Thu, 10 Jul 2025 13:01:39 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id TygYQdipvOq3; Thu, 10 Jul 2025 13:01:39 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 037013D8E983;
+	Thu, 10 Jul 2025 13:01:39 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 037013D8E983
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1752166899; bh=hqZi4qDDb5Krwc362RQG8hRtm8pWkvSstpAwC6iu2Q4=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=oQDLnUo21iaviaOCbPhg9A0kthbm1iljyw+x9vWRaVJ2aCcG3GR5eO03FUYLz2eSu
+	 w3cc6Vi0eVFBeyP5ZLm1Y8OHyhjWAVQPgHIZ1khOgD+6JELcvW5O/yubwNGgJpDz/r
+	 rxJJvR0dIfeKx6XBLmvKot1TKXwprn0IaAiIN6jEHIl5jbvRWEiqgK0D8Ui99hghZI
+	 kPXEdUY+aWnkzgB4/+ap6m0nrBF69lO/ALO/BhbejvWC0oVxPY5DfiNqTtrmWt6tGl
+	 EkkMWzNOgdvkRWrk0vwSCxU9P+EYcvqkz5JimrfrfQBnzqfAgyyfF8AGHY/TCm/wwd
+	 CpGabtHMq2HkA==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id bAcRyZFUQaQ6; Thu, 10 Jul 2025 13:01:38 -0400 (EDT)
+Received: from fedora (unknown [192.168.51.254])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 9D14A3D84E48;
+	Thu, 10 Jul 2025 13:01:38 -0400 (EDT)
+Date: Thu, 10 Jul 2025 13:01:37 -0400
+From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+To: Sean Nyekjaer <sean@geanix.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
+	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
+	Robin Gong <yibin.gong@nxp.com>,
+	Enric Balletbo i Serra <eballetbo@gmail.com>
+Subject: Re: [PATCH v8 3/6] regulator: pf1550: add support for regulator
+Message-ID: <aG_x8VELlUvLxezY@fedora>
+References: <20250707-pf1550-v8-0-6b6eb67c03a0@savoirfairelinux.com>
+ <20250707-pf1550-v8-3-6b6eb67c03a0@savoirfairelinux.com>
+ <ni3bmj4ye3dp3opolk466r2ayx7iuk6hhyx4pdikydizqykfx7@nc5qdok32hsm>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 0/7] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Guo Ren
-	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
-	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
-	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
-	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
-	Drew Fustini <fustini@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, Krzysztof
-	Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <4hmb3di5x2iei43nmrykrj5wzlltrf3vrnqvexiablonbscn57@4bbsz5c76t63>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250710165843eucas1p228bef8c7cfef0151b9f27161df285873
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6
-X-EPHeader: CA
-X-CMS-RootMailID: 20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6
-References: <CGME20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6@eucas1p1.samsung.com>
-	<20250707-rust-next-pwm-working-fan-for-sending-v10-0-d0c5cf342004@samsung.com>
-	<e8a4a821-e7e4-4bcd-a2ac-f6b684b6ceea@samsung.com>
-	<ipvaegqlkco5qinhvn33mqvg7ev2walvs74xtzvhimxsfsfzhv@gcmpxcdtetdn>
-	<e77eab1c-446f-4620-95be-d343684d1e95@samsung.com>
-	<4hmb3di5x2iei43nmrykrj5wzlltrf3vrnqvexiablonbscn57@4bbsz5c76t63>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ni3bmj4ye3dp3opolk466r2ayx7iuk6hhyx4pdikydizqykfx7@nc5qdok32hsm>
 
-
-
-On 7/10/25 17:25, Uwe Kleine-König wrote:
-> Hello Michal,
+On Thu, Jul 10, 2025 at 02:49:21PM +0000, Sean Nyekjaer wrote:
+> > +#define PF_SW1(_chip, match, _name, mask, voltages)	{	\
+> > +	.desc = {	\
+> > +		.name = #_name,	\
+> > +		.of_match = of_match_ptr(match),	\
+> > +		.regulators_node = of_match_ptr("regulators"),	\
+> > +		.n_voltages = ARRAY_SIZE(voltages),	\
+> > +		.ops = &pf1550_sw1_ops,	\
+> > +		.type = REGULATOR_VOLTAGE,	\
+> > +		.id = _chip ## _ ## _name,	\
+> > +		.owner = THIS_MODULE,	\
+> > +		.volt_table = voltages,	\
+> > +		.vsel_reg = _chip ## _PMIC_REG_ ## _name ## _VOLT, \
+> > +		.vsel_mask = (mask),	\
+> > +	},	\
+> > +	.stby_reg = _chip ## _PMIC_REG_ ## _name ## _STBY_VOLT,	\
+> > +	.stby_mask = (mask),	\
+> > +}
 > 
-> On Thu, Jul 10, 2025 at 03:48:08PM +0200, Michal Wilczynski wrote:
->> On 7/10/25 15:10, Uwe Kleine-König wrote:
->>> On Thu, Jul 10, 2025 at 10:42:07AM +0200, Michal Wilczynski wrote:
->>>> On 7/7/25 11:48, Michal Wilczynski wrote:
->>>>> The series is structured as follows:
->>>>>  - Expose static function pwmchip_release.
->>>
->>> Is this really necessary? I didn't try to understand the requirements
->>> yet, but I wonder about that. If you get the pwmchip from
->>> __pwmchip_add() the right thing to do to release it is to call
->>> pwmchip_remove(). Feels like a layer violation.
->>
->> It's required to prevent a memory leak in a specific, critical failure
->> scenario. The sequence of events is as follows:
->>
->>     pwm::Chip::new() succeeds, allocating both the C struct pwm_chip and
->>     the Rust drvdata.
->>
->>     pwm::Registration::register() (which calls pwmchip_add()) fails for
->>     some reason.
+> This is unused.
+>
+If checking of the DVS status for the SW1 regulator is added as you requested.
+This would prove beneficial because it is the preferred method when DVS is
+disabled for the SW1. This is the case for the default variant, A1, of the
+PMIC.
+> > +
+> > +#define PF_SW3(_chip, match, _name, min, max, mask, step)	{	\
 > 
-> If you called pwmchip_alloc() but not yet pwmchip_add(), the right
-> function to call for cleanup is pwmchip_put().
+> [...]
 > 
->>     The ARef<Chip> returned by new() is dropped, its reference count
->>     goes to zero, and our custom release_callback is called.
->>
->> [...]
->>>>> ---
->>>>> base-commit: 47753b5a1696283930a78aae79b29371f96f5bca
->>>
->>> I have problems applying this series and don't have this base commit in
->>> my repo.
->>
->> Sorry for the confusion. Base commit doesn't exist in the mainline
->> kernel or linux-next, cause I've added some dependecies for compilation,
->> like IoMem for the driver (uploaded full branch on github [1]). The
->> bindings however doesn't depend on anything that's not in linux-next.
+> > +
+> > +static struct pf1550_desc pf1550_regulators[] = {
+> > +	PF_SW3(PF1550, "sw1", SW1, 600000, 1387500, 0x3f, 12500),
+> > +	PF_SW3(PF1550, "sw2", SW2, 600000, 1387500, 0x3f, 12500),
+> > +	PF_SW3(PF1550, "sw3", SW3, 1800000, 3300000, 0xf, 100000),
 > 
-> The series didn't apply to my pwm/for-next branch.
+> Seems weird they all use the PF_SW3 macro.
 > 
-> Note that the base-commit should always be a publically known commit.
-> See the chapter about "Base Tree Information" in git-format-patch(1).
-
-Hello Uwe,
-
-Okay, thank you for the clarification. I understand the requirement for
-a public base commit.
-
-My intention was to include the TH1520 driver primarily as a practical
-demonstration of the new abstractions. However the driver can't be
-merged as is, since it depends on the unmerged IoMem series and won't
-compile against a public commit.
-
-I will rebase the series on pwm/for-next and drop the driver and its
-associated device tree patches for now. I'll send a new version
-containing just the core PWM abstraction patches, which apply cleanly.
-
-I will resubmit the driver patches once their dependencies are available
-in a public tree.
-
+The PF_SW3 macro is very generic. It is the preferred macro when a step has to
+be provided which is the case for SW1 & SW2 with DVS enabled. The default
+variant, A1, has SW2 enabled.
+> > +	PF_VREF(PF1550, "vrefddr", VREFDDR, 1200000),
+> > +	PF_LDO1(PF1550, "ldo1", LDO1, 0x1f, pf1550_ldo13_volts),
+> > +	PF_LDO2(PF1550, "ldo2", LDO2, 0xf, 1800000, 3300000, 100000),
+> > +	PF_LDO1(PF1550, "ldo3", LDO3, 0x1f, pf1550_ldo13_volts),
+> > +};
+> > +
 > 
-> Best regards
-> Uwe
+> [...]
+> 
+> > +
+> > +static int pf1550_regulator_probe(struct platform_device *pdev)
+> > +{
+> > +	const struct pf1550_ddata *pf1550 = dev_get_drvdata(pdev->dev.parent);
+> > +	struct regulator_config config = { };
+> > +	struct pf1550_regulator_info *info;
+> > +	int i, irq = -1, ret = 0;
+> > +
+> > +	info = devm_kzalloc(&pdev->dev, sizeof(*info), GFP_KERNEL);
+> > +	if (!info)
+> > +		return -ENOMEM;
+> > +
+> > +	config.regmap = dev_get_regmap(pf1550->dev, NULL);
+> > +	if (!config.regmap)
+> > +		return dev_err_probe(&pdev->dev, -ENODEV,
+> > +				     "failed to get parent regmap\n");
+> > +
+> > +	config.dev = pf1550->dev;
+> > +	config.regmap = pf1550->regmap;
+> > +	info->dev = &pdev->dev;
+> > +	info->pf1550 = pf1550;
+> > +
+> > +	memcpy(info->regulator_descs, pf1550_regulators,
+> > +	       sizeof(info->regulator_descs));
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(pf1550_regulators); i++) {
+> > +		struct regulator_desc *desc;
+> > +
+> > +		desc = &info->regulator_descs[i].desc;
+> > +
+> > +		if (desc->id == PF1550_SW2 && pf1550->dvs_enb) {
+> 
+> We should enter here if dvs_enb == false.
+> My A6 variant reported 0.625V instead of the correct 1.35V
+> 
+Yeah, that would happen with the current if statement.
 
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Since dvs_enb is true when DVS is enabled (OTP_SW2_DVS_ENB == 0), I should
+modify the if statment to:
+(desc->id == PF1550_SW2 && !pf1550->dvs_enb) /* OTP_SW2_DVS_ENB == 1 */
+
+I think that would be a more readable solution.
+> > +			/* OTP_SW2_DVS_ENB == 1? */
+> > +			desc->volt_table = pf1550_sw12_volts;
+> > +			desc->n_voltages = ARRAY_SIZE(pf1550_sw12_volts);
+> > +			desc->ops = &pf1550_sw1_ops;
+> > +		}
+> >
+
+Thanks,
+Sam
 
