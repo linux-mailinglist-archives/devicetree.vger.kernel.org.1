@@ -1,57 +1,60 @@
-Return-Path: <devicetree+bounces-194920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F000AAFFE4D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:37:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 195B9AFFE51
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:40:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 638BC7AE5D6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:36:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E832581896
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:40:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A2D92D1309;
-	Thu, 10 Jul 2025 09:37:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF9712D3ED1;
+	Thu, 10 Jul 2025 09:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l7M568p0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RHXdnvVv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E141820B80A;
-	Thu, 10 Jul 2025 09:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A018E28D82F;
+	Thu, 10 Jul 2025 09:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752140252; cv=none; b=jlfoAclBM+06xcsT1kwh0dQ5LQlUOzcDw6+SOUJMefVQzfj/AK2wcrUHThXSD7yGfyZYn2/gTlHfYcz/bUCuAxFlbrePhPinrgJPsFkxBPK6UznueuuQk/JoonnTB2aXfhQvgA9pCmmE2ftEkD4gpp1ZzqkruLJr1U1WkGCtvuk=
+	t=1752140403; cv=none; b=rLggcGAgI/bzfJsS+BM99qyMlAsixdBTM2a/dzLEj8AW/Y++CFHZrMcBj9LQGL9dDJ/peysI9YxFwKK1qiZkGglGKVQ6q6bv9aM1QhjpzJR0SXWzITOb9SRAoOL2aHO+yyqY+9eJH6tYkEWiIVCYG9d8TjRTUaD/ZPa3qzNlkiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752140252; c=relaxed/simple;
-	bh=7JOq7FOv5bTpMZUieiLhS8U+rK+/XC/emjowf7BbJQs=;
+	s=arc-20240116; t=1752140403; c=relaxed/simple;
+	bh=4st+5aAzqLkQT7Cxyn38f5ob3o7iaHCYDX+qabL93jA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YHTS3HMsxfS/8o1nnBnK5tvzDRAPBhH/xTR4RSByGbhrpcLujHseuqImStC1F75ZI96QSpoXxKoaJqQqpApH3P9we5x5UpD5XAgMVAd/QMSV4IV+TdzbP85t8x2O78KRzHmlGnyQtGA/mAmYV6wtHhfkW6Md/r9rBXJfR9yMUws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l7M568p0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBAFFC4CEE3;
-	Thu, 10 Jul 2025 09:37:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ggpjjjZ0p9NYQmC8m8OFT9l1ADvEt+sk14jVl8M1tI0WE6GmuH8js704p4r6SUPO8+TBi0KXIWZNptK723ZP6KxhwX+ErUCgC9ClDqWB10KRjWd95P3xwlNBsV9ZWNH0Lz2iD+sD1HIOjJ5L7wj7xa15DKEvo1EEEXRCPamXL7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RHXdnvVv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE8BDC4CEE3;
+	Thu, 10 Jul 2025 09:40:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752140251;
-	bh=7JOq7FOv5bTpMZUieiLhS8U+rK+/XC/emjowf7BbJQs=;
+	s=k20201202; t=1752140403;
+	bh=4st+5aAzqLkQT7Cxyn38f5ob3o7iaHCYDX+qabL93jA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l7M568p0jgUK7gJCDH7RzHUjJGHy9Fbq15HebTAhQ3RZpyCUhW+2+G8kcJZ3J/qK4
-	 vPDOGrJRfe0873OrgePF4AePyjk88yyR6Wl5OvZ9QvrhE+ksBYWQbDIQlcKCYTUVqA
-	 qcW7DNqAwmLhdYn5lTehSjOdF6C0gW0bQvQ7u0BptIM36Bc4NWlpdcKmqd5R5TJPC3
-	 6b4p/nfLtSo1KasZlGXDRrt0UqRBj0e9mZqdZvPO/sPmXt6AalS7zQkgkwLqpvJ3LX
-	 mvkYEQYFPXuwIuecH6khI1bPfD+fm9Grk+G8T+gxS7hf3CUkmI9O1txBgLVac6noFw
-	 WtnXHUzah+CPA==
-Date: Thu, 10 Jul 2025 10:37:26 +0100
+	b=RHXdnvVvg0RJrkrbCDHeQJ/oLUWhoyH2UXFb3dGn4y27daTLYP1+dV/pEQcpE18Xk
+	 2YYNd5mNRIHGK9xtLmfffiCA1/T4P+RrVfEeLV0Msl5gUv2uilYfl5j+8nxUHiBRqX
+	 dnDl7b5ahG/LkxnzeXpKKwlKX5vXiXbsFH2tGpKECKPSX33CivITRcdLwsAk/3VvrV
+	 8CHaBGj6ZxkoDQZIKOikNn9P0RzZWAK+hnh9bnrNJ5+chTcaeIuXexkZ6daH08UPJu
+	 KdG3iVpvyrEm/gUOFwfwvth/zkl4+Am1DId+v/ubXVt9cB7MK7r2c2A5yitwb83cD+
+	 FvK2jBPYvtT6g==
+Date: Thu, 10 Jul 2025 10:39:57 +0100
 From: Lee Jones <lee@kernel.org>
-To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-Cc: pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-leds@vger.kernel.org,
+To: Michael Walle <mwalle@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Julien Panis <jpanis@baylibre.com>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH V3 2/2] leds: pwm: Add optional GPIO enable pin support
-Message-ID: <20250710093726.GD1431498@google.com>
-References: <20250703035256.225289-1-Qing-wu.Li@leica-geosystems.com.cn>
- <20250703035256.225289-2-Qing-wu.Li@leica-geosystems.com.cn>
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v3 0/8] mfd: tps6594: Add TI TPS652G1 support
+Message-ID: <20250710093957.GE1431498@google.com>
+References: <20250703113153.2447110-1-mwalle@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,102 +64,27 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250703035256.225289-2-Qing-wu.Li@leica-geosystems.com.cn>
+In-Reply-To: <20250703113153.2447110-1-mwalle@kernel.org>
 
-On Thu, 03 Jul 2025, LI Qingwu wrote:
+On Thu, 03 Jul 2025, Michael Walle wrote:
 
-> add support for optional GPIO-based enable pin control to PWM LED driver.
-> some PWM LED chips have a dedicated enable GPIO. This commit adds the
-> support to specify such GPIO, activating the pin when LED brightness
-> is non-zero and deactivating it when off.
+> Add support for the TI TPS652G1 PMIC which is a stripped down
+> version of the TPS65224. Support for the latter has already been
+> merged. Refactor the regulator driver to ease adding new devices.
+> After doing that adding the TPS652G1 variant is really straight
+> forward. Some care has to be taken by the interrupt handling (of the
+> regulator part) because there interrupts are used for voltage
+> monitoring which this variant doesn't have.
 > 
-> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-> ---
->  drivers/leds/leds-pwm.c | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-
-Couple of nits.
-
-> diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
-> index c73134e7b9514..1397149464b35 100644
-> --- a/drivers/leds/leds-pwm.c
-> +++ b/drivers/leds/leds-pwm.c
-> @@ -17,6 +17,7 @@
->  #include <linux/err.h>
->  #include <linux/pwm.h>
->  #include <linux/slab.h>
-> +#include <linux/gpio/consumer.h>
->  
->  struct led_pwm {
->  	const char	*name;
-> @@ -29,6 +30,7 @@ struct led_pwm_data {
->  	struct led_classdev	cdev;
->  	struct pwm_device	*pwm;
->  	struct pwm_state	pwmstate;
-> +	struct gpio_desc	*enable_gpio;
->  	unsigned int		active_low;
->  };
->  
-> @@ -51,6 +53,9 @@ static int led_pwm_set(struct led_classdev *led_cdev,
->  	if (led_dat->active_low)
->  		duty = led_dat->pwmstate.period - duty;
->  
-> +	gpiod_set_value_cansleep(led_dat->enable_gpio,
-> +				 brightness == LED_OFF ? 0 : 1);
-
-Put this on one line.
-
-> +
->  	led_dat->pwmstate.duty_cycle = duty;
->  	/*
->  	 * Disabling a PWM doesn't guarantee that it emits the inactive level.
-> @@ -132,6 +137,23 @@ static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
->  		break;
->  	}
->  
-> +	/* Claim the GPIO as ASIS and set the value
-
-Explain what ASIS is please.
-
-> +	 * later on to honor the different default states
-> +	 */
-
-Use proper multi-line comments please.
-
-> +	led_data->enable_gpio =
-> +		devm_fwnode_gpiod_get(dev, fwnode, "enable", GPIOD_ASIS, NULL);
-
-One line please.
-
-> +
-
-Drop this line.
-
-> +	/* enable_gpio is optional */
-
-Comments start with a capital letter.
-
-Place this comment inside the second if () statement.
-
-> +	if (IS_ERR(led_data->enable_gpio)) {
-> +		if (PTR_ERR(led_data->enable_gpio) == -ENOENT)
-> +			led_data->enable_gpio = NULL;
-> +		else
-> +			return PTR_ERR(led_data->enable_gpio);
-> +	}
-> +
-> +	gpiod_direction_output(led_data->enable_gpio,
-> +			       !!led_data->cdev.brightness);
-
-One line.
-
-> +
->  	ret = devm_led_classdev_register_ext(dev, &led_data->cdev, &init_data);
->  	if (ret) {
->  		dev_err(dev, "failed to register PWM led for %s: %d\n",
-> -- 
-> 2.43.0
+> As there are conflicts in the regulator tree (some constify
+> patches) and my patches make use of them, only the first two (or
+> four, that's up to Lee) can go through the MFD tree. Lee, could
+> you please provide an immutable tag for the other trees to merge?
 > 
+> v3:
+>  - (re)add dt binding patch that I've accidentally missed in v2
+
+Ah, that explains it!
 
 -- 
 Lee Jones [李琼斯]
