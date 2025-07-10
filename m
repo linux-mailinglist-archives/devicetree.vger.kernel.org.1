@@ -1,203 +1,131 @@
-Return-Path: <devicetree+bounces-194970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1A6CB000BC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 13:45:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACCFCB00106
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 13:59:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FD8454167E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:45:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CEBC1895281
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:59:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC08C23E226;
-	Thu, 10 Jul 2025 11:45:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BEA02561D4;
+	Thu, 10 Jul 2025 11:58:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Swqb+u8N"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fsbjY5kj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29D4193079;
-	Thu, 10 Jul 2025 11:45:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D1D24DD1B;
+	Thu, 10 Jul 2025 11:58:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752147953; cv=none; b=nnZbyqvMgkyLqVRdAe7nlwrTTLPRZ03I0cUlDvPh47pHqslWqagsHFWUrCDfReCV4Q8htiPhiD2yj3a5gYAa8Y0kE6fab+FJSGlT/wBCFRNxBp9nn5bQfiAS2IYjxbUKvygBNhCGsVh7paVOORpFVIXQoewG2brf0k1538YqJJI=
+	t=1752148712; cv=none; b=V8Fl7PmNfwGHBVmBaIhjcqXh/J1AYBDDeeJAkUWfmnX8iMy09qC5H9BFbI5HtR7WfKL6dJ9od2rfldaafRMXSkGys4FQ/4wMue8ifHI9bbpmS8weWrp8zarKxvENnAvUcs3lzgf4nIwH84PAml+DWO2C3CVvp8kS3j+2JqT5VJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752147953; c=relaxed/simple;
-	bh=VzSbGFZbiAdg2Q2CosizHpRCWO4uJCXbAFHqKYELZ6w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=U3eTT0iIZo2wFWH6z09ljp4WlqWV3y+H3nrdsxbixX31bZCa80B/KIUjZPmIRpxbVDBQ8y8FbZtOCNKe1+GnhgQWJM6MLrgDCV5f13p7EpDr02xO2cU58qGWmPc66pugyIZ7VHw3nfIfqRvUeoKS2tahhKpuhYBUl+N7wexieRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Swqb+u8N; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=reD0Z/OzeLLuQebkmfVULjQ6q5KpdwV263NNwktOYOs=; b=Swqb+u8NjwNq2ygF9l+WvV62ey
-	Pkv9pnKzNdO83sVwKtwjQVXeOV6gSh8xMmgNz7fZfu1UJpupxMuQbVMWIYXUtAxjPi/8pAg2sMWbl
-	PHOyY/G+UNhh/+ZUKngi4IC1BpfMnn+7VIttbB0C0UjFVDZzXbn25A/LRkYwvKFf6hDjFMBYgG+9g
-	qkm3alOdWNgnzVVecL+xxKz7QbxfnPhsbidddS3TdgttvQxvr2KlGhsUcV/pVr31IGsOcfrF9DOW+
-	no8FwUJHfq4Bj/eOSWV+0bCYbd3IOyUPozMYEA04UbE83UlTbsnID5V+mVr0woRc6WqWulZ3AfF+9
-	cDS5fPSg==;
-Received: from [194.95.143.137] (helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uZpih-0004ca-Op; Thu, 10 Jul 2025 13:45:43 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
- Chukun Pan <amadeus@jmu.edu.cn>, Jonas Karlman <jonas@kwiboo.se>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject:
- Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency scaling
- support
-Date: Thu, 10 Jul 2025 13:45:43 +0200
-Message-ID: <5025631.aeNJFYEL58@phil>
-In-Reply-To: <20250620100010.1291658-2-amadeus@jmu.edu.cn>
-References:
- <20250620100010.1291658-1-amadeus@jmu.edu.cn>
- <20250620100010.1291658-2-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1752148712; c=relaxed/simple;
+	bh=phIl8APHRhPIycM6T9xgoZ0LkCXuLTSGetz9ZKiWESY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HAGNj9QaLiHOx158gx5EElY6O9q/Eusf5trCkOb7gub1VCAOQRQNmU/fmSUSkbolscNbY8Ye7Dnw+h50I3UScSOTnT/YGeThgebD4OPjJvwCxqRnZ2kcLmxmpIlnZMBpOC9rmgAmbmKeCT53G6hnaXy8U3HZB9UeRp9bvBFvzb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fsbjY5kj; arc=none smtp.client-ip=209.85.215.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-b34a6d0c9a3so992105a12.3;
+        Thu, 10 Jul 2025 04:58:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752148710; x=1752753510; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bYAG94f3cdFe/xFr6SsC7bkBwmMBOuw9aXBootYb5SI=;
+        b=fsbjY5kjDYSUvTB9/gZV0AzmNY/EefVenpyiwicsTn6iDMDswjGummbxVtQjoojGkb
+         0iYTrTwmtQg/mIcdCvvhG9iMz8gzQIcKG2xFVHbpFON6jQB+74ZF1aW7Oz1Ji1PtF2bZ
+         zvZaqHLz5K+QGRxcv9I7OYA9M8vc56vIcpTLQDCKQhSpKK3nCdYKKQd6gupRYcq+Da+h
+         dwUGPvDGvxNcT4FVwpe9C3SguiH/+rM+KgDPKNI1owUyhWD2k0KNH9TIRustNKbzfJm2
+         RE7T94XaOOpmO1SjirAQR5jR2QSUAZpLhEaS7dKhcsozRvOAPA9bY6BJHq0UL4e2sH4/
+         jYKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752148710; x=1752753510;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bYAG94f3cdFe/xFr6SsC7bkBwmMBOuw9aXBootYb5SI=;
+        b=KfF2ouh1WBYqwJXWKrwXFuqBIXnUKXyr8lUCHbRVAAPqE2MhAcduD1ptyuOXg6JpnG
+         DjfPbS5wlIA24zXLFsUeyuzGvL6SrDN2O8mE75byfitSb5hmMmO3jcJf0BMlO6rV4dVt
+         PolkBx9xCevhBK+jnHFr2FUvwy9RQ8MBNsikb82ReWVjZ7cPXsmYtYlBS6swYRRpZ2os
+         73O9idGbJw+9mAoY0Gm+TmwIv+umkCyq+U3v+TshAOv9nWDVB6N5mKtFuhK+NqSUe75m
+         YtPKaUmZgqax71MXCycdEpdjG3uVPztetGAG0Ie8h0x3ED8o44BaFcjdt4qpjTO+FhBr
+         Wo+w==
+X-Forwarded-Encrypted: i=1; AJvYcCU3IzY+qffUzmRxtlasbHDJmbiBm22v+wXClvvL0egD2mmrTrNtyfiG0J6f1TAIpQb2/59pViCuAsIn08We@vger.kernel.org, AJvYcCVB8imflZ2S28LvZwZsEl5pMQh66FfkxGCqapaEDdxFLAkrcHnkcOXJTe5SGRudc1ps4buujOzcRIkLIDA=@vger.kernel.org, AJvYcCWTURUc0FLfN9ZuvJBtBp6xUgLP/tMwoGdsYpf0tcHMemWcXRDtbZ/TiXOiMT9ZhweGrUcvjmm5GiBb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBXzZtpxSnoOTRFIaEhjuHeLtVj1KMspiiJzvtC+MD2/qDKsLl
+	Xct1K3HDq7wiD6mEneBjY2pt1jcg+TCUQr5njteEWtVQF7aiXND0rD5P
+X-Gm-Gg: ASbGncusiJeEtmm5Cb2LDH4/oua+QCMmAZLuh9Elt04WD8fMDI9S/jmht5vGFBewaGA
+	4BYmWgSRxYIO/keH9lgRJN6B4dTt0s7k4cA+JLt6c+YVUv6ak5h1MKkMl9O8QsSCyClKt6bbSwJ
+	eOH14kDgmr9J/bcNXh6U1o/i1xPNG8Ddwk+9GkRUhYAJ3ZV/S6snpKphmT15SR1KuJqeRpfY/Mg
+	NmHWyNq5zCWa45m0YxjjOi1pf6gsJiwZOEGLJKQZeLJ9WNyY7g4es2UB3rZc3aYnjHksKUKs19f
+	//kzp6s5y5/5Q/IlkYdlGE8v716WTdMH3V5Y3Yezmxg82Hgj7xEZU2D77J7r8kE=
+X-Google-Smtp-Source: AGHT+IFdsFuMSTURrwmuDpYpWhonrZgTX3su3tw7c5E/wekRv3ilQ1zodr1Iaoebzy9KO2usRdOYhA==
+X-Received: by 2002:a17:90b:164b:b0:311:ff18:b84b with SMTP id 98e67ed59e1d1-31c3f03860dmr4002613a91.25.1752148709962;
+        Thu, 10 Jul 2025 04:58:29 -0700 (PDT)
+Received: from nuvole.lan ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de4284732sm18510685ad.10.2025.07.10.04.58.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Jul 2025 04:58:29 -0700 (PDT)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
+	Len Brown <len.brown@intel.com>,
+	Ingo Molnar <mingo@kernel.org>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>,
+	Luke Jones <luke@ljones.dev>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Al Viro <viro@zeniv.linux.org.uk>,
+	Eric Biggers <ebiggers@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Charles Wang <charles.goodix@gmail.com>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Pengyu Luo <mitltlatltl@gmail.com>
+Subject: [PATCH v2 0/2] input: touchscreen: goodix_berlin: Add stylus support
+Date: Thu, 10 Jul 2025 19:57:31 +0800
+Message-ID: <20250710115733.226670-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Am Freitag, 20. Juni 2025, 12:00:10 Mitteleurop=C3=A4ische Sommerzeit schri=
-eb Chukun Pan:
-> By default, the CPUs on RK3528 operates at 1.5GHz. Add CPU frequency and
-> voltage mapping to the device tree to enable dynamic scaling via cpufreq.
->=20
-> The OPP values come from downstream kernel[1]. Both 408MHz and 600MHz
-> frequencies use the normal PLL, so use the corresponding highest voltage.
->=20
-> The voltage used for other frequencies can't be less than above (875mV).
-> Therefore, 816MHz to 1200MHz also uses the corresponding highest voltage.
+This series introduces a new input device dedicated to stylus reporting,
+allowing handling of stylus-specific data such as pressure, tilt, and
+side buttons. The implementation distinguishes between touch and stylus
+events and ensures that the appropriate input device reports each event.
 
-There has often been the argument that selecting a frequency that has the
-same voltage as a faster frequency does not save any power.
+base-commit: 58ba80c4740212c29a1cf9b48f588e60a7612209
 
-Hence I remember that we dropped slower frequencies on other socs
-that share the same voltage with a higher frequency.
+Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+---
+Changes in v2:
+- use existing input properties (Krzysztof)
+- add handling for touch up event
+- Link to v1: https://lore.kernel.org/linux-input/20250605054855.403487-1-mitltlatltl@gmail.com
 
->=20
-> The remaining 1416MHz to 2016MHz use a voltage close to actual frequency.
->=20
-> [1] https://github.com/rockchip-linux/kernel/blob/develop-5.10/arch/arm64=
-/boot/dts/rockchip/rk3528.dtsi
->=20
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 64 ++++++++++++++++++++++++
->  1 file changed, 64 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk3528.dtsi
-> index 829f980ea353..5cb7f10b79ed 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> @@ -53,6 +53,7 @@ cpu0: cpu@0 {
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			clocks =3D <&scmi_clk SCMI_CLK_CPU>;
-> +			operating-points-v2 =3D <&cpu_opp_table>;
->  		};
-> =20
->  		cpu1: cpu@1 {
-> @@ -61,6 +62,7 @@ cpu1: cpu@1 {
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			clocks =3D <&scmi_clk SCMI_CLK_CPU>;
-> +			operating-points-v2 =3D <&cpu_opp_table>;
->  		};
-> =20
->  		cpu2: cpu@2 {
-> @@ -69,6 +71,7 @@ cpu2: cpu@2 {
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			clocks =3D <&scmi_clk SCMI_CLK_CPU>;
-> +			operating-points-v2 =3D <&cpu_opp_table>;
->  		};
-> =20
->  		cpu3: cpu@3 {
-> @@ -77,6 +80,67 @@ cpu3: cpu@3 {
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			clocks =3D <&scmi_clk SCMI_CLK_CPU>;
-> +			operating-points-v2 =3D <&cpu_opp_table>;
-> +		};
-> +	};
-> +
-> +	cpu_opp_table: opp-table-cpu {
-> +		compatible =3D "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp-408000000 {
-> +			opp-hz =3D /bits/ 64 <408000000>;
-> +			opp-microvolt =3D <875000 875000 1100000>;
-> +			clock-latency-ns =3D <40000>;
-> +			opp-suspend;
-> +		};
-> +
-> +		opp-600000000 {
-> +			opp-hz =3D /bits/ 64 <600000000>;
-> +			opp-microvolt =3D <875000 875000 1100000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-816000000 {
-> +			opp-hz =3D /bits/ 64 <816000000>;
-> +			opp-microvolt =3D <875000 875000 1100000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-1008000000 {
-> +			opp-hz =3D /bits/ 64 <1008000000>;
-> +			opp-microvolt =3D <875000 875000 1100000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-1200000000 {
-> +			opp-hz =3D /bits/ 64 <1200000000>;
-> +			opp-microvolt =3D <900000 900000 1100000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-1416000000 {
-> +			opp-hz =3D /bits/ 64 <1416000000>;
-> +			opp-microvolt =3D <925000 925000 1100000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-1608000000 {
-> +			opp-hz =3D /bits/ 64 <1608000000>;
-> +			opp-microvolt =3D <975000 975000 1100000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-1800000000 {
-> +			opp-hz =3D /bits/ 64 <1800000000>;
-> +			opp-microvolt =3D <1037500 1037500 1100000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-2016000000 {
-> +			opp-hz =3D /bits/ 64 <2016000000>;
-> +			opp-microvolt =3D <1100000 1100000 1100000>;
-> +			clock-latency-ns =3D <40000>;
->  		};
->  	};
-> =20
->=20
+Pengyu Luo (2):
+  dt-bindings: input: goodix,gt9916: Document stylus support
+  input: touchscreen: goodix_berlin: Add stylus support
 
+ .../input/touchscreen/goodix,gt9916.yaml      |  12 +
+ .../input/touchscreen/goodix_berlin_core.c    | 240 ++++++++++++++++--
+ 2 files changed, 234 insertions(+), 18 deletions(-)
 
-
+-- 
+2.50.0
 
 
