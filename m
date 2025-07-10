@@ -1,238 +1,149 @@
-Return-Path: <devicetree+bounces-195157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91DBB00AD9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 19:55:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E1B6B00AFA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 20:06:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED66F18909E3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 17:55:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 519791C480D9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 18:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E956D2F6FA0;
-	Thu, 10 Jul 2025 17:51:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528412FC3B3;
+	Thu, 10 Jul 2025 18:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="ozX2/iuD"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RQ+EDHBY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay15.mail.gandi.net (relay15.mail.gandi.net [217.70.178.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C0D2F5C31
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 17:51:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 925E42253A7;
+	Thu, 10 Jul 2025 18:06:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752169886; cv=none; b=P8WRsaZzfkM0wbaHF6wP/SNzfU+e34xvZs+mvA8x4eo8rKcqI9EkXWAVpvoxr25w7du03w4qBj86R51oZdstQb7sy++PTReLqS29mBISOEHzKXKl5XG9rK2mevJn+TGsR8RbFb0hwBEg2bXTgbp+7/PC+oO1BxGCicRHWK5ZcS8=
+	t=1752170771; cv=none; b=ndBPJYICQdjBZJrs1tmVLOceTH3piDgAHn4QYCoaAqdt4Yk5iORw/Pu0hMF1kXt45WUUUZ7m7s8WqaXtHpWdjV1WGtpKVwQh5vcBWAoL2BHE5qRE52NL9hjtI3I1THnKJPT5sbj6S8Tvr8dpIvRcls1Alke07xXzzLfyy7LFn7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752169886; c=relaxed/simple;
-	bh=WGruvn+Gqs/wHzBEiTs0RVm377PpbfSqb1Lgjf4ooI8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=t1dtg6fqPvd+sa8jbjMoO4PgMAG7p0CbkTZysl/NPZ0u2Me06rMmxqS+qHxl82v+kLOMJlCmzCQUpPrdwqMuS6/RKzcr2gv4UtXK7WMADjWsP/5tE019FP2wJFq4Yj2RuxSA4ADPv06VPNTaenP/v4parbMShoKb3t4YZNn9ag8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=ozX2/iuD; arc=none smtp.client-ip=209.85.222.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7d3f192a64eso128486585a.2
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 10:51:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1752169883; x=1752774683; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ihUO+G2zPvFD7djd8+4VxSPuuLI+GNqieXaQtnBxio4=;
-        b=ozX2/iuDyCuB+v5l0BCwyVlnRu8gv9qCQxXNMGRIDSUoMrml+KZdeGKPq8F67fCQMe
-         3Ojk/yKCAZFLNmj9f0P4tHDkiAHfxRhryI9pzUDoC2j7aCaPXHg14Raphd6ixY2kSREY
-         moRSkncj14rpddVXYBFcsro+77BmwC9OkbRDB5fVSwQWOtKmmoYL6BgH6pi2k8b4TSSe
-         0AQOh0Jfx2yFyQ8RXLOqznejjMyHZAD9S8uW2fW9DmQuBGLoCyrEOORiaSMVHTtPupnB
-         XwAT4T+EweeDSfLdMCaa+HInmgVMhVIJZgoTrOMCurST/ge8Yvs8P3IVIMcjvU1ENJOe
-         A/ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752169883; x=1752774683;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ihUO+G2zPvFD7djd8+4VxSPuuLI+GNqieXaQtnBxio4=;
-        b=EhEWVSm8lbuO4hjrtbgc8Y7w0FA/ZWz7zJR75IU0RquALfXu3KkEF/mMGQu7o9tBfM
-         NLsPgvk1l9+nuDIMT1LY7fsAU3qRbbY8oxTaIUdFPr/UE0gEX/qWWhcQ37zHkuaJw+OM
-         MXd1y4XTViZh0yXn1KJo4TlARHga/gTnrR8Ow9EebURCWhUwdBvcR+Htmavss572ymPZ
-         iMIahj9Cyz+oqWZGS12/Z/fqQEMtb8kVaMxGZYKCiI1N2P6cp0U3lKP0tYZIG3YpFEf+
-         Hz4UlqAZW8Dd5XldSoaHSbmN3JNOc7EbmY+Malhevpg2URk6oCwUXzb65QP0C1eVuJpK
-         RVtA==
-X-Forwarded-Encrypted: i=1; AJvYcCWP6UGjhjX4NvAEg2aWp/86QMMvocILJkWYQeoqnviDuCzdo9NjRIEi3rQ3ivN9MlMpzgtf2XMnT57A@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZJ+8vKTNKJlvKjL39+knRGRQtQtm1jKXt7eCxXY1V34zFDm4l
-	oimrfIy0KW6eRxuNGPTRawZNCWr+rj0rFdpiZEiQlQUXaqp99n6VX/ki3pAXkkemKA8=
-X-Gm-Gg: ASbGncuxgxXRoVi/gQpKkYMJZjZGIjEQRVV/4LbhwEphbui3H1NCKbYAva2VOw3IPz1
-	nmSVNScq/GxXAdrnSnmVU71T86k72wq9AO5CJUnwtJF5ntm1IVGkTRQKyBA9SJ8Mdm8SDTX4KsL
-	aopSSlKfq4EYIYMfhAL4qn+XajecFdh9bBNLMSwC990P8Xxy6JHdntAJFhDWMH+PDzydm/s5Npm
-	5FZFx0jFM+c1rhiwY90vuWwtQhxg2oTG/uLT1P9prGAVOl+Q+VOKTJBnjKOwE7/Ma22Qn+pNkBQ
-	Hu24g7C5cccWZeyoR7zB6LddBFX45nhrt+wya5vQKWjC0almkCDpLCG7MlMQu7P23QKgZR9LxhZ
-	UtdZGFg4xCZVkoLIdg2OzfvScNKuEPOE3f8Ux0KFOHl05Lg==
-X-Google-Smtp-Source: AGHT+IEoaJ/MKPD+CK7o2MydxVCmaO05jGvY7/XoDfctFPCiw8+3wLCGeJ2afHZxnC3BYh2lChbupQ==
-X-Received: by 2002:a05:620a:4450:b0:7d6:f801:ed52 with SMTP id af79cd13be357-7dde9b5ef8amr61941285a.2.1752169882818;
-        Thu, 10 Jul 2025 10:51:22 -0700 (PDT)
-Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4a9edeee300sm11165941cf.73.2025.07.10.10.51.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jul 2025 10:51:22 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: lee@kernel.org,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	alexandre.belloni@bootlin.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: mat.jonczyk@o2.pl,
-	dlan@gentoo.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	troymitchell988@gmail.com,
-	guodong@riscstar.com,
-	linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v8 8/8] riscv: dts: spacemit: define regulator constraints
-Date: Thu, 10 Jul 2025 12:51:06 -0500
-Message-ID: <20250710175107.1280221-9-elder@riscstar.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250710175107.1280221-1-elder@riscstar.com>
-References: <20250710175107.1280221-1-elder@riscstar.com>
+	s=arc-20240116; t=1752170771; c=relaxed/simple;
+	bh=HkL+8mtxveLz3jrsdzBTs0WKwyDPQI6LrH3txbRDl9I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mn3vL/mc+QePexFVvae6tKAdOVnKwAOdLKwrrmr9VxEv3f6q2sEmFenJ+jr91spqT+T2FXKxI2RFKwAifgacMimp29xO/VPCiDFxGA7TKznL1Kys2xGyV1r22hGBJ8pPFJ3nDFi3N53fqH1ZD0+ZNNC9B+kTkzyZt9sA/1Yog6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RQ+EDHBY; arc=none smtp.client-ip=217.70.178.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 723E8442F3;
+	Thu, 10 Jul 2025 18:05:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1752170759;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4VgBTfdoGBE3UguuDXxy8ArM6zXNvgOqHM/Bk8c6+Tk=;
+	b=RQ+EDHBYSfqBPtkaqQlGfU284sB3YKDakJo0kp9TUypQGrIbrGW2XJAXIAP1m2qFhJS5xZ
+	JccOya9daiOMzRWpCd+MeO8r4AQ3lglKCas3ykceCkQtFnueCmEwyVZ+5CrYymYfjSdqOU
+	hyYsZ1pn+PGIjxzOhWNj7gdUpIbR3w7mpEQpsSgUEZMoqFGTzMS4ctSjCm6uWox5dnmW5W
+	3iLSCfcMEaI9q+m9gVw7KejZ6c+qlyHikLccBnOt/cl4z0549q5wrMi7wDDmTe7CYSxsZd
+	9mUSwHkA5rmD6ad1Fq3w02OeIdE4ltJm3LQKKwtVB0cUXa7CgjfFMzWi1P4g2g==
+Date: Thu, 10 Jul 2025 20:05:57 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Piotr Kubik <piotr.kubik@adtran.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [EXTERNAL]Re: [PATCH net-next v4 2/2] net: pse-pd: Add Si3474
+ PSE controller driver
+Message-ID: <20250710200557.41e5876a@kmaincent-XPS-13-7390>
+In-Reply-To: <53c71efc-e29b-482a-bd6a-7a66a2d2d415@adtran.com>
+References: <c0c284b8-6438-4163-a627-bbf5f4bcc624@adtran.com>
+	<4e55abda-ba02-4bc9-86e6-97c08e4e4a2d@adtran.com>
+	<20250707151738.17a276bc@kmaincent-XPS-13-7390>
+	<53c71efc-e29b-482a-bd6a-7a66a2d2d415@adtran.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdegudduudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefguddtfeevtddugeevgfevtdfgvdfhtdeuleetffefffffhffgteekvdefudeiieenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgduleemkeehkeejmeejuddttdemleegtgeimeefgedvtgemleejfhehmeeijedvvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekheekjeemjedutddtmeelgegtieemfeegvdgtmeeljehfheemieejvdgvpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopehpihhothhrrdhkuhgsihhksegrughtrhgrnhdrtghomhdprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpt
+ hhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhg
 
-Define basic constraints for the regulators in the SpacemiT P1 PMIC,
-as implemented in the Banana Pi BPI-F3.
+Le Thu, 10 Jul 2025 15:32:11 +0000,
+Piotr Kubik <piotr.kubik@adtran.com> a =C3=A9crit :
 
-Signed-off-by: Alex Elder <elder@riscstar.com>
----
- .../boot/dts/spacemit/k1-bananapi-f3.dts      | 104 ++++++++++++++++++
- 1 file changed, 104 insertions(+)
+> On 7/7/25 15:17, Kory Maincent wrote:
+> > ...
+> >=20
+> >  =20
+> >> +
+> >> +static int si3474_pi_enable(struct pse_controller_dev *pcdev, int id)
+> >> +{
+> >> +	struct si3474_priv *priv =3D to_si3474_priv(pcdev);
+> >> +	struct i2c_client *client;
+> >> +	u8 chan0, chan1;
+> >> +	u8 val =3D 0;
+> >> +	s32 ret;
+> >> +
+> >> +	if (id >=3D SI3474_MAX_CHANS)
+> >> +		return -ERANGE;
+> >> +
+> >> +	si3474_get_channels(priv, id, &chan0, &chan1);
+> >> +	client =3D si3474_get_chan_client(priv, chan0);
+> >> +
+> >> +	/* Release PI from shutdown */
+> >> +	ret =3D i2c_smbus_read_byte_data(client, PORT_MODE_REG);
+> >> +	if (ret < 0)
+> >> +		return ret;
+> >> +
+> >> +	val =3D (u8)ret;
+> >> +	val |=3D CHAN_MASK(chan0);
+> >> +	val |=3D CHAN_MASK(chan1);
+> >> +
+> >> +	ret =3D i2c_smbus_write_byte_data(client, PORT_MODE_REG, val);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	/* DETECT_CLASS_ENABLE must be set when using AUTO mode,
+> >> +	 * otherwise PI does not power up - datasheet section 2.10.2
+> >> +	 */ =20
+> >=20
+> > What happen in a PD disconnection case? According to the datasheet it s=
+imply
+> > raise a disconnection interrupt and disconnect the power with a
+> > DISCONNECT_PCUT_FAULT fault. But it is not clear if it goes back to the
+> > detection + classification process. If it is not the case you will face=
+ the
+> > same issue I did and will need to deal with the interrupt and the
+> > disconnection management.
+> >=20
+> > Could you try to enable a port, plug a PD then disconnect it and plug
+> > another PD which belong to another power class. Finally read the class
+> > detected to verify that the class detected have changed. =20
+>=20
+> Yes, I did this test, also with disabling/enabling PI in between PD
+> disconnects/connects. Each time class was detected correctly (class4 vs 3=
+ in
+> my case). I checked also class results when no PD was connected or PI was
+> disabled, all OK.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index a1c184b814262..83907cc1d5ccf 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -70,7 +70,111 @@ pmic@41 {
- 		compatible = "spacemit,p1";
- 		reg = <0x41>;
- 		interrupts = <64>;
-+		vin-supply = <&reg_vcc_4v>;
- 		status = "okay";
-+
-+		regulators {
-+			buck1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck5 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck6 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			aldo1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+			};
-+
-+			aldo2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			aldo3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			aldo4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+			};
-+
-+			dldo2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-always-on;
-+			};
-+
-+			dldo5 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo6 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-always-on;
-+			};
-+
-+			dldo7 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+		};
- 	};
- };
- 
--- 
-2.45.2
+Ok great! It behaves differently than the TPS23881, so there is no need to =
+deal
+with the disconnection management. That wasn't clear at first sight.
 
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
