@@ -1,156 +1,129 @@
-Return-Path: <devicetree+bounces-194865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 634C3AFFCA3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:43:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3501AAFFCB8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 10:46:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E024D3ABE3F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:42:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BA817A925C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:44:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CCE828F947;
-	Thu, 10 Jul 2025 08:42:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C8B4285050;
+	Thu, 10 Jul 2025 08:46:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="FYLR1k1l"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="SlSAr/pu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE7BA28DB4E
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 08:42:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB39156F4A
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 08:46:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752136950; cv=none; b=ePF9bEYDNgUTJTVDJLseKrfbD+/04cMsTmiHFVnjfUAE1yRC+kr6jyqSFE5bgGBVkrSUDBLns6TQ32JyRbLkSjjrNVduY8Jl8EsC0O11mb2WqAF/UYQhPtsnrmQpN/y8s0RB0FmXSlIm3/b7LXD1RZDA4s+pd7CY32kVpjLq6kM=
+	t=1752137179; cv=none; b=Pquy8TaIx2qtiJJm2cLu93PzlSaMGZsRMF3SHlGdGzq5vnWZJNfks9kGWt+AugxL7JDyzjujq8Q7C6k1SWE7de4Epi7dSzbkcdCpZAKRD+aN7OQPLtBzEoDx5qz2OgRMvCUm4R4HRgDtHcsIBXAcz63l8Ewln0/Ac8LRthzQ7ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752136950; c=relaxed/simple;
-	bh=um4EKtYn3ZwSbNfVcZhtD/u/A8h869sBadoquzfhOCY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Zv6eHS0I+HJUghBGS0n9j8HJF3yQWG99YoJjWYTcWRe9k9qiwy94HJLHastIm14wMK2xSK0jfkiNbCcbGFgxzxmJgx+9jh0PIVo8YU574G4By0d0Ha5fPqpZm3MRyqjpTf13CaQ4V6JIpQ1uWAbIBvSEhuitR2oJWPgIeVdmmbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=FYLR1k1l; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-32b78b5aa39so6205581fa.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 01:42:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1752136947; x=1752741747; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IbMjrJbm+vCEXbCzlc+pe2ZZgUE7LGCN4UW3uV+MEfQ=;
-        b=FYLR1k1lIpqAAhHdy/DuCpWlTZYMDf36jK08E4Aiy6e8Qp1WueacaObbssQcodHWB6
-         DXw+Ql++9MvFnpeBn75hvozyb2e22FVSopS2/eBxrjgwsjW3mgA9927I6r8Ra7cQrlBs
-         MqoFtsBCWA+5CoIHhGjNwkJFO+SqkdLA9F6Jg=
+	s=arc-20240116; t=1752137179; c=relaxed/simple;
+	bh=EztoCdmnN/TXMn+viX2gSXCCexeXv26zbr8Y3UvqK/E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lWXQV7MxhMCCuCqdZwwVllspQ7F3S96LhvODcbXopdTgwjmMc3J4rYPAHISnNYJT6uFlT0sekJlp3NqUciPc6XuOCg2YRmJZFPd4ov75Lo+jIkGONpRsyHZ1kvppFFkgfJSxye6dupC0EpegJVIs+aZbpG2nPghPNYkIsI46B64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=SlSAr/pu; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1752137176;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=PcvUi1eWySw/QvrSjzTNvr0wq6k0z0sn5FSsYfU//w0=;
+	b=SlSAr/puvm0/C5TDXfXF/wpVMnEmVI4h9SYNSD1kBwmQiqcWCQlYOk1Q/9CH+jj117LuSP
+	Jgqx2lncfc6cv9k2RgrgJyUw6GjCnfU45xLaFZhHAZ5kebxV2BVXZxpTOxc4vQyaiNuahO
+	/p+QoFd3NvbZ+6AJRmQZ3ePc7c2YLrM=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-512-tY95dg_eNFSlBm1dlAdZsA-1; Thu, 10 Jul 2025 04:46:15 -0400
+X-MC-Unique: tY95dg_eNFSlBm1dlAdZsA-1
+X-Mimecast-MFC-AGG-ID: tY95dg_eNFSlBm1dlAdZsA_1752137174
+Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-451d2037f1eso4209555e9.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 01:46:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752136947; x=1752741747;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IbMjrJbm+vCEXbCzlc+pe2ZZgUE7LGCN4UW3uV+MEfQ=;
-        b=TAr0DhDRSGMfoN4N3CzdAc8dbmxvkbSZgqv1fk0X85JMzkPEZOiS64HGb5c6y7k4qD
-         6piZHT8BMnMSzzbqHqr+BgxyUeoWivnmX+zVvO+K8a0wXJjrfdVqmCC31FFxEpgliVTt
-         I+o4HSoDTY3mSX9ZVNdu5E6fM5ubMD3I7daqS6RYX+PtJcO/7p4lQFTmGPYM5g8NQEsH
-         kzhCj93i7hrxIJKCEYDnHH/vbsdy151axX/lsCkNMrfkVyAImVKQVvsbmnamb/KtCqh4
-         rlmII+oPtCR/lRP1Bg1A8sm6LOoJ18NgnC//ZX2K/1RCeyaG+DvWE9z9IWckaKzzlxwt
-         5r/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXgHhhA2hb5XCfmfAwAgvrRq6It5ZmwQoUl5g3KNbzT11bYfqKyKt2GWSwC5kbnqHAZXwbljwWkwRvE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzq9ODczByTuFiB2BxATSZz5V/nHQKrdLxhxGnpM2XGJnSScq5d
-	umgUUGOLNMjj5Xo/+aSuhog+MZv/sgxHUfDHnCP8V+7XpcQHuGLlVy1ZCc/fzJTPYNolzduo/YS
-	IF3YBxpp3Gk+Tt2fkB/406iyF/8YByr6nVfDI6uxB
-X-Gm-Gg: ASbGncshyaNGM2KnNdgzWqyqfbhTWQChvysypwOBMqZXEvAssfE5B7PLoGKLisfJ7Gq
-	kbZ+8uzQf6JGAwTJYSWUePOWTDCIJxrRLDKOu7iXfnE1mpUMJ19crq5Esp4cvbXHsok47ipefx1
-	SZX+bvuPyCu5Qm8snADQRs2gSDx4sJ8Ea1OfHW9vgoqpvYzlfw447C47UxDs7Yv38kuEl7pNA=
-X-Google-Smtp-Source: AGHT+IH98HyUSFcxzn0ZLDTDXzcG2xAq4tfunT0Q0Flrc8e1qgVm3bYMsY/33vj2EMiqcDSWrQ5h5u7h7vcdWubER9k=
-X-Received: by 2002:a2e:a99f:0:b0:30b:b956:53c2 with SMTP id
- 38308e7fff4ca-32fab95f588mr5305791fa.11.1752136946822; Thu, 10 Jul 2025
- 01:42:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1752137174; x=1752741974;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PcvUi1eWySw/QvrSjzTNvr0wq6k0z0sn5FSsYfU//w0=;
+        b=JaUQB4jqx5zK3qtkE4984S3ITTI86zE0WY20exqZ1EiupETlWyOImE4LTX+SSNCFwE
+         ql3Hw7Pu6DKcB6kw0pi6hK2dO1qquNs1BuspgYjkSFncukCyZedS7hINPpf1taZUEDBK
+         fh8SFctNOwPgY3kXXFaUnudnB8AHeQS8YWngeC34nHet5y5ecWEmcS71Cb+J5RbOtcZs
+         1QS9VEJFXau7cXU+QKI/vGqgoJqICBDbO7csQOHdhn0Gz6K2EeUjfK1mH+ilhhxjwrJe
+         TFjqffoXiT+MUXURzOr0LmAVGW50gDhjkOzc9zCE0No2WCEFQ0eAUp6u52USID3Rd7sq
+         ZHlA==
+X-Forwarded-Encrypted: i=1; AJvYcCW0XRtJmYrxbz0u1H3Vh1x9BOBBgIut9cev2XkfXQXSlD+IUQRWDCF3q0wlZsgoRAfSFh/1UXfehp15@vger.kernel.org
+X-Gm-Message-State: AOJu0YynVDeyuXOBD53qOrRGJOdt+GSPVhknWwVoRwfdnHLnAQEE36a4
+	DK7bC4+0DMRncfL0l5fWPYBeIhCQU0cpbIjdw7uapKDGJzJbDadEiVa7CGmfT89mbS1AkbfuQ1E
+	hf7AAdoh7XYzDVV3u2ZYxuY4rgpM9V6klXX9XZ/0J0CHE7/P9EmTCEVgNx35UPK8=
+X-Gm-Gg: ASbGncvwdUvD3L3SFz7O71zJIvInBapAqWCcV5FmWKp2t0scB1mW0ztrW7Rd0vHtfht
+	JmfRsMNiIyJ/Ckt/Nm5FDNn3G6xnFOKWno0Sjc5eqhbDuUlxASZnmPC2OorAePTBUpYYRNB0PS1
+	0UYWCRwDb3TsSx7Xd/PfqupWFxLCDElzzo7eN0OmXN7sPo38rOrEePC5iK5cTqmsMLDoPex8tFo
+	+BLnHomDgFohyDNJlO+NGWrmhZ9cCyrHyELJjoRD+aV5zjZ28a5qyoig9Jsom2zCB/fMCF8tZsz
+	AW58gX0S9wTYH0IY8O1nqnO8k9GtRVi9ka9CihaTwBu5x2M8W4q3l/jwu44On5iXp4I8ZA==
+X-Received: by 2002:a05:600c:3484:b0:453:b1c:442a with SMTP id 5b1f17b1804b1-454dd2da8e3mr16078145e9.27.1752137174104;
+        Thu, 10 Jul 2025 01:46:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFH9XyxMXdYoZpn8IIlQVwQGwj+KmG1H3Io1MO0RxQQcPIweg50djQVKai1ZJSnE6gFubwUIA==
+X-Received: by 2002:a05:600c:3484:b0:453:b1c:442a with SMTP id 5b1f17b1804b1-454dd2da8e3mr16077765e9.27.1752137173686;
+        Thu, 10 Jul 2025 01:46:13 -0700 (PDT)
+Received: from ?IPV6:2a0d:3344:271f:bc10:144e:d87a:be22:d005? ([2a0d:3344:271f:bc10:144e:d87a:be22:d005])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454d50def1fsm50985345e9.21.2025.07.10.01.46.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Jul 2025 01:46:13 -0700 (PDT)
+Message-ID: <a965baaa-c4e9-4d99-9143-466b11bc19f8@redhat.com>
+Date: Thu, 10 Jul 2025 10:46:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250610063431.2955757-1-wenst@chromium.org> <CAGXv+5HDAZ-MBBMk00O+cdcq55KnsKdEAMD7E2uaAf=2LY=1cg@mail.gmail.com>
- <5ee16a72-01a0-4f2c-9bcb-e4b4b069b2dd@collabora.com>
-In-Reply-To: <5ee16a72-01a0-4f2c-9bcb-e4b4b069b2dd@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 10 Jul 2025 16:42:15 +0800
-X-Gm-Features: Ac12FXxsLgCZAUA9cokLqBFuaQ1ZCvwcmNm2Lv9LiZZijxwC0ttVDjqCnXtUfEA
-Message-ID: <CAGXv+5E=xLJg9Y4OProhrH3ROy12J+3gNc3eiebGeJuEVEq+zw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] arm64: mediatek: Enable efuse GPU speed bin post-processing
-To: Srinivas Kandagatla <srini@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Lala Lin <lala.lin@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: net: Convert Marvell Armada NETA and BM to
+ DT schema
+To: "Rob Herring (Arm)" <robh@kernel.org>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marcin Wojtas <marcin.s.wojtas@gmail.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250702222626.2761199-1-robh@kernel.org>
+Content-Language: en-US
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20250702222626.2761199-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Srinivas,
+On 7/3/25 12:26 AM, Rob Herring (Arm) wrote:
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 5d2a7a8d3ac6..741b545e3ab0 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -21,6 +21,7 @@ patternProperties:
+>    "^(pciclass|pinctrl-single|#pinctrl-single|PowerPC),.*": true
+>    "^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*": true
+>    "^(simple-audio-card|st-plgpio|st-spics|ts),.*": true
+> +  "^pool[0-3],.*": true
 
-On Thu, Jul 3, 2025 at 7:48=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 01/07/25 11:15, Chen-Yu Tsai ha scritto:
-> > Hi Angelo,
-> >
-> > On Tue, Jun 10, 2025 at 2:34=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.or=
-g> wrote:
-> >>
-> >> Hi everyone,
-> >>
-> >> This is v2 of the MT8188 efuse GPU speed bin post-processing enablemen=
-t
-> >> patches. In v1 [1] the change was made to the driver. Angelo, the plat=
-form
-> >> maintainer believes the change should be made to the DT binding instea=
-d
-> >> [2]. v2 adopts Angelo's argument.
-> >>
-> >> Patch 1 updates the efuse DT binding so that MT8186 is a base compatib=
-le
-> >> with no fallback, and MT8188 falls back to MT8186.
-> >>
-> >> Patch 2 updates the MT8188 DT to follow the new binding.
-> >>
-> >> If possible I would like to see both patches merged through the soc
-> >> tree once the DT binding maintainers give an ack. This avoids prolonge=
-d
-> >> waiting for the binding changes to land and uncertainty about whether
-> >> things have fully landed or not.
-> >>
-> >>
-> >> Thanks
-> >> ChenYu
-> >>
-> >> [1] https://lore.kernel.org/all/20241223100648.2166754-1-wenst@chromiu=
-m.org/
-> >> [2] https://lore.kernel.org/all/11028242-afe4-474a-9d76-cd1bd9208987@c=
-ollabora.com/
-> >>
-> >> Chen-Yu Tsai (2):
-> >>    dt-bindings: nvmem: mediatek: efuse: split MT8186/MT8188 from base
-> >>      version
-> >>    arm64: dts: mediatek: mt8188: Change efuse fallback compatible to
-> >>      mt8186
-> >
-> > Friendly ping. Please take a look and see if this scheme is to your lik=
-ing.
-> >
->
-> For the whole series
->
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
+The 'DO NOT ADD NEW PROPERTIES TO THIS LIST' comment just above this
+block is a bit scaring, even if the list has been indeed updated a few
+times. @Rob: can you please confirm this chunk is intended?
 
-Could you merge  the DT binding patch so that we can merge the DT change
-ahead of -rc6? Or alternatively could you give an Ack so both patches
-go through the soc tree?
+Also I understand you want this patch to go through the net-next tree,
+could you please confirm?
 
+Thanks,
 
-Thanks
-ChenYu
+/P
+
 
