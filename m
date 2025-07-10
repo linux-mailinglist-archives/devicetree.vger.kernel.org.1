@@ -1,265 +1,197 @@
-Return-Path: <devicetree+bounces-195059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F91CB004C1
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:10:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F277B004D2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:13:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADF0F188332A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:08:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 761243AE0CC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:08:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A9E270EB0;
-	Thu, 10 Jul 2025 14:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40AF227057C;
+	Thu, 10 Jul 2025 14:09:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="eiI5L9tx"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EhGcZFQn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C461242D62;
-	Thu, 10 Jul 2025 14:08:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 201781EA80;
+	Thu, 10 Jul 2025 14:09:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752156509; cv=none; b=Ux2gxVpGAw0taA9L2QjNmLSH+NXaMQzd/4442sxi05motFi6dNqB1Cf5WSyRfzXzpLOF1b3+YXgME9W0Rj7zwAokn0SkV0heRh3r5UZxE951bSYUA8DbnXXWJQ/ft0COmwpanL3l4USR2Hc4egegsK5vqHVbURdREcVdZir45vY=
+	t=1752156546; cv=none; b=tMbPFVe5BYOCx6s3q+Ku6hRQx+h9Eygus1fCYnnMYB9QuwJVmuI0FLiuuZB+Q4iCDlzPvsevQAkJwjBLDaYHfL686iz0DcNvJ23JWqxqwJRTwzWx9VSLsbBsL2Dy2QxwB+WEMjkfgs+8ruIflDhkSLT+9pvjr7iCfvtkg4IUIiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752156509; c=relaxed/simple;
-	bh=6+V6b48EzWgWG8MSnsUjJWAfwO4HcQ599pAv9PMWIe4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X0fna1ZBCsiqel5mvDg9x+/Mvz+M5KpviulD9o3H1qP3u0yMx/e6W0abnlbkEz0Lz6baqp/+ET+3+eku0gxXBEzx/BL/6mpij9KzJccRF9p9/eTFx09T4EY2Prfo3DPEIIUUX6Quc77uVpN+dpKSIdZ9ORfRXHNTpCaEPe0hy/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=eiI5L9tx; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 807163D8570F;
-	Thu, 10 Jul 2025 10:08:20 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id O8O26kgwxypV; Thu, 10 Jul 2025 10:08:19 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id A7AE33D875E7;
-	Thu, 10 Jul 2025 10:08:19 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com A7AE33D875E7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1752156499; bh=EhdCuuk3MsnvKWneuePEB9v7psFEpBgaIrswFJsCaTM=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=eiI5L9txRHCopE2fnkP0oI2iR09ru1hhSxhD72AiJph9EmOfBFWozobaGPW96AJCg
-	 y20ij65cW9KEn2XjyNQOPE65m6uIniR/s4iYaKCdfJmx+WkBXOV0mJHBnMZNmXNFqn
-	 epC8zeVa3dGaPk/5jGzdzupceRde0cG3neSQFZD44FYUdaxnZL97VZMQyaDZ+xJgyq
-	 +ywApD4UlTpFGG9/xevR+agtU/kSNGNvivGQ4lmfljx85CsIKXQb37kR2gM8JKOJGk
-	 JrfZVByyinDxo4geIA6o8I951StEPiElJvF6PUPXhR2EPrUYt3jTwEE/8Sk3pRe0mJ
-	 3ZzcN5cTuFweQ==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 8J66NYaKQAMU; Thu, 10 Jul 2025 10:08:19 -0400 (EDT)
-Received: from fedora (unknown [192.168.51.254])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 595523D8570F;
-	Thu, 10 Jul 2025 10:08:19 -0400 (EDT)
-Date: Thu, 10 Jul 2025 10:08:18 -0400
-From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: devnull+samuel.kayode.savoirfairelinux.com@kernel.org, Frank.li@nxp.com,
-	abelvesa@kernel.org, abelvesa@linux.com, b38343@freescale.com,
-	broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	dmitry.torokhov@gmail.com, eballetbo@gmail.com, imx@lists.linux.dev,
-	krzk+dt@kernel.org, lee@kernel.org, lgirdwood@gmail.com,
-	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, robh@kernel.org, sre@kernel.org,
-	yibin.gong@nxp.com
-Subject: Re: [PATCH v8 2/6] mfd: pf1550: add core driver
-Message-ID: <aG_JUhEQaiYQfJmz@fedora>
-References: <20250707-pf1550-v8-0-6b6eb67c03a0@savoirfairelinux.com>
- <20250707-pf1550-v8-2-6b6eb67c03a0@savoirfairelinux.com>
- <0406698c-6534-4aca-8994-e8a69ecee2b2@wanadoo.fr>
+	s=arc-20240116; t=1752156546; c=relaxed/simple;
+	bh=C2IXV9VtkXwpeToWek1QNdi7djkxP0oWTm8UbsISiSg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nQlg2XCMFkMxTwwxean5SO22VKjbtrgzNgfh4RQ7U73z0XfkvwFEhwcE4I7klfDrZFHxtpAc5XjN6/Fb835aPXJ4Mf6aVuhFOJKOIqN0LVjb50EirYbKrRuNH4LUj/FANNBumJ47UJjcXw1jNGxMKn9SeL71UQjm9k1jpv3+aDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EhGcZFQn; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56AE8j0H1164862;
+	Thu, 10 Jul 2025 09:08:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752156525;
+	bh=uHweeZh6O1CjqWLKV0spT6UJCiGmQMsSfwDHwIjUSFE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=EhGcZFQnFYl7CtAM/3B1wu8uOgZEQLe1iaybOchqsNTfGQVp8ZxNIoESjw6MzT7sH
+	 pRjU+L0TJKySVNDIuKGIjkkrFLBrrVLCmP94kczcLbrTUQq5V9krvp97VhcTh0RuDV
+	 j1kDjeV7rXzJlUyzw/aLiIx+SD7JhgERh8Y2eY/Q=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56AE8j1r234816
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 10 Jul 2025 09:08:45 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 10
+ Jul 2025 09:08:45 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 10 Jul 2025 09:08:45 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56AE8jHo1776993;
+	Thu, 10 Jul 2025 09:08:45 -0500
+Message-ID: <299c363a-23c7-4522-b58c-100f49c4eece@ti.com>
+Date: Thu, 10 Jul 2025 09:08:44 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-In-Reply-To: <0406698c-6534-4aca-8994-e8a69ecee2b2@wanadoo.fr>
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] watchdog: rti_wdt: Add reaction control
+To: Guenter Roeck <linux@roeck-us.net>, Andrew Davis <afd@ti.com>
+CC: Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250707180002.3918865-1-jm@ti.com>
+ <20250707180002.3918865-3-jm@ti.com>
+ <cc37e797-d3e5-444d-8016-c437a0534001@roeck-us.net>
+ <d96541bc-644d-4c90-b9f7-1e4afd16aeb6@ti.com>
+ <953f78a8-3928-479d-8700-dfe1cea15454@roeck-us.net>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <953f78a8-3928-479d-8700-dfe1cea15454@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Jul 08, 2025 at 08:46:48PM +0200, Christophe JAILLET wrote:
-> Le 07/07/2025 =E0 23:37, Samuel Kayode via B4 Relay a =E9crit=A0:
-> > From: Samuel Kayode <samuel.kayode-4ysUXcep3aM1wj+D4I0NRVaTQe2KTcn/@p=
-ublic.gmane.org>
-> >=20
-> > Add the core driver for pf1550 PMIC. There are 3 subdevices for which=
- the
-> > drivers will be added in subsequent patches.
-> >=20
-> > Reviewed-by: Frank Li <Frank.Li-3arQi8VN3Tc@public.gmane.org>
-> > Signed-off-by: Samuel Kayode <samuel.kayode-4ysUXcep3aM1wj+D4I0NRVaTQ=
-e2KTcn/@public.gmane.org>
->=20
-> Hi,
->=20
-> some nitpicks and a few real questions.
->=20
-> CJ
->=20
-> ...
->=20
-> > +	/* Add top level interrupts */
-> > +	ret =3D devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, pf155=
-0->irq,
-> > +				       IRQF_ONESHOT | IRQF_SHARED |
-> > +				       IRQF_TRIGGER_FALLING,
-> > +				       0, &pf1550_irq_chip,
-> > +				       &pf1550->irq_data);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Add regulator */
-> > +	irq =3D regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_REGULATOR)=
-;
->=20
-> Same as above.
->=20
-> > +	if (irq < 0)
-> > +		return dev_err_probe(pf1550->dev, irq,
-> > +				     "Failed to get parent vIRQ(%d) for chip %s\n",
-> > +				     PF1550_IRQ_REGULATOR, pf1550_irq_chip.name);
-> > +
-> > +	ret =3D devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
-> > +				       IRQF_ONESHOT | IRQF_SHARED |
-> > +				       IRQF_TRIGGER_FALLING, 0,
-> > +				       &pf1550_regulator_irq_chip,
-> > +				       &pf1550->irq_data_regulator);
-> > +	if (ret)
-> > +		return dev_err_probe(pf1550->dev, ret,
-> > +				     "Failed to add %s IRQ chip\n",
-> > +				     pf1550_regulator_irq_chip.name);
-> > +
-> > +	domain =3D regmap_irq_get_domain(pf1550->irq_data_regulator);
-> > +
-> > +	ret =3D  devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, reg=
-ulator,
->=20
-> 2 spaces after =3D
->
-Will drop.
-> > +				    1, NULL, 0, domain);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Add onkey */
-> > +	irq =3D regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_ONKEY);
->=20
-> Same
->=20
-> > +	if (irq < 0)
-> > +		return dev_err_probe(pf1550->dev, irq,
-> > +				     "Failed to get parent vIRQ(%d) for chip %s\n",
-> > +				     PF1550_IRQ_ONKEY, pf1550_irq_chip.name);
-> > +
-> > +	ret =3D devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
-> > +				       IRQF_ONESHOT | IRQF_SHARED |
-> > +				       IRQF_TRIGGER_FALLING, 0,
-> > +				       &pf1550_onkey_irq_chip,
-> > +				       &pf1550->irq_data_onkey);
-> > +	if (ret)
-> > +		return dev_err_probe(pf1550->dev, ret,
-> > +				     "Failed to add %s IRQ chip\n",
-> > +				     pf1550_onkey_irq_chip.name);
-> > +
-> > +	domain =3D regmap_irq_get_domain(pf1550->irq_data_onkey);
-> > +
-> > +	ret =3D  devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, onk=
-ey, 1,
->=20
-> 2 spaces after =3D
->=20
-Will drop.
-> > +				    NULL, 0, domain);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Add battery charger */
-> > +	irq =3D regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_CHG);
->=20
-> This calls irq_create_mapping().
-> Should irq_dispose_mapping() or another helper be called in the error
-> handling path and in the remove function, or is it already handled by a
-> devm_ function?
->=20
-This creates a mapping for the allocated `irq_data` runtime controller by
-devm_regmap_add_irq. The `irq_data` is for the top level interrupts. Sinc=
-e it
-was allocated with a devm_, I think irq_dispose_mapping is called during =
-a
-remove.
-> > +	if (irq < 0)
-> > +		return dev_err_probe(pf1550->dev, irq,
-> > +				     "Failed to get parent vIRQ(%d) for chip %s\n",
-> > +				     PF1550_IRQ_CHG, pf1550_irq_chip.name);
-> > +
-> > +	ret =3D devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
-> > +				       IRQF_ONESHOT | IRQF_SHARED |
-> > +				       IRQF_TRIGGER_FALLING, 0,
-> > +				       &pf1550_charger_irq_chip,
-> > +				       &pf1550->irq_data_charger);
-> > +	if (ret)
-> > +		return dev_err_probe(pf1550->dev, ret,
-> > +				     "Failed to add %s IRQ chip\n",
-> > +				     pf1550_charger_irq_chip.name);
-> > +
-> > +	domain =3D regmap_irq_get_domain(pf1550->irq_data_charger);
-> > +
-> > +	return devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, charg=
-er,
-> > +				    1, NULL, 0, domain);
-> > +}
-> > +
-> > +static int pf1550_suspend(struct device *dev)
-> > +{
-> > +	struct pf1550_ddata *pf1550 =3D dev_get_drvdata(dev);
-> > +
-> > +	if (device_may_wakeup(dev)) {
-> > +		enable_irq_wake(pf1550->irq);
-> > +		disable_irq(pf1550->irq);
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int pf1550_resume(struct device *dev)
-> > +{
-> > +	struct pf1550_ddata *pf1550 =3D dev_get_drvdata(dev);
-> > +
-> > +	if (device_may_wakeup(dev)) {
-> > +		disable_irq_wake(pf1550->irq);
-> > +		enable_irq(pf1550->irq);
->=20
-> Should this 2 lines be inverted?
->=20
-I don't think it matters. disable_irq_wake is 'completely orthogonal' to =
-the
-enable/disable(irq). See function irq_set_irq_wake.
-> > +	}
-> > +
-> > +	return 0;
-> > +}
->=20
-> ...
->=20
-> > +#define PF1550_CHG_LINEAR_ONLY		12
-> > +#define PF1550_CHG_SNS_MASK		0xf
-> > +#define PF1550_CHG_INT_MASK             0x51
->=20
-> Space vs tab
->=20
-Will make changes.
-> > +
-> > +#define PF1550_BAT_NO_VBUS		0
-> > +#define PF1550_BAT_LOW_THAN_PRECHARG	1
+Hi Guenter, Andrew,
 
-Thanks,
-Sam
+On 7/7/25 5:55 PM, Guenter Roeck wrote:
+> On Mon, Jul 07, 2025 at 04:49:31PM -0500, Andrew Davis wrote:
+>> On 7/7/25 3:58 PM, Guenter Roeck wrote:
+>>> On Mon, Jul 07, 2025 at 01:00:02PM -0500, Judith Mendez wrote:
+>>>> This allows to configure reaction between NMI and reset for WWD.
+>>>>
+>>>> On K3 SoC's other than AM62L SoC [0], watchdog reset output is routed
+>>>> to the ESM module which can subsequently route the signal to safety
+>>>> master or SoC reset. On AM62L, the watchdog reset output is routed
+>>>> to the SoC HW reset block. So, add a new compatible for AM62l to add
+>>>> SoC data and configure reaction to reset instead of NMI.
+>>>>
+>>>> [0] https://www.ti.com/product/AM62L
+>>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>>> ---
+>>>>    drivers/watchdog/rti_wdt.c | 32 ++++++++++++++++++++++++++++----
+>>>>    1 file changed, 28 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/drivers/watchdog/rti_wdt.c b/drivers/watchdog/rti_wdt.c
+>>>> index d1f9ce4100a8..c9ee443c70af 100644
+>>>> --- a/drivers/watchdog/rti_wdt.c
+>>>> +++ b/drivers/watchdog/rti_wdt.c
+>>>> @@ -35,7 +35,8 @@
+>>>>    #define RTIWWDRXCTRL	0xa4
+>>>>    #define RTIWWDSIZECTRL	0xa8
+>>>> -#define RTIWWDRX_NMI	0xa
+>>>> +#define RTIWWDRXN_RST	0x5
+>>>> +#define RTIWWDRXN_NMI	0xa
+>>>>    #define RTIWWDSIZE_50P		0x50
+>>>>    #define RTIWWDSIZE_25P		0x500
+>>>> @@ -63,22 +64,29 @@
+>>>>    static int heartbeat;
+>>>> +struct rti_wdt_data {
+>>>> +	bool reset;
+>>>> +};
+>>>> +
+>>>>    /*
+>>>>     * struct to hold data for each WDT device
+>>>>     * @base - base io address of WD device
+>>>>     * @freq - source clock frequency of WDT
+>>>>     * @wdd  - hold watchdog device as is in WDT core
+>>>> + * @data - hold configuration data
+>>>>     */
+>>>>    struct rti_wdt_device {
+>>>>    	void __iomem		*base;
+>>>>    	unsigned long		freq;
+>>>>    	struct watchdog_device	wdd;
+>>>> +	const struct rti_wdt_data *data;
+>>>>    };
+>>>>    static int rti_wdt_start(struct watchdog_device *wdd)
+>>>>    {
+>>>>    	u32 timer_margin;
+>>>>    	struct rti_wdt_device *wdt = watchdog_get_drvdata(wdd);
+>>>> +	u8 reaction;
+>>>>    	int ret;
+>>>>    	ret = pm_runtime_resume_and_get(wdd->parent);
+>>>> @@ -101,8 +109,13 @@ static int rti_wdt_start(struct watchdog_device *wdd)
+>>>>    	 */
+>>>>    	wdd->min_hw_heartbeat_ms = 520 * wdd->timeout + MAX_HW_ERROR;
+>>>> -	/* Generate NMI when wdt expires */
+>>>> -	writel_relaxed(RTIWWDRX_NMI, wdt->base + RTIWWDRXCTRL);
+>>>> +	/* Reset device if wdt serviced outside of window or generate NMI if available */
+>>>
+>>> Shouldn't that be "or generate NMI if _not_ available" ?
+>>>
+>>
+>> For almost all the K3 devices, the WDT has two selectable outputs, one resets
+>> the device directly, the other is this "NMI" which is wired to an ESM module
+>> which can take other actions (but usually it just also resets the device).
+>> For AM62L that second NMI output is not wired (no ESM module), so our only
+>> choice is to set the WDT to direct reset mode.
+>>
+>> The wording is a little strange, but the "or generate NMI if available" meaning
+>> if NMI is available, then do that. Reset being the fallback when _not_ available.
+>>
+>> Maybe this would work better:
+>>
+>> /* If WDT is serviced outside of window, generate NMI if available, or reset device */
+>>
+> 
+> The problem is that the code doesn't match the comment. The code checks the
+> "reset" flag and requests a reset if available. If doesn't check an "nmi"
+> flag.
+> 
+> If the preference is NMI, as your comment suggests, the flag should be named
+> "nmi" and be set if NMI is available. That would align the code and the
+> comment. Right now both code and comment are misleading, since the presence
+> of a reset flag (and setting it to false) suggests that a direct reset is
+> not available, and that reset is preferred if available. A reset is the
+> normally expected behavior for a watchdog, so the fact that this is _not_
+> the case for this watchdog should be made more visible.
+
+
+How about:
+
+
+/* If WWDT serviced outside of window, generate NMI or reset the device
+if NMI not available */
+
+if (wdt->data->reset)
+	reaction = RTIWWDRXN_RST;
+else
+	reaction = RTIWWDRXN_NMI;
+
+~ Judith
+
+...
 
