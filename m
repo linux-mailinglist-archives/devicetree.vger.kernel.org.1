@@ -1,348 +1,144 @@
-Return-Path: <devicetree+bounces-194901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10325AFFDEB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:21:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64B8BAFFDF2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 11:22:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 658FB188533B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:21:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 876B11640AC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:22:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B80EE291C0E;
-	Thu, 10 Jul 2025 09:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1D5D290D98;
+	Thu, 10 Jul 2025 09:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ESnPQ138"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y7TMRbkY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC57121B9E7;
-	Thu, 10 Jul 2025 09:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E2BF214210;
+	Thu, 10 Jul 2025 09:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752139283; cv=none; b=sjn3ADviXFOjRtIrUpJGBh8YM1+0s8hcOvHt+LMleRmY2+9/GjQ0fRhA+2Ci6XfM7we0Z0VQaeWBDegfPlmgbbZ8tfxZp7xIv+1b1zg+191iEC325iO6i/Pe/Xxpy3STpgfymTKeMZdaPeZxNQ3TcjgU0i3DjCmL1l8HEYo4dKQ=
+	t=1752139315; cv=none; b=AiyL4jJpjo3DYq2OS95d6+wIEzChazGbIhwP3pzbKkrbSfWo8+8qgjd946l7JGBUFgQ8tCG+yTRvWwjXHqlCcdoAtCSVbw/sgglrSKSujHLDHKfonH+p1JpY/txZF70VmpvqS8au2O8YF3jGo4LFthH5xkZ1SqdGSicyCG/kciY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752139283; c=relaxed/simple;
-	bh=nDO4FCjIcpvN2V+UNsSZi+nZmpl//HrngwdQf7fGnqk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZCuUMo/WSkNxqbrjjBSNN4cl80Ng+IMIMGlED5fB7zwUM0O7AwGGBr9BFvfuSBxWP2XPQajfXRsIyNeJFMvqH39xgOKAap5JuL9WfwSSqvQmEZNs9uIDqUWVwKLvy2gsDiuCzHTAMt+S4vBncvyDI6qCY+0v572bBInZpN8sSj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ESnPQ138; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56A1QXr0031076;
-	Thu, 10 Jul 2025 09:21:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QbwxA+Zbt6DBDA5wCJwhTDJ7c20lDYAcBdDw52mlG98=; b=ESnPQ138J0A6FKNo
-	Vohg9FIG+Vb9xaGcrj0ZG0x2yGmxGSpX1XRYip41OcoKJH75PkRD0PJFgD7kBBM4
-	tZifHlfrYnzu83UR0sK0YAIS7DbjSG5KO2Nl8Qp0wdHpRMv0irpuddrUGYHJFMf5
-	88rXPwg0qwtstD4jJHDhXaHukWV0XNieYc5O1XSD3DL1aaWORK6e5m1SPvRlZxnT
-	q8D5YvJl/rVSxX/nj6V5ouf9odqd7UexfzGofJUSAkPAKi89HD4LrjxnCJTJsrPz
-	FqkMk2BBpuhTD5XKF200kmDu64Hp88ehJL64lB4N+yjlOif9k+nMoVhuXDsHlx+5
-	IJdY7g==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47smcg4bh0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 10 Jul 2025 09:21:18 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56A9LH0x002983
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 10 Jul 2025 09:21:17 GMT
-Received: from [10.204.100.36] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 10 Jul
- 2025 02:21:13 -0700
-Message-ID: <7d50318e-1189-15aa-8c26-9c522c3194c4@quicinc.com>
-Date: Thu, 10 Jul 2025 14:51:08 +0530
+	s=arc-20240116; t=1752139315; c=relaxed/simple;
+	bh=y21nPgHIHQE0X3oc5JkFHd1rukiAka8zDn3Vv7fequ8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=t/0lmT7RIt/zGJNVr848gD2PA49M7rYaWscfiQJbSHcyUbJI2sEaJIT5ikW9M1aBxOWNNgJK4RehZ8XHT7K3Mn2b3OV6p+RNsqBwxM6t+VKcaYRjlMcs9G+7uzY3M7LuB7YrJ3sHmATHPW0/Fz5cte0qmhf/z/dy9Ktr9zD9jKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y7TMRbkY; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-70e77831d68so8276467b3.2;
+        Thu, 10 Jul 2025 02:21:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752139313; x=1752744113; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=CIb23wfO7R7H8MNklKKsDP+RsX87PaDNS4GSIFnlxoY=;
+        b=Y7TMRbkY0gCLtiFlzVPIw480b5wwH6vIYMMcsQc668Is+PRF2bfl9ceVlScg2OE3ZO
+         IMetBHK3MTYSFHv5Q3dJ1e/e0f72A8MKtFk+TYeYdhDe1FNlZetfXzn0xEGUTUijD/WB
+         /zR97fiEwMnilUCizU+fjjiYR9jVvrEowm4j3lh05v3AToFhvJ1KEUUawbFZFH+HWnn8
+         VUfCvVX9Vj0jYAozZLjwkI0KDNNNyRXCvMBHnAaroRUHcl0OM3DymFg5kmxKn/pMHmuc
+         sFCzBjfFDLT0+MO+sZE+10kyWmsg3PhtD/Hy8v1B5iPSAnTa0gchYErINcb1kwEiEWf0
+         vgbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752139313; x=1752744113;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CIb23wfO7R7H8MNklKKsDP+RsX87PaDNS4GSIFnlxoY=;
+        b=mXxPgEcBCnk/K8p1RTFXCvzLTgJcgvgenvbF6cQCGYF0iW5omkceik4BDFk/mKzPlt
+         Fd01mU92P7Bu4MePeLEox2MIxXNoBaKtuh69wkURrPrmxgbzeA6ZOc/FzyWjgZ+Xke2F
+         txNjedGyySZ3AIAnh02NL1tteMJo6x3ibKoUhq+tb1utx2sM4LI1ggqCK/Q9WEsbYf07
+         QpfcIQtX/v4+XAQQj7XAL5ldWi6wQe3rg/1VO+atVN4M53bgSkY2ROTlEE7+sVVhxMYd
+         TJtvScBCSDpoElDgjiIOjM2/2L7tatV+dOI1L+L9+U1bn+xYL2Ndy+Zxl421OCv4/QpU
+         2GQA==
+X-Forwarded-Encrypted: i=1; AJvYcCVNzmqN6IblYR5brdGRYtF40uK/PPoyXshH2NIeQHJokSZRM5G5MM2T+9qzrIxmACAYSYRkJ+/1epJpLD8=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0VRXt6ztLkeNu04K3ATiFz/P6VB7n0mhYQJGvajwhiYrweJyN
+	lCb3XR4OsQOELQh1QtyQ/D53rkUmbuIDv6rbyA05/oqKhnqCAtCQaXIAkgZjXMYuJZXeUXqBZ5a
+	81GYPO7QJFyPz7LVIKqF3rLSOoE/PsB0=
+X-Gm-Gg: ASbGncuSUj+izLz3gnmgG9/Igg3Nt8GhgAi09rfoaSYvbbtyRW59rQP29JOQfLhIhFA
+	KAcFm3atdgej4myeSpa7t82cVTUQ7X2yUFKKr2auuV3Uya61CS8rJ0CxEgVxMcSUaRy8QuqN5FR
+	PHudz9AxiMCA+rcXnqv3fLELdLN8gdt2StO395ezMzKQ==
+X-Google-Smtp-Source: AGHT+IEyihmR4k6j+d3nRg7Al2UjBfOwUKJgCp3uoe4n9JUTn8NhsBjL7wuXahr5HIPQlLPnZdlvYqaWnH6iYhxgRdY=
+X-Received: by 2002:a05:690c:6908:b0:70c:a0c9:c648 with SMTP id
+ 00721157ae682-717c1774a36mr45258857b3.19.1752139313148; Thu, 10 Jul 2025
+ 02:21:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v6 4/7] media: venus: hfi_plat_v4: Add capabilities for
- the 4XX lite core
-Content-Language: en-US
-To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
-        <bryan.odonoghue@linaro.org>, <quic_vgarodia@quicinc.com>,
-        <krzk+dt@kernel.org>, <konradybcio@kernel.org>, <mchehab@kernel.org>,
-        <robh@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <amit.kucheria@oss.qualcomm.com>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250708180530.1384330-1-jorge.ramirez@oss.qualcomm.com>
- <20250708180530.1384330-5-jorge.ramirez@oss.qualcomm.com>
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <20250708180530.1384330-5-jorge.ramirez@oss.qualcomm.com>
+References: <20250709220714.85697-1-stefano.radaelli21@gmail.com>
+ <20250709220714.85697-2-stefano.radaelli21@gmail.com> <9b503f65-5c8c-4f04-a1b1-40d7a1202e8b@kernel.org>
+In-Reply-To: <9b503f65-5c8c-4f04-a1b1-40d7a1202e8b@kernel.org>
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Date: Thu, 10 Jul 2025 11:21:37 +0200
+X-Gm-Features: Ac12FXxMoCORza1qjA8bpnm1jhAVYXGS6gK3JmG0IlhKcdilmwXZ2lWiCDsGXZI
+Message-ID: <CAK+owohgk3CkQRv_PBDWXh44X2uN3p8FWBU2t9VtmO-xzOKTow@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for Variscite VAR-SOM-AM62P
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=P7o6hjAu c=1 sm=1 tr=0 ts=686f860e cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8
- a=8_8YVVxbfvZV4YOWEbQA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: vexuhuUL-H5dpGBA0l4Ei3HPb4EizI9-
-X-Proofpoint-GUID: vexuhuUL-H5dpGBA0l4Ei3HPb4EizI9-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzEwMDA3OSBTYWx0ZWRfXzR1ug89XCMSu
- hpLAgBmOvLSVCbRaPko1pCuTbzkuhBaen2pIahc7VO/SSMEBS6cWprGAq0L67aMGsZwabf5JclU
- iMQcdIlvAUqX19+BDjU1cM6wQrXRjwmPsnns0UoQjk9W/p7i9QOFWI1snXZkNTnSMg6e4BK/QKL
- NlXCf0IkeMqaiTbxPmj6oHDsiEXJbcXqVYzuEOHVqIN1+j78vaAMgh6sp34lPTLxKz8Ew6hko++
- tbFfVgmLndwuvr1NeswmeONwixE0uP72oxSeEgMVC1LRhsUHdiq3JZfYzihPW8/wH05J2L4v115
- nt6+WpYrozX+KMa4QBeoiDqsvNQWuixDFLHHLnlG+NzmG00j+FuhrBVaNu6A3+tVCHhTrRPH4rB
- XblNqjvObXKFz2DHGkkj1yLnZnCJs1r+tLwvWX6zV0kyxEWL1lyGwyS0N4T3KU92tD5jiMPV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-10_01,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 phishscore=0 bulkscore=0 mlxscore=0
- malwarescore=0 spamscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1015
- adultscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507100079
 
+Hi Krzysztof,
 
+Thank you for your suggestion. Actually, our compatible strings for
+Variscite SOMs follow the format "som-factor"-"processor". Here are
+some examples:
 
-On 7/8/2025 11:35 PM, Jorge Ramirez-Ortiz wrote:
-> Populate the HFI v4 lite capability set used by the AR50_LITE video
-> core.
-> 
-> These capabilities define the supported codec formats and operational
-> limits specific to this streamlined VPU variant.
-> 
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
-> ---
->  .../platform/qcom/venus/hfi_platform_v4.c     | 165 +++++++++++++++---
->  1 file changed, 145 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/venus/hfi_platform_v4.c b/drivers/media/platform/qcom/venus/hfi_platform_v4.c
-> index c8e0f8040649..4b7271468ec4 100644
-> --- a/drivers/media/platform/qcom/venus/hfi_platform_v4.c
-> +++ b/drivers/media/platform/qcom/venus/hfi_platform_v4.c
-> @@ -245,25 +245,149 @@ static const struct hfi_plat_caps caps[] = {
->  	.num_fmts = 4,
->  } };
->  
-> +static const struct hfi_plat_caps caps_lite[] = {
-> +{
-> +	.codec = HFI_VIDEO_CODEC_H264,
-> +	.domain = VIDC_SESSION_TYPE_DEC,
-> +	.caps[0] = {HFI_CAPABILITY_FRAME_WIDTH, 128, 1920, 1},
-> +	.caps[1] = {HFI_CAPABILITY_FRAME_HEIGHT, 128, 1920, 1},
-> +	.caps[2] = {HFI_CAPABILITY_MBS_PER_FRAME, 64, 8160, 1},
-> +	.caps[3] = {HFI_CAPABILITY_BITRATE, 1, 60000000, 1 },
-> +	.caps[4] = {HFI_CAPABILITY_MBS_PER_SECOND, 64, 244800, 1},
-> +	.caps[5] = {HFI_CAPABILITY_FRAMERATE, 1, 120, 1},
-> +	.caps[6] = {HFI_CAPABILITY_MAX_VIDEOCORES, 0, 1, 1},
-> +	.num_caps = 7,
-> +	.pl[0] = { HFI_H264_PROFILE_BASELINE, HFI_H264_LEVEL_5},
-> +	.pl[1] = {HFI_H264_PROFILE_MAIN, HFI_H264_LEVEL_5},
-> +	.pl[2] = {HFI_H264_PROFILE_HIGH, HFI_H264_LEVEL_5},
-> +	.pl[3] = {HFI_H264_PROFILE_CONSTRAINED_BASE, HFI_H264_LEVEL_5},
-> +	.pl[4] = {HFI_H264_PROFILE_CONSTRAINED_HIGH, HFI_H264_LEVEL_5},
-> +	.num_pl = 5,
-> +	.fmts[0] = {HFI_BUFFER_OUTPUT, HFI_COLOR_FORMAT_NV12_UBWC},
-> +	.fmts[1] = {HFI_BUFFER_OUTPUT2, HFI_COLOR_FORMAT_NV12_UBWC},
-> +	.fmts[2] = {HFI_BUFFER_OUTPUT2, HFI_COLOR_FORMAT_NV12},
-> +	.fmts[3] = {HFI_BUFFER_OUTPUT2, HFI_COLOR_FORMAT_NV21},
-> +	.num_fmts = 4,
-> +}, {
-> +	.codec = HFI_VIDEO_CODEC_HEVC,
-> +	.domain = VIDC_SESSION_TYPE_DEC,
-> +	.caps[0] = {HFI_CAPABILITY_FRAME_WIDTH, 128, 1920, 1},
-> +	.caps[1] = {HFI_CAPABILITY_FRAME_HEIGHT, 128, 1920, 1},
-> +	.caps[2] = {HFI_CAPABILITY_MBS_PER_FRAME, 64, 8160, 1},
-> +	.caps[3] = {HFI_CAPABILITY_BITRATE, 1, 60000000, 1 },
-> +	.caps[4] = {HFI_CAPABILITY_MBS_PER_SECOND, 64, 244800, 1},
-> +	.caps[5] = {HFI_CAPABILITY_FRAMERATE, 1, 120, 1},
-> +	.caps[6] = {HFI_CAPABILITY_MAX_VIDEOCORES, 0, 1, 1},
-> +	.num_caps = 7,
-> +	.pl[0] = {HFI_HEVC_PROFILE_MAIN, HFI_HEVC_LEVEL_5 | HFI_HEVC_TIER_HIGH0 << 28 },
-> +	.pl[1] = {HFI_HEVC_PROFILE_MAIN10, HFI_HEVC_LEVEL_5 | HFI_HEVC_TIER_HIGH0 << 28 },
-> +	.num_pl = 2,
-> +	.fmts[0] = {HFI_BUFFER_OUTPUT, HFI_COLOR_FORMAT_NV12_UBWC},
-> +	.fmts[1] = {HFI_BUFFER_OUTPUT2, HFI_COLOR_FORMAT_NV12_UBWC},
-> +	.fmts[2] = {HFI_BUFFER_OUTPUT2, HFI_COLOR_FORMAT_NV12},
-> +	.fmts[3] = {HFI_BUFFER_OUTPUT2, HFI_COLOR_FORMAT_NV21},
-> +	.num_fmts = 4,
-> +}, {
-> +	.codec = HFI_VIDEO_CODEC_VP9,
-> +	.domain = VIDC_SESSION_TYPE_DEC,
-> +	.caps[0] = {HFI_CAPABILITY_FRAME_WIDTH, 128, 1920, 1},
-> +	.caps[1] = {HFI_CAPABILITY_FRAME_HEIGHT, 128, 1920, 1},
-> +	.caps[2] = {HFI_CAPABILITY_MBS_PER_FRAME, 64, 8160, 1},
-> +	.caps[3] = {HFI_CAPABILITY_BITRATE, 1, 60000000, 1 },
-> +	.caps[4] = {HFI_CAPABILITY_MBS_PER_SECOND, 64, 244800, 1},
-> +	.caps[5] = {HFI_CAPABILITY_FRAMERATE, 1, 120, 1},
-> +	.caps[6] = {HFI_CAPABILITY_MAX_VIDEOCORES, 0, 1, 1},
-> +	.num_caps = 7,
-> +	.pl[0] = {HFI_VP9_PROFILE_P0, 200},
-> +	.pl[1] = {HFI_VP9_PROFILE_P2_10B, 200},
-> +	.num_pl = 2,
-> +	.fmts[0] = {HFI_BUFFER_OUTPUT, HFI_COLOR_FORMAT_NV12_UBWC},
-> +	.fmts[1] = {HFI_BUFFER_OUTPUT2, HFI_COLOR_FORMAT_NV12_UBWC},
-> +	.fmts[2] = {HFI_BUFFER_OUTPUT2, HFI_COLOR_FORMAT_NV12},
-> +	.fmts[3] = {HFI_BUFFER_OUTPUT2, HFI_COLOR_FORMAT_NV21},
-> +	.num_fmts = 4,
-> +}, {
-> +	.codec = HFI_VIDEO_CODEC_H264,
-> +	.domain = VIDC_SESSION_TYPE_ENC,
-> +	.caps[0] = {HFI_CAPABILITY_FRAME_WIDTH, 128, 1920, 1},
-> +	.caps[1] = {HFI_CAPABILITY_FRAME_HEIGHT, 128, 1920, 1},
-> +	.caps[2] = {HFI_CAPABILITY_MBS_PER_FRAME, 64, 8160, 1},
-> +	.caps[3] = {HFI_CAPABILITY_BITRATE, 1, 60000000, 1 },
-> +	.caps[4] = {HFI_CAPABILITY_MBS_PER_SECOND, 64, 244800, 1},
-> +	.caps[5] = {HFI_CAPABILITY_FRAMERATE, 1, 120, 1},
-> +	.caps[6] = {HFI_CAPABILITY_MAX_VIDEOCORES, 0, 1, 1},
-> +	.caps[7] = {HFI_CAPABILITY_HIER_P_NUM_ENH_LAYERS, 0, 6, 1},
-> +	.caps[8] = {HFI_CAPABILITY_ENC_LTR_COUNT, 0, 4, 1},
-> +	.caps[9] = {HFI_CAPABILITY_MBS_PER_SECOND_POWERSAVE, 0, 244800, 1},
-> +	.caps[10] = {HFI_CAPABILITY_I_FRAME_QP, 0, 51, 1},
-> +	.caps[11] = {HFI_CAPABILITY_P_FRAME_QP, 0, 51, 1},
-> +	.caps[12] = {HFI_CAPABILITY_B_FRAME_QP, 0, 51, 1},
-> +	.caps[13] = {HFI_CAPABILITY_SLICE_BYTE, 1, 10, 1},
-> +	.caps[14] = {HFI_CAPABILITY_SLICE_MB, 1, 10, 1},
-> +	.num_caps = 15,
-> +	.pl[0] = {HFI_H264_PROFILE_BASELINE, HFI_H264_LEVEL_5},
-> +	.pl[1] = {HFI_H264_PROFILE_MAIN, HFI_H264_LEVEL_5},
-> +	.pl[2] = {HFI_H264_PROFILE_HIGH, HFI_H264_LEVEL_5},
-> +	.pl[3] = {HFI_H264_PROFILE_CONSTRAINED_BASE, HFI_H264_LEVEL_5},
-> +	.pl[4] = {HFI_H264_PROFILE_CONSTRAINED_HIGH, HFI_H264_LEVEL_5},
-> +	.num_pl = 5,
-> +	.fmts[0] = {HFI_BUFFER_INPUT, HFI_COLOR_FORMAT_NV12},
-> +	.fmts[1] = {HFI_BUFFER_INPUT, HFI_COLOR_FORMAT_NV12_UBWC},
-> +	.fmts[2] = {HFI_BUFFER_INPUT, HFI_COLOR_FORMAT_YUV420_TP10_UBWC},
-> +	.fmts[3] = {HFI_BUFFER_INPUT, HFI_COLOR_FORMAT_P010},
-10 bit encoder is not supported on AR50 LITE.
-> +	.num_fmts = 4,
-> +}, {
-> +	.codec = HFI_VIDEO_CODEC_HEVC,
-> +	.domain = VIDC_SESSION_TYPE_ENC,
-> +	.caps[0] = {HFI_CAPABILITY_FRAME_WIDTH, 128, 1920, 1},
-> +	.caps[1] = {HFI_CAPABILITY_FRAME_HEIGHT, 128, 1920, 1},
-> +	.caps[2] = {HFI_CAPABILITY_MBS_PER_FRAME, 64, 8160, 1},
-> +	.caps[3] = {HFI_CAPABILITY_BITRATE, 1, 60000000, 1 },
-> +	.caps[4] = {HFI_CAPABILITY_MBS_PER_SECOND, 64, 244800, 1},
-> +	.caps[5] = {HFI_CAPABILITY_FRAMERATE, 1, 120, 1},
-> +	.caps[6] = {HFI_CAPABILITY_MAX_VIDEOCORES, 0, 1, 1},
-> +	.caps[7] = {HFI_CAPABILITY_HIER_P_NUM_ENH_LAYERS, 0, 6, 1},
-> +	.caps[8] = {HFI_CAPABILITY_ENC_LTR_COUNT, 0, 4, 1},
-> +	.caps[9] = {HFI_CAPABILITY_MBS_PER_SECOND_POWERSAVE, 0, 244800, 1},
-> +	.caps[10] = {HFI_CAPABILITY_I_FRAME_QP, 0, 51, 1},
-> +	.caps[11] = {HFI_CAPABILITY_P_FRAME_QP, 0, 51, 1},
-> +	.caps[12] = {HFI_CAPABILITY_B_FRAME_QP, 0, 51, 1},
-> +	.caps[13] = {HFI_CAPABILITY_SLICE_BYTE, 1, 10, 1},
-> +	.caps[14] = {HFI_CAPABILITY_SLICE_MB, 1, 10, 1},
-> +	.num_caps = 15,
-> +	.pl[0] = {HFI_HEVC_PROFILE_MAIN, HFI_HEVC_LEVEL_5 | HFI_HEVC_TIER_HIGH0},
-> +	.pl[1] = {HFI_HEVC_PROFILE_MAIN10, HFI_HEVC_LEVEL_5 | HFI_HEVC_TIER_HIGH0},
-> +	.num_pl = 2,
-> +	.fmts[0] = {HFI_BUFFER_INPUT, HFI_COLOR_FORMAT_NV12},
-> +	.fmts[1] = {HFI_BUFFER_INPUT, HFI_COLOR_FORMAT_NV12_UBWC},
-> +	.fmts[2] = {HFI_BUFFER_INPUT, HFI_COLOR_FORMAT_YUV420_TP10_UBWC},
-> +	.fmts[3] = {HFI_BUFFER_INPUT, HFI_COLOR_FORMAT_P010},
-10 bit encoder is not supported on AR50 LITE.
+https://github.com/varigit/linux-imx/blob/lf-6.6.y_6.6.52-2.2.0_var01/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi#L14
+https://github.com/varigit/linux-imx/blob/lf-6.6.y_6.6.52-2.2.0_var01/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi#L15
+https://github.com/varigit/linux-imx/blob/lf-6.6.y_6.6.52-2.2.0_var01/arch/arm64/boot/dts/freescale/imx91-var-som.dtsi#L14
 
-Thanks,
-Dikshita
-> +	.num_fmts = 4,
-> +} };
-> +
->  static const struct hfi_plat_caps *get_capabilities(unsigned int *entries,
->  						    bool lite)
->  {
-> -	WARN_ON(lite);
-> +	*entries = lite ? ARRAY_SIZE(caps_lite) : ARRAY_SIZE(caps);
->  
-> -	*entries = ARRAY_SIZE(caps);
-> -	return caps;
-> +	return lite ? caps_lite : caps;
->  }
->  
->  static void get_codecs(u32 *enc_codecs, u32 *dec_codecs, u32 *count, bool lite)
->  {
-> -	WARN_ON(lite);
-> -
-> -	*enc_codecs = HFI_VIDEO_CODEC_H264 | HFI_VIDEO_CODEC_HEVC |
-> -		      HFI_VIDEO_CODEC_VP8;
-> -	*dec_codecs = HFI_VIDEO_CODEC_H264 | HFI_VIDEO_CODEC_HEVC |
-> -		      HFI_VIDEO_CODEC_VP8 | HFI_VIDEO_CODEC_VP9 |
-> -		      HFI_VIDEO_CODEC_MPEG2;
-> -	*count = 8;
-> +	if (lite) {
-> +		*enc_codecs = HFI_VIDEO_CODEC_H264 | HFI_VIDEO_CODEC_HEVC;
-> +		*dec_codecs = HFI_VIDEO_CODEC_H264 | HFI_VIDEO_CODEC_HEVC |
-> +			      HFI_VIDEO_CODEC_VP9;
-> +		*count = 5;
-> +	} else {
-> +		*enc_codecs = HFI_VIDEO_CODEC_H264 | HFI_VIDEO_CODEC_HEVC |
-> +			      HFI_VIDEO_CODEC_VP8;
-> +		*dec_codecs = HFI_VIDEO_CODEC_H264 | HFI_VIDEO_CODEC_HEVC |
-> +			      HFI_VIDEO_CODEC_VP8 | HFI_VIDEO_CODEC_VP9 |
-> +			      HFI_VIDEO_CODEC_MPEG2;
-> +		*count = 8;
-> +	}
->  }
->  
->  static const struct hfi_platform_codec_freq_data codec_freq_data[] =  {
-> @@ -277,14 +401,21 @@ static const struct hfi_platform_codec_freq_data codec_freq_data[] =  {
->  	{ V4L2_PIX_FMT_VP9, VIDC_SESSION_TYPE_DEC, 200, 10, 200 },
->  };
->  
-> +static const struct hfi_platform_codec_freq_data codec_freq_data_lite[] = {
-> +	{ V4L2_PIX_FMT_H264, VIDC_SESSION_TYPE_DEC, 440, 0, 440 },
-> +	{ V4L2_PIX_FMT_HEVC, VIDC_SESSION_TYPE_DEC, 440, 0, 440 },
-> +	{ V4L2_PIX_FMT_VP9, VIDC_SESSION_TYPE_DEC, 440, 0, 440 },
-> +	{ V4L2_PIX_FMT_H264, VIDC_SESSION_TYPE_ENC, 675, 0, 675 },
-> +	{ V4L2_PIX_FMT_HEVC, VIDC_SESSION_TYPE_ENC, 675, 0, 675 },
-> +};
-> +
->  static const struct hfi_platform_codec_freq_data *
->  get_codec_freq_data(u32 session_type, u32 pixfmt, bool lite)
->  {
->  	unsigned int i, data_size = ARRAY_SIZE(codec_freq_data);
->  	const struct hfi_platform_codec_freq_data *found = NULL;
-> -	const struct hfi_platform_codec_freq_data *data = codec_freq_data;
-> -
-> -	WARN_ON(lite);
-> +	const struct hfi_platform_codec_freq_data *data = lite ?
-> +					codec_freq_data_lite : codec_freq_data;
->  
->  	for (i = 0; i < data_size; i++) {
->  		if (data[i].pixfmt == pixfmt && data[i].session_type == session_type) {
-> @@ -300,8 +431,6 @@ static unsigned long codec_vpp_freq(u32 session_type, u32 codec, bool lite)
->  {
->  	const struct hfi_platform_codec_freq_data *data;
->  
-> -	WARN_ON(lite);
-> -
->  	data = get_codec_freq_data(session_type, codec, lite);
->  	if (data)
->  		return data->vpp_freq;
-> @@ -313,8 +442,6 @@ static unsigned long codec_vsp_freq(u32 session_type, u32 codec, bool lite)
->  {
->  	const struct hfi_platform_codec_freq_data *data;
->  
-> -	WARN_ON(lite);
-> -
->  	data = get_codec_freq_data(session_type, codec, lite);
->  	if (data)
->  		return data->vsp_freq;
-> @@ -326,8 +453,6 @@ static unsigned long codec_lp_freq(u32 session_type, u32 codec, bool lite)
->  {
->  	const struct hfi_platform_codec_freq_data *data;
->  
-> -	WARN_ON(lite);
-> -
->  	data = get_codec_freq_data(session_type, codec, lite);
->  	if (data)
->  		return data->low_power_freq;
+These strings are used in our Yocto filesystem for WiFi management and
+other applications. Changing them would require updating the entire
+Yocto configuration.
+
+Best regards,
+Stefano
+
+Il giorno gio 10 lug 2025 alle ore 08:50 Krzysztof Kozlowski
+<krzk@kernel.org> ha scritto:
+>
+> On 10/07/2025 00:07, Stefano Radaelli wrote:
+> > Add devicetree bindings for Variscite VAR-SOM-AM62P System on Module
+> > and its carrier boards.
+> >
+> > Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
+> > ---
+> > v2:
+> >  - Add symphony carrier board compatible
+> >
+> >  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > index bf6003d8fb76..780fbb5970a5 100644
+> > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > @@ -100,6 +100,12 @@ properties:
+> >            - const: toradex,verdin-am62p          # Verdin AM62P Module
+> >            - const: ti,am62p5
+> >
+> > +      - description: K3 AM62P5 SoC Variscite SOM and Carrier Boards
+> > +        items:
+> > +          - const: variscite,am62p-var-som-symphony
+>
+> This is named reversed. Usually Variscite names are var-som-foo and:
+> https://www.variscite.com/product/system-on-module-som/cortex-a53-krait/var-som-am62p-ti-sitara-am62px/
+>
+> confirms this, so the compatibles should be var-som-am62p.
+>
+>
+>
+> Best regards,
+> Krzysztof
 
