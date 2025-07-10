@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-194814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EF2CAFFA24
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 08:52:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0BFCAFFA4F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 09:03:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C85B04A83F5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 06:52:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BED344E715C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 07:02:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C7227F018;
-	Thu, 10 Jul 2025 06:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2FBF23ABAE;
+	Thu, 10 Jul 2025 07:03:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gbzurl2Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EdiNRxki"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B178DDC1;
-	Thu, 10 Jul 2025 06:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99DC4FC1D;
+	Thu, 10 Jul 2025 07:03:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752130326; cv=none; b=bI7NhmBcrbf+96vS/TJTpEOhc43p5B7NHyEbQWKUpdteGv00XzOY0WT2FIQ39KmWDI/b2U67lka1OH+kvHZXr/o+0r9fe0LfWl8bQ+nhue0T+a3dbgEr53pIrsp7oIGW+rbURmKo5t2elkvrDyMDdXrvmGRo249l6/CUyRMkLrE=
+	t=1752130988; cv=none; b=K+D7RcFaayuQLCcQp3DBjAv5h69WC+6+q4U29zP+rN7hfqgoM0A/vJ1H5LILyRcGeirhvh705Te6dDo52+FZD6RoX7FKIdshwbE9Q7lMxi4yX8C06DaB+Yq5XzecExfiSLTM+v5cGq68XJadUCCH9cWC0J/S2CT+ONN92ynDUdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752130326; c=relaxed/simple;
-	bh=dC2IcPrWVLFhi42ID/OGRICAdfJQWedQvGLPkTPrwvg=;
+	s=arc-20240116; t=1752130988; c=relaxed/simple;
+	bh=OrTGxFrw0ZmJFljrK6uFin1VEz5eOA4NkCPwBi0T8sk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OJwKZCLCjrysKAn3coBVzOTPryMJfR6Y1OoqEZoN4DDbQ/Qjsm7/qRcLj3im8CNI1XbVVENrCMIRakV3spLGjmXEyS+MvpM5H912yh2tsnWqqGKCZPNr2irbX6qkzyn3n9815kvy29d2Cc/9iNtKWNMdssxnlakYmKpzgT8vwxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gbzurl2Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9D5EC4CEE3;
-	Thu, 10 Jul 2025 06:52:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=fAqo9snvw+D14hRML2Luc023WslUSx2848CBzmGP+Qggc58nHgwjNQ6tS5dO4A8yvpjlBHfDPEFa66dDbDyqO+WKVEY4XkmRiA6x0yOI2AeQCj6C2PTesKHLVAW6m9Zg2b9v5/C7gjlpFIYZFTI5J06JcGSd4XpmdLb0yEPfCvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EdiNRxki; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A336C4CEF5;
+	Thu, 10 Jul 2025 07:02:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752130325;
-	bh=dC2IcPrWVLFhi42ID/OGRICAdfJQWedQvGLPkTPrwvg=;
+	s=k20201202; t=1752130988;
+	bh=OrTGxFrw0ZmJFljrK6uFin1VEz5eOA4NkCPwBi0T8sk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Gbzurl2YGrIoY+bLZTrjAKZtk0B4X3jQSOoZk2FAg6gKCUpgHIwCAZcK8/mZMN52o
-	 4qFq3WZi+goDW5YEnQ9GrmFvK+n4+Aa+b1cflUG5tEty5QuhASCOUNsK+C5gVmgjg3
-	 SGkI5wew66L9xhgnVMQEsbd7VtkcokUDruJb9Ux1+ToJNySw9u2h7+JSNGnfHP1yNM
-	 YYsHX5TCsBHm696lW5AbNk8wMdKnVY7KoFhQd7MmYr+6MpZ65/2LYVD/34TrCj1TOj
-	 YOLoq0ZIqowg1eYwQpc1wuoD+rE9cepK0RHPzXFSgbYLk8Lt77wrTOts4IeA9CgVx0
-	 HRe1eepsX49tQ==
-Message-ID: <b495f928-b90f-4061-a224-9b6beb690951@kernel.org>
-Date: Thu, 10 Jul 2025 08:52:00 +0200
+	b=EdiNRxkiTAtiLgRS1Y6C3hUD+y1cX5n4ohdHvLlfiiPAD3LaDnf18I56SYmpNYL2N
+	 eGdkNdv2r4XrekAwPPTJxfy7agiOdzGLVxznnwVQJoFQzCM7IsBUKe2VyE1kpsv9TP
+	 3q+IAmiMxmzOaricb56Ct9skSXyuCFaFDVp+MegzOPyPFulGFhptSEXnKRXy2JQrI8
+	 jetuNJgqvHrk1LvzOyWxWaaXCfwupivp3Qb6nSDoCjaXHhWMLZv1l0wZf6xtvEYV8o
+	 BLx2YspRLNUrAic2qd5W7T9EVR3cX1mRX2PWhH0sKPARaR4CdXI1tSBWKN6GDIhfAK
+	 27QfiTGZHEwAA==
+Message-ID: <5998de2a-f3ae-46bf-a975-081da20bab03@kernel.org>
+Date: Thu, 10 Jul 2025 09:02:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: ti: Add support for Variscite
- VAR-SOM-AM62P
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 14/16] arm64: dts: axis: Add initial device tree support
+To: ksk4725@coasia.com, Jesper Nilsson <jesper.nilsson@axis.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-References: <20250709220714.85697-1-stefano.radaelli21@gmail.com>
- <20250709220714.85697-3-stefano.radaelli21@gmail.com>
+ <conor+dt@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Tomasz Figa
+ <tomasz.figa@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Ravi Patel <ravi.patel@samsung.com>, SungMin Park <smn1196@coasia.com>
+Cc: kenkim <kenkim@coasia.com>, Jongshin Park <pjsin865@coasia.com>,
+ GunWoo Kim <gwk1013@coasia.com>, HaGyeong Kim <hgkim05@coasia.com>,
+ GyoungBo Min <mingyoungbo@coasia.com>,
+ Pankaj Dubey <pankaj.dubey@samsung.com>, Shradha Todi
+ <shradha.t@samsung.com>, Inbaraj E <inbaraj.e@samsung.com>,
+ Swathi K S <swathi.ks@samsung.com>, Hrishikesh <hrishikesh.d@samsung.com>,
+ Dongjin Yang <dj76.yang@samsung.com>, Sang Min Kim
+ <hypmean.kim@samsung.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-arm-kernel@axis.com, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, soc@lists.linux.dev
+References: <20250710002047.1573841-1-ksk4725@coasia.com>
+ <20250710002047.1573841-15-ksk4725@coasia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,51 +119,453 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250709220714.85697-3-stefano.radaelli21@gmail.com>
+In-Reply-To: <20250710002047.1573841-15-ksk4725@coasia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/07/2025 00:07, Stefano Radaelli wrote:
-> +&main_spi0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_spi0>;
-> +	ti,pindir-d0-out-d1-in;
+On 10/07/2025 02:20, ksk4725@coasia.com wrote:
+> From: sungminpark <smn1196@coasia.com>
+> 
+> Add initial device tree support for Axis ARTPEC-8 SoC and Grizzly board.
+> This SoC contains four cores of cortex-a53 CPUs and other various
+
+Subject: Initial device tree of what?
+
+> peripheral IPs.
+> 
+> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
+> Signed-off-by: sungminpark <smn1196@coasia.com>
+> ---
+>  MAINTAINERS                                  |  14 ++
+>  arch/arm64/Kconfig.platforms                 |  13 +
+>  arch/arm64/boot/dts/Makefile                 |   1 +
+>  arch/arm64/boot/dts/axis/Makefile            |   4 +
+>  arch/arm64/boot/dts/axis/artpec8-grizzly.dts |  67 +++++
+>  arch/arm64/boot/dts/axis/artpec8.dtsi        | 252 +++++++++++++++++++
+>  6 files changed, 351 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/axis/Makefile
+>  create mode 100644 arch/arm64/boot/dts/axis/artpec8-grizzly.dts
+>  create mode 100644 arch/arm64/boot/dts/axis/artpec8.dtsi
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index fa1e04e87d1d..371005f3f41a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2320,6 +2320,20 @@ F:	drivers/crypto/axis
+>  F:	drivers/mmc/host/usdhi6rol0.c
+>  F:	drivers/pinctrl/pinctrl-artpec*
+>  
+> +ARM/ARTPEC ARM64 MACHINE SUPPORT
+
+This is samsung soc, so I need a pattern for that as well as I will be
+handling patches.
+
+> +M:	Jesper Nilsson <jesper.nilsson@axis.com>
+> +M:	Ravi Patel <ravi.patel@samsung.com>
+> +M:	SeonGu Kang <ksk4725@coasia.com>
+> +M:	SungMin Park <smn1196@coasia.com>
+
+Please keep only maintainers who will actually perform reviews of the
+code. I am not even sure if this is worth separate entry outside of
+Samsung. Please list the IP blocks which are not Samsung here.
+
+> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> +L:	linux-samsung-soc@vger.kernel.org
+> +L:	linux-arm-kernel@axis.com
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/clock/axis,artpec*-clock.yaml
+> +F:	arch/arm64/boot/dts/axis/
+> +F:	drivers/clk/samsung/clk-artpec*.c
+> +F:	include/dt-bindings/clock/axis,artpec*-clk.h
 > +
-> +	/* Resistive touch controller */
+>  ARM/ASPEED I2C DRIVER
+>  M:	Ryan Chen <ryan_chen@aspeedtech.com>
+>  R:	Benjamin Herrenschmidt <benh@kernel.crashing.org>
+> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+> index 8b76821f190f..418ee47227c1 100644
+> --- a/arch/arm64/Kconfig.platforms
+> +++ b/arch/arm64/Kconfig.platforms
+> @@ -40,6 +40,19 @@ config ARCH_APPLE
+>  	  This enables support for Apple's in-house ARM SoC family, such
+>  	  as the Apple M1.
+>  
+> +config ARCH_ARTPEC
+> +	bool "Axis Communications ARTPEC SoC Family"
+> +	help
+> +	   This enables support for the ARMv8 based ARTPEC SoC Family.
+> +
+> +config ARCH_ARTPEC8
 
-Drop comment, it should be redundant with proper node naming.
+No, drop. One ARCH symbol.
 
-> +	ads7846@0 {
+> +	bool "Axis ARTPEC-8 SoC Platform"
+> +	depends on ARCH_ARTPEC
+> +	depends on ARCH_EXYNOS
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+And that's the proof that this is Samsung SoC.
+
+> +	select ARM_GIC
+> +	help
+> +	  This enables support for the Axis ARTPEC-8 SoC.
+> +
+>  menuconfig ARCH_BCM
+>  	bool "Broadcom SoC Support"
+>  
+> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
+> index 79b73a21ddc2..6b6a3aedc2ed 100644
+> --- a/arch/arm64/boot/dts/Makefile
+> +++ b/arch/arm64/boot/dts/Makefile
+> @@ -9,6 +9,7 @@ subdir-y += amlogic
+>  subdir-y += apm
+>  subdir-y += apple
+>  subdir-y += arm
+> +subdir-y += axis
+>  subdir-y += bitmain
+>  subdir-y += blaize
+>  subdir-y += broadcom
+> diff --git a/arch/arm64/boot/dts/axis/Makefile b/arch/arm64/boot/dts/axis/Makefile
+> new file mode 100644
+> index 000000000000..ccf00de64016
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/axis/Makefile
+> @@ -0,0 +1,4 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +dtb-$(CONFIG_ARCH_ARTPEC) += \
+> +	artpec8-grizzly.dtb
+> diff --git a/arch/arm64/boot/dts/axis/artpec8-grizzly.dts b/arch/arm64/boot/dts/axis/artpec8-grizzly.dts
+> new file mode 100644
+> index 000000000000..7671130a0333
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/axis/artpec8-grizzly.dts
+> @@ -0,0 +1,67 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Axis ARTPEC-8 Grizzly board device tree source
+> + *
+> + * Copyright (c) 2022-2025 Samsung Electronics Co., Ltd.
+> + *             https://www.samsung.com
+> + * Copyright (c) 2022-2025  Axis Communications AB.
+> + *             https://www.axis.com
+> + */
+> +
+> +/dts-v1/;
+> +#include "artpec8.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +/ {
+> +	model = "ARTPEC-8 grizzly board";
+> +	compatible = "axis,artpec8-grizzly", "axis,artpec8";
+> +
+> +	aliases {
+> +		serial0 = &serial_0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &serial_0;
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x80000000 0x0 0x80000000>;
+> +	};
+> +};
+> +
+> +&osc_clk {
+> +	clock-frequency = <50000000>;
+> +	status = "okay";
+
+Why?
+
+> +};
+> +
+> +&serial_0 {
+
+Follow DTS coding style. s > c
+o > c
 
 
-> +		compatible = "ti,ads7846";
-> +		reg = <0>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_restouch>;
-> +		interrupt-parent = <&main_gpio0>;
-> +		interrupts = <48 IRQ_TYPE_EDGE_FALLING>;
-> +		spi-max-frequency = <1500000>;
-> +		pendown-gpio = <&main_gpio0 48 GPIO_ACTIVE_LOW>;
-> +		ti,x-min = /bits/ 16 <125>;
-> +		ti,x-max = /bits/ 16 <4008>;
-> +		ti,y-min = /bits/ 16 <282>;
-> +		ti,y-max = /bits/ 16 <3864>;
-> +		ti,x-plate-ohms = /bits/ 16 <180>;
-> +		ti,pressure-max = /bits/ 16 <255>;
-> +		ti,debounce-max = /bits/ 16 <10>;
-> +		ti,debounce-tol = /bits/ 16 <3>;
-> +		ti,debounce-rep = /bits/ 16 <1>;
-> +		ti,settle-delay-usec = /bits/ 16 <150>;
-> +		ti,keep-vref-on;
-> +		wakeup-source;
-> +		status = "okay";
+> +	status = "okay";
+> +};
+> +
+> +&cmu_cmu {
+> +	status = "okay";
+> +};
+> +
+> +&cmu_bus {
+> +	status = "okay";
+> +};
+> +
+> +&cmu_core {
+> +	status = "okay";
+> +};
+> +
+> +&cmu_cpucl {
+> +	status = "okay";
+> +};
+> +
+> +&cmu_fsys {
+> +	status = "okay";
+> +};
+> +
+> +&cmu_imem {
+> +	status = "okay";
+> +};
+> +
+> +&cmu_peri {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/axis/artpec8.dtsi b/arch/arm64/boot/dts/axis/artpec8.dtsi
+> new file mode 100644
+> index 000000000000..296192560adf
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/axis/artpec8.dtsi
+> @@ -0,0 +1,252 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Axis ARTPEC-8 SoC device tree source
+> + *
+> + * Copyright (c) 2022-2025 Samsung Electronics Co., Ltd.
+> + *             https://www.samsung.com
+> + * Copyright (c) 2022-2025  Axis Communications AB.
+> + *             https://www.axis.com
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/clock/axis,artpec8-clk.h>
+> +
+> +/ {
+> +	compatible = "axis,artpec8";
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x0>;
+> +			cpu-idle-states = <&cpu_sleep>;
+> +			enable-method = "psci";
+> +			clocks = <&cmu_cpucl DOUT_CLK_CPUCL_CPU>;
+> +			clock-names = "dout_clk_cpucl_cpu";
+> +			clock-frequency = <1200000000>;
 
-Why? Is it disabled anywhere?
+This feels wrong. Frequency changes, doesn't it?
+
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x1>;
+> +			cpu-idle-states = <&cpu_sleep>;
+> +			enable-method = "psci";
+> +			clock-frequency = <1200000000>;
+> +		};
+> +
+> +		cpu2: cpu@2 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x2>;
+> +			cpu-idle-states = <&cpu_sleep>;
+> +			enable-method = "psci";
+> +			clock-frequency = <1200000000>;
+> +		};
+> +
+> +		cpu3: cpu@3 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x3>;
+> +			cpu-idle-states = <&cpu_sleep>;
+> +			enable-method = "psci";
+> +			clock-frequency = <1200000000>;
+> +		};
+> +
+> +		idle-states {
+> +			entry-method = "psci";
+> +
+> +			cpu_sleep: cpu-sleep {
+> +				compatible = "arm,idle-state";
+> +				arm,psci-suspend-param = <0x0010000>;
+> +				local-timer-stop;
+> +				entry-latency-us = <300>;
+> +				exit-latency-us = <1200>;
+> +				min-residency-us = <2000>;
+> +			};
+> +		};
+> +	};
+> +
+> +	timer {
+
+Also wrongly ordered. See DTS coding style.
+
+
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu {
+> +		compatible = "arm,cortex-a53-pmu";
+> +		interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-0.2";
+> +		method = "smc";
+> +	};
+> +
+> +	osc_clk: xxti {
+
+clock-xxti
+
+> +		compatible = "fixed-clock";
+> +		clock-output-names = "xxti";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	fin_pll: fin_pll {
+
+DTS coding style.
+
+> +		compatible = "fixed-factor-clock";
+> +		clocks = <&osc_clk>;
+> +		#clock-cells = <0>;
+> +		clock-div = <2>;
+> +		clock-mult = <1>;
+> +		clock-output-names = "fin_pll";
+> +	};
+> +
+> +	soc: soc@0 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x0 0x0 0x0 0x17000000>;
+
+DTS coding style.
+
+> +
+> +		mct@10040000 {
+
+Look at other SoCs first
+
+> +			compatible = "samsung,exynos4210-mct";
+
+You just missed two years of development, right? Look at other SoCs.
+
+
+> +			reg = <0x10040000 0x1000>;
+> +			clocks = <&fin_pll>, <&cmu_imem MOUT_IMEM_ACLK_USER>;
+> +			clock-names = "fin_pll", "mct";
+> +			interrupts = <GIC_SPI 455 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 457 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 459 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		gic: interrupt-controller@10201000 {
+> +			compatible = "arm,gic-400";
+> +			#interrupt-cells = <3>;
+> +			#address-cells = <0>;
+> +			interrupt-controller;
+> +			reg = <0x10201000 0x00001000>,
+> +			      <0x10202000 0x00002000>,
+> +			      <0x10204000 0x00002000>,
+> +			      <0x10206000 0x00002000>;
+
+DTS coding style.
+
+> +		};
+> +
+> +		cmu_cmu: clock-controller@12400000 {
+> +			compatible = "axis,artpec8-cmu-cmu";
+> +			reg = <0x12400000 0x4000>;
+> +			#clock-cells = <1>;
+> +			clocks = <&fin_pll>;
+> +			clock-names = "fin_pll";
+> +			status = "disabled";
+
+Why? No, don't do that, even if clock frequency of xxti is missing. Look
+at other SoCs.
+
+
+> +		};
+> +
+> +		cmu_bus: clock-controller@12c10000 {
+> +			compatible = "axis,artpec8-cmu-bus";
+> +			reg = <0x12c10000 0x4000>;
+> +			#clock-cells = <1>;
+> +			clocks = <&fin_pll>,
+> +				 <&cmu_cmu DOUT_CLKCMU_BUS_BUS>,
+> +				 <&cmu_cmu DOUT_CLKCMU_BUS_DLP>;
+> +			clock-names = "fin_pll",
+> +				      "dout_clkcmu_bus_bus",
+> +				      "dout_clkcmu_bus_dlp";
+> +			status = "disabled";
+> +		};
+> +
+> +		cmu_core: clock-controller@12410000 {
+> +			compatible = "axis,artpec8-cmu-core";
+> +			reg = <0x12410000 0x4000>;
+> +			#clock-cells = <1>;
+> +			clocks = <&fin_pll>,
+> +				 <&cmu_cmu DOUT_CLKCMU_CORE_MAIN>,
+> +				 <&cmu_cmu DOUT_CLKCMU_CORE_DLP>;
+> +			clock-names = "fin_pll",
+> +				      "dout_clkcmu_core_main",
+> +				      "dout_clkcmu_core_dlp";
+> +			status = "disabled";
+> +		};
+> +
+> +		cmu_cpucl: clock-controller@11410000 {
+> +			compatible = "axis,artpec8-cmu-cpucl";
+> +			reg = <0x11410000 0x4000>;
+> +			#clock-cells = <1>;
+> +			clocks = <&fin_pll>,
+> +				 <&cmu_cmu DOUT_CLKCMU_CPUCL_SWITCH>;
+> +			clock-names = "fin_pll",
+> +				"dout_clkcmu_cpucl_switch";
+> +			status = "disabled";
+> +		};
+> +
+> +		cmu_fsys: clock-controller@16c10000 {
+> +			compatible = "axis,artpec8-cmu-fsys";
+> +			reg = <0x16c10000 0x4000>;
+> +			#clock-cells = <1>;
+> +			clocks = <&fin_pll>,
+> +				 <&cmu_cmu DOUT_CLKCMU_FSYS_SCAN0>,
+> +				 <&cmu_cmu DOUT_CLKCMU_FSYS_SCAN1>,
+> +				 <&cmu_cmu DOUT_CLKCMU_FSYS_BUS>,
+> +				 <&cmu_cmu DOUT_CLKCMU_FSYS_IP>;
+> +			clock-names = "fin_pll",
+> +				      "dout_clkcmu_fsys_scan0",
+> +				      "dout_clkcmu_fsys_scan1",
+> +				      "dout_clkcmu_fsys_bus",
+> +				      "dout_clkcmu_fsys_ip";
+> +			status = "disabled";
+> +		};
+> +
+> +		cmu_imem: clock-controller@10010000 {
+
+DTS coding style.
+
 
 
 Best regards,
