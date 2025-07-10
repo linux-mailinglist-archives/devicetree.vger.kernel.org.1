@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-194771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-194772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D737AFF6F5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 04:45:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0FAAFF6F6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 04:45:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56D6B16A525
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 02:45:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F52054226B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 02:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0EAA27F16D;
-	Thu, 10 Jul 2025 02:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CDEC27FB21;
+	Thu, 10 Jul 2025 02:45:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BZOBh7sv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GYRDqzqS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6BB81FDD;
-	Thu, 10 Jul 2025 02:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1533D1FDD;
+	Thu, 10 Jul 2025 02:45:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752115541; cv=none; b=MVYQxqZG7pKdRHdArGGwDl1EiqlhrVvp5rztbJsh5B5vi/3ezAYitDcN9PNfTZi4alFybR5B8KMO39KNd6X2VHIoMEM8/t6LN7xelFAzmQOrFQkOop/0SK5LXgXoqCBshbCxRo6ZT6zQbNank6tiLjs2j5EH0PjgKsW8a7sfZR0=
+	t=1752115543; cv=none; b=c1BhRJfBYj1Z4LpYGv2Pwo8YVSgZr1aONNX/bho+5amzbB6DMv9czBZn2ueFP5Q/W1+s+qMumZn5jwZ1vDBD/CRBbxxqk+ArdjavWHmDNKBmnCoJ/3PKKhBlin+HMz8wXHhXdjZ07006PX1ivPbCBuKjJnM/yC0Ro9NW/NlszFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752115541; c=relaxed/simple;
-	bh=eUk6e7AZRF7cb9xdrd8ekZHvFdTxe6DSM8C/y5EDFAY=;
+	s=arc-20240116; t=1752115543; c=relaxed/simple;
+	bh=DbJ7pzvyLSajFxPAjFNYWqJERvyPy80AQtVzVHLDCDs=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=YrdYlPlMa9dOrkMXzE6cCV/Sg6QMT2Yijxc54dy6eX4Jk4mfwCzhFQGpf8T6rPDu50WX6lAyO7s3Wf0eiaz5DBNQ705vEnQirWbDY8Sx9EsAQsY0OuEzN7tcAsj0YbcQYBCuTATnigwcXVmKCUUsNEwuFKlA6CsEUXDHZYT9xT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BZOBh7sv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1A30C4CEEF;
-	Thu, 10 Jul 2025 02:45:40 +0000 (UTC)
+	 Message-Id:Subject; b=mm7XKxJ6HU0UpQaLc5x227LCBgo+WD+u9lJooqTl5JZJIGAiIANIQaBLs3T9hDFdpCvavrqNKRC9hGrHQJUxGbJjcEqO4b8n3TErWF+Y4w/h2dvAFG8y4bbr3BhHGYa/MctnH/7Jnf6rLfN8r24qsiY16CQkeiyoeDY2c/F2cU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GYRDqzqS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FCC7C4CEF5;
+	Thu, 10 Jul 2025 02:45:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752115541;
-	bh=eUk6e7AZRF7cb9xdrd8ekZHvFdTxe6DSM8C/y5EDFAY=;
+	s=k20201202; t=1752115542;
+	bh=DbJ7pzvyLSajFxPAjFNYWqJERvyPy80AQtVzVHLDCDs=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=BZOBh7svNUr5nkT1+RXSjYuoZH7nlJwIM+KWR8RJI9SvR0VxfDG0HLPCEiE+4B0LP
-	 axNwWtnxHl8RlEnzcWK/7R5pQqfTlncrvEZyv9kW9XukMFKNvt/1tI5Pye+H/ScYjm
-	 FFyFJ6sOG1bGKm6CTiZFnsp0F8zNySScSFC7X7Wj8lXmyIAQbb8VlMi7Ca7P47k/bs
-	 g8Ei3n5qYqsj8EVBGW8EyQqAO/sK4UFfxYVr/1H3+GSfxK6d/1ozh4voOE0ACNIazJ
-	 b9n+R4x9a9YcFVkRAE2S7PI9IJI+lXoM5nkCJyc9MvbUfKLfhwZqykM0g86uikQ4tU
-	 E0fpNeCeVyZ8g==
-Date: Wed, 09 Jul 2025 21:45:39 -0500
-Content-Type: text/plain; charset="utf-8"
+	b=GYRDqzqSMAPcWOjTOiM60Ttb6B3Tgp727qClmWixa6Lmprs6KTULXchOBDZS1dneb
+	 jjYdqNG7sjQC5hxzo9WY3uCEY26EP4xQMTcOMGBm6BFE54ll1Vg3ixMjoxA+wvS92S
+	 sfby6XDLjyiJKvPGAMuwqNMnjfsYWyz6LaxrINr9TaEPSdsdV7EESzwYaxljdcLcAo
+	 hv5hr6PpZNpT+s5/1yvPYKLam2UEE+w5AoiuZAzr/ARbxumVnlGiy71X/j0zi5566c
+	 U8Bm//c/RGf8W9+FjLr+om46N0KscL9sAsrvO3xfbQgJEa+7uv0FgNlSm/zZ+ClN8N
+	 ZMYoaDDS+X2TQ==
+Date: Wed, 09 Jul 2025 21:45:41 -0500
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -51,53 +51,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-tegra@vger.kernel.org, devicetree@vger.kernel.org, 
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Chukun Pan <amadeus@jmu.edu.cn>, 
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ Heiko Stuebner <heiko@sntech.de>, Jonas Karlman <jonas@kwiboo.se>, 
  linux-arm-kernel@lists.infradead.org
-To: Thierry Reding <thierry.reding@gmail.com>
-In-Reply-To: <20250709231401.3767130-1-thierry.reding@gmail.com>
-References: <20250709231401.3767130-1-thierry.reding@gmail.com>
-Message-Id: <175211539720.410893.5566510176831399738.robh@kernel.org>
-Subject: Re: [PATCH 0/4] arm64: tegra: Add Tegra264 support
+To: Yao Zi <ziyao@disroot.org>
+In-Reply-To: <aG3vPsUd-FPkhi-S@pie.lan>
+References: <20250708224921.2254116-1-jonas@kwiboo.se>
+ <20250708224921.2254116-3-jonas@kwiboo.se> <aG3vPsUd-FPkhi-S@pie.lan>
+Message-Id: <175211539781.410915.4272303348693567023.robh@kernel.org>
+Subject: Re: [PATCH 2/6] arm64: dts: rockchip: Add Radxa ROCK 2A/2F
 
 
-On Thu, 10 Jul 2025 01:13:57 +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Wed, 09 Jul 2025 04:25:34 +0000, Yao Zi wrote:
+> On Tue, Jul 08, 2025 at 10:48:52PM +0000, Jonas Karlman wrote:
+> > The ROCK 2A and ROCK 2F is a high-performance single board computer
+> > developed by Radxa, based on the Rockchip RK3528A SoC.
+> >
+> > Add initial device tree for the Radxa ROCK 2A and ROCK 2F boards.
+> >
+> > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> > ---
+> > Schematics:
+> > - https://dl.radxa.com/rock2/2a/v1.2/radxa_rock_2a_v1.2_schematic.pdf
+> > - https://dl.radxa.com/rock2/2f/radxa_rock2f_v1.01_schematic.pdf
+> > ---
+> >  arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+> >  .../boot/dts/rockchip/rk3528-rock-2.dtsi      | 292 ++++++++++++++++++
+> >  .../boot/dts/rockchip/rk3528-rock-2a.dts      |  82 +++++
+> >  .../boot/dts/rockchip/rk3528-rock-2f.dts      |  10 +
+> >  4 files changed, 386 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2f.dts
 > 
-> This adds support for the Tegra264 SoC as well as the engineering
-> reference platform that goes with it. There isn't too much here yet, but
-> it should enable users to boot into an initial ramdisk. Patches to
-> enable access to the root filesystem are in the works but not quite
-> ready yet.
+> While testing the patch on my Rock 2A board, I noticed one of my SDcard
+> that works perfectly on Radxa E20C and NanoPi Zero 2 cannot be correctly
+> read out under UHS-125-SDR mode,
 > 
-> Thierry
+> 	# dd if=/dev/mmcblk1 of=/dev/null bs=4M count=4
+> 	[   18.616828] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+> 	[   19.193315] mmc1: Skipping voltage switch
+> 	[   19.202046] mmc1: tried to HW reset card, got error -110
+> 	[   19.213312] mmcblk1: recovery failed!
+> 	[   19.213709] I/O error, dev mmcblk1, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 256 prio class 0
+> 	[   19.225201] mmcblk1: recovery failed!
+> 	[   19.225530] I/O error, dev mmcblk1, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+> 	[   19.226283] Buffer I/O error on dev mmcblk1, logical block 0, async page read
+> 	dd: /dev/mmcblk1: I/O error
 > 
-> Thierry Reding (4):
->   arm64: tegra: Add Tegra264 support
->   arm64: tegra: Add p3971-0089+p3834-0008 support
->   arm64: tegra: Add memory controller on Tegra264
->   arm64: defconfig: Enable Tegra241 and Tegra264
+> which could be reproduced stably.
 > 
->  arch/arm64/boot/dts/nvidia/Makefile           |   2 +
->  .../boot/dts/nvidia/tegra264-p3834-0008.dtsi  |   7 +
->  .../arm64/boot/dts/nvidia/tegra264-p3834.dtsi |  30 ++
->  .../nvidia/tegra264-p3971-0089+p3834-0008.dts |  11 +
->  .../dts/nvidia/tegra264-p3971-0089+p3834.dtsi |  14 +
->  .../boot/dts/nvidia/tegra264-p3971-0089.dtsi  |   3 +
->  .../arm64/boot/dts/nvidia/tegra264-p3971.dtsi |   4 +
->  arch/arm64/boot/dts/nvidia/tegra264.dtsi      | 415 ++++++++++++++++++
->  arch/arm64/configs/defconfig                  |   2 +
->  9 files changed, 488 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/nvidia/tegra264-p3834-0008.dtsi
->  create mode 100644 arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi
->  create mode 100644 arch/arm64/boot/dts/nvidia/tegra264-p3971-0089+p3834-0008.dts
->  create mode 100644 arch/arm64/boot/dts/nvidia/tegra264-p3971-0089+p3834.dtsi
->  create mode 100644 arch/arm64/boot/dts/nvidia/tegra264-p3971-0089.dtsi
->  create mode 100644 arch/arm64/boot/dts/nvidia/tegra264-p3971.dtsi
->  create mode 100644 arch/arm64/boot/dts/nvidia/tegra264.dtsi
+> the SDMMC controller issued interesting messages during the tuning
+> process,
 > 
-> --
-> 2.50.0
+> 	[    0.665246] mmc_host mmc1: Bus speed (slot 0) = 148500000Hz (slot req 150000000Hz, actual 148500000HZ div = 0)
+> 	[    0.851940] dwmmc_rockchip ffc30000.mmc: All phases work, using default phase 90.
 > 
+> but actually it doesn't work with phase = 90. If the frequency is
+> limited to 100MHz with max-frequency = <100000000> instead of the
+> default 150MHz, tuning results in a very different phase,
+> 
+> 	[    0.665483] mmc_host mmc1: Bus speed (slot 0) = 99600000Hz (slot req 100000000Hz, actual 99600000HZ div = 0)
+> 	[    1.166340] dwmmc_rockchip ffc30000.mmc: Successfully tuned phase to 141
+> 
+> and the card works, too. If I set rockchip,default-sample-phase to 141
+> in devicetree, the card could work at full 150MHz as well.
+> 
+> I think there's something wrong with the tuning process, or the board's
+> design cannot always run reliably at 150MHz.
+> 
+> Could you reproduce similar failures on Radxa 2A? If so, it may be
+> necessary to lower the SDMMC's maximum frequency for the board.
+> 
+> Regards,
+> Yao Zi
 > 
 > 
 
@@ -118,44 +147,57 @@ make sure dt-schema is up to date:
 
 This patch series was applied (using b4) to base:
  Base: attempting to guess base-commit...
- Base: tags/next-20250709 (best guess, 1/2 blobs matched)
+ Base: tags/v6.16-rc1-34-g7f9509791507 (exact match)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/nvidia/' for 20250709231401.3767130-1-thierry.reding@gmail.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for aG3vPsUd-FPkhi-S@pie.lan:
 
-In file included from arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi:3,
-                 from arch/arm64/boot/dts/nvidia/tegra264-p3834-0008.dtsi:3,
-                 from arch/arm64/boot/dts/nvidia/tegra264-p3971-0089+p3834-0008.dts:5:
-arch/arm64/boot/dts/nvidia/tegra264.dtsi:3:10: fatal error: dt-bindings/clock/nvidia,tegra264.h: No such file or directory
-    3 | #include <dt-bindings/clock/nvidia,tegra264.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[3]: *** [scripts/Makefile.dtbs:131: arch/arm64/boot/dts/nvidia/tegra264-p3971-0089+p3834-0008.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:554: arch/arm64/boot/dts/nvidia] Error 2
-make[2]: Target 'arch/arm64/boot/dts/nvidia/tegra264-p3971-0089+p3834-0008.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1478: nvidia/tegra264-p3971-0089+p3834-0008.dtb] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-make: Target 'nvidia/tegra210-p2371-2180.dtb' not remade because of errors.
-make: Target 'nvidia/tegra210-p3450-0000.dtb' not remade because of errors.
-make: Target 'nvidia/tegra234-p3737-0000+p3701-0008.dtb' not remade because of errors.
-make: Target 'nvidia/tegra234-p3740-0002+p3701-0008.dtb' not remade because of errors.
-make: Target 'nvidia/tegra234-p3737-0000+p3701-0000.dtb' not remade because of errors.
-make: Target 'nvidia/tegra186-p2771-0000.dtb' not remade because of errors.
-make: Target 'nvidia/tegra210-p2371-0000.dtb' not remade because of errors.
-make: Target 'nvidia/tegra194-p3509-0000+p3668-0000.dtb' not remade because of errors.
-make: Target 'nvidia/tegra234-p3768-0000+p3767-0000.dtb' not remade because of errors.
-make: Target 'nvidia/tegra234-sim-vdk.dtb' not remade because of errors.
-make: Target 'nvidia/tegra186-p3509-0000+p3636-0001.dtb' not remade because of errors.
-make: Target 'nvidia/tegra194-p2972-0000.dtb' not remade because of errors.
-make: Target 'nvidia/tegra210-smaug.dtb' not remade because of errors.
-make: Target 'nvidia/tegra194-p3509-0000+p3668-0001.dtb' not remade because of errors.
-make: Target 'nvidia/tegra234-p3768-0000+p3767-0005.dtb' not remade because of errors.
-make: Target 'nvidia/tegra210-p2571.dtb' not remade because of errors.
-make: Target 'nvidia/tegra264-p3971-0089+p3834-0008.dtb' not remade because of errors.
-make: Target 'nvidia/tegra132-norrin.dtb' not remade because of errors.
-make: Target 'nvidia/tegra210-p2894-0050-a08.dtb' not remade because of errors.
+arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dtb: /soc/power-management@ff600000: failed to match any schema with compatible: ['rockchip,rk3528-pmu', 'syscon', 'simple-mfd']
+arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dtb: /soc/power-management@ff600000/power-controller: failed to match any schema with compatible: ['rockchip,rk3528-power-controller']
+arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dtb: gpu@ff700000 (rockchip,rk3528-mali): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3528-mali', 'arm,mali-450'] is too short
+	'allwinner,sun8i-a23-mali' was expected
+	'rockchip,rk3528-mali' is not one of ['allwinner,sun4i-a10-mali', 'allwinner,sun7i-a20-mali', 'allwinner,sun8i-h3-mali', 'allwinner,sun8i-r40-mali', 'allwinner,sun50i-a64-mali', 'rockchip,rk3036-mali', 'rockchip,rk3066-mali', 'rockchip,rk3128-mali', 'rockchip,rk3188-mali', 'rockchip,rk3228-mali', 'samsung,exynos4210-mali', 'st,stih410-mali', 'stericsson,db8500-mali', 'xlnx,zynqmp-mali']
+	'rockchip,rk3528-mali' is not one of ['allwinner,sun50i-h5-mali', 'amlogic,meson8-mali', 'amlogic,meson8b-mali', 'amlogic,meson-gxbb-mali', 'amlogic,meson-gxl-mali', 'hisilicon,hi6220-mali', 'mediatek,mt7623-mali', 'rockchip,rk3328-mali']
+	'allwinner,sun7i-a20-mali' was expected
+	'arm,mali-400' was expected
+	from schema $id: http://devicetree.org/schemas/gpu/arm,mali-utgard.yaml#
+arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dtb: /soc/gpu@ff700000: failed to match any schema with compatible: ['rockchip,rk3528-mali', 'arm,mali-450']
+arch/arm64/boot/dts/rockchip/rk3528-rock-2f.dtb: /soc/power-management@ff600000: failed to match any schema with compatible: ['rockchip,rk3528-pmu', 'syscon', 'simple-mfd']
+arch/arm64/boot/dts/rockchip/rk3528-rock-2f.dtb: /soc/power-management@ff600000/power-controller: failed to match any schema with compatible: ['rockchip,rk3528-power-controller']
+arch/arm64/boot/dts/rockchip/rk3528-rock-2f.dtb: gpu@ff700000 (rockchip,rk3528-mali): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3528-mali', 'arm,mali-450'] is too short
+	'allwinner,sun8i-a23-mali' was expected
+	'rockchip,rk3528-mali' is not one of ['allwinner,sun4i-a10-mali', 'allwinner,sun7i-a20-mali', 'allwinner,sun8i-h3-mali', 'allwinner,sun8i-r40-mali', 'allwinner,sun50i-a64-mali', 'rockchip,rk3036-mali', 'rockchip,rk3066-mali', 'rockchip,rk3128-mali', 'rockchip,rk3188-mali', 'rockchip,rk3228-mali', 'samsung,exynos4210-mali', 'st,stih410-mali', 'stericsson,db8500-mali', 'xlnx,zynqmp-mali']
+	'rockchip,rk3528-mali' is not one of ['allwinner,sun50i-h5-mali', 'amlogic,meson8-mali', 'amlogic,meson8b-mali', 'amlogic,meson-gxbb-mali', 'amlogic,meson-gxl-mali', 'hisilicon,hi6220-mali', 'mediatek,mt7623-mali', 'rockchip,rk3328-mali']
+	'allwinner,sun7i-a20-mali' was expected
+	'arm,mali-400' was expected
+	from schema $id: http://devicetree.org/schemas/gpu/arm,mali-utgard.yaml#
+arch/arm64/boot/dts/rockchip/rk3528-rock-2f.dtb: /soc/gpu@ff700000: failed to match any schema with compatible: ['rockchip,rk3528-mali', 'arm,mali-450']
+arch/arm64/boot/dts/rockchip/rk3528-nanopi-zero2.dtb: /soc/power-management@ff600000: failed to match any schema with compatible: ['rockchip,rk3528-pmu', 'syscon', 'simple-mfd']
+arch/arm64/boot/dts/rockchip/rk3528-nanopi-zero2.dtb: /soc/power-management@ff600000/power-controller: failed to match any schema with compatible: ['rockchip,rk3528-power-controller']
+arch/arm64/boot/dts/rockchip/rk3528-nanopi-zero2.dtb: gpu@ff700000 (rockchip,rk3528-mali): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3528-mali', 'arm,mali-450'] is too short
+	'allwinner,sun8i-a23-mali' was expected
+	'rockchip,rk3528-mali' is not one of ['allwinner,sun4i-a10-mali', 'allwinner,sun7i-a20-mali', 'allwinner,sun8i-h3-mali', 'allwinner,sun8i-r40-mali', 'allwinner,sun50i-a64-mali', 'rockchip,rk3036-mali', 'rockchip,rk3066-mali', 'rockchip,rk3128-mali', 'rockchip,rk3188-mali', 'rockchip,rk3228-mali', 'samsung,exynos4210-mali', 'st,stih410-mali', 'stericsson,db8500-mali', 'xlnx,zynqmp-mali']
+	'rockchip,rk3528-mali' is not one of ['allwinner,sun50i-h5-mali', 'amlogic,meson8-mali', 'amlogic,meson8b-mali', 'amlogic,meson-gxbb-mali', 'amlogic,meson-gxl-mali', 'hisilicon,hi6220-mali', 'mediatek,mt7623-mali', 'rockchip,rk3328-mali']
+	'allwinner,sun7i-a20-mali' was expected
+	'arm,mali-400' was expected
+	from schema $id: http://devicetree.org/schemas/gpu/arm,mali-utgard.yaml#
+arch/arm64/boot/dts/rockchip/rk3528-nanopi-zero2.dtb: /soc/gpu@ff700000: failed to match any schema with compatible: ['rockchip,rk3528-mali', 'arm,mali-450']
+arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dtb: /soc/power-management@ff600000: failed to match any schema with compatible: ['rockchip,rk3528-pmu', 'syscon', 'simple-mfd']
+arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dtb: /soc/power-management@ff600000/power-controller: failed to match any schema with compatible: ['rockchip,rk3528-power-controller']
+arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dtb: gpu@ff700000 (rockchip,rk3528-mali): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3528-mali', 'arm,mali-450'] is too short
+	'allwinner,sun8i-a23-mali' was expected
+	'rockchip,rk3528-mali' is not one of ['allwinner,sun4i-a10-mali', 'allwinner,sun7i-a20-mali', 'allwinner,sun8i-h3-mali', 'allwinner,sun8i-r40-mali', 'allwinner,sun50i-a64-mali', 'rockchip,rk3036-mali', 'rockchip,rk3066-mali', 'rockchip,rk3128-mali', 'rockchip,rk3188-mali', 'rockchip,rk3228-mali', 'samsung,exynos4210-mali', 'st,stih410-mali', 'stericsson,db8500-mali', 'xlnx,zynqmp-mali']
+	'rockchip,rk3528-mali' is not one of ['allwinner,sun50i-h5-mali', 'amlogic,meson8-mali', 'amlogic,meson8b-mali', 'amlogic,meson-gxbb-mali', 'amlogic,meson-gxl-mali', 'hisilicon,hi6220-mali', 'mediatek,mt7623-mali', 'rockchip,rk3328-mali']
+	'allwinner,sun7i-a20-mali' was expected
+	'arm,mali-400' was expected
+	from schema $id: http://devicetree.org/schemas/gpu/arm,mali-utgard.yaml#
+arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dtb: /soc/gpu@ff700000: failed to match any schema with compatible: ['rockchip,rk3528-mali', 'arm,mali-450']
 
 
 
