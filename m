@@ -1,63 +1,72 @@
-Return-Path: <devicetree+bounces-195249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B060EB00F0E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 00:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA203B00F15
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 00:54:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D54EE3B5B4A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 22:51:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADD9C487586
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 22:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5473A292B3A;
-	Thu, 10 Jul 2025 22:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB593296173;
+	Thu, 10 Jul 2025 22:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tb0T4GSG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fDAIM/Mi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D4961D432D;
-	Thu, 10 Jul 2025 22:51:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9C92397A4;
+	Thu, 10 Jul 2025 22:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752187919; cv=none; b=LYUmLG9JP1aOcSzks+BVsxgq5r1eP/VYJC8T8cd+CZ4Y6SdI6gCqrqxaUhaZkC1WrkD+j+rxgak6K9a7s6nf3Ps2NBl47ds+dhQGHIC8cQz558ByLWqj593XdlvgclHqlHDJHhJdSjhdSVEPEbVeFULDzwJkH1qWHF+Kz0LBD6Q=
+	t=1752188053; cv=none; b=dcFtLewLbHQRuah9/feBn0pK1vmT4QtkKeVZqUUbG4NSY3XjrGR40P+sx8nK2OmSWdcsPCtKzCoWWsUF40shXvnaH6JLg7Qu7Tx83DvsWnloNLMRLptoVvq3UTc0tZFuYS3JJk1YCakO9XR7hgyQ/kZmyYnnZsNW9wTPIum3MGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752187919; c=relaxed/simple;
-	bh=2SoiiN2aedDZElWi2ybg611D5EPVq8dWYtje3WeylSc=;
+	s=arc-20240116; t=1752188053; c=relaxed/simple;
+	bh=C7sffkGR58/skNSnCNft/CdSrVspgq92A+XoY08I7pw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ocNvrxL915Pc7qQEr/uBeRH/qTTS9K7iDbSW6Q9p2aH0xnj20UpfVxZl8ehy3ZCsDSlo9Wv8LxmCDO87ZfdoU4Hm7vhCpj4PRK/82N/pHaw0gsbcmlbWTLxi3coo+b4hBuGmzdqizya5gRjfJlt2dyfPM3rAUhCriYbrnYQUd2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tb0T4GSG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 666B2C4CEE3;
-	Thu, 10 Jul 2025 22:51:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fJuWs9XFzkIZd4pN792Y+QgWyVkOuuuogp1lIZUAY6/bioEEdjPQX0GAI0kAhZaDFAOQfbgTOcQboGklw9+JPQHQQQNZFL/ilsIZvoQia5UqKvehAhpeEVnPZUtQ7vk+Yu0nzYyaARvca0CwzzuZNmDAt87GRyimeyirNQbxV+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fDAIM/Mi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2437C4CEE3;
+	Thu, 10 Jul 2025 22:54:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752187918;
-	bh=2SoiiN2aedDZElWi2ybg611D5EPVq8dWYtje3WeylSc=;
+	s=k20201202; t=1752188053;
+	bh=C7sffkGR58/skNSnCNft/CdSrVspgq92A+XoY08I7pw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tb0T4GSGSk2PVpFX76AUKoU5AkIXLgUY/8xfWehxCxDO2W3bLd34bWLd2GtzixqJV
-	 3ikAfExXXNFJOs/jaZE6nmIM0hdUp483rdBOwxE2FpOgJHinQoFFmVQQZ+9ad9aze3
-	 yxCHxMtJxZ/iw+/gRVzLza6U13NX65AlY3g3MF8ykcbT1gQ8bn1/3eUJC1oVZ0F+RK
-	 f0YAcLUc7DQafhS2KkFRygS8v1QQy+bZp+uGXg+3KJO+AK5AtN8fBZHe5TUJ5L/TQJ
-	 aZ5EPq677D4qsi9nI8JsBaeI1k30J7pt6Qr8+4in+Zq65CSVXmnsrVLaBs65hVXhoC
-	 ZM8n8yfmTUUyA==
-Date: Thu, 10 Jul 2025 17:51:57 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: David Airlie <airlied@gmail.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	ipedrosa@redhat.com, Marcus Folkesson <marcus.folkesson@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	b=fDAIM/Mi+/m+JpTdV/OxxbHepVbjHZLt3Whl3McL7s9TFF1pDcA38Va/dah89aGws
+	 TYq9f0nd2OrOBVJrgoDj+aYmAamLCfAobDzl4z68SrCYH9YQ0XqklhxA4oqJUMBnf+
+	 VNAg0oGNk2zSR7G3NV+5Rgmr1rzj2DWuqFvSCVm1bFwl1ekuW/vbOhgELK4jWPySIw
+	 RJJEOPN6jTNAWAceKWQnYM9uB1Mk3v6dLz9KfMMAQsAgUnKFbK2UUP0avIv2mJ4ig2
+	 ilq/2ANmEKeHVYoHYqfzbubLA5zRDtv0ow6YQ7YTpgYziaY65zhqLs+6gfwUzNEEe1
+	 7NlLf9rVs1WjA==
+Date: Thu, 10 Jul 2025 17:54:12 -0500
+From: Rob Herring <robh@kernel.org>
+To: Luo Jie <quic_luoj@quicinc.com>
+Cc: Georgi Djakov <djakov@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: display: Add Sitronix ST7567 LCD
- Controller
-Message-ID: <175218791703.25569.4586034427262518390.robh@kernel.org>
-References: <20250710102453.101078-1-javierm@redhat.com>
- <20250710102453.101078-2-javierm@redhat.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Anusha Rao <quic_anusha@quicinc.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
+	quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
+	quic_suruchia@quicinc.com
+Subject: Re: [PATCH v3 05/10] dt-bindings: clock: ipq9574: Rename NSS CC
+ source clocks to drop rate
+Message-ID: <20250710225412.GA25762-robh@kernel.org>
+References: <20250710-qcom_ipq5424_nsscc-v3-0-f149dc461212@quicinc.com>
+ <20250710-qcom_ipq5424_nsscc-v3-5-f149dc461212@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +75,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250710102453.101078-2-javierm@redhat.com>
+In-Reply-To: <20250710-qcom_ipq5424_nsscc-v3-5-f149dc461212@quicinc.com>
 
+On Thu, Jul 10, 2025 at 08:28:13PM +0800, Luo Jie wrote:
+> Drop the clock rate suffix from the NSS Clock Controller clock names for
+> PPE and NSS clocks. A generic name allows for easier extension of support
+> to additional SoCs that utilize same hardware design.
 
-On Thu, 10 Jul 2025 12:24:33 +0200, Javier Martinez Canillas wrote:
-> Sitronix ST7567 is a monochrome Dot Matrix LCD Controller.
+This is an ABI change. You must state that here and provide a reason the 
+change is okay (assuming it is). Otherwise, you are stuck with the name 
+even if not optimal.
+
 > 
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
 > ---
+>  .../devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml        | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
 > 
->  .../bindings/display/sitronix,st7567.yaml     | 63 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/sitronix,st7567.yaml
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
+> index 17252b6ea3be..b9ca69172adc 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
+> @@ -25,8 +25,8 @@ properties:
+>    clocks:
+>      items:
+>        - description: Board XO source
+> -      - description: CMN_PLL NSS 1200MHz (Bias PLL cc) clock source
+> -      - description: CMN_PLL PPE 353MHz (Bias PLL ubi nc) clock source
+> +      - description: CMN_PLL NSS (Bias PLL cc) clock source
+> +      - description: CMN_PLL PPE (Bias PLL ubi nc) clock source
+>        - description: GCC GPLL0 OUT AUX clock source
+>        - description: Uniphy0 NSS Rx clock source
+>        - description: Uniphy0 NSS Tx clock source
+> @@ -42,8 +42,8 @@ properties:
+>    clock-names:
+>      items:
+>        - const: xo
+> -      - const: nss_1200
+> -      - const: ppe_353
+> +      - const: nss
+> +      - const: ppe
+>        - const: gpll0_out
+>        - const: uniphy0_rx
+>        - const: uniphy0_tx
+> @@ -82,8 +82,8 @@ examples:
+>                 <&uniphy 5>,
+>                 <&gcc GCC_NSSCC_CLK>;
+>        clock-names = "xo",
+> -                    "nss_1200",
+> -                    "ppe_353",
+> +                    "nss",
+> +                    "ppe",
+>                      "gpll0_out",
+>                      "uniphy0_rx",
+>                      "uniphy0_tx",
 > 
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+> -- 
+> 2.34.1
+> 
 
