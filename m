@@ -1,150 +1,265 @@
-Return-Path: <devicetree+bounces-195058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A10B004BB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:09:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F91CB004C1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:10:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B51B51892825
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:07:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADF0F188332A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 14:08:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863A1271A71;
-	Thu, 10 Jul 2025 14:07:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A9E270EB0;
+	Thu, 10 Jul 2025 14:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="bD0dek8k"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="eiI5L9tx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E7B27147D
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 14:06:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C461242D62;
+	Thu, 10 Jul 2025 14:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752156420; cv=none; b=EBxu9NlL/YjkwU84za77efGVymskLNlyo/mseLXlrAECZnlNsRPAZ9ve6x+ixicLatyZNBHfkqSF4COpaj6AmVZOd9RACgTDpzpkOOojFAwcSOCf0GvXj73a4Ft1elW06PjkycVlp2L5ms+Zg5MAc8pFzCi7OTyxiRKf/XdJRUg=
+	t=1752156509; cv=none; b=Ux2gxVpGAw0taA9L2QjNmLSH+NXaMQzd/4442sxi05motFi6dNqB1Cf5WSyRfzXzpLOF1b3+YXgME9W0Rj7zwAokn0SkV0heRh3r5UZxE951bSYUA8DbnXXWJQ/ft0COmwpanL3l4USR2Hc4egegsK5vqHVbURdREcVdZir45vY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752156420; c=relaxed/simple;
-	bh=IZGXzFJaVfJR/vczPBT0kteEqHv0Jbw4nJMYEV8Redo=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=OujKfirIbLY9HArCBbPGbKaaXOTLIE9DMJZfLkMWget/k9YOl6fUnrizCD7iPowxgj6Lx3FjvokquLxIEvn6Z70VVS6De0PWhUEv61y8oXjG8Vn5X8N+M1SqjazomOAUgJU0TUisUZ30joE6ilkyXasKi7ou43lZ0P441JS87w8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=bD0dek8k; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-606b58241c9so1574085a12.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 07:06:58 -0700 (PDT)
+	s=arc-20240116; t=1752156509; c=relaxed/simple;
+	bh=6+V6b48EzWgWG8MSnsUjJWAfwO4HcQ599pAv9PMWIe4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X0fna1ZBCsiqel5mvDg9x+/Mvz+M5KpviulD9o3H1qP3u0yMx/e6W0abnlbkEz0Lz6baqp/+ET+3+eku0gxXBEzx/BL/6mpij9KzJccRF9p9/eTFx09T4EY2Prfo3DPEIIUUX6Quc77uVpN+dpKSIdZ9ORfRXHNTpCaEPe0hy/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=eiI5L9tx; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 807163D8570F;
+	Thu, 10 Jul 2025 10:08:20 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id O8O26kgwxypV; Thu, 10 Jul 2025 10:08:19 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id A7AE33D875E7;
+	Thu, 10 Jul 2025 10:08:19 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com A7AE33D875E7
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1752156417; x=1752761217; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IZGXzFJaVfJR/vczPBT0kteEqHv0Jbw4nJMYEV8Redo=;
-        b=bD0dek8kywxcRelmsez9ougT6VjaHJCXNjIjcasasHHihoxT+irXC5mFlzsKUZCvub
-         oLuwInQ6gz/elJVaVeGH2pP34rcM/7TW/OzKguV1M9PpajP/BkXIWo+4SDHCEBDSgBLm
-         t5JMcBFh5ZU1kuXIVBeXbJZ508eCKPAp/EPXGXtzltnRkWGEP/XsQZ4FNeb8BIqkhVfI
-         KzrXduu3jQQLAsVODg8p0bSndsHPzMt2pU3JRbPphQoWwjM0s89RL5ncTJMsSs1OdUi7
-         VxRXp6YON6aXaU9oD2pP5EP3W8L0AWl7hP7x+I/xW0BxKa0UjS6WLAsS9VTzgT9JzUEL
-         kP0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752156417; x=1752761217;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=IZGXzFJaVfJR/vczPBT0kteEqHv0Jbw4nJMYEV8Redo=;
-        b=eXont0nggqkiiKLNKObbABaEoT7aQUKqZOhJLVIUHO8wHWsJLGY/ukPg2LZcFduZbO
-         CH9OJonZsrqoHF6PsDPxfFcsI6OwuScJzM7HcIJ6x4dHfIgnEeexAulfocrd6wCpGF6J
-         YSUlhmGKp9L6GC1+nEATczOQGBRN2wiyU8NQM4TKREwSe8FcfeYpjTkpeqR9tx/cFVMG
-         jnfvdYbbdXk9joVVkOVMiXr6fgtYf3seO7HEBLggBhvYNKmMGU0xSYBDRB6fLSZiJjl6
-         Oab/5eJ0gFg2wa183Jrn2ggRS4O1RwcPjqRpnpFctsh9QK/Ugsr5+1YaP4vgklquTXgL
-         g63g==
-X-Forwarded-Encrypted: i=1; AJvYcCWGkH8svUfJiuxe8XX2Yqd+QaMAYIgYj/PR44fetPvA7QilYn+rTK+jeKdYyOrnDubWlYWuPpPpw+Zj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyG3YYKQPyR8X7WCM5ogSVUMRFRbdm8s/KwB4B85A7J9GdRsSKr
-	0DjIRtO7sCzfkYsMTqlKi9wwzqiY7UTrAL1rAjBVKaFWnJUCvQ19UtUzgJndmHDWqQE=
-X-Gm-Gg: ASbGncue27wCUgFY3oWX86sfmCHC5TdFPe6AGHW9W6XbXhr7HNjAtdSsHPu3wz0trTn
-	82vwjzs2EVGaXn0C/ME2TPGZtx20KSYiJP4UPZANoQHOYcxrNcGsNdILRnKoG1sNGS7VUzH4Jk1
-	qMZns1rqXq4lCcDDrxZ5UdQM8NcBS03OsPv/2KTGAITCDOL2hQMTqMny6+VmFqYuU1AvoGCFyG8
-	sY+eL7RaqxY7yT0PGovShWXl7Qex+nA+P47Hw2t8ZokOyFKh4CvJDvRn76/mdnC+uxhKrjDByBX
-	kPXXIbpWr+zNBpaFfhdWn+XmKtBKNTxELk3Mmet+5doByR7MfNPr7nPZMTILfsLh/7FqrPDIhuO
-	UeshS1Y9W1GAVbAHNIwqWgPNbbEXq2hPoEx74tW8xLw==
-X-Google-Smtp-Source: AGHT+IHKeoz2isCeKmIGCw2CDCJFP7TDvu8Z7c8Wf56Df9oBng3/2fa7dXzek5kSvq5pDH1kTeDYXA==
-X-Received: by 2002:a17:906:f596:b0:ad8:87ae:3f66 with SMTP id a640c23a62f3a-ae6e7104093mr286278366b.60.1752156415964;
-        Thu, 10 Jul 2025 07:06:55 -0700 (PDT)
-Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e82635aasm135489666b.84.2025.07.10.07.06.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Jul 2025 07:06:55 -0700 (PDT)
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1752156499; bh=EhdCuuk3MsnvKWneuePEB9v7psFEpBgaIrswFJsCaTM=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=eiI5L9txRHCopE2fnkP0oI2iR09ru1hhSxhD72AiJph9EmOfBFWozobaGPW96AJCg
+	 y20ij65cW9KEn2XjyNQOPE65m6uIniR/s4iYaKCdfJmx+WkBXOV0mJHBnMZNmXNFqn
+	 epC8zeVa3dGaPk/5jGzdzupceRde0cG3neSQFZD44FYUdaxnZL97VZMQyaDZ+xJgyq
+	 +ywApD4UlTpFGG9/xevR+agtU/kSNGNvivGQ4lmfljx85CsIKXQb37kR2gM8JKOJGk
+	 JrfZVByyinDxo4geIA6o8I951StEPiElJvF6PUPXhR2EPrUYt3jTwEE/8Sk3pRe0mJ
+	 3ZzcN5cTuFweQ==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 8J66NYaKQAMU; Thu, 10 Jul 2025 10:08:19 -0400 (EDT)
+Received: from fedora (unknown [192.168.51.254])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 595523D8570F;
+	Thu, 10 Jul 2025 10:08:19 -0400 (EDT)
+Date: Thu, 10 Jul 2025 10:08:18 -0400
+From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: devnull+samuel.kayode.savoirfairelinux.com@kernel.org, Frank.li@nxp.com,
+	abelvesa@kernel.org, abelvesa@linux.com, b38343@freescale.com,
+	broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	dmitry.torokhov@gmail.com, eballetbo@gmail.com, imx@lists.linux.dev,
+	krzk+dt@kernel.org, lee@kernel.org, lgirdwood@gmail.com,
+	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, robh@kernel.org, sre@kernel.org,
+	yibin.gong@nxp.com
+Subject: Re: [PATCH v8 2/6] mfd: pf1550: add core driver
+Message-ID: <aG_JUhEQaiYQfJmz@fedora>
+References: <20250707-pf1550-v8-0-6b6eb67c03a0@savoirfairelinux.com>
+ <20250707-pf1550-v8-2-6b6eb67c03a0@savoirfairelinux.com>
+ <0406698c-6534-4aca-8994-e8a69ecee2b2@wanadoo.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+In-Reply-To: <0406698c-6534-4aca-8994-e8a69ecee2b2@wanadoo.fr>
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 10 Jul 2025 16:06:55 +0200
-Message-Id: <DB8FM0YYS9UL.JP6OVNZAXWBP@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Liam Girdwood"
- <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 4/4] regulator: qcom-rpmh: add support for pm7550
- regulators
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250625-pm7550-pmr735b-rpmh-regs-v1-0-cab8ef2e5c92@fairphone.com> <20250625-pm7550-pmr735b-rpmh-regs-v1-4-cab8ef2e5c92@fairphone.com> <bc27209a-e0f8-40bf-979f-3d747c501ae8@oss.qualcomm.com> <23ae6ddb-682a-4c4a-bd63-f0a1adb6f4f8@oss.qualcomm.com> <DB7I7D3P01FF.3T5WRSTJIWLVK@fairphone.com> <c1a48230-c4f5-4c04-a53a-449bd90b1fd8@oss.qualcomm.com>
-In-Reply-To: <c1a48230-c4f5-4c04-a53a-449bd90b1fd8@oss.qualcomm.com>
 
-On Thu Jul 10, 2025 at 3:03 PM CEST, Konrad Dybcio wrote:
-> On 7/9/25 1:56 PM, Luca Weiss wrote:
->> On Wed Jun 25, 2025 at 4:20 PM CEST, Konrad Dybcio wrote:
->>> On 6/25/25 4:10 PM, Konrad Dybcio wrote:
->>>> On 6/25/25 11:18 AM, Luca Weiss wrote:
->>>>> Add RPMH regulators exposed by Qualcomm Technologies, Inc. PM7550 PMI=
-C.
->>>>> It has 6 FTS525 (FT-SMPS) and 23 LDOs with 3 different types.
->>>>> L1-L11 are LDO515 LV NMOS, L12-L13 are LDO515 MV PMOS, L14-L23 are
->>>>> LDO512 MV PMOS.
->>>>>
->>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>>> ---
->>>>
->>>> FWIW everything you said in the commit message is correct, but I'm not
->>>> 100% sure how to map these LDO types to the existing definitions
->>>
->>> OK so found another page (also made sure that the supply maps are
->>> indeed OK)
->>>
->>> SMPS is OK
->>> L1-L11 is OK
->>> L14-23 is OK
->>>
->>> L12/13 -> pmic5_pldo515_mv
->>=20
->> Based on what are you saying that?
->>=20
->> Based on 80-62408-1 Rev. AG for the LDO515, the Output voltage range for
->> MV PMOS is "programmable range 1.504-3.544" which matches "pmic5_pldo".
->>=20
->> But yes, in the table next to it, it's saying 1.8-3.3V, which matches
->> "pmic5_pldo515_mv".
->>=20
->> If you're sure, I can update it but the datasheet is a bit confusing.
->> Let me know!
+On Tue, Jul 08, 2025 at 08:46:48PM +0200, Christophe JAILLET wrote:
+> Le 07/07/2025 =E0 23:37, Samuel Kayode via B4 Relay a =E9crit=A0:
+> > From: Samuel Kayode <samuel.kayode-4ysUXcep3aM1wj+D4I0NRVaTQe2KTcn/@p=
+ublic.gmane.org>
+> >=20
+> > Add the core driver for pf1550 PMIC. There are 3 subdevices for which=
+ the
+> > drivers will be added in subsequent patches.
+> >=20
+> > Reviewed-by: Frank Li <Frank.Li-3arQi8VN3Tc@public.gmane.org>
+> > Signed-off-by: Samuel Kayode <samuel.kayode-4ysUXcep3aM1wj+D4I0NRVaTQ=
+e2KTcn/@public.gmane.org>
+>=20
+> Hi,
+>=20
+> some nitpicks and a few real questions.
+>=20
+> CJ
+>=20
+> ...
+>=20
+> > +	/* Add top level interrupts */
+> > +	ret =3D devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, pf155=
+0->irq,
+> > +				       IRQF_ONESHOT | IRQF_SHARED |
+> > +				       IRQF_TRIGGER_FALLING,
+> > +				       0, &pf1550_irq_chip,
+> > +				       &pf1550->irq_data);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Add regulator */
+> > +	irq =3D regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_REGULATOR)=
+;
+>=20
+> Same as above.
+>=20
+> > +	if (irq < 0)
+> > +		return dev_err_probe(pf1550->dev, irq,
+> > +				     "Failed to get parent vIRQ(%d) for chip %s\n",
+> > +				     PF1550_IRQ_REGULATOR, pf1550_irq_chip.name);
+> > +
+> > +	ret =3D devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
+> > +				       IRQF_ONESHOT | IRQF_SHARED |
+> > +				       IRQF_TRIGGER_FALLING, 0,
+> > +				       &pf1550_regulator_irq_chip,
+> > +				       &pf1550->irq_data_regulator);
+> > +	if (ret)
+> > +		return dev_err_probe(pf1550->dev, ret,
+> > +				     "Failed to add %s IRQ chip\n",
+> > +				     pf1550_regulator_irq_chip.name);
+> > +
+> > +	domain =3D regmap_irq_get_domain(pf1550->irq_data_regulator);
+> > +
+> > +	ret =3D  devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, reg=
+ulator,
+>=20
+> 2 spaces after =3D
 >
-> I was looking at the same datasheet as you and took into account both
-> the LDO type from e.g. Table 3-12 and the output ranges from Table 3-24
+Will drop.
+> > +				    1, NULL, 0, domain);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Add onkey */
+> > +	irq =3D regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_ONKEY);
+>=20
+> Same
+>=20
+> > +	if (irq < 0)
+> > +		return dev_err_probe(pf1550->dev, irq,
+> > +				     "Failed to get parent vIRQ(%d) for chip %s\n",
+> > +				     PF1550_IRQ_ONKEY, pf1550_irq_chip.name);
+> > +
+> > +	ret =3D devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
+> > +				       IRQF_ONESHOT | IRQF_SHARED |
+> > +				       IRQF_TRIGGER_FALLING, 0,
+> > +				       &pf1550_onkey_irq_chip,
+> > +				       &pf1550->irq_data_onkey);
+> > +	if (ret)
+> > +		return dev_err_probe(pf1550->dev, ret,
+> > +				     "Failed to add %s IRQ chip\n",
+> > +				     pf1550_onkey_irq_chip.name);
+> > +
+> > +	domain =3D regmap_irq_get_domain(pf1550->irq_data_onkey);
+> > +
+> > +	ret =3D  devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, onk=
+ey, 1,
+>=20
+> 2 spaces after =3D
+>=20
+Will drop.
+> > +				    NULL, 0, domain);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Add battery charger */
+> > +	irq =3D regmap_irq_get_virq(pf1550->irq_data, PF1550_IRQ_CHG);
+>=20
+> This calls irq_create_mapping().
+> Should irq_dispose_mapping() or another helper be called in the error
+> handling path and in the remove function, or is it already handled by a
+> devm_ function?
+>=20
+This creates a mapping for the allocated `irq_data` runtime controller by
+devm_regmap_add_irq. The `irq_data` is for the top level interrupts. Sinc=
+e it
+was allocated with a devm_, I think irq_dispose_mapping is called during =
+a
+remove.
+> > +	if (irq < 0)
+> > +		return dev_err_probe(pf1550->dev, irq,
+> > +				     "Failed to get parent vIRQ(%d) for chip %s\n",
+> > +				     PF1550_IRQ_CHG, pf1550_irq_chip.name);
+> > +
+> > +	ret =3D devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, irq,
+> > +				       IRQF_ONESHOT | IRQF_SHARED |
+> > +				       IRQF_TRIGGER_FALLING, 0,
+> > +				       &pf1550_charger_irq_chip,
+> > +				       &pf1550->irq_data_charger);
+> > +	if (ret)
+> > +		return dev_err_probe(pf1550->dev, ret,
+> > +				     "Failed to add %s IRQ chip\n",
+> > +				     pf1550_charger_irq_chip.name);
+> > +
+> > +	domain =3D regmap_irq_get_domain(pf1550->irq_data_charger);
+> > +
+> > +	return devm_mfd_add_devices(pf1550->dev, PLATFORM_DEVID_NONE, charg=
+er,
+> > +				    1, NULL, 0, domain);
+> > +}
+> > +
+> > +static int pf1550_suspend(struct device *dev)
+> > +{
+> > +	struct pf1550_ddata *pf1550 =3D dev_get_drvdata(dev);
+> > +
+> > +	if (device_may_wakeup(dev)) {
+> > +		enable_irq_wake(pf1550->irq);
+> > +		disable_irq(pf1550->irq);
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int pf1550_resume(struct device *dev)
+> > +{
+> > +	struct pf1550_ddata *pf1550 =3D dev_get_drvdata(dev);
+> > +
+> > +	if (device_may_wakeup(dev)) {
+> > +		disable_irq_wake(pf1550->irq);
+> > +		enable_irq(pf1550->irq);
+>=20
+> Should this 2 lines be inverted?
+>=20
+I don't think it matters. disable_irq_wake is 'completely orthogonal' to =
+the
+enable/disable(irq). See function irq_set_irq_wake.
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+>=20
+> ...
+>=20
+> > +#define PF1550_CHG_LINEAR_ONLY		12
+> > +#define PF1550_CHG_SNS_MASK		0xf
+> > +#define PF1550_CHG_INT_MASK             0x51
+>=20
+> Space vs tab
+>=20
+Will make changes.
+> > +
+> > +#define PF1550_BAT_NO_VBUS		0
+> > +#define PF1550_BAT_LOW_THAN_PRECHARG	1
 
-But why, looking at table 3-24, is there a mismatch between that text
-"programmable range 1.504-3.544" and the table on the right saying
-min 1.8 and max 3.3V?
-
-Programmable range sounds more like what we'd want? No clue...
-
->
-> Konrad
-
+Thanks,
+Sam
 
