@@ -1,185 +1,170 @@
-Return-Path: <devicetree+bounces-195126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B35A2B00948
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 18:54:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE602B00964
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 18:58:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97000568032
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:54:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A507054783F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 16:58:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7302F0051;
-	Thu, 10 Jul 2025 16:53:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F402D540D;
+	Thu, 10 Jul 2025 16:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JOtXlvyY"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="N+iQ/IgK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2208D2F0027
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 16:53:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6796C2253A7
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 16:58:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752166434; cv=none; b=cf7OAk8xbM4Zv1vV1QCOWlOIDX2vgRcx9nPVMZTgc23N0tEV/WfwBseZwS1Mk/JYG8ksRGmbjIr1C873wd6Fb8tJmQg8zPGdY/EuUGVjxauly1CHeJwB1CWtV64WDaeTp8BeIAp6HOS4vlYyUYWIc/29SkKbaFBgtwKnskY6HTU=
+	t=1752166727; cv=none; b=P9+GHM50ro5ZizDtSltGLQeo2S27mghcyeCxJFP8sGZy7t0vKtr0z7RswqU/eyMPsestsU6AuVmNPYpaDq9M5Qpsr3p+zBrCtDiiKEAUdHJteUrJw/hXtiCg78eaiOaCw7X8wrp/XqE3whtV5sFWSxzQ8qJ1kOxK5TAxcxwBjaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752166434; c=relaxed/simple;
-	bh=9nnYLmiKBH1VusudWulFh6i4+wEOM596AKd8BgLFv7o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oLHTPAdGWBawQIz4hQhgw1CVjpl156rxdCdqXJv9Pmj7mQEeVNFbJkDmtdXEFH9VcUeHdXcvJh+L/vuANbX6YebEnnTmxujVXm6qk8STwFMKX5JYK30LJNL/uf1mtHVxrrpaDu5dfYg5RTPFXyV8nlXIPQHSrCI110zhST9WvNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JOtXlvyY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56A8q2aN016847
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 16:53:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Vfb8B/yryQh/PYLYMQLTf7EgWVJB4S9JcLJ8lU/8XF4=; b=JOtXlvyYzwn25xXB
-	DnH4/ZPBSqb2hwUscr7qSxMyx0IUmJIWpou//KtU8TgKGTm3L81SsGqJ3BO6zv1w
-	LzA1p2dhaSr18KnWEXBK9Fx5wXu+dm3sgt6hZrAEkXrmD9EndinnVdcuCokajMb6
-	S1vWu6PH0OoQULV5FhVKKrHD4xZj5e/jShEo5rsiXpByBfwBTTVCNBMdYfESDFT6
-	kF+tsApEQ8j872KG3rCFBpHjLJCBspHWZuQw9M9R1+77YrEn0YbftLksCVnkK52x
-	pVzOWCIR3FIsRo2cEPz8+ovQIUG3siHH0+tZ8de7R/EFk5m14OYSG6Z9BDGbjRvz
-	z8b5mA==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47smap5qkp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 16:53:51 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-74ea5d9982cso925233b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 09:53:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752166431; x=1752771231;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vfb8B/yryQh/PYLYMQLTf7EgWVJB4S9JcLJ8lU/8XF4=;
-        b=bTnCnPJvh+fKjsjq0coDwSJgiRAxPsawgQ22VAZUzqIS2qRp9Xc9+i/GbYrcp5qeld
-         RbtyN/wfm8uGSkAwI+C0i6ZjppsdOPapoJZ+HKDG/yiwgsstA8KKxMeyWB8ML1SLzTxB
-         LIoNoFvHTKZiK3mS8LwUr2V/4fIuPqVZKeDHM7WcvKN3c+IK5f56o3vorSZiNHcOmfs1
-         RfqHC1FYFUoLW9ohnQv2fIGBLSatCZP5RuMuhf4NwIoqdfgaM903nGwXw/RGIfSnf8gC
-         pYI3GiffK3FgjRoXEei6zHpBJ3PZtQY+U67ibaa7ZzCkhJq0D0Iu+m9bDN26UeSF1GZR
-         K0Ng==
-X-Forwarded-Encrypted: i=1; AJvYcCUxV5pcjvi+sWtTVJwAggggBIPMqLMilS9HTa5aYwJIdXPtZJB1u8Ibp0dDE7PoVM0CWbXiSZ15rRJS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpkUJbZCoSlu/GQveWaMAHsYbiCvpitevDG+4rI7DaJPzeEqkT
-	igHzdluntwHPe3QHx1YzosblFcQmSEZaasouwSX+9o8S/FFe4EcXjetJooqz4LiwI0jsFlvLHAC
-	E1m7n7HV+wXQ1rZqAwyoCl10bWO6996NO3jln5nX1/Sa47UJ+5afwO8xNk1hpUzBc
-X-Gm-Gg: ASbGncv3a217LvTgRgZeJJzYazssPkrr+MetaWQwHdgB52lpy9dzyRi3KO6igZxg928
-	79O4pq3zOcSklxegFO6/6uahh0ndTppvZ44fg1wOGgRfTYQ+s+e6kP99PYKVml0tja5/ZtbMjdg
-	pw672iBUIrdycouwSZTiuzE8zhbYJdYVx12/dcWZPsJQIfVfud/crOcellTX5Y5Rnd4g3BYbKOO
-	lVZ5GFPFKnQpT99d8x52z1yi/mu3Y/ezsJGsQfsP51urW76leYmzW/bkPrmR3M21gQkp8oo+/iw
-	c/8AOl/JAL0aLAZ2ygeIFIqwE/Vav8lZc5rrqaJYKkqi+Vtyk0NKbsvK
-X-Received: by 2002:a05:6a00:3a05:b0:740:9a4b:fb2a with SMTP id d2e1a72fcca58-74eb5634899mr6389855b3a.20.1752166430612;
-        Thu, 10 Jul 2025 09:53:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHRSPr0EphfUz6oNUApD5i2gJBSco9YazNRfkr6HyyRBAwDmdRRKU0prxAQ4k9j6X+8VeHj0w==
-X-Received: by 2002:a05:6a00:3a05:b0:740:9a4b:fb2a with SMTP id d2e1a72fcca58-74eb5634899mr6389798b3a.20.1752166430065;
-        Thu, 10 Jul 2025 09:53:50 -0700 (PDT)
-Received: from [192.168.29.115] ([49.43.229.152])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9f98ff8sm2985645b3a.177.2025.07.10.09.53.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Jul 2025 09:53:49 -0700 (PDT)
-Message-ID: <9bd63c0b-cf14-d00b-c600-9582061e3afc@oss.qualcomm.com>
-Date: Thu, 10 Jul 2025 22:23:35 +0530
+	s=arc-20240116; t=1752166727; c=relaxed/simple;
+	bh=MyftItMtY36JRBZeZdaONyuNfHOcQetVYlvXfauWP9k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=KnF1+B7vhLFulVKpzsE513lkHm/UhbV/S9WgmAvv5LTKbNWK9B6QDw9PR/tO9+QEw6INMEAYcSQfqb5ycGpgxHTbubiVv6RcRhr6CGbswqxCLOixVRIQHZoff5BQIIB75XbyQe0VCgxnF3vl/W9xgJ4gWBqCXmsNJHcnkwetVyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=N+iQ/IgK; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250710165843euoutp0216aae3a6e594aa1a9209ea41dffbf41c~Q8lodDKv31944619446euoutp02z
+	for <devicetree@vger.kernel.org>; Thu, 10 Jul 2025 16:58:43 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250710165843euoutp0216aae3a6e594aa1a9209ea41dffbf41c~Q8lodDKv31944619446euoutp02z
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1752166723;
+	bh=ZgLkHoYpMZXGlyM12JkaB3eUvSr6n7CdDmsdbr4Effk=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=N+iQ/IgKJDR12WkLkSHfzHnREv0EVSZqpC/v+RNieKTsC8JifH8dnuKu2sW+z6FjV
+	 OwUEFYe1Ay6A/lvzDK1ycZJdVXnFfxGk9K2gSLNhFZYzkZXoBhI7thHgygQCg6n5Ki
+	 GIc/Si12W4H0WBZcklPpbKg+MTIOitNRPdoVQKuc=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250710165843eucas1p228bef8c7cfef0151b9f27161df285873~Q8ln10Tqr0901609016eucas1p2H;
+	Thu, 10 Jul 2025 16:58:43 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250710165842eusmtip2966419c222cc783df17946c63fd3c343~Q8lmxbv6y2112221122eusmtip29;
+	Thu, 10 Jul 2025 16:58:42 +0000 (GMT)
+Message-ID: <ad17dc8a-80b7-4344-a1be-6cf780567aaa@samsung.com>
+Date: Thu, 10 Jul 2025 18:58:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v10 04/10] dt-bindings: arm: Document reboot mode magic
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 0/7] Rust Abstractions for PWM subsystem with TH1520
+ PWM driver
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
+	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
+	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Guo Ren
+	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
+	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
+	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+	Drew Fustini <fustini@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, Krzysztof
+	Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-To: Arnd Bergmann <arnd@arndb.de>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Elliot Berman <elliotb317@gmail.com>
-Cc: Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        =?UTF-8?Q?Andr=c3=a9_Draszik?= <andre.draszik@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, Wei Xu <xuwei5@hisilicon.com>,
-        linux-rockchip@lists.infradead.org,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Elliot Berman <elliot.berman@oss.qualcomm.com>
-References: <20250710-arm-psci-system_reset2-vendor-reboots-v10-0-b2d3b882be85@oss.qualcomm.com>
- <20250710-arm-psci-system_reset2-vendor-reboots-v10-4-b2d3b882be85@oss.qualcomm.com>
- <2d8e17ad-6bd6-47a9-b5ab-0a91689684ee@app.fastmail.com>
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-In-Reply-To: <2d8e17ad-6bd6-47a9-b5ab-0a91689684ee@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Ar7u3P9P c=1 sm=1 tr=0 ts=686ff01f cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=8g6h00HoWaIZ3EdQG8aEvw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=IQD7W_zIqse-sWlNMbcA:9
- a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-ORIG-GUID: 8IjR85FELRnyZZs0zWGIUHa_OIK6ZFng
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzEwMDE0MyBTYWx0ZWRfX4PGtya2xnWU0
- WB5tUKB4FHUwfWxe9J/GJHXb2n39n7YLxOH62VEFrW3gN/TFO9of0QsOWQe+g4DHyxuGag/tnaO
- 7gUpow2MKtKYOCDGHp9PNbHRQ6WqBaBuHIom9QnwtB958HT77p/2h7/s3fhhSr24sxowrCq6zsy
- S1QPEqd7a9/vaVSw5q8sXY83O4xHwaiAcmqSJf5AVl6gEfUqHFlb8Kmii4ikOqZG9LTa1vAbpZG
- j1e0+N40h2w031xiurwK6yojqhZzBvEugwGvQNaNNbI8/Ehwxe70C+sjk+XH/pN40m4qBYlzCku
- MhSbgTcUsTDa90ct7Fb7cMIMXHQSrtaNprJoEWIFt9objUJYtEsZmBpQR7v60jGQNfgjVmIbq6R
- d+mCwGuOwfC/dhsbvu4IE39d3R9Xth8O1v+q1wpPoJX0Z0vab24lSpkMw5te9zDhHaqEjLwa
-X-Proofpoint-GUID: 8IjR85FELRnyZZs0zWGIUHa_OIK6ZFng
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-10_04,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0 spamscore=0
- impostorscore=0 suspectscore=0 mlxlogscore=864 clxscore=1015 adultscore=0
- phishscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507100143
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <4hmb3di5x2iei43nmrykrj5wzlltrf3vrnqvexiablonbscn57@4bbsz5c76t63>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250710165843eucas1p228bef8c7cfef0151b9f27161df285873
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6
+X-EPHeader: CA
+X-CMS-RootMailID: 20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6
+References: <CGME20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6@eucas1p1.samsung.com>
+	<20250707-rust-next-pwm-working-fan-for-sending-v10-0-d0c5cf342004@samsung.com>
+	<e8a4a821-e7e4-4bcd-a2ac-f6b684b6ceea@samsung.com>
+	<ipvaegqlkco5qinhvn33mqvg7ev2walvs74xtzvhimxsfsfzhv@gcmpxcdtetdn>
+	<e77eab1c-446f-4620-95be-d343684d1e95@samsung.com>
+	<4hmb3di5x2iei43nmrykrj5wzlltrf3vrnqvexiablonbscn57@4bbsz5c76t63>
 
 
 
-On 7/10/2025 9:00 PM, Arnd Bergmann wrote:
-> On Thu, Jul 10, 2025, at 11:15, Shivendra Pratap wrote:
+On 7/10/25 17:25, Uwe Kleine-König wrote:
+> Hello Michal,
 > 
->> +  reset-types:
->> +    type: object
->> +    $ref: /schemas/power/reset/reboot-mode.yaml#
+> On Thu, Jul 10, 2025 at 03:48:08PM +0200, Michal Wilczynski wrote:
+>> On 7/10/25 15:10, Uwe Kleine-König wrote:
+>>> On Thu, Jul 10, 2025 at 10:42:07AM +0200, Michal Wilczynski wrote:
+>>>> On 7/7/25 11:48, Michal Wilczynski wrote:
+>>>>> The series is structured as follows:
+>>>>>  - Expose static function pwmchip_release.
+>>>
+>>> Is this really necessary? I didn't try to understand the requirements
+>>> yet, but I wonder about that. If you get the pwmchip from
+>>> __pwmchip_add() the right thing to do to release it is to call
+>>> pwmchip_remove(). Feels like a layer violation.
+>>
+>> It's required to prevent a memory leak in a specific, critical failure
+>> scenario. The sequence of events is as follows:
+>>
+>>     pwm::Chip::new() succeeds, allocating both the C struct pwm_chip and
+>>     the Rust drvdata.
+>>
+>>     pwm::Registration::register() (which calls pwmchip_add()) fails for
+>>     some reason.
 > 
-> The other users of the reboot-mode.yaml binding all call this
-> node 'reboot-mode' instead of 'reset-types', can you change that
-> here for consistency?
-nvmem-reboot-mode and syscon-reboot-mode use reboot-mode in the
-device tree node name.
-qcom-pon does not uses reboot-mode at its device tree node name, it
-uses pon.
-Kept it reset-types as this patch was already reviewed earlier and
-the name makes it closer to vendor-specific reset-type.
-Should we make it reboot-mode? Please suggest.
+> If you called pwmchip_alloc() but not yet pwmchip_add(), the right
+> function to call for cleanup is pwmchip_put().
+> 
+>>     The ARef<Chip> returned by new() is dropped, its reference count
+>>     goes to zero, and our custom release_callback is called.
+>>
+>> [...]
+>>>>> ---
+>>>>> base-commit: 47753b5a1696283930a78aae79b29371f96f5bca
+>>>
+>>> I have problems applying this series and don't have this base commit in
+>>> my repo.
+>>
+>> Sorry for the confusion. Base commit doesn't exist in the mainline
+>> kernel or linux-next, cause I've added some dependecies for compilation,
+>> like IoMem for the driver (uploaded full branch on github [1]). The
+>> bindings however doesn't depend on anything that's not in linux-next.
+> 
+> The series didn't apply to my pwm/for-next branch.
+> 
+> Note that the base-commit should always be a publically known commit.
+> See the chapter about "Base Tree Information" in git-format-patch(1).
 
-thanks.
+Hello Uwe,
+
+Okay, thank you for the clarification. I understand the requirement for
+a public base commit.
+
+My intention was to include the TH1520 driver primarily as a practical
+demonstration of the new abstractions. However the driver can't be
+merged as is, since it depends on the unmerged IoMem series and won't
+compile against a public commit.
+
+I will rebase the series on pwm/for-next and drop the driver and its
+associated device tree patches for now. I'll send a new version
+containing just the core PWM abstraction patches, which apply cleanly.
+
+I will resubmit the driver patches once their dependencies are available
+in a public tree.
+
 > 
->      Arnd
+> Best regards
+> Uwe
+
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
