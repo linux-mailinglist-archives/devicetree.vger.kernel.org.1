@@ -1,247 +1,155 @@
-Return-Path: <devicetree+bounces-195225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAC85B00E05
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 23:43:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C613BB00E2C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 23:48:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0962156603D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 21:43:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 929B6760656
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 21:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F268828DB49;
-	Thu, 10 Jul 2025 21:43:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16D1295DA5;
+	Thu, 10 Jul 2025 21:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PUUT4Akx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uwehugbX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09B922338;
-	Thu, 10 Jul 2025 21:43:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A81623FC74;
+	Thu, 10 Jul 2025 21:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752183801; cv=none; b=NIVJarGaABstffmyZT8esb/vn2+rUyVOUyFnvJjjRD4iLNO1u0KLP5CiMljwfxaTucLNBGO56DbBqRbskEvtY4YDB5eP/4WRqopx7B5KbZXVpn+PAkve1hveLq62huaRHROQU1NR5lNH7MPo/nO0B2dqtJualdLr5XrQAQlZrhM=
+	t=1752184064; cv=none; b=VHTiWNudTXMutfiYVPsi3VSBi1YgJ16tQHjOrKwtziJvqTWFrA2aVxOwIvFgDJ05X834lqW9FADWcfd8t+912SgMZf+qmR5Qsd0BWI6e/zwKnm3TQ3chBBsu7EID3PLPB2D/uoF/pl+Lhzxrf3CzOh7TuRqwg4mBI0jnyMv3uoc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752183801; c=relaxed/simple;
-	bh=JyiBXGkjI//nsHnGr36FD+TwOyb4q6nbGeOiX/MY7j4=;
+	s=arc-20240116; t=1752184064; c=relaxed/simple;
+	bh=38qOBtAa0la59Awj3HuO+ZqZhYtdC8Mzp5gPefGF6ME=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A3GLa3c2jpnKU8OiH8o60xv8Iq+1VGbGFvob/i8BcZv9eq434Wz+Nkz3zl3mi0VO6s0ONTz2a6cuzzosdnvvMPB+3K0X58x181Emn8KB5fWCu6DuEeM7lh2CRLrsUxl2lDCqZ7O12lFV57HYz6Umip6TtdNYoEqzLL5gNZkS0Wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PUUT4Akx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CB50C4CEE3;
-	Thu, 10 Jul 2025 21:43:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MQ0J+0JI/z/sT1Km//ZRW9GxpgTuQz4H5R7jSvVd0gspgO3F2n/1ry2lTB85vNgeps78zG/fUi5we6PjHRbgVqdaf0blJMAYqGi272+pxa1jl/RuLKapSnh6x0mXc841ABCPOAn58H5OuT4P7NUnEp7D66wI2iJFiWnywbfqFdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uwehugbX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB9E1C4CEE3;
+	Thu, 10 Jul 2025 21:47:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752183800;
-	bh=JyiBXGkjI//nsHnGr36FD+TwOyb4q6nbGeOiX/MY7j4=;
+	s=k20201202; t=1752184064;
+	bh=38qOBtAa0la59Awj3HuO+ZqZhYtdC8Mzp5gPefGF6ME=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PUUT4AkxcRwna33gV6XOnJ3Rsuq2qYdbDV0JOhVDeNsXVoOLTYaLRYq3dAH45DJbe
-	 N3a39wBVOiLn2WpAot7yAx/XaiyAdpFT6ejiRdjocplZ7g/Tm9Cx/tozweMfkcHM8m
-	 ICrHjJHAgHHUCbFl0GuFMLUr2qwAoPaKGh4M/PaPcIPN5uK8+dhhEevnsE2tfw50lP
-	 olpIcHGlj2QY/JZ4dWAdTTyuWsHaWonvoMRKptcWzgpp9tcthlXiL1OiwzsTAYCafp
-	 qFM9+xqKgMeqn/L/TSxxoWh4fqqmYOfGy1ejmzC/rjq7FkLJby2uoAMWhG2zF4uDMQ
-	 JSUKWNfQjWGbQ==
-Date: Thu, 10 Jul 2025 16:43:19 -0500
+	b=uwehugbXDOU6yJ5ZmM+oDgTJsB44iLXjZMhjebZn2xddJt8rnpRIHszIsQEgU6CO5
+	 86/hbFQAmaCMjmIRPMKOTcNyscxwT0rpRI9faF3yw1Pc7+GRxZnNdWUiSt5J5qe39n
+	 N73liM7IoJqgczI82biIgSsXVAsK5KY/zac972yLIhoqx6RUSVdztA9mCmglGHgzNm
+	 HmJ5A84zVDVfYJyzvNJR4Oe8wRKZKEnGIKjpWHoVS56hLcoaeYOlkUaRaEYixZLAxL
+	 5FuYl3cRMtMa1mfX+Ved0n1m9bbqctuHC7so72JUmMwmOy8CzXlVfwdxb6pDTuz6vW
+	 xt2tmM3KAL27A==
+Date: Thu, 10 Jul 2025 16:47:43 -0500
 From: Rob Herring <robh@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: qcom: Add SM8750 GPU clocks
-Message-ID: <20250710214319.GA4015161-robh@kernel.org>
-References: <20250708-topic-8750_gpucc-v1-0-86c86a504d47@oss.qualcomm.com>
- <20250708-topic-8750_gpucc-v1-1-86c86a504d47@oss.qualcomm.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, soc@lists.linux.dev,
+	linux-mmc@vger.kernel.org
+Subject: Re: [PATCH v16 1/5] dt-bindings: mmc: sdhci-pxa: restrict pinctrl to
+ pxav1
+Message-ID: <20250710214743.GA4021364-robh@kernel.org>
+References: <20250708-pxa1908-lkml-v16-0-b4392c484180@dujemihanovic.xyz>
+ <20250708-pxa1908-lkml-v16-1-b4392c484180@dujemihanovic.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250708-topic-8750_gpucc-v1-1-86c86a504d47@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250708-pxa1908-lkml-v16-1-b4392c484180@dujemihanovic.xyz>
 
-On Tue, Jul 08, 2025 at 02:47:20PM +0200, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Tue, Jul 08, 2025 at 07:09:46PM +0200, Duje Mihanović wrote:
+> The current pinctrl properties apply only to the pxav1 controller.
+> Adding one default pinctrl node to a pxav3 controller therefore causes
+> a schema warning.
 > 
-> The SM8750 features a "traditional" GPU_CC block, much of which is
-> controlled through the GMU microcontroller. Additionally, there's
-> an separate GX_CC block, where the GX GDSC is moved.
+> Check the existing properties only on pxav1. pxav2 and pxav3 may add
+> their own set of pinctrl properties if and when needed.
 > 
-> Add bindings to accommodate for that.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
 > ---
->  .../bindings/clock/qcom,sm8450-gpucc.yaml          |  5 ++
->  .../bindings/clock/qcom,sm8750-gxcc.yaml           | 58 ++++++++++++++++++++++
->  include/dt-bindings/clock/qcom,sm8750-gpucc.h      | 53 ++++++++++++++++++++
->  3 files changed, 116 insertions(+)
+> Changes in v16:
+> - New patch
+> ---
+>  .../devicetree/bindings/mmc/sdhci-pxa.yaml         | 36 ++++++++++++----------
+>  1 file changed, 20 insertions(+), 16 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml
-> index 02968632fb3af34d6b3983a6a24aa742db1d59b1..d1b3557ab344b071d16dba4d5c6a267b7ab70573 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml
-> @@ -20,6 +20,7 @@ description: |
->      include/dt-bindings/clock/qcom,sm8550-gpucc.h
->      include/dt-bindings/reset/qcom,sm8450-gpucc.h
->      include/dt-bindings/reset/qcom,sm8650-gpucc.h
-> +    include/dt-bindings/reset/qcom,sm8750-gpucc.h
->      include/dt-bindings/reset/qcom,x1e80100-gpucc.h
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml b/Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml
+> index 4869ddef36fd89265a1bfe96bb9663b553ac5084..e7c06032048a3a73eb3eb67a887e75db273ffa92 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml
+> @@ -30,6 +30,26 @@ allOf:
+>            maxItems: 1
+>          reg-names:
+>            maxItems: 1
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mrvl,pxav1-mmc
+> +    then:
+> +      properties:
+> +        pinctrl-names:
+> +          description:
+> +            Optional for supporting PXA168 SDIO IRQ errata to switch CMD pin between
+> +            SDIO CMD and GPIO mode.
+> +          items:
+> +            - const: default
+> +            - const: state_cmd_gpio
+> +        pinctrl-0:
+> +          description:
+> +            Should contain default pinctrl.
+> +        pinctrl-1:
+> +          description:
+> +            Should switch CMD pin to GPIO mode as a high output.
 >  
 >  properties:
-> @@ -31,6 +32,7 @@ properties:
->        - qcom,sm8475-gpucc
->        - qcom,sm8550-gpucc
->        - qcom,sm8650-gpucc
-> +      - qcom,sm8750-gpucc
->        - qcom,x1e80100-gpucc
->        - qcom,x1p42100-gpucc
+>    compatible:
+> @@ -62,22 +82,6 @@ properties:
+>        - const: io
+>        - const: core
 >  
-> @@ -40,6 +42,9 @@ properties:
->        - description: GPLL0 main branch source
->        - description: GPLL0 div branch source
->  
-> +  power-domains:
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - clocks
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8750-gxcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8750-gxcc.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..f35839193d18b608e177b4d6561827dfa98c9aa1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8750-gxcc.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sm8750-gxcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Graphics Clock & Reset Controller on SM8750
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konradybcio@kernel.org>
-> +
-> +description: |
-> +  Qualcomm graphics clock control module provides the clocks, resets and power
-> +  domains on Qualcomm SoCs.
-> +
-> +  See also::
+> -  pinctrl-names:
+> -    description:
+> -      Optional for supporting PXA168 SDIO IRQ errata to switch CMD pin between
+> -      SDIO CMD and GPIO mode.
 
-Don't need double colon.
+       minItems: 1
 
-> +    include/dt-bindings/reset/qcom,sm8750-gpucc.h
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sm8750-gxcc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 3
+Won't adding this 1 line here solve your whole problem?
 
-You need to define what each power domain is.
-
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - power-domains
-> +  - '#power-domain-cells'
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,sm8750-gpucc.h>
-> +    #include <dt-bindings/power/qcom,rpmhpd.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        clock-controller@3d64000 {
-> +            compatible = "qcom,sm8750-gxcc";
-> +            reg = <0x0 0x03d64000 0x0 0x6000>;
-> +            power-domains = <&rpmhpd RPMHPD_GFX>,
-> +                            <&rpmhpd RPMHPD_MXC>,
-> +                            <&gpucc GPU_CC_CX_GDSC>;
-> +            #power-domain-cells = <1>;
-> +        };
-> +    };
-> +...
-> diff --git a/include/dt-bindings/clock/qcom,sm8750-gpucc.h b/include/dt-bindings/clock/qcom,sm8750-gpucc.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..98e2f5df78740bf298c6b1065972d7e58ee81713
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,sm8750-gpucc.h
-> @@ -0,0 +1,53 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +#ifndef _DT_BINDINGS_CLK_QCOM_GPU_CC_SM8750_H
-> +#define _DT_BINDINGS_CLK_QCOM_GPU_CC_SM8750_H
-> +
-> +/* GPU_CC clocks */
-> +#define GPU_CC_AHB_CLK						0
-> +#define GPU_CC_CB_CLK						1
-> +#define GPU_CC_CX_ACCU_SHIFT_CLK				2
-> +#define GPU_CC_CX_FF_CLK					3
-> +#define GPU_CC_CX_GMU_CLK					4
-> +#define GPU_CC_CXO_AON_CLK					5
-> +#define GPU_CC_CXO_CLK						6
-> +#define GPU_CC_DEMET_CLK					7
-> +#define GPU_CC_DPM_CLK						8
-> +#define GPU_CC_FF_CLK_SRC					9
-> +#define GPU_CC_FREQ_MEASURE_CLK					10
-> +#define GPU_CC_GMU_CLK_SRC					11
-> +#define GPU_CC_GX_ACCU_SHIFT_CLK				12
-> +#define GPU_CC_GX_ACD_AHB_FF_CLK				13
-> +#define GPU_CC_GX_AHB_FF_CLK					14
-> +#define GPU_CC_GX_GMU_CLK					15
-> +#define GPU_CC_GX_RCG_AHB_FF_CLK				16
-> +#define GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK				17
-> +#define GPU_CC_HUB_AON_CLK					18
-> +#define GPU_CC_HUB_CLK_SRC					19
-> +#define GPU_CC_HUB_CX_INT_CLK					20
-> +#define GPU_CC_HUB_DIV_CLK_SRC					21
-> +#define GPU_CC_MEMNOC_GFX_CLK					22
-> +#define GPU_CC_PLL0						23
-> +#define GPU_CC_PLL0_OUT_EVEN					24
-> +#define GPU_CC_RSCC_HUB_AON_CLK					25
-> +#define GPU_CC_RSCC_XO_AON_CLK					26
-> +#define GPU_CC_SLEEP_CLK					27
-> +
-> +/* GPU_CC power domains */
-> +#define GPU_CC_CX_GDSC						0
-> +
-> +/* GPU_CC resets */
-> +#define GPU_CC_GPU_CC_CB_BCR					0
-> +#define GPU_CC_GPU_CC_CX_BCR					1
-> +#define GPU_CC_GPU_CC_FAST_HUB_BCR				2
-> +#define GPU_CC_GPU_CC_FF_BCR					3
-> +#define GPU_CC_GPU_CC_GMU_BCR					4
-> +#define GPU_CC_GPU_CC_GX_BCR					5
-> +#define GPU_CC_GPU_CC_XO_BCR					6
-> +
-> +/* GX_CC power domains */
-> +#define GX_CC_GX_GDSC						0
-> +
-> +#endif
+> -    items:
+> -      - const: default
+> -      - const: state_cmd_gpio
+> -
+> -  pinctrl-0:
+> -    description:
+> -      Should contain default pinctrl.
+> -
+> -  pinctrl-1:
+> -    description:
+> -      Should switch CMD pin to GPIO mode as a high output.
+> -
+>    mrvl,clk-delay-cycles:
+>      description: Specify a number of cycles to delay for tuning.
+>      $ref: /schemas/types.yaml#/definitions/uint32
 > 
 > -- 
 > 2.50.0
