@@ -1,365 +1,310 @@
-Return-Path: <devicetree+bounces-195101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 484DCB00792
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 17:50:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 186DCB007EC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 18:00:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D51E43B02E6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:49:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5202F487893
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 15:59:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837FA275AED;
-	Thu, 10 Jul 2025 15:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E858A27BF7E;
+	Thu, 10 Jul 2025 15:59:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="YpBD8kvZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SeqPI5ci"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010009.outbound.protection.outlook.com [52.101.84.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AF9C270571;
-	Thu, 10 Jul 2025 15:49:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.9
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752162570; cv=fail; b=K6i2/UFBf1xn5xQLorUF6GxSngk9kL1EttzjVOdBtO10bPmDu2FSQlfIztdugacgJEMJK7UcuQt6WAORJH7oW3DUpBUkX/YxFKFsvOs2hxYUWlqP7//7HE08/FSvWkHM0FFZ29VGWC8UsslP63E++kSBTmzkqOGhDs5TcstpQpA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752162570; c=relaxed/simple;
-	bh=h6Pez4dufnU6MoPu7N+4If4IatQSDEImUdT1KK4J1xQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=kQMphIDoZBeNn3ToHwjR0c2T3xBgg4ZBav9Sa4OuCzbrkA1Z2zBEJoqZ94S3VPhjrJFqcLbhANr0saRnKHRMMfM8vTYagb7j09ev/zO74znkSqrnjJPPiyG6elb83e89ZGMGerDF8K7mVA9YL/Oi12xilvLzO3xBUADxRmhI4d4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=YpBD8kvZ; arc=fail smtp.client-ip=52.101.84.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UEEIx+TVjgohHPDC0w7KXQF6ixZ50y4qya8jcPgluN4dP3L18q8PDTNwiCU1xZfSC1FlY51i2b7MSMbwunfUDy2N+AVS5q2Ju7+EsyH9hWRdgFzhHnZ3HaWZHJnDvV6X6ywtnpZoM/aFvgqswyiM1x/SnfiiXk4G36xKWdVzTOSSYtdfoGds8+aV2+DE6grbqskdw8uUv+9jLYQ+tRzEZRemk7eWT0WFOcQYq2kq0lFiUI6wZGDw5+OgaEoy6zhYzikaSQ8NtEYvm2CNMu5jsIjUeHXPTo9iL7x4lStIsm0BQOFtjWDwRlmrZPyrKHIIpqdBHppkudoz0hybfXjmcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fNGXUYMmONep2xWPuHlCbwloYqogd4P+tyoJ7VQHyT8=;
- b=gFFPc3Et88mT4t7NMzA56trBUKaQKfK+AZSqQeIH5rEDqWkEunD4lLxVOOGKcyIPO60AzpXaFc6NV0YcztipGdEqVjIh6CH9z87O7DHKCYIafI0PuSWsl67Vb+I2GPLfLkUcDqij0qjMUIdK7ISPERpaZN/rj14T8/b2oIARrNEtTXARgS2Qb41nEL+qetKVzLn42N2UHbpSukQ7pUdFUSvQgMV1yB2iWN3tLEhXTIj3RPz9GgxZMgUdiIPy9exefuz9mwGortjLajo3LRBpAbziPp+3I2w6ejFmqHKeiuDP0Pg1Z4zJ/ERysPLjVyKKJQWSNjepPqIIH5EWXA9cVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fNGXUYMmONep2xWPuHlCbwloYqogd4P+tyoJ7VQHyT8=;
- b=YpBD8kvZbZsmne64NU484irxxDEkZ07+xbSYK0lPwN10ABSOt+2sVxhTAQ4R2pokNTYyW16Sa4j3tIWfY3iJ/9QjPoCFc4ER8aXhRLs+qqhG+QJV7EakZNJxVby0EB/+XCw6ulWwFKpDUxtqC3R2ztAz0lJYWisYvPlKL2nr+HDqMBu4iF/QwSUayUzlTFHjB/uoXoEYU/yZ37ydn5f2g1NN06DyfmGJmFecjPnfQtPFTIiCMvmHYWWOmfLKbxX26VX1MRVkW3H0LQoe/iynXedkPfouGBJ1A3aFZ8RLPFisgw4fyykh5MA0ykCZdB48umQXYV3rmxLAKXKZFHpJyw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DBAPR04MB7223.eurprd04.prod.outlook.com (2603:10a6:10:1a4::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.24; Thu, 10 Jul
- 2025 15:49:25 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8901.023; Thu, 10 Jul 2025
- 15:49:25 +0000
-Date: Thu, 10 Jul 2025 11:49:18 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, chester62515@gmail.com,
-	mbrugger@suse.com, Ghennadi.Procopciuc@nxp.com,
-	larisa.grigore@nxp.com, lee@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
-	ping.bai@nxp.com, gregkh@linuxfoundation.org, rafael@kernel.org,
-	srini@kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, s32@nxp.com,
-	clizzi@redhat.com, aruizrui@redhat.com, eballetb@redhat.com,
-	echanude@redhat.com, kernel@pengutronix.de, imx@lists.linux.dev,
-	vincent.guittot@linaro.org
-Subject: Re: [PATCH v7 01/12] dt-bindings: mfd: add support for the NXP SIUL2
- module
-Message-ID: <aG/g/ngHCN76FX8v@lizhi-Precision-Tower-5810>
-References: <20250710142038.1986052-1-andrei.stefanescu@oss.nxp.com>
- <20250710142038.1986052-2-andrei.stefanescu@oss.nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250710142038.1986052-2-andrei.stefanescu@oss.nxp.com>
-X-ClientProxiedBy: AM0PR07CA0026.eurprd07.prod.outlook.com
- (2603:10a6:208:ac::39) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE71A27B4E0;
+	Thu, 10 Jul 2025 15:59:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752163165; cv=none; b=V0SE2UEKbhlS2MwLUMap7+EoG9h/6A5eWdaGy+52xtiyMLmXiP88RjgKYUVJsM625ioAASz+BBPBvvSlDi2MIui3iMP7BMr2/zXBlGnGKioFE4wifNoU4/N2GtDb8L8CYSqzpv2Qvwc2qN6HzqwB9KmFpa8K1VRcBx/bt32Y8EE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752163165; c=relaxed/simple;
+	bh=aMNXNTLgI8JeT7B0plMnVK9LNcSSEolGwKBFNEahtjQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Kljb2SXsUOI4AcmKbI08XRJy0Z/rapXOPhJwfV+8cy0dcyZvESbn/sB4wy9lAxP3LsDojcUUIIjMOC1vhENIfMFC90x5X09baiQ89eBWJKfI3gOPh0TBCOZnEsf1plPGhfXAG+gxfwGhDcCEYIESssWQzgN6CoVLjYQNUN2wRqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SeqPI5ci; arc=none smtp.client-ip=209.85.160.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-4a5903bceffso13968861cf.3;
+        Thu, 10 Jul 2025 08:59:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752163163; x=1752767963; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kc5UYPl7f9X635NJ3Fg771yePRD2lZa815BaqxRGGKw=;
+        b=SeqPI5ciCTOXnqBPTwNy9FUqBzLzgP+R8grLsrcMOQZ1v91v7sei128OTZ+oQa0A7U
+         kLzRVz22EudlNEAJARMb0SveET9UQsB+diZ3c/MuklPwX0/foxY/W0gNagIGbZLxkDX/
+         ivSFmNZlP7+IywQVM/KwRnlV61ysHsmzWBCf4+8QfRXzG+wXD39c35uJyzvIu2wd0z+V
+         eMxGdQPQAHBD0Mk4DrfvALutkOlxxy0+sRyK443H6EEJAHZlSi42C27sucZW0BQVMB27
+         8w+wZ7wahzEZEb5nxZvu84epQ4NKzEj710RsZreCEC46HsKaX/spPX+wU1WKb07GwKHQ
+         dwUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752163163; x=1752767963;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kc5UYPl7f9X635NJ3Fg771yePRD2lZa815BaqxRGGKw=;
+        b=jlrZNdh65Z9sHI2SYb5vr+q/3uQoSMU+Khh+T9dER8Xm2YlHlaKpnJ57cveZp5EFRQ
+         iQsb7ImBgHOndTO1MLdeIq3+4nIv6PUATQkI2T/yGR0Aodr/Q4/ec4ND1z/OQP0+01gj
+         w3Pgit0xqoPJMC9tmYj/2NOnbd7IlWKgFVQtAm7Lax8dyOCia5BlS/ZxMRDUBuYLqB7o
+         94ZnrJzoxGx5G/x5ruQGJRMuXSNRES/obySC+7WWcSn00Fnt5rVoAnA3dLwv/ir3xGaF
+         VNOLrp9mLXfY11t4ABx56O87FwOwYuHRfSO2xU2ofpaSTMxUhHuk84hifZ0oJhfUXxqd
+         brjA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjrLeXuTHeKLUqNHhct6ido9HMC/ybgdGb0ewHBGRMkvSur430YrNMnRbcDkN1HbGY7JRlsxJ3yBC9@vger.kernel.org, AJvYcCX/oWWxzKxf8IV8mWzo8VTd7ZigJiI2c4QQ4jbOh7Kh/4JgLtf9cpw3TROnQneT0zNNGFrEXQWO5bV/fKsW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxjn2AUOl6HBFCPnVzI+xB3K1AFf7Ho+rJQKyp1sDs5D2BQxpmB
+	N2mUY98y28tN11w9pfSLyBB+DWd3ezTPYDsEtaKuoD4tNDt0lI6lS7wNRG5/MZ1yPHrF09Zf0Up
+	aVPIH8QZk8lKdoZdyFmhuntutG1bXnsQ=
+X-Gm-Gg: ASbGncvbVs/UamN7winEAq0fXU4RHjwQ1DJng7/YTp6YW6akXlhlxIpIeVy3W4gY0EN
+	XtzAM74thjFTwAwdl6dSzyuPQnKjoOCkvI92e55vj6yBJUyeV0QXBzf32o8dIMxpb/LFwE6m8Po
+	eAxEQ4DPo24cTbIKp4MT8lDxseA5fL6+P92fy/z1NxSOSD
+X-Google-Smtp-Source: AGHT+IEhI4AzpjBb+4MG95Co3MJ4O+5/UGoMQAVYVLzb+1MSK4cvxAy6aVFWEBdljfwhBMeShvoYgQRmoCBDnmBmDEU=
+X-Received: by 2002:a05:622a:4ac6:b0:4a4:40b7:9cc with SMTP id
+ d75a77b69052e-4a9dec54757mr100730111cf.12.1752163162448; Thu, 10 Jul 2025
+ 08:59:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBAPR04MB7223:EE_
-X-MS-Office365-Filtering-Correlation-Id: ac19d53c-6340-4791-6ae3-08ddbfc95896
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|52116014|7416014|376014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?YN6UAi8Xd1m/imxRqo/9J59fYH9FtvmlrCsdD0Mzna0PG88zNoR2cTiaP4xq?=
- =?us-ascii?Q?4eKgHx/IIiOv+hvzAIN4eUI6G243nhoWNNAqOIieYgJSXVCiSSVjuKpvUp3c?=
- =?us-ascii?Q?YT+ewqgKLPoClOw9yZWznXQTsayzXnNDsyNJ6n4lZ7RrIR8lP5wjmxM6vUdz?=
- =?us-ascii?Q?l2SM4ANlzoay4K4Hx6eRtsCOu+vzHlDmWGyibkP8fMeH9F+QsLfZ1QD0xnAa?=
- =?us-ascii?Q?o04AM8mJCO1rMYtMyRJXE6FVIPTYil+G//5VVLhGQEoeaFBOod4weRUwwSIL?=
- =?us-ascii?Q?JzG/P5tojrLu7cpBL+pF4TKmAiJfnleFSZ2kHvSgzuffRwN6VcgIlWbd4WnK?=
- =?us-ascii?Q?50Er6BMvYjucpUXbph6NOsjSPrfp8xV5zh7Yv+O9T991kEf2L7m0P/Q23eRs?=
- =?us-ascii?Q?oOuORpwyx3TRc55GbAZwOxI8ppYuLIIgQP2tK+Ci4WXM48uXdGa/AqQF8xfU?=
- =?us-ascii?Q?YYkTxwJrEJQz61kxPriTxiEQJDk/+NFQtFdfFeMMHzFwTr1gNtjBZ2/3SdgO?=
- =?us-ascii?Q?Fo0oC9dEEwiLc4K3jiShQgkPOMOH0u5hplzF1aGFj4QlBbE+Uuc6h8GR56xl?=
- =?us-ascii?Q?EZFkWJD2qqcedrkEPQ5+0f9LC4jrjGGS2Vyk3G09vpQTZw4GRQpNgAWYxKCP?=
- =?us-ascii?Q?PIeEU582MHv4Vv1l+7wFahwl9KrFbRUJm7shgQqhaGSoU5Nd/U77ZMQ0gmaE?=
- =?us-ascii?Q?vSIsCZl6cgdrzcXiwFOaywPxjgkcMTZOWt6ODoUkuXPthJ68+tLO/Wja55qX?=
- =?us-ascii?Q?E1Evl3QeftaE/0vWCheGflE865k3o2afLT7T23cnZBmAtP7ejCRNTSSIY9WL?=
- =?us-ascii?Q?97F3Hm03DzN1uMBC1isPpxecP+AFDs2zb7m8xJgC0W268F6PghIobvFuGGWR?=
- =?us-ascii?Q?t2FTBj1yyJmgUD4do0s+zaNY31YGi9/AboYdTldreRuQMIQtbNRl+uGcDAy3?=
- =?us-ascii?Q?AKlLpDUr8scpFwuNVqBNKmbHFu9o4vMgayPRQ4kgTHR+5uYLrf0Yb+x4/SNW?=
- =?us-ascii?Q?/kAdhYQdbR2yXWNOLOhGuk6dwoj3H1Z0yDUHIXt5vnuWV65tvjd645UMAxoe?=
- =?us-ascii?Q?95HLDED8UpZdFrBEwwVaOlZzy5t52NZmKv6wZnbOHDNeWwwxvos+lOyjHQbL?=
- =?us-ascii?Q?a9QZs0hN+fYdoIGLKxCZ9g79mfTXRSFFZ2uCI5L5vDR8yWaTGJQ4znE3FUns?=
- =?us-ascii?Q?Q52GjEke4waNBxHgxP1qJRf71vNKI1UHOcWpGVLFcTnASJsykWXkvmvNrFBc?=
- =?us-ascii?Q?Hna4G4cKOfUhHpWai+vWoWIqG+PT6e6K0yX2mez8uIJ0E3JUGRgFdo3+U+hY?=
- =?us-ascii?Q?wXWyXLJfuGrZZRjWcs3mAbOxdquKm4npSLv6sm5+IznBpXCcBVPO/vWVJpcy?=
- =?us-ascii?Q?ubJghJlZj3vx4qtQQo90az3KpiumknxCSrJuuSO/90p7/v+eV9hDQSwAse1r?=
- =?us-ascii?Q?Pc0qwibQra4=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(52116014)(7416014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Z0fcf88ABTsqcmaWqPJqmEVA+UNCkosdFyoDPzBwx/0KtEc2fDsSo/xtb3oO?=
- =?us-ascii?Q?9zilOkejUV4Jayc51flgx+FFargduLhLtAvAq+e3I49WWrT2MuFOFDubz3GE?=
- =?us-ascii?Q?Z3h+asJq0FL8CJpXV+dT5EYTyabGHsnDpO6cT0Mo46iA3bnVwW0C/J2qZ6vN?=
- =?us-ascii?Q?lS1JAJEEByZoAGb34j6hvpiDfLkKVqYcjqoN8sJ0+rJBntorbXGj51K04ZhB?=
- =?us-ascii?Q?dJa2MO5oGu7HZ+DoVzeaM/TV35zWB8XVSh+mPs2+YaiysZh9b4lUX2/oYsTs?=
- =?us-ascii?Q?LSul0zjYKtBrI6Yo2xXfr0u3DkM34+FBhkaZMLO2mlfJMSuiybLbrSpIlebs?=
- =?us-ascii?Q?nTuTPRnPXqLubMjA7QFUf7vyI95ufRaAsuCCdB3G2SRmOBWBdRvVCk0uatL3?=
- =?us-ascii?Q?ePZW5Cb0qsoEFxTDjzCF20EGNtmV7GSeO2UIES30uQnRyHH2aeFo74Lft5yZ?=
- =?us-ascii?Q?YEQaO9liFDo/weiaZc/kQumvF/9nZ8o5DjDHDkMJUD9cbo6ujM+9WLwgIwsE?=
- =?us-ascii?Q?LGX2lylgVBRxoqa6p/VpgPxvkflv/gwsv9dvWZz7/rIQSq5/MCDptbiGWxVc?=
- =?us-ascii?Q?D1wrccQwF2k6wY75VgjREDF7xtV0+HL0gaZ4wLfIh8lDo7PB5fyzt0zf362s?=
- =?us-ascii?Q?v6+/vObqt12DmlvGcLgwQnTmKhNEXW4p70doW2IeYci+/tzl+GPoQMVrlYYw?=
- =?us-ascii?Q?5hQBLRkyxGUtgPjvwRjr0uQGNenuT6xBb9SBV5/0vAAlrM5JBn/cp5hHI4An?=
- =?us-ascii?Q?lugLj6vTF9tnw75BaDfkXkhww7b19435Lcd5XFigW9sKgc/dyKtuRP07IbeF?=
- =?us-ascii?Q?eHPmqs059J54wvvTKDhCB9TTXgOSHC0d6eZrB4Sx2i/zTFCvmyarO2tibPyG?=
- =?us-ascii?Q?diI6eup8+Cl9gz3D6oGuk682oWClu3oUxc04a9pZyOCotYyRQ7LwLI4NtWX0?=
- =?us-ascii?Q?iCBSnZrsWJeYlqnwtkiLiTPFvYs7cr3+2pkrFI11VaS2KUGSGi6FTkJlDDxO?=
- =?us-ascii?Q?fKHcygFAlFgVr4lK8C1ZIC3eM8ZvAV/5lG/R6YXGSFCIWlXMx+xxKwkdmUiE?=
- =?us-ascii?Q?5EFz9nSXGE24A7bk8Ofhwbxd222yUKmK69Ytp9vwWxSnUUamAYLRL/8WNl6E?=
- =?us-ascii?Q?zzrRCA3evgiXMwrAg1TEoZ4PTgaYnP9Rx4zljNz5vGlhKuBdHmNztSQKdTCT?=
- =?us-ascii?Q?093mk2TVrn0Z++HYOosr2fN3xxNNOhlJWycZq0le4Y+mbNUWj/m/FAFjk8i+?=
- =?us-ascii?Q?CPYaHXwbPVuJtaEx6/SVa3wXNiQmG8jgRMqRvlBvsmXmvjBRJquNgyKXtJYA?=
- =?us-ascii?Q?v+Wl6C0w1UJXjeBgW/+rZLnp+g1T1YHqlR7KiH8kxhM//kmmqZ49VaIHDaWq?=
- =?us-ascii?Q?6HIqYYnNkMTd5CnQcK7rdzrAS+msNZIQSSioK1brafJ10Ui0Ke22PIey9S1r?=
- =?us-ascii?Q?fffV3eHABd//zTozS+6aka6C5rp270Z7HCGbRb380nmLhwiWTifemxAjAlCm?=
- =?us-ascii?Q?UNXTfGFqCUz2ypw7LhniUJkgsYhBxfUvfpskxuXWu5eIKoMUWgcq3nJO8UDG?=
- =?us-ascii?Q?+lsNo7J3VwMyJ5lX7AuvenhnYkEnok5oKX5Ia3pM?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac19d53c-6340-4791-6ae3-08ddbfc95896
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2025 15:49:25.5155
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nD95uKYRmBH+vYyvOChtUEWVUrFDg2UZfv9alcSNvlVm2uTXEM1sbaDv78AIpA858MoTwpGnf0bZKjgaTEI+gg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7223
+References: <20250620100010.1291658-1-amadeus@jmu.edu.cn> <20250620100010.1291658-2-amadeus@jmu.edu.cn>
+ <5025631.aeNJFYEL58@phil> <b6f8f705-f661-46cf-9dda-6f18f8658622@kwiboo.se>
+In-Reply-To: <b6f8f705-f661-46cf-9dda-6f18f8658622@kwiboo.se>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Thu, 10 Jul 2025 19:59:11 +0400
+X-Gm-Features: Ac12FXx1qPTjJO3HuLgi2Tlv0SZqUgMUIca5qO-LsnRBbRElxcE-W9k1gvJPLZ0
+Message-ID: <CABjd4YzCL3U9yf65FUBE6EMqFjZHosULU7fUcjVo9VJ_=Ov+Dw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency
+ scaling support
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Chukun Pan <amadeus@jmu.edu.cn>, Yao Zi <ziyao@disroot.org>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 10, 2025 at 05:20:24PM +0300, Andrei Stefanescu wrote:
-> Add the dt-bindings for the NXP SIUL2 module which is a multi
-> function device. It can export information about the SoC, configure
-> the pinmux&pinconf for pins and it is also a GPIO controller with
-> interrupt capability.
-
-wrap at 75 chars.
-
+On Thu, Jul 10, 2025 at 7:09=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> wro=
+te:
 >
-> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-> ---
->  .../bindings/mfd/nxp,s32g2-siul2.yaml         | 163 ++++++++++++++++++
->  1 file changed, 163 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,s32g2-siul2.yaml
+> Hi Heiko and Chukun,
 >
-> diff --git a/Documentation/devicetree/bindings/mfd/nxp,s32g2-siul2.yaml b/Documentation/devicetree/bindings/mfd/nxp,s32g2-siul2.yaml
-> new file mode 100644
-> index 000000000000..8ae185b4bc78
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/nxp,s32g2-siul2.yaml
-> @@ -0,0 +1,163 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2024 NXP
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/nxp,s32g2-siul2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP S32 System Integration Unit Lite2 (SIUL2)
-> +
-> +maintainers:
-> +  - Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-> +
-> +description: |
-> +  SIUL2 is a hardware block which implements pinmuxing,
-> +  pinconf, GPIOs (some with interrupt capability) and
-> +  registers which contain information about the SoC.
-> +  There are generally two SIUL2 modules whose functionality
-> +  is grouped together. For example interrupt configuration
-> +  registers are part of SIUL2_1 even though interrupts are
-> +  also available for SIUL2_0 pins.
-> +
-> +  The following register types are exported by SIUL2:
-> +    - MIDR (MCU ID Register) - information related to the SoC
-> +    - interrupt configuration registers
-> +    - MSCR (Multiplexed Signal Configuration Register) - pinmuxing and pinconf
-> +    - IMCR (Input Multiplexed Signal Configuration Register)- pinmuxing
-> +    - PGPDO (Parallel GPIO Pad Data Out Register) - GPIO output value
-> +    - PGPDI (Parallel GPIO Pad Data In Register) - GPIO input value
-> +
-> +  Most registers are 32bit wide with the exception of PGPDO/PGPDI which are
-> +  16bit wide.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: nxp,s32g2-siul2
-> +      - items:
-> +          - enum:
-> +              - nxp,s32g3-siul2
-> +          - const: nxp,s32g2-siul2
-> +
-> +  reg:
-> +    minItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: siul20
-> +      - const: siul21
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-ranges:
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  nvmem-layout:
-> +    $ref: /schemas/nvmem/layouts/nvmem-layout.yaml#
-> +    description:
-> +      This container may reference an NVMEM layout parser.
-> +
-> +patternProperties:
-> +  "-hog(-[0-9]+)?$":
-> +    required:
-> +      - gpio-hog
-> +
-> +  "-pins$":
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    patternProperties:
-> +      "-grp[0-9]$":
-> +        type: object
-> +        allOf:
-> +          - $ref: /schemas/pinctrl/pinmux-node.yaml#
-> +          - $ref: /schemas/pinctrl/pincfg-node.yaml#
-> +        description:
-> +          Pinctrl node's client devices specify pin muxes using subnodes,
-> +          which in turn use the standard properties below.
-> +
-> +        properties:
-> +          bias-disable: true
-> +          bias-high-impedance: true
-> +          bias-pull-up: true
-> +          bias-pull-down: true
-> +          drive-open-drain: true
-> +          input-enable: true
-> +          output-enable: true
-
-I remember you needn't mark these as true, default it should be true if use
-"unevaluatedProperties: false".
-
-Can you check if pass dt_binding_check if remove these property?
-
-> +
-> +          pinmux:
-> +            description: |
-> +              An integer array for representing pinmux configurations of
-> +              a device. Each integer consists of a PIN_ID and a 4-bit
-> +              selected signal source(SSS) as IOMUX setting, which is
-> +              calculated as: pinmux = (PIN_ID << 4 | SSS)
-
-Do you have include file to define it? otherwise hex value is not easy
-understand.
-
-Frank
-> +
-> +          slew-rate:
-> +            description: Supported slew rate based on Fmax values (MHz)
-> +            enum: [83, 133, 150, 166, 208]
-> +        required:
-> +          - pinmux
-> +
-> +        unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +  - gpio-ranges
-> +  - interrupts
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    pinctrl@4009c000 {
-> +      compatible = "nxp,s32g2-siul2";
-> +      reg = <0x4009c000 0x179c>,
-> +            <0x44010000 0x17b0>;
-> +      reg-names = "siul20", "siul21";
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +      gpio-ranges = <&siul2 0 0 102>, <&siul2 112 112 79>;
-> +      interrupt-controller;
-> +      #interrupt-cells = <2>;
-> +      interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +      jtag-pins {
-> +        jtag-grp0 {
-> +          pinmux = <0x0>;
-> +          input-enable;
-> +          bias-pull-up;
-> +          slew-rate = <166>;
-> +        };
-> +      };
-> +
-> +      nvmem-layout {
-> +        compatible = "fixed-layout";
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        soc-major@0 {
-> +          reg = <0 0x4>;
-> +        };
-> +      };
-> +    };
-> +...
-> --
-> 2.45.2
+> On 7/10/2025 1:45 PM, Heiko Stuebner wrote:
+> > Am Freitag, 20. Juni 2025, 12:00:10 Mitteleurop=C3=A4ische Sommerzeit s=
+chrieb Chukun Pan:
+> >> By default, the CPUs on RK3528 operates at 1.5GHz. Add CPU frequency a=
+nd
+> >> voltage mapping to the device tree to enable dynamic scaling via cpufr=
+eq.
+> >>
+> >> The OPP values come from downstream kernel[1]. Both 408MHz and 600MHz
+> >> frequencies use the normal PLL, so use the corresponding highest volta=
+ge.
+> >>
+> >> The voltage used for other frequencies can't be less than above (875mV=
+).
+> >> Therefore, 816MHz to 1200MHz also uses the corresponding highest volta=
+ge.
+> >
+> > There has often been the argument that selecting a frequency that has t=
+he
+> > same voltage as a faster frequency does not save any power.
+> >
+> > Hence I remember that we dropped slower frequencies on other socs
+> > that share the same voltage with a higher frequency.
 >
+> One possible difference here is that the actual CPU rate is controlled
+> by a PVTPLL where TF-A will configure a osc ring-length based on the
+> requested rate and Linux only configure the regulator voltage.
+>
+> I have no idea if the configuration made by TF-A will have any affect on
+> power usage, but I suggest we keep all opp here because both TF-A and
+> Linux is involved in configuring the CPU rate.
+
+It seems that PVTPLL usage shouldn't change the equation here. As long
+as the voltage stays the same, it should always be preferable to run
+the core faster (i.e. at a shorter osc-ring length) so that it can go
+to idle sooner, given that idle states are less power-hungry than any
+of the active states.
+
+What DOES change the equation is the different voltage that downstream
+DTs define for different OTP programmed leakage values, as they make
+different top frequencies correspond to a given voltage for cores with
+different leakage values.
+
+> The measured rate can typically be read from a PVTPLL status reg, it
+> will be different depending on the ring-length, voltage and silicon
+> quality for the rates >=3D 816 MHz.
+>
+> >
+> >>
+> >> The remaining 1416MHz to 2016MHz use a voltage close to actual frequen=
+cy.
+> >>
+> >> [1] https://github.com/rockchip-linux/kernel/blob/develop-5.10/arch/ar=
+m64/boot/dts/rockchip/rk3528.dtsi
+> >>
+> >> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> >> ---
+> >>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 64 +++++++++++++++++++++++=
++
+> >>  1 file changed, 64 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boo=
+t/dts/rockchip/rk3528.dtsi
+> >> index 829f980ea353..5cb7f10b79ed 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> >> @@ -53,6 +53,7 @@ cpu0: cpu@0 {
+> >>                      device_type =3D "cpu";
+> >>                      enable-method =3D "psci";
+> >>                      clocks =3D <&scmi_clk SCMI_CLK_CPU>;
+> >> +                    operating-points-v2 =3D <&cpu_opp_table>;
+> >>              };
+> >>
+> >>              cpu1: cpu@1 {
+> >> @@ -61,6 +62,7 @@ cpu1: cpu@1 {
+> >>                      device_type =3D "cpu";
+> >>                      enable-method =3D "psci";
+> >>                      clocks =3D <&scmi_clk SCMI_CLK_CPU>;
+> >> +                    operating-points-v2 =3D <&cpu_opp_table>;
+> >>              };
+> >>
+> >>              cpu2: cpu@2 {
+> >> @@ -69,6 +71,7 @@ cpu2: cpu@2 {
+> >>                      device_type =3D "cpu";
+> >>                      enable-method =3D "psci";
+> >>                      clocks =3D <&scmi_clk SCMI_CLK_CPU>;
+> >> +                    operating-points-v2 =3D <&cpu_opp_table>;
+> >>              };
+> >>
+> >>              cpu3: cpu@3 {
+> >> @@ -77,6 +80,67 @@ cpu3: cpu@3 {
+> >>                      device_type =3D "cpu";
+> >>                      enable-method =3D "psci";
+> >>                      clocks =3D <&scmi_clk SCMI_CLK_CPU>;
+> >> +                    operating-points-v2 =3D <&cpu_opp_table>;
+> >> +            };
+> >> +    };
+> >> +
+> >> +    cpu_opp_table: opp-table-cpu {
+>
+> This node should be placed after the firmware node for the nodes to be
+> in alphabetical order.
+>
+> Regards,
+> Jonas
+>
+> >> +            compatible =3D "operating-points-v2";
+> >> +            opp-shared;
+> >> +
+> >> +            opp-408000000 {
+> >> +                    opp-hz =3D /bits/ 64 <408000000>;
+> >> +                    opp-microvolt =3D <875000 875000 1100000>;
+> >> +                    clock-latency-ns =3D <40000>;
+> >> +                    opp-suspend;
+> >> +            };
+> >> +
+> >> +            opp-600000000 {
+> >> +                    opp-hz =3D /bits/ 64 <600000000>;
+> >> +                    opp-microvolt =3D <875000 875000 1100000>;
+> >> +                    clock-latency-ns =3D <40000>;
+> >> +            };
+> >> +
+> >> +            opp-816000000 {
+> >> +                    opp-hz =3D /bits/ 64 <816000000>;
+> >> +                    opp-microvolt =3D <875000 875000 1100000>;
+> >> +                    clock-latency-ns =3D <40000>;
+> >> +            };
+> >> +
+> >> +            opp-1008000000 {
+> >> +                    opp-hz =3D /bits/ 64 <1008000000>;
+> >> +                    opp-microvolt =3D <875000 875000 1100000>;
+> >> +                    clock-latency-ns =3D <40000>;
+> >> +            };
+
+I.e. here the mainline kernel will always choose opp-1008000000 as
+long as the regulator voltage is 875000 uV, unless explicitly
+prevented from doing so by userspace. Whereas the BSP kernel [1] would
+request different frequencies for different silicon, e.g.
+opp-1200000000 for a silicon specimen with a leakage value of L4 and
+opp-1416000000 for a silicon specimen with a leakage value of L8 - all
+for the same regulator voltage of 875000 uV.
+
+So my 2 cents would be: no added benefit in having "lower frequency,
+same voltage" OPPs defined here until we implement an OPP driver
+reading the NVMEM programmed leakage values and selecting different
+*-L* voltages for each OPP depending on those. Once there is this
+support in the drivers, those OPPs can be added together with
+leakage-specific voltages (opp-microvolt-L0..11).
+
+Right now OPP values with frequencies lower than 1008000000 won't be
+selected by any of the energy-aware cpufreq governors anyway, because
+their voltages are the same. Exercise for the reader: try to convince
+e.g. the "schedutil" governor to select anything below 1008000000
+without touching
+/sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq :) This may
+change if OPP tuning logic is implemented such as in [2]: that will
+try and find the _voltage_ resulting in PVTPLL providing a frequency
+closest to what cpufreq requested, and use that for the in-memory OPP
+table instead of what was provided by the DTS.
+
+[1] https://github.com/rockchip-linux/kernel/blob/develop-5.10/arch/arm64/b=
+oot/dts/rockchip/rk3528.dtsi
+[2] https://github.com/rockchip-linux/kernel/blob/develop-6.1/drivers/soc/r=
+ockchip/rockchip_opp_select.c#L842-L994
+
+Best regards,
+Alexey
+
+> >> +            opp-1200000000 {
+> >> +                    opp-hz =3D /bits/ 64 <1200000000>;
+> >> +                    opp-microvolt =3D <900000 900000 1100000>;
+> >> +                    clock-latency-ns =3D <40000>;
+> >> +            };
+> >> +
+> >> +            opp-1416000000 {
+> >> +                    opp-hz =3D /bits/ 64 <1416000000>;
+> >> +                    opp-microvolt =3D <925000 925000 1100000>;
+> >> +                    clock-latency-ns =3D <40000>;
+> >> +            };
+> >> +
+> >> +            opp-1608000000 {
+> >> +                    opp-hz =3D /bits/ 64 <1608000000>;
+> >> +                    opp-microvolt =3D <975000 975000 1100000>;
+> >> +                    clock-latency-ns =3D <40000>;
+> >> +            };
+> >> +
+> >> +            opp-1800000000 {
+> >> +                    opp-hz =3D /bits/ 64 <1800000000>;
+> >> +                    opp-microvolt =3D <1037500 1037500 1100000>;
+> >> +                    clock-latency-ns =3D <40000>;
+> >> +            };
+> >> +
+> >> +            opp-2016000000 {
+> >> +                    opp-hz =3D /bits/ 64 <2016000000>;
+> >> +                    opp-microvolt =3D <1100000 1100000 1100000>;
+> >> +                    clock-latency-ns =3D <40000>;
+> >>              };
+> >>      };
+> >>
+> >>
+> >
+> >
+> >
+> >
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
