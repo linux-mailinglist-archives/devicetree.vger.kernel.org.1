@@ -1,137 +1,118 @@
-Return-Path: <devicetree+bounces-195309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC163B013AE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 08:36:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CD20B01353
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 08:09:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 317D9B4073F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 06:35:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1878F188CA93
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 06:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C3C81DE4FC;
-	Fri, 11 Jul 2025 06:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3FC1D54FE;
+	Fri, 11 Jul 2025 06:09:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="MeRlB3yb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GBgVQp/V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D621DF751
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 06:36:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43200944F;
+	Fri, 11 Jul 2025 06:09:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752215788; cv=none; b=pt8qC+Nt0XgX+JIcUxSre5YmJn9Qz7RkuPJvUrZhCP+yLj3r16W1SbHRjjiICqx4d+1LSvGBrWg2krQFjbDAaZEDLqVMy7JMkcNV+YXB7q4iQaIDNSDgjtyvecv4qoNYNoT1ikaoNWfAARq/dq5U2E6NLki9Sw3aqQp3EEKCY3U=
+	t=1752214184; cv=none; b=TW8Ftc+aE5IPGqUndOK61ABz88aJ/FofE4/LvSB30e3dBNJEUgcucS0ECB5tlprguLUjy5V23UUqcgWbGxSKtw7l4NzSPfODOB9iCaM8LefmmI+ZdKX60uejLSb3wjbebJpwsWQqZ0eWhBtyoOp5ySNOmdSvC+JwaI56YzrGvsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752215788; c=relaxed/simple;
-	bh=OXGzAwofQUptjCd7Sayvo2QK+pSVtRlEPsxrP8p9prA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=JPTUndd24dQvD8ofBeP42Z2eKc6ynyrXp73JJ1zLiJ4mnd33BI2mQCLXlSHm2tXyV4FcTdZTIf0iKnXRU4c9p2kgfVtJIMURr2UpDFZBYh+oO3Ll5cxNqRGMykdkLs7VTFj15QflAfMQUmvDKwW/azwWy5sKTberE1iu68fy49s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=MeRlB3yb; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250711063625epoutp036b124f59f040608c496e9c6d314c32dd~RHvky68he3154031540epoutp03i
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 06:36:25 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250711063625epoutp036b124f59f040608c496e9c6d314c32dd~RHvky68he3154031540epoutp03i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1752215785;
-	bh=GFDyMbCkO2ZwbHpRqQKoKj9ZE4qcw7HW3UuqnlBlvfI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MeRlB3yb1Bbfqs555VrbWIvza6o8vxQFUQTIuazCHXsZWUBilkMpFwATvqgZFCZPT
-	 GvOMQbJHclpxJmjVNrBxfG2NgjO4k/1XM+XLPXugi6snOMB+nuE+4cdjPJK8gC/DsJ
-	 +dJfY9JCD7ROK2t5HC9Cu+9yBHs/+wsCMfg8V2yw=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250711063624epcas5p3398f1d9b43f4dd34f41b8367e7cc6607~RHvj82xRm0433604336epcas5p3-;
-	Fri, 11 Jul 2025 06:36:24 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.176]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4bdhnL5YzVz3hhTM; Fri, 11 Jul
-	2025 06:36:22 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250710082538epcas5p2556f80b4193a046262808ae7742675be~Q1lpZdY_s0977409774epcas5p2X;
-	Thu, 10 Jul 2025 08:25:38 +0000 (GMT)
-Received: from bose.samsungds.net (unknown [107.108.83.9]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250710082536epsmtip12dd8cd863df7974d872c656c4082f2fa~Q1ln5BXAh0693006930epsmtip12;
-	Thu, 10 Jul 2025 08:25:36 +0000 (GMT)
-From: Devang Tailor <dev.tailor@samsung.com>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	alim.akhtar@samsung.com, alexandre.belloni@bootlin.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org, faraz.ata@samsung.com
-Cc: Devang Tailor <dev.tailor@samsung.com>
-Subject: [PATCH v2 3/3] arm64: dts: exynosautov9: add RTC DT node
-Date: Thu, 10 Jul 2025 14:04:34 +0530
-Message-Id: <20250710083434.1821671-4-dev.tailor@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250710083434.1821671-1-dev.tailor@samsung.com>
+	s=arc-20240116; t=1752214184; c=relaxed/simple;
+	bh=R9Fpa73buHZaMDm/CypJX9RwDyO2X2psftk0JY+YOi4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jvzGaNipdAT+q4IWam2X437i179u6bWMb3cWT6D6U5t6r6Ldr7K55FUKvvhZlyTSX9aIfyKqqRHOAGFqq27LaYG7j0Wf5Ce3KCMEWTSGr6FPvUq5dSy1HnwBVcToAf7+sYcMs4y8fKy/4wfb4RmTavqUO5OJln7OrJutA8YxDEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GBgVQp/V; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752214183; x=1783750183;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=R9Fpa73buHZaMDm/CypJX9RwDyO2X2psftk0JY+YOi4=;
+  b=GBgVQp/VmJH/3ykLlXD/fsZNm9nuuqd3KIZ7zt7KRhAdZ1F9Q2GG8+x6
+   fpoj3tWe5zL00zKHrJUvkFg1xJ7xwul4ObbasyrRc1QfgZbCKJvEMQzFh
+   krsMTlvPClspUOf2/3yaCnQ4wf42TG4l7xovW3pFqLvD3uASNW1LUvO/I
+   uLZFGzMLwzvbZBcgSVopGxRrIicFrSoM0GY67XVGnlFokRNZhLtRd12nu
+   mf0BoUVro/MFvbgTQh3MXxzHXTfyBM5a8c2DhK50WAjiuO+Z2c9cbBn0z
+   1QV3yHLP65s+8LvGfc5A01OqnscE2ffhNZ8H2K7fmNV8iVrDjLckDQMon
+   Q==;
+X-CSE-ConnectionGUID: RAH/8VVORCCpgEDOXvW8Hg==
+X-CSE-MsgGUID: Zg6UEqNDTomWz8Z4el35uQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11490"; a="58314908"
+X-IronPort-AV: E=Sophos;i="6.16,302,1744095600"; 
+   d="scan'208";a="58314908"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2025 23:09:43 -0700
+X-CSE-ConnectionGUID: hCnUPyLSTaGJ6KOAoXbx+A==
+X-CSE-MsgGUID: hPsMswBqS8ejXImduMjRTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,302,1744095600"; 
+   d="scan'208";a="156377505"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2025 23:09:39 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1ua6wy-0000000EQvn-2Uh4;
+	Fri, 11 Jul 2025 09:09:36 +0300
+Date: Fri, 11 Jul 2025 09:09:36 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: kernel test robot <lkp@intel.com>
+Cc: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, oe-kbuild-all@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Remi Buisson <remi.buisson@tdk.com>
+Subject: Re: [PATCH v2 6/8] iio: imu: inv_icm45600: add SPI driver for
+ inv_icm45600 driver
+Message-ID: <aHCqoCNhXPqdKZId@smile.fi.intel.com>
+References: <20250710-add_newport_driver-v2-6-bf76d8142ef2@tdk.com>
+ <202507111201.r62j5rb6-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250710082538epcas5p2556f80b4193a046262808ae7742675be
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250710082538epcas5p2556f80b4193a046262808ae7742675be
-References: <20250710083434.1821671-1-dev.tailor@samsung.com>
-	<CGME20250710082538epcas5p2556f80b4193a046262808ae7742675be@epcas5p2.samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202507111201.r62j5rb6-lkp@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Add DT node for on-chip RTC for ExynosAutov9
+On Fri, Jul 11, 2025 at 12:55:25PM +0800, kernel test robot wrote:
+> Hi Remi,
+> 
 
-Signed-off-by: Devang Tailor <dev.tailor@samsung.com>
----
- arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts |  4 ++++
- arch/arm64/boot/dts/exynos/exynosautov9.dtsi     | 10 ++++++++++
- 2 files changed, 14 insertions(+)
+>    drivers/iio/imu/inv_icm45600/inv_icm45600_accel.c:100:20: note: initialize the variable 'sleep' to silence this warning
+>      100 |         unsigned int sleep;
+>          |                           ^
+>          |                            = 0
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-index de2c1de51a76..5f5167571f7a 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-@@ -106,6 +106,10 @@ &pwm {
- 	status = "okay";
- };
- 
-+&rtc {
-+	status = "okay";
-+};
-+
- &serial_0 {
- 	pinctrl-0 = <&uart0_bus_dual>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-index 66628cb32776..afa6b258153c 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-@@ -1633,6 +1633,16 @@ pwm: pwm@103f0000 {
- 			clock-names = "timers";
- 			status = "disabled";
- 		};
-+
-+		rtc: rtc@10540000 {
-+			compatible = "samsung,exynosautov9-rtc";
-+			reg = <0x10540000 0x100>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&xtcxo>;
-+			clock-names = "rtc";
-+			status = "disabled";
-+		};
- 	};
- };
- 
+For the record, this is usually bad advice by the compiler. You need to either
+check for errors, or do something else.
+
+>    drivers/iio/imu/inv_icm45600/inv_icm45600_gyro.c:100:20: note: initialize the variable 'sleep' to silence this warning
+>      100 |         unsigned int sleep;
+>          |                           ^
+>          |                            = 0
+
+Ditto.
+
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
 
