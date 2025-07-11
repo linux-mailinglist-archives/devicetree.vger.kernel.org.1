@@ -1,369 +1,373 @@
-Return-Path: <devicetree+bounces-195456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF653B01C36
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 14:42:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86154B01C42
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 14:43:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04A375A5C09
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 12:42:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0147417A6F2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 12:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA6BD2BF019;
-	Fri, 11 Jul 2025 12:42:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8672BEFFF;
+	Fri, 11 Jul 2025 12:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="P+s0PLeN"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Ck5EmZQY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD4E2BE65A
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 12:42:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F1A2BE7B6;
+	Fri, 11 Jul 2025 12:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752237723; cv=none; b=PwhvAxzUJjiv0q+yhS5CRIQivww2ad2WP1K+47Pj19LkcBaEbC8k98PLcYN+o4BvCBgNnFst8aMn3MRu96Kn+DUq0QmEDRfDPOP/QNKf4/C+0f2IQKyFMF2VWGcyWlANNV3eYeyn4Lccwi5PLxebpus7JHRVSDWQ270BgvpwUNI=
+	t=1752237803; cv=none; b=cwiVwpasRUTYV2+obNk0EnVsyP7dTeyMYtA4FFrmmxpRZynhUEAw5c+gDseDeBhb9/1UC83o8xDEZGUUzOYjFu3s85vCXfwZsNG4+cyNzr0/PSMI9uB/yDqg1Ho+AJfwOCYf5Fzo+LyUviGwlVYT/kgT1nJb1keNXJ29CaF5Dcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752237723; c=relaxed/simple;
-	bh=TTNFsZlkgF17zI4BM79hCHyp2/ZL5Cfd+zZW4/aXDEw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xsncd0ycNbia2cl5kDhwQcdA/TQ/Q5qPOfboe+e28ulBZyx7z2FW16DOWZN0sXKtuATbRakSkES0U02lKhPy2JBEHFJIjROBUSe3z15mZp0pb17JsPhyIv8QLKrHymNiiaS2ci9uwxKjzlSoHXBpX5eWON7v0VAqlscCvJkXDUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=P+s0PLeN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56BAE6N7021740
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 12:42:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	d5+/yBvSrPjpR3dnKIXI7WDOVLe64039N9qvOvpxNgs=; b=P+s0PLeNgC1bT+zp
-	OprQSu04CbmBYWorPRnRtwuUy3UbbOugx8XFUfyVjUHg+KJX8zTXOV7+6Ip53E0j
-	SWrd44hZ42sgmT1IagJAqnKbqPTtrfg3u11xElUfJb2V4zlIdEWl7JMj89zcL89d
-	bZN73aY0gbjxDNMR4zKRGIhDAXpB52by1H02vdoMn752WXWo9I6x45VX0qy1/aUI
-	UB3yrJaCRQTDg7SoxQwnRiEhx9lfhGgAuykb33jrdfX0QZqrAuB0DptY4xsu9UP7
-	uwVpy7WSkFPdgODI28FzH+R4wL5yxUbIMqMPOtnwFWstZ8D6rb5lSdZV/FfV+yKx
-	mS1Dag==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47r9b19kck-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 12:42:01 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-74d12fa4619so1894183b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 05:42:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752237720; x=1752842520;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d5+/yBvSrPjpR3dnKIXI7WDOVLe64039N9qvOvpxNgs=;
-        b=wn9lQEAlGpmRBsPAH7jiie5Uhm89Lx5rjaSk+t/uWO9Kdci1rwQLV5G9ojFFSDVs/f
-         XJe/rwNVSOhbWehmHRo+7X104Gh/H+lqfFYEFqfjPA35uQfGZuzpPPovBHt0PsVhOCo3
-         0FN7jtg8ttmCuV3BrjLFRcy5mnU6sNCKWkQdVd6eRkN07R6xh7DvamsnPyBYUxbCOzE+
-         tqjnV82uwR0/V27nBU87e6Vp+vA3SIYMSQ+WAPXO9inLmL8NOheIAPH+ZOLdn747cAlA
-         +hrC2BjtdnFRyD/kwl3jJQYQnqx0Fk15iGUykbXWwQC7lnsqZPYVzLQGx8nRfpqYOCZO
-         2Isw==
-X-Forwarded-Encrypted: i=1; AJvYcCVCM4wCOtoHRJotRK4Fv0WuxMgLhDqTRZU3maTg0lSEsARAaxT4cnzuVHwCreELGF9XsQo1QrKGVskY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKLSwHvagl3fRuIdl8UdmfWPS7Txf5+nczaF7IOotyIZlSDZ8W
-	5gC2atRU3DxQx1o54s2ZNLVV8i4tYbfyhkNAOPpw30/sb6S1hHx72dX8j/mmZXrywFoGONOaidu
-	GasEPcp+dxLsVWx27eBU4XPutDf3A7UY/fmqdMIij8Pq7BxrXULbPGuMT9AOrLtk1
-X-Gm-Gg: ASbGncuF2AQ4aI15gSJ5Wdxjk7U/DJeJmh6lwMmziUSZiqfiY140ci/ABfIdxwnmSyF
-	TzmoDq2oY+oaExhWinINolivVSGOMAwBUIjsYOdv8rgJHLZEQycFQLqtNyAsT9a8e0dHUfS0UF9
-	8ShHOv9o6DHJVK7Y/vsVDbXSYClvAlfIzQv0crzBguIO8m8Tnb6KD2qLTTWonDNbs5Q86Ahzbni
-	UiNxpLMC/ykT7bvmKj1N2On0cUfYvqHyvjhyp+3FJ9C1eG4igRUfYF4S3W2d2Unh3so5mHQKKjC
-	J2Dy+BI428EQArTSbhjrvlRsE4uinwtwg6pNjJGVa62HwD23akc3MVMWmIVPRxKK8wynpsg=
-X-Received: by 2002:a05:6a00:856:b0:748:fcfa:8bd5 with SMTP id d2e1a72fcca58-74ee0bb022amr4593272b3a.3.1752237719813;
-        Fri, 11 Jul 2025 05:41:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGdcoZQM2gGkxEIKZe0Opa+gJonI4mT7h/Xru9l1ALb4R2GQ97oy1hB7jYf00yu3cGC1pFFfA==
-X-Received: by 2002:a05:6a00:856:b0:748:fcfa:8bd5 with SMTP id d2e1a72fcca58-74ee0bb022amr4593181b3a.3.1752237719048;
-        Fri, 11 Jul 2025 05:41:59 -0700 (PDT)
-Received: from [10.219.56.108] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9f4ca48sm5432801b3a.133.2025.07.11.05.41.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Jul 2025 05:41:58 -0700 (PDT)
-Message-ID: <569f154d-c714-1714-b898-83a42a38771c@oss.qualcomm.com>
-Date: Fri, 11 Jul 2025 18:11:47 +0530
+	s=arc-20240116; t=1752237803; c=relaxed/simple;
+	bh=OoIfSALKTXIWk25vrjGo2WX3DLeNQAcikeUVtebg4SA=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=K+4gIlHwvZ7Csl9VK9rS4qw8gLkhfZkwUkAylYzqUWLKrPWWvY5M4XWXtJ233qpcXG47PjrCyNDBfP7LmeR5H/TZpmep8d+cOIa/QTPnvedA+djkFqlogo2CV5cUIxwz8SU7hBCGFCqm5IA/DizuRzjJMjb3nt/oGQ7kwKK8890=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Ck5EmZQY; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8106BD77;
+	Fri, 11 Jul 2025 14:42:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1752237769;
+	bh=OoIfSALKTXIWk25vrjGo2WX3DLeNQAcikeUVtebg4SA=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=Ck5EmZQYSuCFLx1X95yuHCtKALF2rT8rh4WRjdlrXizxnUZRhoD6HGPtGCbxOr7Wb
+	 8gSpR5xD6/JLN2Uw8gVJh92fZcFLOFGZzjUHkysxrjB0TqvV07tJvbfbWDbnu3jFCq
+	 wKXlAAYqwjEpItC9htHrzDVZ1Mk5NKITsbZXhB28=
+Message-ID: <54c94bcf-9b68-4fe7-a84d-fed665b362a3@ideasonboard.com>
+Date: Fri, 11 Jul 2025 13:43:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v10 00/10] Implement vendor resets for PSCI SYSTEM_RESET2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] media: v4l2-dev: Add helpers to run
+ media_pipeline_[started|stopped]()
+From: Dan Scally <dan.scally@ideasonboard.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ biju.das.jz@bp.renesas.com
+References: <20250704-ivc-v3-0-5c45d936ef2e@ideasonboard.com>
+ <20250704-ivc-v3-2-5c45d936ef2e@ideasonboard.com>
+ <v3gonywym2km6u4qpsm2bkpn5n7vmvm4rdt3nfiws6mri3b7y4@gh4q5f4cmavc>
+ <436bbb33-0740-4ef8-8297-a06aa8243cfd@ideasonboard.com>
 Content-Language: en-US
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Elliot Berman <elliotb317@gmail.com>
-Cc: Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        Andre Draszik <andre.draszik@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, Wei Xu <xuwei5@hisilicon.com>,
-        linux-rockchip@lists.infradead.org,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Elliot Berman <elliot.berman@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250710-arm-psci-system_reset2-vendor-reboots-v10-0-b2d3b882be85@oss.qualcomm.com>
- <34dde6a1-bb75-45ed-a20d-057e3f32f592@broadcom.com>
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-In-Reply-To: <34dde6a1-bb75-45ed-a20d-057e3f32f592@broadcom.com>
-Content-Type: text/plain; charset=UTF-8
+Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <436bbb33-0740-4ef8-8297-a06aa8243cfd@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=dYuA3WXe c=1 sm=1 tr=0 ts=68710699 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
- a=EUspDBNiAAAA:8 a=dz73BlOkEN4xbZ8eBY0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=IoOABgeZipijB_acs4fv:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDA5MCBTYWx0ZWRfX5yKWaqaLVZlq
- bQfysBedyYcjj0xuSKrJtDLVMzeQZpRQ4l7o5m/NRA+zeiNKTK3hLLW0kwidi2iPN1eQsK1lVZv
- 0JEjyie6SJKx/rRKDAQWfGdunL8ti50Wy5sk/19voga16/qAIf14gDkmbsSbRfmfQoU0TmUU3O7
- y5qJACzZba2L+GAipObQ8hNOxMEGwt1guHIRA2ZURy+tFwJTcLdzzApyyetMlaX/BYSwJ7pboJx
- hPhaLzFNC2WX6CV1X7c9KJMR4zPRf9aPziQVTLYQVpyiAw8PRStRLDFMwAfqGOGneP1qlamstE5
- S/U/qnX0swhzgy5NADzA+JaQW1lkRbraMLmo95RI596IxzsEKUohf9TRQMzPlyDg4M2IPKQx+cV
- 0r6kwP4Qvxha2kAKV4W3aqS6KoV12jKs6chPxoPtHu7dJeh24/GoPBbexk58AnHrXW/nFOEg
-X-Proofpoint-GUID: m3b7meIczt2pVEzIWdtiETwVxbysEBfK
-X-Proofpoint-ORIG-GUID: m3b7meIczt2pVEzIWdtiETwVxbysEBfK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-11_03,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 suspectscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0
- priorityscore=1501 spamscore=0 adultscore=0 mlxlogscore=999 malwarescore=0
- mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507110090
 
 
+On 11/07/2025 12:51, Dan Scally wrote:
+> Hi Jacopo - thanks for the comments
+>
+> On 08/07/2025 14:10, Jacopo Mondi wrote:
+>> Hi Dan
+>>
+>> On Fri, Jul 04, 2025 at 12:20:19PM +0100, Daniel Scally wrote:
+>>> Add helpers to run the new media_pipeline_started() and
+>>> media_pipeline_stopped() functions. The helpers iterate over the
+>>> entities in the pipeline and count the number of video devices and
+>>> compare that to the pipeline's start_count() before acting. This
+>>> allows us to only run the media pipeline callbacks in the event that
+>>> the pipeline has had video_pipeline_start() called for each video
+>>> device.
+>>>
+>>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+>>>
+>>> ---
+>>>
+>>> We could take this further perhaps and include the equivalent routine
+>>> in video_device_pipeline[_alloc]_start()...if none of the entities
+>>> involved have .pipeline_started() or .pipeline_stopped() operations it
+>>> should be harmless, but I'm a bit reluctant to force the choice to run
+>>> those operations on users.
+>> I know I've kind of suggested that, but after all I don't think it's a
+>> very good idea, having this in two steps is probably better. And I
+>> like the fact the v4l2-dev layer operates on the video device counting
+>> and only relies on the mc layer for the callbacks notification.
+>
+>
+> Yeah me too. Let's stick to this
+>
+>>
+>>> Changes in v2:
+>>>
+>>>     - Adapted now media_pipeline_for_each_entity() takes an iter
+>>>       variable
+>>>     - Fixed the Return: section of the kerneldoc comments
+>>> ---
+>>>   drivers/media/v4l2-core/v4l2-dev.c | 57 ++++++++++++++++++++++++++++++++++++++
+>>>   include/media/v4l2-dev.h           | 36 ++++++++++++++++++++++++
+>>>   2 files changed, 93 insertions(+)
+>>>
+>>> diff --git a/drivers/media/v4l2-core/v4l2-dev.c b/drivers/media/v4l2-core/v4l2-dev.c
+>>> index c369235113d98ae26c30a1aa386e7d60d541a66e..f3309f8349664f7296a95216a40dd9d9baae8d9e 100644
+>>> --- a/drivers/media/v4l2-core/v4l2-dev.c
+>>> +++ b/drivers/media/v4l2-core/v4l2-dev.c
+>>> @@ -1200,6 +1200,63 @@ struct media_pipeline *video_device_pipeline(struct video_device *vdev)
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(video_device_pipeline);
+>>>
+>>> +static int __video_device_pipeline_started(struct media_pipeline *pipe)
+>> __function_name() is usually reserved for the non-locking version of
+>> function_name().
+>>
+>> This seems to be an helper only used internally by
+>> video_device_pipeline_started() so I would use a different name
+>> something like video_device_has_pipeline_started() ?
+>
+>
+> What it does is count the number of _unstarted_ video 
+> devices..."video_device_pipeline_unstarted_vdevs()"?
+>
+>>
+>>
+>>> +{
+>>> +    struct media_pipeline_entity_iter iter;
+>>> +    unsigned int n_video_devices = 0;
+>>> +    struct media_entity *entity;
+>>> +    int ret;
+>>> +
+>>> +    ret = media_pipeline_entity_iter_init(pipe, &iter);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    media_pipeline_for_each_entity(pipe, &iter, entity) {
+>>> +        if (entity->obj_type == MEDIA_ENTITY_TYPE_VIDEO_DEVICE)
+>>> +            n_video_devices++;
+>>> +    }
+>>> +
+>>> +    media_pipeline_entity_iter_cleanup(&iter);
+>>> +
+>>> +    return n_video_devices - pipe->start_count;
+>>> +}
+>>> +
+>>> +int video_device_pipeline_started(struct video_device *vdev)
+>>> +{
+>>> +    struct media_pipeline *pipe;
+>>> +    int ret;
+>>> +
+>>> +    pipe = video_device_pipeline(vdev);
+>>> +    if (!pipe)
+>>> +        return -ENODEV;
+>>> +
+>>> +    ret = __video_device_pipeline_started(pipe);
+>>> +    if (ret)
+>>> +        return ret;
+>> I would not return ret, as it might take random values betwen
+>> n_video_devices and 1. See below on the return value documentation
+>
+> But we need to be able to signal to the driver three states:
+>
+>
+> 1. No errors, but there are still unstarted video devices
+>
+> 2. No errors and there are no unstarted video devices
+>
+> 3. An error
+>
+>
+> So I expect a driver to do a two stage check:
+>
+>
+> ret = video_device_pipeline_started(vdev);
+>
+> if (ret < 0)
+>
+>         goto err_out;
+>
+> if (ret == 0)
+>
+>         // something appropriate here like run the media jobs scheduler
+>
+Sorry: I had a reading comprehension failure. You were suggesting to use -ENODEV to signal that 
+there are unstarted video devices remaining. I understand now, but I'm still not sure about it, 
+because then instead of the "if (ret == 0) check here we'd have "if (ret == -ENODEV)", which I don't 
+especially like...or am I missing some way to avoid having that check here?
 
-On 7/11/2025 1:50 AM, Florian Fainelli wrote:
-> On 7/10/25 02:15, Shivendra Pratap wrote:
->> The PSCI SYSTEM_RESET2 call allows vendor firmware to define
->> additional reset types which could be mapped to the reboot
->> argument.
->>   User-space should be able to reboot a device into different
->> operational boot-states supported by underlying bootloader and
->> firmware. Generally, some HW registers need to be written, based
->> on which the bootloader and firmware decide the next boot state
->> of device, after the reset. For example, a requirement on
->> Qualcomm platforms may state that reboot with "bootloader"
->> command, should reboot the device into bootloader flashing mode
->> and reboot with “edl” command, should reboot the device into an
->> Emergency flashing mode.  Setting up such reboots on Qualcomm
->> devices can be inconsistent across SoC platforms and may require
->> setting different HW registers, where some of these registers may
->> not be accessible to HLOS. These knobs evolve over product
->> generations and require more drivers.  PSCI defines a
->> vendor-specific reset in SYSTEM_RESET2 spec, which enables the
->> firmware to take care of underlying setting for any such
->> supported vendor-specific reboot. Qualcomm firmwares are
->> beginning to support and expose PSCI SYSTEM_RESET2
->> vendor-specific reset types to simplify driver requirements from
->> Linux. With such support added in the firmware, we now need a
->> Linux interface which can make use of the firmware calls for PSCI
->> vendor-specific resets. This will align such reboot requirement
->> across platforms and vendors.
->>   The current psci driver supports two types of resets –
->> SYSTEM_RESET2 Arch warm-reset and SYSTEM_RESET cold-reset. The
->> patchset introduces the PSCI SYSTEM_RESET2 vendor-specific reset
->> into the reset path of the psci driver and aligns it to work with
->> reboot system call - LINUX_REBOOT_CMD_RESTART2, when used along
->> with a supported string-based command in “*arg”.
->>
->> The patchset uses reboot-mode based commands, to define the
->> supported vendor reset-types commands in psci device tree node
->> and registers these commands with the reboot-mode framework.
->>
->> The PSCI vendor-specific reset takes two arguments, being,
->> reset_type and cookie as defined by the spec. As the
->> vendor-specific reset needs two arguments reset_type and cookie
->> to be passes to the firmware, enhance the reboot-mode framework
->> to support two arguments (magic and cookie), for each reboot-mode
->> command, where cookie will be optional.
->>
->> Along this line, the patchset also extends the reboot-mode
->> framework to add a non-device-based registration function which
->> will allow drivers to register using DT node, while keeping
->> backward compatibility for existing users of reboot-mode. This
->> will enable psci driver to register for reboot-mode and implement
->> a write_with_cookie function which will save the
->> magic(reset_type) and cookie and then use it in psci reset path
->> to make a vendor-specific reset call into the firmware. In
->> addition, the patchset will expose a sysfs entry interface within
->> reboot-mode which can be used by userspace to view the supported
->> reboot-mode commands.
->>
->> The list of vendor-specific reset commands remains open due to
->> divergent requirements across vendors, but this can be
->> streamlined and standardized through dedicated device tree
->> bindings.
->>
->> Currently three drivers register with reboot-mode framework -
->> syscon-reboot-mode, nvmem-reboot-mode and qcom-pon. Consolidated
->> list of commands currently added across various vendor DTs:
->>   mode-loader
->>   mode-normal
->>   mode-bootloader
->>   mode-charge
->>   mode-fastboot
->>   mode-reboot-ab-update
->>   mode-recovery
->>   mode-rescue
->>   mode-shutdown-thermal
->>   mode-shutdown-thermal-battery
->>
->> Detailed list of commands being used by syscon-reboot-mode:
->>      arm64/boot/dts/exynos/exynosautov9.dtsi:
->>     mode-bootloader = <EXYNOSAUTOV9_BOOT_BOOTLOADER>;
->>     mode-fastboot = <EXYNOSAUTOV9_BOOT_FASTBOOT>;
->>     mode-recovery = <EXYNOSAUTOV9_BOOT_RECOVERY>;
->>
->>      arm64/boot/dts/exynos/google/gs101.dtsi:
->>          mode-bootloader = <0xfc>;
->>          mode-charge = <0x0a>;
->>          mode-fastboot = <0xfa>;
->>          mode-reboot-ab-update = <0x52>;
->>          mode-recovery = <0xff>;
->>          mode-rescue = <0xf9>;
->>          mode-shutdown-thermal = <0x51>;
->>          mode-shutdown-thermal-battery = <0x51>;
->>
->>      arm64/boot/dts/hisilicon/hi3660-hikey960.dts:
->>          mode-normal = <0x77665501>;
->>          mode-bootloader = <0x77665500>;
->>          mode-recovery = <0x77665502>;
->>
->>      arm64/boot/dts/hisilicon/hi6220-hikey.dts:
->>          mode-normal = <0x77665501>;
->>          mode-bootloader = <0x77665500>;
->>          mode-recovery = <0x77665502>;
->>
->>      arm64/boot/dts/rockchip/px30.dtsi:
->>          mode-bootloader = <BOOT_BL_DOWNLOAD>;
->>          mode-fastboot = <BOOT_FASTBOOT>;
->>          mode-loader = <BOOT_BL_DOWNLOAD>;
->>          mode-normal = <BOOT_NORMAL>;
->>          mode-recovery = <BOOT_RECOVERY>;
->>
->>      arm64/boot/dts/rockchip/rk3308.dtsi:           
->>          mode-bootloader = <BOOT_BL_DOWNLOAD>;
->>          mode-loader = <BOOT_BL_DOWNLOAD>;
->>          mode-normal = <BOOT_NORMAL>;
->>          mode-recovery = <BOOT_RECOVERY>;
->>          mode-fastboot = <BOOT_FASTBOOT>;
->>
->>      arm64/boot/dts/rockchip/rk3566-lckfb-tspi.dts:
->>          mode-normal = <BOOT_NORMAL>;
->>          mode-loader = <BOOT_BL_DOWNLOAD>;
->>             mode-recovery = <BOOT_RECOVERY>;
->>             mode-bootloader = <BOOT_FASTBOOT>;
->>
->> Detailed list of commands being used by nvmem-reboot-mode:
->>      arm64/boot/dts/qcom/pmXXXX.dtsi:(multiple qcom DTs)
->>             mode-recovery = <0x01>;
->>             mode-bootloader = <0x02>;
->>
->> Previous discussions around SYSTEM_RESET2:
->> - https://lore.kernel.org/lkml/20230724223057.1208122-2-quic_eberman@quicinc.com/T/
->> - https://lore.kernel.org/all/4a679542-b48d-7e11-f33a-63535a5c68cb@quicinc.com/
->>
->> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-> 
-> Humm, something changed compared to the last version that I tested from Elliot which worked ok. With this patch applied and the following Device Tree snippet:
-> 
->         psci {
->                 method = "smc";
->                 compatible = "arm,psci-0.2", "arm,psci";
->                 cpu_on = <0xc4000003>;
->                 cpu_suspend = <0xc4000001>;
->                 cpu_off = <0x84000002>;
-> 
->                 reset-types {
->                         mode-powercycle = <0x01>;
-Yes, Now passing the cookie value is mandatory, when defining your "reset-types".
-So your device tree entry should be:
-			mode-powercycle = <0x01 0>;
 
-Please try by passing changing the dt entry as above.
+Thanks
 
-The dt-binding document is updated and does talks about the mandatory cookie
-to be passed in reset-type.
->                 };
->         };
-> 
-> I get the following invoking "reboot powercycle":
-> 
-> # reboot powercycle
-> [   21.403188] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000 is not a phandle reference
-> [   21.412032] Mem abort info:extended_property): /rdb/waketimer@841a840:interrupts-extended: cell 0 is not a phandle reference
-> [   21.414840]   ESR = 0x0000000086000004operty): /rdb/waketimer@841a840:interrupts-extended: cell 2 is not a phandle reference
-> [   21.418601]   EC = 0x21: IABT (current EL), IL = 32 bitsparent: cell 0 is not a phandle reference
-> [   21.423927]   SET = 0, FnV = 0: /rdb/xhci_v2@8d00000:phys: cell 0 is not a phandle reference
-> [   21.426988]   EA = 0, S1PTW = 0 /rdb/sata@8b0a000/sata-port@0:phys: cell 0 is not a phandle reference
-> [   21.430138]   FSC = 0x04: level 0 translation fault:phys: cell 0 is not a phandle reference
-> [   21.435054] user pgtable: 4k pages, 48-bit VAs, pgdp=000000010112c000 a phandle reference
-> [   21.441508] [0000000000000000] pgd=0000000000000000, p4d=0000000000000000handle reference
-> [   21.448318] Internal error: Oops: 0000000086000004 [#1]  SMPcell 0 is not a phandle reference
-> [   21.453990] Modules linked in: bdc udc_core/thermal-zones/cpu-thermal:thermal-sensors: cell 0 is not a phandle reference
-> [   21.458188] CPU: 0 UID: 0 PID: 1566 Comm: reboot Not tainted 6.16.0-rc5-next-20250710-gdd78270edd5a #2 NONE 4)
-> [   21.468032] Hardware name: BCX972160DV (DT)ases property name must include only lowercase and '-'
-> [   21.472221] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)only lowercase and '-'
-> [   21.479193] pc : 0x0s_paths): /aliases:pcie0: aliases property is not a valid node (/pcie@8b10000)
-> [   21.481388] lr : reboot_mode_notify+0x64/0x80es property name must include only lowercase and '-'
-> [   21.485760] sp : ffff80008344bbe0iases: aliases property name must include only lowercase and '-'
-> [   21.489079] x29: ffff80008344bbe0 x28: ffff0000c3bb3d00 x27: ffff800080ab58e8ly lowercase and '-'
-> [   21.496228] x26: 0000000000000000 x25: ffff0000c3bb3d00 x24: ffff800082cf9bc8ly lowercase and '-'
-> [   21.503376] x23: ffff80008344bcb8 x22: 0000000000000001 x21: ffff0000c31b87b0
-> [   21.510524] x20: 00000000fffffffc x19: ffff0000c31b8780 x18: 0000000000000000
-> [   21.517673] x17: 0000000000000000 x16: 0000000000000000 x15: 0000000000000000
-> [   21.524821] x14: 0000000000000000 x13: 0000000000000000 x12: 0000000000000000
-> [   21.531969] x11: 0000000000000000 x10: 00007fffc02bb958 x9 : 0000000000000010
-> [   21.539118] x8 : 0101010101010101 x7 : 0000000000000000 x6 : 000080c38080ffff
-> [   21.546266] x5 : ffff0000c3000000 x4 : 0000808000800000 x3 : 0000000000000000
-> [   21.553415] x2 : 0000000000000000 x1 : 0000000000000001 x0 : ffff0000c31b8780
-> [   21.560565] Call trace:
-> [   21.563014]  0x0 (P)
-> [   21.565205]  notifier_call_chain+0x70/0x120
-> [   21.569401]  blocking_notifier_call_chain+0x4c/0x78
-> [   21.574288]  kernel_restart+0x30/0xc8
-> [   21.577957]  __do_sys_reboot+0x1c8/0x268
-> [   21.581886]  __arm64_sys_reboot+0x28/0x38
-> [   21.585902]  invoke_syscall+0x4c/0x118
-> [   21.589660]  el0_svc_common.constprop.0+0x44/0xe8
-> [   21.594373]  do_el0_svc+0x20/0x30
-> [   21.597694]  el0_svc+0x18/0x58
-> [   21.600758]  el0t_64_sync_handler+0x98/0xe0
-> [   21.604947]  el0t_64_sync+0x154/0x158
-> [   21.608625] Code: ???????? ???????? ???????? ???????? (????????)
-> [   21.614730] ---[ end trace 0000000000000000 ]---
-> Segmentation fault
-> #
-> 
-> -- 
-> Florian
+Dan
+
+>
+>>
+>>> +
+>>> +    return media_pipeline_started(pipe);
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(video_device_pipeline_started);
+>>> +
+>>> +int video_device_pipeline_stopped(struct video_device *vdev)
+>>> +{
+>>> +    struct media_pipeline *pipe;
+>>> +    int ret;
+>>> +
+>>> +    pipe = video_device_pipeline(vdev);
+>>> +    if (!pipe)
+>>> +        return -ENODEV;
+>>> +
+>>> +    ret = __video_device_pipeline_started(pipe);
+>>> +    if (ret)
+>>> +        return ret;
+>> ditto
+>>
+>>> +
+>>> +    media_pipeline_stopped(pipe);
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(video_device_pipeline_stopped);
+>>> +
+>>>   #endif /* CONFIG_MEDIA_CONTROLLER */
+>>>
+>>>   /*
+>>> diff --git a/include/media/v4l2-dev.h b/include/media/v4l2-dev.h
+>>> index 1b6222fab24eda96cbe459b435431c01f7259366..26b4a491024701ef47320aec6a1a680149ba4fc3 100644
+>>> --- a/include/media/v4l2-dev.h
+>>> +++ b/include/media/v4l2-dev.h
+>>> @@ -654,6 +654,42 @@ __must_check int video_device_pipeline_alloc_start(struct video_device *vdev);
+>>>    */
+>>>   struct media_pipeline *video_device_pipeline(struct video_device *vdev);
+>>>
+>>> +/**
+>>> + * video_device_pipeline_started - Run the pipeline_started() entity operation
+>>> + *                   for a fully-started media pipeline
+>>> + * @vdev: A video device that's part of the pipeline
+>>> + *
+>>> + * This function checks whether all MEDIA_ENTITY_TYPE_VIDEO_DEVICE entities
+>>> + * connected to a given video device through enabled links have been marked as
+>> I would use the same text as the one from video_device_pipeline_start()
+>>
+>> " connected to a given video device through enabled links, either
+>> directly or indirectly,"
+>
+>
+> Ack
+>
+>>
+>>> + * streaming through the use of video_device_pipeline_start() or one of its
+>>> + * equivalent functions. If so, media_pipeline_started() is called to inform
+>>> + * entities in the pipeline of that fact. The intention is to provide drivers
+>>> + * with a shortcut for checking whether their pipeline is fully ready to start
+>>> + * processing data.
+>> Not really a shortcut, I would use "mechanism" instead.
+>>
+>> I would also specify that:
+>>
+>>   * entities in the pipeline of that fact. The intention is to provide drivers
+>>   * with a mechanism for checking whether their pipeline is fully ready to start
+>>   * processing data and call the .pipeline_started() media entity operation
+>>   * on all the entities in the pipeline.
+> Ack!
+>>
+>>> + *
+>>> + * Return: The number of video devices in the pipeline remaining to be started,
+>>> + * or a negative error number on failure.
+>> 0 for success as well
+>>
+>> I would anyway return 0 for success and a specific error code for the
+>> three failure cases:
+>> -ENOMEM if allocating the iterator fails
+>> -ENODEV if not all video devices have started
+>> -EINVAL if media_pipeline_started() fails
+>>
+>> You can document them as (copying from iommu.h)
+>>
+>> * Return:
+>> * * 0            - success
+>> * * EINVAL       - call to pipeline_started() failed
+>> * * ENOMEM       - failed to allocate pipe iterator
+>> * * ENODEV       - pipeline not yet fully started
+>>
+>>> + */
+>>> +int video_device_pipeline_started(struct video_device *vdev);
+>>> +
+>>> +/**
+>>> + * video_device_pipeline_stopped - Run the pipeline_stopped() entity operation
+>>> + *                   for a fully-started media pipeline
+>>> + * @vdev: A video device that's part of the pipeline
+>>> + *
+>>> + * This function checks whether all MEDIA_ENTITY_TYPE_VIDEO_DEVICE entities
+>>> + * connected to a given video device through enabled links have been marked as
+>>> + * streaming through the use of video_device_pipeline_start() or one of its
+>> What is the intended semantic here ? The first video device to receive
+>> a streamoff() will trigger media_pipeline_stopped() or should the last
+>> one do that ?
+> The first one should do it, so the first device caling stop should trigger actual stop in all 
+> involved hardware.
+>>
+>>> + * equivalent functions. If so, media_pipeline_stopped() is called for each
+>>> + * entity in the pipeline. The intention is to provide drivers with a shortcut
+>>> + * for checking whether this video device is the first device in the pipeline
+>>> + * to be stopped.
+>>> + *
+>>> + * Return: The number of video devices in the pipeline remaining to be started, or a
+>>> + * negative error number on failure.
+>>> + */
+>>> +int video_device_pipeline_stopped(struct video_device *vdev);
+>>> +
+>>>   #endif /* CONFIG_MEDIA_CONTROLLER */
+>>>
+>>>   #endif /* _V4L2_DEV_H */
+>>>
+>>> -- 
+>>> 2.34.1
+>>>
+>>>
 
