@@ -1,82 +1,108 @@
-Return-Path: <devicetree+bounces-195259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 375D0B00F5F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 01:12:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E5B1B01035
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 02:30:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE1FC3B8912
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jul 2025 23:11:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 722901C80A0D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 00:31:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1312C158D;
-	Thu, 10 Jul 2025 23:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30C808F77;
+	Fri, 11 Jul 2025 00:30:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="axRt43hi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qDXgPd56"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54242C08D7;
-	Thu, 10 Jul 2025 23:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F383A46BF;
+	Fri, 11 Jul 2025 00:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752189101; cv=none; b=ElcK0AOiSOA8wIzEmTCw3/cO/PRXGy+0vntCDoPwuFBeE/+iBAzWym+0HnnB3WO82e575uF/Ga0V2pHR2JLpHplYt1LrPYI8LaWvJ0icFXgboCoUJTdaVL6pogUFnOdS1FVgyFCuLpHARLaC9mwqJjBOVyPA6fS6KajNtfKC1G8=
+	t=1752193842; cv=none; b=sEugg0s+snYVtV4Ni7kX7xN6L3RKNVTTOK/t1vYLjOI5hVB4LIxQxZ21XqDlPSrEBWcBtCJzW6tlDu2Wp+NRR6tV5iNSdBjLhUrYUmbz6aRaXZBYLLCTuNaZCpzFJ7aitakOxz0irBb4HACs2MBNlJyl2fkXji7iYf0e6iD1NMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752189101; c=relaxed/simple;
-	bh=3HMmJn3yVK4MNDJ0kYXM5ifHyjOzwsIdDSU5mP8AOHU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FN9N8pEIAtxvKpYjPJ1S7BYi+r2AWZ6NAaxMuQYT2ymwENZMvdKdpnxuapV7ZflEL6M0hEAvteP2IBXhY1ZkrKfgikPUhwMvBxiLRpuOkJ1NN8fEY4lLLXKnut1zFNK2tpW17J9uwPgCmfP1ZDSpGRz2X4mKaivz1DTR+1ChCto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=axRt43hi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B18EC4CEED;
-	Thu, 10 Jul 2025 23:11:41 +0000 (UTC)
+	s=arc-20240116; t=1752193842; c=relaxed/simple;
+	bh=EUY3LTEqVfnyft6jycovUuD3pKLNok7s/ZTVTtqQMRI=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=Z90G4YHd4Sayd18QL6Ex7P3cWJ0QYTiREmNfBiwV5ajff4UQB6+YkWbKQ8IO2i4xAwELLUytvRz2MnM8FlGHbz+aPvm4Txw8PQmYqahsyatdaRjDXhjloEbbUdgY6X+0KViqDK0sX4Rp+W1rXJqmxJ9cpmUvAesj2wR01zLVjhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qDXgPd56; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAA6FC4CEE3;
+	Fri, 11 Jul 2025 00:30:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752189101;
-	bh=3HMmJn3yVK4MNDJ0kYXM5ifHyjOzwsIdDSU5mP8AOHU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=axRt43hi2l8T7bG2P3a1bw0fzg24tnjjG6e5+5ZQdm1H6+NnBfjWAt0W7D5QnKEp8
-	 cawytoFbOZ8dkQMzeQfK4BM46SuBz+S28SKu+xTg2yYym0cM/fN0bJQfjeVVYVNWCE
-	 O2+e12jwYsyM/VXagQNbvswDXeISXJVj8U4c3luu1g9kMP2Ta98mpVFfGGO7dqbVGT
-	 Ie1GCONjDj/dYcAyyxuOEySvodw9crT7a8T5QDWxrWEV7AhszT7jzWTmovI2iAPsZs
-	 5ZXRSPuLinGy5gnQahA5eLf7ChAIeVKopbxrs9sMyyTZ3BYCotfkAkFx2X5NGWyFiz
-	 4Qg2hJqfI/7tQ==
-Date: Thu, 10 Jul 2025 18:11:40 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-	Sakari Ailus <sakari.ailus@linux.intel.com>
-Subject: Re: [PATCH 03/72] dt-bindings: media: imx258: Make clocks property
- required
-Message-ID: <175218909992.56398.683086460903869755.robh@kernel.org>
-References: <20250710174808.5361-1-laurent.pinchart@ideasonboard.com>
- <20250710174808.5361-4-laurent.pinchart@ideasonboard.com>
+	s=k20201202; t=1752193841;
+	bh=EUY3LTEqVfnyft6jycovUuD3pKLNok7s/ZTVTtqQMRI=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=qDXgPd5682nZ7FxAb4YqDdWOGHXZssyZ1ldAX7Z5B3DUTn9/3iaDtxIGl+IU25+/6
+	 lCszKV01HyORq6wQmXt1o3uXd1KhkRXh5SXKFDB0hrzfQQBQ8ZapuKqBDA93f85QFc
+	 26fFctGAWw/B1xy0XKWQ9VkKYx78xtROUAJZkcmN3OzZOyZJZVMe2vVjYwaOqoSblB
+	 v2XnV+3u2o//Jcy4jn/7uzkGWOWL3IRyDiTnp183+Q3udj7HgOZYITzn1+F0vX0JT9
+	 C4DtjnvVrsqV6x3f7tIZFUbLHaRVg333LZU2L+hV6FrTFfigtTI771vxvSIJZIQfIN
+	 B+p/Kkkq6AYSA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33CE0383B266;
+	Fri, 11 Jul 2025 00:31:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250710174808.5361-4-laurent.pinchart@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v2 0/3] riscv: sophgo: Add ethernet support for
+ SG2042
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <175219386374.1715084.5771017921965824302.git-patchwork-notify@kernel.org>
+Date: Fri, 11 Jul 2025 00:31:03 +0000
+References: <20250708064052.507094-1-inochiama@gmail.com>
+In-Reply-To: <20250708064052.507094-1-inochiama@gmail.com>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, unicorn_wang@outlook.com, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr, rmk+kernel@armlinux.org.uk,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, joe@pf.is.s.u-tokyo.ac.jp,
+ l.rubusch@gmail.com, quentin.schulz@cherry.de, peppe.cavallaro@st.com,
+ joabreu@synopsys.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, sophgo@lists.linux.dev,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org,
+ dlan@gentoo.org, looong.bin@gmail.com
 
+Hello:
 
-On Thu, 10 Jul 2025 20:46:59 +0300, Laurent Pinchart wrote:
-> The sensor requires an external clock, and drivers need to access the
-> clock to retrieve its frequency in order to configure the sensor. This
-> makes usage of the clocks property mandatory for a system to work
-> properly. Mark the property as required.
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Tue,  8 Jul 2025 14:40:48 +0800 you wrote:
+> The ethernet controller of SG2042 is Synopsys DesignWare IP with
+> tx clock. Add device id for it.
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> This patch can only be tested on a SG2042 evb board, as pioneer
+> does not expose this device.
 > 
+> The user dts patch link:
+> https://lore.kernel.org/linux-riscv/cover.1751700954.git.rabenda.cn@gmail.com
+> 
+> [...]
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Here is the summary with links:
+  - [net-next,v2,1/3] dt-bindings: net: sophgo,sg2044-dwmac: Add support for Sophgo SG2042 dwmac
+    https://git.kernel.org/netdev/net-next/c/e281c48a7336
+  - [net-next,v2,2/3] net: stmmac: dwmac-sophgo: Add support for Sophgo SG2042 SoC
+    https://git.kernel.org/netdev/net-next/c/543009e2d4cd
+  - [net-next,v2,3/3] net: stmmac: platform: Add snps,dwmac-5.00a IP compatible string
+    https://git.kernel.org/netdev/net-next/c/d40c1ddd9b4d
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
