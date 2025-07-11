@@ -1,180 +1,306 @@
-Return-Path: <devicetree+bounces-195608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2946BB0243B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 21:05:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C318BB0247F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 21:23:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 810EA16B81B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 19:05:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2478F7ACDBD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 19:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304872D3ED6;
-	Fri, 11 Jul 2025 19:05:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 841A42EF9D5;
+	Fri, 11 Jul 2025 19:23:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IzADCheh"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="SO/yxq0/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3F9A1D6DB9;
-	Fri, 11 Jul 2025 19:05:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9E118DF6E
+	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 19:23:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752260710; cv=none; b=RiCQOITWVc1clivNQSn58PT4pI5cMvo45DPiE+wj4pUU+06B9NzoDB1o55Px4NP9luFVtegZHsn74p0h+hKPbq79PrzGjYbBknvDCvoN878mWbdNJAxawsvcng2/8WuyFBn8+fJvcyydN/airUHAYv2jYMN5UO1sp6r9FbRUwmo=
+	t=1752261799; cv=none; b=DrSPEkmiGTNffx3MiVoVoLqJABL2C6LJFpuOt0xVPZMuqdWSc8EZlYU7fBTPmT5qMdSGLIVmP1pWiA+GQLqljRGsTZKamZqtGLVqCqPBcpQU5GSD2hSm0l6HqOnbnYwilgc3HVvV7JnwqjmLimJASxh3IgrOn+aM7BBd71Tn+uI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752260710; c=relaxed/simple;
-	bh=cKTQJqlbK5jLF7JDcnv5IFN2c5RvEhAGNKXwRnCLtUI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YhG11VGXREi/Zlb+gXtdJiGUD3SmlGrkAHrJuFuRYUjVFb09LzqnDntO6A7XcD9pZ0KhETW92yxMu6upQhz6wu7q/4AwSOGvs9b60jAh8Pv1fAcJI98BbwKNCKvtvhRmAgsXGPceMjyQhvNeENpJwc+ZbYQG7wd7d0NEhBNEHD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IzADCheh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12F2AC4CEED;
-	Fri, 11 Jul 2025 19:05:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752260709;
-	bh=cKTQJqlbK5jLF7JDcnv5IFN2c5RvEhAGNKXwRnCLtUI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IzADChehhf6poYpejX3ebepi6BgHYHJDNqRW+uDGiZAgCyr5LI2u4tpV72V7/xkHT
-	 KH2/n47bhU3f5eVKxngxhr8zzn/IuWRU7xfpDN2V6Dc2UShQYOj/Oad1UCqOvJkg+p
-	 RnLGxFhXBJZAYNusTWChtF4walRxFFHTrsNGnSPfg/IkHQQKkYU6Zo/77hZkX6OdC/
-	 NkqBK+EBnYoHARdpIzMZ0GjexvwhoZtcUo1eAu3LYTSDs1h1FVh3kzhiBWhSFasMTW
-	 txVgKvfLXBEoYSnWM3R0TrGuOfUIOwQeoUBHQs2Oy8hmWEy08OXaAFTomZ8V9SitW4
-	 gSU42qL/Am8Tg==
-Date: Fri, 11 Jul 2025 14:05:07 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Shashank Maurya <quic_ssmaurya@quicinc.com>
-Subject: Re: [PATCH] arm64: dts: qcom: qcs9075-iq-9075-evk: Enable Display
- Port
-Message-ID: <iayioqm3tqutbjswt24p65o4demfdaqcakfbwohnaqueuuqtng@azhxjno4ofia>
-References: <20250711-enable-iq9-dp-v1-1-6d381e105473@oss.qualcomm.com>
+	s=arc-20240116; t=1752261799; c=relaxed/simple;
+	bh=CT8j4G71nN8Lnzk6rXI/vvQAsHcH1biWkLypZw72nnM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=fAmKJd7sYKz+1DKEN6l7kexQ+ZHrkmeb53xMtObBUaCpFHZAui85xr/IJKpgDhD5KZcs5EBnxIOXXmlpJov9tMAMrozukEup6n9Agx+7c4orkMNpY2dF0E946e9DJM97vxSOedU//Fg+XXVSiSEv1fS6B/fgxHaHWr3x4Oqj4oA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=SO/yxq0/; arc=none smtp.client-ip=209.85.161.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-61208b86d75so1262685eaf.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 12:23:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1752261796; x=1752866596; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=xbQ4gjhcKf1FV36kcI6WczoSoNZh07OMTR5d0NMFKgo=;
+        b=SO/yxq0/FRnxLsWSB0dHlPrVIoH7rvokZ0CzCMznRyEWj/b/i7hfgImcY8V+8euTmT
+         nS2YBQ4Jj6ZtPo6j+NDOVsJPq057qNI4i0hE27Z+KYexi57+kWDB4XWm1VCY1qCOKNCy
+         49YFfbKEqkbQ0lVaU2LfZaRreGmGMQRNpGZJ32vNbSIVM78IesYYQvncddXFXyOJWPgU
+         4yF6g71RYm2BhiYL8O7xWxOs+DkAzJdwe/KfnwmsYSD7vY/Qhmi+BiokalCeSzRruX9x
+         NDVIZ+59ypj2R15B3vJF1BM/CJgofmiiVsOlDy7MiQrYwjA8Ir3AVQoBNlm8bHgq0mei
+         1DMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752261796; x=1752866596;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xbQ4gjhcKf1FV36kcI6WczoSoNZh07OMTR5d0NMFKgo=;
+        b=hnsxmy3EWAxKK3qeHvIKd1X12qhORMh4gaaaQWHfm7Id/1H2NPReEV2olqEjb6v1sU
+         uJgsj2kwLrgcuassY6cgdOScbYKI6TaUIyESCC6FwYksYzHqKpuSFUkc5evGF1HGtODO
+         iP27tqaWhWIzJzznzuUleAnGiUwEZZkPicWUeEKvt5Dyi4AUTjmLQVk4KCa7PrlAvKGo
+         sXQB5o7CS/oZ/ieH8RCgFF8DW33fQ6EBaY7or/eNoo978j/pIaRt4U5LmgvQA0pWIAgf
+         wXzu4wvkQVY98kUrdKX5liwZeUV1nU0t3+DrZowRd2XEh3Z5keb9cxqMrsiMcxsG5VaO
+         cY0A==
+X-Forwarded-Encrypted: i=1; AJvYcCWvR/nt2mSJpHMbIJJqKnitfOPDXgWbUjCVnlHY4f2ZCNyHe+L1oq0rj5pbUp1Oy/2TByFj85tz01IF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6nP2390Lxcrb42IPw83qYkPVr4oUN2uZ6ZdPFXdlI+LzxGczZ
+	teZogJ/pXgzyKjtr5U+FgrEDbx94RShbcBZ8zfOP//qFz/Vv++a2lqRK3AquGBNANUI=
+X-Gm-Gg: ASbGncvCI4Iql/VPl2D+AirQWDFTVj723YhJrb9QASfOCL2BEMY2Tb2AQWiLZvyzeGR
+	McFCmo8keIIIJHhC7D07/UYLIEgx/zHYTh+zsqjNEfFsUbrc04CUCCddxCJtL7IKCpRthOIsCyb
+	b/aM/i9Wjdk0p5IMv25Y4pFxnYNx/0adDa5c1UsIXFYklvtIiGnMN5fBicDDRMcAxVTbxwUfyTQ
+	P1URPKcw5CktcKpC2b8LLU7vpPPmi90DbaanQAvBzczCcsVCZ7fuySAmPMogLqNdbKel/7MWC7G
+	jAK1FmPSzgx8xQm1OVZyqEqb+JfDT5T2q3RxCHH1gH3iLhOrT33TyMHSll6D2kglSYquzhHInE2
+	Ri0eCqTn30Trwj3WdaH0HD1z+WiU3OF40bxAo/itVOnL02VF+Ud73sZfP2d/7gJhfAgVoqxSIh5
+	JSeo49kbE+QQ==
+X-Google-Smtp-Source: AGHT+IHJJG1pjfMfHbXCiP2mYhrjtaG+ds4ATps3yE0wgdEBzivun4Aw8g8ipsQFhpaLwTypjmt8jw==
+X-Received: by 2002:a05:6871:3518:b0:29e:69a9:8311 with SMTP id 586e51a60fabf-2ff27099808mr3221078fac.36.1752261796031;
+        Fri, 11 Jul 2025 12:23:16 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:4601:15f9:b923:d487? ([2600:8803:e7e4:1d00:4601:15f9:b923:d487])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2ff116d3550sm846917fac.34.2025.07.11.12.23.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Jul 2025 12:23:14 -0700 (PDT)
+Message-ID: <1ead013c-56ef-4f11-afb9-2b11e0de7eb2@baylibre.com>
+Date: Fri, 11 Jul 2025 14:23:14 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250711-enable-iq9-dp-v1-1-6d381e105473@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] iio: add power and energy measurement modifiers
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250711130241.159143-1-antoniu.miclaus@analog.com>
+ <20250711130241.159143-2-antoniu.miclaus@analog.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250711130241.159143-2-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jul 11, 2025 at 09:13:47PM +0530, Prahlad Valluru wrote:
-> From: Shashank Maurya <quic_ssmaurya@quicinc.com>
+On 7/11/25 8:02 AM, Antoniu Miclaus wrote:
+> Add new IIO modifiers to support power and energy measurement devices:
 > 
-> Enable DPTX0 and DPTX1 along with their corresponding PHYs for
-> qcs9075-iq-9075-evk platform.
+> Power modifiers:
+> - IIO_MOD_ACTIVE: Real power consumed by the load
+> - IIO_MOD_REACTIVE: Power that oscillates between source and load
+> - IIO_MOD_APPARENT: Magnitude of complex power
 
-I prefer that you actually describe what these are connected to. I
-presume there will be more DPTX instances enabled for this board? If
-that's the case, let's mention here that this is just a subset.
+These make sense a modifiers since they are components of a single
+measured value.
+
+> - IIO_MOD_FUND_REACTIVE: Reactive power at fundamental frequency
+
+This one seems like there should just be a separate channel
+with IIO_POWER + IIO_MOD_REACTIVE since it is measuring a different
+value.
+
+> - IIO_MOD_FACTOR: Power factor (ratio of active to apparent power)
+
+Power factor seems like it should be a IIO_CHAN_INFO_ rather than
+IIO_MOD_. It is also unitless, so doesn't make sense to be part
+of power_raw which would imply that it shuold be converted to Watts.
 
 > 
-> Signed-off-by: Shashank Maurya <quic_ssmaurya@quicinc.com>
-> Signed-off-by: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
+> Energy modifiers:
+> - IIO_MOD_ACTIVE_ACCUM: Accumulated active energy
+> - IIO_MOD_APPARENT_ACCUM: Accumulated apparent energy
+> - IIO_MOD_REACTIVE_ACCUM: Accumulated reactive energy
+
+As below, this one seems like there should be a separate
+energy channel for accumulated energy.
+
+> 
+> Signal quality modifiers:
+> - IIO_MOD_RMS: Root Mean Square value
+
+Suprised we don't have something like this already. altvoltageY isn't
+clear about if the value is peak-to-peak or RMS.
+
+> - IIO_MOD_SWELL: Voltage swell detection
+> - IIO_MOD_DIP: Voltage dip (sag) detection
+
+These sound like events, not modifiers.
+
+> 
+> These modifiers enable proper representation of power measurement
+> devices like energy meters and power analyzers.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
->  arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts | 52 ++++++++++++++++++++++++
-
-Please wait with resubmitting this patch until the base dtsi has landed
-(with its new name).
-
->  1 file changed, 52 insertions(+)
+>  Documentation/ABI/testing/sysfs-bus-iio | 19 +++++++++++++++++++
+>  drivers/iio/industrialio-core.c         | 11 +++++++++++
+>  include/uapi/linux/iio/types.h          | 11 +++++++++++
+>  3 files changed, 41 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts b/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
-> index ab161180d1d5a670a68c0903e85f24a91faa2b71..110e08db3ad82e3aa88aa4c4ed4b2beb607385ad 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
-> @@ -252,6 +252,44 @@ vreg_l8e: ldo8 {
->  	};
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
+> index 3bc386995fb6..d5c227c03589 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-iio
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio
+> @@ -143,6 +143,9 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_raw
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_supply_raw
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_i_raw
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_q_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_rms_raw
+
+This should be on altvoltage, not voltage.
+
+Also, the exisiting i and q are wrong for the same reason.
+
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_swell_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_dip_raw
+>  KernelVersion:	2.6.35
+>  Contact:	linux-iio@vger.kernel.org
+>  Description:
+> @@ -158,6 +161,7 @@ Description:
+>  		component of the signal while the 'q' channel contains the quadrature
+>  		component.
+>  
+> +
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY-voltageZ_raw
+>  KernelVersion:	2.6.35
+>  Contact:	linux-iio@vger.kernel.org
+> @@ -170,6 +174,11 @@ Description:
+>  		of scale and offset are millivolts.
+>  
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_active_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_reactive_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_apparent_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_fund_reactive_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_factor_raw
+
+As above, power factor doesn't have units of watts so doesn't belong here.
+
+>  KernelVersion:	4.5
+>  Contact:	linux-iio@vger.kernel.org
+>  Description:
+> @@ -178,6 +187,7 @@ Description:
+>  		unique to allow association with event codes. Units after
+>  		application of scale and offset are milliwatts.
+>  
+> +
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_capacitanceY_raw
+>  KernelVersion:	3.2
+>  Contact:	linux-iio@vger.kernel.org
+> @@ -1593,6 +1603,12 @@ Description:
+>  
+>  What:		/sys/.../iio:deviceX/in_energy_input
+>  What:		/sys/.../iio:deviceX/in_energy_raw
+> +What:		/sys/.../iio:deviceX/in_energyY_active_raw
+> +What:		/sys/.../iio:deviceX/in_energyY_reactive_raw
+> +What:		/sys/.../iio:deviceX/in_energyY_apparent_raw
+> +What:		/sys/.../iio:deviceX/in_energyY_active_accum_raw
+> +What:		/sys/.../iio:deviceX/in_energyY_reactive_accum_raw
+> +What:		/sys/.../iio:deviceX/in_energyY_apparent_accum_raw
+
+I think the accumulated would just be a separate channel, not a modifier.
+
+>  KernelVersion:	4.0
+>  Contact:	linux-iio@vger.kernel.org
+>  Description:
+> @@ -1600,6 +1616,7 @@ Description:
+>  		device (e.g.: human activity sensors report energy burnt by the
+>  		user). Units after application of scale are Joules.
+>  
+> +
+
+Stray blank line.
+
+>  What:		/sys/.../iio:deviceX/in_distance_input
+>  What:		/sys/.../iio:deviceX/in_distance_raw
+>  KernelVersion:	4.0
+> @@ -1718,6 +1735,7 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_currentY_raw
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_currentY_supply_raw
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_currentY_i_raw
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_currentY_q_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_currentY_rms_raw
+
+Interesting that we don't have altcurrent like we do altvoltage.
+
+And there don't appeary to be any users of i and q modifiers on current
+so that can be dropped.
+
+>  KernelVersion:	3.17
+>  Contact:	linux-iio@vger.kernel.org
+>  Description:
+> @@ -1733,6 +1751,7 @@ Description:
+>  		component of the signal while the 'q' channel contains the quadrature
+>  		component.
+>  
+> +
+
+Stray blank line.
+
+>  What:		/sys/.../iio:deviceX/in_energy_en
+>  What:		/sys/.../iio:deviceX/in_distance_en
+>  What:		/sys/.../iio:deviceX/in_velocity_sqrt(x^2+y^2+z^2)_en
+> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
+> index f13c3aa470d7..daf486cbe0bd 100644
+> --- a/drivers/iio/industrialio-core.c
+> +++ b/drivers/iio/industrialio-core.c
+> @@ -152,6 +152,17 @@ static const char * const iio_modifier_names[] = {
+>  	[IIO_MOD_PITCH] = "pitch",
+>  	[IIO_MOD_YAW] = "yaw",
+>  	[IIO_MOD_ROLL] = "roll",
+> +	[IIO_MOD_RMS] = "rms",
+> +	[IIO_MOD_ACTIVE] = "active",
+> +	[IIO_MOD_REACTIVE] = "reactive",
+> +	[IIO_MOD_APPARENT] = "apparent",
+> +	[IIO_MOD_FUND_REACTIVE] = "fund_reactive",
+> +	[IIO_MOD_FACTOR] = "factor",
+> +	[IIO_MOD_ACTIVE_ACCUM] = "active_accum",
+> +	[IIO_MOD_APPARENT_ACCUM] = "apparent_accum",
+> +	[IIO_MOD_REACTIVE_ACCUM] = "reactive_accum",
+
+If we end up keeping any of the two-word modifiers, the actual string
+needs to omit the "_". The readability isn't so great, but it makes it
+much easier to machine parse if we can assume the modifier is always
+"oneword".
+
+> +	[IIO_MOD_SWELL] = "swell",
+> +	[IIO_MOD_DIP] = "dip",
 >  };
 >  
-> +&mdss0 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss0_dp0 {
-> +	status = "okay";
-
-status last please.
-
-> +	pinctrl-0 = <&dp0_hot_plug_det>;
-> +	pinctrl-names = "default";
-
-I prefer that you actually describe the connectors, like I did on
-sa8295p-adp. In particular if there's a bunch of connectors on this
-board.
-
-Regards,
-Bjorn
-
-> +};
-> +
-> +&mdss0_dp0_out {
-> +	data-lanes = <0 1 2 3>;
-> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-> +};
-> +
-> +&mdss0_dp0_phy {
-> +	status = "okay";
-> +	vdda-phy-supply = <&vreg_l1c>;
-> +	vdda-pll-supply = <&vreg_l4a>;
-> +};
-> +
-> +&mdss0_dp1 {
-> +	status = "okay";
-> +	pinctrl-0 = <&dp1_hot_plug_det>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&mdss0_dp1_out {
-> +	data-lanes = <0 1 2 3>;
-> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-> +};
-> +
-> +&mdss0_dp1_phy {
-> +	status = "okay";
-> +	vdda-phy-supply = <&vreg_l1c>;
-> +	vdda-pll-supply = <&vreg_l4a>;
-> +};
-> +
->  &qupv3_id_1 {
->  	status = "okay";
->  };
-> @@ -260,6 +298,20 @@ &sleep_clk {
->  	clock-frequency = <32768>;
+>  /* relies on pairs of these shared then separate */
+> diff --git a/include/uapi/linux/iio/types.h b/include/uapi/linux/iio/types.h
+> index 3eb0821af7a4..9e05bbddcbe2 100644
+> --- a/include/uapi/linux/iio/types.h
+> +++ b/include/uapi/linux/iio/types.h
+> @@ -108,6 +108,17 @@ enum iio_modifier {
+>  	IIO_MOD_ROLL,
+>  	IIO_MOD_LIGHT_UVA,
+>  	IIO_MOD_LIGHT_UVB,
+> +	IIO_MOD_RMS,
+> +	IIO_MOD_ACTIVE,
+> +	IIO_MOD_REACTIVE,
+> +	IIO_MOD_APPARENT,
+> +	IIO_MOD_FUND_REACTIVE,
+> +	IIO_MOD_FACTOR,
+> +	IIO_MOD_ACTIVE_ACCUM,
+> +	IIO_MOD_APPARENT_ACCUM,
+> +	IIO_MOD_REACTIVE_ACCUM,
+> +	IIO_MOD_SWELL,
+> +	IIO_MOD_DIP,
 >  };
 >  
-> +&tlmm {
-> +	dp0_hot_plug_det: dp0-hot-plug-det-state {
-> +		pins = "gpio101";
-> +		function = "edp0_hot";
-> +		bias-disable;
-> +	};
-> +
-> +	dp1_hot_plug_det: dp1-hot-plug-det-state {
-> +		pins = "gpio102";
-> +		function = "edp1_hot";
-> +		bias-disable;
-> +	};
-> +};
-> +
->  &uart10 {
->  	compatible = "qcom,geni-debug-uart";
->  	pinctrl-0 = <&qup_uart10_default>;
-> 
-> ---
-> base-commit: 7f3a635117b377cb90b67757cb46de12ce8aa24e
-> change-id: 20250711-enable-iq9-dp-addc9c7195c9
-> prerequisite-message-id: <20250612155437.146925-1-quic_wasimn@quicinc.com>
-> prerequisite-patch-id: 22eee78c5507c3105e0c74d1128b3db803879d7a
-> prerequisite-patch-id: cf52fc82e606ab87458339f71596ca31253e91ee
-> prerequisite-patch-id: 3617ce3b1790bc5b8e50dca6c3ae482759dcc684
-> 
-> Best regards,
-> -- 
-> Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
-> 
+>  enum iio_event_type {
+
 
