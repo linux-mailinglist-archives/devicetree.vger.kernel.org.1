@@ -1,150 +1,168 @@
-Return-Path: <devicetree+bounces-195433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92318B01A5E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:14:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09C4EB01A6B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:18:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36D5E588126
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 11:14:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4FC3761E09
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 11:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A965F288CB4;
-	Fri, 11 Jul 2025 11:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A140A28A40C;
+	Fri, 11 Jul 2025 11:17:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MaAVU6/C"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IKbqJk7j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EB271DED5B;
-	Fri, 11 Jul 2025 11:14:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D89C428136E;
+	Fri, 11 Jul 2025 11:17:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752232490; cv=none; b=gxnmzq5saaxwBNqqvyh3kJRmS78hGJnjdLghJ/S67dVWWMbjVgrGMhoj+BeQrLrgGNEBeijInioEnDz8AKZAk4qKNS4BxdOjJPVpkMmeyp5eos5lF2b8AsvTrQZxHngElbuyuF/Wp5FcA/P/f6cDONoxxI3U5q0rT/W4Ud00V/I=
+	t=1752232679; cv=none; b=sM5DNQZJiHJ9f+vG922ehvOGCBCIrpqDY8jCXl3jX5lHX87CxCdVjtX2td12WB0uAqaurSEFKzLZKms0WCO2BGiGGuXEBkd3e3P9yIQFuCnXLotaExiJfX/MpF/qPe2C33iVvqr6V+rOvhgQ8EZvkBpuCXIy0x5u5r0L5v0VmUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752232490; c=relaxed/simple;
-	bh=agy6+8GdtzC7Fj6vgysblX5H44rHd2wNP80PLXciBwU=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MrQ1w3JFwO8Aypjh0J+tV+MfVpHmRcLjrmkWdWdFTpb48D4+Scy2x1HAC8411PVcBTtmRvbh7z56C85jlCqeGE/sr5O4ONY0+jnJqZ6mO8RIOPN5uhH1YPiA+cad14zSlZLZU00aOHsgk1zwuR3NqTRC4vcyks7vTYKJV2g6Vpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MaAVU6/C; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56BAJxQm003966;
-	Fri, 11 Jul 2025 11:14:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=iUEEX5QYSW5bIoU9Z4+oK4
-	yCkYAtXtkYtTd5W0cSkVQ=; b=MaAVU6/CCjjcNOQCO/6dEj80rie4An/zaKLTBs
-	op/WHHq8yKwr3zQFnDru4w+pC+Q8oaI1LuOFKc1pQlI7sPy3IvS4ZLpXSO0ePmTS
-	A8O8GT+LbHrVO3pK5yVu766dhnG3Y0lqzSRb6ykmudmk8StpPlpOo64vbXkFlLFV
-	o//j7dob/erD/NbK5cJGPOdgd9q0psmUjVAHiNkfXJNrPmSamDcRKV9AiUk3K4XM
-	8lFypjoC2Pvz8VCGbE32p8iOtLxaKw8liNjSI3SciQvO6VXSr1Q1mQykndUMcjxH
-	rDzNOAZo8sOfVa8YGqeWcItPDQwuj8k0MhucEjhO4EkI6Aqg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47smbp0e62-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Jul 2025 11:14:45 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56BBEieZ014808
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Jul 2025 11:14:44 GMT
-Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Fri, 11 Jul 2025 04:14:41 -0700
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>,
-        <kathiravan.thirumoorthy@oss.qualcomm.com>
-Subject: [PATCH v1] arm64: dts: qcom: ipq5424: add i2c nodes
-Date: Fri, 11 Jul 2025 16:44:18 +0530
-Message-ID: <20250711111418.3980520-1-quic_mmanikan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1752232679; c=relaxed/simple;
+	bh=0ClC3MrJWD7Xstn1oN7XzObeQ1I8b2PnoUbOi02GNGg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ak2rO9SFuUyWFWTBK61CVT3Hd5SugtGl7UHQuALPX6yr9qCkRwaTBcG6mT7PxQCMB2iNvzos6JZBguxJ1iTu7oP4Np7o0RaxamlyeViYegqUVc40nHitu/Q2DfElaz1ku3nR11+EenQF6/wcsind7lZ+G/sTHucns3KNqFuEldo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IKbqJk7j; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2D9AF965;
+	Fri, 11 Jul 2025 13:17:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1752232646;
+	bh=0ClC3MrJWD7Xstn1oN7XzObeQ1I8b2PnoUbOi02GNGg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IKbqJk7j4Vca/scoQMGKccznksyzonIoyYc0ORk43zHpRvbEBvqB6IzD5MFdWluFQ
+	 6TRSQ3EJlhJgE/4ScMmijaWAjef2XLWZzK+nrJf8nSwnjkCoKz+wpfwQkEgS7sQqWK
+	 AN+aG09h5W4QBimsrQCJ74IfIIywsXLLsnE0AL5I=
+Message-ID: <3207c83f-bfdb-4f72-bc63-5be46978ce99@ideasonboard.com>
+Date: Fri, 11 Jul 2025 12:17:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDA3OSBTYWx0ZWRfX0Y6qRfI/XuiE
- 3rCeRuQyK0v/oWSwNCxTcrRnqjVnUE6xb9urg0glQAi1PirKKZ1+L10k3xp5wGbhmPp8KdrumKv
- XfVKx+/DX3tLfjWBiU4UvSF4kyzZmqZ2ysZCTNiZAFdqqbSNbYJzz74cp/8+VgG1Iwnuz+aSKgP
- 7YfCkAVVhCvkBggRxwflNbMQrKm/lphIxQz2fDQ00Vw8reMNS3rSVUUrCAJhqrwCdOzPXmw5NH0
- fPLZ9tWKBWJnmvpPnZ498cFnzLs3/aGnGOOKUUYbRndEzufWgaAoR4XTe3wPpC8pVcwGh+iic+Y
- x2kJEID4wHcJhpiauO2lnxJwbKGXIcigfEmvmqcm5TiAFDwJcVrBxyPvEFGDnpaNOojoogLm2XJ
- L/yss97wz/uQM6Oxf9M/G0pkFU4YSzAdCk2zQ5rBA/GX/2kRWoytGm7grdLK/h6YO3oVGr3C
-X-Authority-Analysis: v=2.4 cv=QM1oRhLL c=1 sm=1 tr=0 ts=6870f225 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=5VfnTfZ0KsacMTR8VH4A:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: VJZ7sRsw67L_qWndIrCltPIEdWwg4A7C
-X-Proofpoint-GUID: VJZ7sRsw67L_qWndIrCltPIEdWwg4A7C
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-11_03,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 impostorscore=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 adultscore=0 mlxscore=0
- phishscore=0 mlxlogscore=873 spamscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507110079
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/5] media: platform: Add Renesas Input Video Control
+ block driver
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ biju.das.jz@bp.renesas.com
+References: <20250704-ivc-v3-0-5c45d936ef2e@ideasonboard.com>
+ <20250704-ivc-v3-4-5c45d936ef2e@ideasonboard.com>
+ <4yt5pvsft7hgkmzsm6febhr7tp2scui6lj2gqkiwklsugb4y2l@wribzukxkpqv>
+ <f59029bb-ba62-4aaf-b53e-9a8cb4887d32@ideasonboard.com>
+ <dy3eecuuaacidhpdcuo3nvt5gputvrvm2v7mkknngks4sppsjz@74lh37ymei7r>
+ <db08a8db-c7e5-4431-b83e-11a92ab3fe54@ideasonboard.com>
+ <5ie24zvi6jupjn5hn3x642wmr25vleuercp4dxc6wxyatwxzke@5vpzqr7dnscv>
+ <CAMuHMdVRG5dgU6Lj2eMYhEqfDs4Jw72XCki8kyL7qwi6Btbf+A@mail.gmail.com>
+Content-Language: en-US
+From: Dan Scally <dan.scally@ideasonboard.com>
+Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <CAMuHMdVRG5dgU6Lj2eMYhEqfDs4Jw72XCki8kyL7qwi6Btbf+A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Serial engines 2 and 3 on the IPQ5424 support I2C. The I2C instance
-operates on serial engine 2, designated as i2c0, and on serial engine 3,
-designated as i2c1. Add both the i2c0 and i2c1 nodes.
+Hi Geert
 
-Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq5424.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-index 66bd2261eb25..858b9c714a13 100644
---- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-@@ -425,6 +425,28 @@ uart1: serial@1a84000 {
- 				interrupts = <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>;
- 			};
- 
-+			i2c0: i2c@1a88000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0 0x01a88000 0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_I2C0_CLK>;
-+				clock-names = "se";
-+				interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>;
-+				assigned-clocks = <&gcc GCC_QUPV3_I2C0_CLK>;
-+				assigned-clock-rates = <64000000>;
-+				status = "disabled";
-+			};
-+
-+			i2c1: i2c@1a8c000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0 0x01a8c000 0 0x4000>;
-+				clocks = <&gcc GCC_QUPV3_I2C1_CLK>;
-+				clock-names = "se";
-+				interrupts = <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>;
-+				assigned-clocks = <&gcc GCC_QUPV3_I2C1_CLK>;
-+				assigned-clock-rates = <64000000>;
-+				status = "disabled";
-+			};
-+
- 			spi0: spi@1a90000 {
- 				compatible = "qcom,geni-spi";
- 				reg = <0 0x01a90000 0 0x4000>;
-
-base-commit: 58ba80c4740212c29a1cf9b48f588e60a7612209
--- 
-2.34.1
-
+On 09/07/2025 10:12, Geert Uytterhoeven wrote:
+> On Wed, 9 Jul 2025 at 10:23, Jacopo Mondi <jacopo.mondi@ideasonboard.com> wrote:
+>>    I recall Sakari in the past had opinions on platform drivers selecting
+>> On Wed, Jul 09, 2025 at 09:13:51AM +0100, Dan Scally wrote:
+>>> On 08/07/2025 16:51, Jacopo Mondi wrote:
+>>>> On Tue, Jul 08, 2025 at 03:57:46PM +0100, Dan Scally wrote:
+>>>>>>> +static int __maybe_unused rzv2h_ivc_runtime_resume(struct device *dev)
+>>>>>> The driver doesn't depend or select CONFIG_PM, so this is rightfully
+>>>>>> marked as __maybe_unused.
+>>>>>>
+>>>>>> However, it doesn't seem to me that the probe() routine manually
+>>>>>> enable the peripheral, so in case of !CONFIG_PM am I wrong or the
+>>>>>> device won't operate at all ?
+>>>>>>
+>>>>>> I would select CONFIG_PM, or otherwise call this function from the probe()
+>>>>>> routine and then call pm_runtime_set_active() to inform runtime_pm
+>>>>>> that the peripheral is active, and at the end of the probe routine
+>>>>>> call pm_runtime_put_autosuspend(): in case of CONFIG_PM the peripheral
+>>>>>> will suspend, in case of !CONFIG_PM the pm_runtime_put_autosuspend()
+>>>>>> reduces to a nop leaving the peripheral enabled.
+>>>>> Ack
+>>>>>> I would just select CONFIG_PM tbh
+>>>>> I dropped it on Philipp's suggestion in the last review; I have no strong
+>>>> I only see a comment from Philipp here
+>>>> https://lore.kernel.org/all/8301d2862546507303e2dba1dd61906b848552c2.camel@pengutronix.de/
+>>>> about the RESET_CONTROLLER. Have I missed other comments maybe ?
+>>> Oh no you're right; I misremembered. Sorry for the noise!
+>>>>> feelings to be honest, I would expect it to be enabled in any configuration
+>>>>> that was intending to use this...but I suppose there's no harm accounting
+>>>>> for the possibility that it won't be
+>>>> no harm no, but a bit more complex handling of the device power up
+>>>> sequences.
+>>> No problem; I'll just select CONFIG_PM.
+>> You can then remove __maybe_unused from the function declaration.
+> You could just remove them anyway, iff you would use the newer
+> *_PM_OPS() instead of the old SET_*_PM_OPS().
+Thanks! I went with this.
+> P.S. I already converted all Renesas drivers locally, so no need to
+>       start working on the conversion to *_PM_OPS() for existing
+>       Renesas drivers.
+>
+> Gr{oetje,eeting}s,
+>
+>                          Geert
+>
 
