@@ -1,237 +1,149 @@
-Return-Path: <devicetree+bounces-195475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A89B01CE2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 15:06:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F518B01D65
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 15:26:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DF0CB42EA1
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:01:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0803F3ACF24
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A9EE2E9738;
-	Fri, 11 Jul 2025 12:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C8162D3226;
+	Fri, 11 Jul 2025 13:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yj49IzKm"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="zSErziQG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC8B2E7F39
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 12:58:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95D770810;
+	Fri, 11 Jul 2025 13:26:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752238701; cv=none; b=TKffrVJMIBuhjSk9s0anMhrXRooHYHXsiCcmxwOzxzI0/u3uGOm2X9XJ12hzKnSBMCGAW9NkpIySiJL6lvmTUQ7xvqqDVxD/AVBxmZU+lfWcw0ZPfc6UeaJlV27byJMwBYUKZIliFC7mQ6aj763u+gC7SyFLalObFgfb688+Scc=
+	t=1752240394; cv=none; b=aqru70koZ6E8S5cdGdBFwQXErlmRO5y8zkTIr9F9aPyIf1ASW3TpRbj4Nvrr37pZ4ak+eSLlcaQ0iYdeCBxo+Zk13XA9A8/4CDmJgN4sqQe5GvwvHxvg6m3dmJbxLrJKrtW+25ugcTs4rvIhCBrDG8QwJqO/2fNuP6QCHiUk/J4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752238701; c=relaxed/simple;
-	bh=C9vyDaOV5NYtX9bb7spylzRsGwk5yos/Ys1krrlhY08=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jn9Rfvr5bzeDD5IOoJQ4rWuWuTkHScuaqbtV3csIEr4R1AhDclq//xfCrWzW9WAbMAO+Cp8BD1g4Nzok046c5ehi/1ey4ZAE1Vwagnyi5IMSI77LPhAE9tnVj+rI3NJaIulpIWBhUUAnlrykIA28mCpWkvN3HCmRCcMeyg7Mkp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yj49IzKm; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-453643020bdso15837295e9.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 05:58:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752238698; x=1752843498; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PTGaqV+0h7/0datJWGHGz6KZlpOcm5tykg8eDuHMHVU=;
-        b=yj49IzKm96L3r0La/+GpZlVbrstv1OPw0L+AQ4ud/QbMwMeuuLvVV9DWPwttXv5TMn
-         9Q771+sm4ttzjlZ5PQZPIKKeu++pydUJphB8Y9G/uJ8a2qtar0lZOdwxwZScPSlxjzGg
-         ZCjYTzad57kIa1XSpKO8XhcyytMZy0C2yvx+7Gca/wpahv2OoxW1tmIXmqgj2ljCXQlD
-         OMKhiXj9jt6rxnSJfySifeEjF7g2H/6nZcwDqc7rciY5yRr1PGV8VBQH++TfcIU8LH/7
-         +2eZzu/MOzXFoiFsUdNDl+CI9JLDFC1x0oV0hqRnJvlh2aAISpP48+Fb8bCFg4BmYRmK
-         TVFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752238698; x=1752843498;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PTGaqV+0h7/0datJWGHGz6KZlpOcm5tykg8eDuHMHVU=;
-        b=rnZdd2NErk09yd/hWoTc+4m6JYzld7rx4Z3K6TatYPm3EdvYo8clpMfxZM+sqHZX5Q
-         raFLj5fhYwaGFLEZftpt/8sRCzElpoqDEdCaLfHbduGKISWkuFQwbajp70pA7ob6YBsI
-         hy1fCQGFvaMeuOkFv/0BOt9ZN6UVzbq7U3KwPajD0eAgwZhoKnnRHOTXvo/SigtWSheR
-         +NzLM6RPeFcY/ETXal+9NpKYILLaGIfVvH+xnp8FmQ2orsWsBZiu8YAv6SAByGtpdNBv
-         BE3cYjONU2+l0HiyE5nJ5kU9LZw6IK3zhtIgEgqJyflxib7IaXoL4mWlDX+AHKJotCfD
-         9c7g==
-X-Forwarded-Encrypted: i=1; AJvYcCUaC9FSOVfkHyBVGzv+dNpX2RI3F3LOjBWj6QiJUBVHSDvzAHFIsIyeSpoJIkOcFlyc+rFsDRhWGT/F@vger.kernel.org
-X-Gm-Message-State: AOJu0YxC108k6BH2YUJpXnZiA7d5fAhwIsK8SPDz50YaO3QzY/RUCZGd
-	ddF/KoOrQsj2VcPmbAXDEewEvdge1nnMOeSSh3+j9y0Xl+OXRsUDxGswM4qgbtyo4uI=
-X-Gm-Gg: ASbGncv+mEy2y6xvwiz0+vKL7da4H7T+xFyPsAWzreg6jAW64gspJyqqxyYQNgporxS
-	ltAQB/F82nUiG2FsvDTrNzH1OJ3NzrlzW2j3HNLwYUIXSwXgU/i+NCG5ub5SSL0pBuBPMGB2Grk
-	k4CLubrxZssuOJYW4qKb1h2Cp8ygN6YIkpRTGVjnKVnBk+giPSrzoWRcWw+GO48ydhNSDTzXTAL
-	6i+Lc+Yor2FDwTrVwNYpvA4qbw2vrSApwjH96w5ipAQrhA0U+s2d/gxx2vcsOZMsTTh9zNkSaqD
-	uH4NoiDRo5hVswDF79V6AeMgHSKDsregYQ/gnUtnIHexe+i0QJH+NQjfA3vkgWeH6k0bqyuHN8Q
-	pbGihZZ97O8OKa1lFjt8WbQlq6kAZW8dysGsXh9cN2adC4z2Br0OLvfXxgg2Lgu9q1WWxj8GRi6
-	s=
-X-Google-Smtp-Source: AGHT+IFCHpUoX/HdEVnfz+XU4F2soi1Yd/YGDDcREga/YCT29fq7TqkoWGu6imjg+HeOFqsPi2ntqg==
-X-Received: by 2002:a05:600c:8b21:b0:43d:42b:e186 with SMTP id 5b1f17b1804b1-454f427c7a3mr30607115e9.8.1752238697970;
-        Fri, 11 Jul 2025 05:58:17 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8dc1f70sm4373648f8f.27.2025.07.11.05.58.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jul 2025 05:58:17 -0700 (PDT)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Fri, 11 Jul 2025 13:58:07 +0100
-Subject: [PATCH v7 15/15] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x:
- Add OV02E10 RGB sensor on CSIPHY4
+	s=arc-20240116; t=1752240394; c=relaxed/simple;
+	bh=Jl/vU5lJC9S0oeOQ6YknUU2pLPlX3/BkkLX3JiVHe/E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KHioOjDLjfR5TsSwTG9pkeOWOgLxERQcqq6dvW8TP+v6ws1Mz+X7JEvC8UpW4UDsYuf9dQHJMR05J/djoAGVFn4vvbYkqp82EhcV1GcF/i4UtrlGOCBSW7Ejt8QrNlzJQO2GMJcVFfe3h2P1YmfiYqhV+KpOBKS60Kup2glHAM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=zSErziQG; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56BBxKk4015882;
+	Fri, 11 Jul 2025 09:03:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=MzrXBBg7elftyNlRdd2fDLtgh+l
+	+x3GeP6CWd2zgxOo=; b=zSErziQGrQ1zEeze+7LFlDRlIqKWlZ0gU3ZkbDC8CKv
+	COTcJgaGT9HzODdmcJWXZsFtx3uFRfxuCERH7kh8YWTLEnONVLUBI7J5Q9hjTlLz
+	4g8UjyxXuW+CYxC7HrqCjP8a5BOXm9j8Uln9vV31WiQWf3l6F9Q2BDCy6sQII/k4
+	qoEEBs8XG1eWnfylIcc2SksQlWiCJOGk+Op0FxlnIktSDz/94N0TBWkKa/8y821w
+	qhMiXycHxaXypsZc/KxgMjGrrLoB09QzVPAYYSVw/vSNKps9h3dZ/PsAmxUN3XMb
+	kBMmLxhS7WuDAB3bIBlGW59pCR8Rr7up57PUstYhAuw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 47tt54ac0v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Jul 2025 09:03:28 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 56BD3RNX026783
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 11 Jul 2025 09:03:27 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 11 Jul
+ 2025 09:03:27 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 11 Jul 2025 09:03:27 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.132])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 56BD3Jqq027484;
+	Fri, 11 Jul 2025 09:03:22 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH 0/3] iio: adc: add support for ADE9000 Energy Monitoring IC
+Date: Fri, 11 Jul 2025 16:02:34 +0300
+Message-ID: <20250711130241.159143-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-15-0bc5da82f526@linaro.org>
-References: <20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-0-0bc5da82f526@linaro.org>
-In-Reply-To: <20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-0-0bc5da82f526@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>, 
- Todor Tomov <todor.too@gmail.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2579;
- i=bryan.odonoghue@linaro.org; h=from:subject:message-id;
- bh=C9vyDaOV5NYtX9bb7spylzRsGwk5yos/Ys1krrlhY08=;
- b=owEBbQKS/ZANAwAIASJxO7Ohjcg6AcsmYgBocQpVKby93aooqqFZgIAkI0Zq70RwsUYqkwnKK
- PIEumEYlkWJAjMEAAEIAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCaHEKVQAKCRAicTuzoY3I
- OrxdD/9Gz98ieKZie8uzpC8roldjOvnRq+YZAN93WXuyq94RLFPCwJdIAXaqeakdB0XMwz+/LIg
- CEKMWnQyqGxJ1YQebwrxouOIsXRAx26CajH3I9TJo81Z2Wv9+4vAvQGHHoPdEyX7t83Z6qrzGBL
- OUSaOf8aef02eJTe/Z4JPPnHIo7FNlHDL2cSs2WBbmy83xIeuFedW0pcmfYi0oXLSsDn/uOzYPe
- 6hX7v9lBeDcC9+a8yj2FwR1ns3ruoodWRB80qmXiZLnW+L+VW7/PCS/0XKg2Ljve1hO+YVoEACS
- svInO4NJ9uSfCra3yjXqh7Lng6pA4c1IBXUQlMqVuFZlr0o/K/dcOKiFPtsossJr4paWs0i/rGO
- c4S79Q/ymFOfJ7G5keTi9qliA4pRIH246WhGolriO6MhDVdShGfDpmgDGCyyvYuf3N5Kgz1UGAN
- tPFLU8cYmnIIxniInb3n/iVQT9mEeO2MxOwfREP92cmDRgenjcNZJb+MbnwHMbEi9BH/LYTxFrC
- RG2ZQrQ5KpqpqaxGoFvVpoRy3UmDG692A0azeyO2o2aWjgXz91C/DcxqwWnrij4o7wLcWfb80r+
- kXoRPnfryzCyQjScFQML1+MyZOZnHxvaTsEPwFqto2ozPSg8pN+CNv5iN+MdfUfgKLlzfAJsOb9
- p3yqqWnGvMxdqTw==
-X-Developer-Key: i=bryan.odonoghue@linaro.org; a=openpgp;
- fpr=E693FB2AABA36DE117AB6FB422713BB3A18DC83A
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDA5MiBTYWx0ZWRfX0WR0VjnvW/Jn
+ QVob3DQ3pBd3KH4r1kpbTgWBpnAv3fQiM3RIuUJQKa6bTniCYpYNzkW3sVuAbTq1iAnMLSbckr7
+ dhXdlOcDNdWPaM8GPupKphaHWVD35pYe2enAGmKZXocBHpgWQ2Ra9qn79E1HehrLYI+F6qADh9n
+ Vr2ceC+DrmaxOQNAbrqA30zh1cyws3ctagolAI1cX4DcIXjVxbnOUaeloWVRjF5uoUqPS6YPz70
+ X2egbg7+NcA9yoBLoc1yQZpB7SFs+1h8xKR9uYINsdyXROmZJDoZ2sn3Vd8ol9GYjUDbFWcFmqM
+ ZBWxASvvcDfBZ8vuQCZWOyVbGqBHFJm46PwrXnj6zZsG6whJmjAgFBGdq949cTI9adU7Zrd7/5n
+ 5bqy9h2RTmLtkejKDuOuojuIMBQyqZ44zf9pcv4phNvycR3LdqSlNinDh395JTo34eZm54ge
+X-Authority-Analysis: v=2.4 cv=QZ5mvtbv c=1 sm=1 tr=0 ts=68710ba0 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=Wb1JkmetP80A:10 a=MilyVcYQlkyFfA35S9cA:9
+X-Proofpoint-GUID: IXQ3riGyR0bE73Mn9qbE6ozor0nPhwJs
+X-Proofpoint-ORIG-GUID: IXQ3riGyR0bE73Mn9qbE6ozor0nPhwJs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-11_03,2025-07-09_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 priorityscore=1501 mlxlogscore=999 impostorscore=0 malwarescore=0
+ bulkscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0 phishscore=0
+ spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507110092
 
-Add in the RGB sensor on CSIPHY4.
+This patch series adds support for the Analog Devices ADE9000, a highly
+accurate, fully integrated, multiphase energy and power quality monitoring
+device. The ADE9000 is capable of measuring energy consumption and power
+quality parameters in industrial and commercial applications.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 79 ++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
+The series includes:
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-index ce2625f8fe85287a16fc3c85cae5d58f99cc6fc2..6176e7e7299b471e2535a43b302d3e4871396462 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/gpio-keys.h>
-+#include <dt-bindings/phy/phy.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
- #include "x1e80100.dtsi"
-@@ -754,6 +755,68 @@ zap-shader {
- 	};
- };
- 
-+&camss {
-+	status = "okay";
-+
-+	ports {
-+		/*
-+		 * port0 => csiphy0
-+		 * port1 => csiphy1
-+		 * port2 => csiphy2
-+		 * port3 => csiphy4
-+		 */
-+		port@3 {
-+			csiphy4_ep: endpoint@4 {
-+				reg = <4>;
-+				clock-lanes = <7>;
-+				data-lanes = <0 1>;
-+				remote-endpoint = <&ov02c10_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&cci1 {
-+	status = "okay";
-+};
-+
-+&cci1_i2c1 {
-+	camera@36 {
-+		compatible = "ovti,ov02c10";
-+		reg = <0x36>;
-+
-+		reset-gpios = <&tlmm 237 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cam_rgb_default>;
-+
-+		clocks = <&camcc CAM_CC_MCLK4_CLK>;
-+		assigned-clocks = <&camcc CAM_CC_MCLK4_CLK>;
-+		assigned-clock-rates = <19200000>;
-+
-+		orientation = <0>; /* front facing */
-+
-+		avdd-supply = <&vreg_l7m_2p8>;
-+		dvdd-supply = <&vreg_l2m_1p2>;
-+		dovdd-supply = <&vreg_l4m_1p8>;
-+
-+		port {
-+			ov02c10_ep: endpoint {
-+				data-lanes = <1 2>;
-+				link-frequencies = /bits/ 64 <400000000>;
-+				remote-endpoint = <&csiphy4_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&csiphy4 {
-+	vdda-0p8-supply = <&vreg_l2c_0p8>;
-+	vdda-1p2-supply = <&vreg_l1c_1p2>;
-+	phy-type = <PHY_TYPE_DPHY>;
-+
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	clock-frequency = <400000>;
- 
-@@ -1290,6 +1353,22 @@ &tlmm {
- 			       <44 4>, /* SPI (TPM) */
- 			       <238 1>; /* UFS Reset */
- 
-+	cam_rgb_default: cam-rgb-default-state {
-+		mclk-pins {
-+			pins = "gpio100";
-+			function = "cam_aon";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+
-+		reset-n-pins {
-+			pins = "gpio237";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+
- 	edp_reg_en: edp-reg-en-state {
- 		pins = "gpio70";
- 		function = "gpio";
+1. New IIO modifiers for power and energy measurement devices, including
+   support for active/reactive/apparent power, energy accumulation, RMS
+   measurements, and power quality indicators (swell/dip detection).
+
+2. Device tree bindings for the ADE9000, supporting waveform buffer
+   configuration, phase configuration, and trigger settings.
+
+3. Complete driver implementation supporting:
+   - Multi-phase energy measurement (3-phase support)
+   - Power quality monitoring (voltage swell/dip detection)
+   - Waveform buffer capture with configurable triggering
+   - Energy accumulation with configurable time windows
+   - IIO buffer interface for continuous data streaming
+   - Event-based notifications for power quality events
+
+The driver provides a comprehensive interface for energy monitoring
+applications through the IIO framework, enabling userspace applications
+to monitor power consumption, quality, and waveform data.
+
+The driver will be extended in the future to support multiple parts such as
+ade9039.
+
+Antoniu Miclaus (3):
+  iio: add power and energy measurement modifiers
+  dt-bindings: iio: adc: add ade9000
+  iio: adc: add ade9000 support
+
+ Documentation/ABI/testing/sysfs-bus-iio       |   19 +
+ .../bindings/iio/adc/adi,ade9000.yaml         |  157 ++
+ drivers/iio/adc/Kconfig                       |   13 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/ade9000.c                     | 2187 +++++++++++++++++
+ drivers/iio/industrialio-core.c               |   11 +
+ include/uapi/linux/iio/types.h                |   11 +
+ 7 files changed, 2399 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml
+ create mode 100644 drivers/iio/adc/ade9000.c
 
 -- 
 2.49.0
