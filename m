@@ -1,195 +1,190 @@
-Return-Path: <devicetree+bounces-195387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40230B01771
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 11:17:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 983F2B01784
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 11:21:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D48C189B418
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 09:17:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A2AE1C2744A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 09:22:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35F85279DD5;
-	Fri, 11 Jul 2025 09:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA16279DB8;
+	Fri, 11 Jul 2025 09:21:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="A8Djs/dZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6D5279DA0;
-	Fri, 11 Jul 2025 09:17:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01314279DC2
+	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 09:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752225439; cv=none; b=TRLIaRpACEf2pCs6BDN3vniWmUCt9z1LAyZmlty84nTfP00aft5PA0Ywp+/KMHExogs4/vJmf3a6KS0DKNcPJadUmKh0/Fdcx1TcHJUqdJxU8LrHi3ja28Po7P3dWUCgFvSTw56jF/ifVofzH9Wat20o8oCtOX2F2te3dITpCr4=
+	t=1752225699; cv=none; b=QbHD8JFR/Hb19OmjKOARg53YpS7bkAKjfT5LjXZvVKnYBEwOAFV5bq5+CwUQ0zI2tn8hS2Vq9ltmWufVQRvPPg7z5mIzb5mrH3cbX5AchtsWVCzXNGRO9c/FZouyVz2mxQGUOd1XWhS6cf7Sl63Wpho469woUNgqjSHj3t7jyRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752225439; c=relaxed/simple;
-	bh=bB51iwwC1xz4c9M8AuYOXO0bEX52Byea065jvD6e5bY=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OxydRfI3RL/8N9iQcISqbDy2XVUVOhwnZZmlEfMiH0EFdUIy79wZ8Kr0ao4pSb3sipNuFNicCRgZjWO/sLh4ZAbcPz87H9VYkJamlSQX1kXGRN7ElyjiVhimmvNQfJuyDCWFRN2Oc/UIDz1f9nfQoJXTPd5bdlkASwAqdz4OtPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bdmKW1H5Vz6M4tg;
-	Fri, 11 Jul 2025 17:15:59 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 63A711402EF;
-	Fri, 11 Jul 2025 17:17:07 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 11 Jul
- 2025 11:17:06 +0200
-Date: Fri, 11 Jul 2025 10:17:04 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Alireza Sanaee <alireza.sanaee@huawei.com>
-CC: <krzk@kernel.org>, <robh@kernel.org>, <coresight@lists.linaro.org>,
-	<devicetree@vger.kernel.org>, <dianders@chromium.org>,
-	<james.clark@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-perf-users@vger.kernel.org>,
-	<linuxarm@huawei.com>, <mark.rutland@arm.com>, <mike.leach@linaro.org>,
-	<ruanjinjie@huawei.com>, <saravanak@google.com>,
-	<shameerali.kolothum.thodi@huawei.com>
-Subject: Re: [PATCH v2 1/5] of: add infra for finding CPU id from phandle
-Message-ID: <20250711101704.00003c64@huawei.com>
-In-Reply-To: <20250708151502.561-2-alireza.sanaee@huawei.com>
-References: <20250708151502.561-1-alireza.sanaee@huawei.com>
-	<20250708151502.561-2-alireza.sanaee@huawei.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1752225699; c=relaxed/simple;
+	bh=J1+gY7OYN0kPR3TnuQRjcQzBegXWzAAyK2wtVtceRZU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=dkU/JDHqGNdfq7Q3PGEGPGoAIRoJ0MgSN8t4eYiQjF7bQXyeHb6HeX8vze/0BaJjkH0oQptzQA1ReUyLLrBrCBfUdliY8EVxiIHULDZnQP+tVqx8DM4AtHBvNDXrzc8MTPpCHZ64Ws6n9vN7a6TR4oOv74MoueuVHzil8K5Of0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=A8Djs/dZ; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1752225694;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=S0JDyIunfR5DTlK8KTu+Yf5amiLX77lLqYYzQS582qg=;
+	b=A8Djs/dZusV3nm1DA67QPIdOY9htHu+SHuOkjDyzutQCst99DtGMyeEt0XuEKr6GcjuJgN
+	26lMEc+MzZr5eh3BVcWYwIy0ni7oFYz2+C8NQw6C+D3ithN6t8fCSc8e2KWDQiD33V3kyu
+	DrcJ1uCBTNeaZgJhqkGUBQiwSqfBRmQ=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-637-XcCEZcz-NVG9EIDW4bdb1Q-1; Fri, 11 Jul 2025 05:21:31 -0400
+X-MC-Unique: XcCEZcz-NVG9EIDW4bdb1Q-1
+X-Mimecast-MFC-AGG-ID: XcCEZcz-NVG9EIDW4bdb1Q_1752225690
+Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-45597cc95d5so1981075e9.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 02:21:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752225690; x=1752830490;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S0JDyIunfR5DTlK8KTu+Yf5amiLX77lLqYYzQS582qg=;
+        b=SMmJHSPtFKMcd4vpG9oVrIK0pR5sKIK7tz8n1fujG/oclMO5dse7brxsIO8I17mI+L
+         sxuvFCDlzr7NLozmfCOx5lbKXgKZPrXguicfqqp/Jq+0YS7k7T07uuno8HD2AQcOgTVq
+         7LoxU/8V9Jf/hpmn6OEK3FOaFNuMvSFXotDGK4KCB67pG8cuybLvta23SkNSjVmb/vlV
+         tJlMVVuR2n+mFJ2pOYnYrYA7SQ8snoyp/hk1uDcLEKsD/4jqw4QPfZlps14dtnUotPUP
+         glU73jrIs5iLqeyYb9so32mHoDLkemDSIfS+Ank90xKl8uISK61FlYW0ywWV8U2u10Yj
+         ZvWg==
+X-Forwarded-Encrypted: i=1; AJvYcCUC41eS0zyegQW9Z2PlvPzeVRN/yJliZ6p9bW4BYloUDl8a9D4n9PkBy7eebAis8tDbrleKAIYIc3jG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7G9JGp9yOuUWwbCTOFUiUD86zKY8T8x8FEnUIu3+064iuInnl
+	3fetkvkXA/KFfi8VWPMeoNLbbJAM7Axn5YO7bbYRo0TA138LwINbNf0JHYpriVW/XCJm3CXI+Ev
+	muQ7BrFOtf9hG2r3KuG32j7zkjFVi9DYfrkA5ZtSBneJyXJACCifx9hHAJI7VCp8=
+X-Gm-Gg: ASbGncsOgjjnLyIn/1K537hUR8ieEDYhDa6rcH7Vj50DVNT+YhN7e86sibLD5DQED84
+	cOh931/JcsI4Ro1KKxa6oyQGI2t9ID5rPubbLf11rHuxtP/HSmc10QEDg1ZOn1i1tLzX34Fzwe2
+	/RF73NZz5dF9rY15B7MuXkoa9AQEFVkWvBoreDE+EC2/S6GGHVzLTUobOMA68CPr+OgaYczzXvl
+	RhhdYA/NwBUhoUWJkf3/ru3yNrZK83ObfzaoOAAAdiBSJ3YOa+jyoGU9Fo/mFI3SWZaXryHOeh3
+	AgFPLN4oSYfEl1cKyzrWCXsHKfFG+X0BGVxSJac4wVe0sOdVaub1ZBMEA99UJ9paDOfu5NWfWm6
+	bNXQVGJzhYA2515nHTGraGQ==
+X-Received: by 2002:a05:600c:4fc7:b0:450:d568:909b with SMTP id 5b1f17b1804b1-454ec14848amr22904645e9.14.1752225690313;
+        Fri, 11 Jul 2025 02:21:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHopr/bZIg6PNEafq2nN27RiUQenQ7qTkGeKlIozsRqo7Tj0VZVvTn0sX8s4NUjyeT3MpW78Q==
+X-Received: by 2002:a05:600c:4fc7:b0:450:d568:909b with SMTP id 5b1f17b1804b1-454ec14848amr22904355e9.14.1752225689892;
+        Fri, 11 Jul 2025 02:21:29 -0700 (PDT)
+Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454dd537d12sm41439605e9.24.2025.07.11.02.21.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Jul 2025 02:21:29 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Luca Weiss <luca.weiss@fairphone.com>, Hans de Goede
+ <hdegoede@redhat.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>
+Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] drm/sysfb: simpledrm: Add support for
+ interconnect paths
+In-Reply-To: <DB9237QHOXRU.JRJB8SPUX8RO@fairphone.com>
+References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
+ <20250623-simple-drm-fb-icc-v2-3-f69b86cd3d7d@fairphone.com>
+ <87qzz5d3le.fsf@minerva.mail-host-address-is-not-set>
+ <DB9237QHOXRU.JRJB8SPUX8RO@fairphone.com>
+Date: Fri, 11 Jul 2025 11:21:28 +0200
+Message-ID: <874ivjf5gn.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: text/plain
 
-On Tue, 8 Jul 2025 16:14:58 +0100
-Alireza Sanaee <alireza.sanaee@huawei.com> wrote:
+"Luca Weiss" <luca.weiss@fairphone.com> writes:
 
+Hello Luca,
 
-Hi Ali,
+> Hi Javier,
+>
+> On Fri Jun 27, 2025 at 9:51 AM CEST, Javier Martinez Canillas wrote:
 
-Code looks good, just some comments on patch description and one slightly
-odd return value.
+[...]
 
-> Get CPU id from phandle. Many drivers get do this by getting hold of CPU
+>>> +static int simpledrm_device_attach_icc(struct simpledrm_device *sdev)
+>>> +{
+>>> +	struct device *dev = sdev->sysfb.dev.dev;
+>>> +	int ret, count, i;
+>>> +
+>>> +	count = of_count_phandle_with_args(dev->of_node, "interconnects",
+>>> +							 "#interconnect-cells");
+>>> +	if (count < 0)
+>>> +		return 0;
+>>> +
 
-Avoid term like "many" as something people can argue about. Also where you
-can be more specific in patch description.
+You are already checking here the number of interconnects phandlers. IIUC
+this should return -ENOENT if there's no "interconects" property and your
+logic returns success in that case.
 
-Drivers do this by get the CPU device_node through a phandle and then find
-the CPU ID using using of_cpu_node_to_id().
+[...]
 
-> node first through a phandle and then find the CPU ID using the relevant
-> function. This commit encapsulates cpu node finding and improves
-> readability.
-> 
-> The API interface requires two parameters, 1) node, 2) pointer to
-> pointer of CPU node, 3) cpu node index. API sets the pointer to the CPU
+>>
+>> You could use dev_err_probe() instead that already handles the -EPROBE_DEFER
+>> case and also will get this message in the /sys/kernel/debug/devices_deferred
+>> debugfs entry, as the reason why the probe deferral happened.
+>
+> Not quite sure how to implement dev_err_probe, but I think this should
+> be quite okay?
+>
 
-Two parameters, then list 3?  Only 2 of which are 'required'.
-Talk about that optionality briefly here.
+And of_icc_get_by_index() should only return NULL if CONFIG_INTERCONNECT
+is disabled but you have ifdef guards already for this so it should not
+happen.
 
-> node and allows the driver to play with the CPU itself, for logging
+> 		if (IS_ERR_OR_NULL(sdev->icc_paths[i])) {
 
-Playing with the cpu node, not the CPU. :)
+Then here you could just do a IS_ERR() check and not care about being NULL.
 
-> purposes for instance.
-> 
-> Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
-> ---
->  drivers/of/cpu.c   | 40 ++++++++++++++++++++++++++++++++++++++++
->  include/linux/of.h |  9 +++++++++
->  2 files changed, 49 insertions(+)
-> 
-> diff --git a/drivers/of/cpu.c b/drivers/of/cpu.c
-> index 5214dc3d05ae..494d47470f94 100644
-> --- a/drivers/of/cpu.c
-> +++ b/drivers/of/cpu.c
-> @@ -173,6 +173,46 @@ int of_cpu_node_to_id(struct device_node *cpu_node)
->  }
->  EXPORT_SYMBOL(of_cpu_node_to_id);
->  
-> +/**
-> + * of_cpu_phandle_to_id: Get the logical CPU number for a given device_node
-> + *
-> + * @node: Pointer to the device_node containing CPU phandle.
-> + * @cpu_np: Pointer to the device_node for CPU.
-> + * @cpu_idx: The index of the CPU in the list of CPUs.
-> + *
-> + * Return: The logical CPU number of the given CPU device_node or -ENODEV if
-> + * the CPU is not found, or if the node is NULL, it returns -1. On success,
+> 			ret = dev_err_probe(dev, PTR_ERR(sdev->icc_paths[i]),
+> 				      "failed to get interconnect path %u\n", i);
+> 			if (ret == -EPROBE_DEFER)
+> 				goto err;
 
-Why the -1?  I guess inherited from one of the usecases. If we can flip
-to -EINVAL to indicate an invalid parameter it might be more conventional?
+Why you only want to put the icc_paths get for the probe deferral case? I
+think that you want to do it for any error?
 
-> + * cpu_np will always point to the retrieved CPU device_node with refcount
-> + * incremented, use of_node_put() on it when done.
+> 			continue;
 
-Need to update that *cpu_np is only set if cpu_np is not NULL and make
-this refcount bit dependent on that in the description.
+I'm not sure why you need this?
 
-> + */
-> +int of_cpu_phandle_to_id(const struct device_node *node,
-> +			 struct device_node **cpu_np,
-> +			 uint8_t cpu_idx)
-> +{
-> +	struct device_node *local_cpu_node;
-> +	int cpu;
-> +
-> +	if (!node)
-> +		return -1;
-> +
-> +	local_cpu_node = of_parse_phandle(node, "cpu", 0);
-> +	if (!local_cpu_node)
-> +		local_cpu_node = of_parse_phandle(node, "cpus", cpu_idx);
-> +
-> +	if (!local_cpu_node)
-> +		return -ENODEV;
-> +
-> +	cpu = of_cpu_node_to_id(local_cpu_node);
-> +
-> +	if (cpu_np)
-> +		*cpu_np = local_cpu_node;
-> +	else
-> +		of_node_put(local_cpu_node);
-> +
-> +	return cpu;
-> +}
-> +EXPORT_SYMBOL(of_cpu_phandle_to_id);
-> +
->  /**
->   * of_get_cpu_state_node - Get CPU's idle state node at the given index
->   *
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index a62154aeda1b..717e55065d99 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -365,6 +365,8 @@ extern const void *of_get_property(const struct device_node *node,
->  extern struct device_node *of_get_cpu_node(int cpu, unsigned int *thread);
->  extern struct device_node *of_cpu_device_node_get(int cpu);
->  extern int of_cpu_node_to_id(struct device_node *np);
-> +extern int of_cpu_phandle_to_id(const struct device_node *np,
-> +				struct device_node **cpu_np, uint8_t cpu_idx);
->  extern struct device_node *of_get_next_cpu_node(struct device_node *prev);
->  extern struct device_node *of_get_cpu_state_node(const struct device_node *cpu_node,
->  						 int index);
-> @@ -680,6 +682,13 @@ static inline int of_cpu_node_to_id(struct device_node *np)
->  	return -ENODEV;
->  }
->  
-> +static inline int of_cpu_phandle_to_id(const struct device_node *np,
-> +				       struct device_node **cpu_np,
-> +				       uint8_t cpu_idx)
-> +{
-> +	return -ENODEV;
-> +}
-> +
->  static inline struct device_node *of_get_next_cpu_node(struct device_node *prev)
->  {
->  	return NULL;
+> 		}
+>
+> That would still keep the current behavior for defer vs permanent error
+> while printing when necessary and having it for devices_deferred for the
+> defer case.
+>
+
+As mentioned I still don't understand why you want the error path to only
+be called for probe deferral. I would had thought that any failure to get
+an interconnect would led to an error and cleanup.
+
+> Not sure what the difference between drm_err and dev_err are, but I
+> trust you on that.
+>
+
+The drm_err() adds DRM specific info but IMO the dev_err_probe() is better
+to avoid printing errors in case of probe deferral and also to have it in
+the devices_deferred debugfs entry.
+
+-- 
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
 
