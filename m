@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-195486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F518B01D65
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 15:26:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA568B01D0E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 15:13:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0803F3ACF24
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:26:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A396C1CA1FCB
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:13:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C8162D3226;
-	Fri, 11 Jul 2025 13:26:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7702D3A60;
+	Fri, 11 Jul 2025 13:12:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="zSErziQG"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AMR4YYqP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95D770810;
-	Fri, 11 Jul 2025 13:26:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC242D23A8;
+	Fri, 11 Jul 2025 13:12:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752240394; cv=none; b=aqru70koZ6E8S5cdGdBFwQXErlmRO5y8zkTIr9F9aPyIf1ASW3TpRbj4Nvrr37pZ4ak+eSLlcaQ0iYdeCBxo+Zk13XA9A8/4CDmJgN4sqQe5GvwvHxvg6m3dmJbxLrJKrtW+25ugcTs4rvIhCBrDG8QwJqO/2fNuP6QCHiUk/J4=
+	t=1752239554; cv=none; b=jiC6v7kIH8n2JE36ownvwP5eRl7hywoEVp9WDYOVu63u2xdXACg+icF5hWTZpG5BkYTWT9UKjvqpYqdl3mDHBNLKu6+9lc9WqJnqTcfqgKZ7MBLSe78IxkqsHDx0tbzzcIZluOd7f2rLleS8TbhiJ1AcWm+Lm+Li162oFNHXxY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752240394; c=relaxed/simple;
-	bh=Jl/vU5lJC9S0oeOQ6YknUU2pLPlX3/BkkLX3JiVHe/E=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KHioOjDLjfR5TsSwTG9pkeOWOgLxERQcqq6dvW8TP+v6ws1Mz+X7JEvC8UpW4UDsYuf9dQHJMR05J/djoAGVFn4vvbYkqp82EhcV1GcF/i4UtrlGOCBSW7Ejt8QrNlzJQO2GMJcVFfe3h2P1YmfiYqhV+KpOBKS60Kup2glHAM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=zSErziQG; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56BBxKk4015882;
-	Fri, 11 Jul 2025 09:03:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=DKIM; bh=MzrXBBg7elftyNlRdd2fDLtgh+l
-	+x3GeP6CWd2zgxOo=; b=zSErziQGrQ1zEeze+7LFlDRlIqKWlZ0gU3ZkbDC8CKv
-	COTcJgaGT9HzODdmcJWXZsFtx3uFRfxuCERH7kh8YWTLEnONVLUBI7J5Q9hjTlLz
-	4g8UjyxXuW+CYxC7HrqCjP8a5BOXm9j8Uln9vV31WiQWf3l6F9Q2BDCy6sQII/k4
-	qoEEBs8XG1eWnfylIcc2SksQlWiCJOGk+Op0FxlnIktSDz/94N0TBWkKa/8y821w
-	qhMiXycHxaXypsZc/KxgMjGrrLoB09QzVPAYYSVw/vSNKps9h3dZ/PsAmxUN3XMb
-	kBMmLxhS7WuDAB3bIBlGW59pCR8Rr7up57PUstYhAuw==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 47tt54ac0v-1
+	s=arc-20240116; t=1752239554; c=relaxed/simple;
+	bh=buj/9LK9WnRrx9la+Ug00s901rQX5MS5V6pK1tKyVPQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gk7MLDGnSH41vFu8bA4u026RwlwC0QdYzWEnn0i0FLQb81OHsW4jHhpMM3t+aL7MxJyApv0/H+8NgjCyRoN2W/SYECPZzVVqOaF2uLC5chy7pPZxUrMNBQowJkzloaF4+myu020MZtsA9+NWNmAsY2C/P1KRJahlN4cVwnCNkqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AMR4YYqP; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56BBLP7A018809;
+	Fri, 11 Jul 2025 13:12:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Bl1nSPn5YlRo3UiVoA8IR2
+	c/9+m0L+tOtQINu67XSlc=; b=AMR4YYqPLwOQ8HgTlUj3ND+N0gEkDIHDwD9Yrn
+	qHaXaNrlto0oegBiwBBkGkEvdrSKhLQS9wYTWeH7OF7K9eTacrKi+y2YEUbW2L8J
+	rIXF9vTM/9T4Z+Q+8ktlR2+c5NDwldI0Forrgu7j6mr+/9QujPdMv2IY67FaeTeL
+	rG0TKAROVIqlM1xH4oX6BNW4KbVDVXUyd5zGDxRueFfTmX4rKMIagUReGhGPsRPE
+	mdYQNOmGs4grFYk+FWFwJE73niPHxZ6E66/uU3hlg3viZOk+cfCUtdhikn9gOkc8
+	2HKlL47XM+ef9ZQFoodxLUSpze9hzWhF4u5c2/C3jreyq2Zw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47tkf32j5h-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Jul 2025 09:03:28 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 56BD3RNX026783
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 11 Jul 2025 09:03:27 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 11 Jul
- 2025 09:03:27 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Fri, 11 Jul 2025 09:03:27 -0400
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.132])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 56BD3Jqq027484;
-	Fri, 11 Jul 2025 09:03:22 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+	Fri, 11 Jul 2025 13:12:10 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56BDC9j2019978
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Jul 2025 13:12:09 GMT
+Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 11 Jul 2025 06:12:03 -0700
+From: Vikram Sharma <quic_vikramsa@quicinc.com>
+To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <hverkuil-cisco@xs4all.nl>,
+        <cros-qcom-dts-watchers@chromium.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <quic_vikramsa@quicinc.com>,
+        <quic_svankada@quicinc.com>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH 0/3] iio: adc: add support for ADE9000 Energy Monitoring IC
-Date: Fri, 11 Jul 2025 16:02:34 +0300
-Message-ID: <20250711130241.159143-1-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.49.0
+Subject: [PATCH v2 0/7] qcom: qcs8300: Add qcs8300 camss support
+Date: Fri, 11 Jul 2025 18:41:27 +0530
+Message-ID: <20250711131134.215382-1-quic_vikramsa@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,75 +77,110 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDA5MiBTYWx0ZWRfX0WR0VjnvW/Jn
- QVob3DQ3pBd3KH4r1kpbTgWBpnAv3fQiM3RIuUJQKa6bTniCYpYNzkW3sVuAbTq1iAnMLSbckr7
- dhXdlOcDNdWPaM8GPupKphaHWVD35pYe2enAGmKZXocBHpgWQ2Ra9qn79E1HehrLYI+F6qADh9n
- Vr2ceC+DrmaxOQNAbrqA30zh1cyws3ctagolAI1cX4DcIXjVxbnOUaeloWVRjF5uoUqPS6YPz70
- X2egbg7+NcA9yoBLoc1yQZpB7SFs+1h8xKR9uYINsdyXROmZJDoZ2sn3Vd8ol9GYjUDbFWcFmqM
- ZBWxASvvcDfBZ8vuQCZWOyVbGqBHFJm46PwrXnj6zZsG6whJmjAgFBGdq949cTI9adU7Zrd7/5n
- 5bqy9h2RTmLtkejKDuOuojuIMBQyqZ44zf9pcv4phNvycR3LdqSlNinDh395JTo34eZm54ge
-X-Authority-Analysis: v=2.4 cv=QZ5mvtbv c=1 sm=1 tr=0 ts=68710ba0 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=Wb1JkmetP80A:10 a=MilyVcYQlkyFfA35S9cA:9
-X-Proofpoint-GUID: IXQ3riGyR0bE73Mn9qbE6ozor0nPhwJs
-X-Proofpoint-ORIG-GUID: IXQ3riGyR0bE73Mn9qbE6ozor0nPhwJs
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDA5MyBTYWx0ZWRfX4AlnZ+BefChF
+ qO4LfICsTapvG8UfsT67gJ0kC/Ksm8hSs6sJk2z4SLX8R1MSIrx66qCW1HZpRLr6cytVTcRj/nx
+ CaW+JEXHK3weHAFz8BLgQAQg7lkUULZtnI6Mol8NQ1RdIhdvLlh4gqV/ZalbzW+kcaS4sHzkE3w
+ d/a6kxz4qsw4pkXhWnwgNmwWet6j5ROSBGbpMpFUfIsVUhmXpsE01AzbtdjqZ//3LtBEHAXh9fJ
+ tYFKuOjkbuuY17EpAmYYlaynX5xvLhS3N5+/p44q/FnE2BHXXoQD+pCjymA+kZ3CskSs9QtSDco
+ cU0CNSOs+c55R/HNNfDF/bNgxZVLSO29om/evhTeeX5vb7tDPHSWnovIKe7KQwT2g0QaKpv8mMQ
+ Oe6cI9lkgXHWzXU0cFmZyTlDV+KcEhD4R5S0cRFdIBOCa4Vh9rXh5M+2ZQ0lDUF8Vu6vSG1V
+X-Proofpoint-GUID: Lm_SF-pIGKVbL7LD6FApfTwYH86JsB5X
+X-Authority-Analysis: v=2.4 cv=Xuf6OUF9 c=1 sm=1 tr=0 ts=68710daa cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=EUspDBNiAAAA:8 a=vOnZBVaixI17Gw8aOCoA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: Lm_SF-pIGKVbL7LD6FApfTwYH86JsB5X
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
  definitions=2025-07-11_03,2025-07-09_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 priorityscore=1501 mlxlogscore=999 impostorscore=0 malwarescore=0
- bulkscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0 phishscore=0
- spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ suspectscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
+ clxscore=1015 priorityscore=1501 malwarescore=0 adultscore=0 mlxscore=0
+ phishscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507110092
+ definitions=main-2507110093
 
-This patch series adds support for the Analog Devices ADE9000, a highly
-accurate, fully integrated, multiphase energy and power quality monitoring
-device. The ADE9000 is capable of measuring energy consumption and power
-quality parameters in industrial and commercial applications.
+From: Vikram Sharma <vikramsa@qti.qualcomm.com>
 
-The series includes:
+QCS8300 is a Qualcomm SoC. This series adds bindings and devicetree
+and driver changes to bring up CSIPHY, TPG, CSID, VFE/RDI interfaces
+in QCS8300.
 
-1. New IIO modifiers for power and energy measurement devices, including
-   support for active/reactive/apparent power, energy accumulation, RMS
-   measurements, and power quality indicators (swell/dip detection).
+QCS8300 provides
+- 2 x VFE, 3 RDI per VFE
+- 5 x VFE Lite, 6 RDI per VFE
+- 2 x CSID
+- 5 x CSID Lite
+- 3 x TPG
+- 3 x CSIPHY
 
-2. Device tree bindings for the ADE9000, supporting waveform buffer
-   configuration, phase configuration, and trigger settings.
+Changes compared to v1:
+- Changed the order for register entries in bindings - Krzysztof
+- Changed the naming for interrupts for consistency - Krzysztof
+- Combined separate series for driver and dtsi into one.
+- Rebased on top of latest version of sa8775p camss patches.
+- Link to v1:
+  Driver: https://lore.kernel.org/all/20250214095611.2498950-1-quic_vikramsa@quicinc.com
+  DTSI: https://lore.kernel.org/all/20250214094747.2483058-1-quic_vikramsa@quicinc.com  
 
-3. Complete driver implementation supporting:
-   - Multi-phase energy measurement (3-phase support)
-   - Power quality monitoring (voltage swell/dip detection)
-   - Waveform buffer capture with configurable triggering
-   - Energy accumulation with configurable time windows
-   - IIO buffer interface for continuous data streaming
-   - Event-based notifications for power quality events
+Dependencies:
+https://lore.kernel.org/all/20250703171938.3606998-1-quic_vikramsa@quicinc.com
 
-The driver provides a comprehensive interface for energy monitoring
-applications through the IIO framework, enabling userspace applications
-to monitor power consumption, quality, and waveform data.
+Driver side changes for TPG will be submitted as a separate series which will be
+rebased on top of these patches.
+TPG Patches:
+https://lore.kernel.org/all/20250211-sa8775p_tpg-v1-0-3f76c5f8431f@quicinc.com/
+https://lore.kernel.org/all/20250217-qcs8300_tpg-v1-1-6e0f4dd3ad1f@quicinc.com/ 
 
-The driver will be extended in the future to support multiple parts such as
-ade9039.
+Tested with following commands:
+- media-ctl -d /dev/media0 --reset
+- yavta --no-query -w '0x009f0903 0' /dev/v4l-subdev0
+- media-ctl -d /dev/media0 -V '"msm_tpg0":0[fmt:SRGGB10/1920x1080
+  field:none]'
+- media-ctl -d /dev/media0 -V '"msm_csid0":0[fmt:SRGGB10/1920x1080
+  field:none]'
+- media-ctl -d /dev/media0 -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/1920x1080
+  field:none]'
+- media-ctl -d /dev/media0 -l '"msm_tpg0":1->"msm_csid0":0[1]'
+- media-ctl -d /dev/media0 -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+- yavta --no-query -w '0x009f0903 9' /dev/v4l-subdev0
+- yavta -B capture-mplane -n 5 -f SRGGB10P -s 1920x1080 /dev/video0
+  --capture=7
 
-Antoniu Miclaus (3):
-  iio: add power and energy measurement modifiers
-  dt-bindings: iio: adc: add ade9000
-  iio: adc: add ade9000 support
+Used following tools for the sanity check of these changes.
+- make CHECK_DTBS=y W=1 qcom/qcs8300-ride.dtb
+- make DT_CHECKER_FLAGS=-m W=1
+DT_SCHEMA_FILES=media/qcom,qcs8300-camss.yaml dt_binding_check
+- Smatch: make CHECK="smatch --full-path" M=drivers/media/platform/qcom/camss/
+- Sparse: make C=2 M=drivers/media/platform/qcom/camss/
+- make -j32
+- checkpatch.pl
 
- Documentation/ABI/testing/sysfs-bus-iio       |   19 +
- .../bindings/iio/adc/adi,ade9000.yaml         |  157 ++
- drivers/iio/adc/Kconfig                       |   13 +
- drivers/iio/adc/Makefile                      |    1 +
- drivers/iio/adc/ade9000.c                     | 2187 +++++++++++++++++
- drivers/iio/industrialio-core.c               |   11 +
- include/uapi/linux/iio/types.h                |   11 +
- 7 files changed, 2399 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml
- create mode 100644 drivers/iio/adc/ade9000.c
+Vikram Sharma (7):
+  media: dt-bindings: Add qcom,qcs8300-camss compatible
+  arm64: dts: qcom: qcs8300: Add support for camss
+  media: qcom: camss: Add qcs8300 compatible
+  media: qcom: camss: enable csid 690 for qcs8300
+  media: qcom: camss: enable vfe 690 for qcs8300
+  media: qcom: camss: Add support for CSIPHY QCS8300
+  media: qcom: camss: Enumerate resources for QCS8300
+
+ .../bindings/media/qcom,qcs8300-camss.yaml    | 336 +++++++++++++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 171 ++++++++
+ .../platform/qcom/camss/camss-csid-gen3.c     |   5 +-
+ .../qcom/camss/camss-csiphy-3ph-1-0.c         |   2 +
+ .../platform/qcom/camss/camss-vfe-gen3.c      |   4 +-
+ drivers/media/platform/qcom/camss/camss-vfe.c |   2 +
+ drivers/media/platform/qcom/camss/camss.c     | 401 ++++++++++++++++++
+ drivers/media/platform/qcom/camss/camss.h     |   1 +
+ 8 files changed, 919 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml
 
 -- 
-2.49.0
+2.25.1
 
 
