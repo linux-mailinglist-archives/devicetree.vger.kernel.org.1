@@ -1,202 +1,155 @@
-Return-Path: <devicetree+bounces-195580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B41B02242
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 19:01:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4840B02257
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 19:10:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEBEC1CA1868
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 17:01:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB4007ACDF1
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 17:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EB2A2ED84E;
-	Fri, 11 Jul 2025 17:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013ED2EF9C9;
+	Fri, 11 Jul 2025 17:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="G7HpH6dt"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vCqprmGl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06FB1DDA1E
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 17:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64AE9268C55
+	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 17:09:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752253267; cv=none; b=eSHyhEZz6q0spaHYLm4ku56cADeT+tNdJIvgpfTDXLZ7P/1nhEiUzE1dWEIRC+tR+D5m2WcIKS1blKL7u25j/8vqeAvk45ACGh1pXF3hi/qyFAyUgK55Fj3HybM0M9DurzA5L7AKDE6aHl1SP92EvtPwzQq9UB5eDZlR3/SW1Os=
+	t=1752253780; cv=none; b=nXyk8+GLgT8xXN2A3GyZMsfQI+S26se5jYzfBKNT2cfuV7p4r3T1DqtqFPJXiElLZ3Y1Y1il/nrsZ43QTiYEdweDYfN8l0OaKP5Q+hgIKoR7V2so9vUmGQooNYqdYgkwrAPugD2ozgp7fUNsJw2zu514jB606kdtK25JhMv/GgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752253267; c=relaxed/simple;
-	bh=/AhhGaV0drOsrUBPl4v8Rx7iU83u0J2d52gX7sMFBi4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pAVdDQAtvghvlre9FpUOlAgOCf4axJMl3UU9Dlz8U+m8kN+nYWfDAqwS3PZkp+/uwcMPuiMxYvAfD8May9OtDWpOYU6g9Y8MwObSz2Xp8OyjJv70lIAh6Bb7edyCDu/XuQn/wf17kWfZr9CXn5vG5H8EA/oA00HEGh78zXTabBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=G7HpH6dt; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56BAuxoI026076
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 17:01:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	RzjVxq958kyT2ib7EgyZgWvE1bSgJsNxIfxcrwNYgEk=; b=G7HpH6dtRix5QARR
-	N0sJfs+iAlL1+sDH2A5DGwKhR6g3jFKa6ZbZM1tN9yM8ZKVmvQLS8IdJ5x6jBGsy
-	lRk0OLyROD/qLgNNrKgCcDKjSlga+5Be8CHj6MOpl0gUZ4V0b9CYpErLyofsmXAS
-	Sx7+EVHPLbosP8XnGT/MeYK6N00S4jHKaqzuPB3SxQakfbdf/9r9VvAH5VHC0J4R
-	UQvpbI1nrWt7KOSZt6QdB9/1hP1G9G5sNUERtdSe4+pHQ9eCwHDHn4rmlf0gdpJU
-	6N/dnt8cmZW9vbZtmxsZmVmp8p+szvPN91sEdkTO4DqIcO5qhA8ATnbjGncXQEcj
-	XsHYzQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47u1a2h0f6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 17:01:04 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2363bb41664so18680025ad.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 10:01:04 -0700 (PDT)
+	s=arc-20240116; t=1752253780; c=relaxed/simple;
+	bh=rGIy1pkQYmtcAjyatutqLQoQqkLBz360GZ85LcsduN0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=SRxwPI4dNvnH45dc8Y1fADZlLbTPSjATGhusAFJ8EssZBmapc+QzRauqvv6QWrXbJzPIauwprxcmOB7thvZAROJgQOQoKdthvO0yMgh8maF+5U0lb0eZ5HuNpofXYL8k9ahKbivkTbA9+qDE5vluyW8cLAQavbtCDcX3ptPkHlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=vCqprmGl; arc=none smtp.client-ip=209.85.161.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-60be827f2b7so1738114eaf.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 10:09:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1752253777; x=1752858577; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=lYyuRDB/HktfRyE467qi37bT7tU4zkVraiVc+sdSSt8=;
+        b=vCqprmGlXjms3AGz+b4XdOxZdviQbawh3gfkugdX0zlZLY0SVKUUFhfTypAtjc9tdi
+         K2D9XA/dUrayq10YH9TKW+HWYk1e0BHSOjS5Z9FzKZyKSVQ0uXp/d4eDdshhavPiaXuL
+         cocG1dV09DEVqQVjXgduFP9R09gRg/QxlMyy36FK80N99heCbYjWh68se+dyD7jueW6G
+         HWROD5ZHDayFjKbE55L9uN/3PBi9WLB1KI8+ydEQlgQ7+GeQcxdnQuB7AHUMYfUqK85N
+         L/8yXXUQZ4Y8/Bde9namDCeDLKwn/xsJpLA0EjJGIfYNpDUM9LaZ6MdbbyavWt2CcfCp
+         CVVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752253263; x=1752858063;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1752253777; x=1752858577;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RzjVxq958kyT2ib7EgyZgWvE1bSgJsNxIfxcrwNYgEk=;
-        b=jQS6nAG2QR04Rx1/O8dpP27gbAwcMbKSf6dbk4iaXoCJzhTvThYyh4Uv4JvtmOeeQ3
-         pZBDBQ51sKqdlT3MuqYI2sHahmmrDDhGfu7/kWWTkJUMtFNey4fPz2+QDHYyAFG4lF9E
-         f8zeoZT9N5hRhwz/WzEvFXEvkyUifIyRJOHwrgQgWheXEW7q2svRtonNxsL+iuGrLVfH
-         80hb2GEvIjfr8RyxNgLb0P/a3FEFKEpNcYi4d8FjMvvsOQwniM9jONREDQe+ylMUA2X+
-         U+6i9OpUCNpKM2Ae4Y2nqrqBc4EUo7K0pSkOiJD0obn503ApB5lmxFyBxd+QRRAlPqkr
-         bqGA==
-X-Forwarded-Encrypted: i=1; AJvYcCWrqjmKQNjQyY5cMME1AW7e5nN2+VkF5bl+FQwG2QJNQuyz2qLGf25xJ4JW0y5doDFiz41sOyGkz0fx@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUlisSdaFyyZrusK13MvRUdZQh/oY9hIKPBRuY825GJYWul0i9
-	QtGB76rwIklvb4kvdCqWzr1IVIbC1IN+Pzj+NUSZQs1T/AdjsNIE8+8/TDeRfH6RoDv0NvcZhqy
-	x5yjrUR5jSzquN4t3HfPZXwHO/Z/mxEByZPkvlIMO9smICinB+afxbhfD40M4qv96
-X-Gm-Gg: ASbGncvzCaQc0maGdKQFMo8zSpyOFufFfHsLTeJqcwr2hFo9wZ6YXkejU/YBH1177BN
-	fCAGRFkcZtOEyUgPEURzF+bgog72AZbWJX4YblPHqyeeJKTyr/NEEeg72c/809wfYK0sqGrYsrw
-	qHOUw3XOxANUc3LUFuYhqgMFXw5OjiS1FcxXfhVao7v+2qOL3DkSQlfWGuwdm2mfQOJYcqLlT4c
-	dCZs1qL66jtym3zc3DzSzUQY9zkn5NNDw4Owvd3QKx4drJFPDunjBdlIeCecs1mIlNMMT9ExTXD
-	4tmPM6Rn0lh1a9Nb8UJ926syruKsCCV3WHYeJg5eKqjdjcu68KACaxAGiToXCzxde3w4EZ+gjw=
-	=
-X-Received: by 2002:a17:902:d489:b0:23d:dd63:2ce0 with SMTP id d9443c01a7336-23dedb4be9cmr53760785ad.0.1752253263030;
-        Fri, 11 Jul 2025 10:01:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFn+/OtXzq1bSnDAVVARE/xdrBPkqdNVrhiIvWMbL7OLRWzoRimQiO/kH3LymvsQd+s4/Mzng==
-X-Received: by 2002:a17:902:d489:b0:23d:dd63:2ce0 with SMTP id d9443c01a7336-23dedb4be9cmr53759865ad.0.1752253262279;
-        Fri, 11 Jul 2025 10:01:02 -0700 (PDT)
-Received: from [192.168.29.115] ([49.43.229.152])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de4286daesm50513005ad.20.2025.07.11.10.00.50
+        bh=lYyuRDB/HktfRyE467qi37bT7tU4zkVraiVc+sdSSt8=;
+        b=AXIKEpXMBBzxB9JpX5fM7fds4Uz10zSZ62XigSZuzBOr44RTmCYIq03Bhe0aCaKFx0
+         5E1CiPa9PqrQrqjW12NbyF8hMzLu8ljn1CADao77e6ytw/LC3JuxyxY5fMvhKntrObhU
+         Cilu4QyN7qNf7enbIraezhW0/FDoIkYU5l1TwOu63vCnjBVMqEoRsM4kTKVPBZpzBFKg
+         6aT2x895Rfpf/WgCaBurxNf6jGSjbWL9kJesfsiwJZzvW28cTM4HJT8iKJyp8N2ipQGq
+         I3ahtIhDSysXnylVMBREkmVK1+eNRQXNaeYu/xLIbjEyYFtK1WX2L0fa/QM/GIGgd5jy
+         6ZLg==
+X-Forwarded-Encrypted: i=1; AJvYcCWGcr5k268k3DI9Ee0dSWOJ05L2uCuDPhV3gvfp+j5eaiJZjTruxc06dfM2X5L7dan8yHghIsMa2eT0@vger.kernel.org
+X-Gm-Message-State: AOJu0YykjrvrskZ+sAT6VvW23Xno1wfznQd17EzAb5/sKaYJ1Oh7tY+q
+	XkqudOXgLuoqeDpbTepuEVrT5jlFtMttXIWzkz4NulhDCDh/lZEoriw9I07/XivsFdD2Y3jQ/x7
+	BUq2Ux1g=
+X-Gm-Gg: ASbGnctAOc17WRVH59ncH7sm5EKc/dkrmEHILJZT/kBMNp3B+j8/KRkdEAv+t/i5are
+	h/CUSX1erIg0K7Y+/uozXc9CBQrSmYE7HxqFjWaMqZy58wUibPgh30kyg8ROJ359NeJu2ZoNJgt
+	NKagjv/xKeKNy7J8k4v3+Y2FpbYjtUGNC2Ise44fGMorknl/s573djLThLOXSgiKoIWqsEvkGUO
+	EaZtxaLWLsbB3lFsIAg7pqD30vAL1n+lVkbY7VxIHmZYboZB7Tk3Z8htLlhRTVG2Yffll1uWL9e
+	EzK/aCuVXjcFmaN9IbA3CVPmZwqkVcaJ3eyYQKGyHtuINoJnuPeiVA7IhPjGctF5g9A4mHCCoYX
+	gz5mPpkraTELzSb0kbEDRl8FR4vGQfKd4Jr7tnsMitmV6tOnWSit50zTQWvONpeMbWYx4CMO/GU
+	o=
+X-Google-Smtp-Source: AGHT+IGm4hiu469Vc3JSD1AOTjQdQx2W5sxcZJhYPSfhyP8P2MO+kMPBaRS60lXTzmvnR86pVPsFTQ==
+X-Received: by 2002:a05:6820:4b05:b0:613:c8c2:a08e with SMTP id 006d021491bc7-613e5964d97mr3100119eaf.2.1752253777324;
+        Fri, 11 Jul 2025 10:09:37 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:4601:15f9:b923:d487? ([2600:8803:e7e4:1d00:4601:15f9:b923:d487])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-613d9f26c1esm542425eaf.35.2025.07.11.10.09.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Jul 2025 10:01:01 -0700 (PDT)
-Message-ID: <28f277af-9882-2c70-5156-123c95adc2ee@oss.qualcomm.com>
-Date: Fri, 11 Jul 2025 22:30:47 +0530
+        Fri, 11 Jul 2025 10:09:36 -0700 (PDT)
+Message-ID: <5025b191-c5ba-488c-a7cd-6f2bfde47bd2@baylibre.com>
+Date: Fri, 11 Jul 2025 12:09:36 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v10 02/10] dt-bindings: power: reset: Document reboot-mode
- cookie
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] iio: adc: add support for ADE9000 Energy Monitoring
+ IC
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250711130241.159143-1-antoniu.miclaus@analog.com>
 Content-Language: en-US
-To: Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Elliot Berman <elliotb317@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        =?UTF-8?Q?Andr=c3=a9_Draszik?=
- <andre.draszik@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, Wei Xu <xuwei5@hisilicon.com>,
-        linux-rockchip@lists.infradead.org,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>
-References: <20250710-arm-psci-system_reset2-vendor-reboots-v10-0-b2d3b882be85@oss.qualcomm.com>
- <20250710-arm-psci-system_reset2-vendor-reboots-v10-2-b2d3b882be85@oss.qualcomm.com>
- <20250710224740.GA15385-robh@kernel.org>
- <cdadd6cf-18c9-15c7-c58a-b5d56b53452a@oss.qualcomm.com>
- <454c8361-151e-42b3-adfc-d82d2af62299@app.fastmail.com>
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-In-Reply-To: <454c8361-151e-42b3-adfc-d82d2af62299@app.fastmail.com>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250711130241.159143-1-antoniu.miclaus@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=MKJgmNZl c=1 sm=1 tr=0 ts=68714350 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=8g6h00HoWaIZ3EdQG8aEvw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=yN095whQe_6akajZz4sA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDEyNCBTYWx0ZWRfX22+4ZlMzyqRR
- qvEznBxogopTMYmwN8lxapIfkRmnKS2z/OnMWhEQw9BspQjC/ddCFUoXhd7xS4qPQcoVp1SKPF2
- jCJH4qZzrH5MdP78lfIGmeKAqYYVGWLVMX2tVsQKwnAllj8xdff7cPQShZ8H2P1liGF7tqeFn//
- mAcM6WnVzBLnLLLHogBHQseDjMu//1dLL/mxiHWCLk3oK9CDDPQy4iz+HxByFqZpw+W3C9Xqk3C
- PRUKf780U2lj5dRiob1TZ/gYm5qWhv+062YC7EUF3rs7nGgSC2nB/PoSIJvxoG69iszN077mJHk
- oEk0HkhetIsimwbdx/LV7wjuzsARLPuUjrKZmL8pQdYxR1Vm/bbHMmTNfQMdfn3skON7PL1eIX4
- hdKoDDRyJ2ALX8qBV10gDFT4exJoe70I8EnBxkQqHEkwYjo/EY87Mcn5aIvRA/SV3gJfjv7k
-X-Proofpoint-ORIG-GUID: uD10UkQNMS-zIQvC6b3NuhXklhNtfgzw
-X-Proofpoint-GUID: uD10UkQNMS-zIQvC6b3NuhXklhNtfgzw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-11_04,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 bulkscore=0 phishscore=0 mlxlogscore=999
- impostorscore=0 mlxscore=0 lowpriorityscore=0 spamscore=0 adultscore=0
- clxscore=1015 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507110124
 
+On 7/11/25 8:02 AM, Antoniu Miclaus wrote:
+> This patch series adds support for the Analog Devices ADE9000, a highly
+> accurate, fully integrated, multiphase energy and power quality monitoring
+> device. The ADE9000 is capable of measuring energy consumption and power
+> quality parameters in industrial and commercial applications.
+> 
+> The series includes:
+> 
+> 1. New IIO modifiers for power and energy measurement devices, including
+>    support for active/reactive/apparent power, energy accumulation, RMS
+>    measurements, and power quality indicators (swell/dip detection).
+> 
+> 2. Device tree bindings for the ADE9000, supporting waveform buffer
+>    configuration, phase configuration, and trigger settings.
+> 
+> 3. Complete driver implementation supporting:
 
+You will get much better review if we can spread this out across
+multiple series instead of trying to do everything all at once.
+At a minimum, each of these should be a separate patch. 2000 lines
+in one patch is just way too much to grok at once.
 
-On 7/11/2025 8:14 PM, Arnd Bergmann wrote:
-> On Fri, Jul 11, 2025, at 14:32, Shivendra Pratap wrote:
->> On 7/11/2025 4:17 AM, Rob Herring wrote:
->>> On Thu, Jul 10, 2025 at 02:45:44PM +0530, Shivendra Pratap wrote:
->>>>    All mode properties are vendor specific, it is a indication to tell
->>>>    the bootloader what to do when the system reboots, and should be named
->>>> -  as mode-xxx = <magic> (xxx is mode name, magic should be a non-zero value).
->>>> +  as mode-xxx = <magic cookie> (xxx is mode name, magic should be a
->>>> +  non-zero value, cookie is optional).
->>>
->>> I don't understand the distinction between magic and cookie... Isn't all 
->>> just magic values and some platform needs more than 32-bits of it?
->> Need two different arguments. Will try to clarify a bit below.
->> PSCI defines SYSTEM_RESET2 vendor-specific resets which takes two
->> parameters - reset_type and cookie. Both parameters are independent and
->> used by firmware to define different types of resets or shutdown.
->> As per spec:
->> reset_type: Values in the range 0x80000000-0xFFFFFFFF of the reset_type 
->> parameter
->> can be used to request vendor-specific resets or shutdowns.
->> cookie: the cookie parameter can be used to pass additional data to the 
->> implementation.
+>    - Multi-phase energy measurement (3-phase support)
+>    - Power quality monitoring (voltage swell/dip detection)
+>    - Waveform buffer capture with configurable triggering
+>    - Energy accumulation with configurable time windows
+>    - IIO buffer interface for continuous data streaming
+>    - Event-based notifications for power quality events
 > 
-> I don't see any distinction here either. As Rob says, you have to
-> get both 32-bit numbers from DT in order to get the desired reboot-mode,
-> and you have to pass them both to the firmware when rebooting.
+> The driver provides a comprehensive interface for energy monitoring
+> applications through the IIO framework, enabling userspace applications
+> to monitor power consumption, quality, and waveform data.
 > 
-> The distinction between cookie and magic value may be relevant in the
-> context of the psci specification, but for the Linux driver, this is
-> really just a 64-bit magic number.
-ok. then if i understand, this binding change for reboot-mode be dropped
-and driver can internally handle the two 32 bit numbers?
+> The driver will be extended in the future to support multiple parts such as
+> ade9039.
 > 
->      Arnd
+> Antoniu Miclaus (3):
+>   iio: add power and energy measurement modifiers
+
+It looks like [PATCH 1/3] didn't get sent out.
+
+>   dt-bindings: iio: adc: add ade9000
+>   iio: adc: add ade9000 support
+> 
+>  Documentation/ABI/testing/sysfs-bus-iio       |   19 +
+>  .../bindings/iio/adc/adi,ade9000.yaml         |  157 ++
+>  drivers/iio/adc/Kconfig                       |   13 +
+>  drivers/iio/adc/Makefile                      |    1 +
+>  drivers/iio/adc/ade9000.c                     | 2187 +++++++++++++++++
+>  drivers/iio/industrialio-core.c               |   11 +
+>  include/uapi/linux/iio/types.h                |   11 +
+>  7 files changed, 2399 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml
+>  create mode 100644 drivers/iio/adc/ade9000.c
+> 
+
 
