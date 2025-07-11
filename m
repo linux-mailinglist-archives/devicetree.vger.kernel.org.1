@@ -1,102 +1,133 @@
-Return-Path: <devicetree+bounces-195428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 731DFB019CC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 12:30:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2F0AB019FB
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 12:52:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22DE03A38E2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 10:29:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82AD9766682
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 10:51:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE4A283FF6;
-	Fri, 11 Jul 2025 10:30:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="c3q3XBJM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4B02877CB;
+	Fri, 11 Jul 2025 10:52:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4317.protonmail.ch (mail-4317.protonmail.ch [185.70.43.17])
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA865283FD8;
-	Fri, 11 Jul 2025 10:30:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37ECA2877E8
+	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 10:52:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752229806; cv=none; b=fgEK5fsteoNZTmxEgErFZNNQxQAuYyTA8yOl7O5aRHT/VyvmBkTdno/gsnCDjJGjBcGqJW3We4uO2kf9zSQgQ/XGwKRQDkuBJtpVKFiO2i7n/Bmo+lTMpfAEgIBx0uN7oEGx4aG1jhWYptYU70Vw+EUO+bQNKnkDzbTF5SozJWI=
+	t=1752231124; cv=none; b=isAzEqmTmxaFg1lBPi1IJM1mAgsR+sRDpHsjz3z/pUfKEtJ1M0AqEVsKwazZe6fklI+11PGSfw/2VDfh7vwJKcOUfVac5Ws4tiZe+YcKRPmLHkPJ+3gGB/JoAfMv2BOHqKnn9yLJ/fgZSxAqCu0EzpXD5yi+aYvVT4Bl8ksag3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752229806; c=relaxed/simple;
-	bh=BlZYGeLVk6sKZh/Cirv9qZuN+C8hZCxVFfQI+hk+eAk=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KHx37jREezjbjM0xaNPf4zj9Dhc3ONqZAiTC8pPyGEiZc7teQkGFnfUBbXasXpOnbjE76rpDkdVlsM7HeY3jYP5e4CPQ+RN8D3M1TZz0Jrg6TllnJivq8dDUC+0d3BXp/UWtSguGIuZdQPBnIBKu3z5BxGeARq3YjxtOz5R3ErM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=c3q3XBJM; arc=none smtp.client-ip=185.70.43.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
-	s=protonmail; t=1752229800; x=1752489000;
-	bh=drFRM/G04HIxCGh+rRvAHzr+XceHmwxYmN2UfeW7nY0=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=c3q3XBJM1keQo1n12nbNO1um3iFv2g3RXN8Y/MTH+qfFdPowVIVCjBeeejq7/fxL6
-	 uz47R0YX9KGRNJ//4S7+C70G9hUjv2iAPdl6iO1xdMERBL7qnrjhpDwnsCoSACxNRd
-	 Xjh+Ai/2yP6xZE1jz+MjxONQaC93WxOTe/WX9lnJdISlC16CyksWFPRp5nc0Ely6o5
-	 FiKBM3sBE3Fnqev14euFnKm/uP36GcGDBmucVPQUVfvpXYaY8w4iJm3oZ41MzaJ3J/
-	 Zr9FFhS2tQ6qxAWwQnzMJmeRkMEPcEjXyggRHXDP8iFTUTBbewiaCqCFusWUSZD0mT
-	 ngDF90DzOpT1g==
-Date: Fri, 11 Jul 2025 10:29:59 +0000
-To: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-From: Sean Nyekjaer <sean@geanix.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>, imx@lists.linux.dev, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>, Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>, Robin Gong <yibin.gong@nxp.com>, Enric Balletbo i Serra <eballetbo@gmail.com>
-Subject: Re: [PATCH v8 4/6] input: pf1550: add onkey support
-Message-ID: <wlbsl36wju4kehhqtoprrcdaqlgkrmapp5ecw44jcnfv4fy7wk@m3wrnbl7yoqq>
-In-Reply-To: <20250707-pf1550-v8-4-6b6eb67c03a0@savoirfairelinux.com>
-References: <20250707-pf1550-v8-0-6b6eb67c03a0@savoirfairelinux.com> <20250707-pf1550-v8-4-6b6eb67c03a0@savoirfairelinux.com>
-Feedback-ID: 134068486:user:proton
-X-Pm-Message-ID: 3c555c7164f1d3f06d86bcc31b47c53ec776aca3
+	s=arc-20240116; t=1752231124; c=relaxed/simple;
+	bh=U1IxpQc/YzLZ4HlV89An5zCtzvT5qjRVQDhbyk4gcqc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SR99qQQRbCAy6WETnWBp8ba2TvmfMEiHsAMYaY2aVeLuBsGu/we2Ix7jJwD5+/0NNyiuxMajMwbZz4NDYGeVInkDIIufLWY0lLTrGrLHGkMBSsFwCbJwsQEXmO9vAJTj84HJMillxQWU1dDqeru0uoM1W00rzVu9qzvl1IMrOqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTPS id 56BApeFe051347
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+	Fri, 11 Jul 2025 18:51:40 +0800 (+08)
+	(envelope-from ben717@andestech.com)
+Received: from atctrx.andestech.com (10.0.15.173) by ATCPCS34.andestech.com
+ (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 11 Jul
+ 2025 18:51:40 +0800
+Date: Fri, 11 Jul 2025 18:51:40 +0800
+From: Ben Zong-You Xie <ben717@andestech.com>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+CC: <arnd@arndb.de>, <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+        <aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <tglx@linutronix.de>,
+        <daniel.lezcano@linaro.org>, <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <soc@lists.linux.dev>,
+        <tim609@andestech.com>
+Subject: Re: [PATCH 1/8] riscv: add Andes SoC family Kconfig support
+Message-ID: <aHDsvMgSm87/wHpg@atctrx.andestech.com>
+References: <20250704081451.2011407-1-ben717@andestech.com>
+ <20250704081451.2011407-2-ben717@andestech.com>
+ <CA+V-a8unFMmA2NdwuofTL1fx8vVHtD8Y9QbW2ec8B656DK6AAw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+V-a8unFMmA2NdwuofTL1fx8vVHtD8Y9QbW2ec8B656DK6AAw@mail.gmail.com>
+User-Agent: Mutt/2.1.4 (2021-12-11)
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 56BApeFe051347
 
-On Mon, Jul 07, 2025 at 05:37:23PM +0100, Samuel Kayode wrote:
-> Add support for the onkey of the pf1550 PMIC.
->=20
-> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-> ---
+On Mon, Jul 07, 2025 at 10:50:38AM +0100, Lad, Prabhakar wrote:
+> [EXTERNAL MAIL]
+> 
+> Hi Ben,
+> 
+> Thank you for the patch.
+> 
+> On Fri, Jul 4, 2025 at 10:02 AM Ben Zong-You Xie <ben717@andestech.com> wrote:
+> >
+> > The first SoC in the Andes series is QiLai. It includes a high-performance
+> > quad-core RISC-V AX45MP cluster and one NX27V vector processor.
+> >
+> > For further information, refer to [1].
+> >
+> > [1] https://www.andestech.com/en/products-solutions/andeshape-platforms/qilai-chip/
+> >
+> > Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
+> > ---
+> >  arch/riscv/Kconfig.errata | 2 +-
+> >  arch/riscv/Kconfig.socs   | 9 +++++++++
+> >  2 files changed, 10 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/riscv/Kconfig.errata b/arch/riscv/Kconfig.errata
+> > index e318119d570d..be76883704a6 100644
+> > --- a/arch/riscv/Kconfig.errata
+> > +++ b/arch/riscv/Kconfig.errata
+> > @@ -12,7 +12,7 @@ config ERRATA_ANDES
+> >
+> >  config ERRATA_ANDES_CMO
+> >         bool "Apply Andes cache management errata"
+> > -       depends on ERRATA_ANDES && ARCH_R9A07G043
+> > +       depends on ERRATA_ANDES && (ARCH_R9A07G043 || ARCH_ANDES)
+> >         select RISCV_DMA_NONCOHERENT
+> >         default y
+> >         help
+> > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> > index a9c3d2f6debc..1bf5637f2601 100644
+> > --- a/arch/riscv/Kconfig.socs
+> > +++ b/arch/riscv/Kconfig.socs
+> > @@ -1,5 +1,14 @@
+> >  menu "SoC selection"
+> >
+> > +config ARCH_ANDES
+> > +       bool "Andes SoCs"
+> > +       depends on MMU && !XIP_KERNEL
+> > +       select ERRATA_ANDES
+> > +       select ERRATA_ANDES_CMO
+> > +       select AX45MP_L2_CACHE
+> Do all the Andes SoCs require all the above three configs? (If not I
+> would add it based on the SoC which requires it.)
+> 
 
-[...]
+Hi Prabhakar,
 
-> +
-> +static int pf1550_onkey_probe(struct platform_device *pdev)
-> +{
-> +=09struct onkey_drv_data *onkey;
-> +=09struct input_dev *input;
-> +=09int i, irq, error;
-> +
-> +=09onkey =3D devm_kzalloc(&pdev->dev, sizeof(*onkey), GFP_KERNEL);
-> +=09if (!onkey)
-> +=09=09return -ENOMEM;
-> +
-> +=09onkey->dev =3D &pdev->dev;
-> +
-> +=09onkey->pf1550 =3D dev_get_drvdata(pdev->dev.parent);
-> +=09if (!onkey->pf1550->regmap)
-> +=09=09return dev_err_probe(&pdev->dev, -ENODEV,
-> +=09=09=09=09     "failed to get regmap\n");
-> +
-> +=09onkey->wakeup =3D device_property_read_bool(pdev->dev.parent,
-> +=09=09=09=09=09=09  "wakeup-source");
-> +
+Thanks for your suggestion. QiLai SoC does not need below two configs
+since it has IOCP. I will remove below two configs in the next version.
 
-I would like support for ONKEY_RST_EN enable or disable via a
-devicetree option.
-
-/Sean
-
+Thanks,
+Ben
 
