@@ -1,161 +1,117 @@
-Return-Path: <devicetree+bounces-195510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A8B7B01E4E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 15:51:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0E3BB01E91
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 16:04:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE3E25A5DD8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:51:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D3887BF08B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 14:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A2F2DC34A;
-	Fri, 11 Jul 2025 13:51:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KAqmAmbl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76EDA28A73B;
+	Fri, 11 Jul 2025 14:01:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596EF2D8385;
-	Fri, 11 Jul 2025 13:51:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F7DD3C0C;
+	Fri, 11 Jul 2025 14:01:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752241890; cv=none; b=LbR4JJYr0SZjIB54/eeCglDzzUcyTTviZTvdQcpNjbR5f8LPWrdAOKn5B8YvKtMaR7eDN0YxUNdilW8xD183vof1HjiGAEfJiyi2wn+CJMbFvWo5p16lv26Hklri7cxiPN1mzIJMJ9JSElDF5xtUDvLRKEQqbe72CW/cOSOLCZM=
+	t=1752242510; cv=none; b=Lw5sZ+0vaD1ETposNNu5GIVqFzwctKY3+SHsrp7K0wiEIc2RUK+tPWo+gR1TabqUNejxqmLYHDWLb9n7JAOW0vfgo+ulhR0uegAdl6ZpU7tPuAIOfGuI+u77YtuQZaYpjvcXsw2WZDBfmz65ScecJtavgsl7w9N2HlBwsKipRYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752241890; c=relaxed/simple;
-	bh=NAKjhcJKzyyWi+wlFJ2CIQX8x2RqA9HiGd+jittBrO0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JrA/W+4P+prkdB5njjCbs35HSBwLvGMrTLEaFVaoBEuIySFeTTLdyrkbOSpk1CLWz80htrQknBDJm2xNKc7L570SZR7fIJ/POI7XXkw1VRZ5LtI6lJCPRtJrseRWvH7EQzahrQ63m3hJheVSDLgg+aEvz7kmkgSG2wAU6p3LZzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KAqmAmbl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9126DC4CEF5;
-	Fri, 11 Jul 2025 13:51:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752241889;
-	bh=NAKjhcJKzyyWi+wlFJ2CIQX8x2RqA9HiGd+jittBrO0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KAqmAmblX/OFi57pXfXidPcG2gottcwISiCi5ztoJipo1yBFieR7qbe8hTBQWfM0a
-	 O5BfIM7p8gKEEu8feNVYcud9f9f577kkUGYKQXGdpVSOaQtSUcLOKKTmhYKuDywPBt
-	 CTK1Jr2iKgS7B6xZrcjVyLoPiBFrvTe2iCpKlGVmOrnJFoOmiryXcEAZ6PqDiED7mQ
-	 BM0O7ofHhbcaW+qullzrAUJFqlhaiZ9L37ZYeaVOfZ0NkYeWnN7//n+b3fXNmRiSCQ
-	 a18qO1HOGERwP0wjZzE+rSYZCAj5QpTpFgzW2mm3ZqvuPZKKDmofB6Q4C+7qv8TbGa
-	 dvHCMQj4bozvA==
-Message-ID: <7dffc2a4-c657-441b-86e5-b3869a72a800@kernel.org>
-Date: Fri, 11 Jul 2025 15:51:25 +0200
+	s=arc-20240116; t=1752242510; c=relaxed/simple;
+	bh=Uz1eXuBKNQnp+xOcTOUkqNk4+RTyfPHyVHy+l6nWgJk=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=iugUJcXNlS3F1Fdv49vbMCT3nIHnETomIpgS+xAL0XKy/bOufpyeNU+CC/eiCdxuaftqExANH3bWrbn7f7h3K7QdrM8Vej1wRu9pojvIAIdta6nVwSWx93lsAJ+s9ohSiL474UQ6YlHYFeFzHEGkjwbciNaCo8U+UcD5SkYoPpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: u+J0B6+/T5uGFOGm+7BUCQ==
+X-CSE-MsgGUID: fr8Dn2H2TS+aGBD12MXJ3g==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 11 Jul 2025 23:01:40 +0900
+Received: from DESKTOP-I3G733R.localdomain (unknown [10.14.100.10])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id A31B7424DFE3;
+	Fri, 11 Jul 2025 23:01:32 +0900 (JST)
+From: Alexander Savchenko <oleksandr.savchenko.dn@bp.renesas.com>
+To: rosenp@gmail.com
+Cc: angelogioacchino.delregno@collabora.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	johannes@sipsolutions.net,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-mips@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	matthias.bgg@gmail.com,
+	robh@kernel.org,
+	stf_xl@wp.pl,
+	tsbogend@alpha.franken.de
+Subject: Re: [PATCHv3 wireless-next 5/7] wifi: rt2x00: soc: modernize probe
+Date: Fri, 11 Jul 2025 17:01:30 +0300
+Message-Id: <20250711140130.378067-1-oleksandr.savchenko.dn@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250710200820.262295-6-rosenp@gmail.com>
+References: <20250710200820.262295-6-rosenp@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64/dts/blaize: Enable Ethernet on CB2 board
-To: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>,
- James Cowgill <james.cowgill@blaize.com>,
- Matt Redfearn <matthew.redfearn@blaize.com>,
- Neil Jones <neil.jones@blaize.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250711-kernel-upstreaming-add_network_support-v1-0-4a66a17c94b3@blaize.com>
- <20250711-kernel-upstreaming-add_network_support-v1-2-4a66a17c94b3@blaize.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250711-kernel-upstreaming-add_network_support-v1-2-4a66a17c94b3@blaize.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/07/2025 15:36, Nikolaos Pasaloukos wrote:
-> Use the Synopsys gigabit Ethernet controller on the Blaize BLZP1600
-> SoC to provide Ethernet connectivity using the TI DP83867 PHY which is
-> available on the CB2 board via an RJ45 connector.
-> 
-> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
-> ---
->  arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts b/arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts
-> index fb5415eb347a028fc65090027a4c4fc89c8280f5..cbe8f0930ad3741b0e770dd7d494931e3b939815 100644
-> --- a/arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts
-> +++ b/arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts
-> @@ -6,6 +6,7 @@
->  /dts-v1/;
->  
->  #include "blaize-blzp1600-som.dtsi"
-> +#include <dt-bindings/net/ti-dp83867.h>
->  
->  / {
->  	model = "Blaize BLZP1600 SoM1600P CB2 Development Board";
-> @@ -14,6 +15,7 @@ / {
->  
->  	aliases {
->  		serial0 = &uart0;
-> +		ethernet = &gmac;
->  	};
->  
->  	chosen {
-> @@ -117,3 +119,23 @@ &gpio0 {
->  			  "BOARD_ID_1",		/* GPIO_30 */
->  			  "BOARD_ID_2";		/* GPIO_31 */
->  };
+Hi Rosen,
+
+looks like here are memory leaks in the patch, PSB.
+
+> +	eeprom = devm_kzalloc(&pdev->dev, ops->eeprom_size, GFP_KERNEL);
+> +	if (!eeprom)
+> +		return -ENOMEM;
 > +
-> +&gmac {
+> +	rf = devm_kzalloc(&pdev->dev, ops->rf_size, GFP_KERNEL);
+> +	if (!rf)
+Here driver must freed eeprom memory resource.
+> +		return -ENOMEM;
+> +
+> +	hw = ieee80211_alloc_hw(sizeof(struct rt2x00_dev), ops->hw);
+> +	if (!hw)
+Here driver must freed rf and eeprom resources.
+> +		return dev_err_probe(&pdev->dev, -ENOMEM, "Failed to allocate hardware");
+> +
+> +	platform_set_drvdata(pdev, hw);
+> +
+> +	rt2x00dev = hw->priv;
+> +	rt2x00dev->dev = &pdev->dev;
+> +	rt2x00dev->ops = ops;
+> +	rt2x00dev->hw = hw;
+> +	rt2x00dev->irq = irq;
+> +	rt2x00dev->clk = clk;
+> +	rt2x00dev->eeprom = eeprom;
+> +	rt2x00dev->rf = rf;
+> +	rt2x00dev->name = pdev->dev.driver->name;
+> +	rt2x00dev->csr.base = mem;
+> +
+> +	rt2x00_set_chip_intf(rt2x00dev, RT2X00_CHIP_INTF_SOC);
+> +
+> +	retval = rt2x00lib_probe_dev(rt2x00dev);
+> +	if (retval)
+> +		goto exit_free_device;
+> +
+> +	return 0;
+> +
+> +exit_free_device:
+> +	ieee80211_free_hw(hw);
+> +
+Here driver must freed rf and eeprom resources.
+> +	return retval;
+> +}
 
-Are you sure you follow DTS coding style? Which sorting rule is used by
-Blaize?
+Also need to check the rest of allocated resources: mem, irq, clk.
 
-> +	status = "okay";
-> +	snps,reset-delays-us = <0 10000 50000>;
-> +	snps,reset-gpio = <&gpio0 12 GPIO_ACTIVE_LOW>;
-
-Do not use deprecated properties. This is new code, not legacy.
-
-
-Best regards,
-Krzysztof
+BR,
+Alexander
 
