@@ -1,120 +1,180 @@
-Return-Path: <devicetree+bounces-195607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 695A1B02429
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 20:53:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2946BB0243B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 21:05:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53A011CC3761
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 18:53:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 810EA16B81B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 19:05:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDBC51DD529;
-	Fri, 11 Jul 2025 18:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304872D3ED6;
+	Fri, 11 Jul 2025 19:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lwgFoPz2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IzADCheh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F43A1DDC08
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 18:53:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3F9A1D6DB9;
+	Fri, 11 Jul 2025 19:05:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752259998; cv=none; b=RfrmpgP3+HPDZGETcvnVxh8hsNC26m0t/LMI4+v37/CDvRpsiQgXoXaOlY6VUts6e8RnUrMsZEw3bGV0VMJsaAAXCYheUhJykeWcuaKj9nutLIQ3EitSsw+coH8F4cw+OlWZfRBgK8SDdalQ+su0yNpIoTGw9uBcH477YcY1HwI=
+	t=1752260710; cv=none; b=RiCQOITWVc1clivNQSn58PT4pI5cMvo45DPiE+wj4pUU+06B9NzoDB1o55Px4NP9luFVtegZHsn74p0h+hKPbq79PrzGjYbBknvDCvoN878mWbdNJAxawsvcng2/8WuyFBn8+fJvcyydN/airUHAYv2jYMN5UO1sp6r9FbRUwmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752259998; c=relaxed/simple;
-	bh=6oa0VmGb0K5iYELBtraMc+ym3sVQgZnaB1e6wip7Kyg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H6q+n2teHGnALIFQWl067xpnIzAjsv+vMWqsl0/ksQXiewnev2I9A2dNOmcNe2H5lDRN+fgLFf54QrESMmJnKsIwNHpRb5F5KSHGhVZSiNeAmIqjtLI7gqH8wcNLBa+OLYQtPjq/oDiQLA7VKooAub+l1Xq46w8cqyrrgHxzMe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lwgFoPz2; arc=none smtp.client-ip=209.85.219.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-e8600c87293so1937982276.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 11:53:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752259996; x=1752864796; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lnMNvTF+R8ofXhs9BIQ7FQl/jHKBWLPO/PBptuTPHgQ=;
-        b=lwgFoPz2EVHuxJIHsoIfsNZnVcYxxE1kRoZhOs417OHb3eubPlOeWTiWEsmyI8XoYS
-         uwjidk62k7FV1mWq2B9sVO9eamU+Ml+4r61lV4eX2gBeJnYCmr1v803RqgGEAMQB2MSg
-         0S90oLmCea4CaQSFvjnK5/mi0g22cHlkIuQ9dhnf4Ipdz6Ew20xnjXzmZn6Y+cuhATwW
-         OUTzC6ZUqeRi/V/E929+DrdLPqt1JNGMjnZL9l7fjfVobB1PXpXOjQW7jb2D4q8umDZU
-         0+GjgJ9Qh6+SiTYCfASAypGLUy3ak2h97GkQSBNVUTpbE9fwBvHtZXK2vqUW5hpSQZVC
-         SQhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752259996; x=1752864796;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lnMNvTF+R8ofXhs9BIQ7FQl/jHKBWLPO/PBptuTPHgQ=;
-        b=kFwYdd0EyIP8+9OcL6cSU3oQCKdAGAAxflDabU5hxeusBEywyFuTdGHR8Eyx92c6eX
-         LEG1EMQXmYDqG+KvxgiQVdjIV3XBqNnO9TwXWMc5GqSlLtdaEmuUq6Hcr5wsBlcY8QUu
-         mIK0DS0r1m902AjIo8xWFDQ4YpZEJVhgKMUfMUfUFuU43QYk9XlcFcLQwylfiiZB+SBn
-         3/CLHV5D+0wLLEnhrBA8mtQ7vOZ2Vf7eAZU8YSFDw5b/CMeSTyHRNgXAKb6Pvljz0HTU
-         o3a1dwkML+C9phnJHpO1yWLCjQJGhLNfbHTQkj17d4VczUkzMQUNmG+B1/SqxhA/IJ2m
-         +5FA==
-X-Forwarded-Encrypted: i=1; AJvYcCVJjWw5DPHcQMePPZqKDc3n2+lFg+UFnVRdeUqT8N4/FlgBLxjAI2QXX98udjDR9QCJNsQOx1p6fXlt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNF6oRdn3G4/dVhDTLm6x5P286h3w8gbHIT0H43uYF/ixSsKX8
-	KrJLu2PdXyAF00cDDgME3M+wrTeLQq+S5bskY+9bY+6yscSzLtRcKjH7PqmIzMCa/o3alQ3LTiz
-	v4/mYW+rBV1Bg/kmwbk5M+vVnyiNKPc0j7c/f+LWzWA==
-X-Gm-Gg: ASbGncvze70loLi8rC6iw3N8x6+d08tG+8GRvBr4krx6eSUBlIJwBN6IUanqTN+ys26
-	6Nncg6vBHfLm2JD15ABczFCqHERTuN0+l7tG4/FbL7qMERy6X91iq3vTC5dlMk5h3OE8vWA9J9b
-	dFybyUbKGeKQVMoqiZTAiskd9tVLNLgIbj3RlhBJNs6p5OY35lqcBh5MrjkZfcrHPjYpyu0QDcD
-	PiCVDRlegVr3AuTBQ==
-X-Google-Smtp-Source: AGHT+IHNGHaJapXfEwRUcTXNTWlTsMHXEiPIQ/b0KTpye4KQsUdp1sxBRmAZdNG++EC1bw7xLSQza58HYJgLAxUXYQU=
-X-Received: by 2002:a05:690c:6282:b0:70f:87c5:5270 with SMTP id
- 00721157ae682-717d5daccbfmr86777077b3.19.1752259996008; Fri, 11 Jul 2025
- 11:53:16 -0700 (PDT)
+	s=arc-20240116; t=1752260710; c=relaxed/simple;
+	bh=cKTQJqlbK5jLF7JDcnv5IFN2c5RvEhAGNKXwRnCLtUI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YhG11VGXREi/Zlb+gXtdJiGUD3SmlGrkAHrJuFuRYUjVFb09LzqnDntO6A7XcD9pZ0KhETW92yxMu6upQhz6wu7q/4AwSOGvs9b60jAh8Pv1fAcJI98BbwKNCKvtvhRmAgsXGPceMjyQhvNeENpJwc+ZbYQG7wd7d0NEhBNEHD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IzADCheh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12F2AC4CEED;
+	Fri, 11 Jul 2025 19:05:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752260709;
+	bh=cKTQJqlbK5jLF7JDcnv5IFN2c5RvEhAGNKXwRnCLtUI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IzADChehhf6poYpejX3ebepi6BgHYHJDNqRW+uDGiZAgCyr5LI2u4tpV72V7/xkHT
+	 KH2/n47bhU3f5eVKxngxhr8zzn/IuWRU7xfpDN2V6Dc2UShQYOj/Oad1UCqOvJkg+p
+	 RnLGxFhXBJZAYNusTWChtF4walRxFFHTrsNGnSPfg/IkHQQKkYU6Zo/77hZkX6OdC/
+	 NkqBK+EBnYoHARdpIzMZ0GjexvwhoZtcUo1eAu3LYTSDs1h1FVh3kzhiBWhSFasMTW
+	 txVgKvfLXBEoYSnWM3R0TrGuOfUIOwQeoUBHQs2Oy8hmWEy08OXaAFTomZ8V9SitW4
+	 gSU42qL/Am8Tg==
+Date: Fri, 11 Jul 2025 14:05:07 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Shashank Maurya <quic_ssmaurya@quicinc.com>
+Subject: Re: [PATCH] arm64: dts: qcom: qcs9075-iq-9075-evk: Enable Display
+ Port
+Message-ID: <iayioqm3tqutbjswt24p65o4demfdaqcakfbwohnaqueuuqtng@azhxjno4ofia>
+References: <20250711-enable-iq9-dp-v1-1-6d381e105473@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250711-hdp-upstream-v7-0-faeecf7aaee1@foss.st.com>
-In-Reply-To: <20250711-hdp-upstream-v7-0-faeecf7aaee1@foss.st.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 11 Jul 2025 20:52:58 +0200
-X-Gm-Features: Ac12FXxLjA7peUDZIWJhb4cndI_Q2FwVXxO2uVEd8E-6LJKHyzTLqNgXqkM6VhY
-Message-ID: <CACRpkda9M6R_vi5FMGvo6PyThB8OJjX7PMMusHjjs5HcX0OF4g@mail.gmail.com>
-Subject: Re: [PATCH v7 0/8] Introduce HDP support for STM32MP platforms
-To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Antonio Borneo <antonio.borneo@foss.st.com>, 
-	=?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250711-enable-iq9-dp-v1-1-6d381e105473@oss.qualcomm.com>
 
-On Fri, Jul 11, 2025 at 9:43=E2=80=AFAM Cl=C3=A9ment Le Goffic
-<clement.legoffic@foss.st.com> wrote:
+On Fri, Jul 11, 2025 at 09:13:47PM +0530, Prahlad Valluru wrote:
+> From: Shashank Maurya <quic_ssmaurya@quicinc.com>
+> 
+> Enable DPTX0 and DPTX1 along with their corresponding PHYs for
+> qcs9075-iq-9075-evk platform.
 
-> Cl=C3=A9ment Le Goffic (8):
->       dt-bindings: pinctrl: stm32: Introduce HDP
->       pinctrl: stm32: Introduce HDP driver
->       MAINTAINERS: add Cl=C3=A9ment Le Goffic as STM32 HDP maintainer
+I prefer that you actually describe what these are connected to. I
+presume there will be more DPTX instances enabled for this board? If
+that's the case, let's mention here that this is just a subset.
 
-The three patches applied to the pinctrl tree.
+> 
+> Signed-off-by: Shashank Maurya <quic_ssmaurya@quicinc.com>
+> Signed-off-by: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts | 52 ++++++++++++++++++++++++
 
->       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp13
->       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp15
->       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp25
->       ARM: dts: stm32: add alternate pinmux for HDP pin and add HDP pinct=
-rl node
->       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp157c-dk2 b=
-oard
+Please wait with resubmitting this patch until the base dtsi has landed
+(with its new name).
 
-Please apply these through the SoC tree.
+>  1 file changed, 52 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts b/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
+> index ab161180d1d5a670a68c0903e85f24a91faa2b71..110e08db3ad82e3aa88aa4c4ed4b2beb607385ad 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
+> @@ -252,6 +252,44 @@ vreg_l8e: ldo8 {
+>  	};
+>  };
+>  
+> +&mdss0 {
+> +	status = "okay";
+> +};
+> +
+> +&mdss0_dp0 {
+> +	status = "okay";
 
-Yours,
-Linus Walleij
+status last please.
+
+> +	pinctrl-0 = <&dp0_hot_plug_det>;
+> +	pinctrl-names = "default";
+
+I prefer that you actually describe the connectors, like I did on
+sa8295p-adp. In particular if there's a bunch of connectors on this
+board.
+
+Regards,
+Bjorn
+
+> +};
+> +
+> +&mdss0_dp0_out {
+> +	data-lanes = <0 1 2 3>;
+> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+> +};
+> +
+> +&mdss0_dp0_phy {
+> +	status = "okay";
+> +	vdda-phy-supply = <&vreg_l1c>;
+> +	vdda-pll-supply = <&vreg_l4a>;
+> +};
+> +
+> +&mdss0_dp1 {
+> +	status = "okay";
+> +	pinctrl-0 = <&dp1_hot_plug_det>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&mdss0_dp1_out {
+> +	data-lanes = <0 1 2 3>;
+> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+> +};
+> +
+> +&mdss0_dp1_phy {
+> +	status = "okay";
+> +	vdda-phy-supply = <&vreg_l1c>;
+> +	vdda-pll-supply = <&vreg_l4a>;
+> +};
+> +
+>  &qupv3_id_1 {
+>  	status = "okay";
+>  };
+> @@ -260,6 +298,20 @@ &sleep_clk {
+>  	clock-frequency = <32768>;
+>  };
+>  
+> +&tlmm {
+> +	dp0_hot_plug_det: dp0-hot-plug-det-state {
+> +		pins = "gpio101";
+> +		function = "edp0_hot";
+> +		bias-disable;
+> +	};
+> +
+> +	dp1_hot_plug_det: dp1-hot-plug-det-state {
+> +		pins = "gpio102";
+> +		function = "edp1_hot";
+> +		bias-disable;
+> +	};
+> +};
+> +
+>  &uart10 {
+>  	compatible = "qcom,geni-debug-uart";
+>  	pinctrl-0 = <&qup_uart10_default>;
+> 
+> ---
+> base-commit: 7f3a635117b377cb90b67757cb46de12ce8aa24e
+> change-id: 20250711-enable-iq9-dp-addc9c7195c9
+> prerequisite-message-id: <20250612155437.146925-1-quic_wasimn@quicinc.com>
+> prerequisite-patch-id: 22eee78c5507c3105e0c74d1128b3db803879d7a
+> prerequisite-patch-id: cf52fc82e606ab87458339f71596ca31253e91ee
+> prerequisite-patch-id: 3617ce3b1790bc5b8e50dca6c3ae482759dcc684
+> 
+> Best regards,
+> -- 
+> Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
+> 
 
