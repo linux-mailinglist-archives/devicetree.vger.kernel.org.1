@@ -1,112 +1,144 @@
-Return-Path: <devicetree+bounces-195298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A8DB012C5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 07:38:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7E3DB012C1
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 07:37:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1951264180B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 05:37:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3670F5A6EC5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 05:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CC8E1C4A13;
-	Fri, 11 Jul 2025 05:38:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7871C6FF9;
+	Fri, 11 Jul 2025 05:37:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="H62B/Bbg"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="irAa5DHE";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="NN1NCPa6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AB96188907;
-	Fri, 11 Jul 2025 05:38:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 810E7188907;
+	Fri, 11 Jul 2025 05:37:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752212290; cv=none; b=LJfX2bFhp5M0ZbNdCmq6oio6aMUcchhkDXOsaO8HItNpI7+JRdfEnyow/hExynteAUsE8g7lCUKbM/3ES+mIB/8rwGuUWIhsd1DdCqEGY/Tz5HLZFwoUvuMUwfyxOazO8qWSUijy9ugkQ8YByKaQMW8k1xXJ3echptLAst86z8E=
+	t=1752212247; cv=none; b=oa7zwSlbdJ6pE6UAIxVnzjNXK9M3Tx+kN6VMrofcPAiKGNVOJINiAVqcOg0sit66TIpqMloWfHj62c4ofT150zighU1Txy9O6mq3Y/2RkEhiC8M6T8zL+bjOU7ouHbDViuMBzz16cvqME5XcosSO52QHr/1g0R8wjpXXEJ2TzeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752212290; c=relaxed/simple;
-	bh=dSzZXBtaUtF6MwhCEZHgYoOFBwfwB4QKpkWElkUK1o4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VI0/Dt2iK8yuypLnXtzK5VsBSUhERqJlE1Teyc2sWtOAZmTsTFHMWXDVncX+wbFKaV76rtO2xq6TV+xA6JjnU11UezwKi+oy4S4ChBWxSaq/Sr2uajAqCJZpPNrQF5TxXgcpgTkyPDzGFqEnpIe42kNhQ4ANc0hlZnH95Lecgys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=H62B/Bbg; arc=none smtp.client-ip=220.197.32.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=OhAsV/CBrgYXlLFY+8qkcKo/GadLSGwmgLi8pRb4QUk=;
-	b=H62B/Bbg/cEOgUnp7ap3h3tfUm7W4fQQmbCIIu7+/C38Ajeij8sKBhr6nwaiI3
-	03t8NYs71gCAxHhpYnrVzpereZLFz2CdbnKGk5w2MU1NOHSKh6rFJZ/0Id7N7Av8
-	e9mxbeNGEaKp/i3Nir3h+qEI66llfAv+KbFqy0+FEBZ7U=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgDHX52HonBobvdOAA--.742S3;
-	Fri, 11 Jul 2025 13:35:05 +0800 (CST)
-Date: Fri, 11 Jul 2025 13:35:03 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	Frank Li <frank.li@nxp.com>
-Subject: Re: [EXT] Re: [PATCH v17 0/7] firmware: imx: driver for NXP
- secure-enclave
-Message-ID: <aHCihwHKVck-emEX@dragon>
-References: <20250426-imx-se-if-v17-0-0c85155a50d1@nxp.com>
- <aEqMSG8k+NpQ7ROH@dragon>
- <AM9PR04MB86048A698B03E974CFD3DB489574A@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <aEuB1qgd6aVl0i7i@dragon>
- <AM9PR04MB8604F77BCD3427B38CB9E664957DA@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <AM9PR04MB8604BFF7161570CD464723FA9549A@AM9PR04MB8604.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1752212247; c=relaxed/simple;
+	bh=cpDYFgKgCorrT8XyRp1/tkbL1TL7vkHPhCAvyHvhneI=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=GoamPESD2fG4C7r6aJmRzjDCxT+sxVwaBYNw+jBBwAQvLbZfDPO5rAvFp0n3q/mLFJ/UdUFcycU/A2a+LtNOS8B1aJH5fummgoZ38OUTlC6/oXZvqMP11doGTyZN4CKavqqA+sDeNI2e/LdA8Vveo1pgYHxRlpAPdnCdwu/5T3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=irAa5DHE; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=NN1NCPa6; arc=none smtp.client-ip=202.12.124.147
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailfout.stl.internal (Postfix) with ESMTP id B9A911D001EE;
+	Fri, 11 Jul 2025 01:37:22 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Fri, 11 Jul 2025 01:37:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1752212242;
+	 x=1752298642; bh=r96/LWevDQA5QoU12k6l8P8gXdbwX2VPCNFYESFP6u0=; b=
+	irAa5DHEYglNfT2T8x7duweSdMgX43U9kXf45akuXeKt5xTvr6LAVzMvmnlz8UrU
+	7cKNVBLyyfVBLrxW7wLKEL38/21mDS+7fuxClLh+49Tw0JGfRRU7uz96lnlxoE25
+	qW7ZoLDffY/WP/WPaILMZLIkduPBnTvTDLR86gTqET3BmuUqHQgFfboy1J16spWR
+	cm0dmoeQ83v+RoA9oVLfMNP7PxUBaOUVOffVL3HLWSDs72szszfwHyP4w/yFtd8o
+	TqBu7DKmRORa9pxAXKZtOpanrrotN97N2IWhJhmBdysI10hSEN2L6MgckOcoclRl
+	G4Qnn8WJGYZoAXT/KkA/Qg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1752212242; x=
+	1752298642; bh=r96/LWevDQA5QoU12k6l8P8gXdbwX2VPCNFYESFP6u0=; b=N
+	N1NCPa6QCdGpKZXD31k3JOkNFeFzL/4R8MNVDiyj6QDY10oKeF3JoU+DSWHu30TV
+	LKJEnH95ZqnVRv0boeZMMdJojqZLFoVcPt1oEz20h+kUlwj0lPq3i1WMamNApqcN
+	SxIaJFiSkMkZnH5kbO1tKSOlmKgcfsd7H3U9ULq11mveKeuMrStcQpxesZfrYxrX
+	PmRrQ4bVXtLNOIjvMM3FTIEKc06Y5Qw80BGC1uzkwqlhN/jw4p0RqOb5S2R2YWvw
+	u08N9ybF7voulAm3MaaeD9ZGSETK7CRrBpIev/zm+3Ymd42D5snzl2M08bGDk8M1
+	LUER2LaBm3XypDeRFs+qg==
+X-ME-Sender: <xms:EqNwaP6hZjoBie5RLQl2Av8zKn0lrUJxOdQxU7XMCX0OCGF8F8LAeA>
+    <xme:EqNwaE5JW_UJd4XWI0aZjNC3W7P2tYnK0EahLKzGR_lGYuga-dVSDFP8VQOjGPrYd
+    J_jAWfGNfD6izfy2-I>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdegvdehtdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeefuddpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtohepsghrghhlsegsghguvghvrdhplhdprhgtphhtthhopegthhgvshhtvg
+    hriedvheduheesghhmrghilhdrtghomhdprhgtphhtthhopehfvghsthgvvhgrmhesghhm
+    rghilhdrtghomhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpd
+    hrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhgv
+    vgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhgrfhgrvghlsehkvghrnhgvlhdroh
+    hrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshhh
+    rgifnhhguhhosehkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:EqNwaPurB6eFkk7DG09IAWVeSIcArnv3j9fMMUDYuwXzjo1B-lRHPg>
+    <xmx:EqNwaAb9jDevrQdh1WxnAWyBkv0ji7_019Wwp73nEh8oOLeGeK4gvw>
+    <xmx:EqNwaOU95NeDE3iOPYNGpaEWgHi_xT_ybrH5N3VHcQSANIkOblu8Lg>
+    <xmx:EqNwaDJtrv1hyYthi53dfAhJaIVaAeuPdac623zJH2wudMn7uspiWA>
+    <xmx:EqNwaOv28YUbdR5nbbgAHZ7XUk4RF2ouQkGKfXZ0id1-h6ecNmvvOJGq>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id F0641700065; Fri, 11 Jul 2025 01:37:21 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM9PR04MB8604BFF7161570CD464723FA9549A@AM9PR04MB8604.eurprd04.prod.outlook.com>
-X-CM-TRANSID:M88vCgDHX52HonBobvdOAA--.742S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7JF4DurW5ZrWDuFWkGrWDCFg_yoW3KFc_CF
-	Wqv3ZrC3WUG3y7tFsxJryqyrnxK3yj93Wft3yUtrZIy3s3Ar4kZFWkGryfAw18JayrGF9r
-	Cr4DZa4DA34xZjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUj7DGUUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNQkBZmhwookRsgAA3L
+X-ThreadId: T0d3a9be5bc6b3506
+Date: Fri, 11 Jul 2025 07:37:01 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Andrei Stefanescu" <andrei.stefanescu@oss.nxp.com>,
+ "Linus Walleij" <linus.walleij@linaro.org>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Rob Herring" <robh@kernel.org>,
+ krzk+dt@kernel.org, "Conor Dooley" <conor+dt@kernel.org>,
+ "Chester Lin" <chester62515@gmail.com>,
+ "Matthias Brugger" <mbrugger@suse.com>,
+ "Ghennadi Procopciuc" <Ghennadi.Procopciuc@nxp.com>,
+ "Larisa Grigore" <larisa.grigore@nxp.com>, "Lee Jones" <lee@kernel.org>,
+ "Shawn Guo" <shawnguo@kernel.org>, "Sascha Hauer" <s.hauer@pengutronix.de>,
+ "Fabio Estevam" <festevam@gmail.com>, aisheng.dong@nxp.com,
+ "Jacky Bai" <ping.bai@nxp.com>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ "Srinivas Kandagatla" <srini@kernel.org>
+Cc: "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, "NXP S32 Linux Team" <s32@nxp.com>,
+ "Christophe Lizzi" <clizzi@redhat.com>, "Alberto Ruiz" <aruizrui@redhat.com>,
+ "Enric Balletbo" <eballetb@redhat.com>, echanude@redhat.com,
+ "Pengutronix Kernel Team" <kernel@pengutronix.de>, imx@lists.linux.dev,
+ "Vincent Guittot" <vincent.guittot@linaro.org>
+Message-Id: <9d004ea4-0bb2-4a21-8501-82ecf3482c3e@app.fastmail.com>
+In-Reply-To: <20250710142038.1986052-11-andrei.stefanescu@oss.nxp.com>
+References: <20250710142038.1986052-1-andrei.stefanescu@oss.nxp.com>
+ <20250710142038.1986052-11-andrei.stefanescu@oss.nxp.com>
+Subject: Re: [PATCH v7 10/12] nvmem: s32g2_siul2: add NVMEM driver for SoC information
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jul 09, 2025 at 10:23:45AM +0000, Pankaj Gupta wrote:
-> >>> Hi Shawn,
-> >>>
-> >>> To test it on MX93, you need additional patches on top of these.
-> >>>
-> >>> The plan was to send the next patch-set to enable the support for 
-> >>> MX93, once these got merged.
-> >>>
-> >>> If you suggest, I can share the patche-set to enable MX93, as an 
-> >>> attachment to you only.
-> 
-> >> Yes, please.  I would like to test the driver before it gets merged,
-> thanks!
-> 
-> > Please find attached the patches for enabling iMX93.
-> 
-> > I have also sent v18 to dispose off the comments:
-> > 1. documentation,
-> > 2. updating the commit message with collected reviewed by tags.
-> 
-> Are you able to test the driver on i.MX93?
-> Any help needed?
+On Thu, Jul 10, 2025, at 16:20, Andrei Stefanescu wrote:
+> The SIUL2 hardware module has registers which expose information about
+> the given SoC (version, SRAM size, presence of some hw modules).
+>
+> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
 
-I did not expect those additional patches (except i.MX93 DTS
-changes) for testing the series on i.MX93.  So, no, I didn't test,
-sorry!
+This does not look like an nvmem at all, it appears that you
+are creating an alternative to the soc_device infrastructure
+based on a binary interface tunneled through the nvmem subsystem.
 
-Shawn
+Why not just make this a soc_device and have drivers use
+soc_device_match() if they need to know what chip they are
+running on?
 
+    Arnd
 
