@@ -1,196 +1,91 @@
-Return-Path: <devicetree+bounces-195577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AD97B02222
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 18:46:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9027B02232
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 18:52:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 216963B6423
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 16:45:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3630A7BB838
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 16:51:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF13C2EF2BA;
-	Fri, 11 Jul 2025 16:46:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28622ECEB5;
+	Fri, 11 Jul 2025 16:52:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="e/mk2M0G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y8RWVzC5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC8DC1D61B7
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 16:46:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F2F2AE66;
+	Fri, 11 Jul 2025 16:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752252362; cv=none; b=H94t/EQAd3RzitLRyQ9nq5dgN8Asw/m4IANsP4Bet5p47oZ2j8gh8FFa+jV5P3CkzAanOIbS7yeGUjjiwwKW1a66DD/41eyZ1nQUfz7DD673rtvht6F+DyaQ0M9r6HBXl3EvnoCQh5M+EJxRCmqaGownDwDWREDuj6VQNLN0G24=
+	t=1752252757; cv=none; b=j6YNMEJOiBi759QgEK7S3O2KFQ9/61xOpHMRKuO4jnvSknaPIeVJO3W0bwaOcdKpPMpvmdHtQa01wJftoYwQIud/Binlyma8BMMFkX58AZNRLdV6SaByNamc4gEtIomIpf9nq+NancrHlj7JnP2dIzZM5Ta4+/zcK5T6cH2vhBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752252362; c=relaxed/simple;
-	bh=/lyNWm+N+92DlLe9EWHRgcUgtDsWEk9hDtMlng2SaeE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f9BEznw1N2+J3SjkRuMjIRbK9mzMvgt837znXE53Q51NXMJ1ULryUDXA4UyIpq/5WdxVItzB+GgXfMjq8dDoDB9W+cg2cZhkqrOd8WHSz2lJ9Br3tf9tKKC+T0y66MpclvsoqjW9aM2eLfxBJJp5c3Ag8Sz8m8H8c38NagSUArQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=tomeuvizoso.net; dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b=e/mk2M0G; arc=none smtp.client-ip=209.85.128.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-70e3c6b88dbso17127647b3.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 09:46:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1752252360; x=1752857160; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KVqtR2y37+fGKASYTrCFwyYcRTeea2/g0YbtiZzMR3k=;
-        b=e/mk2M0Gnw6N5eTQA9mVBaXVXaZOlOXeX7Y55QGHvH8Fe/wKasuVUY9xDbcxtrNosR
-         2URQc8f1MQhHua90PvS6R7ACUnBzXG1Pa5xW3IttSz8WeDjKx09s4b8mPU3VvfWePB1J
-         K+wRp7D0qr34Tw/o2bfXx/5G3Ym2VhE82ZQEeSvwlrf20qyMxFsem2Z+tUK4yK+jsSnh
-         hie9HzaiVz5HD8Ev0mLO4DbaUFsDaHt/NR/rPHBcu/Jznm4kY/wF+OBEyQxnUP4Oinha
-         Ydj6uERz5bMR/kKOZ021x2kcWOE3eOJgqcN/5aKqI9sHwMbab//dFrrT9l9sCbk2MV6q
-         JGfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752252360; x=1752857160;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KVqtR2y37+fGKASYTrCFwyYcRTeea2/g0YbtiZzMR3k=;
-        b=DAeoK8FJK6PbYFFoP20cH5N0KkmHd2ycXPKLXMgoLS9+u9vT+cRjKQzH1TXU+BmzBJ
-         WC0siidcqRDX2fQAFr6jGezrTxRcRS2E57YQC4G9Ow8ln2Fvj4FkCtuC7hMUe5ps9XJq
-         Stdk2dKyzU6ax+3Dqq6jXm2G8cBPksPMfO35K8yyoldHk1AqtpJ65DGcUb4Txv2dV0KJ
-         6mQv1Y5SSpwmD676NH2smA/Ctg8h5XfzBWoZ1umBNQpcvMTHf+E+H5p09p+2nktKcVNp
-         PoAJYse4xPQI24hmpvHL/wPdeRopKvtTUqocgeEN6AEnRgifsgh1HUiUH6qKiqYfDU0f
-         tF9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUuGI5OKVlp07sEnn4CZzvjUkE1xmsGgM0E5JLQCNTNbkgQTDTmMvOSS5O0h7WjDExGoAZirjAXgYP/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXinkE1qozAYBuzOX2phmJntOPB9CXHYOHVAc2l8gwV5P9+b+j
-	LAa4/oSk/6smCQDoXRJD69o8Z7Rns9C7H98YcN3Gf6GyqYpQM4YcqKFjt7G4mU6Kh11QlSofjhF
-	CRCJS3SRB3Q==
-X-Gm-Gg: ASbGncvvtnV1fhS9j665tpoXj6iCq+JZk7iD3GF7KIs+DnXlrzMXj4sQhV7skgxJLoj
-	PN4y9ju5PHfEiIusPfRNuyzOdiCSjmXHOgE4lnoIPruS++u3paot2XhGS8Lie5xKU6ovyuJqH92
-	sidpxqq5qDG38KalRTKOlD5qhMGmMmfbvNS+ysQt+gROCh2bha30VmeUpaSN8LhZwxAfoKFCAsC
-	8g57S6pVqNqirfHHP/0Q2j/UjrqrILCsRJ8c5+82M0ajJey5KY7H6vJZCv/2DoPNeNpWOt7DPGO
-	hqI7/N6B4WgJsM3mbkj4HrHuE92qry6kLualRtl4AD09o3dh9cMasITvs/bNI5Hs5qQlZ4rSpYR
-	3DzTjqzrTU8vGznE87gqXrHC2q/vkYJF83LcP4+BnIcJcHtIaBK1KWhEYogyttVgm3Q==
-X-Google-Smtp-Source: AGHT+IFq8mDE8PudB+If0p/yz9r5BMm3b0sAMcM401GT4XSFuAGCatql+fXY5z//W9+Ngzp3GWU/hg==
-X-Received: by 2002:a05:690c:45c2:b0:70e:7503:1181 with SMTP id 00721157ae682-717d5e944a0mr69820747b3.18.1752252359978;
-        Fri, 11 Jul 2025 09:45:59 -0700 (PDT)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e8b7ae26c85sm1216180276.7.2025.07.11.09.45.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Jul 2025 09:45:59 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e81f311a86fso2092861276.3;
-        Fri, 11 Jul 2025 09:45:59 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUOR5hTHgAwiY5xeogRVxrriILkAAQY3hgd7EO0OCBaD93pSwQIsLRh98I+HKPM34Xn395md2m8mbpXsqM=@vger.kernel.org, AJvYcCXiMcZov/rhk4piecetDTfgSQx9HtN/TnV3iTn7Sf8mew6kB8U0iUNow48MiyoWcufNBn7Pukpdp3qy@vger.kernel.org, AJvYcCXslclD+Zm1wiY9+vBWQSe9u5GfkcE3t5LrtMJuGfhZkmKDjwfI6470H2dkiLDqSahweXrfDQvdMA4zbER3@vger.kernel.org, AJvYcCXtCSrLKC1bu8u13cJo2KD2wAIDNbWzDsxTpaWVTiALo/xH7ioNyVjtFgJwIO+0+kWh+fDuT3pLp7/C@vger.kernel.org
-X-Received: by 2002:a05:690c:fc9:b0:711:406f:7735 with SMTP id
- 00721157ae682-717d5d7b900mr75779167b3.13.1752252358549; Fri, 11 Jul 2025
- 09:45:58 -0700 (PDT)
+	s=arc-20240116; t=1752252757; c=relaxed/simple;
+	bh=37aDaZMIwQe0MnbI8n+TOJ4i1Co5chVtDfQazgIHjJE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ZZE5ki1Q93IIQEsmwX7tzWn0Xn39g1NTvWT+0x//+eyfltCFdRgm8392W9SDGYvtgjg+5GQ9R40me+rWNrfYVL0jE+8rkniw8WaManfzmT6EEbJkb0NQaAS5hq2XpSGCnsTpHSIutOET37Atkklngqb3jBqpdlHESbY5bB5605A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y8RWVzC5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F2CCC4CEED;
+	Fri, 11 Jul 2025 16:52:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752252757;
+	bh=37aDaZMIwQe0MnbI8n+TOJ4i1Co5chVtDfQazgIHjJE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Y8RWVzC5aaFoplaLrZVGviuxjnrXgUTTc1YujyZ+kDYetAOaaaXiiTuU08K2rNKiI
+	 vFemxUCHfjaNFj35eIPBFU+kGlAV6RvkUg/+g5eKfHKDpJiTXiKzN6OKMHLEIKKYSd
+	 GaLLOXYgiQROidWlt0zzqIHf54gWwK4EGvsTQqQefhpzIhwnTDE6mn0j2uKel/X9iN
+	 +ssvqr7F+PQmVvMcy27+nnqLrOuHtu29/L5ovZ1gt6su7fBxmk6mBux6dUR8JZCw0B
+	 Do7pUNcAAOOuB8VCN3EAMMsM/5snWNK1CgjsqtFyVzQogAajV7/7WsevrwDiqJjYnE
+	 h2VOZngIXfDfQ==
+From: Srinivas Kandagatla <srini@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>, 
+ Lala Lin <lala.lin@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250610063431.2955757-1-wenst@chromium.org>
+References: <20250610063431.2955757-1-wenst@chromium.org>
+Subject: Re: (subset) [PATCH v2 0/2] arm64: mediatek: Enable efuse GPU
+ speed bin post-processing
+Message-Id: <175225275439.24435.9556126932579316402.b4-ty@kernel.org>
+Date: Fri, 11 Jul 2025 17:52:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250606-6-10-rocket-v7-0-dc16cfe6fe4e@tomeuvizoso.net>
- <20250606-6-10-rocket-v7-4-dc16cfe6fe4e@tomeuvizoso.net> <fcb3ca23-7ebd-4f48-92d2-969b24936b9b@arm.com>
- <CAAObsKBiSX0HcxJJjTNGgE4FD4eAYW5wvY=bROtdkZ1mqf_0VQ@mail.gmail.com> <a1a93c41-4c21-4b7a-a8b8-5d4e83d73931@arm.com>
-In-Reply-To: <a1a93c41-4c21-4b7a-a8b8-5d4e83d73931@arm.com>
-From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Date: Fri, 11 Jul 2025 18:45:46 +0200
-X-Gmail-Original-Message-ID: <CAAObsKAgmDANvWop-GRAqE6eFRHeQiVHkF1nSwEqyWWY=mdRfg@mail.gmail.com>
-X-Gm-Features: Ac12FXx7z145GnPjkDCiCeIztHHyJGSgIFJExInPlpkFTI1qLEtbnsvv5usQDuA
-Message-ID: <CAAObsKAgmDANvWop-GRAqE6eFRHeQiVHkF1nSwEqyWWY=mdRfg@mail.gmail.com>
-Subject: Re: [PATCH v7 04/10] accel/rocket: Add job submission IOCTL
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Oded Gabbay <ogabbay@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Kever Yang <kever.yang@rock-chips.com>, 
-	Daniel Stone <daniel@fooishbar.org>, Da Xue <da@libre.computer>, 
-	Jeff Hugo <jeff.hugo@oss.qualcomm.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-doc@vger.kernel.org, linux-media@vger.kernel.org, 
-	linaro-mm-sig@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-On Fri, Jul 11, 2025 at 6:40=E2=80=AFPM Robin Murphy <robin.murphy@arm.com>=
- wrote:
->
-> On 11/07/2025 5:00 pm, Tomeu Vizoso wrote:
-> > On Tue, Jun 24, 2025 at 3:50=E2=80=AFPM Robin Murphy <robin.murphy@arm.=
-com> wrote:
-> >>
-> >> On 2025-06-06 7:28 am, Tomeu Vizoso wrote:
-> >> [...]
-> >>> diff --git a/drivers/accel/rocket/rocket_device.h b/drivers/accel/roc=
-ket/rocket_device.h
-> >>> index 10acfe8534f00a7985d40a93f4b2f7f69d43caee..50e46f0516bd1615b5f82=
-6c5002a6c0ecbf9aed4 100644
-> >>> --- a/drivers/accel/rocket/rocket_device.h
-> >>> +++ b/drivers/accel/rocket/rocket_device.h
-> >>> @@ -13,6 +13,8 @@
-> >>>    struct rocket_device {
-> >>>        struct drm_device ddev;
-> >>>
-> >>> +     struct mutex sched_lock;
-> >>> +
-> >>>        struct mutex iommu_lock;
-> >>
-> >> Just realised I missed this in the last patch, but iommu_lock appears =
-to
-> >> be completely unnecessary now.
-> >>
-> >>>        struct rocket_core *cores;
-> >> [...]
-> >>> +static void rocket_job_hw_submit(struct rocket_core *core, struct ro=
-cket_job *job)
-> >>> +{
-> >>> +     struct rocket_task *task;
-> >>> +     bool task_pp_en =3D 1;
-> >>> +     bool task_count =3D 1;
-> >>> +
-> >>> +     /* GO ! */
-> >>> +
-> >>> +     /* Don't queue the job if a reset is in progress */
-> >>> +     if (atomic_read(&core->reset.pending))
-> >>> +             return;
-> >>> +
-> >>> +     task =3D &job->tasks[job->next_task_idx];
-> >>> +     job->next_task_idx++;
-> >>> +
-> >>> +     rocket_pc_writel(core, BASE_ADDRESS, 0x1);
-> >>> +
-> >>> +     rocket_cna_writel(core, S_POINTER, 0xe + 0x10000000 * core->ind=
-ex);
-> >>> +     rocket_core_writel(core, S_POINTER, 0xe + 0x10000000 * core->in=
-dex);
-> >>
-> >> Those really look like bitfield operations rather than actual arithmet=
-ic
-> >> to me.
-> >>
-> >>> +
-> >>> +     rocket_pc_writel(core, BASE_ADDRESS, task->regcmd);
-> >>
-> >> I don't see how regcmd is created (I guess that's in userspace?), but
-> >> given that it's explicitly u64 all the way through - and especially
-> >> since you claim to support 40-bit DMA addresses - it definitely seems
-> >> suspicious that the upper 32 bits never seem to be consumed anywhere :=
-/
-> >
-> > Yeah, but there's no other register for BASE_ADDRESS address in the TRM=
-.
->
-> That only reaffirms the question then - if this value is only ever
-> written verbatim to a 32-bit register, why is it 64-bit?
 
-Ah, sure, it will be 32-bit in v8.
+On Tue, 10 Jun 2025 14:34:28 +0800, Chen-Yu Tsai wrote:
+> This is v2 of the MT8188 efuse GPU speed bin post-processing enablement
+> patches. In v1 [1] the change was made to the driver. Angelo, the platform
+> maintainer believes the change should be made to the DT binding instead
+> [2]. v2 adopts Angelo's argument.
+> 
+> Patch 1 updates the efuse DT binding so that MT8186 is a base compatible
+> with no fallback, and MT8188 falls back to MT8186.
+> 
+> [...]
 
-Thanks,
+Applied, thanks!
 
-Tomeu
+[1/2] dt-bindings: nvmem: mediatek: efuse: split MT8186/MT8188 from base version
+      commit: ce32f3cdfbc31dab626e20122e577f75ea46b940
 
-> Thanks,
-> Robin.
+Best regards,
+-- 
+Srinivas Kandagatla <srini@kernel.org>
+
 
