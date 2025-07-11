@@ -1,283 +1,124 @@
-Return-Path: <devicetree+bounces-195660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34D3BB027D5
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 01:44:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 433E1B02811
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 02:01:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C562BA61029
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 23:44:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8F4A1CC185D
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 00:00:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C802123184F;
-	Fri, 11 Jul 2025 23:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40BB22F74F;
+	Fri, 11 Jul 2025 23:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hsUsAa8U"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OTkpEGDm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD44230BD2
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 23:43:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F4B22A1D4;
+	Fri, 11 Jul 2025 23:57:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752277420; cv=none; b=D650HzcdsEJLUB7XDETUqVF4KYEP07v+cazFMtggVuwdE+gWce3tRvsh1TUW4/5YXLybIRKB2ldPheJEcsa2iPddw7+d2IwPMf7K+iu7Ry9QvGefo5DKSiyBw6b0/S3hZgl55PM4lXPADIhdX601ItwdLFUTAsIYrGiy8Azu3Og=
+	t=1752278257; cv=none; b=DqFJLSPFVJLqyiK7ukO/3R1YgkTpJzkYIFaBHzCoKikXeSqI7jvh9tPtJ+xWV7rbLShJwGiGOI9fiUwttjNTQxcebOwl5wthDGJCc5atzjNwB51sjhaBOevFsaa+Qhau+OIqZwxw/xXyKbihU31UzKcm70XJgEZqKj2q/7mL4TM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752277420; c=relaxed/simple;
-	bh=Nc/x8vsOay2uh/yxKTntc5DbFARCXd4RqT08XNDbCw4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EvjHDiAyZSvnFi5EqYbDLUVVoMuIo3IK6h+GhgtRbl7ji1WOSVGySGX5dHC4z7JyXDeUU4H3gWhyHBFkM1X3DdmKS1GN0u08AGvmAVPHm14h8370ToF5laGg4r9SteJl+fCQPxlXumuEpHEZ0KKsuSIq+LI3yMzw4DvSCxmtpmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hsUsAa8U; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56BMTx8S024123
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 23:43:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JRm+Uxqi+CYbqSPZcotLjzI/Pg7VMnWrnkkwOHE45m8=; b=hsUsAa8U10a7nbns
-	6jV5WzFoaAAYJq23Fpera/5stuIWWcTxFs9tEqbQd9c6F5iRNpZOsxG5DTDJXM2I
-	DOcmLzGGep/fnw6XQLc8oESNmtmaxbLCxQY7jMjQXiklzSOdvAvkfSZwuk4cwtsM
-	FFb1APgKb/GV/iCf13Lk6o+vJONR2f6L7oHicuoDf8kLHol5I9zlJ8H3X88dT8TI
-	kvIqtz2Vim49hC9I1DB1K4g6TfgBM/ykqk1DbG1d58HpqNgiJOjf8TWQWQfeizc8
-	UHImD3bChR7TwA6iswggU2M8pGcx8Z47ORps3LgwVIAq/aPdDfiHbgXX2V0quslv
-	cK8CFA==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47tkf342km-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 23:43:37 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-74ce2491c0fso3492635b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 16:43:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752277416; x=1752882216;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JRm+Uxqi+CYbqSPZcotLjzI/Pg7VMnWrnkkwOHE45m8=;
-        b=mf5JUD9SGQQ8TjCXjytfI2EdHk4WHJXQNSxvolgotCsOoVPAZubPLgDWug1GPe5h6Y
-         zP++O7V3JWOblRbHz1CuZ2kZsuglXHLbaKzgNzMh+sQGktfBRi6RsxDx33kG/TCToUG+
-         ztM3s+ilmETd+PPjKsn03QVB8alfD9lDQ6gJlKCDwhZF8Q5EUd/f87b9oJt/j8+JRE8W
-         Wback76Tgz5oQsH9AWd0u+I6FIhOsA8IU5ywbny4Br5go3negIjcjjdNiDYncYbhPcJH
-         HcYKUNFxnHrpw/gsHuyzfcltiapkhCmahgTGsxQ5HAw0ZoztQps1j1u4cE3y77uIZSRv
-         rIOA==
-X-Forwarded-Encrypted: i=1; AJvYcCXKOLs61XIaI9BAK4xe0EpYq8aJYdFaS2q9rKtmOczQkbfXILfNikaBqLXJpYU5Dg/wetG4ZXlSbSq/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbEJ0uxuVF2DXsM+fcPDMOgy1G97Qc2gQ/Lf349NcNt4OtN8AQ
-	lbxxy6RW9ouo67SFiHNlSG2/u6NYjFe3oOJYjPwbWBOC3pi1K19+CshNIOi1rFmiiNEiYJLiqkY
-	eo0y6YfxkHeNaqYCGAwJ4SeKp9EiOFr3+OaIXWzrKWetUJQp6TW40aE6OuIlZaHQK
-X-Gm-Gg: ASbGncsghZV2tm1fY4At6oFW7iTZ7ZbKO8X3I97SgisO6glQuhVhD6LtSUtWvobV0+O
-	QRXwjYvBrSMNIMJeZDNB1J1VhzGDKuSORWAbDd391P7VVXuV3/sRRab1Q/NNrWXT3HgqKf3b/IS
-	b1+oCjlfAGZnb5zjCt1H/GQCQYtMMN2JZBDt/wxVJG9D0wMLlTUUmnnBX5IfJJXty1S7D9loHYL
-	qjnxr5mZy18j5GJHPSygoawVZWEbBXBCnmmUKG8ZZypfwOgPfVSrYE4A6wq6873sTkIg5HtnVBx
-	gABFGPS1v2RXCYiGSyUxBFIJCvZsr0IkjBsXG77S1+OK7kzK1DfCuMd48oJ3ji653mio+WGn1rU
-	=
-X-Received: by 2002:a05:6a00:88e:b0:74e:ac5b:17ff with SMTP id d2e1a72fcca58-74ee2965a73mr6429528b3a.13.1752277416105;
-        Fri, 11 Jul 2025 16:43:36 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEmEDFKUBtEKeSFjG5lDLei7jG8s3XAnLHG17awVowNVlmWiom6TXvQ+gldb5oLwu87ZMZUwA==
-X-Received: by 2002:a05:6a00:88e:b0:74e:ac5b:17ff with SMTP id d2e1a72fcca58-74ee2965a73mr6429487b3a.13.1752277415624;
-        Fri, 11 Jul 2025 16:43:35 -0700 (PDT)
-Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9f1a851sm5869781b3a.82.2025.07.11.16.43.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jul 2025 16:43:35 -0700 (PDT)
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Sat, 12 Jul 2025 05:12:41 +0530
-Subject: [PATCH v6 5/5] PCI: qcom: Add support for ECAM feature
+	s=arc-20240116; t=1752278257; c=relaxed/simple;
+	bh=5tT9ORXucLaTLjjDZNriJx1evuX5cza/Yehns8ks1zc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ee2KIiv2qGLWYGTJ9XwqY6SfCv6qdQpdnyHzt08t4nmJIGN27C3Q5CI238vCCR6cgQV3k9IbhC89sQAvRoLtq7kogYqEg2EUd6DBgo6HPAppmU41j8NQU51ys1/dLK2OwOCoKwGRz7HJ2PxyUg4kWdn1Ii8iB+CXD9kmXjlmmIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OTkpEGDm; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752278256; x=1783814256;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5tT9ORXucLaTLjjDZNriJx1evuX5cza/Yehns8ks1zc=;
+  b=OTkpEGDmnezAW0cUFj4O1uuxp2dy//GzFEGwpk6Ppsxt0WEtnuaW1Gz4
+   xz5fIx9XMymU7cE3a0+4ZvuCZTAvL0GtSp7BZMbHVTRSzyd7KJG0rNH4m
+   sEXcXWWIb72weCtd7Nymirkgmm9wROja/hf6RE1OfgCEV1002oroKB86n
+   +54q1YYw7XKsEjilW/FijZprWr+xQlUMRtMXNvm0+LpvlkjDgiUnu7z8w
+   siIDEPQlTIutVEYoW3T4UCVhSsIHljKtG567kq9GZ2xHywlq0v0KheNgf
+   1/BCOTClPuyLD8WIqeotYHf0ms+rA9yV+TTC17ZFnqXuzXjFB1KqgOPWQ
+   w==;
+X-CSE-ConnectionGUID: N7TAmppYQp6sSUQOYFovrw==
+X-CSE-MsgGUID: W/+7Kh60TIylPsyqEhj3tg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54436379"
+X-IronPort-AV: E=Sophos;i="6.16,305,1744095600"; 
+   d="scan'208";a="54436379"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jul 2025 16:57:35 -0700
+X-CSE-ConnectionGUID: OqbzDUo+S4e1ZPXqnfb15g==
+X-CSE-MsgGUID: /djIIIW1RIyf+YXjuYsB/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,305,1744095600"; 
+   d="scan'208";a="156572850"
+Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 11 Jul 2025 16:57:32 -0700
+Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uaNcP-0006uV-37;
+	Fri, 11 Jul 2025 23:57:29 +0000
+Date: Sat, 12 Jul 2025 07:57:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: iuncuim <iuncuim@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.or>
+Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v2 2/3] arm64: dts: allwinner: a523: add Mali GPU node
+Message-ID: <202507120723.0s2u9rLs-lkp@intel.com>
+References: <20250711035730.17507-3-iuncuim@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250712-ecam_v4-v6-5-d820f912e354@qti.qualcomm.com>
-References: <20250712-ecam_v4-v6-0-d820f912e354@qti.qualcomm.com>
-In-Reply-To: <20250712-ecam_v4-v6-0-d820f912e354@qti.qualcomm.com>
-To: cros-qcom-dts-watchers@chromium.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
-        quic_vpernami@quicinc.com, mmareddy@quicinc.com,
-        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752277383; l=5617;
- i=krichai@qti.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=Nc/x8vsOay2uh/yxKTntc5DbFARCXd4RqT08XNDbCw4=;
- b=3sa5IGCMxppssN1o5AgAYJYPozCyuk9JFxLNUi0h1IfBf/V9Pf4u//ZpQRDOjwEmiMjvWTBf8
- t3EJBknqbEUAU5ppVu19bJxRzD5EbIoyc/qUtR/vsyhljYTEVkMNaGz
-X-Developer-Key: i=krichai@qti.qualcomm.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDE4MCBTYWx0ZWRfX/rd32eNg+MUD
- 4dnVQe6Gd4DYKCHVjP6zf8ZHbh1xYMlgWahXOD0KsaKqGI/AhhNylJ0iO1DJc0fAPHbmk7Re3ho
- FNfaImjhXHRMxL/PByje25QszQ4Lnn6eWoURPxCpURZBEGtHGFRkDKaFKHZonS0GZ7go9On2Go9
- V7rws+fOeB6v5NpmCv1XHnU2WEnpMFIXReBXiDH+HgeYFffz+lF6LCgD/R5S1jKVLoUP6zofPTE
- dNcsGUsikHXOM1FALAa0/i6oQOuo8fIoTX1IlYIijO8dUO42NmBdEEavuaKI4ybxV9w4EIgg4PO
- qp7UISGDg8XJ4EH5X9C2ziAnBi7Vl7rX9E5SP2/toV8sxBPccwuZsk+yRi453UhUtbuHraS8hvs
- zHhTkYs2zSC/UASMJJigLHD67DRPj08sigEuOFPd9jg5HneS7jkdh62goDD4umfkyisY6XJX
-X-Proofpoint-GUID: WNU5Zon6ljF0Rk_5D66MXosigc3ky0zX
-X-Authority-Analysis: v=2.4 cv=Xuf6OUF9 c=1 sm=1 tr=0 ts=6871a1a9 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=oQbQ34n3Jerzy_GFPTkA:9
- a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
-X-Proofpoint-ORIG-GUID: WNU5Zon6ljF0Rk_5D66MXosigc3ky0zX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-11_07,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
- clxscore=1015 priorityscore=1501 malwarescore=0 adultscore=0 mlxscore=0
- phishscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507110180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250711035730.17507-3-iuncuim@gmail.com>
 
-The ELBI registers falls after the DBI space, PARF_SLV_DBI_ELBI register
-gives us the offset from which ELBI starts. So override ELBI with the
-offset from PARF_SLV_DBI_ELBI and cfg win to map these regions.
+Hi iuncuim,
 
-On root bus, we have only the root port. Any access other than that
-should not go out of the link and should return all F's. Since the iATU
-is configured for the buses which starts after root bus, block the
-transactions starting from function 1 of the root bus to the end of
-the root bus (i.e from dbi_base + 4kb to dbi_base + 1MB) from going
-outside the link through ECAM blocker through PARF registers.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 67 ++++++++++++++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
+[auto build test ERROR on sunxi/sunxi/for-next]
+[also build test ERROR on robh/for-next linus/master v6.16-rc5 next-20250711]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 6acbf17caf90b0582b31bc4ee3a99601d078a45a..fb8cc2c788edf034a45ff718bf560747e48b5e00 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -52,6 +52,7 @@
- #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
- #define PARF_Q2A_FLUSH				0x1ac
- #define PARF_LTSSM				0x1b0
-+#define PARF_SLV_DBI_ELBI			0x1b4
- #define PARF_INT_ALL_STATUS			0x224
- #define PARF_INT_ALL_CLEAR			0x228
- #define PARF_INT_ALL_MASK			0x22c
-@@ -61,6 +62,16 @@
- #define PARF_DBI_BASE_ADDR_V2_HI		0x354
- #define PARF_SLV_ADDR_SPACE_SIZE_V2		0x358
- #define PARF_SLV_ADDR_SPACE_SIZE_V2_HI		0x35c
-+#define PARF_BLOCK_SLV_AXI_WR_BASE		0x360
-+#define PARF_BLOCK_SLV_AXI_WR_BASE_HI		0x364
-+#define PARF_BLOCK_SLV_AXI_WR_LIMIT		0x368
-+#define PARF_BLOCK_SLV_AXI_WR_LIMIT_HI		0x36c
-+#define PARF_BLOCK_SLV_AXI_RD_BASE		0x370
-+#define PARF_BLOCK_SLV_AXI_RD_BASE_HI		0x374
-+#define PARF_BLOCK_SLV_AXI_RD_LIMIT		0x378
-+#define PARF_BLOCK_SLV_AXI_RD_LIMIT_HI		0x37c
-+#define PARF_ECAM_BASE				0x380
-+#define PARF_ECAM_BASE_HI			0x384
- #define PARF_NO_SNOOP_OVERRIDE			0x3d4
- #define PARF_ATU_BASE_ADDR			0x634
- #define PARF_ATU_BASE_ADDR_HI			0x638
-@@ -84,6 +95,7 @@
- 
- /* PARF_SYS_CTRL register fields */
- #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
-+#define PCIE_ECAM_BLOCKER_EN			BIT(26)
- #define MST_WAKEUP_EN				BIT(13)
- #define SLV_WAKEUP_EN				BIT(12)
- #define MSTR_ACLK_CGC_DIS			BIT(10)
-@@ -293,6 +305,48 @@ static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
- 	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
- }
- 
-+static void qcom_pci_config_ecam(struct dw_pcie_rp *pp)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-+	u64 addr, addr_end;
-+	u32 val;
-+
-+	/* Set the ECAM base */
-+	writel_relaxed(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
-+	writel_relaxed(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
-+
-+	/*
-+	 * The only device on root bus is the Root Port. Any access to the PCIe
-+	 * region will go outside the PCIe link. As part of enumeration the PCI
-+	 * sw can try to read to vendor ID & device ID with different device
-+	 * number and function number under root bus. As any access other than
-+	 * root bus, device 0, function 0, should not go out of the link and
-+	 * should return all F's. Since the iATU is configured for the buses
-+	 * which starts after root bus, block the transactions starting from
-+	 * function 1 of the root bus to the end of the root bus (i.e from
-+	 * dbi_base + 4kb to dbi_base + 1MB) from going outside the link.
-+	 */
-+	addr = pci->dbi_phys_addr + SZ_4K;
-+	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE);
-+	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE_HI);
-+
-+	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE);
-+	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE_HI);
-+
-+	addr_end = pci->dbi_phys_addr + SZ_1M - 1;
-+
-+	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT);
-+	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT_HI);
-+
-+	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT);
-+	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT_HI);
-+
-+	val = readl_relaxed(pcie->parf + PARF_SYS_CTRL);
-+	val |= PCIE_ECAM_BLOCKER_EN;
-+	writel_relaxed(val, pcie->parf + PARF_SYS_CTRL);
-+}
-+
- static int qcom_pcie_start_link(struct dw_pcie *pci)
- {
- 	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-@@ -302,6 +356,9 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
- 		qcom_pcie_common_set_16gt_lane_margining(pci);
- 	}
- 
-+	if (pci->pp.ecam_mode)
-+		qcom_pci_config_ecam(&pci->pp);
-+
- 	/* Enable Link Training state machine */
- 	if (pcie->cfg->ops->ltssm_enable)
- 		pcie->cfg->ops->ltssm_enable(pcie);
-@@ -1237,6 +1294,7 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
- 	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-+	u16 offset;
- 	int ret;
- 
- 	qcom_ep_reset_assert(pcie);
-@@ -1245,6 +1303,15 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
- 	if (ret)
- 		return ret;
- 
-+	if (pp->ecam_mode) {
-+		/*
-+		 * Override ELBI in ecam mode, as in ecam mode
-+		 * ELBI moves along with the dbi config space.
-+		 */
-+		offset = readl(pcie->parf + PARF_SLV_DBI_ELBI);
-+		pci->elbi_base = pci->dbi_base + offset;
-+	}
-+
- 	ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
- 	if (ret)
- 		goto err_deinit;
+url:    https://github.com/intel-lab-lkp/linux/commits/iuncuim/dt-bindings-gpu-mali-bifrost-Add-Allwinner-A523-compatible/20250711-120104
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git sunxi/for-next
+patch link:    https://lore.kernel.org/r/20250711035730.17507-3-iuncuim%40gmail.com
+patch subject: [PATCH v2 2/3] arm64: dts: allwinner: a523: add Mali GPU node
+config: arm64-randconfig-001-20250712 (https://download.01.org/0day-ci/archive/20250712/202507120723.0s2u9rLs-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 12.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250712/202507120723.0s2u9rLs-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202507120723.0s2u9rLs-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi:119.29-30 syntax error
+   FATAL ERROR: Unable to parse input tree
 
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
