@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-195469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40277B01CA4
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 15:01:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE0EDB01CB1
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 15:01:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9AB7A41B46
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:00:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 346D77BE87E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 12:59:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558A92D321A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F26162E541B;
 	Fri, 11 Jul 2025 12:58:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BzNKnsQh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="grU52zbM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 575962D0C6C
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 12:58:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 911FC2DE6F7
+	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 12:58:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752238694; cv=none; b=X+eIHpRfC/8510pXDWkZTAh+PMnUD45i5eaeIvQX9Bi7/clhXjmxT/5dw35keWQWF1e4xc/tOu1V6EfnEhg7lplnebn2+O12S6FILQvcK+RJDjgNgWwF6eZKLVQUQIGZc1bCkRhE/mzmGpTAbzFCjwlUI6DaSgQLzlS79IIO4Tg=
+	t=1752238695; cv=none; b=s1A+/Bg2NQmyfdijyAMlxgkQaZwVdarB7H1dVKS1yPFfR/oSKZY+oW0P7r1/iWWJVJccrFXq6mCUjQlMoZ33xo1KctMDfhU08m+n8TOjKZsbjjJ1uWJRgsUsQ6++NIsW7IJAnHRgm7OPeyhTYvX4pCD4ePFvQ4z1Nwus78BfhRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752238694; c=relaxed/simple;
-	bh=afR/VpOG1z/05Kmbd1Lwd5KUUa2slFlpn5oWxYzHcV0=;
+	s=arc-20240116; t=1752238695; c=relaxed/simple;
+	bh=DC8lQQgBhGrUjuVpvDAzUOPXyBUoKAMOWS8W0IK286Q=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ijhcr+QaY7d+EFMJ9+NdguCoKCQO5S30DOCfLbrOlt7mfZG4TSWKb2zEKbbowNtofdI7C//GuqhDlFAgRDqnxXGkGBbpbqVEEcPHlUoyoaVkC8oWfDJVM/h8aeUkr0XIAzvawP/IP8mBbVhma3YNP5ylHIi/s2W2Hwddo7DupfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BzNKnsQh; arc=none smtp.client-ip=209.85.221.50
+	 In-Reply-To:To:Cc; b=NU6YMK+/b/2XZ5VErycWj9+5GMOOPe6PDsZ+wS+Z6EIpFBIvvUaYUdiuTo7qnA7xCfQvMGxjmN+c0xzKOQeCcXhT2oV/I6XNpYpazC71hpBVCkuXtrog25lCKTlfoF7jB5KqabgIvf3SNKr41+JS8NsTBi8V8iBPEvqUYFZt6Zo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=grU52zbM; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a51481a598so1183357f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 05:58:12 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-451d7b50815so15330355e9.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 05:58:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752238691; x=1752843491; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1752238692; x=1752843492; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qgqmdh8Hqa4doV4MBCFCiNXZ92zEgFq+2zXdl7tC+X0=;
-        b=BzNKnsQhRJcCPYacQuoEF2MG0v8RxTEnwL8cJP01C9YR3fJTXo+9ou1fjq704ucDyQ
-         gO2CYbORWquTDjAeSpq17Wi4X477RtlJg1FLh3s+HHG0cEgBVto1i1Pso19HuQl0h3ZT
-         Zqr7NPldKj2rnKEuYXQ9bDVt287m9rye+uiacIvwTJHnIORMzpob5a0QPMt2gbkcyS4d
-         dyvH2aKH1hkDzdD1aDdRDHpN7i7qNUx3blGZ3IVWPqXbZ2da0FAdIcMfC/NvYD10uLGD
-         gFQiznMbo91NiKfHOlVNeUujpppNqVWesZj9EY5n6NFXOwHHmEMsf+k9Hqy0f42BYMfE
-         RL+g==
+        bh=4CMfrZlT6BOfDK51FjmKuZQYkC8CEqLLJ+DCN6w6Vww=;
+        b=grU52zbM4frZhFEMQWwmPH1auPRmh/0wGljv3Kyh2RgyLPj8nuXmqcnbnUPo70fAmr
+         oaeJywO2eU6NqPakdEo04Gl+QxVhWR2LZDBi6GPA54EJMrCf7uI4yZXkyBqzJ4fz72nZ
+         ey+09J9red1sDMl3uaQbkerhTmGzvSz38odLV99+NLEZAEUvPm53ovRhTpG8SZXMfPTj
+         spw7a6uoKuElhfe6huS8GNuiSHrrIv1CAKMNaaJ/+qBjK0pripPvvYZ5ExnccrQHLA53
+         1PY6J0dIHVhNmfHpBU2tBFBQ6BJS9ELQ1QDTgzFVU6beLqZO8Wyu3ZdJdPe7JNov3Kh3
+         0Wcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752238691; x=1752843491;
+        d=1e100.net; s=20230601; t=1752238692; x=1752843492;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qgqmdh8Hqa4doV4MBCFCiNXZ92zEgFq+2zXdl7tC+X0=;
-        b=rzWRgLgNJoXtWbGJTK8vO/ssZmSDc2lvOLZ7NN0+OizfTgsNmS0wXm6Rmhiaq9nlAw
-         3EgAre36BO+y4YwgFhKCkQJe0fSym2YjcEHIt+YyrxTAuMMt8duAgvue6Gs9b+a8lSvi
-         rbHJMzD0V4rUNCiyGc8VAD19naw5XBejOF4uXU1knl16EbSdhB9E+dT/METd6IQyi2Q9
-         50lYGN2ZWO0TJ2wfTEK7bLi4M5kIR9at297zd8KY3qr1s/4FEYL0K3SNFPPYksqrMc8Q
-         ZrbqDp9WqQZlvOeM+lNR/XPV8z0l5G6gBrurSCtwqHhZKjTsfqyXVa2vXYIp9UN+5teX
-         03KQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXOIKfggnk2RF6KENg5ymWCfH5gGeU3znpNZJrS7WyQZ5siK7qmS29Tkff2bfsE2FVDZjCH5Qaq25LG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvYTOaKiHriANrkRSuAyKl8oBPSCSdnnfkn7ENdEVD+YNsYJHy
-	OFbzRsn3CORT/6QS9GzAd/fookTbygrRgD6E+dUsY337SveGgkEBNRWh2YtEJ/KCRko=
-X-Gm-Gg: ASbGncuSWyhcgXKas4PfyTPDfdZSzfRVSqJVGbBL9czYTvB45MQsAkM9QVAW70jU5fA
-	Ig6jrZ/OFRE43oVaeU7wD+mivTggA88rNs0NDwr1ipIWU7KCuYyQ4dQl7gmghtFCxSsZvF3Y/GS
-	cV3MO4Nq4bfC1CHHCh179UByoEE9Ibft+vmiPbgoal1T3Gzs1h/FN+8JnOA7uM2307SmJiNxS2b
-	H1+xFXlqu7t+zxWBNOEYcvQ0/bgJbJTiVljqktDg8lkZ2dasd3AcmcOlMpnbxosCi1Go0g+dQ0v
-	x6duULZASX+NGLH+PumiR1oK7xurcwurKVZQ4LaoTQO8zm+H3s4PqBIxCY4+6+3d206VNiScO36
-	1rZsnon0a5uTPmiZv8cZKvZZ/GZ0R1ekzzito0wLfp14RF533aN127wbv8+gXtJmO
-X-Google-Smtp-Source: AGHT+IFH5xU7eCi3Qw029iOutAbx3qiinPlumEFqhOvJWzstyzzOkWTh2NvwX9QI/3octWtZKgbqnQ==
-X-Received: by 2002:a05:6000:240a:b0:3a5:8a68:b839 with SMTP id ffacd0b85a97d-3b5f2e26c14mr2587744f8f.45.1752238690658;
-        Fri, 11 Jul 2025 05:58:10 -0700 (PDT)
+        bh=4CMfrZlT6BOfDK51FjmKuZQYkC8CEqLLJ+DCN6w6Vww=;
+        b=pi7wuczIL4YMtohpd3U/FgiVLGeMLZvfAfOfOot3h2nO8ThqyB6kHAAo3bI79lq9RG
+         yQzvDh9U1rtJPL3NGN7E4PWN6LH034TX93tF+Tz0tEcMotfge7JANpBaTuODNiZV3lj8
+         AdMq7jQSpiPQF1VZR9+adD1DP+mbywnVR1F1avs9nz8ioe2Vk9FfRPRXjKvrofWq9p2Q
+         Fuhz08V0UwrUUYfGJ9FN1Qydk+PTJkI0nqg8b8aLRV1oyOwvo0hJCCwRPFUOGOPoBRxI
+         qMsWbl7Om6WeGxRksrBtzsLUkr800nxpL6VaN53kx/i8qUR/wZjJltyIz3SCfQmzzcn5
+         g1cQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWCB7xjQv47eFlXqlm+Okj4cNpyEIvlV7GNRVQiYNcZ5xaBX0qYF6N9JNBOgzK4wcCeMG86kVkJAlSb@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAGvo5s4y6I+sR1s6A7gEj0vrygIQcBl9ND3yMQzqp+qQjOT1n
+	b2jREnw8/AydAV1Lf8U1+ELAP/IbKAbFCI2HnewJYjzFVMyiS8dJJyziqZajjp3H1HY=
+X-Gm-Gg: ASbGnctmO/UZQDvR6qnJ4kt1COd5uwstH+I/reLN5mfCxwsVL3U9SJQHNKQrBydq184
+	2Ef8gL9W+CJT54J5TzZugg4ebxi+HHBEYpREVRa+ohUlFjS4tJw257XxlPMOk+PStcLSkyiGILQ
+	vZI93NX9ySQCp7k3rcQhiFTEvWH11tN342X+MMqt4LecQoc9lC0/KXEOR/VgmuGeSiNoIPbLz/S
+	/s7xpMECLZSmfNJLUEcCUIe79d0OmQIQmC2oYGXCH80D3IhdkworKyuX3Roxibz8z8czneXjF6W
+	uSyb+JUqMFVLDy6Q4Xfz0eeO+HmaMTq9SMANsU8ftkFvn+oDS2Jm80pFl84w6zM0TQ2ezJMMSdZ
+	8zLcbcM4Ru496RasnC5pvW3qUktXjjMi4wk5mA/uL21kwYcpE0AE3sgzDcMlXt4gJ
+X-Google-Smtp-Source: AGHT+IFeN7RssZ8OZq46whVzMLk2ZaK0VONX5ojCESZtAHH3N+yYFixxxLG2K5wteMhwrNLjZyD69w==
+X-Received: by 2002:a05:600c:608c:b0:455:f6cd:8719 with SMTP id 5b1f17b1804b1-455f6cd8ac1mr5110775e9.20.1752238691851;
+        Fri, 11 Jul 2025 05:58:11 -0700 (PDT)
 Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8dc1f70sm4373648f8f.27.2025.07.11.05.58.09
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8dc1f70sm4373648f8f.27.2025.07.11.05.58.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jul 2025 05:58:10 -0700 (PDT)
+        Fri, 11 Jul 2025 05:58:11 -0700 (PDT)
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Fri, 11 Jul 2025 13:58:01 +0100
-Subject: [PATCH v7 09/15] arm64: dts: qcom: x1e80100: Add CAMSS block
- definition
+Date: Fri, 11 Jul 2025 13:58:02 +0100
+Subject: [PATCH v7 10/15] arm64: dts: qcom: x1e80100-crd: Add pm8010 CRD
+ pmic,id=m regulators
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-9-0bc5da82f526@linaro.org>
+Message-Id: <20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-10-0bc5da82f526@linaro.org>
 References: <20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-0-0bc5da82f526@linaro.org>
 In-Reply-To: <20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-0-0bc5da82f526@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -102,207 +102,73 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-media@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5338;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1602;
  i=bryan.odonoghue@linaro.org; h=from:subject:message-id;
- bh=afR/VpOG1z/05Kmbd1Lwd5KUUa2slFlpn5oWxYzHcV0=;
- b=owEBbQKS/ZANAwAIASJxO7Ohjcg6AcsmYgBocQpU9v2K5drXP7fl9A5a2ajvc5gVh8SRZi/ds
- jwR2NABVlyJAjMEAAEIAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCaHEKVAAKCRAicTuzoY3I
- Ok9oEACp8jJ8AxFh6FZDZRCtFCaLOqa+JwWC1Sf0ztEFidYpRrWqFvYXCy8Kv/fKyqP1P8g9+dT
- 6a/Bab0G0m77gHb9YmtNgGhOcZFcdHML+xmFP3oJH0bpHqt2obF4vigLCBfSRHh/HdxzRANMoS2
- GqFik4NCIOOAhRPL5lGIeMMVTABxrFp8ALwdELSQFZshzK1wKMrHW0qVPvmNq+7Ie/FjxoWHjRm
- Me9iSL/V1ACpR+P0X088K6jFk/BmZFHbbCuxhXzk17T/qRoA/FWskUqpbMDsew43hdmXmQPnGxp
- K51lYYpi1wC9swliJxgwmL4+hLeSdnIqlnDxMUzc83P709Cb68sfSSfg2Ke9a8IM3Piy4JCl1fy
- 9MTsJNMI4aLOb94g9fJn0Hg8E7bqX2krU1c9lcmnyTgxks7XOKu6P9BUI8BYCzPwxHEhCl4aDwG
- BR3wZAOJaklq9KcT4ILktIDXcvLJicDRZhORh9JVOff2ngeRxaZi8aiVdjH4JvqIUffwl5f6srn
- HbvNse6+XKcEJaHBH5Xb1xbR0LB4gxNpRc+PYPicrmAL+yPrDt+1NqBS7Lj9wIC4vtZvQhkVoKG
- I2iSQkImlric+9zN9VfSJQUsioTqcUBXAPOSu59H4csWmxF1Mci1SzURrbqFVQb54CgjrCXUSKr
- ITOosbQieDyp1NA==
+ bh=DC8lQQgBhGrUjuVpvDAzUOPXyBUoKAMOWS8W0IK286Q=;
+ b=owEBbQKS/ZANAwAIASJxO7Ohjcg6AcsmYgBocQpUVxNLCyGgV/xKZbQ373RcoCEKK5iErK3Oa
+ +LkMmEITyWJAjMEAAEIAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCaHEKVAAKCRAicTuzoY3I
+ OqPyEACmzIqvaXkIDWbD/Gln56eur3/lpZDyJDaOwABLvZO0pAML9msun28tWxabKpb8buWiJtg
+ l/tt6tt9tjAH+jjwVpqWDJSWC7lqAw48Lh7fndVbB9dCP/6cM8Pgf4Jj5DTIUvf9v4F2sWAvClc
+ kWU664KVXvulo1FhfOHXCxD6WzQmoZJobKqRCMPZ+NEIsmshZDpU9LVxQUcwlPl4bP/aC4/gTdT
+ 6vlxB6fx2VJqyuRLzmL+KjVqr76W249aO7bxcbPdMCqLX1iAMNL4gfzAuVuJ28GGiq6AyeKti6L
+ y7+EFGa9iibgaKee0Uyeuy5RSvHzi5mnQoZcfOOtsWVIqD65CauAA10uX0WBYk+3UoYmEE5OmCP
+ 4kOdr4t4Kg4Q+SW4Th0eaJ0F6ignNn6ClCOXqIswGQMzllN9vyY2EZdxwzWtPhy7qONQUQaGYd7
+ baaTKPRcEFvjfGr3/8UnxvazrVhUrurUxAa1qZtm5RPoS+IC74MSfv7ItqdSwIelIQkuzfxZ+w+
+ 7pTz1PyX4LMsibwnQJHEae/0PFToK4v/NJGFTPmuTLxg0U3rQF16hdAeXpxKICQzeETbjXNd8FS
+ NqKX04AF6hARl828nKdh/jRhVKEzTswpiLYxyTP82Xg7aJzWUrAJc0ot4Pr4GbvwlDA5XtNlvCf
+ sQ7g9lCmwozagpA==
 X-Developer-Key: i=bryan.odonoghue@linaro.org; a=openpgp;
  fpr=E693FB2AABA36DE117AB6FB422713BB3A18DC83A
 
-Add dtsi to describe the xe180100 CAMSS block
-
-4 x CSIPHY
-3 x TPG
-2 x CSID
-2 x CSID Lite
-2 x IFE
-2 x IFE Lite
+Add pmic,id = m rpmh to regulator definitions. This regulator set provides
+vreg_l3m_1p8 the regulator for the ov08x40 RGB sensor on the CRD.
 
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 158 +++++++++++++++++++++++++++++++++
- 1 file changed, 158 insertions(+)
+ arch/arm64/boot/dts/qcom/x1-crd.dtsi | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index e385d6f329616360e089ba352be450c9eca6aab6..838bb1b50973332dea6d0bd95fdb979dc319e98f 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -5244,6 +5244,164 @@ cci1_i2c1: i2c-bus@1 {
- 			};
+diff --git a/arch/arm64/boot/dts/qcom/x1-crd.dtsi b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
+index db87b9b5be63d4fabf5ced20b23080a1a49b1207..08268f60c305cd69baf937fced6d37f2ea788b62 100644
+--- a/arch/arm64/boot/dts/qcom/x1-crd.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
+@@ -960,6 +960,36 @@ vreg_l3j_0p8: ldo3 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
  		};
- 
-+		camss: isp@acb6000 {
-+			compatible = "qcom,x1e80100-camss";
+ 	};
 +
-+			reg = <0 0x0acb6000 0 0x1000>,
-+			      <0 0x0acb7000 0 0x2000>,
-+			      <0 0x0acb9000 0 0x2000>,
-+			      <0 0x0acbb000 0 0x2000>,
-+			      <0 0x0acc6000 0 0x1000>,
-+			      <0 0x0acca000 0 0x1000>,
-+			      <0 0x0acf6000 0 0x1000>,
-+			      <0 0x0acf7000 0 0x1000>,
-+			      <0 0x0acf8000 0 0x1000>,
-+			      <0 0x0ac62000 0 0x4000>,
-+			      <0 0x0ac71000 0 0x4000>,
-+			      <0 0x0acc7000 0 0x2000>,
-+			      <0 0x0accb000 0 0x2000>;
-+			reg-names = "csid_wrapper",
-+				    "csid0",
-+				    "csid1",
-+				    "csid2",
-+				    "csid_lite0",
-+				    "csid_lite1",
-+				    "csitpg0",
-+				    "csitpg1",
-+				    "csitpg2",
-+				    "vfe0",
-+				    "vfe1",
-+				    "vfe_lite0",
-+				    "vfe_lite1";
++	regulators-8 {
++		compatible = "qcom,pm8010-rpmh-regulators";
++		qcom,pmic-id = "m";
 +
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_NRT_CLK>,
-+				 <&camcc CAM_CC_CAMNOC_AXI_RT_CLK>,
-+				 <&camcc CAM_CC_CORE_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_0_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_1_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_LITE_CLK>,
-+				 <&camcc CAM_CC_CPHY_RX_CLK_SRC>,
-+				 <&camcc CAM_CC_CSID_CLK>,
-+				 <&camcc CAM_CC_CSID_CSIPHY_RX_CLK>,
-+				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
-+				 <&gcc GCC_CAMERA_SF_AXI_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CLK>,
-+				 <&camcc CAM_CC_IFE_0_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CLK>,
-+				 <&camcc CAM_CC_IFE_1_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
-+			clock-names = "camnoc_nrt_axi",
-+				      "camnoc_rt_axi",
-+				      "core_ahb",
-+				      "cpas_ahb",
-+				      "cpas_fast_ahb",
-+				      "cpas_vfe0",
-+				      "cpas_vfe1",
-+				      "cpas_vfe_lite",
-+				      "cphy_rx_clk_src",
-+				      "csid",
-+				      "csid_csiphy_rx",
-+				      "gcc_axi_hf",
-+				      "gcc_axi_sf",
-+				      "vfe0",
-+				      "vfe0_fast_ahb",
-+				      "vfe1",
-+				      "vfe1_fast_ahb",
-+				      "vfe_lite",
-+				      "vfe_lite_ahb",
-+				      "vfe_lite_cphy_rx",
-+				      "vfe_lite_csid";
++		vdd-l1-l2-supply = <&vreg_s5j_1p2>;
++		vdd-l3-l4-supply = <&vreg_s4c_1p8>;
++		vdd-l7-supply = <&vreg_bob1>;
 +
-+			interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 431 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 359 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 360 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "csid0",
-+					  "csid1",
-+					  "csid2",
-+					  "csid_lite0",
-+					  "csid_lite1",
-+					  "vfe0",
-+					  "vfe1",
-+					  "vfe_lite0",
-+					  "vfe_lite1";
-+
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_CAMERA_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&mmss_noc MASTER_CAMNOC_HF QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&mmss_noc MASTER_CAMNOC_SF QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&mmss_noc MASTER_CAMNOC_ICP QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "ahb",
-+					     "hf_mnoc",
-+					     "sf_mnoc",
-+					     "sf_icp_mnoc";
-+
-+			iommus = <&apps_smmu 0x800 0x60>,
-+				 <&apps_smmu 0x860 0x60>,
-+				 <&apps_smmu 0x1800 0x60>,
-+				 <&apps_smmu 0x1860 0x60>,
-+				 <&apps_smmu 0x18e0 0x00>,
-+				 <&apps_smmu 0x1900 0x00>,
-+				 <&apps_smmu 0x1980 0x20>,
-+				 <&apps_smmu 0x19a0 0x20>;
-+
-+			phys = <&csiphy0>, <&csiphy1>,
-+			       <&csiphy2>, <&csiphy4>;
-+			phy-names = "csiphy0", "csiphy1",
-+				    "csiphy2", "csiphy4";
-+
-+			power-domains = <&camcc CAM_CC_IFE_0_GDSC>,
-+					<&camcc CAM_CC_IFE_1_GDSC>,
-+					<&camcc CAM_CC_TITAN_TOP_GDSC>;
-+			power-domain-names = "ife0",
-+					     "ife1",
-+					     "top";
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+			};
++		vreg_l3m_1p8: ldo3 {
++			regulator-name = "vreg_l3m_1p8";
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1808000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
 +		};
 +
- 		csiphy0: csiphy@ace4000 {
- 			compatible = "qcom,x1e80100-mipi-csi2-combo-phy";
- 			reg = <0 0x0ace4000 0 0x2000>;
++		vreg_l4m_1p8: ldo4 {
++			regulator-name = "vrer_l4m_1p8";
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1808000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l7m_2p9: ldo7 {
++			regulator-name = "vreg_l7m_2p9";
++			regulator-min-microvolt = <2912000>;
++			regulator-max-microvolt = <2912000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++	};
+ };
+ 
+ &gpu {
 
 -- 
 2.49.0
