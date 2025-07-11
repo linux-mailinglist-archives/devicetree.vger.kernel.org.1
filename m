@@ -1,360 +1,158 @@
-Return-Path: <devicetree+bounces-195442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BF40B01B2C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:52:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D34A4B01B42
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:56:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2FBF3A2360
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 11:51:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 393A1587EBF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 11:56:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D456F283141;
-	Fri, 11 Jul 2025 11:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5058F28C2CD;
+	Fri, 11 Jul 2025 11:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="go/Q/7v7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aknrRFNN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC73175D47;
-	Fri, 11 Jul 2025 11:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAC71175D47;
+	Fri, 11 Jul 2025 11:56:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752234727; cv=none; b=cF+ZfcjLVqJqpUe4jNYwaYoYmnY19fIHZevXz22HNjJ2283yous2RYlwQ/gdvgraBSnJBvo/IdNP3sWoF6ktWQEN+49S5Oa8wJU6RP5c3oe1DrVZjCvd4AwlfysnUukoYm8cM03qVViTvLM/1Wa4nbPnPiDGPeWi2Zg0VJkiBbU=
+	t=1752234965; cv=none; b=E3rYEl7C2cLXi3onB+Mb1lkmXyJmnDMRadtCp/RlL02wKXYrIAytLrUIGVGjYpSfULlq31JopBi+gzwiScxiGVbyX5gfNHV81AbbZg9UWuMOVMWGkSgmoFm+2uMbqFfDZReKk84y/wS5xYz8DGlUPtKUB2H169Y1IqmBADIkrrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752234727; c=relaxed/simple;
-	bh=3Xbx+c3duPba1/5xewcKktGY7JrUuYLEgqX71hJcZEk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ImmrKSLn0dCpAKIT4Dwn8bMojvBRmQcympK4tM5JFzaTYAj0NgCDXgjO9oPx4bKYml+CET2MJMdP4XRH2ppqOA2KxxLhrfjXKAX8ctibzqjyDJ4GKdloh3xGcP6PmSqbxumgJR7gaAH7xnegxPX+4qxSH3vy3WXb8Z6LEZOQC7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=go/Q/7v7; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 91CB7C75;
-	Fri, 11 Jul 2025 13:51:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1752234688;
-	bh=3Xbx+c3duPba1/5xewcKktGY7JrUuYLEgqX71hJcZEk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=go/Q/7v7UIHs+45Y4rXGhoDNGzaYUZsyk/5SITiixN4gjnTn/mGEhRxPNUnLi+7W2
-	 2N2tE7JNGP5KKcTPU3yeGyuR+QyvcT4jwsyzuhd6IxdHcve2HDQbtu4jRyqoo/F7Um
-	 BfWTKvLygHF3/UkxvPC/IwFUFSusl10h3iXrAOfI=
-Message-ID: <436bbb33-0740-4ef8-8297-a06aa8243cfd@ideasonboard.com>
-Date: Fri, 11 Jul 2025 12:51:54 +0100
+	s=arc-20240116; t=1752234965; c=relaxed/simple;
+	bh=uSKd2RVB0tIwRPjad+fXye8jIGKv7bJIxmADcCDmtuo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iMRPt9g4SfykkVEMrHI15uvgeUlyIAqcY7bxn8dKT0pKOCZ5RAYuN5orYOK23j1daIbgV4xoAkdzbwsR47bEHsaMviIcogdcsTT+CDS2qNHIL8nnFdi2XR7Rc39olVKSC36RJMv1rRi9mlgj6tg8mJcpho79yi2ciFWLLzrOnOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aknrRFNN; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752234964; x=1783770964;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=uSKd2RVB0tIwRPjad+fXye8jIGKv7bJIxmADcCDmtuo=;
+  b=aknrRFNNtxe4yQtijIJ0ptV3/Dsbys+56XlbsiPZGGqNGW4r/yZIYGj1
+   +wz+eAZwCTt2N3V2avwFVBX5nFladOj7JULNFSPJ1L/nWNakQ1R0Ig/yQ
+   lBQfqi0w0KobFSwVplnKX4CBkOjHYPSXUzozTG5I55+N+l1/qozw1Yyg+
+   v1khpZ2zli4P9YZri0iQgsAdZDghavVLA2OUo7kP4KL33cu6q7HAqPhHZ
+   V7R6B92QwHhXlGfNcb1NM7DnXa4NobRMBWBpre03pRr5xtERTKONEeuBF
+   /+C0AigKWWsrJnEqaRZfL7W820rHux41UV0Dad/Em5DEglYIY3NspIcAO
+   w==;
+X-CSE-ConnectionGUID: PMsgIrJ5RRam9Lrcf49Y9Q==
+X-CSE-MsgGUID: +NOvohlfR0mVNzLanjVq7A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="58294193"
+X-IronPort-AV: E=Sophos;i="6.16,303,1744095600"; 
+   d="scan'208";a="58294193"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jul 2025 04:56:02 -0700
+X-CSE-ConnectionGUID: +NPLzskRQ0ya3OSvAnbJwA==
+X-CSE-MsgGUID: avaESkGATuiIlGzGyW/riQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,303,1744095600"; 
+   d="scan'208";a="156137560"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jul 2025 04:56:00 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uaCM8-0000000EVtS-1Wr8;
+	Fri, 11 Jul 2025 14:55:56 +0300
+Date: Fri, 11 Jul 2025 14:55:56 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Remi Buisson <Remi.Buisson@tdk.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 2/8] iio: imu: inv_icm45600: add new inv_icm45600
+ driver
+Message-ID: <aHD7zEzvVuwSB9Ke@smile.fi.intel.com>
+References: <20250710-add_newport_driver-v2-0-bf76d8142ef2@tdk.com>
+ <20250710-add_newport_driver-v2-2-bf76d8142ef2@tdk.com>
+ <aG-ID7O3HgVc1EOX@smile.fi.intel.com>
+ <FR2PPF4571F02BC5366477EC02E9C44041A8C4BA@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/5] media: v4l2-dev: Add helpers to run
- media_pipeline_[started|stopped]()
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- biju.das.jz@bp.renesas.com
-References: <20250704-ivc-v3-0-5c45d936ef2e@ideasonboard.com>
- <20250704-ivc-v3-2-5c45d936ef2e@ideasonboard.com>
- <v3gonywym2km6u4qpsm2bkpn5n7vmvm4rdt3nfiws6mri3b7y4@gh4q5f4cmavc>
-Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
- 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
-In-Reply-To: <v3gonywym2km6u4qpsm2bkpn5n7vmvm4rdt3nfiws6mri3b7y4@gh4q5f4cmavc>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <FR2PPF4571F02BC5366477EC02E9C44041A8C4BA@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Jacopo - thanks for the comments
+On Fri, Jul 11, 2025 at 11:32:48AM +0000, Remi Buisson wrote:
+> >From: Andy Shevchenko andriy.shevchenko@intel.com<mailto:andriy.shevchenko@intel.com>
+> >Sent: Thursday, July 10, 2025 11:30 AM
+> >To: Remi Buisson Remi.Buisson@tdk.com<mailto:Remi.Buisson@tdk.com>
+> >On Thu, Jul 10, 2025 at 08:57:57AM +0000, Remi Buisson via B4 Relay wrote:
 
-On 08/07/2025 14:10, Jacopo Mondi wrote:
-> Hi Dan
->
-> On Fri, Jul 04, 2025 at 12:20:19PM +0100, Daniel Scally wrote:
->> Add helpers to run the new media_pipeline_started() and
->> media_pipeline_stopped() functions. The helpers iterate over the
->> entities in the pipeline and count the number of video devices and
->> compare that to the pipeline's start_count() before acting. This
->> allows us to only run the media pipeline callbacks in the event that
->> the pipeline has had video_pipeline_start() called for each video
->> device.
->>
->> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->>
->> ---
->>
->> We could take this further perhaps and include the equivalent routine
->> in video_device_pipeline[_alloc]_start()...if none of the entities
->> involved have .pipeline_started() or .pipeline_stopped() operations it
->> should be harmless, but I'm a bit reluctant to force the choice to run
->> those operations on users.
-> I know I've kind of suggested that, but after all I don't think it's a
-> very good idea, having this in two steps is probably better. And I
-> like the fact the v4l2-dev layer operates on the video device counting
-> and only relies on the mc layer for the callbacks notification.
+...
+
+> >> +struct inv_icm45600_sensor_conf {
+> >> +       int mode;
+> >> +       int fs;
+> >> +       int odr;
+> >> +       int filter;
+> >
+> >Any of them can hold negative value?
+> 
+> Yes, when setting the configuration, a negative value means "keep previous configured value".
+> Like in the INV_ICM45600_SENSOR_CONF_INIT macro below.
+
+I see, but can't it be as simple as "big number" with the proper type instead?
+
+#define ..._KEEP_VALUE		U8_MAX // or whatever type
+
+> >> +};
+
+...
+
+> >> +#define INV_ICM45600_SENSOR_CONF_INIT                        {-1, -1, -1, -1}
+> >
+> >Unused.
+> This is used in later patch of the serie.
+> I will move this definition to the patch using it.
+
+Yes, unused in this code. You should compile the series incrementally,
+so each patch will get a compilation test. This is called compile-time
+bisectability. Also run the system each time to confirm no regressions
+(this is called run-time bisectability).
+
+...
+
+> >> +                      udelay(INV_ICM45600_IREG_DELAY_US);
+> >
+> >Can fsleep() be used here?
+> I will use fsleep there.
+> Is it recommended to use fsleep everywhere else in place of other sleep APIs?
+
+Not everywhere, but in general yes, if in doubt, use it (but the author is
+the one who knows their the code and answer to this question).
+
+...
+
+> It's probably safer to keep the delay even in case of failure to make sure
+> the device is ready before next operation.
+
+I am not sure about it. Why? This has to be well justified as it's quite
+unusual pattern.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Yeah me too. Let's stick to this
-
->
->> Changes in v2:
->>
->> 	- Adapted now media_pipeline_for_each_entity() takes an iter
->> 	  variable
->> 	- Fixed the Return: section of the kerneldoc comments
->> ---
->>   drivers/media/v4l2-core/v4l2-dev.c | 57 ++++++++++++++++++++++++++++++++++++++
->>   include/media/v4l2-dev.h           | 36 ++++++++++++++++++++++++
->>   2 files changed, 93 insertions(+)
->>
->> diff --git a/drivers/media/v4l2-core/v4l2-dev.c b/drivers/media/v4l2-core/v4l2-dev.c
->> index c369235113d98ae26c30a1aa386e7d60d541a66e..f3309f8349664f7296a95216a40dd9d9baae8d9e 100644
->> --- a/drivers/media/v4l2-core/v4l2-dev.c
->> +++ b/drivers/media/v4l2-core/v4l2-dev.c
->> @@ -1200,6 +1200,63 @@ struct media_pipeline *video_device_pipeline(struct video_device *vdev)
->>   }
->>   EXPORT_SYMBOL_GPL(video_device_pipeline);
->>
->> +static int __video_device_pipeline_started(struct media_pipeline *pipe)
-> __function_name() is usually reserved for the non-locking version of
-> function_name().
->
-> This seems to be an helper only used internally by
-> video_device_pipeline_started() so I would use a different name
-> something like video_device_has_pipeline_started() ?
-
-
-What it does is count the number of _unstarted_ video 
-devices..."video_device_pipeline_unstarted_vdevs()"?
-
->
->
->> +{
->> +	struct media_pipeline_entity_iter iter;
->> +	unsigned int n_video_devices = 0;
->> +	struct media_entity *entity;
->> +	int ret;
->> +
->> +	ret = media_pipeline_entity_iter_init(pipe, &iter);
->> +	if (ret)
->> +		return ret;
->> +
->> +	media_pipeline_for_each_entity(pipe, &iter, entity) {
->> +		if (entity->obj_type == MEDIA_ENTITY_TYPE_VIDEO_DEVICE)
->> +			n_video_devices++;
->> +	}
->> +
->> +	media_pipeline_entity_iter_cleanup(&iter);
->> +
->> +	return n_video_devices - pipe->start_count;
->> +}
->> +
->> +int video_device_pipeline_started(struct video_device *vdev)
->> +{
->> +	struct media_pipeline *pipe;
->> +	int ret;
->> +
->> +	pipe = video_device_pipeline(vdev);
->> +	if (!pipe)
->> +		return -ENODEV;
->> +
->> +	ret = __video_device_pipeline_started(pipe);
->> +	if (ret)
->> +		return ret;
-> I would not return ret, as it might take random values betwen
-> n_video_devices and 1. See below on the return value documentation
-
-But we need to be able to signal to the driver three states:
-
-
-1. No errors, but there are still unstarted video devices
-
-2. No errors and there are no unstarted video devices
-
-3. An error
-
-
-So I expect a driver to do a two stage check:
-
-
-ret = video_device_pipeline_started(vdev);
-
-if (ret < 0)
-
-         goto err_out;
-
-if (ret == 0)
-
-         // something appropriate here like run the media jobs scheduler
-
-
->
->> +
->> +	return media_pipeline_started(pipe);
->> +}
->> +EXPORT_SYMBOL_GPL(video_device_pipeline_started);
->> +
->> +int video_device_pipeline_stopped(struct video_device *vdev)
->> +{
->> +	struct media_pipeline *pipe;
->> +	int ret;
->> +
->> +	pipe = video_device_pipeline(vdev);
->> +	if (!pipe)
->> +		return -ENODEV;
->> +
->> +	ret = __video_device_pipeline_started(pipe);
->> +	if (ret)
->> +		return ret;
-> ditto
->
->> +
->> +	media_pipeline_stopped(pipe);
->> +
->> +	return 0;
->> +}
->> +EXPORT_SYMBOL_GPL(video_device_pipeline_stopped);
->> +
->>   #endif /* CONFIG_MEDIA_CONTROLLER */
->>
->>   /*
->> diff --git a/include/media/v4l2-dev.h b/include/media/v4l2-dev.h
->> index 1b6222fab24eda96cbe459b435431c01f7259366..26b4a491024701ef47320aec6a1a680149ba4fc3 100644
->> --- a/include/media/v4l2-dev.h
->> +++ b/include/media/v4l2-dev.h
->> @@ -654,6 +654,42 @@ __must_check int video_device_pipeline_alloc_start(struct video_device *vdev);
->>    */
->>   struct media_pipeline *video_device_pipeline(struct video_device *vdev);
->>
->> +/**
->> + * video_device_pipeline_started - Run the pipeline_started() entity operation
->> + *				   for a fully-started media pipeline
->> + * @vdev: A video device that's part of the pipeline
->> + *
->> + * This function checks whether all MEDIA_ENTITY_TYPE_VIDEO_DEVICE entities
->> + * connected to a given video device through enabled links have been marked as
-> I would use the same text as the one from video_device_pipeline_start()
->
-> " connected to a given video device through enabled links, either
-> directly or indirectly,"
-
-
-Ack
-
->
->> + * streaming through the use of video_device_pipeline_start() or one of its
->> + * equivalent functions. If so, media_pipeline_started() is called to inform
->> + * entities in the pipeline of that fact. The intention is to provide drivers
->> + * with a shortcut for checking whether their pipeline is fully ready to start
->> + * processing data.
-> Not really a shortcut, I would use "mechanism" instead.
->
-> I would also specify that:
->
->   * entities in the pipeline of that fact. The intention is to provide drivers
->   * with a mechanism for checking whether their pipeline is fully ready to start
->   * processing data and call the .pipeline_started() media entity operation
->   * on all the entities in the pipeline.
-Ack!
->
->> + *
->> + * Return: The number of video devices in the pipeline remaining to be started,
->> + * or a negative error number on failure.
-> 0 for success as well
->
-> I would anyway return 0 for success and a specific error code for the
-> three failure cases:
-> -ENOMEM if allocating the iterator fails
-> -ENODEV if not all video devices have started
-> -EINVAL if media_pipeline_started() fails
->
-> You can document them as (copying from iommu.h)
->
-> * Return:
-> * * 0            - success
-> * * EINVAL       - call to pipeline_started() failed
-> * * ENOMEM       - failed to allocate pipe iterator
-> * * ENODEV       - pipeline not yet fully started
->
->> + */
->> +int video_device_pipeline_started(struct video_device *vdev);
->> +
->> +/**
->> + * video_device_pipeline_stopped - Run the pipeline_stopped() entity operation
->> + *				   for a fully-started media pipeline
->> + * @vdev: A video device that's part of the pipeline
->> + *
->> + * This function checks whether all MEDIA_ENTITY_TYPE_VIDEO_DEVICE entities
->> + * connected to a given video device through enabled links have been marked as
->> + * streaming through the use of video_device_pipeline_start() or one of its
-> What is the intended semantic here ? The first video device to receive
-> a streamoff() will trigger media_pipeline_stopped() or should the last
-> one do that ?
-The first one should do it, so the first device caling stop should trigger actual stop in all 
-involved hardware.
->
->> + * equivalent functions. If so, media_pipeline_stopped() is called for each
->> + * entity in the pipeline. The intention is to provide drivers with a shortcut
->> + * for checking whether this video device is the first device in the pipeline
->> + * to be stopped.
->> + *
->> + * Return: The number of video devices in the pipeline remaining to be started, or a
->> + * negative error number on failure.
->> + */
->> +int video_device_pipeline_stopped(struct video_device *vdev);
->> +
->>   #endif /* CONFIG_MEDIA_CONTROLLER */
->>
->>   #endif /* _V4L2_DEV_H */
->>
->> --
->> 2.34.1
->>
->>
 
