@@ -1,180 +1,84 @@
-Return-Path: <devicetree+bounces-195338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52A5BB014B2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 09:30:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B643B014B9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 09:31:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E30A761D89
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 07:29:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5326958694A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 07:31:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0679D1F5834;
-	Fri, 11 Jul 2025 07:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EFB31E570D;
+	Fri, 11 Jul 2025 07:31:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="LQiCoQTv"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="fequOfXY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 947161F2BAB
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 07:28:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BAB71E5B97;
+	Fri, 11 Jul 2025 07:31:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752218936; cv=none; b=roabBR/xu5kdqiFEcR6owycswp2hNTLr6pWnf0ebv7e/l8pM2mpsCkt40ud1vfc3Pco1LCClZAR4f4FZtzzTYXqSAP7ufu/vqYOG5pPE3YTNyilyNZG8BP4BK3uYw4jNOXbyhO6BCeipAVmK8DR3rU6bC+0EQeB8KdITmg7SAdY=
+	t=1752219101; cv=none; b=nILCqg3RbGhOkL8RjVzB0vZiQusZNEC0AUFulkwvYEg3JHrLWL7Nsw8q8Dz1BeCBSnWWHBwvIMpEp0/Sn5i7cBDAbFaMmyOAgWba7FHWr9rb1kJbNN9/8TDC867l+ZSmPwsrjIGOnd+knKxo30pnn9kri0E+x8L+GzqkTqwgs3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752218936; c=relaxed/simple;
-	bh=kQ8IKCP1kcQ/lXs1y++kiYaNah/YKFW/72xoS7GShJk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PRurPXY0WWbxRvtUZWabiDjkRJP7+rh3fmjSevnndkouYnMaAEOxxzEzwQ57ES6Y0G6/NW4rbFSLTNwrx9/KSGvat0gwHuqeOJQ+gKDbfuVXj7UaQC5QjExYXvqMQ7lWKSiDaALQx9SCLommpey0cwEu1nkjYUA17/f4moSUh1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=LQiCoQTv; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ae36e88a5daso354111366b.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 00:28:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1752218933; x=1752823733; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FtgfnZbVJ4jCikDvmiJRy1HnHbQOBcOZj3V5tl+w2H4=;
-        b=LQiCoQTvfebSXbPEw8KLNL2/V0JzXJWcgFFRYb/sTvbyTGCHRwz3H8tqynFGdaNWGE
-         +VZqHRUllJIW4YoLGeuPHTFPAG0DS+eGVB/mlZBMIKEnNPAhvAvYnzatiJ6HDq4ryGU2
-         TZu9ibkIJLSIFDa9Z5Hq1Gn38bprxrqGb9Qf+dKkF3/ZIa93BaFb91dm1l+8k+J815TU
-         4HSU37e8CZR1Vtp9TNrGXo+wunxniYv0z2QzDC4g6M64gTjBlSzm2bXtnuHdXszxyDop
-         U7XtIefm8JCl6JTcg295o89h+ch6PlsmUQ/j+vzHg7YraaqQeCXOiHcLxyj2uE89w1/m
-         INxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752218933; x=1752823733;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FtgfnZbVJ4jCikDvmiJRy1HnHbQOBcOZj3V5tl+w2H4=;
-        b=JMuBg1NYoqK2URTp6FlK6Lao1X/8ly3E9i7YPoPUpfJniWTFcBq/29VRinks6XpW6O
-         7JUdosFdoN/7886I6LrvvHtLYXn3EXzMKoSo6jD35FDmg6GuoQrB97RJoQERA6LxqhW7
-         XhM+u3eJZxQP6mGhwdWX2nQBuev/tzo87M8LDSnz+ox9aYTeHK+0LF0ydO4Wuaqv5cOh
-         GLMQPxizKFFB1R3+aMMiwxk+0neCQBpK0Wkelmeq/6cKFFUTuEEtM3SBAC6BRsKDgXMW
-         upTcj4AlbIFCLsrseBsxVbfcLi/rGwTttlUmz60TS/D5empNuZHm1QyEjbxo7oWSJ4Iz
-         tY/g==
-X-Forwarded-Encrypted: i=1; AJvYcCVQZMcufLSX/NQjtFBv2LnHjUMnRil2fFyiMaIRDQBle+ICMRxywrbYo5OwaTADRb5DtUGFdkwxaiav@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXX4z0R50//TF90VGBUjdeHQDE6X0JQRjz0LyAXoFcFAfY3hCq
-	RuacsXfMk+UeR+RkWjcgL4FPka81nkUzdPy47lPVbzRlTggWaxiwX+S4nBbfU094UUY=
-X-Gm-Gg: ASbGncunFaXruhSEduureNWqC9/XvYHksnpLBxKgA2vfLbDY1mpzJNCEFWg6iTrXpQb
-	wDz6JEFF7KyHYGichmWr3gVv9D2o3SnfIufgHauOt0GMQvMtkMHaQu3/e2FwGiiSkYcvi+tRlAj
-	oNAcsp3chM3PZ3LfpSjSYoqcj+Q0XH0kQZ/B2h2vmNXlTAuMljA+T/E3nDVLO8n+GQuSnjpYUCT
-	v5IkMo6GH+jCcoiKInOoIgHHUkHyceTMxOawEPLfdjGeR+zV8sGkaU+DDStTKr1tiQTj/ZKW2+l
-	yQP70o68dsMrm99YGXNVxDsG7GONgtbxN2hq0KdjD4Cg5/Tfdk5hcKZ8EKjKdxO+cULuCvV+FbK
-	eU2KWCBQKiWmBpf7slIf2xp+VcFIZH2nl4P/9phC/wb38Kov+uuAIgLzBig5lPSz6HQGRCHUCX+
-	7yEac=
-X-Google-Smtp-Source: AGHT+IE4RqDwQnKxSkBGyHw2mBgwanclnLP3DidAK0ZxdxP5CEZTBm7HXPRru7shMe6CbBsINHQt8A==
-X-Received: by 2002:a17:907:86a1:b0:ae0:b7ef:1c11 with SMTP id a640c23a62f3a-ae6fbe13d96mr236893366b.5.1752218932779;
-        Fri, 11 Jul 2025 00:28:52 -0700 (PDT)
-Received: from otso.local (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e7e90c1dsm252600966b.4.2025.07.11.00.28.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jul 2025 00:28:52 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 11 Jul 2025 09:28:42 +0200
-Subject: [PATCH v2 4/4] regulator: qcom-rpmh: add support for pm7550
- regulators
+	s=arc-20240116; t=1752219101; c=relaxed/simple;
+	bh=PzAlFYF97tmH4Q1sB1fM6SfqzavHRnm7smVxl6tRI7Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r2s9pQLog0UwxJD4w7NpdmVWtAg9L7h9DI1+9jmeMzSnuoEyefY1QtWsJgbtNpPaCkNZtv/MJjndQFankF4CZyfeI3NfraJK5LKbdBxBMdYbEY0PPAeUkJk5Otrs4WDbD0yWOkQrzOTxEb57y+Hx7t2gW3BwE3g1Aa4jKFkPOOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=fequOfXY; arc=none smtp.client-ip=1.95.21.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=JNeAFkTOa1f+sfeTOkNeMLDbT4+cizlqIq1w2Nummzw=;
+	b=fequOfXY2pAeMgEV0LiAITGHkYg5DOCykh/xML6CvDMa6d/8Qv1Ec/kwTOS0up
+	satE6eN2Q6cSJ2EY6c0PLGWWbjt9h064/2WEGYFXO98aigN0TNt6hxZ5uQh7JQhM
+	BXzd3Z0W6E3s+RknH+6Lk3Sqk3FZQScaaefG2HeLI7O7A=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDnzyKbvXBoKrdSAA--.57380S3;
+	Fri, 11 Jul 2025 15:30:37 +0800 (CST)
+Date: Fri, 11 Jul 2025 15:30:35 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Yannic Moog <y.moog@phytec.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, upstream@lists.phytec.de,
+	Benjamin Hahn <b.hahn@phytec.de>,
+	Teresa Remmet <t.remmet@phytec.de>,
+	Yashwanth Varakala <y.varakala@phytec.de>,
+	Jan Remmet <j.remmet@phytec.de>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 0/2] Add new imx imx95-libra-rdk-fpsc SBC
+Message-ID: <aHC9m2iHKhjjXKjI@dragon>
+References: <20250611-wip-y-moog-phytec-de-imx95-libra-v3-0-c8d09f1bdbf0@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250711-pm7550-pmr735b-rpmh-regs-v2-4-bca8cc15c199@fairphone.com>
-References: <20250711-pm7550-pmr735b-rpmh-regs-v2-0-bca8cc15c199@fairphone.com>
-In-Reply-To: <20250711-pm7550-pmr735b-rpmh-regs-v2-0-bca8cc15c199@fairphone.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752218928; l=3725;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=kQ8IKCP1kcQ/lXs1y++kiYaNah/YKFW/72xoS7GShJk=;
- b=KOd9dBkJzHtkQ8A9OJhiSKHmuP4YxkBjjri2daBn9r3wQ9FigHGRSP94pooZgXyLZO2ieBYZ1
- PHLqMUPp4WtCIoPAI8gZYwGIza/w6b5JNijsa9BEKJEYqFiO+BK6Bvm
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250611-wip-y-moog-phytec-de-imx95-libra-v3-0-c8d09f1bdbf0@phytec.de>
+X-CM-TRANSID:Ms8vCgDnzyKbvXBoKrdSAA--.57380S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU7lksDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIR3MMmhwvZ1PAAAA31
 
-Add RPMH regulators exposed by Qualcomm Technologies, Inc. PM7550 PMIC.
-It has 6 FTS525 (FT-SMPS) and 23 LDOs with 3 different types.
-L1-L11 are LDO515 LV NMOS, L12-L13 are LDO515 MV PMOS, L14-L23 are
-LDO512 MV PMOS.
+On Wed, Jun 11, 2025 at 03:05:29PM +0200, Yannic Moog wrote:
+> Yannic Moog (2):
+>       dt-bindings: add imx95-libra-rdk-fpsc
+>       arm64: dts: add imx95-libra-rdk-fpsc board
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- drivers/regulator/qcom-rpmh-regulator.c | 38 +++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
-
-diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
-index 7b1743d51fd145a44f98dd8e605b4ca410046654..109f0aae09b1df431d2e14d45a64d115e87cdec4 100644
---- a/drivers/regulator/qcom-rpmh-regulator.c
-+++ b/drivers/regulator/qcom-rpmh-regulator.c
-@@ -1462,6 +1462,40 @@ static const struct rpmh_vreg_init_data pm7325_vreg_data[] = {
- 	{}
- };
- 
-+static const struct rpmh_vreg_init_data pm7550_vreg_data[] = {
-+	RPMH_VREG("smps1", "smp%s1",  &pmic5_ftsmps525,    "vdd-s1"),
-+	RPMH_VREG("smps2", "smp%s2",  &pmic5_ftsmps525,    "vdd-s2"),
-+	RPMH_VREG("smps3", "smp%s3",  &pmic5_ftsmps525,    "vdd-s3"),
-+	RPMH_VREG("smps4", "smp%s4",  &pmic5_ftsmps525,    "vdd-s4"),
-+	RPMH_VREG("smps5", "smp%s5",  &pmic5_ftsmps525,    "vdd-s5"),
-+	RPMH_VREG("smps6", "smp%s6",  &pmic5_ftsmps525,    "vdd-s6"),
-+	RPMH_VREG("ldo1",  "ldo%s1",  &pmic5_nldo515,      "vdd-l1"),
-+	RPMH_VREG("ldo2",  "ldo%s2",  &pmic5_nldo515,      "vdd-l2-l3"),
-+	RPMH_VREG("ldo3",  "ldo%s3",  &pmic5_nldo515,      "vdd-l2-l3"),
-+	RPMH_VREG("ldo4",  "ldo%s4",  &pmic5_nldo515,      "vdd-l4-l5"),
-+	RPMH_VREG("ldo5",  "ldo%s5",  &pmic5_nldo515,      "vdd-l4-l5"),
-+	RPMH_VREG("ldo6",  "ldo%s6",  &pmic5_nldo515,      "vdd-l6"),
-+	RPMH_VREG("ldo7",  "ldo%s7",  &pmic5_nldo515,      "vdd-l7"),
-+	RPMH_VREG("ldo8",  "ldo%s8",  &pmic5_nldo515,      "vdd-l8"),
-+	RPMH_VREG("ldo9",  "ldo%s9",  &pmic5_nldo515,      "vdd-l9-l10"),
-+	RPMH_VREG("ldo10", "ldo%s10", &pmic5_nldo515,      "vdd-l9-l10"),
-+	RPMH_VREG("ldo11", "ldo%s11", &pmic5_nldo515,      "vdd-l11"),
-+	RPMH_VREG("ldo12", "ldo%s12", &pmic5_pldo515_mv,   "vdd-l12-l14"),
-+	RPMH_VREG("ldo13", "ldo%s13", &pmic5_pldo515_mv,   "vdd-l13-l16"),
-+	RPMH_VREG("ldo14", "ldo%s14", &pmic5_pldo,         "vdd-l12-l14"),
-+	RPMH_VREG("ldo15", "ldo%s15", &pmic5_pldo,         "vdd-l15-l17-l18-l19-l20-l21-l22-l23"),
-+	RPMH_VREG("ldo16", "ldo%s16", &pmic5_pldo,         "vdd-l13-l16"),
-+	RPMH_VREG("ldo17", "ldo%s17", &pmic5_pldo,         "vdd-l15-l17-l18-l19-l20-l21-l22-l23"),
-+	RPMH_VREG("ldo18", "ldo%s18", &pmic5_pldo,         "vdd-l15-l17-l18-l19-l20-l21-l22-l23"),
-+	RPMH_VREG("ldo19", "ldo%s19", &pmic5_pldo,         "vdd-l15-l17-l18-l19-l20-l21-l22-l23"),
-+	RPMH_VREG("ldo20", "ldo%s20", &pmic5_pldo,         "vdd-l15-l17-l18-l19-l20-l21-l22-l23"),
-+	RPMH_VREG("ldo21", "ldo%s21", &pmic5_pldo,         "vdd-l15-l17-l18-l19-l20-l21-l22-l23"),
-+	RPMH_VREG("ldo22", "ldo%s22", &pmic5_pldo,         "vdd-l15-l17-l18-l19-l20-l21-l22-l23"),
-+	RPMH_VREG("ldo23", "ldo%s23", &pmic5_pldo,         "vdd-l15-l17-l18-l19-l20-l21-l22-l23"),
-+	RPMH_VREG("bob",   "bob%s1",  &pmic5_bob,          "vdd-bob"),
-+	{}
-+};
-+
- static const struct rpmh_vreg_init_data pmr735a_vreg_data[] = {
- 	RPMH_VREG("smps1",  "smp%s1",  &pmic5_ftsmps520, "vdd-s1"),
- 	RPMH_VREG("smps2",  "smp%s2",  &pmic5_ftsmps520, "vdd-s2"),
-@@ -1679,6 +1713,10 @@ static const struct of_device_id __maybe_unused rpmh_regulator_match_table[] = {
- 		.compatible = "qcom,pm7325-rpmh-regulators",
- 		.data = pm7325_vreg_data,
- 	},
-+	{
-+		.compatible = "qcom,pm7550-rpmh-regulators",
-+		.data = pm7550_vreg_data,
-+	},
- 	{
- 		.compatible = "qcom,pmr735a-rpmh-regulators",
- 		.data = pmr735a_vreg_data,
-
--- 
-2.50.1
+Applied both, thanks!
 
 
