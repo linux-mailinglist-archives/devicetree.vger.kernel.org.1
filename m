@@ -1,329 +1,360 @@
-Return-Path: <devicetree+bounces-195441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4899B01ADB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:43:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BF40B01B2C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:52:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6C6A7A7247
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 11:42:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2FBF3A2360
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 11:51:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDCC72980AC;
-	Fri, 11 Jul 2025 11:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D456F283141;
+	Fri, 11 Jul 2025 11:52:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b="iQyjHuxk"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="go/Q/7v7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00549402.pphosted.com (mx0b-00549402.pphosted.com [205.220.178.134])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30F3D28FA84;
-	Fri, 11 Jul 2025 11:40:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.178.134
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752234041; cv=fail; b=jLdkUVH0h468XVzrc/iz6pjBIJRW6WzEXmutWi9JtDVfaq1voyYvA8owx3IW9EDAZ5/0R9ismxmBu+JwvmUpkw0jPUlE2Twis9FJa758m3/C4mOdXE9KWNRU8KAu0BO3nvArz8T0jDTnWX5sTqcPEHy2ek7/FI33JOalW4Flv2Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752234041; c=relaxed/simple;
-	bh=ienW7Q31ETAHcIqsYGFgJDAKBIOYtjtt4uMiokC7AJA=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ijpDE2jmuFm8piKgQon7zBK4htudIOfcqQP0cTvd91kdDQ0FWcdq4k+gSCcab0fJdz4hvlrp3hKKR+X/apZbWkQ44+BBYIlTX18vkGHrea99i6y4lBQCWDbCYb0FYcuYTxs4Kj4XZ653RLXUIu9cJHWaRfm+y9vubITEOJnuTIc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com; spf=pass smtp.mailfrom=tdk.com; dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b=iQyjHuxk; arc=fail smtp.client-ip=205.220.178.134
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tdk.com
-Received: from pps.filterd (m0233779.ppops.net [127.0.0.1])
-	by mx0b-00549402.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56AMOwWJ003138;
-	Fri, 11 Jul 2025 11:40:33 GMT
-Received: from fr6p281cu001.outbound.protection.outlook.com (mail-germanywestcentralazon11010067.outbound.protection.outlook.com [52.101.171.67])
-	by mx0b-00549402.pphosted.com (PPS) with ESMTPS id 47pwe3vxby-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Jul 2025 11:40:33 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Y8GR0NN93u6IWQdHkFdk6sWpFCZxNrfyaolRDdrsQF1DP8OcZJzx2Msxny3L/XGZK0IPabbu+TCKifLeI7w2FyCwMqCow8HQgGye9KsM93t42PftUav5iiDDgNJF8c//2qMp9ECjFdHVX2tNxZpJmAvOo0JOLe5xjlACI/fBrb5X2JmRLaWAYw07oLg6mwA6vxCp6wu8gpQV1rRnuCd7QFn76EKz4ioe3plCPLPaG7yuXExVyIEmKD84TmEa2jgYFpuxzpOyKCCM16pTBl3HVRtDY0dK2b/dinhdlwvJMGluvOsoro/0+TCEmUyRm5iiC7+knvgFKc5KJXS29/MTgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ienW7Q31ETAHcIqsYGFgJDAKBIOYtjtt4uMiokC7AJA=;
- b=RF7wNE61bFxNqeQC4CT0MgoZKsieHR7+etFvHmtcLtebLMmXfPOINtyzZ5XZ1wjYYU8Tf0of62XgcWH3Jr0XHbcwgPW3q2IV+gnSxHi0OYfxUgjjufKl+zVhEPgK55s+/JwiZciWihT5ijZYdhNx+lszskPWiF8hsJ9fq7YvqYnHSvlRhtWe/zJFRj0xoDzbbZPira+1cHbNfAMQhAeP+KcJpfcCOFVlv5U5AtMNjQ2n1sQMytpZMkRIvJh3h7vdPngA38AZyrzw2VGqUtJBpdg8BTSYV4zvNMKfeIrhlyK0bBQRyE928TZ2P4bEpc/kowcQrz4HffWVl18Xvqy93g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=tdk.com; dmarc=pass action=none header.from=tdk.com; dkim=pass
- header.d=tdk.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tdk.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ienW7Q31ETAHcIqsYGFgJDAKBIOYtjtt4uMiokC7AJA=;
- b=iQyjHuxkBd8lES7+7VmPEIsPKl9f3S/YKyMBLW7Fb27sapuWGcZZJ7Ymvo6eYiX5piSDLpLBIR/Mk58244kQ6I13Bl2WtqX/zc2ZaKsrlhto8TEKs61e+dUaj0nvHMQxhAq4LQV5Bgspa9DYAUK8JKvbxfcdY8srPzYtRTqrrI7t4s68W0ghbiTBxUSvuj14T3fPvgRdJNy5H6fIfHvE6QjIZyefQHeQ2I0TphbLjivyXKD10uAczZsciYpnusWRBkrT60M4LUu4qBF8TFqNW7yDv5vRD4WBU81L6A0Lg+R3aF3Lf7rdF4+q/rKkqYXFl+EnDAbddFlJdQO9K8Is7Q==
-Received: from FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d18:2::2d)
- by FRYP281MB3291.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:70::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.25; Fri, 11 Jul
- 2025 11:40:17 +0000
-Received: from FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM
- ([fe80::903d:f362:450:c7bf]) by FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM
- ([fe80::903d:f362:450:c7bf%3]) with mapi id 15.20.8922.023; Fri, 11 Jul 2025
- 11:40:17 +0000
-From: Remi Buisson <Remi.Buisson@tdk.com>
-To: Rob Herring <robh@kernel.org>
-CC: Jonathan Cameron <jic23@kernel.org>,
-        David Lechner
-	<dlechner@baylibre.com>,
-        =?utf-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        Andy
- Shevchenko <andy@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org"
-	<linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: RE: [PATCH v2 1/8] dt-bindings: iio: imu: Add inv_icm45600
-Thread-Topic: [PATCH v2 1/8] dt-bindings: iio: imu: Add inv_icm45600
-Thread-Index: AQHb8XjGNSzfw0LPWUy8flLtSCneZ7Qr9H0AgADZigA=
-Date: Fri, 11 Jul 2025 11:40:17 +0000
-Message-ID:
- <FR2PPF4571F02BC24F20824D4A978BFCF348C4BA@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
-References: <20250710-add_newport_driver-v2-0-bf76d8142ef2@tdk.com>
- <20250710-add_newport_driver-v2-1-bf76d8142ef2@tdk.com>
- <20250710224104.GA4495-robh@kernel.org>
-In-Reply-To: <20250710224104.GA4495-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: FR2PPF4571F02BC:EE_|FRYP281MB3291:EE_
-x-ms-office365-filtering-correlation-id: ce488092-c988-48e8-9c2b-08ddc06fb590
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|19092799006|7416014|376014|38070700018|3613699012|7053199007;
-x-microsoft-antispam-message-info:
- =?utf-8?B?ZFpiVzBVR3JUOC9PSFU3V3VBQnhNTk1OVXZPVitnTGFEU2tlZG5maVdkajhD?=
- =?utf-8?B?dFBTTHNxSnNYQm1iRnZ3YklsTGVZRU5yZlE2blFoNW5OK3BrYklHNlRyZWJ3?=
- =?utf-8?B?WHNVWkM1SE03RU05bVE3eCtJeFAyWmtZQTg5SHozL3pObzVYKzRKNVBwcW1I?=
- =?utf-8?B?Y1ZjbHhMVmswWUdUTmJUQ1dSalhaMWgrNGtYd2FIa1FFbktmOVhtcDBRK0ww?=
- =?utf-8?B?TFFoNzkxWlUreFhTK2Q5dUxOTDRvUEMyUVZmaTdMQjZxYjJhZ0lyZ1l4N215?=
- =?utf-8?B?SDI1SXJabW0wUFgyQUV2OUdnUEkrUHFBZ0pPT24wVGxSRHdGVk9YR1Nhb2xu?=
- =?utf-8?B?ckZHeTA0Qk8vMWRnQ05ISDJsZ0RIYlBZcmJUeXpDSmVBdmQreTU0NFJKMnUx?=
- =?utf-8?B?aDYzakMvUCs5bTZtR1ZiVm9yMUdkZlRMQzl5aGQ4YlpSSndVQXdlVXhSMG1w?=
- =?utf-8?B?YzZXWTc0Q2dUMmk3QVY2cVFmUUNiU3pXbUpJS1hPY0hVdkNsTFd6SFdnc3Rm?=
- =?utf-8?B?Wms2amh2UWZqUHZCVmVFVlZ5eW8zbXljNXF3alJHNHh0UEJsdDhTb2diRGha?=
- =?utf-8?B?QlVGbyt2eEE3bzg2TjJ0cUlmK0hpNy9ESjVzaWMrTlJNZGs1WVIvcEhiV2pw?=
- =?utf-8?B?bmVONXZldThCcUJtUGtZM2NLa0lxZmN5QWtvNG96dWdycTlPK0VXdm42VXFJ?=
- =?utf-8?B?UG50RHF1UVdDSDh6YUh2bXlxQWtjQVRvU084Z2Z4dkQxSTlHa1I5Z3YvSWE4?=
- =?utf-8?B?UnRmUGRRdmJDQlhJOWJmTit4VVVwcjlRWEVrT1RtdnJZbnQ2ckFlRG9mUTJs?=
- =?utf-8?B?VFd1cFUyN3Q3bnZiSG1BVmI5MlIwTW5pSTZSMDRlTEh1RXBTRFZsb2hwODFq?=
- =?utf-8?B?cTJ1ZFpOQ1o1QUc2REluYjJQL2M5U2xsYVN5YnM4U0JmWEcrWGt6VStqNm4r?=
- =?utf-8?B?Tm81SzVEbXN1NE5Udi90YktOV3RhdDBQcGd4YVJNZ0hZcndXbGFuM01nRE5C?=
- =?utf-8?B?SVBZYTlaaGx6b0dQU3kvdUZXTDFkamZ6RzRvRWJuWXBub0t3aUNORHhpczJ0?=
- =?utf-8?B?dEtkSjZic3I5N3ExUHlLOGNPc0p3NDFaWURhaXpUK0hVeXp6TVM1eUR1d2F3?=
- =?utf-8?B?UXhHRVd2WmFSTmNPNlZyait2NWtvQVhWMkJ1NFhMV05kNW5PazQyWnhVdnNY?=
- =?utf-8?B?YnphVExVUFhORVRrbjdMMEE4blV4TS9LbXFzQlVFcHRkbjdocVphdWFRY3RI?=
- =?utf-8?B?MmtyV2xXejVPTGFFZEN3TVBrZ0M3K1RkeXdNU1hrZUh0a2h6Nmo3K0YxSlhD?=
- =?utf-8?B?QXI1U1FFWEN5VHdDSnhNSXBGVGxVVk01OTBBVHViU2Vyd1hiS3NzaFZZaW82?=
- =?utf-8?B?N2kwUUJLZStRMHYrT1MybW5PVm8vUGlzaTJFZFJPNGlzenAzblBTZjVmcS90?=
- =?utf-8?B?VGlFUHFURzlVbXhlbFIvU3gvT2duaWF4WFlxNUQrTXJXM2QwZ3dUbU95Z3Jk?=
- =?utf-8?B?ekhpWWdHaFFOQ1p6TERWcmpVYTFMTmhWTVJ0a1piOHQwYzErM3lmNFJSaFdM?=
- =?utf-8?B?QkxCZFFyMkxTWTJYK3Q3TjdlQTAvRTNGWFFUekxuVStlclFMUkU1Ri9NeGtT?=
- =?utf-8?B?MEhNMThXRUdHVHNqT1M0M1NZNTVOSGFpUE1tN244ODRNc1QyYW45S1FHZmNn?=
- =?utf-8?B?UE9UZ0lMRVlVQlo0RFhkQXFnMXVoNGt0aDdEeVV3UmlLWldMelo3M1pWNDgr?=
- =?utf-8?B?bDRFT0tMdDhGMUZGL29DWFZFU1EyMkowci8zUnNqQmFOQWVXOTBzSmZsV0d4?=
- =?utf-8?B?WlJueklyc1VJZUJ5TTU2K1NFeWQ5NU5IeEdEbFR1WDkydW1Xd1U1Vkkwc1Jr?=
- =?utf-8?B?eVd6TjVhL3h6MlBCNVRNNW4ycHZVZ3hiK3hzZTJNQ0ovTTN4N0tvKytiRkp6?=
- =?utf-8?Q?Uadua0hg4jiqpPhAzguozXi17DRPjcX2?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(7416014)(376014)(38070700018)(3613699012)(7053199007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?V2g0aXZyR0M5bEk1Tks2L0laUFBtTXBrRzhiNlJxTGloRWZ6SDJqanB3blpY?=
- =?utf-8?B?VnoreHlqQXJHelZBN1FmdGNSWjhhaEl3cEdQQ3dYbjE5WnczZk1OSFlHYUVn?=
- =?utf-8?B?eFBBUjArVUcyY2R3a2lUVXNaYWpXb1Jwb2FvZjBZMTR0Nms5MUJHY2FhWVFr?=
- =?utf-8?B?V1BaYnQ3eGRTU2c5eHo4bDJkNTdkelZXdXJGd0tpRWVXUGNMYWV3WGFuMmRo?=
- =?utf-8?B?anF0cGNNbHB4NDdTeE5Oa0JYeXEweiswNFVZNFkxVlEwSXBJRFd0dWhWcjI4?=
- =?utf-8?B?TmkrY2MyVHE2eUk4cFh3SGYxcy9VN3RpTHlRUzNNY2RBajFZMU0ydE5IOEk0?=
- =?utf-8?B?WTdWeUNtbUt5VTZDczZsUExOUVdKaHpzOHJpNzZOU2tUM1JFcmsyUnB1N3dE?=
- =?utf-8?B?QmIwMW95K21Zajd6THNGdXA4dlZJcFZ2bXpDWTBEcllFVWhMay9KZXdsNkJz?=
- =?utf-8?B?cFNkN2lPaHhSanlPVEZ4ZCtzSk82c2tJNVMxemY1RUJGQzN3c0FhWmhpT0Rm?=
- =?utf-8?B?U2tQSTRqTmFSUnl5Rk5SQTQvak1ZSFdkQkV4eWV5T1VmTTEyaEw2TWpydzcx?=
- =?utf-8?B?VDRUMnUrUVBZNlZON0szQVVRMXFXVmpEQUZYaXZYWmYyY1dEcWFWWjF5ZFlH?=
- =?utf-8?B?bzFHZ1d6WWY4SW03NGt3SHgzcE5EWDZyNVF5K216d3NlUm04UWpVZTMwUjJV?=
- =?utf-8?B?L0ttbnJwOVJWZ0hnVGRiMURRaDM3MitCdU5oRVRPUUVsY1dNOTBpb1RxdzRP?=
- =?utf-8?B?NkZ1WWt0cVRWeWRFTG9aZ3pVV2VvRkxka05HMnkxOVBWVnJpOXVyZmNUekho?=
- =?utf-8?B?MUJoYVdzdTg4blNoN1FJV25yZlk1eXRacVk5RGpqQ0hUbjhrUkxKRm1GTVpi?=
- =?utf-8?B?NEFBcVJFclM2RlBmdTFpQXA2TjdGUHoyMWpYRjIzVVNRVEc5VEJSTTM0RzlE?=
- =?utf-8?B?WUhUVjZlMnBITEtnQ0lqNmVhQmNSQjlOVEZQbk9QMEN0bnlqbzlFODNXNmly?=
- =?utf-8?B?MjhRaHlDcGNEajNKeEFqWUlzd2Y5OGhsVUdsbDZidFQxZ1AzTUhselFKM1Y3?=
- =?utf-8?B?cVUrczhTMkFYak12bHQ4YnJaZ0xsd0FEYTJpTG5ocEVmdDZoVG9hUmJUTGti?=
- =?utf-8?B?bUwvZFVrYm9kRGcreFlMOVkvTVpMcVF0a3pPdWtzSHFYSFg0RE5hbkV0Y1VW?=
- =?utf-8?B?aVFycHFmVUtoTSs1OHhCUHJJRGFTQWUvVkErM1AzaHNiMU90YUJjRGRrR1N4?=
- =?utf-8?B?Uk1kK1llVkc4N2pxaWVOQXo1ZFVCT3FWNG82VW4rS0FwSndsa2RiOUg4WHZZ?=
- =?utf-8?B?VHJJNlRvaDZTZXF1eGhHMSs0SjRTTjRWUGt0SUFlWjRSVlZIYzZjTm9pTHZE?=
- =?utf-8?B?NzBSUFVWZFNxczlLL3cxUTIzdEZ6UmlxMGFhUDZhbzZaVjRxQmt3cE1DRzdj?=
- =?utf-8?B?Y3FoUkxYRmtOUk9RTHNkcUhLV2FKVHg0bmZjUUltZlJFaCthYm9VL2poMGNF?=
- =?utf-8?B?SVVtUU1KNnR3MG5MUTVXdUhYNGQ3ZnljM1N0ZTVhNDYzcjd4SUYyYUkxdGZU?=
- =?utf-8?B?N2tsQXJhYisrSjFlcHFjRkxmOW9DM1ZtS1NKNjNVMnlwdkZlR0c2ZG40VktH?=
- =?utf-8?B?R2h0b005Z1F5VGRpVGNxUDBHZWlpY2h5UDV4V01TZkxZVExDb0ZlUGJpdjFY?=
- =?utf-8?B?UVJaZUllUGpSZTRDclNSclQ2MjVya0pmWFJ6SGptOHdiVEthU2JxckpCQjhn?=
- =?utf-8?B?WHlvaW9lanVFdmo0QVRPLzhsbDNPN0dBM3BZb0M2NU0zUGFKcmhmNXhCdFJG?=
- =?utf-8?B?U0ZFZ0UycWpaejV6Z09tZnlxeHhsa2VhSTVMUkZSRG1hcnp5dGhxU1NIcHBZ?=
- =?utf-8?B?b05iZExRbEtXbmZWZ2l1VDhSVnpqQktkTmtnRlRhSkhjZnNRM0wyaGVJcGlq?=
- =?utf-8?B?SThZMEhSU016ZStoQW9Fa1duM1NvaVZIdjZPejI0cnVYUk9jVDhwYklJd201?=
- =?utf-8?B?ckpZQ3YxcU5vZS92OHpxUk85bk5mYkFlQVZaNXozWFRNeGNQUGhuem9FcUFS?=
- =?utf-8?B?SUxOR082aDRwYk8wem9pN09tVGRnbDVDRkg5K0xKTXBQRmdBbHpGUlJla0tt?=
- =?utf-8?Q?D7S46+Atu0Loogr/gg8zdgWpo?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC73175D47;
+	Fri, 11 Jul 2025 11:52:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752234727; cv=none; b=cF+ZfcjLVqJqpUe4jNYwaYoYmnY19fIHZevXz22HNjJ2283yous2RYlwQ/gdvgraBSnJBvo/IdNP3sWoF6ktWQEN+49S5Oa8wJU6RP5c3oe1DrVZjCvd4AwlfysnUukoYm8cM03qVViTvLM/1Wa4nbPnPiDGPeWi2Zg0VJkiBbU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752234727; c=relaxed/simple;
+	bh=3Xbx+c3duPba1/5xewcKktGY7JrUuYLEgqX71hJcZEk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ImmrKSLn0dCpAKIT4Dwn8bMojvBRmQcympK4tM5JFzaTYAj0NgCDXgjO9oPx4bKYml+CET2MJMdP4XRH2ppqOA2KxxLhrfjXKAX8ctibzqjyDJ4GKdloh3xGcP6PmSqbxumgJR7gaAH7xnegxPX+4qxSH3vy3WXb8Z6LEZOQC7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=go/Q/7v7; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 91CB7C75;
+	Fri, 11 Jul 2025 13:51:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1752234688;
+	bh=3Xbx+c3duPba1/5xewcKktGY7JrUuYLEgqX71hJcZEk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=go/Q/7v7UIHs+45Y4rXGhoDNGzaYUZsyk/5SITiixN4gjnTn/mGEhRxPNUnLi+7W2
+	 2N2tE7JNGP5KKcTPU3yeGyuR+QyvcT4jwsyzuhd6IxdHcve2HDQbtu4jRyqoo/F7Um
+	 BfWTKvLygHF3/UkxvPC/IwFUFSusl10h3iXrAOfI=
+Message-ID: <436bbb33-0740-4ef8-8297-a06aa8243cfd@ideasonboard.com>
+Date: Fri, 11 Jul 2025 12:51:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: tdk.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce488092-c988-48e8-9c2b-08ddc06fb590
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jul 2025 11:40:17.6502
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 7e452255-946f-4f17-800a-a0fb6835dc6c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: KrFNSo4xaPLac4IdUeDizohAEXWmtMp9aBPd5qAagy2UO5XSzd/z895t1QNYO6Ugt4w/6oWpaq8mOAhgSJXd3A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: FRYP281MB3291
-X-Authority-Analysis: v=2.4 cv=W6w4VQWk c=1 sm=1 tr=0 ts=6870f831 cx=c_pps
- a=xC/ZzPVxK5qpaLrndDdzSA==:117 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
- a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=Uwzcpa5oeQwA:10
- a=gEfo2CItAAAA:8 a=In8RU02eAAAA:8 a=VwQbUJbxAAAA:8 a=IpJZQVW2AAAA:8
- a=gAnH3GRIAAAA:8 a=bsyG2yPaRIxK24HUzEgA:9 a=QEXdDO2ut3YA:10
- a=sptkURWiP4Gy88Gu7hUp:22 a=EFfWL0t1EGez1ldKSZgj:22 a=IawgGOuG5U0WyFbmm1f5:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDA4MyBTYWx0ZWRfX1SncMoGrEbnw
- hOqDFmlt3y+w5IF2sg1Opk1XTvlFqYQ2eB4w8d24w8KOJjviHKcA2KCVRfFIKO65JYQcpERMa9G
- T1mNLEH69Y9N0fyvWDse7bH69D+CUo9r9UbYLtdk45pGkGAp3HDoNvyuNztCgofRpJbVFxXvwE8
- 39YACfjZuOQEEuANEy6R8qmUJFgLuMkMu9m3Q9AgdPoY1PC2uO6RNvIWDinW+MnD41YbHIXye3E
- GSJnKf2WyJNxKJnYkVePIq+9XErpGz8cIpfNa5kB5jkSRWdkakJTJdmONpJtjzTlApfLk3BfBzA
- Zmn7vVpYKxYfvMJhJdA5fU3bVdGDbFcnnnBcwCJz6yMhU8B9rStqGHpO9CsrbbMx2g4yDZhaczR
- xbP99Vv08YT/d+i/3ZRyNBxcxUrEDfNno5BEU0snFzG4FNJr5AdZb7Cv93p8hS1cCLYCmr9z
-X-Proofpoint-ORIG-GUID: w2Hd5YTCyuzro7cazXE8z_cJtD9hC8xl
-X-Proofpoint-GUID: w2Hd5YTCyuzro7cazXE8z_cJtD9hC8xl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-11_03,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- phishscore=0 mlxlogscore=999 spamscore=0 clxscore=1011 bulkscore=0
- adultscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0 malwarescore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507110083
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] media: v4l2-dev: Add helpers to run
+ media_pipeline_[started|stopped]()
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ biju.das.jz@bp.renesas.com
+References: <20250704-ivc-v3-0-5c45d936ef2e@ideasonboard.com>
+ <20250704-ivc-v3-2-5c45d936ef2e@ideasonboard.com>
+ <v3gonywym2km6u4qpsm2bkpn5n7vmvm4rdt3nfiws6mri3b7y4@gh4q5f4cmavc>
+Content-Language: en-US
+From: Dan Scally <dan.scally@ideasonboard.com>
+Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <v3gonywym2km6u4qpsm2bkpn5n7vmvm4rdt3nfiws6mri3b7y4@gh4q5f4cmavc>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Pg0KPg0KPkZyb206IFJvYiBIZXJyaW5nIHJvYmhAa2VybmVsLm9yZyANCj5TZW50OiBGcmlkYXks
-IEp1bHkgMTEsIDIwMjUgMTI6NDEgQU0NCj5UbzogUmVtaSBCdWlzc29uIFJlbWkuQnVpc3NvbkB0
-ZGsuY29tDQo+Q2M6IEpvbmF0aGFuIENhbWVyb24gamljMjNAa2VybmVsLm9yZzsgRGF2aWQgTGVj
-aG5lciBkbGVjaG5lckBiYXlsaWJyZS5jb207IE51bm8gU8OhIG51bm8uc2FAYW5hbG9nLmNvbTsg
-QW5keSBTaGV2Y2hlbmtvIGFuZHlAa2VybmVsLm9yZzsgS3J6eXN6dG9mIEtvemxvd3NraSBrcnpr
-K2R0QGtlcm5lbC5vcmc7IENvbm9yIERvb2xleSBjb25vcitkdEBrZXJuZWwub3JnOyBsaW51eC1r
-ZXJuZWxAdmdlci5rZXJuZWwub3JnOyBsaW51eC1paW9Admdlci5rZXJuZWwub3JnOyBkZXZpY2V0
-cmVlQHZnZXIua2VybmVsLm9yZw0KPlN1YmplY3Q6IFJlOiBbUEFUQ0ggdjIgMS84XSBkdC1iaW5k
-aW5nczogaWlvOiBpbXU6IEFkZCBpbnZfaWNtNDU2MDANCj4NCj5PbiBUaHUsIEp1bCAxMCwgMjAy
-NSBhdCAwODo1Nzo1NkFNICswMDAwLCBSZW1pIEJ1aXNzb24gd3JvdGU6DQo+PiBEb2N1bWVudCB0
-aGUgSUNNLTQ1NjAwIGRldmljZXMgZGV2aWNldHJlZSBiaW5kaW5ncy4NCj4+IA0KPj4gU2lnbmVk
-LW9mZi1ieTogUmVtaSBCdWlzc29uIHJlbWkuYnVpc3NvbkB0ZGsuY29tDQo+PiAtLS0NCj4+ICAu
-Li4vYmluZGluZ3MvaWlvL2ltdS9pbnZlbnNlbnNlLGljbTQ1NjAwLnlhbWwgICAgICB8IDEzOCAr
-KysrKysrKysrKysrKysrKysrKysNCj4+ICAxIGZpbGUgY2hhbmdlZCwgMTM4IGluc2VydGlvbnMo
-KykNCj4+IA0KPj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9paW8vaW11L2ludmVuc2Vuc2UsaWNtNDU2MDAueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9paW8vaW11L2ludmVuc2Vuc2UsaWNtNDU2MDAueWFtbA0KPj4gbmV3IGZp
-bGUgbW9kZSAxMDA2NDQNCj4+IGluZGV4IDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw
-MDAwMDAwMDAuLmE2NTE4Nzg3OTFmZmFlOGQxYzhkNmM4ZmYxZTRiZWNmYzU2YWY3OWYNCj4+IC0t
-LSAvZGV2L251bGwNCj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9p
-aW8vaW11L2ludmVuc2Vuc2UsaWNtNDU2MDAueWFtbA0KPj4gQEAgLTAsMCArMSwxMzggQEANCj4+
-ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNsYXVz
-ZSkNCj4+ICslWUFNTCAxLjINCj4+ICstLS0NCj4+ICskaWQ6IGh0dHBzOi8vdXJsZGVmZW5zZS5j
-b20vdjMvX19odHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9paW8vaW11L2ludmVuc2Vuc2Us
-aWNtNDU2MDAueWFtbCpfXztJdyEhRnRyaHRQc1dEaFo2dHchRUo2by10bk90dUpZUVJVODE1MG1u
-WXBmMHVDTW5ZT1N2ZkJLLURLbzVrRHZ3aGVEUmFMdlBlUXBiWjAzbUtYYVBUR3Y1VDhKTzVzVCRb
-ZGV2aWNldHJlZVsuXW9yZ10NCj4+ICskc2NoZW1hOiBodHRwczovL3VybGRlZmVuc2UuY29tL3Yz
-L19faHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwqX187SXchIUZ0
-cmh0UHNXRGhaNnR3IUVKNm8tdG5PdHVKWVFSVTgxNTBtbllwZjB1Q01uWU9TdmZCSy1ES281a0R2
-d2hlRFJhTHZQZVFwYlowM21LWGFQVEd2NVNWN1ozTXkkW2RldmljZXRyZWVbLl1vcmddDQo+PiAr
-DQo+PiArdGl0bGU6IEludmVuU2Vuc2UgSUNNLTQ1NjAwIEluZXJ0aWFsIE1lYXN1cmVtZW50IFVu
-aXQNCj4+ICsNCj4+ICttYWludGFpbmVyczoNCj4+ICsgIC0gUmVtaSBCdWlzc29uIHJlbWkuYnVp
-c3NvbkB0ZGsuY29tDQo+PiArDQo+PiArZGVzY3JpcHRpb246IHwNCj4+ICsgIDYtYXhpcyBNb3Rp
-b25UcmFja2luZyBkZXZpY2UgdGhhdCBjb21iaW5lcyBhIDMtYXhpcyBneXJvc2NvcGUgYW5kIGEg
-My1heGlzDQo+PiArICBhY2NlbGVyb21ldGVyLg0KPj4gKw0KPj4gKyAgSXQgaGFzIGEgY29uZmln
-dXJhYmxlIGhvc3QgaW50ZXJmYWNlIHRoYXQgc3VwcG9ydHMgSTNDLCBJMkMgYW5kIFNQSSBzZXJp
-YWwNCj4+ICsgIGNvbW11bmljYXRpb24sIGZlYXR1cmVzIHVwIHRvIDhrQiBGSUZPIGFuZCAyIHBy
-b2dyYW1tYWJsZSBpbnRlcnJ1cHRzIHdpdGgNCj4+ICsgIHVsdHJhLWxvdy1wb3dlciB3YWtlLW9u
-LW1vdGlvbiBzdXBwb3J0IHRvIG1pbmltaXplIHN5c3RlbSBwb3dlciBjb25zdW1wdGlvbi4NCj4+
-ICsNCj4+ICsgIE90aGVyIGluZHVzdHJ5LWxlYWRpbmcgZmVhdHVyZXMgaW5jbHVkZSBJbnZlblNl
-bnNlIG9uLWNoaXAgQVBFWCBNb3Rpb24NCj4+ICsgIFByb2Nlc3NpbmcgZW5naW5lIGZvciBnZXN0
-dXJlIHJlY29nbml0aW9uLCBhY3Rpdml0eSBjbGFzc2lmaWNhdGlvbiwgYW5kDQo+PiArICBwZWRv
-bWV0ZXIsIGFsb25nIHdpdGggcHJvZ3JhbW1hYmxlIGRpZ2l0YWwgZmlsdGVycywgYW5kIGFuIGVt
-YmVkZGVkDQo+PiArICB0ZW1wZXJhdHVyZSBzZW5zb3IuDQo+PiArDQo+PiArICBodHRwczovL2lu
-dmVuc2Vuc2UudGRrLmNvbS93cC1jb250ZW50L3VwbG9hZHMvZG9jdW1lbnRhdGlvbi9EUy0wMDA1
-NzZfSUNNLTQ1NjA1LnBkZiANCj4+ICsNCj4+ICtwcm9wZXJ0aWVzOg0KPj4gKyAgY29tcGF0aWJs
-ZToNCj4+ICsgICAgZW51bToNCj4+ICsgICAgICAtIGludmVuc2Vuc2UsaWNtNDU2MDUNCj4+ICsg
-ICAgICAtIGludmVuc2Vuc2UsaWNtNDU2MDYNCj4+ICsgICAgICAtIGludmVuc2Vuc2UsaWNtNDU2
-MDgNCj4+ICsgICAgICAtIGludmVuc2Vuc2UsaWNtNDU2MzQNCj4+ICsgICAgICAtIGludmVuc2Vu
-c2UsaWNtNDU2ODYNCj4+ICsgICAgICAtIGludmVuc2Vuc2UsaWNtNDU2ODcNCj4+ICsgICAgICAt
-IGludmVuc2Vuc2UsaWNtNDU2ODhwDQo+PiArICAgICAgLSBpbnZlbnNlbnNlLGljbTQ1Njg5DQo+
-PiArDQo+PiArICByZWc6DQo+PiArICAgIG1heEl0ZW1zOiAxDQo+PiArDQo+PiArICBpbnRlcnJ1
-cHRzOg0KPj4gKyAgICBtaW5JdGVtczogMQ0KPj4gKyAgICBtYXhJdGVtczogMg0KPj4gKw0KPj4g
-KyAgaW50ZXJydXB0LW5hbWVzOg0KPj4gKyAgICBtaW5JdGVtczogMQ0KPj4gKyAgICBtYXhJdGVt
-czogMg0KPj4gKyAgICBpdGVtczoNCj4+ICsgICAgICBlbnVtOg0KPj4gKyAgICAgICAgLSBJTlQx
-DQo+PiArICAgICAgICAtIElOVDINCj4+ICsgICAgZGVzY3JpcHRpb246IENob29zZSBjaGlwIGlu
-dGVycnVwdCBwaW4gdG8gYmUgdXNlZCBhcyBpbnRlcnJ1cHQgaW5wdXQuDQo+PiArDQo+PiArICBk
-cml2ZS1vcGVuLWRyYWluOg0KPj4gKyAgICB0eXBlOiBib29sZWFuDQo+PiArDQo+PiArICB2ZGQt
-c3VwcGx5Og0KPj4gKyAgICBkZXNjcmlwdGlvbjogUmVndWxhdG9yIHRoYXQgcHJvdmlkZXMgcG93
-ZXIgdG8gdGhlIHNlbnNvcg0KPj4gKw0KPj4gKyAgdmRkaW8tc3VwcGx5Og0KPj4gKyAgICBkZXNj
-cmlwdGlvbjogUmVndWxhdG9yIHRoYXQgcHJvdmlkZXMgcG93ZXIgdG8gdGhlIGJ1cw0KPj4gKw0K
-Pj4gKyAgbW91bnQtbWF0cml4Og0KPj4gKyAgICBkZXNjcmlwdGlvbjogYW4gb3B0aW9uYWwgM3gz
-IG1vdW50aW5nIHJvdGF0aW9uIG1hdHJpeA0KPj4gKw0KPj4gK3JlcXVpcmVkOg0KPj4gKyAgLSBj
-b21wYXRpYmxlDQo+PiArICAtIHJlZw0KPj4gKyAgLSBpbnRlcnJ1cHRzDQo+PiArICAtIGludGVy
-cnVwdC1uYW1lcw0KPj4gKw0KPj4gK2FsbE9mOg0KPj4gKyAgLSAkcmVmOiAvc2NoZW1hcy9zcGkv
-c3BpLXBlcmlwaGVyYWwtcHJvcHMueWFtbCMNCj4+ICsNCj4+ICt1bmV2YWx1YXRlZFByb3BlcnRp
-ZXM6IGZhbHNlDQo+PiArDQo+PiArZXhhbXBsZXM6DQo+PiArICAtIHwNCj4+ICsgICAgI2luY2x1
-ZGUgPGR0LWJpbmRpbmdzL2dwaW8vZ3Bpby5oPg0KPj4gKyAgICAjaW5jbHVkZSA8ZHQtYmluZGlu
-Z3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvaXJxLmg+DQo+PiArICAgIGkyYyB7DQo+PiArICAgICAg
-ICAjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4+ICsgICAgICAgICNzaXplLWNlbGxzID0gPDA+Ow0K
-Pj4gKw0KPj4gKyAgICAgICAgaWNtNDU2MDVANjggew0KPj4gKyAgICAgICAgICAgIGNvbXBhdGli
-bGUgPSAiaW52ZW5zZW5zZSxpY200NTYwNSI7DQo+PiArICAgICAgICAgICAgcmVnID0gPDB4Njg+
-Ow0KPj4gKyAgICAgICAgICAgIGludGVycnVwdC1wYXJlbnQgPSA8JmdwaW8yPjsNCj4+ICsgICAg
-ICAgICAgICBpbnRlcnJ1cHQtbmFtZXMgPSAiSU5UMSI7DQo+PiArICAgICAgICAgICAgaW50ZXJy
-dXB0cyA9IDw3IElSUV9UWVBFX0VER0VfUklTSU5HPjsNCj4+ICsgICAgICAgICAgICB2ZGQtc3Vw
-cGx5ID0gPCZ2ZGQ+Ow0KPj4gKyAgICAgICAgICAgIHZkZGlvLXN1cHBseSA9IDwmdmRkaW8+Ow0K
-Pj4gKyAgICAgICAgICAgIG1vdW50LW1hdHJpeCA9ICIwIiwgIi0xIiwgIjAiLA0KPj4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICIxIiwgIjAiLCAiMCIsDQo+PiArICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIjAiLCAiMCIsICIxIjsNCj4+ICsgICAgICAgIH07DQo+PiArICAgIH07DQo+
-PiArICAtIHwNCj4+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2dwaW8vZ3Bpby5oPg0KPj4g
-KyAgICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvaXJxLmg+DQo+
-PiArICAgIHNwaSB7DQo+PiArICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4+ICsgICAg
-ICAgICNzaXplLWNlbGxzID0gPDA+Ow0KPj4gKw0KPj4gKyAgICAgICAgaWNtNDU2MDVAMCB7DQo+
-PiArICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJpbnZlbnNlbnNlLGljbTQ1NjA1IjsNCj4+ICsg
-ICAgICAgICAgICByZWcgPSA8MD47DQo+PiArICAgICAgICAgICAgc3BpLW1heC1mcmVxdWVuY3kg
-PSA8MjQwMDAwMDA+Ow0KPj4gKyAgICAgICAgICAgIGludGVycnVwdC1wYXJlbnQgPSA8JmdwaW8x
-PjsNCj4+ICsgICAgICAgICAgICBpbnRlcnJ1cHQtbmFtZXMgPSAiSU5UMSI7DQo+PiArICAgICAg
-ICAgICAgaW50ZXJydXB0cyA9IDw2IElSUV9UWVBFX0VER0VfUklTSU5HPjsNCj4+ICsgICAgICAg
-ICAgICB2ZGQtc3VwcGx5ID0gPCZ2ZGQ+Ow0KPj4gKyAgICAgICAgICAgIHZkZGlvLXN1cHBseSA9
-IDwmdmRkaW8+Ow0KPj4gKyAgICAgICAgICAgIG1vdW50LW1hdHJpeCA9ICIwIiwgIi0xIiwgIjAi
-LA0KPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICIxIiwgIjAiLCAiMCIsDQo+PiArICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIjAiLCAiMCIsICIxIjsNCj4+ICsgICAgICAgIH07DQo+
-PiArICAgIH07DQo+PiArICAtIHwNCj4+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2dwaW8v
-Z3Bpby5oPg0KPj4gKyAgICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xs
-ZXIvaXJxLmg+DQo+PiArICAgIGkzYyB7DQo+PiArICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwz
-PjsNCj4+ICsgICAgICAgICNzaXplLWNlbGxzID0gPDA+Ow0KPj4gKw0KPj4gKyAgICAgICAgaWNt
-NDU2MDZANjgsNDZBMDAwMDAwODQgew0KPj4gKyAgICAgICAgICAgIHJlZyA9IDwweDY4IDB4NDZB
-IDB4ODQ+Ow0KPj4gKyAgICAgICAgICAgIGludGVycnVwdC1wYXJlbnQgPSA8JmdwaW8xPjsNCj4+
-ICsgICAgICAgICAgICBpbnRlcnJ1cHQtbmFtZXMgPSAiSU5UMSI7DQo+PiArICAgICAgICAgICAg
-aW50ZXJydXB0cyA9IDw1IElSUV9UWVBFX0VER0VfUklTSU5HPjsNCj4+ICsgICAgICAgICAgICB2
-ZGQtc3VwcGx5ID0gPCZ2ZGQ+Ow0KPj4gKyAgICAgICAgICAgIHZkZGlvLXN1cHBseSA9IDwmdmRk
-aW8+Ow0KPj4gKyAgICAgICAgICAgIG1vdW50LW1hdHJpeCA9ICIwIiwgIi0xIiwgIjAiLA0KPj4g
-KyAgICAgICAgICAgICAgICAgICAgICAgICAgICIxIiwgIjAiLCAiMCIsDQo+PiArICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIjAiLCAiMCIsICIxIjsNCj4+ICsgICAgICAgIH07DQo+PiArICAg
-IH07DQo+DQo+SSBkb24ndCB0aGluayB3ZSBuZWVkIDMgZXhhbXBsZXMganVzdCBmb3IgZGlmZmVy
-ZW50IGJ1c2VzIGJlaW5nIHRoZSBvbmx5IA0KPmRpZmYuDQo+DQo+Um9iDQo+DQpIZWxsbyBSb2Is
-DQoNClRoYW5rcyBmb3IgeW91ciBmZWVkYmFjaywgSSB3aWxsIHNpbXBsaWZ5IGl0IHRoZW4uDQoN
-ClJlbWkNCg==
+Hi Jacopo - thanks for the comments
+
+On 08/07/2025 14:10, Jacopo Mondi wrote:
+> Hi Dan
+>
+> On Fri, Jul 04, 2025 at 12:20:19PM +0100, Daniel Scally wrote:
+>> Add helpers to run the new media_pipeline_started() and
+>> media_pipeline_stopped() functions. The helpers iterate over the
+>> entities in the pipeline and count the number of video devices and
+>> compare that to the pipeline's start_count() before acting. This
+>> allows us to only run the media pipeline callbacks in the event that
+>> the pipeline has had video_pipeline_start() called for each video
+>> device.
+>>
+>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+>>
+>> ---
+>>
+>> We could take this further perhaps and include the equivalent routine
+>> in video_device_pipeline[_alloc]_start()...if none of the entities
+>> involved have .pipeline_started() or .pipeline_stopped() operations it
+>> should be harmless, but I'm a bit reluctant to force the choice to run
+>> those operations on users.
+> I know I've kind of suggested that, but after all I don't think it's a
+> very good idea, having this in two steps is probably better. And I
+> like the fact the v4l2-dev layer operates on the video device counting
+> and only relies on the mc layer for the callbacks notification.
+
+
+Yeah me too. Let's stick to this
+
+>
+>> Changes in v2:
+>>
+>> 	- Adapted now media_pipeline_for_each_entity() takes an iter
+>> 	  variable
+>> 	- Fixed the Return: section of the kerneldoc comments
+>> ---
+>>   drivers/media/v4l2-core/v4l2-dev.c | 57 ++++++++++++++++++++++++++++++++++++++
+>>   include/media/v4l2-dev.h           | 36 ++++++++++++++++++++++++
+>>   2 files changed, 93 insertions(+)
+>>
+>> diff --git a/drivers/media/v4l2-core/v4l2-dev.c b/drivers/media/v4l2-core/v4l2-dev.c
+>> index c369235113d98ae26c30a1aa386e7d60d541a66e..f3309f8349664f7296a95216a40dd9d9baae8d9e 100644
+>> --- a/drivers/media/v4l2-core/v4l2-dev.c
+>> +++ b/drivers/media/v4l2-core/v4l2-dev.c
+>> @@ -1200,6 +1200,63 @@ struct media_pipeline *video_device_pipeline(struct video_device *vdev)
+>>   }
+>>   EXPORT_SYMBOL_GPL(video_device_pipeline);
+>>
+>> +static int __video_device_pipeline_started(struct media_pipeline *pipe)
+> __function_name() is usually reserved for the non-locking version of
+> function_name().
+>
+> This seems to be an helper only used internally by
+> video_device_pipeline_started() so I would use a different name
+> something like video_device_has_pipeline_started() ?
+
+
+What it does is count the number of _unstarted_ video 
+devices..."video_device_pipeline_unstarted_vdevs()"?
+
+>
+>
+>> +{
+>> +	struct media_pipeline_entity_iter iter;
+>> +	unsigned int n_video_devices = 0;
+>> +	struct media_entity *entity;
+>> +	int ret;
+>> +
+>> +	ret = media_pipeline_entity_iter_init(pipe, &iter);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	media_pipeline_for_each_entity(pipe, &iter, entity) {
+>> +		if (entity->obj_type == MEDIA_ENTITY_TYPE_VIDEO_DEVICE)
+>> +			n_video_devices++;
+>> +	}
+>> +
+>> +	media_pipeline_entity_iter_cleanup(&iter);
+>> +
+>> +	return n_video_devices - pipe->start_count;
+>> +}
+>> +
+>> +int video_device_pipeline_started(struct video_device *vdev)
+>> +{
+>> +	struct media_pipeline *pipe;
+>> +	int ret;
+>> +
+>> +	pipe = video_device_pipeline(vdev);
+>> +	if (!pipe)
+>> +		return -ENODEV;
+>> +
+>> +	ret = __video_device_pipeline_started(pipe);
+>> +	if (ret)
+>> +		return ret;
+> I would not return ret, as it might take random values betwen
+> n_video_devices and 1. See below on the return value documentation
+
+But we need to be able to signal to the driver three states:
+
+
+1. No errors, but there are still unstarted video devices
+
+2. No errors and there are no unstarted video devices
+
+3. An error
+
+
+So I expect a driver to do a two stage check:
+
+
+ret = video_device_pipeline_started(vdev);
+
+if (ret < 0)
+
+         goto err_out;
+
+if (ret == 0)
+
+         // something appropriate here like run the media jobs scheduler
+
+
+>
+>> +
+>> +	return media_pipeline_started(pipe);
+>> +}
+>> +EXPORT_SYMBOL_GPL(video_device_pipeline_started);
+>> +
+>> +int video_device_pipeline_stopped(struct video_device *vdev)
+>> +{
+>> +	struct media_pipeline *pipe;
+>> +	int ret;
+>> +
+>> +	pipe = video_device_pipeline(vdev);
+>> +	if (!pipe)
+>> +		return -ENODEV;
+>> +
+>> +	ret = __video_device_pipeline_started(pipe);
+>> +	if (ret)
+>> +		return ret;
+> ditto
+>
+>> +
+>> +	media_pipeline_stopped(pipe);
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL_GPL(video_device_pipeline_stopped);
+>> +
+>>   #endif /* CONFIG_MEDIA_CONTROLLER */
+>>
+>>   /*
+>> diff --git a/include/media/v4l2-dev.h b/include/media/v4l2-dev.h
+>> index 1b6222fab24eda96cbe459b435431c01f7259366..26b4a491024701ef47320aec6a1a680149ba4fc3 100644
+>> --- a/include/media/v4l2-dev.h
+>> +++ b/include/media/v4l2-dev.h
+>> @@ -654,6 +654,42 @@ __must_check int video_device_pipeline_alloc_start(struct video_device *vdev);
+>>    */
+>>   struct media_pipeline *video_device_pipeline(struct video_device *vdev);
+>>
+>> +/**
+>> + * video_device_pipeline_started - Run the pipeline_started() entity operation
+>> + *				   for a fully-started media pipeline
+>> + * @vdev: A video device that's part of the pipeline
+>> + *
+>> + * This function checks whether all MEDIA_ENTITY_TYPE_VIDEO_DEVICE entities
+>> + * connected to a given video device through enabled links have been marked as
+> I would use the same text as the one from video_device_pipeline_start()
+>
+> " connected to a given video device through enabled links, either
+> directly or indirectly,"
+
+
+Ack
+
+>
+>> + * streaming through the use of video_device_pipeline_start() or one of its
+>> + * equivalent functions. If so, media_pipeline_started() is called to inform
+>> + * entities in the pipeline of that fact. The intention is to provide drivers
+>> + * with a shortcut for checking whether their pipeline is fully ready to start
+>> + * processing data.
+> Not really a shortcut, I would use "mechanism" instead.
+>
+> I would also specify that:
+>
+>   * entities in the pipeline of that fact. The intention is to provide drivers
+>   * with a mechanism for checking whether their pipeline is fully ready to start
+>   * processing data and call the .pipeline_started() media entity operation
+>   * on all the entities in the pipeline.
+Ack!
+>
+>> + *
+>> + * Return: The number of video devices in the pipeline remaining to be started,
+>> + * or a negative error number on failure.
+> 0 for success as well
+>
+> I would anyway return 0 for success and a specific error code for the
+> three failure cases:
+> -ENOMEM if allocating the iterator fails
+> -ENODEV if not all video devices have started
+> -EINVAL if media_pipeline_started() fails
+>
+> You can document them as (copying from iommu.h)
+>
+> * Return:
+> * * 0            - success
+> * * EINVAL       - call to pipeline_started() failed
+> * * ENOMEM       - failed to allocate pipe iterator
+> * * ENODEV       - pipeline not yet fully started
+>
+>> + */
+>> +int video_device_pipeline_started(struct video_device *vdev);
+>> +
+>> +/**
+>> + * video_device_pipeline_stopped - Run the pipeline_stopped() entity operation
+>> + *				   for a fully-started media pipeline
+>> + * @vdev: A video device that's part of the pipeline
+>> + *
+>> + * This function checks whether all MEDIA_ENTITY_TYPE_VIDEO_DEVICE entities
+>> + * connected to a given video device through enabled links have been marked as
+>> + * streaming through the use of video_device_pipeline_start() or one of its
+> What is the intended semantic here ? The first video device to receive
+> a streamoff() will trigger media_pipeline_stopped() or should the last
+> one do that ?
+The first one should do it, so the first device caling stop should trigger actual stop in all 
+involved hardware.
+>
+>> + * equivalent functions. If so, media_pipeline_stopped() is called for each
+>> + * entity in the pipeline. The intention is to provide drivers with a shortcut
+>> + * for checking whether this video device is the first device in the pipeline
+>> + * to be stopped.
+>> + *
+>> + * Return: The number of video devices in the pipeline remaining to be started, or a
+>> + * negative error number on failure.
+>> + */
+>> +int video_device_pipeline_stopped(struct video_device *vdev);
+>> +
+>>   #endif /* CONFIG_MEDIA_CONTROLLER */
+>>
+>>   #endif /* _V4L2_DEV_H */
+>>
+>> --
+>> 2.34.1
+>>
+>>
 
