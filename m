@@ -1,138 +1,225 @@
-Return-Path: <devicetree+bounces-195539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B791B01FC0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 16:55:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D978AB01F7B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 16:50:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 464A75C399C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 14:54:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C23F81CC055F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 14:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E1C72EB5CA;
-	Fri, 11 Jul 2025 14:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEB3A2E9EAE;
+	Fri, 11 Jul 2025 14:50:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="GLwIa/U4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gkdkEKbz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378EF2EACF8;
-	Fri, 11 Jul 2025 14:52:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F2A28725E;
+	Fri, 11 Jul 2025 14:50:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752245564; cv=none; b=jmlr8sVIi4MUPmlN5Da/QBJOQl8TxQ+XoWBgvitccIShNC7uamuKTHXrsCt8xadt2yRCrpVuuJ9HaMEkvxsnWtNadoVShTjbGouF6CSpOYNhCWHkIvUC/e1tv6yFNFFsY2mlnnvSELZ8q8IWtUDxGeIIL1euq5yhUg76V+Domy4=
+	t=1752245444; cv=none; b=hfE7AsvkzEzfzDt/Vt3yls8fvwLCzpFNjZRWb33SGJNdzEC42LOQmUBcFUk3ZzLrjvgj2j/1rTQMl+RtAkWfIqAs1KOwaW+rj79cHiXC2fhZAZxHYuYflFfew0etp16B8UwM4SN8zJq3OGC0da0oHYQ+KyjU/1kLFN+UOpXrAo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752245564; c=relaxed/simple;
-	bh=q/FVeQueIyKVrnp1NcfhHAttXLTMCRvWb2aBdG6Nx4o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=uT8z//fcLfjR8aAyMtoioqmkFhQ7c43JNvIV4PpV5FTV3n5b1q3UCv1wtTRIkS/uucsqhKwebeg+dsPQL6ZuaE3WV7EdmhEnZFlc36iInv+3ohbOtAUFI/1zkmiiG2epdkbHEl6b4su2QFDTEjoPwBxVVTuZpwaRbVjlTATU+Vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=GLwIa/U4; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56BEHQjM027785;
-	Fri, 11 Jul 2025 16:52:28 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	F0RaanQr/Y01Kr3e9l6yvosGEYhnzl8fsIwEj1CuG6c=; b=GLwIa/U4Pms3zJYJ
-	Vf6J02Gisg1Ta4puNDbzsRHGlPFLIH6DIxCks5O8Xa1cKnjO0hXVB7a4cISVoN1n
-	q8zYShB0re5FueScRBFZN1aQ5rdOfisRaiYktnzX+qK0abR4UCG1yuGbZJOtEV9I
-	X5W6esz3NDy1OWP4hO6pJLsQfdKxn9BMlNqA/DvYXUBaXY2zfZ+zVPtaL9SuiKU7
-	vgVx68hnzZUh5nbPyAhp5JPDt/IqI60gLjHi771kfkVnqRYSMjndzDKt1UYCrx0G
-	6XYxO8IrkeXgCrx0NygjkS++agXq9iYTFatMUGSRUdVHpvE/JGMMdIikmZN92LaN
-	t8o0ag==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47pud3qfjm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Jul 2025 16:52:28 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B7B5C4004D;
-	Fri, 11 Jul 2025 16:51:21 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E9575B56893;
-	Fri, 11 Jul 2025 16:49:26 +0200 (CEST)
-Received: from localhost (10.252.16.187) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 11 Jul
- 2025 16:49:26 +0200
-From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-Date: Fri, 11 Jul 2025 16:49:08 +0200
-Subject: [PATCH v2 16/16] arm64: dts: st: support ddrperfm on
- stm32mp257f-ev1
+	s=arc-20240116; t=1752245444; c=relaxed/simple;
+	bh=f7cDjsfYPdriIgbQb8YGdKasotUmE5cLXTOLFytF0io=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fGQiIoWSFu+ZDHjEcfIrTuGnr1SmJ9KiAvgeZ0tQIFMbumY/iRQC+foDDdV+61BkFzko5ni7v6PcAWdc7wCSmKk1q0GsSEaIxgfO8gctQp7JAPAw0silgSMxEFN0gXIALcqjO7ykp7KbcmJRmSR43e9e0R2QVYtjDJsXQ1vEW6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gkdkEKbz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92E27C4CEED;
+	Fri, 11 Jul 2025 14:50:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752245444;
+	bh=f7cDjsfYPdriIgbQb8YGdKasotUmE5cLXTOLFytF0io=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gkdkEKbzsDiMv4RtOFiBMMGIOCuL14UGF4GvAp0pra/zVrI9un62BvfuR+HbOvvkP
+	 CyubUoCgzdntLhzTrM+QVUTVUg9tUhaTaq8yR5VV9mndHZroNCbA0xruIvY/xWTCgY
+	 Oi0ItRuP/wMULghV4N5z/aXUuCgUM/CGt9RBOui3JhIAvtDvMxISvooZw9A4qwlYxr
+	 XfvZ8ZoS+Sz5z0JNTTID4kxdeNNekl0NTvKuzDDcHyiM8DjRtaLjynaMmGYoPpp1d1
+	 zHOBJZGluzRw1VnRcMeh/b6YyZQh3CQXvbxf1GhN5v93Vz0MJwwYr1wXx+rjfN0jEs
+	 Te9Ev4z08EevQ==
+Date: Fri, 11 Jul 2025 16:50:41 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	andriy.shevchenko@intel.com, =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v11 04/10] pwm: max7360: Add MAX7360 PWM support
+Message-ID: <j6zavgfpiq7s7cnfkghn2y6fv4h4ziqtpyp7igwmovqlyuasoq@hozlyjcpsxth>
+References: <20250711-mdb-max7360-support-v11-0-cf1dee2a7d4c@bootlin.com>
+ <20250711-mdb-max7360-support-v11-4-cf1dee2a7d4c@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-ID: <20250711-ddrperfm-upstream-v2-16-cdece720348f@foss.st.com>
-References: <20250711-ddrperfm-upstream-v2-0-cdece720348f@foss.st.com>
-In-Reply-To: <20250711-ddrperfm-upstream-v2-0-cdece720348f@foss.st.com>
-To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Gabriel Fernandez
-	<gabriel.fernandez@foss.st.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Le
- Goffic <legoffic.clement@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>,
-        =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-X-Mailer: b4 0.15-dev-7616d
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-11_03,2025-07-09_01,2025-03-28_01
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hzchddujgha2ujw2"
+Content-Disposition: inline
+In-Reply-To: <20250711-mdb-max7360-support-v11-4-cf1dee2a7d4c@bootlin.com>
 
-Configure DDRPERFM node on stm32mp257f-ev1 board.
-Disable the node as DDRPERFM will produce an error message if it's clock
-(shared with the DDRCTRL on STM32MP25x) is secured by common bootloaders.
 
-Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+--hzchddujgha2ujw2
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v11 04/10] pwm: max7360: Add MAX7360 PWM support
+MIME-Version: 1.0
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index f987d86d350f..7533b500135c 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -128,6 +128,11 @@ csi_source: endpoint {
- 	};
- };
- 
-+&ddrperfm {
-+	memory-channel = <&ddr_channel>;
-+	status = "disabled";
-+};
-+
- &dcmipp {
- 	status = "okay";
- 	port {
+Hello Mathieu,
 
--- 
-2.43.0
+On Fri, Jul 11, 2025 at 11:29:44AM +0200, Mathieu Dubois-Briand wrote:
+> diff --git a/drivers/pwm/pwm-max7360.c b/drivers/pwm/pwm-max7360.c
+> new file mode 100644
+> index 000000000000..0eb83135f658
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-max7360.c
+> @@ -0,0 +1,193 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright 2025 Bootlin
+> + *
+> + * Author: Kamel BOUHARA <kamel.bouhara@bootlin.com>
+> + * Author: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> + *
 
+A link to the data sheet here would be awesome. I found it at
+
+https://www.analog.com/media/en/technical-documentation/data-sheets/MAX7360.pdf
+
+> [...]
+> +static int max7360_pwm_round_waveform_tohw(struct pwm_chip *chip,
+> +					   struct pwm_device *pwm,
+> +					   const struct pwm_waveform *wf,
+> +					   void *_wfhw)
+> +{
+> +	struct max7360_pwm_waveform *wfhw = _wfhw;
+> +	u64 duty_steps;
+> +
+> +	/*
+> +	 * Ignore user provided values for period_length_ns and duty_offset_ns:
+> +	 * we only support fixed period of MAX7360_PWM_PERIOD_NS and offset of 0.
+> +	 */
+> +	if (wf->duty_length_ns >= MAX7360_PWM_PERIOD_NS)
+> +		duty_steps = MAX7360_PWM_MAX_RES;
+> +	else
+> +		duty_steps = (u32)wf->duty_length_ns * MAX7360_PWM_MAX_RES / MAX7360_PWM_PERIOD_NS;
+
+I read through the data sheet and I think the right formula for
+duty_steps is:
+
+	if (wf->duty_length_ns >= MAX7360_PWM_PERIOD_NS) {
+		duty_steps = 255;
+	} else {
+		duty_steps = (u32)wf->duty_length_ns * 256 / MAX7360_PWM_PERIOD_NS;
+		if (duty_steps == 255)
+			duty_steps = 254;
+	}
+
+(Using magic constants here, but in the end these should be cpp symbols
+of course.)
+
+> +	wfhw->duty_steps = min(MAX7360_PWM_MAX_RES, duty_steps);
+> +	wfhw->enabled = !!wf->period_length_ns;
+> +
+> +	return 0;
+> +}
+> +
+> +static int max7360_pwm_round_waveform_fromhw(struct pwm_chip *chip, struct pwm_device *pwm,
+> +					     const void *_wfhw, struct pwm_waveform *wf)
+> +{
+> +	const struct max7360_pwm_waveform *wfhw = _wfhw;
+> +
+> +	wf->period_length_ns = wfhw->enabled ? MAX7360_PWM_PERIOD_NS : 0;
+> +	wf->duty_offset_ns = 0;
+> +
+> +	if (wfhw->enabled)
+> +		wf->duty_length_ns = DIV_ROUND_UP(wfhw->duty_steps * MAX7360_PWM_PERIOD_NS,
+> +						  MAX7360_PWM_MAX_RES);
+> +	else
+> +		wf->duty_length_ns = 0;
+
+The matching code here is:
+
+	if (wfhw->duty_steps == 255)
+		wf->duty_length_ns = MAX7360_PWM_PERIOD_NS;
+	else
+		wf->duty_length_ns = DIV_ROUND_UP(wfhw->duty_steps * MAX7360_PWM_PERIOD_NS, 256)
+
+This is arguably a strange design, but f_OSC = 128 kHz and the fixed
+period being 2 ms is a strong indication that the divider is 256 and not
+255. If you don't agree to the manual (e.g. because you measured the
+output and saw your formula to be true), please add a code comment about
+that.
+
+When you have measureing equipment at hand it would be great if you
+could verify that the right fromhw implementation isn't:
+
+	wf->duty_length_ns = DIV_ROUND_UP(wfhw->duty_steps * MAX7360_PWM_PERIOD_NS, 256)
+
+even for wfhw->duty_steps == 255. (Which would mean that the PWM cannot
+provide a 100% duty cycle.)
+
+> +static int max7360_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct pwm_chip *chip;
+> +	struct regmap *regmap;
+> +	int ret;
+> +
+> +	regmap = dev_get_regmap(dev->parent, NULL);
+> +	if (!regmap)
+> +		return dev_err_probe(dev, -ENODEV, "could not get parent regmap\n");
+> +
+> +	/*
+> +	 * This MFD sub-device does not have any associated device tree node:
+> +	 * properties are stored in the device node of the parent (MFD) device
+> +	 * and this same node is used in phandles of client devices.
+> +	 * Reuse this device tree node here, as otherwise the PWM subsystem
+> +	 * would be confused by this topology.
+> +	 */
+> +	device_set_of_node_from_dev(dev, dev->parent);
+> +
+> +	chip = devm_pwmchip_alloc(dev, MAX7360_NUM_PWMS, 0);
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +	chip->ops = &max7360_pwm_ops;
+> +
+> +	pwmchip_set_drvdata(chip, regmap);
+> +
+> +	ret = devm_pwmchip_add(dev, chip);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to add PWM chip\n");
+
+Please start error messages with a capital letter.
+
+Best regards
+Uwe
+
+--hzchddujgha2ujw2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhxJL4ACgkQj4D7WH0S
+/k4S6Af+OP9Xr/XyQhfCdozOq2IuZOzTvXZVWWn6sR7p0bRMZDSX1IfwDcvdb63z
+qRUXpBHJaW8grNb+hmwTbRxmHWUCGjhH4VBGUmtfP8fv+QfC35r8ie8Batp8VkOG
+N7+9Z0x5mqd7FLtoJ8TDmxgDzvMzEHyzMdEUmKL/53NxYXpIszBHtB9+5vYszxel
+DaIPmYHyU2JBBAEiSO3LRztZqLOpizDnjhdADLP8ZugJfCTpy5/vymIrc4u3oRxh
+1Mn85JaS8LNhFoVIzBLo35o7yD2eWdrmCRlcsyzExXi7aSJW2o5ZW6ilW4IhovVx
+q+Ox8XFxB7ol5KCtc69MrwYW8HrRAQ==
+=oqCg
+-----END PGP SIGNATURE-----
+
+--hzchddujgha2ujw2--
 
