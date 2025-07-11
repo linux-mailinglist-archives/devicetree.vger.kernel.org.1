@@ -1,162 +1,156 @@
-Return-Path: <devicetree+bounces-195274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D12B011A9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 05:38:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 997E2B011CF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 05:58:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E5087612EA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 03:38:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60F70487B2B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 03:58:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5426019DF5F;
-	Fri, 11 Jul 2025 03:38:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6FC11A00E7;
+	Fri, 11 Jul 2025 03:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h7ktKKn6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="irQ1SmV6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F7216F265;
-	Fri, 11 Jul 2025 03:38:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DCA5182D0;
+	Fri, 11 Jul 2025 03:58:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752205104; cv=none; b=lVg/8Lv0rWCfeYk2EAT6Gp/0dqIiAVLLLIqK0w5kJlryni2Pi50sTEUhdWK/GgGp7dW2ens1lW5mphPEf4k9dnQzRipHUoVkx53O/lprAF8eLPFaXu8u2v6l4j/Kwyka122vOX+/ZQoo28BsOORtX7PJ+ubX6aG9wWUx3aGkK2s=
+	t=1752206305; cv=none; b=jmlM5UXXEU8mQJq1mViCpLRZUm6AP9c4e1QbhTnduqU7wTbKudDDOQMxouu5oWTogdIYF4rn/tXsmuNovuZI5fn+ZH0acW4IVn1nJrqlS+nqiA1T160sz9NzDiwevQkpXfdwEfEcyWnyaG8OiezBPK/ud89Bcbn0EgJvB/sQqww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752205104; c=relaxed/simple;
-	bh=H0Hm8kyQZ6n/N/KRsdcxE9qHNEhDDCeTojZ8XUtvPZc=;
-	h=Date:Message-Id:To:Cc:Subject:From:In-Reply-To:References:
-	 Mime-Version:Content-Type; b=BMGltRBT+QqTbON4oEo4Mrt0ZYGxpJ5Kw7G1UtyX4JWFV4Wuw4EorrNhQIlnWSqXok5g5QxvM6qw7s7aoDPrY07qjiVDEw3uHLSInOrFNUHFI3AODUZ2K+ig5CqHyh7hHgm3vj3S8ra43eG0u/IkzKzwqDZJvIeabsJ42H+Axl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h7ktKKn6; arc=none smtp.client-ip=209.85.214.170
+	s=arc-20240116; t=1752206305; c=relaxed/simple;
+	bh=eCnvz1UlgpG0eJcxw9ECiK+Uk5BVPyIsGzFKnmJ+HQk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XgLHlq2F0mlH0HccpDhEBGBqu/9c03CXKZUY5XPt5V22SedkC2AFPl8noDthaesLn5jFFUn2pA0cROZ5BbhDXyfV7rumuYJVVHE7WSn0jtXsWLsq70if+ks6tB6HYaVpOM3TVGV0oeEFXts8ktG2sples2SzyfIDJh9tgFOodEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=irQ1SmV6; arc=none smtp.client-ip=209.85.167.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2349f096605so21517815ad.3;
-        Thu, 10 Jul 2025 20:38:22 -0700 (PDT)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5561ab55c4dso1714789e87.2;
+        Thu, 10 Jul 2025 20:58:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752205102; x=1752809902; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to:from
-         :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q/Qj70+Qw1ZA0kyE48WMaDv1mNZmCeBb3mdlEQxC1dk=;
-        b=h7ktKKn6yo5z7tz1eZ773Oq5HAjS/gAyGJnQi7QOml8Sa3vuWQi8iHsK+ueRcQe5x/
-         aeJjSdzgGIBf/wassO+Vhh0y7r5BR/2mFSBIVuJ9cX8Iv4NgHrQ8erpbYKayedp749ph
-         ZKsdaUAYtGl+3k7ulfGarIIGzUHWwr4B58jeq7cT1oNJYEcXA77T851SL7c8ssI8/glC
-         /xLrjff88jF6KJCzoz1iFdTLytthGinGonLjE7PC8LRC5IgW3hAgHFXYBwJWNU/GzlhU
-         SANmzSJHVA1GJ24BHX0G/MvHgnPc/crmSI5PZmWEIdi1Fu6eyqlgGrSCwcQcfiiWmonG
-         J5ng==
+        d=gmail.com; s=20230601; t=1752206302; x=1752811102; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=z7CteOKcSR5wpkrtCw/0yNUE4pwZlcXOtUiqDdXOWRc=;
+        b=irQ1SmV6WIcxQgLPS3vUWq2UO+iGVqQMjy5pjb58RlVBaCRUpkwS8IY93Qt/yY2vdG
+         2u2CTqgZgERa2bPTqIxXwfisVfdGtRX6RXNpUzvaOoqrY89nJ03YTC6yI+wg7v126fse
+         0+qFqCYnZTwUpdg7rzQRMLR8x0CAavSBROwUQkZNBRbXA22qzCLuYqLeOb7AqH6qv+f6
+         t0iAb15e3QLnrslGiPcO9INvVzcLg57hmaUWRRTYyJusZoNUIvNtWdQ2Rps9V7vDoDzY
+         JigxgfZKMMYCxuC6Q2tdte5BDL329wY75upyp6YB3sfC5bTMoMeuUgzJr65u84z5M+dg
+         6y8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752205102; x=1752809902;
-        h=content-transfer-encoding:mime-version:references:in-reply-to:from
-         :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Q/Qj70+Qw1ZA0kyE48WMaDv1mNZmCeBb3mdlEQxC1dk=;
-        b=Q1eh68n4gUIvOxvOPg2VBJEEcbyMFrw+oJxoaq7qPHs4lDE0Z8371iEmlkkwcy7iGv
-         3YRpERHmCSYHH2JrHG4xUSEzUYu+vSJ8GkuYzxTwB4i/aFc2jwpLKp9jI1cKB32H69Dc
-         3grepaOpYQCSfXDfrkBR+eGwb4gX506dFvOTyQ/TpfnrxjvEqkAcB8eIcgUeubtl4dgb
-         6uqsTEZsHBK7Xnjt4YChmlT2vYRv3cpH0PYwNc192KW49mQd2WkN9bUKvVYmGeJBeQf2
-         x9KH2IU1d79/HCqeXTdwDf+5seQ7KZ86n5kyMpiMvi5RUdubcJtcGvXVhMxyQTq0dRWp
-         Wnxw==
-X-Forwarded-Encrypted: i=1; AJvYcCURFaw0LwptBj4NL2nXFgxThFZ5oBdiBFMWyUhnRWXJ0durIKvYb/ica22DcpYzSNgHX8Sj2sCw1yge1Iy4@vger.kernel.org, AJvYcCVbcWH8OYh06npX/bp00MB8YOsKB7+/lBPNeW7SRDNLzoarvfUy4awRwWuQnENODk9OUE5jf8YI@vger.kernel.org, AJvYcCWXE0rJ2TMS6E56moHRx6j2JDR4XKOGeOeyjXIAML2taFAUlc1SetGZGvWjiwmrYWm1QEnXIDMZyBik@vger.kernel.org, AJvYcCXrayQ/KLgpKfIN8FBuR7Go4Qrq9dFVJWEW7zQ1n1gNnFIZyNuHS8+hUvGnY9Oig5LBH0rTDPVT5VAYjsqYoTw=@vger.kernel.org, AJvYcCXvSfl2fRbcWQBiNfzsvz/NLU9wrQP/8Ph9a+WlLnHG3n1oMm/y8dxcOfOR2DJ9+1+IXuj8oGX1zIwf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy232ZctqxEcDoAcvoJzz2fHsKh1yGr3U3T8BU1FSUc45qtWlnI
-	rCnnMEBkTwE6abfVXv/AwktO6m17nfbVlMhOoKSjjXw/6Ln72C9HQn52
-X-Gm-Gg: ASbGnctZ9GcnRo5SJUhEd5zoHUcEB/AyiMR/koRKP/TSTEEPqqXPZiBKJe7cYZDJuhs
-	TGpnCCSex85HA27Ci431U3blPTDYQlYHHrUR4+ZCijLtmfvkfD+N9wRH1P6sFowYltwGuUH4It+
-	DvcLj7FaeAQWLoCkKSAlicAUOPGuSx1DCzgDtAbtRNA7wbwfVQVyYQbmOuK+1vzGTg1oyTHw91q
-	56LGR9jfgihEhzu/+dqAdWfmH1AhgXwTK3Uq8wcB/Wg+ETv6vZHRmJtktNVkjefnWbtvAdqBovy
-	JOImHybjOFmI69c1RPCF55w2OdA2Q/k9P1/FhUVCfdgZdzNno1eyVhN2Yfwj40ogIyKJBknI7bN
-	ymh3lPH/tAOSf3vdre2xJ/MMYY2bFQ+vPwdg530ln6g5ViPjn5iUnAVvlp1Kal3ehy8+ydj7zAe
-	5qfImOH8MkvKc=
-X-Google-Smtp-Source: AGHT+IFbi/G/K3dsTgG+PrTxboWCsavDU00apeau7wJJn4YJz0wFVUIjBVHaMM+adNeGlqGczuEsEQ==
-X-Received: by 2002:a17:902:ce06:b0:234:e7aa:5d9b with SMTP id d9443c01a7336-23dee1ae93amr18370575ad.23.1752205101907;
-        Thu, 10 Jul 2025 20:38:21 -0700 (PDT)
-Received: from localhost (p5332007-ipxg23901hodogaya.kanagawa.ocn.ne.jp. [180.34.120.7])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de43318e5sm41033895ad.147.2025.07.10.20.38.16
+        d=1e100.net; s=20230601; t=1752206302; x=1752811102;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z7CteOKcSR5wpkrtCw/0yNUE4pwZlcXOtUiqDdXOWRc=;
+        b=TGbxD1EDKtSrs01EKHEhbbeTCL4CSC+514tyfCxWblyr7q6aOJhk0wlZKqwym6B4K6
+         KKineCRDr4SeVqxJrz0zTOqKhXnNVlVP7XGjXVgtWGQX0kptIGc+zSYDkMzD3H8Z0fR1
+         FV/aJBFcXzW1qxpACDs4fMJjIKF7XsMxKpQfdjM1FqcPk8rhDee5//svCw1vcpc1t+Im
+         brzQIkFXC6jOl67sIOCKJI79zp3MjVx/lSWp9Znz39LYGj8VSpSlAIf5oT+qUPSPmL7s
+         Ta1B2ZK5Ikn3ZptbJuV61MZfYy17Modyb+AEF+7vHE7tKTIetRIMvSw9IFjIWfAkURJN
+         Rrgg==
+X-Forwarded-Encrypted: i=1; AJvYcCWLdOGC8ACmTDDxlMdbP+JkPXSWuL0HneWlpse35lwvLRBSEBD5HbAfd578yP3Mc4ZNe38uFQpc+9Xw@vger.kernel.org, AJvYcCWibPSekpPVUiVDE7JCKP69xzzEqwSeMrw0n1W15qI0dv1oUmpxbdrN8AAu/IG6YNNQ8GPOdA1dr6FIpzrf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMRxgIJ19Yzbvf9BgYQsJRypH+cY6tCnpzlgZbWpnjxLiIokSL
+	pnR6ws5leZisNTBFEDXw0Mcp2X1KDVWrK7+GwghDOv88qJ0TU/7qh62m
+X-Gm-Gg: ASbGncsSr3q4ko9xNF3M5gau9koNsh27YVKvADEVCtdE/4UfbVUyHZ2iJR0q+nxLU9k
+	d/JQ1FDMSkBeK+0CpmSTSTzYMiDDcoZHCFfO7lvpfHI93J2iJ/qYQNbPrg3CPOi5AdiJ1qKkiJF
+	Q3mEq1mgAKTxbwa9duxZWI7iBayFCI9hcvMdmncSmKyz7oxpJXcRPDzCLI81HKYiiKIJ76QR8xp
+	Jj3pwobEmBl+ObFHV6a0G74ZRMocVgq+hqkuhM0xsK3Yu8c6hTv3JVkZ7wlmd79lK0cQA62gJDo
+	JXtcX/2SNx887bMiVnhJidtiVeZUaGHZAv5TnWf30y6ts20eYcDlPwgLamT2l3cFkT/gdZoAv2R
+	kO3JY2jZyHf4=
+X-Google-Smtp-Source: AGHT+IGqjUC6+LzbpSLGosnqY439fvJxlZO9uR+Y1dc/WDIuRFhbiDBiR8QodGnlwa6oUPkK4Xs4TQ==
+X-Received: by 2002:a2e:be11:0:b0:32c:ef7a:ccf9 with SMTP id 38308e7fff4ca-3305348a960mr3406601fa.32.1752206301782;
+        Thu, 10 Jul 2025 20:58:21 -0700 (PDT)
+Received: from junAIR ([212.192.12.80])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32fa2943d46sm4971191fa.40.2025.07.10.20.58.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jul 2025 20:38:21 -0700 (PDT)
-Date: Fri, 11 Jul 2025 12:38:05 +0900 (JST)
-Message-Id: <20250711.123805.1564352128148532368.fujita.tomonori@gmail.com>
-To: tmgross@umich.edu
-Cc: fujita.tomonori@gmail.com, alex.gaynor@gmail.com, dakr@kernel.org,
- gregkh@linuxfoundation.org, ojeda@kernel.org, rafael@kernel.org,
- robh@kernel.org, saravanak@google.com, a.hindborg@kernel.org,
- aliceryhl@google.com, bhelgaas@google.com, bjorn3_gh@protonmail.com,
- boqun.feng@gmail.com, david.m.ertman@intel.com,
- devicetree@vger.kernel.org, gary@garyguo.net, ira.weiny@intel.com,
- kwilczynski@kernel.org, leon@kernel.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, lossin@kernel.org, netdev@vger.kernel.org,
- rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] rust: net::phy represent DeviceId as
- transparent wrapper over mdio_device_id
-From: FUJITA Tomonori <fujita.tomonori@gmail.com>
-In-Reply-To: <DB77AQ53YOFK.VBSAP1H7FFB9@umich.edu>
-References: <20250704041003.734033-1-fujita.tomonori@gmail.com>
-	<20250704041003.734033-3-fujita.tomonori@gmail.com>
-	<DB77AQ53YOFK.VBSAP1H7FFB9@umich.edu>
+        Thu, 10 Jul 2025 20:58:21 -0700 (PDT)
+From: iuncuim <iuncuim@gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.or>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Subject: [PATCH v2 0/3] arm64: sunxi: a523: Enable Mali GPU
+Date: Fri, 11 Jul 2025 11:57:26 +0800
+Message-ID: <20250711035730.17507-1-iuncuim@gmail.com>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Tue, 08 Jul 2025 23:23:20 -0400
-"Trevor Gross" <tmgross@umich.edu> wrote:
+From: Mikhail Kalashnikov <iuncuim@gmail.com>
 
-> On Fri Jul 4, 2025 at 12:10 AM EDT, FUJITA Tomonori wrote:
->> Refactor the DeviceId struct to be a #[repr(transparent)] wrapper
->> around the C struct bindings::mdio_device_id.
->>
->> This refactoring is a preparation for enabling the PHY abstractions to
->> use device_id trait.
-> 
-> Should this say "the `DeviceId` trait" (different case)?
+This patch adds gpu support on devices with a523 processor.
 
-Ah, I changed it to the RawDeviceId trait.
+$ dmesg | grep panfrost
+[    3.826968] panfrost 1800000.gpu: clock rate = 432000000
+[    3.832305] panfrost 1800000.gpu: bus_clock rate = 200000000
+[    3.838353] panfrost 1800000.gpu: mali-g57 id 0x9091 major 0x0 minor 0x1
+               status 0x0
+[    3.846050] panfrost 1800000.gpu: features: 00000000,000019f7, issues:
+               00000001,80000400
+[    3.854134] panfrost 1800000.gpu: Features: L2:0x07110206 Shader:0x00000000
+               Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
+[    3.866011] panfrost 1800000.gpu: shader_present=0x1 l2_present=0x1
+[    3.874108] [drm] Initialized panfrost 1.3.0 for 1800000.gpu on minor 0
 
->> Signed-off-by: FUJITA Tomonori <fujita.tomonori@gmail.com>
->> ---
->>  rust/kernel/net/phy.rs | 53 +++++++++++++++++++++---------------------
->>  1 file changed, 27 insertions(+), 26 deletions(-)
->>
->> diff --git a/rust/kernel/net/phy.rs b/rust/kernel/net/phy.rs
->> index 65ac4d59ad77..940972ffadae 100644
->> --- a/rust/kernel/net/phy.rs
->> +++ b/rust/kernel/net/phy.rs
->> [...]
->> @@ -734,18 +733,20 @@ pub const fn new_with_driver<T: Driver>() -> Self {
->>          T::PHY_DEVICE_ID
->>      }
->>  
->> +    /// Get a `phy_id` as u32.
->> +    pub const fn id(&self) -> u32 {
->> +        self.0.phy_id
->> +    }
-> 
-> For the docs maybe just:
-> 
->     /// Get the MDIO device's phy ID.
-> 
-> Since `as u32` is slightly redundant (it's in the return type, and that
-> is how it is stored anyway).
+Since there is no support for image output yet, it may be difficult to confirm
+functionality. This can be done by running weston with vnc access using
+the command:
+$ weston --renderer=gl --backend=vnc --disable-transport-layer-security
+--xwayland --width=640 --height=480
 
-Yeah, fixed. I used "PHY" for consistency with other comments.
+After that I was able to run glmark2 with a terrain result of 30 fps,
+while I can see that there is a load on the GPU in nvtop and the CPU remains
+unloaded.
 
->>      /// Get a `mask` as u32.
->>      pub const fn mask_as_int(&self) -> u32 {
->> -        self.mask.as_int()
->> +        self.0.phy_id_mask
->>      }
+Tested on x96qproplus and walnutpi 2b devices.
 
-I also updated the above comment
+Based on v6.16-rc5 with patches:
+https://lore.kernel.org/all/20250628054438.2864220-1-wens@kernel.org
+https://lore.kernel.org/linux-sunxi/20250628161608.3072968-1-wens@kernel.org
+https://lore.kernel.org/linux-sunxi/20250627152918.2606728-1-wens@kernel.org/
 
-/// Get the MDIO device's match mask.
+Changes from v1:
+- added compatible to the documentation
+v1: https://lore.kernel.org/linux-sunxi/CAGb2v67Pu7CTJx3K=3CVSbQ9mNB-4Vrq+iaA+hUWtxdwS2aD0Q@mail.gmail.com
 
-> One optional nit then:
-> 
-> Reviewed-by: Trevor Gross <tmgross@umich.edu>
+Mikhail Kalashnikov (3):
+  dt-bindings: gpu: mali-bifrost: Add Allwinner A523 compatible
+  arm64: dts: allwinner: a523: add Mali GPU node
+  arm64: dts: allwinner: a523: enable Mali GPU for all boards
 
-Thanks!
+ .../devicetree/bindings/gpu/arm,mali-bifrost.yaml |  1 +
+ arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi    | 15 +++++++++++++++
+ .../boot/dts/allwinner/sun55i-a527-cubie-a5e.dts  |  5 +++++
+ .../boot/dts/allwinner/sun55i-h728-x96qpro+.dts   |  5 +++++
+ .../boot/dts/allwinner/sun55i-t527-avaota-a1.dts  |  5 +++++
+ .../dts/allwinner/sun55i-t527-orangepi-4a.dts     |  5 +++++
+ 6 files changed, 36 insertions(+)
+
+-- 
+2.50.0
+
 
