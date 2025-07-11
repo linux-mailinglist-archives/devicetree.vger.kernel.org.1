@@ -1,121 +1,109 @@
-Return-Path: <devicetree+bounces-195592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C951B02366
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 20:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1680AB0236A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 20:15:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90709A62A5F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 18:13:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6621A62B67
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 18:14:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B94442F2351;
-	Fri, 11 Jul 2025 18:13:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFA42F2352;
+	Fri, 11 Jul 2025 18:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YC28NgXK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y+POjVBR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5982F1FF1
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 18:13:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F8832F1991
+	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 18:15:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752257614; cv=none; b=cQ66OkuEZMUvTh+eMfDCvUQtfyieSQ8bINhht2tRnjPz2ZvV5Rk8ZTECk+FdEd/pds+rOmwJk8W5RPaayz/okzqaLrtMXp/ZfveGMFpJi/k3B6ocq4b4YIkc2VW24jtiF7jke1zN6TcKGc743NVZqPz7T2KDrbrBf5yLUneO7XI=
+	t=1752257722; cv=none; b=p26bBYTAPwGPHgwsTEL3hVZ+ia0Wc291/MMOU8av0JYLRL3ymGYCRKGoiPT6+PryjWm+6ofOEcr5cnN9lNhdnx+0f9+Kx307omUVzkUEAF49MLRTMf3W5RjXjhuFN+ccOTle0GHaC4MHp3CCp6YGg+od0rlKUzdDZyIFJGdVqWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752257614; c=relaxed/simple;
-	bh=z0FAINHMrT/mXWSwLLS5ITQiWYyUydXHEsbDIHwLkNQ=;
+	s=arc-20240116; t=1752257722; c=relaxed/simple;
+	bh=i4q8ecDX3sUGA1MLG8h4tOnFmYn0XuYJcSIMOO9sLLY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=svFcpDhflPYYIJhSkLKDolcrY+x1PwMWMy33inrlWYI3L+JaWA0j6gOwoobSNL3RgTQaDknhufELgCV1uaPD0SWMgkOC43iK2TY5mJY/63s4eUiZ/tCwoKGG8rjCWegEACkAPAFLGYGIBpj87v8bTKjR1W8eOT3f7ARkuyp25vk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YC28NgXK; arc=none smtp.client-ip=209.85.208.180
+	 To:Cc:Content-Type; b=YGVJj/1kZhY9cE+F1oP+TLLo7OShVyZe5+0nYpb/AEoZ+yFgQ8Ce37job/9+WirgbOsuGIH0kpoXeFZnk6moNemGH0INwrDECTsZlQ1zRxXVdtcTgOQMeQu1xHKUzSAzfxyfRqsAG4t6zjUO1rt1EMr/WphSTNyDcgG3easxPRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y+POjVBR; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-32ce1b2188dso22472211fa.3
-        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 11:13:32 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-32f144d0db8so17144601fa.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 11:15:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752257611; x=1752862411; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1752257719; x=1752862519; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=z0FAINHMrT/mXWSwLLS5ITQiWYyUydXHEsbDIHwLkNQ=;
-        b=YC28NgXKQU4MfHLvCSx4TbwDnLLJcR2LnuM3/xqBffmNhSypes9jr+FEFrhYacYNnX
-         ONMLcxbGH6zFMbUXq5QnB8IzjRG6EGPCvemyD3rpJEReBZLFTdGypsmMAWPICJEfk/qq
-         Tw5jL3dwkKQ0rAl6FZ1h8APqPT1q8vo+gz1GeVz2kOoeV/6P2dty3DkAoygFIwtA6vi1
-         O0GgWTRJyjl+ymyFczLMvrnh0BlKEjceif6EpqjTbYNUAkrSfo5mMx0hTlQ3EZxNcu7w
-         lZT9j2DqOaoD3RI37EwH8OpmI1NvrSZMckDm0TyOmHiTKNu0tdaFpD3Rv+lwqULW6X9B
-         MUfw==
+        bh=i4q8ecDX3sUGA1MLG8h4tOnFmYn0XuYJcSIMOO9sLLY=;
+        b=y+POjVBREK/2j/fBXbbuU78AHzy98MPxVnMfpwLdpp1tT73QnN2I+MSQLSuljMLBBF
+         w1aS87Cl0qGbmpQmNjBUBRY8RC0BQCjtyiG3EeVNKm5tiLPizj5BTaz8ohlMtUK7t8If
+         XIg6V4rWSzg3sA0vboVNP1OsgMi1KhbRPqTF5LA6dLTPtX2DwwBG1JDR7Zvv2HJ8aCUp
+         3P/qG7Xf/Xx6QWwMo8CzqINMyA1ctPO8AViCddyrCkvO+KzXbxdhQZPm50nWFrhqqBmp
+         sbNgRJrhGdwefOIuydN2ZHzjDrpXD1pUj+EZKY5xUIGcqtyfw98+o8nBGGC+Eht79TnT
+         vQrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752257611; x=1752862411;
+        d=1e100.net; s=20230601; t=1752257719; x=1752862519;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=z0FAINHMrT/mXWSwLLS5ITQiWYyUydXHEsbDIHwLkNQ=;
-        b=Nz1XanAU5Vu1HcJXSwJw12EdpGO1ZLX6E9xCk5bXoz2uhn0ws5LYuNGnRUq83PEvT0
-         kZhwiXJKnhOAficvoYGkx7Xlfree0iHxUDTc6PqTVxBXVHMyYUuH+IdSokQ5cB1S/u38
-         n2u+u1IdCE15TIuRDPaDSXEdNjywGzICyxAostpZMHr8bR5915gNWt6d5WTVqtlSicaS
-         fTNWpYGouFKWxLnDFRM9P1emm9SBfb6YAEeWpE3DMW/e/P3WatAMsJOL+EG20/VpgkMh
-         HOY42mgCq5ZyKhHy+SyUW0Qj069rGDADSGgYbi1nZYYqn1whOoOJFm3k0mcckPWRM0Ex
-         ja2A==
-X-Forwarded-Encrypted: i=1; AJvYcCVqM82DY9x/XS0uZkY8HP/9VWYYM+BHqTp7rn/J6MWHPKcNEsugppp9sGNNxKDZ8nCfaliXXIUNbIdH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzStQHGYD37/+5ZOfFRUBf19v70Uni6lGn2vS/V7hFFXMFgLAXQ
-	xAj4Z8mzrXV9hITteHgi3LBvUT/s2c8i/+T4FhJ2ukDelQLpoijRmC/kkHN4SGfx0Fskxyl/sm1
-	vzdOLHHJa4uziTmIeAxvzk9QzoAMDTpS8EAO2HfUN2w==
-X-Gm-Gg: ASbGnct0AcONKqIaRwSDviO/7sthFwYH2z0detr4Lp57DzfufbIq0KG71QbJhFS5kBp
-	C0WYgf6IBoHF+1JcMUxQgc2a9snVmmAIW6IBV6xC2Evs6s+N0kLY9w1BvxO23Fy+mEPoA4HZMyd
-	CY/dU+UGLsgox0cjqzGwIc6UKT8fWCIhs4uBADWcXHIhs1bFo2TNHRcHyhgkuND+6VBdtfhtVFY
-	+hfeyr/EpZ2FY1jBg==
-X-Google-Smtp-Source: AGHT+IFMuBYHoAN7PSAu45/CxJxrRKT9IAF0+U0X5QcMw4v0k+dSQgdIENHIG/kIkaAP4cg8rAILHrMXlK3Z+M3lDSE=
-X-Received: by 2002:a2e:be83:0:b0:32a:85ad:2162 with SMTP id
- 38308e7fff4ca-330532d0602mr13483321fa.7.1752257611064; Fri, 11 Jul 2025
- 11:13:31 -0700 (PDT)
+        bh=i4q8ecDX3sUGA1MLG8h4tOnFmYn0XuYJcSIMOO9sLLY=;
+        b=oRPmsPyIU1pCjwrIsyvGi+AHY/BEMJ+TS0KQzxM8myb+MKneZQOw6hNvf2P1p/Oj0S
+         ywrkAbjXMu5qsLzc4u5rQbOClGKFtUv/N6ilH3rLuU/9EgxQlQ2fR9fspCd6nDJeWkFl
+         TYNxV54/5PMxiimdBPzc3ByFmA1OXR/vz2r1n2SxV7JA53w93V2QnD8oeT3+sbRKCWuX
+         kH82JeAhYsngM/FL/iS8ynfEM8SNhiUHRC0MOv7Zk4MjqxsurLTLUuoFXVnvRbhwfuZZ
+         DchZLMiZ7G+2MEYXtMBNnkWxAxIDdmWLMwVbbYNrWFWjaHIVRNhAWsRVYCBf3i2fcXGi
+         H5fA==
+X-Forwarded-Encrypted: i=1; AJvYcCVAp1KHsXnxNHpkge3pb8aUEsq4jugoE3ls5nODTbjXI0fPSf8dKSWlFht5ZrOJ7ZHIdxExBgubXRHJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwiZx+9FgTdJqG5YWNj4EkDiMG+sDWENDa3bioOQLG3XevmAm6z
+	HmNGDjRGKiocVnTIqflSp56Dlm15/lTL3IF+CBTmn4wfmKJmf3IB+nLT7udUMFiW6vjMAl+2/Kz
+	0iA4OQTnQTSAzlLRaHDX7mSvYZkQ45dMB8jC68XSVfQ==
+X-Gm-Gg: ASbGncsRw625+j9X8mUTQvdkKCQVbWQatZcT/KYpNBSOoy56gPaDTHOwm4ZWxh4wwP9
+	nhDBbCrM556ib1v+miHHGw4oU8h4SYoI4KKslQ/wWS3WX4waEYlfnKxFzbDdoFSSJJyMQsxEwbb
+	gkR7kaXo1PhGowzjQ/DwiUEg6jqR59Yy+P3SZ2P420ewVOIv8yud0/YmaJiWNnbW/q3Ko2Hupfl
+	4hJY3LoAnLIt5WVHA==
+X-Google-Smtp-Source: AGHT+IFtq0bcfpLwnjm7lAoyNxi5hVnB1TfQxkFuJUC5AXv/cwm7YJlwpXzO1clCMxtNVbmVPeTDx2oSZPEXUcqu/sw=
+X-Received: by 2002:a05:651c:b0c:b0:32b:968d:2019 with SMTP id
+ 38308e7fff4ca-330522ae9a3mr17428231fa.18.1752257718550; Fri, 11 Jul 2025
+ 11:15:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250626080923.632789-1-paulk@sys-base.io> <20250626080923.632789-2-paulk@sys-base.io>
- <20250704233535.4b026641@minigeek.lan> <20250705153825.2be2b333@minigeek.lan>
- <aGm8n_wJPiGk85E4@collins> <CAGb2v66s-nWA2dFRpgX6DbDET3dWOm1jPKWm1k9SmGSqhTWoWA@mail.gmail.com>
-In-Reply-To: <CAGb2v66s-nWA2dFRpgX6DbDET3dWOm1jPKWm1k9SmGSqhTWoWA@mail.gmail.com>
+References: <20250707165155.581579-1-paulk@sys-base.io> <20250707165155.581579-2-paulk@sys-base.io>
+ <20250708003236.059ba94d@minigeek.lan>
+In-Reply-To: <20250708003236.059ba94d@minigeek.lan>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 11 Jul 2025 20:13:19 +0200
-X-Gm-Features: Ac12FXygNb9Ktxv1UdTrJbOKhH4l5d3j_PT8j5_pIzh_inLuA-iMK4HxDAsC-Wg
-Message-ID: <CACRpkdZSXRxhNORJv5TTaf=B5dpUgXfL-PBW1qH7uKC24o=Heg@mail.gmail.com>
-Subject: Re: [PATCH 1/5] pinctrl: sunxi: Fix a100 emac pin function name
-To: wens@csie.org
-Cc: Paul Kocialkowski <paulk@sys-base.io>, Andre Przywara <andre.przywara@arm.com>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
+Date: Fri, 11 Jul 2025 20:15:07 +0200
+X-Gm-Features: Ac12FXytqUPkCHhoaHentXWpf1pNxNpNZTLS_vr2xp21e1XJ93lgB-y8FM3uD_g
+Message-ID: <CACRpkdZjbGLiZYLYxz5UoMXyuhv7vBipy7YRkhMYUfZLgXr_ag@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] Revert "pinctrl: sunxi: Fix a100 emac pin function name"
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Paul Kocialkowski <paulk@sys-base.io>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jul 6, 2025 at 5:04=E2=80=AFPM Chen-Yu Tsai <wens@csie.org> wrote:
-> On Sun, Jul 6, 2025 at 8:00=E2=80=AFAM Paul Kocialkowski <paulk@sys-base.=
-io> wrote:
+On Tue, Jul 8, 2025 at 1:35=E2=80=AFAM Andre Przywara <andre.przywara@arm.c=
+om> wrote:
 
-> > > So I would very much like to see this patch moved out. Is it just in
-> > > LinusW's tree so far? I don't see it in -next yet.
-> >
-> > I don't think the patches were accepted for over a week so we can proba=
-bly
-> > still act. I will send reverts, unless maintainers want to manually rem=
-ove
-> > these commits?
+> > Fixes: d4775ba60b55 ("pinctrl: sunxi: Fix a100 emac pin function name")
+> > Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
 >
-> I can drop the dts patches from the sunxi tree. Linus might be able to
-> drop the pinctrl patch.
->
-> You definitely need to send a revert for the DT binding patch that is
-> already in net-next.
+> many thanks for sending this, it looks good to me now. I just wonder if
+> the original patch can be still backed out, I think it would be still
+> time before the v6.17 PR?
 
-I dropped the patch from the pinctrl tree, no problem.
+Yeah I just dropped the patch :)
 
 Yours,
 Linus Walleij
