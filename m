@@ -1,76 +1,88 @@
-Return-Path: <devicetree+bounces-195341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5399EB014C6
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 09:35:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7FB3B014CD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 09:36:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D65C1AA7633
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 07:35:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 481E93ADDC0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 07:36:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2D01EE7DD;
-	Fri, 11 Jul 2025 07:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B095D1EEA54;
+	Fri, 11 Jul 2025 07:36:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="StSQw2gM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pDiyKLTj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B7AE197A6C;
-	Fri, 11 Jul 2025 07:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA5D1EE7A1;
+	Fri, 11 Jul 2025 07:36:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752219312; cv=none; b=RHuw8xzL4PeJCaloZuEHeR3l43x4IePWNd/kmsLSG3aY9kKo20YgPMb1BhcoEUEC6ppBQU7zWtERaENYiuj09H/t3YyB9pf9aJTDyWA3DoseiOBcc5uzScnCqE+Ydav2I4AidQoFQcrMRjsb69/p8B9yGkb6Kp+IODPGWi960dY=
+	t=1752219404; cv=none; b=A4LFswNRR5dkEH0GDUgZoVTZygSMZA14iM3+OKa8KRMy6D0R9bhgZJ8KXqyzDY1IWFFaUZp3btttyhAPNLiquP9vbcopMs8OvL3F+Dp3bOwWkfv8+J0BQPYVav6677XxmtmLExjkftzOHjnYl6i/m2wh1U9kA6gAEvMFL1fOnQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752219312; c=relaxed/simple;
-	bh=IDr+uCskBBsYHok+zDrGdCvQqY8RroogVxQVJtuysK8=;
+	s=arc-20240116; t=1752219404; c=relaxed/simple;
+	bh=a0wdQROj3hyxjpHmI3TPp1B/1v9dnKkpod7Q3zxg27o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gPieAMk+IVreQnwlKcLEb71vIGMFL32VQIrATeVng1RfWv9LbjoguV/hOIDLK/lIJ2NVgCmcjFqw1xzQL4n71Y2EspCYw2Qczuc9bAvminDGqwX4d3/kQrbl6FQMsN2iFQ5v1YiXTDh7nUHks6b/PmTvez0EQbqPSo3pDjAO7yc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=StSQw2gM; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=JCOrXCKgge6QOZkLglkzmUiuLURITUpakbtlFPV6PUU=;
-	b=StSQw2gMDVcKBlj/kC6pXaz74v2b/6RJZmQOmPuvZ5U9poIWWbaLWyKnIREPGs
-	9xtId/de7VmDDL2cJ9fxdZQfq8pcFnrZjc09LVg5WMz0Mn86efAX/DE7uYulYou7
-	jb7d2wY0AP+uwA1AWfKZSQTrWHtK/v0smcIMAFAzUk+ZA=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDnzyKKvnBopsxSAA--.57501S3;
-	Fri, 11 Jul 2025 15:34:36 +0800 (CST)
-Date: Fri, 11 Jul 2025 15:34:34 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: lx2160a-qds: add the two on-board RGMII PHYs
-Message-ID: <aHC-ir_1X0RO6MJF@dragon>
-References: <20250707153331.1372606-1-ioana.ciornei@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ou7dClAW4i9Etu2VgHSC9yQFojiHxF+gUrjk9t7xwG/H1PCZakEJn0wlOz4U1hL4/1qP05Rfg/DiVT+ycojZ1cXrxVdiHEh/FP1mYTCbb4DhvEKDWj+3QyMsVjUGApTCaPy2cqIo6evkDqdY4kPyVFT4Z6mNdOhkqMj255Z9Tqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pDiyKLTj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A59FC4CEED;
+	Fri, 11 Jul 2025 07:36:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752219404;
+	bh=a0wdQROj3hyxjpHmI3TPp1B/1v9dnKkpod7Q3zxg27o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pDiyKLTj2+sXbOPoA09zNCj+YoGUJjOjlVrtsiy2CXqLzoOX57nGU7EqPOQre5vS5
+	 SA9h4C+3e0Itmc0CPM/zi7oX76RjAbolfE8D1d8V6CHKfAbiXJnudy5TmDfu2QMuNP
+	 y5L9Ese8GdUsfdKg9WekbMeczMdcyvsPUBBsN9boSbSzQovZVqAsCBRiWoINqgINJ7
+	 vYFi2Pexu7Sl1acSNEPKZiYH/RUIQjzmcNmIxTcnDXIiZM28G/+QHuqjpiEmKSpvqR
+	 QzR9ipvKvQR7nUJh2Sq2wINeUPQO3Y0XtsJGgt20qywberxIUO1y6y8sXM93YskG9H
+	 2d+YQDEjcDTZg==
+Date: Fri, 11 Jul 2025 09:36:41 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, chester62515@gmail.com, mbrugger@suse.com, 
+	Ghennadi.Procopciuc@nxp.com, larisa.grigore@nxp.com, lee@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com, ping.bai@nxp.com, 
+	gregkh@linuxfoundation.org, rafael@kernel.org, srini@kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, s32@nxp.com, clizzi@redhat.com, aruizrui@redhat.com, 
+	eballetb@redhat.com, echanude@redhat.com, kernel@pengutronix.de, imx@lists.linux.dev, 
+	vincent.guittot@linaro.org
+Subject: Re: [PATCH v7 01/12] dt-bindings: mfd: add support for the NXP SIUL2
+ module
+Message-ID: <20250711-fluorescent-malamute-of-glory-b1c585@krzk-bin>
+References: <20250710142038.1986052-1-andrei.stefanescu@oss.nxp.com>
+ <20250710142038.1986052-2-andrei.stefanescu@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250707153331.1372606-1-ioana.ciornei@nxp.com>
-X-CM-TRANSID:Ms8vCgDnzyKKvnBopsxSAA--.57501S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUrwZ2UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIQwJbmhwvoxSOQAA3L
+In-Reply-To: <20250710142038.1986052-2-andrei.stefanescu@oss.nxp.com>
 
-On Mon, Jul 07, 2025 at 06:33:31PM +0300, Ioana Ciornei wrote:
-> Describe the two LX2160AQDS on-board RGMII PHYs on their respective MDIO
-> buses behind the MDIO multiplexer.
+On Thu, Jul 10, 2025 at 05:20:24PM +0300, Andrei Stefanescu wrote:
+> Add the dt-bindings for the NXP SIUL2 module which is a multi
+> function device. It can export information about the SoC, configure
+> the pinmux&pinconf for pins and it is also a GPIO controller with
+> interrupt capability.
 > 
-> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+> ---
+>  .../bindings/mfd/nxp,s32g2-siul2.yaml         | 163 ++++++++++++++++++
+>  1 file changed, 163 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,s32g2-siul2.yaml
 
-Applied, thanks!
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
