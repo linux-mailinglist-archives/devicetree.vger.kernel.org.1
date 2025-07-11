@@ -1,159 +1,143 @@
-Return-Path: <devicetree+bounces-195604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08BCDB0240C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 20:47:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77CCEB0241E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 20:51:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19B335C808C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 18:47:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D5B2A463C0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 18:50:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C9BBA50;
-	Fri, 11 Jul 2025 18:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245F31DC994;
+	Fri, 11 Jul 2025 18:51:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iOWiCejV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD22E13B590;
-	Fri, 11 Jul 2025 18:45:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56F6B42A9D;
+	Fri, 11 Jul 2025 18:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752259531; cv=none; b=mIMG4+v22X/1b0CqunYUyU3k+29P3e3+s5vU1yrlhHwEkW1vNhdO0E4RaAuEM7DNlGCSA3+O1gfKzjFcASMoyXg1LL3Vx9JNkIOKXFBsde+NlozEGM4FQaRi4kBHYXlBLVs6QOgdeZ0ara4dWQT3dq/4mVKVmgqq87cLTbm3H7w=
+	t=1752259863; cv=none; b=loZa4dvIJJiCNbOR7LgDSmI3HF1VP37n6wTmIl9YsX3XERrQPLy8M7YMUHl8klHXEcFdTjePV3fI5BBprKlsPo5R7KCxVdSz/8MK2GQjzT5AMWsOL0PCARQKeSowiXS7cPUJ9KQ7Eo0EYikZ5VUIe2zIQ3fH1FYKKEZyxw/piKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752259531; c=relaxed/simple;
-	bh=TXAh5cyeJbfSOXxY8gFolHNGXXjw3jndn5t9U7NmQ7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i7AAQmHsCtULnnvp1dyHStQW/PJap23dn1vQGaFwdyhRD4K8VPMBlVBlmdoRI3/MP8lFH1pmLDK0XO+tdD7k4qb0Q1pFNQH/YbjQOkf8H1rlHuggDppd0FVEXtJR/gxv54vzunEBnObTZPgYUKainIG2WLJc6F7JvfrZRH3xiEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9BFCA16F8;
-	Fri, 11 Jul 2025 11:45:18 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 037533F694;
-	Fri, 11 Jul 2025 11:45:26 -0700 (PDT)
-Date: Fri, 11 Jul 2025 19:43:38 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: iuncuim <iuncuim@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.or>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 3/3] arm64: dts: allwinner: a523: enable Mali GPU for
- all boards
-Message-ID: <20250711194338.52532eca@minigeek.lan>
-In-Reply-To: <20250711035730.17507-4-iuncuim@gmail.com>
-References: <20250711035730.17507-1-iuncuim@gmail.com>
-	<20250711035730.17507-4-iuncuim@gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1752259863; c=relaxed/simple;
+	bh=W9lBABHVu1ZqV5tgAeODhf823CeWjZ+bm3tKrupqntc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=byiYVriwHM0iNOJNP/SWzNMmm0c+nOEK0kyneMdyM6jvdBmLC4B+pqSK8aqqRR1AVAgH6BGQqukSwvHkpCztDf1d4fFJF3ll760jXhr41joCLS/u9txuHfXuj1TyRepksaVBkyn1aHq4VhaXrC6ykHY4HdB5bQEBagv9MjSb5DI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iOWiCejV; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ae6f8d3bcd4so296612266b.1;
+        Fri, 11 Jul 2025 11:51:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752259859; x=1752864659; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kZQHanT8tZIknmdWw3icjNoNbayNbgeABsx8BPJoAwU=;
+        b=iOWiCejVgCscR5D2VNIXLNlTn2A9X4E+qTaLilJhQ0skPk8ErEVRw6mPIueRTdHHng
+         rkFxbC+ig9KnonW2OGrUHXmKibLWKTnuLzSZ/AhmOz3XLDllPsgKU/XQcjhP0UsKmOFr
+         /+0Nubv1Y/9f/zREy3PF+YVc0GHQGBLN/NxFHeHICvdDcBAqRv1fXCUDm2a5oynmCz7e
+         EHv3Tj3j3Owg+l8aiyMpN2Sn2L51WzGP9EdURQF0b3d1dBif/HCkLOwF5k6vUUo0EzhZ
+         3XnMPdA7r2+oqBRYNYG4l2yU2bf+4cyKgm/sUKl6Lwkrylna9CIkt9IbhMcHFPFHeXHG
+         5cOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752259859; x=1752864659;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kZQHanT8tZIknmdWw3icjNoNbayNbgeABsx8BPJoAwU=;
+        b=Eo5CqGHlCpDycbBn8hlZXQwTH/n4imbArbJP7+TkkiKse6jy0I/jH1ramD+v0vhsO5
+         8d8f2nglR4TkdZHwbFRKtlMZoOz9Ar0tqofiGaoXZ9Iu8CVu3mTcMCyBcDXexshDcEP7
+         YwWrvGhB1oxTLpT9rO2Hl++igZPRbsfkk1QQv2qMMeN0pYPcZxgZQ12KC99ZzGc66iJg
+         Se2Rjd2btVXN/3svbGfGVor+8L6UYru/KNBtDABsWLXXTCLbzonzdPH07Oj3vt6KpZcH
+         ni2O6hkRUrYQ4YLQf5vXeNbKuDHQF4c7rvrvEyE2aQR4EMMj/zsmLYJP/l3ITLXem/vW
+         E2gw==
+X-Forwarded-Encrypted: i=1; AJvYcCX3/ISQDtZCFtQDmWEIClHc1yELjJrfZu3Xepob5NTzI554Z+m3E/cvCLRBP0GFAP87iGGSCtKJLYDx@vger.kernel.org, AJvYcCXYhr/+3mcCVM63OAWXwevy5HlCmIZHZLw+TGo5t0tmW26u52cnVI6JvH4VVrHPcL8j77f7llycHSZIuHsz4g==@vger.kernel.org, AJvYcCXbjY9Zqlm9mzulhHt/zwWmZ23ES/HX5xXebH9CxVHnVojkfRX5msROJGwvRg/sCxJ0ij8lPSssju4sI1o7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3b76yIxClA4cZmEKr7jDv0Wi2f5RmAL6WSZOozDSLMKwurlT+
+	wyz9LM2ctXvGbkFBiMhBZxnhoZViW1BpB3XrVcuXEdS7qAU3aEf6K6Jy
+X-Gm-Gg: ASbGnctHoAHSsaXBVRN3tdgE4H4YRiH7hyFrdkkXdk22zIHpiTKhLntxdNvApef/HQa
+	WxxUOMbZnlILAp4vJzsKTaMrnFV8mUYa9qFZiDP3qyJSBe1SJEEqYLAssJ5D0QeUaMpNmWeoS+r
+	4BVyoOxvuklnRFN+8pIO9r9lyOuvuElZn/tybJqdKV1ZzR9rX4KXvKYXXRB8yucm1L3d7QwZYfx
+	4fcmaKUISmfJ8cHOxlVkcGeMS1J7YDkMZjNwCAiirUWiQEGg4awrvauadX5r2CoOGqTOLqF0OLC
+	hswprGqr9el7ohClkyhnCQpbqk7AjlwLf5zVe1cf71kKdTH/Usc1LoJePRtDEoenGpWgXJ6gCrr
+	j8B50+iVfh8GuAELolbQjEhz5qzPuwRu9kAE0ySE=
+X-Google-Smtp-Source: AGHT+IH+vujR6naTWSXF9WmG4xCAWzeyYNtLeQFYRnwqOcARMgZVrqiQ65jzWDB7+1qCip8+TNucXg==
+X-Received: by 2002:a17:907:3e91:b0:ad2:2fe3:7074 with SMTP id a640c23a62f3a-ae7010feeeemr414117366b.14.1752259859329;
+        Fri, 11 Jul 2025 11:50:59 -0700 (PDT)
+Received: from [192.168.1.140] ([86.127.44.157])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e8264636sm333703666b.86.2025.07.11.11.50.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Jul 2025 11:50:59 -0700 (PDT)
+Message-ID: <88d46d36-bbc2-4f61-8f9c-8fb0ece32ed9@gmail.com>
+Date: Fri, 11 Jul 2025 21:50:57 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] Add Dell Inspiron 7441 / Latitude 7455
+ (X1E-80-100)
+To: Val Packett <val@packett.cool>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250706205723.9790-2-val@packett.cool>
+Content-Language: en-US
+From: Laurentiu Tudor <tudor.laurentiu.oss@gmail.com>
+In-Reply-To: <20250706205723.9790-2-val@packett.cool>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Fri, 11 Jul 2025 11:57:29 +0800
-iuncuim <iuncuim@gmail.com> wrote:
+Hi Val,
 
-> From: Mikhail Kalashnikov <iuncuim@gmail.com>
+On 7/6/25 23:50, Val Packett wrote:
+> The unified series for Dell Thena laptops.
 > 
-> All devices based on the A523/A527/H728/T527 processors contain a G57 MC1 GPU.
+> Changes since v2[1]:
 > 
-> Enable the DT nodes for this GPU and specify a regulator that supplies power
-> to the SoC's VDD_GPU pins. The other parameters are set in the SoC dtsi,
-> so are board independent.
-
-Checked the schematics of the three boards where those are available,
-and it's indeed DCDC2 there providing the voltage. For the X96QPro+,
-regulators.txt in debugs confirms this as well.
-
-> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
->  arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts   | 5 +++++
->  arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts    | 5 +++++
->  arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts   | 5 +++++
->  arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts | 5 +++++
->  4 files changed, 20 insertions(+)
+> - Fixed From/Co-developed-by on the big patch
+> - Fixed one remaining "inspirIon"
+> - Fixed codec/cpu alphabetical order in audio nodes (copy-paste..)
+> - Made the common dtsi an 'x1-' one in preparation for x1p models
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-> index 8bc0f2c72..553ad774e 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-> @@ -66,6 +66,11 @@ &gmac0 {
->  	status = "okay";
->  };
->  
-> +&gpu {
-> +	mali-supply = <&reg_dcdc2>;
-> +	status = "okay";
-> +};
-> +
->  &mdio0 {
->  	ext_rgmii_phy: ethernet-phy@1 {
->  		compatible = "ethernet-phy-ieee802.3-c22";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts b/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
-> index 59db10354..a96927fbd 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
-> @@ -54,6 +54,11 @@ &ehci1 {
->  	status = "okay";
->  };
->  
-> +&gpu {
-> +	mali-supply = <&reg_dcdc2>;
-> +	status = "okay";
-> +};
-> +
->  &mmc0 {
->  	vmmc-supply = <&reg_vcc3v3>;
->  	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 */
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts b/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-> index 142177c1f..b9eeb6753 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-> @@ -76,6 +76,11 @@ &gmac0 {
->  	status = "okay";
->  };
->  
-> +&gpu {
-> +	mali-supply = <&reg_dcdc2>;
-> +	status = "okay";
-> +};
-> +
->  &mdio0 {
->  	ext_rgmii_phy: ethernet-phy@1 {
->  		compatible = "ethernet-phy-ieee802.3-c22";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts b/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-> index 5f97505ec..d07bb9193 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-> @@ -95,6 +95,11 @@ &ehci1 {
->  	status = "okay";
->  };
->  
-> +&gpu {
-> +	mali-supply = <&reg_dcdc2>;
-> +	status = "okay";
-> +};
-> +
->  &mmc0 {
->  	vmmc-supply = <&reg_cldo3>;
->  	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 */
+> [1]: https://lore.kernel.org/all/20250701231643.568854-1-val@packett.cool/
+> 
+> Bryan O'Donoghue (2):
+>    dt-bindings: arm: qcom: Add Dell Inspiron 14 Plus 7441
+>    arm64: dts: qcom: Add support for Dell Inspiron 7441 / Latitude 7455
+> 
+> Val Packett (3):
+>    dt-bindings: arm: qcom: Add Dell Latitude 7455
+>    firmware: qcom: scm: Allow QSEECOM on Dell Inspiron 7441 / Latitude
+>      7455
+>    drm/panel-edp: Add BOE NE14QDM panel for Dell Latitude 7455
+> 
+>   .../devicetree/bindings/arm/qcom.yaml         |    2 +
+>   arch/arm64/boot/dts/qcom/Makefile             |    4 +
+>   arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi   | 1657 +++++++++++++++++
+>   .../x1e80100-dell-inspiron-14-plus-7441.dts   |   52 +
+>   .../dts/qcom/x1e80100-dell-latitude-7455.dts  |   53 +
+>   drivers/firmware/qcom/qcom_scm.c              |    2 +
+>   drivers/gpu/drm/panel/panel-edp.c             |    1 +
+>   7 files changed, 1771 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
+>   create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-dell-inspiron-14-plus-7441.dts
+>   create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-dell-latitude-7455.dts
+> 
 
+Thanks much for the effort!
+For the series:
+
+Reviewed-by: Laurentiu Tudor <laurentiu.tudor1@dell.com>
 
