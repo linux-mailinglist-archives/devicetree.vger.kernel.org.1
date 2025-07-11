@@ -1,334 +1,159 @@
-Return-Path: <devicetree+bounces-195602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41DABB023C9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 20:35:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08BCDB0240C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 20:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EA72A80F62
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 18:34:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19B335C808C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 18:47:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1A0F2F3C09;
-	Fri, 11 Jul 2025 18:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="rJh0uUYt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C9BBA50;
+	Fri, 11 Jul 2025 18:45:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2083.outbound.protection.outlook.com [40.107.243.83])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95F12F2C75;
-	Fri, 11 Jul 2025 18:34:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.83
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752258842; cv=fail; b=BRxbPuN+AosdvjrP/qR18g9wwW2MU/VnfqS4jHA05x7tL9gry9Cx1SDkO5J79qSj3Zpw0f4hjq1oh/XRsW6kFWSGpZOyXF7pA/2UqQ3iCEEU9lNLR4MeeUk67UHu6Lz7gumJ9Wecp1I6nzfT7ufA0drIqDdo+v7lAV6MGdZm7sI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752258842; c=relaxed/simple;
-	bh=BPB/ZIb9NHNbUEyIbvkge68NMGo/oOO2cEnVijKc5Ns=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=fOY2W62CLufb6hsrO9c9LPwrjqpzVMxlLJ4TEI+ACqW8IJLHMj8FhvyObsrz03SH6nqzTKaA2iEPr/4sQc/Nfr0DbrmwIZEAx90KW+tuoEkBgweycdYNHlduBzlytKQ1Dgfo+wJefybDxqBHS7ZzA88RzqDXGT4Gw/1yTb9RFYc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=rJh0uUYt; arc=fail smtp.client-ip=40.107.243.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mqcmw+PzqqhxKs4XgkgK8LcB9JRaOhNwD+Ipx8ZptnCDVXhxnHwDq0/WD5FkELTlL2IeuspI15oHaDTVGL/nUEzFxrd4RdUoMNT+xexuTOLXk2mqOWCnLZ4WpKdLNf2WwtR4nZE7QcLPm9ST+OLwils44SSTip6j2dmulXUXkcgNup3g+/oiXbZ1bMR9C2HE2QVPMMPBr8buBCpvOTuOK6h9cHAoXl70Sh27/GwzyxhsQB2PlDpIzcoOx6GVz9jewsiRxlZ0FFR8f10S5FGseLX77HHrtPtBsZXCRMi9uUdgMzzFfhBKFlfaRfQU5fwIBV8HHSJX1DHGtqYuCfv74Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=53UqdzBKUZSfuEftpQUW0ABCZjbd57hYbnnBvyDyOeI=;
- b=GsNY0R4sWCRveqYAV5Fg/rIKTTXtIpxz1q6wVMRLhiWyJBoMaFL9ik3iKpPdOpPXuUiZ2kNd1ztNkCJ/tHyGQQhTGJjGuliM/EPtLt4c0i1FotjqV/md+Q2Urn01VPHCHRx/SBFOxwPgN9PGGi9fI+hTVBMaJn1L1dvXN0/NAHisxp/A0oo5X3rteNQFvtSVB1cb+1Py3Lcz9IiTy0ylqS1R919tRhq2HQxw5I7kDYJM6mXxDRQWHVBcAI3UeRlT3bRni3OeXqOjgyEHJIAPpKjcGUC4uzxpiBdxMqHuvcRFNCogndjw+5vssZuwrcMZuMLOZQC4THlWL67NL3F8DA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=53UqdzBKUZSfuEftpQUW0ABCZjbd57hYbnnBvyDyOeI=;
- b=rJh0uUYtsEiHzn4sV0Jn/aqnaSKNPzHDV7Sri0AVF/dpSud5TL2oPPybU7BbMMQPEl5ngJMp4QCXcQn2k03Udx4XVMokRc82qw4sCmEohLZAvAMqsK+SHiivpxU3xrLoOk/P8baOk28PmcYRQN0A0R6l0dKtyOjF+mYvAN+dNiw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL3PR12MB6642.namprd12.prod.outlook.com (2603:10b6:208:38e::15)
- by MN2PR12MB4423.namprd12.prod.outlook.com (2603:10b6:208:24f::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.25; Fri, 11 Jul
- 2025 18:33:58 +0000
-Received: from BL3PR12MB6642.namprd12.prod.outlook.com
- ([fe80::aacd:a6d8:e180:46bc]) by BL3PR12MB6642.namprd12.prod.outlook.com
- ([fe80::aacd:a6d8:e180:46bc%5]) with mapi id 15.20.8901.024; Fri, 11 Jul 2025
- 18:33:58 +0000
-Message-ID: <349be13c-fef5-4fc2-b4c9-e85e28cbc06a@amd.com>
-Date: Fri, 11 Jul 2025 12:33:55 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 4/9] dt-bindings: soc: xilinx: Add AI engine DT binding
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Gregory Williams <gregory.williams@amd.com>, ogabbay@kernel.org,
- michal.simek@amd.com, robh@kernel.org
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250702155630.1737227-1-gregory.williams@amd.com>
- <20250702155630.1737227-5-gregory.williams@amd.com>
- <7533fd56-aeef-4685-a25f-d64b3f6a2d78@kernel.org>
- <eb3c843a-6762-4ac0-b863-3f500fb15b6f@amd.com>
- <504f6660-4938-47b4-b1db-0a6fe0214e5f@kernel.org>
-Content-Language: en-US
-From: "Williams, Gregory" <gregoryw@amd.com>
-In-Reply-To: <504f6660-4938-47b4-b1db-0a6fe0214e5f@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SN7PR04CA0002.namprd04.prod.outlook.com
- (2603:10b6:806:f2::7) To BL3PR12MB6642.namprd12.prod.outlook.com
- (2603:10b6:208:38e::15)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD22E13B590;
+	Fri, 11 Jul 2025 18:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752259531; cv=none; b=mIMG4+v22X/1b0CqunYUyU3k+29P3e3+s5vU1yrlhHwEkW1vNhdO0E4RaAuEM7DNlGCSA3+O1gfKzjFcASMoyXg1LL3Vx9JNkIOKXFBsde+NlozEGM4FQaRi4kBHYXlBLVs6QOgdeZ0ara4dWQT3dq/4mVKVmgqq87cLTbm3H7w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752259531; c=relaxed/simple;
+	bh=TXAh5cyeJbfSOXxY8gFolHNGXXjw3jndn5t9U7NmQ7A=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=i7AAQmHsCtULnnvp1dyHStQW/PJap23dn1vQGaFwdyhRD4K8VPMBlVBlmdoRI3/MP8lFH1pmLDK0XO+tdD7k4qb0Q1pFNQH/YbjQOkf8H1rlHuggDppd0FVEXtJR/gxv54vzunEBnObTZPgYUKainIG2WLJc6F7JvfrZRH3xiEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9BFCA16F8;
+	Fri, 11 Jul 2025 11:45:18 -0700 (PDT)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 037533F694;
+	Fri, 11 Jul 2025 11:45:26 -0700 (PDT)
+Date: Fri, 11 Jul 2025 19:43:38 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: iuncuim <iuncuim@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.or>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v2 3/3] arm64: dts: allwinner: a523: enable Mali GPU for
+ all boards
+Message-ID: <20250711194338.52532eca@minigeek.lan>
+In-Reply-To: <20250711035730.17507-4-iuncuim@gmail.com>
+References: <20250711035730.17507-1-iuncuim@gmail.com>
+	<20250711035730.17507-4-iuncuim@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR12MB6642:EE_|MN2PR12MB4423:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7a9f841b-46bf-42fc-c518-08ddc0a97faa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?K01jR21mMG9qQjRVVkMxTzkvNWYzNFpjaDk2UG9zMWZOSENlVmpJV1JlNkJN?=
- =?utf-8?B?S3Z6NjI1WElDak4vd3FaanRGSmVRczFZSnZEWjhlUk0vOEU5aGhQVlZES29U?=
- =?utf-8?B?SjRTQXVJYm5WQmppK2xLWG5aNHFmVjBTR1BhOHFkOEc4cXcrMmZjVkptN3kr?=
- =?utf-8?B?NlBIL0xpTnIwM2FRbkVhditoMUcvNVFJQ3ZBNXJDWTd1SWF0c1RhVXBickEv?=
- =?utf-8?B?Mm1JUTFTQnJTTm9hR0czbmdSdkwwN0haQjJUTXFDMlFSZjFEaTQwdDNteU44?=
- =?utf-8?B?M0tUZFplMjJKQ0V5QU1ZYXlMNHA2ZHkrbDcyU2VJSzJmdUZsZmx2TzFZcTNJ?=
- =?utf-8?B?bnZ4aUtrekVaYmNtc3dVM2RxZDRhNWFadzh0UzU3RWxndENkNnlkei95YzFm?=
- =?utf-8?B?MzA2d0srSlFkZllqZ1ZPbm0wNmVGM3JDeTZMRVhEZVpwT2FnL1ByQmZSZGVW?=
- =?utf-8?B?Qk95OUNyc2ZJWWR1b0QzRmQreVMza2VNdFliaUFLU1Y1Y0FhREpsTWFsTHVL?=
- =?utf-8?B?SWhqckwwYlJFOHU4V2VjYVdsUnREQStTZWlNM2o4clIxRldLcHdWRmJORE8w?=
- =?utf-8?B?N2p1cDlnUkdSUGFtOWtWdEVZQ2UzaGFON01DQlRBRHFiKzlqYW1pWE8wQkZX?=
- =?utf-8?B?bFQwL1YrNzliSWJNTDBQcGVmMEgxQVdLS056TVBLTTRhYkRCWVcyRWJBdVFM?=
- =?utf-8?B?U0VBZ0ZKUlRwSnp3bDd0RXE2ZUZSaVpOTWo2aFFxbVZoNENKQjJ2dDU5emg4?=
- =?utf-8?B?bWgyV0tXTHc2cisxRGsvSnpIL05pRmlxODErSUpBY2pSei9OSHhHdWFBak9s?=
- =?utf-8?B?Njd5RGFaeWdQdzNGY0FoUnhVTkFNRHRIVmNHRE1tNTd6a0NEOTRYVk1TZk93?=
- =?utf-8?B?cTFZcGJoTDhUVVBTRVlWWjBBbGpFMlJRUSt0RU5OUnNMb1cwMElSY1BZL0lp?=
- =?utf-8?B?VncyN3oxSHpPd3YxTlUyRGsyMzJvZ2tNTlhMTlJocTFWMnZLREJmUEpYVDB6?=
- =?utf-8?B?dmZkT3U1aU96N21BVkdaczhQNDlvTFI1NzlHYWNHamtBVWlmdDc4eGZIeXl3?=
- =?utf-8?B?R3JCUVJ0Nm1tZThTZEt1KysyS014cXNnKzRPYWJOa25OTG1iemdxODlONGto?=
- =?utf-8?B?ZXVJMk52eWhFek1FYittWHZsTkFsS0s1Z29qQmgxMHhVMkNvQzVNMTltbWJq?=
- =?utf-8?B?R2JrVmdEbHVTalhoL2pBWjR1OExvcy9kUU1YMUx3eHFFcnhSVkpTZjUwajFT?=
- =?utf-8?B?TXpWb1lJU3IyT3VGRzRrYUh0V21xd2gxV2F6ZzBrZ2dVVDZ5NzZ2NVNuZTdl?=
- =?utf-8?B?OWIzSnRiTkdqL1I0R0hZRWhOVkZ5V3doWklQY3ljZUhacUhRQlAzWm1DNXFz?=
- =?utf-8?B?MkVJOFQ3L2o2ZGZ5VU5CbGxHYjNtM3RiZFJHRXN1VmU1aXZQWU0xTVlWNHl5?=
- =?utf-8?B?YjR4TjNYS2sxTndVakppYUF4OWo1L3NEbGorNkduQW9wMngrODJyTVhQNkpJ?=
- =?utf-8?B?VWowZHNDOUJZbndxRXJ4MkFUa0NyVjhOSTBiYjVQanUvNTIxL3JNd2pkYXNN?=
- =?utf-8?B?R0ZFaFo4T092a0lKYUU0cElvU1FodXA3N2N0aTZBSG52REU4RmlPUkZOcGxs?=
- =?utf-8?B?amJRR3o1bXRHQ2ZYMElnazNieUpaRVV0TnhTazE1Q01WMGcwK3hvQ0ZEaWh2?=
- =?utf-8?B?dVJzWGt1U0Z4Mmk1Rld0cDlDM0w5MVpqNG9lNXFUSjM4V2pZUXl2bDNTSUcw?=
- =?utf-8?B?V28xSVhBRE9pMUdMNGRUazYwa3RRaDRaRUVmV01uVFpwSWdmU29oV2lYY2dR?=
- =?utf-8?B?UjYvbFRONG1FR2hZVnlENWJoZWRaUEpKSUNkb1dYeS9POHhyMEI4UzdjcS93?=
- =?utf-8?Q?djfB379wKynKL?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR12MB6642.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?RHVLa1dJT2pPOFEwV24zeG0xekdRbFhGZjU5STBBVmVNMVZ6MWhKbFpkUE1x?=
- =?utf-8?B?VG9QVDc4QjZteFI5VmMrbnJXZGRDVFNFUDRFQnE0S1R5YThyTmV2a3ZBeHpn?=
- =?utf-8?B?SnVwV1NDOVZTMjc2UXFoalNxelB6YitUSzVsLzVTZCtJMnNBUHNSTzBzeTBH?=
- =?utf-8?B?ZTJaTjBKT1diU3NTSGxNWlZJck43SHRkK0dVT1dLTWZUT2JkVVBITVdTSWhS?=
- =?utf-8?B?S2pYblBkQzBhd25ZNkNHNmJFOGhZQ2x6R3NXWStTL3A5NGJIbWtMUFVPZWRv?=
- =?utf-8?B?eEFmdTFsajVvQ1cvQy9aTnNTOGQ2VnJmaTlOTGR5ZXZ5NUR4M2lPM2NpM1ov?=
- =?utf-8?B?OGN4WCtPODQ3UmtrRzBMK2E3R2o5Q3pOMEFNc2VPbnFjUGJJdGVVK0hMbFhJ?=
- =?utf-8?B?c3FUWE8xS2VqcWZwZlZUbnVmRUswcFVKRFM0eSt2VndERGFpNzY3anN5bkQ4?=
- =?utf-8?B?RkZNR2pIaEtYQWY5bVg1QWxKSnpyNUdPWi9jRjZYT0Zpem1wdDNZMjQ1Tm9E?=
- =?utf-8?B?VG9ndkpETjJpKzdwRGFPV2FPL0ZpZDIyR3pnMFcyOC9CRms3dzFTZzB0ZEZY?=
- =?utf-8?B?OS9TRE8ycEpYbmlxM2RVTEtJNTdiK3Qwbm9odURwODJydkpISmNsM0ljNmk4?=
- =?utf-8?B?WEx2S3RoRXpyczZ1VnlZRFRvS0RJU2lLTUxjcVZCVm0zLzhhd3NhOVEzcmtO?=
- =?utf-8?B?TEtmVC9NcW93elQrZ2JMUzhnVWw0SGhyLzU1QThtVkVjcndJb0pPMmNDcVhi?=
- =?utf-8?B?TjRhdVN0dFl1RWh3dDl3UFA0OWRJUUVNaXhtb2tmQmZwckNJNUN0ZXNXVk9D?=
- =?utf-8?B?NnE0U1lWbUExSzlpQXhvRDZ1Z1FZN2x3bXNuRG5pWW92UjZHM2RaUE95cnBj?=
- =?utf-8?B?akttdC95WGI3U2x6SlZnQjNDbHFCU2cxM2tjZGpHWHVFLzc1WlFpeEVuL0dp?=
- =?utf-8?B?eXluZ2NOVDdWeDdxa0x3YWZWVE1xWHVwT0wxdnoyTzNleFQvVWd4OTdpYksx?=
- =?utf-8?B?WXJTWVM3WlVycVUvR3NVSVRxOEMyVGVlNWtEaEJIR0ovMHpaL1p4bUhPZDVu?=
- =?utf-8?B?UW4wZ2FDWVZrV3FXRHdSbzNUSGhoVDc4SmI0aXpFNmU0OXBFcTkwaUpxU3NT?=
- =?utf-8?B?VEJaM0hwZEJPQldjWlE2SEtwSzZ0RVdWQ3Aza1N1blZBbGpzYXRUYkNOMith?=
- =?utf-8?B?a2VLYko3MXQ0US9zc3doYTkyQ2ovcitVUGw4dmI1cVBWVzkxcVcwVVh3Qy9C?=
- =?utf-8?B?cncvUitNdVZVSTBML0lnNVEyVXVjOEprVEUrcVZmblUreGZMK2VCK1NIVTJR?=
- =?utf-8?B?QVN3eUtzM1M3cnJzajVmdStlQmFkeUM5N2JheTM5b3VBa1hCZ0ZSMEYyTDJk?=
- =?utf-8?B?cDNETFIrN2E1TEJvOHN0WXhFVnY4bHNBb0c2SUdFVDlMWTl0VDV6RUdzeU93?=
- =?utf-8?B?ZW1Ibk0yeEI4RlZteXN1aXFPeFExTHczeHJMR3AxSzdDWndHVVVob3NGYUdh?=
- =?utf-8?B?RzRQcXBpYnpKdE9QQnNoK3Q2TXFNVTUrWkowNlhSTUJmN2NZSzRhVVE2dnRV?=
- =?utf-8?B?N3lhc2dsbkJaaWJ4Z0E2ZHJSWG1lOTdkVVR3aDdudW1XY3h0VjRXRWlzQ28w?=
- =?utf-8?B?WlN6MkFvKzVjYlFoSFcyWjAydWZ0WGgrS3VQMmJSaTh5WnpYVzkvN0xlczJ5?=
- =?utf-8?B?NjgyT3VhVHZTbk8vY1pOejBsdHNtWmQrZGdkcmVHaWYxUThUQmdxYm5CT1Vo?=
- =?utf-8?B?UHRGOEg2bk5jYWE3L3VjcVdOMXhydFRxRmJwdTFvTmxSQmwyZ0lCWnFTdVBo?=
- =?utf-8?B?M21UMHFDUm9OMWNGajloanZhb2U5QlYxLzdLODRlbEhBUTdXdk4weVNYQjhx?=
- =?utf-8?B?WVJFcFB3dWZXL3h4MEFsQU5oYjJUSW9yREJjNnhuTmZQYjlSUTR0akVDRm92?=
- =?utf-8?B?TlV5TGd1bUN4enFmVTJhZzBZUm91eU9KN29aNFZCL2d6NklDeFFBU05iY202?=
- =?utf-8?B?L2J5dENocnhLRVRNOTBKRTQ1VjFnQW5zVHY1cEs1YStoK0I5SzV5WkhteGg0?=
- =?utf-8?B?Z1ROazQ1Y3hUSlZUK3RnaURFVXNSRVVtbUxjUEFxNGVTelN5bTVGdDJKZ0Qx?=
- =?utf-8?Q?HF+dAgwglBhru1PS5ic1vqlPy?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7a9f841b-46bf-42fc-c518-08ddc0a97faa
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR12MB6642.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2025 18:33:58.2275
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Rt35OIRNc8bfdbSKHlGFAv0M5kHteEbxz+mBBsdcZVH7uSJeQTQY6v/TyFLsrhdtuiOyuSWYwnknlMFu1oTpeQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4423
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 7/10/2025 3:38 PM, Krzysztof Kozlowski wrote:
-> On 10/07/2025 21:03, Williams, Gregory wrote:
->> On 7/3/2025 12:48 AM, Krzysztof Kozlowski wrote:
->>> On 02/07/2025 17:56, Gregory Williams wrote:
->>>> In the device tree, there will be device node for the AI engine device,
->>>> and device nodes for the statically configured AI engine apertures.
->>>
->>> No, describe the hardware, not DTS.
->>>
->>>> Apertures are an isolated set of columns with in the AI engine device
->>>> with their own address space and interrupt.
->>>>
->>>> Signed-off-by: Gregory Williams <gregory.williams@amd.com>
->>>> ---
->>>>  .../bindings/soc/xilinx/xlnx,ai-engine.yaml   | 151 ++++++++++++++++++
->>>>  1 file changed, 151 insertions(+)
->>>>  create mode 100644 Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml b/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
->>>> new file mode 100644
->>>> index 000000000000..7d9a36c56366
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
->>>
->>> Filename matching compatible.
->>>
->>>> @@ -0,0 +1,151 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/soc/xilinx/xlnx,ai-engine.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: AMD AI Engine
->>>
->>> That's really too generic...
-> 
-> You did not answer to other comments here and other patches, so I just
-> assume you did not ignore them.
+On Fri, 11 Jul 2025 11:57:29 +0800
+iuncuim <iuncuim@gmail.com> wrote:
 
-No, they were not ignored. I will make sure to address in a V2 patch.
+> From: Mikhail Kalashnikov <iuncuim@gmail.com>
+> 
+> All devices based on the A523/A527/H728/T527 processors contain a G57 MC1 GPU.
+> 
+> Enable the DT nodes for this GPU and specify a regulator that supplies power
+> to the SoC's VDD_GPU pins. The other parameters are set in the SoC dtsi,
+> so are board independent.
 
-> 
->>>
->>>> +
->>>> +maintainers:
->>>> +  - Gregory Williams <gregory.williams@amd.com>
->>>> +
->>>> +description:
->>>> +  The AMD AI Engine is a tile processor with many cores (up to 400) that
->>>> +  can run in parallel. The data routing between cores is configured through
->>>> +  internal switches, and shim tiles interface with external interconnect, such
->>>> +  as memory or PL. One AI engine device can have multiple apertures, each
->>>> +  has its own address space and interrupt. At runtime application can create
->>>> +  multiple partitions within an aperture which are groups of columns of AI
->>>> +  engine tiles. Each AI engine partition is the minimum resetable unit for an
->>>> +  AI engine application.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: xlnx,ai-engine-v2.0
->>>
->>> What does v2.0 stands for? Versioning is discouraged, unless mapping is
->>> well documented.
->>
->> Sure, I will remove the versioning in V2 patch.
-> 
-> This should be specific to product, so use the actual product/model name.
-> 
-> Is this part of a Soc? Then standard rules apply... but I could not
-> deduce it from the descriptions or commit msgs.
+Checked the schematics of the three boards where those are available,
+and it's indeed DCDC2 there providing the voltage. For the X96QPro+,
+regulators.txt in debugs confirms this as well.
 
-Yes this is part of an SoC. I will be more descriptive in V2 patch.
+> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
 
-> 
-> 
->>
->>>
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  '#address-cells':
->>>> +    const: 2
->>>> +
->>>> +  '#size-cells':
->>>> +    const: 2
->>>> +
->>>> +  power-domains:
->>>
->>> Missing constraints.
->>>
->>>> +    description:
->>>> +      Platform management node id used to request power management services
->>>> +      from the firmware driver.
->>>
->>> Drop description, redundant.
->>>
->>>> +
->>>> +  xlnx,aie-gen:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint8
->>>
->>> Why uint8?
->>>
->>>> +    description:
->>>> +      Hardware generation of AI engine device. E.g. the current values supported
->>>> +      are 1 (AIE) and 2 (AIEML).
->>>
->>> No clue what's that, but it is implied by compatible, isn't it?
->>
->> The driver supports multiple hardware generations. During driver probe, this value is read from the device tree and hardware generation specific
-> 
-> Bindings are about hardware, not driver, so your driver arguments are
-> not valid.
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
-Understood.
+Cheers,
+Andre
 
+> ---
+>  arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts   | 5 +++++
+>  arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts    | 5 +++++
+>  arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts   | 5 +++++
+>  arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts | 5 +++++
+>  4 files changed, 20 insertions(+)
 > 
->> data structures are loaded based on this value. The compatible string is the same between devices.
-> 
-> No. See writing bindings.
-
-Ok so there should be a different compatible strings based on hardware
-generation. I will fix this for a V2 patch.
-
-> 
->>
->>>
->>> Missing constraints.
->>>
->>>> +
->>>> +  xlnx,shim-rows:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->>>> +    description:
->>>> +      start row and the number of rows of SHIM tiles of the AI engine device
->>>
->>> Implied by compatible.
->>
->> The AI Engine device can have different configurations for number of rows and column (even if it is the same hardware generation). This property
->> tells the driver the size and layout of the array, this is not implied by compatible.
-> 
-> Wrap your emails correctly.
-> 
-> Again driver.. no, please describe the hardware, not your drivers.
-
-I see in 'writing bindings' that I should use device-based compatible
-string. I will do this and remove these nodes for V2 patch. 
-
-Thanks again for your time,
-Greg
-
-> 
-> 
-> Best regards,
-> Krzysztof
+> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> index 8bc0f2c72..553ad774e 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> @@ -66,6 +66,11 @@ &gmac0 {
+>  	status = "okay";
+>  };
+>  
+> +&gpu {
+> +	mali-supply = <&reg_dcdc2>;
+> +	status = "okay";
+> +};
+> +
+>  &mdio0 {
+>  	ext_rgmii_phy: ethernet-phy@1 {
+>  		compatible = "ethernet-phy-ieee802.3-c22";
+> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts b/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
+> index 59db10354..a96927fbd 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
+> @@ -54,6 +54,11 @@ &ehci1 {
+>  	status = "okay";
+>  };
+>  
+> +&gpu {
+> +	mali-supply = <&reg_dcdc2>;
+> +	status = "okay";
+> +};
+> +
+>  &mmc0 {
+>  	vmmc-supply = <&reg_vcc3v3>;
+>  	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 */
+> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts b/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
+> index 142177c1f..b9eeb6753 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
+> @@ -76,6 +76,11 @@ &gmac0 {
+>  	status = "okay";
+>  };
+>  
+> +&gpu {
+> +	mali-supply = <&reg_dcdc2>;
+> +	status = "okay";
+> +};
+> +
+>  &mdio0 {
+>  	ext_rgmii_phy: ethernet-phy@1 {
+>  		compatible = "ethernet-phy-ieee802.3-c22";
+> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts b/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
+> index 5f97505ec..d07bb9193 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
+> @@ -95,6 +95,11 @@ &ehci1 {
+>  	status = "okay";
+>  };
+>  
+> +&gpu {
+> +	mali-supply = <&reg_dcdc2>;
+> +	status = "okay";
+> +};
+> +
+>  &mmc0 {
+>  	vmmc-supply = <&reg_cldo3>;
+>  	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 */
 
 
