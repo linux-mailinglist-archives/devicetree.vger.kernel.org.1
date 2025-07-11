@@ -1,121 +1,382 @@
-Return-Path: <devicetree+bounces-195554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E128B02037
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 17:14:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9461FB0205E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 17:25:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9B8FB44019
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 15:11:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78A5B1CA6869
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 15:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D192EA480;
-	Fri, 11 Jul 2025 15:13:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B4742EA473;
+	Fri, 11 Jul 2025 15:25:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aDRVxxZA"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="at/Xr9lZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.smtpout.orange.fr (smtp-72.smtpout.orange.fr [80.12.242.72])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB407233735;
-	Fri, 11 Jul 2025 15:13:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43C02D9798;
+	Fri, 11 Jul 2025 15:25:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752246786; cv=none; b=DyzBY6qVD3W8XTVJor8gTCtYlNfotqGF0J99WbCEmauRG3i2QXrYpMcXAdMa2fSuX6fSpIrPz+xJ2K2H8zZF79BiZlLKQicBJvgoeQfQoNNrW3t1wNJ7XJNB8m6p6k61QAl/jWeLSGovn65e/5DIAmd2pyOWgw9nabClhW6dDbk=
+	t=1752247524; cv=none; b=TvlJEBGfD4ox/u0dHKEiMFQOVYACIlB6UXAgawly0x2Snb4XQvdYVPwbZrfPVtclus6hGGqmJHnzNu19becX8wEY9UpN3znY0gWKWqW8A/Rm72QW2SQcf+CUkL6YiI24N23/JwY9gEo1QDbHFt2RIbYv/RlvZ/nqYXKRE5wdhl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752246786; c=relaxed/simple;
-	bh=q/RB3T4NCx2mfktuCajttlN1cebWGHKE8LCUcHligxs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cbXOHSPdce8ejdNtwsFQ+hAiKKpwTceweE/TjfDQr2ywUwZBKnYf5lO4QZ4i3vvrLf6UV5mk5YEYFDJGBmAuLOMsf/QC1chxcywpDUI5s+Keg48hDGJLzhzxJfcX7BPKT0DBlB4paAal27Mn4EZrML7cEFzTDDxWzH7A6S3M7zs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aDRVxxZA; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3b5e6bfb427so1187536f8f.2;
-        Fri, 11 Jul 2025 08:13:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752246783; x=1752851583; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qXJpzlNACVXWafUvsi+X5T2XzAH4b/rfmaXYOvRW2yE=;
-        b=aDRVxxZADzI4M5y+iI3ts11Kka9Lz4s/8XXCKX/OcHyTw2PNtNJjXeGU88kmPSRLlS
-         sFtUv9bPmZvz95P0wI2EtchXLGEzqOIzb5S9DMsPNztYFK2gZPHpsD/1+qY3tlpah8Z4
-         cc5CAYQDrVyYENEgWRKldymdmoFjXxD6HS4SW+WyPlkEciSOweoDFsDbNQCgfQZI2yQx
-         qahXFWp6FhBIulHVJasV6WzpbmkfckXa0i4uicHZpMSFMIJw3rZx0bBZGnHnhl00OkaT
-         P75eKQzcu0dxR96Hzvxdq90E8ckqutS5KLzeccyvKGRw5DCGZooOF6uR3a2U1mTBUeOf
-         7qwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752246783; x=1752851583;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qXJpzlNACVXWafUvsi+X5T2XzAH4b/rfmaXYOvRW2yE=;
-        b=AJi2Cd12L/x/zioC6szp6o/vVI69NKXjdUTO56vfG3CsJyg4v04x6HqKRgpgOGgSYo
-         wDG7U8Tu4xTxog/hxej0UpBWQreHYyEOQo3WUaWKlzGuZLi/VRU/drX2pu45fRB+1O9M
-         PS/2UgSWHLwrkSWsH0dzRZddh86JK3W6hl1Ud7ZS+MtMXIeP1Jbmt/viybQzN9XDeLHg
-         vAeo75C315jhmIGhqYrR7Xfxcc5RJ8vrLfQfyBFkPtdolB3Q1tKXIt938O+vYIXr0znn
-         GQYeTDxdYAyEjQuyjHmACETtfIK5sAg5hEBkueVq3bP3bBxw8MDV8A3sRAswLBqqPk1U
-         LgXg==
-X-Forwarded-Encrypted: i=1; AJvYcCUe6Y3M8fGu8X4e4PEJ/MjrhazSS3ySZgzrmFtTwWZ2uMfc60LGml0jdX4ogHWWefq64fC5Li9W4sTIiW0=@vger.kernel.org, AJvYcCV6AXq8JcsXpOasTTL+NOGdzlBYUcJcwlteW//auwZ6xFtfkn5F5Vi1vf5JGR9gcvksFYwlery0HbdV6K4=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+CESlWLzTr7n9M437kSOAdE8yI1lUuctbjAoOnNL2VROTMFg6
-	YFyzfLHxLnb7RxHWnTEG2jAfJCHWpwJZ/ZFwVt+/6iKMmOdEN18kQGMw
-X-Gm-Gg: ASbGncvf5UfaNvy2Tf6//rdM5nSs6seE9X5a9c9fxYYROMls9LPerPl+u1qTWSbLt64
-	PSWskE8sXOqUkf9QgWvD9c7pt/njoOxZSSFoQ7nmfu82+kHl5eKO0eC+wEI+iON1KsaM0UEO/Rn
-	npv5vD6indDkhifnzap1/Xe151ISsNWzuD/9evpaLFo6rTJZ5J8aZxmkM5rQeOv7HTLnsR4DubS
-	LSg7TXooI1AUYyntJ4sCTEHN0BVWde82jQHuR4UDxkN13Yodfrs2YS7Wb+DfmzWlU6bTFMX24k7
-	rmA5Io8Bl/YszWConNxeRtYYKS/NWuXQBrCezaNeglydw1PyE65amhXBTVFBc4HX5DvCLMevVOe
-	XmeqYNgaaFAcRX+6UW36Od/l4OO9kvIfxDzb7ANXGPoovMfUMYhHsi/Mrllu2PQnXHRIALAI8CT
-	MxZXbi44EMfaze+A==
-X-Google-Smtp-Source: AGHT+IFOTiocf3bWWwb3sZqqqXMFKkwzRjlS3w64CsnVh7GxOlw08mXVJTYF0IRmpYr7oQ+jzhLyiQ==
-X-Received: by 2002:a05:6000:e06:b0:3a5:1cc5:4a17 with SMTP id ffacd0b85a97d-3b5f18d835emr2549650f8f.42.1752246782911;
-        Fri, 11 Jul 2025 08:13:02 -0700 (PDT)
-Received: from localhost (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3b5e8e0d77asm4814537f8f.58.2025.07.11.08.13.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jul 2025 08:13:02 -0700 (PDT)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Maxim Schwalm <maxim.schwalm@gmail.com>,
-	David Heidelberg <david@ixit.cz>,
-	Ion Agorria <ion@agorria.com>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/2] ARM: tegra: Add device-tree for Asus Portable AiO P1801-T
-Date: Fri, 11 Jul 2025 17:13:00 +0200
-Message-ID: <175224673040.1549549.3672790381996460184.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250616073947.13675-1-clamor95@gmail.com>
-References: <20250616073947.13675-1-clamor95@gmail.com>
+	s=arc-20240116; t=1752247524; c=relaxed/simple;
+	bh=Wf3JWwN8081TtjrLl6vJ2R2VgeFGwG8YzPP5eev7rGc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Dta0q3FFfAO9frN/rTatQrSvXa0xClhudbqKYeNf20h3DqMGymJUCvAS9W9UpDeDvrZ9JQ84ckgp7/0cBlbjwFd8wMq0+O6T0uqh6Zj8+P7zBUW/2YSMBGTuD1EEAg3uIkQdjfBGXLuekAo0VURjwGBURz3q03ySvo+ulbohbuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=at/Xr9lZ; arc=none smtp.client-ip=80.12.242.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+ ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+	by smtp.orange.fr with ESMTPA
+	id aFTiuzGQNILtwaFTiuBCqB; Fri, 11 Jul 2025 17:16:00 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1752246960;
+	bh=nN7qPQP5pp6kCV7tadKRbnGGNhznnTzU1ksIiuQDnGw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=at/Xr9lZ8WmJepdNd5EHNd1CYfSbz+k6x1+4LOYrs7Oonuxkrk5kRpG2zgl3EO/yr
+	 r9CKj79p6vNLrNA34t9n9kchtvybRlgxBBU1oO0prY1xtbX0vdNo5FodYPnb6c5alE
+	 FXC6tPLCHponbDyIw0dQ/fxYI/XddDqtEhJcuF6mPsLp9SRsFXlfNvFSkPwWytVP4O
+	 caPRpZTp3vBbFok/HXlw6INc+vlJYnC+0YMRciQMOzDzP0vrIdBF2t8JM6CeRnM9iI
+	 s53pY8aug2lkxyxE51uMYHuW9NLbTUW5ABWcl1za4kLRrWEjBLKVp95hgW3cyR7Z8J
+	 MhWVOTcPHJvqA==
+X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Fri, 11 Jul 2025 17:16:00 +0200
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+Message-ID: <0acde3b4-a437-4fa1-b5bd-fe1810309bb8@wanadoo.fr>
+Date: Fri, 11 Jul 2025 17:15:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] ASoC: codecs: add new pm4125 audio codec driver
+To: Alexey Klimov <alexey.klimov@linaro.org>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+References: <20250711-pm4125_audio_codec_v1-v2-0-13e6f835677a@linaro.org>
+ <20250711-pm4125_audio_codec_v1-v2-2-13e6f835677a@linaro.org>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20250711-pm4125_audio_codec_v1-v2-2-13e6f835677a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Thierry Reding <treding@nvidia.com>
-
-
-On Mon, 16 Jun 2025 10:39:45 +0300, Svyatoslav Ryhel wrote:
-> Add a device-tree for the Asus Portable AiO P1801-T, which is a NVIDIA
-> Tegra30-based 2-in-1 detachable tablet, originally running Android.
+Le 11/07/2025 à 05:00, Alexey Klimov a écrit :
+> The audio codec is found in Qualcomm PM2250/PM4125 PMICs and is used on
+> platforms like Qualcomm QCM2290. It has soundwire interface and
+> corresponding RX and TX slave devices.
 > 
-> Device tree contains "mstar,tsumu88adt3-lf-1" compatible, a simple bridge
-> which was submitted a while ago here [1] but was not applied yet.
+> It has only two input channels: HPH left and right. The line output (LO)
+> is linked to HPHL so the hardware has some limitations regarding concurrent
+> playback via HPH and LO for instance.
 > 
-> [1] https://lore.kernel.org/lkml/CAPVz0n1udjVZY3400hYMY07DjNKfOt4bwpW6He6A4qo_3pXtqQ@mail.gmail.com/T/#mb50632e269d89275d97c485037da8893239b5410
-> 
-> [...]
+> The codec driver also uses WCD MBCH framework. The MBHC functionality is
+> implemented in a minimalistic way to enable IRQs and avoid different
+> issues with IRQs.
 
-Applied, thanks!
+Hi,
+...
 
-Thierry
+> +static int pm4125_probe(struct sdw_slave *pdev, const struct sdw_device_id *id)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct pm4125_sdw_priv *priv;
+> +	u8 master_ch_mask[PM4125_MAX_SWR_CH_IDS];
+> +	int master_ch_mask_size = 0;
+> +	int ret, i;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	/* Port map index starts at 0, however the data port for this codec starts at index 1 */
+> +	if (of_property_present(dev->of_node, "qcom,tx-port-mapping")) {
+> +		priv->is_tx = true;
+> +		ret = of_property_read_u32_array(dev->of_node, "qcom,tx-port-mapping",
+> +						 &pdev->m_port_map[1], PM4125_MAX_TX_SWR_PORTS);
+> +	} else
+> +		ret = of_property_read_u32_array(dev->of_node, "qcom,rx-port-mapping",
+> +						 &pdev->m_port_map[1], PM4125_MAX_SWR_PORTS);
+
+Nitpick: If a branch of an if needs { }, I think that both should have.
+
+> +
+> +	if (ret < 0)
+> +		dev_info(dev, "Error getting static port mapping for %s (%d)\n",
+> +			 priv->is_tx ? "TX" : "RX", ret);
+> +
+> +	priv->sdev = pdev;
+> +	dev_set_drvdata(dev, priv);
+
+...
+
+> +static const struct sdw_device_id pm4125_slave_id[] = {
+> +	SDW_SLAVE_ENTRY(0x0217, 0x10c, 0), /* Soundwire pm4125 RX/TX Device ID */
+> +	{ },
+
+No need for a trailing comma after a terminator
+
+> +};
+> +MODULE_DEVICE_TABLE(sdw, pm4125_slave_id);
+
+...
+
+> +#include <linux/component.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/slab.h>
+> +#include <sound/jack.h>
+
+Maybe, keep alphabetical order?
+
+> +#include <sound/pcm_params.h>
+> +#include <sound/pcm.h>
+> +#include <sound/soc-dapm.h>
+> +#include <sound/soc.h>
+> +#include <sound/tlv.h>
+
+...
+
+> +static int pm4125_bind(struct device *dev)
+
+If an error occures at some point, should things be undone before returning?
+
+> +{
+> +	struct pm4125_priv *pm4125 = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	/* Give the soundwire subdevices some more time to settle */
+> +	usleep_range(15000, 15010);
+> +
+> +	ret = component_bind_all(dev, pm4125);
+> +	if (ret) {
+> +		dev_err(dev, "Slave bind failed, ret = %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	pm4125->rxdev = pm4125_sdw_device_get(pm4125->rxnode);
+> +	if (!pm4125->rxdev) {
+> +		dev_err(dev, "could not find rxslave with matching of node\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	pm4125->sdw_priv[AIF1_PB] = dev_get_drvdata(pm4125->rxdev);
+> +	pm4125->sdw_priv[AIF1_PB]->pm4125 = pm4125;
+> +
+> +	pm4125->txdev = pm4125_sdw_device_get(pm4125->txnode);
+> +	if (!pm4125->txdev) {
+> +		dev_err(dev, "could not find txslave with matching of node\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	pm4125->sdw_priv[AIF1_CAP] = dev_get_drvdata(pm4125->txdev);
+> +	pm4125->sdw_priv[AIF1_CAP]->pm4125 = pm4125;
+> +
+> +	pm4125->tx_sdw_dev = dev_to_sdw_dev(pm4125->txdev);
+> +	if (!pm4125->tx_sdw_dev) {
+> +		dev_err(dev, "could not get txslave with matching of dev\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * As TX is the main CSR reg interface, which should not be suspended first.
+> +	 * expicilty add the dependency link
+> +	 */
+> +	if (!device_link_add(pm4125->rxdev, pm4125->txdev,
+> +			     DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME)) {
+> +		dev_err(dev, "Could not devlink TX and RX\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (!device_link_add(dev, pm4125->txdev,
+> +			     DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME)) {
+> +		dev_err(dev, "Could not devlink PM4125 and TX\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (!device_link_add(dev, pm4125->rxdev,
+> +			     DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME)) {
+> +		dev_err(dev, "Could not devlink PM4125 and RX\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	pm4125->regmap = dev_get_regmap(&pm4125->tx_sdw_dev->dev, NULL);
+> +	if (!pm4125->regmap) {
+> +		dev_err(dev, "could not get TX device regmap\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = pm4125_irq_init(pm4125, dev);
+> +	if (ret) {
+> +		dev_err(dev, "IRQ init failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	pm4125->sdw_priv[AIF1_PB]->slave_irq = pm4125->virq;
+> +	pm4125->sdw_priv[AIF1_CAP]->slave_irq = pm4125->virq;
+> +
+> +	ret = pm4125_set_micbias_data(pm4125);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Bad micbias pdata\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = snd_soc_register_component(dev, &soc_codec_dev_pm4125,
+> +					 pm4125_dais, ARRAY_SIZE(pm4125_dais));
+> +	if (ret)
+> +		dev_err(dev, "Codec registration failed\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static void pm4125_unbind(struct device *dev)
+> +{
+> +	struct pm4125_priv *pm4125 = dev_get_drvdata(dev);
+> +
+> +	snd_soc_unregister_component(dev);
+> +	device_link_remove(dev, pm4125->txdev);
+> +	device_link_remove(dev, pm4125->rxdev);
+> +	device_link_remove(pm4125->rxdev, pm4125->txdev);
+> +	component_unbind_all(dev, pm4125);
+> +}
+> +
+> +static const struct component_master_ops pm4125_comp_ops = {
+> +	.bind = pm4125_bind,
+> +	.unbind = pm4125_unbind,
+> +};
+> +
+> +static int pm4125_add_slave_components(struct pm4125_priv *pm4125, struct device *dev,
+> +				       struct component_match **matchptr)
+> +{
+> +	struct device_node *np = dev->of_node;
+> +
+> +	pm4125->rxnode = of_parse_phandle(np, "qcom,rx-device", 0);
+> +	if (!pm4125->rxnode)
+> +		return dev_err_probe(dev, -ENODEV, "Couldn't parse phandle to qcom,rx-device\n");
+> +	component_match_add_release(dev, matchptr, component_release_of, component_compare_of,
+> +				    pm4125->rxnode);
+> +	of_node_put(pm4125->rxnode);
+> +
+> +	pm4125->txnode = of_parse_phandle(np, "qcom,tx-device", 0);
+> +	if (!pm4125->txnode)
+> +		return dev_err_probe(dev, -ENODEV, "Couldn't parse phandle to qcom,tx-device\n");
+> +	component_match_add_release(dev, matchptr, component_release_of, component_compare_of,
+> +				    pm4125->txnode);
+> +	of_node_put(pm4125->txnode);
+> +
+> +	return 0;
+> +}
+> +
+> +static int pm4125_probe(struct platform_device *pdev)
+> +{
+> +	struct component_match *match = NULL;
+> +	struct device *dev = &pdev->dev;
+> +	struct pm4125_priv *pm4125;
+> +	struct wcd_mbhc_config *cfg;
+> +	int ret;
+> +
+> +	pm4125 = devm_kzalloc(dev, sizeof(*pm4125), GFP_KERNEL);
+> +	if (!pm4125)
+> +		return -ENOMEM;
+> +
+> +	dev_set_drvdata(dev, pm4125);
+> +
+> +	pm4125->supplies[0].supply = "vdd-io";
+> +	pm4125->supplies[1].supply = "vdd-cp";
+> +	pm4125->supplies[2].supply = "vdd-mic-bias";
+> +	pm4125->supplies[3].supply = "vdd-pa-vpos";
+> +
+> +	ret = devm_regulator_bulk_get(dev, PM4125_MAX_BULK_SUPPLY, pm4125->supplies);
+
+devm_regulator_bulk_get_enable() could certainly be used to save a few 
+lines of code after fix the missing regulator_bulk_disable() in the 
+error handling of the probe.
+
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get supplies\n");
+> +
+> +	ret = regulator_bulk_enable(PM4125_MAX_BULK_SUPPLY, pm4125->supplies);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable supplies\n");
+> +
+> +	pm4125->spmi_regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> +	if (!pm4125->spmi_regmap)
+> +		return -ENXIO;
+> +
+> +	pm4125_reset(pm4125);
+> +
+> +	pm4125_dt_parse_micbias_info(dev, pm4125);
+> +
+> +	cfg = &pm4125->mbhc_cfg;
+> +	cfg->mbhc_micbias = MIC_BIAS_2;
+> +	cfg->anc_micbias = MIC_BIAS_2;
+> +	cfg->v_hs_max = WCD_MBHC_HS_V_MAX;
+> +	cfg->num_btn = PM4125_MBHC_MAX_BUTTONS;
+> +	cfg->micb_mv = pm4125->micb2_mv;
+> +	cfg->linein_th = 5000;
+> +	cfg->hs_thr = 1700;
+> +	cfg->hph_thr = 50;
+> +
+> +	wcd_dt_parse_mbhc_data(dev, &pm4125->mbhc_cfg);
+> +
+> +	ret = pm4125_add_slave_components(pm4125, dev, &match);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = component_master_add_with_match(dev, &pm4125_comp_ops, match);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pm_runtime_set_autosuspend_delay(dev, 1000);
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
+> +	pm_runtime_idle(dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static void pm4125_remove(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct pm4125_priv *pm4125 = dev_get_drvdata(dev);
+> +
+> +	component_master_del(&pdev->dev, &pm4125_comp_ops);
+> +
+> +	pm_runtime_disable(dev);
+> +	pm_runtime_set_suspended(dev);
+> +	pm_runtime_dont_use_autosuspend(dev);
+> +
+> +	regulator_bulk_disable(PM4125_MAX_BULK_SUPPLY, pm4125->supplies);
+> +	regulator_bulk_free(PM4125_MAX_BULK_SUPPLY, pm4125->supplies);
+
+Is it correct? (it looks related to devm_regulator_bulk_get())
+
+> +}
+
+CJ
 
