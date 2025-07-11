@@ -1,639 +1,606 @@
-Return-Path: <devicetree+bounces-195526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D3B0B01F66
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 16:45:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FA12B01F72
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 16:49:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B2E85C3104
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 14:45:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9ECA87AC106
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 14:47:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D281A2DE6FE;
-	Fri, 11 Jul 2025 14:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 078EC2E9EA8;
+	Fri, 11 Jul 2025 14:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="fuaCXACu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011010.outbound.protection.outlook.com [52.101.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 262401FBEB9;
-	Fri, 11 Jul 2025 14:45:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752245124; cv=none; b=qwfzcP5QE5aItkoXwqG6vv+cP7f/yHpFypz9dMVFpaFL904+mYjE/TUKql9BNUDqgAa1i2lYSkkyvcaUh2HrWef3QUT4vGtyizrIbqOtW0JSKOrURCt7CeQc8wgoCibhSCMd73WHkaObD4ilPB4cU8vRbe2mlFVFwTsE6nOGj2Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752245124; c=relaxed/simple;
-	bh=BVCFPAe+VaW716/dVJanTGMnnTm5naA6n1aU+KVhgPM=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZsFQHtoYLZO+cAnKuepyc0WUtAQZZTPAJS3GIqFuL055IW1v3nJB+jlL36UNaNd3ic7Dl9Ju0KRpIwamd1d+ZOfqrZ7Xa53X5dPZNesJ2kw2xqboWuvjJph2jrzOUvtSSMvYyDvQLoyHEluE6Z/80zXL7yJSfWk+qqJVyuzIq5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bdvYg0ZQbz6L55x;
-	Fri, 11 Jul 2025 22:41:59 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 5AC321402F7;
-	Fri, 11 Jul 2025 22:45:17 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 11 Jul
- 2025 16:45:16 +0200
-Date: Fri, 11 Jul 2025 15:45:14 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Vivek Yadav <vivek.2311@samsung.com>
-CC: <pankaj.dubey@samsung.com>, <ravi.patel@samsung.com>,
-	<shradha.t@samsung.com>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-	<robh@kernel.org>, <krzk@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <will@kernel.org>, <mark.rutland@arm.com>,
-	<s.nawrocki@samsung.com>, <cw00.choi@samsung.com>, <alim.akhtar@samsung.com>,
-	<linux-fsd@tesla.com>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
-	<linux-samsung-soc@vger.kernel.org>
-Subject: Re: [PATCH 4/6] drivers: perf: samsung: Add PPMU driver support
-Message-ID: <20250711154514.000008eb@huawei.com>
-In-Reply-To: <20250708103208.79444-5-vivek.2311@samsung.com>
-References: <20250708103208.79444-1-vivek.2311@samsung.com>
-	<CGME20250708103240epcas5p336539d4c3a1fb489708c61f9aae6bfa8@epcas5p3.samsung.com>
-	<20250708103208.79444-5-vivek.2311@samsung.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5492528725E;
+	Fri, 11 Jul 2025 14:49:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.10
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752245345; cv=fail; b=iukFGia642u061Tcgx3b89K+34LyEuMw/VfKSfwX+ndLS0H8IJEdUR36hQS+mLwwHeFHw/TdDeMwidbOu6lKFhViUr9ish3Wa0jfXENuPym/FDznBolFmWUGNl9EhRLRlLS5Aa+q7sJcsTKKD5UhtM+m3LSlXvx9DEZp2TIVM/Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752245345; c=relaxed/simple;
+	bh=OhAFLr51jIzImNyHHQokGI2HVMxG4b0oQroeLJQI+H0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=MYwfL4Tfxt6rNYN8cXyZGcPp7w45BMSvFb+1uCQQd575jPB8purFEBs/LrP9PivBoNLGul2ftKtHEoTZE7c7Cy9rlH0iW39ha68wMsCYlIJlD2AVjm0essATHlenlYaNv5hlN3yudoxPQXsNS7SnVPrJoqu1LP+/iuOHTjRKjWw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=fuaCXACu; arc=fail smtp.client-ip=52.101.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oIohoK1Siq6luQ1Tz923gWfLbpbJ1BZe0H2qEfH/I/wAD8CKIjV4zMBBs/rn8/jF5OFDEJR+uT71r5wD/SiFqJuzD2jS7wr9XnBacMyMmauMDH8dobw9ivXWKiLwsPh1//XxZ2sXT2JYITYwmGmXKYuwG5zDOs13MvVJfz1LfA8/XydCFNXsyjhlilLEyb8RtMnOEa9JOLHUVHEDBkZtacwT+aIPXVHNdJCgYXPNQH5ssa7wP/ZcqVUWoWF1zFeAmfoHKBj+kpjW8WmBuiXHGkq06CA/o8DNS25AHWH2tbneYewLvdT2QhmnKM99NAtm51lPNvRP7tKQ5KDo/zRdaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UHEGghXMg9TGs2H2O88B5NSc9IJxjcFRtYvWhJbz+kc=;
+ b=cvqi5Z2SKNhTGRcj4+0EyZJdYciW4q6PTQPWCWlkWGj98IXlYu5EQR9Xvv7yRlZCny1+L+9kKoETiSJXMYyFN/w+XkLuq/UYcjNOwa97RNX7BlvWPQPdOkb0nx0PQEBto2xJ6sZvEcZpxkmbeaXSbYWDoor95qsfOhbAUp1yGXGeN4vvtOEhQTMXhkqV2LJ/Kwcv6jTTWpGlUI+2o7t/ZjVYCkmLD3G1eLOk/nJMWB2Qjz8OBkW3Nhy5836hWjrzCZo5CoJppCSbIXiFXoZIJuxLu/LN30cjsv+QUjRT2AWLEr2Zhin5zWRY4ObzZ59GiUlogRqG3jNtFnCq+LkEow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UHEGghXMg9TGs2H2O88B5NSc9IJxjcFRtYvWhJbz+kc=;
+ b=fuaCXACun58YH7N2Dv8ne/QzlNNUh3HkBFr07Jh+amf5KDUPrOAADqJ6polUCwDAhROVWM4Ylic2nGermMFKt7/ji7QOQiHGsz4dzDN+/nzhytzBYyycHG+7X/w11Ap5OixpxiOWhZJlCcyCp3CSxZtyQsNSEFw55w+77Yj4XFua9MVG56x3Uo0vtO5ehNnSUclgQQlPD8wgaHu3jqiVuI3BFFEUyhhzTLbsXV+qYv2P3hAaHcXtfCnRWsZlAOLxFSEFUt8SlFsqBNkqerJME3vQiCKX12yAoSnRMELFUm6vielRJjBrhfP2NxybuWImKBVYqSm8mxcFyX1qyQo2ZQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI0PR04MB10591.eurprd04.prod.outlook.com (2603:10a6:800:25b::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.25; Fri, 11 Jul
+ 2025 14:48:57 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8922.023; Fri, 11 Jul 2025
+ 14:48:57 +0000
+Date: Fri, 11 Jul 2025 10:48:51 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Shawn Guo <shawnguo2@yeah.net>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Robert Chiras <robert.chiras@nxp.com>,
+	"Guoniu.zhou" <guoniu.zhou@nxp.com>
+Subject: Re: [PATCH v5 13/13] arm64: dts: imx8q: add camera ov5640 support
+ for imx8qm-mek and imx8qxp-mek
+Message-ID: <aHEkNZPfVw2drb4p@lizhi-Precision-Tower-5810>
+References: <20250522-8qxp_camera-v5-0-d4be869fdb7e@nxp.com>
+ <20250522-8qxp_camera-v5-13-d4be869fdb7e@nxp.com>
+ <aHC7wm98PlShUqWk@dragon>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aHC7wm98PlShUqWk@dragon>
+X-ClientProxiedBy: AM9P250CA0013.EURP250.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21c::18) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
- frapeml500008.china.huawei.com (7.182.85.71)
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI0PR04MB10591:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5fa01f1b-4c08-4214-083e-08ddc08a105d
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|19092799006|366016|1800799024|52116014|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?xi066dqPpljpfhY6qHR7IchTvEJj9JVWAL0vKxAjhIEucURsOmIYMSfr+eyl?=
+ =?us-ascii?Q?0FsIZ3lFOqXQkoTGeHeA+X0h32wAFpQH3Fy3/DMm90n+kuYpLZMpPC/2gzzm?=
+ =?us-ascii?Q?4+d7yWjthpZ7aSCSKKIkHk2qKkAr+BGFYpj3ZxNZgEsq4cDyB4HpNYCSO2Kb?=
+ =?us-ascii?Q?+zAOjhDGYeZ0UVddetX3lAPIXSMTlhfWl+d0/Nx7EDExhCwVZknv5GV4FBUx?=
+ =?us-ascii?Q?msQKhROOZqhw+d5b36NpK5j4RuDICYSmXC3L3aZ1CefF7i5bdP1PQs5Tmjpa?=
+ =?us-ascii?Q?jBWcSa6ToGFd5jikjtZ/xf41hgtZQUpBt5aVqqB5AwAFFZpkweSqbYJkvev3?=
+ =?us-ascii?Q?sjUde0xttNgoLynKZg+WFVpplqNF7E57Q2WG4E87XbsP8Lc2ifhPWygVg5YB?=
+ =?us-ascii?Q?97k0K4yc1HQzRWEjhCH1MwCOH46GNGLjgrxJXnQj4m5/cY10FSSouwMD7L2p?=
+ =?us-ascii?Q?sbDj46Qjj+Zo44SW3yCwtOWHA3i6JHiWWOE8c4hq3bVfXITtiM/5KxxwDUQe?=
+ =?us-ascii?Q?VOJxJOVhh/2jjyHkITPhH7aADJh8MWhlcgN1RazYDmAWq43o+HwY1iejoKX7?=
+ =?us-ascii?Q?Ro0FSuW1DhFWHXQb+g2c+3oaBVH2xHUV8WrF4btYflED8ZE5m1ZMizsLuLLp?=
+ =?us-ascii?Q?5EV5Jkn9MBgWykfPAaAJB36r9qWuw+gzrvsgkzi3abNVRdk2NWFWQe27tRXB?=
+ =?us-ascii?Q?s4uZ0FHO1kn4cmMr/XLXeMTzyk59WUq7BzkkD8qBD0EmuQTJiARn5Sb5r/9+?=
+ =?us-ascii?Q?Nf0gWDnc1sswcJxT/j9L1ZO6VxI00w3GhQDslbPWveGx6FAvhXHek/MlK2lI?=
+ =?us-ascii?Q?+mTGZN5GK18I/5rS2Gt8oPgg5Gl3NULlRoHhGnbQN5VZprDrfkjjFNEXD8R8?=
+ =?us-ascii?Q?lzD83aW621YPecvkAwD7iPorxjZmLQxysCUpR+66tI+dTvCfmZxW1HWRoVrh?=
+ =?us-ascii?Q?WtE79rV9GsVpguEG6OTu/yow/EeHUKCInddAiFxm3lnTC1X/CHplRDgX2ju9?=
+ =?us-ascii?Q?IqiLhXc9FAb8fQt5QQkB1JH9YEY9fZU18MNXhER3N1qbCauNcGrIAOLhifQA?=
+ =?us-ascii?Q?OycYiAFNM+IK2fFMh/ylIMJWKHbSZKjJhEZX8h3LHzs9/BBtzQ/CdsyLX/67?=
+ =?us-ascii?Q?ytD9DBkb/lnTjL9zUs1C9yXMFJzFPgPEP8Q+pZjiT7syuFwO8p6+BqddTGgV?=
+ =?us-ascii?Q?/ylYmHsDXCyiQjiGchRPrh99mTpY5Rc3iF6Jxy5pY1wEIHfnRdq8SSxGVEkz?=
+ =?us-ascii?Q?vq3R1LHafl4Ur67lQj80blmVux5OHY6Qd5C3xutlnk/Z5BYyNKJdrXv+uQ+O?=
+ =?us-ascii?Q?3y9e+/11i9aDfMjR4GRsd+lYwD0Q5cTgfXrvVv45zna5G/jCqHmLLRt7ruVv?=
+ =?us-ascii?Q?mYQV+3EpLEx5GzxY/EG8HMYcg0vqJ4hJUuKe2R+AIHLu0bsAFVmK/o8FavlO?=
+ =?us-ascii?Q?ziSLq1TrIqpFJxhGES5Rn9Gi8i08K2+xuvZaURXJa/G/I2mBmlfNQZwmCxem?=
+ =?us-ascii?Q?bbHPhEQb4ztGlvk=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?kt9xnQH7Weqo6wXAte++q3JQHOHwdTsmAjJmao/JyiY8f8SNEkm0R3WjOPJj?=
+ =?us-ascii?Q?S7yNrOtdRXOz4PTov7K/3Qgl5XSO6An/nqaKNOxJaa4AYM+R3Cic9gDBTbDL?=
+ =?us-ascii?Q?1nmdL5NAT+dCKbrwUYiPx7w1C1JtjGHHuizoxpO+APk1A70m2QxFLA+uQxuU?=
+ =?us-ascii?Q?qhhUbgjW3ZU/fah3EuJFf+bQZ67VKWSIuWxtY8hmja9fB11KHGp4X0J6sdHB?=
+ =?us-ascii?Q?Cw51fL/nOk0/uzkTXm6SZoCjy62iag7maulb8WBakys13OKesQMVIdWQ0G1I?=
+ =?us-ascii?Q?YVxAcPPA/GfZGE1lgvIDvBwpMKhtOvEtTcqvtLVGKgE0Gs+mUvMMGCE7BmKE?=
+ =?us-ascii?Q?pPoZdIFXUFc6nSfJsgEUSrZJD5Vfm+9A9DbROJcpaN34omboQNxfcPUudSKA?=
+ =?us-ascii?Q?lM6KazOW5iBvqporFxBBDY1l/aV4riGno9FsK0KBpRP3h1mUZC5Nytcwzqs5?=
+ =?us-ascii?Q?7LOT7V87eNZ2wocQOn+JHcgGZdh6TrUVDj5MklL1kzoTvugTuQr+Qe920LJw?=
+ =?us-ascii?Q?Zun/QtYWrlwWdW5rZ5MzzKCrzEh62EfeD9Zaqb6Vekm2gDOooETssvV967gz?=
+ =?us-ascii?Q?knCI5RTnPgGEjJ8nX7JmYsCIYR4n0n3N+M0JVR+h4GR/KTPY7phHHEOCJaN7?=
+ =?us-ascii?Q?prUEfXuycI7Pp8lTmhp7AoevCE2sy03jcLzz4ftn8s8TB5TRrFHc9vbwnA2R?=
+ =?us-ascii?Q?/ZIemgZdIWeKP7mDLimVcybxEyxsU4/dz3oHleJwbPDBfI/j40bryjky7HP0?=
+ =?us-ascii?Q?jhFKYFSGUFti0Xy2ttcvLN+9qxdIT++kZ1VlHPRhazLo9wrGu7/2VSr6TkJl?=
+ =?us-ascii?Q?2HXyVT/Sz/xQuJ1Z7Jm9lizpI7MngpqlnWHAgn1Op7N6TeWz7vEslXHkOGlD?=
+ =?us-ascii?Q?LiK632PhmbKecjCZ2RBNi+iTcCHfuplu9XPBa7CoQXNXJjAAxSDRPgGX5WHn?=
+ =?us-ascii?Q?BGFeWBtvz4OAUUjTZhotk+oYnM5SEZ63WGqJVRBXLdT7hyTSIYkD1JAqda7F?=
+ =?us-ascii?Q?cs1msgFygFRGKJpFZLmhcf5oHy0RjdaqirQpcFnXH4+CGsdgULuAIKtwctB4?=
+ =?us-ascii?Q?8CtUgJ/b/740h3HrpGfTw3VjXLUqFoOk9uwwmpQWbzpsngdVmloh9/B2zotP?=
+ =?us-ascii?Q?+REVOhuCFgtLV+FyMURnOF2Rx+ufkxG2nrBHp16ssIJgEM6PTbF3c5Q1cluR?=
+ =?us-ascii?Q?KthnZcCCmAUpDXWlz3c+rJyZu1Z0chwfw27eD17Iw0xIBCy4o+015EaLg/I5?=
+ =?us-ascii?Q?8g+qdra62tZ2OpwJeqqDKWbRn5VWKpSMo8pOO2M0NMegcJhnSsxdVFBsZTQU?=
+ =?us-ascii?Q?SzfAcDrvaxpxfYAPtX5+SBjnEX1Ktfc0bKoEHb4UvvTVtQA60XMeUHqF6AiV?=
+ =?us-ascii?Q?XcFU48Vs1RSYi2HL4VovSxPysGkdioCtNM1x8wDjXu5xgg86vUYfIKUzuRmo?=
+ =?us-ascii?Q?2vK0jcuM3MSA+xakzmRkfqYcmxcp/Pbe5B+Q77koZwyYnGsLiE56K3Dol1z+?=
+ =?us-ascii?Q?9GUzsrfMhxFw2PDrIoFecr3a4D+Kq8Kl7WJGTHnIU6vO2l1i2pgfL3ipQrhZ?=
+ =?us-ascii?Q?6Lyf3pTh/I5xbUz/pySfCXsKwTiqnFapWNqTDVOK?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5fa01f1b-4c08-4214-083e-08ddc08a105d
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2025 14:48:57.1273
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ppX10yUi69tKTtpZ0UMu6+xhEH5GP+x7zW5a4JzwuXUaqlM+YdjUoX/C5ZKwFYNXQrVElJU61WuBgJsDsIPZtQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10591
 
-On Tue,  8 Jul 2025 16:02:06 +0530
-Vivek Yadav <vivek.2311@samsung.com> wrote:
+On Fri, Jul 11, 2025 at 03:22:42PM +0800, Shawn Guo wrote:
+> On Thu, May 22, 2025 at 01:56:51PM -0400, Frank Li wrote:
+> > Add ov5640 overlay file for imx8qm-mek and imx8qxp-mek board. Camera can
+> > connect different CSI port. So use dts overlay file to handle these
+> > difference connect options.
+> >
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> > change from v4 to v5
+> > - use fullpath for csi endpoint
+> >
+> > change from v3 to v4
+> > - add board level xtal24m
+> > - remove reduntant ports information at dtso because chip leave already add
+> > it.
+> >
+> > change from v2 to v3
+> > - remove phy nodes
+> >
+> > change from v1 to v2
+> > - none
+> > ---
+> >  arch/arm64/boot/dts/freescale/Makefile             | 11 ++++
+> >  .../boot/dts/freescale/imx8qm-mek-ov5640-csi0.dtso | 64 ++++++++++++++++++++++
+> >  .../boot/dts/freescale/imx8qm-mek-ov5640-csi1.dtso | 64 ++++++++++++++++++++++
+> >  arch/arm64/boot/dts/freescale/imx8qm-mek.dts       | 58 ++++++++++++++++++++
+> >  .../boot/dts/freescale/imx8qxp-mek-ov5640-csi.dtso | 63 +++++++++++++++++++++
+> >  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts      | 36 ++++++++++++
+> >  6 files changed, 296 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> > index 0b473a23d1200..d376b4233fe8a 100644
+> > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > @@ -301,6 +301,14 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qm-apalis-v1.1-eval-v1.2.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8qm-apalis-v1.1-ixora-v1.1.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8qm-apalis-v1.1-ixora-v1.2.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8qm-mek.dtb
+> > +
+> > +imx8qm-mek-ov5640-csi0-dtbs := imx8qm-mek.dtb imx8qm-mek-ov5640-csi0.dtbo
+> > +dtb-${CONFIG_ARCH_MXC} += imx8qm-mek-ov5640-csi0.dtb
+> > +imx8qm-mek-ov5640-csi1-dtbs := imx8qm-mek.dtb imx8qm-mek-ov5640-csi1.dtbo
+> > +dtb-${CONFIG_ARCH_MXC} += imx8qm-mek-ov5640-csi1.dtb
+> > +imx8qm-mek-ov5640-dual-dtbs := imx8qm-mek.dtb imx8qm-mek-ov5640-csi0.dtbo imx8qm-mek-ov5640-csi1.dtbo
+> > +dtb-${CONFIG_ARCH_MXC} += imx8qm-mek-ov5640-dual.dtb
+> > +
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-ai_ml.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-aster.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-eval-v3.dtb
+> > @@ -311,6 +319,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
+> >  imx8qxp-mek-pcie-ep-dtbs += imx8qxp-mek.dtb imx-pcie0-ep.dtbo
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek-pcie-ep.dtb
+> >
+> > +imx8qxp-mek-ov5640-csi-dtbs := imx8qxp-mek.dtb imx8qxp-mek-ov5640-csi.dtbo
+> > +dtb-${CONFIG_ARCH_MXC} += imx8qxp-mek-ov5640-csi.dtb
+> > +
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-tqma8xqp-mba8xx.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-tqma8xqps-mb-smarc-2.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek-ov5640-csi0.dtso b/arch/arm64/boot/dts/freescale/imx8qm-mek-ov5640-csi0.dtso
+> > new file mode 100644
+> > index 0000000000000..7510556323b1c
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8qm-mek-ov5640-csi0.dtso
+> > @@ -0,0 +1,64 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2025 NXP
+> > + */
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/media/video-interfaces.h>
+> > +
+> > +&i2c_mipi_csi0 {
+> > +	#address-cells = <1>;
+> > +	#size-cells = <0>;
+> > +	clock-frequency = <100000>;
+> > +	pinctrl-0 = <&pinctrl_i2c_mipi_csi0>;
+> > +	pinctrl-names = "default";
+> > +	status = "okay";
+> > +
+> > +	ov5640_mipi_0: camera@3c {
+> > +		compatible = "ovti,ov5640";
+> > +		reg = <0x3c>;
+> > +		clocks = <&xtal24m>;
+> > +		clock-names = "xclk";
+> > +		pinctrl-0 = <&pinctrl_mipi_csi0>;
+> > +		pinctrl-names = "default";
+> > +		powerdown-gpios = <&lsio_gpio1 28 GPIO_ACTIVE_HIGH>;
+> > +		reset-gpios = <&lsio_gpio1 27 GPIO_ACTIVE_LOW>;
+> > +		AVDD-supply = <&reg_2v8>;
+> > +		DVDD-supply = <&reg_1v5>;
+> > +		DOVDD-supply = <&reg_1v8>;
+> > +		status = "okay";
+>
+> Unnecessary "okay" status?
 
-> Add Samsung PPMU driver support in the Linux perf subsystem.
-> 
-> PPMU24 driver configures the PPMU24 hardware which is found
-> in the Samsung SoCs like Tesla FSD.
-> 
-> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
-> Signed-off-by: Vivek Yadav <vivek.2311@samsung.com>
-Hi,
+Yes, Do you need me to resend?
 
-My main feedback here is that you have a layer of abstraction that is
-not currently useful. So unless you plan to include another driver
-that makes use of the ops structures etc, just squash the whole thing into
-one much simpler c file without any of the ops stuff.
-
-Should simplify the code a lot and generally accelerate it getting
-reviewed and merged.
-
-If it becomes useful to have that abstraction in the future, that is the
-point when you should add it.
-
-Jonathan
-
-> diff --git a/drivers/perf/samsung/Makefile b/drivers/perf/samsung/Makefile
-> new file mode 100644
-> index 000000000000..c9ed1e1a986e
-> --- /dev/null
-> +++ b/drivers/perf/samsung/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_SAMSUNG_PPMU24) += ppmu_platform.o ppmu.o
-
-Not immediately obvious why this is multiple files. (no exports needed
-anyway as Krzysztof pointed out.
-
-> diff --git a/drivers/perf/samsung/ppmu.c b/drivers/perf/samsung/ppmu.c
-> new file mode 100644
-> index 000000000000..cacb9cdec79f
-> --- /dev/null
-> +++ b/drivers/perf/samsung/ppmu.c
-> @@ -0,0 +1,494 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Samsung Platform Performance Measuring Unit (PPMU) driver
-> + *
-> + * Copyright (c) 2024-25 Samsung Electronics Co., Ltd.
-> + *
-> + * Authors: Vivek Yadav <vivek.2311@samsung.com>
-> + *          Ravi Patel <ravi.patel@samsung.com>
-> + */
-> +
-> +#include <linux/idr.h>
-> +#include <linux/of.h>
-> +#include <linux/perf_event.h>
-> +#include <linux/platform_device.h>
-> +#include "samsung_ppmu.h"
-> +
-> +#define PPMU_CLEAR_FLAG				(GENMASK(3, 0) | BIT(31))
-> +
-> +#define PPMU_PMCNT3_HIGH_VAL			(3)
-> +#define PPMU_PMCNT2_HIGH_VAL			(2)
-> +#define PPMU_RESET_CCNT				BIT(2)
-> +#define PPMU_RESET_PMCNT			BIT(1)
-> +
-> +#define PPMU_PMNC_OP_MODE_MASK			(GENMASK(21, 20))
-> +#define PPMU_PMNC_OP_MODE_OFF			(20)
-> +#define PPMU_MANUAL_MODE_VAL			(0x0)
-> +#define PPMU_PMNC_GLB_CNT_EN_VAL		(BIT(0))
-> +#define PPMU_PMNC_RESET_PMCNT_VAL		(BIT(1))
-> +#define PPMU_PMNC_RESET_CCNT_VAL		(BIT(2))
-> +
-> +#define PPMU_V24_IDENTIFIER			(0x45)
-> +
-> +#define PPMU_CCNT_IDX				(4)
-> +#define PPMU_CCNT_POS_OFF			(31)
-> +#define PPMU_VERSION_CHECK			(GENMASK(19, 12))
-> +
-> +#define PPMU_SM_ENABLE_ALL_CNT			(0xf)
-> +#define PPMU_ENABLE_CCNT			BIT(31)
-> +#define PPMU_FILTER_MASK			(0x7)
-> +
-> +/* ID of event type */
-> +enum {
-> +	PPMU_EVENT_READ_CHANNEL_ACTIVE		= (0x00),
-> +	PPMU_EVENT_WRITE_CHANNEL_ACTIVE		= (0x01),
-> +	PPMU_EVENT_READ_REQUEST			= (0x02),
-> +	PPMU_EVENT_WRITE_REQUEST		= (0x03),
-> +	PPMU_EVENT_READ_DATA			= (0x04),
-> +	PPMU_EVENT_WRITE_DATA			= (0x05),
-> +	PPMU_EVENT_WRITE_RESPONSE		= (0x06),
-> +	PPMU_EVENT_LAST_READ_DATA		= (0x07),
-> +	PPMU_EVENT_LAST_WRITE_DATA		= (0x08),
-> +	PPMU_EVENT_READ_REQUEST_BOLCKING	= (0x10),
-> +	PPMU_EVENT_WRITE_REQUEST_BOLCKING	= (0x11),
-> +	PPMU_EVENT_READ_DATA_BLOCKING		= (0x12),
-> +	PPMU_EVENT_WRITE_DATA_BLOCKING		= (0x13),
-> +	PPMU_EVENT_WRITE_RESPONSE_BLOCKING	= (0x14),
-> +	PPMU_EVENT_READ_BURST_LENGTH		= (0x2a),
-> +	PPMU_EVENT_WRITE_BURST_LENGTH		= (0x2b),
-> +	PPMU_EVENT_CCNT				= (0xfe),
-> +	PPMU_EVENT_MAX				= (0xff),
-> +};
-> +
-> +/* Register offsets */
-> +enum ppmu_reg {
-> +	PPMU_VERSION				= (0x0000),
-> +	PPMU_PMNC				= (0x0004),
-> +	PPMU_CNTENS				= (0x0008),
-> +	PPMU_CNTENC				= (0x000c),
-> +	PPMU_INTENS				= (0x0010),
-> +	PPMU_INTENC				= (0x0014),
-> +	PPMU_FLAG				= (0x0018),
-> +	PPMU_CIG_CFG0				= (0x001c),
-> +	PPMU_CIG_CFG1				= (0x0020),
-> +	PPMU_CIG_CFG2				= (0x0024),
-> +	PPMU_CIG_RESULT				= (0x0028),
-> +	PPMU_CNT_RESET				= (0x002c),
-> +	PPMU_CNT_AUTO				= (0x0030),
-> +	PPMU_PMCNT0				= (0x0034),
-> +	PPMU_PMCNT1				= (0x0038),
-> +	PPMU_PMCNT2				= (0x003c),
-> +	PPMU_PMCNT3_LOW				= (0x0040),
-> +	PPMU_PMCNT3_HIGH			= (0x0044),
-> +	PPMU_CCNT				= (0x0048),
-> +	PPMU_PMCNT2_HIGH			= (0x0054),
-> +	PPMU_CONFIG_INFO			= (0X005c),
-> +	PPMU_INTERRUPT_TEST			= (0x0060),
-> +	PPMU_EVENT_EV0_TYPE			= (0x0200),
-> +	PPMU_EVENT_EV1_TYPE			= (0x0204),
-> +	PPMU_EVENT_EV2_TYPE			= (0x0208),
-> +	PPMU_EVENT_EV3_TYPE			= (0x020c),
-> +	PPMU_EVENT_SM_ID_MASK			= (0x0220),
-> +	PPMU_EVENT_SM_ID_VALUE			= (0x0224),
-> +	PPMU_EVENT_SM_ID_A			= (0x0228),
-> +	PPMU_EVENT_SM_OTHERS_V			= (0x022c),
-> +	PPMU_EVENT_SM_OTHERS_A			= (0x0230),
-> +	PPMU_EVENT_SAMPLE_RD_ID_MASK		= (0x0234),
-> +	PPMU_EVENT_SAMPLE_RD_ID_VALUE		= (0x0238),
-> +	PPMU_EVENT_SAMPLE_WR_ID_MASK		= (0x023c),
-> +	PPMU_EVENT_SAMPLE_WD_ID_VALUE		= (0x0240),
-> +	PPMU_EVENT_AXI_CH_TYPE			= (0x0244),
-> +	PPMU_EVENT_MO_INFO			= (0x0250),
-> +	PPMU_EVENT_MO_INFO_SM_ID		= (0x0254),
-> +	PPMU_EVENT_MO_INFO_SAMPLE		= (0x0258),
-> +	PPMU_EVENT_IMPRECISE_ERR		= (0x0260),
-
-Brackets () not adding anything useful.
-
-
-> +static void samsung_ppmu_get_stop_counters(struct samsung_ppmu *s_ppmu)
-> +{
-> +	u32 val;
-> +
-> +	/* Stop counters */
-> +	val = readl(s_ppmu->base + PPMU_PMNC);
-> +	val &= (~PPMU_PMNC_GLB_CNT_EN_VAL);
-> +	writel(val, s_ppmu->base + PPMU_PMNC);
-> +
-> +	s_ppmu->status = PPMU_STOP;
-If it only takes states on and off make it a bool and give it
-name to indicate directly what the two states are.
-
-	s_ppmu->started = false;
-
-> +}
-
-> +static const struct samsung_ppmu_ops samsung_ppmu_plat_ops = {
-
-If there is only one implementation in a patch set it is best
-to avoid abstractions and ops tables like this.
-
-If you have multiple implementations then submit them all at once
-so we can see how this is used.  For now it complicates the
-driver for no known reason.
-
-
-> +	.write_evtype		= samsung_ppmu_write_evtype,
-> +	.get_event_idx		= samsung_ppmu_get_event_idx,
-> +	.read_counter		= samsung_ppmu_get_read_counter,
-> +	.enable_counter		= samsung_ppmu_get_enable_counter,
-> +	.disable_counter	= samsung_ppmu_get_disable_counter,
-> +	.start_counters		= samsung_ppmu_get_start_counters,
-> +	.stop_counters		= samsung_ppmu_get_stop_counters,
-> +	.get_int_status		= samsung_ppmu_get_int_status,
-> +	.clear_int_status	= samsung_ppmu_clear_int_status,
-> +};
-> +
-> +static int ppmu_clock_init(struct samsung_ppmu *s_ppmu)
-> +{
-> +	int ret = 0;
-> +	struct device *dev = s_ppmu->dev;
-> +
-> +	s_ppmu->clks[PPMU_ACLK].id = "aclk";
-> +	s_ppmu->clks[PPMU_PCLK].id = "pclk";
-> +
-> +	ret = devm_clk_bulk_get(dev, PPMU_CLK_COUNT, s_ppmu->clks);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to get clocks. Err %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_bulk_prepare_enable(PPMU_CLK_COUNT, s_ppmu->clks);
-
-> +	if (ret)
-> +		dev_err(dev, "Clock enable failed. Err %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int samsung_ppmu_probe(struct platform_device *pdev)
-> +{
-> +	struct samsung_ppmu *s_ppmu;
-> +	struct device *dev = &pdev->dev;
-> +	u32 version;
-> +	char *name;
-> +	int ret;
-> +
-> +	s_ppmu = devm_kzalloc(dev, sizeof(*s_ppmu), GFP_KERNEL);
-> +	if (!s_ppmu)
-> +		return -ENOMEM;
-> +
-> +	s_ppmu->dev = &pdev->dev;
-> +
-> +	s_ppmu->id = idr_alloc(&my_idr, dev, 0, 2, GFP_KERNEL);
-
-Mixing devm cleaned up stuff and things that aren't is usuall a bad
-idea.  You can use devm_add_action_or_reset() to deal with allocations
-and configuration that does not have it's own devm interfaces.
-
-> +	if (s_ppmu->id < 0) {
-> +		dev_err(dev, "Failed to allocate ID dynamically\n");
-> +		return s_ppmu->id;
-> +	}
-> +
-> +	/* Register base address */
-> +	s_ppmu->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(s_ppmu->base)) {
-> +		dev_err(dev, "IO remap failed\n");
-> +		return PTR_ERR(s_ppmu->base);
-> +	}
-> +
-> +	/* Register IRQ */
-> +	ret = samsung_ppmu_init_irq(s_ppmu, pdev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	s_ppmu->check_event = PPMU_EVENT_MAX;
-> +	s_ppmu->num_counters = PPMU_MAX_COUNTERS;
-> +	s_ppmu->on_cpu = 0;
-> +	s_ppmu->identifier = PPMU_V24_IDENTIFIER;
-> +
-> +	s_ppmu->ppmu_data = device_get_match_data(&pdev->dev);
-> +	if (!s_ppmu->ppmu_data) {
-> +		dev_err(&pdev->dev, "No matching device data found\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* Register PPMU driver ops */
-> +	s_ppmu->pmu_events.attr_groups = s_ppmu->ppmu_data->ppmu_attr_group;
-> +	s_ppmu->ops = &samsung_ppmu_plat_ops;
-> +
-> +	/* Set private data to platform_device structure */
-> +	platform_set_drvdata(pdev, s_ppmu);
-> +
-> +	/* Initialize the PPMU */
-> +	samsung_ppmu_init(s_ppmu, THIS_MODULE);
-> +
-> +	ret = ppmu_clock_init(s_ppmu);
-> +	if (ret)
-> +		return ret;
-> +
-> +	version = readl(s_ppmu->base + PPMU_VERSION);
-> +	version &= PPMU_VERSION_CHECK;
-> +	version >>= 12;
-> +	s_ppmu->samsung_ppmu_version = version;
-> +
-> +	name = devm_kasprintf(&pdev->dev, GFP_KERNEL, "ppmu_v_%x_%d", version, s_ppmu->id);
-> +	if (!name)
-> +		return -ENOMEM;
-> +
-> +	ret = perf_pmu_register(&s_ppmu->pmu, name, -1);
-> +	if (ret) {
-> +		clk_bulk_disable_unprepare(PPMU_CLK_COUNT, s_ppmu->clks);
-> +		dev_err(dev, "Failed to register PPMU in perf. Err %d\n", ret);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static void samsung_ppmu_remove(struct platform_device *pdev)
-> +{
-> +	struct samsung_ppmu *s_ppmu = platform_get_drvdata(pdev);
-> +
-> +	clk_bulk_disable_unprepare(PPMU_CLK_COUNT, s_ppmu->clks);
-
-Should reverse what happens in probe.  Here you turn off clocks bfore
-you remove userspace interfaces which looks unlikely to be correct.
-
-> +
-> +	perf_pmu_unregister(&s_ppmu->pmu);
-> +
-> +	idr_remove(&my_idr, s_ppmu->id);
-> +}
-
-> diff --git a/drivers/perf/samsung/ppmu_platform.c b/drivers/perf/samsung/ppmu_platform.c
-> new file mode 100644
-> index 000000000000..ee11311d5a61
-> --- /dev/null
-> +++ b/drivers/perf/samsung/ppmu_platform.c
-> @@ -0,0 +1,338 @@
-
-> +int samsung_ppmu_init_irq(struct samsung_ppmu *samsung_ppmu,
-> +			  struct platform_device *pdev)
-> +{
-> +	int irq0, irq1, ret, irq_count;
-> +
-> +	irq0 = platform_get_irq(pdev, 0);
-> +	if (irq0 < 0) {
-> +		dev_err(&pdev->dev, "Failed to get IRQ 0\n");
-In stuff that only happens from probe() use
-		return dev_err_probe(&pdev->dev, irq0, "Failed to get IRQ 0\n");
-etc
-
-> +		return irq0;
-> +	}
-> +
-> +	ret = devm_request_irq(&pdev->dev, irq0, samsung_ppmu_isr,
-> +			       IRQF_NOBALANCING | IRQF_NO_THREAD | IRQF_SHARED,
-> +			       dev_name(&pdev->dev), samsung_ppmu);
-> +	if (ret) {
-> +		dev_err(&pdev->dev,
-> +			"Fail to request IRQ: %d ret: %d.\n", irq0, ret);
-> +		return ret;
-> +	}
-> +
-> +	samsung_ppmu->irq0 = irq0;
-> +
-> +	irq_count = of_property_count_elems_of_size(pdev->dev.of_node, "interrupts", sizeof(u32));
-> +	if (irq_count > 1) {
-> +		irq1 = platform_get_irq(pdev, 1);
-> +		if (irq1 < 0) {
-> +			dev_err(&pdev->dev, "Failed to get IRQ 0\n");
-> +			return irq1;
-> +		}
-> +
-> +		ret = devm_request_irq(&pdev->dev, irq1, samsung_ppmu_isr,
-> +				       IRQF_NOBALANCING | IRQF_NO_THREAD | IRQF_SHARED,
-> +				       dev_name(&pdev->dev), samsung_ppmu);
-> +		if (ret) {
-> +			dev_err(&pdev->dev,
-> +				"Fail to request IRQ: %d ret: %d.\n", irq1, ret);
-> +			return ret;
-> +		}
-> +		samsung_ppmu->irq1 = irq1;
-> +	}
-> +
-> +	return ret;
-
-If you know it's 0, then hard code that to make it obvious that this
-is the good exit path.
-
-	return 0;
-
-> +}
-> +EXPORT_SYMBOL_GPL(samsung_ppmu_init_irq);
-
-> +void samsung_ppmu_disable(struct pmu *pmu)
-> +{
-> +	struct samsung_ppmu *samsung_ppmu = to_samsung_ppmu(pmu);
-> +
-> +	samsung_ppmu->ops->stop_counters(samsung_ppmu);
-> +}
-> +EXPORT_SYMBOL_GPL(samsung_ppmu_disable);
-
-As noted, 1 module so no exports needed.
-As in many comments in this review, if you don't have multiple
-stop_counters implementations, don't have these ops wrappers.
-They massively increase code complexity for no gain yet.
-
-> +
-> +void samsung_ppmu_init(struct samsung_ppmu *s_ppmu, struct module *module)
-> +{
-> +	struct pmu *pmu = &s_ppmu->pmu;
-> +
-> +	pmu->module		= module;
-> +	pmu->task_ctx_nr	= perf_invalid_context;
-> +	pmu->event_init		= samsung_ppmu_event_init;
-> +	pmu->pmu_enable		= samsung_ppmu_enable;
-> +	pmu->pmu_disable	= samsung_ppmu_disable;
-> +	pmu->add		= samsung_ppmu_add;
-> +	pmu->del		= samsung_ppmu_del;
-> +	pmu->start		= samsung_ppmu_start;
-> +	pmu->stop		= samsung_ppmu_stop;
-> +	pmu->read		= samsung_ppmu_read;
-> +	pmu->attr_groups	= s_ppmu->pmu_events.attr_groups;
-> +	pmu->capabilities	= PERF_PMU_CAP_NO_EXCLUDE;
-> +}
-> +EXPORT_SYMBOL_GPL(samsung_ppmu_init);
-
-> diff --git a/drivers/perf/samsung/samsung_ppmu.h b/drivers/perf/samsung/samsung_ppmu.h
-> new file mode 100644
-> index 000000000000..2cad75cfa97b
-> --- /dev/null
-> +++ b/drivers/perf/samsung/samsung_ppmu.h
-
-Squashing the lot into 1 c file with no header will end up simpler I think.
-
-> @@ -0,0 +1,128 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Samsung Platform Performance Measuring Unit (PPMU) headers
-> + *
-> + * Copyright (c) 2024-25 Samsung Electronics Co., Ltd.
-> + *
-> + * Authors: Vivek Yadav <vivek.2311@samsung.com>
-> + *          Ravi Patel <ravi.patel@samsung.com>
-> + */
-> +
-> +#ifndef __SAMSUNG_PPMU_H__
-> +#define __SAMSUNG_PPMU_H__
-> +
-> +#include <linux/clk.h>
-> +
-> +#define PPMU_MAX_COUNTERS	(5)
-
-It's a number not a macro parameter, so no need for ()
-
-> +
-> +#define to_samsung_ppmu(p)	(container_of(p, struct samsung_ppmu, pmu))
-> +
-> +#define SAMSUNG_PPMU_ATTR(_name, _func, _config)			\
-> +	(&((struct dev_ext_attribute[]) {				\
-> +		{ __ATTR(_name, 0444, _func, NULL), (void *)_config }	\
-> +	})[0].attr.attr)
-> +
-> +#define SAMSUNG_PPMU_FORMAT_ATTR(_name, _config)		\
-> +	SAMSUNG_PPMU_ATTR(_name, samsung_ppmu_format_sysfs_show, (void *)_config)
-> +#define SAMSUNG_PPMU_EVENT_ATTR(_name, _config)		\
-> +	SAMSUNG_PPMU_ATTR(_name, samsung_ppmu_event_sysfs_show, (unsigned long)_config)
-> +
-> +#define SAMSUNG_PPMU_GET_EVENTID(ev) ((ev)->hw.config_base & 0xff)
-> +
-> +enum ppmu_clock_type {
-> +	PPMU_ACLK,
-> +	PPMU_PCLK,
-> +	PPMU_CLK_COUNT,
-
-Given this is (I think) just here as a counter element and hence must always
-be last, good to drop the trailing ,
-
-> +};
-> +
-> +enum ppmu_status {
-> +	PPMU_STOP,
-> +	PPMU_START,
-> +};
-> +
-> +struct samsung_ppmu;
-> +
-> +struct samsung_ppmu_ops {
-
-As mentioned above, a ops table for one implementation looks like preparation
-for generalization that may never happen.  If you don't have a second
-user today, just squash the calls inline and drop this.  It is easy to
-bring the abstraction back at the point where it is useful (1st patch in a series
-that adds a second user of shared infrastructure)
-
-> +	void (*write_evtype)(struct samsung_ppmu *s_ppmu, int idx, u32 type);
-> +	int (*get_event_idx)(struct perf_event *event);
-> +	u64 (*read_counter)(struct samsung_ppmu *s_ppmu, struct hw_perf_event *event);
-> +	void (*enable_counter)(struct samsung_ppmu *s_ppmu, struct hw_perf_event *event);
-> +	void (*disable_counter)(struct samsung_ppmu *s_ppmu, struct hw_perf_event *event);
-> +	void (*start_counters)(struct samsung_ppmu *s_ppmu);
-> +	void (*stop_counters)(struct samsung_ppmu *s_ppmu);
-> +	u32 (*get_int_status)(struct samsung_ppmu *s_ppmu);
-> +	void (*clear_int_status)(struct samsung_ppmu *s_ppmu, int idx);
-> +};
-> +
-> +/* Describes the Samsung PPMU features information */
-> +struct samsung_ppmu_dev_info {
-
-Not used that I can see.  You have an instance in the structure
-below but nothing ever sets it.
-
-
-> +	const char *name;
-> +	const struct attribute_group **attr_groups;
-> +	void *private;
-> +};
-> +
-> +struct samsung_ppmu_hwevents {
-If this is never used except as encapsulation of related
-fields in the main structure below then no need for the type.
-Just have the structure defined inline in struct samsung_ppmu
-
-> +	struct perf_event *hw_events[PPMU_MAX_COUNTERS];
-> +	DECLARE_BITMAP(used_mask, PPMU_MAX_COUNTERS);
-> +	const struct attribute_group **attr_groups;
-> +};
-> +
-> +struct samsung_ppmu_drv_data {
-
-Currently only one value - as such just hard code it in
-the driver (all these comments only apply if you don't have another
-driver to post that also uses the shared infrastructure).
-
-> +	const struct attribute_group **ppmu_attr_group;
-> +};
-> +
-> +/* Generic pmu struct for different pmu types */
-> +struct samsung_ppmu {
-> +	struct pmu pmu;
-> +	const struct samsung_ppmu_ops *ops;
-> +	const struct samsung_ppmu_dev_info *dev_info;
-> +	struct samsung_ppmu_hwevents pmu_events;
-> +	const struct samsung_ppmu_drv_data *ppmu_data;
-> +	u32 samsung_ppmu_version;
-> +	u32 samsung_ppmu_master_id_val;
-> +	u8 status;
-> +	u8 id;
-> +	/* CPU used for counting */
-> +	int on_cpu;
-> +	int irq0;
-> +	int irq1;
-> +	struct device *dev;
-> +	struct hlist_node node;
-> +	void __iomem *base;
-> +	int num_counters;
-> +	u32 counter_overflow[PPMU_MAX_COUNTERS];
-> +	u64 prev_counter[PPMU_MAX_COUNTERS];
-> +	/* check event code range */
-> +	int check_event;
-> +	u32 identifier;
-> +	struct clk_bulk_data clks[PPMU_CLK_COUNT];
-> +};
-> +
-> +void samsung_ppmu_read(struct perf_event *event);
-> +int samsung_ppmu_add(struct perf_event *event, int flags);
-> +void samsung_ppmu_del(struct perf_event *event, int flags);
-> +void samsung_ppmu_start(struct perf_event *event, int flags);
-> +void samsung_ppmu_stop(struct perf_event *event, int flags);
-> +void samsung_ppmu_set_event_period(struct perf_event *event);
-> +void samsung_ppmu_event_update(struct perf_event *event);
-> +int samsung_ppmu_event_init(struct perf_event *event);
-> +void samsung_ppmu_enable(struct pmu *pmu);
-> +void samsung_ppmu_disable(struct pmu *pmu);
-> +ssize_t samsung_ppmu_event_sysfs_show(struct device *dev,
-> +				      struct device_attribute *attr, char *buf);
-> +ssize_t samsung_ppmu_format_sysfs_show(struct device *dev,
-> +				       struct device_attribute *attr, char *buf);
-> +ssize_t samsung_ppmu_cpumask_sysfs_show(struct device *dev,
-> +					struct device_attribute *attr, char *buf);
-> +int samsung_ppmu_online_cpu(unsigned int cpu, struct hlist_node *node);
-> +int samsung_ppmu_offline_cpu(unsigned int cpu, struct hlist_node *node);
-> +
-> +ssize_t samsung_ppmu_identifier_attr_show(struct device *dev,
-> +					  struct device_attribute *attr,
-> +					  char *page);
-> +int samsung_ppmu_init_irq(struct samsung_ppmu *samsung_ppmu,
-> +			  struct platform_device *pdev);
-> +
-> +void samsung_ppmu_init(struct samsung_ppmu *samsung_ppmu, struct module *module);
-> +
-> +#endif /* __SAMSUNG_PPMU_H__ */
-
+Frank
+>
+> Shawn
+>
+> > +
+> > +		port {
+> > +			ov5640_mipi_0_ep: endpoint {
+> > +				bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+> > +				data-lanes = <1 2>;
+> > +				remote-endpoint = <&mipi_csi0_in>;
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&irqsteer_csi0 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&isi {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&mipi_csi_0 {
+> > +	status = "okay";
+> > +
+> > +	ports {
+> > +		port@0 {
+> > +			mipi_csi0_in: endpoint {
+> > +				data-lanes = <1 2>;
+> > +				remote-endpoint = <&ov5640_mipi_0_ep>;
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek-ov5640-csi1.dtso b/arch/arm64/boot/dts/freescale/imx8qm-mek-ov5640-csi1.dtso
+> > new file mode 100644
+> > index 0000000000000..080e31cdd7d3e
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8qm-mek-ov5640-csi1.dtso
+> > @@ -0,0 +1,64 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2025 NXP
+> > + */
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/media/video-interfaces.h>
+> > +
+> > +&i2c_mipi_csi1 {
+> > +	#address-cells = <1>;
+> > +	#size-cells = <0>;
+> > +	clock-frequency = <100000>;
+> > +	pinctrl-0 = <&pinctrl_i2c_mipi_csi1>;
+> > +	pinctrl-names = "default";
+> > +	status = "okay";
+> > +
+> > +	ov5640_mipi_1: camera@3c {
+> > +		compatible = "ovti,ov5640";
+> > +		reg = <0x3c>;
+> > +		clocks = <&xtal24m>;
+> > +		clock-names = "xclk";
+> > +		pinctrl-0 = <&pinctrl_mipi_csi1>;
+> > +		pinctrl-names = "default";
+> > +		powerdown-gpios = <&lsio_gpio1 31 GPIO_ACTIVE_HIGH>;
+> > +		reset-gpios = <&lsio_gpio1 30 GPIO_ACTIVE_LOW>;
+> > +		AVDD-supply = <&reg_2v8>;
+> > +		DVDD-supply = <&reg_1v5>;
+> > +		DOVDD-supply = <&reg_1v8>;
+> > +		status = "okay";
+> > +
+> > +		port {
+> > +			ov5640_mipi_1_ep: endpoint {
+> > +				bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+> > +				data-lanes = <1 2>;
+> > +				remote-endpoint = <&mipi_csi1_in>;
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&irqsteer_csi1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&isi {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&mipi_csi_1 {
+> > +	status = "okay";
+> > +
+> > +	ports {
+> > +		port@0 {
+> > +			mipi_csi1_in: endpoint {
+> > +				data-lanes = <1 2>;
+> > +				remote-endpoint = <&ov5640_mipi_1_ep>;
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+> > index 68442c8575f3f..503e0acd7963d 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+> > @@ -32,6 +32,13 @@ memory@80000000 {
+> >  		reg = <0x00000000 0x80000000 0 0x40000000>;
+> >  	};
+> >
+> > +	xtal24m: clock-xtal24m {
+> > +		compatible = "fixed-clock";
+> > +		#clock-cells = <0>;
+> > +		clock-frequency = <24000000>;
+> > +		clock-output-names = "xtal_24MHz";
+> > +	};
+> > +
+> >  	reserved-memory {
+> >  		#address-cells = <2>;
+> >  		#size-cells = <2>;
+> > @@ -155,6 +162,27 @@ usb3_data_ss: endpoint {
+> >  		};
+> >  	};
+> >
+> > +	reg_1v5: regulator-1v5 {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "1v5";
+> > +		regulator-min-microvolt = <1500000>;
+> > +		regulator-max-microvolt = <1500000>;
+> > +	};
+> > +
+> > +	reg_1v8: regulator-1v8 {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "1v8";
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <1800000>;
+> > +	};
+> > +
+> > +	reg_2v8: regulator-2v8 {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "2v8";
+> > +		regulator-min-microvolt = <2800000>;
+> > +		regulator-max-microvolt = <2800000>;
+> > +	};
+> > +
+> >  	reg_usdhc2_vmmc: usdhc2-vmmc {
+> >  		compatible = "regulator-fixed";
+> >  		regulator-name = "SD1_SPWR";
+> > @@ -824,6 +852,20 @@ IMX8QM_QSPI1A_DATA1_LSIO_GPIO4_IO25			0x0600004c
+> >  		>;
+> >  	};
+> >
+> > +	pinctrl_i2c_mipi_csi0: i2c-mipi-csi0grp {
+> > +		fsl,pins = <
+> > +			IMX8QM_MIPI_CSI0_I2C0_SCL_MIPI_CSI0_I2C0_SCL		0xc2000020
+> > +			IMX8QM_MIPI_CSI0_I2C0_SDA_MIPI_CSI0_I2C0_SDA		0xc2000020
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_i2c_mipi_csi1: i2c-mipi-csi1grp {
+> > +		fsl,pins = <
+> > +			IMX8QM_MIPI_CSI1_I2C0_SCL_MIPI_CSI1_I2C0_SCL		0xc2000020
+> > +			IMX8QM_MIPI_CSI1_I2C0_SDA_MIPI_CSI1_I2C0_SDA		0xc2000020
+> > +		>;
+> > +	};
+> > +
+> >  	pinctrl_i2c0: i2c0grp {
+> >  		fsl,pins = <
+> >  			IMX8QM_HDMI_TX0_TS_SCL_DMA_I2C0_SCL			0x06000021
+> > @@ -1017,6 +1059,22 @@ IMX8QM_LVDS1_I2C1_SDA_LVDS1_I2C1_SDA	0xc600004c
+> >  		>;
+> >  	};
+> >
+> > +	pinctrl_mipi_csi0: mipi-csi0grp {
+> > +		fsl,pins = <
+> > +			IMX8QM_MIPI_CSI0_GPIO0_00_LSIO_GPIO1_IO27		0xC0000041
+> > +			IMX8QM_MIPI_CSI0_GPIO0_01_LSIO_GPIO1_IO28		0xC0000041
+> > +			IMX8QM_MIPI_CSI0_MCLK_OUT_MIPI_CSI0_ACM_MCLK_OUT	0xC0000041
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_mipi_csi1: mipi-csi1grp {
+> > +		fsl,pins = <
+> > +			IMX8QM_MIPI_CSI1_GPIO0_00_LSIO_GPIO1_IO30		0xC0000041
+> > +			IMX8QM_MIPI_CSI1_GPIO0_01_LSIO_GPIO1_IO31		0xC0000041
+> > +			IMX8QM_MIPI_CSI1_MCLK_OUT_MIPI_CSI1_ACM_MCLK_OUT	0xC0000041
+> > +		>;
+> > +	};
+> > +
+> >  	pinctrl_pciea: pcieagrp {
+> >  		fsl,pins = <
+> >  			IMX8QM_PCIE_CTRL0_WAKE_B_LSIO_GPIO4_IO28		0x04000021
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek-ov5640-csi.dtso b/arch/arm64/boot/dts/freescale/imx8qxp-mek-ov5640-csi.dtso
+> > new file mode 100644
+> > index 0000000000000..153fca99af299
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek-ov5640-csi.dtso
+> > @@ -0,0 +1,63 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2024 NXP
+> > + */
+> > +/dts-v1/;
+> > +/plugin/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/media/video-interfaces.h>
+> > +
+> > +&i2c_mipi_csi0 {
+> > +	#address-cells = <1>;
+> > +	#size-cells = <0>;
+> > +	clock-frequency = <100000>;
+> > +	pinctrl-0 = <&pinctrl_i2c_mipi_csi0>;
+> > +	pinctrl-names = "default";
+> > +	status = "okay";
+> > +
+> > +	ov5640_mipi: camera@3c {
+> > +		compatible = "ovti,ov5640";
+> > +		reg = <0x3c>;
+> > +		clocks = <&xtal24m>;
+> > +		clock-names = "xclk";
+> > +		pinctrl-0 = <&pinctrl_mipi_csi0>;
+> > +		pinctrl-names = "default";
+> > +		powerdown-gpios = <&lsio_gpio3 7 GPIO_ACTIVE_HIGH>;
+> > +		reset-gpios = <&lsio_gpio3 8 GPIO_ACTIVE_LOW>;
+> > +		AVDD-supply = <&reg_2v8>;
+> > +		DVDD-supply = <&reg_1v5>;
+> > +		DOVDD-supply = <&reg_1v8>;
+> > +		status = "okay";
+> > +
+> > +		port {
+> > +			ov5640_mipi_ep: endpoint {
+> > +				bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+> > +				data-lanes = <1 2>;
+> > +				remote-endpoint = <&mipi_csi0_in>;
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&irqsteer_csi0 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&isi {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&mipi_csi_0 {
+> > +	status = "okay";
+> > +
+> > +	ports {
+> > +		port@0 {
+> > +			mipi_csi0_in: endpoint {
+> > +				data-lanes = <1 2>;
+> > +				remote-endpoint = <&ov5640_mipi_ep>;
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> > index 44bda183492cb..c95cb8acc360a 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> > @@ -64,6 +64,27 @@ usb3_data_ss: endpoint {
+> >  		};
+> >  	};
+> >
+> > +	reg_1v5: regulator-1v5 {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "1v5";
+> > +		regulator-min-microvolt = <1500000>;
+> > +		regulator-max-microvolt = <1500000>;
+> > +	};
+> > +
+> > +	reg_1v8: regulator-1v8 {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "1v8";
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <1800000>;
+> > +	};
+> > +
+> > +	reg_2v8: regulator-2v8 {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "2v8";
+> > +		regulator-min-microvolt = <2800000>;
+> > +		regulator-max-microvolt = <2800000>;
+> > +	};
+> > +
+> >  	reg_pcieb: regulator-pcie {
+> >  		compatible = "regulator-fixed";
+> >  		regulator-max-microvolt = <3300000>;
+> > @@ -789,6 +810,13 @@ IMX8QXP_FLEXCAN1_RX_ADMA_FLEXCAN1_RX			0x21
+> >  		>;
+> >  	};
+> >
+> > +	pinctrl_i2c_mipi_csi0: i2c-mipi-csi0grp {
+> > +		fsl,pins = <
+> > +			IMX8QXP_MIPI_CSI0_I2C0_SCL_MIPI_CSI0_I2C0_SCL		0xc2000020
+> > +			IMX8QXP_MIPI_CSI0_I2C0_SDA_MIPI_CSI0_I2C0_SDA		0xc2000020
+> > +		>;
+> > +	};
+> > +
+> >  	pinctrl_ioexp_rst: ioexprstgrp {
+> >  		fsl,pins = <
+> >  			IMX8QXP_SPI2_SDO_LSIO_GPIO1_IO01			0x06000021
+> > @@ -829,6 +857,14 @@ IMX8QXP_FLEXCAN2_RX_ADMA_UART3_RX       0x06000020
+> >  		>;
+> >  	};
+> >
+> > +	pinctrl_mipi_csi0: mipi-csi0grp {
+> > +		fsl,pins = <
+> > +			IMX8QXP_MIPI_CSI0_GPIO0_01_LSIO_GPIO3_IO07		0xC0000041
+> > +			IMX8QXP_MIPI_CSI0_GPIO0_00_LSIO_GPIO3_IO08		0xC0000041
+> > +			IMX8QXP_MIPI_CSI0_MCLK_OUT_MIPI_CSI0_ACM_MCLK_OUT	0xC0000041
+> > +		>;
+> > +	};
+> > +
+> >  	pinctrl_pcieb: pcieagrp {
+> >  		fsl,pins = <
+> >  			IMX8QXP_PCIE_CTRL0_PERST_B_LSIO_GPIO4_IO00		0x06000021
+> >
+> > --
+> > 2.34.1
+> >
+>
 
