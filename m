@@ -1,126 +1,147 @@
-Return-Path: <devicetree+bounces-195362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF75FB01538
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 09:52:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B38B0153E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 09:56:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 608C97A4396
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 07:51:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 378D11C45BF0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 07:56:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D32341F4CA1;
-	Fri, 11 Jul 2025 07:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F5571F4C8C;
+	Fri, 11 Jul 2025 07:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="xTERj0jb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CxwzvimV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F9821F4C8A
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 07:52:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512061F4616;
+	Fri, 11 Jul 2025 07:56:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752220365; cv=none; b=jRkHFpxzbh54zkxlXVSenEDz6sHUtTpt4i7qB1jrjHafEZv8tX4sXB4lvrWZRnVJwMJfNufAkx8Ie/MDaY+x9X9S0CTJRiehQcKkwZezPd3Z0wPPG3tjbltIAB0TjEnZCJ2LJV+NEpZ5hWE5vWXkXEhTqByqnn+HW92VL5S0E/0=
+	t=1752220568; cv=none; b=h+/oywjVyALilQ7Zw3VvFcPydS17psvctXF5IIaS7ucds2X6pBMMPN2xAYIRcs74U9MspKNKFnVvchKu3bvZ7nGL1Q/GyUf/WMV/jrrlf55z41SC4apjCmv1TJ/Jik3ZyWILRS8GO7v0LcJbb7OxbJ1T6x62x/YQBORQ/kbzZZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752220365; c=relaxed/simple;
-	bh=88clJWMTGmjqJ9BXiN1KTtldoVSFmnjIjDiwiXd3dew=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TosJDwWKsx3tg6pGK7Iws5uBqmupSm11qDbMuNemUks9qvF9rHFuqch2iKF2ChMvnkxHGkl3nTyQZLBamGikKETUOtXj2xyU3/SC7KwJIRFwDm47REawdNdaAPol0vovy0lVsKVgn5JmDjyezOkmAHaH/FasEKBQgYSV/XYWXyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=xTERj0jb; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5561ab55c4dso1885110e87.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 00:52:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1752220361; x=1752825161; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4yjU8KLlsfOgD84pvhzgohiFicyXio8p2w/NrIenWZQ=;
-        b=xTERj0jbyEBY1ou9oHAhnP8s8HVgQ8puUPoYhAdVmHv2xNx6G++ZUmjIDGJqS0N0nd
-         ISBBvPVqTKgmz1tpILfwPqGq9KOt1QA9ixW/yQuZ4QDTxaAWA2Nu8wtrPdWHrhGBqqlQ
-         Tk1zXW7tFDNpJgZdIsKWHx+t5VcfI0y6AM9z21vHzTFK2a9ofmsuCRaCFDFfzI8Qxjmq
-         GFBaftBLjAXgAs/tW2wvuW3hv0eCWEinPU3fTJ/KlAJNFC3SJzJ/oRXim4T028bxxdxJ
-         GDBIkbrDm8zJJBtEkAhc/kJhi++YUGFYhLhf1dJp6Cs3FwryaF7iVlU0jDZPBNTa4I7q
-         +g5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752220361; x=1752825161;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4yjU8KLlsfOgD84pvhzgohiFicyXio8p2w/NrIenWZQ=;
-        b=OsxchtkHi2UMx9MSbR/8V5zTQf/LT+WmQ9ZvlUMDtrCgvSyoDYVn8cG+wZjSdM9Q4P
-         AiSVDQ+zXWd238XeL0w3Ar3aXs1purYonp8CZbFGeHhgpjBt8V/pr1yI/uNCNZCw6pip
-         azIGyBK73HIQnYuUxwW4FayPmmJxSwyn3oK5OROUlF9/epXE3EToRaVJg4PkraRFQ64Y
-         vfYE1NcTOCmNnpOhQ1rCmHCBhYGysDGE39AA01D8MHWeFuMytQB0Z2LHxAaUVeOh0dU6
-         Ee+FVJAd8I/aCDD3Ngljc2/OzlsfXLhfKmKjb1PFiv1YV4NnGdMrBmp9uDwCQN/J2sPu
-         GVlA==
-X-Forwarded-Encrypted: i=1; AJvYcCVuBlvvCxULh4+ZATevxCyRgPsByYiZZsr715gVRqhjrFnFECyDxV4zVr239CTBgEzQyF6fRIIKHNC3@vger.kernel.org
-X-Gm-Message-State: AOJu0YziPMJU5UUsWYaa6O8NQuKLLX9Nll8OmhQyIU7Qsl5wVSCVQ5rq
-	Aiouhk4guqOVlmdaQtYC+0k09g2y1zbxXgncaj43MyVm4Sl4PGQC5myVJLL3S8jrlSDPT0kGWXd
-	fcNycTTigF3mRpWqPOrRmZc27p354bHJWFZh1yWFofQ==
-X-Gm-Gg: ASbGncvRAoNNsW03JgK0wo2JWWLBxw7TOqQMLj53X8ASi3JiUnZU4tbTJrx+nV8+m3C
-	1orApSYlNzscV2ZNCvPbnKXK9ggngJiZvgFZ+7NMmkbJRiyQPcr0rJAmayiT14+RjbNmzQ8PGC5
-	Ap2koTdEU3QeOCJsOEGYVJwz1wqkU29XcHEVSYlx+a8hAnpW4c6D3qbRjP3ZDd9yIjqOivYxotW
-	Qw0uUx129CLwUVtejK10HWEBtb0qI6mIvbLjg==
-X-Google-Smtp-Source: AGHT+IFnZKQzO8SQsEPR4+bbnrAqa1B4u0Jro/T92Yroa1+POHLtNiQWfQd6cdNN76m9sgUP6bGZdURAsrGpoIwSBow=
-X-Received: by 2002:a05:6512:3ca6:b0:553:2bf2:e303 with SMTP id
- 2adb3069b0e04-55a0463bafamr620336e87.30.1752220361177; Fri, 11 Jul 2025
- 00:52:41 -0700 (PDT)
+	s=arc-20240116; t=1752220568; c=relaxed/simple;
+	bh=ZTl9Lcxqo1YuOckQGlJbPCZk0uyJdifoQEYcCmzeCIY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KyUawBkUQ5yJTlUF2SY5/Vg6HNY/YgHd5aDGgj5cqdWfahY70dTDrNnWWM9PjX2QuPDy+QkBiaEY/Lj2veebtuSBI0RG6xD7GBp9ahHujF78jtzsKR0l9gUl69LWN0DNLd6VtecK1NE+fybZwdCbr/Dmh8BVQUb6zr9KR7t3ISI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CxwzvimV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED6A4C4CEED;
+	Fri, 11 Jul 2025 07:56:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752220567;
+	bh=ZTl9Lcxqo1YuOckQGlJbPCZk0uyJdifoQEYcCmzeCIY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CxwzvimVfkzfrBmMJQJCoLSQfD1YGdL/qdXo+fbYnuW6DSlG7efYaPc9ogj323+K6
+	 DtWygRDJh1Q4piDaP5koawGm3Valhr3pKWXzIHwoiwx2dbhmr6ACEjNx8mj/lNDsjr
+	 eV+IVp8ryYZX1+RdGaMrVMrFLA9LbmtOFxUEsvoC1H63m4mjqCJTpreKgItaxQQdL8
+	 p7aKGzrcbbViKXIXRkVmTXIj5S0o2G9BVuYDHkcjB+r8DA4WFLPUwWlT2YKBZpS2w1
+	 uNUH/2jLKUfb2WUiGNpKAonmRrvxZi+h1ik5y4uDc0Zuc9qaKNchaU8UM690/FbT7/
+	 aQuBpSQrorIWQ==
+Message-ID: <83a7add6-e72d-4042-af1b-db45fc3f8a34@kernel.org>
+Date: Fri, 11 Jul 2025 09:56:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250701-qcom-gpio-lookup-open-drain-v1-0-9678c4352f11@linaro.org>
- <242d353e-99a1-4ce8-9435-8b2addcf1276@oss.qualcomm.com>
-In-Reply-To: <242d353e-99a1-4ce8-9435-8b2addcf1276@oss.qualcomm.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 11 Jul 2025 09:52:29 +0200
-X-Gm-Features: Ac12FXxcX5qRn9gdh-ZC7VHsr37pXFF-mMITmlqtVTHjrCNkvSZ0ELEV4kvVi_I
-Message-ID: <CAMRc=Mf6o0XNGTEbKih1vNNk119i5uSAqdOT219Fqk214cWoOQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] arm64: dts: qcom: fix GPIO lookup flags for i2c-gpio
- SDA and SCL pins
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: display: simple-framebuffer: Add
+ interconnects property
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Hans de Goede <hdegoede@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Javier Martinez Canillas <javierm@redhat.com>, Helge Deller <deller@gmx.de>,
+ linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
+ <20250623-simple-drm-fb-icc-v2-1-f69b86cd3d7d@fairphone.com>
+ <20250627-mysterious-optimistic-bird-acaafb@krzk-bin>
+ <DAX7ZB27SBPV.2Y0I09TVSF3TT@fairphone.com>
+ <1129bc60-f9cb-40be-9869-8ffa3b3c9748@kernel.org>
+ <8a3ad930-bfb1-4531-9d34-fdf7d437f352@redhat.com>
+ <85521ded-734d-48e8-8f76-c57739102ded@kernel.org>
+ <e534d496-6ce0-46c8-835d-94b3346446a7@redhat.com>
+ <6e4253dd-cd73-4302-b9df-44c8c311eb22@kernel.org>
+ <vk7xshncx3vj66ykbt3cfdjwdsx5uewfzlqmfsdbjfgju4awwk@lz76hnenxq2u>
+ <DB927EJAGV63.1RSRM7JK907VL@fairphone.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <DB927EJAGV63.1RSRM7JK907VL@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jul 1, 2025 at 1:11=E2=80=AFPM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
->
->
-> On 01-Jul-25 11:01, Bartosz Golaszewski wrote:
-> > There are three platforms in the QCom DTS tree that are missing the
-> > open-drain lookup flag in their DT nodes associated with the i2c-gpio
-> > device whose driver enforces open-drain outputs. This causes the GPIO
-> > core to emit warnings such as:
-> >
-> > [    5.153550] gpio-528 (sda): enforced open drain please flag it prope=
-rly in DT/ACPI DSDT/board file
-> > [    5.166373] gpio-529 (scl): enforced open drain please flag it prope=
-rly in DT/ACPI DSDT/board file
-> >
-> > Silence the warnings by adding appriopriate flags.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
->
-> For the series:
->
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->
+On 11/07/2025 09:49, Luca Weiss wrote:
+>> I think this explodes too quickly to be useful. I'd cast my (small) vote
+>> into continuing using the simple-framebuffer as is, without additional
+>> compatible strings and extend the bindings allowing unbound number of
+>> interconnects.
+> 
+> How do we continue on this?
+> 
+> If the current solution is not acceptable, can you suggest one that is?
+> 
+> I'd like to keep this moving to not block the dts upstreaming
+> unnecessarily - or otherwise I need to drop simple-framebuffer from the
+> dts patch and keep this out-of-tree along with a patch like this.
 
-We're late into rc5 so gentle ping, any chance we could get this
-queued for v6.17?
 
-Bartosz
+I gave another alternative already (in this thread!) - get an ack or
+opinion from @Rob or @Conor. For the cases I am not sure or I got
+something wrong, I always defer to @Rob.
+
+Best regards,
+Krzysztof
 
