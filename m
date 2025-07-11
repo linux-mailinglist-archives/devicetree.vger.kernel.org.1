@@ -1,238 +1,161 @@
-Return-Path: <devicetree+bounces-195509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54C43B01E45
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 15:50:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A8B7B01E4E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 15:51:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91E435A577B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:50:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE3E25A5DD8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 13:51:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F02C42DAFAB;
-	Fri, 11 Jul 2025 13:50:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A2F2DC34A;
+	Fri, 11 Jul 2025 13:51:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W0vKWX0Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KAqmAmbl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3938D2D6636
-	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 13:50:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596EF2D8385;
+	Fri, 11 Jul 2025 13:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752241841; cv=none; b=qi6cmfAX1DuoKsn30/FEEc+ImMCBmJlcwBXZtaBLlR46LZ9w3egLiEL+2LnyKA3ToCenrHw0FO8j2IHCdmI9GwKhfkP5CVtCDw36Zmn046ASriYyQwU3+GH2IODvPFyKlX79dJTjm6myqA4po7+3AnliZXWCiZIo7jQ+ARx9Rqw=
+	t=1752241890; cv=none; b=LbR4JJYr0SZjIB54/eeCglDzzUcyTTviZTvdQcpNjbR5f8LPWrdAOKn5B8YvKtMaR7eDN0YxUNdilW8xD183vof1HjiGAEfJiyi2wn+CJMbFvWo5p16lv26Hklri7cxiPN1mzIJMJ9JSElDF5xtUDvLRKEQqbe72CW/cOSOLCZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752241841; c=relaxed/simple;
-	bh=xrOfrea3ktIO3rH/cRZjG/WzXdNS8Fe/7C22LVDHtd0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q0MbLBHEsOxzDJkzkIsMQc7s9RjQoaUprwLHs1HCnM9GXRe7c7xkFuaG480VGgEEchuasu6MJbaRRVDJ1SR9kMAGdmDYxv1J/+8+RQUjvrA0GsFq4fR/En0J5CxoYksrJnumB6wjV1eEaP+OqRz12i+EhvFvKYMA72C2Q+dir5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W0vKWX0Q; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7490cb9a892so1332493b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 06:50:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752241839; x=1752846639; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mxCChrglHn+Uqy0YUudJl4m6M4rjCL8xQf7aFXlmf3g=;
-        b=W0vKWX0QDjMc7M4E53btXqi/fZKT2AHHqAsDH6LDM9lbB8fLYgy8j2G6+5U/AGT94V
-         Sk6W6Vcwz+Akc4BP4VHttEyrl6+yPHtQcpriU5nTXRZ7ZbefLorI46b4WDHdeHfJhzEw
-         R/VQi+fW772BQpPzEh3MCc7ccYGQmV1/Iy65lDxQW5kLZo1EHrt5ArUKnHf6R8ogoltc
-         eHZre9nr6FTEhOaOwftpkA/3b0EAQoGW3c+WSDdUeBacPFt42GXD7j7Ka4EXQaCASk8M
-         lK/vgype0Da1q4BMLMlV+fLD/sOM1yYcYKrfX2WbkePnngQBQTDZm5yZQ9/ddgI3P3eY
-         qbIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752241839; x=1752846639;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mxCChrglHn+Uqy0YUudJl4m6M4rjCL8xQf7aFXlmf3g=;
-        b=USEtCoHIIgom02txYXBkitJkVZ9TSoaOJ3my9dj3xGllBy/BYooG75LPylVQXm9xtw
-         Iw4ZrXQVqFhsT+KZ+ZBEKCaT5rmjGbvirkljBGNIHqGc1Z3njo6n8f8kkm7JDEiLFprj
-         zeMnbefL54KFptrNgKHx0AU5g4bAxETP0hcr+SyLPwz87OWgd0S0nji/kNLASeitYoWY
-         un9hL77Zfep6KUAg5OOWXnHzT3ahieKsZlyALuEzq/qhvHtMoqAt3lVON59PM1MOdgrR
-         B+RnzDylIJbUMh5JwKAB25DMRf3IiPwheIuJ/usOwzwo0eRU4eNF9Kpr5SuSIeb0HpJe
-         UgLw==
-X-Forwarded-Encrypted: i=1; AJvYcCUGDS7c45Thu9DVHF51PRP32q+5RSP+jugG7LDsDIdQMxs+HO5OgIRiMAPXIoWmAhicd0QtA/a7Tj0Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGpJ6QQJcENh0ULBNdTnr2xvysojVfh8h5dO7frSJCVk473yll
-	NrmN48GOknO8HeSNP35garbL6yny8I4BcW4IfQfkw4JWTnpKEeNSraQ7+x0cormtmGtA4Bo/Hex
-	L2gX+NxSHh4uDwdF1GwAh+tY7WYFskbQbXzV++72xWg==
-X-Gm-Gg: ASbGncvOxyeMyjZGvJ2MLS9jtgp2JrO4K6ZgxlQmaAT8E44tKlzo5BzugRsZoB2p/Dh
-	foNsIzGXhLVR4e7AvAPGqEfUafI+QHQ6ygkwxIujFiwjKwK5LnCGQrBHeAMqVUIiWCjDUuq+Bce
-	9ixbDqET31iZeadR2I5eYLbFgwZraWfS63DECbW7kzJvd99kPx24PvUjN1PZYvLC+H7fW8WV4QG
-	c7ZclLbaDGX6zjBiFU0hbtbdu6SKeLXBNXC7sUs
-X-Google-Smtp-Source: AGHT+IF9w1zlsOy9Tpc/VqUpX5hlsohRMIl3W8B9IgIpmh4707Cf+Roh6PhUrMsx1N8++dq63Ov8Ydg2FFN95JGpX3E=
-X-Received: by 2002:a05:6a00:856:b0:748:fcfa:8bd5 with SMTP id
- d2e1a72fcca58-74ee0bb022amr4951233b3a.3.1752241839246; Fri, 11 Jul 2025
- 06:50:39 -0700 (PDT)
+	s=arc-20240116; t=1752241890; c=relaxed/simple;
+	bh=NAKjhcJKzyyWi+wlFJ2CIQX8x2RqA9HiGd+jittBrO0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JrA/W+4P+prkdB5njjCbs35HSBwLvGMrTLEaFVaoBEuIySFeTTLdyrkbOSpk1CLWz80htrQknBDJm2xNKc7L570SZR7fIJ/POI7XXkw1VRZ5LtI6lJCPRtJrseRWvH7EQzahrQ63m3hJheVSDLgg+aEvz7kmkgSG2wAU6p3LZzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KAqmAmbl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9126DC4CEF5;
+	Fri, 11 Jul 2025 13:51:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752241889;
+	bh=NAKjhcJKzyyWi+wlFJ2CIQX8x2RqA9HiGd+jittBrO0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KAqmAmblX/OFi57pXfXidPcG2gottcwISiCi5ztoJipo1yBFieR7qbe8hTBQWfM0a
+	 O5BfIM7p8gKEEu8feNVYcud9f9f577kkUGYKQXGdpVSOaQtSUcLOKKTmhYKuDywPBt
+	 CTK1Jr2iKgS7B6xZrcjVyLoPiBFrvTe2iCpKlGVmOrnJFoOmiryXcEAZ6PqDiED7mQ
+	 BM0O7ofHhbcaW+qullzrAUJFqlhaiZ9L37ZYeaVOfZ0NkYeWnN7//n+b3fXNmRiSCQ
+	 a18qO1HOGERwP0wjZzE+rSYZCAj5QpTpFgzW2mm3ZqvuPZKKDmofB6Q4C+7qv8TbGa
+	 dvHCMQj4bozvA==
+Message-ID: <7dffc2a4-c657-441b-86e5-b3869a72a800@kernel.org>
+Date: Fri, 11 Jul 2025 15:51:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250611-trace-noc-v10-0-a83b5c63da34@quicinc.com> <20250611-trace-noc-v10-1-a83b5c63da34@quicinc.com>
-In-Reply-To: <20250611-trace-noc-v10-1-a83b5c63da34@quicinc.com>
-From: Mike Leach <mike.leach@linaro.org>
-Date: Fri, 11 Jul 2025 14:50:27 +0100
-X-Gm-Features: Ac12FXz5suXDSfb0reqEF8K7TSk9o2sFELW1ViZ5ykT-xvY6SdObq4JpNg1MVng
-Message-ID: <CAJ9a7Vhs=5pXu4JvqeAbLBbV97x4xwVP6ag4oiK5sbJntwNNqA@mail.gmail.com>
-Subject: Re: [PATCH v10 1/2] dt-bindings: arm: Add device Trace Network On
- Chip definition
-To: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, kernel@oss.qualcomm.com, 
-	linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64/dts/blaize: Enable Ethernet on CB2 board
+To: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>,
+ James Cowgill <james.cowgill@blaize.com>,
+ Matt Redfearn <matthew.redfearn@blaize.com>,
+ Neil Jones <neil.jones@blaize.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250711-kernel-upstreaming-add_network_support-v1-0-4a66a17c94b3@blaize.com>
+ <20250711-kernel-upstreaming-add_network_support-v1-2-4a66a17c94b3@blaize.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250711-kernel-upstreaming-add_network_support-v1-2-4a66a17c94b3@blaize.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 11 Jun 2025 at 11:43, Yuanfang Zhang <quic_yuanfang@quicinc.com> wrote:
->
-> Add a new coresight-tnoc.yaml file to describe the bindings required to
-> define Trace Network On Chip (TNOC) in device trees. TNOC is an
-> integration hierarchy which is a hardware component that integrates the
-> functionalities of TPDA and funnels. It collects trace form subsystems
-> and transfers to coresight sink.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+On 11/07/2025 15:36, Nikolaos Pasaloukos wrote:
+> Use the Synopsys gigabit Ethernet controller on the Blaize BLZP1600
+> SoC to provide Ethernet connectivity using the TI DP83867 PHY which is
+> available on the CB2 board via an RJ45 connector.
+> 
+> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
 > ---
->  .../bindings/arm/qcom,coresight-tnoc.yaml          | 113 +++++++++++++++++++++
->  1 file changed, 113 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..9d1c93a9ade3ff14ede4a8d1481782776cf47be9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml
-> @@ -0,0 +1,113 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/qcom,coresight-tnoc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts b/arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts
+> index fb5415eb347a028fc65090027a4c4fc89c8280f5..cbe8f0930ad3741b0e770dd7d494931e3b939815 100644
+> --- a/arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts
+> +++ b/arch/arm64/boot/dts/blaize/blaize-blzp1600-cb2.dts
+> @@ -6,6 +6,7 @@
+>  /dts-v1/;
+>  
+>  #include "blaize-blzp1600-som.dtsi"
+> +#include <dt-bindings/net/ti-dp83867.h>
+>  
+>  / {
+>  	model = "Blaize BLZP1600 SoM1600P CB2 Development Board";
+> @@ -14,6 +15,7 @@ / {
+>  
+>  	aliases {
+>  		serial0 = &uart0;
+> +		ethernet = &gmac;
+>  	};
+>  
+>  	chosen {
+> @@ -117,3 +119,23 @@ &gpio0 {
+>  			  "BOARD_ID_1",		/* GPIO_30 */
+>  			  "BOARD_ID_2";		/* GPIO_31 */
+>  };
 > +
-> +title: Qualcomm Trace Network On Chip - TNOC
-> +
-> +maintainers:
-> +  - Yuanfang Zhang <quic_yuanfang@quicinc.com>
-> +
-> +description: >
-> +  The Trace Network On Chip (TNOC) is an integration hierarchy hardware
-> +  component that integrates the functionalities of TPDA and funnels.
-> +
-> +  It sits in the different subsystem of SOC and aggregates the trace and
-> +  transports it to Aggregation TNOC or to coresight trace sink eventually.
-> +  TNOC embeds bridges for all the interfaces APB, ATB, TPDA and NTS (Narrow
-> +  Time Stamp).
-> +
-> +  TNOC can take inputs from different trace sources i.e. ATB, TPDM.
-> +
-> +  Note this binding is specifically intended for Aggregator TNOC instances.
-> +
-> +# Need a custom select here or 'arm,primecell' will match on lots of nodes
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - qcom,coresight-tnoc
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^tn(@[0-9a-f]+)$"
-> +
-> +  compatible:
-> +    items:
-> +      - const: qcom,coresight-tnoc
-> +      - const: arm,primecell
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb_pclk
-> +
-> +  clocks:
-> +    items:
-> +      - description: APB register access clock
-> +
-> +  in-ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    patternProperties:
-> +      '^port(@[0-9a-f]{1,2})?$':
-> +        description: Input connections from CoreSight Trace Bus
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +  out-ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      port:
-> +        description:
-> +          Output connection to CoreSight Trace Bus
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - in-ports
-> +  - out-ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    tn@109ab000  {
-> +      compatible = "qcom,coresight-tnoc", "arm,primecell";
-> +      reg = <0x109ab000 0x4200>;
-> +
-> +      clocks = <&aoss_qmp>;
-> +      clock-names = "apb_pclk";
-> +
-> +      in-ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        port@0 {
-> +          reg = <0>;
-> +
-> +          tn_ag_in_tpdm_gcc: endpoint {
-> +            remote-endpoint = <&tpdm_gcc_out_tn_ag>;
-> +          };
-> +        };
-> +      };
-> +
-> +      out-ports {
-> +        port {
-> +          tn_ag_out_funnel_in1: endpoint {
-> +            remote-endpoint = <&funnel_in1_in_tn_ag>;
-> +          };
-> +        };
-> +      };
-> +    };
-> +...
->
-> --
-> 2.34.1
->
+> +&gmac {
 
-Reviewed-by: Mike Leach <mike.leach@linaro.org>
--- 
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+Are you sure you follow DTS coding style? Which sorting rule is used by
+Blaize?
+
+> +	status = "okay";
+> +	snps,reset-delays-us = <0 10000 50000>;
+> +	snps,reset-gpio = <&gpio0 12 GPIO_ACTIVE_LOW>;
+
+Do not use deprecated properties. This is new code, not legacy.
+
+
+Best regards,
+Krzysztof
 
