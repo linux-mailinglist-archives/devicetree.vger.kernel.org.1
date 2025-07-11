@@ -1,171 +1,223 @@
-Return-Path: <devicetree+bounces-195453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4D25B01C17
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 14:33:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41D13B01C26
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 14:36:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59615543E23
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 12:32:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C9F016E49A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 12:36:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79B0A2980BF;
-	Fri, 11 Jul 2025 12:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF78A2BE65C;
+	Fri, 11 Jul 2025 12:36:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="bja6yI4b"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="C1irTKJK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E5914A24;
-	Fri, 11 Jul 2025 12:33:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC4402BE620
+	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 12:36:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752237201; cv=none; b=VW8U1tPSnb+Qr9bOS/A64oHhbHOjQ/efcIkr7qSeB4WrChHR1njnpArGIQELlXcHbjejQCGu0ShWWf5rilMczNU+colRrKzxV34YZM0tW9tG9M4+02y5v58IwlFD4GXqIGUakVyRU3+eH2XNcI74T1gWOEFNw9VeZgUzQ/ynjRU=
+	t=1752237403; cv=none; b=NnOHUAmtTwc5nG56Px+35RAvkvkgKs0oMq9v7MRoYnHZSOBjSDRjrB6NRACO/kKPCTsBW9Scaq6QUyJQacfVMdcwHp9wgcWwBUdkyGQMGIHbutCt/RNPf6NyPtB29ak/YQ7jOvEjbAEAtsUVLgtl/SNPtriYrtGbgBoXfMYc6mY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752237201; c=relaxed/simple;
-	bh=WYWKVt6dUPJaMiGKNZZnN/uJcyMEGDqbOYOvPwKRwbo=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=Qo4snAcKQQMhEKWce10Ct5aQSR/gxuN//5577UmKbfVcs1iN3eFgAuDNzB4E3ITyc+vl9peppeTtUs8az9fBlPq4O7dRqPBiQj0ZGlBcDAnCbrhMvlAeKxFrOZTJs9TJnBqIM3GiYkzuc/eztQABhXAeZetYcIdFGoqYwrDjydA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=bja6yI4b; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=AJW9cOBCmrxXxZqHEQ8adQkukE2W2AgflGt7EU89058=; b=bja6yI4bhC5Up2flT2VGnPrBJi
-	AI9jYvgSAP3+3hJEpZz9uckqmm/D/4jscytgnNi9jXJOlZregJWSUc4jnwX3txw3D69KK6igl+Aya
-	dV0jotGglD6S4CUsOKbD0R6kbgWNNts/4dX3kfMR1kGHO5z9qc8GeyQoxqErzFirVVN5NhoovO1q1
-	4NiBqtG/0W1JNj16URhLgFOjUZsWyUUyL2ir3EQyKrbxx7tWq4WUwbIlmebiF8WtR41+QcoQ3XF87
-	yIPufMuzKE2gnaMtF9nqKb2rJHTw1NxY/nuFkZ0fJkl0LktfLSo2THBWYv+cncQsHSuAbC7orQM09
-	BOPVLmBA==;
-Received: from [122.175.9.182] (port=12257 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1uaCwE-0000000Cl5L-2uHd;
-	Fri, 11 Jul 2025 08:33:15 -0400
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 4D7A017820AC;
-	Fri, 11 Jul 2025 18:03:09 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 2E52517820F5;
-	Fri, 11 Jul 2025 18:03:09 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id hCs-qG7o16wZ; Fri, 11 Jul 2025 18:03:09 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id DD32117820AC;
-	Fri, 11 Jul 2025 18:03:08 +0530 (IST)
-Date: Fri, 11 Jul 2025 18:03:08 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: kuba <kuba@kernel.org>
-Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	pabeni <pabeni@redhat.com>, robh <robh@kernel.org>, 
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
-	ssantosh <ssantosh@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	s hauer <s.hauer@pengutronix.de>, m-karicheri2 <m-karicheri2@ti.com>, 
-	glaroque <glaroque@baylibre.com>, afd <afd@ti.com>, 
-	saikrishnag <saikrishnag@marvell.com>, m-malladi <m-malladi@ti.com>, 
-	jacob e keller <jacob.e.keller@intel.com>, 
-	diogo ivo <diogo.ivo@siemens.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	horms <horms@kernel.org>, s-anna <s-anna@ti.com>, 
-	basharath <basharath@couthit.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <723330733.1712525.1752237188810.JavaMail.zimbra@couthit.local>
-In-Reply-To: <20250708180107.7886ea41@kernel.org>
-References: <20250702140633.1612269-1-parvathi@couthit.com> <20250702151756.1656470-5-parvathi@couthit.com> <20250708180107.7886ea41@kernel.org>
-Subject: Re: [PATCH net-next v10 04/11] net: ti: prueth: Adds link
- detection, RX and TX support.
+	s=arc-20240116; t=1752237403; c=relaxed/simple;
+	bh=3k7zeyqd7SmF+I9Quix2UZLh1NAmpJ08rR0/1iKfNfc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=UXxoYM/egU5zIqOZwnUcuTAZwFO0pL3JXv+3VAjjWj5FWm9DFbG4qi0lfx8PzQgjuca9P/uPNEHGqZYduQeVO/WJRivdbW6bdRLaPd18x5FaDmT1s/sf85ucwYM5aZTlaFqisQrFX//PYHWLst/VFQKWHawwxJ2Apd18dEn9fXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=C1irTKJK; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250711123640euoutp01cac23c4c5f4cd51eedbad8710d28ccb0~RMqGwjLig0851108511euoutp01L
+	for <devicetree@vger.kernel.org>; Fri, 11 Jul 2025 12:36:40 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250711123640euoutp01cac23c4c5f4cd51eedbad8710d28ccb0~RMqGwjLig0851108511euoutp01L
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1752237400;
+	bh=K0K/KtJbTXHNw0pmcTrwWsLkly4FuPuuoVVC7z5NRQU=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=C1irTKJKR6dh7Zyb0hzv5ZIWVDUNbUFWxCqT3Z09Oirx/34YrJ7RKqeNSd3wCC3Ji
+	 IJHkR0vLQvRNN+rNzQJgYvbmdLrcjiJiV5ZFOgtOudkwD5LrcsUnataJLfTIPiwJIC
+	 vNXQ5zUwT/XPaG02QKWIcb1NAG85KB7+rU74SHTY=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250711123639eucas1p1941aef7a8b0e49493b430463f97136db~RMqF-42Wd2355023550eucas1p1H;
+	Fri, 11 Jul 2025 12:36:39 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250711123637eusmtip2a6e5e3c4f720153c14660001342b34a8~RMqEx1kL50333203332eusmtip2h;
+	Fri, 11 Jul 2025 12:36:37 +0000 (GMT)
+Message-ID: <020b8036-8959-4733-a5ab-ce8c963ce869@samsung.com>
+Date: Fri, 11 Jul 2025 14:36:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC138 (Linux)/8.8.15_GA_3968)
-Thread-Topic: prueth: Adds link detection, RX and TX support.
-Thread-Index: frcZHpE/y/6hXxyDNRDspT8aDcWlcQ==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 0/7] Rust Abstractions for PWM subsystem with TH1520
+ PWM driver
+To: Danilo Krummrich <dakr@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+	<ukleinek@kernel.org>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
+	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
+	Gross <tmgross@umich.edu>, Guo Ren <guoren@kernel.org>, Fu Wei
+	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
+	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
+	Turquette <mturquette@baylibre.com>, Drew Fustini <fustini@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <DB8OT5ZZ4SRO.WP5PBFLML683@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250711123639eucas1p1941aef7a8b0e49493b430463f97136db
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6
+X-EPHeader: CA
+X-CMS-RootMailID: 20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6
+References: <CGME20250707094926eucas1p155bd967b6986c4a999776839b1aa1fc6@eucas1p1.samsung.com>
+	<20250707-rust-next-pwm-working-fan-for-sending-v10-0-d0c5cf342004@samsung.com>
+	<e8a4a821-e7e4-4bcd-a2ac-f6b684b6ceea@samsung.com>
+	<ipvaegqlkco5qinhvn33mqvg7ev2walvs74xtzvhimxsfsfzhv@gcmpxcdtetdn>
+	<e77eab1c-446f-4620-95be-d343684d1e95@samsung.com>
+	<4hmb3di5x2iei43nmrykrj5wzlltrf3vrnqvexiablonbscn57@4bbsz5c76t63>
+	<DB8I5J8ZY7QF.2D8HEN6JX4HSZ@kernel.org>
+	<cbxpqormchajfcnf7xxopd7j7igriqus4cuu5jfvxb3mbfb5tu@qz4rc67vjyif>
+	<DB8OT5ZZ4SRO.WP5PBFLML683@kernel.org>
 
 
-Hi,
 
-> On Wed,  2 Jul 2025 20:47:49 +0530 Parvathi Pudi wrote:
->> +=09=09=09if (emac->port_id) {
->> +=09=09=09=09regmap_update_bits
->> +=09=09=09=09=09(prueth->mii_rt,
->> +=09=09=09=09=09 PRUSS_MII_RT_TXCFG1,
->> +=09=09=09=09=09 PRUSS_MII_RT_TXCFG_TX_CLK_DELAY_MASK,
->> +=09=09=09=09=09 delay);
->=20
-> Instead of breaking the lines up like this you should factor the code
-> out or find some other way to reduce the indentation.
->=20
+On 7/10/25 23:19, Danilo Krummrich wrote:
+> On Thu Jul 10, 2025 at 10:57 PM CEST, Uwe Kleine-König wrote:
+>> On Thu, Jul 10, 2025 at 06:06:26PM +0200, Danilo Krummrich wrote:
+>>> On Thu Jul 10, 2025 at 5:25 PM CEST, Uwe Kleine-König wrote:
+>>>> Hello Michal,
+>>>>
+>>>> On Thu, Jul 10, 2025 at 03:48:08PM +0200, Michal Wilczynski wrote:
+>>>>> On 7/10/25 15:10, Uwe Kleine-König wrote:
+>>>>>> On Thu, Jul 10, 2025 at 10:42:07AM +0200, Michal Wilczynski wrote:
+>>>>>>> On 7/7/25 11:48, Michal Wilczynski wrote:
+>>>>>>>> The series is structured as follows:
+>>>>>>>>  - Expose static function pwmchip_release.
+>>>>>>
+>>>>>> Is this really necessary? I didn't try to understand the requirements
+>>>>>> yet, but I wonder about that. If you get the pwmchip from
+>>>>>> __pwmchip_add() the right thing to do to release it is to call
+>>>>>> pwmchip_remove(). Feels like a layer violation.
+>>>>>
+>>>>> It's required to prevent a memory leak in a specific, critical failure
+>>>>> scenario. The sequence of events is as follows:
+>>>>>
+>>>>>     pwm::Chip::new() succeeds, allocating both the C struct pwm_chip and
+>>>>>     the Rust drvdata.
+>>>>>
+>>>>>     pwm::Registration::register() (which calls pwmchip_add()) fails for
+>>>>>     some reason.
+>>>>
+>>>
+>>> (Just trying to help clear up the confusion.)
+>>
+>> Very appreciated!
+>>
+>>>> If you called pwmchip_alloc() but not yet pwmchip_add(), the right
+>>>> function to call for cleanup is pwmchip_put().
+>>>
+>>> That is exactly what is happening when ARef<Chip> is dropped. If the reference
+>>> count drops to zero, pwmchip_release() is called, which frees the chip. However,
+>>> this would leave the driver's private data allocation behind, which is owned by
+>>> the Chip instance.
+>>
+>> I don't understand that. The chip and the driver private data both are
+>> located in the same allocation. How is this a problem of the driver
+>> private data only then? The kfree() in pwmchip_release() is good enough
+>> for both?!
+> 
+> Not in the current abstractions, there are two allocations, one for the Chip and
+> one for the driver's private data, or in other words the abstraction uses
+> pwmchip_set_drvdata() and pwmchip_get_drvdata().
+> 
+> Having a brief look at pwmchip_alloc(), it seems to me that PWM supports the
+> subclassing pattern with pwmchip_priv().
+> 
+> We should probably take advantage of that. Assuming we do that, the Rust
+> abstraction still needs a release() callback because we still need to call
+> drop_in_place() in order to get the destructor of the driver's private data
+> type called. We actually missed this in DRM and I fixed it up recently [1].
+> 
+> @Michal: With the subclassing pattern the Chip structure would look like this:
+> 
+> 	#[repr(C)]
+> 	#[pin_data]
+> 	pub struct Chip<T> {
+> 	   inner: Opaque<bindings::pwm_chip>,
+> 	   #[pin]
+> 	   data: T,
+> 	}
+}
 
-Sure, we will address this in the next version.
+Hello
 
->> +=09qid =3D icssm_prueth_get_tx_queue_id(emac->prueth, skb);
->> +=09ret =3D icssm_prueth_tx_enqueue(emac, skb, qid);
->> +=09if (ret) {
->> +=09=09if (ret !=3D -ENOBUFS && netif_msg_tx_err(emac) &&
->> +=09=09    net_ratelimit())
->> +=09=09=09netdev_err(ndev, "packet queue failed: %d\n", ret);
->> +=09=09goto fail_tx;
->> +=09}
->=20
->> +=09if (ret =3D=3D -ENOBUFS) {
->> +=09=09ret =3D NETDEV_TX_BUSY;
->=20
->=20
-> Something needs to stop the queue, right? Otherwise the stack will
-> send the frame right back to the driver.
->=20
+Thank you both for the detailed feedback and suggestions.
 
-Yes, we will notify upper layer with =E2=80=9Cnetif_tx_stop_queue()=E2=80=
-=9D when returning
-=E2=80=9CNETDEV_TX_BUSY=E2=80=9D to not push again immediately.
+Danilo, you are right, we should absolutely use the subclassing pattern
+to have a single allocation for the chip and driver data. This is a much
+cleaner design.
 
->> +static inline void icssm_emac_finish_napi(struct prueth_emac *emac,
->> +=09=09=09=09=09  struct napi_struct *napi,
->> +=09=09=09=09=09  int irq)
->> +{
->> +=09napi_complete(napi);
->> +=09enable_irq(irq);
->=20
-> This helper has a single caller, just put the two lines of code directly
-> there. And use napi_complete_done(), please.
+As I looked into this, the main difference is that the C struct pwm_chip
+doesn't have a fixed size because of the pwms[] array at the end. This
+prevents us from using the exact struct layout you suggested.
 
-We will address this in the next version.
+pub pwms: __IncompleteArrayField<pwm_device>,
 
-Thanks and Regards,
-Parvathi.
+Therefore, to correctly implement the subclassing pattern, it would be
+sufficient to leave the current struct as is and use pwmchip_get_drvdata to
+acquire pointers to the allocated drvdata.
+
+pub struct Chip<T: PwmOps>(Opaque<bindings::pwm_chip>, PhantomData<T>);
+
+This will still achieve the goal of a single allocation via
+pwmchip_alloc's sizeof_priv argument, while working around the DST
+limitation.
+
+> 
+> And in the release() callback would look like this:
+> 
+>     extern "C" fn release(ptr: *mut bindings::pwm_chip) {
+>         // CAST: Casting `ptr` to `Chip<T>` is valid, since [...].
+>         let this = ptr.cast<Chip<T>>();
+
+I think this would use pwmchip_get_drvdata instead.
+
+> 
+>         // SAFETY:
+>         // - When `release` runs it is guaranteed that there is no further access to `this`.
+>         // - `this` is valid for dropping.
+>         unsafe { core::ptr::drop_in_place(this) };
+>     }
+> 
+> This is exactly what we're doing in DRM as well, I would have recommended this
+> to begin with, but I didn't recognize that PWM supports subclassing. :)
+> 
+> I recommend having a look at [2].
+> 
+> [1] https://lore.kernel.org/all/20250629153747.72536-1-dakr@kernel.org/
+> [2] https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-fixes/rust/kernel/drm/device.rs
+> 
+
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
