@@ -1,191 +1,180 @@
-Return-Path: <devicetree+bounces-195524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5463B01F3D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 16:35:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D536B01F64
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 16:45:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD9681CA56C9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 14:35:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00B9C1C44AF0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 14:45:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5562E18B47E;
-	Fri, 11 Jul 2025 14:35:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C692D29DD;
+	Fri, 11 Jul 2025 14:44:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aq2a76hs"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="WDGJzIpw";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Kf5ZIUcC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from flow-b7-smtp.messagingengine.com (flow-b7-smtp.messagingengine.com [202.12.124.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23A1515533F;
-	Fri, 11 Jul 2025 14:35:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 552B36ADD;
+	Fri, 11 Jul 2025 14:44:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752244526; cv=none; b=MxM4g9QoYs5MhH1jru/I/Rxx26CfMR5HUXLfhPe2K4F2nSxd54jq8dvfZsomv+hDz/csSre9wAtdgbf0lP4m58o8u4EMCaaZCDf7MsIToF1X8nqdqmL/Ys9E5ZZotzC+IRKd8JoXLiQmDbQRY2gdtEufUr1ekNCiU484v/lYV8Y=
+	t=1752245097; cv=none; b=FtDhBpfcmCeE3SZTiex3QKGjUlDSY7LhOIUIIJ+EHjhzQbUiXJwlLroQZG0Ef3ZPvmFh4FFGsoUevIZGU6uIoQkQE3H6BapWrz8zdsy8LoJYf9QHPIdjkzNZbeFCh0tovOs3yR5hDGqoDwJzNKp1zXUsaRHKfrONWiSgtocpTlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752244526; c=relaxed/simple;
-	bh=amm7W321RqlNSOOMK3AIvljgbJEPHpxcz13K2TgJvxM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=JoFB4tmr/gglnxHFXvX43oXqhqD/dldHbWYUFPs3HXDmqCZbT1U+V+QKvkXciFxUbTf6J46SzMYwf16WjtC2c6Add7NZOc1+9rXydRWbEboAM6BTnO3EMViNmzY1+SWEmxGe9sMWsuv/NsBdxL7RM02hd7RDMOrp3riQ1HFSm4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aq2a76hs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55150C4CEED;
-	Fri, 11 Jul 2025 14:35:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752244525;
-	bh=amm7W321RqlNSOOMK3AIvljgbJEPHpxcz13K2TgJvxM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=aq2a76hszvNTrH+g/4o9TZaEYFQjht1aC9/vvtwP6fPjHhhPsUlre1wcC6BnYeISw
-	 OhSQ7270f1Ei4PoJi4EcVNm/lfD3YZj+OnOpnvtzn1/HACl5YZ2wc476PE9Utze2cF
-	 La08s6X/Wv8f28v4SBNY8FMcBDvRoTKoTKrC1rd0lCtPmW+jezem/qfoaREoI3TibU
-	 OeA/0W1lSzC9G+EJ4GtCyRJTcJYVhOq99Su7J1n9yszEK8mjL6y4FmUW+iBOlN0ubh
-	 oCDDiu+i+35dkrcLzzmr0LhpelPeqlxoIUXRB9HdaEvas+up/nWuLJC+KbQc1yBO6z
-	 M25ec7cVqiU+A==
-Date: Fri, 11 Jul 2025 09:35:24 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1752245097; c=relaxed/simple;
+	bh=tE17wqTp5bia7rZXKcjZwP/QLaLxvidWPP68VRIypG0=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=TXDCKHbB5ExbRT3gk5UQ9Mvkw4ffktaFIlWVsxHgTZYARrN10+zYuPwHtBx9A/yhAsJ20M2KHtMsuAfIB/zKHSZJqrI8/Qs7e1+VXx6+m1CP5U+02nAq18zh5zHtTm4eoZcC4EfwiyutNuMzsZwcYVJB2b29i/tJMr49CKES+jk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=WDGJzIpw; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Kf5ZIUcC; arc=none smtp.client-ip=202.12.124.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailflow.stl.internal (Postfix) with ESMTP id ECDA41300588;
+	Fri, 11 Jul 2025 10:44:51 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Fri, 11 Jul 2025 10:44:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1752245091;
+	 x=1752252291; bh=hkFSXr7AU4WvmRzO82oca+vfaj/I9fJ285U+GlYMs4Y=; b=
+	WDGJzIpwx45Q6sqhljeaGH2cOTdluGUt24Ot4wUGxawP4eTO1H9k4pflkdGWEvB3
+	VWNVb6H3IA5D6yP6J6o65PYmbVtj0XG7bDroUx5Mrfo8u5atRVyv5+krwpkb0XI0
+	W8VMgEB2O1WYBsRFlOhqPv9wSsp3SlUP9hzhulqdKbUQxKHSZ6XPNcQffiekdA2E
+	ewOAoROdJ68hKcSmbBg147lb7m1RY446qKkssUPRLSbgOfdNZg8CgasIxYV/tLs3
+	81S8lriNz7Ybj+/QTXe7Ib4sdjo3Ox77REKYHRXCyi8fqkqTq9Fp9tBEGv7Vi2rA
+	u0ozRr7nQSZ982SS69XSQw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1752245091; x=
+	1752252291; bh=hkFSXr7AU4WvmRzO82oca+vfaj/I9fJ285U+GlYMs4Y=; b=K
+	f5ZIUcClhfndy6bg0ErwfbauVr1PYBBIIEkkX0qMxOE6m9/I9BqyEg7lDZQIbaJD
+	24DJw98ecPKnEZZZ+4J04iSq1mbYn75GAA8dntf2p6cQMTsh1wNi+vycdNRRFcJm
+	GxECjfikZJFsfksv3qHQDNLyiVk4o4GWqc3BRk+W8t65kPasbxP358C5naNbYe68
+	GmAiAuYtwlGIKqiVPtsiV/JhgByRsgLtIlrpIvDftAfQSYGX2Jh5f9OhpoFx0Gwd
+	Kubx5EeitgcW7c54xY4XVUAzFvUyKCFZVgZim8Gh7u7ipCeB+LSVdZk+mNcdGBTe
+	nufnpqtsC6TbjwU3pn2XQ==
+X-ME-Sender: <xms:YCNxaFZClDNB8V8d2nAY_Ew4n9dxS66oEtyoWWiM3qBWaC9jhuGo0A>
+    <xme:YCNxaMae9yxxOrDU5MguHRWe4ID5My4nit7k0UfizUfavF3zgEwVdu61IxG90rZTG
+    mjD0D4KKsWAaNWMm0M>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdegfeeitdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeegfedpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtohepshhouhhvihhkrdgthhgrkhhrrghvrghrthihsegrrhhmrdgtohhmpd
+    hrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomhdprhgtphht
+    thhopehmrghrkhdrrhhuthhlrghnugesrghrmhdrtghomhdprhgtphhtthhopehsuhguvg
+    gvphdrhhholhhlrgesrghrmhdrtghomhdprhgtphhtthhopegrlhgvgigrnhgurhgvrdgs
+    vghllhhonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepsggtmhdqkhgvrhhnvg
+    hlqdhfvggvuggsrggtkhdqlhhishhtsegsrhhorggutghomhdrtghomhdprhgtphhtthho
+    pehflhhorhhirghnrdhfrghinhgvlhhlihessghrohgruggtohhmrdgtohhmpdhrtghpth
+    htoheprhhjuhhisegsrhhorggutghomhdrtghomhdprhgtphhtthhopehssghrrghnuggv
+    nhessghrohgruggtohhmrdgtohhm
+X-ME-Proxy: <xmx:YSNxaF0GQ2fa_1SuFfOdOhuhu0Zy36UfpH2r-1ugIAx3Raw8Lckepw>
+    <xmx:YSNxaHx6LIEqH4Y9FZ15zgykV3RRQn0SymX0zo76bvrZzyGy6X62gw>
+    <xmx:YSNxaN6C-9gfSyFHrY25SMmGx_DUe4WBzIiGs4pI1tGLmBcVJAj_Tw>
+    <xmx:YSNxaA-8DMjc745DJxU5J0QF345BoWMq-R8duUpQzgRO49VjxMVCaQ>
+    <xmx:YyNxaHIvxWMwaZjAcDljwq14_YEVEBsGlu7kFX79ffc30VsP2_yKMSEg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id DC056700065; Fri, 11 Jul 2025 10:44:48 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>, 
- linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- devicetree@vger.kernel.org, Frank Li <frank.li@nxp.com>, 
- Bjorn Andersson <andersson@kernel.org>, imx@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, 
- Shawn Guo <shawnguo@kernel.org>, Iuliana Prodan <iuliana.prodan@nxp.com>, 
- Fabio Estevam <festevam@gmail.com>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-remoteproc@vger.kernel.org, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Daniel Baluta <daniel.baluta@nxp.com>
-To: Peng Fan <peng.fan@nxp.com>
-In-Reply-To: <20250710-imx95-rproc-1-v4-0-a7123e857dfb@nxp.com>
-References: <20250710-imx95-rproc-1-v4-0-a7123e857dfb@nxp.com>
-Message-Id: <175224423523.783161.17907302929832941912.robh@kernel.org>
-Subject: Re: [PATCH v4 0/5] remoteproc: imx_rproc: Support i.MX95
+X-ThreadId: T7b8765a73c29189d
+Date: Fri, 11 Jul 2025 16:44:28 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Shivendra Pratap" <shivendra.pratap@oss.qualcomm.com>,
+ "Rob Herring" <robh@kernel.org>
+Cc: "Bartosz Golaszewski" <bartosz.golaszewski@linaro.org>,
+ "Bjorn Andersson" <andersson@kernel.org>,
+ "Sebastian Reichel" <sre@kernel.org>,
+ "Sudeep Holla" <sudeep.holla@arm.com>,
+ "Souvik Chakravarty" <Souvik.Chakravarty@arm.com>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Andy Yan" <andy.yan@rock-chips.com>,
+ "Mark Rutland" <mark.rutland@arm.com>,
+ "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
+ "Olof Johansson" <olof@lixom.net>,
+ "Konrad Dybcio" <konradybcio@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org, "Vinod Koul" <vkoul@kernel.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>,
+ "Will Deacon" <will@kernel.org>,
+ "Florian Fainelli" <florian.fainelli@broadcom.com>,
+ "Elliot Berman" <elliotb317@gmail.com>,
+ "Stephen Boyd" <swboyd@chromium.org>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ "Alim Akhtar" <alim.akhtar@samsung.com>,
+ linux-samsung-soc@vger.kernel.org, "Wei Xu" <xuwei5@hisilicon.com>,
+ linux-rockchip@lists.infradead.org,
+ "Baolin Wang" <baolin.wang@linux.alibaba.com>,
+ "Sen Chu" <sen.chu@mediatek.com>, "Sean Wang" <sean.wang@mediatek.com>,
+ "Macpaul Lin" <macpaul.lin@mediatek.com>,
+ "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
+ "Ray Jui" <rjui@broadcom.com>, "Scott Branden" <sbranden@broadcom.com>,
+ bcm-kernel-feedback-list@broadcom.com,
+ "Nicolas Ferre" <nicolas.ferre@microchip.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ "Elliot Berman" <quic_eberman@quicinc.com>,
+ "Srinivas Kandagatla" <srini@kernel.org>
+Message-Id: <454c8361-151e-42b3-adfc-d82d2af62299@app.fastmail.com>
+In-Reply-To: <cdadd6cf-18c9-15c7-c58a-b5d56b53452a@oss.qualcomm.com>
+References: 
+ <20250710-arm-psci-system_reset2-vendor-reboots-v10-0-b2d3b882be85@oss.qualcomm.com>
+ <20250710-arm-psci-system_reset2-vendor-reboots-v10-2-b2d3b882be85@oss.qualcomm.com>
+ <20250710224740.GA15385-robh@kernel.org>
+ <cdadd6cf-18c9-15c7-c58a-b5d56b53452a@oss.qualcomm.com>
+Subject: Re: [PATCH v10 02/10] dt-bindings: power: reset: Document reboot-mode cookie
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
+On Fri, Jul 11, 2025, at 14:32, Shivendra Pratap wrote:
+> On 7/11/2025 4:17 AM, Rob Herring wrote:
+>> On Thu, Jul 10, 2025 at 02:45:44PM +0530, Shivendra Pratap wrote:
+>>>    All mode properties are vendor specific, it is a indication to tell
+>>>    the bootloader what to do when the system reboots, and should be named
+>>> -  as mode-xxx = <magic> (xxx is mode name, magic should be a non-zero value).
+>>> +  as mode-xxx = <magic cookie> (xxx is mode name, magic should be a
+>>> +  non-zero value, cookie is optional).
+>> 
+>> I don't understand the distinction between magic and cookie... Isn't all 
+>> just magic values and some platform needs more than 32-bits of it?
+> Need two different arguments. Will try to clarify a bit below.
+> PSCI defines SYSTEM_RESET2 vendor-specific resets which takes two
+> parameters - reset_type and cookie. Both parameters are independent and
+> used by firmware to define different types of resets or shutdown.
+> As per spec:
+> reset_type: Values in the range 0x80000000-0xFFFFFFFF of the reset_type 
+> parameter
+> can be used to request vendor-specific resets or shutdowns.
+> cookie: the cookie parameter can be used to pass additional data to the 
+> implementation.
 
-On Thu, 10 Jul 2025 20:08:00 +0800, Peng Fan wrote:
-> i.MX95 features a Cortex-M33 core, six Cortex-A55 cores, and
-> one Cortex-M7 core. The System Control Management Interface(SCMI)
-> firmware runs on the M33 core. The i.MX95 SCMI firmware named System
-> Manager(SM) includes vendor extension protocols, Logical Machine
-> Management(LMM) protocol and CPU protocol and etc.
-> 
-> There are three cases for M7:
-> (1) M7 in a separate Logical Machine(LM) that Linux couldn't control it.
-> (2) M7 in a separate Logical Machine that Linux could control it using
->     LMM protocol
-> (3) M7 runs in same Logical Machine as A55, so Linux could control it
->     using CPU protocol
-> 
-> In patch 2, Use LMM and CPU protocol to manage M7. More info could be
-> found in the patch commit log
-> 
-> Current setup relies on pre-Linux software(U-Boot) to do
-> M7 TCM ECC initialization. In future, we could add the support in Linux
-> to decouple U-Boot and Linux.
-> 
-> Patchset was tested with below boot images when the patchset based on next-20250526:
-> imx-boot-variant-rpmsg-imx95-19x19-lpddr5-evk-sd.bin-flash_lpboot_sm_a55 (Use LMM protocol)
-> imx-boot-variant-alt-imx95-19x19-lpddr5-evk-sd.bin-flash_alt (Use CPU protocol)
-> imx-boot-imx95-19x19-lpddr5-evk-sd.bin-flash_a55 (M7 not under A55 control)
-> imx-boot-imx95-19x19-lpddr5-evk-sd.bin-flash_all (M7 not under A55 control)
-> 
-> Patchset was tested again with rebase on next-20250623
-> Patchset was tested again with rebase on next-20250710
-> 
-> Patchset is re-based on next-20250603.
-> 
-> Thanks for Daniel/Frank helping review the patchset before posting out to list.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
-> Changes in v4:
-> - Move the lmm permission check code to a separate
->   function(imx_rproc_sm_lmm_prepare) in patch 3.
-> - Check return value of scmi_imx_cpu_started in patch 3
-> - Rebased to next-20250710 and tested on i.MX95-19x19-EVK
-> - Add R-b from Frank for patch 1-4 and A-b from Krzysztof for patch 1
-> - Drop mu7 from patch 5, because mu7 status was already okay.
-> - Link to v3: https://lore.kernel.org/r/20250625-imx95-rproc-1-v3-0-699031f5926d@nxp.com
-> 
-> Changes in v3:
-> - Drop fsl,lmm-id and fsl,cpu-id for binding in patch 1
-> - Add lmid and cpuid in driver patch 2.
-> - Add i.MX95 lmid and cpuid in patch 3
-> - Rebased to linux-next-6-23 and tested with this new rebased version
-> - Add dtsi/dts patch 4,5 to give people a view on how it is used per Krzysztof
-> - Daniel's R-b are still kept after talk with Daniel
-> - Link to v2: https://lore.kernel.org/r/20250606-imx95-rproc-1-v2-0-a2bd64438be9@nxp.com
-> 
-> Changes in v2:
-> - Typo fix in patch 2 commit message
-> - Move the m7 address mapping array from patch 2 to patch 3
-> - Add R-b from Daniel to patch 3
-> - Link to v1: https://lore.kernel.org/r/20250604-imx95-rproc-1-v1-0-a6e5f512731c@nxp.com
-> 
-> ---
-> Peng Fan (5):
->       dt-bindings: remoteproc: fsl,imx-rproc: Add support for i.MX95
->       remoteproc: imx_rproc: Add support for System Manager API
->       remoteproc: imx_rproc: Add support for i.MX95
->       arm64: dts: imx95: Add SCMI LMM/CPU nodes
->       arm64: dts: imx95-19x19-evk: Add CM7 nodes and vdev related memory regions
-> 
->  .../bindings/remoteproc/fsl,imx-rproc.yaml         |   1 +
->  arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts  |  41 ++++++
->  arch/arm64/boot/dts/freescale/imx95.dtsi           |   8 ++
->  drivers/remoteproc/imx_rproc.c                     | 147 ++++++++++++++++++++-
->  drivers/remoteproc/imx_rproc.h                     |   5 +
->  5 files changed, 199 insertions(+), 3 deletions(-)
-> ---
-> base-commit: 78863a3617803fcc11f7f7432efc9f74d4ca3105
-> change-id: 20250525-imx95-rproc-1-20bb74ddc8af
-> 
-> Best regards,
-> --
-> Peng Fan <peng.fan@nxp.com>
-> 
-> 
-> 
+I don't see any distinction here either. As Rob says, you have to
+get both 32-bit numbers from DT in order to get the desired reboot-mode,
+and you have to pass them both to the firmware when rebooting.
 
+The distinction between cookie and magic value may be relevant in the
+context of the psci specification, but for the Linux driver, this is
+really just a 64-bit magic number.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: base-commit 78863a3617803fcc11f7f7432efc9f74d4ca3105 not known, ignoring
- Base: attempting to guess base-commit...
- Base: tags/next-20250710 (exact match)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/' for 20250710-imx95-rproc-1-v4-0-a7123e857dfb@nxp.com:
-
-arch/arm64/boot/dts/freescale/imx95-tqma9596sa-mb-smarc-2.dtb: scmi (arm,scmi): Unevaluated properties are not allowed ('protocol@80', 'protocol@81', 'protocol@82', 'protocol@84' were unexpected)
-	from schema $id: http://devicetree.org/schemas/firmware/arm,scmi.yaml#
-
-
-
-
-
+     Arnd
 
