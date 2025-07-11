@@ -1,204 +1,172 @@
-Return-Path: <devicetree+bounces-195263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 534D0B01136
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 04:31:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F120B0113D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 04:32:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A37DA584472
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 02:31:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D44A17BAEF6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jul 2025 02:31:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68E29183CA6;
-	Fri, 11 Jul 2025 02:31:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64DA5185955;
+	Fri, 11 Jul 2025 02:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="e65/0Cdq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Utx2lFiH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D97F611E;
-	Fri, 11 Jul 2025 02:31:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A8244A0A;
+	Fri, 11 Jul 2025 02:32:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752201089; cv=none; b=JEGcFPn6olruuVk4m1NuNfKSZWjg2hJ2kjecJx2wDQ04GZH8dm8woWRy3aCXdzuKV+uRkgOWi7JTZ2HJhEuWTB9s3UFUObaYX9G+OML3aVtp36Vx4nbkcpaXS8rkBwQxaY/P4BN+rjGUy92D2cRc2VEH209XdydqFIqMbiiSj4I=
+	t=1752201164; cv=none; b=TJ4Q8GXThFCPGTQSvEa6t4B7j3krrYt+Vz/MhbHo4ejro6w3Vo3LDsh0pzFpiOKzThCrQu1s3AFgUzKT8WGkLhQadPjsN02Avc3RLRGwv1fYAY7kK3SB0lCzLQxKyxixymnbkjjz5C1hhRO8i16nq73zIJFxy0/Pg4P3L235j0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752201089; c=relaxed/simple;
-	bh=1H7MhhPsRYIi3B2WvPg7/QFrezoDYvrrBJBrddaWH/A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vBm//efczSDBE8n2QCeJYgiijxeQ/bqkIvTe6Tdu/2L74z6KmAjB+QKmURs981PYAGkinvYlwvr8ZE/4PX8e942fpNRHGLDV9nDJPqs+o87AC1hZ3XYwukAblNBAhZXtszRqlJGkKgweBhUo7mR6bas/ys38VkBWaOtyrc5yrVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=e65/0Cdq; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id A796B207A3;
-	Fri, 11 Jul 2025 04:31:23 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id nd2XZagNVK2w; Fri, 11 Jul 2025 04:31:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1752201082; bh=1H7MhhPsRYIi3B2WvPg7/QFrezoDYvrrBJBrddaWH/A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=e65/0CdqgXBqH3SXxJ+7OS9YEV2xg+rDLMIRey+xXyVv6EHaA+T14aue9BeiEIBi8
-	 uoGa7TyaiUR8IcPQVeGGHZFtuJiyyGL7S1m9DQVcPo81uV0ZEgAFWEly/3sTI0k53i
-	 v8/5PquQTmb82voUxyrnoYxf0H53FfNdzUUNAMreVowKw7qaK9kK6YwC8tPUerbub3
-	 uvSagapy8Gy33k63uVANzdDSiju5rr4gRAZ1qTzo1Q0pAN7qVC9plxLPPiYZelnhkd
-	 BQKoiViszZYTS37UsY1w3cpZKty5JBM0m9eS2jt3LsCJZVegL/YGJ56pLHyhE1W7mz
-	 KqsgN3jYbJI6w==
-Date: Fri, 11 Jul 2025 02:31:07 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Yinbo Zhu <zhuyinbo@loongson.cn>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>,
-	Kexy Biscuit <kexybiscuit@aosc.io>
-Subject: Re: [PATCH v2 1/8] dt-bindings: clock: loongson2: Add Loongson
- 2K0300 compatible
-Message-ID: <aHB3Wvu-CVlYzhU7@pie.lan>
-References: <20250617162426.12629-1-ziyao@disroot.org>
- <20250617162426.12629-2-ziyao@disroot.org>
- <20250627-gay-sepia-reindeer-2fde2a@krzk-bin>
- <aF6FtaNB6XgkvUX7@pie>
+	s=arc-20240116; t=1752201164; c=relaxed/simple;
+	bh=tiAbxeh+3LEIGShY8Zl1p9RnVrdifpatiOcWmKio/Os=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Bg/fU+DIiCLmHiGX+srKINEe8V7tEyVaW2vesxJXcJy9fyhYqzURadGeBSE1bRnL+WZAPM3qz+kopwakcwK6+C3cHeK27uIKsTK8KNuFQQr6jNhbgXchhmB401I0Mhm6lP4l60dBGDvf2FI+VqbXIPrV9vf7G9bSlVfpJ2FKK5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Utx2lFiH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56B1X7X0003786;
+	Fri, 11 Jul 2025 02:32:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6cyOl8EhTF1d3FCvkz0zXmE4naUXkNV+0lh56s0a95M=; b=Utx2lFiHByXUJ1ld
+	yRsoojfMis7Kc4/sDKIZ5/FFC1EFnjTwOk21JesZu9nDKPao1+T8BnG+7OVXfwao
+	R8LY/l+EMg11aYN5+cBc/JMYsu7HaVeVUAglldLoq04bbSIUMEXtvaVX6tmFCblx
+	hO9JD38IsEY6C7sqkHiPSzIfEFoGcLrf/pV1N8yGApmtTn5HF3X+rQayCUCaMqu+
+	qk8jjamqQyeGT2UBMbvU+5InrGa0S2AhY1QchJWl7xyTmx4INGXaC9kNd6Ow45ay
+	qEo/hKDkBmLWCbCVyi2kHfjFk9sNhtTtx4RWNkhs6583g/A594d4YBRDTZM4276D
+	XoBJAw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47smbny23w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Jul 2025 02:32:33 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56B2WWXW015861
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Jul 2025 02:32:32 GMT
+Received: from [10.239.29.49] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 10 Jul
+ 2025 19:32:28 -0700
+Message-ID: <f544feb0-94e7-447b-8658-f9de9e3a82b2@quicinc.com>
+Date: Fri, 11 Jul 2025 10:32:26 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aF6FtaNB6XgkvUX7@pie>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/4] misc: fastrpc: Cleanup the domain names
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <srini@kernel.org>,
+        <amahesh@qti.qualcomm.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <arnd@arndb.de>,
+        <gregkh@linuxfoundation.org>
+CC: <quic_kuiw@quicinc.com>, <ekansh.gupta@oss.qualcomm.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        "Srinivas
+ Kandagatla" <srinivas.kandagatla@linaro.org>
+References: <20250709054728.1272480-1-quic_lxu5@quicinc.com>
+ <20250709054728.1272480-4-quic_lxu5@quicinc.com>
+ <f5ea9bc1-7617-4573-a10e-3499161a7819@oss.qualcomm.com>
+Content-Language: en-US
+From: Ling Xu <quic_lxu5@quicinc.com>
+In-Reply-To: <f5ea9bc1-7617-4573-a10e-3499161a7819@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzExMDAxNiBTYWx0ZWRfXwuUIzLSJh4e6
+ tidIDbNXEFvmBm94+NMPefVpC7f2MiRXo8naowLeQL0ypgfdYLLS8qhoSvBZYncoCkjxnd7NFGC
+ Lz/cJ2Z0ClhUS74xpAu++jz2fNT9ZtJ+iPs12gkRzmZRzRs/LMJA1KK4ckXoedHMAAPOeHCAqDm
+ IbgKZCLmDtul4g1eADJ0Mz19qvmTsrNLjEmbBLQkyFImWIweSeRIAHsO/8y1V1ZRQXyY1HR+aAm
+ srmkPnPf4uGeVUvlbkx7uQqfpXO9o/0CXU5OmC3vwpg7gLGd/9biFUsTZy7h+YE/kdMfKdmBOE6
+ /iQcPwZs8DaAKVTj5kLCtqj99LgvC1bFzByz0+P+mCQmHTclHuRLf3Ok+rdkOAJXftU1BD5sJLa
+ YufhZQ7vRmVICQvPL4Dt2nxW6vNy5CRSZhm2y9tkwSwhREb6rIH66xIRtDvg2B04zNdDgAUF
+X-Authority-Analysis: v=2.4 cv=QM1oRhLL c=1 sm=1 tr=0 ts=687077c1 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=KKAkSRfTAAAA:8
+ a=COk6AnOGAAAA:8 a=TqdbdoAbpVb1mddDCtAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: MQuMv_cc354vnnoifl2MlGq5MEFq3aVc
+X-Proofpoint-GUID: MQuMv_cc354vnnoifl2MlGq5MEFq3aVc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-11_01,2025-07-09_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 impostorscore=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 bulkscore=0 adultscore=0 mlxscore=0
+ phishscore=0 mlxlogscore=999 spamscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507110016
 
-On Fri, Jun 27, 2025 at 11:52:41AM +0000, Yao Zi wrote:
-> On Fri, Jun 27, 2025 at 10:03:53AM +0200, Krzysztof Kozlowski wrote:
-> > On Tue, Jun 17, 2025 at 04:24:19PM +0000, Yao Zi wrote:
-> > > Document the clock controller shipped in Loongson 2K0300 SoC, which
-> > > generates various clock signals for SoC peripherals.
-> > > 
-> > > Differing from previous generations of SoCs, 2K0300 requires a 120MHz
-> > > external clock input, and a separate dt-binding header is used for
-> > > cleanness.
-> > > 
-> > > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > > ---
-> > >  .../bindings/clock/loongson,ls2k-clk.yaml     | 26 ++++++---
-> > >  MAINTAINERS                                   |  1 +
-> > >  .../dt-bindings/clock/loongson,ls2k0300-clk.h | 54 +++++++++++++++++++
-> > >  3 files changed, 75 insertions(+), 6 deletions(-)
-> > >  create mode 100644 include/dt-bindings/clock/loongson,ls2k0300-clk.h
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> > > index 4f79cdb417ab..3e0a894cfb2f 100644
-> > > --- a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> > > +++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> > > @@ -16,6 +16,7 @@ description: |
-> > >  properties:
-> > >    compatible:
-> > >      enum:
-> > > +      - loongson,ls2k0300-clk
-> > >        - loongson,ls2k0500-clk
-> > >        - loongson,ls2k-clk  # This is for Loongson-2K1000
-> > >        - loongson,ls2k2000-clk
-> > > @@ -24,19 +25,32 @@ properties:
-> > >      maxItems: 1
-> > >  
-> > >    clocks:
-> > > -    items:
-> > > -      - description: 100m ref
-> > > +    maxItems: 1
-> > >  
-> > > -  clock-names:
-> > > -    items:
-> > > -      - const: ref_100m
-> > > +  clock-names: true
-> > 
-> > No. How does this implement my comment?
-
-Hi Krzysztof,
-
-> I'm sorry that I forgot about the suggestion of dropping clock-names for
-> the new compatible.
+在 7/10/2025 3:25 AM, Konrad Dybcio 写道:
+> On 7/9/25 7:47 AM, Ling Xu wrote:
+>> Currently the domain ids are added for each instance of domains, this is
+>> totally not scalable approach. Clean this mess and create domain ids for
+>> only domains not its instances.
+>>
+>> Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+>> ---
 > 
-> Is it acceptable to remove the description of clocks property, keep
-> clock-names property as-is, and use an allOf block to disallow
-> clocks-names for the new 2K0300 compatible? Thanks for your explanation.
-
-Could you please provide some further comments on this? The schema will
-look like,
-
-	clocks:
-	  maxItems: 1
-
-	clock-names:
-	  items:
-	    - const: ref_100m
-
-	...
-
-	allOf:
-	  - if:
-	      properties:
-	        compatible:
-	          contains:
-	            const: loongson,ls2k0300-clk
-	    then:
-	      properties:
-	        clock-names: false
-	    else:
-	      required:
-	        - clock-names
-
-Thanks for your time and suggestion.
-
-> > It makes no sense, why 100m even appeared here. I already objected last
-> > time!
-> > 
-> > >  
-> > >    '#clock-cells':
-> > >      const: 1
-> > >      description:
-> > >        The clock consumer should specify the desired clock by having the clock
-> > >        ID in its "clocks" phandle cell. See include/dt-bindings/clock/loongson,ls2k-clk.h
-> > > -      for the full list of Loongson-2 SoC clock IDs.
-> > > +      and include/dt-bindings/clock/loongson,ls2k0300-clk.h for the full list of
-> > > +      Loongson-2 SoC clock IDs.
-> > > +
-> > > +allOf:
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            const: loongson,ls2k0300-clk
-> > > +    then:
-> > > +      properties:
-> > > +        clock-names:
-> > > +          const: ref_120m
-> > 
-> > NAK, stop doing this pattern. You already got comment on this.
+> [...]
 > 
-> Oops, I missed the comment about dropping the frequency (or the full
-> clock-names property) from clock-names when writing v2, and I've decided
-> to drop the clock-names property completely for the 2K0300 compatible.
+>> @@ -2330,21 +2323,20 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>  	case ADSP_DOMAIN_ID:
+>>  	case MDSP_DOMAIN_ID:
+>>  	case SDSP_DOMAIN_ID:
+>> -		/* Unsigned PD offloading is only supported on CDSP and CDSP1 */
+>> +		/* Unsigned PD offloading is only supported on CDSP */
+>>  		data->unsigned_support = false;
+>> -		err = fastrpc_device_register(rdev, data, secure_dsp, domains[domain_id]);
+>> +		err = fastrpc_device_register(rdev, data, secure_dsp, domain);
+>>  		if (err)
+>>  			goto err_free_data;
+>>  		break;
+>>  	case CDSP_DOMAIN_ID:
+>> -	case CDSP1_DOMAIN_ID:
+>>  		data->unsigned_support = true;
+>>  		/* Create both device nodes so that we can allow both Signed and Unsigned PD */
+>> -		err = fastrpc_device_register(rdev, data, true, domains[domain_id]);
+>> +		err = fastrpc_device_register(rdev, data, true, domain);
+>>  		if (err)
+>>  			goto err_free_data;
+>>  
+>> -		err = fastrpc_device_register(rdev, data, false, domains[domain_id]);
+>> +		err = fastrpc_device_register(rdev, data, false, domain);
+>>  		if (err)
+>>  			goto err_deregister_fdev;
+>>  		break;
 > 
-> Sorry again for my mistake.
+> Taking a step back, do we realistically need these checks at all?
+> I would assume that there is a layer of security on the DSP side
+> that would disallow running code in unsigned PDs on e.g. the ADSP.
 > 
-> > Best regards,
-> > Krzysztof
-> > 
-> > 
+> What happens if one skips them and attempts doing just that?
 > 
-> Best regards,
-> Yao Zi
-> 
+do you mean comment data->unsigned_support lines?
+On qcs9100, it works normal, test will fail on unsigned PD if it's not supported.
+but we cannot comment what would happen on old DSPs.
+I think it will be safer to keep this.
 
-Regards,
-Yao Zi
+> Konrad
+
+-- 
+Thx and BRs,
+Ling Xu
+
 
