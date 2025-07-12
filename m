@@ -1,166 +1,156 @@
-Return-Path: <devicetree+bounces-195680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53109B02A0C
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 10:26:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C07BB02A1A
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 10:29:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC7E4A434D7
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 08:25:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 338D51BC375E
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 08:30:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3823526B774;
-	Sat, 12 Jul 2025 08:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F2C626B77F;
+	Sat, 12 Jul 2025 08:29:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OIYpowoK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1AC26B2C4;
-	Sat, 12 Jul 2025 08:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E753226B778;
+	Sat, 12 Jul 2025 08:29:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752308762; cv=none; b=HsFTuTAPOnvkLEQ6MaQDKSbCIIbFFKEl0JsiYeXSnqYnfWzbuAj/snoVBw2GwjnHfd0UAv4uxwXHmM+HQRKBpVz1hj0CQCACS+un/Hc4VQQ04UNFZFDuPMvdctr1iFqxl/b6/+2sC5jBJ3IkrVZzrtKOiyBnX3eW4XxGxEQRQFM=
+	t=1752308989; cv=none; b=R18ZQzNH4Iv/BaD+2OLFjQ9WyLxHzP6SthsW7Jy3FMx6WJ4dwweN/+ShZvGC5eQ8EAARu5t2TPCjlbb7afQ40LofQKQZSWHb0QNjWzBg9JT8lQIcdmq7HIbcfKdg8fJEO4BMcXIwpwDjKGEtkTyu0Zxrwc9d4jz1rzzBMXj5QU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752308762; c=relaxed/simple;
-	bh=ULgQmqNv8PySGk5+xltUtgTVVyz184W244B3rlM3Zvo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sQm6IaUe3HGdutG4qv5m0Bwwg3cNJqSILBonwMk/wxNlsBqyjE0jLJvO6CZEOod0yaZunuBE5bNCF1hrk0AnXhiYYdnZuWE0PivBX6GGP51BrRHesA36qUgbpS6fGqe9MujoAwPP/EwgGPBZpyemlX/DKkxrs1hm2LoMq4xMvXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-32e14cf205cso25145391fa.1;
-        Sat, 12 Jul 2025 01:25:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752308758; x=1752913558;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s8+rtQC6XpTE2vRTh9EDlBtLhS/B0Gdgn+coAVMY1wQ=;
-        b=WdVrL2utg0ZkOYLKbOJgfxO2Me/XyD6uPqdgPoE+IItM8/PdrjSmKJZ2u8PKggGFER
-         yC4KWcRrvD9HmDumFda1zluYjYdaP2MN8qJxsNsEzRYCi1dnwPV2Jj8xkeqbZvL+KjZ3
-         h82b76puya4V+W6nGrb1ctGVq0Xwr402zQTTkkvohhBOe18sqrvz2uJ0Vc2+s8o60anf
-         /S7/Ra1ACfLwe2jWQbbQiKZPayXoVCYOBN6S+sGrOnoNZAR1U6P1pVkgKYgfnSRU9ifq
-         3d0uI1AhgpfClS+EKxoYOtPqNHJyzfzRPCgxf6umYsR9tdH+9JPjeAYCYG0ilLmrVUeb
-         j5Sw==
-X-Forwarded-Encrypted: i=1; AJvYcCUIyUdlSaVF+MqAfc1xl39htuwAoLwo53d1kfAcvk0EhgeweTsQSi5jw6yYhO5vgbgbuubX94Q/z5MZ2nrl@vger.kernel.org, AJvYcCW7vomyJDHDnE0N4iGJs5T2ku4hH7JBtzpiw9CaStmBeebqjC48xyP6u3UsOWQopJD1RDBBUSMrSsM=@vger.kernel.org, AJvYcCWvnzorh+1KQI/4u5tKrZdXVc9BVoMYrKJ8L1M5zNOkbywvUg4tGkA5iR6usgHDFI/MSjLSAvUCH+y7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5rKRvk0mMTMc26+OOgUILHIkM6HiNpRbVFo0amzoj2C910DD3
-	NpxlEFCRliyOfM+LiwuKMcp3Y7wygvMeGpJOwzI4FqDtkeadI+CF5HTeHRIHQ1R2
-X-Gm-Gg: ASbGncsGAz5jLKmFHNyeD85YBhTLSMNVnECTuoeBrVc3dOiJz9PEkHRHK3EJEZluRZe
-	vpjmVAY4MUcUHWyerCM5rwXT5XRUw7/YBun80RRo8O4OvJzvjli5dekaUGoAH9ql+yUC+lsLnGf
-	TvOn5NG8QRFV61qSUzz3cyJT3oStkc/4JKvxWlW9Tm0Lm05XsBeptYcejZW3z6xjmgz5WAP8/tv
-	Bc15NXkgD6OJ8h0AKu66v8kGGb8a2aQMKGgDd5wTP/7DOt3wrI+dAdi/ixCX6DmzoVyckgJ09Pt
-	rGq5X8VFGonFRdfkDXvcooLMXNnuYQeaEb0Bgw9i1Zf5F250zlkKLILBleO59bGUmzZi3pfq0ow
-	nA586h5ONStCWZPKNsT2G0zyhSelMVXEAHabN/z1SWAus8fD3W2seOVk=
-X-Google-Smtp-Source: AGHT+IF1532bKm7S0qIoOLx0799EOHtzIhvPq6kUzfFu9jk7x+oCr/z8o2sPe7S38TIdM/5ceOCM7A==
-X-Received: by 2002:a05:651c:553:b0:32a:8c63:a8b2 with SMTP id 38308e7fff4ca-33053293f96mr17814531fa.8.1752308757519;
-        Sat, 12 Jul 2025 01:25:57 -0700 (PDT)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32fab8bd4a8sm9980581fa.65.2025.07.12.01.25.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Jul 2025 01:25:55 -0700 (PDT)
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-32cdc9544ceso24701841fa.0;
-        Sat, 12 Jul 2025 01:25:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWVYRbWML3JSdpFHBiDBFYZYbNVWWj5IePBC0asG1SKMG1dON5BO1/I3V57SWvqH+74yU35i7PRCck=@vger.kernel.org, AJvYcCWnrg19oaaqGtaCor3GR0mVbIg2XTrxcCuNHlIOgZHRmgcF2bEXRM7lqYlniPqM0UmsP9xEsdZ/hcx4@vger.kernel.org, AJvYcCXnVZR4Va62ncuN3UergBLLDArm2nOeOsg6XL7kSnVbT1dgPOyvS6Cw8u4aHAd7tpz+AeKrhuJDkDma0KKP@vger.kernel.org
-X-Received: by 2002:a05:651c:b1e:b0:32b:7472:c334 with SMTP id
- 38308e7fff4ca-330532dfcf4mr20735521fa.16.1752308755571; Sat, 12 Jul 2025
- 01:25:55 -0700 (PDT)
+	s=arc-20240116; t=1752308989; c=relaxed/simple;
+	bh=p0Zjo5EZWS22IGrMdAf7IdQcfsbZb3ViCzqNIS8/cF4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RPMU22+X1HOpS9CSVkkgA2qooukHvzSgIq00WMyftbFoLXOdfiVU8+CFhL2F/WvPRLBvpm25RKFXqxk+7YMif44E4XViRD9E/HcAa3w5coYn0n7XvkBP6RHI2E2uiEPGBmd4L5n83AGjmpOxbpB+uYZmvgNWyQ1vx0Vv747nRyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OIYpowoK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45E7AC4CEEF;
+	Sat, 12 Jul 2025 08:29:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752308988;
+	bh=p0Zjo5EZWS22IGrMdAf7IdQcfsbZb3ViCzqNIS8/cF4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OIYpowoKpAjlP4sPVyrS9D1zcn64G33nweiDygcMg7flXF1Ew5PsxRvKiqM+jaCm7
+	 1w+h2v/nn8sl/yzTTjYbqt5H+a27UY5gkjAivyPRK8BTEiU8WfxD0YRn9OBkwtN2Ja
+	 x3rLSevjd/EOhEgC0P/T9BfMgg5Rd3aQde0LtGZGDSvr4NlJA6uANWNvn9smcLCre4
+	 HItTKZDg9WoLl8+8YItF2gI/WMdSDVj7k+CQvSP+xkn2uI41JFodjfknfjQL0Hd6Mr
+	 j7+uZK9D+usGryv/1ehVXWVbDcub1bDjXrRkSyXSrb06gAXx6uxw7bkUltMBNoqF7o
+	 VISuv32PSfJbQ==
+Message-ID: <93f7f1b7-8c04-4d0e-9e41-6127651bdca4@kernel.org>
+Date: Sat, 12 Jul 2025 10:29:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250703151132.2642378-1-iuncuim@gmail.com> <20250703151132.2642378-4-iuncuim@gmail.com>
-In-Reply-To: <20250703151132.2642378-4-iuncuim@gmail.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Sat, 12 Jul 2025 16:25:42 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66CnNEw0Rhh0SLnr73b+TPJXCZ_eY3n4nH8_9LiXj2Ydw@mail.gmail.com>
-X-Gm-Features: Ac12FXymLasGX3Z5Rb9uWIApOu-xW47ktDWvJ_I7-HUhHhL0xFXKGGC-Mm7lvpI
-Message-ID: <CAGb2v66CnNEw0Rhh0SLnr73b+TPJXCZ_eY3n4nH8_9LiXj2Ydw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/8] thermal/drivers/sun8i: add gpadc clock
-To: iuncuim <iuncuim@gmail.com>
-Cc: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mmc: ti,da830-mmc: convert text based
+ binding to json schema
+To: Charan Pedumuru <charan.pedumuru@gmail.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com>
+ <1c7e9077-c213-40a9-92f4-07e813a3d151@kernel.org>
+ <5d746239-83d2-4316-82e9-4e7ae4f3422e@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <5d746239-83d2-4316-82e9-4e7ae4f3422e@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jul 3, 2025 at 11:13=E2=80=AFPM iuncuim <iuncuim@gmail.com> wrote:
->
-> From: Mikhail Kalashnikov <iuncuim@gmail.com>
->
-> Some processors (e.g. Allwinner A523) require GPADC clocking activation f=
-or
-> temperature sensors to work. So let's add support for enabling it.
->
-> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
-> ---
->  drivers/thermal/sun8i_thermal.c | 14 +++++++++++---
->  1 file changed, 11 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/sun8i_ther=
-mal.c
-> index 226747906..45aaf5348 100644
-> --- a/drivers/thermal/sun8i_thermal.c
-> +++ b/drivers/thermal/sun8i_thermal.c
-> @@ -66,8 +66,9 @@ struct tsensor {
->  };
->
->  struct ths_thermal_chip {
-> -       bool            has_mod_clk;
-> -       bool            has_bus_clk_reset;
-> +       bool            has_gpadc_clk;
-> +       bool            has_mod_clk;
-> +       bool            has_bus_clk_reset;
+On 12/07/2025 10:22, Charan Pedumuru wrote:
+>>> +
+>>> +allOf:
+>>> +  - $ref: mmc-controller.yaml
+>>> +
+>>> +maintainers:
+>>> +  - Rob Herring <robh@kernel.org>
+>>
+>> No, I really doubt Rob cares about this hardware.
+> 
+> I will remove Rob from maintainers and add Ulf under the maintainers.
 
-What's with the random whitespace change here?
+This should be someone responsible for this hardware, not subsystem
+maintainer.
 
->         bool            needs_sram;
->         int             sensor_num;
->         int             offset;
-> @@ -89,7 +90,8 @@ struct ths_device {
->         struct regmap_field                     *sram_regmap_field;
->         struct reset_control                    *reset;
->         struct clk                              *bus_clk;
-> -       struct clk                              *mod_clk;
-> +       struct clk                              *mod_clk;
-> +       struct clk                              *gpadc_clk;
+> 
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - ti,da830-mmc
+>>> +      - ti,dm355-mmc
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 2
+>>> +
+>>
+>> This wasn't in original binding. You need to document this in the commit
+>> msg. Also, list the items.
+> 
+> Sure, but what list of items for interrupts?
 
-And here?
-
->         struct tsensor                          sensor[MAX_SENSOR_NUM];
->  };
->
-> @@ -417,6 +419,12 @@ static int sun8i_ths_resource_init(struct ths_device=
- *tmdev)
->         if (ret)
->                 return ret;
->
-> +       if (tmdev->chip->has_gpadc_clk) {
-> +               tmdev->gpadc_clk =3D devm_clk_get_enabled(&pdev->dev, "gp=
-adc");
-> +               if (IS_ERR(tmdev->gpadc_clk))
-> +                       return PTR_ERR(tmdev->gpadc_clk);
-> +       }
-> +
-
-This looks correct.
+List as a verb. You need to list them.
 
 
-ChenYu
-
->         if (tmdev->chip->needs_sram) {
->                 struct regmap *regmap;
->
-> --
-> 2.49.0
->
+Best regards,
+Krzysztof
 
