@@ -1,114 +1,105 @@
-Return-Path: <devicetree+bounces-195732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B9ABB02D2F
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 23:22:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EED18B02D72
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 00:24:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4E0F3B8BC7
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 21:22:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 084D6A43413
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 22:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1691FDA61;
-	Sat, 12 Jul 2025 21:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D261822A808;
+	Sat, 12 Jul 2025 22:24:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rWaGBzZ3"
+	dkim=pass (2048-bit key) header.d=milecki.pl header.i=@milecki.pl header.b="SE3lhfWM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from 6.mo560.mail-out.ovh.net (6.mo560.mail-out.ovh.net [87.98.165.38])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 717511EEE0;
-	Sat, 12 Jul 2025 21:22:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0BAA1A2632
+	for <devicetree@vger.kernel.org>; Sat, 12 Jul 2025 22:24:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=87.98.165.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752355351; cv=none; b=ZPhZZ5ZvSkcpL0d+NQOeO7rqMRQ/OkboS76ovHn5+FQBSMBMm/TvhEbcVsCBoUAuKKeIOYAYlTRD28rpzJNEVPtdWYZzuXm21WDnjea1Ag2tWwu2aEngqiE05EKeqLh+LAICSf+yDpeJBYAKWRaGmjZ4wgjlXTzkXX0A9KX+te8=
+	t=1752359089; cv=none; b=YtBjxL7e822X+atLko4/b1i0G1qsQMrI3Gtw2delKmynaLDWIqJLG61vV/sZjB32Kcso0RB/Urtsupdwvl0lXPq+8ejjvFqRFIuLN+ZcUyV08sTk9bZ10hA0roGgxpR/QWMhY+PtFC91M9wuP2wDuYKUYSIs6ByP+nNB0IQN0nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752355351; c=relaxed/simple;
-	bh=IWlxFqjEHHAd1JHz8MbkD0zzwlAMWCP1b6rXJ65fD3o=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=m7y199gPKhS8mVqmdK3JA84W2tBcWS1gEP/zfVtgeUBei5Kq/uXd8VpUmB6oOIjTgJBk6dfnOJPA2/xRw6gKyJoD576e+vUp8rlycB0t/ZiMyKkT5lHboQLOlooSFmg+qJf6x0ZOHC+jx1fQqE64ME5SleX6gonQcbRSKcsvbc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rWaGBzZ3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAECBC4CEEF;
-	Sat, 12 Jul 2025 21:22:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752355350;
-	bh=IWlxFqjEHHAd1JHz8MbkD0zzwlAMWCP1b6rXJ65fD3o=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=rWaGBzZ3hcLXDj6IRLKquX33sgdrCzXj+bV/qBx5UGc69oI/YvprABJ5U5NQaEuwk
-	 /NJ5NqbzYn6SovNzR/7PfKfK0q9GOXj39Zf3umQVDfPUkh0Gx4tHcvwxaQK+HmpF/Y
-	 1tSmd3GoiwcLiyL31n4H/VKfscv8GdQ0LOVRQKOOKy7Edth5CKI8ngudKpQmLkXvh+
-	 RxCyLVjbP7bbWiWYbeGpmgesyIrEs7hNUSUwM2RM6z9Bf47SfvCdeczbXLkIIaFEvW
-	 xsVUCy1Z71qtj7eILJp5bnr+oDiP0BbBaovCgRU+gUx7F2MB65n73Gx4pGz0Pon6/r
-	 8s7fv8UvtXeTA==
-Date: Sat, 12 Jul 2025 16:22:29 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1752359089; c=relaxed/simple;
+	bh=J03nje7L7tQvffm+9eHiL5fp3PPulkRxm954htms3/o=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=njjPSrsaK6SasxmKls9K+OG42NeUyBZJusbZYpEVjBvaruQn/If3nT1xtsK2mT/09IY6EYDJjO8UO6Bc7c0liDP02EvujV9k3It9ZBgLbzjVCojbaNL6uq2quaFzUpfYewQGOejh97NFWl5H+wh0giS+s9iW12T9PhDL2usLBQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl; spf=pass smtp.mailfrom=milecki.pl; dkim=pass (2048-bit key) header.d=milecki.pl header.i=@milecki.pl header.b=SE3lhfWM; arc=none smtp.client-ip=87.98.165.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=milecki.pl
+Received: from director1.ghost.mail-out.ovh.net (unknown [10.109.231.250])
+	by mo560.mail-out.ovh.net (Postfix) with ESMTP id 4bfh2g4xsvzBJCd
+	for <devicetree@vger.kernel.org>; Sat, 12 Jul 2025 21:06:19 +0000 (UTC)
+Received: from ghost-submission-5b5ff79f4f-lvk2g (unknown [10.108.42.28])
+	by director1.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 8FCB9C15F9;
+	Sat, 12 Jul 2025 21:06:17 +0000 (UTC)
+Received: from milecki.pl ([37.59.142.113])
+	by ghost-submission-5b5ff79f4f-lvk2g with ESMTPSA
+	id sZQeF0nOcmiXIwAAwJQ/6Q
+	(envelope-from <rafal@milecki.pl>); Sat, 12 Jul 2025 21:06:17 +0000
+Authentication-Results:garm.ovh; auth=pass (GARM-113S007dfe7229d-c21e-49a0-b67c-aefe61f6941c,
+                    F8652911B2760FD5DD3B3FE7F023F1798B178A20) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp:151.80.29.19
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Andi Shyti <andi.shyti@kernel.org>, 
- Markus Stockhausen <markus.stockhausen@gmx.de>, devicetree@vger.kernel.org, 
- linux-i2c@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: Jonas Jelonek <jelonek.jonas@gmail.com>
-In-Reply-To: <20250712194255.7022-3-jelonek.jonas@gmail.com>
-References: <20250712194255.7022-1-jelonek.jonas@gmail.com>
- <20250712194255.7022-3-jelonek.jonas@gmail.com>
-Message-Id: <175235534986.1684385.2174297303057488223.robh@kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: i2c: realtek,rtl9301-i2c: extend
- for RTL9310 support
+Date: Sat, 12 Jul 2025 23:06:17 +0200
+From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
+ lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, s.hauer@pengutronix.de,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: thermal: mediatek: add falback
+ compatible string for MT7981 and MT8516
+In-Reply-To: <20250712195904.6988-2-olek2@wp.pl>
+References: <20250712195904.6988-1-olek2@wp.pl>
+ <20250712195904.6988-2-olek2@wp.pl>
+Message-ID: <3d81b3bcdb09dc20e6d54028301da882@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 14864974998312692504
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdegjedvfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhfkgihitgfgsehtkehjtddttdejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeejjeekkeegjedtffffveffieevtdeuieefueffgeekheekleeiudfgleefuddtueenucfkphepuddvjedrtddrtddruddpkeelrdduhedurdefuddrkeehpdduhedurdektddrvdelrdduledpfeejrdehledrudegvddruddufeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehiedtmgdpmhhouggvpehsmhhtphhouhht
+DKIM-Signature: a=rsa-sha256; bh=We8JOvusDnYKwN43BVavZsqnZtq56WFDfbjzvvdQ4W4=;
+ c=relaxed/relaxed; d=milecki.pl; h=From; s=ovhmo3028686-selector1;
+ t=1752354379; v=1;
+ b=SE3lhfWMiWg+UJybBdOrZAKkpas7cNmfKroUCAy8ROZNy00hZn/HZtlqU1P5EvK1IPkERMKG
+ l3bYlKDttH5NzBJr4xhnELUgXiAasWrJFn5w24BcWq46sPjX0GQmTcSJJr1X8+LgfkCHawxdSmj
+ amTNv7y3uqEJGhg2sAxgeP0ylYWyDEW10zjPhfLMQevsW7ExDcnO10ZjFg0S/8hLRHzSI5lDi2W
+ Dd7TOpna/FE8ks9QI8IxfxGkXF2kx+y78Ra6u+AoaTyStufvQYhb+yi3e2X598JON6RA1p6HzB5
+ SNUbVimjHFFdbV+kdkjd2ARgyiH0txlYkm1ovc7kXwJQA==
 
-
-On Sat, 12 Jul 2025 19:42:54 +0000, Jonas Jelonek wrote:
-> Add dt-bindings for RTL9310 series I2C controller.
+On 2025-07-12 21:59, Aleksander Jan Bajkowski wrote:
+> The ‘mediatek,mt7981-thermal’ and ‘mediatek,mt8516-thermal’ strings
+> aren't definied in the driver. Both should have fallback compatible
+> strings. This commit fixes this issue.
 > 
-> Adjust the regex for child-node address to account for the fact that
-> RTL9310 supports 12 instead of only 8 SDA lines.
-> 
-> Add a vendor-specific property to explicitly specify the
-> Realtek-internal ID of the defined I2C controller/master. This is
-> required, in particular for RTL9310, to describe the correct I2C
-> master.
-> 
-> Add compatibles for known SoC variants RTL9311, RTL9312 and RTL9313.
-> 
-> Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
-> ---
->  .../bindings/i2c/realtek,rtl9301-i2c.yaml     | 37 +++++++++++++++++--
->  1 file changed, 33 insertions(+), 4 deletions(-)
-> 
+> Fixes: 788494ba0999 ("dt-bindings: thermal: convert Mediatek Thermal
+> to the json-schema")
+> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I see my mistake I did while converting to JSON schema. Thanks for 
+sorting it out.
 
-yamllint warnings/errors:
+Acked-by: Rafał Miłecki <rafal@milecki.pl>
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.example.dtb: i2c@100c (realtek,rtl9310-i2c): realtek,mst-id: [0, 0, 0, 1] is not of type 'integer'
-	from schema $id: http://devicetree.org/schemas/i2c/realtek,rtl9301-i2c.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.example.dtb: i2c@100c (realtek,rtl9310-i2c): realtek,mst-id: size is 32, expected 8
-	from schema $id: http://devicetree.org/schemas/i2c/realtek,rtl9301-i2c.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250712194255.7022-3-jelonek.jonas@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+Rafał Miłecki
 
