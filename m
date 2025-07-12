@@ -1,190 +1,166 @@
-Return-Path: <devicetree+bounces-195679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30674B02A08
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 10:23:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53109B02A0C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 10:26:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A9347B1F02
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 08:21:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC7E4A434D7
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 08:25:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBBAA26B76B;
-	Sat, 12 Jul 2025 08:23:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XxOzh55q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3823526B774;
+	Sat, 12 Jul 2025 08:26:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B9730100;
-	Sat, 12 Jul 2025 08:23:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1AC26B2C4;
+	Sat, 12 Jul 2025 08:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752308588; cv=none; b=Oq1nacZ2vZoX0INX0UHR7ImMIQVyfl2Scwg6Z0IDi+3xvTavG1K2j6Bc33XLYX07cq9uOuM/LQ7YzOcddWL/Xl0a5t4Av+WrI/8X5xIFL0quP4XGVTwEPRyfZqebrcpKNEdX7np5sZjlgQfudjKycCe5m87POpMqDiZ0jUGKFbg=
+	t=1752308762; cv=none; b=HsFTuTAPOnvkLEQ6MaQDKSbCIIbFFKEl0JsiYeXSnqYnfWzbuAj/snoVBw2GwjnHfd0UAv4uxwXHmM+HQRKBpVz1hj0CQCACS+un/Hc4VQQ04UNFZFDuPMvdctr1iFqxl/b6/+2sC5jBJ3IkrVZzrtKOiyBnX3eW4XxGxEQRQFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752308588; c=relaxed/simple;
-	bh=v52oQSXwlkoagGiHFACwaC0UZJ8RTfOndYocAd74wxE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YZJb1r5/Frp9hCJHW7ZM8K718g4TvGc/9wH0X/cfSWfWwBoo4uAiU4uk66OtdesGG+PcGH7IrkuY1SEx0wL7+fPLwrfUYib3zm4+PVAjiM3DrRXhg/RUqTDrb0+UjD7AveIAKW73fmFhyIPaawxqbDKrdMJ9QzdNHP06SKTon+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XxOzh55q; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1752308762; c=relaxed/simple;
+	bh=ULgQmqNv8PySGk5+xltUtgTVVyz184W244B3rlM3Zvo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sQm6IaUe3HGdutG4qv5m0Bwwg3cNJqSILBonwMk/wxNlsBqyjE0jLJvO6CZEOod0yaZunuBE5bNCF1hrk0AnXhiYYdnZuWE0PivBX6GGP51BrRHesA36qUgbpS6fGqe9MujoAwPP/EwgGPBZpyemlX/DKkxrs1hm2LoMq4xMvXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-748e378ba4fso3453084b3a.1;
-        Sat, 12 Jul 2025 01:23:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752308587; x=1752913387; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DKFqUM3pyu0fyPQZg2Nx/WLRvwHFxl0Jzs3sZVxJIjw=;
-        b=XxOzh55qv+ZCQrQavtfZnpW42nYr2WOaJYR0GlFACL2cUhTF5wPMd+nf3hG7eSZJKc
-         sSRHGrFe1aRVGIGj7Rv6/ZsTGxgW0R9MN7MYbEPOeVesatY7C2y9SmyVc8de2LOAaeED
-         7Ln65g/q5KFwUb48Mwf6e7GbWxGeChMERM1ndVmCA8PemWcE10WQyf0hUlYIeCuU0f36
-         oh3FtNEd+HbV+6G1LlgqqTQJL88IclM2toUiTftAQS3crHJfnmaOvnsuCeuVU1T9xkAc
-         Np6RwbOVcmDcaREAtZNYuGazQ+Krw+eA3Uc3HCOSp8Wu66E7On3GDzo+1NGpYt42Hky7
-         9dlg==
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-32e14cf205cso25145391fa.1;
+        Sat, 12 Jul 2025 01:25:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752308587; x=1752913387;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DKFqUM3pyu0fyPQZg2Nx/WLRvwHFxl0Jzs3sZVxJIjw=;
-        b=w12V4hlLw3/ouLpMdASoTNYJtQUZy1HIP7w0OnpXyyeIH5uDq8KFaolR0NAXr/ISyC
-         PQzVOd2Spgkz+RZFlkdPX+rU9ueHMnXwexY/ezyYfWMLKRTg+YezD7hxO2z+1eAP0OpO
-         CXnmFjBxJy0SMEXi0XpYFJRZ1LBZF4PyKRxLBbFKyE/zWI3lad6Bk/mAf9D0AEkF4oiS
-         1Anlbw+aHW6tSM51+md8PxBgwUwbSJS6desp/w7qVfGTpUTrd+NKyzOmyOZSU5eb/hFc
-         SaQN7keBKMQ1fStJQXLoUiMd2mw1jBAGQPk9x76BD45yr5Oxnt8P848Vx0579WZJJhMX
-         VD8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVP7EF3eQeizXWqkX+QrqB2lEzsyrrxuhVZTSh0vjwVYRwiaH4/IkqdRbqRcUlsiFtEEOaQ4B9o5qPh@vger.kernel.org, AJvYcCX0zvrlUcmFzve2fkIlPiXpC43V75ceZVFHsN6hwnOfDKdysJPum4dqecIzpRPQiRUH1rk8EJDkGISHOsbf@vger.kernel.org
-X-Gm-Message-State: AOJu0YyM5je71PzD1cT8auFMGbrymDvHsqyyen9I6wcTpI+bD19/97xJ
-	4SOZTuqtnZKJHlWeq/QxPB37/9Lm4QBj4IlGut6mAj1Uryk1jM0JBUIO
-X-Gm-Gg: ASbGncscGPq3lL+FV/4WdzauzR0DTegDSoDPLQUSkxOT558sJnKzHFe2PLpzo+L52oW
-	en7VRXR3m8cZy7mjntz/HYKMbAmkMVjDw9y4+g6FW3hdcd2ZoJgEIiN62sL74ZEqoHkPWm0Uko8
-	u7XF+RFyNogVGjGC8HA2aKEroYFxgZrltd4G9WoseGIgpBGT9xkMtMEKfdLxilwQ+a00Jr/v1j5
-	yp1rs/enJaj1BRgG6VGaluYt6IPTtUt9ySQcslKb535JQXdkvockoT2kvsFFT1rWmRe151OUzc/
-	ifzjqpDPY7u5ndyuWhMB74cTjVEp/MpUqGcJ5J3OjEywn/RPM6h8F1ukWB0WlCK4mAt47ya+6zG
-	Y93R1EgBB6YLtbvw/epgtKWIVsTowfHs0yUf8rSFlONQsilk=
-X-Google-Smtp-Source: AGHT+IFjWvLqIP65x17mTT7dOCbJCC9NkOVTyvExu2svK2zqeFEsGnWtdV7t2JH69w4KoOglCY99fg==
-X-Received: by 2002:a05:6a20:7f8e:b0:220:83e1:49a0 with SMTP id adf61e73a8af0-23120903d76mr10602600637.42.1752308586600;
-        Sat, 12 Jul 2025 01:23:06 -0700 (PDT)
-Received: from [192.168.1.9] ([223.185.130.40])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9f1b1b5sm7116560b3a.96.2025.07.12.01.23.03
+        d=1e100.net; s=20230601; t=1752308758; x=1752913558;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=s8+rtQC6XpTE2vRTh9EDlBtLhS/B0Gdgn+coAVMY1wQ=;
+        b=WdVrL2utg0ZkOYLKbOJgfxO2Me/XyD6uPqdgPoE+IItM8/PdrjSmKJZ2u8PKggGFER
+         yC4KWcRrvD9HmDumFda1zluYjYdaP2MN8qJxsNsEzRYCi1dnwPV2Jj8xkeqbZvL+KjZ3
+         h82b76puya4V+W6nGrb1ctGVq0Xwr402zQTTkkvohhBOe18sqrvz2uJ0Vc2+s8o60anf
+         /S7/Ra1ACfLwe2jWQbbQiKZPayXoVCYOBN6S+sGrOnoNZAR1U6P1pVkgKYgfnSRU9ifq
+         3d0uI1AhgpfClS+EKxoYOtPqNHJyzfzRPCgxf6umYsR9tdH+9JPjeAYCYG0ilLmrVUeb
+         j5Sw==
+X-Forwarded-Encrypted: i=1; AJvYcCUIyUdlSaVF+MqAfc1xl39htuwAoLwo53d1kfAcvk0EhgeweTsQSi5jw6yYhO5vgbgbuubX94Q/z5MZ2nrl@vger.kernel.org, AJvYcCW7vomyJDHDnE0N4iGJs5T2ku4hH7JBtzpiw9CaStmBeebqjC48xyP6u3UsOWQopJD1RDBBUSMrSsM=@vger.kernel.org, AJvYcCWvnzorh+1KQI/4u5tKrZdXVc9BVoMYrKJ8L1M5zNOkbywvUg4tGkA5iR6usgHDFI/MSjLSAvUCH+y7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5rKRvk0mMTMc26+OOgUILHIkM6HiNpRbVFo0amzoj2C910DD3
+	NpxlEFCRliyOfM+LiwuKMcp3Y7wygvMeGpJOwzI4FqDtkeadI+CF5HTeHRIHQ1R2
+X-Gm-Gg: ASbGncsGAz5jLKmFHNyeD85YBhTLSMNVnECTuoeBrVc3dOiJz9PEkHRHK3EJEZluRZe
+	vpjmVAY4MUcUHWyerCM5rwXT5XRUw7/YBun80RRo8O4OvJzvjli5dekaUGoAH9ql+yUC+lsLnGf
+	TvOn5NG8QRFV61qSUzz3cyJT3oStkc/4JKvxWlW9Tm0Lm05XsBeptYcejZW3z6xjmgz5WAP8/tv
+	Bc15NXkgD6OJ8h0AKu66v8kGGb8a2aQMKGgDd5wTP/7DOt3wrI+dAdi/ixCX6DmzoVyckgJ09Pt
+	rGq5X8VFGonFRdfkDXvcooLMXNnuYQeaEb0Bgw9i1Zf5F250zlkKLILBleO59bGUmzZi3pfq0ow
+	nA586h5ONStCWZPKNsT2G0zyhSelMVXEAHabN/z1SWAus8fD3W2seOVk=
+X-Google-Smtp-Source: AGHT+IF1532bKm7S0qIoOLx0799EOHtzIhvPq6kUzfFu9jk7x+oCr/z8o2sPe7S38TIdM/5ceOCM7A==
+X-Received: by 2002:a05:651c:553:b0:32a:8c63:a8b2 with SMTP id 38308e7fff4ca-33053293f96mr17814531fa.8.1752308757519;
+        Sat, 12 Jul 2025 01:25:57 -0700 (PDT)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32fab8bd4a8sm9980581fa.65.2025.07.12.01.25.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Jul 2025 01:23:06 -0700 (PDT)
-Message-ID: <5d746239-83d2-4316-82e9-4e7ae4f3422e@gmail.com>
-Date: Sat, 12 Jul 2025 13:52:58 +0530
+        Sat, 12 Jul 2025 01:25:55 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-32cdc9544ceso24701841fa.0;
+        Sat, 12 Jul 2025 01:25:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWVYRbWML3JSdpFHBiDBFYZYbNVWWj5IePBC0asG1SKMG1dON5BO1/I3V57SWvqH+74yU35i7PRCck=@vger.kernel.org, AJvYcCWnrg19oaaqGtaCor3GR0mVbIg2XTrxcCuNHlIOgZHRmgcF2bEXRM7lqYlniPqM0UmsP9xEsdZ/hcx4@vger.kernel.org, AJvYcCXnVZR4Va62ncuN3UergBLLDArm2nOeOsg6XL7kSnVbT1dgPOyvS6Cw8u4aHAd7tpz+AeKrhuJDkDma0KKP@vger.kernel.org
+X-Received: by 2002:a05:651c:b1e:b0:32b:7472:c334 with SMTP id
+ 38308e7fff4ca-330532dfcf4mr20735521fa.16.1752308755571; Sat, 12 Jul 2025
+ 01:25:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mmc: ti,da830-mmc: convert text based
- binding to json schema
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com>
- <1c7e9077-c213-40a9-92f4-07e813a3d151@kernel.org>
-Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <1c7e9077-c213-40a9-92f4-07e813a3d151@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250703151132.2642378-1-iuncuim@gmail.com> <20250703151132.2642378-4-iuncuim@gmail.com>
+In-Reply-To: <20250703151132.2642378-4-iuncuim@gmail.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Sat, 12 Jul 2025 16:25:42 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66CnNEw0Rhh0SLnr73b+TPJXCZ_eY3n4nH8_9LiXj2Ydw@mail.gmail.com>
+X-Gm-Features: Ac12FXymLasGX3Z5Rb9uWIApOu-xW47ktDWvJ_I7-HUhHhL0xFXKGGC-Mm7lvpI
+Message-ID: <CAGb2v66CnNEw0Rhh0SLnr73b+TPJXCZ_eY3n4nH8_9LiXj2Ydw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/8] thermal/drivers/sun8i: add gpadc clock
+To: iuncuim <iuncuim@gmail.com>
+Cc: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Jul 3, 2025 at 11:13=E2=80=AFPM iuncuim <iuncuim@gmail.com> wrote:
+>
+> From: Mikhail Kalashnikov <iuncuim@gmail.com>
+>
+> Some processors (e.g. Allwinner A523) require GPADC clocking activation f=
+or
+> temperature sensors to work. So let's add support for enabling it.
+>
+> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
+> ---
+>  drivers/thermal/sun8i_thermal.c | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/sun8i_ther=
+mal.c
+> index 226747906..45aaf5348 100644
+> --- a/drivers/thermal/sun8i_thermal.c
+> +++ b/drivers/thermal/sun8i_thermal.c
+> @@ -66,8 +66,9 @@ struct tsensor {
+>  };
+>
+>  struct ths_thermal_chip {
+> -       bool            has_mod_clk;
+> -       bool            has_bus_clk_reset;
+> +       bool            has_gpadc_clk;
+> +       bool            has_mod_clk;
+> +       bool            has_bus_clk_reset;
+
+What's with the random whitespace change here?
+
+>         bool            needs_sram;
+>         int             sensor_num;
+>         int             offset;
+> @@ -89,7 +90,8 @@ struct ths_device {
+>         struct regmap_field                     *sram_regmap_field;
+>         struct reset_control                    *reset;
+>         struct clk                              *bus_clk;
+> -       struct clk                              *mod_clk;
+> +       struct clk                              *mod_clk;
+> +       struct clk                              *gpadc_clk;
+
+And here?
+
+>         struct tsensor                          sensor[MAX_SENSOR_NUM];
+>  };
+>
+> @@ -417,6 +419,12 @@ static int sun8i_ths_resource_init(struct ths_device=
+ *tmdev)
+>         if (ret)
+>                 return ret;
+>
+> +       if (tmdev->chip->has_gpadc_clk) {
+> +               tmdev->gpadc_clk =3D devm_clk_get_enabled(&pdev->dev, "gp=
+adc");
+> +               if (IS_ERR(tmdev->gpadc_clk))
+> +                       return PTR_ERR(tmdev->gpadc_clk);
+> +       }
+> +
+
+This looks correct.
 
 
+ChenYu
 
-On 28-05-2025 13:32, Krzysztof Kozlowski wrote:
-> On 23/05/2025 15:34, Charan Pedumuru wrote:
->> Convert TI Highspeed MMC host controller binding to YAML format. Add
->> 'clocks' property to resolve errors identified by 'dtb_check'.
->>
->> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
->> ---
->>  .../devicetree/bindings/mmc/davinci_mmc.txt        | 32 -----------
->>  .../devicetree/bindings/mmc/ti,da830-mmc.yaml      | 62 ++++++++++++++++++++++
->>  2 files changed, 62 insertions(+), 32 deletions(-)
->>
-> 
-> 
-> A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
-> prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> 
-> "convert to DT Schema"
-
-Sure, will change that.
-
-> 
-> 
-> 
-> ...
-> 
->> +
->> +allOf:
->> +  - $ref: mmc-controller.yaml
->> +
->> +maintainers:
->> +  - Rob Herring <robh@kernel.org>
-> 
-> No, I really doubt Rob cares about this hardware.
-
-I will remove Rob from maintainers and add Ulf under the maintainers.
-
-> 
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ti,da830-mmc
->> +      - ti,dm355-mmc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 2
->> +
-> 
-> This wasn't in original binding. You need to document this in the commit
-> msg. Also, list the items.
-
-Sure, but what list of items for interrupts?
-
-> 
->> +  dmas:
->> +    maxItems: 2
->> +
->> +  dma-names:
->> +    items:
->> +      - const: rx
->> +      - const: tx
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
-> 
-> why interrupts are required?
-
-It is not necessary, will remove it from required.
-
-> 
-> 
-> Best regards,
-> Krzysztof
-
--- 
-Best Regards,
-Charan.
-
+>         if (tmdev->chip->needs_sram) {
+>                 struct regmap *regmap;
+>
+> --
+> 2.49.0
+>
 
