@@ -1,170 +1,114 @@
-Return-Path: <devicetree+bounces-195731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 608DFB02D27
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 23:06:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B9ABB02D2F
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 23:22:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 782581AA5BFF
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 21:06:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4E0F3B8BC7
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 21:22:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69A2D2367C0;
-	Sat, 12 Jul 2025 21:05:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1691FDA61;
+	Sat, 12 Jul 2025 21:22:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lIrX18QM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rWaGBzZ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC9BA1FF1C7;
-	Sat, 12 Jul 2025 21:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 717511EEE0;
+	Sat, 12 Jul 2025 21:22:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752354301; cv=none; b=go8KChcByN9CFAynk7bEMOXE8/o6pMhnWev6QpMqRqcOw3ZJUt18htbnFYTyxg4K2ChSR+qvAzqd7lVNvBb71Ot94yHAq1d7VQ6TH/szP9NOlx61aV6gLjCT4BAk6Sve6hRWxbfVVoczPMPOzJbfCfYlDynmWwA0r9buaPshYf4=
+	t=1752355351; cv=none; b=ZPhZZ5ZvSkcpL0d+NQOeO7rqMRQ/OkboS76ovHn5+FQBSMBMm/TvhEbcVsCBoUAuKKeIOYAYlTRD28rpzJNEVPtdWYZzuXm21WDnjea1Ag2tWwu2aEngqiE05EKeqLh+LAICSf+yDpeJBYAKWRaGmjZ4wgjlXTzkXX0A9KX+te8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752354301; c=relaxed/simple;
-	bh=oR7MXeK2kNeHBJiihl3hom/RSoggd1b4/7OVwsS+/io=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=clVFNcWt5H0dY6YrMfV5L0bc5nPZK9Yt1kjuJ0ql24tLPz10EpK1elxKXSdWZuE3ONuZkD+WGsiTFr8DwmSPF6C2a51W5qnXfjFm4ePSrU6HPB4uuOdEd3sEq2a/YroNFNPm8X/ArE+qBW/MI4s2sGFLUIuZR1KxuC+iuRid47g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lIrX18QM; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-74b54af901bso2035938b3a.2;
-        Sat, 12 Jul 2025 14:04:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752354299; x=1752959099; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ejYbSlwrvFkbrHBW6bffd77Xp+VgExQz5WmoZWm5X3A=;
-        b=lIrX18QMw0gNxbEk9andzez5R2viTfRXahWa2nLtKHXDDZnPa08KfxI/hw/fW4R28h
-         k2jfsbL7B/V8yK/BFi/jugQ7wyMu7Zr/wDFKejInn+PQJJ9jem1hNcMMYgeexqzmvHmP
-         2pMcKwDXlG4H9wd+o6XNyCU8WbIjawO+wNwUxsQURhYPXnNyA2CDYpPQssdljpkoinNh
-         +CRoOYOUbOV4tnQNU9xSJjRL0WRvM8XSWCG7VBYNPsiyHVc36T9mtnD6dEFHTqmiqnxl
-         ES6QUjubnPEbEQiTUPZjHhiB/K8GQWpCnIAfVWAgAqVaXGQrFxrVOET6Km0HmTKmNi76
-         SB4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752354299; x=1752959099;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ejYbSlwrvFkbrHBW6bffd77Xp+VgExQz5WmoZWm5X3A=;
-        b=UiqoxY5XAgVQCvjrl+rsC2yVyjqGKzQvkIGc3rT5BoUu4ElXUgsieRGIsWHQgnGWQ1
-         ezzEU61tnfAJ9tysA8j0MoDFAbiRKYtXRwo79vh3Xb40fGs9z7G14LDK+4uP3vhUj1Eu
-         7VL1RO4XgE+GdSAB93SfzdBgHqC7+lqnZHRe0jyGCv1+mCUUZhCOFPkOvmiY1bdpFQQe
-         0syPnAvGtG5Lc2uHkIOUpChbe7w9x6Go7JRdTzXPysZm+xpEfDNY7PvAw27J5jFaGrV5
-         W6/Z7HDnxeLt8UeUObK97DPAam4axbdXHWH9afQuAqI92EU5zAbcG5SNKmD1oQFrM4WN
-         GPSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUeCD4oHT554XkrRBgjWKjGWZzvzneMsOo4Ic13oJxYGL+mZrmiikMDiQ8WxZjiyy5KYrH7rME1iB/tKA==@vger.kernel.org, AJvYcCWYfAfz6Xkp2MyppcUFNE8mQrr+MkCJsvqWzG4DZ+cin2mz9fcHuSkK20iDxNdgqqQEb2eWf5z9g7G7@vger.kernel.org, AJvYcCWsUs1PLadSsdpn7tZ+/GoTkJhtkf7Bg3G2tUn5iIamY3B1s6CeM06vgX9mOfO7TlCcR9UPW5bDXdma1Imi@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWplD+lBBTYDui4SUYYntWZf97lgieqSQAjiKxu3NCJwpBYz3z
-	pqlCWoctZmtSkoxcW66OvaVSVA+01Djyp7pFvoWH05zJkozXJYWzboPZrubtwmZ0
-X-Gm-Gg: ASbGncu/vQgB253vKvCQbMEcjJdRzU9w6k1DeqI3XVUPUrdxBjP7yU83reI502KYpYF
-	DsinDvnpWzs19E2nHPT4eltU+rk66/UyHFpvcWdXPCYwBUQrNH/EWQ2hARazP2t5HOsA7yyJTn7
-	xCmHT9VnkHUS7bWjXinBYUDq9e8l5Z9jCH5vq6L6xBWI/pmkpX6PNqmTJ/lgxgCdJSgEJ2KG5db
-	E7X10Oh8LTzi7Xe13EmVFJam/XJH6zihuih2+n0iCtVhY3yhWOWwmvHQZ729JjpxSWrySBodvcj
-	vKBi6mGN5IGN+eQ9zIPs79V/N1XdImCxaa8sekjNXqVBOlwatdc/W5cWJD8SWhFjPA+wwZu+uXc
-	YaJU=
-X-Google-Smtp-Source: AGHT+IH+1if3RW5zQDx5NFLjOzn1Iy9WzIcJAUTGZjLlAWikIuAA6K+2n56KMZrocse6CCNK9iTVig==
-X-Received: by 2002:a05:6a20:c709:b0:215:efed:acfc with SMTP id adf61e73a8af0-2311dd59489mr17727971637.7.1752354299008;
-        Sat, 12 Jul 2025 14:04:59 -0700 (PDT)
-Received: from archlinux.lan ([2601:644:8200:dab8::1f6])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9dd5d30sm7988645b3a.5.2025.07.12.14.04.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Jul 2025 14:04:58 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: linux-wireless@vger.kernel.org
-Cc: Johannes Berg <johannes@sipsolutions.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Stanislaw Gruszka <stf_xl@wp.pl>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list),
-	linux-mips@vger.kernel.org (open list:MIPS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC support),
-	linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC support)
-Subject: [PATCHv4 wireless-next 7/7] dt-bindings: net: wireless: rt2800: add
-Date: Sat, 12 Jul 2025 14:04:48 -0700
-Message-ID: <20250712210448.429318-8-rosenp@gmail.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250712210448.429318-1-rosenp@gmail.com>
-References: <20250712210448.429318-1-rosenp@gmail.com>
+	s=arc-20240116; t=1752355351; c=relaxed/simple;
+	bh=IWlxFqjEHHAd1JHz8MbkD0zzwlAMWCP1b6rXJ65fD3o=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=m7y199gPKhS8mVqmdK3JA84W2tBcWS1gEP/zfVtgeUBei5Kq/uXd8VpUmB6oOIjTgJBk6dfnOJPA2/xRw6gKyJoD576e+vUp8rlycB0t/ZiMyKkT5lHboQLOlooSFmg+qJf6x0ZOHC+jx1fQqE64ME5SleX6gonQcbRSKcsvbc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rWaGBzZ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAECBC4CEEF;
+	Sat, 12 Jul 2025 21:22:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752355350;
+	bh=IWlxFqjEHHAd1JHz8MbkD0zzwlAMWCP1b6rXJ65fD3o=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=rWaGBzZ3hcLXDj6IRLKquX33sgdrCzXj+bV/qBx5UGc69oI/YvprABJ5U5NQaEuwk
+	 /NJ5NqbzYn6SovNzR/7PfKfK0q9GOXj39Zf3umQVDfPUkh0Gx4tHcvwxaQK+HmpF/Y
+	 1tSmd3GoiwcLiyL31n4H/VKfscv8GdQ0LOVRQKOOKy7Edth5CKI8ngudKpQmLkXvh+
+	 RxCyLVjbP7bbWiWYbeGpmgesyIrEs7hNUSUwM2RM6z9Bf47SfvCdeczbXLkIIaFEvW
+	 xsVUCy1Z71qtj7eILJp5bnr+oDiP0BbBaovCgRU+gUx7F2MB65n73Gx4pGz0Pon6/r
+	 8s7fv8UvtXeTA==
+Date: Sat, 12 Jul 2025 16:22:29 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, 
+ Markus Stockhausen <markus.stockhausen@gmx.de>, devicetree@vger.kernel.org, 
+ linux-i2c@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: Jonas Jelonek <jelonek.jonas@gmail.com>
+In-Reply-To: <20250712194255.7022-3-jelonek.jonas@gmail.com>
+References: <20250712194255.7022-1-jelonek.jonas@gmail.com>
+ <20250712194255.7022-3-jelonek.jonas@gmail.com>
+Message-Id: <175235534986.1684385.2174297303057488223.robh@kernel.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: i2c: realtek,rtl9301-i2c: extend
+ for RTL9310 support
 
-Add device-tree bindings for the RT2800 SOC wifi device found in older
-Ralink/Mediatek devices.
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- .../bindings/net/wireless/ralink,rt2880.yaml  | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/wireless/ralink,rt2880.yaml
+On Sat, 12 Jul 2025 19:42:54 +0000, Jonas Jelonek wrote:
+> Add dt-bindings for RTL9310 series I2C controller.
+> 
+> Adjust the regex for child-node address to account for the fact that
+> RTL9310 supports 12 instead of only 8 SDA lines.
+> 
+> Add a vendor-specific property to explicitly specify the
+> Realtek-internal ID of the defined I2C controller/master. This is
+> required, in particular for RTL9310, to describe the correct I2C
+> master.
+> 
+> Add compatibles for known SoC variants RTL9311, RTL9312 and RTL9313.
+> 
+> Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
+> ---
+>  .../bindings/i2c/realtek,rtl9301-i2c.yaml     | 37 +++++++++++++++++--
+>  1 file changed, 33 insertions(+), 4 deletions(-)
+> 
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/ralink,rt2880.yaml b/Documentation/devicetree/bindings/net/wireless/ralink,rt2880.yaml
-new file mode 100644
-index 000000000000..a92aedf6ba01
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/wireless/ralink,rt2880.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/wireless/ralink,rt2880.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Ralink RT2880 wireless device
-+
-+maintainers:
-+  - Stanislaw Gruszka <stf_xl@wp.pl>
-+
-+description: |
-+  This node provides properties for configuring RT2880 SOC wifi devices.
-+  The node is expected to be specified as a root node of the device.
-+
-+allOf:
-+  - $ref: ieee80211.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ralink,rt2880-wifi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    wifi@110180000 {
-+      compatible = "ralink,rt2880-wifi";
-+      reg = <0x10180000 0x40000>;
-+      clocks = <&sysc 16>;
-+      interrupt-parent = <&cpuintc>;
-+      interrupts = <6>;
-+    };
--- 
-2.50.0
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.example.dtb: i2c@100c (realtek,rtl9310-i2c): realtek,mst-id: [0, 0, 0, 1] is not of type 'integer'
+	from schema $id: http://devicetree.org/schemas/i2c/realtek,rtl9301-i2c.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.example.dtb: i2c@100c (realtek,rtl9310-i2c): realtek,mst-id: size is 32, expected 8
+	from schema $id: http://devicetree.org/schemas/i2c/realtek,rtl9301-i2c.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250712194255.7022-3-jelonek.jonas@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
