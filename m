@@ -1,132 +1,147 @@
-Return-Path: <devicetree+bounces-195715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B322B02C87
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 21:06:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E154B02C9D
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 21:27:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFC6D4A0224
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 19:06:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E68D4A4BA8
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 19:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD8D22129E;
-	Sat, 12 Jul 2025 19:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F6EF28DB5D;
+	Sat, 12 Jul 2025 19:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XiP/zIAt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WhaAgGSX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB04183CB0;
-	Sat, 12 Jul 2025 19:06:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A291828D8F2
+	for <devicetree@vger.kernel.org>; Sat, 12 Jul 2025 19:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752347214; cv=none; b=UnZSo9VRstH4mqayXWAMKrGh5tK3C102cpONkZOlBrPNgxZEWEacfXjYlQN1P0SMDACPrFRU6oTIlClzUXYhMdOiLUKSOlNjHn7IK8fTKhBDYGX6QKXYV/Hcgw3MQ3y4G+tY5t/OxtbZVmO77zoJAgL4VDq1f6K5w2Afa/ppS2U=
+	t=1752348432; cv=none; b=Fw3bgpPJuAYWOPbHtpcc/ZRZ2l+YqNsZr4KIphrBDzbg6P9MZPHVVnzAavvkVsObN0E0WYVJ8p7wXOXTr025LSaUtJDYFzP4+IC2r6ObWpAoMy7ovZMWdGK5RoahsuVGPukLoOhI4OrbU7eLCANPMGGseU4Eg6W4jGDxXvQH+Q0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752347214; c=relaxed/simple;
-	bh=2cDLI+6d2t8/DuOIFZTlroviLAPEPg1elL5QTvHbT/c=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=p/1DJIikTsxXiZRMpMWAc8/bD1sWv8AEroTw1AcgYY4zQ6Qysu7C/jT2ZXJVyjk1Fi5IddDUMeq47DlflWr+MUHAAt+vNTg1TK8/ae9qZDSKA+DjacN1qrKo6xkpUpoL7Mz9O7xQj8Fy/FE23NX6M96eaubVkPqmf9wmKn+h7fY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XiP/zIAt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B25B2C4CEEF;
-	Sat, 12 Jul 2025 19:06:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752347212;
-	bh=2cDLI+6d2t8/DuOIFZTlroviLAPEPg1elL5QTvHbT/c=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=XiP/zIAt91l4afZSPSKZYFzut01E3Mp6JRrMtzOdeoFB/D3AhcmbvD1XyZHTZ0pro
-	 LA8rCZrPDOuv07AP97ZD7kjCCd1BIHU3Dk5J4KaFvMlSM4+5Lpv5v3bqRl00LV8eU0
-	 S5ZrYGCHyvnwMTe/eYEHuFXDimf/gYV68dp+giuHJzsFARFDJlxHPype1cgXcc2Wxb
-	 /xoB0beLlpj7Gsk0Mgv4qPcjdlIQGw5s5wuysJp1qZ47Lj4B3OUB4AoD9RKO14pUZZ
-	 fsWv+44936WhANh0F70N44YKOzDTyk7FY6QeGKdsOcO8jS/6plCgLvrQlE/g0zGx1r
-	 YXZEPAlZoS7GQ==
-Date: Sat, 12 Jul 2025 14:06:51 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1752348432; c=relaxed/simple;
+	bh=/hOKuusE5jMFtwzQjB1VDvpOrtRiFiTDNJiNJFK2Dmk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DGyQRM6tJpzXe4y7IfcmfSEh2uwvMr4O43EYOtjASRVaCW6HeQVr91uncrpJ+4AZ6QAu906o9PZ3/h/CgIXWZIErf/eDudE0YeWct2/WowsKTHLtaBgaHrKzAVqt5wlNOz3pVJZhqoVtBsKUOzbeRuwkk8/MIBC8jqjAaPT7YbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WhaAgGSX; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-32b561a861fso27254701fa.0
+        for <devicetree@vger.kernel.org>; Sat, 12 Jul 2025 12:27:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752348429; x=1752953229; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YmdrDokSvSEbkPXVz0WTUYECUUDrY3dIue4l79myHLA=;
+        b=WhaAgGSXAZ2GkhcFDEsP6qj+RKcZn8+l/TjHOEB0rc5PFabu3pbbhJKkKcGNOjN/XS
+         x58mToAJHF0fTCi79Km1iUhMdQ+WUraWoGTrV6zDdtnYEbpGEWWOFfyT6KxCX6fc0kJj
+         rX/Et2DH8vPoHqnQNHUQf8PRakWhKpNMuI0W5PH3cU4JgL5REt1UEcWVvEgPMZyS6E6n
+         Msv1LhhXTSFkn3sCAJ0GXDhVH2/g0xUEaEFG2qcVjCBhSEe1a3qQ08SrV6vv0obAIEvt
+         J9SY5jzLcS1zzrg+9ZvcX6/Vq9e5o8fJoRMTDoldYcsHjtlBjezR2yapWFfJHIc4wUtH
+         a2rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752348429; x=1752953229;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YmdrDokSvSEbkPXVz0WTUYECUUDrY3dIue4l79myHLA=;
+        b=QCK+wjK3JL3UrhYmaumkZbR5HoiShg6t94j+x2B9G2LLmxouQ43s9uksNrwrz+iH6W
+         PboRMb0n5imI/bUB6TSbKTPq0eKuVtpCczmWVIznwpqodsoTSNNWh148sFXZjW/ZM+jH
+         hu/SySoY8noXtmpg05j80Y/TMSV+Wssn/VXZJLaJWMBhNQYQgYLfOL8qxenwVB2aNW4F
+         rAi+SNI83I2LdowIVWlB2Waf7Zi8nX7c5l7Dw0paW+31Nbb7PI+0rTQZrOzbP3VfkrYJ
+         zzLlrCxMS8P/IPFDaWamhkHPu5pmUXcsma8EFq/tOT1BPgprrxzW07nttY0bpQZp38bQ
+         Y8Sg==
+X-Forwarded-Encrypted: i=1; AJvYcCVaTGo1gZLJDAtMswiiLNiAwfiTI6wFMemfUTdrMFaghIRzwhkcfnDcWOqcGjsWAKis8/uuEQ0J2yv6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwADbMwPSy3qDApQ0JvSn2xlDkPOC8JvDP94CLxcSliVZPWmSlY
+	PxWnhKBB1HETaxthDdAHMEJeNAc6oHVAEwK1jGUfOKN8OKVLFfYW8rbHjERa3ygklKjFeIVJe9K
+	zsL7D8tYSGGcT/sRxHFyxhiPG6ScAGe8ClNGvvH5oYg==
+X-Gm-Gg: ASbGncvFc1tv3yqSd0a3oJ5Aoa25noVroaVSv1vSO+58TY27NewsshCLA46PTKn2VdV
+	6AsL/9KqUkbyyAC4AYEA+85VhzUHFv21VuVBrLyTGLDe/EECfZsc3+bUF8UoM2zW7gukNbNVksC
+	cjxUcuviW1AKtGHKPQDotDrwV8oYeH016827j6ZrvFSwiTtox3WkDdLNfG9dw/DDx2+3LRSWyWf
+	Y36T/g=
+X-Google-Smtp-Source: AGHT+IEg/39vWPjh633ZUj8UqZLuNkeQ4zJb+DeEXqhdOGqkb2UzJv4loDelR2kMaTSHX23IkdKGCBQxVkP3ySeashA=
+X-Received: by 2002:a05:651c:4ca:b0:32b:755e:6cd7 with SMTP id
+ 38308e7fff4ca-3305509f9c8mr19310751fa.32.1752348428638; Sat, 12 Jul 2025
+ 12:27:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, wsa+renesas@sang-engineering.com, 
- devicetree@vger.kernel.org, geert+renesas@glider.be, p.zabel@pengutronix.de, 
- krzk@kernel.org, linux-renesas-soc@vger.kernel.org, 
- sergei.shtylyov@gmail.com, conor+dt@kernel.org
-To: Magnus Damm <damm@opensource.se>
-In-Reply-To: <175232756792.19062.3922882730162396395.sendpatchset@1.0.0.127.in-addr.arpa>
-References: <175232755943.19062.8739774784256290646.sendpatchset@1.0.0.127.in-addr.arpa>
- <175232756792.19062.3922882730162396395.sendpatchset@1.0.0.127.in-addr.arpa>
-Message-Id: <175234721189.1426581.6723570878637323009.robh@kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: memory-controllers:
- renesas,rpc-if: Add RZ/A1 and RZ/A2 compat strings
+References: <20250710002047.1573841-1-ksk4725@coasia.com>
+In-Reply-To: <20250710002047.1573841-1-ksk4725@coasia.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Sat, 12 Jul 2025 21:26:57 +0200
+X-Gm-Features: Ac12FXwfRBs5js5oSquCaRb4DKz10a2pVgF5CqiS_5Na7OWkjOlWh-jR8X6bLJY
+Message-ID: <CACRpkdaxAr8i-AByUsxnBmoSNtEDvik3VFvxAzk525GD=pH97Q@mail.gmail.com>
+Subject: Re: [PATCH 00/16] Add support for the Axis ARTPEC-8 SoC
+To: ksk4725@coasia.com
+Cc: Jesper Nilsson <jesper.nilsson@axis.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Tomasz Figa <tomasz.figa@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, kenkim <kenkim@coasia.com>, 
+	Jongshin Park <pjsin865@coasia.com>, GunWoo Kim <gwk1013@coasia.com>, 
+	HaGyeong Kim <hgkim05@coasia.com>, GyoungBo Min <mingyoungbo@coasia.com>, 
+	SungMin Park <smn1196@coasia.com>, Pankaj Dubey <pankaj.dubey@samsung.com>, 
+	Shradha Todi <shradha.t@samsung.com>, Ravi Patel <ravi.patel@samsung.com>, 
+	Inbaraj E <inbaraj.e@samsung.com>, Swathi K S <swathi.ks@samsung.com>, 
+	Hrishikesh <hrishikesh.d@samsung.com>, Dongjin Yang <dj76.yang@samsung.com>, 
+	Sang Min Kim <hypmean.kim@samsung.com>, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-arm-kernel@axis.com, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, soc@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Hakyeong,
 
-On Sat, 12 Jul 2025 15:39:27 +0200, Magnus Damm wrote:
-> From: Magnus Damm <damm@opensource.se>
-> 
-> Add RZ/A1 and RZ/A2 compat strings for the renesas rpc-if device.
-> 
-> Signed-off-by: Magnus Damm <damm@opensource.se>
-> ---
-> 
->  Changes since v1:
->  - Moved RZ/A to top of RZ
-> 
->  Applies to next-20250710
-> 
->  Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml |    5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> --- 0001/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
-> +++ work/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml	2025-07-11 04:50:41.505855241 +0900
-> @@ -50,6 +50,11 @@ properties:
-> 
->        - items:
->            - enum:
-> +	      - renesas,r7s72100-rpc-if       # RZ/A1H
-> +	      - renesas,r7s9210-rpc-if        # RZ/A2M
-> +
-> +      - items:
-> +          - enum:
->                - renesas,r9a07g043-rpc-if      # RZ/G2UL
->                - renesas,r9a07g044-rpc-if      # RZ/G2{L,LC}
->                - renesas,r9a07g054-rpc-if      # RZ/V2L
-> 
-> 
+thanks for your patch!
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Thu, Jul 10, 2025 at 2:20=E2=80=AFAM <ksk4725@coasia.com> wrote:
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml:53:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+> Add basic support for the Axis ARTPEC-8 SoC.
+> This SoC contains four Cortex-A53 CPUs and other several IPs.
+>
+> Patches 1 to 10 provide the support for the clock controller,
+> which is similar to other Samsung SoCs.
+>
+> The remaining patches provide pinctrl support and
+> initial device tree support.
+>
+> Hakyeong Kim (9):
+>   dt-bindings: clock: Add ARTPEC-8 CMU bindings
+>   clk: samsung: Add clock PLL support for ARTPEC-8 SoC
+>   clk: samsung: artpec-8: Add initial clock support
+>   clk: samsung: artpec-8: Add clock support for CMU_CMU block
+>   clk: samsung: artpec-8: Add clock support for CMU_BUS block
+>   clk: samsung: artpec-8: Add clock support for CMU_CORE block
+>   clk: samsung: artpec-8: Add clock support for CMU_CPUCL block
+>   clk: samsung: artpec-8: Add clock support for CMU_FSYS block
+>   clk: samsung: artpec-8: Add clock support for CMU_PERI block
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml: ignoring, error parsing file
-./Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml:53:1: found character that cannot start any token
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.example.dts'
-Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml:53:1: found character that cannot start any token
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1525: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+Out of the 9 patches there are 7 patches related to "CMU" without
+any explanation or even expansion of this acronym.
 
-doc reference errors (make refcheckdocs):
+Camera Management Unit? I think I'm not supposed to
+guess. Is is an Axis-custom piece of hardware? (Would make
+sense.)
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/175232756792.19062.3922882730162396395.sendpatchset@1.0.0.127.in-addr.arpa
+Please expand this acronym and state clearly that (if this
+is a correct assumption) that you are not supplying any
+bindings and even less a driver for the "CMU" thing, just the
+clocks. (That's fine the actual CMU can come later, but
+it should be clear *what* it is.)
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Yours,
+Linus Walleij
 
