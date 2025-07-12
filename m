@@ -1,324 +1,197 @@
-Return-Path: <devicetree+bounces-195733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1C8EB02D6E
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 00:16:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D764B02D86
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 01:20:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 875E016581E
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 22:16:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6ABCD176055
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 23:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BA051DD543;
-	Sat, 12 Jul 2025 22:16:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A24E7230268;
+	Sat, 12 Jul 2025 23:20:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PKamApBt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BtSyUuf/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE3922094;
-	Sat, 12 Jul 2025 22:16:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0D1B1F560B;
+	Sat, 12 Jul 2025 23:20:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752358598; cv=none; b=iIB/bSUgpSyI/poXOF46D3kxdvk4EUUbmgHqEKffFVEuyoB7okCyrsEJz5Gr0udc1xAF3WGqUnUlg92IjP/g76lam9hZU/QCtZl4lJ0cx9Ts+Cc59BjC0awWEPziLziuKVIm07PTCT0ttTaOeS5BBJlmK7DMckSChtXYYH7qZmU=
+	t=1752362426; cv=none; b=hGfMU9p8bsD4skAR7W+jcbNFB43m1wVOoAdOdstYcgvEilgUtUA5qAUKJyJWg0W7kAq9U7SgbyX8Q96aZFLdb1snKQsvugW8XLvA5yRSqaJz0miCllNWS5NU4p0o5G7uuaUjcoskSzKpnkKm/JzMKq2rp8jLVYSutBz5drO1R6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752358598; c=relaxed/simple;
-	bh=F+oHiZeATWk7cH+yoFtp77I/m1u1NJ+hRPH1xEcCvKk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o6WhOWLfB3vbSb9/wDdGJh2P0wchAUIne3RnWyAFJ15dXsooI9yaiIC4zk7ofVVApPhuukIWKjxok8Y7MLTDuECXc/NWF1nbIHDjm7VNW/5gh20ME0CudBRynbO7j3+FicblSnmZBtygWW3FQcYgmzHaPrC+7htOvJLTmOo7gsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PKamApBt; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1752358597; x=1783894597;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=F+oHiZeATWk7cH+yoFtp77I/m1u1NJ+hRPH1xEcCvKk=;
-  b=PKamApBtgmF32sRcUH2+D8jWvK/P/hRHaGX+mQj3eUMCHqVJrXTm/LFE
-   PYb63IuqEL8gcjW5ZHXL1X+FeCLjgwmk9Ob2kgFPgm3+4yg/cjds4csZE
-   Qp/muf6ZCEeiNAh3KQ8QS5Ftzl5gfFpDSlaBm2F+4q4HFqzu3UzF8aLww
-   lYdyOlxJmavt9nGXnDP3gbtWHQNYvRb6VP3m60x/T6StgPbxJT3GhkGv2
-   8SrPSh9sTW/voMHyW6OR4qsEvb33CTDTfY507gKjlgWmFUQtFhDol3yKl
-   50EvFcU91kSSNBM8wLttCZsN/qO6UXHa5OyJ8qVGIyks4YtWbEZN41gbj
-   w==;
-X-CSE-ConnectionGUID: kumsrj3tQnCR8P9dqjgXoQ==
-X-CSE-MsgGUID: CWf+/X/jTYmB3kcZ5lJwfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54765920"
-X-IronPort-AV: E=Sophos;i="6.16,307,1744095600"; 
-   d="scan'208";a="54765920"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2025 15:16:36 -0700
-X-CSE-ConnectionGUID: JkkpHCcBQzi6MR0nCWGoiQ==
-X-CSE-MsgGUID: uQdH5NLaRi+fi4KDjJxTvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,307,1744095600"; 
-   d="scan'208";a="187614569"
-Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 12 Jul 2025 15:16:29 -0700
-Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uaiWA-0007it-21;
-	Sat, 12 Jul 2025 22:16:26 +0000
-Date: Sun, 13 Jul 2025 06:16:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
-	robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: Re: [PATCH 3/3] iio: adc: add ade9000 support
-Message-ID: <202507130521.iaXBguXP-lkp@intel.com>
-References: <20250711130241.159143-4-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1752362426; c=relaxed/simple;
+	bh=9Y8Fjr7KqkE3E/uJ3c0Bp0ihg+c1iAP3vmMRnvmL9GU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sUwQGRgmI3mZmVfaYdnePla4iR5r6RSRnZ+/9NjURULJeOATnnFteWDttTGl5ytzt0qMDPIYuy+rgn6ztF++/qK49pGtbRoDmxaq6I63S/mNz10zUeOfUnHJrINONAV9PkgjiJ13J9DgOy1mQ/Xr2D0e6H5+M3wLZWQcu6pG6vQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BtSyUuf/; arc=none smtp.client-ip=209.85.219.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6facba680a1so39346546d6.3;
+        Sat, 12 Jul 2025 16:20:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752362424; x=1752967224; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OJFl78XZ+XY3PQ6hqlxJcMbRGA/vaIbR4su4ePprkx4=;
+        b=BtSyUuf/VDY0diQjWosqgShnbh3m3waNqhpbAi66DH5GaeHoilHQlitmciNqXh+4Po
+         D478Z16NaWEqmteUrz6t7FH1N96kCdcRr4ExXaUgUe80gbq+y6e77zAIySeMsP7kDCmf
+         kJPV+R/xmpSEqb7HdbWODQp7HrVe7MCSJQijNlw9bCc8j2Qxjb5mQ2tyIjOBrvkXKEIj
+         0sy08ZprmgDwM6Dr3S3Gcth85adFKmZO4j2hg7ofP6Aza/sl+bI0RgRdhwpJwOQBEFXQ
+         4KZp9zmLtJGclR7k/smMD/00y0agY84fwvUftodQg0Tf9ac/+szMEw133BbA3sZLNj+g
+         TauA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752362424; x=1752967224;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OJFl78XZ+XY3PQ6hqlxJcMbRGA/vaIbR4su4ePprkx4=;
+        b=XaSF4Oeh+yVglS1JR8IxuhWFYM7ge49ZkkQLt7ELshqfPqxuy/c4gYSY2jjn4hEvSc
+         qr8FTQAkkUF46ftorQK7iulcZ/LrQcztn72Y7Rf4qLs2dodSWyv6+d9tpK2g9iN37Zhb
+         1Gt/hB6oUGI1tCCKoyBIYxdjFn0jC1zWvWPq5d3M7HvJiKI4rBBv7d4tVuiCerlugP9w
+         u6xr/vsK7/BHRHFvXyL8wbtNF6qkihbmwUffCYGfWMwrckEPb2SsvSXOyc6a7M+ReJvY
+         baBXNB6k2ElWLhHGrm5+hnDbYKNlCHRpenLjoK9xdyFjHf3GHN3uaep5zSWUCrdPNJgX
+         XLGA==
+X-Forwarded-Encrypted: i=1; AJvYcCUAJ+F9fXXmrjYmuwzz6PHb7vHoIw1OG6bbSdZaZU8/qNvbI2K2UOoB/D93FPdaDApAusvoMliRrnZ9XLTWNT0=@vger.kernel.org, AJvYcCUXm5/aMWGCWA31U4o3wmkDmmkztDQWZs6/qW9/RyE+W0kjVgg9J24LTrMKAPJLd5xrGSBeJHhnv+Aq@vger.kernel.org, AJvYcCVM8dMb2DrYJxNEFHe5SoCU/ns8tnpN56Ak6GbWveNjks5cCAwezyCln81BixEMXGVPeoWYTKlb9/uSsw==@vger.kernel.org, AJvYcCXEvhnG1uudB7fWRcgvxUz1An8qmqhb3cIhaumwrzi0Kb5m1kYkEaflHEZ2yBpcbHN8cy693sYeksjhV2F+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyNUFciuIbGeh4BFtY98XakLoVbHWyV6x40UhgPvF8uQgapN//
+	EEJadIwI5ED+daINS3vbP8rbEScQ6xjwjVZ/22Q0Octkor+xVTj0rcvNYqXh3JangECSrR05ooF
+	SETE8VBeoivEaUneI+K0giR3mYzSmQeE=
+X-Gm-Gg: ASbGncstBhaBTpO5tizQBlHkoy3O4TXa4hw1ezby1ip35QxVkd2ZGjrLy5LXP6K2oVc
+	ESiclEGUVBrm0ha+lqM8XJAUFvKFnSshnf89XWxZjnWTJS2rLNSnAOVZ79Vq6w/jRByx1OLLbZh
+	KoA6PCvg7Nlf0i+UDnT4Z8v68Yb1gyNIcbK5m04ZkebDUJz2lUZe3gjXiQGQB/FeyFTQxO44gaO
+	S7yMoE=
+X-Google-Smtp-Source: AGHT+IFxoLdRf98+nAnGYYkZ3v8X8Zabbt4512qKXAZnA97TDHShi9FJhWzH8PYyZvNSK3yat23YgSRK0z1vNWmf/lY=
+X-Received: by 2002:a05:6214:2b86:b0:702:c939:9d9d with SMTP id
+ 6a1803df08f44-704a4220990mr161700106d6.28.1752362423744; Sat, 12 Jul 2025
+ 16:20:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250711130241.159143-4-antoniu.miclaus@analog.com>
+References: <20250710200820.262295-1-rosenp@gmail.com> <20250710200820.262295-8-rosenp@gmail.com>
+ <d8b0abb2-1a12-42bf-aafd-4cd1e21babd6@kernel.org> <CAKxU2N-c2tHBYWBM+FJGqdSaqzw9u0O8e0G7AVqk6b0QdRnPTw@mail.gmail.com>
+ <20250711-invisible-dainty-jackrabbit-acbf8f@krzk-bin> <20250712104006.GA13512@wp.pl>
+ <e435a765-fb91-408f-81dd-01a73fc43b6b@kernel.org> <23e629cb-0698-4a9c-aa18-9a7e71aa8b73@kernel.org>
+In-Reply-To: <23e629cb-0698-4a9c-aa18-9a7e71aa8b73@kernel.org>
+From: Julian Calaby <julian.calaby@gmail.com>
+Date: Sun, 13 Jul 2025 09:20:12 +1000
+X-Gm-Features: Ac12FXzHmWw2pTYCCUYiI4xo0Q3W3oiBA__ty2FODlbGDbYFA2NA_IcVvNhC2_U
+Message-ID: <CAGRGNgVk9__2mCE-hYSP7T0yKLjPsDkvG6+NghJMXazYXUid1w@mail.gmail.com>
+Subject: Re: [PATCHv3 wireless-next 7/7] dt-bindings: net: wireless: rt2800: add
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: Stanislaw Gruszka <stf_xl@wp.pl>, Rosen Penev <rosenp@gmail.com>, linux-wireless@vger.kernel.org, 
+	Johannes Berg <johannes@sipsolutions.net>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	"open list:MIPS" <linux-mips@vger.kernel.org>, 
+	"moderated list:ARM/Mediatek SoC support" <linux-arm-kernel@lists.infradead.org>, 
+	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Antoniu,
+Hi Krzysztof and Rob,
 
-kernel test robot noticed the following build warnings:
+On Sun, Jul 13, 2025 at 2:59=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 12/07/2025 18:53, Krzysztof Kozlowski wrote:
+> > On 12/07/2025 12:40, Stanislaw Gruszka wrote:
+> >> Hi Krzysztof,
+> >>
+> >> On Fri, Jul 11, 2025 at 09:48:49AM +0200, Krzysztof Kozlowski wrote:
+> >>> On Thu, Jul 10, 2025 at 03:40:30PM -0700, Rosen Penev wrote:
+> >>>> On Thu, Jul 10, 2025 at 2:40=E2=80=AFPM Krzysztof Kozlowski <krzk@ke=
+rnel.org> wrote:
+> >>>>>
+> >>>>> On 10/07/2025 22:08, Rosen Penev wrote:
+> >>>>>> Add device-tree bindings for the RT2800 SOC wifi device found in o=
+lder
+> >>>>>> Ralink/Mediatek devices.
+> >>>>>>
+> >>>>>> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+> >>>>>> ---
+> >>>>>>  .../bindings/net/wireless/ralink,rt2800.yaml  | 47 ++++++++++++++=
++++++
+> >>>>>>  1 file changed, 47 insertions(+)
+> >>>>>>  create mode 100644 Documentation/devicetree/bindings/net/wireless=
+/ralink,rt2800.yaml
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/net/wireless/ralink=
+,rt2800.yaml b/Documentation/devicetree/bindings/net/wireless/ralink,rt2800=
+.yaml
+> >>>>>> new file mode 100644
+> >>>>>> index 000000000000..8c13b25bd8b4
+> >>>>>> --- /dev/null
+> >>>>>> +++ b/Documentation/devicetree/bindings/net/wireless/ralink,rt2800=
+.yaml
+> >>>>>
+> >>>>> Filename should match compatible. You were already changing somethi=
+ng
+> >>>>> here...
+> >>>> hrm? that makes no sense. Various drivers have multiple compatible l=
+ines.
+> >>>
+> >>> Luckily we do not speak about drivers here. Anyway, follow standard
+> >>> review practices, you don't get special rules.
+> >>
+> >> Could you please elaborate what you mean ?
+> >
+> > Rosen replied in abrasive way, so I am not going to dig this.
+> >
+> >>
+> >> I greped through Documentation/devicetree/bindings/*/*.yaml and plenty
+> >
+> > I assume you refer to last 2 years bindings, not something older, right=
+?
+> > It is really poor argument to find old files and use them as example
+> > "they did like that".
+> >
+> >> of "compatible:" items do not match the filename. So hard to tell
+> >
+> > I did not ask for compatible to match filename.
+> >
+> >> what rule you are referencing, as it seems it's not really applied.
+> > Check reviews on the lists. It is pretty standard review. Everyone gets
+> > it for this case here - single device, single compatible.
+>
+> BTW, it is not hiding on the lists:
+>
+> https://lore.kernel.org/linux-devicetree/?q=3Df%3Aherring+filename
+> https://lore.kernel.org/linux-devicetree/?q=3Df%3Akozlowski+filename
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on robh/for-next linus/master v6.16-rc5 next-20250711]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I just had a quick look through the in-tree documentation on device
+tree bindings and can't find this rule there.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Antoniu-Miclaus/iio-add-power-and-energy-measurement-modifiers/20250712-022300
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20250711130241.159143-4-antoniu.miclaus%40analog.com
-patch subject: [PATCH 3/3] iio: adc: add ade9000 support
-config: arc-randconfig-r133-20250713 (https://download.01.org/0day-ci/archive/20250713/202507130521.iaXBguXP-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 10.5.0
-reproduce: (https://download.01.org/0day-ci/archive/20250713/202507130521.iaXBguXP-lkp@intel.com/reproduce)
+It's good that you and Rob are consistent in applying this rule, but
+pointing to the mailing list archives instead of the documentation
+makes it feel like patch submissions in this space are judged by some
+arbitrary set of undocumented rules.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507130521.iaXBguXP-lkp@intel.com/
+Could you please update the documentation with the current set of
+requirements so that people who are new to this space have a
+consistent set of rules they can apply to their work?
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/iio/adc/ade9000.c:1176:40: sparse: sparse: cast truncates bits from constant value (100000 becomes 0)
-   drivers/iio/adc/ade9000.c:1185:40: sparse: sparse: cast truncates bits from constant value (200000 becomes 0)
-   drivers/iio/adc/ade9000.c:1194:40: sparse: sparse: cast truncates bits from constant value (400000 becomes 0)
-   drivers/iio/adc/ade9000.c:1203:40: sparse: sparse: cast truncates bits from constant value (800000 becomes 0)
-   drivers/iio/adc/ade9000.c:1212:40: sparse: sparse: cast truncates bits from constant value (1000000 becomes 0)
-   drivers/iio/adc/ade9000.c:1221:40: sparse: sparse: cast truncates bits from constant value (2000000 becomes 0)
-   drivers/iio/adc/ade9000.c:1230:40: sparse: sparse: cast truncates bits from constant value (40000 becomes 0)
-   drivers/iio/adc/ade9000.c:1249:12: sparse: sparse: context imbalance in 'ade9000_read_raw' - different lock contexts for basic block
->> drivers/iio/adc/ade9000.c:1761:9: sparse: sparse: dereference of noderef expression
->> drivers/iio/adc/ade9000.c:1761:9: sparse: sparse: dereference of noderef expression
+I understand that Krzysztof doesn't particularly like having
+discussions around the rules given his usual abrasive manner, so
+having the full rules documented would be a way to shift these
+conversations into something a bit more like how Greg applies stable
+rules: if you get it wrong, you get a link to the documentation, which
+should clarify most issues without any further discussion.
 
-vim +1176 drivers/iio/adc/ade9000.c
+Thanks,
 
-  1051	
-  1052	static irqreturn_t ade9000_irq1_thread(int irq, void *data)
-  1053	{
-  1054		struct iio_dev *indio_dev = data;
-  1055		struct ade9000_state *st = iio_priv(indio_dev);
-  1056		unsigned int bit = ADE9000_ST1_CROSSING_FIRST;
-  1057		s64 timestamp = iio_get_time_ns(indio_dev);
-  1058		u32 handled_irq = 0;
-  1059		u32 interrupts;
-  1060		u32 result;
-  1061		u32 status;
-  1062		u32 tmp;
-  1063		int ret;
-  1064	
-  1065		if (!st->rst_done) {
-  1066			ret = regmap_read(st->regmap, ADE9000_REG_STATUS1, &result);
-  1067			if (ret)
-  1068				return ret;
-  1069	
-  1070			if (result & ADE9000_ST1_RSTDONE_BIT)
-  1071				st->rst_done = true;
-  1072			else
-  1073				dev_err(&st->spi->dev, "Error testing reset done");
-  1074	
-  1075			return IRQ_HANDLED;
-  1076		}
-  1077	
-  1078		ret = regmap_read(st->regmap, ADE9000_REG_STATUS1, &status);
-  1079		if (ret)
-  1080			return IRQ_HANDLED;
-  1081	
-  1082		ret = regmap_read(st->regmap, ADE9000_REG_MASK1, &interrupts);
-  1083		if (ret) {
-  1084			dev_err(&st->spi->dev, "IRQ1 read status fail");
-  1085			return IRQ_HANDLED;
-  1086		}
-  1087	
-  1088		for_each_set_bit_from(bit, (unsigned long *)&interrupts,
-  1089				      ADE9000_ST1_CROSSING_DEPTH){
-  1090			tmp = status & BIT(bit);
-  1091	
-  1092			switch (tmp) {
-  1093			case ADE9000_ST1_ZXVA_BIT:
-  1094				iio_push_event(indio_dev,
-  1095					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1096								    ADE9000_ST1_ZXVA_BIT,
-  1097								    IIO_EV_TYPE_THRESH,
-  1098								    IIO_EV_DIR_EITHER),
-  1099					       timestamp);
-  1100				handled_irq |= ADE9000_ST1_ZXVA_BIT;
-  1101				break;
-  1102			case ADE9000_ST1_ZXTOVA_BIT:
-  1103				iio_push_event(indio_dev,
-  1104					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1105								    ADE9000_ST1_ZXTOVA_BIT,
-  1106								    IIO_EV_TYPE_THRESH,
-  1107								    IIO_EV_DIR_EITHER),
-  1108					       timestamp);
-  1109				handled_irq |= ADE9000_ST1_ZXTOVA_BIT;
-  1110				break;
-  1111			case ADE9000_ST1_ZXIA_BIT:
-  1112				iio_push_event(indio_dev,
-  1113					       IIO_UNMOD_EVENT_CODE(IIO_CURRENT,
-  1114								    ADE9000_ST1_ZXIA_BIT,
-  1115								    IIO_EV_TYPE_THRESH,
-  1116								    IIO_EV_DIR_EITHER),
-  1117					       timestamp);
-  1118				handled_irq |= ADE9000_ST1_ZXIA_BIT;
-  1119				break;
-  1120			case ADE9000_ST1_ZXVB_BIT:
-  1121				iio_push_event(indio_dev,
-  1122					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1123								    ADE9000_ST1_ZXVB_BIT,
-  1124								    IIO_EV_TYPE_THRESH,
-  1125								    IIO_EV_DIR_EITHER),
-  1126					       timestamp);
-  1127				handled_irq |= ADE9000_ST1_ZXVB_BIT;
-  1128				break;
-  1129			case ADE9000_ST1_ZXTOVB_BIT:
-  1130				iio_push_event(indio_dev,
-  1131					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1132								    ADE9000_ST1_ZXTOVB_BIT,
-  1133								    IIO_EV_TYPE_THRESH,
-  1134								    IIO_EV_DIR_EITHER),
-  1135					       timestamp);
-  1136				handled_irq |= ADE9000_ST1_ZXTOVB_BIT;
-  1137				break;
-  1138			case ADE9000_ST1_ZXIB_BIT:
-  1139				iio_push_event(indio_dev,
-  1140					       IIO_UNMOD_EVENT_CODE(IIO_CURRENT,
-  1141								    ADE9000_ST1_ZXIB_BIT,
-  1142								    IIO_EV_TYPE_THRESH,
-  1143								    IIO_EV_DIR_EITHER),
-  1144					       timestamp);
-  1145				handled_irq |= ADE9000_ST1_ZXIB_BIT;
-  1146				break;
-  1147			case ADE9000_ST1_ZXVC_BIT:
-  1148				iio_push_event(indio_dev,
-  1149					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1150								    ADE9000_ST1_ZXVC_BIT,
-  1151								    IIO_EV_TYPE_THRESH,
-  1152								    IIO_EV_DIR_EITHER),
-  1153					       timestamp);
-  1154				handled_irq |= ADE9000_ST1_ZXVC_BIT;
-  1155				break;
-  1156			case ADE9000_ST1_ZXTOVC_BIT:
-  1157				iio_push_event(indio_dev,
-  1158					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1159								    ADE9000_ST1_ZXTOVC_BIT,
-  1160								    IIO_EV_TYPE_THRESH,
-  1161								    IIO_EV_DIR_EITHER),
-  1162					       timestamp);
-  1163				handled_irq |= ADE9000_ST1_ZXTOVC_BIT;
-  1164				break;
-  1165			case ADE9000_ST1_ZXIC_BIT:
-  1166				iio_push_event(indio_dev,
-  1167					       IIO_UNMOD_EVENT_CODE(IIO_CURRENT,
-  1168								    ADE9000_ST1_ZXIC_BIT,
-  1169								    IIO_EV_TYPE_THRESH,
-  1170								    IIO_EV_DIR_EITHER),
-  1171					       timestamp);
-  1172				handled_irq |= ADE9000_ST1_ZXIC_BIT;
-  1173				break;
-  1174			case ADE9000_ST1_SWELLA_BIT:
-  1175				iio_push_event(indio_dev,
-> 1176					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1177								    ADE9000_ST1_SWELLA_BIT,
-  1178								    IIO_EV_TYPE_THRESH,
-  1179								    IIO_EV_DIR_RISING),
-  1180					       timestamp);
-  1181				handled_irq |= ADE9000_ST1_SWELLA_BIT;
-  1182				break;
-  1183			case ADE9000_ST1_SWELLB_BIT:
-  1184				iio_push_event(indio_dev,
-  1185					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1186								    ADE9000_ST1_SWELLB_BIT,
-  1187								    IIO_EV_TYPE_THRESH,
-  1188								    IIO_EV_DIR_RISING),
-  1189					       timestamp);
-  1190				handled_irq |= ADE9000_ST1_SWELLB_BIT;
-  1191				break;
-  1192			case ADE9000_ST1_SWELLC_BIT:
-  1193				iio_push_event(indio_dev,
-  1194					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1195								    ADE9000_ST1_SWELLC_BIT,
-  1196								    IIO_EV_TYPE_THRESH,
-  1197								    IIO_EV_DIR_RISING),
-  1198					       timestamp);
-  1199				handled_irq |= ADE9000_ST1_SWELLC_BIT;
-  1200				break;
-  1201			case ADE9000_ST1_DIPA_BIT:
-  1202				iio_push_event(indio_dev,
-  1203					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1204								    ADE9000_ST1_DIPA_BIT,
-  1205								    IIO_EV_TYPE_THRESH,
-  1206								    IIO_EV_DIR_FALLING),
-  1207					       timestamp);
-  1208				handled_irq |= ADE9000_ST1_DIPA_BIT;
-  1209				break;
-  1210			case ADE9000_ST1_DIPB_BIT:
-  1211				iio_push_event(indio_dev,
-  1212					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1213								    ADE9000_ST1_DIPB_BIT,
-  1214								    IIO_EV_TYPE_THRESH,
-  1215								    IIO_EV_DIR_FALLING),
-  1216					       timestamp);
-  1217				handled_irq |= ADE9000_ST1_DIPB_BIT;
-  1218				break;
-  1219			case ADE9000_ST1_DIPC_BIT:
-  1220				iio_push_event(indio_dev,
-  1221					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1222								    ADE9000_ST1_DIPC_BIT,
-  1223								    IIO_EV_TYPE_THRESH,
-  1224								    IIO_EV_DIR_FALLING),
-  1225					       timestamp);
-  1226				handled_irq |= ADE9000_ST1_DIPC_BIT;
-  1227				break;
-  1228			case ADE9000_ST1_SEQERR_BIT:
-  1229				iio_push_event(indio_dev,
-  1230					       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-  1231								    ADE9000_ST1_SEQERR_BIT,
-  1232								    IIO_EV_TYPE_CHANGE,
-  1233								    IIO_EV_DIR_NONE),
-  1234					       timestamp);
-  1235				handled_irq |= ADE9000_ST1_SEQERR_BIT;
-  1236				break;
-  1237			default:
-  1238				return IRQ_HANDLED;
-  1239			}
-  1240		}
-  1241	
-  1242		ret = regmap_write(st->regmap, ADE9000_REG_STATUS1, handled_irq);
-  1243		if (ret)
-  1244			return ret;
-  1245	
-  1246		return IRQ_HANDLED;
-  1247	}
-  1248	
+--=20
+Julian Calaby
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Email: julian.calaby@gmail.com
+Profile: http://www.google.com/profiles/julian.calaby/
 
