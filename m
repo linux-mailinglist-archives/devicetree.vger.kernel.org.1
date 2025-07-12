@@ -1,147 +1,156 @@
-Return-Path: <devicetree+bounces-195716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E154B02C9D
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 21:27:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2CF1B02CA6
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 21:43:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E68D4A4BA8
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 19:27:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1854189E3FF
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 19:43:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F6EF28DB5D;
-	Sat, 12 Jul 2025 19:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AF4E28CF5D;
+	Sat, 12 Jul 2025 19:43:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WhaAgGSX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BzaiWGNg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A291828D8F2
-	for <devicetree@vger.kernel.org>; Sat, 12 Jul 2025 19:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF8C18D;
+	Sat, 12 Jul 2025 19:43:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752348432; cv=none; b=Fw3bgpPJuAYWOPbHtpcc/ZRZ2l+YqNsZr4KIphrBDzbg6P9MZPHVVnzAavvkVsObN0E0WYVJ8p7wXOXTr025LSaUtJDYFzP4+IC2r6ObWpAoMy7ovZMWdGK5RoahsuVGPukLoOhI4OrbU7eLCANPMGGseU4Eg6W4jGDxXvQH+Q0=
+	t=1752349404; cv=none; b=BspI4UvBQUkX7+yqvVVP5f2xQQkZyq5exQ7xQ542jIBvV+hSvvjuD9Pct51s/z1D9OaxiNhTK79AJg4nHfvNdP0JY32HtvrFTHUT4hsgDSmnJQ70FmS3yxnYFBdDZ/xpRgI34iu6MBVBEHW98gec7sreIp5MSwMXFXlR03MTV9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752348432; c=relaxed/simple;
-	bh=/hOKuusE5jMFtwzQjB1VDvpOrtRiFiTDNJiNJFK2Dmk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DGyQRM6tJpzXe4y7IfcmfSEh2uwvMr4O43EYOtjASRVaCW6HeQVr91uncrpJ+4AZ6QAu906o9PZ3/h/CgIXWZIErf/eDudE0YeWct2/WowsKTHLtaBgaHrKzAVqt5wlNOz3pVJZhqoVtBsKUOzbeRuwkk8/MIBC8jqjAaPT7YbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WhaAgGSX; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-32b561a861fso27254701fa.0
-        for <devicetree@vger.kernel.org>; Sat, 12 Jul 2025 12:27:10 -0700 (PDT)
+	s=arc-20240116; t=1752349404; c=relaxed/simple;
+	bh=qgoSlcEfHPXxIG5r6WfthbCStc0ch6nPvvHnDxAC7jA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Dc9emg/eMV0BCDb3K09cTo94ba5nijLfAER0qBX0/k+gRZgbeLVWymV9yOZe0Vba/omr6dnvEn/O1E/whcHOCG8bvwuTN8aTGpdOAOC27LgBEE+529gJbvj2Ahm+I71bvofNYfZFZ60W2NkDYmlm/tlVL7lfMn9Egbhu2bQ+1xU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BzaiWGNg; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4560cdf235cso2818345e9.1;
+        Sat, 12 Jul 2025 12:43:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752348429; x=1752953229; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YmdrDokSvSEbkPXVz0WTUYECUUDrY3dIue4l79myHLA=;
-        b=WhaAgGSXAZ2GkhcFDEsP6qj+RKcZn8+l/TjHOEB0rc5PFabu3pbbhJKkKcGNOjN/XS
-         x58mToAJHF0fTCi79Km1iUhMdQ+WUraWoGTrV6zDdtnYEbpGEWWOFfyT6KxCX6fc0kJj
-         rX/Et2DH8vPoHqnQNHUQf8PRakWhKpNMuI0W5PH3cU4JgL5REt1UEcWVvEgPMZyS6E6n
-         Msv1LhhXTSFkn3sCAJ0GXDhVH2/g0xUEaEFG2qcVjCBhSEe1a3qQ08SrV6vv0obAIEvt
-         J9SY5jzLcS1zzrg+9ZvcX6/Vq9e5o8fJoRMTDoldYcsHjtlBjezR2yapWFfJHIc4wUtH
-         a2rw==
+        d=gmail.com; s=20230601; t=1752349401; x=1752954201; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nJRjGT347eE5KHYXkVnH2zDF7kOBoPVWDF2wyG/7/ms=;
+        b=BzaiWGNgyH6KV3VRsEdbnr18kCrcA/ChB6LXEitWoMPg1/PoHEh1NEp+HGNFR9G3EQ
+         P7m/6qSwXkbRi/jsOnVJgZtYbj0RnuFzPxpD5ClDxAJFBat+fdSD0oN/yZF/LXH1gIRM
+         vcN+0/mh4CnLSmFjpbARSOa5MPOZnajkXr8CYKweWJPWjsx/bXAx7XazvvFKc91Tpnho
+         LqAKSPraVyxlYFRZZLFAvC9Ryt0mJ/SnAC0gTqYODtWcd9fZLonBcUy2fiOLCYuNrgYV
+         slEsuFB7UoYrHOZI5aYVZ7fS1uPEn79XmCf8r50PlaF6WaFHUmwUKveJNOwpAv01mm8B
+         z2Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752348429; x=1752953229;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YmdrDokSvSEbkPXVz0WTUYECUUDrY3dIue4l79myHLA=;
-        b=QCK+wjK3JL3UrhYmaumkZbR5HoiShg6t94j+x2B9G2LLmxouQ43s9uksNrwrz+iH6W
-         PboRMb0n5imI/bUB6TSbKTPq0eKuVtpCczmWVIznwpqodsoTSNNWh148sFXZjW/ZM+jH
-         hu/SySoY8noXtmpg05j80Y/TMSV+Wssn/VXZJLaJWMBhNQYQgYLfOL8qxenwVB2aNW4F
-         rAi+SNI83I2LdowIVWlB2Waf7Zi8nX7c5l7Dw0paW+31Nbb7PI+0rTQZrOzbP3VfkrYJ
-         zzLlrCxMS8P/IPFDaWamhkHPu5pmUXcsma8EFq/tOT1BPgprrxzW07nttY0bpQZp38bQ
-         Y8Sg==
-X-Forwarded-Encrypted: i=1; AJvYcCVaTGo1gZLJDAtMswiiLNiAwfiTI6wFMemfUTdrMFaghIRzwhkcfnDcWOqcGjsWAKis8/uuEQ0J2yv6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwADbMwPSy3qDApQ0JvSn2xlDkPOC8JvDP94CLxcSliVZPWmSlY
-	PxWnhKBB1HETaxthDdAHMEJeNAc6oHVAEwK1jGUfOKN8OKVLFfYW8rbHjERa3ygklKjFeIVJe9K
-	zsL7D8tYSGGcT/sRxHFyxhiPG6ScAGe8ClNGvvH5oYg==
-X-Gm-Gg: ASbGncvFc1tv3yqSd0a3oJ5Aoa25noVroaVSv1vSO+58TY27NewsshCLA46PTKn2VdV
-	6AsL/9KqUkbyyAC4AYEA+85VhzUHFv21VuVBrLyTGLDe/EECfZsc3+bUF8UoM2zW7gukNbNVksC
-	cjxUcuviW1AKtGHKPQDotDrwV8oYeH016827j6ZrvFSwiTtox3WkDdLNfG9dw/DDx2+3LRSWyWf
-	Y36T/g=
-X-Google-Smtp-Source: AGHT+IEg/39vWPjh633ZUj8UqZLuNkeQ4zJb+DeEXqhdOGqkb2UzJv4loDelR2kMaTSHX23IkdKGCBQxVkP3ySeashA=
-X-Received: by 2002:a05:651c:4ca:b0:32b:755e:6cd7 with SMTP id
- 38308e7fff4ca-3305509f9c8mr19310751fa.32.1752348428638; Sat, 12 Jul 2025
- 12:27:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1752349401; x=1752954201;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nJRjGT347eE5KHYXkVnH2zDF7kOBoPVWDF2wyG/7/ms=;
+        b=lU+LSrub/witAbSp7wUZe8ISCVxH7qj+SSCOMUrifEwMVmPyHWtiQRBG9qGzYCJSLa
+         BW+iiCUlgEu4dPp1pCSOtNflydC4LC60nfEM4OKtRp6IHEiT9gSfRX8r0A3ODny6lJss
+         FPdBXwgAXeC7fhrazjA7GclP8XTzZZscXeocidBbS1JB2f8Q6CVUqlcnfTAhm0kV+vNW
+         EBENPvAWydDlFG/cqdgP/3IMVzTgWmdMN9fj39+tAOWMtqEpix2QFBwkWqVRfonR9LRk
+         lYjEz1M5Y3VQe5Wz4Y7moOjPjr7FHmVj+QUUSfOW5ct2f5JcVNyPN/TCZX6D6x9XGY4s
+         ksAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUkHTOfVXZE88Xyz5SxJ2fXm2YBW5pvg2WxUlpABM8HulcAhaoueyUx+H7LcPhFd+RVDV5MxIDoGTaA@vger.kernel.org, AJvYcCXpNqhAVmCvAzGg9XchZ+ib4OaFT7xQ2vo06iWsF8Rr/OHK5N/emnOfeiMNcSgCFYn5TeRTzLEK7oL91MSM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxhr8wkd4ezPdht2BxyP1iDQZRUSUPwf0SQumzgRh3Hjufj2L2m
+	6XHFIBaUm8IvvAN12OzKYjqkYki6D7KnHVlD7+e9Y8DPyFq2qCQNp/1V0x3K8A==
+X-Gm-Gg: ASbGncvq8pHCqI//+9D3Kk08yetzNczRLW0Osh1WIpruBxPysvO0b8brvzwOJ3bKEEv
+	aCjUUImwMWzCEkKVGOXnYtKpuYV7iGy46G36IeXjbOMopOaZ0/DPlrpu5MJJQUFjMD+CnRWgBHw
+	jwl1+HeacYTqsL/NIdnBweP6RjgERvT3g4khNnTW6JyvrgYBtVo7ndyoX3a2cAGhB7qKmAaiuW5
+	KOOYZkDoY0A62TdATozt08gM9BlxEHAz8MBG/EGH8TyNZiJquNjTWHi3ljCjLiAD193LUeEW28j
+	CQUhEKvhiXlvgkIIKq1BuDVgzPwYvWdSjgk4bedUlZAdYags5GQ2G7exztzoBMTgoQ+DFLE+ONg
+	qOinLxr6VfyJKPqQ8FiCfMaXEhRu/aOs+JirxAPS8uSsUIX44zkjM
+X-Google-Smtp-Source: AGHT+IHyzB046cNg4vvzKYKydglWXcjAX67CtqrS9ojzsFlwo89yMGOaOMMMQXtJE83lj+53alBvvA==
+X-Received: by 2002:a05:600c:c116:b0:453:6424:48a2 with SMTP id 5b1f17b1804b1-45576a7e0f5mr68036745e9.10.1752349400602;
+        Sat, 12 Jul 2025 12:43:20 -0700 (PDT)
+Received: from builder.. (246-9-142-46.pool.kielnet.net. [46.142.9.246])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454d5032e9esm123422335e9.3.2025.07.12.12.43.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Jul 2025 12:43:20 -0700 (PDT)
+From: Jonas Jelonek <jelonek.jonas@gmail.com>
+To: linux-i2c@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Markus Stockhausen <markus.stockhausen@gmx.de>,
+	Jonas Jelonek <jelonek.jonas@gmail.com>
+Subject: [PATCH v2 0/3] i2c: rework and extend RTL9300 I2C driver
+Date: Sat, 12 Jul 2025 19:42:52 +0000
+Message-ID: <20250712194255.7022-1-jelonek.jonas@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250710002047.1573841-1-ksk4725@coasia.com>
-In-Reply-To: <20250710002047.1573841-1-ksk4725@coasia.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sat, 12 Jul 2025 21:26:57 +0200
-X-Gm-Features: Ac12FXwfRBs5js5oSquCaRb4DKz10a2pVgF5CqiS_5Na7OWkjOlWh-jR8X6bLJY
-Message-ID: <CACRpkdaxAr8i-AByUsxnBmoSNtEDvik3VFvxAzk525GD=pH97Q@mail.gmail.com>
-Subject: Re: [PATCH 00/16] Add support for the Axis ARTPEC-8 SoC
-To: ksk4725@coasia.com
-Cc: Jesper Nilsson <jesper.nilsson@axis.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Tomasz Figa <tomasz.figa@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, kenkim <kenkim@coasia.com>, 
-	Jongshin Park <pjsin865@coasia.com>, GunWoo Kim <gwk1013@coasia.com>, 
-	HaGyeong Kim <hgkim05@coasia.com>, GyoungBo Min <mingyoungbo@coasia.com>, 
-	SungMin Park <smn1196@coasia.com>, Pankaj Dubey <pankaj.dubey@samsung.com>, 
-	Shradha Todi <shradha.t@samsung.com>, Ravi Patel <ravi.patel@samsung.com>, 
-	Inbaraj E <inbaraj.e@samsung.com>, Swathi K S <swathi.ks@samsung.com>, 
-	Hrishikesh <hrishikesh.d@samsung.com>, Dongjin Yang <dj76.yang@samsung.com>, 
-	Sang Min Kim <hypmean.kim@samsung.com>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-arm-kernel@axis.com, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, soc@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Hakyeong,
+This patch series reworks the current implementation of the driver for
+I2C controller integrated into RTL9300 SoCs to simplify support
+extension, and adds support for the RTL9310 series.
+Goal of this is to have RTL9310 support upstream in a proper
+implementation to be able to drop downstream versions of this driver.
 
-thanks for your patch!
+The first patch reworks the driver to use more of the regmap API.
+Instead of using macros, all registers are defined as reg_field and
+operations on these registers are performed using regmap_field and the
+corresponding API. This simplifies adding support for further chip
+families and avoids potential redundant code by just providing
+chip-specific functions for every chip family.
 
-On Thu, Jul 10, 2025 at 2:20=E2=80=AFAM <ksk4725@coasia.com> wrote:
+The second patch extends the existing dt-bindings of RTL9300 for RTL9310
+support.
 
-> Add basic support for the Axis ARTPEC-8 SoC.
-> This SoC contains four Cortex-A53 CPUs and other several IPs.
->
-> Patches 1 to 10 provide the support for the clock controller,
-> which is similar to other Samsung SoCs.
->
-> The remaining patches provide pinctrl support and
-> initial device tree support.
->
-> Hakyeong Kim (9):
->   dt-bindings: clock: Add ARTPEC-8 CMU bindings
->   clk: samsung: Add clock PLL support for ARTPEC-8 SoC
->   clk: samsung: artpec-8: Add initial clock support
->   clk: samsung: artpec-8: Add clock support for CMU_CMU block
->   clk: samsung: artpec-8: Add clock support for CMU_BUS block
->   clk: samsung: artpec-8: Add clock support for CMU_CORE block
->   clk: samsung: artpec-8: Add clock support for CMU_CPUCL block
->   clk: samsung: artpec-8: Add clock support for CMU_FSYS block
->   clk: samsung: artpec-8: Add clock support for CMU_PERI block
+The third patch makes use of previous changes by adding support for the
+RTL9310 series, providing the correct register definitions and a few
+specifics. This also uses a new vendor dt-property which was added by
+the second patch to properly manage the I2C controllers. Having this
+property is necessary to properly describe the hardware and allow the
+driver to correctly work with the I2C controllers.
 
-Out of the 9 patches there are 7 patches related to "CMU" without
-any explanation or even expansion of this acronym.
+Both has been tested successfully on RTL9302B-based Zyxel XGS1210-12
+and RTL9313-based Netgear MS510TXM.
 
-Camera Management Unit? I think I'm not supposed to
-guess. Is is an Axis-custom piece of hardware? (Would make
-sense.)
+Compile-tested with Linux, run-tested as backport in OpenWrt on the
+aforementioned devices.
 
-Please expand this acronym and state clearly that (if this
-is a correct assumption) that you are not supplying any
-bindings and even less a driver for the "CMU" thing, just the
-clocks. (That's fine the actual CMU can come later, but
-it should be clear *what* it is.)
+--
+Changelog
 
-Yours,
-Linus Walleij
+v2: - Patch 1: 
+	- adjusted commit message
+    	- retained Tested-By and Reviewed-By from Chris Packham
+    - Patch 2:
+    	- simplified check as suggested by Markus Stockhausen
+	- fixed commit message
+    - Patch 3 (all requested by Krzysztof):
+    	- use vendor property instead of generic
+	- add front compatibles to make binding complete
+	- fix commit message
+    - reordered patches, dt-bindings patch now comes before its 'user'
+    - properly add device-tree list and relevant maintainers to To/Cc
+
+--
+
+Jonas Jelonek (3):
+  i2c: rework RTL9300 I2C controller driver
+  dt-bindings: i2c: realtek,rtl9301-i2c: extend for RTL9310 support
+  i2c: add RTL9310 support to RTL9300 I2C controller driver
+
+ .../bindings/i2c/realtek,rtl9301-i2c.yaml     |  38 ++-
+ drivers/i2c/busses/i2c-rtl9300.c              | 231 +++++++++++++-----
+ 2 files changed, 199 insertions(+), 70 deletions(-)
+
+-- 
+2.48.1
+
 
