@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-195703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B586AB02BF9
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 18:48:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 359E1B02C03
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 18:53:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40D52A479B6
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 16:48:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 275E91C272D3
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 16:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB9C26B97F;
-	Sat, 12 Jul 2025 16:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F4628725E;
+	Sat, 12 Jul 2025 16:53:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="umSbT+To"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PkUJztUb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E75A47;
-	Sat, 12 Jul 2025 16:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB5219DF60;
+	Sat, 12 Jul 2025 16:53:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752338908; cv=none; b=BQhcX/wPxV5548CurAwTLaMVH6NFLqwM5J+CTr9DOmfVlg8mBT9C7gQjuUvRsj+bT1DaFOr46xImkBC1A5TbL98Ubu1CY1dUDFPkIiDBLy1noPSrWCdTynw/yCVBGydWmM7vvO9POh5AXQVUxUU3kk5oB8XuZBaYJ2Tmk4r6WrE=
+	t=1752339224; cv=none; b=ptitdO6EqugP44rmx1OlVHOpvT+jpg/lLwf6GQiBPAe2MZdCRFQ+V35Mmp1vfMB3bZD/EEzN7NQFbRTpBKSwAGhBhEKSHDBR8g9vzsfSdAgj7596R13xUktkQ8I8bccqqW4cNcyAzkc+PZ5GKj8mm3TKo5r5m4uJWb/0ASDtaUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752338908; c=relaxed/simple;
-	bh=+0nHvhgancvGiSRfVV8wQmUw7rewLgoMSfTzrx4krGs=;
+	s=arc-20240116; t=1752339224; c=relaxed/simple;
+	bh=tW1N0tkK1B6gjOAFUX2iqzAUwiIyvzfA0KIAbOuUz7k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d+MEFV1jbBPem7jYl/wRDDdpMhVrkwWBsyOBv4NcJGtUEXgKKOBKXGT91ab2/fONz9/Moayw0+y97sT36GVjJK9m8v8Sez903OYRC/mNOwu0GRCXNcttc6aHpK6EfhTpmh/RBV3uNkOXF7D68VjIsD6kUCh7dz3eFzjaDoBzOZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=umSbT+To; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB9E2C4CEEF;
-	Sat, 12 Jul 2025 16:48:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IY7DiI5CLGayoMn5JjetOGM6E2fTJHUzit6g1Qtc0xvD0jY28ny3Gmiark9w7OxXFifpR1H+78z+UnAGGVv4wVo10ve6X2tT+G57rWaiHPJ5ls+5902UOqPh/9DqgMZubLTY3zItXZYZpVc/GgbUaj6RVT7R8fnTCTj7wOcP0lw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PkUJztUb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FB3AC4CEEF;
+	Sat, 12 Jul 2025 16:53:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752338907;
-	bh=+0nHvhgancvGiSRfVV8wQmUw7rewLgoMSfTzrx4krGs=;
+	s=k20201202; t=1752339223;
+	bh=tW1N0tkK1B6gjOAFUX2iqzAUwiIyvzfA0KIAbOuUz7k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=umSbT+ToYAwrnovFEJEckwiJ645OsvVO4o3j3LLtSaVQyRNTqhxVbmVZg5RKcSuB5
-	 Hd+wEaTXoMhnB26NSPye0g2e1vaCjfyonKszoc9gT/R2sjAWLgkC5iRd1wnZUCL38V
-	 71XULXk9UgSFDXXqfb9z7uoIlEcK/3YgVkmcpRIlj7D+oNSe/23ynWUXQA2M4LdTGV
-	 h2qiWYp6batTm8ZriFUJ/0VsKs6223f9MDS1uy9stbyAAC+iMM+pagEKXyG4NuDgJe
-	 oW93qDB0UeprIGBqZc3f7LdFsGskQU6yZhJAZzqGE9iO91NxdRYav2oOFVw5QnV+25
-	 Y0NuthflXxMcw==
-Message-ID: <5977e5d9-c369-47f4-a35f-bc5c9488d5bc@kernel.org>
-Date: Sat, 12 Jul 2025 18:48:22 +0200
+	b=PkUJztUb2b/iaBuKzmxVtkpmImoyRyvLufwYqlIPkTG2oDvfT0JBskTgl/IztJMPt
+	 2PZJE93XUIxpKPTam67rvmpwj5AFhx3KZxR4Q6Gi2mm0ijskK69nutoJZqXmd/Ce1k
+	 STDSlU7ZVTnIPNQfuoSkyNgvPiL594BuOeYIC/Yty7wGKEhLwxqnECJIp8nLJjiniF
+	 TGaNQAAg9IMgIWrgT+CESbnIMAmiuSNMUSUX1r5LmDxQMYFfCvy74i0U4TkWV5TNNJ
+	 mFEfIiXb5DlV3qyYVWywPDrWB0kTI5JxLjrFlu5eT9jHQJZVbCy/nEAjGLFwQDXecV
+	 2n83HJFDYaoCA==
+Message-ID: <e435a765-fb91-408f-81dd-01a73fc43b6b@kernel.org>
+Date: Sat, 12 Jul 2025 18:53:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] memory: renesas-rpc-if: Add RZ/A1 and RZ/A2
- support
-To: Magnus Damm <damm@opensource.se>, linux-renesas-soc@vger.kernel.org
-Cc: robh@kernel.org, geert+renesas@glider.be, devicetree@vger.kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org,
- wsa+renesas@sang-engineering.com, sergei.shtylyov@gmail.com,
- p.zabel@pengutronix.de
-References: <175232755943.19062.8739774784256290646.sendpatchset@1.0.0.127.in-addr.arpa>
- <175232759314.19062.13901247607746044271.sendpatchset@1.0.0.127.in-addr.arpa>
+Subject: Re: [PATCHv3 wireless-next 7/7] dt-bindings: net: wireless: rt2800:
+ add
+To: Stanislaw Gruszka <stf_xl@wp.pl>
+Cc: Rosen Penev <rosenp@gmail.com>, linux-wireless@vger.kernel.org,
+ Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ "open list:MIPS" <linux-mips@vger.kernel.org>,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-arm-kernel@lists.infradead.org>,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-mediatek@lists.infradead.org>
+References: <20250710200820.262295-1-rosenp@gmail.com>
+ <20250710200820.262295-8-rosenp@gmail.com>
+ <d8b0abb2-1a12-42bf-aafd-4cd1e21babd6@kernel.org>
+ <CAKxU2N-c2tHBYWBM+FJGqdSaqzw9u0O8e0G7AVqk6b0QdRnPTw@mail.gmail.com>
+ <20250711-invisible-dainty-jackrabbit-acbf8f@krzk-bin>
+ <20250712104006.GA13512@wp.pl>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,32 +117,58 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <175232759314.19062.13901247607746044271.sendpatchset@1.0.0.127.in-addr.arpa>
+In-Reply-To: <20250712104006.GA13512@wp.pl>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 12/07/2025 15:39, Magnus Damm wrote:
-> From: Magnus Damm <damm@opensource.se>
+On 12/07/2025 12:40, Stanislaw Gruszka wrote:
+> Hi Krzysztof,
 > 
-> Add RZ/A1 and RZ/A2 compat strings to the rpc-if driver. Also make the
-> reset controller optional. This is because RZ/A1 does not have any reset
-> bits assigned to the device so there is no reset controller available.
+> On Fri, Jul 11, 2025 at 09:48:49AM +0200, Krzysztof Kozlowski wrote:
+>> On Thu, Jul 10, 2025 at 03:40:30PM -0700, Rosen Penev wrote:
+>>> On Thu, Jul 10, 2025 at 2:40 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>>
+>>>> On 10/07/2025 22:08, Rosen Penev wrote:
+>>>>> Add device-tree bindings for the RT2800 SOC wifi device found in older
+>>>>> Ralink/Mediatek devices.
+>>>>>
+>>>>> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+>>>>> ---
+>>>>>  .../bindings/net/wireless/ralink,rt2800.yaml  | 47 +++++++++++++++++++
+>>>>>  1 file changed, 47 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/net/wireless/ralink,rt2800.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/net/wireless/ralink,rt2800.yaml b/Documentation/devicetree/bindings/net/wireless/ralink,rt2800.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..8c13b25bd8b4
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/net/wireless/ralink,rt2800.yaml
+>>>>
+>>>> Filename should match compatible. You were already changing something
+>>>> here...
+>>> hrm? that makes no sense. Various drivers have multiple compatible lines.
+>>
+>> Luckily we do not speak about drivers here. Anyway, follow standard
+>> review practices, you don't get special rules.
+> 
+> Could you please elaborate what you mean ?
 
-That's different ABI and if you tested bindings, you would see warnings.
-My previous instruction was really important so I am disappointed that
-you replied that you are not going to test bindings or your DTS patches.
+Rosen replied in abrasive way, so I am not going to dig this.
 
-Fix the bindings.
+> 
+> I greped through Documentation/devicetree/bindings/*/*.yaml and plenty
 
-> +
->  static const struct of_device_id rpcif_of_match[] = {
-> +	{ .compatible = "renesas,r7s72100-rpc-if", .data = &rpcif_info_rz_a },
-> +	{ .compatible = "renesas,r7s9210-rpc-if", .data = &rpcif_info_rz_a },
+I assume you refer to last 2 years bindings, not something older, right?
+It is really poor argument to find old files and use them as example
+"they did like that".
 
-So devices are compatible. Express it with proper fallbacks and don't
-create redundant entries.
+> of "compatible:" items do not match the filename. So hard to tell
 
-Or explain in the binding WHY they are not compatible.
+I did not ask for compatible to match filename.
+
+> what rule you are referencing, as it seems it's not really applied.
+Check reviews on the lists. It is pretty standard review. Everyone gets
+it for this case here - single device, single compatible.
 
 Best regards,
 Krzysztof
