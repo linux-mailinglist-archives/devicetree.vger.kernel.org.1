@@ -1,143 +1,123 @@
-Return-Path: <devicetree+bounces-195692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90003B02AB2
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 13:53:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9145AB02AD1
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 14:35:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93C607B2D77
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 11:52:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 752704A6CB6
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 12:35:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838A8275865;
-	Sat, 12 Jul 2025 11:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44245275B01;
+	Sat, 12 Jul 2025 12:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="R6vhnY2t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HkcU4nEm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAC6426B752;
-	Sat, 12 Jul 2025 11:53:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18AE91DFD96;
+	Sat, 12 Jul 2025 12:35:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752321220; cv=none; b=C49mWQiLYnL6FAXxLgCHdD5Zj4ebQexa+hbzw+lB0/z/4p9/38VLf6G2a8dcR3+7hdHdjB3o3odOsQS/mN7rtE3VGaEbEIqfvq53hKrGoVtqSOPQbOAYZ9/aLyaZIT/nkULZT0KDDUOon7UlAQ7QLPWj5GMJ3Qh3l19GoCbHvKo=
+	t=1752323745; cv=none; b=UcDggK4yL5r4KXRIdenudNAPjjTRnLB4uyb/8P0ey7UP3Z3oEpT8mhkBhtBMwSnZC97x8jd1gqKxJQKLSPA2rxfFu3l/AHZxWBHkw8m8wUjmgBN61mZD78uuFKuBdGs5FfWkdSE0oo2oW9jbCqqODVoBn8SrZKO3X5sv/D9fzYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752321220; c=relaxed/simple;
-	bh=KzsTalIYYytvLpWidfkVgiBrJoufgmKXbomHVfz6euM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tykt16bEKBlcutxyL3+FjThd9LGGWisWguXDJJMpWXXPl8CUVcsELBDCsuM8I09EshMgM0nCVvde5kjkzqN424ZblKw7UQDVI31n+cEOUFtzLVHEABYa0LlprBWkiOCLVT/EPm6NReLGWxVqq2EW/i+852tvrvFDDoAxm82xWkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=R6vhnY2t; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1752321219; x=1783857219;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KzsTalIYYytvLpWidfkVgiBrJoufgmKXbomHVfz6euM=;
-  b=R6vhnY2tzUF4tj8ASQLww7QOsxTlDHXdEC0asRme24MEB6GNxfwXoHmV
-   QGfEH1lzIw9eziq2exULttTu6c64qZruShmy4YtyUEZ/qdqxaBhZogaw5
-   X4EEuApGfgRU8C4rwrCWfplpwnLzP3ZbwMpKM2VPBlotsT+pCQatFrLDa
-   G2ekCl3gU7EcKkSopWg20IuMdBQ63pORY+IjTXaT0OOgH0XP65pC0gNZv
-   Dzi6IAu3qd6r5KwCl2EkKwxaFzlQbj2fWZ45vSxJLryCE/TJgSNKtg4nG
-   kVZ8MY+KnfuDBt53uc63WZsSwZUTy2Qszh3nyc/9mKbyj5pyrJSIbLiY8
-   w==;
-X-CSE-ConnectionGUID: vnQtR/ShRJ+QhFBHi0VSjw==
-X-CSE-MsgGUID: tx7XBnfXRZaA1cPvnnFupg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="65944981"
-X-IronPort-AV: E=Sophos;i="6.16,306,1744095600"; 
-   d="scan'208";a="65944981"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2025 04:53:38 -0700
-X-CSE-ConnectionGUID: 3L8Qi3ocQ3Gr6VUkq7GnZw==
-X-CSE-MsgGUID: snpBXbQgQbaujSSCHzNVkw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,306,1744095600"; 
-   d="scan'208";a="180240413"
-Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 12 Jul 2025 04:53:34 -0700
-Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uaYnM-0007It-1W;
-	Sat, 12 Jul 2025 11:53:32 +0000
-Date: Sat, 12 Jul 2025 19:53:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Wei Fang <wei.fang@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, richardcochran@gmail.com,
-	claudiu.manoil@nxp.com, vladimir.oltean@nxp.com,
-	xiaoning.wang@nxp.com, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
-Cc: oe-kbuild-all@lists.linux.dev, fushi.peng@nxp.com,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [PATCH net-next 02/12] ptp: netc: add NETC Timer PTP driver
- support
-Message-ID: <202507121901.cz1bRBUf-lkp@intel.com>
-References: <20250711065748.250159-3-wei.fang@nxp.com>
+	s=arc-20240116; t=1752323745; c=relaxed/simple;
+	bh=lXFoGeveBkgpPfzpXT/Ao/zuuvCsduR2W62DWuGCibk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=UCzLy5EJ8+BnVqI2mKsoZwMl5xw6pTaSbef/kaijFkFhf7UTQcf37ETVjH/ROqCDVxV7hWDQjNfzrl1R0LDrNDcJrMcjg7c8o1jHP7pWAe5U6/Ixpy/eTJk72JUieoOWFwKGxWbUZKu4EU4I4k+inDac54ZNDEL2GO48DpVdB5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HkcU4nEm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EB56C4CEEF;
+	Sat, 12 Jul 2025 12:35:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752323744;
+	bh=lXFoGeveBkgpPfzpXT/Ao/zuuvCsduR2W62DWuGCibk=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=HkcU4nEmSaxfhj0q87QWOddf180UgwMkXuU/IH0d8XZQNbecFYpReNPy5z5vlMlXO
+	 S8adonG+rrJhDcf9Ouo8igpbrKJlRVDoaMAx2Yy6h0PcpQXIsXJ1iY62zYXO28Q3Om
+	 8qmnCNPXNp878uWScf8TTPeJwsyuWWhWlQ5M9GIxquvF/DUXwrPbtD795THy1Nmpi+
+	 OHsEsgBnMIci0YYE80HCWVjFPhrjh20ax0U2WtpVn1f9qIah9ejcIFjP+3aMpUBT9E
+	 6becPzLvmKfK1wxKF1Sr1UJJYDS4Ln/ig2CsEOiaTy+V9CzpOWG8B4fuBFG36ILrX7
+	 DaWAgtKXG4lvA==
+Message-ID: <b6897cec-eb02-451c-8b81-013a8166e2be@kernel.org>
+Date: Sat, 12 Jul 2025 07:35:40 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250711065748.250159-3-wei.fang@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: net: altr,socfpga-stmmac.yaml: add minItems
+ to iommus
+To: Matthew Gerlach <matthew.gerlach@altera.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ maxime.chevallier@bootlin.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250707154409.15527-1-matthew.gerlach@altera.com>
+ <b752c340-bbb5-479f-bc2c-a9e8541509c3@kernel.org>
+ <c048d76e-8187-440f-9f28-b6594810d5dd@altera.com>
+Content-Language: en-US
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <c048d76e-8187-440f-9f28-b6594810d5dd@altera.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Wei,
+On 7/9/25 17:23, Matthew Gerlach wrote:
+> 
+> 
+> On 7/8/25 11:54 PM, Krzysztof Kozlowski wrote:
+>> On 07/07/2025 17:44, Matthew Gerlach wrote:
+>> > Add missing 'minItems: 1' to iommus property of the Altera SOCFPGA SoC
+>> > implementation of the Synopsys DWMAC.
+>>
+>> Why? Explain why you are doing thing, not what you are doing. What is
+>> obvious which makes entire two-line commit msg redundant and useless.
+> This conversion to yaml was a merge of two separate conversions from 
+> Ding Nguyen and myself plus some resolved issues highlighted by Rob 
+> Herring, but I missed the minItems:
+> 
+> https://lore.kernel.org/lkml/20250626234816.GB1398428-robh@kernel.org/
+> 
+>>
+>> Original binding had no iommus and referenced commit does not explain
+>> why they appeared during conversion in the first place.
+> The text version of the binding was created before the device trees for 
+> the Agilex family, which do support iommus, were accepted into the kernel.
+>>
+>> > > Fixes: 6d359cf464f4 ("dt-bindings: net: Convert socfpga-dwmac 
+>> bindings to yaml")
+>> > Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+>> > ---
+>> >  Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml | 1 +
+>> >  1 file changed, 1 insertion(+)
+>> > > diff --git 
+>> a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml 
+>> b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+>> > index c5d8dfe5b801..ec34daff2aa0 100644
+>> > --- a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+>> > +++ b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+>> > @@ -59,6 +59,7 @@ properties:
+>> >        - const: ptp_ref
+>> > >    iommus:
+>> > +    minItems: 1
+>> >      maxItems: 2
+>>
+>> Why this has to be flexible on given SoC? This is weird. Same hardware
+>> differs somehow?
+> Dinh can you comment on this binding from 
+> https://lore.kernel.org/all/20250624191549.474686-1-dinguyen@kernel.org/?
+> 
 
-kernel test robot noticed the following build errors:
+This might have been a copy/paste error.
 
-[auto build test ERROR on net-next/main]
+DInh
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Wei-Fang/dt-bindings-ptp-add-bindings-for-NETC-Timer/20250711-152311
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20250711065748.250159-3-wei.fang%40nxp.com
-patch subject: [PATCH net-next 02/12] ptp: netc: add NETC Timer PTP driver support
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20250712/202507121901.cz1bRBUf-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250712/202507121901.cz1bRBUf-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507121901.cz1bRBUf-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/ptp/ptp_netc.c: In function 'netc_timer_adjust_period':
->> drivers/ptp/ptp_netc.c:161:20: error: implicit declaration of function 'u32_replace_bits' [-Wimplicit-function-declaration]
-     161 |         tmr_ctrl = u32_replace_bits(old_tmr_ctrl, integral_period,
-         |                    ^~~~~~~~~~~~~~~~
-
-
-vim +/u32_replace_bits +161 drivers/ptp/ptp_netc.c
-
-   150	
-   151	static void netc_timer_adjust_period(struct netc_timer *priv, u64 period)
-   152	{
-   153		u32 fractional_period = lower_32_bits(period);
-   154		u32 integral_period = upper_32_bits(period);
-   155		u32 tmr_ctrl, old_tmr_ctrl;
-   156		unsigned long flags;
-   157	
-   158		spin_lock_irqsave(&priv->lock, flags);
-   159	
-   160		old_tmr_ctrl = netc_timer_rd(priv, NETC_TMR_CTRL);
- > 161		tmr_ctrl = u32_replace_bits(old_tmr_ctrl, integral_period,
-   162					    TMR_CTRL_TCLK_PERIOD);
-   163		if (tmr_ctrl != old_tmr_ctrl)
-   164			netc_timer_wr(priv, NETC_TMR_CTRL, tmr_ctrl);
-   165	
-   166		netc_timer_wr(priv, NETC_TMR_ADD, fractional_period);
-   167	
-   168		spin_unlock_irqrestore(&priv->lock, flags);
-   169	}
-   170	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
