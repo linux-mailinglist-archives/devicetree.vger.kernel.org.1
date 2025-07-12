@@ -1,104 +1,122 @@
-Return-Path: <devicetree+bounces-195662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7223EB02958
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 06:05:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2EDFB029A6
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 09:30:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0E414A2E7F
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 04:05:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC4407B25BF
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jul 2025 07:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2D11624C0;
-	Sat, 12 Jul 2025 04:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C174615A858;
+	Sat, 12 Jul 2025 07:30:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="h3lYZiRO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com [91.218.175.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E441AB672;
-	Sat, 12 Jul 2025 04:05:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B8910F9
+	for <devicetree@vger.kernel.org>; Sat, 12 Jul 2025 07:30:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752293142; cv=none; b=u+T3x8Bkt2dy6en/cJqRBdWuePThAjvgHmmTAHd8YZ5xFEesMDjV/U3u/NHe4w0BDBlFE75yY9Jule2+oDRxx5M+2B8fmwg/o1KOFKTJmwKehiAah8VuNC6xfma4T3Y8rV8VouTiykRz1zue17HnqTcbJBGkR4Ppt0v3l6L7qdQ=
+	t=1752305441; cv=none; b=UbSQbo7Opd4Ne7d2UES5JvErkyHvP+1Wl8HH+YmMd1TDbzSDDTh1DbDYUWtfRXKA7y1VfY38mBSQBAYHcJNM+rV+9MJVSZm4mm8auow0brPBZjpRFrld647uLCk6xzkTa3u7JNJ4cb5KQfRo1rmVuvuM36VCw7iLbgPo8PAKpbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752293142; c=relaxed/simple;
-	bh=CVKX3Mpp0w8zflaFt5fOYFiyIo4h8/FcQe9HvX+VfU8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=MqDx/vWNTBiBpBgg5e/dEYPStlwx1A12qznxAOmwPQ28UVtqGIfqVHPJ7s0FUWdCBLdeSdTkU/19gqMQmMML13vtIHDieWw4N12oTU87QDIIgPk6/h9i88L8EmhJsQyjAoobHbz7HhPoXRO6bvEbvCflH+s+i4m4mOc5p2XA2N8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.214.98])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1bc2c329a;
-	Sat, 12 Jul 2025 12:00:26 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jonas@kwiboo.se
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	ziyao@disroot.org
-Subject: Re: [PATCH v2 4/6] arm64: dts: rockchip: Add ArmSoM Sige1
-Date: Sat, 12 Jul 2025 12:00:19 +0800
-Message-Id: <20250712040019.165440-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <acbbf570-7a56-4d88-a631-32acd13d29c7@kwiboo.se>
-References: <acbbf570-7a56-4d88-a631-32acd13d29c7@kwiboo.se>
+	s=arc-20240116; t=1752305441; c=relaxed/simple;
+	bh=sygFKhGR6G3MvpV2c0vaS7COBxzymZG0L9tQiwqMuIs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iRUKaJPkWptoiOgVZ9xMGsm2HQKmjjADRw5OgbMlIhFfuYN07y6cSwit7ln6bqjSbMB5qPGVCca8p5VUx5V6kxzSqNLCfKgamDys5eI/X+TmRbmAh/sxzgPTrCYfVLZK8haALQ9nXMCBZGaMMunTCmXedEvF7+gllipUDuxFMo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=h3lYZiRO; arc=none smtp.client-ip=91.218.175.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Sat, 12 Jul 2025 15:30:27 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1752305433;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zaZkLh+Xqu7HMq+MNm0aFn7Fz9hf/atCoHwr5DO1YjQ=;
+	b=h3lYZiROqjNNRodm3MHnwUWM/aYFfjbbTzhIMKhu/6NufohDMm5m8G+TgRRZXv+xoYMrZQ
+	q2ABQVxzsmTduEh+uJg3bo1jo1BSUi+zjmJk7v3zlO9qM8A/8ckrHFNwmp2Fk1hpN5vjui
+	mb6Ii/3eBv2sgZiyLLDkERDrv4ApbeE=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ze Huang <huang.ze@linux.dev>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Ze Huang <huang.ze@linux.dev>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"spacemit@lists.linux.dev" <spacemit@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 2/2] usb: dwc3: add generic driver to support flattened
+Message-ID: <aHIPEz_YsKejIP_6@monica.localdomain>
+References: <20250705-dwc3_generic-v5-0-9dbc53ea53d2@linux.dev>
+ <20250705-dwc3_generic-v5-2-9dbc53ea53d2@linux.dev>
+ <20250711233728.cmkhbnmgzacwx7uk@synopsys.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZH0lCVk8aHRlMQh4fSk5NH1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VCQ1lXWRYaDxIVHRRZQVlPS0hVSktJT09PS1VKS0tVS1
-	kG
-X-HM-Tid: 0a97fcca9bd403a2kunm68a720276516be
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mww6Sjo*UTE3DR1IHyMMTB4R
-	DQ8KCTRVSlVKTE5JSUJJQ0lNQk5JVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	QlVKSUlVSUpPVUJDWVdZCAFZQUpNQ0w3Bg++
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250711233728.cmkhbnmgzacwx7uk@synopsys.com>
+X-Migadu-Flow: FLOW_OUT
 
-Hi,
+On Fri, Jul 11, 2025 at 11:37:32PM +0000, Thinh Nguyen wrote:
+> On Sat, Jul 05, 2025, Ze Huang wrote:
+> > To support flattened dwc3 dt model and drop the glue layer, introduce the
+> > `dwc3-generic` driver. This enables direct binding of the DWC3 core driver
+> > and offers an alternative to the existing glue driver `dwc3-of-simple`.
+> > 
+> > Signed-off-by: Ze Huang <huang.ze@linux.dev>
+> > ---
+> >  drivers/usb/dwc3/Kconfig             |  11 +++
+> >  drivers/usb/dwc3/Makefile            |   1 +
+> >  drivers/usb/dwc3/dwc3-generic-plat.c | 182 +++++++++++++++++++++++++++++++++++
+> >  3 files changed, 194 insertions(+)
+> > 
 
-> > Should this label be named as led-0/led-1?
+[...]
 
-> The nodes must include 'led' anywhere in their name according to schema:
->
-> """
-> patternProperties:
->   # The first form is preferred, but fall back to just 'led' anywhere in the
->   # node name to at least catch some child nodes.
->   "(^led-[0-9a-f]$|led)":
-> """
->
-> Using the color name similar to the the pin labels in schematics made
-> most sense to me.
->
-> Do you want me to change these to conform to the more restricted
-> ^led-[0-9a-f]$ pattern?
+> > +static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
+> > +	SET_SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+> > +	SET_RUNTIME_PM_OPS(dwc3_generic_runtime_suspend, dwc3_generic_runtime_resume,
+> > +			   dwc3_generic_runtime_idle)
+> > +};
+> > +
+> > +static const struct of_device_id dwc3_generic_of_match[] = {
+> > +	{ .compatible = "spacemit,k1-dwc3", },
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, dwc3_generic_of_match);
+> > +
+> > +static struct platform_driver dwc3_generic_driver = {
+> > +	.probe		= dwc3_generic_probe,
+> > +	.remove		= dwc3_generic_remove,
+> > +	.driver		= {
+> > +		.name	= "dwc3-generic-plat",
+> > +		.of_match_table = dwc3_generic_of_match,
+> > +		.pm	= &dwc3_generic_dev_pm_ops,
+> 
+> You're still not using the new pm_ptr()/pm_sleep_ptr. The kernel build
+> bot will complain about the maybe unused functions.
 
-This will be better.
+Thanks for your patience.
 
-> I only try to enable controllers for devices that are properly described,
-> so I ignored the pwm-fan and its required pwm6 controller. Mostly
-> because it make more sense to describe the fan once thermal support is
-> completed, work [1] currently being blocked by a rk356x otp series [2]
-> and that depends on a rk3576 thermal series [3].
+I found they are caused by using SET_RUNTIME_PM_OPS and SET_SYSTEM_SLEEP_PM_OPS macros.
 
-Ok, I got it. Is usb2.0 also stuck?
+I'll replace them with new RUNTIME_PM_OPS/SYSTEM_SLEEP_PM_OPS and wrap the
+dwc3_generic_dev_pm_ops with pm_ptr()
 
-Thanks,
-Chukun
-
---
-2.25.1
-
+> 
+> BR,
+> Thinh
 
