@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-195812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860C4B0321B
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 18:33:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F37BAB0321C
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 18:34:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93E467A05F6
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 16:32:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EF213B1479
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 16:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72821F03DE;
-	Sun, 13 Jul 2025 16:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0886C1F03DE;
+	Sun, 13 Jul 2025 16:34:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RGfH+/nz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DTqXIWHk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B20D43AA9
-	for <devicetree@vger.kernel.org>; Sun, 13 Jul 2025 16:33:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CE64A04
+	for <devicetree@vger.kernel.org>; Sun, 13 Jul 2025 16:33:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752424427; cv=none; b=Y66oNgskdCJfKL/ClQQawo1jfZ4w+KrecJxAEzAmDHtbxxpAUFD0rj4i1SJYgckcHdj4eFBD1tdz5gG+sZ84LuW1wnwRUZNDE25Poz3Hydy4EArTmgQSOGN7bns7edRueq97UoeaautXdna6Hetk8WmIlxhBY01NENkNiV87GPA=
+	t=1752424440; cv=none; b=qUAIvCwiDZ8Fmm043CGBoMMNZov6M+8MpVXM4msZZcBvjzivyR4I9CXAV9SfDUChr/Lz8tdYhgeJKHUWmzI8kTIVP1ukV9WApLQ+Wm1NpAJdnIpFFKXs6SX+FfwwP39YEyNA3CFJDkrb+54wWL+QkYH9TcCKZISo5ueBJRxbCPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752424427; c=relaxed/simple;
-	bh=0vob69sFdw6T/Mrwuar0Dkx0WwraJrsKOkczRZz4puE=;
+	s=arc-20240116; t=1752424440; c=relaxed/simple;
+	bh=sAduwPH2ABTlaRcbJAvNt1jPHknxL3l9ZXBVgwcg1NE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aGv1SnxusADzu+7STJfxWjmQQ8pXMiPTsSwH2adN5EF7CGo7JGdOBvsUmPtJ65gOkU/Benp8gbKnzIoC8h8qEQ97ynPb9Je9a1QpCrsMMkYZi5fhnlrK3/O2lNI6Ksr+JwD72o4C8xxnT7gZCu9fhY7+zsT61tAzVToj0wLPRUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RGfH+/nz; arc=none smtp.client-ip=209.85.214.181
+	 MIME-Version; b=oxVPxgIYxM4vKQaUnYSXThMxjW25g3fwbvI0dJoLWnEX5iCMdh8ul4MK125DUQYBSL/43ApEvS2KlG7F5foYO45zvPB4WcWKamnDgg53WDjrlqXkE6unrWMqA+xQUrmnXwpV753by5eJYBN9tXnKlxdYONc9W8GCtfWStvETLoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DTqXIWHk; arc=none smtp.client-ip=209.85.214.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-23dc5bcf49eso43478335ad.2
-        for <devicetree@vger.kernel.org>; Sun, 13 Jul 2025 09:33:46 -0700 (PDT)
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-234b9dfb842so31756245ad.1
+        for <devicetree@vger.kernel.org>; Sun, 13 Jul 2025 09:33:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752424425; x=1753029225; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1752424439; x=1753029239; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dUlKkkT9yWJ7b1HYL1nvFWc53qv/qhzbMN9WpuA6OBE=;
-        b=RGfH+/nz3r9AHVsax7nBODvW9aqUZaSt99/MKY6lcxFTG7RnQFvOVKG2IMcUYqhHNI
-         pvyIQffj5qQdPSG9J5BOTV4w9UWB1IXm5McyYsY0DPGe1tnQh6/U0IWES0388juHNmMB
-         KasMeclW8GdjzWPV6P4p6vT8375kSkwc20mbmEKkEyT9vtMazJhamuWJcOYqOas7wt0o
-         1WImSYIbVZ4nDPn9HcpANA/UnMqszKEXyLCvJ06ahl6VLB7U8vxR8pP/+lJlZYnCsM90
-         Nxd+Ij0pXiBNLNLEWniRpgZeT9k1le5JIgC5n39zZz02q4uC3QHZHP5ZRMorl9o/ZtQt
-         zKog==
+        bh=JNiZDWh09gSc17UD6XGs5p9O0T6ekFI4zm0JXhSeABA=;
+        b=DTqXIWHkrdwLHa0nqXkY2M7ZiGhP0Un3QdPEq4lC3vH/ymCLpoNXA9ZlxmZsZlO3dG
+         jmwm4f82WxfRylPzur6oRW3cYXHPJ9S7o78n3hYzoK7GxwJKWU1SvMNIPBWq0HhLyDsN
+         U9BU0S8XodkNBp7XH6qpPdgLo4L3i6DWuv4d/3tP9DHrRYNaIYYfcHXuFbfU36VGaNlD
+         Hs4wmpYNm4DzBv8EnchCcSUOgXjn0DRxDgZxiGodJh6NK+59Wy59gfO8cpnX/ELcwsYn
+         2uDY6+tV7UZygl2PijaCKi/5FMrK/EJGqiUmu8vRzeUuU0T8Fzu7y/+ixdGqlHeX2WQI
+         pCLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752424425; x=1753029225;
+        d=1e100.net; s=20230601; t=1752424439; x=1753029239;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dUlKkkT9yWJ7b1HYL1nvFWc53qv/qhzbMN9WpuA6OBE=;
-        b=jSB6jaApDHslLaePHT1/a2X54al36s4LE1myLvknLbhgJHJnp51P5toZ5ecPYspfH9
-         SwveHossReqljPTZ7wV2Ov+k/452BV+y+ts7L7cDNmeSreuShnsdGePcfRi99qFxu2Kt
-         JLt5d2SRln1Tbqi8RTXUWAGzYBhH0Yr1yTmsF5/GL0Zao34wfrP3YeamZiW82jEaNk4s
-         x1MmY2Cdy7KkGvGUId2eZGajiszFo9TiHQ1cuD+bHyIhl7wkBoRCE/kVOhOHP08rHqfB
-         JIwVVC/TlP4hxQwmKVye4bGwafXVVrIPUXsCDIiSAOAqY7to6ZuTITzaQXxlqxSum84m
-         HXxA==
-X-Gm-Message-State: AOJu0YzMCgQuD7ry16IiLdyIuNaeozwA2htR2ACbl4Q/yHV9x2CuIH71
-	sbKsYp+CAuVxxj06CpMPnWBQjVXRWJjSXrnmEkD7as+/nmT+RSNjrYbY
-X-Gm-Gg: ASbGnct07+xexlB7/9CyWN6nkTwiXJcXg3Bb6h1aU7zP4NdlbEQ99cYzTPgDA6PvpaN
-	X/oGyLM6T9eS6l2KTXMOtaQe8gXu8XiJEaB0VbYS6DdfOePPqzwM9s/c6G7jl7nRpUqEDfVQnDR
-	GWDvp3z+CuS41SNaje0dB+43QFSUAcnwnr2hS0Yzy76pKW79QyJAz8wOLo+swj57wf1lVNTZfdh
-	PoEioa4YfqCFNOIXgTev1ykjCXnJO6SbEEWSBdhj2RRiRbLTVdw9CjQBUADwi9pu3pNFkYCGKlJ
-	YoW3Qhpjsi2p3OwuKTmT+hnzNjHs71yB5FuYcSGEVHZ4dLkaWJQJtytyO1RZZQp9ee3Scm4/Poe
-	GmNzoVzfbdFJDrvTAlIUjLdpSwF2XoTWCGR8=
-X-Google-Smtp-Source: AGHT+IH6E5UEkJSfiF+dSq+9DovIWQcD7yf6qUoqec9uZOt2S1XrHYXoTzVMb5+OVnAaJl1+LFcIvA==
-X-Received: by 2002:a17:902:8b8b:b0:238:f2a:8893 with SMTP id d9443c01a7336-23dede984b9mr91199825ad.42.1752424425482;
-        Sun, 13 Jul 2025 09:33:45 -0700 (PDT)
+        bh=JNiZDWh09gSc17UD6XGs5p9O0T6ekFI4zm0JXhSeABA=;
+        b=mTk/oiv0W6BcTwtPgQTC+DuCOQ+rWVcOlBo69hEz42oFTd4FjgEvXEUls/L0SFBunp
+         1KCgR7nO8v6CBR5Cxj/yM+v541DUFdK+BsBximLEDLw2yRSvwbKlIBOZMYCbbpU0IbPR
+         nPZJ0vRarW3116hLKNlCPtfnP5rWbja1c6Q6/Df5h6kwIIrIWuwNvBN1cYsYoHNI7j9s
+         08vXNT1DirIB2PDD1udnT7JWLKgTWF0EZVpKo2mrpImAW3xt6T0ePOwXBB2xApWMu8Iy
+         UOhBEbmWmiOPqQpcEDxoHbBGyFykuSoDh7e45aIVF5WedZSST+B/STF13UzxqWjnreac
+         BWhw==
+X-Gm-Message-State: AOJu0YyF8HjAxYC7AKhJYeAWJTOfkYRrNd47JOf+lGJa6Whchw8UQkY1
+	b4pJb6muv92q8NlXNGbilOkS/DtxG4F4SPDdmPzyq8gJcNWKIMfD5b69
+X-Gm-Gg: ASbGncukR+eZGyZLf8qXM8RXZzaGFCmts4dyWwH572rkD2NcxsF5cSLOGHS7Ibg9el5
+	Lua7Kxqj1ANW8wz7mJVSh8yvIYTEtOeN4yiZxa0ezczJbMD3hqNxZJIAgT4/NwDcz2rX3F9l2L/
+	B73FPejxd0X/2EBj9ISeRLgGEIq7QkfaAD9JwltbkX4oQyFF1475+yHWv4mLkXn3EOcAl64yBwq
+	EiWbUmzqZLUIfQkEDz3T0mPP0ES7EM+QgP48Mvq01pFpg78vgqlvU+wlmDRkD1WhMMAMpU0Hiu1
+	oePvI3Uwy3RhJbw6RO2ixT4E4pb80hujTW9T7WjZN3lKwb31AnF7Qg3FjXTAAzRGeENYJxUJhzN
+	0p52hfA41bIsVKrBJowVrRkJ7h/qZl0cmtcg=
+X-Google-Smtp-Source: AGHT+IEdyll58K8RJCfOj/b2BUuNNmUO/33CcfX5HEJHeRRkPpPprFi7Sds0ZndOnIvdOSA08auyYg==
+X-Received: by 2002:a17:903:11d0:b0:234:c2e7:a102 with SMTP id d9443c01a7336-23dee292477mr170412915ad.43.1752424438807;
+        Sun, 13 Jul 2025 09:33:58 -0700 (PDT)
 Received: from arch.localdomain ([155.117.228.70])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de4285ecbsm80809655ad.48.2025.07.13.09.33.34
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de4285ecbsm80809655ad.48.2025.07.13.09.33.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Jul 2025 09:33:45 -0700 (PDT)
+        Sun, 13 Jul 2025 09:33:58 -0700 (PDT)
 From: Jun Yan <jerrysteve1101@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -84,9 +84,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	Jun Yan <jerrysteve1101@gmail.com>
-Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Shenzhen OneThing Technologies Co., Ltd.
-Date: Mon, 14 Jul 2025 00:32:53 +0800
-Message-ID: <20250713163255.163669-2-jerrysteve1101@gmail.com>
+Subject: [PATCH 2/3] dt-bindings: arm: rockchip: Add OneThing Cloud OEC turbo
+Date: Mon, 14 Jul 2025 00:32:54 +0800
+Message-ID: <20250713163255.163669-3-jerrysteve1101@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250713163255.163669-1-jerrysteve1101@gmail.com>
 References: <20250713163255.163669-1-jerrysteve1101@gmail.com>
@@ -98,26 +98,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-OneThing is a company engaged in edge computing.
+Add devicetree binding for the OneThing Cloud OEC turbo.
+
+The OneThing Cloud OEC turbo features the RK3566 SoC, 4GB of RAM and 8GB
+of eMMC storage, and supports one SATA interface and USB 3.0.
+
+The original function of the OEC turbo (shipping with the vendor firmware)
+is to serve as a PCDN (P2P Content Delivery Network) device.
 
 Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 5d2a7a8d3ac6..77fbbe040706 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1108,6 +1108,8 @@ patternProperties:
-     description: OLIMEX Ltd.
-   "^olpc,.*":
-     description: One Laptop Per Child
-+  "^onething,.*":
-+    descriotion: Shenzhen OneThing Technologies Co., Ltd.
-   "^oneplus,.*":
-     description: OnePlus Technology (Shenzhen) Co., Ltd.
-   "^onie,.*":
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 5772d905f390..e662a6927e86 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -742,6 +742,11 @@ properties:
+           - const: openailab,eaidk-610
+           - const: rockchip,rk3399
+ 
++      - description: OneThing Cloud OEC turbo
++        items:
++          - const: onething,cloud-oec-turbo
++          - const: rockchip,rk3566
++
+       - description: Xunlong Orange Pi RK3399 board
+         items:
+           - const: xunlong,rk3399-orangepi
 -- 
 2.50.1
 
