@@ -1,166 +1,127 @@
-Return-Path: <devicetree+bounces-195804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63275B03137
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 15:42:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF68B03172
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 16:25:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE8F93B3F5E
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 13:42:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2DC63B1379
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 14:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EAE2278774;
-	Sun, 13 Jul 2025 13:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 431AA257AC6;
+	Sun, 13 Jul 2025 14:25:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cdivMPP9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TILh+Iw9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 518C817E4;
-	Sun, 13 Jul 2025 13:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806DA22F76E;
+	Sun, 13 Jul 2025 14:25:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752414142; cv=none; b=Lzs9bPbzddY4HsKfjc8DjPurF+yhmROAz9qtQcF3ahSMcTiOFXdx8QckgNEc+R9otSwQPaYcDl8raqAit3XmULeFAaB2fO8J1xPk2KnItMusq507MChVxlnOtH4WLSlMilL8JkS+xiWX+oBnQbihemsyV2pv18Kx4QSQru/04gM=
+	t=1752416706; cv=none; b=lVjbKThKUJ9VUU3WLqSyek0huheSF2Ldl+WoXX/8E/iuD+WikOyt+ZhN3h6w+WNGcDfk/fae34g28JiNkRCIbG4YdulsKkq3FqZSL+KnWi1WBwdGJcF0xJiFjydi4Wd4ZZfF/YLVnjTVuvdz1pmAn2BelR6Wp7pUs2bDxZ98Zu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752414142; c=relaxed/simple;
-	bh=FiK8zDiaUXmEFpaObLQbyvo1T/Qz+0i0aynWUyUlYpI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pMF6KqA0LzRi/Ome3TSMZqVxy14EVH8Uco4T8JEdnXhS7um6tc80GOrpgdQWc50bbpWrmpkLrRHF1HyCxanFEpte/lfPsfJsPmd9GWutccFbrZhH8F0TZyP+c+i/SVicuOBU6BRLrHHGyy4A6ScnWECCJTDQqtJ0Q/UDCP8mFGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cdivMPP9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56391C4CEE3;
-	Sun, 13 Jul 2025 13:42:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752414141;
-	bh=FiK8zDiaUXmEFpaObLQbyvo1T/Qz+0i0aynWUyUlYpI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=cdivMPP9gmyMal7Nz7Wbd/EGgmLpj9fDl8OwcZ4G+mx29lSB8u6s86519fxpUEi4Z
-	 XVtHYlbWjRcaS8MaQ2xI6SyDaLN0B/5fZbUXxhluZKS8R8FI/68jQpwNyk7RxjeMuX
-	 niU8g8i2Qtrkum09IYF/jhGwEErAQiDrTOkkvcBMJsu9aZhdBuKw1VS7oDNxsmpXQl
-	 rCKFxaYRrAMrI0LuC7Rhn+R9xMdevwEJr9X/fPJXzJYgSvdzAGT8K5pusYzS1MDXAz
-	 hUetqiWXI28yhZx6sDH9HYLSQDmK4wWaeh34OVmB/6R+z55qTKzG5Oxa7t+u28w+P7
-	 8tsZyQLgDNZRQ==
-Date: Sun, 13 Jul 2025 14:42:14 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: "Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com>
-Cc: "lars@metafoo.de" <lars@metafoo.de>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "dima.fedrau@gmail.com"
- <dima.fedrau@gmail.com>, "marcelo.schmitt1@gmail.com"
- <marcelo.schmitt1@gmail.com>, "linux-iio@vger.kernel.org"
- <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "Lorenz Christian (ME-SE/EAD2)"
- <Christian.Lorenz3@de.bosch.com>, "Frauendorf Ulrike (ME/PJ-SW3)"
- <Ulrike.Frauendorf@de.bosch.com>, "Dolde Kai (ME-SE/PAE-A3)"
- <Kai.Dolde@de.bosch.com>
-Subject: Re: [PATCH v3 2/2] iio: imu: smi330: Add driver
-Message-ID: <20250713144214.6ee02f59@jic23-huawei>
-In-Reply-To: <AM8PR10MB47217D838CA7DDACBE162D15CD49A@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
-References: <20250703153823.806073-1-Jianping.Shen@de.bosch.com>
-	<20250703153823.806073-3-Jianping.Shen@de.bosch.com>
-	<20250706175328.7207d847@jic23-huawei>
-	<AM8PR10MB47217D838CA7DDACBE162D15CD49A@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1752416706; c=relaxed/simple;
+	bh=ctVrSe8+tqBPZfPNjWKQjuJ1XNUtgiycE7rUXQUI7/A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uFNlQH+I0u5iuuXXshlTWzbUD2V6e3R5fgUFdhwkLThlCDvaYZkvhGWFm2dMzXM7Nl7JE/aPaKU8nfEr0unHlU8UYuu27tYev9bg6wnBjTW3smgBcu943y1MJM1tzLsty8n+sUO/9uULLaG4/QIo2X7lIryaMvokIy0T+VuPkJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TILh+Iw9; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4530921461aso22390335e9.0;
+        Sun, 13 Jul 2025 07:25:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752416703; x=1753021503; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kEQpD8b+HNVuLM3WhWFj3Mc99doFv2oNkxwhtYpkyNA=;
+        b=TILh+Iw9nLWsS+o6P1wyxlKTRrdeRCA0OZH8WA5nXw8mrJaMGWpiTWZYczOd4VNutu
+         qQZCUMLVeElPfUSPNXU6aBvN5zLP7cjWr+bYCLZox7z/3cOkP54r47uLqN4nCv93oiHN
+         G1fI1H4PQup0qGWchF+Meqj1p86tvwGASG150g35Fozj75aSiJmQYluOqLLscIQVF55P
+         4R78l4IoMXNH1yXY5JMNbRUOG2J9USLrd69NW4j0FvplP4BXEwYMjXLg0v+HDC+l6eor
+         rsCd1kLcZs2Fr34s6FdPc76SfgU2EyXvi7Qy+uRO5B8EeP45Rx4tllXgFkwCSAvzux60
+         cNxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752416703; x=1753021503;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kEQpD8b+HNVuLM3WhWFj3Mc99doFv2oNkxwhtYpkyNA=;
+        b=tO+mzGxEVtjtVvTjLuzRWIQf3l/HB7gJzFCT8r3PwBMT9xSuWOd1mKK5YHcu472vMb
+         T334VcQynlwFazQBiroVgQXhKYIhtzzrEyw0dqgGfq2mKVK91CbuSCzwI89OikruQzsL
+         6xrjzjo6U6w3zuZlCgyMVXbQtp3s9ssNZEUttEq4bPSMyFDM/XtQVKa6rICRICvsO5S8
+         vDxdjeSIUnFlAGnOZEuLGGqcupLpi93jV5PGSTecolZKsgceIScIglutiDAXE/KezeZy
+         +l7dFGsDVJ3JU5JtpWYAAe/xW1iCJPksz/VsJ1VkvKjk+Ob7+n5++h3pGYdz2AYIdwbE
+         1qlg==
+X-Forwarded-Encrypted: i=1; AJvYcCVAGWzxIn2ectKxhDRBLcuL3FxzTWCpK1UtpzV8YjejGDOZel4D5Mn+yoULIM+7mbj/9PI3bOQ0RSSJF8TA@vger.kernel.org, AJvYcCVJnhYABab89WSLk0MiTKQ7jSrPTDUxVq8n2vWliJrqXcx4UEMjxtFMqTTo/XYLbyLAlPYwHrnIfvBv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEmcE8anKlZ6k3qqLQM+dazw8OEBEFkYJG/mgJiwzzBasK1Xcv
+	ylAYVSdEmBjEBXmRLg83HBGj+HC9lV8cw6acRCHEBhqI0IUKGDbRMDLJ
+X-Gm-Gg: ASbGncs2nkZZtahF70iIDnguI2dt5i7xOeUbI7sTzivgCex4RurjvEj1mo/WNBW3X5U
+	TkPm/ejCxcUjSnF1xi701mzMMpvDxTs+aKP2KTzyce5+oEl1oC3J0Nwyv+brJSucR6+X37J7D44
+	+q5r/WeqHizxZlf1thfGPCGfWoQk/ODPtMgi+jLSCZTxUjF7LoYotBo3zkytUg2t6fxzSL6wVGo
+	gaVjnxxPnW2Kv10us1KLGEwvC+ZMFGFnbtYjgfGEczTawqN/CW6vgrbJD8L25eCv42VKa9501N2
+	W9aXecpeHwA9qb0gMAVfK3+WZZ514MTEloKkCbODfDGolGHRjO12+TAFZwnauOFFLyBwhHbyUEh
+	wDiekva1rM04d1d3qVxJKNw==
+X-Google-Smtp-Source: AGHT+IFrp/gF77QA5ekrhLRIDgGIcIeqfrGrvFNzk/J2w71kdPsQ+3QAHabP11bj4+Q72q5OjRK7lQ==
+X-Received: by 2002:a05:6000:144b:b0:3b2:ef53:5818 with SMTP id ffacd0b85a97d-3b5f351e561mr7575693f8f.5.1752416702720;
+        Sun, 13 Jul 2025 07:25:02 -0700 (PDT)
+Received: from localhost ([2001:861:3385:e20:6384:4cf:52c5:3194])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3b5e8e1e1a5sm9714490f8f.74.2025.07.13.07.25.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Jul 2025 07:25:02 -0700 (PDT)
+From: Raphael Gallais-Pou <rgallaispou@gmail.com>
+To: Patrice Chotard <patrice.chotard@foss.st.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: sti: rename SATA phy-names
+Date: Sun, 13 Jul 2025 16:24:24 +0200
+Message-ID: <20250713142424.41236-1-rgallaispou@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Wed, 9 Jul 2025 19:38:18 +0000
-"Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com> wrote:
+Stick to the documentation and rename both SATA phy-names properties to
+what is expected.
 
-> Hi Jonathan,
-> 
-> "available_scan_masks" works not as expected.  We test it using kernel version v6.16. see the test result inline.
-> 
-> Best Regards 
-> Jianping 
-> 
-> >> +
-> >> +static irqreturn_t smi330_trigger_handler(int irq, void *p) {
-> >> +	struct iio_poll_func *pf = p;
-> >> +	struct iio_dev *indio_dev = pf->indio_dev;
-> >> +	struct smi330_data *data = iio_priv(indio_dev);
-> >> +	int ret, chan;
-> >> +	int i = 0;
-> >> +
-> >> +	ret = regmap_bulk_read(data->regmap, SMI330_ACCEL_X_REG, data-
-> >>buf,
-> >> +			       ARRAY_SIZE(smi330_channels));
-> >> +	if (ret)
-> >> +		goto out;
-> >> +
-> >> +	if (*indio_dev->active_scan_mask != SMI330_ALL_CHAN_MSK) {
-> >> +		iio_for_each_active_channel(indio_dev, chan)
-> >> +			data->buf[i++] = data->buf[chan];  
-> >
-> >If I follow this correctly you are reading all the channels and just copying out the
-> >ones you want.  Just let the IIO core do that for you by setting iio_dev-  
-> >>available_scan_masks = {  SMI330_ALL_CHAN_MSK, 0 }; and push the whole  
-> >buffer every time.  
-> 
-> For the most frequent use cases, we define available_scan_masks = { SMI330_ALL_CHAN_MSK, SMI330_ACC_XYZ_MSK, SMI330_GYRO_XYZ_MSK, 0 }; and push the whole buffer every time.
-> From the user space we just enable 3 channels gyro_x, gyro_y, and gyro_z. Then we enable buffer and expect that only the gyro values and timestamp in iio_buffer. Nevertheless, we have 3 accelerometer values and the timestamp in iio_buffer.
+Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+---
+ arch/arm/boot/dts/st/stih407-family.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> It seems that the iio core does not take care which channel is enabled,  just copy the first 3 values (acc x,y,z) into iio_buffer.  Our driver code still needs to take care and just copy the enabled channel value to buffer.
-
-Look again at how it works.  If you provide ACC_XYZ_MSK, then your driver has to handle it.
-available_scan_masks is saying what your driver supports. The driver can check active_scan_mask
-to find out what is enabled.  So right option here is only
-{ SMI330_ALL_CHAN_MSK, 0, }  In that case the driver never needs to check as there is only
-one option.
-
-Then if any subset of channels is enabled the IIO core copy out just the data that
-is relevant.
-
-
-> 
-> Another side effect after using available_scan_masks is that the active_scan_masks sometimes does not reflect current channel activation status.
-> 
-> Is some step missing to properly use available_scan_masks ?  How can a user find out from user space which channel combination is defined in available_scan_masks ?
-
-Why would userspace want to?  Userspace requested a subset of channels
-and it gets that subset.  So it if asks for the channels that make up
-SMI330_ACC_XYZ_MSK, if available_scan_mask == { SMI330_ALL_CHAN_MSK, 0 } then
-the IIO core handling selects SMI330_ALL_CHAN_MSK (smallest available mask that
-is superset of what we asked for) and sets active_scan_mask to that.  The driver
-follows what active_scan_mask specifies and passes all channel data via
-the iio_push_to_buffers*() call. The demux in the IIO core than takes that
-'scan' and repacks it so that userspace receives just the data it asked for
-formatting exactly as the driver would have done it if you had handled
-each channels separately in the driver.
-
-So the aim is that userspace never knows anything about this.  Just set
-what channels you want and get that data. 
-
-Jonathan
-
-
-> 
-> >
-> >The handling the core code is reasonably sophisticated and will use bulk
-> >copying where appropriate.
-> >
-> >If there is a strong reason to not use that, add a comment here so we don't
-> >have anyone 'fix' this code in future.
-> >  
-> >> +	}
-> >> +
-> >> +	iio_push_to_buffers_with_timestamp(indio_dev, data->buf,
-> >> +pf->timestamp);
-> >> +
-> >> +out:
-> >> +	iio_trigger_notify_done(indio_dev->trig);
-> >> +
-> >> +	return IRQ_HANDLED;
-> >> +}  
-> 
-> 
+diff --git a/arch/arm/boot/dts/st/stih407-family.dtsi b/arch/arm/boot/dts/st/stih407-family.dtsi
+index 35a55aef7f4b..3e6a0542e3ae 100644
+--- a/arch/arm/boot/dts/st/stih407-family.dtsi
++++ b/arch/arm/boot/dts/st/stih407-family.dtsi
+@@ -669,7 +669,7 @@ sata0: sata@9b20000 {
+ 			interrupt-names = "hostc";
+ 
+ 			phys = <&phy_port0 PHY_TYPE_SATA>;
+-			phy-names = "ahci_phy";
++			phy-names = "sata-phy";
+ 
+ 			resets = <&powerdown STIH407_SATA0_POWERDOWN>,
+ 				 <&softreset STIH407_SATA0_SOFTRESET>,
+@@ -692,7 +692,7 @@ sata1: sata@9b28000 {
+ 			interrupt-names = "hostc";
+ 
+ 			phys = <&phy_port1 PHY_TYPE_SATA>;
+-			phy-names = "ahci_phy";
++			phy-names = "sata-phy";
+ 
+ 			resets = <&powerdown STIH407_SATA1_POWERDOWN>,
+ 				 <&softreset STIH407_SATA1_SOFTRESET>,
+-- 
+2.50.1
 
 
