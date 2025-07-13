@@ -1,173 +1,185 @@
-Return-Path: <devicetree+bounces-195815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813A9B0322F
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 18:49:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAC3AB0323C
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 19:00:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6815166395
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 16:49:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C13A91898E93
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 17:00:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BAC827CB04;
-	Sun, 13 Jul 2025 16:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053B7226CF1;
+	Sun, 13 Jul 2025 17:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="D79b8Dc4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lpYNUs2u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-o94.zoho.com (sender4-pp-o94.zoho.com [136.143.188.94])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6CBF283FE9;
-	Sun, 13 Jul 2025 16:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.94
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752425365; cv=pass; b=LllCzV9AtaZ48rcJhU3202cHgCQPjBHc2yahMaD0E84YasklrV7BY0M5utDzQyyPkWC7H5b7/YQXrnowUIjqnBZ7NpGrDFFZbDTtvPmgxoqPwbn8VGP6PkR/1LFGyamyfpXBqDg02nAHFcs7JcSK/qegyqyA5QcdQqqhwSQmz+0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752425365; c=relaxed/simple;
-	bh=Dpmyiq8FH8vpGmMMwnfxM9hYW7gNx3icTsVMSFQWlcA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z1LdlrT0c/WV09XldFEeM0S2ReSGxtg1jhWOTGLfWH5zwErLvqMY5wXTEivjqx46vqV8paFllm1x4pKysCVSX//B9Q9JJRl+Vm1zq5Chg2ptforcVZeIlrza15DQbG4vqkirVkzqO1H0VtFEowecOBnCaQJdRW4OJ2vR4yICqEM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=D79b8Dc4; arc=pass smtp.client-ip=136.143.188.94
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
-ARC-Seal: i=1; a=rsa-sha256; t=1752425346; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=c7MZevP3sKW018gKsWxOJeNgAaXx7fdFn5HXYJv1SepzHzM9aTHYQ9ueEUfHp7Wonmh+dHBvlI3RJIfFpF3Fww/2LYhs6zCwEn1ct9ySZyvYH8cFtInxufyuYgxKOYIbmrETzaFRWQfp86AafdgIDfy8alc6HR+0Bt27Zymb8Yc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1752425346; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=rjQcOjdpmHK6mcrEnsIMoe5s+xZNboblDGM+pP9AkVc=; 
-	b=Sf1jeh++32agAO8glEe3BMz/0tx0hE2nHIZZ1RSAX7cEcBPjMwUC6OTgmrxKema5wxW+Btl0SZ/npVsBpolzXCVCUQrj15BqLFeYsAotr/YtUtPgZhkBNqm3NCP8BOW5Qfl1WLEkZBuehtIKfqHiWI3C8I5wUpUWS31dk3Ia8wE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=zohomail.com;
-	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
-	dmarc=pass header.from=<kingxukai@zohomail.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752425346;
-	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
-	bh=rjQcOjdpmHK6mcrEnsIMoe5s+xZNboblDGM+pP9AkVc=;
-	b=D79b8Dc4y66g5Nh/b08lMEgR758ic0VQ5UuqHkJ15B5D+Wv0I7zD2lnW5BBDAyAX
-	Iz6fF0wJKaBjvg3Aj0KwKXxDguKIFaadxZtUh4tvj1QVfl0TVdZGonh+unlfwPxZH9E
-	zcascARpbwEtZgCCW/XF9ho61xMK8k4aQ95wQhKI=
-Received: by mx.zohomail.com with SMTPS id 175242533137147.170436231877716;
-	Sun, 13 Jul 2025 09:48:51 -0700 (PDT)
-Message-ID: <776638cc-cbd9-4747-82eb-e11bcc6c8bdd@zohomail.com>
-Date: Mon, 14 Jul 2025 00:48:44 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BDC42581;
+	Sun, 13 Jul 2025 17:00:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752426021; cv=none; b=dQjLHCw+A/T38KSSyQv/5CFomPZQfwkgiIh0Tk4TYbt9GBvjsDKX8S0A0nC3UkjT9C347YiApl53JL9XBTpkM2hkoA+B6lXSidTFyzByc+5jz9GWconJnDX77fp8eTQbrI3NbBEjFjMBfWnaILcKYkiUDy2fOoyzkpFRLRV9Umc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752426021; c=relaxed/simple;
+	bh=bxgvAdEWVaw1boR+4YJBzaW2NRR6Q4mAxdOxbu2uGR8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MV+1ynl2V7AvcsDGk+AN8kLAOIbajF5vL9aAFqvlbDRBHlS+hY/BbL3x9UZBMBXcYKZcos4LNOP1lLUXVhZj8OEenfYferX5CgfOxYoXZcziNeJq1UL3bic3JRV+GEpR05qO70i6YR0JftDnBp4Gkm4RtRKw88DUd/AZn0dCMi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lpYNUs2u; arc=none smtp.client-ip=209.85.167.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-40b54ee16ddso2215513b6e.1;
+        Sun, 13 Jul 2025 10:00:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752426018; x=1753030818; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6UielU/inQTLMHeeKNBTZ5P8oweh0lbHdXh4gUsettU=;
+        b=lpYNUs2uY61QpnjWyQ513TOWBf85FNLqVpL1O/w6tEPoYdi3gn8nu8FaXi4J2lP6A0
+         SlLxH2RatbNQmvT7hGcvvgwzHkEQqo6fcwCenoY6uPEF0kG/h3+gH3ypKjL5IhAjQjMZ
+         rL16VdRjs0VIG6wj4CYId3aO3gjggOuIFQ08KaCOtpI9Gl7yyH2WGqb5i74AudV9V6Ig
+         68EK9k2qxOnk2x8/RRvJYj+CorzWtjkgLRWpny6mRs4c8eSjW6YqD8JRfpMqYW6aq8TN
+         EUJ6SJu46EUl0rSZo88CC8VyiMUo7yih9Xw6Vty+DCtALorKJ2RZ8tryzkXScN2q/wnx
+         np8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752426018; x=1753030818;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6UielU/inQTLMHeeKNBTZ5P8oweh0lbHdXh4gUsettU=;
+        b=a07A65eiAPIN7csClc7pebvkcirO1wESKeIo8XjkuPAWuqTigYvwD2r/eFiBSlljA+
+         wuTqg/1suzHBRWIaZswZn0G72POOqdGhRu7JPb/QC6iSMPWt0hMDA3xaBeRDl2doRxjA
+         K9hbZC/PS+zBFbLv0UVBtDRV6RrWdQdI5U358J3i1MHE3naV2JrkL4VtajGwb5fbDD8c
+         F0QXb5DIOr/M8o7UseFxlwOaKKPQnDlVZR0U3PU7tUQ1nIgcw7akyOGUUKHopbHBJqND
+         GT7VamMhJbImYZoP4XbUJXUjz6sc/puACqSyB0lsUMrKWtAZGb+dkeClBIxYZLVQPs0Z
+         hBVA==
+X-Forwarded-Encrypted: i=1; AJvYcCW/z/12xUjYNYWZw45mPfAvG1KJhDITTxW1IT9bzkLvUv2R715JzTqYFMW7eRV7NRxGFdXAV7+fnPpvCKiH@vger.kernel.org, AJvYcCW4w4224ZEe4CYJzYav0sOA4KsAOnkK7tKxgcSfiM6x5DrzWEfk21BGRuwizh1BC4E+jw3rX08vuoXz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLhJwhD2vgWvH+wOR/dV7DBLFXvVz4ovOnDc54zTqXga/4FAZz
+	Tjcioyi6iOCaf3221u3/1g/JyVEdSXd768frpBfLk3mDLlDj6UoKEqjYa+5l6S10ku1rClb7Q1A
+	9i49VuXfY0hSg8nyo/0rXqOVZ2GlFOY4=
+X-Gm-Gg: ASbGncvsicj5JXcDIEx4eXEHycqPIAxPG/xTLhCMy5ozj9Y0TWW5U7QGEyQPfL+sFnU
+	br6iMIqCG9bIdV8m4r6HYA96musJKtiWJkd0EuSjreRecymXtLNJhDdDaomDelsgmCA2rZMCwvO
+	eVO9Z2OfIeAiZ1pFzt7F9F3p62F7gsztv72MxVHqj1wkPg+b3up4YDPG30QPmNxNNTbiAWF5tde
+	7NLI6/w1ohSIfTbv/8=
+X-Google-Smtp-Source: AGHT+IEB4Vjq2MsGI3l8ASuGgXvLmMm3snf9k1QQxT74CBmG6fuOrZfLSiwL66z7qqJZ6YCbD48YTDm6ikzm+G0/g68=
+X-Received: by 2002:a05:6808:4fe3:b0:401:cae9:4dc3 with SMTP id
+ 5614622812f47-4150d745d33mr7375679b6e.8.1752426017998; Sun, 13 Jul 2025
+ 10:00:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/3] riscv: canaan: Add support for K230-Canmv clock
-To: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Samuel Holland <samuel.holland@sifive.com>,
- Troy Mitchell <TroyMitchell988@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250415-b4-k230-clk-v6-0-7fd89f427250@zohomail.com>
-From: Xukai Wang <kingxukai@zohomail.com>
-Content-Language: en-US
-In-Reply-To: <20250415-b4-k230-clk-v6-0-7fd89f427250@zohomail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Feedback-ID: rr08011227880f38caa1930ad1c9b780930000faaf536ef634abd61e4f6519b99c87b19288cacb14dd802076:zu08011227e2968d9b4ed54629e843bd360000cb99e0991875710b13ecb368d541820e68b7cad0360fbc2f1a:rf0801122d3a7a9663a8acbc1f2172599900004c3708170fa28df8c0b3ab9b75822793432367716206bb0a8d6cbcdbe80463:ZohoMail
-X-ZohoMailClient: External
+References: <20250609031627.1605851-1-peter.chen@cixtech.com>
+ <20250609031627.1605851-6-peter.chen@cixtech.com> <CABb+yY17OOBx73655OhBp8At1b81w9M61zzGu4uhXcMTw4Q=Dw@mail.gmail.com>
+ <aG0i75h32dWg/L2G@gchen>
+In-Reply-To: <aG0i75h32dWg/L2G@gchen>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Sun, 13 Jul 2025 12:00:06 -0500
+X-Gm-Features: Ac12FXz1lC8UVKS1fKWne5OFNOSCLRX_KfU-_2Y_l2QFGnsGYRRkOTZbJq257xg
+Message-ID: <CABb+yY2BmqiQ18hU+7C234UnY8n-8PH5VEoS7nH5Xq5O1krGhQ@mail.gmail.com>
+Subject: Re: [PATCH v9 5/9] mailbox: add CIX mailbox driver
+To: Guomin chen <guomin.chen@cixtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
+	Peter Chen <peter.chen@cixtech.com>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	cix-kernel-upstream@cixtech.com, maz@kernel.org, sudeep.holla@arm.com, 
+	kajetan.puchalski@arm.com, eballetb@redhat.com, 
+	Gary Yang <gary.yang@cixtech.com>, Lihua Liu <Lihua.Liu@cixtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Jul 8, 2025 at 8:54=E2=80=AFAM Guomin chen <guomin.chen@cixtech.com=
+> wrote:
+....
+> > > +/* [0~7] Fast channel
+> > > + * [8] doorbell base channel
+> > > + * [9]fifo base channel
+> > > + * [10] register base channel
+> > > + */
+> > > +#define MBOX_FAST_IDX          7
+> > > +#define MBOX_DB_IDX            8
+> > > +#define MBOX_FIFO_IDX          9
+> > > +#define MBOX_REG_IDX           10
+> > > +#define CIX_MBOX_CHANS         11
+> > > +
+> > if it is not really a single controller owning different channels,
+> > maybe implement only what you currently use.
+> >
+> As mentioned in the previous email, a single controller can support
+> multiple different channels.
+>
+OK. I am not too worried about having all variants in one driver esp
+when it is manageable and share the code.
+Unless I am overlooking something. Arnd?
 
 
-On 2025/4/15 22:25, Xukai Wang wrote:
-> This patch series adds clock controller support for the Canaan Kendryte
-> K230 SoC. The K230 SoC includes an external 24MHz OSC and 4 internal
-> PLLs, with the controller managing these sources and their derived clocks.
+> > > +static u32 cix_mbox_read(struct cix_mbox_priv *priv, u32 offset)
+> > > +{
+> > > +       if (priv->use_shmem)
+> > > +               return ioread32(priv->base + offset - SHMEM_OFFSET);
+> > > +       else
+> > > +               return ioread32(priv->base + offset);
+> > > +}
+> > > +
+> > use_shmem is set for only CIX_MBOX_TYPE_DB, but it affects every read/w=
+rite.
+> > Maybe instead adjust the base for TYPE_DB?
+> >
+> The reason we introduced use_shmem here is that we had to adjust the base
+> address of TYPE_DB to resolve the reg conflict in the DTS.
+> This change has virtually no impact on performance.
 >
-> The clock tree and hardware-specific definition can be found in the
-> vendor's DTS [1],
-> and this series is based on the K230 initial series [2].
->
-> Link: https://github.com/ruyisdk/linux-xuantie-kernel/blob/linux-6.6.36/arch/riscv/boot/dts/canaan/k230_clock_provider.dtsi [1]
-> Link: https://lore.kernel.org/linux-clk/tencent_F76EB8D731C521C18D5D7C4F8229DAA58E08@qq.com/ [2]
->
-> Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
-> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
-> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
->
-> ---
-> Changes in v6:
-> - Remove some redundant comments in struct declaration.
-> - Replace the Vendor's code source link with a new one.
-> - Link to v5: https://lore.kernel.org/r/20250320-b4-k230-clk-v5-0-0e9d089c5488@zohomail.com
->
-> Changes in v5:
-> - Fix incorrect base-commit and add prerequisite-patch-id.
-> - Replace dummy apb_clk with real ones for UARTs.
-> - Add IDs of UARTs clock and DMA clocks in the binding header.
-> - Replace k230_clk_cfgs[] array with corresponding named variables.
-> - Remove some redundant checks in clk_ops.
-> - Drop the unnecessary parenthesis and type casts.
-> - Modify return value handling in probe path to avoid redundant print.
-> - Link to v4: https://lore.kernel.org/r/20250217-b4-k230-clk-v4-0-5a95a3458691@zohomail.com
->
-> Changes in v4:
-> - Remove redundant onecell_get callback and add_provider function
-> for pll_divs.
-> - Modify the base-commit in cover letter.
-> - Link to v3: https://lore.kernel.org/r/20250203-b4-k230-clk-v3-0-362c79124572@zohomail.com
->
-> Changes in v3:
-> - Reorder the defination and declaration in drivers code.
-> - Reorder the properties in dts node.
-> - Replace global variable `k230_sysclk` with dynamic memory allocation.
-> - Rename the macro K230_NUM_CLKS to K230_CLK_NUM.
-> - Use dev_err_probe for error handling.
-> - Remove unused includes.
-> - Link to v2: https://lore.kernel.org/r/20250108-b4-k230-clk-v2-0-27b30a2ca52d@zohomail.com
->
-> Changes in v2:
-> - Add items and description.
-> - Rename k230-clk.h to canaan,k230-clk.h
-> - Link to v1: https://lore.kernel.org/r/20241229-b4-k230-clk-v1-0-221a917e80ed@zohomail.com
->
-> ---
-> Xukai Wang (3):
->       dt-bindings: clock: Add bindings for Canaan K230 clock controller
->       clk: canaan: Add clock driver for Canaan K230
->       riscv: dts: canaan: Add clock definition for K230
->
->  .../devicetree/bindings/clock/canaan,k230-clk.yaml |   43 +
->  arch/riscv/boot/dts/canaan/k230.dtsi               |   25 +-
->  drivers/clk/Kconfig                                |    6 +
->  drivers/clk/Makefile                               |    1 +
->  drivers/clk/clk-k230.c                             | 1710 ++++++++++++++++++++
->  include/dt-bindings/clock/canaan,k230-clk.h        |   69 +
->  6 files changed, 1846 insertions(+), 8 deletions(-)
-> ---
-> base-commit: 0eea987088a22d73d81e968de7347cdc7e594f72
-> change-id: 20241206-b4-k230-clk-925f33fed6c2
-> prerequisite-patch-id: deda3c472f0000ffd40cddd7cf6d3b5e2d7da7dc
->
-> Best regards,
-Dear all,
+Yes, I can see it should have no impact on performance and I think
+adjusting the base once
+during init is cleaner than checking the flag every read/write.
+But wait... use_shmem is a controller wide flag, and isn't
+priv->use_shmem always set to true  in cix_mbox_init() ?
+Is the driver even tested?
+....
 
-I'm working on a Linux clock driver and have encountered a question
-regarding how to properly represent a particular type of clock source.
+> > > +static int cix_mbox_startup(struct mbox_chan *chan)
+> > > +{
+> > > +       struct cix_mbox_priv *priv =3D to_cix_mbox_priv(chan->mbox);
+> > > +       struct cix_mbox_con_priv *cp =3D chan->con_priv;
+> > > +       int index =3D cp->index, ret;
+> > > +       u32 val_32;
+> > > +
+> > > +       ret =3D request_irq(priv->irq, cix_mbox_isr, 0,
+> > > +                         dev_name(priv->dev), chan);
+> > The same irq is requested for each channel. How do you expect it to
+> > work? Maybe request it just once in probe and pass the 'priv' instead
+> > of 'chan' , and in the cix_mbox_isr handle according to INT_STATUS
+> >
+> For the same mailbox controller, there won't be multiple channels
+> simultaneously requesting the same IRQ, so there won't be an issue
+> here. As you mentioned, if we need to handle multiple channels working
+> concurrently in the future, we would need to modify cix_mbox_isr.
+> However, that is not required at the moment.
+>
+Is it too hard to do it right already?
 
-In K230 SoC, there's a mux clock whose parent can optionally be an
-external pulse signal, which is counted via a pin (the input is not
-generated internally but comes from an external source). I’m wondering:
+....
+> > > +MODULE_AUTHOR("Cix Technology Group Co., Ltd.");
+> > > +MODULE_DESCRIPTION("CIX mailbox driver");
+> > > +MODULE_LICENSE("GPL");
+> >
+> > GPL v2 ? according to the SPDX-License-Identifier
+> >
+> > And please make sure you run scripts/checkpatch.pl
+>
+> Yes, I'm also confused here. I was previously using GPL v2,
+> but when I ran checkpatch.pl, it triggered a warning due to
+> commit bf7fbeeae6db ("module: Cure the MODULE_LICENSE 'GPL'
+> vs. 'GPL v2' bogosity").  So I changed it to GPL.
+>
+Sorry, I was wrong. It should simply be GPL
 
-Should this external pulse signal be modeled as a clock within the
-Common Clock Framework (CCF)?
-
-If so, what would be the correct way to register or describe such a
-clock in the driver?
-
-Any guidance or examples would be greatly appreciated.
-
+Thanks.
 
