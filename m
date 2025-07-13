@@ -1,129 +1,135 @@
-Return-Path: <devicetree+bounces-195807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B356B0319D
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 16:42:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1325DB031A8
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 17:03:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8747189DC6B
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 14:42:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F70C3BA1C3
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 15:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0521727990B;
-	Sun, 13 Jul 2025 14:42:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 984F31E8324;
+	Sun, 13 Jul 2025 15:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TOc4OKOR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XRu/mA34"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF0848836;
-	Sun, 13 Jul 2025 14:42:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 664901D52B;
+	Sun, 13 Jul 2025 15:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752417731; cv=none; b=hUF07XK57uicbWE5RYkNpe3EUUA45T2k4SNbkDGeMr5awiGaHtYoWsh3y6xMWutmflBCQ7iwF6cBdTv5C/8yNCs7eUg2hGI6pZrhc85yViuhNPN++2wUumuVXhLrO4HD/fduecJ5ktBz3rjKhMTPm1ZyM2bTuK0OFUqIg5fJkiE=
+	t=1752418980; cv=none; b=OHz8A0oe1MINMNk3j5Ruus069Rb8EbviLpO32c9/+T9wQ1UndDsTMkQR8zwBD3oCaSrxYPtIuA3yOINCoVssp1Qf1rBfV+9h5m2mwx5zZ0GhcjTp9RWRSQfqix7Dh+1sA7V8IG3Fn+Sqzt+VJo5MW4HxBHsiTma9M7SecgvLql0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752417731; c=relaxed/simple;
-	bh=LDMQLC4jsaFTpUK1BZdmSDSto2ZfOdVLJVSKsQpk7uI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BxhaT1t7J7pktUiojMtsVM/qWeE8knREWcYxP92aDi0RdrW0UJiCON5Bqu2IKnNIyIIuXfAqCYp/1kC8ghiMWyfkx78Lvck8CAcIoJr9v3//K/zYizlUIo1Z+kTbR7SAK0xzW27elYo2qiu2ifpIdPzIuOTKBEvHYw0OsyDyT40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TOc4OKOR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C67FC4CEE3;
-	Sun, 13 Jul 2025 14:42:08 +0000 (UTC)
+	s=arc-20240116; t=1752418980; c=relaxed/simple;
+	bh=j/0dmZ5J6FfiPtzDxVic7+L+BjaVfzjdrObrU3kASsg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CW3fVfB4SooLc41PfP6WJqf3MiR63iHWns/eeH0v1w+C9dO8OtwrWlCJaw3gE3NZjIT5dFnuHosuMQ3Z0u/YMnntUdH6s/9PRHw2jURxQq22p2FmBknJcp4UaxGJ4GMceO4PThAxkXdyydSAvG8KlicWEZNnGjKxzc5j2cEw56g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XRu/mA34; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29D22C4CEE3;
+	Sun, 13 Jul 2025 15:02:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752417731;
-	bh=LDMQLC4jsaFTpUK1BZdmSDSto2ZfOdVLJVSKsQpk7uI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TOc4OKOR0ZvClWt5tQdvhvUZmviDkvelBhuFtBT8tSB/wE/tz2dw4uZe6dGq6NQoX
-	 D+Ph7kZmYxkA4/6Ng7aRUEBVDaEYghHtJ/e34GpLfuc47LerzvnI/0JpCmSJbXiNwD
-	 GanstEHyY72bUBGMFcGDGEpXJNDbqMyPbX4DgHd0XtDBJ8EamVhD6b9hdvF/EzVtGH
-	 FU4VMoCMGCnYIv7g/vpyuTygLGAw+uc0Duja2H+zwSJGcVCeiPsrh/HcSbfz6V/3sG
-	 AEUduAamcsYZ8EN0nN1H9g/J4oIdtEGCtCDz5kNf/Kewn72G5A6AT2hCb8ptA0kFk5
-	 azhr3krhm6UVA==
-Message-ID: <1517bd84-40bb-46a6-bfc6-5afa51bbcdbd@kernel.org>
-Date: Sun, 13 Jul 2025 16:42:06 +0200
+	s=k20201202; t=1752418978;
+	bh=j/0dmZ5J6FfiPtzDxVic7+L+BjaVfzjdrObrU3kASsg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=XRu/mA34eHN+f2azJjwRmOiDaO9ZEnXvbFqybf7em3oBrHOwbYMSn0e0Kd3+NCif/
+	 VThzq94RuGyI07eh0N+JQHVszh7pEXnAyP+zaEB2AO3wdwkvYn6LdNT7wFo54L7QGv
+	 naagZcPV40gl90P/8f0zLu6TWYWN0ZQYCZcPXMvA7Caz0NbLoitpDNMpy+xPWHPg+0
+	 0kzaQNuH7775QSrL6DmiOoYcA0ciC+STsKck7bbtWtk4GEShcqPdnD8/6NOQJgLeqd
+	 Gc/hLiwqVfkuiljn9QyaYUDh/XCXV80+DAeex8urQtgEd94G3cel8YIvbvol8NAe4H
+	 Qnejh6/EoTNWA==
+Date: Sun, 13 Jul 2025 16:02:47 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Primoz Fiser <primoz.fiser@norik.com>, Haibo Chen <haibo.chen@nxp.com>,
+ Nuno Sa <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, linux-iio@vger.kernel.org,
+ imx@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ upstream@lists.phytec.de, andrej.picej@norik.com
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: Add calibration
+ properties
+Message-ID: <20250713160247.0f22bbfe@jic23-huawei>
+In-Reply-To: <2bcd758b-c2d0-488a-8ead-ec7fb39f93e2@baylibre.com>
+References: <20250710073905.1105417-1-primoz.fiser@norik.com>
+	<20250710073905.1105417-2-primoz.fiser@norik.com>
+	<2bcd758b-c2d0-488a-8ead-ec7fb39f93e2@baylibre.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: arm: sti: drop B2120 board support
-To: Raphael Gallais-Pou <rgallaispou@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Patrice Chotard <patrice.chotard@foss.st.com>,
- Russell King <linux@armlinux.org.uk>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250713-sti-rework-v1-0-6716a09e538d@gmail.com>
- <20250713-sti-rework-v1-1-6716a09e538d@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250713-sti-rework-v1-1-6716a09e538d@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 13/07/2025 15:27, Raphael Gallais-Pou wrote:
-> B2120 boards are internal boards which never were commercialised.
+On Thu, 10 Jul 2025 10:46:44 -0500
+David Lechner <dlechner@baylibre.com> wrote:
+
+> On 7/10/25 2:39 AM, Primoz Fiser wrote:
+> > From: Andrej Picej <andrej.picej@norik.com>
+> > 
+> > Document i.MX93 ADC calibration properties and how to set them.
+> > 
+> > Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> > Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+> > ---
+> >  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 21 +++++++++++++++++++
+> >  1 file changed, 21 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> > index c2e5ff418920..d1c04cf85fe6 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> > @@ -52,6 +52,27 @@ properties:
+> >    "#io-channel-cells":
+> >      const: 1
+> >  
+> > +  nxp,calib-avg-en:
+> > +    default: 1
+> > +    description:
+> > +      Enable or disable calibration averaging function (AVGEN).
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [ 0, 1 ]
+> > +
+> > +  nxp,calib-nr-samples:
+> > +    default: 512
+> > +    description:
+> > +      Selects number of samples (NRSMPL) to be used during calibration.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [ 16, 32, 128, 512 ]
+
+Allow 1 as a value and drop the enabled above.   Averaging over 1 sample
+is same as no averaging and gives simpler binding.
+
+> > +
+> > +  nxp,calib-t-sample:
+> > +    default: 22
+> > +    description:
+> > +      Selects sample time (TSAMP) of calibration conversions in ADC clock cycles
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [ 8, 16, 22, 32 ]
+> > +
+> >  required:
+> >    - compatible
+> >    - reg  
 > 
-> Remove them from bindings.
+> This seem like things that should be set at runtime rather than
+> in the devicetree. Unless there is some justification on why
+> these values depend on how the chip is wired up?
+
+Further to that, I'd like to see some explanation of why we care
+to change it at all. Is it ever a bad idea to enable averaging and
+pick a large number of samples for calibration?
+
 > 
-> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+> 
 
-Just like remove() and probe() driver callbacks, cleanup should be
-reversed from adding, so you drop the docs in the last patch, otherwise
-your patchset is not really bisectable and at this point it reports
-warnings.
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
 
