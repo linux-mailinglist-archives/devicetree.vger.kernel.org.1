@@ -1,127 +1,129 @@
-Return-Path: <devicetree+bounces-195806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF68B03172
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 16:25:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B356B0319D
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 16:42:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2DC63B1379
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 14:24:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8747189DC6B
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jul 2025 14:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 431AA257AC6;
-	Sun, 13 Jul 2025 14:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0521727990B;
+	Sun, 13 Jul 2025 14:42:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TILh+Iw9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TOc4OKOR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806DA22F76E;
-	Sun, 13 Jul 2025 14:25:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF0848836;
+	Sun, 13 Jul 2025 14:42:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752416706; cv=none; b=lVjbKThKUJ9VUU3WLqSyek0huheSF2Ldl+WoXX/8E/iuD+WikOyt+ZhN3h6w+WNGcDfk/fae34g28JiNkRCIbG4YdulsKkq3FqZSL+KnWi1WBwdGJcF0xJiFjydi4Wd4ZZfF/YLVnjTVuvdz1pmAn2BelR6Wp7pUs2bDxZ98Zu4=
+	t=1752417731; cv=none; b=hUF07XK57uicbWE5RYkNpe3EUUA45T2k4SNbkDGeMr5awiGaHtYoWsh3y6xMWutmflBCQ7iwF6cBdTv5C/8yNCs7eUg2hGI6pZrhc85yViuhNPN++2wUumuVXhLrO4HD/fduecJ5ktBz3rjKhMTPm1ZyM2bTuK0OFUqIg5fJkiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752416706; c=relaxed/simple;
-	bh=ctVrSe8+tqBPZfPNjWKQjuJ1XNUtgiycE7rUXQUI7/A=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uFNlQH+I0u5iuuXXshlTWzbUD2V6e3R5fgUFdhwkLThlCDvaYZkvhGWFm2dMzXM7Nl7JE/aPaKU8nfEr0unHlU8UYuu27tYev9bg6wnBjTW3smgBcu943y1MJM1tzLsty8n+sUO/9uULLaG4/QIo2X7lIryaMvokIy0T+VuPkJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TILh+Iw9; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4530921461aso22390335e9.0;
-        Sun, 13 Jul 2025 07:25:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752416703; x=1753021503; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kEQpD8b+HNVuLM3WhWFj3Mc99doFv2oNkxwhtYpkyNA=;
-        b=TILh+Iw9nLWsS+o6P1wyxlKTRrdeRCA0OZH8WA5nXw8mrJaMGWpiTWZYczOd4VNutu
-         qQZCUMLVeElPfUSPNXU6aBvN5zLP7cjWr+bYCLZox7z/3cOkP54r47uLqN4nCv93oiHN
-         G1fI1H4PQup0qGWchF+Meqj1p86tvwGASG150g35Fozj75aSiJmQYluOqLLscIQVF55P
-         4R78l4IoMXNH1yXY5JMNbRUOG2J9USLrd69NW4j0FvplP4BXEwYMjXLg0v+HDC+l6eor
-         rsCd1kLcZs2Fr34s6FdPc76SfgU2EyXvi7Qy+uRO5B8EeP45Rx4tllXgFkwCSAvzux60
-         cNxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752416703; x=1753021503;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kEQpD8b+HNVuLM3WhWFj3Mc99doFv2oNkxwhtYpkyNA=;
-        b=tO+mzGxEVtjtVvTjLuzRWIQf3l/HB7gJzFCT8r3PwBMT9xSuWOd1mKK5YHcu472vMb
-         T334VcQynlwFazQBiroVgQXhKYIhtzzrEyw0dqgGfq2mKVK91CbuSCzwI89OikruQzsL
-         6xrjzjo6U6w3zuZlCgyMVXbQtp3s9ssNZEUttEq4bPSMyFDM/XtQVKa6rICRICvsO5S8
-         vDxdjeSIUnFlAGnOZEuLGGqcupLpi93jV5PGSTecolZKsgceIScIglutiDAXE/KezeZy
-         +l7dFGsDVJ3JU5JtpWYAAe/xW1iCJPksz/VsJ1VkvKjk+Ob7+n5++h3pGYdz2AYIdwbE
-         1qlg==
-X-Forwarded-Encrypted: i=1; AJvYcCVAGWzxIn2ectKxhDRBLcuL3FxzTWCpK1UtpzV8YjejGDOZel4D5Mn+yoULIM+7mbj/9PI3bOQ0RSSJF8TA@vger.kernel.org, AJvYcCVJnhYABab89WSLk0MiTKQ7jSrPTDUxVq8n2vWliJrqXcx4UEMjxtFMqTTo/XYLbyLAlPYwHrnIfvBv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzEmcE8anKlZ6k3qqLQM+dazw8OEBEFkYJG/mgJiwzzBasK1Xcv
-	ylAYVSdEmBjEBXmRLg83HBGj+HC9lV8cw6acRCHEBhqI0IUKGDbRMDLJ
-X-Gm-Gg: ASbGncs2nkZZtahF70iIDnguI2dt5i7xOeUbI7sTzivgCex4RurjvEj1mo/WNBW3X5U
-	TkPm/ejCxcUjSnF1xi701mzMMpvDxTs+aKP2KTzyce5+oEl1oC3J0Nwyv+brJSucR6+X37J7D44
-	+q5r/WeqHizxZlf1thfGPCGfWoQk/ODPtMgi+jLSCZTxUjF7LoYotBo3zkytUg2t6fxzSL6wVGo
-	gaVjnxxPnW2Kv10us1KLGEwvC+ZMFGFnbtYjgfGEczTawqN/CW6vgrbJD8L25eCv42VKa9501N2
-	W9aXecpeHwA9qb0gMAVfK3+WZZ514MTEloKkCbODfDGolGHRjO12+TAFZwnauOFFLyBwhHbyUEh
-	wDiekva1rM04d1d3qVxJKNw==
-X-Google-Smtp-Source: AGHT+IFrp/gF77QA5ekrhLRIDgGIcIeqfrGrvFNzk/J2w71kdPsQ+3QAHabP11bj4+Q72q5OjRK7lQ==
-X-Received: by 2002:a05:6000:144b:b0:3b2:ef53:5818 with SMTP id ffacd0b85a97d-3b5f351e561mr7575693f8f.5.1752416702720;
-        Sun, 13 Jul 2025 07:25:02 -0700 (PDT)
-Received: from localhost ([2001:861:3385:e20:6384:4cf:52c5:3194])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3b5e8e1e1a5sm9714490f8f.74.2025.07.13.07.25.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Jul 2025 07:25:02 -0700 (PDT)
-From: Raphael Gallais-Pou <rgallaispou@gmail.com>
-To: Patrice Chotard <patrice.chotard@foss.st.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: sti: rename SATA phy-names
-Date: Sun, 13 Jul 2025 16:24:24 +0200
-Message-ID: <20250713142424.41236-1-rgallaispou@gmail.com>
-X-Mailer: git-send-email 2.50.1
+	s=arc-20240116; t=1752417731; c=relaxed/simple;
+	bh=LDMQLC4jsaFTpUK1BZdmSDSto2ZfOdVLJVSKsQpk7uI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BxhaT1t7J7pktUiojMtsVM/qWeE8knREWcYxP92aDi0RdrW0UJiCON5Bqu2IKnNIyIIuXfAqCYp/1kC8ghiMWyfkx78Lvck8CAcIoJr9v3//K/zYizlUIo1Z+kTbR7SAK0xzW27elYo2qiu2ifpIdPzIuOTKBEvHYw0OsyDyT40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TOc4OKOR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C67FC4CEE3;
+	Sun, 13 Jul 2025 14:42:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752417731;
+	bh=LDMQLC4jsaFTpUK1BZdmSDSto2ZfOdVLJVSKsQpk7uI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TOc4OKOR0ZvClWt5tQdvhvUZmviDkvelBhuFtBT8tSB/wE/tz2dw4uZe6dGq6NQoX
+	 D+Ph7kZmYxkA4/6Ng7aRUEBVDaEYghHtJ/e34GpLfuc47LerzvnI/0JpCmSJbXiNwD
+	 GanstEHyY72bUBGMFcGDGEpXJNDbqMyPbX4DgHd0XtDBJ8EamVhD6b9hdvF/EzVtGH
+	 FU4VMoCMGCnYIv7g/vpyuTygLGAw+uc0Duja2H+zwSJGcVCeiPsrh/HcSbfz6V/3sG
+	 AEUduAamcsYZ8EN0nN1H9g/J4oIdtEGCtCDz5kNf/Kewn72G5A6AT2hCb8ptA0kFk5
+	 azhr3krhm6UVA==
+Message-ID: <1517bd84-40bb-46a6-bfc6-5afa51bbcdbd@kernel.org>
+Date: Sun, 13 Jul 2025 16:42:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: arm: sti: drop B2120 board support
+To: Raphael Gallais-Pou <rgallaispou@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Patrice Chotard <patrice.chotard@foss.st.com>,
+ Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250713-sti-rework-v1-0-6716a09e538d@gmail.com>
+ <20250713-sti-rework-v1-1-6716a09e538d@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250713-sti-rework-v1-1-6716a09e538d@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Stick to the documentation and rename both SATA phy-names properties to
-what is expected.
+On 13/07/2025 15:27, Raphael Gallais-Pou wrote:
+> B2120 boards are internal boards which never were commercialised.
+> 
+> Remove them from bindings.
+> 
+> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
 
-Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
----
- arch/arm/boot/dts/st/stih407-family.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Just like remove() and probe() driver callbacks, cleanup should be
+reversed from adding, so you drop the docs in the last patch, otherwise
+your patchset is not really bisectable and at this point it reports
+warnings.
 
-diff --git a/arch/arm/boot/dts/st/stih407-family.dtsi b/arch/arm/boot/dts/st/stih407-family.dtsi
-index 35a55aef7f4b..3e6a0542e3ae 100644
---- a/arch/arm/boot/dts/st/stih407-family.dtsi
-+++ b/arch/arm/boot/dts/st/stih407-family.dtsi
-@@ -669,7 +669,7 @@ sata0: sata@9b20000 {
- 			interrupt-names = "hostc";
- 
- 			phys = <&phy_port0 PHY_TYPE_SATA>;
--			phy-names = "ahci_phy";
-+			phy-names = "sata-phy";
- 
- 			resets = <&powerdown STIH407_SATA0_POWERDOWN>,
- 				 <&softreset STIH407_SATA0_SOFTRESET>,
-@@ -692,7 +692,7 @@ sata1: sata@9b28000 {
- 			interrupt-names = "hostc";
- 
- 			phys = <&phy_port1 PHY_TYPE_SATA>;
--			phy-names = "ahci_phy";
-+			phy-names = "sata-phy";
- 
- 			resets = <&powerdown STIH407_SATA1_POWERDOWN>,
- 				 <&softreset STIH407_SATA1_SOFTRESET>,
--- 
-2.50.1
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
