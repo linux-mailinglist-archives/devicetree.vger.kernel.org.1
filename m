@@ -1,122 +1,139 @@
-Return-Path: <devicetree+bounces-195924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF914B03902
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 10:18:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0268B03936
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 10:22:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8321217B488
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 08:18:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62822188D569
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 08:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0AD23A9BB;
-	Mon, 14 Jul 2025 08:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A63F239E82;
+	Mon, 14 Jul 2025 08:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JjU9wg+c"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="efMNgnF6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FEAB23A566;
-	Mon, 14 Jul 2025 08:17:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D08239E60;
+	Mon, 14 Jul 2025 08:19:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752481050; cv=none; b=QNRvv/CjIr1t0ZJoiVW/NicimaQjQus9yT5vBwGiLebKEHR4Bqxz09PBSHQd7OwTIanlnqaoJn340aVJ9qxatrbk0/xq7IF01qygDBDbKQcNS01Fq58YxQsZvM01TyF1P1Pwne3Qb6QP+d3r5OW2RXgUC30AtlrZYlHF/AJSxLU=
+	t=1752481201; cv=none; b=ruhj8aPhDg/RsDT8L8Mg6bVjxiQoC4WJHgHBNlJ2LL+si8pczFoi0VUBGXbXopI9RMxvQghNgpNsLiF3wVrNSGwzsCS9a5pq5hU4N6a2Db/gpqCrIwxpmjDgO12byBHR3SZyTBtfpkHPlfDDc1T7jr+myxd92kXLNGA5JnIAGVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752481050; c=relaxed/simple;
-	bh=HU6qaRX0H63WQNkChMnnlLrTNSnQpYkD+nlgW/FZX3w=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=DOJAsBrcZo/C1owy2/uDO5ukiPTSM43koSmTr4eT4p4kIiNOPZXHzhlR+v0XGaqFwFNyMYRFXgOPml1iTuPRhptFVb7KbnGHABmry5i1RK52ebKoltYEt1qu9MzrzhIpHk6D72kYC4n6F0ba0zrgoxmVgFVOna6QA+y1xsgVeVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JjU9wg+c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23362C4CEED;
-	Mon, 14 Jul 2025 08:17:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752481050;
-	bh=HU6qaRX0H63WQNkChMnnlLrTNSnQpYkD+nlgW/FZX3w=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=JjU9wg+caJG31D0CW4bhBC6zj/xORL/KaedDTektBzMxDD00Ne35k+DcPKouPhcZ8
-	 V+siYdxAN+xOF3XN/bSuv/wv6lQ8iIT5gqFGEW76EZCU87Kf3pqQecKJ2hfIPDR6u0
-	 GMH73EEQQ1FXlyjMXNtfxfDUd+r3Fnln5FctxZNOazceKS1QOrgTSsWGT7d+MeHEn7
-	 4HOruxq8gJLGD0xTE2fSGNtNkHiBiu+8dhSOkb5pOvIZOgqfqokMFd8ZqkBAEOQra5
-	 Y6Ylb6tA4w1496Umb7Lueq4Ut1Xfy2/YoanxIIhR1M3Z/Ca7GM2S38NAJ2eV/1v62f
-	 S2XmkXcPA39tw==
-Date: Mon, 14 Jul 2025 03:17:29 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1752481201; c=relaxed/simple;
+	bh=0WLu3kugDvQEYAJMzASy+A5S3YDpXTBXjAaVvNoadTA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oJDnMyZ+SYDGtCR+T91P+g1YmsBrQk0cWNrGbE8aPptGWdXqShaDABS8zZQv9R8tfZGT999XDJtJ8pD8Rr8co/FkUB9DfRo5XZbEfGQHLa9Le08lqVXqNb/04UuVarSvwAw3pPgAXx3EPVszNyCrjmpJagy5I4/oXWov1YGBYlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=efMNgnF6; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752481200; x=1784017200;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0WLu3kugDvQEYAJMzASy+A5S3YDpXTBXjAaVvNoadTA=;
+  b=efMNgnF6dTE5KAuCBByU+ob+DgrnC18kmymeGm/6UCqa0k2n6KfYIiTJ
+   Wo0aQkL39e4mYZ7g8AuhdCRSiZI7hWLW6UayjgFzLpZ1O541ZGkHxPF3j
+   Sz0y91cLKo1JMY2fqIaIzOovTYK4Pq4LDFPPbkmHr8lhYkOAdoOKpv0iC
+   1b1W0tJuQs9XXOKWSjCyMPmYWmxjxP6zvdqjOlALczPPGFsn6ldddIJyB
+   8BD1XXVFgGlDnGZ3tG7uk2nL2xIWlx1+EL11v67ARP7GVazMu2lmRm+hV
+   NtvjoBAEKov81mYi8B/TB3FEuZzHC3WExBKDqtTiO9QeZAvHcy0cJQpqK
+   g==;
+X-CSE-ConnectionGUID: T1yx+kHIRGyUB8sda5iQGQ==
+X-CSE-MsgGUID: m9jTzL9oQq68o6ca5ZhMhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54635679"
+X-IronPort-AV: E=Sophos;i="6.16,310,1744095600"; 
+   d="scan'208";a="54635679"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2025 01:19:59 -0700
+X-CSE-ConnectionGUID: 264lVN+dRIWcEt31tZOKBQ==
+X-CSE-MsgGUID: GzlyscvPQsSewwfa11tumw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,310,1744095600"; 
+   d="scan'208";a="194077901"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2025 01:19:55 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1ubEPf-0000000FIwb-1pxJ;
+	Mon, 14 Jul 2025 11:19:51 +0300
+Date: Mon, 14 Jul 2025 11:19:51 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: andi.shyti@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	digetx@gmail.com, jonathanh@nvidia.com, krzk+dt@kernel.org,
+	ldewangan@nvidia.com, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+	p.zabel@pengutronix.de, robh@kernel.org, thierry.reding@gmail.com
+Subject: Re: [PATCH v6 2/3] i2c: tegra: Use internal reset when reset
+ property is not available
+Message-ID: <aHS9pzHA1xKXlmaJ@smile.fi.intel.com>
+References: <iqx5wzywy2x66n2y36mx4fckrr7wy4lqu3dsejcovghjtmgoz7@zwslylpivy3q>
+ <20250714052226.72876-1-akhilrajeev@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Joel Stanley <joel@jms.id.au>, 
- linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Chen <kevin_chen@aspeedtech.com>, 
- devicetree@vger.kernel.org
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-In-Reply-To: <20250714071753.2653620-1-ryan_chen@aspeedtech.com>
-References: <20250714071753.2653620-1-ryan_chen@aspeedtech.com>
-Message-Id: <175248104913.1053585.2976024588034663905.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: aspeed: Refine
- AST2700 binding description and example
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250714052226.72876-1-akhilrajeev@nvidia.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
+On Mon, Jul 14, 2025 at 10:52:25AM +0530, Akhil R wrote:
+> On Fri, 11 Jul 2025 18:00:45 +0200, Andi Shyti wrote:
 
-On Mon, 14 Jul 2025 15:17:53 +0800, Ryan Chen wrote:
-> - Update block diagram for better readability and accuracy.
-> - Clarify the relationship and function of INTC0, INTC1, and the GIC.
-> - Documentation and example refine.
+...
+
+> >> I would perhaps expand the comment here to explain ENOENT check and what do we
+> >> do in this case. (Note, no rewriting of the existing, just adding a paragraph)
+> >> 
+> >> 	*
+> >> 	* In case ... we compare with -ENOENT ...
+> >> 	* ...
+> >> 	*/
+> >
+> > If you write it here I can expand your comment before merging.
+> >
+> > Or if you prefer sending a v7 is still fine.
 > 
-> This enhances the documentation quality and helps developers understand
-> the interrupt controller hierarchy and usage.
+> Hi Andi,
 > 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> ---
->  .../aspeed,ast2700-intc.yaml                  | 155 +++++++++++++-----
->  1 file changed, 112 insertions(+), 43 deletions(-)
+> I thought to update the comments as below. Please let me know if this can be
+> folded in. I can send a v7 if that is easier to merge.
 > 
+> 	/*
+> 	 * Reset the controller before initializing it.
+> 	 * In case if device_reset() returns -ENOENT, i.e. when the reset is
+> 	 * not available, the internal software reset will be used if it is
+> 	 * supported by the controller.
+> 	 */
+> 	err = device_reset(i2c_dev->dev);
+> 	if (err == -ENOENT)
+> 		err = tegra_i2c_master_reset(i2c_dev);
+> 
+> 	/*
+> 	 * The reset shouldn't ever fail in practice. The failure will be a
+> 	 * sign of a severe problem that needs to be resolved. Still we don't
+> 	 * want to fail the initialization completely because this may break
+> 	 * kernel boot up since voltage regulators use I2C. Hence, we will
+> 	 * emit a noisy warning on error, which won't stay unnoticed and
+> 	 * won't hose machine entirely.
+> 	 */
+> 	WARN_ON_ONCE(err);
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Good for me.
 
-yamllint warnings/errors:
+-- 
+With Best Regards,
+Andy Shevchenko
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml: address-cells: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml: size-cells: missing type definition
-Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.example.dts:39.15-41: Warning (reg_format): /example-0/bus/interrupt-controller@12100000/interrupt-controller@1b00:reg: property has invalid length (12 bytes) (#address-cells == 2, #size-cells == 2)
-Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.example.dtb: interrupt-controller@12100000 (aspeed,ast2700-intc0): '#address-cells', '#size-cells' do not match any of the regexes: '^interrupt-controller@', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.example.dtb: interrupt-controller@12100000 (aspeed,ast2700-intc0): interrupt-controller@1b00:reg:0: [0, 303045376, 16] is too short
-	from schema $id: http://devicetree.org/schemas/reg.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.example.dtb: interrupt-controller@14c18000 (aspeed,ast2700-intc1): '#address-cells', '#size-cells' do not match any of the regexes: '^interrupt-controller@', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.example.dtb: interrupt-controller@14c18000 (aspeed,ast2700-intc1): interrupt-controller@100: 'interrupts' is a required property
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250714071753.2653620-1-ryan_chen@aspeedtech.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
