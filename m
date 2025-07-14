@@ -1,119 +1,177 @@
-Return-Path: <devicetree+bounces-195981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99299B03B90
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 12:01:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A75E4B03BA0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 12:09:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 227A47A4096
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 10:00:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D16DE1759F9
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 10:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBCE31F2382;
-	Mon, 14 Jul 2025 10:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AD6C242D93;
+	Mon, 14 Jul 2025 10:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XPUYUyDO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sDuOLcQL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC156111BF;
-	Mon, 14 Jul 2025 10:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2919B218AA0;
+	Mon, 14 Jul 2025 10:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752487286; cv=none; b=JXNImLoYjIR5V5ZRXPJxwJda3p6IxwzwyA4Fjfh7LjOKpRqHL0h5M6gDraH1MzdX7Sdh9SjD+RxV4OXdEj6+qTn6iTjpJO1Eis9ugeS0CaamsBB8AfuWBJpfyDRsOoM0/9XD37DwCNZ4TPhkTHIPtT4HWu2Q8ZXqpMOFalAAhbA=
+	t=1752487761; cv=none; b=C2/HTx+DBP7dstrOxyTrLSsLMIlLSBfyA1FhjrZ6bcc4duDrsWOtgU1b3cMpt0/JgKN91ByComJunDXMw4IC+D6rPEn9KWiZBt6WpdiwyBrLoPvEmxAA2WWBDwuwJnUE74l0EWdoVW1PFRWrHsuooLyIeudpBQaE9ITlcWc8rXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752487286; c=relaxed/simple;
-	bh=ZKlfhggKlOIGxvSFvIANQzO+iVOz60Z2guplptlzY1Y=;
-	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
-	 In-Reply-To; b=DZPg3hIE7fV3K4L8gcB2DiHQQNzo+rQ/J201VX0oWmA3ONwOaB1n5vFo9DqUeChXP1aD/eszIQTElnVmwVXUvTH7f1Yjcg7U0LEF/rVf96deRXaYzVKTd7FdHqvkUe1P6rTPgB6HwbYgKGXN3rQLPiR1gYrEKqrWXBerxIDwyUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XPUYUyDO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA6BDC4CEF4;
-	Mon, 14 Jul 2025 10:01:25 +0000 (UTC)
+	s=arc-20240116; t=1752487761; c=relaxed/simple;
+	bh=LgBpN4ddFnQRjIEEAiu4b2l+jmE+KpxUfD5LylOozdk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WuWZaFevrSxUjr2t82HXT8n83TVnyI6kVr+YAMwtR7NMThyWvlOXaNPwyzS5ez1SaBtXUBAMDAaaAgQD49dKmhNmzVcdMU4MZZWP2O+5vj/WFW7KBoadglIJf/GP68ToQKdF2QErK5m4/72uV6ZCwRZwKd+BI85qK30CIwNT7DQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sDuOLcQL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95E5CC4CEED;
+	Mon, 14 Jul 2025 10:09:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752487286;
-	bh=ZKlfhggKlOIGxvSFvIANQzO+iVOz60Z2guplptlzY1Y=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
-	b=XPUYUyDOrK0FSN+4dyPJeGlrPyYOJM7q09+vkQofRG/pj1O/veGZ2pE7Aq/f6GD9K
-	 Etix9fjIL6c4HjGLCnxWZb+nIRtWPEkKoxW4PYLiA56idW3NyRaL7XGp/tKApXJnKQ
-	 jA8mhnSMgU1HCd8LU5pD0WCKGBWHyNbh3MizHMfo718GIH5xcssUlo05sn7Fk9RVwp
-	 OEkjr2KWuVYsyiqp2nG3CwVvaSUaOnm7qQlcBxE9vS8roE4DWWUs3CU+wO29blpmSU
-	 lRCSlV52P95O2ztQVwZ316rHSNmQU5v/SEDZ8ofHZ/mMjvY9H75YxIJaawN4dqY3Hg
-	 p9sOf52nUeBYw==
-Content-Type: multipart/signed;
- boundary=387ade367386a6356486f6ee7b635420fbf56ee5ca28a94e7e0254cdeefb;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Mon, 14 Jul 2025 12:01:22 +0200
-Message-Id: <DBBOW776RS0Z.1UZDHR9MGX26P@kernel.org>
-Subject: Re: [PATCH net-next v2 2/3] net: ethernet: ti: am65-cpsw: fixup PHY
- mode for fixed RGMII TX delay
-Cc: "Dwaipayan Ray" <dwaipayanray1@gmail.com>, "Lukas Bulwahn"
- <lukas.bulwahn@gmail.com>, "Joe Perches" <joe@perches.com>, "Jonathan
- Corbet" <corbet@lwn.net>, "Nishanth Menon" <nm@ti.com>, "Vignesh
- Raghavendra" <vigneshr@ti.com>, "Siddharth Vadapalli" <s-vadapalli@ti.com>,
- "Roger Quadros" <rogerq@kernel.org>, "Tero Kristo" <kristo@kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux@ew.tq-group.com>, "Maxime
- Chevallier" <maxime.chevallier@bootlin.com>, "Andrew Lunn" <andrew@lunn.ch>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Matthias Schiffer" <matthias.schiffer@ew.tq-group.com>, "Andrew Lunn"
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Andy Whitcroft" <apw@canonical.com>
-X-Mailer: aerc 0.16.0
-References: <cover.1750756583.git.matthias.schiffer@ew.tq-group.com>
- <9b3fb1fbf719bef30702192155c6413cd5de5dcf.1750756583.git.matthias.schiffer@ew.tq-group.com>
-In-Reply-To: <9b3fb1fbf719bef30702192155c6413cd5de5dcf.1750756583.git.matthias.schiffer@ew.tq-group.com>
+	s=k20201202; t=1752487759;
+	bh=LgBpN4ddFnQRjIEEAiu4b2l+jmE+KpxUfD5LylOozdk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sDuOLcQL0lHDsljvCpPbvRJN8HyKeEfnasiRHFu9StatpquuZRiARP5x/cI9avOUK
+	 Eb+crUHtbavB0w6YxZ5JnqYNQNSRiQLhOJIEUdVCt5o7kblP9C2BA3NdsEOuaONTRx
+	 4nsacwevEhcZ0XGpqW3rzRW/nDPO6VhWk4JYB79wlcKnhm8oXvF/RDtD+5q1YFlhA4
+	 JEzsTTPMRKdQPtvbwYtcpLkoSEy2GP4MIgWYmS8Jb/cum+MjjwfZxUTU9SRcrQjow2
+	 WW8VE/wxEW8Zc0/1oepjjdBJzhf3hn77dM8kBZ/OhiT0OoaUpCVypQBdc5tBQ5hNf2
+	 yYNttJnB66xZQ==
+Message-ID: <836c9f0b-2b73-4b36-8105-db1ae59b799c@kernel.org>
+Date: Mon, 14 Jul 2025 12:09:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-
---387ade367386a6356486f6ee7b635420fbf56ee5ca28a94e7e0254cdeefb
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 01/12] dt-bindings: ptp: add bindings for NETC
+ Timer
+To: Wei Fang <wei.fang@nxp.com>
+Cc: "F.S. Peng" <fushi.peng@nxp.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "richardcochran@gmail.com" <richardcochran@gmail.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, Clark Wang
+ <xiaoning.wang@nxp.com>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>
+References: <20250711065748.250159-1-wei.fang@nxp.com>
+ <20250711065748.250159-2-wei.fang@nxp.com>
+ <ce7e7889-f76b-461f-8c39-3317bcbdb0b3@kernel.org>
+ <PAXPR04MB8510C8823F5F229BC78EB4B38854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <61e6c90d-3811-41c2-853d-d93d9db38f21@kernel.org>
+ <PAXPR04MB85109EE6F29A1D80CF3F367A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <169e742f-778e-4d42-b301-c954ecec170a@kernel.org>
+ <PAXPR04MB85107A7E7EB7141BC8F2518A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <PAXPR04MB85107A7E7EB7141BC8F2518A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 14/07/2025 11:56, Wei Fang wrote:
+> 
+>>
+>> How does the other consumer - ethernet - reference this one here? Paste
+>> complete DTS of this and users, otherwise it is just ping-pong
+>> discussion where you put just a little effort to bounce back my question.
+> 
+> Below is the DTS node of enetc (ethernet device) and timer node.
+> 
+> enetc_port0: ethernet@0,0 {
+> 	compatible = "pci1131,e101";
+> 	reg = <0x000000 0 0 0 0>;
+> 	pinctrl-names = "default";
+> 	pinctrl-0 = <&pinctrl_enetc0>;
+> 	phy-handle = <&ethphy0>;
+> 	phy-mode = "rgmii-id";
+> 	status = "okay";
 
-On Tue Jun 24, 2025 at 12:53 PM CEST, Matthias Schiffer wrote:
-> All am65-cpsw controllers have a fixed TX delay, so the PHY interface
-> mode must be fixed up to account for this.
->
-> Modes that claim to a delay on the PCB can't actually work. Warn people
-> to update their Device Trees if one of the unsupported modes is specified=
-.
->
-> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+How do you use netc_timer in such case?
 
-For whatever reason, this patch is breaking network on our board
-(just transmission). We have rgmii-id in our devicetree which is now
-modified to be just rgmii-rxid. The board has a TI AM67A (J722S) with a
-Broadcom BCM54210E PHY. I'm not sure, if AM67A MAC doesn't add any
-delay or if it's too small. I'll need to ask around if there are any
-measurements but my colleague doing the measurements is on holiday
-at the moment.
+> };
+> 
+> netc_timer: ethernet@18,0 {
+> 	compatible = "pci1131,ee02";
+> 	reg = <0x00c000 0 0 0 0>;
+> 	clocks = <&netc_system333m>;
+> 	clock-names = "system";
+> };
+> 
+> Currently, the enetc driver uses the PCIe device number and function number
+> of the Timer to obtain the Timer device, so there is no related binding in DTS.
 
--michael
+So you just tightly coupled these devices. Looks poor design for me, but
+your choice. Anyway, then use that channel as information to pass the
+pin/timer/channel number. You do not get a new property for that.
 
---387ade367386a6356486f6ee7b635420fbf56ee5ca28a94e7e0254cdeefb
-Content-Type: application/pgp-signature; name="signature.asc"
+> In the future, we plan to add phandle to the enetc document to bind enetc
+> and Timer, because there will be multiple Timer instances on subsequent
+> platforms.
 
------BEGIN PGP SIGNATURE-----
+Bindings must be complete, not "in the future" but now. Start sending
+complete work, so we won't have to guess it.
 
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaHTVchIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/hHLwF9E9ztKCoOYS0RHC6gA9ZJQpIMkhGKEO9j
-1KseN/0Iehs3rgSim31YE3mtYR6pufKrAX9dE6aY41tiyR4+KV9wg5ozGle9rDLz
-8veF90sPBa1PQS56tKbBI4rDvyOKhE7FUtM=
-=BTle
------END PGP SIGNATURE-----
+> 
+> But what I want to say is that "nxp,pps-channel" is used to specify which
 
---387ade367386a6356486f6ee7b635420fbf56ee5ca28a94e7e0254cdeefb--
+There is no user in your DTS of nxp,pps-channel.
+
+Best regards,
+Krzysztof
 
