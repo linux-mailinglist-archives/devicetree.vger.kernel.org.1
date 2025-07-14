@@ -1,97 +1,135 @@
-Return-Path: <devicetree+bounces-196128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72EF2B0432A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:16:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6050CB04341
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:17:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12F7D188974F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 15:14:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51F6E1A6778E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 15:16:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 412A325C6EC;
-	Mon, 14 Jul 2025 15:12:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9196E25F973;
+	Mon, 14 Jul 2025 15:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tj/H0Noq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="idop6lnM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1158225CC7A;
-	Mon, 14 Jul 2025 15:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D521C23BF9B;
+	Mon, 14 Jul 2025 15:14:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752505942; cv=none; b=qXfzjNWPjZ4QSqzkYLqHKT1X/XqQiYGljKBOJWLb/2TmAe9ghYYUZ2+Z0GjsxfFv+lUgZbDGvZVIjRc6uRrBt5iDgayK7zrlhv9yBt3mNdTGt/HcMDauhq38UsaE0UUDhs5y5itx/Ff8VMd6TjlDhHc3l6FHV7mHM+0WyWltl3Y=
+	t=1752506084; cv=none; b=lVsvgKgfj1tZlMRwco0xeSvoiP/cisM9lu+Kd8Ua74E5z3bKq33gMQXDNb3vY0MFWoleFjehfnUXTF+KwlNRm+5QOCfnmYf8UZ/Tg7fKqGzGNgI99Zh6siNd+o04hbKmG0ad3YfDunJFhWtmnJsACXXWIUakjWE+9s5EHw27hs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752505942; c=relaxed/simple;
-	bh=mXB87Bpc3vfmGJ3xVQnf0jSRexpExNYLcwlFgBP5krk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dmOgPpM6vrI0dR6njEVgryM5Szy33jeOL8WVXEUZ1yOOnnUMisqymBs5OQSihgV7C+vDerS0JMdMVZIOFoGSAg9gyg4IDrUZedwNNQ3L00puNTk6u6dbNtQyDFtcHLScwXPsJ6+cp7xdWeFxFzN79M0sPzOBcI9G1ZXsqLlkF7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tj/H0Noq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1BA4C4CEED;
-	Mon, 14 Jul 2025 15:12:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752505941;
-	bh=mXB87Bpc3vfmGJ3xVQnf0jSRexpExNYLcwlFgBP5krk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tj/H0NoqvGLmDRq2iwlyOPEE0dpYcGJaPGpn6tdKz68CeIpoluy6/VJQqcLSPCLdg
-	 t2AmcHR216SD5vFfy+XvAI/hLiHuRhBK1HSgzafBx9vJ/1CTqobJbo7hgf6QDM/zDW
-	 MU+VL0tJ0IeuOIwxp+dEtaTgIg8wl21ALR+lMmJW8DfZib02JL8ar2NVqFbEVnbdSL
-	 /dmbMT4B6YbFOEugb47P2/ioekwZcBYS+OQ0EqtLFJTDYxlRvWEAUhUkJomL3R+P79
-	 dw4ZSAc8zeI4MWUSgxQbhmo89zPOtFjzts7nyn5Vx9CSEWuZHl+xLQWevxszvWGE6c
-	 NacDlA62rUTbg==
-Date: Mon, 14 Jul 2025 16:12:16 +0100
-From: Will Deacon <will@kernel.org>
-To: Nick Chan <towinchenmi@gmail.com>
-Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1752506084; c=relaxed/simple;
+	bh=Faq1HQYeYBBRhYPs/kei74Rmgh+zrtNBTqw2764xXe0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=W8hSo4Iv/DEoa3umyIshqXNQKG9iGj/8JUM6L53D6fniNgr8l4JtEQT93HQ2wwy6YxIT9EW8FxyJ1/c7n1jhC+HT3J30HS/vvKmA1Q24AtJBtbRYIGX7UzZX9XEcFpRcsSJuphwjL7Uo9CyJHXJgUluxNYOHQv7FeI3yfrjQ5D8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=idop6lnM; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ae0de0c03e9so778784866b.2;
+        Mon, 14 Jul 2025 08:14:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752506081; x=1753110881; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3oO7945/t9P7Yv5GgXToznrDjdBL9oYYRyLkZLH/Q9U=;
+        b=idop6lnMTou0f0UMiTUmZNOmbu0WO/HriywYVcCMHKkxYJUBbcUaocK1bfNR1THJDq
+         75eIxFBjznCSIYbZWNGj3ATCf56kEecwu+dknlnWB9MuPZlmRP+tGRXYHU+0jaBsP2gz
+         L8vS45ALw8Tbs6diBZksGu00IB8FFcdEFRGaORO/4YBQOzxjBiCpkVNvp3KsFemaA33C
+         uKz4kRvf1VPu2cv7rDYdJALKDFquxhbt/Kfj+TFFZxE74koeVcTkmz3fBLfdjywLLGaZ
+         l6CqDGAuNsFJeSWt2TGSw1MD3MbyZQcwMYH9AM4a6PwDmR1pCOuyz5I2FOCEESFdUAPv
+         Y7WA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752506081; x=1753110881;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3oO7945/t9P7Yv5GgXToznrDjdBL9oYYRyLkZLH/Q9U=;
+        b=Z2j3wibiX3B+eSk1dnF4xesn2QttU4aIJcmdPF3uOiVJKqHyG4vv3TBWcFaL5ulze3
+         znTQoRgUZ+TWQG98Q/46o1udsPI2oWG3LIPKrEXvx4kqTrD6nYWNbvDJZhAYvk778P8X
+         Ydc4kVltr8fTuJcDBbUg6oNeEdPe086uetNeUbtkVZlpvnhDxTjC0iH9In8fpEai/1yV
+         jr+uaPdywEypt6nWEZOU5HFASkU/lOe+dmJu+d0vGf2PxvDFXYB5DUw534FkI8Czpzyv
+         cALbeWFTBmS3zINhVMuW9BwRM+eH4e89ZDkX34pOj3446OmNpkFWIC7E3vibht6WF3SW
+         dqdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWGTTY3vGEA6Sn9pfUdvwBAM2rlT5mgXpwb+wUESjrak5txTM66mFcyv+FoHbetHgCbh68MtYYYSyp4@vger.kernel.org, AJvYcCXDWpY04ioWWZyJ7FBaUHOv78TatvZx6enNYhuezK0Zs8e43jWtlz5UfSdmSvfYGcztFLniNvoFGnJYeDgk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3q0rpjC6vhgpl0xCvCznpxXiyllnpv4bm1GOJLtMx5bPhxhcC
+	mDxbD9gijldN5fQV1+eJt88Lyg2tgo1XF7y0gsnAJNYOoz+n5CQvgnKA
+X-Gm-Gg: ASbGnctYOV8LNqUme/2wwd5/8FXVjlkNtoXOFTSWaMhs9Qt86CXjK28BoNRgxnpKRlH
+	+NMSG5feDI0eailALT1UK6QXl1epPtBv9ayDFfetfty23WLSa3jCJRM9y0WBm5sAIgkbaW3MFg9
+	MglBPhM0UUmCXNvDMJXQhHZ0/N/3rAXL0G5IZK2d7AZrZ9AnPvdMzADzfGvtTg4pJHByqOzQvMe
+	z8H2gnNdifG59aj+WbqSJ5V0kMJz2A2VXZdRKx9dSLRGfzf7Q5qglaURrhSpQo/xVTFF5eKQ/ox
+	MjQdWfSb3/9zkuJcr7V79+evopr65gFPUICjKt5zby20hlda8Fg7cOiZLlcsljVPCT4Wt2eAw3x
+	zhM3mECmwgQ/AolxV+wDOFObIqySnBqFj9j+6hDcB+oTBUeSO8l8klaqu
+X-Google-Smtp-Source: AGHT+IEMNMeFdovEOmEthHb3M9tQaXoDWJrcRpQpeLn2iZQAxWGug2pLJleD3OWWgryplxNKxQSfuQ==
+X-Received: by 2002:a17:907:60d1:b0:ae3:6cc8:e431 with SMTP id a640c23a62f3a-ae6fc162659mr1523065966b.57.1752506080769;
+        Mon, 14 Jul 2025 08:14:40 -0700 (PDT)
+Received: from playground.localdomain ([92.120.5.7])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e7eec2b1sm847701266b.68.2025.07.14.08.14.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Jul 2025 08:14:40 -0700 (PDT)
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Sven Peter <sven@kernel.org>,
-	Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
-	asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RESEND v7 00/21] drivers/perf: apple_m1: Add Apple
- A7-A11, T2 SoC support
-Message-ID: <aHUeUMmn_19EayL1@willie-the-truck>
-References: <20250616-apple-cpmu-v7-0-df2778a44d5c@gmail.com>
+	Frank Li <Frank.Li@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/2] arm64: dts: support the i.MX8ULP EVK9 board
+Date: Mon, 14 Jul 2025 11:13:44 -0400
+Message-Id: <20250714151346.7575-1-laurentiumihalcea111@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250616-apple-cpmu-v7-0-df2778a44d5c@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jun 16, 2025 at 09:31:49AM +0800, Nick Chan wrote:
-> This series adds support for the CPU PMU in the older Apple A7-A11, T2
-> SoCs. These PMUs may have a different event layout, less counters, or
-> deliver their interrupts via IRQ instead of a FIQ. Since some of those
-> older SoCs support 32-bit EL0, counting for 32-bit EL0 also need to
-> be enabled by the driver where applicable.
-> 
-> Patch 1 adds the DT bindings.
-> Patch 2-7 prepares the driver to allow adding support for those
-> older SoCs.
+From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-Modulo my nits, the patches look alright to this point...
+Add support for the i.MX8ULP EVK9 board by introducing a new DTS and
+a new compatible string.
 
-> Patch 8-12 adds support for the older SoCs.
+---
+Changes in v4:
+* fix ordering in the Makefile
+* highlighted a few differences between the EVK and EVK9 board in the
+commit message as requested by Shawn
+* link to v3: https://lore.kernel.org/lkml/20250701002239.972090-1-laurentiumihalcea111@gmail.com/
 
-... but I'm not sure if anybody actually cares about these older SoCs
-and, even if they do, what the state of the rest of Linux is on those
-parts. I recall horror stories about the OS being quietly migrated
-between CPUs with incompatible features, at which point I think we have
-to question whether we actually care about supporting this hardware.
+Changes in v3:
+* change order of the board DT compatible inside the binding.
+"fsl,imx8ulp-9x9-evk" now comes before "fsl,imx8ulp-evk".
+* link to v2: https://lore.kernel.org/lkml/20250627142645.134256-1-laurentiumihalcea111@gmail.com/
 
-On the other hand, if it all works swimmingly and it's just the PMU
-driver that needs updating, then I could get on board with it.
+Changes in v2:
+* introduced a new compatible string for the board.
+* aligned the pin configurations to the same column.
+* link to v1: https://lore.kernel.org/lkml/20250623150146.1398044-1-laurentiumihalcea111@gmail.com/
+---
 
-Will
+Laurentiu Mihalcea (2):
+  dt-bindings: arm: fsl: add i.MX8ULP EVK9 board
+  arm64: dts: imx: add dts for the imx8ulp evk9 board
+
+ .../devicetree/bindings/arm/fsl.yaml          |  1 +
+ arch/arm64/boot/dts/freescale/Makefile        |  1 +
+ .../boot/dts/freescale/imx8ulp-9x9-evk.dts    | 69 +++++++++++++++++++
+ 3 files changed, 71 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8ulp-9x9-evk.dts
+
+-- 
+2.34.1
+
 
