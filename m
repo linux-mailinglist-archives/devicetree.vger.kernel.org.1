@@ -1,55 +1,88 @@
-Return-Path: <devicetree+bounces-196101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54ED7B04223
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:50:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9DF8B0422E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:51:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E46F1A631C3
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:50:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDA2E3A43C7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:50:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A213624DCF6;
-	Mon, 14 Jul 2025 14:50:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AF632580F1;
+	Mon, 14 Jul 2025 14:51:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NLFbU2y+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Tnpj5prc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08CB819047A;
-	Mon, 14 Jul 2025 14:50:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39714256C60
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 14:51:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752504617; cv=none; b=Jmnpxqrg1Ib8XZI+ivZvay0SM0r0lyNqF52Kx5Otl2zZQCHEJMgFEA+s8Fytef9CXZuQLz37SbzAt/O/Vfp9zUqilagopIoDLRCUcl4fxd+A0pxtvIV5HuUaQ2nvbF2TlCWKxa2AAJSprNCnkSu0wf1R9KdVIl4FeFr9xLmbZ7I=
+	t=1752504680; cv=none; b=L0CfgS7jlm1kqJJ6TECLPoSmC7uptBwQPMWBrv8pp3Fqv/aIM9NSDUcZnj0ZV+JPa+vlcd+NqDzhH298kWVbDNWvQoO1nD+XCb/n2X59x4/xIm41mj055PU6Gr9eRyc6WOXLa3ooPorFWFGxW9pCSbPdd0dTGRTqHldp6EBLNiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752504617; c=relaxed/simple;
-	bh=4e1zFyaps4hCFIzS4+Rcitk2oT870HoKdMC/yPHqAVU=;
+	s=arc-20240116; t=1752504680; c=relaxed/simple;
+	bh=34c3k2JS0Ft1btNphYjTKqe1IWB+QrtfS49zngYMtao=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OWQHrzcJzKixoGvA1ndhhwzuA+e44B68tYq5wp5tSbhjK2OEVNipuFpjRW+QpHTn2e7O4Gwc8hRS7wgwSV44Ya6v/lXs4VtmTgMF3N6VCGMZCXmAErDGfF6plxNYrI0bpjqgL/KgT7S1g97MeC9HfekMUF2CxUaJeGCsiynaw8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NLFbU2y+; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1752504613;
-	bh=4e1zFyaps4hCFIzS4+Rcitk2oT870HoKdMC/yPHqAVU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NLFbU2y+Ghe4oQNX/ihc7STFc76NGB1IiDG/zAHc2vzHKfl7HgNwe2Jshs6BmUl+8
-	 C18ezrnm1fOwuQR9ESTnPgrxiQ6tIu+eMY2hVSxMz/noQIYWdGnqHjgpL2dcU7829n
-	 9jz6jmML+guI+4F0+cELQx+ltFSXOoxNBpHFZpAL6OJP74qC+pnJTmbYhbJn8Yuw37
-	 8/Hc5JeUq+UvR+1KhodPx6VHyd7UBYxOY4W1EGZY/iO58MIl9st9/QUDwpfe41C940
-	 wGLb+nFRvId/cve67hpUc8uLwrLos8cLT0pt1bBPAE5LJhsNndEBfC8h50+bTEd6zg
-	 kY7Xh7siHv66g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5C45817E0489;
-	Mon, 14 Jul 2025 16:50:12 +0200 (CEST)
-Message-ID: <7ecd1ae9-3940-4070-970b-c53ccaf9d850@collabora.com>
-Date: Mon, 14 Jul 2025 16:50:11 +0200
+	 In-Reply-To:Content-Type; b=VgkOCNNjd9WdARFxzA8nCSIDqjEmIUhMSgF5f+fQCegUEWz2Z4165EXwYt3pmHkR8tejnYWUDJAn9CmEMls3o7cOp0tgmG0m3xa6X2c2nlKFzVLRVyC21iGIcbJtHV16AEryZ0ivlXfzdszc965hAyYFskzso6ry+ZHhTcvF+ho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Tnpj5prc; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56E9rYvY004879
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 14:51:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	j9W4CuSLttgvJ6FyeozWzpAz4Cuh64rTL2lKSOstBnM=; b=Tnpj5prcJdQb1sjj
+	DaqdXinNI+fa/pI24OGOYmul1c0U91R2/kJjbtdbblS4sUrouilbyd/2dEIhzF6u
+	SPH784E5X9M5Eu672ZZfeDzjvGq3fOEcBN5S/+OOHhDFUB7yv3SgXEbFp834ndz1
+	9P1zz4hT0jNXzreyesyzdBrVga4OjXHlGW52PZjs7iCuBHSMSI4JgYvRIsnrR5zE
+	pEiHj8xERc/3fFLgNc2Qib1eGiwxCktRURQgYf6fWeArSxwd2Uz0Bmjl60ZYgEhe
+	SyLN9CGqSMqRgYrLzGbLDtMPcE+I1szYfwMQvzoGJpHoBPBTx5K3NjGOuWw8RO9T
+	6uP8pQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufxaw0wu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 14:51:15 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7e1d3bc3bd9so14352185a.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 07:51:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752504675; x=1753109475;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j9W4CuSLttgvJ6FyeozWzpAz4Cuh64rTL2lKSOstBnM=;
+        b=VsyYfHth+Peg4yRLnmiFoG35S3EEFM5m7/GYEjS2pQn1WtV/AMC+Gg/dOlwu5931P/
+         x6kp2wl5uGJl0syGq/O6VGGIoU9++7ohgIBndbQwslK1SKRVtghs4QzR6vDExCWHJJCo
+         7/WDYbgOs54l6Rcy77xS0+2v6k/l9oPwpqhuvjugXrzL3GB4KVVKY4OWyp6WzeEZmG46
+         J3Ywx3NYPAccQ2IkN3IrQnr3Gri+rXuDgE0wddVaJ2iC69kDPqQusf1qyx/S3UB+COKH
+         GmKd9ewqkLzjNnJj3is4J5b3v/PIpzia3ZzfTmdBwsdFfs0r2Avuegdht2qqlOviWbbp
+         9j0g==
+X-Forwarded-Encrypted: i=1; AJvYcCUF2K//jTM6CSuoAh/obJkRsqo8eU39irH7As6uVGO8MWm0Cqrt+rjZOEcy+6Cb+E6ysCj5xeCcPRCX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcSUxAeXYN6mhbWDIo8TNHm1NCOspNzwUJmRCd1SbD+VGaFmFv
+	PtaPIFvEvi5JyahMhv77ogCwVimL0o2CN0AdWijdQkrqD3Fcbg6T4UVR42E9O3Est99N5OLLrZO
+	9y7gDu7TgwSWjbAXZ+lkD+6+22flC8bKniFnOLbGTAFSLBGuVQC5R85OmcOIPZiAE
+X-Gm-Gg: ASbGnctjvtkl1H1jWtIPeUTER9Z/1N7NpOUm6qae5M84mO5WZnlPi3FwMp9KxEwntu+
+	rOi3hu+v7uD3Tp9tQtuQi+qRGaXoRV0fhapaC/DuanLQQeECBOxGRtnUfqivHfFk/rwC82SeBV8
+	zY20b+XihJSu5x/LNHJAD4gro9igfJf4azYVmNnhrDOU3ZHAsfxU+khBG5+jqYwnxPgW+cLGT8D
+	exDdMMuAbsgZ0GM/MAzLXLLNz4GUha9heoW6SoUivOXei3Z88YHQIjzKawCFRzKufIcZIYuTrtZ
+	wt9JyS3+tqJvSBoK9Z05KDUN+EpJMyqF67zIjpOBKmJ8b8jM2ih2OObln408bPd/aUDx/Lyz4P7
+	ANsELxYZh3aSzPc6FEdaI
+X-Received: by 2002:a05:620a:44d0:b0:7e2:ee89:205a with SMTP id af79cd13be357-7e2ee893ba1mr225930285a.5.1752504674800;
+        Mon, 14 Jul 2025 07:51:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE74z/KAqLPegwZP0R34v4pwdMd2EKA/Hi8iI61zdmqy3z3diiIL2Ji8kmWMZfmjJZIoWEzUg==
+X-Received: by 2002:a05:620a:44d0:b0:7e2:ee89:205a with SMTP id af79cd13be357-7e2ee893ba1mr225927485a.5.1752504674098;
+        Mon, 14 Jul 2025 07:51:14 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-611c9542fe5sm6049190a12.35.2025.07.14.07.51.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jul 2025 07:51:12 -0700 (PDT)
+Message-ID: <39acdb37-e6f0-45e3-b54e-bd8a5905b2ec@oss.qualcomm.com>
+Date: Mon, 14 Jul 2025 16:51:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,525 +90,123 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] arm64: dts: mt8189: Add mt8189 dts evaluation
- board and Mafefile
-To: Sirius Wang <sirius.wang@mediatek.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Sean Wang <sean.wang@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, wenst@chromium.org,
- xavier.chang@mediatek.com
-References: <20250714140608.2065966-1-sirius.wang@mediatek.com>
- <20250714140608.2065966-4-sirius.wang@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v5 3/5] dt-bindings: watchdog: qcom-wdt: Document sram
+ property
+To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck
+ <linux@roeck-us.net>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20250610-wdt_reset_reason-v5-0-2d2835160ab5@oss.qualcomm.com>
+ <20250610-wdt_reset_reason-v5-3-2d2835160ab5@oss.qualcomm.com>
+ <20250610180345.GA2382213-robh@kernel.org>
+ <a8b33510-c010-452f-9177-ce743b732d21@oss.qualcomm.com>
+ <073480a2-0b6f-4dc0-b7eb-eec500b3106e@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20250714140608.2065966-4-sirius.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <073480a2-0b6f-4dc0-b7eb-eec500b3106e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: SD21gV01_WfmPD4Z8_H1d06Rcx7MRxl6
+X-Proofpoint-ORIG-GUID: SD21gV01_WfmPD4Z8_H1d06Rcx7MRxl6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE0MDA4NyBTYWx0ZWRfX9I1VBgkgWYM/
+ Cuy7sAelZYJNGNRXPtX83v5E26emtetCwg7K8Mynep+W3qIL7IauCc6qm/ncEvB04YvSo8t02TP
+ mU9d7aJcsXxXcR8pXJk4sTaRbCkVWAmjOOzQJqc5zNu9j2oarVj5LML387xsSs34TwLsGRH1RFn
+ K8aj+svXqxojIP6vGdfkpM76wCaLs7Dfha8dSTIUcHshloeHUF3Z2zzZXBJAcNonvtKiC8mdZsT
+ 6PPFMfB1ZS6UWxCMD6zNe5ItAVLu1CeXvzN7mVxcjpgXFhLr09uioD6yEmyPx6uGBm8nLBcsnOK
+ +72U+/UwVhaHYB9hRjzwVXvdYo65oz6H4JrsfMdyLCFwou2lrysOVgUY3eY0zN2F5sY6zvK1lFs
+ Y3DXs6CM/kQBsBANLdFEJ6DoWZGdxq6BRUh0Hh11x9KeIqtfDfhZ5tWk9MMV0pGHMIWa+iPx
+X-Authority-Analysis: v=2.4 cv=Xc2JzJ55 c=1 sm=1 tr=0 ts=68751964 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=9B6XoSWOLoSC-pKoQf8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-14_01,2025-07-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 mlxscore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
+ phishscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
+ clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507140087
 
-Il 14/07/25 16:06, Sirius Wang ha scritto:
-> Add mt8189 dts evaluation board and Mafefile
+On 6/19/25 7:48 AM, Kathiravan Thirumoorthy wrote:
 > 
-> Signed-off-by: Sirius Wang <sirius.wang@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/Makefile       |   1 +
->   arch/arm64/boot/dts/mediatek/mt8189-evb.dts |  20 +
->   arch/arm64/boot/dts/mediatek/mt8189.dtsi    | 419 ++++++++++++++++++++
->   3 files changed, 440 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8189-evb.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8189.dtsi
+> On 6/16/2025 10:48 AM, Kathiravan Thirumoorthy wrote:
+>> Thanks Rob for the review comments!
+>>
+>> On 6/10/2025 11:33 PM, Rob Herring wrote:
+>>> On Tue, Jun 10, 2025 at 07:15:19PM +0530, Kathiravan Thirumoorthy wrote:
+>>>> Document the "sram" property for the watchdog device on Qualcomm
+>>>> IPQ platforms. Use this property to extract the restart reason from
+>>>> IMEM, which is updated by XBL. Populate the watchdog's bootstatus sysFS
+>>>> entry with this information, when the system reboots due to a watchdog
+>>>> timeout.
+>>>>
+>>>> Describe this property for the IPQ5424 watchdog device and extend support
+>>>> to other targets subsequently.
+>>>>
+>>>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+>>>> ---
+>>>> Changes in v5:
+>>>>     - Rename the property 'qcom,imem' to 'sram'
+>>>> Changes in v4:
+>>>>     - New patch
+>>>> ---
+>>>>   .../devicetree/bindings/watchdog/qcom-wdt.yaml       | 20 ++++++++++++++++++++
+>>>>   1 file changed, 20 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+>>>> index 49e2b807db0bc9d3edfc93ec41ad0df0b74ed032..74a09c391fd8e2befeac07f254ea16d0ca362248 100644
+>>>> --- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+>>>> +++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+>>>> @@ -81,6 +81,16 @@ properties:
+>>>>       minItems: 1
+>>>>       maxItems: 5
+>>>>   +  sram:
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>> +    description:
+>>>> +      phandle to the IMEM syscon node that exposes the system restart reason
+>>>> +    items:
+>>>> +      - items:
+>>>> +          - description: phandle of IMEM syscon
+>>>> +          - description: offset of restart reason region
+>>>> +          - description: value indicate that the watchdog timeout has occurred
+>>> A 'sram' property points to an SRAM region (see mmio-sram binding), not
+>>> a syscon and offset.
+>>>
+>>> The 'value' should be a separate property or implied by the compatible.
+>>
+>> Sorry for the delay. It was a long weekend here!
+>>
+>> Let me start with the requirement (Please feel free to skip it). When the system goes for reboot, Xtensible Boot loader (XBL) find the cause and update the particular offset (in this case it is 0x7b0) in the IMEM region with the known values. On the next boot, if the system is rebooted due to  watchdog timeout, watchdog's bootstatus is updated accordingly, which this series tries to address it.
+>>
+>> Based on the previous review comments / discussions [1], it is decided to go with the above approach, i.e., name the property to 'sram' and let it points to the syscon region (IMEM) along with the offset to read and what value to expect. So that we don't have to touch the driver if either of the offset or the value changes across the platforms.
+>>
+>> Currently, IMEM region (which is a on-chip SRAM) in the most of the QCOM platforms are modeled as 'syscon' [2]. So I have followed the same approach here as well. Should I describe the IMEM region as "sram" (mmio-sram)  instead of the "syscon" (existing approach) and retrieve the offset and desired value from the compatible? or stick with existing approach and name the property to something else? Could you guide me here to proceed further?
+>>
+>> [1] https://lore.kernel.org/linux-arm-msm/20250519-wdt_reset_reason-v4-3-d59d21275c75@oss.qualcomm.com/#t
+>>
+>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/sram/qcom,imem.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index a4df4c21399e..52c5b799308e 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -88,6 +88,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku4.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku5.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku6.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku7.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8189-evb.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r1.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-spherion-r0.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8189-evb.dts b/arch/arm64/boot/dts/mediatek/mt8189-evb.dts
-> new file mode 100644
-> index 000000000000..e5d9ce1b8e61
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8189-evb.dts
-> @@ -0,0 +1,20 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2025 MediaTek Inc.
-> + * Author: Sirius Wang <sirius.wang@mediatek.com>
-> + */
-> +/dts-v1/;
-> +#include "mt8189.dtsi"
-> +
-> +/ {
-> +	model = "MediaTek MT8189 evaluation board";
-> +	compatible = "mediatek,mt8189-evb", "mediatek,mt8189";
-> +
-> +	chosen: chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8189.dtsi b/arch/arm64/boot/dts/mediatek/mt8189.dtsi
-> new file mode 100644
-> index 000000000000..a484a40a036c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8189.dtsi
-> @@ -0,0 +1,419 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (c) 2025 MediaTek Inc.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	compatible = "mediatek,mt8189";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	clk32k: oscillator-clk32k {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32000>;
-> +		clock-output-names = "clk32k";
-> +	};
-> +
-> +	clk13m: oscillator-clk13m {
-> +		compatible = "fixed-factor-clock";
-> +		#clock-cells = <0>;
-> +		clocks = <&clk26m>;
-> +		clock-mult = <1>;
-> +		clock-div = <2>;
-> +		clock-output-names = "clk13m";
-> +	};
-> +
-> +	clk26m: oscillator-clk26m {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <26000000>;
-> +		clock-output-names = "clk26m";
-> +	};
-> +
-> +	clk104m: oscillator-clk104m {
-> +		compatible = "fixed-factor-clock";
-> +		#clock-cells = <0>;
-> +		clocks = <&clk26m>;
-> +		clock-mult = <4>;
-> +		clock-div = <1>;
-> +		clock-output-names = "clk104m";
-> +	};
-> +
-> +	ulposc: oscillator-ulposc {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <520000000>;
-> +		clock-output-names = "ulposc";
-> +	};
-> +
-> +	ulposc3: oscillator-ulposc3 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <26000000>;
-> +		clock-output-names = "ulposc3";
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x000>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			capacity-dmips-mhz = <742>;
-> +			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-> +			i-cache-size = <32768>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <128>;
-> +			d-cache-size = <32768>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <128>;
-> +			next-level-cache = <&l2_0>;
-> +			performance-domains = <&performance 0>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu1: cpu@100 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x100>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			capacity-dmips-mhz = <742>;
-> +			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-> +			i-cache-size = <32768>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <128>;
-> +			d-cache-size = <32768>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <128>;
-> +			next-level-cache = <&l2_0>;
-> +			performance-domains = <&performance 0>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu2: cpu@200 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x200>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			capacity-dmips-mhz = <742>;
-> +			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-> +			i-cache-size = <32768>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <128>;
-> +			d-cache-size = <32768>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <128>;
-> +			next-level-cache = <&l2_0>;
-> +			performance-domains = <&performance 0>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu3: cpu@300 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x300>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			capacity-dmips-mhz = <742>;
-> +			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-> +			i-cache-size = <32768>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <128>;
-> +			d-cache-size = <32768>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <128>;
-> +			next-level-cache = <&l2_0>;
-> +			performance-domains = <&performance 0>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu4: cpu@400 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x400>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			capacity-dmips-mhz = <742>;
-> +			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-> +			i-cache-size = <32768>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <128>;
-> +			d-cache-size = <32768>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <128>;
-> +			next-level-cache = <&l2_0>;
-> +			performance-domains = <&performance 0>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu5: cpu@500 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x500>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			capacity-dmips-mhz = <742>;
-> +			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-> +			i-cache-size = <32768>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <128>;
-> +			d-cache-size = <32768>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <128>;
-> +			next-level-cache = <&l2_0>;
-> +			performance-domains = <&performance 0>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu6: cpu@600 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a78";
-> +			reg = <0x600>;
-> +			enable-method = "psci";
-> +			clock-frequency = <3000000000>;
-> +			capacity-dmips-mhz = <958>;
-> +			cpu-idle-states = <&cpu_off_b>, <&cpu_s2idle>;
-> +			i-cache-size = <65536>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <256>;
-> +			d-cache-size = <65536>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <256>;
-> +			next-level-cache = <&l2_1>;
-> +			performance-domains = <&performance 1>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu7: cpu@700 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a78";
-> +			reg = <0x700>;
-> +			enable-method = "psci";
-> +			clock-frequency = <3000000000>;
-> +			capacity-dmips-mhz = <958>;
-> +			cpu-idle-states = <&cpu_off_b>, <&cpu_s2idle>;
-> +			i-cache-size = <65536>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <256>;
-> +			d-cache-size = <65536>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <256>;
-> +			next-level-cache = <&l2_1>;
-> +			performance-domains = <&performance 1>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +				core1 {
-> +					cpu = <&cpu1>;
-> +				};
-> +				core2 {
-> +					cpu = <&cpu2>;
-> +				};
-> +				core3 {
-> +					cpu = <&cpu3>;
-> +				};
-> +				core4 {
-> +					cpu = <&cpu4>;
-> +				};
-> +				core5 {
-> +					cpu = <&cpu5>;
-> +				};
-> +				core6 {
-> +					cpu = <&cpu6>;
-> +				};
-> +				core7 {
-> +					cpu = <&cpu7>;
-> +				};
-> +			};
-> +		};
-> +
-> +		idle-states {
-> +			entry-method = "psci";
-> +
-> +			cpu_off_l: cpu-off-l {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x00010000>;
-> +				local-timer-stop;
-> +				entry-latency-us = <25>;
-> +				exit-latency-us = <57>;
-> +				min-residency-us = <5700>;
-> +			};
-> +
-> +			cpu_off_b: cpu-off-b {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x00010000>;
-> +				local-timer-stop;
-> +				entry-latency-us = <35>;
-> +				exit-latency-us = <82>;
-> +				min-residency-us = <1890>;
-> +			};
-> +
-> +			cpu_cluster_off_l: cpu-cluster-off-l {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x01010001>;
-> +				local-timer-stop;
-> +				entry-latency-us = <57>;
-> +				exit-latency-us = <134>;
-> +				min-residency-us = <5700>;
-> +			};
-> +
-> +			cpu_cluster_off_b: cpu-cluster-off-b {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x01010001>;
-> +				local-timer-stop;
-> +				entry-latency-us = <50>;
-> +				exit-latency-us = <144>;
-> +				min-residency-us = <2460>;
-> +			};
-> +
-> +			cpu_mcusys_off_l: cpu-mcusys-off-l {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x02010007>;
-> +				local-timer-stop;
-> +				entry-latency-us = <863>;
-> +				exit-latency-us = <1237>;
-> +				min-residency-us = <5700>;
-> +			};
-> +
-> +			cpu_mcusys_off_b: cpu-mcusys-off-b {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x02010007>;
-> +				local-timer-stop;
-> +				entry-latency-us = <648>;
-> +				exit-latency-us = <1172>;
-> +				min-residency-us = <4570>;
-> +			};
-> +
-> +			cpu_system_vcore: cpu-system-vcore {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x020100ff>;
-> +				local-timer-stop;
-> +				entry-latency-us = <2400>;
-> +				exit-latency-us = <4800>;
-> +				min-residency-us = <35200>;
-> +			};
-> +
-> +			cpu_s2idle: cpu-s2idle {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x020180ff>;
-> +				local-timer-stop;
-> +				entry-latency-us = <10000>;
-> +				exit-latency-us = <10000>;
-> +				min-residency-us = <4294967295>;
-> +			};
-> +		};
-> +
-> +		l2_0: l2-cache0 {
-> +			compatible = "cache";
-> +			cache-level = <2>;
-> +			cache-size = <131072>;
-> +			cache-line-size = <64>;
-> +			cache-sets = <512>;
-> +			next-level-cache = <&l3_0>;
-> +			cache-unified;
-> +		};
-> +
-> +		l2_1: l2-cache1 {
-> +			compatible = "cache";
-> +			cache-level = <2>;
-> +			cache-size = <262144>;
-> +			cache-line-size = <64>;
-> +			cache-sets = <512>;
-> +			next-level-cache = <&l3_0>;
-> +			cache-unified;
-> +		};
-> +
-> +		l3_0: l3-cache {
-> +			compatible = "cache";
-> +			cache-level = <3>;
-> +			cache-size = <1048576>;
-> +			cache-line-size = <64>;
-> +			cache-sets = <2048>;
-> +			cache-unified;
-> +		};
-> +	};
-> +
-> +	memory: memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0 0x40000000 0 0xc0000000>;
+> Konrad,
+> 
+> The bootloader team confirmed that the IMEM offset and restart reason value are fixed for the SoC's lifetime. Based on Rob’s suggestion, let’s pull these values from the device data using the compatible string. Let me know your thoughts.
+> 
+> Kathiravan T.
 
-The memory node is anyway filled in by the bootloader, so please just
+So I'm not sure whether I proposed this before, but this is how I solved a
+parallel problem for IPA, also consuming a slice of IMEM:
 
-		/* The memory size is filled in by the bootloader */
-		reg = <0 0x40000000 0 0>;
+https://lore.kernel.org/all/20250527-topic-ipa_imem-v2-0-6d1aad91b841@oss.qualcomm.com/
 
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	timer: timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupt-parent = <&gic>;
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>;
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +		dma-ranges = <0x0 0x0 0x0 0x0 0x10 0x0>;
-> +
-> +		performance: performance-controller@11bc10 {
-> +			compatible = "mediatek,cpufreq-hw";
-> +			reg = <0 0x0011bc10 0 0x120>, <0 0x0011bd30 0 0x120>;
-> +			#performance-domain-cells = <1>;
-> +		};
-> +
-> +		gic: interrupt-controller@c000000 {
-> +			compatible = "arm,gic-v3";
-> +			#interrupt-cells = <4>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			interrupt-parent = <&gic>;
-> +			interrupt-controller;
-> +			reg = <0 0xc000000 0 0x40000>, /* distributor */
-> +			      <0 0xc040000 0 0x200000>; /* redistributor */
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
-> +
-> +			ppi-partitions {
-> +				ppi_cluster0: interrupt-partition-0 {
-> +					affinity = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
-> +				};
-> +
-> +				ppi_cluster1: interrupt-partition-1 {
-> +					affinity = <&cpu6 &cpu7>;
-> +				};
-> +			};
-> +		};
-> +
-> +		uart0: serial@11001000 {
-> +			compatible = "mediatek,mt8189-uart", "mediatek,mt6577-uart";
-> +			reg = <0 0x11001000 0 0x1000>;
-> +			interrupts = <GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&clk26m>, <&clk26m>;
-
-Instead of faking that clk26m, please just add the clock controller and use the
-right clocks for this UART.
-
-All of that is in its early stages and it doesn't make a lot of sense to start this
-devicetree with just that - especially because, well, your target is to upstream
-way more than that, right?
-
-So just make it right - add the topckgen and infracfg_ao clocks and then just add
-in all of the UART controllers with their CLK_INFRA_AO_UART(N) clock for an initial
-devicetree.
-
-Count that if you add the topckgen and infra_ao clocks, you'd be able to even add
-the i2c, spi, mmc and others - but I will accept an initial devicetree with just
-all of the UART controllers and without the extra busses for a start, there's no
-problem with that. You can add those later if you wish.
-
-Cheers,
-Angelo
-
-> +			clock-names = "baud", "bus";
-> +			status = "disabled";
-> +		};
-> +	};
-> +};
-
+Konrad 
 
