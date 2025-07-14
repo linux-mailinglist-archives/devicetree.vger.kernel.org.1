@@ -1,297 +1,156 @@
-Return-Path: <devicetree+bounces-196091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68255B041CB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:34:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 636D5B041DE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:37:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E08F188F82C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:35:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0B3C1A629CA
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CCE02571C2;
-	Mon, 14 Jul 2025 14:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A9BE25A645;
+	Mon, 14 Jul 2025 14:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="n6WEjRAo"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wWKHbIXR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FEC23F26A;
-	Mon, 14 Jul 2025 14:34:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F6B25A323;
+	Mon, 14 Jul 2025 14:36:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752503682; cv=none; b=U0D+dTbMbh3wbsU67IWamS6q8eW5D6xvjwtt+Hm7PMiw7n6GsYxGxco+dJGDCVkT5x8WJsnkge0awvWpdyjGvFHyoHkBTfTESoNkm5srZnoHkYfdIAcq7RQ8PQYtT07gCmJSt0QtEMk/8dNuu8oHgLNRLvo9Ix3/0y5nPIXIy9A=
+	t=1752503812; cv=none; b=isAMHm+BQDt7ClV97V6KMwXQMAKRybwYKIHX4MqO2wkU4QCXH1mTjZ0dBM92WsQJ31RULGNQi/WYOFYNofMEC7oFz7R1af8aWqMb476HeggKtHJbWdA+5B7+WeRO5csJ0BjpHhTf+0HZQKGkKRe32tvbbSVjKbbuK/lXqrK4+fE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752503682; c=relaxed/simple;
-	bh=C64EfHnHMIz677ZQtmfMRi9lhk3psI5/NikDBBeYj6M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m8VxPXrcjU1/VMQY3coCKmx7+NI/rJ4xTktcdO3ulNqU0scf6o4RZi78V3bwAkStsnqA0s4vuORrQ0AAzAx0/2evQ8wrqfOcOQl6sd1bDQRLZyNBJ5qWTNBmRZw4VxXqMMTFFpJ5qY27bcsc7D5y/Y+HXywVq84r/9IJlEtVxhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=n6WEjRAo; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1752503677;
-	bh=C64EfHnHMIz677ZQtmfMRi9lhk3psI5/NikDBBeYj6M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n6WEjRAoEnnDPHCxUVvgPzx8NXlEGXt6yao4e/J+01gPReIyc9rJzJNtD/0BKny1F
-	 g5JZjL2yrCiQTGbFb1JLya5qvGW/f2o7fEgvJkvFRGzDSHElhkiMHFfS7x27ZLrOXT
-	 Zomdi/9I2wLMGq7TcWwGxqikXapKeBltunIu93OFdWsN1fzBOtA+FWYg/I2pYtIgBG
-	 Cn6h5SOzYwyKMwF24XNCnKdt395tYkPQ0xIiTCsauMzCvFkzX3AujuOpOLzusP3qVY
-	 C5JdHLUU4VouD93vtVNkygpP+rlWBszkqbTA+mdkuili2MSibDCFvmW8b5kvBnsIkj
-	 OA16Yt9ZvXILw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7F2C817E05F0;
-	Mon, 14 Jul 2025 16:34:36 +0200 (CEST)
-Message-ID: <0c5e1177-c8f0-494f-94f1-de5e01b3715a@collabora.com>
-Date: Mon, 14 Jul 2025 16:34:35 +0200
+	s=arc-20240116; t=1752503812; c=relaxed/simple;
+	bh=daNTR/HyGPO4pkqAP0IH3ijmW/CroloVQwIyvm9agW0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ekFngM16U1m6K1QjQ2jp4vRdwEQvYeBL1im6bX29bLCoq0Zgtvr77h1QVMRLPyo1CI4QMnwuPDo+b1+Lr60GR39bPmUyqKLaM7nNcz8Qm/PeQvJTxvDSOZFAuUwV2Rf1KmlLmIzk/7dMVlj4kVwNvbeayWztX/2Meeo/IaL6VM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=wWKHbIXR; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 0DDBE5304;
+	Mon, 14 Jul 2025 16:36:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1752503777;
+	bh=daNTR/HyGPO4pkqAP0IH3ijmW/CroloVQwIyvm9agW0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=wWKHbIXRY9rClUbFLurK+f7wLbQVERRxuF+KFG7g3MQiMZK7BLEz2dyCFS4rzeUFD
+	 /U1mFCxcFCdu+aSnt+beiKmaKCUdv7rxETlzTDmUbfVMiwEjdP3CRaXIqH3HXhDm8n
+	 YPE2NChfWfX79Dhirm9u11+eebt7mbQpNc1TTb0A=
+Date: Mon, 14 Jul 2025 17:36:17 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Ricardo Ribalda <ribalda@chromium.org>
+Cc: Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hdegoede@redhat.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 12/12] media: uvcvideo: Do not create MC entities for
+ virtual entities
+Message-ID: <20250714143617.GK8243@pendragon.ideasonboard.com>
+References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
+ <20250605-uvc-orientation-v2-12-5710f9d030aa@chromium.org>
+ <20250629180534.GN24912@pendragon.ideasonboard.com>
+ <CANiDSCvcQ9MA+WBMQTpUzSxDLNiKpvaHsb-pDHTuiUQekgXvQA@mail.gmail.com>
+ <CANiDSCtq0cr1LgFCgvdBtWcE3z1MWZEjc0e1wTH_BYPETC+s4Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] cpufreq: mediatek-hw: Add support for MT8196
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: kernel@collabora.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250714-mt8196-cpufreq-v2-0-cc85e78855c7@collabora.com>
- <20250714-mt8196-cpufreq-v2-4-cc85e78855c7@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250714-mt8196-cpufreq-v2-4-cc85e78855c7@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CANiDSCtq0cr1LgFCgvdBtWcE3z1MWZEjc0e1wTH_BYPETC+s4Q@mail.gmail.com>
 
-Il 14/07/25 16:08, Nicolas Frattaroli ha scritto:
-> The MT8196 SoC uses DVFS to set a desired target frequency for each CPU
-> core. It also uses slightly different register offsets.
+On Tue, Jul 08, 2025 at 08:28:21AM +0200, Ricardo Ribalda wrote:
+> On Tue, 1 Jul 2025 at 13:20, Ricardo Ribalda wrote:
+> > On Sun, 29 Jun 2025 at 20:06, Laurent Pinchart wrote:
+> > > Hi Ricardo,
+> > >
+> > > Thank you for the patch.
+> > >
+> > > I would use "software entities" and not "virtual entities" in the
+> > > subject line and everywhere else, as those entities are not virtual.
+> > >
+> > > On Thu, Jun 05, 2025 at 05:53:05PM +0000, Ricardo Ribalda wrote:
+> > > > Neither the GPIO nor the SWENTITY entities form part of the device
+> > > > pipeline. We just create them to hold emulated uvc controls.
+> > > >
+> > > > When the device initializes, a warning is thrown by the v4l2 core:
+> > > > uvcvideo 1-1:1.0: Entity type for entity SWENTITY was not initialized!
+> > > >
+> > > > There are no entity function that matches what we are doing here, and
+> > > > it does not make to much sense to create a function for entities that
+> > > > do not really exist.
+> > >
+> > > I don't agree with this. The purpose of reporting entities to userspace
+> > > through the MC API is to let application enumerate what entities a
+> > > device contains. Being able to enumerate software entities seems as
+> > > useful as being able to enumerate hardware entities.
+> >
+> > What function shall we use in this case? Nothing here seems to match a
+> > software entity
+> > https://www.kernel.org/doc/html/latest/userspace-api/media/mediactl/media-types.html
+> >
+> > Any suggestion for name?
+> > Shall we just live with the warning in dmesg?
 > 
-> Add support for it, which necessitates reworking how the mmio regs are
-> acquired, as mt8196 has the fdvfs config register and the fdvfs
-> registers as two reg items before the performance domains.
-> 
-> I've verified with both `sysbench cpu run` and `head -c 10G \
-> /dev/urandom | pigz -p 8 -c - | pv -ba > /dev/null` that we don't just
-> get a higher reported clock frequency, but that the observed performance
-> also increases, by a factor of 2.64 in an 8 thread sysbench test.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->   drivers/cpufreq/mediatek-cpufreq-hw.c | 75 +++++++++++++++++++++++++++++++++--
->   1 file changed, 72 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/cpufreq/mediatek-cpufreq-hw.c b/drivers/cpufreq/mediatek-cpufreq-hw.c
-> index 53611077d0d9a2d9865cf771568ab71abc0e6fbd..de6b2b8f6600f23148a7a24cafeae339903ba119 100644
-> --- a/drivers/cpufreq/mediatek-cpufreq-hw.c
-> +++ b/drivers/cpufreq/mediatek-cpufreq-hw.c
-> @@ -24,6 +24,8 @@
->   #define POLL_USEC			1000
->   #define TIMEOUT_USEC			300000
->   
-> +#define MT8196_FDVFS_MAGIC		0xABCD0001UL
-> +
->   enum {
->   	REG_FREQ_LUT_TABLE,
->   	REG_FREQ_ENABLE,
-> @@ -36,7 +38,10 @@ enum {
->   };
->   
->   struct mtk_cpufreq_priv {
-> +	struct device *dev;
->   	const struct mtk_cpufreq_variant *variant;
-> +	void __iomem *fdvfs_config;
-> +	void __iomem *fdvfs;
->   };
->   
->   struct mtk_cpufreq_domain {
-> @@ -49,7 +54,10 @@ struct mtk_cpufreq_domain {
->   };
->   
->   struct mtk_cpufreq_variant {
-> +	int (*init)(struct mtk_cpufreq_priv *priv);
->   	const u16 reg_offsets[REG_ARRAY_SIZE];
-> +	const unsigned int fdvfs_fdiv;
-> +	const unsigned int domain_offset;
+>  I just realised that if/when we move to the control framework, the
+> software entity will be gone.... So to avoid introducing a uAPI change
+> that will be reverted later I think that we should keep this patch.
 
-I don't think you need a domain_offset here, but just a boolean saying that this
-"has_fdvfs" or "is_dvfs_hybrid" or something else...
+You know my opinion about moving to the control framework, so that's not
+a very compelling argument :-)
 
-Besides, what about having just a
+We could use MEDIA_ENT_F_PROC_VIDEO_PIXEL_FORMATTER, as that's the
+function already used by XUs, and the SWENTITY fulfills the same role as
+XUs in some devices.
 
-#define FDVFS_FDIV_HZ (26 * 1000) ?
+> > > > Do not create MC entities for them and pretend nothing happened here.
+> > > >
+> > > > Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
+> > > > ---
+> > > >  drivers/media/usb/uvc/uvc_entity.c | 10 ++++++++++
+> > > >  1 file changed, 10 insertions(+)
+> > > >
+> > > > diff --git a/drivers/media/usb/uvc/uvc_entity.c b/drivers/media/usb/uvc/uvc_entity.c
+> > > > index d1a652ef35ec34801bd39a5124b834edf838a79e..2dbeb4ab0c4c8cc763ff2dcd2d836a50f3c6a040 100644
+> > > > --- a/drivers/media/usb/uvc/uvc_entity.c
+> > > > +++ b/drivers/media/usb/uvc/uvc_entity.c
+> > > > @@ -72,6 +72,16 @@ static int uvc_mc_init_entity(struct uvc_video_chain *chain,
+> > > >  {
+> > > >       int ret;
+> > > >
+> > > > +     /*
+> > > > +      * Do not initialize virtual entities, they do not really exist
+> > > > +      * and are not connected to any other entities.
+> > > > +      */
+> > > > +     switch (UVC_ENTITY_TYPE(entity)) {
+> > > > +     case UVC_EXT_GPIO_UNIT:
+> > > > +     case UVC_SWENTITY_UNIT:
+> > > > +             return 0;
+> > > > +     }
+> > > > +
+> > > >       if (UVC_ENTITY_TYPE(entity) != UVC_TT_STREAMING) {
+> > > >               u32 function;
+> > > >
 
-This is the only platform that uses FDVFS and needs a FDIV, and I don't think that
-other FDVFS MCUs will have a different divider.
+-- 
+Regards,
 
-If so, we can always add that param later to the variant structure, I think?
-
-That'd reduce the change to
-
-struct mtk_cpufreq_pdata {
-	int (*hw_init)(struct mtk_cpufreq_priv *priv);
-	const u16 reg_offsets[REG_ARRAY_SIZE];
-	const bool is_hybrid_dvfs;
-};
-
-(don't mind about the naming, I'm just giving you alternatives if you didn't think
-about those, I'm not complaining)
-
->   };
->   
->   static const struct mtk_cpufreq_variant cpufreq_mtk_base_variant = {
-> @@ -63,6 +71,37 @@ static const struct mtk_cpufreq_variant cpufreq_mtk_base_variant = {
->   	},
->   };
->   
-> +static int mtk_cpufreq_hw_mt8196_init(struct mtk_cpufreq_priv *priv)
-> +{
-> +	priv->fdvfs_config = devm_of_iomap(priv->dev, priv->dev->of_node, 0, NULL);
-> +	if (IS_ERR_OR_NULL(priv->fdvfs_config))
-> +		return dev_err_probe(priv->dev, PTR_ERR(priv->fdvfs_config),
-> +				     "failed to get fdvfs-config iomem\n");
-> +
-> +	if (readl_relaxed(priv->fdvfs_config) == MT8196_FDVFS_MAGIC) {
-
-...but then, wait a minute, is the FDVFS_CONFIG used only to check if FDVFS_MAGIC
-is present?
-
-If that's all for which it is used for, we might as well just assume that MT8196
-always has FDVFS, because, well, it's true - MT8196 and MT6991 always have that
-because it's initialized by the firmware before booting the kernel.
-
-If there will be any need at all to initialize the FDVFS in Linux, we can use that
-MMIO in a driver that does only that, perhaps...
-
-> +		priv->fdvfs = devm_of_iomap(priv->dev, priv->dev->of_node, 1, NULL);
-> +		if (IS_ERR_OR_NULL(priv->fdvfs))
-> +			return dev_err_probe(priv->dev, PTR_ERR(priv->fdvfs),
-> +					     "failed to get fdvfs iomem\n");
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct mtk_cpufreq_variant cpufreq_mtk_mt8196_variant = {
-> +	.init = mtk_cpufreq_hw_mt8196_init,
-> +	.reg_offsets = {
-> +		[REG_FREQ_LUT_TABLE]	= 0x0,
-> +		[REG_FREQ_ENABLE]	= 0x84,
-> +		[REG_FREQ_PERF_STATE]	= 0x88,
-> +		[REG_FREQ_HW_STATE]	= 0x8c,
-> +		[REG_EM_POWER_TBL]	= 0x90,
-> +		[REG_FREQ_LATENCY]	= 0x114,
-> +	},
-> +	.fdvfs_fdiv = 26000,
-> +	.domain_offset = 2,
-> +};
-> +
->   static int __maybe_unused
->   mtk_cpufreq_get_cpu_power(struct device *cpu_dev, unsigned long *uW,
->   			  unsigned long *KHz)
-> @@ -91,12 +130,31 @@ mtk_cpufreq_get_cpu_power(struct device *cpu_dev, unsigned long *uW,
->   	return 0;
->   }
->   
-> +static void mtk_cpufreq_hw_fdvfs_switch(unsigned int target_freq,
-> +				       struct cpufreq_policy *policy)
-> +{
-> +	struct mtk_cpufreq_domain *data = policy->driver_data;
-> +	struct mtk_cpufreq_priv *priv = data->parent;
-> +	unsigned int cpu;
-> +
-> +	target_freq = DIV_ROUND_UP(target_freq, priv->variant->fdvfs_fdiv);
-> +	for_each_cpu(cpu, policy->real_cpus) {
-> +		writel_relaxed(target_freq, priv->fdvfs + cpu * 4);
-> +	}
-> +}
-> +
->   static int mtk_cpufreq_hw_target_index(struct cpufreq_policy *policy,
->   				       unsigned int index)
->   {
->   	struct mtk_cpufreq_domain *data = policy->driver_data;
-> +	unsigned int target_freq;
->   
-> -	writel_relaxed(index, data->reg_bases[REG_FREQ_PERF_STATE]);
-> +	if (data->parent->fdvfs) {
-> +		target_freq = policy->freq_table[index].frequency;
-> +		mtk_cpufreq_hw_fdvfs_switch(target_freq, policy);
-> +	} else {
-> +		writel_relaxed(index, data->reg_bases[REG_FREQ_PERF_STATE]);
-> +	}
->   
->   	return 0;
->   }
-> @@ -127,7 +185,10 @@ static unsigned int mtk_cpufreq_hw_fast_switch(struct cpufreq_policy *policy,
->   
->   	index = cpufreq_table_find_index_dl(policy, target_freq, false);
->   
-> -	writel_relaxed(index, data->reg_bases[REG_FREQ_PERF_STATE]);
-> +	if (data->parent->fdvfs)
-> +		mtk_cpufreq_hw_fdvfs_switch(target_freq, policy);
-> +	else
-> +		writel_relaxed(index, data->reg_bases[REG_FREQ_PERF_STATE]);
->   
->   	return policy->freq_table[index].frequency;
->   }
-> @@ -188,7 +249,7 @@ static int mtk_cpu_resources_init(struct platform_device *pdev,
->   	if (ret < 0)
->   		return ret;
->   
-> -	index = args.args[0];
-
-	index = args.args[0];
-
-	/*
-	 * If this is cpufreq with hybrid dvfs, the first declared register range
-	 * is FDVFS and each of the frequency domain MMIOs follow that.
-	 */
-	if (priv->variant->cpufreq_is_hybrid_dvfs)
-		index++
-
-Do you like that? Any concern with such a solution? :-)
-
-Cheers,
-Angelo
-
-> +	index = args.args[0] + priv->variant->domain_offset;
->   	of_node_put(args.np);
->   
->   	data->parent = priv;
-> @@ -339,6 +400,13 @@ static int mtk_cpufreq_hw_driver_probe(struct platform_device *pdev)
->   		return -ENOMEM;
->   
->   	priv->variant = data;
-> +	priv->dev = &pdev->dev;
-> +
-> +	if (priv->variant->init) {
-> +		ret = priv->variant->init(priv);
-> +		if (ret)
-> +			return ret;
-> +	}
->   
->   	platform_set_drvdata(pdev, priv);
->   	cpufreq_mtk_hw_driver.driver_data = pdev;
-> @@ -357,6 +425,7 @@ static void mtk_cpufreq_hw_driver_remove(struct platform_device *pdev)
->   
->   static const struct of_device_id mtk_cpufreq_hw_match[] = {
->   	{ .compatible = "mediatek,cpufreq-hw", .data = &cpufreq_mtk_base_variant },
-> +	{ .compatible = "mediatek,mt8196-cpufreq-hw", .data = &cpufreq_mtk_mt8196_variant },
->   	{}
->   };
->   MODULE_DEVICE_TABLE(of, mtk_cpufreq_hw_match);
-> 
-
-
+Laurent Pinchart
 
