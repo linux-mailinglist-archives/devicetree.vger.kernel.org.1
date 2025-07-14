@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-196163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A0CFB04447
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:41:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB32BB0447C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:46:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68494189B390
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 15:37:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 966201A61B3F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 15:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA77026AA8F;
-	Mon, 14 Jul 2025 15:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998622673B9;
+	Mon, 14 Jul 2025 15:37:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OpV+l75w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NDIzDkx3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E83B525C82E
-	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 15:30:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111BC266F00;
+	Mon, 14 Jul 2025 15:37:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752507055; cv=none; b=AflutAEtDWG6ntNUJXxb6N7x8nfguOBE5/tkehuWAn3NJuVsp6+jt5Svom90PNoqbPES8yQ3WZ6mBT3p2iPm60xkpBzCE2NsmBBxUSlrP2o1qYx8IOhuuggGI8AEaMA8umNmB8innDy5IGf5liul/sPjsGsUyz1aJHaZOqzrBKI=
+	t=1752507475; cv=none; b=e2ttRFKplnlJ7UIdCU6DvI5B34h0bc2nUmU83x3KhcvSd1ChlXMw++5LsxkfErL7VNiCy3pOK/xj+BxV2hvH2BJfUgAc2kw2vEkH2aaL9q0Qd+TtcOb/1ETNvff9KADflBXOjM+h7i9WdjaNKpEX7dsbvyBsnf04MUw5++p1Xyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752507055; c=relaxed/simple;
-	bh=fA43pWYFrATPW6o5X367Dz4sZp9Qsee5YWb/rsDVtHI=;
+	s=arc-20240116; t=1752507475; c=relaxed/simple;
+	bh=QjQ0UWlscOYrLTxqfo8jeI2W2cZqq+DP0CdXTDyGEcE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rQZFZtQIW1eMSSEVWllF7iaysE4Wm6quUe5qhOBiCP/+dupuYzpUchodhVycda6glGiINGh5xv0ZbuPNx0iYYxher1xLwlNqDlkzZjaK3qRtls9icoVUNVKLlRa7d4S2p8KNPcITQ6Fyo++bK9NJliNQnpZcyuXRH9V7eJFdKKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OpV+l75w; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-558fd850d79so277278e87.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 08:30:53 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=u0h8mrEZOGTLmkviyWOdReZfHlpUNPM3MA12uiuQYd3kcLD+kJVu2I5MV6W6ul9dByoyR5gQhos7i7iPWlGp/PTR2ftaTYp0o+4VH5w9ewLPIYy836FaZW+OBed/KiZnMK270wI0ow/WPBrlaxeQPxRl8qMwgWCGuX8ke+A/h1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NDIzDkx3; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-235d6de331fso49000075ad.3;
+        Mon, 14 Jul 2025 08:37:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752507052; x=1753111852; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20230601; t=1752507473; x=1753112273; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GhPM3WYx0FxLSMjDVhXzRCwSNY+8UAUHTyFHv1jdzFE=;
-        b=OpV+l75wSKtdSC6QHwVfpc5V8y+cLJrZLCHK7El9n9SBmWloBzGrX8Bb2tP6eUN2Ea
-         ovzkOiIwEaAyQX7IrxEW4UUbjkFndypRsVZtWMmWwIzinwBE6sQ666BaD1mmyuZVs4GM
-         7inWAj08Bq6P0NvC6M260Hub3oHnOiorTRyTH0vWrPhj+oTgtx6IpWm5jVdhX4WsblIG
-         EPjPx81ClEuesSAO51IbGn2SqaqA/4p2lZ8/ZFo83QFfu0XG/ZzIl+F0wf+vlr+pLVzf
-         XWaX8PQhiMhqhu7YTVoopo18W8ONQUu8khEfBxu1QRtISeGH8cUEhFu4bIteK/uKVWI0
-         /dXg==
+        bh=QjQ0UWlscOYrLTxqfo8jeI2W2cZqq+DP0CdXTDyGEcE=;
+        b=NDIzDkx3Bq3miRT9xFy762nSk+VGxI7KaInx3vbv9Y4NhVQtZ6ybtWPFbPhB9gxU4D
+         ePbVztjRTcOzAti4fiu08gUi+UQkG6ZoTQemQQaBvTIMjsDweJ/dogdo/FNRMwXHXJ1F
+         X/8QITXAAS9rlU7HnALobpC2hDJYGoYWivRlmr0nj9zrrNuzSheC3OgYI3eiEPp5Fnbz
+         qsfDNTbHwuWc0hxWi+hgO8TGrRKt+OFytpg9xRZu0Xr7FApPy6kigFT32t7kUaaHdMig
+         KqCJvRxm21j/bf728tCB4PnRKwCPeMP47yXB73+8yao67/ma0l9kBHxZ2XtGWpYfXXhB
+         1vYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752507052; x=1753111852;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1752507473; x=1753112273;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GhPM3WYx0FxLSMjDVhXzRCwSNY+8UAUHTyFHv1jdzFE=;
-        b=Bwnu3gpVz0zLWLHouIyg1rbjTRj0SU7sFS7YCT5M6kVyjb5AkiEO54Bx0pDlDBUITo
-         Cit7nxzOt2BiqMymu26G98DSXLeuWDQoSC5FAqhONdUx6qK9VX0G1AOsyc5vJNX5AWOX
-         t5OE1W7ZMC2glA4wP6ZRQP0oEh/sLeecfUlMBUEHH8uVYw8wljLuQs4tfOcW3pLhnJIq
-         aB1fw1cSk8ctmrlMb/i5nrzQranws+9J8Q8M2wlpF7DSRZkIDu0oMaPvFCJYEmJ/fVNs
-         uSljGGXeCPWuLlrVCzKhekDT77t5iFQI1pJS5+5aZ6zaRjR1YqTTcEBuOSR7aLyEK8WL
-         Jsyg==
-X-Forwarded-Encrypted: i=1; AJvYcCUcdnhwiw3yqQrVYwblqZfnTxXGYGcYwTVxA+iic25b5CDQNzSR/CBpw596aSHzxB8LG0W7J9XSJweu@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAc5JHFYP755z303dLwptE58LnDVQKzFQ3gNeSYmyhHLEl2Fhn
-	wkGju2tAP9JsBoRYMJDKnuKrHb9+WKWyhEnmhPUXqdzDfpD1w6Ru3nVrZeqYX1rOTXU=
-X-Gm-Gg: ASbGncsiiF5DIu9HUqp4z9s4K0t8OXvgJoFp3qltnxs2XfjvQ295a8FPfJOQyxpq1Yk
-	6Q6U0D2SH4AQXz4+ct7OhJUUdxeFHX4s0mKFMS/gL5rbb0r6aEplbAC0qszo0QDS/f/WUT9a2U4
-	q1i/IGHp+RZpIxw7R/IDhIhV5sG3vVQuYmGuEfv0VR3phrC6muwu7+J72RZ4OjuE1SuSkX9dA1E
-	/O2K7nvTIXxjhc5z3k0ryObpoojJ40hDp6f1DUOsPFXuDET5Gjj8fV0RrJczkVYy3dqVA9Ol4D0
-	SWPaN2jarTbcTHDEVav4NW8zvalOYmJK/MvBLKU9fjzE1gQnvuBftw0xEhCF1zMFS659nFXLkQ5
-	PGYlth58llI9qr68I8KgZKsgZZAnXDpFOc1bl4GqrHZCMd2UC8o9faeIXuMXBcvYfTFdqJV75RB
-	ev
-X-Google-Smtp-Source: AGHT+IHfIWtfLwmI4o3tG95if0xJBRcWewfBclWlcePGlLyhwHi1HTCoA+WOs0ItuEmU884D+uo5xw==
-X-Received: by 2002:a05:6512:2388:b0:554:f76a:bab8 with SMTP id 2adb3069b0e04-55a049b4b48mr1393417e87.15.1752507051897;
-        Mon, 14 Jul 2025 08:30:51 -0700 (PDT)
-Received: from [192.168.1.100] (88-112-128-43.elisa-laajakaista.fi. [88.112.128.43])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5593c9d0f35sm1985120e87.108.2025.07.14.08.30.51
+        bh=QjQ0UWlscOYrLTxqfo8jeI2W2cZqq+DP0CdXTDyGEcE=;
+        b=rF2HR3LIdrvATzjyL00vSNO7BpjnA2mQfI9tNaUEfGUycPHCygKfc1pVMlbSUjO7na
+         Pcmo6dYuk7chvVNx5MLDKGhQDPGFDCVnJbAgC6yJRZtgF+oJx/35UAK2jmOWFY0pBF1G
+         5KBrki7bBgN17qAPIauxA8APzMpD+wZzudKWGwMS+8r6xnnTx5eVhrXwl9oIn5iBfc13
+         inQ07lQt63ZMoA6VmxJcJQ5bg0MfKMuwLTmFxcOkV7MraeaS67DQyl//4OCcOZmzFR5R
+         f1GW+cEpK8NVdz9dmqQDGNbQ7NEjN2i0POv2ERGwYUU+1GPOlr1RqPzfUK5Os/CgwWmb
+         PEQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUBfRLBjDipB5tw5LUj9Ng7BnSq5EujEaSFEnl032umR6k6k5YDbAuWOp4J1vQWakQuN5XOYQ+dudWXJFNlN7MdLw==@vger.kernel.org, AJvYcCV4N5KsdL1+j9qP8XZc2Zf15l/2qieVeWQYs5N1wWhXlyRJoy9O3pJrlv7usWtLDEhqxFS/uKLjvRRw@vger.kernel.org, AJvYcCVx+BvPnFI03PRISEsXi8v+IN3ClJNjd0vWGsylPWgHo53LcNMo8DnKDke9sxlbHsc80E6Krd/WCCOUcV/y@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxDAR+Pf0JhiCdB+x4jAgiMVWyCncuXiFWmL4CzQjaVZA5+hqt
+	T4eZuCaOIiKa4UB9u26F809NLc9dCkznZK89BRrZNL7jvN9sZiPJq4YpBLwjxo5qQ7yMVA==
+X-Gm-Gg: ASbGncue7fjHoZJfvE7+VgjY2NyioA6IIAffTnJ4BENrsfPHARXOqW3IJa6zgNdS6xt
+	FeaRRv+3Z5gP+AT5wM1Mre4HxaZbFtxd8d6yHCRea/jXzlktAVjTLBnoB7uXkj2eeb1dozdWRBY
+	re3shj5OnoNpADnramLofgs8j6y3OR5WJ0ZFZOlZuj8qpMBcdXbTvj6UV/wA9vv4PL0NIFoDhWr
+	kOrtFvGsoA7NOuuOMappdZyJ684WpnFsWXNmMg4G4l4bgsnw4MBGbI1vunGuzta0fTDjTEuNfLy
+	q4aJtwfYhkT108us2tBYWJKI2Y6ws8w5vZAmUq4ZmStaL9y6sitVKVVQV5Rbg1/6WqHDeOJdghr
+	W9qMW/haZv7PFom1R4L8wCtvzFFjSuLnhlAS1E1PYHzATD87HUSc7We4IlDHZbS8=
+X-Google-Smtp-Source: AGHT+IEMvnX379Cfqxjm8d/1Z5fQyV4o83jOtFXuWtyBzvMeYslcOx4WAebdY0n5WCMLCRYgzq0u0g==
+X-Received: by 2002:a17:903:a4f:b0:235:f70:fd39 with SMTP id d9443c01a7336-23dede2e17cmr167967685ad.10.1752507472927;
+        Mon, 14 Jul 2025 08:37:52 -0700 (PDT)
+Received: from [192.168.0.124] (061092221177.ctinets.com. [61.92.221.177])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de42ae9f5sm95068015ad.66.2025.07.14.08.37.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Jul 2025 08:30:51 -0700 (PDT)
-Message-ID: <eac3a877-a4aa-4789-9013-ab8b6c91e0f3@linaro.org>
-Date: Mon, 14 Jul 2025 18:30:50 +0300
+        Mon, 14 Jul 2025 08:37:52 -0700 (PDT)
+Message-ID: <81addd64-6ba6-465e-901e-05f9cb29185b@gmail.com>
+Date: Mon, 14 Jul 2025 23:37:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,48 +82,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI D-PHY driver
-Content-Language: ru-RU
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Bryan O'Donoghue <bod@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250710-x1e-csi2-phy-v1-0-74acbb5b162b@linaro.org>
- <20250710-x1e-csi2-phy-v1-2-74acbb5b162b@linaro.org>
- <11b573d5-ce4d-476c-b94c-216d427cd838@linaro.org>
- <08261aa4-689b-4d6b-bfd2-221c1976d254@linaro.org>
- <a7f64b31-4767-4281-b452-a2bc5351d745@mleia.com>
- <c93624bb-ee7b-45ac-8b53-b5391f11c9c9@linaro.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <c93624bb-ee7b-45ac-8b53-b5391f11c9c9@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH RESEND v7 02/21] drivers/perf: apple_m1: Only init PMUv3
+ remap when EL2 is available
+To: Will Deacon <will@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Neal Gompa <neal@gompa.dev>, Sven Peter <sven@kernel.org>,
+ Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
+ asahi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250616-apple-cpmu-v7-0-df2778a44d5c@gmail.com>
+ <20250616-apple-cpmu-v7-2-df2778a44d5c@gmail.com>
+ <aHUeNpx6bsC5Gk3b@willie-the-truck>
+Content-Language: en-US
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <aHUeNpx6bsC5Gk3b@willie-the-truck>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 7/14/25 18:17, Bryan O'Donoghue wrote:
-> On 14/07/2025 15:58, Vladimir Zapolskiy wrote:
->>
->> This proposed device node scheme does not solve the known and already
->> discussed technical issue expectedly, namely there is no given way
->> to describe a combo mode hardware configuration, when two independant
->> sensors are wired to the same CSIPHY. This is an unsolvable problem
->> with this design.
-> 
-> I think that is genuinely something we should handle in camss-csid.c
-> maybe with some meta-data inside of the ports/endpoints..
-> 
 
-This is a CSIPHY property, a CSIPHY hardware configuration and a wiring
-of sensors to a CSIPHY. Where is the relation to CSID here? There is no.
+Will Deacon 於 2025/7/14 夜晚11:11 寫道:
+> On Mon, Jun 16, 2025 at 09:31:51AM +0800, Nick Chan wrote:
+>> Skip initialization of PMUv3 remap when EL2 is not available.
+>> Initialization is harmless in EL1 but it is still a weird thing to do.
+> Why is that weird?
 
-Please share at least a device tree node description, which supports
-a connection of two sensors to a single CSIPHY, like it shall be done
-expectedly.
+Maybe I could use better wording but if the check is not here, then for Apple A7 which has very
+different event mappings, it either has to use the mappings for M1 which is wrong on the hardware,
+or declare an a7_pmu_pmceid_map, which would just be dead code since A7's CPU does not
+support EL2. Not initializing the mapping in EL1 avoid these problems.
 
--- 
-Best wishes,
-Vladimir
+>
+> Will
+>
+Nick Chan
+
 
