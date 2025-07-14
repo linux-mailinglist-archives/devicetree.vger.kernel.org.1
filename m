@@ -1,209 +1,174 @@
-Return-Path: <devicetree+bounces-195995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05B3B03C27
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 12:45:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34FE3B03C82
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 12:52:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D28A7ADA34
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 10:44:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED1B73A39F5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 10:51:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96BFC247295;
-	Mon, 14 Jul 2025 10:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B2B2472B4;
+	Mon, 14 Jul 2025 10:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="N3juzJ8w"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OjgikyEb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0197246781
-	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 10:44:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C4625BF16
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 10:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752489891; cv=none; b=MmSQNQw/OTbuuROp5BEZvmEir4QQswOjUFAarOSS2b61Nnqz6sbGc3lx1h+hTFKADn+8Gr63HEX6dB/CqRBebRI2t9iHSfStupKEIl1qPJjyBuqDd0+KS5OS5ktbbdUiQJl5iQBWNZk48FpObgiWOW79vFD7Z9OfqRbKG4xZKjo=
+	t=1752489961; cv=none; b=Jq71A+7UfWuSCdsdg8d/uzqzrOlg6x8Xf9ln284C4AxG6+kA98hrUBHw+RV1hpKK4ZUfTi5HnXOaz8ug+SrUhrL8udkM/HrtJrqQdhuEGEppB/jNSRw0WbDdITd6AP5CEdem0Soey/+5nd9NaV9ZltG7B2dv4rlYa7C+DPj7rcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752489891; c=relaxed/simple;
-	bh=2WLJKOVAuaJt4QnmoXL1k44Atj4Pe1QbpaUPyStODjM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dzhI4Xut+b7aToOmpS+SVKicWvbVnLoTx1DxHerobY1gG95pPVEAZlFd4/CizxI4GlwpK7Gf1FAB34jewElUE3fWioPZYrsDkUdVqp/vm1OgZO/nCOuWmH84a9wEZbkmv6Ih8eMDXXEuXt9bnvy+yYnUuhjY234lxu2BE+b8GB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=N3juzJ8w; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1752489889;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=UXL9y7xBlAhc4AXFCXGCZMpy7EHZFtBhXWeACly5wqo=;
-	b=N3juzJ8wmQIidWod65p7pIvgM5xULcO86BO+GP7h+x+Ylk3AxZBC58gEM0sST/7idc88np
-	dpnzWWNYzPX1hsv7pG379LP9r9eZA0X0eMlawix7/ytXy7cBM+KcyGNxH6QD64HLIuoYx7
-	xubAlUZ4jyVrFq4ya2UAo0kw+gc/MfY=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-572-ug_AjipFN6Snv98lR5LBmQ-1; Mon, 14 Jul 2025 06:44:47 -0400
-X-MC-Unique: ug_AjipFN6Snv98lR5LBmQ-1
-X-Mimecast-MFC-AGG-ID: ug_AjipFN6Snv98lR5LBmQ_1752489887
-Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-3a4e713e05bso1826031f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 03:44:47 -0700 (PDT)
+	s=arc-20240116; t=1752489961; c=relaxed/simple;
+	bh=GsngcRU9ghE95V5sobt8zThiAoxS3bXWswd84ZP946Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m9ZGEI5a40Nx8n+QhX32jDJzihH0ZC/MKSS51GwE+LX86MdHQDK4Cic6hYA6HcnqW1hyMXskOR+Yp+jqyS4NneE1Ad7gb+FXDGUfXXiFRcjihsrs0KjtLwnR/VFSf3KKnhj5sodKTvtgmzf2/4ZdZ6rDZG2HObWlVE1s9MsUiFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OjgikyEb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56EA1gsS018138
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 10:45:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NvkMX/SfCrQy1ThgqRjv/mjGrsXTIeTx9QKU6pkfYrU=; b=OjgikyEb1mjfDte1
+	wtP/hpabasFr7CEflySVgYGJm5q0nSReES76WtUDsAjuVaGWqBaidYYc+ixjFAyW
+	B1c+hS+/h5RiQtj9mbC1P/SNWh13uGAsktQ+25BjHlJO2Yp713g1b5IHML/EBtSm
+	7GzjdcMCTjs4eqzESvGMBglzsukbovmXSYVcRUR95hJqGozKR0o4Tq+VKiIzkcFL
+	d2fSI2y5SYSoWoqem9sJnwPZTiCFACI19+lhnsk1Jfkwn0Ld6LVvaYjNUlAeoL8U
+	XKNcKYWWEsO5Gslfhw/4ku1cVVXMLjTp13cMhyuFWE+l4Q/IgOCH250QMqJZNIJm
+	+gON1w==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufu84b5s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 10:45:57 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ab7406bfa1so1397651cf.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 03:45:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752489886; x=1753094686;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UXL9y7xBlAhc4AXFCXGCZMpy7EHZFtBhXWeACly5wqo=;
-        b=S25k7tqv5CP2mag4WqWux2vYhU8repT/qcBodFNVSVjG9Vhn4wAwTJwnx881WUbR2L
-         d6a054hC7AvSOVac0gahvH8jcOpufJ1OyliTiNP9D0mmFRgUKiXL57nwXs/V1Wyvw8x4
-         W13Pnu/xBjIz//8gd2U6ck5KJk1/OqqH0dmjQ3f65VY5ejn/5Ya69S1JsxnaH9AbO7x8
-         zjwqcsubBwzpH2/hbzwHgdy6r19625R65YCEl8QYGrMTApHepS+Wc0EMWMn53ZlOF8LG
-         Zto3eYjvYkRhSJIS6hw0qJpZkSmVB8FxqR5r4yJAXwNtuPf7i9G2Fv85476/EjHI2u1f
-         jWqg==
-X-Forwarded-Encrypted: i=1; AJvYcCXvKyJGb8fNzTScOreyx/BrLRJW8IfHLWMCHYcMF1EantLSPksGaLZ+g6EXDPpVoSgWoaNZMes//RKq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+vlRhHH4kbDZUiRL2tGyFZF3FNGO0FJxn413r0LDuAWSLdYj8
-	UVWPJYgc12PxIZtNw+rQiAmsirb1/7AaCh1XCjrzkw+BQVAsnLngt1mDu5cBLVZJ2xSH41F3NPn
-	mPOonlxTeBxt/CLM7OS5bhRJDCSDLk6+uy93WL4yA76OwOS+cw6roywJRd81qtBY=
-X-Gm-Gg: ASbGncvTSk6qXaQnleUpDwnICv7+JpvSu41Bx1rJKt1NTVLvKsZW/Xxn7T14fhq/fJO
-	zIP8PDri9Gru0XCLWrTd/DcRV6wcpawPXCyd5LWU86kcbHSEi1Jo3L9/oDSrLeCXzSSV4mF7p2U
-	nNBPiav9sFPCISGJCLaaLl8vQ79IXL0BQi2xNFDzEqbStAL4sHZBxsmnGK5yDmPXHfPeMEmEM1D
-	5xPuZ/rTSAL5qoHUVxsi3dsoMn2PqvVC6jEIEeR1yc0k2Oq9F4PrZ+jG2BaoizMOz+BEOHQccv5
-	HmDcgE4fYmjG1FBauuMvmVaCGn+RGLn/
-X-Received: by 2002:a5d:64ec:0:b0:3a4:f6ba:51da with SMTP id ffacd0b85a97d-3b5f2dc2868mr9964322f8f.15.1752489886411;
-        Mon, 14 Jul 2025 03:44:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHgeEBunGgrYdyyx1Q7dxCaPxvUeX/pPehKrFaYxcQS3TFsh9G8Baoie8ftqyWxl1dIxeb+qQ==
-X-Received: by 2002:a5d:64ec:0:b0:3a4:f6ba:51da with SMTP id ffacd0b85a97d-3b5f2dc2868mr9964292f8f.15.1752489885942;
-        Mon, 14 Jul 2025 03:44:45 -0700 (PDT)
-Received: from localhost ([89.128.88.54])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8bd1792sm12294623f8f.13.2025.07.14.03.44.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jul 2025 03:44:44 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: linux-kernel@vger.kernel.org
-Cc: ipedrosa@redhat.com,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Marcus Folkesson <marcus.folkesson@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 4/5] dt-bindings: display: Add Sitronix ST7567 LCD Controller
-Date: Mon, 14 Jul 2025 12:44:03 +0200
-Message-ID: <20250714104421.323753-5-javierm@redhat.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250714104421.323753-1-javierm@redhat.com>
-References: <20250714104421.323753-1-javierm@redhat.com>
+        d=1e100.net; s=20230601; t=1752489957; x=1753094757;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NvkMX/SfCrQy1ThgqRjv/mjGrsXTIeTx9QKU6pkfYrU=;
+        b=JALWC6jcs5gjB89sXLcAm37Kk+TmXZHdEUkeABmIsL+NzydZXW4kQHRb3Vk+dh3sHN
+         6uZbRzHsgv6Vg0WWgxE0wbPuRwYn2G87wLSzvLZa7HMLFrCuzAOa6zagYQH8xN5PZixy
+         eD1Pfe3D49MVQk0+cTQoYQJF8zY0bZ3yN32ZiTnPM2GLtxef588nOy7uVlVF1r/1L+Kf
+         7FKHpHIuibYamMeXgCRc5fYPZ7TbMn+IPhv6cjF5CB+eWko8rzCO69sdS1idTvpljczB
+         oiOJ3Hd8fu2uzYv+O9+NIm9MIpydX8y85zOy2hobar6v2ie/iyeG1C2FsX3lqxddje9P
+         3qfw==
+X-Forwarded-Encrypted: i=1; AJvYcCXMP9tSCuqO2pYDC0VFflPrQ8ZXxvQjvIzVSmRMJ/RrBhsq1phztUrIe0jgL1FGGWsbzVO1unwpq6iv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzr5nIJstrTNc7S1C6MH0peIvYtFgiKdrIBtm2wV9UbdCWZquOu
+	W5lIWrQxyP1hV5cHCB0TXG3WJ0wETWaYz0eUHsiNRcmk5XRjAJ8/7rVqmJk43UsUnQN8PhT6UpQ
+	NOOL2aWUlFDnhEew0+tkDAJuyobILnz4UaoRlN4sS/k+SN0ZWucDFju1xWY9CuV3d
+X-Gm-Gg: ASbGncv5hPvzjWd6Lca6Zx0HctWA5ZFF6OkDewDZf/1JVuL+NSMVurVMJKt1tS7F5x9
+	mDbJdceoBrbiyXRLgknv7980avR72u4O3Pl//JbrX4Gt8/lza0JEn4mQeIpuTE5E161N7G3iwyj
+	NfVR31Z/eLN7yiyJj5BXGf9hiAN4QfxJ7lSAyETVw0aaqnEVXJeuWaXDimRJs21f8WmODjK9u1t
+	jJEJXbS+ygj572cFHvzDYIQdLz+OBaKtITmxIhrmDjqz4KjW+bwOyc3mGZJXdLA9va2EEkqfsCA
+	QbpjD25XcHhAqi+Ao1Xexx3NIb790AcZk/ML+QFqzZCp++CVGGZ7oDEc+IoUnv40Tfbdrf5Q1Ed
+	rhKjpYpeDKopGpxTFD8PU
+X-Received: by 2002:a05:622a:2308:b0:4a9:a2d2:5cd5 with SMTP id d75a77b69052e-4a9fb85981emr61407251cf.6.1752489957165;
+        Mon, 14 Jul 2025 03:45:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IELfiE1hbm9W21cfQCQReZLaomvmcfube3hO9vSP/hdiOgPjCPkHWjuKc+mXLxmKJJITonrVA==
+X-Received: by 2002:a05:622a:2308:b0:4a9:a2d2:5cd5 with SMTP id d75a77b69052e-4a9fb85981emr61406911cf.6.1752489956642;
+        Mon, 14 Jul 2025 03:45:56 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e8294c15sm803864866b.117.2025.07.14.03.45.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jul 2025 03:45:56 -0700 (PDT)
+Message-ID: <e2b92065-e495-465c-957c-ac10db8fec09@oss.qualcomm.com>
+Date: Mon, 14 Jul 2025 12:45:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 13/15] arm64: dts: qcom: pm8550vs: Disable different
+ PMIC SIDs by default
+To: Luca Weiss <luca.weiss@fairphone.com>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Das Srinagesh <quic_gurus@quicinc.com>,
+        Thomas Gleixner
+ <tglx@linutronix.de>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mmc@vger.kernel.org
+References: <20250713-sm7635-fp6-initial-v2-0-e8f9a789505b@fairphone.com>
+ <20250713-sm7635-fp6-initial-v2-13-e8f9a789505b@fairphone.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250713-sm7635-fp6-initial-v2-13-e8f9a789505b@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE0MDA2MyBTYWx0ZWRfXzwGO+W+/y64g
+ g9cLTFXAs4Lkr2qajcEuvijDeUC3Xh0ZJS4Th6u1MPblDKcLn3RwZmkHi4uY4Lv0fq9cIjfBH58
+ T1FwqpaGQ/bFhOZbDDGdtkhAWhIpmUtLZr0dioUMsXXY3J2FzgQdkieP/4mKXjCUhDjsPOoSLD/
+ EnVCFkDPG7ZWHbfjxjbvl5H+IUFpv7w9QQIrhpAEUkhZegqZ1NbKaWiugirjOdY0PGiuzhLyLin
+ 679m9c2KsiGnuU0vpM7I0w0CNDRB/u0Txg07cWDvVt0J4QzMORNiIz9avL7u4/CZEaqzfY/ZeG7
+ Hx635D0bx/kVoecbbSeoZbwXIBIYCyBzhywd6+U6d/h2jtzD01pm1ROUcvVEV4SOyDK+UKkIbcE
+ WrwPRVfaizN7XHlR6g16XbudVhuD4UGUl8wT2wASpgB+Qhdh+qjuDmVy/nXsskJXtuhN/2pW
+X-Proofpoint-ORIG-GUID: P6bTuonHjujQ5i3D7ct3MH-ijghY5lQ1
+X-Proofpoint-GUID: P6bTuonHjujQ5i3D7ct3MH-ijghY5lQ1
+X-Authority-Analysis: v=2.4 cv=f59IBPyM c=1 sm=1 tr=0 ts=6874dfe6 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8
+ a=yhMgBbtfkmf45w4ReXcA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-14_01,2025-07-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 lowpriorityscore=0 malwarescore=0 spamscore=0 mlxscore=0
+ bulkscore=0 suspectscore=0 impostorscore=0 adultscore=0 priorityscore=1501
+ mlxlogscore=670 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507140063
 
-Sitronix ST7567 is a monochrome Dot Matrix LCD Controller.
+On 7/13/25 10:05 AM, Luca Weiss wrote:
+> Keep the different PMIC definitions in pm8550vs.dtsi disabled by
+> default, and only enable them in boards explicitly.
+> 
+> This allows to support boards better which only have pm8550vs_c, like
+> the Milos/SM7635-based Fairphone (Gen. 6).
+> 
+> Note: I assume that at least some of these devices with PM8550VS also
+> don't have _c, _d, _e and _g, but this patch is keeping the resulting
+> devicetree the same as before this change, disabling them on boards that
+> don't actually have those is out of scope for this patch.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
 
-Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Reviewed-by: Marcus Folkesson <marcus.folkesson@gmail.com>
----
+thanks
 
-(no changes since v1)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
- .../bindings/display/sitronix,st7567.yaml     | 63 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 64 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/sitronix,st7567.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/sitronix,st7567.yaml b/Documentation/devicetree/bindings/display/sitronix,st7567.yaml
-new file mode 100644
-index 000000000000..e8a5b8ad18fe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/sitronix,st7567.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/sitronix,st7567.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sitronix ST7567 Display Controller
-+
-+maintainers:
-+  - Javier Martinez Canillas <javierm@redhat.com>
-+
-+description:
-+  Sitronix ST7567 is a driver and controller for monochrome
-+  dot matrix LCD panels.
-+
-+allOf:
-+  - $ref: panel/panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: sitronix,st7567
-+
-+  reg:
-+    maxItems: 1
-+
-+  width-mm: true
-+  height-mm: true
-+  panel-timing: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - width-mm
-+  - height-mm
-+  - panel-timing
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        display@3f {
-+            compatible = "sitronix,st7567";
-+            reg = <0x3f>;
-+            width-mm = <37>;
-+            height-mm = <27>;
-+
-+            panel-timing {
-+                hactive = <128>;
-+                vactive = <64>;
-+                hback-porch = <0>;
-+                vback-porch = <0>;
-+                clock-frequency = <0>;
-+                hfront-porch = <0>;
-+                hsync-len = <0>;
-+                vfront-porch = <0>;
-+                vsync-len = <0>;
-+            };
-+          };
-+     };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ee2ef9d9db2a..d97e091b1742 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7835,6 +7835,7 @@ F:	drivers/gpu/drm/sitronix/st7586.c
- DRM DRIVER FOR SITRONIX ST7571 PANELS
- M:	Marcus Folkesson <marcus.folkesson@gmail.com>
- S:	Maintained
-+F:	Documentation/devicetree/bindings/display/sitronix,st7567.yaml
- F:	Documentation/devicetree/bindings/display/sitronix,st7571.yaml
- F:	drivers/gpu/drm/sitronix/st7571-i2c.c
- 
--- 
-2.49.0
-
+Konrad
 
