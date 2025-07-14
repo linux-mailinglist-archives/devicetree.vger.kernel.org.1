@@ -1,97 +1,88 @@
-Return-Path: <devicetree+bounces-196132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47866B04359
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:18:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E628BB0433A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:17:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE01B4A7157
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 15:15:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9F141886260
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 15:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C65226058B;
-	Mon, 14 Jul 2025 15:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD22F25DAFF;
+	Mon, 14 Jul 2025 15:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iKGdL9tE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S706DXF2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C50B260565;
-	Mon, 14 Jul 2025 15:14:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A2EC25B2FA;
+	Mon, 14 Jul 2025 15:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752506088; cv=none; b=fmcphXhNcGOwdRN33jZ3p7QLZauEw0yJOASzO8XXIscJ/bes5EQgYlz2CZM239jGb5ZN3t9H+Gf4FSPQlSb3sHeiFKcMu+W/LynZBISLqi0LzGFvYHaGPNnkgelx3t/dtdXg05rNWLuiKB0BjumhUQOqk4yCFimcha5Nw/Z1KXw=
+	t=1752506062; cv=none; b=bveNyaDOIV/GYcDj/jc39rU+OMgHJkz1jvwKQOA2uG4FKA8NH10VIwhjupsw9Nhf3VPX9KKJ5eH+tHr3ICdIzUkqdCiYd9UXnewad8cel+AXdjEUzVyg7pI6x+zDxOLhSkuMblY6QijuMKD3rQLAiNHYEXHyJmxlZJAbL0h9EmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752506088; c=relaxed/simple;
-	bh=fS7UAHzRAQgqQaPzwCc+k+6GCD/YdtHZbQodaTOqCHI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=irr+s3jd2vtH5VHNMU1zcavoyrXS1NQsGuMN/Lug4BuB5tNBz/O4awhGOKn7DsqXV6hYncNDGqgT5g4VebTNKNMpqQyHdDRuC8RSvb+/RO1tMAxjLvP5H8xda289JieMUkhW4DqCzFty0sI0hMIBI2C5iCKcUyn4D9q4674+qkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iKGdL9tE; arc=none smtp.client-ip=209.85.208.48
+	s=arc-20240116; t=1752506062; c=relaxed/simple;
+	bh=hWL/Py0JsAvPKRmAoBxnLvY1qSJ/ecSTBwIFllvm5IE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=IBD+VV46yBD/RO1zHbVqY3/zz7ODXW11Xvhb/tQW6L6TR6Wa/vrAm7XLlQ4fy6prqChpXovEx+JT2CQOHwciEje4aEXeEkn3bAnWVtgRHXKKBHTDFIbjZwtyzIkhkgLKezC5vsKDTmUG6MVCHObvv+1RrkDnJQoEWIbwL1weChc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S706DXF2; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-607ec30df2bso8697196a12.1;
-        Mon, 14 Jul 2025 08:14:46 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-454ac069223so27676725e9.1;
+        Mon, 14 Jul 2025 08:14:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752506085; x=1753110885; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6PeQD1Y6qSI8rBA+Va3N4iXrKAhnjsutZilvD5RN/6Q=;
-        b=iKGdL9tEEpsB0lmk58gIig8BajD7AU5obRttcKOqtgn94krWZvb2B7+3d6wg1gXTik
-         LvNcpm93LKGmtea8l3zYOTUovx7otbbIXxC9EfOmmMDffPS29+sMyI/P6jEqQ4it8Qgj
-         0oyy7Hm06Dfg4pkwftMMn1VqBgxzgiGLWUroN/qbqlIhlnyp4Z5nTLcnnZIbbRvIKRj9
-         6I4WrD5RWnl9pQSpfbnFaO5iT2xMx3TbvMHkGHycuJzT0tszqSZ/3m66cHBYEwAUXqEu
-         iQOhULL2Ucjf/NQh1bjS6taC5REW0JiizJCcJ45hTPE0TrHKdQOo5PSLrZhCaSrCUNHV
-         qI7g==
+        d=gmail.com; s=20230601; t=1752506059; x=1753110859; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YqjEqn5P40o8JrfMBkaW819hcdIhWbq17UYYqxjCfpg=;
+        b=S706DXF2T4s0gtYbWnky0uS58XNP5rJoUQOn7QtByb8DJN+RhRZYbI496tHJMG0PGR
+         afI4G96XD0ztWnJZk/KhwL5WoSfR8oF7EONkKL61Ykr85FLo3r77QFnAl/70YjbyPFJh
+         zw/f+wZL4Z1HWvdjm89pxswU/UT9DMdvOEcfzIJpgozRTSyRKTfd94B6qN2yw7dD/ljA
+         /2AQ24jcXUZ2nHUk7c0culZIatXu46d7z8VwTVU7+qG54uE0B016jqt1DSuIBFoWTe4a
+         Q2855cY8wrIz/dZcCaW8gOch13NszMV4RYYXV9iEL+pwMSYV3HB6AZxd10HZlOsH7wU/
+         fx5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752506085; x=1753110885;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6PeQD1Y6qSI8rBA+Va3N4iXrKAhnjsutZilvD5RN/6Q=;
-        b=RhQX2obGrwVajIouXNdubnidN5oyg4teD152/1kUcuVEmtyEjCrhUwakfFHI2NXfCP
-         8d2I2FJzqsGYBlIm0ftDuyaU4gHJV4YGkuMjHratILkU0SyghJttsOFc2B1bBXniGeRA
-         A8yVQwe2BldG232FmutRaDImrxp5LzJgkqWKFbNPbRBJBcN4dfC3rL+m2n5HNIHIgMHC
-         64edmhbWUNeCETnPFKqg6Wa6px+Vb+TJef2BA5wyNscrc7Uf5FBKvu+ajliPUszhzcEz
-         Tu0MZ8GRrJz2bkB+H16t9svanEY7ZAFigCa+mphU6g2YikOptjgB3r1MWG/fQZanG6PY
-         FrtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU+/9oKOtMApCGejO4e9qjQ0yDL7H5xXz1sU7QCaSQxfTb1z7D8G1sx3zyzvmKQaukeFJEqrh+OoFqv@vger.kernel.org, AJvYcCVQ1Kx8V0JYsGNk2DGan1xzi7qkHtaOOwXps/YdvyBZ6/WZVVUdwH+RGRH/F1OR+rXww8A3VBDDjOQecgvL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxsq2I1QAgq9YC1TZw7uEvF3qB4NApm3+8Luez4b+qAlI6Kw1j2
-	s5J0NS9FB/pNe1AJmgqztj8saDbb/brKsRlZs2JsKrCHLFyYayuto6G/
-X-Gm-Gg: ASbGncuqFrJldAv+Pq1Yy8HQ5ZMuz/GQQ+QznwHlidEJVHvYd2mWf8nS+SSLz9QJeB2
-	k8xIc0LEj1SLVzfygPGIx4s6+IBREhV5NwVQwTuAMmp5gPG1+uij20o5R5j4zANGCWA+te6TXOd
-	vaVCXRPvodllFwHIYx83M/J86d8CiDmuCVW3hjpES6G/DuXQ0I/ynM84UvnmG3EB9fJnv+XwNGQ
-	Au+FAVb1FbrCF0e5af9ogW7MrPc7dx3AnZBvifS5C2wjpZhWF0SABSSV541jmHEA+DGY0YRoT2R
-	3sB1WQBiYesDGzGnb4LZ6ylzeqAF5IWbMk2nyUJrZt5IIUwFGxECoiGKaI1BwWPvVukLVR9yQX3
-	E6spBQNrdixMGBBu05FDqxej+CPaPrDbK3wjFSIMFoEO+QiAlFPRcV29tkMSArI8+J9U=
-X-Google-Smtp-Source: AGHT+IHbr1DUfsxyJQ/Rn0DnkunJshTrtrZW0VywVHwhgB47bSh6fWGAKYyG5rgMrlzWkWy7RQNqMQ==
-X-Received: by 2002:a17:907:e2ca:b0:ae9:8dc8:511c with SMTP id a640c23a62f3a-ae98dc8534dmr626945866b.13.1752506084433;
-        Mon, 14 Jul 2025 08:14:44 -0700 (PDT)
-Received: from playground.localdomain ([92.120.5.7])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e7eec2b1sm847701266b.68.2025.07.14.08.14.42
+        d=1e100.net; s=20230601; t=1752506059; x=1753110859;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YqjEqn5P40o8JrfMBkaW819hcdIhWbq17UYYqxjCfpg=;
+        b=nT4TExdHtvlsbZd7ZKOftm5YGwQrzvfGIxN3xDxeFZeAdUOVG5lzCyqb1MjqCPAx41
+         omKLwLehHADa2utfS6ZzOsq4V1y32Snfqi/Z5nRBrmm2ovgN9vfjJooLMHM9cScX6tNG
+         RypyzKRmFktiEGkBuJliTaJyK00XRmq7Pp+4YpBTzZerJ/5GCZpDT7xMeL0E/ejs343d
+         eX8zD6jAM4DYZb/bKm7t+QqGO7myzvcguaZbjJy9FmsMb/nO9idMB/CwA6pm3Lo+QucF
+         26HCAN7qi/Cae63oWUzIeBayACf25OzhKPVbTctQGveY994Xu9+Mfc9gQXoUiL6EdLXb
+         ZthQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWKmkayOOyzFKXXUaEOcd+Iy7GyZAdIUQ/75SGvBQJyAVkuNj3cT0qNZxxm7k8el2SeoIVrySclx6KHi5hb@vger.kernel.org, AJvYcCWNPPmhcyN7u5d1FReN93qWUCrtJG4jPCQEWV76xZ5l0bSJujRtml8WJEIrvDy21FgV/0ha3W2FpVE2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQlQEkw64MUAGX3TGyvVkElvo5HexW+pTuV8RosdT8f5Gr/7SA
+	HSmDXWnGU8l3073wrYNWWlN7k10z1RGlFcf8Wxydmih4Sa3tTG0TD2mv
+X-Gm-Gg: ASbGncsc0NCb+mGLAy/tLhqHoDZTJFtHbh56XHJqrEmoyDasHBfYnvJK/Aqn4/K/jku
+	aEpr+PQu2FUnxRv3oh1JgmzN+b55JZXlPq5hmTDXvT/mNIctBSdy2Y/OmnrM0ST8XR6LwG+4sfO
+	2iwFkQaDfTcKTZFjX/7H0BtLyGMN/YtAwaG0pa6TUKrez4dTPbHtfhUTj8V9QaMtqY672ZAQDZA
+	SVMD0Sj0PxyonsnPO6DIO5UwR9Fz3u1y1MZ6BLXD3dp26SANZV8cSxZUtzBrzmHAwBXwIBU+CWc
+	fE4dWFE+KvyTTzw7cyH/BWIiPFnznUsNRrdopQT5mxfwwnQA0mLFNwzC9s6/zebqCWmoOg06rJt
+	9XVrq4AY6Q7C31DkYYgK5/7LQKoOeK97ypuLAZtRWv76UYGofHZhxul7FhBkMja3mW7hK5/PJ3B
+	oIrR4eHAAXIg0v
+X-Google-Smtp-Source: AGHT+IF9FUH35fas71QAMNTOPsJNATr+0G2h9SVHWRssQMQ4HhB66Kh3gmpvdbRNHPO48pSJjIcV+A==
+X-Received: by 2002:a05:6000:3c3:b0:3a4:f70e:bc25 with SMTP id ffacd0b85a97d-3b5f1e96113mr9060552f8f.27.1752506059124;
+        Mon, 14 Jul 2025 08:14:19 -0700 (PDT)
+Received: from localhost.localdomain (host-212-171-170-230.retail.telecomitalia.it. [212.171.170.230])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3b5e8e26f3asm12872427f8f.98.2025.07.14.08.14.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jul 2025 08:14:44 -0700 (PDT)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
+        Mon, 14 Jul 2025 08:14:18 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
+	Christian Marangi <ansuelsmth@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/2] dt-bindings: arm: fsl: add i.MX8ULP EVK9 board
-Date: Mon, 14 Jul 2025 11:13:45 -0400
-Message-Id: <20250714151346.7575-2-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250714151346.7575-1-laurentiumihalcea111@gmail.com>
-References: <20250714151346.7575-1-laurentiumihalcea111@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: nvmem: airoha: add SMC eFuses schema
+Date: Mon, 14 Jul 2025 17:13:46 +0200
+Message-ID: <20250714151349.28368-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,29 +91,91 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+Add Airoha SMC eFuses schema to document new Airoha SoC AN7581/AN7583
+way of accessing the 2 eFuse bank via the SMC command.
 
-Add DT compatible string for the i.MX8ULP EVK9 board.
+Each eFuse bank expose 64 eFuse cells of 32 bit used to give information
+on HW Revision, PHY Calibration,  Device Model, Private Key and
+all kind of other info specific to the SoC or the running system.
 
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../bindings/nvmem/airoha,smc-efuses.yaml     | 65 +++++++++++++++++++
+ 1 file changed, 65 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/airoha,smc-efuses.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index a3e9f9e0735a..18ae807d5950 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1382,6 +1382,7 @@ properties:
-       - description: i.MX8ULP based Boards
-         items:
-           - enum:
-+              - fsl,imx8ulp-9x9-evk       # i.MX8ULP EVK9 Board
-               - fsl,imx8ulp-evk           # i.MX8ULP EVK Board
-           - const: fsl,imx8ulp
- 
+diff --git a/Documentation/devicetree/bindings/nvmem/airoha,smc-efuses.yaml b/Documentation/devicetree/bindings/nvmem/airoha,smc-efuses.yaml
+new file mode 100644
+index 000000000000..399c3c14f6ea
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/airoha,smc-efuses.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/airoha,smc-efuses.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Airoha SMC eFuses
++
++description: |
++  Airoha new SoC (AN7581/AN7583) expose banks of eFuse accessible
++  via specific SMC commands.
++
++  2 different bank of eFuse or 64 cells of 32 bit are exposed
++  read-only used to give information on HW Revision, PHY Calibration,
++  Device Model, Private Key...
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++
++properties:
++  compatible:
++    enum:
++      - airoha,an7581-efuses
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  '^efuse-bank@[0-1]$':
++    type: object
++
++    allOf:
++      - $ref: nvmem.yaml#
++
++    properties:
++      reg:
++        description: Identify the eFuse bank. (0 or 1)
++        enum: [0, 1]
++
++    required:
++      - reg
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    airoha-efuses {
++        compatible = "airoha,an7581-efuses";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        efuse-bank@0 {
++           reg = <0>;
++        };
++    };
++
++...
 -- 
-2.34.1
+2.48.1
 
 
