@@ -1,225 +1,237 @@
-Return-Path: <devicetree+bounces-196103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 589AFB04230
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:52:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD480B04250
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:57:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61F367ADAEA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:50:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E65523A9DA5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:57:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71E725393C;
-	Mon, 14 Jul 2025 14:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEF0F257AF2;
+	Mon, 14 Jul 2025 14:57:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="qR7xo0M1"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="YD9rSLEc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2061.outbound.protection.outlook.com [40.107.237.61])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B91817A319;
-	Mon, 14 Jul 2025 14:51:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD612580CA;
+	Mon, 14 Jul 2025 14:57:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752504721; cv=fail; b=c822cgu+fmPAUUcxGl43TaIG6W6oIuBr6S44XVhTnVgKqVg/i7F9CfBPbIGWafsC8pn+K+BpBqzuPQFAjb67bST+m6gGvHVuEBiEp/9xv/hzOGLeR3AbBd+oPxvsBZgZ38Zz5hebEEQicshaaaflWNhOZ77ooOBK0KPb3Z+1U7c=
+	t=1752505049; cv=pass; b=Rg3VS4c0fME+RjtWA/YnLiGOH0arjw6ocEEzHYGK63T+XgAYh0LMfj97BRxoj7jLbGQE1j+agTKJtoyvqK88qt9C33RwYxMAgUxvn2+GPem5R8+06n5P54AvuNDoNONDTjvCu59YoX/DDiMQPzoEnDoRXiMy6+RhQlN15m0WDGg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752504721; c=relaxed/simple;
-	bh=qMY4VgQ92EdZI2PveTPh3mHk2jhROqwqtxlpgRDBjp0=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=s4g4A3ENxcPDl7Th6F4tSIKHYaU0L7Fne53CaI2hvpVxEs6xiaUP5Rdr4lyqIaPwioewLk3gIa0S+CkRIMk2SyJqnpLcX0MVoKQH8mwSU4SHLgBRlp5A60QxLqwpcDqFKK61mi0UQ5DeEGt6tUnT4HZGh+BSehYwLsCIRCdZEEs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=qR7xo0M1; arc=fail smtp.client-ip=40.107.237.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=So0gQwcZ7h9cmopvc0pu+Gk5aq+XcjqDkjefr/Ra7lfsAYtB7Gi0sOD1U/lTqqaYBdIRmwWBbT8pTl4e+rXDVUMjtoVAy4MVgh9jZOCGKDrWVfyro/CUyyvXRJQlZplYGdXTFgHhm4DInk49QGLN5m+rpv8m1g78bQ9ICio3SSYDTviXdvEi/7sCleisM9x7um+hfSVDgj+WGPW5mJDakZOp+l0bal3HTa79m6NN9BDBRHsjvS1e5756ME9Ia3ZDw3sYOGtvwLRgAz00R91a9+LdHsDuBGeoa9JkbePwEcOCmVluH5UGr2onQpFjpUvOKT+Pe6L/BQN/q9uw1BHwkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D35Nk5hfSwsMDM9Q6QqcjPmAlVIluIoSLUJVeClDU0I=;
- b=ELKhgRmif+EztOVPFTv6xih0FVMSOAPsLnCgZ+NjzBWeepfyGOnBuaoECnwCjZQBF5bF4plD27OmImEjEMxUFJa+IaWAPffpHC7zVVqW8kmiQ935yxRK6d57IzA6qpf0Qmlk9OxIGz78C51e2vrHDpynxAT3GeSwdQLCTPVxSpPkUZr1xeDY4jFJO30EzuU6hPPqBhksrx9rw3VkCw+04Cc0/uCp4zzunMmRecUJRxazp+z4Gj/9ahqLvs4MbNgGfOk2Bl9+vLEt2tiiLGM/0ozDLNbNyzUse+VEPb4FlNUFp+UWYes/H+HKLEbL8P1k2QMxmpID1isAZMF/rYKOSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D35Nk5hfSwsMDM9Q6QqcjPmAlVIluIoSLUJVeClDU0I=;
- b=qR7xo0M1jt+EZKfVMDpy3HW1lsFcsIdufoKRZyekUE2P4ZDW8Okgu4Zl70JjrvcomP2Otu1Nt50efRXiE2cVJhyyKGTplcNQdbzisxPEorf39sb9EImxJdbU3b04KLEuQt7tlsLGD+/pZwSM4rQhRu8NF+0+vD/H2Ua+zcQhaVY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL3PR12MB6642.namprd12.prod.outlook.com (2603:10b6:208:38e::15)
- by SJ1PR12MB6220.namprd12.prod.outlook.com (2603:10b6:a03:455::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.35; Mon, 14 Jul
- 2025 14:51:56 +0000
-Received: from BL3PR12MB6642.namprd12.prod.outlook.com
- ([fe80::aacd:a6d8:e180:46bc]) by BL3PR12MB6642.namprd12.prod.outlook.com
- ([fe80::aacd:a6d8:e180:46bc%5]) with mapi id 15.20.8901.033; Mon, 14 Jul 2025
- 14:51:54 +0000
-Message-ID: <9ee6ee78-af88-4b57-a939-30390c790972@amd.com>
-Date: Mon, 14 Jul 2025 08:51:51 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 4/9] dt-bindings: soc: xilinx: Add AI engine DT binding
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Gregory Williams <gregory.williams@amd.com>, ogabbay@kernel.org,
- michal.simek@amd.com, robh@kernel.org
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250702155630.1737227-1-gregory.williams@amd.com>
- <20250702155630.1737227-5-gregory.williams@amd.com>
- <7533fd56-aeef-4685-a25f-d64b3f6a2d78@kernel.org>
- <eb3c843a-6762-4ac0-b863-3f500fb15b6f@amd.com>
- <504f6660-4938-47b4-b1db-0a6fe0214e5f@kernel.org>
- <349be13c-fef5-4fc2-b4c9-e85e28cbc06a@amd.com>
- <0c1e62fa-aec3-4d01-8fa0-d10817122426@kernel.org>
-Content-Language: en-US
-From: "Williams, Gregory" <gregoryw@amd.com>
-In-Reply-To: <0c1e62fa-aec3-4d01-8fa0-d10817122426@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SN6PR05CA0022.namprd05.prod.outlook.com
- (2603:10b6:805:de::35) To BL3PR12MB6642.namprd12.prod.outlook.com
- (2603:10b6:208:38e::15)
+	s=arc-20240116; t=1752505049; c=relaxed/simple;
+	bh=1O6B9Iiapo6B7MOUGvZzY1bJ7VRQZ3QyjR56KyPo5zk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rb2NRU/f9j8sbjzL211+i36f+2FjNpu5k+qntQtnpfRJkuDXJTrqG1PtgI/vhMpXsUDuILGukzJm/s/vcemBRSEmD0hi0euQvuug3TeMezVg4OIMZjTG1Z5JNvbCv+GGftNuYxO9rgH8IRQcO/3GlsjM56FOQc6QDAcHV/Ocf0Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=YD9rSLEc; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1752505021; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=jTzafjthuIJN+sbR9JzbeSjM2+8zqD+8kpumWfzcbI7b7qvfXEB+oGFUAudVd8EA6YDyt5u8O6eIX/R9G/L18GjaXdxxGIQscUjko/mb09N3YmjG78W2Fc+mFuSC+p92EB7E/Ii98Lxo3R8L32bmOOeoG2I/imQ4yZlC8QBAD4Y=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1752505021; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=ZEz0MjyPjjmaHK4rHi3lzcnI88V95Ez+JAIUJe7tNHU=; 
+	b=Akm6xFiVTE9SCFtCFddQhMkPdTzJqbg0pVQ4e03instTx2KpfgUSdCiAMnQrxiV33zJ/sOTQVthWJeGVK9VyZ/jw30lpirOUL1aCEFuWOFCOF6VivWmxyVtquP9IBBJh92lHXcRTFTzzm8RhV1uUnfR4i+6kKBz8cNkGFnbxJkI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752505021;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=ZEz0MjyPjjmaHK4rHi3lzcnI88V95Ez+JAIUJe7tNHU=;
+	b=YD9rSLEc2B3JX/3+g/USbXM3omX8JSQy3SohZ8n2vQ2U3qbK5EOe3JBk7apxP9d4
+	gYUN9WgeXDXm3WGUsQqG/zpXKFam7TqgOcnD2g9iJOmc/Ef7nJ8ynlSLyVlCNoqWLnV
+	I3tkx0yC2ST9x3vqQNUeP2BwQ1tXnn5FuqU/LIhI=
+Received: by mx.zohomail.com with SMTPS id 1752505018618941.5183600008951;
+	Mon, 14 Jul 2025 07:56:58 -0700 (PDT)
+Message-ID: <baa1fcde-f167-4a1b-afca-0a2957a688cc@collabora.com>
+Date: Mon, 14 Jul 2025 16:56:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR12MB6642:EE_|SJ1PR12MB6220:EE_
-X-MS-Office365-Filtering-Correlation-Id: 216a8b15-635b-4367-d182-08ddc2e5f96e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?V0JiaEYrQ2JvWlZSK2NDYk9Pc1VERVBmSEpkdHlEQXEyRTU5YUs5NVhBUXVI?=
- =?utf-8?B?UWRxbThzblB3ZmZFcURpRUtEZ1c3QXNlMVhSZFJnODlTMVBqaVFkN2U1TDY0?=
- =?utf-8?B?enRvVjVudjBNTHAxQjNSa2xDa3JRN2VYTWY4Mkl5a29PaDZOWm5uRkxlZUVx?=
- =?utf-8?B?NVVQa1dNYnJvUnJQa3c1cldqK2tCTXFya2R2dm4wcjV6TkpXaGNhQUpDNFJy?=
- =?utf-8?B?eHBaTytQdEpSRFJXa0dZU1ZObTVVdUF5aGxmb1MvU3U5V0FHdFpOSjUyQVc3?=
- =?utf-8?B?NzZwTGMrT2g0akgydXN3QnBoM1Y5UUFuSHV5UVZWamNRaUVUck16ell4blN2?=
- =?utf-8?B?aEhZVW8xeUwwN0RqTHorOG1Mc1ZIUGdNZFAvQzVMN3ljbWRJVmlQM3M4eE1k?=
- =?utf-8?B?Zlp4MlExZHArcXpQMy92Um5BWTRXR0I3WlRoVDRuejRab1Z2Nmd1cFdYcFpO?=
- =?utf-8?B?cXNaSU9rSWYyMURpcnExMmxIRFBnMXBHMW51TTBqVDNPVG9tZzJCTVJMVHVO?=
- =?utf-8?B?aUE1dUZmMDJZdDc2bnQyaTFUM3M1TDdMSlM5ZHNTODVROVA2YWltb3JaRkJ2?=
- =?utf-8?B?UE5oVDlNQ25ka2U0WkxTTndwTDVGSmJxVGRCY1hvV1RPYVBhbmllWmpad243?=
- =?utf-8?B?ZGJ6TkVEdVM1blZlK1EzSWJvdUZwTHdPQllIZ3JlR3hxY2hqdVExVmZ0WUs3?=
- =?utf-8?B?QXFvaTVadkxnNGpaQmd5a2VFZ0lNUDZ1MzhQTzlTYWd2N1lUSEtTTmd2R21V?=
- =?utf-8?B?NjNldHFCRjdIS1cyZVFiU0ZrVlRQYXJFcE9XUjduWU1DcW1PU3BFWXlveHRm?=
- =?utf-8?B?Q3NoRFp0MFZtUmMwd1c1QmdSK085dW1lQllUOUNQNzk1SUdTdmhaMEMxbGM1?=
- =?utf-8?B?UFFRNEVXY29sTjZKT2ZCcmJINlEwajhpQTRWTEZGQlFKdS9HNlJXa0h4dkJF?=
- =?utf-8?B?dkFnejd5dVdHTzNVNjJpckg1c3Y0RHZUMVZFcXFKNkdyWXNYVjNUNktYUU12?=
- =?utf-8?B?K3Y3cXB5S3VRK0FqaHlaZ1FMQkloRjVoRW15aHp5TkovVkxjRkhVTHhWb1Vz?=
- =?utf-8?B?ZEpPUWZ1S0UwcThRTDFsWmFFMm80TWZPWWt0V3pGRnU4cks1UmVGVGE2TW9q?=
- =?utf-8?B?b2ZnazdhRUM1Q1Vwai9vL0JQWDc0NWw0eGZQbmtoVGZUNXRGbEYzUXozbTZK?=
- =?utf-8?B?emtwVW9INkVVSmNHVjQ5MzROQWFYNElOZkM4bkVqaWRhRDcrb1hiQkNnazg5?=
- =?utf-8?B?Z3h5YTFYTis2eStTaTFDT01RTnN2NkQzZ3lVYmxHRVRwNzZPQnRSOXc3UmI0?=
- =?utf-8?B?SjdXbTBiTXA0S093WUVYZEFJbUc4NnRhQjEwSnNMUUNuaEc2QWt5dlg2NG5E?=
- =?utf-8?B?VnBmMDB5cFZmMC9vWVJZayt0T3M5TXdNNEVETlowZWxBSWo1UEE0bXYxRklp?=
- =?utf-8?B?QjFIcVA1cEVPY3NwQjRPN0tEa0VGZGRPQXJOL29iNGsrUXhCL0RjRW0wenFs?=
- =?utf-8?B?Q2xIbFhFYVhMYlB2U3FyV0VBK0dUaDVaM3BLSW05ZUVBYUxFU2RVTHJTaTM1?=
- =?utf-8?B?QXBhdlE4aC9iVnF5ZFo0OEtFOUc0UHN0dVZiMmphU0tlMTFmRWQxZEZtMmRC?=
- =?utf-8?B?SThHQWs4clB1dFZ4R1pIQXV5Q3dJZTdJeWhCaWU5ajlsYloxeC80TzN1U1ls?=
- =?utf-8?B?K05yVzA2bDZ0VG5uQ1lYZ0NrdlBhRjhFamF3bEQwRm5JV0hWVy9JNzBwdTRI?=
- =?utf-8?B?YjgwemhLUHdHUmpwekY5NVp4VzN2NXlPS1c0OFkvbEc0QVArdDlGaVgySVdR?=
- =?utf-8?B?T01CbzhTS1lha2NMc1ZRMkJyS1FGMWQzdHQyWDl5bEl5d1lobm5yejRJNnJs?=
- =?utf-8?B?aW14RzBXd3JyczQ3c0Jod1crK1A3QjlEVU5mZzBvMHV2K1RDQjNNei9YN0li?=
- =?utf-8?Q?3Wa2Ipd3fho=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR12MB6642.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?c2tzQ3VkN3lLOGtiZ21OQ0s1aGxtcWNQdzk5TGI1QWNYU3Qwb1ZBaFhUeFht?=
- =?utf-8?B?VGc2ZjZXR0NDSWtUQ2Z3eUVoTC8yMzFRdWdtS0t5dVBGSFd3N3lxbURsVTFO?=
- =?utf-8?B?N1RudjJHS2ZuVm55UDFBWS9nYkZtVzkwZ2t2TjhWakdONW13VHBPNW43MUhr?=
- =?utf-8?B?aE5WelZabDkxc1dSNzdsU0VlVWljMExFWGV3cXRjQUNFNkh1MnNITk5YM1BX?=
- =?utf-8?B?ZDFVVDN3WitHV0wvTWlnQkR0eU1Qck5XbkhTd2RwTC9TVU5TbUluMEtZb1FW?=
- =?utf-8?B?VGJ0eGp2azhnR29HZEQ3RTdYV0MwSlkzK3dPUUlMVHlvRERZeUczVy83NjBM?=
- =?utf-8?B?b3NEMjlXS25YOGVOaEdWSVlZOGtFQlpKOUd2aDhuMEpaaWp4UUJYNllMQ1RW?=
- =?utf-8?B?NmdRbnp6emNFOWRtZSt2bU9aak53QzJvb1UxTm5oL3I2Q0tGMDNpV3o4WWhF?=
- =?utf-8?B?WjRtNGhRZW1iRE4wRk4xTWVIamlmbTcyZHRkTHdYOHp3LzF3bU5DdVNqMERL?=
- =?utf-8?B?b0ViYloya245a3grZGphbE5yRXR2bUs5T2N3NXY2NlV3TlFRcW45Sk02ZURa?=
- =?utf-8?B?UWFXSkxFUjNFZVAyMVNmV1FtZWY5SjBxYk1uMXFpNGdNY0hsUDVaNEpZTkVU?=
- =?utf-8?B?SUkxS3RTRndFditqR2R4d1U5VWc0WmRSbUFMTm5iR2V6RVZJdC9YZlpIRUdm?=
- =?utf-8?B?QW9lSjZPeEdDWmVKVHhFMWhodXpubDZLV0R5Z3d3ak9oMXllc1pUK3R1RXF2?=
- =?utf-8?B?ZStCTzJKMDBuOURSaE15aGVjcUpiUU1BTXgxdldNT1RXV3Z4YVdKZkxOeDFo?=
- =?utf-8?B?ZWYwS04vMW9VNko1KzFNNkhKQVJxb09pdnQ1dWxHY2V6SFNFZEFuWXhNbWZB?=
- =?utf-8?B?aDJCU3llZm9WZDB4bVdUOHJOb1lGdmpEYnJCMy9vQjh1VDduWTZrZldTV2p3?=
- =?utf-8?B?R1FXbDdVTVo3RVRCS1hwd3B3S2dGRXhPbGVlMXFvQVNTRnV4TDNYOU1wQ29F?=
- =?utf-8?B?bVhKTGloUWJWd0w2ZTFJQ1EwNk1DaXh2Z2J2anVkWjJoRUlsd21hMzBSYUZz?=
- =?utf-8?B?L3BMTGI4MnY0a1NHbUNOUTJEcEJ2NlpmeE85NWRsNGZqR0ovUHE5bVVnUXV2?=
- =?utf-8?B?dGpycGFnZ1RyL0wzOGNaNU1tL3lyb2dhaGJuNncvTlI3amU3TzVFTDI4SGF4?=
- =?utf-8?B?cHpIUkk2VmJvNXAvZzB5Q3JHQ2UycldiVG9hZjM3cmNpYkhxYyttNHBUYTNt?=
- =?utf-8?B?aWN3dGpwRTlBWlMxUm9DRkh6dXlDOWlVTEc0SWltank1bXREZ2FsZVFGQ3Iv?=
- =?utf-8?B?ejlTYm01RmpkUWhJS09vV3RQclg2Y1lKNlFJZGZ1NkhKQ3BhWEpzbk53YWpy?=
- =?utf-8?B?QVY0UVZESCs0dFZsMUYrNjYyR25abll6eEZnbWJoa2M0ZTg5cU9RZ0VFYWEr?=
- =?utf-8?B?ckx1VHQ3dm9FRTQ4Ti9xdXF5ODF2UTE1M1NkWHZYYjc5WHRFVXNBTjVUeFNE?=
- =?utf-8?B?bk43K0UxbVd0aFN0aytpNGRnTGk1VVpjelVQM01VK2YvSjVkdkFGWTRCT0J1?=
- =?utf-8?B?MTVvLytudWNEeU9CYmNLSm5lYzN4MjNjelJYbHg3ODRjaUYwSXFkNER3dUx2?=
- =?utf-8?B?T2pYN0tDNkUyQnNLNGVmTm5JWnVTM3AvcGNBZG8yRjB0YWhMVWlMQlU5VjJJ?=
- =?utf-8?B?ODFJSU9yelpLb281cXVPTnNCUG1sUWtPODhna2xKTWtYT0x3YWUza1gwYkhY?=
- =?utf-8?B?RHZxS1NoNk5udHhDNktmWWFXdEg2VktIOTYyc0xIK2tRZ3VTMjA1ZldSRlNZ?=
- =?utf-8?B?OCtKOC9TQktLVU5udXdYc3J0MU9tS2IwQmpwRVdnTzVmQklDNnRQclRVRllY?=
- =?utf-8?B?eGF6RXczV3BJVlpTRW9ydzBHMGx1MTZMTi9SbXlrdkxnandpSFZZTTFxL3R5?=
- =?utf-8?B?UXNkT0YrMkk5YUVzdVo5bzJZb2IxN2VJNE13Mk93eDd6RUNJYzNQcGl6VHU3?=
- =?utf-8?B?L1MyNDJvTnlaRkhNMUpJWEl2MEwwTDk2blE5bEZhMnRzajB5NWZrVWhoOVlt?=
- =?utf-8?B?RWx2cUFGUnE4K2ZwaCtDMDZnNVNtNUtEeFlNSHA5MUk0Ym44Um91YVpLMGY0?=
- =?utf-8?Q?lkrTGMIGobDMyFqFbVB0LuSEw?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 216a8b15-635b-4367-d182-08ddc2e5f96e
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR12MB6642.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2025 14:51:54.7253
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Gjsjx2XOWVuIsqn9CRZ4022qUxu6+RYV7AmRDK3QyOqMyWgcxXGDcyRPhVc3PWwwLMKiUFLpUVpvkFcDIVaa4g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6220
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/5] iommu: Add verisilicon IOMMU driver
+To: Will Deacon <will@kernel.org>
+Cc: joro@8bytes.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, jgg@ziepe.ca, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ kernel@collabora.com
+References: <20250710082450.125585-1-benjamin.gaignard@collabora.com>
+ <20250710082450.125585-4-benjamin.gaignard@collabora.com>
+ <aHTzPwTob8_5rtBS@willie-the-truck>
+Content-Language: en-US
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <aHTzPwTob8_5rtBS@willie-the-truck>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 7/12/2025 1:33 AM, Krzysztof Kozlowski wrote:
-> On 11/07/2025 20:33, Williams, Gregory wrote:
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Gregory Williams <gregory.williams@amd.com>
->>>>>> +
->>>>>> +description:
->>>>>> +  The AMD AI Engine is a tile processor with many cores (up to 400) that
->>>>>> +  can run in parallel. The data routing between cores is configured through
->>>>>> +  internal switches, and shim tiles interface with external interconnect, such
->>>>>> +  as memory or PL. One AI engine device can have multiple apertures, each
->>>>>> +  has its own address space and interrupt. At runtime application can create
->>>>>> +  multiple partitions within an aperture which are groups of columns of AI
->>>>>> +  engine tiles. Each AI engine partition is the minimum resetable unit for an
->>>>>> +  AI engine application.
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    const: xlnx,ai-engine-v2.0
->>>>>
->>>>> What does v2.0 stands for? Versioning is discouraged, unless mapping is
->>>>> well documented.
->>>>
->>>> Sure, I will remove the versioning in V2 patch.
->>>
->>> This should be specific to product, so use the actual product/model name.
->>>
->>> Is this part of a Soc? Then standard rules apply... but I could not
->>> deduce it from the descriptions or commit msgs.
->>
->> Yes this is part of an SoC. I will be more descriptive in V2 patch.
-> 
-> Huh... so you MUST use SoC compatibles. Don't upstream things entirely
-> different than everything else.
 
-I will fix this in V2 patch.
+Le 14/07/2025 à 14:08, Will Deacon a écrit :
+> Hi,
+>
+> On Thu, Jul 10, 2025 at 10:24:44AM +0200, Benjamin Gaignard wrote:
+>> diff --git a/drivers/iommu/vsi-iommu.c b/drivers/iommu/vsi-iommu.c
+>> new file mode 100644
+>> index 000000000000..15322b9929af
+>> --- /dev/null
+>> +++ b/drivers/iommu/vsi-iommu.c
+>> @@ -0,0 +1,781 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/* Copyright (C) 2025 Collabora Ltd.
+>> + *
+>> + * IOMMU API for Verisilicon
+>> + *
+>> + * Module Authors:	Yandong Lin <yandong.lin@rock-chips.com>
+>> + *			Simon Xue <xxm@rock-chips.com>
+>> + *			Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>> + */
+>> +
+>> +#include <linux/clk.h>
+>> +#include <linux/compiler.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/device.h>
+>> +#include <linux/dma-mapping.h>
+>> +#include <linux/errno.h>
+>> +#include <linux/init.h>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/io.h>
+>> +#include <linux/iommu.h>
+>> +#include <linux/list.h>
+>> +#include <linux/mm.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_iommu.h>
+>> +#include <linux/of_platform.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/pm_runtime.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/spinlock.h>
+>> +
+>> +#include "iommu-pages.h"
+>> +
+>> +struct vsi_iommu {
+>> +	struct device *dev;
+>> +	void __iomem *regs;
+>> +	struct clk_bulk_data *clocks;
+>> +	int num_clocks;
+>> +	struct iommu_device iommu;
+>> +	struct list_head node; /* entry in vsi_iommu_domain.iommus */
+>> +	struct iommu_domain *domain; /* domain to which iommu is attached */
+>> +	spinlock_t lock;
+>> +	int irq;
+>> +};
+>> +
+>> +struct vsi_iommu_domain {
+>> +	struct list_head iommus;
+>> +	struct device *dev;
+>> +	u32 *dt;
+>> +	dma_addr_t dt_dma;
+>> +	struct iommu_domain domain;
+>> +	u64 *pta;
+>> +	dma_addr_t pta_dma;
+>> +	spinlock_t lock;
+>> +};
+>> +
+>> +static struct iommu_domain vsi_identity_domain;
+>> +
+>> +#define NUM_DT_ENTRIES	1024
+>> +#define NUM_PT_ENTRIES	1024
+>> +#define PT_SIZE		(NUM_PT_ENTRIES * sizeof(u32))
+>> +
+>> +#define SPAGE_SIZE	BIT(12)
+>> +
+>> +/* vsi iommu regs address */
+>> +#define VSI_MMU_CONFIG1_BASE			0x1ac
+>> +#define VSI_MMU_AHB_EXCEPTION_BASE		0x380
+>> +#define VSI_MMU_AHB_CONTROL_BASE		0x388
+>> +#define VSI_MMU_AHB_TLB_ARRAY_BASE_L_BASE	0x38C
+>> +
+>> +/* MMU register offsets */
+>> +#define VSI_MMU_FLUSH_BASE		0x184
+>> +#define VSI_MMU_BIT_FLUSH		BIT(4)
+>> +
+>> +#define VSI_MMU_PAGE_FAULT_ADDR		0x380
+>> +#define VSI_MMU_STATUS_BASE		0x384	/* IRQ status */
+>> +
+>> +#define VSI_MMU_BIT_ENABLE		BIT(0)
+>> +
+>> +#define VSI_MMU_OUT_OF_BOUND		BIT(28)
+>> +/* Irq mask */
+>> +#define VSI_MMU_IRQ_MASK		0x7
+>> +
+>> +#define VSI_DTE_PT_ADDRESS_MASK		0xffffffc0
+>> +#define VSI_DTE_PT_VALID		BIT(0)
+>> +
+>> +#define VSI_PAGE_DESC_LO_MASK		0xfffff000
+>> +#define VSI_PAGE_DESC_HI_MASK		GENMASK_ULL(39, 32)
+>> +#define VSI_PAGE_DESC_HI_SHIFT		(32 - 4)
+> How does this page-table format relate to the one supported already by
+> rockchip-iommu.c? From a quick glance, I suspect this is a derivative
+> and so ideally we'd be able to have a common implementation of the
+> page-table code which can be used by both of the drivers.
+>
+> Similarly:
 
-Thanks,
-Greg
+No they comes from different IP providers, this one is from Verisilicon.
+I agree they looks very similar and my first attempt was to add it into
+rockchip-iommu code but when doing it I realize that registers addresses
+where all different so I had to code all the functions twice.
 
-> 
-> Best regards,
-> Krzysztof
+Regards,
+Benjamin
 
+>
+>> +static void vsi_iommu_domain_free(struct iommu_domain *domain)
+>> +{
+>> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
+>> +	unsigned long flags;
+>> +	int i;
+>> +
+>> +	spin_lock_irqsave(&vsi_domain->lock, flags);
+>> +
+>> +	WARN_ON(!list_empty(&vsi_domain->iommus));
+>> +
+>> +	for (i = 0; i < NUM_DT_ENTRIES; i++) {
+>> +		u32 dte = vsi_domain->dt[i];
+>> +
+>> +		if (vsi_dte_is_pt_valid(dte)) {
+>> +			phys_addr_t pt_phys = vsi_dte_pt_address(dte);
+>> +			u32 *page_table = phys_to_virt(pt_phys);
+>> +
+>> +			dma_unmap_single(vsi_domain->dev, pt_phys,
+>> +					 SPAGE_SIZE, DMA_TO_DEVICE);
+>> +			iommu_free_pages(page_table);
+>> +		}
+>> +	}
+>> +
+>> +	dma_unmap_single(vsi_domain->dev, vsi_domain->dt_dma,
+>> +			 SPAGE_SIZE, DMA_TO_DEVICE);
+>> +	iommu_free_pages(vsi_domain->dt);
+>> +
+>> +	dma_unmap_single(vsi_domain->dev, vsi_domain->pta_dma,
+>> +			 SPAGE_SIZE, DMA_TO_DEVICE);
+>> +	iommu_free_pages(vsi_domain->pta);
+>> +
+>> +	spin_unlock_irqrestore(&vsi_domain->lock, flags);
+>> +
+>> +	kfree(vsi_domain);
+>> +}
+> is almost a carbon copy of rk_iommu_domain_free(), so it seems that
+> there's room for code re-use even beyond the page-table support.
+>
+> I think that also means we'll want Heiko's Ack before we merge anything.
+>
+> Will
 
