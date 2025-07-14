@@ -1,114 +1,198 @@
-Return-Path: <devicetree+bounces-195959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47B26B03ACC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 11:29:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DC0CB03AE6
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 11:36:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73AE6167DC8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:29:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66709189FF30
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:36:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F233F242D6E;
-	Mon, 14 Jul 2025 09:28:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA60242905;
+	Mon, 14 Jul 2025 09:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MBiOHSRH"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZyXJPU1S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583FA242D62;
-	Mon, 14 Jul 2025 09:28:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69C1224113C
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 09:35:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752485294; cv=none; b=PjR0meAbn+V85fv6DYH+kVwIZNK03v78NVV5OkbAL+qVzdxNKH8P1dqaiS2eFaLkjaLWyNbTDLgzDvh2wcl1AxaefknVqgaYEKs2xmDdhILetHh7ynQ5MqK0eG4EyF3VNyupJGgYNe7nTS7z4ZPqR+NlZ2RAFLWZrBjzZxmI4A0=
+	t=1752485754; cv=none; b=lws9oYCgJBPTeHs8v27VvEBaBzIU2m5m0dYNgn7X7YLOelEzzp1LgRM5dT190gFil/pkOBBi0G1wV831V6YTdN79NExPWzm1WkE0GspyyzTwAnz40P5LYTlL1j+f+5vNoD/FpNyQ2kyoa6f90ZqyOppNgk51a/izcBMQepwF5vY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752485294; c=relaxed/simple;
-	bh=LQtUAvfBPLjCe7ViHwC9DAka4jHaq/eIxtBNY0RtcdE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=POs7kBVs/ylH7TIzGS+dvBOsijLdqJeC/W2x1aspx9vxHxIe55oW8tkicVrgsME0TKyxhO4M08A9kWPPDOJfyu71MX9VYtWtesnkQH6xa4OauoloP1y3Oe4ZV50ooID4pHMsY0KVIHoZYoLvhVnEO81uRrtiPEgQ4PfN4Nxt+b0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MBiOHSRH; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56E9S8Dc2623168;
-	Mon, 14 Jul 2025 04:28:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1752485288;
-	bh=nNLFgaA4dixxgbMIkbjU6rqc6g19Sr9bWZbPhKxkNRU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=MBiOHSRH4ULBHuN7TLQJysG/DLd5zBojzxAXDP6RT4XNxerXbUypOa4aMMCabQk4c
-	 VjYDyQgwDEj7T3YJEITrjt6gUpeksO5VOETBppR7s+NdHeVc/QzxQjQ2uEv9QNi0Sf
-	 fOqwzNvZMPcDZDO26w7dZHwxqNSqrSrWO4qWzFiA=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56E9S8UF3170577
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 14 Jul 2025 04:28:08 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 14
- Jul 2025 04:28:08 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 14 Jul 2025 04:28:08 -0500
-Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [172.24.227.115])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56E9RPVn279945;
-	Mon, 14 Jul 2025 04:28:05 -0500
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vaishnav.a@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <imx@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
-        <u-kumar1@ti.com>, <y-abhilashchandra@ti.com>
-Subject: [PATCH 7/7] arm64: dts: ti: k3-am62a-main: Add interrupts property
-Date: Mon, 14 Jul 2025 14:57:08 +0530
-Message-ID: <20250714092708.3944641-8-y-abhilashchandra@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250714092708.3944641-1-y-abhilashchandra@ti.com>
-References: <20250714092708.3944641-1-y-abhilashchandra@ti.com>
+	s=arc-20240116; t=1752485754; c=relaxed/simple;
+	bh=ru+jpxSTrNborX2bFBxdcyMpqdQrMupwkrZFcVDWZfQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=q6q/x0JOgCDbsvXNBkVpLfQmzhZzwJIyzAIqIOQE9EKQU0PqIUbPEf7VgNnTTAjiCUD1q2ClhfgksmA0hYIa7RnGYsnQdDNKrwpCXIbqexqAXkbYIS6WaOAmMgP7LeKPSq8a0LxscuHuP5ett/7lC1mtnn9Qh0T4OUl2zpPC294=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZyXJPU1S; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56E7Qfxh008136
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 09:35:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	e7zrisRWASLUd76UBSE8vFhiT+0G+v9sbTXyn1lJGAw=; b=ZyXJPU1SfZ/vrK2D
+	SQlPwcnf+ETIFiVlrlCYhEPEph1lDrp55tR/MWPYKFySMiZglBnknHigufYreI5P
+	86j8+DQKlXM+sLnBmjC/tGbvbjOaOw3irtcSodCZVaJLtF97IfBZMaEAcJoSgWzQ
+	stVU8Mkxq7jJkoS8KO/ymb1cxJmCw1Z8yTRFgvLuxgbuz9dMpAODie684ugnbcyg
+	uSc2f5kqEa33wUcdUBSRurmSjqUTS0uNL67XOFLYpSmA17e0qLtz/zzpWQdEURxs
+	0f4tiXhe6EmuZDZV+ZFbaLJ1TQLQETZcEpnjD1WoRdrDPGahdHbFxsGB7Wx7Vrpl
+	A7GRxw==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47vwghgbu0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 09:35:52 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6fabbaa1937so15062696d6.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 02:35:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752485751; x=1753090551;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=e7zrisRWASLUd76UBSE8vFhiT+0G+v9sbTXyn1lJGAw=;
+        b=jOnCbO3EIDc8et22rJUaa8KKnkNrmC5FnVUR5aU3eIFRC0wJvIKwQw70f8U4TeaMp5
+         zv1rNHhQ+y0kZNG4wjPAxuO6EjD55/Ytl2v8a75PKJwdWAaTb40MDUp5+ZiRpiSzLQ00
+         22QUBXN6U+Tskx41iRcybHACzpEziacUC15IQW/tu4qazawLLXEhhlmFTUhvHPAQlxet
+         DCEujY8KwUtsAGB+AvkuqKCqcS4YPrnRPUU7+/lpRd3jGjlZQ8OhPRWpnWYQvl0nTk3D
+         D3X4gQZ0f9i48WAN7PZ0E+DDndWIiR88mg6AJHgeB87QfPuePnoE8BdE3EIDSSpmqgU8
+         ZwsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXfrLvV5K3lgWA4GQFLV4DO0fp8Nj7a5X3wnfmjqmTEi5JfQxkPEClphlMC9vP/oj7QEfXm3VkWWMVE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxq32iBG7WSYS2CYoAUcE/0FiOvD7b/ffc4a6rahIRdbzK95IoL
+	p08LGNkhDuNHOV1cgzZLDOuhOR+JROijFEwBywooQ2VQfuSdgydYol9TuEb+LR4VZ2pSfFRZo1W
+	bD1kqe7fh4qn0AJSTMkpMsNAXu51EfBekClWs8V+wL56gKrlBaOOaM+NDM9KIDuGe
+X-Gm-Gg: ASbGncu9ZN+47IaSEvRg7nJs6dj7VjHZ/ED+w6GzWpodcZ3Bbz4cH/e0V4LLz4GV9jf
+	VIICtQd2Bjvio//Jq+mT7uwQX/Lgw8WUl3xSAEaXtXKN2dzSW1xo6xq3Uk54zXwinblWoTi9edk
+	CoeCSW/kfE8z2L3zixSB78ei+jSrnTZeF0QZzkLVJHNo2Ru9fyUW3nXYNWIReQUkidB1zn7/G77
+	6G/VmTyFGyJSTue+pfBeVZRTOhoj/RgmjKP/ws9RsJLbQ/gu7En/2pRUa+Qh3DRgti1uiEKaqwa
+	ExWuI631Rr8pgw8fKPky/+arQwWR+w2cS4/FKofKMRXLKqQp3/EWTDodYsHWym8S6VJuycYyAe4
+	HfPQIrwy0N85fXITBrddM
+X-Received: by 2002:a05:620a:29c7:b0:7d3:c688:a590 with SMTP id af79cd13be357-7dde9f3ffdbmr577279985a.4.1752485751122;
+        Mon, 14 Jul 2025 02:35:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEPBgHK2WKHaRZG5vMxzXtbPdkk1Lmydmr3moeXavVZ20BhmDNvzkpBN20H9euW8Kvu2AQovg==
+X-Received: by 2002:a05:620a:29c7:b0:7d3:c688:a590 with SMTP id af79cd13be357-7dde9f3ffdbmr577277485a.4.1752485750600;
+        Mon, 14 Jul 2025 02:35:50 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e7e90afesm796156466b.32.2025.07.14.02.35.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jul 2025 02:35:50 -0700 (PDT)
+Message-ID: <7e65f9be-275b-4760-82d7-679ba3d7ee83@oss.qualcomm.com>
+Date: Mon, 14 Jul 2025 11:35:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/7] media: qcom: camss: enable csid 690 for qcs8300
+To: Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
+        todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
+        cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com,
+        will@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, quic_svankada@quicinc.com,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250711131134.215382-1-quic_vikramsa@quicinc.com>
+ <20250711131134.215382-5-quic_vikramsa@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250711131134.215382-5-quic_vikramsa@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=EbLIQOmC c=1 sm=1 tr=0 ts=6874cf78 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=_OLkaYxBag4VyamGeQYA:9
+ a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: OMhYGGVqi9yC0M-ZMMUBbOy1Xb2KJPIE
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE0MDA1NiBTYWx0ZWRfX3qHsE5oHhcW4
+ vtCHkoctn9JwXrBy2EXUsC4L3HtKQRK9QcSFLaxxgyI6EgY1cl38HLN6I4kL6E2RlbrhZZn7mJV
+ ga8wmiM8NDJrTzfarMfx1Lq7/SwZ+DRvJYncjAigCzQrmnu8C+D4kEkg7xaX0/YGscwO2qvTdTD
+ qxeRy0umbjPHH/unK4u3fPmX0CivqTGjAXYOMe84esqllAE0XdjjpMEZTx5qmRmXkX4UGgLwUBx
+ 5f3hzhmEVTrMPl2ZVnTvDKjQhtzPlzQGA9KU+W9gobZLFOMRiqnt/7zPfPEX8canuHngKTCMJ+0
+ bsjlWbZoOJRs56x7ftcKv8gXsPi/T5kLEh8ARDE+9J8U13naVoD/UxZGlnKuDVFSPdkiS0FQ7Ct
+ qPnVpPVoNrKO2wJGOcIgjMzqQpsp95wRrAmPi/KO6CyjRvJevwlOdsZTT2Y2dlDwTbNOOZT2
+X-Proofpoint-ORIG-GUID: OMhYGGVqi9yC0M-ZMMUBbOy1Xb2KJPIE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-14_01,2025-07-09_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 lowpriorityscore=0 clxscore=1015 priorityscore=1501
+ malwarescore=0 bulkscore=0 mlxscore=0 suspectscore=0 impostorscore=0
+ adultscore=0 phishscore=0 mlxlogscore=999 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507140056
 
-Add interrupts property for CDNS CSI2RX. Interrupt IDs are taken from the
-AM62A TRM [0].
+On 7/11/25 3:11 PM, Vikram Sharma wrote:
+> The CSID in qcs8300 is version 690, it is same as csid used in
+> sa8775p. csid gen3 have support for csid 690.
+> 
+> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> ---
+>  .../platform/qcom/camss/camss-csid-gen3.c     |   5 +-
+>  drivers/media/platform/qcom/camss/camss.c     | 136 ++++++++++++++++++
+>  2 files changed, 139 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/platform/qcom/camss/camss-csid-gen3.c b/drivers/media/platform/qcom/camss/camss-csid-gen3.c
+> index f62084fb8287..581399b6a767 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csid-gen3.c
+> +++ b/drivers/media/platform/qcom/camss/camss-csid-gen3.c
+> @@ -47,8 +47,9 @@
+>  #define CSID_CSI2_RX_IRQ_CLEAR		0xA4
+>  #define CSID_CSI2_RX_IRQ_SET		0xA8
+>  
+> -#define IS_CSID_690(csid)	(csid->camss->res->version ==\
+> -					CAMSS_8775P ? true : false)
+> +#define IS_CSID_690(csid)	((csid->camss->res->version == CAMSS_8775P) ||\
+> +				(csid->camss->res->version == CAMSS_8300) ?\
+> +				true : false)
 
-Interrupt Line             | Source Interrupt
----------------------------|-------------------------
-GICSS0_COMMON_0_SPI_IN_175 | CSI_RX_IF0_COMMON_0_CSI_ERR_IRQ_0
-GICSS0_COMMON_0_SPI_IN_173 | CSI_RX_IF0_COMMON_0_CSI_IRQ_0
+== tends to return either true or false without the use of the
+ternary operator too
 
-[0]: https://www.ti.com/lit/pdf/spruj16
+>  #define CSID_BUF_DONE_IRQ_STATUS	0x8C
+>  #define BUF_DONE_IRQ_STATUS_RDI_OFFSET  (csid_is_lite(csid) ?\
+>  						1 : (IS_CSID_690(csid) ?\
+> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+> index 5211367b535d..b0fd5fd307a1 100644
+> --- a/drivers/media/platform/qcom/camss/camss.c
+> +++ b/drivers/media/platform/qcom/camss/camss.c
+> @@ -2269,6 +2269,10 @@ static const struct camss_subdev_resources csiphy_res_8550[] = {
+>  	}
+>  };
+>  
+> +static const struct resources_wrapper csid_wrapper_res_qcs8300 = {
+> +	.reg = "csid_wrapper",
+> +};
+> +
+>  static const struct resources_wrapper csid_wrapper_res_sa8775p = {
+>  	.reg = "csid_wrapper",
+>  };
 
-Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+There is no reason to duplicate this, simply point to the existing
+variable
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-index 63e097ddf988..39c27eb29e17 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-@@ -1041,6 +1041,9 @@ ti_csi2rx0: ticsi2rx@30102000 {
- 		cdns_csi2rx0: csi-bridge@30101000 {
- 			compatible = "ti,j721e-csi2rx", "cdns,csi2rx";
- 			reg = <0x00 0x30101000 0x00 0x1000>;
-+			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "error_irq", "irq";
- 			clocks = <&k3_clks 182 0>, <&k3_clks 182 3>, <&k3_clks 182 0>,
- 				<&k3_clks 182 0>, <&k3_clks 182 4>, <&k3_clks 182 4>;
- 			clock-names = "sys_clk", "p_clk", "pixel_if0_clk",
--- 
-2.34.1
+> @@ -2487,6 +2491,138 @@ static const struct resources_icc icc_res_sm8550[] = {
+>  	},
+>  };
+>  
+> +static const struct camss_subdev_resources csid_res_8300[] = {
+> +	/* CSID0 */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "csid", "csiphy_rx"},
+> +		.clock_rate = {
+> +			{ 400000000, 400000000},
+> +			{ 400000000, 400000000}
 
+Please add a space before } across the board
+
+Konrad
 
