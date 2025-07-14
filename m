@@ -1,108 +1,267 @@
-Return-Path: <devicetree+bounces-195892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 451A1B0375E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 08:48:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3608B037B5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:18:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E790189B3C4
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 06:48:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14AF0179810
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 07:18:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40A9D22CBC6;
-	Mon, 14 Jul 2025 06:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="le8BHDbi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CB122D4F9;
+	Mon, 14 Jul 2025 07:17:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1020922B8A1;
-	Mon, 14 Jul 2025 06:47:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A8F6155C82;
+	Mon, 14 Jul 2025 07:17:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752475664; cv=none; b=JqJ6AaBWaPows12yoZNh2xel4mmfF1E1DlAF29/8f6IWICi90UTw7EDzyu8ZxqghIEv/idoyJuuOlqzZLBNlNT2LFxfHVlNwzRRGxUmuSX7yXfiY+TP0lMSWCtrmSk1tlixw6imUtTk8brTs3qtLLjD6WiKNQ/lSTGbA1DEgLCU=
+	t=1752477478; cv=none; b=FqEAhIJYsLGcLgluNyYIQDudTamzAIJ1YMLQ1c9IalPtQ7c0TH8VsKO2q3aat005sGUEouyHojJv6g5In/UltX9Y/wLdNqjgKjplW4gZPnWqSx1D2Nr3b6jRuosXMlX70kLcoSt4j7pVQymz24GDrEi4RxgUEYPIZQz7zcLcedg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752475664; c=relaxed/simple;
-	bh=Hmw/tp+sBdq2ziMP6TR3hCzb9wJ+2WfBgsvg4Va7Ya8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rwiOD+bEKq/pv3ifEa3Gb4S8QvZyekSr+dTOmmXnBO3ADtUt6rDgcWfkN9ffWpUowcdAULbG0EHmedE6scLwlTn1TFNQHuorKWrT6DdxtSZXCo/Iskm2omgXNPq9SPflwbK0+7/Sp1TWpL1MuTpuAj7Ftc3VOVKGTkmJAGX3pKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=le8BHDbi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18B2CC4CEF6;
-	Mon, 14 Jul 2025 06:47:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752475663;
-	bh=Hmw/tp+sBdq2ziMP6TR3hCzb9wJ+2WfBgsvg4Va7Ya8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=le8BHDbiG2aNfWCfPAs1SYVdSi/No69Ukea+4UI/CVmXsBPV1fsrOfDgFf31EBQAg
-	 Cz4RygdxBaiiY08F20J/SHhs0KO2/O+8xOgZg6FiJAaqq38UMlpJy/cwRiggXyAZ86
-	 /c/eBIvXDYoJh2461Ei/gL7tqMjeUg43L9aKbCkSqoxNKcD2XV0Hhly4QRTCEZPbC6
-	 Da7H5nIW1rzLZ/VXZneJ5pRr1S7m2PNwTSL3ADjJUsOKxu8I+QdO/IH6WIccO9bgM2
-	 Q3K1d7wpSK/bn/ydmEEqb38XV9hOP+68qVyaF8tlZW/7nNPZatOMEi0Z+FFi2jSzJn
-	 JVnVKf06MyJ2A==
-Date: Mon, 14 Jul 2025 08:47:41 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mao Jinlong <quic_jinlmao@quicinc.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 3/5] dt-bindings: arm: Add qcom,qmi-id for remote etm
-Message-ID: <20250714-true-pistachio-peacock-53da1b@krzk-bin>
-References: <20250711094031.4171091-1-quic_jinlmao@quicinc.com>
- <20250711094031.4171091-4-quic_jinlmao@quicinc.com>
+	s=arc-20240116; t=1752477478; c=relaxed/simple;
+	bh=iEFGv6pbtGb3btdE6XeyVCidrXUbLy2N7awbNEsuHac=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=V6ulwWClEN5252A8y4OdVUp7El7wd/2d8b/OL0mJ5Kxb+4mO1x7xr+Rd4YxegY7Puhvbacedx2Dywxat3Pu6r05rlobvfw1b2OcwmzuiQa4c8zed9UZ8su1C/N0il5iJ7GNhfGGYNZBiuSIgZn8E6df9wPknlUQ1FPq1hA9+b+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 14 Jul
+ 2025 15:17:53 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Mon, 14 Jul 2025 15:17:53 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, Thomas Gleixner
+	<tglx@linutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Kevin Chen
+	<kevin_chen@aspeedtech.com>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>
+Subject: [PATCH] dt-bindings: interrupt-controller: aspeed: Refine AST2700 binding description and example
+Date: Mon, 14 Jul 2025 15:17:53 +0800
+Message-ID: <20250714071753.2653620-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250711094031.4171091-4-quic_jinlmao@quicinc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Fri, Jul 11, 2025 at 02:40:29AM -0700, Mao Jinlong wrote:
-> Remote etm binding change was merged to fix the dt warning. Driver
-> changes were not merged at that time. qcom,qmi-instance-id is
-> required for remote etm driver to find the remote subsystem connection.
+- Update block diagram for better readability and accuracy.
+- Clarify the relationship and function of INTC0, INTC1, and the GIC.
+- Documentation and example refine.
 
-Again, driver... 
+This enhances the documentation quality and helps developers understand
+the interrupt controller hierarchy and usage.
 
+Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+---
+ .../aspeed,ast2700-intc.yaml                  | 155 +++++++++++++-----
+ 1 file changed, 112 insertions(+), 43 deletions(-)
 
-> It is the instance id used by qmi to communicate with remote processor.
-> 
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
-> ---
->  .../bindings/arm/qcom,coresight-remote-etm.yaml          | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
-> index 4fd5752978cd..bd78f6bc2fdf 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
-> @@ -20,6 +20,12 @@ properties:
->    compatible:
->      const: qcom,coresight-remote-etm
->  
-> +  qcom,qmi-instance-id:
-
-Don't come with another, 20th property for your remote proc
-architecture. Use existing properties.
-
-This pattern in qcom is extremely confusing - similar thing for remote
-proc called 20 different ways, just because in downstream you have 20
-different drivers.
-
-NAK
-
-Come with unified schema for existing and future properties like that.
-Assuming this is NOT FOR DRIVER in the first place.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
+index 55636d06a674..751a07d49c90 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
+@@ -10,6 +10,33 @@ description:
+   This interrupt controller hardware is second level interrupt controller that
+   is hooked to a parent interrupt controller. It's useful to combine multiple
+   interrupt sources into 1 interrupt to parent interrupt controller.
++  Depend to which INTC0 or INTC1 used.
++  INTC0 and INTC1 are two kinds of interrupt controller with enable and raw
++  status registers for use.
++  INTC0 is used to assert GIC if interrupt in INTC1 asserted.
++  INTC1 is used to assert INTC0 if interrupt of modules asserted.
++  +-----+   +---------+
++  | GIC |---|  INTC0  |
++  +-----+   +---------+
++            +---------+
++            |         |---module0
++            | INTC0_0 |---module1
++            |         |---...
++            +---------+---module31
++            |---....  |
++            +---------+
++            |         |     +---------+
++            | INTC0_11| +---| INTC1   |
++            |         |     +---------+
++            +---------+     +---------+---module0
++                            | INTC1_0 |---module1
++                            |         |---...
++                            +---------+---module31
++                            ...
++                            +---------+---module0
++                            | INTC1_5 |---module1
++                            |         |---...
++                            +---------+---module31
+ 
+ maintainers:
+   - Kevin Chen <kevin_chen@aspeedtech.com>
+@@ -17,49 +44,67 @@ maintainers:
+ properties:
+   compatible:
+     enum:
+-      - aspeed,ast2700-intc-ic
++      - aspeed,ast2700-intc0
++      - aspeed,ast2700-intc1
+ 
+   reg:
+     maxItems: 1
+ 
+-  interrupt-controller: true
++  'address-cells':
++    const: 2
+ 
+-  '#interrupt-cells':
++  'size-cells':
+     const: 2
+-    description:
+-      The first cell is the IRQ number, the second cell is the trigger
+-      type as defined in interrupt.txt in this directory.
+-
+-  interrupts:
+-    maxItems: 6
+-    description: |
+-      Depend to which INTC0 or INTC1 used.
+-      INTC0 and INTC1 are two kinds of interrupt controller with enable and raw
+-      status registers for use.
+-      INTC0 is used to assert GIC if interrupt in INTC1 asserted.
+-      INTC1 is used to assert INTC0 if interrupt of modules asserted.
+-      +-----+   +-------+     +---------+---module0
+-      | GIC |---| INTC0 |--+--| INTC1_0 |---module2
+-      |     |   |       |  |  |         |---...
+-      +-----+   +-------+  |  +---------+---module31
+-                           |
+-                           |   +---------+---module0
+-                           +---| INTC1_1 |---module2
+-                           |   |         |---...
+-                           |   +---------+---module31
+-                          ...
+-                           |   +---------+---module0
+-                           +---| INTC1_5 |---module2
+-                               |         |---...
+-                               +---------+---module31
+ 
++  ranges: true
++
++patternProperties:
++  "^interrupt-controller@":
++    type: object
++    description: Interrupt group child nodes
++    additionalProperties: false
++
++    properties:
++      compatible:
++        enum:
++          - aspeed,ast2700-intc-ic
++
++      reg:
++        maxItems: 1
++
++      interrupt-controller: true
++
++      '#interrupt-cells':
++        const: 2
++        description: |
++          The first cell is the IRQ number, the second cell is the trigger
++          type as defined in interrupt.txt in this directory.
++
++      interrupts:
++        minItems: 1
++        maxItems: 6
++        description: |
++          The interrupts provided by this interrupt controller.
++
++      interrupts-extended:
++        minItems: 1
++        maxItems: 6
++        description: |
++          This property is required when defining a cascaded interrupt controller
++          that is connected under another interrupt controller. It specifies the
++          parent interrupt(s) in the upstream controller to which this controller
++          is connected.
++
++    required:
++      - compatible
++      - reg
++      - interrupt-controller
++      - '#interrupt-cells'
++      - interrupts
+ 
+ required:
+   - compatible
+   - reg
+-  - interrupt-controller
+-  - '#interrupt-cells'
+-  - interrupts
+ 
+ additionalProperties: false
+ 
+@@ -68,19 +113,43 @@ examples:
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     bus {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      intc0: interrupt-controller@12100000 {
++        compatible = "aspeed,ast2700-intc0";
++        reg = <0 0x12100000 0 0x4000>;
++        ranges = <0x0 0x0 0x0 0x12100000 0x0 0x4000>;
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        intc0_11: interrupt-controller@1b00 {
++          compatible = "aspeed,ast2700-intc-ic";
++          reg = <0 0x12101b00 0x10>;
++          #interrupt-cells = <2>;
++          interrupt-controller;
++          interrupts = <GIC_SPI 192 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++                       <GIC_SPI 193 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++                       <GIC_SPI 194 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++                       <GIC_SPI 195 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++                       <GIC_SPI 196 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++                       <GIC_SPI 197 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
++        };
++      };
++
++      intc1: interrupt-controller@14c18000 {
++        compatible = "aspeed,ast2700-intc1";
++        reg = <0 0x14c18000 0 0x400>;
++        ranges = <0x0 0x0 0x0 0x14c18000 0x0 0x400>;
+         #address-cells = <2>;
+         #size-cells = <2>;
+ 
+-        interrupt-controller@12101b00 {
+-            compatible = "aspeed,ast2700-intc-ic";
+-            reg = <0 0x12101b00 0 0x10>;
+-            #interrupt-cells = <2>;
+-            interrupt-controller;
+-            interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>;
++        intc1_0: interrupt-controller@100 {
++          compatible = "aspeed,ast2700-intc-ic";
++          reg = <0x0 0x100 0x0 0x10>;
++          #interrupt-cells = <2>;
++          interrupt-controller;
++          interrupts-extended = <&intc0_11 0 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+         };
++      };
+     };
+-- 
+2.34.1
 
 
