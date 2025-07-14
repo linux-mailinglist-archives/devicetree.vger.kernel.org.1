@@ -1,58 +1,94 @@
-Return-Path: <devicetree+bounces-196233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2ADFB048A6
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 22:34:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F3C1B048F1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 23:03:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF0967B4AD8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 20:32:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 692004A199E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 21:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B59C1278143;
-	Mon, 14 Jul 2025 20:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2CD4239573;
+	Mon, 14 Jul 2025 21:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gW5Pb9/a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NTUO6OHd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FB9239E97;
-	Mon, 14 Jul 2025 20:29:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5080B22FE0E;
+	Mon, 14 Jul 2025 21:02:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752524986; cv=none; b=OR80CmrWesnLln66zIc8aK37WCQyPvv+SDccg2xahraS4T5Yi1RCmZVbpp8dWgne6lhiO2YuLkwYjapBOc4G70TXTkXRn3+0cTh0CuKRkLhMqSx2Am9tvbyhfh+FCnj99kzFIqhlZbei/V25ooXAewHMvoPjkEx7ytZ9cesQU+8=
+	t=1752526971; cv=none; b=GvD8vkFW4sxd/qMF1l7evieVJw3tElI0Z2FJ8V1Kv3T5zDziZ3IDPFMbQZVSJWaQjNUNTltxXMyl5h6/R6/e3XO9BYRABFKBIS6TZ6n6IrxSyyUINj0Z2baILnki214hH0eEAdOOJgyrnvykAjS926LEsMWho82as5ReNqflKaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752524986; c=relaxed/simple;
-	bh=M2jBlVykSqgpKIbdwPfdRivn6FmOBX/bBqJ5c01oet4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Rn9MIhwYOnPiQBsja0mUqAsN//d0Xs7wtSmrluvPbbV2EOob6VtvqZxIohPtlk3Uxtr4/bZ7XgmYC+/IxBhpL2i+Vw/L6i2hQ6yRp4T4LFax6jT8fzQXvBXdBoAX6NXWTagmBDxXhozgnnR0VLLx2REFJNzLDxSebjKeqSJQfFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gW5Pb9/a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3242C4CEED;
-	Mon, 14 Jul 2025 20:29:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752524985;
-	bh=M2jBlVykSqgpKIbdwPfdRivn6FmOBX/bBqJ5c01oet4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=gW5Pb9/aCxj48ILwq7EEUCzLcxDWNVymhfH5zmaO/0TaRZeEqQuzxvZAFfIGxMoNx
-	 J8b3vdwdN2amjaDjzWDWDldwew0I1nIxiGHx7R0f7OQNWiyEsqN0QqWDqKE4ITBrDT
-	 9VBq2WaZvd4jt08xr2QiEUQ4FHNvqyfmuzud3JBL5oZIX048xlr+wQQWzGPg/GRdot
-	 D+j1kVduKQDVFU3dJ/CXToyymrYUdBD5Zqbs1DuqUSklH1XA0hOEsuk7yuh/dFUy8n
-	 3oPso3uV10FDe9eL2CSZtLlj5vhUpvuPfK001VKs4XQ/Sd4c7m/rYDjyJ8HgWfVYJn
-	 Ymy7xexB8RKTw==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
+	s=arc-20240116; t=1752526971; c=relaxed/simple;
+	bh=WMxNnriEm/NoLbunp3OzPFaAF8D/CoAlBwnd/3rs62g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Tl+s/HJgHlyAOn2uM57GtayuGMscTZSWQga1E+VbBIRWwwtG9sCX7D6RwRUVqxtYSJJigA2DYRTaTY3STogXz7IgtfYC0W6A3nOrKHU8f/4MvXgmnbze2Zg9smoBId09QxGpqJiFM4kS11VU1zvuktiBFPCQpI6m61b0DBYJBZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NTUO6OHd; arc=none smtp.client-ip=209.85.160.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-4ab39fb71dbso42558941cf.3;
+        Mon, 14 Jul 2025 14:02:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752526969; x=1753131769; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gplrP/FG68X8Pjj+2kSqYY5u0l/VjjHNXHnC2w8sKFQ=;
+        b=NTUO6OHdq0xs5TnfZYWw7QSuSumUNkD1XV5xkhl8CCeBJTrGm1CtyAeDJeXd/vfcyP
+         6Pi4UArikQojDx2X0+Tq/1CfqNaIRKztC5RDK75GSQCBEIKZ3MCFQT3tBMOU6FMHURRc
+         P+W5V5rdT1RYEEA1eI2iG74J3RFgR/cchOxdLU4MAyAl3zvrNuOdxEvctBD0ugrPR3vg
+         IoB81jGQ/Eq1M/Zu9rXAAox1s8BaOsxYKrv9QgkUPtZfWGiDONIlgad5lk5VTE/ktpwV
+         dm3Vc6hWlww43CHQHpB8OYIzaNVmF3jjL6O2ladn+4YV3CLEJf43v02srtLqCNS/rEw0
+         RC7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752526969; x=1753131769;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gplrP/FG68X8Pjj+2kSqYY5u0l/VjjHNXHnC2w8sKFQ=;
+        b=iRqdRHgfwCdeHvgmoNPJQjgdJDuXqDiXGidCuecptvJG3sgM18S5D9jQiBIjwEh8lG
+         50T9j1XQYflMpRCr8lZogOHgMRNP4Wui3UyWQ+0CzILpbe4vBMRg2kvRCYxgXuxMrNNC
+         O1crQJ9dbBjhzJzwz1JIKKyctfao2mKqX1vWGQXcSFULK/lFrt+bNASNyi82qihHA9mk
+         RiPmrx1ECbiDkMGd8COR6WtbfxFYEaZa0LxsZ5qW2B/s1k1T3CeTOOgytSBOvhdGNOPa
+         7Y99MmhmPt9ry50iWPeVMzxP6cfvc/hASOUIYJChih/6bSkUvyXGUkqGbSnNBc/g0BVA
+         AxHg==
+X-Forwarded-Encrypted: i=1; AJvYcCULXsmstP+Ey0KaLxaiOn09GA7bGdubOS+9X9CIPK3R7XXMQYnyTqgxKEMUpg8EsYZdHJt8tbdONQGS6KveOw==@vger.kernel.org, AJvYcCVqh1lmqom6tmX8UMPYnxXfeiMmbYzEgZG9zmfSkji1p4FC2/YDMHgMdgjlV0dmKw1MrqKzv+z6D/B2@vger.kernel.org, AJvYcCX6uRtEwdufikJfsysbGVNsa1RNDGmQAPI9ujnbhGvkH+ZgVHxiZD44xlvxtqDxQkXSK9Xz/YknriiVDiw=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhR3TChK1iINIul1gOflBvsHcqHbgj59gAqJtbIhfATBx3Svkx
+	Qvf/3stRPjqpXf6O4MOA7vEXNDnzkG2dGUuh3x1HDi5AftDybGzxf9Zb
+X-Gm-Gg: ASbGncuGxBAF1I44Gi5p6cx1vXDFkI1iiwvHeGPpGs9+sq8rwh1uFxa+TjfHL1ePGMH
+	LUvyRElcdCcysQRY0YoV9TKxx7nuAcs3F23LgN+cKQ8lDHTYto2w1lsrl58d3btHo1AkA7YrXt1
+	WiyTb/xpzQ13RTlW8Ws+qxNuYB0t9vMlaxm+ZWsE6cl2a0Kkr+Wk0trUL1OEzAex55TMdOxF8Cr
+	lEBx3y/ettrvR0dqOdh3h9jGa4YPY65FPbvxfMcogCGfbINHW2d2v6UfX2OShtVwS35E1Q4jeAx
+	gJjq/G1hzDebyPgoNku59GUuCrZMi5ZW7auI6RcaVOSRce9g2Tp6N3G68mu4MVGD/Msl8fqK5UJ
+	ygiCixvjing==
+X-Google-Smtp-Source: AGHT+IHGY7H21cBqs84ZKLIXZ3KHHgeaLBV+I/oOpy3rX+Dqnx8huMOBfu8Nm87UQNAaQtW+OT9HWw==
+X-Received: by 2002:a05:622a:60a:b0:4a7:70a5:e726 with SMTP id d75a77b69052e-4aabba03d4fmr181986221cf.52.1752526968871;
+        Mon, 14 Jul 2025 14:02:48 -0700 (PDT)
+Received: from localhost ([2607:fea8:3140:6800::10ce])
+        by smtp.gmail.com with UTF8SMTPSA id d75a77b69052e-4a9edea5bb1sm53533471cf.53.2025.07.14.14.02.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Jul 2025 14:02:48 -0700 (PDT)
+From: Richard Acayan <mailingradian@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>
-Cc: linux-gpio@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>,
+	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: gpio: fsl,qoriq-gpio: Add missing mpc8xxx compatibles
-Date: Mon, 14 Jul 2025 15:29:40 -0500
-Message-ID: <20250714202941.3013390-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	linux-arm-msm@vger.kernel.org
+Cc: Robert Mader <robert.mader@collabora.com>,
+	Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH v2 0/4] media: i2c: IMX355 for the Pixel 3a
+Date: Mon, 14 Jul 2025 17:02:28 -0400
+Message-ID: <20250714210227.714841-6-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,115 +97,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The fsl,mpc8349-gpio, fsl,mpc8572-gpio, and fsl,mpc8610-gpio compatibles
-are already documented in fsl,qoriq-gpio.yaml. Add the additional
-compatibles that use fsl,mpc8349-gpio as a fallback. With that,
-the 8xxx_gpio.txt binding document is redundant and can be removed.
+This adds support for the IMX355 in devicetree and adds support for the
+Pixel 3a front camera.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../devicetree/bindings/gpio/8xxx_gpio.txt    | 72 -------------------
- .../bindings/gpio/fsl,qoriq-gpio.yaml         |  7 ++
- 2 files changed, 7 insertions(+), 72 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/8xxx_gpio.txt
+This depends on https://lore.kernel.org/r/20250630224158.249726-2-mailingradian@gmail.com
+because the GPIOs would go right next to the charging, if sorted
+alphabetically.
 
-diff --git a/Documentation/devicetree/bindings/gpio/8xxx_gpio.txt b/Documentation/devicetree/bindings/gpio/8xxx_gpio.txt
-deleted file mode 100644
-index 973362eb3f1e..000000000000
---- a/Documentation/devicetree/bindings/gpio/8xxx_gpio.txt
-+++ /dev/null
-@@ -1,72 +0,0 @@
--GPIO controllers on MPC8xxx SoCs
--
--This is for the non-QE/CPM/GUTs GPIO controllers as found on
--8349, 8572, 8610 and compatible.
--
--Every GPIO controller node must have #gpio-cells property defined,
--this information will be used to translate gpio-specifiers.
--See bindings/gpio/gpio.txt for details of how to specify GPIO
--information for devices.
--
--The GPIO module usually is connected to the SoC's internal interrupt
--controller, see bindings/interrupt-controller/interrupts.txt (the
--interrupt client nodes section) for details how to specify this GPIO
--module's interrupt.
--
--The GPIO module may serve as another interrupt controller (cascaded to
--the SoC's internal interrupt controller).  See the interrupt controller
--nodes section in bindings/interrupt-controller/interrupts.txt for
--details.
--
--Required properties:
--- compatible:		"fsl,<chip>-gpio" followed by "fsl,mpc8349-gpio"
--			for 83xx, "fsl,mpc8572-gpio" for 85xx, or
--			"fsl,mpc8610-gpio" for 86xx.
--- #gpio-cells:		Should be two. The first cell is the pin number
--			and the second cell is used to specify optional
--			parameters (currently unused).
--- interrupts:		Interrupt mapping for GPIO IRQ.
--- gpio-controller:	Marks the port as GPIO controller.
--
--Optional properties:
--- interrupt-controller:	Empty boolean property which marks the GPIO
--			module as an IRQ controller.
--- #interrupt-cells:	Should be two.  Defines the number of integer
--			cells required to specify an interrupt within
--			this interrupt controller.  The first cell
--			defines the pin number, the second cell
--			defines additional flags (trigger type,
--			trigger polarity).  Note that the available
--			set of trigger conditions supported by the
--			GPIO module depends on the actual SoC.
--
--Example of gpio-controller nodes for a MPC8347 SoC:
--
--	gpio1: gpio-controller@c00 {
--		#gpio-cells = <2>;
--		compatible = "fsl,mpc8347-gpio", "fsl,mpc8349-gpio";
--		reg = <0xc00 0x100>;
--		interrupt-parent = <&ipic>;
--		interrupts = <74 0x8>;
--		gpio-controller;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--	};
--
--	gpio2: gpio-controller@d00 {
--		#gpio-cells = <2>;
--		compatible = "fsl,mpc8347-gpio", "fsl,mpc8349-gpio";
--		reg = <0xd00 0x100>;
--		interrupt-parent = <&ipic>;
--		interrupts = <75 0x8>;
--		gpio-controller;
--	};
--
--Example of a peripheral using the GPIO module as an IRQ controller:
--
--	funkyfpga@0 {
--		compatible = "funky-fpga";
--		...
--		interrupt-parent = <&gpio1>;
--		interrupts = <4 3>;
--	};
-diff --git a/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
-index f1b60ab3f356..4cb2a6b9fabf 100644
---- a/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
-@@ -29,6 +29,13 @@ properties:
-               - fsl,ls1088a-gpio
-               - fsl,ls2080a-gpio
-           - const: fsl,qoriq-gpio
-+      - items:
-+          - enum:
-+              - fsl,mpc8308-gpio
-+              - fsl,mpc8377-gpio
-+              - fsl,mpc8378-gpio
-+              - fsl,mpc8379-gpio
-+          - const: fsl,mpc8349-gpio
- 
-   reg:
-     maxItems: 1
+Changes since v1 (20250630225944.320755-7-mailingradian@gmail.com):
+- too much to have a complete list (1-4/4)
+- squash camera orientation patch (4/4, previously 5/5)
+- squash driver changes (2/4, previously 3/5)
+- remove labelled endpoint node in sdm670.dtsi (3/4, 4/4)
+- change init sequence to match other similar drivers (2/4)
+- retrieve clock frequency from devicetree-defined clock (4/4)
+- remove clock-frequency from dt-bindings (1/4)
+- remove redundant descriptions of child nodes (1/4)
+- switch initial drive of the reset GPIO to low (2/4)
+- set mclk frequency to 19.2 MHz (4/4)
+- add vdda-pll supply for camss (4/4)
+- use common power on and off functions (2/4)
+- use devm_clk_get_optional (2/4)
+- remove extra layer when describing mclk pin (4/4)
+- rename regulators (1/4, 2/4, 4/4)
+
+Richard Acayan (4):
+  dt-bindings: media: i2c: Add Sony IMX355
+  media: i2c: imx355: Support devicetree and power management
+  arm64: dts: qcom: sdm670: remove camss endpoint nodes
+  arm64: dts: qcom: sdm670-google-sargo: add imx355 front camera
+
+ .../bindings/media/i2c/sony,imx355.yaml       | 108 +++++++++++++
+ .../boot/dts/qcom/sdm670-google-sargo.dts     | 116 ++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          |  12 --
+ drivers/media/i2c/imx355.c                    | 143 ++++++++++++++++--
+ 4 files changed, 355 insertions(+), 24 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
+
 -- 
-2.47.2
+2.50.1
 
 
