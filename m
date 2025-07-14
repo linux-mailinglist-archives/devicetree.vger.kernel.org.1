@@ -1,113 +1,122 @@
-Return-Path: <devicetree+bounces-195951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82CF7B03AA3
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 11:18:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDD6FB03AC0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 11:27:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F1D73A566A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:17:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19EBD189CDB7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7EB240611;
-	Mon, 14 Jul 2025 09:16:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2361324169E;
+	Mon, 14 Jul 2025 09:27:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="lvdeWwVj"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eWu1a5MW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE510246797
-	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 09:16:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01AEE234973;
+	Mon, 14 Jul 2025 09:27:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752484603; cv=none; b=cmrimwNeLehF5jkBPveKirv4Vx6+LpeiDLM/YojTgrsFSthA/Ti4Vjh84noSajy66ucDJfegl9u9nKcahShLiLMuUtPc4FE9Nyc2g6GTuuAHqiGhuCV3J/RiX5FKIWWLlMLPxIHDFPqz8Mvx9o+2FQkAQr7N4ObLs0tz3R6oGfk=
+	t=1752485268; cv=none; b=TPeEt2M+YMOgV+2Mz2M+BRQonU9VJrIi8m/f4jGK98DpR7y/cQCgGN/QAv2gIjm2wX5JOtTmqozEQcJo4e1hIM0umquYrvCTRF8smjWlA9bmu8Px+fRqI6myKWmHsWR6pSbUszIgBj7flRv/rnOKTsRk7axZWKebGmxFNo17FTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752484603; c=relaxed/simple;
-	bh=nG2jwbcLk7SXQKXcTmNSqdZ+/DC2xEkEzu3JnMvQfYw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KAT/+1spIOuZyIWna6fJ3CXlDRXaGjIgV2x6ojks8yPmln6efs7UTux8OZRIewlppxRyh/jZJxFdqaB16KQ4EpPuhGWr+LzcAgTyl62jtjqqvIBAir+qouTZwOglFokgfVIlvNY4WCdmQavB1r4QFoGsYCC7mwfk1smlqdyb4Ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=lvdeWwVj; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-711a3dda147so42007127b3.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 02:16:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1752484601; x=1753089401; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nG2jwbcLk7SXQKXcTmNSqdZ+/DC2xEkEzu3JnMvQfYw=;
-        b=lvdeWwVjKR1Pf7nmoNWj3Dn90ESTbhWvKog7RDq9VtpFOsTClHn5MejmUsdBFqCTyU
-         PApnZGWdkWbnOGsMx+VnXgXd8Azc6ijPCAiePwHefBCwVIEE7Uq0jkRJxqrdh11MiT8N
-         yk382KQjVGqdCLWE0oZoWBmmzd4+LpDkuHZKIK2nrM0jswMxhGnmqqKXGsoc21iP3oer
-         Bw/io/VZjAPsOmOYtgASop8OfKVBsONPS+v4Ltlxp/0llxov1WwmK5eSppqwUU51S0s7
-         yYEtgjseZaAFmtUsN6oHWkNfiafLKn18F1RAg60G2mWQxEcAbSYruHyj+acEVNyngwxz
-         XlTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752484601; x=1753089401;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nG2jwbcLk7SXQKXcTmNSqdZ+/DC2xEkEzu3JnMvQfYw=;
-        b=vBzgxvzSHbIYFFEQrwJuykVlM8hznjSmRLAAF0Z9QnyQKqskKxk7d7s1kJLXsC9UNY
-         mww8T0lUeBQQ7dBjhtnyqfInk0RZKEL9rWkIcWIlXrEw1JSnOWaqefRV259BJ4crWFBw
-         liq98y2xIYdoknhCWpHL9qrWgckl4yZm9vwWuZs1qpTcqZKmgUh1B3jWTQeuaQqVhTlR
-         TEEq8bNFqntQ+G/KCzsh2QJLYw2ctOCKVxA5aJuOirOBC8gxypAu01F1jkyt1Q3aT05p
-         GItoqDU5xRcgZ0aD+rcHdzXj+tFH1BglHGAdt99D2ZXOE0lR0Qp4tXQN8XFrxU7S8Ge+
-         /bfw==
-X-Forwarded-Encrypted: i=1; AJvYcCVo91kk+0sPyRy+jVcYLdAi3b/aT0tuq+X8B5Tcr59fjmxqm8SUuTuUcBim3fusguukNJixQaEo1qwI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcFe9APHaZjV9S/iTceJhcZ1dzEYAELBUAu4YNu3kcCgyjtkuu
-	Wx8gIrXEYyE3et7zl3QP1I4M0QH827EMfzHucZti+Rons7tDf5WTb8iIkMYAi/3N3XCS2hfR2L+
-	MlPwaa3veLGIQxBZoUoTUaqbNEqoaS13mgfflp606CQ==
-X-Gm-Gg: ASbGncvrLKL9eHP+Cq5KynPl5V+vkhBvY3rp9eLPwyITt/dhecVloNhHoMTEubbsj44
-	f39/ra/r17FaMx9S5fGZRcZG/cE373iUU77qs2+ew9I047rBMnLHnG9LsTVPpL6SiLOguX6V4si
-	LjR13UK0AgLT+w8qk2qKm+SAmXG26UGeL4x5kELLVPkJ83ucAHhkB11WyOqIRgFTPLEqLsIn7uZ
-	iHYe3jxm48WXIffBGHGaDWNsB7PfeXPFT1rBc651w==
-X-Google-Smtp-Source: AGHT+IGGKVZL2gi3YF6dcBpVJCqmCTegzTcKiJ9fHmRZqlNYn7Bg2+Yd24bFWr79pSRo5RVmMmRv+MnI7JAH4UVwWPA=
-X-Received: by 2002:a05:690c:ec6:b0:70d:fe09:9b18 with SMTP id
- 00721157ae682-717d5c373a9mr204630517b3.2.1752484600812; Mon, 14 Jul 2025
- 02:16:40 -0700 (PDT)
+	s=arc-20240116; t=1752485268; c=relaxed/simple;
+	bh=NkdzmEJA2rxV8ybPvo6F3lSYDZZ175rOCAFA+Gh9kxc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TC+yj2ZptK01aDVmIrtXv1KtO6oCtN3srmfSoCqcgukAuCumTcTV3YFQa4GpQQbhFWCNogmUpQ5JCDu6G6nNVDk4Ni260xs7l3RdXmHABUqIhg6tIPi0tyuxhYXkxzchnhiIZ+Wjph6tnJ6rNZSyNBDlYL+Mxhwuqo/FNQMSrtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eWu1a5MW; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56E9RUuJ2347226;
+	Mon, 14 Jul 2025 04:27:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752485251;
+	bh=qdPkp927EPjHpR8CdKSeHXDZaCUOcmMQXfmTrJemwIg=;
+	h=From:To:CC:Subject:Date;
+	b=eWu1a5MWRtt3TkJXNSUFqfYB+klz8bWTbeY5rO2y2J+XEdjG9xpPX+anug5ujash7
+	 hIgNbve/TZpU4MpJFWSesXzs+cW1wblnSpEEh+Vtl/7eOYDAYk+SqnNvgp/3o7mrCz
+	 qzrMTH0JuUw94L3yI+TcEMyaigQEK27hn0DZoVzc=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56E9RU55197401
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 14 Jul 2025 04:27:30 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 14
+ Jul 2025 04:27:30 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 14 Jul 2025 04:27:30 -0500
+Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56E9RPVg279945;
+	Mon, 14 Jul 2025 04:27:26 -0500
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <vaishnav.a@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <imx@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+        <u-kumar1@ti.com>, <y-abhilashchandra@ti.com>
+Subject: [PATCH 0/7] Add Interrupts property for CDNS CSI2RX
+Date: Mon, 14 Jul 2025 14:57:01 +0530
+Message-ID: <20250714092708.3944641-1-y-abhilashchandra@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250708-leds-is31fl3236a-v3-0-d68979b042dd@thegoodpenguin.co.uk>
- <20250708-leds-is31fl3236a-v3-2-d68979b042dd@thegoodpenguin.co.uk> <20250709-happy-gazelle-of-fascination-fe0fd4@krzk-bin>
-In-Reply-To: <20250709-happy-gazelle-of-fascination-fe0fd4@krzk-bin>
-From: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-Date: Mon, 14 Jul 2025 10:16:29 +0100
-X-Gm-Features: Ac12FXyAnSttrQTxfZ3hyjQUCceH_uU_FETUA29_qdO6yKKW6bWWhuKLl-Sbr54
-Message-ID: <CAA6zWZKRA2Qn3ajN9f9o_oBTZAgrx22gP28A5CHgx=+0jFrOKg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: leds: is31fl32xx: convert the binding
- to yaml
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org, 
-	Lucca Fachinetti <luccafachinetti@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-> Driver as Linux driver or LED driver? If the first, then drop.
-LED driver, might not be obvious, could change to controller,
-however the datasheet refers to the device "LED driver".
+The driver patch that adds support for error detection on the
+Cadence CSI2RX by enabling its interrupt lines was recently
+picked up [0].
 
-> These should be people interested in this hardware, not subsystem
-> maintainers.
+Accordingly, this patch adds the required interrupts property
+to the Cadence CSI2RX device tree nodes.
 
-I will let maintainers decide who should be included here perhaps ?
+Test logs:
+(To validate the complete functionality, CRC errors were
+intentionally generated by modifying the sensor overlay)
 
-> Keep consistent quotes, either " or '. You made different choice for the
-> same properties even...
+AM68: https://gist.github.com/Yemike-Abhilash-Chandra/123fed82e798a76944ec23f8e46d1114
+AM69: https://gist.github.com/Yemike-Abhilash-Chandra/1820e39888cb50e250a83e2d059365f6
+J721E: https://gist.github.com/Yemike-Abhilash-Chandra/63f993a995fd6a12cb113454952c063f
+J722S: https://gist.github.com/Yemike-Abhilash-Chandra/2144fc8ab2f7bcdb3ef868e85424467d 
+J721S2: https://gist.github.com/Yemike-Abhilash-Chandra/f46587ec1ef72671ee31803dd93434b4
+J784S4: https://gist.github.com/Yemike-Abhilash-Chandra/0c594683772f11c70bccb508757e9799
 
-Copied over from original poster, have not spotted that before, thanks.
+Driver and Binding patch series: https://lore.kernel.org/all/20250416121938.346435-1-y-abhilashchandra@ti.com/
 
-> Pattern does not match entirely the reg constraints. 36 is 0x24.
+[0]: https://lore.kernel.org/all/aG9tuMFOnvwXkcE-@valkosipuli.retiisi.eu/
 
-Pattern allows for one or more hexadecimal values starting from 1,
-so the second number should start from zero is the second error here.
+Yemike Abhilash Chandra (7):
+  arm64: dts: ti: k3-j721s2-main: Add interrupts property
+  arm64: dts: ti: k3-j721e-main: Add interrupts property
+  arm64: dts: ti: k3-j784s4-j742s2-main-common: Add interrupts property
+  arm64: dts: ti: k3-am62p-j722s-common-main: Add interrupts property
+  arm64: dts: ti: k3-j722s-main: Add interrupts property
+  arm64: dts: ti: k3-am62-main: Add interrupts property
+  arm64: dts: ti: k3-am62a-main: Add interrupts property
 
-Thanks !
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi                 | 3 +++
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi                | 3 +++
+ arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi   | 3 +++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi                | 6 ++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi               | 6 ++++++
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi                | 9 +++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi | 9 +++++++++
+ 7 files changed, 39 insertions(+)
+
+-- 
+2.34.1
+
 
