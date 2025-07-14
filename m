@@ -1,164 +1,213 @@
-Return-Path: <devicetree+bounces-196165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309DBB04488
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:47:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA412B04481
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:47:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C89911AA17B9
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 15:43:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20324161359
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 15:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6EFC24EF8B;
-	Mon, 14 Jul 2025 15:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A283325A326;
+	Mon, 14 Jul 2025 15:46:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="OF5XC57g";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="mrZeo//K"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dxw1l1ap"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b7-smtp.messagingengine.com (fout-b7-smtp.messagingengine.com [202.12.124.150])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0031A258CED;
-	Mon, 14 Jul 2025 15:40:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E0523A6
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 15:46:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752507618; cv=none; b=SPCU2bnkmyfb/cnpf4+t+jvdyD10F7vN7KrVbEvcAeu/TeX61uXf/r4wIEzIx1pBEVFHlx7sg3gYKkHuLtDtX8xPSOql8gRxXT9Uq85Er0xoqJ8tGSbHuApU4yyCuB36XNaZQaBufA5EYx2F14HSe24rKTz6t8kDAcKYYefIMfc=
+	t=1752508018; cv=none; b=FzJOMlFCuFldrDGS6fjjhZX/+dxq7s68ViSsvVlqcZLudv4THbM2LCN+jEE+ZwZrUuIpa4xWiASDpjtfMA6GeXkFtn0ygPLKYew7OdBv7gN7yZxiKQ/11MHIhWLpQ4TjsIMYpTWpwy3I+TdfV81c310CG3sVz09hNrDRcGvz4e8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752507618; c=relaxed/simple;
-	bh=Huej0xIdlMdw4KGCDq428Bx1DZB2HN0IfmvOrp4uF3g=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=jEISKdlq89Z0KUwK7ILFO8zCt1FrX2bVDbHArVPKoHMg4bdF3FVrv5OsT6RoEZY403SZc8Ild68VddAXM7VGWZZSGqy1cmE8fbkkwIasSQl6nYIB8JC4XrgA+M/5zg4lynu1l5lAGrYg4adwTJ5fgAFND71/b/Oj5o/Lnnzlg6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=OF5XC57g; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=mrZeo//K; arc=none smtp.client-ip=202.12.124.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
-	by mailfout.stl.internal (Postfix) with ESMTP id AC0C21D002FD;
-	Mon, 14 Jul 2025 11:40:15 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Mon, 14 Jul 2025 11:40:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1752507615;
-	 x=1752594015; bh=0njB26qrHgHgqgJhixVMK11C5AVnOvF5avutan6EoGo=; b=
-	OF5XC57glEJXYXFhmhLebcZ3wXlVdszeqaxgdQOjNlpcPyeeNZVSaAiWws1IyU63
-	BSgL6SZMVBmNZk6Tr8619klxaRXS/Dyl0cMCqfTHokmmaQ2P21Lb7GUM7lnBGq1t
-	1D5WgbFpfV1QMg/ZlK1a/q5LDXozabWKAilDOLwnwYZx9ZnZWORc2hqiKW23Lgd/
-	I8h1qkpiTSmtjGepf5ulVeVLoGsLLpsUJvT7gj7FXxwlydswepAjNKkfiqJgtl3t
-	NB+p/5jcwIXrEKq+0hV9EvHu/WiK5ZXSKLezZlYsZ1U+VXFZ5zOM5XPao5mYxprh
-	w9p1ByZOqkD0tQMWdSMJwg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1752507615; x=
-	1752594015; bh=0njB26qrHgHgqgJhixVMK11C5AVnOvF5avutan6EoGo=; b=m
-	rZeo//KtPwVCOwy3s8kprUGhEkNgPVD4OBA3/UpzJx+Gw6obGDPZPeYmgbq92m+G
-	C3iXV4T1D5g8cTwQkw6YuX22l6GNF9KVwFH8FA/w7xeHESy3JIt0L9znkgaZBtw+
-	uRwowS6wJ3ckaOmwXVlt1JTGinvwqhboyzUDmYSX55HTyARgwxOlyRCxM22+Grz0
-	8SN/VLrZ7VvJJHvXQTZ+w3ZlQwfFU/2LQRo5wkTwzoOAumMQUR4vrJXsa38ycnF/
-	5c23/DftYRKbZ6tkArDMOe7oqgk+/g4PsyRUl9uhC7p++QhXLFfkPxvNcrDNf8nU
-	1oNB3QARdYhmF+AZR8L7g==
-X-ME-Sender: <xms:3iR1aJ7l36q__p0rLR44gcyBWQWywAlXplWWcLI677KMQfKwE4iw5w>
-    <xme:3iR1aG7UPuNcgM10Iu05vD-OuMqCxLBJleYTJ4bfEUHkdV5Es3AdpzD3rgFuvhz6E
-    PKTtQO4nHu-mtV9CTk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdehvdefgecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthhqredtredtjeenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpedvhfdvkeeuudevfffftefgvdevfedvleehvddvgeejvdefhedtgeegveehfeeljeen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
-    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopedukedpmhhouggvpehsmhhtphhouhht
-    pdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomhdprhgtph
-    htthhopehkrghjvghtrghnrdhpuhgthhgrlhhskhhisegrrhhmrdgtohhmpdhrtghpthht
-    ohepshhuuggvvghprdhhohhllhgrsegrrhhmrdgtohhmpdhrtghpthhtoheplhhihhhurg
-    drlhhiuhestghigihtvggthhdrtghomhdprhgtphhtthhopegtihigqdhkvghrnhgvlhdq
-    uhhpshhtrhgvrghmsegtihigthgvtghhrdgtohhmpdhrtghpthhtohepghgrrhihrdihrg
-    hnghestghigihtvggthhdrtghomhdprhgtphhtthhopehguhhomhhinhdrtghhvghnsegt
-    ihigthgvtghhrdgtohhmpdhrtghpthhtohepphgvthgvrhdrtghhvghnsegtihigthgvtg
-    hhrdgtohhmpdhrtghpthhtohepjhgrshhsihhsihhnghhhsghrrghrsehgmhgrihhlrdgt
-    ohhm
-X-ME-Proxy: <xmx:3iR1aMIYv3JQe4Szc-JpjSetEI22ercdeg7Rg3WKmQi8TSg82drXKg>
-    <xmx:3iR1aBr2EuXj6BHAWrP9-ZMTPoOPz7FEMmxuxlnAtu_IvQzJASdyPQ>
-    <xmx:3iR1aFC8QGCi3Q93WpKOe0BkAyHpwoodEcEK6VsoJUh_oSdpMIbLoQ>
-    <xmx:3iR1aHfNNrrwQ8XGsJX9FqbViaqkJI87ZuEYy2zexTesDSDCMhshJg>
-    <xmx:3yR1aFZPDnM9fRspzybccfJdxEECJbb7EC_ExvL3vIH0x88d7sGGVA2w>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id BDFED700068; Mon, 14 Jul 2025 11:40:14 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1752508018; c=relaxed/simple;
+	bh=5LlMEN4J3o3aD6YDXjwZ5zCkBWXWLqScnxci+wtPW0U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=V1a9cpVsRDXInORFcE2Xn0Z0l5rUC0d3duEEA+m59nz1I7GxwNnwELuuTVuJmCyoW0MpAvH5ZAefF4J8Xp6mVQhDEbBcb5OslUmR/tEpWs64/Ln6bYpccmbRx5YCRue+DU2u9SLsjTTbqagcn9Yy6oT4J+Hv6QuXXi4p0AHIJ8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dxw1l1ap; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-55502821bd2so4608699e87.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 08:46:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1752508014; x=1753112814; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9h6RiMEbdSPWHXVsj9OLxwFBmTJFmqoquTZg92Kpnmk=;
+        b=dxw1l1apOogu0egq2PjOiBpY1wQVoKpNt/b6pdrTeyjZ093yqB9rj1Y43YwHaaEv6F
+         xAUJYBq05TN3PMLi0cF/s6UlfTiy/tZ6T7g0i9DeKIqcZyiERGsk2YN+7knOFlxLqIEc
+         q6XFtF9KW1jg23t6FeuWgL0+vypuhZtb/F/Ss=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752508014; x=1753112814;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9h6RiMEbdSPWHXVsj9OLxwFBmTJFmqoquTZg92Kpnmk=;
+        b=P7xANaegodWUZ/ipX7GR0iMkpPI5TV1TqtM3Bt95JGJpdoDzzN2eluzwNhpBd12uUD
+         FGqPqFpX7BVRPbd6Jts9nJgKn1Dfymk+J8yy2BDQIW2k2W+PgO+ey7fChtoppBXd7HlT
+         nnNY2M+OzaSwf9iq80IMVgKj1FtG+HZPW6NUi6hZlV6GBtmLtHnwRKV8w1ND4k2e5dRC
+         LODl5yYvPEnH+dYj4BAT9wwlaEA/gj2ibHQr2uyBqxsW6ZKBO2PM6zadB3X0C0uwMnwI
+         K82/XAbD65hdR21uSfXvhoLDLtZ9qbbx1YgI+3wSKO5y9pr6FCVXGOW5eMbrDnfG5yeV
+         3VVA==
+X-Forwarded-Encrypted: i=1; AJvYcCUZPryrguHRLTRtQs0aiO5t6497BrylBaRIl11KxaCV48dUUbTbpYBhkvFqZmKNivnuWllfZsj9YbJP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7Lj0wgXeCpIcXizZFQAFexaq7Kn1hx8qA2IBGQKUiUKPyGp0/
+	ISm7rSyZr6AncgY4SU8e+Rz3m+f4/+ZuTveXQdgK/XQoM1ge9Djqj0Y09cJo0HEawz2scEHyMLV
+	duchN2w==
+X-Gm-Gg: ASbGncu3sIdKsqornzHkx0qsbo6JCLKBsAouHdYkjkdC2tgNwcsY2Aow7c6vYJ4ckvd
+	uFJxpehZbSGD32+tvI30iZNvIOpZAReT1YJFyiG8ybkwyWhX0P/LFE/HiK3LRKUu0UJnxt/l9UX
+	WKh261W53f9rBPb20MEI7zzMvI872wlUJaesGwhRgTJj8PnPBzvuqbEqBZ7q/LGDu6STCA7Bcbj
+	j2zjh+GgN6aKF6PnZRP/4PrsgGyXus6sTOdivuC3G9/sCM1gkcqK/VgyD4Gfb4u5rkM98Joy+AM
+	iUgPvWl9O4G7O7iScv5PAwECY5J8zCNPK7z40e+s2fgpTDJpd0MhSOMOOnTWL8+51NKH8M9RmzN
+	quu0zFXmG8CVqxm3Olhad8eRqL3sd44Eff5vpEUwGczM4xznb1XN5Xu2T9s4a
+X-Google-Smtp-Source: AGHT+IG7qGXnlYp8GrKbY75R8PD5d3IFy43Lgs9LbLk8q3Ky6Nj9G4T2NEhNqMJQS+pbYYfYVj5yhA==
+X-Received: by 2002:a05:6512:15a3:b0:553:2633:8a65 with SMTP id 2adb3069b0e04-55a045f06bbmr3829109e87.30.1752508014454;
+        Mon, 14 Jul 2025 08:46:54 -0700 (PDT)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com. [209.85.167.48])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5593c7bbf3esm1969283e87.21.2025.07.14.08.46.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jul 2025 08:46:53 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-55502821bd2so4608672e87.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 08:46:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWtDcuOcExB12tLk0Ib7I3gyavx4IdFc7bOBka9iTdP7WP9aqlJM1iyY6Mg3o4u45NqobkfMX2a9EkZ@vger.kernel.org
+X-Received: by 2002:a05:6512:b10:b0:553:3492:b708 with SMTP id
+ 2adb3069b0e04-55a046250abmr3344250e87.49.1752508013248; Mon, 14 Jul 2025
+ 08:46:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: T7a47ae1d7bea40f2
-Date: Mon, 14 Jul 2025 17:39:53 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Jassi Brar" <jassisinghbrar@gmail.com>,
- "Guomin Chen" <guomin.chen@cixtech.com>
-Cc: "Rob Herring" <robh@kernel.org>, krzk+dt@kernel.org,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
- "Peter Chen" <peter.chen@cixtech.com>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- cix-kernel-upstream@cixtech.com, "Marc Zyngier" <maz@kernel.org>,
- "Sudeep Holla" <sudeep.holla@arm.com>,
- "Kajetan Puchalski" <kajetan.puchalski@arm.com>,
- "Enric Balletbo" <eballetb@redhat.com>, "Gary Yang" <gary.yang@cixtech.com>,
- "Lihua Liu" <Lihua.Liu@cixtech.com>
-Message-Id: <6b5f38f7-0557-483b-9252-cfade7a24cf5@app.fastmail.com>
-In-Reply-To: 
- <CABb+yY2BmqiQ18hU+7C234UnY8n-8PH5VEoS7nH5Xq5O1krGhQ@mail.gmail.com>
-References: <20250609031627.1605851-1-peter.chen@cixtech.com>
- <20250609031627.1605851-6-peter.chen@cixtech.com>
- <CABb+yY17OOBx73655OhBp8At1b81w9M61zzGu4uhXcMTw4Q=Dw@mail.gmail.com>
- <aG0i75h32dWg/L2G@gchen>
- <CABb+yY2BmqiQ18hU+7C234UnY8n-8PH5VEoS7nH5Xq5O1krGhQ@mail.gmail.com>
-Subject: Re: [PATCH v9 5/9] mailbox: add CIX mailbox driver
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
+ <20250605-uvc-orientation-v2-10-5710f9d030aa@chromium.org>
+ <20250629181246.GE6260@pendragon.ideasonboard.com> <CANiDSCsu0RT4dcGyBJRutP=9HTe+niUoohxTZE=qJ8O_9ez=+A@mail.gmail.com>
+ <20250714142926.GI8243@pendragon.ideasonboard.com>
+In-Reply-To: <20250714142926.GI8243@pendragon.ideasonboard.com>
+From: Ricardo Ribalda <ribalda@chromium.org>
+Date: Mon, 14 Jul 2025 17:46:40 +0200
+X-Gmail-Original-Message-ID: <CANiDSCvFe23xmrJ0-qbWWa6+vKGb+QdDFV8VSLkmWdAnfsFtzw@mail.gmail.com>
+X-Gm-Features: Ac12FXzUtyaVLj7tKhzc2QjlgMNdUTCkm86hTg8iZ2lfMiulh_fOCFYDlXtaIQQ
+Message-ID: <CANiDSCvFe23xmrJ0-qbWWa6+vKGb+QdDFV8VSLkmWdAnfsFtzw@mail.gmail.com>
+Subject: Re: [PATCH v2 10/12] media: uvcvideo: Add get_* functions to uvc_entity
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Hans de Goede <hdegoede@redhat.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Hans Verkuil <hverkuil@xs4all.nl>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Sun, Jul 13, 2025, at 19:00, Jassi Brar wrote:
-> On Tue, Jul 8, 2025 at 8:54=E2=80=AFAM Guomin chen <guomin.chen@cixtec=
-h.com> wrote:
-> ....
->> > > +/* [0~7] Fast channel
->> > > + * [8] doorbell base channel
->> > > + * [9]fifo base channel
->> > > + * [10] register base channel
->> > > + */
->> > > +#define MBOX_FAST_IDX          7
->> > > +#define MBOX_DB_IDX            8
->> > > +#define MBOX_FIFO_IDX          9
->> > > +#define MBOX_REG_IDX           10
->> > > +#define CIX_MBOX_CHANS         11
->> > > +
->> > if it is not really a single controller owning different channels,
->> > maybe implement only what you currently use.
->> >
->> As mentioned in the previous email, a single controller can support
->> multiple different channels.
->>
-> OK. I am not too worried about having all variants in one driver esp
-> when it is manageable and share the code.
-> Unless I am overlooking something. Arnd?
+Hi Laurent
 
-My main worry here is that the types are all quite different: while
-the doorbell and fast mailboxes are what a lot of other drivers have,
-the FIFO mode does not seem to be a good fit for the mailbox subsystem
-but instead looks like a more generic firmware interface with variable
-length messages.
+On Mon, 14 Jul 2025 at 16:30, Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> On Tue, Jul 01, 2025 at 01:13:10PM +0200, Ricardo Ribalda wrote:
+> > On Sun, 29 Jun 2025 at 20:13, Laurent Pinchart wrote:
+> > > On Thu, Jun 05, 2025 at 05:53:03PM +0000, Ricardo Ribalda wrote:
+> > > > Virtual entities need to provide more values than get_cur and get_cur
+> > >
+> > > I think you meant "get_info and get_cur".
+> > >
+> > > > for their controls. Add support for get_def, get_min, get_max and
+> > > > get_res.
+> > >
+> > > Do they ? The UVC specification defines controls that don't list
+> > > GET_DEF, GET_MIN, GET_MAX and GET_RES as mandatory requests. Can't we do
+> > > the same for the software controls ? This patch is meant to support the
+> > > UVC_SWENTITY_ORIENTATION and UVC_SWENTITY_ROTATION control in the next
+> > > patch, and those are read-only controls. Aren't GET_INFO and GET_CUR
+> > > enough ?
+> >
+> > V4L2_CID_CAMERA_ROTATION has the type UVC_CTRL_DATA_TYPE_UNSIGNED,
+> > that time requires get_min and get_max.
+>
+> Where does that requirement come from ? Is it because how the
+> corresponding V4L2 type (V4L2_CTRL_TYPE_INTEGER) is handled in
+> uvc_ctrl_clamp() ? uvc_ctrl_clamp() is only called when setting a
+> control, from uvc_ctrl_set(), and V4L2_CID_CAMERA_ROTATION should be
+> read-only.
 
-For those, I think a higher-level driver with fixed data structures
-passed through the hardware interface seems more appropriate.
+It its for VIDIOC_QUERY_EXT_CTRL
 
-Are there any other mailbox drivers that just use the mailbox to
-tunnel variable-length messages?
+uvc_query_v4l2_ctrl -> __uvc_query_v4l2_ctrl -> __uvc_queryctrl_boundaries
 
-     Arnd=20
+We need to list the min, max, def and step for every control. They are
+fetched with uvc_ctrl_populate_cache()
+
+
+
+>
+> > We can create a new type UVC_CTRL_DATA_TYPE_UNSIGNED_READ_ONLY that
+> > fakes min, max and res, but I think that it is cleaner this approach.
+> >
+> > > > This is a preparation patch.
+> > > >
+> > > > Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
+> > > > ---
+> > > >  drivers/media/usb/uvc/uvc_ctrl.c | 12 ++++++++++++
+> > > >  drivers/media/usb/uvc/uvcvideo.h |  8 ++++++++
+> > > >  2 files changed, 20 insertions(+)
+> > > >
+> > > > diff --git a/drivers/media/usb/uvc/uvc_ctrl.c b/drivers/media/usb/uvc/uvc_ctrl.c
+> > > > index 21ec7b978bc7aca21db7cb8fd5d135d876f3330c..59be62ae24a4219fa9d7aacf2ae7382c95362178 100644
+> > > > --- a/drivers/media/usb/uvc/uvc_ctrl.c
+> > > > +++ b/drivers/media/usb/uvc/uvc_ctrl.c
+> > > > @@ -596,6 +596,18 @@ static int uvc_ctrl_query_entity(struct uvc_device *dev,
+> > > >       if (query == UVC_GET_CUR && ctrl->entity->get_cur)
+> > > >               return ctrl->entity->get_cur(dev, ctrl->entity,
+> > > >                                            ctrl->info.selector, data, len);
+> > > > +     if (query == UVC_GET_DEF && ctrl->entity->get_def)
+> > > > +             return ctrl->entity->get_def(dev, ctrl->entity,
+> > > > +                                          ctrl->info.selector, data, len);
+> > > > +     if (query == UVC_GET_MIN && ctrl->entity->get_min)
+> > > > +             return ctrl->entity->get_min(dev, ctrl->entity,
+> > > > +                                          ctrl->info.selector, data, len);
+> > > > +     if (query == UVC_GET_MAX && ctrl->entity->get_max)
+> > > > +             return ctrl->entity->get_max(dev, ctrl->entity,
+> > > > +                                          ctrl->info.selector, data, len);
+> > > > +     if (query == UVC_GET_RES && ctrl->entity->get_res)
+> > > > +             return ctrl->entity->get_res(dev, ctrl->entity,
+> > > > +                                          ctrl->info.selector, data, len);
+> > > >       if (query == UVC_GET_INFO && ctrl->entity->get_info)
+> > > >               return ctrl->entity->get_info(dev, ctrl->entity,
+> > > >                                             ctrl->info.selector, data);
+> > > > diff --git a/drivers/media/usb/uvc/uvcvideo.h b/drivers/media/usb/uvc/uvcvideo.h
+> > > > index a931750bdea25b9062dcc7644bf5f2ed89c1cb4c..d6da8ed3ad4cf3377df49923e051fe04d83d2e38 100644
+> > > > --- a/drivers/media/usb/uvc/uvcvideo.h
+> > > > +++ b/drivers/media/usb/uvc/uvcvideo.h
+> > > > @@ -261,6 +261,14 @@ struct uvc_entity {
+> > > >                       u8 cs, u8 *caps);
+> > > >       int (*get_cur)(struct uvc_device *dev, struct uvc_entity *entity,
+> > > >                      u8 cs, void *data, u16 size);
+> > > > +     int (*get_def)(struct uvc_device *dev, struct uvc_entity *entity,
+> > > > +                    u8 cs, void *data, u16 size);
+> > > > +     int (*get_min)(struct uvc_device *dev, struct uvc_entity *entity,
+> > > > +                    u8 cs, void *data, u16 size);
+> > > > +     int (*get_max)(struct uvc_device *dev, struct uvc_entity *entity,
+> > > > +                    u8 cs, void *data, u16 size);
+> > > > +     int (*get_res)(struct uvc_device *dev, struct uvc_entity *entity,
+> > > > +                    u8 cs, void *data, u16 size);
+> > > >
+> > > >       unsigned int ncontrols;
+> > > >       struct uvc_control *controls;
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
+
+
+
+--
+Ricardo Ribalda
 
