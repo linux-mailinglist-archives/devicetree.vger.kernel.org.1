@@ -1,161 +1,123 @@
-Return-Path: <devicetree+bounces-196057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C53A6B040EE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD86FB040F6
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:07:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53AAB3AD1CA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:04:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 859583A36FF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C505254AE1;
-	Mon, 14 Jul 2025 14:05:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0695C253F1D;
+	Mon, 14 Jul 2025 14:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OaoTfUSm"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="NMI4dFbD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C2091FDA94;
-	Mon, 14 Jul 2025 14:05:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E125524A04D;
+	Mon, 14 Jul 2025 14:06:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752501902; cv=none; b=K2Mn/cQSEuDEL8gHcXvYx2LHLjfYOTrJL7ERkGRE7v1UG1M75xgqeaJOswz8uml2ALZnFsuGfYRkHUJ7uZbHoBaeo1+cKnfqZkhzYtKSSruqMdmgHJW8TXc74v2b2QJcgagoF/C3jIMNsWy72uEnLE8yTUyPdhpQWAAti21oWKM=
+	t=1752501987; cv=none; b=pAl5gXbzW8mhj6TdisZgFxeJO/TtjDZDatSmTPnaSg6gdHcgzvKn3S+nD4QeLgUD+jcwTaJsRsA8MSSEcIbSQRDMoFJr45uD2QlBG0uSGolaMFTCo8DOhLpfPXfH5NtV6AG5sh8aj2vlYY2scLKJn0Q3s/goHH6gPL2kxxkNE9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752501902; c=relaxed/simple;
-	bh=mggx0wHvULzigPHETIueJkEyaSC8PRHg7dCwgCjnVWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OI9wR+Ay6iTUoQlLgX4KAyvDP1QmjU331Yf+NNdOnJYwdtphWExk8Bcqa8YgKczBON9rnVirShl/6rbIhHJ6Mr5/y6FFHYBr26tQnTXOdNexFFl9CJF6FJBNzKP11AIlVXT4NgEQQj/v8hpSYZG/YBeLiCZlaoDk0CClrRAVa4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OaoTfUSm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4058C4CEED;
-	Mon, 14 Jul 2025 14:04:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752501901;
-	bh=mggx0wHvULzigPHETIueJkEyaSC8PRHg7dCwgCjnVWM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OaoTfUSmpusIqoaxvm/NBpedLoOrYOneprYkDc/zUT6HjJHLfJWExnwts2djgVJ9w
-	 59XijHcaJVV7HqB/yUUd2yIjZrmnegXCQx9XsBL2tlj3my3DLfpKSvXxJbGo2YmdjY
-	 I8Fbm9J+QRATSBbZdWuZSqKTynfYc8/rm64lCaNhseuxRXEbgM5ZRBNVVPMdJQDgz5
-	 43hon1XY6eXcKV9YXo3KB+mckRiBSmKnKvUonueT8Vvv9RNBVZG4CJ27VL8aXt8slA
-	 BD1fFtmPAENfGafVQNdxQopXPGCda9kV4JQ18z3IG/IHICJ2x2/Kof68y37F2bCsc8
-	 yxKrfr6Jdc8gQ==
-Message-ID: <380fb0f4-f5dd-47ad-92e3-943f30b08c31@kernel.org>
-Date: Mon, 14 Jul 2025 16:04:55 +0200
+	s=arc-20240116; t=1752501987; c=relaxed/simple;
+	bh=lF4HUh2FNID12gyCRHT/h0QFn8b9KU09/te1cR2FPsI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=K3GrRu2pGnBHqoG/faJWCz8i15uNM42lKRwNOclgDbEmiwDqYoux6nhD1pVfrSsPEOuqz+aUKkw6x275dEZqFAbuXquoPK/chSvbspH+vzDmF5i953sDSA9JHmFjN/6fvg5STVlJT6KUTXlQZNHLflBZj1E4ktvl1z7fD3HPjM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=NMI4dFbD; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b37eb49260bb11f0b1510d84776b8c0b-20250714
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=7mJcjUvSFYbGs2W28uhwfy8o8MgVOg2cTpg8MwDAIIY=;
+	b=NMI4dFbDMuGIoSAH+Vtf8BO/n5iIdGSMOANTQUk+5Xd7RoENje9s4jD6hWLGC5dHrvdo/wEB8wVnCZ7zagOOyRFT7/D7Uwm01cNXE4HRSuNtRhMPfpyOaiLhOt1SOMBVPqIyofCbmVDLNx2FjrdJqx1h/rVwYBbE/Zp6rVz9dz8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.2,REQID:13d9c071-fbe1-4aa9-8bd5-929429c89e0b,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:9eb4ff7,CLOUDID:08c624df-2070-40bb-9c24-dfabef7c07f4,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: b37eb49260bb11f0b1510d84776b8c0b-20250714
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
+	(envelope-from <sirius.wang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 654204093; Mon, 14 Jul 2025 22:06:13 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Mon, 14 Jul 2025 22:06:11 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Mon, 14 Jul 2025 22:06:11 +0800
+From: Sirius Wang <sirius.wang@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, "Matthias
+ Brugger" <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@mediatek.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <wenst@chromium.org>,
+	<xavier.chang@mediatek.com>, Sirius Wang <sirius.wang@mediatek.com>
+Subject: [PATCH v4 0/3] Add mt8189 dts evaluation board and Makefile
+Date: Mon, 14 Jul 2025 22:06:02 +0800
+Message-ID: <20250714140608.2065966-1-sirius.wang@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 01/12] dt-bindings: ptp: add bindings for NETC
- Timer
-To: Wei Fang <wei.fang@nxp.com>
-Cc: "F.S. Peng" <fushi.peng@nxp.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "richardcochran@gmail.com" <richardcochran@gmail.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, Clark Wang
- <xiaoning.wang@nxp.com>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
- "davem@davemloft.net" <davem@davemloft.net>,
- "edumazet@google.com" <edumazet@google.com>,
- "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>
-References: <20250711065748.250159-1-wei.fang@nxp.com>
- <20250711065748.250159-2-wei.fang@nxp.com>
- <ce7e7889-f76b-461f-8c39-3317bcbdb0b3@kernel.org>
- <PAXPR04MB8510C8823F5F229BC78EB4B38854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <61e6c90d-3811-41c2-853d-d93d9db38f21@kernel.org>
- <PAXPR04MB85109EE6F29A1D80CF3F367A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <169e742f-778e-4d42-b301-c954ecec170a@kernel.org>
- <PAXPR04MB85107A7E7EB7141BC8F2518A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <836c9f0b-2b73-4b36-8105-db1ae59b799c@kernel.org>
- <PAXPR04MB8510CCEA719F8A6DADB8566A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <70560f1e-fbbc-4e65-a8f4-140eb9a6e56e@kernel.org>
- <PAXPR04MB8510A9625CCB563BDA8AEBBD8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <PAXPR04MB8510A9625CCB563BDA8AEBBD8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 14/07/2025 15:43, Wei Fang wrote:
->> On 14/07/2025 12:28, Wei Fang wrote:
->>>>>
->>>>> Currently, the enetc driver uses the PCIe device number and function
->> number
->>>>> of the Timer to obtain the Timer device, so there is no related binding in
->> DTS.
->>>>
->>>> So you just tightly coupled these devices. Looks poor design for me, but
->>>> your choice. Anyway, then use that channel as information to pass the
->>>> pin/timer/channel number. You do not get a new property for that.
->>>>
->>>
->>> I do not understand, the property is to indicate which pin the board is
->>> used to out PPS signal, as I said earlier, these pins are multiplexed with
->>
->> Sure, I get it and my argument for phandle cells stays. If you decide
->> not to use it, you do not get a new property.
-> 
-> I do not know how to add the phandle cells, a phandle value is a way to
-> reference another node in the DTS. But for the NETC Timer, what node
-> does it need to reference? To be honest, I have no idea.
+We add basic chip support for Mediatek MT8189 on evaluation board.
+
+In this series, we also add dt-bindings document definition for MT8189.
+
+This series is based on tag: next-20250714
+
+Changs in v4:
+ - Correct cpu-idle-states
+ - Change the "reg" property name of the "memory" node in the 
+   device tree source (DTS) to lowercase.
+
+Changs in v3:
+ - Move ulposc and ulposc3 before cpu nodes.
+ - Refactor cpu-map to a single cluster0.
+ - Change cpu nodes name from medium core to big core.
+ - Move psci before timer nodes.
+
+Changs in v2:
+ - Fix warning issues for make CHECK_DTBS=y
+ - Add mediatek,uart.yaml document
 
 
-I don't think you tried hard enough... I asked to read other bindings.
-If you did that, you would notice timestamper property and argument.
+Sirius Wang (3):
+  dt-bindings: arm: Add compatible for MediaTek MT8189
+  dt-bindings: serial: mediatek,uart: Add compatible for MT8189
+  arm64: dts: mt8189: Add mt8189 dts evaluation board and Mafefile
 
+ .../devicetree/bindings/arm/mediatek.yaml     |   4 +
+ .../bindings/serial/mediatek,uart.yaml        |   1 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+ arch/arm64/boot/dts/mediatek/mt8189-evb.dts   |  20 +
+ arch/arm64/boot/dts/mediatek/mt8189.dtsi      | 419 ++++++++++++++++++
+ 5 files changed, 445 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8189-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8189.dtsi
 
-Best regards,
-Krzysztof
+-- 
+2.45.2
+
 
