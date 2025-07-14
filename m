@@ -1,111 +1,161 @@
-Return-Path: <devicetree+bounces-196056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A130DB040DA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:02:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C53A6B040EE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:06:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1D8F1883D67
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:02:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53AAB3AD1CA
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 671E025485F;
-	Mon, 14 Jul 2025 14:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C505254AE1;
+	Mon, 14 Jul 2025 14:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OaoTfUSm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97BD325332E;
-	Mon, 14 Jul 2025 14:02:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C2091FDA94;
+	Mon, 14 Jul 2025 14:05:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752501757; cv=none; b=PHlcKwHPNnXtsGeL7pLUcUQBCKzbzySTThMgIM9zKtpXopJ2MzDXs/yzk1S24b91A2JuM1T4/S8n0HespBVjmZnzVnRqiiV0pmjdxi4s548wI0wJXQk5ANhwbAMMREgGwa7LRUI0wS0p+sOFEGWCtHW12+LqAtaOxZZkEJdAmcE=
+	t=1752501902; cv=none; b=K2Mn/cQSEuDEL8gHcXvYx2LHLjfYOTrJL7ERkGRE7v1UG1M75xgqeaJOswz8uml2ALZnFsuGfYRkHUJ7uZbHoBaeo1+cKnfqZkhzYtKSSruqMdmgHJW8TXc74v2b2QJcgagoF/C3jIMNsWy72uEnLE8yTUyPdhpQWAAti21oWKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752501757; c=relaxed/simple;
-	bh=DfZSxMlKQHM8fVTPHG4G5K6/3qK7daDUPfpkAU+xVcM=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=RvwgdnjHt5E1WA44mSb/iCpSlxi/xiWn0NcFttTGNz1+P8FNTafaqpInxRInaDS8Ay907MIfjU4qBbT86ePhE9NT3g7Oe/GWUi8XBF0D6jd3nfmMOKgqQiXKVU0e+PUfkYs4Ce0w22hpuJXulAIuV6rzthzl4e7LRa/cKS4QlA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
-Received: from localhost (ip-109-42-113-167.web.vodafone.de [109.42.113.167])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id 1D7C22F7;
-	Mon, 14 Jul 2025 16:02:24 +0200 (CEST)
+	s=arc-20240116; t=1752501902; c=relaxed/simple;
+	bh=mggx0wHvULzigPHETIueJkEyaSC8PRHg7dCwgCjnVWM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OI9wR+Ay6iTUoQlLgX4KAyvDP1QmjU331Yf+NNdOnJYwdtphWExk8Bcqa8YgKczBON9rnVirShl/6rbIhHJ6Mr5/y6FFHYBr26tQnTXOdNexFFl9CJF6FJBNzKP11AIlVXT4NgEQQj/v8hpSYZG/YBeLiCZlaoDk0CClrRAVa4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OaoTfUSm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4058C4CEED;
+	Mon, 14 Jul 2025 14:04:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752501901;
+	bh=mggx0wHvULzigPHETIueJkEyaSC8PRHg7dCwgCjnVWM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OaoTfUSmpusIqoaxvm/NBpedLoOrYOneprYkDc/zUT6HjJHLfJWExnwts2djgVJ9w
+	 59XijHcaJVV7HqB/yUUd2yIjZrmnegXCQx9XsBL2tlj3my3DLfpKSvXxJbGo2YmdjY
+	 I8Fbm9J+QRATSBbZdWuZSqKTynfYc8/rm64lCaNhseuxRXEbgM5ZRBNVVPMdJQDgz5
+	 43hon1XY6eXcKV9YXo3KB+mckRiBSmKnKvUonueT8Vvv9RNBVZG4CJ27VL8aXt8slA
+	 BD1fFtmPAENfGafVQNdxQopXPGCda9kV4JQ18z3IG/IHICJ2x2/Kof68y37F2bCsc8
+	 yxKrfr6Jdc8gQ==
+Message-ID: <380fb0f4-f5dd-47ad-92e3-943f30b08c31@kernel.org>
+Date: Mon, 14 Jul 2025 16:04:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 01/12] dt-bindings: ptp: add bindings for NETC
+ Timer
+To: Wei Fang <wei.fang@nxp.com>
+Cc: "F.S. Peng" <fushi.peng@nxp.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "richardcochran@gmail.com" <richardcochran@gmail.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, Clark Wang
+ <xiaoning.wang@nxp.com>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>
+References: <20250711065748.250159-1-wei.fang@nxp.com>
+ <20250711065748.250159-2-wei.fang@nxp.com>
+ <ce7e7889-f76b-461f-8c39-3317bcbdb0b3@kernel.org>
+ <PAXPR04MB8510C8823F5F229BC78EB4B38854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <61e6c90d-3811-41c2-853d-d93d9db38f21@kernel.org>
+ <PAXPR04MB85109EE6F29A1D80CF3F367A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <169e742f-778e-4d42-b301-c954ecec170a@kernel.org>
+ <PAXPR04MB85107A7E7EB7141BC8F2518A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <836c9f0b-2b73-4b36-8105-db1ae59b799c@kernel.org>
+ <PAXPR04MB8510CCEA719F8A6DADB8566A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <70560f1e-fbbc-4e65-a8f4-140eb9a6e56e@kernel.org>
+ <PAXPR04MB8510A9625CCB563BDA8AEBBD8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <PAXPR04MB8510A9625CCB563BDA8AEBBD8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Mon, 14 Jul 2025 16:02:23 +0200
-Message-Id: <DBBU0QGILT7C.33TZQUPDJU81O@kernel.org>
-Subject: Re: [PATCH net-next v2 2/3] net: ethernet: ti: am65-cpsw: fixup PHY
- mode for fixed RGMII TX delay
-Cc: "Matthias Schiffer" <matthias.schiffer@ew.tq-group.com>, "Andrew Lunn"
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Andy Whitcroft" <apw@canonical.com>, "Dwaipayan Ray"
- <dwaipayanray1@gmail.com>, "Lukas Bulwahn" <lukas.bulwahn@gmail.com>, "Joe
- Perches" <joe@perches.com>, "Jonathan Corbet" <corbet@lwn.net>, "Nishanth
- Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>, "Siddharth
- Vadapalli" <s-vadapalli@ti.com>, "Roger Quadros" <rogerq@kernel.org>, "Tero
- Kristo" <kristo@kernel.org>, <linux-doc@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux@ew.tq-group.com>, "Maxime Chevallier"
- <maxime.chevallier@bootlin.com>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Andrew Lunn" <andrew@lunn.ch>
-X-Mailer: aerc 0.16.0
-References: <cover.1750756583.git.matthias.schiffer@ew.tq-group.com>
- <9b3fb1fbf719bef30702192155c6413cd5de5dcf.1750756583.git.matthias.schiffer@ew.tq-group.com> <DBBOW776RS0Z.1UZDHR9MGX26P@kernel.org> <fa3688c0-3b01-49fb-9c16-eeea66748876@lunn.ch>
-In-Reply-To: <fa3688c0-3b01-49fb-9c16-eeea66748876@lunn.ch>
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 14/07/2025 15:43, Wei Fang wrote:
+>> On 14/07/2025 12:28, Wei Fang wrote:
+>>>>>
+>>>>> Currently, the enetc driver uses the PCIe device number and function
+>> number
+>>>>> of the Timer to obtain the Timer device, so there is no related binding in
+>> DTS.
+>>>>
+>>>> So you just tightly coupled these devices. Looks poor design for me, but
+>>>> your choice. Anyway, then use that channel as information to pass the
+>>>> pin/timer/channel number. You do not get a new property for that.
+>>>>
+>>>
+>>> I do not understand, the property is to indicate which pin the board is
+>>> used to out PPS signal, as I said earlier, these pins are multiplexed with
+>>
+>> Sure, I get it and my argument for phandle cells stays. If you decide
+>> not to use it, you do not get a new property.
+> 
+> I do not know how to add the phandle cells, a phandle value is a way to
+> reference another node in the DTS. But for the NETC Timer, what node
+> does it need to reference? To be honest, I have no idea.
 
-On Mon Jul 14, 2025 at 3:09 PM CEST, Andrew Lunn wrote:
-> On Mon, Jul 14, 2025 at 12:01:22PM +0200, Michael Walle wrote:
-> > On Tue Jun 24, 2025 at 12:53 PM CEST, Matthias Schiffer wrote:
-> > > All am65-cpsw controllers have a fixed TX delay, so the PHY interface
-> > > mode must be fixed up to account for this.
-> > >
-> > > Modes that claim to a delay on the PCB can't actually work. Warn peop=
-le
-> > > to update their Device Trees if one of the unsupported modes is speci=
-fied.
-> > >
-> > > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> > > Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> > > Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> >=20
-> > For whatever reason, this patch is breaking network on our board
-> > (just transmission). We have rgmii-id in our devicetree which is now
-> > modified to be just rgmii-rxid. The board has a TI AM67A (J722S) with a
-> > Broadcom BCM54210E PHY. I'm not sure, if AM67A MAC doesn't add any
-> > delay or if it's too small. I'll need to ask around if there are any
-> > measurements but my colleague doing the measurements is on holiday
-> > at the moment.
->
-> I agree, we need to see if this is a AM65 vs AM67 issue. rgmii-id
-> would be correct if the MAC is not adding delays.
->
-> Do you have access to the datasheets for both? Can you do a side by
-> side comparison for the section which describes the fixed TX delay?
 
-The datasheets and TRMs of the SoC are public of the SoC. According
-to the AM67A TRM the delay should be 1.2ns if I'm reading it
-correctly. The BCM PHY requires a setup time of -0.9ns (min). So, is
-should work (?), but it doesn't. I'm also not aware of any routing
-skew between the signals. But as I said, I'll have to check with my
-colleague next week.
+I don't think you tried hard enough... I asked to read other bindings.
+If you did that, you would notice timestamper property and argument.
 
--michael
+
+Best regards,
+Krzysztof
 
