@@ -1,156 +1,156 @@
-Return-Path: <devicetree+bounces-196209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 245A7B047BF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 21:08:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71375B047D2
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 21:17:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E57B17F471
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 19:08:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A337E188A3D3
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 19:18:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03BB1277035;
-	Mon, 14 Jul 2025 19:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CC4E27781D;
+	Mon, 14 Jul 2025 19:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LCrCnwWI"
+	dkim=pass (2048-bit key) header.d=scandent.com header.i=@scandent.com header.b="d7vHIWWt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC51269D17
-	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 19:08:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501702E36F0
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 19:17:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752520108; cv=none; b=bxT6dgRI9gNCOXvwKbB+SlB3z6AljU3dNIRzJF5Fn+WyebuOGx4AZMjv0X4rD3yTcaRbijIXmGn0G0j9rrwW3WPUUGyDiv5NB/h8ZA5R7rVbqg2fpFleS3ZDzQOtW2T83dMYW4OfDbVr6F5afXY5DaK9nO3JQMuxGwDvvF1mKHA=
+	t=1752520657; cv=none; b=oXTCATmZ8c+w325Oxwfd5aNmcI2V1WQp0tYRWrpIKcrGcKDWg1CxPXvtwPo63psxDVfJZ29HZWU+/7O4fmGUhpjNQimh+eOxMkDpktjngYsY96PuNw+gnAFCuI8/NFWLYo+yDwlKzqas0Gn8VknX+kWosCA5Y1L0+asgI7A/Zno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752520108; c=relaxed/simple;
-	bh=VRc50o1TNkXkiKCdb7sYh/BGwOy7+sjpbKW7SRTKiiE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=swVirvY6jDVOXHJsTSubL/Vd02sMlbUAeCX9f8bin1n/05noOhQHu0szxEbxPus5asLOtBJlHQm+S3wUGDGujK90575JRS+xfxDMJ296zYb6Bg71RLQ645HuYZXFrDDxlt5jzei1eA2DvTsvjjRZ+Ubguf5pVStTU42i2igsDHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LCrCnwWI; arc=none smtp.client-ip=209.85.160.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-2c6ed7efb1dso3108772fac.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 12:08:27 -0700 (PDT)
+	s=arc-20240116; t=1752520657; c=relaxed/simple;
+	bh=WzdmAPFj2LG6qLCiulIcbqEYYhZwbUStzkjL7nV75sw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KqhGTUntCdepOv4jnMUxK+27NtR1du6ZaEE7cJsAK2aIeONR+LvimPxVZGhX+DbHes88jlpxkHpbJlddaz3lFVWGho8n6hkuyW4fT2i07UySRzJl3Bi0Ol2MEucMh9kUevF5gTo3fvrH15N/3n9sjk+8pgnaP0rwwJgZTlHQujg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=scandent.com; spf=pass smtp.mailfrom=scandent.com; dkim=pass (2048-bit key) header.d=scandent.com header.i=@scandent.com header.b=d7vHIWWt; arc=none smtp.client-ip=209.85.222.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=scandent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=scandent.com
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7dfff5327fbso416330585a.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 12:17:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752520106; x=1753124906; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FY8oP8TntW4ytWNHBRG2ykUEsygpkJOVRPFVHGGy1iw=;
-        b=LCrCnwWIBTL78Q2Hg9KyuWXNOxsqgoqSLfm/Wy7IPqNc1FixPumgDNLOziNyWcZO6V
-         rWAQYgYaiVc9Ffd3e9829lHMzdnSf9neapsXgmg3GvR6IPwHC+wnF/U0mSZ7FrLFjlCx
-         TsRX9Prc+ffbpKAIBTizdJ2KroDQZnbZ7i9J0luGrfkAv9PeZnm5dx5tVFUW7bymPkDx
-         5DlDGAV6GZIBo1ZHL7y1HxygyknEyWpclkEB2kerzCpXEV5gUp9xehmrXm+b4Gz84hSF
-         MlFM9UoVx+5HYKIync+IfP9Gx1+ty9rJ5X4UbQSSEojnFR6g42VuXXbRQbBDKZLtTFl5
-         p8Gg==
+        d=scandent.com; s=google; t=1752520654; x=1753125454; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ppm77+VMgkhfwsY1YCayVc7qsiRcdKYM27vglyic/Bs=;
+        b=d7vHIWWtgkN3t6cw9G4trS65kj6cwjZn3OB+It6C9ewzhuqP3orHuxvR4kIrQksh2N
+         oQ5LpDi9DceJYCM8lGlLJwP2AmwFiLVvp93rU2iQ2H3lKK4EfDpMRqkgoiC565ewkCAS
+         3Vm1Przv0yVqJkML0RxHC4UyGaXVzsMRkjn1QKxr56YcePhszNBiPadU7bjr6Tufjmrl
+         dZdcA5zmp57rrNrMutRYTHsI1FJMtYm2w8EDob3XTiNvhDLdSYnNOXAmrthh43rdWqCv
+         JorJEgJi5u5rRDFF0sib4Z4NMtEnfMKp7zlHnaF0+qJw/ynAjmzDIWRrBKz/1NDGcG2Q
+         93XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752520106; x=1753124906;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1752520654; x=1753125454;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=FY8oP8TntW4ytWNHBRG2ykUEsygpkJOVRPFVHGGy1iw=;
-        b=j+mrpuktNmZW3Fpe0gjIfo+nDmUDeHH1jwp1//tn4/JwdzWimQCJs9cJA0TZGm+GgR
-         DLXR7u/IcHYNpoMNq+5NrdiBACYlCS9WNYRKfr25qyghOelmSSz9Qgh99Iv1aiq8ALk7
-         BP5XtNiBxT7vw02c8m1/ap4bseUpFK16sfDsyPGddptkLvXaOExOUaoJylQz/CVDWZjD
-         3UnCZouLJmiO2xQVC//TsJut37RnYLWOib/1Zy7cbXuY6I9Cn5g9u6vSA56eGjSAtI62
-         68ylPDd6o0jr5Fb+tEB4m/PL2c5jVGrOLGO4uwDrHQLvNKlqAXRoQiqAjlJiMbo0W8FR
-         1hhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUd++Y+g0LZKZj0HjU71+GGpkzf8zJMCaGw4qRkfjiqRDPN72maLiBcz8g8OKKGxe1EzmS9jeBzxBE2@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIYMiozuLujhyXeiKU+ViCzdyQRBjgWso3ra0LaVM8+QwPBpZF
-	VmNrtgXj6uVbJsdUirzvRIfwcy1t+UD6/dtHaffK3q2cb4W5eG7BA7MTr5gWY5jGIkE=
-X-Gm-Gg: ASbGncseHKvw4QUMA4fE9DnrLQVcFbU6rj/aaRgYmD0Qrth5tlnoWQycOkBVEfRw4lt
-	gSnAe9LOdgKqbc0U/UwLEbjzFVqoJRdLsvDfXRvDms4QXbsqga6ZG7rurGAfGNgVdd5S968VUfB
-	RHJy/333gf6fnZR90oHMLG2wu89Ip6zVrFlVV+1Nk97zJiEeO+YT4fLxMKVn3FjdteZ7l6YA0Pq
-	lq2ffR6hmUI8tNHY6osnkJanP20W+8Jhc5WxU9ZAvAfnRQ0FZKI7jvEjzUPE0pyp6Pukx7R83QL
-	RhL8nzDXfqQZtdAgw31qCa1tZxSnOasmRgnrNtxkGyYrpJVKqbvqMk7QO53fYSLX+IypNhouHXT
-	5N2HURkYkocjJZFdW8ORhGnMrfdTC0A==
-X-Google-Smtp-Source: AGHT+IEzO8bUgBmoo1uzE8f4f/z4iMC9jmOc9/Xzy7X6HZpF2LbcgnghTbE4rOCIVgXQl6Q0I/xJmw==
-X-Received: by 2002:a05:6871:5d06:b0:2d5:b914:fe2d with SMTP id 586e51a60fabf-2ff270892c7mr10030939fac.33.1752520106283;
-        Mon, 14 Jul 2025 12:08:26 -0700 (PDT)
-Received: from localhost ([2603:8080:b800:f700:6bb2:d90f:e5da:befc])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2ff116dd664sm2036650fac.42.2025.07.14.12.08.24
+        bh=ppm77+VMgkhfwsY1YCayVc7qsiRcdKYM27vglyic/Bs=;
+        b=fdki143Pz3N+oQ01Z/3zlhtOpTpPiji05T3sRWeb1kzaSeW5zBZt3cAPK0IYTsWDVY
+         hDAjmAreHuqZlngfTIBMCLYKkteAc0sHmspgpIIyi2SGSYwtI3saj98IRbBZ0TxgnAT5
+         +PyM3AOphRF6N9gQQQnkLZgbkBDY83jfZP4n6Ie/NAbNS0yq00H3Z6NTh+3syor3jfMV
+         UwJs3ilHNDu6nvLQWZqEgpaxrEH5+mKZsXJdMJVPC6TvdpgTrgxu0/8aRN53ojJeNSlc
+         /EdEJ2mqnWjEKiJxfEEtMn4Le+iZCtMTbq5XkCxcoTs5OFOk6iicw8HvEBcOMm0FRaZP
+         1zhg==
+X-Gm-Message-State: AOJu0YxFShQ1RvjQXBqe2M1gS3JJhUMZB5EAnH3KbC7mfInVsINu+5m/
+	36DgJlzSLd+FSRzCp/P6VKbACDBTsxj+UirsrjpcidWUbGzZ5mFl3JB14fGZ96CE/nQ=
+X-Gm-Gg: ASbGncuvb7tk0RLPLlAepTKE4jDy59JuASYavIxNOD6fEN3lcsSJeR8haQi/dZTgoVU
+	7jSP6esUdKRi1Zbkcby3hcO5nO/APOtXByN3D6J4rUliGWqM065oSmY/uoe/bq8QwXDzqRnzGyD
+	7NsmETQR/EdpLcQGHa4AF2aNny5pAho8yUxQt/PEzKISYYjocyqhtNR8VlsfybhZivNGJKieT2s
+	po+5CnIAPH5ZNicGfo5Sm2Lo/2BZMVkrOSQcfPXC4v5peM98/daCjJUqDQ6dgf/USRnmmDUNmQ2
+	Gf0x+pxt+BWDLXBxp0b6N01/C5y2Ai1gOt87h8A8Vjn82UJ7fEL/MvJvmGzRyi3CbO9hdHmE+3l
+	auVrkRU86ZN5h9Z2WaMrUaJTJ4oSSamsNE96VrzuNIp5M0xvV
+X-Google-Smtp-Source: AGHT+IGP8D0B1lB9WiY8LrpCrDqEWqN/fOscHbnw1FMJjYlEArtBj6PYHuACMQiqFNKRhKBRsvK8ig==
+X-Received: by 2002:a05:620a:d8d:b0:7c5:405e:e88f with SMTP id af79cd13be357-7ddea60f5e1mr2300530285a.21.1752520654091;
+        Mon, 14 Jul 2025 12:17:34 -0700 (PDT)
+Received: from vserver (ool-44c5118c.dyn.optonline.net. [68.197.17.140])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4ab801e542bsm1482521cf.3.2025.07.14.12.17.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jul 2025 12:08:25 -0700 (PDT)
-Date: Mon, 14 Jul 2025 22:08:23 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	davem@davemloft.net
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+        Mon, 14 Jul 2025 12:17:33 -0700 (PDT)
+From: Richard Yao <richard@scandent.com>
+To: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Akshay Athalye <akshay@scandent.com>,
+	Richard Yao <richard@scandent.com>,
 	Rob Herring <robh@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH net-next v7 04/15] net: phy: Introduce PHY ports
- representation
-Message-ID: <13e48447-37fb-49d8-8c6a-ce5d198506ae@suswa.mountain>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Junhao Xie <bigfoot@classfun.cn>,
+	Caleb James DeLisle <cjd@cjdns.fr>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 0/3] drm/panel: ilitek-ili9881c: Add Tianxinwei TWX700100S0
+Date: Mon, 14 Jul 2025 15:17:20 -0400
+Message-ID: <20250714191729.2416-1-richard@scandent.com>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250630143315.250879-5-maxime.chevallier@bootlin.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Maxime,
+Hello,
 
-kernel test robot noticed the following build warnings:
+This series adds support for the Tianxinwei TWX700100S0 panel. The first
+patch adds the Tianxinwei vendor to the vendor prefixes yaml file.  The
+second patch documents the DT binding. The third patch makes fairly
+standard changes to the ili9881c driver.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Maxime-Chevallier/dt-bindings-net-Introduce-the-ethernet-connector-description/20250630-224035
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20250630143315.250879-5-maxime.chevallier%40bootlin.com
-patch subject: [PATCH net-next v7 04/15] net: phy: Introduce PHY ports representation
-config: x86_64-randconfig-r071-20250706 (https://download.01.org/0day-ci/archive/20250706/202507061812.0aBYBa9l-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14+deb12u1) 12.2.0
+Runtime testing and validation was done using a patched rpi-6.12.36-v8
+kernel on a CM4 using a custom carrier board designed by Scandent.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202507061812.0aBYBa9l-lkp@intel.com/
+I have confirmed in writing with Tianxinwei that this patch series may
+be released under the GPL after sending them an early draft for review.
+This should be superfluous given my signed-off, but I want to make it
+clear that I did not assume fair use when providing signed-off.
 
-smatch warnings:
-drivers/net/phy/phy_port.c:130 phy_port_get_type() warn: bitwise AND condition is false here
+Cc: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Andre Przywara <andre.przywara@arm.com>
+Cc: Junhao Xie <bigfoot@classfun.cn>
+Cc: Caleb James DeLisle <cjd@cjdns.fr>
+Cc: Kever Yang <kever.yang@rock-chips.com>
+Cc: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Richard Yao <richard@scandent.com>
+---
+Richard Yao (3):
+  dt-bindings: vendor-prefixes: Add Tianxinwei name
+  dt-bindings: ilitek-ili9881c: Add Tianxinwei TWX700100S0 support
+  drm/panel: ilitek-ili9881c: Add Tianxinwei TWX700100S0 support
 
-vim +130 drivers/net/phy/phy_port.c
-
-055cbf51317b1e Maxime Chevallier 2025-06-30  122  /**
-055cbf51317b1e Maxime Chevallier 2025-06-30  123   * phy_port_get_type() - get the PORT_* attribut for that port.
-055cbf51317b1e Maxime Chevallier 2025-06-30  124   * @port: The port we want the information from
-055cbf51317b1e Maxime Chevallier 2025-06-30  125   *
-055cbf51317b1e Maxime Chevallier 2025-06-30  126   * Returns: A PORT_XXX value.
-055cbf51317b1e Maxime Chevallier 2025-06-30  127   */
-055cbf51317b1e Maxime Chevallier 2025-06-30  128  int phy_port_get_type(struct phy_port *port)
-055cbf51317b1e Maxime Chevallier 2025-06-30  129  {
-055cbf51317b1e Maxime Chevallier 2025-06-30 @130  	if (port->mediums & ETHTOOL_LINK_MEDIUM_BASET)
-                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
-I think BIT(ETHTOOL_LINK_MEDIUM_BASET) was intended.
-
+ .../display/panel/ilitek,ili9881c.yaml        |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 242 ++++++++++++++++++
+ 3 files changed, 245 insertions(+)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.50.0
 
 
