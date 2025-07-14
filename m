@@ -1,48 +1,69 @@
-Return-Path: <devicetree+bounces-195910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72647B03879
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:57:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72BD4B03899
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 10:04:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25FDC7ACA01
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 07:55:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80B531888EE0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 08:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E802A2376E0;
-	Mon, 14 Jul 2025 07:57:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TITNi4nr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71DFF2E3718;
+	Mon, 14 Jul 2025 08:04:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023102.outbound.protection.outlook.com [40.107.44.102])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA2EF221FB1;
-	Mon, 14 Jul 2025 07:57:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752479825; cv=none; b=QXsnAmTEvrwGVv68O4JkqYwVFwiluE+i4Tzf8DDh8R1i6Z/qFFWasFWPo7MecjjnoOvjKPOL5L5LXmqHld68wkD1EGWRXT2aNzzvrUy05ydd+Ep3RcOzy5mlJrepfItXS/hPbIM7FN85XBTjfhmA2D0YxvFJZvTsrOP+l9dPo0w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752479825; c=relaxed/simple;
-	bh=Hy1Q++2/aeR8kI+h97bHFB8zb+dxPK95s1BJIKf5Wzw=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C003B2E370A;
+	Mon, 14 Jul 2025 08:04:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.102
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752480244; cv=fail; b=kGa5SZtBYL0kvWpIm5sB+qxTfTAj81SYl/9HiAn7h5yJk7ek2A4glTGn/7+PEMM6Tm9p+dzs4iBEh5Cl/AmY8sQ7GV/x+mGOZpverQ90UeVLQDdz4T3u0EIELkCMcG75LOWHnXPH48rqXvl4whnSDTPp+LrUBYKXucO3Y0zyo6g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752480244; c=relaxed/simple;
+	bh=0LZ3Gxcc4f5XbKKGiv0eCUuBUJxxrFauyHs/cygVm74=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xmrw2gWvucqFwIIvSdzmi7v4ISG7ysAzyRSAOJ2zUm/neHIUNiYyL5oRz0+FlxZR57QtdI6WvGaPJjiA6Nh2tF0syclmsau0EZj/xIjBJ9BzlaeIMqmfJP9PCFBLAV0qvIRl2oFuJKcSJA6zML6LL+VgH28lkxcNwm9PcSl+E5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TITNi4nr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A926C4CEED;
-	Mon, 14 Jul 2025 07:57:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752479825;
-	bh=Hy1Q++2/aeR8kI+h97bHFB8zb+dxPK95s1BJIKf5Wzw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TITNi4nrqfROVMFuiICBmzIJZ5SfKR5ulyLkhr0CuJeAVLAjDFlhhXBfjJ0eFcIhA
-	 QW51qoiKfARKi/Ieo2GqgNUIXy1hLkpsO6Qu38bntc7BKzYljljqGKQQuXXsueDdTE
-	 O0vt3gnjAT1Sgrx0HMYiFUeiQUnpn6JVfnupoZfHMTuQVT62tozkplktE9i7uoreTW
-	 JYz9c0ATjmZjUSR7iiryXwuxXWh4kloVutPL5g6yOdTDT6UHThKxd+5E8njQClsBk+
-	 wSlAXHJhmIZg/0E6WhCOgKrttg4AkuCZ/W/EdTj4E7nLWXQXP75SC8Vwk8whBroT5S
-	 sH3IwhyhMOqlA==
-Message-ID: <63ca8d08-2fd3-440e-858a-f8d79890016f@kernel.org>
-Date: Mon, 14 Jul 2025 09:56:57 +0200
+	 In-Reply-To:Content-Type; b=HLQENK+sgrJlSwQ5pV4ESowFvFaU4Pd0opUJ5wP1t1iH/N8UzsYK77/3lMzfOPQMNLdwxjeU7Negyvma15+VhxPFLSTzllSZNkMxw48e/AVvh03DeQm3GKBEtYdzs9FMp/8BGzxIWqs/4nsMpJx2LLYemZjizp/yH/NInsC9lYw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=trI6id2jAi7PkS4zPbSTWnDfcCXeI82K72U2hkhEZk8Acnu9jHex2R8HnV+tKXvWENck5yC1gM4ISRzQDE7A2ha6sUCnisDtYIqqJSnreD+Vq7S3nyXYVqtAXLudoyTa71LpeB6TVym/4NgYck9qPm89NP+RN6P+rkHHqtPfyOc2BCrx15SI5NQYFyRbt8zPzOOdXB1EVHf+7F6Ikiw3ufEVDz85wYbJzC9mJA1zsmmoaxGHO1nb3kvp1SiqyHy3BSLtbvaLZk64oRrDPUOFRtMaC5TsrAkaGy1d7BF9b7cBDQ8gFutuBaRK3Gox/2lIwqaY7IL12MvRmG0QggnUZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xavPekw5owc4g45UqVCN4YXw14RbljQB6Kr+hnSInoI=;
+ b=DDwa+h5U5LnGspChae2tvZzWpYlj8Cupl6m9dMI8vqbLE8YTS6XPKkRjEJDuZnNMuT4er3Yp1jbkY6gpYZHdAzNlJzv6esvc+iLhPLo4IDcJWo7lCSZ4hJJ3S73ztyGnQOBubiayVSqsvu/A/fBIi0qUqvPUcbNqiRiZcUkyKbSSZxoC9jnCFdo8qylTfED5eVkTUBWJcExgGluHf6G5BSOoqjLtId130ZA15QwKJt/isMazgYLRurTblQ9BLBBrz8bSX1QnQeCTcGJtUP5LH2CTK3PFUG8YXsV5IeuJ0tN7scAF103rRgn65BRC+q4uN+WW2I4wzgh8wz2NxDM0uw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI2PR02CA0012.apcprd02.prod.outlook.com (2603:1096:4:194::7) by
+ TY0PR06MB5128.apcprd06.prod.outlook.com (2603:1096:400:1b3::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8922.25; Mon, 14 Jul 2025 08:03:54 +0000
+Received: from SG1PEPF000082E5.apcprd02.prod.outlook.com
+ (2603:1096:4:194:cafe::2f) by SI2PR02CA0012.outlook.office365.com
+ (2603:1096:4:194::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8922.32 via Frontend Transport; Mon,
+ 14 Jul 2025 08:03:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG1PEPF000082E5.mail.protection.outlook.com (10.167.240.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8922.22 via Frontend Transport; Mon, 14 Jul 2025 08:03:53 +0000
+Received: from [172.16.64.208] (unknown [172.16.64.208])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id D70DD40A5BD6;
+	Mon, 14 Jul 2025 16:03:51 +0800 (CST)
+Message-ID: <d6083e62-318f-4879-bac3-97ad26615458@cixtech.com>
+Date: Mon, 14 Jul 2025 16:03:51 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,99 +71,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: microsoft: Add vmbus
- message-connection-id property
-To: Hardik Garg <hargar@linux.microsoft.com>
-Cc: apais@microsoft.com, conor+dt@kernel.org, decui@microsoft.com,
- devicetree@vger.kernel.org, haiyangz@microsoft.com, hargar@microsoft.com,
- krzk+dt@kernel.org, kys@microsoft.com, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh@kernel.org, ssengar@linux.microsoft.com,
- wei.liu@kernel.org
-References: <20250620-strange-rough-gharial-d2bc73@kuoka>
- <1752479327-19753-1-git-send-email-hargar@linux.microsoft.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 10/14] dt-bindings: PCI: Add CIX Sky1 PCIe Root Complex
+ bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+ mani@kernel.org, robh@kernel.org, kwilczynski@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, mpillai@cadence.com,
+ fugang.duan@cixtech.com, guoyin.chen@cixtech.com, peter.chen@cixtech.com,
+ cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250630041601.399921-1-hans.zhang@cixtech.com>
+ <20250630041601.399921-11-hans.zhang@cixtech.com>
+ <20250630-graceful-horse-of-science-eecc53@krzk-bin>
+ <bb4889ca-ec99-4677-9ddc-28905b6fcc14@cixtech.com>
+ <5b182268-d64c-424c-9ada-0c3f120d2817@kernel.org>
+ <2b608302-c4a6-404d-9cc5-d1ab9a6712bd@cixtech.com>
+ <a7aac65e-848b-4bb3-bd52-963766410698@kernel.org>
+ <50592fad-850c-4dab-92d8-a71cb89daf58@cixtech.com>
+ <e3f6da47-25bb-450c-8660-f1406ed590e6@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <1752479327-19753-1-git-send-email-hargar@linux.microsoft.com>
-Content-Type: text/plain; charset=UTF-8
+From: Hans Zhang <hans.zhang@cixtech.com>
+In-Reply-To: <e3f6da47-25bb-450c-8660-f1406ed590e6@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG1PEPF000082E5:EE_|TY0PR06MB5128:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9754963b-3fe4-4eaa-0d40-08ddc2acf980
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|7416014|36860700013|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ZTdZUjBzUnVaeVI2aHZpREYrZXd4Rms1LzU3SFJaU2FVeHhGTjhjS0FqRlEy?=
+ =?utf-8?B?R05FbGY5VUpleCtKaFVuTkNLaTdLUXpEYmM1RzU2cXJPRi9oVk56VXo2RXpz?=
+ =?utf-8?B?UnR3VHVjMWJtLzVJcldaaE5XZTZkUFhIZ3ZuRlpkUlB3N2Z5ZDdvQWYvSWEr?=
+ =?utf-8?B?M2hHSGFPaStwZ1VPbEovWVFTYTAzZ0c3Rjg0QjA5K2NjTmFYcTBFYXdpbHRj?=
+ =?utf-8?B?RVhReTU2cEZNRk5HZWxKeTcwTWVrY2w1amYxWFBtaTN3aTZ0M0FwZWUvdUhn?=
+ =?utf-8?B?Uyt4K292d1F2UlBITzhWLzZiM1ZiTXhkNlA0RHRyM2Q0TDlnbWhpYWF1T2lM?=
+ =?utf-8?B?NVFWK3lKSmNrOGNaK3VaMW9oYWZjK2tNOUx5a1pjUUF1TTlycHNTUjVadFVJ?=
+ =?utf-8?B?VnQ0ZmdYVXhENVRjUnhDeHhSc1VTdjlpSVJFZ2NwMUUrcHllV1p4UTJ3TzFI?=
+ =?utf-8?B?U015dkNHeE4vNzh1TllRUElSZkxOSmovQ01maWJlZzdoemc2WUxrV2kzMjRm?=
+ =?utf-8?B?SHM5Ty9uN3lCQlVzZnFUcllsbVkvMVB5U1B6NWhMUExEblN3RlpIcC9Sc2sr?=
+ =?utf-8?B?UHVPUFg5MFZjUGsrREg3ZXJHWUR3N2svbk1HNFdvK1FpUEhnUFp0eS80K3h2?=
+ =?utf-8?B?aTVpT1doMEcxNThXTWNlWVhXUXpudDV2MUlEWmhlOTh4a3pFVWZaSG9wZi9n?=
+ =?utf-8?B?UFlleGpUa2I1dStHMUhsQi9Cc05DRlBxT3d6TzNhVTdVR3hJZFM5ak5QSjc3?=
+ =?utf-8?B?YmJpZTVQbjdpUk5DalNBdnJGTGxSdGlEOUdEaDJwQTJFcUNTckhMRUw3ZW1Q?=
+ =?utf-8?B?aUNMdTlBZkk4alpOZHRQMUt5MUVSdmRHbFRqSEp4UTdmQUhzaHcyeldhc3Yw?=
+ =?utf-8?B?VnFWNk5UY0JiUUJlcHdwbitjR25JOEEwUFBpczl5aGdoZjRyNkM0NUhnQk1n?=
+ =?utf-8?B?V0ZpWkFmSjA3S09CZzRwcThXa2hIZlVDZjk1TmtDTVpLc2hlZ3llZXBwdERy?=
+ =?utf-8?B?dFl6MDBzRW9IbUIwTzhiN0dkRmgrcmdPN2xBK3l2NENqQ1FEMys0eDE0M1pi?=
+ =?utf-8?B?eUZWQk1zdWtPNnBmNERWSnB3UU5wdXJjVFFGL3MrbFF2UCtTWnUzTnlubDFz?=
+ =?utf-8?B?TjdQTUNIMWU2NU9Nd1pZay9lTkpoclE1cnlOYlB5WmVsT2VRclBEU3JaQndT?=
+ =?utf-8?B?UFFOSFM3TDRpOE9NUkJxcUlYM3pqb2hJUTZFb0g4Q1hrU0pHaGVrVHZSKzhS?=
+ =?utf-8?B?L0s5WXlYaWZNc3lZYXJtTStQSWJkaStLNTJ0dWhNZ3J0emdyVnJhNlVLcnVR?=
+ =?utf-8?B?V0tybUowb09ybVZoemhCV1hHQ3RUS0FYVnhoSExTN084MXl6UWQ0R2tycWdl?=
+ =?utf-8?B?YllXeWhtWnJva0NXVk1zdE4xUUdZcEpMUEpkd29IY1RJS2FsWG9sY2twOEN0?=
+ =?utf-8?B?azBZRUNkeWk3a2xxZW1uQU41TGk2dUtIbWord2toc3I0K2Y3SUFLZHk2RmdH?=
+ =?utf-8?B?dVlhdWdyT0lQU1VVdDU5SzM2TG1QWjFTRjh6bzJxSkxZODFDZnVPNjNlQ0p2?=
+ =?utf-8?B?VHNsRHllcTRDd2YvaE9LZjg5ZmhNalRwRDJjeG5sMTREVzIzU2I4Y0JaaGlJ?=
+ =?utf-8?B?TU9DK0twV0FBUjdHMFRuWDVDeG85bFpsNHlEWjl3MGNJSEhSbUdqMEZuNit3?=
+ =?utf-8?B?MkdXVTBObm5ORmJXaWlsL0FGOFFZMXo3amppbWdwUHJvbDZaY0FoL1lKSWJo?=
+ =?utf-8?B?MHlNQzVLV00zV1M0b1lOWk9RUDk1QlJ0bXhidkMzdEcwb2t6eS9JTTRjOHRm?=
+ =?utf-8?B?cWxuS2FNdmlTUDMrYVk0eFV4ZDN3UmJJTnhMNkh1OXdQS09ReThZWGxsSUUr?=
+ =?utf-8?B?cFk0MXI5S1N6M1VNc2U3Mi9MSUFPUTRnajdUUEl5Zk1yV3pzSEJVNUxCK1BB?=
+ =?utf-8?B?eDMrbGRIOGRnZitDakJlOTlZNmNCdytDbDUrREUzN2VKdWhIcWduZ1NOb0dV?=
+ =?utf-8?B?anE4dlBHbkVjR1Z5MTE3c3cybWErS2V6N2hEVUlpUXZnanpxeU8reXhLamhl?=
+ =?utf-8?B?UjFYcE5wb1NCYnNwRVB4d2ZTclpjWWhXVVZOQT09?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2025 08:03:53.0698
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9754963b-3fe4-4eaa-0d40-08ddc2acf980
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG1PEPF000082E5.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5128
 
-On 14/07/2025 09:48, Hardik Garg wrote:
-> Thank you for your review, Krzysztof. I apologize for the delay in 
-> my response.
 
-You got review after 8 hours.
 
-You respond after 3 weeks.
-
+On 2025/7/14 15:43, Krzysztof Kozlowski wrote:
+> EXTERNAL EMAIL
 > 
->>> What is a connection ID and why it cannot be inferred from existing
->>> system API?
+> On 03/07/2025 03:47, Hans Zhang wrote:
+>>>>
+>>>> We initially used the logic of Cadence common driver as follows:
+>>>> drivers/pci/controller/cadence/pcie-cadence-host.c
+>>>> of_property_read_u32(np, "vendor-id", &rc->vendor_id);
+>>>>
+>>>> of_property_read_u32(np, "device-id", &rc->device_id);
+>>>>
+>>>> So, can the code in Cadence be deleted?
+>>>
+>>> Don't know. If this is ABI, then not.
+>>>
+>>
+>> According to my understanding, this is not ABI.
 > 
-> The connection-id determines which hypervisor communication channel the
-> guest should use to talk to the VMBus host. Reading from DeviceTree allows
-> platforms to specify their preferred communication channel, making it more
-> flexible (I will add this detail in the commit message). Presently, this
-
-We don't add properties to make things flexible.
-
-
-
-> value is hardcoded and there is no existing API to read it.
+> Huh? Then what is ABI, by your understanding?
 > 
->>> There's a reason why you have here generic property - this is generic
->>> and/or discoverable and/or whatever software interface. Adding now more
->>> properties, just because you made it generic, is not the way.
-> 
-> Presently the value is hardcoded and we want to provide a functionality to
-> the user to specify their prefered communication channel. This is a
-> virtualized hardware property for us.
 
-That's not really acceptable reason. With such approach I would add 100
-properties to make various things "flexible".
+Dear Krzysztof,
+
+I understand kernel ABI primarily refers to the stable binary contract 
+between the kernel and userspace (e.g., syscalls, /sys/proc interfaces). 
+Device tree properties are part of the boot-time hardware description 
+consumed by drivers during initialization. They are not directly exposed 
+to userspace as ABI interfaces.
+
+If I understand wrongly, please correct me.
+
+
+It was about half a year ago when I submitted the patch that could view 
+LTSSM link status in dwc that I learned about the ABI. There are not 
+many studies on this.
+
+https://lore.kernel.org/linux-pci/20250123164944.GA1223935@bhelgaas/
+
 
 Best regards,
-Krzysztof
+Hans
 
