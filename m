@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-196189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 430DFB04654
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 19:20:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF26B0465B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 19:22:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82042189F99C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:20:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFB1C7AD374
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:19:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A86A8263F47;
-	Mon, 14 Jul 2025 17:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F496264A61;
+	Mon, 14 Jul 2025 17:20:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y/htzd6H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vIMXThN8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E97C2620EE;
-	Mon, 14 Jul 2025 17:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66490264613;
+	Mon, 14 Jul 2025 17:20:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752513606; cv=none; b=S6l9Qgnb24u4xD/ueSj4W9z7VjbkvZG7ToyZSWkBsTj5CqirMnoZBeNAy6AkfUEufkix7T4q8YQIkTlJgwYbEhudx1pXR9yo2+dmOpAC4RcrFQ0JG7Fwx0h5SeWDKt7PqzcdDtgJQzJ7adxpujm7fLUyP0lvGtFIQha4RN2SoBM=
+	t=1752513636; cv=none; b=tDD5gdJkmFdJiLyCaLQdWdzUR28pgflQSstWGphT+K62yxSK0LS+vTLYZeyy8vyN4BcQTnioIOnlno1Gdak5Wkb2qxNmjzFrjN0EBGMtIAcIEENacp5cuBnBWtkLiEL/2I9ZXKrrGfcrFhXMUS1OoWg7rm7/mL4E01/5CGA6xqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752513606; c=relaxed/simple;
-	bh=0ODI/jsAcxCH5rhpgaFia6B4eIQDi2ph6s1FsPgZ+6Y=;
+	s=arc-20240116; t=1752513636; c=relaxed/simple;
+	bh=ohJ9qrrQgWg3Rt90ioF48hQhw7zbjaMSDzigGC56xjA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jke0rhd/omxRaQkFWxpU2E/7dp9rzEWPzIzPJJ27gPaKe7HisvTA0yA5NpX8RQkDTyrD3v4K9gngE2ZpsOLsb8WR+XvD5WGsnvpPBBwg/QTEbGhiqbw1PuiXgEsi/DmbOMXY3iWrMxRN3VwQYsBBWRBb7/M89jXy9ZutE8mAOxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y/htzd6H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17B95C4CEED;
-	Mon, 14 Jul 2025 17:20:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kYhN1DwvECV3kSlxrDZD3b+4WlFBqHr+2OorMQYyA271vaWV69GAAyHCqrFyXSuyIgNsfdJjor/Rr0J9Hjj5bK5wbp53eg8CigjuYcmtX265SOv5judm8dQstRdpLP91ZOwKGJ1D8hH/6p1KpUIsFnRNtduYXWzb9JBys5mHzyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vIMXThN8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F15CBC4CEED;
+	Mon, 14 Jul 2025 17:20:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752513606;
-	bh=0ODI/jsAcxCH5rhpgaFia6B4eIQDi2ph6s1FsPgZ+6Y=;
+	s=k20201202; t=1752513636;
+	bh=ohJ9qrrQgWg3Rt90ioF48hQhw7zbjaMSDzigGC56xjA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y/htzd6Hp6zny3Z+0zlKU2LkSYC76bHb05Wq+3xoKVaOXizVWaeKx79m9KlAg0eWr
-	 38HivT9yRT+J95lxezSsdUdBAU9Xv4dX/ew7TC857vU3+olyDUVodEx67DORAhwX2X
-	 Pkc47QNDSXTwi13IQNIhTNnId46gM4lA4vIuWMJZ8PlGy9VjyknYgIiGO2ASl3Ctnm
-	 1mJnafp7fvCWICgt7QvRKXl60LgFd8cVBkKahKho3O/q3flFBSAbVKo9arNUrRs2Dj
-	 CXRi4V3XqGOestTb+esKO9o+rTp8jKUWVY0cI9AmiinxsTO8oIfXu1YVcBuK1ntjH3
-	 k4vJIEIvaC/3A==
-Date: Mon, 14 Jul 2025 18:20:02 +0100
+	b=vIMXThN8Bj0Sr0dor3CLXP6DuXIC9EghZ3qncsfl91ShGbUyq750clKu7WviuLcoI
+	 SwVjHOefCXl+sdvZ2KTGp7Dd707U8UQJdcZJHt+ZGDp/UwOCzYyhtKHqekj8bRa4pW
+	 562o+SKo5AHibIR+72YIavCypNPR4c3/0p8cGgSJCir+r9wdneYKnlyjC+o7ys8m54
+	 b4hvHHiqdhbJF3r23wdr4r7EM3D/9SROMo3oHeNb4apOv8E9PonZXQbMVLpVdmslng
+	 idc+XDiU9swE81maPI2UyijBLhux57zP3+hiFybGoH3PLj9GN6rBcfKXa7jeTbdVNQ
+	 7hdvZdGwxpJig==
+Date: Mon, 14 Jul 2025 18:20:32 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] docs: dt: writing-bindings: Document compatible
- and filename naming
-Message-ID: <20250714-espionage-overexert-c12cee88d1f4@spud>
+Subject: Re: [PATCH v2 3/4] docs: dt: writing-bindings: Document discouraged
+ instance IDs
+Message-ID: <20250714-envision-pouncing-39a6a96ef2a4@spud>
 References: <20250713-dt-bindings-docs-v2-0-672c898054ae@linaro.org>
- <20250713-dt-bindings-docs-v2-2-672c898054ae@linaro.org>
+ <20250713-dt-bindings-docs-v2-3-672c898054ae@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,92 +59,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="WLM5k3gfPFcYkZyK"
+	protocol="application/pgp-signature"; boundary="V5+Nlubxho+Ac113"
 Content-Disposition: inline
-In-Reply-To: <20250713-dt-bindings-docs-v2-2-672c898054ae@linaro.org>
+In-Reply-To: <20250713-dt-bindings-docs-v2-3-672c898054ae@linaro.org>
 
 
---WLM5k3gfPFcYkZyK
+--V5+Nlubxho+Ac113
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jul 13, 2025 at 02:46:37PM +0200, Krzysztof Kozlowski wrote:
-> Document established Devicetree bindings maintainers review practices:
->=20
-> 1. Compatibles should not use bus suffixes to encode the type of
->    interface, because the parent bus node defines that interface, e.g.
->    "vendor,device" instead of "vendor,device-i2c" + "vendor,device-spi".
->=20
-> 2. If the compatible represents the device as a whole, it should not
->    contain the type of device in the name.
->=20
-> 3. Filenames should match compatible.  The best if match is 100%, but if
->    binding has multiple compatibles, then one of the fallbacks should be
->    used.  Alternatively a genericish name is allowed if it follows
->    "vendor,device" style.
+On Sun, Jul 13, 2025 at 02:46:38PM +0200, Krzysztof Kozlowski wrote:
+> Document established Devicetree bindings maintainers review practice:
+> instance indexes, either as properties or as custom new OF alias, are
+> not accepted.  Recommended way is to use, depending on the
+> situation/hardware: different compatible, cell arguments or syscon
+> phandle arguments.
 >=20
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
->=20
-> ---
->=20
-> Changes in v2:
-> 1. New patch
-> ---
->  Documentation/devicetree/bindings/writing-bindings.rst | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/writing-bindings.rst b/Doc=
-umentation/devicetree/bindings/writing-bindings.rst
-> index a2d2afd099c0bd922cf12dcf49f5dffe6da748f1..e63de88385b5bc5859d8d9fca=
-82bcf30380f3e73 100644
-> --- a/Documentation/devicetree/bindings/writing-bindings.rst
-> +++ b/Documentation/devicetree/bindings/writing-bindings.rst
-> @@ -52,6 +52,10 @@ Properties
->       fallback if appropriate. SoC-specific compatibles are also preferre=
-d for
->       the fallbacks.
-> =20
-> +   - DON'T use bus suffixes to encode the type of interface device is us=
-ing.
-> +     The parent bus node already implies that interface.  DON'T add the =
-type of
-> +     device, if the device cannot be anything else.
-> +
->  - DO use a vendor prefix on device-specific property names. Consider if
->    properties could be common among devices of the same class. Check other
->    existing bindings for similar devices.
-> @@ -101,6 +105,10 @@ Typical cases and caveats
->  - "syscon" is not a generic property. Use vendor and type, e.g.
->    "vendor,power-manager-syscon".
-> =20
-> +- Bindings files should be named like compatible: vendor,device.yaml. In=
- case
-> +  of multiple compatibles in the binding, use one of the fallbacks or a =
-more
-> +  generic name, yet still matching compatible style.
-> +
->  Board/SoC .dts Files
->  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> =20
->=20
-> --=20
-> 2.43.0
->=20
-
---WLM5k3gfPFcYkZyK
+--V5+Nlubxho+Ac113
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaHU8QgAKCRB4tDGHoIJi
-0kOeAQD/vwGwnRvBoukJ5yRUpP2Ses2/p9eO9KXrcWjZajGqmwD+OMxTN9Mpq9MC
-R8oA+wmUmGh4nByOTBSpEKmu5EBN7Ag=
-=x4W7
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaHU8YAAKCRB4tDGHoIJi
+0povAP4pRUpu8i25xIfA/tlizz5VVlf1wcMiz8CeKKmpQFENeQD9FqHMeNZo0C4L
+EuLrzw/zYjwEubgjNwJd+WRQ6VTL7wA=
+=10pq
 -----END PGP SIGNATURE-----
 
---WLM5k3gfPFcYkZyK--
+--V5+Nlubxho+Ac113--
 
