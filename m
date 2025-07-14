@@ -1,148 +1,134 @@
-Return-Path: <devicetree+bounces-195930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 333C9B03942
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 10:22:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C4DDB0395B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 10:24:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DA8F17C9AE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 08:22:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 695674A0002
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 08:22:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB6D323C8D5;
-	Mon, 14 Jul 2025 08:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DAC923B60C;
+	Mon, 14 Jul 2025 08:23:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b="VOTXfiYm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l5Gm9kQO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www571.your-server.de (www571.your-server.de [78.46.3.230])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3887923C501;
-	Mon, 14 Jul 2025 08:21:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.46.3.230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E288223DDF;
+	Mon, 14 Jul 2025 08:23:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752481297; cv=none; b=ip3ziWZ+/8+9XB4AhyLevY18m3tSGzjX1teMcLOIkN6+7Wjvxngbwg/vBkR4uizRxUwtbrfbir2BreyQ36Fx5dLOgWUB0c1UkLwRJeN6jcDBfhZx4lMYMRz0LT6ip2m4jupROCA6gzSF2kJG8DPfHBwBwKbrPIwBqI45DX83YVk=
+	t=1752481393; cv=none; b=EMjmoAm19R4reF5YlnlPJny+BSROzwYSdu9JurRsmVKnFvjaBAahhHuJBkVVJYBxdrCkHT5T9QyBCqxRDQNJuSTVXG63sXjbKwNbk7tiClxaSvnCr/3RwpLvA7Wkv/R02ZzBnqFQbn6wDeBsJ+wPiFr8srQf6sPwztol8Hltam0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752481297; c=relaxed/simple;
-	bh=vGCt6e4tvbfIAxKyrSifFmcPqWkUhZMW++dsW2+fEX8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S4u3eM7LNk5gxgrw4i0M5j+Sz3oMjuLOdcH13+zd3u4Inx1FxCG/kKJAKeiZanUI5is2XWPAofczgUMAtvPOye59FQ7cPn6t3r4Ex9e2U1WWRumCNQYd/XRpYZInEtT5UiB5Z/S4pwV3IJ+6BPtee3gTIyl7iX2DESXzZUU8MHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de; spf=pass smtp.mailfrom=it-klinger.de; dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b=VOTXfiYm; arc=none smtp.client-ip=78.46.3.230
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=it-klinger.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=it-klinger.de; s=default2502; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=LvThmsuNtvCogrKqIZq+Xt7F8YmCZbkWSaf2CIUYY8M=; b=VOTXfiYm/VslRNjilgNbtSDc07
-	RJGQdFUyQAwi/8FTpwT8afj9yo1V+uwWMS8JcSinNCnACnwGWhh1MVqXsIsFgztTSZJWk2K8FsAFZ
-	G5fEAOsQAvLdpRe7/40bfry0n5F1D3DGJ3sY8WbUm7rItiFQpXYZhGeXfOp4cippZmSqnqXi7HXqR
-	jtYjaEs8YEi3w7L/qqNOwTNnP8v7EedIfkI4BZKVVWa3GuthnSVaEUdV0kt1p5halgGF2AqR95hZZ
-	FI1+6x+T8HhzXItecizva9A2lGh3+mn7iJqcdzC8QhAhcg2rw1jn2SqRSvn9gM4T8/or6RCh7IWBt
-	Hy8LCW8g==;
-Received: from sslproxy03.your-server.de ([88.198.220.132])
-	by www571.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <ak@it-klinger.de>)
-	id 1ubERF-000DeF-2f;
-	Mon, 14 Jul 2025 10:21:29 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ak@it-klinger.de>)
-	id 1ubERF-000DHU-0X;
-	Mon, 14 Jul 2025 10:21:29 +0200
-Date: Mon, 14 Jul 2025 10:21:27 +0200
-From: Andreas Klinger <ak@it-klinger.de>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lars@metafoo.de,
-	javier.carrasco.cruz@gmail.com, mazziesaccount@gmail.com,
-	arthur.becker@sentec.com, perdaniel.olsson@axis.com,
-	mgonellabolduc@dimonoff.com, muditsharma.info@gmail.com,
-	clamor95@gmail.com, emil.gedenryd@axis.com,
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	s=arc-20240116; t=1752481393; c=relaxed/simple;
+	bh=RfqUbaa9s7JOmh2LfjwsNwwwmm0uXMw9G0+7rubVqf8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OYiJnav/kxEVCZ1VHyfmJ+zFRn1hFMgsp80CsaGJvq9Dnyj9rx8/mJJ2+lGAQBo5nzoJQ1E+k+X0DAZGy69tm0aNSbBJsoHca8/Y2FGrM8iRgiXHE50S5zDYQIPvj297gdRSwHtW0QzTl29/s4uL4+1NgWj0kPlPWsg4D871yjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l5Gm9kQO; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-553b6a349ccso4957109e87.0;
+        Mon, 14 Jul 2025 01:23:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752481390; x=1753086190; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y6hrDr1ho+LmcOihDF5/afd2FJMkMgiWJJggRREgOis=;
+        b=l5Gm9kQOhNOq8P3wMqU7GZN56IfjuaW/38XOm3/e/CQokank9pGHLTAC/3S3wPtCEe
+         KGW1Ev+3gbCMMC96ghjPI2M0+EiCdLNUqrDWpm89Fa+HdkllBsKWw+4d8LjYaLob4dWD
+         QdkMwYt9Zext5uj2aqR9VrXQeK6NXTc7WSZ1QmMPFedQ6sauFfvL8Z5ggxHYZFNuqGtz
+         I5WEdJb44gBPVeoXpEHV79jMAAFCDoq1nk5jj2id78OeiA3T1huwlDyuX08BV3K8mfcc
+         mWk5yH7v8L5Ar5hcByFPBV12L7VLDauAr9msqTJz6lfZdEchzVCeMP1mXbaSxVzJr/WA
+         iFQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752481390; x=1753086190;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y6hrDr1ho+LmcOihDF5/afd2FJMkMgiWJJggRREgOis=;
+        b=tobn41OZRCV2ViYKWt2779kTszWfNF+9jvknShZuJpLF5qT36iiZirfFKG48HN3TsU
+         XmsNdwxPTdlsIszmVZ7jP9D2mRTy5q8JdPXtGOij1zX/BwQAXgZyodfxhvx7Bl7/kl9u
+         13rCuX9puvxyR3jzK66WanN9PTCsE3rn8DbvToNvFYNCp3god1WlYVcp8fu/iMEe2J4Z
+         9e2wtS9mA7/Ejm0grDhOiwn8T4kbOa988f1eo3+lL7ysQneA1L41E8hxG5NE/NZIn57w
+         UguylOuPqilduefuKKjC+vLzde9d5hU8M2vmMd0NxW7Tek+aq7jG5eHv+58nPCmNzn30
+         H/Sw==
+X-Forwarded-Encrypted: i=1; AJvYcCVfVcOU+4wfIR7ZClZteJrHMdC4ZSQ8gl00o/RVEVEQbUOvTNfoUFR0tA8vB+eMM9GnAkNcc56yVQrP57Cx@vger.kernel.org, AJvYcCWB+p+3rLB0ad0tnIwW1TilBH3XWlOZ8+63I8E8/onDU0gZgtlY7aBtsDuZRhgCws6CdHdpeG98vOLfJNE=@vger.kernel.org, AJvYcCXMs0l03OsaU36qk8C0FMbgDIHqOfZsmy36Tutp71npLYXMNVfMavIlD1kPPu8iczCJxI1GbURPnGze@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyfsebK61BxoPeP3+Z/aSG3/g+ySdmfm4IkDDKJSDOPM4TfrXb
+	Dlaa2+H+ZaLkQGy4TglfTDvJZSRXcsA4LJFDSfUqXsFN+JH6TCSkmNFX
+X-Gm-Gg: ASbGncufocJ2n8i+ksHl5iG+zn3H75BzdFpAxah/IevFFtpACUCUSsTlegEbdhAaIXU
+	7OJSRpsQt42eGygWEm1075cIX01RDwu2C0PXA6PDo8MjmLhkDhWo86FC77ibW0XlOq3yTWN2JiN
+	b2HItVsIVNpP5iZXM9vQrrlU/eGk4txu4l+hW5dVJJZHkSGxx1X9Hw/WxXNoBPA6CiTFwLwTfs0
+	YT5gMO3DXKpOS2hJaduzEtwjMqVjXgaSLbO4ScxDuUvApn5cMkKk8u1Dk8axUbycRrWPo6Tw3Dw
+	nhdPydWNCLxwBk9Z63nPcdQFfO2i1Jr9dItkGZrFx7TX5ztIChE9x8C/QCO2jcNCoHKl5xOpmil
+	nNVyaFG6QhmHUPw==
+X-Google-Smtp-Source: AGHT+IE/cT/hjY2GCM1WSnH0h5q/mZeYUgMYbbjoyfEzTj0kg7wgS9qDCIngeBrTB4ZjtayJ44GjnA==
+X-Received: by 2002:a05:6512:31c8:b0:553:296b:a62 with SMTP id 2adb3069b0e04-55a0448b825mr3586374e87.12.1752481389417;
+        Mon, 14 Jul 2025 01:23:09 -0700 (PDT)
+Received: from xeon.. ([188.163.112.60])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5593c7bbd55sm1885717e87.23.2025.07.14.01.23.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Jul 2025 01:23:08 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thierry Reding <treding@nvidia.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] iio: light: add support for veml6046x00 RGBIR
- color sensor
-Message-ID: <aHS-B5KmBKX72OZc@mail.your-server.de>
-References: <20250526085041.9197-1-ak@it-klinger.de>
- <20250526085041.9197-3-ak@it-klinger.de>
- <aDTMSwhodZQLzZ4q@smile.fi.intel.com>
+Subject: [PATCH v2 0/5] thermal: tegra: add SOCTHERM support for Tegra114
+Date: Mon, 14 Jul 2025 11:22:47 +0300
+Message-ID: <20250714082252.9028-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="stXNHVz0ywEbGY6j"
-Content-Disposition: inline
-In-Reply-To: <aDTMSwhodZQLzZ4q@smile.fi.intel.com>
-X-Virus-Scanned: Clear (ClamAV 1.0.7/27698/Sun Jul 13 10:39:53 2025)
+Content-Transfer-Encoding: 8bit
 
+SOCTHERM is thermal sensor and thermal throttling controller found in Tegra
+SoC starting from Tegra114. Existing Tegra124 setup is mostly compatible
+with Tegra114 and needs only a few slight adjustmets of fuse calibration
+process.
 
---stXNHVz0ywEbGY6j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+---
+Changes in v2:
+- no changes, resend.
+---
 
-Hi Andy,
+Svyatoslav Ryhel (5):
+  soc: tegra: fuse: add Tegra114 nvmem cells and fuse lookups
+  dt-bindings: thermal: Document Tegra114 SOCTHERM Thermal Management
+    System
+  thermal: tegra: soctherm-fuse: parametrize configuration further
+  thermal: tegra: add Tegra114 specific SOCTHERM driver
+  ARM: tegra: Add SOCTHERM support on Tegra114
 
-many thanks for the thorough review. One comment below.
+ .../thermal/nvidia,tegra124-soctherm.yaml     |   2 +
+ arch/arm/boot/dts/nvidia/tegra114.dtsi        | 197 ++++++++++++++++
+ drivers/soc/tegra/fuse/fuse-tegra30.c         | 122 ++++++++++
+ drivers/thermal/tegra/Makefile                |   1 +
+ drivers/thermal/tegra/soctherm-fuse.c         |  33 ++-
+ drivers/thermal/tegra/soctherm.c              |   6 +
+ drivers/thermal/tegra/soctherm.h              |  17 +-
+ drivers/thermal/tegra/tegra114-soctherm.c     | 213 ++++++++++++++++++
+ drivers/thermal/tegra/tegra124-soctherm.c     |   8 +
+ drivers/thermal/tegra/tegra132-soctherm.c     |   8 +
+ drivers/thermal/tegra/tegra210-soctherm.c     |   8 +
+ 11 files changed, 604 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/thermal/tegra/tegra114-soctherm.c
 
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> schrieb am Mo, 26. Mai =
-23:17:
-> > +/**
-> > + * struct veml6046x00_data - Private data of driver.
-> > + * @regmap:	Regmap definition of sensor.
-> > + * @trig:	Industrial-IO trigger.
-> > + * @rf:		Regmap field of configuration.
-> > + */
-> > +struct veml6046x00_data {
-> > +	struct regmap *regmap;
-> > +	struct iio_trigger *trig;
-> > +	struct veml6046x00_rf rf;
->=20
-> Does pahole agree on the choice of the layout?
+-- 
+2.48.1
 
-This is the output of pahole:
-
-struct veml6046x00_data {
-        struct regmap *            regmap;               /*     0     4 */
-        struct iio_trigger *       trig;                 /*     4     4 */
-        struct veml6046x00_rf      rf;                   /*     8    20 */
-
-        /* size: 28, cachelines: 1, members: 3 */
-        /* last cacheline: 28 bytes */
-};
-
-I don't see anything wrong or did i miss something?
-
-Best regards,
-
-Andreas
-
-
---stXNHVz0ywEbGY6j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQGzBAABCgAdFiEE7/NrAFtB/Pj7rTUyyHDM+xwPAVEFAmh0vgcACgkQyHDM+xwP
-AVHhBQwAoU1RGWaHEOX4OjCPOGm/Uthy8qABHF7YLF+oMo/O9C+wbdqzcf8mpYey
-ZU797baeAuK13lM0x447v9181bBuy0B2iIaAdJQwYl9XCurnpczZKPMUzzWDGXvk
-ZhdThTnL/IkGSZhQR4Qk+PyKrwNm6NL0eAkVWtsqSLpXR+cW2c81TgRSYMtrshOZ
-FvSKm9BpzSZrqUNlvFP/rZ/IoaHUmPM3DevqCekiPjTAr/khSED69nrU1VzhDQFm
-HOs+oY1h4FgYFcMjC/KtSinQ6qKN1IRkGEiRk9G6eI1odrgNi4/1E4PuJHyRol7w
-AGaEsf3cutc7WAmMrBiWZcfrhe/QJ4u1fUq2qtq0n3Nb2rK0/C2XleZ4ukMFu3eo
-5iMDw/HLeH9kf7MoGr2dd35/LnT2P+P1iaA6RjOq2z/D4xHyffALCrT0bZFtQNRp
-90aX9X+Jh9ZDE//X6kC1oqaufjAoJ/VWSZuRTwIQvVno/40S+2CmSmjwFBenRT95
-PFXJ4Wst
-=aHbg
------END PGP SIGNATURE-----
-
---stXNHVz0ywEbGY6j--
 
