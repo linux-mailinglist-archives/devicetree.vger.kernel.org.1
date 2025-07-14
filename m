@@ -1,55 +1,80 @@
-Return-Path: <devicetree+bounces-196097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE61B041FE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:41:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1DF7B04203
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 16:42:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B3E93A3355
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:41:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28601173AB5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:42:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC58425332E;
-	Mon, 14 Jul 2025 14:41:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E017625744F;
+	Mon, 14 Jul 2025 14:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DWqN3P1g"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q40qDfwz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com [209.85.221.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBC2B14A60F;
-	Mon, 14 Jul 2025 14:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401A42571B3
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 14:42:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752504095; cv=none; b=QngLU1MTd6z4vStNVsI6HePMgjaZbeCi1TPiutGvr8jdCMS0YmSicJFDGid6egnAe9zhYy00gFf9+Ahqe97ce9ArGklXFSIi8PraQW39nMFQ2G0OLthgenY3UXKGfIzNShCgt9AIaBwGlnOPvvSrZ0xa0TbeyHYhf/mIYH/Q6jo=
+	t=1752504144; cv=none; b=mcZmJNVc4dRjGRWvH+9OyRjpg8ze9palW1+0wMFndNTZx3Qzrk3efct2PwYBVSIdzcZm+TtZREo+YKd0j7if6Q7WuVBuNrIguDpdMBCOQsVsjcuarPUBSiAbS5TDptExsjCglS/XH+kSpt08iorGd5BpDJW3ThrYWUBXnAp22Ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752504095; c=relaxed/simple;
-	bh=Fz/d3uILd9FczXZOmPm/sOeGs9pVqLhoY4n9Jd808lc=;
+	s=arc-20240116; t=1752504144; c=relaxed/simple;
+	bh=I7Pxnln1BUjfe7HcY5t1QvJulXfLwXmFHrmFWRkwVbs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tNZUIb/fCEJMgBCFmzPG4FVdkcLbJ9UgS/kMGbemHoVY7ue5YWAqqd3oVmCzlGZ/D1wpxgsyFOs42EArhAElB26BPfuwMobMMS/3pEokjd2i0Lzvk9GZxsi+nu8Ai2q1ZPcqfH857Lyz1ZwMhuxl9vpOZialAa+K2RmoRMwMpuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DWqN3P1g; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1752504092;
-	bh=Fz/d3uILd9FczXZOmPm/sOeGs9pVqLhoY4n9Jd808lc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DWqN3P1gZB07xBDPA94x9vftku2YsQluF4nLOPZsKQcPfqd989ajB1sq6zTe8whzK
-	 xhdSryo4lp8qEa3OgV+z5FTy1b09RHlPqknRNW8+hoSLzWhoU9gceoOSa94iVbQDqm
-	 4hD2aNkCHMmzrRGd++OSkCz9S6sDoVS23Wo9rBH5PNzubIbgJqQqn4YiHTW8wEuMfw
-	 awiyxdXkvilc8qYRSecHdRcWwAH6bhpV4NGj7UsHcUW8UtM6oUVA1BV4MOSIjoRPL2
-	 +uXF4GISJoWiXJqa30pZasMQwSxrxczPgw4N2vZwpOVXzvHudLDMkPPRh0MxOr+fWi
-	 bYp6HXUxT6pkQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4B5F017E0DD7;
-	Mon, 14 Jul 2025 16:41:31 +0200 (CEST)
-Message-ID: <fd561a8c-f1a7-41c2-a686-abc89f5fa555@collabora.com>
-Date: Mon, 14 Jul 2025 16:41:30 +0200
+	 In-Reply-To:Content-Type; b=pXh9aJEDDvZVIDeAAdSk7CnPvCDVMbZIQ6+qVSxiB68z87f37QKD8jAuN7hEKB1gmTAPiCQ+50CrDUQM0cA6zsy+Unu41qmSpUqXOrUApzhnzEUXja7/HUtawj7ilVwUP1z+Uyuo+W6ioascpiTNEf6dTHf/noy+KTRtUxLno8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q40qDfwz; arc=none smtp.client-ip=209.85.221.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f65.google.com with SMTP id ffacd0b85a97d-3a4f72cba73so3528236f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 07:42:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752504142; x=1753108942; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YgT/ZO8DO6Wf1bRdrDifcHYIjUyKTX9Eo/tSV9XIcEY=;
+        b=q40qDfwzSIA14x1r/J2rEkv6K1gxFsLR9g71YzjpsE6p6yyKnDL03XaUeaipq9qbtE
+         sPSscV7zXPXPszZUWxrwFO2bmGXSxRHADAfkUMipJq5vD+gKVUVDzVPI9fX/tAosqAyW
+         9e5VLaDKcTtGFlDJLH8CG+W2sj1fsnVEj5yJP9PqvcMk7KH+2MaeMRSgKRJTsyh0zky+
+         UQSSKm0HPvwQ5EQnxzpi449raR24hCiotmch5uSmR6aZCoU72L4RvO+Y88A/q9YeQpQp
+         eFi3WaqKBvxd/WWVjVI8UX/00lhKz8RDu8qhZo1MfAoQrPkssUCcWq3FDos4k6BkosUC
+         bk0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752504142; x=1753108942;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YgT/ZO8DO6Wf1bRdrDifcHYIjUyKTX9Eo/tSV9XIcEY=;
+        b=k0ZGMy5/ADzx+q+2+YDjK8AZfiNAtfn81C5IEKohjoOeRO8q0Yg2Bkb5Ts3F7a7jJC
+         9cS1kKBPnOlkrj4cx7mQXbo6l5J0Sa2zw2URw/1gNwuX7+q58maBAczV39Kq7mHIhZl8
+         EdHCxFA9WA9nM1R+AkFEeA18aYxiy1sStnkeJ5nC+4eVM3SCb/zuHEHwVbXP0o1Wecr/
+         9QQYFnQjtmr8p/TqpN2ifyk9RBJmpfy/ZujDfxCDL9d3PZimhzMm9PSsfgd+9RLty2kg
+         P6sVbiwSpkGQXST1XLp271GWKM0RT5f7t6PYGcw2pd12IWNO32WA/f+YTy56JQQf6FlI
+         5AhA==
+X-Forwarded-Encrypted: i=1; AJvYcCWrlugu5ktLn9d1xmCSzdO7kyBN03rj96e2CWX4Fb9x1Kaou0iINMWNux/E8EfVqvtNjRzeBTqHMMVS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3x0XMUW7OC/ZUXqecKCEpAMth2b0d6a07EuvFlEYgShhjPbik
+	HmYedvSa5aAgtRdfugOA73/r9cl/qPZlCf28/hXblYKQwgu6xxjqXwu3VevVQc67J5A=
+X-Gm-Gg: ASbGncvlJuJvY/PUT7Hn185FhBOBjVeNcRCXHGa4NvLPc58DmVqMKLJhQz7oFsVCwfF
+	W+alWUalLUWkZp1FNDSPo7VZXq4TpbnEUaJ7joxHdqUz6H3+cbVJ2C5jwDfg4su9IouKRhtT+bd
+	BSwO3047BvoaH2svWK7C4mM6EQSBOnN9XJVoUfo9cEQQPwKEhhfBolBM/AYk1OAwObCzUNxHLbf
+	bvQa4D7HsSU1izgT9vnwhV0AswoW8harzADSHGpPFd4nELboZawMeQfz1P8WxRUM0H3mVJObV/w
+	+XMQ6+1lNoxmZJoA7IlFCtmNimzy1RpZSGGg3LFr6swCWCjrOD15QrWEFsGBBUUToDqe5u4nFxR
+	z90YX2GolOHG6AlnPHjm2YKoXQqXL5p+wU50+qZZ0meXj2XBA5YfuAUJ9khuZKEQ=
+X-Google-Smtp-Source: AGHT+IEi60GCx6StklZNLN6fInXr5r58gDpnVQSjnfRk5TaJycuEkJOCyklDv2cd+DxYgwPBiYqnHQ==
+X-Received: by 2002:a05:6000:240d:b0:3a5:6860:f47f with SMTP id ffacd0b85a97d-3b5f1c67c67mr12717295f8f.6.1752504141614;
+        Mon, 14 Jul 2025 07:42:21 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8e26ee3sm12845397f8f.96.2025.07.14.07.42.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jul 2025 07:42:21 -0700 (PDT)
+Message-ID: <01080f5f-f3e6-4989-ac84-766c030dda35@linaro.org>
+Date: Mon, 14 Jul 2025 15:42:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,154 +82,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: cpufreq: Add
- mediatek,mt8196-cpufreq-hw binding
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom: Add MIPI CSI2 C-PHY/DPHY
+ Combo schema
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: kernel@collabora.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>
-References: <20250714-mt8196-cpufreq-v2-0-cc85e78855c7@collabora.com>
- <20250714-mt8196-cpufreq-v2-1-cc85e78855c7@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Bryan O'Donoghue <bod@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250710-x1e-csi2-phy-v1-0-74acbb5b162b@linaro.org>
+ <20250710-x1e-csi2-phy-v1-1-74acbb5b162b@linaro.org>
+ <8ed5eeee-78a2-4b26-989f-03676a9e5da7@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-In-Reply-To: <20250714-mt8196-cpufreq-v2-1-cc85e78855c7@collabora.com>
+In-Reply-To: <8ed5eeee-78a2-4b26-989f-03676a9e5da7@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 14/07/25 16:08, Nicolas Frattaroli ha scritto:
-> The MediaTek MT8196 SoC has new cpufreq hardware, with added memory
-> register ranges to control Dynamic-Voltage-Frequency-Scaling.
+On 14/07/2025 15:13, Vladimir Zapolskiy wrote:
 > 
-> The DVFS hardware is controlled through a set of registers referred to
-> as "FDVFS"; one is a location from which a magic number is read to
-> ensure DVFS should be used, the other is a region to set the desired
-> target frequency that DVFS should aim towards for each performance
-> domain.
-> 
-> Instead of working around the old binding and its already established
-> meanings for the reg items, add a new binding. The FDVFS register memory
-> regions are at the beginning, which allows us to easily expand this
-> binding for future SoCs which may have more than 3 performance domains.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->   .../cpufreq/mediatek,mt8196-cpufreq-hw.yaml        | 86 ++++++++++++++++++++++
->   1 file changed, 86 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/cpufreq/mediatek,mt8196-cpufreq-hw.yaml b/Documentation/devicetree/bindings/cpufreq/mediatek,mt8196-cpufreq-hw.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..26bf21e05888646b4d1bdac95bfba0f36e037ffd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/cpufreq/mediatek,mt8196-cpufreq-hw.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/cpufreq/mediatek,mt8196-cpufreq-hw.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek CPUFreq for MT8196 and related SoCs
+> There is no ports at all, which makes the device tree node unusable,
+> since you can not provide a way to connect any sensors to the phy.
 
-title: MediaTek Hybrid CPUFreq for MT8196/MT6991 series SoCs
+data-ports should go from sensor to the consumer of the data camss/csid 
+not to the PHY.
 
-> +
-> +maintainers:
-> +  - Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> +
-> +description:
-> +  MT8196 uses CPUFreq management hardware that supports dynamic voltage
-> +  frequency scaling (dvfs), and can support several performance domains.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8196-cpufreq-hw
-> +
-> +  reg:
-> +    items:
-> +      - description: FDVFS magic number register region
+Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml
 
-As already said in the other commit, we might just be able to avoid adding the
-magic number register region :-)
+https://lore.kernel.org/linux-media/20240220-rk3568-vicap-v9-12-ace1e5cc4a82@collabora.com/
 
-> +      - description: FDVFS control register region
-> +      - description: OPP tables and control for performance domain 0
-> +      - description: OPP tables and control for performance domain 1
-> +      - description: OPP tables and control for performance domain 2
-> +
-> +  "#performance-domain-cells":
-> +    description:
-> +      Number of cells in a performance domain specifier. Must be 1.
-
-The description is redundant and doesn't add any real information, I think you
-should drop it.
-
-Bindings maintainers, please, opinions?
-
-> +    const: 1
-> +
-
-Everything else looks good to me.
-
-Cheers,
-Angelo
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#performance-domain-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    cpus {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            cpu0: cpu@0 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a720";
-> +                enable-method = "psci";
-> +                performance-domains = <&performance 0>;
-> +                reg = <0x000>;
-> +            };
-> +
-> +            /* ... */
-> +
-> +            cpu6: cpu@600 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-x4";
-> +                enable-method = "psci";
-> +                performance-domains = <&performance 1>;
-> +                reg = <0x600>;
-> +            };
-> +
-> +            cpu7: cpu@700 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-x925";
-> +                enable-method = "psci";
-> +                performance-domains = <&performance 2>;
-> +                reg = <0x700>;
-> +            };
-> +    };
-> +
-> +    /* ... */
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        performance: performance-controller@c2c2034 {
-> +            compatible = "mediatek,mt8196-cpufreq-hw";
-> +            reg = <0 0xc2c2034 0 0x4>, <0 0xc220400 0 0x20>,
-> +                  <0 0xc2c0f20 0 0x120>, <0 0xc2c1040 0 0x120>,
-> +                  <0 0xc2c1160 0 0x120>;
-> +            #performance-domain-cells = <1>;
-> +        };
-> +    };
-> 
+---
+bod
 
