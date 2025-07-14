@@ -1,129 +1,241 @@
-Return-Path: <devicetree+bounces-196023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59656B03ECE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:35:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEE01B03EF0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:44:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB4071745AA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 12:35:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF7CB178C9E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 12:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C552248881;
-	Mon, 14 Jul 2025 12:35:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HTAt0zcR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ABDD248F59;
+	Mon, 14 Jul 2025 12:44:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022100.outbound.protection.outlook.com [52.101.126.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F7D20AF67;
-	Mon, 14 Jul 2025 12:35:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752496538; cv=none; b=WSP+SrOLrUtkA52/yRePv9IzpAhPMzUOlZ5ni+gfDDJrNhTC6a2vYuHpFZO8Ah5kpf/g0fS+fl5q1z5Z9Go/Vltda7sCQe6Jw7+MAcsomlImZWNUO/fyJK2iDY7dwW78mReLpBF1WkHOfbq1Ry2pjnOGfIAigwOPSSoKjyg13s4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752496538; c=relaxed/simple;
-	bh=rKnLYV6EmHmE3mzoMHqDHoN8VPsmF1S4gphrWDmSfbw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CGnI4HktYvVhhlJz46hhInURiQFJqVHhCZ2zSiBgiDGvEi+3y2J7xGP9hpHj5SOsmmWQfm+ZscV2PwtucXz9pjl+VEg31AQUBZ+8xYF/sM/i9rV9TWKhSQve2XoqulA3z1pIyCxo1OlFubt4zI5yD9HvFL1uJzDfN5lyNxgFFeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HTAt0zcR; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-605b9488c28so7703239a12.2;
-        Mon, 14 Jul 2025 05:35:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752496534; x=1753101334; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/JJkBY6StLlPiYYNcDOCRaSTmquHRBX1aQ9fP/9Yejg=;
-        b=HTAt0zcRenTTuIAy7QHrcU+NnxaEGPRAQN9tSIyMGU2SdFMzuERaYQkPMBRCKOybbw
-         0k8BpL9X/XScJYwSDCfdrF0KKHbp/B2nEzQaxsXKA8/NjJi07ke0ijq29Vl2QIRIC6Yg
-         QtV5qHL8h2Z/PvebG+ICoQfRVycUlL4205resx/Nx9/PJRBdVjQ9tProGmRMUnovfDnu
-         igDleclR2O207edI+QvD6KfccH+f3bZOX9DCtIW8amYahRj0Jkhy55yLUIkEPFxNskJv
-         MKt44ZoyH/p+yH9MZ8tAUa32+X1//Fmkd3shyBAJ7UnIQdtxehxMNpWN9MT7eVBbiLeS
-         eBWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752496534; x=1753101334;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/JJkBY6StLlPiYYNcDOCRaSTmquHRBX1aQ9fP/9Yejg=;
-        b=kYJ1xbP+l5WXe9PtCXHI5Zz28Gg9Um6sBSTxWHHdhRSJ4ETTJAbKveK808FeTv/nVL
-         OVno4qOQhqxodsWPRdWXzAwftXlbA76ENN+6Gd615nIxQF1kIDUNSUhap9dF9+OYr2Y1
-         6MOltHL2uJ+G4QP8CECKG8A0MBAVo0ogsm+7WZV0wUKl8DXxkm4MSvUlbeWyBTCZBz/o
-         sXYG608Q0TiiNvY9c0YVjtXPV1vbFgPw5IlkZ4ja7FPODI483JNJgQeFnap1LCXochuB
-         PG+sl6Umwn5PJ5j8pu1xefw6hGb21wFAESVQsPm2babWBIe5CoHuVbv5koU1MR35a0au
-         FmcA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+3RgLUvf2NiU381lhtaSRkoWLEdJpTi6FmN8UGTjCURjAn1kRXksGHdXGZTOPvQMrhRWnTVEji3NeO7mb@vger.kernel.org, AJvYcCUhGBCuCfY+pNyWG4OtLUYeyOkH2+TEqGj8u07G/PaiJFSobQSiNQMWwPRqG0kv2pWonmTftT5DAOE=@vger.kernel.org, AJvYcCVNGUiRgJa3d4MjJmaVQ+3HaX87Bp9agYs9YFc2L6WcmqwYdSOLBxJjMtwamlkoud5eO4K3Ff3B+5ez5V3Jpno=@vger.kernel.org, AJvYcCXLlJTpvLULoU66O+bpqEMLejFaWROSk0YSdyYGrL0gALk/5JPT5kq5dSv+z85/24HS4J208GZY1OCi@vger.kernel.org, AJvYcCXWrTKpfQvGrIzreTDNoRWT8uqf1C9majubdMA6OSC+Jf7xcZlbg6GxVW58nWPR7a57QAT+tHtp@vger.kernel.org, AJvYcCXiSl7mbii0oZ3nc6nA/32wlOCYSPyGvILEe7z62cuowD4lTHCWwMJA0f+0FsFUBRdaXF8zBI55crjEIu72uZOc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRY67yT44xp7eMkHjBIKftmuf6PvahA25X0nhhrlLOVRwLkJAc
-	3WV3chcsbeMt8Fdf+jE1p5ipzRgnf/6E810wE02yVxd4PUGNnF0fY+dxpcD24QhYrIrgjaSzZRq
-	SDjZqXnxEjMJdIC+UsAG/V7IILal3WHI=
-X-Gm-Gg: ASbGncsQvZBOTswBI3UQQaNwNy/oQT9c5D1K9S+CfGQlIjQl6+QKPqFvbaO7gSssTgr
-	A0bXv80UYm7/ueigk5wnlIxkTD2Q1WReGvCRFOCRjuUnbmx3NjVUzsMhZYNADaNffhPgZC/W2fh
-	XGbyuZA7vpTS9w3QyD9Y3BNZR3H59n4XsM966fIcnvVYwxZQ4FbhhJSGA/rH1Vg2zM4fJN2vM6r
-	rE1wiBgvyoW7bXzmU60uFOCsddBf1ZgScURuxKR1sjCYiMXbaAu
-X-Google-Smtp-Source: AGHT+IEHpxC5111y9Cj6JQaRaXgMXbAFzbh9lkbxM7Yb2ILuf+3IGoAWfMQm4cez9+Bj4NXuw+pe+X+/AUAJqf9Zudk=
-X-Received: by 2002:a17:906:d7d5:b0:ae3:6744:3675 with SMTP id
- a640c23a62f3a-ae6fc0c3796mr1235555966b.48.1752496533691; Mon, 14 Jul 2025
- 05:35:33 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42A7D248F41;
+	Mon, 14 Jul 2025 12:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.100
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752497045; cv=fail; b=AFUwRsHC4od0ua4yWE7c2kWNT+RxNqup6b05im6ikard8e/ZGP6jhm767AGTXfKe7Cd0izlQLKn5ztcNVOZy79HYWw3Cg/RJlAEZzP6YJrVk6Cg7JnW5NwbeO7APTQziUg7tbgd50Oi2s1yBKsWTp7yBN9BsZ4uL0JofnXdNc9A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752497045; c=relaxed/simple;
+	bh=6deOpJmLDqk8c+WBcczeuNDYwk5cOVDY1UrBXZUiE/c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XNxh7duePFw0GQEjGTbopEsqDfT1XIZ8m+V01ORp9f+Q8LPEK4suiH5B55DSLOqhdQaW8RHP1hRyRIn+9foPxeJev0mEeTVKJe7xRHmhM0+SA/S+Aqp9TY6ZK2gyeQXGlocUhV9DgwSpr3B2PcZx+mtOffn6zIqFrr88kTELHE4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Zy16s2AFuM16tK+TgIMugAlQqzi88S+f+zPyB3qKE4dQqENIyjUoaHgmtEdzF+P1lk/0T1uscG2wAdEYMan2psEyMWXZCajsmV3wM5oRnpaV3Q2sjtCJ+k3+dRWVwmEDAg2Ql/wzZrG4IX4zPjUOhLETjzupo+u/xo1wFYYtgY8Gzy+JaQrg3nJBtyiiLY7/r686VS1gdsCS3PBcBnekeZ3fT2y60TytTAFm2QW7Xn6BrQNO2XvaWa1MCLehB6rO7xt/QMhi8Px0/x7oSgD0yOacoA5nh1vrQ/qByxVYw+g4aQxI6K5CVspe2Sy3KrVtS/rhLqxmcQiLRl6+Z//koA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BrzRIUHmvCSlZ+LIj286Iuv4w6Sy7CldafzzCelSpIs=;
+ b=KCgNQKJMIYg0HP/ESC5sZIFKxUMMxSepozSRtqfgONyiN4EUgv/9FYivyGct1tItvd4s442k2/QERxnIdjvSs3nh+T+BH+/rlXVkRdR0btHCUfc3fN3f1+1v5wDMfF60yvyGeNzsaNfgFnkRu7C/BrZgRxRpe5/QqZaQWSBeMd549CWxJI0A0jJVI9hiOS2FsqdVHBNEkxjZcWfHnetwm0YuAB0A5GBtda5nYTCklyk0MFIzo94g/GZK6QRyF882z9WwwuhetkiS+0MOWFxPyudWYtrL4Cm6elzYb9Mok+ffYSTGRADhn/jzcnf14sG9JVaBkw5mRIZ2IMjRzGywlw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TYAPR01CA0018.jpnprd01.prod.outlook.com (2603:1096:404::30) by
+ KUXPR06MB8032.apcprd06.prod.outlook.com (2603:1096:d10:4e::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8901.35; Mon, 14 Jul 2025 12:43:56 +0000
+Received: from OSA0EPF000000CD.apcprd02.prod.outlook.com
+ (2603:1096:404:0:cafe::a) by TYAPR01CA0018.outlook.office365.com
+ (2603:1096:404::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8922.32 via Frontend Transport; Mon,
+ 14 Jul 2025 12:43:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000CD.mail.protection.outlook.com (10.167.240.59) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8922.22 via Frontend Transport; Mon, 14 Jul 2025 12:43:55 +0000
+Received: from gchen (unknown [172.20.64.84])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 04F8140A5BD6;
+	Mon, 14 Jul 2025 20:43:52 +0800 (CST)
+Date: Mon, 14 Jul 2025 12:43:51 +0000
+From: Guomin chen <guomin.chen@cixtech.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+	Peter Chen <peter.chen@cixtech.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>,
+	maz@kernel.org, sudeep.holla@arm.com, kajetan.puchalski@arm.com,
+	eballetb@redhat.com, Gary Yang <gary.yang@cixtech.com>,
+	Lihua Liu <Lihua.Liu@cixtech.com>
+Subject: Re: [PATCH v9 5/9] mailbox: add CIX mailbox driver
+Message-ID: <aHT7h7/5Ip2dDJ4O@gchen>
+References: <20250609031627.1605851-1-peter.chen@cixtech.com>
+ <20250609031627.1605851-6-peter.chen@cixtech.com>
+ <CABb+yY17OOBx73655OhBp8At1b81w9M61zzGu4uhXcMTw4Q=Dw@mail.gmail.com>
+ <aG0i75h32dWg/L2G@gchen>
+ <CABb+yY2BmqiQ18hU+7C234UnY8n-8PH5VEoS7nH5Xq5O1krGhQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250709-core-cstr-fanout-1-v1-0-fd793b3e58a2@gmail.com>
- <20250709-core-cstr-fanout-1-v1-1-fd793b3e58a2@gmail.com> <DBBQE3GJ0CHT.5PEF7RLS6C33@kernel.org>
-In-Reply-To: <DBBQE3GJ0CHT.5PEF7RLS6C33@kernel.org>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Mon, 14 Jul 2025 08:34:56 -0400
-X-Gm-Features: Ac12FXyt7LMvW07NA5KJthMOxTToFChah-hJr4NBCGuAbPJrhV6AWz6kEkIvvTw
-Message-ID: <CAJ-ks9=ZHtzeyyFSZaVuA1t-3C8-hc40n6r8qFWxn628qT-OeA@mail.gmail.com>
-Subject: Re: [PATCH 01/10] gpu: nova-core: use `core::ffi::CStr` method names
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Dave Ertman <david.m.ertman@intel.com>, 
-	Ira Weiny <ira.weiny@intel.com>, Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
-	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
-	Rae Moar <rmoar@google.com>, FUJITA Tomonori <fujita.tomonori@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-kselftest@vger.kernel.org, 
-	kunit-dev@googlegroups.com, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, Javier Martinez Canillas <javierm@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CABb+yY2BmqiQ18hU+7C234UnY8n-8PH5VEoS7nH5Xq5O1krGhQ@mail.gmail.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000CD:EE_|KUXPR06MB8032:EE_
+X-MS-Office365-Filtering-Correlation-Id: 29b2adaa-76ca-415b-3412-08ddc2d41870
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UXZNeWRNU204ck03Ukk2YmV3eFhtUTdUc3lGNTk4cS9PbmMxZVdmd1k2RW1a?=
+ =?utf-8?B?SUZuT2djWTUxbkJUUmd4ajZxbGd5MGdNbmwvWitKQ3N0bDdneUZ5c1c4N2R4?=
+ =?utf-8?B?RmVSQXYyTTJOcUVZQzZYeWR4T0ZXNDVGaEs4amR6STkyZW5TeW9aUEtDTDNK?=
+ =?utf-8?B?WXhKVjNjRUlpSWZ4eCtKaGlaNTBuTHVTRHc4cG8wek5qNTlzSEI1NzhnQk80?=
+ =?utf-8?B?NHVyNExQNllVR2RjRFlrNitCVkNlYVhHSGZxZ284NUM0cEJFNEtxOHpZUEJp?=
+ =?utf-8?B?Q3hCdlRSek1oL3V0M2NLYkorVS9KMUNtQmtoOXNMekRxdzl1bG1YdHF5SWF4?=
+ =?utf-8?B?a0tQNVlVR2NtNnJZQ25ZRlNnZWRTSTFTY2g5UWFHVHluV1I4TXJnUFVUWTcx?=
+ =?utf-8?B?RUF1UDl3elIwdGxOendQRGw1c29zcVlmK0dkc3hJaVlaSEI2V0YrendBQVVr?=
+ =?utf-8?B?RlVXU0VzWUN0S2FXQVdvOUhKU2hma0xKbjdYbVd5dkpaMDd2UEJUS3hEQmND?=
+ =?utf-8?B?UXZjVkdDcE1ISTY2VGtoUXVQcUV5WmtCczdRRVpReThTRTc3Q1cwY3ZDd0xI?=
+ =?utf-8?B?TlFUTm1ETHlVQjBvR294eXZUaENEYmMwVFVpSHFqdUd0d3FCcXROTVMvUGxX?=
+ =?utf-8?B?d2J1NUthYnNrZDY4RGthTG5GczROektINnhLNmd4b2ZYTVhLNU1wUFFWOU8z?=
+ =?utf-8?B?elhlL1Y3WmdOcjF6MXg0eXFlWVVEdm15bGJRV1VPdkZLYk02cGcvY29MQ3hD?=
+ =?utf-8?B?akpLUCttNnBNSXNLVUs5RlVBeWEvL3JxVDc1aTV6NEUzaDYxbFVPb3lHSTNP?=
+ =?utf-8?B?SHpmWW9pcElIQnlZek5SUCtJcWFUcHlTQmRoVWc0SFArNEJ6bENveUxCQ0Jx?=
+ =?utf-8?B?QXhPSDF6bDFTL3J4ZWlaYXJFVjZTZzNsUHJiNGZYMy9SamQwNmg0d0QxMXhz?=
+ =?utf-8?B?Z1RjcGtLWFRGNXV2V216blFUQ05qNGNCaDArN1ord0UwQlQwR3Mrc1c3cFFx?=
+ =?utf-8?B?cU9ud3prUWdQOGI0Zk4vaGVwdnJqTTlHUzVsZ3J5UUtRQWduODNZMG93K1JN?=
+ =?utf-8?B?YVRQcDFsbnV1dnNHbytyaERtR2V4L0JnVkZTVkFkZENlK2krRkVEdlJaOGVa?=
+ =?utf-8?B?RCtKQVBpeUZjSEpKN0EzelBpejVmb1ZkMmJDVStLWnFSTERFMURleTdta0dJ?=
+ =?utf-8?B?eEROZDd6RlQ1bEg5aEJpS0EzSGJCUXlPalJUTlBkS2RKQVJQM3lVNFUzaDJX?=
+ =?utf-8?B?b01rbENQUUFuWVdsenk2ZzR2Ui90SWVZNHg0VWIzTytEbEhxTitaMFhNQmRr?=
+ =?utf-8?B?b1lhQ0VZMjUwUWhTYTFLLzd5UE1DQVp6N2djNDh4VG9HSWRrODNybFpya1dy?=
+ =?utf-8?B?bmZmNURsTzFWTllQTll5VWhHSEJUYW9QeXhTa3lwbUlpenIvNWZCMm1MNlpl?=
+ =?utf-8?B?Zkkyd2M5VmJWWWJ2NGJLazJZRWdkcFN1b212T25qWDFDR1ArUGVBb0JHRms2?=
+ =?utf-8?B?WUJpbFRabE0ycXNzNUdHOStiYWZxY2c2UkRXeGVKRkdSdXMrcFI1K1MxNm81?=
+ =?utf-8?B?K3JuSUVBbVIyV2hQOWZ2UDgybkJSV2g4aFBVMC9ZRHIycW45NXhvZ0dlZ1hu?=
+ =?utf-8?B?bU9BeVAzMVl5NDd5QTloeUVzMzBta0oycGpkMzZQTHVsV0Nla0pTQ0JmWXp0?=
+ =?utf-8?B?TmhKYXJCMnB0RmRQQ3FKWW0zV1ZpMENibUlGTEZRNC91WmdGV2pNdkU0ZEpJ?=
+ =?utf-8?B?dlBhVjNBL1pDbjl3dVZtNDJ3OExEZEJwQkZtempsakJyaC9BSnoxelRRR1ht?=
+ =?utf-8?B?eUNvNTdYRUhvVWlSKzlvUlBTanlCeGN4NHRGUTRzL1RIYzg1RzZiaGlHeE9w?=
+ =?utf-8?B?QTdvMEQ1STBwYW9OSGVNSWVBQmE1MGUwOStmTkdSN3B3WGk1cEdEdHYwY3gx?=
+ =?utf-8?B?VXRlYWZvNU9tRTBLVHVNRjRkSDBrOG1HWWNhdFQzK1VDZ1BtTE14VkhCYWJN?=
+ =?utf-8?B?VGY1alZXakMxaml2R1czYzhyUGhmSFZrSzI3VTBRaXdFWG5LWU9Ycm9ENHo2?=
+ =?utf-8?Q?b1cg7l?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024)(7416014);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2025 12:43:55.3064
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29b2adaa-76ca-415b-3412-08ddc2d41870
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	OSA0EPF000000CD.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KUXPR06MB8032
 
-On Mon, Jul 14, 2025 at 7:11=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> =
-wrote:
->
-> On Wed Jul 9, 2025 at 9:58 PM CEST, Tamir Duberstein wrote:
-> > Prepare for `core::ffi::CStr` taking the place of `kernel::str::CStr` b=
-y
-> > avoid methods that only exist on the latter.
+On Sun, Jul 13, 2025 at 12:00:06PM -0500, Jassi Brar wrote:
+> [Some people who received this message don't often get email from jassisinghbrar@gmail.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> EXTERNAL EMAIL
+> 
+> On Tue, Jul 8, 2025 at 8:54 AM Guomin chen <guomin.chen@cixtech.com> wrote:
+> ....
+> > > > +/* [0~7] Fast channel
+> > > > + * [8] doorbell base channel
+> > > > + * [9]fifo base channel
+> > > > + * [10] register base channel
+> > > > + */
+> > > > +#define MBOX_FAST_IDX          7
+> > > > +#define MBOX_DB_IDX            8
+> > > > +#define MBOX_FIFO_IDX          9
+> > > > +#define MBOX_REG_IDX           10
+> > > > +#define CIX_MBOX_CHANS         11
+> > > > +
+> > > if it is not really a single controller owning different channels,
+> > > maybe implement only what you currently use.
+> > >
+> > As mentioned in the previous email, a single controller can support
+> > multiple different channels.
 > >
-> > Link: https://github.com/Rust-for-Linux/linux/issues/1075
-> > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Reviewed-by: Alice Ryhl <aliceryhl@google.com>
-> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
-> > ---
-> >  drivers/gpu/drm/drm_panic_qr.rs | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> OK. I am not too worried about having all variants in one driver esp
+> when it is manageable and share the code.
+> Unless I am overlooking something. Arnd?
+> 
+> 
+> > > > +static u32 cix_mbox_read(struct cix_mbox_priv *priv, u32 offset)
+> > > > +{
+> > > > +       if (priv->use_shmem)
+> > > > +               return ioread32(priv->base + offset - SHMEM_OFFSET);
+> > > > +       else
+> > > > +               return ioread32(priv->base + offset);
+> > > > +}
+> > > > +
+> > > use_shmem is set for only CIX_MBOX_TYPE_DB, but it affects every read/write.
+> > > Maybe instead adjust the base for TYPE_DB?
+> > >
+> > The reason we introduced use_shmem here is that we had to adjust the base
+> > address of TYPE_DB to resolve the reg conflict in the DTS.
+> > This change has virtually no impact on performance.
+> >
+> Yes, I can see it should have no impact on performance and I think
+> adjusting the base once
+> during init is cleaner than checking the flag every read/write.
+> But wait... use_shmem is a controller wide flag, and isn't
+> priv->use_shmem always set to true  in cix_mbox_init() ?
+> Is the driver even tested?
+> ....
+Yes, we did perform testing before sending out the patch. 
+The test here shows no issues because there aren’t more clients. 
+There indeed exists a problem with priv->use_shmem always being set to 
+true in cix_mbox_init(). 
+So I will add a restriction in the probe function in the next version.
+
+> > > > +static int cix_mbox_startup(struct mbox_chan *chan)
+> > > > +{
+> > > > +       struct cix_mbox_priv *priv = to_cix_mbox_priv(chan->mbox);
+> > > > +       struct cix_mbox_con_priv *cp = chan->con_priv;
+> > > > +       int index = cp->index, ret;
+> > > > +       u32 val_32;
+> > > > +
+> > > > +       ret = request_irq(priv->irq, cix_mbox_isr, 0,
+> > > > +                         dev_name(priv->dev), chan);
+> > > The same irq is requested for each channel. How do you expect it to
+> > > work? Maybe request it just once in probe and pass the 'priv' instead
+> > > of 'chan' , and in the cix_mbox_isr handle according to INT_STATUS
+> > >
+> > For the same mailbox controller, there won't be multiple channels
+> > simultaneously requesting the same IRQ, so there won't be an issue
+> > here. As you mentioned, if we need to handle multiple channels working
+> > concurrently in the future, we would need to modify cix_mbox_isr.
+> > However, that is not required at the moment.
+> >
+> Is it too hard to do it right already?
 >
-> This doesn't look like nova-core. :)
+We haven't set the IRQF_SHARED flag here because there is no scenario 
+where a single mailbox controller supports multiple channel clients simultaneously.
+And, the ISR still requires the channel as an argument. 
+While this approach does not support multiple clients in parallel, it does allow 
+for better sequential support of multiple clients.
 
-Oops :(
+So we have placed it in the client's startup/shutdown lifecycle rather than in the
+probe function.
 
-How should I respin this one? the subject should be drm/panic, I think.
+Thanks
+Guomin Chen
 
