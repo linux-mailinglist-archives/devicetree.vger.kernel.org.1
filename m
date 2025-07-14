@@ -1,132 +1,200 @@
-Return-Path: <devicetree+bounces-195855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D491DB035EB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 07:37:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 603CCB03602
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 07:39:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EECB9189707B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 05:37:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E96F17A6557
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 05:38:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A9F420468D;
-	Mon, 14 Jul 2025 05:37:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86E361FF61E;
+	Mon, 14 Jul 2025 05:39:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dAWMrh8h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zxdd1Dz2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482A91FDA82;
-	Mon, 14 Jul 2025 05:37:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA831F03D9;
+	Mon, 14 Jul 2025 05:39:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752471428; cv=none; b=nEvfyKty0sAUtk9/5hvw1rkiR+BLmqv/B5DWs0vpwgOPi3TT7OgbsdR5xHKDaJFH5brtrkt/KvPQkvVFcNSmdVfWJ6g1C7WfUFe1EMK9wnITKD8ketBKUCNFhF4TQnxuW4RTkkPW0dcpstKBCtb+GQ2UV0j9af/HLEDBfB7MyvA=
+	t=1752471541; cv=none; b=qg4VU7JkVNRvOgjqo7sdMsOmNllvWaxK/knfybjvNm9G4z0MIcso5DaHYkqqx+OYj28C5YRFr2PSB9PjvIiRJy37aWmBPNjW7LCce9OfLGXLIdrYzt6Fjsn7X70Cp/LXXXQAOzj8crZj+0J9mwMEtxpAuGHyFbGSB/VSTLomGWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752471428; c=relaxed/simple;
-	bh=tc/NhtMREFxVXaPtCfojmDAvMBzvWojwpV/8eQNmpgw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DpzI4K81VNBZYoGswZ8rhrHnpOvQZbmipheA5LSORQzCL6B+ccwn9DMWyr1C4WpRQQqerOAzz+a2KH3+VSb7+Bsol2S1bbAZWa5hruG2gN2qQu9Uom3SG6I7lPjPEBHQz0GZ8C/iALeD2+KpyXOkxnM8vby0MdAlZudxzmX5Mg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dAWMrh8h; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-553ba7f11cbso3934326e87.1;
-        Sun, 13 Jul 2025 22:37:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752471423; x=1753076223; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2xagdIzzGx6NuuSet54b4me2cko80bXqLwMkK0zMzLk=;
-        b=dAWMrh8hVYs5cdtjRIcdntxFU8sSG0UmW2wjMo2joL/r0gUk7wy49rSHQT29Z1YRyM
-         HtO9nepQ7t8r3DXI64iaUhGYFHoulwgCBrxMXt5jggS3wMwvuQ+HzQY+Xh/58WEQxb2u
-         SdaKnCqhvDgI3JgucLb7WBwZtSHAbTKoYOJujrbPnk5E9fVzBXZdwuKiWDqu8+DnKNDq
-         i+EeqR5VtXhfQ06KJIKhO/sKLtkgjdqao+YCC+rKff2c8NPvimDjVfGlHoqQbWnblrBu
-         tiw+GLq9L0Bk6Z7TOG3F4LsChEcmaMKr8onpBF2s5K4gtIwkrMViRW58MkPSyexsTiMh
-         kF2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752471423; x=1753076223;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2xagdIzzGx6NuuSet54b4me2cko80bXqLwMkK0zMzLk=;
-        b=anJevQSmqThMDgDvOBfLZZB8rtacMo/w5+PBHbRLfWV8tIun3WE6LtIsx3+lckawsy
-         ooFZd0Lm0O83osNr/uHdXaQ3Y9ige5XZmu1slKzmoXaAEh9t9sa5VMtA9QNGBWExDk9l
-         aoUa6oZRnnigCg3JyHZoJflUwPpWIpvZ8v0seEpRFJ1HAuqf+nMGNNM1MZYZUQzZjOHk
-         +Rykyn1EXK0b3OckwDRGs5UTE6Xz6Go6vBgxEs7QAHUy+C2UYsk/FJaNRoFQ+ZmL+qdd
-         Km7bgGAxBfZS6NnsaxVMpB6HvaehwO/n0Pr7ISMTcFUvMTWHAdQrxGFHvpInkVwvS/Kl
-         MeSw==
-X-Forwarded-Encrypted: i=1; AJvYcCX6sbnWy84P2FLuBEdpnuKh0kWN84A0kA8L+P3pAhU8mFNHBU13usPuSyG4/UU20M88h6HjOq3IFEwB@vger.kernel.org, AJvYcCXPHz7QymNSaFBcdhGVOM2Zj6oECutjzaLy8zLBxwLGTSE5gc+d5BbN/YCUcoQWV2Wz9oYp+0S13HuVlnM=@vger.kernel.org, AJvYcCXYxcDukiF39HwuzmnCfWg39kXKxXCiKXEOJXUVwwWLppsvSCa0Gb7IEtL+aUPw1lsLQ5a40eCF0+Gf62kR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtcZdyBGTMLueZsUKkruFigwsum5rGsWSq4WgBt7+hAxMQPZTy
-	LtvrbR7RwgCXOW6emETbYJCFkWKBbdKgm6c+Lsvz7GLGyU078lxQrp2S9SFvKR+BdgB+a4Dd/G2
-	SWqSPonM69EKlhbKZpDjf1jSjYjrtQsQ=
-X-Gm-Gg: ASbGncu+oAm2kUh50EYn2uDvZMTuUcuyLYgMoE4Ij0TMTv0rxjsIH/KKyjK5dCmzhV9
-	jCg8zRSXmSQyzvf0VhFP9PrPmtA/CUlRwCJcJSn9FrnQaHyobsWCGSd3NZC1M/mkw6q3GH55TeN
-	TauvWCxhctdErHDuwsqHzqR5V0VDCMgC18XieOJWZOrPF6BOXZZvkvdOYgT2SnjTY85rfAIHmlK
-	A2nqwk=
-X-Google-Smtp-Source: AGHT+IGT8vhhzvx2cXbAU4QZYDjTD9k2ie2m0pUaWgI9ZnO1SJd9b2fyH0yLJ7qcoWp4tt/Muba3v/xPP7IzzK2uPtA=
-X-Received: by 2002:a05:6512:3984:b0:553:2cc1:2bba with SMTP id
- 2adb3069b0e04-55a04608d6amr3479279e87.31.1752471423106; Sun, 13 Jul 2025
- 22:37:03 -0700 (PDT)
+	s=arc-20240116; t=1752471541; c=relaxed/simple;
+	bh=xUikFrssxeDjsZahHBVxmdWOPkTepIiKmrUKbN3HYG8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b2NWme4nLZm7dG96/5QWHMx03D75HujnhgkShPZOp9YLl8jvFIdDuGjCvmY3X/euhwNc55sYkg94Cc6HF8WxqXlxhbAAwj6gFT9wlX2mf2hxBKuCww69Oi2pXnoE8p1rGKFh6sx/4irjPcK/1Gu9mzuT4lyEFcr4c5INd5e6hAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zxdd1Dz2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 602B9C4CEED;
+	Mon, 14 Jul 2025 05:38:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752471540;
+	bh=xUikFrssxeDjsZahHBVxmdWOPkTepIiKmrUKbN3HYG8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Zxdd1Dz2yYFaDzKSb05NfTfc5X61QmEAHYML1YsHiQ9waW30KoQB1GbpFIwkOUiij
+	 xUgbM11GW8Maj76YxLkE6Rh2pQJsfSCxTykua/m+TqVJXicJgdE7zkqRqO19ag11fn
+	 xfK3DY7P3L/kfZDSLi9xHZKma0ICyl8GNcitRPhwzTnrw+C7IkXfHlHkAVAoeDMf/i
+	 s9wZqLPyFZn1n3nVolyQyA3BvQ99iLxsKHxGmIzexEySi7fseHoZI191fx7Sa0LfDS
+	 AjESL0SQ5OcUTqzluQFUfFaNu7vum3KcNUAOqNxufjciSnVVruP5Q9YaWf0HbsKc97
+	 bRwQY2U6ZdPDw==
+Message-ID: <65d7009e-dc4a-44b4-88fe-b5c7e1ecdfc1@kernel.org>
+Date: Mon, 14 Jul 2025 07:38:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250611-p3452-v2-0-fd2679706c63@gmail.com> <CALHNRZ9tjJo3LRmpaGsEsf2=Him0O2J-ZaJf4UZ8bcbz1119BQ@mail.gmail.com>
-In-Reply-To: <CALHNRZ9tjJo3LRmpaGsEsf2=Him0O2J-ZaJf4UZ8bcbz1119BQ@mail.gmail.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Mon, 14 Jul 2025 00:36:51 -0500
-X-Gm-Features: Ac12FXwZv433YhDKlU9lVbj--nIsj8zVqrPutzSOZ78w5bGvNK75fV_b5-3tS4U
-Message-ID: <CALHNRZ-mUb1Yv6WTeq50ddBS209uWUkv2ivdEMqfBBUtw+SU2Q@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer
- Kit support
-To: webgeek1234@gmail.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/8] dt-bindings: iio: imu: Add inv_icm45600
+To: remi.buisson@tdk.com, Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250710-add_newport_driver-v2-0-bf76d8142ef2@tdk.com>
+ <20250710-add_newport_driver-v2-1-bf76d8142ef2@tdk.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250710-add_newport_driver-v2-1-bf76d8142ef2@tdk.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 30, 2025 at 2:37=E2=80=AFPM Aaron Kling <webgeek1234@gmail.com>=
- wrote:
->
-> On Wed, Jun 11, 2025 at 1:53=E2=80=AFPM Aaron Kling via B4 Relay
-> <devnull+webgeek1234.gmail.com@kernel.org> wrote:
-> >
-> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > ---
-> > Changes in v2:
-> > - Fix usb power supply to align with downstream power tree
-> > - Control vdd_hdmi with gpio pa6 and delete unused vdd_hub_3v3 to avoid
-> >   conflicts
-> > - Link to v1: https://lore.kernel.org/r/20250608-p3452-v1-0-4c2c1d7e431=
-0@gmail.com
-> >
-> > ---
-> > Aaron Kling (2):
-> >       dt-bindings: arm: tegra: Document Jetson Nano Devkits
-> >       arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer Kit support
-> >
-> >  Documentation/devicetree/bindings/arm/tegra.yaml   |  5 ++
-> >  arch/arm64/boot/dts/nvidia/Makefile                |  2 +
-> >  arch/arm64/boot/dts/nvidia/tegra210-p3541-0000.dts | 59 ++++++++++++++=
-++++++++
-> >  3 files changed, 66 insertions(+)
-> > ---
-> > base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-> > change-id: 20250513-p3452-059708ca9993
-> >
-> > Best regards,
-> > --
-> > Aaron Kling <webgeek1234@gmail.com>
->
-> Friendly reminder about this series.
+On 10/07/2025 10:57, Remi Buisson via B4 Relay wrote:
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      enum:
+> +        - INT1
+> +        - INT2
 
-Re-reminder about this series.
+This can be simpler
 
-Aaron
+minItems: 1
+items:
+  - enum: [ int1, int2 ]
+  - const: int 2
+
+and use lowercase anyway.
+
+> +    description: Choose chip interrupt pin to be used as interrupt input.
+> +
+> +  drive-open-drain:
+> +    type: boolean
+> +
+> +  vdd-supply:
+> +    description: Regulator that provides power to the sensor
+> +
+> +  vddio-supply:
+> +    description: Regulator that provides power to the bus
+> +
+> +  mount-matrix:
+> +    description: an optional 3x3 mounting rotation matrix
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+
+Missing supplies
+
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        icm45605@68 {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
+
+(see how other bindings or DTS call this type of device)
+
+> +            compatible = "invensense,icm45605";
+> +            reg = <0x68>;
+> +            interrupt-parent = <&gpio2>;
+> +            interrupt-names = "INT1";
+> +            interrupts = <7 IRQ_TYPE_EDGE_RISING>;
+> +            vdd-supply = <&vdd>;
+> +            vddio-supply = <&vddio>;
+> +            mount-matrix = "0", "-1", "0",
+> +                           "1", "0", "0",
+> +                           "0", "0", "1";
+> +        };
+Best regards,
+Krzysztof
 
