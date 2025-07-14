@@ -1,56 +1,62 @@
-Return-Path: <devicetree+bounces-196243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 457EBB0497A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 23:26:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B28B04979
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 23:26:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 649A34E0EDA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 21:25:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D14AD16FB1E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 21:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C436127A139;
-	Mon, 14 Jul 2025 21:23:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A32275AF7;
+	Mon, 14 Jul 2025 21:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VMPWmWTU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DrCtW2o+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E54226A08D;
-	Mon, 14 Jul 2025 21:23:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132882397BF;
+	Mon, 14 Jul 2025 21:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752528181; cv=none; b=UntJ9YCUHEFQzut1RcUMrZ4ovaI1zHnxGaYxAb9vsBru9bHtCbObxhRZn6NbzQgwDGfXxfCFcdPPMQJHQfnCAn9Zur9cApQuYmPmqKHzhWt+BbQmH16itYcuqJWIudMEVtCKRYH7lM5mST7fo6/94mtNEUlqAKmPQE/6QteF1Ws=
+	t=1752528312; cv=none; b=S9FX7mxqMHpYqrv3kmz4+MnwbALGVRE6c2dDoEaV5s//EMqiqhKUsPUHCak1JnMTPjlw0rcWbqOhf20zmBi2aTGsp7csNmNMuiUXZYeBZiHwci/Q89iU00Nr2nJPxJj27YDVAIZMwlMElLC364NpcQLwOKX4d+wJ7lrnCBZiBXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752528181; c=relaxed/simple;
-	bh=mgiZ7qs7iYC1Wb8wOszlKtmDOCHXn9LckypJocRtVaM=;
+	s=arc-20240116; t=1752528312; c=relaxed/simple;
+	bh=b9BS5SuhpnpfhpBqkFecFWoYS4AXrJnOWQBm51fbwPQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dndF2Lo58Cbn71tx8uZJYfs+r9h4bDUt1HdKFGWwPJv5J95QThIiiHt2QcKkb0VSOhZ4HmtdbPkjawn2yR8glHn/HxKR/H4UhPl4qmfS658DL4rhgaiaOsZ8VFrnTl43eGeFew4P/buYl1J9wv2Bd4QSOB/KI+G9PtMTaCH8Pk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VMPWmWTU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58179C4CEF9;
-	Mon, 14 Jul 2025 21:23:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AXBYC/stsasS3GMZTReuQQEd3AEjZTjohwBZvT31vqCl558kgXLwwm+ELi8mqiGL2a+2ca/L4u06b9/L5S8j5KC3ZyRnLP9ECn4fQgmRUASAtr7JvYJ8YW6Lc4SU/Fd0tVy9MdrLOSFgJmuLLiSdpNfWUmz9w4xlLyWnT/hBysQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DrCtW2o+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8367EC4CEED;
+	Mon, 14 Jul 2025 21:25:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752528181;
-	bh=mgiZ7qs7iYC1Wb8wOszlKtmDOCHXn9LckypJocRtVaM=;
+	s=k20201202; t=1752528311;
+	bh=b9BS5SuhpnpfhpBqkFecFWoYS4AXrJnOWQBm51fbwPQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VMPWmWTUP4EEAytHwyAetN4ilbRHN3waECG++nAqSsnfYlOMl7RmrwtevzEciFvBp
-	 s/Eglu4beSNIhst5XGLy8AqLvvToHMVJYvApexjypzQZcaw+zh7DVyKg5dI0weoRyH
-	 PweLj3j2NiLMs7HrzhbxVQ6a9nr2XV0b2wuDrYExqsFNON6J26Z9Iusrjs+Iir2Ka1
-	 rSifzp91QfvBckr2mSEmlm7v17fPEaHtD4ecUTyukYaP1tgZ9lDFQdY+xOE/wva7Xe
-	 mk/J+7BjLI6Ajovf+sQxNxKsN1UTOA1Npkx6GY8iih2Bd6X1joK63wcpKxvXjI7wxm
-	 fGkwuxSGcBb9w==
-Date: Mon, 14 Jul 2025 16:23:00 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] docs: dt: writing-schema: Document preferred
- order of properties
-Message-ID: <175252818014.3191414.16275568250551384847.robh@kernel.org>
-References: <20250713-dt-bindings-docs-v2-0-672c898054ae@linaro.org>
- <20250713-dt-bindings-docs-v2-4-672c898054ae@linaro.org>
+	b=DrCtW2o+Cg3AuKLuivXpz0UEOzfwogaMgn7S68rRCsQlX91c2avHcF1JrOgrv8K3u
+	 7lIAEMPSBknsrpvrS7ekAEwSanvLX++uC6606gbo274AndqbjXFM8NXSvFlPFKZRgL
+	 DfiVARwSFHEWyOadeF89Eb6DHAK1U2zl+fKVshYLjQhfXWXFd6zpKKHPHPryl061wg
+	 WXzNDzDmSXlsv92BLtmZOM5a2R65b2MO17gC1clN6RdPPV2tZraahe7ueS+O+mL9A1
+	 VvrcQJenJWeQvxFz6vkfmfcJsUyfe+81U0vokSzWuBIBmo0BKiGxdX4izDNJPUaRLA
+	 2CFNOOIQTQXuQ==
+Date: Mon, 14 Jul 2025 16:25:10 -0500
+From: Rob Herring <robh@kernel.org>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
+	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
+	mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jerome.forissier@linaro.org,
+	kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v11 07/19] dt-bindings: media: Add bindings for ARM
+ mali-c55
+Message-ID: <20250714212510.GA3193902-robh@kernel.org>
+References: <20250714-c55-v11-0-bc20e460e42a@ideasonboard.com>
+ <20250714-c55-v11-7-bc20e460e42a@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,25 +65,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250713-dt-bindings-docs-v2-4-672c898054ae@linaro.org>
+In-Reply-To: <20250714-c55-v11-7-bc20e460e42a@ideasonboard.com>
 
-
-On Sun, 13 Jul 2025 14:46:39 +0200, Krzysztof Kozlowski wrote:
-> Document established Devicetree bindings maintainers review practice:
-> using DTS coding style property order in both 'properties' and
-> 'required' secions.
+On Mon, Jul 14, 2025 at 04:06:33PM +0100, Daniel Scally wrote:
+> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
 > ---
+> Changes in v11:
 > 
-> Changes in v2:
-> 1. New patch
-> ---
->  Documentation/devicetree/bindings/writing-schema.rst | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+> 	- Dropped in arm,inline_mode property. This is now identical to the
+> 	  reviewed version 8, so I have kept the tags on there.
 
-Applied, thanks!
+[...]
+
+> +  arm,inline_mode:
+> +    description:
+> +      The ISP can be either electrically connected to sensor and CSI-2 receiver
+> +      or driven through a DMA input device. This property declares the ISP as
+> +      being electrically connected to the source of image data.
+> +    type: boolean
+
+Except you didn't drop it.
+
+Rob
 
 
