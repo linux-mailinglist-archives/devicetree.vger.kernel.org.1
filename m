@@ -1,84 +1,148 @@
-Return-Path: <devicetree+bounces-195909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F516B03857
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:53:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72647B03879
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:57:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1770A7ABA2D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 07:52:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25FDC7ACA01
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 07:55:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E268238173;
-	Mon, 14 Jul 2025 07:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E802A2376E0;
+	Mon, 14 Jul 2025 07:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UdGuz8X+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TITNi4nr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33C8823816E;
-	Mon, 14 Jul 2025 07:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA2EF221FB1;
+	Mon, 14 Jul 2025 07:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752479594; cv=none; b=K63cVi6wawg9q+tkk9o+2XUfDMD3pgadliw5pjUeZZMDeGaJvxa/Tn7muq5xKh1cs8YVc7TZ7HR0VyvR8ongP5whujvWjEdgc2Yd++m6lEQdCN1q6Zi1POUZTXsKSN6Q7Nj2Kw7DNLapDBEk/vyEBdOGc9Gf6Zzz6wws3djfAuc=
+	t=1752479825; cv=none; b=QXsnAmTEvrwGVv68O4JkqYwVFwiluE+i4Tzf8DDh8R1i6Z/qFFWasFWPo7MecjjnoOvjKPOL5L5LXmqHld68wkD1EGWRXT2aNzzvrUy05ydd+Ep3RcOzy5mlJrepfItXS/hPbIM7FN85XBTjfhmA2D0YxvFJZvTsrOP+l9dPo0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752479594; c=relaxed/simple;
-	bh=WyBsH6Kxr3hdAgdiGisPWnZhro430nfyV/zbVdiDpHs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AFZ8FhpPP/bioegmA3hNg0dVYlHIS+TVfTOcKNo4Owlxt9JGGN9UGuWOyPuKZHqirlXABhwKXBEAmPO2AiobGs77vfkUVCDKBS85+rgcw92A5viieAofT8jzWXrig9FHyg/01J2OL85+PaJrX1AU/DyAm9Orh8JCEgl82q/CLvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UdGuz8X+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BA81C4CEF6;
-	Mon, 14 Jul 2025 07:53:12 +0000 (UTC)
+	s=arc-20240116; t=1752479825; c=relaxed/simple;
+	bh=Hy1Q++2/aeR8kI+h97bHFB8zb+dxPK95s1BJIKf5Wzw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xmrw2gWvucqFwIIvSdzmi7v4ISG7ysAzyRSAOJ2zUm/neHIUNiYyL5oRz0+FlxZR57QtdI6WvGaPJjiA6Nh2tF0syclmsau0EZj/xIjBJ9BzlaeIMqmfJP9PCFBLAV0qvIRl2oFuJKcSJA6zML6LL+VgH28lkxcNwm9PcSl+E5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TITNi4nr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A926C4CEED;
+	Mon, 14 Jul 2025 07:57:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752479593;
-	bh=WyBsH6Kxr3hdAgdiGisPWnZhro430nfyV/zbVdiDpHs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UdGuz8X+SZTnxwRMQ4Ku8I12IdU7nKmsXDcpINxZz5/DsmmIHHJpfNLG8lRvr22mh
-	 a5SvxkgfZhurFFI+qwC4YuYhdlIpFrS1UkEf724svoHxVTdNGATDEMS2RDNGDrkEwV
-	 FR1Rm7RfhP3mhKOIJKIqfWM33qJNgs9uEDbC7t4b9SnAt1uI7cy+C6681LoIrZxkJU
-	 jVHUnuM/NIlMd/sDXGrBLAduvled/NyiUZMqYPe2dxNUluVeOmti4bGcafgAVreiQr
-	 PGFQJ+iOakMytLzmYAcfjfVh1uNfP5Fb00OfGRczZeI2xG24R2vXH5souGsXCIKz3h
-	 sGucDBULIbGvA==
-Date: Mon, 14 Jul 2025 09:53:10 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Cathy Xu <ot_cathy.xu@mediatek.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@kernel.org>, Lei Xue <lei.xue@mediatek.com>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Yong Mao <yong.mao@mediatek.com>, Wenbin Mei <Wenbin.Mei@mediatek.com>, 
-	Axe Yang <Axe.Yang@mediatek.com>
-Subject: Re: [PATCH v2 0/3] pinctrl: mediatek: Add pinctrl driver on mt8189
-Message-ID: <20250714-subtle-ambitious-penguin-c4a8c6@krzk-bin>
-References: <20250711094513.17073-1-ot_cathy.xu@mediatek.com>
+	s=k20201202; t=1752479825;
+	bh=Hy1Q++2/aeR8kI+h97bHFB8zb+dxPK95s1BJIKf5Wzw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TITNi4nrqfROVMFuiICBmzIJZ5SfKR5ulyLkhr0CuJeAVLAjDFlhhXBfjJ0eFcIhA
+	 QW51qoiKfARKi/Ieo2GqgNUIXy1hLkpsO6Qu38bntc7BKzYljljqGKQQuXXsueDdTE
+	 O0vt3gnjAT1Sgrx0HMYiFUeiQUnpn6JVfnupoZfHMTuQVT62tozkplktE9i7uoreTW
+	 JYz9c0ATjmZjUSR7iiryXwuxXWh4kloVutPL5g6yOdTDT6UHThKxd+5E8njQClsBk+
+	 wSlAXHJhmIZg/0E6WhCOgKrttg4AkuCZ/W/EdTj4E7nLWXQXP75SC8Vwk8whBroT5S
+	 sH3IwhyhMOqlA==
+Message-ID: <63ca8d08-2fd3-440e-858a-f8d79890016f@kernel.org>
+Date: Mon, 14 Jul 2025 09:56:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250711094513.17073-1-ot_cathy.xu@mediatek.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: microsoft: Add vmbus
+ message-connection-id property
+To: Hardik Garg <hargar@linux.microsoft.com>
+Cc: apais@microsoft.com, conor+dt@kernel.org, decui@microsoft.com,
+ devicetree@vger.kernel.org, haiyangz@microsoft.com, hargar@microsoft.com,
+ krzk+dt@kernel.org, kys@microsoft.com, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org, ssengar@linux.microsoft.com,
+ wei.liu@kernel.org
+References: <20250620-strange-rough-gharial-d2bc73@kuoka>
+ <1752479327-19753-1-git-send-email-hargar@linux.microsoft.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <1752479327-19753-1-git-send-email-hargar@linux.microsoft.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jul 11, 2025 at 05:44:56PM +0800, Cathy Xu wrote:
-> This patch series introduces support for the MT8189 pinctrl driver,
-> include the driver implementation, new binding document and pinctrl header file.
+On 14/07/2025 09:48, Hardik Garg wrote:
+> Thank you for your review, Krzysztof. I apologize for the delay in 
+> my response.
+
+You got review after 8 hours.
+
+You respond after 3 weeks.
+
 > 
-> Changes in v2:
-> - Modify the coding style of dt-binding.
+>>> What is a connection ID and why it cannot be inferred from existing
+>>> system API?
+> 
+> The connection-id determines which hypervisor communication channel the
+> guest should use to talk to the VMBus host. Reading from DeviceTree allows
+> platforms to specify their preferred communication channel, making it more
+> flexible (I will add this detail in the commit message). Presently, this
 
-This is too vague. Anything can be "modify" and anything can be "coding
-style".
+We don't add properties to make things flexible.
 
-What exactly happened here? There is also no v1 link to actually check
-previous discussions.
+
+
+> value is hardcoded and there is no existing API to read it.
+> 
+>>> There's a reason why you have here generic property - this is generic
+>>> and/or discoverable and/or whatever software interface. Adding now more
+>>> properties, just because you made it generic, is not the way.
+> 
+> Presently the value is hardcoded and we want to provide a functionality to
+> the user to specify their prefered communication channel. This is a
+> virtualized hardware property for us.
+
+That's not really acceptable reason. With such approach I would add 100
+properties to make various things "flexible".
 
 Best regards,
 Krzysztof
-
 
