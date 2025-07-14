@@ -1,235 +1,126 @@
-Return-Path: <devicetree+bounces-195824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98FF5B0338B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 02:04:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D6BB033C1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 02:45:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8306174E98
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 00:04:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 127F218881CD
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 00:45:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6226710E0;
-	Mon, 14 Jul 2025 00:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C537D153BED;
+	Mon, 14 Jul 2025 00:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="MxnZ5lY7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CYI+g2de"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC8B184
-	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 00:04:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56C942E370A;
+	Mon, 14 Jul 2025 00:44:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752451459; cv=none; b=FS4qk/+IrDgRfEV2X80mECuBsZoNp8KdAFE5NjqZU1VHZ88gEWCwoqIfmVDcesu+TMbi+qYM4sC20/wK+Mra4NjmJokeDTbausAXo/PdjgaFNIKhFpiCeybET6xhO2FAvMaTCGU+MmXBHeRVAuxl/mUO4g+jat1htIn2uTxOGSk=
+	t=1752453896; cv=none; b=i7Fg5QyPLKG9til+VbtzXHLTqCnZIhqD0kgGY0HwzhD22QIcWa3D2ZPlGCj6e/V200hTpWXQRR5dYeu3q6AIAKhLcHnEnmG0Clk+uC1kBh4+ihHY438ns5CvYrAOZmUW7UgyrTi3tXHfGpHUmUIbdPKf58B82EmL3kZhTspYALw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752451459; c=relaxed/simple;
-	bh=JHgv0USbm9wcIZSV+I50kTz5M7xY8oq6+TS1ZEEC3WM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uT2A3PkEL6bq2XwcGLcPUaC06e+LYU986iOWMaS6LiZ4yh2k3UfKDPSBmBUyu3dsi0ZMPi+uGSVCbEXCdcBkYdde/0O0UdpRaxQSp90ohFKyP/OdLMZF6rx48d4h5f+maf0/y8MKhr9i32c+kHMvpgYcW1Ddcx5QGMnJDEpnAd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=MxnZ5lY7; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1752451457;
- bh=09+tGkfgsm4KwscqPR7hMZNk1h0y9NoFhShrUUaWQ88=;
- b=MxnZ5lY7rj6oS0yrP1dK6E27sm671SIrpMmuttlil3U6hi8iSyAgQWFgP+DmXRhdfH5O/4c/5
- QtywAjOCeDnId5/KKOp7kT+5h/QmUYppnWsMammO8XSTdzICubUeIN1HCJ48WQLEZEvp2kqsXSF
- vAN1/lTSUVeXYvI2QFt3f6KoFGpDfDSa/bGmVhkWc8c96M4qjHKFMHhfd29QTUDtXlmf8taGxlv
- eQusF8yixbVBXOOFD84XhxjT/N1+oiP9LYOeKnjCAFqnGVqWqLqpQXEAHZdnpd0qomQXWyUkHf+
- 9YG6RizsmfbvvtkAJOkHjfFl3pT12rtHc9FPXU+3Xpsg==
-X-Forward-Email-ID: 687449765bca601a1a1d3609
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.1.6
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <16d99271-ba04-4ce1-a335-fab1917637c7@kwiboo.se>
-Date: Mon, 14 Jul 2025 02:04:01 +0200
+	s=arc-20240116; t=1752453896; c=relaxed/simple;
+	bh=aOgYGuJVDNzVBvVwPqsqAaluryen7EunH9oddumL+ZI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bPkRLb8YdlQlq0huJ9C8samBakIjqiitXwca8q30rqcOpVG/WBaynCcD8lK3VG/cCnENz14auDC3fNQKYQfQhX+yFZ6uqPac9lCtmaY9UGZh68LBfeUFT33DbiLz8G+DeQjnzKkyGTrL8wfj9LhqHN3K/FRK96Tj2SjX+lBG64I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CYI+g2de; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-748e63d4b05so2157557b3a.2;
+        Sun, 13 Jul 2025 17:44:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752453895; x=1753058695; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZLeYUFYsbjTuUrfuMR1HqB0mRDFpmVI0gLEVlp8hfmk=;
+        b=CYI+g2deHc45CbO/hWxUJCgcjifDLU2UOhhYfhyXrEgrcfUhV8au8ykcuRqnH6xdnH
+         4lU1CjFax1pT/9PAfNDTV5vG1V23GBADbNdVmz8Vpk9oYC7bpvxhGDjt5Xr6rvKKa+Iu
+         /uFz9Ke2S6426LL3g3AYbIq9jVZ1GnBRSsDJQO8cCFjShqh+3UYHkoQTDjOCttWgBo4M
+         GSDX7kJtVI/2vA5SPeB2NFwJmh0w80nEA1TL1f+MRAv7ZvgLE6FbNgEWDbMTS9bwX8SO
+         UJhG5/in87dCv32yraGXBoaGdZmKbQ1bEkXNeL1va2O9V33LoU7VtqB4hC+naIxpoO3o
+         ZsPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752453895; x=1753058695;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZLeYUFYsbjTuUrfuMR1HqB0mRDFpmVI0gLEVlp8hfmk=;
+        b=xBQkOy+WkPX0rZhJI1gT5eam6W0JFm7kTXFvqEw/iI1uOTqbRQhcEVklpbUG1aqYp8
+         G7Bv+NwFnkZyOBtaAzy+hM72ZbT9hiakrh3+VSXOVcc9HjWK129D+xwdlGafb1bJNW0L
+         rZEpUGJ+/zB/b8CQCBLrKyfnmNkVoPnXk/dEcKdBsBB/nJv1Pt4ktolTsfU8vRUeWXBb
+         M63g0zfLXNRVnEPCriockDf7ks5H/Jysz4IYVxzc0Z2a2MoDkx45zs2Z372pGiPMPVbm
+         wWjUhD2+1vXx1pPM7mIZh6Oibz74UD3VQlQEZ3wYIkfsUUQzqFWz40nXuLoJ0weoNl9D
+         o8kA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtcBafTJy1cnX/O7VvtS6kel0N9Hp92kH94X5jDUlKzgTuMcUQlKtCZRl/EZzPUY+s5iHt/JuC@vger.kernel.org, AJvYcCXRXwHLo1Li4wF13q7WkhgPpKQPd/DYZ7jRCZiroFMikhX/nbeAZL+KH+ARJL/Cj6jl8oz9bMQlCmxE2FA=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2fUHdTS9itvXXHRZe0SYM3KKoHHBrrP4AsfNGHB4Ip4w7kfOQ
+	7iVeDdKUKj7/bXTCo5cQAijpCddYECdGXa4RAMsCXzG50m65yCQPWG7x
+X-Gm-Gg: ASbGncui9FS/iTBlwqRxPsroDttWYxncA+YYUHO1CFAUuC5MwyBfHWpve8iKYQ5Nib5
+	kNCaIJHP7AYwVgIpt/fByQPxkzGMQQt610x3kYN5s7kx4WvyULsHS/iMHtAz9Vmm3SFYevRAxZn
+	nC90XUW6lwJoW4p9Jf6u0gTezfFQuJIUWsvK+ih7umjsnPW/1R3S+N+T44hp+9HZnw81gGH1gRY
+	1YliCoGabsXCWy/+ulVRhPjc09xiHIySVWU34i04fWb0wRkYhFT+gc5uk7qZR0lhAaXLOtBnZBS
+	0htVJdWapjuVgLjFzekhtyiqC1EPHZrgPoXhM8xKSzjZb/+dvffVjUyZEqGHRtOqw7KVs4cVdxB
+	kNqDnQi8I2Tr/NCVAv4OPyw==
+X-Google-Smtp-Source: AGHT+IE3o1PVbYcGVOeDDd2u9PBkS7qnGIBAlmbvXpp/v9MUV/Gw0EgVgPEcUGAR3AbyDFV8S3qXgg==
+X-Received: by 2002:a05:6a00:1708:b0:748:2cbb:be45 with SMTP id d2e1a72fcca58-74ee2160164mr15089737b3a.15.1752453894571;
+        Sun, 13 Jul 2025 17:44:54 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-74eb9f8f35bsm9245897b3a.169.2025.07.13.17.44.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Jul 2025 17:44:54 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Richard Cochran <richardcochran@gmail.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	Zixian Zeng <sycamoremoon376@gmail.com>,
+	Guo Ren <guoren@kernel.org>,
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>,
+	Han Gao <rabenda.cn@gmail.com>
+Subject: Re: [PATCH v2] riscv: dts: sophgo: add ethernet GMAC device for sg2042
+Date: Mon, 14 Jul 2025 08:44:34 +0800
+Message-ID: <175245386393.141174.1523471014566184474.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250708064627.509363-1-inochiama@gmail.com>
+References: <20250708064627.509363-1-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] arm64: dts: rockchip: Add ROCK 2A/2F, Sige1 and
- NanoPi Zero2
-To: Alex Bee <knaerzche@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
- Chukun Pan <amadeus@jmu.edu.cn>, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250712173805.584586-1-jonas@kwiboo.se>
- <702dc4bb-7b3c-4647-b84f-8516989b0836@gmail.com>
- <9aae8b30-23ae-4866-9ce8-02bbc8b44a82@kwiboo.se>
- <88c7b90d-4c29-453b-9a5c-9679b371a3a9@gmail.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <88c7b90d-4c29-453b-9a5c-9679b371a3a9@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Alex,
+On Tue, 08 Jul 2025 14:46:25 +0800, Inochi Amaoto wrote:
+> Add ethernet GMAC device node for the sg2042.
+> 
+> 
 
-On 7/13/2025 10:56 PM, Alex Bee wrote:
-> Hi Jonas,
-> 
->> Hi Alex,
->>
->> On 7/13/2025 9:13 PM, Alex Bee wrote:
->>> Hi list, Hi Jonas,
->>>
->>>> This series adds dt-bindings and initial device tree for the following
->>>> Rockchip RK3528A boards:
->>>> - Radxa ROCK 2A/2F
->>>> - ArmSoM Sige1
->>>> - FriendlyElec NanoPi Zero2
->>>
->>> this only sub-related to this series: Is there any particular reason, why
->>> we call the compatible "rockchip,rk3528" and not "rockchip,rk3528a"? From
->>> what I can see all boards currently supported (and those in this series)
->>> are having the RK3528A version of the SoC. I didn't follow the development
->>> here, but there are differences - I did a quick compare of the datasheets
->>> of those two SoC versions - it looks like RK3528 version has USB3-DRD
->>> controller, while RK3528A has USB3 host-only controller. Also it seems to
->>> have different video codec IPs and the DRAM controller additionally
->>> supports LPDDR4X.
->> What datasheet versions did you check? I can only find:
->> - RK3528 Rev 1.0 (2023-05-22)
->> - RK3528A Rev 1.2 (2024-04-10)
-> I used
-> 
-> 2023-07-12 Revision V1.0
-> 
-> which didn't include these features - which is interesting: Why would a
-> SoC vendor not try to sell all features in the first place :)
-> 
-> But I now double checked in
-> 
-> 2025-05-12 Revision 1.4
-> 
-> and you are right: It appears there also for RK3528A.
-> 
-> The only difference I could now make out by comparing v1.4 of both versions
-> is the cipher engine: RK3528 additionally supports "SM2/SM3/SM4 cipher" -
-> but still it exists and additionally the different video codec (if mpp
-> userspace library is correct about that).
-> 
-> Anyway: My question was more about: Why didn't we choose the correct
-> compatible from the beginning? And of course the dts files would have to be
-> renamed if the compatible is changed, as they are named according to their
-> SoC-compatible.
+Applied to for-next, thanks!
 
-Not sure, possible due to lack of technical documentation for this SoC,
-to my knowledge all upstream development has been done without any
-access to a TRM for the SoC.
+[1/1] riscv: dts: sophgo: add ethernet GMAC device for sg2042
+      https://github.com/sophgo/linux/commit/d099560dcbade90c9d508cb745faa786ae230d0b
 
-Based on vendor code (u-boot and linux) there does not seem to be
-anything special about the A-variant, so my thinking has always been
-that the A-variant may have just been an updated/fixed hw revision and
-is the version that went into newer production devices.
-
-The recently released U-Boot 2025.07 is referencing the filename
-rk3528-radxa-e20c.dtb from the synced devicetree-rebasing tree. So a
-possible rename will affect a future release of U-Boot, and possible
-devices in the field depending on when a rename would land in linux.
-
-For this series I tried to just follow what is currently used for the
-Radxa E20C.
-
-If I am correct there is now also a RK3518 tvbox variant of this SoC,
-do not know how that would fit into all this :-S
-
-Regards,
-Jonas
-
-> 
-> Regards,
-> Alex
->>
->> And both list LPDDR4X support and the A-variant seem to list USB3-DRD
->> support, did you mix them up above?
->>
->> I think these SoCs are similar to rk3228/rk3229, rk3228h/rk3328 and now
->> rk3528/rk3528a, in that only the second variant support VP9 decoding.
->>
->> Use of rockchip,rk3528a compatible could be something to change,
->> could also be something that bootloader set at runtime, similar to
->> what it does for rk3288w.
->>
->>> I guess it would be good to discuss this before this series is merged,
->>> because re-naming *.dts files after they have been in a release is somewhat
->>> impossible.
->> I think renaming the device tree files is unnecessary, as there seem to
->> be very little difference. All boards I have come across are currently
->> RK3528A variants. How would we treat the Radxa E20C?, it is not named
->> rk3528-radxa-e20c.dtb, yet uses the A-variant.
->>
->> For mainline U-Boot I have included printing out the SoC-variant,
->> however the compatible is not adjusted:
->>
->>    Model: Radxa E20C
->>    SoC:   RK3528A
->>    DRAM:  2 GiB
->>
->> Regards,
->> Jonas
->>
->>> Regards,
->>> Alex
->>>> The bt/wifi_reg_on pins are described in the device tree using
->>>> rfkill-gpio nodes.
->>>>
->>>> Changes in v3:
->>>> - Rename led nodes to led-0/led-1
->>>> - Remove pinctrl* props from sdio0
->>>> - Collect a-b tags
->>>>
->>>> Changes in v2:
->>>> - Limit sdmmc max-frequency to 100 MHz on ROCK 2A/2F
->>>> - Drop clock-output-names prop from rtc node on Sige1 and NanoPi Zero2
->>>> - Drop regulator-boot-on from usb 2.0 host regulators on Sige1
->>>> - Add bluetooth and wifi nodes on Sige1
->>>> - Collect t-b tag for NanoPi Zero2
->>>>
->>>> These boards can be booted from emmc or sd-card using the U-Boot 2025.07
->>>> generic-rk3528 target or work-in-progress patches for these boards [1].
->>>>
->>>> For working bluetooth on ArmSoM Sige1 the patch "arm64: dts: rockchip:
->>>> Fix UART DMA support for RK3528" [2] is required.
->>>>
->>>> [1] https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/commits/rk3528
->>>> [2] https://lore.kernel.org/r/20250709210831.3170458-1-jonas@kwiboo.se
->>>>
->>>> Jonas Karlman (6):
->>>>     dt-bindings: arm: rockchip: Add Radxa ROCK 2A/2F
->>>>     arm64: dts: rockchip: Add Radxa ROCK 2A/2F
->>>>     dt-bindings: arm: rockchip: Add ArmSoM Sige1
->>>>     arm64: dts: rockchip: Add ArmSoM Sige1
->>>>     dt-bindings: arm: rockchip: Add FriendlyElec NanoPi Zero2
->>>>     arm64: dts: rockchip: Add FriendlyElec NanoPi Zero2
->>>>
->>>>    .../devicetree/bindings/arm/rockchip.yaml     |  17 +
->>>>    arch/arm64/boot/dts/rockchip/Makefile         |   4 +
->>>>    .../boot/dts/rockchip/rk3528-armsom-sige1.dts | 465 ++++++++++++++++++
->>>>    .../boot/dts/rockchip/rk3528-nanopi-zero2.dts | 340 +++++++++++++
->>>>    .../boot/dts/rockchip/rk3528-rock-2.dtsi      | 293 +++++++++++
->>>>    .../boot/dts/rockchip/rk3528-rock-2a.dts      |  82 +++
->>>>    .../boot/dts/rockchip/rk3528-rock-2f.dts      |  10 +
->>>>    7 files changed, 1211 insertions(+)
->>>>    create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dts
->>>>    create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-nanopi-zero2.dts
->>>>    create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2.dtsi
->>>>    create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
->>>>    create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-rock-2f.dts
->>>>
+Thanks,
+Inochi
 
 
