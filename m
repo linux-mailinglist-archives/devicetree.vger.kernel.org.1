@@ -1,221 +1,187 @@
-Return-Path: <devicetree+bounces-196205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBCFFB046C9
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 19:44:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3829BB046EF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 19:53:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2960D4A2931
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:44:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94E7B4A0B18
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E182676F3;
-	Mon, 14 Jul 2025 17:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599B12676EB;
+	Mon, 14 Jul 2025 17:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f8E9Iw0l"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YHQCd3V0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53CEC2673BB;
-	Mon, 14 Jul 2025 17:44:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E23362673B5
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 17:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752515076; cv=none; b=jWaCgKVFVGLas7bJjxWtRB492KdEECiEUy2fOXue5Mh9q2t85qRyYkkzo5fOoxHj2EMsIcyvAJMVyf5W7ohMfWZ5olUJJTpqcREEwb4BhvDRav7XwJKBDqfuzu4U+kl03IAH+engIYi08gka6AAoBvGZcTHLcknTX5ul+x1Qu04=
+	t=1752515629; cv=none; b=lVU35VyJVBl63YfiHwJnfRD6HHp1mShirJJjkThgkaGuHRX/Sm/v6F8vYzOEQoXQ2NBFdQPWF3tBTA6BAbwg9PfsI1pfIu9LI8SDqgacrdkvpspA8uGzZVk92e6ZSkPCL2JfGvio0DiHcKQcOdNSwAULbbNxChXG7uplkU+qjEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752515076; c=relaxed/simple;
-	bh=FpIs8x3wOR4QDIl4rTH8WQCJsw8SVEQKjwt/hRvJVYg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KhDd+fZUabliKfGWJdeU3PMjNH5l0xT9gICLA8tSJDOwm5DpSUzzcPck8oFUbsXlIGvl4obSClegWwKyxjJfOYspky0u0IQehuBYo4CDKBQiirkhP2v2V8Kbx6ezwf4Ei6pCN+kHRexiS62Xs86eNhvlDp1C54w9AowHaAHa2yE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f8E9Iw0l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6880C116B1;
-	Mon, 14 Jul 2025 17:44:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752515075;
-	bh=FpIs8x3wOR4QDIl4rTH8WQCJsw8SVEQKjwt/hRvJVYg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=f8E9Iw0l1s3u4GUjtdigSpqe/0ME79OcCpJcopd+wcAm9W0iNGsHck2mRJKvqniJU
-	 cHL/+J4GYfwo7kkhEyKN+v82iEB05WpiZGbxMJZe3upnKFvtJxg6ER+J2rZ8Ljro7b
-	 HtlpKYIYp9AWyrd/hfP9TVfKZWJYS5uxWNgZ1d8Kf7g/suwYj0nle35JgGzKXFYUtk
-	 Xlika5iSvll0Z7lJGVjJd1uo3U4nim87L9hE1vH3YfcYIJ9Hn5fYLployw/rK7mYgl
-	 U7mAeuxWv7hPy5CfhW0ewERIQB281YFPfoMx8oomGNXvqLpyNor3Loid2VwjgkU6SR
-	 JsnHYrciiFveA==
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ae0dad3a179so778957466b.1;
-        Mon, 14 Jul 2025 10:44:35 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUa3zdscG65kalu/1IepT0ifG3g+OvDyPIRPlV87cK+j3r1RK1vxYeqxeF8OteUYjEqKWBG7pv5WWsA@vger.kernel.org, AJvYcCV62ys/0XXl/4oIpfBaojjnIlYfq4PiTp7Lp0cBD0zka4xmD5EtaaAlJH180cMsMJEoKs6EK/iArDoK@vger.kernel.org, AJvYcCVOs8qkJPs+Csq9JAzawHHq27z2pYWPf92w55NnLaEAxGJDgamUuK7vvli0roKQOzOiRTNVOKjqaxA7@vger.kernel.org, AJvYcCVz5sfqK59RjHFvAagb16SlWM+/YpxZS6deUeDJT812shl3dKA5dd7A91YKlvTwMe6ZsKjkoIfkLTBWCg==@vger.kernel.org, AJvYcCW1tOQLGA4Kf3Yde7kXlLjupNBkksqmi7csa1nADCaa89L48xyNic7aTKrLJTAqNFBzJHhbLXOcaNHU@vger.kernel.org, AJvYcCW9+lCpYnAnL3be6MVypP6KAD8+JOkIMZDUVSKZniRixy4/mC8aaBcGHfBQtVSKcm/ee/5v9Hd8VFIRsWht@vger.kernel.org, AJvYcCWPcPujx1gNqSgOgrv+w7Xll+DIHVFylcUp5OYHVz8MgnH5vaAnNFBu3gc6CKrhCmeNjSyPmU4aEK62@vger.kernel.org, AJvYcCWakOZcvcIc3q4LoYGfe+4xFq+78Ob7CQNyEPjI5XKCNYR2MFruK5lixE6+rigpvfG0rmPw2EWPI7wG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIYZJ1o28VZ3wrJOdmMD9aRFV9nfHsUP+/xzDIO4MbRZFNdryA
-	IL/qPE9BRN3wpbsQRuhB5qh6wZUNs2lN+jvYDDz9Yj9zKav7jmCNaBiVWWmqOUtKmXK3ASH3VaF
-	jU1GUVwW1EUI5frT5JrVdRHx2u2DMwQ==
-X-Google-Smtp-Source: AGHT+IEGQ7nHD+/xyba/tE0S2QjAjkVhfLJ9Pp8nFl2aw5w2DKZ8hhnS6UxFCO7dT9w+GWuozWbDzLrfoixjq31W73I=
-X-Received: by 2002:a17:907:3c8e:b0:ae3:a3f7:ad8e with SMTP id
- a640c23a62f3a-ae6fbdec31emr1398694666b.25.1752515074068; Mon, 14 Jul 2025
- 10:44:34 -0700 (PDT)
+	s=arc-20240116; t=1752515629; c=relaxed/simple;
+	bh=YvsJN12SAY9OQ75DnDkBYqvaW6o0cntTB75m162ikOg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J44KLY6a+hhOP0CW6Hj9aWNHSxvqJYPg1nfPcCk4tYJb0Ag1sd+3gViQM/fvWu2ByQ9XUmKljns4So0SGJD+7OVocCRaLbZX0NPe2vrIbeRlAyp2fiflABf5hZt8iBYLtWDW7NWtdttGwZrDpemZEMgc6YbzPYHUGqhwde1BvGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YHQCd3V0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56EGSR4a029012
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 17:53:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fK6x+ly3xuI/2lAjrk6WHaK2Wj/VJnTiR8SzPU9LGHk=; b=YHQCd3V0Cae+VGUk
+	84WIQIRbGymyYAmUvvD4+fCmV2kNvPOF6HVlOqX5DLwSrU6S70yklbcgbE/4BCL+
+	EeN22p30ny++MTzzLnKEHGe51UUxwLOAJgUuS0WGNTIrTLnNOgIaKUYRn7yRh/Tx
+	8OKLguXe81zaLvLUDJjY3O1ECX5PfZYGD5s8C70atShXlot5Y5W5hClCDa5B2Pp5
+	Y4LD/R6L5paSi+da7NqbFjTDzxrtyETwZQO1CVwYdabfMwdbt8ue2kWMe43HHnJ6
+	aGbxmaWCbzrXJk1NG2zKXdHN99bw12m1k7OrE9pgmYJ+zy2yL0Hy88DqR2D03cTL
+	g/1Y/g==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47w5drg7gw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 17:53:46 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6fafb22f5daso2836406d6.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 10:53:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752515626; x=1753120426;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fK6x+ly3xuI/2lAjrk6WHaK2Wj/VJnTiR8SzPU9LGHk=;
+        b=YnG+sKufUD/p0o+mWFePrn+t9bm7zUmk9J9f9Jqsp/BYShrchq865HpF2vu4N9s2K5
+         eawYmMXCZuLQoFKKVSIuvHREtBPaNLUIuGKH5UfAxVhbzDpgW6xwvAz25uLU5GqFqeB8
+         wbwXp6XH22doOEHQVdIKQ4OZ9PDso8jJEJLUBhLohpj/p2flkOrk2dVceB0Kcc9dKCwp
+         Lq32l/a8N9ppWFP4N8mU9r5LOMOk1dMC9SpjK6K5Vc9I1IXdRVwb7mx6e30zL+KEgkEb
+         4R2WqZwbmAP/QQhOWAlGueeVoSHyu+U+WkwNof95qQTkWeH7op1fdweEsJXiIuxE5a+f
+         xWPw==
+X-Forwarded-Encrypted: i=1; AJvYcCXoO2GEKY0T3t25+qe/SL/1V2cOS50B15XJKpjDR5CpgrvUGsYkEcgCBR9x5kDl7BH6224ZIUz7dUJp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqjW9+omLFeWKXS80nmTxKANSJsNnrY/0qGhF6SjF7C/01XitQ
+	CoL+EEPGLHLKNCeBTqyFJHZ1hLpCaGy/Gm5bSlvWi4zQAl5MF1VErrkqJEX92+6b+Cfb/3ODLBc
+	usiQ06db12waXOks8LpJIWRRPeX5bS4jlXsM+YcGOwp5qe0sT8gqUf1AT05fb6hRR
+X-Gm-Gg: ASbGncv+fk3IQGY5mOzMdFgkkW+AUOPiakkP8+/J1mzA22J+Q0C7UHgUb3UqDtbRa0q
+	7A8cEVzY0e8W8NTh9HFETp5Sa3FpZpYZ1OjzS2l9eoVmgHMagKexWECAkcFZLdOqeQKla809H2D
+	kigNIbvehy4tD2PPKEqvUe8AsQfIix0gkXtFcGhXvDmT7FF2mm71AL7AXe8Kv51+b1iAeuXiCpY
+	+4N3ZN5DLXFjzGcuPAOZCymlpe4KpYTCJax1tNyEkWHdiY60izcw1q1Oml4tiMp+QJ7Eyo4Yc5u
+	tK1zYl7WaaG2hDO3LvZLKyzWBZi8gS2w9bdLn9nQk/ko50G7RP0qrjwjzNUt3cZ8GypvIuxGkQg
+	tcEUmAsdF/KLT9Xz2nBB4
+X-Received: by 2002:a05:620a:618f:b0:7e3:2d1d:bda5 with SMTP id af79cd13be357-7e32d1dc30fmr148797885a.9.1752515625437;
+        Mon, 14 Jul 2025 10:53:45 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH33J/OmI1AFTIjnQFvLICqDRKARWzq6lcWnIeXIfJs1esBEhAy06+UMvKScpJWaDTw5mOsbA==
+X-Received: by 2002:a05:620a:618f:b0:7e3:2d1d:bda5 with SMTP id af79cd13be357-7e32d1dc30fmr148796485a.9.1752515624920;
+        Mon, 14 Jul 2025 10:53:44 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-611c976ec04sm6252166a12.60.2025.07.14.10.53.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jul 2025 10:53:44 -0700 (PDT)
+Message-ID: <bf78d681-723b-4372-86e0-c0643ecc2399@oss.qualcomm.com>
+Date: Mon, 14 Jul 2025 19:53:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250613134817.681832-1-herve.codina@bootlin.com>
- <20250613134817.681832-6-herve.codina@bootlin.com> <20250627155200.GB3234475-robh@kernel.org>
- <20250703093302.4f7743ea@bootlin.com> <20250704105725.50cb72b9@bootlin.com>
-In-Reply-To: <20250704105725.50cb72b9@bootlin.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 14 Jul 2025 12:44:22 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLnPxUKXo3+Qdv-C1kXa6zbL1zMKDQsg1--08EY4TwsKw@mail.gmail.com>
-X-Gm-Features: Ac12FXxDLTYP2NvcYJSixLW6cmzqJDujemRg676_boOWrjf2yfM7xtUL9oD9OWo
-Message-ID: <CAL_JsqLnPxUKXo3+Qdv-C1kXa6zbL1zMKDQsg1--08EY4TwsKw@mail.gmail.com>
-Subject: Re: [PATCH v3 05/28] bus: simple-pm-bus: Populate child nodes at probe
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, 
-	Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Davidlohr Bueso <dave@stgolabs.net>, 
-	Dave Jiang <dave.jiang@intel.com>, Alison Schofield <alison.schofield@intel.com>, 
-	Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
-	Dan Williams <dan.j.williams@intel.com>, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org, 
-	linux-cxl@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: sram: qcom,imem: Allow
+ modem-tables
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+ <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Alex Elder <elder@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        Alex Elder <elder@riscstar.com>
+References: <20250527-topic-ipa_imem-v2-0-6d1aad91b841@oss.qualcomm.com>
+ <20250527-topic-ipa_imem-v2-1-6d1aad91b841@oss.qualcomm.com>
+ <97724a4d-fad5-4e98-b415-985e5f19f911@kernel.org>
+ <e7ee4653-194c-417a-9eda-2666e9f5244d@oss.qualcomm.com>
+ <68622599-02d0-45ca-82f5-cf321c153cde@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <68622599-02d0-45ca-82f5-cf321c153cde@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 7Uk4_NNGX5TRpITtSIsUHGSKX0GFerY1
+X-Authority-Analysis: v=2.4 cv=D4xHKuRj c=1 sm=1 tr=0 ts=6875442b cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=kRKpuzDA6j_fRx5RDl4A:9
+ a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-GUID: 7Uk4_NNGX5TRpITtSIsUHGSKX0GFerY1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE0MDExMyBTYWx0ZWRfX3V7yAyxpYm5Q
+ S1ZR+y7BYETTqTlIRNB+3GqQhdjzsiQaAmdvMzxZpo6GxPsxX9WScJ8fUoop4Mb4e5RN+JTxLtj
+ 8GoJGLbtervLA7UL29tBeYFTT9nyy8lRol9ePKZsDaezcg3otWnwDxxX1qw8Ei/yGLazHom/VyS
+ t1ZsFpjxdBG5gybpGZvfiI6axc4prA1lLt4QlEewV/+po0x3tVQYgNtlXEgZJhDTyrcwECJSHTs
+ qP2wyaYpCJsrH8jYL3tiqnYri9Q86iuIkTXKVf1PxyVT+cOfy3fqTU4FsSp7vo5ilLciXVj4VM+
+ O4NIU+XdMeyGrglQRHBmxQt7/MMHc00ylSe0qFcwJlY2+myYxKPPvoirVLB8Iq2NPbkb0aspDeq
+ Tra88nwpJmwjw9DFoc0WU5gZ11oQ7+NRVHV9ucfj1sGzZMEkvkd2ukqYIy6Q7PrHCRNlCvTd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-14_02,2025-07-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 mlxlogscore=999 impostorscore=0 spamscore=0 clxscore=1015
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 bulkscore=0 mlxscore=0
+ priorityscore=1501 phishscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507140113
 
-On Fri, Jul 4, 2025 at 3:57=E2=80=AFAM Herve Codina <herve.codina@bootlin.c=
-om> wrote:
->
-> Hi Rob,
->
-> On Thu, 3 Jul 2025 09:33:02 +0200
-> Herve Codina <herve.codina@bootlin.com> wrote:
->
-> > Hi Rob,
-> >
-> > On Fri, 27 Jun 2025 10:52:00 -0500
-> > Rob Herring <robh@kernel.org> wrote:
-> >
-> > > On Fri, Jun 13, 2025 at 03:47:45PM +0200, Herve Codina wrote:
-> > > > The simple-pm-bus driver handles several simple busses. When it is =
-used
-> > > > with busses other than a compatible "simple-pm-bus", it doesn't pop=
-ulate
-> > > > its child devices during its probe.
-> > > >
-> > > > This confuses fw_devlink and results in wrong or missing devlinks.
-> > > >
-> > > > Once a driver is bound to a device and the probe() has been called,
-> > > > device_links_driver_bound() is called.
-> > > >
-> > > > This function performs operation based on the following assumption:
-> > > >     If a child firmware node of the bound device is not added as a
-> > > >     device, it will never be added.
-> > > >
-> > > > Among operations done on fw_devlinks of those "never be added" devi=
-ces,
-> > > > device_links_driver_bound() changes their supplier.
-> > > >
-> > > > With devices attached to a simple-bus compatible device, this chang=
-e
-> > > > leads to wrong devlinks where supplier of devices points to the dev=
-ice
-> > > > parent (i.e. simple-bus compatible device) instead of the device it=
-self
-> > > > (i.e. simple-bus child).
-> > > >
-> > > > When the device attached to the simple-bus is removed, because devl=
-inks
-> > > > are not correct, its consumers are not removed first.
-> > > >
-> > > > In order to have correct devlinks created, make the simple-pm-bus d=
-river
-> > > > compliant with the devlink assumption and create its child devices
-> > > > during its probe.
-> > >
-> > > IIRC, skipping child nodes was because there were problems with
-> > > letting the driver handle 'simple-bus'. How does this avoid that now?
-> >
-> > I don't know about the specific issues related to those problems. Do yo=
-u
-> > have some pointers about them?
-> >
-> > >
-> > > The root of_platform_populate() that created the simple-bus device th=
-at
-> > > gets us to the probe here will continue descending into child nodes.
-> > > Meanwhile, the probe here is also descending into those same child
-> > > nodes. Best case, that's just redundant. Worst case, won't you still
-> > > have the same problem if the first of_platform_populate() creates the
-> > > devices first?
-> > >
-> >
-> > Maybe we could simply avoid of_platform_populate() to be recursive when=
- a
-> > device populate by of_platform_populate() is one of devices handled by
-> > the simple-bus driver and let the simple-bus driver do the job.
-> >
-> > of_platform_populate will handle the first level. It will populate chil=
-dren
-> > of the node given to of_platform_populate() and the children of those
-> > children will be populate by the simple-bus driver.
-> >
-> > I could try a modification in that way. Do you think it could be a corr=
-ect
-> > solution?
-> >
->
-> I have started to look at this solution and it's going to be more complex
-> than than I thought.
->
-> Many MFD drivers uses a compatible of this kind (the same exist for bus
-> driver with "simple-bus"):
->   compatible =3D "foo,bar", "simple-mfd";
->
-> Usually the last compatible string ("simple-mfd" here) is a last fallback
-> and the first string is the more specific one.
->
-> In the problematic case, "foo,bar" has a specific driver and the driver
-> performs some operations at probe() but doesn't call of_platform_populate=
-()
-> and relies on the core to do the device creations (recursively) based on
-> the "simple,mfd" string present in the compatible property.
->
-> Some other calls of_platform_populate() in they probe (which I think is
-> correct) and in that case, the child device creation can be done at two
-> location: specific driver probe() and core.
->
-> You pointed out that the core could create devices before the specific
-> driver is probed. In that case, some of existing drivers calling
-> of_platform_populate() are going to have issues.
->
-> I can try to modify existing MFD and bus drivers (compatible fallback to
-> simple-mfd, simple-bus, ...) in order to have them call of_platform_popul=
-ate()
-> in they probe() and after all problematic drivers are converted, the
-> recursive creation of devices done in the core could be removed.
+On 5/27/25 1:42 PM, Krzysztof Kozlowski wrote:
+> On 27/05/2025 13:36, Konrad Dybcio wrote:
+>>>> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>>> index 2711f90d9664b70fcd1e2f7e2dfd3386ed5c1952..7c882819222dc04190db357ac6f9a3a35137cc9e 100644
+>>>> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>>> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>>> @@ -51,6 +51,9 @@ properties:
+>>>>      $ref: /schemas/power/reset/syscon-reboot-mode.yaml#
+>>>>  
+>>>>  patternProperties:
+>>>> +  "^modem-tables@[0-9a-f]+$":
+>>>> +    description: Region reserved for the IP Accelerator
+>>>
+>>> Missing additionalProperties: false, which would point you that this is
+>>> incomplete (or useless because empty).
+>>
+>> How do I describe a 'stupid' node that is just a reg?
+> With "reg" - similarly to many syscon bindings.
 
-The problem is how does a bus driver know if there is a specific MFD
-driver or not? It doesn't. The MFD driver could be a module and loaded
-any time later. We'd really need some sort of unbind the generic
-driver and re-bind to a more specific driver when and if that driver
-appears. We could perhaps have a list of devices with a driver because
-in theory that should be a short list as the (broken) promise of
-simple-mfd is the child nodes have no dependency on the parent node
-which implies the parent doesn't have a driver. The specific
-compatible is there in case that assumption turns out wrong.
+Is this sort of inline style acceptable, or should I introduce
+a separate file?
 
-Rob
+diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+index 7555947d7001..95fbb4ac9daa 100644
+--- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
++++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+@@ -67,7 +67,13 @@ properties:
+ 
+ patternProperties:
+   "^modem-tables@[0-9a-f]+$":
++    type: object
++    properties:
++      reg:
++        maxItems: 1
++
+     description: Region reserved for the IP Accelerator
++    additionalProperties: false
+ 
+   "^pil-reloc@[0-9a-f]+$":
+     $ref: /schemas/remoteproc/qcom,pil-info.yaml#
+
+(fwiw checks are happy with the above)
+
+Konrad
 
