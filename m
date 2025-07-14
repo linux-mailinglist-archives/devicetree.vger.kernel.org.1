@@ -1,225 +1,149 @@
-Return-Path: <devicetree+bounces-195872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A07B03686
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 08:05:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BD15B0368B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 08:10:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1FF07A7D56
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 06:04:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3A223B2598
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 06:10:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AC1F212B0A;
-	Mon, 14 Jul 2025 06:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB67E217F35;
+	Mon, 14 Jul 2025 06:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="iraiC7qv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QaJv8pQ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2055.outbound.protection.outlook.com [40.107.220.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5CC37160;
-	Mon, 14 Jul 2025 06:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752473134; cv=fail; b=R/+m6JFszopxMTrFEZIDKEg83q2IUBhH86jFM7W8MYAgL8c91L6WcYXyv7pFf99fhYyfY6/EASWK1Xian9AHaIlczEw0Jzr+DibJ6sSFTu1zuJRzzVPm/VGdybQPrVUVDVdlgeLZvJD/0pAWPOlyfheOlP+sdu8P6XBVIL7Zgx0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752473134; c=relaxed/simple;
-	bh=J40MAPUFHbXnBQ52yyEJJMAPozSpSdTejbebBvVKq3s=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=nX1WyOGXkkriTZuMVRxJcYu6m4Mc2zY9Tkx4YmJ5Ia0cbSK4ysV+P9OzZCpoVC9vcYmCADsHcSCGRHDOkb7lInjA4c9s1Hz9PBUMqRX2eIelA4TkVnGgIcATmMQLbz1PQOlYkoKy7PHTtQ+rtQU/9dvFo7gplC8cbhMez71dlHE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=iraiC7qv; arc=fail smtp.client-ip=40.107.220.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZnvAeGi+PScaTqlZgPIVrMb6mYYApjKot44HQ1yy8xTuvyip27PiZ7qje11c9txhMMLTjMq2F8R4Ls0wgfOphbmIJYONdqooD8NMAi0Tgf+WfD5vjA14NvF+ixh3gn16DyDYtM58k0mrhWcY4bONd1HJkLFYUszOVfGD37tw4a3pXYsgDrOyCvvwc6GufrQteGEjFfDWsCQ7XC2C2M5vjwrkB3eNmrgfg64eGZA2uWP+s5Wr2whxsscUwoGl3VL1DbDhEzwHh53Jetx+VKeKXYIsRIb6YCrKr6FO2WJLrYsBjtcN3CRBgKBLtTKsxLL5ODNpdBtprdRCbfSImmd+zg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h4G9pHavOA4ffG4wDcXLxqHX3f2MHQNYTwsAqS+jMjw=;
- b=djA3hO7QVABwXs9sAA4hJlm17SzIhEMg3tSHk0naFFlPyQs9WX8R2sTJJ+UMvY2Yde6a9QS2XioH+SP9HUR/PwwxNAY37NguLX8eOjb5XbDd4Z0EqK8VPN+Oh4RFgv0dptzagQDdA9ZbMxtgvVd6Lp9JuSPNIS3ZI6AHHRvXEC0SfFdLvljI0B8r9u+OBYJMSG1HMSNjkCKD80fnHFDB40FJgC/OQJaZBZsYTdn+3nIjazgXKOZYk5iDrFlc9oqdL02CrAzWVmElIrU0n/2Z3EAw/sUWeVbksb8MiNbhZHg/cDHU5BEipRBTjurWnQS9lGAE88kfGoczkgw/9qDhcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h4G9pHavOA4ffG4wDcXLxqHX3f2MHQNYTwsAqS+jMjw=;
- b=iraiC7qvGIHIiU4ihpo9Vhf5Jw5umiqovCVVT0NYQyCnoFmqeAVRfPwhVPZodYdumE4yJIvO91UuER1BrT76BC+sDapYB/YpbJEX5c1jpi/tn7yJWqpJY8kfNnG4abbm8792/IvO3aH2IJfUgxcrxMFGBET/+XYP4u55EN4hf3A=
-Received: from DS0PR12MB9345.namprd12.prod.outlook.com (2603:10b6:8:1a9::10)
- by CY3PR12MB9578.namprd12.prod.outlook.com (2603:10b6:930:109::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.35; Mon, 14 Jul
- 2025 06:05:30 +0000
-Received: from DS0PR12MB9345.namprd12.prod.outlook.com
- ([fe80::65ab:d63c:7341:edbb]) by DS0PR12MB9345.namprd12.prod.outlook.com
- ([fe80::65ab:d63c:7341:edbb%6]) with mapi id 15.20.8901.033; Mon, 14 Jul 2025
- 06:05:29 +0000
-From: "Jain, Harsh (AECG-SSW)" <h.jain@amd.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-CC: "davem@davemloft.net" <davem@davemloft.net>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "Botcha, Mounika"
-	<Mounika.Botcha@amd.com>, "Savitala, Sarat Chand"
-	<sarat.chand.savitala@amd.com>, "Dhanawade, Mohan" <mohan.dhanawade@amd.com>,
-	"Simek, Michal" <michal.simek@amd.com>, Stephan Mueller <smueller@chronox.de>
-Subject: RE: [PATCH v3 3/3] crypto: drbg: Export CTR DRBG DF functions
-Thread-Topic: [PATCH v3 3/3] crypto: drbg: Export CTR DRBG DF functions
-Thread-Index: AQHb21rB7NTssVrih0uUyq22WL8o47QmJIyAgAsevmA=
-Date: Mon, 14 Jul 2025 06:05:29 +0000
-Message-ID:
- <DS0PR12MB9345C8F5A728830DD9ABB1E19754A@DS0PR12MB9345.namprd12.prod.outlook.com>
-References: <20250612052542.2591773-1-h.jain@amd.com>
- <20250612052542.2591773-4-h.jain@amd.com>
- <aGs8N675Fe9svGTD@gondor.apana.org.au>
-In-Reply-To: <aGs8N675Fe9svGTD@gondor.apana.org.au>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-07-14T05:06:04.0000000Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR12MB9345:EE_|CY3PR12MB9578:EE_
-x-ms-office365-filtering-correlation-id: aba6f8ea-07fc-4cc5-3481-08ddc29c6f8b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?0fETwVT/3gnDn92rAwxZ4U75/D3vkGKkSY1Xj1XadMrff4JCB8nkVZtFMR9W?=
- =?us-ascii?Q?hD/0fBkoxZLHtKqw5XFY4jVxDQM1y/DlmeNWluvkiWIBEF0VerCrTolTCCqV?=
- =?us-ascii?Q?BHc2WS6jiZH28iRvuRY9rjoofwHyrnm9jVuBcS/NC6tWr6D5kLiP59kKvuZQ?=
- =?us-ascii?Q?HmPyQNZe6NE7khLSzwhOTXKWJKdZR0Db/iPYgB4tfwNYK9awxqFmJ7bzza5y?=
- =?us-ascii?Q?4ap1swy+e4urfTxXGd1tQcumlUg9tFzrmzKd5QfpY5qBVfsoEYQ7i4Gf96JK?=
- =?us-ascii?Q?V7FPvyepbaO+wJ9ghg8pt61qDEyCUaCTdmurvUx5Ps8reTNscvDzJ4hXKQfi?=
- =?us-ascii?Q?slZcje37QsSkHx+0yNpDJkiqEhoT/BRpF/gcWVtaAcy5fCKSfRpBlafTKgi/?=
- =?us-ascii?Q?6tKMfsiYPXDtRGP2vLwcsAsrGlIPJXOkEdDLmpoYgrMSSbQWx+OlwH8K9ulI?=
- =?us-ascii?Q?CkNdl5+spv/k/baAJAthxc8Pif5LY3IxnF7JPB9xes/FCPBg/4fiRZa+zRyj?=
- =?us-ascii?Q?Gg+qDZI5deXjg/aaiXumQZSperdIw0r7SDpzIMPKTvqiL9fQoTQODBtY0sKv?=
- =?us-ascii?Q?1P5LXD4dGRt46+HycnSBBPYczv8p0JdSZaXDFul5EfCxg25ydV8PRXB0DcmG?=
- =?us-ascii?Q?bAN46Ll5PEiyxQtRtESJKYwNY4sJXGc4dDtgq1d+47fxY+48MhsJhgvQVUCt?=
- =?us-ascii?Q?78ZdxouDxmBT5mmCJH1ce+2i6AaR879ZPtPV8cUh5yYsRY/KrQAlgGuaaimj?=
- =?us-ascii?Q?fuJbLAH9K1pyVBNNm1lCbi1yTOr7PZrmaIiH5EVJH/43QGsnapJFSH9eIsdp?=
- =?us-ascii?Q?rdz1pkhOdymdtb71QJ1fTpKNMxJoApLQshxX85H8mvTf8p1gufdueQtt/MbS?=
- =?us-ascii?Q?1h0dyAw50XoWtb8NQlIUchD6POVk+UwfqdG98WpI1zz9dJk2PtVC4iLtKvb+?=
- =?us-ascii?Q?U2O/KpUUQgf+vpL6pYL912Z1/7dw4TE8hYR+bJApen4x/qZG60V3ncnItobO?=
- =?us-ascii?Q?dChGjhh8fRhEW+WnfJ6zatnMJRz3PN7Jed54aFgm3FiqCnnzpmFbZBlJM1sB?=
- =?us-ascii?Q?kjgUGWCXs70DrnNzGV1jU6gJV7f/ZlqwUI25jpvdjkaB5Ct0AON/68jE69hE?=
- =?us-ascii?Q?vWDl/fmMB+6Nk6S9kr9b+6l2aCosJFk1oKEYXpV755PhlFVBjufLOnXVmxJ7?=
- =?us-ascii?Q?RuRXhXnKw7GCTvQQt9TlzaIEwg9OJjo7rdhaAQbCWnvpwcfyqZ36KEOtJ1rW?=
- =?us-ascii?Q?FEzCHmPDcrDvJph/VT/rnxQD8VS0jrc7dBr91421hVham7OQ0Xr/mPNObp4a?=
- =?us-ascii?Q?1gWxaIWlUeOYpPon5Wqtud3Lcbm54O97NiluxONZzR5GrR28sgQDxbT6a7oB?=
- =?us-ascii?Q?kA/r2Pt1AUFAZzXZsP+xinnetG3qWtl8qK1ehtr8atjUw+RiUgSi54SFlinn?=
- =?us-ascii?Q?ikpWAnahpig=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB9345.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?/WCDldAmHO00s0sxIfg1FLQNRheLJR8Gl7EEtWeq6MmhFo5/mKD3kDKFhcp6?=
- =?us-ascii?Q?ebsgmXm8Je0gvNCfBLId8xpNT/TH9VWQYJP3adAGsY084DFmW1pchMB24SP0?=
- =?us-ascii?Q?cUVTs7u6jsEocUUYaLF/Zxf8CgW9OaRvNRbOax/PPr37B5nUmITLFJDD4sjE?=
- =?us-ascii?Q?/uqKgJLgGt0k8e5qPlE9FC0/X3JleCx5RKjtiIUZzg/ClBPhb98qqxKBA3pr?=
- =?us-ascii?Q?kD2+aNw0p0jXHTBUNNfB0B/qCeu6apzYLmic/bz1SQtgUED5iU9AlcL9pHMH?=
- =?us-ascii?Q?AllyokUnLSIpvjxkFFeoJs/609NzFWaHyLWrT547/4Y8iJkl4JHJ92+XqHrM?=
- =?us-ascii?Q?W98IP6t6wH4CYgYOktPwLWSN5wjX7Gl076n1exy849clktD/V2GQq4nbTwIZ?=
- =?us-ascii?Q?pWZGMKrgkWQ+wXl2SkO4USGJMUCcBaahgPJstrh+QXMiCLrv45053s89s1LP?=
- =?us-ascii?Q?Cb4Q22FaaCIBIRTdsaakQj85lRDrOH2KZU5uyQKu6RqxcN3XBTysRHQFfzi2?=
- =?us-ascii?Q?2VZbae8IRd/8TOuzMkLuC1U7+VLosI6/DIROA5SP63tYGtiUgRzjf5wub33o?=
- =?us-ascii?Q?9ebzpMy8lH9xjfwbpgZmvH2OVoQlb1xRR+HZjb82KlIOYx1gPTFDM0V1iBt7?=
- =?us-ascii?Q?jizVYSxTcPml+tuHPGeDld+zzN3uqDck8/PBic+P34y+RXTiAUaRFRbuH9a9?=
- =?us-ascii?Q?WDSk2zoVJcH+8WwciY05HZPKXW/GNRkQt3R7/4SlQJ0n7ZentxeY2q/aLT5j?=
- =?us-ascii?Q?MGOf5mJ92SPGRCV55/r2VFkjTOxJ1wjfZiJNman8cOTLwkc9rIIoVjyZpr6/?=
- =?us-ascii?Q?vdH3fK73quKaMHybxiGiP29f9HfcWYqQWCgy1U+t5+n2g+gyOnyvgoQvJANM?=
- =?us-ascii?Q?oXQkTMasemOV17Ouj/HO6WAfBoPmN6vEruWtFuV/gKoplS/YrhHJK+fjszwq?=
- =?us-ascii?Q?LZ5jIGyQlGdj6FLiNrZaAdT/7ndOr9l3spbYyse+FI2YOtPzIH3iEI7oCdyP?=
- =?us-ascii?Q?PqDgApLoecGDJ/0ihY1jsXIoUGYNPISJIf8opzYxDAsPdune11GB2+uCnyLj?=
- =?us-ascii?Q?JFoNPtKTYuGpqmW5Omgv+/MH/j2kfW84pjD3qVQtfmfg48WJE3QGEfaskbtT?=
- =?us-ascii?Q?MPXyPkA7cqY/07qgGFQKBdrcTHO6Ohs8vZGl8UR4KsXbHWKtSkkjMLuPV+Dx?=
- =?us-ascii?Q?zixp+FlvSz7D/R/UKeXPt0/bj4aQBmwyGI+uyMSgWvBc369EIYKUKaaXMZ11?=
- =?us-ascii?Q?NJxBbWCaudkVfuOqNEgU8kKolmyvGmkJyYrY67Iuk5XVnge2qu548exj9Q1o?=
- =?us-ascii?Q?1TCEkzQR6zPLZSqrmi/gcXPFpFUPitVHwSKKufshnMGVdNBfkr/QVWkeWibc?=
- =?us-ascii?Q?fZt8PFG3kW9Q/AyvMNX/6ZUDn3dgY7PW4zkvBZtbT5CIW7vJx39garwsOvXi?=
- =?us-ascii?Q?eOE0gx6eB4wg1eG6XVhJ8Hnb5CSqKqAOK2AqAexpczHdwp4koFFT05+oi/AT?=
- =?us-ascii?Q?QQtfVAKFrHrzEAxQmF4RRvAUqiOSkTAzc3w5toA1v7lJkCHi6P+EKUbBuXUw?=
- =?us-ascii?Q?ZDTi5+j9RfHHUJyT3U4=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9F71367;
+	Mon, 14 Jul 2025 06:10:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752473427; cv=none; b=KdSvS4+VcC1iUuO/jcltNY4yyrinMorOoKeESNJqR3XAsXwKuSj1Cpe6VHP31Z6eYYLDSB9SYTZjAu7yoYS/RTydn+kISL9RD4wqvmOaC0p18tYisdxzbrlPK87QkBD0+51v4c58rpjlR0d3x3eHaRr3A/spD+5bANntkGxEb+c=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752473427; c=relaxed/simple;
+	bh=sPVH63ERWuJ0gCU0Toh0EsZGggjk+tM2bvgS8ziKjtY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=pcKlwGLVadFr1gDHZ+cO76UCSa3XkDy7425+O9D6zz3OI6G8wRDaM27Ggnn0qge3c87B+7NGSB+aqUbzLNSiZ5oKj0jOdb7y9x5QrwCBohLzA/7odhEuBw3hA96VJIbVavaFmKNGsxQ04B+Hwxi8wpyFaMljQcgQrBhs7kYl8Is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QaJv8pQ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61FB0C4CEED;
+	Mon, 14 Jul 2025 06:10:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752473426;
+	bh=sPVH63ERWuJ0gCU0Toh0EsZGggjk+tM2bvgS8ziKjtY=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=QaJv8pQ3IEWpuz0ewUYGo/pLTZEU+OYHeFmmUe8KbRMu2Zo3dW1e/YSnwDMO7z4E1
+	 sScneBPFmM0DIfj7dQY0wLLGHnp+a/1FW2p0Px+WF4owvynLz89/rGfzadnXCzG0SP
+	 dw8vikP83U/QAx3k88q0BncJSTNZfA5bcGCUc7llTxAWRjpVdJws3d391Ox9+wwSgv
+	 1jLOaVvasXVitdyWHeaOeAQ0golomnld0CcyUAzwdBloxxTfsS6vMdtxrcbYHj4Tvk
+	 E+B5cQjFqBUINn0eNlAsBYhitlDAj74NMtMC296NY+X2Z9wZWwumSmrgBxSUm+gHg3
+	 PcDF+JLN460PA==
+Message-ID: <88ff3aa4-dfb0-4b65-a061-52544caf46f6@kernel.org>
+Date: Mon, 14 Jul 2025 08:10:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB9345.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aba6f8ea-07fc-4cc5-3481-08ddc29c6f8b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jul 2025 06:05:29.7983
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: iIsMYUsKi1Aoesa4LommC+pm9yBhdJd9ivQA97qOhJie0fM1v7XHZo4trZQ+4M1L
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9578
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/6] dt-bindings: clock: meson: Add audio power domain
+ for s4 soc
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: jiebing chen <jiebing.chen@amlogic.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
+References: <20250710-audio_drvier-v5-0-d4155f1e7464@amlogic.com>
+ <20250710-audio_drvier-v5-1-d4155f1e7464@amlogic.com>
+ <20250710-polite-cuddly-platypus-5fe9dc@krzk-bin>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250710-polite-cuddly-platypus-5fe9dc@krzk-bin>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+On 10/07/2025 11:56, Krzysztof Kozlowski wrote:
+> On Thu, Jul 10, 2025 at 11:35:37AM +0800, jiebing chen wrote:
+>> The audio power domain has been detected on S4 device.
+>> It must be enabled prior to audio operations.
+>>
+>> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+>> ---
+>>  .../bindings/clock/amlogic,axg-audio-clkc.yaml     | 55 +++++++++++++++++++++-
+>>  1 file changed, 54 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+>> index fd7982dd4ceab82389167079c2258a9acff51a76..c3f0bb9b2ff050394828ba339a7be0c9c48e9a76 100644
+>> --- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+>> @@ -21,6 +21,8 @@ properties:
+>>        - amlogic,axg-audio-clkc
+>>        - amlogic,g12a-audio-clkc
+>>        - amlogic,sm1-audio-clkc
+>> +      - amlogic,s4-audio-clkc
+>> +      - amlogic,clock-pads-clkc
+> 
+> Keep the list sorted.
+> 
+And now I noticed that I already asked for this at previous versions!
 
-> -----Original Message-----
-> From: Herbert Xu <herbert@gondor.apana.org.au>
-> Sent: Monday, July 7, 2025 8:47 AM
-> To: Jain, Harsh (AECG-SSW) <h.jain@amd.com>
-> Cc: davem@davemloft.net; linux-crypto@vger.kernel.org;
-> devicetree@vger.kernel.org; Botcha, Mounika <Mounika.Botcha@amd.com>;
-> Savitala, Sarat Chand <sarat.chand.savitala@amd.com>; Dhanawade, Mohan
-> <mohan.dhanawade@amd.com>; Simek, Michal <michal.simek@amd.com>;
-> Stephan Mueller <smueller@chronox.de>
-> Subject: Re: [PATCH v3 3/3] crypto: drbg: Export CTR DRBG DF functions
->
-> Caution: This message originated from an External Source. Use proper caut=
-ion
-> when opening attachments, clicking links, or responding.
->
->
-> On Thu, Jun 12, 2025 at 10:55:42AM +0530, Harsh Jain wrote:
-> > Export drbg_ctr_df() derivative function to re-use it in xilinx trng
-> > driver. Changes has been tested by enabling
-> CONFIG_CRYPTO_USER_API_RNG_CAVP
-> >
-> > Signed-off-by: Harsh Jain <h.jain@amd.com>
-> > ---
-> >  crypto/drbg.c                       | 108 +++++++++++++++-------------
-> >  drivers/crypto/Kconfig              |   2 +
-> >  drivers/crypto/xilinx/xilinx-trng.c |  32 ++++++++-
-> >  include/crypto/drbg.h               |  15 ++++
-> >  4 files changed, 103 insertions(+), 54 deletions(-)
->
-> Please move the df function out into its own module like crypto/hkdf.c.
+Respond to and implement feedback, not just ignore it.
 
-Thanks Herbert,
-
-There is hkdf.c and kdf_sp800108.c module, Both implements different NIST S=
-pecifications and DRBG derivative function represents different NIST Specif=
-ication.
-Moving it to hkdf.c may not be a best fit. How about adding new module for =
-" crypto_drbg_ctr_df ()"?
-
->
-> You should also keep the drbg changes to a minimum.
-
-drbg_ctr_df() needs tfm, blocklen, statelen which is currently derived from=
- struct drbg_state.
-If I updated structure drbg_state, It needs code changes in HMAC as well.
-To keep code changes minimum, I added required inputs as function arguments=
-.
-Do you have any other idea in mind?
-
->
-> Thanks,
-> --
-> Email: Herbert Xu <herbert@gondor.apana.org.au>
-> Home Page: http://gondor.apana.org.au/~herbert/
-> PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Best regards,
+Krzysztof
 
