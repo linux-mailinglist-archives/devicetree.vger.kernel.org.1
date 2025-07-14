@@ -1,165 +1,113 @@
-Return-Path: <devicetree+bounces-195950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1F45B03A92
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 11:14:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82CF7B03AA3
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 11:18:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14067189C310
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:14:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F1D73A566A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AF4B23BD1D;
-	Mon, 14 Jul 2025 09:14:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7EB240611;
+	Mon, 14 Jul 2025 09:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P3YGNx0b"
+	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="lvdeWwVj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEFDD233D8E;
-	Mon, 14 Jul 2025 09:14:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE510246797
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 09:16:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752484468; cv=none; b=VuxrF1LYmPBgP9O4eDt9MwDOOLfpWB0VfF1NEb4BWn9q4KVzHd1HGope1oURRIixdnJbxBo57wv5sSttBgzDDnBktVQi8CIXSa/JnJQPpdZp4RNp1TMBMNRsv6Q7NUxcIYLsLbPJwaGaYPJQEu994i1LBJA7bvO/FMyPPll6Css=
+	t=1752484603; cv=none; b=cmrimwNeLehF5jkBPveKirv4Vx6+LpeiDLM/YojTgrsFSthA/Ti4Vjh84noSajy66ucDJfegl9u9nKcahShLiLMuUtPc4FE9Nyc2g6GTuuAHqiGhuCV3J/RiX5FKIWWLlMLPxIHDFPqz8Mvx9o+2FQkAQr7N4ObLs0tz3R6oGfk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752484468; c=relaxed/simple;
-	bh=rR2asAjUmIht+hQ2CnpxlQ91dM4Dz9yFrrfz3ReVTEg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NxVdcBJBfJ6tASIxrPwlGMNiGj9RpQ90zSspYx/tKRJSzCuc2SWMFslqdc9Yd2XinZq4FISBmvYa+mImiSkA5XFY4GGEAs/C3ue9IWBsd1cEkBs0XF2pLPTxtYSAb9dbIR8QQ2EjEtJGJhC3se1FtQZlvf+1zFXvyCVcGyd5/Ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P3YGNx0b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98690C4CEED;
-	Mon, 14 Jul 2025 09:14:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752484467;
-	bh=rR2asAjUmIht+hQ2CnpxlQ91dM4Dz9yFrrfz3ReVTEg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=P3YGNx0bWiGiMdAyep/5Y5cjG8h+W1nfcMznEfjcFoSJr9w9Sin7SeAcAAx2TdIrl
-	 mMTiGAHwrVH5VACUijFnGbymfHYXhp7GBZ7EaLD2jj9CyhSu/NAaGg3Djlig+8y3/u
-	 /tLJesDUjE8q1aMJLvjEmMVMJdDrLSBfjeSdC7NidxhqOR/tQJ9Xitw8cY5I8JU599
-	 JJXMq68Rkmg81Mm00ccx/K6H8oHgxTEqZ35jO0dTgKZ7vKyr/ZmRmg4gFVUUVGG5BT
-	 8BCFgawuscyNxEnj2WdQhc6C3h5+dzrmV8VRk8TN/aNtXbjw9V/nlGDH1igW2cj7pI
-	 +5pWlBkvDbTSw==
-Message-ID: <169e742f-778e-4d42-b301-c954ecec170a@kernel.org>
-Date: Mon, 14 Jul 2025 11:14:20 +0200
+	s=arc-20240116; t=1752484603; c=relaxed/simple;
+	bh=nG2jwbcLk7SXQKXcTmNSqdZ+/DC2xEkEzu3JnMvQfYw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KAT/+1spIOuZyIWna6fJ3CXlDRXaGjIgV2x6ojks8yPmln6efs7UTux8OZRIewlppxRyh/jZJxFdqaB16KQ4EpPuhGWr+LzcAgTyl62jtjqqvIBAir+qouTZwOglFokgfVIlvNY4WCdmQavB1r4QFoGsYCC7mwfk1smlqdyb4Ng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=lvdeWwVj; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-711a3dda147so42007127b3.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 02:16:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1752484601; x=1753089401; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=nG2jwbcLk7SXQKXcTmNSqdZ+/DC2xEkEzu3JnMvQfYw=;
+        b=lvdeWwVjKR1Pf7nmoNWj3Dn90ESTbhWvKog7RDq9VtpFOsTClHn5MejmUsdBFqCTyU
+         PApnZGWdkWbnOGsMx+VnXgXd8Azc6ijPCAiePwHefBCwVIEE7Uq0jkRJxqrdh11MiT8N
+         yk382KQjVGqdCLWE0oZoWBmmzd4+LpDkuHZKIK2nrM0jswMxhGnmqqKXGsoc21iP3oer
+         Bw/io/VZjAPsOmOYtgASop8OfKVBsONPS+v4Ltlxp/0llxov1WwmK5eSppqwUU51S0s7
+         yYEtgjseZaAFmtUsN6oHWkNfiafLKn18F1RAg60G2mWQxEcAbSYruHyj+acEVNyngwxz
+         XlTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752484601; x=1753089401;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nG2jwbcLk7SXQKXcTmNSqdZ+/DC2xEkEzu3JnMvQfYw=;
+        b=vBzgxvzSHbIYFFEQrwJuykVlM8hznjSmRLAAF0Z9QnyQKqskKxk7d7s1kJLXsC9UNY
+         mww8T0lUeBQQ7dBjhtnyqfInk0RZKEL9rWkIcWIlXrEw1JSnOWaqefRV259BJ4crWFBw
+         liq98y2xIYdoknhCWpHL9qrWgckl4yZm9vwWuZs1qpTcqZKmgUh1B3jWTQeuaQqVhTlR
+         TEEq8bNFqntQ+G/KCzsh2QJLYw2ctOCKVxA5aJuOirOBC8gxypAu01F1jkyt1Q3aT05p
+         GItoqDU5xRcgZ0aD+rcHdzXj+tFH1BglHGAdt99D2ZXOE0lR0Qp4tXQN8XFrxU7S8Ge+
+         /bfw==
+X-Forwarded-Encrypted: i=1; AJvYcCVo91kk+0sPyRy+jVcYLdAi3b/aT0tuq+X8B5Tcr59fjmxqm8SUuTuUcBim3fusguukNJixQaEo1qwI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcFe9APHaZjV9S/iTceJhcZ1dzEYAELBUAu4YNu3kcCgyjtkuu
+	Wx8gIrXEYyE3et7zl3QP1I4M0QH827EMfzHucZti+Rons7tDf5WTb8iIkMYAi/3N3XCS2hfR2L+
+	MlPwaa3veLGIQxBZoUoTUaqbNEqoaS13mgfflp606CQ==
+X-Gm-Gg: ASbGncvrLKL9eHP+Cq5KynPl5V+vkhBvY3rp9eLPwyITt/dhecVloNhHoMTEubbsj44
+	f39/ra/r17FaMx9S5fGZRcZG/cE373iUU77qs2+ew9I047rBMnLHnG9LsTVPpL6SiLOguX6V4si
+	LjR13UK0AgLT+w8qk2qKm+SAmXG26UGeL4x5kELLVPkJ83ucAHhkB11WyOqIRgFTPLEqLsIn7uZ
+	iHYe3jxm48WXIffBGHGaDWNsB7PfeXPFT1rBc651w==
+X-Google-Smtp-Source: AGHT+IGGKVZL2gi3YF6dcBpVJCqmCTegzTcKiJ9fHmRZqlNYn7Bg2+Yd24bFWr79pSRo5RVmMmRv+MnI7JAH4UVwWPA=
+X-Received: by 2002:a05:690c:ec6:b0:70d:fe09:9b18 with SMTP id
+ 00721157ae682-717d5c373a9mr204630517b3.2.1752484600812; Mon, 14 Jul 2025
+ 02:16:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 01/12] dt-bindings: ptp: add bindings for NETC
- Timer
-To: Wei Fang <wei.fang@nxp.com>
-Cc: "F.S. Peng" <fushi.peng@nxp.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "richardcochran@gmail.com" <richardcochran@gmail.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, Clark Wang
- <xiaoning.wang@nxp.com>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
- "davem@davemloft.net" <davem@davemloft.net>,
- "edumazet@google.com" <edumazet@google.com>,
- "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>
-References: <20250711065748.250159-1-wei.fang@nxp.com>
- <20250711065748.250159-2-wei.fang@nxp.com>
- <ce7e7889-f76b-461f-8c39-3317bcbdb0b3@kernel.org>
- <PAXPR04MB8510C8823F5F229BC78EB4B38854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <61e6c90d-3811-41c2-853d-d93d9db38f21@kernel.org>
- <PAXPR04MB85109EE6F29A1D80CF3F367A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <PAXPR04MB85109EE6F29A1D80CF3F367A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250708-leds-is31fl3236a-v3-0-d68979b042dd@thegoodpenguin.co.uk>
+ <20250708-leds-is31fl3236a-v3-2-d68979b042dd@thegoodpenguin.co.uk> <20250709-happy-gazelle-of-fascination-fe0fd4@krzk-bin>
+In-Reply-To: <20250709-happy-gazelle-of-fascination-fe0fd4@krzk-bin>
+From: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+Date: Mon, 14 Jul 2025 10:16:29 +0100
+X-Gm-Features: Ac12FXyAnSttrQTxfZ3hyjQUCceH_uU_FETUA29_qdO6yKKW6bWWhuKLl-Sbr54
+Message-ID: <CAA6zWZKRA2Qn3ajN9f9o_oBTZAgrx22gP28A5CHgx=+0jFrOKg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: leds: is31fl32xx: convert the binding
+ to yaml
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org, 
+	Lucca Fachinetti <luccafachinetti@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 14/07/2025 11:11, Wei Fang wrote:
->>>>> +  nxp,pps-channel:
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint8
->>>>> +    default: 0
->>>>> +    description:
->>>>> +      Specifies to which fixed interval period pulse generator is
->>>>> +      used to generate PPS signal.
->>>>> +    enum: [0, 1, 2]
->>>>
->>>> Cell phandle tells that. Drop property.
->>>
->>> Sorry, I do not understand what you mean, could you explain it in more
->>> detail?
->>
->> Use phandle cells for that - look at other PTP bindings.
-> 
-> Sorry, I did not find a reference in other PTP bindings. If I understand
-> correctly, you mean I should add a specific cells property to this doc
-> as follows, correct?
-> 
-> "#nxp,pps-channel-cells":
->     description: |
->       Specifies to which fixed interval period pulse generator is
->       used to generate PPS signal.
->     $ref: /schemas/types.yaml#/definitions/uint32
->     const: 1
-> 
+> Driver as Linux driver or LED driver? If the first, then drop.
+LED driver, might not be obvious, could change to controller,
+however the datasheet refers to the device "LED driver".
 
+> These should be people interested in this hardware, not subsystem
+> maintainers.
 
-No. Is this a timestamper device? You really did not find a TXT document
-describing this, in the same directory? Well, maybe it is not a
-timestamper device, how do I know, your description should be clear here.
+I will let maintainers decide who should be included here perhaps ?
 
-How does the other consumer - ethernet - reference this one here? Paste
-complete DTS of this and users, otherwise it is just ping-pong
-discussion where you put just a little effort to bounce back my question.
+> Keep consistent quotes, either " or '. You made different choice for the
+> same properties even...
 
+Copied over from original poster, have not spotted that before, thanks.
 
-Best regards,
-Krzysztof
+> Pattern does not match entirely the reg constraints. 36 is 0x24.
+
+Pattern allows for one or more hexadecimal values starting from 1,
+so the second number should start from zero is the second error here.
+
+Thanks !
 
