@@ -1,145 +1,132 @@
-Return-Path: <devicetree+bounces-195854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B7D2B035DA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 07:36:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D491DB035EB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 07:37:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC50A1895891
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 05:36:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EECB9189707B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 05:37:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A10C20468D;
-	Mon, 14 Jul 2025 05:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A9F420468D;
+	Mon, 14 Jul 2025 05:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AzED9ED/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dAWMrh8h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0C141FDA82;
-	Mon, 14 Jul 2025 05:35:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482A91FDA82;
+	Mon, 14 Jul 2025 05:37:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752471351; cv=none; b=ZOi1hv4oCLd0l+eb2l6u2bqYxbIDd5X2Knj6duECIp5a/znQnlYfZH6oNeTW2Y4s6FbVJ2YVt/dwYUG0B5MGDILTdKxpf9pmzrgCMgEWYpz6AemlpIqxKJz0FofnIa1BNcY0VqRapev+gijIl8JDoSicDAi6TRi/AxfB5AWDJtQ=
+	t=1752471428; cv=none; b=nEvfyKty0sAUtk9/5hvw1rkiR+BLmqv/B5DWs0vpwgOPi3TT7OgbsdR5xHKDaJFH5brtrkt/KvPQkvVFcNSmdVfWJ6g1C7WfUFe1EMK9wnITKD8ketBKUCNFhF4TQnxuW4RTkkPW0dcpstKBCtb+GQ2UV0j9af/HLEDBfB7MyvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752471351; c=relaxed/simple;
-	bh=9+08Hc9UF8N52xk3lCvwIIkOnYxSZRn+lE4UAJftaJc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iE3a5zcxTk59Kiu59zXB7l7MpKNVyfCOM+myFU+fZ5ITPujAxBf5u660wNGjafWYPV/PDUP9WmJrQcbKpKQ25Xg+AP8VLZlLT34pE+LcNB6ofcBIj1yx1I30EP1IehoiZxcZMdVtQZ/mNwFdZliqJgVRa4goWNZDWSrSE1RUUMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AzED9ED/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73092C4CEED;
-	Mon, 14 Jul 2025 05:35:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752471350;
-	bh=9+08Hc9UF8N52xk3lCvwIIkOnYxSZRn+lE4UAJftaJc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AzED9ED/brZHpr6n3jFjD4wWC7PycIp9Hp+4HXSPN7ZmzFIvqd2DLfZ0O0GWfe6sB
-	 6rLl1eTaTRJkQLuuDfcGFLeqbELIAnWhuBsrhw9yzI3ka+j3xXn/JQNkqpIfGqieY8
-	 0xio7bOjQTJiRqq9MdhX4xhdm/zfyQ6YsFAqcrvgI2Y5JHfMmV+OS3VRfIXXrRrWf3
-	 x1qx7OOCtYuufCJXlAeJxHX71JiKEjtWyhNE3SFppwNLVXQY2jRqswnuBTLVAJAot2
-	 G47HBDQ0Gl4Q2+/DYAV8J51aYfSVns8lR9FcpYwPUHbr3NVeeewI9eo2slV/DXWVpf
-	 KxueoalNFCXog==
-Message-ID: <ab35bb65-6652-4e58-9898-ea34adaf2de8@kernel.org>
-Date: Mon, 14 Jul 2025 07:35:44 +0200
+	s=arc-20240116; t=1752471428; c=relaxed/simple;
+	bh=tc/NhtMREFxVXaPtCfojmDAvMBzvWojwpV/8eQNmpgw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DpzI4K81VNBZYoGswZ8rhrHnpOvQZbmipheA5LSORQzCL6B+ccwn9DMWyr1C4WpRQQqerOAzz+a2KH3+VSb7+Bsol2S1bbAZWa5hruG2gN2qQu9Uom3SG6I7lPjPEBHQz0GZ8C/iALeD2+KpyXOkxnM8vby0MdAlZudxzmX5Mg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dAWMrh8h; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-553ba7f11cbso3934326e87.1;
+        Sun, 13 Jul 2025 22:37:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752471423; x=1753076223; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2xagdIzzGx6NuuSet54b4me2cko80bXqLwMkK0zMzLk=;
+        b=dAWMrh8hVYs5cdtjRIcdntxFU8sSG0UmW2wjMo2joL/r0gUk7wy49rSHQT29Z1YRyM
+         HtO9nepQ7t8r3DXI64iaUhGYFHoulwgCBrxMXt5jggS3wMwvuQ+HzQY+Xh/58WEQxb2u
+         SdaKnCqhvDgI3JgucLb7WBwZtSHAbTKoYOJujrbPnk5E9fVzBXZdwuKiWDqu8+DnKNDq
+         i+EeqR5VtXhfQ06KJIKhO/sKLtkgjdqao+YCC+rKff2c8NPvimDjVfGlHoqQbWnblrBu
+         tiw+GLq9L0Bk6Z7TOG3F4LsChEcmaMKr8onpBF2s5K4gtIwkrMViRW58MkPSyexsTiMh
+         kF2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752471423; x=1753076223;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2xagdIzzGx6NuuSet54b4me2cko80bXqLwMkK0zMzLk=;
+        b=anJevQSmqThMDgDvOBfLZZB8rtacMo/w5+PBHbRLfWV8tIun3WE6LtIsx3+lckawsy
+         ooFZd0Lm0O83osNr/uHdXaQ3Y9ige5XZmu1slKzmoXaAEh9t9sa5VMtA9QNGBWExDk9l
+         aoUa6oZRnnigCg3JyHZoJflUwPpWIpvZ8v0seEpRFJ1HAuqf+nMGNNM1MZYZUQzZjOHk
+         +Rykyn1EXK0b3OckwDRGs5UTE6Xz6Go6vBgxEs7QAHUy+C2UYsk/FJaNRoFQ+ZmL+qdd
+         Km7bgGAxBfZS6NnsaxVMpB6HvaehwO/n0Pr7ISMTcFUvMTWHAdQrxGFHvpInkVwvS/Kl
+         MeSw==
+X-Forwarded-Encrypted: i=1; AJvYcCX6sbnWy84P2FLuBEdpnuKh0kWN84A0kA8L+P3pAhU8mFNHBU13usPuSyG4/UU20M88h6HjOq3IFEwB@vger.kernel.org, AJvYcCXPHz7QymNSaFBcdhGVOM2Zj6oECutjzaLy8zLBxwLGTSE5gc+d5BbN/YCUcoQWV2Wz9oYp+0S13HuVlnM=@vger.kernel.org, AJvYcCXYxcDukiF39HwuzmnCfWg39kXKxXCiKXEOJXUVwwWLppsvSCa0Gb7IEtL+aUPw1lsLQ5a40eCF0+Gf62kR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtcZdyBGTMLueZsUKkruFigwsum5rGsWSq4WgBt7+hAxMQPZTy
+	LtvrbR7RwgCXOW6emETbYJCFkWKBbdKgm6c+Lsvz7GLGyU078lxQrp2S9SFvKR+BdgB+a4Dd/G2
+	SWqSPonM69EKlhbKZpDjf1jSjYjrtQsQ=
+X-Gm-Gg: ASbGncu+oAm2kUh50EYn2uDvZMTuUcuyLYgMoE4Ij0TMTv0rxjsIH/KKyjK5dCmzhV9
+	jCg8zRSXmSQyzvf0VhFP9PrPmtA/CUlRwCJcJSn9FrnQaHyobsWCGSd3NZC1M/mkw6q3GH55TeN
+	TauvWCxhctdErHDuwsqHzqR5V0VDCMgC18XieOJWZOrPF6BOXZZvkvdOYgT2SnjTY85rfAIHmlK
+	A2nqwk=
+X-Google-Smtp-Source: AGHT+IGT8vhhzvx2cXbAU4QZYDjTD9k2ie2m0pUaWgI9ZnO1SJd9b2fyH0yLJ7qcoWp4tt/Muba3v/xPP7IzzK2uPtA=
+X-Received: by 2002:a05:6512:3984:b0:553:2cc1:2bba with SMTP id
+ 2adb3069b0e04-55a04608d6amr3479279e87.31.1752471423106; Sun, 13 Jul 2025
+ 22:37:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: display: Add Mayqueen Pixpaper e-ink
- panel
-To: LiangCheng Wang <zaq14760@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Wig Cheng <onlywig@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org
-References: <20250714-drm-v2-0-5d1a2e12796c@gmail.com>
- <20250714-drm-v2-2-5d1a2e12796c@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250714-drm-v2-2-5d1a2e12796c@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250611-p3452-v2-0-fd2679706c63@gmail.com> <CALHNRZ9tjJo3LRmpaGsEsf2=Him0O2J-ZaJf4UZ8bcbz1119BQ@mail.gmail.com>
+In-Reply-To: <CALHNRZ9tjJo3LRmpaGsEsf2=Him0O2J-ZaJf4UZ8bcbz1119BQ@mail.gmail.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Mon, 14 Jul 2025 00:36:51 -0500
+X-Gm-Features: Ac12FXwZv433YhDKlU9lVbj--nIsj8zVqrPutzSOZ78w5bGvNK75fV_b5-3tS4U
+Message-ID: <CALHNRZ-mUb1Yv6WTeq50ddBS209uWUkv2ivdEMqfBBUtw+SU2Q@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer
+ Kit support
+To: webgeek1234@gmail.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 14/07/2025 04:59, LiangCheng Wang wrote:
-> The binding is for the Mayqueen Pixpaper e-ink display panel,
-> controlled via an SPI interface.
-> 
-> Signed-off-by: LiangCheng Wang <zaq14760@gmail.com>
+On Mon, Jun 30, 2025 at 2:37=E2=80=AFPM Aaron Kling <webgeek1234@gmail.com>=
+ wrote:
+>
+> On Wed, Jun 11, 2025 at 1:53=E2=80=AFPM Aaron Kling via B4 Relay
+> <devnull+webgeek1234.gmail.com@kernel.org> wrote:
+> >
+> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > ---
+> > Changes in v2:
+> > - Fix usb power supply to align with downstream power tree
+> > - Control vdd_hdmi with gpio pa6 and delete unused vdd_hub_3v3 to avoid
+> >   conflicts
+> > - Link to v1: https://lore.kernel.org/r/20250608-p3452-v1-0-4c2c1d7e431=
+0@gmail.com
+> >
+> > ---
+> > Aaron Kling (2):
+> >       dt-bindings: arm: tegra: Document Jetson Nano Devkits
+> >       arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer Kit support
+> >
+> >  Documentation/devicetree/bindings/arm/tegra.yaml   |  5 ++
+> >  arch/arm64/boot/dts/nvidia/Makefile                |  2 +
+> >  arch/arm64/boot/dts/nvidia/tegra210-p3541-0000.dts | 59 ++++++++++++++=
+++++++++
+> >  3 files changed, 66 insertions(+)
+> > ---
+> > base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+> > change-id: 20250513-p3452-059708ca9993
+> >
+> > Best regards,
+> > --
+> > Aaron Kling <webgeek1234@gmail.com>
+>
+> Friendly reminder about this series.
 
-<form letter>
-This is a friendly reminder during the review process.
+Re-reminder about this series.
 
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
-
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
-
-Best regards,
-Krzysztof
+Aaron
 
