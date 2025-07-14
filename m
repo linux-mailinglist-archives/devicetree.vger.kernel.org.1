@@ -1,279 +1,417 @@
-Return-Path: <devicetree+bounces-195948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F4ADB03A84
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 11:13:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91774B03A90
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 11:14:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A03C189E371
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:13:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 993EC175EF8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:13:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8919B23D28A;
-	Mon, 14 Jul 2025 09:12:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1883823F424;
+	Mon, 14 Jul 2025 09:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="TIJHN0Fz"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="V0t4nVYn";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="v1UKc23C";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="V0t4nVYn";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="v1UKc23C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D5A23D281
-	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 09:12:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9E9F23F28D
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 09:13:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752484351; cv=none; b=Dj2CMS7ng+gjz8trTIQhmja0BKEcV6PadaUVek6mLq90LHFv/phiBYQRi690+5pLCyWplal28rBkw3l+9LPDbJBVSK/ppEDlThr+MwhA6nzjKFO9K8YBwTye65ASYKvS1KDMGb+7iN24r3eoJ1mIUEz1UoqfI0tKJUmp/XkevkE=
+	t=1752484394; cv=none; b=JBENuHIYp8R+yoyN/YkX1z39F5HaQVEhLtqfx5IOGVYqReXD3m2supHbH5C7EoOqqD9YjYKMxEeTlgMCeUfeiqHZjLTR3LqosUqFPPhDIiMKpROuv4rODHCJk7OEOfnBdrJwVu934uf4gSGgqoto9oA7WqZ/0uBc021M3n2RX0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752484351; c=relaxed/simple;
-	bh=vF21f23nhaq6fJN8/WjiDsYxt5/SpTsKCPQ0ZbFNE9c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uLbRw3CesvQGadjeylde+AozlHakBD8unjvnGAJQYzYHHNdlcwwOPi3iyAqSU9pZS3TZ9ns6d9REniNb+/wxApXoZSCP4J+Gya73tfmJHEuShy0dh8S6UYFA9xoKmqi6gZshWqQKyHX8vI/2fdVu6mIAX9AAvdydDcYLwfeO5iE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=TIJHN0Fz; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=nxWe1OPboBVBbMmD1o6/1jTXm4QcpGIxaNX7jN0TAqQ=; b=TIJHN0
-	FzRoRzU10kyPGOWCm8oGtY+bZt2ZdGEH0FBNlfBE+jWdhWR6xBM0Qt5BCR0EPIpd
-	hbf2ASR/dZNO2RNRmCZqZ+TcNqp9WzaKGZmY8hpmZ2PMPPZBAk3yk/z9XLSuTg2q
-	KZY9Ab7KqxjZ7nUGCOiqQkO7LtBZVWoGzwwRxMCVepcwsF6wjiOKJlyuJBh34Di6
-	h1VRZk4RSh0wsi+cIqdGBn4LO0tR76Y6A/VHBww304/D+BCJqwB8pSTFDEybn6MG
-	qZNj3WuOFcLw6BY9yNffZiWHbUtdQmPXVJEr1/uOTcuX2UNF8KAmZ01hxinC+OVb
-	3YcZo+ZLkE1Z9HLg==
-Received: (qmail 2399856 invoked from network); 14 Jul 2025 11:12:24 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Jul 2025 11:12:24 +0200
-X-UD-Smtp-Session: l3s3148p1@m8nQDuA5duYgAwDPXxNjAMIr4MhSGEU6
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: i3c: renesas,i3c: Add binding for Renesas I3C controller
-Date: Mon, 14 Jul 2025 11:12:08 +0200
-Message-ID: <20250714091211.20497-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250714091211.20497-1-wsa+renesas@sang-engineering.com>
-References: <20250714091211.20497-1-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1752484394; c=relaxed/simple;
+	bh=pXk3lXYvNNrIlaoxbytBuvSaywByzTgCtSXZweoEPf0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=q73Dlh48qpLdJ6aM89jNqeVkBi5Fkzxa0trXFYC8IEJTp3pFVktyWFhLQw7/bwyCGxt+DurZVFKftVIvDLJzUUBsRY/+S3fQ5zK+yBzgOKqTHrdi8IWUzZarXD1/mOWcQMLF9yv6SCtYwo0mQ3PIdF7FwmO2dvziKL/J0FC86iE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=V0t4nVYn; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=v1UKc23C; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=V0t4nVYn; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=v1UKc23C; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 279BB1F7BE;
+	Mon, 14 Jul 2025 09:13:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1752484385; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=dOg9BN4p73V+kihZrR17uxX116DsNSkssr7SD2cMz4A=;
+	b=V0t4nVYnvr6LY0AC8rDvZdYO5WgLg0Mwd4owDepbmtiBTI4tEY4UChdhhC+3n9XlFLAz2d
+	c24Zgx68JYVb0A3SGyKVk4ZY/raQDy6XGlIPV7v5y61momVtWpZbfFuHyt7N3Gh0f9dWda
+	Ed1ZHSVuYpmFPWSpeRLt7QBmwuR3rfQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1752484385;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=dOg9BN4p73V+kihZrR17uxX116DsNSkssr7SD2cMz4A=;
+	b=v1UKc23CqoZv0MCxMp0eSK8y76qZ97u+vMUCTq394wxdfevGmjiHpFAHG5kqH3O7YulKPS
+	fTmXdDPNjWAIjyCw==
+Authentication-Results: smtp-out2.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=V0t4nVYn;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=v1UKc23C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1752484385; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=dOg9BN4p73V+kihZrR17uxX116DsNSkssr7SD2cMz4A=;
+	b=V0t4nVYnvr6LY0AC8rDvZdYO5WgLg0Mwd4owDepbmtiBTI4tEY4UChdhhC+3n9XlFLAz2d
+	c24Zgx68JYVb0A3SGyKVk4ZY/raQDy6XGlIPV7v5y61momVtWpZbfFuHyt7N3Gh0f9dWda
+	Ed1ZHSVuYpmFPWSpeRLt7QBmwuR3rfQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1752484385;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=dOg9BN4p73V+kihZrR17uxX116DsNSkssr7SD2cMz4A=;
+	b=v1UKc23CqoZv0MCxMp0eSK8y76qZ97u+vMUCTq394wxdfevGmjiHpFAHG5kqH3O7YulKPS
+	fTmXdDPNjWAIjyCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id BD912138A1;
+	Mon, 14 Jul 2025 09:13:04 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id +W3gLCDKdGh2PAAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Mon, 14 Jul 2025 09:13:04 +0000
+Message-ID: <bc37c3e9-0e58-4d63-b271-d2b026adf3a0@suse.de>
+Date: Mon, 14 Jul 2025 11:13:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] drm/format-helper: introduce
+ drm_fb_xrgb8888_to_gray2()
+To: Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Javier Martinez Canillas <javierm@redhat.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250714-st7571-format-v1-0-a27e5112baff@gmail.com>
+ <20250714-st7571-format-v1-4-a27e5112baff@gmail.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20250714-st7571-format-v1-4-a27e5112baff@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-3.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,ffwll.ch,redhat.com];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	ARC_NA(0.00)[];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	RCVD_TLS_ALL(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	TAGGED_RCPT(0.00)[dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[suse.de:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:dkim,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns]
+X-Spam-Flag: NO
+X-Spam-Level: 
+X-Rspamd-Queue-Id: 279BB1F7BE
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -3.01
 
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Hi
 
-Available in R9A08G045 (RZ/G3S), R9A09G047 (RZ/G3E) SoCs.
+Am 14.07.25 um 10:04 schrieb Marcus Folkesson:
+> drm_fb_xrgb8888_to_gray2() works like and share much code with
+> drm_fb_xrgb8888_to_mono(), but converts XRGB8888 to
+> 2bit grayscale instead.
+>
+> It uses drm_fb_xrgb8888_to_gray8() to convert the pixels to gray8 as an
+> intermediate step before converting to gray2.
 
-Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
+Please don't share code here.  This needs a serious rework anyway. The 
+best thing for now is to add a new, separate function for _gray2().
 
-Changes since RFC:
-* resorted the clks, so G3S can only have the first two while G3E needs
-    needs all three
+Best regards
+Thomas
 
- .../devicetree/bindings/i3c/renesas,i3c.yaml  | 180 ++++++++++++++++++
- 1 file changed, 180 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
 
-diff --git a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-new file mode 100644
-index 000000000000..f53a176cad2c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-@@ -0,0 +1,180 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i3c/renesas,i3c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G3S and RZ/G3E I3C Bus Interface
-+
-+maintainers:
-+  - Wolfram Sang <wsa+renesas@sang-engineering.com>
-+  - Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a08g045-i3c # RZ/G3S
-+          - renesas,r9a09g047-i3c # RZ/G3E
-+      - const: renesas,i3c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Non-recoverable internal error interrupt
-+      - description: Normal transfer error interrupt
-+      - description: Normal transfer abort interrupt
-+      - description: Normal response status buffer full interrupt
-+      - description: Normal command buffer empty interrupt
-+      - description: Normal IBI status buffer full interrupt
-+      - description: Normal Rx data buffer full interrupt
-+      - description: Normal Tx data buffer empty interrupt
-+      - description: Normal receive status buffer full interrupt
-+      - description: START condition detection interrupt
-+      - description: STOP condition detection interrupt
-+      - description: Transmit end interrupt
-+      - description: NACK detection interrupt
-+      - description: Arbitration lost interrupt
-+      - description: Timeout detection interrupt
-+      - description: Wake-up condition detection interrupt
-+      - description: HDR Exit Pattern detection interrupt
-+    minItems: 16
-+
-+  interrupt-names:
-+    items:
-+      - const: ierr
-+      - const: terr
-+      - const: abort
-+      - const: resp
-+      - const: cmd
-+      - const: ibi
-+      - const: rx
-+      - const: tx
-+      - const: rcv
-+      - const: st
-+      - const: sp
-+      - const: tend
-+      - const: nack
-+      - const: al
-+      - const: tmo
-+      - const: wu
-+      - const: exit
-+    minItems: 16
-+
-+  clocks:
-+    items:
-+      - description: APB bus clock
-+      - description: transfer clock
-+      - description: SFRs clock
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: tclk
-+      - const: pclkrw
-+    minItems: 2
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    items:
-+      - description: Reset signal
-+      - description: APB interface reset signal/SCAN reset signal
-+
-+  reset-names:
-+    items:
-+      - const: presetn
-+      - const: tresetn
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clock-names
-+  - clocks
-+  - power-domains
-+  - resets
-+  - reset-names
-+
-+allOf:
-+  - $ref: i3c.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a08g045-i3c
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+        clock-names:
-+          maxItems: 2
-+        interrupts:
-+          minItems: 17
-+        interrupt-names:
-+          minItems: 17
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g047-i3c
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+        clock-names:
-+          minItems: 3
-+        interrupts:
-+          maxItems: 16
-+        interrupt-names:
-+          maxItems: 16
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a08g045-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    i3c@1005b000 {
-+        compatible = "renesas,r9a08g045-i3c", "renesas,i3c";
-+        reg = <0x1005b000 0x1000>;
-+        clocks = <&cpg CPG_MOD R9A08G045_I3C_PCLK>,
-+                 <&cpg CPG_MOD R9A08G045_I3C_TCLK>;
-+        clock-names = "pclk", "tclk";
-+        interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 294 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 295 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 296 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 297 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 298 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 299 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "ierr", "terr", "abort", "resp",
-+                          "cmd", "ibi", "rx", "tx", "rcv",
-+                          "st", "sp", "tend", "nack",
-+                          "al", "tmo", "wu", "exit";
-+        resets = <&cpg R9A08G045_I3C_PRESETN>,
-+                 <&cpg R9A08G045_I3C_TRESETN>;
-+        reset-names = "presetn", "tresetn";
-+        power-domains = <&cpg>;
-+        #address-cells = <3>;
-+        #size-cells = <0>;
-+    };
-+...
+>
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> ---
+>   drivers/gpu/drm/drm_format_helper.c | 148 ++++++++++++++++++++++++++----------
+>   include/drm/drm_format_helper.h     |   4 +
+>   2 files changed, 110 insertions(+), 42 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_format_helper.c b/drivers/gpu/drm/drm_format_helper.c
+> index 8f3daf38ca639d3d39742c2c9fa0c54a3a9297a5..2f2171b3df609263cc9ce6809bf6144028c25380 100644
+> --- a/drivers/gpu/drm/drm_format_helper.c
+> +++ b/drivers/gpu/drm/drm_format_helper.c
+> @@ -1253,6 +1253,25 @@ int drm_fb_blit(struct iosys_map *dst, const unsigned int *dst_pitch, uint32_t d
+>   }
+>   EXPORT_SYMBOL(drm_fb_blit);
+>   
+> +static void drm_fb_gray8_to_gray2_line(void *dbuf, const void *sbuf, unsigned int pixels)
+> +{
+> +	u8 *dbuf8 = dbuf;
+> +	const u8 *sbuf8 = sbuf;
+> +	u8 px;
+> +
+> +	while (pixels) {
+> +		unsigned int i, bits = min(pixels, 4U);
+> +		u8 byte = 0;
+> +
+> +		for (i = 0; i < bits; i++, pixels--) {
+> +			byte >>= 2;
+> +			px = (*sbuf8++ * 3 + 127) / 255;
+> +			byte |= (px &= 0x03) << 6;
+> +		}
+> +		*dbuf8++ = byte;
+> +	}
+> +}
+> +
+>   static void drm_fb_gray8_to_mono_line(void *dbuf, const void *sbuf, unsigned int pixels)
+>   {
+>   	u8 *dbuf8 = dbuf;
+> @@ -1270,40 +1289,11 @@ static void drm_fb_gray8_to_mono_line(void *dbuf, const void *sbuf, unsigned int
+>   	}
+>   }
+>   
+> -/**
+> - * drm_fb_xrgb8888_to_mono - Convert XRGB8888 to monochrome
+> - * @dst: Array of monochrome destination buffers (0=black, 1=white)
+> - * @dst_pitch: Array of numbers of bytes between the start of two consecutive scanlines
+> - *             within @dst; can be NULL if scanlines are stored next to each other.
+> - * @src: Array of XRGB8888 source buffers
+> - * @fb: DRM framebuffer
+> - * @clip: Clip rectangle area to copy
+> - * @state: Transform and conversion state
+> - *
+> - * This function copies parts of a framebuffer to display memory and converts the
+> - * color format during the process. Destination and framebuffer formats must match. The
+> - * parameters @dst, @dst_pitch and @src refer to arrays. Each array must have at
+> - * least as many entries as there are planes in @fb's format. Each entry stores the
+> - * value for the format's respective color plane at the same index.
+> - *
+> - * This function does not apply clipping on @dst (i.e. the destination is at the
+> - * top-left corner). The first pixel (upper left corner of the clip rectangle) will
+> - * be converted and copied to the first bit (LSB) in the first byte of the monochrome
+> - * destination buffer. If the caller requires that the first pixel in a byte must
+> - * be located at an x-coordinate that is a multiple of 8, then the caller must take
+> - * care itself of supplying a suitable clip rectangle.
+> - *
+> - * DRM doesn't have native monochrome support. Drivers can use this function for
+> - * monochrome devices that don't support XRGB8888 natively. Such drivers can
+> - * announce the commonly supported XR24 format to userspace and use this function
+> - * to convert to the native format.
+> - *
+> - * This function uses drm_fb_xrgb8888_to_gray8() to convert to grayscale and
+> - * then the result is converted from grayscale to monochrome.
+> - */
+> -void drm_fb_xrgb8888_to_mono(struct iosys_map *dst, const unsigned int *dst_pitch,
+> -			     const struct iosys_map *src, const struct drm_framebuffer *fb,
+> -			     const struct drm_rect *clip, struct drm_format_conv_state *state)
+> +static void drm_fb_xrgb8888_to_gray(u8 *dst, const unsigned int *dst_pitch,
+> +			     u8 *src, const struct drm_framebuffer *fb,
+> +			     const struct drm_rect *clip, struct drm_format_conv_state *state,
+> +			     u8 bpp,
+> +			     void (*xfrm_line)(void *dbuf, const void *sbuf, unsigned int npixels))
+>   {
+>   	static const unsigned int default_dst_pitch[DRM_FORMAT_MAX_PLANES] = {
+>   		0, 0, 0, 0
+> @@ -1313,11 +1303,10 @@ void drm_fb_xrgb8888_to_mono(struct iosys_map *dst, const unsigned int *dst_pitc
+>   	unsigned int cpp = fb->format->cpp[0];
+>   	unsigned int len_src32 = linepixels * cpp;
+>   	struct drm_device *dev = fb->dev;
+> -	void *vaddr = src[0].vaddr;
+>   	unsigned int dst_pitch_0;
+>   	unsigned int y;
+> -	u8 *mono = dst[0].vaddr, *gray8;
+>   	u32 *src32;
+> +	u8 *gray8;
+>   
+>   	if (drm_WARN_ON(dev, fb->format->format != DRM_FORMAT_XRGB8888))
+>   		return;
+> @@ -1330,7 +1319,7 @@ void drm_fb_xrgb8888_to_mono(struct iosys_map *dst, const unsigned int *dst_pitc
+>   	 * The mono destination buffer contains 1 bit per pixel
+>   	 */
+>   	if (!dst_pitch_0)
+> -		dst_pitch_0 = DIV_ROUND_UP(linepixels, 8);
+> +		dst_pitch_0 = DIV_ROUND_UP(linepixels, 8 / bpp);
+>   
+>   	/*
+>   	 * The dma memory is write-combined so reads are uncached.
+> @@ -1349,13 +1338,88 @@ void drm_fb_xrgb8888_to_mono(struct iosys_map *dst, const unsigned int *dst_pitc
+>   
+>   	gray8 = (u8 *)src32 + len_src32;
+>   
+> -	vaddr += clip_offset(clip, fb->pitches[0], cpp);
+> +	src += clip_offset(clip, fb->pitches[0], cpp);
+>   	for (y = 0; y < lines; y++) {
+> -		src32 = memcpy(src32, vaddr, len_src32);
+> +		src32 = memcpy(src32, src, len_src32);
+>   		drm_fb_xrgb8888_to_gray8_line(gray8, src32, linepixels);
+> -		drm_fb_gray8_to_mono_line(mono, gray8, linepixels);
+> -		vaddr += fb->pitches[0];
+> -		mono += dst_pitch_0;
+> +		xfrm_line(dst, gray8, linepixels);
+> +		src += fb->pitches[0];
+> +		dst += dst_pitch_0;
+>   	}
+>   }
+> +
+> +/**
+> + * drm_fb_xrgb8888_to_mono - Convert XRGB8888 to monochrome
+> + * @dst: Array of monochrome destination buffers (0=black, 1=white)
+> + * @dst_pitch: Array of numbers of bytes between the start of two consecutive scanlines
+> + *             within @dst; can be NULL if scanlines are stored next to each other.
+> + * @src: Array of XRGB8888 source buffers
+> + * @fb: DRM framebuffer
+> + * @clip: Clip rectangle area to copy
+> + * @state: Transform and conversion state
+> + *
+> + * DRM doesn't have native monochrome support. Drivers can use this function for
+> + * monochrome devices that don't support XRGB8888 natively. Such drivers can
+> + * announce the commonly supported XR24 format to userspace and use this function
+> + * to convert to the native format.
+> + *
+> + * This function copies parts of a framebuffer to display memory and converts the
+> + * color format during the process. Destination and framebuffer formats must match. The
+> + * parameters @dst, @dst_pitch and @src refer to arrays. Each array must have at
+> + * least as many entries as there are planes in @fb's format. Each entry stores the
+> + * value for the format's respective color plane at the same index.
+> + *
+> + * This function does not apply clipping on @dst (i.e. the destination is at the
+> + * top-left corner). The first pixel (upper left corner of the clip rectangle) will
+> + * be converted and copied to the first bit (LSB) in the first byte of the monochrome
+> + * destination buffer. If the caller requires that the first pixel in a byte must
+> + * be located at an x-coordinate that is a multiple of 8, then the caller must take
+> + * care itself of supplying a suitable clip rectangle.
+> + *
+> + *
+> + * This function uses drm_fb_xrgb8888_to_gray8() to convert to grayscale and
+> + * then the result is converted from grayscale to monochrome.
+> + */
+> +
+> +
+> +void drm_fb_xrgb8888_to_mono(struct iosys_map *dst, const unsigned int *dst_pitch,
+> +			     const struct iosys_map *src, const struct drm_framebuffer *fb,
+> +			     const struct drm_rect *clip, struct drm_format_conv_state *state)
+> +{
+> +	drm_fb_xrgb8888_to_gray(dst[0].vaddr, dst_pitch, src[0].vaddr, fb, clip, state,
+> +				1, drm_fb_gray8_to_mono_line);
+> +}
+>   EXPORT_SYMBOL(drm_fb_xrgb8888_to_mono);
+> +
+> +/**
+> + * drm_fb_xrgb8888_to_gray2 - Convert XRGB8888 to gray2
+> + * @dst: Array of gray2 destination buffers
+> + * @dst_pitch: Array of numbers of bytes between the start of two consecutive scanlines
+> + *             within @dst; can be NULL if scanlines are stored next to each other.
+> + * @src: Array of XRGB8888 source buffers
+> + * @fb: DRM framebuffer
+> + * @clip: Clip rectangle area to copy
+> + * @state: Transform and conversion state
+> + *
+> + * This function copies parts of a framebuffer to display memory and converts the
+> + * color format during the process. Destination and framebuffer formats must match. The
+> + * parameters @dst, @dst_pitch and @src refer to arrays. Each array must have at
+> + * least as many entries as there are planes in @fb's format. Each entry stores the
+> + * value for the format's respective color plane at the same index.
+> + *
+> + * DRM doesn't have native gray2 support. Drivers can use this function for
+> + * gray2 devices that don't support XRGB8888 natively. Such drivers can
+> + * announce the commonly supported XR24 format to userspace and use this function
+> + * to convert to the native format.
+> + *
+> + * This function uses drm_fb_xrgb8888_to_gray8() to convert to grayscale and
+> + * then the result is converted from grayscale to gray2.
+> + */
+> +void drm_fb_xrgb8888_to_gray2(struct iosys_map *dst, const unsigned int *dst_pitch,
+> +			      const struct iosys_map *src, const struct drm_framebuffer *fb,
+> +			      const struct drm_rect *clip, struct drm_format_conv_state *state)
+> +{
+> +	drm_fb_xrgb8888_to_gray(dst[0].vaddr, dst_pitch, src[0].vaddr, fb, clip, state,
+> +				2, drm_fb_gray8_to_gray2_line);
+> +}
+> +EXPORT_SYMBOL(drm_fb_xrgb8888_to_gray2);
+> diff --git a/include/drm/drm_format_helper.h b/include/drm/drm_format_helper.h
+> index 562bc383ece4e90d96aa92b47b4f69609f825a6e..8488befafb7e0e0311f87bd2fef5011bab45065b 100644
+> --- a/include/drm/drm_format_helper.h
+> +++ b/include/drm/drm_format_helper.h
+> @@ -136,4 +136,8 @@ void drm_fb_xrgb8888_to_mono(struct iosys_map *dst, const unsigned int *dst_pitc
+>   			     const struct iosys_map *src, const struct drm_framebuffer *fb,
+>   			     const struct drm_rect *clip, struct drm_format_conv_state *state);
+>   
+> +void drm_fb_xrgb8888_to_gray2(struct iosys_map *dst, const unsigned int *dst_pitch,
+> +			     const struct iosys_map *src, const struct drm_framebuffer *fb,
+> +			     const struct drm_rect *clip, struct drm_format_conv_state *state);
+> +
+>   #endif /* __LINUX_DRM_FORMAT_HELPER_H */
+>
+
 -- 
-2.47.2
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
 
