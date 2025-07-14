@@ -1,192 +1,148 @@
-Return-Path: <devicetree+bounces-196261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CF28B04C03
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 01:14:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE5BB04C3B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 01:27:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 909444E1353
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 23:12:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D6B14A0B23
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 23:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CEB726B765;
-	Mon, 14 Jul 2025 23:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3010242D99;
+	Mon, 14 Jul 2025 23:27:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Byi6Oq1m"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BdPqp6kt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBFB78F6E
-	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 23:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2167C1DFCE;
+	Mon, 14 Jul 2025 23:27:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752534670; cv=none; b=N7Pp60GF8W8uQRqgm4oVYrpUzvwGjKA6hMnmxDHgunxnvacQMUzzxSMqkv9hPzDT+uUm6yywPU2XWbW5JH/r8LZc3fApeC1KbH1LiwsuaD0mWzz/JRYRZg0a2Gf4+hE13iJIw9fUOzjnqCBuWimXTRxGGu6uloNFmPB9dwoh1ew=
+	t=1752535647; cv=none; b=XyPP28Pq9vSR8WxpbCVWdkY0Q4bwkLaqXRv+6ezS99+TnmKJf1xyu0a5wYPMdbX+OsxoFmAykC2n2RHWB2l5TZT9fNTK5OAFoEGDmxF2jccu6rFv1e/6U9ejGk3cQjy7PqfxoISBAIhRJQ/joLuysO4KgHX73DSNoAdRkNTt6BY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752534670; c=relaxed/simple;
-	bh=sP4SdeIpSUchjjIZMdqRkrYx1C+VnRkR1jo5U4lQz4k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JaV/zUCKO4UMqQIskRPBg7ojAqYv6+uh5EtM77JhJODRKzc70LCsKHghPWV1lM7gcjwyuYe9xP+7GT5Q/Oy8fqwDEKDRwgapC+LM6TvdUXxTTqW59y7C9BIxfp+oW7VmqIIIBxLiLLXGWO4ekscNqjTHuqnnDLUYaHvvQ25DoIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Byi6Oq1m; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56EJ73sa018138
-	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 23:11:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=lnAbRsgM5Xpw854WTnr2PpxC
-	p0fWTNuQo/r6LvQOASo=; b=Byi6Oq1mlQ2Du1UBtBznaIYzQY4p8hL5pynHWdSv
-	aTDe7W6x/B7tNhEqPkO5Y+VCzcSxQOtr0SuJfn7PglX+uFZMeALZiw5WrQcMh9rf
-	sJ/Mc7HQOsEFmM9uIhSp5TBa7YwgWQ1Y4TrG1gWWLFFEW0WjJs/h8KGUsIHfDcD2
-	49jcgELppT87gxfGxfXrNE98HiZW3Wn2N2WeWsSdypESIKNDnuxrp27nFMZzD+bx
-	yU9qvwOPSfNE3+VFAsukhHo6roMkV6ATzLPh7u6HFnfVKFPkYJtaWBlZlEnxipRV
-	XPQa3LJW0KKZLLpv05ITsY9TLU5AbgQXd0WQ0ZKra56mOQ==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufu862y9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 23:11:07 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5bb68b386so1437998085a.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 16:11:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752534667; x=1753139467;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1752535647; c=relaxed/simple;
+	bh=oSMnXm8xNMGu8kyySNLUWLKWniZxyLqIJbwxo2+Cymw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fY8IMEVO1Xqqul0I8G2hCggiBY7+++34c5W0FKNlBUm7oF4BzuhjXYSwESuNTEr7NXdv0T0S8l0FSX8c/pEDZ5i1Ns+r95J6GsYeJt+ygnEx8OFnoZsfmnKqoCbC/yTnavgW+O4I/pA+vv3x8S9gw3JIbbPao+IodZ5Wmjfg9P8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BdPqp6kt; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-60789b450ceso9060377a12.2;
+        Mon, 14 Jul 2025 16:27:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752535644; x=1753140444; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lnAbRsgM5Xpw854WTnr2PpxCp0fWTNuQo/r6LvQOASo=;
-        b=kaAeq3JdwoT741lPJwTgdZpoSW4aGHgWGQVRNnk9kW5NibzIfxYJ9mknS5+smL1uCa
-         J4+9/Y7NZ1u2Rhd8s8pUOwgPDGoiPWpZ832t/paOoqN1d2Ys2bLZCQyHfBwlzPifh46T
-         kPXm6biWtRADBOdCfaTrka0vIvDCVZGpbrWyL5b97T9g68/gznqCM8O+xSO8O6WW7d6S
-         kEeFPzD5zCJ1mmUMBOzM84SLAzVN2TjJm5KMiQSGtvFtt8DwzUyRNIEgJJGen7dCINNa
-         oxqsgLodIqFI81kFrJWOD8mBj4teXHYtmNzcTLAxeYt+e/TkfPZpR2PMqzydiq/H2D8G
-         MRxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWqw+ghh43vtJm2dL/FJjO5j6aM3Fkd2UpsMgDKJu5JB8uC1UkEjeH8fRTF46Lil0zG662Zp4rITxi0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCGrTXUOOgOUTH3vZsgfr6mrGKDq0h8mrLKbc6TlnvQafyEUOW
-	adcLy9Q3u2HaSKWfaFKcqEp1RpKEBHh3/5z6HMRtVPkHmFTwMp6Q+FdMqjrfkvP7j2i2EuxC9x4
-	VIqr6F3aeKXVogxOO6b6UEyNWryLhNfFqBvAlwDo2QPBOvErr6uujXk4E1/nMH9uU
-X-Gm-Gg: ASbGnct3cWZe4rAbJ7BjatnY8E0oHqd5AbXl1unrUmaKzcZCTWzw9LPsXr3Dq6cc1Fg
-	x4D6sSOKsN7kNC4UMAxgUlVDyhKXYLW/R43Z3m7P+UgP2Up62G8zUYjp2gATm5HrvdbLfc2rv45
-	fF2tNiyLbetNstYN+ZwJ0YPpg+yeeb9Nz42euIB+ZlHEy1MQBb0Tj2i3QbrDD3JYlKyWM2naHkY
-	BvTSJDrCE8eEeX1zM1WTF1bGo8gJq8THgpSU+tYqtewRQSbf4K0yPF9Gro5Q4hy+c2OC09WhoCG
-	Xrx7Gh9IkyYHgZZGUM/i8jyo4DJXfydvBI41FRUVuveYPEf4zwd/AtmBDjnftzrxtehZyGETx/X
-	DeXVInD+K4x2BvTJqGkvQ37rKQ3WfUiRqkDQljug4gbTStZQymkSp
-X-Received: by 2002:a05:620a:394d:b0:7e1:f16c:16d6 with SMTP id af79cd13be357-7e1f16c171bmr1319842485a.8.1752534666749;
-        Mon, 14 Jul 2025 16:11:06 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHgcpRDGfh0tTeMaTiRAOLif3PtbYVlsrcAaMwHK8S/xvzLSUZaIFYJ4fcz95Qmvjsb6mBB+Q==
-X-Received: by 2002:a05:620a:394d:b0:7e1:f16c:16d6 with SMTP id af79cd13be357-7e1f16c171bmr1319837885a.8.1752534666331;
-        Mon, 14 Jul 2025 16:11:06 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55943b73366sm2094948e87.211.2025.07.14.16.11.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jul 2025 16:11:04 -0700 (PDT)
-Date: Tue, 15 Jul 2025 02:11:02 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Elliot Berman <elliotb317@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        Andre Draszik <andre.draszik@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, Wei Xu <xuwei5@hisilicon.com>,
-        linux-rockchip@lists.infradead.org,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>
-Subject: Re: [PATCH v10 01/10] power: reset: reboot-mode: Add device tree
- node-based registration
-Message-ID: <5zlix4hfxkz447g6e6imjlatmnf26pvunnsmfkol7mhvropq6o@k7wr6h4hyqtg>
-References: <20250710-arm-psci-system_reset2-vendor-reboots-v10-0-b2d3b882be85@oss.qualcomm.com>
- <20250710-arm-psci-system_reset2-vendor-reboots-v10-1-b2d3b882be85@oss.qualcomm.com>
+        bh=5cWUdw/XWL0wKty/4mlXjtObOvYTaL5gOM763vl3Zdc=;
+        b=BdPqp6kt6EpQn8WMNMOah/DVoZ9L3e5/jYIXheQTGUmvQ2jrgxYzPPuGU45lbrd5Tc
+         eu0627fjogu0z3Gvj5SI5saRy59iFH9+RTTgTIIbhcFjjxOMyOAhW1nxUaxz8R0fKJ/R
+         emgGnHd6/Zg4fDN+Y54lMHUnS1tthNU3vWexcnKWZZ6n/9gitzE7ASCzGCol+Q3Gex+Q
+         AcidJJxHmEhYDu7bFKgbFm6by/TXlTe35jkNiBxI/uXFSjscri+kkC9hB7r2RUVogeMW
+         w6a56/sC/dBStv44JcjtePWBEW2IYodxKmeFvsVfBOeYvCNiW3fOJq+4kX6sYQiFbYIV
+         CkNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752535644; x=1753140444;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5cWUdw/XWL0wKty/4mlXjtObOvYTaL5gOM763vl3Zdc=;
+        b=CUe385RzDTVpaNAd9ySdviNl9niB7B/qgWiDKtpkA6P7UfwBIIO0JQUwFYMqFTAM0h
+         qVgsWWJK3MJBR2xVPsJsRfDL4r8sO0iEIGZQRjrpJqXih4kabSL98k2IsbtCK+wrr9gt
+         CqrRKEu2bQG4O8wpEsHOMcYwTs7Atimb7tvwSn2drlxxuUn8FLipZNzT7iaFH/4q77lR
+         VycYO/EFxJFpFXKzHgl6aTu57DCQPJaWzVkLwsyYnybbGkwKFk5a7Ioe3oRW2ebjnaej
+         Ctmkp+sB9X/bFi3oRHLN2CdWpMLAwWNK1UKJDZvxT9yQrEAcNYZlOWKTAQOWNDKMn5Xr
+         imAA==
+X-Forwarded-Encrypted: i=1; AJvYcCW6OqnAontJfVAhNPo3jFxV2RCRC8jj2vrPDxQHiG/SkneWKPoYe1O6tlsvyZEOQq6LTRXcPD9nmBXofeHK@vger.kernel.org, AJvYcCXI5iczKmUn/nQ6zqgLPXSatlP0YpebpOmWk0Lv9Tv4SlbsRllwQRO/GycOWaSAeycE6OZLas44gv1D4xcuaxg=@vger.kernel.org, AJvYcCXJh90YXQY2vz3TrH5C0Jl5Ze+yRUXvvLaxLhfKUzk02idnWIIXbeBGlolDzabzPnGmyJwcfjckAIDe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRbJT9U8Zr9eUHyOCGcGm4vnvmnkIdpVI8FXECgRK3rFtdl0cU
+	c6LfRw5OLpWlFOvSTZ/An4GSHuJLbqtPa8Z6lJgTxCPVIcuJWM7sVVDrCmrdS5WU/upUgUoUvmi
+	zmnW3QKdbGMZg8qb/QKWcg7scZYGwv83m
+X-Gm-Gg: ASbGncuVOWsw3H7yUB2oh+7RxgkiNDtVhGgZ3VEMmCZ6NoKFNSXqNhzlQrR4Hx4flGz
+	CCBbgwq/6nL+Ept4i5qjJs2gKIsVdbx2alTcpvcY6I0XmA9KYCGP5oU3wiTOLxoKgWuONTe2zOW
+	uHqvJm3nt9YCtFcc4mho8GGAFs853OiPPvlFWVqj8fGQuiDtfb4ZBkGy0DZrNq+rkICgahdS/kM
+	YWXGys/XLKv9Tuvs5GMREQS3qEOgHPT8INWxugFQsUETyulHQ==
+X-Google-Smtp-Source: AGHT+IE1PoTMFQT9rN7uOrNQbjO/MTvhGrGizKsF8Ga/T1DM3Q0YSP9nliT/80O/sEv8vzCBNVnaHRdoGdRfcsiVDlc=
+X-Received: by 2002:a05:6402:5202:b0:608:50ab:7e38 with SMTP id
+ 4fb4d7f45d1cf-611e7c21fa9mr14227624a12.14.1752535644154; Mon, 14 Jul 2025
+ 16:27:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250710-arm-psci-system_reset2-vendor-reboots-v10-1-b2d3b882be85@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE0MDE2MyBTYWx0ZWRfX90hTyc/E2L7K
- ooyNgK9ENTb/CUNtqDsYv9P8/rRYWTnG1o8uza/wZeaM1bPZRIycrQa+0Sn9kl23Hhwr9vazawl
- 4Pigun2BJro8U5RQzyl3iT+xLQO054c8qI3bYlKGf6CXZHOH0MFx5oLcftyzfcafYJNGPVomGAZ
- 5nM0LDd2FPbNb6Kr9rGW3rAq8kLAFFeqhIiswT40p8L1Zb0g51WFyGd4+o+6eM6Ao/nj6hapcJN
- IlEYdxSac/Y06IbeHn5Q/CrU5PWXQ7joYG2k9IgaAmVNxk4K4JtytS+EHyBRv+72I4Oa4DnHzYk
- vyqmIHNzPPqMpSlDaaZfRRALnaran9hsCRdV23ENjq6O++zksC++mjOTw3wKyjUFqQaH/FF1nlf
- VoQnvlW0ji4aeT9/6cOPRUwJtBh7gEE865iVfDfxQYKwgMmpmkWjnG8SZ89JP6ChCT3qYMDs
-X-Proofpoint-ORIG-GUID: Fq93tpLoDswJ7kCLWcFhAxKduT889Oi-
-X-Proofpoint-GUID: Fq93tpLoDswJ7kCLWcFhAxKduT889Oi-
-X-Authority-Analysis: v=2.4 cv=f59IBPyM c=1 sm=1 tr=0 ts=68758e8b cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=SZ81-B_MNtUeYvdDzSwA:9 a=CjuIK1q_8ugA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-14_03,2025-07-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 lowpriorityscore=0 malwarescore=0 spamscore=0 mlxscore=0
- bulkscore=0 suspectscore=0 impostorscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=999 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507140163
+References: <20250714173554.14223-1-daleyo@gmail.com> <20250714173554.14223-8-daleyo@gmail.com>
+ <prrra3lon2p4pugkgeytf5ow5wls62lfdnwcdykztw3qzwity2@d26aqh6wdyln>
+In-Reply-To: <prrra3lon2p4pugkgeytf5ow5wls62lfdnwcdykztw3qzwity2@d26aqh6wdyln>
+From: =?UTF-8?B?SsOpcsO0bWUgZGUgQnJldGFnbmU=?= <jerome.debretagne@gmail.com>
+Date: Tue, 15 Jul 2025 01:26:48 +0200
+X-Gm-Features: Ac12FXyokWE3P9WfHcZydzKzoz6l-6OPJ8mBLmVCv-L78yLEYDKASAdX8sAOtqw
+Message-ID: <CA+kEDGFR3FB=ead50kFBAL23-1dXo-LOMqhT7f=WecNMf_MaNg@mail.gmail.com>
+Subject: Re: [PATCH 7/9 RFC] dt-bindings: wireless: ath12k: Add disable-rfkill property
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dale Whinham <daleyo@gmail.com>, Johannes Berg <johannes@sipsolutions.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jeff Johnson <jjohnson@kernel.org>, Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
+	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, 
+	ath12k@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Lingbo Kong <quic_lingbok@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 10, 2025 at 02:45:43PM +0530, Shivendra Pratap wrote:
-> The reboot-mode driver does not have a strict requirement for
-> device-based registration. It primarily uses the device's of_node
-> to read mode-<cmd> properties and the device pointer for logging.
-> 
-> Remove the dependency on struct device and introduce support for
-> Device Tree (DT) node-based registration. This enables drivers
-> that are not associated with a struct device to leverage the
-> reboot-mode framework.
-> 
-> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-> ---
->  drivers/power/reset/reboot-mode.c | 23 +++++++++++++----------
->  include/linux/reboot-mode.h       |  2 +-
->  2 files changed, 14 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
-> index fba53f638da04655e756b5f8b7d2d666d1379535..61f647b23959789a313f3af0bd967abcad45fa43 100644
-> --- a/drivers/power/reset/reboot-mode.c
-> +++ b/drivers/power/reset/reboot-mode.c
-> @@ -12,6 +12,7 @@
->  #include <linux/reboot-mode.h>
->  
->  #define PREFIX "mode-"
-> +#define pr_fmt(fmt)	"reboot-mode: " fmt
+On Mon. Jul 15, 2025 at 00:33, Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote :
+>
+> On Mon, Jul 14, 2025 at 06:35:43PM +0100, Dale Whinham wrote:
+> > From: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.com>
+> >
+> > Document the disable-rfkill property.
+>
+> Why? What does it mean? Why are you describing Linux driver firmware in
+> the DT?
 
-This wasn't really tested. If I remember correctly, it should be defined
-before the first include.
+rfkill should be disabled according to the Surface Pro 11's DSDT.
 
->  
->  struct mode_info {
->  	const char *mode;
+https://lore.kernel.org/all/20250113074810.29729-3-quic_lingbok@quicinc.com=
+/
+has added support to read the ACPI bitflag when ACPI is supported.
 
--- 
-With best wishes
-Dmitry
+The idea was to expose one specific feature (DISABLE_RFKILL_BIT) for
+devices described with a DT, so that the feature can be disabled.
+
+
+
+> >
+> > Signed-off-by: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.co=
+m>
+> > Signed-off-by: Dale Whinham <daleyo@gmail.com>
+> > ---
+> >  .../devicetree/bindings/net/wireless/qcom,ath12k.yaml          | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k=
+.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
+> > index 9e557cb838c7..f15b630fb034 100644
+> > --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
+> > +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
+> > @@ -48,6 +48,9 @@ properties:
+> >    vddpcie1p8-supply:
+> >      description: VDD_PCIE_1P8 supply regulator handle
+> >
+> > +  disable-rfkill:
+> > +    type: boolean
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > --
+> > 2.50.1
+> >
+>
+> --
+> With best wishes
+> Dmitry
 
