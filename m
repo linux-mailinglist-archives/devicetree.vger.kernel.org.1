@@ -1,108 +1,76 @@
-Return-Path: <devicetree+bounces-196025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F9FAB03EFE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:49:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26CCAB03F11
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 14:56:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C03E1899E1F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 12:49:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F36C16F713
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 12:56:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC087246771;
-	Mon, 14 Jul 2025 12:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6786724A046;
+	Mon, 14 Jul 2025 12:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vowa25Dy"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="jzcKAu8l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-24420.protonmail.ch (mail-24420.protonmail.ch [109.224.244.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA5F61FAC4B;
-	Mon, 14 Jul 2025 12:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 644DC2472BA;
+	Mon, 14 Jul 2025 12:56:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752497359; cv=none; b=Kqiit943OhWEidzjSXS0kPjbOyAetB4zeFG1IspcAElxTbd+N33YFKt7axDikRbI/VO2jIXWZgcmPVDmP3kd9ZE2v2u3l+g7y8MRsMbdoYTOBym2k5GHPw1rqUIrTJwp9mFbjpLujv91k0d9/dpZAZa9qtE/HHN0jSSrOKu7oO0=
+	t=1752497778; cv=none; b=os69BbeMexnAoDMkqHIc9ohoOoBJhCUM8MhS9bpktTFiw1dAu1a60gptxNI1SUGA2bPMFPD0MnH0/Shd0aaSokldYvGUNVdTUT41ioTTdZrLDMC8jx8lV7Jzlnh9IgpVuQG5duxYMa5q7pBlo6FfZe/Jxib46CeGvhU/24Ub/Aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752497359; c=relaxed/simple;
-	bh=N/f33CMuyRsXcRqpNJ4vLf0/iLZImvju1Ttk7ZPo+h0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=IQTVOFlUQ9lFp2PH5kr+YoH01YkVlWh43nH7/bSMCNWjgRKoKbfwyVnnPCOGK10nLgVdH9o5NHJ/IOfy21xm1tRGOKq53Jb453AUAJBB3al4x9p6LrS2noCcuSRLfLhRogIVpgYForqUUzKL6vb1Szf5x/Xk4YbFc7b0UySAmUM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vowa25Dy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5FD8C4CEF4;
-	Mon, 14 Jul 2025 12:49:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752497358;
-	bh=N/f33CMuyRsXcRqpNJ4vLf0/iLZImvju1Ttk7ZPo+h0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Vowa25Dyn4V4MtBTE6oPxFRnat/0qvi5nuhad4OSsQmMyoi/kr7GyCyTptTELd1Yt
-	 +wsIy8b/raueJ0wEnmuHhQGQz5M1WvzAcFdnyNNqX2MWMU6yl7TyAaaJ4UMk0m/U1D
-	 wZoXCBBay6R5Mt18mqlOc3edy7oXqvwrfSs0ozKJw5Zf2yfi13BtR2s0WZs2cJ8rAC
-	 scaC3QR4OZgeYlAFMVgk2d3Bl614J1TD0Q/jVfBwEKZW8nRPuLXGxcZlHh8pa5tM9D
-	 6p4H/AbO8JCgoA0o+9WyX2qH8ZZDiixYzTahWnM5F1ArJ0Jfijsc0FSVug+f74XHP7
-	 J2yR9YO0gTHnw==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250711-pm7550-pmr735b-rpmh-regs-v2-0-bca8cc15c199@fairphone.com>
-References: <20250711-pm7550-pmr735b-rpmh-regs-v2-0-bca8cc15c199@fairphone.com>
-Subject: Re: [PATCH v2 0/4] Add RPMh regulator support for PM7550 & PMR735B
-Message-Id: <175249735528.52337.17952107558438792594.b4-ty@kernel.org>
-Date: Mon, 14 Jul 2025 13:49:15 +0100
+	s=arc-20240116; t=1752497778; c=relaxed/simple;
+	bh=uWeyd66yVqw2s6U3bvpYChNlWq2THyOzrEc/y3TNdcU=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=logg4fHy76kFbJ65kQmJgtB1NVLi/zVH/XcF9dJq7K7yWn1t0KDLNFurzaVITQN21UOpozigSqRFYO0S2Lz9M6XIH4vtek88EQe1lw7Vjlou3PY/3aVjoQaUoIbt3zHptCgR0/jpcCxGDd+tA1Ew6B8PVTM4SmiUS10wkU0XfIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=jzcKAu8l; arc=none smtp.client-ip=109.224.244.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
+	s=protonmail; t=1752497771; x=1752756971;
+	bh=uWeyd66yVqw2s6U3bvpYChNlWq2THyOzrEc/y3TNdcU=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=jzcKAu8l3wVKhcLpQdZRhKqTiGjLgvb89oaSxXtZJY+0AX/BXtGJGqeT4gEV/1YOd
+	 FMn2EZxsPeNbV/D221OgPl9MTcixbgOsoMDb9Yfuk2EM/g7ZHQHXY+r+Hx3KPCbj70
+	 lPb06C0qSJAWkoDVMGgU1kJKXQneZlMjJsNex6jgQbXiJAemrfoAkP5gxr7zf/lbNr
+	 ZJWBFxFgy998iCQ2NtYN3I0Sgj3bshiwuJVyKBJsZHrhwXbg59wjPsUQ4pa9jzrJgC
+	 +Y2G3aw3OoBY6yJK7d7UzeYW+6U0XnOv7+dNV/RnjMI8MccmSlcUSRlRN+ZrrPiR8Q
+	 /jsCDWwmL33/A==
+Date: Mon, 14 Jul 2025 12:56:05 +0000
+To: remi.buisson@tdk.com
+From: Sean Nyekjaer <sean@geanix.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, =?utf-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 7/8] iio: imu: inv_icm45600: add I3C driver for inv_icm45600 driver
+Message-ID: <diu7j6qvtggayvtgrrjdavxmhvjg4jeujz7mdkf2ggzgp4grvm@qdk6vxbkhvml>
+In-Reply-To: <20250710-add_newport_driver-v2-7-bf76d8142ef2@tdk.com>
+References: <20250710-add_newport_driver-v2-0-bf76d8142ef2@tdk.com> <20250710-add_newport_driver-v2-7-bf76d8142ef2@tdk.com>
+Feedback-ID: 134068486:user:proton
+X-Pm-Message-ID: d6e75c40345543f35d87f87d6c61368220c73f0d
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-cff91
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 11 Jul 2025 09:28:38 +0200, Luca Weiss wrote:
-> Document and add support for the regulators on PM7550 and PMR735B, which
-> can be paired with the Milos SoC.
-> 
-> 
+On Thu, Jul 10, 2025 at 08:58:02AM +0100, Remi Buisson via B4 Relay wrote:
+> From: Remi Buisson <remi.buisson@tdk.com>
+>=20
+> Add I3C driver for InvenSense ICM-45600 devices.
+>=20
+> Signed-off-by: Remi Buisson <remi.buisson@tdk.com>
 
-Applied to
+Is this tested on real hardware?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/4] regulator: dt-bindings: qcom,rpmh: Add PM7550 compatible
-      commit: 729ff4a936c6f3faba78aaa8bc4291b6477c6576
-[2/4] regulator: dt-bindings: qcom,rpmh: Add PMR735B compatible
-      commit: 20a01de0808364c26836cc8f47ed3b59a40a927d
-[3/4] regulator: qcom-rpmh: add support for pmr735b regulators
-      commit: 28758434900ff4c4dce4e104fb5982ef3c0141ba
-[4/4] regulator: qcom-rpmh: add support for pm7550 regulators
-      commit: 3aa47d2ec83316c24e1ed15a492b331802dc6a69
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+/Sean
 
 
