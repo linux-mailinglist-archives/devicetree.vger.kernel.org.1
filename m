@@ -1,94 +1,92 @@
-Return-Path: <devicetree+bounces-196202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61AFBB046B8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 19:39:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B08CB046B3
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 19:38:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56EBF7A691A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:36:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A27953A8DE7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A3E26B763;
-	Mon, 14 Jul 2025 17:36:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACBF426CE03;
+	Mon, 14 Jul 2025 17:36:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IvuhEJ6d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CFZKOxot"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C622266B59;
-	Mon, 14 Jul 2025 17:36:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6E4F26B94F;
+	Mon, 14 Jul 2025 17:36:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752514599; cv=none; b=kTw9bIbkDy8bbMmyff9Hw+NI0N1QlUC4K3v9QoIBAOOJUTKX6aeCa5QpJF/pLYHlyJLLFtw5OUKeQo/gub7Uqbs9zH0FTKmglyHssRPNrnZM0Fqs5Fs5nPIIIvSZO9kwUZedJ6OOFeVfVhrapBluuFryoJJfK3XvHQVtP3X2OpQ=
+	t=1752514601; cv=none; b=Pe+Xe4gFecFpIQWZRiM13vVI7PmAM6Gekb75lW7pQpGl8vovOzOuh0Qsgxh0vBa7k4K4iKEw4dtse8q1qsJwXkq8C06p2BhKccMigD8kcwVD3oOXYXZRhOsCTp6g6UZTDPsPbFnERmRFrmW0r0U/CdTqESTUBi+gg4BvlhX7J/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752514599; c=relaxed/simple;
-	bh=0aJdUw9TeYZ6XbjFold1qejFsdtCWo7V+1B83llu208=;
+	s=arc-20240116; t=1752514601; c=relaxed/simple;
+	bh=oehdEeKm9kI88q70n47MWHIjjBSrXGi/uuh/D7y5zjY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FVbbNuwa0ZHHK1KS3yEmcpsYn3hFSQmxLcAiqisujZBMzUNLF9qws6KsbIGQEznIV/y+vqJ5qsLA418s6WE13ber0Fy1+Lt9RFJSES5CdksomBqaeMef22oNaa/ztlYiWfvtYiVUXa9etETjdioT5NVSwd5SrLDU98yPjDN9xJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IvuhEJ6d; arc=none smtp.client-ip=209.85.128.51
+	 MIME-Version:Content-Type; b=VGU28RGxOnCtH2ny3N4gd0E10cfGXESJcX6hvWgDuOu09JTCAmVETBawG1+1u9caJZ9ycBEhSI+uVtZ2laQ63faOgs3nyUXi94aIF+wn9kdn+wZJ1Z4d5ng32u5m1WCsmX09TwOaUaPn/YryRvT0dIOn5HkHI++Nf0vw7x3zP74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CFZKOxot; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-455b00283a5so18708025e9.0;
-        Mon, 14 Jul 2025 10:36:37 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a4fb9c2436so2772358f8f.1;
+        Mon, 14 Jul 2025 10:36:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752514596; x=1753119396; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1752514598; x=1753119398; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=27zoUGw+O71pRkY17Cb5b44izqDIRpoqwysQTHKG9hU=;
-        b=IvuhEJ6dvEZnNdKXNUYHCNbZRYbV79tPjmz4S2oRsnE/aq0xCQJwX3h7poTr2UCyy1
-         43qXEfV/iLR1BGxAwvPb4z/HNw/blldnikKp3vl1cf3NwcG6AGNxnM9l0is7WjNoOpRX
-         wvua7+QTDHPtRzTsBu36QUcTlVI9qv+4wKnI8CptdOQeIERi9U9SIaTdl3dHvD1bSMUa
-         vEyCoqtvMII8pMUVa/QUZ30Dyi3WwOjSWOI/UKDzK0rczdZJZyGaEZSIvWr46QsUoW8r
-         snssasNUETTQW6ByxGFcqWaMlJ9AfMhHaEbjjAnGzEOzclMst3yoWhqq/aBnMvAdYn2t
-         vBGA==
+        bh=ziVMrMmbR0dWr2zJ1Pu1JbqUP5thnMzMQ0tenEfUnNA=;
+        b=CFZKOxotUANzql/bEwXQei7iWOxA8jgVuvlSfio4yHAQ8mb1tew7gPs4YPQNSHPxHY
+         fRzk1gFrOo0+hjWL7yaVH9zy0/JD3Bt8JVKSdsPlzqBcdc2d/6LduWVJ8Sb6o+qC7bR/
+         LoyBxnVGaqUGlMikSk315yDIN10+X70RV31TgkpygKJsCaG7jh3ZSN8QPDNKUAt3+h46
+         e08lLaNWjVcWaKgaCfbM83QWWB8WBN42qCxjWfEvT9QY8lTb6fSlQPaOL8UE7vUHm48J
+         2fHo6T5J2IkgyQFGyGbkBFqrNlHWQc8nX1XftirRKuqWWgJgMvEb5WbAD5ESuJXpHGin
+         kwww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752514596; x=1753119396;
+        d=1e100.net; s=20230601; t=1752514598; x=1753119398;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=27zoUGw+O71pRkY17Cb5b44izqDIRpoqwysQTHKG9hU=;
-        b=ittZJxIVi4iMD719ZVSeSvNgFi37RCrbcIh9T19x0Egg0PN1FdQIEGZ07lXR+RfOz/
-         dNrqokieaYXIhVK3fiYEQgwFetKzzG4wS2C6ptUTCr2S8nAkjPhsq0d0/a1EEExS5n1l
-         zf6KCNIZqXGCH9vhj034vQ2WBtA0FYIofMf6fLrDvUdKA1EKatiYnuXG97GUyAeiyypE
-         AqbAD3/fAzXrDObSLr4nSNAidnBlFFYjGWZeQfvStjUm/P/2V/QWFpX6iSbT0boJtvdy
-         nH+Aggc7VJ91scHZT49G9v5/I63Yy1kdORDs9NSIXVbXAvXru4vH4UBrdpwPA+nGGPOr
-         tTcw==
-X-Forwarded-Encrypted: i=1; AJvYcCUpdSYAIvoCOc/MqJ9AoMmoMY+NLj+Y5Tt6idsHg13dENibhnqHl9DfE8DqOMin6yLtmJCcnEawlS3KngH3@vger.kernel.org, AJvYcCV5wJ4fHLqLFEZW1v9/THeMcO/f8jpSxms4nc2AT9tXjDov5+mDzSXwQeB7CwPn92nAUEmdMFLnLhOkCTv/zf4=@vger.kernel.org, AJvYcCWb7xdAo8ag548tKIgQloexi3YbEpfd9vn4t+/K9sLWYw8XmSiJUW+KB01veNzRR5x+04k/Zr1cnWQQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlSJpMKQ7FkrepmKoPEKz2XAzcjgLTXdAWMhBdPN63xl9+1RO8
-	aDK7L1BZfzq7A+SJj5Jnx8dRgz8WAZV49m6J4LKHTzpRkS6ABH7XFB45
-X-Gm-Gg: ASbGncvWZ+kZzPhjkOP9pKnusXm+8v84LnLIJeohCJyjbZJbwROfgXZHwoluuySsoXb
-	3SW47VAjiEiuf+fJJkyjRCX/NDA26HbV/oPovW37DOFPtHP0oxNd4TkIMbhQX3Dfo0vjF8ZVWeH
-	KbMbAL4PW+2x4bvq7/7Pjs7cPkMeYlDOfNSKerPurOfxXNTaLEZkSTlR4zFa12/SYk0dbQ8kX6y
-	nBDFryB78v8A9bfdSaKtAQbwihKEcpopXVyxi0v/WjJbQxCGHh/B6b0UB1y8zpXgAk/breD5uzz
-	GhbaPPC++A8bVcsBgcuNm2B87m0LGs1WaxAFWFC0Km+hof68PbL98EV7aemeWCtW7TH15d7Jl1H
-	CMP1sZ27lEdE68MZVOuEFYeRoaeZgsqOrPcM=
-X-Google-Smtp-Source: AGHT+IHgvMVpSzu1V0uiZyQXxUUB2sDhT1TXAVv0QnYeeVesufnJpndQ8w9cDsN//TZkJRwawRLG8w==
-X-Received: by 2002:adf:e7d1:0:b0:3b4:4790:8415 with SMTP id ffacd0b85a97d-3b5f18d977dmr10613323f8f.48.1752514595511;
-        Mon, 14 Jul 2025 10:36:35 -0700 (PDT)
+        bh=ziVMrMmbR0dWr2zJ1Pu1JbqUP5thnMzMQ0tenEfUnNA=;
+        b=E6Rlw6quOyQNwzY9AZy3pR+l2rAMK2m8w+yNnJRHW7yrnh9H5BzSqKIZwepaUZP5l+
+         mArR9Svncdqp/V0B96CAlfX6FQGD+7zyrUcFn55v1BK026RjDr6YmRJ7XAzhzB5pCbQ6
+         FKKkaaRyhIqFWv495WnUP1mHqy9fUwrV26S07WA3EKzxtCffpBP3o1of1xwRQNdjEt+s
+         oRvug1RO48T0nsBsT6v1SOWNKAo66VpqBSXduJAZ9+rCxaZ13m4hDPqOXgB8gK35pV3N
+         OjudSZUh2RHtrSVfh3765pEa9GVh+W98QXj30DBFGUbxuLdq0KzMbIqFi6J0kfTP96jh
+         lJIw==
+X-Forwarded-Encrypted: i=1; AJvYcCUjb84D1nW/1r9qBUbb8IBRPVejO9rkCYWZXvumatnYrgB8RFtWQg0NNK70ic0JzY2SGW0bnYK/OXeEmEpW@vger.kernel.org, AJvYcCX6f2ZpkhoXVeNRr5TR4dEEP+gJL97hNd6LQOyo+q0ELfAhtSaZ/SmMs9DGnUU/48umaXnQndZAm1TWYLPI9A==@vger.kernel.org, AJvYcCXWAL+SzBT7y1FArNcJb825+j9pxLTt1ztxMiVqFUnhVCel+JN1+qwhliTuWNxdb2WOhHjftHtkgPKa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9L4NOXVkNqCJ4dX/ZYrpOqNTJTd9jEmOZSybCq2JnkD1S2oHB
+	Z5MnNeOAq32syix3FK0JQ7eiDUlyWpyqZDkH4FPgWqf8OQfmrrx+Dyab
+X-Gm-Gg: ASbGnct56Vr5ilAxG1/5gKkXBKJytKrQ9T82N4sc7gSdnU/JlvFRpI9N/63HGTpy2ir
+	WioAP80YDmyamBhGGA9m7YE4PTWokdxXHuwBknCEn2A4TC3i30jeVXiTz8sUTLflhHrDwZDn2wy
+	r9XNHi+xk9yyQEY+OVW49lRiuQs8Q3Cl8oqKtVAwTVbHpRJ7LOKurJQEMd7puC2WGvyqWTZAZ0m
+	O3t1AgN7Z00cVIICMHGS8jO4xMSPwlWjQoddu8kukJi+GNepDh0flLYHBStsFujJL35Kpynrz4F
+	cup3kplTVKPxCpNZOrSOf5XveKmIXC/aMmz4MIjVN7SD/BeFfbRswMpM7zHpC51CMCYH01eT3LB
+	rlaaEzXcIICVaLrHSjFZlXlu4o5UQ0GeI1s0=
+X-Google-Smtp-Source: AGHT+IFVramoK4fTJKXeF9Fp43GyJC3tUzir0w1qylRSKBhrMIkyZ6UI9FjlhUdyjFhwG8qOQLESeg==
+X-Received: by 2002:adf:ffcb:0:b0:3a6:d7ec:c701 with SMTP id ffacd0b85a97d-3b5f18cec8cmr9405796f8f.30.1752514597928;
+        Mon, 14 Jul 2025 10:36:37 -0700 (PDT)
 Received: from alarm (92.40.201.95.threembb.co.uk. [92.40.201.95])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8e0d872sm13152531f8f.60.2025.07.14.10.36.34
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8e0d872sm13152531f8f.60.2025.07.14.10.36.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jul 2025 10:36:35 -0700 (PDT)
+        Mon, 14 Jul 2025 10:36:37 -0700 (PDT)
 From: Dale Whinham <daleyo@gmail.com>
-To: Johannes Berg <johannes@sipsolutions.net>,
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>
 Cc: =?UTF-8?q?J=C3=A9r=C3=B4me=20de=20Bretagne?= <jerome.debretagne@gmail.com>,
 	Dale Whinham <daleyo@gmail.com>,
-	Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
-	linux-wireless@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	ath12k@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 7/9 RFC] dt-bindings: wireless: ath12k: Add disable-rfkill property
-Date: Mon, 14 Jul 2025 18:35:43 +0100
-Message-ID: <20250714173554.14223-8-daleyo@gmail.com>
+Subject: [PATCH 9/9 RFC] arm64: dts: qcom: x1e80100-denali: Disable rfkill for wifi0
+Date: Mon, 14 Jul 2025 18:35:45 +0100
+Message-ID: <20250714173554.14223-10-daleyo@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250714173554.14223-1-daleyo@gmail.com>
 References: <20250714173554.14223-1-daleyo@gmail.com>
@@ -101,30 +99,28 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+Use the devicetree mechanism for disabling rfkill to do so for Microsoft
+Surface Pro 11.
 
-Document the disable-rfkill property.
-
-Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+Tested-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
 Signed-off-by: Dale Whinham <daleyo@gmail.com>
 ---
- .../devicetree/bindings/net/wireless/qcom,ath12k.yaml          | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/boot/dts/qcom/x1e80100-microsoft-denali.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
-index 9e557cb838c7..f15b630fb034 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
-@@ -48,6 +48,9 @@ properties:
-   vddpcie1p8-supply:
-     description: VDD_PCIE_1P8 supply regulator handle
- 
-+  disable-rfkill:
-+    type: boolean
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-denali.dts b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-denali.dts
+index 8bc3959537ab..18ca83ab637f 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-denali.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-denali.dts
+@@ -977,6 +977,8 @@ wifi@0 {
+ 		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
+ 		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
+ 		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
 +
- required:
-   - compatible
-   - reg
++		disable-rfkill;
+ 	};
+ };
+ 
 -- 
 2.50.1
 
