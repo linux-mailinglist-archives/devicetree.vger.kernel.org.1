@@ -1,390 +1,160 @@
-Return-Path: <devicetree+bounces-196213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46BC2B047D7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 21:18:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D38BB047FC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 21:39:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FE841A67D13
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 19:18:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 886AD1AA00C5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 19:40:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4379127A123;
-	Mon, 14 Jul 2025 19:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE6DC22B8A1;
+	Mon, 14 Jul 2025 19:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=scandent.com header.i=@scandent.com header.b="JaUT1bB2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F+lEts+O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49580277CB3
-	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 19:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34A9229B0D
+	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 19:39:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752520662; cv=none; b=KltcXOnE6gOFfj0BmKTVZlolSuxuFCoiWkdz0Sgofpfu4kfkQCDEwWh1etC+pbSpRnSmjV3G9+GmMUC+QrsgupWxrzAljoi9OCm1aveBProuXiqPyvamrWm7trqTdkXPLNAaLp5lD9vEN+zbnK4a1UskFU5HwjIjzBJQY8im5cE=
+	t=1752521985; cv=none; b=U/swJLWGYyLERUcISr+AFJ+7Kfdl/PDYJwbsWpXy9ei/EjBrLzcN/x5lEED43po5QE8TiMILB1RFt1FqaYDSivSWEQK23aORIg1r5Xls+0zqqV7X564CZOkxq+j6NujgZgz9/6R7AP//4AYr+4ZNarqUMGZHlJFzbgWBL3VtC/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752520662; c=relaxed/simple;
-	bh=hoRIS4xztsEZTVodkSIk19iypGdwTDkduJUZuq63xV0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OR93Z0Od5p0b/GTAKhfDQBCbF8AljiOEP3NUGWqeoyVeKP0HNHqwa4pSKZs7BmaVEvM8YIwTMTD2YBzDMM64QVIaOchF6V7kEZz5PbVkrlfo0fImKhfW6kvmq++JGhF8LTKdtSvXBMZoQO6RT7tw6sKX3d3tz04br8VPUoTq6jY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=scandent.com; spf=pass smtp.mailfrom=scandent.com; dkim=pass (2048-bit key) header.d=scandent.com header.i=@scandent.com header.b=JaUT1bB2; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=scandent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=scandent.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-4ab3fb340e7so55835041cf.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 12:17:40 -0700 (PDT)
+	s=arc-20240116; t=1752521985; c=relaxed/simple;
+	bh=5cSCYdKyaKnlsB59d7LA/sqcozRwuYbnW6S02DziChQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=G4jCbnxXix+kczkKXWv+h5RgVpJiNRlRTHXl2PpC9mvOtnKke6S4JvY3dj04dZXnfV+ukKdMPVwGUPVNnAUVHFgX/oS0cEjC2y6j1N85UJXxzaIlJLNn3oz4TIKqziW+tCZ1p3gO2WDqHDUwWJbERqefwQtZ5l+K537KmHhkWgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F+lEts+O; arc=none smtp.client-ip=209.85.160.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-2ff8d43619cso299294fac.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 12:39:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=scandent.com; s=google; t=1752520659; x=1753125459; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OpGQ9FLDAr43bgdxabo4tUh7EGNcN/YMu4ikygM2H3E=;
-        b=JaUT1bB235zXybmeD3LXmwMQdy/pPshMyKa6JNDTXDr+UnseWdTxonJGfYzajHLI0p
-         ODescWDTnEjziCsJML51xlG396QfgKMuuQsNE+1kkh/vQZZKuNwXdAc1gWkfyNEsTgAN
-         CjhPGRC+5yqYpH1673gqRy6g4iTeT3VzoAYrtH1NLj/Ut8RvEDDFq2RRj7SQW7n8soG6
-         xWr/pYbhfPCBrhZHi/xw08kVgn8Oukn5Q1JJRBwv7JqQZSuD4RuZkbPINJTfMScJPQWY
-         1Fy+Jyk6kp9MdTQlequvKClPVUKr4/3r7EebMrhoaa5qgMivyyQQc2fV4kv/owTEXLOd
-         XsKw==
+        d=linaro.org; s=google; t=1752521983; x=1753126783; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=urOya2QD0PAv3aRyUi92qVBccHFN0GyUQM4mpsavCC0=;
+        b=F+lEts+OFVJIPuwVRnJK5F1pfmdT8s0b33WyPl3yTSpNzYc94+Ra3pdGqSBX9oXkZj
+         zc5FeOr9OPpCrRH3OUAE2AHItRNZXv0JzsCwrS4IQlZexQ/8ObfrLmgTilXyv757B5rS
+         sqTbM4JjI/euxM6GVNOWtBwz4PURIWU2GnNKOmguIxcWb2WuED7OQjtuH7NqUTcKCrcL
+         56GOombgsGoU6TcZCI8HQpOlxRl1dEo3smb1sYZGU5ks/yd7qjJOcwAinl9CsqCsUncx
+         V5T4qgOOy2+0ZK5j+7fhFq23EbhI9FM6PgC2MHLNaBRI5iN7mCjmUfEL5q7DQXkvT2D6
+         vpdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752520659; x=1753125459;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OpGQ9FLDAr43bgdxabo4tUh7EGNcN/YMu4ikygM2H3E=;
-        b=l59HiP6IkUyFjykjhkDx3qBW0RymAjdXOXXOKyt8eJSC0apxxa7as8smaRF/66w9Ca
-         kckLI0Wt5fvhGtJcbJLmLRd+nTBn/vGEtamExaGqsNShKR4RRCVIPlJ28NhNlUdskPrE
-         Cy/QD1PysYw7ufoXOJb8ZwVO6QxbYhHRSy6bnzcEbdly3cRp7+kIBylxdPGyXvogNi2J
-         z/cXFtj/LGoKlmBTrPh7yjFPRYXBB/PGyj/fWCgHWHgsbiS9Xlx8jljAyuHnYLJ+QgFJ
-         JYH1O1IaJmNXJkVLqe8AZAjbgd/gJxhQT64kJbUSA9KJu/+gpmJJb94+XLEcYpzq/eSF
-         3NXw==
-X-Gm-Message-State: AOJu0Yy+OL+DmS6wCjAaI31JiPu73ksaiceSALIAvyrmSrykH8RGKpLv
-	UXovSXyA2HMGGZd80SI8Edwz7Y51ZKma/7QxzdliTNZFHzNBqVejZ6LFpkzElurmO78=
-X-Gm-Gg: ASbGncuD68CQM6PyRyu8iY8f+2KUcxXMirlV3V+UkPZ6zu7nGOZmctFNJi4M19/OOk2
-	Tr6wOCsiEG3P+aJUD5glPtwbqCkX/PdmHJuzGr7AM21zghjGSdJodD/hqAgOIDiqet4bdYl+SHL
-	hQrQX1L4rokBYPVut6Iw1zpV1QUdbBP6zSVy+i10uVlTA5prbmjaWmg3vcPUxVke9FMqvp1I03k
-	u45TWfNq9lmflbkQ2kdfU/y0zFNTH5BWroEDu2ADH0Zdz71UHdW6fUBFrsvq0kbqWGROz+hPyw2
-	pb3HAariH6DH/LQ+QoFwhorvVeNH4OOnV4AuzQhiXj8Futb29+AfHZtflAjW/6PO3dT8p65UxvV
-	TnYXKD9fasS20v+jP0ImWL0p2ZcUT1jPYLnSU2zrjUaPxJElN
-X-Google-Smtp-Source: AGHT+IEU5noXyWPh4x33ngWAJKOBd6ljiPAtleeBfBcNMPyZjaKaCTbDXwMpZfNYEqmpn/ooTm4Fng==
-X-Received: by 2002:a05:622a:1e94:b0:4ab:80df:24eb with SMTP id d75a77b69052e-4ab80df29d2mr5189881cf.6.1752520659214;
-        Mon, 14 Jul 2025 12:17:39 -0700 (PDT)
-Received: from vserver (ool-44c5118c.dyn.optonline.net. [68.197.17.140])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4ab801e542bsm1482521cf.3.2025.07.14.12.17.38
+        d=1e100.net; s=20230601; t=1752521983; x=1753126783;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=urOya2QD0PAv3aRyUi92qVBccHFN0GyUQM4mpsavCC0=;
+        b=J7lN/hEGUH9JqfQs5+qYblfTBVWnfnq0KRU7z2KtBXGQoE0bee+fBIHd8xbJCrcxf5
+         cyeDiI/2WwMSM4mo/Ei4VgwjgTmqhmdxHZM9s/aOeZRd3B/UE5kmz1oXNM0m5TQy5UsI
+         7jxO/ADzvg6QQGYvv1r6nsJ0bbjw9V0VN6B5t2qjryTUuisQj/eHyNRKIz/gniZWhqc1
+         hTku2o9l+ihfErI2q8cU3QkLT2GEaNG14KwgymqlURWZIdgbg4fC0e2Kpy5L4KUhVHPH
+         Uqyqr/sQF4nZ639tje8cVOCGSjoaFezXx0fVs4LxDWEjJ+ZHaAf5Af0XbkYQJ8P/jStN
+         eeLw==
+X-Forwarded-Encrypted: i=1; AJvYcCWxrexufhUoUb79nnknHYcl9CU3gk0behiBDaLjB0rFWIlQ0ioEadjw5u788PNIC43nfFWdk6zx8N/L@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEPvMFdIy4o+RgsUbXabaj2J3xKteYFigvuHvad5B7n16Yj0iI
+	UQqwHmVmnlL3gRiPPh8GWDDOF47reqtjW9ywmI30JK/oqOajQj806Pj4O2jWwREa8iA=
+X-Gm-Gg: ASbGncsfI7RKkqbmiQ2iNLHcVdTaiZqIe+npr8iEVanMOqbaELpk3c0bCCS+ST8cEdM
+	BgG3G3rzhgQmMLjGa2vQj00EXNYFhxs2/e7x41/4igW8Q9YGu7VQC/r1HmCr8lxXoHgc9jqZORq
+	k/yxYP8WfDzU3oou1wCHcA6qJfkgF9IgsCrw1Eme7HpeqhUBtDlvv+MhIo2H9AgXBfMHPfNEDmV
+	b6I3cnN2xmZv0HDgTGzFLbAypQHs82RO79PtBfHhIlYH1muI9MNB/i1dDCUM75dGRVUjyS7fPpw
+	RI6v4ZyYhhMgMr4GO3qX6n9UK+uAVqjtVK9XlgfBol/gxPxSsVvs3G8evp+ws8dPRY45h8CSAfw
+	s0EfavdHHHSSeURBAfNS4YCUqUn2Biw==
+X-Google-Smtp-Source: AGHT+IG9YCfy/a8BjNGBo1GzQjJuR8GmP8UR9cv+uwP5yDJexmfxPdWGAOu8EtDFH9IyIV9EN6mZeg==
+X-Received: by 2002:a05:6870:c03:b0:296:bbc8:4a82 with SMTP id 586e51a60fabf-2ff2706c894mr10579426fac.27.1752521982792;
+        Mon, 14 Jul 2025 12:39:42 -0700 (PDT)
+Received: from localhost ([2603:8080:b800:f700:6bb2:d90f:e5da:befc])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-73cf12b62e8sm1674368a34.60.2025.07.14.12.39.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jul 2025 12:17:38 -0700 (PDT)
-From: Richard Yao <richard@scandent.com>
-To: dri-devel@lists.freedesktop.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Akshay Athalye <akshay@scandent.com>,
-	Richard Yao <richard@scandent.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH 3/3] drm/panel: ilitek-ili9881c: Add Tianxinwei TWX700100S0 support
-Date: Mon, 14 Jul 2025 15:17:23 -0400
-Message-ID: <20250714191729.2416-4-richard@scandent.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250714191729.2416-1-richard@scandent.com>
-References: <20250714191729.2416-1-richard@scandent.com>
+        Mon, 14 Jul 2025 12:39:42 -0700 (PDT)
+Date: Mon, 14 Jul 2025 22:39:41 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev,
+	=?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Gatien Chevallier <gatien.chevallier@foss.st.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+	Le Goffic <legoffic.clement@gmail.com>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	=?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>
+Subject: Re: [PATCH v2 09/16] perf: stm32: introduce DDRPERFM driver
+Message-ID: <1fd92742-0958-4f64-8e50-4d0595fe74eb@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250711-ddrperfm-upstream-v2-9-cdece720348f@foss.st.com>
 
-Add support for the Tianxinwei TWX700100S0 panel.
+Hi ClÈment,
 
-The init table was provided by Tianxinwei. Their comments have been
-preserved.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Richard Yao <richard@scandent.com>
----
- drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 242 ++++++++++++++++++
- 1 file changed, 242 insertions(+)
+url:    https://github.com/intel-lab-lkp/linux/commits/Cl-ment-Le-Goffic/bus-firewall-move-stm32_firewall-header-file-in-include-folder/20250712-030518
+base:   d7b8f8e20813f0179d8ef519541a3527e7661d3a
+patch link:    https://lore.kernel.org/r/20250711-ddrperfm-upstream-v2-9-cdece720348f%40foss.st.com
+patch subject: [PATCH v2 09/16] perf: stm32: introduce DDRPERFM driver
+config: sh-randconfig-r071-20250712 (https://download.01.org/0day-ci/archive/20250712/202507122125.eve8lg60-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 13.4.0
 
-diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-index 28cd7560e5db..54198bb7280c 100644
---- a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-+++ b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-@@ -1223,6 +1223,223 @@ static const struct ili9881c_instr am8001280g_init[] = {
- 	ILI9881C_COMMAND_INSTR(MIPI_DCS_WRITE_POWER_SAVE, 0x00),
- };
- 
-+static const struct ili9881c_instr txw700100s0_init[] = {
-+	ILI9881C_SWITCH_PAGE_INSTR(3),
-+	/* GIP_1 */
-+	ILI9881C_COMMAND_INSTR(0x01, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x02, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x03, 0x72), /* STVA 3H */
-+	ILI9881C_COMMAND_INSTR(0x04, 0x00), /* STVB */
-+	ILI9881C_COMMAND_INSTR(0x05, 0x00), /* STVC */
-+	ILI9881C_COMMAND_INSTR(0x06, 0x09), /* STVA_Rise */
-+	ILI9881C_COMMAND_INSTR(0x07, 0x00), /* STVB_Rise */
-+	ILI9881C_COMMAND_INSTR(0x08, 0x00), /* STVC_Rise */
-+	ILI9881C_COMMAND_INSTR(0x09, 0x00), /* STVA_non overlap 2.5us=14 */
-+	ILI9881C_COMMAND_INSTR(0x0a, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0b, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0c, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0d, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0e, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0f, 0x00), /* CLKA_non overlap 2.5us=14 */
-+	ILI9881C_COMMAND_INSTR(0x10, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x11, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x12, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x13, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x14, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x15, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x16, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x17, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x18, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x19, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1a, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1b, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1c, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1d, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1e, 0x40), /* CLKA 40Ëá™ÂãïÂèç C0ÊâãÂãïÂèç(X8ÂèÉËÄÉCLKB) */
-+	ILI9881C_COMMAND_INSTR(0x1f, 0x80),
-+	ILI9881C_COMMAND_INSTR(0x20, 0x05), /* CLKA_Rise */
-+	ILI9881C_COMMAND_INSTR(0x21, 0x02), /* CLKA_Fall */
-+	ILI9881C_COMMAND_INSTR(0x22, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x23, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x24, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x25, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x26, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x27, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x28, 0x33), /* CLK Phase_NUM=8 */
-+	ILI9881C_COMMAND_INSTR(0x29, 0x22), /* CLK overlap 3H */
-+	ILI9881C_COMMAND_INSTR(0x2a, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2b, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2c, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2d, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2e, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2f, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x30, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x31, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x32, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x33, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x34, 0x04), /* VDD1&2 non-overlap 04:2.62us */
-+	ILI9881C_COMMAND_INSTR(0x35, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x36, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x37, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x38, 0x3C), /* VDD1&2 toggle 1sec */
-+	ILI9881C_COMMAND_INSTR(0x39, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3a, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3b, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3c, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3d, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3e, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3f, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x40, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x41, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x42, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x43, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x44, 0x00),
-+
-+	/* GIP_2 */
-+	ILI9881C_COMMAND_INSTR(0x50, 0x10), /* STV_1, 0x2 */
-+	ILI9881C_COMMAND_INSTR(0x51, 0x32), /* STV_3, 0x4 */
-+	ILI9881C_COMMAND_INSTR(0x52, 0x54), /* STV_5, 0x6 */
-+	ILI9881C_COMMAND_INSTR(0x53, 0x76), /* STV_7, 0x8 */
-+	ILI9881C_COMMAND_INSTR(0x54, 0x98), /* STV_9, 0x10 */
-+	ILI9881C_COMMAND_INSTR(0x55, 0xba), /* STV_11, 0x12 */
-+	ILI9881C_COMMAND_INSTR(0x56, 0x10), /* CLK_1.2 */
-+	ILI9881C_COMMAND_INSTR(0x57, 0x32), /* CLK_3, 0x4 */
-+	ILI9881C_COMMAND_INSTR(0x58, 0x54), /* CLK_5, 0x6 */
-+	ILI9881C_COMMAND_INSTR(0x59, 0x76), /* CLK_7, 0x8 */
-+	ILI9881C_COMMAND_INSTR(0x5a, 0x98), /* CLK_9, 0x10 */
-+	ILI9881C_COMMAND_INSTR(0x5b, 0xba), /* CLK_11, 0x12 */
-+	ILI9881C_COMMAND_INSTR(0x5c, 0xdc), /* CLK_13, 0x14 */
-+	ILI9881C_COMMAND_INSTR(0x5d, 0xfe), /* CLK_15, 0x16 */
-+
-+	/* GIP_3 */
-+	ILI9881C_COMMAND_INSTR(0x5e, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x5f, 0x01), /* FW_CGOUT_L[1]    FW */
-+	ILI9881C_COMMAND_INSTR(0x60, 0x00), /* FW_CGOUT_L[2]    BW */
-+	ILI9881C_COMMAND_INSTR(0x61, 0x15), /* FW_CGOUT_L[3]    GPWR1 */
-+	ILI9881C_COMMAND_INSTR(0x62, 0x14), /* FW_CGOUT_L[4]    GPWR2 */
-+	ILI9881C_COMMAND_INSTR(0x63, 0x0E), /* FW_CGOUT_L[5]    CLK1_R */
-+	ILI9881C_COMMAND_INSTR(0x64, 0x0F), /* FW_CGOUT_L[6]    CLK2_R */
-+	ILI9881C_COMMAND_INSTR(0x65, 0x0C), /* FW_CGOUT_L[7]    CLK3_R */
-+	ILI9881C_COMMAND_INSTR(0x66, 0x0D), /* FW_CGOUT_L[8]    CLK4_R */
-+	ILI9881C_COMMAND_INSTR(0x67, 0x06), /* FW_CGOUT_L[9]    iSTV1_R (STVA_1) */
-+	ILI9881C_COMMAND_INSTR(0x68, 0x02), /* FW_CGOUT_L[10] */
-+	ILI9881C_COMMAND_INSTR(0x69, 0x02), /* FW_CGOUT_L[11] */
-+	ILI9881C_COMMAND_INSTR(0x6a, 0x02), /* FW_CGOUT_L[12] */
-+	ILI9881C_COMMAND_INSTR(0x6b, 0x02), /* FW_CGOUT_L[13] */
-+	ILI9881C_COMMAND_INSTR(0x6c, 0x02), /* FW_CGOUT_L[14] */
-+	ILI9881C_COMMAND_INSTR(0x6d, 0x02), /* FW_CGOUT_L[15] */
-+	ILI9881C_COMMAND_INSTR(0x6e, 0x07), /* FW_CGOUT_L[16]  STV2_R (STVA_3) */
-+	ILI9881C_COMMAND_INSTR(0x6f, 0x02), /* FW_CGOUT_L[17]   VGL */
-+	ILI9881C_COMMAND_INSTR(0x70, 0x02), /* FW_CGOUT_L[18]   VGL */
-+	ILI9881C_COMMAND_INSTR(0x71, 0x02), /* FW_CGOUT_L[19]   VGL */
-+	ILI9881C_COMMAND_INSTR(0x72, 0x02), /* FW_CGOUT_L[20] */
-+	ILI9881C_COMMAND_INSTR(0x73, 0x02), /* FW_CGOUT_L[21] */
-+	ILI9881C_COMMAND_INSTR(0x74, 0x02), /* FW_CGOUT_L[22] */
-+
-+	ILI9881C_COMMAND_INSTR(0x75, 0x01), /* BW_CGOUT_L[1]    FW */
-+	ILI9881C_COMMAND_INSTR(0x76, 0x00), /* BW_CGOUT_L[2]    BW */
-+	ILI9881C_COMMAND_INSTR(0x77, 0x14), /* BW_CGOUT_L[3]    GPWR1 */
-+	ILI9881C_COMMAND_INSTR(0x78, 0x15), /* BW_CGOUT_L[4]    GPWR2 */
-+	ILI9881C_COMMAND_INSTR(0x79, 0x0E), /* BW_CGOUT_L[5]    CLK1_R */
-+	ILI9881C_COMMAND_INSTR(0x7a, 0x0F), /* BW_CGOUT_L[6]    CLK2_R */
-+	ILI9881C_COMMAND_INSTR(0x7b, 0x0C), /* BW_CGOUT_L[7]    CLK3_R */
-+	ILI9881C_COMMAND_INSTR(0x7c, 0x0D), /* BW_CGOUT_L[8]    CLK4_R */
-+	ILI9881C_COMMAND_INSTR(0x7d, 0x06), /* BW_CGOUT_L[9]    STV1_R */
-+	ILI9881C_COMMAND_INSTR(0x7e, 0x02), /* BW_CGOUT_L[10] */
-+	ILI9881C_COMMAND_INSTR(0x7f, 0x02), /* BW_CGOUT_L[11] */
-+	ILI9881C_COMMAND_INSTR(0x80, 0x02), /* BW_CGOUT_L[12] */
-+	ILI9881C_COMMAND_INSTR(0x81, 0x02), /* BW_CGOUT_L[13] */
-+	ILI9881C_COMMAND_INSTR(0x82, 0x02), /* BW_CGOUT_L[14] */
-+	ILI9881C_COMMAND_INSTR(0x83, 0x02), /* BW_CGOUT_L[15] */
-+	ILI9881C_COMMAND_INSTR(0x84, 0x07), /* BW_CGOUT_L[16]   STV2_R */
-+	ILI9881C_COMMAND_INSTR(0x85, 0x02), /* BW_CGOUT_L[17]   VGL */
-+	ILI9881C_COMMAND_INSTR(0x86, 0x02), /* BW_CGOUT_L[18]   VGL */
-+	ILI9881C_COMMAND_INSTR(0x87, 0x02), /* BW_CGOUT_L[19]   VGL */
-+	ILI9881C_COMMAND_INSTR(0x88, 0x02), /* BW_CGOUT_L[20] */
-+	ILI9881C_COMMAND_INSTR(0x89, 0x02), /* BW_CGOUT_L[21] */
-+	ILI9881C_COMMAND_INSTR(0x8A, 0x02), /* BW_CGOUT_L[22] */
-+
-+	ILI9881C_SWITCH_PAGE_INSTR(4),
-+	ILI9881C_COMMAND_INSTR(0x6E, 0x2A), /* di_pwr_reg=0 for power mode 2A //VGH clamp 15V */
-+	ILI9881C_COMMAND_INSTR(0x6F, 0x35), /* reg vcl + pumping ratio VGH=3x VGL=-3x */
-+	ILI9881C_COMMAND_INSTR(0x3A, 0x24), /* POWER SAVING */
-+	ILI9881C_COMMAND_INSTR(0x8D, 0x14), /* VGL clamp -10V */
-+	ILI9881C_COMMAND_INSTR(0x87, 0xBA), /* ESD */
-+	ILI9881C_COMMAND_INSTR(0x26, 0x76),
-+	ILI9881C_COMMAND_INSTR(0xB2, 0xD1),
-+	ILI9881C_COMMAND_INSTR(0xB5, 0x27), /* GMA BIAS */
-+	ILI9881C_COMMAND_INSTR(0x31, 0x75), /* SRC BIAS */
-+	ILI9881C_COMMAND_INSTR(0x30, 0x03), /* SRC OUTPUT BIAS */
-+	ILI9881C_COMMAND_INSTR(0x3B, 0x98), /* PUMP SHIFT CLK */
-+	ILI9881C_COMMAND_INSTR(0x35, 0x1F), /* HZ_opt */
-+	ILI9881C_COMMAND_INSTR(0x33, 0x14), /* Blanking frame Ë®≠ÂÆöÁÇ∫GND */
-+	ILI9881C_COMMAND_INSTR(0x7A, 0x0F),
-+	ILI9881C_COMMAND_INSTR(0x38, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x39, 0x00),
-+
-+	ILI9881C_SWITCH_PAGE_INSTR(1),
-+	ILI9881C_COMMAND_INSTR(0x22, 0x0A), /* BGR, 0x SS */
-+	ILI9881C_COMMAND_INSTR(0x31, 0x00), /* Column inversion */
-+	ILI9881C_COMMAND_INSTR(0x53, 0x45), /* VCOM1 41  44  45  4A */
-+	ILI9881C_COMMAND_INSTR(0x55, 0x4E), /* VCOM2 4E */
-+	ILI9881C_COMMAND_INSTR(0x50, 0xC7), /* VREG1OUT=5.1V */
-+	ILI9881C_COMMAND_INSTR(0x51, 0xC2), /* VREG2OUT=-5.1V */
-+	ILI9881C_COMMAND_INSTR(0x60, 0x25), /* SDT=2.5us Ëöï22ËúäÂÇñ25 */
-+	ILI9881C_COMMAND_INSTR(0x63, 0x00),
-+
-+	/* ============Gamma START============= */
-+	/* Pos Register */
-+	ILI9881C_COMMAND_INSTR(0xA0, 0x00),
-+	ILI9881C_COMMAND_INSTR(0xA1, 0x16),
-+	ILI9881C_COMMAND_INSTR(0xA2, 0x26),
-+	ILI9881C_COMMAND_INSTR(0xA3, 0x16),
-+	ILI9881C_COMMAND_INSTR(0xA4, 0x19),
-+	ILI9881C_COMMAND_INSTR(0xA5, 0x2B),
-+	ILI9881C_COMMAND_INSTR(0xA6, 0x1E),
-+	ILI9881C_COMMAND_INSTR(0xA7, 0x20),
-+	ILI9881C_COMMAND_INSTR(0xA8, 0x93),
-+	ILI9881C_COMMAND_INSTR(0xA9, 0x20),
-+	ILI9881C_COMMAND_INSTR(0xAA, 0x2C),
-+	ILI9881C_COMMAND_INSTR(0xAB, 0x87),
-+	ILI9881C_COMMAND_INSTR(0xAC, 0x1F),
-+	ILI9881C_COMMAND_INSTR(0xAD, 0x1F),
-+	ILI9881C_COMMAND_INSTR(0xAE, 0x53),
-+	ILI9881C_COMMAND_INSTR(0xAF, 0x27),
-+	ILI9881C_COMMAND_INSTR(0xB0, 0x2A),
-+	ILI9881C_COMMAND_INSTR(0xB1, 0x52),
-+	ILI9881C_COMMAND_INSTR(0xB2, 0x5B),
-+	ILI9881C_COMMAND_INSTR(0xB3, 0x23),
-+
-+	/* Neg Register */
-+	ILI9881C_COMMAND_INSTR(0xC0, 0x00),
-+	ILI9881C_COMMAND_INSTR(0xC1, 0x11),
-+	ILI9881C_COMMAND_INSTR(0xC2, 0x1E),
-+	ILI9881C_COMMAND_INSTR(0xC3, 0x0F),
-+	ILI9881C_COMMAND_INSTR(0xC4, 0x12),
-+	ILI9881C_COMMAND_INSTR(0xC5, 0x26),
-+	ILI9881C_COMMAND_INSTR(0xC6, 0x1C),
-+	ILI9881C_COMMAND_INSTR(0xC7, 0x1E),
-+	ILI9881C_COMMAND_INSTR(0xC8, 0x87),
-+	ILI9881C_COMMAND_INSTR(0xC9, 0x19),
-+	ILI9881C_COMMAND_INSTR(0xCA, 0x26),
-+	ILI9881C_COMMAND_INSTR(0xCB, 0x7F),
-+	ILI9881C_COMMAND_INSTR(0xCC, 0x20),
-+	ILI9881C_COMMAND_INSTR(0xCD, 0x22),
-+	ILI9881C_COMMAND_INSTR(0xCE, 0x58),
-+	ILI9881C_COMMAND_INSTR(0xCF, 0x2A),
-+	ILI9881C_COMMAND_INSTR(0xD0, 0x2E),
-+	ILI9881C_COMMAND_INSTR(0xD1, 0x50),
-+	ILI9881C_COMMAND_INSTR(0xD2, 0x5D),
-+	ILI9881C_COMMAND_INSTR(0xD3, 0x23),
-+
-+	/* ============ Gamma END=========== */
-+
-+	ILI9881C_SWITCH_PAGE_INSTR(0),
-+	ILI9881C_COMMAND_INSTR(0x35, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x11, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x29, 0x00),
-+};
-+
- static inline struct ili9881c *panel_to_ili9881c(struct drm_panel *panel)
- {
- 	return container_of(panel, struct ili9881c, panel);
-@@ -1449,6 +1666,22 @@ static const struct drm_display_mode am8001280g_default_mode = {
- 	.height_mm	= 151,
- };
- 
-+static const struct drm_display_mode txw700100s0_default_mode = {
-+	.clock          = 78086,
-+
-+	.hdisplay	= 800,
-+	.hsync_start	= 800 + 80,
-+	.hsync_end	= 800 + 80 + 80,
-+	.htotal		= 800 + 80 + 80 + 20,
-+
-+	.vdisplay	= 1280,
-+	.vsync_start	= 1280 + 16,
-+	.vsync_end	= 1280 + 16 + 24,
-+	.vtotal		= 1280 + 16 + 24 + 8,
-+
-+	.width_mm	= 90,
-+	.height_mm	= 151,
-+};
- static int ili9881c_get_modes(struct drm_panel *panel,
- 			      struct drm_connector *connector)
- {
-@@ -1609,6 +1842,14 @@ static const struct ili9881c_desc am8001280g_desc = {
- 		      MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM,
- };
- 
-+static const struct ili9881c_desc txw700100s0_desc = {
-+	.init = txw700100s0_init,
-+	.init_length = ARRAY_SIZE(txw700100s0_init),
-+	.mode = &txw700100s0_default_mode,
-+	.mode_flags = MIPI_DSI_MODE_VIDEO_SYNC_PULSE | MIPI_DSI_MODE_VIDEO,
-+	.lanes = 4,
-+};
-+
- static const struct of_device_id ili9881c_of_match[] = {
- 	{ .compatible = "bananapi,lhr050h41", .data = &lhr050h41_desc },
- 	{ .compatible = "feixin,k101-im2byl02", .data = &k101_im2byl02_desc },
-@@ -1616,6 +1857,7 @@ static const struct of_device_id ili9881c_of_match[] = {
- 	{ .compatible = "tdo,tl050hdv35", .data = &tl050hdv35_desc },
- 	{ .compatible = "wanchanglong,w552946aba", .data = &w552946aba_desc },
- 	{ .compatible = "ampire,am8001280g", .data = &am8001280g_desc },
-+	{ .compatible = "tianxinwei,txw700100s0", &txw700100s0_desc },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ili9881c_of_match);
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202507122125.eve8lg60-lkp@intel.com/
+
+smatch warnings:
+drivers/perf/stm32_ddr_pmu.c:380 stm32_ddr_pmu_get_counter() warn: variable dereferenced before check 'pmu' (see line 376)
+drivers/perf/stm32_ddr_pmu.c:380 stm32_ddr_pmu_get_counter() warn: variable dereferenced before check 'event' (see line 377)
+
+vim +/pmu +380 drivers/perf/stm32_ddr_pmu.c
+
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11  374  static int stm32_ddr_pmu_get_counter(struct stm32_ddr_pmu *pmu, struct perf_event *event)
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11  375  {
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11 @376  	u32 time_cnt_idx = pmu->cfg->time_cnt_idx;
+                                                                           ^^^^^^^^
+
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11 @377  	u32 config = event->attr.config;
+                                                                     ^^^^^^^
+
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11  378  	struct stm32_ddr_cnt *cnt;
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11  379  
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11 @380  	if (!pmu || !event)
+                                                            ^^^^^^^^^^^^^^
+Checks are too late.  The variables have already been dereferenced.
+
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11  381  		return -EINVAL;
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11  382  
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11  383  	pmu->selected_set = GROUP_VALUE(config);
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11  384  
+73af3c4ba702d7 ClÈment Le Goffic 2025-07-11  385  	if (config == TIME_CNT) {
+
 -- 
-2.50.0
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
