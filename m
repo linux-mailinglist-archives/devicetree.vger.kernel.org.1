@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-195895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-195896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4530FB037C1
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:21:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1072CB037CF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 09:23:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82B677A7679
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 07:19:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23174189ADB8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 07:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9360D22F772;
-	Mon, 14 Jul 2025 07:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2369723237B;
+	Mon, 14 Jul 2025 07:23:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cxam+Auf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fINE7GdR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A869322A;
-	Mon, 14 Jul 2025 07:21:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E23183D76;
+	Mon, 14 Jul 2025 07:23:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752477675; cv=none; b=JkJHU6ykmqfzofeD17HVNR9nH0RBJ0ZkcYdUrVM5YrD+QB20xdfekriWi1KA1hoqOwb3+k3gOnMMokuwkHVLLielPgWkRXQbUuGl3DcyzEdfMAmWPolOT+qePIJPgqC8sfxsEPN1Fq7q8kWatGircfm0aSdd2oJdRCgod2ZL2rA=
+	t=1752477785; cv=none; b=Xxwfnf0GZq8sD2YaYXEF5iGuMfmXgsKpeXipU3sX5vkrh5EIgSpdHCQJI6w8bby/QUzoN88MMdLXpSw9G9J5+S1au5hf3d5UQUzXg++99nBFAaDj6UYiYhNvJ0TWleZ9WngAUctk5HstjVw65gksa52XNoA9espYwOz8l7WrNLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752477675; c=relaxed/simple;
-	bh=R0WhEa5MMYboTRZ/5YRN0ejGi1kRg18sKjpEvnHjIz0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Qira4BJdtxSLavZCKojROCgx9RBj3ISrd1itS9nTYEcq8IXkVKw1zGdQm+ZWjIHRCR7vxO/nea/m6TDUrkNWnYbZRJ1UaGeV0I+of0CRk+mEo8uj4BNgJMcAmJlji2gRfLgzs8bEigvapQFTMFQ/MM6a3yxOIHxDtX/iEH0Ekh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cxam+Auf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 423ADC4CEED;
-	Mon, 14 Jul 2025 07:21:11 +0000 (UTC)
+	s=arc-20240116; t=1752477785; c=relaxed/simple;
+	bh=lA+u2wsudK4biBMNEiNRChT30Crw822XUo7zjFOgD4k=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=lJikwbCbL74D0XEYWPrINrnCXrlsbaTY0LRtY/3GZqX7kR0h/VCVNVwSAMBaLKxujiGi3+4LObNcEQkysVIc71TOvQY1pVHfLdU/8L5EdV5BKLsxKtD3bySFTJ7LTg1Gu6aYLKwWUheNaLfiTyUmI0HAhrPDkZ0W048KeIPqlAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fINE7GdR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3C42C4CEED;
+	Mon, 14 Jul 2025 07:22:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752477673;
-	bh=R0WhEa5MMYboTRZ/5YRN0ejGi1kRg18sKjpEvnHjIz0=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Cxam+AufTC8G0UDa+EhbW5pYSU0Ihb+V4MbmIUMwzAFiDDXOB+iWXfZIzO3s63WBp
-	 5DJ7WVmwt24Z2XdJVW7nFW/1hh3VkoSRx4SWS51X0SLJkGEmqWk2WFRtWfoOLt+uFK
-	 KajykTzCFVn95iD3Zl04h4GdPkZfG228B5y4/m18WPWSGXhUkiTKF3GbQOT1PYHwbB
-	 VQkQLcNXkUl73BO63DKa5MCnXRmdxlljyZR0xYZqnqvPOOfr045lp+En8s7G70W2xa
-	 +kuso/tSggKsRXbh3obrB8MisqDINZZ0Ru8pTXzUC2c4ntfGsDAG9mrmAPN+l9PjGK
-	 uoAHXBlf3vwGQ==
-Message-ID: <b500647b-31b6-40c9-be0b-1640dc271375@kernel.org>
-Date: Mon, 14 Jul 2025 09:21:09 +0200
+	s=k20201202; t=1752477784;
+	bh=lA+u2wsudK4biBMNEiNRChT30Crw822XUo7zjFOgD4k=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=fINE7GdRKWb39l7UaOrkTXkgICvxx2f6Pt5a7ACJPS26f7lMtIa6GTwAm5czXExcl
+	 zhCAMUw+rvLZVc8/6szvDOyCDN30k7yN4UouJ5j4bTYVuy7VYaRMnqMwsO/UJLAJaS
+	 wzKQDlgBnqpFZ+EWaJctcehVkKmx7EzYXJ/67Ag8scbyKsUYYXUyIphkROt0Lo/bX3
+	 dhK/gi+qZuvwBtWJtKavyv0i6s6J/3bzX6Bhch9vKt06T/wfln0ud17vyxPzPjoG9K
+	 yuSExTPz10oAKz35bd9HTJnkK2w5s3MfzyuV6dCN+FBtHqyQnos/U9ghrIwNUF16l4
+	 agIYJR9LROioA==
+Message-ID: <b8d61abb-a6a6-49cd-94c3-f397bb30203e@kernel.org>
+Date: Mon, 14 Jul 2025 09:22:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: aspeed: Refine AST2700
- binding description and example
-To: Ryan Chen <ryan_chen@aspeedtech.com>, Thomas Gleixner
- <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Kevin Chen <kevin_chen@aspeedtech.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org
-References: <20250714071753.2653620-1-ryan_chen@aspeedtech.com>
+Subject: Re: [PATCH v5 3/6] dt-bindings: Asoc: axg-audio: Add s4 audio tocodec
 From: Krzysztof Kozlowski <krzk@kernel.org>
+To: jiebing.chen@amlogic.com, Jerome Brunet <jbrunet@baylibre.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
+References: <20250710-audio_drvier-v5-0-d4155f1e7464@amlogic.com>
+ <20250710-audio_drvier-v5-3-d4155f1e7464@amlogic.com>
+ <82f1a34f-bfdf-466f-9c44-2e58d172f3fd@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -106,81 +111,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250714071753.2653620-1-ryan_chen@aspeedtech.com>
+In-Reply-To: <82f1a34f-bfdf-466f-9c44-2e58d172f3fd@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/07/2025 09:17, Ryan Chen wrote:
-> - Update block diagram for better readability and accuracy.
-> - Clarify the relationship and function of INTC0, INTC1, and the GIC.
-> - Documentation and example refine.
+On 14/07/2025 08:10, Krzysztof Kozlowski wrote:
+> On 10/07/2025 05:35, jiebing chen via B4 Relay wrote:
+>> From: jiebing chen <jiebing.chen@amlogic.com>
+>>
+>> Add S4 SoC tocodec compatibility support.
+>>
+>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>> Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
+>> ---
 > 
-> This enhances the documentation quality and helps developers understand
-> the interrupt controller hierarchy and usage.
-
-Changing ABI (compatibles) is not enhancing quality and is not explained
-here.
-
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 > 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> ---
->  .../aspeed,ast2700-intc.yaml                  | 155 +++++++++++++-----
->  1 file changed, 112 insertions(+), 43 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
-> index 55636d06a674..751a07d49c90 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
-> @@ -10,6 +10,33 @@ description:
->    This interrupt controller hardware is second level interrupt controller that
->    is hooked to a parent interrupt controller. It's useful to combine multiple
->    interrupt sources into 1 interrupt to parent interrupt controller.
-> +  Depend to which INTC0 or INTC1 used.
-> +  INTC0 and INTC1 are two kinds of interrupt controller with enable and raw
-> +  status registers for use.
-> +  INTC0 is used to assert GIC if interrupt in INTC1 asserted.
-> +  INTC1 is used to assert INTC0 if interrupt of modules asserted.
-> +  +-----+   +---------+
-> +  | GIC |---|  INTC0  |
-> +  +-----+   +---------+
-> +            +---------+
-> +            |         |---module0
-> +            | INTC0_0 |---module1
-> +            |         |---...
-> +            +---------+---module31
-> +            |---....  |
-> +            +---------+
-> +            |         |     +---------+
-> +            | INTC0_11| +---| INTC1   |
-> +            |         |     +---------+
-> +            +---------+     +---------+---module0
-> +                            | INTC1_0 |---module1
-> +                            |         |---...
-> +                            +---------+---module31
-> +                            ...
-> +                            +---------+---module0
-> +                            | INTC1_5 |---module1
-> +                            |         |---...
-> +                            +---------+---module31
->  
->  maintainers:
->    - Kevin Chen <kevin_chen@aspeedtech.com>
-> @@ -17,49 +44,67 @@ maintainers:
->  properties:
->    compatible:
->      enum:
-> -      - aspeed,ast2700-intc-ic
-> +      - aspeed,ast2700-intc0
-> +      - aspeed,ast2700-intc1
+> <form letter>
+> This is a friendly reminder during the review process.
+> 
+> It seems my or other reviewer's previous comments were not fully
+> addressed. Maybe the feedback got lost between the quotes, maybe you
+> just forgot to apply it. Please go back to the previous discussion and
+> either implement all requested changes or keep discussing them.
+> 
+> Thank you.
+> </form letter>
+> 
+You responded in private, but that's not how we discuss here. Please
+keep all discussions public.
 
-No, you cannot change compatibles.
+Above form letter means you received feedback at v1 or v2 and you did
+not implement it. You did not respond to it, either.
 
-You just rewrite entire bindings just because of wish to "refine"?
-Hardware changed? What happened here?
-
-You need to clearly describe ABI impact and reasons, like possible bugs
-you address. You cannot just rewrite existing binding into something
-entirely else.
+Please go back to v1 or v2 and implement entire feedback.
 
 Best regards,
 Krzysztof
