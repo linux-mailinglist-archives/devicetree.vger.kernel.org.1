@@ -1,126 +1,120 @@
-Return-Path: <devicetree+bounces-196134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0066B04371
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:20:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97301B0438E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 17:23:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 006D71A63A0A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 15:18:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8846A16A89D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jul 2025 15:20:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88D87261591;
-	Mon, 14 Jul 2025 15:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F78E2609C4;
+	Mon, 14 Jul 2025 15:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KtpXOjqF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f4aCNCmZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DEB026056E
-	for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 15:17:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 844D92571DD;
+	Mon, 14 Jul 2025 15:18:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752506227; cv=none; b=UldxjwLrkGGLT7/RHR+QC3RlNrq1bSP2wQLppBGAxDPWxQpCZg939Y62Doa8AtHEs0V1qRwedg03D+IbD6qDXP1wI5FLB87c1l93awQKpnMhnfX3uj27gANC40T760fZf/Yiw22i4Kl2EjnVniRjzP8XiazpBqlJIFc4gqyQ53o=
+	t=1752506298; cv=none; b=Jg3Ak7J0RpaP7/TQ8uo/kSO+TpAiN2IArYYvQFuefU64tQc92qO+obE6o4C5ndsivqXdtrQyPvMcurpiAS8ss0DZ8pzOkmbmewWn9zalEQkR+xprjqdtPXGxYQvH2sPZm/ZrX8u9JBkLV9+9yA4+Z1uuyeUtf4opeSZcAGohBp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752506227; c=relaxed/simple;
-	bh=yhMu5T6hzBLMdh1uAFjKTy5PMnMnoPVoGkdLGs7pRlk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dzJvlQ9CaJCvL6hgndqyjaDdzzSC9xic87cn0ZaHUX3PLfyQAavIzrxPM4ZBhfzhhXkAU54WDcDfH2C0rQyhEg5pl4Xnx3HPG/HbHKpiw7DEvwhhSZA1Ji2caBUfi4NH+K1su4duqW0bO3E5y40GuCFSESq+4PZp1FTVgB0jrIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KtpXOjqF; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4537edf2c3cso46202185e9.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 08:17:05 -0700 (PDT)
+	s=arc-20240116; t=1752506298; c=relaxed/simple;
+	bh=H2Vfa1hTNVLtaQ3ZfRlV+2JX86DONilPDV8aWr5D5/E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M4AhlEbVarVpe4ql0xU8nxcS4Es/WGiLgqy8/5bojD4xQRi8r5iF6ah9hOuzEPK//QcpG6mb2N0Z6MCRHb+0kpUSQVUSW6SvPeFP+UaGfxT2EX61ypKwgHQcT8M5QGm+f6WdXliBnwCxt3mnq/HCEwERdChSuA8TS8R6d85xyCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f4aCNCmZ; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-3138e64fc73so1164607a91.2;
+        Mon, 14 Jul 2025 08:18:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752506224; x=1753111024; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xCjJs+mAQ+eyQ0cHltxO4UYluhIlp5Nf/WChKLF+U7U=;
-        b=KtpXOjqFHopRdm0ZMSLVrZJhmkzxVMzQ9+qU6MtRv8/VcP6gEP8Oni3zy6l+Hr1fjT
-         bckbB1+ZTiGUQ3l1PEbxzZ4Eq6/IvNmrrKbsqZcAtNgTMRxlic4fMRgwZdXIQsWcEdvw
-         R4bvAQcZLdAEiMxPyT6P5+LgueyJgQdzfD8JNlyttiDK+KIK09iwRgi1ZsduNt8p//dY
-         cA8CWv501am2lnfdk/4ASV0Mgt4EsoiZ4GB7CKRtMzDkddosdwd4JL7rt2MbBb80gL2o
-         XX8uvibz7RCnpCzhnYn/4ut8WbV2hpa1C8wLyl9TB12Xpcb2aChJnEBiwwuhPrvFGG2n
-         opEw==
+        d=gmail.com; s=20230601; t=1752506297; x=1753111097; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H2Vfa1hTNVLtaQ3ZfRlV+2JX86DONilPDV8aWr5D5/E=;
+        b=f4aCNCmZ1Aj0r3Y+WD0umwp2tFFDkErl/1ZAj0oEkH0KtM3BfnPvoMYSIqkIvi3o4B
+         YP4ZKV3yhgzv6tX+Y4bi3UwPKOwDCNUwKE6JCWTagnl1yUPKrbYLQ1n+6993aWfaa8pA
+         G0EEZ4a/wUzobX9E6L1VMMjprfUhn2pSzmqIKyjR6V9SJ0Wfjs4L8iOlRtSilNdXO5rq
+         5/okjGefXTQYSKdddgemyOn3TAo2cQgvZo8foc/hVB/9touB7t15NXNCjywv8NsrEl5b
+         r7H61FLqS4vRaeuPga4W3B+73MspGALC9qbWmkRnzMQTgb/8Irb8R/aJad/emnM4xNB7
+         VWXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752506224; x=1753111024;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xCjJs+mAQ+eyQ0cHltxO4UYluhIlp5Nf/WChKLF+U7U=;
-        b=cLh2UsrW/EXOK+XudUFsrD5WKQkPpKlqEOjyHxJzhI60n2Tagj4vvm0o7Hd6JnovYq
-         Mdto1Sgzj+3faL3auO4rRmlrVw9KZSHZUFvAoH3AEbJpKKDziMsVlWtCB/YTknuPHuzO
-         dTrqoAejT3Hqmy+cEXXxlvjm7aJyz8g+ht6oCcbIpA1Mct8pYmVzbF3UuFlzkMCvMGW7
-         IKJkAquXtP4ZKvr6gvqlc4B1RfQdRu81jgh/KwNwXEsyk4agWkBcSacTJumpBGvynZIN
-         gXChHlELCGPEizStizl6XKYUnWg2SZNxb/pIpU8wkHnvwHCuVUYagK87+9lC7S90wjOU
-         bd/w==
-X-Forwarded-Encrypted: i=1; AJvYcCXT3z/COFZTzTLbE5FJuiAkQ3mvJoD/rRjZNVrJSPi3wrwlGHXqfRjXY7uK4XL3EdUaO5khHguo1UV8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwR3brvUXNsH7SRFawileL1Mk7CRsjLt+bp5w3g+bYvUYrU6vQW
-	OlPtD+YC8Kui38KweBQFrH2bxxOUdD2I4lbP7wHskNKI6auBFby0yYOMthlCXsqQDs0=
-X-Gm-Gg: ASbGncuAVhuz/Dqadj4mATUhHls8BbD15qYxhUBgCcQ05kR1F4N8YvRxsQUwpnI53OW
-	rYBYuWXIgOg8bCuTxUEWFiT7ACnN5oNMqCG6I2rXu2XmAYmcGBo10HN8iBlKMtN9+Ip03nv6APt
-	yS87sqhbO7CpBbeHwDYWxUWBsuwRx6eqVebcL2kASWL9QcHymzz5cqVH7tP1nyaB1b/5PN06wH8
-	U/msqtV3UHpZ/rFwPw0ON8KGvu0Y/NWHevVsRUwagOAX+hvx84/423um0UUARq33STC7+lg00df
-	BPKYNc4jT2AeHLhJgAXfZetouYCrUrSumALa+W3VUr80Vdoj18cIkgST03au1aVOvxGnREwj2qX
-	Hzc8g+Kh9O3bOJzZuOCNFpEER99SO0W+Aqe5W1Sl7FL7LCt1St/hRfKlbDus3b7Q=
-X-Google-Smtp-Source: AGHT+IEpin0kK7Y62+zwW4eiqts/4lq2fhVPTieQctRVVCnIYpoH+CSOCtblJicWaiIjBRT5U9/Y+A==
-X-Received: by 2002:a05:600c:c096:b0:441:a715:664a with SMTP id 5b1f17b1804b1-455e7890b03mr75864705e9.20.1752506223867;
-        Mon, 14 Jul 2025 08:17:03 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454dd540b52sm135696755e9.28.2025.07.14.08.17.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Jul 2025 08:17:03 -0700 (PDT)
-Message-ID: <c93624bb-ee7b-45ac-8b53-b5391f11c9c9@linaro.org>
-Date: Mon, 14 Jul 2025 16:17:01 +0100
+        d=1e100.net; s=20230601; t=1752506297; x=1753111097;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=H2Vfa1hTNVLtaQ3ZfRlV+2JX86DONilPDV8aWr5D5/E=;
+        b=vfYo6kttb+RC4cJ5CNvz9m9EORkYifO51G8WHwLQtwy7342Sq/Q5NnT4qRy4OROKGd
+         z9J4omjQrgLD2eh/YMDmsZIYPMOeLjaOfOodz1gyEqEXgeeMCPG88B3HP8cddB4VaD6q
+         8FtP3PMmK8xSK6SY/kT8bWNlz/13xtAuXX/f8x4bE/p+AXqVJ4rqBIEm6RTbZJMIT2Ag
+         a+BaoawLdaTQQFmvKh0W8nJTRGynLCYheV0FO9gjfMcaOtplaZJP0/TGILwVl02eFSxN
+         YCaqSg32nE0cAb6t3CIRxc3J0d+V74d7zVdNJoTGLHB9TvwM7NT/M6Ncj2TNnqf8b3Gw
+         WzCA==
+X-Forwarded-Encrypted: i=1; AJvYcCUGGGAqpocemJ3S3L17372Pua6AGf/nEJamokubpptJy9O51cNHNcCpP5GySADV81CcD526jo3BiY4NaPnsBmKz@vger.kernel.org, AJvYcCULz24z4pWU4sdsFUC60n4/j8zvbyACgmsKQm6i3W6ByUjcGE7ly6OY/F9POMLMoSyncIZzjldV2H5rY2bn@vger.kernel.org, AJvYcCVMJfMp7kERUTRt3AZxUZQJqRK1x1hOUICGJx5bEN75GdktyoQurtcWb2FNx9pUb+A/JUdCF1Op9ujmW8yXXuo=@vger.kernel.org, AJvYcCXsBJ4i+rg/42BXKyy60IfyI0wQJ2j4Uzj+DVvnd+mUSz4qyMrUVXsX0XGXWRoRMMdO9B1g0xdERq4Q@vger.kernel.org, AJvYcCXvMQov6Nzat1SW5zQsPM0N1dS25Iv84LDOlnfp3W71Q3o4SlARNLD9WMeR0ZKh8HMs4AuMTG+OMbM=@vger.kernel.org, AJvYcCXw1DpBVbTLqQN6t5XpeDvltxHmguQPyodOIvMKYi55+A/yn+uLctZrM6kB5Hnkam8VOXpozaYQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfTiglU9oFQoTaYXaZt20lefc/Phi/HynvXd4jtXrtjFfNW0It
+	/7AfFduUwB1bgxN/7MH9TWC2eDdRhrONZPL+KSBX3jc3ik+xLK+DdQ1I1926LYCt1z+fT9qthq5
+	cifdGMn9Xl478mLZuvoEy+pf4Eqbq7ks=
+X-Gm-Gg: ASbGncs89UTvOvFt8Js00O4xOcxUSgBf/6/U7ysMRP/s6JKL2TA/wKSBGlnGokr50JV
+	h3CrukIosWiP2uKktLxp9wmPir1CY7GaymajyI1SkZVFmFAi8LbTuPHgMqdzH1NGA/ibQcQYvH1
+	IVxi5yu9L5XBQFvfEP/NiWk8HAGgn4NxlQOoq53kuSEAEsvFHmmE5JjAu4U4I5dMjTKcG+TGr52
+	P1Icyf+dliyW49+cUA=
+X-Google-Smtp-Source: AGHT+IEAaevWA3THWIOPb1Ft9IVMbazdTZ0Roc9iuvAoj1b5HTax5adhB7GCfo0cZ1I1i+dSyxYRJQcg/1n6uYcNd6A=
+X-Received: by 2002:a17:90b:558f:b0:313:f9fc:7214 with SMTP id
+ 98e67ed59e1d1-31c4ca77626mr8723572a91.1.1752506296678; Mon, 14 Jul 2025
+ 08:18:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI D-PHY driver
-To: Vladimir Zapolskiy <vz@mleia.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Bryan O'Donoghue <bod@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250710-x1e-csi2-phy-v1-0-74acbb5b162b@linaro.org>
- <20250710-x1e-csi2-phy-v1-2-74acbb5b162b@linaro.org>
- <11b573d5-ce4d-476c-b94c-216d427cd838@linaro.org>
- <08261aa4-689b-4d6b-bfd2-221c1976d254@linaro.org>
- <a7f64b31-4767-4281-b452-a2bc5351d745@mleia.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <a7f64b31-4767-4281-b452-a2bc5351d745@mleia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250709-core-cstr-fanout-1-v1-0-fd793b3e58a2@gmail.com>
+ <20250709-core-cstr-fanout-1-v1-1-fd793b3e58a2@gmail.com> <DBBQE3GJ0CHT.5PEF7RLS6C33@kernel.org>
+ <CAJ-ks9=ZHtzeyyFSZaVuA1t-3C8-hc40n6r8qFWxn628qT-OeA@mail.gmail.com>
+In-Reply-To: <CAJ-ks9=ZHtzeyyFSZaVuA1t-3C8-hc40n6r8qFWxn628qT-OeA@mail.gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 14 Jul 2025 17:18:04 +0200
+X-Gm-Features: Ac12FXzX4FOFR5k7wOozEqN2_nmttthJfs0me70_TpwVT6YUdkB9gcZMGomkNT4
+Message-ID: <CANiq72kyQQMutGDkHH=McRQens+V+wkHLpiSfivmnAwwgXE62w@mail.gmail.com>
+Subject: Re: [PATCH 01/10] gpu: nova-core: use `core::ffi::CStr` method names
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Dave Ertman <david.m.ertman@intel.com>, 
+	Ira Weiny <ira.weiny@intel.com>, Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+	Rae Moar <rmoar@google.com>, FUJITA Tomonori <fujita.tomonori@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+	kunit-dev@googlegroups.com, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, Javier Martinez Canillas <javierm@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 14/07/2025 15:58, Vladimir Zapolskiy wrote:
-> 
-> This proposed device node scheme does not solve the known and already
-> discussed technical issue expectedly, namely there is no given way
-> to describe a combo mode hardware configuration, when two independant
-> sensors are wired to the same CSIPHY. This is an unsolvable problem
-> with this design.
+On Mon, Jul 14, 2025 at 2:35=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
+ wrote:
+>
+> How should I respin this one? the subject should be drm/panic, I think.
 
-I think that is genuinely something we should handle in camss-csid.c 
-maybe with some meta-data inside of the ports/endpoints..
+I would mimic what the previous commits did, i.e. drm/panic indeed.
 
-> 
-> Sensors are conneced to CSIPHY IP blocks, CSIPHY is connected to CSID.
-My understanding of best practice is data-endpoints go into the consumer 
-not the PHY.
+(If I happen to pick it up before a resend, I could fix it on my side)
 
-These are PHYs with their own SoC pins and voltage rails. They should 
-look like other PHYs in qcom and across DT, IMO.
-
----
-bod
+Cheers,
+Miguel
 
