@@ -1,306 +1,156 @@
-Return-Path: <devicetree+bounces-196524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01A87B05A2B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:30:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6990BB05A99
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:51:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3133C1A6440F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:31:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADEEA16D3FD
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED25E2DFA28;
-	Tue, 15 Jul 2025 12:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8139726D4D4;
+	Tue, 15 Jul 2025 12:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DwxDrtjT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O9/iwWRg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D2FB2DE71C
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 12:30:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 556E9246BD7;
+	Tue, 15 Jul 2025 12:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752582653; cv=none; b=dN3iz4wSozAuNbHqFxr3hWKw7WGAw/xsomORx/BzmSC7c+E2N4YLhFw+8PY+RGMYxVb9ZXUoof8JVXPOdroDiLh8L1CBt+ipFmrdVto7UtyEDIRR/fIuYi4lhjc/TBd4gGQSMbcqUl6grEfY0DdlQwjN/pFfBtxJoaop/UnhzKQ=
+	t=1752583868; cv=none; b=Xe2G+HM3SW5mB5AMBQULwzWCKHjP/qG3Wn3fonUYALrfsDkIwyALGE6kwY8WKdT0o9GmNULY7Yo0xrSkrU57BSY1T5pfaOcCVF0906GWujXb9e5X26yee+iTEcbYHRc/ecjnC5hxyjHQc1K+BOu811Kh09MPnj08nOMUyJYQYPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752582653; c=relaxed/simple;
-	bh=WWk+Zz38J+A0lk1NwBDagUK+UNQd7WE179Tt+YtBOkQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fvB+j5As+k8KsJmViRotcxzE99K8A7/CRQOdp+CcJma3I33h+X9KSijgIx3dAGr845KZxhykLMFO+fIA2/o8+CkRZu0rocKon5xLdKrEvZDb70s2gNJQ58Wd7n+b3Sb/QQup6BMtCnFptg8iw8RV8HNxHaddSJfUuwxKeh8YSVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DwxDrtjT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56F8nOcE002934
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 12:30:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=vll9rDGne1AoSKyOm+L2Rpgh
-	eag73S1w5wXI4BU9WhU=; b=DwxDrtjTDCkY5VX8gp/sJ39WjfO+PJz5zmZ3sdhs
-	bqPA1uVnPIfEGLII9VqnUxlDXxM+khrFIunyiqghfsq28KBM9j/Za8BjUDIxul8G
-	y3kalwZbIxpwc78o8OVFaws9iUfb5e++dQRBgIeCCvWlZM/PyLPVs1PuBVz0oFfS
-	UKT9cR+v00aMD4SH6pyc0oB64Pc4uwGWDwv3jUYuUtQ4ZHu8LhckZP1s8FfY3cjL
-	F0KndfTafhNhO5ZjJ2ysX5ZaS0BXwu46dIuxUno9cYp3TwKAtZBfASCMMjvCHUAg
-	0G1CpBW1m3EW0pcWn7XujoNnP8ws5GH0VgALSm0X8IOn5w==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufut82m2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 12:30:51 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-313f702d37fso6011293a91.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 05:30:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752582650; x=1753187450;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vll9rDGne1AoSKyOm+L2Rpgheag73S1w5wXI4BU9WhU=;
-        b=pBrjuoTORLDtR/C+5LsYvENGkgCpRE6nQY5fiVquuDrXkMsSQib43sdO6/vU/N5LW/
-         6gH0ILzsvWH0/4LKPW5Baa+BcMhG76cengCl2jCgj3OqF9+PuXhvvHrteu2chavnKEwP
-         9VnbT3s6c7CfPoAbRPSWtAE0yuV5jIvDze+MkqMx/pbSVaIxrAfxStgDnhuLt/0ssnti
-         d61jI1F1a90j3IhSi7SWGEE14keyE83zBOLZQR87ZTZQ2nUp9gqRwKVAZVCsjz9cC05H
-         vnX0m0PnpX2CuZs7dp6ZonTQCK3k5loEKv9wgQs0moSgwbd2VyY4pD7x7zCPIjixTDNi
-         dm9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWbYNyRPFREH+AtWebHMQGENt/DsjzxNaTH6pph8fISN2L1dHIckICgDKRr1zwQ/pnK+V71tuR514r5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUBI0/5sXEuBfqCTkcLAcoR6tu0h3THWwkmPcbvvg6CMJIezNY
-	8UfFuG1VB2QRgRddV7pHEmYuUIebyR7MzFaNQdGK7UfUP8fwnklqWQPTff0i3NwgSgRWcD+PQAJ
-	MenT340cdC3aIgRJ27PUAMRSvwlJWRjoDjVruyeir59dKiPxphW0E5QU9LesYDUGKmffh6VgUcI
-	2oJm/s7fF3fFQxSvUDl1LPrus3sv9a6DYwYdiuWEA=
-X-Gm-Gg: ASbGnct8IkceJnfC2KbDzm3LorKPWfPT0zXVIXb/H55iOEbcV/WTg5BtggZbSERXwzU
-	EvnPXg9bLx+fzZbxqAK6DGabj2XrfIaWBMfUtxroHwJX51p9e5dZyfqkrhHxbvniVaxeaI5jWB4
-	PIKX7tEpA/qAfllRNzKA==
-X-Received: by 2002:a17:90b:57ee:b0:311:ef19:824d with SMTP id 98e67ed59e1d1-31c4f48b04fmr24534264a91.2.1752582649347;
-        Tue, 15 Jul 2025 05:30:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH+QKgmUT1LtI1tPLIsEldlE+Xv3jc/Myv45x2YTeyCk85wFHdk/rhiwhDMhBYh15+FloJ3fZb+aHNfPlztF/k=
-X-Received: by 2002:a17:90b:57ee:b0:311:ef19:824d with SMTP id
- 98e67ed59e1d1-31c4f48b04fmr24534218a91.2.1752582648728; Tue, 15 Jul 2025
- 05:30:48 -0700 (PDT)
+	s=arc-20240116; t=1752583868; c=relaxed/simple;
+	bh=SYqdH0nbo/soJyG407Y7VfgSiFhIAFxZHSCoScU9FK0=;
+	h=Content-Type:Date:Message-Id:Cc:From:To:Subject:References:
+	 In-Reply-To; b=UnqJ1Vr7cXSILkJ9e5SdMYxjGFj3l9DC2a5Y28bU7/HKJwFC8YRB2bf4iUaVifv8SMszjU433RO9K9JAJ4Hqh8BzOsXSwSNmd986yWL6af54qxBRrO4AvF50V5UnXiOWGtT324k5rXLijGNK9myi1opFwBfXpO6XXq/zwEiRjjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O9/iwWRg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58F67C4CEE3;
+	Tue, 15 Jul 2025 12:51:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752583867;
+	bh=SYqdH0nbo/soJyG407Y7VfgSiFhIAFxZHSCoScU9FK0=;
+	h=Date:Cc:From:To:Subject:References:In-Reply-To:From;
+	b=O9/iwWRge4o3xkYF0GIBAevq1B/CZpGE0WPXQr2yKNDytYayI51CvSw1FALWIDe/q
+	 sfD6OGm6lZ3ClTA9ZS1MLIpHdn77PfGKzcYSbZUR1Dfuh5EMkwanZXYx7OR7F4SfCD
+	 BdNdpJDdGjMkJo+41UhCEVencI0tcu5sViP2tcRIxbuGJahIkv+gsCzw9/VzgWUNAH
+	 MU9ha3GNnKWSJlovwr5HHj9m3pM/gWbQwEdNH/0PmUWEwmusGbEmsUTDEPP11BG8Aq
+	 OfIey3BylZsQ29U2ljtYbu8IjkfiraOl4EJeEHtW76TLp4AT/WtLab1FRpPYEy3jYd
+	 PHYMwoDFdd3kQ==
+Content-Type: multipart/signed;
+ boundary=ec4565a1291b5d1d81a6a11630de29101cca86d2a1c006a83cf8c92e6fb6;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Tue, 15 Jul 2025 14:51:03 +0200
+Message-Id: <DBCN4NYM5NF3.S9SFP077EKFK@kernel.org>
+Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Andrew Lunn"
+ <andrew@lunn.ch>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Shawn Guo"
+ <shawnguo@kernel.org>, "Lee Jones" <lee@kernel.org>, "Frank Li"
+ <Frank.Li@nxp.com>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Ioana Ciornei" <ioana.ciornei@nxp.com>
+Subject: Re: [PATCH 4/9] gpio: regmap: add the .get_direction() callback
+X-Mailer: aerc 0.16.0
+References: <20250709112658.1987608-1-ioana.ciornei@nxp.com>
+ <20250709112658.1987608-5-ioana.ciornei@nxp.com>
+ <0d0e9cee-2aaa-402d-a811-8c4704aadd74@lunn.ch>
+ <CACRpkdYDTXA7+YN2zRCsQxu2AKEAwbDVq8-m27ah5XTw9iRNPw@mail.gmail.com>
+ <55e7aeb5-565f-4452-bc11-55968dcc0a9e@lunn.ch>
+ <CACRpkda+=A5R4vZZQZKmF3LnGd6xMYbNomahgTW+j9aX9swBFA@mail.gmail.com>
+ <DBBKJ05VNSDG.30MNWDWT9JAEC@kernel.org>
+ <c4ff34jwaiyby52ambcxtu2mrjlkcv44scjsveb6s6pvaps33u@bvl3wz6mvsuo>
+In-Reply-To: <c4ff34jwaiyby52ambcxtu2mrjlkcv44scjsveb6s6pvaps33u@bvl3wz6mvsuo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-8-quic_ptalari@quicinc.com> <d6cr4elhrbh27lmlcv5xzuel75uvsgi7klxjkevm7vg4jcbawe@5ojgetrxkag5>
- <f87807c9-5249-4d97-ab89-898b7d8d260d@quicinc.com> <tt2crsexdnhlotlo3z5uxyta6jrnnvom7aqwsjvopwueazbuih@2l4h6xjpwlar>
- <1c73b530-4f1a-4c45-91aa-b44efb8a8c1e@quicinc.com>
-In-Reply-To: <1c73b530-4f1a-4c45-91aa-b44efb8a8c1e@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Tue, 15 Jul 2025 15:30:37 +0300
-X-Gm-Features: Ac12FXx7o0vm61CvNFB6-j5iSJHx1nZh9qdvCU2mn-91NnumjNpXsNKHazRHWZE
-Message-ID: <CAO9ioeVLPnqxL6Vz+GOFuqkiT8NcxW3buCP6Q81-rR72MwRxhQ@mail.gmail.com>
-Subject: Re: [PATCH v6 7/8] serial: qcom-geni: Enable PM runtime for serial driver
-To: Praveen Talari <quic_ptalari@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, psodagud@quicinc.com, djaggi@quicinc.com,
-        quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
-        quic_arandive@quicinc.com, quic_mnaresh@quicinc.com,
-        quic_shazhuss@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Authority-Analysis: v=2.4 cv=e7gGSbp/ c=1 sm=1 tr=0 ts=687649fb cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10
- a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=U3XR-vgVohVsxwl5X4IA:9
- a=QEXdDO2ut3YA:10 a=-_B0kFfA75AA:10 a=iS9zxrgQBfv6-_F4QbHw:22
- a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: UUiB2bnu9Bgq6ncm0o1P2693VTTDbqmk
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE1MDExNCBTYWx0ZWRfXx4/7DB9rssQu
- 5uOcCOAg+O2sMp/h4Vet4LrSvJ96DTF1Sac4Q8EooEPbDYa9hTwB9rlcyrNGb3stiYcx7PM1K8z
- txJFe640hPhjfddeKGvDN0xFmnhAdupxHcqDhD+pFg4yFacTPEMA630D/QlukstLuk+p13URNfY
- Sy/AQQJs0nlrJqcd8eRBnJmbpwGgOGd0hw+CAA7o6HUYvncofPVxvnqCDzzdwjea8oaBD6NURB+
- XefbUryqfBtxV0cpcFwQIyWDsGypRQBQTg+TLfHldHxb1AXTuO3toRuMqWC0mDxpI99EUMcn9eo
- hLuL7BmO4e/E3IYbStJ0JNhHU/MZ7ErL0ueEOVZBhD4plIetnf0qPO0EOm6MDkwy/qOjQSNaj3S
- lbkhOwHEJMqqoIKLAXgDn+wSaddokk+t60wcngYmGcV/Wkom963clH0XxJAEpYnV0qfJpmdJ
-X-Proofpoint-ORIG-GUID: UUiB2bnu9Bgq6ncm0o1P2693VTTDbqmk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-15_03,2025-07-15_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 spamscore=0 suspectscore=0
- phishscore=0 bulkscore=0 impostorscore=0 clxscore=1015 adultscore=0
- malwarescore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507150114
 
-On Mon, 14 Jul 2025 at 19:21, Praveen Talari <quic_ptalari@quicinc.com> wrote:
->
-> Hi Dmitry/Bjorn/Krzysztof,
->
-> Thank you for review.
->
-> On 7/1/2025 4:42 PM, Dmitry Baryshkov wrote:
-> > On Mon, Jun 30, 2025 at 10:40:25AM +0530, Praveen Talari wrote:
-> >> Hi Bjorn,
-> >>
-> >> Thank you for review.
-> >>
-> >> On 6/17/2025 9:23 PM, Bjorn Andersson wrote:
-> >>> On Fri, Jun 06, 2025 at 10:51:13PM +0530, Praveen Talari wrote:
-> >>>> Add Power Management (PM) runtime support to Qualcomm GENI
-> >>>> serial driver.
-> >>>>
-> >>>
-> >>> Doesn't this have impact on the behavior outside of your
-> >>> project? Or is the transition from qcom_geni_serial_pm() to explicit
-> >>> RPM merely moving code around?
-> >>>
-> >>> Seems like this deserves to not be hidden in a middle of a patch series.
-> >>>
-> >>>> Introduce necessary callbacks and updates to ensure seamless
-> >>>> transitions between power states, enhancing overall power
-> >>>> efficiency.
-> >>>>
-> >>>
-> >>> This commit message fails to state why we need runtime PM support in the
-> >>> driver.
-> >>
-> >> Introduce PM runtime support to the Qualcomm GENI serial driver to enable
-> >> better power efficiency and modularity across diverse resource control
-> >> mechanisms, including Linux and firmware-managed systems.
-> >>
-> >> As part of this enhancement, the existing qcom_geni_serial_pm() logic to
-> >> use standard PM runtime APIs such as pm_runtime_resume_and_get() and
-> >> pm_runtime_put_sync(). Power state transitions are now handled through
-> >> the geni_serial_resources_on() and geni_serial_resources_off() functions.
-> >>
-> >> Is it fine?
-> >> Please guide me/correct me if needed
-> >
-> > Please start by stating out the problem that you are trying to solve.
-> > There is no actual issue description in your patch.
->
-> I hope this commit describes the actual problem.
->
-> The GENI serial driver currently handles power resource management
-> through calls to the statically defined geni_serial_resources_on() and
-> geni_serial_resources_off() functions. This approach reduces modularity
-> and limits support for platforms with diverse power management
-> mechanisms, including resource managed by firmware.
->
-> Improve modularity and enable better integration with platform-specific
-> power management, introduce support for runtime PM. Use
-> pm_runtime_resume_and_get() and pm_runtime_put_sync() within the
-> qcom_geni_serial_pm() callback to control resource power state
-> transitions based on UART power state changes.
+--ec4565a1291b5d1d81a6a11630de29101cca86d2a1c006a83cf8c92e6fb6
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-LGTM
+Hi,
 
+> > > Then the core can use is_fixed_direction() together
+> > > with gpio_get_direction() to check if it can do
+> > > a certain set_direction().
+> > >
+> > > Pseudocode:
+> > >
+> > > mydir =3D get_direction(line)
+> > > if (is_fixed_direction(line) && (mydir !=3D requested_dir)
+> > >   return -ERROR;
+> >=20
+> > You don't need a .is_fixed_direction(). You can deduce that if only
+> > .get_direction() is set in the gpio-regmap config.
+> >=20
+> > mydir =3D get_direction(line)
+> > if (!config->set_direction && mydir !=3D requested_dir)
+> >   return -ERROR;
 >
-> Thanks,
-> Praveen Talari
-> >
-> >>
-> >> Thanks,
-> >> Praveen Talari
-> >>>
-> >>> Also, start your commit message with a problem description, per
-> >>> https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-> >>>
-> >>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> >>>> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
-> >>>> ---
-> >>>> v5 -> v6
-> >>>> - added reviewed-by tag in commit
-> >>>> - added __maybe_unused to PM callback functions to avoid
-> >>>>     warnings of defined but not used
-> >>>> ---
-> >>>>    drivers/tty/serial/qcom_geni_serial.c | 33 +++++++++++++++++++++++----
-> >>>>    1 file changed, 29 insertions(+), 4 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
-> >>>> index b6fa7dc9b1fb..3691340ce7e8 100644
-> >>>> --- a/drivers/tty/serial/qcom_geni_serial.c
-> >>>> +++ b/drivers/tty/serial/qcom_geni_serial.c
-> >>>> @@ -1686,10 +1686,10 @@ static void qcom_geni_serial_pm(struct uart_port *uport,
-> >>>>                    old_state = UART_PM_STATE_OFF;
-> >>>>            if (new_state == UART_PM_STATE_ON && old_state == UART_PM_STATE_OFF)
-> >>>> -          geni_serial_resources_on(uport);
-> >>>> +          pm_runtime_resume_and_get(uport->dev);
-> >>>>            else if (new_state == UART_PM_STATE_OFF &&
-> >>>>                     old_state == UART_PM_STATE_ON)
-> >>>> -          geni_serial_resources_off(uport);
-> >>>> +          pm_runtime_put_sync(uport->dev);
-> >>>>    }
-> >>>> @@ -1827,9 +1827,11 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
-> >>>>                    return ret;
-> >>>>            }
-> >>>> +  pm_runtime_enable(port->se.dev);
-> >>>
-> >>> Any reason not to use devm_pm_runtime_enable() and avoid the
-> >>> two pm_runtime_disable() below?
-> >>>
-> >>> Regards,
-> >>> Bjorn
-> >>>
-> >>>> +
-> >>>>            ret = uart_add_one_port(drv, uport);
-> >>>>            if (ret)
-> >>>> -          return ret;
-> >>>> +          goto error;
-> >>>>            if (port->wakeup_irq > 0) {
-> >>>>                    device_init_wakeup(&pdev->dev, true);
-> >>>> @@ -1839,11 +1841,15 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
-> >>>>                            device_init_wakeup(&pdev->dev, false);
-> >>>>                            ida_free(&port_ida, uport->line);
-> >>>>                            uart_remove_one_port(drv, uport);
-> >>>> -                  return ret;
-> >>>> +                  goto error;
-> >>>>                    }
-> >>>>            }
-> >>>>            return 0;
-> >>>> +
-> >>>> +error:
-> >>>> +  pm_runtime_disable(port->se.dev);
-> >>>> +  return ret;
-> >>>>    }
-> >>>>    static void qcom_geni_serial_remove(struct platform_device *pdev)
-> >>>> @@ -1855,9 +1861,26 @@ static void qcom_geni_serial_remove(struct platform_device *pdev)
-> >>>>            dev_pm_clear_wake_irq(&pdev->dev);
-> >>>>            device_init_wakeup(&pdev->dev, false);
-> >>>>            ida_free(&port_ida, uport->line);
-> >>>> +  pm_runtime_disable(port->se.dev);
-> >>>>            uart_remove_one_port(drv, &port->uport);
-> >>>>    }
-> >>>> +static int __maybe_unused qcom_geni_serial_runtime_suspend(struct device *dev)
-> >>>> +{
-> >>>> +  struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
-> >>>> +  struct uart_port *uport = &port->uport;
-> >>>> +
-> >>>> +  return geni_serial_resources_off(uport);
-> >>>> +}
-> >>>> +
-> >>>> +static int __maybe_unused qcom_geni_serial_runtime_resume(struct device *dev)
-> >>>> +{
-> >>>> +  struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
-> >>>> +  struct uart_port *uport = &port->uport;
-> >>>> +
-> >>>> +  return geni_serial_resources_on(uport);
-> >>>> +}
-> >>>> +
-> >>>>    static int qcom_geni_serial_suspend(struct device *dev)
-> >>>>    {
-> >>>>            struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
-> >>>> @@ -1901,6 +1924,8 @@ static const struct qcom_geni_device_data qcom_geni_uart_data = {
-> >>>>    };
-> >>>>    static const struct dev_pm_ops qcom_geni_serial_pm_ops = {
-> >>>> +  SET_RUNTIME_PM_OPS(qcom_geni_serial_runtime_suspend,
-> >>>> +                     qcom_geni_serial_runtime_resume, NULL)
-> >>>>            SYSTEM_SLEEP_PM_OPS(qcom_geni_serial_suspend, qcom_geni_serial_resume)
-> >>>>    };
-> >>>> --
-> >>>> 2.17.1
-> >>>>
-> >
+> This implies that gpio_regmap_config gets two new callbacks
+> .get_direction() and .set_direction() and that in case .set_direction()
+> is set in gpio-regmap config, then its used directly from
+> gpio_regmap_set_direction(), right?
 
+Yes. Or just .get_direction() for now and assume that .set_direction
+is NULL, i.e. it just covers your use case for the fixed direction.
 
+.. Oh I just noticed that this will really limit the use to either
+all or nothing. You cannot mix set user defined directions with
+fixed directions. Linus' .is_fixed_direction() will allow that.
 
--- 
-With best wishes
-Dmitry
+Though I wonder if we really want to let the user override
+.get_direction() and .set_direction(). I still prefer the bitmap.
+
+> > That or either Andrew's idea of setting a bitmap within the
+> > gpio-regmap config which already tells the gpio-regmap core and then
+> > amend gpio_regmap_get_direction() to return that fixed direction if
+> > that bitmap is not NULL.
+>
+> Even though at first glance I was under the impression that the bitmap
+> solution is cleaner, how big should the bitmap be knows only the final
+> gpio driver. Without this information, we cannot know the bitmap size so
+> that we can use the DECLARE_BITMAP macro in gpio-regmap config.
+
+Actually, I had the same thought. But there is also bitmap_alloc()
+and friends, no? And the gpio-regmap config contains the ngpios.
+
+In gpio_regmap_get_direction():
+
+if (gpio->fixed_direction_output && test_bit(offset, gpio->fixed_direction_=
+output))
+	return GPIO_LINE_DIRECTION_OUT;
+
+Which implies that once .fixed_direction is set it will always be
+checked. So if someone in the future wants to mix and match
+.fixed_direction with .reg_dir_{in,out}_base we have to add a second
+bitmap which tells you what pins are fixed.
+
+You'd probably need to make sure offset is smaller than ngpio.
+
+-michael
+
+--ec4565a1291b5d1d81a6a11630de29101cca86d2a1c006a83cf8c92e6fb6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaHZOuBIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/jVpQF+NoJo814cmBH+vHHm8ckC5v4daX6Bw6ES
+oRBk0K+1tCH3Dj4lZ2+8iHri4IjcdFZhAX9VG0PCxJXduNN2yFaXPrmuMHUuQp1w
+LDLbANDZ8lC0qwzD9T/zhyjuqoiIMz/18Zo=
+=yvBU
+-----END PGP SIGNATURE-----
+
+--ec4565a1291b5d1d81a6a11630de29101cca86d2a1c006a83cf8c92e6fb6--
 
