@@ -1,286 +1,107 @@
-Return-Path: <devicetree+bounces-196639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A91F6B06810
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:51:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73FFCB0682A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:56:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C41A24E76EC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 20:50:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBA22564FBE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 20:56:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFA2C2C0323;
-	Tue, 15 Jul 2025 20:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75E3C286426;
+	Tue, 15 Jul 2025 20:55:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="QZeoT1Q0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0388B2BEC53
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 20:49:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 602F22980B7
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 20:55:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752612559; cv=none; b=sZKIZ7hV8+f1kAybL+qvBVdxasgNG9UDkndsTg6JMXFHnanqf3Mgno3rFm0bMZDJXpntEX7ssE5iYiskKlM+JLrjCievxesiBMJF5cjn82GDGajfOzSw+n3cqaFRIv+T1rd2Z+v6imPUEk+3xO7F9o8oNOrGBEy1P8vpJc2Ebj0=
+	t=1752612958; cv=none; b=LdfYfWQiLZ0WpZvsbx2qTW9kegClQQjxGIYI6OY/OoB9aAV6rs70Q2P/z9uUdQVxFWc5n0y1tk9rPF1Sw0AmRM++E3WMzGFDuOcOkQUAwj6g0R73kWIULGHoJN7qVP8bLhGesat0K0KQ+etZzId3y33ipi1kJrtKyDmbNA9IpZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752612559; c=relaxed/simple;
-	bh=qeSiSEChF8vkI7U3jprp57CemwGFZH0pwj0CrxbU60w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=l8OKQcQpkSly5bmqTg/owqIRYKWUyFxMkb2If/M//wZd9dSOCkDaKNF+JxY/2EpEN5+UNRW4D2wphdRF8GAkEajDnvZ1SK+Y3f+m2zhYcTAoYH7atTe0fUuG8HZdBFWrjpyTToNbAHVSknx1AmlFxYTmRXqDx0uaKN5uA6RdbGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <jre@pengutronix.de>)
-	id 1ubmaI-0008KV-KY; Tue, 15 Jul 2025 22:49:06 +0200
-From: Jonas Rebmann <jre@pengutronix.de>
-Date: Tue, 15 Jul 2025 22:49:03 +0200
-Subject: [PATCH 4/4] hwmon: ina238: Add support for INA228
+	s=arc-20240116; t=1752612958; c=relaxed/simple;
+	bh=s1aWX3Jy7JATwX4OLDhZyDCq1etv122jpd6xNWj4p3I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dGvbnsaoFlymh0PCF8Fb6KhEoV31GEDKCfjBTRAQU6nwJvrh0ZdIhdC7qy4L0k1T2kl2WXgsBGM768mJBYdTcTBRvXXXixpFWVX4qhwVTX2V77rOEAAdOGgI2hwtYCF7yEGZhs5M5t6Xpy9/ccjBSzts3WUryNikdijFYAyVIrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=QZeoT1Q0; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 95A8C2C028B;
+	Wed, 16 Jul 2025 08:50:07 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1752612607;
+	bh=hzmMFR6wcU7l1u5PHA1UjvLpv5HKxbamsPxwtTKjP3w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QZeoT1Q0AFy5Nz2NSZVy6uSbYu4B97PRk9vgjnNmRGctaCI09W628cVd/8kVLyclB
+	 eWmdkViMFYDFfXJpIfmG+JatfGtSXLNYvgc3itd9OTzryfFNBQudtNtQpa0gklxB+Z
+	 6a/iuOlNcYUd1c3iewqEjvP/41L23ArkadWDvI6oSEQrVks5zlqhoXHevJQ055/Y2z
+	 vFVYga9X56umWdg44GWJ6FF8Ex66AdFx3YRwAwDmJY0FX/nc6IIdfp7hfIv+O8Kk6c
+	 XdBCv1K3F2f9cEskONWAtxh7N7u1M3moKLMQteN9EQGx29/U9ytvTZdA3tBO2h6Nw0
+	 /hKHQ9+6s0fXQ==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B6876beff0000>; Wed, 16 Jul 2025 08:50:07 +1200
+Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 7802413EDD7;
+	Wed, 16 Jul 2025 08:50:07 +1200 (NZST)
+Message-ID: <6ed8defc-0e3c-469e-be16-9d337d08f994@alliedtelesis.co.nz>
+Date: Wed, 16 Jul 2025 08:50:07 +1200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH] spi: dt-bindings: spi-mux: Drop "spi-max-frequency" as
+ required
+To: "Rob Herring (Arm)" <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250715202711.1882103-1-robh@kernel.org>
+Content-Language: en-US
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20250715202711.1882103-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250715-ina228-v1-4-3302fae4434b@pengutronix.de>
-References: <20250715-ina228-v1-0-3302fae4434b@pengutronix.de>
-In-Reply-To: <20250715-ina228-v1-0-3302fae4434b@pengutronix.de>
-To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- kernel@pengutronix.de, Jonas Rebmann <jre@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7020; i=jre@pengutronix.de;
- h=from:subject:message-id; bh=qeSiSEChF8vkI7U3jprp57CemwGFZH0pwj0CrxbU60w=;
- b=owGbwMvMwCF2ZcYT3onnbjcwnlZLYsgo23fwhFXjrqaVHNlptausf8kwHyy9VKmbk3o007v30
- uyV32vXd5SyMIhxMMiKKbLEqskpCBn7XzertIuFmcPKBDKEgYtTACaibszIMMnsXqbGzBjvhEvH
- J+/ImFIerSCWelzKs7/WrGXTFBfxfkaGK+k64j8MNs0UWXmyP0X1bnb82dOu7n0/t+y+9qir+xg
- TEwA=
-X-Developer-Key: i=jre@pengutronix.de; a=openpgp;
- fpr=0B7B750D5D3CD21B3B130DE8B61515E135CD49B5
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::ac
-X-SA-Exim-Mail-From: jre@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=dtt4CEg4 c=1 sm=1 tr=0 ts=6876beff a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=vmEaEXbN32frhDhSycUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-Add support for the Texas Instruments INA228 Ultra-Precise
-Power/Energy/Charge Monitor.
+Hi Rob,
 
-The INA228 is very similar to the INA238 but offers four bits of extra
-precision in the temperature, voltage and current measurement fields.
-It also supports energy and charge monitoring, the latter of which is
-not supported through this patch.
+On 16/07/2025 08:27, Rob Herring (Arm) wrote:
+> There's little reason to require the SPI mux to define a maximum bus
+> frequency as the muxing is just the chip select and devices still define
+> their maximum freq. In fact, several users don't set "spi-max-frequency"
+> which caused warnings.
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 
-While it seems in the datasheet that some constants such as LSB values
-differ between the 228 and the 238, they differ only for those registers
-where four bits of precision have been added and they differ by a factor
-of 16 (VBUS, VSHUNT, DIETEMP, CURRENT).
-
-Therefore, the INA238 constants are still applicable with regard
-to the bit of the same significance.
-
-Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
----
- drivers/hwmon/ina238.c | 98 +++++++++++++++++++++++++++++++++++++++++++++++---
- 1 file changed, 93 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/hwmon/ina238.c b/drivers/hwmon/ina238.c
-index 44f7ce3c1d7b5a91f67d12c1d29e1e560024a04c..f8c74317344a5bbdf933a32b8c7e5aba13beda30 100644
---- a/drivers/hwmon/ina238.c
-+++ b/drivers/hwmon/ina238.c
-@@ -107,6 +107,7 @@
- #define INA238_DIE_TEMP_LSB		1250000 /* 125.0000 mC/lsb */
- #define SQ52206_BUS_VOLTAGE_LSB		3750 /* 3.75 mV/lsb */
- #define SQ52206_DIE_TEMP_LSB		78125 /* 7.8125 mC/lsb */
-+#define INA228_DIE_TEMP_LSB		78125 /* 7.8125 mC/lsb */
- 
- static const struct regmap_config ina238_regmap_config = {
- 	.max_register = INA238_REGISTERS,
-@@ -114,9 +115,10 @@ static const struct regmap_config ina238_regmap_config = {
- 	.val_bits = 16,
- };
- 
--enum ina238_ids { ina238, ina237, sq52206 };
-+enum ina238_ids { ina238, ina237, sq52206, ina228 };
- 
- struct ina238_config {
-+	bool has_20bit_voltage_current; /* vshunt, vbus and current are 20-bit fields */
- 	bool has_power_highest;		/* chip detection power peak */
- 	bool has_energy;		/* chip detection energy */
- 	u8 temp_shift;			/* fixed parameters for temp calculate */
-@@ -137,6 +139,7 @@ struct ina238_data {
- 
- static const struct ina238_config ina238_config[] = {
- 	[ina238] = {
-+		.has_20bit_voltage_current = false,
- 		.has_energy = false,
- 		.has_power_highest = false,
- 		.temp_shift = 4,
-@@ -146,6 +149,7 @@ static const struct ina238_config ina238_config[] = {
- 		.temp_lsb = INA238_DIE_TEMP_LSB,
- 	},
- 	[ina237] = {
-+		.has_20bit_voltage_current = false,
- 		.has_energy = false,
- 		.has_power_highest = false,
- 		.temp_shift = 4,
-@@ -155,6 +159,7 @@ static const struct ina238_config ina238_config[] = {
- 		.temp_lsb = INA238_DIE_TEMP_LSB,
- 	},
- 	[sq52206] = {
-+		.has_20bit_voltage_current = false,
- 		.has_energy = true,
- 		.has_power_highest = true,
- 		.temp_shift = 0,
-@@ -163,6 +168,16 @@ static const struct ina238_config ina238_config[] = {
- 		.bus_voltage_lsb = SQ52206_BUS_VOLTAGE_LSB,
- 		.temp_lsb = SQ52206_DIE_TEMP_LSB,
- 	},
-+	[ina228] = {
-+		.has_20bit_voltage_current = true,
-+		.has_energy = true,
-+		.has_power_highest = false,
-+		.temp_shift = 0,
-+		.power_calculate_factor = 20,
-+		.config_default = INA238_CONFIG_DEFAULT,
-+		.bus_voltage_lsb = INA238_BUS_VOLTAGE_LSB,
-+		.temp_lsb = INA228_DIE_TEMP_LSB,
-+	},
- };
- 
- static int ina238_read_reg24(const struct i2c_client *client, u8 reg, u32 *val)
-@@ -199,6 +214,56 @@ static int ina238_read_reg40(const struct i2c_client *client, u8 reg, u64 *val)
- 	return 0;
- }
- 
-+static int ina228_read_shunt_voltage(struct device *dev, u32 attr, int channel,
-+				     long *val)
-+{
-+	struct ina238_data *data = dev_get_drvdata(dev);
-+	int regval;
-+	int field;
-+	int err;
-+
-+	err = ina238_read_reg24(data->client, INA238_SHUNT_VOLTAGE, &regval);
-+	if (err)
-+		return err;
-+
-+	/* bits 3-0 Reserved, always zero */
-+	field = regval >> 4;
-+
-+	/*
-+	 * gain of 1 -> LSB / 4
-+	 * This field has 16 bit on ina238. ina228 adds another 4 bits of
-+	 * precision. ina238 conversion factors can still be applied when
-+	 * dividing by 16.
-+	 */
-+	*val = (field * INA238_SHUNT_VOLTAGE_LSB) * data->gain / (1000 * 4) / 16;
-+	return 0;
-+}
-+
-+static int ina228_read_bus_voltage(struct device *dev, u32 attr, int channel,
-+				   long *val)
-+{
-+	struct ina238_data *data = dev_get_drvdata(dev);
-+	int regval;
-+	int field;
-+	int err;
-+
-+	err = ina238_read_reg24(data->client, INA238_BUS_VOLTAGE, &regval);
-+	if (err)
-+		return err;
-+
-+	/* bits 3-0 Reserved, always zero */
-+	field = regval >> 4;
-+
-+	/*
-+	 * gain of 1 -> LSB / 4
-+	 * This field has 16 bit on ina238. ina228 adds another 4 bits of
-+	 * precision. ina238 conversion factors can still be applied when
-+	 * dividing by 16.
-+	 */
-+	*val = (field * data->config->bus_voltage_lsb) / 1000 / 16;
-+	return 0;
-+}
-+
- static int ina238_read_in(struct device *dev, u32 attr, int channel,
- 			  long *val)
- {
-@@ -211,6 +276,8 @@ static int ina238_read_in(struct device *dev, u32 attr, int channel,
- 	case 0:
- 		switch (attr) {
- 		case hwmon_in_input:
-+			if (data->config->has_20bit_voltage_current)
-+				return ina228_read_shunt_voltage(dev, attr, channel, val);
- 			reg = INA238_SHUNT_VOLTAGE;
- 			break;
- 		case hwmon_in_max:
-@@ -234,6 +301,8 @@ static int ina238_read_in(struct device *dev, u32 attr, int channel,
- 	case 1:
- 		switch (attr) {
- 		case hwmon_in_input:
-+			if (data->config->has_20bit_voltage_current)
-+				return ina228_read_bus_voltage(dev, attr, channel, val);
- 			reg = INA238_BUS_VOLTAGE;
- 			break;
- 		case hwmon_in_max:
-@@ -341,13 +410,27 @@ static int ina238_read_current(struct device *dev, u32 attr, long *val)
- 
- 	switch (attr) {
- 	case hwmon_curr_input:
--		err = regmap_read(data->regmap, INA238_CURRENT, &regval);
--		if (err < 0)
--			return err;
-+		if (data->config->has_20bit_voltage_current) {
-+			err = ina238_read_reg24(data->client, INA238_CURRENT, &regval);
-+			if (err)
-+				return err;
-+			/* 4 Lowest 4 bits reserved zero */
-+			regval >>= 4;
-+		} else {
-+			err = regmap_read(data->regmap, INA238_CURRENT, &regval);
-+			if (err < 0)
-+				return err;
-+			/* sign-extend */
-+			regval = (s16)regval;
-+		}
- 
- 		/* Signed register, fixed 1mA current lsb. result in mA */
--		*val = div_s64((s16)regval * INA238_FIXED_SHUNT * data->gain,
-+		*val = div_s64(regval * INA238_FIXED_SHUNT * data->gain,
- 			       data->rshunt * 4);
-+
-+		/* Account for 4 bit offset */
-+		if (data->config->has_20bit_voltage_current)
-+			*val /= 16;
- 		break;
- 	default:
- 		return -EOPNOTSUPP;
-@@ -773,6 +856,7 @@ static int ina238_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id ina238_id[] = {
-+	{ "ina228", ina228 },
- 	{ "ina237", ina237 },
- 	{ "ina238", ina238 },
- 	{ "sq52206", sq52206 },
-@@ -781,6 +865,10 @@ static const struct i2c_device_id ina238_id[] = {
- MODULE_DEVICE_TABLE(i2c, ina238_id);
- 
- static const struct of_device_id __maybe_unused ina238_of_match[] = {
-+	{
-+		.compatible = "ti,ina228",
-+		.data = (void *)ina228
-+	},
- 	{
- 		.compatible = "ti,ina237",
- 		.data = (void *)ina237
-
--- 
-2.39.5
-
+> ---
+>   Documentation/devicetree/bindings/spi/spi-mux.yaml | 1 -
+>   1 file changed, 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/spi/spi-mux.yaml b/Documentation/devicetree/bindings/spi/spi-mux.yaml
+> index fb2a6039928c..b1e2a97be699 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-mux.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-mux.yaml
+> @@ -46,7 +46,6 @@ properties:
+>   required:
+>     - compatible
+>     - reg
+> -  - spi-max-frequency
+>     - mux-controls
+>   
+>   unevaluatedProperties: false
 
