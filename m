@@ -1,118 +1,174 @@
-Return-Path: <devicetree+bounces-196488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ADF4B058DF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 13:32:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4511B058EC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 13:35:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCE783AD659
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 11:31:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3CB61724DF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 11:35:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD21027464A;
-	Tue, 15 Jul 2025 11:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A63C27147E;
+	Tue, 15 Jul 2025 11:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B+qaOCaF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KyKm831a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1EA819D09C
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 11:31:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 317E2D2FB;
+	Tue, 15 Jul 2025 11:35:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752579105; cv=none; b=ol7lTRFB192LT5IkT3Nu7H43AmzeyTwKAO5pjxhM3qx4TocN8rTn/B7yk6/HMdYTAkJxUfXzYES2BhSfaXUkFFdZzj9niUuV83UQPZL4Yf8PjxlaHKNUSisI6ord4LDaoy7o3FmBohrZYb001HQmQHidV53szAUQuusxLlF5kVs=
+	t=1752579303; cv=none; b=eyS+hJ8MypOAyBHGFl7PQA9+O8QKLit4CVuny4vrmlN+41qeXxxVVI4iYi3VQfJvI3l3s9QrMvulwX6T+sFjQm6oILVRE14rX/1sZMVc2jN09Qg1MPLRFzb5TqysHhCkrmQOAmGjkBJvjiiOgill3Tx6M1CsKdKSz/Vr/r7i1MM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752579105; c=relaxed/simple;
-	bh=B1i0Jy+iCmpT+TMn/plz7n65ehc42gy7Y3dHtaF5bWA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZsUV/hNkQWIyvbdTSPmZ7O2x0mD+hGxnDFe/yB1242AIXlTU8jT95WYSKbEozCpGNKaJSACio1TCKqRpzfHDMjYtnDdCxyvV3j1rf2FD5HxEzIXPvkewgD4X6PU2Hr6dv2ez0PyiJGSlFqXN2ZK9dzoUUQi/YnyhwYE/K8i41+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B+qaOCaF; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4550709f2c1so26201365e9.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 04:31:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752579102; x=1753183902; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5ZsnxPQOlzjyNW6a1iVcFG50PC2MlOpTArybpzvfKj8=;
-        b=B+qaOCaFm3Sm0HWodh8FZLR3fJzakOEjjy8BcWhrMsAjxlXM/qJQFmHbdluSe762Is
-         xuOyuRi3flfn5XjdqAoHDJoyqGBke08wj0NxYI8ZUweuAtpVBHnmvgVfEtC19wtJ7XTr
-         mv+KwqcLi3RKqM9tFD6jNjYPTsSVWO3dwv/ojPc2zCmxEjrjNL2ETgrjZY8cpV/IRGTa
-         JB4F1KMjRKihuPFXgzY8ws1k3Dv3/MTrFFwUksV8pTgH9lkGzD5/KWawxJw6/gVlxgXX
-         UD8Tfg55+PZNInVw9NpwrwgmI4M4dls71AciUNnXOUvXW5GYxnHTYKqVJpVqw7vkpf1d
-         sY/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752579102; x=1753183902;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5ZsnxPQOlzjyNW6a1iVcFG50PC2MlOpTArybpzvfKj8=;
-        b=t3ApalhGuTRXZOrbWKbt+WBUFeiikg4D47ELCnKBuaUBTlosOrC64sY3BBhebo41tS
-         x8Rg9IJAWE0KCzt6GZE8KBBMNK+4kYOIYqU9Vk0hiv+5JVuc8Q/EeM2r5QGYGA2jDvCD
-         1bIkAWLnHC3EdG9JLPBkaliHEmsujWMj+nFJ6jSl6WUT6JDsSibZlpU9zBNcWy2/QEKt
-         HxnldqXSD9MUSm0yOdrDF9XP6zJX5pbraKoOMRtd5z9tBsnRAo18fkO+72P8Z0OmEhWu
-         sPc2clxmOfekLUBERYDFFy9QmxzuqozHQIQQYVC5e3KESgjy5njB4b+4+ORrzrRtqe20
-         I9/A==
-X-Gm-Message-State: AOJu0YxzAS4o/h758ND1EU712ls09uRqk8K9uG9hkfjh4drrcSxlSI2b
-	httOqWqhJ2Ep741KVxP0SZobNlDXuSGFRyO2cNfinsdKoSC7Q0j1UlmeWNSmWBNb5Dg=
-X-Gm-Gg: ASbGnctNhtrMM+4GxhdYDcJFdbzujsY+zSlBGgXjWUt4eGi7FWkSkGonHimtduPy2Wg
-	bt78iGt87ZvxuOL6In6/2slRbZmDN6B6z20vyzuHj5OX+K2C2CckLzGadrtMlybo2nrOPNsBwrg
-	0nYfi0YATSLU5Ta+uqtfXYmTKMBOgnyYlrBRADFpQNSZAObFrIkkmDnNm4rvpuVU5Me3Oy8oXvz
-	3jlkw4SjIHuaxVE7fo7Jvcx0l0sK/FiTSrqgQSDGsoPWNYcjppXIDqndIeocDzACnf19ElNDtCN
-	Cw2D7fFupRUit7G2AFjnDHweDHY8IbGpBWTjcXF1fZZ5tTGZ1YCLljomsgasfoqGXKDkj+31kha
-	2YMVNPmBF1aucqjovzabDvZP4nrKqhTXwbgOIgzfNgSYTH92qJMDenjrt9LXK
-X-Google-Smtp-Source: AGHT+IEKhxXOiGy+rRPRZDHvcFkEUJsQ0d14+0tBKDdlW4a1Tc6Bru+r7zuXvqC8THzAs7ZRIPDvKg==
-X-Received: by 2002:a05:6000:1446:b0:3a5:2465:c0c8 with SMTP id ffacd0b85a97d-3b5f187a4b4mr14608177f8f.7.1752579101919;
-        Tue, 15 Jul 2025 04:31:41 -0700 (PDT)
-Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8dc2025sm15173960f8f.31.2025.07.15.04.31.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Jul 2025 04:31:41 -0700 (PDT)
-Date: Tue, 15 Jul 2025 13:31:39 +0200
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, qii.wang@mediatek.com,
-	andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org,
-	tglx@linutronix.de, linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org,
-	kernel@collabora.com
-Subject: Re: [PATCH 1/3] dt-bindings: timer: mediatek,timer: Add MediaTek
- MT8196 compatible
-Message-ID: <aHY8Gyo5uy8P6VP1@mai.linaro.org>
-References: <20250611110800.458164-1-angelogioacchino.delregno@collabora.com>
- <20250611110800.458164-2-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1752579303; c=relaxed/simple;
+	bh=1uGKmWWiwvicpa4TMcg7RSuKjBjr5n7fBm5dAiA0GBw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=COrvVuom+xrqib9OCqavlRZ3u61t50mJpV+8SGMYHIb/c1mv/B+5awaSaoxee8BLp7cW5fycU8/TnwmvPR3cJ1Q6yqDH2otjyoBCMRb7rOIvfiopEEQFf3G7FH/SqBSOAEGHAdS12qfMph45qyrQIFWL1O7+61oLRsuKi7fcSx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KyKm831a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5E44C4CEE3;
+	Tue, 15 Jul 2025 11:34:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752579302;
+	bh=1uGKmWWiwvicpa4TMcg7RSuKjBjr5n7fBm5dAiA0GBw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KyKm831aWmUAhJ8zOZ5/4azrxZzz5R/2NkhTuCZ4HeM/HPSFYjMK1XINCo4ZUJ4Lr
+	 tbX/0iUCbZet0ZGdKSnmDRhx8KIf9IhAcEJenOn8a1unue0nIdPpchvlZNgG7LvzoY
+	 2mqg+R9TIIPFkad/J2Z19gH+5qKmIPr4VZgP8fuggaPc/xp2nJoqOr/ZM048OOY51k
+	 NASCBk9QRy60+WKrv+0vpYBsHTce7Bs+6KTr89hXTvQ53UcViheA3ZzHXffxvW86W5
+	 smTqBNFibClpYwrsvdcoXhPBtGkvIZ49qiO4CCAAWVqE5d2SkC1R/7ViPchYo5W3Wz
+	 Qb2uSh2y+p0fg==
+Message-ID: <4dfed94c-665d-4e04-b527-ddd34fd3db8f@kernel.org>
+Date: Tue, 15 Jul 2025 13:34:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250611110800.458164-2-angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] dt-bindings: phy: rockchip: rk3399-typec-phy: Support
+ mode/orientation switch
+To: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20250715112456.101-1-kernel@airkyi.com>
+ <20250715112456.101-3-kernel@airkyi.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250715112456.101-3-kernel@airkyi.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jun 11, 2025 at 01:07:58PM +0200, AngeloGioacchino Del Regno wrote:
-> Add a new compatible for the MediaTek MT8196 SoC, fully compatible
-> with MT6765.
+On 15/07/2025 13:24, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Add support for Type-C orientation and altmode switch.
+> The Type-C controller can be specified to handling switching.
+
+Please describe the hardware in details. Above sentences don't help me
+to understand this.
+
+
+> 
+> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 > ---
+>  .../bindings/phy/rockchip,rk3399-typec-phy.yaml    | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
+> index 91c011f68cd0..a885c6893a90 100644
+> --- a/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
+> @@ -43,6 +43,20 @@ properties:
+>      description:
+>        Phandle to the syscon managing the "general register files" (GRF).
+>  
+> +  orientation-switch:
+> +    description: Flag the port as possible handler of orientation switching
+> +    type: boolean
+> +
+> +  mode-switch:
+> +    description: Flag the port as possible handler of altmode switching
+> +    type: boolean
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      A port node to link the PHY to a TypeC controller for the purpose of
+> +      handling orientation switching.
 
-Applied patch 1/3, thanks
 
--- 
+You are using usb-switch.yaml properties in phy node, which raises
+questions whether this is actually complete. It might be, but commit msg
+is so vague that I have doubts.
 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Also, why only one port?
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Or wait... you already have ports! two of them. This needs to stop, why
+are you adding more?
+
+Best regards,
+Krzysztof
 
