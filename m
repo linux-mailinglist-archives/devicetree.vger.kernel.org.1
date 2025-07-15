@@ -1,64 +1,56 @@
-Return-Path: <devicetree+bounces-196305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 848E4B04F7C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:49:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8FFB04F83
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:52:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C2513AFC44
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 03:48:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 085531AA79FE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 03:52:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842D02C033B;
-	Tue, 15 Jul 2025 03:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D5F12C033B;
+	Tue, 15 Jul 2025 03:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O/yaklxr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u85R6wB/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571FF22083;
-	Tue, 15 Jul 2025 03:49:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645C419F42D;
+	Tue, 15 Jul 2025 03:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752551346; cv=none; b=WPS91AlZUfR4EtGTZ5WjFAenJTuYzpoAfIHFT0lqqTqYyeG9q9Ph78m3EfxnEVW8l9a4IdzhXOgY4As0dmda9Mjis1128MtJhyY8yBsmwelyejjcpZNYmYPT5pmh8sxtDUeld2B0caBPiB8O/F6qk7MhXKtx7b08zR3yQ5obz/k=
+	t=1752551554; cv=none; b=L3lZCBVjxl4S6G91RYv1y9zoaH/GL8XQrzrQfISKUMolb7DyRcr/0sIHF1B8XkOZm84SeaGPmczzGIiyGF30o0faZIVCFuchdQn+oBK22msWJBM5XpfTGCfy5rywwKvWwtdS7KiFK40zbTG5JTvCJBPmw8SBZTGynUJEOw3nr0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752551346; c=relaxed/simple;
-	bh=gcY+rcVUM18+WL+0Uv5xjyIiT5YsGsvyMAcfAQ3GkXg=;
+	s=arc-20240116; t=1752551554; c=relaxed/simple;
+	bh=eZMtR6qc160LSQfy2R2nzmb7TLffw3Cjw/mnP6iSrNg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GLk7BbAzX3pW9aCh7+M1Ub71PrLGOPPb8u2gwn88xKQPNbFwg8Y86Z6llM4vwTnnwHXrcXTzX33wvGAdPt5QdHIMIv6HWDCMvi7QwYhpO4DAfokhCySAPmF3TjulDBKFUVOPMVRlV0UmB7AUgIvZQ5TVpiU3KCI0H9cgk/Cv9tE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O/yaklxr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAD55C4CEE3;
-	Tue, 15 Jul 2025 03:49:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FvMZ0NJJM0Ak1saFgQyBT1Eq3kO8SEQywwai/Io0ivcMa70A8UN/kjDm88lHgRordtzRPcGx7M8oQy9M3ItsgYEy8Sk02dMC82igzvp0Ciw40as6gr4GXw5v/Pd6D3n7Ob4h2T7SSfIjL5HHCIe5a5QfnubR0JysBE5QsOQvXj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u85R6wB/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2DEAC4CEE3;
+	Tue, 15 Jul 2025 03:52:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752551345;
-	bh=gcY+rcVUM18+WL+0Uv5xjyIiT5YsGsvyMAcfAQ3GkXg=;
+	s=k20201202; t=1752551553;
+	bh=eZMtR6qc160LSQfy2R2nzmb7TLffw3Cjw/mnP6iSrNg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O/yaklxrP0q+LJX8BWpX6hyeBc2f/KflPpHmmNR3Fd62d9XmHx1WSIpVtjpX7BwwV
-	 HRDq7qIM1rE6yyfcgaHHeT5qm1qUGvAp/RnJz9fBjBMfe1PQ4pc+kvC2zYwjBI0G52
-	 8thHGh4Iygy5PkoPsp5ZuQ6vB0eMp7V4Ycsy9tolXO6yIQkAaPvhq/Rdmo/LRHwVgN
-	 EDmSV0Zbv7zVOf1f6N2bvOzCrs9+4aGMEYbCQwO/gY52OT+2mdIUzn9Y6g4splBD/g
-	 TNlXtNb/z4kwuU7vw1+Du74z1+tgVmd5LCFDG1wXEJRtFjs3wwxbdJzREVRJiRHNcu
-	 Qhby4nuvpwwvA==
-Date: Mon, 14 Jul 2025 22:49:04 -0500
+	b=u85R6wB/DAFpO2wTL3J9UWPWbvmZK+vBH/YzS/aPI9CRE52SjN9odtU198L2NIuyI
+	 eNFU1BPvz6l3nAvbIYuNljznjGbnY5pxVcO5q3wcZ4e+SxDbVjfwZ1hKC/sBRO/qj6
+	 gQsCf6jbfA82Pa/c8eqRZwbrCyPmnRVaqIuYkJR39cHYGwALOloenctFvML6S7EAAk
+	 yO60L7IYE18FqI65OyWVqt20264ola4bY/oPZYiVsDF+d2KrjRnT0nsrRZUwHDq1M/
+	 uFrHJ92WTH1sXMf4ewwXR9jD0FB93McpR94/b+YBjRvQQQDNIHouUSCXF4uuZ5RdXv
+	 aFKEmeXSl+Q6w==
+Date: Mon, 14 Jul 2025 22:52:33 -0500
 From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, kernel@collabora.com,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: cpufreq: Add
- mediatek,mt8196-cpufreq-hw binding
-Message-ID: <20250715034904.GA4699-robh@kernel.org>
-References: <20250714-mt8196-cpufreq-v2-0-cc85e78855c7@collabora.com>
- <20250714-mt8196-cpufreq-v2-1-cc85e78855c7@collabora.com>
- <fd561a8c-f1a7-41c2-a686-abc89f5fa555@collabora.com>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: airoha: add SMC eFuses schema
+Message-ID: <20250715035233.GA7855-robh@kernel.org>
+References: <20250714151349.28368-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,79 +59,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <fd561a8c-f1a7-41c2-a686-abc89f5fa555@collabora.com>
+In-Reply-To: <20250714151349.28368-1-ansuelsmth@gmail.com>
 
-On Mon, Jul 14, 2025 at 04:41:30PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 14/07/25 16:08, Nicolas Frattaroli ha scritto:
-> > The MediaTek MT8196 SoC has new cpufreq hardware, with added memory
-> > register ranges to control Dynamic-Voltage-Frequency-Scaling.
-> > 
-> > The DVFS hardware is controlled through a set of registers referred to
-> > as "FDVFS"; one is a location from which a magic number is read to
-> > ensure DVFS should be used, the other is a region to set the desired
-> > target frequency that DVFS should aim towards for each performance
-> > domain.
-> > 
-> > Instead of working around the old binding and its already established
-> > meanings for the reg items, add a new binding. The FDVFS register memory
-> > regions are at the beginning, which allows us to easily expand this
-> > binding for future SoCs which may have more than 3 performance domains.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >   .../cpufreq/mediatek,mt8196-cpufreq-hw.yaml        | 86 ++++++++++++++++++++++
-> >   1 file changed, 86 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/cpufreq/mediatek,mt8196-cpufreq-hw.yaml b/Documentation/devicetree/bindings/cpufreq/mediatek,mt8196-cpufreq-hw.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..26bf21e05888646b4d1bdac95bfba0f36e037ffd
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/cpufreq/mediatek,mt8196-cpufreq-hw.yaml
-> > @@ -0,0 +1,86 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/cpufreq/mediatek,mt8196-cpufreq-hw.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MediaTek CPUFreq for MT8196 and related SoCs
+On Mon, Jul 14, 2025 at 05:13:46PM +0200, Christian Marangi wrote:
+> Add Airoha SMC eFuses schema to document new Airoha SoC AN7581/AN7583
+> way of accessing the 2 eFuse bank via the SMC command.
 > 
-> title: MediaTek Hybrid CPUFreq for MT8196/MT6991 series SoCs
+> Each eFuse bank expose 64 eFuse cells of 32 bit used to give information
+> on HW Revision, PHY Calibration,  Device Model, Private Key and
+> all kind of other info specific to the SoC or the running system.
 > 
-> > +
-> > +maintainers:
-> > +  - Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > +
-> > +description:
-> > +  MT8196 uses CPUFreq management hardware that supports dynamic voltage
-> > +  frequency scaling (dvfs), and can support several performance domains.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: mediatek,mt8196-cpufreq-hw
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: FDVFS magic number register region
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/nvmem/airoha,smc-efuses.yaml     | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/airoha,smc-efuses.yaml
 > 
-> As already said in the other commit, we might just be able to avoid adding the
-> magic number register region :-)
-> 
-> > +      - description: FDVFS control register region
-> > +      - description: OPP tables and control for performance domain 0
-> > +      - description: OPP tables and control for performance domain 1
-> > +      - description: OPP tables and control for performance domain 2
-> > +
-> > +  "#performance-domain-cells":
-> > +    description:
-> > +      Number of cells in a performance domain specifier. Must be 1.
-> 
-> The description is redundant and doesn't add any real information, I think you
-> should drop it.
-> 
-> Bindings maintainers, please, opinions?
+> diff --git a/Documentation/devicetree/bindings/nvmem/airoha,smc-efuses.yaml b/Documentation/devicetree/bindings/nvmem/airoha,smc-efuses.yaml
+> new file mode 100644
+> index 000000000000..399c3c14f6ea
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/airoha,smc-efuses.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/airoha,smc-efuses.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Airoha SMC eFuses
+> +
+> +description: |
+> +  Airoha new SoC (AN7581/AN7583) expose banks of eFuse accessible
+> +  via specific SMC commands.
+> +
+> +  2 different bank of eFuse or 64 cells of 32 bit are exposed
+> +  read-only used to give information on HW Revision, PHY Calibration,
+> +  Device Model, Private Key...
+> +
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - airoha,an7581-efuses
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  '^efuse-bank@[0-1]$':
+> +    type: object
+> +
+> +    allOf:
+> +      - $ref: nvmem.yaml#
+> +
+> +    properties:
+> +      reg:
+> +        description: Identify the eFuse bank. (0 or 1)
 
-Drop.
+Drop "(0 or 1)". You say that here:
 
-Rob
+> +        enum: [0, 1]
+> +
+> +    required:
+> +      - reg
+> +
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    airoha-efuses {
+
+efuse {
+
+And put this under a /firmware node (not here, but in your .dts).
+
+> +        compatible = "airoha,an7581-efuses";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        efuse-bank@0 {
+> +           reg = <0>;
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.48.1
+> 
 
