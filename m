@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-196575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CF7BB06366
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 17:47:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBE7AB0636D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 17:49:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BFD57B274B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 15:45:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D3504E528F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 15:48:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A291DF99C;
-	Tue, 15 Jul 2025 15:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32871225792;
+	Tue, 15 Jul 2025 15:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qgQEr4xT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uXNHtuL+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E9801F95C;
-	Tue, 15 Jul 2025 15:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A2A413AA2D;
+	Tue, 15 Jul 2025 15:49:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752594430; cv=none; b=nRWgNKEpYXd1k/AsxDDgF88pnw9xuQXGQLfJzitEjirXoB+QHFUmmOuNH4Y2sC7wOnNxJMZHEYDz3UhFhlKxgEJobJSKSrrqowj/NK4DGPsq673nof1vWjALK83/H3bIBypY50vp14bDzhROeSt1Z8B+Pk4hiA2643Ip0ljNbxU=
+	t=1752594561; cv=none; b=XgOGkSsx7HZTUO7svbyBdSz/jqIAF6JYXWZYcWTwF5TSV1YDFMAvVYq2Mucwon6QGAbIO0/eecUg+MwgiuMkd0LhD+WfK76E566Uud5oET98R6LYOPOVN9GRcin70WsJbNkNRwzq9GpyeE+EpgStwMn0agTp6+vxXLktaVWpD98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752594430; c=relaxed/simple;
-	bh=KutCgZs2dYfKaxNlqtqXKdiAKj3482NswG9E26z9CZg=;
+	s=arc-20240116; t=1752594561; c=relaxed/simple;
+	bh=LgTOhwGPg8DUCqmURpXmMX64tndVNML1PiK+RcZOEuc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Pn3yMxNvWM6FC+rOqD86PYlB48zVnpGk7z5Z99xI9p9dzEsK1ifG1egnpcybKQsFPYYuy3aIz2orU6yqyCNraOIJZPDyW0Tkpu5sap6oUtI0E0g0osRYYGYJzQ83qM/q4ND/utLiIseTTgPP0KUr3AWw9hfaYrL7waF2gt4RFt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qgQEr4xT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87AFDC4CEE3;
-	Tue, 15 Jul 2025 15:47:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Bjb8NPNK2B7f4G0f0llVDW7hqchLjBr0HWmx6Ce77OGQdowWqGkXQdvXMA38BwA0GzR0FHDYbqIxaPOm4yS+a+1aKz5S8G+GQuWFcJnH/+g/6jdWgwf5WJ8zH5GUidT991Q/k/ylyr78FfGAycJgwP+J9d4CClc+H+wrP3iGAv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uXNHtuL+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9805C4CEE3;
+	Tue, 15 Jul 2025 15:49:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752594429;
-	bh=KutCgZs2dYfKaxNlqtqXKdiAKj3482NswG9E26z9CZg=;
+	s=k20201202; t=1752594559;
+	bh=LgTOhwGPg8DUCqmURpXmMX64tndVNML1PiK+RcZOEuc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qgQEr4xThAS0eDnKTisfKFB3saJUJCW/qn5F+nZ0i7el16KzUZ0l50UVokP7ggDek
-	 8gRUb1QAwQs6BAheb5qovH+vF3VYM2ZOrtGxA50pT6p8q//k8Fwspv8Ln3d3I9NuZB
-	 cO9meIotIs9WgmFDgz/AU/Wvnd/N2o/jvJBwJnz8JYBrPMj8NuVEsRNLEOnxRT/bDi
-	 9Xmg4Kf2eZAnRLhN8ovStY/BxN2Fr9+uHb8OZ33F9wKl/1pQE1RZ3MVDBBKCkNiIud
-	 GRFSYHNAh1WE54/ZRMarnXEyM+wvWKThpg6UO8pmEsnCVPrOGgOjzIFjlXwigVnGSb
-	 7DNZILGMHqnMQ==
-Message-ID: <56192a5d-406a-494a-9f32-409e2c1d69bc@kernel.org>
-Date: Tue, 15 Jul 2025 17:47:04 +0200
+	b=uXNHtuL+WCOCwuDyNdQ66Gw2lJtVbp5BFid5AkDzT20m1+s6ICTlS7bF9PrxhU84y
+	 wNX9IGdt1B5P8UiCQ50EJgp4rwQ17b9WARUjyOKY3RSfIQBr5GOyHtc921R6DKZuXz
+	 FmCsHTqTIuAXt8AThKhAHxgeufRqM0msRcblmfV2ZQ9y4wty8789nFE7b5dUG82nMQ
+	 FtBsZuqgUijFkSruPebgmly94UGCp+ccFYbl1kqV1pt/iNJHapkvN5B1KXJIQxdyag
+	 S9f9jU/7gF5aK6NGTErHnPMf3hNi3KMloUhzDEdgH2QhmdriDztyvYbgUWlnaG6Xnv
+	 WiQwk6hkFkFuQ==
+Message-ID: <c8f90804-ead1-460b-8d7d-c1f583e9a6d8@kernel.org>
+Date: Tue, 15 Jul 2025 17:49:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/2] Add driver support for ESWIN eic7700 SoC reset
- controller
+Subject: Re: [PATCH v4 1/2] dt-bindings: reset: eswin: Documentation for
+ eic7700 SoC
 To: dongxuyang@eswincomputing.com, p.zabel@pengutronix.de, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
  huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
 References: <20250715121427.1466-1-dongxuyang@eswincomputing.com>
+ <20250715121524.1524-1-dongxuyang@eswincomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,28 +104,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250715121427.1466-1-dongxuyang@eswincomputing.com>
+In-Reply-To: <20250715121524.1524-1-dongxuyang@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/07/2025 14:14, dongxuyang@eswincomputing.com wrote:
-> From: Xuyang Dong <dongxuyang@eswincomputing.com>
-> 
-> Updates:
-> 
->   dt-bindings: reset: eswin: Documentation for eic7700 SoC
->   v3 -> v4:
->     1. Remove register offsets in dt-bindings.
->     2. Changed the const value of "#reset-cells" from 2 to 1.
->        Because the offsets were removed from dt-bindings. There are
->        only IDs. And removed the description of it.
->     3. Modify copyright year from 2024 to 2025.
->     4. Redefined the IDs in the dt-bindings and used these to build a
->        reset array in reset driver. Ensure that the reset register and
->        reset value corresponding to the IDs are correct.
->     Link to v3: https://lore.kernel.org/all/20250624103212.287-1-dongxuyang@eswincomputing.com/
+On 15/07/2025 14:15, dongxuyang@eswincomputing.com wrote:
+> +#define EIC7700_RESET_LNOC_NPU_LLC		278
+> +#define EIC7700_RESET_LNOC_DDRC1_P0		279
+> +#define EIC7700_RESET_LNOC_DDRC0_P0		280
+> +#define EIC7700_RESET_MAX				281
 
-This leads to clock patchset, not reset.
+Drop, not binding usually.
+
+> +
+> +#endif /* __DT_ESWIN_EIC7700_RESET_H__ */
+
+With above change:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+---
+
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
+
+Full context and explanation:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
+
 
 Best regards,
 Krzysztof
