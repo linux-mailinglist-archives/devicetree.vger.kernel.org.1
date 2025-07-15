@@ -1,140 +1,143 @@
-Return-Path: <devicetree+bounces-196648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28466B06909
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 00:07:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38698B0690B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 00:08:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A05356517D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:07:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84B0E5650D7
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B6F2C15A0;
-	Tue, 15 Jul 2025 22:07:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656C42C1591;
+	Tue, 15 Jul 2025 22:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aHVqqc1X"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hJxL1QV+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF1BB2C158F;
-	Tue, 15 Jul 2025 22:06:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA962AF1D;
+	Tue, 15 Jul 2025 22:07:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752617221; cv=none; b=X+mo5YIKTED8foRsY3BsPXYXwmZGT6Dj3tKOcg0wbUvX3T5V669/ehnx+UnGhRsjL22FQrzjBHb+EYt1n4qGFbYo0i/dDxxqIy6qtiMWHgGag0ftzYkilvAOTpg3/TQkMZLEG32kZhL/haSojykVJnJF3SLIcBA3fa4kDaHBEKg=
+	t=1752617276; cv=none; b=BmM0BYU6pkRP4zB5iervSOH2dbor1KW5VZflGXnvxDPgDxCtS0YO8ChDpiSjDf2fW3QhkhiZQA1A1SAtA5dJZPykqLbJKWNQEnBVOdimzE88WvGcUJMv8HyDQBEUg6D7cuCws7SHF+GaN5cEXi/G6zLiIFa989qMR3pSOCB98AE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752617221; c=relaxed/simple;
-	bh=Zufzfaszt8lMoqhAnmQDPusrRHLz87gmZprCGkIVLWc=;
+	s=arc-20240116; t=1752617276; c=relaxed/simple;
+	bh=Zd8zXCwF0hQTiVzyVbw1IEp0HkYJGefGxnsNS4GWNqE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aB5n5zWs4lKAL6rakh61F3kEePHpq9J4NtcRuzbFwtnDkfn5K+VdHgGVvr/XSTHhtq+q6dX5BRooVmlMSIL+XRZrP70DcHvOi82+G3qEZEHkm3shuxe8Idvphs5m9jxBWABTQWqpHpsT49C0Z5+ztusJrEW8LY2A5c2qfyKa9ho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aHVqqc1X; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-311ef4fb43dso4859842a91.3;
-        Tue, 15 Jul 2025 15:06:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752617219; x=1753222019; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5+1bnGTrSGimGK3Zq/YxQ9BHvkckKvMOjIcjntRlGw4=;
-        b=aHVqqc1XnwSdgPm1DaItW+YIh+sV5jTS+46KF9NM2wVO76QLRsVOgeiuaq0mCJBNZY
-         482BdRsIJXOW6ecPrBnXOYdxMDoN/ozc73f4qh0vaz7yded/7zPo9XFOv8feTeWpzIKX
-         +G9G91bKNtBSvToqELVPKnV2i8GTxdmMdmmfm3Eot7hQ9tOO6Tk3hgdEhg/8diTgWl37
-         5EiwIyA3BJY9cmJwjCmVHsS+StCYZ8H9oGnD75qUcB83CRGkicad4duSeAPKx2UJShf9
-         0VBdYuZ89Xq68PZFxkPnGZz8nvDNII0cFjNzMDiVtCTp05KvJHN9BsBQrzeLn3abpxL/
-         5nwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752617219; x=1753222019;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5+1bnGTrSGimGK3Zq/YxQ9BHvkckKvMOjIcjntRlGw4=;
-        b=q+u6NXP7vo2Qrl9ZW780FhI0/unHjVfQqtGi5RECqamqj4Hr5Z1UIGHXQui1B0bnD4
-         u1K40SE2Yo0XXyrJaYkoFOeh2AT0m9zWROv7AdJu1pvo43RUWC4Z73vOxzfK5AA8teiZ
-         ep7rvutIlTKKffvGbBCBe53+7qXpDk4c7ftADT88bsbEMsnWBqkWqAWwVAs4YnXO75Db
-         0rOx9h1jlP2o32qmsuhJRB37uY59obrOrAGTF8HOZEAzqrKvW2xEdT5DoQopOPJvU4wP
-         UmK9f84c6xiSH9RBUSh/zwsMWJGCk7p5j4UyL55cFtGImBOwUivk2cLKpirerp0Rl1Ls
-         KroQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVpb2UUlaH66f/nWPFR0aJB3qwbGtpcJfNCQMny+n7+mNab2TJKAVa1qf/4Hc/RJAFRjPXwCBNoSqwACjSG@vger.kernel.org, AJvYcCVxGt0nF/6q8V51IJSiPSa87pugNa/ENLWsGL3gNiDx3VgmTb4IiOmfAvH0JOFBPfToksECAXqjd/Zv@vger.kernel.org, AJvYcCWRPyqot+y15VhDMhb6rcgdhFimwMW5Akp9QElKvFoHdKwl+eZeIkhorDeADFCz+nf8R1Zs8dJx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPPAGvb+v0vMVi24Bne4OTJ/UxbsMkIyd3VxnWa2D9jZa1ujhB
-	SFj0BGc0waKvYnToB4EMshB55heUg8/R/CiCYY1SvBQ+CaFGsZllXmO+
-X-Gm-Gg: ASbGnct9U8mJQohtAP7pRWojSuvsmMMPNoZY7Hp/RgA+Q0nG6V9kGgV458vo1jzbWQa
-	0ZPATvVXDkVq5m11DWbR37GAkmm7syskdp4GVSpq2c6WOIx9WlNbaJOG9Uw/Mu+3LtS7bhU8ri3
-	v29yp2KrRPXbZQmEh4FZb+nYvqCpjCHCEFQYvHGXRkcC3VAs7mTha7xOMzdqkz59uAetqEglau6
-	A9aNYu/FRWnREiGGHLQBcBWYVgDDBAhp3LsCUhnYVZFs6wKRmoVaF8wwCIZJdGvBK9MhIjU6FDR
-	Aq5IEQDed9qZPsjFIImpYlKiZx3OJxpsVlviTO2Tjt7XL3B5nnB/2tqFvChHRupiqclpU4P842X
-	s7AJLSlzql8D+K9QGOgZBNA==
-X-Google-Smtp-Source: AGHT+IGA5Go/W11svBOlx+oojZuGSHeTcf6nPxWvkyTAK/25JmtPG/Wzl0xDDQgSb4VJ+3l1d//G6Q==
-X-Received: by 2002:a17:90b:2ec7:b0:311:ef19:824d with SMTP id 98e67ed59e1d1-31c9f435537mr372501a91.2.1752617219023;
-        Tue, 15 Jul 2025 15:06:59 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-31c9f1e61d2sm96213a91.11.2025.07.15.15.06.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Jul 2025 15:06:58 -0700 (PDT)
-Date: Wed, 16 Jul 2025 06:06:40 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Rob Herring <robh@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Chen Wang <unicorn_wang@outlook.com>, 
-	Richard Cochran <richardcochran@gmail.com>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	Yixun Lan <dlan@gentoo.org>, Ze Huang <huangze@whut.edu.cn>, 
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH 2/3] riscv: dts: sophgo: Add mdio multiplexer device for
- cv18xx
-Message-ID: <bww3dwd37ujcnztbzw7o7r2qajwcvn54kcd6pcd42y4axfp2d4@zx5jrtcmkh4k>
-References: <20250703021600.125550-1-inochiama@gmail.com>
- <20250703021600.125550-3-inochiama@gmail.com>
- <CAL_JsqLKLKHj+vQJmZnaXRj3TmqR3ELjpBc27HRbTOOP9FD0hg@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WrmOSRhUMOxGKcCAnRif5y2mWVHpHGpbADDv1nCJbhsSPBvkNBYx/CQfY3UHgAbogQXBmxFe1/+y3lKdg80Buf/kitb95fJiFwP5QS6gN1QNiquAtYkrM8Z2nUL8QRTvAq1uJAcIDdemlXsH1Z3aF5Ugh/vDAHUL8sjjceYqZQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hJxL1QV+; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752617274; x=1784153274;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Zd8zXCwF0hQTiVzyVbw1IEp0HkYJGefGxnsNS4GWNqE=;
+  b=hJxL1QV+HcyChGetheMDP19YQ896IpEDKkHe+4L8kFBRdlQeQcyzdich
+   83n0FbvgHmfhEysMc7Ul731rOpFJ3UNTcYnLIFLKIsAIw+U8UzEVU7jSM
+   qGF0DoNoQolL7zbLUERuU3HaPNg9ivUKbcOUHoZdMD/6CsBafxfc0Sz16
+   YepXMYWeFKgmPGkLLUOspe5du070JBRdUdk9y2+OTAtJijKMkAabyVVgE
+   yM7Ppz8pUPjZs9cL7JrqywlOUWUjUDx88Pp6o9JP2F95vdBR0PVS7H86q
+   z0r+SOTNTYpy7FbBr+eBwj2JloZy6Kzv4BvRtj2od64MmLPZ/wGM5TUqv
+   Q==;
+X-CSE-ConnectionGUID: MzafmcvlTAysCsZ5nClFOw==
+X-CSE-MsgGUID: cOoaIl/SQQ6A0VW7X9QqFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="54826714"
+X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; 
+   d="scan'208";a="54826714"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2025 15:07:53 -0700
+X-CSE-ConnectionGUID: 2/CTSCq4QzqxTY/7962AOA==
+X-CSE-MsgGUID: h6UmUrYARBK8MvLyxd9OmQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; 
+   d="scan'208";a="156731421"
+Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 15 Jul 2025 15:07:47 -0700
+Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ubnoO-000BaZ-1F;
+	Tue, 15 Jul 2025 22:07:44 +0000
+Date: Wed, 16 Jul 2025 06:06:56 +0800
+From: kernel test robot <lkp@intel.com>
+To: Aaron Kling <webgeek1234@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nagarjuna Kristam <nkristam@nvidia.com>, JC Kuo <jckuo@nvidia.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Mathias Nyman <mathias.nyman@intel.com>,
+	Peter De Schrijver <pdeschrijver@nvidia.com>,
+	Prashant Gaikwad <pgaikwad@nvidia.com>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+	Aaron Kling <webgeek1234@gmail.com>
+Subject: Re: [PATCH 13/17] thermal: tegra: Add Tegra210B01 Support
+Message-ID: <202507160557.t7TfWvFP-lkp@intel.com>
+References: <20250714-t210b01-v1-13-e3f5f7de5dce@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqLKLKHj+vQJmZnaXRj3TmqR3ELjpBc27HRbTOOP9FD0hg@mail.gmail.com>
+In-Reply-To: <20250714-t210b01-v1-13-e3f5f7de5dce@gmail.com>
 
-On Tue, Jul 15, 2025 at 12:43:35PM -0500, Rob Herring wrote:
-> On Wed, Jul 2, 2025 at 9:16 PM Inochi Amaoto <inochiama@gmail.com> wrote:
-> >
-> > Add DT device node of mdio multiplexer device for cv18xx SoC.
-> 
-> This adds a dtbs_check warning:
-> 
-> mdio@3009800 (mdio-mux-mmioreg): mdio@80:reg:0:0: 128 is greater than
-> the maximum of 31
-> 
-> >
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > ---
-> >  arch/riscv/boot/dts/sophgo/cv180x.dtsi | 29 ++++++++++++++++++++++++++
-> >  1 file changed, 29 insertions(+)
-> >
-> > diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> > index 7eecc67f896e..3a82cc40ea1a 100644
-> > --- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> > +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> > @@ -31,6 +31,33 @@ rst: reset-controller@3003000 {
-> >                         #reset-cells = <1>;
-> >                 };
-> >
-> > +               mdio: mdio@3009800 {
-> 
-> The nodename is wrong here because this is not an MDIO bus. It is a
-> mux. So "mdio-mux@..." for the node name.
-> 
+Hi Aaron,
 
-Thanks, I will send a fix for this.
+kernel test robot noticed the following build warnings:
 
-Regards,
-Inochi
+[auto build test WARNING on 347e9f5043c89695b01e66b3ed111755afcf1911]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Aaron-Kling/dt-bindings-arm-tegra-pmc-Document-Tegra210B01/20250715-160630
+base:   347e9f5043c89695b01e66b3ed111755afcf1911
+patch link:    https://lore.kernel.org/r/20250714-t210b01-v1-13-e3f5f7de5dce%40gmail.com
+patch subject: [PATCH 13/17] thermal: tegra: Add Tegra210B01 Support
+config: arm64-randconfig-003-20250716 (https://download.01.org/0day-ci/archive/20250716/202507160557.t7TfWvFP-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250716/202507160557.t7TfWvFP-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202507160557.t7TfWvFP-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/thermal/tegra/tegra210-soctherm.c:47:49: warning: 'tegra210b01_tsensor_config' defined but not used [-Wunused-const-variable=]
+    static const struct tegra_tsensor_configuration tegra210b01_tsensor_config = {
+                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/tegra210b01_tsensor_config +47 drivers/thermal/tegra/tegra210-soctherm.c
+
+    46	
+  > 47	static const struct tegra_tsensor_configuration tegra210b01_tsensor_config = {
+    48		.tall = 16300,
+    49		.tiddq_en = 1,
+    50		.ten_count = 1,
+    51		.tsample = 240,
+    52		.tsample_ate = 480,
+    53	};
+    54	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
