@@ -1,177 +1,306 @@
-Return-Path: <devicetree+bounces-196523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 465AFB059E3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:21:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01A87B05A2B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:30:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E29E67B73BB
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:19:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3133C1A6440F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC0D2DE71D;
-	Tue, 15 Jul 2025 12:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED25E2DFA28;
+	Tue, 15 Jul 2025 12:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="LDfYTX16"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DwxDrtjT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011059.outbound.protection.outlook.com [52.101.70.59])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F32C2DE6E7;
-	Tue, 15 Jul 2025 12:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.59
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752582000; cv=fail; b=l8v1Z3E7+430U04kPofC1b9CJJFsppvFW2poGOUeKErHC8m5YBT3Cps3a+D6l2qMg5I2L2M8mf6IHUrv4pL0XsuemOLzNXxtu8x4Q6emdOeDKTI4/K4wia1AiQwYFwyiA/VEhc3g5Rw82xLv/rXZTNETuSaQ+7viG90zNzbmtXU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752582000; c=relaxed/simple;
-	bh=5ZmJddqzdJnHeEkm5oCwv86pNMaOwc6SSSj3eFAXRCM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=eV1j8UnIsiIsMMzsoL34pgzE5AHvf3IF9evlHiWYZZxIizWr5uSgjc07HFtBejQe/QTiTF6V/9NEd4s95t9b0YiTrnL4xKEBNBPbjZpFN7nxEWA6JaO0nMqC57Z0ocXfS+FxodC33JDUAWk+2F0oZJOI6QumWknTgWt7DuNeekY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=LDfYTX16; arc=fail smtp.client-ip=52.101.70.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=a0h8mzc9c8qrX7ehbusMYSBp5NJLwlWtXo3BL1Mo8UJdm9MsUNq6tMU9rLkMBdHnr5XZi44yeqq+lQ7mFuII3zfWffHfRbprextxfVyJDyNuoNRXkb1GUxOUimPCti31ypIdZRFB8oRy/1Y0ODsep9FVmS8pYLTJ1phWbSJlZYG8Ljhp3u5P+Afzp/K2mdMUFU4OIqqV21V1vvjUS0tXCV9UhJFVoOZxQ+XvbOryMu0mmELqa4QklUHKD4qnxgPMcOSvLyjuWNImtqt3RRyGgM1WLGW1V/Eg05iKzPQmYMFuDuLtSLPPaz3i24wGS8oLhejM3CzQGNiAd59VImv2Kw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eZZ51n7cf09L4ID6YFk0rWW8hwvrGiybfbo5R6DyPyw=;
- b=pwaT076GG7A+Z+8P8We0E6Ym/DO02KoqrPxBi+WgAOwJ5OMiPgW0pMWasklRwK5f6F2QWE97fXF1vGw6LvR04HXnhWkpBQmyk07PhuY5uzFEjGXqqZTbQlDGlOH7+sLBKHaTUbZSb4kjarWqOUjEasQFpjCrqDeTU1WhbMJ2xRY1YDtpPRdFNz9tSP3exSOJbY8mXzXbA7WfHAe/PaWVT9sLAlgV9AZ5PeXUS+sdtOFMTh/V1sgD+Fa9XGtrolGyC3xNAvFZs9PRgAda7/+va5o3f1zhpQqpI/7zNoRs1+XeWXwweJBQG4brpRJ/YDqvUlIs80e+JIPLYTxbRsJPiA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eZZ51n7cf09L4ID6YFk0rWW8hwvrGiybfbo5R6DyPyw=;
- b=LDfYTX16meCWp9kq85E/w9YIwx8v3YXQ2tF9Cbfu2kXmqmn5maLnJTuUMXiJHitJ2hFxhgYCqfbuHZup4UM3ZCZRPteKvEDFpek4iKQlHdYfBuwKURs1mRNW8R4HSoKza11qMEUyiryxbAVbEi+RjMy9Rr+tcFlJv+COAw4ubbvaIVyv9aBXfOu6/mAGz8jw4+DW7zP7VSS5tCieAPvubSByp7HBKYp6Cyes3QDfmseIBEkFwdzdew//gUCxBEJoNY4GZ+OMCJbUKgENEjmoNY3pk5oYyG33oV5WX+yf5XkYDtxn+GJGO52CaACw3CwzX1KbPKQa4tHras1LvuBBFQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com (2603:10a6:20b:42f::6)
- by DU2PR04MB9179.eurprd04.prod.outlook.com (2603:10a6:10:2f6::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.32; Tue, 15 Jul
- 2025 12:19:53 +0000
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b317:9c26:147f:c06e]) by AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b317:9c26:147f:c06e%5]) with mapi id 15.20.8880.030; Tue, 15 Jul 2025
- 12:19:53 +0000
-Date: Tue, 15 Jul 2025 15:19:49 +0300
-From: Ioana Ciornei <ioana.ciornei@nxp.com>
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH 1/9] dt-bindings: gpio: add bindings for the QIXIS FPGA
- based GPIO controller
-Message-ID: <n3wlp7pncug3gta2raignhvubqpzqk76dmvewg5bosu4spx4h2@hr5r73tsxip5>
-References: <20250709112658.1987608-1-ioana.ciornei@nxp.com>
- <20250709112658.1987608-2-ioana.ciornei@nxp.com>
- <20250710220132.GA4038128-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250710220132.GA4038128-robh@kernel.org>
-X-ClientProxiedBy: FR4P281CA0293.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e7::6) To AS8PR04MB8868.eurprd04.prod.outlook.com
- (2603:10a6:20b:42f::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D2FB2DE71C
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 12:30:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752582653; cv=none; b=dN3iz4wSozAuNbHqFxr3hWKw7WGAw/xsomORx/BzmSC7c+E2N4YLhFw+8PY+RGMYxVb9ZXUoof8JVXPOdroDiLh8L1CBt+ipFmrdVto7UtyEDIRR/fIuYi4lhjc/TBd4gGQSMbcqUl6grEfY0DdlQwjN/pFfBtxJoaop/UnhzKQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752582653; c=relaxed/simple;
+	bh=WWk+Zz38J+A0lk1NwBDagUK+UNQd7WE179Tt+YtBOkQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fvB+j5As+k8KsJmViRotcxzE99K8A7/CRQOdp+CcJma3I33h+X9KSijgIx3dAGr845KZxhykLMFO+fIA2/o8+CkRZu0rocKon5xLdKrEvZDb70s2gNJQ58Wd7n+b3Sb/QQup6BMtCnFptg8iw8RV8HNxHaddSJfUuwxKeh8YSVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DwxDrtjT; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56F8nOcE002934
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 12:30:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=vll9rDGne1AoSKyOm+L2Rpgh
+	eag73S1w5wXI4BU9WhU=; b=DwxDrtjTDCkY5VX8gp/sJ39WjfO+PJz5zmZ3sdhs
+	bqPA1uVnPIfEGLII9VqnUxlDXxM+khrFIunyiqghfsq28KBM9j/Za8BjUDIxul8G
+	y3kalwZbIxpwc78o8OVFaws9iUfb5e++dQRBgIeCCvWlZM/PyLPVs1PuBVz0oFfS
+	UKT9cR+v00aMD4SH6pyc0oB64Pc4uwGWDwv3jUYuUtQ4ZHu8LhckZP1s8FfY3cjL
+	F0KndfTafhNhO5ZjJ2ysX5ZaS0BXwu46dIuxUno9cYp3TwKAtZBfASCMMjvCHUAg
+	0G1CpBW1m3EW0pcWn7XujoNnP8ws5GH0VgALSm0X8IOn5w==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufut82m2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 12:30:51 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-313f702d37fso6011293a91.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 05:30:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752582650; x=1753187450;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vll9rDGne1AoSKyOm+L2Rpgheag73S1w5wXI4BU9WhU=;
+        b=pBrjuoTORLDtR/C+5LsYvENGkgCpRE6nQY5fiVquuDrXkMsSQib43sdO6/vU/N5LW/
+         6gH0ILzsvWH0/4LKPW5Baa+BcMhG76cengCl2jCgj3OqF9+PuXhvvHrteu2chavnKEwP
+         9VnbT3s6c7CfPoAbRPSWtAE0yuV5jIvDze+MkqMx/pbSVaIxrAfxStgDnhuLt/0ssnti
+         d61jI1F1a90j3IhSi7SWGEE14keyE83zBOLZQR87ZTZQ2nUp9gqRwKVAZVCsjz9cC05H
+         vnX0m0PnpX2CuZs7dp6ZonTQCK3k5loEKv9wgQs0moSgwbd2VyY4pD7x7zCPIjixTDNi
+         dm9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWbYNyRPFREH+AtWebHMQGENt/DsjzxNaTH6pph8fISN2L1dHIckICgDKRr1zwQ/pnK+V71tuR514r5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUBI0/5sXEuBfqCTkcLAcoR6tu0h3THWwkmPcbvvg6CMJIezNY
+	8UfFuG1VB2QRgRddV7pHEmYuUIebyR7MzFaNQdGK7UfUP8fwnklqWQPTff0i3NwgSgRWcD+PQAJ
+	MenT340cdC3aIgRJ27PUAMRSvwlJWRjoDjVruyeir59dKiPxphW0E5QU9LesYDUGKmffh6VgUcI
+	2oJm/s7fF3fFQxSvUDl1LPrus3sv9a6DYwYdiuWEA=
+X-Gm-Gg: ASbGnct8IkceJnfC2KbDzm3LorKPWfPT0zXVIXb/H55iOEbcV/WTg5BtggZbSERXwzU
+	EvnPXg9bLx+fzZbxqAK6DGabj2XrfIaWBMfUtxroHwJX51p9e5dZyfqkrhHxbvniVaxeaI5jWB4
+	PIKX7tEpA/qAfllRNzKA==
+X-Received: by 2002:a17:90b:57ee:b0:311:ef19:824d with SMTP id 98e67ed59e1d1-31c4f48b04fmr24534264a91.2.1752582649347;
+        Tue, 15 Jul 2025 05:30:49 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH+QKgmUT1LtI1tPLIsEldlE+Xv3jc/Myv45x2YTeyCk85wFHdk/rhiwhDMhBYh15+FloJ3fZb+aHNfPlztF/k=
+X-Received: by 2002:a17:90b:57ee:b0:311:ef19:824d with SMTP id
+ 98e67ed59e1d1-31c4f48b04fmr24534218a91.2.1752582648728; Tue, 15 Jul 2025
+ 05:30:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8868:EE_|DU2PR04MB9179:EE_
-X-MS-Office365-Filtering-Correlation-Id: b545593e-0a2c-47dc-482e-08ddc399e718
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|19092799006|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?0MVd77/kR7xkISiP5ZrInnGoObsUN+kf6EnD+vuZavJvXmPRYV3roMwrdWGf?=
- =?us-ascii?Q?NDBZ5TozKjduSPy3ZlXtwDynd8nl65Uu3tPwKkby7SkzQfCpRRS8DNY10Z+r?=
- =?us-ascii?Q?qjNiUTfvlRs2HIw2TkvAIN+dmDELPcMCllqMLyLEwRSjOU0oX4hrTBW7OqYP?=
- =?us-ascii?Q?v0h5S3ES9x8xK8ZDA6JxDmbwv/O5xGvcRvC9dpq+LtM1g7iMRQqiJ4ngTsY+?=
- =?us-ascii?Q?/zk+dfDBuImNXg85japAqlqEhkZQ+0VV8pmnuwa/u8SUEgXXUiZj2XbhwTdl?=
- =?us-ascii?Q?oPuQQRfPNmexX77OsSq6pJcleSmvfBcJiIBuEj64dsgAL9CpGNVnpmFXFUlE?=
- =?us-ascii?Q?MsdXb9+zSuHGamdRbdHaLEMeAzqOLej0vNqabXOupovhNg3rH+0VMMNc4Nyq?=
- =?us-ascii?Q?1AiwJ7bTgs0JWu4mPtUPLL1NBx4DPUO+OXycjCEDnQrVqYQv4EJ8tAHqJECF?=
- =?us-ascii?Q?iYfxGXcdrzIkrw9EO9hWO8V+NXcDMyGyTVQgmMjTu4muW01pT3wWj78W5wSR?=
- =?us-ascii?Q?3ftKjfFLJ8urfpJtcU9i3swOx2qFTp1c75T2WjU7//H2b/xNstnbaIZatjGv?=
- =?us-ascii?Q?KlXepuKyslgKar5xKpZ+4kjj760YRKoxZdMAxa0lXGFX9/u6HI3lp7z2v+W/?=
- =?us-ascii?Q?9Fi3ZdWX5iM1sChf7UYtpNfyfJHBoDpO3aDzA/PH14GuLpb2ea5COxWONNUg?=
- =?us-ascii?Q?jyQpy0b21l25jYWQ21JnKRp75GKRneWiEM8jmI627jDBS5C+Y6SMuBEHBLQT?=
- =?us-ascii?Q?FeZ1BWHDX5RtGfycLf+8HKiYuFkPgtabIUaNnkkhjrw17jnbsVRZqFWib1u2?=
- =?us-ascii?Q?0eNbd8HP2ALFA17WVeJRNVWn+oC+qZ3M5ei6DQdiN506ysXv1TXO3/a2TjV6?=
- =?us-ascii?Q?w9SHLe6D5AGnQYe466HUUQ4iuYTttPAL7G5vx4Sv6bk3mrgCjD7/wek1vytZ?=
- =?us-ascii?Q?CJjy2Chwts6GMEN2SAQ8ChZ/DMdP+44Jo2Rl1x5yApHcXdcYGxTNETOSAhO0?=
- =?us-ascii?Q?FzyZgPUgzD5Dci0rVQheyfj/VoHMwNsg4RaHDhQjRFk7nEyuy9pLEMYZJQrV?=
- =?us-ascii?Q?5IXDYx+gxVdLSo3UpF6KvzLfWJEa64nekQBt4qOJzAY3TDu/sdYkWqMELtfT?=
- =?us-ascii?Q?G/DHVnY1N+WlMfNQ4Bh6iwJw8JAsHC+7bSyWcMCFQC74J0+vvxcwmBdYdhS2?=
- =?us-ascii?Q?Wgr7y59N72E9PWr+6DdGVyKSfYrJ1UmxCFoyOgdYK6aImWDbGTT/udZS7VO6?=
- =?us-ascii?Q?u20o7zg2tNSWi2dlFB3wgixVrVcmRkOyK/ilp0EC2xpNE8cO4beeTuYYlrUX?=
- =?us-ascii?Q?l2r9eCSasAyvrTSj1f1NJ8UXRCJyUZyYqNiomWh8UjfSm07oFmPikIVa0H/l?=
- =?us-ascii?Q?DDdijfllhOzbwqLeEk8xhvZDu1e2N0XzSfp9NSmdmaB0680Shw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8868.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(19092799006)(366016)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?jdQOFFyxi+LnGrdIG7mxROYIUokaTQ2iGhkon6jOmS2In8rZbOHmiNH3dVvX?=
- =?us-ascii?Q?i3Y8mZzaQtvlTgNt/4RIT6+ZY+l5GPb5ob7ez9jbfnPXE08DKQ+S6nFNFzwY?=
- =?us-ascii?Q?lrnCX7toYMx8i3fCA0w4N7GFmKGVz+ynpgwKDWAzvKcGYyB7OTpHnRXh9iJJ?=
- =?us-ascii?Q?b+LrzpL5ILsOHkg/LVqJJAJaZ0VaTHRN+/zrPEZQXvgB70vFOlURgwzj0GLh?=
- =?us-ascii?Q?SqLbJjRmO4DRptRbmTpznlpn1RjKFfQft0K5udE9mQUaa+/WhIuCd9xOBb3v?=
- =?us-ascii?Q?3lge6k760lY/VRboeqIy7BBUdmACtD4XThMiv565d+0all4Haf6jSdo1IJ0y?=
- =?us-ascii?Q?M+Oj/7M2xMWZwBvV4DmJVCqRL1G8ESKRvpn6kWc+FgNHZQ9n3wjU500O/CqZ?=
- =?us-ascii?Q?+ncbwTHBnmfXI/36zOLF8RMYkNRrGOXqFchpdRyYxOKHNS5N46lEqZ+wEqnc?=
- =?us-ascii?Q?oTIbffYuow7tBGmZHdmxMgr5HwF/yYymxe7h3cQasb3CNibOYzojxr5D4UE+?=
- =?us-ascii?Q?QZPRVLRU27Lf/0KuP3uBHJF3sg5WS7taEz8/prFu9TicbOYoz75sSoDNG2L4?=
- =?us-ascii?Q?z/3pNEmVnfK5pUz1dYPJ7dTSuwrMu9hXwCAI7hUIGV20oBKV0W2Fn9emHIqO?=
- =?us-ascii?Q?eq7n6JZbXJCYCgfQhIZhkIjsOzJd8nnIOjKWQW99nN0yUlGl43vOZ+nkVaV4?=
- =?us-ascii?Q?bc0XYi2QryfedkLV1Wi8qOGr6kgfSfGQqc6OLk9BLZyKl51ufk/oxEfAr/Xr?=
- =?us-ascii?Q?Wv2FwwdjcMFfAWNfoDvSMovrbcF6Bletpo1LJer7YNx6i5zBG7BeNZYky7SZ?=
- =?us-ascii?Q?A9xNsHmto/G6RR8iNcgUyAWeVPjK4huvtr6/aDz0ohJ0zO72no+fVJMof0P6?=
- =?us-ascii?Q?sJpgVymJhhjey3VaNoFoHCrd8NS07kFJnlYdAmAuTpAPb9mNXH06v4Vp3Of5?=
- =?us-ascii?Q?WnJD0MubxI9LAh/jLTlzcefoCLHa6NjN5FzhCFl003LjPXNckUer1QTYpm/q?=
- =?us-ascii?Q?T6n2Z5NWCJBXsL5cvDFbpILIp2onCr/IgZnQUZhQ41NzzZ9UF9r/cc5jZk2C?=
- =?us-ascii?Q?MidkGTWCIzAp7LvL4O4LjQXwGJ7XGYCk1gJx5PQKTZXqjUVobY5o9TVdp2jA?=
- =?us-ascii?Q?Jujgk5OpdNc4ps11527VfWhN5XaKRjTCQHi3ivzyZGgvcZMM+S2xWktTq1w5?=
- =?us-ascii?Q?lvd4ldYD6UOu7lobc5K2z/KR7J+1Tb/Ql1GP+sfF6xAiC1rlmXkwF98nVeWc?=
- =?us-ascii?Q?Ie/LN7+6K7AmD9cYydK+f12qAXHYqXOoWoa+v4iO3vYdea7lKnquNAH2wSm7?=
- =?us-ascii?Q?8NGP+RkmC0g0iKh9WtRWmFXDXVzH9HAF5/HOSYF/U1mohJWx6ImdQrin6IA6?=
- =?us-ascii?Q?/8pk+INzbMtKaN/dALsLJhsc/My4mdGiHjkPl3ZFxOFlMMMcHRfTcFcgSFNj?=
- =?us-ascii?Q?HxOTVf/ti9h29+G0LgIs6HZSLdDWkZ76h7crvL07C5pA3+lmV4gSfQbPNWes?=
- =?us-ascii?Q?mtbO5iVNY7iCZ49Nwbj4P430+lj0cPCzD6a/APxLt8ZXR6ioAjQ7QG+cKcqT?=
- =?us-ascii?Q?oHm9JADobP6fZu0O+j2tejZnA6N/NKDLaS2J3IR2?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b545593e-0a2c-47dc-482e-08ddc399e718
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8868.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2025 12:19:53.6133
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: e64+i/vTEUZsnWL/hNWDEBc2mE5gGLJz3TW+IqWUJhRhVkS93T5UyHrrCYuDIkepfACmGVC2r+PMNCJscZPc6Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9179
+References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
+ <20250606172114.6618-8-quic_ptalari@quicinc.com> <d6cr4elhrbh27lmlcv5xzuel75uvsgi7klxjkevm7vg4jcbawe@5ojgetrxkag5>
+ <f87807c9-5249-4d97-ab89-898b7d8d260d@quicinc.com> <tt2crsexdnhlotlo3z5uxyta6jrnnvom7aqwsjvopwueazbuih@2l4h6xjpwlar>
+ <1c73b530-4f1a-4c45-91aa-b44efb8a8c1e@quicinc.com>
+In-Reply-To: <1c73b530-4f1a-4c45-91aa-b44efb8a8c1e@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Date: Tue, 15 Jul 2025 15:30:37 +0300
+X-Gm-Features: Ac12FXx7o0vm61CvNFB6-j5iSJHx1nZh9qdvCU2mn-91NnumjNpXsNKHazRHWZE
+Message-ID: <CAO9ioeVLPnqxL6Vz+GOFuqkiT8NcxW3buCP6Q81-rR72MwRxhQ@mail.gmail.com>
+Subject: Re: [PATCH v6 7/8] serial: qcom-geni: Enable PM runtime for serial driver
+To: Praveen Talari <quic_ptalari@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, psodagud@quicinc.com, djaggi@quicinc.com,
+        quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
+        quic_arandive@quicinc.com, quic_mnaresh@quicinc.com,
+        quic_shazhuss@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Authority-Analysis: v=2.4 cv=e7gGSbp/ c=1 sm=1 tr=0 ts=687649fb cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10
+ a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=U3XR-vgVohVsxwl5X4IA:9
+ a=QEXdDO2ut3YA:10 a=-_B0kFfA75AA:10 a=iS9zxrgQBfv6-_F4QbHw:22
+ a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: UUiB2bnu9Bgq6ncm0o1P2693VTTDbqmk
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE1MDExNCBTYWx0ZWRfXx4/7DB9rssQu
+ 5uOcCOAg+O2sMp/h4Vet4LrSvJ96DTF1Sac4Q8EooEPbDYa9hTwB9rlcyrNGb3stiYcx7PM1K8z
+ txJFe640hPhjfddeKGvDN0xFmnhAdupxHcqDhD+pFg4yFacTPEMA630D/QlukstLuk+p13URNfY
+ Sy/AQQJs0nlrJqcd8eRBnJmbpwGgOGd0hw+CAA7o6HUYvncofPVxvnqCDzzdwjea8oaBD6NURB+
+ XefbUryqfBtxV0cpcFwQIyWDsGypRQBQTg+TLfHldHxb1AXTuO3toRuMqWC0mDxpI99EUMcn9eo
+ hLuL7BmO4e/E3IYbStJ0JNhHU/MZ7ErL0ueEOVZBhD4plIetnf0qPO0EOm6MDkwy/qOjQSNaj3S
+ lbkhOwHEJMqqoIKLAXgDn+wSaddokk+t60wcngYmGcV/Wkom963clH0XxJAEpYnV0qfJpmdJ
+X-Proofpoint-ORIG-GUID: UUiB2bnu9Bgq6ncm0o1P2693VTTDbqmk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-15_03,2025-07-15_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 mlxscore=0 spamscore=0 suspectscore=0
+ phishscore=0 bulkscore=0 impostorscore=0 clxscore=1015 adultscore=0
+ malwarescore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507150114
 
-On Thu, Jul 10, 2025 at 05:01:32PM -0500, Rob Herring wrote:
-> On Wed, Jul 09, 2025 at 02:26:50PM +0300, Ioana Ciornei wrote:
-> > Add a device tree binding for the QIXIS FPGA based GPIO controller.
-> > Depending on the board, the QIXIS FPGA exposes registers which act as a
-> > GPIO controller, each with 8 GPIO lines of fixed direction.
-> > 
-> > Since each QIXIS FPGA layout has its particularities, add a separate
-> > compatible string for each board/GPIO register combination supported.
-> 
-> This could be covered in my proposed trivial gpio schema[1].
+On Mon, 14 Jul 2025 at 19:21, Praveen Talari <quic_ptalari@quicinc.com> wrote:
+>
+> Hi Dmitry/Bjorn/Krzysztof,
+>
+> Thank you for review.
+>
+> On 7/1/2025 4:42 PM, Dmitry Baryshkov wrote:
+> > On Mon, Jun 30, 2025 at 10:40:25AM +0530, Praveen Talari wrote:
+> >> Hi Bjorn,
+> >>
+> >> Thank you for review.
+> >>
+> >> On 6/17/2025 9:23 PM, Bjorn Andersson wrote:
+> >>> On Fri, Jun 06, 2025 at 10:51:13PM +0530, Praveen Talari wrote:
+> >>>> Add Power Management (PM) runtime support to Qualcomm GENI
+> >>>> serial driver.
+> >>>>
+> >>>
+> >>> Doesn't this have impact on the behavior outside of your
+> >>> project? Or is the transition from qcom_geni_serial_pm() to explicit
+> >>> RPM merely moving code around?
+> >>>
+> >>> Seems like this deserves to not be hidden in a middle of a patch series.
+> >>>
+> >>>> Introduce necessary callbacks and updates to ensure seamless
+> >>>> transitions between power states, enhancing overall power
+> >>>> efficiency.
+> >>>>
+> >>>
+> >>> This commit message fails to state why we need runtime PM support in the
+> >>> driver.
+> >>
+> >> Introduce PM runtime support to the Qualcomm GENI serial driver to enable
+> >> better power efficiency and modularity across diverse resource control
+> >> mechanisms, including Linux and firmware-managed systems.
+> >>
+> >> As part of this enhancement, the existing qcom_geni_serial_pm() logic to
+> >> use standard PM runtime APIs such as pm_runtime_resume_and_get() and
+> >> pm_runtime_put_sync(). Power state transitions are now handled through
+> >> the geni_serial_resources_on() and geni_serial_resources_off() functions.
+> >>
+> >> Is it fine?
+> >> Please guide me/correct me if needed
+> >
+> > Please start by stating out the problem that you are trying to solve.
+> > There is no actual issue description in your patch.
+>
+> I hope this commit describes the actual problem.
+>
+> The GENI serial driver currently handles power resource management
+> through calls to the statically defined geni_serial_resources_on() and
+> geni_serial_resources_off() functions. This approach reduces modularity
+> and limits support for platforms with diverse power management
+> mechanisms, including resource managed by firmware.
+>
+> Improve modularity and enable better integration with platform-specific
+> power management, introduce support for runtime PM. Use
+> pm_runtime_resume_and_get() and pm_runtime_put_sync() within the
+> qcom_geni_serial_pm() callback to control resource power state
+> transitions based on UART power state changes.
 
-Indeed. I will update the trivial-gpio.yaml schema (once that gets
-merged) with these new compatible strings.
+LGTM
 
-Thanks,
-Ioana
+>
+> Thanks,
+> Praveen Talari
+> >
+> >>
+> >> Thanks,
+> >> Praveen Talari
+> >>>
+> >>> Also, start your commit message with a problem description, per
+> >>> https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
+> >>>
+> >>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> >>>> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+> >>>> ---
+> >>>> v5 -> v6
+> >>>> - added reviewed-by tag in commit
+> >>>> - added __maybe_unused to PM callback functions to avoid
+> >>>>     warnings of defined but not used
+> >>>> ---
+> >>>>    drivers/tty/serial/qcom_geni_serial.c | 33 +++++++++++++++++++++++----
+> >>>>    1 file changed, 29 insertions(+), 4 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
+> >>>> index b6fa7dc9b1fb..3691340ce7e8 100644
+> >>>> --- a/drivers/tty/serial/qcom_geni_serial.c
+> >>>> +++ b/drivers/tty/serial/qcom_geni_serial.c
+> >>>> @@ -1686,10 +1686,10 @@ static void qcom_geni_serial_pm(struct uart_port *uport,
+> >>>>                    old_state = UART_PM_STATE_OFF;
+> >>>>            if (new_state == UART_PM_STATE_ON && old_state == UART_PM_STATE_OFF)
+> >>>> -          geni_serial_resources_on(uport);
+> >>>> +          pm_runtime_resume_and_get(uport->dev);
+> >>>>            else if (new_state == UART_PM_STATE_OFF &&
+> >>>>                     old_state == UART_PM_STATE_ON)
+> >>>> -          geni_serial_resources_off(uport);
+> >>>> +          pm_runtime_put_sync(uport->dev);
+> >>>>    }
+> >>>> @@ -1827,9 +1827,11 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
+> >>>>                    return ret;
+> >>>>            }
+> >>>> +  pm_runtime_enable(port->se.dev);
+> >>>
+> >>> Any reason not to use devm_pm_runtime_enable() and avoid the
+> >>> two pm_runtime_disable() below?
+> >>>
+> >>> Regards,
+> >>> Bjorn
+> >>>
+> >>>> +
+> >>>>            ret = uart_add_one_port(drv, uport);
+> >>>>            if (ret)
+> >>>> -          return ret;
+> >>>> +          goto error;
+> >>>>            if (port->wakeup_irq > 0) {
+> >>>>                    device_init_wakeup(&pdev->dev, true);
+> >>>> @@ -1839,11 +1841,15 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
+> >>>>                            device_init_wakeup(&pdev->dev, false);
+> >>>>                            ida_free(&port_ida, uport->line);
+> >>>>                            uart_remove_one_port(drv, uport);
+> >>>> -                  return ret;
+> >>>> +                  goto error;
+> >>>>                    }
+> >>>>            }
+> >>>>            return 0;
+> >>>> +
+> >>>> +error:
+> >>>> +  pm_runtime_disable(port->se.dev);
+> >>>> +  return ret;
+> >>>>    }
+> >>>>    static void qcom_geni_serial_remove(struct platform_device *pdev)
+> >>>> @@ -1855,9 +1861,26 @@ static void qcom_geni_serial_remove(struct platform_device *pdev)
+> >>>>            dev_pm_clear_wake_irq(&pdev->dev);
+> >>>>            device_init_wakeup(&pdev->dev, false);
+> >>>>            ida_free(&port_ida, uport->line);
+> >>>> +  pm_runtime_disable(port->se.dev);
+> >>>>            uart_remove_one_port(drv, &port->uport);
+> >>>>    }
+> >>>> +static int __maybe_unused qcom_geni_serial_runtime_suspend(struct device *dev)
+> >>>> +{
+> >>>> +  struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
+> >>>> +  struct uart_port *uport = &port->uport;
+> >>>> +
+> >>>> +  return geni_serial_resources_off(uport);
+> >>>> +}
+> >>>> +
+> >>>> +static int __maybe_unused qcom_geni_serial_runtime_resume(struct device *dev)
+> >>>> +{
+> >>>> +  struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
+> >>>> +  struct uart_port *uport = &port->uport;
+> >>>> +
+> >>>> +  return geni_serial_resources_on(uport);
+> >>>> +}
+> >>>> +
+> >>>>    static int qcom_geni_serial_suspend(struct device *dev)
+> >>>>    {
+> >>>>            struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
+> >>>> @@ -1901,6 +1924,8 @@ static const struct qcom_geni_device_data qcom_geni_uart_data = {
+> >>>>    };
+> >>>>    static const struct dev_pm_ops qcom_geni_serial_pm_ops = {
+> >>>> +  SET_RUNTIME_PM_OPS(qcom_geni_serial_runtime_suspend,
+> >>>> +                     qcom_geni_serial_runtime_resume, NULL)
+> >>>>            SYSTEM_SLEEP_PM_OPS(qcom_geni_serial_suspend, qcom_geni_serial_resume)
+> >>>>    };
+> >>>> --
+> >>>> 2.17.1
+> >>>>
+> >
+
+
+
+-- 
+With best wishes
+Dmitry
 
