@@ -1,163 +1,147 @@
-Return-Path: <devicetree+bounces-196584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1093CB064C7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 19:01:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69B19B06518
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 19:27:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82DC44E6B03
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 17:01:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90CEC3A7396
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 17:26:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6FD1E9B3A;
-	Tue, 15 Jul 2025 17:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A25A27BF89;
+	Tue, 15 Jul 2025 17:26:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="Zj9mWXMU"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="WsobGYc/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.17.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8A11DFCE;
-	Tue, 15 Jul 2025 17:01:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04C4C2EF
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 17:26:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752598885; cv=none; b=ZbaS7bcqh4OOBqMD0CSzeiRxtAsYGvFpWrZVXoYbq4lQHL9jyVVGAi+nK+gLz7BXGWAmRGgGYRJ5mku5p0SvP4ZtLoGT70Cz5HCRln6EBvbXSAl3aAvl2LQ4w4712YcLE/FqiUntboZoqQIyTXFjSo/KE8cgT4srlFb+Fd0/suc=
+	t=1752600419; cv=none; b=KCCPbz34mSF0bwSjKGtKEsMjFYlS0btfVG38uks8c+aV6Zm1P2WGIH2Ws8qdXMKWXcd47z5X9yIdmNonYXwjJhMEVVZ/f/SbPVazKT1/orsO4jo2wwjx1yPQAqm+5b58u9/+GiKFvllJD6r96Ieiy/QmOWwA4FOfR5DpfPT3qgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752598885; c=relaxed/simple;
-	bh=YAgbG08mQ7J/VHIClHqriwrgYCXz+Oibf7DZS2f/O4o=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=s7sLTeluYSd208NLbXABDy+8lIqxAipjN7Y6FmYyWr0BzlLxKVxfb9x9XL3yyuHSo+xUT/iohEUgvEd5Cj+9pbBMgASf7b4shFqI0YAqMYbdzyX2TMab/gFznum9wMe7Jsgl+5ZDZqNm/UdKo76LuWy/XOU64innZXy4TryXJr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=Zj9mWXMU; arc=none smtp.client-ip=212.227.17.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1752598840; x=1753203640; i=markus.elfring@web.de;
-	bh=rGs/l04TD5R/3ve+iKBgA47mAtv6wQTleh/5nWpeFXY=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=Zj9mWXMUqbHUj5UttK3QGJjbuppTk+KdkSUpZ1PM7Bgeoddv4RJIpmIPnnwUU0xp
-	 +VKV3GOju/NjT0///k/+6Z1L1wQPKi+UqO1sQVAHRiDVsOAtPGKAnA69RH6KQlCTs
-	 RqD900npnnx7LTslGLgrGAWkKTuJdbALPD+OZElm/Ts41dyLh9ogI0cA3IoqNPfGW
-	 dTf4mLS9FbhhzisTlBqYobRTijANMW23+ZQ0RNuldno8d0OgteIQTVbjGTuGZkFNx
-	 IieZRsO0Uwu2LzIkNpThM4vMTnZXDBxzHrjrxCjYFtprdX0KLdzvxGgcFSQC2DBCN
-	 P2JlXXiz8aSF73FGww==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.29] ([94.31.93.1]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MQPdr-1uG5Qf1ZaL-00VKQl; Tue, 15
- Jul 2025 19:00:40 +0200
-Message-ID: <8fe0f561-ef44-4ec2-9b93-f73105bd67ed@web.de>
-Date: Tue, 15 Jul 2025 19:00:27 +0200
+	s=arc-20240116; t=1752600419; c=relaxed/simple;
+	bh=isF8Gtau3GCw3cMblNO5v7kplTfbtpgalIiR8BIoNZ0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IXzC3+xlo8cbRQ6ueQRFrTLGVXrXHOrqEAI8/UckfuyhUFu3ECYtkgF9f5LR8SsDfyupk3JBffuY8qyMNboL9QGBmwUQ2NwG4f5iadg5L35HfBSONx9trZW/CvwGmsuWp1Oxe2oeMxs9dqZoZ0X3Vtq+5Z+H81eD8FAaSiQz43o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=WsobGYc/; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-742c7a52e97so4744958b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 10:26:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1752600415; x=1753205215; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j6MhRN6ppxrCnCAXp4O8kzdMF4x4FAEbIn2zSZ0Cd/A=;
+        b=WsobGYc/MFTKtq8p8D83P0tH4hQ1XxJ+jeJgqa5A+j98CkHlMzwEwfD5v5dMs/XNhs
+         D/cuSZcLgcj8r9sOv/LaYWN+p0Yl7C0HaBh4o7KzhsHzuKDWpdPioHl78VBusK+kzQ9a
+         CcJKA3egHshkyheADfeq4PVyaZzCe3OXZ351E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752600415; x=1753205215;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j6MhRN6ppxrCnCAXp4O8kzdMF4x4FAEbIn2zSZ0Cd/A=;
+        b=hzjK3whodJHag1d9JP/eORGj9v2ML6kpMvKjTY3QOfDiIMFEZsP9KGt9h1U9nvVP5j
+         B/ai0Tou4qCKcuUVyk3lmn/LyM4/uDcKQkwdy2BWfkzTigaUiBawl+mGUtI2Fcdrd7HH
+         R8s2DFJ3TP+oWU/DgxStwloIsmSOLzA2k7PwtIPmxjS5Povtl3OPisHXQUXpphX7Temh
+         JDxGtm8Vb4jyIzddl08Q9wNscfR+jvlGZBCFEWVl8aRKGvX30D8JXgyTGtf3NXjE7aUv
+         /T7KuINTY+lJtj0KXuYo2eKmHtme2gRDvrYtGEwW/zW5rt9iOA0qw5rYqyb1QvtZp/6e
+         YSjA==
+X-Forwarded-Encrypted: i=1; AJvYcCW5CFPpbaVvJBqF5YeHtY3z7XDjKadsAR5yHuQrGzNF2w2pjtXSiW+gh7Dy0+UNdifb5Sg6LQjJ2C+w@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyjk+eaTlw2n1DKY2rfHDLFlZbI3fgfJhiJYQxxt5Spst8Qryox
+	oaYKJiPfau30XWyN3auAYZmxtjXNfrs6a7WeOIFpRnL6uPJ6wP/EVM3GdGj/6P9eHHYOdR/Zzbo
+	1yW0=
+X-Gm-Gg: ASbGncsJCkNrVtqtAcUaqMwM4JwqorGzeLGibDOeovYzrpnT4DU0OqT8yOpfnNL+ZMK
+	hwjWwoxoyNUOxM4jrBhXMgpCx7shSlO5n0YDVulbzzh9XokZONT8lBPm0SSj1/TpJVRPtYd0GBf
+	P2Slv/4CCAB1SZnxWy6lWDLggnBvbgm1EqA+Alcq+EHwhsOYeEWNHUrKQXtgUlY8v9HKV1lR9um
+	zv9wOtR9Gkvg10hBemA8jyQPSyp2pf+hb6PJ+2M8urn3jpl/mtK0uG1/yiVaBE+LeHc5NIyg3Ep
+	Ow3pe/fmARLK59nF1WaKZlbZVPOqaGmnJNLSzKp1/qhl1N58KKYUoJ0HKaFgiiNoVwP0LxCtOrg
+	oJWD9e0qql21CtIsbSl78grWKJPp07oI0ovf86rMG0DjIUNPLIPxStxQ6xe7a4+cADg==
+X-Google-Smtp-Source: AGHT+IGPvZFpUax1W84w1DG6aBrGPd6YtH8FWwHYm06cueoOaIPMT2d/ri6VWBi8NTZF794aS0oCDA==
+X-Received: by 2002:a05:6a00:ad3:b0:746:27fc:fea9 with SMTP id d2e1a72fcca58-756e9de7067mr226665b3a.11.1752600414905;
+        Tue, 15 Jul 2025 10:26:54 -0700 (PDT)
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com. [209.85.215.172])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9e06890sm12774879b3a.48.2025.07.15.10.26.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Jul 2025 10:26:53 -0700 (PDT)
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-b3508961d43so5156687a12.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 10:26:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCULlrml4wOSHgq/PQL6Ne6fFP8s6VOXpH20JytHIeatz645i+FZRih9AXZ4XLwCSolfEU6vA9BX9gvn@vger.kernel.org
+X-Received: by 2002:a17:90b:5587:b0:313:28e7:af14 with SMTP id
+ 98e67ed59e1d1-31c9e75a6demr6694a91.19.1752600412930; Tue, 15 Jul 2025
+ 10:26:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Jacky Chou <jacky_chou@aspeedtech.com>, linux-aspeed@lists.ozlabs.org,
- linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
- Joel Stanley <joel@jms.id.au>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, openbmc@lists.ozlabs.org,
- BMC-SW@aspeedtech.com
-References: <20250715034320.2553837-10-jacky_chou@aspeedtech.com>
-Subject: Re: [PATCH v2 09/10] PCI: aspeed: Add ASPEED PCIe RC driver
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20250715034320.2553837-10-jacky_chou@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
+References: <20250714173554.14223-1-daleyo@gmail.com> <20250714173554.14223-3-daleyo@gmail.com>
+ <175255192501.20738.16784196888105498389.robh@kernel.org>
+In-Reply-To: <175255192501.20738.16784196888105498389.robh@kernel.org>
+From: Doug Anderson <dianders@chromium.org>
+Date: Tue, 15 Jul 2025 10:26:41 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XvHu_NnahFOcfLV4XQm_mQkO5cG3YP+acRgC9AE2m6Jw@mail.gmail.com>
+X-Gm-Features: Ac12FXym5rkm10vzDYnC_hB8fozQpKkEtx52Jg_soFGip83valaWRitivphZL1M
+Message-ID: <CAD=FV=XvHu_NnahFOcfLV4XQm_mQkO5cG3YP+acRgC9AE2m6Jw@mail.gmail.com>
+Subject: Re: [PATCH 2/9] dt-bindings: display: panel: samsung,atna30dw01:
+ document ATNA30DW01
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Dale Whinham <daleyo@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Simona Vetter <simona@ffwll.ch>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?B?SsOpcsO0bWUgZGUgQnJldGFnbmU=?= <jerome.debretagne@gmail.com>, 
+	dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>, 
+	linux-kernel@vger.kernel.org, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, devicetree@vger.kernel.org, 
+	David Airlie <airlied@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:PoiZJ9fSzSlWKLh1vwNyOAzkuNF7hTRNV71wlCsQn9g9VWcuxTx
- nT8JNwaatT96O2Duhbk0shm1AnqD4uQPhFU12ISegzxBQZh3+6CXUa5B7lNmbliSmSeZm8S
- G4xWGpI8d1VQASPeeVwHpTZK5ZBwxPjT7anBgPmC4d2Tui/pGWvOVuFtKIpaPfsuZYgmH0J
- v9SrV1YYB8SF8bevLSxeA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:l7+GOJ6r/JI=;1sd4JOf/kjylVk4WVzZqgERQhZF
- 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
- aWM3kKNw0AE8xw=
 
-=E2=80=A6
-> +++ b/drivers/pci/controller/pcie-aspeed.c
-> @@ -0,0 +1,1137 @@
-=E2=80=A6
-> +static int aspeed_irq_msi_domain_alloc(struct irq_domain *domain,
-> +				       unsigned int virq, unsigned int nr_irqs,
-> +				       void *args)
-> +{
-=E2=80=A6
-> +	mutex_lock(&pcie->lock);
-> +
-> +	bit =3D bitmap_find_free_region(pcie->msi_irq_in_use, MAX_MSI_HOST_IRQ=
-S,
-> +				      get_count_order(nr_irqs));
-> +
-> +	mutex_unlock(&pcie->lock);
-=E2=80=A6
+Hi,
 
-Under which circumstances would you become interested to apply a statement
-like =E2=80=9Cguard(mutex)(&pcie->lock);=E2=80=9D?
-https://elixir.bootlin.com/linux/v6.16-rc6/source/include/linux/mutex.h#L2=
-25
+On Mon, Jul 14, 2025 at 8:58=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
+>
+>
+> On Mon, 14 Jul 2025 18:35:38 +0100, Dale Whinham wrote:
+> > The Samsung ATNA30DW01 panel is a 13" AMOLED eDP panel. It is similar t=
+o
+> > the ATNA33XC20 except that it is smaller and has a higher resolution.
+> >
+> > Tested-by: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.com>
+> > Signed-off-by: Dale Whinham <daleyo@gmail.com>
+> > ---
+> >  .../devicetree/bindings/display/panel/samsung,atna33xc20.yaml   | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Regards,
-Markus
+Pushed to drm-misc-next:
+
+[2/9] dt-bindings: display: panel: samsung,atna30dw01: document ATNA30DW01
+      commit: 0bcc0f5e98bebd05e44261df3c33d274084eab60
+
+Given how many of these we're up to now, I'm starting to wonder if we
+should come up with a generic compatible like we did with "edp-panel"
+and then we can stop having to merge CLs like this. All of these
+Samsung OLED eDP panels have the same power up sequence and once we do
+that then we can read them via EDID or via DP AUX bus to identify
+which specific panel we have and if they need additional tweaking,
+just like we do with "edp-panel". Do DT folks have any opinion about
+that? Coming up with a name would be a pain since I wouldn't want to
+assert that all future Samsung OLED eDP panels will have the same
+powerup sequence. Maybe "samsung,amoled-edp-panel-v1" even though that
+sounds terrible and there's no known need for a "-v2"?
+
+-Doug
 
