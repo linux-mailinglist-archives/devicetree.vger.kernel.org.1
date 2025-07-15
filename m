@@ -1,97 +1,121 @@
-Return-Path: <devicetree+bounces-196405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C699EB0549A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 10:20:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29E3CB054B6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 10:22:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 101AD168D13
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 08:20:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B4881C2309D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 08:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45E932750F1;
-	Tue, 15 Jul 2025 08:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 182C4274B35;
+	Tue, 15 Jul 2025 08:21:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A0m7zk3C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O2MsH4Qv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088A1275104;
-	Tue, 15 Jul 2025 08:19:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93509274659;
+	Tue, 15 Jul 2025 08:21:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752567594; cv=none; b=jLINz4C7CwD3GhBlqtkFbGF61uhSkKJviYskB4uPg9Kz2NCOLV8fZNeZpgY/z6MwuQAreUXl5Zg/gBFswyMSUze73vBnoYNiE8Q76wsp8O7ZgS0RSTLWTCqErN0ZfbxS1cSwNjzlSu8BOfq/oOmeotdPps2FajOWUS04p690/3I=
+	t=1752567719; cv=none; b=SAJHGOnunBUCZxlvKFitddgCoONmKTMquNUMmfpCIElEz+T0lxot1YLkYox+JvLHZegSrQo3I8QHwTmbGxdvvhvf+0SUCz6PJvG+XWbXP5p/CW2zAF8u0pdoK/syQmbeH1n5gghzHtdnt+7PrveO5Pbu7NKseeIMzN/7BIm/ugo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752567594; c=relaxed/simple;
-	bh=BM4P1drWzjMjfg/pk0Xn1FWtYJygertGpkbq/ASGuqg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WyFLIFuze/wYZkLZmRu39SEc+Vg6v7HhZ6WnluCwQy6QWaRtKxLYP9iOE6qHKO/YyjR8yeHYybG997LCOsFqWrh0R1vtX2Pd0T1P8lXwZo+Nc2p7yTl3WX+uraTr51R0UCyUs3/CEBTjHKH0LgKHtu14DN8vIXOr+IyywkVA+8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A0m7zk3C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24862C4CEE3;
-	Tue, 15 Jul 2025 08:19:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752567593;
-	bh=BM4P1drWzjMjfg/pk0Xn1FWtYJygertGpkbq/ASGuqg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A0m7zk3C0jSevJgK6jHj+8KsagqEKqsohNFNjyxuUufAK0FsT7yJNCNpaFOU4qIx9
-	 u5U9AJpnkIbaI8iC8Dg4oZAecD5oub8zKKyVtM16y5Qs2D5okcKbPp5PQ8IKt9Mnrd
-	 FUFZCnQ4p6IvkvCBWBTUgxF3w+A3Ri2VqbA0DuzPsHnsN6kywA88NMDdZGek85OLA1
-	 yygBzAIe+X6glhbwR0mkYgosi0w9Rzx8T88TxgNpPWzn8IdAhtJxkJopO2XixHkdwu
-	 tMo8uetR18UQcRZ8q52L5tdNT1W3eE/qPrDItMRTCW13sGPEVEo0ID28KDRWTsRwqn
-	 ayjlkQsVSjg4g==
-Date: Tue, 15 Jul 2025 10:19:51 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	=?utf-8?Q?Cl=C3=A9ment?= Le Goffic <clement.legoffic@foss.st.com>, Will Deacon <will@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Jonathan Corbet <corbet@lwn.net>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Gabriel Fernandez <gabriel.fernandez@foss.st.com>, 
-	Le Goffic <legoffic.clement@gmail.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 02/16] dt-bindings: stm32: stm32mp25: add
- `access-controller-cell` property
-Message-ID: <20250715-belligerent-savvy-marten-fbd1a5@krzk-bin>
-References: <20250711-ddrperfm-upstream-v2-0-cdece720348f@foss.st.com>
- <20250711-ddrperfm-upstream-v2-2-cdece720348f@foss.st.com>
- <20250715031717.GA4144523-robh@kernel.org>
- <765eccdc-7d51-42c6-bcba-07813077fc1d@foss.st.com>
+	s=arc-20240116; t=1752567719; c=relaxed/simple;
+	bh=vW9p0alo/dC71JoIr875PRUYUG4vkxx/6o2dNKhrxvA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AELzrSWsBk1o4CZUBCTSuIXOQ5MROBpRkHsN+KBfINDq7TrV9eClJ++wfa5QEMLSQE0tVf+ICJ6SFafncdW2nrXPPWwTHF6hV9faqnUuF1dXMGxnyrKnZ/Cz9Peeag9R4qZD0b448H1/ojqI5uCNyxFhkG9pDWWocmq3p/G/oAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O2MsH4Qv; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-b3507b63c6fso5564308a12.2;
+        Tue, 15 Jul 2025 01:21:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752567717; x=1753172517; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2hNgW4kby0iU/XtbfyNGjM7Ij3cEWeDVAVgxTdH2+aQ=;
+        b=O2MsH4QviyQWMDvzOCj1NlACMtpe5PUN9A6EuNg9IxTyLT0bxN/Wh8Oxn0GWVCVXCM
+         CZk60OPfJ08UsRJfNjBwvnugtPZoU4nZWRDAGXw6Bi82WEys4HlYwNI8dB7qb2bu42Qu
+         IywD8KM/9etjZJGZhFgAJjQmr0sXpaYuzBdnQw27ImPNLMUUVpCnX2ic2cEFV3ApoiOh
+         abPacW1ZDGJCrn4OxUy8EuRdGEEGvjlFiUd4ighY+rmSGqLAn92eCc1c5Pc/udXAecex
+         TYiFWqqk1L5vaXmKzNFoJpCnk1iN1zKRt2pjHliiOc74qnFRDK7BWGLgWXjnf0YpmWQy
+         vHew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752567717; x=1753172517;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2hNgW4kby0iU/XtbfyNGjM7Ij3cEWeDVAVgxTdH2+aQ=;
+        b=g240DaP0v2YDiNnIg/DcZjrhTE1LQP40db/pc45IW0hO3WLTbRpW0MEdkiYQgI7QL+
+         Q3DSeS5WthVLn9HQAO9PsEHISiIs03Q11fPkLM8fXCPb4PQUmdXkc/2964rI+3uXJ2u1
+         KWF/7vF/HK73jf/KYunCLCcK/8olw2AclPgKKQBefZARRLN85Ben/AK19XtxuS/o2Kio
+         sDoMK5pnRj5GbOTRi07vj5nHhbNVRcFbBzCiJZZNi3Or28W77B4mQXDqGg7U3okqS4/v
+         2CdqYR+U3aZQw4Ww8DfynLvoPHl/15N+hCCHuLOoUAezvCFMmJCR/WMyoksT49I3/zp1
+         s4eQ==
+X-Forwarded-Encrypted: i=1; AJvYcCURnSJt5eAe4VILdv3YoTK3nsIOstw1DIinrm6wm5/62fftsnMlxPyjmCgQ1cxSjwaVvco3ziK+bQZ0@vger.kernel.org, AJvYcCWUCXvJlITAt8AXyslEII48ba/mKJhq8tQUBCWZsmny3rZ8FDb6oa0zNj0t5gCDe08pJw5YDm1GbzLvxw==@vger.kernel.org, AJvYcCX4XrGQPM1aEyPgY0rmxylEpHP6+sCE6/YeoJK5fDOsviOn8udbp0MIodr1mdEnPDYFTUTGSUJqcxzQtfzE@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfJaZ9ILnlh2o0QpP5biay8hUCQCrBvoVFXisAxmG50JXP332h
+	8WdAUUbvRy85e7eT8Gs6EK4DY99DG88oYI7E/ABJkfJvkZhgzA5BssDIKNJKquExMrjQDQSe9yL
+	7LXhtEYblHbD7FtObS88Y9zh0dGv9WiC1miNlRlZq5atH
+X-Gm-Gg: ASbGncuhsaYnO+OKU7JxPCd2CWTzFj6cPE36anBTP/1zDCOgyQt1H1BDAVD5m7BZbrK
+	rN/XMsZDJG9agln8plIbvmgS90xAI/jJqTC9M0N3iwX0awIDpaxQqueKGD3X0jbOSA2J9mDPQdQ
+	xZW5lhWqZz6ekdsGxOSmUAD2S1aVvaWjILA2VW657nz4nqAMxX8k7OCDFBI97s+1IkFNufJvk3y
+	0Aw
+X-Google-Smtp-Source: AGHT+IEggynKq4vD6SNTsY3SuiaP/yVTDeVqAA+gk8qh26/Eyl7WSxbYYZGy5UpZ/5sv+D7En1DMCxw9GKvAVwKvF8g=
+X-Received: by 2002:a17:90b:4a0a:b0:311:ea13:2e70 with SMTP id
+ 98e67ed59e1d1-31c4f4ccca2mr26575080a91.14.1752567716750; Tue, 15 Jul 2025
+ 01:21:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <20250712210448.429318-1-rosenp@gmail.com> <20250712210448.429318-5-rosenp@gmail.com>
+In-Reply-To: <20250712210448.429318-5-rosenp@gmail.com>
+From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date: Tue, 15 Jul 2025 10:21:45 +0200
+X-Gm-Features: Ac12FXzvb6Vo4hFlEEN171p2VK_2rD2O8rW8KBf-Sr8ny31IT3KEqoC_trh2J6Q
+Message-ID: <CAMhs-H_T+Nh==pxeW+uwk1gSr8YZMAva1DO9hF947tH7ot4=kg@mail.gmail.com>
+Subject: Re: [PATCHv4 wireless-next 4/7] wifi: rt2800: move 2x00soc to 2800soc
+To: Rosen Penev <rosenp@gmail.com>
+Cc: linux-wireless@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Stanislaw Gruszka <stf_xl@wp.pl>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	"open list:MIPS" <linux-mips@vger.kernel.org>, 
+	"moderated list:ARM/Mediatek SoC support" <linux-arm-kernel@lists.infradead.org>, 
+	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <765eccdc-7d51-42c6-bcba-07813077fc1d@foss.st.com>
 
-On Tue, Jul 15, 2025 at 09:37:00AM +0200, Gatien CHEVALLIER wrote:
-> Hello Rob,
->=20
-> On 7/15/25 05:17, Rob Herring wrote:
-> > On Fri, Jul 11, 2025 at 04:48:54PM +0200, Cl=C3=A9ment Le Goffic wrote:
-> > > RCC is able to check the availability of a clock.
-> > > Allow to query the RCC with a firewall ID.
-> >=20
-> > If it is tied to a clock, do we need another provider? We have the
-> > "protected clocks" thing, but that might be a bit different.
-> >=20
->=20
-> I couldn't find any reference to "protected-clocks" outside of qcom
-> related code, is there a documentation? (Couldn't find it in
-> clocks.yaml).
+On Sat, Jul 12, 2025 at 11:05=E2=80=AFPM Rosen Penev <rosenp@gmail.com> wro=
+te:
+>
+> This driver was written with multiple SOC platforms in mind. However
+> since Ralink was aquired by Mediatek, it only effectively got used by
+> older platforms. As such, we can slim down the driver slightly by moving
+> all of rt2x00soc to rt2800soc in order to benefit from inlining.
+>
+> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+> Acked-by: Stanislaw Gruszka <stf_xl@wp.pl>
+> ---
+>  drivers/net/wireless/ralink/rt2x00/Kconfig    |   5 -
+>  drivers/net/wireless/ralink/rt2x00/Makefile   |   1 -
+>  .../net/wireless/ralink/rt2x00/rt2800soc.c    | 119 +++++++++++++-
+>  .../net/wireless/ralink/rt2x00/rt2x00soc.c    | 151 ------------------
+>  .../net/wireless/ralink/rt2x00/rt2x00soc.h    |  29 ----
+>  5 files changed, 118 insertions(+), 187 deletions(-)
+>  delete mode 100644 drivers/net/wireless/ralink/rt2x00/rt2x00soc.c
+>  delete mode 100644 drivers/net/wireless/ralink/rt2x00/rt2x00soc.h
 
-Huh? protected-clocks is in clocks.yaml... It is there with an explanation.
+Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 
-Best regards,
-Krzysztof
-
+Thanks,
+    Sergio Paracuellos
 
