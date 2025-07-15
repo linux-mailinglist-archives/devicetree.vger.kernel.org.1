@@ -1,88 +1,48 @@
-Return-Path: <devicetree+bounces-196520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1BD1B059B7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:16:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 934CFB059BD
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:16:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6C894E7E93
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:15:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE8B656409E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69C032DE6E4;
-	Tue, 15 Jul 2025 12:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E36A2DE70B;
+	Tue, 15 Jul 2025 12:16:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="h9qVqk3l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="goQlXB+C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B301D2D94BB
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 12:15:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CA9254841;
+	Tue, 15 Jul 2025 12:16:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752581757; cv=none; b=m3MIjJi2Bq3HceFhM4e+RhB4O45rymo8pxjl7J4UeRxyHHGGUJjA0zlZAdQhz2NHlhhdb7qwKlBvQhirsVFco1ZPwyePgK1WRKLljt+dO5M5gbGwGX9Vb2iZDIAywEOhho/nrS7rtEPA+yfaS1zQj73KhDXuZKhpyvxUMKNzsnQ=
+	t=1752581775; cv=none; b=IglYRA5jsf8wIFzJeGqDqJDPMwcFN0gS1ar4fBk91kdhQC6qKa/ALeaOHN1CMIKEPwtmy+iyLZgcAhpU2KLZZQnWoBAVD48H+yG2rzibpfplpX+PejUygDMrcXy0qcB9TQjqRxqsa2qnANjEziePMf2U3gsM1s+gfQU6Hj9EFqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752581757; c=relaxed/simple;
-	bh=RPMIJ06lYpZki9x4OGNT38hsLl9ZRqJRngOVBfL0TkA=;
+	s=arc-20240116; t=1752581775; c=relaxed/simple;
+	bh=3g7ZBcu+PlZwAIlslBdiIFYE8kLus7mztXkV6ke7/lg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EJvEB7S08RqIipm0dTLwVrEDARuXsBMjTLdvAa0Aub2hiG33OGrAG+O+3LrYpzOK9BHM43c1Ap/d/wrru9cJTPQi5RcWsFU52pIXabIydcRk34f0Pxia0Jr4X7QTapQRFc+Rpn9ug0lQmX8JO7DSGqK8s8wB390Y6NkVWgMudb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=h9qVqk3l; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56FC6ida027528
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 12:15:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gkoL4vyOl+pm49lYyaV0Bkhtxl6H70tCk4Yr8IITAC0=; b=h9qVqk3lN/9/R4G/
-	xDSWD+gcL/0teQzBvkGmlmpNLb1kGet1GQ9gmDdVTyDUxVTIZwf5GcpX+nqBp71k
-	XdXNUHXjdUlNv/8NJ2D87SkibXiAs6D3NY5q8m4qAViswwF+AhxL9Z03eFQqUj9h
-	CU/pWDB6AyodpnOoOZBakz3QdEQ9kVlaGHEM5tyOz10cMtzczMkEiPiiT+5CJIy/
-	avwCwSvDPn2ScB51myfnMWqs25hmkRfjJlfwIXQnmP2drsyYCHqeF+u7at2RUI+P
-	6AN1ZAhRLcS3f2mThwQ9pEcOnk9WumLIuW5TZKdaJN1SKZ9jtsn0AucOGIZZyNUg
-	hiSw1w==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufut81c6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 12:15:54 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7e33e133f42so7691685a.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 05:15:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752581753; x=1753186553;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gkoL4vyOl+pm49lYyaV0Bkhtxl6H70tCk4Yr8IITAC0=;
-        b=gtOrsf3Ke9JsKhiuLv3qqIHOafvwLIKxEBZFL+buYfnR/Yv9nwwiqehwa7YiDZbLOy
-         XkDCLrQ+R7L8Svo7BQuFCl5RFVzzRONwSvgTHsraktiaut+IqR6geME1zz4sesQRxDw1
-         LWKvSmn4qw2CEdd6J0MgjI/ZqFxooJnckmAWGdIZHq/R6Z0t3J0T3/mk+La4Lq/yZOYH
-         q45aDcO0qqTtriQGTFDgIaswR16RxLnQc5H6lwlPYIXEuYnJyw7fVb/BlMQZvio56+Xf
-         WZg/1RsTXqPLFzjbUsNA+kP8S/9POHogGTFO00aan9ufv+SMdtx6iE77eAMNQ4WFjaJs
-         CaJw==
-X-Forwarded-Encrypted: i=1; AJvYcCUH4yFZQdq2oupACq86RkEmiEZbx74aDYtWJAJ4mvyXHBS6dEKx1y/r4NQ2i528UV2qmeVFNfnlGQIo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRb6z0jWqQsGng8S0XtfZaM/YaPwIGfN7zd7q8rDq3brePFNND
-	avJnUBy/Yxk42UrQc01mQDW2xTYSIfiePy0EL63T/z4dYX2rGMbjwuABLfpJBoq1w3aOoBrQuxL
-	ydsD6lIF6iYQfBfIyR2LOZygIqMbs29IsmGsBvrExxwLTg6wOENbM53as6U/0j7qL
-X-Gm-Gg: ASbGncu586lzKxuKFPAGtWn432CXkfMMToHMxz1J9yad6WFspz1zCezgqpCmahZI/SE
-	fNC6fMZISqwiImcGKDSCUKndZ2IQaq+djqqQjbW9Ks5aUF6KA//vchDF0r0uFEVLxrCXm8kXfga
-	VQBg9Wve+SrtAua686BCabcGLdh0CF4bbU/Prw5YlwzZ7eZiljUMmEpck0KnBsvskKQcuDmhFOy
-	f8sGU4fGhEuDRvvWVckln3A7XdLzbZ/XQA0AQ/gwxecZD6EadNeJ2j7em54irMku5AjBvjyga1a
-	SFJc3cIqjHTnRRRzKOpkS3PXjxstekqDW+S8TdpfTY7iAwEdcF0+FKFnW+catLjuxXsNzKgndbX
-	w/x7lmQ9x/vEMj+9HVDQs
-X-Received: by 2002:a05:620a:63c8:b0:7e3:3029:44c with SMTP id af79cd13be357-7e33c738190mr61810185a.7.1752581753390;
-        Tue, 15 Jul 2025 05:15:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGNC0tHGCHaMZe1NNLu7kUu5qixnVltKqW5yasSjlLUM9Lwlg4TzACxjlKTv9RGFtYvhko0XQ==
-X-Received: by 2002:a05:620a:63c8:b0:7e3:3029:44c with SMTP id af79cd13be357-7e33c738190mr61807285a.7.1752581752766;
-        Tue, 15 Jul 2025 05:15:52 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e7e91cc0sm976035566b.26.2025.07.15.05.15.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Jul 2025 05:15:52 -0700 (PDT)
-Message-ID: <bffc8478-4de9-4a9b-9248-96a936f20096@oss.qualcomm.com>
-Date: Tue, 15 Jul 2025 14:15:49 +0200
+	 In-Reply-To:Content-Type; b=V+wvfJSFklrV/8Ly4PGp7LL0Q+cRg9YuzzpzOWCnHlgn7qpFiFWYZLRKSlpxco6qPZAXhPNg8NmyigBpCnNqU4ZepBjTyWaAOm2Fxw9qIaxzwGoiAG4u+N46UIgqmE3c1DcX8b+5nHMkpdoQfAFsJLhhmTiLzgU0tP0Gg/ZyTFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=goQlXB+C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D608C4CEE3;
+	Tue, 15 Jul 2025 12:16:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752581774;
+	bh=3g7ZBcu+PlZwAIlslBdiIFYE8kLus7mztXkV6ke7/lg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=goQlXB+ChWnVaEJpG3q1G8bhevz3FY9CxU+8tb+2GtIIgrM7CY5BCaTTAK95Vop8o
+	 APSJ9Lp2mpkC6k06stYrLzXhqfNV2/bCpwVQyx2I8LGkl7lZAHWKt4Ipwn9xcrGEOC
+	 288ah0AAbTFCM/VUzMBoJtzQSoyM+2o5NLSekENxiOaPEZMtyHmrgaexYpiSUabQDW
+	 mfjkIai2R+h6Js2RUAEhk5MRkNB4NKwxsvoVvtj3CeC3UoeTek5p2PsZObfYj+svvg
+	 sAPL10rAuL/3A1D9zSp94GHElHoJndL72onjivHLiDCv/ixj2NcS7LuXKA5Jx6GDpS
+	 E6MiPVQaLKKkA==
+Message-ID: <986dfe45-9d1a-4128-9e1a-d2acef15ba54@kernel.org>
+Date: Tue, 15 Jul 2025 14:16:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,150 +50,143 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
- node
-To: Prakash Gupta <quic_guptap@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <7b6db4fa-2f73-376d-4eb3-64c1c7e6cda3@quicinc.com>
- <f5ebf0d6-2f0b-45cc-b99a-b786e5df9edc@linaro.org>
- <5qsgbqml367yq6g5vb4lotrzulojqhi5zlwwribze373a63qrn@rxi4kwyt66m2>
- <4f38058d-a2f1-4ac5-b234-228cfb2e85ff@kernel.org>
- <1ad2ca1e-1d57-4ad8-a057-ab0d804f1d49@oss.qualcomm.com>
- <7da769b4-88e9-401f-bb21-0ff123818b9c@kernel.org>
- <6840d462-8269-4359-a6e5-d154842b62db@oss.qualcomm.com>
- <af0da28c-3ca0-41dc-aaa4-572723ea74bf@linaro.org>
- <klhvgzizub33f46buqsog54wqksqp24a5tijwyv355l2ao2imo@wdkojfebc6s2>
- <e1a6e75a-2a5d-44a2-8bbc-140eb86d1806@linaro.org>
- <2hh3zkdwgqbdurpr4tibr3gjat6arwl3dd3gxakdaagafwjdrm@aj5em4tbsjen>
- <6c6f6bc9-7c34-4961-8b5e-e6d02c4b2f6d@linaro.org>
- <25c64712-960a-50b4-e7fa-398e4bf809ef@quicinc.com>
+Subject: Re: [PATCH v2 1/8] dt-bindings: iio: imu: Add inv_icm45600
+To: Remi Buisson <Remi.Buisson@tdk.com>, Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20250710-add_newport_driver-v2-0-bf76d8142ef2@tdk.com>
+ <20250710-add_newport_driver-v2-1-bf76d8142ef2@tdk.com>
+ <65d7009e-dc4a-44b4-88fe-b5c7e1ecdfc1@kernel.org>
+ <FR2PPF4571F02BCBA3AC546A6256C7F95B98C57A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <25c64712-960a-50b4-e7fa-398e4bf809ef@quicinc.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <FR2PPF4571F02BCBA3AC546A6256C7F95B98C57A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=e7gGSbp/ c=1 sm=1 tr=0 ts=6876467a cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=j_YMfRGaDDqHtg2ur-kA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-GUID: Tiug1UADONZBbbl9_T9BbVAQOI70WEOE
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE1MDExMSBTYWx0ZWRfX2lgrabXDQuKz
- l5rxKLTL7KxvW2R5F3vJExCHmqpm/5B+cMVzD8y234MjTU/UyjSOJtrV8mOliGzqzurjn1LduYS
- hxCmSVcm9qhJ/eL+egUnrrgfss1lZl0PUOGCVRqa42hAc7EzmAJYbVkKWZrIzHSmcD4xLUOsZDj
- ZJ9T3xPfj8oQgLbyGGLhlywSUOksZ3npnpiHWMsh4BWMhS495PSz51KCq047JVdHnQ2/UtlAZ1v
- 19golWnqaLq5tQ3VUbEscA+L/6gFKv03Pck/F4lHy8L0PtI3G2Js9WF+ziS+98UcI6uSAXf1H04
- 7irj5QfOQ/AryS4IUgKfmjSVfJc+tUMTKBjFybysxMvnQsFYeDcLsS/7gXxZFz2iWsdW3ns8wr4
- LqzKATAf3BtnxF5icbXhuU5/vnbMp8X1Fpn/FBh7wwxnFWkHGdcX02q5Gb1mPSOuDHhxxsQB
-X-Proofpoint-ORIG-GUID: Tiug1UADONZBbbl9_T9BbVAQOI70WEOE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-15_03,2025-07-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 spamscore=0 suspectscore=0
- phishscore=0 bulkscore=0 impostorscore=0 clxscore=1015 adultscore=0
- malwarescore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507150111
 
-On 7/10/25 8:18 PM, Prakash Gupta wrote:
-> 
-> 
-> On 7/5/2025 4:14 AM, Bryan O'Donoghue wrote:
->> On 04/07/2025 17:45, Dmitry Baryshkov wrote:
->>> What about instead:
->>>
->>> - keep IOMMU entries as is
->> ack
+On 15/07/2025 10:35, Remi Buisson wrote:
+>>> +  drive-open-drain:
+>>> +    type: boolean
+>>> +
+>>> +  vdd-supply:
+>>> +    description: Regulator that provides power to the sensor
+>>> +
+>>> +  vddio-supply:
+>>> +    description: Regulator that provides power to the bus
+>>> +
+>>> +  mount-matrix:
+>>> +    description: an optional 3x3 mounting rotation matrix
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +  - interrupt-names
 >>
->>> - Add iommu-maps, mapping the non-pixel SID
->>> - In future expand iommu-maps, describing the secure contexts?
+>> Missing supplies
+> Are supplies always required ?
+> They are not present for invensense,icm426000 nor for st,lsm6dsx.
+
+Depends on the hardware... What does datasheet say? Which ones are optional?
+
+Other bindings are not good examples in this topic, because people tend
+to skip the supplies, reviewers and maintainers tend not to bother with
+nitpicking this.
+
+
 >>
->> Interesting, we are _adding_ so that's not an ABI break and if I'm
->> reading the documentation right, there's no hard rule on what iommu-map
->> defines i.e. nothing to preclude us from encoding the information we
->> want here.
+>>> +
+>>> +allOf:
+>>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+>>> +
+>>> +unevaluatedProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/gpio/gpio.h>
+>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>> +    i2c {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        icm45605@68 {
 >>
->> This might work.
+>> It does not look like you tested the DTS against bindings. Please run
+>> `make dtbs_check W=1` (see
+>> Documentation/devicetree/bindings/writing-schema.rst or
+>> https://urldefense.com/v3/__https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/__;!!FtrhtPsWDhZ6tw!Dse6zIqgRmQ8nxzdmpC7Uu96WBVwNWbql_4WnfPwjuISbauv7GGsDO2zSDTq4TEzSeb0s6fcbmFR$[linaro[.]org]
+>> for instructions).
+>> Maybe you need to update your dtschema and yamllint. Don't rely on
+>> distro packages for dtschema and be sure you are using the latest
+>> released dtschema.
 >>
->> drivers/pci/controller/dwc/pcie-qcom.c::qcom_pcie_config_sid_1_9_0()
+>> (see how other bindings or DTS call this type of device)
 >>
->> You can register your platform device to the SID map you parse.
-> 
-> I see few limitations with using iommu-map here, some of these are
-> listed in [1]
-> 
-> 1. We can't specify SMR mask with iommu-map.
-> 2. We can't specify different iommu-addresses range for specific contexts.
-> 3. The secure CB support [2] would require vmid information associated
-> with per context. I think this can't be provided with iommu-map.
+> I successfully ran "make dt_binding_check" with up-to-date testing branch.
+> I'll try dtbs_check as suggested, thanks!
 
-FWIW iommu-map should probably be evolved to support passing more
-than one cell of iommu_spec in general.. For us specifically, it's
-only a matter of time before some platform's PCIe controller
-requires* we pass a non-zero SMR mask (unless we should be doing
-that already somewhere..)
+I am sorry. I think I pasted wrong template for a common issue.
 
-(* we can obviously do the masking manually and put the effective
-values in dt, but "eeh")
+I wanted to say: you need generic name, imu etc. That's the template
+response should be there:
 
-Perhaps that can even be done without messing up backwards
-compatiblity (treat it as pseudocode, def incomplete):
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 7043acd971a0..bca54035f90e 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -2068,9 +2068,12 @@ int of_map_id(const struct device_node *np, u32 id,
-               const char *map_name, const char *map_mask_name,
-               struct device_node **target, u32 *id_out)
- {
-+       const char *cells_prop_name __free(kfree);
-        u32 map_mask, masked_id;
-+       u32 cell_count;
-        int map_len;
-        const __be32 *map = NULL;
-+       int ret;
- 
-        if (!np || !map_name || (!target && !id_out))
-                return -EINVAL;
-@@ -2084,7 +2087,15 @@ int of_map_id(const struct device_node *np, u32 id,
-                return 0;
-        }
- 
--       if (!map_len || map_len % (4 * sizeof(*map))) {
-+       cells_prop_name = kasprintf(GFP_KERNEL, "#%s-cells", map_name);
-+       if (!cells_prop_name)
-+               return -EINVAL;
-+
-+       ret = of_property_read_u32(np, cells_prop_name, &cell_count);
-+       if (ret)
-+               return ret;
-+
-+       if (!map_len || map_len % ((2 + cell_count + 1) * sizeof(*map))) {
-                pr_err("%pOF: Error: Bad %s length: %d\n", np,
-                        map_name, map_len);
-                return -EINVAL;
-@@ -2106,7 +2117,7 @@ int of_map_id(const struct device_node *np, u32 id,
-                u32 id_base = be32_to_cpup(map + 0);
-                u32 phandle = be32_to_cpup(map + 1);
-                u32 out_base = be32_to_cpup(map + 2);
--               u32 id_len = be32_to_cpup(map + 3);
-+               u32 id_len = be32_to_cpup(map + cell_count - 1);
- 
-                if (id_base & ~map_mask) {
-                        pr_err("%pOF: Invalid %s translation - %s-mask (0x%x) ignores id-base (0x%x)\n",
+(and I use templates to streamline my review. Even though they might
+feel a bit robotic, without personal touch or patronizing, that's not
+their intention, I just optimize my process)
 
-Konrad
+
+Best regards,
+Krzysztof
 
