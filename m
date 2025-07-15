@@ -1,70 +1,81 @@
-Return-Path: <devicetree+bounces-196363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69350B0521D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 08:47:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A2F6B05242
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 08:54:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58F6B3AFE17
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 06:46:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B245E1AA7FD5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 06:54:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFA2E26A0DF;
-	Tue, 15 Jul 2025 06:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2E4726FDB6;
+	Tue, 15 Jul 2025 06:53:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uuHIrnti"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022142.outbound.protection.outlook.com [40.107.75.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2162C147;
-	Tue, 15 Jul 2025 06:46:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.142
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752562017; cv=fail; b=M/tbFuZK1+CO0oFeSCm9Mwm59VeyoUIeMPyTNI47rwqJ2SLfzey7CuWnJXrJ2VaW9n49sGwwvCupR8x11/+9vezxO4yfz17fStooPKNhSsw1KuSPnPXUiyu6yQVkbxUInTzquMDmowYlial4YGDWvwvaBoYQ3HXTlpvzumt7+Ec=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752562017; c=relaxed/simple;
-	bh=pHmc+YRLfQPY6PhtvELDL4jE+wE0y6y+s7O7lIDfV9s=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CAAA26CE17
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 06:53:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752562414; cv=none; b=IfEoJ33bhz8DVht+vzv7k8ykp6omCxuTkW4gtszdV91ooiZCtzGWjyjCn263Dp/DuaKO9b4fqyGoUzzGrRxVFs1XuBgRW3PJPyWzoJmzs+5yLRKli/NWUsfj1qNyw+XGg0Rm7r+m/+Bvg6oqc2bZ4cyd9SNgThjPxi6pwb7gnps=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752562414; c=relaxed/simple;
+	bh=7Pgt3265MUvv0KO/DG+JIDcgier23nzqYxB6scwqRbM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KMH0vt7VXHqHkNgCoSTWv3t69G2lwydaTmHObZbjtjPFXf8UT7PI121KMsxRKnuqHPKdCzzShpwLz8OHMDiRy8l2psP2oP8dhc33CL8Gk98thBUxNPnblOrlPo5jjleTcynWGEKuu0duo/HLoeiIA36BS4+YCUhE2J+r8c2CXM8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kWgMsjSs+IQRJW/CvWJ5I0U0KLDsFp8CZt4rpLihKCdGqR51hh1E59zvk5Zg0OBCZxtYBEPBlR40OT0ovgRb9MHlnaHi/syR5Bo9/dCM0c1ZUy84S7m30XlS7J1T8f5Et6UVcj7oaCshhv1V7Q8FfsZh/r4kUV/s22vPbWRUbNvML+c5HEPD+cwZnB8qAPA9GhHREDmtWycVnKelbG2DO+sYTF5GkgMnzoKnkTAMczX/attbrB51qyF2Ez6jE8noPMMr73E6ifhGUcQyyX0XsNNw1+Oetrgob4UchctMfp3RcWDXRlSN8F2EK4LvotMjHy52EAnQSXHFl7gSWmNMQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=v30TV5eWaGPMHlKrC2GyDPq6i/rqBhn2Roh2pAOcGYs=;
- b=jUzBfS2NMS3qfP3QR3PEbY6/cJBaku/psqnwUCQgr/s1mZMhA55VddaLQsAvJzrnme5J34un/rpgfULxypPYcrTj9yDrAe5rPzdVb6OWD94Aa0HKsYURbtOgeGiJBJas3WSpT5zkCjtP4E7QvOkKGBNskoRefun/RFTw2X+URyB848nkXeUY6mQhfbQakYCJbTuLCfcE+YyEqPoIKjjT/qfNQaySuR+ILh631pys1PJgkEz9EmkPqjxnRJ5HG8O7NDaI/CnQWiDkm3iMgVoF3rOLoaPKRlobcsQQCR07Mx/H1+EZTJ7jqTQm7Cf/zJhanj9LFBt3qYsQGwljzJ5miA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from TYCP286CA0152.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:383::14)
- by TY0PR06MB5610.apcprd06.prod.outlook.com (2603:1096:400:328::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.32; Tue, 15 Jul
- 2025 06:46:50 +0000
-Received: from OSA0EPF000000C6.apcprd02.prod.outlook.com
- (2603:1096:400:383:cafe::9f) by TYCP286CA0152.outlook.office365.com
- (2603:1096:400:383::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8922.33 via Frontend Transport; Tue,
- 15 Jul 2025 06:46:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000C6.mail.protection.outlook.com (10.167.240.52) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8922.22 via Frontend Transport; Tue, 15 Jul 2025 06:46:48 +0000
-Received: from [172.16.64.208] (unknown [172.16.64.208])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 9987441604F0;
-	Tue, 15 Jul 2025 14:46:46 +0800 (CST)
-Message-ID: <4b902e2e-9cbc-4c3c-8318-fb7d6e86545e@cixtech.com>
-Date: Tue, 15 Jul 2025 14:46:46 +0800
+	 In-Reply-To:Content-Type; b=UjTzcPLCvZ9Qg0AE1bFnZRCTa6mB5Lt2dJgotU7uQgzjim3/DrFCqepQCKQUiuV+2cNXEQm+rFK0GI6jKsge+ORo34USpM06h8HDaycaxbhZh7/IEcx42+uFKpj3JK1q6QpyR0qwvwTsrnoR6LexmVuPfi6U/DIkFTy6zVIoxhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uuHIrnti; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-32b4dc9be5eso5829691fa.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 23:53:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752562410; x=1753167210; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IvcOD4Cn8eI42dR9/vuoZROCEodBzgnn8pqK2R/ysOA=;
+        b=uuHIrntiXVwd0zUT0sDuSkjZTDDfill65Dx/43o8Euv00KMBwcesYrjIW+Bj6IvBCj
+         cS3/biyblTHaHzV+U7KF6UB9+XDUhLgvSVuYyajNSp08ATXYEQekD6gjiA0yLAUiH/s7
+         B9iVIDYM3+2IgEkrWxw4M52ulWQmHyLaxXsNbVorPffNIGEPTaKHx7t9/US+h6m+3nUc
+         a3IEuD7NJ4Wc9pF5Lks5n356u0yRHXqkW5SNo9kgxeNGDWGCEwWCdaUOr7yR7jsmpmrn
+         ogp6alvjQAhdMgKEp1qpWoWyReXbv+eylOhrPJPvN9B2tekORXKjITTKwdT4QuWlKHvt
+         1JWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752562410; x=1753167210;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IvcOD4Cn8eI42dR9/vuoZROCEodBzgnn8pqK2R/ysOA=;
+        b=BVkmBk77t9LuVYCc/Iv/liOoURQnCQ/RQm6QtrVhzg2s0ZJE4kFqAa9PrQ5UDqksZE
+         Bdncp1ApEkzcya8moATLkmlGuRtQidNfRQSF5SsSgZrXzIYuB1IC9t9zYbvNeYE9sn78
+         RlNQx8di/ILbE1Pebt8v+f70MfVzBv1RfdtOqLM9vLGu1mH+JOJTsiAmRvt2NutAuACt
+         V2zVmSZ2B1Dnclb+eQFik7ylZOsfofTTyozYLrX92F9A0lzia5AQAsySNIlWf1iP/d/U
+         uVVO8G1PPWSxmGqNLbUoc2+Gnze5lscnVMJfF4TSGKTFdo5wjJeSgPsd8oDWimoot/IA
+         tzyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXW5DaGb3Nr5qb/A/uHZVnmepcWCgJsKxuGJ5taptOwlgF7QmwMYHKm7lvysbEMu2EuyNELvxt/9uzX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2RAc274Kh8ql3OQBLY+/DN/j3mxrQ1v6Y2CbQm8EnQ7niSHpd
+	zNm1EZUky7K/86ZtcXPtAcNxjMfKDHRP/vq4JSmhGLZquCNbk7M/udY5XjQRE+khX88=
+X-Gm-Gg: ASbGncu0rhXT1aysyvIQDMgj/VKI11SbeRSYfOVZQedQNp5cpFxwagocQ0HPecWmVBk
+	YdFdioGXWn5WY7G5YY3056fa3IhcyJNgJeezKcM848uddMK8S7JI/i5ULfghDXi4vzxMOckHMWx
+	+tXx33wd5A4LpNgkfnKzd68fXnA+Kkmp/F2BQivJEqEEv2qVabgmWDoyRz8360x144r4KGpjlCC
+	tr+MEBiHwMNtWPLwdGSVPeLdv2MuUs4Y9dDyxf7WTkTMPQT+nuf4n50TBbUpAC8wy9L4rVJXGvv
+	BEAZ7ndG4o1k8t4fjZTA5N8F6tSUBYqKVfFUCeiDb/oESYeVcS20eKXtM9LwkqbRTAWm8tiFdMe
+	/FY5EfkQInbE+gOJpK02utCEp5lWI836aCsnsN8K6yDhO4pwkBLUJU+2TAaYjwZtgD6pLoULuZW
+	Ok
+X-Google-Smtp-Source: AGHT+IFodu1HnNtyzy2FJlD/fynnVpnoIvnN8l+K4AJ3AsUd4f17BT9WXmpIiPUMoelKfh8FHowKUQ==
+X-Received: by 2002:a05:6512:32c1:b0:549:8fd0:ddaa with SMTP id 2adb3069b0e04-55a1fc78578mr60358e87.0.1752562409993;
+        Mon, 14 Jul 2025 23:53:29 -0700 (PDT)
+Received: from [192.168.1.100] (88-112-128-43.elisa-laajakaista.fi. [88.112.128.43])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55943b8abfasm2204780e87.255.2025.07.14.23.53.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jul 2025 23:53:29 -0700 (PDT)
+Message-ID: <9361e954-e2c9-41c6-be4c-12b0e4f367f5@linaro.org>
+Date: Tue, 15 Jul 2025 09:53:27 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,142 +83,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 10/14] dt-bindings: PCI: Add CIX Sky1 PCIe Root Complex
- bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- mani@kernel.org, robh@kernel.org, kwilczynski@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mpillai@cadence.com,
- fugang.duan@cixtech.com, guoyin.chen@cixtech.com, peter.chen@cixtech.com,
- cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250630041601.399921-1-hans.zhang@cixtech.com>
- <20250630041601.399921-11-hans.zhang@cixtech.com>
- <20250630-graceful-horse-of-science-eecc53@krzk-bin>
- <bb4889ca-ec99-4677-9ddc-28905b6fcc14@cixtech.com>
- <5b182268-d64c-424c-9ada-0c3f120d2817@kernel.org>
- <2b608302-c4a6-404d-9cc5-d1ab9a6712bd@cixtech.com>
- <a7aac65e-848b-4bb3-bd52-963766410698@kernel.org>
- <50592fad-850c-4dab-92d8-a71cb89daf58@cixtech.com>
- <e3f6da47-25bb-450c-8660-f1406ed590e6@kernel.org>
- <d6083e62-318f-4879-bac3-97ad26615458@cixtech.com>
- <eddf1e77-10b5-424c-b082-846bd2646f42@kernel.org>
-Content-Language: en-US
-From: Hans Zhang <hans.zhang@cixtech.com>
-In-Reply-To: <eddf1e77-10b5-424c-b082-846bd2646f42@kernel.org>
+Subject: Re: [PATCH v7 00/15] Add dt-bindings and dtsi changes for CAMSS on
+ x1e80100 silicon
+Content-Language: ru-RU
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-0-0bc5da82f526@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-0-0bc5da82f526@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000C6:EE_|TY0PR06MB5610:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2d07951f-41f9-4592-78ea-08ddc36b5fb6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|82310400026|376014|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZTF2elR1UjhBb3hNbXRaUllibzRiSTVIdEVxam9FOGhaTkJPMnRNYXRVYnEr?=
- =?utf-8?B?SWZmVkRZZzJka2MyVWZ2QkNNRS9jZFdXRmpnNG5SNnp1S3ZoK0tUZjFwUmJG?=
- =?utf-8?B?MXRmcTVNSytCUjA1RHhqMVFZcGxxWWpIYmhkUGpBS2pQOVFWV2JiRG9lcVMw?=
- =?utf-8?B?RVFYdkpWemdaWDF6UzhxODlJdWd4dkVCWFE3WDkzdHJVS1pZRE13dzY1UGNw?=
- =?utf-8?B?MUJacjlISFEwNjFsWUpkZ0JSY1dqblJsMFB3RkY4ZWlPd3I0RjJCeGpRREMz?=
- =?utf-8?B?QWt2RVhIWW5qYlFxK0p1SEh5aGV1K3J0RXBBK21tUGNVOFB0M2xNNzdyeUZr?=
- =?utf-8?B?bEVJaEllZXZqSVRWRmQva3dtN0h1U1hmVXlXNVIzWkNiUHN0OG45OWRBVkcx?=
- =?utf-8?B?QXc2N3hzS3RVSWcyVDZzMkxWVXJySCtZMkxSQUhCSjhVYTZZZzFYN0J6a2Uz?=
- =?utf-8?B?anNtcTJUaWMyMm5KZEZxK0lkUzY0bG42RHZReWpoMTlkMm9HVWRDc1JpOGlh?=
- =?utf-8?B?ZHJaQkIvQXo2WXZ5WXo0TXRCTWNHYVd0eXF2VFhvbzA2dFJPRFJvUS94ZzEw?=
- =?utf-8?B?dnVYaDlWd2pNdFFueFVhbXRiOWtYamFIVm9tb1k1dVFFTlBsZTcvSWpmZm5t?=
- =?utf-8?B?YmIyVFJHcEVZRGdaOERjSUNwd3V1emRRZE9vWnU3YTdQRWEyK3RPMEFCTklH?=
- =?utf-8?B?elNaY2pkQ0UxVS8wWnhYeXV1Tit0Mlo0bmZxTitFYnBzYlhZTWc1WEkwM0lr?=
- =?utf-8?B?ZFp2OUVjTzIvVnRnM2RFeU9NdFBoSkdtb25jUGxUTHFoTUppV01DRnZZWExp?=
- =?utf-8?B?ZXZRTG94dTFJU2NaRVN3NTMwaWJLQXlkWUJrV2wyNEpJYUdNSjZhdVlLNjNk?=
- =?utf-8?B?RDRpVXZOTVV0TmJjbXo5SWFPS01rWCthWWhmc2NCalJqWmJ5c1p6ZXN1S3pm?=
- =?utf-8?B?S2FiTGpxVUJ5R1JUQWh3aW1RYndIZ3dZRzhaNS92WU5VMEtsYm9yRldYaURx?=
- =?utf-8?B?Yld4MHorK2hvaTBucE9xMEhlWFhNa2gycWNEcHdqNkRtOXFqREZ4WEhqQUtN?=
- =?utf-8?B?Q1M4U000RS8xZkVRTTJIVVhYSW1oKzQxd2cvQnRWbFNFMjg2ZHI5VjZ4alEz?=
- =?utf-8?B?QlQwd29HTi80N284SllJcDVyeVpHZk1nRHhlL3hnMFlQcVRCM2VsZlVNaDIr?=
- =?utf-8?B?NzA0WFJBdFcxZXBWaDhDSWNjNGpIT0U0dG8xVEdzS0N4VDRYaFUxVXhXUDR1?=
- =?utf-8?B?M2l3U0YyeC9rTjltMVpHS3phcjNjTFl5dnovL21ERi9xbWdzZU45WVllUDFO?=
- =?utf-8?B?SC9aRXkwaFJ3M1ZCakRhZGRvTVdaZ1ZLVCtyN2NnRXhENjdHZG1jQmgzcEhL?=
- =?utf-8?B?SHZKemZoMjdVbWprNzg0eGtudFhVaFFkb1pRWkpMd0paNnZUTUVaL1dwNEVL?=
- =?utf-8?B?b0d3T0Z5NnhVM2ZXUDFnTllXQy9mYUlFeDU0b09Ob3BRcGlzSVFoaFN0NEpx?=
- =?utf-8?B?WGZ0dGtkWFkrTHg5TWZiMG40UUhFV1JYcXNQb095YWp6TTRPUytENEJwZ0J4?=
- =?utf-8?B?WnFwakZTVzA4SWlXYnE2YXg4cWRkUVhUVllRZUhQeEVtVmk0VzdoRjIrdmpV?=
- =?utf-8?B?dzRDMUJZTkNZR3hqbnFJK1pNOFN0TGVIZnBRMW50U2hMc3AzUkRSVER3TXZl?=
- =?utf-8?B?aThPc1dGZWhGODJRdlk0SjB6THhEcnlHMWR4OERkVFVuTWxCZWF3RFdUYWtx?=
- =?utf-8?B?TWV1d1JSajYvWTNNeERsVWswQ25TZ3hIalhFZytJNkJFMzNwbkN2QnBwRHVs?=
- =?utf-8?B?OXZDMUpmNE9WeDl5RU1XeWFraHVNUjF0SkViS29aZWxycTRyU0JtVW56NVZ5?=
- =?utf-8?B?V0lYUGFBcmFEaWhNTHlEcCtGbFoyRENZSlErT1EvYTRsZmdDWlhlaHp4MGw0?=
- =?utf-8?B?WkpQQzFlRlRxMys5cjV3T25ZK1lPKzNIaTNHV0NaQWpKUlhLZlU1S0hBcGRx?=
- =?utf-8?B?Q1pFVFpQTjhDakU1L0VBMjlQcXNFSXFQL0RhYlRrb2duZzdpb0FNR0IyUWZR?=
- =?utf-8?Q?6OgzIi?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2025 06:46:48.2711
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d07951f-41f9-4592-78ea-08ddc36b5fb6
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	OSA0EPF000000C6.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5610
 
-
-
-On 2025/7/15 14:40, Krzysztof Kozlowski wrote:
-> EXTERNAL EMAIL
+On 7/11/25 15:57, Bryan O'Donoghue wrote:
+> v7:
 > 
-> On 14/07/2025 10:03, Hans Zhang wrote:
->>
->>
->> On 2025/7/14 15:43, Krzysztof Kozlowski wrote:
->>> EXTERNAL EMAIL
->>>
->>> On 03/07/2025 03:47, Hans Zhang wrote:
->>>>>>
->>>>>> We initially used the logic of Cadence common driver as follows:
->>>>>> drivers/pci/controller/cadence/pcie-cadence-host.c
->>>>>> of_property_read_u32(np, "vendor-id", &rc->vendor_id);
->>>>>>
->>>>>> of_property_read_u32(np, "device-id", &rc->device_id);
->>>>>>
->>>>>> So, can the code in Cadence be deleted?
->>>>>
->>>>> Don't know. If this is ABI, then not.
->>>>>
->>>>
->>>> According to my understanding, this is not ABI.
->>>
->>> Huh? Then what is ABI, by your understanding?
->>>
->>
->> Dear Krzysztof,
->>
->> I understand kernel ABI primarily refers to the stable binary contract
->> between the kernel and userspace (e.g., syscalls, /sys/proc interfaces).
->> Device tree properties are part of the boot-time hardware description
->> consumed by drivers during initialization. They are not directly exposed
->> to userspace as ABI interfaces.
->>
->> If I understand wrongly, please correct me.
+> - Reimagine the PHYs as individual nodes.
+>    A v1 of the schmea and driver for the CSI PHY has been published with
+>    some review feedback from Rob Herring and Konrad Dybcio
 > 
+>    https://lore.kernel.org/r/20250710-x1e-csi2-phy-v1-0-74acbb5b162b@linaro.org
 > 
-> Then that's wrong understanding.
+>    Both the clock name changes from Rob and OPP changes suggested by Konrad
+>    are _not_ yet present in this submission however stipulating to those
+>    changes, I think publishing this v7 of the CAMSS/DT changes is warranted.
 > 
-> The DT interface, documented explicitly and one implied by kernel
-> drivers in case it differs, is the ABI, as explained in docs in the
-> kernel and what we said on the lists thousands of times.
+>    Its important to publish a whole view of changes for reviewers without
+>    necessarily munging everything together in one sprawling series.
+> 
+>    TL;DR I moved the PHY driver to its own series review comments there
+>    are not reflected here yet but "shouldn't" have a big impact here.
+> 
+> - Having separate nodes in the DT for the PHYS allows for switching on PHYs
+>    as we do for just about every other PHYs.
+>    &csiphyX {
+>        status = "okay";
+>    };
+> 
+>    We just list phys = <> in the core dtsi and enable the PHYs we want in
+>    the platform dts.
+> 
+> - The level of code change in CAMSS itself turns out to be quite small.
+>    Adding the PHY structure to the CSIPHY device
+>    Differentiating the existing camss.c -> camss-csiphy.c init functions
+>    A few new function pointers to facilitate parallel support of legacy
+>    and new PHY interfaces.
+> 
+> - A key goal of this updated series is both to introduce a new PHY method
+>    to CAMSS but to do it _only_ for a new SoC while taking care to ensure
+>    that legacy CAMSS-PHY and legacy DT ABI continues to work.
+> 
+>    This is a key point coming from the DT people which I've slowly imbibed
+>    and hopefully succeeded in implementing.
+> 
+> - In addition to the CRD both T14s and Slim7x are supported.
+>    I have the Inspirion14 working and the XPS but since we haven't landed
+>    the Inspirion upstream yet, I've chosen to hold off on the XPS too.
+> 
+> - There is another proposal on the list to make PHY devices as sub-devices
+>    
+>    I believe having those separate like most of our other PHYs
+>    is the more appropriate way to go.
+> 
+>    Similarly there is less code change to the CAMSS driver with this change.
+> 
+>    Finally I believe we should contine to have endpoints go from the sensor
+>    to CAMSS not the PHY as CAMSS' CSI decoder is the consumer of the data
+>    not the PHY.
 > 
 
-Dear Krzysztof,
+1. This is an incorrect assumption, unfortunately it was not discussed
+previously for whatever reason, good news now it gets a discussion under
+drivers/phy changeset.
 
-Thank you very much for your reply and explanation. Now I understand 
-that I have been discussing issues in the linux community for about half 
-a year. I didn't pay attention to it before. Thank you again.
+2. The whole new changes for legacy/new CSIPHY support is not present
+in v1-v6 of this changeset, it just appears out of nowhere in the v7,
+and since it is broken it should be removed from v8 expectedly.
 
-Best regards,
-Hans
+It's a pity to realize that instead of providing any review comments
+for the CSIPHY support series sent to you one month ago a lot of time
+is wastefully burnt on a broken by design change development.
+
+-- 
+Best wishes,
+Vladimir
 
