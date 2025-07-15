@@ -1,132 +1,237 @@
-Return-Path: <devicetree+bounces-196350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF626B050FE
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 07:30:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68CFBB0512F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 07:46:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DCDF1AA8498
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:30:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9FCA4A3361
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5D82D46AD;
-	Tue, 15 Jul 2025 05:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794B42C08CE;
+	Tue, 15 Jul 2025 05:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Kyma2SYp"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="aIH7JRcB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B863F2D3EDF;
-	Tue, 15 Jul 2025 05:29:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 854B069D2B;
+	Tue, 15 Jul 2025 05:46:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752557383; cv=none; b=XKo8dxj1bk+M+dzw9gT6XR12mCC4b5ruKwRrp6QAihKjnbsEW0HebE3Q8LQBI6ZvFMFD3V/vFWK9d5SCvVuKOGdWKrLqk1crDcZSmO531wE7EmTccKxM73HHAUXWQuBNIEwebt762hxwMfFdFy9TvMQUJWZmRQJ/QItVgfNg96Y=
+	t=1752558410; cv=none; b=s1rR22f24Qzlufc4Zg/eb4aWq2r/kQmmA9Ps+skDF5fBqU+b1rMy4PnjgXe5+PxjfNmHWsFxb+uihiqJx7ZS4Zh3PB2wy6u+7xeFPc4dloLmp4iU/ldtTeaXVRFm76wlts+Bq2YTgiAM/bU0mY7NAWU6AGfyqB0i7wNLNKbjNkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752557383; c=relaxed/simple;
-	bh=KaqUIsDeZAwrYbDxKxMit35I8BEJxBnNA0LJJgJj+eA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cR0OdRMvw6WmK5rOPDlgjWeXItquJGo3vVKILthzy5YeParVeSkvVV3SUhdmq0xkQqZXGLezMsRvqtWRPMQxqI9BoqdyrH/ZJps5iWF4KjeSk87RziE/1jD+3z89yMEcEq4JuI0d7lGpdDhSaKuy0AtFeL2ZmY3XycIn15oIhL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Kyma2SYp; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56F5TVxC2538631;
-	Tue, 15 Jul 2025 00:29:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1752557371;
-	bh=9RSokxMgEP4SOqdc2oKnXwxbmD35sLZH2NssOeX5TYA=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Kyma2SYpcsdwOfmX47sjUk/4Ey5nnBccs37/vQatgGiH7u8eViLNdSL9lViAjf8+m
-	 JUJREQGA7Rj7yrcL9FsPMgU89WvmaozrAt9TRcjdp6dHmCPTtM6Fr1h+i9wRR+zOTb
-	 P+S5sjn2Gbu0RaT0SCk6hZ51UZZm62G4va8mk+KA=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56F5TVhM361777
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 15 Jul 2025 00:29:31 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 15
- Jul 2025 00:29:30 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 15 Jul 2025 00:29:30 -0500
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.245])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56F5TIFe2337840;
-	Tue, 15 Jul 2025 00:29:27 -0500
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero Kristo
-	<kristo@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Chintan Vankar
-	<c-vankar@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <s-vadapalli@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v6 0/4] Add bootph-all property to enable Ethernet boot
-Date: Tue, 15 Jul 2025 10:59:01 +0530
-Message-ID: <175240652598.4073742.14558391406301903223.b4-ty@ti.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250709105326.232608-1-c-vankar@ti.com>
-References: <20250709105326.232608-1-c-vankar@ti.com>
+	s=arc-20240116; t=1752558410; c=relaxed/simple;
+	bh=g8ObzbtsLMh6hIRHoS8hWGgVk9t7E1qWN/EE5RDZ0Ec=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dLcqVk5eqM3BizJHbZmQO8qxYiXwXX9RHKrHhtRNc26C57CjmbeJXca5DhtRbUCX5J+Gg6VVtBgP7Jn9SFrrjOu0jj5cFxczVyPdjy7Ev0bpp2y3DWlfUz/mChOC2kaammvvq//oxh8xQHoi78BPOAiVXsXM/N29yAFPx5y7cdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=aIH7JRcB; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=kB2cLJNy4hPYhqXCKFroTjovGqdHkjo6jWxolFG5Rks=; b=aIH7JRcBnFaTDYDYU0B/+YjYO1
+	Z1AivAp6BGemuHi/coTdiNbfy5cJLpV80/vxnQiEqnMSTvkkJqIAMxBpM1ubIIIBCNWRyWJm/j3Kr
+	FYsMoE4rw7HBQah/RnPQkcXpw+W1lhUwBfLQkCBDkd8ysFhki0gnEhPhvHKxcOz0Wb8eidC9oACAn
+	47bAUJsrC5VhNd5s+jyYorwO5ORVD/q+r4muR10gIJDNLaf0xWK44U3yMN4QMJNr6qq7c0rDnNpU+
+	JiC+D+ly8vSZTQSs4iUnTb8EOu16nB9YCO5fwHkkTPiotPsWIyFkpQlsmUTSb4S4LjKorw/+YafA2
+	LChQLk2A==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:33050 helo=[192.168.69.116])
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1ubYV3-003pbU-2v;
+	Tue, 15 Jul 2025 07:46:45 +0200
+Message-ID: <c9d17343-e4a5-49ab-9a3e-b6da9d591195@norik.com>
+Date: Tue, 15 Jul 2025 07:46:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: Add calibration
+ properties
+To: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, Haibo Chen <haibo.chen@nxp.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
+Cc: Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, linux-iio@vger.kernel.org,
+ imx@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ upstream@lists.phytec.de, andrej.picej@norik.com
+References: <20250710073905.1105417-1-primoz.fiser@norik.com>
+ <20250710073905.1105417-2-primoz.fiser@norik.com>
+ <2bcd758b-c2d0-488a-8ead-ec7fb39f93e2@baylibre.com>
+ <20250713160247.0f22bbfe@jic23-huawei>
+ <de2c8e15-14e9-4c61-9a13-97ef1ec567a4@norik.com>
+ <6b32118a13e9e28b7cf12152af33642c76367c34.camel@gmail.com>
+Content-Language: en-US
+From: Primoz Fiser <primoz.fiser@norik.com>
+Autocrypt: addr=primoz.fiser@norik.com; keydata=
+ xjMEZrROOxYJKwYBBAHaRw8BAQdAADVOb5tiLVTUAC9nu/FUl4gj/+4fDLqbc3mk0Vz8riTN
+ JVByaW1veiBGaXNlciA8cHJpbW96LmZpc2VyQG5vcmlrLmNvbT7CiQQTFggAMRYhBK2YFSAH
+ ExsBZLCwJGoLbQEHbnBPBQJmtE47AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQagttAQducE+T
+ gAD+K4fKlIuvH75fAFwGYG/HT3F9mN64majvqJqvp3gTB9YBAL12gu+cm11m9JMyOyN0l6Os
+ jStsQFghPkzBSDWSDN0NzjgEZrROPBIKKwYBBAGXVQEFAQEHQP2xtEOhbgA+rfzvvcFkV1zK
+ 6ym3/c/OUQObCp50BocdAwEIB8J4BBgWCAAgFiEErZgVIAcTGwFksLAkagttAQducE8FAma0
+ TjwCGwwACgkQagttAQducE8ucAD9F1sXtQD4iA7Qu+SwNUAp/9x7Cqr37CSb2p6hbRmPJP8B
+ AMYR91JYlFmOJ+ScPhQ8/MgFO+V6pa7K2ebk5xYqsCgA
+Organization: Norik systems d.o.o.
+In-Reply-To: <6b32118a13e9e28b7cf12152af33642c76367c34.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-Hi Chintan Vankar,
+Hi Nuno,
 
-On Wed, 09 Jul 2025 16:23:22 +0530, Chintan Vankar wrote:
-> This series adds bootph-all property to necessary nodes to enable
-> ethernet boot support for SK-AM68, AM62P5-SK, J722S, and SK-AM69.
+On 14. 07. 25 18:11, Nuno Sá wrote:
+> On Mon, 2025-07-14 at 07:56 +0200, Primoz Fiser wrote:
+>> Hi all,
+>>
+>> On 13. 07. 25 17:02, Jonathan Cameron wrote:
+>>> On Thu, 10 Jul 2025 10:46:44 -0500
+>>> David Lechner <dlechner@baylibre.com> wrote:
+>>>
+>>>> On 7/10/25 2:39 AM, Primoz Fiser wrote:
+>>>>> From: Andrej Picej <andrej.picej@norik.com>
+>>>>>
+>>>>> Document i.MX93 ADC calibration properties and how to set them.
+>>>>>
+>>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>>>>> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+>>>>> ---
+>>>>>  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 21 +++++++++++++++++++
+>>>>>  1 file changed, 21 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-
+>>>>> adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>>> index c2e5ff418920..d1c04cf85fe6 100644
+>>>>> --- a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>>> @@ -52,6 +52,27 @@ properties:
+>>>>>    "#io-channel-cells":
+>>>>>      const: 1
+>>>>>  
+>>>>> +  nxp,calib-avg-en:
+>>>>> +    default: 1
+>>>>> +    description:
+>>>>> +      Enable or disable calibration averaging function (AVGEN).
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    enum: [ 0, 1 ]
+>>>>> +
+>>>>> +  nxp,calib-nr-samples:
+>>>>> +    default: 512
+>>>>> +    description:
+>>>>> +      Selects number of samples (NRSMPL) to be used during calibration.
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    enum: [ 16, 32, 128, 512 ]
+>>>
+>>> Allow 1 as a value and drop the enabled above.   Averaging over 1 sample
+>>> is same as no averaging and gives simpler binding.
+>>>
+>>>>> +
+>>>>> +  nxp,calib-t-sample:
+>>>>> +    default: 22
+>>>>> +    description:
+>>>>> +      Selects sample time (TSAMP) of calibration conversions in ADC
+>>>>> clock cycles
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    enum: [ 8, 16, 22, 32 ]
+>>>>> +
+>>>>>  required:
+>>>>>    - compatible
+>>>>>    - reg  
+>>>>
+>>>> This seem like things that should be set at runtime rather than
+>>>> in the devicetree. Unless there is some justification on why
+>>>> these values depend on how the chip is wired up?
+>>
+>> It depends how ADC 1.8V Vref is wired up, especially how noisy it is.
+>>
+>>>
+>>> Further to that, I'd like to see some explanation of why we care
+>>> to change it at all. Is it ever a bad idea to enable averaging and
+>>> pick a large number of samples for calibration?
+>>
+>> This is a snippet from the i.MX93 TRM, chapter Analog-to-Digital
+>> Converter (SAR_ADC) describing calibration steps:
+>>
+>> 1. Wait for deassertion of functional reset.
+>> 2. Configure SAR controller operating clock (MCR[ADCLKSE] = 0).
+>> 3. Bring ADC out of Power-down state (MCR[PWDN] = 0).
+>> 4. Configure desired calibration settings (default values kept for
+>> highest accuracy maximum time).
+>> • MCR[TSAMP]: Sample time for calibration conversion
+>> • MCR[NRSMPL]: Number of samples in averaging
+>> • MCR[AVGEN]: Averaging function enable in calibration
+>> 5. Run calibration by writing a one to MCR[CALSTART].
+>> 6. Check calibration run status in MSR[CALBUSY]—wait until MSR[CALBUSY]
+>> = 0; alternatively, MSR[ADCSTAT] can be
+>> used to check status.
+>> 7. Check calibration pass/fail status in MSR[CALFAIL] field. If
+>> MSR[CALFAIL] = 1 then calibration failed. Detailed status
+>> can be checked in CALSTAT.
+>>
+>>
+>> See point 4).
+>>
+>> Not sure why would there be an option to configure i.MX93 ADC
+>> calibration parameters if one use-case (max accuracy max time) to rule
+>> them all?
+>>
 > 
-> This series is based on commit '58ba80c47402' of linux-next tagged
-> next-20250708.
+> Sometimes HW guys just want to give you some options. Does not mean we have to
+> use them all :).
 > 
-> Link to v5:
-> https://lore.kernel.org/r/20250708084252.1028191-1-c-vankar@ti.com/
-> 
-> [...]
+> I guess what Jonathan is interested in, is to understand in what conditions the
+> defaults are no good for the calibration? If we can have a set of values that
+> should pretty much always work, no need to further complicate the bindings or
+> the driver.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+In case you have a noisy Vref you can adjust the parameters to pass the
+calibration and have a working ADC.
 
-[1/4] arm64: dts: ti: k3-am68-sk-base-board: Add bootph-all property to enable Ethernet boot
-      commit: 7cc984fb30d5c2a780fee0f4b2d4ad2001961c6b
-[2/4] arm64: dts: ti: k3-am62p5-sk: Add bootph-all property to enable Ethernet boot
-      commit: d6ad164e05844be63210900536108812aa00d2fe
-[3/4] arm64: dts: ti: k3-j722s-evm: Add bootph-all property to enable Ethernet boot
-      commit: ab9ec669cf74b6499c0de4f42a6dd756a4e4e2a1
-[4/4] arm64: dts: ti: k3-am69-sk: Add bootph-all property to enable Ethernet boot
-      commit: 89a0284bf92e498c8d24a4ce37949eaf4a5101a9
+The trade-off is a less precise ADC but at least a working one.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+In ideal case you would have Vref supplied by the dedicated LDO and tons
+of decoupling caps, but in real-world you have it connected to a noisy
+SMPS and you need to adjust the parameters accordingly.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+That's it :)
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+BR,
+Primoz
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Primoz Fiser
+phone: +386-41-390-545
+email: primoz.fiser@norik.com
 --
-Vignesh
-
+Norik systems d.o.o.
+Your embedded software partner
+Slovenia, EU
+phone: +386-41-540-545
+email: info@norik.com
 
