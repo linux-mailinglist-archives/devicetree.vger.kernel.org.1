@@ -1,139 +1,86 @@
-Return-Path: <devicetree+bounces-196540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCFD5B06043
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 16:14:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E85EB060B5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 16:21:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13BA3503AD7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:08:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0767E503456
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C49B32EF9A7;
-	Tue, 15 Jul 2025 13:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RQlBVBSM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F63E1F0E56;
+	Tue, 15 Jul 2025 14:01:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 768D727470;
-	Tue, 15 Jul 2025 13:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93EC91D7E5B;
+	Tue, 15 Jul 2025 14:01:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752587834; cv=none; b=arnBr3jdpwdGC5Ij3NkN/nh/vnMksIItX+Ng5I2BB7bL+MpkL2NLXAOpOLLmoz0Rj0+Imcq4OpwnpRXySqPARqrb9AomTjf7IFcinnf/8zONP5IFu5N9puZjofJEBWb+wwuSQPPU5ghGyuJRZfyHW/TG87/6DDroLzmUGiYmK7A=
+	t=1752588097; cv=none; b=lAtISxj4G49rHGJy18CHqES1u4PgrknekDx+K26lMK4mqLDXcMM4mbBDgORo9Kru5F9h/v0Gx3Eoqj9PnnfOzaCRi+by5/kuqtTO9iT7yslf0wNOQny2638VN5ieFNAVPqNrp36xSmiWUMlGxyRvluTML/6KD+Uo+qbpDeORCCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752587834; c=relaxed/simple;
-	bh=VcoITfCDsF67h3hBQmDuBarBljyPQh2YV8UKRsZfVmo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L8sb8w/uRhOtZHU9HRe8Fdrkusj4YMq7ZDJVGOdtVnOE9x45sTVqFkH/+TZlmnRcrO1bI1p7vPMjX7EUwCAggtJu2q7nbEqf6xNpE6o4MulYB6JEj6f2QaLDTuo8H5PnMxPyeqi2noPTnp8I9cAi6dadBUhQ3YzSIyZm4BqjBfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RQlBVBSM; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1752587830;
-	bh=VcoITfCDsF67h3hBQmDuBarBljyPQh2YV8UKRsZfVmo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RQlBVBSMdmKKKX3dY5vPWcDUMiXRwa8DBqYjx2o5An3IXCbDXsBri6CUZUaaDSCT1
-	 D6afaCOZhejdPJyj6mKp1UKMgF3rUX70AUNYmS8PcqTEtfgjjzlgUM08C+yy/o/Riq
-	 w7bVG+lg6xbtaZ4N3JMWsGWoXupNJomHfFG+Ry5cRZjCI99eQVEBGSxF8OZ7fEghcW
-	 YWDueW5aCWEhItpy+8luatBmaqdCMmnfSMu75gominLtK4KUOinCy1rcPa2VVXtglS
-	 JryzLWDVyKCFdIkfGDNTDyMgCfRVs9t6G7oi1ZQkdB4XULWLzlfMo/U23SNp85E8ot
-	 tBCXuotie9wYA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0962317E1293;
-	Tue, 15 Jul 2025 15:57:09 +0200 (CEST)
-Message-ID: <4facd10a-f46f-4cb9-bdef-71cc88ebc059@collabora.com>
-Date: Tue, 15 Jul 2025 15:57:09 +0200
+	s=arc-20240116; t=1752588097; c=relaxed/simple;
+	bh=UaT/5tbfotpns3fiZwVdxou9arFCEkj/zQROG99z+K8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=taxSjI5en5F4O6sQkKGPcDKoAJCD8AwzXZqAcx5f5t65oAqvPIWuljPJ2/25GyOmEh81gXPtQoMZ/9jPiXrAno0Nc5/V5JWsA0vfhb0idaUUFT2n2oEsx5paXvRJiJliN/VO2L5pQiBfBO9llW+W03WLxhqFqz6Mb84mXJ1mdhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [119.122.214.181])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1c1690188;
+	Tue, 15 Jul 2025 22:01:22 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: jonas@kwiboo.se
+Cc: amadeus@jmu.edu.cn,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	ziyao@disroot.org
+Subject: Re: [PATCH v3 4/6] arm64: dts: rockchip: Add ArmSoM Sige1
+Date: Tue, 15 Jul 2025 22:01:15 +0800
+Message-Id: <20250715140115.1925358-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250712173805.584586-5-jonas@kwiboo.se>
+References: <20250712173805.584586-5-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 7/8] dt-bindings: mfd: Add binding for MediaTek MT6363
- series SPMI PMIC
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: broonie@kernel.org, lee@kernel.org, linux-arm-kernel@lists.infradead.org,
- matthias.bgg@gmail.com, conor+dt@kernel.org, wenst@chromium.org,
- devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-kernel@vger.kernel.org, kernel@collabora.com,
- =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- krzk+dt@kernel.org, lgirdwood@gmail.com
-References: <20250715115718.176495-1-angelogioacchino.delregno@collabora.com>
- <20250715115718.176495-8-angelogioacchino.delregno@collabora.com>
- <175258775126.1133153.9935401889666941502.robh@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <175258775126.1133153.9935401889666941502.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCSh5PVk5MH0JLSk0YTkwaGVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVU
+	tZBg++
+X-HM-Tid: 0a980e63dc5103a2kunm929f6807810238
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PUk6Myo*LTExNwpKIS8xQjhJ
+	TR4KCQ9VSlVKTE5JTkNDS0NISktOVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpPVUpDSllXWQgBWUFCSkI3Bg++
 
-Il 15/07/25 15:55, Rob Herring (Arm) ha scritto:
-> 
-> On Tue, 15 Jul 2025 13:57:17 +0200, AngeloGioacchino Del Regno wrote:
->> Add a binding for the MediaTek MT6363/6373 (and similar) multi
->> function PMICs connected over SPMI.
->>
->> These PMICs are found on board designs using newer MediaTek SoCs,
->> such as the Dimensity 9400 Smartphone chip, or the Chromebook
->> MT8196 chip.
->>
->> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->> Link: https://lore.kernel.org/r/20250623120038.108891-2-angelogioacchino.delregno@collabora.com
->> Link: https://lore.kernel.org/r/20250707134451.154346-8-angelogioacchino.delregno@collabora.com
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../bindings/mfd/mediatek,mt6363.yaml         | 110 ++++++++++++++++++
->>   1 file changed, 110 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6363.yaml
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6363.example.dtb: pmic@4 (mediatek,mt6363): adc@1000: 'reg' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> 	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6363.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6363.example.dtb: pmic@4 (mediatek,mt6363): regulators@30: 'oneOf' conditional failed, one must be fixed:
-> 	'reg' does not match any of the regexes: '^buck-(sshub[124]|vb[1-7]|vs[1-3])$', '^ldo-v(aux|m|rf-io|tref)18$', '^ldo-va(12-1|12-2|15)$', '^ldo-vcn(13|15)$', '^ldo-vio(0p75|18)$', '^ldo-vrf(0p9|12|13|18)$', '^ldo-vsram-(apu|cpub|cpum|cpul|digrf|mdfe|modem)$', '^ldo-vufs(12|18)$', '^pinctrl-[0-9]+$'
-> 	'reg' does not match any of the regexes: '^pinctrl-[0-9]+$', '^v(ant|aud|aux)18$', '^v(cn18io|efuse|ibr|io28|sram-digrf-aif|usb)', '^v(f|t)p', '^vbuck([0123456789]|4-ufs)$', '^vbuck4(-ufs)?$', '^vcn33-[123]$', '^vmc(h)?$', '^vmch-(eint-low|eint-high)?$', '^vrf(09|12|13|18|io18)-aif$', '^vsim[12]$'
-> 	'mediatek,mt6373-regulator' was expected
-> 	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6363.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6363.example.dtb: regulators@30 (mediatek,mt6363-regulator): 'reg' does not match any of the regexes: '^buck-(sshub[124]|vb[1-7]|vs[1-3])$', '^ldo-v(aux|m|rf-io|tref)18$', '^ldo-va(12-1|12-2|15)$', '^ldo-vcn(13|15)$', '^ldo-vio(0p75|18)$', '^ldo-vrf(0p9|12|13|18)$', '^ldo-vsram-(apu|cpub|cpum|cpul|digrf|mdfe|modem)$', '^ldo-vufs(12|18)$', '^pinctrl-[0-9]+$'
-> 	from schema $id: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulator.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6363.example.dtb: adc@1000 (mediatek,mt6363-auxadc): 'reg' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> 	from schema $id: http://devicetree.org/schemas/iio/adc/mediatek,mt6359-auxadc.yaml#
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250715115718.176495-8-angelogioacchino.delregno@collabora.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+Hi,
 
-Uff. I've sent the wrong series. Sorry for the noise.
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528-armsom-sige1.dts
+> ...
+> +&sdio0 {
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	cap-sdio-irq;
+> +	disable-wp;
 
-Sending v5 asap.
+I don't think sdio needs disable-wp?
 
-Sorry again,
-Angelo
+Thanks,
+Chukun
+
+--
+2.25.1
+
 
