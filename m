@@ -1,92 +1,174 @@
-Return-Path: <devicetree+bounces-196467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28A38B057D4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:30:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EAF5B057EA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:35:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71E69176C23
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 10:30:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 772BC3B7CF4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 10:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19F962D63E4;
-	Tue, 15 Jul 2025 10:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AC352D8773;
+	Tue, 15 Jul 2025 10:34:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZhTskiJl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A965D23ABAF;
-	Tue, 15 Jul 2025 10:30:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D220F2D6406
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 10:34:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752575415; cv=none; b=meEnSMb5ivXCNdkPp/RcgFUWSjjdJoLekLFfmogZaGPu0CUfXOqJarSWZgtpqpS8zeRd5gk9zvo33YB++SQ6uQkghc1kSWF98mBHElcEnLfo2sSyns+Zvw+D2wQ9/zltEUmRK7B5cXFCLto4qizccv9JcXt28sMDFP6KQ6uabU8=
+	t=1752575692; cv=none; b=mEYbeHSQSMi1/vUtfphPokDyJX+jUxXE0d8Nj9OmAwFWLuZKb0oCyoMayxaCsd/w6ZHN+j5uw/ZyFmkxAvRZhl8R/2e6oC/ovBSM8ecrEYw0RZSeZ1PfH598Nu82/CBv6BrwqQRlXcj33LtFY4BG5edt1HLE1Y3lOorSk258pEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752575415; c=relaxed/simple;
-	bh=8Vd8POKs3Sp/OX61qit7SX6WXDD/xYLrFG1hcSUXUmI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=paaPzVaCAzcV1hviEImGIgrvhN0xkg3y7IJ9vaBUUwpGJr2/qMD5PkcObkEFcBIEU/3UnpzCgCPr19iXJNsTGUzznuIvmdZGLvczIpK04LT05xAl1Mkd+Tal4ead18baq0zMxBnwKywDpxEhlYyTTyap0zRBHwmQW7IC/NjsEvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.48.207])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 8CB11340CE7;
-	Tue, 15 Jul 2025 10:30:12 +0000 (UTC)
-Date: Tue, 15 Jul 2025 18:30:06 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	paul.walmsley@sifive.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	palmer@dabbelt.com, skhan@linuxfoundation.org,
-	linux-kernel-mentees@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] riscv: dts: spacemit: Add initial support for
- OrangePi RV2
-Message-ID: <20250715103006-GYA540303@gentoo>
-References: <20250711183245.256683-1-hendrik.hamerlinck@hammernet.be>
+	s=arc-20240116; t=1752575692; c=relaxed/simple;
+	bh=8I7baJCloE+/y1LGSgYUPcdZD+zveHqtvwIO9TDsLbc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ADSFqMLDHo6FObv+StJmkQ4GX2eXthnWTmez2nw7Tn175K8FB16Yw3Ew+wE3zIyjFCBFhCW8nCgtjRGDNZgAyPrhrRtpUYpVvuxqxXv6maXqTFEOVzkx8L6hGeGFanHTILNttC39TW4NxcIKGWIB8MQJ1gaImYAx0AgadMMXkCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZhTskiJl; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a4e575db1aso298917f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 03:34:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752575689; x=1753180489; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=CNxV7xxoPlGm2F6RiOrJwV09iY72vMxacZyTqOkrjiI=;
+        b=ZhTskiJlUr25FwNH/dqf5FxvLPpv/Q+ku08QZ/PBsqaceV+MLUtjHL0fPKm/TSZkH8
+         Sbo06ip9ZL4IV4LNRstXot0WsqLuqNGbbFS0mDQ7JM/oIrh2fKqeW0odn4vvZuacV7Kr
+         YZuC7QZA8p1K4Iebozw8x18oh3jdklkzbR+YsIwPIWnPBs143dJ4Qte8ipf0NxX0bR1C
+         phFAPOflaHSlbGaOTGLOk2UhyuWlmJQ3k3oBl5oQ4IAkHOap2ySxP01a3HQrngA2Eq+6
+         xqhUvRPFUe6ApuvLY9+vFOMxa7nGcY1cEONCjNa0Rr4Ee3pwAs70HngvssG8X5QNMNQn
+         P1Sw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752575689; x=1753180489;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CNxV7xxoPlGm2F6RiOrJwV09iY72vMxacZyTqOkrjiI=;
+        b=pPbjI9bmYdQcRyNp7Fb7Aw02NtuIoXrLaZmuceqg17zdMJ+V7tFn8cyH75oCCXWW0K
+         Cfzz7zsO08/BC6HsCMp+U5ERXxN8zDYN5M8QIRaeIc+6f2pjRYju2zKAD2VuMAS/0gYn
+         4stU0ttW5o9dGxuLdmARLH0EYFaOYdnKq5yQE96XgE5N4i7LPF8eg9F6Oik3aNhT4J4M
+         gYriVqOj3tSrJ3Nbs6ihtVuMILF+1DnTdNqyFqWJCTZPrDtEkjzKju6rbCdhwW7chfNL
+         1X0K1a578aV3R6VQHWiRXXuEiGt/znsHadEM3XCT3+lPXy8qx1watoVoccBdJxABAA/f
+         TovA==
+X-Forwarded-Encrypted: i=1; AJvYcCVBAAxf+DRDqQgbhX0fgma4Sz6bRJKjxEPR19vfBTnulI2jcgp35poPQTxZwt19uSSsAzW6SvY/7Fc+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzU5YOq4QxtPVpeROCYqsNgvn/gt2MFChH50fyNIVOVPpgYfLnG
+	P6jgKI1mB9tZDRwGKmqp5chxrIkW/yftht/wwWegonaGlgd8i91oga/pL9UkV7Zxxkk=
+X-Gm-Gg: ASbGnctqZGbugHXKQ+4lHZnZSR5UUKDT6OyP5uliaKUgFSp6QIgmXox50EzFvJPoVqW
+	SD090gSeDAtGPOvORVyw2VwTv+/mj86nJgL3qCyR0VUH39hfcZjUzLBysa5mcngm7YfmHJ+VizQ
+	3kgpq4O0sz3+uVdsjefg16CthDwMLB6WrhcJRTWScsrws3L1gKw9jefiPE6JLbz658R0W+NLipW
+	HB5fdJ2NDZVlrkz+CPH74MUWYjaDqrAmRIS7CyETr6lkNidQSV1XkafS1W+4DbYgkhjq9H+1tvg
+	ObV6av3A7AcoepA1PsLqLS8qarf9cNaLNH4ZiWQGeFbsxjnBxXzTh60/6whWTEjVXViHGZ/Q344
+	hIGVFklTTgDV2L3rQaAJ6g4MuQUXldCWajgBMg2p/7g==
+X-Google-Smtp-Source: AGHT+IETuuQZNk1ztk9gfzObPzAgZOr4Of8uwioTh5GwswxYSupG3DZe37xS0aszyNTJiNJwZGnV7g==
+X-Received: by 2002:a05:600c:19c8:b0:451:dee4:cd07 with SMTP id 5b1f17b1804b1-4562908ddd2mr4817995e9.0.1752575689025;
+        Tue, 15 Jul 2025 03:34:49 -0700 (PDT)
+Received: from [192.168.1.110] ([178.197.222.89])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454dd43912dsm159810235e9.2.2025.07.15.03.34.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Jul 2025 03:34:48 -0700 (PDT)
+Message-ID: <ec0f64c3-bd08-4944-817e-f5f67c317b94@linaro.org>
+Date: Tue, 15 Jul 2025 12:34:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250711183245.256683-1-hendrik.hamerlinck@hammernet.be>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/3] arm64: dts: qcom: sm8750: Add Iris VPU v3.5
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250714-b4-sm8750-iris-dts-v1-0-93629b246d2e@linaro.org>
+ <20250714-b4-sm8750-iris-dts-v1-1-93629b246d2e@linaro.org>
+ <5dd36649-821c-450e-bdcc-871735d10059@linaro.org>
+ <15b8b9e0-a211-4102-9b68-994c8ab50a7a@linaro.org>
+ <b5a68138-4eca-4bdd-8f72-d80236b02c0a@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <b5a68138-4eca-4bdd-8f72-d80236b02c0a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Hendrik,
-
-On 20:32 Fri 11 Jul     , Hendrik Hamerlinck wrote:
-> This patchset adds initial device tree support for the OrangePi RV2 board.
+On 15/07/2025 12:09, Konrad Dybcio wrote:
+> On 7/15/25 12:07 PM, Krzysztof Kozlowski wrote:
+>> On 15/07/2025 11:32, Krzysztof Kozlowski wrote:
+>>> On 14/07/2025 15:55, Krzysztof Kozlowski wrote:
+>>>> +
+>>>> +		videocc: clock-controller@aaf0000 {
+>>>> +			compatible = "qcom,sm8750-videocc";
+>>>> +			reg = <0x0 0x0aaf0000 0x0 0x10000>;
+>>>> +			clocks = <&bi_tcxo_div2>,
+>>>> +				 <&gcc GCC_VIDEO_AHB_CLK>;
+>>>> +			power-domains = <&rpmhpd RPMHPD_MMCX>;
+>>>
+>>> This is incomplete, need second power domain and I did not check against
+>>> qcom,sm8750-videocc schema before sending. I will send a v2 a bit later
+>>> (maybe some reviews pop up).
+>>
+>> Heh, no. The DTS here is correct. The videocc bindings are not correct
+>> (and that's not my patch).
 > 
-> The OrangePi RV2 [1] is marketed as using the Ky X1 SoC.
-> However, after research and testing, it is in fact identical to the 
-> SpacemiT K1 [2]. My proof:
-> 
-> - Similar integration in the Banana Pi kernel tree [3], which uses the 
->   OrangePi RV2 and identifies it as the SpacemiT K1.
-> - Comparison of the device tree code showing a match to the OrangePi RV2 
->   Linux tree [4].
-> - Locally tested the OrangePi RV2 with the SpacemiT K1 device tree, 
->   confirming it boots and operates correctly.
-> 
-> Patch #1 documents the compatible string for the OrangePi RV2, and 
-> patch #2 adds its minimal device tree. This enables booting to a serial
-> console with UART output and blinking a LED, similar to other K1-based 
-> boards such as the Banana Pi BPI-F3 or the Milk-V Jupiter.
-> 
+> Well, you want two power domains here in either case..
+Are you sure? My point was one is correct and downstream confirms that
+in their bindings (which is a poor argument, I know). Which one would be
+the second? MM? We don't have such...
 
-The patch overall looks good, but I wouldn't pick it for this cycle,
-as I've already sent out the PR [5], so let's target at v6.18 merge window
-(Please remind me or respin a new version once v6.17-rc1 tagged)
-
-Link: https://lore.kernel.org/spacemit/20250715014214-GYA540030@gentoo/ [5]
-
--- 
-Yixun Lan (dlan)
+Best regards,
+Krzysztof
 
