@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-196628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8272B067ED
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:48:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 069A6B067F2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:48:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B2C91AA7B2F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 20:48:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49BAD1AA81F6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 20:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EAB22BEC51;
-	Tue, 15 Jul 2025 20:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 634602BFC73;
+	Tue, 15 Jul 2025 20:48:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="L75PKYqN"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="o+zgH/7f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED55285CAF
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 20:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FB2C29B8E4
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 20:48:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752612481; cv=none; b=LefoaTSzYC3OMxTttdadEBP6XLhCSm1dlcNeHEKKp3obDqJB5jSd+m1aykFOMkVfRAhJ3N9UQZzTjcJOZBwOClCOOjDUjrALm4+cc7bZ2JOKwxS6ylPZjddEAYefVLi8PZ0oPPO6avP4fJjSrorieG8lRNbfHftziCYmIjY/Zdo=
+	t=1752612483; cv=none; b=g3t+KG14418/LdFH/VnfUA4jHFOr3l7tKdNf9UlmaHpAB3clo4xIijAaPDBXtTXXZ4SgM6s4ss9c56E8EUhsEMSD5yqVsHT6ybyBgOWDUZ7d5l2RuvxFKyLxMdY3VaiQxfO0buzXOnb0Ho8+DwhX15Iknro5cjhQ8ZeccYsHArI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752612481; c=relaxed/simple;
-	bh=KM3x/3Pbcpku4hi+Q2J5twTHiiakqH43ags6fQQ9T8I=;
+	s=arc-20240116; t=1752612483; c=relaxed/simple;
+	bh=JLxRVXQhon6gxubKoqqTIwexA1gN3xO3FmETcqxOKgc=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=eQGizKxFp7kesmHd0bB+7T1Q/SFd5oYpnwGe/R87/15rzNWCH6atGpKW4K8PJaZtTnJBy78jruHFYRVyAp9Dp8OQfhhSs1OwdtQsAHU2p6JX4l1V4zmGTW0cv8v5rKA3ASZu6qH2E70/pIEEzrQelts+CCGbBdp8llZ/Q1U/eBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=L75PKYqN; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=Ely2EMkVRTZdEjYb4C4W8xrHGrghzE8YEMCI2f9Zb3rjAh3vMfU3B2RaeKBkBV+4rUHJLiJwvXhhrH4/1tJauUBScs7WxBFALIXONp9hJOY2jGmWFQpVYI6jvvAaVhx98KPRCVtQgEgVjClnJST5mxEYSxExRY6NnPeW7F1kOQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=o+zgH/7f; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56FGDHLA031159
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 20:47:59 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56FGDMZv029553
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 20:48:00 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=YGHUolC1rCw
-	c8hxbfX9G9XRUGGS2ug574YwaNTuSfSw=; b=L75PKYqN4yHjGCHgJAo/iwQb4w/
-	azE+n6M4KAokRKz4R2IiF5BgcKhxM5cPLlJVLp3t61/KqoyoWA7zo0QA9aa1eSiC
-	j4sZ/CqTTiufO3+i4zo0QxFr/KyIetsSeP2wspUCpq3ICqqiYRf32ScWOmFvMOQ6
-	WmyE4JHPWpTEK2jK6mtw0xdhQ3IIB3I6Qnrz/jy9YDd0FdqwpDC1OuCwkQLptvYn
-	mFBfHwpC+U1u6LlQMEAXECPx4dTkA1CCgEQqcQi/g7SR4/6Nhd3K9ONiDHubpS7H
-	wVn9aGpksGuHq8bB7AWxuixPzqRnLc8w1hedkB7qRO5bYBrmfYeSYKAZakQ==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufut9fbw-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=xqIJdlz4cKk
+	IgtCaMYekqr5WxjgSE1e16/qhi8p04Sw=; b=o+zgH/7fycK1TVAMJXWmkfNwBy0
+	h69KVQRJBljc18REs+OJPqGYzcODG36GRBHWehfc5v/BNsFFaO89i0BC1IReJPhF
+	QzojPvXA3jrJnuYs+PP783ieM+Q9XO+/FXzGg4sotcJvScajfMBH548KuLt1zXGb
+	B7rOQsBgdMEmD0uosc57JziQK5KO7a63ouuazVe6DxFG0dy8EUtQhZb1KuUiU4zY
+	V3zp48386+zU9VeU+GdzsdY9llxUKBOqAqphbDW5XEDc9e0FeS197PzrTjzyYSdb
+	Vo5UIRLytzGHfTxpM5k9nFeOXACisBj/qZe4+c1NmgB/FUwGjNMSydOrv0g==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufxb1mkn-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 20:47:58 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c5e2872e57so899844085a.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 13:47:58 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 20:48:00 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7e278d83457so418692885a.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 13:48:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752612478; x=1753217278;
+        d=1e100.net; s=20230601; t=1752612479; x=1753217279;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YGHUolC1rCwc8hxbfX9G9XRUGGS2ug574YwaNTuSfSw=;
-        b=DacM0XVWbXhsdISRTwOqlZEYGvBWhPiaepPy68WWJ0ujK4rqkYXMyOy++NPFEBtx9j
-         51WZlbuGHoChLZ7cg1bTFVz+X2pyo2Sjnh8jwVoXapM2DPUKE182yDE/oB5xRcl41gMu
-         hCQdT+hWKuSCpTxjfjzfCesuswWxBMlYt1ESThvXezRqRSas0sQpY0fTUtGD5zdOMh+j
-         Om4YNEuerC/8y1eEufJJKTAKy/Jg8nV0Zq4yuDffF+wnwHfSFVA4JbfmQjjaqZsJADW6
-         s3R6uX4T5w+v2CiaPXSftPHhNbbOtZoF+nllO0+PWMBCn+6uKEqXq7YHGEKxxFZ56R4c
-         6gMg==
-X-Forwarded-Encrypted: i=1; AJvYcCX+0zEuz/fMkPfr4//Zm6eSgpFshxoUgE3hxcycWVm27spUyFw1kNUMwS0HXbg5H4Go0QBk4kOQ1Jrc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgwdBzJhuvSWVAWkgI3AMG19aqKuAjpFYqnyBVVmUO7bPQctE8
-	N8inNhCzzrfjmfKZcnEzPPmWO9THo/CDCLCgywvJMZOZn1/NsMKdZ0rhLCybVSjeGTj8+XlOhkk
-	ZPixj8j+y0AieCOKo9nkDIE2c9k9STTNZg+6rDycwBgWoMwXFlxuEvQoTC1ifdIxZ
-X-Gm-Gg: ASbGncvdaPOz8WVHLwiOrlWvQAbwGwsgfn3djKRExNN/EEg62uqQBRPGkXcUMqxYzKS
-	+5v6M2SaHnSEfz4dEIcMKP5vkQ5u7ra11WPzH04Eg7mf3G7tOoPTZ99sf+pB3+4ZEBlbDPDthFX
-	SUo1KQ4TMaht+d7TJTfOZR8Jyh11Jar2mwXGz2kUQk9ZuWCe9p6GXi3JGn1KGNw0UqmwN6b3xzt
-	VzV0/Zc6OyXDQzNTR5pJXd/hrThljr05Xk4GVkDhjw5HL1coDiwwBa9WZf/Yk9sxrjnpCmbaJK/
-	0unSp68KXwLj3u90p4t9Xrkdh3NqogmXHU0/Cul+p00mZVwhd4F8kl81KZhtQYqslM9IBstJZ3/
-	c6CbHMyz80kpPTDx4/A==
-X-Received: by 2002:a05:620a:4088:b0:7e0:52bd:1c8e with SMTP id af79cd13be357-7e34355efdbmr44762685a.23.1752612477853;
-        Tue, 15 Jul 2025 13:47:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFqr/md1c+7NfOSUJbYC+tuOFYHioqdEZ2PgcXNIoLvDdWe57k70a8J84cehq5nZn/HSQ23zg==
-X-Received: by 2002:a05:620a:4088:b0:7e0:52bd:1c8e with SMTP id af79cd13be357-7e34355efdbmr44759085a.23.1752612477385;
-        Tue, 15 Jul 2025 13:47:57 -0700 (PDT)
+        bh=xqIJdlz4cKkIgtCaMYekqr5WxjgSE1e16/qhi8p04Sw=;
+        b=FQE2TvEgNMVtSiNjhFo8hPyVnuZtFEjLnN3shWq/sQuy/f+IjPpZ3dynYXpqBp2pX0
+         mTHND7j+bp0pef2tSmQNb4vu00dQXOroJZV4r3ghRBJ9iNRwc9g66jhqErBLjxoJjW3i
+         KqU04yrEyFllteiGVzlAHs2MUQttd0Mq6yEFwQBtsI1fGMv8e6tv9Xa4z0AMNJNLLKDO
+         O+3ylDDT9X3tanZS1vXbVNrZQcvLL/XVEbjrcea57E5t/MWhIQO86BuHgE2CeEpB9nOV
+         CMw77OkHcoy4dnxHuvfEEYmcfpMqpbLfJujq5gMsMzRgKRSHff2Z0340LTBqHoBJe5ED
+         3C8A==
+X-Forwarded-Encrypted: i=1; AJvYcCVNI5jnhKQB2unHjn4B9gU0zKX25oxM0AOQ8QR5yCJchBE+DY2EJPiNV3xLGWMeWR+XOKKacyuCYk1v@vger.kernel.org
+X-Gm-Message-State: AOJu0YxNXhL745eGKe9boGx9ts3kKaCU+E3pzsiARekpmdxlh+iOtpzj
+	C8HGDHghsTH1s1CkY52fGeq5qw9Z3dEz8MY9yCDTi5y3s9Y78GqnDyTnglfiDE7T32a5RBTecJ/
+	UsM86/WZ/UgTbQRYhALhHXniWFR+IyzZl9g1xBHv5z3iOCQvv6ZtXyMHSOLNh2Eha
+X-Gm-Gg: ASbGncvyZ67iebVqsrrbghZiVyea1H9ZPAjB+e6CHhF4kXxqHSu0G6vgigh3ZEI0wYG
+	cBTGgXmoVUhs1LvcOBUDSEPYOQKHCacIlUqDFbTFNMoZpjFFHG33C9peLdt+Oh9+eFunv7La4Y4
+	ItbKs/W+JQHPv2uYo4IgD8/5HF15L3/XW08A4033wxxJ9BI6+AgcCDdNT1Wd2xfdOjA4PM4T0LX
+	8hIUC8ZLO4biBeDf1Zuji8GqBvXU3/bYd4oWqANxETPqBbj/Ds9LwTRrtYmrVfjFqF5C8NAr94Z
+	0nhZVCwdDIaM5kEfBGFw3OQqCJsqGSDy2q15x4obGfa+RRSCvNyDSW6jPzj5cXrMhwN0yM9y1bX
+	ILl+Mqcu7XIctyKcISQ==
+X-Received: by 2002:a05:620a:1b9b:b0:7e0:cb93:6fb1 with SMTP id af79cd13be357-7e3433511a5mr45660985a.9.1752612479328;
+        Tue, 15 Jul 2025 13:47:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE3uztf4eAZmDM24bnWWjsOEqyZP7OJqBLki+Bu0uvZ5eYMZGFNWgaXX9r3S8S4GW0aowWycQ==
+X-Received: by 2002:a05:620a:1b9b:b0:7e0:cb93:6fb1 with SMTP id af79cd13be357-7e3433511a5mr45658385a.9.1752612478892;
+        Tue, 15 Jul 2025 13:47:58 -0700 (PDT)
 Received: from trex.. (153.red-79-144-197.dynamicip.rima-tde.net. [79.144.197.153])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8dc2464sm16331877f8f.38.2025.07.15.13.47.55
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8dc2464sm16331877f8f.38.2025.07.15.13.47.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Jul 2025 13:47:57 -0700 (PDT)
+        Tue, 15 Jul 2025 13:47:58 -0700 (PDT)
 From: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
 To: jorge.ramirez@oss.qualcomm.com, quic_vgarodia@quicinc.com,
         quic_dikshita@quicinc.com, bryan.odonoghue@linaro.org,
@@ -88,9 +88,9 @@ To: jorge.ramirez@oss.qualcomm.com, quic_vgarodia@quicinc.com,
         amit.kucheria@oss.qualcomm.com
 Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v7 1/7] media: dt-bindings: venus: Add qcm2290 dt schema
-Date: Tue, 15 Jul 2025 22:47:43 +0200
-Message-Id: <20250715204749.2189875-2-jorge.ramirez@oss.qualcomm.com>
+Subject: [PATCH v7 2/7] media: venus: Conditionally register codec nodes based on firmware version
+Date: Tue, 15 Jul 2025 22:47:44 +0200
+Message-Id: <20250715204749.2189875-3-jorge.ramirez@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250715204749.2189875-1-jorge.ramirez@oss.qualcomm.com>
 References: <20250715204749.2189875-1-jorge.ramirez@oss.qualcomm.com>
@@ -101,173 +101,251 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=e7gGSbp/ c=1 sm=1 tr=0 ts=6876be7e cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=Ki5fnJvzvo7yLsyA0quaxQ==:17
- a=Wb1JkmetP80A:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
- a=COk6AnOGAAAA:8 a=1mX_ai67dwKzVtmm1w4A:9 a=IoWCM6iH3mJn3m4BftBB:22
- a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 5zAOQ9HmNrd1smdN22xsFCLTnPDtt4-N
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE1MDE5MSBTYWx0ZWRfX+VKeJBc55+fn
- NCBk3r6ynLynFkM/8+/AaxPstQxvrSyjDE4T04ye/O3BsPsLfxBzoX3mKzseIpNsQbM9vhOeT8Y
- pscG0PR+aoo1v+q4X3gWzeNGf/TFk6m4e7bhUV2NPax2cZLQd1EOYO2Sm8ZdFtMSy7f2oFMXNR0
- 6dfPkefpLbYoR6xFcFIOkTnkLpMnhHL+qmVtbgwK4hHmzUhr8vJhK7y3tWegFWYIRoPFFD9b3qT
- jPfGX55bQlQGH01SZ/WQYmfkWg0ZMDPZvU7qvBNKA55bhbwpbucfH5gPKfSG16+kOTILV59hE2f
- us5k+bHEzEvbBWORDCWxOGV97nVTl/gfZEWNLprxzZNWRpxovIMAFm3wURW991gKVm0igqrOx2b
- AfG9dRkCQhU29/CINEzloXRfJeiHytIK5u6BPEiHLyH0bNsJgjVkhFmaraDOId/xtykmVKrL
-X-Proofpoint-ORIG-GUID: 5zAOQ9HmNrd1smdN22xsFCLTnPDtt4-N
+X-Proofpoint-GUID: ghJ5OGmO_Ceglw1_4dvgY7dzIbsqmZw-
+X-Proofpoint-ORIG-GUID: ghJ5OGmO_Ceglw1_4dvgY7dzIbsqmZw-
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE1MDE5MSBTYWx0ZWRfX0CrCJQU0xCij
+ nVofe+CmilXRAw1AVGUuZA1l/aZCqpxAt/ozEfh+NLnsTZboMuGTRDNB6lnfZ5JwlmVrTl2kaV9
+ vBRVRGCa0KsRlKvBT+w/3/XTOnk6qX7G1JKR2Gflwm3/JIklCYCUSCGiy9o57kLgEOe6Pj3fPuK
+ JFDLUrT8LthrKq+F4h6w4+67yjoeKvJ0HUDs/2Rocl8cs5q9yDJ/9KANqFYmQK3j1NgEkohTJ1i
+ zKpHklmxVXcByU7Zb1yIFWLDLzIi22M1LrtZlEjf2VGHwHRkAMb40FhtV6/PQrsEehzOl2G903m
+ q+lVTSVhf+vvGnTGmZ6n0Zz4PlqPju2FluUyMSnkmFnm4X8kZaxBirOp171xquw/Yct8dLiPa8j
+ H2tU35g5bNZ6P+l0f26k9b5WkrAo1yFiTtaG5QKJVjzdZNx3Y6SVYfQqPY1QRSjd0qEjAIBe
+X-Authority-Analysis: v=2.4 cv=Xc2JzJ55 c=1 sm=1 tr=0 ts=6876be80 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=Ki5fnJvzvo7yLsyA0quaxQ==:17
+ a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=b6RcsaAH2Bz4aJime2YA:9
+ a=NFOGd7dJGGMPyQGDc5-O:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-07-15_05,2025-07-15_02,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 spamscore=0 suspectscore=0
- phishscore=0 bulkscore=0 impostorscore=0 clxscore=1015 adultscore=0
- malwarescore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ bulkscore=0 mlxscore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
+ phishscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
+ clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
  definitions=main-2507150191
 
-Add a schema for the venus video encoder/decoder on the qcm2290.
+The encoding and decoding capabilities of a VPU can vary depending on the
+firmware version in use.
+
+This commit adds support for platforms with OF_DYNAMIC enabled to
+conditionally skip the creation of codec device nodes at runtime if the
+loaded firmware does not support the corresponding functionality.
+
+Note that the driver becomes aware of the firmware version only after the
+HFI layer has been initialized.
 
 Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- .../bindings/media/qcom,qcm2290-venus.yaml    | 127 ++++++++++++++++++
- 1 file changed, 127 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+ drivers/media/platform/qcom/venus/core.c | 76 +++++++++++++++---------
+ drivers/media/platform/qcom/venus/core.h |  8 +++
+ 2 files changed, 57 insertions(+), 27 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
-new file mode 100644
-index 000000000000..0371f8dd91a3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
-@@ -0,0 +1,127 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/qcom,qcm2290-venus.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+index 4c049c694d9c..b7d6745b6124 100644
+--- a/drivers/media/platform/qcom/venus/core.c
++++ b/drivers/media/platform/qcom/venus/core.c
+@@ -28,6 +28,15 @@
+ #include "pm_helpers.h"
+ #include "hfi_venus_io.h"
+ 
++static inline bool venus_fw_supports_codec(struct venus_core *core,
++					   const struct venus_min_fw *ver)
++{
++	if (!ver)
++		return true;
 +
-+title: Qualcomm QCM2290 Venus video encode and decode accelerators
++	return is_fw_rev_or_newer(core, ver->major, ver->minor, ver->rev);
++}
 +
-+maintainers:
-+  - Vikash Garodia <quic_vgarodia@quicinc.com>
+ static void venus_coredump(struct venus_core *core)
+ {
+ 	struct device *dev;
+@@ -103,7 +112,9 @@ static void venus_sys_error_handler(struct work_struct *work)
+ 	core->state = CORE_UNINIT;
+ 
+ 	for (i = 0; i < max_attempts; i++) {
+-		if (!pm_runtime_active(core->dev_dec) && !pm_runtime_active(core->dev_enc))
++		/* Not both nodes might be available */
++		if ((!core->dev_dec || !pm_runtime_active(core->dev_dec)) &&
++		    (!core->dev_enc || !pm_runtime_active(core->dev_enc)))
+ 			break;
+ 		msleep(10);
+ 	}
+@@ -202,7 +213,8 @@ static u32 to_v4l2_codec_type(u32 codec)
+ 	}
+ }
+ 
+-static int venus_enumerate_codecs(struct venus_core *core, u32 type)
++static int venus_enumerate_codecs(struct venus_core *core, u32 type,
++				  const struct venus_min_fw *ver)
+ {
+ 	const struct hfi_inst_ops dummy_ops = {};
+ 	struct venus_inst *inst;
+@@ -213,6 +225,9 @@ static int venus_enumerate_codecs(struct venus_core *core, u32 type)
+ 	if (core->res->hfi_version != HFI_VERSION_1XX)
+ 		return 0;
+ 
++	if (!venus_fw_supports_codec(core, ver))
++		return 0;
 +
-+description:
-+  The Venus AR50_LITE IP is a video encode and decode accelerator present
-+  on Qualcomm platforms
+ 	inst = kzalloc(sizeof(*inst), GFP_KERNEL);
+ 	if (!inst)
+ 		return -ENOMEM;
+@@ -288,14 +303,14 @@ static irqreturn_t venus_isr_thread(int irq, void *dev_id)
+ 
+ #if defined(CONFIG_OF_DYNAMIC)
+ static int venus_add_video_core(struct venus_core *core, const char *node_name,
+-				const char *compat)
++				const char *compat, const struct venus_min_fw *ver)
+ {
+ 	struct of_changeset *ocs = core->ocs;
+ 	struct device *dev = core->dev;
+ 	struct device_node *np, *enp;
+ 	int ret;
+ 
+-	if (!node_name)
++	if (!node_name || !venus_fw_supports_codec(core, ver))
+ 		return 0;
+ 
+ 	enp = of_find_node_by_name(dev->of_node, node_name);
+@@ -330,11 +345,13 @@ static int venus_add_dynamic_nodes(struct venus_core *core)
+ 
+ 	of_changeset_init(core->ocs);
+ 
+-	ret = venus_add_video_core(core, core->res->dec_nodename, "venus-decoder");
++	ret = venus_add_video_core(core, core->res->dec_nodename, "venus-decoder",
++				   core->res->dec_minfw);
+ 	if (ret)
+ 		goto err;
+ 
+-	ret = venus_add_video_core(core, core->res->enc_nodename, "venus-encoder");
++	ret = venus_add_video_core(core, core->res->enc_nodename, "venus-encoder",
++				   core->res->enc_minfw);
+ 	if (ret)
+ 		goto err;
+ 
+@@ -363,6 +380,9 @@ static void venus_remove_dynamic_nodes(struct venus_core *core)
+ #else
+ static int venus_add_dynamic_nodes(struct venus_core *core)
+ {
++	WARN_ONCE(core->res->enc_minfw || core->res->dec_minfw,
++		  "Feature not supported");
 +
-+allOf:
-+  - $ref: qcom,venus-common.yaml#
+ 	return 0;
+ }
+ 
+@@ -432,7 +452,7 @@ static int venus_probe(struct platform_device *pdev)
+ 					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
+ 					"venus", core);
+ 	if (ret)
+-		goto err_core_put;
++		goto err_hfi_destroy;
+ 
+ 	venus_assign_register_offsets(core);
+ 
+@@ -448,19 +468,9 @@ static int venus_probe(struct platform_device *pdev)
+ 	if (ret < 0)
+ 		goto err_runtime_disable;
+ 
+-	if (core->res->dec_nodename || core->res->enc_nodename) {
+-		ret = venus_add_dynamic_nodes(core);
+-		if (ret)
+-			goto err_runtime_disable;
+-	}
+-
+-	ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
+-	if (ret)
+-		goto err_remove_dynamic_nodes;
+-
+ 	ret = venus_firmware_init(core);
+ 	if (ret)
+-		goto err_of_depopulate;
++		goto err_runtime_disable;
+ 
+ 	ret = venus_boot(core);
+ 	if (ret)
+@@ -474,34 +484,46 @@ static int venus_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_venus_shutdown;
+ 
+-	ret = venus_enumerate_codecs(core, VIDC_SESSION_TYPE_DEC);
++	if (core->res->dec_nodename || core->res->enc_nodename) {
++		ret = venus_add_dynamic_nodes(core);
++		if (ret)
++			goto err_core_deinit;
++	}
 +
-+properties:
-+  compatible:
-+    const: qcom,qcm2290-venus
++	ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
+ 	if (ret)
+-		goto err_core_deinit;
++		goto err_remove_dynamic_nodes;
 +
-+  power-domains:
-+    maxItems: 3
++	ret = venus_enumerate_codecs(core, VIDC_SESSION_TYPE_DEC,
++				     core->res->dec_minfw);
++	if (ret)
++		goto err_of_depopulate;
+ 
+-	ret = venus_enumerate_codecs(core, VIDC_SESSION_TYPE_ENC);
++	ret = venus_enumerate_codecs(core, VIDC_SESSION_TYPE_ENC,
++				     core->res->enc_minfw);
+ 	if (ret)
+-		goto err_core_deinit;
++		goto err_of_depopulate;
+ 
+ 	ret = pm_runtime_put_sync(dev);
+ 	if (ret) {
+ 		pm_runtime_get_noresume(dev);
+-		goto err_core_deinit;
++		goto err_of_depopulate;
+ 	}
+ 
+ 	venus_dbgfs_init(core);
+ 
+ 	return 0;
+ 
++err_of_depopulate:
++	of_platform_depopulate(dev);
++err_remove_dynamic_nodes:
++	venus_remove_dynamic_nodes(core);
+ err_core_deinit:
+ 	hfi_core_deinit(core, false);
+ err_venus_shutdown:
+ 	venus_shutdown(core);
+ err_firmware_deinit:
+ 	venus_firmware_deinit(core);
+-err_of_depopulate:
+-	of_platform_depopulate(dev);
+-err_remove_dynamic_nodes:
+-	venus_remove_dynamic_nodes(core);
+ err_runtime_disable:
+ 	pm_runtime_put_noidle(dev);
+ 	pm_runtime_disable(dev);
+diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
+index 5b1ba1c69adb..3af8386b78be 100644
+--- a/drivers/media/platform/qcom/venus/core.h
++++ b/drivers/media/platform/qcom/venus/core.h
+@@ -50,6 +50,12 @@ struct bw_tbl {
+ 	u32 peak_10bit;
+ };
+ 
++struct venus_min_fw {
++	u32 major;
++	u32 minor;
++	u32 rev;
++};
 +
-+  power-domain-names:
-+    items:
-+      - const: venus
-+      - const: vcodec0
-+      - const: cx
-+
-+  clocks:
-+    maxItems: 6
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: iface
-+      - const: bus
-+      - const: throttle
-+      - const: vcodec0_core
-+      - const: vcodec0_bus
-+
-+  iommus:
-+    minItems: 1
-+    maxItems: 5
-+
-+  interconnects:
-+    maxItems: 2
-+
-+  interconnect-names:
-+    items:
-+      - const: video-mem
-+      - const: cpu-cfg
-+
-+  operating-points-v2: true
-+  opp-table:
-+    type: object
-+
-+required:
-+  - compatible
-+  - power-domain-names
-+  - iommus
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
-+    #include <dt-bindings/interconnect/qcom,qcm2290.h>
-+    #include <dt-bindings/interconnect/qcom,rpm-icc.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+    venus: video-codec@5a00000 {
-+        compatible = "qcom,qcm2290-venus";
-+        reg = <0x5a00000 0xf0000>;
-+        interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
-+
-+        power-domains = <&gcc GCC_VENUS_GDSC>,
-+                        <&gcc GCC_VCODEC0_GDSC>,
-+                        <&rpmpd QCM2290_VDDCX>;
-+        power-domain-names = "venus",
-+                             "vcodec0",
-+                             "cx";
-+        operating-points-v2 = <&venus_opp_table>;
-+
-+        clocks = <&gcc GCC_VIDEO_VENUS_CTL_CLK>,
-+                 <&gcc GCC_VIDEO_AHB_CLK>,
-+                 <&gcc GCC_VENUS_CTL_AXI_CLK>,
-+                 <&gcc GCC_VIDEO_THROTTLE_CORE_CLK>,
-+                 <&gcc GCC_VIDEO_VCODEC0_SYS_CLK>,
-+                 <&gcc GCC_VCODEC0_AXI_CLK>;
-+        clock-names = "core",
-+                       "iface",
-+                       "bus",
-+                       "throttle",
-+                       "vcodec0_core",
-+                       "vcodec0_bus";
-+
-+        memory-region = <&pil_video_mem>;
-+        iommus = <&apps_smmu 0x860 0x0>,
-+                 <&apps_smmu 0x880 0x0>,
-+                 <&apps_smmu 0x861 0x04>,
-+                 <&apps_smmu 0x863 0x0>,
-+                 <&apps_smmu 0x804 0xe0>;
-+
-+        interconnects = <&mmnrt_virt MASTER_VIDEO_P0 RPM_ALWAYS_TAG
-+                         &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>,
-+                        <&bimc MASTER_APPSS_PROC RPM_ACTIVE_TAG
-+                         &config_noc SLAVE_VENUS_CFG RPM_ACTIVE_TAG>;
-+        interconnect-names = "video-mem",
-+                             "cpu-cfg";
-+
-+        venus_opp_table: opp-table {
-+            compatible = "operating-points-v2";
-+
-+            opp-133333333 {
-+                opp-hz = /bits/ 64 <133333333>;
-+                required-opps = <&rpmpd_opp_low_svs>;
-+            };
-+            opp-240000000 {
-+                opp-hz = /bits/ 64 <240000000>;
-+                required-opps = <&rpmpd_opp_svs>;
-+            };
-+        };
-+    };
+ enum vpu_version {
+ 	VPU_VERSION_AR50,
+ 	VPU_VERSION_AR50_LITE,
+@@ -92,6 +98,8 @@ struct venus_resources {
+ 	u32 cp_nonpixel_start;
+ 	u32 cp_nonpixel_size;
+ 	const char *fwname;
++	const struct venus_min_fw *enc_minfw;
++	const struct venus_min_fw *dec_minfw;
+ 	const char *enc_nodename;
+ 	const char *dec_nodename;
+ };
 -- 
 2.34.1
 
