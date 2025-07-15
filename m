@@ -1,215 +1,172 @@
-Return-Path: <devicetree+bounces-196367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69826B0526E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 09:11:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B95E3B052B4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 09:22:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FFF53A6FC2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 07:11:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 012A45609D5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 07:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CDE26D4CE;
-	Tue, 15 Jul 2025 07:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2533E26FA6F;
+	Tue, 15 Jul 2025 07:19:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dgZdcNeH"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="N+IexZZ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011000.outbound.protection.outlook.com [52.101.65.0])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D381F0E47;
-	Tue, 15 Jul 2025 07:11:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.0
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752563504; cv=fail; b=M9FGslVE4PNoT0yYXwxw3+4OToDH9YIOVqSRujH1TbH65YS/K2GjksV/cAC0p97irwE/eHfkzIPUm4U6THOy6/fBFoFaEvDjxiJ1OlopwJa4nuMj4J+EtAxAW5c3G4fWArC4b3JGjrpo0EsSC7fX7bEndJdYi46ssTWP5FXOJTY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752563504; c=relaxed/simple;
-	bh=IrQaQykGjj3dB/3nVu8v+dK34oLNaImDrN9lEaKIOlw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=K6D6ELMyvle8c7aX0O2rFLrc1mL47ZyWzp0V6O3mjgd1AYfVE9N/cp5PMTqErEsu+agXtHTDIPmVkjLxdgClwwtkrOW9Y7OjG0dSnQtwuD5rznVRUynXuTuz5Kx1DTQDW5FFYPU3LdKWDoNqsiK/4u0xCXmBmMX8+50iMGr5zzU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dgZdcNeH; arc=fail smtp.client-ip=52.101.65.0
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Eglal1HvPDa3zPKdextzqNb65JLIuIEdL4bz9JNT9j0+tu53TqiASqC4UMNcBBlXePDVN2E221en6J9Ban9MvMkJLz68jCoh8N+S0o5hT8BohBd8IPMn0fX26q4hQgTwOeVYOvj25kTls8doosYXWVNmtmZ96xHLdHoRnB1rtJUUbN0oeL5yezEgSj64NhjnvJDHxAYdtfUbGNR8oVd56M2eBHaZiAgk41R7EjYPzN+YHbNzA9ZsPe1bXuIbQSiFSCaQem58ZEBSafv/4JpofY/l2BifNWZzzt/YxNPjUxW2pjmfv5HycJsVDIWxHUO0IB4Y5Esk66GKm1OvmR7F+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IrQaQykGjj3dB/3nVu8v+dK34oLNaImDrN9lEaKIOlw=;
- b=DMy968+N15HIpaxAmVNRVHSP3HieRFo76JFZ3nE6JwctU3Bpq5hrq7eOpaN/GYjcOiKFKohrV7omQLS2eDQt+Rb02KWuamFAuGaBv6yYHR3z9Iwux5q73y4iNOR7eOVC6mRg02pxMP/Y1pBXTAN1HuUZL5gVh4mql68/YRh1IKgvDm/2yv+GNqAC4Azv3k+JVM/VK0gN2Bsc+ZMWUd87cTz/yzp9ilmCSiIFt2W/t2nHz67kIqkZMJpa7cPdJQyb0OmbQVlxcnU19q/yoMXPWG1oBT8Qaa996mPMf8DhRxotZGkL1ePzPLxW5QJy7hh3nndJoeAp6ED6Wij+/oTPdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IrQaQykGjj3dB/3nVu8v+dK34oLNaImDrN9lEaKIOlw=;
- b=dgZdcNeHRZIlcCkGmHFJZbwnMrbbwb835TOLeK3GA1pXx18EOwwx489mBRWLAYIVcLJCfrcqPQJt7fQXJV7Pcl5MXMuErTyEQGAteSR+P4/Fh5sZdeqWMNkTlGgWsuxKYxa0XoP4J5JkubVpnjsaUsHJJj4yOHXQwxxX4mj5cJB9j5xxOzCzAVLZoTKixUIETNMkklHciQX6ToHcV5lEhLplpgc36+hK4CXGZ4H+Bkjcf8+DZeJzLEh7pyk0hEKHVBV0UXiRrsGfREoJizpMMQKg5TDSdXOW9ypFxKPwuoREI6CeMLhiJ0dsGSqx3VyXWw3hUh06Tg+a6VFruo0Apg==
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
- by PA4PR04MB8063.eurprd04.prod.outlook.com (2603:10a6:102:ba::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.32; Tue, 15 Jul
- 2025 07:11:39 +0000
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db%5]) with mapi id 15.20.8922.028; Tue, 15 Jul 2025
- 07:11:39 +0000
-From: Wei Fang <wei.fang@nxp.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-CC: Krzysztof Kozlowski <krzk@kernel.org>, "F.S. Peng" <fushi.peng@nxp.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, "robh@kernel.org"
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "richardcochran@gmail.com"
-	<richardcochran@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>, Clark
- Wang <xiaoning.wang@nxp.com>, "andrew+netdev@lunn.ch"
-	<andrew+netdev@lunn.ch>, "davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>, "kuba@kernel.org"
-	<kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>
-Subject: RE: [PATCH net-next 01/12] dt-bindings: ptp: add bindings for NETC
- Timer
-Thread-Topic: [PATCH net-next 01/12] dt-bindings: ptp: add bindings for NETC
- Timer
-Thread-Index:
- AQHb8jPWk5neHXUn3Eeo02nqDOVTYbQxImMAgAATMMCAAAm6gIAAFX1wgAAGKwCAAAFaQIAADfuAgAACM8CAAAPoAIAAAqbQgAAP8QCAABcf0IAAD72AgADTHvCAAEudAIAAAbog
-Date: Tue, 15 Jul 2025 07:11:39 +0000
-Message-ID:
- <PAXPR04MB8510633DE93F043A0CD09F5B8857A@PAXPR04MB8510.eurprd04.prod.outlook.com>
-References: <169e742f-778e-4d42-b301-c954ecec170a@kernel.org>
- <PAXPR04MB85107A7E7EB7141BC8F2518A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <836c9f0b-2b73-4b36-8105-db1ae59b799c@kernel.org>
- <PAXPR04MB8510CCEA719F8A6DADB8566A8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <20250714103104.vyrkxke7cmknxvqj@skbuf>
- <PAXPR04MB85105A933CBD5BE38F08EB018854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <20250714113736.cegd3jh5tsb5rprf@skbuf>
- <PAXPR04MB851072E7E1C9F7D5E54440EC8854A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <20250714135641.uwe3jlcv7hcjyep2@skbuf>
- <PAXPR04MB8510FFE0A5DA2F3A94E9CB7E8857A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <20250715070256.ce6a3insjihjtpzj@skbuf>
-In-Reply-To: <20250715070256.ce6a3insjihjtpzj@skbuf>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|PA4PR04MB8063:EE_
-x-ms-office365-filtering-correlation-id: 8542babe-f2db-4816-c55f-08ddc36ed80c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|7416014|19092799006|376014|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?VQFDKVhbeJCP+ib/C4tyUsJCNFYbGLxHDWa+ymjDmF9xZ6Uy1rNSjBSbGZnU?=
- =?us-ascii?Q?/wjM3am+044qQrLN5bTFHw+vkXcEZjy7qCFXOqNwrYYQa5nd68mZS/FKa7/O?=
- =?us-ascii?Q?6DsUmmIddna6RhlOr2j3FZQRy0dlXm6bOqNsixWr62HN8TrOIndLu/YLFlif?=
- =?us-ascii?Q?ldw5SEYltVS5yi/kmoohDnEijJ5mGPMwDbDVUjOufkfFA+VWqRmyadW5hQjO?=
- =?us-ascii?Q?ZMQ/eD6AkW3b3kiqK0gQwpXdyvsdjS5fR5qaKl/Grlv6/ra/O/7EQBsqFzLl?=
- =?us-ascii?Q?SJT/JDDUsxiCq3PDTD57A+svi9VcXLZuDdR+wf7hChZ9RtdwE0lQ2WunyiLr?=
- =?us-ascii?Q?R4hB1i+EnUNqHRbtVLPSAOcQMgT4DO4k/94cnr4jAUaXcAdq4AaVVVbSB+JS?=
- =?us-ascii?Q?/gATb6rZ29V5pVFZL1+mxZRfmRFeU4+4/66yoruuj0WpMUi4a0hpuA923oHr?=
- =?us-ascii?Q?AJzFWO6Umucbvtx9/IqEmbUIfqIwAMUSM8kDw8QHCK6yE6egnGswp0kNO4/s?=
- =?us-ascii?Q?p+E8bAGm8WICuN9UCgOmeL1d7F42P1/oanOZno1QBvarBeqwyrVITqO8y9A0?=
- =?us-ascii?Q?b4Eh+1sOAnsdYTp8US+xXHBiNHqd1jAdRO8XAi/zLhIIU2DSB9eIwYcmUnOw?=
- =?us-ascii?Q?pN8/lF3Bqtjxj0YQV7zp6I1lTHTZ/ZH1TTAgRrGGE7OrtI6CcxB9VG2p801C?=
- =?us-ascii?Q?nhK2fMaqqVlcjOswULKx3anQzStC6Ro0tvMLXbhrW80C0sFkualwJAYvNLwi?=
- =?us-ascii?Q?w80fFRjfa7V4HskOjYSL9KRAdnzr7MS3o5b5QSBI5RIsOTcb8uhqKd3HTTQ8?=
- =?us-ascii?Q?jd1o/15quXIQnXwxrWFD5IfgNlBVNHCIl7stQnwZJMebS84QHEf+LsR4G0DZ?=
- =?us-ascii?Q?5E6xivS+1rIeRhe/k2TEOwrJjqf02pfQxT/BUEFD2Z5OK1DnYIfiFjNeIyaq?=
- =?us-ascii?Q?xcvGUeyikDai2D14u5qB53LWq0lFnC2D5ot/VJCIH/S4M8hjWokGPsmDFgWF?=
- =?us-ascii?Q?/wjuGOhu1vg3llElD1N+WxHrclnsizMKyFlq559HyOqvgiqlJGqQoJXDJZXm?=
- =?us-ascii?Q?78yu9G2PEV+bw2ghNv48pVHRWGFG7+qtEvAQXdP+/nZVOq/UhYuMdMpk+4KJ?=
- =?us-ascii?Q?Bk5K8swUYEOMNqON2XbUi2AwolpcM+HB2Dxr2lHXYx1xfmXBifllV0qlqyj+?=
- =?us-ascii?Q?5d27u4sGzk5VKIwv/Xw9ASH2Du2NJxgtwSisz+cXBFIMnSCqSDlRYpN0rYmr?=
- =?us-ascii?Q?K/LPPc+FOnRo1MFThnvjeXms57gSIAmDrXUdhg7LG7CN3OlYwr22ulANug8b?=
- =?us-ascii?Q?e1ZkTdhJlElzTEreSrZejraK4sheHafx9k+uNGZNaTYN6vvouNgJWhVCeYKz?=
- =?us-ascii?Q?hIE0mdTzsMShQkbeM1cZ8iY/ANAKNdxcxP98YUj2E1tkCUb7u1pPdMtf4woR?=
- =?us-ascii?Q?uWde+ImktWoF88FwC1u5en4FxQXTgBBj+5LfpYiQ+XvXSq9576VNrQ=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(19092799006)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?5+mEFiyIT30awct9VSVLxfVk+N2KwhoTAHmCGoKTJAC/IAbugQ8SfTBkAB3p?=
- =?us-ascii?Q?137l3hPJRVBZaTTnT7RcnXFyn0YGFX7osaIft+1wJOqz7aS6s+XjrpV4qphg?=
- =?us-ascii?Q?+dtMLVS96xuM3iYn7SUquhXpsEGqA+tRcpM6ENxsVFCqkJMpDz9/6nshYUh9?=
- =?us-ascii?Q?W7A/7CzDNN8wgNV8eZuR4jHn0BdNMWgiD/chK1PrrLtwqLioVG1vnRbnYZSj?=
- =?us-ascii?Q?7Wd3V8JBy+JngYWp5IWHkpQPRdRONkQ0LHo7Kqm3Ynht70myp2O11kNuSEr+?=
- =?us-ascii?Q?XJ+epQDVeh312I9Ti+B2qy0tBMzdng49G7+G+uWJOiHmgAVtG96MW/qxLLHr?=
- =?us-ascii?Q?HT8jll8vN5Fm3xCEXI4vOQU2V+R12qmwMqnO6VjHLtripU3Ig+yTbFN+ONfN?=
- =?us-ascii?Q?CvySMtIeNF2RPIZb7NrAC1ULbLI22uY7iBckuvI4NH46Okj7pGkiy4kP++4s?=
- =?us-ascii?Q?fXnNb74Y38cvHyRrHoiSjT4TChogy74zGUI4AyPbuvhz0/NxjSwAeghHIWsO?=
- =?us-ascii?Q?gLLPzxnjUfM4ncYNj2zra+OuW9aWiL6WijT4QKDutqUnKk5oB8hQzBJJkO5H?=
- =?us-ascii?Q?Wyou1Jg0X9qG28Q9zElxMeEAOP6LwCjD4mdBfy7eB23opVUoXrgmP1X+XXg6?=
- =?us-ascii?Q?PH3G1cl0LC+pDFAFOk/CrTy6pCYWa0sQ+A4olH5ElOc5MI9qzIQ63VzVN63B?=
- =?us-ascii?Q?iSBNFr7JwMrt9bfu/2fMKf0ByGDkpy10BRQecUsYO8bTqj6kotwsVCaKXWoI?=
- =?us-ascii?Q?sJWnUPZejkHHrNbRNBY7ohofe6/jortrPQNjfNkDFghLPEZWeDKfMpdEYYT/?=
- =?us-ascii?Q?C54qA6Q7qMpcMGtFN5iCg3O2aX/dSFTfKi8HYXAilN4Jiz3z1apNNc9n1lVY?=
- =?us-ascii?Q?hGs89Y1UqKQAe8cvuClF6mVYQWXGQisY4TGt1U1idxFcXH0GCN5NkzeiDpga?=
- =?us-ascii?Q?F6CoL3ZfeLJnIdiuwU8wmuw3uVEz5OJW6ocOcz57nRKxqKWen0pehXauZgOU?=
- =?us-ascii?Q?gAiBcfjc+Ov4ldu4Hq/OeT8lqNUHxEmXj6OChE3pBkclX1KkoHvSOA+/5pUu?=
- =?us-ascii?Q?zJPQHnTFILbGe9VUfIEq4MBYqj5ARjC4CC+zMM5xidDPopvGtqqwJleWJ727?=
- =?us-ascii?Q?BkzWFyKK9TKXXgV/IacBFuyBuNrsagVq+K5PoB8O2XC8daFVpABn5De4OcYF?=
- =?us-ascii?Q?qrdYviDMNbxrjrrRjw1Esi2t7jOpRnBK3SrRzLTfp9L3XbpzVjTcc3H+5iXJ?=
- =?us-ascii?Q?/Et97fv9VQNPFughqAEGs4aOHAzymdqUjm7CQepYwR+HOZzqGxyS3vNzxiMH?=
- =?us-ascii?Q?aKcVjA4lVs5kn8POcAoC3O/7SjzUbB0Lf/9DmLXPlOB2C3nWXoHCmkA3jr3b?=
- =?us-ascii?Q?GBPBc1Vp+Gx3286qnOn3z7VdrsJfeq2WrTMaUAphcjL9539D/QFYMhz2NLoM?=
- =?us-ascii?Q?p5p0Sx5QPPP6WQF6wrd9i2TviphMlucwv0Aq1JbrEguT9onnWsPojt7qF4OB?=
- =?us-ascii?Q?5o0Dfuy8Vww4qUMVsOUZ1gqJvCF4MuPdo+nVD3LwC5E5+PkQxfaA69cOXEm5?=
- =?us-ascii?Q?OIfejx5EhsZmpM3TiSc=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DDA41C2DB2
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 07:19:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752563958; cv=none; b=MjOXeiP6Ppr3BULAcx8DwZqEBNPQPJe4skpZsQWaMF5tdFr1rW2Ftg4/VJSOPJ0VIMtQm33ZodezIBoqKYMgH2yMXgjK3t3NOiBtYitwhUzOvJ1GNXFoSWHqUUNIW5Z4Jark4JQ9rcS65Zc4lZFvsfrKY4BMQP8oXzfsWBFN6Xs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752563958; c=relaxed/simple;
+	bh=7xd0aEtQAkfRhhfcCuzFJQNDslw5DAv7Mc2CrfAcRN0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=W01+A/WkKD7mIWqEAxguYenuV5HsoK+lqWkcHPtU5E8OF2hyOWChajaPjUeQFXWfhYIlc9zw6vsasTuHgktl2t8xwSop9OQJaMl9EQVReVbZ4kWkyQ+tL3EATsbJqsfu2LP84HrH/9N1VGisev/ZzzmlxI1SDMECuQhz780v5SI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=N+IexZZ+; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-60780d74c8cso8421269a12.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 00:19:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1752563954; x=1753168754; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rm5Emm3+mo6FT7qDpobA6G+QLjpbiKmx/DuT9aUyZyc=;
+        b=N+IexZZ+4ZDdwqD7jT9PWyq4yxSo7i0qjS1RUrNObrH1yjQ8j0z1J6hqav/aVwYVWd
+         bZhHsa484ndLqXHBySyq6xtAWps/kLEjLYg242MZIRxfg63AUww0pUucz9q3N9DOQ7L8
+         RHcb8x9doqzERmxCamIz81p95SRka5RMt9zc1FQa9rZz4vowBCO0RjZlTbs6jg3LMuB1
+         8vfPd1FAhhzRXNqbw5qLBRPKxFmmo8bfon9syTslDqM9+MvyDqUsoC51ravaWxmriISH
+         tDxwszYTdsYUNHmMbQ+dICs/USKKvcbBBkb1oR2ZMeHcKRVzdYzbWcsex9lleVe6WcyT
+         FWtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752563954; x=1753168754;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rm5Emm3+mo6FT7qDpobA6G+QLjpbiKmx/DuT9aUyZyc=;
+        b=jvxNAFpaAzbEAEZuwJYCKnh+ylnoJkX9Pln+Werx889jDzu57qeei0Qa0C+CWKi5+m
+         KxFuETpu5lgxuKKegFPR0BFjRqlWeBPnJIB5QrpTAz5ALoTSpfDZgljwPTGYJEvuiT5v
+         uYl7qQmFtRWT7t2Mi4Y47F3nCxbrVHjGm4REA83bDt8+ZekNnL1bKZ0+zazQlcyGYDJM
+         GOMXhtcyaIfjYBqJG1Ly5J+A1CK7wcMlva5IZn8c7Rhc7tyIxiXsA0FE0tG9pr7WrG4s
+         0RZiim9cOJb4MpICzLVcPKz5gKhDdedZ5WOrk+SklCCl/ZhaTLLYCF4iYuWJBgdsuq5e
+         qOfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVtFGDaP/GjaiLoEeTGUPFCZKHteS11oJTTHwuLgSXPwM2sgZAc2bkSf3au8oZtowDhx5fa/xpql1kI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1Qu1G1rDoc5+jYMN5utHZfEJyKjJQ5a8xuyixWjkkZa25LYVP
+	EYsAV4dBIhqnp+k5n1i2YBwtCAkKcI/1fH5F7VXhM2w0rjmTM6i/2LKIv9eBauijc5w=
+X-Gm-Gg: ASbGncsfdsv1GVkMSKSBkd1S5A2dFas4+xkjbBR6vl294cyoUNyQQFMRVOrUFh9UB9W
+	R2XrRCj2DcIfs4+oU0cUe1ythgxIND8fJOnSsnJYXQ2i8yYHjWDKkpiWGaAjkM9xhHJFP2A06K4
+	7ObypQoLa/P1mSjdSTFe4VKEb0OlvDhaTuRHXY/7MVJjdn82wTNueApnFsMe1qzQ32LSs//MC+r
+	3FxdgTET40+QU4qB5mzaSQZ47b0F/z8+bft6/Z4f2kvErgKNDm5VPgP/BoVxYS2BZJgctNF6Zqb
+	Cv6q0s8X540n4/AEhHkOIIdPMnoIBQrEyVdDtTbzIS9lfTKNEwMq1FQY0hsmixiaPK9cZ2g5BL+
+	61JSmHDW6Pk0xJ34XEhfq4q8PlRIkGXvGFSIrSeYs9GoSQQp8fXkTAz8R
+X-Google-Smtp-Source: AGHT+IFWv5NE2d8sdGkdncQkeDI14IZ6O0yr1kGNqs7F/kZQXvRGoaJHtyYP+E/Tt/FniiVadsE+bA==
+X-Received: by 2002:a05:6402:280b:b0:60c:5853:5b7f with SMTP id 4fb4d7f45d1cf-611e84fdedcmr14210105a12.32.1752563953728;
+        Tue, 15 Jul 2025 00:19:13 -0700 (PDT)
+Received: from otso.local (212095005088.public.telering.at. [212.95.5.88])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-611c976fcfcsm6873715a12.66.2025.07.15.00.19.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Jul 2025 00:19:13 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v3 00/11] Add clock drivers for Milos
+Date: Tue, 15 Jul 2025 09:19:00 +0200
+Message-Id: <20250715-sm7635-clocks-v3-0-18f9faac4984@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8542babe-f2db-4816-c55f-08ddc36ed80c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2025 07:11:39.4552
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qg4sMMLYIPoVScXc/WHODM/jGHAI3gqCONyqyL0xEz+AwfnSAh+syCKgvWtUkEqhZVHx+ecQbbxuhbcmi+uX/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB8063
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOQAdmgC/13P0Q6CIBQG4FdxXEdDUFGveo/WBeExWQkGxGzOd
+ w+11ublf87+b+dMyIFV4FCdTMhCUE4ZHQM7JEh2Qt8AqyZmRAnNSUEJdj0vWI7lw8i7w7yoqoa
+ xspGMo9gZLLRqXL3zJeZOOW/se+VDukx/Ur6TQooJloKllAATJYFTK5QdOqPhKE2PFi3Qv8BJt
+ hdoFCrIuOCSNBlv98K8HWjh+Yp/+u1KdBUOcNz3yteJhtHjr89iY/4AAyBdyyEBAAA=
+X-Change-ID: 20250620-sm7635-clocks-7699d338dc37
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752563952; l=3094;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=7xd0aEtQAkfRhhfcCuzFJQNDslw5DAv7Mc2CrfAcRN0=;
+ b=KmiAwRrF46kq8Z+FNHZF8V3uDR/PJtSyyBbFB5IdRNtbQbIUP2wd9GkJXpI+T1AalV8GI5t2w
+ R1B7ASszydUAs2ZkgTYNEhEtjExdyuNuaO/wJjC3p1oMr3TBNwAwyir
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-> On Tue, Jul 15, 2025 at 05:52:33AM +0300, Wei Fang wrote:
-> > > You seem to imply that the "nxp,pps-channel" property affects the
-> > > function of the SoC pads, which may be connected to the NETC 1588 tim=
-er
-> > > block or to some other IP. Nothing in the code I saw suggested this
-> > > would be the case, and I still don't see how this is the case - but
-> > > anyway, my bad.
-> > >
-> > > In this case, echoing Krzysztof's comments: How come it isn't the sys=
-tem
-> > > pinmux driver the one concerned with connecting the SoC pads to the N=
-ETC
-> > > 1588 timer or to FlexIO, CAN etc? The pinmux driver controls the pads=
-,
-> > > the NETC timer controls its block's pins, regardless of how they are
-> > > routed further.
-> >
-> > pinmux can select which device to use this pin for, but this is the
-> > configuration inside SoC. For the outside, depending on the design
-> > of the board, for example, pin0 is connected to a CAN-related device,
-> > then in fact this pin can only be used by CAN.
->=20
-> Ok, but I fail to see the relevance here? Do you just mean to say 'there
-> are multiple FIPER outputs from the 1588 timer block, and they may not
-> all be pinmuxed to SoC pads, so I intended "nxp,pps-channel" as a way
-> for the device tree writer to select one of the FIPER outputs which is
-> multiplexed to an SoC pad, rather than arbitrarily choosing one of the
-> FIPER channels in the driver'? If so, I believe the case is settled and
-> this property will disappear in v2.
+Document and add the clock drivers for GCC, CAMCC, DISPCC, GPUCC and
+VIDEOCC on the Milos SoC (e.g. SM7635).
 
-Yeah, now I'm clear that PTP_CLK_REQ_PPS is not used to output PPS
-to external pins, so this property will be dropped.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v3:
+- Move dfs_rcgs to qcom_cc_driver_data (update common & gcc)
+- Pick up tags
+- Link to v2: https://lore.kernel.org/r/20250704-sm7635-clocks-v2-0-9e47a7c0d47f@fairphone.com
+
+Changes in v2:
+- Rebrand SM7635 to Milos as requested: https://lore.kernel.org/linux-arm-msm/aGMI1Zv6D+K+vWZL@hu-bjorande-lv.qualcomm.com/
+- Use new qcom_cc_driver_data to configure e.g. always-on clks instead
+  of in probe function, plus some other related bits from the probe
+  function
+- Add patch to support registering rcg dfs in qcom_cc_really_probe
+- Link to v1: https://lore.kernel.org/r/20250625-sm7635-clocks-v1-0-ca3120e3a80e@fairphone.com
+
+---
+Luca Weiss (11):
+      clk: qcom: common: Add support to register rcg dfs in qcom_cc_really_probe
+      dt-bindings: clock: qcom: document the Milos Global Clock Controller
+      clk: qcom: Add Global Clock controller (GCC) driver for Milos
+      dt-bindings: clock: qcom: document the Milos Camera Clock Controller
+      clk: qcom: Add Camera Clock controller (CAMCC) driver for Milos
+      dt-bindings: clock: qcom: document the Milos Display Clock Controller
+      clk: qcom: Add Display Clock controller (DISPCC) driver for Milos
+      dt-bindings: clock: qcom: document the Milos GPU Clock Controller
+      clk: qcom: Add Graphics Clock controller (GPUCC) driver for Milos
+      dt-bindings: clock: qcom: document the Milos Video Clock Controller
+      clk: qcom: Add Video Clock controller (VIDEOCC) driver for Milos
+
+ .../bindings/clock/qcom,milos-camcc.yaml           |   51 +
+ .../bindings/clock/qcom,milos-dispcc.yaml          |   63 +
+ .../devicetree/bindings/clock/qcom,milos-gcc.yaml  |   62 +
+ .../bindings/clock/qcom,milos-videocc.yaml         |   53 +
+ .../bindings/clock/qcom,sm8450-gpucc.yaml          |    2 +
+ drivers/clk/qcom/Kconfig                           |   47 +
+ drivers/clk/qcom/Makefile                          |    5 +
+ drivers/clk/qcom/camcc-milos.c                     | 2161 +++++++++++++
+ drivers/clk/qcom/common.c                          |   10 +
+ drivers/clk/qcom/common.h                          |    2 +
+ drivers/clk/qcom/dispcc-milos.c                    |  974 ++++++
+ drivers/clk/qcom/gcc-milos.c                       | 3225 ++++++++++++++++++++
+ drivers/clk/qcom/gpucc-milos.c                     |  562 ++++
+ drivers/clk/qcom/videocc-milos.c                   |  403 +++
+ include/dt-bindings/clock/qcom,milos-camcc.h       |  131 +
+ include/dt-bindings/clock/qcom,milos-dispcc.h      |   61 +
+ include/dt-bindings/clock/qcom,milos-gcc.h         |  210 ++
+ include/dt-bindings/clock/qcom,milos-gpucc.h       |   56 +
+ include/dt-bindings/clock/qcom,milos-videocc.h     |   36 +
+ 19 files changed, 8114 insertions(+)
+---
+base-commit: b803ad80123e6efccfeeffa7cd37f98f642e37f4
+change-id: 20250620-sm7635-clocks-7699d338dc37
+
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
 
