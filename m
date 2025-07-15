@@ -1,65 +1,88 @@
-Return-Path: <devicetree+bounces-196457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDB8BB05728
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 11:53:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93E6BB0576B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:04:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8CE73AFDE6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 09:53:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C2DC1C2335A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 10:04:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7586B2D6406;
-	Tue, 15 Jul 2025 09:53:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37EA2D63EF;
+	Tue, 15 Jul 2025 10:04:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="YKNS/mj1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fMqEb0k9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 476502D5406;
-	Tue, 15 Jul 2025 09:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15B0C2D12E4
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 10:04:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752573205; cv=none; b=BlD3hDscz+MHEaRUqo+RqaqTLW3l1IS5vCQwjAI9KmI4UeWE8z3Qp0in4dsyNm2cM2/AS9oQEQqlz2a/UeScGlghnYpQStEWGaiv0Z3dAZwIYOwxsD25ttjaYL4ujDInq3Fd29FOATASyQLMX477lMj1x39xmjmquSGNhA7e88k=
+	t=1752573867; cv=none; b=ncF12lvzyofAvvA6Z/qQn3lGQguae1bRVf9E+Eq7ta6eVjJsn3tII7TGf34eZGxQ7k4mY/BbMZejZD/jOpy54n02kuY6onj1q3YZBCgJnmXb4z4a2TbHeuLP+po8lUDhkdAB+o7n/tHKXZ7uUiDyrST7dSTGM6UeXwbfxv//kLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752573205; c=relaxed/simple;
-	bh=tmHF7gRStiy8BJTFYsfZHMVqt0KO2UrdQFipnPx5lP4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qILFLe590piW4PVxnpV08gyNeafiIl7hUZbOjCeN69OpHnmCRJyRCczTwDWECxKcE2U2kguH16hPCgGMPmF4kUtz3YGvCBbHLQEeuxcbtWZlV0kDEK6sGBfF94UEQByG1t+QmEICbrXnyj15GvmUYkM13EHuDbappSRX98Qt7jU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=YKNS/mj1; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56F6uNQR002322;
-	Tue, 15 Jul 2025 11:52:55 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	s=arc-20240116; t=1752573867; c=relaxed/simple;
+	bh=BNgJdx2kgLGA+3XaVIpYoIeQu4ysU05k9jPfvfGKAYQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GUSks2tmJMz+zxC0aniKRCFJcslAS78l5jO3+zgH6UyIfAlKGARsxxmx3V6k9MUXEkelLoC6841fR6zNufN+5m4zxhcGLoybunZQRs/+AjiCHKtbXbO/CS63GclD97EdsmK2P3asdhMQB99pxQKpIIsijRxvDFHoUXcX3+KkK7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fMqEb0k9; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56F64sAu021925
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 10:04:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	G1/gp4B+L0w00yUAj4aY/kWgU6WTpYFWiQQBVNHuBZg=; b=YKNS/mj1LT/6AIJY
-	+8QQVR+QBp0xP38nrqNwzF1iu2AWohdHl67RWB0HupkfYK2dzhwq0DVRmzMeyAUK
-	Bczm3DLmg0hapbdZxuMkeqgkx+H31vHa9rak9IRO3QREsWJVE/5Wbe0Ukibb7pOF
-	U0m+pJ8m10/FbMpMolE11jeAhCJt2tSg0t09RHgEFjh4Ei5/DHtaZ4n9iDiUPXY+
-	4hAtt4FYFh6E87hzoap+tBeUvSOhgCaCGGvbuH4ZZb5gFP7CNhZcKwNfbLzQ/GDS
-	9kyBHq7ax+ADFLTED/lyL0IgP2bySJImYvTuovPh/KNfpyQVeIENyEmqy9llvxnR
-	Ws5b1w==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47uf22mk5t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 15 Jul 2025 11:52:55 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A118F4004A;
-	Tue, 15 Jul 2025 11:51:26 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 03564B6CE36;
-	Tue, 15 Jul 2025 11:49:43 +0200 (CEST)
-Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 15 Jul
- 2025 11:49:41 +0200
-Message-ID: <1d22a89d-f060-4663-aef9-6645a66d15a5@foss.st.com>
-Date: Tue, 15 Jul 2025 11:49:41 +0200
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jHYSJD27uvDlRUQTR51LeWjSN/YPjznDBPWdLD1taHo=; b=fMqEb0k9eOsvPtRq
+	pgvyCg8P1RYy3WiwKPOu3hnglFNcOIKalBAIKpJFwvy9Edf5SD16CyGWB1j6KNK3
+	wI1pFEitRq2zsqcLKcHn8KaJaR9C62cbR0hxyO0Icz9tF+UM6fbCF7MW1zPCv/y1
+	IaBKsqfrFvrJ6l+lJ/dPNSoJxsGvmBu4MEf1tzgUUCn0xnaVbwepLQQjWna939WK
+	2PsSQ6hzVP9RvXzzmaCfhvLtE7f6Lcvm0FDy7vtkXDO4Y+7ae28ubPcbtpTJ6r2r
+	SFMoUVunvGXifOs/tf3RLhrNQe5V2z5H+PcRG4YUJD3CQQGEC3cKWX6LmwAeg+Uo
+	eaCPgg==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47w5dpaj4k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 10:04:25 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7e32edf8dcaso3665785a.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 03:04:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752573864; x=1753178664;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jHYSJD27uvDlRUQTR51LeWjSN/YPjznDBPWdLD1taHo=;
+        b=OroFLrRBIZHPgefAo/2HJtqpMxpyL03vxfq6H9RFWaf08HILDQhb1IrPxP1WbvMDMW
+         AWE5zxHgoH+WoEQZmkYo56Seof19N4+aFKVvfFLW5od7KUovkrbHbUwxdDvmUWwECeHC
+         xtefOqn0Ca2vmA5mxZl6XPOAxQFrXEqrnvr+b4Jr4fvH/smS8YSbzg7oUFjigDmc1+QX
+         2bx5OttFZqPLcNHitqC360GOVlTbHSP3W/4Gb80zT0yDlTIYRB547a028WNph5WASI9x
+         aeJ1VtfF8Nq3gxb1kInJeauUypN7QQW/QWNMOKhgpmWPpWS00ZedZyuN4GyOVFbsgpId
+         RSzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUnwxau/LpNxSxpmPoafsBqYo1xnpIkJZHaHb3Qwez/sDM4UFhV7OE79odpTVNMepzZTSNi4aHu85Gi@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYUaAGcqoMZFqBrtQdszCkWIIArvrPmcvOroHEWBQs9Ro6+yqz
+	vjSInU1JkoZVbBub9jBOch2O1Nh34gLJ0/zpFN9AKMKiQ2EHwTlLeRVYNQQL8mHSwjiUk4Y3k92
+	OBJEeOfUgxsNz1OLRX0sAWu5vWlxuO9ooqUe/D4N8n/7QYZuInRDOo9gBdI+3PE40
+X-Gm-Gg: ASbGncuvSjfV08oGIWc7UqY4vPzrUiSe/aPRbIchTBKD4V9a4FCpX9i9m6Hcl/m0HAP
+	TzONo6wpN14AkaNDuoa8UWgXlxgLRclTRYWOC+iIrRg3E263ri82v71SCn5L+pihx+Jz9+rBXU9
+	lVtX0eE+YRuq0C2dYe86ouWWIjhd0Ut5mjNB6JT+M+VGFV6LeOQxS3WBw063upbjThvvctDkXrl
+	WP+PIKOIwk2hsQRoNnIRqMnBmm/vAS5y9unBOsFCb1+pWsbj4TTIZJrDTB8aKpVvPz1A5LfsrLW
+	f9fIYzBuVEXLcdFygXwLCVrX4x0KvabZElJcBFWqEf/pIPqbY79OSqNmhJhxCqmoJUX4/7C3ubi
+	6PEiFidOgMvBJbciAkrTS
+X-Received: by 2002:a05:620a:6405:b0:7e3:3001:b055 with SMTP id af79cd13be357-7e33c64d5d6mr50122185a.0.1752573863946;
+        Tue, 15 Jul 2025 03:04:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGUyozA445ADYpujI0kmNPEbeGrDOg9nc9SAGKkwFmSlzeir/EjIgg27sen+sL7L37zz326xg==
+X-Received: by 2002:a05:620a:6405:b0:7e3:3001:b055 with SMTP id af79cd13be357-7e33c64d5d6mr50121285a.0.1752573863480;
+        Tue, 15 Jul 2025 03:04:23 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e8313036sm956336766b.180.2025.07.15.03.04.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Jul 2025 03:04:22 -0700 (PDT)
+Message-ID: <babdaa54-8804-4f20-9847-9105cd485538@oss.qualcomm.com>
+Date: Tue, 15 Jul 2025 12:04:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,340 +90,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 09/16] perf: stm32: introduce DDRPERFM driver
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-CC: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Rob
- Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 2/4] media: i2c: imx355: Support devicetree and power
+ management
+To: Richard Acayan <mailingradian@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Gabriel Fernandez
-	<gabriel.fernandez@foss.st.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Le
- Goffic <legoffic.clement@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-perf-users@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-References: <20250711-ddrperfm-upstream-v2-0-cdece720348f@foss.st.com>
- <20250711-ddrperfm-upstream-v2-9-cdece720348f@foss.st.com>
- <20250711170415.00001901@huawei.com>
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc: Robert Mader <robert.mader@collabora.com>
+References: <20250714210227.714841-6-mailingradian@gmail.com>
+ <20250714210227.714841-8-mailingradian@gmail.com>
 Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <20250711170415.00001901@huawei.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250714210227.714841-8-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE1MDA5MSBTYWx0ZWRfX55JQEzNBuuDt
+ d9nI+kU3ETpE2EleCeggzw5oNgJfqSt7+gJwIHQev+XwDX/os0WQbNaXzprYL1RUt7tBSLevSey
+ bkG0fOISop5dvnu9NGFzyUaPf9wZmrYiWVgehPu0E1g+jx/b77R4w0zRcfnk6+I6rXHk+AXfiy7
+ +wx41pi7mNcQDcS7uKitI/E0Zcaul9MFKTzC5mzdLup3m5+Gqmii/RAqtFMoqGLEN1JjiR+UdiG
+ 0T5hw2j36VFFEZFt8kjVWUkcAz+fvuLLZtbiPhnBSrBAZbszOyuPu/K5ovWKK8macpv3PEsKuxZ
+ LLuSlacNVuu/BjeHELvfYs9+Dua9NoPISoYfuQIB2aO/+7PwsmDF7+YKAPRoBbumQTEz85oLb/j
+ IF74zdvu6HMlXyEXMVMMlxdzSYaoj1XmHps6MOmxRCfKVvKYrjJIvJE+h1hpfZu4fezSdP8g
+X-Proofpoint-GUID: rnOFnpxieLyEqrzGcDzUn1zWJVAoYIDi
+X-Proofpoint-ORIG-GUID: rnOFnpxieLyEqrzGcDzUn1zWJVAoYIDi
+X-Authority-Analysis: v=2.4 cv=Y+r4sgeN c=1 sm=1 tr=0 ts=687627a9 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=pGLkceISAAAA:8 a=P1BnusSwAAAA:8
+ a=UF4_Mx3OVNFJwZjtfFEA:9 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+ a=D0XLA9XvdZm18NrgonBM:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
  definitions=2025-07-15_01,2025-07-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 mlxlogscore=999 phishscore=0 malwarescore=0 priorityscore=1501
+ adultscore=0 impostorscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0
+ bulkscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507150091
 
-Hi Jonathan,
+On 7/14/25 11:02 PM, Richard Acayan wrote:
+> A device tree compatible makes it possible for this driver to be used on
+> Open Firmware devices. Initialization of power-managed resources such as
+> the reset GPIO and voltage regulators can be specified in the device
+> tree and handled by the driver. Add support for this so the Pixel 3a can
+> use the driver.
+> 
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
 
-On 7/11/25 18:04, Jonathan Cameron wrote:
-> On Fri, 11 Jul 2025 16:49:01 +0200
-> Clément Le Goffic <clement.legoffic@foss.st.com> wrote:
-> 
->> Introduce the driver for the DDR Performance Monitor available on
->> STM32MPU SoC.
->>
->> On STM32MP2 platforms, the DDRPERFM allows to monitor up to 8 DDR events
->> that come from the DDR Controller such as read or write events.
->>
->> On STM32MP1 platforms, the DDRPERFM cannot monitor any event on any
->> counter, there is a notion of set of events.
->> Events from different sets cannot be monitored at the same time.
->> The first chosen event selects the set.
->> The set is coded in the first two bytes of the config value which is on 4
->> bytes.
->>
->> On STM32MP25x series, the DDRPERFM clock is shared with the DDR controller
->> and may be secured by bootloaders.
->> Access controllers allow to check access to a resource. Use the access
->> controller defined in the devicetree to know about the access to the
->> DDRPERFM clock.
->>
->> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
-> 
-> Hi Clément,
-> 
-> A quick drive by review as it's Friday afternoon and I was curious..
-> 
-> Mostly superficial stuff. I didn't look closely at the perf logic.
+[...]
 
-Thank you for the review.
-The perf logic is new to me so if you have any suggestion, you're welcome.
+> +static int imx355_power_off(struct device *dev)
+> +{
+> +	struct i2c_client *client = container_of(dev, struct i2c_client, dev);
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct imx355 *imx355 = to_imx355(sd);
+> +
+> +	clk_disable_unprepare(imx355->mclk);
+> +
+> +	if (imx355->reset_gpio)
+> +		gpiod_set_value_cansleep(imx355->reset_gpio, 0);
+> +
+> +	regulator_bulk_disable(ARRAY_SIZE(imx355->supplies), imx355->supplies);
 
+FWIW power_off is normally a mirror image of power_on (so one would expect
+thissequence to be reset_gpio->regulator->clk)
 
-> 
->> diff --git a/drivers/perf/stm32_ddr_pmu.c b/drivers/perf/stm32_ddr_pmu.c
->> new file mode 100644
->> index 000000000000..1be5bbe12978
->> --- /dev/null
->> +++ b/drivers/perf/stm32_ddr_pmu.c
->> @@ -0,0 +1,910 @@
-> 
->> +#define EVENT_NUMBER(group, index)	(((group) << 8) | (index))
->> +#define GROUP_VALUE(event_number)		((event_number) >> 8)
->> +#define EVENT_INDEX(event_number)	((event_number) & 0xFF)
-> 
-> Prefix these macro names with something driver specific.  They are
-> very likely to clash with something in a header in future otherwise.
+[...]
 
-Ok
+> +static struct imx355_hwcfg *imx355_get_hwcfg(struct device *dev, struct imx355 *imx355)
+>  {
+>  	struct imx355_hwcfg *cfg;
+>  	struct v4l2_fwnode_endpoint bus_cfg = {
+> @@ -1648,11 +1715,15 @@ static struct imx355_hwcfg *imx355_get_hwcfg(struct device *dev)
+>  	if (!cfg)
+>  		goto out_err;
+>  
+> -	ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
+> -				       &cfg->ext_clk);
+> -	if (ret) {
+> -		dev_err(dev, "can't get clock frequency");
+> -		goto out_err;
+> +	if (imx355->mclk) {
+> +		cfg->ext_clk = clk_get_rate(imx355->mclk);
 
-> 
->> +
->> +enum stm32_ddr_pmu_memory_type {
->> +	STM32_DDR_PMU_LPDDR4,
->> +	STM32_DDR_PMU_LPDDR3,
->> +	STM32_DDR_PMU_DDR4,
->> +	STM32_DDR_PMU_DDR3
-> 
-> This should have a trailing comma as might well be more
-> added in future if this IP gets used in more devices.
+See:
 
-Ok
+<20250710174808.5361-1-laurent.pinchart@ideasonboard.com>
 
->> +};
->>
-> 
-> 
->> +
->> +static const struct attribute_group *stm32_ddr_pmu_attr_groups_mp2[] = {
->> +	&stm32_ddr_pmu_events_attrs_group_mp2,
->> +	&stm32_ddr_pmu_format_attr_group,
->> +	NULL,
-> 
-> No comma needed on terminating entries.
-
-Ok, will also be fixed for `stm32_ddr_pmu_attr_groups_mp1[]` and
-`stm32_ddr_pmu_format_attrs[]`
-> 
->> +};
->> +
->> +static int stm32_ddr_pmu_device_probe(struct platform_device *pdev)
->> +{
->> +	struct stm32_firewall firewall;
->> +	struct stm32_ddr_pmu *pmu;
->> +	struct reset_control *rst;
->> +	struct resource *res;
->> +	int ret;
->> +
->> +	pmu = devm_kzalloc(&pdev->dev, struct_size(pmu, counters, MP2_CNT_NB), GFP_KERNEL);
->> +	if (!pmu)
->> +		return -ENOMEM;
->> +
->> +	platform_set_drvdata(pdev, pmu);
->> +	pmu->dev = &pdev->dev;
->> +
->> +	pmu->cfg = device_get_match_data(&pdev->dev);
->> +
->> +	pmu->membase = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
->> +	if (IS_ERR(pmu->membase))
->> +		return PTR_ERR(pmu->membase);
->> +
->> +	if (of_property_present(pmu->dev->of_node, "access-controllers")) {
->> +		ret = stm32_firewall_get_firewall(pmu->dev->of_node, &firewall, 1);
->> +		if (ret)
->> +			return dev_err_probe(pmu->dev, ret, "Failed to get firewall\n");
->> +		ret = stm32_firewall_grant_access_by_id(&firewall, firewall.firewall_id);
->> +		if (ret)
->> +			return dev_err_probe(pmu->dev, ret, "Failed to grant access\n");
->> +	}
->> +
->> +	pmu->clk = devm_clk_get_optional_prepared(pmu->dev, NULL);
-> 
-> Given there are quite a few uses of pmu->dev, maybe worth a local
-> struct device *dev = &pdev->dev; at the top and use dev to replace all these.
-
-As I need pmu->dev elsewhere in the driver I'll stick to it and replace 
-all &pdev->dev
-
-> 
->> +	if (IS_ERR(pmu->clk))
->> +		return dev_err_probe(pmu->dev, PTR_ERR(pmu->clk), "Failed to get prepare clock\n");
->> +
->> +	clk_enable(pmu->clk);
->> +
->> +	rst = devm_reset_control_get_optional_exclusive(&pdev->dev, NULL);
-> 
-> You mix and match between pdev->dev, and pmu->dev. Good to pick one or use local
-> variable as suggested above.
-
-Ok
-> 
->> +	if (IS_ERR(rst)) {
->> +		clk_disable_unprepare(pmu->clk);
-> Given use of _prepared() get above. This doesn't look right - the unprepare
-> should be handled by devm unwinding. clk_disable()
-
-Oh you're right, I can fix this unwinding issue by using 
-`devm_clk_get_optional_enabled()` instead of 
-`devm_clk_get_optional_prepared()` and remove the `clk_enable()` so all 
-`clk_disable_unprepare()` disappear from the probe
-
-
->> +		return dev_err_probe(&pdev->dev, PTR_ERR(rst), "Failed to get reset\n");
->> +	}
->> +
->> +	reset_control_assert(rst);
->> +	reset_control_deassert(rst);
->> +
->> +	pmu->poll_period = ms_to_ktime(POLL_MS);
->> +	hrtimer_setup(&pmu->hrtimer, stm32_ddr_pmu_poll, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
->> +
->> +	for (int i = 0; i < MP2_CNT_NB; i++)
->> +		INIT_LIST_HEAD(&pmu->counters[i]);
->> +
->> +	pmu->selected_set = -1;
->> +
->> +	pmu->pmu = (struct pmu) {
->> +		.task_ctx_nr = perf_invalid_context,
->> +		.start = stm32_ddr_pmu_event_start,
->> +		.stop = stm32_ddr_pmu_event_stop,
->> +		.add = stm32_ddr_pmu_event_add,
->> +		.del = stm32_ddr_pmu_event_del,
->> +		.read = stm32_ddr_pmu_event_read,
->> +		.event_init = stm32_ddr_pmu_event_init,
->> +		.attr_groups = pmu->cfg->attribute,
->> +		.module = THIS_MODULE,
->> +	};
->> +
->> +	ret = perf_pmu_register(&pmu->pmu, DRIVER_NAME, -1);
-> 
-> Calling this exposes user interfaces etc.  Does it really make sense to
-> do that and then write another register?  I'd normally expect this
-> last in probe.
-
-Indeed, will move it at the end of the probe
-
-> 
->> +	if (ret) {
->> +		clk_disable_unprepare(pmu->clk);
-> 
-> As above.
-
-Ok
-> 
->> +		return dev_err_probe(&pdev->dev, ret,
->> +				     "Couldn't register DDRPERFM driver as a PMU\n");
->> +	}
->> +
->> +	if (pmu->cfg->regs->dram_inf.reg) {
->> +		ret = stm32_ddr_pmu_get_memory_type(pmu);
->> +		if (ret) {
->> +			perf_pmu_unregister(&pmu->pmu);
->> +			clk_disable_unprepare(pmu->clk);
->> +			return dev_err_probe(&pdev->dev, ret, "Failed to get memory type\n");
->> +		}
->> +
->> +		writel_relaxed(pmu->dram_type, pmu->membase + pmu->cfg->regs->dram_inf.reg);
->> +	}
->> +
->> +	clk_disable(pmu->clk);
->> +
->> +	return 0;
->> +}
-> 
->> +static const struct stm32_ddr_pmu_regspec stm32_ddr_pmu_regspec_mp2 = {
->> +	.stop =		{ DDRPERFM_CTRL, CTRL_STOP },
->> +	.start =	{ DDRPERFM_CTRL, CTRL_START },
->> +	.status =	{ DDRPERFM_MP2_STATUS, MP2_STATUS_BUSY },
->> +	.clear_cnt =	{ DDRPERFM_CLR, MP2_CLR_CNT},
->> +	.clear_time =	{ DDRPERFM_CLR, MP2_CLR_TIME},
-> 
-> Spaces before } are missing
-> There are a few others above that I'll not mention directly.
-
-Ok thanks
-
-> 
-> 
->> +	.cfg0 =		{ DDRPERFM_MP2_CFG0 },
->> +	.cfg1 =		{ DDRPERFM_MP2_CFG1 },
->> +	.enable =	{ DDRPERFM_MP2_CFG5 },
->> +	.dram_inf =	{ DDRPERFM_MP2_DRAMINF },
->> +	.counter_time =	{ DDRPERFM_MP2_TCNT },
->> +	.counter_evt =	{
->> +				{ DDRPERFM_MP2_EVCNT(0) },
-> Somewhat unusual formatting though neat I guess so fine if you
-> really like it!.
-> 	.counter_evt =	{
-> 		{ DDRPERFM_MP2_EVCNT(0) },
-> 
-> would be what I'd normally expect.
-
-I'll stick to normality, don't wanna be special here
-
->> +				{ DDRPERFM_MP2_EVCNT(1) },
->> +				{ DDRPERFM_MP2_EVCNT(2) },
->> +				{ DDRPERFM_MP2_EVCNT(3) },
->> +				{ DDRPERFM_MP2_EVCNT(4) },
->> +				{ DDRPERFM_MP2_EVCNT(5) },
->> +				{ DDRPERFM_MP2_EVCNT(6) },
->> +				{ DDRPERFM_MP2_EVCNT(7) },
->> +	},
->> +};
->> +
->> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp1 = {
->> +	.regs = &stm32_ddr_pmu_regspec_mp1,
->> +	.attribute = stm32_ddr_pmu_attr_groups_mp1,
->> +	.counters_nb = MP1_CNT_NB,
->> +	.evt_counters_nb = MP1_CNT_NB - 1, /* Time counter is not an event counter */
->> +	.time_cnt_idx = MP1_TIME_CNT_IDX,
->> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp1,
->> +};
->> +
->> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp2 = {
->> +	.regs = &stm32_ddr_pmu_regspec_mp2,
->> +	.attribute = stm32_ddr_pmu_attr_groups_mp2,
->> +	.counters_nb = MP2_CNT_NB,
->> +	.evt_counters_nb = MP2_CNT_NB - 1, /* Time counter is an event counter */
->> +	.time_cnt_idx = MP2_TIME_CNT_IDX,
->> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp2,
->> +};
->> +
->> +static const struct dev_pm_ops stm32_ddr_pmu_pm_ops = {
->> +	SET_SYSTEM_SLEEP_PM_OPS(NULL, stm32_ddr_pmu_device_resume)
->> +};
-> 
-> static DEFINE_SIMPLE_DEV_PM_OPS() looks appropriate here.
-
-Indeed, Thank you
-
-> 
-> 
->> +
->> +static const struct of_device_id stm32_ddr_pmu_of_match[] = {
->> +	{
->> +		.compatible = "st,stm32mp131-ddr-pmu",
->> +		.data = &stm32_ddr_pmu_cfg_mp1
->> +	},
->> +	{
->> +		.compatible = "st,stm32mp251-ddr-pmu",
->> +		.data = &stm32_ddr_pmu_cfg_mp2
->> +	},
->> +	{ },
-> 
-> No comma need after terminating entry.  Nice to make it hard
-> to accidentally add entries after one of these!
-
-Yes, I'll fix it
-
-Best regards,
-Clément
+Konrad
 
