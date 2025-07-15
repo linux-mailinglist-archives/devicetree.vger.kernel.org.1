@@ -1,149 +1,167 @@
-Return-Path: <devicetree+bounces-196561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CEE1B061A8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 16:46:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3872BB06245
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 17:04:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2AF0D7A33F7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:44:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10E7A5A4037
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:56:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D7C1DF26B;
-	Tue, 15 Jul 2025 14:46:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B2A01E832A;
+	Tue, 15 Jul 2025 14:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nhOI4oOc"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="jw/g83n5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011047.outbound.protection.outlook.com [40.107.130.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8378C17B425;
-	Tue, 15 Jul 2025 14:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752590778; cv=none; b=oIsgVK+PkQp35W7/T6IOb+7tjntXPjtmQi+sZzw6hr4tagyaKS3SNjPN4Vbi+aJzg0YCvBVFLmfP9XLmAFvqmp5jChfIhiXSt5AlUanAx83252qFKUchiKVawJ9wqgDjxvEUXwxhDyhFHsagwQw4J05oBPnuGrOo6zyjU7ApN8M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752590778; c=relaxed/simple;
-	bh=KZ1W7mzel2tzyENmIY/KyfG+sQOyLDK8atG59n7g34U=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=g0c9EwCV6Sy199W37aG0IpkDavxAGlHDAIXgHJWTElUa7K6i5KqvhwIRSYz33hAm9fNHl+4aC988p/J6r+bH8m6DfD+8hw1yL9TWK2P3bb2QoufPEqtQTChFl2b3wiSNojuJLr9OmgpUxfR/d8YkeFIQqqELDnZH8OodCiUn3AQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nhOI4oOc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3826DC4CEE3;
-	Tue, 15 Jul 2025 14:46:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752590778;
-	bh=KZ1W7mzel2tzyENmIY/KyfG+sQOyLDK8atG59n7g34U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=nhOI4oOcjdEd81/BA+chqSa9l8uanzEnEhr+bgfqoi60EpD0cwakUJpbZX2fvZD9c
-	 h0r1Tl3SHdyGUqyNniLCPaRBLWnhR4Mw4wlI0b9cxK2s7FO/4PCh/z68CLf37uqsbN
-	 Ss57RFtoC1bv1VmoENClwao3WYlFrjJ6yC7SIvm9bi5akXlS/Oy+9OsgqHLoZsWQN+
-	 aOS+cqX7rXhgqW0olOrGTZRfSSAUFdUoXJJXA1aV5LA9A12qLH5D2M+l2ZRGSowLbs
-	 FUNKbLBEz/i0hS2tpLxxlwcQJOY2rIHFi2EcPvKl2lBHzOWGB1F27V57vVQ2nL9Xb7
-	 ZNVpaMdVZGo+Q==
-Date: Tue, 15 Jul 2025 09:46:16 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>,
-	Manivannan Sadhasivam <mani@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	geert+renesas@glider.be, magnus.damm@gmail.com,
-	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	john.madieu.xa@bp.renesas.com,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v2 0/8] PCI: rzg3s-host: Add PCIe driver for Renesas
- RZ/G3S SoC
-Message-ID: <20250715144616.GA2458869@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D63342A83;
+	Tue, 15 Jul 2025 14:56:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752591377; cv=fail; b=t1gGqdziKDZDzAK2V3bOD/K6OtLnqvkInfj4CmdfJarw+M6SMRDAthdXkBLNGkFGk2l8mDh5RkRXD+CitExZ4Ahe/X97iICH3yseYjwIxUidOOxGwHKX93EGDQI+mLh3Hw76zoCtRYETi/4jqU0+t4KcjDUZ3dExlFkLqZxsfag=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752591377; c=relaxed/simple;
+	bh=xuKHmo19THPPPNs/5ar8aX7wyhKBx1Utyel371nkTec=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=cLQKZ8c/9BEU+Po2zQkPPOmxYFxT2UyBgr2tfFkfVR9I9okk5aQ0qo7eEdV/ocgvJV2E4KDuK5FG0ymXmDLlGqkU7xTwb3rhfrbSAUWwzC7qp1lUhpz4vogZf/xD9ftgLglvLcGnBkM26qZXx1SPpLDVYpaxO5RkzUmcX3o4C9A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=jw/g83n5; arc=fail smtp.client-ip=40.107.130.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zSbns0DxiE43KBXvDMJrbs4jVUYxyx1dUjbnThvOdq6oXHfM18ndyxXFkPsczkQggMkbMKcJ1kDqDfqn89pN0C0p9QYPzsQhEzpY6sYFqt5644MeZWflAAzvx0/FPQinKhT43tdJCsq+Vbqov9woJs+t6LC5GzqvV4u7qG5XmSEB//6bLuofVcnkhvkL0Ec7/CSq0CtWtTuD9yBL0IKzKP1fAkQZbE7N6X8/PiQngUP55wOjLpX7ZnCGfvoE2+XCvpsZVmqaLhfzU09uC6kTDYvKR/8YSI/bvpFgpItG6DjKP7QdSv0J3Fh6LUk4bYSOU0Ka+45fxd55pnYUnQuoTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qQfcmebLHUv1BfOcxeY8PDgw0dX9IsNAfMA8NrJwBSc=;
+ b=i/yQHKg/Mmy+e4OvodyCt7kaqi5cfT3j0hfJRet9mnCIsmd7MEqdz1ec9GVbfo5XkvSYKqxPykpqjbp1ilh4Y7kmkSwuy27wBv3NEjF+JbRJ1dNbaGEnRNm0l0+8boheFiCzLFOoZ6Fnc6SZVT64zHVqvbF0+0jZvRRU1NXPKU1TLzlH2EGPYDK2pFTqOkT9Z6LGlvRKLSdz4pYQPDKA+c3UlliW9vfUp1rusZDvr2bRofjqUoX4KZHHtyobS4a2b27TYyHexVapMezMLFu10Xzt8ibZ3uADKCG29hfS0IF8TPClb27ryoMUUQJBfj5tag1Y8Yv9dwzlgsnSS10Feg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qQfcmebLHUv1BfOcxeY8PDgw0dX9IsNAfMA8NrJwBSc=;
+ b=jw/g83n57ZFMCcrx6UVPVXfr64kWBi87R7QUV3Enj539yZvMwi4ZV/6sz6xafSLTpgcli10LsrdFUxiFfxcRJkg9BNWAbmoZlVfZ7K9l8TY0Wsf3BeXsv9yN6778/CfrZIRvDlpeiXZlRyv62kZR6Jspyyj+wYUSXHLYhag2N3nccY+IizW6gzgGxb2x2zI2Fq9vPYBYS3OK+bf0KLgydSKOYz2Dr4AUcgWmsK9MVWgOQTkWpSeaTbnr1fFsXF9tF6tV3h6bSftRs9g57elu8KfiHe60GYBSxK+1TFrdlW89zYQvatpQfC5Xd+jpYnM7/QaCm68teBgRcpP20yEorw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8868.eurprd04.prod.outlook.com (2603:10a6:20b:42f::6)
+ by DB4PR04MB11279.eurprd04.prod.outlook.com (2603:10a6:10:5e5::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.32; Tue, 15 Jul
+ 2025 14:56:10 +0000
+Received: from AS8PR04MB8868.eurprd04.prod.outlook.com
+ ([fe80::b317:9c26:147f:c06e]) by AS8PR04MB8868.eurprd04.prod.outlook.com
+ ([fe80::b317:9c26:147f:c06e%5]) with mapi id 15.20.8880.030; Tue, 15 Jul 2025
+ 14:56:10 +0000
+Date: Tue, 15 Jul 2025 17:56:07 +0300
+From: Ioana Ciornei <ioana.ciornei@nxp.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: gpio: fsl,qoriq-gpio: Add missing mpc8xxx
+ compatibles
+Message-ID: <5h2fhjr6xufwgho4tob5d63rlhee5f3ox2pvz3j2tiuvhz3nd6@sozlxikrmh33>
+References: <20250714202941.3013390-1-robh@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250714202941.3013390-1-robh@kernel.org>
+X-ClientProxiedBy: FR4P281CA0328.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:eb::7) To AS8PR04MB8868.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42f::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250530111917.1495023-1-claudiu.beznea.uj@bp.renesas.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8868:EE_|DB4PR04MB11279:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50cc9295-7685-41cf-306e-08ddc3afbc4a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|1800799024|19092799006|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?NqpznsMck1AcAoie/JpWJzEpGEhGLBRjVxtQ95eRKVHMEb7X0PRUnUk4D8mH?=
+ =?us-ascii?Q?ldW4WQTJxMieZyc5AWrewhNRTE3Myafq25Eg6OQWr9CQ6+zbWIVpD5hQ2GUX?=
+ =?us-ascii?Q?yAL6aDmV2ihjpettZXxb2WbqHovcKxJEiIDsQe7Gn4bQh1lTrmex5Zo066Z3?=
+ =?us-ascii?Q?b32Ubt5KsRo3cGhosueyEY3HzzipYvK/dQ1YLZyUpJwbx8HPknVH8FJHTsIv?=
+ =?us-ascii?Q?m18vjKmdo5AfUqe56zK5+NDvxjJ/U5CHNLJWy9qIUYe4hZOhUxtxJYpv0AJm?=
+ =?us-ascii?Q?zfodjYwQ8bz5gWmMM33uE8OK8NLwx19CrsCDAKJ+iZChA1y3QmHfuZE8IZwq?=
+ =?us-ascii?Q?Ni8ObyQPg2VcAqPPZgv299QRnGdurvl9K1kphHmDNG7y/bsVGz2h8NgWaAiX?=
+ =?us-ascii?Q?xgdM0FBRY3OxgEkCNW9m/p3PoXs37d7XTYUkpDGIrLVFosXNXYH7ujEI2ONo?=
+ =?us-ascii?Q?YLcX4/4DynPP1Ewr/yJcGUCQ/2s3Mb6DCHwbDXoZlkBKlXHs96UPy4V1tw7m?=
+ =?us-ascii?Q?Wd96bveWOOfCMwTcWPyIVaQ8SWOdyVAb10JVH9UL3CVcS0YRVuLvpnPL219g?=
+ =?us-ascii?Q?eNZ5vK7UAgUQKL1hHerxu0W+kZwqQ92HfhZMVIEW2o2zWqVKShcWdvNa+wGS?=
+ =?us-ascii?Q?mhFmJwSVVe4titNoLOm05VFvfxU0hDQi6/xd9rgi4N+d5l7XqNsScyH0/paG?=
+ =?us-ascii?Q?2JfzT9dEk1Ak9zxOd7CK6Dd+ol+NtJPp1ZgcnOFIbb5hwi/SyYp++FT3sCln?=
+ =?us-ascii?Q?D+gzLwk1LloS6OwRxOvqzSYeJBtAkQuu98rYazzSSgvikQtx/2Kfs/NUgkUe?=
+ =?us-ascii?Q?gdQaPyOVrA/uD28QzwkpaJxM/ct3DK8/ccS/FcIXzsGa23Z5qiW8C2JIUExU?=
+ =?us-ascii?Q?w1xMD5ogKeQLAhSHcnC4kJF1CHlwnolawc8K4BsqtIur7atK4Ble0QWiYznM?=
+ =?us-ascii?Q?riUKG/Ly6N/Gz3Oyq5P5kKwK7qUu5tPQ0LpseWu8+JAsNjNUL7qWS0wrBt/R?=
+ =?us-ascii?Q?Z6plFOhbAH6mOu0X7cWZGr816FK3hHoxlIr26oyw4oo/xFM4UjNZ0iSjvplk?=
+ =?us-ascii?Q?cXXXPhw4wXnidGF/Y7DTxd55ZXVvOP5NlHepGjFb4/Md9Tb6RVsszTswW25F?=
+ =?us-ascii?Q?CXHphPhx5+On3KsZ/n9Aum9eqzPUTBeSXLruPMURyfEtANpRKc7AQxV1zec5?=
+ =?us-ascii?Q?nrPv/op3FKjOu6p6NrW6tR67YtUylMyYI6VxG65g8JgTCsL/IYoAAR+//A+Z?=
+ =?us-ascii?Q?W5AflWvAjxIA/xSmBMZqmiWqIvemyURIBas9nUKSm0Il9PAfvVB7nIwdKjzp?=
+ =?us-ascii?Q?kRMqV7CYiNGWLX8/hwH0gfnHWUe/3ncRzvFFnQRbXXYL6ZFzVW/Jz7FxJbFa?=
+ =?us-ascii?Q?nRXsfgagR4q0fANuRRpQHT21YJVxHWq7WSnUukTlGJc4HzdZMQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8868.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(19092799006)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?+hn130hfucmVtAIZwyTaWRlrKbbleVflBn7Zkqs32nrq68doyWgRIlkNFOtq?=
+ =?us-ascii?Q?fL+FFB8jlv06bzXY7iqcA2kJY89DpEDGurzoTJhSbAq82EPMeMOVWizvNbpM?=
+ =?us-ascii?Q?mtGtG4JBTuEypmR22eOcdUNYMX82Y3cVjCoNDkpD0WnPS2GjE3GDQ1+M5rMf?=
+ =?us-ascii?Q?1cBY6RlqMR8YABsKRGEn6ZQNLV/QBsPeP5yrB7NZj0yk3jYZq4mtPkcwPeZS?=
+ =?us-ascii?Q?GxzYhKKqSvhLwogRSmIBbyLt+9otkN3Uxx2OuHVjj4WKjWaubFGbucHKeeDR?=
+ =?us-ascii?Q?Xlt8RnxjqsugCoc6aNeDB87mDWSZTcWtukE+kkGyoS8duu0rYcZIntviR35C?=
+ =?us-ascii?Q?YRCtvqOb2MZWiuyWRpCVzASIcE14tRepfVPhOSRb8Z9BK2Ho/v7Shz4pIWPY?=
+ =?us-ascii?Q?qtFYxvgYExvqpLQmiaXXfS73Nq/bt8CX8REOChF3PN+SSMLpsMHmAzxM/aRQ?=
+ =?us-ascii?Q?wMmwOw7Wh+xPV1rf6gZeMo8NcI+Lb/3xzNIi2JNI8xlFhBddnYJH+yhShEVx?=
+ =?us-ascii?Q?EDfuN5Yka6k/nc93OdylANlJW26zZcGe169KebsH7WfjudxM7bvq8aK4k7oW?=
+ =?us-ascii?Q?gzv2wsczB9nm1bP5T5IYiJ43fmMBdG/VytTcvZ3gRmZrNfwnSIxaBC7fDez7?=
+ =?us-ascii?Q?nS9tsckTZprelw/J0x29G2k/kBAjbWn3X8rGT9+IUDuKUmz37QzNz7rHsuor?=
+ =?us-ascii?Q?nRu9aFFs/FmxLSSMp1PTaTxeUffEgmAHWpx1+6duGuqGXNNE+nmqlG2gvimj?=
+ =?us-ascii?Q?6NDGC7OtTMvIskVHUfscGk5O1gR2EgdN1dlbxo8mPm1cr1Z1stY5Y0NSeeLL?=
+ =?us-ascii?Q?oc/5r4gQeRL0X/5LhlG5X71uauZzE17gjCIVlkR594dZaCy47lS/u86pFAQD?=
+ =?us-ascii?Q?tKveE5U9/grYo+bF/e+fnqAcWMqrjycHBSZTxRmNCO3276SoEcMsT5xnMtQ8?=
+ =?us-ascii?Q?UECMs1CqxXP42ub039dMTO8S3M+YRN9OshWyfRH33Llht0OjmQVAy8uacMWy?=
+ =?us-ascii?Q?hCh4NyxBVslRhibK/w8YOzrfJAF6OHvfALp2xKiDUuRW7YB02bDDL7avGvbj?=
+ =?us-ascii?Q?T4nLacScAFeW/n7jeMQlDAOGosylSYBwyAwHWZy73mDnDjeoecDi9eIP9WC9?=
+ =?us-ascii?Q?17oyVRSwgTetszkgWEqS1uk80IHOya/xurGfJeZNkj9823IKvAn/OFghv8BI?=
+ =?us-ascii?Q?FOrgU+BNNsczaOnhmrO18R1lly1RV5u6ezQ8w9m/+1PLF6CYuR9DERhYhP/5?=
+ =?us-ascii?Q?dr6P5PoHbGTac5Bj3BVc/nc5fy8cRh/ng10pkHVpaEfZsJ8pz39dmouXeS5k?=
+ =?us-ascii?Q?jQ5fApnR+IdyvrSNSCdaorSvM87DBYRmb14Z12H8yze8TFT77PEW6YOIggX+?=
+ =?us-ascii?Q?TKXn9V4fVmRv5ax4LovUS8ADhRdYe9UVi+MQAaTtTgdVn6YroDSd60lGd4gp?=
+ =?us-ascii?Q?YOHay38wHCIP27y9xTAdYbcMN2C8SnNyQVkCt+fHu+XKLEOsW+1Ck6knUtdW?=
+ =?us-ascii?Q?QIvDJHhoVNQ1tdDE3L8q+FdcIoYdnTLj+/Y2jHG2J9jl7qmeRpi7lhGQknPP?=
+ =?us-ascii?Q?ibomhmeOA1cvuVYmxqLDzuL1QB5iHZ+8iZHIvaUn?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50cc9295-7685-41cf-306e-08ddc3afbc4a
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8868.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2025 14:56:10.5304
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OZ2mWJfhRhLp0j2AkSYaF84lguzcTKfb4kmAQHRtFcUe7G77x4+7/JiMvS3IZMS7DM5NeZj4p9r6dEV4vtJ0PQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB4PR04MB11279
 
-On Fri, May 30, 2025 at 02:19:09PM +0300, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Mon, Jul 14, 2025 at 03:29:40PM -0500, Rob Herring (Arm) wrote:
+> The fsl,mpc8349-gpio, fsl,mpc8572-gpio, and fsl,mpc8610-gpio compatibles
+> are already documented in fsl,qoriq-gpio.yaml. Add the additional
+> compatibles that use fsl,mpc8349-gpio as a fallback. With that,
+> the 8xxx_gpio.txt binding document is redundant and can be removed.
 > 
-> Hi,
-> 
-> Series adds a PCIe driver for the Renesas RZ/G3S SoC.
-> It is split as follows:
-> - patch 1/8:		updates the max register offset for RZ/G3S SYSC;
-> 			this is necessary as the PCIe need to setup the
-> 			SYSC for proper functioning
-> - patch 2/8:		adds clock, reset and power domain support for
-> 			the PCIe IP
-> - patches 3-4/8:	add PCIe support for the RZ/G3S SoC
-> - patches 5-8/8:	add device tree support and defconfig flag
-> 
-> Please provide your feedback.
-> 
-> Merge strategy, if any:
-> - patches 1-2,5-8/8 can go through the Renesas tree
-> - patches 3-4/8 can go through the PCI tree
-> 
-> Thank you,
-> Claudiu Beznea
-> 
-> Changes in v2:
-> - dropped "of/irq: Export of_irq_count()" as it is not needed anymore
->   in this version
-> - added "arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe"
->   to reflect the board specific memory constraints
-> - addressed review comments
-> - updated patch "soc: renesas: rz-sysc: Add syscon/regmap support"
-> - per-patch changes are described in each individual patch
-> 
-> Claudiu Beznea (7):
->   clk: renesas: r9a08g045: Add clocks, resets and power domain support
->     for the PCIe
->   dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add documentation for the
->     PCIe IP on Renesas RZ/G3S
->   PCI: rzg3s-host: Add Initial PCIe Host Driver for Renesas RZ/G3S SoC
->   arm64: dts: renesas: r9a08g045s33: Add PCIe node
->   arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe
->   arm64: dts: renesas: rzg3s-smarc: Enable PCIe
->   arm64: defconfig: Enable PCIe for the Renesas RZ/G3S SoC
-> 
-> John Madieu (1):
->   soc: renesas: rz-sysc: Add syscon/regmap support
-> 
->  .../pci/renesas,r9a08g045s33-pcie.yaml        |  202 ++
->  MAINTAINERS                                   |    8 +
->  arch/arm64/boot/dts/renesas/r9a08g045s33.dtsi |   60 +
->  .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |    5 +
->  arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  |   11 +
->  arch/arm64/configs/defconfig                  |    1 +
->  drivers/clk/renesas/r9a08g045-cpg.c           |   19 +
->  drivers/pci/controller/Kconfig                |    7 +
->  drivers/pci/controller/Makefile               |    1 +
->  drivers/pci/controller/pcie-rzg3s-host.c      | 1686 +++++++++++++++++
->  drivers/soc/renesas/Kconfig                   |    1 +
->  drivers/soc/renesas/r9a08g045-sysc.c          |   10 +
->  drivers/soc/renesas/r9a09g047-sys.c           |   10 +
->  drivers/soc/renesas/r9a09g057-sys.c           |   10 +
->  drivers/soc/renesas/rz-sysc.c                 |   17 +-
->  drivers/soc/renesas/rz-sysc.h                 |    3 +
->  16 files changed, 2050 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml
->  create mode 100644 drivers/pci/controller/pcie-rzg3s-host.c
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Where are we at with this series?
+Acked-by: Ioana Ciornei <ioana.ciornei@nxp.com>
 
-I see
-https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/commit/?h=controller/dwc-stm32&id=5a972a01e24b278f7302a834c6eaee5bdac12843,
-but also this kernel robot report at that commit:
-https://lore.kernel.org/all/202506270620.sf6EApJY-lkp@intel.com/
-
-I normally don't include branches in pci/next until we get a
-"BUILD SUCCESS" report from the robot, so this branch is in limbo at
-the moment.
-
-Bjorn
 
