@@ -1,157 +1,147 @@
-Return-Path: <devicetree+bounces-196414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7390EB05502
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 10:35:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E7CFB05512
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 10:37:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C323E16DB42
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 08:35:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 533A17A9785
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 08:33:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59535275B1E;
-	Tue, 15 Jul 2025 08:35:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 193E4272E44;
+	Tue, 15 Jul 2025 08:35:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="6Kz8zsOs"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="t9UsxVY6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com [95.215.58.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8807227511B;
-	Tue, 15 Jul 2025 08:35:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3DFA1A314E
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 08:34:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752568513; cv=none; b=dw0ZeV4ClWPgfC762YQJLBLbkOGG/Kgu7RMjdh4Hrv/b7dK5PLUZJ3oCr/BCtttwTAGmqeLcSUektQWvgSjpPJtEu/TvzNQ1ChIXyC7fV6xS60WvwOJw8rNMga2ZKblUGlLLXP9JcvZm0/9mcEDbQmYlxPGTv4jK9ehkITvWrNo=
+	t=1752568500; cv=none; b=Euck8FRqX3u2R+lq3dzADSnevIRFd8ln4b5VizI3KdjSPQz3IwIwCo3olJgvSUmtNEpBKH4idXt1IqPI+47tDPWDGbsj4gV210yr3sHw78g+x/9qK2/QNDxqIgHHbFPl2rD+Lo2GMogntbTYUb/S5b+m0UkW2ccMxIPXhkVDh2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752568513; c=relaxed/simple;
-	bh=RfYBnV1ozw7/0znDlV6t07ddJF9wwhWNft6BOgQgo/g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=CMtCrqCrEeNMC1gYxn5JKSUD3f6YAS28+4rbtmjKhbAt6ipamu34jXBRmGTTotoObZqxUPDPvnq0yMe43YmXQisRqdf4EOsDuRn3caumTfbIIBMzOnME7biUVEs6253VZHIUD4ZDJZ6oxlB2aISXpENhUgn7bU5nveSEGXDyws0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=6Kz8zsOs; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56F7msBA003670;
-	Tue, 15 Jul 2025 10:34:52 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	FBjN96Vc9/YNSk2Vr1T4bmQLG/82VFC8eOZQTen3I6w=; b=6Kz8zsOss7e1leYL
-	0yWjGq2eCmjxyopEMUGq5nLk/lVCP/5UuwaEGdk9eHB1lVOA14Y5v8e7v2604bDj
-	9dOg4+XxUcy4mGdA849Vq7OwKKFV7ZLQHQTB+p/eKdHt2M+5IPYOA4d4i+X1PUGZ
-	XEy/fzBIOvT/BlICLrxEkHQXkHWIGMcf1b4i2aDBkhx0i7rknVKNeiGM0syvgazC
-	Im6F3srR/14ZUbNY+qlLPq/qN4Lln86FmW4SZslYjcNMM8HxZdKK9MTvAQEsn88e
-	prIiVBPYZ9tXi8+eZrm+cwnqSWVVmpKf//bprensYcG5yp7g/iwgnuWZAeO20PrH
-	uNtETQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47ud4mmg2r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 15 Jul 2025 10:34:52 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A93E84002D;
-	Tue, 15 Jul 2025 10:33:28 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C23DEB63555;
-	Tue, 15 Jul 2025 10:32:10 +0200 (CEST)
-Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 15 Jul
- 2025 10:32:09 +0200
-Message-ID: <ae960a16-65ad-4b22-b9fb-89efbffacd3e@foss.st.com>
-Date: Tue, 15 Jul 2025 10:32:09 +0200
+	s=arc-20240116; t=1752568500; c=relaxed/simple;
+	bh=XkoIQdYynJerQZMgPKT0cl53oqkg5SYxoX6539H9RBE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=I+83Tl47TGFMaaS6VqIeS87lKJfgSBUw146z3TrSpX7BY0y4Zr01+p+aK4ie5Yl38yVzJPoniefQUgHfVgofRZo7HlOy6tPQSpQvXhn3GXsYx62pObe18s3phCIbBZe5bFCiP5OlU168e/JPKSIvitVYQDFJzOMY1ZqevLqro+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=t9UsxVY6; arc=none smtp.client-ip=95.215.58.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/16] arm64: dts: st: add LPDDR channel to
- stm32mp257f-dk board
-To: Rob Herring <robh@kernel.org>
-CC: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Gabriel Fernandez
-	<gabriel.fernandez@foss.st.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Le
- Goffic <legoffic.clement@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-perf-users@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-References: <20250711-ddrperfm-upstream-v2-0-cdece720348f@foss.st.com>
- <20250711-ddrperfm-upstream-v2-6-cdece720348f@foss.st.com>
- <20250715032020.GB4144523-robh@kernel.org>
-Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <20250715032020.GB4144523-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-14_03,2025-07-14_01,2025-03-28_01
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1752568494;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dn9j9avwFidQxU2bCX0UIziQTEnB16DYh3Wd/7lUs1Q=;
+	b=t9UsxVY6mXLFPCJpyr5YZ/a+GWum9nHB2cHNy+irWcyW8uPXld7KsWybnukiHlRBofOCVf
+	w4AgPUuSUsTRsUrcZlP26RteB+xEZgFHE8yX12cnAb8g8mesnWWu7vKMXI8/T86OBOX+/E
+	l8M5SdeVR+5IsGx07C6IzsYhKS9Sc6dTXFPAXQGJ1gz9/M47KnhGNBzm8HdFIIOuMbvl8V
+	3dBDkvtZFiQDPpxh62HhrYFttoHOq/vhKSz63/okaXVh7vLtyByb8fNyhQjuJ0dba9Fb2k
+	XAolqQq/V429pazWA1JEX78DbAR9B89oaUwjNQf1cWnwjF6hkzrvzg9PaqwlVw==
+Content-Type: multipart/signed;
+ boundary=31e8725035cdaae867651e5f629dfe5e1cdfa919bc8e4b5fe9769c11329a;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Tue, 15 Jul 2025 10:34:43 +0200
+Message-Id: <DBCHOEMXSOZW.JRB0UTWSPG4J@cknow.org>
+Cc: "Heiko Stuebner" <heiko@sntech.de>, "Kever Yang"
+ <kever.yang@rock-chips.com>, "Hans Verkuil" <hverkuil@xs4all.nl>,
+ <kernel@collabora.com>, "Dragan Simic" <dsimic@manjaro.org>, "Rob Herring"
+ <robh@kernel.org>, "Yunke Cao" <yunkec@google.com>, "Sebastian Reichel"
+ <sebastian.reichel@collabora.com>, <linux-rockchip@lists.infradead.org>,
+ "Ezequiel Garcia" <ezequiel@vanguardiasur.com.ar>,
+ <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Frank Wang" <frank.wang@rock-chips.com>, "Mauro
+ Carvalho Chehab" <mchehab@kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, "Jianfeng Liu"
+ <liujianfeng1994@gmail.com>, "Alexey Charkov" <alchark@gmail.com>, "Ricardo
+ Ribalda" <ribalda@chromium.org>, "Andy Yan" <andy.yan@rock-chips.com>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Hans de Goede"
+ <hansg@kernel.org>
+Subject: Re: [PATCH 8/8] media: rkvdec: Unstage the driver
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Detlev Casanova" <detlev.casanova@collabora.com>,
+ <linux-kernel@vger.kernel.org>
+References: <20250623160722.55938-1-detlev.casanova@collabora.com>
+ <20250623160722.55938-9-detlev.casanova@collabora.com>
+In-Reply-To: <20250623160722.55938-9-detlev.casanova@collabora.com>
+X-Migadu-Flow: FLOW_OUT
 
-Hi Rob,
+--31e8725035cdaae867651e5f629dfe5e1cdfa919bc8e4b5fe9769c11329a
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Thanks for the review !
+Hi,
 
-On 7/15/25 05:20, Rob Herring wrote:
-> On Fri, Jul 11, 2025 at 04:48:58PM +0200, Clément Le Goffic wrote:
->> Add 32bits LPDDR4 channel to the stm32mp257f-dk board.
->>
->> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
->> ---
->>   arch/arm64/boot/dts/st/stm32mp257f-dk.dts | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
->> index a278a1e3ce03..a97b41f14ecc 100644
->> --- a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
->> +++ b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
->> @@ -54,6 +54,13 @@ led-blue {
->>   		};
->>   	};
->>   
->> +	lpddr_channel: lpddr4-channel {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +		compatible = "jedec,lpddr4-channel";
-> 
-> Not tested because this doesn't match the binding.
+On Mon Jun 23, 2025 at 6:07 PM CEST, Detlev Casanova wrote:
+> The TODO list for unstaging being empty, the driver can now be moved to t=
+he
+> main media folder.
+>
+> Also add myself as maintainer.
 
-Hmm, I've tested with make dtbs_check and dt_binding_check and it didn't 
-complain on my side.
-What I have miss ?
+I've tested this patch on a Rock64 (rk3328) and RockPro64 (rk3399) and
+did not notice any regressions. And I no longer see this warning:
+
+  rockchip_vdec: module is from the staging directory, the quality
+  is unknown, you have been warned.
+
+Tested-by: Diederik de Haas <didi.debian@cknow.org> # Rock64 + RockPro64
+
+Cheers,
+  Diederik
+
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> ---
+>  MAINTAINERS                                               | 8 ++++++++
+>  drivers/media/platform/rockchip/Kconfig                   | 1 +
+>  drivers/media/platform/rockchip/Makefile                  | 1 +
+>  .../media =3D> media/platform/rockchip}/rkvdec/Kconfig      | 0
+>  .../media =3D> media/platform/rockchip}/rkvdec/Makefile     | 0
+>  .../platform/rockchip}/rkvdec/rkvdec-h264.c               | 0
+>  .../platform/rockchip}/rkvdec/rkvdec-regs.h               | 0
+>  .../media =3D> media/platform/rockchip}/rkvdec/rkvdec-vp9.c | 0
+>  .../media =3D> media/platform/rockchip}/rkvdec/rkvdec.c     | 0
+>  .../media =3D> media/platform/rockchip}/rkvdec/rkvdec.h     | 0
+>  drivers/staging/media/Kconfig                             | 2 --
+>  drivers/staging/media/Makefile                            | 1 -
+>  12 files changed, 10 insertions(+), 3 deletions(-)
+>  rename drivers/{staging/media =3D> media/platform/rockchip}/rkvdec/Kconf=
+ig (100%)
+>  rename drivers/{staging/media =3D> media/platform/rockchip}/rkvdec/Makef=
+ile (100%)
+>  rename drivers/{staging/media =3D> media/platform/rockchip}/rkvdec/rkvde=
+c-h264.c (100%)
+>  rename drivers/{staging/media =3D> media/platform/rockchip}/rkvdec/rkvde=
+c-regs.h (100%)
+>  rename drivers/{staging/media =3D> media/platform/rockchip}/rkvdec/rkvde=
+c-vp9.c (100%)
+>  rename drivers/{staging/media =3D> media/platform/rockchip}/rkvdec/rkvde=
+c.c (100%)
+>  rename drivers/{staging/media =3D> media/platform/rockchip}/rkvdec/rkvde=
+c.h (100%)
 
 
-> 
->> +		io-width = <32>;
->> +	};
-> 
-> What would multiple channels look like? I think this needs some work.
-> Like it should perhaps be within the memory node. It's a lot to just say
-> 32-bit LPDDR4 x1.
+--31e8725035cdaae867651e5f629dfe5e1cdfa919bc8e4b5fe9769c11329a
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I guess something like two channels node following each other in the DT.
-It can be in the memory node I don't know what are the stakes here.
-I was inspired by the lpddr node here:
-arch/arm/boot/dts/samsung/exynos5422-odroid-core.dtsi:336
+-----BEGIN PGP SIGNATURE-----
 
-Best regard,
-Clément
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaHYSqAAKCRDXblvOeH7b
+bqCZAPsEcQhHp1n/MQnvFCLsexjxPRpuv36uOmPgYq3iZ8tgYQEA8+gXctndsbuB
+3iimQ6yPbpe40td5BCY2Y6XWce3fWg4=
+=lFcf
+-----END PGP SIGNATURE-----
+
+--31e8725035cdaae867651e5f629dfe5e1cdfa919bc8e4b5fe9769c11329a--
 
