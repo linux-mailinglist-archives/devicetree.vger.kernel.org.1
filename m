@@ -1,143 +1,148 @@
-Return-Path: <devicetree+bounces-196649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38698B0690B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 00:08:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F32A3B0691C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 00:11:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84B0E5650D7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:08:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11BD23A866A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:10:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656C42C1591;
-	Tue, 15 Jul 2025 22:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3BF12BE64E;
+	Tue, 15 Jul 2025 22:11:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hJxL1QV+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ila4cXPc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA962AF1D;
-	Tue, 15 Jul 2025 22:07:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B41DF76;
+	Tue, 15 Jul 2025 22:11:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752617276; cv=none; b=BmM0BYU6pkRP4zB5iervSOH2dbor1KW5VZflGXnvxDPgDxCtS0YO8ChDpiSjDf2fW3QhkhiZQA1A1SAtA5dJZPykqLbJKWNQEnBVOdimzE88WvGcUJMv8HyDQBEUg6D7cuCws7SHF+GaN5cEXi/G6zLiIFa989qMR3pSOCB98AE=
+	t=1752617475; cv=none; b=tlLhPvZSxJxpwe1D2s+cbUIEL9qd7SCtJwk12kbSSBXfWqubqI2I+dwrj1+Fdf8ioHVh7uBxpRhGWnSVNMecKRd7WpwM3UAnu1CZmmoNGy5KXhJKKWQcUedffNmIjeXDxRS4zm97o1kDJcrJZf5owJF5boNYLRdfu+TySPjvb+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752617276; c=relaxed/simple;
-	bh=Zd8zXCwF0hQTiVzyVbw1IEp0HkYJGefGxnsNS4GWNqE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WrmOSRhUMOxGKcCAnRif5y2mWVHpHGpbADDv1nCJbhsSPBvkNBYx/CQfY3UHgAbogQXBmxFe1/+y3lKdg80Buf/kitb95fJiFwP5QS6gN1QNiquAtYkrM8Z2nUL8QRTvAq1uJAcIDdemlXsH1Z3aF5Ugh/vDAHUL8sjjceYqZQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hJxL1QV+; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1752617274; x=1784153274;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Zd8zXCwF0hQTiVzyVbw1IEp0HkYJGefGxnsNS4GWNqE=;
-  b=hJxL1QV+HcyChGetheMDP19YQ896IpEDKkHe+4L8kFBRdlQeQcyzdich
-   83n0FbvgHmfhEysMc7Ul731rOpFJ3UNTcYnLIFLKIsAIw+U8UzEVU7jSM
-   qGF0DoNoQolL7zbLUERuU3HaPNg9ivUKbcOUHoZdMD/6CsBafxfc0Sz16
-   YepXMYWeFKgmPGkLLUOspe5du070JBRdUdk9y2+OTAtJijKMkAabyVVgE
-   yM7Ppz8pUPjZs9cL7JrqywlOUWUjUDx88Pp6o9JP2F95vdBR0PVS7H86q
-   z0r+SOTNTYpy7FbBr+eBwj2JloZy6Kzv4BvRtj2od64MmLPZ/wGM5TUqv
-   Q==;
-X-CSE-ConnectionGUID: MzafmcvlTAysCsZ5nClFOw==
-X-CSE-MsgGUID: cOoaIl/SQQ6A0VW7X9QqFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="54826714"
-X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; 
-   d="scan'208";a="54826714"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2025 15:07:53 -0700
-X-CSE-ConnectionGUID: 2/CTSCq4QzqxTY/7962AOA==
-X-CSE-MsgGUID: h6UmUrYARBK8MvLyxd9OmQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; 
-   d="scan'208";a="156731421"
-Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 15 Jul 2025 15:07:47 -0700
-Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ubnoO-000BaZ-1F;
-	Tue, 15 Jul 2025 22:07:44 +0000
-Date: Wed, 16 Jul 2025 06:06:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Aaron Kling <webgeek1234@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nagarjuna Kristam <nkristam@nvidia.com>, JC Kuo <jckuo@nvidia.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Mathias Nyman <mathias.nyman@intel.com>,
-	Peter De Schrijver <pdeschrijver@nvidia.com>,
-	Prashant Gaikwad <pgaikwad@nvidia.com>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-	Aaron Kling <webgeek1234@gmail.com>
-Subject: Re: [PATCH 13/17] thermal: tegra: Add Tegra210B01 Support
-Message-ID: <202507160557.t7TfWvFP-lkp@intel.com>
-References: <20250714-t210b01-v1-13-e3f5f7de5dce@gmail.com>
+	s=arc-20240116; t=1752617475; c=relaxed/simple;
+	bh=/dfXrEHD5LWNJo8S+FdlRH17OJZoWda9bkjTUWLJNp8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qMpy3+SsVioWl/JalnzXwPRRb7S2gGVKkTo3fa9XH1SeOFR57nDcwDLvQoWFu2gPmzX3169JsAYD7l6QXXR/yvoTO5vuS2ebZtjy2dxOmEqR1FLElohaSb04vraM9/l8b/nrbkjQuzdz3SZV0hEShOe4yclc5TsODK030559ULY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ila4cXPc; arc=none smtp.client-ip=209.85.167.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-41b1ca1f28cso1209460b6e.1;
+        Tue, 15 Jul 2025 15:11:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752617473; x=1753222273; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZbI9ihowVv8CtjBa6m/5OA0ET/gDNLTT+t5LJJNLHDI=;
+        b=Ila4cXPc5wsSH5yMajQ8BZr27IB4myMPZhI2skw0Kn9ww8kThy0EfuyqZB95IQvkge
+         mEzT8fDA2PpS615liJBkNXjFIxIdh4eV1Y8h+8ibATRMtZSZdKtNFRTDQo1NVfIk6+n2
+         hbWiZzAdivWD5VRYKgPKx63MrF+zoJkjSTmocjFn7xgScbV+Ulm8vuDh7u9b8kOsaiR7
+         ibCwpzO8w+EutA5Y18QPyWaHpTe91ZvZwI/HSNYHvlrwTyX1KWdKaotVdYoXWqA6jTxL
+         fuVX6bXo79kYYRWEDUC/bOs7EJuES58TIRSmhFxNqNwHaFhpsfHV1T7m3wMksXS6Exw5
+         XN/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752617473; x=1753222273;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZbI9ihowVv8CtjBa6m/5OA0ET/gDNLTT+t5LJJNLHDI=;
+        b=Cul44k867lasMxlG6h2LBJsv78WifSbW+XSS/u/2d97VCYWcTTCXMIkYFmEPvTRylG
+         6dM7wwcKbZyJWUU7azjnxwv5iRlpGgLK+anMtcjmPQ756B3vE42gv2q4A4ZD5EksUcQ4
+         JbP7L6b5NqcDsOmVUrIgUnORc6QmqNHkm3E5oYrDztI2eC7wlRCoxi+Nst8rRgCqZ6dt
+         JB0jAD4wU8iGpgKubQYQNh+wS9lnHpG+6j51kQUghWZAtFY9qa5BS/vj6zzlCtf5u/IL
+         9FHndWertlkYm1gzYICSAjhWgeUkL/YuMw8d53YSSTtOKVUNUqpEyHgmBfiT6bo6d/QW
+         LVTg==
+X-Forwarded-Encrypted: i=1; AJvYcCVUrddbATf22PqCHoFtHPRAKVVEnm+UnQfEKAVrRpbNyzuJKgTPwepbLWqs2+vPMGgtQwWxVP4QYC11@vger.kernel.org, AJvYcCW2Y/M77osxcbX7ssySUrbiL9HWFdYC/zdsNFCag2rjwub6yW7H4DedCzdF17YEADu1eZWRUqBsh22BZZRo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyz3RB9D6XBavawI6d3I4mCvEEeCXG1rlkgk00nzPrWfcSK8cn/
+	wKUyPzoZWT6R8uVIsyDLMCFwGVE9X2vPjc/acakeTRWB2a2d9bNn4KiENRi/Lrz8CMF66bNnq5O
+	Q5ds5ZaPlO0FWITTBgr0iFDoZwpoKCUs=
+X-Gm-Gg: ASbGncsCaL4MovnTTovLzObb6zYMy29yUmWIlz1+O/wHoL1agUR1a3NxZQ52XmWgqo1
+	EmHtm7otpYHkrCgr42CIkig/H4pv7yW5+MHaEHxADdHWTX0THxIevnTIhHpADoYUfrBhztxrunO
+	F3AlSGvGZxCTKWg627096Xe2c7XW/I9KSD4SlvMOeQUkLKkhnwDVx7M5Kc9vfkBiIjY3EXUB/aX
+	pMbMX6N
+X-Google-Smtp-Source: AGHT+IGoHhMbBQXjyBcxgr9jpiV5+fAtALUG//n+FivI3N/qkbXgWlenBt0IKpzxq5ZVRyBBUhDp5LDbSwsZfe/UeKQ=
+X-Received: by 2002:a05:6808:190b:b0:41c:8e9f:3853 with SMTP id
+ 5614622812f47-41d038e1b01mr367005b6e.13.1752617472967; Tue, 15 Jul 2025
+ 15:11:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250714-t210b01-v1-13-e3f5f7de5dce@gmail.com>
+References: <20250609031627.1605851-1-peter.chen@cixtech.com>
+ <20250609031627.1605851-6-peter.chen@cixtech.com> <CABb+yY17OOBx73655OhBp8At1b81w9M61zzGu4uhXcMTw4Q=Dw@mail.gmail.com>
+ <aG0i75h32dWg/L2G@gchen> <CABb+yY2BmqiQ18hU+7C234UnY8n-8PH5VEoS7nH5Xq5O1krGhQ@mail.gmail.com>
+ <6b5f38f7-0557-483b-9252-cfade7a24cf5@app.fastmail.com>
+In-Reply-To: <6b5f38f7-0557-483b-9252-cfade7a24cf5@app.fastmail.com>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Tue, 15 Jul 2025 17:11:01 -0500
+X-Gm-Features: Ac12FXx1y9xaaVn7eKkY0Gzou_yfDgjczblmTIjxslc2qDlMZ6VVtwwaRLEk8wk
+Message-ID: <CABb+yY26R_DHQUhpg-xUR_Z7EnjdR_4LPai0M-vfFTAOZy=vvQ@mail.gmail.com>
+Subject: Re: [PATCH v9 5/9] mailbox: add CIX mailbox driver
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Guomin Chen <guomin.chen@cixtech.com>, Rob Herring <robh@kernel.org>, krzk+dt@kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Peter Chen <peter.chen@cixtech.com>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com, 
+	Marc Zyngier <maz@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Kajetan Puchalski <kajetan.puchalski@arm.com>, Enric Balletbo <eballetb@redhat.com>, 
+	Gary Yang <gary.yang@cixtech.com>, Lihua Liu <Lihua.Liu@cixtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Aaron,
+On Mon, Jul 14, 2025 at 10:40=E2=80=AFAM Arnd Bergmann <arnd@arndb.de> wrot=
+e:
+>
+> On Sun, Jul 13, 2025, at 19:00, Jassi Brar wrote:
+> > On Tue, Jul 8, 2025 at 8:54=E2=80=AFAM Guomin chen <guomin.chen@cixtech=
+.com> wrote:
+> > ....
+> >> > > +/* [0~7] Fast channel
+> >> > > + * [8] doorbell base channel
+> >> > > + * [9]fifo base channel
+> >> > > + * [10] register base channel
+> >> > > + */
+> >> > > +#define MBOX_FAST_IDX          7
+> >> > > +#define MBOX_DB_IDX            8
+> >> > > +#define MBOX_FIFO_IDX          9
+> >> > > +#define MBOX_REG_IDX           10
+> >> > > +#define CIX_MBOX_CHANS         11
+> >> > > +
+> >> > if it is not really a single controller owning different channels,
+> >> > maybe implement only what you currently use.
+> >> >
+> >> As mentioned in the previous email, a single controller can support
+> >> multiple different channels.
+> >>
+> > OK. I am not too worried about having all variants in one driver esp
+> > when it is manageable and share the code.
+> > Unless I am overlooking something. Arnd?
+>
+> My main worry here is that the types are all quite different: while
+> the doorbell and fast mailboxes are what a lot of other drivers have,
+> the FIFO mode does not seem to be a good fit for the mailbox subsystem
+> but instead looks like a more generic firmware interface with variable
+> length messages.
+>
+> For those, I think a higher-level driver with fixed data structures
+> passed through the hardware interface seems more appropriate.
+>
+Yes. But sometimes when the data structures of a protocol are not
+bigger than FIFO depth, the platform may choose to use the FIFO mode.
+I see it as platform dependent.
 
-kernel test robot noticed the following build warnings:
+> Are there any other mailbox drivers that just use the mailbox to
+> tunnel variable-length messages?
+>
+From a quick look, Armada 37xx and Hi6220 have fifo though they fill
+them up fully for each transfer.
 
-[auto build test WARNING on 347e9f5043c89695b01e66b3ed111755afcf1911]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Aaron-Kling/dt-bindings-arm-tegra-pmc-Document-Tegra210B01/20250715-160630
-base:   347e9f5043c89695b01e66b3ed111755afcf1911
-patch link:    https://lore.kernel.org/r/20250714-t210b01-v1-13-e3f5f7de5dce%40gmail.com
-patch subject: [PATCH 13/17] thermal: tegra: Add Tegra210B01 Support
-config: arm64-randconfig-003-20250716 (https://download.01.org/0day-ci/archive/20250716/202507160557.t7TfWvFP-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250716/202507160557.t7TfWvFP-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507160557.t7TfWvFP-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/thermal/tegra/tegra210-soctherm.c:47:49: warning: 'tegra210b01_tsensor_config' defined but not used [-Wunused-const-variable=]
-    static const struct tegra_tsensor_configuration tegra210b01_tsensor_config = {
-                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/tegra210b01_tsensor_config +47 drivers/thermal/tegra/tegra210-soctherm.c
-
-    46	
-  > 47	static const struct tegra_tsensor_configuration tegra210b01_tsensor_config = {
-    48		.tall = 16300,
-    49		.tiddq_en = 1,
-    50		.ten_count = 1,
-    51		.tsample = 240,
-    52		.tsample_ate = 480,
-    53	};
-    54	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks
 
