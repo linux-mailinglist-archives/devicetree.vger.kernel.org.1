@@ -1,94 +1,123 @@
-Return-Path: <devicetree+bounces-196301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C85FB04F71
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:46:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D6DDB04F74
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:47:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B0D0561E7F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 03:45:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB45C560DB4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 03:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B0E2D63FC;
-	Tue, 15 Jul 2025 03:43:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1272D0C9E;
+	Tue, 15 Jul 2025 03:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oVstyHr0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37A352D63F1;
-	Tue, 15 Jul 2025 03:43:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B07172D0C9D;
+	Tue, 15 Jul 2025 03:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752551028; cv=none; b=Li5IGadBYe1ye4+2UCE8A5sWhCpY5+emLKBRxtAPTtcYu5KluwN4Wb87OtSMcgO6AalRSE4zgqeaNjvBPD81giyNbz+BG/xaqmJohexRzAjXM9v6yfrfmLxcCoS9X7DUu8BGPpJHuYjvYbTY22QH/2juffkaJcCu2e953kTxclM=
+	t=1752551082; cv=none; b=SLGwrwr56HCZyeRWPL2QHSFkY+jVHrRANIeGEj0n0AV6YfyI60DVfgdIAogH202R81qMnyRrT/+f0yxvMLvPNsUWAvTDcg8koFYFI8q4ARo2ur5SIFzYukYHtDSVoVLFiwQEnli0qvRbxuyFFa1oAQz0SuEQN6I6PjcDOWlB4KY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752551028; c=relaxed/simple;
-	bh=rHkx6IF0uC030cXzr1f3APlvzjmtVQHg8q3t9zPQ+w8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=di4Wv4NNrDL2dIvJdmxVtvecZ1ne6Q+xBhj6K/+aiCw2HP0ImOHsJSymgQeO5Y3QKAytYVqQGY6MhUBcIQ8rl3lNOemQcs7cDevJ39hu/wTk9v4fWT0vsYM5Ls/vozN7wNky4J/UophyowBvwR7XdNjd+1jLOi5I0RJytqD4EYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 15 Jul
- 2025 11:43:21 +0800
-Received: from mail.aspeedtech.com (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Tue, 15 Jul 2025 11:43:21 +0800
-From: Jacky Chou <jacky_chou@aspeedtech.com>
-To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kwilczynski@kernel.org>,
-	<mani@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-pci@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <openbmc@lists.ozlabs.org>, <linux-gpio@vger.kernel.org>,
-	<linus.walleij@linaro.org>, <p.zabel@pengutronix.de>, <BMC-SW@aspeedtech.com>
-Subject: [PATCH v2 10/10] MAINTAINERS: Add ASPEED PCIe RC driver
-Date: Tue, 15 Jul 2025 11:43:20 +0800
-Message-ID: <20250715034320.2553837-11-jacky_chou@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250715034320.2553837-1-jacky_chou@aspeedtech.com>
-References: <20250715034320.2553837-1-jacky_chou@aspeedtech.com>
+	s=arc-20240116; t=1752551082; c=relaxed/simple;
+	bh=SFnlblJV2LTPacCzanOSpqW7BNUpkXOMLqiq6h/Tr+E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JLyS8eAutcqyPnyFZqn7tvVK0F9B4XDoU834Lx73+K3D7qK99BWWTQyr1zLpx5eDD/ZIB3Z4JASYRVstkBPTA5z7hVpeueO3ZCAmS8a2KsG0k9wOLPc/jgj3E/VtZvnd4Y9ONOH7h/3Com4niV/kUWauyysJpSope7DqyVQrCUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oVstyHr0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17AF3C4CEE3;
+	Tue, 15 Jul 2025 03:44:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752551082;
+	bh=SFnlblJV2LTPacCzanOSpqW7BNUpkXOMLqiq6h/Tr+E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oVstyHr0A/GqQRMJSqyegZGPttVsjfqUJiBDWLK9rvS3UARWL8B+pXBkJLlOLvWlS
+	 Bwcf4FlO6VQc9Gp3dVqyIGJqdJ/intvsZEU4lb/icCbzM9Z2zDExBnOhuS0SKUsf/N
+	 yPgzniuRGuapfxssvWNOXXgPDRbFBK8Qy+6sMSejNbeLA5G+ymprNJ7rDlfMlvtGal
+	 mn1N62Hu3QFdatFBqwjN7EMhZ8xvTuSNWuMExc6zWF+EvYWB2a4YJ0BhpHU/6Yjql3
+	 NfKIiTMGKYRemglEGFAU4S9lQeRQu0lfE+Au17ECShs6Bk5GQBkUKCUsNvE+F0RRxB
+	 xrJfDZgTqmDaA==
+Date: Mon, 14 Jul 2025 22:44:41 -0500
+From: Rob Herring <robh@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: i3c: renesas,i3c: Add binding for
+ Renesas I3C controller
+Message-ID: <20250715034441.GA4186417-robh@kernel.org>
+References: <20250714091211.20497-1-wsa+renesas@sang-engineering.com>
+ <20250714091211.20497-2-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250714091211.20497-2-wsa+renesas@sang-engineering.com>
 
-Add maintainer for ASPEED PCIe RC driver.
+On Mon, Jul 14, 2025 at 11:12:08AM +0200, Wolfram Sang wrote:
+> From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> 
+> Available in R9A08G045 (RZ/G3S), R9A09G047 (RZ/G3E) SoCs.
+> 
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+> 
+> Changes since RFC:
+> * resorted the clks, so G3S can only have the first two while G3E needs
+>     needs all three
+> 
+>  .../devicetree/bindings/i3c/renesas,i3c.yaml  | 180 ++++++++++++++++++
+>  1 file changed, 180 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
+> new file mode 100644
+> index 000000000000..f53a176cad2c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
+> @@ -0,0 +1,180 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i3c/renesas,i3c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/G3S and RZ/G3E I3C Bus Interface
+> +
+> +maintainers:
+> +  - Wolfram Sang <wsa+renesas@sang-engineering.com>
+> +  - Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,r9a08g045-i3c # RZ/G3S
+> +          - renesas,r9a09g047-i3c # RZ/G3E
 
-Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+You already have to have differences between these 2. So how are they 
+the same and compatible with this:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3ecb44458a7e..e1839dc240bc 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3696,6 +3696,16 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/media/aspeed,video-engine.yaml
- F:	drivers/media/platform/aspeed/
- 
-+ASPEED PCIE CONTROLLER DRIVER
-+M:	Jacky Chou <jacky_chou@aspeedtech.com>
-+L:	linux-aspeed@lists.ozlabs.org (moderated for non-subscribers)
-+L:	linux-pci@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pci/aspeed,ast2600-pcie.yaml
-+F:	Documentation/devicetree/bindings/soc/aspeed/aspeed,pcie-cfg.yaml
-+F:	Documentation/devicetree/bindings/soc/aspeed/aspeed,pcie-phy.yaml
-+F:	drivers/pci/controller/pcie-aspeed.c
-+
- ASUS EC HARDWARE MONITOR DRIVER
- M:	Eugene Shalygin <eugene.shalygin@gmail.com>
- L:	linux-hwmon@vger.kernel.org
--- 
-2.43.0
+> +      - const: renesas,i3c
 
+Even without a difference, this seems like it will be short lived for 
+how many SoC will be compatible with it (though we get to keep it 
+forever). 
+
+Rob
 
