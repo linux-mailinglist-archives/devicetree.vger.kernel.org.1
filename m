@@ -1,119 +1,191 @@
-Return-Path: <devicetree+bounces-196444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAC5CB0560A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 11:15:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EF3AB055B2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 11:00:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AAE4188B22E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 09:16:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58FE316407E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 09:00:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9A942750E3;
-	Tue, 15 Jul 2025 09:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B95273D67;
+	Tue, 15 Jul 2025 09:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b="LwLN1F7M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pvFGLVYz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www571.your-server.de (www571.your-server.de [78.46.3.230])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2456A6BB5B;
-	Tue, 15 Jul 2025 09:15:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.46.3.230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5514122B8A1;
+	Tue, 15 Jul 2025 09:00:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752570931; cv=none; b=cHHhb948b85z4Y9oKuIUpaKVibbV96PRUB7RGeyqiVoYwV622xmD3IBn2tCmGiVsGj2ytWCM9ks/z0lVnH4EJFB1QZgSPsyhAaZktQh9pn/Ft8kOHeOEesAbbHDYKkI1UXZdPuWgNlT8Ol+lbGPPqqtXRki4hlv1I+xyCvk8GZ0=
+	t=1752570029; cv=none; b=H+nujjwkFEiQlqfWi2cRLSJT/XI3QI/++l4TC6FL3oYxFPVm+fPedIdjZjwSD87cE8tJwScUObowIBuGeL5Ud8mG28WSBQFtY20w0Mf4vqM6K5spnHB3u250sNGl07u2fhWHCdXU9M6iwV2z/5jdJg84dppoqWjG5aCHWIJj0zg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752570931; c=relaxed/simple;
-	bh=qOedZv7756/fVVd5cPJtxxIJU+1REqIcJB4kfq+mB7M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=u8Qm8nL1I44EoTBtKjyb2CK5lQ9+7Vw2+pd6DAQczt/IIJ2lu7PoeY+ba+maFUgVPb2qGYDhpYnf//TXJZT5ucf9fi3dsSzxNGTej0VJQADDufMzCJ10VqjlT3BXdihCZOkfE03j9t5t8TfEYuwBCBF1whljz2HgFcJzOynA4tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de; spf=pass smtp.mailfrom=it-klinger.de; dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b=LwLN1F7M; arc=none smtp.client-ip=78.46.3.230
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=it-klinger.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=it-klinger.de; s=default2502; h=Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=cNybS8mn+hrVW7tJqT823GFnF+wuyNe0y7fZM7Cs0D4=; b=LwLN1F7MKlmbegR5FqVMBSGDyH
-	2q9WZNEmB+wN9RBY09AbFaDIOonMu2h3qdLaheds1DNw+0DRGULpm5hlVN/+vJYBFyiJeqj3uBgiG
-	hwUqv9rcWaHiJ6IXUy5Oh1gGJO/AD2b3KTbN6pkVXXTlcaOzcs2QNFXa7jnmfqlOSW/iVlZyOzPFB
-	uWu4fc3ahy52R1Ss4vBgfv+euZyVXJ6f/ClIzGfvFMAO2iH9vLbvZkSzEfpa4gyNI98jmziMm/E0u
-	xH55Uih2UHWrZyadvNHxpqaFeaMWYITza4uFExymvzo8ctEVVK67zjObhzJjQv2hzzsTs5FZPEUFb
-	g3Hca5lw==;
-Received: from sslproxy02.your-server.de ([78.47.166.47])
-	by www571.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <ak@it-klinger.de>)
-	id 1ubbVC-000HmM-0N;
-	Tue, 15 Jul 2025 10:59:06 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy02.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ak@it-klinger.de>)
-	id 1ubbVB-000AWe-02;
-	Tue, 15 Jul 2025 10:59:05 +0200
-From: Andreas Klinger <ak@it-klinger.de>
-To: jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: lars@metafoo.de,
-	javier.carrasco.cruz@gmail.com,
-	mazziesaccount@gmail.com,
-	andriy.shevchenko@linux.intel.com,
-	arthur.becker@sentec.com,
-	perdaniel.olsson@axis.com,
-	mgonellabolduc@dimonoff.com,
-	muditsharma.info@gmail.com,
-	clamor95@gmail.com,
-	emil.gedenryd@axis.com,
-	ak@it-klinger.de,
-	devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v6 3/3] MAINTAINER: add maintainer for veml6046x00
-Date: Tue, 15 Jul 2025 10:58:10 +0200
-Message-Id: <20250715085810.7679-4-ak@it-klinger.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250715085810.7679-1-ak@it-klinger.de>
-References: <20250715085810.7679-1-ak@it-klinger.de>
+	s=arc-20240116; t=1752570029; c=relaxed/simple;
+	bh=/fSaFmzNZewgomFZk/gLqQ6dUoME78cATqFdKv1CmqE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=A0T+QVbXkR8R3lQsv90oWSWQGcmQIaEfKWFbgni/9JzwmlQGq75kuLc0AqmCYIVvq0FfbNEUtM0s9QALJqWicrzHXZr2XniZlwX9flaWCKGMGoWU+dOifOw19y+wivarEes6PVJgYjx1zlh/4C6r5gxdxgWNirE8fuGbzBU2oUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pvFGLVYz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02BADC4CEE3;
+	Tue, 15 Jul 2025 09:00:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752570028;
+	bh=/fSaFmzNZewgomFZk/gLqQ6dUoME78cATqFdKv1CmqE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pvFGLVYzhNqOC/kSI/4Xn23X6QKO6JAWGUIK9qSDGVILdYWjEkrt7z0orc36YIju5
+	 R4gegq/7RuLBDpkd9CtMwGtznMIh40kIDUNeHEuRVBx35s9Zn6Iksc8lXgu8vlcjOU
+	 ZffzQOgArxhE48yxQw3JR48c6gjtk+fMa1rMLf/CDyh2xA/OcyqOBnVoXjVmqMYahP
+	 5UOyvYJW4g93R5mbSmSei+e7M6LkdWZ2hiBYWwKulQkMEacrtDLuLkoaqaBaELHciN
+	 AQq4gdE6rJ+Nh+F+rkVkL1WFKoPbICTP02WLkIuL4tSJNzXKE5mvLMyRNpQzZ8Bv0+
+	 Ej/n5x8jATqAA==
+Message-ID: <a1076669-f044-4a84-aa1c-478573bf3c64@kernel.org>
+Date: Tue, 15 Jul 2025 11:00:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: ethernet: eswin: Document for EIC7700
+ SoC
+To: =?UTF-8?B?6Z+m5bCa5aif?= <weishangjuan@eswincomputing.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
+ yong.liang.choong@linux.intel.com, vladimir.oltean@nxp.com,
+ jszhang@kernel.org, jan.petrous@oss.nxp.com,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, inochiama@gmail.com,
+ boon.khai.ng@altera.com, dfustini@tenstorrent.com, 0x1207@gmail.com,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, ningyu@eswincomputing.com,
+ linmin@eswincomputing.com, lizhi2@eswincomputing.com,
+ pinkesh.vaghela@einfochips.com
+References: <20250703091808.1092-1-weishangjuan@eswincomputing.com>
+ <20250703091947.1148-1-weishangjuan@eswincomputing.com>
+ <9316adcb-4626-4ff8-a308-725c6ab34eba@kernel.org>
+ <724b4f84.323b.1980d4b15c4.Coremail.weishangjuan@eswincomputing.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <724b4f84.323b.1980d4b15c4.Coremail.weishangjuan@eswincomputing.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: Clear (ClamAV 1.0.7/27699/Mon Jul 14 10:54:31 2025)
 
-Add maintainer for Vishay veml6046x00 RGBIR color sensor driver and dt
-binding.
+On 15/07/2025 10:54, 韦尚娟 wrote:
+>>> +
+>>> +allOf:
+>>> +  - $ref: snps,dwmac.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - const: eswin,eic7700-qos-eth
+>>> +      - const: snps,dwmac-5.20
+>>> +
+>>> +  reg:
+>>> +    minItems: 1
+>>
+>> Nope. Changelog does not explain that, it is not correct and no one ever
+>> requested something like that. See also writing bindings about constraints.
+> 
+> I have reviewed the writing method from other YAML files in the source code, 
+> and they all use “reg: maxItems: 1 ” instead of “reg: minItems: 1”. So we also
+> need to use “reg: maxItems: 1 ” in our YAML file. Is this understanding correct?
 
-Signed-off-by: Andreas Klinger <ak@it-klinger.de>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+Yes, assuming you have here one entry.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fad6cb025a19..d38e92d5229d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -26424,6 +26424,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/iio/light/vishay,veml6030.yaml
- F:	drivers/iio/light/veml6030.c
- 
-+VISHAY VEML6046X00 RGBIR COLOR SENSOR DRIVER
-+M:	Andreas Klinger <ak@it-klinger.de>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/light/vishay,veml6046x00.yaml
-+F:	drivers/iio/light/veml6046x00.c
-+
- VISHAY VEML6075 UVA AND UVB LIGHT SENSOR DRIVER
- M:	Javier Carrasco <javier.carrasco.cruz@gmail.com>
- S:	Maintained
--- 
-2.39.5
+> 
+>>> +
+>>> +  interrupt-names:
+>>> +    const: macirq
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  phy-mode:
+>>> +    $ref: /schemas/types.yaml#/definitions/string
+>>> +    enum:
+>>> +      - rgmii
+>>> +      - rgmii-rxid
+>>> +      - rgmii-txid
+>>> +      - rgmii-id
+>>> +
+>>> +  phy-handle:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: Reference to the PHY device
+>>> +
+>>> +  clocks:
+>>> +    minItems: 2
+>>> +    maxItems: 2
+>>> +
+>>> +  clock-names:
+>>> +    minItems: 2
+>>> +    maxItems: 2
+>>> +    contains:
+>>> +      enum:
+>>> +        - stmmaceth
+>>> +        - tx
+>>
+>> Not much changed, nothing explained in the changelog in cover letter.
+>>
+> 
+> For clocks and clock-names, other YAML files have no minItems
+> and maxItems. Remove minItems and maxItems from
+> clocks and clock-names and as we have fix 2 clocks. Add description in clocks:items. 
+> Ref yaml: sophgo,sg2044-dwmac.yaml, starfive,jh7110-dwmac.yaml
+> 
+> All the changes will be added in cover letter in the next version. Is this understanding correct?
 
+Yes.
+
+Best regards,
+Krzysztof
 
