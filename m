@@ -1,136 +1,136 @@
-Return-Path: <devicetree+bounces-196559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18126B061AF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 16:46:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0A4B061DC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 16:51:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00EDD5A238A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:33:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6874316E6FE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5E9D285048;
-	Tue, 15 Jul 2025 14:30:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEE111EFF96;
+	Tue, 15 Jul 2025 14:34:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W2v2bzED"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DUDcufFZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F6EB20AF87
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 14:30:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C260119EEC2;
+	Tue, 15 Jul 2025 14:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752589819; cv=none; b=UyOQLzCYvMd7B1JoCb86qaeQcozc5AwuTBVyiIZhAzWH84g9/Sn9CPwPz27bTKiAcSHNW2KBmoxZYAGS0AvM++kFdSOLzXLdAGe5i7gv8origyMOs0Wvm1u8EI/MIAdxNZuE1VhtPcJhg8GuO6JIY5SMPteGTLfd0XlzavCuOYw=
+	t=1752590072; cv=none; b=gW46zeD6YA/mw/Vo0yRhZREfFqKzwyNuLNN32PiMN5rxMyvvDVnVvLn0QdxZTbxPzvVJynXo8WXBBiI+f4TCeotEHWYmBDzq+bM2cGnaaL9h5u7r/l/suM7nF4KoVDGqPZNApHxl/IzqW7FPFkZdC7HkRvJyQCbwbzLsh/Cxb+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752589819; c=relaxed/simple;
-	bh=FdL1/HKNTpO4kdE7n4NKm5VaVSkDlbNs48yc+1QgZas=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PlvvoMhQQVdb86vuTRXuShh1yjyZ4yPR/8BBp5lgDy/fUK6tQ1mrJa0KcRjmd78vohxUP7TAXHlC8HAuhFnfsPD9nUhyv8B7GkvDA8CJfVCIPhCdGbOD3mvjgCKxwM8hJBkuDtIe9WiVTcECeeR5M0o2Zvub5i5Qxyd9//uj4NE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W2v2bzED; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e8b62d09908so5095043276.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 07:30:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752589817; x=1753194617; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4+7Su+tXNXtNlViREf/FpByOQe19DRJ2WhD/byKGrG8=;
-        b=W2v2bzED3A9ejC4TfbgBBjzjno/K1PhLK2E7O3e0SPUbLWqTR9Evxz9A+K/rXmm1Gp
-         Et22K0hwMJdya3IKeHHsXW3hPwxvGaAhOYHBmyAS8ncFcpUbQerWd0RUW9AbdeTrB6sG
-         QOUikyYzPsid/y34PVziDdUyKm1BoNauuudY42lVMegWroSPQOo3Qkr6ygEYUTk7hnPm
-         kY02nYoNhhonMX9fIknHS1fRHnqETyvy/jv6p/jTCFbethMcmYb0L5oWZWuzyDkW6sow
-         OmLBsjvk6glkP806VpmbDr5DbkxrIKVAvgata5YVlC/7rRECoPR3Rnlb3ulchSSzVxCG
-         mZKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752589817; x=1753194617;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4+7Su+tXNXtNlViREf/FpByOQe19DRJ2WhD/byKGrG8=;
-        b=uzaCP1k5FOrTPMDx55cQU5VIHcuKjoUkknnO3HmRGSE/I+LvDbNihZeH8cGMYnxX+F
-         gZAUx8SJO+3eBP2u9FXVohy+ddBOUgeIaITVuhN2k/EVA5TTHOdQOIHBl4t8P1cyxr0G
-         9lQuILP+/g6P2UD4S9XpVFOEEt224Shantqhn18nxtNc9QNYOYAca+O0JnMAtMI0Htvn
-         F0WdTCXIEDY7fbOqELHQpq1lXqVSazafOjFScV0hWBb1DDJxGLfymu+jNWVCRt8NlCTK
-         sl8ELkCwDIa9mP9CnDjxVrfPD7XpFXeIxv2VUAHUrc90d8EaNPTkRcP4o84t2PoOI4J4
-         HoCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVGSIrCoASgnnS2nLglYTdeZBP7vinFUG06USe2TIRCj3OsjVNlqjwT+R4BEgUMOVTjTVQYN4LYO9Ef@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4SgNwKJGgT7dFTB7lXkFY2Q21zQSyWzMesRq8nIgSOYhajNh1
-	kAkYskaQ3nRwINS6zuiL0ZG169EUEno9XoWcQFuHRMQTxq8TPH3zLQXprkDdXuMM8z70C87mqOZ
-	qFzvnFAl1vrUYJTdZue0Ag5CH93fXOWYJwF1DREp8gA==
-X-Gm-Gg: ASbGncv/QA3QVO2u4iPmG9iHWtWnhM+/5fW7bhqXitxRSpMYsRDLtKxaKSzagxfaGN4
-	/TLVVZ3o8HyEM177ECN0xHWOwpVZKg9cKHgHFI8w0xYX9WVfnm3QB66K+1mzTKqNuBWy83nZ993
-	w+DKwKnGBodwgzAUHtOYfVW+eJg1egP3c33sRaQHROlxTcMFStu8fRbkEhIOFDqmsthRdqhoEtc
-	G5MB9S0
-X-Google-Smtp-Source: AGHT+IGBzBhoCXe5OGunO7xvl2ZbN7LRPwWWQsLELIyQWERT2XuyowSM7Ti1rVh+eETJFMAPU2ltq9fvUbOvfY7jIrI=
-X-Received: by 2002:a05:690c:9:b0:718:2387:4544 with SMTP id
- 00721157ae682-71823874737mr49946387b3.12.1752589816638; Tue, 15 Jul 2025
- 07:30:16 -0700 (PDT)
+	s=arc-20240116; t=1752590072; c=relaxed/simple;
+	bh=PYwhKe0GMvp7ihfIzBAq9SNNQepK3AlS2xPSvBMLHqU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ATRVo9CSLP3xM18mI+R8LCyDImLbmWbnm8TnV3uuZS3LTUKLirubg5Gqh8A6O7fDkcLs6IQM0h/OCuGrcNDQw9t1BTbdcd7jc3qeMGc1J1AY9SGWGGSlF3T2zMA/eOJI7uwEN6O+wcM7ue6byiVGBGtrqxYEK2AUks6EE4EJ9Oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DUDcufFZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 240B7C4CEE3;
+	Tue, 15 Jul 2025 14:34:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752590072;
+	bh=PYwhKe0GMvp7ihfIzBAq9SNNQepK3AlS2xPSvBMLHqU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DUDcufFZ69Kj9Mg4obHeLJ1tqjVc4h81VF8IhZ0URP0Vsi6lLmBn8IYUPKptjuoAs
+	 urAIFYKgUEAFIKwEOmgeBlL3njUCYEZC9JjRn+41vFX0QUtiMcRmyLqd8xJ2JrppeG
+	 A3timXh4aoqwQetsAL3YoePXI0FLfw6X6LN2uDZ4pSHspKIFINZmg+UqFEDafkXveQ
+	 adt+smXAdoyYGIq6LR3QDWlgxQ7jcLBG+/4dAWpw39BDvENsW8hzAySzM4X35NxUCV
+	 7QYSunSoNxoCJKlhitjXAvMMhrqmeNYylYknPE8U+MYS/rTrrSBrmL2jr0g0Yq9xTP
+	 wWWE2fWP1DytA==
+Date: Tue, 15 Jul 2025 16:34:24 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Breno Leitao <leitao@debian.org>
+Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Peter Maydell <peter.maydell@linaro.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v7 18/31] arm64: smp: Support non-SGIs for IPIs
+Message-ID: <aHZm8BsqV1ighJ+2@lpieralisi>
+References: <20250703-gicv5-host-v7-0-12e71f1b3528@kernel.org>
+ <20250703-gicv5-host-v7-18-12e71f1b3528@kernel.org>
+ <7mhnql75p3l4vaeaipge6m76bw4wivskkpvzy5vx3she3wogk4@k62f5hzgx5wr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250713-sm7635-fp6-initial-v2-0-e8f9a789505b@fairphone.com> <20250713-sm7635-fp6-initial-v2-10-e8f9a789505b@fairphone.com>
-In-Reply-To: <20250713-sm7635-fp6-initial-v2-10-e8f9a789505b@fairphone.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 15 Jul 2025 16:29:40 +0200
-X-Gm-Features: Ac12FXwmHbA2nWRNuYQwrZTMO008mwPCFYz6i2upkNA2qncGOOVsk9AzGvxKlLM
-Message-ID: <CAPDyKFo77_0n0SefZ0N3osbSM=0tXW_rsjd9P4WaqoZAwyaTGg@mail.gmail.com>
-Subject: Re: [PATCH v2 10/15] dt-bindings: mmc: sdhci-msm: document the Milos
- SDHCI Controller
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Herbert Xu <herbert@gondor.apana.org.au>, 
-	"David S. Miller" <davem@davemloft.net>, Vinod Koul <vkoul@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Robert Marko <robimarko@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Jassi Brar <jassisinghbrar@gmail.com>, 
-	Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	iommu@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
-	dmaengine@vger.kernel.org, linux-mmc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7mhnql75p3l4vaeaipge6m76bw4wivskkpvzy5vx3she3wogk4@k62f5hzgx5wr>
 
-On Sun, 13 Jul 2025 at 10:07, Luca Weiss <luca.weiss@fairphone.com> wrote:
->
-> Document the SDHCI Controller on the Milos SoC.
->
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+On Tue, Jul 15, 2025 at 07:10:29AM -0700, Breno Leitao wrote:
+> Hello Lorenzo, Marc,
+> 
+> On Thu, Jul 03, 2025 at 12:25:08PM +0200, Lorenzo Pieralisi wrote:
+> > diff --git a/arch/arm64/kernel/smp.c b/arch/arm64/kernel/smp.c
+> > index 3b3f6b56e733..2c501e917d38 100644
+> 
+> > @@ -1046,11 +1068,15 @@ static void ipi_setup(int cpu)
+> >  		return;
+> >  
+> >  	for (i = 0; i < nr_ipi; i++) {
+> > -		if (ipi_should_be_nmi(i)) {
+> > -			prepare_percpu_nmi(ipi_irq_base + i);
+> > -			enable_percpu_nmi(ipi_irq_base + i, 0);
+> > +		if (!percpu_ipi_descs) {
+> > +			if (ipi_should_be_nmi(i)) {
+> > +				prepare_percpu_nmi(ipi_irq_base + i);
+> 
+> I am testing linux-next on commit 0be23810e32e6d0 ("Add linux-next
+> specific files for 20250714") on a Grace (GiCv3), and I am getting
+> a bunch of those:
+> 
+> 	[    0.007992] WARNING: kernel/irq/manage.c:2599 at prepare_percpu_nmi+0x178/0x1b0, CPU#2: swapper/2/0
+> 
+> 	[    0.007996] pstate: 600003c9 (nZCv DAIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> 	[    0.007997] pc : prepare_percpu_nmi (kernel/irq/manage.c:2599 (discriminator 1))
+> 	[    0.007998] lr : prepare_percpu_nmi (kernel/irq/manage.c:2599 (discriminator 1))
+> 
+> 	[    0.008011] Call trace:
+> 	[    0.008011] prepare_percpu_nmi (kernel/irq/manage.c:2599 (discriminator 1)) (P)
+> 	[    0.008012] ipi_setup (arch/arm64/kernel/smp.c:1057)
+> 	[    0.008014] secondary_start_kernel (arch/arm64/kernel/smp.c:245)
+> 	[    0.008016] __secondary_switched (arch/arm64/kernel/head.S:405)
+> 
+> I haven't bissected the problem to this patch specifically, but
+> I decided to share in case this is a known issue, given you are touching
+> this code.
+> 
+> I would be happy to bissect it, in case it doesn't ring a bell.
 
-Applied for next, thanks!
+Thank you for reporting it.
 
-Kind regards
-Uffe
+Does this patch below fix it ?
 
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> index 2b2cbce2458b70b96b98c042109b10ead26e2291..6f3fee4929ea827fd75e59f31527f96b79b2cca8 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> @@ -42,6 +42,7 @@ properties:
->                - qcom,ipq5424-sdhci
->                - qcom,ipq6018-sdhci
->                - qcom,ipq9574-sdhci
-> +              - qcom,milos-sdhci
->                - qcom,qcm2290-sdhci
->                - qcom,qcs404-sdhci
->                - qcom,qcs615-sdhci
->
-> --
-> 2.50.1
->
+-- >8 --
+diff --git i/arch/arm64/kernel/smp.c w/arch/arm64/kernel/smp.c
+index 4797e2c70014..a900835a3adf 100644
+--- i/arch/arm64/kernel/smp.c
++++ w/arch/arm64/kernel/smp.c
+@@ -1093,7 +1093,7 @@ static void ipi_setup_sgi(int ipi)
+ 
+ 	irq = ipi_irq_base + ipi;
+ 
+-	if (ipi_should_be_nmi(irq)) {
++	if (ipi_should_be_nmi(ipi)) {
+ 		err = request_percpu_nmi(irq, ipi_handler, "IPI", &irq_stat);
+ 		WARN(err, "Could not request IRQ %d as NMI, err=%d\n", irq, err);
+ 	} else {
 
