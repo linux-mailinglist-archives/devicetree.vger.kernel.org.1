@@ -1,119 +1,83 @@
-Return-Path: <devicetree+bounces-196274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9CD7B04E9B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:20:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 170C9B04EAD
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:25:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D9B04A41E9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 03:20:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C3F416A789
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 03:25:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D070D2D0278;
-	Tue, 15 Jul 2025 03:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3845E2D0C7A;
+	Tue, 15 Jul 2025 03:25:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mhnvEVxT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I7PuSuWT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E4E280B;
-	Tue, 15 Jul 2025 03:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051006FBF;
+	Tue, 15 Jul 2025 03:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752549621; cv=none; b=C/XVzWqcBGuIZBWPy3s6Mf4ncBODzx51B0MafzoqE8yGvUhOAcU4EDEXX6X9KdeG9/VPagXKKUu8hMEx10L3DaaiP9FOtonpFrO2bskFtYBUDGc38ETMIk1vKH+a1y+rk7mXbItAGwHW9OuE/JrTe6P2ageFu9M+zGHE9AIaCcI=
+	t=1752549940; cv=none; b=K4TxC7HQWorBIts1JaoKjjxENVjgJbkLWuCZ3ZdH44EC8rOsdAZPLZrXQ1Dako3dSddSw2Ls4P30stuM/lJ3N5Sdlgcqse1MD6ZNbj2QiYkELZDs7ODaLUP0AhYARNkLfq03G/hsZ9ALJbmsTIOXCLwR2I5jrR0T80UwiHC0O/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752549621; c=relaxed/simple;
-	bh=TDYuRWmFZrwnvk8qMS3AlGvkZ3xUWYu930vi3adDEoY=;
+	s=arc-20240116; t=1752549940; c=relaxed/simple;
+	bh=lrzxwWtwZkNCjGp2yhM/QISkZjt3HFGiOPAd5Hqt0KQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lCqaYP5nxrM1X9ra+vZftmt3pgMMpm8pvWBSMsTXiD00pnK6fN6m3R/F6TgdGrqotxDCh/pC+7EO2eNvfS+/qsqw7CPeJV41syb1G5dMM9fle5tBe/dm7fx9pLZ0rXDY3zh0tJx7WtrEy45mTQRBfwvxkEOTzTKL8RJqSRPplQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mhnvEVxT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D5B9C4CEED;
-	Tue, 15 Jul 2025 03:20:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mhbnCdX10xbDMhHbZ3i91xR4X2wipzrBhdDI+5ngDYGmLrTGOYjDkpIBLOI5qaI+79TSuECFCEmAr5KMBeimiKXQq/IYc1AA6DIUEnw456FNUut/RQCJqY8FEq85bWYlY0/tPRKJmc6c6Ecwae/BqPnZi01F0vJ/a8ETlY6xa5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I7PuSuWT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42430C4CEED;
+	Tue, 15 Jul 2025 03:25:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752549621;
-	bh=TDYuRWmFZrwnvk8qMS3AlGvkZ3xUWYu930vi3adDEoY=;
+	s=k20201202; t=1752549937;
+	bh=lrzxwWtwZkNCjGp2yhM/QISkZjt3HFGiOPAd5Hqt0KQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mhnvEVxTxd7nbP4JvA3c5oAI7v4Uh1XECXIYdE/N/qy0huEeZvo77oD3clb4yTeWg
-	 ymcvNK/OWxZiNy8QB28n853qDQu5Onfy2QbNM99FmG7C495d6/1pBwDdOtioibMSSr
-	 /rlMD2bWz/hqVqcD18knvPH4J8lLajX/kcQ2Ilm7eWdWbm7ZGc4Q/ZTnOWmINuwNNe
-	 BxX9zMQoXhN+gpCMRRtNwTSi0RuN0t+Gkpq8fEib5xKs3IOxjBmVBIpaSmzbYDP8qg
-	 xOWvSr5FiKi9K5beUealNgIeVFiD9nCqjoctx0r+oRvwk+1p8VUoHmrFlNxs9LXyT7
-	 106sWikoj8ffw==
-Date: Mon, 14 Jul 2025 22:20:20 -0500
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>
-Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Gatien Chevallier <gatien.chevallier@foss.st.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Le Goffic <legoffic.clement@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 06/16] arm64: dts: st: add LPDDR channel to
- stm32mp257f-dk board
-Message-ID: <20250715032020.GB4144523-robh@kernel.org>
-References: <20250711-ddrperfm-upstream-v2-0-cdece720348f@foss.st.com>
- <20250711-ddrperfm-upstream-v2-6-cdece720348f@foss.st.com>
+	b=I7PuSuWTWcQFMmtXjLrtDpl0Wtf8yAEkG/+jxgWUPWVdfVewQhkYPINJWaZeJnGkL
+	 IJlfTX36KVei4CWgJEPFO5NdUlNSSP9L4bxSUpEIlXmmXPH+jkdfMPSArdC16a+eAp
+	 xMWYqKLUl7L41VtuTvD92OsktDQQ86qlL6DPGm9ZJgMV7z9SfynC3u0TN+T1VuDrLX
+	 bcyUk2yIwJAODrgjDSTwm3g8Wn6LJRVHZxJItRhHOkLTVeyXax+rUuvV0PxZNXXi9W
+	 Q6/BhBB2bP17M9NSWxohunwAX8SzzQs6Jbes5g5c1676g6CoFP5Xf2ubOwMagP7cBf
+	 eD3V9ig8YRrTg==
+Date: Mon, 14 Jul 2025 22:25:36 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+Cc: palmer@dabbelt.com, spacemit@lists.linux.dev, krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org, alex@ghiti.fr, dlan@gentoo.org,
+	skhan@linuxfoundation.org, devicetree@vger.kernel.org,
+	paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
+	linux-riscv@lists.infradead.org, conor+dt@kernel.org,
+	linux-kernel-mentees@lists.linux.dev
+Subject: Re: [PATCH 1/2] dt-bindings: riscv: spacemit: Add OrangePi RV2 board
+Message-ID: <175254993587.4165390.1905297422239367623.robh@kernel.org>
+References: <20250711183245.256683-1-hendrik.hamerlinck@hammernet.be>
+ <20250711183245.256683-2-hendrik.hamerlinck@hammernet.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250711-ddrperfm-upstream-v2-6-cdece720348f@foss.st.com>
+In-Reply-To: <20250711183245.256683-2-hendrik.hamerlinck@hammernet.be>
 
-On Fri, Jul 11, 2025 at 04:48:58PM +0200, Clément Le Goffic wrote:
-> Add 32bits LPDDR4 channel to the stm32mp257f-dk board.
+
+On Fri, 11 Jul 2025 20:32:44 +0200, Hendrik Hamerlinck wrote:
+> Document the compatible string for the OrangePi RV2 board [1], which
+> is marketed as using the Ky X1 SoC but is in fact identical to
+> the SpacemiT K1 SoC [2].
 > 
-> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+> Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-RV2.html [1]
+> Link: https://www.spacemit.com/en/key-stone-k1 [2]
+> Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
 > ---
->  arch/arm64/boot/dts/st/stm32mp257f-dk.dts | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  Documentation/devicetree/bindings/riscv/spacemit.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-> index a278a1e3ce03..a97b41f14ecc 100644
-> --- a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-> +++ b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-> @@ -54,6 +54,13 @@ led-blue {
->  		};
->  	};
->  
-> +	lpddr_channel: lpddr4-channel {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "jedec,lpddr4-channel";
 
-Not tested because this doesn't match the binding.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +		io-width = <32>;
-> +	};
-
-What would multiple channels look like? I think this needs some work. 
-Like it should perhaps be within the memory node. It's a lot to just say 
-32-bit LPDDR4 x1.
-
-> +
->  	memory@80000000 {
->  		device_type = "memory";
->  		reg = <0x0 0x80000000 0x1 0x0>;
-> 
-> -- 
-> 2.43.0
-> 
 
