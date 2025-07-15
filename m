@@ -1,132 +1,88 @@
-Return-Path: <devicetree+bounces-196623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F47B06799
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:14:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06A74B067E7
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:47:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB306563BA2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 20:14:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 644F61AA7665
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 20:48:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0639329B796;
-	Tue, 15 Jul 2025 20:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA4662620DE;
+	Tue, 15 Jul 2025 20:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dmBiP0Mi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P+CNcT2F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5553C26E718;
-	Tue, 15 Jul 2025 20:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B8B1547CC;
+	Tue, 15 Jul 2025 20:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752610480; cv=none; b=JfHIk/muB7qYHza+ZunajtNIs5Eo/90Rio00vqhphA/6JnOy8wdmHlQ3WchINcFZ0VOqIVV7eX6qDh9NQS+EzPxaAIKETgJs6zhHTa48PLvqBwERwLXHY2EnBVk9FT6iuYoCHMCqnYOlnMZE2VKELhNvt3/dsq4O6m5EVHAmVHo=
+	t=1752612464; cv=none; b=Zu/zrN67TCr1Ayc96V3Ya50XqRaKZIwXBgU1cLwb8PPNO0rxjEHPUoAZkxj6bfv188ISrw/L5zBOD/yIQmJ7oxFpNqTzhBL8sDpPs25eXvD2cFZqTrG3x6df3WZtci6/0KxaTMrDs1gwOWIy0LZvaWv7tmpq3S1GWadZfVoZWpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752610480; c=relaxed/simple;
-	bh=eS6Mpdyp46gQ6nUgwPSL7+/IQm0H6qYJBJumRgSICho=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CksmdEBWe0+Nd7/DXb3gTwHCHmmYRFQIaMJ6UYr0jG4pfuU/5d5qnbsrpH3WTYtlNX70LiSUVm2mTcsNSyPvvaqmFis2gnBEZ39LGyawu0Aqe2wkieWnph+MD18d050jhH2gLgSYRap59UkuKw7eYMizTBMRp2OZ7F1dLzEUwZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dmBiP0Mi; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1752610479; x=1784146479;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eS6Mpdyp46gQ6nUgwPSL7+/IQm0H6qYJBJumRgSICho=;
-  b=dmBiP0MiVnxoyxG7ejTolJiZyRfIWQ2WYlgBu6qlsKno6S5dxgbF/SvD
-   34LCbRmvhCHrnJm0ridK7pfq1LfIWvUzUj/fvh0ZD0nsgD1VTdgaI4TzP
-   jN9VtRKgbqXP+y/yplBfAqUVAa/RqOgvYQH+LqG1THbR9Kt3bwGBDfjC3
-   yqjc5Sz2k7VZ0P1qwWkRO36bXgzYPzuoEzrZV0KVnm0+muBcbCOkhogJf
-   hKhI0dwpcutFIVikhJiB2qqEQyDHXSI/Npvd9mpipPPt+ZO1nduBj2xJZ
-   J1XJkHs0OG39SpHYC7/Oxit958NLn1HZ8NEw+HGqLhvw3f4+oT0b1k8yB
-   A==;
-X-CSE-ConnectionGUID: hfmNCGSkQS+Wd9wxJOWG4w==
-X-CSE-MsgGUID: UP2wvDnzTZSf/yxQ43RFwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="42473888"
-X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; 
-   d="scan'208";a="42473888"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2025 13:14:39 -0700
-X-CSE-ConnectionGUID: swZoM0+0REi7GGWqObo93g==
-X-CSE-MsgGUID: nZzgw5MpQzKGR4ifrqa3mg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,314,1744095600"; 
-   d="scan'208";a="161631582"
-Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 15 Jul 2025 13:14:34 -0700
-Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ubm2p-000BVn-1r;
-	Tue, 15 Jul 2025 20:14:31 +0000
-Date: Wed, 16 Jul 2025 04:13:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jacky Chou <jacky_chou@aspeedtech.com>, bhelgaas@google.com,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au,
-	linux-aspeed@lists.ozlabs.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1752612464; c=relaxed/simple;
+	bh=+8T87hVWtlP0BU4Aogfqxtkdwo1wc0u0zEZPT4I2M48=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZDrRNyaRa7A/qA3Spy3s8deMiqsFhW6kY1BNS003AX+R1ZqKBe+nDWe8mTPG9sdX67FcHwoFjGHZLxQczroYQSusfV1xOQFOf0W4WTjQhclm7IT0MOh8Sid484Xks4n5LPWjYWYhX3LwPU/WU5wAkn7VWi98Z4ON9LqEbCYgIiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P+CNcT2F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09BA9C4CEE3;
+	Tue, 15 Jul 2025 20:47:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752612464;
+	bh=+8T87hVWtlP0BU4Aogfqxtkdwo1wc0u0zEZPT4I2M48=;
+	h=From:To:Cc:Subject:Date:From;
+	b=P+CNcT2F52zpPJ2setcF32dq18j7Ailx4A20tHCJALUYC6WlJbwQ8ugBXW1fb2q0S
+	 K9NcboA7cCQSkxJ1FjEUaRMiKPPMH61Poi4ZQsmAgUmsm5SuZZH8iC6bpriQgbhPqQ
+	 xpumZA6VXAoS9240zgL2/ckGxTc6+EDuT64vcGOnTRz4VU5+X4K6KqYWCYPfuuYvsI
+	 pzVdK5ecDMX0CGnBub8uyIwv7E+ZWAqNaFaLzgHv1UHpSH3isguxCjxvio97igvSDO
+	 vzF51xf1gZ0xoB9IE5ZtgJUpE0gwp0/wnGR/8wrCYwDI8IRRS/Me4W02OLuo6lyCxv
+	 dSVwJe3/ZAQhg==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-	linus.walleij@linaro.org, p.zabel@pengutronix.de,
-	BMC-SW@aspeedtech.com
-Subject: Re: [PATCH v2 08/10] PCI: Add FMT and TYPE definition for TLP header
-Message-ID: <202507160314.e3odwyX7-lkp@intel.com>
-References: <20250715034320.2553837-9-jacky_chou@aspeedtech.com>
+Subject: [PATCH] spi: dt-bindings: spi-mux: Drop "spi-max-frequency" as required
+Date: Tue, 15 Jul 2025 15:27:10 -0500
+Message-ID: <20250715202711.1882103-1-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250715034320.2553837-9-jacky_chou@aspeedtech.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Jacky,
+There's little reason to require the SPI mux to define a maximum bus
+frequency as the muxing is just the chip select and devices still define
+their maximum freq. In fact, several users don't set "spi-max-frequency"
+which caused warnings.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/spi/spi-mux.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-[auto build test WARNING on pci/next]
-[also build test WARNING on pci/for-linus robh/for-next linusw-pinctrl/devel linusw-pinctrl/for-next linus/master v6.16-rc6 next-20250715]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Chou/dt-bindings-soc-aspeed-Add-ASPEED-PCIe-Config-support/20250715-114814
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20250715034320.2553837-9-jacky_chou%40aspeedtech.com
-patch subject: [PATCH v2 08/10] PCI: Add FMT and TYPE definition for TLP header
-config: i386-buildonly-randconfig-004-20250715 (https://download.01.org/0day-ci/archive/20250716/202507160314.e3odwyX7-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250716/202507160314.e3odwyX7-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507160314.e3odwyX7-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from <built-in>:1:
-   In file included from ./usr/include/linux/pci.h:21:
->> usr/include/linux/pci_regs.h:1234:39: warning: // comments are not allowed in this language [-Wcomment]
-    1234 | #define PCI_TLP_FMT_3DW_NO_DATA         0x0  // 3DW header, no data
-         |                                              ^
-   1 warning generated.
---
-   In file included from <built-in>:1:
->> ./usr/include/linux/pci_regs.h:1234:39: warning: // comments are not allowed in this language [-Wcomment]
-    1234 | #define PCI_TLP_FMT_3DW_NO_DATA         0x0  // 3DW header, no data
-         |                                              ^
-   1 warning generated.
-
+diff --git a/Documentation/devicetree/bindings/spi/spi-mux.yaml b/Documentation/devicetree/bindings/spi/spi-mux.yaml
+index fb2a6039928c..b1e2a97be699 100644
+--- a/Documentation/devicetree/bindings/spi/spi-mux.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-mux.yaml
+@@ -46,7 +46,6 @@ properties:
+ required:
+   - compatible
+   - reg
+-  - spi-max-frequency
+   - mux-controls
+ 
+ unevaluatedProperties: false
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.2
+
 
