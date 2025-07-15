@@ -1,186 +1,130 @@
-Return-Path: <devicetree+bounces-196551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 805B4B060FF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 16:28:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30074B0610D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 16:30:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7510C4E5816
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:20:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44D9AB4120E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 14:20:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C597B293B73;
-	Tue, 15 Jul 2025 14:09:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yzBG5AKr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F240C29ACC4;
+	Tue, 15 Jul 2025 14:10:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B00A293C54
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 14:09:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E14F29AB09;
+	Tue, 15 Jul 2025 14:10:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752588580; cv=none; b=nauoW67jtHETbfk1Q4ACS7RWuc7a/hpkVuGbmgiGOQLsODrbhR9BZO7vCDQJjs59MVjbPNa8sLY9Mkx/rn/VbdC4wD9vWHZFu8nUcYxaI6mvNtDxsZmyTCAmOmURvT+5U7My0z1LEkDfGQSpznSKZoRRZqIUrxLvZZSB0gcAC2o=
+	t=1752588636; cv=none; b=FU0AjIO7N/76XXlcHgy9ShrRuIk/kWb4JDyn1QL4tjYUVZYUuwKSNg57OzFtw7/1aIKgBrhOfzXeyFWta3CZP9E2EDp91yIw4n7obxHFdH3g1FQQslV330F4odRachexXLHPxEb/+YzhmSV0SBehi+HX/J1/ZnkdFrkMUB0eojM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752588580; c=relaxed/simple;
-	bh=jJTBj4fac1bgJaznP0nVpLk5OWhiPHvmPDoBk2KvbXA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IHBbRkc5k0kuviToIAw9hzRQd3rauPJKDqia1q9Hw/K44lsMW3141cZwpqfA/t0oOeSP3uC+cdFQtJ2O/NPeLJx6ORPH5jH85tYL1D6PJGoBwzyQU3xw2Nqc/O74v0/EEPdg3dz7wY3LqKSRfNGHN3ozmkrDrcOl56Knk767T9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yzBG5AKr; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e8bbeee8450so206524276.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 07:09:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752588578; x=1753193378; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rdR+LRqRBkJBUvCkbRrJJULDxmBDkmzUM6UrN84Yku0=;
-        b=yzBG5AKrjyd5HXxpwA1l8iVFZfC3R2ccr+oBhijiQ/mV7QAz0S1NHKz9opHeqlkEEy
-         rha5cWy7naMTyehV9fV2cbVc1jNCuWM86lT1RDrSLPb94WtM5Q7yzrv5P575Tb46HOUp
-         gd9wVMheroi1nScrIUFRTmK7TYW8jlMUC/0gkcbUV8onXKStrE/w4/9SzvknYyMSYRaE
-         Q8zVcgJEynEupepXHISKbzhSNwSColiBhDg1xKHVsu+AeMnVO9AO51XmN4dHhgqrnvgu
-         07dU4uGHxO/icWHzlS+kzg5X34hHg4MOvtVWuQNwk4tJZoZ/Imb9BCEaKhLNFOL+Fr9c
-         ODvg==
+	s=arc-20240116; t=1752588636; c=relaxed/simple;
+	bh=iD/43DSr/7nxLqoPW/jtBDYANh3C1sCegNgMfFUNBTY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OKDx35YMQ2FcjgxPO76SnW26rCCiTleMy34NjAbDo23tSzUD14OY6KzatkD0BAdbCb+jwBGwR24B7NI9kHudQ9GtrCXa+3tLXBrRF2D18xWCHU4yb3KGj6RRDrHs82OuthbwXHYhmcZETG/TJIkYYQabKyyeaUhLD/ow+Ncjnq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ae3a604b43bso916376066b.0;
+        Tue, 15 Jul 2025 07:10:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752588578; x=1753193378;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rdR+LRqRBkJBUvCkbRrJJULDxmBDkmzUM6UrN84Yku0=;
-        b=ZLkXnyX1HVXAbatgMRk6NpWC0XVNpL5WR/XUUjwO2uL8m8cEJpQn8pKG33ZEPdoopL
-         UhbZHbLczpfzwFbvIAFrgAexSbGkBp2Pd5uN/H7AFuv1h37yMZYbP1fdembB/LDiKxfR
-         3gU4lP8OYphjvN/tWkV9mVYznRevpc5eExaK5ffqHd+1HcdoW5KumcP6ByyqGDnit4i9
-         CoV5D+9gFMUSFM5+k2dBM1iXu2bxvUfUu+o3NUVsnnWEkn9yk1dsL/EuuviAHLRy+bEH
-         YerX4Uz/l1kFhuIAXj2VonP3I0ptjcRt6NTQs+OtOBvB37Z/kiGt9x9zQj4D6OJ9MRAy
-         pd7w==
-X-Forwarded-Encrypted: i=1; AJvYcCX3RBEkVc2SfKZelVQQjPE9p2/K2fIr/goIdCFh04feJ6Q8c3nIQSZiHAx3p3wAUdKymOyehIBN+uEo@vger.kernel.org
-X-Gm-Message-State: AOJu0YymGApglyPD+qkX0OqALLQwlw6RTRp12cvESceV4C2QbP6bscAH
-	IDGOQ+UJUZhzV3wn+ArrMZ8WUgOFjS/ca9Ui1WpFzTxcpuJ/nsFAlNuiwzcS8SoPNd7GbhAoIIX
-	1DgKMETtDydZdBWv+X6SobrOwpM6yaU8wUSA1/m+K8g==
-X-Gm-Gg: ASbGncumJgHiiT8QV4s9dPF6cLAVlygKdBCdoUhNmlYTFQFvxNXXYzRGQUhbj1je8Xo
-	mCfFKKeD4wnzgUFZQfKWRtSBeYZyUwBmzUZvZlK/4gJWrDRxudpwT9OO9s935mfQNBRGnbW80gf
-	2ZXsMk4em6ZQBEh46MmsIxitgX8xNs968fWjcCvZL/kNgGzcCvymnrTpG0N1pCHL4a0m1eroJRt
-	psxVvmr
-X-Google-Smtp-Source: AGHT+IFr5aZe129SXty/aUauZ98iCrC5028PDfP3/dwd83DOGHiwFr2/EEOsdifr9IoyiESxKl68x3MmFGTyJODgVvM=
-X-Received: by 2002:a05:690c:b82:b0:712:c295:d010 with SMTP id
- 00721157ae682-717d5e2848bmr255785147b3.33.1752588573210; Tue, 15 Jul 2025
- 07:09:33 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1752588633; x=1753193433;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tELAcnZVNd8b1stwXqZxFS8cE4bNgApGcuDGoeyxKzk=;
+        b=P2lrGf27P+hpLqESTREm/PTApBd+tR9UuP48KExVIsCGhXahoF7lNlneFRR/674LqU
+         qTVGLBpe9eFgKjEggCMG5SkItDFbImtYFOZtucaZAutJ0lg+bOVqfuassqJbT8BU4eF8
+         M0O/j8M7AHbZVNLee4ndUw5I2+d03YpMlDRyoUC/kySUB3rAWiUhUi8X/3X3fjVdiqoT
+         e6OBwF/Jd7JkmW0I4U4sOBRQHZJ07CL2u/FjcEE2Epuv1EY/c1bnYPCfWDSrP0hz9qdU
+         0atwJOLtC68BObVYMXLcQC8dFNi/Nvjms0x2MJMfEsavl1CX3bOYZ+lyIkP42ovAzj8k
+         ++AQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWE3gCwh5hcvvFDWGkaTNyhPHv+X85pTIn3QgdkLZ694f3GsWIgJTRCw1wdufSxh9GY4GVkjlvwOh8m@vger.kernel.org, AJvYcCX30yeo2+SLcrjUKi6+s8tEVnNm9vykys7vkXWA3axLwNp6d7Z9MjKG9TEPBUPpHX3ATYbogX8R1Aol@vger.kernel.org, AJvYcCXlNi8F7mzazk6oBwltw7rYCrtB7I2UMp6SH5wgJ5JUurh9tRNmZcC81dVB5KJOw8IVcKcblZ4qZC5IIiTn@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZ0PmT6thJ2io4+Z+GGsrVhX5cMhcjMTros1ER0i2bRu83StpJ
+	ZsYy6yQ1Y4VAQu4m2nNaof0w41v/DuGzm5++hjrTzQVoQw0P00vTb3hvumpylg==
+X-Gm-Gg: ASbGnctVRCetTfr6k9xuisOa5wK6S4EtlVwlYRDlvEYX3vvxYpTw8W1fbM8Bf9SlmP9
+	rGE9rgMdRgL6yMXSdRkdFfGJ80jNbPe0JYOXdQKMg6eA+uBFSFqIc5m8+mk/pA7qmfWsbCBEwAc
+	Wur9G67LpiSgtaak/4QnbKoaqeGJ6z96Dhe4L5wu0ZYuAkK11XLNWWrMG4FH9WDfN3Ps+nGYsRk
+	vxVZULUBmyGfdq7Uhd+ymX57m5xYwldHsyStQOpQCDp56ZZO9qQJAuAg0RIxx341DCbzqgSC4Im
+	pJdHH8YNLILh0NXv6vk00IaUMm6I243c0ujUIOcWcU+SJ/2YyowCqAv9rubefBg1l219oF/Y4wm
+	jIsQZvNwDI7wKfsfR6r1z1iM3
+X-Google-Smtp-Source: AGHT+IEbyl1a/QSsIQLOHzGok9IQBsWgH6iuwWhFnpACxKR9fLabguJ1GjnLGBVzOQT1BEOKFXRITA==
+X-Received: by 2002:a17:907:1b0b:b0:ae3:5e70:330d with SMTP id a640c23a62f3a-ae6fbc109bamr1654095266b.12.1752588632995;
+        Tue, 15 Jul 2025 07:10:32 -0700 (PDT)
+Received: from gmail.com ([2a03:2880:30ff:70::])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e7eeae5fsm1014433766b.64.2025.07.15.07.10.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Jul 2025 07:10:32 -0700 (PDT)
+Date: Tue, 15 Jul 2025 07:10:29 -0700
+From: Breno Leitao <leitao@debian.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Sascha Bischoff <sascha.bischoff@arm.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	Timothy Hayes <timothy.hayes@arm.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Peter Maydell <peter.maydell@linaro.org>, 
+	Mark Rutland <mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH v7 18/31] arm64: smp: Support non-SGIs for IPIs
+Message-ID: <7mhnql75p3l4vaeaipge6m76bw4wivskkpvzy5vx3she3wogk4@k62f5hzgx5wr>
+References: <20250703-gicv5-host-v7-0-12e71f1b3528@kernel.org>
+ <20250703-gicv5-host-v7-18-12e71f1b3528@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250712074021.805953-1-wens@kernel.org>
-In-Reply-To: <20250712074021.805953-1-wens@kernel.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 15 Jul 2025 16:08:57 +0200
-X-Gm-Features: Ac12FXzjyKVG9YpXDr4ujfp7DHXXwLEZE6WjntfBOMpvZOZeuC_qP0opUlbqcZM
-Message-ID: <CAPDyKFoSe3sch1ooP7e-TOiB91y=_Q=-FaSooc2ROoMwfEsP+g@mail.gmail.com>
-Subject: Re: [PATCH v3 0/5] allwinner: a523: Add power controllers
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej@kernel.org>, 
-	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andre Przywara <andre.przywara@arm.com>, linux-sunxi@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250703-gicv5-host-v7-18-12e71f1b3528@kernel.org>
 
-On Sat, 12 Jul 2025 at 09:40, Chen-Yu Tsai <wens@kernel.org> wrote:
->
-> From: Chen-Yu Tsai <wens@csie.org>
->
-> Hi folks,
->
-> This is v3 of my A523 power controllers series.
->
-> Changes since v2:
-> - pck600 driver:
->   - Fixed whitespace issue
->   - Added explanation about possible PCK-600 lineage and document
->     references to driver
->   - Changed Kconfig option to tristate
->   - Rewrote Kconfig option help text to make it clear that the driver
->     is required for certain peripherals to work
->   - Made it depend on ARCH_SUNXI or COMPILE_TEST
->   - Made it enabled by default for ARCH_SUNXI
->   - Renamed PPU_PWSR_PWR_STATUS to PPU_PWR_STATUS, and added a comment
->     to note the macro is shared between two registers
-> - New patch changing sun20i-ppu driver to tristate, and enable by
->   default for ARCH_SUNXI
-> - Fixed pck-600 header path in dtsi file
-> - Link to v2:
->   https://lore.kernel.org/all/20250709155343.3765227-1-wens@kernel.org/
->
-> Changes since v1:
-> - Re-order compatible string entries
-> - Fix name of header file to match compatible string
-> - Link to v1:
->   https://lore.kernel.org/all/20250627152918.2606728-1-wens@kernel.org/
->
-> This series adds the power controllers found in the Allwinner A523
-> family of SoCs. There are two power controllers. One is the same type
-> as those found in the D1 SoC, just with a different number of valid
-> power domains. The second is (I assume) a unit based on ARM's PCK-600
-> power controller. Some of the registers and values match up, but there
-> are extra registers for delay controls in the PCK-600's reserved
-> register range.
->
-> Patch 1 adds new compatible string entries for both of these
-> controllers.
->
-> Patch 2 adds support for the A523 PPU to the existing D1 PPU driver.
->
-> Patch 3 adds a new driver of the PCK-600 unit in the A523 SoC.
->
-> Patch 4 aligns Kconfig dependencies and default for SUN20I_PPU with the
-> new PCK-600 driver.
->
-> Patch 5 adds device nodes for both of these controllers.
->
->
-> Please have a look. The power controllers are critical for enabling more
-> peripherals, such as display output, camera input, video codecs, the NPU,
-> and a second DWMAC-compatible ethernet interface.
->
->
-> Thanks
-> ChenYu
->
->
-> Chen-Yu Tsai (5):
->   dt-bindings: power: Add A523 PPU and PCK600 power controllers
->   pmdomain: sunxi: sun20i-ppu: add A523 support
->   pmdomain: sunxi: add driver for Allwinner A523's PCK-600 power
->     controller
->   pmdomain: sunxi: sun20i-ppu: change to tristate and enable for
->     ARCH_SUNXI
->   arm64: dts: allwinner: a523: Add power controller device nodes
->
->  .../power/allwinner,sun20i-d1-ppu.yaml        |   4 +-
->  .../arm64/boot/dts/allwinner/sun55i-a523.dtsi |  18 ++
->  drivers/pmdomain/sunxi/Kconfig                |  19 +-
->  drivers/pmdomain/sunxi/Makefile               |   1 +
->  drivers/pmdomain/sunxi/sun20i-ppu.c           |  17 ++
->  drivers/pmdomain/sunxi/sun55i-pck600.c        | 234 ++++++++++++++++++
->  .../power/allwinner,sun55i-a523-pck-600.h     |  15 ++
->  .../power/allwinner,sun55i-a523-ppu.h         |  12 +
->  8 files changed, 316 insertions(+), 4 deletions(-)
->  create mode 100644 drivers/pmdomain/sunxi/sun55i-pck600.c
->  create mode 100644 include/dt-bindings/power/allwinner,sun55i-a523-pck-600.h
->  create mode 100644 include/dt-bindings/power/allwinner,sun55i-a523-ppu.h
->
-> --
-> 2.39.5
->
+Hello Lorenzo, Marc,
 
-Patch 1->4 applied for next (the dt patch is also available on the
-immutable dt branch), thanks!
+On Thu, Jul 03, 2025 at 12:25:08PM +0200, Lorenzo Pieralisi wrote:
+> diff --git a/arch/arm64/kernel/smp.c b/arch/arm64/kernel/smp.c
+> index 3b3f6b56e733..2c501e917d38 100644
 
-Kind regards
-Uffe
+> @@ -1046,11 +1068,15 @@ static void ipi_setup(int cpu)
+>  		return;
+>  
+>  	for (i = 0; i < nr_ipi; i++) {
+> -		if (ipi_should_be_nmi(i)) {
+> -			prepare_percpu_nmi(ipi_irq_base + i);
+> -			enable_percpu_nmi(ipi_irq_base + i, 0);
+> +		if (!percpu_ipi_descs) {
+> +			if (ipi_should_be_nmi(i)) {
+> +				prepare_percpu_nmi(ipi_irq_base + i);
+
+I am testing linux-next on commit 0be23810e32e6d0 ("Add linux-next
+specific files for 20250714") on a Grace (GiCv3), and I am getting
+a bunch of those:
+
+	[    0.007992] WARNING: kernel/irq/manage.c:2599 at prepare_percpu_nmi+0x178/0x1b0, CPU#2: swapper/2/0
+
+	[    0.007996] pstate: 600003c9 (nZCv DAIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+	[    0.007997] pc : prepare_percpu_nmi (kernel/irq/manage.c:2599 (discriminator 1))
+	[    0.007998] lr : prepare_percpu_nmi (kernel/irq/manage.c:2599 (discriminator 1))
+
+	[    0.008011] Call trace:
+	[    0.008011] prepare_percpu_nmi (kernel/irq/manage.c:2599 (discriminator 1)) (P)
+	[    0.008012] ipi_setup (arch/arm64/kernel/smp.c:1057)
+	[    0.008014] secondary_start_kernel (arch/arm64/kernel/smp.c:245)
+	[    0.008016] __secondary_switched (arch/arm64/kernel/head.S:405)
+
+I haven't bissected the problem to this patch specifically, but
+I decided to share in case this is a known issue, given you are touching
+this code.
+
+I would be happy to bissect it, in case it doesn't ring a bell.
+
+Thanks
+--breno
 
