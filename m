@@ -1,279 +1,878 @@
-Return-Path: <devicetree+bounces-196567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D942B062E0
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 17:27:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D98AFB06322
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 17:37:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A4484A2D2F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 15:26:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7032E5813BC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 15:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D41238C06;
-	Tue, 15 Jul 2025 15:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB291271449;
+	Tue, 15 Jul 2025 15:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b="HofvfYh5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X7hca3F6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00549402.pphosted.com (mx0a-00549402.pphosted.com [205.220.166.134])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443522288D5;
-	Tue, 15 Jul 2025 15:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.166.134
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752593225; cv=fail; b=V9uhmORVdBi2hWgtuWx0s6N+Dxn30sdnoLrI9KELPr+a7R1t78MDgg5HSW2yiewjMrHWMH22sqpAFizz8AT1ZCHFkcVLfitMd4ds1GVSkFoIS6sgyojCoLt+V0lmH8YpVJ4lFzpg1PDu3xB0R1aIrnBWKgxadCA/M2bz5PUpjrg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752593225; c=relaxed/simple;
-	bh=KTjCVOaP5kIPaoL5W4alUldWpmItd8EjgN2nKdN2m3I=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Pb+HmRPH7sjp1YSPjuJxIZ8fvTFaoE7jNJWQmit4GAXM0LdwiRezkTwdscR0+XCjx6ybHdJPp4r0pM6JNFy+Kc2FJ3c0fzeZzqK3qRZ3e2Y/KPj3U6973uu5lBUUgZnMPHJ9bshkAmZB2c4xMLF6C8Yy37hDIoCgN/Ey11x6ShE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com; spf=pass smtp.mailfrom=tdk.com; dkim=pass (2048-bit key) header.d=tdk.com header.i=@tdk.com header.b=HofvfYh5; arc=fail smtp.client-ip=205.220.166.134
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tdk.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tdk.com
-Received: from pps.filterd (m0233778.ppops.net [127.0.0.1])
-	by mx0b-00549402.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56EMBLXJ002463;
-	Tue, 15 Jul 2025 15:26:55 GMT
-Received: from beup281cu002.outbound.protection.outlook.com (mail-germanynorthazon11010057.outbound.protection.outlook.com [52.101.169.57])
-	by mx0b-00549402.pphosted.com (PPS) with ESMTPS id 47uft5t9h0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 15 Jul 2025 15:26:55 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cewAM5GhIZt6l/rNW8IsFJOh19r5nKGgvnCPqi8RHPKtHm7s0eI2RR+UBAZhrhpGfXhsYi9Yc6ONXY+tj5u0j1vPH+xHdQBWyKxnesYs27XM8lmuNiNjcvY+mQJPQoG9oq0jp2eU1e7hIPFax6jokja00lPn/VlVfbrrPWt+iJmhbgWTZ4qJLJM7QghBSEEvtKkgDsQHGYwHPqFdpDiRxPvbtAw4lDjDq49GYTODH5LDMdZeApvYzF6+cwivExkvCjlObP50pIrRPG03NwbnM8VBY9BtqyCDYBIKVrx9hQKjLviXW9eOFZV8ye+z6eKXOdxJqJyiY4dJbkp21G7v+A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KTjCVOaP5kIPaoL5W4alUldWpmItd8EjgN2nKdN2m3I=;
- b=lMRceR3c95cDIgEcMi2LGlu9wwtvVU25R7Js0fMSrxRLx7Toezl3lly4qyyJJ6r48s+arqkv+RKVlBgX1XKN2AbBn2PjK70HHA0M1Pa3gmBsO9EpGzkKZX/08pcvNOyZlJlSIb5tsVw1zb3Ij+cfLWwWBT3WyqoxxDrNLIvd7O0NmJFgFfrAmPCzY0wsLV8ce29/iVjcf+McMBoVjG3A5p67wwcYiSpH9xz0l3wRZqNov0EIlrP/JcGa/UYQ61Lx2K+Ds6s63NfyDZg83P4uYBZvxgCt0QIVRa5Evc8SWhWbhvM4P5GZGiTsPW64mKcAFY5Mbbd22XDio4hYRmJuGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=tdk.com; dmarc=pass action=none header.from=tdk.com; dkim=pass
- header.d=tdk.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tdk.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KTjCVOaP5kIPaoL5W4alUldWpmItd8EjgN2nKdN2m3I=;
- b=HofvfYh5FxzLRBnYlr4E+C57EMUtTKSrLAeo8glNZxeMgY3Stn25H01LjxxlrHGhYV/pwPf+xWr/cnTA/5w6VWC6t1aJ8l6VtkjxKkMPCnR5TuHWv54DdujkoBbPo3hUnUlspyAdBrvEoRPEco0NEBtWQoInuGFg/wkmrWSKgBl/WvR7Rdm2D+IG55B+mkMpe3MKjd+FovKZwkEnT+/JU6BwVW2M8vFC8/hJbIRAOM/dDFQhyk+Q+YW9Dmp+woUmNf2b8sNBaAryfKIFS3554wwZhyYEE+deLwRhzA/dcmvxh/Jkh8KLJiiJqLAg/HF0hvC8q39yRPPzhrmquvMLWw==
-Received: from FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d18:2::2d)
- by BE1P281MB1762.DEUP281.PROD.OUTLOOK.COM (2603:10a6:b10:1e::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.32; Tue, 15 Jul
- 2025 15:26:49 +0000
-Received: from FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM
- ([fe80::903d:f362:450:c7bf]) by FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM
- ([fe80::903d:f362:450:c7bf%3]) with mapi id 15.20.8922.028; Tue, 15 Jul 2025
- 15:26:48 +0000
-From: Remi Buisson <Remi.Buisson@tdk.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-CC: Jonathan Cameron <jic23@kernel.org>,
-        David Lechner
-	<dlechner@baylibre.com>,
-        =?utf-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v2 2/8] iio: imu: inv_icm45600: add new inv_icm45600
- driver
-Thread-Topic: [PATCH v2 2/8] iio: imu: inv_icm45600: add new inv_icm45600
- driver
-Thread-Index:
- AQHb8XjFFPwNlXicDEKbiHsXjh6cu7QrF22AgAGz8eCAAAc1AIAGGyUAgAAZrACAAE3q8A==
-Date: Tue, 15 Jul 2025 15:26:48 +0000
-Message-ID:
- <FR2PPF4571F02BC1A8F6E7F098A498E0B9C8C57A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
-References: <20250710-add_newport_driver-v2-0-bf76d8142ef2@tdk.com>
- <20250710-add_newport_driver-v2-2-bf76d8142ef2@tdk.com>
- <aG-ID7O3HgVc1EOX@smile.fi.intel.com>
- <FR2PPF4571F02BC5366477EC02E9C44041A8C4BA@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
- <aHD7zEzvVuwSB9Ke@smile.fi.intel.com>
- <FR2PPF4571F02BC69DF6807BAA188B2B3A08C57A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
- <aHYwmEv1sCI-qi0T@smile.fi.intel.com>
-In-Reply-To: <aHYwmEv1sCI-qi0T@smile.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: FR2PPF4571F02BC:EE_|BE1P281MB1762:EE_
-x-ms-office365-filtering-correlation-id: c23cb381-3cb2-4eae-b7ef-08ddc3b403f7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|376014|7416014|19092799006|7053199007|3613699012|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?cmN5R0xkQXhCWVYwZEFLRU9ab2pYVVdoOVZoVmxrcDRlWkE4eUZzalZrZnlt?=
- =?utf-8?B?RWVpd3REck40ZEx2OS9xbGlJTGRBMXgwOHRlcXVHYkg0QVdxYkgrWUE0TzYw?=
- =?utf-8?B?Y2E2ZVRQNjg5NUJOY01ndDFxeTBhdWhLN2lHY21ycGlYQkluSmtaVlpJclFm?=
- =?utf-8?B?azNEU3k2bmdrVldDYnJpZkg4U2s5QS93ZG5OcTVMbVlUTHkzK3h6NEc5cTho?=
- =?utf-8?B?SGZEVWczMktLUWlUU0RxTkZ2TTMwS1ZIbmhUbDJJNHlwR29vdXVtSEVoam40?=
- =?utf-8?B?eXNiK1h0anFlWThvQVA5TVFucTZ3MmNwT0NPQjRGV1NBMVpCeU9XVUhMUnB1?=
- =?utf-8?B?VWlveVRXYjhNOGw4SWFMRzhjUlkveVErV2tlc2NRSUZNcVBzb09yNVFmODlW?=
- =?utf-8?B?VUlFeXdtN2NaZkROb0FVT00rL1h0TEhXMG96R1ordDlZMFNRQ2JHclFFVUJt?=
- =?utf-8?B?cGM2Q200ajZTOHE1Rkx5ajZDa29GWnRDVFM4STJoOTBXWTJ5bE1qVHdITitp?=
- =?utf-8?B?dUdqQURpMVdWQUxabnRoNmhHUUNPU2UxSHVDV0FzZkpkcGxuT0IvNjRlK0Fa?=
- =?utf-8?B?eW5Wb3V6VXQ5enBPVTRUTjRuVk16VWt5cG01N0hrU1N0YVlvTG9telA2dTFL?=
- =?utf-8?B?UC91NmhJaXU1cGpOd3BieWFUWmMzd1JxenM5MWZRdEFIOElrVmNycU5Ea2Fw?=
- =?utf-8?B?clJBV0VqM1phazlMVHZjbkZHbnh4cmR6U0drL1pTMlVINWFLZlNPQmwrOXZK?=
- =?utf-8?B?TnZqTEpXOGlGWjI4Q3NSa1NlM1k0bVRMbzVFNmtjUExKVkd5UHZyNVhNa1Ay?=
- =?utf-8?B?bDRvNDY4ank2NDF3UndHcDZEZDUxR2pqNlVpTmt2SW1JUnVodEljckZzcG84?=
- =?utf-8?B?YWFlS3BqSjZBd0NIcEFycXBNVUhaYlhDUVdzNW1DTzFPTVIrNmpua0pPYkFS?=
- =?utf-8?B?a3RLb1lSNEcrVnFkbVBPLzBGYVNKMHZQWWhKWVVraHowTWxNczk5L2FWc0E1?=
- =?utf-8?B?NTExTThkOTFwREN0T2d5WmxEMCs0NGF2TU94b3J3NG0yc244M1hQK0N6T1c5?=
- =?utf-8?B?bUhkOUhxMGNhZzRMeFdMMDM2TUgvQ0pRRkt5TVlZQ1NJUlNnNko5b0E1Mmx2?=
- =?utf-8?B?UTB3bFNPcDFrOS8wdTFkU2VDcTlvK1JhNnpiN28wREl5bGYvV1l4L2J4U0xr?=
- =?utf-8?B?TldRaEM1Zng3dU1RV3VRL0NKd2xjSFNOeURpZ283SVNyL3JNZS96M0NkQWwv?=
- =?utf-8?B?K2JORmFacDhZUGRaT2dKRUxUYnpwb2UyQ3paZW5nS0tFWisxTTFWVmJOUU5z?=
- =?utf-8?B?Vno2SFE4RWFjcmQ0RnNxak9rZER2QTNncGk5bUljK0JMSktrM0RvOVA0YmVa?=
- =?utf-8?B?dDYyZ0F3OHlwbzdoSzNOdVk2d0tLclZIR29RUTAvOVJ1R0VYWUdBM2dGY0E2?=
- =?utf-8?B?ZDR2SXVWc2Z6NHhyb3MwV20yeHN5QzBiK2JpbXBsZGk5d2JkK1ZRZ0l4QlRT?=
- =?utf-8?B?VnhXYkF6RnQzaUpDUU15dWtLZTIxcWhKVjIvL3YyOEYycjRyQ0ZpT2tPNUwy?=
- =?utf-8?B?cTdvRlc4ajJnWUdwU3krQ3lVTGRETnI4VUt5cFl1MHlmTnE0QkVMZ094S1Ba?=
- =?utf-8?B?YWNxYkU3NUIreVFBWk9LV0lST3ZKT3hhSmludElHOFI0SGhjNlRacFRlNGtN?=
- =?utf-8?B?Q1JKakZvV0dIN3cwcm0rZ0VzTmx6OEVITG9FU1h4ckw0cXJHZUE3UjFKY2FI?=
- =?utf-8?B?THBucnF4Z0E0S2oxa0drTjNJZ2FFMThaVDc4YkFSaEkwSDdseHRKNU5LYVUw?=
- =?utf-8?B?OWVtd1ZJdHovMEZ2Mm93ckk4TEpYdWIxNTQ5dTNXYUlVR0srWFI3RnFHalFy?=
- =?utf-8?B?VDMvRGplVmlMNkFUVHNlblhVU2FDRncyR0EybXJ0Y0FJTnpaWjFMb2gwb0VW?=
- =?utf-8?B?d2dxQk00Vm51ZmV1aUExVk1Tc1pmMDFMVmpjSy9vVGROS1ovQTk4a25wUU4x?=
- =?utf-8?B?SXYreFRvZExOMkNrVjJNdmRPNElHd2pKNDBlVUhGbW5tRWJyV1h4ZjhwWHpl?=
- =?utf-8?Q?aqbvTm?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(19092799006)(7053199007)(3613699012)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?RlBVM0pKRWl1T05tY0dUeTU5amFCcWtpYzNvK2d5YWJsUUVzUVVmRmQybHpM?=
- =?utf-8?B?SzNlUFh1U1VwZUlhVkFHdlpVcTI3aysyK2VnRlg5OUVvZTJUekNpQU1LN01J?=
- =?utf-8?B?ZlZFQ2ViMldGaURMb0lFZk4xVjV0MkFiam8zeEVHL1dOM1RSR05aK2dOUjJH?=
- =?utf-8?B?eG54Y04zUkVaTEV1MTJsTnM0MC9NSzlYeW03YVI4N0tOY2JyUC84cVZCSkFV?=
- =?utf-8?B?ZGd0c2dBN3plUTVraWRXS25hNHRaUnVpWnVSaDRaQTYzMC9OSGErK2s1ZEYv?=
- =?utf-8?B?K2MxZS9FOEtlV3I0aERTM2RkamVUL1RHYTJSbXlTbG9yVGhMa1pXanB1c1ZV?=
- =?utf-8?B?UkRCQ3JyRG9LaStrM1pZcHFXTHo4MDZWdXpINC9lMHVTR2lwUkorM2ZHUEpB?=
- =?utf-8?B?TkVwK3R6ZnFURjB5dHR3d0dNUEtEekpEZy9kVk5xL2hkdm1XWjBOQndXSGtX?=
- =?utf-8?B?Q2JrbDhpeU9penpRVWdlRzJBdXZUVVh4cTNuTUgxeHVtanNtQ0Q5aS9YNU5x?=
- =?utf-8?B?OTBPTms2T2ZCaE82VXRSdTBLWDBYNmNDUnhhQlhXc3VaMzc5YThsNVV5T2Fm?=
- =?utf-8?B?NTFaN3NOdjV1QmpKZm9ISlB6OVVUaS9lWi8rL29UaE5JOVpBdWt5WFhTZWxQ?=
- =?utf-8?B?Q0NzQTZ6Q09DWXlZZlU2bXFSTHQ2Vi82YkJCNXBtWWd5ZVYxVjNhbjVTTUlh?=
- =?utf-8?B?NG82ZTFZaC83Q2hkYzQ0OU1Kb2dzRFdwMDhBYndjQnRxS1BiN1RXN1ZFa1dD?=
- =?utf-8?B?TDM4RmhVSitIQytQYkJ4OFVXYmlTaTNaOVllUjdLYmo0MFE5YUlyQjdsbUph?=
- =?utf-8?B?TDNUUlk3Z3lPSEtTdXBrN1F4T2FzUnBzb0RML211cDh3QlhtVXpMOVRXZE9B?=
- =?utf-8?B?YkFMZzVka0Y1RWNEMmMrdnRGWVBSNER3N3Q4ZFlLUmpQbXEzbEVqaVI1QTBG?=
- =?utf-8?B?REVnOUcxTUluNFZ4K05JMWFpKzVjajZEczFTSlFxaWsvc0RQdEhpMGtwQmlF?=
- =?utf-8?B?ZFlmSmpkR1VMb2E1L1pCeUkrRVV5UzBVOGVlZlVtbVpFaEtDY0dzbFl1Ymhy?=
- =?utf-8?B?TUpVY2RWSG1neGY2cjRxZjFxMDd4MXMvNVdwb2Y5QjQ0ZFIzaG5lNG1JL0pu?=
- =?utf-8?B?T3o2RWtRL2lrMDQyUUpwZFZBT1FSWjFLcFdXRTl6YXBpTzMwQVpLcHBydGlC?=
- =?utf-8?B?dkcyTjEyWmhoYjVGMkdYRUMrQ01zbVlFOGJCMlVmSFpsNGRQRHovT3NQdVd1?=
- =?utf-8?B?UHRTUEZQMXpvTDU1YWtrNU1uV1dOZnFRQ0Y4K2UvYnlMYVFNUXZkSnkvSVFX?=
- =?utf-8?B?UU91N0IrS1lnNml5c3RYaWJjcUtYZ2VWV1FDK1loWUwzTk53RjJxSndlOUpH?=
- =?utf-8?B?ZkV4Q0Y4bFJ3bDVFNDNEdWRvTG91ZmFjM09wV2xoVDM0L1R1RlA0VDhIRmJl?=
- =?utf-8?B?Mmc0Z3BIN3h5c0NVclNtU05Ec0U4Z29lS1NlL0pycVUyaUJqRDh5LzkvYzFh?=
- =?utf-8?B?QUtQcDhPa280b1l6STZ1em8yQSt3d3Eyd0hLZEJrTFlVSTl1VUxNeHV3bjZk?=
- =?utf-8?B?NERXejFoSW4zeHJFTmt5dm1xMGFxaVIyZkJ6MkRVV1BlNlBtKzFVRjMwem5D?=
- =?utf-8?B?R3NrbGFoNWhQUlZHZTc0UWZNQUdQNUN0dHk3VXM1RDh0UWJ1WkF4cGk4RWV3?=
- =?utf-8?B?UnVqakhjUEd2MDVHV080aCtZTGQ0Mk9PMy9xRWFVaWtvOWk5T0p2MHRYbHZR?=
- =?utf-8?B?dFhMSzFYOUQ5Um5Oa093ajYxU1pMdGpMd2xIVW52bnp3RU5xaGNxSEdQVDdP?=
- =?utf-8?B?cmlmVWRzTFNsVUdFZ3I3VHdxb1BhYUpiNG04M3FWaWxjcXlCemtOdkFGaXdC?=
- =?utf-8?B?MVdET2h6U3BkVWI1ZEFPYXEvQnZIRldzWkhsZnljb01WRUxueVFEdzB0bkZp?=
- =?utf-8?B?UGFwcVowN0FxY3NFK0hZMXNDZUVHZmhPNTkxRmxZdVhuK09rdXhBOE5XeUZm?=
- =?utf-8?B?MngyN3k3Ti9Ud2hndjJ2N2lqRVRuZXhTT1VOU0RjWFMrMlZCMEdrbjlwTURp?=
- =?utf-8?B?U1k5NTR5dWRVZHFJMXVYQk9qS3VzZW1zRWcvMXAwMHYxM3ZBNXZleW45Smt5?=
- =?utf-8?Q?UsqC7CWzlYmtene1krHtJzvoY?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A406265637;
+	Tue, 15 Jul 2025 15:36:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752593769; cv=none; b=IiBdBG/3QpTITBSDHy2rG2dGRnU0723VPeueFmfParvk6jp+2K+u73Ri1YlBPKw7lg2sA1/b4Kh4q61w/rdDBDFxBZN3wseupxYcVvzc/xfyx5rBWokue05CE4Eojj9aPjmGcAFXo8cpvCdxwsyGrCx/NJbw26fk5Gxl/qA5yQY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752593769; c=relaxed/simple;
+	bh=iXgG2U7yP2cpQZY6q5jgQ6TH3iOXMrkY1Ht0Nm+Lm58=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=TLOc6IhmeXwNL6UbyKjrDqLVS7AxsxufmmpwBvHQWkF+bxDVfWDvq5C9L/N9/sH8Q7EvsNEoSW+o+JHeozXU/VYfSrYdpAa8uslmppeXnLV8zAnTbNP5gaVis7RZpsLA73n8ljqGOScWi+DOhqXDg/dZ+THb+uS9USFD397vbZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X7hca3F6; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45555e3317aso25085785e9.3;
+        Tue, 15 Jul 2025 08:36:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752593765; x=1753198565; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1muAs6uZIQeqlPfNJnrlB3AEMhYTlA+qimVUOMJkFwI=;
+        b=X7hca3F6I/BIqLaCyakYmxhYSLPWHI+XgSaFxRWOw8BLnW67KzCPF4GxETVcf312gL
+         QVLIGgQ7VRDkGGd7XPSuTOjsNuxcGcRkYf07ktSYlC23Ip79HIbBvDwzWfwOb06bn7Gh
+         s7RBexFlM1lPI/G+kGfI6sipMUSAuxR7lhBNX9pFEoJgGBswoKUliSNFB2CPzFCCYGo8
+         l07x2ovy232aDgtsHpy5piQSMJwvtuTG9MvJfFef87r6gdt2f9bGiExK0S1ATcmrANR1
+         aHJntLdYuDaLvIornO3KL5n/UrQvovg4nhjYa7iCGkER8ZMvGW0aIud16H6hZbLXORgu
+         fQtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752593765; x=1753198565;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1muAs6uZIQeqlPfNJnrlB3AEMhYTlA+qimVUOMJkFwI=;
+        b=a3Y061YWcjxAv2XCe0FwgO+KjG92W1EBQcK+jTp6wQrTPCv6pBchI8NjkD5MnxLrlT
+         AiNJnAK0gZ6mqvEed5YTGWc1vbR1ODXJ3HFcjweyMk4GT4EyL2f88ClLN/6IjdenlCK4
+         5q9lp8rU8HdosdGIK0CMiWxyI1fTDAm5UBNgnH1q2fVXePgCbhv6QOxEuvn71m2EKun9
+         TqOxvS1KJgW2qn2DyDSb8ok2qERgPU721kytohdu73kMKtWq4cxxyN+dsW/E7lMly6ay
+         oTuHrQIFTa63QNd1YMya9SaCIsCS1ugV1yRCQyTTaPPMOPqGUvrt+cB2ogzo584thKlF
+         LEnw==
+X-Forwarded-Encrypted: i=1; AJvYcCU2MxdTMRcTfR+zjypEW2x+z+I9pqlRrtzEappDWdrX+wGGKiChAahFub2Ww/IJMmcWatDIdGlruQQZix3Y@vger.kernel.org, AJvYcCXjp/xv0uBRtCrhCucKwJcNPy81vr8psIKmZn4K/89YGpxIgdSzoNdeIRXyzkqBB7xLeD7f8FLyeufE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzM3gPNZgg8PNVVcphWMaYa3gQ7MGdXobYnD+X9M8RlnH6cOalF
+	vo0NwzIdK7aVFgCgLa6gC2x6qRApWpiKKjUWEssDVqzxUWrjly0Vb85C
+X-Gm-Gg: ASbGncu3qTt5hxETsloqVvuq3uVJ3gMk3t5M4/C4Nj79wWnBIIdCD+uz7eQPfpiwXEK
+	B6lCVA8luTTI0TdhSzNSZ84XxbjEq8gYYSqAI49RELcyPm3cYzWlDZ5h6tPvsSwQCk5278iU0pV
+	rB6IKdMeZaozpoGS2qZjCysA+fVgN0fHmjrOCVvIf/EijS7LUTAl/bkSDY0ZTpyauUXTPnQCno0
+	Yrh8LqKy9vDRF6aL1oEqF4V6eZDd83hWIjw9kxHzNhFy70LC6VQmwWpKmG1mpAjazyvIYcVN6Se
+	4jHgYxVn5MVuzPRX5vmurX88FSAg6Yf7s8NGgXfmtK6ae5Ukh/QFg7V68ZNgu9ZZSWeGGI1JFwn
+	Mc6JFYCBg+por9oKKevPj
+X-Google-Smtp-Source: AGHT+IEKThzNTB5vsFlWZwdtTDFUHMxfMcTMzybZXLq+o94NFDo+mDhKuRFN+8IXALjz3Cv9TL9bVg==
+X-Received: by 2002:a05:600c:1c14:b0:456:28f4:a576 with SMTP id 5b1f17b1804b1-45628f4a959mr23728935e9.27.1752593764796;
+        Tue, 15 Jul 2025 08:36:04 -0700 (PDT)
+Received: from masalkhi.. ([61.8.131.79])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8e0dbddsm15675398f8f.63.2025.07.15.08.36.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Jul 2025 08:36:04 -0700 (PDT)
+From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+To: abd.masalkhi@gmail.com
+Cc: arnd@arndb.de,
+	christophe.jaillet@wanadoo.fr,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	luoyifan@cmss.chinamobile.com,
+	robh@kernel.org
+Subject: Re: [PATCH v6 2/3] eeprom: add driver for ST M24LR series RFID/NFC EEPROM chips
+Date: Tue, 15 Jul 2025 15:36:02 +0000
+Message-ID: <20250715153602.1149-1-abd.masalkhi@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250706105311.395162-3-abd.masalkhi@gmail.com>
+References: <20250706105311.395162-3-abd.masalkhi@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: tdk.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: c23cb381-3cb2-4eae-b7ef-08ddc3b403f7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2025 15:26:48.4353
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 7e452255-946f-4f17-800a-a0fb6835dc6c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 70S7u3jvJD16bAYByeqt9F+8UkrU72fEmBD/AqQRpQOFbdJL7ZqOIGUyLV9GsoykcSobrDRrvkKWk7KqRsV+Cg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BE1P281MB1762
-X-Proofpoint-GUID: -gfMsveTPBMmuT1MB1fYo7lPhpSB1t5E
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE1MDE0MiBTYWx0ZWRfX2Hebt0JFdzKV
- 4IAwb/2G6fltEO8ahmZ39ik2CAQhcViQ3Jl4jIG2mrbw3BfBc+236VZcWOfiqJzufuh2QZUtvXk
- vuHJl4Dum1YAYq8JfmfiSwZOQad1l1SHNVkuIRqIEwKOZAFqHORx2Sn/JEcGflE6RkZsjUP9hhP
- 8bNWSnz3TfV5LClcxIS5Im+hpprmW203ccBP6qqqNGkYIojKrQGPvpGnKBRXrBToHChz8VTGgdH
- jXbOCqvv13UmicdMFTE4zG1kX40SO638xJzyxqoqUSIpWzGixcuqydlo3MdHEhwz4q7pIQDmz6g
- hVHOMyYyggTN/mqYs14ngDI8dy7vhYcrOUesHhX66+tCHBgZ3FRl9Rxa0iqriKIRnDY5+VKS2XQ
- vd5wdO6X78huAK5T/e6rOWpUxxzzVti03IX6H3ksQfZ9I0cvQFXJ8mXPUMBXA8KQE1fGSB9f
-X-Authority-Analysis: v=2.4 cv=QLxoRhLL c=1 sm=1 tr=0 ts=6876733f cx=c_pps
- a=DI9g6cbbtHrvmG/Mnq1W1g==:117 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
- a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=Uwzcpa5oeQwA:10
- a=QyXUC8HyAAAA:8 a=In8RU02eAAAA:8 a=VwQbUJbxAAAA:8 a=IpJZQVW2AAAA:8
- a=gAnH3GRIAAAA:8 a=H7BOaPT5MLAVoobkZ0QA:9 a=QEXdDO2ut3YA:10
- a=EFfWL0t1EGez1ldKSZgj:22 a=IawgGOuG5U0WyFbmm1f5:22
-X-Proofpoint-ORIG-GUID: -gfMsveTPBMmuT1MB1fYo7lPhpSB1t5E
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-15_04,2025-07-15_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
- suspectscore=0 mlxlogscore=999 malwarescore=0 bulkscore=0 phishscore=0
- adultscore=0 lowpriorityscore=0 mlxscore=0 priorityscore=1501 clxscore=1015
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507150142
+Content-Transfer-Encoding: 8bit
 
-Pg0KPg0KPkZyb206IEFuZHkgU2hldmNoZW5rbyA8YW5kcml5LnNoZXZjaGVua29AaW50ZWwuY29t
-PiANCj5TZW50OiBUdWVzZGF5LCBKdWx5IDE1LCAyMDI1IDEyOjQzIFBNDQo+VG86IFJlbWkgQnVp
-c3NvbiA8UmVtaS5CdWlzc29uQHRkay5jb20+DQo+Q2M6IEpvbmF0aGFuIENhbWVyb24gPGppYzIz
-QGtlcm5lbC5vcmc+OyBEYXZpZCBMZWNobmVyIDxkbGVjaG5lckBiYXlsaWJyZS5jb20+OyBOdW5v
-IFPDoSA8bnVuby5zYUBhbmFsb2cuY29tPjsgQW5keSBTaGV2Y2hlbmtvIDxhbmR5QGtlcm5lbC5v
-cmc+OyBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPjsgS3J6eXN6dG9mIEtvemxvd3NraSA8
-a3J6aytkdEBrZXJuZWwub3JnPjsgQ29ub3IgRG9vbGV5IDxjb25vcitkdEBrZXJuZWwub3JnPjsg
-bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgbGludXgtaWlvQHZnZXIua2VybmVsLm9yZzsg
-ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcNCj5TdWJqZWN0OiBSZTogW1BBVENIIHYyIDIvOF0g
-aWlvOiBpbXU6IGludl9pY200NTYwMDogYWRkIG5ldyBpbnZfaWNtNDU2MDAgZHJpdmVyDQo+DQo+
-T24gVHVlLCBKdWwgMTUsIDIwMjUgYXQgMDk6MTE6NDdBTSArMDAwMCwgUmVtaSBCdWlzc29uIHdy
-b3RlOg0KPj4gPkZyb206IEFuZHkgU2hldmNoZW5rbyA8YW5kcml5LnNoZXZjaGVua29AaW50ZWwu
-Y29tPiANCj4+ID5TZW50OiBGcmlkYXksIEp1bHkgMTEsIDIwMjUgMTo1NiBQTQ0KPj4gPk9uIEZy
-aSwgSnVsIDExLCAyMDI1IGF0IDExOjMyOjQ4QU0gKzAwMDAsIFJlbWkgQnVpc3NvbiB3cm90ZToN
-Cj4+ID4+ID5Gcm9tOiBBbmR5IFNoZXZjaGVua28gYW5kcml5LnNoZXZjaGVua29AaW50ZWwuY29t
-PG1haWx0bzphbmRyaXkuc2hldmNoZW5rb0BpbnRlbC5jb20+DQo+PiA+PiA+U2VudDogVGh1cnNk
-YXksIEp1bHkgMTAsIDIwMjUgMTE6MzAgQU0NCj4+ID4+ID5PbiBUaHUsIEp1bCAxMCwgMjAyNSBh
-dCAwODo1Nzo1N0FNICswMDAwLCBSZW1pIEJ1aXNzb24gdmlhIEI0IFJlbGF5IHdyb3RlOg0KPg0K
-Pi4uLg0KPg0KPj4gPj4gPj4gKyNkZWZpbmUgSU5WX0lDTTQ1NjAwX1NFTlNPUl9DT05GX0lOSVQg
-ICAgICAgICAgICAgICAgICAgICAgICB7LTEsIC0xLCAtMSwgLTF9DQo+PiA+PiA+DQo+PiA+PiA+
-VW51c2VkLg0KPj4gPj4gVGhpcyBpcyB1c2VkIGluIGxhdGVyIHBhdGNoIG9mIHRoZSBzZXJpZS4N
-Cj4+ID4+IEkgd2lsbCBtb3ZlIHRoaXMgZGVmaW5pdGlvbiB0byB0aGUgcGF0Y2ggdXNpbmcgaXQu
-DQo+PiA+DQo+PiA+WWVzLCB1bnVzZWQgaW4gdGhpcyBjb2RlLiBZb3Ugc2hvdWxkIGNvbXBpbGUg
-dGhlIHNlcmllcyBpbmNyZW1lbnRhbGx5LA0KPj4gPnNvIGVhY2ggcGF0Y2ggd2lsbCBnZXQgYSBj
-b21waWxhdGlvbiB0ZXN0LiBUaGlzIGlzIGNhbGxlZCBjb21waWxlLXRpbWUNCj4+ID5iaXNlY3Rh
-YmlsaXR5LiBBbHNvIHJ1biB0aGUgc3lzdGVtIGVhY2ggdGltZSB0byBjb25maXJtIG5vIHJlZ3Jl
-c3Npb25zDQo+PiA+KHRoaXMgaXMgY2FsbGVkIHJ1bi10aW1lIGJpc2VjdGFiaWxpdHkpLg0KPg0K
-Pj4gWWVzIEkgZGlkIHRoYXQgZm9yIGVhY2ggcGF0Y2gsIGV2ZXJ5dGhpbmcgYnVpbGQgc3VjY2Vz
-c2Z1bGx5Lg0KPj4gSW4gdGhhdCBjYXNlLCBub3RoaW5nIGlzIGJyb2tlbiBkdWUgdG8gdGhpcyBl
-YXJseSBkZWZpbml0aW9uIG9mIHRoZSBtYWNyby4NCj4+IEJ1dCBJJ2xsIGRlZmluaXRlbHkgbW92
-ZSBpdCB0byBsYXRlciBwYXRjaCBmb3IgY2xhcml0eS4gDQo+DQo+WWVhaCwgdGhlIHByb2JsZW0g
-aXMgdGhhdCB0aGUgKHVudXNlZCkgZGVmaW5pdGlvbnMgYXJlIG5vdCB3YXJuZWQgZXZlbiB3aGVu
-DQo+YG1ha2UgVz0xYC4gQW5kIEkgZ3Vlc3MgSSB1bmRlcnN0YW5kIHdoeS4gV2UgaGF2ZSB0b25z
-IG9mIHVudXNlZCBkZWZpbml0aW9ucw0KPmluIHRoZSBkcml2ZXJzIHRoYXQgdXN1YWxseSBzdWJz
-dGl0dXRlIChvbiB3aGF0ZXZlciByZWFzb25zKSB0aGUgYWN0dWFsDQo+ZG9jdW1lbnRhdGlvbi4g
-SXQncyBoYXJkIHRvIGNhdGNoIGZvciB0aGUgZGVmaW5pdGlvbnMgbGlrZSB0aGlzIHdpdGhvdXQg
-cmVhZGluZw0KPnRoZSBjb2RlLg0KPg0KPi4uLg0KPg0KPj4gPj4gSXQncyBwcm9iYWJseSBzYWZl
-ciB0byBrZWVwIHRoZSBkZWxheSBldmVuIGluIGNhc2Ugb2YgZmFpbHVyZSB0byBtYWtlIHN1cmUN
-Cj4+ID4+IHRoZSBkZXZpY2UgaXMgcmVhZHkgYmVmb3JlIG5leHQgb3BlcmF0aW9uLg0KPj4gPg0K
-Pj4gPkkgYW0gbm90IHN1cmUgYWJvdXQgaXQuIFdoeT8gVGhpcyBoYXMgdG8gYmUgd2VsbCBqdXN0
-aWZpZWQgYXMgaXQncyBxdWl0ZQ0KPj4gPnVudXN1YWwgcGF0dGVybi4NCj4NCj4+IE9rIEkgdW5k
-ZXJzdGFuZCwgdGhlIGhhcmR3YXJlIG5lZWRzIHRoYXQgZGVsYXkgaWYgdGhlIGFjY2VzcyB3YXMg
-YWN0dWFsbHkNCj4+IGRvbmUgb24gdGhlIGJ1cyAodG8gbm90IGplb3BhcmRpemUgbmV4dCBhY2Nl
-c3MpLiAgSWYgYSByZWdtYXAgZXJyb3IgbWVhbnMNCj4+IHRoYXQgbm8gcmVhbCBhY2Nlc3Mgb2Nj
-dXJlZCB0aGVuIHRoZSBkZWxheSBpcyBhdm9pZGFibGUuDQo+DQo+UGVyaGFwcyB5b3UgbmVlZCB0
-byBoYXZlIHRoaXMgZGVsYXkgZW1iZWRkZWQgaW4gdGhlIElPIGFjY2Vzc29ycz8gQWxzbyBkbw0K
-PnJlYWQgX2FuZF8gd3JpdGUgbmVlZCB0aGlzIG9yIG9ubHkgb25lIG9mIHRoZW0/DQpJdCdzIHJl
-cXVpcmVkIGZvciBib3RoIGluZGlyZWN0IHJlYWQgYW5kIHdyaXRlIEJVVCBub3Qgd2hlbiB3cml0
-aW5nIHRoZSBmaXJzdCBkYXRhIA0Kd2hpY2ggbmVlZCB0byBiZSBkb25lIGluIGEgc2luZ2xlIGJ1
-cnN0Lg0KQ291bGQgeW91IHBsZWFzZSBiZSBtb3JlIHNwZWNpZmljIG9uIGhvdyB0byBhZGQgZGVs
-YXlzIHRvIElPIGFjY2Vzc29ycz8NCj4NCj4tLSANCj5XaXRoIEJlc3QgUmVnYXJkcywNCj5BbmR5
-IFNoZXZjaGVua28NCj4NCj4NCj4NCg==
+Hi all,
+
+Gentle ping.
+
+Best regards,
+Abd-Alrhman Masalkhi
+
+> adds support for STMicroelectronics M24LRxx devices, which expose
+> two separate I2C addresses: one for system control and one for EEPROM
+> access. The driver implements both a sysfs-based interface for control
+> registers (e.g. UID, password authentication) and an nvmem provider
+> for EEPROM access.
+> 
+> Signed-off-by: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+> ---
+> Changes in v6:
+>  - Added cleanup on UID read failure (removes bin file before returning)
+>  - Used size_add() to prevent overflow in sysfs read/write bounds check
+>  - Corrected type of return variables (using ssize_t consistently)
+>  - Replaced dev_err() with dev_err_probe()
+>  - Small style and formatting cleanups
+>  - Link to v5: https://lore.kernel.org/all/20250704123914.11216-3-abd.masalkhi@gmail.com/
+> 
+> Changes in v5:
+>  - Fixed function signatures in m24lr_ctl_sss_read and m24lr_ctl_sss_write
+>    to use const struct bin_attribute *attr
+>  - Link to v4: https://lore.kernel.org/lkml/20250608182714.3359441-3-abd.masalkhi@gmail.com/
+> 
+> Changes in v4:
+>  - Moved the source file to the eeprom/ directory
+>  - Removed use of unlikely() macro
+>  - Removed use of EIO as a fallback error
+>  - Stopped dynamically creating sysfs attributes
+>  - Replaced per-sector SSS attributes with a single bin_attribute
+>    for all SSS
+>  - Introduced total_sectors sysfs attribute to report the number
+>    of valid sectors
+>  - Avoided sharing a single show/store callback across multiple
+>    attribute types
+>  - Link to v3: https://lore.kernel.org/lkml/20250606120631.3140054-3-abd.masalkhi@gmail.com/
+> 
+> Changes in v3:
+>  - Fully support the M24LR chips, including EEPROM access, no need for
+>    the standard at24 driver to handle EEPROM separately.
+>  - Rename the driver file from m24lr_ctl.c to m24lr.c.
+>  - Rename all identifiers from the m24lr_ctl prefix to m24lr.
+>  - Retain the m24lr_ctl prefix for control-related routines to distinguish
+>    them from EEPROM-related logic.
+>  - Drop usage of the I2C mux API.
+>  - Use the NVMEM subsystem to handle EEPROM access.
+>  - Add REGMAP support for EEPROM register access.
+>  - Update Kconfig entry to reflect that the driver now supports both
+>    control and EEPROM functionality.
+>  - Link to v2: https://lore.kernel.org/lkml/20250601153022.2027919-3-abd.masalkhi@gmail.com/
+> 
+> Changes in v2:
+>  - Fix compiling Errors and Warnings
+>  - Replace scnprintf with sysfs_emit
+>  - Drop success log message from probe.
+>  - Link to v1: https://lore.kernel.org/lkml/20250531081159.2007319-3-abd.masalkhi@gmail.com/
+> 
+> Comment:
+>  - Running checkpatch emit a warning for non-const regmap_config.
+>    The variable must remain auto and mutable due to runtime manipulation.
+> ---
+>  drivers/misc/eeprom/Kconfig  |  18 +
+>  drivers/misc/eeprom/Makefile |   1 +
+>  drivers/misc/eeprom/m24lr.c  | 662 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 681 insertions(+)
+>  create mode 100644 drivers/misc/eeprom/m24lr.c
+> 
+> diff --git a/drivers/misc/eeprom/Kconfig b/drivers/misc/eeprom/Kconfig
+> index cb1c4b8e7fd3..cb0ce243babd 100644
+> --- a/drivers/misc/eeprom/Kconfig
+> +++ b/drivers/misc/eeprom/Kconfig
+> @@ -119,4 +119,22 @@ config EEPROM_EE1004
+>  	  This driver can also be built as a module.  If so, the module
+>  	  will be called ee1004.
+>  
+> +config EEPROM_M24LR
+> +	tristate "STMicroelectronics M24LR RFID/NFC EEPROM support"
+> +	depends on I2C && SYSFS
+> +	select REGMAP_I2C
+> +	select NVMEM
+> +	select NVMEM_SYSFS
+> +	help
+> +	  This enables support for STMicroelectronics M24LR RFID/NFC EEPROM
+> +	  chips. These dual-interface devices expose two I2C addresses:
+> +	  one for EEPROM memory access and another for control and system
+> +	  configuration (e.g. UID, password handling).
+> +
+> +	  This driver provides a sysfs interface for control functions and
+> +	  integrates with the nvmem subsystem for EEPROM access.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called m24lr.
+> +
+>  endmenu
+> diff --git a/drivers/misc/eeprom/Makefile b/drivers/misc/eeprom/Makefile
+> index 65794e526d5d..8f311fd6a4ce 100644
+> --- a/drivers/misc/eeprom/Makefile
+> +++ b/drivers/misc/eeprom/Makefile
+> @@ -7,3 +7,4 @@ obj-$(CONFIG_EEPROM_93XX46)	+= eeprom_93xx46.o
+>  obj-$(CONFIG_EEPROM_DIGSY_MTC_CFG) += digsy_mtc_eeprom.o
+>  obj-$(CONFIG_EEPROM_IDT_89HPESX) += idt_89hpesx.o
+>  obj-$(CONFIG_EEPROM_EE1004)	+= ee1004.o
+> +obj-$(CONFIG_EEPROM_M24LR) += m24lr.o
+> diff --git a/drivers/misc/eeprom/m24lr.c b/drivers/misc/eeprom/m24lr.c
+> new file mode 100644
+> index 000000000000..3f9c4e8ab41c
+> --- /dev/null
+> +++ b/drivers/misc/eeprom/m24lr.c
+> @@ -0,0 +1,662 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * m24lr.c - Sysfs control interface for ST M24LR series RFID/NFC chips
+> + *
+> + * Copyright (c) 2025 Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+> + *
+> + * This driver implements both the sysfs-based control interface and EEPROM
+> + * access for STMicroelectronics M24LR series chips (e.g., M24LR04E-R).
+> + * It provides access to control registers for features such as password
+> + * authentication, memory protection, and device configuration. In addition,
+> + * it manages read and write operations to the EEPROM region of the chip.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/nvmem-provider.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#define M24LR_WRITE_TIMEOUT	  25u
+> +#define M24LR_READ_TIMEOUT	  (M24LR_WRITE_TIMEOUT)
+> +
+> +/**
+> + * struct m24lr_chip - describes chip-specific sysfs layout
+> + * @sss_len:       the length of the sss region
+> + * @page_size:	   chip-specific limit on the maximum number of bytes allowed
+> + *		   in a single write operation.
+> + * @eeprom_size:   size of the EEPROM in byte
+> + *
+> + * Supports multiple M24LR chip variants (e.g., M24LRxx) by allowing each
+> + * to define its own set of sysfs attributes, depending on its available
+> + * registers and features.
+> + */
+> +struct m24lr_chip {
+> +	unsigned int sss_len;
+> +	unsigned int page_size;
+> +	unsigned int eeprom_size;
+> +};
+> +
+> +/**
+> + * struct m24lr - core driver data for M24LR chip control
+> + * @uid:           64 bits unique identifier stored in the device
+> + * @sss_len:       the length of the sss region
+> + * @page_size:	   chip-specific limit on the maximum number of bytes allowed
+> + *		   in a single write operation.
+> + * @eeprom_size:   size of the EEPROM in byte
+> + * @ctl_regmap:	   regmap interface for accessing the system parameter sector
+> + * @eeprom_regmap: regmap interface for accessing the EEPROM
+> + * @lock:	   mutex to synchronize operations to the device
+> + *
+> + * Central data structure holding the state and resources used by the
+> + * M24LR device driver.
+> + */
+> +struct m24lr {
+> +	u64 uid;
+> +	unsigned int sss_len;
+> +	unsigned int page_size;
+> +	unsigned int eeprom_size;
+> +	struct regmap *ctl_regmap;
+> +	struct regmap *eeprom_regmap;
+> +	struct mutex lock;	 /* synchronize operations to the device */
+> +};
+> +
+> +static const struct regmap_range m24lr_ctl_vo_ranges[] = {
+> +	regmap_reg_range(0, 63),
+> +};
+> +
+> +static const struct regmap_access_table m24lr_ctl_vo_table = {
+> +	.yes_ranges = m24lr_ctl_vo_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(m24lr_ctl_vo_ranges),
+> +};
+> +
+> +static const struct regmap_config m24lr_ctl_regmap_conf = {
+> +	.name = "m24lr_ctl",
+> +	.reg_stride = 1,
+> +	.reg_bits = 16,
+> +	.val_bits = 8,
+> +	.disable_locking = false,
+> +	.cache_type = REGCACHE_RBTREE,/* Flat can't be used, there's huge gap */
+> +	.volatile_table = &m24lr_ctl_vo_table,
+> +};
+> +
+> +/* Chip descriptor for M24LR04E-R variant */
+> +static const struct m24lr_chip m24lr04e_r_chip = {
+> +	.page_size = 4,
+> +	.eeprom_size = 512,
+> +	.sss_len = 4,
+> +};
+> +
+> +/* Chip descriptor for M24LR16E-R variant */
+> +static const struct m24lr_chip m24lr16e_r_chip = {
+> +	.page_size = 4,
+> +	.eeprom_size = 2048,
+> +	.sss_len = 16,
+> +};
+> +
+> +/* Chip descriptor for M24LR64E-R variant */
+> +static const struct m24lr_chip m24lr64e_r_chip = {
+> +	.page_size = 4,
+> +	.eeprom_size = 8192,
+> +	.sss_len = 64,
+> +};
+> +
+> +static const struct i2c_device_id m24lr_ids[] = {
+> +	{ "m24lr04e-r", (kernel_ulong_t)&m24lr04e_r_chip},
+> +	{ "m24lr16e-r", (kernel_ulong_t)&m24lr16e_r_chip},
+> +	{ "m24lr64e-r", (kernel_ulong_t)&m24lr64e_r_chip},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, m24lr_ids);
+> +
+> +static const struct of_device_id m24lr_of_match[] = {
+> +	{ .compatible = "st,m24lr04e-r", .data = &m24lr04e_r_chip},
+> +	{ .compatible = "st,m24lr16e-r", .data = &m24lr16e_r_chip},
+> +	{ .compatible = "st,m24lr64e-r", .data = &m24lr64e_r_chip},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, m24lr_of_match);
+> +
+> +/**
+> + * m24lr_parse_le_value - Parse hex string and convert to little-endian binary
+> + * @buf:	Input string buffer (hex format)
+> + * @reg_size:	Size of the register in bytes (must be 1, 2, 4, or 8)
+> + * @output:	Output buffer to store the value in little-endian format
+> + *
+> + * Converts a hexadecimal string to a numeric value of the given register size
+> + * and writes it in little-endian byte order into the provided buffer.
+> + *
+> + * Return: 0 on success, or negative error code on failure
+> + */
+> +static __maybe_unused int m24lr_parse_le_value(const char *buf, u32 reg_size,
+> +					       u8 *output)
+> +{
+> +	int err;
+> +
+> +	switch (reg_size) {
+> +	case 1: {
+> +		u8 tmp;
+> +
+> +		err = kstrtou8(buf, 16, &tmp);
+> +		if (!err)
+> +			*output = tmp;
+> +		break;
+> +	}
+> +	case 2: {
+> +		u16 tmp;
+> +
+> +		err = kstrtou16(buf, 16, &tmp);
+> +		if (!err)
+> +			*(__le16 *)output = cpu_to_le16(tmp);
+> +		break;
+> +	}
+> +	case 4: {
+> +		u32 tmp;
+> +
+> +		err = kstrtou32(buf, 16, &tmp);
+> +		if (!err)
+> +			*(__le32 *)output = cpu_to_le32(tmp);
+> +		break;
+> +	}
+> +	case 8: {
+> +		u64 tmp;
+> +
+> +		err = kstrtou64(buf, 16, &tmp);
+> +		if (!err)
+> +			*(__le64 *)output = cpu_to_le64(tmp);
+> +		break;
+> +	}
+> +	default:
+> +		err = -EINVAL;
+> +	}
+> +
+> +	return err;
+> +}
+> +
+> +/**
+> + * m24lr_regmap_read - read data using regmap with retry on failure
+> + * @regmap:  regmap instance for the device
+> + * @buf:     buffer to store the read data
+> + * @size:    number of bytes to read
+> + * @offset:  starting register address
+> + *
+> + * Attempts to read a block of data from the device with retries and timeout.
+> + * Some M24LR chips may transiently NACK reads (e.g., during internal write
+> + * cycles), so this function retries with a short sleep until the timeout
+> + * expires.
+> + *
+> + * Returns:
+> + *	 Number of bytes read on success,
+> + *	 -ETIMEDOUT if the read fails within the timeout window.
+> + */
+> +static ssize_t m24lr_regmap_read(struct regmap *regmap, u8 *buf,
+> +				 size_t size, unsigned int offset)
+> +{
+> +	int err;
+> +	unsigned long timeout, read_time;
+> +	ssize_t ret = -ETIMEDOUT;
+> +
+> +	timeout = jiffies + msecs_to_jiffies(M24LR_READ_TIMEOUT);
+> +	do {
+> +		read_time = jiffies;
+> +
+> +		err = regmap_bulk_read(regmap, offset, buf, size);
+> +		if (!err) {
+> +			ret = size;
+> +			break;
+> +		}
+> +
+> +		usleep_range(1000, 2000);
+> +	} while (time_before(read_time, timeout));
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * m24lr_regmap_write - write data using regmap with retry on failure
+> + * @regmap: regmap instance for the device
+> + * @buf:    buffer containing the data to write
+> + * @size:   number of bytes to write
+> + * @offset: starting register address
+> + *
+> + * Attempts to write a block of data to the device with retries and a timeout.
+> + * Some M24LR devices may NACK I2C writes while an internal write operation
+> + * is in progress. This function retries the write operation with a short delay
+> + * until it succeeds or the timeout is reached.
+> + *
+> + * Returns:
+> + *	 Number of bytes written on success,
+> + *	 -ETIMEDOUT if the write fails within the timeout window.
+> + */
+> +static ssize_t m24lr_regmap_write(struct regmap *regmap, const u8 *buf,
+> +				  size_t size, unsigned int offset)
+> +{
+> +	int err;
+> +	unsigned long timeout, write_time;
+> +	ssize_t ret = -ETIMEDOUT;
+> +
+> +	timeout = jiffies + msecs_to_jiffies(M24LR_WRITE_TIMEOUT);
+> +
+> +	do {
+> +		write_time = jiffies;
+> +
+> +		err = regmap_bulk_write(regmap, offset, buf, size);
+> +		if (!err) {
+> +			ret = size;
+> +			break;
+> +		}
+> +
+> +		usleep_range(1000, 2000);
+> +	} while (time_before(write_time, timeout));
+> +
+> +	return ret;
+> +}
+> +
+> +static ssize_t m24lr_read(struct m24lr *m24lr, u8 *buf, size_t size,
+> +			  unsigned int offset, bool is_eeprom)
+> +{
+> +	struct regmap *regmap;
+> +	ssize_t ret;
+> +
+> +	if (is_eeprom)
+> +		regmap = m24lr->eeprom_regmap;
+> +	else
+> +		regmap = m24lr->ctl_regmap;
+> +
+> +	mutex_lock(&m24lr->lock);
+> +	ret = m24lr_regmap_read(regmap, buf, size, offset);
+> +	mutex_unlock(&m24lr->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * m24lr_write - write buffer to M24LR device with page alignment handling
+> + * @m24lr:     pointer to driver context
+> + * @buf:       data buffer to write
+> + * @size:      number of bytes to write
+> + * @offset:    target register address in the device
+> + * @is_eeprom: true if the write should target the EEPROM,
+> + *             false if it should target the system parameters sector.
+> + *
+> + * Writes data to the M24LR device using regmap, split into chunks no larger
+> + * than page_size to respect device-specific write limitations (e.g., page
+> + * size or I2C hold-time concerns). Each chunk is aligned to the page boundary
+> + * defined by page_size.
+> + *
+> + * Returns:
+> + *	 Total number of bytes written on success,
+> + *	 A negative error code if any write fails.
+> + */
+> +static ssize_t m24lr_write(struct m24lr *m24lr, const u8 *buf, size_t size,
+> +			   unsigned int offset, bool is_eeprom)
+> +{
+> +	unsigned int n, next_sector;
+> +	struct regmap *regmap;
+> +	ssize_t ret = 0;
+> +	ssize_t err;
+> +
+> +	if (is_eeprom)
+> +		regmap = m24lr->eeprom_regmap;
+> +	else
+> +		regmap = m24lr->ctl_regmap;
+> +
+> +	n = min_t(unsigned int, size, m24lr->page_size);
+> +	next_sector = roundup(offset + 1, m24lr->page_size);
+> +	if (offset + n > next_sector)
+> +		n = next_sector - offset;
+> +
+> +	mutex_lock(&m24lr->lock);
+> +	while (n) {
+> +		err = m24lr_regmap_write(regmap, buf + offset, n, offset);
+> +		if (IS_ERR_VALUE(err)) {
+> +			if (!ret)
+> +				ret = err;
+> +
+> +			break;
+> +		}
+> +
+> +		offset += n;
+> +		size -= n;
+> +		ret += n;
+> +		n = min_t(unsigned int, size, m24lr->page_size);
+> +	}
+> +	mutex_unlock(&m24lr->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * m24lr_write_pass - Write password to M24LR043-R using secure format
+> + * @m24lr: Pointer to device control structure
+> + * @buf:   Input buffer containing hex-encoded password
+> + * @count: Number of bytes in @buf
+> + * @code:  Operation code to embed between password copies
+> + *
+> + * This function parses a 4-byte password, encodes it in  big-endian format,
+> + * and constructs a 9-byte sequence of the form:
+> + *
+> + *	  [BE(password), code, BE(password)]
+> + *
+> + * The result is written to register 0x0900 (2304), which is the password
+> + * register in M24LR04E-R chip.
+> + *
+> + * Return: Number of bytes written on success, or negative error code on failure
+> + */
+> +static ssize_t m24lr_write_pass(struct m24lr *m24lr, const char *buf,
+> +				size_t count, u8 code)
+> +{
+> +	__be32 be_pass;
+> +	u8 output[9];
+> +	ssize_t ret;
+> +	u32 pass;
+> +	int err;
+> +
+> +	if (!count)
+> +		return -EINVAL;
+> +
+> +	if (count > 8)
+> +		return -EINVAL;
+> +
+> +	err = kstrtou32(buf, 16, &pass);
+> +	if (err)
+> +		return err;
+> +
+> +	be_pass = cpu_to_be32(pass);
+> +
+> +	memcpy(output, &be_pass, sizeof(be_pass));
+> +	output[4] = code;
+> +	memcpy(output + 5, &be_pass, sizeof(be_pass));
+> +
+> +	mutex_lock(&m24lr->lock);
+> +	ret = m24lr_regmap_write(m24lr->ctl_regmap, output, 9, 2304);
+> +	mutex_unlock(&m24lr->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static ssize_t m24lr_read_reg_le(struct m24lr *m24lr, u64 *val,
+> +				 unsigned int reg_addr,
+> +				 unsigned int reg_size)
+> +{
+> +	ssize_t ret;
+> +	__le64 input = 0;
+> +
+> +	ret = m24lr_read(m24lr, (u8 *)&input, reg_size, reg_addr, false);
+> +	if (IS_ERR_VALUE(ret))
+> +		return ret;
+> +
+> +	if (ret != reg_size)
+> +		return -EINVAL;
+> +
+> +	switch (reg_size) {
+> +	case 1:
+> +		*val = *(u8 *)&input;
+> +		break;
+> +	case 2:
+> +		*val = le16_to_cpu((__le16)input);
+> +		break;
+> +	case 4:
+> +		*val = le32_to_cpu((__le32)input);
+> +		break;
+> +	case 8:
+> +		*val = le64_to_cpu((__le64)input);
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	};
+> +
+> +	return 0;
+> +}
+> +
+> +static int m24lr_nvmem_read(void *priv, unsigned int offset, void *val,
+> +			    size_t bytes)
+> +{
+> +	ssize_t err;
+> +	struct m24lr *m24lr = priv;
+> +
+> +	if (!bytes)
+> +		return bytes;
+> +
+> +	if (offset + bytes > m24lr->eeprom_size)
+> +		return -EINVAL;
+> +
+> +	err = m24lr_read(m24lr, val, bytes, offset, true);
+> +	if (IS_ERR_VALUE(err))
+> +		return err;
+> +
+> +	return 0;
+> +}
+> +
+> +static int m24lr_nvmem_write(void *priv, unsigned int offset, void *val,
+> +			     size_t bytes)
+> +{
+> +	ssize_t err;
+> +	struct m24lr *m24lr = priv;
+> +
+> +	if (!bytes)
+> +		return -EINVAL;
+> +
+> +	if (offset + bytes > m24lr->eeprom_size)
+> +		return -EINVAL;
+> +
+> +	err = m24lr_write(m24lr, val, bytes, offset, true);
+> +	if (IS_ERR_VALUE(err))
+> +		return err;
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t m24lr_ctl_sss_read(struct file *filep, struct kobject *kobj,
+> +				  const struct bin_attribute *attr, char *buf,
+> +				  loff_t offset, size_t count)
+> +{
+> +	struct m24lr *m24lr = attr->private;
+> +
+> +	if (!count)
+> +		return count;
+> +
+> +	if (size_add(offset, count) > m24lr->sss_len)
+> +		return -EINVAL;
+> +
+> +	return m24lr_read(m24lr, buf, count, offset, false);
+> +}
+> +
+> +static ssize_t m24lr_ctl_sss_write(struct file *filep, struct kobject *kobj,
+> +				   const struct bin_attribute *attr, char *buf,
+> +				   loff_t offset, size_t count)
+> +{
+> +	struct m24lr *m24lr = attr->private;
+> +
+> +	if (!count)
+> +		return -EINVAL;
+> +
+> +	if (size_add(offset, count) > m24lr->sss_len)
+> +		return -EINVAL;
+> +
+> +	return m24lr_write(m24lr, buf, count, offset, false);
+> +}
+> +static BIN_ATTR(sss, 0600, m24lr_ctl_sss_read, m24lr_ctl_sss_write, 0);
+> +
+> +static ssize_t new_pass_store(struct device *dev, struct device_attribute *attr,
+> +			      const char *buf, size_t count)
+> +{
+> +	struct m24lr *m24lr = i2c_get_clientdata(to_i2c_client(dev));
+> +
+> +	return m24lr_write_pass(m24lr, buf, count, 7);
+> +}
+> +static DEVICE_ATTR_WO(new_pass);
+> +
+> +static ssize_t unlock_store(struct device *dev, struct device_attribute *attr,
+> +			    const char *buf, size_t count)
+> +{
+> +	struct m24lr *m24lr = i2c_get_clientdata(to_i2c_client(dev));
+> +
+> +	return m24lr_write_pass(m24lr, buf, count, 9);
+> +}
+> +static DEVICE_ATTR_WO(unlock);
+> +
+> +static ssize_t uid_show(struct device *dev, struct device_attribute *attr,
+> +			char *buf)
+> +{
+> +	struct m24lr *m24lr = i2c_get_clientdata(to_i2c_client(dev));
+> +
+> +	return sysfs_emit(buf, "%llx\n", m24lr->uid);
+> +}
+> +static DEVICE_ATTR_RO(uid);
+> +
+> +static ssize_t total_sectors_show(struct device *dev,
+> +				  struct device_attribute *attr, char *buf)
+> +{
+> +	struct m24lr *m24lr = i2c_get_clientdata(to_i2c_client(dev));
+> +
+> +	return sysfs_emit(buf, "%x\n", m24lr->sss_len);
+> +}
+> +static DEVICE_ATTR_RO(total_sectors);
+> +
+> +static struct attribute *m24lr_ctl_dev_attrs[] = {
+> +	&dev_attr_unlock.attr,
+> +	&dev_attr_new_pass.attr,
+> +	&dev_attr_uid.attr,
+> +	&dev_attr_total_sectors.attr,
+> +	NULL,
+> +};
+> +
+> +static const struct m24lr_chip *m24lr_get_chip(struct device *dev)
+> +{
+> +	const struct m24lr_chip *ret;
+> +	const struct i2c_device_id *id;
+> +
+> +	id = i2c_match_id(m24lr_ids, to_i2c_client(dev));
+> +
+> +	if (dev->of_node && of_match_device(m24lr_of_match, dev))
+> +		ret = of_device_get_match_data(dev);
+> +	else if (id)
+> +		ret = (void *)id->driver_data;
+> +	else
+> +		ret = acpi_device_get_match_data(dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int m24lr_probe(struct i2c_client *client)
+> +{
+> +	struct regmap_config eeprom_regmap_conf = {0};
+> +	struct nvmem_config nvmem_conf = {0};
+> +	struct device *dev = &client->dev;
+> +	struct i2c_client *eeprom_client;
+> +	const struct m24lr_chip *chip;
+> +	struct regmap *eeprom_regmap;
+> +	struct nvmem_device *nvmem;
+> +	struct regmap *ctl_regmap;
+> +	struct m24lr *m24lr;
+> +	u32 regs[2];
+> +	long err;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
+> +		return -EOPNOTSUPP;
+> +
+> +	chip = m24lr_get_chip(dev);
+> +	if (!chip)
+> +		return -ENODEV;
+> +
+> +	m24lr = devm_kzalloc(dev, sizeof(struct m24lr), GFP_KERNEL);
+> +	if (!m24lr)
+> +		return -ENOMEM;
+> +
+> +	err = device_property_read_u32_array(dev, "reg", regs, ARRAY_SIZE(regs));
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to read 'reg' property\n");
+> +
+> +	/* Create a second I2C client for the eeprom interface */
+> +	eeprom_client = devm_i2c_new_dummy_device(dev, client->adapter, regs[1]);
+> +	if (IS_ERR(eeprom_client))
+> +		return dev_err_probe(dev, PTR_ERR(eeprom_client),
+> +				     "Failed to create dummy I2C client for the EEPROM\n");
+> +
+> +	ctl_regmap = devm_regmap_init_i2c(client, &m24lr_ctl_regmap_conf);
+> +	if (IS_ERR(ctl_regmap))
+> +		return dev_err_probe(dev, PTR_ERR(ctl_regmap),
+> +				      "Failed to init regmap\n");
+> +
+> +	eeprom_regmap_conf.name = "m24lr_eeprom";
+> +	eeprom_regmap_conf.reg_bits = 16;
+> +	eeprom_regmap_conf.val_bits = 8;
+> +	eeprom_regmap_conf.disable_locking = true;
+> +	eeprom_regmap_conf.max_register = chip->eeprom_size - 1;
+> +
+> +	eeprom_regmap = devm_regmap_init_i2c(eeprom_client,
+> +					     &eeprom_regmap_conf);
+> +	if (IS_ERR(eeprom_regmap))
+> +		return dev_err_probe(dev, PTR_ERR(eeprom_regmap),
+> +				     "Failed to init regmap\n");
+> +
+> +	mutex_init(&m24lr->lock);
+> +	m24lr->sss_len = chip->sss_len;
+> +	m24lr->page_size = chip->page_size;
+> +	m24lr->eeprom_size = chip->eeprom_size;
+> +	m24lr->eeprom_regmap = eeprom_regmap;
+> +	m24lr->ctl_regmap = ctl_regmap;
+> +
+> +	nvmem_conf.dev = &eeprom_client->dev;
+> +	nvmem_conf.owner = THIS_MODULE;
+> +	nvmem_conf.type = NVMEM_TYPE_EEPROM;
+> +	nvmem_conf.reg_read = m24lr_nvmem_read;
+> +	nvmem_conf.reg_write = m24lr_nvmem_write;
+> +	nvmem_conf.size = chip->eeprom_size;
+> +	nvmem_conf.word_size = 1;
+> +	nvmem_conf.stride = 1;
+> +	nvmem_conf.priv = m24lr;
+> +
+> +	nvmem = devm_nvmem_register(dev, &nvmem_conf);
+> +	if (IS_ERR(nvmem))
+> +		return dev_err_probe(dev, PTR_ERR(nvmem),
+> +				     "Failed to register nvmem\n");
+> +
+> +	i2c_set_clientdata(client, m24lr);
+> +	i2c_set_clientdata(eeprom_client, m24lr);
+> +
+> +	bin_attr_sss.size = chip->sss_len;
+> +	bin_attr_sss.private = m24lr;
+> +	err = sysfs_create_bin_file(&dev->kobj, &bin_attr_sss);
+> +	if (err)
+> +		return dev_err_probe(dev, err,
+> +				     "Failed to create sss bin file\n");
+> +
+> +	/* test by reading the uid, if success store it */
+> +	err = m24lr_read_reg_le(m24lr, &m24lr->uid, 2324, sizeof(m24lr->uid));
+> +	if (IS_ERR_VALUE(err))
+> +		goto remove_bin_file;
+> +
+> +	return 0;
+> +
+> +remove_bin_file:
+> +	sysfs_remove_bin_file(&dev->kobj, &bin_attr_sss);
+> +
+> +	return err;
+> +}
+> +
+> +static void m24lr_remove(struct i2c_client *client)
+> +{
+> +	sysfs_remove_bin_file(&client->dev.kobj, &bin_attr_sss);
+> +}
+> +
+> +ATTRIBUTE_GROUPS(m24lr_ctl_dev);
+> +
+> +static struct i2c_driver m24lr_driver = {
+> +	.driver = {
+> +		.name = "m24lr",
+> +		.of_match_table = m24lr_of_match,
+> +		.dev_groups = m24lr_ctl_dev_groups,
+> +	},
+> +	.probe	  = m24lr_probe,
+> +	.remove = m24lr_remove,
+> +	.id_table = m24lr_ids,
+> +};
+> +module_i2c_driver(m24lr_driver);
+> +
+> +MODULE_AUTHOR("Abd-Alrhman Masalkhi");
+> +MODULE_DESCRIPTION("st m24lr control driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.43.0
 
