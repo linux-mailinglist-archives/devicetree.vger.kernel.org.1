@@ -1,356 +1,350 @@
-Return-Path: <devicetree+bounces-196381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F599B05311
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 09:26:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B143B05333
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 09:30:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E796B7B6629
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 07:25:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34E4E3A7DD5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 07:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88EA92D46C9;
-	Tue, 15 Jul 2025 07:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E8B2701CC;
+	Tue, 15 Jul 2025 07:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iJpeS8Yx"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="SACTP6Vx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C992E0413;
-	Tue, 15 Jul 2025 07:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B614A26FA6F
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 07:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752563991; cv=none; b=ez8k61yeSEkds/EoawCfa8VPkLG/WH0awQ7+fyWVoPMbsBliGSPOsYiNDSPbDFwgMmnN9V0HxrVTkeQnAmw2xfiU03y5ZjalqnqQbG0wTIZQUyRrv+VDxYy7vX4cq3bK45Mw+LwoFFJAtC7/0xkU+rhcA+ZVegfXnET9VWP0AIw=
+	t=1752564496; cv=none; b=nb/HT3IPjCkZUq7kXMhOjRSCowz1WwMVabnfJ6r6yJCDnhLTGYBTx2FebjTRKrJ/N/mUW4oiiLIXoNXtgw4NBnI77u9dXR4XF3mU+gzkhCr2OWFsOr/QK+ThEF/T7jXh96XyjzUHAsDPH6OT6vOZc0r8QlA2g90cmTosQEONj0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752563991; c=relaxed/simple;
-	bh=m61E355kAgNwnf61mkfbfDOJYnKhUsup2CvOlC/E3P4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aMT8K9NSrJ/6EnyuWtJzjBnjj4OfFcgdM8qW6i0BQliQkl3no+lkfwLjPOFGTesRU7Bv04pwefySC/fhwju7R3X1g1BwzOXbACOfCtL47qho5wfmEfUhVNR/kpbZljDwe0ecxHYzwDYdJIm29bEU5xsqlUBa6EqJvvc6AY+3R2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iJpeS8Yx; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1752563986;
-	bh=m61E355kAgNwnf61mkfbfDOJYnKhUsup2CvOlC/E3P4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iJpeS8YxtXjMm7UrtrdbB9W/P8pPaAyqV7+kPnj0Cnh5pB3XsIh9W6Vg4qQ8ZgPHF
-	 hUgc7TKCeD66evevdVQ46UFKE9CWxD99Yt12mvL5ogjmTomte+VlwH4Jc3rMsw/eEq
-	 NX71b4Pn6JyFePTtCCEijKg2mzRT5LC6EWTbRdLzDkT14vACxKlvm/74ljzr17FHB6
-	 RwWi2ptikPr+qAvdfMY82y0DlKmbJ8FX9Os1cG9iRfnAiFjcnbcP/e/CPsVNyDM4Ng
-	 M7LcDbGc11gsS2pSWp1X0sTLC2lZQ8FgsRigkqkGC1GVOYQ3jye12S1FaCflUklNnd
-	 JUEsJglGKw6QQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 37D1B17E0676;
-	Tue, 15 Jul 2025 09:19:45 +0200 (CEST)
-Message-ID: <242bf682-cf8f-4469-8a0b-9ec982095f04@collabora.com>
-Date: Tue, 15 Jul 2025 09:19:44 +0200
+	s=arc-20240116; t=1752564496; c=relaxed/simple;
+	bh=BK4PRwXIV83i4q+617lou8DQ231b26kX7zcVhKVZMmk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WwrcwOzzDAQNZ5/CENymKSsz238uPG7mnKCp6nkZZcS57w0WBRaRPnyzUy10cygK1ZEuED1H1utuKa8gnS2bQYloc1uWKgb1+FKLKRpIPZfwuHVzhBwWBk3lrOuVfjzKGyvX6+XAqy9WKc9UTj3A7o1BXVaecURlD/xhNBFHnXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=SACTP6Vx; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-558fa0b2c99so4260652e87.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 00:28:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1752564493; x=1753169293; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dZzpiYZwNaf+7GMBi0VLlcvQKHbRH+NQQeTOtdaqsaY=;
+        b=SACTP6Vxysm66Ktsx+EWd1HmyJguBTFQ01wPveYd0GcEmc8vGi916XUyRaIqMbctRm
+         JBgPm2sNdX7kHdoYfbj1EsOS9SLgtKvU70OpBKwdUYg53b8S3TRWqrok+dRgfTVGgOCo
+         kPtWvXtBZsK/ZteLzm6adGWExHPLt4xIcXXEw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752564493; x=1753169293;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dZzpiYZwNaf+7GMBi0VLlcvQKHbRH+NQQeTOtdaqsaY=;
+        b=rI2GSTxKBgIoOwkaJHEBJBFrJwqMRQKcb33ZMpcdn02kGE2/vJOi/GNvD+/hji8uQu
+         tYRKQQUO67GZgbd94udrDFS1eLRDG90kxF12uoupwOtiT/9IHi8QPVQQVtPe2yKg0OOP
+         KVQSvg2+uGJNeRrXLacJaVK3wXJxcP8hLE2EvBEL3IpoKEJh1lCkaxwyeZ89qiefIo5Y
+         oWl++mDiBEqxAIWeBOCTRCXCUJSgZMEUMvDxXQ3rEHQW11LGCwU9J9/GGwizf27DDVNJ
+         +SesA5O7UniyE+p+DtwhnmVWPDfgE0LRh10uRuELxdxe4vu6uwqVh85xQnjdRI0+Z8dc
+         4xUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUfY2wjprQ6kPNmd1aVLF16NOfP8Loqa2JP92lno/IcWNJSgPYCXIKwuMYSjScDTh3tweHYl/P2bhNo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHIzB2DDd/jn+1Q7BS6zOA2ySaGKvFN2u7HPcZtUwEKaXUXq+/
+	HW0deMfmgCSX/0O+LT9VzlIEFnfbFRsaiXUfeg9z5NAnf7SqItp1POMGwynNjjD/Y3Ex9U0c1OY
+	iA0k7gtU3Zgv4h7j6uwov1akmR2HQdTR9hrLH3mOi
+X-Gm-Gg: ASbGncvEH3cdiLFRuYeD94SdGHyDCDZnNWQHN17xMeJFSdlkwEUmTzODxezfLFCt41F
+	uQUrmHHHviinhGtETFqaxaFCdTDZh2MJenVaLuIVAbQRlbOgaMW1ofB2lQxxRUCvTOiR43ZMWfX
+	lHH91OWhFwACRVeePwNRO+I2ZVKYmseiqr6zI4E8D3mA5aKuvcJihDqAZSfBKFzrPx+iF0V5ITO
+	Tih+PzgKGST3bK5592+VK44txJwCgGuha5HXEEFeYX6Zg==
+X-Google-Smtp-Source: AGHT+IE+I2EKW/Vlk3fRtykPHngODTfgQlgraXU23nzszgS13v7r+PoSUsWI29YIuHFK4Z4/TZxfjJyjsgNva6Nvih0=
+X-Received: by 2002:a05:6512:23a0:b0:553:a32a:6c6 with SMTP id
+ 2adb3069b0e04-55a058cca78mr3983896e87.51.1752564492768; Tue, 15 Jul 2025
+ 00:28:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/3] dt-bindings: firmware: Document the MediaTek
- Hardware Voter (HWV)
-To: Chen-Yu Tsai <wenst@chromium.org>, Laura Nao <laura.nao@collabora.com>
-Cc: arnd@arndb.de, conor+dt@kernel.org, devicetree@vger.kernel.org,
- drew@pdp7.com, gregkh@linuxfoundation.org, kabel@kernel.org,
- kernel@collabora.com, khilman@baylibre.com, krzk@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, m.wilczynski@samsung.com,
- matthias.bgg@gmail.com, nm@ti.com, pjp@fedoraproject.org,
- quic_hyiwei@quicinc.com, robh@kernel.org, tudor.ambarus@linaro.org,
- u.kleine-koenig@baylibre.com, ulf.hansson@linaro.org
-References: <9560d4d2-5346-4d0a-a96f-c96ebe335f3c@collabora.com>
- <20250710141941.75843-1-laura.nao@collabora.com>
- <CAGXv+5Gzk2hDYFWTsN6V6LOfNyfrYg1ZqhsUHfTJMpOWh6f9ew@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAGXv+5Gzk2hDYFWTsN6V6LOfNyfrYg1ZqhsUHfTJMpOWh6f9ew@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250624143220.244549-1-laura.nao@collabora.com> <20250624143220.244549-15-laura.nao@collabora.com>
+In-Reply-To: <20250624143220.244549-15-laura.nao@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 15 Jul 2025 15:28:01 +0800
+X-Gm-Features: Ac12FXyU8Sq6NaxHfbh3KFMLAH5aLMP41sVO2AcuKk50klccx7LXTjHhhdUwccY
+Message-ID: <CAGXv+5EsVOPC+i2=9d-Be1U-DuB8tPDAyokzhTOeVZQtZJ9+CQ@mail.gmail.com>
+Subject: Re: [PATCH v2 14/29] clk: mediatek: Add MT8196 vlpckgen clock support
+To: Laura Nao <laura.nao@collabora.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
+	richardcochran@gmail.com, guangjie.song@mediatek.com, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+	kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 15/07/25 06:33, Chen-Yu Tsai ha scritto:
-> On Fri, Jul 11, 2025 at 12:28 AM Laura Nao <laura.nao@collabora.com> wrote:
->>
->> On 7/7/25 12:40, AngeloGioacchino Del Regno wrote:
->>> Il 03/07/25 10:56, AngeloGioacchino Del Regno ha scritto:
->>>> Il 02/07/25 08:50, Krzysztof Kozlowski ha scritto:
->>>>> On Tue, Jul 01, 2025 at 05:11:48PM +0200, AngeloGioacchino Del Regno wrote:
->>>>>> Add documentation for the new MediaTek Hardware Voter, found in
->>>>>> MediaTek SoCs like the MT8196 Kompanio Ultra for Chromebooks and
->>>>>> the MT6991 Dimensity 9400 for Smartphones.
->>>>>>
->>>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>>>> ---
->>>>>>    .../mediatek,mt6991-hardware-voter.yaml       | 70 +++++++++++++++++++
->>>>>>    1 file changed, 70 insertions(+)
->>>>>>    create mode 100644 Documentation/devicetree/bindings/firmware/mediatek,mt6991- hardware-voter.yaml
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/firmware/mediatek,mt6991- hardware-voter.yaml b/Documentation/devicetree/bindings/firmware/ mediatek,mt6991-hardware-voter.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..173b74c23a91
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware- voter.yaml
->>>>>> @@ -0,0 +1,70 @@
->>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>>> +# Copyright 2025 Collabora Ltd
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/firmware/mediatek,mt6991-hardware-voter.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: MediaTek Hardware Voter (HWV)
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>>>> +
->>>>>> +description:
->>>>>> +  The MediaTek Hardware Voter (HWV) is a SoC-internal fixed-function MCU
->>>>>> +  used to collect votes from both the Application Processor and from the
->>>>>> +  various other remote processors present in the SoC, and transparently
->>>>>> +  turn on or off various hardware resources (for example, power domains
->>>>>> +  or system clocks) based on aggregation of votes done in the HWV MCU's
->>>>>> +  internal state machine, therefore guaranteeing synchronization of the
->>>>>> +  hardware resource requests between all components of the SoC and hence
->>>>>> +  avoiding, for example, unclocked or unpowered access to the hardware.
->>>>>> +
->>>>>> +properties:
->>>>>> +  $nodename:
->>>>>> +    pattern: "^system-controller@[0-9a-f]+$"
->>>>>> +
->>>>>> +  compatible:
->>>>>> +    const: mediatek,mt6991-hardware-voter
->>>>>> +
->>>>>> +  reg:
->>>>>> +    items:
->>>>>> +      - description: Address and size of the Hardware Voter MMIO
->>>>>> +
->>>>>
->>>>> No resources here, so this should go to power controller
->>>>>
->>>>>> +  power-controller:
->>>>>> +    $ref: /schemas/power/mediatek,power-controller.yaml
->>>>>> +
->>>>>> +required:
->>>>>> +  - compatible
->>>>>> +  - reg
->>>>>> +
->>>>>> +additionalProperties: true
->>>>>> +
->>>>>> +examples:
->>>>>> + - |
->>>>>> +   scp_hwv: system-controller@14500000 {
->>>>>> +     compatible = "mediatek,mt6991-hardware-voter";
->>>>>> +     reg = <0 0x14500000 0 0x3000>;
->>>>>> +
->>>>>> +     power-controller {
->>>>>> +       compatible = "mediatek,mt8196-hwv-scp-power-controller";
->>>>>
->>>>> mt8196 in mt6991 is very confusing.
->>>>>
->>>>
->>>> Yeah that wasn't intentional; fyi, it's almost the same soc, that's why I mixed
->>>> them up... :-)
->>>>
->>>>> Anyway, this does not address my comment at all. You again create some
->>>>> sort of syscon for voting, so no. You are supposed to use generic API
->>>>> for voting: clocks, power domains, interconnects - whatever is there
->>>>> applicable or necessary.
->>>>>
->>>>
->>>> Making that loud and clear: Interconnect is not applicable.
->>>>
->>>> The only way to do what you're proposing would be to add a bunch of `reg`
->>>> to each devicetree node for each clock controller and each power controller;
->>>> I can do that, but looks a bit dirty - and still yet another syscon-like
->>>> alternative, but without having a real syscon declared in there.
->>>>
->>>> Mind you - both clock and power controllers are writing both to their own
->>>> register space (and enabling external regulators, etc, for power domains)
->>>> and to the hardware voter MMIO (which means that the HWV, in hardware, is
->>>> fundamentally broken).
->>>>
->>>> After this reply, the only option that is left to me is the following:
->>>>
->>>>           topckgen: clock-controller@10000000 {
->>>>               compatible = "mediatek,mt8196-topckgen", "syscon";
->>>>               reg = <0 0x10000000 0 0x800>, <0 0x14500010 0 0x48>,
->>>>                     <0 0x14502c08 0 0x24>;
->>>>               reg-names = "base", "hwvoter-base", "hwvoter-status";
->>>>               #clock-cells = <1>;
->>>>           };
->>>>
->>>>           imp_iic_wrap_north: clock-controller@13c30000 {
->>>>               compatible = "mediatek,mt8196-imp-iic-wrap-n", "syscon";
->>>>               reg = <0 0x13c30000 0 0x1000>, <0 0x14500000 0 0xc>,
->>>>                     <0 0x14502c00 0 0xc>;
->>>>               reg-names = "base", "hwvoter-base", "hwvoter-status";
->>>>               #clock-cells = <1>;
->>>>           };
->>>>
->>>>           /* Power Manager with Hardware Voter */
->>>>           spm_hwv: power-controller@14500218 {
->>>>               compatible = "mediatek,mt8196-hwv-scp-power-controller";
->>>>               reg = <0 0x14500218 0 0x20>, <0 0x14501410 0 0x20>,
->>>>                     <0 0x14505514 0 0xc>;
->>>>               reg-names = "hwvoter-base", "hwvoter-status", "hwvoter-ack";
->>>>               #address-cells = <1>;
->>>>               #size-cells = <0>;
->>>>               #power-domain-cells = <1>;
->>>>
->>>>               /* SCPSYS hardware voter power domains */
->>>>               mm_proc_dormant: power-domain@MT8196_POWER_DOMAIN_MM_PROC_DORMANT {
->>>>                   ..... etc, all power domains
->>>>
->>>> At this point, I'm really not sure that this would be better than just passing
->>>> the mediatek,hardware-voter syscon to the clock controllers - as what I've done
->>>> previously was effectively representing the hardware in the devicetree as it is,
->>>> matching the real HW layout 1:1 (because again, each of the whole HWV MCU(s) are
->>>> embedded into each of the two power controllers, one for System power, and one
->>>> for Multimedia power).
->>>>
->>>> (btw, hardware speaking, the power controller is child of a system controller:
->>>> there are two system controllers - "scpsystem" is for "compute part", and the
->>>> "hfrpsystem" is for the "multimedia part" of the soc).
->>>>
->>>>    _______________________________________
->>>> |                                       |
->>>> | SYSTEM CONTROLLER (SCPSYS or HFRPSYS) |
->>>> |   _____________________               |
->>>> |  |                     |              | <===> Clock Controllers (more than one)
->>>> |  | Power Controller    |     SOME     |       (provide subsystem clocks for iso
->>>> |  |                     |    OTHER     |        during power domain enablement
->>>> |  |     ______________  |   BLOCKS     |        even if a PD is voted)
->>>> |  |    |              | |              |       non-subsystem clocks are voted,
->>>> |  |    | HW Voter MCU | |              |       but subsystem ones are not voted
->>>> |  |    |______________| |              |
->>>> |  |_____________________|              | ===> Rest of the SoC
->>>> |_______________________________________|
->>>>
->>>>
->>>> Hence I'm asking you - does your idea still stand?
->>>>
->>>> Because after this, sorry for that - this doesn't want to be an attack - but
->>>> I'm starting to have doubts about an approach that doesn't involve syscons.
->>>>
->>>> Cheers,
->>>> Angelo
->>>
->>> Sorry for the double reply, wanted to add some more words :-)
->>>
->>> As a note, I also thought about doing the following:
->>>
->>>      /* Secondary SCPSYS block with HWV capabilities */
->>>      scp1_hwv: system-controller@14500000 {
->>>          compatible = "mediatek,mt8196-scpsys", "syscon", "simple-mfd";
->>>          reg = <0 0x14500000 0 0x3000>;
->>>
->>>          /* SCP Power Manager with Hardware Voter */
->>>          spm_hwv: power-controller {
->>>              compatible = "mediatek,mt8196-hwv-scp-power-controller";
->>>              #address-cells = <1>;
->>>              #size-cells = <0>;
->>>              #power-domain-cells = <1>;
->>>
->>>              /* SCPSYS hardware voter power domains */
->>>              mm_proc_dormant: power-domain@MT8196_POWER_DOMAIN_MM_PROC_DORMANT {
->>>              ..... etc etc
->>>              };
->>>          };
->>>
->>>          imp_iic_wrap_north: clock-controller@13c30000 {
->>>              compatible = "mediatek,mt8196-imp-iic-wrap-n", "syscon";
->>>              reg = <0 0x13c30000 0 0x1000>;
->>>              #clock-cells = <1>;
->>>          };
->>>      };
->>>
->>> ...but that's also not applicable, because the clock controllers are physically
->>> *not* inside of the scpsys1 block, so that would *also* misrepresent the hardware
->>> in the devicetree (besides still using a syscon in a way or another).
->>>
->>> So... I really don't see any way out of that, which really leaves me with the two
->>> options that I described in the previous reply.
->>>
->>> Summarizing, either:
->>>   - Adding hwv MMIOs (a bunch of, and each very small) to each clock controller (but
->>>     still all of them are poking at the same HWV controller, and I foresee that this
->>>     will backfire in some future iteration of the HWV hardware)
->>>   - Reverting back to using the "mediatek,hardware-voter" syscon, like done in
->>>     https://lore.kernel.org/20250624143220.244549-10-laura.nao@collabora.com
->>>
->>> I tried really hard and thought about this for weeks (actually, started even before
->>> your feedback on Laura's series), but now I'm out of practical options that are
->>> both correctly representing the hardware and not making the implementation fragile
->>> (or actually more fragile than the actually broken HW implementation's fragility,
->>> anyway).
->>>
->>> And besides - re-reading what I wrote after a bunch of days, the first option of
->>> adding a bunch of hwv mmios to all of the clock controllers is, in my opinion, a
->>> (dirty) hack - because those mmios don't belong to the clock controllers, and would
->>> again misrepresent the hardware in DT - especially keeping in mind the fact that
->>> the clock controllers can be controlled with *and* (not or) without the HWV (and in
->>> some instances, even if using HWV, we must still write to the clock controllers'
->>> mmio for extra programming, as explained before).
->>>
->>> Every second I think about this I get more and more convinced that my way of
->>> passing the SCPSYS-HWV system controller handle as a syscon is right.
->>>
->>> Angelo
->>>
->>
->> I’ve given this some more thought over the past few days.
->>
->> I can't see of any other viable alternative either, other than splitting
->> up the HWV MMIOs into multiple tiny reg entries across each consumer
->> node as mentioned..which feels fragile and wouldn't really be an accurate
->> representation of the HW, given they all ultimately target the same HWV MCU.
->>
->> All considered, modeling the HWV as a shared syscon passed to both clock
->> and power controllers still seems to me like the more accurate
->> representation of this specific hw layout, given both types of
->> controllers interact with the same voter logic and MMIO region.
->>
->> Krzysztof, does the approach with scattered small reg entries per clock
->> controller seem as awkward to you as it does to us? are there any other
->> directions you think we should explore here?
-> 
-> Just to add to the argument, the hardware voter is really just an
-> alternative interface to the same clock or power controller; it is
-> not a separate controller. Trying to model it as such means you end
-> up with two devices fighting over control over the same hardware.
-> 
-> It really should be *one* clock controller with an alternative address
-> space. How we choose to model the hardware voter address space is up
-> for debate as Laura mentioned, but modeling it as another clock
-> controller is misrepresenting the hardware at best, and causing more
-> confusion for the implementation at worst.
-> 
-> ChenYu
+Hi,
 
-Alright.
-Let's go back to the previously proposed "mediatek,hardware-voter" way then.
 
-Regarding that to be a single clock controller, I'm afraid that won't really be
-possible because not all clocks in a single domain are voted - especially the
-mux-gate clocks can't really be put in one single clock controller because to
-manage those we have to write to the HWV *and* to the clock controller MMIO in the
-same operation in order to actually manage the clock.
+On Tue, Jun 24, 2025 at 10:33=E2=80=AFPM Laura Nao <laura.nao@collabora.com=
+> wrote:
+>
+> Add support for the MT8196 vlpckgen clock controller, which provides
+> muxes and dividers for clock selection in other IP blocks.
+>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+> ---
+>  drivers/clk/mediatek/Makefile              |   2 +-
+>  drivers/clk/mediatek/clk-mt8196-vlpckgen.c | 769 +++++++++++++++++++++
+>  2 files changed, 770 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clk/mediatek/clk-mt8196-vlpckgen.c
+>
+> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefil=
+e
+> index 0688d7bf4979..24683dd51783 100644
+> --- a/drivers/clk/mediatek/Makefile
+> +++ b/drivers/clk/mediatek/Makefile
+> @@ -161,7 +161,7 @@ obj-$(CONFIG_COMMON_CLK_MT8195_VENCSYS) +=3D clk-mt81=
+95-venc.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_VPPSYS) +=3D clk-mt8195-vpp0.o clk-mt8195=
+-vpp1.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_WPESYS) +=3D clk-mt8195-wpe.o
+>  obj-$(CONFIG_COMMON_CLK_MT8196) +=3D clk-mt8196-apmixedsys.o clk-mt8196-=
+topckgen.o \
+> -                                  clk-mt8196-topckgen2.o
+> +                                  clk-mt8196-topckgen2.o clk-mt8196-vlpc=
+kgen.o
+>  obj-$(CONFIG_COMMON_CLK_MT8365) +=3D clk-mt8365-apmixedsys.o clk-mt8365.=
+o
+>  obj-$(CONFIG_COMMON_CLK_MT8365_APU) +=3D clk-mt8365-apu.o
+>  obj-$(CONFIG_COMMON_CLK_MT8365_CAM) +=3D clk-mt8365-cam.o
+> diff --git a/drivers/clk/mediatek/clk-mt8196-vlpckgen.c b/drivers/clk/med=
+iatek/clk-mt8196-vlpckgen.c
+> new file mode 100644
+> index 000000000000..23a673dd4c5c
+> --- /dev/null
+> +++ b/drivers/clk/mediatek/clk-mt8196-vlpckgen.c
+> @@ -0,0 +1,769 @@
 
-If that wasn't the case, I would've been happier to have all of the HWV clocks in
-one clock controller (even though those belong to different SoC subsystems)...
-...but let's see if we can (and if it makes sense to) aggregate at least some!
+[...]
 
-Thanks everyone!
+> +static const char * const vlp_camtg0_parents[] =3D {
+> +       "clk26m",
+> +       "univpll_192m_d32",
+> +       "univpll_192m_d16",
+> +       "clk13m",
+> +       "osc_d40",
+> +       "osc_d32",
+> +       "univpll_192m_d10",
+> +       "univpll_192m_d8",
+> +       "univpll_d6_d16",
+> +       "ulposc3",
+> +       "osc_d20",
+> +       "ck2_tvdpll1_d16",
+> +       "univpll_d6_d8"
+> +};
 
-Cheers,
-Angelo
+It seems all the vlp_camtg* parents are the same. Please merge them
+and just have one list.
+
+> +static const char * const vlp_sspm_26m_parents[] =3D {
+> +       "clk26m",
+> +       "osc_d20"
+> +};
+> +
+> +static const char * const vlp_ulposc_sspm_parents[] =3D {
+> +       "clk26m",
+> +       "osc_d2",
+> +       "mainpll_d4_d2"
+> +};
+> +
+> +static const char * const vlp_vlp_pbus_26m_parents[] =3D {
+> +       "clk26m",
+> +       "osc_d20"
+> +};
+> +
+> +static const char * const vlp_debug_err_flag_parents[] =3D {
+> +       "clk26m",
+> +       "osc_d20"
+> +};
+> +
+> +static const char * const vlp_dpmsrdma_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d7_d2"
+> +};
+> +
+> +static const char * const vlp_vlp_pbus_156m_parents[] =3D {
+> +       "clk26m",
+> +       "osc_d2",
+> +       "mainpll_d7_d2",
+> +       "mainpll_d7"
+> +};
+> +
+> +static const char * const vlp_spm_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d7_d4"
+> +};
+> +
+> +static const char * const vlp_mminfra_parents[] =3D {
+> +       "clk26m",
+> +       "osc_d4",
+> +       "mainpll_d3"
+> +};
+> +
+> +static const char * const vlp_usb_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d9"
+> +};
+
+The previous and the next one are the same.
+
+> +static const char * const vlp_usb_xhci_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d9"
+> +};
+> +
+> +static const char * const vlp_noc_vlp_parents[] =3D {
+> +       "clk26m",
+> +       "osc_d20",
+> +       "mainpll_d9"
+> +};
+> +
+> +static const char * const vlp_audio_h_parents[] =3D {
+> +       "clk26m",
+> +       "vlp_apll1",
+> +       "vlp_apll2"
+> +};
+> +
+> +static const char * const vlp_aud_engen1_parents[] =3D {
+> +       "clk26m",
+> +       "apll1_d8",
+> +       "apll1_d4"
+> +};
+
+The previous and the next one are the same.
+
+> +static const char * const vlp_aud_engen2_parents[] =3D {
+> +       "clk26m",
+> +       "apll2_d8",
+> +       "apll2_d4"
+> +};
+> +
+> +static const char * const vlp_aud_intbus_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d7_d4",
+> +       "mainpll_d4_d4"
+> +};
+> +
+> +static const char * const vlp_spvlp_26m
+
+[...]
+
+> +static int clk_mt8196_vlp_probe(struct platform_device *pdev)
+> +{
+> +       struct clk_hw_onecell_data *clk_data;
+> +       int r;
+> +       struct device_node *node =3D pdev->dev.of_node;
+> +
+> +       clk_data =3D mtk_alloc_clk_data(ARRAY_SIZE(vlp_muxes) +
+> +                                     ARRAY_SIZE(vlp_plls));
+> +       if (!clk_data)
+> +               return -ENOMEM;
+> +
+> +       r =3D mtk_clk_register_muxes(&pdev->dev, vlp_muxes, ARRAY_SIZE(vl=
+p_muxes),
+> +                                  node, &mt8196_clk_vlp_lock, clk_data);
+> +       if (r)
+> +               goto free_clk_data;
+> +
+> +       r =3D mtk_clk_register_plls(node, vlp_plls, ARRAY_SIZE(vlp_plls),
+> +                                 clk_data);
+> +       if (r)
+> +               goto unregister_muxes;
+> +
+> +       r =3D of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_dat=
+a);
+> +       if (r)
+> +               goto unregister_plls;
+> +
+> +       platform_set_drvdata(pdev, clk_data);
+> +
+> +       return r;
+> +
+> +unregister_plls:
+> +       mtk_clk_unregister_plls(vlp_plls, ARRAY_SIZE(vlp_plls), clk_data)=
+;
+> +unregister_muxes:
+> +       mtk_clk_unregister_muxes(vlp_muxes, ARRAY_SIZE(vlp_muxes), clk_da=
+ta);
+> +free_clk_data:
+> +       mtk_free_clk_data(clk_data);
+
+The AFE driver sets some tuner parameters in the VLPCKGEN block at probe
+time. Maybe we could do that here instead?
+
+/* vlp_cksys_clk: 0x1c016000 */
+#define VLP_APLL1_TUNER_CON0 0x02a4
+#define VLP_APLL2_TUNER_CON0 0x02a8
+
+/* vlp apll1 tuner default value*/
+#define VLP_APLL1_TUNER_CON0_VALUE 0x6f28bd4d
+/* vlp apll2 tuner default value + 1*/
+#define VLP_APLL2_TUNER_CON0_VALUE 0x78fd5265
+
+       regmap_write(afe_priv->vlp_ck, VLP_APLL1_TUNER_CON0,
+VLP_APLL1_TUNER_CON0_VALUE);
+       regmap_write(afe_priv->vlp_ck, VLP_APLL2_TUNER_CON0,
+VLP_APLL2_TUNER_CON0_VALUE);
+
+ChenYu
+
+> +
+> +       return r;
+> +}
+> +
+> +static void clk_mt8196_vlp_remove(struct platform_device *pdev)
+> +{
+> +       struct clk_hw_onecell_data *clk_data =3D platform_get_drvdata(pde=
+v);
+> +       struct device_node *node =3D pdev->dev.of_node;
+> +
+> +       of_clk_del_provider(node);
+> +       mtk_clk_unregister_plls(vlp_plls, ARRAY_SIZE(vlp_plls), clk_data)=
+;
+> +       mtk_clk_unregister_muxes(vlp_muxes, ARRAY_SIZE(vlp_muxes), clk_da=
+ta);
+> +       mtk_free_clk_data(clk_data);
+> +}
+> +
+> +static const struct of_device_id of_match_clk_mt8196_vlp_ck[] =3D {
+> +       { .compatible =3D "mediatek,mt8196-vlpckgen" },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, of_match_clk_mt8196_vlp_ck);
+> +
+> +static struct platform_driver clk_mt8196_vlp_drv =3D {
+> +       .probe =3D clk_mt8196_vlp_probe,
+> +       .remove =3D clk_mt8196_vlp_remove,
+> +       .driver =3D {
+> +               .name =3D "clk-mt8196-vlpck",
+> +               .of_match_table =3D of_match_clk_mt8196_vlp_ck,
+> +       },
+> +};
+> +
+> +MODULE_DESCRIPTION("MediaTek MT8196 VLP clock generator driver");
+> +module_platform_driver(clk_mt8196_vlp_drv);
+> +MODULE_LICENSE("GPL");
+> --
+> 2.39.5
+>
 
