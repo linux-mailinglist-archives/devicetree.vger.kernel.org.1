@@ -1,149 +1,177 @@
-Return-Path: <devicetree+bounces-196469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94476B0580D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:42:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13A2FB05828
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:50:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E80401AA80BF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 10:43:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3ECE54E6697
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 10:50:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 396FD2D661D;
-	Tue, 15 Jul 2025 10:42:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E56B2D63E8;
+	Tue, 15 Jul 2025 10:50:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C9icJ8Xc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NJLk4v5Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66EB61D9A70;
-	Tue, 15 Jul 2025 10:42:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2811F204F73
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 10:50:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752576161; cv=none; b=kGz0VWTQBOwzlyAhHwR52Z4hiYd+FQ6xUaCSfxJ09ccUlseVEZMYpmpAP85bVzzLECTWJrBsvaDdxQwuCx05vzLy+lOV/DVHotMXOqXo0qnhatny6etrdtezjtWiP5sfNXI9QYSqstupEV/g5QPsvP856GxAUM0bZ0BW/Fz9/M8=
+	t=1752576651; cv=none; b=QAPH3wRmZM5NPHyR19l+wVIAH/7BFrH7IY6wlaDF3yU85d4AruDQjASNhH9ghEeupiyL2sGShD2lfxUAL5upnyQZSFaEicNdsX8JygbMRL82InZ7f3GLwmTl9gLHWy+yOdfXNYDVzZkJ0t2lF3Ln1Fub9dw+nUSXpZ7pPbyy0dU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752576161; c=relaxed/simple;
-	bh=qPvGaKZPuwIuu9H/djUeWBfbuZULyNCjjRuj3wYvkwM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aT/kXdk8HNhmWqJ/r3ly/T/cVlNvy73VgiRV2R6xitVotfDddSaDkSUSeVihuVzrJSrAw2ROJe5qBFEOzyMqlHopUB2TjM4UbF6LT8tzorVeJi7CLtctMDmcUlJbvtlCI93SCI3ZeJ/c+DLDv5NNfIuS7xhLjre9tmziEcXqnx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C9icJ8Xc; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1752576159; x=1784112159;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qPvGaKZPuwIuu9H/djUeWBfbuZULyNCjjRuj3wYvkwM=;
-  b=C9icJ8XczebumfsqrngmAleLfW1ZPtclpPsu0HGYcLEgAQTJV2HS8w9H
-   3YyPql/esGM7U1p9PIb2MtBdh9gYcayfY0noNwuVCLW9RdoddNcgjEGkq
-   58aZovJ7wlyuophlKupXKGDGuzZob9dMA2e6g4Y6aAVdfsrH+EgJdW3l9
-   T5NtCcN0R9UPPu09/lmQe04Xf6fIflpJjCVbOPXh0036Zdk8r7JX0Rfga
-   tXkRD9aBOh4wMEo1fsf0qvBXc4mqcdCUrpKEZ62lrsbFHadQICd5Jz4R+
-   eQ2zg4dcsQgDSPCLhqR11E9FhggpUDHSzIB/UeIb+PfYIiO0nZKdEElmc
-   g==;
-X-CSE-ConnectionGUID: c3yobWWxQlysfDzBE7vytw==
-X-CSE-MsgGUID: QV1srw1nRvevSOhcO4z9cA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="58445765"
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; 
-   d="scan'208";a="58445765"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2025 03:42:38 -0700
-X-CSE-ConnectionGUID: dmjPbJpiSbiGp3SPSf7lKw==
-X-CSE-MsgGUID: /JEWBtDaS7uWpRZYqR/N6Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; 
-   d="scan'208";a="157730369"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2025 03:42:35 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1ubd7I-0000000Fckz-48BA;
-	Tue, 15 Jul 2025 13:42:32 +0300
-Date: Tue, 15 Jul 2025 13:42:32 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Remi Buisson <Remi.Buisson@tdk.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 2/8] iio: imu: inv_icm45600: add new inv_icm45600
- driver
-Message-ID: <aHYwmEv1sCI-qi0T@smile.fi.intel.com>
-References: <20250710-add_newport_driver-v2-0-bf76d8142ef2@tdk.com>
- <20250710-add_newport_driver-v2-2-bf76d8142ef2@tdk.com>
- <aG-ID7O3HgVc1EOX@smile.fi.intel.com>
- <FR2PPF4571F02BC5366477EC02E9C44041A8C4BA@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
- <aHD7zEzvVuwSB9Ke@smile.fi.intel.com>
- <FR2PPF4571F02BC69DF6807BAA188B2B3A08C57A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1752576651; c=relaxed/simple;
+	bh=zO0eVT6bY/HaDWcD10xtv9wGIJ8Et313GZFZC4fkQfA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Tpkb/PEn2d4gYuiAJj8uqAaS67n4GKvWRzOyjf5Zh3QUfnOo8NCSU8W3hknkPzXDT9qONZIdqnJnPsM4qKmHGhPKdqmW5AyNljNXyo8BttzutrB4+NBKFhFnSyBw0DBBikMsPsCMPfjUlM8SCA5mRy0vVj9qV6WuxXM/xDl2AUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NJLk4v5Q; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56F7kjhU028415
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 10:50:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ir9keSX1LMez33Upmie3bS45n+OlybH6S/naM0ST3/w=; b=NJLk4v5QXZqJpg9A
+	WyTZ0BP4zBwdehPY9BrRrvm7GMu9TAEPR1KcHVPB8TyzfgOHeqqWx0EIVBu0bGY1
+	eRGGUpkLXj+klDomOlu4RicL6KqNelcEe+gMsDA8fe0WbTtG81AVwY1WmsCZHaHX
+	Hx4JRUsQ2e1d8kLn/SIUxBHhxbOqZ5Dole17xyuWRU+ThLARQj+OGqFcz8/9a5PF
+	m030ROwbXF6EuNgo3IlvStpmdmr42wX00h0Hfm8IuC7gywoGf6CWDa50RLMSyx6L
+	G7xQumzyZmhRsG/aPS2TdYvcfstZrgaiyJGURCg3ARSKK4skUd5iurN1i+6v8XqI
+	YFNXQQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufut7skb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 10:50:48 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ab5e4f4600so3069181cf.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 03:50:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752576648; x=1753181448;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ir9keSX1LMez33Upmie3bS45n+OlybH6S/naM0ST3/w=;
+        b=GRn+Jzf73ACCHhAqLJ6QmkjXYMe1SwOxUtJolg8siGaVwtLk6PFKA526U9VC6Tau11
+         Vk8feL3XJRlQzqm8oyD5eXXU9JumRJXNOH65480i7kU+dx4JY7OchtDEG33iNEsMJgft
+         JPVW2JHKI4pnazIuRPM58j7lYDLxHxInMMPexi4dUotgKT8ylXLTKe2MDQQ5hFiVdzjT
+         EyIublD8//62UH+0XGxN+Qk+x4eGIkymXgagp5aUzquP20wJ473bl4FKDCPUXY4RtbKD
+         oqDgtezqSLXXxbNb5KOBGOpbe7RAFKKJKcSeqebTgaC6Zh3bftJrTVRYh9nCPuL8dINu
+         6f7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUhAAGWSclQtEQu05002Sauwt/T0cKT+lhPrVjB+DblpsaEP5c5jamAPiUcAfmxFpXraWk+quQwChEe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxkk3WerDreyYGGPNaJf90gQxJmh0vxKDnLEs0cfK8FeCQNfQIJ
+	/r4vVTm8r2MTvLQccq/H+z5uNCdDmL45C1hsEr2Pmfg8HXi1G1NRwu9eOdsXJadHFF+U2dcLUb7
+	o1ax/kwXuLCepXbSHCoj34iGjTt054fm+4r0gur50y6UJz/OtKHs15rthArVu3Go9
+X-Gm-Gg: ASbGnctNKfey52MTx07P+JVwAI+27PrCY9deomUMrubeVLvDIDAxqFscI0lpIgAff0r
+	VNRJThQXp4R7o6ZwLKS+lnwCzdvheFV/lqsvcAr9as0QjlRCSTqUT0T9ogIZaJ92yLyMv1+ul5r
+	h9L9nPP3V+L3ymbk/cjVisAaSP/G24wJfmEr0akoJ+0vNNrU2Wty7MIq7LGb6EiYnR74kzWDkKf
+	iuMX2d3bxBAINRkTW2qJAcVJSNzNFllKNJhY2F8vR8nhVxMgtTmdGieyTVtxeNNilFT0sZrBsSL
+	r/NAmaHV8lWAZgo8mQL/djnpfz1CXZ0dctU6uejOymrfAN/Qcl+76z9HHGZtiL02kV55SZjiW52
+	+GzfahVhGuKTUv6Nd8BAd
+X-Received: by 2002:a05:622a:1495:b0:4ab:8107:6c0f with SMTP id d75a77b69052e-4ab86fc5d66mr6516271cf.10.1752576647870;
+        Tue, 15 Jul 2025 03:50:47 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGrHzbQnSG5UsPwzEKOplY0S2bhAFx47Y1I/loi9Sna7ftnlRubhy2cMFHCBtRP+hsTx5xo7Q==
+X-Received: by 2002:a05:622a:1495:b0:4ab:8107:6c0f with SMTP id d75a77b69052e-4ab86fc5d66mr6516121cf.10.1752576647271;
+        Tue, 15 Jul 2025 03:50:47 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e82e5309sm991511666b.173.2025.07.15.03.50.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Jul 2025 03:50:46 -0700 (PDT)
+Message-ID: <4be1ebb7-1dc7-49e0-aa5d-621f023b3853@oss.qualcomm.com>
+Date: Tue, 15 Jul 2025 12:50:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <FR2PPF4571F02BC69DF6807BAA188B2B3A08C57A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/3] arm64: dts: qcom: sm8750: Add Iris VPU v3.5
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250714-b4-sm8750-iris-dts-v1-0-93629b246d2e@linaro.org>
+ <20250714-b4-sm8750-iris-dts-v1-1-93629b246d2e@linaro.org>
+ <5dd36649-821c-450e-bdcc-871735d10059@linaro.org>
+ <15b8b9e0-a211-4102-9b68-994c8ab50a7a@linaro.org>
+ <b5a68138-4eca-4bdd-8f72-d80236b02c0a@oss.qualcomm.com>
+ <ec0f64c3-bd08-4944-817e-f5f67c317b94@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <ec0f64c3-bd08-4944-817e-f5f67c317b94@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=e7gGSbp/ c=1 sm=1 tr=0 ts=68763288 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=KBVr0NYvNlN9pVTpkDkA:9
+ a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: -eoewcPwGWIT361jPCiVlKtYNwtgeDbo
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE1MDA5OCBTYWx0ZWRfX9ymv+731Tr/Z
+ mn/ShWFGDfqDAB1f8J22lwpg00ZH8KvQmfxagcSCgZlVvwsVhS++WIyWGofa+rpVraMtlqL+ja3
+ +zfWwqtpkXQCMm3sRVzlFSzvnM1tsrBk1AP+sNpOb8GgLXOLZTpczLTL22isSzIZCYXb7k1ojKT
+ 9nnJEPfmvuCAFunGR5bQPHD8SQ94E41JkFkwBVrPp2Xnm76FKnz0qSyeY9czl+jzQmR5zoKVXs6
+ iHiKt49rBZxlV/85jbDwM7Bj+unJqDAAYR6QWMuNvMCztms3Ox0yjCyceJ1I3EfPlIf4r+xWdOy
+ YDid17wUslDtVgEDY5ZJwcf70XyxGio2mA2EAOBnxAyAKal5zm6ng+qckFAjQXFnP8gVS8S56vk
+ UHuLD5bBjntt4OmG7wLkPovXHfBruqLcOS92iY2ZV/rGdetZmdjxeKrZxbJfG6ms/wN7htEZ
+X-Proofpoint-ORIG-GUID: -eoewcPwGWIT361jPCiVlKtYNwtgeDbo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-15_01,2025-07-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 mlxscore=0 spamscore=0 suspectscore=0
+ phishscore=0 bulkscore=0 impostorscore=0 clxscore=1015 adultscore=0
+ malwarescore=0 mlxlogscore=979 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507150098
 
-On Tue, Jul 15, 2025 at 09:11:47AM +0000, Remi Buisson wrote:
-> >From: Andy Shevchenko <andriy.shevchenko@intel.com> 
-> >Sent: Friday, July 11, 2025 1:56 PM
-> >On Fri, Jul 11, 2025 at 11:32:48AM +0000, Remi Buisson wrote:
-> >> >From: Andy Shevchenko andriy.shevchenko@intel.com<mailto:andriy.shevchenko@intel.com>
-> >> >Sent: Thursday, July 10, 2025 11:30 AM
-> >> >On Thu, Jul 10, 2025 at 08:57:57AM +0000, Remi Buisson via B4 Relay wrote:
+On 7/15/25 12:34 PM, Krzysztof Kozlowski wrote:
+> On 15/07/2025 12:09, Konrad Dybcio wrote:
+>> On 7/15/25 12:07 PM, Krzysztof Kozlowski wrote:
+>>> On 15/07/2025 11:32, Krzysztof Kozlowski wrote:
+>>>> On 14/07/2025 15:55, Krzysztof Kozlowski wrote:
+>>>>> +
+>>>>> +		videocc: clock-controller@aaf0000 {
+>>>>> +			compatible = "qcom,sm8750-videocc";
+>>>>> +			reg = <0x0 0x0aaf0000 0x0 0x10000>;
+>>>>> +			clocks = <&bi_tcxo_div2>,
+>>>>> +				 <&gcc GCC_VIDEO_AHB_CLK>;
+>>>>> +			power-domains = <&rpmhpd RPMHPD_MMCX>;
+>>>>
+>>>> This is incomplete, need second power domain and I did not check against
+>>>> qcom,sm8750-videocc schema before sending. I will send a v2 a bit later
+>>>> (maybe some reviews pop up).
+>>>
+>>> Heh, no. The DTS here is correct. The videocc bindings are not correct
+>>> (and that's not my patch).
+>>
+>> Well, you want two power domains here in either case..
+> Are you sure? My point was one is correct and downstream confirms that
+> in their bindings (which is a poor argument, I know). Which one would be
+> the second? MM? We don't have such...
 
-...
+Historically clock controllers used a pair of CX/MX, with CX powering
+the "meat" and MX powering the PLLs (& retention logic, IIUC).
+Over time, CX was split into multiple usecase-specific domains (like
+GFX), and we now have MMCX (or MM_CX - multimedia CX) for multimedia
+hw specifically
 
-> >> >> +#define INV_ICM45600_SENSOR_CONF_INIT                        {-1, -1, -1, -1}
-> >> >
-> >> >Unused.
-> >> This is used in later patch of the serie.
-> >> I will move this definition to the patch using it.
-> >
-> >Yes, unused in this code. You should compile the series incrementally,
-> >so each patch will get a compilation test. This is called compile-time
-> >bisectability. Also run the system each time to confirm no regressions
-> >(this is called run-time bisectability).
+In the downstream tree you're looking at, sun-regulators.dtsi aliases
+VDD_MMCX_LEVEL as VDD_MM_LEVEL for $reasons, which is admittedly a
+little confusing
 
-> Yes I did that for each patch, everything build successfully.
-> In that case, nothing is broken due to this early definition of the macro.
-> But I'll definitely move it to later patch for clarity. 
+MX has similarly been split into MXA (MX-Always [on]) and MXC
+(MX-Collapsible). For Venus, you want the latter, as the hardware is
+not crucial to the functioning of the SoC (the connection is of course
+physically determined at SoC design stage, but it's a good heuristic
+to keep in mind).
 
-Yeah, the problem is that the (unused) definitions are not warned even when
-`make W=1`. And I guess I understand why. We have tons of unused definitions
-in the drivers that usually substitute (on whatever reasons) the actual
-documentation. It's hard to catch for the definitions like this without reading
-the code.
-
-...
-
-> >> It's probably safer to keep the delay even in case of failure to make sure
-> >> the device is ready before next operation.
-> >
-> >I am not sure about it. Why? This has to be well justified as it's quite
-> >unusual pattern.
-
-> Ok I understand, the hardware needs that delay if the access was actually
-> done on the bus (to not jeopardize next access).  If a regmap error means
-> that no real access occured then the delay is avoidable.
-
-Perhaps you need to have this delay embedded in the IO accessors? Also do
-read _and_ write need this or only one of them?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Konrad
 
