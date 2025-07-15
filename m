@@ -1,154 +1,176 @@
-Return-Path: <devicetree+bounces-196588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31A68B06554
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 19:44:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0419B0657B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 20:01:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1121B189EAFA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 17:44:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C5361AA4BC6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 18:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB33286426;
-	Tue, 15 Jul 2025 17:43:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C779F293B72;
+	Tue, 15 Jul 2025 18:01:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cJ/tFzTR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Cd6/kn/+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F365328507B;
-	Tue, 15 Jul 2025 17:43:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B64292B2D;
+	Tue, 15 Jul 2025 18:01:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752601429; cv=none; b=PX+zKvscgzip+zWpHJhjh0UlAMMC/czbxkc0K3lrmlQoSjpwCUCkHNO94GHDcZgkyEBTr9MR37oYYebBY2w5S6N6ujiB3cgwNb3atx5ARD3+BmQj/NpczcNMVFVy6SnrH3fvLZsUUmi2ManeLwR5qQllcH9Tl0xoDFLwThFA8dQ=
+	t=1752602470; cv=none; b=gPI7Ab31ufUV2sLQeCsiLtZW1WqFNJYdOTqmWcmynw101s33f7VXN6PTTZgukIV6Y1nrlDB6xRTou6kybSJTxTXmNLp3Ig0ARcw6NtEbQ5dmXBtakdV19oWTW9EWn522/GOcwstYO+lr6u3FLn8WsOkQE17uTL04vfJneE3zThw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752601429; c=relaxed/simple;
-	bh=54VsIhKZIv/mNC4NrTI9DMJ7xO/jEt3cjbBcWJjARgg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=boDqHqZsC8uwcLuUviwiLBae8dng3kcS19ZOAfcy+BR6Ey6cCtvXOo5nfByJdWnbdWJ2kgbyXVxr2HTS/uQROijQDAZoc92yLS/P7y1cmDD42Lj0xlgxwCe+853Z11lgQmZHk4FexQEf2wUhsbMqnAEmhWDCnjFyQ9ynP3qp0RQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cJ/tFzTR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99843C4CEE3;
-	Tue, 15 Jul 2025 17:43:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752601428;
-	bh=54VsIhKZIv/mNC4NrTI9DMJ7xO/jEt3cjbBcWJjARgg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=cJ/tFzTRQvVmZe4bXDNiYPtuqt/7L/tJESoX0k/L6gt+FYeldUsQj+/4OgvhhudJ2
-	 a3Gz8r8S//vHl2Rawg9VD8KL8fop2h6lLT4IkLRJaTWynA3bf14gmE46MSUNREkv/Z
-	 kySwX/bMmaD2nntB3vVVp7T7NXIFxYzX8QDI7+UkV3zHSCMx4vsffdRWwhH10dwQkQ
-	 RC2u5GYUUG593bC6qBFvUpVlKnjLoxKVDZkjau1bWsDeFDybD96JFHHFCD/G9MJibh
-	 HxSkK7BltDpfwwtZOmXvhpxm/Ay6oywwTMZw+61Pe3Yxr4rV9y+kQlMcwr2JYiD32R
-	 XOPAPeaXMLe3w==
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-608acb0a27fso8037863a12.0;
-        Tue, 15 Jul 2025 10:43:48 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWFJ2aBN+IdXQfaoM9Rr1F6xJuqlgIN83XVrX0Ch2o5JD2YBb5YoAGJ5jPbsiNdm9/N9TkxyB3TubkOCgTu@vger.kernel.org, AJvYcCWWx8zKCA5zRhzsMAO+fKU9uIj9zbWSumGXgbn102GrINWvgfVTJP13vN9jW+M1Q5g565tao0ed@vger.kernel.org, AJvYcCXb3SJPEn56JzJUJgEcHDyXfmKzaE8n13/7ehaFOWXAgP69YS4UZhPJpUFmO5OLkLF2K7M7hoVFVpTf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4wfaXT7lT6agYaZESqNkDGgZ2RW5lZgM9jBSMK/Wmaum8I2dH
-	8uNMqJhysgLPLvOQC+mkoRBROBe4fWWJtiDHjSPGE1F57DAPkVPmE6cC/5Fn5CLBsVHJJBheRfL
-	NRidCMmQ654vxITMSjvgXHrN8XFs0zA==
-X-Google-Smtp-Source: AGHT+IFSfJ329hc32n6pv+14gS0mt5gTgoFqsqGbemfhsisnZDnXEaldUJ2gRxLUkvPg+1tT8vixRzdxTK8k0xV9biU=
-X-Received: by 2002:a17:906:730f:b0:ad8:9466:3348 with SMTP id
- a640c23a62f3a-ae9c9b0ce31mr42139766b.36.1752601427144; Tue, 15 Jul 2025
- 10:43:47 -0700 (PDT)
+	s=arc-20240116; t=1752602470; c=relaxed/simple;
+	bh=uiXVK0N0RglIsQBpmXcSuiKlPf0lE+Qny6cNy4erXow=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=hHutv4hdo12Hgy4uDrusL7HMtkUmDi0Ldqk/Kwxf7FQz2Q0Du/ftl1CMZZQlKmWAUo8FaCzQPeI9ecLWJ/IHrShOhHKyeCJgODQqIo/mlD7JZckg21h8H9TMFK69seR3dcU9TPlGXPJPUCtm1QiBVPfnY3frbNRv8Xf892XD8jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Cd6/kn/+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56FGDeHf023949;
+	Tue, 15 Jul 2025 18:00:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=FZsW1mgw+y4
+	TaRNG+cvtjuwE+5q7LUKGCtROTNCU/D0=; b=Cd6/kn/+7QDdDaN9CMnSW46mQF+
+	7XHGJx445K1MtCH9VGJenKxE36tgx0CyAe2MmWU+6jvT6UlUNbgaqGYnZcAxstKz
+	4i70665gn5kYfXtSpbaIImRcMehHN4tAWUbTZwfmDlBRvqH2KEuJwd5U8gsXS8ql
+	pnRHEk+afsxuyh1s/vIV/A+ySL0H9hF9ZMyF16xbT+NXm40WKQN2sUSRIRV3xrJy
+	xRpuY8W+R0QhtYmOIBSQmvx1kGMJq3aLUPgI9VBp3FsamXT95NpyeTIFjPWJUPGE
+	sGJJ9+bVqvgsl0BQmafO0uBxnS3H9HIgq7rhVQ7GMmcb7dzuByeS8U7+Ouw==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47wkruhtuy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Jul 2025 18:00:58 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 56FI0swc021462;
+	Tue, 15 Jul 2025 18:00:54 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 47ugsm45hj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Jul 2025 18:00:54 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 56FI0rAa021451;
+	Tue, 15 Jul 2025 18:00:53 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-pkumpatl-hyd.qualcomm.com [10.147.245.204])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 56FI0rvF021448
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Jul 2025 18:00:53 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3914174)
+	id AD3425CC; Tue, 15 Jul 2025 23:30:52 +0530 (+0530)
+From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+        quic_pkumpatl@quicinc.com, kernel@oss.qualcomm.com,
+        Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+Subject: [PATCH v6 3/9] ASoC: dt-bindings: qcom,lpass-va-macro: Update bindings for clocks to support ADSP
+Date: Tue, 15 Jul 2025 23:30:44 +0530
+Message-Id: <20250715180050.3920019-4-quic_pkumpatl@quicinc.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250715180050.3920019-1-quic_pkumpatl@quicinc.com>
+References: <20250715180050.3920019-1-quic_pkumpatl@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250703021600.125550-1-inochiama@gmail.com> <20250703021600.125550-3-inochiama@gmail.com>
-In-Reply-To: <20250703021600.125550-3-inochiama@gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 15 Jul 2025 12:43:35 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLKLKHj+vQJmZnaXRj3TmqR3ELjpBc27HRbTOOP9FD0hg@mail.gmail.com>
-X-Gm-Features: Ac12FXz_neDQRbYET5mV11I82g2lSNlhGKsWNEzC8k-2DtgP7jZ-KwLmxIiQkME
-Message-ID: <CAL_JsqLKLKHj+vQJmZnaXRj3TmqR3ELjpBc27HRbTOOP9FD0hg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] riscv: dts: sophgo: Add mdio multiplexer device for cv18xx
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Chen Wang <unicorn_wang@outlook.com>, Richard Cochran <richardcochran@gmail.com>, 
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>, Yixun Lan <dlan@gentoo.org>, 
-	Ze Huang <huangze@whut.edu.cn>, Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	Longbin Li <looong.bin@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 0Dv6_QeprzotiqT_T_t-LfkcwfUQGq16
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE1MDE2NSBTYWx0ZWRfX/EwSPDYTeq60
+ WXzBTdPoC3o+dczMmgThbetH81/Q122K4x0uC79uEYczUbhZniTt11ohZZ+54tV6qudDvTfTTpf
+ 11kq63hpC0vDkcPNNjD4OhKL7xWcMcWFIapn6w9BWnfvdWkkJ1dSbzzraWN4phQnhybTDKAKDKR
+ pF0uixi2dKkFVkyfSa7XGMt4FCC+SkK6AjBAlpmmjnhRqGu22tDoGxrL4UXUqBY1O+N21qbybk/
+ LzOkU0INk14NgPkd8oh3CLKup3oUmCS2lPqHTbFA7h0NXycLkV+GpdW67xMhQWlBUErdd1xGMWU
+ yqhzGqXgU4Z8yHgpjfsGu1Ui5f1MjEFS6fdsFH+FyidWdE21XeQdsNpIMmf5d+ezbU/1ti+4ibB
+ xFuqW4NV/gimbXpeDTmIGJ1zpmaJrGTyjeL5GqlewxIJBtFUTJl/mU682CDJ0IS/dP7PgAFe
+X-Authority-Analysis: v=2.4 cv=WqUrMcfv c=1 sm=1 tr=0 ts=6876975a cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=ZRTT_DJxv7dltqHrpccA:9
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: 0Dv6_QeprzotiqT_T_t-LfkcwfUQGq16
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-15_04,2025-07-15_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0 mlxscore=0 mlxlogscore=999 bulkscore=0
+ adultscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ lowpriorityscore=0 malwarescore=0 spamscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507150165
 
-On Wed, Jul 2, 2025 at 9:16=E2=80=AFPM Inochi Amaoto <inochiama@gmail.com> =
-wrote:
->
-> Add DT device node of mdio multiplexer device for cv18xx SoC.
+From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
 
-This adds a dtbs_check warning:
+Manage clock settings for ADSP solution. On Existing ADSP bypass
+solutions, the macro and dcodec GDSCs are enabled using power domains
+in lpass-va-macro which is not applicable for ADSP based platform.
 
-mdio@3009800 (mdio-mux-mmioreg): mdio@80:reg:0:0: 128 is greater than
-the maximum of 31
+Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+---
+ .../bindings/sound/qcom,lpass-va-macro.yaml   | 29 +++++++++++++++----
+ 1 file changed, 23 insertions(+), 6 deletions(-)
 
->
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> ---
->  arch/riscv/boot/dts/sophgo/cv180x.dtsi | 29 ++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts=
-/sophgo/cv180x.dtsi
-> index 7eecc67f896e..3a82cc40ea1a 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> @@ -31,6 +31,33 @@ rst: reset-controller@3003000 {
->                         #reset-cells =3D <1>;
->                 };
->
-> +               mdio: mdio@3009800 {
+diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+index f41deaa6f4df..aec654e6567e 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+@@ -76,12 +76,29 @@ allOf:
+           contains:
+             const: qcom,sc7280-lpass-va-macro
+     then:
+-      properties:
+-        clocks:
+-          maxItems: 1
+-        clock-names:
+-          items:
+-            - const: mclk
++      if:
++        required:
++          - power-domains
++      then:
++        properties:
++          clocks:
++            minItems: 1
++            maxItems: 1
++          clock-names:
++            oneOf:
++              - items:  # for ADSP based platforms
++                  - const: mclk
++      else:
++        properties:
++          clocks:
++            minItems: 1
++            maxItems: 3
++          clock-names:
++            oneOf:
++              - items:  # for ADSP bypass based platforms
++                  - const: mclk
++                  - const: macro
++                  - const: dcodec
+ 
+   - if:
+       properties:
+-- 
+2.34.1
 
-The nodename is wrong here because this is not an MDIO bus. It is a
-mux. So "mdio-mux@..." for the node name.
-
-> +                       compatible =3D "mdio-mux-mmioreg", "mdio-mux";
-> +                       reg =3D <0x3009800 0x4>;
-> +                       #address-cells =3D <1>;
-> +                       #size-cells =3D <0>;
-> +                       mdio-parent-bus =3D <&gmac0_mdio>;
-> +                       mux-mask =3D <0x80>;
-> +                       status =3D "disabled";
-> +
-> +                       internal_mdio: mdio@0 {
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <0>;
-> +                               reg =3D <0>;
-> +
-> +                               internal_ephy: phy@0 {
-> +                                       compatible =3D "ethernet-phy-ieee=
-802.3-c22";
-> +                                       reg =3D <1>;
-> +                               };
-> +                       };
-> +
-> +                       external_mdio: mdio@80 {
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <0>;
-> +                               reg =3D <0x80>;
-> +                       };
-> +               };
-> +
->                 gpio0: gpio@3020000 {
->                         compatible =3D "snps,dw-apb-gpio";
->                         reg =3D <0x3020000 0x1000>;
-> @@ -196,6 +223,8 @@ gmac0: ethernet@4070000 {
->                         clock-names =3D "stmmaceth", "ptp_ref";
->                         interrupts =3D <SOC_PERIPHERAL_IRQ(15) IRQ_TYPE_L=
-EVEL_HIGH>;
->                         interrupt-names =3D "macirq";
-> +                       phy-handle =3D <&internal_ephy>;
-> +                       phy-mode =3D "internal";
->                         resets =3D <&rst RST_ETH0>;
->                         reset-names =3D "stmmaceth";
->                         rx-fifo-depth =3D <8192>;
-> --
-> 2.50.0
->
 
