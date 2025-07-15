@@ -1,128 +1,88 @@
-Return-Path: <devicetree+bounces-196331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F19ACB05007
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 06:05:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4705B05024
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 06:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35A934E0B16
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 04:05:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3D481895EA4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 04:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C5D42D94BB;
-	Tue, 15 Jul 2025 04:03:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3255B2D3732;
+	Tue, 15 Jul 2025 04:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F6O04kvv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K99vDCBP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F6C2D63F4;
-	Tue, 15 Jul 2025 04:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070B72D3728;
+	Tue, 15 Jul 2025 04:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752552232; cv=none; b=SD+WCEnSaQEThHiHzPRG171gEQSNPK9ih9Smi9M88gj68J6ZSUq+PMVJNjyjSD0T/67jELTzFFhVYjEBaJ8di12CNk3wrVLqZ0Bho2q8FUQb8G/SylZNWEA9EWyRi8QOXZd1qqAei6sfENLHz8ENB3KVMX4a7KtO+8ni7OIoQ3E=
+	t=1752552323; cv=none; b=TrIxbQED8tLh0fVudxFhe9cFCJOHt8S+jPoud2wUpVAPg8y+hd4ttbZJzcwUktBzjgQqNdb8ncwzvYr/WfFjuj+VP0dI3Mu4JkLT+9aoHVkhAgvRqlQgIZ2BhkTNltIPx1Ip0s/mQX5by3Tz9FyFSFr9V8jXi4dOc7AZ33dt/sA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752552232; c=relaxed/simple;
-	bh=htHW6rtHg7NSjIcI/4lWhbhWmP6UNSBw9fjzNoVOG+c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CswJ26wJc+h2/3Y74HKXyCCo/+2u1pqvRTshXQBrpWHZz0L+dUGrA9CjK/AyHFqWv8n8sBcJ13CoLSKmhHvnfgzWa2cjm3lLXdGNIXWNg5+v+h+kOh9HHTk5ZvHo0Ip98JFs2SKFH+/gnOVx9pqiOFoGGwmnUvWBiTe6tbssu7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F6O04kvv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D593FC4AF52;
-	Tue, 15 Jul 2025 04:03:50 +0000 (UTC)
+	s=arc-20240116; t=1752552323; c=relaxed/simple;
+	bh=iFMMfPSoD1n2DPXVFl8J1DaftpkELhHD3mIta9r3dVo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PMCmXIi/kq4IqXK5Yj6LMBwamYED1UVLhUuPUtItnN5AkbEA6NV5aaCLY9OFIy9RRxHKLZhhS8cQoXkpybAfqW/ZWgbHO/F6llUDQ7zMOZ1nMiKwkj90Q0SQTvJr48UcjmikVyz42X/ql8iJA+hnEV0QN7YPzEleanMF517ljZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K99vDCBP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1610C4CEE3;
+	Tue, 15 Jul 2025 04:05:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752552232;
-	bh=htHW6rtHg7NSjIcI/4lWhbhWmP6UNSBw9fjzNoVOG+c=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=F6O04kvvIj2entXcpHjijwWVFKNbId5Ft7+2xkar8HPtwglWLAu3b62JxMSlHwvi4
-	 zA3rR33pp+21x37MHL7RkNQJ1oFYUb6dMdO3TV1qebXQBqbcFZq4+bS9gnkzvdHvJg
-	 MJFR8T5Dxoier5Q5BYDKb48TcCQRUb+k2+C5ux4V4pfkaPsTjHZ8cLFNtYpJYeLnhc
-	 9QstN6ruwurdg9vK5u5h6MuH3Hks6QTCq+/7sAUIVdQfwEonZQKr5jez8ZXV60QpAc
-	 c42tgrRMpCrn6xaXDmnWkXXrjhJo2fLQ/UJU+IjrYEuEIKipEwfyrUpK2xRB/N4pDT
-	 +0cg5Obh6xFmw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C405BC83F2D;
-	Tue, 15 Jul 2025 04:03:50 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Mon, 14 Jul 2025 23:02:47 -0500
-Subject: [PATCH 04/17] dt-bindings: usb: tegra-xudc: Document Tegra210B01
+	s=k20201202; t=1752552322;
+	bh=iFMMfPSoD1n2DPXVFl8J1DaftpkELhHD3mIta9r3dVo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K99vDCBP68Y7f4gY89Ja9IwjR44n70m9iYI+MsHPNuXlgvRIwAVPwTkDGhioksC15
+	 LZ9LdNzHqBGmb4tD8aVNd3mjb2ZxZ352azgCyWwJ+lQldUxw3Oa8NZHNkB5TehghZD
+	 FBoZA+zskf73JtiRcWpCudG2mpA/FaEaCPMrwFcfjARpjlGQ/TN+20pW7KJ0lrMl2A
+	 2jCgajvWC1G4vblAUFmQoozlaSF1fpy2C6Bnuhgp9NqI4pn7BEDArk03G+WNZ2BG0K
+	 Vceb1kdyb0a+Pmzvsun1oh8Ou3fVTZjoS0dbTPt1plqCV5WvaArXEbwobeFtSW+YEr
+	 jQjR7mnkbZ2LA==
+Date: Mon, 14 Jul 2025 23:05:21 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	Toan Le <toan@os.amperecomputing.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pci@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
+ apm,xgene1-msi to DT schema
+Message-ID: <175255232106.43576.10425019978348638150.robh@kernel.org>
+References: <20250710180757.2970583-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250714-t210b01-v1-4-e3f5f7de5dce@gmail.com>
-References: <20250714-t210b01-v1-0-e3f5f7de5dce@gmail.com>
-In-Reply-To: <20250714-t210b01-v1-0-e3f5f7de5dce@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Nagarjuna Kristam <nkristam@nvidia.com>, JC Kuo <jckuo@nvidia.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Mathias Nyman <mathias.nyman@intel.com>, 
- Peter De Schrijver <pdeschrijver@nvidia.com>, 
- Prashant Gaikwad <pgaikwad@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
- linux-usb@vger.kernel.org, Thierry Reding <treding@nvidia.com>, 
- linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
- Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752552229; l=1146;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=Jyy45qLdZDq9DiQVnsxM/Qp0gR79KFt6neXymT4FCWQ=;
- b=TcCa6TVpGjZW7jzTH8gjJ6dgjSh/2EdBKGUTbaM2ZDtD0kBy23zs1eI/CDye8JwKO2xOUgB31
- lQDc77DFvRuA+nPAP4zJoCewfmgWm9F49iS26kbUgAvOq9BDkIfHDPO
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250710180757.2970583-1-robh@kernel.org>
 
-From: Aaron Kling <webgeek1234@gmail.com>
 
-Extend the Tegra XUSB controller device tree binding with Tegra210B01
-support.
+On Thu, 10 Jul 2025 13:07:55 -0500, Rob Herring (Arm) wrote:
+> Convert the Applied Micro X-Gene MSI controller binding to DT schema
+> format. MSI controllers go in interrupt-controller directory so move the
+> schema there.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../interrupt-controller/apm,xgene1-msi.yaml  | 54 +++++++++++++++
+>  .../devicetree/bindings/pci/xgene-pci-msi.txt | 68 -------------------
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 55 insertions(+), 69 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/apm,xgene1-msi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pci/xgene-pci-msi.txt
+> 
 
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml
-index c6e661e8915ca4d3e905331299d981f4d3964314..4574e66e7c1d3d3c918991920bbf4f3ea0ee6ab2 100644
---- a/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml
-+++ b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml
-@@ -20,6 +20,7 @@ properties:
-     items:
-       - enum:
-           - nvidia,tegra210-xudc # For Tegra210
-+          - nvidia,tegra210b01-xudc # For Tegra210B01
-           - nvidia,tegra186-xudc # For Tegra186
-           - nvidia,tegra194-xudc # For Tegra194
-           - nvidia,tegra234-xudc # For Tegra234
-@@ -130,6 +131,7 @@ allOf:
-           contains:
-             enum:
-               - nvidia,tegra210-xudc
-+              - nvidia,tegra210b01-xudc
-     then:
-       properties:
-         reg:
-
--- 
-2.50.0
-
+Applied, thanks!
 
 
