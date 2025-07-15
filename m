@@ -1,114 +1,120 @@
-Return-Path: <devicetree+bounces-196662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5BE5B069E1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 01:28:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08704B06A06
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 01:46:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C07D04E5981
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 23:28:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 039873BFC87
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 23:45:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7E32D3738;
-	Tue, 15 Jul 2025 23:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEBBD2D0C7E;
+	Tue, 15 Jul 2025 23:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XAIkGsPy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bgpuZN/Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE27523E320;
-	Tue, 15 Jul 2025 23:28:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4527D78F54;
+	Tue, 15 Jul 2025 23:46:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752622120; cv=none; b=SEBA5taD65VCRIzuzJUsT0lHWQPMPG0zI+qoE9gk1WOZBGXDZX/X/Voulnq+wdOxJJZyXsxpDQCNiGAQNduK1vQIsG2hyCbIXl0Xp1zmjgo9YMd00OMEeJWrhTrzOz/Au46i/FH7VMg8H2VmwU2PtGAttI1Cyn2s0TJqCer4Q+w=
+	t=1752623178; cv=none; b=FYc8rApRLHqPXqKQR0TmJbilIQOhT5ueQmOM4BqQdObgCtRlgCsinVRMzEUjwR51Jx+CgqDRHyR34bzWqPkKNCFLz1UpZkWIkDFkJ01YbyrsQi2zuFHiHAUFAs7L08DSQu5K8H8sqjPYEu3nNLEQmgG+4KLF53jUcGmxygPj4jE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752622120; c=relaxed/simple;
-	bh=KyPnLxCQanvEcVHmi+5itxw/D0+fsHEbld35/w59fLQ=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=NEJM4ou/VRElPFfqL/vv+nWnAhHIAeppzSloYDefeni/KT8ZmrUMT9Zuc4DuyrVI0a5xINh9t3PU7EPvGWPwrDStRz1nX52rVOxzyEKP+kFxKoB9TUd5e7tftSQppdKppW3zbwkK0iFuCTvPwkmuq6aecZ4gx8qW8xIpk/LnWEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XAIkGsPy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BFDCC4CEE3;
-	Tue, 15 Jul 2025 23:28:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752622120;
-	bh=KyPnLxCQanvEcVHmi+5itxw/D0+fsHEbld35/w59fLQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=XAIkGsPyjcQ6Pvc5PUhmeJ21NBrlX7JTvq1l+YEI5nV0/V+8Y6bBzobpBZlmp/LN0
-	 WH/xQsRKt8+JcEO3pSK3kCrtRfqf0HAe9cKKm3HFw29I2QeqpyFbSUeY4fVkRgALA+
-	 v8GxKL9hZku9yzon7676VRTQ8Evq5BWSxmn7dxBS1o4pa5CcW+gpAu43XCLa9AbHw4
-	 P6X9SCvL7xIIQixJL6wbxJVjBSmeCPBkTb0i2GRYcYctOV187F2hi5foR4xSjB9Vy3
-	 AMw95fsEfpwKrT+DgtAlz1BnzsPUIDUPwbCIz8iwZoLOPvJQYaHGKHY5rak9ce3dv1
-	 oAxsG8WCPKBtQ==
-Date: Tue, 15 Jul 2025 18:28:39 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1752623178; c=relaxed/simple;
+	bh=DK22arM5piKpRcUBPz7s19mi4smGWu8ie6hU90x/a+g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WFXfHhORr1oUEuTwmJRkZQTQf71tqV5xKg26nVQD0fBlsdXQS6x0/pWZFvcn/Q5B60zyQ8ylYr6TVxV+AZLr2ZHvWvgxvlkPf7D2T1dc6JO03tXxOH6Vm2tyl4ATrLPlL9bWF7rfcoy8rdX3+Qe4ORikTrL9a944vDpNKYaEqQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bgpuZN/Y; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-23dc5bcf49eso74174325ad.2;
+        Tue, 15 Jul 2025 16:46:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752623176; x=1753227976; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G6uOqHc0cBkDfSSkTti9Y6rMxVXpjXOlcebych3I3Jc=;
+        b=bgpuZN/YPrxvU6JJf7OVUCdHM5IvWiONfiFw6PWlWgis3GL/b5hkXtolbvg41FZpIe
+         hyT+xPELb+jOkRhYYxdEEJXhWyz8C0ww+3wzXtGOs7hJhgrw3S2wZmH+3vHl/oHUxYcL
+         eWXFXZYl7FYKhfWU8Naj8oKsfsTehW72AcT9MtNgaQbBPLc/R0fq7NbVirmVJd/luqe9
+         g+dCQuB1ekpB4ygQ6Y8JHnWM4RWpbuyPpq5KECKo4cFXccrPTFLLhIkrEpTQ5KSndZ6J
+         WRAlc/hFYrXrQMdT+Q4xWQolBjhC55815iQBzOTHuIvZfBKoBOdxQZ/naPux2m7IQMiS
+         7RKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752623176; x=1753227976;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G6uOqHc0cBkDfSSkTti9Y6rMxVXpjXOlcebych3I3Jc=;
+        b=JWT17oY6GGQ5bSzjDSfQXTcVyjiXWHS5prI3FMUZ7X0QGh7vHhfe0GJkziS2IZHUFh
+         VRCgLdAOqm5HYyY2xOBCe+26Wwu8gcN8ptSigcIGInv4sVxZLa6X+8yHdjI7HpaplWSb
+         J1+zue/Bfuu7RCvsWE2G+NW02TtUYTus2uMjOBojUb0Aek35RQoFOuGTowVLbUOQbpgy
+         c+8ohn8VZb1emgHEZhVTcRNh21mFp8Odcpsc2szbCn+/8u5Fwi3+FgebhZ/ysAvJZQ/L
+         TG0gTxv+bh+SRBYuNWEfrmF8OHwND9Dvi9JaOVR443BiuG3Ax4uT8BnMZ/jEcgNQr+25
+         rWDw==
+X-Forwarded-Encrypted: i=1; AJvYcCV8UqmySlvehHT/htUikwszwf+PUpIcbXaKN0jX8JMFevn5INvsfAEK6a4N0mGOswwS5324iMCgks8tdS2N@vger.kernel.org, AJvYcCVlUK40payRY5Xq63WKLy5pKoY410YPJriU+/kV5hA8ubvxL6Ac43wIqFkRBvPikILkLMV5kxhq0VhX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlCWSzMm7nNwDqHeX6J6EiFahLfU5LDtNg82Cn5TYLtAknbTXX
+	LPURvMCyMQarQ2u6iZrv9GrGInIO9jR0RCYoVBMl0/m1b0ysrfsarR+0wTTvvg==
+X-Gm-Gg: ASbGncvpwlc8PROgD9cmfpsxy1k4UNk3/BQn+nuAOtX6N2QysewjkY3dNcN+pzDudN3
+	C3nXfMcmTddjVV1f2hMXaSnNAk36JElqmh2x1fPG9T8owwiI2CyDXR2Q/gGBtCnfyT5ohqMGyFR
+	u57beLYIF9bW2gNkiAHGtGr8E2ZlvbDkOzmRb1t4MBaY5SyqIZ+mfLGeRDENk4k8P4NS/d52ze3
+	u65MH02FtsQq3GM+JxjjMRy0VGrGcixwDrTEA/rE/DGWPjVom2rxe1H+XnZrj58c51PPjvCYrSQ
+	F/JyhnM18d/C2TRL8FtQPpzeDkusmS1SSyXkgH3+mG8QdPEfCdiVYgyivJZ/fqith3ruO7ulNAm
+	YybTPmonOmoNCJFscYozizpvj9Hun34j/A3L+QZgf
+X-Google-Smtp-Source: AGHT+IGOvzlI2x9p9FNOoR3HZVeLsk9c29hCUKe/4zx6nEl4C9WoHp/vsN6AG4v3bedvx46Iuy2Egg==
+X-Received: by 2002:a17:902:db02:b0:23d:dd63:2cce with SMTP id d9443c01a7336-23e24f5524amr14555175ad.40.1752623176478;
+        Tue, 15 Jul 2025 16:46:16 -0700 (PDT)
+Received: from localhost.localdomain ([207.34.150.221])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de42b28a6sm120031265ad.87.2025.07.15.16.46.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Jul 2025 16:46:16 -0700 (PDT)
+From: Kyle Hendry <kylehendrydev@gmail.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>
+Cc: Kyle Hendry <kylehendrydev@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] reset: bcm6345: add support for internal ephy resets on bcm63xx
+Date: Tue, 15 Jul 2025 16:46:01 -0700
+Message-ID: <20250715234605.36216-1-kylehendrydev@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-clk@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- linux-mediatek@lists.infradead.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>
-To: Arseniy Velikanov <me@adomerle.pw>
-In-Reply-To: <20250715222221.29406-1-me@adomerle.pw>
-References: <20250715222221.29406-1-me@adomerle.pw>
-Message-Id: <175262211911.2439655.2970589940654906363.robh@kernel.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: clock: mediatek: Describe MT6789
- clock controllers
+Content-Transfer-Encoding: 8bit
 
+bcm63xx SoCs have a register in the gpio controller that controls some
+of the phy functionality. Some of the bits reset individual phys and 
+need a driver to set. 
 
-On Wed, 16 Jul 2025 02:22:20 +0400, Arseniy Velikanov wrote:
-> Add new bindings for system clocks and functional clocks on
-> MediaTek MT6789.
-> 
-> Signed-off-by: Arseniy Velikanov <me@adomerle.pw>
-> ---
->  .../bindings/clock/mediatek,mt6789-clock.yaml | 142 +++++++
->  .../clock/mediatek,mt6789-sys-clock.yaml      |  68 +++
->  .../dt-bindings/clock/mediatek,mt6789-clk.h   | 390 ++++++++++++++++++
->  .../reset/mediatek,mt6789-resets.h            |  15 +
->  4 files changed, 615 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6789-clock.yaml
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6789-sys-clock.yaml
->  create mode 100644 include/dt-bindings/clock/mediatek,mt6789-clk.h
->  create mode 100644 include/dt-bindings/reset/mediatek,mt6789-resets.h
-> 
+The other fields in the register configure phy power and will be set
+by the network device driver. 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+v2:
+- Drop SoC specific patches since bits are sequential
 
-yamllint warnings/errors:
+v1: https://lore.kernel.org/all/20250709024740.194520-1-kylehendrydev@gmail.com/
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/clock/mediatek,mt6789-sys-clock.example.dtb: /example-2/syscon@10001000: failed to match any schema with compatible: ['mt6789-infracfg-ao', 'syscon']
-Documentation/devicetree/bindings/clock/mediatek,mt6789-clock.example.dtb: /example-4/clock-controller@11f01000: failed to match any schema with compatible: ['mediatek,mt6789-imp-iic-wrap-n']
+Signed-off-by: Kyle Hendry <kylehendrydev@gmail.com>
 
-doc reference errors (make refcheckdocs):
+Kyle Hendry (2):
+  reset: bcm6345: add support for bcm63xx ephy control register
+  dt-bindings: reset: add compatible for bcm63xx ephy control
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250715222221.29406-1-me@adomerle.pw
+ .../devicetree/bindings/reset/brcm,bcm6345-reset.yaml         | 4 +++-
+ drivers/reset/reset-bcm6345.c                                 | 1 +
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.43.0
 
 
