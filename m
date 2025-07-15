@@ -1,118 +1,162 @@
-Return-Path: <devicetree+bounces-196463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9679B0578B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:12:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C7C2B057B9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 12:25:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EE5B188D158
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 10:12:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9BFF1AA76E6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 10:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB83E2D29BF;
-	Tue, 15 Jul 2025 10:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="mpXJODa+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE6CF2D6402;
+	Tue, 15 Jul 2025 10:25:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EAB12E3707;
-	Tue, 15 Jul 2025 10:12:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38E7E28F4;
+	Tue, 15 Jul 2025 10:25:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752574345; cv=none; b=uuLzOqWWPLY/f2QG8qc8hW1JqFDx9aGmcHKKIgx4Z5yMfV3kaYuWVPhyJhhr52QLMHoMhfEkH3iDaBmJvTadNlK7DVkN5mJTslFFwOT0Dm+SQlgtnCtI35t533dW2x90T0ouzqc+wx4hHW3+PnUBEc89OmWKnMAF9SHdLxoc1oI=
+	t=1752575141; cv=none; b=RVVjWFFQ4xQ32GkY4FxnEy062/IuDVCRBza9pErfTN3gzRg44I3cL0+LTho/D1bKCRdzPFHu2Ovr7VtjMo0NIBq++IgTbmuQOpLEuyoUx03wICSm/PwWR8wL+ldtW2dNhON2c3TLccGxfWY9yc2Kyb/cpDxMZIBL6BjMih2o6t0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752574345; c=relaxed/simple;
-	bh=D7wm1TkuxIcHGdRFpKYcPZ2w/5rOVloDtlG2dEqiY5c=;
+	s=arc-20240116; t=1752575141; c=relaxed/simple;
+	bh=wwa8tOAdGrPcbMj0Jsm5cHaAzQEuyKFmUHesGXCUd7k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NBKe52gS1cdGJOlsPDSOM5q0xFK9LufZElyvo/Hl+2GdaDLn3Tt7gNNqbUFURkWx3kkFqbwcTqhU0Qxgl9JLfOyPOw3/F4sxrxchwjp7OH/Z0h2ChFxl8Ekh/c5H/9LYkTrLTSjRpqonEgY0JlH2uZ8VvJ2mXf5ADFsh/YNyQqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=mpXJODa+; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: by linux.microsoft.com (Postfix, from userid 1218)
-	id BA454211CE04; Tue, 15 Jul 2025 03:12:23 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com BA454211CE04
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1752574343;
-	bh=IBp2TzY21ALyfQiEg4dCqn4g3cE1Zf0Z8i3I1ZAVMhw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mpXJODa+EZhuHyiB5CgkD94Xm9vAggVEyyzH5uTECBVfMgcmMSlU2g1+zW0u8PfiN
-	 nHqatUyPfKe/H14kzs2qtAvt2ra5goFtZxp71lRh/XdFZ/JsTRUgjeg4Lx//Yq1AH8
-	 2WMGO3IRF05Azmpcwr7Z9UGpmWlw6bOcmKvVgFWM=
-Date: Tue, 15 Jul 2025 03:12:23 -0700
-From: Abhishek Tiwari <abhitiwari@linux.microsoft.com>
-To: Rob Herring <robh@kernel.org>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, kees@kernel.org,
-	tony.luck@intel.com, gpiccoli@igalia.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org, abhitiwari@microsoft.com
-Subject: Re: [PATCH] dt-bindings: memory: Document linux,usable-memory
- property
-Message-ID: <20250715101223.GA6320@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <1741874545-19091-1-git-send-email-abhitiwari@linux.microsoft.com>
- <CAL_JsqKU8hE=dXdQ+hO0WvU-GuXAjEBgCPJ4rnxef9851zyKMw@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=V/Jr62Tt+iWFyn66sEDcg0UmrAmwYigN30ZZaPqhcc5bVCrqi6d8rFTinMs58NZ9RNWR63zTE+kE5cFqtnXqncpNIbN51/yvKMOZyJUPSk6SHrvMOw3AyHfQ8KdHzkhAfkga3vp+93LPoXEf5k9u53L6vfv7dTkBmy7j/9vbgTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.48.207])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 2900F340DB0;
+	Tue, 15 Jul 2025 10:25:38 +0000 (UTC)
+Date: Tue, 15 Jul 2025 18:25:34 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	paul.walmsley@sifive.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	palmer@dabbelt.com, skhan@linuxfoundation.org,
+	linux-kernel-mentees@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] riscv: dts: spacemit: Add OrangePi RV2 board device
+ tree
+Message-ID: <20250715102534-GYA542593@gentoo>
+References: <20250711183245.256683-1-hendrik.hamerlinck@hammernet.be>
+ <20250711183245.256683-3-hendrik.hamerlinck@hammernet.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqKU8hE=dXdQ+hO0WvU-GuXAjEBgCPJ4rnxef9851zyKMw@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <20250711183245.256683-3-hendrik.hamerlinck@hammernet.be>
 
-On Thu, Mar 13, 2025 at 01:57:30PM -0500, Rob Herring wrote:
-> On Thu, Mar 13, 2025 at 9:03 AM Abhishek Tiwari
-> <abhitiwari@linux.microsoft.com> wrote:
-> >
-> > Add Documentation for linux,usable-memory
-> >
-> > Signed-off-by: Abhishek Tiwari <abhitiwari@linux.microsoft.com>
-> > ---
-> >  .../bindings/linux,usable-memory.txt          | 32 +++++++++++++++++++
-> >  1 file changed, 32 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/linux,usable-memory.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/linux,usable-memory.txt b/Documentation/devicetree/bindings/linux,usable-memory.txt
-> > new file mode 100644
-> > index 000000000000..167054d2e9a2
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/linux,usable-memory.txt
-> > @@ -0,0 +1,32 @@
-> > +linux,usable-memory
-> > +===================
-> 
-> This belongs here:
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/memory.yaml
-> 
-> > +
-> > +Description
-> > +-----------
-> > +The ``linux,usable-memory`` property can be used to restrict usable memory
-> > +region. This property holds a base address and size, Memory outside of this
-> > +range is not accessible by the kernel. This property is particularly useful
-> > +in specialized hardware platforms where certain memory regions must be
-> > +reserved for specific use.
-> > +
-> > +Common use cases include:
-> > +- Allocating ``ramoops`` region
-> > +- Reserving memory for hardware-specific needs
-> > +- Fake Protecting persistent memory (PMEM)
-> 
-> All these examples belong in /reserved-memory nodes, not
-> linux,usable-memory. Go see the ramoops binding for example.
-> 
-> This was really for the case where you already have 'reg' (in the
-> memory node), but need to limit memory while at the same time not
-> overwriting 'reg'. Basically, for kexec where you can keep booting
-> another kernel forever. If that's not your usecase, you shouldn't be
-> using this.
-> 
-> Rob
 
-Thank you for your suggestions and explanations. I will update 
-the definition and examples accordingly, and submit a PR with 
-the documentation for this property in the specified repository.
+On 20:32 Fri 11 Jul     , Hendrik Hamerlinck wrote:
+> Add initial device tree support for the OrangePi RV2 board [1], which is
+> marketed as using the Ky X1 SoC but has been confirmed to be 
+> identical to the SpacemiT K1 [2].
+> 
+> The device tree is adapted from the OrangePi vendor tree [3], and similar
+> integration can be found in the Banana Pi kernel tree [4], confirming SoC
+> compatibility.
+> 
+> This minimal device tree enables booting into a serial console with UART
+> output and a blinking LED.
+> 
+> Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-RV2.html [1]
+> Link: https://www.spacemit.com/en/key-stone-k1 [2]
+> Link: https://github.com/BPI-SINOVOIP/pi-linux/blob/linux-6.6.63-k1/arch/riscv/boot/dts/spacemit/k1-x_orangepi-rv2.dts [3]
+> Link: https://github.com/orangepi-xunlong/linux-orangepi/tree/orange-pi-6.6-ky [4]
+> Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+> ---
+>  arch/riscv/boot/dts/spacemit/Makefile         |  1 +
+>  .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 43 +++++++++++++++++++
+>  2 files changed, 44 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
+> index 92e13ce1c16d..152832644870 100644
+> --- a/arch/riscv/boot/dts/spacemit/Makefile
+> +++ b/arch/riscv/boot/dts/spacemit/Makefile
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_ARCH_SPACEMIT) += k1-bananapi-f3.dtb
+>  dtb-$(CONFIG_ARCH_SPACEMIT) += k1-milkv-jupiter.dtb
+> +dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-rv2.dtb
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> new file mode 100644
+> index 000000000000..8313f9589cd2
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> @@ -0,0 +1,43 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+..
+> +/* Copyright (c) 2023 Ky, Inc */
+Copyright should cover current year, which is 2025..
+what's "Ky" stand for? Can you give a full description here
+
+> +
+> +/dts-v1/;
+> +
+> +#include "k1.dtsi"
+> +#include "k1-pinctrl.dtsi"
+> +
+> +/ {
+> +	model = "OrangePi RV2";
+> +	compatible = "xunlong,orangepi-rv2", "spacemit,k1";
+> +
+..
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x00000000 0x0 0x80000000>;
+> +	};
+> +
+> +	memory@100000000 {
+> +		device_type = "memory";
+> +		reg = <0x1 0x00000000 0x0 0x80000000>;
+> +	};
+> +
+for the memory nodes, there are 2/4/8GB variants from the Link [1], and
+you couldn't cover all of them in one dt
+
+besides, I thought bootloader (u-boot) will populate these info, right?
+so the above nodes isn't really necessary
+
+> +	chosen {
+> +		stdout-path = "serial0";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led1 {
+> +			label = "sys-led";
+> +			gpios = <&gpio K1_GPIO(96) GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger = "heartbeat";
+> +			default-state = "on";
+> +		};
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_2_cfg>;
+> +	status = "okay";
+> +};
+> -- 
+> 2.43.0
+> 
+
+-- 
+Yixun Lan (dlan)
 
