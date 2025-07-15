@@ -1,139 +1,143 @@
-Return-Path: <devicetree+bounces-196651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6413EB06922
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 00:14:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDAA4B0692A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 00:17:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19EC55673F0
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:14:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4712A189662F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:17:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0852C15BD;
-	Tue, 15 Jul 2025 22:14:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B29D327147F;
+	Tue, 15 Jul 2025 22:17:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XCxGOQ5m"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Of8lTmrQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ACF52BEC21;
-	Tue, 15 Jul 2025 22:14:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15E672253FE;
+	Tue, 15 Jul 2025 22:17:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752617651; cv=none; b=Y/LT0XA2Yg/boOIcKGZyyMsV6nKQMB8Q7VyiD+UyAKJMYjOUg10DxhwPyz5ta5fAyaIQzx2gGWRlJTbTd9aIBczdRGE6Ky9/b7fuz9hsAaxoCviF8s37iQrGCudXcs0AWeOXFOjZxktWQ1B7kImWdnegcebw4dZnhAKhKSwWhjs=
+	t=1752617834; cv=none; b=hf+eLQ5ZF6tdQn9tBfNG42Xuw6yRtn/+Jb2sQlXEusvtjJiBWNJZuvtBbgfosO7Iddn/iBYLmB/ckTiBAJa8680MylbiJsDfD5qsZtyXNu6pMjlBv8ifEWl77MagWRolr+etfJZkcg+zzIlwud3egAYKyTPFOr2sgH6r6Jx0OiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752617651; c=relaxed/simple;
-	bh=yrluzH45Dsn6XaGZW7/NQKFSfg+yKKSg8nN2iCt5/jE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HnJeafM9vMgt8vCpUgLJHD4LHzNiSHw6W4S1x9nVAt3zBVZeBz35YpmphmoHgPTfqM5v5QYs3PhkyXV8X20oW7p0xbQloMrtRmxj1LNvOsMQHs7rv9eDNyDbWGilLVdTJWqL+4uARAY0gVghd+rCgkhlq95x79hCWriWUP6TdCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XCxGOQ5m; arc=none smtp.client-ip=209.85.210.174
+	s=arc-20240116; t=1752617834; c=relaxed/simple;
+	bh=pBasewOutybSgPeTnnFJ9TF1ZtaNHDhit9tLEZUO1C8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=MVstmZ8s2DPC0rxJ4w41av78DmDjXlL2P/zxIkhYhx6PrxH+WvkEXNztkZazhTamuSMQgn38gyAZR7WO1zJkXoSCKvPLSOURWe+RPo4ej+4ACSS6F1nASv7YPQ12/zIGhRLxCCElfZbCU1oLirbf3T1GAb6C+87AT44/avyCJNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Of8lTmrQ; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-74b50c71b0aso3448505b3a.0;
-        Tue, 15 Jul 2025 15:14:10 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-608acb0a27fso8359595a12.0;
+        Tue, 15 Jul 2025 15:17:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752617650; x=1753222450; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XrA4TJh+BvN7wjadeOIOqG++LC6BTg9ob7hjy1TX3gY=;
-        b=XCxGOQ5mtCF4YcUNFHKy9Z+imU7BnYC4Oc0HV7hvpKCSoAuUtUbBBHC52CYrR5tGzd
-         w1DoI48iOrACNFQNTEDUKaSPycahYztnfqczE0LTu4OIrgwdD9Wm1vWhmoxjwoclPSPY
-         wBjr7oW/Gus7ylwrjWLhJf7xsxoebRr8zCMj6Eap6Vzuh964rdRZ/lai6AsDLqXiXMqK
-         Ebz3giJeD8WUUYZmoabOID9UD/UzV1ZRw0vDgMMRNKQAcyUSbAMIsj/UCwO91fhPC4wb
-         dpudKxg+dpaHkqheoYG8WQr2rE0dWBupqlB7SfmcrjbbWmLnJ4dTb7atdEWGLSWpMEjK
-         NmGw==
+        d=gmail.com; s=20230601; t=1752617831; x=1753222631; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=IlpREsArsA65Wjnvz7fR13JpUjf3JpRjm5gzm/gRDbs=;
+        b=Of8lTmrQv+ktSWQtOL6D4lFxCWadtgbJeIG29aEl7hwZAuaynGQj2O3rDZQKa7IO2O
+         hg0s4jrsE53c2mPwlsKxYMFk+CgFJfL2ECJhMxt1GWSxKM/wQ/UvJzz8gDtTxNy1X3/Y
+         BbNi2NSLd4HRSCsvmKgusLAUu+ZX/7qCFHUxsgXBojgQD2CAnSUR+ckfQDujob8vCt9h
+         72D4mnp280pt+349kkOTkXd9JXzOUm2X4c3Y99SlIhrC0C70oDlC195E/TxeKNj3xOv9
+         7SOaf0R8DnUtoWngQcPV1H7Szc3JHBe13aDdpyY8QlbdS4yBjAab5OEBnFU7MLT52ESN
+         ZBEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752617650; x=1753222450;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XrA4TJh+BvN7wjadeOIOqG++LC6BTg9ob7hjy1TX3gY=;
-        b=bXbBleY9mUvJpk8CzFnLd5yaG7INAhrYiJspuEqnctKowuRyPiZWSC8djQlFvEympO
-         +skVWfjOWUEukQ2ZcQ97Yotbrr4rb7Lli5Byjtr2SI4XLv/ChmlgkpYTIplk0DYx0F8y
-         cmcBMQz3AQ/+2Pqkr2B4sz96/HaqMAeZuroy37eYloY3XD8gMpmKe9w49IIN4JAIreRg
-         YllgFuKl7F5BbHkzR6QNO1JoBabOr+hg0fadQZ2Zg4BSL0zGPJt7lWsP+BZHCHY7Vvs8
-         nL9CCJOtRI45umZjUDBIFd6kBccmyHFT5Eo0b/vh5J/QuT/ywNNyNxkFUavN1zXfrFWF
-         fYNg==
-X-Forwarded-Encrypted: i=1; AJvYcCWjZ5RSMB4A1aordzxLfU0dALekI+vZcn/wqdtYpyWEuVO8FakmUAjwulEJW2QimuYzASaEM4h5nXKBQ5c=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgyE8YzKcE45hh5cVD1TSNf5AdXchzh9ZrtBLBwCXWIBmL1EhI
-	m5/cQ3RCh5r1bUy61dVi4ljdwDZQo2LTg4ah0tKJb1KOE0E23FlpE6VZ
-X-Gm-Gg: ASbGnctzAcgC9wEGuWOGYYumylCOgft8kJrYWPq8EmJrApIav/2eZyntxLNRZFDTuq6
-	4EL44fsj9h1Oi5dBIG5RJ3aGSe66wXcKpJAh9qGyCIiOwkDekfCQgc5XHU1IrJpY3N1sKlB59i/
-	wHjZCpbzDmsrEjKc6mjK4tTIWNWnJ3ozIrxGvVP9H3lxTalG2DFLjvOFoAxoqf+vAx/1SoTxG4G
-	zEQOlMzdgnZHAKaoAbssgxWmYPfQdqgDaPoBSpgAFdJuwn3+h3w1LaZvMv+fVhv0/nOOvx81AZ+
-	QpaSWKY3r0/oN3xnEKHaVO90nvQ971+5KlcGPTrIFoBMw2d/aTcqWbfD8rwjh37ppZzIehAezUU
-	OCHBBvwhcKXM75r5IYpm3zA==
-X-Google-Smtp-Source: AGHT+IEsInpCl2boS1cuUEjJoih0t5+paTL5H13Al6lEbtovW6VOt0TKWUcx6UhFT5+4ihi1IP+qdA==
-X-Received: by 2002:a05:6a00:23d6:b0:736:d297:164 with SMTP id d2e1a72fcca58-7572267949emr327515b3a.1.1752617649472;
-        Tue, 15 Jul 2025 15:14:09 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-74eb9dd5d30sm13132920b3a.5.2025.07.15.15.14.08
+        d=1e100.net; s=20230601; t=1752617831; x=1753222631;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IlpREsArsA65Wjnvz7fR13JpUjf3JpRjm5gzm/gRDbs=;
+        b=n9S46nmlTXimN8jzJgFnwHaD6CB7ZWnJK49XUN+dTwsbAtKF9SWoN706kL8BMXIhca
+         HZv+vlSo6g091q/nLcwNessVN8X6taV2aA8BWrA+ZiT3YIvFYu9atV24txz3Th9wIoa+
+         CkMikmJF5iKoXnMD6oKJJDruUla6q4U83PkYQUAqbJdD+3OaAvDdimMPnEZJjA94Fc2K
+         fvW92SvDe9+XpQq1u+VK4bCjCGGZm8D/b7L+sqy9I4GKzNWsJi2Wf+iMKa9EByOSptbV
+         MycNmwMZyXLivahg1r9qrxdmgIV9+RgADhw2iBWKGNu2RGq2D6JtOjmwTq+cu+ZYUjtv
+         OJdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU20ljxgq6BykxAk6dHmRuwypPH7BdCPMbOqHiAo7r5nSyrQ6KZdH30VQouS/JnC0bd3KnUmCNT+qmYYco=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAgcNKHzfmWhvugKA0Zf0EREjagSf1Ocv7NxI1GG3aF+WqrHAw
+	TVBdVthQQI6GJfDaUsBISB59JpIUJZAdp40uROR0loYXjUM10viIpcJv
+X-Gm-Gg: ASbGncvtJoby0AfVNrP9JGRJnjtvUvUmglAn78o+juNZB8QlHMYH+VQ7620lPxdfgXA
+	dZujECX7m9vWTj0N4w9QmR+s8USdeT4fCCpfD7bOiNqUxZtQSQVK1CQa4JY0s6/Gl6S/Wb9sFRk
+	nXLoW+zLLuqrzVWXSPfOJ6qzj52q8TO2kiiEIv9KijNS2c8vuhpsNx4/nB3FiM1ph/JrZ1904eZ
+	C+N/4mPeSgdMNGfxjQ4P4qjhEchKD4kBmhIjcGkguy6E2elYKKoNedJGz2vTgH4tWPeYfPRMUWi
+	Df2X8AfbjQkOYZaENSxdXSO7v+3UDlwZZc21SN6Ig4vjbv2LF+KAHF/ZB/rn8X0EZtY9uKzzjMW
+	z+MSXq5dSg8a5CUkfMKGtF6RBmWrn4oUM/7Ith5J/mN4=
+X-Google-Smtp-Source: AGHT+IFS1FOWt2Mu8j9kFCRNXMuFJFrO5X2nsF/JgZHo3UNGWsUzJOoz0tkKgDtKz4i/peCv+xWi9w==
+X-Received: by 2002:a05:6402:2756:b0:604:e33f:e5c0 with SMTP id 4fb4d7f45d1cf-61285dfbc42mr291122a12.30.1752617831067;
+        Tue, 15 Jul 2025 15:17:11 -0700 (PDT)
+Received: from giga-mm-11.home ([2a02:1210:8608:9200:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61274d50d06sm1084048a12.8.2025.07.15.15.17.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Jul 2025 15:14:08 -0700 (PDT)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Ze Huang <huangze@whut.edu.cn>,
-	Yu Yuan <yu.yuan@sjtu.edu.cn>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH] riscv: dts: sophgo: fix mdio node name for CV180X
-Date: Wed, 16 Jul 2025 06:13:48 +0800
-Message-ID: <20250715221349.11034-1-inochiama@gmail.com>
-X-Mailer: git-send-email 2.50.1
+        Tue, 15 Jul 2025 15:17:10 -0700 (PDT)
+Message-ID: <ce6c909d9d6724dd36a2b35ff19faa93b5152a0c.camel@gmail.com>
+Subject: Re: [PATCH] riscv: dts: sophgo: fix mdio node name for CV180X
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen Wang	 <unicorn_wang@outlook.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,  Ze Huang
+ <huangze@whut.edu.cn>, Yu Yuan <yu.yuan@sjtu.edu.cn>, Thomas Bonnefille	
+ <thomas.bonnefille@bootlin.com>
+Cc: devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, Yixun Lan
+	 <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, kernel test robot
+	 <lkp@intel.com>
+Date: Wed, 16 Jul 2025 00:17:07 +0200
+In-Reply-To: <20250715221349.11034-1-inochiama@gmail.com>
+References: <20250715221349.11034-1-inochiama@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-As the mdio multipledxer is marked as mdio device, the check complains
-the mdio bus number exceed the maximum.
+On Wed, 2025-07-16 at 06:13 +0800, Inochi Amaoto wrote:
+> As the mdio multipledxer is marked as mdio device, the check complains
+> the mdio bus number exceed the maximum.
+>=20
+> Change the node name to mdio-mux to remove the following warnings:
+> mdio@3009800 (mdio-mux-mmioreg): mdio@80:reg:0:0: 128 is greater than
+> the maximum of 31
+>=20
+> Fixes: b7945143bc33 ("riscv: dts: sophgo: Add mdio multiplexer device for=
+ cv18xx")
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202507140738.XRjv3G8i-lkp@i=
+ntel.com/
+> Closes: https://lore.kernel.org/oe-kbuild-all/202507121830.POx2KDVi-lkp@i=
+ntel.com/
 
-Change the node name to mdio-mux to remove the following warnings:
-mdio@3009800 (mdio-mux-mmioreg): mdio@80:reg:0:0: 128 is greater than
-the maximum of 31
+Reviewed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 
-Fixes: b7945143bc33 ("riscv: dts: sophgo: Add mdio multiplexer device for cv18xx")
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202507140738.XRjv3G8i-lkp@intel.com/
-Closes: https://lore.kernel.org/oe-kbuild-all/202507121830.POx2KDVi-lkp@intel.com/
----
- arch/riscv/boot/dts/sophgo/cv180x.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> ---
+> =C2=A0arch/riscv/boot/dts/sophgo/cv180x.dtsi | 2 +-
+> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts=
+/sophgo/cv180x.dtsi
+> index 5f094c6085cb..27056ef70ce4 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> @@ -57,7 +57,7 @@ rst: reset-controller@3003000 {
+> =C2=A0			#reset-cells =3D <1>;
+> =C2=A0		};
+>=20
+> -		mdio: mdio@3009800 {
+> +		mdio: mdio-mux@3009800 {
+> =C2=A0			compatible =3D "mdio-mux-mmioreg", "mdio-mux";
+> =C2=A0			reg =3D <0x3009800 0x4>;
+> =C2=A0			#address-cells =3D <1>;
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-index 5f094c6085cb..27056ef70ce4 100644
---- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-@@ -57,7 +57,7 @@ rst: reset-controller@3003000 {
- 			#reset-cells = <1>;
- 		};
-
--		mdio: mdio@3009800 {
-+		mdio: mdio-mux@3009800 {
- 			compatible = "mdio-mux-mmioreg", "mdio-mux";
- 			reg = <0x3009800 0x4>;
- 			#address-cells = <1>;
---
-2.50.1
-
+--=20
+Alexander Sverdlin.
 
