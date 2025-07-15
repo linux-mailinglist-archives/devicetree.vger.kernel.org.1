@@ -1,41 +1,41 @@
-Return-Path: <devicetree+bounces-196635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 308ECB06815
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:51:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AEF8B06811
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 22:51:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1A31188918C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 20:51:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEABA7B633B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 20:49:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE5EE2BEFEF;
-	Tue, 15 Jul 2025 20:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1497428727E;
+	Tue, 15 Jul 2025 20:49:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1B626C396
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9484F2BE65F
 	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 20:49:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752612558; cv=none; b=jCsWF+3jli6Ugv/uONNQWJoQRdiBSsfqBlMJSs4YQ4K4UkzCg4Kqc80NknWhCX1xekmEIiS18iJAYgJ1m6oG0x3WKEpfU0NAyXKnub37x/Do38SYOEw8+1zaAgNnHQYiovmZGp+Rt/cea2lQSbYKcFc/XlChMvFXQQ7w6HJSKus=
+	t=1752612559; cv=none; b=EGt8e0imxEQhuTgl6F91r2xe90TBUA1HVnMW0+1PBECHjKtR8PRclOkHntc9GYTY4JlYNZ4Mgzr14SC0mCBqCwcX1bCaQxkRUXw3g2BF8Mw2uFmYFduwf4fgFcYT9PIIsvrBTBEryCfEjhWFC90i+SSqkeGkqFM27Vo4+pbqZwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752612558; c=relaxed/simple;
-	bh=WssqkErbhL2T08N7gZu0oUt7u3JLlXLIOeaUBCh7otc=;
+	s=arc-20240116; t=1752612559; c=relaxed/simple;
+	bh=szwuk6Vvp2AoqhAb91mYotzkuCuPX6KC/lPfB1lCQgU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gmlYyOGdKaQ5Ec5RKw2fk2HOQasImO5et2MZ899QpdiSlPjnTdtE5lFo3LnY7Gk5y/iHdM2oZ8+j4xIhTdehYSgmdg7VSDHwQ6rH8s53qF9fJiyg3ogIiXvvaBDepbD2u2/AcBL+vlNIhbjMoOi6OMcTPsdDiSFYR/HKyi5sKtI=
+	 In-Reply-To:To:Cc; b=b+Wu7ZyRVnN++2cKc2mPfmRJmVvsQA9YntFWdxNrt0a049pR2G0qM5zJ09wQRR5ao3ufMzethdMTPosRcO/l4FNU7m5U0z+lGZRFu4yqtjTn0A0PN6hc+WdCfXv5XEyztGMnIZ1vcxLe3sqRky7fmNgCf7qJwtpWrVLfk7QVeBA=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <jre@pengutronix.de>)
-	id 1ubmaI-0008KV-HY; Tue, 15 Jul 2025 22:49:06 +0200
+	id 1ubmaI-0008KV-JA; Tue, 15 Jul 2025 22:49:06 +0200
 From: Jonas Rebmann <jre@pengutronix.de>
-Date: Tue, 15 Jul 2025 22:49:01 +0200
-Subject: [PATCH 2/4] hwmon: ina238: Add label support for voltage inputs
+Date: Tue, 15 Jul 2025 22:49:02 +0200
+Subject: [PATCH 3/4] dt-bindings: Add INA228 to ina2xx devicetree bindings
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,7 +44,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250715-ina228-v1-2-3302fae4434b@pengutronix.de>
+Message-Id: <20250715-ina228-v1-3-3302fae4434b@pengutronix.de>
 References: <20250715-ina228-v1-0-3302fae4434b@pengutronix.de>
 In-Reply-To: <20250715-ina228-v1-0-3302fae4434b@pengutronix.de>
 To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
@@ -54,12 +54,12 @@ Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
  Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
  kernel@pengutronix.de, Jonas Rebmann <jre@pengutronix.de>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2255; i=jre@pengutronix.de;
- h=from:subject:message-id; bh=WssqkErbhL2T08N7gZu0oUt7u3JLlXLIOeaUBCh7otc=;
- b=owGbwMvMwCF2ZcYT3onnbjcwnlZLYsgo23dgucWZjQ+ko5P4k31fMHbNMsxZnH6o1fn1GeO1J
- 1OV+wuVOkpZGMQ4GGTFFFli1eQUhIz9r5tV2sXCzGFlAhnCwMUpABNRLWZk+HRi4pdelsQ/n1je
- KHyNCnYvmrjnXeKd55ZiwXO2vm0MW8fIsG9KTIDLieNL4rbuOvQgQKhs0fEj2wTEzub5ZTifmrf
- hHBcA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=951; i=jre@pengutronix.de;
+ h=from:subject:message-id; bh=szwuk6Vvp2AoqhAb91mYotzkuCuPX6KC/lPfB1lCQgU=;
+ b=owGbwMvMwCF2ZcYT3onnbjcwnlZLYsgo23dgzuHFSZuZ+gytKgrf6q54fdT36qdHbpK3fgYz5
+ HNP5V3Y2VHKwiDGwSArpsgSqyanIGTsf92s0i4WZg4rE8gQBi5OAZjI5euMDK3hXO3zJJ5dub5S
+ ptC0c/O3aQ9f9pT6uPFw7oyvrJ+pl8jIcGJ+PHtCQtf3thbjFtaM3K3L7unEd4vfrtv0sPbpy1u
+ 1nAA=
 X-Developer-Key: i=jre@pengutronix.de; a=openpgp;
  fpr=0B7B750D5D3CD21B3B130DE8B61515E135CD49B5
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::ac
@@ -67,76 +67,33 @@ X-SA-Exim-Mail-From: jre@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The INA family of power monitors estimate power consumption based on
-two voltage measurements: across a shunt resistor and across the bus.
-
-Conveniently label them "Shunt Voltage" and "Bus Voltage".
+Add the ina228 to ina2xx bindings.
 
 Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
 ---
- drivers/hwmon/ina238.c | 27 +++++++++++++++++++++++++--
- 1 file changed, 25 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/hwmon/ina238.c b/drivers/hwmon/ina238.c
-index d603d4990c928984350c1f414431219b1489a546..44f7ce3c1d7b5a91f67d12c1d29e1e560024a04c 100644
---- a/drivers/hwmon/ina238.c
-+++ b/drivers/hwmon/ina238.c
-@@ -507,6 +507,27 @@ static ssize_t energy1_input_show(struct device *dev,
- 	return sysfs_emit(buf, "%llu\n", energy);
- }
- 
-+static int ina238_read_string(struct device *dev, enum hwmon_sensor_types type,
-+			       u32 attr, int channel, const char **str)
-+{
-+	switch (type) {
-+	case hwmon_in:
-+		switch (channel) {
-+		case 0:
-+			*str = "Shunt Voltage";
-+			return 0;
-+		case 1:
-+			*str = "Bus Voltage";
-+			return 0;
-+		default:
-+			break;
-+		}
-+	default:
-+		break;
-+	}
-+	return -EOPNOTSUPP;
-+}
-+
- static int ina238_read(struct device *dev, enum hwmon_sensor_types type,
- 		       u32 attr, int channel, long *val)
- {
-@@ -565,6 +586,7 @@ static umode_t ina238_is_visible(const void *drvdata,
- 		case hwmon_in_input:
- 		case hwmon_in_max_alarm:
- 		case hwmon_in_min_alarm:
-+		case hwmon_in_label:
- 			return 0444;
- 		case hwmon_in_max:
- 		case hwmon_in_min:
-@@ -615,9 +637,9 @@ static umode_t ina238_is_visible(const void *drvdata,
- static const struct hwmon_channel_info * const ina238_info[] = {
- 	HWMON_CHANNEL_INFO(in,
- 			   /* 0: shunt voltage */
--			   INA238_HWMON_IN_CONFIG,
-+			   INA238_HWMON_IN_CONFIG | HWMON_I_LABEL,
- 			   /* 1: bus voltage */
--			   INA238_HWMON_IN_CONFIG),
-+			   INA238_HWMON_IN_CONFIG | HWMON_I_LABEL),
- 	HWMON_CHANNEL_INFO(curr,
- 			   /* 0: current through shunt */
- 			   HWMON_C_INPUT),
-@@ -633,6 +655,7 @@ static const struct hwmon_channel_info * const ina238_info[] = {
- 
- static const struct hwmon_ops ina238_hwmon_ops = {
- 	.is_visible = ina238_is_visible,
-+	.read_string = ina238_read_string,
- 	.read = ina238_read,
- 	.write = ina238_write,
- };
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+index d1fb7b9abda081113ac28ed999d9c28da9d4daf9..fa68b99ef2e292c0b7d618c14819fa2bd64db7b8 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+@@ -25,6 +25,7 @@ properties:
+       - ti,ina219
+       - ti,ina220
+       - ti,ina226
++      - ti,ina228
+       - ti,ina230
+       - ti,ina231
+       - ti,ina233
+@@ -107,6 +108,7 @@ allOf:
+               - ti,ina219
+               - ti,ina220
+               - ti,ina226
++              - ti,ina228
+               - ti,ina230
+               - ti,ina231
+               - ti,ina237
 
 -- 
 2.39.5
