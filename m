@@ -1,61 +1,66 @@
-Return-Path: <devicetree+bounces-196309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58E44B04F99
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:58:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E877B04F9D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:58:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FE0E3A4795
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 03:57:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E7A51709F4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 03:58:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0D92D1932;
-	Tue, 15 Jul 2025 03:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 040D12D2385;
+	Tue, 15 Jul 2025 03:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K/sTA9Kw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nCwqJ8Ry"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 726265FEE6;
-	Tue, 15 Jul 2025 03:58:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6E12D1F72;
+	Tue, 15 Jul 2025 03:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752551899; cv=none; b=DqHYFa3WyG4Igir/a8mxunvSVBF983uCJNDAXzC91GwERi4ddcrI3wIxq4WbYeXKX1V0uWP47zU+F0Qa8oI4bcbFIH8v0Yy1L2baWhal4EMjFkEnN7TYsY3uYchbIi8RUiGJkgu9HA2RwHxBQIH8J18+LzdWRBVtZ2u99ViN5y8=
+	t=1752551926; cv=none; b=qtraYIBrMw+jlDiYyo9AmuCnaGDiRkE/9uTEs129Smx76e+bLg2aNn09sqnEjErmtkfKJZYyDink+87xHEYrYPrl70dAG+LnUZOHnzfLTpuchndF4yHCsvb9of5q6eXro2tqp63+A+dlrIfg9XKq7YknTN0IrS3fDw6rhCCo5LQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752551899; c=relaxed/simple;
-	bh=snS6BZ8HZz24We5fag4B3dSbIWRbSM9y5G7CZL/J244=;
+	s=arc-20240116; t=1752551926; c=relaxed/simple;
+	bh=E1bP2qyrdHOflkUNF5HIzZ1cwKCdQr2yzEaRreh3xcc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K5n7dBVM/Qr70Lm4a1mpuXP9Ye+Zj+vm0894cI8bWHYokb2aAVgnfCIPlJr9Mi90FQi9Qmtc/IxBXEM3wmW07/pSCai9z6u1GZRiS+K0W6NCGrlNNQzLz+HShGUitcV33kO9pDzHI73LQj9qT2CgyqeaZsDsKc0wmNiMdF5rNXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K/sTA9Kw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5B51C4CEE3;
-	Tue, 15 Jul 2025 03:58:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=l0FRq27TUXTubyIA507j/1efUVMZtsETQ8wvSEL15ziSG8r24QD22oBiVDeeITEGhlyjWsPNDk4pCAvPdaYb450wkHTqmiuihKFId3Kk1tSVnoiTB3C8Xa7w59wbmmyLIdwUxBaOQ6dFyNL1VyZ2OiTWmr4oSS9KGcyqQnC8318=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nCwqJ8Ry; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52A22C4CEE3;
+	Tue, 15 Jul 2025 03:58:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752551896;
-	bh=snS6BZ8HZz24We5fag4B3dSbIWRbSM9y5G7CZL/J244=;
+	s=k20201202; t=1752551926;
+	bh=E1bP2qyrdHOflkUNF5HIzZ1cwKCdQr2yzEaRreh3xcc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K/sTA9KwqEUrXXDZYklF8VnNxmdOPw8goczIE4sXEzG2qhnzSAb9iBjBhZ+HvO1i4
-	 rhmlWqxZuoPPiQhb8j3c6f34JmINVL8nTLb4wvappIaqFCHZJCGfd31HnxaSUDAq3z
-	 47IuO48BFzuwxeBb55pkMEgL1gzvAUNlxqbPhp/EFO8h17JmfCZrnYF453YHiqr0iu
-	 93yuCsPHgKeSlrKeRl25EiyJGZEDYm6Pq55WQtILT3CoqJf8JZ4ePBsIUxhAJWxkXz
-	 4HukDBWKNUY7jK+A4OLFYSdp8gjxTgw4uMZNjdyqW9FzK3awXDsKQfguzEpqdGQCtd
-	 Wh322C07qKVNg==
-Date: Mon, 14 Jul 2025 22:58:16 -0500
+	b=nCwqJ8RyiHOZpyii7xllAANTbVcSC47F0pmFvRK+AK2LUU/o24PyFHn03RqffxClA
+	 jJYlGYh0vlU8CBMSR74UZs+CxAhZb3SL5l6+FhXqDwjYt9a0kzM6HH6+SYh8L5e9nN
+	 6+feukmQHpnCic44wuNHjRY0WSmu0LhakmtKYhUbeZnCavbCAI4BHZqIaupVn28QCC
+	 vnGqb2ozc1dvBqEyWktYUjPy/g0KxBig6qUa3KcVOkJ4SqGui31Ovs4BrbEYJprnjY
+	 i1DAb9BoJ7EYqDALGC7elsaJTnpf7T36DUkDzG+M5Rq/dIWLJ9mayNzh4NQGz750Uo
+	 ErvL5OcBLjE5A==
+Date: Mon, 14 Jul 2025 22:58:45 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Dale Whinham <daleyo@gmail.com>
-Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Douglas Anderson <dianders@chromium.org>,
 	=?iso-8859-1?B?Suly9G1l?= de Bretagne <jerome.debretagne@gmail.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/9] dt-bindings: arm: qcom: Document Microsoft Surface
- Pro 11
-Message-ID: <175255189553.19950.4639359444626134883.robh@kernel.org>
+	dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	devicetree@vger.kernel.org, David Airlie <airlied@gmail.com>
+Subject: Re: [PATCH 2/9] dt-bindings: display: panel: samsung,atna30dw01:
+ document ATNA30DW01
+Message-ID: <175255192501.20738.16784196888105498389.robh@kernel.org>
 References: <20250714173554.14223-1-daleyo@gmail.com>
- <20250714173554.14223-2-daleyo@gmail.com>
+ <20250714173554.14223-3-daleyo@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,20 +70,18 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250714173554.14223-2-daleyo@gmail.com>
+In-Reply-To: <20250714173554.14223-3-daleyo@gmail.com>
 
 
-On Mon, 14 Jul 2025 18:35:37 +0100, Dale Whinham wrote:
-> From: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+On Mon, 14 Jul 2025 18:35:38 +0100, Dale Whinham wrote:
+> The Samsung ATNA30DW01 panel is a 13" AMOLED eDP panel. It is similar to
+> the ATNA33XC20 except that it is smaller and has a higher resolution.
 > 
-> Add the compatible for the Qualcomm X1-based Microsoft Surface Pro 11,
-> using its Denali codename.
-> 
-> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+> Tested-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
 > Signed-off-by: Dale Whinham <daleyo@gmail.com>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/display/panel/samsung,atna33xc20.yaml   | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
