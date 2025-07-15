@@ -1,194 +1,283 @@
-Return-Path: <devicetree+bounces-196267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B79B04DBF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 04:17:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73628B04DE9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 04:43:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A89463A5838
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 02:16:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97D004A5E34
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 02:42:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867D72517AF;
-	Tue, 15 Jul 2025 02:16:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LAGiYCwz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2BC02C033B;
+	Tue, 15 Jul 2025 02:43:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDBB819DF4F;
-	Tue, 15 Jul 2025 02:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4ED2CCC5;
+	Tue, 15 Jul 2025 02:43:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752545818; cv=none; b=ObvcEBZ2rMBnFpV6XuCzBZac2+GCE8ymxAJuexZjb0fDNv3EhoL48Y/w4jpEVrW8UX7MOBv9chZts0oO/1A6xeGjnCQxna5y8BCDaVo8yq87J1QP/9LCBe6u1k6ul4+3hTScjKQ7wXpjr/y7eZP20mMJhKHnBAITYshly21u6cQ=
+	t=1752547383; cv=none; b=FCMthHPaVB14feaKyIFmPLKex6td2nd2XjE3BSKjT39jmRGgPk51DxCp4Kst1m3UfU2i7dc7XrsnL84985eucCTGXpW3563hLI4ePN250H+EVrh4+FbrCI3HogXu6SMK7//jygygS/LscnzFSzGK1Nzhp00TBmqdfXlFeYSYiLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752545818; c=relaxed/simple;
-	bh=jmxCqU7vT9wDGVqn13z5bf8xdfrCR0BgKtLcYkpE5QY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CWwFsd7ZVGs9lDqSOghbCrqmRP8gA4IxkfTAsdvm/D0PNqGHBj0VW8dGr0AKl4c9ivC8w+GfsatspgO3iZlxXGMqv423/W5wxvMYiOFLeU1DLMXTpPCfaRtnIcD5PmISHKUDqoT1AZ/9IexYg7uHl4iTlatgAyFcwYw2BBGVQNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LAGiYCwz; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1752545816; x=1784081816;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jmxCqU7vT9wDGVqn13z5bf8xdfrCR0BgKtLcYkpE5QY=;
-  b=LAGiYCwzGEHHB2nZa1e5BHHfkfFy42PnnTh4xsk5tXvC3sl4LZPVZqSG
-   gOwsfz3uJhwg1kDnJpujK5EMmok9QM0kZ0wO0SVn341o3JmFZmkdQu/D/
-   MaS6ePgpkXdUIr8pmvLd2+mfFgXpED98yJ+POW/prYpeSd+5QwkoUiY4Y
-   Q7tORsdwq/TYTK0FDnbmyTwwd6hUdNhyZFJlteYjD3Yv5N2t4Jxn7h3D5
-   CpyGKL3qUUqf4W8gJTM86rxZ1c0seQQ9O7bQiJA7no2MwO+vAY3UIWcYR
-   Pr9ohq0CErp0qporiKn/HLgflcBiWmBkjiTu2NWoyeOzqOLa0R3dUBa9K
-   A==;
-X-CSE-ConnectionGUID: 2b9DI9I9TZGmx9G3sLiU3Q==
-X-CSE-MsgGUID: +ywdsgmQRrWUp5xsy3LQXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="66202049"
-X-IronPort-AV: E=Sophos;i="6.16,312,1744095600"; 
-   d="scan'208";a="66202049"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2025 19:16:56 -0700
-X-CSE-ConnectionGUID: YPJe4lDXQxS/h0wBLeMU/w==
-X-CSE-MsgGUID: M9YyJfrZSWqedUuQIlDCJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,312,1744095600"; 
-   d="scan'208";a="157813800"
-Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 14 Jul 2025 19:16:52 -0700
-Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ubVDt-0009Y3-3C;
-	Tue, 15 Jul 2025 02:16:49 +0000
-Date: Tue, 15 Jul 2025 10:16:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-mediatek@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, lee@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, lgirdwood@gmail.com,
-	broonie@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v2 4/8] regulator: Add support for MediaTek MT6363 SPMI
- PMIC Regulators
-Message-ID: <202507150934.VLFQsCyK-lkp@intel.com>
-References: <20250707134451.154346-5-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1752547383; c=relaxed/simple;
+	bh=eMv0F3fXuUauLibfl+hyEwRbRQe07zvknY974G17nIA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lLjSRkSP1lDPcty0JxegYT7FvB9NQb93Jn0twgfJLuaKejGkR1dYPZgXvvnan9m7+36KFKvyqjozHELBijYSfl2pY1kiodG8xwmbloWcoof5mF51z6AjrzB6KnaFcF1c1/m4YJRLc82YbGv4IN1nYq+C8fsl6XBSVgGNSHHrmN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 15 Jul
+ 2025 10:42:58 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 15 Jul 2025 10:42:58 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, Thomas Gleixner
+	<tglx@linutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Kevin Chen
+	<kevin_chen@aspeedtech.com>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>
+Subject: [PATCH v2] dt-bindings: interrupt-controller: aspeed: Add parent node compatibles and refine documentation
+Date: Tue, 15 Jul 2025 10:42:58 +0800
+Message-ID: <20250715024258.2304665-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250707134451.154346-5-angelogioacchino.delregno@collabora.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi AngeloGioacchino,
+- Add 'aspeed,ast2700-intc0' and 'aspeed,ast2700-intc1' compatible
+strings for parent interrupt controller nodes, in addition to the
+existing 'aspeed,ast2700-intc-ic' for child nodes.
+- Clarify the relationship and function of INTC0, INTC1, and the GIC.
+- Update and clarify documentation, block diagram, and examples
+to reflect the hierarchy and compatible usage.
+- Documentation and example refine.
 
-kernel test robot noticed the following build errors:
+This change allows the device tree and driver to distinguish between
+parent (top-level) and child (group) interrupt controller nodes,
+enabling more precise driver matching SOC register space allocation.
 
-[auto build test ERROR on broonie-regulator/for-next]
-[also build test ERROR on lee-mfd/for-mfd-next lee-mfd/for-mfd-fixes lee-leds/for-leds-next linus/master v6.16-rc6 next-20250714]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+---
 
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-regulator-Document-MediaTek-MT6316-PMIC-Regulators/20250707-214911
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-patch link:    https://lore.kernel.org/r/20250707134451.154346-5-angelogioacchino.delregno%40collabora.com
-patch subject: [PATCH v2 4/8] regulator: Add support for MediaTek MT6363 SPMI PMIC Regulators
-config: openrisc-allyesconfig (https://download.01.org/0day-ci/archive/20250715/202507150934.VLFQsCyK-lkp@intel.com/config)
-compiler: or1k-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250715/202507150934.VLFQsCyK-lkp@intel.com/reproduce)
+v2:
+make dt_binding_check check
+ address-cells,size-cells -> #address-cells,#size-cells.
+ add oneOf required, parent us interrupts, child use interrupts-extended.
+ fix intc0_11 size-cells.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507150934.VLFQsCyK-lkp@intel.com/
+---
+ .../aspeed,ast2700-intc.yaml                  | 158 +++++++++++++-----
+ 1 file changed, 115 insertions(+), 43 deletions(-)
 
-All errors (new ones prefixed by >>):
-
-   drivers/regulator/mt6363-regulator.c: In function 'mt6363_vemc_set_voltage_sel':
->> drivers/regulator/mt6363-regulator.c:457:23: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-     457 |                 sel = FIELD_PREP(MT6363_RG_VEMC_VOSEL_1_MASK, sel);
-         |                       ^~~~~~~~~~
-   drivers/regulator/mt6363-regulator.c: In function 'mt6363_vemc_get_voltage_sel':
->> drivers/regulator/mt6363-regulator.c:489:23: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
-     489 |                 ret = FIELD_GET(MT6363_RG_VEMC_VOSEL_1_MASK, sel);
-         |                       ^~~~~~~~~
-
-
-vim +/FIELD_PREP +457 drivers/regulator/mt6363-regulator.c
-
-   432	
-   433	static int mt6363_vemc_set_voltage_sel(struct regulator_dev *rdev, unsigned int sel)
-   434	{
-   435		const u16 tma_unlock_key = MT6363_TMA_UNLOCK_VALUE;
-   436		struct regmap *regmap = rdev->regmap;
-   437		unsigned int val;
-   438		u16 mask;
-   439		int ret;
-   440	
-   441		ret = regmap_read(rdev->regmap, MT6363_TOP_TRAP, &val);
-   442		if (ret)
-   443			return ret;
-   444	
-   445		if (val > 1)
-   446			return -EINVAL;
-   447	
-   448		/* Unlock TMA for writing */
-   449		ret = regmap_bulk_write(rdev->regmap, MT6363_TOP_TMA_KEY_L,
-   450					&tma_unlock_key, sizeof(tma_unlock_key));
-   451		if (ret)
-   452			return ret;
-   453	
-   454		/* If HW trapping value is 1, use VEMC_VOSEL_1 instead of VEMC_VOSEL_0 */
-   455		if (val == 1) {
-   456			mask = MT6363_RG_VEMC_VOSEL_1_MASK;
- > 457			sel = FIELD_PREP(MT6363_RG_VEMC_VOSEL_1_MASK, sel);
-   458		} else {
-   459			mask = rdev->desc->vsel_mask;
-   460		}
-   461	
-   462		/* Function must return the result of this write operation */
-   463		ret = regmap_update_bits(regmap, rdev->desc->vsel_reg, mask, sel);
-   464	
-   465		/* Unconditionally re-lock TMA */
-   466		val = 0;
-   467		regmap_bulk_write(rdev->regmap, MT6363_TOP_TMA_KEY_L, &val, 2);
-   468	
-   469		return ret;
-   470	}
-   471	
-   472	static int mt6363_vemc_get_voltage_sel(struct regulator_dev *rdev)
-   473	{
-   474		unsigned int sel, trap;
-   475		int ret;
-   476	
-   477		ret = regmap_read(rdev->regmap, rdev->desc->vsel_reg, &sel);
-   478		if (ret)
-   479			return ret;
-   480	
-   481		ret = regmap_read(rdev->regmap, MT6363_TOP_TRAP, &trap);
-   482		if (ret)
-   483			return ret;
-   484	
-   485		/* If HW trapping value is 1, use VEMC_VOSEL_1 instead of VEMC_VOSEL_0 */
-   486		if (trap > 1)
-   487			return -EINVAL;
-   488		else if (trap == 1)
- > 489			ret = FIELD_GET(MT6363_RG_VEMC_VOSEL_1_MASK, sel);
-   490		else
-   491			ret = sel & rdev->desc->vsel_mask;
-   492	
-   493		return ret;
-   494	}
-   495	
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
+index 55636d06a674..bdc4d8835843 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
+@@ -10,6 +10,33 @@ description:
+   This interrupt controller hardware is second level interrupt controller that
+   is hooked to a parent interrupt controller. It's useful to combine multiple
+   interrupt sources into 1 interrupt to parent interrupt controller.
++  Depend to which INTC0 or INTC1 used.
++  INTC0 and INTC1 are two kinds of interrupt controller with enable and raw
++  status registers for use.
++  INTC0 is used to assert GIC if interrupt in INTC1 asserted.
++  INTC1 is used to assert INTC0 if interrupt of modules asserted.
++  +-----+   +---------+
++  | GIC |---|  INTC0  |
++  +-----+   +---------+
++            +---------+
++            |         |---module0
++            | INTC0_0 |---module1
++            |         |---...
++            +---------+---module31
++            |---....  |
++            +---------+
++            |         |     +---------+
++            | INTC0_11| +---| INTC1   |
++            |         |     +---------+
++            +---------+     +---------+---module0
++                            | INTC1_0 |---module1
++                            |         |---...
++                            +---------+---module31
++                            ...
++                            +---------+---module0
++                            | INTC1_5 |---module1
++                            |         |---...
++                            +---------+---module31
+ 
+ maintainers:
+   - Kevin Chen <kevin_chen@aspeedtech.com>
+@@ -17,49 +44,70 @@ maintainers:
+ properties:
+   compatible:
+     enum:
+-      - aspeed,ast2700-intc-ic
++      - aspeed,ast2700-intc0
++      - aspeed,ast2700-intc1
+ 
+   reg:
+     maxItems: 1
+ 
+-  interrupt-controller: true
++  '#address-cells':
++    const: 2
+ 
+-  '#interrupt-cells':
++  '#size-cells':
+     const: 2
+-    description:
+-      The first cell is the IRQ number, the second cell is the trigger
+-      type as defined in interrupt.txt in this directory.
+-
+-  interrupts:
+-    maxItems: 6
+-    description: |
+-      Depend to which INTC0 or INTC1 used.
+-      INTC0 and INTC1 are two kinds of interrupt controller with enable and raw
+-      status registers for use.
+-      INTC0 is used to assert GIC if interrupt in INTC1 asserted.
+-      INTC1 is used to assert INTC0 if interrupt of modules asserted.
+-      +-----+   +-------+     +---------+---module0
+-      | GIC |---| INTC0 |--+--| INTC1_0 |---module2
+-      |     |   |       |  |  |         |---...
+-      +-----+   +-------+  |  +---------+---module31
+-                           |
+-                           |   +---------+---module0
+-                           +---| INTC1_1 |---module2
+-                           |   |         |---...
+-                           |   +---------+---module31
+-                          ...
+-                           |   +---------+---module0
+-                           +---| INTC1_5 |---module2
+-                               |         |---...
+-                               +---------+---module31
+ 
++  ranges: true
++
++patternProperties:
++  "^interrupt-controller@":
++    type: object
++    description: Interrupt group child nodes
++    additionalProperties: false
++
++    properties:
++      compatible:
++        enum:
++          - aspeed,ast2700-intc-ic
++
++      reg:
++        maxItems: 1
++
++      interrupt-controller: true
++
++      '#interrupt-cells':
++        const: 2
++        description: |
++          The first cell is the IRQ number, the second cell is the trigger
++          type as defined in interrupt.txt in this directory.
++
++      interrupts:
++        minItems: 1
++        maxItems: 6
++        description: |
++          The interrupts provided by this interrupt controller.
++
++      interrupts-extended:
++        minItems: 1
++        maxItems: 6
++        description: |
++          This property is required when defining a cascaded interrupt controller
++          that is connected under another interrupt controller. It specifies the
++          parent interrupt(s) in the upstream controller to which this controller
++          is connected.
++
++    oneOf:
++      - required: [interrupts]
++      - required: [interrupts-extended]
++
++    required:
++      - compatible
++      - reg
++      - interrupt-controller
++      - '#interrupt-cells'
+ 
+ required:
+   - compatible
+   - reg
+-  - interrupt-controller
+-  - '#interrupt-cells'
+-  - interrupts
+ 
+ additionalProperties: false
+ 
+@@ -68,19 +116,43 @@ examples:
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     bus {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      intc0: interrupt-controller@12100000 {
++        compatible = "aspeed,ast2700-intc0";
++        reg = <0 0x12100000 0 0x4000>;
++        ranges = <0x0 0x0 0x0 0x12100000 0x0 0x4000>;
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        intc0_11: interrupt-controller@1b00 {
++          compatible = "aspeed,ast2700-intc-ic";
++          reg = <0 0x12101b00 0 0x10>;
++          #interrupt-cells = <2>;
++          interrupt-controller;
++          interrupts = <GIC_SPI 192 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++                       <GIC_SPI 193 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++                       <GIC_SPI 194 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++                       <GIC_SPI 195 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++                       <GIC_SPI 196 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++                       <GIC_SPI 197 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
++        };
++      };
++
++      intc1: interrupt-controller@14c18000 {
++        compatible = "aspeed,ast2700-intc1";
++        reg = <0 0x14c18000 0 0x400>;
++        ranges = <0x0 0x0 0x0 0x14c18000 0x0 0x400>;
+         #address-cells = <2>;
+         #size-cells = <2>;
+ 
+-        interrupt-controller@12101b00 {
+-            compatible = "aspeed,ast2700-intc-ic";
+-            reg = <0 0x12101b00 0 0x10>;
+-            #interrupt-cells = <2>;
+-            interrupt-controller;
+-            interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>;
++        intc1_0: interrupt-controller@100 {
++          compatible = "aspeed,ast2700-intc-ic";
++          reg = <0x0 0x100 0x0 0x10>;
++          #interrupt-cells = <2>;
++          interrupt-controller;
++          interrupts-extended = <&intc0_11 0 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+         };
++      };
+     };
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
