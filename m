@@ -1,199 +1,417 @@
-Return-Path: <devicetree+bounces-196339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE17BB05073
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 06:48:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C31FB05088
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 06:54:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF75C3BE9D6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 04:47:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18E547A0FB1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 04:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B99F42D238B;
-	Tue, 15 Jul 2025 04:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7DA72D238B;
+	Tue, 15 Jul 2025 04:53:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lTHCMFWJ"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="L24YxBLT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72185244691
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 04:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EB8A264F8A
+	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 04:53:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752554880; cv=none; b=qYYCH+IvYvJAfCnU7CCHMDuLytzJuBbpD7c1XtEP9kiKmOU+CfMfBAoIB270YPJoXmCF1KeFiIL+CY1URRlj2KBlSmxk64xE8SQ2CiOToIDxH3s6wjTF/arsu03XsTTp6t0BJXBlcjEYjtjpD4F7H8/KvyD+ZXIuXtm2vB8JHHY=
+	t=1752555232; cv=none; b=cJATQoMtzi1d0f2uumW7U7Ctb6B7oqAop3XT1Un2aEtkm5pr4NTml5qF9+Gg9TxJoJJ1qhL+m9Th0MCJSpsKR7m57a7emEVHhIXs/jE/J57vTbDVDdubVk/iTWYZMXy0ePWYdwLBZd61QU+ANDk+9x0tHdd3xggWQq/SNgI4/DA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752554880; c=relaxed/simple;
-	bh=X5WcdvGOR4ZnxxgkKRanPZQzRvjeUHxMPCMuzd9RT9M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OSUtzSVjeblLFpvAl/zHeCLWC5DM6WdQ0VIYCateQuN0RAcY5pb3ciUL2dMZYRP147q3z+/UW8y7tUoMoKI9ziJ2XMXupxrunEMM0e8dkImFXjVmX/MY6EZd9kznkKwH9YrDQbaM/nwE+FsUsZ31V4rqdUXCvLo9cyZitzjgPWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lTHCMFWJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56F3kb7R005134
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 04:47:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1G81B60xsleyJTfUNHppUdfBzYqz0JcVfIPyN+RmVmM=; b=lTHCMFWJPCu8e0E9
-	V/AAabygrTtorP9ChfuHJ9QbaufTRbwAtIY2Rnsv6uzT8ZS6xO8bM8WClCszfr+3
-	2UESTZeWJreQfs82l6td3wsLsNo7xAOgkgkMFCVK1nxaq0nL16cVvLakSs4lN89J
-	WI/HZUoYudLihQS+dLl2FY30gwZV4AIZufsJl3kaOVET2/9yrljJ0YedI4ElPHlF
-	nypIZuCALT0fhRhoUCP92kBc2JHq8t5L8/TG0IZzx2QRtDJhe4uc8AqC8RkeqZUF
-	csLwdvEUN5twDhMSZpwg9ST71WieDwSh9lhcEKT1jzmlpYdexbtdvTGQO07ozx5H
-	+o57kw==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47wfca040q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 04:47:57 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-74ea83a6c1bso2256461b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 21:47:57 -0700 (PDT)
+	s=arc-20240116; t=1752555232; c=relaxed/simple;
+	bh=ATvi4aGPWZr7jsYVxGahNQIk0pvtoS1eIWZ4Pu0BH7w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WE9Ug86yWLGf2wvAGo6Uz9vVWzdaRS9TtqhdEjEqeZ5lYdwu3L7PICgtRMesN029vf0KbSMX8EDwDmSHbA/+L6HbpapOwmSLZ/3uKp75r3kftn4RtO+mrmPoFANwAJEL7KSFAbqsaVFGN/OYLKYo8hYdfbISV8TtbB3c0H/H39A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=L24YxBLT; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-b3aa2a0022cso5202578a12.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Jul 2025 21:53:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1752555230; x=1753160030; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Xxzs0W/OWz7Yf0jqBLWNHPj02B/wiWEvkccSHlPTKps=;
+        b=L24YxBLT+GxQFMGSG8FM/H990iO/donS2CplrP2rCVzLPK8dg7IMJEkmtU6PvC5/pX
+         SXcu4sGJIjHTIlfSzrW6LfJkNMbbAT0LeghtFDZeywiPtDntJR5Md5U4Kuk75uIJKFJa
+         AMYx/DnOuoAkafmdfaVdOz13oTDcVxi4JPpqA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752554876; x=1753159676;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1G81B60xsleyJTfUNHppUdfBzYqz0JcVfIPyN+RmVmM=;
-        b=JV/YMfRKdfx72txCehCFXhaqJqFxJVKHByc/DHuiAlgoPmdQwIIxKTQ+ZHI/8hMA33
-         r+dY9rwtt4fQeXoqpRxukKXfEvKz9B/Q2IepPum1NIpwS2DTgOd7oy+/IJePJq+7CnMF
-         1GBQrCbHf1OY7UCuq2UdwmPAU0WIkrb3Mw3MnyxYkklfAUm7cC0ZSyOwOKSXhwy38lb3
-         guYWiyCiA9FqQ3f0i5EJBfDFUIyEQsjKuIOwve0smSFw9EfIEcDOZIu7rIhYNtbA/h1/
-         GPfe0q+NVPCayUXAwm7jD3clHuNz3fg9H97n9Uix0Y0C0oh00BK3l2WHcR9ANJhlnBUK
-         ZQ6g==
-X-Forwarded-Encrypted: i=1; AJvYcCWo2PODV8lwwXRD24+KHxX2A0Wbwfc+l9OI+puwLrcNGmqCGhyhuqiuwCYyHpMdK3SGM1PRfV+Gyc8Q@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxma7TIso9FXDWiE0AlM7V8hmiDEoGazUc6KvSmL4n2S+VmKdXJ
-	vje+5CEXa6lj+PLKFEXDvHG+XzswOWYAcKYNtGeMhr3/s04T+trDLr0fKNQxk0yvcEGUxuOfAEj
-	h7T4PcsgzyyZ+r8rnF4UiTRuhX5uP5PCSkUiC5ePfCAFMglnfmdmtidcEw3tEuxll
-X-Gm-Gg: ASbGncvSbMtAM+b7LXcqLnH/3wmPEfyubiIJmhdWil7xanqtV0vV3DD4xUIGgkh1Oij
-	OXmPWRwsS6Vo8qzR++//qV9NzA4s6Wlm7qUACw5GGa8S86xMWam7ECWix3NRUcOw0dq+CGCaZFa
-	eoXnJLoJXa1Qi+bEr3LgS0RLLu++DIV7LvOApkfqnnZOSSKjmhuTqCkO+QGWEbChUMyRoLGpZH3
-	n9xZFHw5w4VUH7PewAP7VQgA7fUwCVfD8CRV8wxxDPVlT0pkdFLkRJXT5vV7SPXOUZpGxJAonkf
-	AGM56eGNKTZ/M+e0weYtXW6I8Y5hTC7y0HHJGxHOHpwjrZPkiuEx0G+3qs9rLtc9IzUzh4Q=
-X-Received: by 2002:a05:6a00:148c:b0:740:9d7c:aeb9 with SMTP id d2e1a72fcca58-755b4cb576cmr2345360b3a.21.1752554875828;
-        Mon, 14 Jul 2025 21:47:55 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFLw7QsQsRMoAC5kgpjcNQia8kN0Ju9KrU7l9OxO3SkPSGi12dP1bd89nTq4dVCoxD0vfJycQ==
-X-Received: by 2002:a05:6a00:148c:b0:740:9d7c:aeb9 with SMTP id d2e1a72fcca58-755b4cb576cmr2345327b3a.21.1752554875237;
-        Mon, 14 Jul 2025 21:47:55 -0700 (PDT)
-Received: from [10.219.56.108] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9dd5d30sm11715343b3a.5.2025.07.14.21.47.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Jul 2025 21:47:54 -0700 (PDT)
-Message-ID: <08a0b50c-76e3-5c34-22b0-74b8d20c8e63@oss.qualcomm.com>
-Date: Tue, 15 Jul 2025 10:17:41 +0530
+        d=1e100.net; s=20230601; t=1752555230; x=1753160030;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Xxzs0W/OWz7Yf0jqBLWNHPj02B/wiWEvkccSHlPTKps=;
+        b=VmvyZjESJ6QdoEmZK3aYm1sk4AJAAL0aWJTE1jrj9lVxQ7vh8b3z4R16xuzd8hn1GT
+         mhEKXxGKmaCDVkkBalr2jIP0/r7UxBYv15NRXInUffL0ApD0AqtjJIrJyj87ABWAlYPb
+         Gog55lrrdynLinVR/e/i8TaX7gMUA7K9iKviWHFgtsOlftCTuT7mMz91ljKepZOchBDJ
+         GUBdAtJyGKfbQysuZiW40SvAbTpBSWdegydvswtOEwbdb2cVLi8wVXXTGTIp7ijMBveb
+         Pr5hlfTLW4NmOQFqr6UzDHFEFIjSybIu7bUrhwy+CsiPHFL8pE4XSlFYA6TUL8zu5xq0
+         58bA==
+X-Forwarded-Encrypted: i=1; AJvYcCW9SKtrMTXtBGFPlzJIvKfRU7FshO8/mpwODJ0ea1wHrVhMn+SPABPishl1KcplZgMdnhyfze3W0AD6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEAOwgSQzy+UYKyFF66FGKETGcZBcNwpZ35XKIr5N9hzmuL8K1
+	MTwRGIXNSHrVCKY7xFEPjJelAHqEVIzeTnS7Dj3uB+0TGH1oW/mbQ+ftwLeQqCKMqFS7MInnGH+
+	7CYD3bjsBltTCWlsGnYf89PO0HXwysaM/wH4+xi1w
+X-Gm-Gg: ASbGnctbavetBySyrxaEHtL+L8x8Hrnx8GDJKTsiqrx5et3SMObxgY/49wwZWmdF+7J
+	fXU4Juv9qKIaYvDLVIXiBlVdzqSaOZ0fyY8aHrJIDcyvjaUYNLhnSYqUrCWuESc4HGB44/Av1yA
+	NSHvip4xGY4FJBK6yVcb/SYzK8IfNDKtRvMa5L2r5YkbqkkXPWXe/1ffoAx0d8hY8oXhzko1y63
+	Lj5S5T60mBpG8jEA+mJasr6OORUw9WBEgg=
+X-Google-Smtp-Source: AGHT+IG13a6ecncroinU2vqvFQBBadmDPhYtdK1UZWoU/n9vA+3Pboa6z8WAwc0a6SnJwk68A3zzrOg0RmDHIaFkD7I=
+X-Received: by 2002:a17:90b:5790:b0:311:b0ec:135b with SMTP id
+ 98e67ed59e1d1-31c4ccf06d1mr28107359a91.24.1752555230224; Mon, 14 Jul 2025
+ 21:53:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v10 01/10] power: reset: reboot-mode: Add device tree
- node-based registration
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Elliot Berman <elliotb317@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        Andre Draszik <andre.draszik@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, Wei Xu <xuwei5@hisilicon.com>,
-        linux-rockchip@lists.infradead.org,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>
-References: <20250710-arm-psci-system_reset2-vendor-reboots-v10-0-b2d3b882be85@oss.qualcomm.com>
- <20250710-arm-psci-system_reset2-vendor-reboots-v10-1-b2d3b882be85@oss.qualcomm.com>
- <5zlix4hfxkz447g6e6imjlatmnf26pvunnsmfkol7mhvropq6o@k7wr6h4hyqtg>
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-In-Reply-To: <5zlix4hfxkz447g6e6imjlatmnf26pvunnsmfkol7mhvropq6o@k7wr6h4hyqtg>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE1MDA0MSBTYWx0ZWRfXyv7OvqjcbQB3
- vO4c13bd/6Qkt8xd/sE90KqJK2b63VhWUolFXspR5qtRpWaq2j/AVNfpzcOcu7u6U+iiwV9TS93
- CVd6IMIqoCnLk9ec/IfIAcjDSzzfsTpkAe/p7Bwh0TLhG6eOE60yovD+zuGqbLhkroka4jnLrLi
- mjVAMf44bKFKyk7EWLJwyxlGiRr82VSXi3wZ6WozeGfinNmt5inEGdfRz7AUkhw8H+uIy3SxdSC
- hVYmM5YDBYfeA9pc4ZWmR/NeBuozG4hkI55bp1akXy5jOS/y9CYhkd2POiZ3bPGYex7ZCaN0Fen
- ohg5d30b5aOewPlFU2yPdOLPlEh2icr2lUJmL1eH2W0PsLx508GOkkyPoPkrxpayVikU8U/nOWh
- D3vwjavDNw8q8JDEi0psA3wbz4YHEdsFsH/Wzm6ZYrKHQJR7BoqHXREJokvvzOusYaHCc35O
-X-Proofpoint-GUID: n4ptgutQ4iMe0nwXtIAQECb57suyzNif
-X-Authority-Analysis: v=2.4 cv=SeX3duRu c=1 sm=1 tr=0 ts=6875dd7d cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=w5sRTUNUNuywR65qw8YA:9
- a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-ORIG-GUID: n4ptgutQ4iMe0nwXtIAQECb57suyzNif
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-14_03,2025-07-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 mlxscore=0 priorityscore=1501 bulkscore=0 phishscore=0
- lowpriorityscore=0 mlxlogscore=999 impostorscore=0 clxscore=1015 adultscore=0
- suspectscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507150041
+References: <20250624143220.244549-1-laura.nao@collabora.com> <20250624143220.244549-13-laura.nao@collabora.com>
+In-Reply-To: <20250624143220.244549-13-laura.nao@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 15 Jul 2025 12:53:36 +0800
+X-Gm-Features: Ac12FXwBpf4BInit_x1dzKLocGTtxcJOU9mSygx6AUuM__BSzt1RWFNKQnx5RpI
+Message-ID: <CAGXv+5Fz4qBO-nPJu-bq0NEJK+md9XPJPPbd46TFCMS8=LQpAA@mail.gmail.com>
+Subject: Re: [PATCH v2 12/29] clk: mediatek: Add MT8196 topckgen clock support
+To: Laura Nao <laura.nao@collabora.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
+	richardcochran@gmail.com, guangjie.song@mediatek.com, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+	kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+There's a lot of duplication in the driver.
+
+On Tue, Jun 24, 2025 at 10:33=E2=80=AFPM Laura Nao <laura.nao@collabora.com=
+> wrote:
+>
+> Add support for the MT8196 topckgen clock controller, which provides
+> muxes and dividers for clock selection in other IP blocks.
+>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+> ---
+>  drivers/clk/mediatek/Makefile              |    2 +-
+>  drivers/clk/mediatek/clk-mt8196-topckgen.c | 1257 ++++++++++++++++++++
+>  2 files changed, 1258 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clk/mediatek/clk-mt8196-topckgen.c
+>
+> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefil=
+e
+> index b1773d2bcb3d..bc0e86e20074 100644
+> --- a/drivers/clk/mediatek/Makefile
+> +++ b/drivers/clk/mediatek/Makefile
+> @@ -160,7 +160,7 @@ obj-$(CONFIG_COMMON_CLK_MT8195_VDOSYS) +=3D clk-mt819=
+5-vdo0.o clk-mt8195-vdo1.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_VENCSYS) +=3D clk-mt8195-venc.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_VPPSYS) +=3D clk-mt8195-vpp0.o clk-mt8195=
+-vpp1.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_WPESYS) +=3D clk-mt8195-wpe.o
+> -obj-$(CONFIG_COMMON_CLK_MT8196) +=3D clk-mt8196-apmixedsys.o
+> +obj-$(CONFIG_COMMON_CLK_MT8196) +=3D clk-mt8196-apmixedsys.o clk-mt8196-=
+topckgen.o
+>  obj-$(CONFIG_COMMON_CLK_MT8365) +=3D clk-mt8365-apmixedsys.o clk-mt8365.=
+o
+>  obj-$(CONFIG_COMMON_CLK_MT8365_APU) +=3D clk-mt8365-apu.o
+>  obj-$(CONFIG_COMMON_CLK_MT8365_CAM) +=3D clk-mt8365-cam.o
+> diff --git a/drivers/clk/mediatek/clk-mt8196-topckgen.c b/drivers/clk/med=
+iatek/clk-mt8196-topckgen.c
+> new file mode 100644
+> index 000000000000..fc0c1227dd8d
+> --- /dev/null
+> +++ b/drivers/clk/mediatek/clk-mt8196-topckgen.c
+> @@ -0,0 +1,1257 @@
+
+[...]
+
+> +static const char * const p_axi_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d7_d8",
+> +       "mainpll_d5_d8",
+> +       "osc_d8",
+> +       "mainpll_d7_d4",
+> +       "mainpll_d5_d4",
+> +       "mainpll_d4_d4",
+> +       "mainpll_d7_d2"
+> +};
+
+The next two lists are the same as the one above. Please merge them
+together.
+
+> +static const char * const ufs_pextp0_axi_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d7_d8",
+> +       "mainpll_d5_d8",
+> +       "osc_d8",
+> +       "mainpll_d7_d4",
+> +       "mainpll_d5_d4",
+> +       "mainpll_d4_d4",
+> +       "mainpll_d7_d2"
+> +};
+> +
+> +static const char * const pextp1_usb_axi_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d7_d8",
+> +       "mainpll_d5_d8",
+> +       "osc_d8",
+> +       "mainpll_d7_d4",
+> +       "mainpll_d5_d4",
+> +       "mainpll_d4_d4",
+> +       "mainpll_d7_d2"
+> +};
+> +
+> +static const char * const p_fmem_sub_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d5_d8",
+> +       "mainpll_d5_d4",
+> +       "osc_d4",
+> +       "univpll_d4_d4",
+> +       "mainpll_d5_d2",
+> +       "mainpll_d4_d2",
+> +       "mainpll_d6",
+> +       "mainpll_d5",
+> +       "univpll_d5",
+> +       "mainpll_d4"
+> +};
+> +
+> +static const char * const ufs_pexpt0_mem_sub_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d5_d8",
+> +       "mainpll_d5_d4",
+> +       "osc_d4",
+> +       "univpll_d4_d4",
+> +       "mainpll_d5_d2",
+> +       "mainpll_d4_d2",
+> +       "mainpll_d6",
+> +       "mainpll_d5",
+> +       "univpll_d5",
+> +       "mainpll_d4"
+> +};
+
+The next one is the same as the previous one. Please merge together.
+
+> +static const char * const pextp1_usb_mem_sub_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d5_d8",
+> +       "mainpll_d5_d4",
+> +       "osc_d4",
+> +       "univpll_d4_d4",
+> +       "mainpll_d5_d2",
+> +       "mainpll_d4_d2",
+> +       "mainpll_d6",
+> +       "mainpll_d5",
+> +       "univpll_d5",
+> +       "mainpll_d4"
+> +};
+> +
+> +static const char * const p_noc_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d5_d8",
+> +       "mainpll_d5_d4",
+> +       "osc_d4",
+> +       "univpll_d4_d4",
+> +       "mainpll_d5_d2",
+> +       "mainpll_d4_d2",
+> +       "mainpll_d6",
+> +       "mainpll_d5",
+> +       "univpll_d5",
+> +       "mainpll_d4",
+> +       "mainpll_d3"
+> +};
+> +
+> +static const char * const emi_n_parents[] =3D {
+> +       "clk26m",
+> +       "osc_d4",
+> +       "mainpll_d5_d8",
+> +       "mainpll_d5_d4",
+> +       "mainpll_d4_d4",
+> +       "emipll1_ck"
+> +};
+
+The next one is the same as the previous one.
+
+> +static const char * const emi_s_parents[] =3D {
+> +       "clk26m",
+> +       "osc_d4",
+> +       "mainpll_d5_d8",
+> +       "mainpll_d5_d4",
+> +       "mainpll_d4_d4",
+> +       "emipll1_ck"
+> +};
+
+[...]
+
+> +static const char * const spi0_b_parents[] =3D {
+> +       "clk26m",
+> +       "univpll_d6_d4",
+> +       "univpll_d5_d4",
+> +       "mainpll_d4_d4",
+> +       "univpll_d4_d4",
+> +       "mainpll_d6_d2",
+> +       "univpll_192m",
+> +       "univpll_d6_d2"
+> +};
+
+All the SPI clocks have the same set of parents. Please just have
+one list.
+
+[...]
+
+> +static const char * const msdc30_1_parents[] =3D {
+> +       "clk26m",
+> +       "univpll_d6_d4",
+> +       "mainpll_d6_d2",
+> +       "univpll_d6_d2",
+> +       "msdcpll_d2"
+> +};
+
+Please merge the two msdc30 parent lists.
+
+> +static const char * const msdc30_2_parents[] =3D {
+> +       "clk26m",
+> +       "univpll_d6_d4",
+> +       "mainpll_d6_d2",
+> +       "univpll_d6_d2",
+> +       "msdcpll_d2"
+> +};
+> +
+> +static const char * const disp_pwm_parents[] =3D {
+> +       "clk26m",
+> +       "osc_d32",
+> +       "osc_d8",
+> +       "univpll_d6_d4",
+> +       "univpll_d5_d4",
+> +       "osc_d4",
+> +       "mainpll_d4_d4"
+> +};
+> +
+> +static const char * const usb_1p_parents[] =3D {
+> +       "clk26m",
+> +       "univpll_d5_d4"
+> +};
+
+The next one is the same as the previous one. Please merge together.
+
+> +static const char * const usb_xhci_1p_parents[] =3D {
+> +       "clk26m",
+> +       "univpll_d5_d4"
+> +};
+> +
+> +static const char * const usb_fmcnt_p1_parents[] =3D {
+> +       "clk26m",
+> +       "univpll_192m_d4"
+> +};
+> +
+> +static const char * const i2c_p_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d4_d8",
+> +       "univpll_d5_d4",
+> +       "mainpll_d4_d4",
+> +       "univpll_d5_d2"
+> +};
+
+All the I2C clocks have the same set of parents. Please just have
+one list.
+
+[...]
+
+> +static const char * const tl_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d7_d4",
+> +       "mainpll_d4_d4",
+> +       "mainpll_d5_d2"
+> +};
+
+The lists for the tl clocks are the same. Please merge.
+
+[...]
+
+> +static const char * const ssr_pka_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d4_d4",
+> +       "mainpll_d4_d2",
+> +       "mainpll_d7",
+> +       "mainpll_d6",
+> +       "mainpll_d5"
+> +};
+
+This one and the next could be merged.
+
+> +static const char * const ssr_dma_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d4_d4",
+> +       "mainpll_d4_d2",
+> +       "mainpll_d7",
+> +       "mainpll_d6",
+> +       "mainpll_d5"
+> +};
+> +
+> +static const char * const ssr_kdf_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d4_d4",
+> +       "mainpll_d4_d2",
+> +       "mainpll_d7"
+> +};
+> +
+> +static const char * const ssr_rng_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d4_d4",
+> +       "mainpll_d5_d2",
+> +       "mainpll_d4_d2"
+> +};
+> +
+> +static const char * const spu0_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d4_d4",
+> +       "mainpll_d4_d2",
+> +       "mainpll_d7",
+> +       "mainpll_d6",
+> +       "mainpll_d5"
+> +};
+
+This one and the next could be merged.
+
+> +static const char * const spu1_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d4_d4",
+> +       "mainpll_d4_d2",
+> +       "mainpll_d7",
+> +       "mainpll_d6",
+> +       "mainpll_d5"
+> +};
+> +
+> +static const char * const dxcc_parents[] =3D {
+> +       "clk26m",
+> +       "mainpll_d4_d8",
+> +       "mainpll_d4_d4",
+> +       "mainpll_d4_d2"
+> +};
+> +
+> +static const char * const apll_i2sin0_m_parents[] =3D {
+> +       "aud_1",
+> +       "aud_2"
+> +};
+
+All the audio interface clocks have the same set of parents. Please
+have just one list.
+
+[...]
 
 
-
-On 7/15/2025 4:41 AM, Dmitry Baryshkov wrote:
-> On Thu, Jul 10, 2025 at 02:45:43PM +0530, Shivendra Pratap wrote:
->> The reboot-mode driver does not have a strict requirement for
->> device-based registration. It primarily uses the device's of_node
->> to read mode-<cmd> properties and the device pointer for logging.
->>
->> Remove the dependency on struct device and introduce support for
->> Device Tree (DT) node-based registration. This enables drivers
->> that are not associated with a struct device to leverage the
->> reboot-mode framework.
->>
->> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
->> ---
->>  drivers/power/reset/reboot-mode.c | 23 +++++++++++++----------
->>  include/linux/reboot-mode.h       |  2 +-
->>  2 files changed, 14 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
->> index fba53f638da04655e756b5f8b7d2d666d1379535..61f647b23959789a313f3af0bd967abcad45fa43 100644
->> --- a/drivers/power/reset/reboot-mode.c
->> +++ b/drivers/power/reset/reboot-mode.c
->> @@ -12,6 +12,7 @@
->>  #include <linux/reboot-mode.h>
->>  
->>  #define PREFIX "mode-"
->> +#define pr_fmt(fmt)	"reboot-mode: " fmt
-> 
-> This wasn't really tested. If I remember correctly, it should be defined
-> before the first include.
-yes. fixing this in next patch.
-> 
->>  
->>  struct mode_info {
->>  	const char *mode;
-> 
+Thanks
+ChenYu
 
