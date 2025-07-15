@@ -1,246 +1,148 @@
-Return-Path: <devicetree+bounces-196577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5621BB06387
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 17:54:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A19C1B063E9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 18:08:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 783714A8413
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 15:53:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED32E580E55
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 16:08:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E93264608;
-	Tue, 15 Jul 2025 15:53:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C65245038;
+	Tue, 15 Jul 2025 16:07:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="ASnAyfpx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RsD31o2g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2042.outbound.protection.outlook.com [40.107.93.42])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B33321E531;
-	Tue, 15 Jul 2025 15:53:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752594813; cv=fail; b=KkcDIqpN4fZbmG4LD0qMhAaO43CaYA52cFVtc+y0DeB9XFRlR3u/jXPN/zouBOKxaRU6WvPdW6WWZ6cag1INPaaraA0a9g0LqxnkETzI6WcJ9owDe+oA33Qma4MW1fASjiVeBLZzWE6a57JzF2wwo8rrrVD2BmmeaP0y343j+ug=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752594813; c=relaxed/simple;
-	bh=30X2xrJRNguKMX0jITO2EaMSqIl+ewFGBKahf8EZFUc=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=J2i4cVsOZ8HMA+iPWDtQGFx0xwzOr2s9nHESgRkuTXaCIlwyIfgmOxgBZeneQmRay7UIAYffq/s2ywnOpuqxLzXFIVQ5DqxUeZUxa7WqvoG84LtWm/+89sCjyp9leKOQgijFPf6ln3tCNV0Tf7K3AvyPuMRlSe/cqGkl6rFw4Aw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=ASnAyfpx; arc=fail smtp.client-ip=40.107.93.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mCBmWA3r7RTIBgXXX5YtUHkHFBW5rHUET4m59MmaTOPeajXUoN3SJmYuQFYA6nOaHNztgiRrYumd+wTkTIQEiLAN8KawmMeQ/6XXAKDCqWn6yzYsP3+wEp/vop6H4BdQyRf8VAoUuqWzhJzwqH01MpljAkwjJgSoySUnQz8las18CI5TojrTGCYsfGFaUgR/KZ/6CIb1mtKek1FjCXsoHzUfLme6DtdDo2/jlHTv/ywcbh2qg1Ct3Jj8fAFy0w4STZxHbC7WNZZnPeuFjUjONoQKMAU3FFfIC7QlJDXlzj/sUF2bjMm4BlencP2XrE3s/QVLXagApSnl28y9Vr7BSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=otwwLS32/c07Y81fWlFwQGT75KQ8JMil2ILlArTiBy4=;
- b=tSWQIz7zNNcQgW4FuKy7nLBeAclBeFqBmPhrUb80ZFQBeIb1lx5yVXR98HdSDM+/yCGV2UqfVfauGW3sPLDq/Nif9Kz+zrngmjKuEf7Qv/vdF4Iclo4uk/aBVuK+ZcL2xS42Cz0xD+zlbRoEoktGO6rH4/LyJMRjNEdd6QN99cp+IH7//OzBBwq9eJXWMwtJuwsexePtsOgL+E5irBuMF3bstsdtSQfzRfFL8Rp4fUPJ0YvDuh3nVGTEyvfCLnG/4Cr/lgOcByqN4QygC6O+O/rqPm/iQtywUVg5l34tn72mb9z+tRCfv3cjIspe5JDK9fAv9O/QGTfrYa/ejLTNOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
- dkim=pass header.d=altera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=otwwLS32/c07Y81fWlFwQGT75KQ8JMil2ILlArTiBy4=;
- b=ASnAyfpxk1k8YdZfTBYgdOy/Zm70tA4QuIhf7ag3aSrbo6+6w5dn18Svtd329Ad2wW2HVB/mdZfwKhGpTV2AlNMYz8XcXgPkVMKkPE4uhBZ/31Na41Ax/aZTrcPSVonSzlgfiyiLxk20i51XVM2Ig/F4UMAWkMfSfvusgVXju36k19gj9F8CDsaZom9gWLkzIVn5HWH5nlNT/vev4VpqnYwBeNmEYcax0DrK2Nfqob9lMgpUBHxSS+/ysnSR9HRxuOK+pEifH1kOWTg2cM/NUo4KrMoVHMhkORRyUiw+6w502+SA8vJ8O2CWwos2B0M2rQAY/jd4b1a+Y9G+kxeNyQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=altera.com;
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com (2603:10b6:a02:b4::23)
- by BN8PR03MB5107.namprd03.prod.outlook.com (2603:10b6:408:d8::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.33; Tue, 15 Jul
- 2025 15:53:28 +0000
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c]) by BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c%6]) with mapi id 15.20.8901.024; Tue, 15 Jul 2025
- 15:53:28 +0000
-Message-ID: <52f67fef-d6a5-4e9e-8f4b-2fb904ce81b4@altera.com>
-Date: Tue, 15 Jul 2025 08:53:26 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: net: altr,socfpga-stmmac: Add compatible
- string for Agilex5
-To: Rob Herring <robh@kernel.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- dinguyen@kernel.org, maxime.chevallier@bootlin.com,
- richardcochran@gmail.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250714152528.311398-1-matthew.gerlach@altera.com>
- <20250714152528.311398-2-matthew.gerlach@altera.com>
- <20250715035731.GA14648-robh@kernel.org>
-Content-Language: en-US
-From: Matthew Gerlach <matthew.gerlach@altera.com>
-In-Reply-To: <20250715035731.GA14648-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR05CA0053.namprd05.prod.outlook.com
- (2603:10b6:a03:33f::28) To BYAPR03MB3461.namprd03.prod.outlook.com
- (2603:10b6:a02:b4::23)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E980684A3E;
+	Tue, 15 Jul 2025 16:07:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752595678; cv=none; b=bcvlcDRvQ/PqpfzoglCmD858jSsZEzR3aK+aYXvAy5JFc7AhqRrozD++agA9uXCPKZ9hbEW4tD8rCKQBL9bVX2PiuBABhjeuRMFva7AHb6FKFHAQpfpo92j32yrTJ7jPgbiNVxSlDt+dPxBxCkEnVJy7YgKdyreaBW1zFB4U83M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752595678; c=relaxed/simple;
+	bh=92vM89H319kLp8p2XpLxnfznxqmrIenWM4aQHIRBrXk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oPqPylPKORWFZITBlfgOlkYB1cJE4IDGxQpnjw5Qqw7sTr+IJHN/obCQVeBPXmOyPwPkdBTMzDk24IPaQ3LKs51QdzsOk34siAO+gBCaIh/fIbP0sC32GtmivCreBxscoODS3+daO078Ik3yhROq4jhrleA74A101pBjZoKOK2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RsD31o2g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42207C4CEE3;
+	Tue, 15 Jul 2025 16:07:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752595676;
+	bh=92vM89H319kLp8p2XpLxnfznxqmrIenWM4aQHIRBrXk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RsD31o2gsWD6TDtzTl/d0SS/6Wdo0kSKjMBctHAM1NDaebqlaca+1uuOoIck8uMOF
+	 E70n5fZ/HPplENYVwPGdXbce3jpHOW+TunUtS7a4aoBhVa9vCqG/VlP7TQ5ptyshKa
+	 yNRSGCG0r8TbjcewNDjuIfyQNw14hGBh4acuozbXUzqYzvM1YsJ8Xy3jq24YDZOxZ7
+	 dSlTAKpzE9i8BknUdnvaJNVGvvzdGfYquGD+e5j3+BXyzyctJv5T4gUS+6RIxn5Ucm
+	 tlBzg7qisEOUECilZV2mOu1ZwWsFApvH78c1T1bRya0d0FOs5dwR1CyAYH60l81S46
+	 BHFoBKWweUwGQ==
+Date: Tue, 15 Jul 2025 18:07:48 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Breno Leitao <leitao@debian.org>
+Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Peter Maydell <peter.maydell@linaro.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v7 18/31] arm64: smp: Support non-SGIs for IPIs
+Message-ID: <aHZ81Kah1Uaa184N@lpieralisi>
+References: <20250703-gicv5-host-v7-0-12e71f1b3528@kernel.org>
+ <20250703-gicv5-host-v7-18-12e71f1b3528@kernel.org>
+ <7mhnql75p3l4vaeaipge6m76bw4wivskkpvzy5vx3she3wogk4@k62f5hzgx5wr>
+ <aHZm8BsqV1ighJ+2@lpieralisi>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR03MB3461:EE_|BN8PR03MB5107:EE_
-X-MS-Office365-Filtering-Correlation-Id: e6df130c-d52c-4e6f-8af1-08ddc3b7bd81
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?azQ3R21FQllYTWo4TUxVSSsxa090ZnZ4LzRoaHNLMDFwM0FkRWc5S3dweVl0?=
- =?utf-8?B?SGtjbGgyenZzRFUrcTJMZ0ZTS3V6T1F2TVIrNWhzZGgwemRYVlg5dDl2RHQz?=
- =?utf-8?B?dVRoQ0RiV1N6ZkJKcmlUTVNWL2pOQjVYVGxqZXVLSmRPR1NaZWIwUkRaaEZT?=
- =?utf-8?B?dUVkblJocWhNRmpqbEFqRExJTmU4UWRjNmlPa0JaS1JzN3lNbW8wdGRqRlZ0?=
- =?utf-8?B?M1pMNUtlblR1T1VtZVNqQzR4K1VnMVhIRjlMZUhnRFRxenVDYlpRRUlPV1po?=
- =?utf-8?B?ZldZS3M5T3ZQMGhjVkJ4TWtBQ09YOFNBUlBFQkM2TzUxa1BLWU5jRTZQQVdV?=
- =?utf-8?B?SjREOHp1R2RxMytiTU54YStlQ0ltTm9ZeGJDKzg5UVZCd1U4bFRVTVFsOVov?=
- =?utf-8?B?TDZyTFp5d0ZSMDQyVi9BRitZOUJSd3dTdU92dUoxVFdRNVc5d0pXemZmbEJB?=
- =?utf-8?B?KzdPU2VuaFJMUTNndEo0RVhWOUowNGloU2JETFdLQ01iVmlacDk1THpBMDF4?=
- =?utf-8?B?NWVud0tGUC9DNTNIc3ZXdGtRWE1IdXRBNlFJRVQxZzJ0OVZCOVBsV2R1OXpK?=
- =?utf-8?B?RjdvVCtoUUZjOWJBUThPaE1VRjJjWitFYXhTUmRSU0FrYkJkZGVaT2U4RHBD?=
- =?utf-8?B?K1UxVXk1Uk5rNDJDS3hGZzdNalhvYThObEJOaWJjdzRHT2dXQnRxNUdHRGdz?=
- =?utf-8?B?Zk1rWkIyemh5dkpueFR4WUZkSi9sWHdxVVZuYkpYNXdjT29FcmFRR01SQVNt?=
- =?utf-8?B?VzBUcVgwb09UeHZjVEhRZE0vWFdLdWlRa1dEUE9kQ3k4dzlUN1NwbzlDWnNQ?=
- =?utf-8?B?QUVkQm5yVzJZZHZpREp0eFk4TldFbG9xNkIxSUVaaWZsRWdTQlpuMFozSU9j?=
- =?utf-8?B?a1RuQVJIV25meis3MUZ0d2VFL1pBTktHWmRLVllLcUM2TGpNK2haU2VMTi8z?=
- =?utf-8?B?WEd1Z2FwVzdwV1RoeithbHBVdldub2FEK1JQbitmTjJ5S01RUk0vbS93Nmhz?=
- =?utf-8?B?aFA1RTZwOWMwWVZ2SDd3ek5LaEtVRDJNam5VMUVBTEtBRnJ4TzlBMkc0L2Q1?=
- =?utf-8?B?ZnJ2VURma3UzelpadXZkMzFIZ0IxaUpEZXQ4Y1VIend1TUx5UFBEZjg1TU5n?=
- =?utf-8?B?aGkzV1QrZTZ3NmtXZWZZWHNVMTErMEVUS1VScEFHOFNHZUFHcjdBbkVSYnVx?=
- =?utf-8?B?eHB1VmxNMVVOd1pyeUxIZ0poRy8wdDZwZUpUTUZIL3Y4dzFrUWpCMWxKdmN4?=
- =?utf-8?B?cDFvbFdEUG5obldNOE1YUXBoRWZqN2pXUStuMm9wRHdlNTd5aHpaYzduSytJ?=
- =?utf-8?B?eFhKTkhnZm5NT24xWk5RSkc1aUdGR2ZsV2lOWmxLakxkaHowOEtvejJLcy9q?=
- =?utf-8?B?S2dzRTBiTHpxaVdjK2hGZ2dFdysvL0VJdTEyc3o2TTF5QUxlVUw5c3gvWW9p?=
- =?utf-8?B?eldlWGRFYmRtNjg0QVVuSzFWNzFkSHZzTXJRQm0zYkRjSzVZc1NiOFFpOUJw?=
- =?utf-8?B?NDZnMnFPWEhZeXJueHdYaUMveWdiVXdzYnFuaWltWGpIYWJ6U1lpUzBrZHRm?=
- =?utf-8?B?MUFxYjc4cGZtWTNsVjFLTnlBTUZlZVZFcHlPVFdBRWlNNUtNSUQvUU53VEZx?=
- =?utf-8?B?UUVHSFJHU1F6ZDJGcmU0UkJVZG1Nbks2Uk9HNDhiQTV6aXhmS3pURnpLRXpm?=
- =?utf-8?B?SllKdlZ0V0l4eFp6OTJIeVdkRU5YRlhIVHQ0a01qanlONktPV09oWUpBYk9s?=
- =?utf-8?B?ajBCK0E5a1BTM3lPaTNMd0h0K05rakIvRDl2Mi96cE9JNmQ4NHpxMkw0bzlW?=
- =?utf-8?B?NUNZbVJlVDFXaDV0RkwvZ0t6eUFHc2ZwZi8xMVF6U0x6dU40OHM2YnZRYkNK?=
- =?utf-8?B?VU9WS0lwTHpvWnlvM0I5bHpuRGRLMlp4UHNZcDdpV1NHdmhQVUpLYTRrcFBS?=
- =?utf-8?Q?N1V9eZhPC9M=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB3461.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OVR4OXBiTUQ0bVczM0s0a2prOFo0YjA1NS91aU5QdnFXbEhXS0RpdzBWb1VF?=
- =?utf-8?B?TWFMSUtYeTMvc3dJb1ZKdG5UME1mOWFRTFlvUVRVM1dJVjRwYjd3WkRHakFk?=
- =?utf-8?B?WWY0SmxOQk03N2lJMnpVN1M1Z0NUM3VTMTAxVmc4K3BpVURJMEM5ZlFSdGdu?=
- =?utf-8?B?NUtMdzJwVjJQUklOY0ROSDNiWGxFNHFOYXhwYjlydTFIWjdxRTlCSjAvK2FX?=
- =?utf-8?B?ZXN1L2t3THVrbnRuNk5YcVZnOWVhci9BZC82S01Ebm9nSTVyVmpyUngrVk5V?=
- =?utf-8?B?MHppdXdYTmpROGNRNFA3eG8vbjNNQjFZeWZmTVdhc3NuZEE4U3RwNHh1aEc4?=
- =?utf-8?B?ZForVFlKOTc2a2dRaHBZL2tFeWk5MjhSdmttckZXTXc4ckNGUHptd0NXZW9W?=
- =?utf-8?B?WGZPZ2dZUVZmQjR0eStrbktKVWtKS0F6UmxzeVluWmpjLytjZjMxTlRIa0M4?=
- =?utf-8?B?YXJLZVcwWHdUM3ArQ3hUVGJWb3BwNHlwV0JINDZuVm45YkNQYitmaEVYd0JW?=
- =?utf-8?B?VklDdGxDMXlXSEQ0c3BkTG1NMTFQMDQzb1hIWWtxbmMvMHNBZllJbHAxTVBl?=
- =?utf-8?B?QmxpemZEWktDN1FzMkxtdWluNndGajE2NVRVaDJxMzlqOGtqK0M4cnpnbVFG?=
- =?utf-8?B?bEVqRmpGWmltRDd4MEtpY0ZkV2QyOEhlSi81bGluUWpwWTY4UGY0S3FJWEpt?=
- =?utf-8?B?ZEgwWE1lYzRuTHBIYlFBU1liTjF6WS9jOUtNOGJuUXZHb2xuWVJ4UnNxeEV5?=
- =?utf-8?B?TW9EL2ZZUTBuc0NETjBwdW9nRUt1Mi9vMHJRNWYxZGpLR2hQajVHTHBxQVZU?=
- =?utf-8?B?TWFxclNRblYrd0FCbnYxanMreEZYK1BtNjhPbXdlRkZIYmE0VjBIQVBGN2gy?=
- =?utf-8?B?Y28zTThwYUZndm1wSC9Wa2Q1YmR3d1VEeEtvbmZNOVZQZHlDS2JMVVJPZWhD?=
- =?utf-8?B?am5tTWFlaGZmSmc4bWN2RzlnNTUvMkR5cjdjSTBQMmNkMVh3VEQrMUVWWW5T?=
- =?utf-8?B?S1RkVWJJZHpnS2xUVE5rU01SQUZFaDZMei9jMEE0ZjVBMnNBT0dPaDlaVDNi?=
- =?utf-8?B?YTVMcUs1bFp4Y3ZvNEhTcTRXTnNaR1Y3akh3blhpY0tTSjYrZ0YrYUovR2M5?=
- =?utf-8?B?Tjc1cnhNREtwRzB1REk5RldKMGFxdzRzMHVKNXNWWVU0MHJwY25OL3QyQytE?=
- =?utf-8?B?MHBHUmdCbTkwbFk1VkcyTVBsaXZNVkFrY2VIZUV3WHhoeHZoYmRSVmRPTHdw?=
- =?utf-8?B?aDdqV2JobzNnMlhnUTYyV1IxV0JiS0E5akJPSEpxWUZlUFpEQURFU1NtOHpk?=
- =?utf-8?B?MDdIMTk2eExkOGxZT3QwT2ZOaVZTMTdFZVE2bVhMTGhCdnFNWkdhMmorc3Nx?=
- =?utf-8?B?T0RFWjFqSnhhUFcvUmEvUS9KMkNKdnkwZWV0aGt4MjI1UFF0VFdobEJBUlJJ?=
- =?utf-8?B?SjExS0VhTG9iRG5HaU55N0M3THpZZ2oyVjZxamdZWDR4d3ZaK0VFZDQyc2NQ?=
- =?utf-8?B?NFJJRk5aNHBqTUdWT0xyMzQrZWJTY2tYaWZldCtsRTMxVnQzWk8weVhPY01a?=
- =?utf-8?B?RnNmVWk5Z3h0WU92MUF0aEF4TmVZQWIrZEJTVG1JUG5CVU5sU2xKdkpVUXg4?=
- =?utf-8?B?RmZkMjBIeHpXb2NFbklZZFd3ei9seTNYdjZaNEVjUEl5V24yQ1MrODkwVHFl?=
- =?utf-8?B?V1Q3cnFzQjdocTV1M3JpMjNKbWljMWMyYm5Wc0NuRGxUc1NjRnlQY2tyOU4y?=
- =?utf-8?B?eDd5bkdvUXJjdDdEckJ5TVh2TXJVTVRycjJHckF0dUZUdTJHeU1SVmU1OGdq?=
- =?utf-8?B?dHI4cFZjVGNlN2RtRys5cW5BSE5BVWJJODhIZFJkdHlBSWlmcHhTTks3Y0Ft?=
- =?utf-8?B?Q2xXV2M0eDMrZWZvL2ZsZXRBd0trNTE1eVhYTDhLRnBZU0xFWEo5OERFeGg1?=
- =?utf-8?B?bjUyTXBYZERqMk83TzZEam9sMU9PTzhWaStHM3VxL1haTDBabkx3VWQ0NFds?=
- =?utf-8?B?TDhPemMySjJreGNQdHBLdTZ1cUg2cWtHQlV5QUd4RWV0eTJHTENpZDJ4cEQ4?=
- =?utf-8?B?ODJwazlGR0paN2tyZzlXaXJNc282K2t6SmlzdnZnSk9JNCtJTGhSK0JiNDlC?=
- =?utf-8?B?R1hLcDQ1N0hnYW5pYy9VT0RWUkNCL2c3UWNjZ2g2VUNLcGxMdTRJWWtHWUNZ?=
- =?utf-8?B?R1E9PQ==?=
-X-OriginatorOrg: altera.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6df130c-d52c-4e6f-8af1-08ddc3b7bd81
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB3461.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2025 15:53:28.3984
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ntocoFU6XrOEun6kSM5VSH2FErEGP+p6ZQG1sI5UqmGrdUqf8FmitmoX8yQRuIDv+ecorpIaWw1IoI96I5PlmcoDj65GUctBStiOem3k484=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR03MB5107
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aHZm8BsqV1ighJ+2@lpieralisi>
 
-
-
-On 7/14/25 8:57 PM, Rob Herring wrote:
-> On Mon, Jul 14, 2025 at 08:25:25AM -0700, Matthew Gerlach wrote:
-> > Add compatible string for the Altera Agilex5 variant of the Synopsys DWC
-> > XGMAC IP version 2.10.
+On Tue, Jul 15, 2025 at 04:34:24PM +0200, Lorenzo Pieralisi wrote:
+> On Tue, Jul 15, 2025 at 07:10:29AM -0700, Breno Leitao wrote:
+> > Hello Lorenzo, Marc,
 > > 
-> > Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
-> > ---
-> >  .../devicetree/bindings/net/altr,socfpga-stmmac.yaml     | 9 +++++++--
-> >  1 file changed, 7 insertions(+), 2 deletions(-)
+> > On Thu, Jul 03, 2025 at 12:25:08PM +0200, Lorenzo Pieralisi wrote:
+> > > diff --git a/arch/arm64/kernel/smp.c b/arch/arm64/kernel/smp.c
+> > > index 3b3f6b56e733..2c501e917d38 100644
 > > 
-> > diff --git a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-> > index ec34daff2aa0..6d5c31c891de 100644
-> > --- a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-> > @@ -11,8 +11,8 @@ maintainers:
-> >  
-> >  description:
-> >    This binding describes the Altera SOCFPGA SoC implementation of the
-> > -  Synopsys DWMAC for the Cyclone5, Arria5, Stratix10, and Agilex7 families
-> > -  of chips.
-> > +  Synopsys DWMAC for the Cyclone5, Arria5, Stratix10, Agilex5 and Agilex7
-> > +  families of chips.
-> >    # TODO: Determine how to handle the Arria10 reset-name, stmmaceth-ocp, that
-> >    # does not validate against net/snps,dwmac.yaml.
-> >  
-> > @@ -23,6 +23,7 @@ select:
-> >          enum:
-> >            - altr,socfpga-stmmac
-> >            - altr,socfpga-stmmac-a10-s10
-> > +          - altr,socfpga-stmmac-agilex5
-> >  
-> >    required:
-> >      - compatible
-> > @@ -42,6 +43,10 @@ properties:
-> >            - const: altr,socfpga-stmmac-a10-s10
-> >            - const: snps,dwmac-3.74a
-> >            - const: snps,dwmac
-> > +      - items:
-> > +          - const: altr,socfpga-stmmac-agilex5
->
-> > +          - const: snps,dwxgmac-2.10
-> > +          - const: snps,dwxgmac
->
-> Is the distinction here useful? I doubt it, so I'd just drop the last
-> one. Generally, we've moved away from any generic compatible for
-> licensed IP like this because there's *always* some SoC specific
-> difference.
->
-> Rob
+> > > @@ -1046,11 +1068,15 @@ static void ipi_setup(int cpu)
+> > >  		return;
+> > >  
+> > >  	for (i = 0; i < nr_ipi; i++) {
+> > > -		if (ipi_should_be_nmi(i)) {
+> > > -			prepare_percpu_nmi(ipi_irq_base + i);
+> > > -			enable_percpu_nmi(ipi_irq_base + i, 0);
+> > > +		if (!percpu_ipi_descs) {
+> > > +			if (ipi_should_be_nmi(i)) {
+> > > +				prepare_percpu_nmi(ipi_irq_base + i);
+> > 
+> > I am testing linux-next on commit 0be23810e32e6d0 ("Add linux-next
+> > specific files for 20250714") on a Grace (GiCv3), and I am getting
+> > a bunch of those:
+> > 
+> > 	[    0.007992] WARNING: kernel/irq/manage.c:2599 at prepare_percpu_nmi+0x178/0x1b0, CPU#2: swapper/2/0
+> > 
+> > 	[    0.007996] pstate: 600003c9 (nZCv DAIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> > 	[    0.007997] pc : prepare_percpu_nmi (kernel/irq/manage.c:2599 (discriminator 1))
+> > 	[    0.007998] lr : prepare_percpu_nmi (kernel/irq/manage.c:2599 (discriminator 1))
+> > 
+> > 	[    0.008011] Call trace:
+> > 	[    0.008011] prepare_percpu_nmi (kernel/irq/manage.c:2599 (discriminator 1)) (P)
+> > 	[    0.008012] ipi_setup (arch/arm64/kernel/smp.c:1057)
+> > 	[    0.008014] secondary_start_kernel (arch/arm64/kernel/smp.c:245)
+> > 	[    0.008016] __secondary_switched (arch/arm64/kernel/head.S:405)
+> > 
+> > I haven't bissected the problem to this patch specifically, but
+> > I decided to share in case this is a known issue, given you are touching
+> > this code.
+> > 
+> > I would be happy to bissect it, in case it doesn't ring a bell.
+> 
+> Thank you for reporting it.
+> 
+> Does this patch below fix it ?
 
-I will drop the '- const: snps, dwxgmac' in v2 and just list the following:
+FWIW it does for me. I think you are booting with pseudo-nmi enabled and
+the below is a silly thinko (mea culpa) that is causing the IPI IRQ descs not
+to be set-up correctly for NMI and the prepare_percpu_nmi() call rightly
+screams on them.
 
-> +      - items:
-> +          - const: altr,socfpga-stmmac-agilex5
-> +          - const: snps,dwxgmac-2.10
+If you confirm I hope it can be folded into the relevant patch.
 
+Thanks,
+Lorenzo
 
-Thanks for the feedback,
-Matthew Gerlach
-
+> -- >8 --
+> diff --git i/arch/arm64/kernel/smp.c w/arch/arm64/kernel/smp.c
+> index 4797e2c70014..a900835a3adf 100644
+> --- i/arch/arm64/kernel/smp.c
+> +++ w/arch/arm64/kernel/smp.c
+> @@ -1093,7 +1093,7 @@ static void ipi_setup_sgi(int ipi)
+>  
+>  	irq = ipi_irq_base + ipi;
+>  
+> -	if (ipi_should_be_nmi(irq)) {
+> +	if (ipi_should_be_nmi(ipi)) {
+>  		err = request_percpu_nmi(irq, ipi_handler, "IPI", &irq_stat);
+>  		WARN(err, "Could not request IRQ %d as NMI, err=%d\n", irq, err);
+>  	} else {
 
