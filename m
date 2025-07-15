@@ -1,212 +1,164 @@
-Return-Path: <devicetree+bounces-196644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C06DDB0689F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 23:36:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87664B068BC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 23:42:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 188371AA36CF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 21:36:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEA405644A1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 21:42:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26D9729B8E4;
-	Tue, 15 Jul 2025 21:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1902C1589;
+	Tue, 15 Jul 2025 21:42:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="s+zxybaD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BEqwe/Kb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5744324DCEC
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 21:36:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E50C2C1582;
+	Tue, 15 Jul 2025 21:42:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752615369; cv=none; b=imTGrz1Ol6KuEEZ6pic/bABQcldZCKnWcBdOyEAM6blId4gq/h0uZzG9CwRlyUdf4yKxOf1xod2aLeo+57A4sZ4mmnLT1wYZ//P+EcF3bXVlVu8r/EpVeISdUJsQ/Qi7U7wwuAtN+LYgUyiyfDPXBJfjbsPeEAvhTOnkfufNf2g=
+	t=1752615731; cv=none; b=Ylh96K6gth/VImi+GVcjkvhFTWo123lXT7KlvgGczHwbD2I8ibm3YnP4FvAFOJO/IhN+y3zfwEMBhBkbRPwPg+JM/FOPNdpRPai7sWcZeNfOinArwed2KsTimwd5gC1lNZ7WspaJ/KbeYWi/Oqte351wAK4JdqafuTRp5qcUEeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752615369; c=relaxed/simple;
-	bh=jH0P1jJT9HcJ9LDe4t29cRUynt4zoILGOK7RXrWM7l4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kQaq31P3bDQSCfHEWlVjcDxuhS1A+kUt3QD/rV5xGz3c4SFdPHz+mHR7IYi7AD8RBxO8s9KQh8b6dl2HCxQh0u3TAOa+x9BIcb9yr6IBLxdzCmXl0PL8s54AcdPQr7+AC0TpTqpV4Kljurca3dop8MEc07e09haTqryNQpLAobs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=s+zxybaD; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id A2099111D;
-	Tue, 15 Jul 2025 23:35:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1752615332;
-	bh=jH0P1jJT9HcJ9LDe4t29cRUynt4zoILGOK7RXrWM7l4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s+zxybaDPiiQFPSPxoclpQxPpo6ISUVSXejEFkWnyRPyVECCdlaTMaFuUlXZHEuJQ
-	 dzjY4ZECsjx+yVJT65W8NOrOo8Rfxs0YMxFweIC+7VmZIp537tYOinWodVi92N27PN
-	 yW3E3UgnNlbbNeXVQTDe/1cHgHwenelRiAX7NcsM=
-Date: Wed, 16 Jul 2025 00:36:03 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Frank Li <Frank.li@nxp.com>, devicetree@vger.kernel.org,
-	inux-media@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: Compatible vs onnn,model at ap1302 binding
-Message-ID: <20250715213603.GO20231@pendragon.ideasonboard.com>
-References: <aGLRbiqT8qVdG40z@lizhi-Precision-Tower-5810>
- <20250630183041.GA17697@pendragon.ideasonboard.com>
- <20250715195404.GA1794419-robh@kernel.org>
+	s=arc-20240116; t=1752615731; c=relaxed/simple;
+	bh=guZSpdsSKl3YawdSkJgYATxoiaL2pmIvs8uhCzKiB9I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=T9NOHiPqLwZ/dH+X3T9NBjk/wi/KtAU8wNi9LkzdGNx8j1DMYPy7+wvr3VZ5GGKThWIOMAFgK627/lNPREVYTvU0JR2WVOD2e4mzLOF/WCUe5YEjRJXleSNvYsxMktIjhyPiycqllPMqRhr+BYO+db1q43J6sFUjn11SHKDH54c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BEqwe/Kb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F481C4CEF8;
+	Tue, 15 Jul 2025 21:42:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752615730;
+	bh=guZSpdsSKl3YawdSkJgYATxoiaL2pmIvs8uhCzKiB9I=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=BEqwe/Kb0DhRjZq2j0U1+DBC1cNdamwTtpGrrd7qT87GjSS8y2mhHiM4biu1qyQgp
+	 xJ3TNMT1j/pAJhLx2qv2IvBHSNgtb4M8LP/AXWaaj0k4B4QmHQ79rskGzY/Kd+XV4F
+	 Wva9ZPmW5B9EyOlEgSWNRejkfzeXF99Zw7mi7OrF9IC+zXQ2/vyuTLo0Mk75B7Tew/
+	 cdJwDhYr25xtyx46q4Cf0XvgfujttQGDsRVLNoJamb1PTWnyyQjYhiZw2T+w2xlaE5
+	 zTi8XsJhXkYvEICXotpzqcCK938wfoh41n5Pq/3q3vP1cvAG0t05Ex2ToYJ3tIVCLG
+	 N098WBs8yo4vg==
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ae0dad3a179so997472666b.1;
+        Tue, 15 Jul 2025 14:42:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV71b5oIxckM3hq7sOvIJNMIO8SR084rjuSpkP1xN2G0AGlS0rSJ7rf/21Hc95n+5X9PE3Hcr8Y+kP87hOBZg==@vger.kernel.org, AJvYcCVkNEOKaFxz6juV7fq3WoSpM9X3z+0nAV2Tge4aTezxmHX5AGbIPRdNzUvulJCiszO56w8qeeTF1TmE@vger.kernel.org, AJvYcCWLbq9z0vUOCOZH007LIWPyl8tawWMT9KJw9QKyQfzm+yzIAqRVjpPw2ScxNM4QyIfQYM6vnZSS8Tfi@vger.kernel.org
+X-Gm-Message-State: AOJu0YxztafTvzyx2KqaIg+qIuD7y0nWU9lsCgfN1QyQ2TNcT+AsfQWR
+	2xWtTMBpDC4bvqdosG+VaNCqYzm7ebvjttdzSOOddhOxr3wFbnp5+ood/Xkf+Smuy2TEhtVniVq
+	XGDaehUGa5+PA5W8J2nCRw7jRu0REiA==
+X-Google-Smtp-Source: AGHT+IHk6W6e8djWeHYzn+8CUV4LV8uGMUKpxPq6AVlHjkreAUXtga07mMI0HX3Pd4JvMQBc4nDKswFGqoJez+XxEQI=
+X-Received: by 2002:a17:907:c1e:b0:ae0:d201:a333 with SMTP id
+ a640c23a62f3a-ae9c9aed1fbmr105692066b.30.1752615729077; Tue, 15 Jul 2025
+ 14:42:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250715195404.GA1794419-robh@kernel.org>
+References: <89ded76a-8bd7-43b5-932d-f139f4154320@oss.qualcomm.com> <20250701212604.GA1850816@bhelgaas>
+In-Reply-To: <20250701212604.GA1850816@bhelgaas>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 15 Jul 2025 16:41:57 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+z+5_=YXiyCW1sbKDe0cjGNG7Qk=uRQ3efAFTd1J2ayQ@mail.gmail.com>
+X-Gm-Features: Ac12FXyuoicKuvNm6HvWPrbRH78YKSuEAn2LB-taGjeNjInaSIyRSsZYTEiDvxY
+Message-ID: <CAL_Jsq+z+5_=YXiyCW1sbKDe0cjGNG7Qk=uRQ3efAFTd1J2ayQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/4] dt-bindings: PCI: qcom,pcie-sa8255p: Document ECAM
+ compliant PCIe root complex
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Mayank Rana <mayank.rana@oss.qualcomm.com>, linux-pci@vger.kernel.org, 
+	will@kernel.org, lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com, 
+	andersson@kernel.org, mani@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com, 
+	quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com, 
+	quic_nitegupt@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
+On Tue, Jul 1, 2025 at 4:26=E2=80=AFPM Bjorn Helgaas <helgaas@kernel.org> w=
+rote:
+>
+> [+cc Rob]
+>
+> On Tue, Jul 01, 2025 at 01:21:29PM -0700, Mayank Rana wrote:
+> > On 7/1/2025 9:52 AM, Bjorn Helgaas wrote:
+> > > On Mon, Jun 16, 2025 at 03:42:58PM -0700, Mayank Rana wrote:
+> > > > Document the required configuration to enable the PCIe root complex=
+ on
+> > > > SA8255p, which is managed by firmware using power-domain based hand=
+ling
+> > > > and configured as ECAM compliant.
+> > >
+> > > > +    soc {
+> > > > +        #address-cells =3D <2>;
+> > > > +        #size-cells =3D <2>;
+> > > > +
+> > > > +        pci@1c00000 {
+> > > > +           compatible =3D "qcom,pcie-sa8255p";
+> > > > +           reg =3D <0x4 0x00000000 0 0x10000000>;
+> > > > +           device_type =3D "pci";
+> > > > +           #address-cells =3D <3>;
+> > > > +           #size-cells =3D <2>;
+> > > > +           ranges =3D <0x02000000 0x0 0x40100000 0x0 0x40100000 0x=
+0 0x1ff00000>,
+> > > > +                    <0x43000000 0x4 0x10100000 0x4 0x10100000 0x0 =
+0x40000000>;
+> > > > +           bus-range =3D <0x00 0xff>;
+> > > > +           dma-coherent;
+> > > > +           linux,pci-domain =3D <0>;
+> > > > ...
+> > >
+> > > > +           pcie@0 {
+> > > > +                   device_type =3D "pci";
+> > > > +                   reg =3D <0x0 0x0 0x0 0x0 0x0>;
+> > > > +                   bus-range =3D <0x01 0xff>;
+> > >
+> > > This is a Root Port, right?  Why do we need bus-range here?  I assume
+> > > that even without this, the PCI core can detect and manage the bus
+> > > range using PCI_SECONDARY_BUS and PCI_SUBORDINATE_BUS.
+> >
+> > On Qualcomm SOCs, root complex based root host bridge is connected to s=
+ingle
+> > PCIe bridge
+> > with single root port. I have added bus-range based on discussion on th=
+is
+> > thread https://lore.kernel.org/all/20240321-pcie-qcom-bridge-dts-
+> > 2-0-1eb790c53e43@linaro.org/
+>
+> I think you mean
+> https://lore.kernel.org/all/20240321-pcie-qcom-bridge-dts-v2-0-1eb790c53e=
+43@linaro.org/
+> so I assume you're looking at the conversation at
+> https://lore.kernel.org/all/20250103210531.GA3252@bhelgaas/t/#u.
 
-On Tue, Jul 15, 2025 at 02:54:04PM -0500, Rob Herring wrote:
-> On Mon, Jun 30, 2025 at 09:30:41PM +0300, Laurent Pinchart wrote:
-> > On Mon, Jun 30, 2025 at 02:04:21PM -0400, Frank Li wrote:
-> > > Hi Rob:
-> > > 
-> > > There are long discussion about AP1302 support.
-> > > 
-> > > https://lore.kernel.org/imx/20250623-ap1302-v3-0-c9ca5b791494@nxp.com/T/#m9ecad9fcbfd1ac1c59b3aa5737e3860a64db2eb4
-> > > previous thread
-> > > https://lore.kernel.org/linux-media/1631091372-16191-1-git-send-email-anil.mamidala@xilinx.com/
-> > > 
-> > > Let me summary the key points.
-> > 
-> > Thanks for the summary.
-> > 
-> > > AP1302 is I2C ISP processor, which can connect to some RAW sensors. such as
-> > > AR0144. AR0144 can work alone, a RFC upstreaming at
-> > > https://lore.kernel.org/linux-devicetree/20240630141802.15830-2-laurent.pinchart@ideasonboard.com/
-> > > 
-> > > When AR0144 connect to AP1302, it is not 100% transparents for software,
-> > > It needs power supplies for it.
-> > > 
-> > > The basically there are two methods now.
-> > > 
-> > > Method 1 ( Laurent Pinchart purposed ):
-> > > 
-> > > use a vendor's specific property like model
-> > > 
-> > > camera@3c {
-> > >         compatible = "onnn,ap1302";
-> > >         ...
-> > >         sensors {
-> > >                 onnn,model = "onnn,ar0144";
-> > >                 ^^^^
-> 
-> Why is this outside the sensor node?
+That's all misguided...
 
-Because when the AP1302 is used with two sensors, it requires both of
-them to be identical. The property could go to the sensor nodes, but it
-would then be redundant, and would make it possible to write incorrect
-DT. When designing APIs, one of my goals is to make them difficult to
-use incorrectly, so I think the property is better placed here.
+> So I guess the answer to my question is basically "to shut up DTC
+> check":
 
-This being said, it won't cause lots of issues if we moved the property
-to the sensor nodes. I think it's suboptimal with no benefit, but if
-that's the only contention point, I can compromise :-)
+It's possible DTC checks are wrong, I wrote them.
 
-> > >                 sensor@0 {
-> > >                         reg = <0>;
-> > >                         vdd-supply = <&mt6358_vcamd_reg>;
-> > >                         vaa-supply = <&mt6358_vcama1_reg>;
-> > >                         vddio-supply = <&reg_1p8v_ext>;
-> > >         ....
-> > > 
-> > > 
-> > > Method 2 ( suggested by Rob at 2021 ):
-> > > 
-> > > use compatible string:
-> > > 
-> > > camera@3c {
-> > >         compatible = "onnn,ap1302";
-> > >         ...
-> > >         ports {
-> > >                 port@0 {
-> > >                         compatible = "onnn,ar0144";
-> > >                         ^^^^
-> > >                         reg = <0>;
-> > >                         vaa-supply = <&vaa_regulator>;
-> 
-> Please don't hijack the graph binding (ports and port nodes). 
-> 
-> > > 
-> > >         ...
-> > > 
-> > > 
-> > >                Method 2                              Mathod 1
-> > > The same hardware should use the         There are not driver to match onnn,ar0144.
-> > > same binding regardless connect to       AR0144 is not visilable from host point.
-> > > which bus/devices
-> > > 
-> > >                                          compatible means software comaptible, but
-> > >                                          there are not driver for it at this case.
-> > > 
-> > > reg in difference spi/i2c also have      reg is i2c's address, but here is port or
-> > > difference means.                        sensor index.
-> > > 
-> > > Similar case for spi and i2c devices.    There are difference set of mandatory properties
-> > >                                          when connect to ISP or SoC.
-> > > 
-> > > 
-> > > Rob and Laurent Pinchart:
-> > > 
-> > >         Need a direction to move forwards!
-> > 
-> > There are two things to consider here. One is the DT property we want to
-> > use to identify the sensor model. It can be argued that the "compatible"
-> > property is widely used for this purpose. This is true, but the
-> > "compatible" property is meant to indicate compatibility from an
-> > operating system software point of view (regardless of which operating
-> > system is used). As a result, it serves as the central piece around
-> > which drivers are bound to devices, and therefore is also used to match
-> > DT schemas for the device.
-> > 
-> > What we need here is to identify the sensor model, first and foremost to
-> > load the corresponding AP1302 firmware, and to know which power supplies
-> > the AP1302 driver needs to control for the sensor. Note that it would be
-> > entirely feasible for the sensor power supplies to be connected to GPIOs
-> > of the AP1302 and entirely controlled by the AP1302 firmware, but on
-> > some designs those power supplies are connected to GPIOs of the main
-> > SoC, and therefore need to be controlled by the AP1302 driver.
-> > 
-> > While I think a custom property is better, I could live with
-> > "compatible" *iif* it does not imply at the corresponding DT schema for
-> > the sensor is pulled in. The DT binding for the sensor when controlled
-> > from the main SoC describe the properties of the sensor that are
-> > required for that use case, and those only overlap slightly with the
-> > properties of the sensor needed by the AP1302. Using "compatible" in
-> > such a case would in my opinion be misleading as it would imply
-> > compatibility with the sensor DT binding.
-> 
-> Why not a new compatible (e.g. onnn,ar0144-isp)? Seems to me there would 
-> be at least some overlap. If there are supplies, then the names should 
-> be the same, right?
+>   Some DT for qcom,pcie-sa8255p might describe an Endpoint below this
+>   Root Port, and the Endpoint's 'reg' property includes a bus number
+>   determined by the Root Port configuration.
+>
+>   DTC check validates the Endpoint's bus number by comparing it with
+>   the parent's 'bus-range', so it complains unless the Root Port
+>   includes a 'bus-range' property.
 
-Would that be a top-level compatible for the AP1302, or am I
-misunderstanding something ? Or maybe a compatible = "onnn,ar0144-isp"
-for the sensor node, not the AP1302 ? The AR0144 could be used with
-other ISPs (I recently upstreamed support for the THP7312 external ISP
-from THine for instance, which could work with the AR0144 from onsemi),
-so the "compatible" property in the sensor node needs to be evaluated in
-the context of its parent, not in isolation. I think that departs enough
-from the compatible model to be better served by a different property,
-instead of introducing usage of "compatible" with a semantics (both from
-the point of view of the OS, and from the point of view of the DT
-binding validator).
+The complication here is how flattened DT works compared to
+OpenFirmware. In OF, bus-range reflects how firmware assigned bus
+numbers. In FDT, bus-range should only be present if there are
+restrictions in bus numbers. So for most h/w, there should be no
+bus-range properties anywhere. This also means the addressing should
+just set the bus to 0 everywhere and only the devfn part is relevant.
+Also note that the unit-addresses don't have the bus number so that
+the device paths are consistent. The dtc check only says if the parent
+has 'bus-range', then the address (reg) should have a bus number
+within that range. There's never a warning that 'bus-range' is
+missing.
 
-> If you really want onnn,model, then that's fine. Probably there's not 
-> enough different sensors for me to really care...
-
-The AP1302 is typically used with a subset of the onsemi sensors in my
-experience, so I indeed don't think we'll have scaling issues.
-
--- 
-Regards,
-
-Laurent Pinchart
+Rob
 
