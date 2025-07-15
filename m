@@ -1,58 +1,70 @@
-Return-Path: <devicetree+bounces-196288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3D04B04F19
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C217AB04F2A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 05:37:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A3B3188A474
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 03:33:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 034721AA3727
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 03:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B6F92C08B3;
-	Tue, 15 Jul 2025 03:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848BE2D0283;
+	Tue, 15 Jul 2025 03:37:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V3GG+Ewm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tl75DOYA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0173A2C17A8
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 03:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D17240856;
+	Tue, 15 Jul 2025 03:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752550415; cv=none; b=gLf7ui0WIKr7qFnIwrWlDGmMuZxFnHX/nP1PrsPtl217Sg/sUzi9btU2dfKdAnqE+HksfCIhwvmITTIa354OaKLWpBZ92UTy9D7q/U2AFyIkxFUTJj6zUxtVytEWxOnjOsulM6bYqgwN9fECkJGhWALgIDkby+kTvvYslW33yQU=
+	t=1752550667; cv=none; b=T1rLC1obyN1Ok+rotrhpdjoKJJ+dOTHVHN0K3vu5Hc/4U/Onrh0hMNSXnTV2XJqTPLrpFRLSr88EMKdwfXcCa+ZZ7BM1CpRPZrkVED+IMCXCkKlt9on/6Vpp9jJ2KJMmXDftRge7JvGHF3Wn2xu8DRzNMtRyhM1V4SZx4U4eLSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752550415; c=relaxed/simple;
-	bh=ICzkoJTPLWohkOmQCN+HprWL27BZ4tfWCYre4NNQSyk=;
+	s=arc-20240116; t=1752550667; c=relaxed/simple;
+	bh=Rkk7eiU2CwcRmA8MjdsTBRMax51MEvSwX1y1cEEqIt4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JsUsuJl6GSLhQG4kYc89UKG3pr91wELaWAxVSIJbd/gkb2Pk9CxJ3pWDND2AzmSIqH1xEclFkZKwnwOj1rbSSOKKafq9ZWV8+v+zyaxSiS8/cejCx5fezCvT6gm5ILb0UNTDy/BsDrH3Z8RAle/PiUg5WJkLyFTenm3JpUn80W0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V3GG+Ewm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D1BBC4CEF0;
-	Tue, 15 Jul 2025 03:33:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rFRekqhImSezqUKrycxVpm4ZxFjAWlS/HKhgQvI3kCBLcpCktmunEhNhQP2Fb5yRQFnooM8V9y/RfepAwI7IEGuG32eciqxAdgl5zh9WhpofNAjAZCnmIawHIOl2VEoKOGMZK0/uMPTzVqTTbh6lpb1qQvqeW22xMnSD38fhWdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tl75DOYA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A461EC4CEE3;
+	Tue, 15 Jul 2025 03:37:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752550414;
-	bh=ICzkoJTPLWohkOmQCN+HprWL27BZ4tfWCYre4NNQSyk=;
+	s=k20201202; t=1752550666;
+	bh=Rkk7eiU2CwcRmA8MjdsTBRMax51MEvSwX1y1cEEqIt4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V3GG+EwmZnb5ZAx26T+g67DqRwZlsarxX1OjjEIVXToAVsx5L8hJS/Z8thCm5yJOE
-	 5tkbGu/Emq1Ggc52TPAiulcZ4pzQf803r8WnxgFGecopkaIdp5YWN9eDKb+Syhpld2
-	 aba7NDBgDFDpl42ue5DIlNUuvNqbedthVO4CZZA0z6C8MVZAwZAeirdL34QJDrCFYF
-	 pngcoXK5goIcwo3Ta0P6JpoEfwo8sJaNYiWNg76Jr3FjNeLJTA306L8C/snElzJ9dl
-	 a18Er8KqfeAg1TsGZpix3Shd3znGkbOcKbHp5TEV86NP3UhwOVBmQx58gxwX73N+yR
-	 TCNV+fF2JlCBg==
-Date: Mon, 14 Jul 2025 22:33:33 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jun Yan <jerrysteve1101@gmail.com>
-Cc: heiko@sntech.de, naoki@radxa.com, krzk+dt@kernel.org,
-	quentin.schulz@cherry.de, conor+dt@kernel.org, dsimic@manjaro.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: arm: rockchip: Add OneThing Cloud OEC
- turbo
-Message-ID: <175255041318.4178343.13360400577484328050.robh@kernel.org>
-References: <20250713163255.163669-1-jerrysteve1101@gmail.com>
- <20250713163255.163669-3-jerrysteve1101@gmail.com>
+	b=tl75DOYAqtd6wf5RCZoHDiA9dvZ9d9Qrd8WQG3LUmUJXgoMXTnWyMK5et+9a/uGJ0
+	 2q6VT1dUCaNjI9iRoLJfcTy1MOVILpvC4Vg26BnpR8FkQGmWDO7CKmrWLyAsyMGHty
+	 eYAzk4ClVbEPRifDPT3Ng39fYwLb9eV5QDqpcNJxh3r5COsTtTY9gvRZNSE30VD52d
+	 IW8G00zJ0uJButNW38meO7bZlgVO/M4P9qxCOuX+Yws9Z8GFV/EGlVGuwzCqLjQzKI
+	 FWep5j2rOUDrT4+fhwzXGqWN8WGH6iPuLgPlmctjrlODWQPPxvyp6pmH/tAhI8/pbQ
+	 SYr9ninaI+Ceg==
+Date: Mon, 14 Jul 2025 22:37:45 -0500
+From: Rob Herring <robh@kernel.org>
+To: Pet Weng <pet.weng@ite.com.tw>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Hermes Wu <hermes.Wu@ite.com.tw>,
+	Kenneth Hung <kenneth.Hung@ite.com.tw>,
+	Pin-yen Lin <treapking@google.com>
+Subject: Re: [PATCH 1/3] dt-binding: display: Add a device tree binding for
+ the ITE IT61620 MIPI DSI to HDMI bridge
+Message-ID: <20250715033745.GA4178590-robh@kernel.org>
+References: <20250714-it61620-0714-v1-0-3761164d0b98@ite.com.tw>
+ <20250714-it61620-0714-v1-1-3761164d0b98@ite.com.tw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,24 +73,185 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250713163255.163669-3-jerrysteve1101@gmail.com>
+In-Reply-To: <20250714-it61620-0714-v1-1-3761164d0b98@ite.com.tw>
 
+On Mon, Jul 14, 2025 at 11:14:32AM +0800, Pet Weng wrote:
+> This chip receives MIPI DSI input and outputs HDMI, and is commonly
+> connected to SoCs via I2C and DSI.
 
-On Mon, 14 Jul 2025 00:32:54 +0800, Jun Yan wrote:
-> Add devicetree binding for the OneThing Cloud OEC turbo.
+Drop "a device tree binding for " in the subject. You already said this 
+is a binding at the start.
+
 > 
-> The OneThing Cloud OEC turbo features the RK3566 SoC, 4GB of RAM and 8GB
-> of eMMC storage, and supports one SATA interface and USB 3.0.
-> 
-> The original function of the OEC turbo (shipping with the vendor firmware)
-> is to serve as a PCDN (P2P Content Delivery Network) device.
-> 
-> Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+> Signed-off-by: Pet Weng <pet.weng@ite.com.tw>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../bindings/display/bridge/ite,it61620.yaml       | 138 +++++++++++++++++++++
+>  1 file changed, 138 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it61620.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it61620.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..ff8ff390a1c0c31bb05ba0e237490cff2942cd05
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it61620.yaml
+> @@ -0,0 +1,138 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/ite,it61620.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ITE IT61620 MIPI DSI to HDMI Bridge
+> +
+> +maintainers:
+> +  - Pet Weng <pet.weng@ite.com.tw>
+> +
+> +description: |
+> +  The ITE IT61620 is a high-performance, low-power HDMI bridge that converts
+> +  MIPI DSI input to HDMI 1.4b TMDS output. It supports up to 4 lanes of MIPI
+> +  D-PHY 2.0 input at 2.5Gbps per lane (10Gbps total), compatible with DSI-2 v2.0.
+> +
+> +  The HDMI transmitter side supports up to 4Kx2K@30Hz resolutions, and is
+> +  compliant with HDMI 1.4b and HDCP 1.4.
+> +
+> +  For audio, the IT61620 supports up to 8-channel LPCM via I2S (multi-line or
+> +  TDM mode), with optional S/PDIF or DSD (for SACD). It supports audio
+> +  sampling rates up to 192kHz.
+> +
+> +allOf:
+> +  - $ref: /schemas/sound/dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ite,it61620
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts-extended:
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Just 'interrupts' in bindings. Either works in .dts files.
 
+> +    maxItems: 1
+> +    description: interrupt specifier of INT pin
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: gpio specifier of RESET pin
+> +
+> +  ivdd-supply:
+> +    description: core voltage
+> +
+> +  ovdd-supply:
+> +    description: I/O voltage
+> +
+> +  ovdd1833-supply:
+> +    description: flexible I/O votage
+> +
+> +  pinctrl-names:
+> +    items:
+> +      - const: default
+> +
+> +  pinctrl-0:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  dsi-lanes:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Number of DSI input lanes used (1, 2 or 4)
+> +    minimum: 1
+> +    maximum: 4
+> +    default: 4
+
+There's a standard property for this in the graph binding. Use it.
+
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+
+"#/properties/port" if you don't have extra properties.
+
+> +        description: A port node pointing to DSI host port node
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+
+Same here.
+
+> +        description: Video port for HDMI output
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts-extended
+> +  - reset-gpios
+> +  - ivdd-supply
+> +  - ovdd-supply
+> +  - ovdd1833-supply
+> +  - ports
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        hdmibrdg: ite61620@58 {
+
+Drop unused labels and "hdmi" for the node name.
+
+> +                compatible = "ite,it61620";
+> +                reg = <0x58>;
+> +                #sound-dai-cells = <0>;
+> +                interrupts-extended = <&pio 128 IRQ_TYPE_LEVEL_LOW>;
+> +                pinctrl-names = "default";
+> +                pinctrl-0 = <&it61620_pins>;
+> +                reset-gpios = <&pio 127 GPIO_ACTIVE_LOW>;
+> +                ivdd-supply = <&pp1000_hdmi_x>;
+> +                ovdd-supply = <&pp3300_vio28_x>;
+> +                ovdd1833-supply = <&pp1800_vcamio_x>;
+> +                dsi-lanes = <4>;
+> +                status = "okay";
+
+Drop status.
+
+> +
+> +                ports {
+> +                        #address-cells = <1>;
+> +                        #size-cells = <0>;
+> +
+> +                        port@0 {
+> +                                reg = <0>;
+> +                                it61620_dsi_in: endpoint {
+> +                                        remote-endpoint = <&dsi_out>;
+> +                                };
+> +                        };
+> +
+> +                        port@1 {
+> +                                reg = <1>;
+> +                                it61620_hdmi_out: endpoint {
+> +                                        remote-endpoint = <&hdmi_connector_in>;
+> +                                };
+> +                        };
+> +                };
+> +        };
+> +    };
+> 
+> -- 
+> 2.34.1
+> 
 
