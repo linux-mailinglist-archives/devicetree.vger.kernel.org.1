@@ -1,121 +1,141 @@
-Return-Path: <devicetree+bounces-196480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A2BBB058A1
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 13:23:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9B8BB058AE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 13:25:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 712891A64C40
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 11:23:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CA221A64F90
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jul 2025 11:25:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 165BB2D8DCF;
-	Tue, 15 Jul 2025 11:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70632D8DAF;
+	Tue, 15 Jul 2025 11:25:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QO6L1xt1"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="ohz5vHQN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 477EA2D63FF
-	for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 11:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2D52D837D;
+	Tue, 15 Jul 2025 11:25:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752578592; cv=none; b=OCqBaQc7mku8wDrJDLpe4QLV95Oy4sKgqJ3eHfaKaMQFghLlQIsV1F5VbjY+mf4pUyUYUw8DpvA0+QM5xvnTDk71WYaR3kY30466za0yvRX3flYLot0N7xuVgkZO+08CsAGxh9Sjrey1Re4iNuGV0cX6DKikp0CrnSOQI5GuKWg=
+	t=1752578717; cv=none; b=CQnB2jM8waWZ1c7NqS4eUMqIErW7+i3+Mq1nNXKKHp4sh4EblEKI/aWzzFfp5WVpX+/3ADYXdpF8ShazCdJgHGqx1y94/70zJcQZSHMgQNQO1dUuAsrKG71vQJ8J6ZEkVNmPKuCzsKgH/fc6eOPcNxrx/TG0WuHmm6LqcwyF37Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752578592; c=relaxed/simple;
-	bh=bZ90k2ZHoazxrj+WXjgsKXIynmPY+DOAnPKqwHoqjFE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DNvM8rywCYYHEeWr7oLDBI9jtVFADWJotjo23zj83cBjocsEXIfC44eLAIiuo/OXagE7kYXMqAqZtrg9HmlPlppfuqJXRO4ODLagJQ6nTld5n+V4M/G7UOOVaGP3+kHWuWZ8lTstyzYMjn2zwJYgtJnJWzFLcymew/IP4lUGr/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QO6L1xt1; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4561607166aso17183585e9.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Jul 2025 04:23:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752578588; x=1753183388; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=IROohcnT2HQCfIKhsx/yQHN0OEa0Xb+k3P4V46L5bTY=;
-        b=QO6L1xt1MVmJYZVTim2Hj+Raz//T4a4YlBOHIbuk9konXnjDvDLOozYy9LV6cOeEIe
-         utZW5lkSWG/z8LTnVW3yDWyQtAq0XUt5zAQ9/pVcX3ECqS3GfIjiI5vWGmJmQ7JPAR6j
-         R4xfNm0Ix6puXQR3oesgE9cLDAbb5UUnWspTjOv+LIMETI0nDWdZ8IQvYrGxtJJa+rAM
-         kXGVFMnUyaN8reSuEFOQe+SOb1Y9lRGuCqlrGpXIAn9nX+9gW+TboiAbB9Hvu/VvAj1Z
-         cxJSsoDngBc4uI8PK1BPlkStVhtC7Fp3erAG882HQ29fVle3Z/Hj9JtbErObLzTk1FeV
-         Ib+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752578588; x=1753183388;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IROohcnT2HQCfIKhsx/yQHN0OEa0Xb+k3P4V46L5bTY=;
-        b=oqUG05QP80ylNnFBxuxAdSH2Azo15ZZ1AMij46JHJkDehUF24FSbiIWAEJPimSgH/X
-         QUAyNh4Wr67A5xxAkNeIsK28fUAyWuanFUDplZwnSTmhfl7QsO6hbSkbIOlNFKcEl6ZJ
-         g8CMrebzbwSuuadCOTfXhkzlf44n3IHeR+/9Q8VnmWEzxjCqFIyBk3XS+6sKZ4ktlDou
-         Fx8yMHJuDRRi9AqwZ63/0YSKL8amIccRRw20FVulzVO1DlswF/fg3+0Fl5Jje0mBR78a
-         JuWctBI7OoyM5Q2OLVU9DewXCxiBcTZR8OhE8T6axYA5Hwj+qn/xfvCrxhyrGQ7D2kum
-         Cnmg==
-X-Forwarded-Encrypted: i=1; AJvYcCXl7yvmDb+/N481kL/QVxZnnFYxMbf5KSSKw7GNSgH8oeRfv9eLA75nBVAixXEYNF6PO+YocQu1C/VL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwocYSA1xSL4Gb1tCW2yIPh3+CfDHom46UkU/u3Dwicp/nDocZz
-	vXCYFvJbl45MdUD5MilmBgDw60YxvSXVkPXmKVCjasV4CnzyCgOtchZ59KG8d8v2ZHM=
-X-Gm-Gg: ASbGnctu/9bFvLdLAX7fzpW3JoOnzWHsGjtpSUOpS9/zuX7kfi6rWszGfoI6fZhA4CU
-	z+J3amo1JlB9OxOQB8BYsmt2Ehco36EC+2bo0C9RfJHxkKH4UxmR9OirxB4ATnCSjtDmdQUFBjx
-	ktfFI1BFAhpt9SZ6vnqviu1Vte5VwJTpNLYpHU4YHjhMoaPHzKzaVNCxjO8E2IhB4E7xS8t1X2t
-	8J/sflaFo9wmBkMK00dfCOvdinZmaW1HjArDwxCStAn17xhFXnSeFEVTDIb4QoEMy7IEDK6F5Z0
-	M5NFEzhWAZ6fxwx+E8ieuiIpn97Qib+umZpuv7XotCJa4LbqYLO3lekGbpeHlC6+HOOTRUKUeVF
-	rXenzy7ZIU4MNiEiWZUAUr31Ozs3p604s3tx2syLjMoW+IVSIPErkDxlYk9+jgUZhYPvrV0A=
-X-Google-Smtp-Source: AGHT+IHQ3prgUe5cBnNidral8utHdbyigrerAyg9IXxceMi1779788HUGWodqsh1bemWlLH3jivHPg==
-X-Received: by 2002:a05:600c:37cc:b0:456:117b:94bc with SMTP id 5b1f17b1804b1-456117b95bdmr100596885e9.17.1752578588578;
-        Tue, 15 Jul 2025 04:23:08 -0700 (PDT)
-Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8bd1997sm15158740f8f.10.2025.07.15.04.23.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Jul 2025 04:23:08 -0700 (PDT)
-Date: Tue, 15 Jul 2025 13:23:06 +0200
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1752578717; c=relaxed/simple;
+	bh=L2ffgtKXpg+Nv11QO3SKqtDZ2YKhKpnFToAgxVBip+Y=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=MjIu6FbiFTcFBK5hhu6URys271AEa7k4fRZe7YZ3x2tm+oTaUdn2DtDleNKtNlVgJ3RDF+JQv53y3PyLb/OAI4K0wNhbIIhzKHppG/nauISNLvVc7VUMu3FecRklyuCF6ux+FjXvaAi41R0KUMQeK2RFKM2wnskVFZD/K6nynSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=ohz5vHQN; arc=none smtp.client-ip=54.254.200.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1752578708;
+	bh=sGnlcbGkTpVe+jRIfMZ3RjpXeqeQnWzdixj31SR4Fb0=;
+	h=From:To:Subject:Date:Message-Id;
+	b=ohz5vHQNeaWVGitl4wajmbUOXO1EGBf8dcp4UQumGTUMvJ2EZg3k7W7y1YRYox/Dq
+	 GNl6wUIkh8jYuzPobHtCZ1mWKbe68v4YjBIkUOajdshDLLg8QBofbjLNAAvtBW8rlB
+	 6l1NdaPkXSH4x+eb6pNJGb4at/0vPZ72UfGjg24g=
+X-QQ-mid: zesmtpsz3t1752578706tf14436e8
+X-QQ-Originating-IP: uovcXhhJiGiAlXUvswW9NV/gOyyyF7ZPgZz7Ciqcoww=
+Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 15 Jul 2025 19:25:04 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 10341645025017690004
+From: Chaoyi Chen <kernel@airkyi.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"open list:CLOCKSOURCE, CLOCKEVENT DRIVERS" <linux-kernel@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/1] dt-bindings: timer: Add fsl,timrot.yaml
-Message-ID: <aHY6GnjMW0SSJQgU@mai.linaro.org>
-References: <20250528165351.691848-1-Frank.Li@nxp.com>
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Yubing Zhang <yubing.zhang@rock-chips.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Amit Sunil Dhamne <amitsd@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Johan Jonker <jbx6244@gmail.com>,
+	Diederik de Haas <didi.debian@cknow.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH 0/5] Add Type-C DP support for RK3399 EVB IND board
+Date: Tue, 15 Jul 2025 19:24:51 +0800
+Message-Id: <20250715112456.101-1-kernel@airkyi.com>
+X-Mailer: git-send-email 2.17.1
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: N3IC8um5pMyYiUTB++F8KmFd6SLMvtze+pswzs8ff3wf8WaWQTeiI7M2
+	q1o5thlP6tuQ6vizlUxODVlMMXCTKNYJkF/mvbyp8w7YlJoSvVF0orfYaCHr//6cfeU5CVp
+	g/M0W5XUcNm60f94IaOhSSOCQzzS1DwXu8RqprVvWzbTo15IMKcHQfMUIoMXLGCJc1BXWAL
+	wC2+VNcsaVqPYyfIfUDqVCspw5HOPv0nD3RskbyYhYEqajpO82J3gdmiXBAoaX9wpNvOzhh
+	Lq8LB9AOb2p69MVTPUFG+glz5y/hPfmIvvA+IpD9Cw6N6Bs3CZR1KSo2ElsKdu0douwu/ju
+	f4f0aZbW1pPxinIq0W5cSbDxULsaLjZbOtcrjRZUP6zU/Dc+KOAyazqdNAOZbnfUzmGoJlB
+	BAtrsu+RvXT1pblb4p3liuLQotEiS5p0uENtA0leoMBi7JtlQ5hQNaIRdMwdyRc7ZI1LRiD
+	5kp6uKJSMgYp3hXDel13eKPSQztZ2sMFfL0UDUAg5vILCWtbIL27P6I2uBvn36FtPdqMhhx
+	1oxfwj/kOkDNU90nQJRV3Wzp+hCk/WSRzFm0tTHCTFpNytEjmJdIJsBlzzx8eaZM6cbXvBK
+	/K41ryhu2GdmMDd6Q2fCvAYW9E2znPx46wOghIS/bMQPbtnXhV1yIzJid61uxBntabBoI8h
+	wZ6FUkbapx0gvIsrWWX67wTh9DvQaeKP3hufDq8//HTlxLK50Ga6x2whKM1Rj8tNxKPlHEi
+	uO7Dhg1Hqc65cKSoWfnyuACdB4O+bRc+nbx04Z531yOTDL+ZhDmDQ3lW425GLTsnfRKeCtO
+	cAKd0pZP3qI9r6exTLvK5P0vD0E3nk5kTw63JFLON5PNnFD/0gCNbRS9V8bxvlVvbOqp6yd
+	Ist46symXh6OuW+KWEokfaDoo6tQ1rC2R0yfyz3KHDnU24LlSFH6P1qMBw+8OOtab+JOaRm
+	cteVUxoDLqYv7q/QcHsazrxbTHv8lLlAEvqiJNjk2J+cIug==
+X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
+X-QQ-RECHKSPAM: 0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250528165351.691848-1-Frank.Li@nxp.com>
 
-On Wed, May 28, 2025 at 12:53:50PM -0400, Frank Li wrote:
-> Add fsl,timrot.yaml for i.MX23/i.MX28 timer.
-> 
-> Also add a generic fallback compatible string "fsl,timrot" for legacy
-> devices, which have existed for over 15 years.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> change in v2
-> - Use items for interrupts
-> - update commit message to said for legancy devices.
-> ---
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-Applied, thanks
+The RK3399 EVB IND board has a Type-C interface DisplayPort. It use
+fusb302 chip as Type-C controller.
+
+This series focuses on adding TCPM support for USBDP PHY and DP driver.
+Before this, the USBDP PHY and DP controller of RK3399 sensed state
+changes through extcon, and devices such as the RK3399 Gru-Chromebook
+rely on them. This series should not break them.
+
+Patch1 add missing "displayport" prop for USB connector binding.
+Patch2 add new Type-C mode/orientation switch for RK3399 USBDP phy
+binding.
+Patch3 add TCPM support for RK3399 USBDP PHY.
+Patch4 add TCPM support for CDN-DP.
+Patch5 add Type-C DP support for RK3399 EVB IND board.
+
+Chaoyi Chen (5):
+  dt-bindings: connector: Add displayport connector for hotplug notify
+  dt-bindings: phy: rockchip: rk3399-typec-phy: Support mode/orientation
+    switch
+  phy: rockchip: phy-rockchip-typec: Add support for Type-C TCPM
+  drm/rockchip: cdn-dp: Add support for Type-C TCPM
+  arm64: dts: rockchip: rk3399-evb-ind: Add support for DisplayPort
+
+ .../bindings/connector/usb-connector.yaml     |   4 +
+ .../phy/rockchip,rk3399-typec-phy.yaml        |  14 +
+ .../boot/dts/rockchip/rk3399-evb-ind.dts      | 119 +++++++
+ drivers/gpu/drm/rockchip/cdn-dp-core.c        |  37 +-
+ drivers/phy/rockchip/phy-rockchip-typec.c     | 335 +++++++++++++++++-
+ 5 files changed, 482 insertions(+), 27 deletions(-)
 
 -- 
+2.49.0
 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
