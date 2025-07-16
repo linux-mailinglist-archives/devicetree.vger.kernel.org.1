@@ -1,135 +1,108 @@
-Return-Path: <devicetree+bounces-196985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EDA4B07D07
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:40:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D31B07CB6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:22:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BF221C28450
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 18:40:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECA053BE236
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 18:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BEEC29AAFE;
-	Wed, 16 Jul 2025 18:40:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e58dYHo7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0567029B23B;
+	Wed, 16 Jul 2025 18:21:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934C3188A3A;
-	Wed, 16 Jul 2025 18:40:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E81329AAF7;
+	Wed, 16 Jul 2025 18:21:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752691222; cv=none; b=HMDgcLGxxgRj6sd4ou1fHI4pEwlfquiWO43t01Ap0oTCaIBM9sP3g7V1EO5g8x7y95LIzlqP1d7ibHAtXW/GY0CLT5ByX9M+qbMPyFhqrJslZ0IZcL9T8CWDrrd9bYIPe+l5DihIJm4t9oROMNKCag9ZUFMb/7OLsYv3sJGFc0s=
+	t=1752690109; cv=none; b=uA11jLLSZnfoxaGt2UK4tTqvjKO9RFnnlQXngILwCCvic24Tj8yWa1/PognbgFrvGr8am3FdAMDWv/S2rfi67L4ZX+/fJ2RFp+Ppx9wmq2fqxmb3hvoMtED9fEqJ+04OHl4Bn9pksfoXXRkB9OhObW9Z1pTVu4RGVyAn/93DTes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752691222; c=relaxed/simple;
-	bh=J7+UlN+KHQiDz/fIRY+lD/Q8RAf0wMAeP7wOtMKnlVA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=J4RqvHbR5z7FDXi2HwbZn2AAPH9yLDH/MrtyLGkElG9bhP6EmpIOIsCvT2ve9kS9GtbhsHvrqHLJuqHnPtHSybUD9abX52f1H/gX5Bd82zoVkkspT6mP4xSpTbA1m02DjjWN5FYv/J3nQYO2Z3akDcZt01gjz6uwD3cGyjKD35s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e58dYHo7; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45610582d07so1196515e9.0;
-        Wed, 16 Jul 2025 11:40:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752691218; x=1753296018; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K86TDMdZ2XqOtIz4v5tuWFWQLBw7H1poOoP8hrJjhno=;
-        b=e58dYHo7MI5TBuk9TuhI/Xdxb3DMZX7NM7cDOJdnogQaCnLnm/4lMF4DGVbzP6oHpV
-         gC5r8sVoR57fc5OsG9wUxS/X61BhkGMus/g7Q1hnOg3S2aunVJBQ4LtW+M5zws1VrfDe
-         L587x0OdqpoACTWLpqvcs+T2kF9vtGMGX9FSF93U8Py1J0GTkmyNJlJiz8N8xb/Q5UYF
-         LYt0fvcBAHDWnoW3f/tVCPc6TyxGQhGM9LYugQQNEKxO+uYw+KjUaRK1h0iMWrg8HZ3G
-         sIMuK6vZVjotK7vZgec9BdHNBtxJpwZFQFyinJ40QcOxFeTnVJwP2RUNiFa5+l3gzdzy
-         yIxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752691218; x=1753296018;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K86TDMdZ2XqOtIz4v5tuWFWQLBw7H1poOoP8hrJjhno=;
-        b=lF39tmEIU7OJyO5hlSQqOHKE3TLPaOp8Xe38DiVK4dLbHzL5tO87MpT9rGD4neIwMT
-         XS71LCL32Lt3a8ycukXufIsJHkhuSryAy+mX5Q/rPVzWB6gWFbnP7dGLgywhgH3ljC68
-         O1H2l7z8KepqKYtGvh4i0GJy+m9h/UOhmpsX6qjSikJB4SVIApz6om4Isk8JMxzjvw4R
-         3Q7o3wiNVf1Y6tKJBsWV9Alg2fhpg1t1p7aoZJhlyZeY6WnKiJmt/XSCNTw381oq/fGT
-         enyo3pECqRYgbrMXM+3OgkxLC27miAnV758kaFk6kcOcYYRrXaB9dMAkqa4KbSeMWPNi
-         qLPA==
-X-Forwarded-Encrypted: i=1; AJvYcCU8FkhBdFdeFhhSq34/ssoZC0DE32GvmB1SXbzZEvygzRUFAv99P9Db6PyKg7W/IN4T4jgzYWFITfZi@vger.kernel.org, AJvYcCX1/U6RH4oZl4XQeOBSLRNnAs2iEcraAh2D5pC8rl9J65/UB6EElj3otI2jA4n78fT54PEpYT+5gwRmkcJB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGA4gqjP8ThGdJ/LwmiNyCVWyN2pwKiB4NMHPai/Ix1PhOqg0u
-	2F5DGxRqUtEJHNceVWLCaaVxzhCdBaSQ87nun4wCBTYy1pmocGzCEaiG
-X-Gm-Gg: ASbGncsrg8FZjAJZrOMM2T8RXszDv4Xhnc8ZgrLw61SbjoVR8IxeEMZJMl3o6+UBPTl
-	yzFcCVDlU1FRZmALOX01m3/nFPKUxsabcW2a8EWwrV4AtGkyI9dXy+O5PcyYC+w9BUOLvrSzNyt
-	PcldDydTralwXvmUuVI+c05uffe5Xe5BogGtBqv9g69CidYYjPzkTUb563Dx0L6LHvwb/hg9qS4
-	KyOxL5ksKcgjKeVObxqyxzqTw2iEip3P9LidmSeFVAIVcD/gp7CoPMOrwaUp1JgVJssQkPq5lBZ
-	qUFb/hbEJpGZgfaLkFSeX/nyKov0VIlVKdu2schKb4kbHWejzUPM/DiIMQhvFXoi6rN16hnhS6d
-	hlzBeN9LQPu0E1/94jZBw
-X-Google-Smtp-Source: AGHT+IHNsjoQGm3d1JzJv5/OXynZmI25GvOeUFJa5XcXwQ4NdHl8g0F2hw+YCKkoD7Bk/svjmFV2qA==
-X-Received: by 2002:a05:6000:25f6:b0:3a3:63d3:369a with SMTP id ffacd0b85a97d-3b613e77736mr151213f8f.25.1752691217603;
-        Wed, 16 Jul 2025 11:40:17 -0700 (PDT)
-Received: from masalkhi.. ([61.8.129.29])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4562e8ab642sm28079795e9.36.2025.07.16.11.40.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jul 2025 11:40:17 -0700 (PDT)
-From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-To: gregkh@linuxfoundation.org
-Cc: abd.masalkhi@gmail.com,
-	arnd@arndb.de,
-	christophe.jaillet@wanadoo.fr,
-	conor+dt@kernel.org,
+	s=arc-20240116; t=1752690109; c=relaxed/simple;
+	bh=OISzIwgKW9Ut4RNYygd7oYWqpTp409ADl/d7dz7BO2k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t7+PT2W7Fj1FzGTUzl8jnETmYNwM2SPS/nUxeEVb/wRxrnTcK9u2bYZo8vcD4OzsZAZ81KyM/XdntqNQUoajXGG0njsr5moQthVS1IlH0ihOFLXqVYUtclN2UkZ2Bn3BNrR1JxZhqDQp9BVdkDzWsXHiB2jWkfu6jOdaDSj0Ahc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1uc6ZW-0006DN-00; Wed, 16 Jul 2025 20:09:38 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 81182C0976; Wed, 16 Jul 2025 20:05:41 +0200 (CEST)
+Date: Wed, 16 Jul 2025 20:05:41 +0200
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	luoyifan@cmss.chinamobile.com,
-	robh@kernel.org
-Subject: Re: [PATCH v6 2/3] eeprom: add driver for ST M24LR series RFID/NFC EEPROM chips
-Date: Wed, 16 Jul 2025 14:21:27 +0000
-Message-ID: <20250716142127.1664-1-abd.masalkhi@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <2025071651-pushcart-scapegoat-6155@gregkh>
-References: <2025071651-pushcart-scapegoat-6155@gregkh>
+	Linus Walleij <linus.walleij@linaro.org>,
+	Andi Shyti <andi.shyti@kernel.org>
+Subject: Re: [PATCH 0/6] MIPS: Mobileye: EyeQ5: add GPIO/I2C
+ devicetrees/defconfigs
+Message-ID: <aHfp9ZkSZ3x6hEhx@alpha.franken.de>
+References: <20250704-of-commits-v1-0-dc2006bf2846@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250704-of-commits-v1-0-dc2006bf2846@bootlin.com>
 
-On Wed, Jul 16, 2025 at 13:53 +0200, Greg KH wrote:
-> On Sun, Jul 06, 2025 at 10:53:10AM +0000, Abd-Alrhman Masalkhi wrote:
->> +/**
->> + * m24lr_parse_le_value - Parse hex string and convert to little-endian binary
->> + * @buf:	Input string buffer (hex format)
->> + * @reg_size:	Size of the register in bytes (must be 1, 2, 4, or 8)
->> + * @output:	Output buffer to store the value in little-endian format
->> + *
->> + * Converts a hexadecimal string to a numeric value of the given register size
->> + * and writes it in little-endian byte order into the provided buffer.
->> + *
->> + * Return: 0 on success, or negative error code on failure
->> + */
->> +static __maybe_unused int m24lr_parse_le_value(const char *buf, u32 reg_size,
->> +					       u8 *output)
->
-> Your __maybe_unused marker here hid the fact that it is NOT used
-> anywhere in this driver :(
->
-> Please remove this function as it's not needed.
->
-> thanks,
->
-> greg k-h
+On Fri, Jul 04, 2025 at 01:47:05PM +0200, Théo Lebrun wrote:
+> Here we push changes to have GPIO and I2C support by default in EyeQ5
+> defconfigs and devicetrees.
+> 
+> Linux driver work has been pushed in the past. Devicetree patches
+> accompanied those series but didn't get merged at that time. Acked-by
+> on I2C DTS patches come from there.
+> 
+> We start by a small new defconfig patch that a clean working tree after:
+> 
+>    ⟩ make eyeq5_defconfig && \
+>      make savedefconfig   && \
+>      mv defconfig arch/mips/configs/eyeq5_defconfig
+> 
+> I2C DTS patches:
+> https://lore.kernel.org/lkml/20240306-mbly-i2c-v3-0-605f866aa4ec@bootlin.com/
+> 
+> GPIO DTS patch:
+> https://lore.kernel.org/lkml/20240228-mbly-gpio-v2-28-3ba757474006@bootlin.com/
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+> Théo Lebrun (6):
+>       MIPS: eyeq5_defconfig: Update for v6.16-rc1
+>       MIPS: mobileye: eyeq5: add 5 I2C controller nodes
+>       MIPS: mobileye: eyeq5: add evaluation board I2C temp sensor
+>       MIPS: mobileye: eyeq5: add two GPIO bank nodes
+>       MIPS: eyeq5_defconfig: add GPIO subsystem & driver
+>       MIPS: eyeq5_defconfig: add I2C subsystem, driver and temp sensor driver
+> 
+>  arch/mips/boot/dts/mobileye/eyeq5-epm5.dts |   8 +++
+>  arch/mips/boot/dts/mobileye/eyeq5.dtsi     | 105 +++++++++++++++++++++++++++++
+>  arch/mips/configs/eyeq5_defconfig          |  10 ++-
+>  3 files changed, 120 insertions(+), 3 deletions(-)
+> ---
+> base-commit: b4674c5af605321f2ec0c8ac5a884c4ecfad7214
+> change-id: 20250704-of-commits-d76e6d76a6f1
 
-Hello Greg,
+series applied to mips-next.
 
-Thank you for the review!
-
-It is done.
+Thomas.
 
 -- 
-Best Regards,
-Abd-Alrhman
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
