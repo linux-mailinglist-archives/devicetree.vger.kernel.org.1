@@ -1,86 +1,125 @@
-Return-Path: <devicetree+bounces-196748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8072CB06F20
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:38:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65081B06F27
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:40:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22D063B1D30
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:37:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FD1F7B63AE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:39:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC46D28C00D;
-	Wed, 16 Jul 2025 07:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25DB028C870;
+	Wed, 16 Jul 2025 07:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qnym7igX"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="FTxmbPG1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 987312798E3;
-	Wed, 16 Jul 2025 07:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACEBA28C2BB;
+	Wed, 16 Jul 2025 07:40:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752651466; cv=none; b=D5xXw9yj/tGcfs+JOFPUVQ8YL5u8Mkm8pJsi1mVTHlghz6nhpAnmbRJH9s47eJH/aQjZodqZSlCWwo5ElZ5RIMAjtxsxrDZoHWfil8nGQDa5s9vecdzPYv6lxdD83WUk6GQQWDXtkutnHDZtdELaEo5/5/ZOQfE5BeJeBG7+Bz4=
+	t=1752651628; cv=none; b=qtG1AUOkNTAsMNkYu2aSpqcVkbp5fv3CaPcCCXgaatcsCvdSvnRH95Al56q9kPxkHvnuQxUIshgEpk7+NLY8y4H9PXRp0RunCV47TMwTjsXb+UrUGVx/P47gG9k0Rerbd0tFwPKtScEwd1pjCeRaIIpgPpJ6954UPOLpc18u32A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752651466; c=relaxed/simple;
-	bh=yGP6R1fUpqjMKaOhGv9QgOWRpk5/gFx/qaZbVqUJ1nE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=etZHz3b4bDVrwndH4PpzYegidlQW0xQ8UIKrr/HLoMIIYvzeRX57dMTE2AZuJhFpt3kqD3eIvrvtlO1202fdyYubFqzwJMxGMu21u2G4B64JKUpPJ+fu2yDkXBpsVEqsFqTR6VScIziSiKSi7MDynZNwQ7E7hV/SJKtlMhjkiKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qnym7igX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92F68C4CEF0;
-	Wed, 16 Jul 2025 07:37:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752651466;
-	bh=yGP6R1fUpqjMKaOhGv9QgOWRpk5/gFx/qaZbVqUJ1nE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qnym7igXoqGrtlNDLg6WqxZ+RhchA59gIBwhtKVvib30Yb/OSbr+TFQb/Ox9tjLA/
-	 age6eD1B7/telUP+Gc40pFntE+7GTyNCKlosmvawWQf9QHcg59kyZF5C1Wm8oUFZYr
-	 L/nTPFVDcrJ2rNUvKNEqhnEcRUKFjE/mHBRNHyAjyeljUcyaXp2z0TKd9sIHujfyY9
-	 XzOF7VA/O8DxgmMx9Wa4xLqQXYw9NH8wmFRsgjQwK2ZBTaaoZxG9IMfZzLwz/HaI8m
-	 svQI9NaYncSBL5DdidjWbiNs3s+7slZe4RoZBxps1ire0yYcmn7O+A9YTw3D/dLQq8
-	 tq0ASGKthk50A==
-Date: Wed, 16 Jul 2025 09:37:43 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
-	kernel@oss.qualcomm.com, Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Subject: Re: [PATCH v6 2/9] dt-bindings: pinctrl:
- qcom,sc7280-lpass-lpi-pinctrl: Document the clock property
-Message-ID: <20250716-fancy-aloof-hedgehog-50302f@krzk-bin>
-References: <20250715180050.3920019-1-quic_pkumpatl@quicinc.com>
- <20250715180050.3920019-3-quic_pkumpatl@quicinc.com>
+	s=arc-20240116; t=1752651628; c=relaxed/simple;
+	bh=MyFdsmOMJqbvkiVGXFhi5uxD9Pb8uK/+B0vVjEFLyJk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cVtRNfoLm+AizUZfdP4QTHPnCUWXxnMjnrJFU/tYpVHm0sBXfuMhRDpeaOH45GRdkOLpA1eGadbmYOqg3/MPWYaFcceNTk4RNl0IHNJhY1lnwvhiLUX5nAgZHxbWkjwYPVogme09O3i4cqM2Vav9OBWP92qDfFl9mkI30Mc1Q5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=FTxmbPG1; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=qgtjBGVAZ1tS5fJXKd4+bhI2PQYUrEH4Cz/qfvC/2po=; b=FTxmbPG1x9gKKjsM5WAh+rNIRC
+	/+YNAwSYKFOaLt++uJ4akLU4L1U3GETfMY892VjCy5ZAPJnsrTOxzSQtdS2Npx5vrgDaI+q2gfISo
+	FaSHyV2RSkf2RiUvTVOgEFrZKhcu6NXSPclXeHBTz793LdTFZqCMt3lVmXh8gVkH2Y9keELpbryPl
+	CZ8aDjoPcXgtHDjDNDuGI7sPMsDiQz0cDk4gyULnFp1hcUNUtnyUDulCnWUUWYbmuzcqXsl2lz2z8
+	UFk5YsvH+HJU7Co075/zAc39Up67VtRcLRfZlG6I+JYhQdESBQ4dEJG0WcGPM0E4hvxo/GOw83Sqw
+	pXOdRX6A==;
+Received: from i53875a74.versanet.de ([83.135.90.116] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1ubwjz-0008Vz-1P; Wed, 16 Jul 2025 09:39:47 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Chaoyi Chen <kernel@airkyi.com>, Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+ Diederik de Haas <didi.debian@cknow.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org
+Subject:
+ Re: [PATCH 3/5] phy: rockchip: phy-rockchip-typec: Add support for Type-C
+ TCPM
+Date: Wed, 16 Jul 2025 09:39:48 +0200
+Message-ID: <23651445.EfDdHjke4D@diego>
+In-Reply-To: <c84cb838-e6e7-4ed0-8d12-67b82f85ff28@rock-chips.com>
+References:
+ <20250715112456.101-1-kernel@airkyi.com>
+ <eqb5m22om6bx2ypjtnlwdjmgfyycpmgrlvro34xwlwjj4j2jeq@mrarg36wetp6>
+ <c84cb838-e6e7-4ed0-8d12-67b82f85ff28@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250715180050.3920019-3-quic_pkumpatl@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Tue, Jul 15, 2025 at 11:30:43PM +0530, Prasad Kumpatla wrote:
-> From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> 
-> Document the clock property in sc7280 LPASS LPI pinctrl node.
-> Clock settings required for Audioreach solution, ensuring
-> proper initialization and synchronization of the LPASS LPI
-> hardware.
+Am Mittwoch, 16. Juli 2025, 03:56:27 Mitteleurop=C3=A4ische Sommerzeit schr=
+ieb Chaoyi Chen:
+> Hi Dmitry,
+>=20
+> On 2025/7/15 20:05, Dmitry Baryshkov wrote:
+> > On Tue, Jul 15, 2025 at 07:24:54PM +0800, Chaoyi Chen wrote:
+> >> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> >>
+> >> This patch add support for Type-C Port Controller Manager.
+> >> The extcon device should still be supported.
+> >>
+> >> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> >> ---
+> >>   drivers/phy/rockchip/phy-rockchip-typec.c | 335 ++++++++++++++++++++=
+=2D-
+> >>   1 file changed, 319 insertions(+), 16 deletions(-)
+> > Please keep TCPM implementation under drivers/usb/typec/tcpm/ . Create
+> > an aux device and write an aux driver for the TCPM part.
+>=20
+> Sorry, the commit messages may not be described accurately enough.
+>=20
+> This patch adds mux/switch operations to the PHY driver to improve=20
+> communication with the TCPM framework. Since this PHY is a combo USB/DP=20
+> PHY, it requires configuration changes to the PHY lanes based on the=20
+> USB-C  plug orientation (CC logic), similar to the existing extcon=20
+> mechanism implementation. Of course, the original extcon functionality=20
+> will remain fully compatible.
 
-I really wanted to see here documentation explaining the change from the
-hardware point of view - why hardware was working fine without the
-clocks so far? Or maybe it wasn't working at all? Something changed?
-Where the clocks always there in the hardware/firmware or not?
+and looking at other users of for example typec_switch_register() [0],
+there are a number of them already used in other phy drivers accross
+=46reescale, Qualcomm, Rockchip and Samsung.
 
-Best regards,
-Krzysztof
+Grouping the mux/switch with the phy driver as this patch does, makes
+way more sense than to introduce additional infrastruture.
+
+
+[0] https://elixir.bootlin.com/linux/v6.15.6/A/ident/typec_switch_register
+
 
 
