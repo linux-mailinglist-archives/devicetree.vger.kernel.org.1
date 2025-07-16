@@ -1,115 +1,116 @@
-Return-Path: <devicetree+bounces-196785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59247B070D2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:42:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62AD3B070E8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:51:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A137F17F1C9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 08:42:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6E6D4A6265
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 08:51:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B932C2EE982;
-	Wed, 16 Jul 2025 08:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CF322EF66D;
+	Wed, 16 Jul 2025 08:51:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YCYr+BL7"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="E3H3MdSt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3A5723ABB0
-	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 08:42:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4292829B77C;
+	Wed, 16 Jul 2025 08:51:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752655369; cv=none; b=eUIFOtzom/S7sIux92RUyGFx26ZmVZ4l+1OL3nZI7GyHO8LRsmNriUwatFIy0i+ZPe6zOCT75qNEs37THKVJU2vQ1PmANv/KAx4bu2ZaiZUFz+CoT7nxEY5ExIdeN7jSswIbDXBofZ968bteC2yKm96CydHNIQtAQTQot24oPu0=
+	t=1752655912; cv=none; b=BqEz9okK1c4v8SKjOJuOWMAUS69mse5HtltwH8QcsW/pV2pjSrjWVod7CigDKPY6FBN8nMvFtGBIHaOmwNysE9eN0CV6r4N1jp/TbzoeQXc0d2VT/FUj1/yTXYCWXFYP0VTQlG50VHUmDcv2LUVqq+KkJF4BNQRu6gvkE8VB7Y4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752655369; c=relaxed/simple;
-	bh=B7SsdO+MenMYckXWR84ZUdMgGeszbtfwtQYKlL+IKug=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=U41uT043vWUj1X+EPaqbCvdpA1gNTLv1GfB91UdKT1v4EvIqi4Bp7wJtliRdS8ENrjbMZj5jgkdx/7vCtGkwQH/2dXHKSVs8/EGOdbwZN+fGj4BgLTmdEr6XrLcutMVpsmwygcW07p75kDUxzNtQ4Yhzt2DeO7xH8USR/5vVd9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YCYr+BL7; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ae3ead39d72so134008966b.2
-        for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 01:42:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752655366; x=1753260166; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rEwTO6jDq9O1mX9IG6Eme66k2aXlrb5FWoDpo6lnm8I=;
-        b=YCYr+BL79jTPQR9L1CxHCYOtcpEswJv268F2OgdQcRxjzaEmNFdYmAZu2zHQAk63of
-         ONFw7M5fHR46bIsXgDAny65czF1Rvozo7nqGMSYshOLgrArYDIsoXSRf/vFFYj8tdXvn
-         w39FGMlQ0pi3PUhp1uEb6c3tyET1t/ZkhSQgQXWK+QMZc+4p0X9XK6pVDaT0/FuUqRqJ
-         XrK3S5305s4595oqFfmTYxw2hqR+zKYV1AwAqPT80WMO1/3YOok1bw657wwzB2sWnn7A
-         eO7LiQx25JDmbR7hgIiJuQdNJV3j52yQDGjFFhsb3ulqukl5fkj5UtUPjyBO44pFcZU6
-         xXFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752655366; x=1753260166;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rEwTO6jDq9O1mX9IG6Eme66k2aXlrb5FWoDpo6lnm8I=;
-        b=OydPUvXb5jrda0iL02aUHx3sFDWuRnLbkNgQpWKcQqJdL6oYGkwQf1frBBxjSDj3zg
-         h0h4Ovj+mKtX+XvXWPR55P6MIxnt0OAT6RsvAtJQa7g/yJHSAnJahD08G7WNfG8P946W
-         VwSuoK7pUskLGzlGYZwik0GUxeOL1fMaKN2DDBaxF6gT5Qtvem9SSkfWmQqN7efaIwtI
-         gOwqaU15PPNUExqrjd1dpFhklOYeTq9GQg3Q/ULZ/Zm/oR4bidazr4WQR+dVOA6+rU3k
-         2F9ftdp/gLDUCSEieSZTkmUBholvEw8q6iBHsQ2lNFrRqUV+liQqZ1zYmSkx3UabME8p
-         J+pw==
-X-Forwarded-Encrypted: i=1; AJvYcCV7iWiCYlu1v6H3OnuJTdFsNM9yr4Db8u0AdHqjOOgUwhU7b81kRwwzKf93watGnn65IU+PQGMPWxYL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/QPHzS9ZSH+MnY29huOmdTDYoT/paqAMsOOXprmESDEJERxy6
-	5AN9B4SNK+EBf96yt1BNflhtxJUoXvl5ngSAUlp/vYuBgX62GySeF16FTw/j2SLmqDg=
-X-Gm-Gg: ASbGnct0MXbmAPFyUu6LKgW9upIeQsSBtuSAv93FlcpGVuWfdhlD8gtQ2EY2tB5tuFi
-	60jxWleivYpEpFUc9du4Ig6z7F6wb51NTHA1+Tnfv3Htl/z3SQuQLmXbkIeDF+4XS+6eGQNac8T
-	VuykDIalz8u9g3k+ok2LElV3XwnoGBvISIDPAcW0QF+QTUEj1PMbIibu7QfJoWfLElEQjqZKKqo
-	oYMW8QL2iCIGETthsZ/VUoCBLiqySjsOrgX8/DvltN9nJ68HKXCNml+FLuGr6xAMr0kac5eos8Z
-	Bk3T57S4kIjYi1fy0S9DR/kJsWgoIyWfxIXwNV33IZjqIZGziIkRivKXKk1z8SpcynnNqW5FXVF
-	eyMK6osQK7J8rJaXpkHHihqNXClgPlMoMkEla
-X-Google-Smtp-Source: AGHT+IG5VzneoFYbewswXVJiJQA7X4tnJGGDHvgb8EgFHw+/z6nhgITDJiBHyRBEDaIMb0avqqonAA==
-X-Received: by 2002:a17:907:86a5:b0:ae0:8621:2233 with SMTP id a640c23a62f3a-ae9c99cf09bmr84890266b.6.1752655366273;
-        Wed, 16 Jul 2025 01:42:46 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.222.89])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e8294bfdsm1132749566b.120.2025.07.16.01.42.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jul 2025 01:42:45 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: robh@kernel.org, krzk@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, 
- alim.akhtar@samsung.com, kishon@kernel.org, Sowon Na <sowon.na@samsung.com>
-Cc: krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-In-Reply-To: <20250702013316.2837427-4-sowon.na@samsung.com>
-References: <20250702013316.2837427-1-sowon.na@samsung.com>
- <CGME20250702013332epcas2p4ea41cc442d42fd7b2c742e1d08b26182@epcas2p4.samsung.com>
- <20250702013316.2837427-4-sowon.na@samsung.com>
-Subject: Re: (subset) [PATCH 3/5] dt-bindings: soc: samsung: exynos-sysreg:
- add hsi2 for ExynosAutov920
-Message-Id: <175265536480.111577.14907577908476237198.b4-ty@linaro.org>
-Date: Wed, 16 Jul 2025 10:42:44 +0200
+	s=arc-20240116; t=1752655912; c=relaxed/simple;
+	bh=C8wk5wd2vdrmCGfvTUy7P+izwKxAI9vCGu3v73GLvNc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DKtBRQpSpyzSzzeHofotCI43TtNisQFTqmEFoeMLjYi/quMGldqry+sDC9nV1aVVeif5sQBTMt6+c+h6/U16e2Zk4F5DXiX0xKXGlaLFLdhmekVwI/O2JM+f16MPD9iQc71yeoVgpnto/mmg5T0AFSR82Az3PUvKDmmKjBN4c6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=E3H3MdSt; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56G6ThGB031273;
+	Wed, 16 Jul 2025 08:51:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=JAfesH9/TPqW8YiL1mT2tzTzG+h7ZmwO6fSXKlIFXXU=; b=E3
+	H3MdStvdVs8Bt9VQvPHzX1lrHtDgAXQg7jC1hZ2PhJ0YiXN6kIEtmpFem0INgasN
+	1XptolWAOeqG8HyrH4B8MJ7ltGfx2HVXWw/IeBFuqemRbFKzCmvGTxSpI7JOHvS5
+	32clrY+4/qLQaxfo4e712iDZu2WNi/17hsLBoVV1l9YxzbeEAEmG/CBNLigU/ic3
+	eHOFOOVvSjbvJhtpPvxnzD6RKyi3I3M+JMono0gmYcD96rZZqTwB+pyqNx30WpAb
+	lP5wioFkbhl7tCCxAxMUQ9H82vfdygbqSkK4MgSAcdyIcm1Pf0wvsaQN+1S4fphA
+	/HTt/rrt07Ymwp4phGKA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufutb3gg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Jul 2025 08:51:47 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56G8pkMC003852
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Jul 2025 08:51:46 GMT
+Received: from hu-sayalil-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Wed, 16 Jul 2025 01:51:43 -0700
+From: Sayali Lokhande <quic_sayalil@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>
+Subject: [PATCH V4 0/2] Add eMMC support for qcs8300
+Date: Wed, 16 Jul 2025 14:21:23 +0530
+Message-ID: <20250716085125.27169-1-quic_sayalil@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=e7gGSbp/ c=1 sm=1 tr=0 ts=68776823 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=Wb1JkmetP80A:10 a=Ihs08mxtZF4EWRPjB5cA:9
+X-Proofpoint-GUID: evbOKAPL0ZBY_UEiFShYECoFOPfWyXED
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE2MDA3OSBTYWx0ZWRfX0c5zrLQeCztb
+ m+lsbJUfL27hl5lhXohYMZdMnNsI/wm0lPCjQaMIloWED2+vli2zo1S6nkBn+XETFn1seoIHTma
+ OBbMlP1mEOD7VH3AiN98SIxONTbTTx3y1KHjVn2IC8ULEIDGmgGpsy3CUSCTSTacKh3Za/AL/wf
+ 3v1NA82DLJxwFXAN8+IkN3PmmUPH0xNEH4yRGalcCxMIpQef0Tz54SpUHOCqspm8t9VYZn9ZRHz
+ ZaeaOPYD4Dh7VLpeVCNhCV67QVt8oTa0qaCfUtwpyVJ+i39XH6oJFi242MtDHIOuMhlc2xIz9Z/
+ Y+Xb17xUL/Iwc2On2YtYNXtubD4vnVIaRyQfNRu85Lnacp18xh0NkNO+hJtbLnFJF4XS6F6RADJ
+ 8RKQ6qcucqUEUrTbRdaTYUwHem9Mx79CcLEzDDWKDr4HvS6UmxzokX3DDwK5f+/L21ILd/fQ
+X-Proofpoint-ORIG-GUID: evbOKAPL0ZBY_UEiFShYECoFOPfWyXED
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-16_01,2025-07-15_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 mlxscore=0 spamscore=0 suspectscore=0
+ phishscore=0 bulkscore=0 impostorscore=0 clxscore=1011 adultscore=0
+ malwarescore=0 mlxlogscore=554 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507160079
 
+Add eMMC support for qcs8300 board.
 
-On Wed, 02 Jul 2025 10:33:09 +0900, Sowon Na wrote:
-> Add hsi2 compatible for ExynosAutov920 ufs shareability register to
-> set io coherency of the ExynosAutov920 ufs.
-> 
-> 
+- Changed from V3
+ - used correct name for SLAVE_SDC1
 
-Applied, thanks!
+Sayali Lokhande (2):
+  arm64: dts: qcom: Add eMMC support for qcs8300
+  arm64: dts: qcom: qcs8300-ride: Enable SDHC1 node
 
-[3/5] dt-bindings: soc: samsung: exynos-sysreg: add hsi2 for ExynosAutov920
-      https://git.kernel.org/krzk/linux/c/687d974a218a719f7e729bef9c498ec36f18115e
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts |  21 ++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi     | 113 ++++++++++++++++++++++
+ 2 files changed, 134 insertions(+)
 
-Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
 
