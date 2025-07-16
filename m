@@ -1,59 +1,49 @@
-Return-Path: <devicetree+bounces-196820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 906C0B072EE
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 12:15:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21FE4B072FC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 12:16:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C9285063EF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:14:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAC381C24748
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0545F2F3636;
-	Wed, 16 Jul 2025 10:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B70C12F2C62;
+	Wed, 16 Jul 2025 10:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JZRpQi/d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CDuu6Dlp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB3DA2F3629;
-	Wed, 16 Jul 2025 10:15:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863A9215F6B;
+	Wed, 16 Jul 2025 10:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752660909; cv=none; b=sHVTYJrF2SN350UOZWt8ZZyqWPQTCchkVXiNlv2lR1Jnp9AEQuZbrZn3A3Ch3+Al3YAshTN7eAHdQhveAO75vcaV85PvB7JgpYMaveXuNRyNJhjqiTY05fhV6J2nRYByYEXkiYEksvQTx/appv9PjkQqXfG0mghygc9UO7HSqbs=
+	t=1752660985; cv=none; b=fWJyzsqb2tQA79uGL+Ek4Z25BnHcX8rGBLZmXGEHbvsazHRZWeYw/ZmR+40YRZJ1520u4SuItkhtbqxEOQplU9UR4vYYdccLKXDazgRJ0MBFI4SdkRtodVC1mX+HVWNmXLjhaImcWbmbIUX6rq1EbsWv9qo/Glfd/D2vGcRadPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752660909; c=relaxed/simple;
-	bh=uHygiQuZVYuOZyP60B4wmiODV+vXIaSuz4a87aEJAcA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=o0KUdpzSziVYxXh85KZJ1hS3TdLxSbAU0ow7EuV39mz9eOZ6an7r9m2SomXcDAgvk25c1tyww7zkgD2MT/rNsohk4D0A/Mp3Jl9gA7wugxsKiGGYYw1ZbNUbuJLmX0vJOGtJF/UHDtICCjTLANb74NmMySXwj5b3pvvaivIPTtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JZRpQi/d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9185FC4CEF1;
-	Wed, 16 Jul 2025 10:15:06 +0000 (UTC)
+	s=arc-20240116; t=1752660985; c=relaxed/simple;
+	bh=C8U2EKW6jdsZWIl2RXIYDu1e3lyJ/jnCYupiNbG6rqk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=g7tNlAfU4kGIJjNay+KXSggxaHviPfJCy591lWXo6JWWnMDT8ZLLrkoTrYloT+tsdUkopMMNm1a7ibAXsOaEL0yOhwCMuNhOr5YmBiFMTohKjndvZMFZTQhHlB4QX/EdK/nSy8gqO2BrPclV1dQW8hitIHXX+F0WzYHeQnAGa/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CDuu6Dlp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A41C9C4CEF0;
+	Wed, 16 Jul 2025 10:16:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752660909;
-	bh=uHygiQuZVYuOZyP60B4wmiODV+vXIaSuz4a87aEJAcA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=JZRpQi/dMHYUWl7Q+dyLlIcrudLpctqmrV8P1+rLksWPshl3BEoO1oH01cDpOZw9j
-	 MvSG6h/5RwLjTnDVb5WX01su7FWAoMAXmnQbGaP0nH5C8VZtNl65RuVBvWmpjDdmZ4
-	 bqYML/a+xI04WiUM6iWgVUalRZCQStG+ZFYdcRXu6HxSiQlZQprBHUaRD7knHpScQv
-	 dZHbX2+4kmC/7gJuumgoKqvUnDwCZ0o46KBy6MGTJOqHOr0uO9uXRBZsZPOljiPHp3
-	 sEnKpRlVnlBNnAtM9wsxG9QeJ8Gj8N0yLwxD/qf2CC5HbKoNIj9FY88SCcGQ/gSpMF
-	 8WyaLPPgnIdEg==
-From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Chris Packham <chris.packham@alliedtelesis.co.nz>, 
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250715202711.1882103-1-robh@kernel.org>
-References: <20250715202711.1882103-1-robh@kernel.org>
-Subject: Re: [PATCH] spi: dt-bindings: spi-mux: Drop "spi-max-frequency" as
- required
-Message-Id: <175266090631.17966.7228159355506888801.b4-ty@kernel.org>
-Date: Wed, 16 Jul 2025 11:15:06 +0100
+	s=k20201202; t=1752660984;
+	bh=C8U2EKW6jdsZWIl2RXIYDu1e3lyJ/jnCYupiNbG6rqk=;
+	h=From:Subject:Date:To:Cc:From;
+	b=CDuu6Dlp/PE2oWBq/n1FeXcxSAfhs3iBAQb/bxYtoGHugL6UzEYQFyq6MPoUszI1w
+	 NDLiNlKHiR4KtZXycihHzygL33DZcmAbPGYIrjiy/xfFvCndy7EEgtRGNw1z2RRwLj
+	 6aeF38E9jE8/3VaRK4SWp79IO9TOPV6nOC23ipOuBOOl11nP90n03PoSp/zoJl+lai
+	 QnRvdgISFdwd5KahOh8LIxwvijMpwGiPmT9iEpSGIoRW7mSboftnEDVGgom7h+hbQp
+	 ilVfxTjSmwUfLAxyQB3z21ct0fYixxliTdIRGzpZdoRR0cPTc9Tq3jUN7T8xQzYmX3
+	 QeQ2Oo9eB/U1w==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH v2 0/4] Retire SDM845-cheza devboards
+Date: Wed, 16 Jul 2025 12:16:06 +0200
+Message-Id: <20250716-topic-goodnight_cheza-v2-0-6fa8d3261813@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,42 +52,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-cff91
+X-B4-Tracking: v=1; b=H4sIAOZ7d2gC/4WNQQ6CMBREr0L+2hJaUkBX3MMQQ0uhPxE+trVRC
+ Xe3cgE3k7xJ5s0G3jg0Hi7ZBs5E9EhLAnHKQNt+mQzDITGIQsii5pIFWlGziWhYcLLhpq359Ex
+ xXTZqHM+lVJC2qzMjvg7vtUts0Qdy7+Mm8l/7zxg546xqVFUPVaFFLVryPn88+7umec5TQLfv+
+ xd5MBMhwQAAAA==
+X-Change-ID: 20250715-topic-goodnight_cheza-b1c38bff935b
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+ Joerg Roedel <joro@8bytes.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Rob Clark <robin.clark@oss.qualcomm.com>, 
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752660979; l=1733;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=C8U2EKW6jdsZWIl2RXIYDu1e3lyJ/jnCYupiNbG6rqk=;
+ b=ABLFgPgQnwfUegih1onsZ2LADJ3O3eAVzR7G4DOPYRlcqMIDaIHQVdmXgY2BBztinW5HV3bn+
+ ImJ6f+6E9FdDWr4SzHOgtTao6yWdNQOUVkmokuOamhtHuIlbVo8U86b
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On Tue, 15 Jul 2025 15:27:10 -0500, Rob Herring (Arm) wrote:
-> There's little reason to require the SPI mux to define a maximum bus
-> frequency as the muxing is just the chip select and devices still define
-> their maximum freq. In fact, several users don't set "spi-max-frequency"
-> which caused warnings.
-> 
-> 
+Cheza was a prototype class of boards, based on the 2017 SDM845 SoC,
+used for bringing up ChromiumOS on Snapdragon platforms.
 
-Applied to
+Today, almost none are left in existence, and the small amount of
+remaining ones don't get any real use.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+To ease maintenance burden, remove it from the kernel tree.
 
-Thanks!
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Changes in v2:
+- Drop the MAINTAINERS entry
+  I wasn't sure whether to go with a separate commit, I'm fine with it
+  being squashed if that's preferred
+- Drop the dt-bindings, as the board practically doesn't exist anymore
+- Drop the SMMU bindings entry
+- Link to v1: https://lore.kernel.org/r/20250715-topic-goodnight_cheza-v1-1-68b67d60c272@oss.qualcomm.com
 
-[1/1] spi: dt-bindings: spi-mux: Drop "spi-max-frequency" as required
-      commit: d5255ae7ec48ac1f702e95b472801dbb7bf1e97f
+---
+Konrad Dybcio (4):
+      arm64: dts: qcom: Remove sdm845-cheza boards
+      dt-bindings: arm: qcom: Remove sdm845-cheza
+      dt-bindings: arm-smmu: Remove sdm845-cheza specific entry
+      MAINTAINERS: Remove sdm845-cheza device trees
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    3 -
+ .../devicetree/bindings/iommu/arm,smmu.yaml        |    4 -
+ MAINTAINERS                                        |    1 -
+ arch/arm64/boot/dts/qcom/Makefile                  |    3 -
+ arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dts       |  238 ----
+ arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dts       |  238 ----
+ arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dts       |  174 ---
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi         | 1330 --------------------
+ 8 files changed, 1991 deletions(-)
+---
+base-commit: 0be23810e32e6d0a17df7c0ebad895ba2c210fc4
+change-id: 20250715-topic-goodnight_cheza-b1c38bff935b
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 
