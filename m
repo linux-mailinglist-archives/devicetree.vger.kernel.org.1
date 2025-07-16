@@ -1,82 +1,88 @@
-Return-Path: <devicetree+bounces-197082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 097A8B080C8
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 00:59:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02298B080F4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 01:25:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 310A417AB46
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 22:59:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A8B2170F6B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 23:25:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E3312EF282;
-	Wed, 16 Jul 2025 22:59:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950002EF9A4;
+	Wed, 16 Jul 2025 23:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CqwE2//n"
+	dkim=pass (2048-bit key) header.d=atl.tools header.i=@atl.tools header.b="odPNkQCs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.atl.tools (mail.atl.tools [49.12.87.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 288871D555;
-	Wed, 16 Jul 2025 22:59:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6243128A3F5;
+	Wed, 16 Jul 2025 23:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=49.12.87.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752706741; cv=none; b=dbANFb8qlWlgmmt0X0zYdEh+UbdKZm9O5dx5CcBlitQDSj4AiJbi01I4J06yBXbPNMLqfss9VN7cxOyOAWDut4XELyE0pYsh52cdZVbxxTCELNB32oQ9o7j+kwl0mKbo87+BFeat6/E8M1yte2Ckf5nDtVs0bV6oxMyZfCkXH1E=
+	t=1752708321; cv=none; b=jkJmp6YZMzJXZoNrhvEU2naQzR+qhWK5FnYiO/LJ2hv3B0N/JUJgot6M0/z2dnjSQbzIYHd3LNG8GlwrzxLlL2BYrlFQM8YN25C63z5gYw9dXtaRFmc+r1x3D/eWvx9viBIwuIbtTvc7XvXaQofESj3nj0g1rydPcaWK7fuMtQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752706741; c=relaxed/simple;
-	bh=0dkzby8hdqpTEYrx4v2fUKiDbSXRJB+rFnnph5DXf3g=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
-	 References:In-Reply-To; b=t5OgIdCfRjq82VAY7/nuwizbFVZD0Zb2wx8jHui+1LSV1KpOuaUE2qIRxTnZM8r4ECsROL7sv0VVxmmUnZ2vehIlaXVbnR/ixcw+TLzXf+dFmEnqgBf6H+Y575d0XOuHSWJ6LeQLcinQed9guBdIsN4LhLaJmDmRbZQ66rf3i5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CqwE2//n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD12FC4CEE7;
-	Wed, 16 Jul 2025 22:58:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752706741;
-	bh=0dkzby8hdqpTEYrx4v2fUKiDbSXRJB+rFnnph5DXf3g=;
-	h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
-	b=CqwE2//naBbFY3iq8URW16L5jkKdga66bMIFfNFJFVFELk9jFQxPzIYH096mnzp1T
-	 bDP6tpnsGjbhmqoo1glEZ4q0De3URCBal6mFYFPJun73I00ur8MFJKUGUDsIq2YDLg
-	 OdKofq7lr/+iStgHZ1YjNqcgp5RFJSpDrx3c/PRNGPmuqOEAzkAFwZuyJ4iGOgfCXV
-	 bLdyRtMkhCf73MrLZttJbYugKxm4cerwA8WM004sJu+BOyeaB55p6/8Wnqs/K1t9GQ
-	 4D53TWom2O0uLGuT4+1JiGDDzWhWNCC4kKh+LwF85bhGhOZs2uPWSW5eLQlS1mqPiq
-	 YVZINSp0ugotQ==
+	s=arc-20240116; t=1752708321; c=relaxed/simple;
+	bh=9WzX3FFOenXx0/BJv8oQVqLXl1SIENq9vmB/gJLwCSU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EhJyksIBqxyivzobIniBXM21TxEQpdk0hb7E3heEnJpX5YW94fOFk3p2FrAHNVDH+lsfurJ3P9Qsf2fUOb9fHTGG/rkWd6JoWn5qZxOxzS2qZta8wYVZKMWPm3Jd6Nvpko9kPEe8KjIQT2NAXjj4eUpQG94MrTIlngCSgFC38oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=atl.tools; spf=pass smtp.mailfrom=atl.tools; dkim=pass (2048-bit key) header.d=atl.tools header.i=@atl.tools header.b=odPNkQCs; arc=none smtp.client-ip=49.12.87.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=atl.tools
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=atl.tools
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DB1E12AAD9;
+	Wed, 16 Jul 2025 23:17:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=atl.tools; s=dkim;
+	t=1752707845; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=Z3ilcqrD4PmYjpiXrPEU+gqpYLCmyZ/DdRrTlI3A5V8=;
+	b=odPNkQCsEbqkZp1kFI5hidalm0OxWEFJjzP4/jL25LtoqBwwONwjeR4MLKONnDUredynWF
+	ob6KinIkjM48+IgxUJ3dZPEewzz6nvkxOPasVY7Wz1/a88TD8eslF/ZOEOBlYDC6whUIhZ
+	adw/VDZHZCC9CbujnH0BsIiYdS1BqhjqN7KMmC3E7Iemu9TL+eFHyWt/YpgSiwut4QlDQQ
+	po0sPUazEfHkLijCbprVj/nmBqcfKiwgNSDEhnxZYJdlqRBk0X8Ci9OM31bWVZ/N/uCT3h
+	42mR3JfRd2/lxdZFT0D5zSL7ShwveGf0BdHz8a4Byi9fl2E2oSIgz8hUKr1A2g==
+From: Violet <violet@atl.tools>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/2] arm64: dts: qcom: add initial support for Samsung Galaxy S22
+Date: Wed, 16 Jul 2025 23:17:08 +0000
+Message-ID: <20250716231710.99983-1-violet@atl.tools>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 17 Jul 2025 00:58:53 +0200
-Message-Id: <DBDUOLUZTQND.3B3B677YYKFSX@kernel.org>
-To: "FUJITA Tomonori" <fujita.tomonori@gmail.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v4 0/3] rust: Build PHY device tables by using
- module_device_table macro
-Cc: <alex.gaynor@gmail.com>, <gregkh@linuxfoundation.org>,
- <ojeda@kernel.org>, <rafael@kernel.org>, <robh@kernel.org>,
- <saravanak@google.com>, <tmgross@umich.edu>, <a.hindborg@kernel.org>,
- <aliceryhl@google.com>, <bhelgaas@google.com>, <bjorn3_gh@protonmail.com>,
- <boqun.feng@gmail.com>, <david.m.ertman@intel.com>,
- <devicetree@vger.kernel.org>, <gary@garyguo.net>, <ira.weiny@intel.com>,
- <kwilczynski@kernel.org>, <lenb@kernel.org>, <leon@kernel.org>,
- <linux-acpi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-pci@vger.kernel.org>, <lossin@kernel.org>, <netdev@vger.kernel.org>,
- <rust-for-linux@vger.kernel.org>
-References: <20250711040947.1252162-1-fujita.tomonori@gmail.com>
-In-Reply-To: <20250711040947.1252162-1-fujita.tomonori@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri Jul 11, 2025 at 6:09 AM CEST, FUJITA Tomonori wrote:
-> Build PHY device tables by using module_device_table macro.
->
-> The PHY abstractions have been generating their own device tables
-> manually instead of using the module_device_table macro provided by
-> the device_id crate. However, the format of device tables occasionally
-> changes [1] [2], requiring updates to both the device_id crate and the cu=
-stom
-> format used by the PHY abstractions, which is cumbersome to maintain.
+Changes in v6:
+- Remove debug features (bootargs, etc) that slipped in the v5 DTS
+- Format and organize nodes correctly based on existing DTS, 
+ move "status = "okay";" to the bottom always
+- Solve "ddr_device_type" and "qcom,rmtfs-mem" warnings, the rest are
+ from existing SoC .dtsi
+- Disable buttons, ufs and other features for later revision
 
-Applied to driver-core-testing, thanks!
+Signed-off-by: Violet <violet@atl.tools>
+
+Violet (2):
+  dt-bindings: arm: qcom: document r0q board binding
+  arm64: dts: qcom: add initial support for Samsung Galaxy S22
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sm8450-samsung-r0q.dts      | 145 ++++++++++++++++++
+ 3 files changed, 147 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
+
+-- 
+2.50.1
+
 
