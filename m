@@ -1,130 +1,161 @@
-Return-Path: <devicetree+bounces-196739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89686B06EB2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:16:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF921B06EAF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:16:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BEDA87B1C99
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:14:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1580A566B81
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36CA528B3E2;
-	Wed, 16 Jul 2025 07:15:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8286279358;
+	Wed, 16 Jul 2025 07:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="hBxU0FI6"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="B9TMPI7S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1C8256C6D
-	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 07:15:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47E9381AF;
+	Wed, 16 Jul 2025 07:16:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752650150; cv=none; b=mJiZtEAPhEwitJqSlDELGGGccAWN4ur3Rm0LmJOMV/HSEGx1G1iioqO2R1p7PyGAZuIUvJtzsmNBh2ejoGJxvBeXv/0+Z+N5fuqbQb3JmgokhTPDZuvlehRfWJ6IQArJERBPOD4FIquHT4rlSvh3sWUTajf2AWKzNWffskek0MY=
+	t=1752650193; cv=none; b=Sp79VbGkdAnp3RLvLnyvpHr/E8oyNSH3Pdh54HV88Ek2y8LjAz21vqz/12CJ3thfw6glNGwLkU6YyMhwC+hOiTp3tgPLQ/tIJw90swCjyjBy1GcwRXwI3+9wtu3H+3qvMNE9FNI0HFQHDR3pBmwxUsWC7Z7UX2kCh9Rz7zRdy48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752650150; c=relaxed/simple;
-	bh=24Tb/LcZcpuEpFKIVKeMZB7NBtNKQTvEKsUhXdnCMXk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=M9wJyHJds/2yGijgwwEGMdGd8yYlNdL5szR4LYiZPDKeQvqX9YQZx2Iknpu1efles2HndY8AV9IXcNZYu0ePPkL2OkP8pJvek6NueL1d+iCjU4WlaSyIAijaaidPGKlgOEdbBzJgt9ucdpe9roWPmfWmPp7+zrb9FkqyVsIhkYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=hBxU0FI6; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-60c4f796446so9267470a12.1
-        for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 00:15:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1752650146; x=1753254946; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YfsjryOJJcheH9NBkSyCY8ER+5hEKLpu3+/ZdvPKIxw=;
-        b=hBxU0FI6N4QyvB9ewq8YRKB58MORaqNgkMrhXYVmffHaIufzTUqBkT5pO9I8Vk7sVE
-         72DJEvKxWuMuruygEKXhPttCZprFXvvhq/onoRMHK+fYnYSdR6nPotsCmeUcjpu33+bd
-         SW28QC5rr8OhHWCFj3WjkAJEGVQuEzcaVWEhBawOZVZlR+TlMUybSl/eA9k/dkb7sQRp
-         vyD6PszlSyymICoMdafqoXUgi8embFU2wiMtp/1pOQPcBf2u9Tk23JVIss5JvzxQV6mt
-         KJUfr4UHgNhJfILhy5Y8HbMlMt+GiPBTPhOc2IfkdHjiCHrZcmqSCCKB6RzVlswHxfOU
-         Elyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752650146; x=1753254946;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=YfsjryOJJcheH9NBkSyCY8ER+5hEKLpu3+/ZdvPKIxw=;
-        b=k4osGSD45MgDYPGXQQNrhjX3FU8bPb64PzbI7bJ8R8/9O9lhuRr6COkJInrf2d8s2L
-         HYB02CN7hdYAHE56wOod6NhhtdjzlCdn4Hu8W/6LSKeQbWo1jh5e0ypTnZu5nqKsroJR
-         FgYX5iA2npJnRapX4veLR4Kk+l/jBjjra1W3fE0k9qe9X5/OYmzXsP2Cda/P8feaOllB
-         DPH1A6Kh+eqMnevmsBBY5BRaH4GBbii6Dn1VVXVlghmOpv89VD3L3f+VtWD/hG1/vkgy
-         tOzLLT/EWTQrX6tAyMryr9Es3cnPhfd4L+M2tZ8PL80DqXuhD9BlrXBpX2tExHM3lM7J
-         D4pg==
-X-Forwarded-Encrypted: i=1; AJvYcCWtBb0mFO1WaHco/alDXmasYp7vhlDrc8VMxZRq2NfREui/KcUaeNv3uhA4ADpDSeMB9cxm8WghFkjs@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcxAuLUZ/tvyZWp9q0RCcK8sXA4qYBgFmjgzjuE7dks+d4wCPl
-	/M4HNJAS6rGtbmqsu255SNsbjvS1smqB4z82ThL5PnGxe4wnh30TmsZLJMdTVxeOpEXDHGZ1nPz
-	z+8VbGJ8=
-X-Gm-Gg: ASbGncvyzjH9ZNTxMJ2ssFCIULipyWFYfwFXKaWsVN4PB9bL1DzgohZjnb2gXud3Scy
-	MupSC8vIB3iQydVmkmrNT5kgqNcggIQeNMTODzc9oItWlfA0sU7fVmEByJ5rz/fBgkMtItu0odT
-	BkBNJBQ65sRITiiFrDCLsKA14qyK7Kz/qjYZ46fdg6OhtggUPDhrCxUxPue5TLXQxr38Buqi2Co
-	Ewd94KmHcp3AzPu8IscQpgrRQAl3PDDPtG1ZAU+YE/RaGHHcDZU/bRmsaPCqu0tDtcgWoooFPW3
-	YU/hmbp/tTmdkYfJ76y6b0UVBE9mX2MBFW124eTkn7GpWM2IUeZfP3rFy/5ooUyHMJNtMHECVuv
-	uBI43Xk3KdtgnYdpnFO8Li7UjOIAhjqGthajuvEjdjSoVsj9QbEzEOWk=
-X-Google-Smtp-Source: AGHT+IHh6O0xWZNdSmDIs+XRRgBqO1v1bLel1oaIRd2A4zdKO7Ksr9kC4ZbOvvs8AVHwGMBGLMFLbg==
-X-Received: by 2002:a05:6402:2343:b0:606:9211:e293 with SMTP id 4fb4d7f45d1cf-61281ebe084mr1668193a12.9.1752650145562;
-        Wed, 16 Jul 2025 00:15:45 -0700 (PDT)
-Received: from localhost (212095005088.public.telering.at. [212.95.5.88])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-611c976ec04sm8197036a12.60.2025.07.16.00.15.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Jul 2025 00:15:45 -0700 (PDT)
+	s=arc-20240116; t=1752650193; c=relaxed/simple;
+	bh=cgJpryTbNPT4uQieh/YRbOpgBOzYOqZivYucNN76U+Y=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kIC8peEz96xSckHUTS9NSmjUMtfnyUrmEjvoqRhEHaC0OSw2LMzeq3dHlUSsR5gSK5msYt4kjmu7EtnknxMplHP/aj6J+6aD6iKTfyx+QhQuhML0wYlF4dHP46J2MfkfapppdV1aLea7wE1obs5EqplRagVp3s1xWOkAI1LXwTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=B9TMPI7S; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56G7GF5V195870;
+	Wed, 16 Jul 2025 02:16:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752650175;
+	bh=fB5TsNwWgB45LAm6ZUD/fPdEU/smhkB4TT/cSr4jjJM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=B9TMPI7SC4qU/6z6jDeESs3xi8l7HRBuGgZM68kBwZjADBftiwxiRTOfuu+RNJ+gm
+	 BEfXBxqBh6FukA4POWABRLH90qBU4yN/s+Fe7IBrh0JiI8a5MSpKsh9LaoNIQv17vg
+	 t1YeqiiPoIEsREb2tO3lRivtJioX4uw+rCKULtZo=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56G7GFXg1184742
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 16 Jul 2025 02:16:15 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 16
+ Jul 2025 02:16:15 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 16 Jul 2025 02:16:15 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.169])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56G7GDQm046600;
+	Wed, 16 Jul 2025 02:16:14 -0500
+Date: Wed, 16 Jul 2025 12:46:13 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <huaqian.li@siemens.com>
+CC: <s-vadapalli@ti.com>, <baocheng.su@siemens.com>, <bhelgaas@google.com>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <diogo.ivo@siemens.com>, <helgaas@kernel.org>,
+        <jan.kiszka@siemens.com>, <kristo@kernel.org>, <krzk+dt@kernel.org>,
+        <kw@linux.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <lpieralisi@kernel.org>, <nm@ti.com>, <robh@kernel.org>,
+        <ssantosh@kernel.org>, <vigneshr@ti.com>
+Subject: Re: [PATCH v9 (RESEND) 4/7] PCI: keystone: Add support for PVU-based
+ DMA isolation on AM654
+Message-ID: <0cd8175e-e448-483f-862e-b12d795ae1e5@ti.com>
+References: <e21c6ead-2bcb-422b-a1b9-eb9dd63b7dc7@ti.com>
+ <20250716053950.199079-1-huaqian.li@siemens.com>
+ <20250716053950.199079-5-huaqian.li@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 16 Jul 2025 09:15:43 +0200
-Message-Id: <DBDAMGN9UQA0.J6KJJ48PLJ2L@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Luca Weiss" <luca.weiss@fairphone.com>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- "Krzysztof Kozlowski" <krzk@kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <stable@vger.kernel.org>
-Subject: Re: [PATCH 0/3] Fixes/improvements for SM6350 UFS
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250314-sm6350-ufs-things-v1-0-3600362cc52c@fairphone.com>
-In-Reply-To: <20250314-sm6350-ufs-things-v1-0-3600362cc52c@fairphone.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250716053950.199079-5-huaqian.li@siemens.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Bjorn,
-
-On Fri Mar 14, 2025 at 10:17 AM CET, Luca Weiss wrote:
-> Fix the order of the freq-table-hz property, then convert to OPP tables
-> and add interconnect support for UFS for the SM6350 SoC.
->
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+On Wed, Jul 16, 2025 at 01:39:47PM +0800, huaqian.li@siemens.com wrote:
+> From: Jan Kiszka <jan.kiszka@siemens.com>
+> 
+> The AM654 lacks an IOMMU, thus does not support isolating DMA requests
+> from untrusted PCI devices to selected memory regions this way. Use
+> static PVU-based protection instead. The PVU, when enabled, will only
+> accept DMA requests that address previously configured regions.
+> 
+> Use the availability of a restricted-dma-pool memory region as trigger
+> and register it as valid DMA target with the PVU. In addition, enable
+> the mapping of requester IDs to VirtIDs in the PCI RC. Use only a single
+> VirtID so far, catching all devices.
+> 
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
 > ---
-> Luca Weiss (3):
->       arm64: dts: qcom: sm6350: Fix wrong order of freq-table-hz for UFS
->       arm64: dts: qcom: sm6350: Add OPP table support to UFSHC
->       arm64: dts: qcom: sm6350: Add interconnect support to UFS
+>  drivers/pci/controller/dwc/pci-keystone.c | 106 ++++++++++++++++++++++
+>  1 file changed, 106 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
+> index 2b2632e513b5..fbf1bf43b7ca 100644
+> --- a/drivers/pci/controller/dwc/pci-keystone.c
+> +++ b/drivers/pci/controller/dwc/pci-keystone.c
 
-Could you please pick up this series? Konrad already gave his R-b a
-while ago.
+[------------------email has been trimmed----------------------------]
 
-Regards
-Luca
+> +static void ks_release_restricted_dma(struct platform_device *pdev)
+> +{
+> +	struct of_phandle_iterator it;
+> +	struct resource phys;
+> +	int err;
+> +
+> +	if (!IS_ENABLED(CONFIG_TI_PVU))
+> +		return;
+> +
+> +	of_for_each_phandle(&it, err, pdev->dev.of_node, "memory-region",
+> +			    NULL, 0) {
+> +		if (of_device_is_compatible(it.node, "restricted-dma-pool") &&
+> +		    of_address_to_resource(it.node, 0, &phys) == 0) {
+> +			ti_pvu_remove_region(KS_PCI_VIRTID, &phys);
+> +			break;
+> +		}
+> +	}
+> +}
+> +
+>  static int ks_pcie_probe(struct platform_device *pdev)
+>  {
+>  	const struct dw_pcie_host_ops *host_ops;
+> @@ -1284,6 +1384,10 @@ static int ks_pcie_probe(struct platform_device *pdev)
+>  	if (ret < 0)
+>  		goto err_get_sync;
+>  
+> +	ret = ks_init_restricted_dma(pdev);
+> +	if (ret < 0)
+> +		goto err_get_sync;
+> +
 
->
->  arch/arm64/boot/dts/qcom/sm6350.dtsi | 49 ++++++++++++++++++++++++++++--=
-------
->  1 file changed, 39 insertions(+), 10 deletions(-)
-> ---
-> base-commit: eea255893718268e1ab852fb52f70c613d109b99
-> change-id: 20250314-sm6350-ufs-things-53c5de9fec5e
->
-> Best regards,
+Please move the above into the section specific to RC mode. This has
+been agreed to by Jan at:
+https://lore.kernel.org/r/e9716614-1849-4524-af4d-20587df365cf@siemens.com/
 
+>  	switch (mode) {
+>  	case DW_PCIE_RC_TYPE:
+>  		if (!IS_ENABLED(CONFIG_PCI_KEYSTONE_HOST)) {
+> @@ -1365,6 +1469,8 @@ static void ks_pcie_remove(struct platform_device *pdev)
+>  	int num_lanes = ks_pcie->num_lanes;
+>  	struct device *dev = &pdev->dev;
+>  
+> +	ks_release_restricted_dma(pdev);
+> +
+
+Regards,
+Siddharth.
 
