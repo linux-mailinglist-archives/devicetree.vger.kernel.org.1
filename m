@@ -1,129 +1,145 @@
-Return-Path: <devicetree+bounces-196807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BBF8B0721B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 11:45:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A16B1B07229
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 11:48:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84DC73A79F4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:45:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD169505ECD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9BA2E5B3E;
-	Wed, 16 Jul 2025 09:45:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1902F0032;
+	Wed, 16 Jul 2025 09:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QebFb0+D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uCeTpfo9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7EEC273D9E;
-	Wed, 16 Jul 2025 09:45:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3445286D4E;
+	Wed, 16 Jul 2025 09:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752659151; cv=none; b=E0qcYbkYoc5cZAMKKJzDeEPS9AZXCo3RzoCKfuZMYWiTQnz6o7mvq73uhjKo+5fy6IiEPgyATVA8Q93lvrMcboon/rsQCTPGGcH+ZjP4fKz45TipIv6jGO9NYlgnBukmrA4GfSr3dyr5FvEeiO18qgSpAD8iZXbVag8IWbzRnPU=
+	t=1752659313; cv=none; b=IjE1oeK2Yz43CYXAlvTnESsNmBWOmZ40lcINJCb+8z+ikNS4HEpJz/BaSCNASkcDM+PxBzEOdTdw984SQLPPAsFLogMFRxpWtrWYkvu9fqjgmLrqjsgTzB7uohUnctxj23/rXxJM93mQ1S3bnzOKFsZtypcETFtc4Rt6Sj/agWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752659151; c=relaxed/simple;
-	bh=ib4v895jWgxSm+mNVCMPRRCf4CuxSGhOx0k/DpjpzS0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=g5axZ9vdQ9TC01bnYp3AgNPaiW+XL7ZuZFjL8Rp8hDUKFhq0Sd3fIPMaccD+qwU++AE8bp6rhbxA2rRl3wrCnnnQhABuflsrX9XxjAl+nORKfW6xWHnOtSClLdr5gSkShatAwxplz5B/34o0ItcpdVvWjvSf9A0NZp6tvNOrwNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QebFb0+D; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e740a09eae0so6432302276.1;
-        Wed, 16 Jul 2025 02:45:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752659149; x=1753263949; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S2lJu1PUW1cuTa8j8qT1jriWuKixRDa5iGkg98uYZYw=;
-        b=QebFb0+DO7NGOr3/52lAnyMRHYmuJqbhY/DARSB4FsZuNshjLPBivT4XrBY+QKO2D9
-         AV8fBzWnLckvtDyD50VrSkmn5mCLkldZEyKuItW/AQ7oU8JwCqBTXSjJnknsN+D6Xair
-         8omiM1LeCTtZEELoj3cfYWe+Blu0X+MzsHCNq+mQGy95xXkUPmkYDHjb2dAeCetizyDX
-         QFGan+eEUNg78bxBFjoNGS00B98IaWTU5hvgneDm6LUPe5t3iAgnK0YV7xWs09ucgbXM
-         IJZFWKzgNVRdc8bAWWU9DVaubpOxFGYrFzNYUnw0SFoxjj0i3md1XgeEaltHubs+dG2W
-         nJIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752659149; x=1753263949;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=S2lJu1PUW1cuTa8j8qT1jriWuKixRDa5iGkg98uYZYw=;
-        b=aaWM0SIwEPvgj3X9Px6u0IpJjVrSfoUs34nBNh54GI32aTdVLqK90n4s2HR/kcEbj7
-         vufm8NJLQV5TG0vWrdmYKMaIO0RJCpAmJGCtKgHoiskTWs6VYYTypCAgltq86HhOA7dZ
-         EHsclsNljA0dTVr9JPshgIyeyqJuV4fkx/xIE7OyegZ0nNa6iHEcOe8jS5+E6BlARw7V
-         OKQvTZh58Bk/qf+g9fI32AiKByUVj7efnKFhrxP+4XfoJUrTAUpVcIDOuGdwU5EN+pl3
-         dNDKhDlMhjIDdZL4p7wmy6pCv/CHI+1sSWpIbyr/m/Kgx1dtI74/Yh4ZO1fT7jUYNU9X
-         CVyA==
-X-Forwarded-Encrypted: i=1; AJvYcCUAjivHHN06hci60U93Bdn6hEGTYpxK/I39ekLflPI7Pqf74Vc0DV4c/V4Ph012vtVrzpg05e5BDaJa@vger.kernel.org, AJvYcCV7OlaNkxX6LYb/mUfVbX8AumV7oDY5soNzxYsRyr55B87ZByS8WHEXb4k6DLnfqQOpSxKZxi/V+Hqpv+3+@vger.kernel.org, AJvYcCXjE7BP1ZCFIWK5uzFp74Wv4aWTWihYxqeuUahjzMrlWpRcJyy6Mqcp83scV4xb2KscVc21h4aISo9fyA==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOeFfHs8l0epphf0bIT3W7tABttMXZcHxWGSkwtu8qyVTyoimJ
-	BBm9h9uXyFjPP4K/QOTIW2mb1JGVV8AlJAu/7eASqlDCfc0AKeG6V/bcq0JL+G3KP4RB1jlRKY7
-	ohV9EO3pW7b3/nKRqjFsg/m+lTDbQc5YZ/WUtHSc1Xw==
-X-Gm-Gg: ASbGncuMnOSTLAM42Zfj33K8ZTFsh1PsaeUwUurbz86WxtQWj0mz4mX6npfkNMkhEJg
-	LoNiYPNk5jskGw/MuwUOLFQpDReXU4+yfCVws7Qv+PFvnzeytz2iWRvKB7RFPCaC6Jk/e/rDyIH
-	IIJAdysHgzW4FbMh6P2fb+Xg5KSxzZPrwXI2EbpJaMIa9i53i7xJ4wxIaDPOiwmnZae4E5AXT4W
-	/L9RsxY
-X-Google-Smtp-Source: AGHT+IHFzjb2lZBeq0vcW38r3st56S+gBZuw/xv7RdKkGX0pEIrU9nEOqtohAAdJwXvahlak22+qQcRZQJgozKpQZgo=
-X-Received: by 2002:a05:6902:161e:b0:e8b:908a:a932 with SMTP id
- 3f1490d57ef6-e8bc1b9086bmr2841393276.0.1752659148649; Wed, 16 Jul 2025
- 02:45:48 -0700 (PDT)
+	s=arc-20240116; t=1752659313; c=relaxed/simple;
+	bh=m8JFTriB+ZYpVz0OfaVQFeSzxcxnfvekJQ6s+KD7B70=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UrxmJgP1hjmbe74Y86Iqr+Ti/EHgB1KJCSP1QOzs2M8mnglbDgTbVACVeaR3ANs/NU1GbST3D/JlvjfaHHMQD239pCLuBFX7jEIMMij2uffcURoX6RqS9ORCuLwQwRngx4URhctLd0jYCTLmV7sIUDKsOfgGt57Ym/jswcI7Abg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uCeTpfo9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA4F0C4CEF0;
+	Wed, 16 Jul 2025 09:48:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752659313;
+	bh=m8JFTriB+ZYpVz0OfaVQFeSzxcxnfvekJQ6s+KD7B70=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uCeTpfo9QUUayAOYqOhcVbdXKXUybMMVg1U00cgCpnmtA55G3irdDEaoc8/3lJpdF
+	 aYuJ5gkAxNZcvVZEKiYI34zRHHsBTMSgJ/Nv+8V0ph7ecNJY1+9jcm2sgzKKXpD9PY
+	 oBu/GlqSz6OOhtfKG6BlvKBD4b/IOXpZOhgDm6IY/ySatkKeaXHhox+PlnF1xT7hbj
+	 AVpEyx4CUfGmG0RODsfHPHQT0XWMeM92qDI5gXS/808HYBbOxdKNBveeiSGyXbLif4
+	 YTPgSSQ6VeDAwBbFhaKepSIc4JdJYJnqW6DnDBjlLsesOnCXb7V5DZXdmJ5yCyK1hI
+	 N/9guE3zNAtQA==
+Message-ID: <6077ec05-87f3-4bd2-904d-db9b451d2490@kernel.org>
+Date: Wed, 16 Jul 2025 11:48:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250709-loongson1-arch-v2-0-bcff6e518c09@gmail.com>
- <20250709-loongson1-arch-v2-4-bcff6e518c09@gmail.com> <20250710-wondrous-copper-bonobo-b11dcd@krzk-bin>
-In-Reply-To: <20250710-wondrous-copper-bonobo-b11dcd@krzk-bin>
-From: Keguang Zhang <keguang.zhang@gmail.com>
-Date: Wed, 16 Jul 2025 17:45:10 +0800
-X-Gm-Features: Ac12FXzOY9yqLfALZsN0SFfmS7-jXoun3VBZAodX-KGknn49Xrz9WULq7FGDGqc
-Message-ID: <CAJhJPsWq0mPri2ZcZkufvnLEnpZ9A_FOv5kE+vpER9vw8vLsSQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/9] MIPS: dts: loongson: Add LSGZ_1B_DEV board
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-mips@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 1/2] dt-bindings: arm: aspeed: add Meta Ventura board
+To: "P.K. Lee" <pkleequanta@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ patrick@stwcx.xyz
+Cc: Jerry.Lin@quantatw.com, Jason-Hsu@quantatw.com, yang.chen@quantatw.com,
+ p.k.lee@quantatw.com
+References: <20250716094329.1069203-1-pkleequanta@gmail.com>
+ <20250716094329.1069203-2-pkleequanta@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250716094329.1069203-2-pkleequanta@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jul 10, 2025 at 8:29=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Wed, Jul 09, 2025 at 07:05:55PM +0800, Keguang Zhang wrote:
-> > +     aliases {
-> > +             ethernet0 =3D &gmac0;
-> > +             ethernet1 =3D &gmac1;
-> > +             gpio0 =3D &gpio0;
-> > +             gpio1 =3D &gpio1;
-> > +             serial0 =3D &uart2;
-> > +             serial1 =3D &uart3;
-> > +     };
-> > +
-> > +     chosen {
-> > +             bootargs =3D "mtdparts=3Dls1x-nand:16m(kernel),-(rootfs)"=
-;
->
-> And if someone wants to partition differently? bootargs rarely belong to
-> upstream DTS.
+On 16/07/2025 11:43, P.K. Lee wrote:
+> Document the new compatibles used on Meta Ventura.
+> 
+> Signed-off-by: P.K. Lee <pkleequanta@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Will replace this with a "partitions" node.
-Thanks for the review!
->
-> > +             stdout-path =3D "serial0:115200n8";
-> > +     };
->
-> Best regards,
-> Krzysztof
->
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
---=20
+---
+
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
+
+Full context and explanation:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
+
 Best regards,
-
-Keguang Zhang
+Krzysztof
 
