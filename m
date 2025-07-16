@@ -1,113 +1,186 @@
-Return-Path: <devicetree+bounces-196695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 320EEB06CC0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 06:42:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 133E6B06CFC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:11:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83A4E5612D1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 04:42:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E8F9188DBFE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 05:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB040253356;
-	Wed, 16 Jul 2025 04:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F09269817;
+	Wed, 16 Jul 2025 05:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="E6KHW3ND"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=huaqian.li@siemens.com header.b="F0TbjaZM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76BD52E3715;
-	Wed, 16 Jul 2025 04:42:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mta-65-227.siemens.flowmailer.net (mta-65-227.siemens.flowmailer.net [185.136.65.227])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0421623CEF8
+	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 05:11:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.227
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752640933; cv=none; b=VZx8wFS3G3lRdisgrKTp+0mYC87ncOKVK0g1DV3BOYsGJw7RDB0sxarVSQNJW7vV7ubNf60ZEvoSW+C3AIDmACDsp9U6tgrToSWFXcvy3m6FjMsKlOU79k5D6bYHzHA2xdetXDA2+ZmV5qc8x8U0/756Els2ABJLRKQg4aDDTVE=
+	t=1752642669; cv=none; b=aC4z6iZJc4JrD4fGEO+YmCVxs9epKbeqeqmeAmOznP/AU+G5F30If9/+nnvmKuORrUhOv+d1A4o4+oRLngjz4o2OJjRnJeqgnxk4wnxN/vOXu9zLegniOiEhlyqXnXFbRBkyRqCJnw6YcDBgiBheTFqL/mB3i5JcZoHdny7mjhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752640933; c=relaxed/simple;
-	bh=k7xs9Um3WsTVzWrqkDSGhj9tol3AITVQEo38acvwWfU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=mqnFvWm9Sq1GTbZrouWbRs5VfEh0K9JiqoNojtVgx5E6YY8yMKlbyAi593SHpzeKbXE/9ZITgrJBKvPy1s+ZuBEoJKdu+Mns5rFmxcgBRxPr9JBGv0DYhdjXbc40jlZAIaDB3SHdl3s4ILuwo0CR9n6Frxa2oxNHARL1sJHQeTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=E6KHW3ND; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: by linux.microsoft.com (Postfix, from userid 1158)
-	id 12003201BA2F; Tue, 15 Jul 2025 21:42:12 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 12003201BA2F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1752640932;
-	bh=CJStzbQ9VHhLyMURv3oxT/RMbHXq0YRsR3c4GhGdSyI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=E6KHW3NDiaZlgiigzMwg6PVjsFpZ1ubbZ37Cxj1MuwN15yJF4R20qFUu1RDJoakdc
-	 vrbSvo8kMNf8J0fpSWcdsgn9y0Lg3OHluj1Qqt63f86s/uGUfyUEw0ZrVaZZ4WJkob
-	 Exf9ZWnsVkzbb7Yp0ch/F1FJomsygfdhFXni9uV8=
-From: Hardik Garg <hargar@linux.microsoft.com>
-To: krzk@kernel.org
-Cc: apais@microsoft.com,
+	s=arc-20240116; t=1752642669; c=relaxed/simple;
+	bh=k76J4N3tpRxkQiTM9N5mJl9SvbCP7Rd+XDLyZnXS/k0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=kj1NbLAazr7uJDzmaJKtoJV5tdu3zBy8UiIO/tEaUoWmsrfJl+lNzpb1bzZPNUSS5JYJS3WBrerNXSkbYYeZvWdhbxkc3NRBm/WR53aJ317A/vkmD1pqlPIXrmnND7EItD9t8m8J6fTFP+dnWukvBT5hUrGXh4kH9ZgFsjOkc5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=huaqian.li@siemens.com header.b=F0TbjaZM; arc=none smtp.client-ip=185.136.65.227
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-65-227.siemens.flowmailer.net with ESMTPSA id 20250716051056d0cbd767e09493c21c
+        for <devicetree@vger.kernel.org>;
+        Wed, 16 Jul 2025 07:10:57 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
+ d=siemens.com; i=huaqian.li@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
+ bh=+UTSSsG+8WtOQHPmAJe+rsYM12ki9cccLWC6Gxd4wAI=;
+ b=F0TbjaZMWELyzxcExSE6uxUGMe9594SDs8ddo1HT4amPeoMO2y+yUUaLS7wAx1D6G151aq
+ boruBnsthC43l86VyrYTmeUkPBOcmFgWQDg6TxxNy/15bDuWAzmC2IoOIDq6LUCAC6oG+sRX
+ Kwpq0UlJVCMR95aHbxdw/YKYmggEPadhzFYH4q3yr2Y7uflbmaxUYVPG1ZcBefww9c523UZI
+ yZE5vqXBUKVHF9ML9Nq9Nd2vsg8YcdyCk9UF+twBDD9wCRErwA79P7leAtZSBz9VL/OgM/7f
+ IJ3bIXQ8seW8pwyKR0p5jIYD02N0A9wyygnJfYogRsCG3F4SVaGSa2XQ==;
+From: huaqian.li@siemens.com
+To: s-vadapalli@ti.com
+Cc: baocheng.su@siemens.com,
+	bhelgaas@google.com,
 	conor+dt@kernel.org,
-	decui@microsoft.com,
 	devicetree@vger.kernel.org,
-	haiyangz@microsoft.com,
-	hargar@linux.microsoft.com,
-	hargar@microsoft.com,
+	diogo.ivo@siemens.com,
+	helgaas@kernel.org,
+	huaqian.li@siemens.com,
+	jan.kiszka@siemens.com,
+	kristo@kernel.org,
 	krzk+dt@kernel.org,
-	kys@microsoft.com,
-	linux-hyperv@vger.kernel.org,
+	kw@linux.com,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	lpieralisi@kernel.org,
+	nm@ti.com,
 	robh@kernel.org,
-	ssengar@linux.microsoft.com,
-	wei.liu@kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: microsoft: Add vmbus message-connection-id property
-Date: Tue, 15 Jul 2025 21:42:12 -0700
-Message-Id: <1752640932-23038-1-git-send-email-hargar@linux.microsoft.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <63ca8d08-2fd3-440e-858a-f8d79890016f@kernel.org>
-References: <63ca8d08-2fd3-440e-858a-f8d79890016f@kernel.org>
+	ssantosh@kernel.org,
+	vigneshr@ti.com
+Subject: [PATCH v9 0/8] soc: ti: Add and use PVU on K3-AM65 for DMA isolation
+Date: Wed, 16 Jul 2025 13:10:28 +0800
+Message-Id: <20250716051035.170988-1-huaqian.li@siemens.com>
+In-Reply-To: <e21c6ead-2bcb-422b-a1b9-eb9dd63b7dc7@ti.com>
+References: <e21c6ead-2bcb-422b-a1b9-eb9dd63b7dc7@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-959203:519-21489:flowmailer
 
->>>> What is a connection ID and why it cannot be inferred from existing
->>>> system API?
- 
->> The connection-id determines which hypervisor communication channel the
->> guest should use to talk to the VMBus host. Reading from DeviceTree allows
->> platforms to specify their preferred communication channel, making it more
->> flexible (I will add this detail in the commit message). Presently, this
- 
->> We don't add properties to make things flexible.
- 
-You're right. I should have explained better. The connection ID is a hardware 
-configuration detail that defines which specific VMBus channel is used for 
-host-guest communication. This value is configured by the host and passed to 
-the guest through the host's device tree. Different hypervisor versions and 
-configurations may require different channels, and this needs to be specified 
-by the platform.
- 
->>>> There's a reason why you have here generic property - this is generic
->>>> and/or discoverable and/or whatever software interface. Adding now more
->>>> properties, just because you made it generic, is not the way.
- 
->> Presently the value is hardcoded and we want to provide a functionality to
->> the user to specify their prefered communication channel. This is a
->> virtualized hardware property for us.
- 
->> That's not really acceptable reason. With such approach I would add 100
->> properties to make various things "flexible".
- 
-I understand your concern. Let me clarify: this isn't about making things 
-flexible for flexibility's sake. The connection ID is a fundamental hardware 
-configuration parameter that is set by the host and must be matched in the 
-guest. The host configures this value in its device tree and shares it with 
-the guest. Without the correct channel ID, the VMBus communication fails. 
-Different hypervisor configurations require different channels, and this 
-cannot be automatically discovered.
- 
-Would you prefer if we handled this configuration through a different 
-mechanism? I'm open to suggestions.
+From: Li Hua Qian <huaqian.li@siemens.com>
 
+Changes in v8:
+ - remove patch 8 from this series to simplify the patchset
+ - fix dt_bindings_check warnings (patch 2), 'memory-region' must
+   not be a required property
 
+Changes in v7:
+ - add schema expressing dependency as suggested on pci-host bindings
+ - resolve review comments on pci-keystone driver
+ - add a new patch to make IO_TLB_SEGSIZE configurable
+ - improve patches based on checkpath.pl
 
+Changes in v6:
+ - make restricted DMA memory-region available to all pci-keystone
+   devices, moving property to unconditional section (patch 2)
 
-Thanks,
-Hardik
+Changes in v5:
+ - resolve review comments on pci-host bindings
+ - reduce DMA memory regions to 1 - swiotlb does not support more
+ - move activation into overlay (controlled via firmware)
+ - use ks_init_vmap helper instead of loop in
+   rework ks_init_restricted_dma
+ - add more comments to pci-keystone
+ - use 2 chained TLBs of PVU to support maximum of swiotlb (320 MB)
+
+Changes in v4:
+ - reorder patch queue, moving all DTS changes to the back
+ - limit activation to IOT2050 Advanced variants
+ - move DMA pool to allow firmware-based expansion it up to 512M
+
+Changes in v3:
+ - fix ti,am654-pvu.yaml according to review comments
+ - address review comments on ti,am65-pci-host.yaml
+ - differentiate between different compatibles in ti,am65-pci-host.yaml
+ - move pvu nodes to k3-am65-main.dtsi
+ - reorder patch series, pulling bindings and generic DT bits to the front
+
+Changes in v2:
+ - fix dt_bindings_check issues (patch 1)
+ - address first review comments (patch 2)
+ - extend ti,am65-pci-host bindings for PVU (new patch 3)
+
+Only few of the K3 SoCs have an IOMMU and, thus, can isolate the system
+against DMA-based attacks of external PCI devices. The AM65 is without
+an IOMMU, but it comes with something close to it: the Peripheral
+Virtualization Unit (PVU).
+
+The PVU was originally designed to establish static compartments via a
+hypervisor, isolate those DMA-wise against each other and the host and
+even allow remapping of guest-physical addresses. But it only provides
+a static translation region, not page-granular mappings. Thus, it cannot
+be handled transparently like an IOMMU.
+
+Now, to use the PVU for the purpose of isolated PCI devices from the
+Linux host, this series takes a different approach. It defines a
+restricted-dma-pool for the PCI host, using swiotlb to map all DMA
+buffers from a static memory carve-out. And to enforce that the devices
+actually follow this, a special PVU soc driver is introduced. The driver
+permits access to the GIC ITS and otherwise waits for other drivers that
+detect devices with constrained DMA to register pools with the PVU.
+
+For the AM65, the first (and possibly only) driver where this is
+introduced is the pci-keystone host controller. Finally, this series
+provides a DT overlay for the IOT2050 Advanced devices (all have
+MiniPCIe or M.2 extension slots) to make use of this protection scheme.
+Application of this overlay will be handled by firmware.
+
+Due to the cross-cutting nature of these changes, multiple subsystems
+are affected. However, I wanted to present the whole thing in one series
+to allow everyone to review with the complete picture in hands. If
+preferred, I can also split the series up, of course.
+
+Jan
+
+Jan Kiszka (7):
+  dt-bindings: soc: ti: Add AM65 peripheral virtualization unit
+  dt-bindings: PCI: ti,am65: Extend for use with PVU
+  soc: ti: Add IOMMU-like PVU driver
+  PCI: keystone: Add support for PVU-based DMA isolation on AM654
+  arm64: dts: ti: k3-am65-main: Add PVU nodes
+  arm64: dts: ti: k3-am65-main: Add VMAP registers to PCI root complexes
+  arm64: dts: ti: iot2050: Add overlay for DMA isolation for devices
+    behind PCI RC
+
+ .../bindings/pci/ti,am65-pci-host.yaml        |  28 +-
+ .../bindings/soc/ti/ti,am654-pvu.yaml         |  51 ++
+ arch/arm64/boot/dts/ti/Makefile               |   5 +
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  38 +-
+ ...am6548-iot2050-advanced-dma-isolation.dtso |  33 ++
+ drivers/pci/controller/dwc/pci-keystone.c     | 106 ++++
+ drivers/soc/ti/Kconfig                        |   4 +
+ drivers/soc/ti/Makefile                       |   1 +
+ drivers/soc/ti/ti-pvu.c                       | 500 ++++++++++++++++++
+ include/linux/ti-pvu.h                        |  32 ++
+ 10 files changed, 791 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/ti/ti,am654-pvu.yaml
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-dma-isolation.dtso
+ create mode 100644 drivers/soc/ti/ti-pvu.c
+ create mode 100644 include/linux/ti-pvu.h
+
+-- 
+2.34.1
+
 
