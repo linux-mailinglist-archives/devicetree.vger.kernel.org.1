@@ -1,245 +1,135 @@
-Return-Path: <devicetree+bounces-196975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E166B07C58
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 19:52:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EDA4B07D07
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:40:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68FF0584AA2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 17:52:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BF221C28450
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 18:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39DAF288C1A;
-	Wed, 16 Jul 2025 17:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BEEC29AAFE;
+	Wed, 16 Jul 2025 18:40:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="gWiklzTT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e58dYHo7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 767C428852E;
-	Wed, 16 Jul 2025 17:51:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752688319; cv=pass; b=fWLPaW1caR9rsRcbSf/23r/5lLZC65jN4TPWbf9N2b/TIWIO8Pgonvn0kUQrz4AZL7fiNPRvC240hLPZrFs+1iF0NbNLDZJB/X2zEun6cP/fxYNkAGO2ut0c30TIxRo85KGlWUQz/NgeFJrwyexVkWUvh8X1rcnOxolCCalTih4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752688319; c=relaxed/simple;
-	bh=2v3neK4iFC1rT0Q8CInwOC6/+wtUhMCpMwGN7hpoG2E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qBXJTubVvQaaemLjUVe877io09wvtLqnOWDAW2I09oN2D8FGxTAgkPWFXWZB0tKjl4SMPmTIQQYqIL1bN+toZcu0YSgpQ9vhcs0l7nKiOi78nuRfmVGR2EKs3EH0h9EsPqUfM8JChBr8WuzvxIIJ1wYtHyTOVNCmeE6x6d1OEjU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=gWiklzTT; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1752688301; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=CtcKNsRyUYAYob24gMiwY9gbf6Yw6RRUQE8Znuw7AkeW8muiVXufnUKBU85GhuC/oX25AQ1oievNFc/0nA4ALDmWraISgGEH+uEyIlXezGaewsLKWgMXXqxrxbs6wyA2T47I7HIRGQI8EMr8t9ahlO8zxj5Si0hKwqOZ/ddeMvE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1752688301; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=FdTJy+hTnMMhv0ByE1VmAHdLgDhK3u720le2ZYwEYBw=; 
-	b=IhziMyv7PyefgE9/vnV5QMwXqNr0mPA6JpzJCVd1zTKan8YkJX7lmsQuFNTV0rkBZuJXWvncY2SrRLlUuuBRiYpCoFFKF5L0uLI04qvMW7r6j9mgDKKzUtmtXG7FmTUypEKHbdLhykvoQtuo27h89SE2mTrORPZgiJFSivDoKk4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752688301;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=FdTJy+hTnMMhv0ByE1VmAHdLgDhK3u720le2ZYwEYBw=;
-	b=gWiklzTT/L2buszEqg82HEr2Tvq4XxrfahjOjVz6RnRdVlAyHwqDj8nuK2KOOhEa
-	pb2js1DyKcjkCm2PDx+nAG4uulqwMHhcvoLf/H2m0T9xL2z3il+sYqTC7xn3URJPZcZ
-	rOYhK+xLU3rn9Zkx5VeAjIfF2zouGFJltEpSACpw=
-Received: by mx.zohomail.com with SMTPS id 175268829909280.288096823606;
-	Wed, 16 Jul 2025 10:51:39 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Wed, 16 Jul 2025 19:51:25 +0200
-Subject: [PATCH v3 4/4] cpufreq: mediatek-hw: Add support for MT8196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934C3188A3A;
+	Wed, 16 Jul 2025 18:40:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752691222; cv=none; b=HMDgcLGxxgRj6sd4ou1fHI4pEwlfquiWO43t01Ap0oTCaIBM9sP3g7V1EO5g8x7y95LIzlqP1d7ibHAtXW/GY0CLT5ByX9M+qbMPyFhqrJslZ0IZcL9T8CWDrrd9bYIPe+l5DihIJm4t9oROMNKCag9ZUFMb/7OLsYv3sJGFc0s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752691222; c=relaxed/simple;
+	bh=J7+UlN+KHQiDz/fIRY+lD/Q8RAf0wMAeP7wOtMKnlVA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=J4RqvHbR5z7FDXi2HwbZn2AAPH9yLDH/MrtyLGkElG9bhP6EmpIOIsCvT2ve9kS9GtbhsHvrqHLJuqHnPtHSybUD9abX52f1H/gX5Bd82zoVkkspT6mP4xSpTbA1m02DjjWN5FYv/J3nQYO2Z3akDcZt01gjz6uwD3cGyjKD35s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e58dYHo7; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45610582d07so1196515e9.0;
+        Wed, 16 Jul 2025 11:40:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752691218; x=1753296018; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K86TDMdZ2XqOtIz4v5tuWFWQLBw7H1poOoP8hrJjhno=;
+        b=e58dYHo7MI5TBuk9TuhI/Xdxb3DMZX7NM7cDOJdnogQaCnLnm/4lMF4DGVbzP6oHpV
+         gC5r8sVoR57fc5OsG9wUxS/X61BhkGMus/g7Q1hnOg3S2aunVJBQ4LtW+M5zws1VrfDe
+         L587x0OdqpoACTWLpqvcs+T2kF9vtGMGX9FSF93U8Py1J0GTkmyNJlJiz8N8xb/Q5UYF
+         LYt0fvcBAHDWnoW3f/tVCPc6TyxGQhGM9LYugQQNEKxO+uYw+KjUaRK1h0iMWrg8HZ3G
+         sIMuK6vZVjotK7vZgec9BdHNBtxJpwZFQFyinJ40QcOxFeTnVJwP2RUNiFa5+l3gzdzy
+         yIxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752691218; x=1753296018;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K86TDMdZ2XqOtIz4v5tuWFWQLBw7H1poOoP8hrJjhno=;
+        b=lF39tmEIU7OJyO5hlSQqOHKE3TLPaOp8Xe38DiVK4dLbHzL5tO87MpT9rGD4neIwMT
+         XS71LCL32Lt3a8ycukXufIsJHkhuSryAy+mX5Q/rPVzWB6gWFbnP7dGLgywhgH3ljC68
+         O1H2l7z8KepqKYtGvh4i0GJy+m9h/UOhmpsX6qjSikJB4SVIApz6om4Isk8JMxzjvw4R
+         3Q7o3wiNVf1Y6tKJBsWV9Alg2fhpg1t1p7aoZJhlyZeY6WnKiJmt/XSCNTw381oq/fGT
+         enyo3pECqRYgbrMXM+3OgkxLC27miAnV758kaFk6kcOcYYRrXaB9dMAkqa4KbSeMWPNi
+         qLPA==
+X-Forwarded-Encrypted: i=1; AJvYcCU8FkhBdFdeFhhSq34/ssoZC0DE32GvmB1SXbzZEvygzRUFAv99P9Db6PyKg7W/IN4T4jgzYWFITfZi@vger.kernel.org, AJvYcCX1/U6RH4oZl4XQeOBSLRNnAs2iEcraAh2D5pC8rl9J65/UB6EElj3otI2jA4n78fT54PEpYT+5gwRmkcJB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGA4gqjP8ThGdJ/LwmiNyCVWyN2pwKiB4NMHPai/Ix1PhOqg0u
+	2F5DGxRqUtEJHNceVWLCaaVxzhCdBaSQ87nun4wCBTYy1pmocGzCEaiG
+X-Gm-Gg: ASbGncsrg8FZjAJZrOMM2T8RXszDv4Xhnc8ZgrLw61SbjoVR8IxeEMZJMl3o6+UBPTl
+	yzFcCVDlU1FRZmALOX01m3/nFPKUxsabcW2a8EWwrV4AtGkyI9dXy+O5PcyYC+w9BUOLvrSzNyt
+	PcldDydTralwXvmUuVI+c05uffe5Xe5BogGtBqv9g69CidYYjPzkTUb563Dx0L6LHvwb/hg9qS4
+	KyOxL5ksKcgjKeVObxqyxzqTw2iEip3P9LidmSeFVAIVcD/gp7CoPMOrwaUp1JgVJssQkPq5lBZ
+	qUFb/hbEJpGZgfaLkFSeX/nyKov0VIlVKdu2schKb4kbHWejzUPM/DiIMQhvFXoi6rN16hnhS6d
+	hlzBeN9LQPu0E1/94jZBw
+X-Google-Smtp-Source: AGHT+IHNsjoQGm3d1JzJv5/OXynZmI25GvOeUFJa5XcXwQ4NdHl8g0F2hw+YCKkoD7Bk/svjmFV2qA==
+X-Received: by 2002:a05:6000:25f6:b0:3a3:63d3:369a with SMTP id ffacd0b85a97d-3b613e77736mr151213f8f.25.1752691217603;
+        Wed, 16 Jul 2025 11:40:17 -0700 (PDT)
+Received: from masalkhi.. ([61.8.129.29])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4562e8ab642sm28079795e9.36.2025.07.16.11.40.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Jul 2025 11:40:17 -0700 (PDT)
+From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+To: gregkh@linuxfoundation.org
+Cc: abd.masalkhi@gmail.com,
+	arnd@arndb.de,
+	christophe.jaillet@wanadoo.fr,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	luoyifan@cmss.chinamobile.com,
+	robh@kernel.org
+Subject: Re: [PATCH v6 2/3] eeprom: add driver for ST M24LR series RFID/NFC EEPROM chips
+Date: Wed, 16 Jul 2025 14:21:27 +0000
+Message-ID: <20250716142127.1664-1-abd.masalkhi@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <2025071651-pushcart-scapegoat-6155@gregkh>
+References: <2025071651-pushcart-scapegoat-6155@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250716-mt8196-cpufreq-v3-4-d440fb810d7e@collabora.com>
-References: <20250716-mt8196-cpufreq-v3-0-d440fb810d7e@collabora.com>
-In-Reply-To: <20250716-mt8196-cpufreq-v3-0-d440fb810d7e@collabora.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: kernel@collabora.com, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
 
-The MT8196 SoC uses DVFS to set a desired target frequency for each CPU
-core. It also uses slightly different register offsets.
+On Wed, Jul 16, 2025 at 13:53 +0200, Greg KH wrote:
+> On Sun, Jul 06, 2025 at 10:53:10AM +0000, Abd-Alrhman Masalkhi wrote:
+>> +/**
+>> + * m24lr_parse_le_value - Parse hex string and convert to little-endian binary
+>> + * @buf:	Input string buffer (hex format)
+>> + * @reg_size:	Size of the register in bytes (must be 1, 2, 4, or 8)
+>> + * @output:	Output buffer to store the value in little-endian format
+>> + *
+>> + * Converts a hexadecimal string to a numeric value of the given register size
+>> + * and writes it in little-endian byte order into the provided buffer.
+>> + *
+>> + * Return: 0 on success, or negative error code on failure
+>> + */
+>> +static __maybe_unused int m24lr_parse_le_value(const char *buf, u32 reg_size,
+>> +					       u8 *output)
+>
+> Your __maybe_unused marker here hid the fact that it is NOT used
+> anywhere in this driver :(
+>
+> Please remove this function as it's not needed.
+>
+> thanks,
+>
+> greg k-h
 
-Add support for it, which necessitates reworking how the mmio regs are
-acquired, as mt8196 has the fdvfs register before the performance domain
-registers.
+Hello Greg,
 
-I've verified with both `sysbench cpu run` and `head -c 10G \
-/dev/urandom | pigz -p 8 -c - | pv -ba > /dev/null` that we don't just
-get a higher reported clock frequency, but that the observed performance
-also increases, by a factor of 2.64 in an 8 thread sysbench test.
+Thank you for the review!
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/cpufreq/mediatek-cpufreq-hw.c | 70 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 68 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/cpufreq/mediatek-cpufreq-hw.c b/drivers/cpufreq/mediatek-cpufreq-hw.c
-index 53611077d0d9a2d9865cf771568ab71abc0e6fbd..e4eadce6f937ceff51b34d22da83c51b4e9aa813 100644
---- a/drivers/cpufreq/mediatek-cpufreq-hw.c
-+++ b/drivers/cpufreq/mediatek-cpufreq-hw.c
-@@ -24,6 +24,8 @@
- #define POLL_USEC			1000
- #define TIMEOUT_USEC			300000
- 
-+#define FDVFS_FDIV_HZ (26 * 1000)
-+
- enum {
- 	REG_FREQ_LUT_TABLE,
- 	REG_FREQ_ENABLE,
-@@ -36,7 +38,9 @@ enum {
- };
- 
- struct mtk_cpufreq_priv {
-+	struct device *dev;
- 	const struct mtk_cpufreq_variant *variant;
-+	void __iomem *fdvfs;
- };
- 
- struct mtk_cpufreq_domain {
-@@ -49,7 +53,9 @@ struct mtk_cpufreq_domain {
- };
- 
- struct mtk_cpufreq_variant {
-+	int (*init)(struct mtk_cpufreq_priv *priv);
- 	const u16 reg_offsets[REG_ARRAY_SIZE];
-+	const bool is_hybrid_dvfs;
- };
- 
- static const struct mtk_cpufreq_variant cpufreq_mtk_base_variant = {
-@@ -63,6 +69,29 @@ static const struct mtk_cpufreq_variant cpufreq_mtk_base_variant = {
- 	},
- };
- 
-+static int mtk_cpufreq_hw_mt8196_init(struct mtk_cpufreq_priv *priv)
-+{
-+	priv->fdvfs = devm_of_iomap(priv->dev, priv->dev->of_node, 0, NULL);
-+	if (IS_ERR_OR_NULL(priv->fdvfs))
-+		return dev_err_probe(priv->dev, PTR_ERR(priv->fdvfs),
-+				     "failed to get fdvfs iomem\n");
-+
-+	return 0;
-+}
-+
-+static const struct mtk_cpufreq_variant cpufreq_mtk_mt8196_variant = {
-+	.init = mtk_cpufreq_hw_mt8196_init,
-+	.reg_offsets = {
-+		[REG_FREQ_LUT_TABLE]	= 0x0,
-+		[REG_FREQ_ENABLE]	= 0x84,
-+		[REG_FREQ_PERF_STATE]	= 0x88,
-+		[REG_FREQ_HW_STATE]	= 0x8c,
-+		[REG_EM_POWER_TBL]	= 0x90,
-+		[REG_FREQ_LATENCY]	= 0x114,
-+	},
-+	.is_hybrid_dvfs = true,
-+};
-+
- static int __maybe_unused
- mtk_cpufreq_get_cpu_power(struct device *cpu_dev, unsigned long *uW,
- 			  unsigned long *KHz)
-@@ -91,12 +120,31 @@ mtk_cpufreq_get_cpu_power(struct device *cpu_dev, unsigned long *uW,
- 	return 0;
- }
- 
-+static void mtk_cpufreq_hw_fdvfs_switch(unsigned int target_freq,
-+					struct cpufreq_policy *policy)
-+{
-+	struct mtk_cpufreq_domain *data = policy->driver_data;
-+	struct mtk_cpufreq_priv *priv = data->parent;
-+	unsigned int cpu;
-+
-+	target_freq = DIV_ROUND_UP(target_freq, FDVFS_FDIV_HZ);
-+	for_each_cpu(cpu, policy->real_cpus) {
-+		writel_relaxed(target_freq, priv->fdvfs + cpu * 4);
-+	}
-+}
-+
- static int mtk_cpufreq_hw_target_index(struct cpufreq_policy *policy,
- 				       unsigned int index)
- {
- 	struct mtk_cpufreq_domain *data = policy->driver_data;
-+	unsigned int target_freq;
- 
--	writel_relaxed(index, data->reg_bases[REG_FREQ_PERF_STATE]);
-+	if (data->parent->fdvfs) {
-+		target_freq = policy->freq_table[index].frequency;
-+		mtk_cpufreq_hw_fdvfs_switch(target_freq, policy);
-+	} else {
-+		writel_relaxed(index, data->reg_bases[REG_FREQ_PERF_STATE]);
-+	}
- 
- 	return 0;
- }
-@@ -127,7 +175,10 @@ static unsigned int mtk_cpufreq_hw_fast_switch(struct cpufreq_policy *policy,
- 
- 	index = cpufreq_table_find_index_dl(policy, target_freq, false);
- 
--	writel_relaxed(index, data->reg_bases[REG_FREQ_PERF_STATE]);
-+	if (data->parent->fdvfs)
-+		mtk_cpufreq_hw_fdvfs_switch(target_freq, policy);
-+	else
-+		writel_relaxed(index, data->reg_bases[REG_FREQ_PERF_STATE]);
- 
- 	return policy->freq_table[index].frequency;
- }
-@@ -191,6 +242,13 @@ static int mtk_cpu_resources_init(struct platform_device *pdev,
- 	index = args.args[0];
- 	of_node_put(args.np);
- 
-+	/*
-+	 * In a cpufreq with hybrid DVFS, such as the MT8196, the first declared
-+	 * register range is for FDVFS, followed by the frequency domain MMIOs.
-+	 */
-+	if (priv->variant->is_hybrid_dvfs)
-+		index++;
-+
- 	data->parent = priv;
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, index);
-@@ -339,6 +397,13 @@ static int mtk_cpufreq_hw_driver_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 
- 	priv->variant = data;
-+	priv->dev = &pdev->dev;
-+
-+	if (priv->variant->init) {
-+		ret = priv->variant->init(priv);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	platform_set_drvdata(pdev, priv);
- 	cpufreq_mtk_hw_driver.driver_data = pdev;
-@@ -357,6 +422,7 @@ static void mtk_cpufreq_hw_driver_remove(struct platform_device *pdev)
- 
- static const struct of_device_id mtk_cpufreq_hw_match[] = {
- 	{ .compatible = "mediatek,cpufreq-hw", .data = &cpufreq_mtk_base_variant },
-+	{ .compatible = "mediatek,mt8196-cpufreq-hw", .data = &cpufreq_mtk_mt8196_variant },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, mtk_cpufreq_hw_match);
+It is done.
 
 -- 
-2.50.1
-
+Best Regards,
+Abd-Alrhman
 
