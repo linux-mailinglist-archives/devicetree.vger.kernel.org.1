@@ -1,101 +1,202 @@
-Return-Path: <devicetree+bounces-197076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5E9B08014
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 23:59:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C352B08073
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 00:22:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 109DC1C40B3F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 21:59:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6C4C17D400
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 22:22:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9574D2EE26B;
-	Wed, 16 Jul 2025 21:59:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD7229292F;
+	Wed, 16 Jul 2025 22:22:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="xrauqQ7R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pi3sp9WA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-106103.protonmail.ch (mail-106103.protonmail.ch [79.135.106.103])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560362EE28C;
-	Wed, 16 Jul 2025 21:59:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.103
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 926DA28B40D;
+	Wed, 16 Jul 2025 22:22:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752703149; cv=none; b=OuvgdDmw+iAmm9yuzC/VH/VS0Pm2H8UV0rueb/WbKzYLnqv/WDRhcaiCa8nrnMSBWp3/9iCTnfo9MnL/QW1XulV0dxkgT1diNYoyTw52sEYv1Y0YyBuGm/poaF/MkjvXLfnAsDH6Cdh1zxecO8+BfZcteGrLuZTO4sLwow1/bvg=
+	t=1752704555; cv=none; b=OA79ob4koJb3fQ4Thb+XRqfW8xbQj0Nrf+v+fnHRhtRrL46jbnpsXsLGlgdxswwkrUAt457fvHClsZ2wXVqto2Vvmv++TZ6DIB5zZEcJQrqbL0q8BuB6bW0k7gRIZltiWGuF/uyyDfrnn2H2gTaLa7S8Bv8j9cXyKzhLYUcycgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752703149; c=relaxed/simple;
-	bh=Hl07FxAtdNbkRG17OKg4eb9lsA+Zl2El7hudon5km68=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lFI6R4g2dfyx2XtHmLi1U9Cr3yhBjEkhZ9SMwEWaSWbZ7akZmHHMLgGuSpepyam1SQFOQbJVR4VB+WwCtV9sCn5K2UR38Akn/Zw3JjpwxFkVn1p75YA/CjHywVhsACpnNxO4AElbHyY2dyDoai/bKz2lHRkHcUrytyk65RwUzxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=xrauqQ7R; arc=none smtp.client-ip=79.135.106.103
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1752703139; x=1752962339;
-	bh=Hl07FxAtdNbkRG17OKg4eb9lsA+Zl2El7hudon5km68=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=xrauqQ7RaxnmWmfIcMnpxplVdZsi4RDhTQKE43DF6cA5IX1FJaHuOpdzITH71vHUo
-	 dBfPgoYv2JsDR8ossLSmKCqohxeCOxmD9HB/TL0Zi7gondo9cDUvJSyS6Y/86tBYI/
-	 KPIy6vikv4PL2QQ8DMc7KRY4TaQdaUyOt9FmSXSViexgyT2jZJfIqeE/n9VivGH5hn
-	 qfpt4oKyO7OB4hDm30wsyZUAmGd35PxFC7i1JxDzCmD5pV+2nD1bkNv0YQBf2uJ1mu
-	 srf89hZ9mpvckETIDYYYQ5RVmiZq5LEkk66rVJZhqpqdHIA+Yst3V7Wuj0sKJMs/YM
-	 +XdXtH4Q0wmDQ==
-Date: Wed, 16 Jul 2025 21:58:51 +0000
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-From: cristian_ci <cristian_ci@protonmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v4 0/3] Add initial device tree for Billion Capture+
-Message-ID: <clyMtNobNGJ9iLau0esd8U36HYaH3YDSGV3omgjp4uN5OPQ9n5BXWCOcgzuKhAc6_HYyPhrwqEK2M_HDfFTZlTNzvU1Erz9DItHox4IpDV8=@protonmail.com>
-In-Reply-To: <cb863e23-79c9-444d-8511-033dd75c02e6@oss.qualcomm.com>
-References: <20250629-rimob-initial-devicetree-v4-0-7cf84fa142af@protonmail.com> <cb863e23-79c9-444d-8511-033dd75c02e6@oss.qualcomm.com>
-Feedback-ID: 27475468:user:proton
-X-Pm-Message-ID: 8e16e3cf7cd9949ede4bd0190b760dedb97ab5a2
+	s=arc-20240116; t=1752704555; c=relaxed/simple;
+	bh=cZmv93NzRT1+EdMxFCrji+OQ4DsPr8zEjCqbzHfLEow=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HuG8tT5Wd/WUMG2srw0ryUFeZiBHhZo0XcrxUcuvyiuhJqz1WWw1L3cTfdl/4y00h2NraUpifvU8/h1CbZ0+tZBY3guch93j0iUEFtaAAw2AabkjZMcsJG4S3b2EIJr2pWCT1J6e56zyg9GJi6FiR09Prfc7/oA7OLM8eUTgomA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pi3sp9WA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E8EFC4CEE7;
+	Wed, 16 Jul 2025 22:22:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752704554;
+	bh=cZmv93NzRT1+EdMxFCrji+OQ4DsPr8zEjCqbzHfLEow=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=pi3sp9WArQOYjtBTL2fg8kyA9+AVbix7VYOzEWgc1FKGyi0tVAHu0CgaRUor8JISP
+	 3zy1IaEZR4yFjLSXOGlwAbKWNPaxAs3pv8h70S+EIoL36zucUrwYstMozHNxmLMdEO
+	 r9OXfZvxqZVbLQWj9sSYu0+OO5HoKlovyyEf+hxP44dz1C/oNp6mwt4MbcvxVk6grn
+	 xmW6A/B0tSOmX6WsWQyaDiXhUX5+ChgFEa/DtY3tlsnCBUFgcXLQbdwhWYp9gD/c2f
+	 HAnW2oYHRKKUjyITuuv7e34BD6ZLl8zNKHqp/ubM96qE9tA6By51RqV1YPsbqnus3a
+	 8x1s4tW9YZXiw==
+Date: Wed, 16 Jul 2025 15:22:33 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Piotr Kubik <piotr.kubik@adtran.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Kory Maincent
+ <kory.maincent@bootlin.com>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v5 2/2] net: pse-pd: Add Si3474 PSE controller
+ driver
+Message-ID: <20250716152233.27df2a34@kernel.org>
+In-Reply-To: <b2361682-05fe-4a38-acfd-2191f7596711@adtran.com>
+References: <be0fb368-79b6-4b99-ad6b-00d7897ca8b0@adtran.com>
+	<b2361682-05fe-4a38-acfd-2191f7596711@adtran.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Monday, June 30th, 2025 at 12:37, Konrad Dybcio <konrad.dybcio@oss.qualc=
-omm.com> wrote:
+On Fri, 11 Jul 2025 11:25:02 +0000 Piotr Kubik wrote:
+> +static int si3474_pi_get_admin_state(struct pse_controller_dev *pcdev, int id,
+> +				     struct pse_admin_state *admin_state)
+> +{
+> +	struct si3474_priv *priv = to_si3474_priv(pcdev);
+> +	struct i2c_client *client;
+> +	s32 ret;
+> +	u8 chan0, chan1;
+> +	bool is_enabled = false;
+> +
+> +	if (id >= SI3474_MAX_CHANS)
+> +		return -ERANGE;
 
->=20
-> On 29-Jun-25 08:44, Cristian Cozzolino via B4 Relay wrote:
->=20
-> > Billion Capture+ is a handset using the MSM8953 SoC released in 2017
-> > and sold by Flipkart.
-> >=20
-> > Add a device tree with initial support for:
-> >=20
-> > - GPIO keys
-> > - SDHCI (internal and external storage)
-> > - USB Device Mode
-> > - Regulators
-> > - Simple framebuffer
-> >=20
-> > Signed-off-by: Cristian Cozzolino cristian_ci@protonmail.com
-> > ---
-> > Changes in v4:
-> > - pick up tags (Rob);
-> > - Link to v3: https://lore.kernel.org/r/20250626-rimob-initial-devicetr=
-ee-v3-0-4017ac9fd93d@protonmail.com
-> >=20
-> > Changes in v3:
-> > - (patch 3/3): pick up tag (Konrad);
-> > - Link to v2: https://lore.kernel.org/r/20250624-rimob-initial-devicetr=
-ee-v2-0-34f6045ebc30@protonmail.com
->=20
->=20
-> Resending just to pick up tags is not necessary, maintainer scripts
-> take care of grabbing them
->=20
-> Konrad
+Avoid defensive programming in the kernel. Since you set nr_lines
+to MAX_CHANS the core should not be calling you with invalid IDs.
 
-BTW, I'm not sure about that.
+> +	si3474_get_channels(priv, id, &chan0, &chan1);
+> +	client = si3474_get_chan_client(priv, chan0);
+> +
+> +	ret = i2c_smbus_read_byte_data(client, PORT_MODE_REG);
+> +	if (ret < 0) {
+> +		admin_state->c33_admin_state =
+> +			ETHTOOL_C33_PSE_ADMIN_STATE_UNKNOWN;
+> +		return ret;
+> +	}
+> +
+> +	is_enabled = (ret & CHAN_MASK(chan0)) |
+> +		     (ret & CHAN_MASK(chan1));
+
+nit: here you do (ret & MASK1) | (ret & MASK2) ...
+
+> +	if (is_enabled)
+> +		admin_state->c33_admin_state =
+> +			ETHTOOL_C33_PSE_ADMIN_STATE_ENABLED;
+> +	else
+> +		admin_state->c33_admin_state =
+> +			ETHTOOL_C33_PSE_ADMIN_STATE_DISABLED;
+> +
+> +	return 0;
+> +}
+> +
+> +static int si3474_pi_get_pw_status(struct pse_controller_dev *pcdev, int id,
+> +				   struct pse_pw_status *pw_status)
+> +{
+> +	struct si3474_priv *priv = to_si3474_priv(pcdev);
+> +	struct i2c_client *client;
+> +	s32 ret;
+> +	u8 chan0, chan1;
+> +	bool delivering = false;
+> +
+> +	if (id >= SI3474_MAX_CHANS)
+> +		return -ERANGE;
+> +
+> +	si3474_get_channels(priv, id, &chan0, &chan1);
+> +	client = si3474_get_chan_client(priv, chan0);
+> +
+> +	ret = i2c_smbus_read_byte_data(client, POWER_STATUS_REG);
+> +	if (ret < 0) {
+> +		pw_status->c33_pw_status = ETHTOOL_C33_PSE_PW_D_STATUS_UNKNOWN;
+> +		return ret;
+> +	}
+> +
+> +	delivering = ret & (CHAN_UPPER_BIT(chan0) | CHAN_UPPER_BIT(chan1));
+
+here for similar logic you do: ret & (MASK1 | MASK2) ...
+
+> +	if (delivering)
+> +		pw_status->c33_pw_status =
+> +			ETHTOOL_C33_PSE_PW_D_STATUS_DELIVERING;
+> +	else
+> +		pw_status->c33_pw_status = ETHTOOL_C33_PSE_PW_D_STATUS_DISABLED;
+> +
+> +	return 0;
+> +}
+> +
+> +static int si3474_get_of_channels(struct si3474_priv *priv)
+> +{
+> +	struct pse_pi *pi;
+> +	u32 chan_id;
+> +	s32 ret;
+> +	u8 pi_no;
+> +
+> +	for (pi_no = 0; pi_no < SI3474_MAX_CHANS; pi_no++) {
+> +		pi = &priv->pcdev.pi[pi_no];
+> +		u8 pairset_no;
+> +
+> +		for (pairset_no = 0; pairset_no < 2; pairset_no++) {
+> +			if (!pi->pairset[pairset_no].np)
+> +				continue;
+> +
+> +			ret = of_property_read_u32(pi->pairset[pairset_no].np,
+> +						   "reg", &chan_id);
+> +			if (ret) {
+> +				dev_err(&priv->client[0]->dev,
+> +					"Failed to read channel reg property\n");
+> +				return ret;
+> +			}
+> +			if (chan_id > SI3474_MAX_CHANS) {
+> +				dev_err(&priv->client[0]->dev,
+> +					"Incorrect channel number: %d\n", chan_id);
+> +				return ret;
+
+ret is not set here (it will be zero because of previous call)
+
+> +			}
+> +
+> +			priv->pi[pi_no].chan[pairset_no] = chan_id;
+> +			/* Mark as 4-pair if second pairset is present */
+> +			priv->pi[pi_no].is_4p = (pairset_no == 1);
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int si3474_setup_pi_matrix(struct pse_controller_dev *pcdev)
+> +{
+> +	struct si3474_priv *priv = to_si3474_priv(pcdev);
+> +	s32 ret;
+> +
+> +	ret = si3474_get_of_channels(priv);
+> +	if (ret < 0) {
+> +		dev_warn(&priv->client[0]->dev,
+> +			 "Unable to parse DT PSE power interface matrix\n");
+> +	}
+
+nit: unnecessary brackets around single-line statement
+
+> +	return ret;
+> +}
+-- 
+pw-bot: cr
 
