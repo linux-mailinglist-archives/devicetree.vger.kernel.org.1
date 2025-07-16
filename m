@@ -1,61 +1,90 @@
-Return-Path: <devicetree+bounces-196796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 839C6B07173
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 11:19:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E33E4B07196
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 11:26:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99C3B3A2ABE
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:18:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54187189BF7D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:26:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EAA52EE999;
-	Wed, 16 Jul 2025 09:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1432F0021;
+	Wed, 16 Jul 2025 09:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="N9udJBz5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CDmcV8sT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C3E28A1C8;
-	Wed, 16 Jul 2025 09:19:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F142BFC85;
+	Wed, 16 Jul 2025 09:26:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752657559; cv=none; b=J9qF8wbTTATUEQatOdBw7eIJhTLyzio5dUeOd07CLD6CUIowv9FveVizeo4SXRa2x/VwkrEdSYMVmLbJtukSgUV55sJIar0xCXAwGJX5s+X2usomPI2xJvuD7GJAsU5BKTAPkp1Wp0AdIOvaGFwRXbhzQCBGyzSKcf+cAJICVJA=
+	t=1752657968; cv=none; b=eNPSnBlRjrnc5ngDlH027/udcpxdQJGTAMsNLC+ddGUIYp7Dr/c/DuQYkYcU/kviP8ky7PHoAxXWHhWDUqCUVnzAI9ztZHQuRnQWN/xmC1Yc0exx56jQ+efyR42y3wzd6QdvpS/b3f21frXtv4req4V4SWsH2oFGnoYvYHXZBA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752657559; c=relaxed/simple;
-	bh=g5M4DpBVQH07/jGuPHNWNcGzZLf3cxeneqrXpulpu2k=;
+	s=arc-20240116; t=1752657968; c=relaxed/simple;
+	bh=rfjHtiCeF271t5do673xiX7n1ZAh1z0gfq1XzRBPHvU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NVlOtRI55IP1SuL3rsxEu3K13vfh152KLigFNnAnJJ1qMhnBAt4SkA8w5t4JL5/fcYJcafVDU3UYxSIKuHtDzT6Fs2jbm2YdJ9UAAuS0Es3t+5234qAcIdzI8W4kDzePLP15HGXYWltI67h4x1+52JHcwDXYuQbrofJk8UiD8bI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=N9udJBz5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DC09C4CEF0;
-	Wed, 16 Jul 2025 09:19:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1752657557;
-	bh=g5M4DpBVQH07/jGuPHNWNcGzZLf3cxeneqrXpulpu2k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N9udJBz5nZcxDfwmUXs+fdNV+8yv55UAEnljdTtgpcm3HIpSkcNCQ/BHMyRqHQVDg
-	 Fb73Ax+AWYbI2Z1cWc8TD/nPIvmQ4AaXkLWMvjjo75YB1WVqYgrlLKCHN82+buQhnz
-	 WPQ50+L/T+7uc9ZR7tNamoSv11/VHYfBa09GSIC8=
-Date: Wed, 16 Jul 2025 11:19:15 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: FUJITA Tomonori <fujita.tomonori@gmail.com>
-Cc: alex.gaynor@gmail.com, dakr@kernel.org, ojeda@kernel.org,
-	rafael@kernel.org, robh@kernel.org, saravanak@google.com,
-	tmgross@umich.edu, a.hindborg@kernel.org, aliceryhl@google.com,
-	bhelgaas@google.com, bjorn3_gh@protonmail.com, boqun.feng@gmail.com,
-	david.m.ertman@intel.com, devicetree@vger.kernel.org,
-	gary@garyguo.net, ira.weiny@intel.com, kwilczynski@kernel.org,
-	lenb@kernel.org, leon@kernel.org, linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	lossin@kernel.org, netdev@vger.kernel.org,
-	rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] rust: device_id: split out index support into a
- separate trait
-Message-ID: <2025071607-theorize-charting-b29f@gregkh>
-References: <20250711040947.1252162-1-fujita.tomonori@gmail.com>
- <20250711040947.1252162-2-fujita.tomonori@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kTueEAEitMf5M73iGHsgI6WBklaKzWAgC4bZU1tu8IksT7optloRaoCg/jUi9vZGPGS1w8EQCBXI1E6/LLdm+vfoptMXelU+5fKsSHu8VxbgTC9YNCv9zMoEmc7a1fr7ucOroU3RJs2HC0FI/1uYscpnFGlhInVy5MB2TBe9HeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CDmcV8sT; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752657967; x=1784193967;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=rfjHtiCeF271t5do673xiX7n1ZAh1z0gfq1XzRBPHvU=;
+  b=CDmcV8sTO5vcuY2xoMFnPKKdIlgn6UAIaKfxdtQiu00J48XZXU9GrOxE
+   yy8fo9qPeizV989mrzcw4XAjmpfYHUcj4XCMj+ZkBjoN96y0h/HU8fKgR
+   UROHHHzMgpUJkKX0sk2cG0SIA+Mi7Kv5aR53r6rOApnmxA0xqWUw2nmWJ
+   R4l+/sBCTr14ESekFQORwuXHKa1aV/ejbtB8jDqgNWNIfucO6gil9GwPW
+   AufLqKmdPVtSUh+BEURBIXNNo+eyHW3J8u8S7ocyeTsOeaO4OOEp7vfXp
+   4z8dQA+zjFKZyvXn5DHpRkTE0c2KfaIPuCYeAARQ0mYOXqlAUX6DSfQvg
+   w==;
+X-CSE-ConnectionGUID: AQ+zbDSIQsy7P5llT95O/Q==
+X-CSE-MsgGUID: ZKTQvZ1QSe+itnQqMlfydQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="54006236"
+X-IronPort-AV: E=Sophos;i="6.16,315,1744095600"; 
+   d="scan'208";a="54006236"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2025 02:26:06 -0700
+X-CSE-ConnectionGUID: zoF5FblBTxWSbMeFy9JXVw==
+X-CSE-MsgGUID: 3VErqQCySQmwwmDWnqiRmg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,315,1744095600"; 
+   d="scan'208";a="161776446"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2025 02:26:03 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1ubyOl-0000000Fth3-3bnN;
+	Wed, 16 Jul 2025 12:25:59 +0300
+Date: Wed, 16 Jul 2025 12:25:59 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Remi Buisson <Remi.Buisson@tdk.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 2/8] iio: imu: inv_icm45600: add new inv_icm45600
+ driver
+Message-ID: <aHdwJ--tK4ANBlT4@smile.fi.intel.com>
+References: <20250710-add_newport_driver-v2-0-bf76d8142ef2@tdk.com>
+ <20250710-add_newport_driver-v2-2-bf76d8142ef2@tdk.com>
+ <aG-ID7O3HgVc1EOX@smile.fi.intel.com>
+ <FR2PPF4571F02BC5366477EC02E9C44041A8C4BA@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
+ <aHD7zEzvVuwSB9Ke@smile.fi.intel.com>
+ <FR2PPF4571F02BC69DF6807BAA188B2B3A08C57A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
+ <aHYwmEv1sCI-qi0T@smile.fi.intel.com>
+ <FR2PPF4571F02BC1A8F6E7F098A498E0B9C8C57A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,32 +93,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250711040947.1252162-2-fujita.tomonori@gmail.com>
+In-Reply-To: <FR2PPF4571F02BC1A8F6E7F098A498E0B9C8C57A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Fri, Jul 11, 2025 at 01:09:45PM +0900, FUJITA Tomonori wrote:
-> Introduce a new trait `RawDeviceIdIndex`, which extends `RawDeviceId`
-> to provide support for device ID types that include an index or
-> context field (e.g., `driver_data`). This separates the concerns of
-> layout compatibility and index-based data embedding, and allows
-> `RawDeviceId` to be implemented for types that do not contain a
-> `driver_data` field. Several such structures are defined in
-> include/linux/mod_devicetable.h.
-> 
-> Refactor `IdArray::new()` into a generic `build()` function, which
-> takes an optional offset. Based on the presence of `RawDeviceIdIndex`,
-> index writing is conditionally enabled. A new `new_without_index()`
-> constructor is also provided for use cases where no index should be
-> written.
-> 
-> This refactoring is a preparation for enabling the PHY abstractions to
-> use the RawDeviceId trait.
-> 
-> The changes to acpi.rs and driver.rs were made by Danilo.
-> 
-> Acked-by: Danilo Krummrich <dakr@kernel.org>
-> Reviewed-by: Trevor Gross <tmgross@umich.edu>
-> Signed-off-by: FUJITA Tomonori <fujita.tomonori@gmail.com>
-> ---
+On Tue, Jul 15, 2025 at 03:26:48PM +0000, Remi Buisson wrote:
+> >From: Andy Shevchenko <andriy.shevchenko@intel.com> 
+> >Sent: Tuesday, July 15, 2025 12:43 PM
+> >On Tue, Jul 15, 2025 at 09:11:47AM +0000, Remi Buisson wrote:
+> >> >From: Andy Shevchenko <andriy.shevchenko@intel.com> 
+> >> >Sent: Friday, July 11, 2025 1:56 PM
+> >> >On Fri, Jul 11, 2025 at 11:32:48AM +0000, Remi Buisson wrote:
+> >> >> >From: Andy Shevchenko andriy.shevchenko@intel.com<mailto:andriy.shevchenko@intel.com>
+> >> >> >Sent: Thursday, July 10, 2025 11:30 AM
+> >> >> >On Thu, Jul 10, 2025 at 08:57:57AM +0000, Remi Buisson via B4 Relay wrote:
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+...
+
+> >> >> It's probably safer to keep the delay even in case of failure to make sure
+> >> >> the device is ready before next operation.
+> >> >
+> >> >I am not sure about it. Why? This has to be well justified as it's quite
+> >> >unusual pattern.
+> >
+> >> Ok I understand, the hardware needs that delay if the access was actually
+> >> done on the bus (to not jeopardize next access).  If a regmap error means
+> >> that no real access occured then the delay is avoidable.
+> >
+> >Perhaps you need to have this delay embedded in the IO accessors? Also do
+> >read _and_ write need this or only one of them?
+
+> It's required for both indirect read and write BUT not when writing the first data
+> which need to be done in a single burst.
+> Could you please be more specific on how to add delays to IO accessors?
+
+I don't remember if regmap core supports already such a delay, but always
+working case is to redefine your own regmap_read()/regmap_write() callbacks.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
