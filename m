@@ -1,168 +1,157 @@
-Return-Path: <devicetree+bounces-196864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32419B07688
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 15:02:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B111B076A3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 15:11:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4278B7A3051
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 13:01:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B105E581FEB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 13:11:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD0ED2C15B8;
-	Wed, 16 Jul 2025 13:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47EBE2F3C30;
+	Wed, 16 Jul 2025 13:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MnE6UyyH"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="mSsRorqp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from server.couthit.com (server.couthit.com [162.240.164.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BC752F88
-	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 13:02:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B6D7235072;
+	Wed, 16 Jul 2025 13:11:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752670964; cv=none; b=JM4hn3ezlkZYmOVPpU+xaKnZYZghlGloAjopaL7eZ43/M7es2uiO3/kD6uJQm0V+aHfjJW5HYyTg5ePL3uMscADB90CZI5rMisdKVn+TR+9fdNqmhdkZE2dm0jUNomEDybV2Ep8mBZNOc1QkcF4RWD3zShIhAoWwfD9TYU7ZId4=
+	t=1752671497; cv=none; b=mssk2CqFvsqPKe8B9ZFSoK4UtcNzh5mGlDj6GGB/OMU4Qj58ZlpGSS5b6JWoVibt1onlWsoodek4I/Sa9EjxNMIq0rGHAct4svJfWUh35Ln5SchSHsWK06MYiSyP0trgJDpVB77PdI96I2tOC7Fu5ZEyS1FY1r7D/BlJjVXCgNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752670964; c=relaxed/simple;
-	bh=2n+yEqRmpHWX55ymaGQwEcO5PTCabHBKt4em2S2nQWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=srTGFDqSxdCy71GHL4UqnEmD2Von+uu+YAT5QRLx7nPpyxi2SJ0k1x2WiDTJim+99NWIqv0YSrYIRDmyScQvq6kAWsGT9wKTdRSFhpiGl0hYy0l6SyeoDxOYakBeqeWlrkaypl97QGSCngLCBiqOSEMo5U/B2Y2sQS/2h0fOsZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MnE6UyyH; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56GCsMYG003257
-	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 13:02:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	nbwfXFuBFxnOjI7T6twSdJDR/3cB26VOmjbK5IrO4Xc=; b=MnE6UyyHfZ0YXRqu
-	8J0WeRFTtmcikbH0hEoZyJRjqI3QIUZngUYM91lRGunMI4FJn6dhbkQv/Dpul2Vd
-	qkgTdU3G6ijnHg4sIT2BKIv2Z4Coy7ZlYqkEKRDbi9J7bujWhN6TQMGyedP1YawE
-	lkXib5WzzRG9ajf9tEePxrWoYZ+m+5leNPTBHOfbZNH5PM04gG9220GL+x/7A8xA
-	U8ksYoeCqCfimPkl/mMc42Aa3aClMk2SICAx0llxIiK+pCYEFclF53M2X29ZHBwR
-	JTHa1B6jebloBlsXZX409RKhRlAXbgRVoBkcQaBBA7QxWBQwOg4hG42HlYSeMjmw
-	l0vQjg==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47w5drpwwt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 13:02:42 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6f539358795so18083366d6.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 06:02:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752670960; x=1753275760;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nbwfXFuBFxnOjI7T6twSdJDR/3cB26VOmjbK5IrO4Xc=;
-        b=eoLYkwSRFntsazAg3OMVPvuV+rfaIqxdbG8+fkeddKngyskPxFWOKYKMQaarpr2SqF
-         Qc+pa62EY19X2MTIv+NN0Gd0QffAExgttdAEmhAK6MIwc2OdRhMaE6uKpAn7rSZpintW
-         a4qjg7fp1RUriS+Yg96sC4IkClMeAjjGhCjRkZ0pnSIjuak/2xedNP5QOgQhWm8NZrIN
-         0gyfoBgRnRZMoW9CKWv4w34arIZfcJYB+g0Gk8LJAgPoB53TMuiaOPVNBjFPP/wUKZac
-         yXUrKzrcWVgTwV8/jHVfCAhnPdz8Y/W3CFeHxqiUN6elVGp3TWTEcf38nEo2n7vHj9gn
-         luZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWQjY63dayhLB6LVphWgRIiItx0y5YbckIdRI3VfKDLYy+FGdTZC1XSXIpugjsOUOBdrCtnxwnd6CKn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxUvXJ4mAhX0Km6/YrlOElGx1ZhyNpjo8xdf+QK/GBtLqU+tf3
-	FjPRd3bFHTvDeBOSpzXx3f1u0hVrtjXNkpkJLQ9MADxxCLGti09jdPOVFW5KBwO50dMrO0AoqhG
-	M+lAJMpam2FbAjqTqCcApFHlSRrIpMBDyaSfZmlCPasqK3sQSRxS9VPYFot1Cl4/b
-X-Gm-Gg: ASbGncuyONQXudwrPHixJ7te6hxUYjo2fkFe3h68hXpSnDxLI4tZFt2zeY6+cOFKISr
-	nPlqnCOGQQ66v6n+154gNaEUVs2BX0USAYMdLHFuiSWF+plVqS0E0pHZHI/lwueVfWW2MzCY2s3
-	K1Gi3DDA1maa+bIvOD66B2V2uiXN0WzMOI9M9TJkqRzFx+UnWuZcn5rR2gJA2fGq8fW1K0EVUsh
-	BvKb33pXXq/O7/wLGTDjQMa71EIvkiWRmzV8BZDKTpIOq2ocZOWANkyriuxDQQYlUTXaNVAmmIq
-	dZHpUL4a/otUCoz5t+HeHTVNl36E7lhIWd6QAEged75pj1a4ss4r5BeX6hvvZZyTbwEJEdD7v4N
-	vN9CyJx5RrwajtYWA7VBC
-X-Received: by 2002:a05:620a:f0f:b0:7e0:1602:a4f9 with SMTP id af79cd13be357-7e342b735admr177287485a.14.1752670960209;
-        Wed, 16 Jul 2025 06:02:40 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE7HT9MPyzsZ1m459bgHi8F8nr4lOxvRazSKaZ/G/h/LdCB+WOUXISiLr7eVmDce1y+UDGzHQ==
-X-Received: by 2002:a05:620a:f0f:b0:7e0:1602:a4f9 with SMTP id af79cd13be357-7e342b735admr177284285a.14.1752670959667;
-        Wed, 16 Jul 2025 06:02:39 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e8294bc2sm1190983766b.135.2025.07.16.06.02.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Jul 2025 06:02:39 -0700 (PDT)
-Message-ID: <4a189f35-66f1-4c1e-a9f5-e9ed01544538@oss.qualcomm.com>
-Date: Wed, 16 Jul 2025 15:02:36 +0200
+	s=arc-20240116; t=1752671497; c=relaxed/simple;
+	bh=hzmHkszYAoyXFUYOkAA7oNySXwfEslhstmlGJGO9cFU=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=KDOy0mjUNW3UbhrJPLLAklfp7A5bcH231R1JINdDx6YkJRd+OueXGRI/MMURcEFwhcTGz2mU5JgxMheM5JfVm/1OcapInyutK3bozCv6a9tUwRYI/fBzHUZoqeFlpeRyHtWVa0Vq9NftJ3opTDbTNJvIU14B3Dtjbx6yFRRrRq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=mSsRorqp; arc=none smtp.client-ip=162.240.164.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
+	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=qCz3qkpSM0PaErwoNukZei1+0CUNeJ1oEHCchsaW8T0=; b=mSsRorqpu8GvUFSOiJ0BQI+6mh
+	JPeC9IG0TZWWoUPrYxSxp/HSk4sfNrro88xvoXztLeT2sWWhWHoK/loc6rAKWyNY89ipAUNhTqnvV
+	n0Qx7fc13cSny0+cZlDbSKoYb3QLub0NkXYJjToQuBVCB5iGE9euU8iEWwqbu8xz0rSFxdiN9utnh
+	2xFhX0vZSoaiavvfmR+RoiFlLtv01kpcoxXHB9XtSWKWvH16wGKXPvATqawaiX79n/ZfVbymvdIy1
+	4jXKo4t2Cqck/hLrZVHpm5bswdpAVoLgdFpuyA1b1px9onoRU4A9w93r0On4zBJ2gu2lMB92G5Zsk
+	gtS1oukg==;
+Received: from [122.175.9.182] (port=31570 helo=zimbra.couthit.local)
+	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1uc1uq-0000000HP1m-0wjn;
+	Wed, 16 Jul 2025 09:11:20 -0400
+Received: from zimbra.couthit.local (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTPS id 5A5831784069;
+	Wed, 16 Jul 2025 18:41:12 +0530 (IST)
+Received: from localhost (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTP id 3F13E1784068;
+	Wed, 16 Jul 2025 18:41:12 +0530 (IST)
+Received: from zimbra.couthit.local ([127.0.0.1])
+	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id CYRcvNkisBKt; Wed, 16 Jul 2025 18:41:12 +0530 (IST)
+Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
+	by zimbra.couthit.local (Postfix) with ESMTP id D20231781DBB;
+	Wed, 16 Jul 2025 18:41:11 +0530 (IST)
+Date: Wed, 16 Jul 2025 18:41:11 +0530 (IST)
+From: Parvathi Pudi <parvathi@couthit.com>
+To: parvathi <parvathi@couthit.com>, kuba <kuba@kernel.org>
+Cc: danishanwar <danishanwar@ti.com>, rogerq <rogerq@kernel.org>, 
+	andrew+netdev <andrew+netdev@lunn.ch>, davem <davem@davemloft.net>, 
+	edumazet <edumazet@google.com>, pabeni <pabeni@redhat.com>, 
+	robh <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
+	conor+dt <conor+dt@kernel.org>, ssantosh <ssantosh@kernel.org>, 
+	richardcochran <richardcochran@gmail.com>, 
+	s hauer <s.hauer@pengutronix.de>, m-karicheri2 <m-karicheri2@ti.com>, 
+	glaroque <glaroque@baylibre.com>, afd <afd@ti.com>, 
+	saikrishnag <saikrishnag@marvell.com>, m-malladi <m-malladi@ti.com>, 
+	jacob e keller <jacob.e.keller@intel.com>, 
+	diogo ivo <diogo.ivo@siemens.com>, 
+	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
+	horms <horms@kernel.org>, s-anna <s-anna@ti.com>, 
+	basharath <basharath@couthit.com>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+	netdev <netdev@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
+	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
+	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
+	mohan <mohan@couthit.com>
+Message-ID: <1616453705.30524.1752671471644.JavaMail.zimbra@couthit.local>
+In-Reply-To: <723330733.1712525.1752237188810.JavaMail.zimbra@couthit.local>
+References: <20250702140633.1612269-1-parvathi@couthit.com> <20250702151756.1656470-5-parvathi@couthit.com> <20250708180107.7886ea41@kernel.org> <723330733.1712525.1752237188810.JavaMail.zimbra@couthit.local>
+Subject: Re: [PATCH net-next v10 04/11] net: ti: prueth: Adds link
+ detection, RX and TX support.
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/4] arm64: dts: qcom: Add support for Dell Inspiron
- 7441 / Latitude 7455
-To: Val Packett <val@packett.cool>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Laurentiu Tudor <laurentiu.tudor1@dell.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250716003139.18543-1-val@packett.cool>
- <20250716003139.18543-4-val@packett.cool>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250716003139.18543-4-val@packett.cool>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 6T0Qdu-888Yni2M1cVO2ieMqMa9o8Pxt
-X-Authority-Analysis: v=2.4 cv=D4xHKuRj c=1 sm=1 tr=0 ts=6877a2f2 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=KKAkSRfTAAAA:8 a=iLNU1ar6AAAA:8
- a=EUspDBNiAAAA:8 a=M8z6rC266kevX9ldIuUA:9 a=QEXdDO2ut3YA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: 6T0Qdu-888Yni2M1cVO2ieMqMa9o8Pxt
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE2MDExNiBTYWx0ZWRfX4B1AYqkzzCtT
- Y2u8WJxLgtFuXnGtoBujFi1S1AXVqkWP0VxUvaV4hD9Meb4tcv4hgBvMri7ltkQUohoJKqu4N3s
- KLT/VIWZTUTmQY+PntgMCHtxUIoaOkNxEP0ndTigVWsZZnlRHsL1u4o/scRYKwnGUkTgYTDBSHP
- /0CSP6JDMBa+Bo2H5U55o0CjDfS82xlGYJO5V5cWhT+A9YN0PicrxPzCqRYd+Buyx77YIyWVV3n
- r0i/1fEFipbOSH6pkOmCffuYTevROcAQI8XLhorDcIK50c27Sz4R/rmyg/lDmZZ9YOQEyxsVonO
- vcr73HjvdNZesqvWmf8vRBEkZW6NFchf4aG5KsctkQSuxiHhe7YJwce2o6OxEsHlBD4qFShoYSH
- AP8TvQQ5xIByIpOEtcQOmyREC0oQYwYO40Mnae/dql5xEnncsIAfryDwf2LtEBO4CkXEMAMr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-16_02,2025-07-16_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxlogscore=965 impostorscore=0 spamscore=0 clxscore=1015
- lowpriorityscore=0 malwarescore=0 suspectscore=0 bulkscore=0 mlxscore=0
- priorityscore=1501 phishscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507160116
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC138 (Linux)/8.8.15_GA_3968)
+Thread-Topic: prueth: Adds link detection, RX and TX support.
+Thread-Index: frcZHpE/y/6hXxyDNRDspT8aDcWlcTdy9M2r
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.couthit.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
+X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On 7/16/25 2:26 AM, Val Packett wrote:
-> From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> 
-> Add device trees for both SKUs of the X1E80100 Thena laptop:
-> - Dell Latitude 7455
-> - Dell Inspiron 14 Plus 7441
-> 
-> Works:
-> - Wi-Fi (WCN7850 hw2.0)
-> - Bluetooth
-> - USB Type-C x2 (with DP alt mode)
-> - USB Type-A
-> - USB Fingerprint reader
-> - eDP Display (with brightness)
-> - NVMe
-> - SDHC (microSD slot)
-> - Keyboard
-> - Touchpad
-> - Touchscreen
-> - Audio (4 Speakers, 2 DMICs, Combo Jack)
-> - Battery
-> 
-> Not included:
-> - Camera
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Co-developed-by: Val Packett <val@packett.cool>
-> Signed-off-by: Val Packett <val@packett.cool>
-> Reviewed-by: Laurentiu Tudor <laurentiu.tudor1@dell.com>
-> ---
+Hi,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>> +=09qid =3D icssm_prueth_get_tx_queue_id(emac->prueth, skb);
+>>> +=09ret =3D icssm_prueth_tx_enqueue(emac, skb, qid);
+>>> +=09if (ret) {
+>>> +=09=09if (ret !=3D -ENOBUFS && netif_msg_tx_err(emac) &&
+>>> +=09=09    net_ratelimit())
+>>> +=09=09=09netdev_err(ndev, "packet queue failed: %d\n", ret);
+>>> +=09=09goto fail_tx;
+>>> +=09}
+>>=20
+>>> +=09if (ret =3D=3D -ENOBUFS) {
+>>> +=09=09ret =3D NETDEV_TX_BUSY;
+>>=20
+>>=20
+>> Something needs to stop the queue, right? Otherwise the stack will
+>> send the frame right back to the driver.
+>>=20
+>=20
+> Yes, we will notify upper layer with =E2=80=9Cnetif_tx_stop_queue()=E2=80=
+=9D when returning
+> =E2=80=9CNETDEV_TX_BUSY=E2=80=9D to not push again immediately.
+>=20
 
-Konrad
+We reviewed the flow and found that the reason for NETDEV_TX_BUSY being
+notified to the upper layers is due lack of support for reliably detecting
+the TX completion event.
+
+In case of ICSSM PRU Ethernet, we do not have support for TX complete
+notification back to the driver from firmware and its like store and
+forget approach. So it will be tricky to enable back/resume the queue
+if we stop it when we see busy status.
+
+Returning NETDEV_TX_BUSY seems to be the best option so that the stack can
+retry as soon as possible.
+
+
+Thanks and Regards,
+Parvathi.
 
