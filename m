@@ -1,161 +1,180 @@
-Return-Path: <devicetree+bounces-196740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF921B06EAF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:16:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B62B06ED7
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1580A566B81
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:16:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2065F3A41FD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8286279358;
-	Wed, 16 Jul 2025 07:16:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9785E2857F6;
+	Wed, 16 Jul 2025 07:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="B9TMPI7S"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="eiLuMd7S";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="i9nxkfR2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from fhigh-b4-smtp.messagingengine.com (fhigh-b4-smtp.messagingengine.com [202.12.124.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47E9381AF;
-	Wed, 16 Jul 2025 07:16:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5FA027146F;
+	Wed, 16 Jul 2025 07:20:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752650193; cv=none; b=Sp79VbGkdAnp3RLvLnyvpHr/E8oyNSH3Pdh54HV88Ek2y8LjAz21vqz/12CJ3thfw6glNGwLkU6YyMhwC+hOiTp3tgPLQ/tIJw90swCjyjBy1GcwRXwI3+9wtu3H+3qvMNE9FNI0HFQHDR3pBmwxUsWC7Z7UX2kCh9Rz7zRdy48=
+	t=1752650420; cv=none; b=j9jmMc94Cv5pq9wt53pLAhLpgE4MBeZstPOrHkTBRFIfEyeuZAGD+3S+786bp92Kq9td1+488lfOjkqTXEe3V3aAfQrBNhI5mztQEbcivqrD8AvhfdbUANr85RxY3moByKSKHXrLooABOL69/gIjf9G9QGjEJYuqK6+L4hqZgRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752650193; c=relaxed/simple;
-	bh=cgJpryTbNPT4uQieh/YRbOpgBOzYOqZivYucNN76U+Y=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kIC8peEz96xSckHUTS9NSmjUMtfnyUrmEjvoqRhEHaC0OSw2LMzeq3dHlUSsR5gSK5msYt4kjmu7EtnknxMplHP/aj6J+6aD6iKTfyx+QhQuhML0wYlF4dHP46J2MfkfapppdV1aLea7wE1obs5EqplRagVp3s1xWOkAI1LXwTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=B9TMPI7S; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56G7GF5V195870;
-	Wed, 16 Jul 2025 02:16:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1752650175;
-	bh=fB5TsNwWgB45LAm6ZUD/fPdEU/smhkB4TT/cSr4jjJM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=B9TMPI7SC4qU/6z6jDeESs3xi8l7HRBuGgZM68kBwZjADBftiwxiRTOfuu+RNJ+gm
-	 BEfXBxqBh6FukA4POWABRLH90qBU4yN/s+Fe7IBrh0JiI8a5MSpKsh9LaoNIQv17vg
-	 t1YeqiiPoIEsREb2tO3lRivtJioX4uw+rCKULtZo=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56G7GFXg1184742
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 16 Jul 2025 02:16:15 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 16
- Jul 2025 02:16:15 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 16 Jul 2025 02:16:15 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.169])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56G7GDQm046600;
-	Wed, 16 Jul 2025 02:16:14 -0500
-Date: Wed, 16 Jul 2025 12:46:13 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <huaqian.li@siemens.com>
-CC: <s-vadapalli@ti.com>, <baocheng.su@siemens.com>, <bhelgaas@google.com>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <diogo.ivo@siemens.com>, <helgaas@kernel.org>,
-        <jan.kiszka@siemens.com>, <kristo@kernel.org>, <krzk+dt@kernel.org>,
-        <kw@linux.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <lpieralisi@kernel.org>, <nm@ti.com>, <robh@kernel.org>,
-        <ssantosh@kernel.org>, <vigneshr@ti.com>
-Subject: Re: [PATCH v9 (RESEND) 4/7] PCI: keystone: Add support for PVU-based
- DMA isolation on AM654
-Message-ID: <0cd8175e-e448-483f-862e-b12d795ae1e5@ti.com>
-References: <e21c6ead-2bcb-422b-a1b9-eb9dd63b7dc7@ti.com>
- <20250716053950.199079-1-huaqian.li@siemens.com>
- <20250716053950.199079-5-huaqian.li@siemens.com>
+	s=arc-20240116; t=1752650420; c=relaxed/simple;
+	bh=bCqm1JQ8BzHWO/19xnRKH+MHKhEeGYtPhPvPJ6ysZXk=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=V1Vm5tlNlk03NMz8ENWuhj8qXJPijylHJ2wDcFQqplTq7G+7j48rDt3mKyfK0Vq005qyzjlEx99EJ8muFGGZm9I/+UJCwZZQwUHPU/addh0x8GPOzxtabTJc7Shztvf7xRcLp3eWn7+UwLakIvRkZe+ICiaJC0/FhwcoFWMf4YE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=eiLuMd7S; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=i9nxkfR2; arc=none smtp.client-ip=202.12.124.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 67E6B7A0104;
+	Wed, 16 Jul 2025 03:20:16 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Wed, 16 Jul 2025 03:20:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1752650416;
+	 x=1752736816; bh=xDPOTNSSMo7Pg2u9+65PzrX1Xg4eEK8/iy5Y0t9SCjE=; b=
+	eiLuMd7S7yw/TMDahWZt3fOI9Unhj4OJ8lAm6OOOxkPkpnuZ+LR/t4S6BGmU3bk5
+	FkVxDVjxLsLRAtSGHH5P6TcuBEn8ZHhbv5bmVuG0LafprulBVCJCCf1lbluKo/VN
+	VuapCe0KPfCMHVfjkO83e9x5W7LtHzmCdIrlUMtVRXGuPvz2ZGhASXiexzOw0bV2
+	0lne09ZpMsZXTyN3PhbqQv0qULz37svLLCL1N8FI7kQysBldshIAXfnleRlqyE0D
+	417qF3IdfflHvC1fRTx6b5bLc4Or6PUf3ONNkjDy55cdcguLCzf0AXdkEZes2mjO
+	SF0j6OBOIza42hKaaYAtHg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1752650416; x=
+	1752736816; bh=xDPOTNSSMo7Pg2u9+65PzrX1Xg4eEK8/iy5Y0t9SCjE=; b=i
+	9nxkfR2mTlKZA4I92n7lU9nzoibkybWS2vekJ9T2s8tjIVoTskjLsi6kjwlGSOmb
+	933Z1NFqZK391vm+jtbSAmXXYdXe6eACrPzyTXeTaJNlxEZaJtiykgGwf5Jp+Q7N
+	c48iZbdvnrpJtA9m3OUOCeW+pXkUNvIqZDm7+3YexoFlym3shqrf1VAW7Ck12oJb
+	ea6Si3CadVMf5tF7Og2fx4nxhawE7q2I+BJzov3R2IOaGiEQv+VGtu9gDEFGIgtm
+	42ppn5PFfn7W/RgAkGgWUr5k/sQm7PSfQWLQta5zfxxFnnGQrLqzhkM7UCYTSBAi
+	ZNNiu8aKbFIaznDFgdzEQ==
+X-ME-Sender: <xms:r1J3aG4eE6rKCu5zLBvI81Z42dTpixfTGHg08UERtRcZb3BTf9sX3g>
+    <xme:r1J3aP7k2FC1nQfgm0wNee6h34hiR90m03-dIqwY_kSCI9p7LQnQfAgtnsAISJJT-
+    8k4P-yKZ6SAvAhVplQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdehjedutdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthhqredtredtjeenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpedvhfdvkeeuudevfffftefgvdevfedvleehvddvgeejvdefhedtgeegveehfeeljeen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopedukedpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomhdprhgtph
+    htthhopehkrghjvghtrghnrdhpuhgthhgrlhhskhhisegrrhhmrdgtohhmpdhrtghpthht
+    ohepshhuuggvvghprdhhohhllhgrsegrrhhmrdgtohhmpdhrtghpthhtoheplhhihhhurg
+    drlhhiuhestghigihtvggthhdrtghomhdprhgtphhtthhopegtihigqdhkvghrnhgvlhdq
+    uhhpshhtrhgvrghmsegtihigthgvtghhrdgtohhmpdhrtghpthhtohepghgrrhihrdihrg
+    hnghestghigihtvggthhdrtghomhdprhgtphhtthhopehguhhomhhinhdrtghhvghnsegt
+    ihigthgvtghhrdgtohhmpdhrtghpthhtohepphgvthgvrhdrtghhvghnsegtihigthgvtg
+    hhrdgtohhmpdhrtghpthhtohepjhgrshhsihhsihhnghhhsghrrghrsehgmhgrihhlrdgt
+    ohhm
+X-ME-Proxy: <xmx:r1J3aJKay1d4U4uptBXNC1n3DgEVZnhN1VUQ35AKLV3DabJE_dFbVA>
+    <xmx:r1J3aKobx7OhfTVleQNYjtTWoh1h6_oJHmHNdWQfLyX2rh-eXYOCcg>
+    <xmx:r1J3aKAadL3cGudVfWBPJDCXPkDGQIEhhLGaZsq8FI7IORkhPiVcsw>
+    <xmx:r1J3aIfVkeFfwa-yKoZE2B5zcQOhMNpi9ZZkAhcV2sOuMyRYn2d0lQ>
+    <xmx:sFJ3aOYhWM6pIzV2MhB9FJ5oGBpTbzRz7csmuaBDjexYbgYytsscoRaF>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 9CC53700065; Wed, 16 Jul 2025 03:20:15 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250716053950.199079-5-huaqian.li@siemens.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-ThreadId: T7a47ae1d7bea40f2
+Date: Wed, 16 Jul 2025 09:19:52 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Guomin Chen" <guomin.chen@cixtech.com>,
+ "Jassi Brar" <jassisinghbrar@gmail.com>
+Cc: "Rob Herring" <robh@kernel.org>, krzk+dt@kernel.org,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Peter Chen" <peter.chen@cixtech.com>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ cix-kernel-upstream@cixtech.com, "Marc Zyngier" <maz@kernel.org>,
+ "Sudeep Holla" <sudeep.holla@arm.com>,
+ "Kajetan Puchalski" <kajetan.puchalski@arm.com>,
+ "Enric Balletbo" <eballetb@redhat.com>, "Gary Yang" <gary.yang@cixtech.com>,
+ "Lihua Liu" <Lihua.Liu@cixtech.com>
+Message-Id: <8365b672-49d4-4ed3-a3e0-53a11c20fe7c@app.fastmail.com>
+In-Reply-To: <aHcOaas459jctIB2@gchen>
+References: <20250609031627.1605851-1-peter.chen@cixtech.com>
+ <20250609031627.1605851-6-peter.chen@cixtech.com>
+ <CABb+yY17OOBx73655OhBp8At1b81w9M61zzGu4uhXcMTw4Q=Dw@mail.gmail.com>
+ <aG0i75h32dWg/L2G@gchen>
+ <CABb+yY2BmqiQ18hU+7C234UnY8n-8PH5VEoS7nH5Xq5O1krGhQ@mail.gmail.com>
+ <6b5f38f7-0557-483b-9252-cfade7a24cf5@app.fastmail.com>
+ <CABb+yY26R_DHQUhpg-xUR_Z7EnjdR_4LPai0M-vfFTAOZy=vvQ@mail.gmail.com>
+ <aHcOaas459jctIB2@gchen>
+Subject: Re: [PATCH v9 5/9] mailbox: add CIX mailbox driver
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 16, 2025 at 01:39:47PM +0800, huaqian.li@siemens.com wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> The AM654 lacks an IOMMU, thus does not support isolating DMA requests
-> from untrusted PCI devices to selected memory regions this way. Use
-> static PVU-based protection instead. The PVU, when enabled, will only
-> accept DMA requests that address previously configured regions.
-> 
-> Use the availability of a restricted-dma-pool memory region as trigger
-> and register it as valid DMA target with the PVU. In addition, enable
-> the mapping of requester IDs to VirtIDs in the PCI RC. Use only a single
-> VirtID so far, catching all devices.
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
-> ---
->  drivers/pci/controller/dwc/pci-keystone.c | 106 ++++++++++++++++++++++
->  1 file changed, 106 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
-> index 2b2632e513b5..fbf1bf43b7ca 100644
-> --- a/drivers/pci/controller/dwc/pci-keystone.c
-> +++ b/drivers/pci/controller/dwc/pci-keystone.c
+On Wed, Jul 16, 2025, at 04:28, Guomin chen wrote:
+> On Tue, Jul 15, 2025 at 05:11:01PM -0500, Jassi Brar wrote:
+>> On Mon, Jul 14, 2025 at 10:40=E2=80=AFAM Arnd Bergmann <arnd@arndb.de=
+> wrote:
+>> > My main worry here is that the types are all quite different: while
+>> > the doorbell and fast mailboxes are what a lot of other drivers hav=
+e,
+>> > the FIFO mode does not seem to be a good fit for the mailbox subsys=
+tem
+>> > but instead looks like a more generic firmware interface with varia=
+ble
+>> > length messages.
+>> >
+>> > For those, I think a higher-level driver with fixed data structures
+>> > passed through the hardware interface seems more appropriate.
+>> >
+>> Yes. But sometimes when the data structures of a protocol are not
+>> bigger than FIFO depth, the platform may choose to use the FIFO mode.
+>> I see it as platform dependent.
+>>=20
+>> > Are there any other mailbox drivers that just use the mailbox to
+>> > tunnel variable-length messages?
+>> >
+>> From a quick look, Armada 37xx and Hi6220 have fifo though they fill
+>> them up fully for each transfer.
+>>
+> Yes, both Armada 37xx and Hi6220 support FIFO functionality, and they
+> fill the FIFO with each transfer.=20
+>
+> Since the cix mailbox hardware supports messages with a maximum length
+> of 128 bytes, different clients transmit messages of varying lengths,
+> such as the cix DSP using 8 bytes, the cix sensorhub using 12 bytes, e=
+tc.=20
+>
+> Therefore, the cix mailbox driver has been modified to support variabl=
+e-
+> length messages of up to 128 bytes. This allows for more compact and=20
+> flexible support of various clients.
 
-[------------------email has been trimmed----------------------------]
+Thanks, this makes sense to me, and I have no other objections if
+this is an established way to use the subsystem. I wonder if there
+is a way to abstract it further though, since it would appear that
+the same thing should be possible on any device that has a FIFO
+to buffer more than a single fixed-length message.
 
-> +static void ks_release_restricted_dma(struct platform_device *pdev)
-> +{
-> +	struct of_phandle_iterator it;
-> +	struct resource phys;
-> +	int err;
-> +
-> +	if (!IS_ENABLED(CONFIG_TI_PVU))
-> +		return;
-> +
-> +	of_for_each_phandle(&it, err, pdev->dev.of_node, "memory-region",
-> +			    NULL, 0) {
-> +		if (of_device_is_compatible(it.node, "restricted-dma-pool") &&
-> +		    of_address_to_resource(it.node, 0, &phys) == 0) {
-> +			ti_pvu_remove_region(KS_PCI_VIRTID, &phys);
-> +			break;
-> +		}
-> +	}
-> +}
-> +
->  static int ks_pcie_probe(struct platform_device *pdev)
->  {
->  	const struct dw_pcie_host_ops *host_ops;
-> @@ -1284,6 +1384,10 @@ static int ks_pcie_probe(struct platform_device *pdev)
->  	if (ret < 0)
->  		goto err_get_sync;
->  
-> +	ret = ks_init_restricted_dma(pdev);
-> +	if (ret < 0)
-> +		goto err_get_sync;
-> +
+Jassi, are there any remaining issues on your side that need to
+be fixed before merging the initial driver? It would be nice if I
+could merge all nine patches through the soc tree for 6.17 if the
+current version, or a feature-reduced variant of the mailbox
+driver is ok.
 
-Please move the above into the section specific to RC mode. This has
-been agreed to by Jan at:
-https://lore.kernel.org/r/e9716614-1849-4524-af4d-20587df365cf@siemens.com/
-
->  	switch (mode) {
->  	case DW_PCIE_RC_TYPE:
->  		if (!IS_ENABLED(CONFIG_PCI_KEYSTONE_HOST)) {
-> @@ -1365,6 +1469,8 @@ static void ks_pcie_remove(struct platform_device *pdev)
->  	int num_lanes = ks_pcie->num_lanes;
->  	struct device *dev = &pdev->dev;
->  
-> +	ks_release_restricted_dma(pdev);
-> +
-
-Regards,
-Siddharth.
+     Arnd
 
