@@ -1,48 +1,40 @@
-Return-Path: <devicetree+bounces-196829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4445EB07381
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 12:33:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A53C1B07389
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 12:34:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D6501C25165
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:33:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4BEA169CF9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:34:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446F9239E62;
-	Wed, 16 Jul 2025 10:32:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IkTQrCFv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF08327C84B;
+	Wed, 16 Jul 2025 10:34:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16DF5194A60;
-	Wed, 16 Jul 2025 10:32:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 365762F2C4C;
+	Wed, 16 Jul 2025 10:34:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752661972; cv=none; b=I95K1qR3dItrhqnO43P/Z9ompN2NHPYv6u70lPk4kNvSQeiTILwS/GDmADeStlwgxX2B/Zy+6ebr+OdFb82tB8Qy3E5DgrPWVE/P07qP1umcPbcbgOBaUp1lZQx9+bOHKl98HD7XZrPGKWKcvU1NQWvX7g0tn+fPz5OTs53CqPk=
+	t=1752662041; cv=none; b=TeWe7o5+8XfULmnLJZVYXXx7P8aVJSe1PC79vquPKwmVpXJvGzdzw/NeRRYoGiRs0b5MyoDh5cQH+G46hj+Q3QGLXCWLTX0x/ksMiNYK+tQ9IsZXq0z5mIv8oKTXtzNo9XP0wTGLP+uJLlFVa2nnPytm1h8wZXRZBbqSkAiIZHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752661972; c=relaxed/simple;
-	bh=mfXKChgYK5/ZGBjBmMCt6rAwMazCQtBlQwebyi+Wiwc=;
+	s=arc-20240116; t=1752662041; c=relaxed/simple;
+	bh=iHbQwUEQskSRpiTgjfjfk3baG4wJ79U65ioEyJgGVXE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WS9PVIf9JiNrwxUYKedSMWPZL4wSdlyFy961uGbUEhu6v9KXl6IYAGPBsps7PdJV99XOAWj54Qco9f4RWx7g8v3IHQ9nIQN4yoHTOLNPLt6FOof1yOZjo5y9VvqOeO9xJPP7SjUmneCd0Q3J7G08SfMjhxP5HC9EqbBTMOwlX4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IkTQrCFv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41A14C4CEF0;
-	Wed, 16 Jul 2025 10:32:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752661971;
-	bh=mfXKChgYK5/ZGBjBmMCt6rAwMazCQtBlQwebyi+Wiwc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IkTQrCFv3MiYeDJyKDgcEVbPYn6/utsRL2e6x6srrAjLXbS77aysou9PVMSv2Mx4z
-	 vDTUf13GMQAhTt4Bldlssivt+d0ojJpa0V4x757yWvCd9e/Ksjfe28ww8x1EKEQ1Xc
-	 dKH8CyFj2MgXM2LhFddpZ7T1qhhrzNZfW28xVB7CTvcUUIHVhhCiHieMiOKFnRcO00
-	 MN+c0cDPlVrZ1IbaPMZj7oauzHDpYanVsc9CWXo1anzn4vjVl7LFz3EAjSG30W7mME
-	 rSofyIwxuJeGbCRLvps8d0i85ya8BLTEm/Tbzofm/gYw8IcKLDoQooZrs/yzPMrOTk
-	 2baSkrIgLgrFw==
-Message-ID: <f249c4c1-c8a4-4859-b1f8-00354940c200@kernel.org>
-Date: Wed, 16 Jul 2025 12:32:47 +0200
+	 In-Reply-To:Content-Type; b=DzT9UEJviy2yr4ZIW+QlmyWURFS2Xn0kHvOADMyGQOjyShmd5gSvmj3NzgHlHxRDCL14vVOjyvhdfUWTK12lRUyTVj00Sbnt+sY5zghhQnHpln2k/HnsYIxefLlqnbc6gMnKtuc6/M6FeY+mJuyvtatlVluPoOULZdgCheRJD0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6285F12FC;
+	Wed, 16 Jul 2025 03:33:51 -0700 (PDT)
+Received: from [10.57.0.109] (unknown [10.57.0.109])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D65E83F694;
+	Wed, 16 Jul 2025 03:33:56 -0700 (PDT)
+Message-ID: <c848cb8d-c040-4d4b-8d7b-558f2e041f0c@arm.com>
+Date: Wed, 16 Jul 2025 11:33:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,122 +42,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom: Document HAMOA-IOT-EVK board
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Yijie Yang <yijie.yang@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250716-hamoa_initial-v1-0-f6f5d0f9a163@oss.qualcomm.com>
- <20250716-hamoa_initial-v1-1-f6f5d0f9a163@oss.qualcomm.com>
- <604a5823-c563-4d37-ab14-e3164f3b1cd8@kernel.org>
- <e65c43fc-c188-4acf-a0ae-c34ad171fded@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <e65c43fc-c188-4acf-a0ae-c34ad171fded@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v2 3/4] dt-bindings: arm-smmu: Remove sdm845-cheza
+ specific entry
+To: Konrad Dybcio <konradybcio@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Rob Clark <robin.clark@oss.qualcomm.com>,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250716-topic-goodnight_cheza-v2-0-6fa8d3261813@oss.qualcomm.com>
+ <20250716-topic-goodnight_cheza-v2-3-6fa8d3261813@oss.qualcomm.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250716-topic-goodnight_cheza-v2-3-6fa8d3261813@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 16/07/2025 12:26, Konrad Dybcio wrote:
-> On 7/16/25 11:30 AM, Krzysztof Kozlowski wrote:
->> On 16/07/2025 11:08, Yijie Yang wrote:
->>> Document the device tree binding for a new board named "EVK" based on
->>> the Qualcomm Hamoa-IoT platform.
->>>
->>> The "hamoa" name refers to a family of SoCs that share the same silicon
->>> die but are offered in multiple speed bins. The specific SoC used in
->>> this board is the x1e80100, which represents one such bin within the
->>> Hamoa family.
->>>
->>> Although "qcom,hamoa-iot-evk" is introduced as the board-specific
->>> compatible, the fallback compatible remains "qcom,x1e80100" to preserve
->>> compatibility with existing in-kernel drivers and software that already
->>> depend on this identifier.
->>>
->>> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/qcom.yaml | 9 +++++++--
->>>  1 file changed, 7 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->>> index ae43b35565808ed27cd8354b9a342545c4a98ed6..83b09ec1100ca03044c832212a99e65cc1177985 100644
->>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->>> @@ -100,8 +100,8 @@ description: |
->>>          sm8550
->>>          sm8650
->>>          sm8750
->>> -        x1e78100
->>> -        x1e80100
->>> +        x1e78100 # hamoa
->>> +        x1e80100 # hamoa
->>
->>
->> Huh? Why, no drop.
+On 2025-07-16 11:16 am, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> I suggested this, so that people who read this file for the first
-> time have an idea of which magic numbers correspond to what magic
-> name for existing platforms (where new DTs will be expected to include
-> the codename in the file name (just like this submission) to get away
-> from SKU/speedbin names).
+> The firmware on SDM845-based Cheza boards did not provide the same
+> level of feature support for SMMUs (particularly around the Adreno
+> GPU integration).
+> 
+> Now that Cheza is being removed from the kernel (almost none exist at
+> this point in time), retire the entry as well.
+> 
+> Most notably, it's not being marked as deprecated instead, as there is
+> no indication that any more of those ~7 year old devboards will be
+> built.
 
-No, I already said it on IRC to Casey, not sure if to you, so repeating
-here: kernel is not the place to document the mappings between names and
-codenames of some random company products.
+And even if someone did want to make a new batch, they'd have no excuse 
+not to fix the firmware by now...
 
->  
-> We can drop it if you insist, but I'd rather keep it for newcomers.
+Acked-by: Robin Murphy <robin.murphy@arm.com>
 
-Whatever boards are called, hamoa-iot-sdk or pink-pony-iot-sdk, does not
-need explanation here. Choose whatever name for the boards, but existing
-SoCs do not get renamed and do not get any mappings.
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>   Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 4 ----
+>   1 file changed, 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> index 7b9d5507d6ccd6b845a57eeae59fe80ba75cc652..646814ec7d15f6d8a0136de73b7eaddae232ea64 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> @@ -132,10 +132,6 @@ properties:
+>                 - qcom,sm7150-smmu-v2
+>             - const: qcom,adreno-smmu
+>             - const: qcom,smmu-v2
+> -      - description: Qcom Adreno GPUs on Google Cheza platform
+> -        items:
+> -          - const: qcom,sdm845-smmu-v2
+> -          - const: qcom,smmu-v2
+>         - description: Marvell SoCs implementing "arm,mmu-500"
+>           items:
+>             - const: marvell,ap806-smmu-500
+> 
 
-
-Best regards,
-Krzysztof
 
