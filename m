@@ -1,156 +1,137 @@
-Return-Path: <devicetree+bounces-196834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8667BB07411
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 12:55:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 529C9B07422
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 12:59:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEBBD4A57B5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:55:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B682A18914BE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 11:00:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B182F3646;
-	Wed, 16 Jul 2025 10:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249EA2F3654;
+	Wed, 16 Jul 2025 10:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AaXmIeDz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gvLMByKW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B04B2F3640;
-	Wed, 16 Jul 2025 10:55:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55493288513
+	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 10:59:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752663308; cv=none; b=NbxAIbobobNF/nCK5+GHfnzuBbubVMbmMpXZIV4F/3nqVjxUGHpkBS9kNkkeIU/Y3fgOFuN7AUDUkdZZqC5ElAbatrdH1aI5iIioxdGH5ezWCOhgx3qy6fM5CSPjN/XtEbMxwtBCNoGNCYxJydejJasQFhESUUkRmRfRmtUf/kQ=
+	t=1752663592; cv=none; b=mmSBWHtOvaoAconTFzs5M86us9myvolhntbzOo81SUITdzqTorox71f9E1rkmRxCOwHmFAELNiWTaqTNLEZM1pGUNRAmQNZzpGopgjaUlTSOHdUmjfMuBNCoaQ8vKcfH2c4Wi61jzY24v8srsZIFubqnJ2B0R929LK1YhNkzot4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752663308; c=relaxed/simple;
-	bh=s/qODGloHS8A6X+Kd2P5c0fXlx0swt4d3mPhst1www8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eOU3GTX7+m6OTDMurRuwDfXoOYDeutDm/jmCzjS+ocCdLHhnVr2sadd+3jGZ5HyamYT9diHjyfR4FHDlgZ+fSzBpNFoOC8YD1M++mGZEOzWc0MUiXdKjafSeblrZ6rYdywfsGMNqOKT7ze1Txxkl5DV3xsZx7pgxvYFTdKIw66E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AaXmIeDz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89F36C4CEF7;
-	Wed, 16 Jul 2025 10:55:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752663308;
-	bh=s/qODGloHS8A6X+Kd2P5c0fXlx0swt4d3mPhst1www8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AaXmIeDzxUjpLD8/kVuv5Q1vETO0s8srl0M9EM7uqSBrWlApGEhJfzRcbLg6dOJwc
-	 98V+b2Z1PuIGvxxsXXVD0zRWhiBMQFP6kvJeMEaoBGBnWihHDU6j1hSAyHPRBTAK7N
-	 a3GZ70moRvWKjvOhLPD1QTxrKyEOGAGiUYetPArroJrH1f6m9scc9YjT/yebas3Gyn
-	 sTfA/IU/xK7Ei0ABIImay2LjcKYvFfzkX1Th8Br8XFoAvjXBGWq7Ei1XUsPKWtMqsv
-	 3JpFXSMGYJqjCNjY0ay5541eMU2BkoKYcda3dV9BZYU+KrJxh/bx8aJXFXqBjkyoKl
-	 lYtZR/m0gU6Og==
-Date: Wed, 16 Jul 2025 12:55:05 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v3 1/7] dt-bindings: net: airoha: npu: Add
- memory regions used for wlan offload
-Message-ID: <aHeFCZ3Z9E15pSeL@lore-desk>
-References: <20250714-airoha-en7581-wlan-offlaod-v3-0-80abf6aae9e4@kernel.org>
- <20250714-airoha-en7581-wlan-offlaod-v3-1-80abf6aae9e4@kernel.org>
- <20250715035419.GA11704-robh@kernel.org>
+	s=arc-20240116; t=1752663592; c=relaxed/simple;
+	bh=RdqRsNDKKQgfrmCzzuSlgn+ij1i4HNnTBhYJQ0dea1U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K8l1GFBbRu7E0wEdZFuXkuWNr2QXAQCf63rTJmZKkfjMhx0DuPjfhf2ajJprH/yg9TXtUWSbyEzHzwlOsfDBkW7/D6xRz+sIoPPIniuFpvfXQpOjkfc4R48XBesgmlFKp28+/jaMOWdQW5i57yRQl95LhNXPo4GwwVfY/9ZpWn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gvLMByKW; arc=none smtp.client-ip=209.85.128.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-455b00339c8so36680565e9.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 03:59:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752663589; x=1753268389; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/ePoCatCn8uwrUkfz5cDfhTqogA3pDEPeb9x1/QWcKE=;
+        b=gvLMByKWWrz/Je21u/3w94ywjHh/tG5rkSpEu7VlmghZTilm9RXPY+RVoMAMJXksla
+         b9+fiylhJAmnML3q9lrgDt8Soa2jVA6kO9EW+8HMNBSfZTwsPbwKMIoGlsy2/egVH2vT
+         NqCQ2qJ8JsWbNNntz/57I7zToJIPGQD2lnSY0FuXFT8ihW2nDdKoWQ+6MlCeji7EQLhc
+         Ab2p4nY7SHOewCtYwJbwg6o2thxcQjzuAv7XfMea5YV1njfFKtBW/M5HVpiGcgCPlmGi
+         waa/J0deZaea7W7wefY2Mf62WowpKH+70ZU3bFIVcoyEdSavBsyBMV5QF4rM54unV6GB
+         G6IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752663589; x=1753268389;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/ePoCatCn8uwrUkfz5cDfhTqogA3pDEPeb9x1/QWcKE=;
+        b=alCWu5lBEEGGjIgwrDrw+RgLUrrSxtNnC7oqoU6N78ljeVBWFo8ehWvmMfFycxiVkA
+         J5IHSXm213CJuPRcQtotf3mJ/CLDSNuRFz5QOOeVZEzuRcSYQW/MpzXygPBs1U4Qof+H
+         djxwNkBsis7G/JuH5G/PUeVs0Smb6IAvs6bAcIDz+XqShGYZ5RbYHlezJ325ztGxKIKI
+         lY+nX/dtCQSW3A3eaH/207xIsIFaMg6fknYRpSpJUclWI0nadFTuaN5AIdPo9spXwefA
+         ZH/dLVUHi4BiUbimcEYYRcGBIbli4GEKy/P2cMikDwRccl3ooeFpP5CuvdAd+iim6VhN
+         fCeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWIsqyv/cVFp5E2ZWihD3do55h1luOyIIYhS/WCAa03RUxreAHPaH3iK1O83cCUOlZ3HF96CzI2N5zM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEh4mNV6GyBuUihcwXb7LBzCvKBUocfW9YvRb1BIUoEMdPb3o7
+	oBtn0uV/A32QuBFzkRh+qIMq5Knl70TCrk6UZX+fUxF69DJM2opYFp38m0yPSrk5Pjk=
+X-Gm-Gg: ASbGncsuN5AhsMUV9ctyEIYBYqVIpk3Pqk7RPhd41Y5oP3l1GnOiP5geKUbQWxziSzF
+	J/uTF6l+gD1gG3K5wUJveS8UDeRZvudLig307RvQQO9k5RIlB4nmAy5TfcjE8gWO4TW/hFKEYmL
+	e7P554CScY6vbsL8dQ+8lNsVxGe2qJLYzfyeM8S6PHpzu/iVGByQclGurH/ljbrEd9kohc9tbVu
+	kFnpyHBaP1EdufU1w2NG8OHIWbFRx8NjOFiR5WrFBEb2KWTlbnX90kHqUQHVecY9XSxFJxCiZnm
+	iQwuluM7Cck9HnIAWPhfvyWnPk1ZoGZALcPJBgmqrslC5r5n9YwfvKf4EzTpMvBx5qRiUxtg/gX
+	FZsSk+TVyUpVVBvinktR5BMaUCV8ijwhPmYn3E5WvbQhyXN8y/VVclzuLEWryn+M=
+X-Google-Smtp-Source: AGHT+IFW0OX33KBpiLU6YOL+IJgDcuTQ1zq15zYqdjMf2JYYuPC7KCK+xgulExDW9Uc9Bd9opQZwkQ==
+X-Received: by 2002:a05:600c:3f09:b0:456:d25:e416 with SMTP id 5b1f17b1804b1-4562e331640mr20250845e9.6.1752663588670;
+        Wed, 16 Jul 2025 03:59:48 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b600722780sm9817655f8f.23.2025.07.16.03.59.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Jul 2025 03:59:48 -0700 (PDT)
+Message-ID: <40784fe0-3c70-4e1e-8b42-fa7230c2485d@linaro.org>
+Date: Wed, 16 Jul 2025 11:59:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ejVKjvWudJw3Rkcf"
-Content-Disposition: inline
-In-Reply-To: <20250715035419.GA11704-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 04/15] media: qcom: camss: Add support for PHY API
+ devices
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org
+References: <20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-0-0bc5da82f526@linaro.org>
+ <20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-4-0bc5da82f526@linaro.org>
+ <CAFEp6-0hDqgYsjOy2mCC6ssK2LkMM0z7L_szS+M_wSMeMe3pMg@mail.gmail.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <CAFEp6-0hDqgYsjOy2mCC6ssK2LkMM0z7L_szS+M_wSMeMe3pMg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 16/07/2025 10:36, Loic Poulain wrote:
+>> +       if (!phy_np) {
+>> +               if (!res->legacy_phy)
+>> +                       return -ENODEV;
+>> +
+>> +               for (i = 0; i < camss->res->csiphy_num; i++) {
+>> +                       ret = msm_csiphy_subdev_init_legacy(camss, &camss->csiphy[i],
+>> +                                                           &res->csiphy_res[i],
+>> +                                                           res->csiphy_res[i].csiphy.id);
+>> +                       if (ret < 0) {
+>> +                               dev_err(camss->dev,
+>> +                                       "Failed to init csiphy%d sub-device: %d\n",
+>> +                                       i, ret);
+>> +                               return ret;
+>> +                       }
+>> +                       camss->csiphy[i].phy = ERR_PTR(-ENODEV);
+>>                  }
+> So what happens if we have `phy_np` and `!of_device_is_available`, we
+> just continue without any phy initialized?
 
---ejVKjvWudJw3Rkcf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hmm. Good question.
 
-On Jul 14, Rob Herring wrote:
-> On Mon, Jul 14, 2025 at 05:25:14PM +0200, Lorenzo Bianconi wrote:
-> > Document memory regions used by Airoha EN7581 NPU for wlan traffic
-> > offloading.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  .../devicetree/bindings/net/airoha,en7581-npu.yaml    | 19 +++++++++++=
-++++----
-> >  1 file changed, 15 insertions(+), 4 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.ya=
-ml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> > index 76dd97c3fb4004674dc30a54c039c1cc19afedb3..f99d60f75bb03931a1c4f35=
-066c72c709e337fd2 100644
-> > --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> > +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> > @@ -41,9 +41,18 @@ properties:
-> >        - description: wlan irq line5
-> > =20
-> >    memory-region:
-> > -    maxItems: 1
-> > -    description:
-> > -      Memory used to store NPU firmware binary.
-> > +    items:
-> > +      - description: NPU firmware binary region
-> > +      - description: NPU wlan offload RX buffers region
-> > +      - description: NPU wlan offload TX buffers region
-> > +      - description: NPU wlan offload TX packet identifiers region
->=20
-> 1 entry was valid before, but not anymore? If so, justify it in the=20
-> commit message.
+Yes but, that's probably not what we want.
 
-ack, I will do it in v4.
+Thanks, I will look into this.
 
-Regrads,
-Lorenzo
-
->=20
-> > +
-> > +  memory-region-names:
-> > +    items:
-> > +      - const: firmware
-> > +      - const: pkt
-> > +      - const: tx-pkt
-> > +      - const: tx-bufid
-> > =20
-> >  required:
-> >    - compatible
-> > @@ -79,6 +88,8 @@ examples:
-> >                       <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-> >                       <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
-> >                       <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-> > -        memory-region =3D <&npu_binary>;
-> > +        memory-region =3D <&npu_firmware>, <&npu_pkt>, <&npu_txpkt>,
-> > +                        <&npu_txbufid>;
-> > +        memory-region-names =3D "firmware", "pkt", "tx-pkt", "tx-bufid=
-";
-> >        };
-> >      };
-> >=20
-> > --=20
-> > 2.50.1
-> >=20
-
---ejVKjvWudJw3Rkcf
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaHeFCQAKCRA6cBh0uS2t
-rAnDAQDc4K8cm9ezsu4s25+kmtqhZht/BBBftBY73/9r+XfLhgEAz5X7/1w62Db+
-3oZ18L1Bo0L+qo8227Ivg56sgkDPXQ0=
-=YHee
------END PGP SIGNATURE-----
-
---ejVKjvWudJw3Rkcf--
+---
+bod
 
