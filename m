@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-196890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF808B077EA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 16:23:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E37AEB0780C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 16:29:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F34527B2233
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 14:22:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1EF23B7FE2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 14:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF94921C18D;
-	Wed, 16 Jul 2025 14:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B242825A340;
+	Wed, 16 Jul 2025 14:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gMsGVNVJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f/tEFMsc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0ABA194A60;
-	Wed, 16 Jul 2025 14:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867E4CA4B;
+	Wed, 16 Jul 2025 14:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752675812; cv=none; b=m1Vq79FGRj9Bi4GINyWmBC2Eg93KeDDYk0RUJ27qAWXu84iCBpnJUuTclgudajK1cTRkfAAkPUz2L5wk1CzMgiF8h1e33LtHxwiJPX5Ex6g79RW3cORqV+1VjXNp7/HpxgmUYU3W7PkvyqLWsIDojWNnnuvlsb5BPH7MhKbaq4Q=
+	t=1752676157; cv=none; b=UIudmoKKCt+Ws6CVGRTp6j3VeIUL2ptktwGhszw/pFSrXM2ROG+KrO+MVmaFlHAQDpKW09LTTrsIX9/Qoxh97ho9EuHfIlNS+7gPekc1gQE0Gah1T3P5T4p9nDloHMAx4OrNyGLVwWwsCY2vH0U/TvFNEjZKoyv/TsxVqaE6oBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752675812; c=relaxed/simple;
-	bh=e5zCNgF4CRlQ6UG+BnF+U5KFmnlBVcJj1XukETvxuWw=;
+	s=arc-20240116; t=1752676157; c=relaxed/simple;
+	bh=7s0jr40++ag0VQCR9JYJlvHUeMOsCDFP26u31bFqk0E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OECtUJoEZrdOsDlhDllL/Z4iBevOmJjDmg7yOG0fCS/IKJd5vY1Tbk8Pd+XzFzDMmwdNu6MW8OIMOy78kY4aj6GoY+9SnL0hzj6zAAtaYY8BroRmtim1RfEoupE3CMHBrPEibOWqV3nt6sHMWUB9ohHUfX24iSs31f0Zfnf3yH8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gMsGVNVJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4D3BC4CEE7;
-	Wed, 16 Jul 2025 14:23:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VM6XLZ+OVBZtDf7Ul+mjF920Zd8lM07xBpLiw3DEMFpHjeWb53CWZhS83CPMRyjzf/DshH3+ViRznlcE/Wlr+I7cDS6E2eIUEVvY2KBPDFPzpwgVCmavoR1yw6zB6saQ6Lv5fuF3c7PwSuTEEhW7OKdPJhDSPfHW9Qm84EJz+Wo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f/tEFMsc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89C92C4CEEB;
+	Wed, 16 Jul 2025 14:29:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752675812;
-	bh=e5zCNgF4CRlQ6UG+BnF+U5KFmnlBVcJj1XukETvxuWw=;
+	s=k20201202; t=1752676157;
+	bh=7s0jr40++ag0VQCR9JYJlvHUeMOsCDFP26u31bFqk0E=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gMsGVNVJUzfW4rt6liw1e8wbE5wbrvAWvHVCKBH+M6qYfGU2Ve3XnKB0n+4dZ9BKK
-	 gqruRHqvERx6D/iVbkdUZYI6Ph8gLLRMcDteRsWVXOTGkSsGrmRkHa6DWmi4pRAFCb
-	 erqn7MsW6V+em/Sxs6E6KHtVaX+QwsKbBp5WAPtA49nD/hw+JN3fuH8AsRY1faqTGD
-	 VLxYjkAWy63ltTmLGSz9pfjpizl0KwM67C70KRnJUP4A8Ylu6MsVv5WawyNtBBG52U
-	 HULPB/AX3Fmk3NsV3PcLGSOEi60GYNJFsFu3NMAJKxh+vM/Ao8aA5z1tCJaxLT6sAI
-	 WEE5uKUV+IXpw==
-Message-ID: <c453aadb-afd7-473c-bb39-cab1930c8baa@kernel.org>
-Date: Wed, 16 Jul 2025 16:23:24 +0200
+	b=f/tEFMscsXEyypvsWyyGcqtRYdz1lSBltIFFWoQer4PkbTWnuEh+CqT+QzvVdlnKl
+	 6JfuSpWCj7KrQzYRiZ69+Sr7VsbJ0Yqt1ZEkaxC6EaEfk4kwVQTafZaNqlHd+H1tzS
+	 uTZz74cYue4K2/Q3HAN4m55cxqiMWKLQ+5HagUxK6LDGgvCMngvYnrigCLe7M2B8HD
+	 3kFQ+dI6wuaPlP5yaHy6tiwCDHJpnawDH0w9S+PYAPl1lCW0dmAdsjgejBQFuMgCeO
+	 htBvJQUfe+hu+VDG1lRe6cLMkVdqys/EmBqoOpSjlUsR+e2yJdYIc00POj3a8LexM+
+	 +pTe685AFp9VA==
+Message-ID: <8582dbad-c773-4f46-827a-83b00eed0882@kernel.org>
+Date: Wed, 16 Jul 2025 16:29:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 2/4] Revert "media: platform: ti: Remove unused
- vpdma_update_dma_addr"
-To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux@armlinux.org.uk, ardb@kernel.org, ebiggers@kernel.org,
- geert+renesas@glider.be, claudiu.beznea@tuxon.dev, bparrot@ti.com,
- andre.draszik@linaro.org, kuninori.morimoto.gx@renesas.com,
- prabhakar.mahadev-lad.rj@bp.renesas.com, heikki.krogerus@linux.intel.com,
- kory.maincent@bootlin.com, florian.fainelli@broadcom.com, lumag@kernel.org,
- dale@farnsworth.org, sbellary@baylibre.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, dagriego@biglakesoftware.com,
- u-kumar1@ti.com
-References: <20250716111912.235157-1-y-abhilashchandra@ti.com>
- <20250716111912.235157-3-y-abhilashchandra@ti.com>
+Subject: Re: [PATCH v2 06/10] dt-bindings: clock: airoha: Document new
+ property airoha,chip-scu
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250617130455.32682-1-ansuelsmth@gmail.com>
+ <20250617130455.32682-7-ansuelsmth@gmail.com>
+ <20250627-determined-helpful-rabbit-be2dfe@krzk-bin>
+ <685e5446.df0a0220.369e9e.8cb1@mx.google.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,71 +108,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250716111912.235157-3-y-abhilashchandra@ti.com>
+In-Reply-To: <685e5446.df0a0220.369e9e.8cb1@mx.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/07/2025 13:19, Yemike Abhilash Chandra wrote:
-> This reverts commit 9314891df119442a6ec1518b3d872c330e2bf1a1.
+On 27/06/2025 10:20, Christian Marangi wrote:
 > 
-> We're adding support for TI VIP driver, so this is no longer unused.
+> Here the current DTS [1]. Nothing is stable for this and we can change
+> it but I want to stress that the current HW block are VERY CONFUSING and
+> SCRAMBELED. So it's really a matter of finding the least bad solution.
 > 
-> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-> ---
->  drivers/media/platform/ti/vpe/vpdma.c | 32 +++++++++++++++++++++++++++
->  drivers/media/platform/ti/vpe/vpdma.h |  3 +++
->  2 files changed, 35 insertions(+)
+> In SCU there are:
+> - PART fot the clock register
+> - 2 MDIO controller register
 > 
-> diff --git a/drivers/media/platform/ti/vpe/vpdma.c b/drivers/media/platform/ti/vpe/vpdma.c
-> index bb8a8bd7980c..da90d7f03f82 100644
-> --- a/drivers/media/platform/ti/vpe/vpdma.c
-> +++ b/drivers/media/platform/ti/vpe/vpdma.c
-> @@ -552,6 +552,38 @@ EXPORT_SYMBOL(vpdma_submit_descs);
->  
->  static void dump_dtd(struct vpdma_dtd *dtd);
->  
+> In chip SCU:
+> - Other part of the clock register
+> - Thermal driver register
+> - PART of the pinctrl register
+> 
+> [1] https://github.com/Ansuel/openwrt/blob/openwrt-24.10-airoha-an7581-stable/target/linux/airoha/dts/an7583.dtsi#L361
 
 
-Please add kerneldoc.
+Thanks and it proves: that's a no. You cannot have two devices with same
+unit address. It means that chip-scu and scu ARE THE SAME devices.
 
-> +void vpdma_update_dma_addr(struct vpdma_data *vpdma,
-> +	struct vpdma_desc_list *list, dma_addr_t dma_addr,
-> +	void *write_dtd, int drop, int idx)
-> +{
-> +	struct vpdma_dtd *dtd = list->buf.addr;
-> +	dma_addr_t write_desc_addr;
-> +	int offset;
-> +
-> +	dtd += idx;
-> +	vpdma_unmap_desc_buf(vpdma, &list->buf);
-> +
-> +	dtd->start_addr = dma_addr;
-> +
-> +	/* Calculate write address from the offset of write_dtd from start
-> +	 * of the list->buf
-> +	 */
-> +	offset = (void *)write_dtd - list->buf.addr;
-> +	write_desc_addr = list->buf.dma_addr + offset;
-> +
-> +	if (drop)
-> +		dtd->desc_write_addr = dtd_desc_write_addr(write_desc_addr,
-> +							   1, 1, 0);
-> +	else
-> +		dtd->desc_write_addr = dtd_desc_write_addr(write_desc_addr,
-> +							   1, 0, 0);
-> +
-> +	vpdma_map_desc_buf(vpdma, &list->buf);
-> +
-> +	dump_dtd(dtd);
-> +}
-> +EXPORT_SYMBOL(vpdma_update_dma_addr);
+> 
 
-
-This has to be GPL
-
-> +
->  void vpdma_set_max_size(struct vpdma_data *vpdma, int reg_addr,
->  			u32 width, u32 height)
 
 Best regards,
 Krzysztof
