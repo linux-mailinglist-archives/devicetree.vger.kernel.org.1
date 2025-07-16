@@ -1,435 +1,188 @@
-Return-Path: <devicetree+bounces-196853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43586B074B5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 13:26:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA9D6B074CD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 13:30:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EFDD1899C55
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 11:26:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB16F1C25E57
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 11:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB1B22F432C;
-	Wed, 16 Jul 2025 11:25:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900FE2D7810;
+	Wed, 16 Jul 2025 11:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gk3tx/ti"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QKsyTiP9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B621C2F3C3E;
-	Wed, 16 Jul 2025 11:25:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC4131C8616
+	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 11:30:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752665139; cv=none; b=hepYH+/Ru1p6uiaC6IZAt/OzcUfWcDmBkG9/e959FD4krhtM9v3wqDLZGh/cJNaoQSiyUmLOrHqGkYU6bOk0rt6MHSVGezoukgTc3j/uhFDPSMkFo420poj2/E/qLPkb6LEyeIj/IcFNWFQTYsSaNUf++y5+9mLf6NTfW47jE8s=
+	t=1752665440; cv=none; b=j5pR6iSHM43ch6TnSu4HD3uWKvYobLwmQxnuChdXAsM2FCLDoBrfGf5tuSGQH/pGOdsUfBb+ALNPDkm1JW+JvHOcj3TGPwqH5Jn0FRh5SgY1ye6VGD2pPORUe5grgz1prpjNmdRfICT3IPyydj9Z8vDfPTpcXEmR0oBUoAI4+oE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752665139; c=relaxed/simple;
-	bh=YezpPpr9MkIy8MdAiZQpsV+wych1Eokmh7cdGM1/b9Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UQHCd87zlesrLl0KZs3xIOdjHrlg3lKj1VcGPPIpACVWrImp26Gc7Xxb9RF5yaXwMN488YYblruvnKY61y0w+HamKYiLiRBXotUv1cXWFkSvZoPHUT/S1yYZ1rTo3+62Ytuz26ZChUozk3KdZ/dq2aivqeEswjPsE72RyPsvMlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gk3tx/ti; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6805DC4CEF7;
-	Wed, 16 Jul 2025 11:25:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752665139;
-	bh=YezpPpr9MkIy8MdAiZQpsV+wych1Eokmh7cdGM1/b9Q=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=gk3tx/tivZ9M2H6ZJ1ebouXZwJTZ7cHj5vyzmGQ+EUnjNQP08kXPhXIXOtuMX2td0
-	 xZNdCC0SUIKVZmbMqiMrC9/yWi/9hPS+hW5l5gQ5r769Wdn7uq70tphW+FHEuzeWWh
-	 VuhPVTHD+HTQ974n6ZxcYkt0x+j2Ra4MHUhHr2l8mXOf8xnqTTJLQ0IH800A5xSnHI
-	 9TNePbKN0uTszVo0dXvFrmTDxxnaaOEzV7VZ7SvBoq8LQoby1JMflx/IJxpFAxmTMC
-	 L5DTivAidpvnYFGWaZZ/imCr+8aHSLiNgPR++KsOpX6vekSlCVGHsTPKDsOsqY982y
-	 UgTXjOjJ/FVaA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6080BC83F34;
-	Wed, 16 Jul 2025 11:25:39 +0000 (UTC)
-From: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>
-Date: Wed, 16 Jul 2025 19:25:18 +0800
-Subject: [PATCH v3 9/9] MIPS: configs: Consolidate Loongson1 defconfigs
+	s=arc-20240116; t=1752665440; c=relaxed/simple;
+	bh=+ECop3VKmF5vBzMl7LnvNjLQmkqlhgXLNF0rFI01PpI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b4iOR2I1iocSRLI4ozWiGE4zBgOZyspHyl4cnLNTLppqB44lb63ZCXbnZaFRea0attCksdC0eodQqjMO0ZDpgKvnHFKnls1xKX34B6w4KcEfo56UU+b5HzqKwsOnPOnGZed6+D8c7lKYdjHkLtagAllhVtvNyaSBFKKWFbqwvFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QKsyTiP9; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-607fbf8acb6so783059a12.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 04:30:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752665437; x=1753270237; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=wxt2TkBp//2+Tyvblq5rA5SGBeO4yjsxI6SfU9mxpsM=;
+        b=QKsyTiP9c/VRdL886wRva3NvDLET7hBD5Y3snoJVp6htHWEvWMoVjdHZQubcRC5Ags
+         CvH9+CRyPKgBckwm1iZR4iGlNAzUhrQuR83mbz/JA97cFji19r9JZ5Z0XpD1mwwAYJWC
+         puODNmFZJTCNd6W8TBW6JoWIOdamimnm8Npdd7rqKG1Z0bFRCwXqp+j39XfSkuKXIt8q
+         MfGJ0Fg/48C69vJ5IDtzOUWerka2XEPX7NY8ocpKcxbzwPSCYelWZqxArkP7eKENCD9B
+         n95iA3/ae4axjdC7udb7NI/cWlaQRNzFy3Ojf35vVUny0LWhorwaLQ94q2uLTtw+selB
+         EA+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752665437; x=1753270237;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wxt2TkBp//2+Tyvblq5rA5SGBeO4yjsxI6SfU9mxpsM=;
+        b=CspeLoO3pSVFOm8I9tnIF/STtVCp3UsCTOjpOIopgyT8qlDS7R55ryZ+umVwhz7Yrw
+         C13xb3puyLGalNwcvF6jY7NC4kWUv115KqqKyY2yQr2fDaht+rrPs7kVdxLtIc9BCQQC
+         3Xqg8AUvTP9VgtKlQvSmGuV3tjMqG3KYBO40avzyujE6vgvYRWZWCMcYpKh8s9ma+lke
+         QQ+9hd8+wCTfUUcETH4ixXLh+rfh4orK6D73RhME0fzLPMyGpxXZsa2p8TrolQ458syd
+         0JDHHrLJNyCAhBWGdVMJLaNWlyjnrqDjKc1OuWI+cZ6aHFjsgPQ4qklvN/29ZWSmtjwc
+         VOcg==
+X-Forwarded-Encrypted: i=1; AJvYcCX8bVQkeawCi5/CpEHn4hirMKFmg5YHuCOCpuYevJ/fiox6kc21RgAZoZLukCANsaDQ3LW0imN2cCFM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYY7OQBFI87NnrrDyhLb4C26NeGw42ih7ZpPvT57nkc634YzA/
+	zfyhKLXYlNoRQx9taq5h4Dnfu8WGtU/+wQS4L3IW0tLv6O3O09TPxyJ2ec9pzHEUZfwjQrmPOXT
+	NIdrp
+X-Gm-Gg: ASbGncuWIkW0zi6SsCbpcfRxOJvSt6swW+HrofMb8C2qhDwXsK+8OaXxp05D8jbNvx/
+	W6FdpC2JINopbq+MWKZ1eSANHtoVePtV62KkRg22f/lNmfjN4nyyvd2iOw9+6DYmMGS55UUT+ik
+	iucns8E8RfP5x2rBAMiyMTk/tgj9pEOgg70UQayAZ8XUd/juwdyT8CbN5+nCcF3Zybn0FgCfeST
+	5yPS89wUj21Jh1nP9z8jQ1JJFWTBUYFAcF1fXjlSwz5A2a4KwD/toXfutCe2y5NnjBpx4q+J1r8
+	XBTlW5u2OTQX+n12R++QP7Q87w8Xa/g6VoKHgIt/oVXqXIKc5WiG7H7KsQFIqV1lOmHAWoQF6DD
+	LQbVGSREuHddjmApqeS0CnrJumKONabuyZLQOzFnjqQ==
+X-Google-Smtp-Source: AGHT+IGKb/yMmo+6HqAi38Y/JYq4pgPKYjhxTqfALfSBgriOhZiBnQk9t+lWqsa4UOBxEFVK4YE0eQ==
+X-Received: by 2002:a17:907:971e:b0:add:fc26:bef7 with SMTP id a640c23a62f3a-ae9c9ae8531mr105371866b.10.1752665436954;
+        Wed, 16 Jul 2025 04:30:36 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.222.89])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e826469asm1161311966b.85.2025.07.16.04.30.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Jul 2025 04:30:36 -0700 (PDT)
+Message-ID: <0debb9a2-2687-4622-ab05-0a3c276f2482@linaro.org>
+Date: Wed, 16 Jul 2025 13:30:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250716-loongson1-arch-v3-9-d160974d696b@gmail.com>
-References: <20250716-loongson1-arch-v3-0-d160974d696b@gmail.com>
-In-Reply-To: <20250716-loongson1-arch-v3-0-d160974d696b@gmail.com>
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
- Keguang Zhang <keguang.zhang@gmail.com>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/3] arm64: dts: qcom: sm8750: Add Iris VPU v3.5
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752665136; l=10713;
- i=keguang.zhang@gmail.com; s=20231129; h=from:subject:message-id;
- bh=vXaIa8N3GToUGpAmk80FkzsQAYrU6OjHna1ZLvsKN7s=;
- b=TXulWvlekYH10mgmEKNMpSHZTHGFm8BteCB79xroD70KiFpzV6qJYpFNDO4DVjYMiYCQT6p54
- l/U+F+LkfKeCuzSnNVe6ArwGVVhXuauePC+GKQ9Eh7eA2OAgW939W17
-X-Developer-Key: i=keguang.zhang@gmail.com; a=ed25519;
- pk=FMKGj/JgKll/MgClpNZ3frIIogsh5e5r8CeW2mr+WLs=
-X-Endpoint-Received: by B4 Relay for keguang.zhang@gmail.com/20231129 with
- auth_id=102
-X-Original-From: Keguang Zhang <keguang.zhang@gmail.com>
-Reply-To: keguang.zhang@gmail.com
+References: <20250714-b4-sm8750-iris-dts-v1-0-93629b246d2e@linaro.org>
+ <20250714-b4-sm8750-iris-dts-v1-1-93629b246d2e@linaro.org>
+ <5dd36649-821c-450e-bdcc-871735d10059@linaro.org>
+ <15b8b9e0-a211-4102-9b68-994c8ab50a7a@linaro.org>
+ <b5a68138-4eca-4bdd-8f72-d80236b02c0a@oss.qualcomm.com>
+ <ec0f64c3-bd08-4944-817e-f5f67c317b94@linaro.org>
+ <4be1ebb7-1dc7-49e0-aa5d-621f023b3853@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <4be1ebb7-1dc7-49e0-aa5d-621f023b3853@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Keguang Zhang <keguang.zhang@gmail.com>
-
-Unify loongson{1b,1c}_defconfig into a single loongson1_defconfig.
-
-Enable the following options by default:
- - CONFIG_SERIAL_OF_PLATFORM
- - CONFIG_RTC_DRV_LOONGSON
- - CONFIG_LOONGSON1_APB_DMA
- - CONFIG_MTD_NAND_LOONGSON1
- - CONFIG_SND_LOONGSON1_AC97
-
-Also disable unnecessary options.
-
-Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
----
- MAINTAINERS                                        |   1 +
- .../{loongson1b_defconfig => loongson1_defconfig}  |  94 +++++++++++++---
- arch/mips/configs/loongson1c_defconfig             | 121 ---------------------
- 3 files changed, 78 insertions(+), 138 deletions(-)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d42a83656879..c73e25af147c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16684,6 +16684,7 @@ L:	linux-mips@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/*/loongson,ls1*.yaml
- F:	arch/mips/boot/dts/loongson/loongson1*
-+F:	arch/mips/configs/loongson1_defconfig
- F:	arch/mips/loongson32/
- F:	drivers/*/*loongson1*
- F:	drivers/mtd/nand/raw/loongson1-nand-controller.c
-diff --git a/arch/mips/configs/loongson1b_defconfig b/arch/mips/configs/loongson1_defconfig
-similarity index 51%
-rename from arch/mips/configs/loongson1b_defconfig
-rename to arch/mips/configs/loongson1_defconfig
-index 68207b31dc20..81acae6f61c8 100644
---- a/arch/mips/configs/loongson1b_defconfig
-+++ b/arch/mips/configs/loongson1_defconfig
-@@ -1,7 +1,6 @@
- # CONFIG_LOCALVERSION_AUTO is not set
- CONFIG_KERNEL_XZ=y
- CONFIG_SYSVIPC=y
--CONFIG_HIGH_RES_TIMERS=y
- CONFIG_PREEMPT=y
- CONFIG_BSD_PROCESS_ACCT=y
- CONFIG_BSD_PROCESS_ACCT_V3=y
-@@ -12,15 +11,16 @@ CONFIG_NAMESPACES=y
- CONFIG_CC_OPTIMIZE_FOR_SIZE=y
- CONFIG_EXPERT=y
- CONFIG_PERF_EVENTS=y
--# CONFIG_COMPAT_BRK is not set
- CONFIG_MACH_LOONGSON32=y
--# CONFIG_SECCOMP is not set
- # CONFIG_SUSPEND is not set
-+# CONFIG_SECCOMP is not set
-+# CONFIG_GCC_PLUGINS is not set
- CONFIG_MODULES=y
- CONFIG_MODULE_UNLOAD=y
- CONFIG_MODVERSIONS=y
--# CONFIG_BLK_DEV_BSG is not set
-+# CONFIG_BLOCK_LEGACY_AUTOLOAD is not set
- # CONFIG_CORE_DUMP_DEFAULT_ELF_HEADERS is not set
-+# CONFIG_COMPAT_BRK is not set
- CONFIG_NET=y
- CONFIG_PACKET=y
- CONFIG_UNIX=y
-@@ -31,6 +31,7 @@ CONFIG_SYN_COOKIES=y
- # CONFIG_INET_DIAG is not set
- # CONFIG_IPV6 is not set
- # CONFIG_WIRELESS is not set
-+# CONFIG_ETHTOOL_NETLINK is not set
- CONFIG_DEVTMPFS=y
- CONFIG_DEVTMPFS_MOUNT=y
- # CONFIG_STANDALONE is not set
-@@ -38,32 +39,75 @@ CONFIG_MTD=y
- CONFIG_MTD_CMDLINE_PARTS=y
- CONFIG_MTD_BLOCK=y
- CONFIG_MTD_RAW_NAND=y
-+CONFIG_MTD_NAND_LOONGSON1=y
- CONFIG_MTD_UBI=y
- CONFIG_BLK_DEV_LOOP=y
- CONFIG_SCSI=m
- # CONFIG_SCSI_PROC_FS is not set
- CONFIG_BLK_DEV_SD=m
-+# CONFIG_BLK_DEV_BSG is not set
- # CONFIG_SCSI_LOWLEVEL is not set
- CONFIG_NETDEVICES=y
-+# CONFIG_NET_VENDOR_ALACRITECH is not set
-+# CONFIG_NET_VENDOR_AMAZON is not set
-+# CONFIG_NET_VENDOR_AQUANTIA is not set
-+# CONFIG_NET_VENDOR_ARC is not set
-+# CONFIG_NET_VENDOR_ASIX is not set
- # CONFIG_NET_VENDOR_BROADCOM is not set
-+# CONFIG_NET_VENDOR_CADENCE is not set
-+# CONFIG_NET_VENDOR_CAVIUM is not set
-+# CONFIG_NET_VENDOR_CORTINA is not set
-+# CONFIG_NET_VENDOR_DAVICOM is not set
-+# CONFIG_NET_VENDOR_ENGLEDER is not set
-+# CONFIG_NET_VENDOR_EZCHIP is not set
-+# CONFIG_NET_VENDOR_FUNGIBLE is not set
-+# CONFIG_NET_VENDOR_GOOGLE is not set
-+# CONFIG_NET_VENDOR_HISILICON is not set
-+# CONFIG_NET_VENDOR_HUAWEI is not set
- # CONFIG_NET_VENDOR_INTEL is not set
-+# CONFIG_NET_VENDOR_LITEX is not set
- # CONFIG_NET_VENDOR_MARVELL is not set
-+# CONFIG_NET_VENDOR_META is not set
- # CONFIG_NET_VENDOR_MICREL is not set
-+# CONFIG_NET_VENDOR_MICROCHIP is not set
-+# CONFIG_NET_VENDOR_MICROSEMI is not set
-+# CONFIG_NET_VENDOR_MICROSOFT is not set
-+# CONFIG_NET_VENDOR_NI is not set
- # CONFIG_NET_VENDOR_NATSEMI is not set
-+# CONFIG_NET_VENDOR_NETRONOME is not set
-+# CONFIG_NET_VENDOR_PENSANDO is not set
-+# CONFIG_NET_VENDOR_QUALCOMM is not set
-+# CONFIG_NET_VENDOR_RENESAS is not set
-+# CONFIG_NET_VENDOR_ROCKER is not set
-+# CONFIG_NET_VENDOR_SAMSUNG is not set
- # CONFIG_NET_VENDOR_SEEQ is not set
-+# CONFIG_NET_VENDOR_SOLARFLARE is not set
- # CONFIG_NET_VENDOR_SMSC is not set
-+# CONFIG_NET_VENDOR_SOCIONEXT is not set
- CONFIG_STMMAC_ETH=y
-+# CONFIG_DWMAC_GENERIC is not set
-+# CONFIG_NET_VENDOR_SYNOPSYS is not set
-+# CONFIG_NET_VENDOR_VERTEXCOM is not set
-+# CONFIG_NET_VENDOR_VIA is not set
-+# CONFIG_NET_VENDOR_WANGXUN is not set
- # CONFIG_NET_VENDOR_WIZNET is not set
-+# CONFIG_NET_VENDOR_XILINX is not set
-+CONFIG_DAVICOM_PHY=y
-+CONFIG_REALTEK_PHY=y
-+# CONFIG_USB_NET_DRIVERS is not set
- # CONFIG_WLAN is not set
- CONFIG_INPUT_EVDEV=y
- # CONFIG_INPUT_KEYBOARD is not set
- # CONFIG_INPUT_MOUSE is not set
- # CONFIG_SERIO is not set
-+# CONFIG_VT_CONSOLE is not set
- CONFIG_VT_HW_CONSOLE_BINDING=y
- CONFIG_LEGACY_PTY_COUNT=8
- CONFIG_SERIAL_8250=y
- CONFIG_SERIAL_8250_CONSOLE=y
-+CONFIG_SERIAL_OF_PLATFORM=y
- # CONFIG_HW_RANDOM is not set
-+# CONFIG_PTP_1588_CLOCK is not set
- CONFIG_GPIOLIB=y
- CONFIG_GPIO_LOONGSON1=y
- # CONFIG_HWMON is not set
-@@ -71,7 +115,15 @@ CONFIG_WATCHDOG=y
- CONFIG_WATCHDOG_NOWAYOUT=y
- CONFIG_WATCHDOG_SYSFS=y
- CONFIG_LOONGSON1_WDT=y
--# CONFIG_VGA_CONSOLE is not set
-+CONFIG_SOUND=y
-+CONFIG_SND=y
-+# CONFIG_SND_SUPPORT_OLD_API is not set
-+# CONFIG_SND_DRIVERS is not set
-+# CONFIG_SND_MIPS is not set
-+# CONFIG_SND_USB is not set
-+CONFIG_SND_SOC=y
-+CONFIG_SND_LOONGSON1_AC97=y
-+CONFIG_SND_SIMPLE_CARD=y
- CONFIG_HID_GENERIC=m
- CONFIG_USB_HID=m
- CONFIG_USB=y
-@@ -86,17 +138,20 @@ CONFIG_NEW_LEDS=y
- CONFIG_LEDS_CLASS=y
- CONFIG_LEDS_GPIO=y
- CONFIG_LEDS_TRIGGERS=y
-+CONFIG_LEDS_TRIGGER_MTD=y
- CONFIG_LEDS_TRIGGER_HEARTBEAT=y
- CONFIG_RTC_CLASS=y
--CONFIG_RTC_DRV_LOONGSON1=y
-+# CONFIG_RTC_NVMEM is not set
-+CONFIG_RTC_DRV_LOONGSON=y
-+CONFIG_DMADEVICES=y
-+CONFIG_LOONGSON1_APB_DMA=y
-+# CONFIG_VIRTIO_MENU is not set
-+# CONFIG_VHOST_MENU is not set
-+# CONFIG_MIPS_PLATFORM_DEVICES is not set
- # CONFIG_IOMMU_SUPPORT is not set
--CONFIG_EXT2_FS=y
--CONFIG_EXT2_FS_XATTR=y
--CONFIG_EXT2_FS_POSIX_ACL=y
--CONFIG_EXT2_FS_SECURITY=y
--CONFIG_EXT3_FS=y
--CONFIG_EXT3_FS_POSIX_ACL=y
--CONFIG_EXT3_FS_SECURITY=y
-+# CONFIG_NVMEM is not set
-+CONFIG_EXT4_FS=y
-+CONFIG_EXT4_FS_POSIX_ACL=y
- # CONFIG_DNOTIFY is not set
- CONFIG_VFAT_FS=y
- CONFIG_PROC_KCORE=y
-@@ -105,16 +160,21 @@ CONFIG_TMPFS_POSIX_ACL=y
- CONFIG_UBIFS_FS=y
- CONFIG_UBIFS_FS_ADVANCED_COMPR=y
- CONFIG_UBIFS_ATIME_SUPPORT=y
-+# CONFIG_UBIFS_FS_SECURITY is not set
- CONFIG_NFS_FS=y
- CONFIG_ROOT_NFS=y
- CONFIG_NLS_CODEPAGE_437=m
- CONFIG_NLS_ISO8859_1=m
--# CONFIG_CRYPTO_ECHAINIV is not set
- # CONFIG_CRYPTO_HW is not set
-+# CONFIG_XZ_DEC_X86 is not set
-+# CONFIG_XZ_DEC_POWERPC is not set
-+# CONFIG_XZ_DEC_ARM is not set
-+# CONFIG_XZ_DEC_ARMTHUMB is not set
-+# CONFIG_XZ_DEC_ARM64 is not set
-+# CONFIG_XZ_DEC_SPARC is not set
-+# CONFIG_XZ_DEC_RISCV is not set
- CONFIG_DYNAMIC_DEBUG=y
--CONFIG_DEBUG_FS=y
-+# CONFIG_DEBUG_MISC is not set
- CONFIG_MAGIC_SYSRQ=y
--# CONFIG_SCHED_DEBUG is not set
--# CONFIG_DEBUG_PREEMPT is not set
- # CONFIG_FTRACE is not set
- # CONFIG_EARLY_PRINTK is not set
-diff --git a/arch/mips/configs/loongson1c_defconfig b/arch/mips/configs/loongson1c_defconfig
-deleted file mode 100644
-index c3910a9dee9e..000000000000
---- a/arch/mips/configs/loongson1c_defconfig
-+++ /dev/null
-@@ -1,121 +0,0 @@
--# CONFIG_LOCALVERSION_AUTO is not set
--CONFIG_KERNEL_XZ=y
--CONFIG_SYSVIPC=y
--CONFIG_HIGH_RES_TIMERS=y
--CONFIG_PREEMPT=y
--CONFIG_BSD_PROCESS_ACCT=y
--CONFIG_BSD_PROCESS_ACCT_V3=y
--CONFIG_IKCONFIG=y
--CONFIG_IKCONFIG_PROC=y
--CONFIG_LOG_BUF_SHIFT=16
--CONFIG_NAMESPACES=y
--CONFIG_CC_OPTIMIZE_FOR_SIZE=y
--CONFIG_EXPERT=y
--CONFIG_PERF_EVENTS=y
--# CONFIG_COMPAT_BRK is not set
--CONFIG_MACH_LOONGSON32=y
--CONFIG_LOONGSON1_LS1C=y
--# CONFIG_SECCOMP is not set
--# CONFIG_SUSPEND is not set
--CONFIG_MODULES=y
--CONFIG_MODULE_UNLOAD=y
--CONFIG_MODVERSIONS=y
--# CONFIG_BLK_DEV_BSG is not set
--# CONFIG_CORE_DUMP_DEFAULT_ELF_HEADERS is not set
--CONFIG_NET=y
--CONFIG_PACKET=y
--CONFIG_UNIX=y
--CONFIG_INET=y
--CONFIG_IP_PNP=y
--CONFIG_IP_PNP_DHCP=y
--CONFIG_SYN_COOKIES=y
--# CONFIG_INET_DIAG is not set
--# CONFIG_IPV6 is not set
--# CONFIG_WIRELESS is not set
--CONFIG_DEVTMPFS=y
--CONFIG_DEVTMPFS_MOUNT=y
--# CONFIG_STANDALONE is not set
--CONFIG_MTD=y
--CONFIG_MTD_CMDLINE_PARTS=y
--CONFIG_MTD_BLOCK=y
--CONFIG_MTD_RAW_NAND=y
--CONFIG_MTD_UBI=y
--CONFIG_BLK_DEV_LOOP=y
--CONFIG_SCSI=m
--# CONFIG_SCSI_PROC_FS is not set
--CONFIG_BLK_DEV_SD=m
--# CONFIG_SCSI_LOWLEVEL is not set
--CONFIG_NETDEVICES=y
--# CONFIG_NET_VENDOR_BROADCOM is not set
--# CONFIG_NET_VENDOR_INTEL is not set
--# CONFIG_NET_VENDOR_MARVELL is not set
--# CONFIG_NET_VENDOR_MICREL is not set
--# CONFIG_NET_VENDOR_NATSEMI is not set
--# CONFIG_NET_VENDOR_SEEQ is not set
--# CONFIG_NET_VENDOR_SMSC is not set
--CONFIG_STMMAC_ETH=y
--# CONFIG_NET_VENDOR_WIZNET is not set
--# CONFIG_WLAN is not set
--CONFIG_INPUT_EVDEV=y
--# CONFIG_INPUT_KEYBOARD is not set
--# CONFIG_INPUT_MOUSE is not set
--# CONFIG_SERIO is not set
--CONFIG_VT_HW_CONSOLE_BINDING=y
--CONFIG_LEGACY_PTY_COUNT=8
--CONFIG_SERIAL_8250=y
--CONFIG_SERIAL_8250_CONSOLE=y
--# CONFIG_HW_RANDOM is not set
--CONFIG_GPIOLIB=y
--CONFIG_GPIO_LOONGSON1=y
--# CONFIG_HWMON is not set
--CONFIG_WATCHDOG=y
--CONFIG_WATCHDOG_NOWAYOUT=y
--CONFIG_WATCHDOG_SYSFS=y
--CONFIG_LOONGSON1_WDT=y
--# CONFIG_VGA_CONSOLE is not set
--CONFIG_HID_GENERIC=m
--CONFIG_USB_HID=m
--CONFIG_USB=y
--CONFIG_USB_ANNOUNCE_NEW_DEVICES=y
--CONFIG_USB_EHCI_HCD=y
--# CONFIG_USB_EHCI_TT_NEWSCHED is not set
--CONFIG_USB_EHCI_HCD_PLATFORM=y
--CONFIG_USB_STORAGE=m
--CONFIG_USB_SERIAL=m
--CONFIG_USB_SERIAL_PL2303=m
--CONFIG_NEW_LEDS=y
--CONFIG_LEDS_CLASS=y
--CONFIG_LEDS_GPIO=y
--CONFIG_LEDS_TRIGGERS=y
--CONFIG_LEDS_TRIGGER_HEARTBEAT=y
--CONFIG_RTC_CLASS=y
--CONFIG_RTC_DRV_LOONGSON1=y
--# CONFIG_IOMMU_SUPPORT is not set
--CONFIG_EXT2_FS=y
--CONFIG_EXT2_FS_XATTR=y
--CONFIG_EXT2_FS_POSIX_ACL=y
--CONFIG_EXT2_FS_SECURITY=y
--CONFIG_EXT3_FS=y
--CONFIG_EXT3_FS_POSIX_ACL=y
--CONFIG_EXT3_FS_SECURITY=y
--# CONFIG_DNOTIFY is not set
--CONFIG_VFAT_FS=y
--CONFIG_PROC_KCORE=y
--CONFIG_TMPFS=y
--CONFIG_TMPFS_POSIX_ACL=y
--CONFIG_UBIFS_FS=y
--CONFIG_UBIFS_FS_ADVANCED_COMPR=y
--CONFIG_UBIFS_ATIME_SUPPORT=y
--CONFIG_NFS_FS=y
--CONFIG_ROOT_NFS=y
--CONFIG_NLS_CODEPAGE_437=m
--CONFIG_NLS_ISO8859_1=m
--# CONFIG_CRYPTO_ECHAINIV is not set
--# CONFIG_CRYPTO_HW is not set
--CONFIG_DYNAMIC_DEBUG=y
--CONFIG_DEBUG_FS=y
--CONFIG_MAGIC_SYSRQ=y
--# CONFIG_SCHED_DEBUG is not set
--# CONFIG_DEBUG_PREEMPT is not set
--# CONFIG_FTRACE is not set
--# CONFIG_EARLY_PRINTK is not set
-
--- 
-2.43.0
+On 15/07/2025 12:50, Konrad Dybcio wrote:
+>>>>>> +				 <&gcc GCC_VIDEO_AHB_CLK>;
+>>>>>> +			power-domains = <&rpmhpd RPMHPD_MMCX>;
+>>>>>
+>>>>> This is incomplete, need second power domain and I did not check against
+>>>>> qcom,sm8750-videocc schema before sending. I will send a v2 a bit later
+>>>>> (maybe some reviews pop up).
+>>>>
+>>>> Heh, no. The DTS here is correct. The videocc bindings are not correct
+>>>> (and that's not my patch).
+>>>
+>>> Well, you want two power domains here in either case..
+>> Are you sure? My point was one is correct and downstream confirms that
+>> in their bindings (which is a poor argument, I know). Which one would be
+>> the second? MM? We don't have such...
+> 
+> Historically clock controllers used a pair of CX/MX, with CX powering
+> the "meat" and MX powering the PLLs (& retention logic, IIUC).
+> Over time, CX was split into multiple usecase-specific domains (like
+> GFX), and we now have MMCX (or MM_CX - multimedia CX) for multimedia
+> hw specifically
+> 
+> In the downstream tree you're looking at, sun-regulators.dtsi aliases
+> VDD_MMCX_LEVEL as VDD_MM_LEVEL for $reasons, which is admittedly a
+> little confusing
+> 
+> MX has similarly been split into MXA (MX-Always [on]) and MXC
+> (MX-Collapsible). For Venus, you want the latter, as the hardware is
+> not crucial to the functioning of the SoC (the connection is of course
 
 
+OK, so the binding is correct - the second entry is the MXC power
+domain. I'll fix this in v2. Thanks.
+
+
+Best regards,
+Krzysztof
 
