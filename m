@@ -1,567 +1,369 @@
-Return-Path: <devicetree+bounces-197049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B270B07EEF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 22:31:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 208ADB07EF7
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 22:33:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52B443A9ACD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:30:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE5A27A916E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:31:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A1229B20C;
-	Wed, 16 Jul 2025 20:30:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 533B929C341;
+	Wed, 16 Jul 2025 20:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="amVHrlQq"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="T+yzfpid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010053.outbound.protection.outlook.com [52.101.84.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B7C4501A;
-	Wed, 16 Jul 2025 20:30:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752697856; cv=none; b=BRYz8F4wC8ph4lTxtbe+nczUAlhBbWY0K8bPG870f0KbopysLxM8luFvk5nkHHiOLiGQODFEtreZ9ruQa0LYvU2jZfkqKVgdZIhopzuAD41BMP1tOKCYW/Vur0UWi/+kpkwKhY0H5QSxbTCaZSc+nagBGDoe5/B3/MtBN4oDgxI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752697856; c=relaxed/simple;
-	bh=W+tj1VjebJyBlbDrUwyTO4k6ZV8Fx/M7ZW+IIVwIEeI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZgraYoU0WqEO0uCsg5iP0T4piNMsLWTIhhlmDkNiWqegadzI5OMX8cGPcMTSvWLyp06BYmvK4V86/kxJIT9vWe/iB8Dxue4waGWu2XrNoRIrSNiJkN+x5rrKKv448rtyJ0vRr6MMu82kc+iU58NmnuVXMCCU5V8HkaErXN+IdL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=amVHrlQq; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-748d982e97cso302618b3a.1;
-        Wed, 16 Jul 2025 13:30:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752697854; x=1753302654; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=jToX5vgvYOWNpQ7PhcvwxjAp3iiECWlZTnbgwdsh67M=;
-        b=amVHrlQq01/RHDjHkMha+Cs7NG1vXBEdIw80tdQ9bGaBLSKX3byryTLBpy3A41z0C7
-         u60ybXFRod+tD9/E8u97Jvuc1AXsM7O3pEd/G1G2Lsp28yMNUfJnFzmWdywVKf/Nu/IJ
-         DUNZvdUdK3GV/xdXmRF9CpqRzxjmlYEzWvaVJ7/gs2w9pUQfq2LnjKQQ5P7gPC2wR1pa
-         Xz2Kl9f130jfEv29V3pAAXIJnp9vCn13LBoKDgW0P2qaCPb5FFm4kCavOddIyaToN2Z/
-         N5lXKTCjFNsfSxxTfYiSAm93qPkH7VFkaGcCMPsac+/qA4P9pyDy9os0tHUNb095cwOo
-         4OAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752697854; x=1753302654;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jToX5vgvYOWNpQ7PhcvwxjAp3iiECWlZTnbgwdsh67M=;
-        b=pvfg/V9Isld4kmC22PlpjQ20VXjJFilbEiHq5M0EuqIlhVZ8e0fvoTmsLvPavYHs6e
-         OcC+0Yz3cZ3XWy7p87iJbqa4M5Dp5ARQaLrnuuh9ka5UrynaNmzFXeHFGRSuUCFBjdWs
-         bh0YsVH1+IHy7/oYFBZvH+LuiJbgfGPJE46IhvriaSCdOP8zsNr59wclGjdknNqzlnl1
-         grfDMWIP8QQBO3gBwNP3WaUvtn2T2phDN4esYGmC6Gwxzs+HjyoXtA9RxEPZ05NhxU0Z
-         vbtyeRGBQLtMBnHa4ldlALsa4FUkH/XojLdUvvJxpSO6JvulMPoCbzMwSis7psQ4D+f4
-         zjJg==
-X-Forwarded-Encrypted: i=1; AJvYcCUGb6ltacql5wvXb6A/38lBd5XOidIy6IKMkUkg1ZhXp2DvPPy+Wq2RF9h2beo6aXeScvA2cGmwvjOFzJUY@vger.kernel.org, AJvYcCWTIxmsVsuByKw8vHiVbp5fh5uBcUWr2FsNQVatkbYszcPuvKiloWm4ZexQV3brgEyv2tCwhw3E2jeg7nY=@vger.kernel.org, AJvYcCWtX07KWi2CNy4dQkhrQJdu8OKzvfg7ncc+2UPjQzrg9Nvr0UH7MNE7ZJOYZrujQQFsRe/LZ20jYCA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUWOFBfC4q4U/Qydq7ltaa3KivRwgefwsbgSgvTCBRgXYBA6B3
-	Q67Ln3FNKvhhw7Ue9QI/B9D/bm2Xe/Px4OvuN63kfYFHCeU9+71f0XnlcdsTHQ==
-X-Gm-Gg: ASbGncuLJFllOIifOKlMTvEKZu4FaoUmgZ9Mu9g8wRCDg/XP2H9oyLEVXYo2jctrJqO
-	cvo+QBtCg0qPx4lg5YtAbS6Hu8PaIiFB+J9EQX3M1gqwlUcFJ4fEl3rBqs0i+25oLvB6cyFk9H4
-	NBuAajO8138b7BnLEdAhOq8XdefDGP/zDTv6YlNaVDBUZMi3sNtkT3w6ty3x2Ey6Kjgcaqhy3eU
-	vqjPKCdxtOtDtKEQQ792JGInPK4WYyxX8zJ3ZCHhWHSVeAucFgv5t35FlIN+4YXKptwS1upuYno
-	AcnDA5FVJqkmrxwKEwNE4PaWVezjZpJXlHCZTx/gVqUYz1Scu7zlMkDL3iqoi1BKzpcd8HmnHZg
-	c8r4ceSjuznFI0EQrQX3MhVU7FiQ+YZH6oYF37AEtpSxK2ga6j0I9VSGbbkuaxjZGHfYcZAI=
-X-Google-Smtp-Source: AGHT+IHAttu6gwxIToTJ+F1XiyqkL1tlyMlREf+ZnPiny7r/1mgK6Gn/BYUZnN0LtcXBYnOaReNjgw==
-X-Received: by 2002:a05:6300:619c:b0:232:c9de:4d98 with SMTP id adf61e73a8af0-23811055d11mr6953618637.11.1752697853925;
-        Wed, 16 Jul 2025 13:30:53 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b3bbe52cbcasm14152134a12.4.2025.07.16.13.30.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Jul 2025 13:30:53 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <039c31c3-af15-46e0-98fb-f3a54fcf73e5@roeck-us.net>
-Date: Wed, 16 Jul 2025 13:30:51 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23F6A26FA4B;
+	Wed, 16 Jul 2025 20:33:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752697984; cv=fail; b=WMfEFSHV888C7tiFwu19mWHKFFJR9VL3K4ZHKH9cFD6pQPWLIBx8N2ZsIUjZH5xpn2lJilKRYF2dzMy+EHzAgSqCo/UE1Ep80UouGKlLcmPhrNcjBhQEH43tKmRdYZDBrT0rzKMQMfMOGVlJIQFxlM29Hk+POaDlYIPcBWipm3I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752697984; c=relaxed/simple;
+	bh=JZZHpIQKLLumM1vrQympjbavBIVvsMKQ4cnVjMMIyxo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=R+0ZH9aqjuZYepc1xP07P3OH0LJ7r9Yo6VDGhj1FITq/8xn2W2nafBsrTsL3o8QHxA26DIXtBZA4TulRDUwCeTfP1Mf5zRjBq8lAyE3nufY+MD0DenxNKqMpaKZnMfyRUOZhkiR8eqjvAv6Tv98xi9mlEvpX8K55RngqLFExCFc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=T+yzfpid; arc=fail smtp.client-ip=52.101.84.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SDPGLY8E+XRcY/rP4TJPiOwNlbh2tbOA/wA/zz4vODHiVr51eqV93jL226RcClV1pybIKOTDwBh7fa9tOF+1j/gnTXBsh4HzuzYoosOetTmTEipcolOPsMS+eY1Tt8zzoZLYS5CbXeY8jYoowwqcvXwdH8Nd4eHSMyOWMKGuDQ4H7YUkhJ0g6y4gptExJds+4kVlZxaYeW+DjMdKayrc22XV+brBmbqC7z6bLJNk6tBG5qVAesnKRrKuoU0yOLLJjq9gtDlAIoki5v6LpZe4a8ny+y5JKya02vvH7iQdGsUAQSaka7et4q6n3CE+3Jc/B9mHFh10LwzdIVDwmP/uRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6BBcTqiIDVdwWwSM5eFllDK/j6+eQXmqnzqVn7LjCrs=;
+ b=GBfZbV4CHigbMEU5bmngDa1XO/JREI7CSnCg5nFdRVHYXTFNr/mvyDNYcUd/LkIKafgNzlAgsOoDw1dqqVJXWp57kOHjwsEy72hLJOcV3zfo6WBQGlVUp+KLDZY744tnVE3Flw5+1Dy+8KMC3OXLASyFnkEXlLIn2pzH3SA9MEhm34Um3XMvYYS9BX1FuX74wJcRRikxG9Ml1iRE57hz4BXepGcW25v/ZqOhampO0R5wnLWQZamql4k1jlJ1Z8UMXbpbUSSZxjsRN9zFg7fklzjb//6X2qxpXZT/ieX44h/WgRTaFBIRpMwX5cNIP2rgCF1ePU7HbLH0c0Dcp4a/rA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6BBcTqiIDVdwWwSM5eFllDK/j6+eQXmqnzqVn7LjCrs=;
+ b=T+yzfpidpZfeDTMhD+m9iFg0rvDDpAgEt479TaFBvE7hrfGDP6A9QkCMVroisVvb0xaE47s8sp68L8+JO+z31G7NrddIUVx3zdj64QbO8Rah1FLsic7o7zs+Gu2oRn38loqtdZdK1e6eWLcg+8OczwR+Hxa833hBng6DPXUfTNeEkNgDkDdf0u5l7OnD1KeAiGKRpeEtm2y+tBC+a1d8EI4LQG09lmTRrkymw77GMasEbHRC5wAHt7qRLx0UMyMCYxpVUs9IT+ID2IWtxvV4W6FCir73GJVOwJyVPm8JDZ7kbeMWeawjtK4xLy4Rdg7PU/QwU8UuGX48p76+PJ0NEA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM8PR04MB7953.eurprd04.prod.outlook.com (2603:10a6:20b:246::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.32; Wed, 16 Jul
+ 2025 20:32:59 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8922.028; Wed, 16 Jul 2025
+ 20:32:59 +0000
+Date: Wed, 16 Jul 2025 16:32:53 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	richardcochran@gmail.com, claudiu.manoil@nxp.com,
+	vladimir.oltean@nxp.com, xiaoning.wang@nxp.com,
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, vadim.fedorenko@linux.dev,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+	fushi.peng@nxp.com, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, kernel@pengutronix.de
+Subject: Re: [PATCH v2 net-next 07/14] ptp: netc: add debugfs support to loop
+ back pulse signal
+Message-ID: <aHgMdcOAWujOPOUC@lizhi-Precision-Tower-5810>
+References: <20250716073111.367382-1-wei.fang@nxp.com>
+ <20250716073111.367382-8-wei.fang@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250716073111.367382-8-wei.fang@nxp.com>
+X-ClientProxiedBy: AS4P189CA0006.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5d7::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] hwmon: add MP2869 series and MP29502 driver
-To: wenswang@yeah.net, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jdelvare@suse.com, corbet@lwn.net
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20250709092734.455976-1-wenswang@yeah.net>
- <20250709093420.456304-1-wenswang@yeah.net>
- <20250709093420.456304-2-wenswang@yeah.net>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20250709093420.456304-2-wenswang@yeah.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM8PR04MB7953:EE_
+X-MS-Office365-Filtering-Correlation-Id: e6044443-d50e-46b8-9f3f-08ddc4a7f426
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|7416014|376014|19092799006|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?a7ongZcMOixhRKW94vHL/xKRAXAw3xiIi9cXI3vZ2wxwIm83gjfQaCGDhtpf?=
+ =?us-ascii?Q?Kec4y8h3cwMDcyy7aICWONtOqkCrGmtYNBDYOPZ82rWa+R/lQ/bovbCiytb6?=
+ =?us-ascii?Q?1+IDBv1Vl+wwoGk6XKx9tzbUZ2Qw4DriFdwWuuw7eInN7w1qgzpa2y8ej5XT?=
+ =?us-ascii?Q?GGZEQrQg1BLLZcMG5lPQHN0MOSljcQyBob7K3lpA88IqrmIk9LmeWbOQtPJJ?=
+ =?us-ascii?Q?3wrjpms1TeSrM6ixpXdZX/y/JWpEs7ZJLcjW+1zSJwnymDbjm3wc7aDbazth?=
+ =?us-ascii?Q?VpcDTB3Ec5bVcAlMQZOH2YXQWlRHS8JycisoQ7JD2qmYgDUUC1ByRal0ZBRe?=
+ =?us-ascii?Q?FCSA+Mumo/0h1n1jlJrzrTfRudzjYC+XlXHgHO75eZuy77/HAcf1GZbkMH4b?=
+ =?us-ascii?Q?xWbITflGHIMPMW1eeU3PttJSYYgy5idCr8fQMG/x0qH40ligYEdxN6vNJ4q+?=
+ =?us-ascii?Q?IGaNnwzoyN2Kx19AOqwTtr1eG6o5T1315HqpWHmzUWb0J1vrOn1pRfT37kjd?=
+ =?us-ascii?Q?2I6zrQ/+tYCLJWrTWODKjF3MnLdfqbMncdKkfk6v27EmBtVesA+dDHEsKo19?=
+ =?us-ascii?Q?uvKSHLzn+E4qDVawxPgLZ22K7a3zFAiE3XVkzksucoHUwtyisYhj5b21HoMd?=
+ =?us-ascii?Q?ZUFM0hsDyZAOEXYTjBY8KBVdZTFaZB4LQNuM1AlZQE66FQQCiu0xLFww7K7f?=
+ =?us-ascii?Q?wFUvG9d/hZLGJpIm+yOCLaTMXKwCtA6WZeBVXJONiaSK7AFTOTmykqJMy9CQ?=
+ =?us-ascii?Q?9k+AFSbJXKphHtQVwCwiwqYjJYGVa81Lb8CEW2+JAoO4G90Von+hEz4++0qK?=
+ =?us-ascii?Q?R9IlLU/AtH2j3VasEltt5Tljmhp2p3w2+AgcJD6dn8czP5e6KCC1R11RRbIZ?=
+ =?us-ascii?Q?p82nkE1rEAKhAQSTa2AFm0LTuAImVTEYWosjMni774425aSFL/NqS58C90dO?=
+ =?us-ascii?Q?UV8uiee9rYL7M+6OVp54NuEGN+raA4g56WYUJjQ0ukNga7BzWuAHaLWEps5S?=
+ =?us-ascii?Q?RLh/1WmYWjXFUBOHjmxF6P3gdkbrGTgdLQiSVjL3eRr1EUL5sIGtkatVr83x?=
+ =?us-ascii?Q?qlC1Nl0Fo33kj9mZMKUyCH/TaAydUwH+R/zUgC/wm+K5rjN/6RzCAo112W3B?=
+ =?us-ascii?Q?FLI5SRfjFV+WFjOjPUXXNDovx2u1v4Apmr+F55Dgcl+d1nQI3lAXWWbf+1yn?=
+ =?us-ascii?Q?vrPih60nbHSB3gcWdA+b4krCz6rNtzgSFscbtlQjbI5KYjZWN0d9B9UOEsW9?=
+ =?us-ascii?Q?Smkbw9w9id+FhJWFlc0Wrs0LLNz3KvRmQ080tSMMu1L/zsOw10bVVnYARTR1?=
+ =?us-ascii?Q?HCUFn0tPGoJ4uZAdPU6q+sRytKSeIGzqrJHdVAslPAUbup4/vAJOKICUwd+T?=
+ =?us-ascii?Q?BBnPFqXOarm0gaPfPakCKbzS3k+NXGZBbyizgiNDE9PNLf9kYHTxK3ekhmPC?=
+ =?us-ascii?Q?cyWeMvELt8qScaQ0CujIMOqxLuBtP4eTK39JmsbliVLIRvQF9gG2Zg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(19092799006)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Gs59J/P9M1KiN1CAmEVdDALCf/U/r8cH3saXNXtTLVtWj3eIBp6zjxrbLRHZ?=
+ =?us-ascii?Q?DnWHWw/fWyFlox4Xrrx46PqxDgQcFJM81f3KCsX0xASBMJdez7lD50MVSeFb?=
+ =?us-ascii?Q?CKeTSAycTFmUf3e9whXSLMFvymPSGNu8KaB0fczp0xwNXy88LhauU529Mz/B?=
+ =?us-ascii?Q?ucZDeTyvWMJISSt3iABPGCBjeH6sdeNfE+LJlIQ9eTmvE/G8+RlopZwaCEm9?=
+ =?us-ascii?Q?Ojdh2yoKeUctwGmmDT7zfFQ+I9by7bC1DXlGORlHbqPxCbAXKMuiMwjE6erH?=
+ =?us-ascii?Q?cLPRP3356uQ3XP2ESVX1+Clw4OqbJwLzuMSPCRcGvTf0uFJwP/EkVluTKmxp?=
+ =?us-ascii?Q?OKx+zWbdPA4RKgRWt0hVPE8z4YS/U0C27ZkIZjLhtQnQAbxvYUZKj0QG+X7K?=
+ =?us-ascii?Q?fRz3f0l0A8Z/rwic5ofCNFQxWsNIs447v880rhUtKuTOSeNSRvxeM2YfBAEA?=
+ =?us-ascii?Q?Gqmt2AY1KD34jQwS+aebT+Q4yrdvunXDz8QDmzg2CdwLHw6H/Nt5pkmegL6Q?=
+ =?us-ascii?Q?sGRp2jGrKMYwaYb8/1eTwRYepcFT3XNkvKgRvsisBCPSgQhBFnGKUWDWAZBY?=
+ =?us-ascii?Q?gxNmMyy4hEPkUR04eQ77ML4GaLZdVZRTQOunIxgoYplh2qCbH07UPVDxV9dK?=
+ =?us-ascii?Q?0inFnuljjp7rEzGJpYmzyoa5MyuBktCUC9ovjtvgHTHIR7lCuHrIrFDzm2XO?=
+ =?us-ascii?Q?bxtR8onlJjgNL7WwsyuI1w1WX3JEdfSgx8ePtCp3C1q+6s0Ulo1mU2DKtQn6?=
+ =?us-ascii?Q?yDRtMRScd63sGuZCZf9P7kNubQHXjEb6V3JU/V11z4F+ghmxwqgcfnZ904bh?=
+ =?us-ascii?Q?/AGYKhKxUlFVTSodpNJrZrJNtS50YXjMAICDlpQdCh4pAOipjdxOFwZOtqx/?=
+ =?us-ascii?Q?YzxW4gKvWdXFLwPCU/sl2zLCVEYTKwWHG6l339oadCViGA/P6Rt+Db1jqI/t?=
+ =?us-ascii?Q?vGvVOoZW5XoqWL4yJwlCDR9YbwEIjmBbb2DJX/yx9em/ffJk0BpHEnX9o2L+?=
+ =?us-ascii?Q?cHZLgNg5UL9jpNwtFITQD2rzegYKdGwFkbj0c0IQ3azUTv8Q237578r4w34P?=
+ =?us-ascii?Q?F2Hw9xxz40qXMiF8+9nGcBwNT/mKEdxxliY2sb8lknDGCGG54hPiH9VTrwb1?=
+ =?us-ascii?Q?7kNotq2OfrfLPG74Vrtm0bOeACmKmZr4FKcReX2ebj8ukU+H2wOgLK7l1DP6?=
+ =?us-ascii?Q?c6caxpG6Qn44HSdRZIQwkRL+zCV06ExoFZF5hSfBmBFjbhIy7Xfec3MC3LUm?=
+ =?us-ascii?Q?3af1qfME+Ko3Fcs8XjHxVPKFuKfehI3PUuGy7okeMx40hSdW7sr77E/OMUyJ?=
+ =?us-ascii?Q?2odeO5KRvHqihmAtGJ9mBhOK4A1FifLjsNHEIzle7pYs2b1meSBNsGhZCuiZ?=
+ =?us-ascii?Q?HM1QO5yH0sK788zapJGV1SaC6YJQzXIC3gL5jgG5qT8QjgdGQNjsjrFATsWK?=
+ =?us-ascii?Q?njxgEG19WToqpIjeyrxFAszV8eN7QsetUz9yPmbnp8SFQWKj1mOR75KX09d8?=
+ =?us-ascii?Q?Zi/yMpvhf1scv/pqBJpl53/18c0vOYUSAOZuHa+kd5IBTDwbtmkQkmLM1Sr4?=
+ =?us-ascii?Q?5c1+PyqIpx5VWoDPNZiJTy+KNB35SGbQeewbhRh5?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6044443-d50e-46b8-9f3f-08ddc4a7f426
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2025 20:32:59.3420
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XiwTtkF/IRq8kQfeH8nUS18vSs46T1VgByFPxi7VgvXki2HqN/OmJfpTWbcwWv6kJLmN5u2s3VxFepVysjwJ2A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7953
 
-On 7/9/25 02:34, wenswang@yeah.net wrote:
-> From: Wensheng Wang <wenswang@yeah.net>
-> 
-> Add support for MPS VR mp2869 series and mp29502 controller. The
-> driver exposes telemetry and limit value readings and writtings.
-> 
-> Signed-off-by: Wensheng Wang <wenswang@yeah.net>
+On Wed, Jul 16, 2025 at 03:31:04PM +0800, Wei Fang wrote:
+> The NETC Timer supports to loop back the output pulse signal of Fiper-n
+> into Trigger-n input, so that we can leverage this feature to validate
+> some other features without external hardware support. For example, we
+> can use it to test external trigger stamp (EXTTS). And we can combine
+> EXTTS with loopback mode to check whether the generation time of PPS is
+> aligned with an integral second of PHC, or the periodic output signal
+> (PTP_CLK_REQ_PEROUT) whether is generated at the specified time. So add
+> the debugfs interfaces to enable the loopback mode of Fiper1 and Fiper2.
+>
+> An example to test the generation time of PPS event.
+>
+> $ echo 1 > /sys/kernel/debug/netc_timer0/fiper1-loopback
+> $ echo 1 > /sys/class/ptp/ptp0/pps_enable
+> $ testptp -d /dev/ptp0 -e 3
+> external time stamp request okay
+> event index 0 at 108.000000018
+> event index 0 at 109.000000018
+> event index 0 at 110.000000018
+>
+> An example to test the generation time of the periodic output signal.
+>
+> $ echo 1 > /sys/kernel/debug/netc_timer0/fiper1-loopback
+> $ echo 0 260 0 1 500000000 > /sys/class/ptp/ptp0/period
+> $ testptp -d /dev/ptp0 -e 3
+> external time stamp request okay
+> event index 0 at 260.000000016
+> event index 0 at 261.500000015
+> event index 0 at 263.000000016
+>
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+
+>
 > ---
-> V2 -> V3:
->      merge patches for MP29502 and MP2869
-> 
-> V1 -> V2:
->      add Rob's Acked-by
-> 
->   Documentation/hwmon/index.rst   |   2 +
->   Documentation/hwmon/mp2869.rst  | 175 ++++++++
->   Documentation/hwmon/mp29502.rst |  93 +++++
->   MAINTAINERS                     |   9 +
->   drivers/hwmon/pmbus/Kconfig     |  18 +
->   drivers/hwmon/pmbus/Makefile    |   2 +
->   drivers/hwmon/pmbus/mp2869.c    | 711 ++++++++++++++++++++++++++++++++
->   drivers/hwmon/pmbus/mp29502.c   | 670 ++++++++++++++++++++++++++++++
->   8 files changed, 1680 insertions(+)
->   create mode 100644 Documentation/hwmon/mp2869.rst
->   create mode 100644 Documentation/hwmon/mp29502.rst
->   create mode 100644 drivers/hwmon/pmbus/mp2869.c
->   create mode 100644 drivers/hwmon/pmbus/mp29502.c
-> 
-> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-> index b45bfb4ebf30..ebc5c92e50b0 100644
-> --- a/Documentation/hwmon/index.rst
-> +++ b/Documentation/hwmon/index.rst
-> @@ -172,8 +172,10 @@ Hardware Monitoring Kernel Drivers
->      menf21bmc
->      mlxreg-fan
->      mp2856
-> +   mp2869
->      mp2888
->      mp2891
-> +   mp29502
->      mp2975
->      mp2993
->      mp5023
-> diff --git a/Documentation/hwmon/mp2869.rst b/Documentation/hwmon/mp2869.rst
-> new file mode 100644
-> index 000000000000..2d9d65fc86b6
-> --- /dev/null
-> +++ b/Documentation/hwmon/mp2869.rst
-> @@ -0,0 +1,175 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Kernel driver mp2869
-> +====================
-> +
-> +Supported chips:
-> +
-> +  * MPS mp2869
-> +
-> +    Prefix: 'mp2869'
-> +
-> +  * MPS mp29608
-> +
-> +    Prefix: 'mp29608'
-> +
-> +  * MPS mp29612
-> +
-> +    Prefix: 'mp29612'
-> +
-> +  * MPS mp29816
-> +
-> +    Prefix: 'mp29816'
-> +
-> +Author:
-> +
-> +	Wensheng Wang <wenswang@yeah.net>
-> +
-> +Description
-> +-----------
-> +
-> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
-> +MP2869 Dual Loop Digital Multi-phase Controller.
-> +
-> +Device compliant with:
-> +
-> +- PMBus rev 1.3 interface.
-> +
-> +The driver exports the following attributes via the 'sysfs' files
-> +for input voltage:
-> +
-> +**in1_input**
-> +
-> +**in1_label**
-> +
-> +**in1_crit**
-> +
-> +**in1_crit_alarm**
-> +
-> +**in1_lcrit**
-> +
-> +**in1_lcrit_alarm**
-> +
-> +**in1_min**
-> +
-> +**in1_min_alarm**
-> +
-> +The driver provides the following attributes for output voltage:
-> +
-> +**in2_input**
-> +
-> +**in2_label**
-> +
-> +**in2_crit**
-> +
-> +**in2_crit_alarm**
-> +
-> +**in2_lcrit**
-> +
-> +**in2_lcrit_alarm**
-> +
-> +**in3_input**
-> +
-> +**in3_label**
-> +
-> +**in3_crit**
-> +
-> +**in3_crit_alarm**
-> +
-> +**in3_lcrit**
-> +
-> +**in3_lcrit_alarm**
-> +
-> +The driver provides the following attributes for input current:
-> +
-> +**curr1_input**
-> +
-> +**curr1_label**
-> +
-> +**curr2_input**
-> +
-> +**curr2_label**
-> +
-> +The driver provides the following attributes for output current:
-> +
-> +**curr3_input**
-> +
-> +**curr3_label**
-> +
-> +**curr3_crit**
-> +
-> +**curr3_crit_alarm**
-> +
-> +**curr3_max**
-> +
-> +**curr3_max_alarm**
-> +
-> +**curr4_input**
-> +
-> +**curr4_label**
-> +
-> +**curr4_crit**
-> +
-> +**curr4_crit_alarm**
-> +
-> +**curr4_max**
-> +
-> +**curr4_max_alarm**
-> +
-> +The driver provides the following attributes for input power:
-> +
-> +**power1_input**
-> +
-> +**power1_label**
-> +
-> +**power2_input**
-> +
-> +**power2_label**
-> +
-> +The driver provides the following attributes for output power:
-> +
-> +**power3_input**
-> +
-> +**power3_label**
-> +
-> +**power3_input**
-> +
-> +**power3_label**
-> +
-> +**power3_max**
-> +
-> +**power3_max_alarm**
-> +
-> +**power4_input**
-> +
-> +**power4_label**
-> +
-> +**power4_input**
-> +
-> +**power4_label**
-> +
-> +**power4_max**
-> +
-> +**power4_max_alarm**
-> +
-> +The driver provides the following attributes for temperature:
-> +
-> +**temp1_input**
-> +
-> +**temp1_crit**
-> +
-> +**temp1_crit_alarm**
-> +
-> +**temp1_max**
-> +
-> +**temp1_max_alarm**
-> +
-> +**temp2_input**
-> +
-> +**temp2_crit**
-> +
-> +**temp2_crit_alarm**
-> +
-> +**temp2_max**
-> +
-> +**temp2_max_alarm**
-> diff --git a/Documentation/hwmon/mp29502.rst b/Documentation/hwmon/mp29502.rst
-> new file mode 100644
-> index 000000000000..7743056f0aa6
-> --- /dev/null
-> +++ b/Documentation/hwmon/mp29502.rst
-> @@ -0,0 +1,93 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Kernel driver mp29502
-> +====================
-> +
-> +Supported chips:
-> +
-> +  * MPS mp29502
-> +
-> +    Prefix: 'mp29502'
-> +
-> +Author:
-> +
-> +	Wensheng Wang <wenswang@yeah.net>
-> +
-> +Description
-> +-----------
-> +
-> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
-> +MP29502 Digital Multi-phase Controller.
-> +
-> +Device compliant with:
-> +
-> +- PMBus rev 1.3 interface.
-> +
-> +The driver exports the following attributes via the 'sysfs' files
-> +for input voltage:
-> +
-> +**in1_input**
-> +
-> +**in1_label**
-> +
-> +**in1_crit**
-> +
-> +**in1_crit_alarm**
-> +
-> +The driver provides the following attributes for output voltage:
-> +
-> +**in2_input**
-> +
-> +**in2_label**
-> +
-> +**in2_crit**
-> +
-> +**in2_crit_alarm**
-> +
-> +**in2_lcrit**
-> +
-> +**in2_lcrit_alarm**
-> +
-> +The driver provides the following attributes for input current:
-> +
-> +**curr1_input**
-> +
-> +**curr1_label**
-> +
-> +The driver provides the following attributes for output current:
-> +
-> +**curr2_input**
-> +
-> +**curr2_label**
-> +
-> +**curr2_crit**
-> +
-> +**curr2_crit_alarm**
-> +
-> +**curr2_max**
-> +
-> +**curr2_max_alarm**
-> +
-> +The driver provides the following attributes for input power:
-> +
-> +**power1_input**
-> +
-> +**power1_label**
-> +
-> +The driver provides the following attributes for output power:
-> +
-> +**power2_input**
-> +
-> +**power2_label**
-> +
-> +The driver provides the following attributes for temperature:
-> +
-> +**temp1_input**
-> +
-> +**temp1_crit**
-> +
-> +**temp1_crit_alarm**
-> +
-> +**temp1_max**
-> +
-> +**temp1_max_alarm**
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 240793fbe64b..b4377f0eb3a1 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -16839,6 +16839,15 @@ F:	scripts/module*
->   F:	tools/testing/selftests/kmod/
->   F:	tools/testing/selftests/module/
->   
-> +MONOLITHIC POWER SYSTEM MULTI-PHASE CONTROLLER DRIVER
-> +M:	Wensheng Wang <wenswang@yeah.net>
-> +L:	linux-hwmon@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/hwmon/mp2869.rst
-> +F:	Documentation/hwmon/mp29502.rst
-> +F:	drivers/hwmon/pmbus/mp2869.c
-> +F:	drivers/hwmon/pmbus/mp29502.c
-> +
->   MONOLITHIC POWER SYSTEM PMIC DRIVER
->   M:	Saravanan Sekar <sravanhome@gmail.com>
->   S:	Maintained
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index 441f984a859d..d0bdd1b5feb6 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -364,6 +364,15 @@ config SENSORS_MP2856
->   	  This driver can also be built as a module. If so, the module will
->   	  be called mp2856.
->   
-> +config SENSORS_MP2869
-> +	tristate "MPS MP2869"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for MPS
-> +	  MP2869 Dual Loop Digital Multi-Phase Controller.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called mp2869.
-> +
->   config SENSORS_MP2888
->   	tristate "MPS MP2888"
->   	help
-> @@ -382,6 +391,15 @@ config SENSORS_MP2891
->         This driver can also be built as a module. If so, the module will
->         be called mp2891.
->   
-> +config SENSORS_MP29502
-> +	tristate "MPS MP29502"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for MPS
-> +	  MP29502 Dual Loop Digital Multi-Phase Controller.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called mp29502.
-> +
->   config SENSORS_MP2975
->   	tristate "MPS MP2975"
->   	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index 29cd8a3317d2..4c5ff3f32c5e 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -37,8 +37,10 @@ obj-$(CONFIG_SENSORS_MAX31785)	+= max31785.o
->   obj-$(CONFIG_SENSORS_MAX34440)	+= max34440.o
->   obj-$(CONFIG_SENSORS_MAX8688)	+= max8688.o
->   obj-$(CONFIG_SENSORS_MP2856)	+= mp2856.o
-> +obj-$(CONFIG_SENSORS_MP2869)	+= mp2869.o
->   obj-$(CONFIG_SENSORS_MP2888)	+= mp2888.o
->   obj-$(CONFIG_SENSORS_MP2891)	+= mp2891.o
-> +obj-$(CONFIG_SENSORS_MP29502)	+= mp29502.o
->   obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
->   obj-$(CONFIG_SENSORS_MP2993)	+= mp2993.o
->   obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
-> diff --git a/drivers/hwmon/pmbus/mp2869.c b/drivers/hwmon/pmbus/mp2869.c
-> new file mode 100644
-> index 000000000000..af233ffd5230
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/mp2869.c
-> @@ -0,0 +1,711 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Hardware monitoring driver for MPS Multi-phase Digital VR Controllers(MP2869)
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include "pmbus.h"
-> +
-> +#define MFR_READ_PIN_EST	0x94
-> +#define MFR_READ_IIN_EST	0x95
-> +#define MFR_VOUT_SCALE_LOOP	0x29
-
-This is a standard register.
-
-> +#define MFR_SVI3_IOUT_PRT	0x67
-> +#define STATUS_MFR_SPECIFIC	0x80
-
-This is a standard register.
-
-Guenter
+> v2 changes:
+> 1. Remove the check of the return value of debugfs_create_dir()
+> ---
+>  drivers/ptp/ptp_netc.c | 114 +++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 114 insertions(+)
+>
+> diff --git a/drivers/ptp/ptp_netc.c b/drivers/ptp/ptp_netc.c
+> index c2fc6351db5b..2a077eb2f0eb 100644
+> --- a/drivers/ptp/ptp_netc.c
+> +++ b/drivers/ptp/ptp_netc.c
+> @@ -6,6 +6,7 @@
+>
+>  #include <linux/bitfield.h>
+>  #include <linux/clk.h>
+> +#include <linux/debugfs.h>
+>  #include <linux/fsl/netc_global.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> @@ -22,6 +23,8 @@
+>  #define  TMR_ETEP2			BIT(9)
+>  #define  TMR_COMP_MODE			BIT(15)
+>  #define  TMR_CTRL_TCLK_PERIOD		GENMASK(25, 16)
+> +#define  TMR_CTRL_PP2L			BIT(26)
+> +#define  TMR_CTRL_PP1L			BIT(27)
+>  #define  TMR_CTRL_FS			BIT(28)
+>  #define  TMR_ALARM1P			BIT(31)
+>
+> @@ -129,6 +132,7 @@ struct netc_timer {
+>  	u8 fs_alarm_num;
+>  	u8 fs_alarm_bitmap;
+>  	struct netc_pp pp[NETC_TMR_FIPER_NUM]; /* periodic pulse */
+> +	struct dentry *debugfs_root;
+>  };
+>
+>  #define netc_timer_rd(p, o)		netc_read((p)->base + (o))
+> @@ -991,6 +995,114 @@ static int netc_timer_get_global_ip_rev(struct netc_timer *priv)
+>  	return val & IPBRR0_IP_REV;
+>  }
+>
+> +static int netc_timer_get_fiper_loopback(struct netc_timer *priv,
+> +					 int fiper, u64 *val)
+> +{
+> +	unsigned long flags;
+> +	u32 tmr_ctrl;
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +	tmr_ctrl = netc_timer_rd(priv, NETC_TMR_CTRL);
+> +	spin_unlock_irqrestore(&priv->lock, flags);
+> +
+> +	switch (fiper) {
+> +	case 0:
+> +		*val = tmr_ctrl & TMR_CTRL_PP1L ? 1 : 0;
+> +		break;
+> +	case 1:
+> +		*val = tmr_ctrl & TMR_CTRL_PP2L ? 1 : 0;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int netc_timer_set_fiper_loopback(struct netc_timer *priv,
+> +					 int fiper, u64 val)
+> +{
+> +	unsigned long flags;
+> +	u32 tmr_ctrl;
+> +	int err = 0;
+> +
+> +	spin_lock_irqsave(&priv->lock, flags);
+> +
+> +	tmr_ctrl = netc_timer_rd(priv, NETC_TMR_CTRL);
+> +	switch (fiper) {
+> +	case 0:
+> +		tmr_ctrl = u32_replace_bits(tmr_ctrl, val ? 1 : 0,
+> +					    TMR_CTRL_PP1L);
+> +		break;
+> +	case 1:
+> +		tmr_ctrl = u32_replace_bits(tmr_ctrl, val ? 1 : 0,
+> +					    TMR_CTRL_PP2L);
+> +		break;
+> +	default:
+> +		err = -EINVAL;
+> +	}
+> +
+> +	if (!err)
+> +		netc_timer_wr(priv, NETC_TMR_CTRL, tmr_ctrl);
+> +
+> +	spin_unlock_irqrestore(&priv->lock, flags);
+> +
+> +	return err;
+> +}
+> +
+> +static int netc_timer_get_fiper1_loopback(void *data, u64 *val)
+> +{
+> +	struct netc_timer *priv = data;
+> +
+> +	return netc_timer_get_fiper_loopback(priv, 0, val);
+> +}
+> +
+> +static int netc_timer_set_fiper1_loopback(void *data, u64 val)
+> +{
+> +	struct netc_timer *priv = data;
+> +
+> +	return netc_timer_set_fiper_loopback(priv, 0, val);
+> +}
+> +
+> +DEFINE_DEBUGFS_ATTRIBUTE(netc_timer_fiper1_fops, netc_timer_get_fiper1_loopback,
+> +			 netc_timer_set_fiper1_loopback, "%llu\n");
+> +
+> +static int netc_timer_get_fiper2_loopback(void *data, u64 *val)
+> +{
+> +	struct netc_timer *priv = data;
+> +
+> +	return netc_timer_get_fiper_loopback(priv, 1, val);
+> +}
+> +
+> +static int netc_timer_set_fiper2_loopback(void *data, u64 val)
+> +{
+> +	struct netc_timer *priv = data;
+> +
+> +	return netc_timer_set_fiper_loopback(priv, 1, val);
+> +}
+> +
+> +DEFINE_DEBUGFS_ATTRIBUTE(netc_timer_fiper2_fops, netc_timer_get_fiper2_loopback,
+> +			 netc_timer_set_fiper2_loopback, "%llu\n");
+> +
+> +static void netc_timer_create_debugfs(struct netc_timer *priv)
+> +{
+> +	char debugfs_name[24];
+> +
+> +	snprintf(debugfs_name, sizeof(debugfs_name), "netc_timer%d",
+> +		 priv->phc_index);
+> +	priv->debugfs_root = debugfs_create_dir(debugfs_name, NULL);
+> +	debugfs_create_file("fiper1-loopback", 0600, priv->debugfs_root,
+> +			    priv, &netc_timer_fiper1_fops);
+> +	debugfs_create_file("fiper2-loopback", 0600, priv->debugfs_root,
+> +			    priv, &netc_timer_fiper2_fops);
+> +}
+> +
+> +static void netc_timer_remove_debugfs(struct netc_timer *priv)
+> +{
+> +	debugfs_remove(priv->debugfs_root);
+> +	priv->debugfs_root = NULL;
+> +}
+> +
+>  static int netc_timer_probe(struct pci_dev *pdev,
+>  			    const struct pci_device_id *id)
+>  {
+> @@ -1038,6 +1150,7 @@ static int netc_timer_probe(struct pci_dev *pdev,
+>  	}
+>
+>  	priv->phc_index = ptp_clock_index(priv->clock);
+> +	netc_timer_create_debugfs(priv);
+>
+>  	return 0;
+>
+> @@ -1055,6 +1168,7 @@ static void netc_timer_remove(struct pci_dev *pdev)
+>  {
+>  	struct netc_timer *priv = pci_get_drvdata(pdev);
+>
+> +	netc_timer_remove_debugfs(priv);
+>  	ptp_clock_unregister(priv->clock);
+>  	netc_timer_free_msix_irq(priv);
+>  	clk_disable_unprepare(priv->src_clk);
+> --
+> 2.34.1
+>
 
