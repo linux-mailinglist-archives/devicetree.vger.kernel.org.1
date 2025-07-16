@@ -1,157 +1,144 @@
-Return-Path: <devicetree+bounces-196865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B111B076A3
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 15:11:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52CA4B076AC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 15:16:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B105E581FEB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 13:11:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5537B3AB2EF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 13:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47EBE2F3C30;
-	Wed, 16 Jul 2025 13:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 662F4194A59;
+	Wed, 16 Jul 2025 13:16:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="mSsRorqp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nIwWcKz4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B6D7235072;
-	Wed, 16 Jul 2025 13:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705AB35972;
+	Wed, 16 Jul 2025 13:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752671497; cv=none; b=mssk2CqFvsqPKe8B9ZFSoK4UtcNzh5mGlDj6GGB/OMU4Qj58ZlpGSS5b6JWoVibt1onlWsoodek4I/Sa9EjxNMIq0rGHAct4svJfWUh35Ln5SchSHsWK06MYiSyP0trgJDpVB77PdI96I2tOC7Fu5ZEyS1FY1r7D/BlJjVXCgNU=
+	t=1752671788; cv=none; b=ZF5kk7P0JTkag2EBEjUuLfCDEave04oUfCa/t4teeu/5iL4Z7O91CSVl1RozdFmhBemVnm6gYXpsS9Ltcs+HV67y+tGezubaag5piNfRns8EEomEU+2tA7rYaIGGRoF/hP1lSX8axam08H5g09JrniNGR2BwdAY4yaDMbMhwmLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752671497; c=relaxed/simple;
-	bh=hzmHkszYAoyXFUYOkAA7oNySXwfEslhstmlGJGO9cFU=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=KDOy0mjUNW3UbhrJPLLAklfp7A5bcH231R1JINdDx6YkJRd+OueXGRI/MMURcEFwhcTGz2mU5JgxMheM5JfVm/1OcapInyutK3bozCv6a9tUwRYI/fBzHUZoqeFlpeRyHtWVa0Vq9NftJ3opTDbTNJvIU14B3Dtjbx6yFRRrRq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=mSsRorqp; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=qCz3qkpSM0PaErwoNukZei1+0CUNeJ1oEHCchsaW8T0=; b=mSsRorqpu8GvUFSOiJ0BQI+6mh
-	JPeC9IG0TZWWoUPrYxSxp/HSk4sfNrro88xvoXztLeT2sWWhWHoK/loc6rAKWyNY89ipAUNhTqnvV
-	n0Qx7fc13cSny0+cZlDbSKoYb3QLub0NkXYJjToQuBVCB5iGE9euU8iEWwqbu8xz0rSFxdiN9utnh
-	2xFhX0vZSoaiavvfmR+RoiFlLtv01kpcoxXHB9XtSWKWvH16wGKXPvATqawaiX79n/ZfVbymvdIy1
-	4jXKo4t2Cqck/hLrZVHpm5bswdpAVoLgdFpuyA1b1px9onoRU4A9w93r0On4zBJ2gu2lMB92G5Zsk
-	gtS1oukg==;
-Received: from [122.175.9.182] (port=31570 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1uc1uq-0000000HP1m-0wjn;
-	Wed, 16 Jul 2025 09:11:20 -0400
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 5A5831784069;
-	Wed, 16 Jul 2025 18:41:12 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 3F13E1784068;
-	Wed, 16 Jul 2025 18:41:12 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id CYRcvNkisBKt; Wed, 16 Jul 2025 18:41:12 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id D20231781DBB;
-	Wed, 16 Jul 2025 18:41:11 +0530 (IST)
-Date: Wed, 16 Jul 2025 18:41:11 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: parvathi <parvathi@couthit.com>, kuba <kuba@kernel.org>
-Cc: danishanwar <danishanwar@ti.com>, rogerq <rogerq@kernel.org>, 
-	andrew+netdev <andrew+netdev@lunn.ch>, davem <davem@davemloft.net>, 
-	edumazet <edumazet@google.com>, pabeni <pabeni@redhat.com>, 
-	robh <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
-	conor+dt <conor+dt@kernel.org>, ssantosh <ssantosh@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	s hauer <s.hauer@pengutronix.de>, m-karicheri2 <m-karicheri2@ti.com>, 
-	glaroque <glaroque@baylibre.com>, afd <afd@ti.com>, 
-	saikrishnag <saikrishnag@marvell.com>, m-malladi <m-malladi@ti.com>, 
-	jacob e keller <jacob.e.keller@intel.com>, 
-	diogo ivo <diogo.ivo@siemens.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	horms <horms@kernel.org>, s-anna <s-anna@ti.com>, 
-	basharath <basharath@couthit.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <1616453705.30524.1752671471644.JavaMail.zimbra@couthit.local>
-In-Reply-To: <723330733.1712525.1752237188810.JavaMail.zimbra@couthit.local>
-References: <20250702140633.1612269-1-parvathi@couthit.com> <20250702151756.1656470-5-parvathi@couthit.com> <20250708180107.7886ea41@kernel.org> <723330733.1712525.1752237188810.JavaMail.zimbra@couthit.local>
-Subject: Re: [PATCH net-next v10 04/11] net: ti: prueth: Adds link
- detection, RX and TX support.
+	s=arc-20240116; t=1752671788; c=relaxed/simple;
+	bh=T2m/oiuwjR2kBEt3SpOmzte4WJb1A9iDMDoZGf9vy1I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TMogLK7yKT6QtDPPsX8EAZQKZMRHIPykG4XcGiJXYI/qIPZDkAAbnF1LdsjPZnRhMwiI9jxYvPiovpsw6usL6PWHwrklPo0sCCC2LOZSxRGfiTrgAiZk9eQqgb/XeEljgyR4ET7VE0aREzQjZ7Zb9zcG4vg6LrsDMSwXK3THk0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nIwWcKz4; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752671787; x=1784207787;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=T2m/oiuwjR2kBEt3SpOmzte4WJb1A9iDMDoZGf9vy1I=;
+  b=nIwWcKz49ieoEkD3iadhM1JVQl81JgV+CsIxZmgnNG120eDoHBl7nzA5
+   ughALHmlq91kUwkfCos3bi+URaC4r+VrxYrs3GasAmONqCYTqXMRJfEdV
+   Ue1TBMozu9PVmgEQlnbatCm1Hsva7GWy4UgzB3AgUk6sri8+AFj/FTWXc
+   srjahTDfLMGtDpqklH7UXsKAv9kB32BqhwIPg6ZZ0XgV75ITvl3uHSIUr
+   wMGT3Hv1dDWOyJ8Z2biWszcbpjrRadN4eeiIZlg3LUFgESdBdTf1BpPr3
+   jYw/TjINzv++FW6Y10Idat4wfMyJ1ezhVR8ugt8eYRyi3Trc9VRajDByD
+   A==;
+X-CSE-ConnectionGUID: X+HVhc4YQCuv4+FjkeB13w==
+X-CSE-MsgGUID: 5VuYdrqwSNShoqQiURwRCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="58685701"
+X-IronPort-AV: E=Sophos;i="6.16,316,1744095600"; 
+   d="scan'208";a="58685701"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2025 06:16:26 -0700
+X-CSE-ConnectionGUID: e8YbxVzmQ7uhXb6J+nSkqQ==
+X-CSE-MsgGUID: g9WY1BjiTLuoz6pD7l1wYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,316,1744095600"; 
+   d="scan'208";a="156894575"
+Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
+  by orviesa006.jf.intel.com with ESMTP; 16 Jul 2025 06:16:22 -0700
+Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uc1zf-000CQl-1x;
+	Wed, 16 Jul 2025 13:16:19 +0000
+Date: Wed, 16 Jul 2025 21:15:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arseniy Velikanov <me@adomerle.pw>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: oe-kbuild-all@lists.linux.dev, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Arseniy Velikanov <me@adomerle.pw>
+Subject: Re: [PATCH v1 2/2] clk: mediatek: Add MT6789 clock controllers
+Message-ID: <202507162133.0p74u7j1-lkp@intel.com>
+References: <20250715222221.29406-2-me@adomerle.pw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC138 (Linux)/8.8.15_GA_3968)
-Thread-Topic: prueth: Adds link detection, RX and TX support.
-Thread-Index: frcZHpE/y/6hXxyDNRDspT8aDcWlcTdy9M2r
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250715222221.29406-2-me@adomerle.pw>
 
-Hi,
+Hi Arseniy,
 
->>> +=09qid =3D icssm_prueth_get_tx_queue_id(emac->prueth, skb);
->>> +=09ret =3D icssm_prueth_tx_enqueue(emac, skb, qid);
->>> +=09if (ret) {
->>> +=09=09if (ret !=3D -ENOBUFS && netif_msg_tx_err(emac) &&
->>> +=09=09    net_ratelimit())
->>> +=09=09=09netdev_err(ndev, "packet queue failed: %d\n", ret);
->>> +=09=09goto fail_tx;
->>> +=09}
->>=20
->>> +=09if (ret =3D=3D -ENOBUFS) {
->>> +=09=09ret =3D NETDEV_TX_BUSY;
->>=20
->>=20
->> Something needs to stop the queue, right? Otherwise the stack will
->> send the frame right back to the driver.
->>=20
->=20
-> Yes, we will notify upper layer with =E2=80=9Cnetif_tx_stop_queue()=E2=80=
-=9D when returning
-> =E2=80=9CNETDEV_TX_BUSY=E2=80=9D to not push again immediately.
->=20
+kernel test robot noticed the following build errors:
 
-We reviewed the flow and found that the reason for NETDEV_TX_BUSY being
-notified to the upper layers is due lack of support for reliably detecting
-the TX completion event.
+[auto build test ERROR on clk/clk-next]
+[also build test ERROR on robh/for-next pza/reset/next linus/master v6.16-rc6 next-20250715]
+[cannot apply to pza/imx-drm/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-In case of ICSSM PRU Ethernet, we do not have support for TX complete
-notification back to the driver from firmware and its like store and
-forget approach. So it will be tricky to enable back/resume the queue
-if we stop it when we see busy status.
+url:    https://github.com/intel-lab-lkp/linux/commits/Arseniy-Velikanov/clk-mediatek-Add-MT6789-clock-controllers/20250716-062512
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20250715222221.29406-2-me%40adomerle.pw
+patch subject: [PATCH v1 2/2] clk: mediatek: Add MT6789 clock controllers
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250716/202507162133.0p74u7j1-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250716/202507162133.0p74u7j1-lkp@intel.com/reproduce)
 
-Returning NETDEV_TX_BUSY seems to be the best option so that the stack can
-retry as soon as possible.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202507162133.0p74u7j1-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/clk/mediatek/clk-mt6789-imp_iic_wrap.c:13:
+>> drivers/clk/mediatek/clk-mt6789-imp_iic_wrap.c:33:27: error: 'CLK_IMP_IIC_WRAP_W_I2C0' undeclared here (not in a function); did you mean 'CLK_IMP_IIC_WRAP_W_I2C1'?
+      33 |         GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_W_I2C0, "imp_iic_wrap_w_i2c0", "top_i2c", 0),
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/mediatek/clk-gate.h:41:23: note: in definition of macro 'GATE_MTK_FLAGS'
+      41 |                 .id = _id,                                      \
+         |                       ^~~
+   drivers/clk/mediatek/clk-mt6789-imp_iic_wrap.c:33:9: note: in expansion of macro 'GATE_IMP_IIC_WRAP'
+      33 |         GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_W_I2C0, "imp_iic_wrap_w_i2c0", "top_i2c", 0),
+         |         ^~~~~~~~~~~~~~~~~
 
 
-Thanks and Regards,
-Parvathi.
+vim +33 drivers/clk/mediatek/clk-mt6789-imp_iic_wrap.c
+
+    31	
+    32	static const struct mtk_gate imp_iic_wrap_w_clks[] = {
+  > 33		GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_W_I2C0, "imp_iic_wrap_w_i2c0", "top_i2c", 0),
+    34		GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_W_I2C1, "imp_iic_wrap_w_i2c1", "top_i2c", 1),
+    35	};
+    36	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
