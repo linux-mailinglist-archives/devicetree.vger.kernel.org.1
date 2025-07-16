@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-196782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7015DB070B6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:36:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F846B070BF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:39:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EA0D3A11BD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 08:36:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4C8A171811
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 08:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393902EE977;
-	Wed, 16 Jul 2025 08:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC472EE984;
+	Wed, 16 Jul 2025 08:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pbg579Ve"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JzMhCFBZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C33D84A35;
-	Wed, 16 Jul 2025 08:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1FE4290D95;
+	Wed, 16 Jul 2025 08:39:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752654992; cv=none; b=RLne3nfKjX1Dx4Xr6wUJHIHaILeaNLengbxCe7qTtOFEWoeKIt6hq/thJvyiyAYR8NEpmJrWJRGxzX7nDiKpk04GJiK9zcpG8w69kNL+ECVzSBQKFNRr3LiVyNgHN8t4F9DwYjeTVBi0lAqI4uxAdkeYt+X1zq9bjiREbSxCxjY=
+	t=1752655186; cv=none; b=SV0GapNoI0jcyztq14Xa+8Vx7buhUVZz29ycGJ83j722NpdXiRRdcJ3DNFsMFAWW3S3AMD7wPvcKyjbmOqy6AYck15jceyRxJhEX7HHqP1OQjCVHQvRW1TpK7DHcgRAe9jiMKFFUr++C0jTSxF0tyWdUz1hCKfTIYtfn6HdB6qI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752654992; c=relaxed/simple;
-	bh=lINxOgiDw9BL2jkn2XMcJi/MtfLKDDhjO77UU1QoWF8=;
+	s=arc-20240116; t=1752655186; c=relaxed/simple;
+	bh=MAh20KtVgdhwUpKFxkd8krU5hsKYLfu6RVE5PlOIAXk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r2V5OL5Xqz3v7riph9VIgwhX8uRPJc3WEYRfelUnia9amzjiH7SPSv++6/Hcdoho0ldPcTrPWd+YDXn6/Z1FiBjpY1uYyXEYP9v6FeaQJsCT28P+pJRUtBJeJGGjgX6XUrrrAfirurcZnnCpqLsMFKoxjM193K2ElDMkd2Keu7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pbg579Ve; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B407C4CEF0;
-	Wed, 16 Jul 2025 08:36:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=p9hYFlYQzfpp0Y5sVXGPPUUhlYNYVotsF4Jvska6admaHKYBfvJfaQ2AcuuLs8jG4iracb4RbXb/XjK9cXtbJGvorJLlnFQ2MuxB1nhUYQ8FTzz+LpUcZESI7EYolqG/R+N3mWuh67Li2AEZgCH17kyvn3m/PjprqAl5ETVWcxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JzMhCFBZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4D9AC4CEF0;
+	Wed, 16 Jul 2025 08:39:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752654991;
-	bh=lINxOgiDw9BL2jkn2XMcJi/MtfLKDDhjO77UU1QoWF8=;
+	s=k20201202; t=1752655182;
+	bh=MAh20KtVgdhwUpKFxkd8krU5hsKYLfu6RVE5PlOIAXk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pbg579VewxwHYhl6idrB6dbrAPCyGSmTRvvqWj7BeZBZmu/4vfTscl5vF9Hug7IxR
-	 eU8ddKkOrVEYT4ZwsHmxWAihMNlZtK8RSWB3FPbLQ+6+816nkHTR0oiZMREFNxSSoH
-	 N3fVXx02XpiWbt3ckTTjcnCSVQYZxu6cHSY7Adg2vI5U8G2G3HeF7RdiYT8U3zLub0
-	 aL1xex71bjC6S8znzJeWjGaGHkTiSo9MiVRiP4eYMgpJhaoF1c1phaXJhtZfOh3bW3
-	 5hf33gA7YLdOJel2UJpcp/Mk1sDgjLPH4vqrFQ8z15mykSddk2nWZ5nfqN/bHSnU3b
-	 ypshtAgKYRJCA==
-Date: Wed, 16 Jul 2025 10:36:29 +0200
+	b=JzMhCFBZ6X73XnflbcanRuvq4vspVQVGE1OvRfu5te+giBRv/tAnwZMcCVNCrkWCh
+	 Gh6xbgtrnzpuChLFJ4cyNG2zBNdQhIeVVrkoxJGKzYsWcnOULmE62ysrpw38pPNA9t
+	 bfXO5rPMNeorSSMCPzqj5RpOTBmPsZE8qW+W0MboqvrGLoEPoLC9AxWkCGJXRietms
+	 ubDCKQj1QszxtX7NIy9+J08pXTkqaQQd5IaUNgZi0LEVirV2XcKAAj+T0oEYBsN6Bf
+	 SbZwpZ7F9qTSZmBJLM+TMblKR0BHe4I0LWgI4iiTYJmG95ylVOrvU9pcHrGZ2wPkK5
+	 6f30RPe9spT4Q==
+Date: Wed, 16 Jul 2025 10:39:39 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, dmitry.baryshkov@oss.qualcomm.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] soc: qcom: pmic_glink: Add support for subsystem
- restart (SSR)
-Message-ID: <20250716-capable-wildebeest-from-hyperborea-9af840@krzk-bin>
-References: <20250716004004.311001-1-anjelique.melendez@oss.qualcomm.com>
+To: Sowon Na <sowon.na@samsung.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, 
+	alim.akhtar@samsung.com, kishon@kernel.org, krzk+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: ufs: exynos: add ExynosAutov920
+ compatible string
+Message-ID: <20250716-adorable-pastel-mongrel-44b71a@krzk-bin>
+References: <20250702013316.2837427-1-sowon.na@samsung.com>
+ <CGME20250702013332epcas2p4fe456c285c96c143d96f98b31d9b5255@epcas2p4.samsung.com>
+ <20250702013316.2837427-3-sowon.na@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,22 +61,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250716004004.311001-1-anjelique.melendez@oss.qualcomm.com>
+In-Reply-To: <20250702013316.2837427-3-sowon.na@samsung.com>
 
-On Tue, Jul 15, 2025 at 05:40:02PM -0700, Anjelique Melendez wrote:
-> Add support for PMIC Glink subsystem restart (SSR) so that PMIC Glink
-> clients are aware of when subsytem come up or down. 
+On Wed, Jul 02, 2025 at 10:33:08AM +0900, Sowon Na wrote:
+> Add samsung,exynosautov920-ufs compatible for ExynosAutov920 SoC.
 > 
-> Changes since v1:
->  - Add "qcom,subsys-restart" dt property to enable SSR
+> Signed-off-by: Sowon Na <sowon.na@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Now I noticed that I repeated feedback you received at v1, which you
-just ignored, so you ask us to do the thing twice.
-
-That's not the way to go and it is very dissapointing because I value my
-time. Address the feedback at v1.
-
-NAK
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
