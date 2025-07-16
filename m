@@ -1,85 +1,183 @@
-Return-Path: <devicetree+bounces-196736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00EC0B06E60
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:00:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 281CEB06E7A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:05:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FBA31A61AC9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:01:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F645560E41
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A4801DE2D8;
-	Wed, 16 Jul 2025 07:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1A728B407;
+	Wed, 16 Jul 2025 07:04:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VFG6zI2u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B325653BE;
-	Wed, 16 Jul 2025 07:00:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58D02857CD;
+	Wed, 16 Jul 2025 07:04:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752649243; cv=none; b=OwbdrNG0ipHojm/zN0YyDlyLshvoT2yuX3eiVvZmorvSXADn2CGIr8PJWUgPU9wlTHrb+WhaAyNixxee2kesdHayD1DoysQbIYdfNlE2ekSL7OdAcphYMgcnUvedafJMUwihj0uBclNR/xS11B3+q97Jz43DA+wMbJZMHeMXzQo=
+	t=1752649496; cv=none; b=EFkTqZVIS69IZnlRb6DU5ARZ4jThdOxiLeIUCIXnayMD8GSPdC6NMOTVvRhS/aamp8P4Kxfjh5Wb3fkEWyhejp0zDj/CwKNApmrKOorPicJwvKjUEkzt5KK9NF6Nw3OKX/tJXppHrZCQcceUf+DuYypzM6M8nVXSNyseVnzGjQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752649243; c=relaxed/simple;
-	bh=uBBJOOJQAkKxqQu/HK1yEFouftDahuSZhBNcvDUyMi8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=jTXvim86CvfhlUUI5aHQgcLG1GERP4FL9cwkfI5a692qD6qW8pXqXQaoVI5F/PHZqRcHDgV2uVo0YC3pXH3MYL9FdLaj0aty86Mhb8z8CYJaYYfhKAAsLe72n4VWwSA+lSdB+aY5wGgR0LmpsPVcIYm55aQcglh0BK3JCkuZWnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.214.181])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1c2e61632;
-	Wed, 16 Jul 2025 15:00:32 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jonas@kwiboo.se
-Cc: amadeus@jmu.edu.cn,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	ziyao@disroot.org
-Subject: Re: [PATCH v3 4/6] arm64: dts: rockchip: Add ArmSoM Sige1
-Date: Wed, 16 Jul 2025 15:00:25 +0800
-Message-Id: <20250716070025.236160-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <9050b4fe-ce69-4f93-9093-5461a6aa052f@kwiboo.se>
-References: <9050b4fe-ce69-4f93-9093-5461a6aa052f@kwiboo.se>
+	s=arc-20240116; t=1752649496; c=relaxed/simple;
+	bh=n5jDS6P6Z09q/E7TBP2aC3Jqc7A6owgR1MsLzr1mN+Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eNRJaMLisH5LmXrQU2V9RbzmsCOWZf/G5QEVYquSM+ZxWCeXb1ZkoqdCl7kWnUg9Ls+6+nKalwF6/1RBYcBUrg6qaTtQnBVQLRnzpPrIPqzMzk78j640vJuHAUduNM9bBjU3vctid9gI0vhNa2feCem2lwXoR9owjqHYO9WEfXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VFG6zI2u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9143C4CEF0;
+	Wed, 16 Jul 2025 07:04:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752649494;
+	bh=n5jDS6P6Z09q/E7TBP2aC3Jqc7A6owgR1MsLzr1mN+Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VFG6zI2u3XoXatQkR4SlZo52it/lESL/DyhxEF0NS77I3sT4leBM8M05KCYXtTesu
+	 BorGIFj7gurVfgONyWkOcyO1uw81eoyit106tHI6NsrirMjR3jB7QaItKM8FpP5IU6
+	 zGkh4I9oq4dE+2M3sXxfyxJ9RwSBH01O36TTvMawiFRFPZnNr4TPEDpeLA5KYweCCy
+	 qPY8RlIRorDHmHMLwKQK5eWp4XKMFSdHnAz8lC4YXzX39fVTMiqblPaX00Jkh8/U9L
+	 A30BmTkcku0hSCFi7Bk+dtU9eJl2slthDeh1Gz7tZQt+ADY2YV2mTtuESR+O86LVkL
+	 /1kJ73qVsWHlg==
+Date: Wed, 16 Jul 2025 09:04:51 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Arseniy Velikanov <me@adomerle.pw>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v1 1/2] dt-bindings: clock: mediatek: Describe MT6789
+ clock controllers
+Message-ID: <20250716-manipulative-dormouse-of-current-9af4e6@krzk-bin>
+References: <20250715222221.29406-1-me@adomerle.pw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZGRhJVh0aHRlPS0lOTR5MGlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSUJNS0pVSktLVU
-	tZBg++
-X-HM-Tid: 0a981208f05503a2kunmaae0551a86f5ff
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6N1E6TRw5CDE6Sg8tLUJLS0lJ
-	ORkKCzZVSlVKTE5JTU9CSUhPT09LVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	QlVKSUlVSUpPVUpDSllXWQgBWUFKS09DNwY+
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250715222221.29406-1-me@adomerle.pw>
 
-Hi,
+On Wed, Jul 16, 2025 at 02:22:20AM +0400, Arseniy Velikanov wrote:
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt6789-afe
+> +          - mediatek,mt6789-camsys
+> +          - mediatek,mt6789-camsys-rawa
+> +          - mediatek,mt6789-camsys-rawb
+> +          - mediatek,mt6789-imgsys
+> +          - mediatek,mt6789-imp-iic-wrap-c
+> +          - mediatek,mt6789-imp-iic-wrap-en
+> +          - mediatek,mt6789-imp-iic-wrap-w
+> +          - mediatek,mt6789-ipesys
+> +          - mediatek,mt6789-mdpsys
+> +          - mediatek,mt6789-mfgcfg
+> +          - mediatek,mt6789-vdecsys
+> +          - mediatek,mt6789-vencsys
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    afe: clock-controller@11210000 {
+> +        compatible = "mediatek,mt6789-afe";
+> +        reg = <0x11210000 0x1000>;
+> +        #clock-cells = <1>;
+> +    };
+> +
 
-> It mention 'not used in combination with eMMC or SDIO', yet I see
-> multiple boards where disable-wp is currently used with eMMC and SDIO.
+Drop the rest of nodes. One example is enough. They are ALL THE SAME.
 
-This seems to be a DT bug introduced from the bsp kernel.
+...
 
-> Do you have anything else to remark before I send a v4 with this prop
-> removed?
+> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt6789-sys-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt6789-sys-clock.yaml
+> new file mode 100644
+> index 000000000000..d6f70ee918ad
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt6789-sys-clock.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/mediatek,mt6789-sys-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek System Clock Controller for MT6789
+> +
+> +maintainers:
+> +  - Arseniy Velikanov <me@adomerle.pw>
+> +
+> +description:
+> +  The Mediatek system clock controller provides various clocks and system configuration
+> +  like reset and bus protection on MT6789.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt6789-apmixedsys
 
-No further questions, thanks for your work.
+Why this does not fit existing binding file? Or Mediatek maintainers
+preference was to switch to one-binding-per-SoC?
 
-Thanks,
-Chukun
 
---
-2.25.1
+> +          - mediatek,mt6789-topckgen
+> +          - mediatek,mt6789-infracfg-ao
+> +          - mediatek,mt6789-mcusys
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mcusys: syscon@c530000 {
+
+Drop unused labels, everywhere.
+
+Also, node name is supposed to be clock or reset controller, not syscon.
+
+> +      compatible = "mediatek,mt6789-mcusys", "syscon";
+> +      reg = <0xc530000 0x1000>;
+> +      #clock-cells = <1>;
+> +    };
+> +
+
+Drop the rest
+
+Best regards,
+Krzysztof
 
 
