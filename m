@@ -1,198 +1,355 @@
-Return-Path: <devicetree+bounces-197051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CABBB07EFA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 22:34:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 126AEB07F07
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 22:37:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 742461881C3B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:34:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56CAB168422
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3272BE057;
-	Wed, 16 Jul 2025 20:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B434C2BEFE5;
+	Wed, 16 Jul 2025 20:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="JtJBp3lG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LknWfePa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010071.outbound.protection.outlook.com [52.101.84.71])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E27E2641E7;
-	Wed, 16 Jul 2025 20:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752698044; cv=fail; b=bEdybMaRFgaxkdsD6h6R1WRzyXNJgYrOS8uQo+ctYvBJKBIHSGAAZAtZSKSg9YsO4k9jlVLYM+gA1kIee4glct9lilWLlEzhHYM3o8j9HPx3eJwHfcNny5cyXvXsuX2mJAAVD4n9wRiX5u2L3mRR6kNyEfrviNvyiCHnAdSEnSM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752698044; c=relaxed/simple;
-	bh=dG242a+R74MqNYUi+XuaCCkeg2OyvX0NBGLT4lJG0Sc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=UBBcBSXIBJt8e5Eq+4bppo6v0zCFonDLKj2SEFiRNGKbZY8QUumy5OiuTI6EdOnwApHLX5R8ocl/h36TQV3Q4ERO0XFDpPqabuBHPOWO1MVqcfSNYI2zCY9uii4lm6A48bguG7D5W0p23tzaGIavLKYu/nSio2NVVEO4qVHVP3E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=JtJBp3lG; arc=fail smtp.client-ip=52.101.84.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MYkJOqIkQLfYLXUCY6kbooeAnyFkEvRhLZIOVdiq1a7QKRi/vXHq7nVdsknfJKaQ8UypbxUXpGgatFu0Mqi00kyx1ox41Fl4333SYfu3MUmX2TMfrt7HEY7FrOsfLO8D3IafhWnRcfaU7ov7PjlMGxKQCKZ4fbU2OJm03F0yQI+sDM9aKYVTvvMaRTUnxdD42CRawx+5Kv/hBfWoef5+Q/PC3E70/4sei5kEKQUtmzhcwQF+WZi+W+QwTegsAbERfRYsTvB1RNyY1/nDhm/ibMTCeczXAlcbMA4wzQ2cuoxyuxzLWcPrwsF30KfAH5r6eXj0MbN05j5+uNxkZZh1og==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sNX4Ynzk2Cmy+abZiMBhd5AvpAgZg8hjJkKNqsiU9K0=;
- b=HgY+0Szj2qpNTBbbsJ/WllOOjS66PDFXRnlQF6nhjoodl5xEUu+fnkAqpfFr+tBVa0fh+DhcPRAfFSdDFA2OhByUTpFv9uw3V7MBTER0WYD6K4S3Vc0FHr86QqF7Jq7k2Lih8AIMF0GaF91GkhSHIkoX++/B4iVTao/27WoHjgSH6w1W5ahrjSJcbGnyZByqEzm+OC5TAr3GRmnIl1qWs9x3GC/e3ZqVIrM7x347yy1RJNf5jhiUPQRNXSpzr0PjC6ww/tiMVz0VxurCtNETyJXZsyNPojrmvyRWZvYbq5fluN4A5LrVfYTLk/hyqkU3OA3K8gw33WZKNArheWp/eg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sNX4Ynzk2Cmy+abZiMBhd5AvpAgZg8hjJkKNqsiU9K0=;
- b=JtJBp3lG0vqhcfuGGTChpunt24JVH384tMnbe5axt/Rc7TyKp+3S04wPzZB1uvmEPJec67SWurzaH+tDTo5ob/qPfwFv/PDDPYEvvziSTIu3JT6cuaDxVvv3XQiYjS6i72aq70MeYnt4w+NJ40SXFq2EIF+Du6UFPLes6M7OAYkGY4jgbJ5Fmrwz/xdnbYIfUFaXgYJzSj93XA2bDSlYVHUjd2le0ruOoCAJ8SCZ9rPU9tw5iy2BytUM1y6SO3EEqX3RSOst20gpN+lr33ZQU4ZJnOp0fp1WUisZEOhRKd6PGua8gqPsZ28tpfRNHkgf2s7UHnwSXZh6aWELGbz2VQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI2PR04MB10145.eurprd04.prod.outlook.com (2603:10a6:800:22c::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.32; Wed, 16 Jul
- 2025 20:33:57 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8922.028; Wed, 16 Jul 2025
- 20:33:57 +0000
-Date: Wed, 16 Jul 2025 16:33:50 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	richardcochran@gmail.com, claudiu.manoil@nxp.com,
-	vladimir.oltean@nxp.com, xiaoning.wang@nxp.com,
-	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, vadim.fedorenko@linux.dev,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-	fushi.peng@nxp.com, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, kernel@pengutronix.de
-Subject: Re: [PATCH v2 net-next 08/14] MAINTAINERS: add NETC Timer PTP clock
- driver section
-Message-ID: <aHgMrs/EkO/ERn8p@lizhi-Precision-Tower-5810>
-References: <20250716073111.367382-1-wei.fang@nxp.com>
- <20250716073111.367382-9-wei.fang@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250716073111.367382-9-wei.fang@nxp.com>
-X-ClientProxiedBy: AM0PR03CA0073.eurprd03.prod.outlook.com
- (2603:10a6:208:69::14) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCDD126FA4B;
+	Wed, 16 Jul 2025 20:36:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752698213; cv=none; b=MJYsafdKq+oW813to/1P2Fn+WZaaamTtjfZKTOC8NjzOaHF3Orbje81UzzuBuYZi2OroCLxFEc4LM6OdTvE3v4aNAYj9XsZ257xc7TBDUeAGMzir5Te6EomB8+JjiXBwGr5FwqcVPyqPBLXdwnwEgj/m6CJJdE1CYcI0h6ryEM0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752698213; c=relaxed/simple;
+	bh=MlMNGYQ8dO20s6aDXbSVRiR+xyHC7RFvXF/g3yeXQIk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EAQZx5ZKm1HgZ/qD9Jttu38SmI6Pe+ynNLQN69s/J7bYOM1UiWv8NHaPlB+wjzuXM4EDVjzm7pVFbYlj2RukYB4ieFTNB7fPFXKQcwgg95nKRZILhVosWw690U9peKssLO1mPTP2R6aAG05lQX+S+H5PsCdwFmLURSYhEyflURo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LknWfePa; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-74b50c71b0aso229824b3a.0;
+        Wed, 16 Jul 2025 13:36:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752698211; x=1753303011; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=dGK7tdjJS9+xErtdZGDdl6eWBQ2higLM/1xo+A5Ke+E=;
+        b=LknWfePaNtIRvt1s0FyO5kG/kQt4deEOnFC7YciyfIs7AnZIgeN0FTyQlJSBYQ2+OG
+         AJa82iRen5Mvu+pX9acuKQ/9dYIqR8WoqZYyCyfJRe3PfBKXMmvA/r2BzqR76HEYBTXI
+         RnnG041ahEApPrmMLzt305vSsjwhsn/SJ+13X6kyk4iq1V7OkDWU1qsjsk+dZEeLvtPp
+         /366qannB7q10M8sKt0xEmQUO68+H5bGMVRqgVTmF3iZRDdxVlqyExiOR/UgMO9b6Oja
+         7RS+yDDKYOtj3omysfhMhXPhpWmXfeK2XiOjGoW3AR4WxaDI77FLTFRcZLQer7jy+Pi9
+         Z6Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752698211; x=1753303011;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dGK7tdjJS9+xErtdZGDdl6eWBQ2higLM/1xo+A5Ke+E=;
+        b=spSA3udKgTWk1kGd/7CcyMOWtC5eEVs05Kkp1x0pqm11PmSC1eUsEvt9YU43K9urwn
+         QMWnfUChJiCJYi7N8l00V7XV/cuNKRAxBcn/x02WOphMrosS6tskr5lzopMK/0+5Sfo1
+         /VJFd+DcF6qP2q7jFrhdbXgBOp/DPzXxqjUTWHi9ZQ5i8oHEwuYwY2EplIT4f5qlzZC0
+         MgNzfEiF/nAA3G+SkVPW/uCnPIIS3Q0eGNBshk/pqidzLq8DFriTqYJiWEE5LdoBAI6l
+         53Te+NwKXnAILhjytW+465mevguU78Lrls4jijlnL9R1H8WzArUNyHclXLN+O3IgzBQq
+         DVmw==
+X-Forwarded-Encrypted: i=1; AJvYcCU/td0NKnA7fNibDc4I4cwJ/WS9YNUkcLdVZ5mfi+gahmj2jQeBQQzMqZFNU3QViGr+EVeZHbOaEgXy@vger.kernel.org, AJvYcCUfgoYRDaz+OMqq+i/UFQlV6aVplASJ3ijcpiws6l/w3SdGydAJjb9F8JDGzEefOE/9I3bS+CUOMfUJfwI=@vger.kernel.org, AJvYcCV+0mK3cCf0uaFs5VM2HgR+z+kMVW8zLo1cPtIOXW6Qv+Ewem0n1bYIE4umMiIOesiHJcZ5iP2dqk0F@vger.kernel.org, AJvYcCXBbZh+Yr4UzPWa7hoplNITk2Egn9ZjWlTTa63Z4tksp5PhYmduDXjXi26TNGApJK8eCsYmgfHE20dKXTn4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBlaEPKce9ZLQFwZkOhJUMhholmMj6cCLKitQjBB67m+FobBZL
+	Ht3a86ocH5sV/2FoGQf9yVSLaLzhP7TYk/TwRZBcCOwYF7tbhtwwXQw2
+X-Gm-Gg: ASbGncuzF5ByjOpmrwqeCRTTbdEJ+fNtEfb8VpPMk6lWpHlP5AmOAJK3FMctWYN57xq
+	nG2jOHwa5ws4dPL6V8F6RJOyX60Fz2ECC8EJAjOJMT8ItWVEyL0nAMluzDQ3/lFmAZzejGdnMMO
+	IX+0Zl34q8ltrvcyCR4ZtQTygVjJ8tgY/xxPWgrDPYE/ruB3RsHYUZY3iL4619c/fPS98siBmQ3
+	OyUhddk8dB8idirh+sSAPIqwj5cDJy7LT57bkGNCnf4XbUo5v6s2Baf4TQ0mQXLRf/+okXMyTW5
+	G8ZUa0w5Fxw5SMK1FmlC0pmu+NPugw0uKZxzjTQdaTphAr6ZRyvgjGQAZt8BoPh+hDrtrtuQxaU
+	kqZJHeeyBq7p35f2FxKzfy2XP+JoQQYZCcEatpmIzYlY69u3JIzAk90NqwSPl60ulDj40yos=
+X-Google-Smtp-Source: AGHT+IHC2TDtP7ayXT+F/AwOOBUrWElNyGsML+/uuXUSdQ8RGpxEC7Y5K3FXXAP7ltt9S4GgUr6SGA==
+X-Received: by 2002:a05:6a00:2d19:b0:749:14b5:921f with SMTP id d2e1a72fcca58-75724a8ac06mr5687709b3a.18.1752698210983;
+        Wed, 16 Jul 2025 13:36:50 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9dd7134sm15293965b3a.19.2025.07.16.13.36.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Jul 2025 13:36:50 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <ac652108-68aa-49d1-a448-1c0ee6ca157e@roeck-us.net>
+Date: Wed, 16 Jul 2025 13:36:47 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI2PR04MB10145:EE_
-X-MS-Office365-Filtering-Correlation-Id: 757b9d32-ce71-4f8e-3d18-08ddc4a81688
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|376014|7416014|19092799006|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?35SPAYs+d1DH8zJXDK0uXHNtWMFN2d50WG5yY9udRczCAqnY1hS2lckg/kyX?=
- =?us-ascii?Q?+h39nRvbI2bKWt6uN0oE5ead03BmBDuXO5Zy0MPDF8Y7QRT0HJzBRi6+Myxh?=
- =?us-ascii?Q?iZGE0ycviKcgNjoJUR19xRZGNapuNKbZj737+40KrGmnn5ykvJ65B7m8lhmH?=
- =?us-ascii?Q?vai+wsTksCkHzRZ1BFEFhD9QPHK3r4BukQBm04kQ8yCn09F37O0hZdOo1vQd?=
- =?us-ascii?Q?vhHtbDEwKlGBhIJm/Ep6d4rZpGNGSKTjn5eY9p6n7AoSfuWiEQ63uTGDWXU+?=
- =?us-ascii?Q?6o2oTs6MkzqqQfsRXpbgamKcnWsuXfDSFeb8NvIHPISloVWXzdqOHjfU7cNe?=
- =?us-ascii?Q?JL3b7+Z1Gy/tpx0rYzk3ud3QgHT/WpiNGk+qPkI6e3GnhRMTaI9Vvzfi5Eoq?=
- =?us-ascii?Q?rxQJgdS0hCeCm6p8iqdzSrvpXVe1E3DsBOABvlgHdW2CH8RmRVQQpF04cM/H?=
- =?us-ascii?Q?bFfgTmanKQ3COadQLmBuUaFe9FopjBZlKD8RgBGsc/3z0XRwslSUzQUG5/0d?=
- =?us-ascii?Q?CZHXmNd/bmLh++4nz8HX3/YHERkEGs2tCeH72JI89dFOI6L66iQrdpI1ku4h?=
- =?us-ascii?Q?5wEGmDesoxoTI/YkyvZ7Asn9+j+n04hl9+qjTLxoOMVrc9yzgrURmbHtaGN6?=
- =?us-ascii?Q?ndyNimKkxrjGnOH7oMG59zuTZuBVELDLb/i5IAxMBXE0VEnC1I4HNUZ7NoSS?=
- =?us-ascii?Q?FPzorNIl1lwkA+jm9SgSm4CxUdqCXFW8+CHcjIptL+10Y8j1ugmC5YsKUWQP?=
- =?us-ascii?Q?0+lrJGxI5mipMceB+I2a/ldAYF//IvIbvhTBBvr94tnxg+7bcaEygRq0NuJX?=
- =?us-ascii?Q?pFdzMnrBiMxk6nBkIXv4ZMFj00J1eDzpQI7FAU8Tr7XymG/0LEoqTSO9gNkx?=
- =?us-ascii?Q?k7c7h7KNf8DebigPmEfDwqFjkw6AMnAUCpOHEhNh14g7u2m/WogHv2N4s0ZF?=
- =?us-ascii?Q?ml5kFhHPtn8ZYs0zhiJHugZhM3hYjyL41J/YSTD0nP2yov8kODPt9CURnQo5?=
- =?us-ascii?Q?3PINEGZ3mfUo+ADCEamU7q9/K1lxlPqBXlq5bQMW+M96+HYU6mnnxFZyU+Lc?=
- =?us-ascii?Q?aCvRS93HV0MTF3t1DaIEJlqhd9sx/6pabwJDIvCNt+nzX9TsTuj87uRHbEBe?=
- =?us-ascii?Q?3eHNLsYiNPTh7CB3AEj8yFECOs2OWtGlH4dt/HuCw4wDB4KVKt7SbNINhZmE?=
- =?us-ascii?Q?6gyT7SiDqQeye6jfBLh2L/c5zoUJL/oBpkKgGbjkVaHt9Z07hpmhGAaaHwdp?=
- =?us-ascii?Q?xZoNDIvNdU9+ZWnDvqTdf/YNBNFZzcEOXQGgqJJbIgyxzcYc/AklrBxtOyiL?=
- =?us-ascii?Q?qjKYHtAfkJ/ptpVaA0KQIGtd5nWHVYhvuzZYVBhYPhL1RNXHbHdafpR8aFlN?=
- =?us-ascii?Q?YsyKuBMyXDqXlT53gKpXqfT/I4+Pk7DaFJdaybW2/z4kbrYLiaCkw2H98tXE?=
- =?us-ascii?Q?gM8YdgAvzREACltjCGzYcBCZfwKQnht4JwWEd/moVhxenxNjtImecA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(376014)(7416014)(19092799006)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?5RB3DZv8m9ms7hRkNjN3NWV3RB+j0rUn0PNqTobElFczC93NDzoirbbSN+wN?=
- =?us-ascii?Q?yrJae64uqwbpUOgfLQviqjdRkCNk5G+pg9qXrNKgHapPjAJT6GANGBLqscWv?=
- =?us-ascii?Q?jLitxE8HbnO3YLm/jfQaPACrRu23w65nk2aoeQ8LB8gFzILymVeXNIYwzjDs?=
- =?us-ascii?Q?Je2QtqHiu5Sig7kdGT+SEXURUcyVp0MT+nw8W+cJnkQhJ6Txs6TlMr35cehm?=
- =?us-ascii?Q?l7eGrTNNnnF4vw+tMSGe3W+H9Iwh31fO0ussl3Xir0MHsur5K2Ah4yo9Kq2V?=
- =?us-ascii?Q?0ui78xsKwqSYTTpCb1o7OiUYPU1owSsNH8Qj2rCkqBEirJrq5ZEaVRN+gcAi?=
- =?us-ascii?Q?adGI94yhIbWKhJNGupK2ak8EPA7zLeYLLptvixPuWMqgRspVNSlVpUD88yrV?=
- =?us-ascii?Q?3mpexOKbBsfQrr/LPaMBdBYVVjZgfDOs2PEsEUZq034lSHPYqnEgiQQzkklP?=
- =?us-ascii?Q?hb+po23UWRHMR/lFwfbT0t2XZixc/97572BiZ3Rg3EYccMqOhEyDpQUE+Vxj?=
- =?us-ascii?Q?qcuqKYhcT1S7Cv89FTR9SZXccPCvmy1Mi5Hp7LWEi5FnGs5cSxOEO4rjc5sV?=
- =?us-ascii?Q?Sr8KC7QfkntmFVqRmHqWzNkKWAmMnJF1PCl1oi9Ck7WL4uknxrgc+MnWDOwU?=
- =?us-ascii?Q?DC2uDphrV+NbxTbkBRW963hBeCGpoZZXhUvgbrlrcEOPIilTEfrIH3cEsS/S?=
- =?us-ascii?Q?IrXzEjoATcUDEnBYcARpWOncohb7cU8iIjQDdm1wcV/3+23GhA3GEZ/kxRi5?=
- =?us-ascii?Q?0nlSgI/TwzYCmFCfQQBTF+nghgEm60mw0XlQ6c4OeIhlDNm71AAQbg7KFQOC?=
- =?us-ascii?Q?Kt5G/KCQdIxBCINqOWceLFYD0Pi92XkfTRgmM4ganCaCeWmKXb5sy7xLddUb?=
- =?us-ascii?Q?UkyG0j3s85mw5qONGQWjA+Ldcwye7oGqbIBm55CgHbbO3zYOTJKh2aREWCvc?=
- =?us-ascii?Q?Mkr1dd1LrYGke78qWjzlyKmz6/DErBx6CiH5P5wd0wwkqVBWHXqpm7Ac4a0l?=
- =?us-ascii?Q?KIs9dnI9rluo1914el7d89sYwZmm6IpSndmmH+X5GJpchH0f6XzDd4J58gm5?=
- =?us-ascii?Q?MiOx7ZbGQQVQ+5dJUC7b0w8lI8i8lpBPtJxrVW8OCDCwDK4S0vcMItr5AWh7?=
- =?us-ascii?Q?qha5b4nwSw5GsYDKjEPUzpE68pzIbFaNhtQ1ZMGVphk6o1na4tDktlRu2MFy?=
- =?us-ascii?Q?WtNlVycCUx/ZJSgC163RuK6MeANu1SOLOzOhQ7ec0D4xb+3XVMN6WrZILCgr?=
- =?us-ascii?Q?mm1Wkn+JeiZVYf4BzpulSIZgkST/Z3Er+xGqTkMmBN7tTgKM+654/GE7iT70?=
- =?us-ascii?Q?NZOHeAwgfawSwYz7rWWFARbjFabdyGeFEQOZ3pUbnKigcSi5ZerzdUaiNg4A?=
- =?us-ascii?Q?+H9SkoSLJ9K/9DHhd5v7YbrUCLyxZNEr4pkxBLLbJ3ZvLzgUiikI91oAMw15?=
- =?us-ascii?Q?Ar7EuNJsxO27PaXAZ2k7248blp2hcE6EwLKPDH/N4DxguQc60eiOnYPgT4o1?=
- =?us-ascii?Q?DFSpS2VcF69ndRqOtL4uoaloS4b6RCySlks26A2kWITA9SneBjVuDvIdvuSh?=
- =?us-ascii?Q?ZdlEVfKs92CIIgEcldZgsXZJS/9Q1tXDw2EB/xov?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 757b9d32-ce71-4f8e-3d18-08ddc4a81688
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2025 20:33:57.0182
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: H7S75gNBTwcM6vr0shXiFTLLb3Q+GN+NfsRtYK3XFyUD77sAH9Zqnfd3HRAF5ubIo7/RCmT0ZYOzYLIdqeNO7A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10145
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] hwmon: (pmbus) Add support for MPS multi-phase
+ mp2869a/mp29612a controllers
+To: tzuhao.wtmh@gmail.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Naresh Solanki <naresh.solanki@9elements.com>,
+ Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, Fabio Estevam
+ <festevam@gmail.com>, Michal Simek <michal.simek@amd.com>,
+ Henry Wu <Henry_Wu@quantatw.com>, Grant Peltier <grantpeltier93@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
+ Nuno Sa <nuno.sa@analog.com>, Cherrence Sarip <cherrence.sarip@analog.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Leo Yang <leo.yang.sy0@gmail.com>,
+ John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>,
+ Kim Seer Paller <kimseer.paller@analog.com>,
+ Alex Vdovydchenko <xzeol@yahoo.com>, Ninad Palsule <ninad@linux.ibm.com>,
+ Mariel Tinaco <Mariel.Tinaco@analog.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Cc: peteryin.openbmc@gmail.com
+References: <20250630112120.588246-1-Henry_Wu@quantatw.com>
+ <20250630112120.588246-2-Henry_Wu@quantatw.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20250630112120.588246-2-Henry_Wu@quantatw.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jul 16, 2025 at 03:31:05PM +0800, Wei Fang wrote:
-> Add a section entry for NXP NETC Timer PTP clock driver.
->
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
-
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-
+On 6/30/25 04:20, tzuhao.wtmh@gmail.com wrote:
+> From: Henry Wu <Henry_Wu@quantatw.com>
+> 
+> Add support for the mp2869a and mp29612a controllers from Monolithic Power
+> Systems, Inc. (MPS). These are dual-loop, digital, multi-phase modulation
+> controllers.
+> 
+> Signed-off-by: Henry Wu <Henry_Wu@quantatw.com>
 > ---
->  MAINTAINERS | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d1554f33d0ac..dacc5824dca6 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18005,6 +18005,15 @@ F:	Documentation/devicetree/bindings/clock/imx*
->  F:	drivers/clk/imx/
->  F:	include/dt-bindings/clock/imx*
->
-> +NXP NETC TIMER PTP CLOCK DRIVER
-> +M:	Wei Fang <wei.fang@nxp.com>
-> +M:	Clark Wang <xiaoning.wang@nxp.com>
-> +L:	imx@lists.linux.dev
-> +L:	netdev@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml
-> +F:	drivers/ptp/ptp_netc.c
+>   Documentation/hwmon/index.rst   |   1 +
+>   Documentation/hwmon/mp2869a.rst |  86 +++++++++
+>   drivers/hwmon/pmbus/Kconfig     |  10 ++
+>   drivers/hwmon/pmbus/Makefile    |   1 +
+>   drivers/hwmon/pmbus/mp2869a.c   | 299 ++++++++++++++++++++++++++++++++
+>   5 files changed, 397 insertions(+)
+>   create mode 100644 Documentation/hwmon/mp2869a.rst
+>   create mode 100644 drivers/hwmon/pmbus/mp2869a.c
+> 
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index b45bfb4ebf30..10bf4bd77f7b 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -172,6 +172,7 @@ Hardware Monitoring Kernel Drivers
+>      menf21bmc
+>      mlxreg-fan
+>      mp2856
+> +   mp2869a
+>      mp2888
+>      mp2891
+>      mp2975
+> diff --git a/Documentation/hwmon/mp2869a.rst b/Documentation/hwmon/mp2869a.rst
+> new file mode 100644
+> index 000000000000..a98ccb3d630d
+> --- /dev/null
+> +++ b/Documentation/hwmon/mp2869a.rst
+> @@ -0,0 +1,86 @@
+> +.. SPDX-License-Identifier: GPL-2.0
 > +
->  NXP PF8100/PF8121A/PF8200 PMIC REGULATOR DEVICE DRIVER
->  M:	Jagan Teki <jagan@amarulasolutions.com>
->  S:	Maintained
-> --
-> 2.34.1
->
+> +Kernel driver mp2896a
+> +=====================
+> +
+> +Supported chips:
+> +
+> +  * MPS MP2896A
+> +
+> +    Prefix: 'mp2896a'
+> +
+> +  * MPS MP29612A
+> +
+> +    Prefix: 'mp29612a'
+> +
+> +Author:
+> +
+> +    Henry Wu <Henry_WU@quantatw.com>
+> +
+> +Description
+> +-----------
+> +
+> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
+> +MP2896A, a digital, multi-phase voltage regulator controller with PMBus interface.
+> +
+> +This device:
+> +
+> +- Supports up to two power rails.
+> +- Supports multiple PMBus pages for telemetry and configuration.
+> +- Supports VOUT readout in **VID format only** (no support for direct format).
+> +- Supports AMD SVI3 VID protocol with 5-mV/LSB resolution (if applicable).
+> +- Uses vendor-specific registers for VOUT scaling and phase configuration.
+> +
+> +Device supports:
+> +
+> +- SVID interface.
+> +- AVSBus interface.
+> +
+> +Device compliant with:
+> +
+> +- PMBus rev 1.3 interface.
+> +
+> +Sysfs Interface
+> +---------------
+> +
+> +The driver provides the following sysfs attributes:
+> +
+> +**Current measurements:**
+> +
+> +- Index 1: "iin"
+> +- Indexes 2, 3: "iout"
+> +
+> +**curr[1-3]_alarm**
+> +**curr[1-3]_input**
+> +**curr[1-3]_label**
+> +
+> +**Voltage measurements:**
+> +
+> +- Index 1: "vin"
+> +- Indexes 2, 3: "vout"
+> +
+> +**in[1-3]_crit**
+> +**in[1-3]_crit_alarm**
+> +**in[1-3]_input**
+> +**in[1-3]_label**
+> +**in[1-3]_lcrit**
+> +**in[1-3]_lcrit_alarm**
+> +
+> +**Power measurements:**
+> +
+> +- Index 1: "pin"
+> +- Indexes 2, 3: "pout"
+> +
+> +**power[1-3]_alarm**
+> +**power[1-3]_input**
+> +**power[1-3]_label**
+> +
+> +**Temperature measurements:**
+> +
+> +**temp[1-2]_crit**
+> +**temp[1-2]_crit_alarm**
+> +**temp[1-2]_input**
+> +**temp[1-2]_max**
+> +**temp[1-2]_max_alarm**
+> +
+> +
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index 441f984a859d..93b558761cc6 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -364,6 +364,16 @@ config SENSORS_MP2856
+>   	  This driver can also be built as a module. If so, the module will
+>   	  be called mp2856.
+>   
+> +config SENSORS_MP2869A
+> +	tristate "MP2869A PMBus sensor"
+> +	depends on I2C && PMBUS
+> +	help
+> +	  If you say yes here you get support for the MPS MP2869A MP29612A
+> +	  voltage regulator via the PMBus interface.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called mp2869a.
+> +
+>   config SENSORS_MP2888
+>   	tristate "MPS MP2888"
+>   	help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 29cd8a3317d2..42087d0dedbc 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -37,6 +37,7 @@ obj-$(CONFIG_SENSORS_MAX31785)	+= max31785.o
+>   obj-$(CONFIG_SENSORS_MAX34440)	+= max34440.o
+>   obj-$(CONFIG_SENSORS_MAX8688)	+= max8688.o
+>   obj-$(CONFIG_SENSORS_MP2856)	+= mp2856.o
+> +obj-$(CONFIG_SENSORS_MP2869A)   += mp2869a.o
+>   obj-$(CONFIG_SENSORS_MP2888)	+= mp2888.o
+>   obj-$(CONFIG_SENSORS_MP2891)	+= mp2891.o
+>   obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
+> diff --git a/drivers/hwmon/pmbus/mp2869a.c b/drivers/hwmon/pmbus/mp2869a.c
+> new file mode 100644
+> index 000000000000..e61f1380dbc1
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/mp2869a.c
+> @@ -0,0 +1,299 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Hardware monitoring driver for MP2856A/MP29612A
+> + * Monolithic Power Systems VR Controller
+> + *
+> + * Copyright (C) 2023 Quanta Computer lnc.
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/pmbus.h>
+> +#include "pmbus.h"
+> +
+> +/* Vendor specific registers. */
+> +#define MP2869A_VOUT_MODE			 0x20
+
+Standard register.
+
+> +#define MP2869A_VOUT_MODE_MASK		 GENMASK(7, 5)
+> +#define MP2869A_VOUT_MODE_VID		 (0 << 5)
+> +
+> +#define MP2869A_READ_VOUT			 0x8b
+
+Standard register.
+> +
+> +#define MP2869A_MFR_VOUT_SCALE_LOOP	 0x29
+
+Standard register.
+
+Guenter
+
 
