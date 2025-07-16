@@ -1,378 +1,166 @@
-Return-Path: <devicetree+bounces-196803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B4CB07202
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 11:41:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED7E0B0720F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 11:43:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E86BB167650
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:41:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1ED813AB0D6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FE22C1580;
-	Wed, 16 Jul 2025 09:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5822A2F2341;
+	Wed, 16 Jul 2025 09:43:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cpjtkl6x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hwA0tqQw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E08F32701CE;
-	Wed, 16 Jul 2025 09:41:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEB222F199B;
+	Wed, 16 Jul 2025 09:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752658915; cv=none; b=c3lDew0I7Zv8t4siVOEffXTx2A2C+Zq2bytbHRHIziZGPkQ5n6VPDUThE2MQ8c5kzY+NNz3cmWjU024lQklORlMOq+oIGupc+bN3b0Qm5hYW8A19ixYqfxMbVC38r5yXDRoDVdXqExt+Qr9qjzAm1akqz8fcYq4SEMlq9hznZ9g=
+	t=1752659016; cv=none; b=cDM91kmjbiPutKhX4Lo45KW+bupfQnNryx94b1Qk2bO8H8bunNl66p1GZ5B3ngEed1pGGyVdRYwvruYX9FthWJVmx0tmBe/kJhI6+1UDJ9Odl88HTQ0JfHTSYGF/mobnchOt83qrzGsqNrOO9HFn8Im6VdqvG/Z5s2JH4F5G8Yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752658915; c=relaxed/simple;
-	bh=0zQw3Y7sNLP/ZJsjNVbVJe5uTrMbiyRpO+AyWlkpAvw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K7kg2pr2cfYmZ128DUWVJEYuXnHg1sirCCQIvymuf5D3fqVQSzg88hP2JAZLNGUrFKim0ETqJ+Y71TtsDHcQGHvrrtKORuEUT7xL6X8dWeesYQDxYN9B0E81g9MDu3PpzynxsI8f4G5okUAtMjFZokhdGmgBNZ2PWJAnXaCdx0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cpjtkl6x; arc=none smtp.client-ip=209.85.167.51
+	s=arc-20240116; t=1752659016; c=relaxed/simple;
+	bh=dhm3xocr5iaNuduS+eigV/azx1gGGvuqWKVuj+K5CNU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oKwATQ3VCdkXhgdvhy2emDow0c69GZRIv8qicLWctdiZ7mN38/nzIrlX2SRxR5JHJDdWGJC5vaQlsi1iKsla5HvwcVp6LrYQRQhopjItRv+QB8khtUSXpYm/XXi24bXj2WRRrOQnzZtcuTo1hZ299mfBnRu8+9IfcndEMw6sfDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hwA0tqQw; arc=none smtp.client-ip=209.85.215.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-558fa0b2c99so5238577e87.2;
-        Wed, 16 Jul 2025 02:41:53 -0700 (PDT)
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b3220c39cffso6513835a12.0;
+        Wed, 16 Jul 2025 02:43:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752658912; x=1753263712; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DTzh11qE1Aq7QYMndmWPIvzi24OXXMC+pZA0nytp/QA=;
-        b=Cpjtkl6x3j1m4npGyW27gmqTqoWoXcODaf9QUO6xPdgPD8IDAjTEqKnOhUT0iWDfdO
-         N7i8QdVkqYrCHC1h4ebOC5uQt/a6AJbaAipYNO2JmyxabC6GGyqXFhr6RvRn8958TfjS
-         j3QZCUNoKWt/YZibWA4/5g7uz/A5V5BrKRJG+XwHLSkazdPbG+oMcSSiT+ybzW8x5NZr
-         3pah/JiPE3URZEYWel2CK41+haKE1UljiwGNLs90fz5bXZZMuqm7KstB47DtwqBscIz2
-         s4+r47XS/rZtAbXQoFQHYvLK6r9f2ZrKZCHvUqCYo66oMgVm9vxWOaJy+eV4bYmZApJk
-         oQ0g==
+        d=gmail.com; s=20230601; t=1752659014; x=1753263814; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=D5vVXw+LoXYmvFQxN+y9Jtu16e9jAjGmsO29XS/9U5o=;
+        b=hwA0tqQwR7aHk3u9zOdBS/NMNw9kWeTykN87aSIbzYeNaWXW3OJ2TQN27rbeKGEGLb
+         mCkJ9W+UF/eNBCqSwG6rTox4KLJ3zsgR0u9ZZlr6t4xnrsaW2X/Mm4j0+KVKWlcsXYHo
+         7Ddn6sdpe4eVs/t2Q4aet7s6SOEkdaKhx8XCn6+N7DJSxDP9fkFuH9QWQVUedEM5F9YO
+         EiwCtT/93kIJIrprm1geeX7t6EKqMwopn0/IM+2+9JVci95/8n/kKbWVworf26vHIv6D
+         3B9mn8dGVwRIJ22TUjhFrCrulIEeEyL3toEbExBPQ+8xu1g/faf3xG+zHyP46v28Grcv
+         Fb8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752658912; x=1753263712;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DTzh11qE1Aq7QYMndmWPIvzi24OXXMC+pZA0nytp/QA=;
-        b=cTnKSx5B3gpWJDG9jcLvRA8tu12bHs788YeNGh/DExu5CKDF6niEusbd4U3RECld0n
-         9x79N2ODBeokZme5gsTFUMfN3XUYFTTG3okqNRtfo+sXA6RK+SqVjic5zds2E3gz2V5Z
-         KKDFvfTbmRu8FvTek81subyEDTCGJ/ZVnXeEe2ObcdQ/CyiUrX0VPbyvTY+6KG66QjWR
-         62dfqdz7DIlkcGrT/hMrqndbBFq5cxeh0u+UKlgZsG97zAjm1Pzl5699gXrg3TQImO80
-         rwEBmKoGNE6sTfqsaaPzJHtFthczK/7dLhWKE+VWwYvi4uvBw/88AzW3FQX+qWJ7F/eq
-         IRbw==
-X-Forwarded-Encrypted: i=1; AJvYcCVSWcJbi8x8tByXZtjqGsItQm84U5JhzhLHmtgVgG6BsyWcAAiJ79/n1kuNVkimhIv0ldZZho7lNaMa0FpG@vger.kernel.org, AJvYcCWlCFbmipzzUgZ+VBfl8xVMie20yN5aKAFjypPLBZ0yXNGIOxBcXi6yrc5zlRfRAyCklRjCrzhDiR5h@vger.kernel.org, AJvYcCXUlCsNyszwQORFeyGs/MZHiAmZFxB9q0if/dMNhxH5UhEDZzIvi5mC+V3J2SRuPdIrnQhKJu6eOl0leQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMkbIP8TdE+DIyGTTJyKlteEkFhoCcQT14Dce2RQeazf6Sljm5
-	0yk6lm88D3iTjzBnMUjH9ttlOGN6lwJGmser0XtU7H6A9+/8Dezrv0KFI3xa0uBLJ+1tnsoeIap
-	zl2WYE6R7mhG4F3OAnirD15jM5FRalQc=
-X-Gm-Gg: ASbGncswJ4Ug1q2/82YoFyzNd7/ZMowxti2ICR9KhnZygHTSrY6BXFL95fAhfAgU6UU
-	FqNFI1TcMYaua4l4l/3ADyvlM4NjXiOzufg7buHQACGfb4Z7QmJJOw0klmfBs7f0iBtT2HrfYI6
-	5/fHJzEVmKMOjHZYaYxFBwmVwRqgsoyDQKqbKuBb3FmuEUJTInRzRQJjuIoApwFtYzQHfBcq2QR
-	6eL1LlGgR2F85Hany8=
-X-Google-Smtp-Source: AGHT+IG3OILo61yOuxFn+Fc85CBvzf/yi0KNUig7gw5QljWJa5ohkfWldIjyatKP4INES1J2t5WEeM6OfW/dR7gbfz8=
-X-Received: by 2002:a05:6512:1147:b0:553:a456:a0c1 with SMTP id
- 2adb3069b0e04-55a233d97d2mr774688e87.43.1752658911632; Wed, 16 Jul 2025
- 02:41:51 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1752659014; x=1753263814;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D5vVXw+LoXYmvFQxN+y9Jtu16e9jAjGmsO29XS/9U5o=;
+        b=o2WHHT8fxz6nAtsOxRTQuCTZLKlPP2YHQ7dOTw52ZN5BVWwH6np3rrCVVJnn5c7k3T
+         ORg1SEyRExSndP0oUgrlzWlAHIOgm/4XfQMNNp0XmDEQvQa3eo0AqyUIvsEO77a6NeUN
+         ISlRoZU+fWXMvf89NSLPuTQffRN+ETS6XmkCZw4sT1JCTesITeaDQRlG0uW7UKnJGzHv
+         QIQGXe/uMQh7KaQvtUTazWEHPMTfcAF2YLFd/Ved9te0XDVXQMZzWs0WhaikCIW8vmYT
+         SaRNv1Y194Vv87TKh8NPuhbf5td55JxKqJfdNd1jTzTtVjX1bMBtEBI2DybIkUfiND7+
+         qrgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXUX5oCn5v8LljRobQOlZIu1dXqRYEkKPvAJPgrA/DwfAiG7bUNqdok/Ao2bYs1bQVgaw9tyLI4UHCHOWmD@vger.kernel.org, AJvYcCXlIBLbZHBumY5WNxyOjq9R8vD2d4BX4Y09VrA2lPtOa9uvYcoAz5NZ4HHITrFxQDmPCmN7pRT31R+K@vger.kernel.org
+X-Gm-Message-State: AOJu0YweBOf3jFMMD9oPqaOqnqRcZnQ223CMJ9ZuI/5UzhW0VzUyhAtx
+	+/xirBTKKYurSZCw34MeXqFIC0y5gQWjZjUFxX4ItdXBG8UJjKfEuW7a
+X-Gm-Gg: ASbGncv8AxAbzc2S7wAR3lRadAFyzdNOqg2Q4hSaiMe3YpM2X7h4WQ6kehwrmaq6TMi
+	N4YHgo/r0gi5mVsZZJD+0xR54oo9Rgq2Q/3RFytWzmVwDfE36wGMum4aYuRd9d/mRY/5Fdqgc5b
+	Rn+LxGZdWiKsubJPqFWS8g9+x9JQDw2FsT5+wflEB+wut7ukcR5OhtAJ64exv21bdwQSPobKaE7
+	MxzYPc7veoX7uRaTpP6R2P6l1kriK1MdbuD/tV4w1n0mVvjJiJg9Y9SnHtcZT6QmRPvMgLwqyeY
+	Xc4+uqvAhwk0CtOHW5hxqdXyR+YFADTjQayI0XSL6rkdgTX79bWMPpa/GgOL3AGBKgtu5s48GkH
+	KnjV3+sYuCmnGpv3t3i+9h30wTr2ia9WNKE9DB7w7RCaAS6sYuQxeEYrLTKi7rd8n7ytNrg2FeD
+	xyvHMvbgzQ
+X-Google-Smtp-Source: AGHT+IEQ8TA8a/Tp8JVUJ4l4ZbjYlDYN0wAMilYaPQ7xEw3y9Z5/A8bzzrn/UjeSnv2yhj0GESvLrA==
+X-Received: by 2002:a17:902:d547:b0:23d:f499:79fd with SMTP id d9443c01a7336-23e257647e5mr37218635ad.40.1752659013872;
+        Wed, 16 Jul 2025 02:43:33 -0700 (PDT)
+Received: from pk-pc.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31c9f2350acsm1039503a91.45.2025.07.16.02.43.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Jul 2025 02:43:33 -0700 (PDT)
+From: "P.K. Lee" <pkleequanta@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	joel@jms.id.au,
+	andrew@codeconstruct.com.au,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	patrick@stwcx.xyz
+Cc: Jerry.Lin@quantatw.com,
+	Jason-Hsu@quantatw.com,
+	yang.chen@quantatw.com,
+	p.k.lee@quantatw.com
+Subject: [PATCH v9 0/2] Add Meta (Facebook) Ventura BMC (AST2600)
+Date: Wed, 16 Jul 2025 17:43:27 +0800
+Message-ID: <20250716094329.1069203-1-pkleequanta@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250709-loongson1-arch-v2-0-bcff6e518c09@gmail.com>
- <20250709-loongson1-arch-v2-3-bcff6e518c09@gmail.com> <20250710-ancient-ibex-of-adventure-30030a@krzk-bin>
-In-Reply-To: <20250710-ancient-ibex-of-adventure-30030a@krzk-bin>
-From: Keguang Zhang <keguang.zhang@gmail.com>
-Date: Wed, 16 Jul 2025 17:41:14 +0800
-X-Gm-Features: Ac12FXz1HBYeB40pqPFU375B-7clc7iM_1QEG3247AIxPozwifRzC_JCyTdhRgs
-Message-ID: <CAJhJPsU8En_frOvwV0HgFoucrd4dme2LJ+Je6DcQj4yrNqXsjg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/9] MIPS: dts: loongson: Add LS1B-DEMO board
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-mips@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jul 10, 2025 at 8:27=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Wed, Jul 09, 2025 at 07:05:54PM +0800, Keguang Zhang wrote:
-> > Add a device tree for LS1B-DEMO board, supporting CPU, clock, INTC,
-> > UART, Ethernet, GPIO, USB host, RTC, watchdog, DMA, NAND, and AC97.
-> >
-> > Additionally, since the current bootloader for Loongson1 does not suppo=
-rt
-> > FDT, introduce CONFIG_BUILTIN_DTB_NAME to enable a built-in DTB.
-> >
-> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> > ---
-> >  MAINTAINERS                                 |   1 +
-> >  arch/mips/boot/dts/Makefile                 |   1 +
-> >  arch/mips/boot/dts/loongson/Makefile        |   6 +
-> >  arch/mips/boot/dts/loongson/loongson1.dtsi  | 136 +++++++++++++++++++
-> >  arch/mips/boot/dts/loongson/loongson1b.dtsi | 198 ++++++++++++++++++++=
-++++++++
-> >  arch/mips/boot/dts/loongson/ls1b-demo.dts   | 108 +++++++++++++++
-> >  6 files changed, 450 insertions(+)
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index c3f7fbd0d67a..0089ebca31cf 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -16683,6 +16683,7 @@ M:    Keguang Zhang <keguang.zhang@gmail.com>
-> >  L:   linux-mips@vger.kernel.org
-> >  S:   Maintained
-> >  F:   Documentation/devicetree/bindings/*/loongson,ls1*.yaml
-> > +F:   arch/mips/boot/dts/loongson/loongson1*
-> >  F:   arch/mips/include/asm/mach-loongson32/
-> >  F:   arch/mips/loongson32/
-> >  F:   drivers/*/*loongson1*
-> > diff --git a/arch/mips/boot/dts/Makefile b/arch/mips/boot/dts/Makefile
-> > index 7375c6ced82b..6d9dbe945541 100644
-> > --- a/arch/mips/boot/dts/Makefile
-> > +++ b/arch/mips/boot/dts/Makefile
-> > @@ -8,6 +8,7 @@ subdir-$(CONFIG_FIT_IMAGE_FDT_BOSTON) +=3D img
-> >  subdir-$(CONFIG_MACH_INGENIC)                +=3D ingenic
-> >  subdir-$(CONFIG_LANTIQ)                      +=3D lantiq
-> >  subdir-$(CONFIG_MACH_LOONGSON64)     +=3D loongson
-> > +subdir-$(CONFIG_MACH_LOONGSON32)     +=3D loongson
-> >  subdir-$(CONFIG_SOC_VCOREIII)                +=3D mscc
-> >  subdir-$(CONFIG_MIPS_MALTA)          +=3D mti
-> >  subdir-$(CONFIG_LEGACY_BOARD_SEAD3)  +=3D mti
-> > diff --git a/arch/mips/boot/dts/loongson/Makefile b/arch/mips/boot/dts/=
-loongson/Makefile
-> > index 5e3ab984d70f..2facf251fb6a 100644
-> > --- a/arch/mips/boot/dts/loongson/Makefile
-> > +++ b/arch/mips/boot/dts/loongson/Makefile
-> > @@ -5,3 +5,9 @@ dtb-$(CONFIG_MACH_LOONGSON64) +=3D loongson64c_4core_rs=
-780e.dtb
-> >  dtb-$(CONFIG_MACH_LOONGSON64)        +=3D loongson64c_8core_rs780e.dtb
-> >  dtb-$(CONFIG_MACH_LOONGSON64)        +=3D loongson64g_4core_ls7a.dtb
-> >  dtb-$(CONFIG_MACH_LOONGSON64)        +=3D loongson64v_4core_virtio.dtb
-> > +
-> > +ifneq ($(CONFIG_BUILTIN_DTB_NAME),)
-> > +dtb-y        :=3D $(addsuffix .dtb, $(CONFIG_BUILTIN_DTB_NAME))
-> > +else
->
-> This does not really look related to new board.
+Add Linux device tree entry related to Meta (Facebook) Ventura specific
+devices connected to the BMC (AST2600) SoC. The purpose of Ventura is to
+detect liquid leakage from all compute trays, switch trays and rack
+sensors within the rack, log the events, and take necessary actions
+accordingly.
 
-Will separate this into a single patch.
->
-> > +dtb-$(CONFIG_MACH_LOONGSON32)        +=3D ls1b-demo.dtb
-> > +endif
-> > diff --git a/arch/mips/boot/dts/loongson/loongson1.dtsi b/arch/mips/boo=
-t/dts/loongson/loongson1.dtsi
-> > new file mode 100644
-> > index 000000000000..5ba5a5d131ba
->
-> ...
->
-> > +             opp-220000000 {
-> > +                     opp-hz =3D /bits/ 64 <220000000>;
-> > +             };
-> > +     };
-> > +
-> > +     clocksource: timer@1fe5c030 {
->
-> This should be in the SoC (see writing bindings, maintainer soc, DTS
-> coding style).
+---
+v1:
+    1. Create ventura dts file.
+    2. Add commit msg.
+    3. Use format-patch to generate patch.
+    4. Add subject prefixes matching the subsystem.
+---
+v2:
+    1. Modify email content.
+---
+v3:
+    1. Add mail list.
+---
+v4:
+    1. Apply git send-email --thread option.
+    2. Sort nodes in the dts alphanumerically.
+---
+v5:
+    1. Run scripts/checkpatch.pl and fix reported warnings.
+    2. Remove unnecessary 88E6393X CONFIG FRU.
+---
+v6:
+    1. Add a new stage for the DTS change.
+    2. Run scripts/checkpatch.pl and fix reported error.
+    3. Fix the issue in a separate patch.
+---
+v7:
+    1. Fix broken indentation in the device tree file.
+    2. Sort nodes alphabetically, then by address if equal.
+    3. Rename fan sensor nodes from 'hwmon' to 'fan-controller'.
+---
+v8:
+    1. This patch series has significant changes compared to
+       previous versions, and quite some time has passed since the last
+       submission.Therefore, previously received Acked-by/Reviewed-by/Tested-by
+       tags are not included in this version.
+       If needed, tags can be added again after review of thisnew version.
+---
+v9:
+    1. Reordered the node sequence under i2c5.
+    2. Added a description of the platform's intended use to the commit
+       messages.
+    3. Added 3 GPIO expanders to i2c10 and defined the necessary GPIO
+       line names.
+---
+P.K. Lee (2):
+  dt-bindings: arm: aspeed: add Meta Ventura board
+  ARM: dts: aspeed: ventura: add Meta Ventura BMC
 
-Will move it under the APB bus.
->
-> > +             compatible =3D "loongson,ls1b-pwmtimer";
-> > +             reg =3D <0x1fe5c030 0x10>;
-> > +             clocks =3D <&clkc LS1X_CLKID_APB>;
-> > +             interrupt-parent =3D <&intc0>;
-> > +             interrupts =3D <20 IRQ_TYPE_LEVEL_HIGH>;
-> > +     };
-> > +
-> > +     clkc: clock-controller@1fe78030 {
-> > +             compatible =3D "loongson,ls1b-clk";
-> > +             reg =3D <0x1fe78030 0x8>;
-> > +             clocks =3D <&xtal>;
-> > +             #clock-cells =3D <1>;
-> > +     };
-> > +};
-> > +
-> > +&soc {
-> > +     syscon: syscon@420 {
-> > +             compatible =3D "loongson,ls1b-syscon", "syscon";
-> > +             reg =3D <0x420 0x8>;
-> > +     };
-> > +
-> > +     dma: dma-controller@1160 {
-> > +             compatible =3D "loongson,ls1b-apbdma";
-> > +             reg =3D <0x1160 0x4>;
-> > +             interrupt-parent =3D <&intc0>;
-> > +             interrupts =3D <13 IRQ_TYPE_EDGE_RISING>,
-> > +                          <14 IRQ_TYPE_EDGE_RISING>,
-> > +                          <15 IRQ_TYPE_EDGE_RISING>;
-> > +             interrupt-names =3D "ch0", "ch1", "ch2";
-> > +             #dma-cells =3D <1>;
-> > +     };
-> > +
-> > +     ehci: usb@100000 {
-> > +             compatible =3D "generic-ehci";
-> > +             reg =3D <0x100000 0x100>;
-> > +             interrupt-parent =3D <&intc1>;
-> > +             interrupts =3D <0 IRQ_TYPE_LEVEL_HIGH>;
-> > +             status =3D "disabled";
-> > +     };
-> > +
-> > +     ohci: usb@108000 {
-> > +             compatible =3D "generic-ohci";
-> > +             reg =3D <0x108000 0x100>;
-> > +             interrupt-parent =3D <&intc1>;
-> > +             interrupts =3D <1 IRQ_TYPE_LEVEL_HIGH>;
-> > +             status =3D "disabled";
-> > +     };
-> > +
-> > +     gmac0: ethernet@110000 {
-> > +             compatible =3D "loongson,ls1b-gmac", "snps,dwmac-3.50a";
-> > +             reg =3D <0x110000 0x10000>;
-> > +             clocks =3D <&clkc LS1X_CLKID_AHB>;
-> > +             clock-names =3D "stmmaceth";
-> > +             interrupt-parent =3D <&intc1>;
-> > +             interrupts =3D <2 IRQ_TYPE_LEVEL_HIGH>;
-> > +             interrupt-names =3D "macirq";
-> > +             loongson,ls1-syscon =3D <&syscon>;
-> > +             snps,pbl =3D <1>;
-> > +             status =3D "disabled";
-> > +     };
-> > +
-> > +     gmac1: ethernet@120000 {
-> > +             compatible =3D "loongson,ls1b-gmac", "snps,dwmac-3.50a";
-> > +             reg =3D <0x120000 0x10000>;
-> > +             clocks =3D <&clkc LS1X_CLKID_AHB>;
-> > +             clock-names =3D "stmmaceth";
-> > +             interrupt-parent =3D <&intc1>;
-> > +             interrupts =3D <3 IRQ_TYPE_LEVEL_HIGH>;
-> > +             interrupt-names =3D "macirq";
-> > +             loongson,ls1-syscon =3D <&syscon>;
-> > +             snps,pbl =3D <1>;
-> > +             status =3D "disabled";
-> > +     };
-> > +};
-> > +
-> > +&apb {
-> > +     watchdog: watchdog@1c060 {
-> > +             compatible =3D "loongson,ls1b-wdt";
-> > +             reg =3D <0x1c060 0xc>;
-> > +             clocks =3D <&clkc LS1X_CLKID_APB>;
-> > +             status =3D "disabled";
-> > +     };
-> > +
-> > +     rtc: rtc@24000 {
-> > +             compatible =3D "loongson,ls1b-rtc";
-> > +             reg =3D <0x24000 0x78>;
-> > +             interrupt-parent =3D <&intc0>;
-> > +             interrupts =3D <24 IRQ_TYPE_LEVEL_HIGH>;
-> > +             status =3D "disabled";
-> > +     };
-> > +
-> > +     ac97: audio-controller@34000 {
-> > +             compatible =3D "loongson,ls1b-ac97";
-> > +             reg =3D <0x34000 0x60>, <0x32420 0x4>, <0x34c4c 0x4>;
-> > +             reg-names =3D "ac97", "audio-tx", "audio-rx";
-> > +             dmas =3D <&dma 1>, <&dma 2>;
-> > +             dma-names =3D "tx", "rx";
-> > +             #sound-dai-cells =3D <0>;
-> > +             status =3D "disabled";
-> > +     };
-> > +
-> > +     nand: nand-controller@38000 {
-> > +             compatible =3D "loongson,ls1b-nand-controller";
-> > +             reg =3D <0x38000 0x24>, <0x38040 0x4>;
-> > +             reg-names =3D "nand", "nand-dma";
-> > +             dmas =3D <&dma 0>;
-> > +             dma-names =3D "rxtx";
-> > +             #address-cells =3D <1>;
-> > +             #size-cells =3D <0>;
-> > +             status =3D "disabled";
-> > +
-> > +             nand@0 {
-> > +                     reg =3D <0>;
-> > +                     label =3D "ls1x-nand";
-> > +                     nand-use-soft-ecc-engine;
-> > +                     nand-ecc-algo =3D "hamming";
-> > +             };
-> > +     };
-> > +};
-> > +
-> > +&cpu0 {
-> > +     operating-points-v2 =3D <&cpu_opp_table>;
-> > +};
-> > +
-> > +&gpio0 {
-> > +     ngpios =3D <31>;
-> > +};
-> > +
-> > +&gpio1 {
-> > +     ngpios =3D <30>;
-> > +};
-> > +
-> > +&uart1 {
-> > +     interrupts =3D <3 IRQ_TYPE_LEVEL_HIGH>;
-> > +};
-> > +
-> > +&uart2 {
-> > +     interrupts =3D <4 IRQ_TYPE_LEVEL_HIGH>;
-> > +};
-> > +
-> > +&uart3 {
-> > +     interrupts =3D <5 IRQ_TYPE_LEVEL_HIGH>;
-> > +};
-> > diff --git a/arch/mips/boot/dts/loongson/ls1b-demo.dts b/arch/mips/boot=
-/dts/loongson/ls1b-demo.dts
-> > new file mode 100644
-> > index 000000000000..19ea772e6649
-> > --- /dev/null
-> > +++ b/arch/mips/boot/dts/loongson/ls1b-demo.dts
-> > @@ -0,0 +1,108 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (c) 2023-2025 Keguang Zhang <keguang.zhang@gmail.com>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +
-> > +#include "loongson1b.dtsi"
-> > +
-> > +/ {
-> > +     compatible =3D "loongson,ls1b-demo", "loongson,ls1b";
-> > +     model =3D "LS1B-DEMO Board";
-> > +
-> > +     memory@0 {
-> > +             device_type =3D "memory";
-> > +             reg =3D <0x0 0x10000000>;
-> > +     };
-> > +
-> > +     aliases {
-> > +             ethernet0 =3D &gmac0;
-> > +             ethernet1 =3D &gmac1;
-> > +             gpio0 =3D &gpio0;
-> > +             gpio1 =3D &gpio1;
-> > +             serial0 =3D &uart0;
-> > +     };
-> > +
-> > +     chosen {
-> > +             bootargs =3D "console=3DttyS0,38400";
->
-> Drop bootargs. You duplicate stdout path.
+ .../bindings/arm/aspeed/aspeed.yaml           |    1 +
+ arch/arm/boot/dts/aspeed/Makefile             |    1 +
+ .../aspeed/aspeed-bmc-facebook-ventura.dts    | 1553 +++++++++++++++++
+ 3 files changed, 1555 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dts
 
-Will do.
-Thanks for the review!
->
-> > +             stdout-path =3D "serial0:38400n8";
-> > +     };
->
-> Best regards,
-> Krzysztof
->
+-- 
+2.43.0
 
-
---=20
-Best regards,
-
-Keguang Zhang
 
