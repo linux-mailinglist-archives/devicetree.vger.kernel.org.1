@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-196675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 589BAB06A8A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 02:32:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5D66B06A92
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 02:33:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A5AE3AD453
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 00:32:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9EF71A64C94
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 00:33:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47532155A25;
-	Wed, 16 Jul 2025 00:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4223170A11;
+	Wed, 16 Jul 2025 00:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="i7JAVWVg"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="f/m5KqRl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
+Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72CED610D
-	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 00:32:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD20C17D346
+	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 00:32:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752625929; cv=none; b=rzA2+DXIhCJEcbdaEdy7u2I6+Lt/75+qjKVaakx0YTdvJI1NlFN/V357zpCnL+IMgSZyK1ge7z3tiMqviAYCmf5ApjjCuSWM4vzcJ2PZfm0Runzivgf2YdeGuJ4c6RfrfYMKYikC5b1Iy8wvVwP7E67BGrqkLu2HLx9Wvko+9Rs=
+	t=1752625934; cv=none; b=MnbQs4C9p5y0w66+9SkcWKB4/3VtaT2SIscAGQ27YnwDUMv22e61z4fPH3GQAtEQHmxX5GqmTd8GDKykYS4WAY5MxgDCRbJD2ukjg3dlQ5Za6mk6cq6Xzsq+xEFketPkSYznorY9ODrwCXmqt3JUHYYfOCU6MuBTgnc8QVAiFKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752625929; c=relaxed/simple;
-	bh=oU6gwST/EhKagyz8ArrgsRAUtj9yIlkL6iDtmomZAaU=;
+	s=arc-20240116; t=1752625934; c=relaxed/simple;
+	bh=7QjxsbZJhljxeSf5GiJFdUrHUEXq7V7V3cEi/7O1oqw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DrFlIBi4pbXQxyOTgamdzyuLINSof82UQi/hbh7/xoeXZVfGUfZi6W5x1HsSQFEKUKHqYPHSk4pnGIrZHkb7iHG5TdoM40CdRF8VFGGYf3VWbIUzw05lFhXGPMGNdpYZ7WDfqCER0Y9U/u62YUdWBgtRtHO0KZO3n7orFCu+RNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=i7JAVWVg; arc=none smtp.client-ip=91.218.175.184
+	 MIME-Version; b=iY1SZtbuL7y2nKV81rrS0tYgUSePAMI/KLr16KQXi0RNB1csj7oAJUQbqI63IU14ldDzv7li2LqLL1F8uULBAEocRNkxxomLpwGT5PF2pDGn06AG8lMm6u7Iy91b3E9ViRdalvnQRUtvXtUiIiexHmQQgY4M0kXugn5+YTD9aKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=f/m5KqRl; arc=none smtp.client-ip=91.218.175.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1752625923;
+	s=key1; t=1752625930;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=i4XgiashTe7ZBIHRFl/KgS2Kni+UbeaC5atqJnYhW78=;
-	b=i7JAVWVgA7CoNCYSJl70wmhgTYY/rRNHj+cQK6jzOtx46+ne9cSguGKMOPagW8H5opsWaa
-	ZqvMXk6AyOMgiJpve15rWMXp3ftQW78SCwW8M1sCj9g78eJcNt5XjSJispuf6fMAOLUD/b
-	IdcuQFj7MELuYIS+tP1AO2u5uGHnz3DrFaiEcobv+y4DuD3Jy7Q5s3/WyakxeH8fp3HAbR
-	Qj1WwjaV9mYG+sQt4ojLfM1zY6zz+vV2he1unGq/CwAsLI2mN4Q1N82+8m+3TLdL+liAXi
-	JhjfW+Z/A0hi00TLRfhsBQAywuNNKO3rW6EDJmARr+OkANMhhixChCOKrPETUw==
+	bh=3W+VZ5jQJODRaFkXhdpndWDkHvkm3krbfMS0oQAdXCA=;
+	b=f/m5KqRlcDUMJr0EaVJLiH2d+DtlZqH5yILfnSW0i1ilanBCC8vA1UDLFJ70TkPu5oJ3+q
+	6WMGhVHVIQmFf6qi8Y7ChU+QDljZOv+CqUZe+31IIFJ7IZxwdx7UV66IFgpJATBPfxE6H/
+	c5L7AZcIL5xUMUyT3/7FV7/FkMA6W74NB90o6gqWyFapD+qPQFCwnqCGbYC/3KJfAKvGB9
+	y7f2802ZiIyKCmeesgkU8+zf3s1351gvTOvy9IUauTtslqiaZd9V2tMXvzqGGPuzFBFjnY
+	oSzHFwbcJ1jr0oN4YncxsnXGnIfi52ghbFEsuc7RKZXhBTB6uuVpNnyFPJ4knA==
 From: Val Packett <val@packett.cool>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+Cc: Val Packett <val@packett.cool>,
 	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Val Packett <val@packett.cool>,
 	Laurentiu Tudor <laurentiu.tudor1@dell.com>,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/4] dt-bindings: arm: qcom: Add Dell Inspiron 14 Plus 7441
-Date: Tue, 15 Jul 2025 21:26:57 -0300
-Message-ID: <20250716003139.18543-2-val@packett.cool>
+Subject: [PATCH v4 2/4] dt-bindings: arm: qcom: Add Dell Latitude 7455
+Date: Tue, 15 Jul 2025 21:26:58 -0300
+Message-ID: <20250716003139.18543-3-val@packett.cool>
 In-Reply-To: <20250716003139.18543-1-val@packett.cool>
 References: <20250716003139.18543-1-val@packett.cool>
 Precedence: bulk
@@ -71,28 +70,25 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Document the X1E80100-based Dell Latitude 7455 laptop, codename Thena
+(the codename is shared with the near-identical Inspiron 14 Plus 7441).
 
-Document the X1E80100-based Dell Inspiron 14 Plus 7441 laptop, codename:
-Thena.
-
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Val Packett <val@packett.cool>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Laurentiu Tudor <laurentiu.tudor1@dell.com>
 ---
  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index ae43b3556580..8e3b804864fa 100644
+index 8e3b804864fa..162f80123cf6 100644
 --- a/Documentation/devicetree/bindings/arm/qcom.yaml
 +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -1146,6 +1146,7 @@ properties:
-           - enum:
+@@ -1147,6 +1147,7 @@ properties:
                - asus,vivobook-s15
                - asus,zenbook-a14-ux3407ra
-+              - dell,inspiron-14-plus-7441
+               - dell,inspiron-14-plus-7441
++              - dell,latitude-7455
                - dell,xps13-9345
                - hp,elitebook-ultra-g1q
                - hp,omnibook-x14
