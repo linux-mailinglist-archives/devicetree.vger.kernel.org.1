@@ -1,143 +1,118 @@
-Return-Path: <devicetree+bounces-196755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6512B06F74
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 752EAB06FB9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 09:58:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 761224A3539
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:51:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3D211710FE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:57:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67679292B52;
-	Wed, 16 Jul 2025 07:51:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08AF6291C24;
+	Wed, 16 Jul 2025 07:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RYCEkmNV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hWJV2eJz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31683292B42;
-	Wed, 16 Jul 2025 07:51:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F08299AA1;
+	Wed, 16 Jul 2025 07:53:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752652280; cv=none; b=sAyJnAVoMclbVFieAEgBcLxQQhWJiVmVnaslsh65/+Ge5dbzJjZ8++5D65zUpUmzds6EcjIKZXMRMAED6tIen5DNIZ4V6GHTj+mvKjuve/cNLnMlP/oOaUbwyXYt7qgGpY7xzXxD5Q8+OFPvPZrnFWT51Q9aNubl2gjjP0IZHs0=
+	t=1752652425; cv=none; b=JNwuopDdYpQ9m+zOjXYLHbfwGwQXUZnoVGavYHntRbPpgiGBVNDP/0XM7bZRy1nYaZE3bKRz94H6LnDaYNpPspeuhazF59xrLdgiCOY8slrLQ5THW98XddYvkY5vqKLMEP6cis4+g+X8VqSXuosDHTeqeY5NMSzxw3w1f+UmSZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752652280; c=relaxed/simple;
-	bh=JmE7m3bTLeo9xgxysdSDSxK0t03ujqlDmwZ928eeLqQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QYQzINuO8kjz21hn4VIJ5D3oHFBlUZ/+q6FQ2uejmg7R9K84YAdn+X2P09jYfNRlQn98FPkOOJTmCLGlWSNxmd+XEbfN5CFRFjOCLPEcCLHxXXGsmmwbwV53SX+mIPDVdhdjo1R8DntBRXg1r6TqWrmSwitp0Z44k0763HP4rAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RYCEkmNV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3378DC4CEF5;
-	Wed, 16 Jul 2025 07:51:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752652279;
-	bh=JmE7m3bTLeo9xgxysdSDSxK0t03ujqlDmwZ928eeLqQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RYCEkmNV2+4vXXAfDGdpkg9HXHC44jDHTrK7WBRGncG1bD7owC5vAX84WA8xGR80F
-	 aRP/xZ2FDbY7lLyBAs1SKwSxe7fX8igMOvpuxxNfwM920v1Ze0sKCWtUSJ6EWkoyGi
-	 Lwwi0OgJHZ+P6MO2G0poGu/5qOMoMWOrMSTIPmJd07YRbZyqqKBtw82BOCu1vqiffg
-	 EmOkNgfFJjNdeTEtWlR/ypbO7bP6xwSTE7r4/dlAg9BTwP3jYrrBIGIXkPBGqdRBgu
-	 JMTa68W/5QPPXsSYrlJUnZzIuQ7N6Aq1ZANWpS4geOTRpmwdsdibf1jvrKm/8Wvu2w
-	 0DZw+7fwlrS5g==
-Date: Wed, 16 Jul 2025 09:51:17 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
-	kernel@oss.qualcomm.com, Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Subject: Re: [PATCH v6 3/9] ASoC: dt-bindings: qcom,lpass-va-macro: Update
- bindings for clocks to support ADSP
-Message-ID: <20250716-spirited-sage-ibis-dcfeb1@krzk-bin>
-References: <20250715180050.3920019-1-quic_pkumpatl@quicinc.com>
- <20250715180050.3920019-4-quic_pkumpatl@quicinc.com>
+	s=arc-20240116; t=1752652425; c=relaxed/simple;
+	bh=yQ8W4tKOBbaufyGXUPlSLQSpRGy76Xnn+ki5/AS1c7M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IPcIy8h2odml/m2syBt6gR9O/AHZr2UWtzJqSWQ65r0tGic+ya1tQOih8UqeXk9ztgtmvUulL+CJuyVgc5ZfSV8iUOBWzUEfQWrvp3+O30tx1Yj6CQ6XCt2bTHjaICwQ6qt7p335l0ewf2nVTENS6l2muL0pEIbrtR4a7JLBi7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hWJV2eJz; arc=none smtp.client-ip=209.85.215.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-7fd35b301bdso7221955a12.2;
+        Wed, 16 Jul 2025 00:53:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752652424; x=1753257224; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2mQSIMibFZ/TMYlkn3NP86VdyjZyUtByzAEI5AQ5uT8=;
+        b=hWJV2eJzH877DhOrvwVUtyh6qhmaWrcxP76QzF2SJx9eCGiIkQYas0hT7B670FfQRH
+         Gs1CiJBnU1dSy/AuUJ+7Q0xJN2Ew8cEcfqXOsYixyyh+tIY/a3ZAcayALTL+mD6U0DRE
+         OAyEjiJoIQ/FYAUzVDCQRTUFjK00ORd5aihJrqs3LmkQDl/fr4F/ejxhQAdp+fcky9aV
+         2A5C4Q3fAY2JxcD3HxcqJ5NmNqLtT6vC+BesVGcHR5qPmZWbP+WkwQkDmPs4MwskKOQu
+         nN2oNlaFN9AtbUl+IB9MEiHRdsJFLcTyxk5lHWa6b0Utq9Y0XfS98EXJIMS3aMUowZQG
+         RQbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752652424; x=1753257224;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2mQSIMibFZ/TMYlkn3NP86VdyjZyUtByzAEI5AQ5uT8=;
+        b=scevYzpy5YTxtg+RF/PfT0DE95gHOJHIsNMTLoiVPiN7EVel+VCowyXa7jXBSwazaG
+         uE+xvbdYV/pIsSJIeS4fTeIiLYQOfAob7ezRMI4+BbIAFsd/aiAxBoowhQClNgDKHxO9
+         XBaLtb2x8LhYeU5dvV98Gtb5q3Rx1gGNyG78bHGbqVgLOhn5mSTW91EBAKKljpEEONwQ
+         S0ETjOpt9AcASimurNVrBBtxUOwD2fKfbisZTocPvsremet8a+gSag6Au23wOd27sc2u
+         C3uWubDZfiSZed1DNSEa08ecXfW/tygG2i6KPghNaCl3Dlw5UP2kVKvGMWFozXur5Z5G
+         JrEw==
+X-Forwarded-Encrypted: i=1; AJvYcCV/4soYkOhZxTYqF3duAXXv3X9k/v5SZHxyemij1cXZJzrRqZHaIXZbcd07jtBeLBXn2AL9+aa8xoUa@vger.kernel.org, AJvYcCWy7M4Ryfp56f8Z+E3tRAsHD2teYb7P2VxdYPubV2g/09BSgaLc7N+sL5R95JYj5o5QflTrswYk45/VBAaR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyn1bxcQyLkCV4eSHSqoYm3tCoXogkFM9UYHfxepOs4PR82+qIS
+	dvJuFI4xDCsAS0GyB9hRKyRZ+BROEVPHwV5my9AzU8Ss5WC82L230olHw83+N22Isa4Qpy1VipJ
+	1sil9+uuv2ZvEkZTfQlWYLV3Lsm42u1M=
+X-Gm-Gg: ASbGncuOEVO3PBP24sikgG2qfLiAwyUpvDoBfvCNacHk1aKYlFGxiF4DPkYEFBvcCxH
+	4JTcO06dWNOvs4d9A7vtdT1EwH61xcecii5+jaog4fKdvfSY3M+EU/V4XLBJV9c5iwKKOxbqToa
+	kx3pZmRv6micyZRpuzdSnrT/mupDfD70GLpql7vh4cwVeGolDH9VbDIhaU+/Z5ST7AVneYJ64C2
+	Xgf
+X-Google-Smtp-Source: AGHT+IEXwgMmdV6xEntZIOiDCK4p/KU6t+w3ykBD7q7iq7lKJ8kq6kVxuuaWbxPblQ1N02rsyHmz1iURll1P3lWiuoI=
+X-Received: by 2002:a17:90b:1fc3:b0:311:e5b2:356b with SMTP id
+ 98e67ed59e1d1-31c9f3fbc0emr2790269a91.11.1752652423706; Wed, 16 Jul 2025
+ 00:53:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250715180050.3920019-4-quic_pkumpatl@quicinc.com>
+References: <20250716061114.2405272-1-shengjiu.wang@nxp.com>
+In-Reply-To: <20250716061114.2405272-1-shengjiu.wang@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Wed, 16 Jul 2025 10:55:49 +0300
+X-Gm-Features: Ac12FXz2s0GqTrCwZD5uR0yMTDXd0dpIYCyNX1v8FM1fPc4DXQYF5RSC8ANNnPs
+Message-ID: <CAEnQRZC=qApo9C0zBDQoxpV56atLeXpoxZdyBuQ=o2y59YJEqA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] arm64: dts: imx8m: support more sample rates
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	shengjiu.wang@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 15, 2025 at 11:30:44PM +0530, Prasad Kumpatla wrote:
-> From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> 
-> Manage clock settings for ADSP solution. On Existing ADSP bypass
-> solutions, the macro and dcodec GDSCs are enabled using power domains
-> in lpass-va-macro which is not applicable for ADSP based platform.
-> 
-> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-> ---
->  .../bindings/sound/qcom,lpass-va-macro.yaml   | 29 +++++++++++++++----
->  1 file changed, 23 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> index f41deaa6f4df..aec654e6567e 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> @@ -76,12 +76,29 @@ allOf:
->            contains:
->              const: qcom,sc7280-lpass-va-macro
->      then:
-> -      properties:
-> -        clocks:
-> -          maxItems: 1
-> -        clock-names:
-> -          items:
-> -            - const: mclk
-> +      if:
-> +        required:
-> +          - power-domains
-> +      then:
-> +        properties:
-> +          clocks:
-> +            minItems: 1
+On Wed, Jul 16, 2025 at 9:11=E2=80=AFAM Shengjiu Wang <shengjiu.wang@nxp.co=
+m> wrote:
+>
+> The wm8524 codec is connected to the SAI interface. There are two audio
+> plls on i.MX8MQ, i.MX8MM, i.MX8MN, one pll can be the clock source of
+> 44kHz series rates, another pll can be clock source of 48kHz series rates=
+.
+>
+> Shengjiu Wang (3):
+>   arm64: dts: imx8mm-evk: support more sample rates for wm8524 card
+>   arm64: dts: imx8mq-evk: support more sample rates for wm8524 card
+>   arm64: dts: imx8mn-evk: support more sample rates for wm8524 card
 
-Drop minItems
+Hi Shengjiu,
 
-> +            maxItems: 1
-> +          clock-names:
-> +            oneOf:
+I think it would be useful to specify which are the current supported rates
+and which will be the ones supported after your patch  (in the commit messa=
+ges).
 
-Drop oneOf
+On NXP BSP you can run:
 
-> +              - items:  # for ADSP based platforms
-> +                  - const: mclk
-> +      else:
-> +        properties:
-> +          clocks:
-> +            minItems: 1
+../../unit_tests/Audio/mxc_alsa_hw_params.out hw:X,Y p r
 
-minItems: 3
-
-> +            maxItems: 3
-> +          clock-names:
-> +            oneOf:
-
-Drop oneOf
-
-...  or rebase on top of my change and make it only min/maxItems:
-
-lore.kernel.org/r/20250716074957.102402-2-krzysztof.kozlowski@linaro.org
-
-(or whatever gets merged first, I can also rebase my patch later).
-
-> +              - items:  # for ADSP bypass based platforms
-> +                  - const: mclk
-> +                  - const: macro
-> +                  - const: dcodec
-
-Best regards,
-Krzysztof
-
+to get the rates.
 
