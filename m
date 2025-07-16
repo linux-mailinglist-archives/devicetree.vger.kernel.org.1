@@ -1,108 +1,83 @@
-Return-Path: <devicetree+bounces-196977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D31B07CB6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84991B07CA2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:19:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECA053BE236
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 18:21:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8195B5062B2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 18:18:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0567029B23B;
-	Wed, 16 Jul 2025 18:21:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F317299AB1;
+	Wed, 16 Jul 2025 18:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=adomerle.pw header.i=@adomerle.pw header.b="eserchQz";
+	dkim=permerror (0-bit key) header.d=adomerle.pw header.i=@adomerle.pw header.b="asMhtWI2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E81329AAF7;
-	Wed, 16 Jul 2025 18:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
+Received: from mail.adomerle.pw (mail.adomerle.pw [185.125.100.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E3D1DDC23;
+	Wed, 16 Jul 2025 18:18:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.100.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752690109; cv=none; b=uA11jLLSZnfoxaGt2UK4tTqvjKO9RFnnlQXngILwCCvic24Tj8yWa1/PognbgFrvGr8am3FdAMDWv/S2rfi67L4ZX+/fJ2RFp+Ppx9wmq2fqxmb3hvoMtED9fEqJ+04OHl4Bn9pksfoXXRkB9OhObW9Z1pTVu4RGVyAn/93DTes=
+	t=1752689942; cv=none; b=c91ONCem17kE/RG9BfsIjVtWOWEBKhNcXi6pziCbnawOiBXRaDzHSZSzOewBJc8alpH0aUubL26tReErwBNAEtDEWCAkcVi7pkOABymI17qYumCViKO+BE97a9AtJ+7JR1rEjv8k+eMWpLEQ/5wl6Nv4zgs3hTrsxyC7o1bqCso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752690109; c=relaxed/simple;
-	bh=OISzIwgKW9Ut4RNYygd7oYWqpTp409ADl/d7dz7BO2k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t7+PT2W7Fj1FzGTUzl8jnETmYNwM2SPS/nUxeEVb/wRxrnTcK9u2bYZo8vcD4OzsZAZ81KyM/XdntqNQUoajXGG0njsr5moQthVS1IlH0ihOFLXqVYUtclN2UkZ2Bn3BNrR1JxZhqDQp9BVdkDzWsXHiB2jWkfu6jOdaDSj0Ahc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
-Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
-	id 1uc6ZW-0006DN-00; Wed, 16 Jul 2025 20:09:38 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-	id 81182C0976; Wed, 16 Jul 2025 20:05:41 +0200 (CEST)
-Date: Wed, 16 Jul 2025 20:05:41 +0200
-From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andi Shyti <andi.shyti@kernel.org>
-Subject: Re: [PATCH 0/6] MIPS: Mobileye: EyeQ5: add GPIO/I2C
- devicetrees/defconfigs
-Message-ID: <aHfp9ZkSZ3x6hEhx@alpha.franken.de>
-References: <20250704-of-commits-v1-0-dc2006bf2846@bootlin.com>
+	s=arc-20240116; t=1752689942; c=relaxed/simple;
+	bh=Fz2YTH9lguwIzD7wP6qCcWZp4Z3W0VFrpNEU8IdpPVA=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=NYqNR1C45f+LfeGQVKS4leBSPhgIU8quM2WPajTTPVlnVoeY4kwi8m5B82nd7DAhNrhyKKc7hxQ8oHXRQXzKGpRea3Vc/5B2JivMkHhZxkrIgj/BrAfnxlipO41573JNs4D44aGhJ5ot8pG1o0a5ijOKw1BFRaHHsnAtqnByQoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=adomerle.pw; spf=pass smtp.mailfrom=adomerle.pw; dkim=pass (2048-bit key) header.d=adomerle.pw header.i=@adomerle.pw header.b=eserchQz; dkim=permerror (0-bit key) header.d=adomerle.pw header.i=@adomerle.pw header.b=asMhtWI2; arc=none smtp.client-ip=185.125.100.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=adomerle.pw
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=adomerle.pw
+DKIM-Signature: v=1; a=rsa-sha256; s=202506r; d=adomerle.pw; c=relaxed/relaxed;
+	h=To:Subject:From:Date:Message-ID; t=1752689926; bh=akb2e1BcWMRnA4E9gW6eE/o
+	yO9kqQbDNp2hAYCGnK8U=; b=eserchQz9TvfUJ9g/QJv42faQkyAXMCJRp89a24NhszsaJqewi
+	hbrsX+YhcTSG1AlRNX+DN/Z7ejfzQZKqqqMVV3tb182+Uw+VlkZ0S6HBHVUs+hswpoB46606l9a
+	84K79Pt/R9SF18WInFC/VdjN9o1QRZNS8Qv6fDUbgTeAUIRCWhd3LWXYHYRygDFr79tPNwTJnM/
+	Z2Py4xsB+C6v3zyb4zN8wJa1q1SkzgQgUc7f/FJymV8SXnJQcbqr24kzFtDlz9pwtec/EQel0hH
+	1xh5DWzQrwDXyeIjiieS9UzcRvI9hdZdG7wIA+fNkIq5DQDYvNXhfqTawonIe5MRu2Q==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202506e; d=adomerle.pw; c=relaxed/relaxed;
+	h=To:Subject:From:Date:Message-ID; t=1752689926; bh=akb2e1BcWMRnA4E9gW6eE/o
+	yO9kqQbDNp2hAYCGnK8U=; b=asMhtWI2Rjx5zE9/P89F4TjFUawp8EGF+h0GHcsnZB1hOU2DbP
+	tnT4qBN2D7Qx3g+nHFcUcKmpwiQZJTT06fBw==;
+Message-ID: <ffc3b329-6d46-41f3-9780-05369d29f9c3@adomerle.pw>
+Date: Wed, 16 Jul 2025 22:18:45 +0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250704-of-commits-v1-0-dc2006bf2846@bootlin.com>
+User-Agent: Mozilla Thunderbird
+From: Arseniy Velikanov <me@adomerle.pw>
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8250-xiaomi-pipa: Drop unused
+ bq27z561
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Luka Panio <lukapanio@gmail.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jul 04, 2025 at 01:47:05PM +0200, Théo Lebrun wrote:
-> Here we push changes to have GPIO and I2C support by default in EyeQ5
-> defconfigs and devicetrees.
-> 
-> Linux driver work has been pushed in the past. Devicetree patches
-> accompanied those series but didn't get merged at that time. Acked-by
-> on I2C DTS patches come from there.
-> 
-> We start by a small new defconfig patch that a clean working tree after:
-> 
->    ⟩ make eyeq5_defconfig && \
->      make savedefconfig   && \
->      mv defconfig arch/mips/configs/eyeq5_defconfig
-> 
-> I2C DTS patches:
-> https://lore.kernel.org/lkml/20240306-mbly-i2c-v3-0-605f866aa4ec@bootlin.com/
-> 
-> GPIO DTS patch:
-> https://lore.kernel.org/lkml/20240228-mbly-gpio-v2-28-3ba757474006@bootlin.com/
-> 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> ---
-> Théo Lebrun (6):
->       MIPS: eyeq5_defconfig: Update for v6.16-rc1
->       MIPS: mobileye: eyeq5: add 5 I2C controller nodes
->       MIPS: mobileye: eyeq5: add evaluation board I2C temp sensor
->       MIPS: mobileye: eyeq5: add two GPIO bank nodes
->       MIPS: eyeq5_defconfig: add GPIO subsystem & driver
->       MIPS: eyeq5_defconfig: add I2C subsystem, driver and temp sensor driver
-> 
->  arch/mips/boot/dts/mobileye/eyeq5-epm5.dts |   8 +++
->  arch/mips/boot/dts/mobileye/eyeq5.dtsi     | 105 +++++++++++++++++++++++++++++
->  arch/mips/configs/eyeq5_defconfig          |  10 ++-
->  3 files changed, 120 insertions(+), 3 deletions(-)
-> ---
-> base-commit: b4674c5af605321f2ec0c8ac5a884c4ecfad7214
-> change-id: 20250704-of-commits-d76e6d76a6f1
+On 16.07.2025 20:00, Konrad Dybcio wrote:
+> Since it's actually onboard, it would be fair to assume it's there
+> for a reason.. Does it also report nonsense when running a
+> downstream build?
+Well, as I said before (looks like i sent reply wrongly), it's disabled
+in the vendor's kernel config:
+https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/pipa-t-oss/arch/arm64/configs/vendor/pipa_user_defconfig#L413
 
-series applied to mips-next.
-
-Thomas.
+Also, pmic fuel gauge, which works with the WIP driver in our
+close-to-mainline fork reports mixed information for a dual-cell
+battery, instead of each cell individually, and I think
+this is a more right way.
 
 -- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Kind regards,
+Arseniy.
 
