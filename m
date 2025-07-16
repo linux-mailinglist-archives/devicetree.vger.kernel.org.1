@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-196814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AEDAB07298
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 12:06:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56963B0728D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 12:05:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D0BD189C6FD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:07:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD1F51888555
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CEC42F3C34;
-	Wed, 16 Jul 2025 10:05:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1706A2F2727;
+	Wed, 16 Jul 2025 10:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="gLxfdPGt"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="hs9Uwhbk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C7282F1FF3;
-	Wed, 16 Jul 2025 10:05:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10E92F1FF3;
+	Wed, 16 Jul 2025 10:05:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752660352; cv=none; b=DtIBgaD3Cpam34BePN7631d5EME9tiES7ywC7wNkOh/JiWWY5hDcUsKybbOECmqyI4aXj4XU0KlRcsXrJA/mhex0a7OkQzUQ8xiac69u4S8mKPwOMIo1aXHsoBmOz8S+brOmN9xVCtEJcOMvsBk7Wadv7g9zxCwTijlDmPftzeM=
+	t=1752660347; cv=none; b=A1/B+ofOpK8/gfb6iI+vJC7929uSzIH0w6B9umlYxCw0Wwa+ufvLY6pWrw4sK9Axf44F+c3p93fOCOLCHFMTqiFDQ5Q0+CenAYDW3akuVWj9lzrTaEXVYbaSLhwAIHhPKt2+a0FAjaAUXM0qmJcNRBy2JtpFpj716X0TS/uoXHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752660352; c=relaxed/simple;
-	bh=Sny+R9oiFYTt+6ouSeIzPklzeP5hOVMHnLwOwkAQwQo=;
+	s=arc-20240116; t=1752660347; c=relaxed/simple;
+	bh=prhs1fwZMMGiQNm65qqtpDtyHAygwhDTa8hqJRJbJc0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=l1Aiz/aE/IsacUdswY1GaVpmhroNPpVNlhdRaOii2251ycEQILKH4w1UlGZngqwm27fKjLvbSQeT30zbJRnHyZB3qz1hcfJZaXYT/sVgwzZ+20J/49pGVt+mT3sNde3n+z8kFqG8o/v4sTowGGNN0tHH2EYPUo+hVcSBVJHn/6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=gLxfdPGt; arc=none smtp.client-ip=117.135.210.4
+	 MIME-Version; b=jR2H1DnPhjEg4mt82LKtVK6mnZYdgF5fJwg5VaLxT1uFf8/zjo7kjdyOgBwTzUeXlyqzCrcKQa7PYVhP1uJ2Kv9SkrHHZOG409Y/dtyh2KNesXTJWO4Kgjs71MS0GD22liSqo9ednNMReFMSCvsbXw5fFYI5b3jXeSGzk2zW83U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=hs9Uwhbk; arc=none smtp.client-ip=220.197.31.3
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=KQ
-	lDAciNH/akhUfWSpPc2Tt6dyMOL6MZi6d97cEjPrA=; b=gLxfdPGtjj30TmRgD2
-	TGAFOYl8IcadIk8vos81oIZ0np5PI/itvwnJA/2H4FKNL05rw9OI0S0r61fS9OLQ
-	g+FD5vtOHoh23vv0muh0ikRjVmDPmZKC9zuOA3lPYRjvYSOGzhJc+ADReGVNSCm1
-	ZN9jwA11ggF68GD97ND3gcNfQ=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=F5
+	Mn/v7RZ7UFx8WGpT30YpU6PJiEWQ1DE0lZ8cE+J4c=; b=hs9UwhbknfRDF1YPgz
+	xYhlgvomvCK7k5DanIwc++TwoQi38jkcATqUl6HL6ovWrZfIZ+P6iEMNo7Eb1dXU
+	ndEZLqLf8NFIrq/cpSC56oY+yCQBLbzoiCd0JyObxo2eo40577UAk92TxNgubflr
+	CbfDPLrPsjEoSsBorx6fxBH3I=
 Received: from ProDesk.. (unknown [])
-	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wAH0s46eXdoG0BuFQ--.1985S6;
-	Wed, 16 Jul 2025 18:05:00 +0800 (CST)
+	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wAH0s46eXdoG0BuFQ--.1985S10;
+	Wed, 16 Jul 2025 18:05:08 +0800 (CST)
 From: Andy Yan <andyshrk@163.com>
 To: dmitry.baryshkov@oss.qualcomm.com,
 	heiko@sntech.de
@@ -58,9 +58,9 @@ Cc: hjc@rock-chips.com,
 	robh@kernel.org,
 	sebastian.reichel@collabora.com,
 	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH v5 04/10] MAINTAINERS: Add entry for DW DPTX Controller bridge
-Date: Wed, 16 Jul 2025 18:04:31 +0800
-Message-ID: <20250716100440.816351-5-andyshrk@163.com>
+Subject: [PATCH v5 08/10] arm64: dts: rockchip: Add DP1 for rk3588
+Date: Wed, 16 Jul 2025 18:04:35 +0800
+Message-ID: <20250716100440.816351-9-andyshrk@163.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250716100440.816351-1-andyshrk@163.com>
 References: <20250716100440.816351-1-andyshrk@163.com>
@@ -71,46 +71,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wAH0s46eXdoG0BuFQ--.1985S6
-X-Coremail-Antispam: 1Uf129KBjvdXoWrZrW8uFy5CFy7JrW5Xw4kCrg_yoWDurc_C3
-	WxZ34xXr48GFn0krZ7Aan3Ga4ava1xuFsxu3Wkt397C3s5AryDta92yr17Gw15Cr4UGrZr
-	ua4fXa4Ykr13ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU82ZX7UUUUU==
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBkA6MXmh3dCSN7AAAsi
+X-CM-TRANSID:_____wAH0s46eXdoG0BuFQ--.1985S10
+X-Coremail-Antispam: 1Uf129KBjvJXoW7ZrWDCry7tFWfJw17JFWDJwb_yoW8Xw4fpw
+	nrurZ3GrW8uF1aqwnxt34kXrZ8A3Z5CFZrKr1xK3W8Kr1Sqr92k34akrZ3C34UXr17XwsF
+	kFs3tryUKF4qy3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j8a9-UUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBkBOMXmh3dCSOzAAAsc
 
 From: Andy Yan <andy.yan@rock-chips.com>
 
-Add an entry for the DW DPTX Controller bridge driver.
+The DP1 is compliant with the DisplayPort Specification
+Version 1.4, and share the USBDP combo PHY1 with USB 3.1
+HOST1 controller.
 
 Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-
 ---
 
-Changes in v5:
-- First included in this version.
+(no changes since v1)
 
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../arm64/boot/dts/rockchip/rk3588-extra.dtsi | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ee2ef9d9db2ab..f0552f7075c62 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7880,6 +7880,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml
- F:	drivers/gpu/drm/panel/panel-synaptics-r63353.c
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
+index 90414486e466f..691fe941d53a1 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
+@@ -210,6 +210,36 @@ i2s10_8ch: i2s@fde00000 {
+ 		status = "disabled";
+ 	};
  
-+DRM DRIVER FOR SYNOPSYS DESIGNWARE DISPLAYPORT BRIDGE
-+M:	Andy Yan <andy.yan@rock-chips.com>
-+S:	Maintained
-+T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-+F:	Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
-+F:	drivers/gpu/drm/bridge/synopsys/dw-dp.c
-+F:	include/drm/bridge/dw_dp.h
++	dp1: dp@fde60000 {
++		compatible = "rockchip,rk3588-dp";
++		reg = <0x0 0xfde60000 0x0 0x4000>;
++		interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH 0>;
++		clocks = <&cru PCLK_DP1>, <&cru CLK_AUX16M_1>,
++			 <&cru CLK_DP1>, <&cru MCLK_I2S8_8CH_TX>,
++			 <&cru MCLK_SPDIF5_DP1>;
++		clock-names = "apb", "aux", "hdcp", "i2s", "spdif";
++		assigned-clocks = <&cru CLK_AUX16M_1>;
++		assigned-clock-rates = <16000000>;
++		resets = <&cru SRST_DP1>;
++		phys = <&usbdp_phy1 PHY_TYPE_DP>;
++		power-domains = <&power RK3588_PD_VO0>;
++		#sound-dai-cells = <0>;
++		status = "disabled";
 +
- DRM DRIVER FOR TI DLPC3433 MIPI DSI TO DMD BRIDGE
- M:	Jagan Teki <jagan@amarulasolutions.com>
- S:	Maintained
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			dp1_in: port@0 {
++				reg = <0>;
++			};
++
++			dp1_out: port@1 {
++				reg = <1>;
++			};
++		};
++	};
++
+ 	hdmi1: hdmi@fdea0000 {
+ 		compatible = "rockchip,rk3588-dw-hdmi-qp";
+ 		reg = <0x0 0xfdea0000 0x0 0x20000>;
 -- 
 2.43.0
 
