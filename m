@@ -1,138 +1,131 @@
-Return-Path: <devicetree+bounces-196713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3825EB06D6D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:42:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2A27B06D80
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 08:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 891DE17EB32
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 05:42:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADDAB3ACC8D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 06:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F8E2E7648;
-	Wed, 16 Jul 2025 05:42:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0AE1D6194;
+	Wed, 16 Jul 2025 06:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fBE8WM2X"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VZ2G4bZm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469102E7651;
-	Wed, 16 Jul 2025 05:42:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19758A41;
+	Wed, 16 Jul 2025 06:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752644555; cv=none; b=rWExxFDkCmLGp73PZ9HR0RjjBtLxDF2+NcgBUeFaDPYu7Pj8LSHsannuuX84WsqsTWsScLpnV4+2erZ59czYxk6KDLMoNKU6rsZw1L3YeHqwKdR7ER/9CjE6lA9s4StASgRfXLIq8XXa4cZI4CPH84S6+13L0cCljj/E6vCh7G4=
+	t=1752645684; cv=none; b=BvdyaFIPPjiUVHGnzIk33emu+BbT6l0nsLH32vXAQBYB5SzGcDToNksExsVkYfPQV41vqZMjtEJIfW2nHtKr/gvR8yBn8Fr8MwCp5h4USeSnqZ1JVV2WCjqIdzted0YFjREb2nnayRlSObNaK5oCTECJRjeXJ6C8yPAIJP//Vp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752644555; c=relaxed/simple;
-	bh=Q2X7Prq6z8hmWmGjJYGXR2JZUPrs5Jb2CTLdVm01taY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dvnzwiV8E+wm6D5DmUQcMobqUkBLUcjZPNLalpvMmD8EUsUBgWi7UbR9fbzQMfPcbF6IrfBoeLhSiEFhyu/NIOjBmhzS/uqpZLdopFE2Pm3gYsK73PO+0eixyfz+a9ZIGyiRq/8fBHnI+zkyBiPXIgMmKuEchxQT6JLZ9LpuNbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fBE8WM2X; arc=none smtp.client-ip=198.47.19.246
+	s=arc-20240116; t=1752645684; c=relaxed/simple;
+	bh=1jEiCyB2SWKc/Lh2xYFZ8C3CLKa75LDkmp9njM/eysc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gaXrhlv2B+sUl9oKa+S5IjNb/xvmy5peEX3/ZLLGmFCG3L2DU8ZGZgQ1WnJJSZy74UQcBikSMme3lJMgPaU4md7NL9Rp6iVnt6S0FK9mhqocMLC64m3+aMgegk3oYn4UKWdCZ4YRJHsyayFs3edHbpw+oJoYUqO3KAPfUyXhONs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VZ2G4bZm; arc=none smtp.client-ip=198.47.23.235
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56G5gQGj174361;
-	Wed, 16 Jul 2025 00:42:26 -0500
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56G61G5P181199;
+	Wed, 16 Jul 2025 01:01:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1752644546;
-	bh=96YPy9Cz6b75Fg+10gBa9dQ34i3KQ+E5Y0QaJuwByK8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=fBE8WM2XgpbwjDoy0MQj5IeJs5KeYID1aIIMUpgQU0OkXTbUbgATZIvQgDoeUy5TF
-	 i9VsF0mFsfUf8T992le0BkXXxcLEubtxAtxA9C9t32GAY7shLzJv3UgJr2G36Xa3c0
-	 Tm+ihGzns0jPICW2pa6ovGPeIvrHoCUh8HjOnaDw=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56G5gQM31782819
+	s=ti-com-17Q1; t=1752645676;
+	bh=wCDRasm8wDpgTSExQtxXTdJsGrd2p6UboPjjmrdgWqA=;
+	h=From:To:CC:Subject:Date;
+	b=VZ2G4bZm6OKuTb8axK6iF049acvKQeoIY7R2E4v2BqU9IeT39bc2NTJDAb9MHfmKf
+	 vqOMvNtHgnT4bMpfBng+sxDwgSSFgChC8xWrk7BJDHTQsRH7WnqE2/dEcOvd1XFD61
+	 3DxIU3dbtoP8NeMaLmhPONKm5amR2iTSRkCjZMmA=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56G61GYx3321485
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 16 Jul 2025 00:42:26 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 16
- Jul 2025 00:42:26 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE102.ent.ti.com
+	Wed, 16 Jul 2025 01:01:16 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE102.ent.ti.com
  (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 16
+ Jul 2025 01:01:15 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 16 Jul 2025 00:42:26 -0500
-Received: from [172.24.227.166] (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.166])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56G5gMBn3807419;
-	Wed, 16 Jul 2025 00:42:23 -0500
-Message-ID: <710b546f-f898-4b20-8302-db0de69a3d80@ti.com>
-Date: Wed, 16 Jul 2025 11:12:22 +0530
+ Frontend Transport; Wed, 16 Jul 2025 01:01:15 -0500
+Received: from localhost (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.166])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56G61ER14147843;
+	Wed, 16 Jul 2025 01:01:15 -0500
+From: Jayesh Choudhary <j-choudhary@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <u-kumar1@ti.com>, <devarsht@ti.com>, <j-choudhary@ti.com>
+Subject: [PATCH v3 0/7] Add DSI display support for TI's Jacinto platforms
+Date: Wed, 16 Jul 2025 11:31:07 +0530
+Message-ID: <20250716060114.52122-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/7] arm64: dts: ti: k3-j721s2-common-proc-board:
- Enable DisplayPort-1
-To: "Kumar, Udit" <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>
-References: <20250624082619.324851-1-j-choudhary@ti.com>
- <20250624082619.324851-7-j-choudhary@ti.com>
- <b37efc4e-0959-47a0-8fae-6cb35899752e@ti.com>
-Content-Language: en-US
-From: Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <b37efc4e-0959-47a0-8fae-6cb35899752e@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello Udit,
+Hello All,
 
-On 26/06/25 16:04, Kumar, Udit wrote:
-> 
-> On 6/24/2025 1:56 PM, Jayesh Choudhary wrote:
->> Enable DSI display for J721S2 EVM.
->>
->> Add the endpoint nodes to describe connection from:
->> DSS => DSI Bridge => DSI to eDP bridge => DisplayPort-1
->>
->> Set status for all required nodes for DisplayPort-1 as 'okay'.
->>
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> ---
->>   .../dts/ti/k3-j721s2-common-proc-board.dts    | 89 +++++++++++++++++++
->>   1 file changed, 89 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts 
->> b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->> index 793d50344fad..efe857a50bb1 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->> @@ -93,6 +93,29 @@ vdd_sd_dv: gpio-regulator-TLV71033 {
->>                <3300000 0x1>;
->>       };
->> +    dp1_pwr_3v3: regulator-dp1-prw {
->> +        compatible = "regulator-fixed";
->> +        regulator-name = "dp1-pwr";
->> +        regulator-min-microvolt = <3300000>;
->> +        regulator-max-microvolt = <3300000>;
->> +        gpio = <&exp4 1 GPIO_ACTIVE_HIGH>; /* P1 - DP1_PWR_SW_EN */
->> +        enable-active-high;
->> +        regulator-always-on;
-> 
-> Please check once, if this regulator falls under regulator-always-on case,
-> 
-> I can imagine a case, where DP1 is not used and still regulator is kept on
+This series adds the dts support to enable DSI on 3 platforms for TI SoCs:
+- J784S4-EVM
+- J721S2-EVM
+- AM68-SK
 
-Yes it is not required.
-I will remove this property from j721s2-common-proc-board and am68-sk
-board dts.
+SN65DSI86 driver fix that was essential for display is now merged.
 
-Thanks,
-Jayesh
+There is one more series relevant for driver that makes CDNS-DSI driver
+work better:
+https://lore.kernel.org/all/20250618-cdns-dsi-impro-v4-0-862c841dbe02@ideasonboard.com/
 
-> 
-> 
->> +    };
->> +
->> +    dp1: connector-dp1 {
->> +        compatible = "dp-connector";
+I have locally tested using kmstest utility on all 3 platforms.
 
-[...]
+Changelog v2->v3:
+- Cosmetic changes like adding padding and new line before child nodes
+- Using standard node name for regulator and bridge
+- Remove "regulator-always-on" for dp-regulator in am68 and j721s2 board
+- Remove interrupt-parent from dsi nodes
+
+v2 patch link:
+https://lore.kernel.org/all/20250624082619.324851-1-j-choudhary@ti.com/
+
+Changelog v1->v2:
+- [4/7]: Add gpio-line-names
+- [6/7]: Remove unnecessary clocks from TIDSS
+
+v1 patch link:
+https://lore.kernel.org/all/02f1912f-0a05-4446-923a-7935ed305cb3@ti.com/
+
+Jayesh Choudhary (5):
+  arm64: dts: ti: k3-j784s4-j742s2-main-common: add DSI & DSI PHY
+  arm64: dts: ti: k3-j784s4-j742s2-evm-common: Enable DisplayPort-1
+  arm64: dts: ti: k3-j721s2-common-proc-board: Add main_i2c4 instance
+  arm64: dts: ti: k3-j721s2-common-proc-board: Enable DisplayPort-1
+  arm64: dts: ti: k3-am68-sk: Enable DSI on DisplayPort-0
+
+Rahul T R (2):
+  arm64: dts: ti: k3-j721s2-main: add DSI & DSI PHY
+  arm64: dts: ti: k3-j721s2-som-p0: add DSI to eDP
+
+ .../boot/dts/ti/k3-am68-sk-base-board.dts     |  97 ++++++++++++++
+ .../dts/ti/k3-j721s2-common-proc-board.dts    | 117 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    |  39 ++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  |  51 ++++++++
+ .../dts/ti/k3-j784s4-j742s2-evm-common.dtsi   | 121 +++++++++++++++++-
+ .../dts/ti/k3-j784s4-j742s2-main-common.dtsi  |  39 ++++++
+ 6 files changed, 463 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
+
 
