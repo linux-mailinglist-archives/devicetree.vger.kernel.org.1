@@ -1,146 +1,113 @@
-Return-Path: <devicetree+bounces-196896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F4D6B07837
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 16:35:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F1EBB07855
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 16:42:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7877A1898BF6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 14:35:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15A503A458F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 14:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05510253F00;
-	Wed, 16 Jul 2025 14:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7727C26057A;
+	Wed, 16 Jul 2025 14:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JROwG4N7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SSa3yVn/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3AC2376F8;
-	Wed, 16 Jul 2025 14:35:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8150208AD;
+	Wed, 16 Jul 2025 14:41:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752676506; cv=none; b=WQVsKkJ4ksKwZA80aAdf8gXM3uRW1pb5awWb77baSp0RkZN/if6pj5OH2l4KrhI/f1RElG1eTWKllRMruCHV9y1tgrFLqnaoPSIs2huJcKhj4/UKFQok3VLUl+hSx8JMo0at2pos4UWRuOMqRaNGj4ELOm4pK1jjAK1B4VY+pkY=
+	t=1752676918; cv=none; b=YELnX8gUqems3UHiWuvqwCFGBCz+kqcYvyzZQHlF1r3BWgGVzGfJAau8qmyrcx5Ic1pHEzqVoEt21Zguthocq+SW5rkwpY6EiMAEhNdGeiDmriezuLG8INyMc9Rn8dKmXmREJ1NBxkFebLUgrm313fD9yvmCn2ilI2aZQDap3Y0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752676506; c=relaxed/simple;
-	bh=5exzXLTbRoSeq8C0JTPFMk+YLy7hDs7cD8deUGJtgpU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MwKIiVs2zcEa8Q1CfBuAUnXDwa9eAQrR/l6BGU1XUz7l3mpNxZuLyapc6iVMmPaGaFlf9JDrGuuCAy2iE3XS7nGocKNh5NCXsE+l68qO7194IwZqRwbQgf1SgPzW+SleTBo1W6sc/3z9rbBVFaGT6mlVLAFFB4BVj9x/VY+5KXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JROwG4N7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BF62C4CEE7;
-	Wed, 16 Jul 2025 14:35:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752676506;
-	bh=5exzXLTbRoSeq8C0JTPFMk+YLy7hDs7cD8deUGJtgpU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JROwG4N7zkJxMF3HNctlwbugYQblWBcR70aqH51/GALJKSFEMm/xaX0JHe++UYG65
-	 vRagXUK+UFViCIscunGFRgNPxNryRxCZxmgBexAYpWzHTSwFnWPKo/AhvA4FtoJIVY
-	 MCnB1MWH0pPFDanfTid5lRK6V9HQfjVp6Kh7HNmH/DFpwcaeGbnpDntjVoW1cBQaLx
-	 54lI8EbOOkTzFXWqpGZMKO7F1WdkqlghAWWcz8f/hCL1mE6KEvGRLq9elwdYPJhhIP
-	 yOw/+RqAiM5Wp5DNyhcftofiNlwretRN7/6KxaVQDVXFhZwKrHP/Ay0Hril82OnopP
-	 AAHICQG0dA0BQ==
-Message-ID: <095a1455-c6ac-4a7d-a219-ddfd0a93d8d6@kernel.org>
-Date: Wed, 16 Jul 2025 16:35:01 +0200
+	s=arc-20240116; t=1752676918; c=relaxed/simple;
+	bh=lFPHEHn8FO64LpPGdlmRUTz/8ppyFHalaL5CD6vWlgs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=naDDm+YX4wsD/J2P3jXGn7Til94JmK21BOvcANTZjBEcAZrp7UYb0sULJaX1sw6Vo0/YpHZi/jPw6a19YanIzq3EnYRfZ99URoQf8HFH05VEoa7RPjPv6ZYWyNkDU4R+f95F9/x7vE+ZwaqI0zWtGq4HDPXnRRzcYmVzxI781N8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SSa3yVn/; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-742c3d06de3so19693b3a.0;
+        Wed, 16 Jul 2025 07:41:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752676916; x=1753281716; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GbIiA4Lrn5lhcE4V8wonAl/f7aSLqrLYo1bemfK45Ok=;
+        b=SSa3yVn/fQKLrpJEIkSX1Zcf0gxuR1cnOvbPTZ71vHKYPcJFDEwXYFB/WAqOzRdN03
+         ZmVqc4Fg4/VTrTMaQzFXTu7abyr2/c/LLi5Yc5XMAZ4OChl+ysouCCUDa9I/g6IMPXl/
+         Iy7TgDX4jY8DdB2nOc/2DhuN5wQjkii52J+UTmFdySavgadxnkc+oo5MK7/s8bXx3dPQ
+         z76AyKikrwxoV0r5ZpoulzY5mRCSmSjI8Ho9TveFvdiMRuxOfrJTjYL/0vAfx25sUaeH
+         aTldEeEuKLmGfX9ittail3abKd82ofWUw4G/PEsTqH0NrruWpJMzvYn6+vgyJosAO6O1
+         VXWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752676916; x=1753281716;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GbIiA4Lrn5lhcE4V8wonAl/f7aSLqrLYo1bemfK45Ok=;
+        b=vXFDkBNpKZx2lvj13pm/OyyvNeRDWjPVMsdj2wsjG0QxT/JR/7NnjktUvYG+O3koGN
+         TYgXycZGpafCkXQTDyEWGuRXVoq1Jn8om4hgyDiqT/2JQKC7egpr53zmQyH/W9TiUseA
+         b1rHxlyhNYpSAhsrbu+CBIH/On5ORyaOt6k/QU1qnsVV36IPu2bMA821su+C4uOc0XYW
+         ETpagS737uMdoXCGjk4uoIZTjl62bC3gsIkaC6XUBbnsAV3DYabcJDB87HsI57taMJ+C
+         47S5MWoo1Lz/9kebpncuKwpRbRQMlNyu8qIIjkSM2a+XnKYrjyCuNEEuApc1R8xa8tWr
+         FfRA==
+X-Forwarded-Encrypted: i=1; AJvYcCU2ozp9M9832PBLLMQNEuwmLGwL8BckHqUE2rVhMC9RQcIw+WFHf8W07C+8QmmERIevkPG+RtpOiXOr8PQ=@vger.kernel.org, AJvYcCU6xZWRMZUkFv61e2pmQYr5SCd9WOoJUq/TMBnPd3kCdr1m/X+DWzoF2XWgh65+fRRL/7oR2O/0g7lm@vger.kernel.org, AJvYcCVbaMjzxznaH+KXfdMRdy6Ep8Pc8UuW1vnCRxF2GmrPV1oTvsJncEAVC4L2cNfe3MJHQczR/7gWTnQdmfxp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9WXJlupF2gbw6arrpU+MR+9oNHSTNO7uDJBoyIFvX1AlN1kub
+	VyuREBWmkt578HnhO7RrIxe8ZI9M+8uqnBHAOtAV0O/eCYasQJbnvAyF
+X-Gm-Gg: ASbGncuQOEOAVtHSAYuky/NWALfQwKuCgUpF7cFRC4HGSfBOjL0e10X+UWkzuDDMAlR
+	TI91an89O1bSDCaD8fAtLH6cCLYTI/jOVjZtfUXm8F+sJY/L3fHq4KJLwBgHCFfg8B7OuQI96lQ
+	UWRfv2E57raSzigAdr+2fG3WkpZjNzQ4nGJGaQI3ZUM5VyLLhNtk0QYyFhbNlnjrHFafDAaWcNb
+	iCMgZC6f50uJ+HCuVrTeA83KuSsIg1Fp0i2QCNBlTRd1WD/qtGH9DvtzdYIXZX3MJyT6OSxu0Ss
+	9SXvgwidgk3KX2HzObgvJPy62bXoIhF/vIqfYBX6dfalVS5a3N90u/LjICFU42oYgrkrV01YdXZ
+	u6MKpM/6uW1MHyL2QK7S5agkoyyiJcIc2lKY=
+X-Google-Smtp-Source: AGHT+IFImA08aof3XwI/kXP2dr24zv0EdH7as17SlX0fPIgLzV66SUkcwz634chn804K4HPRH45x+g==
+X-Received: by 2002:a05:6a20:9188:b0:215:e60b:3bcf with SMTP id adf61e73a8af0-23812e5021bmr4863282637.30.1752676916164;
+        Wed, 16 Jul 2025 07:41:56 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9f4caa9sm14210175b3a.111.2025.07.16.07.41.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Jul 2025 07:41:55 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 16 Jul 2025 07:41:54 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Jean Delvare <jdelvare@suse.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Jim Wright <wrightj@linux.vnet.ibm.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/6] dt-bindings: hwmon: ti,lm87: Add adi,adm1024
+ compatible
+Message-ID: <95638555-309a-47d7-bc61-d8a4cf821afd@roeck-us.net>
+References: <20250701-dt-hwmon-compatibles-v1-0-ad99e65cf11b@kernel.org>
+ <20250701-dt-hwmon-compatibles-v1-2-ad99e65cf11b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: microsoft: Add vmbus
- message-connection-id property
-To: Hardik Garg <hargar@linux.microsoft.com>
-Cc: apais@microsoft.com, conor+dt@kernel.org, decui@microsoft.com,
- devicetree@vger.kernel.org, haiyangz@microsoft.com, hargar@microsoft.com,
- krzk+dt@kernel.org, kys@microsoft.com, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh@kernel.org, ssengar@linux.microsoft.com,
- wei.liu@kernel.org
-References: <63ca8d08-2fd3-440e-858a-f8d79890016f@kernel.org>
- <1752640932-23038-1-git-send-email-hargar@linux.microsoft.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <1752640932-23038-1-git-send-email-hargar@linux.microsoft.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250701-dt-hwmon-compatibles-v1-2-ad99e65cf11b@kernel.org>
 
-On 16/07/2025 06:42, Hardik Garg wrote:
->>>>> What is a connection ID and why it cannot be inferred from existing
->>>>> system API?
->  
->>> The connection-id determines which hypervisor communication channel the
->>> guest should use to talk to the VMBus host. Reading from DeviceTree allows
->>> platforms to specify their preferred communication channel, making it more
->>> flexible (I will add this detail in the commit message). Presently, this
->  
->>> We don't add properties to make things flexible.
->  
-> You're right. I should have explained better. The connection ID is a hardware 
-> configuration detail that defines which specific VMBus channel is used for 
-> host-guest communication. This value is configured by the host and passed to 
-> the guest through the host's device tree. Different hypervisor versions and 
-> configurations may require different channels, and this needs to be specified 
-> by the platform.
+On Tue, Jul 01, 2025 at 04:00:41PM -0500, Rob Herring (Arm) wrote:
+> The adi,adm1024 compatible is already in use. Add it to the lm87
+> binding as the device appears to be compatible.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
+Applied.
 
-Host is supposed to have multiple guests, so this feels like you are
-going to prepare for each guest different DTS with different connection
-ID. This feels like poor design. DTS is supposed to be relatively static
-configuration, not runtime choice vmguestid+1.
-
-The guest cannot access other configuration channels, can it? If it can,
-it would mean it can eavesdrop on other guests? So obviously it cannot.
-Therefore from guest point of view this is completely redundant. Guest
-cannot use any other value, thus guest should not configure it. The
-guest has only one channel and uses only this one which gets to right
-place to the host.
-
-
-Best regards,
-Krzysztof
+Thanks,
+Guenter
 
