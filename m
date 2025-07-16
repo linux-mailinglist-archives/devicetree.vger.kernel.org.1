@@ -1,137 +1,156 @@
-Return-Path: <devicetree+bounces-196833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB89AB07403
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 12:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8667BB07411
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 12:55:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28CFE4A307E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:53:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEBBD4A57B5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 10:55:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD332F3634;
-	Wed, 16 Jul 2025 10:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B182F3646;
+	Wed, 16 Jul 2025 10:55:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S9zpFARf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AaXmIeDz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 776EB2F2C5E
-	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 10:53:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B04B2F3640;
+	Wed, 16 Jul 2025 10:55:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752663200; cv=none; b=SRlNsC7KrCtedsF2NS1Mf3ArGTKLQBwSL7MGeRq7uy8ALvLytf1Fu3YnM9cbtbS5bjD7GNoX9lNC6w8h6D2ShheirAkDBxuv2LuSfeCW9Hn3OWUdPq4t8X8DzwAjD8QxblQaI+zQsFNdy03hE+eVYuPkDfpKdTmOJDUcypRiRz8=
+	t=1752663308; cv=none; b=NbxAIbobobNF/nCK5+GHfnzuBbubVMbmMpXZIV4F/3nqVjxUGHpkBS9kNkkeIU/Y3fgOFuN7AUDUkdZZqC5ElAbatrdH1aI5iIioxdGH5ezWCOhgx3qy6fM5CSPjN/XtEbMxwtBCNoGNCYxJydejJasQFhESUUkRmRfRmtUf/kQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752663200; c=relaxed/simple;
-	bh=uXkQwXePVkjKmDB6B3sdrREQ8QLpKEcUmjYTykYPIl8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q8GT2vPSaVivdMJH3G1x5VX5EqG9cS80PxCIozc6KD1c/KAPFDEDdoJBQiMEE8lW+AN7DLc7YyETc0S5kFZYaqKfnhLEHGGc54FfCIDtCqHLmX060YOoI8Uu6TeP8ONXXCfjnAUIrlixY3FwTPUvOChP9god5G/imvh0ODs33EA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S9zpFARf; arc=none smtp.client-ip=209.85.128.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-4560cdf235cso22052955e9.1
-        for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 03:53:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752663197; x=1753267997; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8CW2/O0TzBqschJZP93TpDVHYIZvXtSrznuz3Stcnpw=;
-        b=S9zpFARf5kagB7hbUoIGHG6WPHLiDLA1UTGYVWEaIJ/6GPEEHNjc9ApxHhX9BVVmro
-         nspEE61Sa0YaF4OtBDAVBd3kISi+8FAMUOrPx8m7lu3NX8LgXQ8dkzvI8kutnvdUpoS2
-         b4pTDxSOsvoD7k6vgq3UNP/WoXcACH4NOEsCIK0okDEJt0iohwK5QWQZAKnG5OUxCJ0O
-         danbwAadC26xPonWZ8DU3eUqIoT4jggPUHo1vP7+CzahAIH5DrfoEp2u1zHyUQJbd/um
-         fX5cxyqHWrJP050ruBwUxdJiooPQATQpzCrEPmg4w82sZa4Q1RkZQhEwp+dI+mfZRWTM
-         dm5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752663197; x=1753267997;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8CW2/O0TzBqschJZP93TpDVHYIZvXtSrznuz3Stcnpw=;
-        b=Pkgw+tUwZI5NdZ0IbF+XAFLV9Y8IYwec1BVd1EIbwTNV8Er4/vqXf+6egPw0gumwzw
-         3Q1Ojr/ZkDqEyIfpjBsWF/PYGsc3opZF3lOt7rIVppALKZSK+2Eq4SAuHuXwpf/vO4PO
-         wlIMnW53uxFKbLsLZs6mMm4sS7SQIl9O+ClysB2DFf5LHKtSR8dhm7pVH4rkuoeJerGF
-         aspxvpocAoCRA+OL6EUBHdoaZEV+olm/cYfbniyiush3DFY1cSZImj5e26+maRwptAHI
-         Dzkp8it1Mr1GRBVg9MDB3XolgdkH+k1VAm+5is8EpkPVQ2kfBSPRUvIXDR/wqQHwwJwM
-         sxkg==
-X-Forwarded-Encrypted: i=1; AJvYcCX+PepSVEtJ7rLzUveXucQsOnPSvg9QROZXNqXbh3hPk9by/8VoyMevJacasWJ8yzmgPUT4RuXQhrlX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzabMh+TXhQJ/91B/QC8e5OfONbb/eRnfFCQKmKflGhwHtbzgCy
-	+DR0zDAPXvPA0JpfTQm32qyVkEKoHJYooKDEEYHfGYip3+pOR79DiMhYQRmY2Fl5c4k=
-X-Gm-Gg: ASbGncvvbS7SDa9jRZ7caASCmkLYE7vZ4ESdHnBhVLzrBLP4kyItS0ENj0Wv+QGtFS7
-	HyESl8Fjn4kC/Axzi4ZSTSfbWGCX2A/2gfQW87E7SiBsKHGOY+uI05s6Gl1Izw4kwOwWWClcq8c
-	r5Wvqo5d0S3n4eyepPjM1dPiDcg+jM+FV2KzQ3WP2dzSP4PdWtny7imkRKzHTczU2pJQTG5/UVO
-	jPwWNbABBcCsd3zW/D0KGcHwVpaIS/rbYcAly43LKSMmXSupVv+4adazjAwp7302B3TMiIvtps4
-	lhPpw2/ukHSFvdMjzi7yirSTaBqZ9WWvvmxMc7a9SWAd8fxPONdr1j3OsgkigvYKKKZoBTUeU2L
-	dZbjmSm8IUdt6TXwusV0Z6zBmN5bXBGCDge+rHi1Szw+wG8KBadfNsT1S0yIZfH8=
-X-Google-Smtp-Source: AGHT+IEUeJJ3NfX00M2OD8gjxuXAAcmIdfAZqCKGjvqb2/EEjyffgUkLner7WOBZzioDHf2iP0fReA==
-X-Received: by 2002:a05:600c:19c7:b0:450:d386:1afb with SMTP id 5b1f17b1804b1-4562dfe6e65mr24230655e9.9.1752663196643;
-        Wed, 16 Jul 2025 03:53:16 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8dc21e7sm17523816f8f.36.2025.07.16.03.53.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Jul 2025 03:53:16 -0700 (PDT)
-Message-ID: <a2681844-a96a-465a-a48d-49e1ede526c6@linaro.org>
-Date: Wed, 16 Jul 2025 11:53:14 +0100
+	s=arc-20240116; t=1752663308; c=relaxed/simple;
+	bh=s/qODGloHS8A6X+Kd2P5c0fXlx0swt4d3mPhst1www8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eOU3GTX7+m6OTDMurRuwDfXoOYDeutDm/jmCzjS+ocCdLHhnVr2sadd+3jGZ5HyamYT9diHjyfR4FHDlgZ+fSzBpNFoOC8YD1M++mGZEOzWc0MUiXdKjafSeblrZ6rYdywfsGMNqOKT7ze1Txxkl5DV3xsZx7pgxvYFTdKIw66E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AaXmIeDz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89F36C4CEF7;
+	Wed, 16 Jul 2025 10:55:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752663308;
+	bh=s/qODGloHS8A6X+Kd2P5c0fXlx0swt4d3mPhst1www8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AaXmIeDzxUjpLD8/kVuv5Q1vETO0s8srl0M9EM7uqSBrWlApGEhJfzRcbLg6dOJwc
+	 98V+b2Z1PuIGvxxsXXVD0zRWhiBMQFP6kvJeMEaoBGBnWihHDU6j1hSAyHPRBTAK7N
+	 a3GZ70moRvWKjvOhLPD1QTxrKyEOGAGiUYetPArroJrH1f6m9scc9YjT/yebas3Gyn
+	 sTfA/IU/xK7Ei0ABIImay2LjcKYvFfzkX1Th8Br8XFoAvjXBGWq7Ei1XUsPKWtMqsv
+	 3JpFXSMGYJqjCNjY0ay5541eMU2BkoKYcda3dV9BZYU+KrJxh/bx8aJXFXqBjkyoKl
+	 lYtZR/m0gU6Og==
+Date: Wed, 16 Jul 2025 12:55:05 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 1/7] dt-bindings: net: airoha: npu: Add
+ memory regions used for wlan offload
+Message-ID: <aHeFCZ3Z9E15pSeL@lore-desk>
+References: <20250714-airoha-en7581-wlan-offlaod-v3-0-80abf6aae9e4@kernel.org>
+ <20250714-airoha-en7581-wlan-offlaod-v3-1-80abf6aae9e4@kernel.org>
+ <20250715035419.GA11704-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/4] Add Dell Inspiron 7441 / Latitude 7455
- (X1E-80-100)
-To: Val Packett <val@packett.cool>
-Cc: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250716003139.18543-1-val@packett.cool>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20250716003139.18543-1-val@packett.cool>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ejVKjvWudJw3Rkcf"
+Content-Disposition: inline
+In-Reply-To: <20250715035419.GA11704-robh@kernel.org>
 
-On 16/07/2025 01:26, Val Packett wrote:
-> Since v3[1]:
-> 
-> - Applied R-b tags
-> - Skipping the eDP panel ID patch now since it's been applied
-> - Fixed the last remaining '-names before -0' order issue
-> - Changed usb_mp: keep the unused PHYs enabled in the DT
->    (to let them go to sleep), like how it is done for the XPS
-> 
-> [1]: https://lore.kernel.org/all/20250706205723.9790-2-val@packett.cool/
-> 
-> Bryan O'Donoghue (2):
->    dt-bindings: arm: qcom: Add Dell Inspiron 14 Plus 7441
->    arm64: dts: qcom: Add support for Dell Inspiron 7441 / Latitude 7455
-> 
-> Val Packett (2):
->    dt-bindings: arm: qcom: Add Dell Latitude 7455
->    firmware: qcom: scm: Allow QSEECOM on Dell Inspiron 7441 / Latitude
->      7455
-> 
->   .../devicetree/bindings/arm/qcom.yaml         |    2 +
->   arch/arm64/boot/dts/qcom/Makefile             |    4 +
->   arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi   | 1666 +++++++++++++++++
->   .../x1e80100-dell-inspiron-14-plus-7441.dts   |   52 +
->   .../dts/qcom/x1e80100-dell-latitude-7455.dts  |   53 +
->   drivers/firmware/qcom/qcom_scm.c              |    2 +
->   6 files changed, 1779 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
->   create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-dell-inspiron-14-plus-7441.dts
->   create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-dell-latitude-7455.dts
-> 
 
-Just tested on the 14p this updated version seems to work just about 
-fine - or no worse than previous.
+--ejVKjvWudJw3Rkcf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+On Jul 14, Rob Herring wrote:
+> On Mon, Jul 14, 2025 at 05:25:14PM +0200, Lorenzo Bianconi wrote:
+> > Document memory regions used by Airoha EN7581 NPU for wlan traffic
+> > offloading.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  .../devicetree/bindings/net/airoha,en7581-npu.yaml    | 19 +++++++++++=
+++++----
+> >  1 file changed, 15 insertions(+), 4 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.ya=
+ml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> > index 76dd97c3fb4004674dc30a54c039c1cc19afedb3..f99d60f75bb03931a1c4f35=
+066c72c709e337fd2 100644
+> > --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> > +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> > @@ -41,9 +41,18 @@ properties:
+> >        - description: wlan irq line5
+> > =20
+> >    memory-region:
+> > -    maxItems: 1
+> > -    description:
+> > -      Memory used to store NPU firmware binary.
+> > +    items:
+> > +      - description: NPU firmware binary region
+> > +      - description: NPU wlan offload RX buffers region
+> > +      - description: NPU wlan offload TX buffers region
+> > +      - description: NPU wlan offload TX packet identifiers region
+>=20
+> 1 entry was valid before, but not anymore? If so, justify it in the=20
+> commit message.
+
+ack, I will do it in v4.
+
+Regrads,
+Lorenzo
+
+>=20
+> > +
+> > +  memory-region-names:
+> > +    items:
+> > +      - const: firmware
+> > +      - const: pkt
+> > +      - const: tx-pkt
+> > +      - const: tx-bufid
+> > =20
+> >  required:
+> >    - compatible
+> > @@ -79,6 +88,8 @@ examples:
+> >                       <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
+> >                       <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
+> >                       <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
+> > -        memory-region =3D <&npu_binary>;
+> > +        memory-region =3D <&npu_firmware>, <&npu_pkt>, <&npu_txpkt>,
+> > +                        <&npu_txbufid>;
+> > +        memory-region-names =3D "firmware", "pkt", "tx-pkt", "tx-bufid=
+";
+> >        };
+> >      };
+> >=20
+> > --=20
+> > 2.50.1
+> >=20
+
+--ejVKjvWudJw3Rkcf
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaHeFCQAKCRA6cBh0uS2t
+rAnDAQDc4K8cm9ezsu4s25+kmtqhZht/BBBftBY73/9r+XfLhgEAz5X7/1w62Db+
+3oZ18L1Bo0L+qo8227Ivg56sgkDPXQ0=
+=YHee
+-----END PGP SIGNATURE-----
+
+--ejVKjvWudJw3Rkcf--
 
