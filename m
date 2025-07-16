@@ -1,290 +1,217 @@
-Return-Path: <devicetree+bounces-196986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB207B07D0C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:41:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A53D7B07D1E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:48:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37E803AE6EB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 18:40:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF976166F88
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 18:48:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B8929AB1B;
-	Wed, 16 Jul 2025 18:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF219263F5B;
+	Wed, 16 Jul 2025 18:48:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="FH+1nZQd"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="H6DkAmrb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013015.outbound.protection.outlook.com [40.107.162.15])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45CFF29AAFE;
-	Wed, 16 Jul 2025 18:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752691245; cv=fail; b=W+EUS9hQZ7jTvvlFt/jpIOcBF1eVD5kiRHo13de6fvn7tF3cFqk1jd5R91K97/XeLW38IfUCCYkqZZSJ1uXFPKd+P/euGdjK8i/bP0kDzdDFU0y+MQmoSFJR4mwZ0fkSXfZ3gbjA74+s2gMTsjcJu56fuDODSHPWjmTXU5NYLPo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752691245; c=relaxed/simple;
-	bh=fBntJdmAqnt00KnTPeF4w3bHh6hbQ4GxLMlsbrDfraM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=ZaDIHp6z+iztHSeSoToJWDo6BV+YFwGW6qiM54Ztb/hd2UCSsdNf6enjwxrk6mThfA/MTjRi+Tz8mYHBi+jo7bRKkoPWlKPuzVx8RUp9jWgiBkGQvE3rY/KgD4WvOESHiiGHjvvU483/GcdKy9FsZQpUoO/K/HsAQ6s0GkbOqsc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=FH+1nZQd; arc=fail smtp.client-ip=40.107.162.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HtHgLBdqxrvPp328P1W4En4OBh9ybaOJiBrIeg6CBwv1IANldh1GsnefWhS/deWT8E7ybZLw1dxsO5N7Ag0sBD6psPZBqMANWUzTc2IRxLNiceg+EWTZ9yjI1Q2/it78Bm5l+kzzoLlNSD5LN850dJcNvypVDa56bXcV/5dsse3ftTQattFkFB5letQWiUfuak4nKQ0m6uy85FjL37Ifej6A7Df7uk7wEOLsw7/zd5tPtcGLvIbqOugcBkOCVbSWXfLItDXPL0msdaG7eTVodvaQqoye17BamWjjGvE++A2E1HQDX+Rnd4jVqbtGQoMy0rwEKwT5pWE0HX8Y6+tdxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TV9sFRoKiJrwWF2LFa1rO8fhtoEYjqgpztwMubnrhLo=;
- b=x2KF+mQF+e3vmGuMpJBbZrzULRwfUVfXBKuq001yapbbI+/S64DpWZG84efhIuUH2TFCAedZEVfv1CgAH/w1ZoNvDYC2EhWjqiCpPkQCyxnOCldEB+kUiqyr1bqFzcN/E4ykRBp5/9DaVzHmz3paysRmG8mWU/rLsLO2OgekCqaJ6q7gLxE6URas2w/h9MOoHHMr8+nZLOgtwI/GawnTWyG6QKzDwlfxyJNY3jyUM+Pm3gfoXat2F3yrZSw8L1ybVOfohkir0/TKLtJfmeSlKv3heLpiLSmQsDvQIlI65PZ5MrowWNv45M59P7+ai7SCWwNrPZ7sAGfddNj4Grp44Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TV9sFRoKiJrwWF2LFa1rO8fhtoEYjqgpztwMubnrhLo=;
- b=FH+1nZQd37Gurr8sznFejkqUzs7UQ8zp60Ctao+VdadfnJjjqFy9hYaJloiyuoD+n4fKZeIF6Nd5opcho5+CwuutSvnsu1O7xfXKzbZkxXDiO0KSWkz3il0Ga/js88WdPbWG4Fhc8sAkx2642bcdeyTNal5pnlspkFtBlF1MQJmoLhLDYkmiYqR8aR62T+3Br38Vy0MXlJ+p/h1hHNbnHebsBPtufZ3M4RfZ1H4hkChjCZ1DnkXqovsomYsFb3SgXzbFHNzOUZ3LX6pPXFOoDC/Cm5LsmuufhYYh0YjFsG06Gh6dNopR3AOFbRdwANB5AYeuxzdXYcP/YAxB6Et72g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GVXPR04MB10897.eurprd04.prod.outlook.com (2603:10a6:150:215::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.32; Wed, 16 Jul
- 2025 18:40:38 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8922.028; Wed, 16 Jul 2025
- 18:40:38 +0000
-Date: Wed, 16 Jul 2025 14:40:32 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc: imx@lists.linux.dev, Philipp Zabel <p.zabel@pengutronix.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 06/10] dt-bindings: display: imx: Add bindings for
- i.MX94 DCIF
-Message-ID: <aHfyIGchYEfOgG4h@lizhi-Precision-Tower-5810>
-References: <20250716081519.3400158-1-laurentiu.palcu@oss.nxp.com>
- <20250716081519.3400158-7-laurentiu.palcu@oss.nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250716081519.3400158-7-laurentiu.palcu@oss.nxp.com>
-X-ClientProxiedBy: AM0PR03CA0074.eurprd03.prod.outlook.com
- (2603:10a6:208:69::15) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A17A84A3E;
+	Wed, 16 Jul 2025 18:48:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752691692; cv=none; b=dcCfcpBbH0lee1WsNifTJLOVMH7dWJ+JS2MIZo7n/hmxMNatvXFVrpT2eyQxZGGaA3Rzn+0BUj/9PZo+2MD3vYh9CKyICHCkTy6hHLt7dOj6x/7I035Dik5KMw6EaXD28nwMER3OE7jBZC3Ka+O/hnyFSCuah+lYZW+R99LAaus=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752691692; c=relaxed/simple;
+	bh=8n3WqsdGagN8W0DhZryy0a4hrWcsi0O0hz8Trf27+yI=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=WJySMKSX5rKog7RqCVGimOUNeJg4jPdPKX8a/FeSACehyHmw1xuttpinG1TQxazPRtZaJrEExlAYYPjRAyTzoDNDlKFzsqh/cbIcPAbzDEc0hR7MWQUZs1vhKKs/rKcuBKCD2VgBbmMR3OYMG+uxoSjwDKpuocgPcSFnybet/yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=H6DkAmrb; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56GIlX0E305357;
+	Wed, 16 Jul 2025 13:47:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752691653;
+	bh=qTEuwqLVvtb64mUYPFpiLTtsuvwj0j87WEm1+Xxkd+I=;
+	h=Date:Subject:From:To:CC:References:In-Reply-To;
+	b=H6DkAmrbZImWtMmL0l7ALuZmwb995zdh4lcoJMgHxQ4X6lH7uGXiFW8Y+xBoE5HZV
+	 jSThy56gsvKPiTexmMsfnsBP51twch0KBWdvO9wIhxaN7aJXjBCBr7EK/W7B3Ri4d/
+	 j4ALKJ6ckJ8c7OexHKHczYYMHL75JzwgLZnvyB90=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56GIlXvV3817913
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 16 Jul 2025 13:47:33 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 16
+ Jul 2025 13:47:33 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 16 Jul 2025 13:47:33 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56GIlXkW919838;
+	Wed, 16 Jul 2025 13:47:33 -0500
+Message-ID: <fb2cc029-796e-4bc7-a1fa-b43256a86c39@ti.com>
+Date: Wed, 16 Jul 2025 13:47:33 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB10897:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7ad31700-2ca1-43cc-6f11-08ddc4984253
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|7416014|376014|366016|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?bzabGNxu5j33pRyo6E1kIkMNw1hPLIBeJLMw+0XsCpUIQVFOy9Tlg287yasI?=
- =?us-ascii?Q?mni1VdhfIhlU3aNpDgZSX64Gl2lqq7eGFUclT0/4eMFg9d3MX0vccNVP/0Lq?=
- =?us-ascii?Q?HKhFdFHeEeYhEVd7ByScpcOzQLmrzbY4fHd4t0BYj2mbGTYrp1AFEN4eTknZ?=
- =?us-ascii?Q?8+WWc1WQyZEndQBYy6PsKtVv/JucCXkenhY2WOtjSHlgtmZyYZNVM9q9KjQw?=
- =?us-ascii?Q?gHzzdjrf5evP5uSGxsGc6xrPDC/QPMD+diveyQdbGYbqW9AzvYbQnlSxjxz3?=
- =?us-ascii?Q?XPbyaTne8anMRDX+3NyW7rl4YXhfZP+nxoHrPCYpfpRvuVZMd8DOtp14oAd5?=
- =?us-ascii?Q?DlC0SI2/ECUV2WGpnyw64dGDQFr6nmVumc2Atq3sepJmpBcm3ckkrys/GYcU?=
- =?us-ascii?Q?Fmqm9Qcwq7pnj9+HdD78GYwtdF50GwyXAz1ahA399kDCNdgQtqqaMijAdT2D?=
- =?us-ascii?Q?J+066q39v4FO5YAOMdM9AwKu3+aktWd2y/uIdtZtPKZoaX2zaqgJvlKwxWz3?=
- =?us-ascii?Q?N+wh3LTtDKlySYzth6xLGzbu5gzs7Lq8XTGYV66Nc0s/JnLpVmn+hl2eH3EG?=
- =?us-ascii?Q?P7Ec0STKGoaW5yaDfMrb2J4syM/OscoTVYFskAH9on+/D9N5KK13uOBuBfg+?=
- =?us-ascii?Q?nD9sC6GTA6Z/PNMyACbMqFC6e+OJAMkBEQCaz+gGG1thXvJQoHzkeoAiRd7R?=
- =?us-ascii?Q?XmKtBxrxLCK2H8/x/YzWKkX6qWBKEr1MP/u4MroQ87IWAgHpe+Fn18r/H8Jk?=
- =?us-ascii?Q?6o82TytyaD5TqWVV/taBBInWu0WW19xf9BU2vq2K4WvKgBhvPMmiJ2diKM5c?=
- =?us-ascii?Q?0RRUHxlv4F/Jv/YiZaSK8lMn/uJrgw0rK9dzS69ZR0dmgZIXs2rpD8rRwae5?=
- =?us-ascii?Q?HjZVk/mJJz9jYiS1QRc+i6kd3aA3M6V9XHd2ntKNauEJKAKlxu7rWcy6IGF/?=
- =?us-ascii?Q?VEzqgbn7Mb9+KQUjFCDUUbrH2pQ0kIH6JZJQkGj5+gNex1WQ27Bm+GRAkcTX?=
- =?us-ascii?Q?acI66LrGh/0gRZ7MHQodRQWahp+ZjZdCz1u+C9/+5moo2Qg+UZ+2qfomX+7q?=
- =?us-ascii?Q?AXli+Ob85p90RGVnFFDIPfqvK1/bigPoMywj5czFmD2uCgGloCvyHdGJ8K0N?=
- =?us-ascii?Q?OvdJUbg5to5uWnpYT4M3Ap8UThnlKT+U0ZPYmbz3tE3AJUC7xzzRuYjWhMru?=
- =?us-ascii?Q?ZzVZOU4PEA0RrVBng6BGhRdCb2NxEoj/uYqIVmKjwAgvn0vcwbkgtQM2su06?=
- =?us-ascii?Q?7Ddbm/++MzPV7MmeBhf7MIa9bIdxAPZzgEDgZEE+AA3SahmcBf8BfDJFJFku?=
- =?us-ascii?Q?OlLPC8mlXRPrnV2lXccSHyjXmTmLQxvJEnYeguS7SZzhVdNETHbWMQ8XF7lM?=
- =?us-ascii?Q?z4aKNAHbseMWZ2d206SVAvr6Hx0f6uKdZgvYOOMJ1XIRLs3RGSUjK1/dVJ1o?=
- =?us-ascii?Q?qKQruY1LFbZwommB/3lpm5xkCtIWapjL?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?i2mMknQkfC4cG+AtXNyL6QrGTFycKD4N0oPoqgmAlcHVqFOCqo0n1zygV6Ns?=
- =?us-ascii?Q?mzUkw+g8E1lmBT6IX4FwZPCPDgzdVCS2TIQsHIESec2g1vTijJj2AE/u3a5D?=
- =?us-ascii?Q?UWPE1/DzDzqc0BLJcNvCSJ0gogQXnz8mX2mctLssK8v09HMWHvSE6xGj5kqv?=
- =?us-ascii?Q?VbPCBodDlyn4uEQJQYx2J8OT4zi4pNJ+amOc4kZOBWzytaZz5QtulDUHBfpB?=
- =?us-ascii?Q?THaYBAaThRZQM/CziOSX/Vpf/3dvwer25b4ALmC5GvXcbU+AR1PiHwFJL6zx?=
- =?us-ascii?Q?SfBxHQR8LN4PRPCD7jd09KxL4e1g6s5SbxacX3WEE7BzdCi0kxmJjhKbly1F?=
- =?us-ascii?Q?kub0//x/lQvLXGbpGAFMcPESZBFCpbJArzWHX8Ed/+sw3gLKUgjKrfa/q9Ec?=
- =?us-ascii?Q?SAiQ6mi3iZwEXKkri7BXSRxPx66eGvk/F7W0ce63CQrLYgQKYBsmBB3YmJug?=
- =?us-ascii?Q?uAtOxrsEKrGDRHecyGoos2rToVrcmTOtI7E2QmO8Aowu2jklL9BkheZKRNcV?=
- =?us-ascii?Q?h7lXzMZqHhvLKhXP+DwY9MNPhWW0a149vywKOCUe3uGwtQmxCljmJSTQ2Aff?=
- =?us-ascii?Q?Fu+2ZOu3KAMSAadJZHwrGPbYVfXH8gdi/xzRsIyFMgdfBcwdfghqauHNY36R?=
- =?us-ascii?Q?FK71wP9HjXXU0iRL45KzRRxgwTS/RVAcCRUD3kWslAD+gIUtVaTn5vgOWezw?=
- =?us-ascii?Q?tF06rgfDqI/WnMMMD+tyglDPTxbvpFDQSp7quR433ixJrj3fE16y2fqqWQCY?=
- =?us-ascii?Q?t8SWLqrjOQ7OeR13JmaCDfGadZDAWhF9H/DCxTgCDUiByLCKtaJPPmhL4TPM?=
- =?us-ascii?Q?koQKUCKJhPszthQhvuhZD7kfEBbwEEyQz8wyMpJ7PjjOfHss+EWagxVPaSZ4?=
- =?us-ascii?Q?ExS9JoEsixj3lHZ8RAS/W6drwkur9vsS6B0cVBXetO+pH/dmf205Qi9YtrLC?=
- =?us-ascii?Q?4d796V0c/sQQYOmpg6WhGK+4PcmrMgGrusMWNfTDdz54sPKcwrlPHSvG0jec?=
- =?us-ascii?Q?lT1koStmTwixsUvkmXIzgE1+A45S533TH92xjmxtSorL4ijCkJQKIp4I2lSG?=
- =?us-ascii?Q?iJVID1hdJwP7LMRWbvtHAnx00xd6eUVefgieFYkLGBKRNuvf9NkfAgY4nujd?=
- =?us-ascii?Q?tRZQu/nRNSPu2ah5nwgjPJ158d2JqvPzGm+pdLic8zMsZ2sR0w/mcGv2Wp3w?=
- =?us-ascii?Q?jP6kh99fvaO+5U7QbdKBtq+OxSB0YCu5//ID7gVGS0vPMOJySappDc3E1blv?=
- =?us-ascii?Q?y/WuE8Uk+OAnT0nFb748O/xcAVSaC9sKKzy3HlgsNGtnBuFsa8lHk2CH3CRb?=
- =?us-ascii?Q?ZLkKp1tN1XFSzLZtEMwv3rBH8R7JbaLX0vE79iur6uk4PxE4Ze41jinK1XJg?=
- =?us-ascii?Q?wAafPjSEihzq6eVlDBKhgqq3pYLtvxtRALTbWsr6PyNFQ4hhfXGBrdIF7Df0?=
- =?us-ascii?Q?HI/bvoYbZpX6C0ulpauoWm6K9GZs0TG8qGX/a6F3DOrJTRfirf6k3vraR4N9?=
- =?us-ascii?Q?RXnMHCMgke6rFxRhWPcvMGHdmkDP2Q6t9CX3U4umus+ZocZ9VhzD0BtzEwbn?=
- =?us-ascii?Q?2P/hJ+P7EcgDTor9las=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ad31700-2ca1-43cc-6f11-08ddc4984253
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2025 18:40:38.5223
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gCpX5RALez4l5Q9u7jwlx4oAAR9E70vnkgpWPvBTAVfe5j2Dsz5dQfOzyaU8dCAf+TnlR89fxFwvdIvSdHTzaw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10897
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] watchdog: rti_wdt: Add reaction control
+From: Judith Mendez <jm@ti.com>
+To: Guenter Roeck <linux@roeck-us.net>, Andrew Davis <afd@ti.com>
+CC: Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250707180002.3918865-1-jm@ti.com>
+ <20250707180002.3918865-3-jm@ti.com>
+ <cc37e797-d3e5-444d-8016-c437a0534001@roeck-us.net>
+ <d96541bc-644d-4c90-b9f7-1e4afd16aeb6@ti.com>
+ <953f78a8-3928-479d-8700-dfe1cea15454@roeck-us.net>
+ <299c363a-23c7-4522-b58c-100f49c4eece@ti.com>
+Content-Language: en-US
+In-Reply-To: <299c363a-23c7-4522-b58c-100f49c4eece@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Wed, Jul 16, 2025 at 11:15:10AM +0300, Laurentiu Palcu wrote:
-> DCIF is the i.MX94 Display Controller Interface which is used to
-> drive a TFT LCD panel or connects to a display interface depending
-> on the chip configuration.
->
-> Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> ---
->  .../bindings/display/imx/nxp,imx94-dcif.yaml  | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
->
-> diff --git a/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml b/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
-> new file mode 100644
-> index 0000000000000..207ddf0f550df
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2025 NXP
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/nxp,imx94-dcif.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: i.MX94 Display Control Interface (DCIF)
-> +
-> +maintainers:
-> +  - Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> +
-> +description:
-> +  The Display Control Interface(DCIF) is a system master that fetches graphics
-> +  stored in memory and displays them on a TFT LCD panel or connects to a
-> +  display interface depending on the chip configuration.
-> +
-> +properties:
-> +  compatible:
-> +    const: nxp,imx94-dcif
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description:
-> +          Interrupt output for CPU domain 0 (controlled by common registers group).
-> +      - description:
-> +          Interrupt output for CPU domain 1 (controlled by background layer registers group).
-> +      - description:
-> +          Interrupt output for CPU domain 2 (controlled by foreground layer registers group).
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: common
-> +      - const: bg_layer
-> +      - const: fg_layer
-> +
-> +  clocks:
-> +    items:
-> +      - description: APB bus clock
-> +      - description: AXI bus clock
-> +      - description: Pixel clock
+Hi all,
 
-dupicated information with clock-names.
+On 7/10/25 9:08 AM, Judith Mendez wrote:
+> Hi Guenter, Andrew,
+> 
+> On 7/7/25 5:55 PM, Guenter Roeck wrote:
+>> On Mon, Jul 07, 2025 at 04:49:31PM -0500, Andrew Davis wrote:
+>>> On 7/7/25 3:58 PM, Guenter Roeck wrote:
+>>>> On Mon, Jul 07, 2025 at 01:00:02PM -0500, Judith Mendez wrote:
+>>>>> This allows to configure reaction between NMI and reset for WWD.
+>>>>>
+>>>>> On K3 SoC's other than AM62L SoC [0], watchdog reset output is routed
+>>>>> to the ESM module which can subsequently route the signal to safety
+>>>>> master or SoC reset. On AM62L, the watchdog reset output is routed
+>>>>> to the SoC HW reset block. So, add a new compatible for AM62l to add
+>>>>> SoC data and configure reaction to reset instead of NMI.
+>>>>>
+>>>>> [0] https://www.ti.com/product/AM62L
+>>>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>>>> ---
+>>>>>    drivers/watchdog/rti_wdt.c | 32 ++++++++++++++++++++++++++++----
+>>>>>    1 file changed, 28 insertions(+), 4 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/watchdog/rti_wdt.c b/drivers/watchdog/rti_wdt.c
+>>>>> index d1f9ce4100a8..c9ee443c70af 100644
+>>>>> --- a/drivers/watchdog/rti_wdt.c
+>>>>> +++ b/drivers/watchdog/rti_wdt.c
+>>>>> @@ -35,7 +35,8 @@
+>>>>>    #define RTIWWDRXCTRL    0xa4
+>>>>>    #define RTIWWDSIZECTRL    0xa8
+>>>>> -#define RTIWWDRX_NMI    0xa
+>>>>> +#define RTIWWDRXN_RST    0x5
+>>>>> +#define RTIWWDRXN_NMI    0xa
+>>>>>    #define RTIWWDSIZE_50P        0x50
+>>>>>    #define RTIWWDSIZE_25P        0x500
+>>>>> @@ -63,22 +64,29 @@
+>>>>>    static int heartbeat;
+>>>>> +struct rti_wdt_data {
+>>>>> +    bool reset;
+>>>>> +};
+>>>>> +
+>>>>>    /*
+>>>>>     * struct to hold data for each WDT device
+>>>>>     * @base - base io address of WD device
+>>>>>     * @freq - source clock frequency of WDT
+>>>>>     * @wdd  - hold watchdog device as is in WDT core
+>>>>> + * @data - hold configuration data
+>>>>>     */
+>>>>>    struct rti_wdt_device {
+>>>>>        void __iomem        *base;
+>>>>>        unsigned long        freq;
+>>>>>        struct watchdog_device    wdd;
+>>>>> +    const struct rti_wdt_data *data;
+>>>>>    };
+>>>>>    static int rti_wdt_start(struct watchdog_device *wdd)
+>>>>>    {
+>>>>>        u32 timer_margin;
+>>>>>        struct rti_wdt_device *wdt = watchdog_get_drvdata(wdd);
+>>>>> +    u8 reaction;
+>>>>>        int ret;
+>>>>>        ret = pm_runtime_resume_and_get(wdd->parent);
+>>>>> @@ -101,8 +109,13 @@ static int rti_wdt_start(struct 
+>>>>> watchdog_device *wdd)
+>>>>>         */
+>>>>>        wdd->min_hw_heartbeat_ms = 520 * wdd->timeout + MAX_HW_ERROR;
+>>>>> -    /* Generate NMI when wdt expires */
+>>>>> -    writel_relaxed(RTIWWDRX_NMI, wdt->base + RTIWWDRXCTRL);
+>>>>> +    /* Reset device if wdt serviced outside of window or generate 
+>>>>> NMI if available */
+>>>>
+>>>> Shouldn't that be "or generate NMI if _not_ available" ?
+>>>>
+>>>
+>>> For almost all the K3 devices, the WDT has two selectable outputs, 
+>>> one resets
+>>> the device directly, the other is this "NMI" which is wired to an ESM 
+>>> module
+>>> which can take other actions (but usually it just also resets the 
+>>> device).
+>>> For AM62L that second NMI output is not wired (no ESM module), so our 
+>>> only
+>>> choice is to set the WDT to direct reset mode.
+>>>
+>>> The wording is a little strange, but the "or generate NMI if 
+>>> available" meaning
+>>> if NMI is available, then do that. Reset being the fallback when 
+>>> _not_ available.
+>>>
+>>> Maybe this would work better:
+>>>
+>>> /* If WDT is serviced outside of window, generate NMI if available, 
+>>> or reset device */
+>>>
+>>
+>> The problem is that the code doesn't match the comment. The code 
+>> checks the
+>> "reset" flag and requests a reset if available. If doesn't check an "nmi"
+>> flag.
+>>
+>> If the preference is NMI, as your comment suggests, the flag should be 
+>> named
+>> "nmi" and be set if NMI is available. That would align the code and the
+>> comment. Right now both code and comment are misleading, since the 
+>> presence
+>> of a reset flag (and setting it to false) suggests that a direct reset is
+>> not available, and that reset is preferred if available. A reset is the
+>> normally expected behavior for a watchdog, so the fact that this is _not_
+>> the case for this watchdog should be made more visible.
+> 
+> 
+> How about:
+> 
+> 
+> /* If WWDT serviced outside of window, generate NMI or reset the device
+> if NMI not available */
+> 
+> if (wdt->data->reset)
+>      reaction = RTIWWDRXN_RST;
+> else
+>      reaction = RTIWWDRXN_NMI;
 
-	maxItems: 3
+Since there is no response, I assume no one has an issue with the above
+comment, so will respin the series with that change.
 
-If clock-names provided, clocks genernally just need maxItems except description
-can provide more information than clock names.
+~ Judith
 
-Frank
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb
-> +      - const: axi
-> +      - const: pix
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  nxp,blk-ctrl:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: A phandle which points to NXP displaymix blk-ctrl.
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: Display Pixel Interface(DPI) output port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        display-controller@4b120000 {
-> +            compatible = "nxp,imx94-dcif";
-> +            reg = <0x0 0x4b120000 0x0 0x300000>;
-> +            interrupts = <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "common", "bg_layer", "fg_layer";
-> +            clocks = <&scmi_clk 69>, <&scmi_clk 70>, <&dispmix_csr 0>;
-> +            clock-names = "apb", "axi", "pix";
-> +            assigned-clocks = <&dispmix_csr 0>;
-> +            assigned-clock-parents = <&ldb_pll_pixel>;
-> +            power-domains = <&scmi_devpd 11>;
-> +            nxp,blk-ctrl = <&dispmix_csr>;
-> +
-> +            port {
-> +                dcif_out: endpoint {
-> +                    remote-endpoint = <&ldb_in>;
-> +                };
-> +            };
-> +        };
-> +    };
-> --
-> 2.34.1
->
+
+
 
