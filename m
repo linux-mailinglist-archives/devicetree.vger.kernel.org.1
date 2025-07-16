@@ -1,355 +1,377 @@
-Return-Path: <devicetree+bounces-197052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 126AEB07F07
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 22:37:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D4EB07F18
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 22:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56CAB168422
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:37:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5678C7AB9EA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 20:45:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B434C2BEFE5;
-	Wed, 16 Jul 2025 20:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0E11E5701;
+	Wed, 16 Jul 2025 20:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LknWfePa"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="CV5LG6JA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11012037.outbound.protection.outlook.com [52.101.71.37])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCDD126FA4B;
-	Wed, 16 Jul 2025 20:36:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752698213; cv=none; b=MJYsafdKq+oW813to/1P2Fn+WZaaamTtjfZKTOC8NjzOaHF3Orbje81UzzuBuYZi2OroCLxFEc4LM6OdTvE3v4aNAYj9XsZ257xc7TBDUeAGMzir5Te6EomB8+JjiXBwGr5FwqcVPyqPBLXdwnwEgj/m6CJJdE1CYcI0h6ryEM0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752698213; c=relaxed/simple;
-	bh=MlMNGYQ8dO20s6aDXbSVRiR+xyHC7RFvXF/g3yeXQIk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EAQZx5ZKm1HgZ/qD9Jttu38SmI6Pe+ynNLQN69s/J7bYOM1UiWv8NHaPlB+wjzuXM4EDVjzm7pVFbYlj2RukYB4ieFTNB7fPFXKQcwgg95nKRZILhVosWw690U9peKssLO1mPTP2R6aAG05lQX+S+H5PsCdwFmLURSYhEyflURo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LknWfePa; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-74b50c71b0aso229824b3a.0;
-        Wed, 16 Jul 2025 13:36:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752698211; x=1753303011; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=dGK7tdjJS9+xErtdZGDdl6eWBQ2higLM/1xo+A5Ke+E=;
-        b=LknWfePaNtIRvt1s0FyO5kG/kQt4deEOnFC7YciyfIs7AnZIgeN0FTyQlJSBYQ2+OG
-         AJa82iRen5Mvu+pX9acuKQ/9dYIqR8WoqZYyCyfJRe3PfBKXMmvA/r2BzqR76HEYBTXI
-         RnnG041ahEApPrmMLzt305vSsjwhsn/SJ+13X6kyk4iq1V7OkDWU1qsjsk+dZEeLvtPp
-         /366qannB7q10M8sKt0xEmQUO68+H5bGMVRqgVTmF3iZRDdxVlqyExiOR/UgMO9b6Oja
-         7RS+yDDKYOtj3omysfhMhXPhpWmXfeK2XiOjGoW3AR4WxaDI77FLTFRcZLQer7jy+Pi9
-         Z6Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752698211; x=1753303011;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dGK7tdjJS9+xErtdZGDdl6eWBQ2higLM/1xo+A5Ke+E=;
-        b=spSA3udKgTWk1kGd/7CcyMOWtC5eEVs05Kkp1x0pqm11PmSC1eUsEvt9YU43K9urwn
-         QMWnfUChJiCJYi7N8l00V7XV/cuNKRAxBcn/x02WOphMrosS6tskr5lzopMK/0+5Sfo1
-         /VJFd+DcF6qP2q7jFrhdbXgBOp/DPzXxqjUTWHi9ZQ5i8oHEwuYwY2EplIT4f5qlzZC0
-         MgNzfEiF/nAA3G+SkVPW/uCnPIIS3Q0eGNBshk/pqidzLq8DFriTqYJiWEE5LdoBAI6l
-         53Te+NwKXnAILhjytW+465mevguU78Lrls4jijlnL9R1H8WzArUNyHclXLN+O3IgzBQq
-         DVmw==
-X-Forwarded-Encrypted: i=1; AJvYcCU/td0NKnA7fNibDc4I4cwJ/WS9YNUkcLdVZ5mfi+gahmj2jQeBQQzMqZFNU3QViGr+EVeZHbOaEgXy@vger.kernel.org, AJvYcCUfgoYRDaz+OMqq+i/UFQlV6aVplASJ3ijcpiws6l/w3SdGydAJjb9F8JDGzEefOE/9I3bS+CUOMfUJfwI=@vger.kernel.org, AJvYcCV+0mK3cCf0uaFs5VM2HgR+z+kMVW8zLo1cPtIOXW6Qv+Ewem0n1bYIE4umMiIOesiHJcZ5iP2dqk0F@vger.kernel.org, AJvYcCXBbZh+Yr4UzPWa7hoplNITk2Egn9ZjWlTTa63Z4tksp5PhYmduDXjXi26TNGApJK8eCsYmgfHE20dKXTn4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBlaEPKce9ZLQFwZkOhJUMhholmMj6cCLKitQjBB67m+FobBZL
-	Ht3a86ocH5sV/2FoGQf9yVSLaLzhP7TYk/TwRZBcCOwYF7tbhtwwXQw2
-X-Gm-Gg: ASbGncuzF5ByjOpmrwqeCRTTbdEJ+fNtEfb8VpPMk6lWpHlP5AmOAJK3FMctWYN57xq
-	nG2jOHwa5ws4dPL6V8F6RJOyX60Fz2ECC8EJAjOJMT8ItWVEyL0nAMluzDQ3/lFmAZzejGdnMMO
-	IX+0Zl34q8ltrvcyCR4ZtQTygVjJ8tgY/xxPWgrDPYE/ruB3RsHYUZY3iL4619c/fPS98siBmQ3
-	OyUhddk8dB8idirh+sSAPIqwj5cDJy7LT57bkGNCnf4XbUo5v6s2Baf4TQ0mQXLRf/+okXMyTW5
-	G8ZUa0w5Fxw5SMK1FmlC0pmu+NPugw0uKZxzjTQdaTphAr6ZRyvgjGQAZt8BoPh+hDrtrtuQxaU
-	kqZJHeeyBq7p35f2FxKzfy2XP+JoQQYZCcEatpmIzYlY69u3JIzAk90NqwSPl60ulDj40yos=
-X-Google-Smtp-Source: AGHT+IHC2TDtP7ayXT+F/AwOOBUrWElNyGsML+/uuXUSdQ8RGpxEC7Y5K3FXXAP7ltt9S4GgUr6SGA==
-X-Received: by 2002:a05:6a00:2d19:b0:749:14b5:921f with SMTP id d2e1a72fcca58-75724a8ac06mr5687709b3a.18.1752698210983;
-        Wed, 16 Jul 2025 13:36:50 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9dd7134sm15293965b3a.19.2025.07.16.13.36.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Jul 2025 13:36:50 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <ac652108-68aa-49d1-a448-1c0ee6ca157e@roeck-us.net>
-Date: Wed, 16 Jul 2025 13:36:47 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA4F1CD2C;
+	Wed, 16 Jul 2025 20:46:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752698780; cv=fail; b=a3mxoCX7n2R56K7MDl2sHzrbzIMp7OweQXva68i4S7KMoyTcYiHi5lA1hJM7A6QfIQ3kOrLWGoCM6Fndh0e7J59KhfP+75shNRtfmvTJGyHcAwYL3c3b81g/ex3YxCXzjrVb0DqVcePd5YLiYtJJThg9lfVE2TEpI/29xb36UKg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752698780; c=relaxed/simple;
+	bh=VWJXuCPYZYYgBOB5vlXHO2GlQZRZwgqY2CzWSl2TFvA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=FwwlU49DMlnjGqvx59s4SjoDIXVgDVF9cWEgXh66p9OWl5trfkWiV+Yl/drkOM04CeGUnebmNAg6kfh7sWjh0H0HhZfiZRx5NumGUxpmS3YnZRBtgZSpTIaifq4OLFWpkpvVmPl3iyEO8Zfsk4lI3nkvoNXtX8rHFZXhijyjUg8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=CV5LG6JA; arc=fail smtp.client-ip=52.101.71.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Lns0w/g/0KUmFbOeIpcetdO3V7CrfraJVILN92LLWtLpDlGd1UTdqr/bympmWd2m5MIXP+ZNkifBQNe+WD0hxXwKUEx0qpwkjD2YS8y0vk3n4bCX+swGyQZUN+n81Vok9Qvv9CTvdO7xfbpxGSiUJR/TfUbhU80XxZ5EITq+addU0kulcfOKu2SWjOPg0Hb5pnbejd8YPuIMS4jdIkXzl5b79DwVnVD6UzzXYwofskpwvmhgFYlxpnplFochVRGlHrRPBvMhpJH7mRL46eP6K5v2rVyRRlKQNm3KGUFcdbSkvyFlwpMtCLN+exe5FkB9uTFbvJIJPY7mA0bGG4P5Pw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0KZBm3hCTnx2Qqvs8ymoMYdgWGrfzvQjmd4nHp0SC18=;
+ b=SOapuC+GnFX5pyQEEDobX6H7Vf+uzE8X/puN95qGWzQLS5dnHEHFZWw94jSe4KPOr0Io/Zzz5smiOCLWlerhO0EQ7cN2b3RwQDzLLg8wIBV1FPLn7lhYJY4cw8xUKHtXaSUZZq9JFxQROwMGIWyPl2lCmw/qsHzSfSmUGVwlAgb7dg7FBBVSbfOpGLqnAdl+aU1mzJlYx7gfgQ59jeFDJHPcFOvcuVyyLlW1yOkCZzyD35Lc2TbNA6qKM74ea392YvR/y3OdUZMVZheHoGrMYBRguP9S15wO5n/md2iiJEXwTnvzxy06gcY5ed72u9Wr3thM9J0lEkNaKJy1y8WTrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0KZBm3hCTnx2Qqvs8ymoMYdgWGrfzvQjmd4nHp0SC18=;
+ b=CV5LG6JA7H998ja80sV+/ZukZvsjRA0l65U0xT+cY1wSnk3kDaAWnIo2gG6LdniPmEaNF+pZ/v93VcdL1xgEWt0Rj4PshqFdoA3pG/AkVqvmyIbSmXL3Bf7TEnzHaZoE/wRArLj/VTs0FvGkcoKhtdme3pPMpiXNNGjJHvDIL3zZR5b5L0XG5FV3EB5EFPV1nviAVnKUBLkk1QcohVquRxdcMQwDlhzYgLBqaUZMqSBesf7Arv0HQToxva7c/ZacxR5hNzGBdr4Y+fcCpWgbkJgbVH0A8s/bLKEP/QuXpVzhcP4hkDtng5z6kDFEVmG5gOIm3xKNU0NtdduicubOlA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI2PR04MB10192.eurprd04.prod.outlook.com (2603:10a6:800:229::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.32; Wed, 16 Jul
+ 2025 20:46:13 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8922.028; Wed, 16 Jul 2025
+ 20:46:13 +0000
+Date: Wed, 16 Jul 2025 16:46:07 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	richardcochran@gmail.com, claudiu.manoil@nxp.com,
+	vladimir.oltean@nxp.com, xiaoning.wang@nxp.com,
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, vadim.fedorenko@linux.dev,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+	fushi.peng@nxp.com, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, kernel@pengutronix.de
+Subject: Re: [PATCH v2 net-next 09/14] net: enetc: save the parsed
+ information of PTP packet to skb->cb
+Message-ID: <aHgPjwiIWfhYnPyC@lizhi-Precision-Tower-5810>
+References: <20250716073111.367382-1-wei.fang@nxp.com>
+ <20250716073111.367382-10-wei.fang@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250716073111.367382-10-wei.fang@nxp.com>
+X-ClientProxiedBy: AM0PR01CA0106.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:10e::47) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] hwmon: (pmbus) Add support for MPS multi-phase
- mp2869a/mp29612a controllers
-To: tzuhao.wtmh@gmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Naresh Solanki <naresh.solanki@9elements.com>,
- Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, Fabio Estevam
- <festevam@gmail.com>, Michal Simek <michal.simek@amd.com>,
- Henry Wu <Henry_Wu@quantatw.com>, Grant Peltier <grantpeltier93@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
- Nuno Sa <nuno.sa@analog.com>, Cherrence Sarip <cherrence.sarip@analog.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Leo Yang <leo.yang.sy0@gmail.com>,
- John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>,
- Kim Seer Paller <kimseer.paller@analog.com>,
- Alex Vdovydchenko <xzeol@yahoo.com>, Ninad Palsule <ninad@linux.ibm.com>,
- Mariel Tinaco <Mariel.Tinaco@analog.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-doc@vger.kernel.org
-Cc: peteryin.openbmc@gmail.com
-References: <20250630112120.588246-1-Henry_Wu@quantatw.com>
- <20250630112120.588246-2-Henry_Wu@quantatw.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20250630112120.588246-2-Henry_Wu@quantatw.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI2PR04MB10192:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6c23634e-6e94-4800-9a97-08ddc4a9cd70
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|7416014|376014|52116014|19092799006|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?uzka39FxRJEzjb8FDHfipFfNQSnvl9xoUUsbeIrRcLEgZllO5QoU3n5B51uG?=
+ =?us-ascii?Q?cLMtAkFN+PZ5UmSXPYMww+KJcOhnjfAUBHirTpDDAJlZ+vdcnyyNisusXceP?=
+ =?us-ascii?Q?TY6TIAlYd5NXfoHyI8hsV19GGq+wEqF02KGMo1UzhD+abrmOlNoRZA0cq/63?=
+ =?us-ascii?Q?Xvw5ifkl15IVFhSFtZkJDNeIe6me+K1Ih1HWTPS1I6E28K7MjvrNW0RgJU3D?=
+ =?us-ascii?Q?2OFQDzNMjzcnPMshSWAcofI00Q1t64Z/mRwgsGEZgHwJHe6b3qzxSYtaMQxQ?=
+ =?us-ascii?Q?rTqZmso8cZFKSIAebqtRA+9OJRwfV2wZWRX2dTgBnzXNC91QUPGnFCurDwI3?=
+ =?us-ascii?Q?Rd0q4PjPKYGcR+UflIrN3xqhzsLEMS2cl0MN5Rqh0jSZMtfnwgch+kAJYyq5?=
+ =?us-ascii?Q?KGsfM5jFClPD2t5oFNeJZK+uc4/CizLp1gaxsxw7xQSuKO97VIhKJYEjqqPI?=
+ =?us-ascii?Q?77hKJSKOzJXTGm0b3L1YYTGZunrftPHD2whD+51Zo4OFfunETEqfBcAGFVeI?=
+ =?us-ascii?Q?txDIMQZeLhQrv3X1GpHlYQSVzjGgecanyb75pqWGAfMRvZENiqeCL/FNa8e2?=
+ =?us-ascii?Q?ct8lT6vdxV2q5ffX0yEha+tO11cYoAR650vUbAXOgnRgzTaMNkHpyz8W3K17?=
+ =?us-ascii?Q?CKVN6nWJ/20QgOW+HYcFNbagbEY7wLv8r2ykZc/JJbl5+EPr8nmFBwZuO2hy?=
+ =?us-ascii?Q?irYzgB9gk24B3MTz+pL7X4aUoQJr3cHNgxJi3Cv1J0CwKnndO6o81keJabDp?=
+ =?us-ascii?Q?NKpaEFvyAAK0399UPQxWrKGweqPd9W51BQJK2LYRuFp9sQsHIbiJ/J6Xf3j3?=
+ =?us-ascii?Q?LA6r3jyZ4sAKP5HwwaLXHUxAiYccbt61WtW+HE3mcZP8+TVmKgZUnQbsVTW/?=
+ =?us-ascii?Q?r1sHtyP3ayFU76xVewJX9KsVA9KjO8WD1IJ+1O/MNLFHg55zTsWYlBW0Gr2M?=
+ =?us-ascii?Q?WrBl6Y5SW49NR+/uWMobJa9rCGJRiQA7PoCXDhlEiCZ+F3JT40eXuMLcrrN2?=
+ =?us-ascii?Q?S6y5x5z8a032Q20W/B1v1UsoRs/3JMZtIWMNYj4pE0ifr3fyvNFNd8B23n5l?=
+ =?us-ascii?Q?J4FyIKoWe4bskgHxFcHKVRy2HLi0S6lfmsuveDUIAx5MFuxMY7mJOF30x3mQ?=
+ =?us-ascii?Q?NDgU8poRgni+rXbVtHhuVei3wow5WKSHh5aSDcqSCXR30i4rIr84PUWfpnvs?=
+ =?us-ascii?Q?Pvvy4TAhMEAchTocn9iKo2FczJYWhMzXrGP2frCAMvoi4x+nLob4R9leKTv6?=
+ =?us-ascii?Q?3Fb7x/Qt5iKyCt1NXnjrH5YunmCB1TGMkhWxPJ+PY6DSgvJsJz+TUkShfHGQ?=
+ =?us-ascii?Q?UGZn+JkPOLHSkRkWR5IFAGKzVheVsuBFyJAAZbJGDLWYUOmEa9iRciSf90dR?=
+ =?us-ascii?Q?rz+GDYg5Ete08n5+9SiBFfFznAcnMFn4w0v8HyfvoMXdmQYeHaFTntPlV9Mq?=
+ =?us-ascii?Q?7IksYZgjygiDqBuMpwBk8CBrtoZEwz+D4T1wcePGPYDHqqRoL14Z1w=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(52116014)(19092799006)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Nzm6jcGLJxyvwW+cOVPwQzC/5fawx08qk+0h1ge5MJhFIYIfOeovFEFPbXk2?=
+ =?us-ascii?Q?Q+8IbSdlxWOxwK+CeLnpNHDvTSqAmwY6M5Al6LrVgPejuVK24Bxc5e8AI4aK?=
+ =?us-ascii?Q?WofsEL6U5yhB6zV3/Z9dmtok2C7EPrw9S1UAPtJtfmH6IXgMDu/z+TFIx7Di?=
+ =?us-ascii?Q?8gLq6UVE11WL2E9Myd7+vkuO9lKcFS6oCCP15fCLLt4s3CzMj1fhWediCWz6?=
+ =?us-ascii?Q?I/gzgs4h1aNfwczXYt2h+LASqEOQIwIUWGfstnzB1BdwPKC6bbfTEftdLGrz?=
+ =?us-ascii?Q?I1AJOq3ZrCCPMDBdCZpm3qviYLXvi72P9p4J5vJMddifQpK8aVxQcNS/Fhy3?=
+ =?us-ascii?Q?IOvrYx5YD8CMh+9OEgbBh7m00U2/W4sq+FBFnEgrnnGNOZwae44NSUyFx9f3?=
+ =?us-ascii?Q?H/soJ8ZynZxVabAw7UKfCaVP84URk3z42yhuBtg5eX+1BL/eipt5a37/KQ6I?=
+ =?us-ascii?Q?hYAp8oMo/r3irN4YLGtdFBth00SijGNBbU/WH4l3GTSKNme45GZj1pSVE8ZK?=
+ =?us-ascii?Q?HMLIs1SYloHYZIRamNJjGSd5v7y18tgNW+X88DTKhfO6jKiwMFf/22U8DALR?=
+ =?us-ascii?Q?Wz/aGXTmMjbyg+PTgHZ4L8Dn04TaMEwqhnfDpDxJvGR2MHORkFqBBvMSHrQt?=
+ =?us-ascii?Q?JxR0KwJumcVbJq3nurIPynTOc6gB0VJBbhl6bVxcusGRGx6A5ukmW+GDrmcr?=
+ =?us-ascii?Q?bLAUGVM+6jKgsZPfZ3nTlsPMcO1odvmoq5KewYXvXJCV+h7hFRPuKd2t2/To?=
+ =?us-ascii?Q?ginEZe1g5HGf4f7iz6n9lxFXxnOoQwxVVEuaCAuJaBBhbYefCjUj3DzlOV71?=
+ =?us-ascii?Q?v3Pbq5YtohA7yiHMtjKmzxrtk6/8gIE2kaMVlSZYYbp0L+cjCYASQWERIYb8?=
+ =?us-ascii?Q?HSb7i0tbajTHPjIeDMRA2IrDz7EuUteQNcQW0H8BoZgsWABQN2svNr7uEOCo?=
+ =?us-ascii?Q?Gd6hGFZ9mkufoIeH74CCFTMUgBjlwzM1P0BT8gwaNwSHmey0cTVdku7Mgx8Z?=
+ =?us-ascii?Q?450w68NlDGc43mD0qgf7nwzhDOwwK4gKHNrMAAtrp8hUQHrI7tsAOG89UC12?=
+ =?us-ascii?Q?k+sDav9Vx1QRaTBqvMlcS1npouven1quQgAXFC7ET80+KK1yN1cO+e4n/AXs?=
+ =?us-ascii?Q?rE5oHbWy7h0VzaVaGP9ghsDh4Qc8nJFFKudSkLVhGM0yUnwxkGiOQGmdVCJ2?=
+ =?us-ascii?Q?112BM+0SzvMQaUZUUl22iMrsQ+QWXof0rWhPSKDseuoobGikbOOzey66hWla?=
+ =?us-ascii?Q?X8p4l1hVK5+WdAi09KomLONLNuTUJvTWAqOYY8FTF4odgj8vGTMXU2q0T9Dk?=
+ =?us-ascii?Q?cTE0lnr+NycQ4BamlZy1ExdHP0YPQOJYTRh67RvETU1nJTVKqnO2CswOY3z+?=
+ =?us-ascii?Q?dgp+ZwIgG1itXKOtUamdsHtLlrekjYAsQm03Pzw80jWPT3IjWmUDBoJeOrQH?=
+ =?us-ascii?Q?WSqP7sMEvinT9meBw3hZkCRKlwBM0YRrHfey1KSY0pJrfmX3TOQ4mD7gEj4G?=
+ =?us-ascii?Q?FGN/ebwGw7zXy8UHr2Fw8lZxCPwQDxG+uo6/ZGs14zhqkvCYVXfgfHzvVwbv?=
+ =?us-ascii?Q?czGlEcq1VDxjiPG5N1P2r2nnLhaYmHBYyigCTqQN?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c23634e-6e94-4800-9a97-08ddc4a9cd70
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2025 20:46:13.4913
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LuLE4Jz+D11rg8DIlVYrkZLGZW7Uv7esif2p6/mU4cV0VSVBk/9LlaIFgojpV3kfRFPFd8f2TEgJ2FvS36At2w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10192
 
-On 6/30/25 04:20, tzuhao.wtmh@gmail.com wrote:
-> From: Henry Wu <Henry_Wu@quantatw.com>
-> 
-> Add support for the mp2869a and mp29612a controllers from Monolithic Power
-> Systems, Inc. (MPS). These are dual-loop, digital, multi-phase modulation
-> controllers.
-> 
-> Signed-off-by: Henry Wu <Henry_Wu@quantatw.com>
+On Wed, Jul 16, 2025 at 03:31:06PM +0800, Wei Fang wrote:
+> Currently, the Tx PTP packets are parsed twice in the enetc driver, once
+> in enetc_xmit() and once in enetc_map_tx_buffs(). The latter is duplicate
+> and is unnecessary, since the parsed information can be saved to skb->cb
+> so that enetc_map_tx_buffs() can get the previously parsed data from
+> skb->cb. Therefore, we add struct enetc_skb_cb as the format of the data
+> in the skb->cb buffer to save the parsed information of PTP packet.
+
+Add struct enetc_skb_cb as the format of the data in the skb-cb buffer to
+save the parsed information of PTP packet.
+
+Use saved information in enetc_map_tx_buffs() to avoid parse data again.
+
+>
+> In addition, the variables offset1 and offset2 in enetc_map_tx_buffs()
+> are renamed to corr_off and tstamp_off to make them easier to understand.
+
+Also, rename variables offset1 and offset2 in enetc_map_tx_buffs() to
+corr_off and tstamp_off for better readability.
+
+>
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+>
 > ---
->   Documentation/hwmon/index.rst   |   1 +
->   Documentation/hwmon/mp2869a.rst |  86 +++++++++
->   drivers/hwmon/pmbus/Kconfig     |  10 ++
->   drivers/hwmon/pmbus/Makefile    |   1 +
->   drivers/hwmon/pmbus/mp2869a.c   | 299 ++++++++++++++++++++++++++++++++
->   5 files changed, 397 insertions(+)
->   create mode 100644 Documentation/hwmon/mp2869a.rst
->   create mode 100644 drivers/hwmon/pmbus/mp2869a.c
-> 
-> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-> index b45bfb4ebf30..10bf4bd77f7b 100644
-> --- a/Documentation/hwmon/index.rst
-> +++ b/Documentation/hwmon/index.rst
-> @@ -172,6 +172,7 @@ Hardware Monitoring Kernel Drivers
->      menf21bmc
->      mlxreg-fan
->      mp2856
-> +   mp2869a
->      mp2888
->      mp2891
->      mp2975
-> diff --git a/Documentation/hwmon/mp2869a.rst b/Documentation/hwmon/mp2869a.rst
-> new file mode 100644
-> index 000000000000..a98ccb3d630d
-> --- /dev/null
-> +++ b/Documentation/hwmon/mp2869a.rst
-> @@ -0,0 +1,86 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Kernel driver mp2896a
-> +=====================
-> +
-> +Supported chips:
-> +
-> +  * MPS MP2896A
-> +
-> +    Prefix: 'mp2896a'
-> +
-> +  * MPS MP29612A
-> +
-> +    Prefix: 'mp29612a'
-> +
-> +Author:
-> +
-> +    Henry Wu <Henry_WU@quantatw.com>
-> +
-> +Description
-> +-----------
-> +
-> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
-> +MP2896A, a digital, multi-phase voltage regulator controller with PMBus interface.
-> +
-> +This device:
-> +
-> +- Supports up to two power rails.
-> +- Supports multiple PMBus pages for telemetry and configuration.
-> +- Supports VOUT readout in **VID format only** (no support for direct format).
-> +- Supports AMD SVI3 VID protocol with 5-mV/LSB resolution (if applicable).
-> +- Uses vendor-specific registers for VOUT scaling and phase configuration.
-> +
-> +Device supports:
-> +
-> +- SVID interface.
-> +- AVSBus interface.
-> +
-> +Device compliant with:
-> +
-> +- PMBus rev 1.3 interface.
-> +
-> +Sysfs Interface
-> +---------------
-> +
-> +The driver provides the following sysfs attributes:
-> +
-> +**Current measurements:**
-> +
-> +- Index 1: "iin"
-> +- Indexes 2, 3: "iout"
-> +
-> +**curr[1-3]_alarm**
-> +**curr[1-3]_input**
-> +**curr[1-3]_label**
-> +
-> +**Voltage measurements:**
-> +
-> +- Index 1: "vin"
-> +- Indexes 2, 3: "vout"
-> +
-> +**in[1-3]_crit**
-> +**in[1-3]_crit_alarm**
-> +**in[1-3]_input**
-> +**in[1-3]_label**
-> +**in[1-3]_lcrit**
-> +**in[1-3]_lcrit_alarm**
-> +
-> +**Power measurements:**
-> +
-> +- Index 1: "pin"
-> +- Indexes 2, 3: "pout"
-> +
-> +**power[1-3]_alarm**
-> +**power[1-3]_input**
-> +**power[1-3]_label**
-> +
-> +**Temperature measurements:**
-> +
-> +**temp[1-2]_crit**
-> +**temp[1-2]_crit_alarm**
-> +**temp[1-2]_input**
-> +**temp[1-2]_max**
-> +**temp[1-2]_max_alarm**
-> +
-> +
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index 441f984a859d..93b558761cc6 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -364,6 +364,16 @@ config SENSORS_MP2856
->   	  This driver can also be built as a module. If so, the module will
->   	  be called mp2856.
->   
-> +config SENSORS_MP2869A
-> +	tristate "MP2869A PMBus sensor"
-> +	depends on I2C && PMBUS
-> +	help
-> +	  If you say yes here you get support for the MPS MP2869A MP29612A
-> +	  voltage regulator via the PMBus interface.
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called mp2869a.
-> +
->   config SENSORS_MP2888
->   	tristate "MPS MP2888"
->   	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index 29cd8a3317d2..42087d0dedbc 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -37,6 +37,7 @@ obj-$(CONFIG_SENSORS_MAX31785)	+= max31785.o
->   obj-$(CONFIG_SENSORS_MAX34440)	+= max34440.o
->   obj-$(CONFIG_SENSORS_MAX8688)	+= max8688.o
->   obj-$(CONFIG_SENSORS_MP2856)	+= mp2856.o
-> +obj-$(CONFIG_SENSORS_MP2869A)   += mp2869a.o
->   obj-$(CONFIG_SENSORS_MP2888)	+= mp2888.o
->   obj-$(CONFIG_SENSORS_MP2891)	+= mp2891.o
->   obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
-> diff --git a/drivers/hwmon/pmbus/mp2869a.c b/drivers/hwmon/pmbus/mp2869a.c
-> new file mode 100644
-> index 000000000000..e61f1380dbc1
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/mp2869a.c
-> @@ -0,0 +1,299 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Hardware monitoring driver for MP2856A/MP29612A
-> + * Monolithic Power Systems VR Controller
-> + *
-> + * Copyright (C) 2023 Quanta Computer lnc.
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/pmbus.h>
-> +#include "pmbus.h"
-> +
-> +/* Vendor specific registers. */
-> +#define MP2869A_VOUT_MODE			 0x20
+> v2 changes:
+> 1. Add description of offset1 and offset2 being renamed in the commit
+> message.
+> ---
+>  drivers/net/ethernet/freescale/enetc/enetc.c | 65 ++++++++++----------
+>  drivers/net/ethernet/freescale/enetc/enetc.h |  9 +++
+>  2 files changed, 43 insertions(+), 31 deletions(-)
+>
+> diff --git a/drivers/net/ethernet/freescale/enetc/enetc.c b/drivers/net/ethernet/freescale/enetc/enetc.c
+> index e4287725832e..c1373163a096 100644
+> --- a/drivers/net/ethernet/freescale/enetc/enetc.c
+> +++ b/drivers/net/ethernet/freescale/enetc/enetc.c
+> @@ -225,13 +225,12 @@ static int enetc_map_tx_buffs(struct enetc_bdr *tx_ring, struct sk_buff *skb)
+>  {
+>  	bool do_vlan, do_onestep_tstamp = false, do_twostep_tstamp = false;
+>  	struct enetc_ndev_priv *priv = netdev_priv(tx_ring->ndev);
+> +	struct enetc_skb_cb *enetc_cb = ENETC_SKB_CB(skb);
+>  	struct enetc_hw *hw = &priv->si->hw;
+>  	struct enetc_tx_swbd *tx_swbd;
+>  	int len = skb_headlen(skb);
+>  	union enetc_tx_bd temp_bd;
+> -	u8 msgtype, twostep, udp;
+>  	union enetc_tx_bd *txbd;
+> -	u16 offset1, offset2;
+>  	int i, count = 0;
+>  	skb_frag_t *frag;
+>  	unsigned int f;
+> @@ -280,16 +279,10 @@ static int enetc_map_tx_buffs(struct enetc_bdr *tx_ring, struct sk_buff *skb)
+>  	count++;
+>
+>  	do_vlan = skb_vlan_tag_present(skb);
+> -	if (skb->cb[0] & ENETC_F_TX_ONESTEP_SYNC_TSTAMP) {
+> -		if (enetc_ptp_parse(skb, &udp, &msgtype, &twostep, &offset1,
+> -				    &offset2) ||
+> -		    msgtype != PTP_MSGTYPE_SYNC || twostep)
+> -			WARN_ONCE(1, "Bad packet for one-step timestamping\n");
+> -		else
+> -			do_onestep_tstamp = true;
+> -	} else if (skb->cb[0] & ENETC_F_TX_TSTAMP) {
+> +	if (enetc_cb->flag & ENETC_F_TX_ONESTEP_SYNC_TSTAMP)
+> +		do_onestep_tstamp = true;
+> +	else if (enetc_cb->flag & ENETC_F_TX_TSTAMP)
+>  		do_twostep_tstamp = true;
+> -	}
+>
+>  	tx_swbd->do_twostep_tstamp = do_twostep_tstamp;
+>  	tx_swbd->qbv_en = !!(priv->active_offloads & ENETC_F_QBV);
+> @@ -333,6 +326,8 @@ static int enetc_map_tx_buffs(struct enetc_bdr *tx_ring, struct sk_buff *skb)
+>  		}
+>
+>  		if (do_onestep_tstamp) {
+> +			u16 tstamp_off = enetc_cb->origin_tstamp_off;
+> +			u16 corr_off = enetc_cb->correction_off;
+>  			__be32 new_sec_l, new_nsec;
+>  			u32 lo, hi, nsec, val;
+>  			__be16 new_sec_h;
+> @@ -362,32 +357,32 @@ static int enetc_map_tx_buffs(struct enetc_bdr *tx_ring, struct sk_buff *skb)
+>  			new_sec_h = htons((sec >> 32) & 0xffff);
+>  			new_sec_l = htonl(sec & 0xffffffff);
+>  			new_nsec = htonl(nsec);
+> -			if (udp) {
+> +			if (enetc_cb->udp) {
+>  				struct udphdr *uh = udp_hdr(skb);
+>  				__be32 old_sec_l, old_nsec;
+>  				__be16 old_sec_h;
+>
+> -				old_sec_h = *(__be16 *)(data + offset2);
+> +				old_sec_h = *(__be16 *)(data + tstamp_off);
+>  				inet_proto_csum_replace2(&uh->check, skb, old_sec_h,
+>  							 new_sec_h, false);
+>
+> -				old_sec_l = *(__be32 *)(data + offset2 + 2);
+> +				old_sec_l = *(__be32 *)(data + tstamp_off + 2);
+>  				inet_proto_csum_replace4(&uh->check, skb, old_sec_l,
+>  							 new_sec_l, false);
+>
+> -				old_nsec = *(__be32 *)(data + offset2 + 6);
+> +				old_nsec = *(__be32 *)(data + tstamp_off + 6);
+>  				inet_proto_csum_replace4(&uh->check, skb, old_nsec,
+>  							 new_nsec, false);
+>  			}
+>
+> -			*(__be16 *)(data + offset2) = new_sec_h;
+> -			*(__be32 *)(data + offset2 + 2) = new_sec_l;
+> -			*(__be32 *)(data + offset2 + 6) = new_nsec;
+> +			*(__be16 *)(data + tstamp_off) = new_sec_h;
+> ++			*(__be32 *)(data + tstamp_off + 2) = new_sec_l;
+> ++			*(__be32 *)(data + tstamp_off + 6) = new_nsec;
 
-Standard register.
+strange why there are two ++ here.
 
-> +#define MP2869A_VOUT_MODE_MASK		 GENMASK(7, 5)
-> +#define MP2869A_VOUT_MODE_VID		 (0 << 5)
+>
+>  			/* Configure single-step register */
+>  			val = ENETC_PM0_SINGLE_STEP_EN;
+> -			val |= ENETC_SET_SINGLE_STEP_OFFSET(offset1);
+> -			if (udp)
+> +			val |= ENETC_SET_SINGLE_STEP_OFFSET(corr_off);
+> +			if (enetc_cb->udp)
+>  				val |= ENETC_PM0_SINGLE_STEP_CH;
+>
+>  			enetc_port_mac_wr(priv->si, ENETC_PM0_SINGLE_STEP,
+> @@ -938,12 +933,13 @@ static int enetc_map_tx_tso_buffs(struct enetc_bdr *tx_ring, struct sk_buff *skb
+>  static netdev_tx_t enetc_start_xmit(struct sk_buff *skb,
+>  				    struct net_device *ndev)
+>  {
+> +	struct enetc_skb_cb *enetc_cb = ENETC_SKB_CB(skb);
+>  	struct enetc_ndev_priv *priv = netdev_priv(ndev);
+>  	struct enetc_bdr *tx_ring;
+>  	int count;
+>
+>  	/* Queue one-step Sync packet if already locked */
+> -	if (skb->cb[0] & ENETC_F_TX_ONESTEP_SYNC_TSTAMP) {
+> +	if (enetc_cb->flag & ENETC_F_TX_ONESTEP_SYNC_TSTAMP) {
+>  		if (test_and_set_bit_lock(ENETC_TX_ONESTEP_TSTAMP_IN_PROGRESS,
+>  					  &priv->flags)) {
+>  			skb_queue_tail(&priv->tx_skbs, skb);
+> @@ -1005,24 +1001,29 @@ static netdev_tx_t enetc_start_xmit(struct sk_buff *skb,
+>
+>  netdev_tx_t enetc_xmit(struct sk_buff *skb, struct net_device *ndev)
+>  {
+> +	struct enetc_skb_cb *enetc_cb = ENETC_SKB_CB(skb);
+>  	struct enetc_ndev_priv *priv = netdev_priv(ndev);
+>  	u8 udp, msgtype, twostep;
+>  	u16 offset1, offset2;
+>
+> -	/* Mark tx timestamp type on skb->cb[0] if requires */
+> +	/* Mark tx timestamp type on enetc_cb->flag if requires */
+>  	if ((skb_shinfo(skb)->tx_flags & SKBTX_HW_TSTAMP) &&
+> -	    (priv->active_offloads & ENETC_F_TX_TSTAMP_MASK)) {
+> -		skb->cb[0] = priv->active_offloads & ENETC_F_TX_TSTAMP_MASK;
+> -	} else {
+> -		skb->cb[0] = 0;
+> -	}
+> +	    (priv->active_offloads & ENETC_F_TX_TSTAMP_MASK))
+> +		enetc_cb->flag = priv->active_offloads & ENETC_F_TX_TSTAMP_MASK;
+> +	else
+> +		enetc_cb->flag = 0;
+>
+>  	/* Fall back to two-step timestamp if not one-step Sync packet */
+> -	if (skb->cb[0] & ENETC_F_TX_ONESTEP_SYNC_TSTAMP) {
+> +	if (enetc_cb->flag & ENETC_F_TX_ONESTEP_SYNC_TSTAMP) {
+>  		if (enetc_ptp_parse(skb, &udp, &msgtype, &twostep,
+>  				    &offset1, &offset2) ||
+> -		    msgtype != PTP_MSGTYPE_SYNC || twostep != 0)
+> -			skb->cb[0] = ENETC_F_TX_TSTAMP;
+> +		    msgtype != PTP_MSGTYPE_SYNC || twostep != 0) {
+> +			enetc_cb->flag = ENETC_F_TX_TSTAMP;
+> +		} else {
+> +			enetc_cb->udp = !!udp;
+> +			enetc_cb->correction_off = offset1;
+> +			enetc_cb->origin_tstamp_off = offset2;
+> +		}
+>  	}
+>
+>  	return enetc_start_xmit(skb, ndev);
+> @@ -1214,7 +1215,9 @@ static bool enetc_clean_tx_ring(struct enetc_bdr *tx_ring, int napi_budget)
+>  		if (xdp_frame) {
+>  			xdp_return_frame(xdp_frame);
+>  		} else if (skb) {
+> -			if (unlikely(skb->cb[0] & ENETC_F_TX_ONESTEP_SYNC_TSTAMP)) {
+> +			struct enetc_skb_cb *enetc_cb = ENETC_SKB_CB(skb);
 > +
-> +#define MP2869A_READ_VOUT			 0x8b
-
-Standard register.
+> +			if (unlikely(enetc_cb->flag & ENETC_F_TX_ONESTEP_SYNC_TSTAMP)) {
+>  				/* Start work to release lock for next one-step
+>  				 * timestamping packet. And send one skb in
+>  				 * tx_skbs queue if has.
+> diff --git a/drivers/net/ethernet/freescale/enetc/enetc.h b/drivers/net/ethernet/freescale/enetc/enetc.h
+> index 62e8ee4d2f04..ce3fed95091b 100644
+> --- a/drivers/net/ethernet/freescale/enetc/enetc.h
+> +++ b/drivers/net/ethernet/freescale/enetc/enetc.h
+> @@ -54,6 +54,15 @@ struct enetc_tx_swbd {
+>  	u8 qbv_en:1;
+>  };
+>
+> +struct enetc_skb_cb {
+> +	u8 flag;
+> +	bool udp;
+> +	u16 correction_off;
+> +	u16 origin_tstamp_off;
+> +};
 > +
-> +#define MP2869A_MFR_VOUT_SCALE_LOOP	 0x29
-
-Standard register.
-
-Guenter
-
+> +#define ENETC_SKB_CB(skb) ((struct enetc_skb_cb *)((skb)->cb))
+> +
+>  struct enetc_lso_t {
+>  	bool	ipv6;
+>  	bool	tcp;
+> --
+> 2.34.1
+>
 
