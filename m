@@ -1,160 +1,168 @@
-Return-Path: <devicetree+bounces-196729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC44AB06DCA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 08:21:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25EABB06DD4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 08:24:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 799863A6041
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 06:20:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CAB7169FBA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 06:24:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCBCF27A468;
-	Wed, 16 Jul 2025 06:21:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB20128507B;
+	Wed, 16 Jul 2025 06:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="YzPYSKVk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y6Rt8SUG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2C45198E8C;
-	Wed, 16 Jul 2025 06:21:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E91221544;
+	Wed, 16 Jul 2025 06:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752646876; cv=none; b=Ko7Z8pKUZedEpqvyyfpVfx4KgrxPq+8mmaQ2kTEihtYjziZnvnmScos2ezLJxhHA/qEnFHEMK9QUwsWtjAr5xXD4UqYTAGgkLzJVsKp4LCg6HQoVb6fw5HPF5dZS3yCiMMd+IHCqvI5nho0XrsfJ+P4F3Uhh9IVjBuV1VIdz3Dg=
+	t=1752647071; cv=none; b=QLU6D8U002aZJwvDH+wPxONX8/93NC5JiXWO5hS+mgaQQvGsEwsg/3jB9uMVKDQAUuPQ5GKPKGxiH6wikkZDt49zmT0V1klONsc6IIKbw0DFpno4jmg1jqjAgjao2xCnV9J/d9IFwYPjVK6SWzwNBig5OZdqdw2xHEuWJZF5D3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752646876; c=relaxed/simple;
-	bh=AwSGTpX43FxBW3QEbJaXzRq3ikYTNoZRw3/bc98cmn8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uiNF+3Tfd4sXzgLNh0A5PZ4oLjPAoLsH18PRN8qWDceuxB0lj3x8XVkjemV+Wp0cv0KldhjDoC2F2rVrCMWTW+/4zOwHVbYPD4Qc8wqYcUT90jRBirek3vyPE2Hn9ZRUZm7laWEAYg0gc0dJqQokinObhTFH8NGFR0esj0haorE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=YzPYSKVk; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=nCTAka4Z34Vup8fOFjJvbq1l+srqLEDBoJV6NHCQMmI=; b=YzPYSKVk7NMvpPPeTgZYPk9D8E
-	RZfTRT2hFezsdc8cAEpa1P4xxUqE/iAXCyoX6KityJo/9WtF76J2+Ybb7TKGz2LNXWqyJqcTK6mJq
-	OnUn3yWf4sG8WfkB3x7T6nlHcpy0mn0EymSx1N0wIxD1AnfTF3+VhuiDOWZQPv3GFfL+xfWDhcxU3
-	RkKN8kpa0yZs0HzF3nf4Ks/zdTDxVGmp9liFNcm83kWiFSoTbpqr0TLV6iGP+pWEbAn1ev4FpZ3IZ
-	yXF5OllpjG8Ww2yju3AclUdkzZs1mhE8LpQz2XL7j0PU6IoJiRJC0IZVxhJTCsAVhrDzWsGe+sYov
-	4DmOwKjA==;
-Received: from [89.212.21.243] (port=41462 helo=[192.168.69.116])
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1ubvVr-007q6F-0M;
-	Wed, 16 Jul 2025 08:21:07 +0200
-Message-ID: <b32ebf83-0c4f-4321-94b3-1efcbb811073@norik.com>
-Date: Wed, 16 Jul 2025 08:21:05 +0200
+	s=arc-20240116; t=1752647071; c=relaxed/simple;
+	bh=W6r72LmSQKxnB3NxMfqcJSeFdWoREW67QPymehaZIA0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nEXwCXUpAs7Ddh4qfzoAvswPMBpdI4VDsjHugh3omjf7yrbX3IV5DbTmiMJlMmMi25z4zf9ygI/WfjsNn6M4Oo8AiUYbKOAhsLTyz9U2KBtAMvQmtDv7hv8ilw29ExqxKVKCC8lJLeNc0BCzjT83/7QgNV83BgvlGcP8bH1bJAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y6Rt8SUG; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-237311f5a54so53452595ad.2;
+        Tue, 15 Jul 2025 23:24:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752647069; x=1753251869; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ixmx0d+ZX0XcwmYFgmX/CAvbk5ppzzZpsXvym0428IE=;
+        b=Y6Rt8SUGWLcmdvp8kyi5U5X5hamtM5waTWcay7rfBIrRqdoQ+pb+F7FtiKXgTFS5yU
+         sfx77YAifaEUMpH5cuNJa2oRObMubX9+ygzCiP6vnAIPDYhxP8LVv5rzRTzRpZCL3E7Y
+         K6vgCtguU2Ql/K5q+lrsIobLvImITXBlrMqolcyEWVz5Gt9560tLnIGCaDeGR9gimGY7
+         wGaMm3nGf8LLychHzbEnVdEwQHCLBrsktBWF+FwzM8znnauLXCx+po04tHVBgKBopaBB
+         Il+1eP1wpnOd1b94hnUL8e2phOwQnmFDWCOP1PGDm1XVpTeOnfi0aRc3Rtug5fqdrh/6
+         +OUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752647069; x=1753251869;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ixmx0d+ZX0XcwmYFgmX/CAvbk5ppzzZpsXvym0428IE=;
+        b=kB5ngnxHjVPQNkGkMMyh+VfHB1sJWbWvbIO2Ev8OgTqv8fgLCwHLlj/natCbRg/NWF
+         SkfZnjbLRc8Px28LaiVEGaiMp6vvmZB2285UPNqBv1QWVzDsuTKaVC4QzDXC8wzntDNv
+         FnDqF0YyjkURznJr8rKmAB7X2s/8N7TU5EKoEAK5LlwqHE2HDm8KNeX3hSNkL4G6Ov3/
+         2seYY5+hcIeLnNuNGf2Q8hdJk5AbFgcaBKizm0oIKwnFxCJ8bMcoGWhH3gjMqlVJNb+v
+         XaGAxj1+z2VflwEbbYS1TgYb6rI7bra6G7LKVFqH4cL9dN9QJpgHK0F/Kb0m9nMjnruZ
+         4+hQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVwkGDEry3kV41TXqddyYwD53jaHO5EbEkBNAzyqBz2B3p3J9HYIi6OB18qrbj82odzxh4c5Wue5+ZcE+6x+q4=@vger.kernel.org, AJvYcCWUCx8mwt491j4sE0ZzeFPNNn539VgIstv4eFiMD6qVq5Ayi02VdVBMDnvyn1Ow8TRdaocXXcLbtN9YUT0vbucYX2U=@vger.kernel.org, AJvYcCXWhNbVcjsPc2QNpVVGPBhJk/9p24NwuvxU+yC31CcZ+dJrTaG5ZVv+JZI+a/dCoREV4XhgHLzSbTOaIR63@vger.kernel.org
+X-Gm-Message-State: AOJu0YwH2Vm8hR3Km7CQcVb2QSVrmdr68yJF09ap6w3MwVIbgOhngDjm
+	NUjCRwW9yiUKXQl72oIXCb1JUXMsyLVdg6bXorgRsWEPrwjnldxdgPKU
+X-Gm-Gg: ASbGnctBZikmRvmbKioVrJlkYre/qZyysyLo7PDNqSAbTKbGdvWuGzuUCuJLutaAZp5
+	XGRYhf9veLd44ckD16voWGTTkcPvjt18+BKt2yuFlTJwmMHMzeJFqMW2p+aFJ6IWyyO0U3LotOA
+	foguD3dlV25C0FrgjWFxamqJxNGPTD/7S7daOYyG9RbkrN9C2Le1Finx5diT3OBvuBe9vMK7E5Y
+	v19ngWLqBRHXkq2RLFh2hbQ4rwXZJhtZPAvxSrrw6TgXNbwKGLgMhS4zmzqfhXqzwRA2Zn+ggr/
+	mDJbKNVWdB3XEV/G1wzCI8BWlz7O9IjvkkeYfGAwU/5wE7YLJUTXgkiy/t6KwKrZ09V3VLdA/Cz
+	14rmsVkfW2XHSesC9BJvA7Im8TUZlu2nQJzzERSXwWkJt87bQBsRRFWijLA09MeBVIQg=
+X-Google-Smtp-Source: AGHT+IGm4cJ+T3HY2+WuL/rqcwTfbyVXKPV0HvI1TYx1fR1w0T8QhNT4nMZujHcDMajbIK8BJ72cvQ==
+X-Received: by 2002:a17:902:ce05:b0:234:c549:d9f1 with SMTP id d9443c01a7336-23e25770c34mr20051935ad.47.1752647069238;
+        Tue, 15 Jul 2025 23:24:29 -0700 (PDT)
+Received: from [172.17.0.2] (125-227-29-20.hinet-ip.hinet.net. [125.227.29.20])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de4286081sm119060955ad.1.2025.07.15.23.24.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Jul 2025 23:24:28 -0700 (PDT)
+From: Leo Wang <leo.jt.wang@gmail.com>
+X-Google-Original-From: Leo Wang <leo.jt.wang@fii-foxconn.com>
+Subject: [PATCH v7 0/2] ARM: dts: Add support for Meta Clemente BMC
+Date: Wed, 16 Jul 2025 14:24:13 +0800
+Message-Id: <20250716-add-support-for-meta-clemente-bmc-v7-0-d5bb7459c5aa@fii-foxconn.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/12] arm64: dts: imx93-kontron: Add RTC interrupt signal
-To: Frieder Schrempf <frieder@fris.de>, linux-arm-kernel@lists.infradead.org,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
- Fabio Estevam <festevam@gmail.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20250714141852.116455-1-frieder@fris.de>
- <20250714141852.116455-11-frieder@fris.de>
-Content-Language: en-US
-From: Primoz Fiser <primoz.fiser@norik.com>
-Autocrypt: addr=primoz.fiser@norik.com; keydata=
- xjMEZrROOxYJKwYBBAHaRw8BAQdAADVOb5tiLVTUAC9nu/FUl4gj/+4fDLqbc3mk0Vz8riTN
- JVByaW1veiBGaXNlciA8cHJpbW96LmZpc2VyQG5vcmlrLmNvbT7CiQQTFggAMRYhBK2YFSAH
- ExsBZLCwJGoLbQEHbnBPBQJmtE47AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQagttAQducE+T
- gAD+K4fKlIuvH75fAFwGYG/HT3F9mN64majvqJqvp3gTB9YBAL12gu+cm11m9JMyOyN0l6Os
- jStsQFghPkzBSDWSDN0NzjgEZrROPBIKKwYBBAGXVQEFAQEHQP2xtEOhbgA+rfzvvcFkV1zK
- 6ym3/c/OUQObCp50BocdAwEIB8J4BBgWCAAgFiEErZgVIAcTGwFksLAkagttAQducE8FAma0
- TjwCGwwACgkQagttAQducE8ucAD9F1sXtQD4iA7Qu+SwNUAp/9x7Cqr37CSb2p6hbRmPJP8B
- AMYR91JYlFmOJ+ScPhQ8/MgFO+V6pa7K2ebk5xYqsCgA
-Organization: Norik systems d.o.o.
-In-Reply-To: <20250714141852.116455-11-frieder@fris.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+X-B4-Tracking: v=1; b=H4sIAI1Fd2gC/5XRTWrEMAwF4KsMXtfF/x531XuULhJF6hiaONhpm
+ DLk7nVm00BTyCyfEN8T6MYK5oiFvZxuLOMcS0xDDf7pxODSDB/IY1czU0JZ4eSZN13Hy9c4pjx
+ xSpn3ODUcPrHHYULe9sCDkY1xoQWrNKvOmJHi9d7x9l7zJZYp5e975SzX6SP6LLngaKFxLiAa3
+ 75SjHX3CmkYniH1bO2Y1cZV8oirquvAIgkbpAmw7+qtq4+4urqglCYCMg5o3zVb1x9xzeqiJ1L
+ aOAFm37UPu7a6Qp+xcyShDf/c635dLw79zVXXk0br205o7f66y7L8ANRXyaSQAgAA
+X-Change-ID: 20250618-add-support-for-meta-clemente-bmc-941a469bc523
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Kees Cook <kees@kernel.org>, 
+ Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ leo.jt.wang@fii-foxconn.com, george.kw.lee@fii-foxconn.com, 
+ bruce.jy.hung@fii-foxconn.com, Leo Wang <leo.jt.wang@gmail.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752647065; l=2248;
+ i=leo.jt.wang@fii-foxconn.com; s=20250618; h=from:subject:message-id;
+ bh=W6r72LmSQKxnB3NxMfqcJSeFdWoREW67QPymehaZIA0=;
+ b=8vhHKoKK7lvo1KdZwHaApUl0O8pnWGj4MKV8UhTeUKzY8y58117CJrT3tf2h2MPLhz4Nyauxa
+ rwUzvGqJAkIBN6PqtnrPWjEtFfojOJfps2cVGhHxQKZkXxL9qRlMKI/
+X-Developer-Key: i=leo.jt.wang@fii-foxconn.com; a=ed25519;
+ pk=x+DKjAtU/ZbbMkkAVdwfZzKpvNUVgiV1sLJbidVIwSQ=
 
-Hi Frieder,
+This series adds initial support for the Meta Clemente BMC based on the
+ASPEED AST2600 SoC.
 
-On 14. 07. 25 16:17, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
->
-> The RTC EVI ouptut is connected to a GPIO. Add the interrupt
-> so it can be used by the RTC driver.
+Patch 1 documents the compatible string.
+Patch 2 adds the device tree for the board.
 
-AFAIK, RV3028's EVI is an input pin (EVent Input).
+Signed-off-by: Leo Wang <leo.jt.wang@gmail.com>
+---
+Changes in v7:
+- Relocate CBC FRU EEPROMs from i2c13 to i2c12.
+- Link to v6: https://lore.kernel.org/r/20250708-add-support-for-meta-clemente-bmc-v6-0-7f3e57bd0336@fii-foxconn.com
 
-Please check.
+Changes in v6:
+- Correct Author email to match Signed-off-by email address.
+- Link to v5: https://lore.kernel.org/r/20250627-add-support-for-meta-clemente-bmc-v5-0-038ed6f1cb9f@fii-foxconn.com
 
-BR,
+Changes in v5:
+- Remove accidentally pasted texts.
+- Link to v4: https://lore.kernel.org/r/20250627-add-support-for-meta-clemente-bmc-v4-0-ce7ff23460c4@fii-foxconn.com
 
-Primoz
+Changes in v4:
+- Move properties of nodes defined in the same file from label ref back to where they belong.
+- Move pinctrl default configs for ncsi3 and ncsi4 to aspeed-g6-pinctrl.dtsi.
+- Add properties to i2c10 and i2c15 to enable MCTP.
+- Link to v3: https://lore.kernel.org/r/20250623-add-support-for-meta-clemente-bmc-v3-0-c223ffcf46cf@fii-foxconn.com
 
->
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> ---
->  arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
-> index 119a162070596..c79b1df339db1 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
-> @@ -205,6 +205,9 @@ eeprom@50 {
->  	rv3028: rtc@52 {
->  		compatible = "microcrystal,rv3028";
->  		reg = <0x52>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_rtc>;
-> +		interrupts-extended = <&gpio3 19 IRQ_TYPE_LEVEL_LOW>;
->  	};
->  };
->  
-> @@ -468,6 +471,12 @@ MX93_PAD_CCM_CLKO4__GPIO4_IO29			0x31e /* CARRIER_PWR_EN */
->  		>;
->  	};
->  
-> +	pinctrl_rtc: rtcgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_VSELECT__GPIO3_IO19		0x31e
-> +		>;
-> +	};
-> +
->  	pinctrl_sai3: sai3grp {
->  		fsl,pins = <
->  			MX93_PAD_GPIO_IO20__SAI3_RX_DATA00		0x31e /* I2S_A_DATA_IN */
+Changes in v3:
+- Modify leakage sensor to reflect current design.
+- Link to v2: https://lore.kernel.org/r/20250621-add-support-for-meta-clemente-bmc-v2-0-6c5ef059149c@fii-foxconn.com
 
+Changes in v2:
+- Fix patch 1/2 subject line to match dt-bindings convention.
+- Reorder device tree nodes in patch 2/2 to follow upstream DTS style.
+- Link to v1: https://lore.kernel.org/r/20250618-add-support-for-meta-clemente-bmc-v1-0-e5ca669ee47b@fii-foxconn.com
 
+---
+Leo Wang (2):
+      dt-bindings: arm: aspeed: add Meta Clemente board
+      ARM: dts: aspeed: clemente: add Meta Clemente BMC
+
+ .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
+ arch/arm/boot/dts/aspeed/Makefile                  |    1 +
+ .../dts/aspeed/aspeed-bmc-facebook-clemente.dts    | 1297 ++++++++++++++++++++
+ arch/arm/boot/dts/aspeed/aspeed-g6-pinctrl.dtsi    |   11 +
+ 4 files changed, 1310 insertions(+)
+---
+base-commit: 52da431bf03b5506203bca27fe14a97895c80faf
+change-id: 20250618-add-support-for-meta-clemente-bmc-941a469bc523
+
+Best regards,
 -- 
-Primoz Fiser
-phone: +386-41-390-545
-email: primoz.fiser@norik.com
---
-Norik systems d.o.o.
-Your embedded software partner
-Slovenia, EU
-phone: +386-41-540-545
-email: info@norik.com
+Leo Wang <leo.jt.wang@fii-foxconn.com>
 
 
