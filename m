@@ -1,41 +1,40 @@
-Return-Path: <devicetree+bounces-196684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 367B8B06B0E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 03:19:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32988B06B32
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 03:36:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FCD04E129E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 01:18:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E85313A04F8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 01:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E62CB1FCF7C;
-	Wed, 16 Jul 2025 01:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="WzL1xQNd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F7DB264FBB;
+	Wed, 16 Jul 2025 01:36:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731116.qiye.163.com (mail-m19731116.qiye.163.com [220.197.31.116])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1602E3700;
-	Wed, 16 Jul 2025 01:19:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8382C18A;
+	Wed, 16 Jul 2025 01:36:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752628756; cv=none; b=pKQkfTyZ5lhsRFz3cjs/coUbkLFAUARfFOoNRPGWkCOlx0KEw/4MpEIPr69KDvD6qUUw0XWtMgu2xhqaJeNck3AhxW7OKONRxZlFup4OCb77CqJpkPzGuQXPKoTzkcwzzG7Mo023R3efxctseIcdhTVfsZ79NGcLOFAOAWK6pYA=
+	t=1752629791; cv=none; b=hf8YJlMYYtXv0xEUI2SsGATU9oXZgo1kZHsTcJzI1cqWB8Wg/t7j/NfP9j/JsobikGMZMzAHtd7ca7F9BkkW9Pbqre3amlkBM1UiEIfscbGuTIrjuTyf+RJG/BiHfMVe8SGdIanjaxTvTDF8PyEpJYtnyRI9DQbCa2rjZ65NWIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752628756; c=relaxed/simple;
-	bh=WMNwDLUTzomfhPueszHsaY0EouNa6iWnvb8N3y3u0EI=;
+	s=arc-20240116; t=1752629791; c=relaxed/simple;
+	bh=CeL1Z2vZkHAyOW7t5MITp2UXBQD/Klw2OZ/1iJ/qUYs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oytHXSzAce8lTbTndKJnGACzmaV3/bLluiYlTadEPvhx7HHhFuysNMyEijn+NFcCLkrY0gkZ78r8w051vWa1f1PR3KM2pInWIWf4BQx7eNN0u1vgQ6mK3Ft72kxS0QT/n2VjKZsxnzBRftRtb9z4kGvywhObUsJQi1BjsCNZWus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=WzL1xQNd; arc=none smtp.client-ip=220.197.31.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1c20f26cc;
-	Wed, 16 Jul 2025 09:18:56 +0800 (GMT+08:00)
-Message-ID: <9e6c432a-9bed-474c-afa9-fd6ada8bb8f8@rock-chips.com>
-Date: Wed, 16 Jul 2025 09:18:55 +0800
+	 In-Reply-To:Content-Type; b=LG7mfggU6mWUkP0EiK+yNjeR7ykC2zm5Fdf16chloSTso68qjZ7olHnSxN7DmmFjTq6h9Jg0p3oRqRWF2lye7ANC8d5EPk8i2OEzPWfVOyTo+/otPH5qT6EAI4pLPNJJl3/7ymsCkF/wIJoe3Pm8R/qqGaVZivcxCl1vmrDol9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [192.168.2.54] (unknown [98.97.26.71])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 9B71AB4D186C;
+	Wed, 16 Jul 2025 03:30:59 +0200 (CEST)
+Message-ID: <e2ec3809-a538-4475-ac3a-db289271fe7a@freeshell.de>
+Date: Tue, 15 Jul 2025 18:30:57 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,105 +42,225 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: phy: rockchip: rk3399-typec-phy: Support
- mode/orientation switch
-To: Krzysztof Kozlowski <krzk@kernel.org>, Chaoyi Chen <kernel@airkyi.com>,
+Subject: Re: [PATCH 2/2] riscv: dts: starfive: add DT for Orange Pi RV
+To: Icenowy Zheng <uwu@icenowy.me>, Yao Zi <ziyao@disroot.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
- Diederik de Haas <didi.debian@cknow.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20250715112456.101-1-kernel@airkyi.com>
- <20250715112456.101-3-kernel@airkyi.com>
- <4dfed94c-665d-4e04-b527-ddd34fd3db8f@kernel.org>
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <4dfed94c-665d-4e04-b527-ddd34fd3db8f@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh0eSVZKSEpKS0pIQh5KHR1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9810d0310c03abkunmd19fa1411423d24
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NBg6LTo*FDE0NwlMMVFCFTc8
-	KTUKCSlVSlVKTE5JTUlDTE9NS01JVTMWGhIXVRgTGhQCElUYEx4VOwkUGBBWGBMSCwhVGBQWRVlX
-	WRILWUFZTkNVSUlVTFVKSk9ZV1kIAVlBSExITTcG
-DKIM-Signature:a=rsa-sha256;
-	b=WzL1xQNdru/zKe4DMlBTqwjgA2IwGOyI3/txUXdcBAVE1KQqUbQT9JBMVDdMm8ZIMgaP0HN8jb4iceyiqmOwPb0XX7j6gmpr27mF8e13nD8gV8pFdhA9hTR5AW1FxVdoVWvT2k+f5qv827ZzKc29N2+W2JtkLU7e4ajVmc3kr0g=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=y9UGnpqAWUlGLKMTmekl851slDMZjV5j64meupx2I6w=;
-	h=date:mime-version:subject:message-id:from;
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Jisheng Zhang <jszhang@kernel.org>,
+ Michael Zhu <michael.zhu@starfivetech.com>,
+ Drew Fustini <drew@beagleboard.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250409091801.855083-1-uwu@icenowy.me>
+ <20250409091801.855083-2-uwu@icenowy.me> <Z_f30vAuATR1DCWk@pie>
+ <8fbd6ffdd053760b6d0980173c7f8af6c09963ba.camel@icenowy.me>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <8fbd6ffdd053760b6d0980173c7f8af6c09963ba.camel@icenowy.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
-
-On 2025/7/15 19:34, Krzysztof Kozlowski wrote:
-> On 15/07/2025 13:24, Chaoyi Chen wrote:
->> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+On 4/10/25 18:29, Icenowy Zheng wrote:
+> 在 2025-04-10星期四的 16:54 +0000，Yao Zi写道：
+>> On Wed, Apr 09, 2025 at 05:18:01PM +0800, Icenowy Zheng wrote:
+>>> Orange Pi RV is a newly released SBC with JH7110 SoC, single GbE
+>>> port
+>>> (connected to JH7110 GMAC0 via a YT8531 PHY), 4 USB ports (via a
+>>> VL805
+>>> PCIe USB controller connected to JH7110 PCIE0), a M.2 M-key slot
+>>> (connected to JH7110 PCIE1), a HDMI video output, a 3.5mm audio
+>>> output
+>>> and a microSD slot.
+>>>
+>>> Onboard peripherals contain a SPI NOR (which contains the U-Boot
+>>> firmware) and an Ampak AP6256 SDIO Wi-Fi module.
+>>>
+>>> As the schematics isn't available yet, the SDIO Wi-Fi is left
+>>> disabled
+>>> yet.
+>>>
+>>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+>>> ---
+>>>  arch/riscv/boot/dts/starfive/Makefile         |  1 +
+>>>  .../boot/dts/starfive/jh7110-orangepi-rv.dts  | 73
+>>> +++++++++++++++++++
+>>>  2 files changed, 74 insertions(+)
+>>>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-orangepi-
+>>> rv.dts
+>>>
+>>> diff --git a/arch/riscv/boot/dts/starfive/Makefile
+>>> b/arch/riscv/boot/dts/starfive/Makefile
+>>> index b3bb12f78e7d5..24f1a44828350 100644
+>>> --- a/arch/riscv/boot/dts/starfive/Makefile
+>>> +++ b/arch/riscv/boot/dts/starfive/Makefile
+>>> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-
+>>> visionfive-v1.dtb
+>>>  
+>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
+>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
+>>> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-orangepi-rv.dtb
+>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
+>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-
+>>> v1.2a.dtb
+>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-
+>>> v1.3b.dtb
+>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>>> b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>>> new file mode 100644
+>>> index 0000000000000..bde01f117e0b2
+>>> --- /dev/null
+>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>>> @@ -0,0 +1,73 @@
+>>> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+>>> +/*
+>>> + * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +#include "jh7110-common.dtsi"
+>>> +#include <dt-bindings/leds/common.h>
+>>> +
+>>> +/ {
+>>> +       model = "Xunlong Orange Pi RV";
+>>> +       compatible = "xunlong,orangepi-rv", "starfive,jh7110";
+>>> +
+>>> +       leds {
+>>> +               compatible = "gpio-leds";
+>>> +
+>>> +               led-ack {
+>>> +                       gpios = <&aongpio 3 GPIO_ACTIVE_HIGH>;
+>>> +                       color = <LED_COLOR_ID_GREEN>;
+>>> +                       function = LED_FUNCTION_HEARTBEAT;
+>>> +                       linux,default-trigger = "heartbeat";
+>>> +                       label = "ack";
 >>
->> Add support for Type-C orientation and altmode switch.
->> The Type-C controller can be specified to handling switching.
-> Please describe the hardware in details. Above sentences don't help me
-> to understand this.
+>> Should we sort the properties in alphabet order? i.e. color,
+>> function,
+>> gpios, label then linux,default-trigger. See dts-coding-style.rst,
+> 
+> Well in case of GPIO LED, I think gpios is something like reg? Although
+> this is only my personal feel, and label really needs to be reordered
+> then.
+> 
 
-I will add more description in v2.
+Status led description here does instead belong in jh7110-common.dtsi
+since all variant boards are using the same RGPIO3 (fourth GPIO on PMU
+domain).
 
-
->
->
->> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->> ---
->>   .../bindings/phy/rockchip,rk3399-typec-phy.yaml    | 14 ++++++++++++++
->>   1 file changed, 14 insertions(+)
 >>
->> diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
->> index 91c011f68cd0..a885c6893a90 100644
->> --- a/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
->> @@ -43,6 +43,20 @@ properties:
->>       description:
->>         Phandle to the syscon managing the "general register files" (GRF).
->>   
->> +  orientation-switch:
->> +    description: Flag the port as possible handler of orientation switching
->> +    type: boolean
->> +
->> +  mode-switch:
->> +    description: Flag the port as possible handler of altmode switching
->> +    type: boolean
->> +
->> +  port:
->> +    $ref: /schemas/graph.yaml#/properties/port
->> +    description:
->> +      A port node to link the PHY to a TypeC controller for the purpose of
->> +      handling orientation switching.
->
-> You are using usb-switch.yaml properties in phy node, which raises
-> questions whether this is actually complete. It might be, but commit msg
-> is so vague that I have doubts.
->
-> Also, why only one port?
->
-> Or wait... you already have ports! two of them. This needs to stop, why
-> are you adding more?
+>>> The following order of properties in device nodes is preferred:
+>>>
+>>> 1. "compatible"
+>>> 2. "reg"
+>>> 3. "ranges"
+>>> 4. Standard/common properties (defined by common bindings, e.g.
+>>> without
+>>> vendor-prefixes)
+>>> 5. Vendor-specific properties
+>>> 6. "status" (if applicable)
+>>> 7. Child nodes, where each node is preceded with a blank line
+>>
+>>> +               };
+>>> +       };
+>>> +};
+>>> +
+>>> +&gmac0 {
+>>> +       starfive,tx-use-rgmii-clk;
+>>> +       assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
+>>> +       assigned-clock-parents = <&aoncrg
+>>> JH7110_AONCLK_GMAC0_RMII_RTX>;
+>>> +       status = "okay";
+>>
+>> Vendor property starfive,tx-use-rgmii-clk should go after the common
+>> ones.
+> 
+> Okay, I will fix this (and the one below) in next revision.
+> 
+> Thanks,
+> Icenowy
 
-Oh, I will try to reuse them. Will fix in v2.
+Well then does the documentation follow recommended sort ordering?
 
+https://www.kernel.org/doc/Documentation/devicetree/bindings/leds/common.yaml
 
->
-> Best regards,
-> Krzysztof
->
->
+Looks to me like it is not clear what is going on there with sort
+ordering. The recently accepted dts in-tree are a mix of "who cares?",
+alphabet sort, and preferentially but arbitrarily placing some things
+above others. The documentation is even different than all that.
+
+Maybe if the documentation should be followed we should follow it, else
+fix the documentation firstly.
+
+> 
+>>> +};
+>>> +
+>>> +&i2c0 {
+>>> +       status = "okay";
+>>> +};
+>>> +
+>>> +&mmc0 {
+>>> +       /* TODO: Ampak AP6256 Wi-Fi module attached here */
+>>> +       status = "disabled";
+>>> +};
+
+Orange Pi RV schematic is published now. Please implement this
+description here.
+
+You may also wish to review the StarFive JH7100 devicetree descriptions
+(and schematic), and additionally the published Milk-V Mars CM / Mars CM
+Lite schematic, for clues about AP6256. The required firmware files'
+intellectual property when during the last discussion about
+linux-firmware was determined to be Synaptics (labeled as Broadcomm) and
+rejected from inclusion due to no clear licensed permission for
+distribution. Maybe it is time to revisit this and find someone willing
+to do the work of resolving the license ambiguity?
+
+>>> +
+>>> +&mmc1 {
+>>> +       /delete-property/ cd-gpios;
+>>> +       broken-cd;
+>>> +};
+>>> +
+>>> +&pcie0 {
+>>> +       status = "okay";
+>>> +};
+>>> +
+>>> +&pcie1 {
+>>> +       status = "okay";
+>>> +};
+>>> +
+>>> +&phy0 {
+>>> +       motorcomm,tx-clk-adj-enabled;
+>>> +       motorcomm,tx-clk-10-inverted;
+>>> +       motorcomm,tx-clk-100-inverted;
+>>> +       motorcomm,tx-clk-1000-inverted;
+>>> +       motorcomm,rx-clk-drv-microamp = <3970>;
+>>> +       motorcomm,rx-data-drv-microamp = <2910>;
+>>> +       rx-internal-delay-ps = <1500>;
+>>> +       tx-internal-delay-ps = <1500>;
+>>> +};
+>>
+>> Ditto, move the vendor properties below the common ones.
+
+Yes and, one of us may review what is already in starfive/ dts to fix
+and send a patch for this mess of devicetree sort order. The issue
+repeats every time we look for an existing sample to use.
+
+>>
+>>> +&pwmdac {
+>>> +       status = "okay";
+>>> +};
+>>> +
+>>> +&spi0 {
+>>> +       status = "okay";
+>>> +};
+>>> -- 
+>>> 2.49.0
+>>>
+>>
+>> Best regards,
+>> Yao Zi
+> 
+
+B.R.,  -E Shattow
 
