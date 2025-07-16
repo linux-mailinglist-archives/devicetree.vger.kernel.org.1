@@ -1,172 +1,94 @@
-Return-Path: <devicetree+bounces-196703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-196704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 383E3B06D23
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:21:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D26B06D4B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 07:38:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48AFD3A9B37
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 05:21:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 393901C20949
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jul 2025 05:39:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 627832749EC;
-	Wed, 16 Jul 2025 05:21:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=huaqian.li@siemens.com header.b="coGNOoeg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70F972E6D2E;
+	Wed, 16 Jul 2025 05:38:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8938D215F6B
-	for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 05:21:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 322BA20C00C;
+	Wed, 16 Jul 2025 05:38:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752643312; cv=none; b=bILxVN8nYuuMZTvqDyx8wcbu57FFLrAewwFZij/rn/Xsl9W6KZ4K9E6DtCZaajLmf4PPdAwwcJvhGe62xz8YozUvWRGS+x6DbZPZlUX9U2Z9i7QLBeVcpGKbMBu6Jl2F2arBKE1GilHG9mkMgyjNLuZeIZ4MfKztqumPP6jHYNI=
+	t=1752644333; cv=none; b=HmGbEwPLg2p0iZ6uypnskTHZBTGIxzkXnjXTzYNLEbc/QufwQTe1trFxj94ya/QRCr1vyqkTQgfmaj3z+GDctkTFQs7Z/XbiEvvltoGcSI+jReJr6FzGFMLSt9q5Gge0x0Ent9LatP9vNch3wml8lHkKZjs9/3ufdk0bIJiEGbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752643312; c=relaxed/simple;
-	bh=JcpLqjaUr9M1mi4dl/7gUP3Y3UTEl2H4ET8142ZGV6U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=XTjZOg9W8yOHP7p6vtQLY9VipSkpFlgoggDkR8DSp+nPes6wlI5nKARc/tbbp+pjUfMh01ZInpmyrMb2DHcoVcrGDFVj8s+RiM93EvacHP0fxp4FGb7a8n1671fq2YFqsTPQ+GhvZYCcXyzLuSuc5P63bTPyzKzWXiLg2bcoc6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=huaqian.li@siemens.com header.b=coGNOoeg; arc=none smtp.client-ip=185.136.65.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 20250716051142f8e7694f3b80e30c6e
-        for <devicetree@vger.kernel.org>;
-        Wed, 16 Jul 2025 07:11:43 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=huaqian.li@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=+LaZDA/FCK3jvCwMvQup/hbQjkRk3GDFDbtf0l3xKc4=;
- b=coGNOoegQxn/RntZ02PABsVCpufJWk5T4T9/Zu78/cXjBxXi0zilU/uBUHTM5K2SvGpjOj
- jwFH5gGB5EiA3skW5Iv2DyH+iDhKytM7tBXBwGqYHLdHkgnoUn0eKQqPvjZRMd2dAiuztA8v
- LlHkN5U4Kt3imC/xHwd/S2DWtsBkYOd5Ils5330DmtVdHn0Y6byxVelFDrXDoXly1ensFqXV
- 5Z/KllSYynuxZ5bvJgLmzmF5XPC/HeUCi4QzzGpU27Mb8IQ5mw6eNFI7B9nX8agmhVPP4dmc
- gRCuTlagrBWgAiltYPkoJSOfuj37P0UzThnyM6HUcrkVM15MDoxyUsfA==;
-From: huaqian.li@siemens.com
-To: s-vadapalli@ti.com
-Cc: baocheng.su@siemens.com,
-	bhelgaas@google.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	diogo.ivo@siemens.com,
-	helgaas@kernel.org,
-	huaqian.li@siemens.com,
-	jan.kiszka@siemens.com,
-	kristo@kernel.org,
-	krzk+dt@kernel.org,
-	kw@linux.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	lpieralisi@kernel.org,
-	nm@ti.com,
-	robh@kernel.org,
-	ssantosh@kernel.org,
-	vigneshr@ti.com
-Subject: [PATCH v9 7/7] arm64: dts: ti: iot2050: Add overlay for DMA isolation for devices behind PCI RC
-Date: Wed, 16 Jul 2025 13:10:35 +0800
-Message-Id: <20250716051035.170988-8-huaqian.li@siemens.com>
-In-Reply-To: <20250716051035.170988-1-huaqian.li@siemens.com>
-References: <e21c6ead-2bcb-422b-a1b9-eb9dd63b7dc7@ti.com>
- <20250716051035.170988-1-huaqian.li@siemens.com>
+	s=arc-20240116; t=1752644333; c=relaxed/simple;
+	bh=Oxb7smbPtdmeeQd8dQntd2Uk4WBnH1UOJZCJEQ13erY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pwnbeTZZPO2/ghFkrWVYxVQtsOH52BE8yOTtD9WP0miszqL5zXv6GDIb0Q544/TnuFF5B1ERib9RGbo9L6s1loswYlTKrCnmPaPNkSsfA6Jcwe14D00acV27Iw9v6zrDa5Bf/z19kkurNU9WWzz94V579FrOxM628ypOMCWXYEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [192.168.2.54] (unknown [98.97.26.71])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id DF0B7B4D0359;
+	Wed, 16 Jul 2025 07:38:45 +0200 (CEST)
+Message-ID: <e6e4eb98-f535-4fa5-af3e-5d144275b05a@freeshell.de>
+Date: Tue, 15 Jul 2025 22:38:44 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-959203:519-21489:flowmailer
+User-Agent: Mozilla Thunderbird
+Subject: Re: Are LED functions strings or uint32 in
+ Documentation/devicetree/bindings/leds/common.yaml
+To: Pavel Machek <pavel@ucw.cz>
+Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ linux-leds@vger.kernel.org
+References: <91d71a35-bb22-4482-8b49-398899ee37ae@freeshell.de>
+ <aHc1E2xPMfvKYcYx@duo.ucw.cz>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <aHc1E2xPMfvKYcYx@duo.ucw.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Jan Kiszka <jan.kiszka@siemens.com>
 
-Reserve a 64M memory region and ensure that all PCI devices do their DMA
-only inside that region. This is configured via a restricted-dma-pool
-and enforced with the help of the first PVU.
 
-Applying this isolation is not totally free in terms of overhead and
-memory consumption. It  makes only sense for variants that support
-secure booting, and generally only when this is actually enable.
-Therefore model it as overlay that can be activated on demand. The
-firmware will take care of this via DT fixup during boot and will also
-provide a way to adjust the pool size.
+On 7/15/25 22:13, Pavel Machek wrote:
+> Hi!
+> 
+>> Documentation/devicetree/bindings/leds/common.yaml [1] describes a
+>> uint32 but the $ref is for a string, for "function". What's going on
+>> there? Also what is the reasoning for that sort ordering [2] in the
+>> examples, are we saying that gpios is like a register and function or
+>> default-state is a kind of status?
+>>
+>> 1:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/common.yaml
+>>
+> 
+> You may want to cc devicetree people and linux-leds mailing list.
+> 
+> Take a look at include/dt-bindings/leds/common.h, LED_FUNCTION_PANIC
+> (for example) is a string, so documentation looks consistent to me.
+> 
+> BR,
+> 								Pavel
 
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
----
- arch/arm64/boot/dts/ti/Makefile               |  5 +++
- ...am6548-iot2050-advanced-dma-isolation.dtso | 33 +++++++++++++++++++
- 2 files changed, 38 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-dma-isolation.dtso
+Hi Pavel, thanks for the correction. That makes sense to me now, it is
+more of a function name than a function enum.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index c6171de9fe88..66b1d8093fa2 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -84,8 +84,10 @@ k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb \
- k3-am654-evm-dtbs := k3-am654-base-board.dtb k3-am654-icssg2.dtbo
- k3-am654-idk-dtbs := k3-am654-evm.dtb k3-am654-idk.dtbo k3-am654-pcie-usb2.dtbo
- k3-am6548-iot2050-advanced-m2-bkey-ekey-pcie-dtbs := k3-am6548-iot2050-advanced-m2.dtb \
-+	k3-am6548-iot2050-advanced-dma-isolation.dtbo \
- 	k3-am6548-iot2050-advanced-m2-bkey-ekey-pcie.dtbo
- k3-am6548-iot2050-advanced-m2-bkey-usb3-dtbs := k3-am6548-iot2050-advanced-m2.dtb \
-+	k3-am6548-iot2050-advanced-dma-isolation.dtbo \
- 	k3-am6548-iot2050-advanced-m2-bkey-usb3.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
-@@ -288,7 +290,10 @@ DTC_FLAGS_k3-am62p5-sk += -@
- DTC_FLAGS_k3-am642-evm += -@
- DTC_FLAGS_k3-am642-phyboard-electra-rdk += -@
- DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
-+DTC_FLAGS_k3-am6548-iot2050-advanced += -@
- DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-+DTC_FLAGS_k3-am6548-iot2050-advanced-pg2 += -@
-+DTC_FLAGS_k3-am6548-iot2050-advanced-sm += -@
- DTC_FLAGS_k3-am68-sk-base-board += -@
- DTC_FLAGS_k3-am69-sk += -@
- DTC_FLAGS_k3-j7200-common-proc-board += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-dma-isolation.dtso b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-dma-isolation.dtso
-new file mode 100644
-index 000000000000..dfd75d2dc245
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-dma-isolation.dtso
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * IOT2050, overlay for isolating DMA requests via PVU
-+ * Copyright (c) Siemens AG, 2024
-+ *
-+ * Authors:
-+ *   Jan Kiszka <jan.kiszka@siemens.com>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/reserved-memory} {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	pci_restricted_dma_region: restricted-dma@c0000000 {
-+		compatible = "restricted-dma-pool";
-+		reg = <0 0xc0000000 0 0x4000000>;
-+	};
-+};
-+
-+&pcie0_rc {
-+	memory-region = <&pci_restricted_dma_region>;
-+};
-+
-+&pcie1_rc {
-+	memory-region = <&pci_restricted_dma_region>;
-+};
-+
-+&ti_pvu0 {
-+	status = "okay";
-+};
--- 
-2.34.1
+Question about the dts examples' sort ordering remains? I try to follow
+the devicetree code style document but I must get confused too easily :-)
 
+Cheers,
+
+-E
+
+CC: devicetree, linux-leds
 
