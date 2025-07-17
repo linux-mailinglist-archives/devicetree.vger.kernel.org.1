@@ -1,341 +1,716 @@
-Return-Path: <devicetree+bounces-197311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D792B08D08
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:35:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B45D9B08D13
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:37:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8BA816A4F6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 12:35:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F1111C20E11
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 12:37:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8ED72BF010;
-	Thu, 17 Jul 2025 12:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9021A2C08B0;
+	Thu, 17 Jul 2025 12:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="d5eMmlLG"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="akTZCRDb";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="SdOdpdab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11012035.outbound.protection.outlook.com [52.101.71.35])
+Received: from fout-b1-smtp.messagingengine.com (fout-b1-smtp.messagingengine.com [202.12.124.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84D2B221FB1;
-	Thu, 17 Jul 2025 12:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.35
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752755715; cv=fail; b=CN/URiyJ/EMEtyl/4MgpazAkoBgvPY2OYn1+B6bkhCQgXmbxVukqkK058xl0wZs+3XulWpcqUIMec3EqdnzcJ4JhkI1r3HR/mPn/yL7BoFvu75X+s3nd/EUGuxeEuzNdaxOU6sZehB2d/C+nEV4fJYcmesgEcopso4btfkLll2M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752755715; c=relaxed/simple;
-	bh=SUB2s6Zvm6exiKrQjXJzp8wNs+lMkAUqLfOmIqtLa+g=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=sh0deyJ/+5dsxb6FogopbIp9e+fvcJnOm0mmNdKXyerSlzSqfW2BuvqMhZIUq+mNyCJYeDJe7ToQleLObkmAVf9X3V7eg7AAggVaOfzA3Gr/Ui02bhIh/zvJaIx5+lcBEqObmdWFMdtamaGxBry7PF8UfQtsFuRaKgtQwjDBYhg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=d5eMmlLG; arc=fail smtp.client-ip=52.101.71.35
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tDOeQb3wgmxEgbe89zuIuaXtUb8/uNKQfNnwQpngzIF8FCNQx3KRa+18dRBwwDxKpxykeCTwkVLEe+8m/Ez91e7BnyBYjRhIvxkvyBuSIYRmwN89LDR9lx56XCINKgYhpRQPBuuAr7qUQYlaBfSmunUg6yLKkfWy/Dj2cYcO4Ta/pcEMVucAcyfbgVr6+Qka7hnVxNAhK6kHOjMEOaueo/6FgJJNnJptadJJ+Xik1kPHUk1xiY3aK1VXHgU9XlH/VjRUnklQ2eBWSdAAThui76xpERiCvEplKvl+DRbiEXlkao3d7Jc0WhfpQT3Ho8UGzuAk9w5Z9tCl9MUadu9bqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mse9zzmecWFzs9FQLycuZQoQCwJ7ACLL0JySgMLtVuY=;
- b=wZHvXvE5JpoJ8yitBlyNf51Xq6rv6ET+re9CKKcRoLboJkYGiS7t7Yup3rdWnrKUSNdQHjOjLV9zff2HE2ot3nVHc6/KxGhd1uuzwzzgTlYm2ApG7YidjQdZjDJRlwx1T9n0f9UkwmnjYxQTF44oaAnRYfXDJJJMSyUcSECAQCV5jTcF4VE4TiD3une7reRuaUGDr0nKPyx5WJ351RrewdNe5fbTzS9lfCIUdAY4PUkUTfc3TKqtni6ym+nAndPXnbhhd0ql3AXbTQxY05BraScC1n1huLnE37BeVjWOIvzWmmd4ar0jl2hoLNjpwKFoMDJuPQ7ZpZKQks3DJvdibw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mse9zzmecWFzs9FQLycuZQoQCwJ7ACLL0JySgMLtVuY=;
- b=d5eMmlLGJyoa5KsNxjv4mTlLN5kafC9WvLS8qJQaD3gS+kj1168/jDpW8eQJqJd1CiCMIllUuGe6PPGaBJ5rxoMrA60jXRarK6HzstrLY/DekoT8FyHalX9a8QiS01Sue/cAyLCMnFQeODAI2q979wfutOGQMh3QzG04xE3SRbb42IlVnbSvnF/4aNffgLvy2FRTXLm5i5MsGpK/Ycd/uCMJHN7TyzJ5S910uFoIzpXYWKcn+Cons4whufoMzbq6JDV3v5dmyUVbYcpjpXl52cBEteLYQK0ZnMNMZGZPiDQuiAiTsy3b241n+Q9iAnD9/t0AJeVrv2LXW3pNQv0/tA==
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
- by AS8PR04MB8183.eurprd04.prod.outlook.com (2603:10a6:20b:3f1::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.39; Thu, 17 Jul
- 2025 12:35:10 +0000
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db%5]) with mapi id 15.20.8922.028; Thu, 17 Jul 2025
- 12:35:10 +0000
-From: Wei Fang <wei.fang@nxp.com>
-To: Frank Li <frank.li@nxp.com>
-CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"richardcochran@gmail.com" <richardcochran@gmail.com>, Claudiu Manoil
-	<claudiu.manoil@nxp.com>, Vladimir Oltean <vladimir.oltean@nxp.com>, Clark
- Wang <xiaoning.wang@nxp.com>, "andrew+netdev@lunn.ch"
-	<andrew+netdev@lunn.ch>, "davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>, "kuba@kernel.org"
-	<kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de"
-	<s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, "F.S.
- Peng" <fushi.peng@nxp.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: RE: [PATCH v2 net-next 12/14] net: enetc: add PTP synchronization
- support for ENETC v4
-Thread-Topic: [PATCH v2 net-next 12/14] net: enetc: add PTP synchronization
- support for ENETC v4
-Thread-Index: AQHb9iaTMw7wWMBukEKvuK11OYCKQ7Q1PTuAgAEA5pA=
-Date: Thu, 17 Jul 2025 12:35:10 +0000
-Message-ID:
- <PAXPR04MB85104A1A15F6BD7399E746718851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
-References: <20250716073111.367382-1-wei.fang@nxp.com>
- <20250716073111.367382-13-wei.fang@nxp.com>
- <aHgTG1hIXoN45cQo@lizhi-Precision-Tower-5810>
-In-Reply-To: <aHgTG1hIXoN45cQo@lizhi-Precision-Tower-5810>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|AS8PR04MB8183:EE_
-x-ms-office365-filtering-correlation-id: 90b9b505-a84f-49a8-87c9-08ddc52e5e7b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|366016|19092799006|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?GunHkl3Q+gJQGudZjWLBUHclj3WIh//LPd5YTTMt3Qu8svczT+c+Ev5dG5ww?=
- =?us-ascii?Q?D3RORBdCQWJMZkiOcKKE8lTMfo5oJdVNtLqz11Ne2v/7HKaAy4W1ILFOV4RL?=
- =?us-ascii?Q?PFvCgadwgJT1I61GXIXtjrQB5XqwgTR//i4nPbFoV8AjU8HvpyryKMrT5sUz?=
- =?us-ascii?Q?iEG7L5vxQ2CyS/iR97l1IzCLdnIC4xhTnWlr2qOszvYNSlazLLgFIvo+FfF8?=
- =?us-ascii?Q?OJRu3T0lUG/EsQAbNVvW4H8mAVoa2Q6QORyiHECCMdeOuUSBKO6tvfEtNW0Y?=
- =?us-ascii?Q?q7Omi4PLfYD41qVgZyt04kWhxdHKCwh1FhlGnxrN3PXegHrpJqnQorJNyoEw?=
- =?us-ascii?Q?rF8aGf0liV/8dE6abooCACp9mHyDa2pw1T+YmkDuD0hRrHUPWQVbhH4Lb3o5?=
- =?us-ascii?Q?7ItYquxx6Ybd2TSIeKI59ILUA2Q+RxzqNF86p2ImWTcr/aRztUFgAfAnchBs?=
- =?us-ascii?Q?Skw2Ycf7hx9vcZvkUk2sLdmZ0Kk60V0j8SPubuUNzU5bM0dUTogQAxPscq1x?=
- =?us-ascii?Q?VMiwovCKc55Hrj8O2wqMHDI74dlN018g00L2yUePwqLKmowHlLSYtEkHBw8D?=
- =?us-ascii?Q?/AxMe8G0kuuPmrqPCsAguBCco98nJ7xrZiJzH0Ibvcs0l2zBWIyTzTniwtTl?=
- =?us-ascii?Q?5LyoJ+IhLeZ3W8JOc1XMJ3TsY92eQamz/RdKAcNg4DxILm0QOEpuVjvVR6i/?=
- =?us-ascii?Q?AXnEys3Q+Kf5AfkoQ/1NSCTGrN4LNrZXxFkQTNu9TCzsQhzP8AP9JCuxFeKT?=
- =?us-ascii?Q?o3roE7erPFNtbsfnhdz5v7YIPPCq8jBCa8TmA9KW1FAkpWMUiLKMV2dJkrBl?=
- =?us-ascii?Q?ayjHdFJ875v/2ct4LFleIWW6fiq7ViwsSY34C0zVhVEUFiCVlsTtGYE0/oYn?=
- =?us-ascii?Q?tKcLrf5F4heXAM4+nCHMUewV5+cVYNky3vfuyh1AGd/gCUpG2gIiCtIICDfP?=
- =?us-ascii?Q?SO1OpZQLHhEjc+mL65M4TeAWoYhtmjSADzL332W5VdnRjIs0IIqkAIkAkd2F?=
- =?us-ascii?Q?M+8AlJTmx5JFh2PzaLtPGeS85wWCXFILsz3akrjpJEd8S3+OlFFmL1n5MUcF?=
- =?us-ascii?Q?wZc3KpIVv5ehvQEZlJ29UAM4mzTrIHWZVpov/zipAhGYOmSb9NNW2va/zp8D?=
- =?us-ascii?Q?yEGuuRS8zmYFHX2BbtanQoDembQsr7yRhD8maQ0qrTvCpbt8DcYZURF1cK4K?=
- =?us-ascii?Q?Z6SUb4UvSIR+/Xwu86kgoJJfYBx1NKeOnAnXfB6jHMj3VOG74wYuvjU5qnex?=
- =?us-ascii?Q?nBAFKO6SemXMHRp0827Qc4JqAO2u/MkmpkxgceT3oaknPLzeEfzCVGnhOhZD?=
- =?us-ascii?Q?BsAmDAI1AeW2SavtK7dovrizt3Mzc51lHfQAqKv62AGRIJEcCqfFvQPbBPRc?=
- =?us-ascii?Q?nHOrIXsD756ukdrKx08u5STlk0kW87V3/c17tQgK5xwplxJHMCEhaf9Smx6L?=
- =?us-ascii?Q?ofLqZatMfRgihNBw5InD1EkCptLr0LkPnPCGvAqEGQU0ZPmbin8Pw1Prf1ke?=
- =?us-ascii?Q?4pn3eqnBvsuI/uk=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(19092799006)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?7p0wKjixZ5qtqGD7YVG16ARAv5UIuwaBkjFBVmiMMFcqog4LmjulbWVLPNDD?=
- =?us-ascii?Q?ipA23PQgP5jesKZNeXzc1xyabdEjW/G3XcMLwyJRt9NN0Cquw/QMT8xs9gGp?=
- =?us-ascii?Q?D3qgiQrha03oru8IMz2ACBYgn/B5vPJ5fvY6Hly5tlUXV3+tf0DjFINIvQeu?=
- =?us-ascii?Q?lde9kwbg4l3JkMfNCWBHf8BHt34wKAyvhK8aDXT9Rd+ktFFtVkrklPONZLsN?=
- =?us-ascii?Q?AoHB6PfPsxLkEG3r1KLEOjDtaWx27/PPs5U3+/ws7ptVSOmtDvzo+bewY+So?=
- =?us-ascii?Q?5ebPa3F3QACvIHUh8qCt1oObDWhcCRY5bVk6j7OOkRqvU5Uii7VbA9oGkoPg?=
- =?us-ascii?Q?cSQYraXx5F64AUTdtegiWmWjlj9gsxM+H8JF0YnyrpwV0CUcmXubWI5gM5XG?=
- =?us-ascii?Q?FuAfMmGFyx94DRk0XrPvsDzeKuUpEM5USEql5pgfWU0yNZjdvKwMGz65+rKj?=
- =?us-ascii?Q?JzbOtdCmHe2Py69Tw4gUI49MPZ9omiHjM1VBj5D7sDXupTAD0zzpbclyW6DL?=
- =?us-ascii?Q?WmO3v5qDi0KMDS4k3ABdjkJolZ9InHawoGMwEIvtcJWoR6WAD8UsM3ab2RDu?=
- =?us-ascii?Q?uBiv6wuEkFCP9oOzTHFUX85ZFgKpOfbqlOR/dwFzx4ZR3Jk7NUbLT5wsY5GB?=
- =?us-ascii?Q?VSfYNPpqpFfcmh0iXAWlGBYrbbvAFdtEcmkU8brNjLIPZeztlCpfHLGYrabd?=
- =?us-ascii?Q?BovtA3L2HUkoDNEs75ytDLJqqYhDu6KvAfTCTeOAPsa76nE0iHfKJ+TDHge8?=
- =?us-ascii?Q?uFw6+0b/2GOjEB0zodns+aEuhvZR0Gmi5nvphtcVDSqvPXFvsHgHsBszI+9q?=
- =?us-ascii?Q?3LruQ+iaofq/BEWQpw9NKV/V2CZPUUBUA1JWFIxgAYJRy7DthKsupv2Vy1Tg?=
- =?us-ascii?Q?2g05M4FilSxjAz98emGGA8dK6k410vysuxqvhitd/zYbHGZzIV1aJOB0VpcD?=
- =?us-ascii?Q?kYfCK8DHddxl8D73Ak8PiLAb34C3g/RApmhywUiPXpP+psV0NW8NrkjmEwg4?=
- =?us-ascii?Q?zYCPt8dwzzp9pQvk4xq1RifDb+rPkEzrPs0blowkFUKOn7/jnwjlAztQ0fZP?=
- =?us-ascii?Q?xfKQpoaX5vv2gKSAqoHJShShlkxdZIidEJoFpsoUgx6QD0LtPOE/uq6Hic33?=
- =?us-ascii?Q?5yxqNkrJIUXgNC7ta10CzTCUuLLpdyjm2P70QVeVKeje/p0jpl0nlpnGIuoN?=
- =?us-ascii?Q?acQGzFpZaGhiQwEtxQXdCAY+lVTtshNQtbVJEBoB14K6gU0TyN/UMcDaeQWH?=
- =?us-ascii?Q?JCs/Dd8f+loatmfRNpeveYkHZaLQGzD5LlSagowFxGoNk2nx0/OtiIEmpPlS?=
- =?us-ascii?Q?8AphLzPh2zfReeWU3sChgj2cr1881CJCj9DaM9U7kyXzukuahJYhWqCCcifa?=
- =?us-ascii?Q?UeMKbCQAqgCSvJBieek7W4G4MAvVnHoFxyNZifUkD1Q1unhqQX3hJPMQ5Cer?=
- =?us-ascii?Q?PiSnJyDQNTLY6YUZsXMpLORNmsvaLGusB2/LuhYddezesUmHx4mNt+k0pXBb?=
- =?us-ascii?Q?L8tiFwRfiW9eTSROTq8Ky1X7ZNcfVWFH/BKta7+7PxWYsUP/E0gr5+8GYAtv?=
- =?us-ascii?Q?23WZzijJFdYsFiK8l+g=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5B14221FB1;
+	Thu, 17 Jul 2025 12:37:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.144
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752755827; cv=none; b=La9E+v597BIkmYpsupFD551cs3EWX/JwQVWqGdYPy8h7A7G4CcVI3fDF8H65tm6V5XzY5BYNOP7L9hypveDRjlAx86Yf2oBpHetddGwvPJJmyvJ4XaOQRuu8K9NCWrl8wPzFCUPxrjZMOoLmtrKa5EW34nzRhw3ViiGuOWySNHM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752755827; c=relaxed/simple;
+	bh=ZQrugEraunlZ0yPos4ky19cSqF2I6U6uZHke4dT8eiw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pbq3+mAekejlGzn7mOUJnrNMpS6Wvp1f/kZMCHn+B3lARA3tZ/ySjitcUOzT0Hb79RS0PLrey6WniUHdjuaSOiYoqfV7E6UYveSrA5y4z2Ux6WLY/bwVZMhq1E/Xk7Tq9lhWiN1plYrdrIT44cOQI6OqNvGKq6URXIGZi5dgO6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=akTZCRDb; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=SdOdpdab; arc=none smtp.client-ip=202.12.124.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfout.stl.internal (Postfix) with ESMTP id 937211D00120;
+	Thu, 17 Jul 2025 08:37:02 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-10.internal (MEProxy); Thu, 17 Jul 2025 08:37:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1752755822;
+	 x=1752842222; bh=btR7qKp6PBPkVFhADwoeRG+ePmqyWKhb7taFi8fTGdQ=; b=
+	akTZCRDbPi4GLc/Wihv5Pz6JNCCcc2BA+Rbb3etvhBw4ElKTkBgT/4fnZ1y61ROq
+	cfeFIiPER/ozMhf/jCKNEeFcAOVliPcLSABouJyRzzEGr4nluJWLXW9wchs8mPfl
+	gw+DUB2ZF73QRg+1KbCP9exWXV4zNpPLsM5wV0kBbHpZtgLk5+ZZQxF2eViZcdZx
+	Xp9XH8lk5vMOtPRMaorYLChazoQdZ1MsmJLNRWZ/xZqh2+WBXo2m+49AWRnzWymE
+	glIVh5jUh60T1BG5Im5iY1GkfjL4uVe/t94T6HzcGkbDjiIYNhnIqoNKkkV62ddX
+	nc2t62nSkbt9fzbN8cTzYw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1752755822; x=
+	1752842222; bh=btR7qKp6PBPkVFhADwoeRG+ePmqyWKhb7taFi8fTGdQ=; b=S
+	dOdpdabIRz8mJVm9Q59cdsSYpnlWY1zU3AxtBVQ6Lq8uS48dpn1ePeLqqiI0X6Xp
+	6HReU5UcwuikEkqPwiwIU9nYldIpdfe0TENw+Scg7yTYHytHhFKbr1z8vAtBCovo
+	BKmXEv88VLc6J9iGt5+hqPULh+sEbeRBRqqd8Bm2pufr/uVZjYBe9pUM9EtTn21n
+	/ubSeWvbPCmlDx9kkGQw0Pd82eoe6Sy05piqVRV6H0FCMJ3cnE92/7Sy51nyieqs
+	WIUfpTgBY519A03n45pXL2lh8us43g812J+mE1K7ui07ZOVEr5QID4ggVqU4rju2
+	s6k9AMQnsy/Iex+XiS4Gg==
+X-ME-Sender: <xms:be54aLyFMOglYOGLlxBXwnm7SFplZazuTS-RsgpeSFxxnWACbfZiKA>
+    <xme:be54aHZ7FYCDKFZoh-8IO49lSt46X4pZ-Eem0HyunbK-Ld6-DZZxshOL2UXrpJDYI
+    59QCI1LSeNywDszMrc>
+X-ME-Received: <xmr:be54aCVUHkR6dHqVMWaksij1Web2f6XUtq9oCC6keN3cVZZO0ocOp9UGhcP2A3P61p8cVgighhAIOyBCMf7vdVXPtI7y1Puxxw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdeitdeitdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhikhhlrghs
+    ucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhgusehrrghgnhgrth
+    gvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepveetgedtvddvhfdtkeeghfeffeehteeh
+    keekgeefjeduieduueelgedtheekkeetnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+    hrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhgusehrrghgnhgr
+    thgvtghhrdhsvgdpnhgspghrtghpthhtohepudeipdhmohguvgepshhmthhpohhuthdprh
+    gtphhtthhopeguvghmohhnshhinhhguhhrsehgmhgrihhlrdgtohhmpdhrtghpthhtohep
+    tghoshhmihhnrdhtrghnihhslhgrvhesrghnrghlohhgrdgtohhmpdhrtghpthhtohepth
+    homhhirdhvrghlkhgvihhnvghnodhrvghnvghsrghssehiuggvrghsohhnsghorghrugdr
+    tghomhdprhgtphhtthhopehmtghhvghhrggssehkvghrnhgvlhdrohhrghdprhgtphhtth
+    hopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhhulhhivghnrdhmrghs
+    shhothestgholhhlrggsohhrrgdrtghomhdprhgtphhtthhopehsrghkrghrihdrrghilh
+    husheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehlrghurhgvnhhtrdhp
+    ihhntghhrghrthesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtohepghhrvg
+    hgkhhhsehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhg
+X-ME-Proxy: <xmx:be54aAGugKsxSho3UuP9Ud8aPExQIoejxvDua5tv5MTvVrvetkkP_Q>
+    <xmx:be54aEDVsAv3lS9yZAsCYq_r_hdH9fEFuqHxlrrLN8aVZRL5II70RQ>
+    <xmx:be54aAz_of3IdFi4hBGYjVx-EmWH8vi5rQBT-6Azh2COrxtaoyt7uw>
+    <xmx:be54aND7Vq2l1oFC2ev1TDVXFYhRB_ewlyDSZ3-UtjW4Bm2g9JXg3A>
+    <xmx:bu54aGxKEjT-GsbSEzj638kzkXmU9zAqc2UP9UIYP0mAeoWBL1w0A61u>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 17 Jul 2025 08:37:00 -0400 (EDT)
+Date: Thu, 17 Jul 2025 14:36:58 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To: Cosmin Tanislav <demonsingur@gmail.com>
+Cc: Cosmin Tanislav <cosmin.tanislav@analog.com>,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Julien Massot <julien.massot@collabora.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v6 22/24] staging: media: remove MAX96712 driver
+Message-ID: <20250717123658.GA169517@ragnatech.se>
+References: <20250716193111.942217-1-demonsingur@gmail.com>
+ <20250716193111.942217-23-demonsingur@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90b9b505-a84f-49a8-87c9-08ddc52e5e7b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jul 2025 12:35:10.0365
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xoA/sWSXZsLj4jN/WmKjux5JF0fK5mIQVkuSL1pZRSGABz5/LgTvHjhT6XSiM3CH+9UL2Iu8sVXUo8a96DP5ag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8183
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250716193111.942217-23-demonsingur@gmail.com>
 
-> > +static void enetc_set_one_step_ts(struct enetc_si *si, bool udp, int
-> > +offset) {
-> > +	u32 val =3D ENETC_PM0_SINGLE_STEP_EN;
-> > +
-> > +	val |=3D ENETC_SET_SINGLE_STEP_OFFSET(offset);
-> > +	if (udp)
-> > +		val |=3D ENETC_PM0_SINGLE_STEP_CH;
-> > +
-> > +	/* the "Correction" field of a packet is updated based on the
-> > +	 * current time and the timestamp provided
-> > +	 */
-> > +	enetc_port_mac_wr(si, ENETC_PM0_SINGLE_STEP, val); }
-> > +
-> > +static void enetc4_set_one_step_ts(struct enetc_si *si, bool udp, int
-> > +offset) {
-> > +	u32 val =3D PM_SINGLE_STEP_EN;
-> > +
-> > +	val |=3D PM_SINGLE_STEP_OFFSET_SET(offset);
-> > +	if (udp)
-> > +		val |=3D PM_SINGLE_STEP_CH;
-> > +
-> > +	enetc_port_mac_wr(si, ENETC4_PM_SINGLE_STEP(0), val); }
-> > +
-> >  static u32 enetc_update_ptp_sync_msg(struct enetc_ndev_priv *priv,
-> >  				     struct sk_buff *skb)
-> >  {
-> > @@ -234,7 +259,6 @@ static u32 enetc_update_ptp_sync_msg(struct
-> enetc_ndev_priv *priv,
-> >  	u32 lo, hi, nsec;
-> >  	u8 *data;
-> >  	u64 sec;
-> > -	u32 val;
-> >
-> >  	lo =3D enetc_rd_hot(hw, ENETC_SICTR0);
-> >  	hi =3D enetc_rd_hot(hw, ENETC_SICTR1); @@ -279,12 +303,10 @@ static
-> > u32 enetc_update_ptp_sync_msg(struct enetc_ndev_priv *priv,
-> >  	*(__be32 *)(data + tstamp_off + 6) =3D new_nsec;
-> >
-> >  	/* Configure single-step register */
-> > -	val =3D ENETC_PM0_SINGLE_STEP_EN;
-> > -	val |=3D ENETC_SET_SINGLE_STEP_OFFSET(corr_off);
-> > -	if (enetc_cb->udp)
-> > -		val |=3D ENETC_PM0_SINGLE_STEP_CH;
-> > -
-> > -	enetc_port_mac_wr(priv->si, ENETC_PM0_SINGLE_STEP, val);
-> > +	if (is_enetc_rev1(si))
-> > +		enetc_set_one_step_ts(si, enetc_cb->udp, corr_off);
-> > +	else
-> > +		enetc4_set_one_step_ts(si, enetc_cb->udp, corr_off);
->=20
-> Can you use callback function to avoid change this logic when new version
-> appear in future?
+Hi Cosmin,
 
-According to Jakub's previous suggestion, there is no need to add callbacks
-for such trivial things.=20
-https://lore.kernel.org/imx/20250115140042.63b99c4f@kernel.org/
+Thanks for your work.
 
-If the differences between the two versions result in a lot of different
-code, using a callback is more appropriate.
+On 2025-07-16 22:31:07 +0300, Cosmin Tanislav wrote:
+> Remove the staging MAX96712 driver.
+> Its functionality has been moved to the MAX96724 driver which makes use
+> of the Maxim GMSL2/3 deserializer framework.
+> 
+> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
 
->=20
-> >
-> >  	return lo & ENETC_TXBD_TSTAMP;
-> >  }
-> > @@ -303,6 +325,7 @@ static int enetc_map_tx_buffs(struct enetc_bdr
-> *tx_ring, struct sk_buff *skb)
-> >  	unsigned int f;
-> >  	dma_addr_t dma;
-> >  	u8 flags =3D 0;
-> > +	u32 tstamp;
-> >
-> >  	enetc_clear_tx_bd(&temp_bd);
-> >  	if (skb->ip_summed =3D=3D CHECKSUM_PARTIAL) { @@ -327,6 +350,13 @@
-> > static int enetc_map_tx_buffs(struct enetc_bdr *tx_ring, struct sk_buff=
- *skb)
-> >  		}
-> >  	}
-> >
-> > +	if (enetc_cb->flag & ENETC_F_TX_ONESTEP_SYNC_TSTAMP) {
-> > +		do_onestep_tstamp =3D true;
-> > +		tstamp =3D enetc_update_ptp_sync_msg(priv, skb);
-> > +	} else if (enetc_cb->flag & ENETC_F_TX_TSTAMP) {
-> > +		do_twostep_tstamp =3D true;
-> > +	}
-> > +
-> >  	i =3D tx_ring->next_to_use;
-> >  	txbd =3D ENETC_TXBD(*tx_ring, i);
-> >  	prefetchw(txbd);
-> > @@ -346,11 +376,6 @@ static int enetc_map_tx_buffs(struct enetc_bdr
-> *tx_ring, struct sk_buff *skb)
-> >  	count++;
-> >
-> >  	do_vlan =3D skb_vlan_tag_present(skb);
-> > -	if (enetc_cb->flag & ENETC_F_TX_ONESTEP_SYNC_TSTAMP)
-> > -		do_onestep_tstamp =3D true;
-> > -	else if (enetc_cb->flag & ENETC_F_TX_TSTAMP)
-> > -		do_twostep_tstamp =3D true;
-> > -
->=20
-> why need move this block up?
+With the new driver merged before this one being removed,
 
-Because we need check the flag to determine whether perform PTP
-one-step, if yes, we need to call enetc_update_ptp_sync_msg() to
-modify the sync packet before calling dma_map_single(). ENETCv4
-do not support dma-coherent, I have explained in the commit message.
+Acked-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
->=20
-> >  	tx_swbd->do_twostep_tstamp =3D do_twostep_tstamp;
-> >  	tx_swbd->qbv_en =3D !!(priv->active_offloads & ENETC_F_QBV);
-> >  	tx_swbd->check_wb =3D tx_swbd->do_twostep_tstamp ||
-> tx_swbd->qbv_en;
-> > @@ -393,8 +418,6 @@ static int enetc_map_tx_buffs(struct enetc_bdr
-> *tx_ring, struct sk_buff *skb)
-> >  		}
-> >
-> >  		if (do_onestep_tstamp) {
-> > -			u32 tstamp =3D enetc_update_ptp_sync_msg(priv, skb);
-> > -
-> >  			/* Configure extension BD */
-> >  			temp_bd.ext.tstamp =3D cpu_to_le32(tstamp);
-> >  			e_flags |=3D ENETC_TXBD_E_FLAGS_ONE_STEP_PTP; @@ -3314,7
-> +3337,7 @@
-> > int enetc_hwtstamp_set(struct net_device *ndev,
-> >  	struct enetc_ndev_priv *priv =3D netdev_priv(ndev);
-> >  	int err, new_offloads =3D priv->active_offloads;
-> >
-> > -	if (!IS_ENABLED(CONFIG_FSL_ENETC_PTP_CLOCK))
-> > +	if (!enetc_ptp_clock_is_enabled(priv->si))
-> >  		return -EOPNOTSUPP;
-> >
-> >  	switch (config->tx_type) {
-> > @@ -3364,7 +3387,7 @@ int enetc_hwtstamp_get(struct net_device *ndev,
-> > {
-> >  	struct enetc_ndev_priv *priv =3D netdev_priv(ndev);
-> >
-> > -	if (!IS_ENABLED(CONFIG_FSL_ENETC_PTP_CLOCK))
-> > +	if (!enetc_ptp_clock_is_enabled(priv->si))
-> >  		return -EOPNOTSUPP;
-> >
-> >  	if (priv->active_offloads & ENETC_F_TX_ONESTEP_SYNC_TSTAMP) diff
-> > --git a/drivers/net/ethernet/freescale/enetc/enetc.h
-> > b/drivers/net/ethernet/freescale/enetc/enetc.h
-> > index c65aa7b88122..6bacd851358c 100644
-> > --- a/drivers/net/ethernet/freescale/enetc/enetc.h
-> > +++ b/drivers/net/ethernet/freescale/enetc/enetc.h
-> > @@ -598,6 +598,14 @@ static inline void enetc_cbd_free_data_mem(struct
-> > enetc_si *si, int size,  void enetc_reset_ptcmsdur(struct enetc_hw
-> > *hw);  void enetc_set_ptcmsdur(struct enetc_hw *hw, u32
-> > *queue_max_sdu);
-> >
-> > +static inline bool enetc_ptp_clock_is_enabled(struct enetc_si *si) {
-> > +	if (is_enetc_rev1(si))
-> > +		return IS_ENABLED(CONFIG_FSL_ENETC_PTP_CLOCK);
-> > +
-> > +	return IS_ENABLED(CONFIG_PTP_1588_CLOCK_NETC);
-> > +}
-> > +
->=20
-> why v1 check CONFIG_FSL_ENETC_PTP_CLOCK and other check
-> CONFIG_PTP_1588_CLOCK_NETC
+> ---
+>  MAINTAINERS                               |   1 -
+>  drivers/staging/media/Kconfig             |   2 -
+>  drivers/staging/media/Makefile            |   1 -
+>  drivers/staging/media/max96712/Kconfig    |  14 -
+>  drivers/staging/media/max96712/Makefile   |   2 -
+>  drivers/staging/media/max96712/max96712.c | 487 ----------------------
+>  6 files changed, 507 deletions(-)
+>  delete mode 100644 drivers/staging/media/max96712/Kconfig
+>  delete mode 100644 drivers/staging/media/max96712/Makefile
+>  delete mode 100644 drivers/staging/media/max96712/max96712.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0c75a5c195c28..ff0c7fe22ce6e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14751,7 +14751,6 @@ M:	Cosmin Tanislav <cosmin.tanislav@analog.com>
+>  L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> -F:	drivers/staging/media/max96712/max96712.c
+>  
+>  MAX96714 GMSL2 DESERIALIZER DRIVER
+>  M:	Julien Massot <julien.massot@collabora.com>
+> diff --git a/drivers/staging/media/Kconfig b/drivers/staging/media/Kconfig
+> index ab250c89cd4d4..edcec810433de 100644
+> --- a/drivers/staging/media/Kconfig
+> +++ b/drivers/staging/media/Kconfig
+> @@ -30,8 +30,6 @@ source "drivers/staging/media/ipu3/Kconfig"
+>  
+>  source "drivers/staging/media/ipu7/Kconfig"
+>  
+> -source "drivers/staging/media/max96712/Kconfig"
+> -
+>  source "drivers/staging/media/meson/vdec/Kconfig"
+>  
+>  source "drivers/staging/media/starfive/Kconfig"
+> diff --git a/drivers/staging/media/Makefile b/drivers/staging/media/Makefile
+> index 4a073938b2b2d..e38421c81d0e7 100644
+> --- a/drivers/staging/media/Makefile
+> +++ b/drivers/staging/media/Makefile
+> @@ -2,7 +2,6 @@
+>  obj-$(CONFIG_VIDEO_ATMEL_ISC_BASE)	+= deprecated/atmel/
+>  obj-$(CONFIG_INTEL_ATOMISP)     += atomisp/
+>  obj-$(CONFIG_VIDEO_IMX_MEDIA)	+= imx/
+> -obj-$(CONFIG_VIDEO_MAX96712)	+= max96712/
+>  obj-$(CONFIG_VIDEO_MESON_VDEC)	+= meson/vdec/
+>  obj-$(CONFIG_VIDEO_STARFIVE_CAMSS)	+= starfive/
+>  obj-$(CONFIG_VIDEO_SUNXI)	+= sunxi/
+> diff --git a/drivers/staging/media/max96712/Kconfig b/drivers/staging/media/max96712/Kconfig
+> deleted file mode 100644
+> index 117fadf81bd08..0000000000000
+> --- a/drivers/staging/media/max96712/Kconfig
+> +++ /dev/null
+> @@ -1,14 +0,0 @@
+> -# SPDX-License-Identifier: GPL-2.0
+> -config VIDEO_MAX96712
+> -	tristate "Maxim MAX96712 Quad GMSL2 Deserializer support"
+> -	depends on I2C
+> -	depends on OF_GPIO
+> -	depends on VIDEO_DEV
+> -	select V4L2_FWNODE
+> -	select VIDEO_V4L2_SUBDEV_API
+> -	select MEDIA_CONTROLLER
+> -	help
+> -	  This driver supports the Maxim MAX96712 Quad GMSL2 Deserializer.
+> -
+> -	  To compile this driver as a module, choose M here: the
+> -	  module will be called max96712.
+> diff --git a/drivers/staging/media/max96712/Makefile b/drivers/staging/media/max96712/Makefile
+> deleted file mode 100644
+> index 70c1974ce3f05..0000000000000
+> --- a/drivers/staging/media/max96712/Makefile
+> +++ /dev/null
+> @@ -1,2 +0,0 @@
+> -# SPDX-License-Identifier: GPL-2.0
+> -obj-$(CONFIG_VIDEO_MAX96712) += max96712.o
+> diff --git a/drivers/staging/media/max96712/max96712.c b/drivers/staging/media/max96712/max96712.c
+> deleted file mode 100644
+> index 0751b2e048958..0000000000000
+> --- a/drivers/staging/media/max96712/max96712.c
+> +++ /dev/null
+> @@ -1,487 +0,0 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> -/*
+> - * Maxim MAX96712 Quad GMSL2 Deserializer Driver
+> - *
+> - * Copyright (C) 2021 Renesas Electronics Corporation
+> - * Copyright (C) 2021 Niklas Söderlund
+> - */
+> -
+> -#include <linux/delay.h>
+> -#include <linux/i2c.h>
+> -#include <linux/module.h>
+> -#include <linux/of_graph.h>
+> -#include <linux/regmap.h>
+> -
+> -#include <media/v4l2-ctrls.h>
+> -#include <media/v4l2-fwnode.h>
+> -#include <media/v4l2-subdev.h>
+> -
+> -#define DEBUG_EXTRA_REG			0x09
+> -#define DEBUG_EXTRA_PCLK_25MHZ		0x00
+> -#define DEBUG_EXTRA_PCLK_75MHZ		0x01
+> -
+> -enum max96712_pattern {
+> -	MAX96712_PATTERN_CHECKERBOARD = 0,
+> -	MAX96712_PATTERN_GRADIENT,
+> -};
+> -
+> -struct max96712_info {
+> -	unsigned int dpllfreq;
+> -	bool have_debug_extra;
+> -};
+> -
+> -struct max96712_priv {
+> -	struct i2c_client *client;
+> -	struct regmap *regmap;
+> -	struct gpio_desc *gpiod_pwdn;
+> -
+> -	const struct max96712_info *info;
+> -
+> -	bool cphy;
+> -	struct v4l2_mbus_config_mipi_csi2 mipi;
+> -
+> -	struct v4l2_subdev sd;
+> -	struct v4l2_ctrl_handler ctrl_handler;
+> -	struct media_pad pads[1];
+> -
+> -	enum max96712_pattern pattern;
+> -};
+> -
+> -static int max96712_write(struct max96712_priv *priv, unsigned int reg, u8 val)
+> -{
+> -	int ret;
+> -
+> -	ret = regmap_write(priv->regmap, reg, val);
+> -	if (ret)
+> -		dev_err(&priv->client->dev, "write 0x%04x failed\n", reg);
+> -
+> -	return ret;
+> -}
+> -
+> -static int max96712_update_bits(struct max96712_priv *priv, unsigned int reg,
+> -				u8 mask, u8 val)
+> -{
+> -	int ret;
+> -
+> -	ret = regmap_update_bits(priv->regmap, reg, mask, val);
+> -	if (ret)
+> -		dev_err(&priv->client->dev, "update 0x%04x failed\n", reg);
+> -
+> -	return ret;
+> -}
+> -
+> -static int max96712_write_bulk(struct max96712_priv *priv, unsigned int reg,
+> -			       const void *val, size_t val_count)
+> -{
+> -	int ret;
+> -
+> -	ret = regmap_bulk_write(priv->regmap, reg, val, val_count);
+> -	if (ret)
+> -		dev_err(&priv->client->dev, "bulk write 0x%04x failed\n", reg);
+> -
+> -	return ret;
+> -}
+> -
+> -static int max96712_write_bulk_value(struct max96712_priv *priv,
+> -				     unsigned int reg, unsigned int val,
+> -				     size_t val_count)
+> -{
+> -	unsigned int i;
+> -	u8 values[4];
+> -
+> -	for (i = 1; i <= val_count; i++)
+> -		values[i - 1] = (val >> ((val_count - i) * 8)) & 0xff;
+> -
+> -	return max96712_write_bulk(priv, reg, &values, val_count);
+> -}
+> -
+> -static void max96712_reset(struct max96712_priv *priv)
+> -{
+> -	max96712_update_bits(priv, 0x13, 0x40, 0x40);
+> -	msleep(20);
+> -}
+> -
+> -static void max96712_mipi_enable(struct max96712_priv *priv, bool enable)
+> -{
+> -	if (enable) {
+> -		max96712_update_bits(priv, 0x40b, 0x02, 0x02);
+> -		max96712_update_bits(priv, 0x8a0, 0x80, 0x80);
+> -	} else {
+> -		max96712_update_bits(priv, 0x8a0, 0x80, 0x00);
+> -		max96712_update_bits(priv, 0x40b, 0x02, 0x00);
+> -	}
+> -}
+> -
+> -static void max96712_mipi_configure(struct max96712_priv *priv)
+> -{
+> -	unsigned int i;
+> -	u8 phy5 = 0;
+> -
+> -	max96712_mipi_enable(priv, false);
+> -
+> -	/* Select 2x4 mode. */
+> -	max96712_write(priv, 0x8a0, 0x04);
+> -
+> -	/* TODO: Add support for 2-lane and 1-lane configurations. */
+> -	if (priv->cphy) {
+> -		/* Configure a 3-lane C-PHY using PHY0 and PHY1. */
+> -		max96712_write(priv, 0x94a, 0xa0);
+> -
+> -		/* Configure C-PHY timings. */
+> -		max96712_write(priv, 0x8ad, 0x3f);
+> -		max96712_write(priv, 0x8ae, 0x7d);
+> -	} else {
+> -		/* Configure a 4-lane D-PHY using PHY0 and PHY1. */
+> -		max96712_write(priv, 0x94a, 0xc0);
+> -	}
+> -
+> -	/* Configure lane mapping for PHY0 and PHY1. */
+> -	/* TODO: Add support for lane swapping. */
+> -	max96712_write(priv, 0x8a3, 0xe4);
+> -
+> -	/* Configure lane polarity for PHY0 and PHY1. */
+> -	for (i = 0; i < priv->mipi.num_data_lanes + 1; i++)
+> -		if (priv->mipi.lane_polarities[i])
+> -			phy5 |= BIT(i == 0 ? 5 : i < 3 ? i - 1 : i);
+> -	max96712_write(priv, 0x8a5, phy5);
+> -
+> -	/* Set link frequency for PHY0 and PHY1. */
+> -	max96712_update_bits(priv, 0x415, 0x3f,
+> -			     ((priv->info->dpllfreq / 100) & 0x1f) | BIT(5));
+> -	max96712_update_bits(priv, 0x418, 0x3f,
+> -			     ((priv->info->dpllfreq / 100) & 0x1f) | BIT(5));
+> -
+> -	/* Enable PHY0 and PHY1 */
+> -	max96712_update_bits(priv, 0x8a2, 0xf0, 0x30);
+> -}
+> -
+> -static void max96712_pattern_enable(struct max96712_priv *priv, bool enable)
+> -{
+> -	const u32 h_active = 1920;
+> -	const u32 h_fp = 88;
+> -	const u32 h_sw = 44;
+> -	const u32 h_bp = 148;
+> -	const u32 h_tot = h_active + h_fp + h_sw + h_bp;
+> -
+> -	const u32 v_active = 1080;
+> -	const u32 v_fp = 4;
+> -	const u32 v_sw = 5;
+> -	const u32 v_bp = 36;
+> -	const u32 v_tot = v_active + v_fp + v_sw + v_bp;
+> -
+> -	if (!enable) {
+> -		max96712_write(priv, 0x1051, 0x00);
+> -		return;
+> -	}
+> -
+> -	/* Set PCLK to 75MHz if device have DEBUG_EXTRA register. */
+> -	if (priv->info->have_debug_extra)
+> -		max96712_write(priv, DEBUG_EXTRA_REG, DEBUG_EXTRA_PCLK_75MHZ);
+> -
+> -	/* Configure Video Timing Generator for 1920x1080 @ 30 fps. */
+> -	max96712_write_bulk_value(priv, 0x1052, 0, 3);
+> -	max96712_write_bulk_value(priv, 0x1055, v_sw * h_tot, 3);
+> -	max96712_write_bulk_value(priv, 0x1058,
+> -				  (v_active + v_fp + + v_bp) * h_tot, 3);
+> -	max96712_write_bulk_value(priv, 0x105b, 0, 3);
+> -	max96712_write_bulk_value(priv, 0x105e, h_sw, 2);
+> -	max96712_write_bulk_value(priv, 0x1060, h_active + h_fp + h_bp, 2);
+> -	max96712_write_bulk_value(priv, 0x1062, v_tot, 2);
+> -	max96712_write_bulk_value(priv, 0x1064,
+> -				  h_tot * (v_sw + v_bp) + (h_sw + h_bp), 3);
+> -	max96712_write_bulk_value(priv, 0x1067, h_active, 2);
+> -	max96712_write_bulk_value(priv, 0x1069, h_fp + h_sw + h_bp, 2);
+> -	max96712_write_bulk_value(priv, 0x106b, v_active, 2);
+> -
+> -	/* Generate VS, HS and DE in free-running mode. */
+> -	max96712_write(priv, 0x1050, 0xfb);
+> -
+> -	/* Configure Video Pattern Generator. */
+> -	if (priv->pattern == MAX96712_PATTERN_CHECKERBOARD) {
+> -		/* Set checkerboard pattern size. */
+> -		max96712_write(priv, 0x1074, 0x3c);
+> -		max96712_write(priv, 0x1075, 0x3c);
+> -		max96712_write(priv, 0x1076, 0x3c);
+> -
+> -		/* Set checkerboard pattern colors. */
+> -		max96712_write_bulk_value(priv, 0x106e, 0xfecc00, 3);
+> -		max96712_write_bulk_value(priv, 0x1071, 0x006aa7, 3);
+> -
+> -		/* Generate checkerboard pattern. */
+> -		max96712_write(priv, 0x1051, 0x10);
+> -	} else {
+> -		/* Set gradient increment. */
+> -		max96712_write(priv, 0x106d, 0x10);
+> -
+> -		/* Generate gradient pattern. */
+> -		max96712_write(priv, 0x1051, 0x20);
+> -	}
+> -}
+> -
+> -static int max96712_s_stream(struct v4l2_subdev *sd, int enable)
+> -{
+> -	struct max96712_priv *priv = v4l2_get_subdevdata(sd);
+> -
+> -	if (enable) {
+> -		max96712_pattern_enable(priv, true);
+> -		max96712_mipi_enable(priv, true);
+> -	} else {
+> -		max96712_mipi_enable(priv, false);
+> -		max96712_pattern_enable(priv, false);
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+> -static const struct v4l2_subdev_video_ops max96712_video_ops = {
+> -	.s_stream = max96712_s_stream,
+> -};
+> -
+> -static int max96712_init_state(struct v4l2_subdev *sd,
+> -			       struct v4l2_subdev_state *state)
+> -{
+> -	static const struct v4l2_mbus_framefmt default_fmt = {
+> -		.width          = 1920,
+> -		.height         = 1080,
+> -		.code           = MEDIA_BUS_FMT_RGB888_1X24,
+> -		.colorspace     = V4L2_COLORSPACE_SRGB,
+> -		.field          = V4L2_FIELD_NONE,
+> -		.ycbcr_enc      = V4L2_YCBCR_ENC_DEFAULT,
+> -		.quantization   = V4L2_QUANTIZATION_DEFAULT,
+> -		.xfer_func      = V4L2_XFER_FUNC_DEFAULT,
+> -	};
+> -	struct v4l2_mbus_framefmt *fmt;
+> -
+> -	fmt = v4l2_subdev_state_get_format(state, 0);
+> -	*fmt = default_fmt;
+> -
+> -	return 0;
+> -}
+> -
+> -static const struct v4l2_subdev_internal_ops max96712_internal_ops = {
+> -	.init_state = max96712_init_state,
+> -};
+> -
+> -static const struct v4l2_subdev_pad_ops max96712_pad_ops = {
+> -	.get_fmt = v4l2_subdev_get_fmt,
+> -	.set_fmt = v4l2_subdev_get_fmt,
+> -};
+> -
+> -static const struct v4l2_subdev_ops max96712_subdev_ops = {
+> -	.video = &max96712_video_ops,
+> -	.pad = &max96712_pad_ops,
+> -};
+> -
+> -static const char * const max96712_test_pattern[] = {
+> -	"Checkerboard",
+> -	"Gradient",
+> -};
+> -
+> -static int max96712_s_ctrl(struct v4l2_ctrl *ctrl)
+> -{
+> -	struct max96712_priv *priv =
+> -		container_of(ctrl->handler, struct max96712_priv, ctrl_handler);
+> -
+> -	switch (ctrl->id) {
+> -	case V4L2_CID_TEST_PATTERN:
+> -		priv->pattern = ctrl->val ?
+> -			MAX96712_PATTERN_GRADIENT :
+> -			MAX96712_PATTERN_CHECKERBOARD;
+> -		break;
+> -	}
+> -	return 0;
+> -}
+> -
+> -static const struct v4l2_ctrl_ops max96712_ctrl_ops = {
+> -	.s_ctrl = max96712_s_ctrl,
+> -};
+> -
+> -static int max96712_v4l2_register(struct max96712_priv *priv)
+> -{
+> -	long pixel_rate;
+> -	int ret;
+> -
+> -	priv->sd.internal_ops = &max96712_internal_ops;
+> -	v4l2_i2c_subdev_init(&priv->sd, priv->client, &max96712_subdev_ops);
+> -	priv->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> -	priv->sd.entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
+> -
+> -	v4l2_ctrl_handler_init(&priv->ctrl_handler, 2);
+> -
+> -	/*
+> -	 * TODO: Once V4L2_CID_LINK_FREQ is changed from a menu control to an
+> -	 * INT64 control it should be used here instead of V4L2_CID_PIXEL_RATE.
+> -	 */
+> -	pixel_rate = priv->info->dpllfreq / priv->mipi.num_data_lanes * 1000000;
+> -	v4l2_ctrl_new_std(&priv->ctrl_handler, NULL, V4L2_CID_PIXEL_RATE,
+> -			  pixel_rate, pixel_rate, 1, pixel_rate);
+> -
+> -	v4l2_ctrl_new_std_menu_items(&priv->ctrl_handler, &max96712_ctrl_ops,
+> -				     V4L2_CID_TEST_PATTERN,
+> -				     ARRAY_SIZE(max96712_test_pattern) - 1,
+> -				     0, 0, max96712_test_pattern);
+> -
+> -	priv->sd.ctrl_handler = &priv->ctrl_handler;
+> -	ret = priv->ctrl_handler.error;
+> -	if (ret)
+> -		goto error;
+> -
+> -	priv->pads[0].flags = MEDIA_PAD_FL_SOURCE;
+> -	ret = media_entity_pads_init(&priv->sd.entity, 1, priv->pads);
+> -	if (ret)
+> -		goto error;
+> -
+> -	v4l2_set_subdevdata(&priv->sd, priv);
+> -
+> -	priv->sd.state_lock = priv->ctrl_handler.lock;
+> -	ret = v4l2_subdev_init_finalize(&priv->sd);
+> -	if (ret)
+> -		goto error;
+> -
+> -	ret = v4l2_async_register_subdev(&priv->sd);
+> -	if (ret < 0) {
+> -		dev_err(&priv->client->dev, "Unable to register subdevice\n");
+> -		goto error;
+> -	}
+> -
+> -	return 0;
+> -error:
+> -	v4l2_ctrl_handler_free(&priv->ctrl_handler);
+> -
+> -	return ret;
+> -}
+> -
+> -static int max96712_parse_dt(struct max96712_priv *priv)
+> -{
+> -	struct fwnode_handle *ep;
+> -	struct v4l2_fwnode_endpoint v4l2_ep = {
+> -		.bus_type = V4L2_MBUS_UNKNOWN,
+> -	};
+> -	unsigned int supported_lanes;
+> -	int ret;
+> -
+> -	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(&priv->client->dev), 4,
+> -					     0, 0);
+> -	if (!ep) {
+> -		dev_err(&priv->client->dev, "Not connected to subdevice\n");
+> -		return -EINVAL;
+> -	}
+> -
+> -	ret = v4l2_fwnode_endpoint_parse(ep, &v4l2_ep);
+> -	fwnode_handle_put(ep);
+> -	if (ret) {
+> -		dev_err(&priv->client->dev, "Could not parse v4l2 endpoint\n");
+> -		return -EINVAL;
+> -	}
+> -
+> -	switch (v4l2_ep.bus_type) {
+> -	case V4L2_MBUS_CSI2_DPHY:
+> -		supported_lanes = 4;
+> -		priv->cphy = false;
+> -		break;
+> -	case V4L2_MBUS_CSI2_CPHY:
+> -		supported_lanes = 3;
+> -		priv->cphy = true;
+> -		break;
+> -	default:
+> -		dev_err(&priv->client->dev, "Unsupported bus-type %u\n",
+> -			v4l2_ep.bus_type);
+> -		return -EINVAL;
+> -	}
+> -
+> -	if (v4l2_ep.bus.mipi_csi2.num_data_lanes != supported_lanes) {
+> -		dev_err(&priv->client->dev, "Only %u data lanes supported\n",
+> -			supported_lanes);
+> -		return -EINVAL;
+> -	}
+> -
+> -	priv->mipi = v4l2_ep.bus.mipi_csi2;
+> -
+> -	return 0;
+> -}
+> -
+> -static const struct regmap_config max96712_i2c_regmap = {
+> -	.reg_bits = 16,
+> -	.val_bits = 8,
+> -	.max_register = 0x1f00,
+> -};
+> -
+> -static int max96712_probe(struct i2c_client *client)
+> -{
+> -	struct max96712_priv *priv;
+> -	int ret;
+> -
+> -	priv = devm_kzalloc(&client->dev, sizeof(*priv), GFP_KERNEL);
+> -	if (!priv)
+> -		return -ENOMEM;
+> -
+> -	priv->info = of_device_get_match_data(&client->dev);
+> -
+> -	priv->client = client;
+> -
+> -	priv->regmap = devm_regmap_init_i2c(client, &max96712_i2c_regmap);
+> -	if (IS_ERR(priv->regmap))
+> -		return PTR_ERR(priv->regmap);
+> -
+> -	priv->gpiod_pwdn = devm_gpiod_get_optional(&client->dev, "enable",
+> -						   GPIOD_OUT_HIGH);
+> -	if (IS_ERR(priv->gpiod_pwdn))
+> -		return PTR_ERR(priv->gpiod_pwdn);
+> -
+> -	gpiod_set_consumer_name(priv->gpiod_pwdn, "max96712-pwdn");
+> -	gpiod_set_value_cansleep(priv->gpiod_pwdn, 1);
+> -
+> -	if (priv->gpiod_pwdn)
+> -		usleep_range(4000, 5000);
+> -
+> -	max96712_reset(priv);
+> -
+> -	ret = max96712_parse_dt(priv);
+> -	if (ret)
+> -		return ret;
+> -
+> -	max96712_mipi_configure(priv);
+> -
+> -	return max96712_v4l2_register(priv);
+> -}
+> -
+> -static void max96712_remove(struct i2c_client *client)
+> -{
+> -	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> -	struct max96712_priv *priv = container_of(sd, struct max96712_priv, sd);
+> -
+> -	v4l2_async_unregister_subdev(&priv->sd);
+> -
+> -	gpiod_set_value_cansleep(priv->gpiod_pwdn, 0);
+> -}
+> -
+> -static const struct max96712_info max96712_info_max96712 = {
+> -	.dpllfreq = 1000,
+> -	.have_debug_extra = true,
+> -};
+> -
+> -static const struct max96712_info max96712_info_max96724 = {
+> -	.dpllfreq = 1200,
+> -};
+> -
+> -static const struct of_device_id max96712_of_table[] = {
+> -	{ .compatible = "maxim,max96712", .data = &max96712_info_max96712 },
+> -	{ .compatible = "maxim,max96724", .data = &max96712_info_max96724 },
+> -	{ /* sentinel */ }
+> -};
+> -MODULE_DEVICE_TABLE(of, max96712_of_table);
+> -
+> -static struct i2c_driver max96712_i2c_driver = {
+> -	.driver	= {
+> -		.name = "max96712",
+> -		.of_match_table	= of_match_ptr(max96712_of_table),
+> -	},
+> -	.probe = max96712_probe,
+> -	.remove = max96712_remove,
+> -};
+> -
+> -module_i2c_driver(max96712_i2c_driver);
+> -
+> -MODULE_DESCRIPTION("Maxim MAX96712 Quad GMSL2 Deserializer Driver");
+> -MODULE_AUTHOR("Niklas Söderlund <niklas.soderlund@ragnatech.se>");
+> -MODULE_LICENSE("GPL");
+> -- 
+> 2.50.1
+> 
 
-Because they use different PTP drivers, so the configs are different.
-
+-- 
+Kind Regards,
+Niklas Söderlund
 
