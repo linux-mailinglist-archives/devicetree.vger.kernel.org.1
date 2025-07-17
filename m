@@ -1,242 +1,128 @@
-Return-Path: <devicetree+bounces-197398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB78EB0901B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:02:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FC37B09025
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:05:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFA4E1C440AC
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 15:03:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29C217B7D30
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 15:04:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86BB32F8C58;
-	Thu, 17 Jul 2025 15:02:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="QlKMtmVd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0527E2F85D0;
+	Thu, 17 Jul 2025 15:05:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E1610A1E
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 15:02:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59F5513790B;
+	Thu, 17 Jul 2025 15:05:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752764541; cv=none; b=UZFWO3oXk9dI228v8FgbdKFiRPvJ65v7cDxgquGz59OA7olgfFrnXpFm5fSX0mcYs9FZJ13DRYYV25ZE5VhSg+mnGN/TcESZMr1e5UucJVTMZDARgFh27+YunAP1S24m2JlDVKnigCmbDcoCA4sgEPwEXwCJJrFD9ABbnPm9YQ0=
+	t=1752764719; cv=none; b=CfnmF/BgeaZoJ3mUIGo99OKfK8P+3UTisv40SrsTTEi4P6V5/ivS62GC6SHIMAvM0hAm4ke3ZcRKRyuHyLZBw9EtNYACtGt6pauuB8KgtGiAWsSpbr6GPdhuxxuRvY8cbLxyofG+SEa2I545F0R+dmIxtbyjs/wM/aWDrSpaWZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752764541; c=relaxed/simple;
-	bh=NuZrXXQ5tlfhJZ6G10mYOT34Gf1XyPJpaO9Kpu9cCUo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=l3v25VHev9gFGH9qj3gPzyS4rwgb459hbb6Kwca2G4IpSjPGDB+z+hwdviJvlJyAwkYBvqKH4jkpydoXaSRKxh0HUV0sPBkOMRsAbQbnQPOiUC7DEi6c/lBlTsMmcJcg0fMSE76xQF4gSiX9U9Huz1j8Q0rXRti9V/9RqNHPri4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=QlKMtmVd; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3a50fc7ac4dso496399f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 08:02:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1752764538; x=1753369338; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EUbJHYYUJ4dPHD8beah1zUaqGMO0MQts8CvEiFdKGdo=;
-        b=QlKMtmVdzIZpKNmfuL919rglY2RbPsVbqTVDJ4RDWZViFRTPy3/dO85osapiLPytIU
-         jGV0wDrt9ChlkYAkY+9kVcKml5pa4r6VlXeS8hFAePhU/rWTxfDY9eXhXz9fQ+S9B4kg
-         z+pzrj089zz21it1IUkM0TEKvpW/DXWTBt1XRfDsftu/YT/1s1sQBMnsYEB/eFZd0NUE
-         WlAtyFTQYxl2WmbMRrF5A5mlfas70kdDCB4IkHZeAq9E5r9vu/zG5LQ0+NvKbz63G0tW
-         McD+L7coOvYe2mJSoL1XBpDtBRmtQ4rY9bWs+n4tdNwyoDj9YCsS2R0ni9uDKg5BXwmd
-         LfoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752764538; x=1753369338;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EUbJHYYUJ4dPHD8beah1zUaqGMO0MQts8CvEiFdKGdo=;
-        b=OtWpPhPcLJiKMxriOIblaYBYlXv6kT/HM6ybT2DEKVBYkgnnz8K3CFyz3hNfGkvsXE
-         q1U2WhDgg9CWjTqsnTjlJ8PStQ34jiPVAesgNWrPE3LhR+IRZ0mvtl/19+d/9pkWlqMT
-         UBlNqKO4t5KO1VJfr3yEYgvZ/Assv9qrOrszdRfJ4T3EnmajESq/zS5lDZaQTjJFkzWg
-         YUY+D+FEA5x4VtsYI8bTH5V9wopIemzAUVZYGs8/ScAF6jAmt7QPFY4gL6Ev6ZeSfFz/
-         X+6sEJKh99bEj+Vcku8q1szF2FWqaxZs1PmDbt9DtSUrZlZwstKg0nM7mwB9QWTGjguK
-         wXvA==
-X-Forwarded-Encrypted: i=1; AJvYcCUyQObLmdWZ3asn2BYdftIOI/HI3NhNt/34uCcuHRzXzzN4/KlQoDYHIrnr+w0qW7LtxEmYIS2eJDks@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKAeIEpPaqgSBYLDke9X44+oOBzMy2Ex3KS6WDeg6DYtJodeuT
-	9an+wTYyl5UQhGkrt8Mot2QPvz+vOctslsqQX/6sD/gj29sHeh7PNB4GvuAQPCY6eTs=
-X-Gm-Gg: ASbGncsH/u4nOFwRzX/zJoLRwmAVFiCGo6/JedFkkGlMi4XRAHogJ6TnwTz7OogpPi+
-	J74I/iP47eWxq4aAXe8K/ZILcwwqQJcYkBRnYe4vUMY23mKw9n1wit3eRmqud/OZDdFsfZ0+oLA
-	w7FJWekE7Hbei5lIWqu6ywQnOkE7ZfUd69oOD0LbgWAJ2ltnioYCG0BtvqopnEzL+uskXiV2L2w
-	ari6a8Wb41IGE0c0pQLggArWziaQhwHl9+ZU00g8LUtw0LFGe4+g3/9dZvh9vQoYjtg63cVKWGG
-	a7Vd/xO1/1CzqVr5643owA1cbJpL61MrnyQmCIxDbpa1FGMjOwvBiTgZUnSnRWmZHJwFGnJBqGz
-	04eQplPJPmsiMi4zruzk+Hix8GA8/lYh0ghCpKZA=
-X-Google-Smtp-Source: AGHT+IHkEGHGxu7VXqSi5lmH6fVl3oHkkA/hBP0zA2Ax85fviyQHeC51lkDdCJT5F7Y71CT+stzgbA==
-X-Received: by 2002:a05:6000:2313:b0:3a4:e844:745d with SMTP id ffacd0b85a97d-3b613eab435mr2714201f8f.56.1752764537498;
-        Thu, 17 Jul 2025 08:02:17 -0700 (PDT)
-Received: from [127.0.1.1] ([2a00:23c7:1d1a:9c01:ebc8:7ccb:ef04:4f83])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45634f5cb9bsm25321885e9.10.2025.07.17.08.02.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Jul 2025 08:02:17 -0700 (PDT)
-From: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-Date: Thu, 17 Jul 2025 16:02:09 +0100
-Subject: [PATCH v4 3/3] leds/leds-is31fl32xx: add support for is31fl3236a
+	s=arc-20240116; t=1752764719; c=relaxed/simple;
+	bh=uoLRd01WGj9blBLb7RINWtE7jWKrNCOt2K+pkM8WXHk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WNrqYDw4XvNi/QUwnAyuNurpk2A67LS3Juj6UoFDcBK7LLOM2YhO/K59R9rZMFkeO09ToeIXrGZx4pzV1d358XCVBujO90Zp49j7BUA3QmCTZ9RMXs/nkE5Gs8PEZW5LSjs4WjqTrczx5Orwe/dG4A0zpBb6F74GRBBGrcYrXJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D20241596;
+	Thu, 17 Jul 2025 08:05:09 -0700 (PDT)
+Received: from J2N7QTR9R3 (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0B73C3F694;
+	Thu, 17 Jul 2025 08:05:14 -0700 (PDT)
+Date: Thu, 17 Jul 2025 16:05:09 +0100
+From: Mark Rutland <mark.rutland@arm.com>
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Sven Peter <sven@kernel.org>,
+	Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
+	asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH RESEND v7 00/21] drivers/perf: apple_m1: Add Apple
+ A7-A11, T2 SoC support
+Message-ID: <aHkRJdAuvhS2mNQj@J2N7QTR9R3>
+References: <20250616-apple-cpmu-v7-0-df2778a44d5c@gmail.com>
+ <aHUeUMmn_19EayL1@willie-the-truck>
+ <be327242-ad55-476a-bed4-44c33c263962@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250717-leds-is31fl3236a-v4-3-72ef946bfbc8@thegoodpenguin.co.uk>
-References: <20250717-leds-is31fl3236a-v4-0-72ef946bfbc8@thegoodpenguin.co.uk>
-In-Reply-To: <20250717-leds-is31fl3236a-v4-0-72ef946bfbc8@thegoodpenguin.co.uk>
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org, 
- Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752764533; l=5531;
- i=pzalewski@thegoodpenguin.co.uk; s=20250625; h=from:subject:message-id;
- bh=NuZrXXQ5tlfhJZ6G10mYOT34Gf1XyPJpaO9Kpu9cCUo=;
- b=a43lCfh+jM2LbjJFu88mbDfM8oMsA7XzFg2vx05SkvN9mAvFADOevL4QiHAyqby1wYG1AfaqC
- zRWSys/0wBaBhffIB5XBNZmvopWV2ukPwlKaUKmd8lBTEwPTs6Zh2Xi
-X-Developer-Key: i=pzalewski@thegoodpenguin.co.uk; a=ed25519;
- pk=hHrwBom/yjrVTqpEvKpVXLYfxr6nqBNP16RkQopIRrI=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <be327242-ad55-476a-bed4-44c33c263962@gmail.com>
 
-Add an additional and optional control register for setting
-the output PWM frequency to 22kHz. The default is 3kHz and
-this option puts the operational frequency outside of the
-audible range.
+On Mon, Jul 14, 2025 at 11:59:36PM +0800, Nick Chan wrote:
+> 
+> Will Deacon 於 2025/7/14 夜晚11:12 寫道:
+> > On Mon, Jun 16, 2025 at 09:31:49AM +0800, Nick Chan wrote:
+> >> This series adds support for the CPU PMU in the older Apple A7-A11, T2
+> >> SoCs. These PMUs may have a different event layout, less counters, or
+> >> deliver their interrupts via IRQ instead of a FIQ. Since some of those
+> >> older SoCs support 32-bit EL0, counting for 32-bit EL0 also need to
+> >> be enabled by the driver where applicable.
+> >>
+> >> Patch 1 adds the DT bindings.
+> >> Patch 2-7 prepares the driver to allow adding support for those
+> >> older SoCs.
+> > Modulo my nits, the patches look alright to this point...
+> >
+> >> Patch 8-12 adds support for the older SoCs.
+> > ... but I'm not sure if anybody actually cares about these older SoCs
+> > and, even if they do, what the state of the rest of Linux is on those
+> > parts. I recall horror stories about the OS being quietly migrated
+> > between CPUs with incompatible features, at which point I think we have
+> > to question whether we actually care about supporting this hardware.
+> The "horror" story you mentioned is about Apple A10/A10X/T2, which
+> has a big little switcher integrated into the cpufreq block, so when the
+> cpufreq driver switch between states in the same way as on other
+> SoCs, on these SoCs that would silently cause a CPU migration. There
+> is only one incompatible feature that I am aware of which is 32-bit EL0
+> support.
 
-Signed-off-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
----
- drivers/leds/leds-is31fl32xx.c | 47 ++++++++++++++++++++++++++++++++++++------
- 1 file changed, 41 insertions(+), 6 deletions(-)
+Surely the MIDR/REVIDR/AIDR also change?
 
-diff --git a/drivers/leds/leds-is31fl32xx.c b/drivers/leds/leds-is31fl32xx.c
-index 8793330dd4142f49f15d6ee9d87468c08509859f..5ec1ca71f326378e3a714a886260b86002feffa9 100644
---- a/drivers/leds/leds-is31fl32xx.c
-+++ b/drivers/leds/leds-is31fl32xx.c
-@@ -32,6 +32,8 @@
- #define IS31FL3216_CONFIG_SSD_ENABLE  BIT(7)
- #define IS31FL3216_CONFIG_SSD_DISABLE 0
- 
-+#define IS31FL32XX_PWM_FREQUENCY_22kHz  0x01
-+
- struct is31fl32xx_priv;
- struct is31fl32xx_led_data {
- 	struct led_classdev cdev;
-@@ -53,6 +55,7 @@ struct is31fl32xx_priv {
-  * @pwm_update_reg      : address of PWM Update register
-  * @global_control_reg  : address of Global Control register (optional)
-  * @reset_reg           : address of Reset register (optional)
-+ * @output_frequency_setting_reg: address of output frequency register (optional)
-  * @pwm_register_base   : address of first PWM register
-  * @pwm_registers_reversed: : true if PWM registers count down instead of up
-  * @led_control_register_base : address of first LED control register (optional)
-@@ -76,6 +79,7 @@ struct is31fl32xx_chipdef {
- 	u8	pwm_update_reg;
- 	u8	global_control_reg;
- 	u8	reset_reg;
-+	u8	output_frequency_setting_reg;
- 	u8	pwm_register_base;
- 	bool	pwm_registers_reversed;
- 	u8	led_control_register_base;
-@@ -90,6 +94,19 @@ static const struct is31fl32xx_chipdef is31fl3236_cdef = {
- 	.pwm_update_reg				= 0x25,
- 	.global_control_reg			= 0x4a,
- 	.reset_reg				= 0x4f,
-+	.output_frequency_setting_reg		= IS31FL32XX_REG_NONE,
-+	.pwm_register_base			= 0x01,
-+	.led_control_register_base		= 0x26,
-+	.enable_bits_per_led_control_register	= 1,
-+};
-+
-+static const struct is31fl32xx_chipdef is31fl3236a_cdef = {
-+	.channels				= 36,
-+	.shutdown_reg				= 0x00,
-+	.pwm_update_reg				= 0x25,
-+	.global_control_reg			= 0x4a,
-+	.reset_reg				= 0x4f,
-+	.output_frequency_setting_reg		= 0x4b,
- 	.pwm_register_base			= 0x01,
- 	.led_control_register_base		= 0x26,
- 	.enable_bits_per_led_control_register	= 1,
-@@ -101,6 +118,7 @@ static const struct is31fl32xx_chipdef is31fl3235_cdef = {
- 	.pwm_update_reg				= 0x25,
- 	.global_control_reg			= 0x4a,
- 	.reset_reg				= 0x4f,
-+	.output_frequency_setting_reg		= IS31FL32XX_REG_NONE,
- 	.pwm_register_base			= 0x05,
- 	.led_control_register_base		= 0x2a,
- 	.enable_bits_per_led_control_register	= 1,
-@@ -112,6 +130,7 @@ static const struct is31fl32xx_chipdef is31fl3218_cdef = {
- 	.pwm_update_reg				= 0x16,
- 	.global_control_reg			= IS31FL32XX_REG_NONE,
- 	.reset_reg				= 0x17,
-+	.output_frequency_setting_reg		= IS31FL32XX_REG_NONE,
- 	.pwm_register_base			= 0x01,
- 	.led_control_register_base		= 0x13,
- 	.enable_bits_per_led_control_register	= 6,
-@@ -126,6 +145,7 @@ static const struct is31fl32xx_chipdef is31fl3216_cdef = {
- 	.pwm_update_reg				= 0xB0,
- 	.global_control_reg			= IS31FL32XX_REG_NONE,
- 	.reset_reg				= IS31FL32XX_REG_NONE,
-+	.output_frequency_setting_reg		= IS31FL32XX_REG_NONE,
- 	.pwm_register_base			= 0x10,
- 	.pwm_registers_reversed			= true,
- 	.led_control_register_base		= 0x01,
-@@ -363,8 +383,21 @@ static struct is31fl32xx_led_data *is31fl32xx_find_led_data(
- static int is31fl32xx_parse_dt(struct device *dev,
- 			       struct is31fl32xx_priv *priv)
- {
-+	const struct is31fl32xx_chipdef *cdef = priv->cdef;
- 	int ret = 0;
- 
-+	if ((cdef->output_frequency_setting_reg != IS31FL32XX_REG_NONE) &&
-+	    of_property_read_bool(dev_of_node(dev), "issi,22kHz-pwm")) {
-+
-+		ret = is31fl32xx_write(priv, cdef->output_frequency_setting_reg,
-+				       IS31FL32XX_PWM_FREQUENCY_22kHz);
-+
-+		if (ret) {
-+			dev_err(dev, "Failed to write output PWM frequency register\n");
-+			return ret;
-+		}
-+	}
-+
- 	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
- 		struct led_init_data init_data = {};
- 		struct is31fl32xx_led_data *led_data =
-@@ -404,12 +437,13 @@ static int is31fl32xx_parse_dt(struct device *dev,
- }
- 
- static const struct of_device_id of_is31fl32xx_match[] = {
--	{ .compatible = "issi,is31fl3236", .data = &is31fl3236_cdef, },
--	{ .compatible = "issi,is31fl3235", .data = &is31fl3235_cdef, },
--	{ .compatible = "issi,is31fl3218", .data = &is31fl3218_cdef, },
--	{ .compatible = "si-en,sn3218",    .data = &is31fl3218_cdef, },
--	{ .compatible = "issi,is31fl3216", .data = &is31fl3216_cdef, },
--	{ .compatible = "si-en,sn3216",    .data = &is31fl3216_cdef, },
-+	{ .compatible = "issi,is31fl3236",  .data = &is31fl3236_cdef, },
-+	{ .compatible = "issi,is31fl3236a", .data = &is31fl3236a_cdef, },
-+	{ .compatible = "issi,is31fl3235",  .data = &is31fl3235_cdef, },
-+	{ .compatible = "issi,is31fl3218",  .data = &is31fl3218_cdef, },
-+	{ .compatible = "si-en,sn3218",     .data = &is31fl3218_cdef, },
-+	{ .compatible = "issi,is31fl3216",  .data = &is31fl3216_cdef, },
-+	{ .compatible = "si-en,sn3216",     .data = &is31fl3216_cdef, },
- 	{},
- };
- 
-@@ -466,6 +500,7 @@ static void is31fl32xx_remove(struct i2c_client *client)
-  */
- static const struct i2c_device_id is31fl32xx_id[] = {
- 	{ "is31fl3236" },
-+	{ "is31fl3236a" },
- 	{ "is31fl3235" },
- 	{ "is31fl3218" },
- 	{ "sn3218" },
+In general, silent migration isn't acceptable for the kernel, even if
+you largely happen to get away with that today. It is not acceptable for
+architectural feature support to change dynamically.
 
--- 
-2.48.1
+> However, since the CPUs in these SoCs does not support
+> 4K pages anyways in practice this is not an issue for as long as
+> CONFIG_EXPERT is disabled.
 
+Do these parts have EL2?
+
+> > On the other hand, if it all works swimmingly and it's just the PMU
+> > driver that needs updating, then I could get on board with it.
+> 
+> As mentioned above, it does all work fine when CONFIG_EXPERT is not
+> enabled, and if it is enabled, then 32-bit process may crash with illegal
+> instruction but everything else will still works fine.
+
+I don't think that's quite true, unless these parts are also violating
+the architecture.
+
+If the CPU doesn't implement AArch32, then an ERET to AArch32 is
+illegal. The way illegal exception returns are handled means that this
+will result in a (fatal) illegal execution state exception being taken
+from the exception return code in the kernel, not an UNDEF being taken
+from userspace that would result in a SIGILL.
+
+I do not think that we should pretend to support hardware with silent
+microarchitectural migration. So at the very least, we do not care about
+A10/A10X/T2.
+
+Mark.
 
