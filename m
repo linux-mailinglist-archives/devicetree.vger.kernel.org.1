@@ -1,79 +1,78 @@
-Return-Path: <devicetree+bounces-197417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F7BB09181
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 18:14:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A62B091FD
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 18:38:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8727D16B2BB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:14:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA1F97AD314
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:36:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A465E2F94AF;
-	Thu, 17 Jul 2025 16:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CAFD2F7D0D;
+	Thu, 17 Jul 2025 16:38:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YFzuQ4w2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cIIwaBCE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B826B13AF2
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 16:14:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA3E202F87
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 16:37:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752768890; cv=none; b=YYDvRmDffDiLb4CN6tLrIMZfFo6WBDDVxFchFNgI19U8CHWdb8O+PgIMXLzlWVcIQaUXfBW1yB7jyVHZB6XSoAPcq8ynvyEk0Jqp1o9m6HF3Pqk4moYiDdFf97pG6zPkK+45NuVPzp0uG5lU91mAP0kd6YnvZZHikJ3Z9f0Z6sM=
+	t=1752770280; cv=none; b=hGzoQJtmzpCBW0a31ZB+GZPKxzRdZhmyYWqzIDwcBCS+wXH3K05E3iL2I6cU+oR9zVDsO5RbHYzVCvxhHKomNN9xKpPyeC48/wyD7AjoSL/HKW18QORL8N0z2638UEDSKzjwkL9Yx5MyFjmlEp1aeCWGCvp70L4ci4HWK3cNd7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752768890; c=relaxed/simple;
-	bh=vnrfW7MDEtPXiQ+PeefY1maBKqzCBMejc315uPOTQ/g=;
+	s=arc-20240116; t=1752770280; c=relaxed/simple;
+	bh=ZGdCrhfuQwNlpZugbUeh+YvGN4hJmVbFRWO2l5ySunQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=akhaNErIOzj9l6vzFY4VRQlVGG96gSukpb7FtqCD3aEt3ciX+jFObym6003tKIOhVFbjPYxOLpf+HWv+VczJ+xlOjh3p9vFHitQGJtGR2z3cvUw68u6JF5PDMQgEHjvACHCo5MojtEgaxwAT/PcoMA2JEIGJruQgBugqjoyrhs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YFzuQ4w2; arc=none smtp.client-ip=209.85.128.52
+	 Content-Type:Content-Disposition:In-Reply-To; b=g73vDJaFvpSp3SV3kq7owBnWzBLaGUMA5iNYe4oc+EnrdhJXdYlzzi6uif9RATgdqrDNDUzwttzcyDyPhYRiiD4qHWFxEuukXvUuzGiNkudzY7BQ7kc9Y8xGgpGBwDOYjjgHcsio9+HPdfD6rMUKlrvqJpKO4fbpyvaPdW35Glc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cIIwaBCE; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45617887276so8482725e9.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 09:14:48 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3b611665b96so673380f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 09:37:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752768887; x=1753373687; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XLAwLeBG8xp4dc08BrzRdbHpWuQPpe2nJ16RFlGB0IQ=;
-        b=YFzuQ4w2OoglQFYkCU/YjBjgUrsfkIHHBeozkhDB0IoMkr9vvMauERIWtb5tJrPKNl
-         Gri/Z4WkGbJf/CfVEwd+6JsFxL/+uOhqxuwcErzq2UqAP5RJMH+UB39rZ2RMLvF8xz+F
-         1TZvEuH6FcpeHuIgqRN+AhtALm07OrvQ2NAnrUCZ6wzUeyfPztI7O5S0fgnqSvxWRPy9
-         kgIW4qjPZ5mWCw9YQCkYtE2UF1yEySAX+fSNVJ6uH0fRjtoN8vobU2Qzi8kkl7SxrBOk
-         UekQqdzYxjJM5wZd2YMDAX8fAsOXch49yGh7qzAUUtJAy6byaeLEl8xQxcpD3qtzFN/A
-         YqOQ==
+        d=linaro.org; s=google; t=1752770277; x=1753375077; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ixdz2azUt5m+0HQygOUjX6ao2OrLdLt2TO2+338NjZ8=;
+        b=cIIwaBCEF8Ngm0fNIppa1WuN34MWTo0soJa7hGJGieTiKsuwk8uAcq/434VA8A36bu
+         cqMV07NGxLSbatMAlnLn6aDbpCsZhP3O/a82KDHNpPKqOyOwFIKxu+OFoMFS7a7vwwv5
+         V7B3pANEaP5BgwX/fFmhYo4KkrMHOb2SSOJSnzhdQuQCrsCg3IZeH6NiIKnTArIf61HH
+         NgIFEKJov2qLWfCgjQayNGkKQfsP/Lk+6uLa3KzIxZGkmxLEP5VKGGbXsyONEv5G0CRH
+         HVU2STFoNCffPxhvg10uBbXzwmW3aIq6l0N6lUrBHQURAz0jUhpzJcASthPYowMfhBF3
+         sv0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752768887; x=1753373687;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XLAwLeBG8xp4dc08BrzRdbHpWuQPpe2nJ16RFlGB0IQ=;
-        b=jc9lf/POm1lb0YCAcAMSs650PZ1w36JqsqBgsFT+5sF7zd8GVIz38Oyg3JMQLWynwY
-         zb2HIp7i9uf903d+ezSYsudb+IO/+yhUoNnu9+A3S1FlZK4+lGKcr0d9Pqe5BiYZbr8v
-         xsC/RRF9QUukTE0sYBC7wAPbnoAGll2B0umt6D6y9TPwJDQ8YjKk5PHNvmp2Xx6cFK8h
-         3gI/Kuv4pmCK810+PfCSpmlNVoUqceL1nln3j6dO0IZGT8aY9JWqP1+zd9O3a/H8lGdk
-         r5fAYW0ihCBEUM7XxBiM/AMADO8DBX7cCHWKXOwrkQc8Lt3NHPpiYmvr7Yuqod0hlaf+
-         LWJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWn6BgtmZ/UifoUO1iclCWG3JJt17StApI2ZqoHefYc8pIa46LGS3MlA9K08r1c+NHPeUqYOZyzWFqt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBb26jzFI3fFs84vN4gawqTSTpMzEx/E0YHtJQxVcxB91YZe1k
-	Ml2lF7lPZmudiMatf5M77Q8ZSFWSJCHNniZYICNvqSMaU9C/1osqvK5qHGUifCiyLfA=
-X-Gm-Gg: ASbGncuVuSAn05yDV9GShTla/j9N93zG6+ejYNiVgAtab5e22ZERCjzTbPTdxUsEXKi
-	SLNoMqkpS04c46oJzrm2yBKnMK5EM9wZdsC/S0tvs2tS+ErMMsyX0++9Hz4zbaSAW+mjy1GdWDi
-	4liSkAraP4QVq4w1dHURa2pwBJW72gTIdKFLAJ6ztqdYlbPzvZ5z6EyMq5mtx+8E/QJdQ5ELsSe
-	pX4dSzKeO+hfHLWQ5j52ktP6ZTRt5lAqDi7EXytHZ2gwdzJhYnoCBf0iTJqdgI7rHb8WWS9MquD
-	yw0VfbM8lhPPHzqHZvGKIXGrF4zKMrmA4QYLGPyrgF8+PdQ5kPx378vPAlgOl3m0TNFXHrAVIQX
-	7E/J1ppNAXEVtiZg1IdoQci1kvj5dDaI0vg==
-X-Google-Smtp-Source: AGHT+IG8X08yDtcJjXlqFt3MzTuc0Qxi/sS6hoizIgQ85eHNFJWG4UtueCANjketu6w7VGqk5gFBWw==
-X-Received: by 2002:a05:600c:314f:b0:450:d3b9:4ba4 with SMTP id 5b1f17b1804b1-4562e34ad97mr80610545e9.2.1752768886828;
-        Thu, 17 Jul 2025 09:14:46 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1752770277; x=1753375077;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ixdz2azUt5m+0HQygOUjX6ao2OrLdLt2TO2+338NjZ8=;
+        b=lv+pLHZYNfdeO7ttByEShvDn18sXECjjP+zfTowN+JsqxzUYGmjLIVkCAolpGJ6A4r
+         CN4FgqcdH9W+Xn05dUsgsCHv0YZAbDMvxSatcjty+/j7XA/hKuH7D9HYiHWxNsvbg91m
+         rccfrFBitbnsNvjhZkNGuVdzPGZqtsuoVSLWJriqsynuYaxahQXgV8/82gWZ2VOcyKrJ
+         RKwA/423HVGLaOz+a8cQ8uvdHg2JHWp/1x21AALNcvtBa3EfcbZ/EV9gcGjJqUcvzm+B
+         uyLnFrsmWlGiV4BoLJUj97ObwzbsqJEa0nb+zkA+SOSnoDwdH8xwGh+WcdyySdqSS90U
+         wXfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWZqqP5cPDtYBMMgBF8dt+vILoADOwjedB0U/G5VxZ5t0ZOZVA4adr0pmgBGIDqiRAMXFmSX4chfVNM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOImyr6lMMwz1k8ncVc83nKasnuiuSqkGTUm9ipLZMorC9UJ1W
+	e97orlIME5cCJuskPn1A3S9c4DAE5Vvnln3wnBhokHmHXgDpj+SEt1K+iqpygvBmeqQ=
+X-Gm-Gg: ASbGncuAuTY5CKB22Q1CdKIxRxCrPrQDWPWAuvkrwzujbDRfQJ8/SoziPnj/1GLnxWt
+	25Zpb8bRPQqTRoVqC2+UElboSnEhafupU7mr+MLA19VHyFplgd9shCArgsp/S2TXt4DALYhCumw
+	y3AlvQmSgceJCgX3XwpvXtQb6DPGfzVt21+hQB07WKced2dbv5TQFVu9VIvQI4u5ygbuTMmtA+a
+	Mft0Qe5QPNIE7p2bvdb2ppVQKg5n2WpjHWDqa/Wn2wgbckPP221TaHO9Rw8mN0qYtjN7yVG5d8c
+	6tC/mFgHG97lJHMt1CBA0XCcODvQFw6Pry2fYVRye7kZbHpYnnsxvWuoPuj706vsdjkzzH3aKp7
+	mJUbD3Urmp7UJpyPZxpgDMUuHEgsj0t2ZWwv1kCKywYNX
+X-Google-Smtp-Source: AGHT+IHHFts0Aarz6/qK5tPczZMXGwvgojI2uqI+Zt7jBxut+q77lCloBtFOMIkhLT1YgDmMw+oO/w==
+X-Received: by 2002:a05:6000:1a8d:b0:3a4:f6b7:8b07 with SMTP id ffacd0b85a97d-3b60e51c9efmr6883618f8f.48.1752770276833;
+        Thu, 17 Jul 2025 09:37:56 -0700 (PDT)
 Received: from linaro.org ([2a02:2454:ff21:ef30:79a0:386f:8c5a:9506])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45634f4c546sm27013375e9.7.2025.07.17.09.14.45
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8e0dbddsm21408946f8f.63.2025.07.17.09.37.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Jul 2025 09:14:46 -0700 (PDT)
-Date: Thu, 17 Jul 2025 18:14:41 +0200
+        Thu, 17 Jul 2025 09:37:56 -0700 (PDT)
+Date: Thu, 17 Jul 2025 18:37:54 +0200
 From: Stephan Gerhold <stephan.gerhold@linaro.org>
 To: Yijie Yang <yijie.yang@oss.qualcomm.com>
 Cc: Bjorn Andersson <andersson@kernel.org>,
@@ -82,198 +81,113 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: Add HAMOA-IOT-SOM platform
-Message-ID: <aHkhcUVBnrwadKfa@linaro.org>
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
+Message-ID: <aHkm4qjgSaklHGp0@linaro.org>
 References: <20250716-hamoa_initial-v1-0-f6f5d0f9a163@oss.qualcomm.com>
- <20250716-hamoa_initial-v1-3-f6f5d0f9a163@oss.qualcomm.com>
+ <20250716-hamoa_initial-v1-4-f6f5d0f9a163@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250716-hamoa_initial-v1-3-f6f5d0f9a163@oss.qualcomm.com>
+In-Reply-To: <20250716-hamoa_initial-v1-4-f6f5d0f9a163@oss.qualcomm.com>
 
-On Wed, Jul 16, 2025 at 05:08:41PM +0800, Yijie Yang wrote:
-> The HAMOA-IOT-SOM is a compact computing module that integrates a System
-> on Chip (SoC) — specifically the x1e80100 — along with essential
-> components optimized for IoT applications. It is designed to be mounted on
-> carrier boards, enabling the development of complete embedded systems.
+On Wed, Jul 16, 2025 at 05:08:42PM +0800, Yijie Yang wrote:
+> The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
+> the Hamoa IoT SoM and a carrier board. Together, they form a complete
+> embedded system capable of booting to UART.
 > 
-> This change enables and overlays the following components:
-> - Regulators on the SOM
-> - Reserved memory regions
-> - PCIe6a and its PHY
-> - PCIe4 and its PHY
-> - USB0 through USB6 and their PHYs
-> - ADSP, CDSP
-> - WLAN, Bluetooth (M.2 interface)
-
-There is no WLAN in here, it's part of PATCH 4/4 as far as I can tell.
-Move it to changelog of PATCH 4/4?
-
+> This change enables and overlays the following peripherals on the carrier
+> board:
+> - UART
+> - On-board regulators
+> - USB Type-C mux
+> - Pinctrl
+> - Embedded USB (EUSB) repeaters
+> - NVMe
+> - pmic-glink
 > 
-> Written with contributions from Yingying Tang (added PCIe4 and its PHY to
-> enable WLAN).
+> Written with contributions from Shuai Zhang (added Bluetooth).
 > 
 > Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
 > ---
->  arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi | 607 ++++++++++++++++++++++++++++
->  1 file changed, 607 insertions(+)
+>  arch/arm64/boot/dts/qcom/Makefile          |   1 +
+>  arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 835 +++++++++++++++++++++++++++++
+>  2 files changed, 836 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 4bfa926b6a0850c3c459bcba28129c559d50a7cf..c5994b75d3e56e74ffb64b2389ee1bcc086f3065 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= hamoa-iot-evk.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-tplink-archer-ax55-v1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp441.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
 > new file mode 100644
-> index 0000000000000000000000000000000000000000..dad24a6a49ad370aee48a9fd8f4a46f64c2b6348
+> index 0000000000000000000000000000000000000000..843f39c9d59286a9303a545411b2518d7649a059
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
-> @@ -0,0 +1,607 @@
+> +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
 > [...]
-> +&remoteproc_adsp {
-> +	firmware-name = "qcom/hamoa-iot/adsp.mbn",
-> +			"qcom/hamoa-iot/adsp_dtb.mbn";
+> +	vreg_wcn_3p3: regulator-wcn-3p3 {
+> +		compatible = "regulator-fixed";
 > +
-> +	status = "okay";
-> +};
+> +		regulator-name = "VREG_WCN_3P3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
 > +
-> +&remoteproc_cdsp {
-> +	firmware-name = "qcom/hamoa-iot/cdsp.mbn",
-> +			"qcom/hamoa-iot/cdsp_dtb.mbn";
+> +		gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&wcn_sw_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-boot-on;
+> +	};
+> +
+> +	/*
+> +	 * TODO: These two regulators are actually part of the removable M.2
+> +	 * card and not the CRD mainboard. Need to describe this differently.
+> +	 * Functionally it works correctly, because all we need to do is to
+> +	 * turn on the actual 3.3V supply above.
+> +	 */
+> +	vreg_wcn_0p95: regulator-wcn-0p95 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_WCN_0P95";
+> +		regulator-min-microvolt = <950000>;
+> +		regulator-max-microvolt = <950000>;
+> +
+> +		vin-supply = <&vreg_wcn_3p3>;
+> +	};
+> +
+> +	vreg_wcn_1p9: regulator-wcn-1p9 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_WCN_1P9";
+> +		regulator-min-microvolt = <1900000>;
+> +		regulator-max-microvolt = <1900000>;
+> +
+> +		vin-supply = <&vreg_wcn_3p3>;
+> +	};
 
-You say this SoM can be used to build "complete embedded systems", are
-you sure they will all use the same firwmare signatures?
+Like the TODO comment already says, regulators located on a M.2 card
+shouldn't be described as part of the device DT. We need a proper
+solution for modelling the M.2 slots together with the standard power
+supplies (3.3V and 1.8V) and hook this up to the pwrseq subsystem. This
+is also the reason why the CRD does not have Bluetooth enabled upstream
+yet, this needs to be solved first.
 
-If not, this should be in the device-specific DT (i.e. the carrier board
-in your case).
-
-> [...]
-> +&usb_1_ss0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss0_dwc3 {
-> +	dr_mode = "otg";
-> +	usb-role-switch;
-> +};
-> +
-> +&usb_1_ss0_hsphy {
-> +	vdd-supply = <&vreg_l3j_0p8>;
-> +	vdda12-supply = <&vreg_l2j_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss0_qmpphy {
-> +	vdda-phy-supply = <&vreg_l2j_1p2>;
-> +	vdda-pll-supply = <&vreg_l1j_0p8>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss1_dwc3 {
-> +	dr_mode = "otg";
-> +	usb-role-switch;
-> +};
-> +
-> +&usb_1_ss1_hsphy {
-> +	vdd-supply = <&vreg_l3j_0p8>;
-> +	vdda12-supply = <&vreg_l2j_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss1_qmpphy {
-> +	vdda-phy-supply = <&vreg_l2j_1p2>;
-> +	vdda-pll-supply = <&vreg_l2d_0p9>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss2 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss2_dwc3 {
-> +	dr_mode = "otg";
-> +	usb-role-switch;
-> +};
-> +
-> +&usb_1_ss2_hsphy {
-> +	vdd-supply = <&vreg_l3j_0p8>;
-> +	vdda12-supply = <&vreg_l2j_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss2_qmpphy {
-> +	vdda-phy-supply = <&vreg_l2j_1p2>;
-> +	vdda-pll-supply = <&vreg_l2d_0p9>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_dwc3 {
-> +	dr_mode = "host";
-> +};
-> +
-> +&usb_2_hsphy {
-> +	vdd-supply = <&vreg_l2e_0p8>;
-> +	vdda12-supply = <&vreg_l3e_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_mp {
-> +	status = "okay";
-> +};
-> +
-> +&usb_mp_hsphy0 {
-> +	vdd-supply = <&vreg_l2e_0p8>;
-> +	vdda12-supply = <&vreg_l3e_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_mp_hsphy1 {
-> +	vdd-supply = <&vreg_l2e_0p8>;
-> +	vdda12-supply = <&vreg_l3e_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_mp_qmpphy0 {
-> +	vdda-phy-supply = <&vreg_l3e_1p2>;
-> +	vdda-pll-supply = <&vreg_l3c_0p8>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_mp_qmpphy1 {
-> +	vdda-phy-supply = <&vreg_l3e_1p2>;
-> +	vdda-pll-supply = <&vreg_l3c_0p8>;
-> +
-> +	status = "okay";
-> +};
-> 
-
-Assuming the USB ports are located on the carrier board and not the
-SoM(?):
-
-Are carrier boards required to make use of all these USB
-ports/interfaces? In my experience it's not unusual that embedded
-carrier boards use only the functionality that they need. Maybe this
-should just set the common properties and enabling individual ports for
-PCIe and USB should be up to the carrier boards.
+As far as I know, there is no one actively working on addressing this at
+the moment. Perhaps you can assign someone at QC to work on solving this
+upstream.
 
 Thanks,
 Stephan
