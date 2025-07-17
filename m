@@ -1,230 +1,235 @@
-Return-Path: <devicetree+bounces-197231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80C8AB088CF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 11:04:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9774EB088E3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 11:06:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC5C21C22682
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 09:03:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76F32162FAD
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 09:06:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C82BE28ECEF;
-	Thu, 17 Jul 2025 09:01:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D12C6288525;
+	Thu, 17 Jul 2025 09:05:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="fiJx30+s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11012061.outbound.protection.outlook.com [52.101.71.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610D728A715;
-	Thu, 17 Jul 2025 09:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752742898; cv=none; b=uHzBH/5yk3Ofjb1rH1Q2Rw67leMcZutId/YxX/laBHY/y4s4vlzRMmMt75PvbSGnyjtbBD9r9Kzlu6kYXpUPSiRcAaCd+rbquw83t9FUgyZF0v7R53CsHG8tqv8uxego86U0vRNqXAVmYB6FCpzA3Z78DVhmgXOISsllc++RLjQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752742898; c=relaxed/simple;
-	bh=n6tjybBAfhSWYdb2X5IJ/kL/Ezr9vo+W7eGkw3m0LxI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RDc8ZtMtivyePJCARsG1i/jgQyEbnNEfPcipnzuDy8HeE84Ss1byNAMF5qEgVHD8fOVqrtw+muofvXPvJMz4f9P6wu9OCpW3PjxFSnd/pxdoAuFi9y5am4ZekzZgRgolPoJk3djm07Xuf3DWdK9ioiraPed2fhSnpyBK8gw3vis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 20A8042DF9;
-	Thu, 17 Jul 2025 09:01:30 +0000 (UTC)
-Message-ID: <d3c9e302-d8e6-47ef-b2f5-53c56f8ab5e2@ghiti.fr>
-Date: Thu, 17 Jul 2025 11:01:30 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1419235C17;
+	Thu, 17 Jul 2025 09:05:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.61
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752743156; cv=fail; b=O3O7riSrSIgstMhTrXz8HHAyy9HU+r4Fl/4K6a5c/IYyT93mMHJjxb0Jilpd2YzXpJwBS3GtsnBePc+Yidj5K5yNP9HrdXKMTNCDDKMGgCdPk1/L+NcdD5Om197mhEoOis2SfXVAQoqqgW797vWKEp01u08LyPCB3/dk/mkBU/E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752743156; c=relaxed/simple;
+	bh=WnrKxwijfiapAriwK41dqq3Ohkcm6dB8PnqnOhr+KEA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=iiFqJD5BFHiDcLtrhAu8BNcwB3Ugp+lD62xe8loXIfUVFdp1/S16ZK1NS2LSJVjK+M+1aGiZef7N3uPaYbfnEPPKkJtNHSgVKhllpqwjHabFZqmTKOngUNwqT/oMnVooJ5nGxZjNbJk7lCtLudn5SxmfCeYrIV83KjdiYCxziwc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=fiJx30+s; arc=fail smtp.client-ip=52.101.71.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kAv/9hJ4uQNo5YluPKMAA6x3rQ+s+cF47u1KVe5QzKnohqpuLuEF/mUwbByngU9i0xbR0CL4YjSjVHaF5+hqs7aIxwb35FeZ1acS6OPzPX5IMi/Okym63kflt5xF5/UpkUgYaLA56y1BL6Um19uFNNJEpj4wxUDsVoI/8+COjzY+iq8vfT8hJ1oVLGZ+GdipUyB0AcIbqUh9uulucCd4S132ctRUhvfv/zIiDi8/CZ9brjHm+WsG46tQGUynIOBHAwSRqJi+ah/zWDNyNTmn+kmKc53Qak3SCklu8f+Jv73kilf9jkh1g9ZhqJPo5ydGPvLMmRF8P9fRGdyuNxJHQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8Q5z483hDT5+a+8mYxpLghn98rGIXxWFAcHAvmHyNwQ=;
+ b=VqzzjJY1h9mVdDM58sF61L32mP7KfG/OnLHLYyyWzfAHnHtw5MVx8BxjIvGc9A/X3OVV0QbmUx6puI4Nv7ORFwcWEHA3D1Un7NXW0pZUndl976CFLqhpGN/v00IJ64aYKNLO+56OyNVrXstWPDSxkxrL9eBcLAXoJYACks93lW70PsocSAYrd9GCW22mCXNnIWRnt3B9A379EQG2UNm7fYWfXiw1hJGR4/XUASzLiqdmJgq4GzLRYyaoZRpeXVECn5d6jpKBxMb78yRNF0Nt/7XZ5Nj7i+ncJLDwxUnCbRdy6+sbst8CibRk5PuN/WcaBiRLQklBFl2mGU+3YOXNFQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8Q5z483hDT5+a+8mYxpLghn98rGIXxWFAcHAvmHyNwQ=;
+ b=fiJx30+sYshrN9pK9feTWtcxpMVhqL155+b8tfcRzVdTl5O2UE37Snq+AKsFJKyYRhyFBHWXr4Pa5mu4guA2HM1+ZvYnV+RACyBRxkdFQcozyEdkIGwOTr0+t9h0GB49yko9xIJY+L7KbrnvUyArUMd6fzuEPuxei4Gu2tM8UqA+xCHpDiN4f4g5ngiKoRaf1ehGi754L348SripVTFZb3YSKo5cTntJq2qfNWWOMD3AfDbONBZZcDL+tab+v4DZIDmlW2JImhm4v0ZWDUwCyAkZy3tv1mx5CYSOXlf/DPUS0ZcSBTagolRmcBd5GyOpI7QRwRulgiJrbQWOBxfbaA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB7790.eurprd04.prod.outlook.com (2603:10a6:102:cc::8)
+ by DU2PR04MB9065.eurprd04.prod.outlook.com (2603:10a6:10:2f0::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.32; Thu, 17 Jul
+ 2025 09:05:50 +0000
+Received: from PA4PR04MB7790.eurprd04.prod.outlook.com
+ ([fe80::6861:40f7:98b3:c2bc]) by PA4PR04MB7790.eurprd04.prod.outlook.com
+ ([fe80::6861:40f7:98b3:c2bc%4]) with mapi id 15.20.8922.037; Thu, 17 Jul 2025
+ 09:05:50 +0000
+Date: Thu, 17 Jul 2025 12:05:47 +0300
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"richardcochran@gmail.com" <richardcochran@gmail.com>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Clark Wang <xiaoning.wang@nxp.com>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	Frank Li <frank.li@nxp.com>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"F.S. Peng" <fushi.peng@nxp.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: Re: [PATCH v2 net-next 01/14] dt-bindings: ptp: add NETC Timer PTP
+ clock
+Message-ID: <20250717090547.f5c46ehp5rzey26b@skbuf>
+References: <20250716073111.367382-1-wei.fang@nxp.com>
+ <20250716073111.367382-2-wei.fang@nxp.com>
+ <20250717-furry-hummingbird-of-growth-4f5f1d@kuoka>
+ <PAXPR04MB8510F642E509E915B85062318851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PAXPR04MB8510F642E509E915B85062318851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+X-ClientProxiedBy: VI1PR06CA0191.eurprd06.prod.outlook.com
+ (2603:10a6:803:c8::48) To PA4PR04MB7790.eurprd04.prod.outlook.com
+ (2603:10a6:102:cc::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/7] riscv: hwprobe: Add MIPS vendor extension probing
-To: aleksa.paunovic@htecgroup.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Jonathan Corbet <corbet@lwn.net>
-Cc: Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20250625-p8700-pause-v4-0-6c7dd7f85756@htecgroup.com>
- <20250625-p8700-pause-v4-4-6c7dd7f85756@htecgroup.com>
-Content-Language: en-US
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20250625-p8700-pause-v4-4-6c7dd7f85756@htecgroup.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdeitdduiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtjeertddtvdejnecuhfhrohhmpeetlhgvgigrnhgurhgvucfihhhithhiuceorghlvgigsehghhhithhirdhfrheqnecuggftrfgrthhtvghrnheptdfhleefjeegheevgeeljeellefgvefhkeeiffekueejteefvdevhfelvdeggeeinecukfhppedukeehrddvudefrdduheegrdduhedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepudekhedrvddufedrudehgedrudehuddphhgvlhhopegluddtrddugedrtddrudefngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopedugedprhgtphhtthhopegrlhgvkhhsrgdrphgruhhnohhvihgtsehhthgvtghgrhhouhhprdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgruhhlrdifrghlmhhslhgvhiesshhifhhivhgvrdgtohhmpdhrtghpthhtohepphgrlhhmvghrsegurggssggvl
- hhtrdgtohhmpdhrtghpthhtoheprghouhesvggvtghsrdgsvghrkhgvlhgvhidrvgguuhdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvth
-X-GND-Sasl: alex@ghiti.fr
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB7790:EE_|DU2PR04MB9065:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9b150caf-53aa-4741-75aa-08ddc511205a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|1800799024|7416014|10070799003|366016|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Jiqy+REV8jFABrD1gRmKR98bzPMrx4YhVMG8WvwwiIeKcS+xiraknAyxp3u8?=
+ =?us-ascii?Q?seikPJTC2WX5d7DMCBA6c+62kaVK9eboTQ5h06mD3cvgjRUEMv6W30xKJ8I4?=
+ =?us-ascii?Q?ThSYFG9YdIQCE4dJesFQd+xqPOxsxotouycLObRK95dXW6egsLHsEK48WTrv?=
+ =?us-ascii?Q?dbGD4b2OHehpHlBoa/TXYTjx1ROCu25vSR+VVnCvP3NZjBdP2GU8lS0yFxu4?=
+ =?us-ascii?Q?aN1HzEmF6Vd8SwTRdAL7XZrAJNb29M8OriaxcT6SE2aOh4WjFqmv2RkPuxsG?=
+ =?us-ascii?Q?DhenbzAeZyHc/3+OdEoqYJ5R5dEbVjpVX1Sw3wd9K8W+PO3s3uljqk0lk1w3?=
+ =?us-ascii?Q?f0I+U5GwOO2W+vpWf/3bVAN0+dRIwWfI3eLkcEKE8SXNNw5M0t4EaWbRbyBZ?=
+ =?us-ascii?Q?NhOBzCGVWdGJUI5cz5GeXNQPkD/Fv7r3LARN9T7V8w1+TEPKJSVUWr3tnTjP?=
+ =?us-ascii?Q?NCI7wbkvJLUYVJyQ9SWRiX9jywZYb0mQGH9xD2uDrp1im18AfM6y0OHgw6cK?=
+ =?us-ascii?Q?gPOpq7wp2Suzi96vdhEkUy+7uuIDgmZ7NCXQmsicrbsdYigPy/THshJaq76j?=
+ =?us-ascii?Q?0NsL8ioYaIDSWLpnA4lvJQN76eb626+Q+U69V03nY4YmDECVRyRxm1jeIxzH?=
+ =?us-ascii?Q?zkX6KH4ggDJUNTFcgGzwFwe2JhOyTPhhEwwysqBi7lxwH2uaVLJwG6tSTKAz?=
+ =?us-ascii?Q?rhA+PBZbE9ubG9RP4MolVjft7ADg5Q+B+oTK6Of2Vl2aQ3kasvlmKWnIqxkB?=
+ =?us-ascii?Q?GaXBq95B8Gu4yzaa9BOHsFwZ8y5eAm82B33TDp/qo7vQ2gEbWSR7aUXL1FWb?=
+ =?us-ascii?Q?UzdZGfDC/owSTU19UdQMibZ0+fcBIDsTdx68XXqGGpuH9sDgsBeHVEDKxKoS?=
+ =?us-ascii?Q?5MKvf4Q0WVgXXUTBPktkpGm/u2AFrTA9nesxElY3E/+h4hIPdm7yVb3YUxk1?=
+ =?us-ascii?Q?c0tzmPAO/qa2zNcXs4Sr8Ilp8ImEg4Ll9t4f2qELh3yERiU/mzZzPKwaNCSl?=
+ =?us-ascii?Q?EPL4OsQ0+PewQ4dCXrdR1EQInWtvBPBfASsfgtkC05239+bxrO9ctYx1++6U?=
+ =?us-ascii?Q?fddgLoGGJFCSzrIHVZz+y8ZNT3UkDvTWiYZPFuvTnLLfcPi1EvNsP5u9Ndas?=
+ =?us-ascii?Q?ebhV7c854Z2jQckJrX9/Zk+N7ZnGrhrXez3XxZKDmZ/UQhraIWc45XfxLe9o?=
+ =?us-ascii?Q?oFFiwIGN+3CD8YgacqzYmxh0PCEHwCvFvsUjkdrPaQPvkBE9vIYc6XD5NBjV?=
+ =?us-ascii?Q?pvRbqwGVl6X3kGTuDOjg+wFXZ2jZ1L4Mx7fMusVLv5NMyf34IpJxDDcw7QOQ?=
+ =?us-ascii?Q?UdkehZfOECOwuy2gTy7KtJsKN0urxUbW6Ot0cX9vNTA+sbnbMToW6I/E+gzH?=
+ =?us-ascii?Q?FvuJmIok52n5QNkq6fFIyJjlwPRtUCApLss58ZH3UxRJDXc4eR1cuxmBUXrj?=
+ =?us-ascii?Q?NrVPEXlypKw=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB7790.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(7416014)(10070799003)(366016)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?gpJADPyyED/e4YjZG5Xi6NLLHcdNa2n/SXACF50i8dWylAWMtgVIr1Cfi6KT?=
+ =?us-ascii?Q?/B31Gd19D8UMFCWa27RQ3ImGeWoC7jD7gKDaC4GEf9MdS/DzaCLVZa9DFgi+?=
+ =?us-ascii?Q?Dfpm1F1q16Z19bPOn2l5oFimNGCWP9gA9dwtMy5f2iNusRspi6Dx97cCcf2g?=
+ =?us-ascii?Q?niJKpoUgMaQAj1cj/1JXzu8u00MiTGdVo7XllaUT2wbruKqDNmwGjxS0PI2D?=
+ =?us-ascii?Q?C0P6AHp9ENWiYdtgP6ARdrFAf3BQZn9110Z/UXqRBq4KYet2e31d+xKAmdXF?=
+ =?us-ascii?Q?wSQcGZkm9aTYoCtlMuS7RRMXbQiBftiS2e0SFDrWF0ntmsz/lOF/kxOg55cd?=
+ =?us-ascii?Q?ZTlUQydRxRD0otN5vK2OIiWg8nDCDZK4cayDrUzxRKdMaAOKHmrbnFSlJfVy?=
+ =?us-ascii?Q?p3QyE7S+Suj0ksUdrXXsglIVfbwDDbTj3Qps9CvjvJRnzdxvw9Wa4kZB8eiv?=
+ =?us-ascii?Q?zZBYjm8lsttQ7ClrFXLOmvA3APCLjEze1qMIwfaby5PUklpyuqsrYsKfH3Kw?=
+ =?us-ascii?Q?qk/xonrTLdncyCKUnOKkVOPEMedEwCEjadao9/+Qr9O32xsJA5+4RPv1c9FT?=
+ =?us-ascii?Q?IPGjbYZ4jEETy//7yk0ow4XoNskgE2D411wnQKMFW1Qz0KMNfC6EHFXDOOPR?=
+ =?us-ascii?Q?5lnwMpRVLyZ08RLkiSbkNptbVn/pfdiwQzKpo095YYgpCZzB4iepwYpITilv?=
+ =?us-ascii?Q?IFKk5NxNPLQ3oyf6j1WJ6K4k9viLdkA4yL1yD59hcB1HF0NuegjjWbjlJYVk?=
+ =?us-ascii?Q?/6MEilJcr2VvHFp0sTPg5SQM9D8b3sAMQ2MpW0klblnmPAYJxyHbbAaI06po?=
+ =?us-ascii?Q?yUfixZ6d10bgo/ihhYW/p4tkjwGLbeConaIO2KB7M7+DfZn5hZhwxI+J7qgx?=
+ =?us-ascii?Q?SlqOPZogAklcJe8METAeuRDMAL+IPqAcoTJ/x8oYEtZdFLKqUHazRfNkrc9p?=
+ =?us-ascii?Q?8rmqzNDk7OdY8DbuZzW4MIWTw4QIUSouL/inVxJgyFakJLcflP1PnWmYPXlr?=
+ =?us-ascii?Q?Z5tOIf71XaWB3xHvwpZukEhJS5iEW7iSSAHphvg4vUppkRR9w0Dbifw0Kw/w?=
+ =?us-ascii?Q?9o1Ui3uDoB2r3Epl6JoVZu72nF4Z/IIoqUaWT4G9W91OdcUFWKOOJ2+7ZhS0?=
+ =?us-ascii?Q?ErncXSzwIa9d+blK0ycpyiP/fcZe1kChSC24A78TjEWCxz2yziV4XEJGCrOa?=
+ =?us-ascii?Q?lRUhbyYzd/yUTuvMl+FuTfKrTrXYFYDFeDt0c8TAOiDN84/cdlBM0ShhzZKz?=
+ =?us-ascii?Q?HYWN8z4vPciOae3/yrHKY+Bl0UIPP+tZD0cqTIH8Yict35o31+/k+gWBjOhi?=
+ =?us-ascii?Q?1bJVV3sr9tOhEIQCTayAZ3KsyXPxXVj9vzYF2Dcj0goy6FQrJN/CTX3/jWJr?=
+ =?us-ascii?Q?3Om+O1sxvn+DCLfP8JNYTkOlyvimpv/uQC7ebN6TADyHwcpCH2yvTRDsLltD?=
+ =?us-ascii?Q?fjHwx+jPdkNOgpR1Xbl9nyIXfslqvrKuSzuiuufHdkdOnUA4ZUHXSh5DJk9b?=
+ =?us-ascii?Q?F3ZjbRsX+opDjNPF8U+jI7VOXiiTUdBE169NB+YIYDeTN4vCH0SpOo+lTgrt?=
+ =?us-ascii?Q?degnDAVnpPoJ0XOKfGkYroVDY7NvfKlaoOO1pHGCFqg4u49d07fBxWaDRv4Y?=
+ =?us-ascii?Q?sHf+M807EoL7saqOc5amNr3TUGGtLa9KCZ9+HeYIayZHRn08YGCF15NSUE2q?=
+ =?us-ascii?Q?9enlZA=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b150caf-53aa-4741-75aa-08ddc511205a
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB7790.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2025 09:05:50.7296
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /+Hr5mrYDqIzdtz7qFKBotTW6eYRqEOJ3TC0WC7kr5dRQp0yCit+XlIY/5OzNDnIPtQT/pDkOc7Vb8r216pc0A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9065
 
-On 6/25/25 16:20, Aleksa Paunovic via B4 Relay wrote:
-> From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
->
-> Add a new hwprobe key "RISCV_HWPROBE_KEY_VENDOR_EXT_MIPS_0" which allows
-> userspace to probe for the new xmipsexectl vendor extension.
->
-> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-> ---
->   arch/riscv/include/asm/hwprobe.h                   |  3 ++-
->   .../include/asm/vendor_extensions/mips_hwprobe.h   | 23 ++++++++++++++++++++++
->   arch/riscv/include/uapi/asm/hwprobe.h              |  1 +
->   arch/riscv/include/uapi/asm/vendor/mips.h          |  3 +++
->   arch/riscv/kernel/sys_hwprobe.c                    |  4 ++++
->   arch/riscv/kernel/vendor_extensions/Makefile       |  1 +
->   arch/riscv/kernel/vendor_extensions/mips_hwprobe.c | 22 +++++++++++++++++++++
->   7 files changed, 56 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/riscv/include/asm/hwprobe.h b/arch/riscv/include/asm/hwprobe.h
-> index 7fe0a379474ae2c64d300d6fee4a012173f6a6d7..948d2b34e94e84e4c2c351ffe91f4b3afcefc3f7 100644
-> --- a/arch/riscv/include/asm/hwprobe.h
-> +++ b/arch/riscv/include/asm/hwprobe.h
-> @@ -8,7 +8,7 @@
->   
->   #include <uapi/asm/hwprobe.h>
->   
-> -#define RISCV_HWPROBE_MAX_KEY 13
-> +#define RISCV_HWPROBE_MAX_KEY 14
->   
->   static inline bool riscv_hwprobe_key_is_valid(__s64 key)
->   {
-> @@ -22,6 +22,7 @@ static inline bool hwprobe_key_is_bitmask(__s64 key)
->   	case RISCV_HWPROBE_KEY_IMA_EXT_0:
->   	case RISCV_HWPROBE_KEY_CPUPERF_0:
->   	case RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0:
-> +	case RISCV_HWPROBE_KEY_VENDOR_EXT_MIPS_0:
->   	case RISCV_HWPROBE_KEY_VENDOR_EXT_SIFIVE_0:
->   		return true;
->   	}
-> diff --git a/arch/riscv/include/asm/vendor_extensions/mips_hwprobe.h b/arch/riscv/include/asm/vendor_extensions/mips_hwprobe.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..0af8c07c22f293b5f772709f774de78dd60c7f39
-> --- /dev/null
-> +++ b/arch/riscv/include/asm/vendor_extensions/mips_hwprobe.h
-> @@ -0,0 +1,23 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (C) 2025 MIPS.
-> + */
-> +
-> +#ifndef _ASM_RISCV_VENDOR_EXTENSIONS_MIPS_HWPROBE_H_
-> +#define _ASM_RISCV_VENDOR_EXTENSIONS_MIPS_HWPROBE_H_
-> +
-> +#include <linux/cpumask.h>
-> +#include <uapi/asm/hwprobe.h>
-> +
-> +
+On Thu, Jul 17, 2025 at 11:30:14AM +0300, Wei Fang wrote:
+> > On Wed, Jul 16, 2025 at 03:30:58PM +0800, Wei Fang wrote:
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - pci1131,ee02
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +    description:
+> > > +      The reference clock of NETC Timer, if not present, indicates that
+> > > +      the system clock of NETC IP is selected as the reference clock.
+> > 
+> > If not present...
+> > 
+> > > +
+> > > +  clock-names:
+> > 
+> > ... this also is not present...
+> > 
+> > > +    description:
+> > > +      NETC Timer has three reference clock sources, set TMR_CTRL[CK_SEL]
+> > > +      by parsing clock name to select one of them as the reference clock.
+> > > +      The "system" means that the system clock of NETC IP is used as the
+> > > +      reference clock.
+> > > +      The "ccm_timer" means another clock from CCM as the reference clock.
+> > > +      The "ext_1588" means the reference clock comes from external IO pins.
+> > > +    enum:
+> > > +      - system
+> > 
+> > So what does system mean?
+> > 
+> 
+> "system" is the system clock of the NETC subsystem, we can explicitly specify
+> this clock as the PTP reference clock of the Timer in the DT node. Or do not
+> add clock properties to the DT node, it implicitly indicates that the reference
+> clock of the Timer is the "system" clock.
 
+It's unusual to name the clock after the source rather than after the
+destination. When "clock-names" takes any of the above 3 values, it's
+still the same single IP clock, just taken from 3 different sources.
 
-2 newlines here ^
+I see you need to update TMR_CTRL[CK_SEL] depending on where the IP
+clock is sourced from. You use the "clock-names" for that. Whereas the
+very similar ptp-qoriq uses a separate "fsl,cksel" property. Was that
+not an acceptable solution, do we need a new way of achieving the same
+thing?
 
-
-> +#ifdef CONFIG_RISCV_ISA_VENDOR_EXT_MIPS
-> +void hwprobe_isa_vendor_ext_mips_0(struct riscv_hwprobe *pair, const struct cpumask *cpus);
-> +#else
-> +static inline void hwprobe_isa_vendor_ext_mips_0(struct riscv_hwprobe *pair,
-> +						 const struct cpumask *cpus)
-> +{
-> +	pair->value = 0;
-> +}
-> +#endif
-> +
-> +#endif // _ASM_RISCV_VENDOR_EXTENSIONS_MIPS_HWPROBE_H_
-> diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
-> index aaf6ad97049931381f9542bb9316c873ec6ab9f6..5d30a4fae37a82ef4d968d20b187420772ad8946 100644
-> --- a/arch/riscv/include/uapi/asm/hwprobe.h
-> +++ b/arch/riscv/include/uapi/asm/hwprobe.h
-> @@ -106,6 +106,7 @@ struct riscv_hwprobe {
->   #define RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0	11
->   #define RISCV_HWPROBE_KEY_ZICBOM_BLOCK_SIZE	12
->   #define RISCV_HWPROBE_KEY_VENDOR_EXT_SIFIVE_0	13
-> +#define RISCV_HWPROBE_KEY_VENDOR_EXT_MIPS_0	14
->   /* Increase RISCV_HWPROBE_MAX_KEY when adding items. */
->   
->   /* Flags */
-> diff --git a/arch/riscv/include/uapi/asm/vendor/mips.h b/arch/riscv/include/uapi/asm/vendor/mips.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..11d41651178233a5f06ab9541ea0506d9883aa19
-> --- /dev/null
-> +++ b/arch/riscv/include/uapi/asm/vendor/mips.h
-> @@ -0,0 +1,3 @@
-> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-> +
-> +#define RISCV_HWPROBE_VENDOR_EXT_XMIPSEXECTL	(1 << 0)
-> diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
-> index 0b170e18a2beba576f4f8787d6ef6aa67c5c3d0e..6c73e167ef4ccc7f99dd2793acde2595fffdcbad 100644
-> --- a/arch/riscv/kernel/sys_hwprobe.c
-> +++ b/arch/riscv/kernel/sys_hwprobe.c
-> @@ -15,6 +15,7 @@
->   #include <asm/uaccess.h>
->   #include <asm/unistd.h>
->   #include <asm/vector.h>
-> +#include <asm/vendor_extensions/mips_hwprobe.h>
->   #include <asm/vendor_extensions/sifive_hwprobe.h>
->   #include <asm/vendor_extensions/thead_hwprobe.h>
->   #include <vdso/vsyscall.h>
-> @@ -309,6 +310,9 @@ static void hwprobe_one_pair(struct riscv_hwprobe *pair,
->   	case RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0:
->   		hwprobe_isa_vendor_ext_thead_0(pair, cpus);
->   		break;
-> +	case RISCV_HWPROBE_KEY_VENDOR_EXT_MIPS_0:
-> +		hwprobe_isa_vendor_ext_mips_0(pair, cpus);
-> +		break;
->   
->   	/*
->   	 * For forward compatibility, unknown keys don't fail the whole
-> diff --git a/arch/riscv/kernel/vendor_extensions/Makefile b/arch/riscv/kernel/vendor_extensions/Makefile
-> index ccad4ebafb43412e72e654da3bdb9face53b80c6..bf116c82b6bdb3aee23e27fc0b2a69be7c7a5ccb 100644
-> --- a/arch/riscv/kernel/vendor_extensions/Makefile
-> +++ b/arch/riscv/kernel/vendor_extensions/Makefile
-> @@ -2,6 +2,7 @@
->   
->   obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_ANDES)	+= andes.o
->   obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_MIPS)  	+= mips.o
-> +obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_MIPS)  	+= mips_hwprobe.o
->   obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_SIFIVE)	+= sifive.o
->   obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_SIFIVE)	+= sifive_hwprobe.o
->   obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_THEAD)	+= thead.o
-> diff --git a/arch/riscv/kernel/vendor_extensions/mips_hwprobe.c b/arch/riscv/kernel/vendor_extensions/mips_hwprobe.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..43944f2b484af257fa358cda53c12b4d6f54b78b
-> --- /dev/null
-> +++ b/arch/riscv/kernel/vendor_extensions/mips_hwprobe.c
-> @@ -0,0 +1,22 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2025 MIPS.
-> + */
-> +
-> +#include <asm/vendor_extensions/mips.h>
-> +#include <asm/vendor_extensions/mips_hwprobe.h>
-> +#include <asm/vendor_extensions/vendor_hwprobe.h>
-> +
-> +#include <linux/cpumask.h>
-> +#include <linux/types.h>
-> +
-> +#include <uapi/asm/hwprobe.h>
-> +#include <uapi/asm/vendor/mips.h>
-> +
-> +void hwprobe_isa_vendor_ext_mips_0(struct riscv_hwprobe *pair,
-> +				   const struct cpumask *cpus)
-> +{
-> +	VENDOR_EXTENSION_SUPPORTED(
-> +		pair, cpus, riscv_isa_vendor_ext_list_mips.per_hart_isa_bitmap,
-> +		{ VENDOR_EXT_KEY(XMIPSEXECTL); });
-> +}
-
-
-I'll remove the superfluous newline when merging the patchset:
-
-Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-
-Thanks,
-
-Alex
-
+Also, why are "clocks" and "clock-names" not required properties? The
+Linux implementation fails probing if they are absent.
 
