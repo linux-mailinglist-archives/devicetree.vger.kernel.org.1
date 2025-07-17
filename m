@@ -1,198 +1,447 @@
-Return-Path: <devicetree+bounces-197097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86947B082CA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 04:14:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D534CB082CF
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 04:17:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 044521889DC2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 02:14:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B087188A004
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 02:17:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8631F1BE871;
-	Thu, 17 Jul 2025 02:14:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78D7719F421;
+	Thu, 17 Jul 2025 02:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BzlEQ4E/"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ZcAkDnsS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0472F1D63D3
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 02:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3494A258A
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 02:16:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752718470; cv=none; b=mwbcZM1eHvvKDeg9584tpoqlOwxIo1RmLoxVSgiNDPmqwLw/M8sFNbYzrnkg0ipVuuXG71bSohY/zmynL7NXCtudHsOPEA4g9ZMjzEL9nJuWzBBFyLB0I/8cYoK2OhUrG3WIkbqwXDwlYC7EqpGzo2f3cWP7Xv7g2LVES6XLMXU=
+	t=1752718620; cv=none; b=ltP4M5j3AYI7MmEtKOn30hEcYw78cKOC8+JuYbRFTZp8bxIYK0MAltFLea2JXdnGTEJn2uqJKgFOWQpwHigXG09yboSpozkP0m7oVsMnSC8fEJmRDz6sTx0rYlSiFAIo8vHpNZMJbF1b8guqmhNrmQMbafmtbvEqHDRezIZCvAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752718470; c=relaxed/simple;
-	bh=Ocf7rDEVq/yfElBauBHcGF2Xn4oeGqrWWXKA3Ya4w88=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DTfQckgPLZR6TNQuYm+mHfOvvDeEY+7rTm8SfGah90C2BPdHClCNfZcpJeix6RVY/xOx8rYlbBaqvcjtNo9D21zxbVePCYsiFAcA8pN1e0D++KGpUHSkQkmxJu1DsWG69ykBvZ1R81mPne2jL27fQRFBTHHmW9IPMK1kUsRHAks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BzlEQ4E/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56GGDPbg000567
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 02:14:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DTC0WRX4p9Xlvnf+T/Nq7VBMyv7m6ojUA5HCSntnl+g=; b=BzlEQ4E/sVojPRjG
-	tn7FhnQ150jJYWfSIObH3trPsWcVJfaZRfEM+hu7takN7pHDO9ImELomAtdNQiBZ
-	D1FheRegFz2/wet9oqnpy3EA6LvuIRAEvt1xmRt0kgLeWbRlK4yKHTGZkkS7zPEA
-	a9wKeXyjfjJndJNtQ5RWbpbT0RKrU1jsj2COxdqNg+CRetxt9tCOstfrP5Hd/51E
-	9fY/YhaLKyow72R5OMOh7POJ4yDF0wATDb+/rOJELOtkhOT1aRQG0GyzRwg+PzDO
-	cHMbXmsazoLybXtn3Qoge2ax9V9xZ+Y2/FkUi+SdLalwxeXITSwaAc2IwFd/Iw0J
-	Xvs21A==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47w5drs078-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 02:14:28 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b2fa1a84566so336086a12.1
-        for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 19:14:28 -0700 (PDT)
+	s=arc-20240116; t=1752718620; c=relaxed/simple;
+	bh=2T5Gg3c9Z9fTpQfaZwIJPDjhqVlhlxuUxGXmKQKdXyA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oEPYQlJcds7L/eZpD0ly/55oSQKcpKqJj0xNkq1wyLaSkAXZkcDqW+EBPFQ+96v/YPqRjyDy10fyTk6F7KOIX+xpDIMn8n1gBYpiDGsTGWwj4GrS4syn5tqUcZkIftDvDltdiWP8nOWJtbzQ4ii1TFe7L9+KqyHpFTv028ZW5+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ZcAkDnsS; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5561c20e2d5so634368e87.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 19:16:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1752718616; x=1753323416; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vxHiP6wE+44HTiVLcySgvTPCMzauYzsKV7k/Cx73M/Y=;
+        b=ZcAkDnsSUdanjGxrbfVQvN3A+eCasV/rJWM/6sZMePMHaoB1xmg35IPy0yhN50ZtGy
+         12gyH73NjVM2Dfzp9lYGLkOjxoQ8jzULNj1RqMkzsTaDut58bRUKcDiEY0UPfeeX/3H0
+         GhFwSvn6Opn7mNDTnNAfVGnvXgC5UXVur2Ols=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752718467; x=1753323267;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DTC0WRX4p9Xlvnf+T/Nq7VBMyv7m6ojUA5HCSntnl+g=;
-        b=nCkeNL5CUYXYzv/YzcxkdrlNXq+Sxpn4psT55KRX3i623ADesTJe4zRg51XkSz8OC5
-         Dggyfz7SxBKHu5R3Lh3WInTt/n7MRBtHV7gq1SV0UV9EkKUuZ9go/cdQEdwKJMR/E/t7
-         8OCuO/QkPF4jaXDsmST5dDJKFhiYVGzbgP8cuUITwN9Z4UU4/sRjdiLV8E833ECaaj0Z
-         s95Ok9D7TUtkuIPBZv6MtBC+0WTr7J6NV5hCjcJpUecYEnFjYbNu+ZnEUJ6HIgSjZPNh
-         gtHvz7Qt8sh7CK33znDgaosnnXerRUu0Z4xJ+OBzgESyPS/2EYeDwFTw7tFzv9ke+zA5
-         ucRw==
-X-Forwarded-Encrypted: i=1; AJvYcCWDMzGbEIrhbVEia/pnnAD60R4Kvr4wPqxfvRgW0cETxUKRFvN/wRotvjeR8kHrzv34VnASx6Nh+nYg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqL3YIglmUFQrLiqn2vnrDYp8jebogX2at2SOxo+D5Rop3xj3v
-	LWzXNc/U3BbJTezPXrSJXgkoVhWqGUp3J7O6TS9YYVyTYGLkmjPT6p7YE2Q/0UbIr24RzIjplqa
-	yHseuAdC9sfthKRIh+l1ZyIUZpXQuv9VwmLpBAVLsaRX70ftWvK7yL5ILrKRIou8a
-X-Gm-Gg: ASbGncu0Cgr4wEXfotsrHZ5d2jIZCVieExc0N0+UlqQvlZlef/lRos7hfbMwzLZYMp9
-	NDRXrdEuuuMTK3Iqf84fq4MpcGpqJmgzjrHBSXT3XslKGkKqu9/WCnLEt0k/0ozz5nYrt7rbuyP
-	tEVeKmSCf8kFChr0v6XfrelHhcDPRcw/xuot5VoeYjgiPbCethh6JbOrTH1YKlTDOk44C8FdAFj
-	O48xbxlR6GuE15pChU4qBrWKfygpr43erbFrLjgH08T8k0d3MaZw80H3ijkqy3RyqCGaXrwJwlH
-	m2vljQTL4MCcORXIv6L7NNgvSfO04v2RI9KKXKnxWjfqW0vz11Wo9VkE3IJAfbImmf9YxYX2Qg2
-	FE7c9PGulDsFUvHhMUoGfGaKrTBZw
-X-Received: by 2002:a17:903:80e:b0:23e:3164:2bf1 with SMTP id d9443c01a7336-23e31642e68mr7927055ad.53.1752718467242;
-        Wed, 16 Jul 2025 19:14:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGn4xLdliAVfCrSfN9/WNrtrgGxPkMsfecnWK61oAUnA5ybvMwzlXtm6829MrraE7ebG577YQ==
-X-Received: by 2002:a17:903:80e:b0:23e:3164:2bf1 with SMTP id d9443c01a7336-23e31642e68mr7926835ad.53.1752718466838;
-        Wed, 16 Jul 2025 19:14:26 -0700 (PDT)
-Received: from [10.133.33.249] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de42864b9sm132765355ad.30.2025.07.16.19.14.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Jul 2025 19:14:26 -0700 (PDT)
-Message-ID: <bffff2bc-6f42-49f4-9147-a4d706929e93@oss.qualcomm.com>
-Date: Thu, 17 Jul 2025 10:14:21 +0800
+        d=1e100.net; s=20230601; t=1752718616; x=1753323416;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vxHiP6wE+44HTiVLcySgvTPCMzauYzsKV7k/Cx73M/Y=;
+        b=epge0pDaqmu2+XYXsQsdVNnV3qm1NU3x4GIUkMb7G3HSmwFbCxE5nV1yd9Yd8xFUyQ
+         OMOBQh6/ORfT0+nSFEN15N9WZZZ5fTDkIYQHoDp281Rm5EeT9gx+zt3ScMKbdqUBpQAd
+         5AlZ+sVGjBwaa46+oIxlZWTDChHA6tzqXqgqFkbKk4vChNsYrAahrynbLseozVvSduQx
+         YqVZSN4F+0iny2gc63EF4nfoskhSO3iO7Ylqfr/HGYT5AO1VAYaas0ZHDjuicXUlKa75
+         hzYIsWH5cKqkQSOTQMeZGwL4mTXH1pqTeLLmGzlzRwhM/HWUkGZRVpEqIezSCeIJxynS
+         ZJBw==
+X-Forwarded-Encrypted: i=1; AJvYcCWiCS5aGJyRgmjPVSqa28crmvI/lQhoZ/KKMZo2WPowv1+F0xb/009tBzee2sHE0231EqMibe56wCgM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYeMz39aTu0wI/6MLpNNiZp9Pcg9ij3v/RJu/i+bKlWandHBGl
+	Hrgqf6DufTEOS7HQMptcoS1PIB9i9QsaQCzwWuEEUat2Jg9Ky+GrrxW8P0rVREaVrmFKbetpUg1
+	TBibN8ETJP852LiIxWIGK25RH1cWLfUrWIrQKcKjc
+X-Gm-Gg: ASbGncsLK2r+1WSA50P6hhoJKiCqidrszVGvoiOdA8e8gdv2Hnev2fF3PilOj8kj2PJ
+	ijIUcJ6WAB5eJfalBuHGbCtx0UqSNFCF9yXVBCR67e+OZcZESlHECnNQ5NvgbEzA7+Me+4Rksgd
+	JMxjFqhcFLjEtLXJcn6f17mdgFFsMBX357Nl7QSTLpr3gf/TxAgZ8s/IX+PCXYpV92iN8okHL6U
+	Zmwoi3kfFFFtzOj1IFtsXwk2V7m+sSC/DC6uQ==
+X-Google-Smtp-Source: AGHT+IHX6+PqYe7ISNqeiqU5iv6yi86yo/gru6nPWgWG5xiS6bt/CCj0f39af9hJfhwpJxYP0qrdsmQwdRgw6Yt/kWQ=
+X-Received: by 2002:a05:6512:3da1:b0:55a:2735:fe6a with SMTP id
+ 2adb3069b0e04-55a27360094mr841505e87.0.1752718616192; Wed, 16 Jul 2025
+ 19:16:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom: Document HAMOA-IOT-EVK board
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250716-hamoa_initial-v1-0-f6f5d0f9a163@oss.qualcomm.com>
- <20250716-hamoa_initial-v1-1-f6f5d0f9a163@oss.qualcomm.com>
- <604a5823-c563-4d37-ab14-e3164f3b1cd8@kernel.org>
-Content-Language: en-US
-From: Yijie Yang <yijie.yang@oss.qualcomm.com>
-In-Reply-To: <604a5823-c563-4d37-ab14-e3164f3b1cd8@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: mOxWc6SH6hRwLX0Gb8TIKsPyV1Am7Lcb
-X-Authority-Analysis: v=2.4 cv=D4xHKuRj c=1 sm=1 tr=0 ts=68785c84 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=VgApEbnXb6FI9c-La98A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-GUID: mOxWc6SH6hRwLX0Gb8TIKsPyV1Am7Lcb
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE3MDAxOCBTYWx0ZWRfX4cUbpwBJT/Lz
- mpViyGyxUZFKdOK45Bx4PMCl2R3rl73V1Hc/Dz1Hetb2DnFs4Zgf418umAZ3kXdzE0BF9B0zPLj
- IrxR2dep1sGa/BIGjYz6wcmrG85kD1kdlAiPeoKTxv5RuD3XtSnKAIKjgOMpLTArM6WK+8mhohP
- p0kEpSQUTYKf0p8cP+3VYAclp/CAVa31/DQNTINO5pdjgiG9dmFdi35I470SUU0krSndfiqUD1b
- CszHPlnGR07hPUJLWUBOq6yT7qPVKO3hyt7glDH7jJtxrqCiObTaAZzZbSBYmdOp2Me+SVlZpHu
- Vusw5smsxKCottAxmSqF+OPpOqvJVgQ3A3BVYeDj50KV8ZHWuWtxHbzoN3NYICdRbj3qSIdcQqV
- /dh7yznfD9wlIFzsy4MCWgxk+YcjcQdVg3tY0mtL3wOEWS4J29uM90/L7j742R1Y9zxitn+Q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-17_01,2025-07-16_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxlogscore=999 impostorscore=0 spamscore=0 clxscore=1015
- lowpriorityscore=0 malwarescore=0 suspectscore=0 bulkscore=0 mlxscore=0
- priorityscore=1501 phishscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507170018
+References: <20250708111806.3992-1-darren.ye@mediatek.com> <20250708111806.3992-9-darren.ye@mediatek.com>
+ <CAGXv+5EufDuxLMnwMaCqtWFZpVMNMxi-5OwCyO4a+KD2T+2NYA@mail.gmail.com> <e4e4cf154e9ea1a4f96a50f374e9f88fc27ca670.camel@mediatek.com>
+In-Reply-To: <e4e4cf154e9ea1a4f96a50f374e9f88fc27ca670.camel@mediatek.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 17 Jul 2025 11:16:45 +0900
+X-Gm-Features: Ac12FXxJARBruEPXsOMEpzqrHcSUpNdXL9sZPsqgXaiJYCISBkZ3KcHBr2s5MUo
+Message-ID: <CAGXv+5HDupifLWN-okQmzbgTV53X9Wwu6r9usFgiJEWc20AK1A@mail.gmail.com>
+Subject: Re: [PATCH v6 08/10] ASoC: dt-bindings: mediatek,mt8196-afe: add
+ audio AFE
+To: =?UTF-8?B?RGFycmVuIFllICjlj7bpo54p?= <Darren.Ye@mediatek.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linus.walleij@linaro.org" <linus.walleij@linaro.org>, 
+	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+	"krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>, "broonie@kernel.org" <broonie@kernel.org>, 
+	"brgl@bgdev.pl" <brgl@bgdev.pl>, "conor+dt@kernel.org" <conor+dt@kernel.org>, "tiwai@suse.com" <tiwai@suse.com>, 
+	"robh@kernel.org" <robh@kernel.org>, "lgirdwood@gmail.com" <lgirdwood@gmail.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+	"perex@perex.cz" <perex@perex.cz>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jul 16, 2025 at 9:41=E2=80=AFPM Darren Ye (=E5=8F=B6=E9=A3=9E) <Dar=
+ren.Ye@mediatek.com> wrote:
+>
+> On Tue, 2025-07-15 at 13:09 +0800, Chen-Yu Tsai wrote:
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> >
+> >
+> > Hi,
+> >
+> > On Tue, Jul 8, 2025 at 7:35=E2=80=AFPM Darren.Ye <darren.ye@mediatek.co=
+m>
+> > wrote:
+> > >
+> > > From: Darren Ye <darren.ye@mediatek.com>
+> > >
+> > > Add mt8196 audio AFE.
+> > >
+> > > Signed-off-by: Darren Ye <darren.ye@mediatek.com>
+> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > ---
+> > >  .../bindings/sound/mediatek,mt8196-afe.yaml   | 157
+> > > ++++++++++++++++++
+> > >  1 file changed, 157 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/sound/mediatek,mt8196-afe.yaml
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/sound/mediatek,mt8196-afe.yaml
+> > > b/Documentation/devicetree/bindings/sound/mediatek,mt8196-afe.yaml
+> > > new file mode 100644
+> > > index 000000000000..fe147eddf5e7
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8196-
+> > > afe.yaml
+> > > @@ -0,0 +1,157 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id:
+> > > https://urldefense.com/v3/__http://devicetree.org/schemas/sound/media=
+tek,mt8196-afe.yaml*__;Iw!!CTRNKA9wMg0ARbw!iSiBwCYEjWdWSv25XRbl3ky3Niiw3nDp=
+VY-fW1dxyp3eU5YDs0bbZXEgPUQ1_NInbxUIgyz3HJvf-xTH$
+> > > +$schema:
+> > > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.y=
+aml*__;Iw!!CTRNKA9wMg0ARbw!iSiBwCYEjWdWSv25XRbl3ky3Niiw3nDpVY-fW1dxyp3eU5YD=
+s0bbZXEgPUQ1_NInbxUIgyz3HHUjHsuW$
+> > > +
+> > > +title: MediaTek Audio Front End PCM controller for MT8196
+> > > +
+> > > +maintainers:
+> > > +  - Darren Ye <darren.ye@mediatek.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: mediatek,mt8196-afe
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  memory-region:
+> > > +    maxItems: 1
+> > > +
+> > > +  mediatek,vlpcksys:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > +    description: To set up the apll12 tuner
+> >
+> > Looking at the implementation, the configuration is just a fixed
+> > value.
+> > Can this be moved to the VLP clock driver instead?
+> >
+> I thinks it's not good to put it in the VLP clock kernel driver,
+> because this value needs to be adjusted. Usually, it is set in
+> coreboot, but it is hard to change later. Audio needs to adjust
+> this value, so it's better to put it in the audio driver. What do
+> you think?
+
+It looks like just one fixed value, instead of needing to tweak the value
+during operation? If that's the case I think it could be moved to the
+clock driver.
+
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: mux for audio intbus
+> > > +      - description: mux for audio engen1
+> > > +      - description: mux for audio engen2
+> > > +      - description: mux for audio h
+> > > +      - description: vlp 26m clock
+> > > +      - description: audio apll1 clock
+> > > +      - description: audio apll2 clock
+> > > +      - description: audio apll1 divide4
+> > > +      - description: audio apll2 divide4
+> > > +      - description: audio apll12 divide for i2sin0
+> > > +      - description: audio apll12 divide for i2sin1
+> > > +      - description: audio apll12 divide for fmi2s
+> > > +      - description: audio apll12 divide for tdmout mck
+> > > +      - description: audio apll12 divide for tdmout bck
+> > > +      - description: mux for audio apll1
+> > > +      - description: mux for audio apll2
+> > > +      - description: mux for i2sin0 mck
+> > > +      - description: mux for i2sin1 mck
+> > > +      - description: mux for fmi2s mck
+> > > +      - description: mux for tdmout mck
+> > > +      - description: mux for adsp clock
+> > > +      - description: 26m clock
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: top_aud_intbus
+> > > +      - const: top_aud_eng1
+> > > +      - const: top_aud_eng2
+> > > +      - const: top_aud_h
+> > > +      - const: vlp_clk26m
+> > > +      - const: apll1
+> > > +      - const: apll2
+> > > +      - const: apll1_d4
+> > > +      - const: apll2_d4
+> >
+> > These are parents of the top_apll[12]. They do not feed into the
+> > hardware directly, so you should not be including them here.
+> >
+> > > +      - const: apll12_div_i2sin0
+> > > +      - const: apll12_div_i2sin1
+> > > +      - const: apll12_div_fmi2s
+> > > +      - const: apll12_div_tdmout_m
+> > > +      - const: apll12_div_tdmout_b
+> >
+> > In the clock bindings sent by Collabora, these dividers are no longer
+> > separately modeled; they have been combined with their respective
+> > top_* clocks.
+> >
+> > > +      - const: top_apll1
+> > > +      - const: top_apll2
+> >
+> > These two are parents to apll12_div_*, do not feed into the hardware
+> > directly, so you should not be including them here.
+> >
+> > The clock tree for each audio interface clock looks like the
+> > following:
+> >
+> >     apll1 -> apll1_d4 -> top_apll1 --
+> >                      /               \
+> >               clk26m                  --> top_fmi2s ->
+> > apll12_div_fmi2s
+> >                      \               /
+> >     apll2 -> apll2_d4 -> top_apll2 --
+> >
+> > Only the final "apll12_div_fmi2s" should be referenced.
+> >
+> > On the implementation side, it should simply be a matter of setting
+> > the
+> > required rate (24.576 MHz or 22.5792 MHz, or some multiple) on this
+> > leaf
+> > clock, and let the clock framework figure out the PLL and dividers to
+> > use. Same thing for enabling the clock.
+>
+> I think we have some misunderstandings. I will first draw mtk audio
+> clock topology diagram, and then we can disscuss which parts can be
+> optimized together.
+>
+> top_aud_intbus: as read/write reg clock source;
+> top_aud_eng1/top_aud_eng2: as i2s bck clock source;
+> apll12_div_xxx: as mclk clock source;
+> top_audio_h: as afe other ip clock source;
+
+And what about top_i2sin0, top_i2sin1, top_fmi2s, top_tdmout?
+
+>
+> vlp_clk26m
+>         \
+> apll1   --> top_audio_h
+> /
+> apll2
+
+This shows that vlp_clk26m, apll1, apll2 are parents to top_audio_h.
+
+>                 vlp_clk26m
+>                      \
+> apll1  --> apll1_d4  --> top_aud_eng1
+>        \
+> clk26m --> top_apll1
+> \
+>  --> top_fmi2s --> apll12_div_fmi2s
+> /
+> clk26m  --> top_apll2
+>        /
+> apll2  --> apll2_d4  --> top_aud_eng2
+>                      /
+>        vlp_clk26m
+
+This shows the parents of top_aud_eng1, top_aud_eng2, top_apll1, top_apll2,
+and apll12_div_fmi2s.
+
+My point is that all these parents should not be referenced unless they
+also directly feed some input to the AFE block.
+
+> vlp_clk26m -> top_aud_intbus
+>
+>
+> >
+> > > +      - const: top_i2sin0
+> > > +      - const: top_i2sin1
+> > > +      - const: top_fmi2s
+> > > +      - const: top_tdmout
+> > > +      - const: top_adsp
+> > > +      - const: clk26m
+> >
+> > Is this one directly needed? It is similar to vlp_clk26m, and I
+> > suspect
+> > only that one is needed.
+> >
+> vlp_clk26m belongs to the VLP clock domain, and clk26 belongs to the
+> system clock domain;
+>
+> top_apll1/top_apll2 can only select system apll1/apll2 or clk26m, they
+> cannot use vlp_clk26m;
+
+Yes. What I mean is that clk26m does not directly feed the AFE block.
+If it does not directly feed the AFE block, it shouldn't be listed.
+
+So please think about the modules in the AFE, and the clock gates in
+the AFE block; think about what "external" clocks feed into them. Those
+are the ones you should list.
 
 
+ChenYu
 
-On 2025-07-16 17:30, Krzysztof Kozlowski wrote:
-> On 16/07/2025 11:08, Yijie Yang wrote:
->> Document the device tree binding for a new board named "EVK" based on
->> the Qualcomm Hamoa-IoT platform.
->>
->> The "hamoa" name refers to a family of SoCs that share the same silicon
->> die but are offered in multiple speed bins. The specific SoC used in
->> this board is the x1e80100, which represents one such bin within the
->> Hamoa family.
->>
->> Although "qcom,hamoa-iot-evk" is introduced as the board-specific
->> compatible, the fallback compatible remains "qcom,x1e80100" to preserve
->> compatibility with existing in-kernel drivers and software that already
->> depend on this identifier.
->>
->> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
->> ---
->>   Documentation/devicetree/bindings/arm/qcom.yaml | 9 +++++++--
->>   1 file changed, 7 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->> index ae43b35565808ed27cd8354b9a342545c4a98ed6..83b09ec1100ca03044c832212a99e65cc1177985 100644
->> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->> @@ -100,8 +100,8 @@ description: |
->>           sm8550
->>           sm8650
->>           sm8750
->> -        x1e78100
->> -        x1e80100
->> +        x1e78100 # hamoa
->> +        x1e80100 # hamoa
-> 
-> 
-> Huh? Why, no drop.
-
-Okay, I’ll leave it as is.
-
-> 
-> 
->>           x1p42100
->>   
->>     There are many devices in the list below that run the standard ChromeOS
->> @@ -1162,6 +1162,11 @@ properties:
->>                 - qcom,x1p42100-crd
->>             - const: qcom,x1p42100
->>   
->> +      - items:
->> +          - enum:
->> +              - qcom,hamoa-iot-evk
-> 
-> Don't duplicate entries. Look how this file is organized.
-
-Sure, I will merge.
-
-> 
-> 
-> Best regards,
-> Krzysztof
-
--- 
-Best Regards,
-Yijie
-
+> BR
+> Darren Ye
+>
+> >
+> > ChenYu
+> >
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - memory-region
+> > > +  - mediatek,vlpcksys
+> > > +  - power-domains
+> > > +  - clocks
+> > > +  - clock-names
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +
+> > > +    soc {
+> > > +        #address-cells =3D <2>;
+> > > +        #size-cells =3D <2>;
+> > > +
+> > > +        afe@1a110000 {
+> > > +            compatible =3D "mediatek,mt8196-afe";
+> > > +            reg =3D <0 0x1a110000 0 0x9000>;
+> > > +            interrupts =3D <GIC_SPI 351 IRQ_TYPE_LEVEL_HIGH 0>;
+> > > +            memory-region =3D <&afe_dma_mem_reserved>;
+> > > +            mediatek,vlpcksys =3D <&vlp_cksys_clk>;
+> > > +            power-domains =3D <&scpsys 14>;
+> > > //MT8196_POWER_DOMAIN_AUDIO
+> > > +            clocks =3D <&vlp_cksys_clk 40>,
+> > > //CLK_VLP_CK_AUD_INTBUS_SEL
+> > > +                     <&vlp_cksys_clk 38>,
+> > > //CLK_VLP_CK_AUD_ENGEN1_SEL
+> > > +                     <&vlp_cksys_clk 39>,
+> > > //CLK_VLP_CK_AUD_ENGEN2_SEL
+> > > +                     <&vlp_cksys_clk 37>, //CLK_VLP_CK_AUDIO_H_SEL
+> > > +                     <&vlp_cksys_clk 45>, //CLK_VLP_CK_CLKSQ
+> > > +                     <&cksys_clk 129>, //CLK_CK_APLL1
+> > > +                     <&cksys_clk 132>, //CLK_CK_APLL2
+> > > +                     <&cksys_clk 130>, //CLK_CK_APLL1_D4
+> > > +                     <&cksys_clk 133>, //CLK_CK_APLL2_D4
+> > > +                     <&cksys_clk 80>,
+> > > //CLK_CK_APLL12_CK_DIV_I2SIN0
+> > > +                     <&cksys_clk 81>,
+> > > //CLK_CK_APLL12_CK_DIV_I2SIN1
+> > > +                     <&cksys_clk 92>, //CLK_CK_APLL12_CK_DIV_FMI2S
+> > > +                     <&cksys_clk 93>,
+> > > //CLK_CK_APLL12_CK_DIV_TDMOUT_M
+> > > +                     <&cksys_clk 94>,
+> > > //CLK_CK_APLL12_CK_DIV_TDMOUT_B
+> > > +                     <&cksys_clk 43>, //CLK_CK_AUD_1_SEL
+> > > +                     <&cksys_clk 44>, //CLK_CK_AUD_2_SEL
+> > > +                     <&cksys_clk 66>, //CLK_CK_APLL_I2SIN0_MCK_SEL
+> > > +                     <&cksys_clk 67>, //CLK_CK_APLL_I2SIN1_MCK_SEL
+> > > +                     <&cksys_clk 78>, //CLK_CK_APLL_FMI2S_MCK_SEL
+> > > +                     <&cksys_clk 79>, //CLK_CK_APLL_TDMOUT_MCK_SEL
+> > > +                     <&cksys_clk 45>, //CLK_CK_ADSP_SEL
+> > > +                     <&cksys_clk 140>; //CLK_CK_TCK_26M_MX9
+> > > +            clock-names =3D "top_aud_intbus",
+> > > +                          "top_aud_eng1",
+> > > +                          "top_aud_eng2",
+> > > +                          "top_aud_h",
+> > > +                          "vlp_clk26m",
+> > > +                          "apll1",
+> > > +                          "apll2",
+> > > +                          "apll1_d4",
+> > > +                          "apll2_d4",
+> > > +                          "apll12_div_i2sin0",
+> > > +                          "apll12_div_i2sin1",
+> > > +                          "apll12_div_fmi2s",
+> > > +                          "apll12_div_tdmout_m",
+> > > +                          "apll12_div_tdmout_b",
+> > > +                          "top_apll1",
+> > > +                          "top_apll2",
+> > > +                          "top_i2sin0",
+> > > +                          "top_i2sin1",
+> > > +                          "top_fmi2s",
+> > > +                          "top_tdmout",
+> > > +                          "top_adsp",
+> > > +                          "clk26m";
+> > > +        };
+> > > +    };
+> > > +
+> > > +...
+> > > --
+> > > 2.45.2
+> > >
+> > >
+>
+> ************* MEDIATEK Confidentiality Notice
+>  ********************
+> The information contained in this e-mail message (including any
+> attachments) may be confidential, proprietary, privileged, or otherwise
+> exempt from disclosure under applicable laws. It is intended to be
+> conveyed only to the designated recipient(s). Any use, dissemination,
+> distribution, printing, retaining or copying of this e-mail (including it=
+s
+> attachments) by unintended recipient(s) is strictly prohibited and may
+> be unlawful. If you are not an intended recipient of this e-mail, or beli=
+eve
+>
+> that you have received this e-mail in error, please notify the sender
+> immediately (by replying to this e-mail), delete any and all copies of
+> this e-mail (including any attachments) from your system, and do not
+> disclose the content of this e-mail to any other person. Thank you!
 
