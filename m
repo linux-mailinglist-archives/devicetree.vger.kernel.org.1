@@ -1,150 +1,230 @@
-Return-Path: <devicetree+bounces-197475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00CE3B09719
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 01:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67517B097EA
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 01:31:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2D4A3BD14D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 23:14:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BBADA61412
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 23:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C38824166E;
-	Thu, 17 Jul 2025 23:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992D3270ED2;
+	Thu, 17 Jul 2025 23:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="H9Rwarmr"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dE6z2L0R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F015A2040AB;
-	Thu, 17 Jul 2025 23:14:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FF025A2CD
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 23:28:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752794092; cv=none; b=ZL7wYgo21Mj+Stuy0JDuIeZ/a8fX/4ahXWZs/KmOOaqO33WEJBiAfy/dkQufLOP4y8SgPtq/o3LnMhLWwjpTAwNvYCG06P5JQ7u5hlUtG+tpCMU9pjeMjD3gztZqLLsfIadCMAscZizWeVxIlKTFLYMVzexINU0db1fhG+Jy8ug=
+	t=1752794935; cv=none; b=uX9SpS/+3wuGOyfn27QgUeBq85VZqamvxFlBiLGav7QwZtY6uQNMmyrLEdoOnj+4EU8uyErmXl2Yla8IJKt6e7d7U1uezbiBZ9OC0pIc4Xww8ysBRAEiqlhVkUarwtR9T7gOweXpCFgPHgqX+PQv9GdBZzC61PZmz95XSAN1Euo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752794092; c=relaxed/simple;
-	bh=DHh9MHsxm/AndHxSwD8Zrn6sApOHgMAxtoGxE7zYV+s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VCQ9sUIVpzG0FVy2LJGdVB9LysPVYN31o5NTEbFv/xzqxu0af5ry1BrQfMxhNULerfTMPEC7i2Ni5B5J9q2SWIaTOU+9qXuCLgyud55bWpemCPkUrYDXovA83hkSh5q1bSNP/oaAUzYx9fZ1z03QHxFyWYTRo/Nohae4Ylsc+pY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=H9Rwarmr; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1752794089; x=1784330089;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DHh9MHsxm/AndHxSwD8Zrn6sApOHgMAxtoGxE7zYV+s=;
-  b=H9RwarmruRkqSfrq8UaR6eOrR55ej6U26+TXSsHUeymA9wEeqEZhQtz0
-   ALbwfHjNosVOUj9IUMl15efwXXeDwOvawHhb9yzXpYwu6uQczAZDBUN37
-   FlBedkJlTMKOoEhss4Q/VG8c/7j5kCjSWh4MMd0ekdFEQeKbU+17MjoPM
-   Mh5JIKCApVo++8vkQAWoL/VEHfRsf/fMU2S/j+1TRZcfRAuy8+p1O9TUP
-   gQtdDLRGnu+oMs0ntEdRyyQVThMdJ7YFoCFOKqxJHx/agJ9Lm5KvTD17y
-   ARY+dPIiktxR2YLgYVwNteS2EplyRQ48y1f3lktxJMLz0y691vGy3QYhV
-   w==;
-X-CSE-ConnectionGUID: 3WUbTxmdQDKOvpWcb2lvxw==
-X-CSE-MsgGUID: JXCai9sQRJGzwWdsqvY/lQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="77623846"
-X-IronPort-AV: E=Sophos;i="6.16,320,1744095600"; 
-   d="scan'208";a="77623846"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jul 2025 16:14:48 -0700
-X-CSE-ConnectionGUID: iMlsDpHLRUayH9Sj6wKtyQ==
-X-CSE-MsgGUID: LVK4sNXLStq+13I8f91Z5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,320,1744095600"; 
-   d="scan'208";a="158612855"
-Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 17 Jul 2025 16:14:44 -0700
-Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ucXoH-000E5v-2Q;
-	Thu, 17 Jul 2025 23:14:41 +0000
-Date: Fri, 18 Jul 2025 07:13:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: Cosmin Tanislav <demonsingur@gmail.com>,
-	Cosmin Tanislav <cosmin.tanislav@analog.com>,
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Julien Massot <julien.massot@collabora.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Linus Walleij <linus.walleij@linaro.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-staging@lists.linux.dev,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v6 18/24] media: i2c: maxim-serdes: add MAX96717 driver
-Message-ID: <202507180700.ACATL5wj-lkp@intel.com>
-References: <20250716193111.942217-19-demonsingur@gmail.com>
+	s=arc-20240116; t=1752794935; c=relaxed/simple;
+	bh=NTksIiK3ILvCnqxlzcFH7JIUO55H2AfzNNjxdbfSZtE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eP2YEI5bCHkDWvVuoUg8zAH6BiNeaG7uPXKYIO1kUKkJ3BxtWX9b1zlAhrr0snYnXjf/8uDszQ7j37s0zq8pv8H+As2vMiV2Y0bQLJ3AHDMAQ3DWiT2sF/Z2+MRQdDKdCmdNsKqOc0slEQCcS0nZ9KiDNNIVP34F4ON7Xl3ZanU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dE6z2L0R; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56HJo4Kl022251
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 23:28:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Yz5ZkUX+suGgaKXr9mUH/0
+	YiWBvqd0jdhWimlhmg86Q=; b=dE6z2L0RIlS08dSgqJQ2838ZAB/Wutk8bVcdX6
+	d+p877uymcRLeTvoFBuZECpSKgHH/HhQ9CbTBCYTrUQGXwaM2bn+OKuYtw0xevPt
+	9ntRRIEVg6wRVCxhqOtNkRngc5zz6hXBi3rpjj9LezjsxcEeiw1xxclBlSJoZ0IW
+	4joRQcBh0ect7P3nl/ruwkhiohYL/KhZ9RO3nbG4IDKvlIoNW+9jklLQi5tgdasG
+	VSpy41LVWoYlRV9Ym2xKpqpkSg33IiZTlUHWRtQmCQ7dNolwIGN9tag1uUuFPb3p
+	OiY17yAOLewA3Z7YD3GvUuFLlkEb4eqQOT/u/Ro3Gp/KuitA==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47wqsy9e36-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 23:28:51 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3132c1942a1so1994823a91.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 16:28:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752794930; x=1753399730;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Yz5ZkUX+suGgaKXr9mUH/0YiWBvqd0jdhWimlhmg86Q=;
+        b=J52t9wMJ5tyUAcGZPVYOVFaQlx59MYaucLKHmrBe7CECHC9NkG8zB+hINpzF3VIdwr
+         AbJtXyCNuy5o2LRgW5L3gQHeFyxbqRCv4fnkiZsAtg0iGiL3C/xQZkizh48ufAdiC7NJ
+         aCgEIG1gfGy6AcCj6RplD0YSHQdFBubP/LjHBWCy9qhhIR9jn5EBZyVE+HqTPEqa5f6R
+         3bDJydKJK1H8U+QJWDNI/l2ibhOBYAdOV6FcBj8WKi3+EwWoar6eVberX2l8XnNr29dM
+         EJ4sHabJvW2XwDm8EjbZbfg3aeMrvQTCJ1yIUThaBGcbhX8t0CzsqIG94EQBdNvf7uZe
+         7DEA==
+X-Forwarded-Encrypted: i=1; AJvYcCXNLcD/hBTMK/sAs3IyOGTsZK4gywI82Z9U4XSWARIIyLtvuYeQrCCSLLLxELKba7ngx71U5oskJ6hR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxtf0HXiIfcBlvdYngkGRBez1z9Q45UxaLndU+e0Pt4PlhGVFya
+	N7DE7whK50WRClWcjQFhtfyhLdvcyfVif+xbO0c3XEB7AQ13cBBJIB2H+Ps4oTB2TXujvRkCHfE
+	5fu7R5IZGwJVOqme80lLSJ59exwhZIFuZSTW4UqJ2ba9E8LZaVnGW0eLQG1lBhaba
+X-Gm-Gg: ASbGnctdfg/wuqUzu+l8oBM4J9SVzc6Ow/1GknyjDsZJ/rXCte6o/1cV6Rzx8WwHGJe
+	Ohd47mTOgA1KTc6GSU7514rg7bprRcwdIjYIwH69a4kMCbH2JD7nvFN7DvV6q3ARlVeK6QwxA6x
+	gzcIi95mEoESXaLLTDmsA3AfwdNa/TiuaIVR7PlbIrTBPjCNvX+tIBf4d2sGWPzlhAoyu+Bb5Kk
+	X+gfKXEXIgNDkpQCtLecy3UlhL1tnaw+CXmtRVAK8lmC+Rn2JBHe1yKwJFt9YVLsrtWZ98E+tJd
+	A9wMXkkkaZJZcuCvK3tAqyBr7CuzZ13SsILH36h1fBk1dwMvDSQpXUMZNf7skF6v9ayAgKsUoYC
+	NPeK6AlmnaCfuZsoH0RntHkPf
+X-Received: by 2002:a17:90b:55cb:b0:312:959:dc41 with SMTP id 98e67ed59e1d1-31c9f43747emr10698329a91.27.1752794930323;
+        Thu, 17 Jul 2025 16:28:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGeZSn04EmYEL+h/t9yfP7/sJS7wsCnlKQu6QgEAKxyzBH79jPsm+h7MWyyQYnvMQSkLJjfIQ==
+X-Received: by 2002:a17:90b:55cb:b0:312:959:dc41 with SMTP id 98e67ed59e1d1-31c9f43747emr10698286a91.27.1752794929826;
+        Thu, 17 Jul 2025 16:28:49 -0700 (PDT)
+Received: from jesszhan-linux.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23e3b5e3cb7sm2002195ad.17.2025.07.17.16.28.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Jul 2025 16:28:49 -0700 (PDT)
+From: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
+Subject: [PATCH v3 0/5] dt-bindings: msm/dp: Add support for 4 pixel
+ streams
+Date: Thu, 17 Jul 2025 16:28:42 -0700
+Message-Id: <20250717-dp_mst_bindings-v3-0-72ce08285703@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250716193111.942217-19-demonsingur@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACqHeWgC/3XNSwqDMBCA4atI1o3EPGztynuUIjEPHaiJGpUW8
+ e6Nlq5KNwP/wHyzomBGMAFdkxWNZoEA3sVgpwSpVrrGYNCxESWUZ3Fg3VddmKoanAbXBHwWLLd
+ WFdJQi+JVPxoLz0O83WO3ECY/vo4HS7Zv/1tLhgkuZCE5q0lOuSyHGRQ4lSrfoV1b6FcQRDDyK
+ 9Ao2IIKnnPNqLyUPoR0mOUjCt2H2bbtDfDZEZ33AAAA
+X-Change-ID: 20241202-dp_mst_bindings-7536ffc9ae2f
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Mahadevan <quic_mahap@quicinc.com>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Danila Tikhonov <danila@jiaxyga.com>,
+        cros-qcom-dts-watchers@chromium.org,
+        Rob Clark <robin.clark@oss.qualcomm.com>
+Cc: Abhinav Kumar <abhinav.kumar@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Yongxing Mou <quic_yongmou@quicinc.com>
+X-Mailer: b4 0.15-dev-a9b2a
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752794927; l=3202;
+ i=jessica.zhang@oss.qualcomm.com; s=20230329; h=from:subject:message-id;
+ bh=NTksIiK3ILvCnqxlzcFH7JIUO55H2AfzNNjxdbfSZtE=;
+ b=q2mx7f+qusw7faryQbddFyq4FuzXuMHpT5OooNTFj/X3U+tTXQnAe8M55ksS7d0HsbtyMF3nM
+ +fnjv8H99+WCMgk7Jy7sQWsQQjD/gYCOtdZ/IG61OB+HNzVMJw3mpu/
+X-Developer-Key: i=jessica.zhang@oss.qualcomm.com; a=ed25519;
+ pk=gAUCgHZ6wTJOzQa3U0GfeCDH7iZLlqIEPo4rrjfDpWE=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE3MDIwNiBTYWx0ZWRfXzw3i+oXE/qUt
+ +KRLluvfQ1a44ue3wM8d3Uemk9lHEAChOC4qhrtCOSpyKDyb+FbP8XvoXW8xm4h5FAgECtPpsO5
+ B8ZWmR8x8L/NNRS+kb3Ljta+KSyeKDzNC+Q9p6k6uPEI63vk4pWcfpjdKifSMCVVI/D6NHcWSBi
+ lEZoZEsNP8LzZbpxcEdzwm/NdPEIQdhm1XduKLhETGopjNkIRze5gR9OSmTD6gZSt0u42q3Am1b
+ Glarzg9qEYCcnsnAlvzbCGgLdx1QDTpODaIM0SBdEKBAqQu4REI0cWo+Q1ySM4t3iYuWsHvAq61
+ +ITXg4AORIGoYGShnGnvHASO17LrzA27G6C9vJwMgkymWD4JAvoQvxHI/dY0zFaqohVUPSK0rhT
+ 41uH6LW9Ni/B3/RHu1RVtEnmjioLErl3ngy0H6rgbSPNlUkcN9zk27/OGZ+EaH7Cr26qY1aE
+X-Proofpoint-GUID: DOirPEDemVDaEiCpJv68Z64vlkIuRlYd
+X-Proofpoint-ORIG-GUID: DOirPEDemVDaEiCpJv68Z64vlkIuRlYd
+X-Authority-Analysis: v=2.4 cv=McZsu4/f c=1 sm=1 tr=0 ts=68798733 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=HrLnuC2iPlrUScbyRF0A:9 a=QEXdDO2ut3YA:10
+ a=uKXjsCUrEbL0IQVhDsJ9:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-17_04,2025-07-17_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 mlxlogscore=764 impostorscore=0 mlxscore=0 phishscore=0
+ adultscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1011 suspectscore=0
+ spamscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507170206
 
-Hi Cosmin,
+On some MSM chipsets, the display port controller is capable of supporting
+up to 4 streams.
 
-kernel test robot noticed the following build warnings:
+To drive these additional streams, the pixel clocks for the corresponding
+stream needs to be enabled.
 
-[auto build test WARNING on next-20250716]
-[also build test WARNING on v6.16-rc6]
-[cannot apply to robh/for-next staging/staging-testing staging/staging-next staging/staging-linus arm64/for-next/core linus/master v6.16-rc6 v6.16-rc5 v6.16-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Fixup the documentation of some of the bindings to clarify exactly which
+stream they correspond to, then add the new bindings and device tree
+changes.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Cosmin-Tanislav/media-mc-Add-INTERNAL-pad-flag/20250717-033901
-base:   next-20250716
-patch link:    https://lore.kernel.org/r/20250716193111.942217-19-demonsingur%40gmail.com
-patch subject: [PATCH v6 18/24] media: i2c: maxim-serdes: add MAX96717 driver
-config: nios2-kismet-CONFIG_GENERIC_PINMUX_FUNCTIONS-CONFIG_VIDEO_MAX96717-0-0 (https://download.01.org/0day-ci/archive/20250718/202507180700.ACATL5wj-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20250718/202507180700.ACATL5wj-lkp@intel.com/reproduce)
+---
+Changes in v3:
+- Fixed dtschema errors (Rob Herring)
+- Documented all pixel stream clocks (Dmitry)
+- Ordered compatibility list alphabetically (Dmitry)
+- Dropped assigned-clocks too (Dmitry)
+- Link to v2: https://lore.kernel.org/r/20250530-dp_mst_bindings-v2-0-f925464d32a8@oss.qualcomm.com
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507180700.ACATL5wj-lkp@intel.com/
+Changes in v2:
+- Rebased on top of next-20250523
+- Dropped merged maintainer patch
+- Added a patch to make the corresponding dts change to add pixel 1
+  stream
+- Squashed pixel 0 and pixel 1 stream binding patches (Krzysztof)
+- Drop assigned-clock-parents bindings for dp-controller (Krzysztof)
+- Updated dp-controller.yaml to include all chipsets that support stream
+  1 pixel clock (Krzysztof)
+- Added missing minItems and if statement (Krzysztof)
+- Link to v1: https://lore.kernel.org/r/20241202-dp_mst_bindings-v1-0-9a9a43b0624a@quicinc.com
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for GENERIC_PINMUX_FUNCTIONS when selected by VIDEO_MAX96717
-   WARNING: unmet direct dependencies detected for I2C_MUX
-     Depends on [n]: I2C [=n]
-     Selected by [y]:
-     - VIDEO_MAXIM_SERDES [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y]
-   
-   WARNING: unmet direct dependencies detected for GENERIC_PINCONF
-     Depends on [n]: PINCTRL [=n]
-     Selected by [y]:
-     - VIDEO_MAX96717 [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y] && COMMON_CLK [=y]
-   
-   WARNING: unmet direct dependencies detected for GENERIC_PINMUX_FUNCTIONS
-     Depends on [n]: PINCTRL [=n]
-     Selected by [y]:
-     - VIDEO_MAX96717 [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y] && COMMON_CLK [=y]
-   
-   WARNING: unmet direct dependencies detected for GENERIC_PINCTRL_GROUPS
-     Depends on [n]: PINCTRL [=n]
-     Selected by [y]:
-     - VIDEO_MAX96717 [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y] && COMMON_CLK [=y]
-   
-   WARNING: unmet direct dependencies detected for I2C_ATR
-     Depends on [n]: I2C [=n]
-     Selected by [y]:
-     - VIDEO_MAXIM_SERDES [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y]
+---
+Abhinav Kumar (4):
+      dt-bindings: Fixup x1e80100 to add DP MST support
+      dt-bindings: clock: Add SC7280 DISPCC DP pixel 1 clock binding
+      dt-bindings: display/msm: drop assigned-clock-parents for dp controller
+      dt-bindings: display/msm: add stream pixel clock bindings for MST
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Jessica Zhang (1):
+      arm64: dts: qcom: Add MST pixel streams for displayport
+
+ .../bindings/display/msm/dp-controller.yaml        | 53 +++++++++++-----
+ .../bindings/display/msm/qcom,sa8775p-mdss.yaml    | 14 +++--
+ .../bindings/display/msm/qcom,sar2130p-mdss.yaml   | 11 ++--
+ .../bindings/display/msm/qcom,sc7180-mdss.yaml     |  3 -
+ .../bindings/display/msm/qcom,sc7280-mdss.yaml     | 12 ++--
+ .../bindings/display/msm/qcom,sm7150-mdss.yaml     |  5 --
+ .../bindings/display/msm/qcom,sm8750-mdss.yaml     | 11 ++--
+ .../bindings/display/msm/qcom,x1e80100-mdss.yaml   | 21 +++----
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 34 +++++++---
+ arch/arm64/boot/dts/qcom/sar2130p.dtsi             | 10 ++-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 10 ++-
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 20 ++++--
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 72 +++++++++++++++-------
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               | 10 ++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 10 ++-
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               | 10 ++-
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 10 ++-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               | 10 ++-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               | 10 ++-
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 30 ++++++---
+ include/dt-bindings/clock/qcom,dispcc-sc7280.h     |  2 +
+ 21 files changed, 235 insertions(+), 133 deletions(-)
+---
+base-commit: 7a88d609b069b7d2f4d10113b18fea02921bedb1
+change-id: 20241202-dp_mst_bindings-7536ffc9ae2f
+
+Best regards,
+--  
+Jessica Zhang <jessica.zhang@oss.qualcomm.com>
+
 
