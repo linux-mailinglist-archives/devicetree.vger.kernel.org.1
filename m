@@ -1,927 +1,1072 @@
-Return-Path: <devicetree+bounces-197367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE64EB08ED7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:09:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EC39B08EDA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:10:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE3863A66A6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:09:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AFBD3A8E31
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:09:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BDAA2EBDD0;
-	Thu, 17 Jul 2025 14:09:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC7F32F6FA9;
+	Thu, 17 Jul 2025 14:10:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nuvoton.onmicrosoft.com header.i=@nuvoton.onmicrosoft.com header.b="SzvyKsCE"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="qO2FjPsd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazrln10222018.outbound.protection.outlook.com [52.103.194.18])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4781C84A8;
-	Thu, 17 Jul 2025 14:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.194.18
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752761376; cv=fail; b=KU6Y5q9bY4a6HNKeCF+7SnShjMmJtrrsA42xO2mfMBI+PXkin18pzsJMLGoa+tQm7AdpYQ2HJV9jUUnZoR0bvCYFfDQV8cMkAkPMNAt2njbkewdVXV99PVjjkQnciLMNXH51yTM8AtLBjSMpxTUuffwjQG8zyK1rfCPTCctkgXc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752761376; c=relaxed/simple;
-	bh=FBEqeOl9beIVbBd4Pr4q4P/z11EVjplcQ396Lo9D7b4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=foSC0Wt+UDwTfEyc94wKRSf2rcSuSd1PBHfeRrGwTSioCKNJf2K0UkS9EixDgTirWdvYxenKnWdRdhHJnUEXi9G2DwOVvdx5oWHwI9bBjRfJ8oLkdonQT78hNiRHnkGzsh1EPR+l0679rdgVGsabNaYzSbTl/BuJ2O2yLt6B0Jo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=taln60.nuvoton.co.il; dkim=pass (1024-bit key) header.d=nuvoton.onmicrosoft.com header.i=@nuvoton.onmicrosoft.com header.b=SzvyKsCE; arc=fail smtp.client-ip=52.103.194.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=taln60.nuvoton.co.il
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VoPlJSDHynf9vYlRERgfV0kybsO1P5EeyT0o0uJmbd7dqcE36iUbGT2BlRrrBKL0ABZcOC+oPuZEp5JA6gnVtXgcQafd+jjvQ0hIis+ZessdZHqyzPyL0NEezqjH8kH7ASS1YQt19Mca+Z3QMjLnzjn33DlerL3+aZ6b/NcD+JRPd22TO7+peIelHxmCWt+rxBSolpERNd2RK4XgBPFbesGGvewQ8kX4kv5tTtNDbQAiRz2UxHa5Y4CGnprIuqA9by59GT3S3eQJWmUsZ0AfgO0F/5jJAMM+3By18yPe0J2Zi2MdJaeffKlrtpBrZRAOCSA/82Tw6Aa3ixvav0hpbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Cog2/qZBdgsiTVo2hmuoLrlg4CD4Dr6+L8/sDAp2WfM=;
- b=lVp7d7zOP4EPxnkzbTSLTNJUCg4rgS1Shmp49r5LrJYpAy89/lRhPi5F0g2kCu/mohqF0BQ0OkrpW96VpJBqEP0s0VuTlAZmmYn/LQDmFAnebu7p0D63pOr1v/2U8UGyzsy03TUeI0RWNX9kXtiaKnKwbDbdSVY7xOyJ4noC6HiVn9c9BwVPxqPF8Ij+/sJkQYj7ok532357XrMAJylq1A07V7QnCWOLUIjAmaQ14toNXDiivdB8qAp7bb4GyEu2BQZd2CBud1uODALZ880T4NieSUMSXRW5REykf/3kB869VdhJe0XdUpJ30eTqRJJqzYw9BxPvfwTJeUTMmGNx1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
- is 211.75.126.7) smtp.rcpttodomain=gmail.com
- smtp.mailfrom=taln60.nuvoton.co.il; dmarc=fail (p=none sp=quarantine pct=100)
- action=none header.from=gmail.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Cog2/qZBdgsiTVo2hmuoLrlg4CD4Dr6+L8/sDAp2WfM=;
- b=SzvyKsCEhB97seUOPqsQ0AQED5yt2HZ3SVe3Ojm9P8JyI7REVQKQyoHRYmxmlEX1x+6++Xbv9OpmVdOhvLIVf9cT7Pl1WkPXKru72Nx0vlyhjuRWkAIreyZVelstcXYH5hOfIYCLYbMLNkRaJPcJbj9H4/PnmvkoNG5MeUS7iTI=
-Received: from SG2PR02CA0018.apcprd02.prod.outlook.com (2603:1096:3:17::30) by
- JH0PR03MB8620.apcprd03.prod.outlook.com (2603:1096:990:9d::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8922.39; Thu, 17 Jul 2025 13:53:44 +0000
-Received: from SG2PEPF000B66CC.apcprd03.prod.outlook.com
- (2603:1096:3:17:cafe::eb) by SG2PR02CA0018.outlook.office365.com
- (2603:1096:3:17::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8943.20 via Frontend Transport; Thu,
- 17 Jul 2025 13:53:43 +0000
-X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is
- 211.75.126.7) smtp.mailfrom=taln60.nuvoton.co.il; dkim=none (message not
- signed) header.d=none;dmarc=fail action=none header.from=gmail.com;
-Received-SPF: TempError (protection.outlook.com: error in processing during
- lookup of taln60.nuvoton.co.il: DNS Timeout)
-Received: from NTHCCAS01.nuvoton.com (211.75.126.7) by
- SG2PEPF000B66CC.mail.protection.outlook.com (10.167.240.25) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8943.21 via Frontend Transport; Thu, 17 Jul 2025 13:53:42 +0000
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.44; Thu, 17 Jul
- 2025 21:53:40 +0800
-Received: from taln58.nuvoton.co.il (10.191.1.178) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
- Transport; Thu, 17 Jul 2025 21:53:40 +0800
-Received: from taln60.nuvoton.co.il (taln60 [10.191.1.180])
-	by taln58.nuvoton.co.il (Postfix) with ESMTP id AA43D5F62B;
-	Thu, 17 Jul 2025 16:53:39 +0300 (IDT)
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-	id A811ADC084A; Thu, 17 Jul 2025 16:53:39 +0300 (IDT)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
-	<joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
-	<benjaminfair@google.com>
-CC: <openbmc@lists.ozlabs.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v1 1/2] arm64: dts: nuvoton: npcm845: Add peripheral nodes
-Date: Thu, 17 Jul 2025 16:53:35 +0300
-Message-ID: <20250717135336.3974758-2-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250717135336.3974758-1-tmaimon77@gmail.com>
-References: <20250717135336.3974758-1-tmaimon77@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 340EA1C84A8;
+	Thu, 17 Jul 2025 14:10:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752761407; cv=none; b=M+EtXBVjTFbW2QqOrBQtJK7YxM+HR+oKiEKiCq9Emb8ZgubssjwnohWPlz3HTCLzPYmrr2V1k4y5sudZjIPAXLCPg2Yp6FNDpqW36EtO9IXfG9r/mTvLS6tv67kvR9eCsIVG9CMQWf2UpL0FY+cW20+rY2V5WV3z4qdgPtgnFco=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752761407; c=relaxed/simple;
+	bh=UfLOYC3WzAAzYSafTJcpDf5VHPbuPdW34ZZDA6ePfrA=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=JNJbN79M171WrSLRzeBSessWHr9GT1qUbDf0VmmAtqCdcAuQmI9/ix6f7HsJSm43CVq9dI7LRD7mqfWzeDUT4KVlhJPZ96i/KSu60LDcRdgOrF0nNMlbpNp0XwArWPmq5FICzz23USozSEAviaNpcS6NUPbFf628kuGgA3vKjoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=qO2FjPsd; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9A817198D;
+	Thu, 17 Jul 2025 16:09:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1752761363;
+	bh=UfLOYC3WzAAzYSafTJcpDf5VHPbuPdW34ZZDA6ePfrA=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=qO2FjPsdp3ymp601k5WFMdRqM4wrip9h+5Ji0vvCX7g1K/SA3Ik/hGanJnPAgO6YH
+	 aBpxQJCNEOAZa8YAsFHxIshn+JqhIhefz7OYIRjVEIma3SsYrP/eLOD9uDmjtxQXVJ
+	 +BpzA1ZxhCT5ESsM7xtCv+ds0nhjHnadFF7Zxc/k=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NotSetDelaration: True
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CC:EE_|JH0PR03MB8620:EE_
-X-MS-Office365-Filtering-Correlation-Id: b02b378f-116f-43ad-c17b-08ddc5395744
-X-MS-Exchange-SenderADCheck: 2
-X-MS-Exchange-AntiSpam-Relay: 1
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7093399015|376014|7416014|35950700016|48200799018|82310400026|61400799027|35450700002;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?7PnECqgFd71nP1kLU6ksgsUrMQW72keU4k0SNXRmWP9a8ypA3dSMBSW4uhVj?=
- =?us-ascii?Q?Q/PN9zndwGBptlg33T1cN/ts929qWNBk74GgUrfNb91555+/MwDOEOa3B4IK?=
- =?us-ascii?Q?h6xOSEBCpAOuyXgFcdcn0VcsWhqmPXgeGq12YofabeBhUc/jnGbnNu06wRtV?=
- =?us-ascii?Q?lZUeQtIgsqPyIlZKJ3Y2k25fDgW4mszNBpJW4itRl3YVzt+M2tu4BTUiE+mz?=
- =?us-ascii?Q?tuFmT5EbzCruGosIA7ohUgjoOyd/FyGWVIbpyPWqvK9VwEoVQ+H7qGuPoyjW?=
- =?us-ascii?Q?NEkmi0B6WF5Qcf/X63LANS77k+hbY37hbK/J86DfP0yWvjRk+XKUPjbSZ9EE?=
- =?us-ascii?Q?DViYWawod8NA4MzgR2pJjaPS+52NUimyMFW3NNrjk550+ndmDQrQXEkWFVT5?=
- =?us-ascii?Q?acgssO1JQetGC+tmoyzL92q5MpNdc/0SAmtUWQ+oLL1pKfcZlnuI6wR/3IDJ?=
- =?us-ascii?Q?ekCa3n93mSpZV2E8FB0t6WlSWSMVDpsGuQQUyvveA6Q0zRg5F0gXF1pRoUJR?=
- =?us-ascii?Q?NK6BgxdF2M+cl+XI+bEoooTLFeqM/yjwVbehNNE6AWWa8ztplErxHYgQCUww?=
- =?us-ascii?Q?ZF1r/O+QAP4Juu6EhsyUJToxTDjWD1KDBKcrddEkqL5ZwbC4aad4nc44+aag?=
- =?us-ascii?Q?2xELe30ZumTc8IRzf58igszHVSJ1tIbGwrPNcTzdK8+vqtZm/SMFSikwt/yP?=
- =?us-ascii?Q?bDL3mWfFDEGGKPkmZrDm7p4t4VY4ThlcvmFz7E6T63wgaoG7xyCtPiPaxoUb?=
- =?us-ascii?Q?ZQrZOjbE3GC9dXlhhZoOjtbwtjN9aEqsZcdDQl6e+E0WDyZ1NWVBOjckPpx7?=
- =?us-ascii?Q?baE9r0HqwtymrWtietVmTFy5XpHwjFkgZReOWnByqW2SxcdmkN7ZP64PMNjT?=
- =?us-ascii?Q?QtPC59o3hgGikjR4HSeD0MO62BhWgRFKa14fdfAwUXJlcs6GV+h/wMmXGPG5?=
- =?us-ascii?Q?azk2j1PuJmC3580D1O0wxn/jMidR4YAIOl/RczUuNQbfdeWBqVQkjdVY9Dmz?=
- =?us-ascii?Q?FIpGayT8ecuIGxpMmlgdR1QYg0y69k3uBbp394Q5oUoeOIygh+N5VIZrDMhF?=
- =?us-ascii?Q?KD846L5VKYiMTBJFkCIMCq+9ihG9zRMLfb2KvNcFwM4ENsq0p9M1YOCuv0vZ?=
- =?us-ascii?Q?d0SolTmtzKRzWPXd3i0Gqi+tVa+if+nL6Fvf9beYGQtcXUoB8jwOyvUdQTN6?=
- =?us-ascii?Q?nd735B5s+XBhR55JBKXxKP+4FfqUumOQPif6Mr7Wr+n1xQcB+KWdJqqyDV3p?=
- =?us-ascii?Q?JeNQ6Lsa7gYdtUkD7jxgI09rudOPAo+10pe22N2pgnVJyLkuyTjS5Y8cbOTm?=
- =?us-ascii?Q?1xGItJqIYDwfdeL3Y68tzuIjV93h2ZYfqY+DX3gJjyHBFsf/+V1LvRRQHAMp?=
- =?us-ascii?Q?RMJKZaJ8msdKRt5QsDUcziGsZetG3VY3fgB+dmP9L8rppbjEpyivEa/Am4pg?=
- =?us-ascii?Q?HLgL/dZWMJ3LRToepshP85E3mCkDi0a+0C1pgpelBHjZESXdlLH9KWL+BC8X?=
- =?us-ascii?Q?6HiZXYfQ7qXZFtrswWrt0EYm3fiAkcJY/w53?=
-X-Forefront-Antispam-Report:
-	CIP:211.75.126.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS01.nuvoton.com;PTR:211-75-126-7.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(7093399015)(376014)(7416014)(35950700016)(48200799018)(82310400026)(61400799027)(35450700002);DIR:OUT;SFP:1022;
-X-OriginatorOrg: nuvoton.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2025 13:53:42.2480
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b02b378f-116f-43ad-c17b-08ddc5395744
-X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[211.75.126.7];Helo=[NTHCCAS01.nuvoton.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66CC.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB8620
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250717124001.108486-3-vladimir.zapolskiy@linaro.org>
+References: <20250717124001.108486-1-vladimir.zapolskiy@linaro.org> <20250717124001.108486-3-vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH 2/2] media: i2c: Add OmniVision OV6211 image sensor driver
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org
+To: Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Date: Thu, 17 Jul 2025 15:09:55 +0100
+Message-ID: <175276139540.560048.14744394485094549778@ping.linuxembedded.co.uk>
+User-Agent: alot/0.9.1
 
-Enable peripheral support for the Nuvoton NPCM845 SoC by adding device
-nodes for Ethernet controllers, MMC controller, SPI controllers, USB
-device controllers, random number generator, ADC, PWM-FAN controller,
-and I2C controllers. Include pinmux configurations for relevant
-peripherals to support hardware operation. Add an OP-TEE firmware node
-for secure services.
-This patch enhances functionality for NPCM845-based platforms.
+Quoting Vladimir Zapolskiy (2025-07-17 13:40:01)
+> OmniVision OV6211 is a monochrome image sensor, which produces frames in
+> 8/10-bit raw output format and supports 400x400, 200x200 and 100x100
+> output image resolution modes.
+>=20
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>  MAINTAINERS                |   8 +
+>  drivers/media/i2c/Kconfig  |   9 +
+>  drivers/media/i2c/Makefile |   1 +
+>  drivers/media/i2c/ov6211.c | 877 +++++++++++++++++++++++++++++++++++++
+>  4 files changed, 895 insertions(+)
+>  create mode 100644 drivers/media/i2c/ov6211.c
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1ef99240a57e..364914ca2d45 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18433,6 +18433,14 @@ S:     Maintained
+>  T:     git git://linuxtv.org/media.git
+>  F:     drivers/media/i2c/ov5695.c
+> =20
+> +OMNIVISION OV6211 SENSOR DRIVER
+> +M:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> +L:     linux-media@vger.kernel.org
+> +S:     Maintained
+> +T:     git git://linuxtv.org/media_tree.git
+> +F:     Documentation/devicetree/bindings/media/i2c/ovti,ov6211.yaml
+> +F:     drivers/media/i2c/ov6211.c
+> +
+>  OMNIVISION OV64A40 SENSOR DRIVER
+>  M:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+>  L:     linux-media@vger.kernel.org
+> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> index 6237fe804a5c..2c54753e1b25 100644
+> --- a/drivers/media/i2c/Kconfig
+> +++ b/drivers/media/i2c/Kconfig
+> @@ -542,6 +542,15 @@ config VIDEO_OV5695
+>           To compile this driver as a module, choose M here: the
+>           module will be called ov5695.
+> =20
+> +config VIDEO_OV6211
+> +       tristate "OmniVision OV6211 sensor support"
+> +       help
+> +         This is a Video4Linux2 sensor driver for the OmniVision
+> +         OV6211 camera.
+> +
+> +         To compile this driver as a module, choose M here: the
+> +         module will be called ov6211.
+> +
+>  config VIDEO_OV64A40
+>         tristate "OmniVision OV64A40 sensor support"
+>         select V4L2_CCI_I2C
+> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
+> index 5873d29433ee..03814fc8e2f7 100644
+> --- a/drivers/media/i2c/Makefile
+> +++ b/drivers/media/i2c/Makefile
+> @@ -103,6 +103,7 @@ obj-$(CONFIG_VIDEO_OV5670) +=3D ov5670.o
+>  obj-$(CONFIG_VIDEO_OV5675) +=3D ov5675.o
+>  obj-$(CONFIG_VIDEO_OV5693) +=3D ov5693.o
+>  obj-$(CONFIG_VIDEO_OV5695) +=3D ov5695.o
+> +obj-$(CONFIG_VIDEO_OV6211) +=3D ov6211.o
+>  obj-$(CONFIG_VIDEO_OV64A40) +=3D ov64a40.o
+>  obj-$(CONFIG_VIDEO_OV6650) +=3D ov6650.o
+>  obj-$(CONFIG_VIDEO_OV7251) +=3D ov7251.o
+> diff --git a/drivers/media/i2c/ov6211.c b/drivers/media/i2c/ov6211.c
+> new file mode 100644
+> index 000000000000..f2a9daf40896
+> --- /dev/null
+> +++ b/drivers/media/i2c/ov6211.c
+> @@ -0,0 +1,877 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2024-2025 Linaro Ltd
+> +
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/unaligned.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-device.h>
+> +#include <media/v4l2-fwnode.h>
+> +
+> +#define OV6211_REG_VALUE_08BIT         1
+> +#define OV6211_REG_VALUE_16BIT         2
+> +#define OV6211_REG_VALUE_24BIT         3
+> +
+> +#define OV6211_LINK_FREQ_240MHZ                240000000ULL
+> +#define OV6211_MCLK_FREQ_24MHZ         24000000
+> +#define OV6211_DATA_LANES              1
+> +
+> +#define OV6211_REG_CHIP_ID             0x300a
+> +#define OV6211_CHIP_ID                 0x6710
+> +
+> +#define OV6211_REG_MODE_SELECT         0x0100
+> +#define OV6211_MODE_STANDBY            0x00
+> +#define OV6211_MODE_STREAMING          0x01
+> +
+> +/* Exposure controls from sensor */
+> +#define OV6211_REG_EXPOSURE            0x3500
+> +#define OV6211_EXPOSURE_MIN            1
+> +#define OV6211_EXPOSURE_MAX_MARGIN     4
+> +#define OV6211_EXPOSURE_STEP           1
+> +#define OV6211_EXPOSURE_DEFAULT                210
+> +
+> +/* Analogue gain controls from sensor */
+> +#define OV6211_REG_ANALOGUE_GAIN       0x350a
+> +#define OV6211_ANALOGUE_GAIN_MIN       1
+> +#define OV6211_ANALOGUE_GAIN_MAX       0x3ff
+> +#define OV6211_ANALOGUE_GAIN_STEP      1
+> +#define OV6211_ANALOGUE_GAIN_DEFAULT   0xa0
+> +
+> +#define to_ov6211(_sd)                 container_of(_sd, struct ov6211, =
+sd)
+> +
+> +struct ov6211_reg {
+> +       u16 address;
+> +       u8 val;
+> +};
+> +
+> +struct ov6211_reg_list {
+> +       const struct ov6211_reg *regs;
+> +       u32 num_of_regs;
+> +};
+> +
+> +struct ov6211_mode {
+> +       /* Frame width in pixels */
+> +       u32 width;
+> +
+> +       /* Frame height in pixels */
+> +       u32 height;
+> +
+> +       /* Horizontal timining size */
+> +       u32 hts;
+> +
+> +       /* Default vertical timining size */
+> +       u32 vts;
+> +
+> +       /* Sensor register settings for this resolution */
+> +       const struct ov6211_reg_list reg_list;
+> +};
+> +
+> +static const s64 link_freq_menu_items[] =3D {
+> +       OV6211_LINK_FREQ_240MHZ,
+> +};
+> +
+> +static const struct ov6211_reg mode_400x400_regs[] =3D {
+> +       { 0x0103, 0x01 },
+> +       { 0x0100, 0x00 },
+> +       { 0x3005, 0x08 },
+> +       { 0x3013, 0x12 },
+> +       { 0x3014, 0x04 },
+> +       { 0x3016, 0x10 },
+> +       { 0x3017, 0x00 },
+> +       { 0x3018, 0x00 },
+> +       { 0x301a, 0x00 },
+> +       { 0x301b, 0x00 },
+> +       { 0x301c, 0x00 },
+> +       { 0x3037, 0xf0 },
+> +       { 0x3080, 0x01 },
+> +       { 0x3081, 0x00 },
+> +       { 0x3082, 0x01 },
+> +       { 0x3098, 0x04 },
+> +       { 0x3099, 0x28 },
+> +       { 0x309a, 0x06 },
+> +       { 0x309b, 0x04 },
+> +       { 0x309c, 0x00 },
+> +       { 0x309d, 0x00 },
+> +       { 0x309e, 0x01 },
+> +       { 0x309f, 0x00 },
+> +       { 0x30b0, 0x08 },
+> +       { 0x30b1, 0x02 },
+> +       { 0x30b2, 0x00 },
+> +       { 0x30b3, 0x28 },
+> +       { 0x30b4, 0x02 },
+> +       { 0x30b5, 0x00 },
+> +       { 0x3106, 0xd9 },
+> +       { 0x3500, 0x00 },
+> +       { 0x3501, 0x0d },
+> +       { 0x3502, 0x20 },
+> +       { 0x3503, 0x07 },
+> +       { 0x3509, 0x10 },
+> +       { 0x350b, 0xa0 },
+> +       { 0x3600, 0xfc },
+> +       { 0x3620, 0xb7 },
+> +       { 0x3621, 0x05 },
+> +       { 0x3626, 0x31 },
+> +       { 0x3627, 0x40 },
+> +       { 0x3632, 0xa3 },
+> +       { 0x3633, 0x34 },
+> +       { 0x3634, 0x40 },
+> +       { 0x3636, 0x00 },
+> +       { 0x3660, 0x80 },
+> +       { 0x3662, 0x03 },
+> +       { 0x3664, 0xf0 },
+> +       { 0x366a, 0x10 },
+> +       { 0x366b, 0x06 },
+> +       { 0x3680, 0xf4 },
+> +       { 0x3681, 0x50 },
+> +       { 0x3682, 0x00 },
+> +       { 0x3708, 0x20 },
+> +       { 0x3709, 0x40 },
+> +       { 0x370d, 0x03 },
+> +       { 0x373b, 0x02 },
+> +       { 0x373c, 0x08 },
+> +       { 0x3742, 0x00 },
+> +       { 0x3744, 0x16 },
+> +       { 0x3745, 0x08 },
+> +       { 0x3781, 0xfc },
+> +       { 0x3788, 0x00 },
+> +       { 0x3800, 0x00 },
+> +       { 0x3801, 0x04 },
+> +       { 0x3802, 0x00 },
+> +       { 0x3803, 0x04 },
+> +       { 0x3804, 0x01 },
+> +       { 0x3805, 0x9b },
+> +       { 0x3806, 0x01 },
+> +       { 0x3807, 0x9b },
+> +       { 0x3808, 0x01 },
+> +       { 0x3809, 0x90 },
 
-Depends-on: ARM: dts: nuvoton: npcm845: Add pinctrl groups
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 695 ++++++++++++++++++
- .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |   7 +
- 2 files changed, 702 insertions(+)
+0x190 =3D=3D 400;
 
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-index 5cd877e6c20a..3564e0e30791 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-@@ -4,6 +4,7 @@
- #include <dt-bindings/clock/nuvoton,npcm845-clk.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/gpio/gpio.h>
- 
- / {
- 	#address-cells = <2>;
-@@ -40,6 +41,11 @@ ppi_cluster0: interrupt-partition-0 {
- 		};
- 	};
- 
-+	udc0_phy: usb-phy {
-+		#phy-cells = <0>;
-+		compatible = "usb-nop-xceiv";
-+	};
-+
- 	ahb {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -56,6 +62,259 @@ clk: rstc: reset-controller@f0801000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		gmac1: eth@f0804000 {
-+			device_type = "network";
-+			compatible = "snps,dwmac";
-+			reg = <0x0 0xf0804000 0x0 0x2000>;
-+			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq";
-+			clocks	= <&clk NPCM8XX_CLK_AHB>;
-+			clock-names = "stmmaceth";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&rg2_pins
-+					&rg2mdio_pins>;
-+			status = "disabled";
-+		};
-+
-+		gmac2: eth@f0806000 {
-+			device_type = "network";
-+			compatible = "snps,dwmac";
-+			reg = <0x0 0xf0806000 0x0 0x2000>;
-+			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq";
-+			clocks	= <&clk NPCM8XX_CLK_AHB>;
-+			clock-names = "stmmaceth";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&r1_pins
-+					&r1err_pins
-+					&r1md_pins>;
-+			status = "disabled";
-+		};
-+
-+		gmac3: eth@f0808000 {
-+			device_type = "network";
-+			compatible = "snps,dwmac";
-+			reg = <0x0 0xf0808000 0x0 0x2000>;
-+			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq";
-+			clocks	= <&clk NPCM8XX_CLK_AHB>;
-+			clock-names = "stmmaceth";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&r2_pins
-+					&r2err_pins
-+					&r2md_pins>;
-+			status = "disabled";
-+		};
-+
-+		sdhci: mmc@f0842000 {
-+			compatible = "nuvoton,npcm845-sdhci";
-+			reg = <0x0 0xf0842000 0x0 0x100>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM8XX_CLK_AHB>;
-+			clock-names = "clk_mmc";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&mmc8_pins
-+				     &mmc_pins>;
-+			status = "disabled";
-+		};
-+
-+		fiu0: spi@fb000000 {
-+			compatible = "nuvoton,npcm845-fiu";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x0 0xfb000000 0x0 0x1000>;
-+			reg-names = "control";
-+			clocks =  <&clk NPCM8XX_CLK_SPI0>;
-+			clock-names = "clk_ahb";
-+			status = "disabled";
-+		};
-+
-+		fiu1: spi@fb002000 {
-+			compatible = "nuvoton,npcm845-fiu";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x0 0xfb002000 0x0 0x1000>;
-+			reg-names = "control";
-+			clocks =  <&clk NPCM8XX_CLK_SPI1>;
-+			clock-names = "clk_spi1";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&spi1_pins>;
-+			status = "disabled";
-+		};
-+
-+		fiu3: spi@c0000000 {
-+			compatible = "nuvoton,npcm845-fiu";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x0 0xc0000000 0x0 0x1000>;
-+			reg-names = "control";
-+			clocks =  <&clk NPCM8XX_CLK_SPI3>;
-+			clock-names = "clk_spi3";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&spi3_pins>;
-+			status = "disabled";
-+		};
-+
-+		fiux: spi@fb001000 {
-+			compatible = "nuvoton,npcm845-fiu";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x0 0xfb001000 0x0 0x1000>,
-+			<0x0 0xf8000000 0x0 0x2000000>;
-+			reg-names = "control", "memory";
-+			clocks =  <&clk NPCM8XX_CLK_SPIX>;
-+			clock-names = "clk_ahb";
-+			status = "disabled";
-+		};
-+
-+		mc: memory-controller@f0824000 {
-+			compatible = "nuvoton,npcm845-memory-controller";
-+			reg = <0x0 0xf0824000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		udc0:usb@f0830000 {
-+			compatible = "nuvoton,npcm845-udc";
-+			reg = <0x0 0xf0830000 0x0 0x1000
-+			       0x0 0xfffeb000 0x0 0x800>;
-+			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM8XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc1:usb@f0831000 {
-+			compatible = "nuvoton,npcm845-udc";
-+			reg = <0x0 0xf0831000 0x0 0x1000
-+			       0x0 0xfffeb800 0x0 0x800>;
-+			interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM8XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc2:usb@f0832000 {
-+			compatible = "nuvoton,npcm845-udc";
-+			reg = <0x0 0xf0832000 0x0 0x1000
-+			       0x0 0xfffec000 0x0 0x800>;
-+			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM8XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc3:usb@f0833000 {
-+			compatible = "nuvoton,npcm845-udc";
-+			reg = <0x0 0xf0833000 0x0 0x1000
-+			       0x0 0xfffec800 0x0 0x800>;
-+			interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM8XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc4:usb@f0834000 {
-+			compatible = "nuvoton,npcm845-udc";
-+			reg = <0x0 0xf0834000 0x0 0x1000
-+			       0x0 0xfffed000 0x0 0x800>;
-+			interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM8XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc5:usb@f0835000 {
-+			compatible = "nuvoton,npcm845-udc";
-+			reg = <0x0 0xf0835000 0x0 0x1000
-+			       0x0 0xfffed800 0x0 0x800>;
-+			interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM8XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc6:usb@f0836000 {
-+			compatible = "nuvoton,npcm845-udc";
-+			reg = <0x0 0xf0836000 0x0 0x1000
-+			       0x0 0xfffee000 0x0 0x800>;
-+			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM8XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc7:usb@f0837000 {
-+			compatible = "nuvoton,npcm845-udc";
-+			reg = <0x0 0xf0837000 0x0 0x1000
-+			       0x0 0xfffee800 0x0 0x800>;
-+			interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM8XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc8:usb@f0838000 {
-+			compatible = "nuvoton,npcm845-udc";
-+			reg = <0x0 0xf0838000 0x0 0x1000
-+			       0x0 0xfffef000 0x0 0x800>;
-+			interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM8XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+
-+			nuvoton,sysgcr = <&gcr 0x9C 0xC000 0xC000>;
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc9:usb@f0839000 {
-+			compatible = "nuvoton,npcm845-udc";
-+			reg = <0x0 0xf0839000 0x0 0x1000
-+			       0x0 0xfffef800 0x0 0x800>;
-+			interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM8XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+
-+			nuvoton,sysgcr = <&gcr 0x9C 0x3000 0x3000>;
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
- 		apb {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-@@ -64,6 +323,20 @@ apb {
- 			ranges = <0x0 0x0 0xf0000000 0x00300000>,
- 				<0xfff00000 0x0 0xfff00000 0x00016000>;
- 
-+			pspi: spi@201000 {
-+				compatible = "nuvoton,npcm845-pspi";
-+				reg = <0x201000 0x1000>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&pspi_pins>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks =  <&clk NPCM8XX_CLK_APB5>;
-+				clock-names = "clk_apb5";
-+				resets = <&rstc 0x24 23>;
-+				status = "disabled";
-+			};
-+
- 			peci: peci-controller@100000 {
- 				compatible = "nuvoton,npcm845-peci";
- 				reg = <0x100000 0x1000>;
-@@ -144,6 +417,22 @@ serial6: serial@6000 {
- 				status = "disabled";
- 			};
- 
-+			rng: rng@b000 {
-+				compatible = "nuvoton,npcm845-rng";
-+				reg = <0xb000 0x8>;
-+				clocks =  <&clk NPCM8XX_CLK_APB1>;
-+				status = "disabled";
-+			};
-+
-+			adc: adc@c000 {
-+				compatible = "nuvoton,npcm845-adc";
-+				reg = <0xC000 0x8>;
-+				interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk NPCM8XX_CLK_ADC>;
-+				resets = <&rstc 0x20 27>;
-+				status = "disabled";
-+			};
-+
- 			watchdog0: watchdog@801c {
- 				compatible = "nuvoton,npcm845-wdt", "nuvoton,npcm750-wdt";
- 				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-@@ -170,6 +459,412 @@ watchdog2: watchdog@a01c {
- 				clocks = <&refclk>;
- 				syscon = <&gcr>;
- 			};
-+
-+			pwm_fan:pwm-fan-controller@103000 {
-+				compatible = "nuvoton,npcm845-pwm-fan";
-+				reg = <0x103000 0x3000>,
-+					<0x180000 0x8000>;
-+				reg-names = "pwm", "fan";
-+				clocks =  <&clk NPCM8XX_CLK_APB3>,
-+					<&clk NPCM8XX_CLK_APB4>;
-+				clock-names = "pwm","fan";
-+				interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-+						<GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-+						<GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-+						<GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
-+						<GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-+						<GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+						<GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+						<GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&pwm0_pins &pwm1_pins
-+						&pwm2_pins &pwm3_pins
-+						&pwm4_pins &pwm5_pins
-+						&pwm6_pins &pwm7_pins
-+						&pwm8_pins &pwm9_pins
-+						&pwm10_pins &pwm11_pins
-+						&fanin0_pins &fanin1_pins
-+						&fanin2_pins &fanin3_pins
-+						&fanin4_pins &fanin5_pins
-+						&fanin6_pins &fanin7_pins
-+						&fanin8_pins &fanin9_pins
-+						&fanin10_pins &fanin11_pins
-+						&fanin12_pins &fanin13_pins
-+						&fanin14_pins &fanin15_pins>;
-+				status = "disabled";
-+			};
-+
-+			i2c0: i2c@80000 {
-+				reg = <0x80000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb0_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c1: i2c@81000 {
-+				reg = <0x81000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb1_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c2: i2c@82000 {
-+				reg = <0x82000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb2_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c3: i2c@83000 {
-+				reg = <0x83000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb3_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c4: i2c@84000 {
-+				reg = <0x84000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb4_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c5: i2c@85000 {
-+				reg = <0x85000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb5_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c6: i2c@86000 {
-+				reg = <0x86000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb6_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c7: i2c@87000 {
-+				reg = <0x87000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb7_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c8: i2c@88000 {
-+				reg = <0x88000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb8_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c9: i2c@89000 {
-+				reg = <0x89000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb9_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c10: i2c@8a000 {
-+				reg = <0x8a000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb10_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c11: i2c@8b000 {
-+				reg = <0x8b000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb11_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c12: i2c@8c000 {
-+				reg = <0x8c000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb12_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c13: i2c@8d000 {
-+				reg = <0x8d000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb13_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c14: i2c@8e000 {
-+				reg = <0x8e000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb14_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c15: i2c@8f000 {
-+				reg = <0x8f000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb15_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c16: i2c@fff00000 {
-+				reg = <0xfff00000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb16_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c17: i2c@fff01000 {
-+				reg = <0xfff01000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb17_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c18: i2c@fff02000 {
-+				reg = <0xfff02000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb18_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c19: i2c@fff03000 {
-+				reg = <0xfff03000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb19_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c20: i2c@fff04000 {
-+				reg = <0xfff04000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb20_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c21: i2c@fff05000 {
-+				reg = <0xfff05000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb21_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c22: i2c@fff06000 {
-+				reg = <0xfff06000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb22_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c23: i2c@fff07000 {
-+				reg = <0xfff07000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&smb23_pins>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c24: i2c@fff08000 {
-+				reg = <0xfff08000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c25: i2c@fff09000 {
-+				reg = <0xfff09000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
-+
-+			i2c26: i2c@fff0a000 {
-+				reg = <0xfff0a000 0x1000>;
-+				compatible = "nuvoton,npcm845-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&clk NPCM8XX_CLK_APB2>;
-+				clock-frequency = <100000>;
-+				interrupts = <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
-+				nuvoton,sys-mgr = <&gcr>;
-+				status = "disabled";
-+			};
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
-index 383938dcd3ce..21dea323612d 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
-@@ -75,4 +75,11 @@ timer {
- 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
- 	};
-+
-+	firmware {
-+		optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
-+	};
- };
--- 
-2.34.1
+> +       { 0x380a, 0x01 },
+> +       { 0x380b, 0x90 },
 
+So I bet these are the width and height registers.
+
+Have you got a data sheet for this ? It would be /really/ far more
+helpful to break out the specific register updates here for the mode
+configuration at least.
+
+> +       { 0x380c, 0x05 },
+> +       { 0x380d, 0xf2 },
+> +       { 0x380e, 0x01 },
+> +       { 0x380f, 0xb6 },
+> +       { 0x3810, 0x00 },
+> +       { 0x3811, 0x04 },
+> +       { 0x3812, 0x00 },
+> +       { 0x3813, 0x04 },
+> +       { 0x3814, 0x11 },
+> +       { 0x3815, 0x11 },
+> +       { 0x3820, 0x00 },
+> +       { 0x3821, 0x00 },
+> +       { 0x382b, 0xfa },
+> +       { 0x382f, 0x04 },
+> +       { 0x3832, 0x00 },
+> +       { 0x3833, 0x05 },
+> +       { 0x3834, 0x00 },
+> +       { 0x3835, 0x05 },
+> +       { 0x3882, 0x04 },
+> +       { 0x3883, 0x00 },
+> +       { 0x38a4, 0x10 },
+> +       { 0x38a5, 0x00 },
+> +       { 0x38b1, 0x03 },
+> +       { 0x3b80, 0x00 },
+> +       { 0x3b81, 0xff },
+> +       { 0x3b82, 0x10 },
+> +       { 0x3b83, 0x00 },
+> +       { 0x3b84, 0x08 },
+> +       { 0x3b85, 0x00 },
+> +       { 0x3b86, 0x01 },
+> +       { 0x3b87, 0x00 },
+> +       { 0x3b88, 0x00 },
+> +       { 0x3b89, 0x00 },
+> +       { 0x3b8a, 0x00 },
+> +       { 0x3b8b, 0x05 },
+> +       { 0x3b8c, 0x00 },
+> +       { 0x3b8d, 0x00 },
+> +       { 0x3b8e, 0x01 },
+> +       { 0x3b8f, 0xb2 },
+> +       { 0x3b94, 0x05 },
+> +       { 0x3b95, 0xf2 },
+> +       { 0x3b96, 0xc0 },
+> +       { 0x4004, 0x04 },
+> +       { 0x404e, 0x01 },
+> +       { 0x4801, 0x0f },
+> +       { 0x4806, 0x0f },
+> +       { 0x4837, 0x43 },
+> +       { 0x5a08, 0x00 },
+> +       { 0x5a01, 0x00 },
+> +       { 0x5a03, 0x00 },
+> +       { 0x5a04, 0x10 },
+> +       { 0x5a05, 0xa0 },
+> +       { 0x5a06, 0x0c },
+> +       { 0x5a07, 0x78 },
+> +};
+> +
+> +static const struct ov6211_mode supported_modes[] =3D {
+> +       {
+> +               .width =3D 400,
+> +               .height =3D 400,
+> +               .hts =3D 1522,
+> +               .vts =3D 438,
+> +               .reg_list =3D {
+> +                       .regs =3D mode_400x400_regs,
+> +                       .num_of_regs =3D ARRAY_SIZE(mode_400x400_regs),
+> +               },
+> +       },
+> +};
+> +
+> +struct ov6211 {
+> +       struct clk *xvclk;
+> +       struct gpio_desc *reset_gpio;
+> +       struct regulator *avdd;
+> +       struct regulator *dovdd;
+> +       struct regulator *dvdd;
+> +
+> +       struct v4l2_subdev sd;
+> +       struct media_pad pad;
+> +       struct v4l2_ctrl_handler ctrl_handler;
+> +
+> +       /* V4L2 Controls */
+> +       struct v4l2_ctrl *link_freq;
+> +       struct v4l2_ctrl *exposure;
+> +
+> +       /* Current mode */
+> +       const struct ov6211_mode *cur_mode;
+> +
+> +       /* To serialize asynchronous callbacks */
+> +       struct mutex mutex;
+> +};
+> +
+> +static int ov6211_read_reg(struct ov6211 *ov6211, u16 reg, u16 len, u32 =
+*val)
+> +{
+> +       struct i2c_client *client =3D v4l2_get_subdevdata(&ov6211->sd);
+> +       u8 addr_buf[2], data_buf[4] =3D { 0 };
+> +       struct i2c_msg msgs[2];
+> +       int ret;
+> +
+> +       if (len > 4)
+> +               return -EINVAL;
+> +
+> +       put_unaligned_be16(reg, addr_buf);
+> +       msgs[0].addr =3D client->addr;
+> +       msgs[0].flags =3D 0;
+> +       msgs[0].len =3D sizeof(addr_buf);
+> +       msgs[0].buf =3D addr_buf;
+> +       msgs[1].addr =3D client->addr;
+> +       msgs[1].flags =3D I2C_M_RD;
+> +       msgs[1].len =3D len;
+> +       msgs[1].buf =3D &data_buf[4 - len];
+> +
+> +       ret =3D i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
+> +       if (ret !=3D ARRAY_SIZE(msgs))
+> +               return -EIO;
+> +
+> +       *val =3D get_unaligned_be32(data_buf);
+> +
+> +       return 0;
+> +}
+> +
+> +static int ov6211_write_reg(struct ov6211 *ov6211, u16 reg, u16 len, u32=
+ val)
+> +{
+> +       struct i2c_client *client =3D v4l2_get_subdevdata(&ov6211->sd);
+> +       u8 buf[6];
+> +
+> +       if (len > 4)
+> +               return -EINVAL;
+> +
+> +       put_unaligned_be16(reg, buf);
+> +       put_unaligned_be32(val << 8 * (4 - len), buf + 2);
+> +       if (i2c_master_send(client, buf, len + 2) !=3D len + 2)
+> +               return -EIO;
+> +
+> +       return 0;
+> +}
+> +
+> +static int ov6211_write_reg_list(struct ov6211 *ov6211,
+> +                                const struct ov6211_reg_list *r_list)
+> +{
+> +       struct i2c_client *client =3D v4l2_get_subdevdata(&ov6211->sd);
+> +       unsigned int i;
+> +       int ret;
+> +
+> +       for (i =3D 0; i < r_list->num_of_regs; i++) {
+> +               ret =3D ov6211_write_reg(ov6211, r_list->regs[i].address,=
+ 1,
+> +                                      r_list->regs[i].val);
+> +               if (ret) {
+> +                       dev_err_ratelimited(&client->dev,
+> +                                           "failed to write reg 0x%4.4x.=
+ error =3D %d\n",
+> +                                           r_list->regs[i].address, ret);
+> +                       return ret;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+
+Please use CCI helpers now.
+
+
+
+> +static int ov6211_set_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +       struct ov6211 *ov6211 =3D container_of(ctrl->handler, struct ov62=
+11,
+> +                                            ctrl_handler);
+> +       struct i2c_client *client =3D v4l2_get_subdevdata(&ov6211->sd);
+> +       int ret;
+> +
+> +       /* V4L2 controls values will be applied only when power is alread=
+y up */
+> +       if (!pm_runtime_get_if_in_use(&client->dev))
+> +               return 0;
+> +
+> +       switch (ctrl->id) {
+> +       case V4L2_CID_ANALOGUE_GAIN:
+> +               ret =3D ov6211_write_reg(ov6211, OV6211_REG_ANALOGUE_GAIN,
+> +                                      OV6211_REG_VALUE_16BIT, ctrl->val);
+> +               break;
+> +       case V4L2_CID_EXPOSURE:
+> +               ret =3D ov6211_write_reg(ov6211, OV6211_REG_EXPOSURE,
+> +                                      OV6211_REG_VALUE_24BIT, ctrl->val =
+<< 4);
+> +               break;
+
+What about V4L2_CID_HBLANK and V4L2_CID_VBLANK ?
+
+
+
+> +       default:
+> +               ret =3D -EINVAL;
+> +               break;
+> +       }
+> +
+> +       pm_runtime_put(&client->dev);
+> +
+> +       return ret;
+> +}
+> +
+> +static const struct v4l2_ctrl_ops ov6211_ctrl_ops =3D {
+> +       .s_ctrl =3D ov6211_set_ctrl,
+> +};
+> +
+> +static int ov6211_init_controls(struct ov6211 *ov6211)
+> +{
+> +       struct v4l2_ctrl_handler *ctrl_hdlr;
+> +       s64 exposure_max;
+> +       int ret;
+> +
+> +       ctrl_hdlr =3D &ov6211->ctrl_handler;
+> +       ret =3D v4l2_ctrl_handler_init(ctrl_hdlr, 3);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ctrl_hdlr->lock =3D &ov6211->mutex;
+> +
+> +       ov6211->link_freq =3D v4l2_ctrl_new_int_menu(ctrl_hdlr, &ov6211_c=
+trl_ops,
+> +                                       V4L2_CID_LINK_FREQ,
+> +                                       ARRAY_SIZE(link_freq_menu_items) =
+- 1,
+> +                                       0, link_freq_menu_items);
+> +       if (ov6211->link_freq)
+> +               ov6211->link_freq->flags |=3D V4L2_CTRL_FLAG_READ_ONLY;
+> +
+> +       v4l2_ctrl_new_std(ctrl_hdlr, &ov6211_ctrl_ops, V4L2_CID_ANALOGUE_=
+GAIN,
+> +                         OV6211_ANALOGUE_GAIN_MIN, OV6211_ANALOGUE_GAIN_=
+MAX,
+> +                         OV6211_ANALOGUE_GAIN_STEP,
+> +                         OV6211_ANALOGUE_GAIN_DEFAULT);
+> +
+> +       exposure_max =3D (ov6211->cur_mode->vts - OV6211_EXPOSURE_MAX_MAR=
+GIN);
+> +       ov6211->exposure =3D v4l2_ctrl_new_std(ctrl_hdlr, &ov6211_ctrl_op=
+s,
+> +                                            V4L2_CID_EXPOSURE,
+> +                                            OV6211_EXPOSURE_MIN, exposur=
+e_max,
+> +                                            OV6211_EXPOSURE_STEP,
+> +                                            OV6211_EXPOSURE_DEFAULT);
+> +
+
+As well as the blanking - I think this driver is missing reporting the
+crop selection implementation to report the sensor crops.
+
+
+
+> +       if (ctrl_hdlr->error)
+> +               return ctrl_hdlr->error;
+> +
+> +       ov6211->sd.ctrl_handler =3D ctrl_hdlr;
+> +
+> +       return 0;
+> +}
+> +
+> +static void ov6211_update_pad_format(const struct ov6211_mode *mode,
+> +                                    struct v4l2_mbus_framefmt *fmt)
+> +{
+> +       fmt->width =3D mode->width;
+> +       fmt->height =3D mode->height;
+> +       fmt->code =3D MEDIA_BUS_FMT_Y8_1X8;
+> +       fmt->field =3D V4L2_FIELD_NONE;
+> +}
+> +
+> +static int ov6211_start_streaming(struct ov6211 *ov6211)
+> +{
+> +       struct i2c_client *client =3D v4l2_get_subdevdata(&ov6211->sd);
+> +       const struct ov6211_reg_list *reg_list;
+> +       int ret;
+> +
+> +       reg_list =3D &ov6211->cur_mode->reg_list;
+> +       ret =3D ov6211_write_reg_list(ov6211, reg_list);
+> +       if (ret) {
+> +               dev_err(&client->dev, "failed to set mode\n");
+> +               return ret;
+> +       }
+> +
+> +       ret =3D __v4l2_ctrl_handler_setup(ov6211->sd.ctrl_handler);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D ov6211_write_reg(ov6211, OV6211_REG_MODE_SELECT,
+> +                              OV6211_REG_VALUE_08BIT,
+> +                              OV6211_MODE_STREAMING);
+> +       if (ret) {
+> +               dev_err(&client->dev, "failed to start streaming\n");
+> +               return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static void ov6211_stop_streaming(struct ov6211 *ov6211)
+> +{
+> +       struct i2c_client *client =3D v4l2_get_subdevdata(&ov6211->sd);
+> +
+> +       if (ov6211_write_reg(ov6211, OV6211_REG_MODE_SELECT,
+> +                            OV6211_REG_VALUE_08BIT, OV6211_MODE_STANDBY))
+> +               dev_err(&client->dev, "failed to stop streaming\n");
+> +}
+> +
+> +static int ov6211_set_stream(struct v4l2_subdev *sd, int enable)
+> +{
+> +       struct ov6211 *ov6211 =3D to_ov6211(sd);
+> +       struct i2c_client *client =3D v4l2_get_subdevdata(sd);
+> +       int ret =3D 0;
+> +
+> +       mutex_lock(&ov6211->mutex);
+> +
+> +       if (enable) {
+> +               ret =3D pm_runtime_resume_and_get(&client->dev);
+> +               if (ret) {
+> +                       mutex_unlock(&ov6211->mutex);
+> +                       return ret;
+> +               }
+> +
+> +               ret =3D ov6211_start_streaming(ov6211);
+> +               if (!ret) {
+> +                       mutex_unlock(&ov6211->mutex);
+> +                       return 0;
+> +               }
+> +       }
+> +
+> +       ov6211_stop_streaming(ov6211);
+> +       pm_runtime_put(&client->dev);
+> +
+> +       mutex_unlock(&ov6211->mutex);
+> +
+> +       return ret;
+> +}
+> +
+> +static int ov6211_set_format(struct v4l2_subdev *sd,
+> +                            struct v4l2_subdev_state *sd_state,
+> +                            struct v4l2_subdev_format *fmt)
+> +{
+> +       struct ov6211 *ov6211 =3D to_ov6211(sd);
+> +       const struct ov6211_mode *mode;
+> +
+> +       mode =3D v4l2_find_nearest_size(supported_modes,
+> +                                     ARRAY_SIZE(supported_modes),
+> +                                     width, height,
+> +                                     fmt->format.width,
+> +                                     fmt->format.height);
+> +
+> +       mutex_lock(&ov6211->mutex);
+> +
+> +       ov6211_update_pad_format(mode, &fmt->format);
+> +       if (fmt->which =3D=3D V4L2_SUBDEV_FORMAT_TRY)
+> +               *v4l2_subdev_state_get_format(sd_state, fmt->pad) =3D fmt=
+->format;
+> +       else
+> +               ov6211->cur_mode =3D mode;
+> +
+> +       mutex_unlock(&ov6211->mutex);
+> +
+> +       return 0;
+> +}
+> +
+> +static int ov6211_get_format(struct v4l2_subdev *sd,
+> +                            struct v4l2_subdev_state *sd_state,
+> +                            struct v4l2_subdev_format *fmt)
+> +{
+> +       struct ov6211 *ov6211 =3D to_ov6211(sd);
+> +
+> +       mutex_lock(&ov6211->mutex);
+> +
+> +       if (fmt->which =3D=3D V4L2_SUBDEV_FORMAT_TRY)
+> +               fmt->format =3D *v4l2_subdev_state_get_format(sd_state, f=
+mt->pad);
+> +       else
+> +               ov6211_update_pad_format(ov6211->cur_mode, &fmt->format);
+> +
+> +       mutex_unlock(&ov6211->mutex);
+> +
+> +       return 0;
+> +}
+> +
+> +static int ov6211_enum_mbus_code(struct v4l2_subdev *sd,
+> +                                struct v4l2_subdev_state *sd_state,
+> +                                struct v4l2_subdev_mbus_code_enum *code)
+> +{
+> +       if (code->index > 0)
+> +               return -EINVAL;
+> +
+> +       code->code =3D MEDIA_BUS_FMT_Y8_1X8;
+> +
+> +       return 0;
+> +}
+> +
+> +static int ov6211_enum_frame_size(struct v4l2_subdev *sd,
+> +                                 struct v4l2_subdev_state *sd_state,
+> +                                 struct v4l2_subdev_frame_size_enum *fse)
+> +{
+> +       if (fse->index >=3D ARRAY_SIZE(supported_modes))
+> +               return -EINVAL;
+> +
+> +       if (fse->code !=3D MEDIA_BUS_FMT_Y8_1X8)
+> +               return -EINVAL;
+> +
+> +       fse->min_width =3D supported_modes[fse->index].width;
+> +       fse->max_width =3D fse->min_width;
+> +       fse->min_height =3D supported_modes[fse->index].height;
+> +       fse->max_height =3D fse->min_height;
+> +
+> +       return 0;
+> +}
+> +
+> +static int ov6211_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+> +{
+> +       struct ov6211 *ov6211 =3D to_ov6211(sd);
+> +
+> +       mutex_lock(&ov6211->mutex);
+> +
+> +       ov6211_update_pad_format(&supported_modes[0],
+> +                                v4l2_subdev_state_get_format(fh->state, =
+0));
+> +
+> +       mutex_unlock(&ov6211->mutex);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct v4l2_subdev_video_ops ov6211_video_ops =3D {
+> +       .s_stream =3D ov6211_set_stream,
+> +};
+> +
+> +static const struct v4l2_subdev_pad_ops ov6211_pad_ops =3D {
+> +       .set_fmt =3D ov6211_set_format,
+> +       .get_fmt =3D ov6211_get_format,
+> +       .enum_mbus_code =3D ov6211_enum_mbus_code,
+> +       .enum_frame_size =3D ov6211_enum_frame_size,
+> +};
+> +
+> +static const struct v4l2_subdev_ops ov6211_subdev_ops =3D {
+> +       .video =3D &ov6211_video_ops,
+> +       .pad =3D &ov6211_pad_ops,
+> +};
+> +
+> +static const struct media_entity_operations ov6211_subdev_entity_ops =3D=
+ {
+> +       .link_validate =3D v4l2_subdev_link_validate,
+> +};
+> +
+> +static const struct v4l2_subdev_internal_ops ov6211_internal_ops =3D {
+> +       .open =3D ov6211_open,
+> +};
+> +
+> +static int ov6211_identify_module(struct ov6211 *ov6211)
+> +{
+> +       struct i2c_client *client =3D v4l2_get_subdevdata(&ov6211->sd);
+> +       int ret;
+> +       u32 val;
+> +
+> +       ret =3D ov6211_read_reg(ov6211, OV6211_REG_CHIP_ID,
+> +                             OV6211_REG_VALUE_16BIT, &val);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (val !=3D OV6211_CHIP_ID) {
+> +               dev_err(&client->dev, "chip id mismatch: %x!=3D%x\n",
+> +                       OV6211_CHIP_ID, val);
+> +               return -ENXIO;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int ov6211_check_hwcfg(struct ov6211 *ov6211)
+> +{
+> +       struct i2c_client *client =3D v4l2_get_subdevdata(&ov6211->sd);
+> +       struct device *dev =3D &client->dev;
+> +       struct fwnode_handle *fwnode =3D dev_fwnode(dev), *ep;
+> +       struct v4l2_fwnode_endpoint bus_cfg =3D {
+> +               .bus_type =3D V4L2_MBUS_CSI2_DPHY
+> +       };
+> +       int ret;
+> +
+> +       if (!fwnode)
+> +               return -ENXIO;
+> +
+> +       ep =3D fwnode_graph_get_next_endpoint(fwnode, NULL);
+> +       if (!ep)
+> +               return -ENXIO;
+> +
+> +       ret =3D v4l2_fwnode_endpoint_alloc_parse(ep, &bus_cfg);
+> +       fwnode_handle_put(ep);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (bus_cfg.bus.mipi_csi2.num_data_lanes &&
+> +           bus_cfg.bus.mipi_csi2.num_data_lanes !=3D OV6211_DATA_LANES) {
+> +               dev_err(dev, "Invalid number of data lanes: %u\n",
+> +                       bus_cfg.bus.mipi_csi2.num_data_lanes);
+> +               ret =3D -EINVAL;
+> +               goto check_hwcfg_error;
+> +       }
+> +
+> +       if (!bus_cfg.nr_of_link_frequencies) {
+> +               dev_err(dev, "link-frequency property is not found\n");
+> +               ret =3D -EINVAL;
+> +               goto check_hwcfg_error;
+> +       }
+> +
+> +       if (bus_cfg.nr_of_link_frequencies !=3D 1 ||
+> +           bus_cfg.link_frequencies[0] !=3D link_freq_menu_items[0]) {
+> +               dev_err(dev, "Unsupported link-frequency property is foun=
+d\n");
+> +               ret =3D -EINVAL;
+> +               goto check_hwcfg_error;
+> +       }
+> +
+> +check_hwcfg_error:
+> +       v4l2_fwnode_endpoint_free(&bus_cfg);
+> +
+> +       return ret;
+> +}
+> +
+> +static int ov6211_power_on(struct device *dev)
+> +{
+> +       struct v4l2_subdev *sd =3D dev_get_drvdata(dev);
+> +       struct ov6211 *ov6211 =3D to_ov6211(sd);
+> +       int ret;
+> +
+> +       if (ov6211->avdd) {
+> +               ret =3D regulator_enable(ov6211->avdd);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       if (ov6211->dovdd) {
+> +               ret =3D regulator_enable(ov6211->dovdd);
+> +               if (ret)
+> +                       goto avdd_disable;
+> +       }
+> +
+> +       if (ov6211->dvdd) {
+> +               ret =3D regulator_enable(ov6211->dvdd);
+> +               if (ret)
+> +                       goto dovdd_disable;
+> +       }
+> +
+> +       gpiod_set_value_cansleep(ov6211->reset_gpio, 0);
+> +       usleep_range(10 * USEC_PER_MSEC, 15 * USEC_PER_MSEC);
+> +
+> +       ret =3D clk_prepare_enable(ov6211->xvclk);
+> +       if (ret)
+> +               goto dvdd_disable;
+> +
+> +       return 0;
+> +
+> +dvdd_disable:
+> +       if (ov6211->dvdd)
+> +               regulator_disable(ov6211->dvdd);
+> +dovdd_disable:
+> +       if (ov6211->dovdd)
+> +               regulator_disable(ov6211->dovdd);
+> +avdd_disable:
+> +       if (ov6211->avdd)
+> +               regulator_disable(ov6211->avdd);
+> +
+> +       return ret;
+> +}
+> +
+> +static int ov6211_power_off(struct device *dev)
+> +{
+> +       struct v4l2_subdev *sd =3D dev_get_drvdata(dev);
+> +       struct ov6211 *ov6211 =3D to_ov6211(sd);
+> +
+> +       clk_disable_unprepare(ov6211->xvclk);
+> +
+> +       gpiod_set_value_cansleep(ov6211->reset_gpio, 1);
+> +
+> +       if (ov6211->dvdd)
+> +               regulator_disable(ov6211->dvdd);
+> +
+> +       if (ov6211->dovdd)
+> +               regulator_disable(ov6211->dovdd);
+> +
+> +       if (ov6211->avdd)
+> +               regulator_disable(ov6211->avdd);
+> +
+> +       return 0;
+> +}
+> +
+> +static void ov6211_remove(struct i2c_client *client)
+> +{
+> +       struct v4l2_subdev *sd =3D i2c_get_clientdata(client);
+> +       struct ov6211 *ov6211 =3D to_ov6211(sd);
+> +
+> +       v4l2_async_unregister_subdev(sd);
+> +       media_entity_cleanup(&sd->entity);
+> +       v4l2_ctrl_handler_free(sd->ctrl_handler);
+> +       pm_runtime_disable(&client->dev);
+> +       mutex_destroy(&ov6211->mutex);
+> +}
+> +
+> +static int ov6211_probe(struct i2c_client *client)
+> +{
+> +       struct ov6211 *ov6211;
+> +       unsigned long freq;
+> +       int ret;
+> +
+> +       ov6211 =3D devm_kzalloc(&client->dev, sizeof(*ov6211), GFP_KERNEL=
+);
+> +       if (!ov6211)
+> +               return -ENOMEM;
+> +
+> +       v4l2_i2c_subdev_init(&ov6211->sd, client, &ov6211_subdev_ops);
+> +
+> +       ov6211->xvclk =3D devm_clk_get_optional(&client->dev, NULL);
+> +       if (IS_ERR(ov6211->xvclk)) {
+> +               ret =3D PTR_ERR(ov6211->xvclk);
+> +               dev_err(&client->dev, "failed to get XVCLK clock: %d\n", =
+ret);
+> +               return ret;
+> +       }
+> +
+> +       freq =3D clk_get_rate(ov6211->xvclk);
+> +       if (freq && freq !=3D OV6211_MCLK_FREQ_24MHZ)
+> +               return dev_err_probe(&client->dev, -EINVAL,
+> +                               "XVCLK clock frequency %lu is not support=
+ed\n",
+> +                               freq);
+> +
+> +       ret =3D ov6211_check_hwcfg(ov6211);
+> +       if (ret) {
+> +               dev_err(&client->dev, "failed to check HW configuration: =
+%d",
+> +                       ret);
+> +               return ret;
+> +       }
+> +
+> +       ov6211->reset_gpio =3D devm_gpiod_get_optional(&client->dev, "res=
+et",
+> +                                                    GPIOD_OUT_HIGH);
+> +       if (IS_ERR(ov6211->reset_gpio)) {
+> +               dev_err(&client->dev, "cannot get reset GPIO\n");
+> +               return PTR_ERR(ov6211->reset_gpio);
+> +       }
+> +
+> +       ov6211->avdd =3D devm_regulator_get_optional(&client->dev, "avdd"=
+);
+> +       if (IS_ERR(ov6211->avdd)) {
+> +               ret =3D PTR_ERR(ov6211->avdd);
+> +               if (ret !=3D -ENODEV) {
+> +                       dev_err_probe(&client->dev, ret,
+> +                                     "Failed to get 'avdd' regulator\n");
+> +                       return ret;
+> +               }
+> +
+> +               ov6211->avdd =3D NULL;
+> +       }
+> +
+> +       ov6211->dovdd =3D devm_regulator_get_optional(&client->dev, "dovd=
+d");
+> +       if (IS_ERR(ov6211->dovdd)) {
+> +               ret =3D PTR_ERR(ov6211->dovdd);
+> +               if (ret !=3D -ENODEV) {
+> +                       dev_err_probe(&client->dev, ret,
+> +                                     "Failed to get 'dovdd' regulator\n"=
+);
+> +                       return ret;
+> +               }
+> +
+> +               ov6211->dovdd =3D NULL;
+> +       }
+> +
+> +       ov6211->dvdd =3D devm_regulator_get_optional(&client->dev, "dvdd"=
+);
+> +       if (IS_ERR(ov6211->dvdd)) {
+> +               ret =3D PTR_ERR(ov6211->dvdd);
+> +               if (ret !=3D -ENODEV) {
+> +                       dev_err_probe(&client->dev, ret,
+> +                                     "Failed to get 'dvdd' regulator\n");
+> +                       return ret;
+> +               }
+> +
+> +               ov6211->dvdd =3D NULL;
+> +       }
+> +
+> +       /* The sensor must be powered on to read the CHIP_ID register */
+> +       ret =3D ov6211_power_on(&client->dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D ov6211_identify_module(ov6211);
+> +       if (ret) {
+> +               dev_err(&client->dev, "failed to find sensor: %d\n", ret);
+> +               goto power_off;
+> +       }
+> +
+> +       mutex_init(&ov6211->mutex);
+> +       ov6211->cur_mode =3D &supported_modes[0];
+> +       ret =3D ov6211_init_controls(ov6211);
+> +       if (ret) {
+> +               dev_err(&client->dev, "failed to init controls: %d\n", re=
+t);
+> +               goto probe_error_v4l2_ctrl_handler_free;
+> +       }
+> +
+> +       ov6211->sd.internal_ops =3D &ov6211_internal_ops;
+> +       ov6211->sd.flags |=3D V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +       ov6211->sd.entity.ops =3D &ov6211_subdev_entity_ops;
+> +       ov6211->sd.entity.function =3D MEDIA_ENT_F_CAM_SENSOR;
+> +       ov6211->pad.flags =3D MEDIA_PAD_FL_SOURCE;
+> +       ret =3D media_entity_pads_init(&ov6211->sd.entity, 1, &ov6211->pa=
+d);
+> +       if (ret) {
+> +               dev_err(&client->dev, "failed to init entity pads: %d\n",=
+ ret);
+> +               goto probe_error_v4l2_ctrl_handler_free;
+> +       }
+> +
+> +       ret =3D v4l2_async_register_subdev_sensor(&ov6211->sd);
+> +       if (ret < 0) {
+> +               dev_err(&client->dev, "failed to register V4L2 subdev: %d=
+\n",
+> +                       ret);
+> +               goto probe_error_media_entity_cleanup;
+> +       }
+> +
+> +       /* Enable runtime PM and turn off the device */
+> +       pm_runtime_set_active(&client->dev);
+> +       pm_runtime_enable(&client->dev);
+> +       pm_runtime_idle(&client->dev);
+> +
+> +       return 0;
+> +
+> +probe_error_media_entity_cleanup:
+> +       media_entity_cleanup(&ov6211->sd.entity);
+> +
+> +probe_error_v4l2_ctrl_handler_free:
+> +       v4l2_ctrl_handler_free(ov6211->sd.ctrl_handler);
+> +       mutex_destroy(&ov6211->mutex);
+> +
+> +power_off:
+> +       ov6211_power_off(&client->dev);
+> +
+> +       return ret;
+> +}
+> +
+> +static const struct dev_pm_ops ov6211_pm_ops =3D {
+> +       SET_RUNTIME_PM_OPS(ov6211_power_off, ov6211_power_on, NULL)
+> +};
+> +
+> +static const struct of_device_id ov6211_of_match[] =3D {
+> +       { .compatible =3D "ovti,ov6211" },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ov6211_of_match);
+> +
+> +static struct i2c_driver ov6211_i2c_driver =3D {
+> +       .driver =3D {
+> +               .name =3D "ov6211",
+> +               .pm =3D &ov6211_pm_ops,
+> +               .of_match_table =3D ov6211_of_match,
+> +       },
+> +       .probe =3D ov6211_probe,
+> +       .remove =3D ov6211_remove,
+> +};
+> +
+> +module_i2c_driver(ov6211_i2c_driver);
+> +
+> +MODULE_AUTHOR("Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>");
+> +MODULE_DESCRIPTION("OmniVision OV6211 sensor driver");
+> +MODULE_LICENSE("GPL");
+> --=20
+> 2.49.0
+>
 
