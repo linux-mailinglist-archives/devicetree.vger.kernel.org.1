@@ -1,103 +1,277 @@
-Return-Path: <devicetree+bounces-197091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5752B08170
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 02:39:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07941B081F3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 02:55:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 692AF1C26FC0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 00:40:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53EFF1C403E9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 00:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13CD178F4B;
-	Thu, 17 Jul 2025 00:39:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6336717A306;
+	Thu, 17 Jul 2025 00:55:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DuElOaY7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OCNca29K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A162E370C;
-	Thu, 17 Jul 2025 00:39:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A125514E2E2
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 00:55:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752712792; cv=none; b=dTldThIU5Y91Jcq2A1/4tDwrFm8L0yg8/hx1AKoF2xI4p/pWGUWDdT3v+Rg+r+Qcji542SBWp4A3sMR6C1m8HKK3JWTtLX+8h+3m2SZc96CgC3n0mTgSnErAEP5jMKQpVJYqTjMeXe4Fc0FzxNNQngo+bSdhMC0Lak/eQq1eZDM=
+	t=1752713750; cv=none; b=L7amxjZyJgIMpC2iClOIvvZPPRANGLJd+x8lgrc1qriNCG+1L4Jx6xVkg7eVzmY7S/nra54394xyCCqD6vV4384EVCh9/Yt+3Tyvlz8RzUvWRllwFrZo5TVR0HQD+Kx3rTpoM4bDv2jESZKaS37RD8O3Lty/riLbRKTjgzeL+Ig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752712792; c=relaxed/simple;
-	bh=0oNS4QWWuAKBe/4MiGtK8XIFEH9xPGCkiqUULk4IQ3c=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=onCPUWPHXOIJ32IIl896DB6bsBe5kNEzVpa12sOJ3t00Fin3yolXjDeSpsBbbBabnqGRWoz+PD7u7Nu4S5WsBhIETU2C4NvSKzMqtgVDOwSGwzbK1MSewDExVfqABxeyBgQrio8WOhh/IsoTTIxQUtuV5RrZ7CbmR1Te9v0X/XA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DuElOaY7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D266C4CEE7;
-	Thu, 17 Jul 2025 00:39:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752712791;
-	bh=0oNS4QWWuAKBe/4MiGtK8XIFEH9xPGCkiqUULk4IQ3c=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=DuElOaY7VElFjy6DeOABFGnHEXUoRPEzuSlyqZhb7Nt//JW4FhB+QYikCl3We5Vg4
-	 49I5rwd8mO3MUSbKmY8yd7BcqQHMIVIqPc0AIlXNL5nT4VR8iv6lPM6lPiOn4x6aWr
-	 xUmm3kyF03921beAkmmAxWyNkOF2OnXMKU6NnDwvGPWEntsN9mzQ9yJcVGpjt5AyC6
-	 NIkUh3mtBZu5NQOdA6tgO0yE5ov5l4NrJO6wJ9jZvv9lmyi++1VPfScmnPsjdAvxxW
-	 GH9lCkna8HANkef3CZh4NP1Q2uwT2UJ3rIKmTkKVBrMXYmjk8aQ/vho2D7IQk8U1jj
-	 TycJ5dBxjweAA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id AE150383BA38;
-	Thu, 17 Jul 2025 00:40:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1752713750; c=relaxed/simple;
+	bh=Lwd7xExybTot6x05t/ihJ3H+SIWk5GM8UXSeQC6XPKk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CDIV9XUX8rs889UAYcETtXeE6IXBeAS6BQG/KZ5hLemAKfKv0UjLfnGA0cSuDuWLixKREhf/K/Zi5uCjxVIyIOMZl0Ls4Hd9oSEPDEfoM50KBJjtF+DUXeH5UntOC817xgy7VfQJ179b2zqLqD/IDsJI6ZOiiJzljTBLhYPM0dg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OCNca29K; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56GGDaQY030488
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 00:55:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	IE2mv/XyFgD4b+TvkQGaKdoVQYDSr2EgRQz4YF0xCJw=; b=OCNca29K4/heGuRI
+	EuoPnowCMwoZD2GJk0v9O20MttCKZB0gRAcvZzZPPCbx9Q2uMUzQ21mJgoqzFQjD
+	Odfj+DMhJXRXXz3uKKqBhI3F0JEgq4VHi1N+6mY+igTUdBhaTFTcuqu5QecEvyuF
+	ztD8SErr+ku9d/WRaz0H8UbZP5ykZGIXd6/M+xHcgYf1WJ0NjWru43SgQT0t7B0t
+	zWnHQh0LVS80FQXNkuc14oju7UtxAmzb8SGkj1SsVSjUnsFscUOHJgvuO7R3N0Fi
+	LSTVtwEh8b0uR8be32h8vzzSQoXSUQXZS7+2BMLjyuLksnggQO6yEk0qkkf2BmQv
+	9SkOzA==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47x8x7jm3e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 00:55:47 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b2c37558eccso317771a12.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 17:55:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752713746; x=1753318546;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IE2mv/XyFgD4b+TvkQGaKdoVQYDSr2EgRQz4YF0xCJw=;
+        b=EdA00r3lAwDpdKeaxR1SxLreQnmJyYiMwiyuE2SdWOMSyRhbicfYX/4gzEgvuVjIqA
+         LC5JsrKJu2Yxm+ZS/IpKmtXdYABV+wbeMldNz4EIo+hwVEAJpxZPnLoBaTpBPjRZkIcr
+         aGE2awGn3OlzfB7IkYq4Urnt/l+a6EljnkX9346GclSiQxh+w1LJXFwxHfdHGjtAILXc
+         xp83vSRIK+bxxy5sJgWzBDII8yUT9D7zDEO+XJBd7/x0YeGwi/Txqlj/fXA+TUy+xGZD
+         YZfhMgwbaMQKDQPYrmPUZwkpD2lH7Kpzc/FwoUXoxSpLhtMUU9lauUOkOtXetWkoMj4k
+         ZCIA==
+X-Forwarded-Encrypted: i=1; AJvYcCXNJUGp38StEj9K7DKqb4Jb3sM9QmLjpERPtCwrrrdFAcEuxB7Ot4lfsiSbV9B6G8Q7x11jq6J8PwOs@vger.kernel.org
+X-Gm-Message-State: AOJu0YznWvOtFKiCdW36mLYhwAwGUv4ZSfJEVFASXyYSVsQAVs3QMNvH
+	Sy8PTs9qhJ0P6zoadvBkz5li3DIFFZaxcb2iTlDAqbUVXHE7MKlTxldLCMtniNfY2AF7jahUcl3
+	Z9iJV+xf1kh5uARjd0VFSiykOg1B9uf+gEGtX3XyCm791yc0G7nHtCfttXEFiF9IS
+X-Gm-Gg: ASbGncvXxCh8bV1p9Ol9f1z3WtBRQzaiH2isujNyPvlkoPA1CV4DRmd1e5zd0nFIC46
+	zrWm15ZIDz+ub9G2+ombHKl/ytg0chExUJDH9ojA4wyglMQX2OkCtVv+sfQNU3YnyIrHdMH9mAX
+	82uGBLeGI4z7J+mZnB13G+WC1oi/DdST5TeKsEIlbC9c2RC8XdlbMHNldCfm/z+Hr+OaXp4AOqI
+	/GrDUwW4ppzaZ3xUfINsrG4xEzz6tP1j/d0a/JQmssgSC7aVkkZI8zqQBnXr8r8W9axvg1ilcui
+	1+fJ1lchswEZTjNeEN7r0IqLdgHOHExnikk00P0HSfC6lidCB+hlZCkxgfTctF23Cc/MPL0BUUv
+	YHpUya+HGGDpTgFXp1hfDgnZ9
+X-Received: by 2002:a05:6a20:431b:b0:215:efed:acfc with SMTP id adf61e73a8af0-237d5f28f06mr9124558637.7.1752713745952;
+        Wed, 16 Jul 2025 17:55:45 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEsusfkryQNV4zgPxlZ3pgSGcpHupRiF5HVteLlYpaFodV/KYUSAfdyKsskldFXBYJwvAiNtA==
+X-Received: by 2002:a05:6a20:431b:b0:215:efed:acfc with SMTP id adf61e73a8af0-237d5f28f06mr9124527637.7.1752713745535;
+        Wed, 16 Jul 2025 17:55:45 -0700 (PDT)
+Received: from [10.133.33.228] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b3bbe6bd7d1sm14379656a12.35.2025.07.16.17.55.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Jul 2025 17:55:44 -0700 (PDT)
+Message-ID: <4850a2a5-dbeb-43f4-9005-1cc022545dcd@oss.qualcomm.com>
+Date: Thu, 17 Jul 2025 08:55:39 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 0/5] Expose REFCLK for RMII and enable RMII
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175271281150.1376782.14178930908812628013.git-patchwork-notify@kernel.org>
-Date: Thu, 17 Jul 2025 00:40:11 +0000
-References: <cover.1752510727.git.Ryan.Wanner@microchip.com>
-In-Reply-To: <cover.1752510727.git.Ryan.Wanner@microchip.com>
-To: Ryan Wanner <Ryan.Wanner@microchip.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 RESEND 01/10] coresight: core: Refactoring
+ ctcu_get_active_port and make it generic
+To: Mike Leach <mike.leach@linaro.org>, Jie Gan <jie.gan@oss.qualcomm.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Mao Jinlong <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250714063109.591-1-jie.gan@oss.qualcomm.com>
+ <20250714063109.591-2-jie.gan@oss.qualcomm.com>
+ <CAJ9a7VjyWtopbnTirRnd4-486PrdQH00cvUR0kcPde2hxCUH-A@mail.gmail.com>
+Content-Language: en-US
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <CAJ9a7VjyWtopbnTirRnd4-486PrdQH00cvUR0kcPde2hxCUH-A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE3MDAwNSBTYWx0ZWRfX5QhQEcYSFV8Z
+ 533vnuy6yuDfOVrTa03UX4G7zgEuNbniPrLcYfjAtjRAkJyjhxRfgFS3Ujjcb36XbPCiezNAUAF
+ fYQJaJrfpdwjXrxkrDmP61JmGJWSH0be9dz316wbhEL8JyqOjieSH7a21XmzGPwGv9fPbWNcirY
+ oQH/Ptco1cprQmcK3oy9SQ5zon7LL2agPi+nv+Y3YCv+D2I3jFdGSFgui3b5FNkw2lm7E5tzALM
+ TdR74lgQhuBtZqISwXxsaHgnz3FaxSgnJraqGuT9RF+s9QoDv5SpeETnOVjWguoNmBBype+u2z2
+ 312uSFQs37cKIbt73beKcIOjMWHHZOSkcTCqSd/FSk/1L6T78Lbp2HJEKD6MWr/NKBwi5rHe7Hx
+ JxpVhTK+qqk1g33Xxu57rB7PPiSLxRrTSXgmwkJAG8012saSssoDrAiEf3u55lRIFHnY3fef
+X-Proofpoint-GUID: rtr8MOtrERWxdB2VP8lnlai5BsBFY1Iz
+X-Proofpoint-ORIG-GUID: rtr8MOtrERWxdB2VP8lnlai5BsBFY1Iz
+X-Authority-Analysis: v=2.4 cv=N9YpF39B c=1 sm=1 tr=0 ts=68784a13 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=CCvaVWANnUWFBPVUepYA:9
+ a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-16_05,2025-07-16_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 lowpriorityscore=0 mlxlogscore=999 bulkscore=0 adultscore=0
+ priorityscore=1501 clxscore=1015 mlxscore=0 suspectscore=0 impostorscore=0
+ phishscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507170005
 
-Hello:
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
 
-On Mon, 14 Jul 2025 09:36:58 -0700 you wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+On 7/16/2025 6:20 PM, Mike Leach wrote:
+> Hi,
 > 
-> This set allows the REFCLK property to be exposed as a dt-property to
-> properly reflect the correct RMII layout. RMII can take an external or
-> internal provided REFCLK, since this is not SoC dependent but board
-> dependent this must be exposed as a DT property for the macb driver.
+> On Mon, 14 Jul 2025 at 07:31, Jie Gan <jie.gan@oss.qualcomm.com> wrote:
+>>
+>> Remove ctcu_get_active_port from CTCU module and add it to the core
+>> framework.
+>>
+>> The port number is crucial for the CTCU device to identify which ETR
+>> it serves. With the port number we can correctly get required parameters
+>> of the CTCU device in TMC module.
+>>
+>> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+>> ---
+>>   drivers/hwtracing/coresight/coresight-core.c  | 24 +++++++++++++++++++
+>>   .../hwtracing/coresight/coresight-ctcu-core.c | 19 +--------------
+>>   drivers/hwtracing/coresight/coresight-priv.h  |  2 ++
+>>   3 files changed, 27 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
+>> index 1accd7cbd54b..5297a5ff7921 100644
+>> --- a/drivers/hwtracing/coresight/coresight-core.c
+>> +++ b/drivers/hwtracing/coresight/coresight-core.c
+>> @@ -580,6 +580,30 @@ struct coresight_device *coresight_get_sink(struct coresight_path *path)
+>>   }
+>>   EXPORT_SYMBOL_GPL(coresight_get_sink);
+>>
+>> +/**
+>> + * coresight_get_port_helper: get the in-port number of the helper device
+>> + * that is connected to the csdev.
+>> + *
 > 
-> [...]
+> As written this looks at all connections, not just those that are
+> helpers. That is fine, so perhaps rename as such.
+> 
+> e.g. coresight_get_in_port_dest
+> 
+> and name the input parameters src , dest respectively.
 
-Here is the summary with links:
-  - [v2,1/5] dt-bindings: net: cdns,macb: Add external REFCLK property
-    https://git.kernel.org/netdev/net-next/c/1b7531c094c8
-  - [v2,2/5] net: cadence: macb: Expose REFCLK as a device tree property
-    https://git.kernel.org/netdev/net-next/c/dce32ece3bb8
-  - [v2,3/5] net: cadence: macb: Enable RMII for SAMA7 gem
-    https://git.kernel.org/netdev/net-next/c/eb4f50ddfdd3
-  - [v2,4/5] net: cadence: macb: sama7g5_emac: Remove USARIO CLKEN flag
-    https://git.kernel.org/netdev/net-next/c/db400061b5e7
-  - [v2,5/5] ARM: dts: microchip: sama7g5: Add RMII ext refclk flag
-    (no matching commit)
+Make sense for me, will update in next version.
+Thanks for the suggestion.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> 
+>> + * @csdev: csdev of the device that is connected to helper.
+>> + * @helper: csdev of the helper device.
+>> + *
+>> + * Return: port number upson success or -EINVAL for fail.
+> 
+> sp: upon/upson
+> 
+>> + */
+>> +int coresight_get_port_helper(struct coresight_device *csdev,
+>> +                             struct coresight_device *helper)
+>> +{
+>> +       struct coresight_platform_data *pdata = helper->pdata;
+>> +       int i;
+>> +
+>> +       for (i = 0; i < pdata->nr_inconns; ++i) {
+>> +               if (pdata->in_conns[i]->src_dev == csdev)
+>> +                       return pdata->in_conns[i]->dest_port;
+>> +       }
+>> +
+>> +       return -EINVAL;
+>> +}
+>> +EXPORT_SYMBOL_GPL(coresight_get_port_helper);
+>> +
+>>   u32 coresight_get_sink_id(struct coresight_device *csdev)
+>>   {
+>>          if (!csdev->ea)
+>> diff --git a/drivers/hwtracing/coresight/coresight-ctcu-core.c b/drivers/hwtracing/coresight/coresight-ctcu-core.c
+>> index c6bafc96db96..28ea4a216345 100644
+>> --- a/drivers/hwtracing/coresight/coresight-ctcu-core.c
+>> +++ b/drivers/hwtracing/coresight/coresight-ctcu-core.c
+>> @@ -118,23 +118,6 @@ static int __ctcu_set_etr_traceid(struct coresight_device *csdev, u8 traceid, in
+>>          return 0;
+>>   }
+>>
+>> -/*
+>> - * Searching the sink device from helper's view in case there are multiple helper devices
+>> - * connected to the sink device.
+>> - */
+>> -static int ctcu_get_active_port(struct coresight_device *sink, struct coresight_device *helper)
+>> -{
+>> -       struct coresight_platform_data *pdata = helper->pdata;
+>> -       int i;
+>> -
+>> -       for (i = 0; i < pdata->nr_inconns; ++i) {
+>> -               if (pdata->in_conns[i]->src_dev == sink)
+>> -                       return pdata->in_conns[i]->dest_port;
+>> -       }
+>> -
+>> -       return -EINVAL;
+>> -}
+>> -
+>>   static int ctcu_set_etr_traceid(struct coresight_device *csdev, struct coresight_path *path,
+>>                                  bool enable)
+>>   {
+>> @@ -147,7 +130,7 @@ static int ctcu_set_etr_traceid(struct coresight_device *csdev, struct coresight
+>>                  return -EINVAL;
+>>          }
+>>
+>> -       port_num = ctcu_get_active_port(sink, csdev);
+>> +       port_num = coresight_get_port_helper(sink, csdev);
+>>          if (port_num < 0)
+>>                  return -EINVAL;
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-priv.h b/drivers/hwtracing/coresight/coresight-priv.h
+>> index 33e22b1ba043..07a5f03de81d 100644
+>> --- a/drivers/hwtracing/coresight/coresight-priv.h
+>> +++ b/drivers/hwtracing/coresight/coresight-priv.h
+>> @@ -156,6 +156,8 @@ void coresight_remove_links(struct coresight_device *orig,
+>>   u32 coresight_get_sink_id(struct coresight_device *csdev);
+>>   void coresight_path_assign_trace_id(struct coresight_path *path,
+>>                                     enum cs_mode mode);
+>> +int coresight_get_port_helper(struct coresight_device *csdev,
+>> +                             struct coresight_device *helper);
+>>
+> rename here too
 
+will do.
+
+Best Regards,
+Jie
+
+> 
+>>   #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM3X)
+>>   int etm_readl_cp14(u32 off, unsigned int *val);
+>> --
+>> 2.34.1
+>>
+> 
+> regards
+> 
+> Mike
 
 
