@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-197443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CE11B09451
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 20:48:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1F73B0945E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 20:49:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59BCE4A1067
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 18:47:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88D6A7BD6BD
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 18:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 165CE2FEE15;
-	Thu, 17 Jul 2025 18:46:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC7FD2FF492;
+	Thu, 17 Jul 2025 18:47:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Sw0Jjl9m"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="NzUrke6Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934132FE31D
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 18:46:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06782FEE32
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 18:47:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752777964; cv=none; b=GkG9lcjbIHtz0IRP9xJPq3ay5AI0+M6+mXP0bDgj29IEqFKEeddmPB5sICdksffFAH4JW2VzUdWTff+eMaKNZYM2A0KdwVf/Eazsap/O4GmgxfESw/Y8WomJbr2zLf31JfPRwFOSqTXFtDJAlT4F/zR3jemr1xjb/TtJBqElqGY=
+	t=1752778071; cv=none; b=V0GQu0u3yXLDoNvo1Y8DjoiTvAMGIBt67fWbiZPDsb9Orp5hktNwJgB1ae9yzRr9fO2lH8oknN4SK5DiGAwnQLXKKNbIw2kjmAVCeVttaTpeenjgiIp29ZNOWr8OjxdswDnGYI7qKxSqxBT1NWqDQlloim/NhzeDUmnVM8k6DlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752777964; c=relaxed/simple;
-	bh=sJZEN6Dz7NKPi+6R0FCojYkccMA61uspx+DmZv2t+5g=;
+	s=arc-20240116; t=1752778071; c=relaxed/simple;
+	bh=LdBhSp51sgIxbWO70ik51gWkwXQAZkXdQ9kZ0tOT0fE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ropmAvOunmdbJFlIcsOuTLTIe+DNM2dwEN+Ka8C7C2ksS79VCiAovvdAq7ZX5JMJpF2M4luChuKe0XSbUduir8Qf7c5cmxRRfp5KJh+PDDvSLv46bbD/KdgwAmkndbRFxBBy1FszcC0idetmaCFTfxpG4M3Cy+hpXT2c9dicomw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Sw0Jjl9m; arc=none smtp.client-ip=209.85.216.50
+	 In-Reply-To:Content-Type; b=ksata6Mvlxp4V+qzOTGLlt7YmrRtpUcDiWpo2sZ+LPFaSBEyMhyTGPmITX0a/A0ex/VHu7j0NQrCLJrhRpUwiKIlQmfu1o7VsZhqnSYxN3lxi5nwIDBWhz3k5XMBKs5emGbZYG8/AJoGjSHkE7tBkJXfI/0UETKhO3t+PsW4k0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=NzUrke6Q; arc=none smtp.client-ip=209.85.219.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-313910f392dso1093702a91.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 11:46:02 -0700 (PDT)
+Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-7048d8fec46so24212556d6.0
+        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 11:47:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1752777962; x=1753382762; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1752778069; x=1753382869; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=6HIRLLwlsbQ3s6yP4+BYQWOZ/+/9Ewj3PHCD6zKkiCg=;
-        b=Sw0Jjl9mQ/r1W0FpPZAmFoUre4w9nQaZL50E4LHVsTIC2WZFlBtHbjyo9jChht7eNO
-         jr5w9KgQ5NUaCrTD6vpQIKLqsuX1X9rehv31utO93ZwCdQrqMcBFrwrBci7nOxKhWOnT
-         3ngqIgnfIl2rlsH8G3AJ8+1pyOajIevuoAuKI=
+        bh=JknLTMIxalS8m7aHFC3+s6nvFC/sGZyolLVvw55splI=;
+        b=NzUrke6Q2i7Kz9RJmPyUQqfzbDBjhODTPk4w1gauD+c/kAxCmQE/fNnXNv4KoyEN0N
+         Us+XP4iW9/qSFvP5zOqURbvYSPKFWS34t5GU96xWzCrm6mdu4OVyHLAWX1dbHfAshe7F
+         Km2volV8bc5AqCMcNqfaI/75DNPcVAigJArpE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752777962; x=1753382762;
+        d=1e100.net; s=20230601; t=1752778069; x=1753382869;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6HIRLLwlsbQ3s6yP4+BYQWOZ/+/9Ewj3PHCD6zKkiCg=;
-        b=DAxDeLELjh0Ed5ChW15rBtOo6ttiOxjO38dxNcF++z1N5tOt7a9VBxIxNFOcMZ9Ye7
-         58H/FyrEcAVctF3SEcI3H12OwKHHwiiz6I1lLLhHO08UJxZRL3ZoI0W6EmiBVp73TjCL
-         n9zbWBvBX4WDzYKBTrc/unRBBT8gB25lxyTxglsEzzeVKFFztN/o8tcZQzZQdblB0MZh
-         Ejy5tbTvWbLgIKTZ0HjAZ3+VhKzuROvNPD4oNenYrLQ66n6ixhZthcKMRsEcrwb9z5F2
-         Fcl91ioi7W9k9fXOgm6kfKTDoHXaTalPujpnkgMuDqbbDXSCpRNmjf2iT60XEv2NW0Gw
-         +PNw==
-X-Forwarded-Encrypted: i=1; AJvYcCUb1EV0QivPund7Ap8Ud1O+LofnTWLPRmtnVzmMC/7bKkKpWk7As9R6kmuSFUTE31UHWmpvh9Cy0lj/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQJPsdhL2jIrjtvaytiu7AiBFKwecrvtIrI05SZnvMRyYNSgdL
-	0d/Tmw0HTxGP16p9SHKP0NmFGzik1+qQTTTv/evpbfQHlgalXIgpBVYM8YyNCRZc+g==
-X-Gm-Gg: ASbGnctHWssQZlO8O27jKNQ18rdqTMPcCjjwLJGuZe+Awt5jKuwVX2ISJNa19i4JN7E
-	0h3oTDv5guiLC+bndi+Xogifji9aFsNJbGQo6S/50USxIHZSPRs6WY7Yv/n5n8b9eZheluLYx11
-	B33Kg7a0OF47YuN4b8B2O1Ecbu24Owx9sBjLqrDFOI5R9Jor5VYSMrfubmrAIM6lYVaVW2LGxt4
-	GqBh+xHzZiXdHXwhpSMpXWFjP1N1dvRlvgIJNNzLLs5sVa0qNbW219y05Po52qcyAUL3fGLHZaR
-	NL1RetOOtta577nVJT+hIDWFRB4hVw9fmsLQubO8TJ/D9COfbLKklF+bOqTBHl3ZDfx3nD3vw9r
-	xcqMx6AJi5bNf+ocZbskDz4JRoMlstP6sDjL2MGCnetJMklhgzTNqrmIvN5tnFg==
-X-Google-Smtp-Source: AGHT+IE7PNgNm+lVUrl/sE9LYo9Sksmd8KXpVZ/A556R4wAmTQQZolcT3p/e185U6GSIz8W2MmqdJQ==
-X-Received: by 2002:a17:90b:3ece:b0:312:639:a058 with SMTP id 98e67ed59e1d1-31c9f4d006emr10860697a91.27.1752777961698;
-        Thu, 17 Jul 2025 11:46:01 -0700 (PDT)
+        bh=JknLTMIxalS8m7aHFC3+s6nvFC/sGZyolLVvw55splI=;
+        b=Nr1i5MsQ1CjY9RrPmYkQVs03ej0IY7wXiP9k51/+F7Cz5/XPUpnTxNBmNzi9Iv2HDJ
+         /nEvBR6C4QUL7W5SeVhosjbJuKKDs+f6PQEiZMbJhKi+ZoKt2ddaRHM6T8j9q9qZYatc
+         0GQuRcD9IQomXrUSxHVzi5qpRZoUoxYdbbcSrmmOjmX63IljkAIjMgzxkmvuWfymfYPp
+         TNucHep2MNG+Y61JhATnXJJHMGoqT5gZNHcYvmV2gERwAJrEo/WYVIqB1Ww196HbNscp
+         u+8Z77rPaFVd0OhBZ3jciTus2CIsjl1mQjYjBLNLlvnZxdtR1s7RfJJCN+GC3EYuPQ3W
+         iNBg==
+X-Forwarded-Encrypted: i=1; AJvYcCXt63/1L/84K/dZ6wU+fcwP/EGJn+txnrl4qettbY9ftlQfMm7ETfiRFMs+M9o4d3WEZjvBc329VeoT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzT0jN113dFMwK0arsYb7p/UsYobtLGHoatSBjVMJ2Mou1KYwrJ
+	2lXVcJh8zPGh+dy+yUjKde4g09VuMXjJoUsmoxN/pzJ8BQd1eNZ3L7Xgs+Og8SIevA==
+X-Gm-Gg: ASbGncu6z5WdgbQWh+QZ5FJYSbHpYg/xNgDLPsHIsURBkOWjnW4sNSXOgUWe9c3KjPz
+	/PhMb47ShMdjWodh1IfblfNplczrwZxkYuO72lli9gqr7KWGQd9wT9ilArIXlb8HXb6ez6+zwDe
+	EIp/HHJgcDKE6VVbCt5Exx4gDlsm9SNKdK0HI6RB5bNoBtEooeHyk2psGeVDcDMPcvgjpVCtkws
+	wfQVmFhIUv4fPaHJDfYWuG1K1P3OzbPSAma//8pCLb5FO9RSlUQBuPlh7ra43OfMED3E5MMXaI3
+	Nxls/hmZVqOf9AmG4er2cSXdZaz0fBIegZiv/bizTm+1dUg20yRXXAe2qYPAnKOnfSS6KE8YMHH
+	ey7VUXrs8rNYHWQ0I3/C2CbkphsK56IFxcT0owj5hvvEonUbwarFu2t6AlI4zHg==
+X-Google-Smtp-Source: AGHT+IFDwAq1THb3IWIpQF0E9OZ0Tl++RLOgxwEZiStS6SKC57nMiie5HsehYdbEwen2VMn2oam5hw==
+X-Received: by 2002:a05:6214:5098:b0:704:9584:c370 with SMTP id 6a1803df08f44-7050551d1f1mr61874956d6.7.1752778068551;
+        Thu, 17 Jul 2025 11:47:48 -0700 (PDT)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23de4346b70sm148103395ad.195.2025.07.17.11.45.52
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-70497db12ecsm87656826d6.102.2025.07.17.11.47.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Jul 2025 11:45:58 -0700 (PDT)
-Message-ID: <78069834-d320-4ff0-ae6c-cdcb1c3824c6@broadcom.com>
-Date: Thu, 17 Jul 2025 11:45:50 -0700
+        Thu, 17 Jul 2025 11:47:46 -0700 (PDT)
+Message-ID: <af7e4420-b773-48dd-aaf4-269f63c624e1@broadcom.com>
+Date: Thu, 17 Jul 2025 11:47:38 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,8 +80,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 4/8] net: dsa: b53: Define chip IDs for more
- bcm63xx SoCs
+Subject: Re: [PATCH net-next 5/8] net: dsa: b53: mmap: Add register layout for
+ bcm63268
 To: Kyle Hendry <kylehendrydev@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
  Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
  <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
@@ -92,7 +92,7 @@ Cc: noltari@gmail.com, jonas.gorski@gmail.com,
  Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20250716002922.230807-1-kylehendrydev@gmail.com>
- <20250716002922.230807-5-kylehendrydev@gmail.com>
+ <20250716002922.230807-6-kylehendrydev@gmail.com>
 Content-Language: en-US
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
@@ -127,17 +127,58 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250716002922.230807-5-kylehendrydev@gmail.com>
+In-Reply-To: <20250716002922.230807-6-kylehendrydev@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 7/15/25 17:29, Kyle Hendry wrote:
-> Add defines for bcm6318, bcm6328, bcm6362, bcm6368 chip IDs,
-> update tables and switch init.
+> Add a structure to describe the ephy control register
+> and add register info for bcm63268.
 > 
 > Signed-off-by: Kyle Hendry <kylehendrydev@gmail.com>
+> ---
+>   drivers/net/dsa/b53/b53_mmap.c | 21 +++++++++++++++++++++
+>   1 file changed, 21 insertions(+)
+> 
+> diff --git a/drivers/net/dsa/b53/b53_mmap.c b/drivers/net/dsa/b53/b53_mmap.c
+> index 09631792049c..35bf39ab2771 100644
+> --- a/drivers/net/dsa/b53/b53_mmap.c
+> +++ b/drivers/net/dsa/b53/b53_mmap.c
+> @@ -27,9 +27,26 @@
+>   
+>   #include "b53_priv.h"
+>   
+> +struct b53_phy_info {
+> +	u32 ephy_enable_mask;
+> +	u32 ephy_port_mask;
+> +	u32 ephy_bias_bit;
+> +	const u32 *ephy_offset;
+> +};
+> +
+>   struct b53_mmap_priv {
+>   	void __iomem *regs;
+>   	struct regmap *gpio_ctrl;
+> +	const struct b53_phy_info *phy_info;
+> +};
+> +
+> +static const u32 bcm63268_ephy_offsets[] = {4, 9, 14};
+> +
+> +static const struct b53_phy_info bcm63268_ephy_info = {
+> +	.ephy_enable_mask = GENMASK(4, 0),
+> +	.ephy_port_mask = GENMASK((ARRAY_SIZE(bcm63268_ephy_offsets) - 1), 0),
+> +	.ephy_bias_bit = 24,
+> +	.ephy_offset = bcm63268_ephy_offsets,
+>   };
+>   
+>   static int b53_mmap_read8(struct b53_device *dev, u8 page, u8 reg, u8 *val)
+> @@ -316,6 +333,10 @@ static int b53_mmap_probe(struct platform_device *pdev)
+>   	priv->regs = pdata->regs;
+>   
+>   	priv->gpio_ctrl = syscon_regmap_lookup_by_phandle(np, "brcm,gpio-ctrl");
+> +	if (!IS_ERR(priv->gpio_ctrl)) {
 
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+This check IMHO belongs in patch #2, even though it only starts being 
+useful now. Up to you, and depending upon other comments.
 -- 
 Florian
 
