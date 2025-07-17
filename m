@@ -1,168 +1,121 @@
-Return-Path: <devicetree+bounces-197241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3188B0894E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 11:29:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75340B08952
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 11:30:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E07C05849BD
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 09:29:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FECDA481D4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 09:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A719F28A1CB;
-	Thu, 17 Jul 2025 09:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D225328A1E0;
+	Thu, 17 Jul 2025 09:29:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cn99rS2j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k3DjxbjH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B726428A1C1
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 09:29:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A83202F850;
+	Thu, 17 Jul 2025 09:29:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752744589; cv=none; b=NuZFGUCDHUwFLkueLeEM/LrwN3wRTIpOcIGBm2OvTsZGazObTaO+Weont5wf0goRwd6IwcqHNPSGoeb7lzemBuYs7SnN7EGMjqngW/il5iZNx5pt9Dpg45443PJG00+JmCEE4e93iy57UkY5iy6o4v4iQDLaXHadiHL7BwkP3TM=
+	t=1752744596; cv=none; b=sFHjsqCU5Jizq9z2uw/okLSu/8Ed8Wfvc5NQGO8n8i+KSI1/AsaJyP2GwEn9QGwJvv3H4qMUlQ/varHsMxbZB5QfPcy/NRR5KNGQaYZb04a2Ate48rcntcJefU59dVvsEN4HOYug4+jNC7QmC4vwNNtrT1CX2wo2i80su7UQxAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752744589; c=relaxed/simple;
-	bh=rE8yPB6Hlg97Oq+SrHdkqJj1+cV5XZjvYUEm665XVng=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i2qw19W4TzT9+BwjuAj7T29PGbIhuxFqLTf+J5NABu87JP0HYNyprHuwAbuh3o3cETUhnWpXeq1izrrTpOX9VPDFRMRsPKM4qTdk6rJ84uhu0Hyt7N6r/rJcwmhCZyRy+2GhmjRB5xSlFLspI3pI6AdbklkFon8c+gYdbtiArl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Cn99rS2j; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4561514c7f0so7453955e9.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 02:29:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752744586; x=1753349386; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7FBx9zx+OFnX0Zhf5hV0yDLTiVa32uci/a89Y9S0gZ0=;
-        b=Cn99rS2jIBr6NglP8WfDbkEpX02MNGNdVZZLeoHQbCQex+Bw88q+qO93DonVWrZVat
-         0+t85Irtog+9DE7+3g09ql1zdgF7Gz8rN9wOYMbz5Y8Q1t2qjMtThpFyeBlftN1oF1pD
-         qbZvRkhbOrFEI7AOZrIUBeTV1OzUIdbbpu4I4i/nluzmy8/+D3EvUxgxNqFag6NI1Kzi
-         5U7tvJD1yq+u0thJKFf5K7RFDk1pW35ttTubCw1NAInXEggr8WiEajDnFewEZjTu+q1X
-         Sf80xOqo2jjZMGTSWRRJVrX7c47Mfq+1BW4wdhe2DXflYJWv24VGBTClQkgQnvFFqRr8
-         kQ4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752744586; x=1753349386;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7FBx9zx+OFnX0Zhf5hV0yDLTiVa32uci/a89Y9S0gZ0=;
-        b=D4C6V0rmU3FPwepy559gKj9AF8SRAKeBRt0p2jArz9/gb9m9qwlaXvSHRLaEOh7qxl
-         Mnait9wwQkVE+bL0tZEzmJCzN+mRse1gxkSAcJLsCQlH7/Vg5JHijHCwhXfsspSmPgz7
-         nnZ5kLtugfLKSCvAan0PwBhBAuxaN0u+FqGDZ4tawcI+6xoML7KQg/mqgHylZJdQHA99
-         /r7dmFmPf2U3RWy9vaQYFRURWaqJEk/sriKRfWbuk/I2ut+67aMBJgWPDkwhNyc5j3IB
-         91Vx8XsT1rXBO1WzV+bccAqh3GXfSac4QCErwjp/Atkdj5vamTfF8WqUL8qShhQFOT0N
-         YeHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrXAiioByWuAMLpu/2PC/PZ9dHpVLIjZN0+M0QNeYuHP8t7r9ZSiVG4NM9nIP2Uspnab5yqy1KI2AO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzfu4mZaxB0MP9RP67x7sAGK0K93OR3mtRB7gcKPfogDcfyhElZ
-	FYTzyjZnRefSeVZ38wvq9zf6hCrfTn5Kab9TYKz/AX20+OvvV1exWjhWz4Ow3CIrotM=
-X-Gm-Gg: ASbGncs/bqQ6zLFwc2qPoH0028hs/XAWbvCk3tDKojkMkIm16bmBBk4AZKZhWGQikJf
-	vynNvdb26OKq2eQKLo39PE4J6BQefNsUFlnq/rl5EeiREJEoMvPjJmF2eC6ofRw6WcVW6uziEaz
-	Ta2qeQjbreqPh7/YrXxJzj223iuIscyaPTFMJmF4xmq72sAqiLIIeBNlI+vR5TVDBDccI4B7Tu7
-	0xg8gUsJRgqH7Q+Pj2tBR8R1PV9knVhciX2F3yWp2srHU5KeHKKVAD2sYovQO3KVlIi4WAQaOGU
-	yF1/PtzZRuThh92zlP2e4zAhMUPKXSETQh2fqIcMB/OYJH7+/eRBNy8N0ig2vn3SY0cTBID66PR
-	1hUiceLUU3YsWT67xVmLXGcO9wqmeOumj9ovzbFnSEiqt6MD/AhI4TrmVsgDOD3sOrzn7Mjek7w
-	==
-X-Google-Smtp-Source: AGHT+IF47FsmRKbHX/rLmLQrUaYE+xdPrz7LbZ3X35FNDExHDUvsBvp/qgkII3tTDlHgd2onvoADnw==
-X-Received: by 2002:a05:600c:4f4d:b0:456:1006:5418 with SMTP id 5b1f17b1804b1-45631b21429mr44285585e9.13.1752744585978;
-        Thu, 17 Jul 2025 02:29:45 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45634f8cc6esm16924625e9.26.2025.07.17.02.29.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Jul 2025 02:29:45 -0700 (PDT)
-Message-ID: <8ac6f365-205a-4140-98b1-847f54ce08af@linaro.org>
-Date: Thu, 17 Jul 2025 10:29:44 +0100
+	s=arc-20240116; t=1752744596; c=relaxed/simple;
+	bh=BSK0uIAcmO4oPS5QlKIFn6TVQZfBtcq3Y0E6j9kT5u0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=A2CHTVqnoqiHS3pbP1vuZjfsJZxKcFHMbtZF33l8JMXGj169+e/jtKk9jltqSS6sgpuyijJkrXIcQIuxyZOU+zucOK3GNEWlALRfkyfPGsbtqrKUXeLYYRBXgTVSmi4fCs62Q42LtM59B3NlXMds2rc7+PjOYMdHytyoPftTGDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k3DjxbjH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2C367C4CEE3;
+	Thu, 17 Jul 2025 09:29:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752744596;
+	bh=BSK0uIAcmO4oPS5QlKIFn6TVQZfBtcq3Y0E6j9kT5u0=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=k3DjxbjHiBnXKDWDbeU4sh6wy6dGKnkrK/K90bPDsn8nRdTPYMOXN1M6NCCcWFvGW
+	 X4L36ehDXoxdW0teWmyntC04XTzyKOFN2GYkamarDOa1Um8qOIDcdMEllBhKbTJ9sz
+	 pEbJ7GVg2EmNQC7kvrahZvzw1OFuCYGQbH3FdqFWKgvsNEXGY/KltIdGc9TNVmA8iy
+	 0a3CoFDsru6mp1vdBlWo7Dn+OZhXjUpN98IidcXDyhnwiJCpuoLbiBfCTLKsrExnGu
+	 QoxXZ8dagNkcUh593fPM1igXd914U0Nf7dhc0H1HPrcPdjkNK9b3NVSPhzdfbI5Rro
+	 6Hl7CoAgQJYLQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2204CC83F1A;
+	Thu, 17 Jul 2025 09:29:56 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Thu, 17 Jul 2025 17:29:54 +0800
+Subject: [PATCH v2] dts: arm: amlogic: fix pwm node for c3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/7] media: venus: Add support for AR50_LITE video core
-To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-Cc: quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com, krzk+dt@kernel.org,
- konradybcio@kernel.org, mchehab@kernel.org, andersson@kernel.org,
- conor+dt@kernel.org, amit.kucheria@oss.qualcomm.com,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250715204749.2189875-1-jorge.ramirez@oss.qualcomm.com>
- <20250715204749.2189875-4-jorge.ramirez@oss.qualcomm.com>
- <4734edd5-8224-4caa-8844-c38dabc6b6c0@linaro.org> <aHij+NHG5xbM1paO@trex>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <aHij+NHG5xbM1paO@trex>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250717-fix-pwm-node-v2-1-7365ac7d5320@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAJHCeGgC/3WMQQ6CMBBFr0Jm7ZhOY2lw5T0IiwoDTCKUtKZqS
+ O9uZe/y/Z/3dogchCNcqx0CJ4ni1wL6VEE/u3VilKEwaKWNsmRxlDdurwVXPzDWxKO2d9fUykB
+ RtsDlP3JtV3iW+PThc9QT/dY/oURIeDFKk7WWR9fc3PLwk/Tn3i/Q5Zy/MEzEaKoAAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752744595; l=1176;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=Gl5aQb1KI68vaz1xI6GSSxa1gnslD6ZLVXgkTOwj19o=;
+ b=ndz6krIm5rTHcF0VCgZszdjiIhZ9+NkgcPqV41Y1+BuN0ax4ZI3OVdxiPxYwolQ3HkunwrNXV
+ jRLiAD5X/tdAi+pBzR4xvpRvheVKtmMezVlUdfm5OusW9s+D9+EZ2ya
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-On 17/07/2025 08:19, Jorge Ramirez wrote:
->>> --- a/drivers/media/platform/qcom/venus/helpers.c
->>> +++ b/drivers/media/platform/qcom/venus/helpers.c
->>> @@ -230,6 +230,24 @@ int venus_helper_alloc_dpb_bufs(struct venus_inst *inst)
->>>    }
->>>    EXPORT_SYMBOL_GPL(venus_helper_alloc_dpb_bufs);
->>> +void venus_helper_prepare_eos_data(struct venus_inst *inst,
->>> +				   struct hfi_frame_data *data)
->>> +{
->>> +	struct venus_core *core = inst->core;
->>> +
->>> +	data->buffer_type = HFI_BUFFER_INPUT;
->>> +	data->flags = HFI_BUFFERFLAG_EOS;
->>> +
->>> +	if (IS_V6(core) && is_fw_rev_or_older(core, 1, 0, 87))
->>> +		return;
->>> +
->>> +	if (IS_V4(core) && is_lite(core) && is_fw_rev_or_older(core, 6, 0, 53))
->>> +		data->alloc_len = 1;
->>> +
->>> +	data->device_addr = 0xdeadb000;
->>> +}
->>> +EXPORT_SYMBOL_GPL(venus_helper_prepare_eos_data);
->> This function doesn't appear to have alot to do with AR50_LITE as it
->> pertains to IS_V6() and IS_V4().
->>
->> This I think should be a separate patch with its own commit log to describe
->> the quite complex logic of version numbers going on here.
-> Let me give it some background:
-> 
-> According to the HFI specification, EOS (End-of-Stream) buffers must
-> have 'valid' addresses. While the firmware currently appears to make no
-> use of the EOS buffer contents, allocating and mapping them would have
-> been a better driver choice IMO. Hoever this one has better performance
-> which is probably the reason why it has stayed.
-> 
-> The firmware then does perform operations involving the buffer's size
-> and length fields, and enforces boundary checks accordingly. On the
-> AR50_LITE platform, an earlier firmware version lacked a check on
-> alloc_len, leading to a division-by-zero scenario.
-> 
-> This has been addressed, and we plan to release firmware version 6.0.54,
-> which includes the necessary boundary check for alloc_len.
-> 
-> I should probaly replace IS_V4(core) && is_lite(core) with
-> IS_AR50_LITE() instead of trying to give it the appearence of a design
-> feature.
-> 
-> seems the sensible thing to do, right?
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-I'll stipulate to all of that.
+Fix reg address for c3 pwm node.
 
-I know I'm being pedantic but, the title and subject of this patch is 
-"AR50_LITE" does stuff.
+Fixes: be90cd4bd422 ("arm64: dts: amlogic: Add Amlogic C3 PWM")
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Fix c3 pwm node reg.
+---
+Changes in v2:
+- Fix commit change-id about Fixes.
+- Link to v1: https://lore.kernel.org/r/20250717-fix-pwm-node-v1-1-45021777efa9@amlogic.com
+---
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-As traveler from a mirror-universe - I would read the commit log here, 
-look at this function and be none the wiser what was going on.
-
-The EOS check is a fundamental HFI capability which is why I again 
-reiterate it deserves its own commit log with the above explanation - 
-word-for-word would be fine from my POV, to explain what is going on.
-
-Long live the Empire!
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+index cb9ea3ca6ee0..71b2b3b547f7 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+@@ -792,7 +792,7 @@ spicc1: spi@52000 {
+ 			pwm_mn: pwm@54000 {
+ 				compatible = "amlogic,c3-pwm",
+ 					     "amlogic,meson-s4-pwm";
+-				reg = <0x0 54000 0x0 0x24>;
++				reg = <0x0 0x54000 0x0 0x24>;
+ 				clocks = <&clkc_periphs CLKID_PWM_M>,
+ 					 <&clkc_periphs CLKID_PWM_N>;
+ 				#pwm-cells = <3>;
 
 ---
-bod
+base-commit: 58abdca0eb653c1a2e755ba9ba406ee475d87636
+change-id: 20250717-fix-pwm-node-61ef27ba9605
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
