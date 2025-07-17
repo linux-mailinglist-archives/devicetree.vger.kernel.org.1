@@ -1,447 +1,271 @@
-Return-Path: <devicetree+bounces-197192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67600B086A0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 09:28:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22E8AB086A6
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 09:30:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B6AD3B596E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 07:28:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 716691A64E15
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 07:30:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E98B423504B;
-	Thu, 17 Jul 2025 07:28:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3495E24DD15;
+	Thu, 17 Jul 2025 07:30:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TrPppdYJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mnQATOc3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE960231842;
-	Thu, 17 Jul 2025 07:28:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639082459F7;
+	Thu, 17 Jul 2025 07:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752737321; cv=none; b=Y6OswguDYOGR/e74zl5eYEko0uYrUTUrKOYhrZ83J8heHiuThEnuk/0KX+dASmbHJvzQcFJc+P9L/tQViIaPqEe5Ll0rQzl62abeuppeLpMu+JJbfy9i0onN3qy8bxiOsijEu8rvYup77F3pIgcLb+4llMfA01yyeZP61T2N+LU=
+	t=1752737431; cv=none; b=ry4hN2xQqorCel+9Maf3qes5r1+d1RZmByO6U6U0IRLy1J0eueV8pErWgPT/b9b0Jp9PmcDpPyM9DhetAbxrWXm6tfx4waxsFOVB240EvpYyD4RRtVGPgU8gbq0bC/YhaqLSNpU0xubinLSGkK9+NUibGe770DwZskIl3XDB8x4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752737321; c=relaxed/simple;
-	bh=4KzMyDzXjtYRrnvq2CFH/KwYRcMgVqV+Hn4qsI3FlUk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lxkoRJRmYEv/Qmtu9sq/oMCrsd2yKJNESA/GBLWEbQVHZB/dC5mK4+++herR1tgewIJRXfSFKzlj8wLozLh73YW10DJuYbujY0l2DQB1kaLatfW3xYlg+TI63EfZaUTj7Ll+fwwyWsdU0giQ6xBubwBpCFXAEN6h0Y1AkfGDqiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TrPppdYJ; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-60789b450ceso1154700a12.2;
-        Thu, 17 Jul 2025 00:28:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752737318; x=1753342118; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VcV5q/jmjieY/zsuCUeOgorppXDKoUYx+baj3sChvss=;
-        b=TrPppdYJTsrjs9OV+aqAUm6XYUx6TOPgjLFv7kCB0rDVHnfsPds+jab62rWt2jzqlW
-         6pJUmLAJJzvrZVby7obJU1L4oXvTOvmqbhtxUhzsNBR/yiRZwR6JfNz5dUKzhHPG6HZj
-         uariv6jRL/cC+jupHPV29UiOUZMFbSHUfoivyQ3u6NT/AM/fOoGvd+Gyhli/s28mC1zh
-         RFIWwEifEBKGnwSk0TiDtB0espE/j3EHVy1JOZUCSJ3KfjoN40NIc7nIQ5YF5zeRFXpI
-         tMRMdjFKNujDYadqKTmTeQpFBULnX5yfSjr+vTT0pkG4/PXlKFVg0lIkQ2+VWGOyXhoK
-         zXCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752737318; x=1753342118;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VcV5q/jmjieY/zsuCUeOgorppXDKoUYx+baj3sChvss=;
-        b=SEb0KSPPM9Jz0AE0s0TxQevyATriGHR3IHgO8xG3nTc52YcNE9D3emppf6kHU0rPcY
-         gK+Qz/Z3Jl1kco7z4AmH1XzfcG0ABS/aFMe0JjKMJoqHCooaNvIMxmznYGZ4qWlzLOWQ
-         Xvwlu+5fk/51YEzCGPn3vH2PQtPxWLijdN4/CBrRZEE4fUs3to65bWtjPED1TPyp7AKB
-         S5u5aAeSeUPnAg6NECM7TLDPPCj/nRmJdUMJ0bKJ0OpBEc0ayK9rW1MzL7bvRgwPF/FE
-         VTpRZjerDhH+3JgLstMIJum5YTBd0uB8DA09/kTgMfqAQCGiOIwccAllYMReClrIKGZq
-         vEEA==
-X-Forwarded-Encrypted: i=1; AJvYcCUx96keds92VkZIZYctPCRAxUuIevzHd8O7RB4MNf6IRsf1936CP5q2lvFTEkVnd53hgMJojW1fo8Jd@vger.kernel.org, AJvYcCWMO0d/cz0XGLFHAvJ5fXD6gg+SWVUNOvNHB7BsnD9ukCIACSpFoH8LiLYaAhpJofSeTIytWZlSbn7KAMo0RMQiH04=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQ2i61DvMy0qYRqal4idXIfGLcbp5D1TyNyHzCcfuy3Sd+0bg2
-	1Wneqq2mxUrFwtYwUYumKyhIfgRHAgVNVSYZof4VyH/1g5/4DfZkzyx3G62Kzg==
-X-Gm-Gg: ASbGnct9juVK5bs0appdWPKJTO60dF67rZ2u0mXchP2lDaEV7avnxugKL4xBu4GMoNS
-	wmNQV3LDtf3ow+eX3e8+CAjpyOcWnvYZ6OYUfSlU6c9Caf/xWUvIBlCuOJW/HTnJeeHg5bm44GI
-	KgnJ/o8TsEXvLMn+zsp93fwUkMU6PANJWPilbJ7BQuhxlJcCWH0jph6hdeaZf87nAX1dLRyI847
-	K1wCvrNuh2kIZw8hDg9rbyZaYTGpdO2CNb9HB1aAMcjw0CRz/DK8KCgoOPwxfV7czlZulJRveCI
-	VCgvNXUvgDZHjvq5rNPDBLuzDmYGoEqq/6aBbW2FuYjBMOt68seIY9U6Gz08ShihPnev1vl0z3F
-	HxIAHLQ3hJG8PaBmhb/JhwAYHPKYXwhbmiTCTFqiMj2D4ZAYmAlCquIjNJlMvhOoEqeJYlvbXdz
-	9M
-X-Google-Smtp-Source: AGHT+IF1n1djsujE+lHL1dVwvdQ5sh3qkSgDGn6tZyRKrPWKVYpqVF2qwCPbozb8mhaSseM7IFXZuQ==
-X-Received: by 2002:a17:907:7ba0:b0:ae3:4f80:ac4c with SMTP id a640c23a62f3a-ae9cdd834fdmr515165966b.12.1752737317563;
-        Thu, 17 Jul 2025 00:28:37 -0700 (PDT)
-Received: from [192.168.1.107] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e82646bcsm1318709966b.76.2025.07.17.00.28.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Jul 2025 00:28:37 -0700 (PDT)
-Message-ID: <7bec6fc2-6643-4ddf-9475-8ead4b312912@gmail.com>
-Date: Thu, 17 Jul 2025 10:28:35 +0300
+	s=arc-20240116; t=1752737431; c=relaxed/simple;
+	bh=X5KtMoelbU809g7NkdayOPmKClRVSKLwSlDQ1dHrio4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=evv3O+p2hd97qi8DCuvnIM07Ea5cD1g8nXUQqL6nonAmafhDKxFyw4/G/JsIkkFqxopYn4HWg868sRlHIXgK68OxW6nb4DR15Fne8s/6F7noXocUaA8yE3dWOM4AdBmZOjkYZtQ04KubbpTU0dbZO7dGt5YOwYhcJcuxkPfpNxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mnQATOc3; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7FA8D443F2;
+	Thu, 17 Jul 2025 07:30:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1752737425;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=F6qJz6FW92hpTJPKGEZ8jdqv8tNGizAfpJ2FexjvlZE=;
+	b=mnQATOc3JQW/VbrXaHC3ctIgELJULkrtEQmkUVcN1IraLZF2AmPXoo70V+Gc4vJaSRgn5y
+	7xW43NsGhSgXggVRbC/I3h46gB0mCXPJJx9jp00ff7PooG+4uIQRf7Ve90bbYzFT+9T5F3
+	ZnBVYIcTqb4GUO5FoeLMngGbRVaWMxTEphXzzAhMMoDMeb3QF0AC3U8MfTfdwDBiuXpow2
+	2Yagh8q+J9GbHDILox/X90nQAq1zeAvp4IdkTRtDYjkZVlhsLK1iw0bl2LA+H00Jk221Jo
+	CoT3Eb8uSpyG9VxvDaZoZ2Cfcx67275qqqLX/Q4Q8vS9Ml2ilAPfdiZW5nCGSQ==
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: davem@davemloft.net
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com,
+	Andrew Lunn <andrew@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?UTF-8?q?Nicol=C3=B2=20Veronese?= <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>,
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Subject: [PATCH net-next v9 00/15] net: phy: Introduce PHY ports representation
+Date: Thu, 17 Jul 2025 09:30:04 +0200
+Message-ID: <20250717073020.154010-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] regulator: add s2dos05 regulator support
-Content-Language: en-US
-To: Dzmitry Sankouski <dsankouski@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240617-starqltechn_integration_upstream-v5-0-ea1109029ba5@gmail.com>
- <20240617-starqltechn_integration_upstream-v5-3-ea1109029ba5@gmail.com>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20240617-starqltechn_integration_upstream-v5-3-ea1109029ba5@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdehleellecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeufeevvdfggfdvteeliefhudfgtdfgffeuudehtdeiveeigeehgfeiudeludelfeenucffohhmrghinhepnhgvthguvghvtghonhhfrdhinhhfohdplhhptgdrvghvvghnthhspdhkvghrnhgvlhdrohhrghenucfkphepvdgrtddumegtsgduleemkegugeehmeegledttdemieehieekmedvlegsudemlegvfhehmegvkegtjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekugegheemgeeltddtmeeiheeikeemvdelsgdumeelvghfheemvgektgejpdhhvghlohepfhgvughorhgrrdhhohhmvgdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefuddprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepmhgrgihimhgvr
+ dgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-On 9/26/24 12:47, Dzmitry Sankouski wrote:
-> S2DOS05 has 1 buck and 4 LDO regulators, used for powering
-> panel/touchscreen.
->
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+Hi everyone,
 
-When is this going to get merged? This patch brings the regulators
-functionality of the pmic, so not having it merged is odd. This PMIC is
-used on other devices too, like the Galaxy S22.
+Here's a V9 for the phy port work, that includes some fixes from Rob's
+reviews, by addressing a typo and the mediums item list.
 
-It seems like this has been hanging for almost an year at this point.
-If the author won't, will somebody resend it?
+I didn't include a compatible in the connector yet, but this can indeed
+be added if need be.
+
+Before going into the details, a few important notes :
+
+ - This is only a first phase. It instantiates the port, and leverage
+   that to make the MAC <-> PHY <-> SFP usecase simpler.
+
+ - Next phase will deal with controlling the port state, as well as the
+   netlink uAPI for that.
+
+ - The end-goal is to enable support for complex port MUX. This
+   preliminary work focuses on PHY-driven ports, but this will be
+   extended to support muxing at the MII level (Multi-phy, or compo PHY
+   + SFP as found on Turris Omnia for example).
+
+ - The naming is definitely not set in stone. I named that "phy_port",
+   but this may convey the false sense that this is phylib-specific.
+   Even the word "port" is not that great, as it already has several
+   different meanings in the net world (switch port, devlink port,
+   etc.). I used the term "connector" in the binding.
+
+A bit of history on that work :
+
+The end goal that I personnaly want to achieve is :
+
+            + PHY - RJ45
+            | 
+ MAC - MUX -+ PHY - RJ45
+
+After many discussions here on netdev@, but also at netdevconf[1] and
+LPC[2], there appears to be several analoguous designs that exist out
+there.
+
+[1] : https://netdevconf.info/0x17/sessions/talk/improving-multi-phy-and-multi-port-interfaces.html
+[2] : https://lpc.events/event/18/contributions/1964/ (video isn't the
+right one)
+
+Take the MAchiatobin, it has 2 interfaces that looks like this :
+
+ MAC - PHY -+ RJ45
+            |
+	    + SFP - Whatever the module does
+
+Now, looking at the Turris Omnia, we have :
+
+
+ MAC - MUX -+ PHY - RJ45
+            |
+	    + SFP - Whatever the module does
+
+We can find more example of this kind of designs, the common part is
+that we expose multiple front-facing media ports. This is what this
+current work aims at supporting. As of right now, it does'nt add any
+support for muxing, but this will come later on.
+
+This first phase focuses on phy-driven ports only, but there are already
+quite some challenges already. For one, we can't really autodetect how
+many ports are sitting behind a PHY. That's why this series introduces a
+new binding. Describing ports in DT should however be a last-resort
+thing when we need to clear some ambiguity about the PHY media-side.
+
+The only use-cases that we have today for multi-port PHYs are combo PHYs
+that drive both a Copper port and an SFP (the Macchiatobin case). This
+in itself is challenging and this series only addresses part of this
+support, by registering a phy_port for the PHY <-> SFP connection. The
+SFP module should in the end be considered as a port as well, but that's
+not yet the case.
+
+However, because now PHYs can register phy_ports for every media-side
+interface they have, they can register the capabilities of their ports,
+which allows making the PHY-driver SFP case much more generic.
+
+Let me know what you think, I'm all in for discussions :)
 
 Regards,
-Ivaylo
 
-> ---
-> Changes in v4:
-> - remove excessive linux/module.h import
-> - use generic regulator helpers
-> - use of_match
-> - use devm_* for mem allocations
-> - use // style comment
-> - drop all junk Samsung code
-> - adjust to depend on sec-core
->
-> Changes in v5:
-> - fix Kconfig and module description to be the same
-> - make regulators const
-> - code refactoring
-> - replace s2m* pattern on s2* to include s2dos05
-> ---
->  MAINTAINERS                           |   2 +-
->  drivers/regulator/Kconfig             |   8 ++++
->  drivers/regulator/Makefile            |   1 +
->  drivers/regulator/s2dos05-regulator.c | 176 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/regulator/s2dos05.h     |  73 +++++++++++++++++++++++++++++++++++++
->  5 files changed, 259 insertions(+), 1 deletion(-)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6a6c769a341a..0b9fca1030a8 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20474,7 +20474,7 @@ F:	Documentation/devicetree/bindings/regulator/samsung,s2m*.yaml
->  F:	Documentation/devicetree/bindings/regulator/samsung,s5m*.yaml
->  F:	drivers/clk/clk-s2mps11.c
->  F:	drivers/mfd/sec*.c
-> -F:	drivers/regulator/s2m*.c
-> +F:	drivers/regulator/s2*.c
->  F:	drivers/regulator/s5m*.c
->  F:	drivers/rtc/rtc-s5m.c
->  F:	include/linux/mfd/samsung/
-> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-> index 39297f7d8177..249933d6388d 100644
-> --- a/drivers/regulator/Kconfig
-> +++ b/drivers/regulator/Kconfig
-> @@ -1322,6 +1322,14 @@ config REGULATOR_RTQ2208
->  	  and two ldos. It features wide output voltage range from 0.4V to 2.05V
->  	  and the capability to configure the corresponding power stages.
->  
-> +config REGULATOR_S2DOS05
-> +	tristate "Samsung S2DOS05 voltage regulator"
-> +	depends on MFD_SEC_CORE || COMPILE_TEST
-> +	help
-> +	  This driver provides support for the voltage regulators of the S2DOS05.
-> +	  The S2DOS05 is a companion power management IC for the smart phones.
-> +	  The S2DOS05 has 4 LDOs and 1 BUCK outputs.
-> +
->  config REGULATOR_S2MPA01
->  	tristate "Samsung S2MPA01 voltage regulator"
->  	depends on MFD_SEC_CORE || COMPILE_TEST
-> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-> index 3d5a803dce8a..9b69546fb3f6 100644
-> --- a/drivers/regulator/Makefile
-> +++ b/drivers/regulator/Makefile
-> @@ -154,6 +154,7 @@ obj-$(CONFIG_REGULATOR_RTMV20)	+= rtmv20-regulator.o
->  obj-$(CONFIG_REGULATOR_RTQ2134) += rtq2134-regulator.o
->  obj-$(CONFIG_REGULATOR_RTQ6752)	+= rtq6752-regulator.o
->  obj-$(CONFIG_REGULATOR_RTQ2208) += rtq2208-regulator.o
-> +obj-$(CONFIG_REGULATOR_S2DOS05) += s2dos05-regulator.o
->  obj-$(CONFIG_REGULATOR_S2MPA01) += s2mpa01.o
->  obj-$(CONFIG_REGULATOR_S2MPS11) += s2mps11.o
->  obj-$(CONFIG_REGULATOR_S5M8767) += s5m8767.o
-> diff --git a/drivers/regulator/s2dos05-regulator.c b/drivers/regulator/s2dos05-regulator.c
-> new file mode 100644
-> index 000000000000..258cabf104ce
-> --- /dev/null
-> +++ b/drivers/regulator/s2dos05-regulator.c
-> @@ -0,0 +1,176 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
-> +// s2dos05.c - Regulator driver for the Samsung s2dos05
-> +//
-> +// Copyright (C) 2024 Dzmitry Sankouski <dsankouski@gmail.com>
-> +
-> +#include <linux/bug.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/slab.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regulator/driver.h>
-> +#include <linux/regulator/machine.h>
-> +#include <linux/regulator/of_regulator.h>
-> +#include <linux/mfd/samsung/core.h>
-> +#include <linux/regulator/s2dos05.h>
-> +#include <linux/i2c.h>
-> +
-> +struct s2dos05_data {
-> +	struct regmap *regmap;
-> +	struct device *dev;
-> +};
-> +
-> +#define _BUCK(macro)	S2DOS05_BUCK##macro
-> +#define _buck_ops(num)	s2dos05_ops##num
-> +#define _LDO(macro)	S2DOS05_LDO##macro
-> +#define _REG(ctrl)	S2DOS05_REG##ctrl
-> +#define _ldo_ops(num)	s2dos05_ops##num
-> +#define _MASK(macro)	S2DOS05_ENABLE_MASK##macro
-> +#define _TIME(macro)	S2DOS05_ENABLE_TIME##macro
-> +
-> +#define BUCK_DESC(_name, _id, _ops, m, s, v, e, em, t, a) {	\
-> +	.name		= _name,				\
-> +	.id		= _id,					\
-> +	.ops		= _ops,					\
-> +	.of_match = of_match_ptr(_name),			\
-> +	.of_match_full_name = true,				\
-> +	.regulators_node = of_match_ptr("regulators"),		\
-> +	.type		= REGULATOR_VOLTAGE,			\
-> +	.owner		= THIS_MODULE,				\
-> +	.min_uV		= m,					\
-> +	.uV_step	= s,					\
-> +	.n_voltages	= S2DOS05_BUCK_N_VOLTAGES,		\
-> +	.vsel_reg	= v,					\
-> +	.vsel_mask	= S2DOS05_BUCK_VSEL_MASK,		\
-> +	.enable_reg	= e,					\
-> +	.enable_mask	= em,					\
-> +	.enable_time	= t,					\
-> +	.active_discharge_off = 0,				\
-> +	.active_discharge_on = S2DOS05_BUCK_FD_MASK,		\
-> +	.active_discharge_reg	= a,				\
-> +	.active_discharge_mask	= S2DOS05_BUCK_FD_MASK		\
-> +}
-> +
-> +#define LDO_DESC(_name, _id, _ops, m, s, v, e, em, t, a) {	\
-> +	.name		= _name,				\
-> +	.id		= _id,					\
-> +	.ops		= _ops,					\
-> +	.of_match = of_match_ptr(_name),			\
-> +	.of_match_full_name = true,				\
-> +	.regulators_node = of_match_ptr("regulators"),		\
-> +	.type		= REGULATOR_VOLTAGE,			\
-> +	.owner		= THIS_MODULE,				\
-> +	.min_uV		= m,					\
-> +	.uV_step	= s,					\
-> +	.n_voltages	= S2DOS05_LDO_N_VOLTAGES,		\
-> +	.vsel_reg	= v,					\
-> +	.vsel_mask	= S2DOS05_LDO_VSEL_MASK,		\
-> +	.enable_reg	= e,					\
-> +	.enable_mask	= em,					\
-> +	.enable_time	= t,					\
-> +	.active_discharge_off = 0,				\
-> +	.active_discharge_on = S2DOS05_LDO_FD_MASK,		\
-> +	.active_discharge_reg	= a,				\
-> +	.active_discharge_mask	= S2DOS05_LDO_FD_MASK		\
-> +}
-> +
-> +static const struct regulator_ops s2dos05_ops = {
-> +	.list_voltage		= regulator_list_voltage_linear,
-> +	.map_voltage		= regulator_map_voltage_linear,
-> +	.is_enabled		= regulator_is_enabled_regmap,
-> +	.enable			= regulator_enable_regmap,
-> +	.disable		= regulator_disable_regmap,
-> +	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-> +	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-> +	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-> +	.set_active_discharge	= regulator_set_active_discharge_regmap,
-> +};
-> +
-> +static const struct regulator_desc regulators[S2DOS05_REGULATOR_MAX] = {
-> +		// name, id, ops, min_uv, uV_step, vsel_reg, enable_reg
-> +		LDO_DESC("ldo1", _LDO(1), &_ldo_ops(), _LDO(_MIN1),
-> +			_LDO(_STEP1), _REG(_LDO1_CFG),
-> +			_REG(_EN), _MASK(_L1), _TIME(_LDO), _REG(_LDO1_CFG)),
-> +		LDO_DESC("ldo2", _LDO(2), &_ldo_ops(), _LDO(_MIN1),
-> +			_LDO(_STEP1), _REG(_LDO2_CFG),
-> +			_REG(_EN), _MASK(_L2), _TIME(_LDO), _REG(_LDO2_CFG)),
-> +		LDO_DESC("ldo3", _LDO(3), &_ldo_ops(), _LDO(_MIN2),
-> +			_LDO(_STEP1), _REG(_LDO3_CFG),
-> +			_REG(_EN), _MASK(_L3), _TIME(_LDO), _REG(_LDO3_CFG)),
-> +		LDO_DESC("ldo4", _LDO(4), &_ldo_ops(), _LDO(_MIN2),
-> +			_LDO(_STEP1), _REG(_LDO4_CFG),
-> +			_REG(_EN), _MASK(_L4), _TIME(_LDO), _REG(_LDO4_CFG)),
-> +		BUCK_DESC("buck", _BUCK(1), &_buck_ops(), _BUCK(_MIN1),
-> +			_BUCK(_STEP1), _REG(_BUCK_VOUT),
-> +			_REG(_EN), _MASK(_B1), _TIME(_BUCK), _REG(_BUCK_CFG)),
-> +};
-> +
-> +static int s2dos05_pmic_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct sec_pmic_dev *iodev = dev_get_drvdata(pdev->dev.parent);
-> +	struct of_regulator_match *rdata = NULL;
-> +	struct s2dos05_data *s2dos05;
-> +	struct regulator_config config = { };
-> +	unsigned int rdev_num = ARRAY_SIZE(regulators);
-> +	int i, ret;
-> +
-> +	s2dos05 = devm_kzalloc(dev, sizeof(*s2dos05), GFP_KERNEL);
-> +	if (!s2dos05)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, s2dos05);
-> +
-> +	rdata = devm_kcalloc(dev, rdev_num, sizeof(*rdata), GFP_KERNEL);
-> +	if (!rdata)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < rdev_num; i++)
-> +		rdata[i].name = regulators[i].name;
-> +
-> +	s2dos05->regmap = iodev->regmap_pmic;
-> +	s2dos05->dev = dev;
-> +	if (!dev->of_node)
-> +		dev->of_node = dev->parent->of_node;
-> +
-> +	for (i = 0; i < rdev_num; i++) {
-> +		struct regulator_dev *regulator;
-> +
-> +		config.init_data = rdata[i].init_data;
-> +		config.of_node = rdata[i].of_node;
-> +		config.dev = dev;
-> +		config.driver_data = s2dos05;
-> +		regulator = devm_regulator_register(&pdev->dev,
-> +						&regulators[i], &config);
-> +		if (IS_ERR(regulator)) {
-> +			ret = PTR_ERR(regulator);
-> +			dev_err(&pdev->dev, "regulator init failed for %d\n",
-> +				i);
-> +		}
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct platform_device_id s2dos05_pmic_id[] = {
-> +	{ "s2dos05-regulator" },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(platform, s2dos05_pmic_id);
-> +
-> +static struct platform_driver s2dos05_platform_driver = {
-> +	.driver = {
-> +		.name = "s2dos05",
-> +	},
-> +	.probe = s2dos05_pmic_probe,
-> +	.id_table = s2dos05_pmic_id,
-> +};
-> +module_platform_driver(s2dos05_platform_driver);
-> +
-> +MODULE_AUTHOR("Dzmitry Sankouski <dsankouski@gmail.com>");
-> +MODULE_DESCRIPTION("Samsung S2DOS05 Regulator Driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/regulator/s2dos05.h b/include/linux/regulator/s2dos05.h
-> new file mode 100644
-> index 000000000000..2e89fcbce769
-> --- /dev/null
-> +++ b/include/linux/regulator/s2dos05.h
-> @@ -0,0 +1,73 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +// s2dos05.h
-> +//
-> +// Copyright (c) 2016 Samsung Electronics Co., Ltd
-> +//              http://www.samsung.com
-> +// Copyright (C) 2024 Dzmitry Sankouski <dsankouski@gmail.com>
-> +
-> +#ifndef __LINUX_S2DOS05_H
-> +#define __LINUX_S2DOS05_H
-> +
-> +// S2DOS05 registers
-> +// Slave Addr : 0xC0
-> +enum S2DOS05_reg {
-> +	S2DOS05_REG_DEV_ID,
-> +	S2DOS05_REG_TOPSYS_STAT,
-> +	S2DOS05_REG_STAT,
-> +	S2DOS05_REG_EN,
-> +	S2DOS05_REG_LDO1_CFG,
-> +	S2DOS05_REG_LDO2_CFG,
-> +	S2DOS05_REG_LDO3_CFG,
-> +	S2DOS05_REG_LDO4_CFG,
-> +	S2DOS05_REG_BUCK_CFG,
-> +	S2DOS05_REG_BUCK_VOUT,
-> +	S2DOS05_REG_IRQ_MASK = 0x0D,
-> +	S2DOS05_REG_SSD_TSD = 0x0E,
-> +	S2DOS05_REG_OCL = 0x10,
-> +	S2DOS05_REG_IRQ = 0x11
-> +};
-> +
-> +// S2DOS05 regulator ids
-> +enum S2DOS05_regulators {
-> +	S2DOS05_LDO1,
-> +	S2DOS05_LDO2,
-> +	S2DOS05_LDO3,
-> +	S2DOS05_LDO4,
-> +	S2DOS05_BUCK1,
-> +	S2DOS05_REG_MAX,
-> +};
-> +
-> +#define S2DOS05_IRQ_PWRMT_MASK	BIT(5)
-> +#define S2DOS05_IRQ_TSD_MASK	BIT(4)
-> +#define S2DOS05_IRQ_SSD_MASK	BIT(3)
-> +#define S2DOS05_IRQ_SCP_MASK	BIT(2)
-> +#define S2DOS05_IRQ_UVLO_MASK	BIT(1)
-> +#define S2DOS05_IRQ_OCD_MASK	BIT(0)
-> +
-> +#define S2DOS05_BUCK_MIN1	506250
-> +#define S2DOS05_LDO_MIN1	1500000
-> +#define S2DOS05_LDO_MIN2	2700000
-> +#define S2DOS05_BUCK_STEP1	6250
-> +#define S2DOS05_LDO_STEP1	25000
-> +#define S2DOS05_LDO_VSEL_MASK	0x7F
-> +#define S2DOS05_LDO_FD_MASK	0x80
-> +#define S2DOS05_BUCK_VSEL_MASK	0xFF
-> +#define S2DOS05_BUCK_FD_MASK	0x08
-> +
-> +#define S2DOS05_ENABLE_MASK_L1	BIT(0)
-> +#define S2DOS05_ENABLE_MASK_L2	BIT(1)
-> +#define S2DOS05_ENABLE_MASK_L3	BIT(2)
-> +#define S2DOS05_ENABLE_MASK_L4	BIT(3)
-> +#define S2DOS05_ENABLE_MASK_B1	BIT(4)
-> +
-> +#define S2DOS05_RAMP_DELAY	12000
-> +
-> +#define S2DOS05_ENABLE_TIME_LDO		50
-> +#define S2DOS05_ENABLE_TIME_BUCK	350
-> +
-> +#define S2DOS05_LDO_N_VOLTAGES	(S2DOS05_LDO_VSEL_MASK + 1)
-> +#define S2DOS05_BUCK_N_VOLTAGES (S2DOS05_BUCK_VSEL_MASK + 1)
-> +
-> +#define S2DOS05_REGULATOR_MAX	(S2DOS05_REG_MAX)
-> +
-> +#endif // __LINUX_S2DOS05_H
->
+Changes in V9:
+ - Removed maxItems and items from the connector binding
+ - Fixed a typo in the binding
+
+Changes in V8:
+ - Added maxItems on the connector media binding
+ - Made sure we parse a single medium
+ - Added a missing bitwise macro
+
+Changes in V7:
+ - Move ethtool_medium_get_supported to phy_caps
+ - support combo-ports, each with a given set of supported modes
+ - Introduce the notion of 'not-described' ports
+
+Changes in V6:
+
+ - Fixed kdoc on patch 3
+ - Addressed a missing port-ops registration for the Marvell 88x2222
+   driver
+ - Addressed a warning reported by Simon on the DP83822 when building
+   without CONFIG_OF_MDIO
+
+Changes in V5 :
+
+ - renamed the bindings to use the term "connector" instead of "port"
+ - Rebased, and fixed some issues reported on the 83822 driver
+ - Use phy_caps
+
+Changes in V4 :
+
+ - Introduced a kernel doc
+ - Reworked the mediums definitions in patch 2
+ - QCA807x now uses the generic SFP support
+ - Fixed some implementation bugs to build the support list based on the
+   interfaces supported on a port
+
+V8: https://lore.kernel.org/netdev/20250710134533.596123-1-maxime.chevallier@bootlin.com/
+v7: https://lore.kernel.org/netdev/20250630143315.250879-1-maxime.chevallier@bootlin.com/
+V6: https://lore.kernel.org/netdev/20250507135331.76021-1-maxime.chevallier@bootlin.com/
+V5: https://lore.kernel.org/netdev/20250425141511.182537-1-maxime.chevallier@bootlin.com/
+V4: https://lore.kernel.org/netdev/20250213101606.1154014-1-maxime.chevallier@bootlin.com/
+V3: https://lore.kernel.org/netdev/20250207223634.600218-1-maxime.chevallier@bootlin.com/
+RFC V2: https://lore.kernel.org/netdev/20250122174252.82730-1-maxime.chevallier@bootlin.com/
+RFC V1: https://lore.kernel.org/netdev/20241220201506.2791940-1-maxime.chevallier@bootlin.com/
+
+Maxime
+
+Maxime Chevallier (15):
+  dt-bindings: net: Introduce the ethernet-connector description
+  net: ethtool: common: Indicate that BaseT works on up to 4 lanes
+  net: ethtool: Introduce ETHTOOL_LINK_MEDIUM_* values
+  net: phy: Introduce PHY ports representation
+  net: phy: dp83822: Add support for phy_port representation
+  net: phy: Create a phy_port for PHY-driven SFPs
+  net: phy: Introduce generic SFP handling for PHY drivers
+  net: phy: marvell-88x2222: Support SFP through phy_port interface
+  net: phy: marvell: Support SFP through phy_port interface
+  net: phy: marvell10g: Support SFP through phy_port
+  net: phy: at803x: Support SFP through phy_port interface
+  net: phy: qca807x: Support SFP through phy_port interface
+  net: phy: Only rely on phy_port for PHY-driven SFP
+  net: phy: dp83822: Add SFP support through the phy_port interface
+  Documentation: networking: Document the phy_port infrastructure
+
+ .../bindings/net/ethernet-connector.yaml      |  45 +++
+ .../devicetree/bindings/net/ethernet-phy.yaml |  18 +
+ Documentation/networking/index.rst            |   1 +
+ Documentation/networking/phy-port.rst         | 111 ++++++
+ MAINTAINERS                                   |   3 +
+ drivers/net/phy/Makefile                      |   2 +-
+ drivers/net/phy/dp83822.c                     |  78 +++--
+ drivers/net/phy/marvell-88x2222.c             |  98 +++---
+ drivers/net/phy/marvell.c                     | 100 +++---
+ drivers/net/phy/marvell10g.c                  |  47 +--
+ drivers/net/phy/phy-caps.h                    |   5 +
+ drivers/net/phy/phy_caps.c                    |  58 ++++
+ drivers/net/phy/phy_device.c                  | 327 +++++++++++++++++-
+ drivers/net/phy/phy_port.c                    | 170 +++++++++
+ drivers/net/phy/qcom/at803x.c                 |  64 +---
+ drivers/net/phy/qcom/qca807x.c                |  75 ++--
+ include/linux/ethtool.h                       |  44 ++-
+ include/linux/phy.h                           |  38 +-
+ include/linux/phy_port.h                      |  97 ++++++
+ include/uapi/linux/ethtool.h                  |  20 ++
+ net/ethtool/common.c                          | 267 ++++++++------
+ 21 files changed, 1279 insertions(+), 389 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ethernet-connector.yaml
+ create mode 100644 Documentation/networking/phy-port.rst
+ create mode 100644 drivers/net/phy/phy_port.c
+ create mode 100644 include/linux/phy_port.h
+
+-- 
+2.49.0
 
 
