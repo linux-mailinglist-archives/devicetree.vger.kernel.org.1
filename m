@@ -1,110 +1,240 @@
-Return-Path: <devicetree+bounces-197419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EA47B09205
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 18:41:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F80EB09220
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 18:45:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACD5D1C44F6D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:41:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E29E7A5306
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B124B2F9487;
-	Thu, 17 Jul 2025 16:40:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89CDC2FCE34;
+	Thu, 17 Jul 2025 16:45:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tDQ0D4yV"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JPubvpCx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84469145348;
-	Thu, 17 Jul 2025 16:40:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442872FC3AE;
+	Thu, 17 Jul 2025 16:45:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752770456; cv=none; b=UKpC4LPsZeWZik+0RUxa7m/b1JLXj9mXUToGXzS5DV+F0mfKxy/AnrZVksQtDCvkrcmpw9F+BKXBkQ829KSD9LVIOYodESORHVLDsDfjEq5pjuAOr9M53fNkq6/DyhpeM+wA7o0Q36X0OITSwQojZVcthekl10snQLzzQgNH1xE=
+	t=1752770706; cv=none; b=aGKn2YmelHNPScLNfoaCFaC9FXltQLFukh/LwCujbTz1YsibMilSbC2kgRKpG1/XOAke5BYJkbVpPaNssTYiE7rrOCeT4BLOcUxKXA2/zxKxWoVE7seUYRC70COGTE2qaMGPId8H6FdFvk+Psp++TzkS4YbnMJzSCpObZ/2lBEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752770456; c=relaxed/simple;
-	bh=ByddQ4ljqeLh42/kuXmBPmD/rtrLWHzLSHkW5sCBl/c=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Ms50eMWJbqibuDxab1FLDXzVsnbZziUajEGVywpNS2Jg+WO4IOk/WE1GmgDhg+pC6BhPLSMRcApbUIkG8kyHWKM7nGJmAFUpm4mhEjWDgMLnrh7LkpGjeXzouyewwtwgjsmH6Lxk7H1VtBSQKq346D346HHd1p1WvpyoQH397eU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tDQ0D4yV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FD03C4CEE3;
-	Thu, 17 Jul 2025 16:40:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752770456;
-	bh=ByddQ4ljqeLh42/kuXmBPmD/rtrLWHzLSHkW5sCBl/c=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=tDQ0D4yVm8wPO+1jUMV5uAPSjTijFlu8rb1ey7CqJXM6AtvYrh+d9zAEgVNPqiBv3
-	 TkAsyBuiqDRuv1Gwhi9yATpffHCks5BRCuJdLXhTjwWMu5i4v0QQ1WBpW9QMV2FUAI
-	 H4l4ApXSvoQr6vYeljmm4XKuPf7J/H7jtq0uvZKK3Fvbg+7Ifyq/mkOtT7XBBK6cxw
-	 fuYW9QeBLWpFy6mM7NgV5ml4olIJH+WAwsbSZaskaZ5MhRDlekf9gyh+6QwWUHnFR/
-	 ed2kwn55MavDjwnBVQ9guVJltGAvIngQdLE8jQR+f219jrTKXrfb/z66QuoHroXmrq
-	 BM7DSfaRK2luQ==
-Date: Thu, 17 Jul 2025 11:40:55 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1752770706; c=relaxed/simple;
+	bh=h88YBcM0M03H6/0gTfg0f4dcPmIACndUQIMNAPhG2cw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oSkARzc+2Jfra4P4rEkHlxfqj9CFKglQZxKFcTFHy0qnPLE9pk16vWLdFMxlRXgEhraBuOrOnOuomcTrrCGkgj+VkUFn/fY5Zb27ErcGdTM58tCKZrKyachVCm055sytzYCtjhhb2Rq8jQ6cUt6lMASnq0CGHWv/smdJ9Qd39z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JPubvpCx; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56HGihTm053313;
+	Thu, 17 Jul 2025 11:44:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752770683;
+	bh=sfvYeihJjtJBzdJdeSKTTPzAvm+r/b5xZDExW1fPtb8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=JPubvpCxygpcEqVngvw+daSU/YWWVS2YLk/U+EkVRoonodQgvbUJO2wnRwDGA7Dfw
+	 iQOWNiA7AW4uAKkUXqFY+HRwZooQWcEhz+nVUPp0eJ+ZtSx41LOwBB9h+8u5rgFrqt
+	 7oRBQLO5Y6x+6xYeaYgIax9X+IZVoVTwvCNxcu+4=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56HGihBn360145
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 17 Jul 2025 11:44:43 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 17
+ Jul 2025 11:44:42 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 17 Jul 2025 11:44:42 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56HGigsK2167173;
+	Thu, 17 Jul 2025 11:44:42 -0500
+Message-ID: <92be34eb-2408-4273-9e37-bec0b0d68f10@ti.com>
+Date: Thu, 17 Jul 2025 11:44:42 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Pavel Machek <pavel@kernel.org>, 
- Lucca Fachinetti <luccafachinetti@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
- linux-leds@vger.kernel.org
-To: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-In-Reply-To: <20250717-leds-is31fl3236a-v4-1-72ef946bfbc8@thegoodpenguin.co.uk>
-References: <20250717-leds-is31fl3236a-v4-0-72ef946bfbc8@thegoodpenguin.co.uk>
- <20250717-leds-is31fl3236a-v4-1-72ef946bfbc8@thegoodpenguin.co.uk>
-Message-Id: <175277045533.3779995.9523277801474945480.robh@kernel.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: leds: is31fl32xx: convert the
- binding to yaml
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] watchdog: rti_wdt: Add reaction control
+To: Judith Mendez <jm@ti.com>, Guenter Roeck <linux@roeck-us.net>
+CC: Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250707180002.3918865-1-jm@ti.com>
+ <20250707180002.3918865-3-jm@ti.com>
+ <cc37e797-d3e5-444d-8016-c437a0534001@roeck-us.net>
+ <d96541bc-644d-4c90-b9f7-1e4afd16aeb6@ti.com>
+ <953f78a8-3928-479d-8700-dfe1cea15454@roeck-us.net>
+ <299c363a-23c7-4522-b58c-100f49c4eece@ti.com>
+ <7d2bb793-14d0-45d8-b8bd-b770cdb4ca70@roeck-us.net>
+ <fc095373-1171-4718-b492-8a74d03f99ba@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <fc095373-1171-4718-b492-8a74d03f99ba@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-
-On Thu, 17 Jul 2025 16:02:07 +0100, Pawel Zalewski wrote:
-> From: Lucca Fachinetti <luccafachinetti@gmail.com>
+On 7/17/25 10:24 AM, Judith Mendez wrote:
+> Hi Guenter,
 > 
-> Add datasheets for reference, NB that I was not able to find an
-> up-to-date, funtional direct URL for si-en products datasheet
-> so they were skipped.
+> On 7/16/25 1:50 PM, Guenter Roeck wrote:
+>> On 7/10/25 07:08, Judith Mendez wrote:
+>>> Hi Guenter, Andrew,
+>>>
+>>> On 7/7/25 5:55 PM, Guenter Roeck wrote:
+>>>> On Mon, Jul 07, 2025 at 04:49:31PM -0500, Andrew Davis wrote:
+>>>>> On 7/7/25 3:58 PM, Guenter Roeck wrote:
+>>>>>> On Mon, Jul 07, 2025 at 01:00:02PM -0500, Judith Mendez wrote:
+>>>>>>> This allows to configure reaction between NMI and reset for WWD.
+>>>>>>>
+>>>>>>> On K3 SoC's other than AM62L SoC [0], watchdog reset output is routed
+>>>>>>> to the ESM module which can subsequently route the signal to safety
+>>>>>>> master or SoC reset. On AM62L, the watchdog reset output is routed
+>>>>>>> to the SoC HW reset block. So, add a new compatible for AM62l to add
+>>>>>>> SoC data and configure reaction to reset instead of NMI.
+>>>>>>>
+>>>>>>> [0] https://www.ti.com/product/AM62L
+>>>>>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>>>>>> ---
+>>>>>>>    drivers/watchdog/rti_wdt.c | 32 ++++++++++++++++++++++++++++----
+>>>>>>>    1 file changed, 28 insertions(+), 4 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/drivers/watchdog/rti_wdt.c b/drivers/watchdog/rti_wdt.c
+>>>>>>> index d1f9ce4100a8..c9ee443c70af 100644
+>>>>>>> --- a/drivers/watchdog/rti_wdt.c
+>>>>>>> +++ b/drivers/watchdog/rti_wdt.c
+>>>>>>> @@ -35,7 +35,8 @@
+>>>>>>>    #define RTIWWDRXCTRL    0xa4
+>>>>>>>    #define RTIWWDSIZECTRL    0xa8
+>>>>>>> -#define RTIWWDRX_NMI    0xa
+>>>>>>> +#define RTIWWDRXN_RST    0x5
+>>>>>>> +#define RTIWWDRXN_NMI    0xa
+>>>>>>>    #define RTIWWDSIZE_50P        0x50
+>>>>>>>    #define RTIWWDSIZE_25P        0x500
+>>>>>>> @@ -63,22 +64,29 @@
+>>>>>>>    static int heartbeat;
+>>>>>>> +struct rti_wdt_data {
+>>>>>>> +    bool reset;
+>>>>>>> +};
+>>>>>>> +
+>>>>>>>    /*
+>>>>>>>     * struct to hold data for each WDT device
+>>>>>>>     * @base - base io address of WD device
+>>>>>>>     * @freq - source clock frequency of WDT
+>>>>>>>     * @wdd  - hold watchdog device as is in WDT core
+>>>>>>> + * @data - hold configuration data
+>>>>>>>     */
+>>>>>>>    struct rti_wdt_device {
+>>>>>>>        void __iomem        *base;
+>>>>>>>        unsigned long        freq;
+>>>>>>>        struct watchdog_device    wdd;
+>>>>>>> +    const struct rti_wdt_data *data;
+>>>>>>>    };
+>>>>>>>    static int rti_wdt_start(struct watchdog_device *wdd)
+>>>>>>>    {
+>>>>>>>        u32 timer_margin;
+>>>>>>>        struct rti_wdt_device *wdt = watchdog_get_drvdata(wdd);
+>>>>>>> +    u8 reaction;
+>>>>>>>        int ret;
+>>>>>>>        ret = pm_runtime_resume_and_get(wdd->parent);
+>>>>>>> @@ -101,8 +109,13 @@ static int rti_wdt_start(struct watchdog_device *wdd)
+>>>>>>>         */
+>>>>>>>        wdd->min_hw_heartbeat_ms = 520 * wdd->timeout + MAX_HW_ERROR;
+>>>>>>> -    /* Generate NMI when wdt expires */
+>>>>>>> -    writel_relaxed(RTIWWDRX_NMI, wdt->base + RTIWWDRXCTRL);
+>>>>>>> +    /* Reset device if wdt serviced outside of window or generate NMI if available */
+>>>>>>
+>>>>>> Shouldn't that be "or generate NMI if _not_ available" ?
+>>>>>>
+>>>>>
+>>>>> For almost all the K3 devices, the WDT has two selectable outputs, one resets
+>>>>> the device directly, the other is this "NMI" which is wired to an ESM module
+>>>>> which can take other actions (but usually it just also resets the device).
+>>>>> For AM62L that second NMI output is not wired (no ESM module), so our only
+>>>>> choice is to set the WDT to direct reset mode.
+>>>>>
+>>>>> The wording is a little strange, but the "or generate NMI if available" meaning
+>>>>> if NMI is available, then do that. Reset being the fallback when _not_ available.
+>>>>>
+>>>>> Maybe this would work better:
+>>>>>
+>>>>> /* If WDT is serviced outside of window, generate NMI if available, or reset device */
+>>>>>
+>>>>
+>>>> The problem is that the code doesn't match the comment. The code checks the
+>>>> "reset" flag and requests a reset if available. If doesn't check an "nmi"
+>>>> flag.
+>>>>
+>>>> If the preference is NMI, as your comment suggests, the flag should be named
+>>>> "nmi" and be set if NMI is available. That would align the code and the
+>>>> comment. Right now both code and comment are misleading, since the presence
+>>>> of a reset flag (and setting it to false) suggests that a direct reset is
+>>>> not available, and that reset is preferred if available. A reset is the
+>>>> normally expected behavior for a watchdog, so the fact that this is _not_
+>>>> the case for this watchdog should be made more visible.
+>>>
+>>>
+>>> How about:
+>>>
+>>>
+>>> /* If WWDT serviced outside of window, generate NMI or reset the device
+>>> if NMI not available */
+>>>
+>>> if (wdt->data->reset)
+>>>      reaction = RTIWWDRXN_RST;
+>>> else
+>>>      reaction = RTIWWDRXN_NMI;
+>>>
+>>
+>> As I have said before, the problem is the "reset" flag. Its name suggests that
+>> it means "reset is available". That is not what it actually means. It means
+>> "NMI is not available". So I suggested to rename it to "nmi" or maybe "no_nmi".
+>> Please educate me - why is that such a problem to name the flag to match its
+>> meaning ?
 > 
-> Signed-off-by: Lucca Fachinetti <luccafachinetti@gmail.com>
-> Co-developed-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-> Signed-off-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-> ---
->  .../devicetree/bindings/leds/issi,is31fl3236.yaml  | 114 +++++++++++++++++++++
->  .../devicetree/bindings/leds/leds-is31fl32xx.txt   |  52 ----------
->  2 files changed, 114 insertions(+), 52 deletions(-)
+> wdt->data->reset makes more sense because it shows there is a
+> physical line routed to the MAIN RESET HW LOGIC:
+> 
+>  >> if (wdt->data->reset)
+>  >>      reaction = RTIWWDRXN_RST;
+>  >> else
+>  >>      reaction = RTIWWDRXN_NMI;
+> 
+> If there is a direct reset line to MAIN RESET HW logic, then the
+> reaction should be reset, if there is no reset line, then generate
+> and NMI to ESM.
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+There is a reset line on all K3 devices, if you did it this way then
+all devices would have wdt->data->reset set to true and you wouldn't
+need this logic at all. The thing that changes is if NMI/ESM is
+available or not, so as Guenter suggests the flag should be called
+"nmi" or similar and you switch on that.
 
-yamllint warnings/errors:
+Andrew
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/issi,is31fl3236.example.dtb: led-controller@3c (issi,is31fl3236): 'led@1', 'led@2', 'led@3' do not match any of the regexes: '^led@[1-9a-f][0-9a-f]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/leds/issi,is31fl3236.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250717-leds-is31fl3236a-v4-1-72ef946bfbc8@thegoodpenguin.co.uk
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> then the comment could be simplified to:
+> 
+> /* If WWDT serviced outside of window, generate reset or NMI to ESM */
+> 
+> to match the code better if you like.
+> 
+> ~ Judith
+> 
+> 
+> 
 
