@@ -1,190 +1,244 @@
-Return-Path: <devicetree+bounces-197422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0979FB0928E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 19:02:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2143DB092DC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 19:12:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29A43A6161A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:00:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFFAB7BB493
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:08:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E25D12FD5AF;
-	Thu, 17 Jul 2025 17:00:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483D72FE315;
+	Thu, 17 Jul 2025 17:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tmu0i4aY"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AZK6KhFC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A2C2FD592;
-	Thu, 17 Jul 2025 17:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 715E22FD580
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 17:08:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752771653; cv=none; b=EdJlgNB7bgDO9cn9J7IDOjzdgdI8BTK/Wc9/llpBTNQjEz3sq4e+4S36ItdITETq+ifoHvJ49RPhYVDmPynnpzL2wj1jd3FF8q6QTcKU1W3oNPrtfFXvCuVIQRSmqVhshxjNizKipxFnUuFiucvF6Debd95kkKnhO6brRO57taM=
+	t=1752772141; cv=none; b=pV8Y/vj3tMoqSML0YOVby8lACDs93N1qsa0P+ByF+/eIQ4iu1o7u9egNJNpcaMkXRonWWCbQqkEawHbPiOK3BB0NWbVPCJVw0H52+6LvLaLvsrRERhzcm+xB30chzd/dx4JZ14+LSFknQh9/sXvXV7klqvWhtvbbhHz1atgwlEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752771653; c=relaxed/simple;
-	bh=liaFGidYVLjXLMjJq2TgiaFPgWZ7yuecTZN6udCP75E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uVZRoXuAdueP62evZd8rYbaRtgF+F94VTJ3rLmm75BamiVL90rHrCN01rKBwXG65aJZrk1HvdPwXesCygwb0apLEQlyxgOO+gDq5PJFZQoG0CV2D3WRkBRmZ7jjAr7qPD9aGTVX86xWEjDspHNER7SXFtqsi7/EcaXMRHCtL/c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tmu0i4aY; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-74b27c1481bso871509b3a.2;
-        Thu, 17 Jul 2025 10:00:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752771652; x=1753376452; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DOniWzPOxX9jgReodjZJuovKYF0NJcq9l0SRTKIVr/w=;
-        b=Tmu0i4aYPfVxpHxy2TBK+CJr8ONIUrlHzfZyRbMhOv/cA/PBNXcYgHkmwBcNJpyUZz
-         TSPCzG1EFFwGGSYrWtYQPGx7wdF37qI7HdRKJbgs4HBBFYOPLY+qKHhj3IgLVpoOFk34
-         widOQMSZq++Taa48kjA/zwWU3HfN2uiEVgbUCc37jx9szzXf+KELpLv23786BzCAuOOn
-         /vIH6M0ioRV6xe7NDd0TZCz9tHeMGdTqS89gKV+2PSPYvQvgdr7doXzJulpgxd9wt+7k
-         y0VFxKSz48dyTjVuZ6D0pgLmpDGpzowYMlEyCdwf3M47+YSiDoffz+9Xjn5cAmQcUHvD
-         rW2g==
+	s=arc-20240116; t=1752772141; c=relaxed/simple;
+	bh=0Tma1iz8eUmqn+0ITGTty9g+3dbDSlSnl255hcwZ1/c=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i5GP2mZ1Hh+egW+ZrLojX9ff60Foe/JPti9xh6qpaH0WNSmjW7kLKftpQUGQ6lxdK5bCqKRsm1c6H2veySBTqE1nsd0aYUQ0ZKMRIOrQgVIu3RrPsBPc+f8/aKX5xqs0JckcWYi1Y5cxcIXMLH6NCyhA0SCPrDFKLDI0YPkSxkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AZK6KhFC; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56HCMQIp030480
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 17:08:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NFXP0IrFoohUtJ59zS1dRcGAPyOKdx8dfTa98AL4DN8=; b=AZK6KhFC9FwAJw8E
+	FqSlM1NlBdkhoCn/eSNrIP4zRoPQRIGoC454mhCqjt/nleCAOy+CQayjp74kKSlw
+	CqHxoaJxrGZwO6OVjR+3KDO/An4eePjOCosKCiQls5TJKued8UwSEa6PM+onNvs2
+	1TVhTU6W7Vv9/bdF2/2+/MUMiO2EUji6kPZpeajmtBbzUM/ttdoalVwETTHTaEmt
+	txXz2wQb5DCMiv3CYUi1JagqoKJNp9viErDalNE1iP2W+8cA7URLA+HMdZB7R9Rt
+	zehIdEA0l6s3X2DsULfwrqHNEu+ww/wgKjMYfDw409SyRCFULku6rbSQzx09sCC1
+	JhCkaw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47x8x7nd4t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 17:08:58 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ab76d22670so22295211cf.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 10:08:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752771652; x=1753376452;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1752772137; x=1753376937;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DOniWzPOxX9jgReodjZJuovKYF0NJcq9l0SRTKIVr/w=;
-        b=R9jbFFLo/4G/uLSUu4M0j4uPUq63l6jINkNdHzJkivrOkgaWGLlH33FkmPwExU250u
-         GSnsnCaCu0cUoB8dXux60hpWrK518un3zB/YqsYUoUD7c2eCCyhR/sWj8QVGuLHJ2IP8
-         Qrilb+DCAVNI5mFA/8jhU3uDJCDyC9BDcg+NorBnTC4Ob4UYRyOq4020kyhqUrEAPoF2
-         cbAWiw1NaC/uivfraX8SfXaUac8eL2SvAFWdBxfiqgEzrslli2rDtvvyKrzwKXEXHmCt
-         wk2U64NBrnU4ZizyKuxe66hxI1bmjq4QQSSCcpYgUG4lG3id6U2rYiGzUEM6qOXH+FC3
-         V+8w==
-X-Forwarded-Encrypted: i=1; AJvYcCVaB4xGoUffRVsAEy3OufO3gm5YUj7rWdeg1izGFj2edOxqVQ3w/qCJQqb9oOE0iBEpJTOS/UApqC9Ba4Mr@vger.kernel.org, AJvYcCVhEddboVZpASb4IjJ+LKJ4FiNBVmp4GidtnRuNTcc9p/6KvtESXQfPk6Kbg+pNNSW43CyYFkkagF15@vger.kernel.org, AJvYcCXUBYW4Jrd69p3tEcBz/ZJDmblTXUyXjx6vNjKi8dzHJbZ4IeFaSvtLwNARIoBU1YCx/xJ9kLWrc3eInhoKIik8hQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeSkN3d7llenDBElgZsZoiGjOf+o7PYcOTX9WRJEu+nRPjBCN2
-	4+biofZG4E8DN2/PeQv4Uwp53XDrE5IJhN5OF/fJmb2uWIOuq6A0nZ+i
-X-Gm-Gg: ASbGnctJiGXqdbR8pTbdZURxhtqvD90dTlAAD55Bcvqas589SOpL6O53imB+lL3WKP8
-	+WWN59NJe7RHBo+OrJruvygXNfvQlegGbZK3CAZTT9YqQqcgeuqCip37bGh8TjVK3d/gQ5xRON1
-	q7PhO4j/sRu/gj97mNhl1iypCaBmwTmecKHf4cVZteutuK052iyTTN4nRvvAEZbrOR298vz3PEG
-	Z5CuTLIvIu//PJ8juHF2ZOM8qq49pUkPhfBiI3UEM6FsdrShQQGXsktQXEAK92QzUgqethl4Nvg
-	VQ51/rRrK8nwb6vNekESSEimD45ZWCVJXwlZmKeBztEmyt8b/3gtkFFhH/LBMtC9y/l1vM4pivV
-	tSK4SfOK0uK5unWcZh4aLgc5Fy0AzbE4OnJ23WlrFiEu0T6BO4HXS
-X-Google-Smtp-Source: AGHT+IGyNwD+GplSMpIC4979Lc0tZ79C1WbX1oV52D7ggC14zrY8YjV3rk07eXSBZ3Eq+1KJC2sDsA==
-X-Received: by 2002:a05:6a00:3e0a:b0:742:aecc:c46b with SMTP id d2e1a72fcca58-756e99fc423mr10406870b3a.15.1752771651493;
-        Thu, 17 Jul 2025 10:00:51 -0700 (PDT)
-Received: from [192.168.0.113] (061092221177.ctinets.com. [61.92.221.177])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9dd59f1sm15902818b3a.3.2025.07.17.10.00.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Jul 2025 10:00:50 -0700 (PDT)
-Message-ID: <705f1dfb-7e1b-4930-a1a9-c763299a4305@gmail.com>
-Date: Fri, 18 Jul 2025 01:00:45 +0800
+        bh=NFXP0IrFoohUtJ59zS1dRcGAPyOKdx8dfTa98AL4DN8=;
+        b=QDSUi3ohk+LVx1oUxMAnE25UiSkCm8uprRHODJ6MNKeRVqUUh0j8YbZMwiyqLXfifl
+         6MqkCS2FPV6gKhX+7lhDxwAfuQYmaKjzFxcHdtbagPfRsmP8Q7wnjoRKdbXGY/0RaXUe
+         dYX2A7NHPku6cAvvqIO6hEbKLPwNlzQBNB/KqPXbYMXD/xyvJl4uBNns+7rJ/7cT/XWU
+         zNw7xacxpcw2/h/0EmJ4giHm3RMA6uRJQqi+Ma4SzmNei4sZOhK4hwkqIMOBnXWBNciL
+         f89X8S7si/Yu7RuiI0mCE7r0MwRZDcP8BK3IVRSUatsxJg+19sgsPOCFaiCDbd6W6JMT
+         sLPw==
+X-Forwarded-Encrypted: i=1; AJvYcCX3offWfRzWykHGKtKK4tfZu3K/DyRHF4GP9RI4o4JaWaKCig9Uqe7gGUgYZfcIH+FWLc8NCFOhRlFP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWKRn8Jtu1qGxlC0o4Xwgq9SzTdLSiu6FzJJ3OkqUe8WIDuFpg
+	PAsucmuopdqhJrvF+qTqEJ91S5txQDnBvOMC7Wc4PFEj5MZd+Bs+YOWJXfnL0OsPkyB9SOgIwuD
+	HFbnU9amDnYw1XkhuC0e+4xT3b96nsNpgWO1cO5bXaTWzCLS1gZsHvomatrimiRmN
+X-Gm-Gg: ASbGncuDQnJZV0FZjAi23etyixFJrQFjq4b1RRAJnuuqiE2+rgHd+XT20KdeXgomQdc
+	zHnnn8xkifugsJvi76gDAhkExkLl/qvbmtOta+8xnidj7BEQhl9gC71LDA7oqn0OxN+H9yJWsQb
+	gh3eOkBCIIHGdWlxGmM7XG+8cmtmPA8a8iDzHLYN1JBOn3jY5axhPnVw5D1CncVqxF91hkuIyRY
+	FRhpeYhJJVfdvdInfUocZ4W/H8xCEEbubhLf+3JZFgmeUyayenxsf4681ASwX6s3o0zAGaa/d72
+	mG6IqiXDmFzqP/IJzCXr0INpq+iT8FXIr2nPOjOlGmxyklJY7Tdj3enOx5ql3qDuETghdQVzgWE
+	=
+X-Received: by 2002:ac8:5f0a:0:b0:4ab:5c2d:fb25 with SMTP id d75a77b69052e-4ab93c8bf96mr124297721cf.19.1752772137045;
+        Thu, 17 Jul 2025 10:08:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEITysj2tJkRLvAb9+p0VY+EGEbopgJQYbTjJgWoH9NN/hppB3HlOgLIRM1vSCE6/5DgrGMIQ==
+X-Received: by 2002:ac8:5f0a:0:b0:4ab:5c2d:fb25 with SMTP id d75a77b69052e-4ab93c8bf96mr124296971cf.19.1752772136330;
+        Thu, 17 Jul 2025 10:08:56 -0700 (PDT)
+Received: from trex (153.red-79-144-197.dynamicip.rima-tde.net. [79.144.197.153])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8dc2025sm21560881f8f.31.2025.07.17.10.08.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Jul 2025 10:08:55 -0700 (PDT)
+From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
+Date: Thu, 17 Jul 2025 19:08:54 +0200
+To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com,
+        krzk+dt@kernel.org, konradybcio@kernel.org, mchehab@kernel.org,
+        andersson@kernel.org, conor+dt@kernel.org,
+        amit.kucheria@oss.qualcomm.com, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 1/7] media: dt-bindings: venus: Add qcm2290 dt schema
+Message-ID: <aHkuJmgeIUXvxOyr@trex>
+References: <20250715204749.2189875-1-jorge.ramirez@oss.qualcomm.com>
+ <20250715204749.2189875-2-jorge.ramirez@oss.qualcomm.com>
+ <8a63f517-a443-48e4-9b9c-0c4b362f59f8@linaro.org>
+ <aHiZpnFhhR5O0h97@trex>
+ <0bb2867a-393b-46f9-ad6f-1aeee5a3a9d4@kernel.org>
+ <aHjbjw8Z79Xcd/ZJ@trex>
+ <aHksJum91s4ZmI56@trex>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v7 00/21] drivers/perf: apple_m1: Add Apple A7-A11,
- T2 SoC support
-To: Mark Rutland <mark.rutland@arm.com>
-Cc: Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Neal Gompa <neal@gompa.dev>, Sven Peter <sven@kernel.org>,
- Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
- asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250616-apple-cpmu-v7-0-df2778a44d5c@gmail.com>
- <aHUeUMmn_19EayL1@willie-the-truck>
- <be327242-ad55-476a-bed4-44c33c263962@gmail.com>
- <aHkRJdAuvhS2mNQj@J2N7QTR9R3>
-Content-Language: en-MW
-From: Nick Chan <towinchenmi@gmail.com>
-In-Reply-To: <aHkRJdAuvhS2mNQj@J2N7QTR9R3>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <aHksJum91s4ZmI56@trex>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE3MDE1MSBTYWx0ZWRfXw0n9r8CzjYoN
+ +suhU1xdpAt2XV/Gd7tQk8mpT4DPgkEy9ObNUEzyhfw6LT6tdHllN8jiLGaIQShk8se1EBbGLxy
+ F+D+wjpyZAS9kSUAhFXUo9Zh6U0HnQt5ytamxFFBveSGYH/APYA8L1qefJj5o1zPyhEOS9dfyLt
+ 00sVIkSXmr9yL/2x+jyYe3CjVhNQP/8IeRa/jCMpJ7s3IL+3t8VK4+Lj5nWX5DK13hY6n0zDSGq
+ dP4j9IBrVrh2WEA2UuHX6dgjzXjFZ7E73yqzXfCPtXt4OkG7QLZioYa1hr7qul6vmcTzFtQRORV
+ b5Map23PO1vPfSgETSPLGYVutzQrNIcHSZv7xga4LJsA78kjDj+ou3Ztq93rZVNR5iOS0ZPlMSw
+ Xy2k4/J3Mu6WPEI+0p+RwtY10NbVJEFi9wzyWx6K1Bgob3OlXacxG62ezLCjwkPzPZ0a42jF
+X-Proofpoint-GUID: tW9qAB_Fx8PWtsRqx-JCOL2H-vKFhIzu
+X-Proofpoint-ORIG-GUID: tW9qAB_Fx8PWtsRqx-JCOL2H-vKFhIzu
+X-Authority-Analysis: v=2.4 cv=N9YpF39B c=1 sm=1 tr=0 ts=68792e2a cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=Ki5fnJvzvo7yLsyA0quaxQ==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
+ a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=chJ0svP5d_1F8NzP0EgA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=sptkURWiP4Gy88Gu7hUp:22
+ a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-17_02,2025-07-17_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 lowpriorityscore=0 mlxlogscore=999 bulkscore=0 adultscore=0
+ priorityscore=1501 clxscore=1015 mlxscore=0 suspectscore=0 impostorscore=0
+ phishscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507170151
 
-
-
-On 17/7/2025 23:05, Mark Rutland wrote:
-> On Mon, Jul 14, 2025 at 11:59:36PM +0800, Nick Chan wrote:
->>
->> Will Deacon 於 2025/7/14 夜晚11:12 寫道:
->>> On Mon, Jun 16, 2025 at 09:31:49AM +0800, Nick Chan wrote:
->>>> This series adds support for the CPU PMU in the older Apple A7-A11, T2
->>>> SoCs. These PMUs may have a different event layout, less counters, or
->>>> deliver their interrupts via IRQ instead of a FIQ. Since some of those
->>>> older SoCs support 32-bit EL0, counting for 32-bit EL0 also need to
->>>> be enabled by the driver where applicable.
->>>>
->>>> Patch 1 adds the DT bindings.
->>>> Patch 2-7 prepares the driver to allow adding support for those
->>>> older SoCs.
->>> Modulo my nits, the patches look alright to this point...
->>>
->>>> Patch 8-12 adds support for the older SoCs.
->>> ... but I'm not sure if anybody actually cares about these older SoCs
->>> and, even if they do, what the state of the rest of Linux is on those
->>> parts. I recall horror stories about the OS being quietly migrated
->>> between CPUs with incompatible features, at which point I think we have
->>> to question whether we actually care about supporting this hardware.
->> The "horror" story you mentioned is about Apple A10/A10X/T2, which
->> has a big little switcher integrated into the cpufreq block, so when the
->> cpufreq driver switch between states in the same way as on other
->> SoCs, on these SoCs that would silently cause a CPU migration. There
->> is only one incompatible feature that I am aware of which is 32-bit EL0
->> support.
+On 17/07/25 19:00:22, Jorge Ramirez wrote:
+> On 17/07/25 13:16:31, Jorge Ramirez wrote:
+> > On 17/07/25 08:45:17, Krzysztof Kozlowski wrote:
+> > > On 17/07/2025 08:35, Jorge Ramirez wrote:
+> > > > On 17/07/25 00:22:53, Bryan O'Donoghue wrote:
+> > > >> On 15/07/2025 21:47, Jorge Ramirez-Ortiz wrote:
+> > > >>> Add a schema for the venus video encoder/decoder on the qcm2290.
+> > > >>>
+> > > >>> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+> > > >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > >>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > > >>> ---
+> > > >>>   .../bindings/media/qcom,qcm2290-venus.yaml    | 127 ++++++++++++++++++
+> > > >>>   1 file changed, 127 insertions(+)
+> > > >>>   create mode 100644 Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+> > > >>>
+> > > >>> diff --git a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+> > > >>> new file mode 100644
+> > > >>> index 000000000000..0371f8dd91a3
+> > > >>> --- /dev/null
+> > > >>> +++ b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+> > > >>> @@ -0,0 +1,127 @@
+> > > >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > >>> +%YAML 1.2
+> > > >>> +---
+> > > >>> +$id: http://devicetree.org/schemas/media/qcom,qcm2290-venus.yaml#
+> > > >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > >>> +
+> > > >>> +title: Qualcomm QCM2290 Venus video encode and decode accelerators
+> > > >>> +
+> > > >>> +maintainers:
+> > > >>> +  - Vikash Garodia <quic_vgarodia@quicinc.com>
+> > > >>
+> > > >> Shouldn't you be on this list ? If you upstream a file I think you should
+> > > >> list yourself as responsible for its glory or its mess.
+> > > > 
+> > > > happy to do it. The MAINTAINER's file covered all the files named
+> > > 
+> > > This should be the person(s) interested and caring about this hardware,
+> > > which means:
+> > > 1. Subsystem maintainers: no
+> > > 2. Driver maintainers: usually yes
+> > > 3. Author(s) of new hardware support: usually yes
+> > 
+> > perfect, will do 
+> > 
+> > > 
+> > > > schemas/media/*venus* so my understanding was that I shouldn't.
+> > > 
+> > > I cannot comment why people decided to go one way or another in other
+> > > code, but it as well could be just incorrect choice thinking only people
+> > > in MAINTAINERS care about hardware.
+> > > 
+> > > ...
+> > > 
+> > > >>> +
+> > > >>> +        memory-region = <&pil_video_mem>;
+> > > >>> +        iommus = <&apps_smmu 0x860 0x0>,
+> > > >>> +                 <&apps_smmu 0x880 0x0>,
+> > > >>> +                 <&apps_smmu 0x861 0x04>,
+> > > >>> +                 <&apps_smmu 0x863 0x0>,
+> > > >>> +                 <&apps_smmu 0x804 0xe0>;
+> > > >>
+> > > >> You're listing five iommus.
+> > > >>
+> > > >> I understand there's some disagreement about whether or not to list all of
+> > > >> the potential use-cases but, TBH I don't think those are good arguments.
+> > > >>
+> > > >> Unless there's some technical prohibition I can't think of listing all five
+> > > >> maxItems:5 .. let's just do that.
+> > > > 
+> > > > since the device tree should describe hardware and not policy, and the
+> > > > driver seems to be able to ignore the unused SIDs I think this is the
+> > > > right thing to do.
+> > > 
+> > > 
+> > > It was never about the driver but about whether you should describe in
+> > > DTS for non-secure world the entries which are secure world. The answer
+> > > in general is that you can and there will be benefits (e.g. sharing DTS
+> > > with secure world implementations).
+> > 
+> > all right, sounds good then, thanks
 > 
-> Surely the MIDR/REVIDR/AIDR also change?
-They do not change. ID_AA64PFR0_EL1 also does not change (fixed 0x12).
-What *does* change however is MPIDR. (P-cores has bit 16 set while
-E-cores do not)
+> Not sure if I’ve shared this before, but following an internal
+> discussion, I think it’s worth highlighting a functional dependency in
+> the current kernel:
+> 
+>  - the driver only works if the first two IOMMUs in the list — the
+> non-secure ones — are placed at the beginning. Reordering them breaks
+> functionality, which introduces unexpected fragility.
+
+by "the driver only works" I mean the firmware will fail to load
+otherwise (should have been clear about the failure mode).
 
 > 
-> In general, silent migration isn't acceptable for the kernel, even if
-> you largely happen to get away with that today. It is not acceptable for
-> architectural feature support to change dynamically.
+> Regardless, this seems like a valid concern to me — a driver shouldn't
+> rely on the order of phandles — and I just wanted to make sure you're
+> aware of it before I post a v8 (likely sometime next week or the
+> following, as I’ll be taking a short break soon).
 > 
->> However, since the CPUs in these SoCs does not support
->> 4K pages anyways in practice this is not an issue for as long as
->> CONFIG_EXPERT is disabled.
+> Do you consider this serious enough to be called out in the commit
+> message, or is this kind of behavior accepted as-is - ie, do you know if
+> the DT binding for iommus rely on the order?
 > 
-> Do these parts have EL2?
-No.
-
-> 
->>> On the other hand, if it all works swimmingly and it's just the PMU
->>> driver that needs updating, then I could get on board with it.
->>
->> As mentioned above, it does all work fine when CONFIG_EXPERT is not
->> enabled, and if it is enabled, then 32-bit process may crash with illegal
->> instruction but everything else will still works fine.
-> 
-> I don't think that's quite true, unless these parts are also violating
-> the architecture.
-> 
-> If the CPU doesn't implement AArch32, then an ERET to AArch32 is
-> illegal. The way illegal exception returns are handled means that this
-> will result in a (fatal) illegal execution state exception being taken
-> from the exception return code in the kernel, not an UNDEF being taken
-> from userspace that would result in a SIGILL.
-Speaking from experience, when testing with the userspace cpufreq governor,
-trying to run AArch32 code on the ecores really does result in illegal
-instruction for that process while everything else remains fine.
-
-Referencing ID_AA64PFR0_EL1, the E-cores does claim to support
-AArch32 EL0, even though they could not execute it for real.
-
-> 
-> I do not think that we should pretend to support hardware with silent
-> microarchitectural migration. So at the very least, we do not care about
-> A10/A10X/T2.
-As explained above, what actually happens on the hardware is different
-from what you believed, so please do reconsider.
-
-> 
-> Mark.
-
-Nick Chan
-
 
