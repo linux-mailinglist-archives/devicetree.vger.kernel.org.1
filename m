@@ -1,447 +1,303 @@
-Return-Path: <devicetree+bounces-197098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D534CB082CF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 04:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 623EEB082DF
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 04:24:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B087188A004
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 02:17:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB4DF189D5D3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 02:24:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78D7719F421;
-	Thu, 17 Jul 2025 02:17:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53AFA1E8322;
+	Thu, 17 Jul 2025 02:24:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ZcAkDnsS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QT8pHaeZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3494A258A
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 02:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3233F1E520A;
+	Thu, 17 Jul 2025 02:24:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752718620; cv=none; b=ltP4M5j3AYI7MmEtKOn30hEcYw78cKOC8+JuYbRFTZp8bxIYK0MAltFLea2JXdnGTEJn2uqJKgFOWQpwHigXG09yboSpozkP0m7oVsMnSC8fEJmRDz6sTx0rYlSiFAIo8vHpNZMJbF1b8guqmhNrmQMbafmtbvEqHDRezIZCvAg=
+	t=1752719047; cv=none; b=BcmyvbCghW2eP/5OZtfUFbgh00RzbaUznYsWq46Diht7atEhP1Nx0cNCurhoeD549PZFImAeNCd5F8UrRiMaQN4RNHooMHisbhv4QafMNlt3QSqoF2V2DCAkKdsjICRgQDTDbup+GMxS4RjOkqpZPsaBnCe0j0VTYZIDqNH2++g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752718620; c=relaxed/simple;
-	bh=2T5Gg3c9Z9fTpQfaZwIJPDjhqVlhlxuUxGXmKQKdXyA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oEPYQlJcds7L/eZpD0ly/55oSQKcpKqJj0xNkq1wyLaSkAXZkcDqW+EBPFQ+96v/YPqRjyDy10fyTk6F7KOIX+xpDIMn8n1gBYpiDGsTGWwj4GrS4syn5tqUcZkIftDvDltdiWP8nOWJtbzQ4ii1TFe7L9+KqyHpFTv028ZW5+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ZcAkDnsS; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5561c20e2d5so634368e87.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 19:16:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1752718616; x=1753323416; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vxHiP6wE+44HTiVLcySgvTPCMzauYzsKV7k/Cx73M/Y=;
-        b=ZcAkDnsSUdanjGxrbfVQvN3A+eCasV/rJWM/6sZMePMHaoB1xmg35IPy0yhN50ZtGy
-         12gyH73NjVM2Dfzp9lYGLkOjxoQ8jzULNj1RqMkzsTaDut58bRUKcDiEY0UPfeeX/3H0
-         GhFwSvn6Opn7mNDTnNAfVGnvXgC5UXVur2Ols=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752718616; x=1753323416;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vxHiP6wE+44HTiVLcySgvTPCMzauYzsKV7k/Cx73M/Y=;
-        b=epge0pDaqmu2+XYXsQsdVNnV3qm1NU3x4GIUkMb7G3HSmwFbCxE5nV1yd9Yd8xFUyQ
-         OMOBQh6/ORfT0+nSFEN15N9WZZZ5fTDkIYQHoDp281Rm5EeT9gx+zt3ScMKbdqUBpQAd
-         5AlZ+sVGjBwaa46+oIxlZWTDChHA6tzqXqgqFkbKk4vChNsYrAahrynbLseozVvSduQx
-         YqVZSN4F+0iny2gc63EF4nfoskhSO3iO7Ylqfr/HGYT5AO1VAYaas0ZHDjuicXUlKa75
-         hzYIsWH5cKqkQSOTQMeZGwL4mTXH1pqTeLLmGzlzRwhM/HWUkGZRVpEqIezSCeIJxynS
-         ZJBw==
-X-Forwarded-Encrypted: i=1; AJvYcCWiCS5aGJyRgmjPVSqa28crmvI/lQhoZ/KKMZo2WPowv1+F0xb/009tBzee2sHE0231EqMibe56wCgM@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYeMz39aTu0wI/6MLpNNiZp9Pcg9ij3v/RJu/i+bKlWandHBGl
-	Hrgqf6DufTEOS7HQMptcoS1PIB9i9QsaQCzwWuEEUat2Jg9Ky+GrrxW8P0rVREaVrmFKbetpUg1
-	TBibN8ETJP852LiIxWIGK25RH1cWLfUrWIrQKcKjc
-X-Gm-Gg: ASbGncsLK2r+1WSA50P6hhoJKiCqidrszVGvoiOdA8e8gdv2Hnev2fF3PilOj8kj2PJ
-	ijIUcJ6WAB5eJfalBuHGbCtx0UqSNFCF9yXVBCR67e+OZcZESlHECnNQ5NvgbEzA7+Me+4Rksgd
-	JMxjFqhcFLjEtLXJcn6f17mdgFFsMBX357Nl7QSTLpr3gf/TxAgZ8s/IX+PCXYpV92iN8okHL6U
-	Zmwoi3kfFFFtzOj1IFtsXwk2V7m+sSC/DC6uQ==
-X-Google-Smtp-Source: AGHT+IHX6+PqYe7ISNqeiqU5iv6yi86yo/gru6nPWgWG5xiS6bt/CCj0f39af9hJfhwpJxYP0qrdsmQwdRgw6Yt/kWQ=
-X-Received: by 2002:a05:6512:3da1:b0:55a:2735:fe6a with SMTP id
- 2adb3069b0e04-55a27360094mr841505e87.0.1752718616192; Wed, 16 Jul 2025
- 19:16:56 -0700 (PDT)
+	s=arc-20240116; t=1752719047; c=relaxed/simple;
+	bh=JLEN+HD6BNOj/WuHKqORGumCZiQrdy/bcPVmiJYTj0g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Qt4GIa5FWXZoVr5ur6SFut1s8RNUiVXcmaZT42QafoWkliShN2a2HUZtfZQYGiVbxQdEqRjzAFHgCn6QMFj07D/6kxkb8HdAapBmJDwZlnt6EEaygsCDy0g5mqbSN5hvlcq7AUB80I/IV79S6EUihqZ+PjyiiQ83E5oEhifk7F4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QT8pHaeZ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56GGDRvM025369;
+	Thu, 17 Jul 2025 02:23:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	i+DfdxtuIvR2BzrMlwN2CJJomdoX7I//dIsC1iLbNak=; b=QT8pHaeZ6LOdpknv
+	MYT2QIHvyojdEra9Jk6wexI9SULbW5Kt7/y/1KHAVsyUxLS7RL6sClHtbKEje7x7
+	y/URPm6fqo5t0tMpK8JJvQo2la3Ri8t7a4VewJPeDZLPFOgG3Qsh4uEUUfQN1AjO
+	yQ0GzWX9hWgnPv+n1YoiplVBXip2xPpDB4YTcziTEtlQhuLIXyt7n/21eNwh9r+0
+	yhj1/WcnFCoz/BwEpdnCrN/zVKQ4p0X4LB3KLCCZEn7FMNrx00OCC98fTXb4ejUv
+	FoIxorqYBHm3Xos1KrXu+B06P8ZMW6bjo3nCCbzH5rv9v/afhDd6YrrfTYDOxEcJ
+	+c/57Q==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47xbsqa6j1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Jul 2025 02:23:56 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56H2Nt0E028532
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Jul 2025 02:23:55 GMT
+Received: from [10.239.29.49] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 16 Jul
+ 2025 19:23:51 -0700
+Message-ID: <77620d80-0fd6-4878-ac74-0e81022544f7@quicinc.com>
+Date: Thu, 17 Jul 2025 10:23:48 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250708111806.3992-1-darren.ye@mediatek.com> <20250708111806.3992-9-darren.ye@mediatek.com>
- <CAGXv+5EufDuxLMnwMaCqtWFZpVMNMxi-5OwCyO4a+KD2T+2NYA@mail.gmail.com> <e4e4cf154e9ea1a4f96a50f374e9f88fc27ca670.camel@mediatek.com>
-In-Reply-To: <e4e4cf154e9ea1a4f96a50f374e9f88fc27ca670.camel@mediatek.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 17 Jul 2025 11:16:45 +0900
-X-Gm-Features: Ac12FXxJARBruEPXsOMEpzqrHcSUpNdXL9sZPsqgXaiJYCISBkZ3KcHBr2s5MUo
-Message-ID: <CAGXv+5HDupifLWN-okQmzbgTV53X9Wwu6r9usFgiJEWc20AK1A@mail.gmail.com>
-Subject: Re: [PATCH v6 08/10] ASoC: dt-bindings: mediatek,mt8196-afe: add
- audio AFE
-To: =?UTF-8?B?RGFycmVuIFllICjlj7bpo54p?= <Darren.Ye@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linus.walleij@linaro.org" <linus.walleij@linaro.org>, 
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
-	"krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>, "broonie@kernel.org" <broonie@kernel.org>, 
-	"brgl@bgdev.pl" <brgl@bgdev.pl>, "conor+dt@kernel.org" <conor+dt@kernel.org>, "tiwai@suse.com" <tiwai@suse.com>, 
-	"robh@kernel.org" <robh@kernel.org>, "lgirdwood@gmail.com" <lgirdwood@gmail.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"perex@perex.cz" <perex@perex.cz>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 3/4] misc: fastrpc: Cleanup the domain names
+To: Bjorn Andersson <andersson@kernel.org>
+CC: <srini@kernel.org>, <amahesh@qti.qualcomm.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <konradybcio@kernel.org>,
+        <arnd@arndb.de>, <gregkh@linuxfoundation.org>, <quic_kuiw@quicinc.com>,
+        <ekansh.gupta@oss.qualcomm.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-kernel@vger.kernel.org>,
+        Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>
+References: <20250714054133.3769967-1-quic_lxu5@quicinc.com>
+ <20250714054133.3769967-4-quic_lxu5@quicinc.com>
+ <p7la5xeudperckksogd2qsxjmvj2q33gud36aylrt3dlfusqnc@243j5siplhoy>
+Content-Language: en-US
+From: Ling Xu <quic_lxu5@quicinc.com>
+In-Reply-To: <p7la5xeudperckksogd2qsxjmvj2q33gud36aylrt3dlfusqnc@243j5siplhoy>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=ad1hnQot c=1 sm=1 tr=0 ts=68785ebd cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8
+ a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=ANeK8bI-BXgzLtl00b4A:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=-_B0kFfA75AA:10 a=cvBusfyB2V15izCimMoJ:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: 1B2xP9KJXgl836DFVB0K2CuJg23qEWtn
+X-Proofpoint-GUID: 1B2xP9KJXgl836DFVB0K2CuJg23qEWtn
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE3MDAyMCBTYWx0ZWRfX2ojxT0xbwaP1
+ 692L1L21KJaCvypPoOvN7WeFGGVxbQ9dlZ8HRFbQZJV6jDez7sH4+0cAe9CgrDWR6Jls65xZWO0
+ S1CufJIjLmOlzCxveUNfJackVjevaxA2vtUtsN4LCCEgxZDMWf9JoouQSCx20lDSSwxQX79a7tv
+ dqsOUseX8wkAFe89uMgAE/fHEu+8WHwsLRvPrNu9dIZ9v3o6oc6p6t8RxhOKsVJ71KGwMNPLpRO
+ A29ix7qw8J0rGEQHYsnxauZZGvlPbFmWGIcIRPA37L7t0zQO/ypvDFhY6VceIayRjiDF7HjYvZi
+ 7g856zoOd9e+zPMyoxTLWscgI3s0ndV5E5mNN7Pge0lTpDGkGOehmSwWhnH3B7qJKhVOJRaBApD
+ NjPpr/xHBb6xzdNpDCzzW04kIZnOzYjlboMUlFht3361v61KurRb7B9cZRi6lMxfBUfMM3vi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-17_01,2025-07-16_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 bulkscore=0 mlxlogscore=999 suspectscore=0 spamscore=0
+ malwarescore=0 phishscore=0 mlxscore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507170020
 
-On Wed, Jul 16, 2025 at 9:41=E2=80=AFPM Darren Ye (=E5=8F=B6=E9=A3=9E) <Dar=
-ren.Ye@mediatek.com> wrote:
->
-> On Tue, 2025-07-15 at 13:09 +0800, Chen-Yu Tsai wrote:
-> > External email : Please do not click links or open attachments until
-> > you have verified the sender or the content.
-> >
-> >
-> > Hi,
-> >
-> > On Tue, Jul 8, 2025 at 7:35=E2=80=AFPM Darren.Ye <darren.ye@mediatek.co=
-m>
-> > wrote:
-> > >
-> > > From: Darren Ye <darren.ye@mediatek.com>
-> > >
-> > > Add mt8196 audio AFE.
-> > >
-> > > Signed-off-by: Darren Ye <darren.ye@mediatek.com>
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > ---
-> > >  .../bindings/sound/mediatek,mt8196-afe.yaml   | 157
-> > > ++++++++++++++++++
-> > >  1 file changed, 157 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/sound/mediatek,mt8196-afe.yaml
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/sound/mediatek,mt8196-afe.yaml
-> > > b/Documentation/devicetree/bindings/sound/mediatek,mt8196-afe.yaml
-> > > new file mode 100644
-> > > index 000000000000..fe147eddf5e7
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8196-
-> > > afe.yaml
-> > > @@ -0,0 +1,157 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id:
-> > > https://urldefense.com/v3/__http://devicetree.org/schemas/sound/media=
-tek,mt8196-afe.yaml*__;Iw!!CTRNKA9wMg0ARbw!iSiBwCYEjWdWSv25XRbl3ky3Niiw3nDp=
-VY-fW1dxyp3eU5YDs0bbZXEgPUQ1_NInbxUIgyz3HJvf-xTH$
-> > > +$schema:
-> > > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.y=
-aml*__;Iw!!CTRNKA9wMg0ARbw!iSiBwCYEjWdWSv25XRbl3ky3Niiw3nDpVY-fW1dxyp3eU5YD=
-s0bbZXEgPUQ1_NInbxUIgyz3HHUjHsuW$
-> > > +
-> > > +title: MediaTek Audio Front End PCM controller for MT8196
-> > > +
-> > > +maintainers:
-> > > +  - Darren Ye <darren.ye@mediatek.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: mediatek,mt8196-afe
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  memory-region:
-> > > +    maxItems: 1
-> > > +
-> > > +  mediatek,vlpcksys:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description: To set up the apll12 tuner
-> >
-> > Looking at the implementation, the configuration is just a fixed
-> > value.
-> > Can this be moved to the VLP clock driver instead?
-> >
-> I thinks it's not good to put it in the VLP clock kernel driver,
-> because this value needs to be adjusted. Usually, it is set in
-> coreboot, but it is hard to change later. Audio needs to adjust
-> this value, so it's better to put it in the audio driver. What do
-> you think?
+在 7/17/2025 3:28 AM, Bjorn Andersson 写道:
+> On Mon, Jul 14, 2025 at 11:11:32AM +0530, Ling Xu wrote:
+>> Currently the domain ids are added for each instance of domains, this is
+>> totally not scalable approach.
+> 
+> This sentence only makes sense for people in your team or participants
+> of some recent meeting or (private) mail thread of yours. When providing
+> you problem description [1], do so in a way that it makes sense to
+> people outside that bubble - and yourself next month.
+> 
+> [1] https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
+> 
+>> Clean this mess and create domain ids for
+>> only domains not its instances.
+>>
+> 
+> Is the "mess" that the domain is part of the ioctl, or is the mess that
+> the names of the domains are defined in an array and you prefer them to
+> be listed out in code (fastrpc_get_domain_id())?
+I already split this to 2 changes in latest patch, mess means we created domain ids
+for its instances.
+> 
+>> Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+>> ---
+>>  drivers/misc/fastrpc.c      | 50 ++++++++++++++++---------------------
+>>  include/uapi/misc/fastrpc.h |  2 +-
+>>  2 files changed, 22 insertions(+), 30 deletions(-)
+>>
+>> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+>> index 378923594f02..85b6eb16b616 100644
+>> --- a/drivers/misc/fastrpc.c
+>> +++ b/drivers/misc/fastrpc.c
+>> @@ -27,8 +27,6 @@
+>>  #define MDSP_DOMAIN_ID (1)
+>>  #define SDSP_DOMAIN_ID (2)
+>>  #define CDSP_DOMAIN_ID (3)
+>> -#define CDSP1_DOMAIN_ID (4)
+>> -#define FASTRPC_DEV_MAX		5 /* adsp, mdsp, slpi, cdsp, cdsp1 */
+>>  #define FASTRPC_MAX_SESSIONS	14
+>>  #define FASTRPC_MAX_VMIDS	16
+>>  #define FASTRPC_ALIGN		128
+>> @@ -106,8 +104,6 @@
+>>  
+>>  #define miscdev_to_fdevice(d) container_of(d, struct fastrpc_device, miscdev)
+>>  
+>> -static const char *domains[FASTRPC_DEV_MAX] = { "adsp", "mdsp",
+>> -						"sdsp", "cdsp", "cdsp1" };
+>>  struct fastrpc_phy_page {
+>>  	u64 addr;		/* physical address */
+>>  	u64 size;		/* size of contiguous region */
+>> @@ -1723,7 +1719,6 @@ static int fastrpc_get_info_from_kernel(struct fastrpc_ioctl_capability *cap,
+>>  	uint32_t attribute_id = cap->attribute_id;
+>>  	uint32_t *dsp_attributes;
+>>  	unsigned long flags;
+>> -	uint32_t domain = cap->domain;
+>>  	int err;
+>>  
+>>  	spin_lock_irqsave(&cctx->lock, flags);
+>> @@ -1741,7 +1736,7 @@ static int fastrpc_get_info_from_kernel(struct fastrpc_ioctl_capability *cap,
+>>  	err = fastrpc_get_info_from_dsp(fl, dsp_attributes, FASTRPC_MAX_DSP_ATTRIBUTES);
+>>  	if (err == DSP_UNSUPPORTED_API) {
+>>  		dev_info(&cctx->rpdev->dev,
+>> -			 "Warning: DSP capabilities not supported on domain: %d\n", domain);
+>> +			 "Warning: DSP capabilities not supported\n");
+>>  		kfree(dsp_attributes);
+>>  		return -EOPNOTSUPP;
+>>  	} else if (err) {
+>> @@ -1769,17 +1764,6 @@ static int fastrpc_get_dsp_info(struct fastrpc_user *fl, char __user *argp)
+>>  		return  -EFAULT;
+>>  
+>>  	cap.capability = 0;
+>> -	if (cap.domain >= FASTRPC_DEV_MAX) {
+>> -		dev_err(&fl->cctx->rpdev->dev, "Error: Invalid domain id:%d, err:%d\n",
+>> -			cap.domain, err);
+>> -		return -ECHRNG;
+>> -	}
+>> -
+>> -	/* Fastrpc Capablities does not support modem domain */
+>> -	if (cap.domain == MDSP_DOMAIN_ID) {
+>> -		dev_err(&fl->cctx->rpdev->dev, "Error: modem not supported %d\n", err);
+>> -		return -ECHRNG;
+>> -	}
+>>  
+>>  	if (cap.attribute_id >= FASTRPC_MAX_DSP_ATTRIBUTES) {
+>>  		dev_err(&fl->cctx->rpdev->dev, "Error: invalid attribute: %d, err: %d\n",
+>> @@ -2255,6 +2239,20 @@ static int fastrpc_device_register(struct device *dev, struct fastrpc_channel_ct
+>>  	return err;
+>>  }
+>>  
+>> +static int fastrpc_get_domain_id(const char *domain)
+>> +{
+>> +	if (!strncmp(domain, "adsp", 4))
+>> +		return ADSP_DOMAIN_ID;
+>> +	else if (!strncmp(domain, "cdsp", 4))
+>> +		return CDSP_DOMAIN_ID;
+>> +	else if (!strncmp(domain, "mdsp", 4))
+>> +		return MDSP_DOMAIN_ID;
+>> +	else if (!strncmp(domain, "sdsp", 4))
+>> +		return SDSP_DOMAIN_ID;
+>> +
+> 
+> The removed code performs a string compare and you replace this with a
+> string prefix compare, but there's no motivation given to why this is
+> done.
+> 
+> I'm also wondering why cdsp1 is now in CDSP_DOMAIN_ID, is that
+> intentional? Was it wrong before? If so, that change should be done
+> alone and with a Fixes: 
+> 
+cdsp1 use cdsp0 daemon, they are two instances but one domain.
+In kernel, we just care about the domains. we just give a scalable 
+approach without adding instances for any new dsp every time.
+> Regards,
+> Bjorn
+> 
+>> +	return -EINVAL;
+>> +}
+>> +
+>>  static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>  {
+>>  	struct device *rdev = &rpdev->dev;
+>> @@ -2272,15 +2270,10 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>  		return err;
+>>  	}
+>>  
+>> -	for (i = 0; i < FASTRPC_DEV_MAX; i++) {
+>> -		if (!strcmp(domains[i], domain)) {
+>> -			domain_id = i;
+>> -			break;
+>> -		}
+>> -	}
+>> +	domain_id = fastrpc_get_domain_id(domain);
+>>  
+>>  	if (domain_id < 0) {
+>> -		dev_info(rdev, "FastRPC Invalid Domain ID %d\n", domain_id);
+>> +		dev_info(rdev, "FastRPC Domain %s not supported\n", domain);
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> @@ -2330,21 +2323,20 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>  	case ADSP_DOMAIN_ID:
+>>  	case MDSP_DOMAIN_ID:
+>>  	case SDSP_DOMAIN_ID:
+>> -		/* Unsigned PD offloading is only supported on CDSP and CDSP1 */
+>> +		/* Unsigned PD offloading is only supported on CDSP */
+>>  		data->unsigned_support = false;
+>> -		err = fastrpc_device_register(rdev, data, secure_dsp, domains[domain_id]);
+>> +		err = fastrpc_device_register(rdev, data, secure_dsp, domain);
+>>  		if (err)
+>>  			goto err_free_data;
+>>  		break;
+>>  	case CDSP_DOMAIN_ID:
+>> -	case CDSP1_DOMAIN_ID:
+>>  		data->unsigned_support = true;
+>>  		/* Create both device nodes so that we can allow both Signed and Unsigned PD */
+>> -		err = fastrpc_device_register(rdev, data, true, domains[domain_id]);
+>> +		err = fastrpc_device_register(rdev, data, true, domain);
+>>  		if (err)
+>>  			goto err_free_data;
+>>  
+>> -		err = fastrpc_device_register(rdev, data, false, domains[domain_id]);
+>> +		err = fastrpc_device_register(rdev, data, false, domain);
+>>  		if (err)
+>>  			goto err_deregister_fdev;
+>>  		break;
+>> diff --git a/include/uapi/misc/fastrpc.h b/include/uapi/misc/fastrpc.h
+>> index f33d914d8f46..c6e2925f47e6 100644
+>> --- a/include/uapi/misc/fastrpc.h
+>> +++ b/include/uapi/misc/fastrpc.h
+>> @@ -134,7 +134,7 @@ struct fastrpc_mem_unmap {
+>>  };
+>>  
+>>  struct fastrpc_ioctl_capability {
+>> -	__u32 domain;
+>> +	__u32 unused; /* deprecated, ignored by the kernel */
+>>  	__u32 attribute_id;
+>>  	__u32 capability;   /* dsp capability */
+>>  	__u32 reserved[4];
+>> -- 
+>> 2.34.1
+>>
 
-It looks like just one fixed value, instead of needing to tweak the value
-during operation? If that's the case I think it could be moved to the
-clock driver.
+-- 
+Thx and BRs,
+Ling Xu
 
-> > > +
-> > > +  power-domains:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: mux for audio intbus
-> > > +      - description: mux for audio engen1
-> > > +      - description: mux for audio engen2
-> > > +      - description: mux for audio h
-> > > +      - description: vlp 26m clock
-> > > +      - description: audio apll1 clock
-> > > +      - description: audio apll2 clock
-> > > +      - description: audio apll1 divide4
-> > > +      - description: audio apll2 divide4
-> > > +      - description: audio apll12 divide for i2sin0
-> > > +      - description: audio apll12 divide for i2sin1
-> > > +      - description: audio apll12 divide for fmi2s
-> > > +      - description: audio apll12 divide for tdmout mck
-> > > +      - description: audio apll12 divide for tdmout bck
-> > > +      - description: mux for audio apll1
-> > > +      - description: mux for audio apll2
-> > > +      - description: mux for i2sin0 mck
-> > > +      - description: mux for i2sin1 mck
-> > > +      - description: mux for fmi2s mck
-> > > +      - description: mux for tdmout mck
-> > > +      - description: mux for adsp clock
-> > > +      - description: 26m clock
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: top_aud_intbus
-> > > +      - const: top_aud_eng1
-> > > +      - const: top_aud_eng2
-> > > +      - const: top_aud_h
-> > > +      - const: vlp_clk26m
-> > > +      - const: apll1
-> > > +      - const: apll2
-> > > +      - const: apll1_d4
-> > > +      - const: apll2_d4
-> >
-> > These are parents of the top_apll[12]. They do not feed into the
-> > hardware directly, so you should not be including them here.
-> >
-> > > +      - const: apll12_div_i2sin0
-> > > +      - const: apll12_div_i2sin1
-> > > +      - const: apll12_div_fmi2s
-> > > +      - const: apll12_div_tdmout_m
-> > > +      - const: apll12_div_tdmout_b
-> >
-> > In the clock bindings sent by Collabora, these dividers are no longer
-> > separately modeled; they have been combined with their respective
-> > top_* clocks.
-> >
-> > > +      - const: top_apll1
-> > > +      - const: top_apll2
-> >
-> > These two are parents to apll12_div_*, do not feed into the hardware
-> > directly, so you should not be including them here.
-> >
-> > The clock tree for each audio interface clock looks like the
-> > following:
-> >
-> >     apll1 -> apll1_d4 -> top_apll1 --
-> >                      /               \
-> >               clk26m                  --> top_fmi2s ->
-> > apll12_div_fmi2s
-> >                      \               /
-> >     apll2 -> apll2_d4 -> top_apll2 --
-> >
-> > Only the final "apll12_div_fmi2s" should be referenced.
-> >
-> > On the implementation side, it should simply be a matter of setting
-> > the
-> > required rate (24.576 MHz or 22.5792 MHz, or some multiple) on this
-> > leaf
-> > clock, and let the clock framework figure out the PLL and dividers to
-> > use. Same thing for enabling the clock.
->
-> I think we have some misunderstandings. I will first draw mtk audio
-> clock topology diagram, and then we can disscuss which parts can be
-> optimized together.
->
-> top_aud_intbus: as read/write reg clock source;
-> top_aud_eng1/top_aud_eng2: as i2s bck clock source;
-> apll12_div_xxx: as mclk clock source;
-> top_audio_h: as afe other ip clock source;
-
-And what about top_i2sin0, top_i2sin1, top_fmi2s, top_tdmout?
-
->
-> vlp_clk26m
->         \
-> apll1   --> top_audio_h
-> /
-> apll2
-
-This shows that vlp_clk26m, apll1, apll2 are parents to top_audio_h.
-
->                 vlp_clk26m
->                      \
-> apll1  --> apll1_d4  --> top_aud_eng1
->        \
-> clk26m --> top_apll1
-> \
->  --> top_fmi2s --> apll12_div_fmi2s
-> /
-> clk26m  --> top_apll2
->        /
-> apll2  --> apll2_d4  --> top_aud_eng2
->                      /
->        vlp_clk26m
-
-This shows the parents of top_aud_eng1, top_aud_eng2, top_apll1, top_apll2,
-and apll12_div_fmi2s.
-
-My point is that all these parents should not be referenced unless they
-also directly feed some input to the AFE block.
-
-> vlp_clk26m -> top_aud_intbus
->
->
-> >
-> > > +      - const: top_i2sin0
-> > > +      - const: top_i2sin1
-> > > +      - const: top_fmi2s
-> > > +      - const: top_tdmout
-> > > +      - const: top_adsp
-> > > +      - const: clk26m
-> >
-> > Is this one directly needed? It is similar to vlp_clk26m, and I
-> > suspect
-> > only that one is needed.
-> >
-> vlp_clk26m belongs to the VLP clock domain, and clk26 belongs to the
-> system clock domain;
->
-> top_apll1/top_apll2 can only select system apll1/apll2 or clk26m, they
-> cannot use vlp_clk26m;
-
-Yes. What I mean is that clk26m does not directly feed the AFE block.
-If it does not directly feed the AFE block, it shouldn't be listed.
-
-So please think about the modules in the AFE, and the clock gates in
-the AFE block; think about what "external" clocks feed into them. Those
-are the ones you should list.
-
-
-ChenYu
-
-> BR
-> Darren Ye
->
-> >
-> > ChenYu
-> >
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - memory-region
-> > > +  - mediatek,vlpcksys
-> > > +  - power-domains
-> > > +  - clocks
-> > > +  - clock-names
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +
-> > > +    soc {
-> > > +        #address-cells =3D <2>;
-> > > +        #size-cells =3D <2>;
-> > > +
-> > > +        afe@1a110000 {
-> > > +            compatible =3D "mediatek,mt8196-afe";
-> > > +            reg =3D <0 0x1a110000 0 0x9000>;
-> > > +            interrupts =3D <GIC_SPI 351 IRQ_TYPE_LEVEL_HIGH 0>;
-> > > +            memory-region =3D <&afe_dma_mem_reserved>;
-> > > +            mediatek,vlpcksys =3D <&vlp_cksys_clk>;
-> > > +            power-domains =3D <&scpsys 14>;
-> > > //MT8196_POWER_DOMAIN_AUDIO
-> > > +            clocks =3D <&vlp_cksys_clk 40>,
-> > > //CLK_VLP_CK_AUD_INTBUS_SEL
-> > > +                     <&vlp_cksys_clk 38>,
-> > > //CLK_VLP_CK_AUD_ENGEN1_SEL
-> > > +                     <&vlp_cksys_clk 39>,
-> > > //CLK_VLP_CK_AUD_ENGEN2_SEL
-> > > +                     <&vlp_cksys_clk 37>, //CLK_VLP_CK_AUDIO_H_SEL
-> > > +                     <&vlp_cksys_clk 45>, //CLK_VLP_CK_CLKSQ
-> > > +                     <&cksys_clk 129>, //CLK_CK_APLL1
-> > > +                     <&cksys_clk 132>, //CLK_CK_APLL2
-> > > +                     <&cksys_clk 130>, //CLK_CK_APLL1_D4
-> > > +                     <&cksys_clk 133>, //CLK_CK_APLL2_D4
-> > > +                     <&cksys_clk 80>,
-> > > //CLK_CK_APLL12_CK_DIV_I2SIN0
-> > > +                     <&cksys_clk 81>,
-> > > //CLK_CK_APLL12_CK_DIV_I2SIN1
-> > > +                     <&cksys_clk 92>, //CLK_CK_APLL12_CK_DIV_FMI2S
-> > > +                     <&cksys_clk 93>,
-> > > //CLK_CK_APLL12_CK_DIV_TDMOUT_M
-> > > +                     <&cksys_clk 94>,
-> > > //CLK_CK_APLL12_CK_DIV_TDMOUT_B
-> > > +                     <&cksys_clk 43>, //CLK_CK_AUD_1_SEL
-> > > +                     <&cksys_clk 44>, //CLK_CK_AUD_2_SEL
-> > > +                     <&cksys_clk 66>, //CLK_CK_APLL_I2SIN0_MCK_SEL
-> > > +                     <&cksys_clk 67>, //CLK_CK_APLL_I2SIN1_MCK_SEL
-> > > +                     <&cksys_clk 78>, //CLK_CK_APLL_FMI2S_MCK_SEL
-> > > +                     <&cksys_clk 79>, //CLK_CK_APLL_TDMOUT_MCK_SEL
-> > > +                     <&cksys_clk 45>, //CLK_CK_ADSP_SEL
-> > > +                     <&cksys_clk 140>; //CLK_CK_TCK_26M_MX9
-> > > +            clock-names =3D "top_aud_intbus",
-> > > +                          "top_aud_eng1",
-> > > +                          "top_aud_eng2",
-> > > +                          "top_aud_h",
-> > > +                          "vlp_clk26m",
-> > > +                          "apll1",
-> > > +                          "apll2",
-> > > +                          "apll1_d4",
-> > > +                          "apll2_d4",
-> > > +                          "apll12_div_i2sin0",
-> > > +                          "apll12_div_i2sin1",
-> > > +                          "apll12_div_fmi2s",
-> > > +                          "apll12_div_tdmout_m",
-> > > +                          "apll12_div_tdmout_b",
-> > > +                          "top_apll1",
-> > > +                          "top_apll2",
-> > > +                          "top_i2sin0",
-> > > +                          "top_i2sin1",
-> > > +                          "top_fmi2s",
-> > > +                          "top_tdmout",
-> > > +                          "top_adsp",
-> > > +                          "clk26m";
-> > > +        };
-> > > +    };
-> > > +
-> > > +...
-> > > --
-> > > 2.45.2
-> > >
-> > >
->
-> ************* MEDIATEK Confidentiality Notice
->  ********************
-> The information contained in this e-mail message (including any
-> attachments) may be confidential, proprietary, privileged, or otherwise
-> exempt from disclosure under applicable laws. It is intended to be
-> conveyed only to the designated recipient(s). Any use, dissemination,
-> distribution, printing, retaining or copying of this e-mail (including it=
-s
-> attachments) by unintended recipient(s) is strictly prohibited and may
-> be unlawful. If you are not an intended recipient of this e-mail, or beli=
-eve
->
-> that you have received this e-mail in error, please notify the sender
-> immediately (by replying to this e-mail), delete any and all copies of
-> this e-mail (including any attachments) from your system, and do not
-> disclose the content of this e-mail to any other person. Thank you!
 
