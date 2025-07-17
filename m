@@ -1,196 +1,247 @@
-Return-Path: <devicetree+bounces-197102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F89FB08303
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 04:37:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41611B0832D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 05:04:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FE697AD2E6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 02:35:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75548582460
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 03:04:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53841C84CB;
-	Thu, 17 Jul 2025 02:37:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C23F61CAA92;
+	Thu, 17 Jul 2025 03:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T/p9XIm+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out198-45.us.a.mail.aliyun.com (out198-45.us.a.mail.aliyun.com [47.90.198.45])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367E1186A;
-	Thu, 17 Jul 2025 02:36:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=47.90.198.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D4071A254E;
+	Thu, 17 Jul 2025 03:04:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752719823; cv=none; b=h3RikvcnVs7cuJj5rBKk3zKt71bZ1yy0VUU1YJAnGP3n9Ru1Uw9JfCLc0l/pAZ2xLYKUV48hrg6on/efgbbVzeXjEywEFoeFov6eR5YsklbLKvyCR+J63rzUk13wHv40TFBiOu6goii7MS9sp7wUQHPo7DDMpl/QHxU//u4Rh58=
+	t=1752721451; cv=none; b=DsRH4hd5W6LNxUxO0xrwI+mMq5jUCJ/8GPq6RFDFfGb2sN0rev0us68gb9o1ng1oCHB1VRhBBL8JCj0X2UlTJaXiP1HN7qHQ072r5fXEBVY/uAHPv5YL5d7wR2SJBunW98naX+xOBsmqaPcYmOksgZyC0LHAgNeDSArxKhcJ+Ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752719823; c=relaxed/simple;
-	bh=TvBIM9RgfYY66Wno3tb8EgVILatgCJ8UVDXKvUrHH/I=;
-	h=Date:From:To:Cc:Message-ID:Subject:MIME-Version:References:
-	 In-Reply-To:Content-Type; b=DXicKFTg1I2S00N9xkKMHpBeEQUIEx5WayQq0ZTZTRkYEJzo1/SXBRGdkLL1Kd1fhoxrWSIDrLXCkB0P4Vcpx0PUun3/JQqvTnh1Mc430mjFBWVxJU8jlfmnL13W+ldkUZ3R8Xr2Iq+vwd9FXW2iD4aYcSqyrvuq0e20zcU7ZZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bosc.ac.cn; spf=pass smtp.mailfrom=bosc.ac.cn; arc=none smtp.client-ip=47.90.198.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bosc.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bosc.ac.cn
-X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07386655|-1;BR=01201311R141S38rulernew998_84748_2000303;CH=blue;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.403409-7.27482e-05-0.596519;FP=7386943584611378810|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033037006239;MF=qinshaoqing@bosc.ac.cn;NM=1;PH=DW;RN=10;RT=10;SR=0;TI=W4_0.2.3_v5ForWebDing_214754DF_1752719799417_o7001c29i;
-Received: from WS-web (qinshaoqing@bosc.ac.cn[W4_0.2.3_v5ForWebDing_214754DF_1752719799417_o7001c29i] cluster:ay29) at Thu, 17 Jul 2025 10:36:39 +0800
-Date: Thu, 17 Jul 2025 10:36:39 +0800
-From: "=?UTF-8?B?56em5bCR6Z2S?=" <qinshaoqing@bosc.ac.cn>
-To: "paul.walmsley" <paul.walmsley@sifive.com>,
-  "palmer" <palmer@dabbelt.com>,
-  "aou" <aou@eecs.berkeley.edu>,
-  "robh" <robh@kernel.org>,
-  "krzk+dt" <krzk+dt@kernel.org>,
-  "conor+dt" <conor+dt@kernel.org>
-Cc: "linux-riscv" <linux-riscv@lists.infradead.org>,
-  "linux-kernel" <linux-kernel@vger.kernel.org>,
-  "devicetree" <devicetree@vger.kernel.org>,
-  "=?UTF-8?B?546L54S2?=" <wangran@bosc.ac.cn>
-Reply-To: "=?UTF-8?B?56em5bCR6Z2S?=" <qinshaoqing@bosc.ac.cn>
-Message-ID: <17ab3ebb-2f46-4c61-a194-57d72f382517.qinshaoqing@bosc.ac.cn>
-Subject: =?UTF-8?B?W1BBVENIXSByaXNjdjogZHRzOiBBZGQgdGhlIGRldmljZSB0cmVlIG9mIHRoZSBYaWFuZ1No?=
-  =?UTF-8?B?YW4gcGxhdGZvcm0ncyBuYW5odSBzb2M=?=
-X-Mailer: [Alimail-Mailagent revision 3][W4_0.2.3][v5ForWebDing][Chrome]
+	s=arc-20240116; t=1752721451; c=relaxed/simple;
+	bh=EK70Sc4fwHFs2hGjDGfIE3VhSwftfnPt0Nv7VPHVa8A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=pIqUTsEercJ7NHq2WiGpeLycr/ptwDgMFL/li8APO17h2vZkErNS7+e7yfzu2mxZQkZOWHp1/RYI5cCRlbzoixXvCaSlh9cov/ymWvcuyb8ipdeE//qm1xc7a47IhAnIMDrFiTOhGlZ+YndL66/dy+rbW4ro14LuOuyy/kgG4uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=T/p9XIm+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56GGDY6b015664;
+	Thu, 17 Jul 2025 03:03:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	yl9WiInfw+XrjWyYXlry8+JNjMfLk8gIbN0qzqtc8Bo=; b=T/p9XIm+xYThRzY+
+	lVfT5U3UTkKi8I3H5Zqv6Qd8s+Hd3EL+tM3HnsGBmO4MJ0jTOVn64ITZeOZr9Qkc
+	MJygOO51Vwf8n8gXj7pxD3sg7nFBb7YEF40HIoH92g39x/jpoWmCc8/m6gZL08gW
+	is6xe9rH1o3FyocB573VIjplWUpmMcsnzVTKBupuSrHw7XI2iKOYps7QFk821h87
+	Lb0kx2u2/dVgeOqbV6XdBeDsiEVMIFZNjaiu7VxKutBgrOTvpsZPAQGeTzmGeITb
+	r0en7wWy4fAkfhoZZ5ve/0xw99WNDQ29usvRFosoEaH3F5BhXnm4q13FiNbU6RD0
+	9xNAMg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47w5dys1gp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Jul 2025 03:03:59 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56H33w2i017033
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Jul 2025 03:03:58 GMT
+Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 16 Jul
+ 2025 20:03:55 -0700
+Message-ID: <eed04042-ce69-491f-b42e-7c173afdb234@quicinc.com>
+Date: Thu, 17 Jul 2025 11:03:52 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-x-aliyun-im-through: {"version":"v1.0"}
-References: <20250103063040.10817-1-qshaoqing926@163.com>,<2c75df56-fb55-4dd3-ac63-518233e61c8f.qinshaoqing@bosc.ac.cn>
-x-aliyun-mail-creator: W4_0.2.3_v5ForWebDing_M3LTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzOC4wLjAuMCBTYWZhcmkvNTM3LjM2vN
-In-Reply-To: <2c75df56-fb55-4dd3-ac63-518233e61c8f.qinshaoqing@bosc.ac.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/2] coresight: Add label sysfs node support
+To: Mike Leach <mike.leach@linaro.org>
+CC: Leo Yan <leo.yan@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+        James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mathieu
+ Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20250703130453.4265-1-quic_jinlmao@quicinc.com>
+ <20250703130453.4265-3-quic_jinlmao@quicinc.com>
+ <20250703141905.GE1039028@e132581.arm.com>
+ <0e7ae7d1-4877-4e8a-a0fb-0fda5cc03cf2@quicinc.com>
+ <CAJ9a7ViQ2A9FQV=fxzhu1DkZEBdiAvAijb6OjOeJriNio1nX6w@mail.gmail.com>
+Content-Language: en-US
+From: Jinlong Mao <quic_jinlmao@quicinc.com>
+In-Reply-To: <CAJ9a7ViQ2A9FQV=fxzhu1DkZEBdiAvAijb6OjOeJriNio1nX6w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: L_YyO-VRz5U42y7Nvyj6bm9BrLvwwg2a
+X-Authority-Analysis: v=2.4 cv=RtXFLDmK c=1 sm=1 tr=0 ts=6878681f cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=aWtVbIlNkpBLB9TuODAA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE3MDAyNyBTYWx0ZWRfX6ZJOOEuStCmU
+ AI7Q4nskWrxM/oQKaAOixiOMMk9zwsatd8TK2NvW4NkhzAGIKukar7/zufXQbmlwg0FJWPAO+HZ
+ kPqe+7mbn9UMeW2tWG8XZxs9Y/0XpdUaoIsTsvEFKMK/Bo/epHVSWZU9p8NqbGgfADkRGyfGcrm
+ cti7SAZRsviRlYV2v1xP+WFRSQEj7lo9yZ0psiwB7xN9NhWpuQTdhvhQO2qewNDbmQhP3pPUuYG
+ m7aaFEAAOFuiH8s1xGkUMxM/jKy8qCmMA8a6EntkDj1LALODvIdzYBzgzAdk4uiqjW4fBwiZQuo
+ nzgvLnOf18BT9c8oy9pFQl0qVfLLc+KK/5ErhAWzeYE3hcSPpoL6XlEdKEy+Y33/OFhi5hBFEjs
+ d76++/Dt76Z+XaiY0muKjCM5Un3ZEVfvSndOLQmpFiTYUEqTjux+zEoyIgt+rbdb4X1CtxCH
+X-Proofpoint-GUID: L_YyO-VRz5U42y7Nvyj6bm9BrLvwwg2a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-17_01,2025-07-16_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 mlxscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 clxscore=1015 mlxlogscore=999
+ priorityscore=1501 phishscore=0 spamscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507170027
 
-CgpUaGlzIHBhdGNoIGFkZHMgdGhlIGRldmljZSB0cmVlIHN1cHBvcnQgZm9yIHRoZSBYaWFuZ1No
-YW4gcGxhdGZvcm0ncyBuYW5odSBzb2MKClNpZ25lZC1vZmYtYnk6IHFpbnNoYW9xaW5nIDxxaW5z
-aGFvcWluZ0Bib3NjLmFjLmNuPgotLS0KIGFyY2gvcmlzY3YvS2NvbmZpZy5zb2NzIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIHwgwqAgNSArCiBhcmNoL3Jpc2N2L2Jvb3QvZHRzL01ha2Vm
-aWxlwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgfCDCoCAxICsKIGFyY2gvcmlzY3YvYm9vdC9kdHMv
-eGlhbmdzaGFuL01ha2VmaWxlwqAgwqAgwqAgfCDCoCAyICsKIGFyY2gvcmlzY3YvYm9vdC9kdHMv
-eGlhbmdzaGFuL25hbmh1LXYzYS5kdHMgfCAyMjYgKysrKysrKysrKysrKysrKysrKysKIDQgZmls
-ZXMgY2hhbmdlZCwgMjM0IGluc2VydGlvbnMoKykKIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL3Jp
-c2N2L2Jvb3QvZHRzL3hpYW5nc2hhbi9NYWtlZmlsZQogY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gv
-cmlzY3YvYm9vdC9kdHMveGlhbmdzaGFuL25hbmh1LXYzYS5kdHMKCmRpZmYgLS1naXQgYS9hcmNo
-L3Jpc2N2L0tjb25maWcuc29jcyBiL2FyY2gvcmlzY3YvS2NvbmZpZy5zb2NzCmluZGV4IGY1MWJi
-MjRiYzg0Yy4uODljODBmZDQ5M2ZiIDEwMDY0NAotLS0gYS9hcmNoL3Jpc2N2L0tjb25maWcuc29j
-cworKysgYi9hcmNoL3Jpc2N2L0tjb25maWcuc29jcwpAQCAtODAsNCArODAsOSBAQCBjb25maWcg
-U09DX0NBTkFBTl9LMjEwCsKgIGhlbHAKwqAgwqAgVGhpcyBlbmFibGVzIHN1cHBvcnQgZm9yIENh
-bmFhbiBLZW5kcnl0ZSBLMjEwIFNvQyBwbGF0Zm9ybSBoYXJkd2FyZS4KCitjb25maWcgU09DX1hJ
-QU5HU0hBTgorwqAgwqAgwqAgwqAgYm9vbCAiWGlhbmdTaGFuIFNvQ3MiCivCoCDCoCDCoCDCoCBo
-ZWxwCivCoCDCoCDCoCDCoCDCoCBUaGlzIGVuYWJsZXMgc3VwcG9ydCBmb3IgWGlhbmdTaGFuIFNv
-QyBwbGF0Zm9ybSBoYXJkd2FyZQorCiBlbmRtZW51ICMgIlNvQyBzZWxlY3Rpb24iCmRpZmYgLS1n
-aXQgYS9hcmNoL3Jpc2N2L2Jvb3QvZHRzL01ha2VmaWxlIGIvYXJjaC9yaXNjdi9ib290L2R0cy9N
-YWtlZmlsZQppbmRleCBmZGFlMDViYmY1NTYuLjQzYTc5Y2M5ZGQ3YyAxMDA2NDQKLS0tIGEvYXJj
-aC9yaXNjdi9ib290L2R0cy9NYWtlZmlsZQorKysgYi9hcmNoL3Jpc2N2L2Jvb3QvZHRzL01ha2Vm
-aWxlCkBAIC03LDUgKzcsNiBAQCBzdWJkaXIteSArPSBzaWZpdmUKIHN1YmRpci15ICs9IHNvcGhn
-bwogc3ViZGlyLXkgKz0gc3RhcmZpdmUKIHN1YmRpci15ICs9IHRoZWFkCitzdWJkaXIteSArPSB4
-aWFuZ3NoYW4KCiBvYmotJChDT05GSUdfQlVJTFRJTl9EVEIpIDo9ICQoYWRkc3VmZml4IC5kdGIu
-bywgJChDT05GSUdfQlVJTFRJTl9EVEJfU09VUkNFKSkKZGlmZiAtLWdpdCBhL2FyY2gvcmlzY3Yv
-Ym9vdC9kdHMveGlhbmdzaGFuL01ha2VmaWxlIGIvYXJjaC9yaXNjdi9ib290L2R0cy94aWFuZ3No
-YW4vTWFrZWZpbGUKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi40MWU1
-ODU0OTBhOTcKLS0tIC9kZXYvbnVsbAorKysgYi9hcmNoL3Jpc2N2L2Jvb3QvZHRzL3hpYW5nc2hh
-bi9NYWtlZmlsZQpAQCAtMCwwICsxLDIgQEAKKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQ
-TC0yLjAKK2R0Yi0kKENPTkZJR19TT0NfWElBTkdTSEFOKSArPSBuYW5odS12M2EuZHRiCmRpZmYg
-LS1naXQgYS9hcmNoL3Jpc2N2L2Jvb3QvZHRzL3hpYW5nc2hhbi9uYW5odS12M2EuZHRzIGIvYXJj
-aC9yaXNjdi9ib290L2R0cy94aWFuZ3NoYW4vbmFuaHUtdjNhLmR0cwpuZXcgZmlsZSBtb2RlIDEw
-MDY0NAppbmRleCAwMDAwMDAwMDAwMDAuLjU2MGRlN2M3ZjIyZQotLS0gL2Rldi9udWxsCisrKyBi
-L2FyY2gvcmlzY3YvYm9vdC9kdHMveGlhbmdzaGFuL25hbmh1LXYzYS5kdHMKQEAgLTAsMCArMSwy
-MjYgQEAKKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCBPUiBNSVQpCisvKiBD
-b3B5cmlnaHQgKGMpIDIwMjQtMjAyNSBCT1NDICovCisKKy9kdHMtdjEvOworCisvIHsKKyAjYWRk
-cmVzcy1jZWxscyA9IDwyPjsKKyAjc2l6ZS1jZWxscyA9IDwyPjsKKyBjb21wYXRpYmxlID0gImJv
-c2MsbmFuaHUtdjNhIjsKKworIGNwdXMgeworwqAgI2FkZHJlc3MtY2VsbHMgPSA8MT47CivCoCAj
-c2l6ZS1jZWxscyA9IDwwPjsKK8KgIHRpbWViYXNlLWZyZXF1ZW5jeSA9IDwyNDAwMDAwMD47CisK
-K8KgIGNwdTA6IGNwdUAwIHsKKyDCoCBjb21wYXRpYmxlID0gImJvc2MsbmFuaHUtdjNhIiwgInJp
-c2N2IjsKKyDCoCBkZXZpY2VfdHlwZSA9ICJjcHUiOworIMKgIHJpc2N2LGlzYSA9ICJydjY0aW1h
-ZmRjdiI7CisgwqAgZC1jYWNoZS1ibG9jay1zaXplID0gPDY0PjsKKyDCoCBkLWNhY2hlLXNldHMg
-PSA8NjQ+OworIMKgIGQtY2FjaGUtc2l6ZSA9IDwxNjM4ND47CisgwqAgZC10bGItc2V0cyA9IDwx
-PjsKKyDCoCBkLXRsYi1zaXplID0gPDMyPjsKKyDCoCBpLWNhY2hlLWJsb2NrLXNpemUgPSA8NjQ+
-OworIMKgIGktY2FjaGUtc2V0cyA9IDw2ND47CisgwqAgaS1jYWNoZS1zaXplID0gPDE2Mzg0PjsK
-KyDCoCBpLXRsYi1zZXRzID0gPDE+OworIMKgIGktdGxiLXNpemUgPSA8MzI+OworIMKgIG1tdS10
-eXBlID0gInJpc2N2LHN2MzkiOworIMKgIHJlZyA9IDwweDA+OworCisgwqAgY3B1MF9pbnRjOiBp
-bnRlcnJ1cHQtY29udHJvbGxlciB7CivCoCDCoCAjaW50ZXJydXB0LWNlbGxzID0gPDE+OworwqAg
-wqAgY29tcGF0aWJsZSA9ICJyaXNjdixjcHUtaW50YyI7CivCoCDCoCBpbnRlcnJ1cHQtY29udHJv
-bGxlcjsKKyDCoCB9OworwqAgfTsKKworwqAgY3B1MTogY3B1QDEgeworIMKgIGNvbXBhdGlibGUg
-PSAiYm9zYyxuYW5odS12M2EiLCAicmlzY3YiOworIMKgIGRldmljZV90eXBlID0gImNwdSI7Cisg
-wqAgcmlzY3YsaXNhID0gInJ2NjRpbWFmZGN2IjsKKyDCoCBkLWNhY2hlLWJsb2NrLXNpemUgPSA8
-NjQ+OworIMKgIGQtY2FjaGUtc2V0cyA9IDw2ND47CisgwqAgZC1jYWNoZS1zaXplID0gPDE2Mzg0
-PjsKKyDCoCBkLXRsYi1zZXRzID0gPDE+OworIMKgIGQtdGxiLXNpemUgPSA8MzI+OworIMKgIGkt
-Y2FjaGUtYmxvY2stc2l6ZSA9IDw2ND47CisgwqAgaS1jYWNoZS1zZXRzID0gPDY0PjsKKyDCoCBp
-LWNhY2hlLXNpemUgPSA8MTYzODQ+OworIMKgIGktdGxiLXNldHMgPSA8MT47CisgwqAgaS10bGIt
-c2l6ZSA9IDwzMj47CisgwqAgbW11LXR5cGUgPSAicmlzY3Ysc3YzOSI7CisgwqAgcmVnID0gPDB4
-MT47CisKKyDCoCBjcHUxX2ludGM6IGludGVycnVwdC1jb250cm9sbGVyIHsKK8KgIMKgICNpbnRl
-cnJ1cHQtY2VsbHMgPSA8MT47CivCoCDCoCBjb21wYXRpYmxlID0gInJpc2N2LGNwdS1pbnRjIjsK
-K8KgIMKgIGludGVycnVwdC1jb250cm9sbGVyOworIMKgIH07CivCoCB9OworIH07CisKKyBjbGtj
-OiBtaXNjX2NsayB7CivCoCBjb21wYXRpYmxlID0gImZpeGVkLWNsb2NrIjsKK8KgICNjbG9jay1j
-ZWxscyA9IDwwPjsKK8KgIGNsb2NrLW91dHB1dC1uYW1lcyA9ICJjbGtjIjsKK8KgIGNsb2NrLWZy
-ZXF1ZW5jeSA9IDwxMDAwMDAwMDA+OworIH07CisKKyBzZGhjaV9jbG9jazogc2RoY2lfY2xjayB7
-CivCoCBjb21wYXRpYmxlID0gImZpeGVkLWNsb2NrIjsKK8KgICNjbG9jay1jZWxscyA9IDwwPjsK
-K8KgIGNsb2NrLW91dHB1dC1uYW1lcyA9ICJzZGhjaV9jbG9jayI7CivCoCBjbG9jay1mcmVxdWVu
-Y3kgPSA8MjUwMDAwMDA+OworIH07CisKKyBpMmMwX2Nsb2NrOiBpMmMwX2NsY2sgeworwqAgY29t
-cGF0aWJsZSA9ICJmaXhlZC1jbG9jayI7CivCoCAjY2xvY2stY2VsbHMgPSA8MD47CivCoCBjbG9j
-ay1vdXRwdXQtbmFtZXMgPSAiaTJjMF9jbG9jayI7CivCoCBjbG9jay1mcmVxdWVuY3kgPSA8MTAw
-MDAwMDAwPjsKKyB9OworCisgc29jIHsKK8KgICNhZGRyZXNzLWNlbGxzID0gPDI+OworwqAgI3Np
-emUtY2VsbHMgPSA8Mj47CivCoCBjb21wYXRpYmxlID0gImJvc2MsbmFuaHUtdjNhLXNvYyIsICJz
-aW1wbGUtYnVzIjsKK8KgIHJhbmdlczsKKworwqAgY2xpbnQwOiBjbGludEAzODAwMDAwMCB7Cisg
-wqAgY29tcGF0aWJsZSA9ICJyaXNjdixjbGludDAiOworIMKgIGludGVycnVwdHMtZXh0ZW5kZWQg
-PSA8JmNwdTBfaW50YyAzICZjcHUwX2ludGMgNyAmY3B1MV9pbnRjIDMgJmNwdTFfaW50YyA3PjsK
-KyDCoCByZWcgPSA8MHgwIDB4MzgwMDAwMDAgMHgwIDB4MTAwMDA+OworIMKgIHJlZy1uYW1lcyA9
-ICJjb250cm9sIjsKKyDCoCBjbG9jay1mcmVxdWVuY3ktbWh6ID0gPDEwPjsKK8KgIH07CisKK8Kg
-IHBsaWM6IGludGVycnVwdC1jb250cm9sbGVyQDNjMDAwMDAwIHsKKyDCoCAjaW50ZXJydXB0LWNl
-bGxzID0gPDE+OworIMKgIGNvbXBhdGlibGUgPSAicmlzY3YscGxpYzAiOworIMKgIGludGVycnVw
-dC1jb250cm9sbGVyOworIMKgIGludGVycnVwdHMtZXh0ZW5kZWQgPSA8JmNwdTBfaW50YyAweGIg
-JmNwdTBfaW50YyAweDkgJmNwdTFfaW50YyAweGIgJmNwdTFfaW50YyAweDk+OworIMKgIHJlZyA9
-IDwwIDB4M2MwMDAwMDAgMCAweDQwMDAwMDA+OworIMKgIHJlZy1uYW1lcyA9ICJjb250cm9sIjsK
-KyDCoCByaXNjdixtYXgtcHJpb3JpdHkgPSA8Nz47CisgwqAgcmlzY3YsbmRldiA9IDwxMjg+Owor
-wqAgfTsKKworwqAgZXRoZXJuZXQwOiBldGhlcm5ldEAxOTAwMDAgeworIMKgIGNvbXBhdGlibGUg
-PSAic3Qsc3RtMzItZHdtYWMiLCAic25wcyxkd21hYy0zLjUwYSI7CisgwqAgcmVnID0gPDAgMHgx
-OTAwMDAgMCAweDEwMDAwPjsKKyDCoCByZWctbmFtZXMgPSAic3RtbWFjZXRoIjsKKyDCoCBpbnRl
-cnJ1cHQtcGFyZW50ID0gPCZwbGljPjsKKyDCoCBpbnRlcnJ1cHRzID0gPDc2IDc1IDc0PjsKKyDC
-oCBpbnRlcnJ1cHQtbmFtZXMgPSAiZXRoX2xwaSIsICJtYWNpcnEiLCAiZXRoX3dha2VfaXJxIjsK
-KyDCoCBjbG9jay1uYW1lcyA9ICJzdG1tYWNldGgiOworIMKgIGNsb2NrcyA9IDwmY2xrYz47Cisg
-wqAgc25wcyxwYmwgPSA8Mj47CisgwqAgc25wcyxtaXhlZC1idXJzdDsKKyDCoCBwaHktbW9kZSA9
-ICJyZ21paSI7CisgwqAgcGh5LWhhbmRsZSA9IDwmcGh5MD47CisgwqAgbWRpbzA6IG1kaW8gewor
-wqAgwqAgI2FkZHJlc3MtY2VsbHMgPSA8MHgxPjsKK8KgIMKgICNzaXplLWNlbGxzID0gPDB4MD47
-CivCoCDCoCBjb21wYXRpYmxlID0gInNucHMsZHdtYWMtbWRpbyI7CivCoCDCoCBwaHkwOiBwaHlA
-MCB7CisgwqAgwqAgcGh5YWRkciA9IDwweDA+OworIMKgIMKgIGNvbXBhdGlibGUgPSAibWFydmVs
-bCw4OEUxNTEwIjsKKyDCoCDCoCBkZXZpY2VfdHlwZSA9ICJldGhlcm5ldC1waHkiOworIMKgIMKg
-IHJlZyA9IDwweDA+OworwqAgwqAgfTsKK8KgIMKgIHBoeTE6IHBoeUAxIHsKKyDCoCDCoCBwaHlh
-ZGRyID0gPDB4MT47CisgwqAgwqAgY29tcGF0aWJsZSA9ICJtYXJ2ZWxsLDg4RTE1MTAiOworIMKg
-IMKgIGRldmljZV90eXBlID0gImV0aGVybmV0LXBoeSI7CisgwqAgwqAgcmVnID0gPDB4MT47CivC
-oCDCoCB9OworIMKgIH07CivCoCB9OworCivCoCBldGhlcm5ldDE6IGV0aGVybmV0QDFhMDAwMCB7
-CisgwqAgY29tcGF0aWJsZSA9ICJzdCxzdG0zMi1kd21hYyIsICJzbnBzLGR3bWFjLTMuNTBhIjsK
-KyDCoCByZWcgPSA8MCAweDFhMDAwMCAwIDB4MTAwMDA+OworIMKgIHJlZy1uYW1lcyA9ICJzdG1t
-YWNldGgxIjsKKyDCoCBpbnRlcnJ1cHQtcGFyZW50ID0gPCZwbGljPjsKKyDCoCBpbnRlcnJ1cHRz
-ID0gPDczIDcyIDcxPjsKKyDCoCBpbnRlcnJ1cHQtbmFtZXMgPSAiZXRoX2xwaSIsICJtYWNpcnEi
-LCAiZXRoX3dha2VfaXJxIjsKKyDCoCBjbG9jay1uYW1lcyA9ICJzdG1tYWNldGgiOworIMKgIGNs
-b2NrcyA9IDwmY2xrYz47CisgwqAgc25wcyxwYmwgPSA8Mj47CisgwqAgc25wcyxtaXhlZC1idXJz
-dDsKKyDCoCBwaHktbW9kZSA9ICJyZ21paSI7CisgwqAgZml4ZWQtbGlua3sKK8KgIMKgIHNwZWVk
-ID3CoCA8MTAwMD47CivCoCDCoCBmdWxsLWR1cGxleDsKK8KgIMKgIHBhdXNlOworwqAgwqAgYXN5
-bS1wYXVzZTsKKyDCoCB9OworwqAgfTsKKworwqAgc2RoY2kyOiBzZGhjaUAxMjAwMDAwIHsKKyDC
-oCBjb21wYXRpYmxlID0gInNucHMsZHdjbXNoYy1zZGhjaSI7CisgwqAgcmVnID0gPDAgMHgxMjAw
-MDAwIDAgMHgyMDAwMD47CisgwqAgaW50ZXJydXB0LXBhcmVudCA9IDwmcGxpYz47CisgwqAgaW50
-ZXJydXB0cyA9IDw3NyA3OD47CisgwqAgY2xvY2tzID0gPCZzZGhjaV9jbG9jaz47CisgwqAgY2xv
-Y2stbmFtZXMgPSAiY29yZSI7CisgwqAgbm8tMS04LXY7CisgwqAgZGlzYWJsZS13cDsKKyDCoCBi
-dXMtd2lkdGggPSA8ND47CisgwqAgbWF4X3JlcV9zaXplID0gPDQwOTY+OworIMKgIHN0YXR1cyA9
-ICJva2F5IjsKK8KgIH07CisKK8KgIGkyY0A3MDAwMCB7CisgwqAgY29tcGF0aWJsZSA9ICJzbnBz
-LGRlc2lnbndhcmUtaTJjIjsKKyDCoCAjYWRkcmVzcy1jZWxscyA9IDwxPjsKKyDCoCAjc2l6ZS1j
-ZWxscyA9IDwwPjsKKyDCoCByZWcgPSA8MHgwIDB4NzAwMDAgMHgwIDB4MTAwMDA+OworIMKgIGlu
-dGVycnVwdHMgPSA8NjY+OworIMKgIGludGVycnVwdC1wYXJlbnQgPSA8JnBsaWM+OworIMKgIGNs
-b2NrLWZyZXF1ZW5jeSA9IDwxMDAwMDA+OworIMKgIGNsb2NrcyA9IDwmaTJjMF9jbG9jaz47Cisg
-wqAgc3RhdHVzID0gIm9rYXkiOworwqAgfTsKKworwqAgaTJjQDgwMDAwIHsKKyDCoCBjb21wYXRp
-YmxlID0gInNucHMsZGVzaWdud2FyZS1pMmMiOworIMKgICNhZGRyZXNzLWNlbGxzID0gPDE+Owor
-IMKgICNzaXplLWNlbGxzID0gPDA+OworIMKgIHJlZyA9IDwweDAgMHg4MDAwMCAweDAgMHgxMDAw
-MD47CisgwqAgaW50ZXJydXB0cyA9IDw2NT47CisgwqAgaW50ZXJydXB0LXBhcmVudCA9IDwmcGxp
-Yz47CisgwqAgY2xvY2stZnJlcXVlbmN5ID0gPDEwMDAwMD47CisgwqAgY2xvY2tzID0gPCZpMmMw
-X2Nsb2NrPjsKKyDCoCBzdGF0dXMgPSAib2theSI7CivCoCB9OworCivCoCB1YXJ0MDogc2VyaWFs
-QDUwMDAwIHsKKyDCoCBjb21wYXRpYmxlID0gIm5zMTY1NTBhIjsKKyDCoCByZWcgPSA8MHgwIDB4
-NTAwMDAgMHgwIDB4MTAwMDA+OworIMKgIHJlZy1zaGlmdCA9IDwweDAyPjsKKyDCoCByZWctaW8t
-d2lkdGggPSA8MHgwND47CisgwqAgaW50ZXJydXB0LXBhcmVudCA9IDwmcGxpYz47CisgwqAgaW50
-ZXJydXB0cyA9IDw2OD47CisgwqAgY2xvY2stZnJlcXVlbmN5ID0gPDEwMDAwMDAwMD47CisgwqAg
-c3RhdHVzID0gIm9rYXkiOworwqAgfTsKKyB9OworCisgbWVtb3J5OiBtZW1vcnlAMTAwMDAwMDAw
-IHsKK8KgIGRldmljZV90eXBlID0gIm1lbW9yeSI7CivCoCByZWcgPSA8MHgwIDB4ODAwMDAwMDAg
-MHgyIDB4MDAwMDAwMDA+OworIH07CisKKyBhbGlhc2VzIHsKK8KgIHNlcmlhbDAgPSAmdWFydDA7
-CisgfTsKKworIGNob3NlbiB7CivCoCBib290YXJncyA9ICJjb25zb2xlPXR0eVMwLDExNTIwMCBl
-YXJseWNvbiI7CivCoCBzdGRvdXQtcGF0aCA9ICJzZXJpYWwwOjExNTIwMG44IjsKKyB9OworfTsK
-LS0KMi40My4wCgoK
+
+
+On 2025/7/16 18:45, Mike Leach wrote:
+> Hi,
+> 
+> On Wed, 16 Jul 2025 at 03:43, Jinlong Mao <quic_jinlmao@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 2025/7/3 22:19, Leo Yan wrote:
+>>> On Thu, Jul 03, 2025 at 09:04:53PM +0800, Mao Jinlong wrote:
+>>>
+>>> [...]
+>>>
+>>>> +static ssize_t label_show(struct device *dev,
+>>>> +            struct device_attribute *attr, char *buf)
+>>>> +{
+>>>> +
+>>>> +    const char *str;
+>>>> +    int ret = 0;
+>>>
+>>> No need to init ret to 0.
+>>>
+>>>> +    ret = fwnode_property_read_string(dev_fwnode(dev), "label", &str);
+>>>> +    if (ret == 0)
+>>>> +            return scnprintf(buf, PAGE_SIZE, "%s\n", str);
+>>>> +    else
+>>>> +            return ret;
+>>>> +}
+>>>> +static DEVICE_ATTR_RO(label);
+>>>> +
+>>>>    static struct attribute *coresight_sink_attrs[] = {
+>>>>       &dev_attr_enable_sink.attr,
+>>>> +    &dev_attr_label.attr,
+>>>>       NULL,
+>>>>    };
+>>>>    ATTRIBUTE_GROUPS(coresight_sink);
+>>>>
+>>>>    static struct attribute *coresight_source_attrs[] = {
+>>>>       &dev_attr_enable_source.attr,
+>>>> +    &dev_attr_label.attr,
+>>>>       NULL,
+>>>>    };
+>>>>    ATTRIBUTE_GROUPS(coresight_source);
+>>>>
+>>>> +static struct attribute *coresight_link_attrs[] = {
+>>>> +    &dev_attr_label.attr,
+>>>> +    NULL,
+>>>> +};
+>>>> +ATTRIBUTE_GROUPS(coresight_link);
+>>>> +
+>>>> +static struct attribute *coresight_helper_attrs[] = {
+>>>> +    &dev_attr_label.attr,
+>>>> +    NULL,
+>>>> +};
+>>>> +ATTRIBUTE_GROUPS(coresight_helper);
+>>>> +
+>>>
+>>> This change adds a 'label' entry for source, link, helper, and sink
+>>> components, but the documentation has only updated for three components:
+>>> CTI, funnel, and TPDM.
+>>>
+>>> Should we also update the documentation for all relevant components,
+>>> such as ETM, ETR, etc.?
+>>>
+>>> Additionally, patch 01 is missing the update to the ETM yaml file for
+>>> the new property. I checked patch v4 [1], which includes a change to
+>>> etm.yaml, but this change was dropped since v5. I briefly read the
+>>> v4 discussion thread and didn't see any mention of removing the ETM
+>>> related change. Did you see any particular issue when add label for
+>>> ETM devices?
+>>>
+>>> Overall, this series is fine for me. Just please ensure that all
+>>> relevant components are covered for completeness.
+>>>
+>>> Thanks,
+>>> Leo
+>>>
+>>
+>> I will update all coresight docs.
+>>
+>> Thanks
+>> Jinlong Mao
+>>
+>>> [1] https://patchwork.kernel.org/project/linux-arm-msm/cover/20240703122340.26864-1-quic_jinlmao@quicinc.com/
+>>>
+>>>>    const struct device_type coresight_dev_type[] = {
+>>>>       [CORESIGHT_DEV_TYPE_SINK] = {
+>>>>               .name = "sink",
+>>>> @@ -390,6 +420,7 @@ const struct device_type coresight_dev_type[] = {
+>>>>       },
+>>>>       [CORESIGHT_DEV_TYPE_LINK] = {
+>>>>               .name = "link",
+>>>> +            .groups = coresight_link_groups,
+>>>>       },
+>>>>       [CORESIGHT_DEV_TYPE_LINKSINK] = {
+>>>>               .name = "linksink",
+>>>> @@ -401,6 +432,7 @@ const struct device_type coresight_dev_type[] = {
+>>>>       },
+>>>>       [CORESIGHT_DEV_TYPE_HELPER] = {
+>>>>               .name = "helper",
+>>>> +            .groups = coresight_helper_groups,
+>>>>       }
+>>>>    };
+>>>>    /* Ensure the enum matches the names and groups */
+>>>> --
+>>>> 2.17.1
+>>>>
+>>>> _______________________________________________
+>>>> CoreSight mailing list -- coresight@lists.linaro.org
+>>>> To unsubscribe send an email to coresight-leave@lists.linaro.org
+>>
+> 
+> Revisiting this - the label DT attribute is purely optional, and
+> provides context for the hardware instance.
+> This code as written appears to add a "label" file to all devices,
+> irrespective of if the label is set in the DT.or not, with blank
+> labels where  the attribute is not present.
+> The visibility of the sysfs attribute should be controlled so that it
+> only appears if label is present in the DT.
+> 
+I will follow this.
+
+Thanks
+Jinlong Mao
+> Mike
+> 
+
 
