@@ -1,194 +1,110 @@
-Return-Path: <devicetree+bounces-197418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7A62B091FD
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 18:38:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA47B09205
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 18:41:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA1F97AD314
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:36:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACD5D1C44F6D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:41:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CAFD2F7D0D;
-	Thu, 17 Jul 2025 16:38:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B124B2F9487;
+	Thu, 17 Jul 2025 16:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cIIwaBCE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tDQ0D4yV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA3E202F87
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 16:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84469145348;
+	Thu, 17 Jul 2025 16:40:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752770280; cv=none; b=hGzoQJtmzpCBW0a31ZB+GZPKxzRdZhmyYWqzIDwcBCS+wXH3K05E3iL2I6cU+oR9zVDsO5RbHYzVCvxhHKomNN9xKpPyeC48/wyD7AjoSL/HKW18QORL8N0z2638UEDSKzjwkL9Yx5MyFjmlEp1aeCWGCvp70L4ci4HWK3cNd7o=
+	t=1752770456; cv=none; b=UKpC4LPsZeWZik+0RUxa7m/b1JLXj9mXUToGXzS5DV+F0mfKxy/AnrZVksQtDCvkrcmpw9F+BKXBkQ829KSD9LVIOYodESORHVLDsDfjEq5pjuAOr9M53fNkq6/DyhpeM+wA7o0Q36X0OITSwQojZVcthekl10snQLzzQgNH1xE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752770280; c=relaxed/simple;
-	bh=ZGdCrhfuQwNlpZugbUeh+YvGN4hJmVbFRWO2l5ySunQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g73vDJaFvpSp3SV3kq7owBnWzBLaGUMA5iNYe4oc+EnrdhJXdYlzzi6uif9RATgdqrDNDUzwttzcyDyPhYRiiD4qHWFxEuukXvUuzGiNkudzY7BQ7kc9Y8xGgpGBwDOYjjgHcsio9+HPdfD6rMUKlrvqJpKO4fbpyvaPdW35Glc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cIIwaBCE; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3b611665b96so673380f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 09:37:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752770277; x=1753375077; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ixdz2azUt5m+0HQygOUjX6ao2OrLdLt2TO2+338NjZ8=;
-        b=cIIwaBCEF8Ngm0fNIppa1WuN34MWTo0soJa7hGJGieTiKsuwk8uAcq/434VA8A36bu
-         cqMV07NGxLSbatMAlnLn6aDbpCsZhP3O/a82KDHNpPKqOyOwFIKxu+OFoMFS7a7vwwv5
-         V7B3pANEaP5BgwX/fFmhYo4KkrMHOb2SSOJSnzhdQuQCrsCg3IZeH6NiIKnTArIf61HH
-         NgIFEKJov2qLWfCgjQayNGkKQfsP/Lk+6uLa3KzIxZGkmxLEP5VKGGbXsyONEv5G0CRH
-         HVU2STFoNCffPxhvg10uBbXzwmW3aIq6l0N6lUrBHQURAz0jUhpzJcASthPYowMfhBF3
-         sv0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752770277; x=1753375077;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ixdz2azUt5m+0HQygOUjX6ao2OrLdLt2TO2+338NjZ8=;
-        b=lv+pLHZYNfdeO7ttByEShvDn18sXECjjP+zfTowN+JsqxzUYGmjLIVkCAolpGJ6A4r
-         CN4FgqcdH9W+Xn05dUsgsCHv0YZAbDMvxSatcjty+/j7XA/hKuH7D9HYiHWxNsvbg91m
-         rccfrFBitbnsNvjhZkNGuVdzPGZqtsuoVSLWJriqsynuYaxahQXgV8/82gWZ2VOcyKrJ
-         RKwA/423HVGLaOz+a8cQ8uvdHg2JHWp/1x21AALNcvtBa3EfcbZ/EV9gcGjJqUcvzm+B
-         uyLnFrsmWlGiV4BoLJUj97ObwzbsqJEa0nb+zkA+SOSnoDwdH8xwGh+WcdyySdqSS90U
-         wXfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZqqP5cPDtYBMMgBF8dt+vILoADOwjedB0U/G5VxZ5t0ZOZVA4adr0pmgBGIDqiRAMXFmSX4chfVNM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOImyr6lMMwz1k8ncVc83nKasnuiuSqkGTUm9ipLZMorC9UJ1W
-	e97orlIME5cCJuskPn1A3S9c4DAE5Vvnln3wnBhokHmHXgDpj+SEt1K+iqpygvBmeqQ=
-X-Gm-Gg: ASbGncuAuTY5CKB22Q1CdKIxRxCrPrQDWPWAuvkrwzujbDRfQJ8/SoziPnj/1GLnxWt
-	25Zpb8bRPQqTRoVqC2+UElboSnEhafupU7mr+MLA19VHyFplgd9shCArgsp/S2TXt4DALYhCumw
-	y3AlvQmSgceJCgX3XwpvXtQb6DPGfzVt21+hQB07WKced2dbv5TQFVu9VIvQI4u5ygbuTMmtA+a
-	Mft0Qe5QPNIE7p2bvdb2ppVQKg5n2WpjHWDqa/Wn2wgbckPP221TaHO9Rw8mN0qYtjN7yVG5d8c
-	6tC/mFgHG97lJHMt1CBA0XCcODvQFw6Pry2fYVRye7kZbHpYnnsxvWuoPuj706vsdjkzzH3aKp7
-	mJUbD3Urmp7UJpyPZxpgDMUuHEgsj0t2ZWwv1kCKywYNX
-X-Google-Smtp-Source: AGHT+IHHFts0Aarz6/qK5tPczZMXGwvgojI2uqI+Zt7jBxut+q77lCloBtFOMIkhLT1YgDmMw+oO/w==
-X-Received: by 2002:a05:6000:1a8d:b0:3a4:f6b7:8b07 with SMTP id ffacd0b85a97d-3b60e51c9efmr6883618f8f.48.1752770276833;
-        Thu, 17 Jul 2025 09:37:56 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:79a0:386f:8c5a:9506])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8e0dbddsm21408946f8f.63.2025.07.17.09.37.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Jul 2025 09:37:56 -0700 (PDT)
-Date: Thu, 17 Jul 2025 18:37:54 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Yijie Yang <yijie.yang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
-Message-ID: <aHkm4qjgSaklHGp0@linaro.org>
-References: <20250716-hamoa_initial-v1-0-f6f5d0f9a163@oss.qualcomm.com>
- <20250716-hamoa_initial-v1-4-f6f5d0f9a163@oss.qualcomm.com>
+	s=arc-20240116; t=1752770456; c=relaxed/simple;
+	bh=ByddQ4ljqeLh42/kuXmBPmD/rtrLWHzLSHkW5sCBl/c=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Ms50eMWJbqibuDxab1FLDXzVsnbZziUajEGVywpNS2Jg+WO4IOk/WE1GmgDhg+pC6BhPLSMRcApbUIkG8kyHWKM7nGJmAFUpm4mhEjWDgMLnrh7LkpGjeXzouyewwtwgjsmH6Lxk7H1VtBSQKq346D346HHd1p1WvpyoQH397eU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tDQ0D4yV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FD03C4CEE3;
+	Thu, 17 Jul 2025 16:40:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752770456;
+	bh=ByddQ4ljqeLh42/kuXmBPmD/rtrLWHzLSHkW5sCBl/c=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=tDQ0D4yVm8wPO+1jUMV5uAPSjTijFlu8rb1ey7CqJXM6AtvYrh+d9zAEgVNPqiBv3
+	 TkAsyBuiqDRuv1Gwhi9yATpffHCks5BRCuJdLXhTjwWMu5i4v0QQ1WBpW9QMV2FUAI
+	 H4l4ApXSvoQr6vYeljmm4XKuPf7J/H7jtq0uvZKK3Fvbg+7Ifyq/mkOtT7XBBK6cxw
+	 fuYW9QeBLWpFy6mM7NgV5ml4olIJH+WAwsbSZaskaZ5MhRDlekf9gyh+6QwWUHnFR/
+	 ed2kwn55MavDjwnBVQ9guVJltGAvIngQdLE8jQR+f219jrTKXrfb/z66QuoHroXmrq
+	 BM7DSfaRK2luQ==
+Date: Thu, 17 Jul 2025 11:40:55 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250716-hamoa_initial-v1-4-f6f5d0f9a163@oss.qualcomm.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Pavel Machek <pavel@kernel.org>, 
+ Lucca Fachinetti <luccafachinetti@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+ linux-leds@vger.kernel.org
+To: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+In-Reply-To: <20250717-leds-is31fl3236a-v4-1-72ef946bfbc8@thegoodpenguin.co.uk>
+References: <20250717-leds-is31fl3236a-v4-0-72ef946bfbc8@thegoodpenguin.co.uk>
+ <20250717-leds-is31fl3236a-v4-1-72ef946bfbc8@thegoodpenguin.co.uk>
+Message-Id: <175277045533.3779995.9523277801474945480.robh@kernel.org>
+Subject: Re: [PATCH v4 1/3] dt-bindings: leds: is31fl32xx: convert the
+ binding to yaml
 
-On Wed, Jul 16, 2025 at 05:08:42PM +0800, Yijie Yang wrote:
-> The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
-> the Hamoa IoT SoM and a carrier board. Together, they form a complete
-> embedded system capable of booting to UART.
+
+On Thu, 17 Jul 2025 16:02:07 +0100, Pawel Zalewski wrote:
+> From: Lucca Fachinetti <luccafachinetti@gmail.com>
 > 
-> This change enables and overlays the following peripherals on the carrier
-> board:
-> - UART
-> - On-board regulators
-> - USB Type-C mux
-> - Pinctrl
-> - Embedded USB (EUSB) repeaters
-> - NVMe
-> - pmic-glink
+> Add datasheets for reference, NB that I was not able to find an
+> up-to-date, funtional direct URL for si-en products datasheet
+> so they were skipped.
 > 
-> Written with contributions from Shuai Zhang (added Bluetooth).
-> 
-> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> Signed-off-by: Lucca Fachinetti <luccafachinetti@gmail.com>
+> Co-developed-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+> Signed-off-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile          |   1 +
->  arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 835 +++++++++++++++++++++++++++++
->  2 files changed, 836 insertions(+)
+>  .../devicetree/bindings/leds/issi,is31fl3236.yaml  | 114 +++++++++++++++++++++
+>  .../devicetree/bindings/leds/leds-is31fl32xx.txt   |  52 ----------
+>  2 files changed, 114 insertions(+), 52 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 4bfa926b6a0850c3c459bcba28129c559d50a7cf..c5994b75d3e56e74ffb64b2389ee1bcc086f3065 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= hamoa-iot-evk.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-tplink-archer-ax55-v1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp441.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..843f39c9d59286a9303a545411b2518d7649a059
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> [...]
-> +	vreg_wcn_3p3: regulator-wcn-3p3 {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VREG_WCN_3P3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-0 = <&wcn_sw_en>;
-> +		pinctrl-names = "default";
-> +
-> +		regulator-boot-on;
-> +	};
-> +
-> +	/*
-> +	 * TODO: These two regulators are actually part of the removable M.2
-> +	 * card and not the CRD mainboard. Need to describe this differently.
-> +	 * Functionally it works correctly, because all we need to do is to
-> +	 * turn on the actual 3.3V supply above.
-> +	 */
-> +	vreg_wcn_0p95: regulator-wcn-0p95 {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VREG_WCN_0P95";
-> +		regulator-min-microvolt = <950000>;
-> +		regulator-max-microvolt = <950000>;
-> +
-> +		vin-supply = <&vreg_wcn_3p3>;
-> +	};
-> +
-> +	vreg_wcn_1p9: regulator-wcn-1p9 {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VREG_WCN_1P9";
-> +		regulator-min-microvolt = <1900000>;
-> +		regulator-max-microvolt = <1900000>;
-> +
-> +		vin-supply = <&vreg_wcn_3p3>;
-> +	};
 
-Like the TODO comment already says, regulators located on a M.2 card
-shouldn't be described as part of the device DT. We need a proper
-solution for modelling the M.2 slots together with the standard power
-supplies (3.3V and 1.8V) and hook this up to the pwrseq subsystem. This
-is also the reason why the CRD does not have Bluetooth enabled upstream
-yet, this needs to be solved first.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-As far as I know, there is no one actively working on addressing this at
-the moment. Perhaps you can assign someone at QC to work on solving this
-upstream.
+yamllint warnings/errors:
 
-Thanks,
-Stephan
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/issi,is31fl3236.example.dtb: led-controller@3c (issi,is31fl3236): 'led@1', 'led@2', 'led@3' do not match any of the regexes: '^led@[1-9a-f][0-9a-f]$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/leds/issi,is31fl3236.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250717-leds-is31fl3236a-v4-1-72ef946bfbc8@thegoodpenguin.co.uk
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
