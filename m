@@ -1,81 +1,64 @@
-Return-Path: <devicetree+bounces-197426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60BA5B092E2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 19:13:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE78B0930D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 19:22:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80A4D7BE74F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:10:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 748671C47205
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:22:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23EEA2FE302;
-	Thu, 17 Jul 2025 17:11:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5D32FF49F;
+	Thu, 17 Jul 2025 17:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="hxm4jVn6"
+	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="yF0aXylH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B951DE8A3
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 17:11:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C00052FF471;
+	Thu, 17 Jul 2025 17:21:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752772280; cv=none; b=S0g7tKnKfgolphhHOS/Q186g2opad32CvakSb9KnWWeALSGaqNsv1BsqktzM2WbKVwQAdBkyIcTnV9lExzAuvZSNz66K35V4o4IzTAmE9zsPZ/ZQTaEE0Qr37fRc5T2KXQzYrGduhnlH6e3L3iAucEmpW/YUy2FV0itJWfiPQig=
+	t=1752772889; cv=none; b=qGwrb51FMLJTcVWAEq9qh9v4hvGVnseviQNKx5SDubUnGbNGltlrmYrqdQ6tczqq+56pJP0+PvpQOJyTm0Nk57MXxoVKmuzzxzdibHP0+9hCnvnRCi2DupHBMKrWw6JKi0l68LkbutYE10tOZuw+qktDaAT2p81FkwXu+pMm7nU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752772280; c=relaxed/simple;
-	bh=DmkylwdM0lAAqKm4MO7YG+O67QtSLYCbav0RyGbAzYI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uJNfB1pqnbQWS9ZJ8oHvwUFf+1yRcnW57T8/i4wWyTkefaXIimEDevvbO4OkpwTh9oKoXjE+/jhXicjfrM1LikHZoRtqO4BpL2TO2q1IvpZEhd5gKMSedZ0/rcrtDf8UY1OPimLcWZCsM9Wf6OpCJeyGH0JjaJYpsRERdnUO32A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=hxm4jVn6; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1752772277;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8SRtS+ULHXF2aDS6IuTFJjw62D9Wnccq0o5WziuZyN4=;
-	b=hxm4jVn6ivVcHTuAjwY8hLkyTEqhhjExVbEKY4mYpBMLXweGY/Z0QI/cMhzL1G9IBY3eXp
-	Z3Yij6/sY/rypRuQGwfmjRsYWB8vGJcRS2b4fEe4bbORYzrJFMXi/5iKOPBBJSBHXyAjsI
-	ruUr+WsfltGCtHgVw6WcJHy6uc8iaFY=
-Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-682-nd641XWnOjCk8vLbP9iwNA-1; Thu,
- 17 Jul 2025 13:11:15 -0400
-X-MC-Unique: nd641XWnOjCk8vLbP9iwNA-1
-X-Mimecast-MFC-AGG-ID: nd641XWnOjCk8vLbP9iwNA_1752772274
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id D847D19560BE;
-	Thu, 17 Jul 2025 17:11:13 +0000 (UTC)
-Received: from p16v.luc.cera.cz (unknown [10.44.34.5])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id F0EE1195608D;
-	Thu, 17 Jul 2025 17:11:09 +0000 (UTC)
-From: Ivan Vecera <ivecera@redhat.com>
-To: netdev@vger.kernel.org
-Cc: Prathosh Satish <prathosh.satish@microchip.com>,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1752772889; c=relaxed/simple;
+	bh=BC87w3BDNtlqvEOIYm0LnN+qw/D8xM/tzbFGW9nQjo4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=k6zxzQisGbGH/FlBCOvYywlEojIV71Zs0rETZDObYCY5RyOxMaJsgYUyazV+UXtCWQ4WOCDunbYm17/dG5WA2QpFM6LxGiDCorKrWY6iAZ/3isVd1nA7XvC0dUSObxBo0BgWIsrlj6YIWxfu02qSaMiCyPY7VtIjogTdsoWonzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=yF0aXylH; arc=none smtp.client-ip=173.249.15.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
+dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
+	bh=flkrw68MjJZnRHTgaCTuAAE9V9fABxNnM+3EBSfDpyo=;
+	b=yF0aXylHmh5jq94WFyMbEbUmDXeI0HzOd+2CGRVAwrdQ865zSnzcEXcO7EECZNL2leVgUjdUz84m8LaqqpW1Ptqqli6Q8B0ZKSIX/ILeZ70FL066WuSMCGIyLKJPZ7r02r0vVwXUYiiZ7D5BzbnVjNDqSO7E+RSro42T0z4YD0E=
+Received: from lukas-hpz440workstation.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
+	by mail.netcube.li with ESMTPA
+	; Thu, 17 Jul 2025 19:20:54 +0200
+From: Lukas Schmid <lukas.schmid@netcube.li>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Maxime Ripard <mripard@kernel.org>
+Cc: Lukas Schmid <lukas.schmid@netcube.li>,
 	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	Michal Schmidt <mschmidt@redhat.com>,
-	Petr Oros <poros@redhat.com>
-Subject: [PATCH net-next 2/2] dpll: zl3073x: Initialize clock ID from device property
-Date: Thu, 17 Jul 2025 19:11:00 +0200
-Message-ID: <20250717171100.2245998-3-ivecera@redhat.com>
-In-Reply-To: <20250717171100.2245998-1-ivecera@redhat.com>
-References: <20250717171100.2245998-1-ivecera@redhat.com>
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v5 0/5] Add support for NetCube Systems Nagami SoM and its carrier boards
+Date: Thu, 17 Jul 2025 19:20:27 +0200
+Message-Id: <20250717172035.3508831-1-lukas.schmid@netcube.li>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,76 +66,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 
-The clock ID value can be specified by the platform via 'clock-id'
-property. Use this property value to initialize clock ID and if it
-is not specified generate random one as fallback.
+This series adds support for the NetCube Systems Nagami SoM and its
+associated carrier boards, the Nagami Basic Carrier and the Nagami Keypad
+Carrier.
 
-Tested-by: Prathosh Satish <prathosh.satish@microchip.com>
-Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+Changes in v5:
+  - Re-add the non-removable property to the ESP32 interface
+  - Add the mmc-pwrseq node for the ESP32 to initialize the ESP32 correctly
+  - Remove the unused ehci0 and ohci0 nodes from the Keypad Carrier since
+    USB port is peripheral only
+
+Changes in v4:
+  - Disable the default interfaces on the card-edge but keep the pinctrl
+    definitions for them
+  - Split the pinctrl definitions for the SPI interface into the basic spi 
+    pins and the hold/wp pins
+  - Move some mmc0 properties to the Basic Carrier dts
+  - Remove non-removable property from the ESP32 interface
+  - Fix typo in the keypad matrix definition
+
+Changes in v3:
+  - Add missing dcxo node to the SoM dtsi
+  - Rename the multi-led node
+  - Change dr_mode to "peripheral" for the Keypad Carrier
+
+Changes in v2:
+ - Squash the binding patches into one patch
+ - Fix formatting of the phy node in the SoM dtsi
+ - Add description on where the phy is located in the SoM dtsi
+ - Fix the phy address in the SoM dtsi
+ - Move the carrier bindings into the same description as enums
+
+Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
 ---
- drivers/dpll/zl3073x/core.c | 32 +++++++++++++++++++++++++++-----
- 1 file changed, 27 insertions(+), 5 deletions(-)
+Lukas Schmid (5):
+  dt-bindings: arm: sunxi: Add NetCube Systems Nagami SoM and carrier
+    board bindings
+  riscv: dts: allwinner: d1s-t113: Add pinctrl's required by NetCube
+    Systems Nagami SoM
+  ARM: dts: sunxi: add support for NetCube Systems Nagami SoM
+  ARM: dts: sunxi: add support for NetCube Systems Nagami Basic Carrier
+  ARM: dts: sunxi: add support for NetCube Systems Nagami Keypad Carrier
 
-diff --git a/drivers/dpll/zl3073x/core.c b/drivers/dpll/zl3073x/core.c
-index 7ebcfc5ec1f09..f5245225f1d3b 100644
---- a/drivers/dpll/zl3073x/core.c
-+++ b/drivers/dpll/zl3073x/core.c
-@@ -9,6 +9,8 @@
- #include <linux/math64.h>
- #include <linux/module.h>
- #include <linux/netlink.h>
-+#include <linux/property.h>
-+#include <linux/random.h>
- #include <linux/regmap.h>
- #include <linux/sprintf.h>
- #include <linux/string_choices.h>
-@@ -932,6 +934,29 @@ zl3073x_dev_phase_meas_setup(struct zl3073x_dev *zldev, int num_channels)
- 	return zl3073x_write_u8(zldev, ZL_REG_DPLL_PHASE_ERR_READ_MASK, mask);
- }
- 
-+/**
-+ * zl3073x_dev_clock_id_init - initialize clock ID
-+ * @zldev: pointer to zl3073x device
-+ *
-+ * Initializes clock ID using device property if it is provided or
-+ * generates random one.
-+ */
-+static void
-+zl3073x_dev_clock_id_init(struct zl3073x_dev *zldev)
-+{
-+	u64 clock_id;
-+	int rc;
-+
-+	/* Try to read clock ID from device property */
-+	rc = device_property_read_u64(zldev->dev, "clock-id", &clock_id);
-+
-+	/* Generate random id if the property does not exist or value is zero */
-+	if (rc || !clock_id)
-+		clock_id = get_random_u64();
-+
-+	zldev->clock_id = clock_id;
-+}
-+
- /**
-  * zl3073x_dev_probe - initialize zl3073x device
-  * @zldev: pointer to zl3073x device
-@@ -985,11 +1010,8 @@ int zl3073x_dev_probe(struct zl3073x_dev *zldev,
- 		FIELD_GET(GENMASK(15, 8), cfg_ver),
- 		FIELD_GET(GENMASK(7, 0), cfg_ver));
- 
--	/* Generate random clock ID as the device has not such property that
--	 * could be used for this purpose. A user can later change this value
--	 * using devlink.
--	 */
--	zldev->clock_id = get_random_u64();
-+	/* Initialize clock ID */
-+	zl3073x_dev_clock_id_init(zldev);
- 
- 	/* Initialize mutex for operations where multiple reads, writes
- 	 * and/or polls are required to be done atomically.
+ .../devicetree/bindings/arm/sunxi.yaml        |   8 +
+ arch/arm/boot/dts/allwinner/Makefile          |   3 +
+ ...n8i-t113s-netcube-nagami-basic-carrier.dts |  67 +++++
+ ...8i-t113s-netcube-nagami-keypad-carrier.dts | 164 ++++++++++++
+ .../allwinner/sun8i-t113s-netcube-nagami.dtsi | 242 ++++++++++++++++++
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  48 ++++
+ 6 files changed, 532 insertions(+)
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-basic-carrier.dts
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami.dtsi
+
 -- 
-2.49.1
+2.39.5
+
 
 
