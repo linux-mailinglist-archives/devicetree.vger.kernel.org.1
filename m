@@ -1,196 +1,395 @@
-Return-Path: <devicetree+bounces-197293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EF15B08BCE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 13:36:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EE5AB08BDB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 13:43:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 530185649E9
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 11:36:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8069B16D7FA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 11:43:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6B529A9ED;
-	Thu, 17 Jul 2025 11:36:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="A7Sg+Iqj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E97E129ACF0;
+	Thu, 17 Jul 2025 11:43:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011058.outbound.protection.outlook.com [40.107.130.58])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7EE91F9F73;
-	Thu, 17 Jul 2025 11:36:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.58
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752752195; cv=fail; b=t9hmPRbknhmiR6qQ97O1r6AcJzbwFKPxQJz4qDrU9vtN4ov1UfqHB5VDIN4ySWZhHprtuf4zVWBmUaLpyaUyhubrwMzVckbaN4gX/7pbKKmqGy/x3yNoMlCHug+vt/K3W7X+ZpCM6PwQ/dKq+0Yl/gJv0/7hWmuSsjBB0OZbFbc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752752195; c=relaxed/simple;
-	bh=xZSNSrPfi2EunylHF7GgQRDlTB2FPqwIXNFkg/Hc+ro=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=QBYLj74YHgBTTmB47TvWccD7qPFK31M0T+kFcUlfz+iMCr3bt45zRT16EnsS6tsTwEbfNb53sgp1N2Igs6Y+36sdTB8hKX12SJvpl43sw2kZC5BHTxZEzBAgx624ETu/SZYfK1ye28H89ruqnm6QupwpS2SxsZOFI3J3rX+zuhY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=A7Sg+Iqj; arc=fail smtp.client-ip=40.107.130.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OHCtu7LlAhn8uDXclIfj95IZnoo3NArC2KyRyZtFGHffPawe1CfcSQzvaped9WSbKZ9FesSGyOmQI9v5u0d5ypi1SSEH6cGu1idhbsDwY9xofjDht2a19CVK4qXiqswuhOSNdQvPR9nj0w+1lh1Y4JypIcufZO1Bo7Thg9vwxXUtzDLyERTGU28eU73QCGCCqlutT/S8pm3pn5KgI4UvnizMjkYC0fYSz0A4DD0tb6XuPanNwF1nM0YMcISbAu8gH0dCUyoIkzBn25sHZpY8+VM1hH/QGfYNWvmcZRkgiyZiUZDLvUVPMzJ9fyqwzOp31WekQoP9Po8zPO667YhHAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+JIDSbMVStISet5+Md43taIQmwUg+xH4c5TrMMZ+tB0=;
- b=nAY/FthWMHVlV5cfbBTow3ls+DzuaCUpQRR/nZSjciM6lyjDcnQia8zItrag6D/IRiBWzSsO25UBunwb/aIaV515jilAPb2KdtoQfRiMBiFpolAzC4u/r9jOms/Dp0CWlxd7c64o49/N7PU3bptRatb/ljMf7vvoLGJPCHNV4UH9gxJv+vd3Jc9kqxPT8ZngwX4VAO/+Z5gx3lRTfLvutO5pCf3I3IPAXpt5l/Pu4/Mgot5NshNBRqrnvHHSvEtYt5TEAaXJhV+NHpw9BZ0BUBGmDVrGSOULjLvUfh0fOZ9NY+lUfHCACgFJye7bcuRHGY2sb5qtRl/8OS2KipNyVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+JIDSbMVStISet5+Md43taIQmwUg+xH4c5TrMMZ+tB0=;
- b=A7Sg+IqjDjyAvC8noXIE2Lswa1j+GEXiH4363vqFkFL87wqAcXlzi94JeVLPuEMd8CKQEoEoLzodCQlYhS+6kEjDMAPXJ4QqQaga1ip+b3Fq9ejZ8b+4CPfHA65Lvw/4mzFYWHA8vJk0Wc9PmnKfmlmnbAIfIIlbBy83/+/ivVI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by DB8PR04MB7050.eurprd04.prod.outlook.com (2603:10a6:10:129::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.32; Thu, 17 Jul
- 2025 11:36:28 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::5ee:7297:93b4:a8d1]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::5ee:7297:93b4:a8d1%4]) with mapi id 15.20.8922.037; Thu, 17 Jul 2025
- 11:36:28 +0000
-Message-ID: <516652b3-efb3-4ff8-aee8-7e7afdf9648e@cherry.de>
-Date: Thu, 17 Jul 2025 13:36:26 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: add RK3588 DP carrier
- from Theobroma Systems
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, damon.ding@rock-chips.com,
- Heiko Stuebner <heiko.stuebner@cherry.de>
-References: <20250716185027.2762175-1-heiko@sntech.de>
- <20250716185027.2762175-2-heiko@sntech.de>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <20250716185027.2762175-2-heiko@sntech.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR08CA0232.eurprd08.prod.outlook.com
- (2603:10a6:802:15::41) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EC7F219EB;
+	Thu, 17 Jul 2025 11:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752752604; cv=none; b=TSj8cXzpQA6hxka39KALMyaLJW4lKFctLebiHNhq6o2Ig9M5bHlT2S6k5vnKdfvc9M49kmVkXEwEwLw6mM4yYpg5NHCJPw0Wk6tMSvAY+CclMRcj51kqpihyPVd89cg62+QHHeiST/8fic9x2y8ao3yLaIC6C2OSVsl1ALvwtjE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752752604; c=relaxed/simple;
+	bh=f/JGPIlkArCSuP1Bl9uUK8vHBn/y8/bhPS4T0Rg/pVE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Mlp/6AkEr7KtLwjAFg/ccSuVZT00Ta0l06lF69M9ndqcna4v2cJD4+hOWmogq7gvybN9u5mtQidBiZVytcU/yr2gXPbA2THtENBvuooAWbbD8wTk9XtYc59MmZF2o+92xC0f6n703er7jUud1FIG6IaIKRbBgEd5sMUEbDFfXBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
+Received: by mail.gandi.net (Postfix) with ESMTPSA id CB5944394B;
+	Thu, 17 Jul 2025 11:43:13 +0000 (UTC)
+Message-ID: <9c6135a9-3edd-443f-9ff2-fd70d8c8197d@ghiti.fr>
+Date: Thu, 17 Jul 2025 13:43:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|DB8PR04MB7050:EE_
-X-MS-Office365-Filtering-Correlation-Id: 78c5b341-8952-4424-548d-08ddc5262aeb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?SW5jcWIzRk03SG51NDYraDc0WE9PTFlZUGJDa3dITjJUcEZvRVcrODJXb1pz?=
- =?utf-8?B?N09tU0JhWERmdE5ua1hwKzhOSVVqQVc0d1pkVUcraUt6WnJwQVdmdjFUaHB3?=
- =?utf-8?B?dDczYmh5VDdGdXBEU2kwNFc5SFQ4VFFWdzk1dkJ4bWFIUnZPcW5XejFndTVP?=
- =?utf-8?B?VUI2TkhvZCtvbHQya2dGazhvbGxTZ29QYWdzYytCdVRoN21DVURIMTE3ZFdN?=
- =?utf-8?B?ckFNcnh1THBRYnJlZStQVXBkVzVWcFRiRFNENlRFM0I3Sjc5eUk2a3VsVjFS?=
- =?utf-8?B?OElBYXBwamNuand5OTMzN0lvREIvb3NNc0V0QjVhK29iOVJMRkNFYVg1SVpa?=
- =?utf-8?B?OG5JTzI1YVV6QlJWbzhGR045bjFDRXhiSEZqdmxxcEhmbG9ScUpDQXpCc2h6?=
- =?utf-8?B?cjFNcG1ERGxVemhqelBmMFQ5dWN2NUZmWWswRmxRZTBpSjNwT2FKTkdOQ0VB?=
- =?utf-8?B?bXIzTGEvT2VLNVB2d3ZiQ3hiZENieDdCNkRCZXAzWHFlQXpVMGV2RnNSdHcz?=
- =?utf-8?B?eFVwVzZQYnJkVnYwcVNwdGpPR3ZNZVFreFhFUHU3N1k1ZVZpOUlmRnVPRjMy?=
- =?utf-8?B?MFNPYTNyeFppb3ZFM3dWLzRma3NuelJiRzl5cElWWm1oVUtqdEU4dUFUM2Nt?=
- =?utf-8?B?M3RBN1lObE1IYlM5VlpDRHdsTTFjNnQ2TXRnVkpNVlhSN1B3UDVYWUNRQldP?=
- =?utf-8?B?ODJrUVgwMERSL3JueTgwVUtoaHRzQmVjWXZPNWdlYlFHMDg4NTU3MndMajdO?=
- =?utf-8?B?dUYwdjFuSG1vTWNmYWZKZXUyb1YzVExIbkMxb24rOCt4TFd5djA1Y0Vlb2Z1?=
- =?utf-8?B?Q1dWWjU2NUZ2Q1NjR3FWMlhTNGNlZWJpMWV2ZXZJOGpYVzZtYXdGd3BXMTR3?=
- =?utf-8?B?Z2ppTE1nd1hoNUZIN0QySEg5R1FyVENGQ3gzckJ5YnZwRmhKMU51TlZhcTdX?=
- =?utf-8?B?d1B2TkNZWkgzem1HR1ZwQ0ZXUU96TWp6L2hkekQwQVdaTGNkTzNubDVTVUtK?=
- =?utf-8?B?UEZxWEZwMi9WU3liVXErN0NHWUN4YjlYMmdpSFRXdDJPWllETVhlL3BiTmRr?=
- =?utf-8?B?QUNVbGtGQ2l2RjM3R09BU00zL3VWZmxvSHFVSU1BWXZ1dkRnTG4wUm5uNW4v?=
- =?utf-8?B?eUJXc3pPaXdESU4yc2Vnd2daekYzZGpsNUlIQ0o0aXZLa2VaY0NEdmdERHdq?=
- =?utf-8?B?Qnc2aFIrOVFVMmRYdzNaWkdzY1ZVZnN2RXVPaEFxNVpiQ2FtSUdVeG9lN3hV?=
- =?utf-8?B?ZmhBSkJXVS9NaEg4NWtFenJUd20weThtQlVBOG1ITUtQbzU5YU9CZENPeXhn?=
- =?utf-8?B?SnNVa2d6Mk5RemJxRU5HODZQR3BWS2JiZTlNaXVSUGRZN21Wc2JQa0lrRUE2?=
- =?utf-8?B?ZVl6a0MrN24xTktXRnM2VGRVMlhXL0hDSk5ua0R2OUZ6SlI2MW9hb0tvRzdZ?=
- =?utf-8?B?WE9VQXJnanFTSCs3c2hoeFZKUDMydWpmc3VETG8xRm4rMFlTRzkzQk9Xb0Fy?=
- =?utf-8?B?RjB6eGJpc2tMcW1yZ3h5TE4zeElLSUw3ODlBcFg1THFUS3RtdlNidGR2YU5R?=
- =?utf-8?B?UDdOQUdySTZYMWd5ZVNmZDVNcHlLY1czTjRuQy9WVTVFNlFRSkEwZWZ3VEda?=
- =?utf-8?B?ZU03d0lnQTA1Tk5DZktiN1hQZTVYTlRiZjdhekdqWWJHcnZBNDFOVk9FK1Zx?=
- =?utf-8?B?VEV0MmxEVGFza0E2Y1ZIOVJ0N29NblVEdkVESHFrZS9TVVJ6bGlwMmEyajNI?=
- =?utf-8?B?MFRsNk9DSk43YTdZaEg0YjZMM1lrTlNmclB1bXduSS9rVENNMnArL3NHOFo1?=
- =?utf-8?B?eGc3V0gzdHdqeDV5Q3hPbVY2cWsyUjhWWU5mZkxOb080WW5aQTBzS25TV0V2?=
- =?utf-8?B?U0RIb0pvOVRKMnU3elRjeXpSUU00clJKRDZQRWM1ZGF1d2c9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?R01CWkxIMGk1cVdwS25YRG1INklZUDlETzBBWmliWHJRMWUxTW1oOFNnMyt2?=
- =?utf-8?B?dEFGMzQreHY5NmFVM04ybG5EQlpSQ1NSL2JIcHlLSmZnZklSYytZd1hJTXVh?=
- =?utf-8?B?a3FnRmcwZjZEYk9Bb1l1Ny96aUNwbDR0R1lFM2VZak1TT3ZHM0dGekhYOEpv?=
- =?utf-8?B?ZUpMNzRrV1BYQzY3ZEtKMEpSeFAyTkE0cHdCYjlsWWg5RitIVXovR0J1ZzMr?=
- =?utf-8?B?eHJ3RTVBL3V6MXo3RUNpdm1NTzhqTnliZ3FNL2FzdUxhVEhUczhrNHhCTWNZ?=
- =?utf-8?B?V0YzbDQvaXpGKzUxNnhDeUJ1cm5ZZmFNZEIrMEhkYjFUbWhyUHJsRGJxbWVU?=
- =?utf-8?B?YTkwUm9taGhkRksrdWxkRUhnbENCcGRHdUJQb3B5ZUpVU0VjaTlkQXlHNFRO?=
- =?utf-8?B?U2VvWGhoN2sxNlJTdVdLbVgvWWRzekdQbDBxOWdsMmpuRFMzbHFqUHdQRTVZ?=
- =?utf-8?B?WXNaQnRTWXljTHpZQTVCenFwSERIMkwxbnU1L0swak1FMzRUUjNzcEN4VHY2?=
- =?utf-8?B?WnBtOWVEcnVnR1hXRW1zaU5vSUpETFZSbDMwenM1bWZFdEZlbHk0VzI3d2pN?=
- =?utf-8?B?QndBekNtVGp6MHlGRnNGdWxPQ1hBKzl2U2NUeHZGbmRFNVBJQjUxemtUVVlV?=
- =?utf-8?B?S0VTL1J6M2tNTFBOdGNEY3l5MG1EcjMybWNMNnZ0ZC9JRU5jSkZCR1BaN1E1?=
- =?utf-8?B?OVczMVJMZHVRNEZmZmxxM0VFSlMyeGlxc2VHQ09SbmlhdUtwanFtRXovODRG?=
- =?utf-8?B?MmpvYnZnMVpnT3pOSzdsb3k4Sm9zU2haUW54UzVLZmMvM3FVdnlySjhYOGd1?=
- =?utf-8?B?ckRGemQrVU1CMXJieGRDVXhVQWNOWGRQdHVOcFgrd1JXWHFHSWpBUi9tcVNC?=
- =?utf-8?B?Z01JVFZiNWJndysycTRBeEp2bFBHVy92cXdZYnJ5WXJSRzRBR1N1SUN0c0xZ?=
- =?utf-8?B?eTkwMkIzRUdwSERPT3c3MnBDenh3NE9nZy9Da0NpUFJvR0prSllFSDlaeVV3?=
- =?utf-8?B?Nmt1b2dCdnVTc3dXS2NBNUUvOHhxYjVPbHpYMFVqR0VKU3lTdU9IR2Q5bzNQ?=
- =?utf-8?B?WEFGbVg5d214RFA4U090NHlycFk1TW1kTk41YUdLR0xPQlp5MmtqMnIwMUVW?=
- =?utf-8?B?d2tTZTd0emVqREpBdE1pRjJGeVE3cFZpaHkyR3RxYkFvUVNINU1qK2Y2eWw1?=
- =?utf-8?B?MzFzMWszbjVCcDNSOFYxYmFMMFJjNmxqdmt6aEUya0FaM3NaVkxWKzJQcTBx?=
- =?utf-8?B?YUpOeDAwN2NCYk5TRWFhVE5PSjlPYW5na1kvNVoxcHZSbk8wSlZ6VmRWY3lN?=
- =?utf-8?B?WWdaemlzZXRvSnN2YVowU1RXMlFRY09VV0FCU1MrU3pPbnduYzZFUnlJY0Uv?=
- =?utf-8?B?Q05DR0ZGQmVSbVoxdkl4L25HYjBWYUo2bFExQjNucUxHQ1gzaUFTdXRZcDBx?=
- =?utf-8?B?TGV4R2VKV0R0RFFkVXVwVytDUCtYUzJZYjFQWkt4NVVidU1Qdis3elhueTBx?=
- =?utf-8?B?WjJsd1MyTnhDSlRia0o4YXF1NTVWbWo2LzB5cDVnaEI1djJuQ2pMc1ZLbGhq?=
- =?utf-8?B?WHBPemxMTW1ZSk9jTURoajh0aUY5OW5pb2xabkM2a2hlaHhYRjNTdjVDUFdO?=
- =?utf-8?B?RWVvcjRQRW1UL05JWm9ESDZUa0x6alc5YUQwS1FsQlRoMlV3SVE3eUM5UkpK?=
- =?utf-8?B?MEhGNHlGSmFWSnFidHErcHJOK0hkTVF0V3JhM2d3YU9nR1VKT3hMb3lYMURI?=
- =?utf-8?B?V2NBNXY2blpCbkZWQTZubWFJWnU1cHNXemh6Wndvd1FnSGg2VVNZR0pEYnoy?=
- =?utf-8?B?dDh5RGwzakZNa3BzSTEwTXo1YU9mRUVOdmdFU3RVVFd2Qlc4UDBDMmZPWWJL?=
- =?utf-8?B?QmtYREN4R25uSHgwcE5oNzU2NGZXR1BDamJXaGlRKzFPeGJZdlBzdGozMzhK?=
- =?utf-8?B?Wm1JeGZOMjRMNWpISU1jeDJCS3FnQ1JTWTNXYU04a243WFJFbmRCUGJRQUJB?=
- =?utf-8?B?VWk5VjM5U3FzTnpXMEZyK1FHT0tCVWJqRytpZTJYcXZncU1UU0xPVnNxRDdV?=
- =?utf-8?B?eEhqakxuV1ovNVJhN1lxK0Y5WGxRMmhqV09IbWpnVjBPTjZjN1gxZWtsSi9W?=
- =?utf-8?B?ZzlXV1ZudEdOelUzY0t6ZXlqUndxMXJUVmNVbUZsY01QNWswZnNLZjd4bkp1?=
- =?utf-8?B?TFE9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78c5b341-8952-4424-548d-08ddc5262aeb
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2025 11:36:28.2964
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DNvnWJT89mt9GGTnXTQBm+Oowaskp+CpKo0Fe/KLoi88lqf9Nx+B4TMUgmyQ4pyx3zXJiIByYfW9C1FbpoMD4hyxg5Mn7vium9NSIs7M55o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7050
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 7/7] riscv: errata: Fix the PAUSE Opcode for MIPS P8700
+To: aleksa.paunovic@htecgroup.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Jonathan Corbet <corbet@lwn.net>
+Cc: Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Djordje Todorovic <djordje.todorovic@htecgroup.com>,
+ Aleksandar Rikalo <arikalo@gmail.com>,
+ Raj Vishwanathan4 <rvishwanathan@mips.com>
+References: <20250625-p8700-pause-v4-0-6c7dd7f85756@htecgroup.com>
+ <20250625-p8700-pause-v4-7-6c7dd7f85756@htecgroup.com>
+Content-Language: en-US
+From: Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <20250625-p8700-pause-v4-7-6c7dd7f85756@htecgroup.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdeitdegkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpeetlhgvgigrnhgurhgvucfihhhithhiuceorghlvgigsehghhhithhirdhfrheqnecuggftrfgrthhtvghrnhephffhtdefjeetgfdvhfehgefhteekkeevffehheegtedtieduheeltdegheeuleffnecuffhomhgrihhnpegvnhhtrhihrdhssgenucfkphepudekhedrvddufedrudehgedrudehudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedukeehrddvudefrdduheegrdduhedupdhhvghloheplgdutddrudegrddtrddufegnpdhmrghilhhfrhhomheprghlvgigsehghhhithhirdhfrhdpnhgspghrtghpthhtohepudejpdhrtghpthhtoheprghlvghkshgrrdhprghunhhovhhitgeshhhtvggtghhrohhuphdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehprghulhdrfigrlhhmshhlvgihsehsihhfihhvvgdrtghomhdprhgtp
+ hhtthhopehprghlmhgvrhesuggrsggsvghlthdrtghomhdprhgtphhtthhopegrohhusegvvggtshdrsggvrhhkvghlvgihrdgvughupdhrtghpthhtoheptghorhgsvghtsehlfihnrdhnvght
+X-GND-Sasl: alex@ghiti.fr
 
-Hi Heiko,
+On 6/25/25 16:21, Aleksa Paunovic via B4 Relay wrote:
+> From: Djordje Todorovic <djordje.todorovic@htecgroup.com>
+>
+> Add ERRATA_MIPS and ERRATA_MIPS_P8700_PAUSE_OPCODE configs.
+> Handle errata for the MIPS PAUSE instruction.
+>
+> Signed-off-by: Djordje Todorovic <djordje.todorovic@htecgroup.com>
+> Signed-off-by: Aleksandar Rikalo <arikalo@gmail.com>
+> Signed-off-by: Raj Vishwanathan4 <rvishwanathan@mips.com>
+> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+> ---
+>   arch/riscv/Kconfig.errata               | 23 +++++++++++
+>   arch/riscv/errata/Makefile              |  1 +
+>   arch/riscv/errata/mips/Makefile         |  5 +++
+>   arch/riscv/errata/mips/errata.c         | 67 +++++++++++++++++++++++++++++++++
+>   arch/riscv/include/asm/alternative.h    |  3 ++
+>   arch/riscv/include/asm/cmpxchg.h        |  3 +-
+>   arch/riscv/include/asm/errata_list.h    | 17 ++++++++-
+>   arch/riscv/include/asm/vdso/processor.h |  4 +-
+>   arch/riscv/include/asm/vendorid_list.h  |  1 +
+>   arch/riscv/kernel/alternative.c         |  5 +++
+>   arch/riscv/kernel/entry.S               |  2 +
+>   arch/riscv/mm/init.c                    |  1 +
+>   12 files changed, 129 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/riscv/Kconfig.errata b/arch/riscv/Kconfig.errata
+> index e318119d570de0acc0850a2e1a2505ecb71bea08..aca9b0cfcfecf91d4d1910f294ee109ed15f2d6c 100644
+> --- a/arch/riscv/Kconfig.errata
+> +++ b/arch/riscv/Kconfig.errata
+> @@ -21,6 +21,29 @@ config ERRATA_ANDES_CMO
+>   
+>   	  If you don't know what to do here, say "Y".
+>   
+> +config ERRATA_MIPS
+> +	bool "MIPS errata"
+> +	depends on RISCV_ALTERNATIVE
+> +	help
+> +	  All MIPS errata Kconfig depend on this Kconfig. Disabling
+> +	  this Kconfig will disable all MIPS errata. Please say "Y"
+> +	  here if your platform uses MIPS CPU cores.
+> +
+> +	  Otherwise, please say "N" here to avoid unnecessary overhead.
+> +
+> +config ERRATA_MIPS_P8700_PAUSE_OPCODE
+> +	bool "Fix the PAUSE Opcode for MIPS P8700"
+> +	depends on ERRATA_MIPS && 64BIT
+> +	default n
+> +	help
+> +	   The RISCV MIPS P8700 uses a different opcode for PAUSE.
+> +	   It is a 'hint' encoding of the SLLI instruction,
+> +	   with rd=0, rs1=0 and imm=5. It will behave as a NOP
+> +	   instruction if no additional behavior beyond that of
+> +	   SLLI is implemented.
+> +
+> +	   If you are not using the P8700 processor, say n.
+> +
+>   config ERRATA_SIFIVE
+>   	bool "SiFive errata"
+>   	depends on RISCV_ALTERNATIVE
+> diff --git a/arch/riscv/errata/Makefile b/arch/riscv/errata/Makefile
+> index bc6c77ba837d2da4c98dabab18083d27f46629c7..02a7a3335b1d557933e04cd6d0cf7bf4260b8c40 100644
+> --- a/arch/riscv/errata/Makefile
+> +++ b/arch/riscv/errata/Makefile
+> @@ -13,5 +13,6 @@ endif
+>   endif
+>   
+>   obj-$(CONFIG_ERRATA_ANDES) += andes/
+> +obj-$(CONFIG_ERRATA_MIPS) += mips/
+>   obj-$(CONFIG_ERRATA_SIFIVE) += sifive/
+>   obj-$(CONFIG_ERRATA_THEAD) += thead/
+> diff --git a/arch/riscv/errata/mips/Makefile b/arch/riscv/errata/mips/Makefile
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..6278c389b801ee6e54e808c80e6e236c026329c7
+> --- /dev/null
+> +++ b/arch/riscv/errata/mips/Makefile
+> @@ -0,0 +1,5 @@
+> +ifdef CONFIG_RISCV_ALTERNATIVE_EARLY
+> +CFLAGS_errata.o := -mcmodel=medany
+> +endif
+> +
+> +obj-y += errata.o
+> diff --git a/arch/riscv/errata/mips/errata.c b/arch/riscv/errata/mips/errata.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..e984a8152208c34690f89d8101571b097485c360
+> --- /dev/null
+> +++ b/arch/riscv/errata/mips/errata.c
+> @@ -0,0 +1,67 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2025 MIPS.
+> + */
+> +
+> +#include <linux/memory.h>
+> +#include <linux/module.h>
+> +#include <asm/text-patching.h>
+> +#include <asm/alternative.h>
+> +#include <asm/errata_list.h>
+> +#include <asm/vendorid_list.h>
+> +#include <asm/vendor_extensions.h>
+> +#include <asm/vendor_extensions/mips.h>
+> +
+> +static inline bool errata_probe_pause(void)
+> +{
+> +	if (!IS_ENABLED(CONFIG_ERRATA_MIPS_P8700_PAUSE_OPCODE))
+> +		return false;
+> +
+> +	if (!riscv_isa_vendor_extension_available(MIPS_VENDOR_ID, XMIPSEXECTL))
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+> +static u32 mips_errata_probe(void)
+> +{
+> +	u32 cpu_req_errata = 0;
+> +
+> +	if (errata_probe_pause())
+> +		cpu_req_errata |= BIT(ERRATA_MIPS_P8700_PAUSE_OPCODE);
+> +
+> +	return cpu_req_errata;
+> +}
+> +
+> +void mips_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
+> +			    unsigned long archid, unsigned long impid,
+> +			    unsigned int stage)
+> +{
+> +	struct alt_entry *alt;
+> +	u32 cpu_req_errata = mips_errata_probe();
+> +	u32 tmp;
+> +
+> +	BUILD_BUG_ON(ERRATA_MIPS_NUMBER >= RISCV_VENDOR_EXT_ALTERNATIVES_BASE);
+> +
+> +	if (stage == RISCV_ALTERNATIVES_EARLY_BOOT)
+> +		return;
+> +
+> +	for (alt = begin; alt < end; alt++) {
+> +		if (alt->vendor_id != MIPS_VENDOR_ID)
+> +			continue;
+> +
+> +		if (alt->patch_id >= ERRATA_MIPS_NUMBER) {
+> +			WARN(1, "MIPS errata id:%d not in kernel errata list\n",
+> +			     alt->patch_id);
+> +			continue;
+> +		}
+> +
+> +		tmp = (1U << alt->patch_id);
+> +		if (cpu_req_errata && tmp) {
+> +			mutex_lock(&text_mutex);
+> +			patch_text_nosync(ALT_OLD_PTR(alt), ALT_ALT_PTR(alt),
+> +					  alt->alt_len);
+> +			mutex_unlock(&text_mutex);
+> +		}
+> +	}
+> +}
+> diff --git a/arch/riscv/include/asm/alternative.h b/arch/riscv/include/asm/alternative.h
+> index 3c2b59b25017929df92b4e6741ac1a9308bfec54..bc3ada8190a9e7dc7d904aeb3174c78329e4d8d7 100644
+> --- a/arch/riscv/include/asm/alternative.h
+> +++ b/arch/riscv/include/asm/alternative.h
+> @@ -48,6 +48,9 @@ struct alt_entry {
+>   void andes_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
+>   			     unsigned long archid, unsigned long impid,
+>   			     unsigned int stage);
+> +void mips_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
+> +			      unsigned long archid, unsigned long impid,
+> +			      unsigned int stage);
+>   void sifive_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
+>   			      unsigned long archid, unsigned long impid,
+>   			      unsigned int stage);
+> diff --git a/arch/riscv/include/asm/cmpxchg.h b/arch/riscv/include/asm/cmpxchg.h
+> index 0b749e7102162477432f7cf9a34768fbdf2e8cc7..80bd52363c68690f33bfd54e0cc40399cd60b57b 100644
+> --- a/arch/riscv/include/asm/cmpxchg.h
+> +++ b/arch/riscv/include/asm/cmpxchg.h
+> @@ -14,6 +14,7 @@
+>   #include <asm/insn-def.h>
+>   #include <asm/cpufeature-macros.h>
+>   #include <asm/processor.h>
+> +#include <asm/errata_list.h>
+>   
+>   #define __arch_xchg_masked(sc_sfx, swap_sfx, prepend, sc_append,		\
+>   			   swap_append, r, p, n)				\
+> @@ -438,7 +439,7 @@ static __always_inline void __cmpwait(volatile void *ptr,
+>   	return;
+>   
+>   no_zawrs:
+> -	asm volatile(RISCV_PAUSE : : : "memory");
+> +	ALT_RISCV_PAUSE();
+>   }
+>   
+>   #define __cmpwait_relaxed(ptr, val) \
+> diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/asm/errata_list.h
+> index 6e426ed7919a4acd997b60b723c0d5cfddb4cff6..618dee38d8d1347711fd46a459bfc8d2cb7bf42b 100644
+> --- a/arch/riscv/include/asm/errata_list.h
+> +++ b/arch/riscv/include/asm/errata_list.h
+> @@ -5,7 +5,6 @@
+>   #ifndef ASM_ERRATA_LIST_H
+>   #define ASM_ERRATA_LIST_H
+>   
+> -#include <asm/alternative.h>
+>   #include <asm/csr.h>
+>   #include <asm/insn-def.h>
+>   #include <asm/hwcap.h>
+> @@ -29,6 +28,11 @@
+>   #define	ERRATA_THEAD_NUMBER 3
+>   #endif
+>   
+> +#ifdef CONFIG_ERRATA_MIPS
+> +#define ERRATA_MIPS_P8700_PAUSE_OPCODE 0
+> +#define ERRATA_MIPS_NUMBER 1
+> +#endif
+> +
+>   #ifdef __ASSEMBLY__
+>   
+>   #define ALT_INSN_FAULT(x)						\
+> @@ -59,6 +63,17 @@ asm(ALTERNATIVE("sfence.vma %0, %1", "sfence.vma", SIFIVE_VENDOR_ID,	\
+>   		ERRATA_SIFIVE_CIP_1200, CONFIG_ERRATA_SIFIVE_CIP_1200)	\
+>   		: : "r" (addr), "r" (asid) : "memory")
+>   
+> +#define ALT_RISCV_PAUSE()					\
+> +asm(ALTERNATIVE(	\
+> +		RISCV_PAUSE, /* Original RISC‑V pause insn */	\
+> +		".4byte 0x00501013", /* Replacement for MIPS P8700 */	\
 
-On 7/16/25 8:50 PM, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> 
-> The DisplayPort carrier is a very simple baseboard only providing serial,
-> ethernet and a displayport output.
-> 
-> But its main functionality is that it routes the Analogix eDP controller
-> to this DisplayPort output, which allows to test that controller simply
-> by hooking it up to a suitable monitor.
-> 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
 
-Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
+Here  you should use MIPS_PAUSE
 
-Thanks!
-Quentin
+
+> +		MIPS_VENDOR_ID, /* Vendor ID to match */	\
+> +		ERRATA_MIPS_P8700_PAUSE_OPCODE, /* patch_id */	\
+> +		CONFIG_ERRATA_MIPS_P8700_PAUSE_OPCODE)	\
+> +	: /* no outputs */	\
+> +	: /* no inputs */	\
+> +	: "memory")
+> +
+>   /*
+>    * _val is marked as "will be overwritten", so need to set it to 0
+>    * in the default case.
+> diff --git a/arch/riscv/include/asm/vdso/processor.h b/arch/riscv/include/asm/vdso/processor.h
+> index 8f383f05a290f123d941226b5dd975381d7d8536..8f749552ecfe6220bbc35f1c4677c6de8f7abdec 100644
+> --- a/arch/riscv/include/asm/vdso/processor.h
+> +++ b/arch/riscv/include/asm/vdso/processor.h
+> @@ -5,6 +5,8 @@
+>   #ifndef __ASSEMBLY__
+>   
+>   #include <asm/barrier.h>
+> +
+
+
+New line ^
+
+
+> +#include <asm/errata_list.h>
+>   #include <asm/insn-def.h>
+>   
+>   static inline void cpu_relax(void)
+> @@ -19,7 +21,7 @@ static inline void cpu_relax(void)
+>   	 * Reduce instruction retirement.
+>   	 * This assumes the PC changes.
+>   	 */
+> -	__asm__ __volatile__ (RISCV_PAUSE);
+> +	ALT_RISCV_PAUSE();
+>   	barrier();
+>   }
+>   
+> diff --git a/arch/riscv/include/asm/vendorid_list.h b/arch/riscv/include/asm/vendorid_list.h
+> index a5150cdf34d87f01baf6d3ef843bc2d6d8d54095..3b09874d7a6dfb8f8aa45b0be41c20711d539e78 100644
+> --- a/arch/riscv/include/asm/vendorid_list.h
+> +++ b/arch/riscv/include/asm/vendorid_list.h
+> @@ -9,5 +9,6 @@
+>   #define MICROCHIP_VENDOR_ID	0x029
+>   #define SIFIVE_VENDOR_ID	0x489
+>   #define THEAD_VENDOR_ID		0x5b7
+> +#define MIPS_VENDOR_ID		0x722
+>   
+>   #endif
+> diff --git a/arch/riscv/kernel/alternative.c b/arch/riscv/kernel/alternative.c
+> index 7eb3cb1215c62130c63a72fc650cddff6bae62af..7642704c7f1841f67fc23738063f22b4ecf58194 100644
+> --- a/arch/riscv/kernel/alternative.c
+> +++ b/arch/riscv/kernel/alternative.c
+> @@ -47,6 +47,11 @@ static void riscv_fill_cpu_mfr_info(struct cpu_manufacturer_info_t *cpu_mfr_info
+>   		cpu_mfr_info->patch_func = andes_errata_patch_func;
+>   		break;
+>   #endif
+> +#ifdef CONFIG_ERRATA_MIPS
+> +	case MIPS_VENDOR_ID:
+> +		cpu_mfr_info->patch_func = mips_errata_patch_func;
+> +		break;
+> +#endif
+>   #ifdef CONFIG_ERRATA_SIFIVE
+>   	case SIFIVE_VENDOR_ID:
+>   		cpu_mfr_info->patch_func = sifive_errata_patch_func;
+> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
+> index 75656afa2d6be8ca5f2c4711455567c7f8fc0b97..b18373ed23d65df0dc828246269e9039bb0b0c6b 100644
+> --- a/arch/riscv/kernel/entry.S
+> +++ b/arch/riscv/kernel/entry.S
+> @@ -15,6 +15,8 @@
+>   #include <asm/thread_info.h>
+>   #include <asm/asm-offsets.h>
+>   #include <asm/errata_list.h>
+> +#include <asm/alternative.h>
+> +
+>   #include <linux/sizes.h>
+>   
+>   	.section .irqentry.text, "ax"
+> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> index 8d0374d7ce8ed72320f58e4cea212d0e2bce8fd4..7ee95ebadc258a3a46e59698cd143266f6797a0c 100644
+> --- a/arch/riscv/mm/init.c
+> +++ b/arch/riscv/mm/init.c
+> @@ -33,6 +33,7 @@
+>   #include <asm/soc.h>
+>   #include <asm/sparsemem.h>
+>   #include <asm/tlbflush.h>
+> +#include <asm/alternative.h>
+>   
+>   #include "../kernel/head.h"
+>   
+>
+Why do you include alternative.h in both files above? That does not seem 
+needed.
+
+Other than that:
+
+Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+
+Thanks,
+
+Alex
+
 
