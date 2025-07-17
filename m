@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-197113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 831F6B083DD
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 06:32:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE8AAB083E4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 06:33:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 433E27B8D9A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 04:30:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE0327B92B0
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 04:31:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E0B215077;
-	Thu, 17 Jul 2025 04:31:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C029D218ACA;
+	Thu, 17 Jul 2025 04:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uNtWBlir"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fRydheKE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5A7214A6A;
-	Thu, 17 Jul 2025 04:31:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C17218AA3;
+	Thu, 17 Jul 2025 04:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752726684; cv=none; b=FjspDlVVAiaUhKpd6g6Vm+fxeVqbFlh6Y2DTc1Zpj4jJn2LOT8jzbc4oRO5mSe5B/8nnyg7tmjGHrjCzh09AFofPpam1juk4iXhbvHXhfMPZYqz+sT0sMP/scufLyDvJp6+7TXcDIAeNUwdX6HJtNDxds8nwpkC0DZ/H5b1prLc=
+	t=1752726686; cv=none; b=WILZfBBU1NJzvQyYqdFS4MWfOgcnjuMfNMAfYVh8b2EvY44Y+VQvdNXh0PFCb1q174AoSY+uHv2axpNXrktB3Y1CwS6mqbJfMcI/u1aOmUJ4wTRXSISJrjPzDDQaQe/SGxj9XAYf2gsHGvi/bwJjtLztqK2GsApljYIKOJkAkxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752726684; c=relaxed/simple;
-	bh=OLNcyRBsmvv1570wOR+hb8QrNgW9ZwVyUXZaiBQ2xhI=;
+	s=arc-20240116; t=1752726686; c=relaxed/simple;
+	bh=SkOTc//OI/WNv+UtD+0KKgcrVEKUCW/Ehb+vldTMIzo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tvfG1PU4a18b5gKepqBN4zEMKvIkSz2zUjuV2NfGaAS2P31HrMUM8gPqeSYMiJXKYdYJMKEasALBpAg6G5Ms+NT/z+YJZY1pFKtX6QzJIpdwaHiLeWbbwKC5EjFWx/zTnXNq1q0MoKoDYvQdlkUGE0Ovp59vBOAhdIU34FbtGHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uNtWBlir; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CF52C4CEF5;
-	Thu, 17 Jul 2025 04:31:23 +0000 (UTC)
+	 MIME-Version:Content-Type; b=W2sdkbhD/K0PwYWIiyr8YCFiS7DdfLQ3iaxMDIiRjXBvpDsgr5tVK0mDRQifwzXkXGeYiScYo5STwOSoTG39DO3HfmJ8t7mAw68Ndhsio4wehFomyU/XB8DLOPXM2/DrUd+iMFgTQEPQbJ8wM7gblK7/XuHCOVzLUvHNpdyCCsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fRydheKE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4B4AC4CEED;
+	Thu, 17 Jul 2025 04:31:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752726684;
-	bh=OLNcyRBsmvv1570wOR+hb8QrNgW9ZwVyUXZaiBQ2xhI=;
+	s=k20201202; t=1752726686;
+	bh=SkOTc//OI/WNv+UtD+0KKgcrVEKUCW/Ehb+vldTMIzo=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=uNtWBlirLWMpCVbvMt8iQsV5s1XjboLugjFt5EPfvu3ZHYyxRzcvFoKrdJxwSiiMv
-	 4N4hkfGqCbwyXHtVUskPyM9TyISs6AEOZpDy/hhCMQOJIWZQbXeH0ze4fUEDtgriI+
-	 eJzUIjecCcdZRX/zJYqe1zOcJRIHATgbdY61A/kzGTJCNCRjouvST9dY7gJF1jDdKs
-	 jgkczd1er5xHY+gqKRWJ8HCteOQ6kqVMHGVMOPORQga0d0nzUj9zg5ip8FUVYdlIKX
-	 UA/F/+ycnIxMi4FwzPbPPVRVBD/n1F5TKT9ksQ46Jt7fTD2uAFRXN/g2Nr7H54oo6W
-	 ebZE+1nK4hb5Q==
+	b=fRydheKE7Emfid2Sm9EBBHo/lUfjYIQrBFxsrt7KHKh5H+AnnSIeaTIM8iUHFU9oH
+	 RZT9kzc9KcYs32Uh07iTqQTwQ944YcKcBtmi0NCy+GWdtoIYd4Bl9FgK0zi1VOZea8
+	 Z2KZ8IsNpF1JmPEeAjVox9oMumUa/fQP43zJy8BQnL5/5Vp6fRxUvQT/Eh9kVQAY5j
+	 pSZmhvk1+WdJnejld5PxOajUklredTp0xig9S+26qD5sPqJt+KDywcPvm4b5aHmu0/
+	 qbYEf8lfFhgHrVnnzDGkAA+jfLc7LSXzJbv7yTQRILJRlOGnI7zsjYLe/5If9PiWlh
+	 WO1+EDIrf5uvA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Cc: linux-arm-msm@vger.kernel.org,
+	cros-qcom-dts-watchers@chromium.org,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Anthony Ruhier <aruhier@mailbox.org>
-Subject: Re: [PATCH v3] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: add Bluetooth support
-Date: Wed, 16 Jul 2025 23:30:57 -0500
-Message-ID: <175272667117.130869.8700418579027773890.b4-ty@kernel.org>
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 0/4] arm64/qcom: Drop bogus venus-en/decoder nodes
+Date: Wed, 16 Jul 2025 23:31:00 -0500
+Message-ID: <175272667108.130869.4112597189406658118.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250624-slim7x-bt-v3-1-7ada18058419@oldschoolsolutions.biz>
-References: <20250624-slim7x-bt-v3-1-7ada18058419@oldschoolsolutions.biz>
+In-Reply-To: <20250614-topic-encdec-v1-0-f974c3e9cb43@oss.qualcomm.com>
+References: <20250614-topic-encdec-v1-0-f974c3e9cb43@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,18 +68,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 24 Jun 2025 08:46:00 +0200, Jens Glathe wrote:
-> To enable Bluetooth pwrseq appears to be required for the WCN7850.
-> Add the nodes from QCP, add the TODO hint for vreg_wcn_0p95 and
-> vreg_wcn_1p9
-> Add uart14 for the BT interface.
+On Sat, 14 Jun 2025 21:05:18 +0200, Konrad Dybcio wrote:
+> I left the ones with clock in tact, as I *really* wasn't sure what
+> the various layers of spaghetti do with them..
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: add Bluetooth support
-      commit: e57e7084b87bf2534078e04f9ddf377d85d55c13
+[1/4] arm64: dts: qcom: msm8916: Drop venus-enc/decoder node
+      commit: 5eede3dc2a6ea548302f54ebd89d5892532449dc
+[2/4] arm64: dts: qcom: sc7180: Drop venus-enc/decoder node
+      commit: 5c034d0e9abe3c950399932ace5b5e8e21b724bd
+[3/4] arm64: dts: qcom: sdm845: Drop venus-enc/decoder node
+      commit: 896f49ab5f525d519c3ff9533659a9f73be89f56
+[4/4] arm64: dts: qcom: sm8250: Drop venus-enc/decoder node
+      commit: 23221c35d0c9da4da8cafccbd8e714f0f0b5d970
 
 Best regards,
 -- 
