@@ -1,89 +1,90 @@
-Return-Path: <devicetree+bounces-197361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5107FB08EAB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:01:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C998B08EB2
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:02:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81B8D169B39
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:01:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5338E1C2564D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB6C1D63D3;
-	Thu, 17 Jul 2025 14:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742A12EBDFE;
+	Thu, 17 Jul 2025 14:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DUkb5wRy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ScNdyLux"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FEB71F130B
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 14:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB75C2798F8
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 14:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752760901; cv=none; b=XbNmX+A9HqBdSVkuMRvKQJCTmEK9w20dSqSKa/TK2Wub+8m28dSnqwOHB8GSEwXvmNfJ7Q75Zg8wC27k1GZ4nPc/cnl7xBxqS0dKXiRBUHdXeKeDwC2IjVDbxoCqejUNldJKUdYN/3aqk9K6UgkPjAJDmmZRUUt5ZxHcK4oAk68=
+	t=1752760906; cv=none; b=glceP3418rhITjgYymdoMQCysvR+ETqTPQjtiCJ52s75S2ShFj9Tc0EzGUTlISouV4VgbsTZydc68DFcOy5uFQM5wySHmrFl5YOeZ78SI3ULNzDz1xdacvmNj2LMYAE36OTXOnF0sEn9OSszaD4B+qrJ6zfUm8hcuANjciEuKgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752760901; c=relaxed/simple;
-	bh=0BTQfC2w5Rd4VcCTtFNmuoBqEatSoZ/OgMG1M6bwx54=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tXobxn0YHN5ZGkpxlD0VYV9lhWdzv92qNa3cCEd8G75EqN1EchBScBQhJlmzloM/sCLq2YaH68q7Wlczzjr5lPg0ZgPMM6WO0afNqBiXCXliRsoiGV+D7u6zgZiiq8ybhOANfppVEPXq5exbyzIiBD56pMBDhn3wS5sPlS4atXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DUkb5wRy; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1752760906; c=relaxed/simple;
+	bh=jlhIkx6diq9WlRmojrtBq8F4olsP5GXgTjT8OL+KpEA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=GpJ4DfB/zoptuuI7B0nV/N+PEHNIWhuPKbYXiTFEeGfI3tXziybyqN9NsUadQMyVpXxEtxvd4XryLHGVY2fSdeayMdtzmvdXoszrIOGNLKB148uk2AUKDsTo9OPqkcRcs7Tt98P0v0athFRKNm+ToFZLkfamRrtULmVDCJBIPLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ScNdyLux; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56HD3fSW007255
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 14:01:38 GMT
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56HBrqpN030463
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 14:01:43 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=pXji7w03b38emMA9vb5J3M
-	JvatE27Vxj2JoLrEFkbvQ=; b=DUkb5wRywSO/YzhBHoThRutav7lcjS4xzXeDF2
-	Oq2RYGobttVW46n0OFmJkJr/3K9wVb5fS+g8Do6AHOqXev27nRsOTPfzyeNqcie+
-	NUjmJThNdgV8SVf7+2VODfenC5VQo5fJZw7Ux6hY3fcNdjCu5+lbjeULN2sbLlnt
-	2nlhvdk8Tf2tsD4q6oHinbSM/MNrV0rQ8IdTFeOp7zSIi3fMzrEMiEea1g1EZaTn
-	G4GtawRWcnjWsoafFHSYyd+ljloMN3E2xXFz2MXJh+3+XaLgbnEFUtzcVMkTvBVl
-	IzXiUyEm8JiCGVwJSOR33z0SvwQIsqdzihsVFVk/suxFTnhA==
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9xig2HXHx1to3G55gqdUrKeettuTHUX6qKmlk40XTRM=; b=ScNdyLuxbmGAmpdM
+	sG93gdqNLlQp7MmCogYHk0kSg9xPyiuyTIGPN44LCoMtT84ubJ2vNOk/+rfkb8f9
+	ezjNNe7/nKXqAGo0aw6lPKR319ZyV7CJxAXPqJHPZ4ZaMUmheNSuk+3IehWSPT6Y
+	M5fp00NWMj4An3wBEi6QM9I/qC1Yva8bWD46KHcUkJ3BDF/JQeyAvISgwHkDr69+
+	kLg8f5ENrM8vJqEaYNilodMuDv9SUfFqbkUbPq32/gf7caJftAsoFT0CUrrdITjx
+	xk8Sq3L4NuaooZeYA9VwQNwMnGHENwnWJ+dk+71TWL2EWw/osB+4/CMJwLcgITfj
+	hHPfQA==
 Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47wfca93m3-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47x8x7mrhj-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 14:01:38 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-74ea5d9982cso830956b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 07:01:38 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 14:01:43 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-748e6457567so1384346b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 07:01:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752760897; x=1753365697;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pXji7w03b38emMA9vb5J3MJvatE27Vxj2JoLrEFkbvQ=;
-        b=e2mxO7klQziLe1eWQqq5pCNjoVINqLVOMvjhMR7mxdX7ZZ3Stjipfuduk6m6iK+1ZG
-         jNMnV/DweZQ8+s3lTuMUykvvFXM4XaBztmO+EE2hwYguMcb7YtcrGCDRfjSSHPBaZL5A
-         oUcq7MDnFpJv74vly7CGRS3fhztxCmnZWbHmLLNmXi0Avfnb3W+YWG2z3O3WDjz9oPR8
-         H4VUsekoZ54lem/mlUbIMh3FnZpO1n2xqoPEWHVGkYdQfqTzcdn8IYOLErRA41BeCBYS
-         IhcYuTjtGCBr27JKjC58UZhLrk1Mx+Jxdk7E36LhRGRXMVjlld/22yzKgeOGPdpL+ij3
-         MAJA==
-X-Forwarded-Encrypted: i=1; AJvYcCW/hdOT0lVIGeAYXuHv+jlounoAyazPiNDmF9KTBT6ie8ve20F6LWZdrs+EL0JYTTQMyBGEVmOwIpfh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWQfl9NrRLZS3k1RKWN7wk8hdXEohmh3CEKHq17yGeRr5H/wvB
-	C4Y8E9OQ2A8feXSsBLeojrTv5lrVKnTkB/N2HCgLmITdHq/vr18+UqDZVushyyavU0DsbUskUUO
-	PjB+UHMu+yWYJwaY7HLv0dIGCQS7e6lFVKqGfCQquRlKObG2S/0w+mpFDjmDkYkiViVuJ7B3X
-X-Gm-Gg: ASbGncs8USxIOnAhUK3SGb2QPBJ7Z6brx5sRcfbuVbvxxYs/mVTl6UFmgqq5x1rJEIx
-	EBXW+W5p0L78O25TYnui7l5RXkKsIrJY4hvkwZBFsptayTHIM15sl8iLdw018FPPZTCNUgq4EbU
-	sNblruGPgPwyqd5xT9cnU7boczbJN3iUkFrtNcc2NP7iCq7vLiTTqg0DyzEicOiXSfbvqnDAjXx
-	+kwaN9ZzEDjk3J4He9zPOl4Vwedg61Wvfp+UCTa89hYA5DzlSK+1RZVjvX1Knu15Z4eZ3PWH7za
-	A/mdrO+me/AVX/VUlMSavpqk62PLS6oinqXlms0/cURUJx/NIIpC1PPsGGfBbo1z6bENS4lUxIQ
+        d=1e100.net; s=20230601; t=1752760902; x=1753365702;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9xig2HXHx1to3G55gqdUrKeettuTHUX6qKmlk40XTRM=;
+        b=Qighmxyco+rIOOfLkUnwIEAqdIvfLPdb3zOmMF0Cf7BSYJ6yEKOCMkiW9wGO501Oou
+         Siuj/44+weaJX70OVS9kdTs/LDLu1M02Hol31iEoihecF17wRSYDC8ab28pWJUul7FAs
+         4NlFFr2i0pZoqqaXbdha+QQeFwycq6KY+ln1G/VU8o8uh3V12pE7Q+GU6sYS27EM+mA3
+         RSY7+np3hjkOiAmhUhgnZft+NqY8isoVVphysdpR3SLU3Ya51TuNaXkKz2perJLZqSl4
+         3D9BAAQY0Jzn5l4rzw0cG3i6ZN86VLIaZ8lnKK4luaSHBN3fNPC8YiccnL5F21yFoCom
+         l4Pw==
+X-Forwarded-Encrypted: i=1; AJvYcCVq2iGPCQFDYPwsVsBuksuIc6M2MtCNj5QjEkF0EOfqhHhub73kVBoOoktRu06kUI/m9xcX6Ejf1Inw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxr/wslmtCma7FG+WBkZXBdOMpaFuiBxM7H3S/ZnGdwRYOlwPr6
+	EjICvUivwquOSBqMG1ODHOUaUpemJaYlqE3Z3QUna2l0ZYNHokRq7IvfuBAtVKhwLM1CvIKS2Mb
+	DiLNV3QZ4nbEKVp6wdLeDMUq1aKXtmJ0JPz7TYZ8X419kGi1TA8LuVzxw3f0I8+Lj
+X-Gm-Gg: ASbGnctu91SuruJnohO1qYiyhHgwCDl4ZqLdJVXfaiG0VXNU2RHcckYPURKtz5d+ulb
+	dw7f9BBC4+tyVPlAVshWtu1bfIREqUGfKCKjkKRtJZ8he/vXpBTPvp1d4o1pma7wn9aFHW6ai1U
+	x+Zfk/vmro9+p0kGCJElTKtGptB49EknhSVK4YKote+JQ+NieM2QJ1OnxYbHsaBJBKiURr3jSng
+	na21jy2p/cy0wHM133NGn7j8xYDe5/m8hWbTvLQIn5VcAwxQc8pixGzcHX3PVNnk3KMU3C0mBFO
+	Abq2asE81Zwx5edMgzq72lCaDRGPa9foiUm3pxuOypE+Hsm0mNocIdC1scfCsFTu+M1mT5dfxWg
 	=
-X-Received: by 2002:a05:6a21:151a:b0:238:3f54:78e9 with SMTP id adf61e73a8af0-2383f548d09mr9251735637.43.1752760896672;
-        Thu, 17 Jul 2025 07:01:36 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF45A+lgEoQb8f4TyEa6YkAJM5UqE/OX4TYBGRzoYifUxZTa8/Qrlg8/ommRgyQucY5cADfQA==
-X-Received: by 2002:a05:6a21:151a:b0:238:3f54:78e9 with SMTP id adf61e73a8af0-2383f548d09mr9251480637.43.1752760894322;
-        Thu, 17 Jul 2025 07:01:34 -0700 (PDT)
+X-Received: by 2002:a05:6a00:9445:b0:736:4e14:8ec5 with SMTP id d2e1a72fcca58-758380738a0mr4957675b3a.11.1752760901666;
+        Thu, 17 Jul 2025 07:01:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH4xyAX6GCHnhDHyeS91ZUNXI9BnUzD+Nm9EIHYAe96nb/taBHl9/Onvn9mLeuEMU7u8nwmkA==
+X-Received: by 2002:a05:6a00:9445:b0:736:4e14:8ec5 with SMTP id d2e1a72fcca58-758380738a0mr4957591b3a.11.1752760900999;
+        Thu, 17 Jul 2025 07:01:40 -0700 (PDT)
 Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7507a64b57dsm10311986b3a.14.2025.07.17.07.01.28
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7507a64b57dsm10311986b3a.14.2025.07.17.07.01.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Jul 2025 07:01:32 -0700 (PDT)
+        Thu, 17 Jul 2025 07:01:40 -0700 (PDT)
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Subject: [PATCH 0/3] opp: Add bw_factor support to adjust bandwidth
+Date: Thu, 17 Jul 2025 19:31:16 +0530
+Subject: [PATCH 1/3] opp: Add bw_factor support to adjust bandwidth
  dynamically
-Date: Thu, 17 Jul 2025 19:31:15 +0530
-Message-Id: <20250717-opp_pcie-v1-0-dde6f452571b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,10 +93,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIACsCeWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDc0Nz3fyCgviC5MxUXXNLY0MzgySjJENDYyWg8oKi1LTMCrBR0bG1tQC
- 91UdPWgAAAA==
-X-Change-ID: 20250717-opp_pcie-793160b2b113
+Message-Id: <20250717-opp_pcie-v1-1-dde6f452571b@oss.qualcomm.com>
+References: <20250717-opp_pcie-v1-0-dde6f452571b@oss.qualcomm.com>
+In-Reply-To: <20250717-opp_pcie-v1-0-dde6f452571b@oss.qualcomm.com>
 To: Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
         Stephen Boyd <sboyd@kernel.org>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -112,33 +112,33 @@ Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org,
         Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1752760888; l=1757;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752760888; l=5030;
  i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=0BTQfC2w5Rd4VcCTtFNmuoBqEatSoZ/OgMG1M6bwx54=;
- b=yZHyhU2ZmPe2y6FRKoFJIShRvrs8JFdyP+hmuU3SAHzGxMKpB3+iCxlbylH9wPkKzi6DgxqGt
- csXPI+55WroBjWicfathL9vSadm88SK0hZ27fR6A63Od80rp/Tj8H8D
+ bh=jlhIkx6diq9WlRmojrtBq8F4olsP5GXgTjT8OL+KpEA=;
+ b=5uEe6o72g+JGjtsw48Rq1U6YmW/Kid72G3Sf6e7D19WkLLo8wVq/qYnZwwFbd4wbuewEvcLIn
+ xBUqCgEkUZWA24PPKj5eY8E6NjeUNuFzWpk0YEiwpwW853T4ZriLRSI
 X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
  pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE3MDEyMyBTYWx0ZWRfXw/R4dDA8TYlk
- CECz6nT9DWYs/IZx8nOx3mdWFoma/nCcUSkxAu0AZV5Vv97LnI1XRVgDR+ZSGJjZgj/w/C7SF5Y
- 0j7FkZAaOOwcnOt/KrWILHq38kjQURrXAbaJjTwmvPnbHJX48GB4ZGbAjvUYYce9wOHefcNZhJT
- FzQz73uTRXqKeiamst4wqW02LU04mEoiQe07XV0XKLKB8r0QpoD1WbhMPwVqL1RKfsloUeEZTCr
- nxDUZG/ggkJ4oPtaY6WUCeQNBbHabFeCy8RY+z1Cpi9saPXFRE+MIMap/k8B2jLMBBBrJj8gtmt
- AIDqG8+2ISQFKvzo9f7Mv599fT7ZDOXjehi8tEoN5jPHQ8o7tGDUiSrLf4ZPp1TVQz51XnqLm1F
- RKIdjjjPqrQX3sij58YY3VfqFdd8wcHTxiaFH/JYG9MIwoRIsuZQYq3yiSexeISSOX+Pmaoh
-X-Proofpoint-GUID: GGvblZyjZuKN9oHS12Eoh9a0WPi4j56u
-X-Authority-Analysis: v=2.4 cv=SeX3duRu c=1 sm=1 tr=0 ts=68790242 cx=c_pps
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE3MDEyMyBTYWx0ZWRfXx2ZCcArVQF8P
+ HMiiYk7YlTeDDgJ8n74/e7pMq+gsT8epXEpKTa3H98NswkR8XMQfqqS/uJcnDW+xtjGlqaZkhgN
+ v0q6J+GYUXH4GvFF1cncHGvUWm0Mrsz55UvXNPe34McuwCyBbQD9UBnW4znQrGxfIdX3/IdCTtz
+ MHnb/7FiAa3vw704b51etJlS3eIgwS/J8ycowFEoCeqdtXOqEOHSVfTq2Zd2W6Y5uYjbXrwYZuK
+ tGjeKmcMXPVgAodDcjcP8wd1/Oq7/Y/nRp5X0mE6w4pMWBKLbxhVcYpZD3tMK3QC7hjAe9rNGtk
+ Cz4cRqbDtRbg2yPtBdU/8jX2DJ3fMJIOjh1IequFAYDlc99MnW9zCwshcC35HsU7RGRulf7ZVgc
+ +B6JqqLlKBEZ0fsnOGLL7XpkWr5DrBANkpXghg0aOt5jVHjYjWmsHA0IVX5Vn+Kj0KcViDOf
+X-Proofpoint-GUID: TzIKuj3AdPhdV1erUEDjdCjSWEJc_NKz
+X-Proofpoint-ORIG-GUID: TzIKuj3AdPhdV1erUEDjdCjSWEJc_NKz
+X-Authority-Analysis: v=2.4 cv=N9YpF39B c=1 sm=1 tr=0 ts=68790247 cx=c_pps
  a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=KRKipztoQesxEaMeAmMA:9
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=fQ16MQn1BotIw16Uv_wA:9
  a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-ORIG-GUID: GGvblZyjZuKN9oHS12Eoh9a0WPi4j56u
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-07-17_01,2025-07-17_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 mlxscore=0 priorityscore=1501 bulkscore=0 phishscore=0
- lowpriorityscore=0 mlxlogscore=852 impostorscore=0 clxscore=1015 adultscore=0
- suspectscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ spamscore=0 lowpriorityscore=0 mlxlogscore=999 bulkscore=0 adultscore=0
+ priorityscore=1501 clxscore=1015 mlxscore=0 suspectscore=0 impostorscore=0
+ phishscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
  definitions=main-2507170123
 
@@ -160,23 +160,120 @@ separate OPP entries for each configuration.
 
 Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 ---
-Krishna Chaitanya Chundru (3):
-      opp: Add bw_factor support to adjust bandwidth dynamically
-      PCI: qcom: Use bw_factor to adjust bandwidth based on link width
-      arm64: dts: qcom: sm8450: Keep only x1 lane PCIe OPP entries
+ drivers/opp/core.c     | 37 +++++++++++++++++++++++++++++++++++--
+ drivers/opp/opp.h      |  2 ++
+ include/linux/pm_opp.h |  7 +++++++
+ 3 files changed, 44 insertions(+), 2 deletions(-)
 
- arch/arm64/boot/dts/qcom/sm8450.dtsi   | 17 ++--------------
- drivers/opp/core.c                     | 37 ++++++++++++++++++++++++++++++++--
- drivers/opp/opp.h                      |  2 ++
- drivers/pci/controller/dwc/pcie-qcom.c |  8 ++++++--
- include/linux/pm_opp.h                 |  7 +++++++
- 5 files changed, 52 insertions(+), 19 deletions(-)
----
-base-commit: e2291551827fe5d2d3758c435c191d32b6d1350e
-change-id: 20250717-opp_pcie-793160b2b113
+diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+index edbd60501cf00dfd1957f7d19b228d1c61bbbdcc..bd618fd1a36fa9c252408beb35ac2e39bfb17ee5 100644
+--- a/drivers/opp/core.c
++++ b/drivers/opp/core.c
+@@ -1060,8 +1060,8 @@ static int _set_opp_bw(const struct opp_table *opp_table,
+ 			avg = 0;
+ 			peak = 0;
+ 		} else {
+-			avg = opp->bandwidth[i].avg;
+-			peak = opp->bandwidth[i].peak;
++			avg = opp->bandwidth[i].avg * opp_table->bw_factor;
++			peak = opp->bandwidth[i].peak * opp_table->bw_factor;
+ 		}
+ 		ret = icc_set_bw(opp_table->paths[i], avg, peak);
+ 		if (ret) {
+@@ -1461,6 +1461,7 @@ static struct opp_table *_allocate_opp_table(struct device *dev, int index)
+ 			 __func__, ret);
+ 	}
+ 
++	opp_table->bw_factor = 1;
+ 	BLOCKING_INIT_NOTIFIER_HEAD(&opp_table->head);
+ 	INIT_LIST_HEAD(&opp_table->opp_list);
+ 	kref_init(&opp_table->kref);
+@@ -2815,6 +2816,38 @@ static int _opp_set_availability(struct device *dev, unsigned long freq,
+ 	return 0;
+ }
+ 
++/**
++ * dev_pm_opp_set_bw_factor() - helper to change the bw factor
++ * @dev:		device for which we do this operation
++ * @bw_factor:		bw factor which multiples the supplied bw
++ *
++ * Return: -EINVAL for bad pointers, -ENOMEM if no memory available for the
++ * copy operation, returns 0 if no modifcation was done OR modification was
++ * successful.
++ */
++int dev_pm_opp_set_bw_factor(struct device *dev, u8 bw_factor)
++{
++	struct opp_table *opp_table __free(put_opp_table);
++	int r;
++
++	/* Find the opp_table */
++	opp_table = _find_opp_table(dev);
++	if (IS_ERR(opp_table)) {
++		r = PTR_ERR(opp_table);
++		dev_warn(dev, "%s: Device OPP not found (%d)\n", __func__, r);
++		return r;
++	}
++
++	if (opp_table->bw_factor == bw_factor)
++		return 0;
++
++	scoped_guard(mutex, &opp_table->lock)
++		opp_table->bw_factor = bw_factor;
++
++	return 0;
++}
++EXPORT_SYMBOL_GPL(dev_pm_opp_set_bw_factor);
++
+ /**
+  * dev_pm_opp_adjust_voltage() - helper to change the voltage of an OPP
+  * @dev:		device for which we do this operation
+diff --git a/drivers/opp/opp.h b/drivers/opp/opp.h
+index 9eba63e01a9e7650cf2e49515b70ba73f72210fc..f52d8582b705f1dcf8b5c8279716d38acb273a6c 100644
+--- a/drivers/opp/opp.h
++++ b/drivers/opp/opp.h
+@@ -192,6 +192,7 @@ enum opp_table_access {
+  * property).
+  * @paths: Interconnect path handles
+  * @path_count: Number of interconnect paths
++ * @bw_factor: Multiplier to the supplied bw
+  * @enabled: Set to true if the device's resources are enabled/configured.
+  * @is_genpd: Marks if the OPP table belongs to a genpd.
+  * @dentry:	debugfs dentry pointer of the real device directory (not links).
+@@ -240,6 +241,7 @@ struct opp_table {
+ 	int regulator_count;
+ 	struct icc_path **paths;
+ 	unsigned int path_count;
++	u8 bw_factor;
+ 	bool enabled;
+ 	bool is_genpd;
+ 
+diff --git a/include/linux/pm_opp.h b/include/linux/pm_opp.h
+index cf477beae4bbede88223566df5f43d85adc5a816..4b090fd7391975ab3fa9a94e939325de946cadfa 100644
+--- a/include/linux/pm_opp.h
++++ b/include/linux/pm_opp.h
+@@ -170,6 +170,8 @@ int dev_pm_opp_add_dynamic(struct device *dev, struct dev_pm_opp_data *opp);
+ void dev_pm_opp_remove(struct device *dev, unsigned long freq);
+ void dev_pm_opp_remove_all_dynamic(struct device *dev);
+ 
++int dev_pm_opp_set_bw_factor(struct device *dev, u8 bw_factor);
++
+ int dev_pm_opp_adjust_voltage(struct device *dev, unsigned long freq,
+ 			      unsigned long u_volt, unsigned long u_volt_min,
+ 			      unsigned long u_volt_max);
+@@ -371,6 +373,11 @@ static inline void dev_pm_opp_remove_all_dynamic(struct device *dev)
+ {
+ }
+ 
++static inline int dev_pm_opp_set_bw_factor(struct device *dev, u8 bw_factor)
++{
++	return 0;
++}
++
+ static inline int
+ dev_pm_opp_adjust_voltage(struct device *dev, unsigned long freq,
+ 			  unsigned long u_volt, unsigned long u_volt_min,
 
-Best regards,
 -- 
-Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+2.34.1
 
 
