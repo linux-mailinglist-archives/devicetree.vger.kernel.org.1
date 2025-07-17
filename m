@@ -1,247 +1,190 @@
-Return-Path: <devicetree+bounces-197147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D5EDB08531
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 08:41:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2800B08538
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 08:45:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DD31A45EA5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 06:40:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E206582605
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 06:45:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B35521ADB5;
-	Thu, 17 Jul 2025 06:40:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72E081953BB;
+	Thu, 17 Jul 2025 06:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IIdxpIGb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AuWHiDiT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D8221ADA3;
-	Thu, 17 Jul 2025 06:40:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDB6B652;
+	Thu, 17 Jul 2025 06:45:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752734421; cv=none; b=YQAZdHQz6veVMiaDTA5dhCSRrP9J4OjEyzc63EU044oZoL09nS77BijQnkmHRAIAycKSGfdh/THy/Ayw9rFHG4Etk1lpZfuxfPZD0Nl6awpQ2U0lE8T48re0rliEh4qy+SxkA4ZV+gcJVpQcXoWxr7w/D4dA3+6FQKP9mD6DVx8=
+	t=1752734723; cv=none; b=SxfHEhz9/Dx8Qs3hhsYOcNF7URrwX4vMsB8AUD1urUcCSRYXQxLkIorwAtk9dxYiPp9Awa41xt02PtXH444evUVb6/df/CMMDUEq4423o979+qGd63XSdb2r2ESs2xzPARmaGB1ZgbYOxqdboMu7+gyMBUsQFCmpnvJT6MDzqQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752734421; c=relaxed/simple;
-	bh=pYrbxrLqmoUrHduPsSanPer8fFDOTDbOp3egOIFMJsQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=omWOa+zpjXCUbue+S2BGtFcm6D6++npVSLktQfDoSEP/A9nFJY6/LzuiuiL1hGiIarh9s1f1LO8C2IF6id4kw08PoNgHuUcGW908tdHcaBLgBt6fnSgL5/c4YTsx90hGwcq6Rx2JxfRgrV55CHcqxbYG48tU+4l3WsL2bDBaXtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IIdxpIGb; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-454ac069223so11714275e9.1;
-        Wed, 16 Jul 2025 23:40:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752734415; x=1753339215; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Go8yLTcsDmTII8LthCvCpUJJtbyrgxm7vT0+k9RIkZ0=;
-        b=IIdxpIGbN0qkiWQKMlYqLb5Z8uHD9ke6WcdkoBOB58mr0JtA9zPZalmyGqOgS7PbSn
-         lGGhfUfb69iXVAnJveqoCbpnQ6QjFBhROJWHJEuKvvlZ38EIGrCcb2AcsXl4yTa9xDZR
-         jwz7Nh8EnFbrifKf8uKisH0LjAG62Jh5Z+w0NYgV9QToumryOQ6Xk3YF0ZanZQCO/owO
-         gTQ5aRlyyviy+Us6Ayr9twzRafc4wkLI+qXyyfaOc1ZGfoqc0YBLe4R745dUineqY3ff
-         Nh7q/5GXUTFSitnbafjdGoiNf0kZG0sMuJrdd/g8T0Zlyi05wOxceM79/kKO9A+3KzBx
-         Vztw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752734415; x=1753339215;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Go8yLTcsDmTII8LthCvCpUJJtbyrgxm7vT0+k9RIkZ0=;
-        b=xVLyZ2gGINCMZfp42tQB6vBlpfRRtwLqo5TRytOSWfBLcOm9LMVc+AkYMcWoa0XglU
-         Y2gdpTUuVbhNh/MylBYiaUZFGEQdg5KDvZlMXJ+6RIVj23QqYJ05kQyKAlYe/xjBjQgJ
-         mNvVmWsaFpcxiNk+D3CbEV4ItK+tuz6MHFaPiU9/MvdrAQD2bxyoQMf3NXorre8TmVB+
-         830Q9WVjS9lmISUqrcv0OUxejGGg3DGvLuOd7ztVi21YWs4Rmj7ojoUy5fB0OrjvIDLo
-         Lqd0Kg+LTu46wbIvqCgl1d2QNGVjZGjVMw0PRC1S7RGPz2bIRKdhw/tjOq5N8deb0yrw
-         HAtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCViDaK5uRJMPMCCnHtuViYyBaet9q+3QhsOWWaCNQUTS5Mq4EbXgfIRLpslkEk6we/Jwra08IQHhB7F@vger.kernel.org, AJvYcCX2inD7jnvwqJvvlCpoMN1UNyaobTkR7XmQZSmSFNxVN41nwCg2/OqEVwCIpOPmz9ySoVU4QJ4qhbWPTY8J@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIzFUt6A+tcsyJqG3+Q3fSxhOU1KSRUL2g6Gn/FUVjJVRkpQZQ
-	wvLxxD6zUzSapQ4TLGZOMVGXyuGFaiZIiojh1uLxgbZKqdcBlNTPPaEBn8mZwQ==
-X-Gm-Gg: ASbGncvEGy3flEbaquAsXlzRRxoe0cJwgfFjwiSQMYPIoIrbkDYJ3LEfEsCn6WNKOsx
-	Uu7iDT3sgK31i9vgiD/Pv/D3yXdQxhev77sDcVfwfsGTXaix6lG2cAL4N140SFejN9PTUBbrjlW
-	214xVQ2voguBcTXNKsuc28BZ5mCClcntEE/4h7biuKSKSdYxvVlV1mLRxMYmPRI7FfmwM8gSKv5
-	JMrmzw3MdOjEdqh1ynZdFMCZrztD7UwoHAXCBg9a9Uadm28D2KqMMPOEVbKa8mWfeyNUiFcUcnC
-	siDfdUGWe8B2+bkjpHMw6L5Bz6DcQil8tpNbYtuq7oAeuMwuykByb5zjJrGB+oEsoxY/EVpEXbb
-	+kWItYoFs5sRW/yreqJ4B
-X-Google-Smtp-Source: AGHT+IG4nI6HXz7bhIE+dI5lv+NPhFBQFa/i/ICLIEM8yv5RpkJebZpRWfZ4FHOTecBXBDfy9uAqGA==
-X-Received: by 2002:a05:6000:438a:b0:3a3:7117:1bba with SMTP id ffacd0b85a97d-3b613ad5ec1mr1491008f8f.24.1752734414917;
-        Wed, 16 Jul 2025 23:40:14 -0700 (PDT)
-Received: from masalkhi.. ([61.8.129.68])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b5e8e1e135sm20039788f8f.72.2025.07.16.23.40.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jul 2025 23:40:13 -0700 (PDT)
-From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-To: arnd@arndb.de,
-	gregkh@linuxfoundation.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org
-Cc: conor+dt@kernel.org,
-	luoyifan@cmss.chinamobile.com,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	christophe.jaillet@wanadoo.fr,
-	abd.masalkhi@gmail.com
-Subject: [PATCH v7 3/3] ABI: sysfs: add documentation for ST M24LR EEPROM and control interface
-Date: Thu, 17 Jul 2025 06:39:34 +0000
-Message-ID: <20250717063934.5083-4-abd.masalkhi@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250717063934.5083-1-abd.masalkhi@gmail.com>
-References: <20250717063934.5083-1-abd.masalkhi@gmail.com>
+	s=arc-20240116; t=1752734723; c=relaxed/simple;
+	bh=WyRAuIzylQMKyYzhOumRTqhhzdLD5h4Q9xEN9Krskas=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aj8PKZBLTDf4ZIH3k0wcQNung+wUQOxAmSBnEBNzNnJKG2WfHme80/zqmhHoFnZ8AX6pWNbbZ1vlM29/g8x3HIEcs/zABqRDfqeJPOvt93DaFCJ0tx9iZ1uxmbb+JEqPN9a2H9eQrK5KzufIuwSVSOESH3lPzoJqJwIUnuxulqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AuWHiDiT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81D57C4CEE3;
+	Thu, 17 Jul 2025 06:45:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752734722;
+	bh=WyRAuIzylQMKyYzhOumRTqhhzdLD5h4Q9xEN9Krskas=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AuWHiDiTFpzwA8YvfRXE7aXXAumDRd+UZQzN0HCbizVtwgKcQvi3Nj47qiYCPEqdo
+	 c4UDe5ImusxTeepNaWLXhz8ZnAAA8/OohlvZ+OkqD/duV2xenoYvtSkjyKCF4KkZUi
+	 rHYOdSVPWHqSwYxFItKdWPihvw1IyRrYrg1cVHFMOoUV4XlSOfX+WR8qC2BUFqraQu
+	 kjUv9CvjwTaarEUOCYuq9PRwSBAFWSKiWTKKgs3tl4i+hrwfaf8S+315kd65Jrp1vx
+	 5Wg9xvRrX6+r06vluxI7PQ+MjedBirQVneuGeWaIxsPNtV1e8OtpvWdzPLbJpsx1iN
+	 y10UOjBfabb9w==
+Message-ID: <0bb2867a-393b-46f9-ad6f-1aeee5a3a9d4@kernel.org>
+Date: Thu, 17 Jul 2025 08:45:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/7] media: dt-bindings: venus: Add qcm2290 dt schema
+To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com, krzk+dt@kernel.org,
+ konradybcio@kernel.org, mchehab@kernel.org, andersson@kernel.org,
+ conor+dt@kernel.org, amit.kucheria@oss.qualcomm.com,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250715204749.2189875-1-jorge.ramirez@oss.qualcomm.com>
+ <20250715204749.2189875-2-jorge.ramirez@oss.qualcomm.com>
+ <8a63f517-a443-48e4-9b9c-0c4b362f59f8@linaro.org> <aHiZpnFhhR5O0h97@trex>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <aHiZpnFhhR5O0h97@trex>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add sysfs ABI documentation for the STMicroelectronics M24LR device,
-covering both the control interface (e.g., unlock, password update, UID,
-total sectors, and SSS entries) and EEPROM access via the nvmem subsystem.
+On 17/07/2025 08:35, Jorge Ramirez wrote:
+> On 17/07/25 00:22:53, Bryan O'Donoghue wrote:
+>> On 15/07/2025 21:47, Jorge Ramirez-Ortiz wrote:
+>>> Add a schema for the venus video encoder/decoder on the qcm2290.
+>>>
+>>> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>> ---
+>>>   .../bindings/media/qcom,qcm2290-venus.yaml    | 127 ++++++++++++++++++
+>>>   1 file changed, 127 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+>>> new file mode 100644
+>>> index 000000000000..0371f8dd91a3
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+>>> @@ -0,0 +1,127 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/media/qcom,qcm2290-venus.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm QCM2290 Venus video encode and decode accelerators
+>>> +
+>>> +maintainers:
+>>> +  - Vikash Garodia <quic_vgarodia@quicinc.com>
+>>
+>> Shouldn't you be on this list ? If you upstream a file I think you should
+>> list yourself as responsible for its glory or its mess.
+> 
+> happy to do it. The MAINTAINER's file covered all the files named
 
-Signed-off-by: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
----
-Changes in v7:
- - No changes
- - Link to v6: https://lore.kernel.org/all/20250706105311.395162-4-abd.masalkhi@gmail.com/
+This should be the person(s) interested and caring about this hardware,
+which means:
+1. Subsystem maintainers: no
+2. Driver maintainers: usually yes
+3. Author(s) of new hardware support: usually yes
 
-Changes in v6:
- - No changes
- - Link to v5: https://lore.kernel.org/all/20250704123914.11216-4-abd.masalkhi@gmail.com/
+> schemas/media/*venus* so my understanding was that I shouldn't.
 
-Changes in v5:
- - Fix dates and update targeted kernel version.
- - Link to v4: https://lore.kernel.org/lkml/20250608182714.3359441-4-abd.masalkhi@gmail.com/
+I cannot comment why people decided to go one way or another in other
+code, but it as well could be just incorrect choice thinking only people
+in MAINTAINERS care about hardware.
 
-Changes in v4:
- - Replaced 'sss<N>' entries with a single binary 'sss' attribute
- - Added 'total_sectors' attribute to report the number of valid SSS bytes
- - removed 'mem_size' attribute
- - Fix dates and update targeted kernel version.
- - Link to v3: https://lore.kernel.org/lkml/20250606120631.3140054-4-abd.masalkhi@gmail.com/
+...
 
-Changes in v3:
- - Updated sysfs entry paths to use <busnum>-<primary-addr> to reflect the
-   control address.
- - Link to v2: https://lore.kernel.org/lkml/20250601153022.2027919-4-abd.masalkhi@gmail.com/
+>>> +
+>>> +        memory-region = <&pil_video_mem>;
+>>> +        iommus = <&apps_smmu 0x860 0x0>,
+>>> +                 <&apps_smmu 0x880 0x0>,
+>>> +                 <&apps_smmu 0x861 0x04>,
+>>> +                 <&apps_smmu 0x863 0x0>,
+>>> +                 <&apps_smmu 0x804 0xe0>;
+>>
+>> You're listing five iommus.
+>>
+>> I understand there's some disagreement about whether or not to list all of
+>> the potential use-cases but, TBH I don't think those are good arguments.
+>>
+>> Unless there's some technical prohibition I can't think of listing all five
+>> maxItems:5 .. let's just do that.
+> 
+> since the device tree should describe hardware and not policy, and the
+> driver seems to be able to ignore the unused SIDs I think this is the
+> right thing to do.
 
-Changes in v2:
- - Added initial sysfs ABI documentation.
----
- .../ABI/testing/sysfs-bus-i2c-devices-m24lr   | 100 ++++++++++++++++++
- 1 file changed, 100 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-m24lr
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-i2c-devices-m24lr b/Documentation/ABI/testing/sysfs-bus-i2c-devices-m24lr
-new file mode 100644
-index 000000000000..7c51ce8d38ba
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-i2c-devices-m24lr
-@@ -0,0 +1,100 @@
-+What:           /sys/bus/i2c/devices/<busnum>-<primary-addr>/unlock
-+Date:           2025-07-04
-+KernelVersion:  6.17
-+Contact:        Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-+Description:
-+                Write-only attribute used to present a password and unlock
-+                access to protected areas of the M24LR chip, including
-+                configuration registers such as the Sector Security Status
-+                (SSS) bytes. A valid password must be written to enable write
-+                access to these regions via the I2C interface.
-+
-+                Format:
-+                  - Hexadecimal string representing a 32-bit (4-byte) password
-+                  - Accepts 1 to 8 hex digits (e.g., "c", "1F", "a1b2c3d4")
-+                  - No "0x" prefix, whitespace, or trailing newline
-+                  - Case-insensitive
-+
-+                Behavior:
-+                  - If the password matches the internal stored value,
-+                    access to protected memory/configuration is granted
-+                  - If the password does not match the internally stored value,
-+                    it will fail silently
-+
-+What:           /sys/bus/i2c/devices/<busnum>-<primary-addr>/new_pass
-+Date:           2025-07-04
-+KernelVersion:  6.17
-+Contact:        Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-+Description:
-+                Write-only attribute used to update the password required to
-+                unlock the M24LR chip.
-+
-+                Format:
-+                  - Hexadecimal string representing a new 32-bit password
-+                  - Accepts 1 to 8 hex digits (e.g., "1A", "ffff", "c0ffee00")
-+                  - No "0x" prefix, whitespace, or trailing newline
-+                  - Case-insensitive
-+
-+                Behavior:
-+                  - Overwrites the current password stored in the I2C password
-+                    register
-+                  - Requires the device to be unlocked before changing the
-+                    password
-+                  - If the device is locked, the write silently fails
-+
-+What:           /sys/bus/i2c/devices/<busnum>-<primary-addr>/uid
-+Date:           2025-07-04
-+KernelVersion:  6.17
-+Contact:        Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-+Description:
-+                Read-only attribute that exposes the 8-byte unique identifier
-+                programmed into the M24LR chip at the factory.
-+
-+                Format:
-+                  - Lowercase hexadecimal string representing a 64-bit value
-+                  - 1 to 16 hex digits (e.g., "e00204f12345678")
-+                  - No "0x" prefix
-+                  - Includes a trailing newline
-+
-+What:           /sys/bus/i2c/devices/<busnum>-<primary-addr>/total_sectors
-+Date:           2025-07-04
-+KernelVersion:  6.17
-+Contact:        Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-+Description:
-+                Read-only attribute that exposes the total number of EEPROM
-+                sectors available in the M24LR chip.
-+
-+                Format:
-+                  - 1 to 2 hex digits (e.g. "F")
-+                  - No "0x" prefix
-+                  - Includes a trailing newline
-+
-+                Notes:
-+                  - Value is encoded by the chip and corresponds to the EEPROM
-+                    size (e.g., 3 = 4 kbit for M24LR04E-R)
-+
-+What:           /sys/bus/i2c/devices/<busnum>-<primary-addr>/sss
-+Date:           2025-07-04
-+KernelVersion:  6.17
-+Contact:        Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-+Description:
-+                Read/write binary attribute representing the Sector Security
-+                Status (SSS) bytes for all EEPROM sectors in STMicroelectronics
-+                M24LR chips.
-+
-+                Each EEPROM sector has one SSS byte, which controls I2C and
-+                RF access through protection bits and optional password
-+                authentication.
-+
-+                Format:
-+                  - The file contains one byte per EEPROM sector
-+                  - Byte at offset N corresponds to sector N
-+                  - Binary access only; use tools like dd, Python, or C that
-+                    support byte-level I/O and offset control.
-+
-+                Notes:
-+                  - The number of valid bytes in this file is equal to the
-+                    value exposed by 'total_sectors' file
-+                  - Write access requires prior password authentication in
-+                    I2C mode
-+                  - Refer to the M24LR datasheet for full SSS bit layout
--- 
-2.43.0
+It was never about the driver but about whether you should describe in
+DTS for non-secure world the entries which are secure world. The answer
+in general is that you can and there will be benefits (e.g. sharing DTS
+with secure world implementations).
 
+Best regards,
+Krzysztof
 
