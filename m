@@ -1,298 +1,132 @@
-Return-Path: <devicetree+bounces-197409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6535B09099
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:29:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F86BB09123
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:59:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4CC716389E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 15:29:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC76EA46463
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 15:58:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CFF12F8C34;
-	Thu, 17 Jul 2025 15:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF61A2FEE32;
+	Thu, 17 Jul 2025 15:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W+vpCkoJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g+WVgK1Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE3A1DE3C3;
-	Thu, 17 Jul 2025 15:29:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B23362FE374;
+	Thu, 17 Jul 2025 15:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752766189; cv=none; b=MAPF4ud2Exw7ASQ9QZNxtHLL/I70WNQtzhepf8OcHrO+Hr0tOJAENB3fKL51ZwaQTSYAw1sYeCnNsz+Rl8tNBfM6kZO3L69XV+KlSyryEfOqt3dsGPNdT1rVz/t12HeKpjKnHGZzaYwzithqcB5j4oqEzGh6vcClzAfZHmS4mpk=
+	t=1752767762; cv=none; b=TmyKCF/6wjmlQxjA+ys5Ih7DbGCGPyykCwKnRqlTfYdTr5CL5Sjf88s3Pr78LyvEn3lIh0sRKBeTXO6oN4fLKciCz6VvFiRDQumWxuq3julFe8ECUbWgX7+6YNnEAz0ZXDt8ER/74z5LXAQPKXOfEK67yScXr0MvH0wPyDmRE1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752766189; c=relaxed/simple;
-	bh=zra0mOPsZoxJH/aMEjjq48Y9Yq8G2HsxK8xmBukRV7w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z8DoZ419Ll/4IlaZFnF0E0A6dnIxRJNOVA6q2tvl5Jc6c0eCZYGr7Zmk3nSl4j1KlUbihDUnUf6QlfryY+hX5lQA4uVG7OnLZYEzZYgJmMSmR8fqacqHfDXuMmOuGQGkQ0mPfq7BJ1XCUVAxHYSpdY0KW2Hs4eAh7dtW5tVlDuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W+vpCkoJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F58CC4CEE3;
-	Thu, 17 Jul 2025 15:29:48 +0000 (UTC)
+	s=arc-20240116; t=1752767762; c=relaxed/simple;
+	bh=haPR3gFkU31ZIdETf/9gMJWywdFLOCeSJukaQQMsCzo=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=S3heDF/9x/ghtupstSXky2sNwC7sIC85FaXVRCHky3CXrWkLNFtLz9TmhgE+z1I1jDb+zkfr1RXFED2L2wGGQ7at2fKLReMRyTuzdH7ZgKIjbkiH8GrUOqu7LfFHKlUqBZk7PWKJPy50jf5UkKDbkhQzHM+73M/Nhz6luutSi5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g+WVgK1Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F500C4CEE3;
+	Thu, 17 Jul 2025 15:56:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752766188;
-	bh=zra0mOPsZoxJH/aMEjjq48Y9Yq8G2HsxK8xmBukRV7w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W+vpCkoJt8fqn63OMfp5hFCSoYtWsyejVyxEVKshkUtNxvZVhVWs8xsRMSJlC3r+N
-	 eN3QRHhja0DYIjjcM1XLP1iZwqfZhdiZZ/GZCe2uSl/SITUL9L6xmSJpRqfZ2cMRML
-	 RCsONJGlK4FBNl/2idXjX8kq4ImPXqF/Vyr6OEWegvH5H9rktaokTJkxPp86nFgRlz
-	 ofoo3pJeT5gkjfRJmaqc19pElU3nqmvpcPkgl+VfQs/qroQV0iIdy/xAryjcWhZizi
-	 1hunkUiKgU44RH/puTSRtP+7sqvbPyiAquKXwcys3NwSn/mwitUDTs6zFelQfSo845
-	 0SV7/3j6Oh/Aw==
-Date: Thu, 17 Jul 2025 10:29:47 -0500
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-	broonie@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com, wenst@chromium.org
-Subject: Re: [PATCH v5 3/8] dt-bindings: regulator: Document MediaTek MT6363
- PMIC Regulators
-Message-ID: <20250717152947.GA3411864-robh@kernel.org>
-References: <20250715140224.206329-1-angelogioacchino.delregno@collabora.com>
- <20250715140224.206329-4-angelogioacchino.delregno@collabora.com>
+	s=k20201202; t=1752767762;
+	bh=haPR3gFkU31ZIdETf/9gMJWywdFLOCeSJukaQQMsCzo=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=g+WVgK1Zo0qJ1xmmgVWIuv579y7wMkl5XJGHt3dx/FqI69J0yr8eEAw65qPBLNfmk
+	 xe4EVdTUm1Rd03i9l5EBXouLHsMt220T7jiiyu/SK0TP2F6fX2PQHoz3A7YjJsWbQm
+	 XyrysiH8URbJrW7M6vwGoLyUjOSzBhkrPuZi7lbUzc01jJkR38Y3ImaSdZ5ZIh76Yu
+	 giXl3mw3wcJ6pIWi577GMer/R8QtlCL3UdtSKS2cBxuFnjGJzHFqle/sQ7h7mJfSkT
+	 Nt1T6ZCgvOWFRxCZ1n74D0Yv89V7ShYZfy7Bjcp0P/c4Xo4eANyPkG6Y0bGu78jSO2
+	 yXrf9SoumGn7g==
+Date: Thu, 17 Jul 2025 10:56:01 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250715140224.206329-4-angelogioacchino.delregno@collabora.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>
+To: Violet <violet@atl.tools>
+In-Reply-To: <20250716231710.99983-1-violet@atl.tools>
+References: <20250716231710.99983-1-violet@atl.tools>
+Message-Id: <175276729714.3490929.8274727016823655876.robh@kernel.org>
+Subject: Re: [PATCH v6 0/2] arm64: dts: qcom: add initial support for
+ Samsung Galaxy S22
 
-On Tue, Jul 15, 2025 at 04:02:19PM +0200, AngeloGioacchino Del Regno wrote:
-> Add bindings for the regulators found in the MediaTek MT6363 PMIC,
-> usually found in board designs using the MT6991 Dimensity 9400 and
-> on MT8196 Kompanio SoC for Chromebooks, along with the MT6316 and
-> MT6373 PMICs.
+
+On Wed, 16 Jul 2025 23:17:08 +0000, Violet wrote:
+> Changes in v6:
+> - Remove debug features (bootargs, etc) that slipped in the v5 DTS
+> - Format and organize nodes correctly based on existing DTS,
+>  move "status = "okay";" to the bottom always
+> - Solve "ddr_device_type" and "qcom,rmtfs-mem" warnings, the rest are
+>  from existing SoC .dtsi
+> - Disable buttons, ufs and other features for later revision
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../regulator/mediatek,mt6363-regulator.yaml  | 193 ++++++++++++++++++
->  1 file changed, 193 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+> Signed-off-by: Violet <violet@atl.tools>
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
-> new file mode 100644
-> index 000000000000..ea1f6c92cffc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
-> @@ -0,0 +1,193 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT6363 PMIC Regulators
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +
-> +description:
-> +  The MT6363 SPMI PMIC provides 10 BUCK and 25 LDO (Low DropOut) regulators
-> +  and can optionally provide overcurrent warnings with one ocp interrupt
-> +  for each voltage regulator.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6363-regulator
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vsys-vbuck1-supply:
-> +    description: Input supply for vbuck1
-
-blank line
-
-> +  vsys-vbuck2-supply:
-> +    description: Input supply for vbuck2
-
-blank line, and so on...
-
-> +  vsys-vbuck3-supply:
-> +    description: Input supply for vbuck3
-> +  vsys-vbuck4-supply:
-> +    description: Input supply for vbuck4
-> +  vsys-vbuck5-supply:
-> +    description: Input supply for vbuck5
-> +  vsys-vbuck6-supply:
-> +    description: Input supply for vbuck6
-> +  vsys-vbuck7-supply:
-> +    description: Input supply for vbuck7
-> +  vsys-vs1-supply:
-> +    description: Input supply for vs1
-> +  vsys-vs2-supply:
-> +    description: Input supply for vs2
-> +  vsys-vs3-supply:
-> +    description: Input supply for vs3
-> +  vs1-ldo1-supply:
-> +    description: Input supply for va15, vio0p75, vm18, vrf18, vrf-io18
-> +  vs1-ldo2-supply:
-> +    description: Input supply for vcn15, vio18, vufs18
-> +  vs2-ldo1-supply:
-> +    description: Input supply for vsram-cpub, vsram-cpum, vrf12, vrf13, vufs12
-> +  vs2-ldo2-supply:
-> +    description: Input supply for va12-1, va12-2, vcn13, vsram-cpul
-> +  vs3-ldo1-supply:
-> +    description: Input supply for vsram-apu, vsram-digrf, vsram-mdfe
-> +  vs3-ldo2-supply:
-> +    description: Input supply for vsram-modem, vrf0p9
-> +  vsys-ldo1-supply:
-> +    description: Input supply for vaux18, vemc, vtref18
-> +
-> +patternProperties:
-> +  "^v(buck[1-7]|s[1-3])$":
-> +    description: Buck regulators
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    properties:
-> +      regulator-allowed-modes:
-> +        description: |
-> +          Allowed Buck regulator operating modes allowed. Valid values below.
-> +            0 - Normal mode with automatic power saving, reducing the switching
-> +                frequency when light load conditions are detected
-> +            1 - Forced Continuous Conduction mode (FCCM) for improved voltage
-> +                regulation accuracy with constant switching frequency but lower
-> +                regulator efficiency
-> +            2 - Forced Low Power mode for improved regulator efficiency, used
-> +                when no heavy load is expected, does not limit the maximum out
-> +                current but unless only a light load is applied, there will be
-> +                regulation accuracy and efficiency losses.
-> +            3 - Forced Ultra Low Power mode for ultra low load, this greatly
-> +                reduces the maximum output power, makes the regulator to be
-> +                efficient only for ultra light load, and greatly reduces the
-> +                quiescent current (Iq) of the buck.
-> +        maxItems: 3
-> +        items:
-> +          enum: [ 0, 1, 2, 3 ]
-> +    unevaluatedProperties: false
-
-Move this after $ref.
-
-> +
-> +  "^va(12-1|12-2|15)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    properties:
-> +      regulator-allowed-modes:
-> +        description: |
-> +          Allowed LDO regulator operating modes allowed. Valid values below.
-> +            0 - Normal mode with automatic power saving, reducing the switching
-> +                frequency when light load conditions are detected
-> +            2 - Forced Low Power mode for improved regulator efficiency, used
-> +                when no heavy load is expected, does not limit the maximum out
-> +                current but unless only a light load is applied, there will be
-> +                regulation accuracy and efficiency losses.
-> +        maxItems: 2
-> +        items:
-> +          enum: [ 0, 2 ]
-> +    unevaluatedProperties: false
-> +
-> +  "^v(aux|m|rf-io|tref)18$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    properties:
-> +      regulator-allowed-modes:
-> +        maxItems: 2
-> +        items:
-> +          enum: [ 0, 2 ]
-> +    unevaluatedProperties: false
-> +
-> +  "^v(cn13|cn15|emc)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    properties:
-> +      regulator-allowed-modes:
-> +        maxItems: 2
-> +        items:
-> +          enum: [ 0, 2 ]
-> +    unevaluatedProperties: false
-> +
-> +  "^vio(0p75|18)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    properties:
-> +      regulator-allowed-modes:
-> +        maxItems: 2
-> +        items:
-> +          enum: [ 0, 2 ]
-> +    unevaluatedProperties: false
-> +
-> +  "^vrf(0p9|12|13|18)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    properties:
-> +      regulator-allowed-modes:
-> +        maxItems: 2
-> +        items:
-> +          enum: [ 0, 2 ]
-> +    unevaluatedProperties: false
-> +
-> +  "^vsram-(apu|cpub|cpum|cpul|digrf|mdfe|modem)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    properties:
-> +      regulator-allowed-modes:
-> +        maxItems: 2
-> +        items:
-> +          enum: [ 0, 2 ]
-> +    unevaluatedProperties: false
-> +
-> +  "^vufs(12|18)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    properties:
-> +      regulator-allowed-modes:
-> +        maxItems: 2
-> +        items:
-> +          enum: [ 0, 2 ]
-> +    unevaluatedProperties: false
-
-A lot of duplication here. Either combine the regex's to 1 entry or add 
-a $defs entry and make all of these a 1 line $ref.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-
-I thought I said this already, but drop the example here. 1 complete 
-example in the mfd schema only.
-
-> +
-> +    pmic {
-> +      interrupt-controller;
-> +      #address-cells = <1>;
-> +      #interrupt-cells = <3>;
-> +
-> +      regulators@30 {
-> +        compatible = "mediatek,mt6363-regulator";
-> +        reg = <0x
-> +
-> +        vio18 {
-> +          regulator-name = "pp1800-vio18-s3";
-> +          regulator-min-microvolt = <1800000>;
-> +          regulator-max-microvolt = <1800000>;
-> +          regulator-allowed-modes = <0 2>;
-> +          regulator-allow-set-load;
-> +          regulator-over-current-protection;
-> +        };
-> +      };
-> +    };
-> +...
-> -- 
+> Violet (2):
+>   dt-bindings: arm: qcom: document r0q board binding
+>   arm64: dts: qcom: add initial support for Samsung Galaxy S22
+> 
+>  .../devicetree/bindings/arm/qcom.yaml         |   1 +
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../boot/dts/qcom/sm8450-samsung-r0q.dts      | 145 ++++++++++++++++++
+>  3 files changed, 147 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
+> 
+> --
 > 2.50.1
 > 
+> 
+> 
+
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: failed to guess base
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250716231710.99983-1-violet@atl.tools:
+
+arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dtb: clock-controller@aaf0000 (qcom,sm8450-videocc): power-domains: [[98, 6]] is too short
+	from schema $id: http://devicetree.org/schemas/clock/qcom,sm8450-videocc.yaml#
+arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dtb: clock-controller@aaf0000 (qcom,sm8450-videocc): required-opps: [[55]] is too short
+	from schema $id: http://devicetree.org/schemas/clock/qcom,sm8450-videocc.yaml#
+arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dtb: clock-controller@aaf0000 (qcom,sm8450-videocc): Unevaluated properties are not allowed ('power-domains', 'required-opps' were unexpected)
+	from schema $id: http://devicetree.org/schemas/clock/qcom,sm8450-videocc.yaml#
+arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dtb: clock-controller@ade0000 (qcom,sm8450-camcc): power-domains: [[98, 6]] is too short
+	from schema $id: http://devicetree.org/schemas/clock/qcom,sm8450-camcc.yaml#
+arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dtb: clock-controller@ade0000 (qcom,sm8450-camcc): required-opps: [[55]] is too short
+	from schema $id: http://devicetree.org/schemas/clock/qcom,sm8450-camcc.yaml#
+
+
+
+
+
 
