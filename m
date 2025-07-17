@@ -1,132 +1,150 @@
-Return-Path: <devicetree+bounces-197474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29C68B09701
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 00:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00CE3B09719
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 01:14:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 813F14E30A0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 22:46:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2D4A3BD14D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 23:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80FC521A458;
-	Thu, 17 Jul 2025 22:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C38824166E;
+	Thu, 17 Jul 2025 23:14:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="lPRmMcDm"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="H9Rwarmr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EBC23C515
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 22:47:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F015A2040AB;
+	Thu, 17 Jul 2025 23:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752792430; cv=none; b=pyhAWIKQqDDR+mUhYyAemc1xA8fLmfLUiLtSU9+TyOw7tYDavCVIVQVYcG5UT4lXpK8VNhXO8h/UM9FuGchdvqwatWi3mprpcpW3gK8SK719YgNDW/xJusG1Rba9QohbNchTB1mwSR+6pektb4TOL7GwFPYDj81GdqethOV/djA=
+	t=1752794092; cv=none; b=ZL7wYgo21Mj+Stuy0JDuIeZ/a8fX/4ahXWZs/KmOOaqO33WEJBiAfy/dkQufLOP4y8SgPtq/o3LnMhLWwjpTAwNvYCG06P5JQ7u5hlUtG+tpCMU9pjeMjD3gztZqLLsfIadCMAscZizWeVxIlKTFLYMVzexINU0db1fhG+Jy8ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752792430; c=relaxed/simple;
-	bh=scrt+gOK/kbGk6Sv6A2noeo+XoEO2tdSaff8iaiSZio=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Lob0ib9SoWgYdLJ+ccMv7ZohbmZzDE53aZ6Go8UD9edZhoW/O9SI9eEYUQkNrNd7++IgYhUQNcG1FuHOEoZTe5/yVJCM9Xl1WjCgQwvOJbd7JJgdj1a/rvRhhCcX7dDnKyfTjbAjaGfwBL19v/0cS00hqWUCTflNzOvCk7avEDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=lPRmMcDm; arc=none smtp.client-ip=209.85.167.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-41cfa50c73dso911973b6e.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 15:47:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1752792427; x=1753397227; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+7a8sDmsJOF6CnYwk1liq/YAJocYNKqXfcnLeyvtqak=;
-        b=lPRmMcDmsuyvOBfPBsy4zSrUnJQmBqr5Zu44FFZ2V3bHi0Zl74zVJDjhUzC2Xyh1qh
-         KRpElvCmgUpK3+fP32GdixwdM89rN4v32JPW01bxd5gJc76PIavpYqqhX3DEMBQwAZ+L
-         mCguDaEeidcw3ZA00FGXCTn87ERqtM28LFfLLBNBBU7tmYoxNJGfzfY0e38ASW7julYG
-         HUbaTCg8T2rZ/hGJQMqbMxvTJlmwMpLb9XcomqgdprLoE6DdQRAksiNfnT61DxGSG/wU
-         hcmWlu16BNmmhpcBgcu5a4O4rL4Rf+7yz+f16KWKWYCLJYb02wShJbyjNWsAa/2lnMEF
-         Wngg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752792427; x=1753397227;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+7a8sDmsJOF6CnYwk1liq/YAJocYNKqXfcnLeyvtqak=;
-        b=ulLIBO6HObxAjV0cubkgiQGv9xsF5KN1s6qj3VYmWfUTdKOL2jf9lWi14PPuMRAjkd
-         AJLR48JpFtZekbVHyKvc0ArO6WJKwJveo8jujmEr5MAcBKdIRNEitWn8DLLTW3HTeOgq
-         0vB7bQ/CJ828vyLzeWa0lpuau3QwtxHkW5SNAB8TPAyLc1xE4rlWmRFaCXrZdlg6bQFI
-         c0BQZ2ZsmHVeJt/04WS3qLDiBNIXid7UiO63gjy111j3gdKCoPcpHw2w/C1o4pBGnxju
-         8Ep9qwNpDKDmj2X1IDzFs/+upl841jPUSASv8TiIbM6hnoDHZIZeA0a7Iu4+AdhH0VSq
-         qe7A==
-X-Forwarded-Encrypted: i=1; AJvYcCUUHyvXycu/qFdW8hkFZQxATFvDR+2rVMzCAgLaYTkSv7KVm7yOrI0hrVwYf6zsY2sECuiv2oDsU7h8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpGYIdyFR4895YRppDL7MlEmKyUOwFV8CR92Nt5NJ+D8TXt3+Z
-	J/MuoEFmURbG6Yismpk2lRqnugU7n2s8HfKlqGpJR0ggx+A3n6AFFbXNaMIin3r7E8c=
-X-Gm-Gg: ASbGncssBbddikz7EdDi4MK9T419CU9864NnqxMWlosuby8cL6FiCxJFx28ZUJYer0K
-	+PfX6kUbBJV1S0oIlViLYYvc5pbH2ISUqahQux8sChJPNSN9REh8zWXgiBBEXeUfwqYvr7r1kkq
-	iERqBjdVUxwvYO8OLCx454B7QPZwy4Jn+uKN7hdAiWVjOFZNrg+I3g7SWrsC++jJVxUaU1AsVh0
-	8klkj0QXrlox0tX6fk4MfT/jtuicD8r8foaHOq24UbBipffGANM1unY7EtS7FZnC9OfPEKX+N44
-	6h03eYWDgwV7cPiSbOpLYqVPDql9Zb0D/bu4P6cZboDRLOPsjn5jkwiKD97OygS3tKw10suCM9s
-	HvrxtEBQQsGLp/HPZRy4AWhCqFIHiqk8pVK6ZtfpKCm3/hVvHCPtold3IJtl6XCr8XMOlE1wB
-X-Google-Smtp-Source: AGHT+IHa/+JsaAXuw6L0+Fke+E5C6yqkH/eYphW34HhHpWtknSJEsFWO4B5ebVdCb0FjvbmX0FgLtw==
-X-Received: by 2002:a05:6808:2007:b0:406:701b:254c with SMTP id 5614622812f47-41e4778e803mr3683437b6e.39.1752792426543;
-        Thu, 17 Jul 2025 15:47:06 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:b499:5ccf:3f5:ecec? ([2600:8803:e7e4:1d00:b499:5ccf:3f5:ecec])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-41fd10c0ea6sm14231b6e.1.2025.07.17.15.47.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Jul 2025 15:47:05 -0700 (PDT)
-Message-ID: <240f464a-5f99-4bef-a811-3bbc083e7f20@baylibre.com>
-Date: Thu, 17 Jul 2025 17:47:05 -0500
+	s=arc-20240116; t=1752794092; c=relaxed/simple;
+	bh=DHh9MHsxm/AndHxSwD8Zrn6sApOHgMAxtoGxE7zYV+s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VCQ9sUIVpzG0FVy2LJGdVB9LysPVYN31o5NTEbFv/xzqxu0af5ry1BrQfMxhNULerfTMPEC7i2Ni5B5J9q2SWIaTOU+9qXuCLgyud55bWpemCPkUrYDXovA83hkSh5q1bSNP/oaAUzYx9fZ1z03QHxFyWYTRo/Nohae4Ylsc+pY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=H9Rwarmr; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752794089; x=1784330089;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DHh9MHsxm/AndHxSwD8Zrn6sApOHgMAxtoGxE7zYV+s=;
+  b=H9RwarmruRkqSfrq8UaR6eOrR55ej6U26+TXSsHUeymA9wEeqEZhQtz0
+   ALbwfHjNosVOUj9IUMl15efwXXeDwOvawHhb9yzXpYwu6uQczAZDBUN37
+   FlBedkJlTMKOoEhss4Q/VG8c/7j5kCjSWh4MMd0ekdFEQeKbU+17MjoPM
+   Mh5JIKCApVo++8vkQAWoL/VEHfRsf/fMU2S/j+1TRZcfRAuy8+p1O9TUP
+   gQtdDLRGnu+oMs0ntEdRyyQVThMdJ7YFoCFOKqxJHx/agJ9Lm5KvTD17y
+   ARY+dPIiktxR2YLgYVwNteS2EplyRQ48y1f3lktxJMLz0y691vGy3QYhV
+   w==;
+X-CSE-ConnectionGUID: 3WUbTxmdQDKOvpWcb2lvxw==
+X-CSE-MsgGUID: JXCai9sQRJGzwWdsqvY/lQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="77623846"
+X-IronPort-AV: E=Sophos;i="6.16,320,1744095600"; 
+   d="scan'208";a="77623846"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jul 2025 16:14:48 -0700
+X-CSE-ConnectionGUID: iMlsDpHLRUayH9Sj6wKtyQ==
+X-CSE-MsgGUID: LVK4sNXLStq+13I8f91Z5g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,320,1744095600"; 
+   d="scan'208";a="158612855"
+Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 17 Jul 2025 16:14:44 -0700
+Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ucXoH-000E5v-2Q;
+	Thu, 17 Jul 2025 23:14:41 +0000
+Date: Fri, 18 Jul 2025 07:13:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Cosmin Tanislav <demonsingur@gmail.com>,
+	Cosmin Tanislav <cosmin.tanislav@analog.com>,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
+	Julien Massot <julien.massot@collabora.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Linus Walleij <linus.walleij@linaro.org>
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-staging@lists.linux.dev,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v6 18/24] media: i2c: maxim-serdes: add MAX96717 driver
+Message-ID: <202507180700.ACATL5wj-lkp@intel.com>
+References: <20250716193111.942217-19-demonsingur@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: trivial-devices: Add Garmin lidar-lite-v3
-To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
- ~lkcamp/patches@lists.sr.ht
-References: <8f4b72bb-3c5f-4137-a4f9-5ce94631d3c1@baylibre.com>
- <20250717223153.159878-1-rodrigo.gobbi.7@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250717223153.159878-1-rodrigo.gobbi.7@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250716193111.942217-19-demonsingur@gmail.com>
 
-On 7/17/25 5:24 PM, Rodrigo Gobbi wrote:
->> As a general rule of thumb, using the driver as justification for
->> dt-bindings is never a good reason. The bindings describe the hardware,
->> not the driver.
-> 
-> Looks like I`ve failed to double-check the datasheet here, sorry for that,
-> I`ll try to remember that in future occasions.
-> 
->> Assuming I found the correct datasheet [1], I see a power enable pin
->> and a mode control pin, so I would say that this isn't a trivial device.
->> Therefore this will need it's own new file. We could at least add
->> power-gpios and power-supply properties. How to handle the mode pin
->> isn't so clear to me though, so might omit that for now.
-> 
-> Agree, actually, I was wondering here if the lidar-lite-v2 ref that I`ve found
-> when adding the grmn,lidar-lite-v3 is actually a trivial. 
-> It was originally added as trivial over txt file at [1] and then converted to yaml but
-> it looks like it is also not a trivial considering some refs at [2] and [3] (not official docs).
-> At those refs, I can see the same enable/mode pins.
-> 
-> Should we also move that out of trivial in a dedicated binding or should we keep as is
-> considering those docs are not official/device is very old?
-> Tks and regards!
-> 
-> [1] https://github.com/torvalds/linux/commit/12280bd3d5d7e1ba1dd60ba0bd4412f4056fc028
-> [2] https://www.electrokit.com/upload/product/41013/41013964/lidarlite2DS.pdf
-> [3] https://www.14core.com/wp-content/uploads/2017/03/LIDAR-Lite-v2-Datasheet.pdf
-> 
+Hi Cosmin,
 
-I only looked at [3], but it looks reliable enough. It also looks (at a
-quick glance) pin-compatible with v3, so I would make v3 have a fallback
-compatible string to v2. And yeah, put both in the same file since they
-are pretty much the same hardware.
+kernel test robot noticed the following build warnings:
 
+[auto build test WARNING on next-20250716]
+[also build test WARNING on v6.16-rc6]
+[cannot apply to robh/for-next staging/staging-testing staging/staging-next staging/staging-linus arm64/for-next/core linus/master v6.16-rc6 v6.16-rc5 v6.16-rc4]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Cosmin-Tanislav/media-mc-Add-INTERNAL-pad-flag/20250717-033901
+base:   next-20250716
+patch link:    https://lore.kernel.org/r/20250716193111.942217-19-demonsingur%40gmail.com
+patch subject: [PATCH v6 18/24] media: i2c: maxim-serdes: add MAX96717 driver
+config: nios2-kismet-CONFIG_GENERIC_PINMUX_FUNCTIONS-CONFIG_VIDEO_MAX96717-0-0 (https://download.01.org/0day-ci/archive/20250718/202507180700.ACATL5wj-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20250718/202507180700.ACATL5wj-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202507180700.ACATL5wj-lkp@intel.com/
+
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for GENERIC_PINMUX_FUNCTIONS when selected by VIDEO_MAX96717
+   WARNING: unmet direct dependencies detected for I2C_MUX
+     Depends on [n]: I2C [=n]
+     Selected by [y]:
+     - VIDEO_MAXIM_SERDES [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y]
+   
+   WARNING: unmet direct dependencies detected for GENERIC_PINCONF
+     Depends on [n]: PINCTRL [=n]
+     Selected by [y]:
+     - VIDEO_MAX96717 [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y] && COMMON_CLK [=y]
+   
+   WARNING: unmet direct dependencies detected for GENERIC_PINMUX_FUNCTIONS
+     Depends on [n]: PINCTRL [=n]
+     Selected by [y]:
+     - VIDEO_MAX96717 [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y] && COMMON_CLK [=y]
+   
+   WARNING: unmet direct dependencies detected for GENERIC_PINCTRL_GROUPS
+     Depends on [n]: PINCTRL [=n]
+     Selected by [y]:
+     - VIDEO_MAX96717 [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y] && COMMON_CLK [=y]
+   
+   WARNING: unmet direct dependencies detected for I2C_ATR
+     Depends on [n]: I2C [=n]
+     Selected by [y]:
+     - VIDEO_MAXIM_SERDES [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y]
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
