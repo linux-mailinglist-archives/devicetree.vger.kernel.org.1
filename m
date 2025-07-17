@@ -1,93 +1,59 @@
-Return-Path: <devicetree+bounces-197408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF487B0907C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6535B09099
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:29:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EC48586F58
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 15:24:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4CC716389E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 15:29:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6492F8C59;
-	Thu, 17 Jul 2025 15:24:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CFF12F8C34;
+	Thu, 17 Jul 2025 15:29:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CorH8Smk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W+vpCkoJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22461237180;
-	Thu, 17 Jul 2025 15:24:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE3A1DE3C3;
+	Thu, 17 Jul 2025 15:29:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752765879; cv=none; b=rgHfdjSTDyVo1xD7/yF23j9ct6h/pEcWh9CnAD/UDB1+unbsSu4mKhA4yGBklXBqGLPq79ZGWnNEw33Y9suiLpOJt7T8eWyg4n+pAsOSt/B+7qNPyL16MhE+aovH0C/ta2DOLNXcGVkOcKQ32JcWlrcf41gtBaFA5DNfUI+3Tkw=
+	t=1752766189; cv=none; b=MAPF4ud2Exw7ASQ9QZNxtHLL/I70WNQtzhepf8OcHrO+Hr0tOJAENB3fKL51ZwaQTSYAw1sYeCnNsz+Rl8tNBfM6kZO3L69XV+KlSyryEfOqt3dsGPNdT1rVz/t12HeKpjKnHGZzaYwzithqcB5j4oqEzGh6vcClzAfZHmS4mpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752765879; c=relaxed/simple;
-	bh=au2v0KQYjlZ54zTmA1NI4ITIh70Ziw88Rb6wV6rH0v4=;
+	s=arc-20240116; t=1752766189; c=relaxed/simple;
+	bh=zra0mOPsZoxJH/aMEjjq48Y9Yq8G2HsxK8xmBukRV7w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bQ25WaUrwwDQ0F1REI4NWZ7Hov+ts9GAT3NoxSW85dPXA3/Gp+A/p8ERegFZ6l544QqLstPS8+35vdtKoUL6UPgDbt6vykRMZjAndReN7X+ZS9bhVoiVmLqiKGPXa3jt0LtRTf94LoQUyfnZW4qBE70aWE07Z+1LJ1CfKxaMMfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CorH8Smk; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-74b27c1481bso791408b3a.2;
-        Thu, 17 Jul 2025 08:24:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752765876; x=1753370676; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fVsvjOr1OU4TZPjRga2JGbWbncmoSahep9x2yaNsFiA=;
-        b=CorH8SmkW2ZXmZqhwd75o89D36HmmgZQ3V/6yosq9lbtQQLmutGW7UQnCbOSzBtYyR
-         HNrlZ/4DPlnP0MLmvtY4+SeaNhaBiiG6wvpD6lMBoxKg/pkd4DQaqN81+FPpw5uO9jYd
-         jRaKlxDRE/7uOcy8JTLLm3VQwogj8wEiWzpLZ+7heY3KFfkhT+SbEn8WcXLnFtNqXa+u
-         rhGCkWTulhCyOShERv8M8nU0PaGWtY2kQXQ7LrXsl0FnLD+pNaKfxcEsRW+4EBn+YQIb
-         ZbSV2t8ErG2rAl/9TgHeCyCKosx236vnbIhd1pxKE2TqDQdYNeyiC5PY7tunhgZMn5z0
-         4hPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752765876; x=1753370676;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fVsvjOr1OU4TZPjRga2JGbWbncmoSahep9x2yaNsFiA=;
-        b=JmvSPp/SHljSgJwLXZ7M2VbPMkYHX1vPadonyFqeb8EDN/f0uUlVkTrYFYCm10qHSu
-         vGef/tO+Bux0iPKbdcvRDFLgMxq+SuVfDA5HzPDHgX+DyzyYyVgJvoHhScSc67Vj1olj
-         OJV95/fV8dEE8sghvvkJfaF/x2otjg1bE89AKXe1nsL1C7B3Q9r9pLDEP38QwvLxCZZa
-         gxfyueZT53vMn4VB7e962z3ewr63+3DVnW6qFNDZZ9WFY1LaK1GK9o3iYquxgaAcWjBG
-         26NGtZpZuIlhxhx/DWVtusjtSe6kJRXMg9nBN7m03G6yoIAA98yPz2aXYSGVuwTZV+MC
-         h7qA==
-X-Forwarded-Encrypted: i=1; AJvYcCUA8PAc/n8HrLDJ+rUryxD9zzYfLrPRs7aqQgWIXQj1hmOjJ7hPowgoXZicN7xFjX4nVu11yJmukv92hLNd@vger.kernel.org, AJvYcCUlmHSHFSHsAOE/vI4urOS5IzXhX4ACE6s0SuqT00SkEkT2bVu6MDgy7c4pizXaueLaSHiKqL6yhcKQ@vger.kernel.org, AJvYcCX6mqT2ZR0btyLzvK3aEN6N33vLfrdYOQulT4I3Aj6Xxzjb3yh62BHEJWhPamannfwkkQAVeVM3Jx4tlrQ=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwW2JlVStLENRxdnT1zNI/oFCDZvPqdLlFsnjaVle5PDUL2LdY+
-	gHC7ZCzjF9FoA8U6uZrSIcTmeCmxf2Y1t9PTC6J0i1UozYyKx67hGSYl
-X-Gm-Gg: ASbGnctmcO6z77dPxNDspa2lF7XZlxhaRoTS2G6SKhum+PZzNxWhLLfOvlm9uGIm1U0
-	g1Wr3TALhh1+bHJYuMwbKU1KWwZx33kHDsP2VB7BhaVAKP+8ZEJUZe+C6Uenq6rc3u90zD77kpp
-	7ETC/fnQ5kJzPEFXROynP7EGoCy5MjSGvG/ukALOQ4L0UoukB3otD3VkV8M+u1q5JMHDopDo9DS
-	r2xvlTnSh4DiR/fW6Zwgq3D1IgBbk/0HXfivMhcJvQrkMXXMsW6pUKTcoT5VDcKQUFdx+Jcdo/e
-	Ur/yDG3qdCPbPte1xzMikZSCIpTb2qbISA//2IWFPr/S+mDmIv+Zyyr2gNwHkDR+7spBITI60k3
-	e3cm+0XaktI+a+elk1zfhTxAlcsaWOvjkOcgyB3zawV/bKA==
-X-Google-Smtp-Source: AGHT+IFV52z6T3hUTzwzRDFZMDV6BA5c97cR2z7Mqk9ErfUXhPPQfI0WfQBWHeADcagAkM1RnIQ05g==
-X-Received: by 2002:a05:6a00:181e:b0:740:b394:3ebd with SMTP id d2e1a72fcca58-756e819fa98mr11154983b3a.7.1752765876141;
-        Thu, 17 Jul 2025 08:24:36 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74eb9e07649sm16194196b3a.71.2025.07.17.08.24.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Jul 2025 08:24:35 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Thu, 17 Jul 2025 08:24:34 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Jonas Rebmann <jre@pengutronix.de>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
-	devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 2/4] hwmon: ina238: Add label support for voltage inputs
-Message-ID: <c7294130-5836-46c6-8d8b-e5d5a45f3d33@roeck-us.net>
-References: <20250715-ina228-v1-0-3302fae4434b@pengutronix.de>
- <20250715-ina228-v1-2-3302fae4434b@pengutronix.de>
- <eaa183cc-a56f-4a33-bf01-a5279799f395@roeck-us.net>
- <0915032e-617f-4d46-8dc7-6818af751a0e@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z8DoZ419Ll/4IlaZFnF0E0A6dnIxRJNOVA6q2tvl5Jc6c0eCZYGr7Zmk3nSl4j1KlUbihDUnUf6QlfryY+hX5lQA4uVG7OnLZYEzZYgJmMSmR8fqacqHfDXuMmOuGQGkQ0mPfq7BJ1XCUVAxHYSpdY0KW2Hs4eAh7dtW5tVlDuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W+vpCkoJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F58CC4CEE3;
+	Thu, 17 Jul 2025 15:29:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752766188;
+	bh=zra0mOPsZoxJH/aMEjjq48Y9Yq8G2HsxK8xmBukRV7w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W+vpCkoJt8fqn63OMfp5hFCSoYtWsyejVyxEVKshkUtNxvZVhVWs8xsRMSJlC3r+N
+	 eN3QRHhja0DYIjjcM1XLP1iZwqfZhdiZZ/GZCe2uSl/SITUL9L6xmSJpRqfZ2cMRML
+	 RCsONJGlK4FBNl/2idXjX8kq4ImPXqF/Vyr6OEWegvH5H9rktaokTJkxPp86nFgRlz
+	 ofoo3pJeT5gkjfRJmaqc19pElU3nqmvpcPkgl+VfQs/qroQV0iIdy/xAryjcWhZizi
+	 1hunkUiKgU44RH/puTSRtP+7sqvbPyiAquKXwcys3NwSn/mwitUDTs6zFelQfSo845
+	 0SV7/3j6Oh/Aw==
+Date: Thu, 17 Jul 2025 10:29:47 -0500
+From: Rob Herring <robh@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
+	broonie@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com, wenst@chromium.org
+Subject: Re: [PATCH v5 3/8] dt-bindings: regulator: Document MediaTek MT6363
+ PMIC Regulators
+Message-ID: <20250717152947.GA3411864-robh@kernel.org>
+References: <20250715140224.206329-1-angelogioacchino.delregno@collabora.com>
+ <20250715140224.206329-4-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,48 +62,237 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0915032e-617f-4d46-8dc7-6818af751a0e@pengutronix.de>
+In-Reply-To: <20250715140224.206329-4-angelogioacchino.delregno@collabora.com>
 
-On Thu, Jul 17, 2025 at 09:30:33AM +0200, Jonas Rebmann wrote:
-> Hi Guenter,
+On Tue, Jul 15, 2025 at 04:02:19PM +0200, AngeloGioacchino Del Regno wrote:
+> Add bindings for the regulators found in the MediaTek MT6363 PMIC,
+> usually found in board designs using the MT6991 Dimensity 9400 and
+> on MT8196 Kompanio SoC for Chromebooks, along with the MT6316 and
+> MT6373 PMICs.
 > 
-> Thanks for the review!
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../regulator/mediatek,mt6363-regulator.yaml  | 193 ++++++++++++++++++
+>  1 file changed, 193 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
 > 
-> On 16/07/2025 17.04, Guenter Roeck wrote:
-> > On 7/15/25 13:49, Jonas Rebmann wrote:
-> > > The INA family of power monitors estimate power consumption based on
-> > > two voltage measurements: across a shunt resistor and across the bus.
-> > > 
-> > > Conveniently label them "Shunt Voltage" and "Bus Voltage".
-> > > 
-> > 
-> > Labels are supposed to show the sensor's association with the system, not
-> > the chip labeling. So this is a no-go. And, yes, apparently I have been too
-> > complacent with people (mis-)using the label attributes. That doesn't make
-> > it better, so don't use it as argument to support this one.
-> 
-> As this chip measures power based on two voltage measurements, the
-> measured voltage inputs must always be associated with the system in
-> that way, that in1 measures the voltage on a bus and in0 over a shunt
-> resistor on that bus.
-> 
-> Otherwise the Power/Energy/Charge-Measurements will be incorrect.
-> 
-> Do you have a suggestion on how to use the labels correctly or should I
-> just drop the patch for v2?
-> 
-Please drop it.
+> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+> new file mode 100644
+> index 000000000000..ea1f6c92cffc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+> @@ -0,0 +1,193 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek MT6363 PMIC Regulators
+> +
+> +maintainers:
+> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +
+> +description:
+> +  The MT6363 SPMI PMIC provides 10 BUCK and 25 LDO (Low DropOut) regulators
+> +  and can optionally provide overcurrent warnings with one ocp interrupt
+> +  for each voltage regulator.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt6363-regulator
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vsys-vbuck1-supply:
+> +    description: Input supply for vbuck1
 
-Guenter
+blank line
 
-> Regards,
-> Jonas
-> 
-> 
+> +  vsys-vbuck2-supply:
+> +    description: Input supply for vbuck2
+
+blank line, and so on...
+
+> +  vsys-vbuck3-supply:
+> +    description: Input supply for vbuck3
+> +  vsys-vbuck4-supply:
+> +    description: Input supply for vbuck4
+> +  vsys-vbuck5-supply:
+> +    description: Input supply for vbuck5
+> +  vsys-vbuck6-supply:
+> +    description: Input supply for vbuck6
+> +  vsys-vbuck7-supply:
+> +    description: Input supply for vbuck7
+> +  vsys-vs1-supply:
+> +    description: Input supply for vs1
+> +  vsys-vs2-supply:
+> +    description: Input supply for vs2
+> +  vsys-vs3-supply:
+> +    description: Input supply for vs3
+> +  vs1-ldo1-supply:
+> +    description: Input supply for va15, vio0p75, vm18, vrf18, vrf-io18
+> +  vs1-ldo2-supply:
+> +    description: Input supply for vcn15, vio18, vufs18
+> +  vs2-ldo1-supply:
+> +    description: Input supply for vsram-cpub, vsram-cpum, vrf12, vrf13, vufs12
+> +  vs2-ldo2-supply:
+> +    description: Input supply for va12-1, va12-2, vcn13, vsram-cpul
+> +  vs3-ldo1-supply:
+> +    description: Input supply for vsram-apu, vsram-digrf, vsram-mdfe
+> +  vs3-ldo2-supply:
+> +    description: Input supply for vsram-modem, vrf0p9
+> +  vsys-ldo1-supply:
+> +    description: Input supply for vaux18, vemc, vtref18
+> +
+> +patternProperties:
+> +  "^v(buck[1-7]|s[1-3])$":
+> +    description: Buck regulators
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes:
+> +        description: |
+> +          Allowed Buck regulator operating modes allowed. Valid values below.
+> +            0 - Normal mode with automatic power saving, reducing the switching
+> +                frequency when light load conditions are detected
+> +            1 - Forced Continuous Conduction mode (FCCM) for improved voltage
+> +                regulation accuracy with constant switching frequency but lower
+> +                regulator efficiency
+> +            2 - Forced Low Power mode for improved regulator efficiency, used
+> +                when no heavy load is expected, does not limit the maximum out
+> +                current but unless only a light load is applied, there will be
+> +                regulation accuracy and efficiency losses.
+> +            3 - Forced Ultra Low Power mode for ultra low load, this greatly
+> +                reduces the maximum output power, makes the regulator to be
+> +                efficient only for ultra light load, and greatly reduces the
+> +                quiescent current (Iq) of the buck.
+> +        maxItems: 3
+> +        items:
+> +          enum: [ 0, 1, 2, 3 ]
+> +    unevaluatedProperties: false
+
+Move this after $ref.
+
+> +
+> +  "^va(12-1|12-2|15)$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes:
+> +        description: |
+> +          Allowed LDO regulator operating modes allowed. Valid values below.
+> +            0 - Normal mode with automatic power saving, reducing the switching
+> +                frequency when light load conditions are detected
+> +            2 - Forced Low Power mode for improved regulator efficiency, used
+> +                when no heavy load is expected, does not limit the maximum out
+> +                current but unless only a light load is applied, there will be
+> +                regulation accuracy and efficiency losses.
+> +        maxItems: 2
+> +        items:
+> +          enum: [ 0, 2 ]
+> +    unevaluatedProperties: false
+> +
+> +  "^v(aux|m|rf-io|tref)18$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes:
+> +        maxItems: 2
+> +        items:
+> +          enum: [ 0, 2 ]
+> +    unevaluatedProperties: false
+> +
+> +  "^v(cn13|cn15|emc)$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes:
+> +        maxItems: 2
+> +        items:
+> +          enum: [ 0, 2 ]
+> +    unevaluatedProperties: false
+> +
+> +  "^vio(0p75|18)$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes:
+> +        maxItems: 2
+> +        items:
+> +          enum: [ 0, 2 ]
+> +    unevaluatedProperties: false
+> +
+> +  "^vrf(0p9|12|13|18)$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes:
+> +        maxItems: 2
+> +        items:
+> +          enum: [ 0, 2 ]
+> +    unevaluatedProperties: false
+> +
+> +  "^vsram-(apu|cpub|cpum|cpul|digrf|mdfe|modem)$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes:
+> +        maxItems: 2
+> +        items:
+> +          enum: [ 0, 2 ]
+> +    unevaluatedProperties: false
+> +
+> +  "^vufs(12|18)$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes:
+> +        maxItems: 2
+> +        items:
+> +          enum: [ 0, 2 ]
+> +    unevaluatedProperties: false
+
+A lot of duplication here. Either combine the regex's to 1 entry or add 
+a $defs entry and make all of these a 1 line $ref.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+
+I thought I said this already, but drop the example here. 1 complete 
+example in the mfd schema only.
+
+> +
+> +    pmic {
+> +      interrupt-controller;
+> +      #address-cells = <1>;
+> +      #interrupt-cells = <3>;
+> +
+> +      regulators@30 {
+> +        compatible = "mediatek,mt6363-regulator";
+> +        reg = <0x
+> +
+> +        vio18 {
+> +          regulator-name = "pp1800-vio18-s3";
+> +          regulator-min-microvolt = <1800000>;
+> +          regulator-max-microvolt = <1800000>;
+> +          regulator-allowed-modes = <0 2>;
+> +          regulator-allow-set-load;
+> +          regulator-over-current-protection;
+> +        };
+> +      };
+> +    };
+> +...
 > -- 
-> Pengutronix e.K.                          | Jonas Rebmann               |
-> Steuerwalder Str. 21                      | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany                 | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686          | Fax:   +49-5121-206917-9    |
+> 2.50.1
 > 
 
