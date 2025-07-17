@@ -1,131 +1,133 @@
-Return-Path: <devicetree+bounces-197387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F4E7B08F9A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:37:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BCA4B08FA9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:39:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 382F61882BB0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:37:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0ECB1C40BC1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03FF92F6FB5;
-	Thu, 17 Jul 2025 14:37:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F6F32F7CE3;
+	Thu, 17 Jul 2025 14:39:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ejwqsEJe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tAMGnnBw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DC4F1F130B;
-	Thu, 17 Jul 2025 14:36:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E80A17A5BE;
+	Thu, 17 Jul 2025 14:39:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752763019; cv=none; b=gtEato7UZR7ZR5jmm0PWCCxfS4zpf6TbHRDilkGZxLrzv17horv6EjkBuDGehK4EOVWygRqFgWImpFLlc1og7Poh/Egu3KHhKgYdu1l1octAsWXKETCaZbQXWyiuDVoMUqIL9L7ZcGa1zHk9a1oOqdvu0hWefvYY9BojO1Ipmt4=
+	t=1752763169; cv=none; b=CnZdtR2bA0Mp6gr2NvUBO1DW3RTu9z2sl74WA7xV7eNWzGHzRz938sYXka2YBpl/4ywAoLqzBX0VZIkzhuqIfX8ced7oyMpPoZ0k1Q+vgADPfqyZIUX16z0SCrgVQVk8VxdIw7npD3u3i48dUw6dlJrMLorU883q+3vh2GqceuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752763019; c=relaxed/simple;
-	bh=c74Ddmny7d/Q8zvuy5tPE+SiwFDSCPErUhju3WXd6sw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Tg/z8xHAljR/TGZrO4FGyytsZIy5xx9gjk+5G2LbKscC6c+yeHQpLeeZw8k84Vm/2j3XH1+87hsoCsQ7PbivpJU2kbA7dsMcbSVtGshZQtLdwBAioZlj9QaIXplXFGe1zWZesgeazihe5xaNcmeJMQAlsJhNeu445eZyLD0qXHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ejwqsEJe; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-88131f0badcso1174641241.2;
-        Thu, 17 Jul 2025 07:36:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752763016; x=1753367816; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c74Ddmny7d/Q8zvuy5tPE+SiwFDSCPErUhju3WXd6sw=;
-        b=ejwqsEJepUlLEds02509lx/fnmzWLijBqGknOT/N03z9Beto+Q4VC+4P7nGUeG3gPB
-         pUZ6vw0n0RYzfQuPwGhQBAljv3I887qgOC+UxV+aD38k+6sU+Ry0fwg+B88qCIs+CYFl
-         d9rYJN/Mo3zH0hgKf1zKfJq+E2rey9AY/8KVKlqPpcThOBwP2/tc0MDYrGvPE8TBrSs1
-         9jcfvbUfCG2AO/1uE4jFjv52eJBNpLLLgsPBjsGv+KKH7UvI+faNEUcYQHNoW/kKWYSf
-         2Wv56495ZSa5El4zl5V+HoMGsaPf+ZYr/dNHGzqoJMkh4tAQwAEMyeXJhQNvAEsWCTGa
-         jhSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752763016; x=1753367816;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c74Ddmny7d/Q8zvuy5tPE+SiwFDSCPErUhju3WXd6sw=;
-        b=ANbSm+1TkLhWL2KZhdw2FV2wxgHXVqs+CINBBoq2qQyKfXw4fo8seDTc7JL1PnVER3
-         m27iN+i2Ts4j2YBSl/XR0+ufJGDR/Mry4oMhR5lT+AK/cUtWP9wclldcsuHcdWb4O+aW
-         oWz+ttVDeFSouuyywLUbwAJ8656ia2tgzvCX1zzUOIGvmnoLs6wMCFRs79EcwUrG6I2W
-         D4LWSO6UCWZgXzZ+lctKe+izovW/iiZjGgxiNo9caTQoeQzhPlSykRcExUXYr50cECP8
-         r/o+275P7WHI0bf6awLKShTugptu0JwvPpg2X9JDZ1GQwpj1dQVJXKzHujx1C9m9oguR
-         +HRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVHi6K8FMEJHqnN0XSwtfo1ucF6r8ymMOVA1AtiE8tB5jkBjYDlQBNO/T5f6/cf473U/OxyvrykTHWnk2/wvpLDyRM=@vger.kernel.org, AJvYcCXcb6/7Ru0NSYmbBt+37fL0UMiIG+ceVco+kBDPE1LSTOCAPNh6AGMCn5/Pt0giVB4bHMfSeNaA30MZu15U@vger.kernel.org, AJvYcCXgeQLtDybfoThfFWilQ9bEUE/NgFv1tYaB9J+Z0/uWBdwrZRWBahsoBqtdx/srNnz6VGQEZA7K8Q70@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbbApzX5+WOlDO14Mi1yTt2KVWUqogJdD+vg21/29ZUt2pYF/E
-	yF/mwl568QihZoULxie/S4EmaaeAjL8L/TWbcU1kuFEZkxJYLLjpIDkfLazq+oxtBFo0tlSG+gY
-	3uJ+hkksrX/+5BzQjJp/lISIwXrSuOUQs5g==
-X-Gm-Gg: ASbGncs/suVOHm849G47mwwCtMMRUh8rKoiXvBMU2XpfoHSdI4I/3rkUegD+x0rTSAA
-	XrkyOyVlFJjBao7NikkpqwtxWV+AlXLke1E/OtMi+RhKJeYc6NFtgRFef+ZxwFbSbe9KCYbpXrt
-	MGUxJ7eLG3ksu1FOq7i7T+H5ccBUlAhsOtYLjbvN47v49jeDi2fp9XbfaqaAccUKGiGlaDL1UAK
-	HVj94w=
-X-Google-Smtp-Source: AGHT+IE+7QebVg1PJtUQ7/XpmUZhm93OR2xRVQqcKd7qe0C2zFAgyOsdS17jNEBh29q2EIdokNw6rguoyrsgyl09dQA=
-X-Received: by 2002:a05:6102:5488:b0:4e9:c7c8:5e24 with SMTP id
- ada2fe7eead31-4f95f5a8c9dmr3267535137.25.1752763015982; Thu, 17 Jul 2025
- 07:36:55 -0700 (PDT)
+	s=arc-20240116; t=1752763169; c=relaxed/simple;
+	bh=82qjO1FcZChfrJSSYDvIcIBTha4Cb9ltZfCG1dU1NPg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YHA8R+nO+hIompVNv3+xIzyTvoi8Xk5PUHfQJ6XXKNX7zhd2u/XOWmTyqdc9wvrJji8DTlU+BW44dwAcS80WICKLRCiSxc4qIxcqgodlKLRZhkypv12iFWffLtNtMRlYBVKOFO5fVi4ZZfeMGjcLvypOdoOOZhLJ5cf6oLmJu4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tAMGnnBw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D84DEC4CEE3;
+	Thu, 17 Jul 2025 14:39:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752763168;
+	bh=82qjO1FcZChfrJSSYDvIcIBTha4Cb9ltZfCG1dU1NPg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tAMGnnBwFENk5rjhI8tUHpgEU7iCQIW5qQEKiehX8vZh21ajm5CJ2QpFomoEJSNlD
+	 OXYexQtzB+xcNkgF9DProkwBHp2gnk7I4q0DVTkSS6S3AILcvGGOkTt+izjqrJoK+d
+	 4WRtS+FbPvT8PA4zq/6BGtURsYH2Li/MwD7SlotTWTXNhq58y1jZ9a7KmEkAjfbXs9
+	 +ULvDEAGaws/HFXj0G2jRN2MSQmsKcUPbC4G00POzcu9DgaSKQr0kcVfe1aAgkJ5NJ
+	 frmiyjc21Zs/4aI8X34WlElboIXTBG1HmAM6/gvnJSW+yucsovcbYXDFwkxlQ0dGXE
+	 AHBScR63tbjSQ==
+Message-ID: <19b62fb0-fb49-4a90-bff4-f5634547f2fe@kernel.org>
+Date: Thu, 17 Jul 2025 16:39:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240617-starqltechn_integration_upstream-v5-0-ea1109029ba5@gmail.com>
- <20240617-starqltechn_integration_upstream-v5-3-ea1109029ba5@gmail.com>
- <7bec6fc2-6643-4ddf-9475-8ead4b312912@gmail.com> <CABTCjFBTY4NV2yKyRO31MacGFAnJ4T-viDLrXkPs9z66VU6nyQ@mail.gmail.com>
- <3e640051-35e5-4eb8-aa00-cb57abcbb919@gmail.com>
-In-Reply-To: <3e640051-35e5-4eb8-aa00-cb57abcbb919@gmail.com>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Thu, 17 Jul 2025 17:36:45 +0300
-X-Gm-Features: Ac12FXwMrvVkakhGq3qs6mfiMZAI1z6JsdyemGhwqGHXQaO4OUXLMjB5dLYy7MQ
-Message-ID: <CABTCjFDQoQcrkYwBhaH0bzdxHd6OsGh1J+iFqme5R3HfLdeq3g@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] regulator: add s2dos05 regulator support
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] pinctrl: qcom: Add glymur pinctrl driver
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Pankaj Patil <pankaj.patil@oss.qualcomm.com>, andersson@kernel.org,
+ linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, quic_rjendra@quicinc.com
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250716150822.4039250-1-pankaj.patil@oss.qualcomm.com>
+ <20250716150822.4039250-3-pankaj.patil@oss.qualcomm.com>
+ <e69e6128-3f50-4bd3-89bb-09d7b237a568@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <e69e6128-3f50-4bd3-89bb-09d7b237a568@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-=D1=87=D1=82, 17 =D0=B8=D1=8E=D0=BB. 2025=E2=80=AF=D0=B3. =D0=B2 14:33, Iva=
-ylo Ivanov <ivo.ivanov.ivanov1@gmail.com>:
->
-> On 7/17/25 11:12, Dzmitry Sankouski wrote:
-> > =D1=87=D1=82, 17 =D0=B8=D1=8E=D0=BB. 2025=E2=80=AF=D0=B3. =D0=B2 10:28,=
- Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>:
-> >> On 9/26/24 12:47, Dzmitry Sankouski wrote:
-> >>> S2DOS05 has 1 buck and 4 LDO regulators, used for powering
-> >>> panel/touchscreen.
-> >>>
-> >>> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> >> When is this going to get merged? This patch brings the regulators
-> >> functionality of the pmic, so not having it merged is odd. This PMIC i=
-s
-> >> used on other devices too, like the Galaxy S22.
-> >>
-> >> It seems like this has been hanging for almost an year at this point.
-> >> If the author won't, will somebody resend it?
-> >
-> > It's already merged, see
-> > https://lore.kernel.org/all/20240617-starqltechn_integration_upstream-v=
-5-2-ea1109029ba5@gmail.com/
->
-> I don't see patch 3/3 being merged anywhere, nor is it in my linux-next c=
-lone
-> from today. Do you _not_ need it anymore?
->
+On 17/07/2025 13:52, Konrad Dybcio wrote:
+>> +static const struct msm_pinctrl_soc_data glymur_tlmm = {
+>> +	.pins = glymur_pins,
+>> +	.npins = ARRAY_SIZE(glymur_pins),
+>> +	.functions = glymur_functions,
+>> +	.nfunctions = ARRAY_SIZE(glymur_functions),
+>> +	.groups = glymur_groups,
+>> +	.ngroups = ARRAY_SIZE(glymur_groups),
+>> +	.ngpios = 250,
+> 
+> 251 (0..=250, incl. ufs reset)
 
-Indeed, that commit is not present, that's strange. I'll reset that patch l=
-ater.
 
---=20
+The binding said 238 GPIOs...
+
+> 
+> Konrad
+
 
 Best regards,
-Dzmitry
+Krzysztof
 
