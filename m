@@ -1,102 +1,183 @@
-Return-Path: <devicetree+bounces-197260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AF5CB08A28
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 12:02:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB58B08A39
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 12:04:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 213BC1AA3377
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 10:02:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C0405870AA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 10:04:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DA222989B4;
-	Thu, 17 Jul 2025 10:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B68A32989B7;
+	Thu, 17 Jul 2025 10:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WsID2V0s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bVfw9LxX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F6FA298994;
-	Thu, 17 Jul 2025 10:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87FF0291C2C;
+	Thu, 17 Jul 2025 10:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752746517; cv=none; b=LtUnhelzIaj6hV2CmOXmOQzhVjPOH4H8ZSYhUivEnlFB7/ACKygJNoQfu0V8ubAUxz7q8wDDOYCRUl580IsMk54+dJBu4WuZn0p1ZcKzfeO0gbKEJQMdgkXXBDw/455HCKHgKwRtH3mrOn3Vs1oBPIzNmPMYyMd8a3ov0CAoh0s=
+	t=1752746659; cv=none; b=Ct4PZtUS+Zq6PdMjYgy7uh4CfcyQR3HJWOIfWVmVOd2UhQl2nrnnVzPURqVIVnZ2WGwutzHGMB0kVidhCUFOJWNDTDYRSMAT5nPzaxpUQ7zb4LQdNnM1gr1ORUmJ+H2ihiriKYslUMpWSL9HQPR7WhBlMiQXvRUPk56f8VRkJPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752746517; c=relaxed/simple;
-	bh=fJQ+2oEx65X73kZYLhyRibH8bNmQTyazpPzrgi/ip1Y=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PFb7DxKq6mwI1OK2qxTtJcIbVtGxg24pG94WXHNNXosFl2n/cxe92thiyw+NQWKJtDcLB1prwiCm4iORRNNrJMcTtcuGp4BtTFNxyf13Hokg0YM6uYpcOl+eFtmhAmaN34c3ChCO/w3Aa4utvwbGW17waEbk5HJDeowLJLmgIcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WsID2V0s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B30F6C4CEEB;
-	Thu, 17 Jul 2025 10:01:53 +0000 (UTC)
+	s=arc-20240116; t=1752746659; c=relaxed/simple;
+	bh=tSSfkdba3bi3GKVXCRc3mWOuXzJ1VtXL2k3JRLb74B8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mTM1/ov3RpU7iObwRdHx7YNrjWeKw5Rswz6Wo2BpZ0nb+94JhrwFXQm1aHoiCi99XGzTKuKM15PpVqprdX8+pDt3aw3iebh7aBeP3d6ZIcADNnfdiyEdMuN4zavz0nhk/dC2c7ndxihFqZYr0iDnybAdjspa+8OCic6f3/u5Qts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bVfw9LxX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16FA9C4CEEB;
+	Thu, 17 Jul 2025 10:04:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752746516;
-	bh=fJQ+2oEx65X73kZYLhyRibH8bNmQTyazpPzrgi/ip1Y=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WsID2V0soseOGU9BAyxuzAMgdU0jAWJjMiXP1mJKtiYoh9vWjY0isSL5b1zJlopj2
-	 /ZGr2CYFkjNNJa8Owr+PPRu91CPJJJdHIhhI/EQUTS8C+vGOAAs5OxcO12C8oaCs+w
-	 MXuTCMjEB07ZcN3csUeoGU0iy7Hp/HG8Fepv5geMeHVeTpd9mKNMMJtGaTNbN2ETP6
-	 Sq4+EBQ5JFu1zUR/vjBknjp7+e14Cr6o2s5kIZeukQc0OdyLCe/837clqpEsFBkfJI
-	 nkmWhLZb0KmmZOLa5f7eKB2jRlPpuFdSeuadPLB5u5tw7SmNkqMps96Fh6s8+fUWiL
-	 9jGivpbfd2nXw==
-From: Will Deacon <will@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Robin Murphy <robin.murphy@arm.com>,
-	Joerg Roedel <joro@8bytes.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: catalin.marinas@arm.com,
-	kernel-team@android.com,
-	Will Deacon <will@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Rob Clark <robin.clark@oss.qualcomm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	iommu@lists.linux.dev,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v2 0/4] Retire SDM845-cheza devboards
-Date: Thu, 17 Jul 2025 11:01:30 +0100
-Message-Id: <175274460748.247797.878702173890066148.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250716-topic-goodnight_cheza-v2-0-6fa8d3261813@oss.qualcomm.com>
-References: <20250716-topic-goodnight_cheza-v2-0-6fa8d3261813@oss.qualcomm.com>
+	s=k20201202; t=1752746659;
+	bh=tSSfkdba3bi3GKVXCRc3mWOuXzJ1VtXL2k3JRLb74B8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bVfw9LxXjM/RJcNWsxL9Z9LXgbkNjpUu1QvXKJxtr6KrZJetO4ivHOcnyG2eQ8+Vh
+	 7db8zk4DpJ27EUinp24oF/cbUoc5nTACZcES1Otvw8c7N26lef7PvRzoFUbZ1YAlOP
+	 HTlKe2tV3wqrh4gB2TSKqAilNT3oaq4lB+G8zJ+zbxk/7y/iDv0PFOjbYOwm7zvsgi
+	 zTwz4li5V0AWR8U++kIv855IftI6PH8Zs13D4ZUQTWLSQOnwA98FQGmCINd/5JCDKf
+	 qZp6I6fOGZy3/ZpS7H4lnO9vH4XeBs3NtgyoBi9Q0uYWpWSeOEvOKJxYSM57dkiLdE
+	 4CqHCKfLtn5mQ==
+Message-ID: <ec01c2f1-7ab8-4830-846d-aa772e6cc853@kernel.org>
+Date: Thu, 17 Jul 2025 12:04:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 net-next 01/14] dt-bindings: ptp: add NETC Timer PTP
+ clock
+To: Wei Fang <wei.fang@nxp.com>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "richardcochran@gmail.com" <richardcochran@gmail.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, Clark Wang
+ <xiaoning.wang@nxp.com>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
+ <pabeni@redhat.com>, "vadim.fedorenko@linux.dev"
+ <vadim.fedorenko@linux.dev>, Frank Li <frank.li@nxp.com>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ "festevam@gmail.com" <festevam@gmail.com>, "F.S. Peng" <fushi.peng@nxp.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>
+References: <20250716073111.367382-1-wei.fang@nxp.com>
+ <20250716073111.367382-2-wei.fang@nxp.com>
+ <20250717-furry-hummingbird-of-growth-4f5f1d@kuoka>
+ <PAXPR04MB8510F642E509E915B85062318851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <PAXPR04MB8510F642E509E915B85062318851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 16 Jul 2025 12:16:06 +0200, Konrad Dybcio wrote:
-> Cheza was a prototype class of boards, based on the 2017 SDM845 SoC,
-> used for bringing up ChromiumOS on Snapdragon platforms.
+On 17/07/2025 10:30, Wei Fang wrote:
+>> On Wed, Jul 16, 2025 at 03:30:58PM +0800, Wei Fang wrote:
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - pci1131,ee02
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +    description:
+>>> +      The reference clock of NETC Timer, if not present, indicates that
+>>> +      the system clock of NETC IP is selected as the reference clock.
+>>
+>> If not present...
+>>
+>>> +
+>>> +  clock-names:
+>>
+>> ... this also is not present...
+>>
+>>> +    description:
+>>> +      NETC Timer has three reference clock sources, set
+>> TMR_CTRL[CK_SEL]
+>>> +      by parsing clock name to select one of them as the reference clock.
+>>> +      The "system" means that the system clock of NETC IP is used as the
+>>> +      reference clock.
+>>> +      The "ccm_timer" means another clock from CCM as the reference
+>> clock.
+>>> +      The "ext_1588" means the reference clock comes from external IO
+>> pins.
+>>> +    enum:
+>>> +      - system
+>>
+>> So what does system mean?
+>>
 > 
-> Today, almost none are left in existence, and the small amount of
-> remaining ones don't get any real use.
+> "system" is the system clock of the NETC subsystem, we can explicitly specify
+> this clock as the PTP reference clock of the Timer in the DT node. Or do not
+> add clock properties to the DT node, it implicitly indicates that the reference
+> clock of the Timer is the "system" clock.
 > 
-> To ease maintenance burden, remove it from the kernel tree.
-> 
-> [...]
 
-Applied SMMU bindings change to iommu (arm/smmu/bindings), thanks!
+Eh, no. If absence of clock input means you are using specific clock
+input it is contradictory to the first. You cannot use some clock input
+if you claim that it can be missing.
 
-[3/4] dt-bindings: arm-smmu: Remove sdm845-cheza specific entry
-      https://git.kernel.org/iommu/c/ac1207f516c2
+You define here clock inputs. This is what this property is about.
 
-Cheers,
--- 
-Will
 
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
+Best regards,
+Krzysztof
 
