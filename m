@@ -1,277 +1,184 @@
-Return-Path: <devicetree+bounces-197092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07941B081F3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 02:55:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9195B08209
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 03:06:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53EFF1C403E9
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 00:56:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A141A7A44CD
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 01:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6336717A306;
-	Thu, 17 Jul 2025 00:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55FB1A23AC;
+	Thu, 17 Jul 2025 01:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OCNca29K"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="IetQkNUL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A125514E2E2
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 00:55:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ECA517A5BE;
+	Thu, 17 Jul 2025 01:06:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752713750; cv=none; b=L7amxjZyJgIMpC2iClOIvvZPPRANGLJd+x8lgrc1qriNCG+1L4Jx6xVkg7eVzmY7S/nra54394xyCCqD6vV4384EVCh9/Yt+3Tyvlz8RzUvWRllwFrZo5TVR0HQD+Kx3rTpoM4bDv2jESZKaS37RD8O3Lty/riLbRKTjgzeL+Ig=
+	t=1752714392; cv=none; b=gE7elwFjXogc4j3qnDwu3pyO0oAPueupJ3HYxlC5uDa2FfykN8jof3sD7m/Rv5VTFR421o8CC8MpqPy1llSmWMCxMCyY8gB0J/IOQQG2bLG5MCehoEOOsdJfscZ2q2BKa2InkwtOdGwwDULWz+4vkC9lXcgOkXnxU9qijNtSpP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752713750; c=relaxed/simple;
-	bh=Lwd7xExybTot6x05t/ihJ3H+SIWk5GM8UXSeQC6XPKk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CDIV9XUX8rs889UAYcETtXeE6IXBeAS6BQG/KZ5hLemAKfKv0UjLfnGA0cSuDuWLixKREhf/K/Zi5uCjxVIyIOMZl0Ls4Hd9oSEPDEfoM50KBJjtF+DUXeH5UntOC817xgy7VfQJ179b2zqLqD/IDsJI6ZOiiJzljTBLhYPM0dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OCNca29K; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56GGDaQY030488
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 00:55:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	IE2mv/XyFgD4b+TvkQGaKdoVQYDSr2EgRQz4YF0xCJw=; b=OCNca29K4/heGuRI
-	EuoPnowCMwoZD2GJk0v9O20MttCKZB0gRAcvZzZPPCbx9Q2uMUzQ21mJgoqzFQjD
-	Odfj+DMhJXRXXz3uKKqBhI3F0JEgq4VHi1N+6mY+igTUdBhaTFTcuqu5QecEvyuF
-	ztD8SErr+ku9d/WRaz0H8UbZP5ykZGIXd6/M+xHcgYf1WJ0NjWru43SgQT0t7B0t
-	zWnHQh0LVS80FQXNkuc14oju7UtxAmzb8SGkj1SsVSjUnsFscUOHJgvuO7R3N0Fi
-	LSTVtwEh8b0uR8be32h8vzzSQoXSUQXZS7+2BMLjyuLksnggQO6yEk0qkkf2BmQv
-	9SkOzA==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47x8x7jm3e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 00:55:47 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b2c37558eccso317771a12.1
-        for <devicetree@vger.kernel.org>; Wed, 16 Jul 2025 17:55:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752713746; x=1753318546;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IE2mv/XyFgD4b+TvkQGaKdoVQYDSr2EgRQz4YF0xCJw=;
-        b=EdA00r3lAwDpdKeaxR1SxLreQnmJyYiMwiyuE2SdWOMSyRhbicfYX/4gzEgvuVjIqA
-         LC5JsrKJu2Yxm+ZS/IpKmtXdYABV+wbeMldNz4EIo+hwVEAJpxZPnLoBaTpBPjRZkIcr
-         aGE2awGn3OlzfB7IkYq4Urnt/l+a6EljnkX9346GclSiQxh+w1LJXFwxHfdHGjtAILXc
-         xp83vSRIK+bxxy5sJgWzBDII8yUT9D7zDEO+XJBd7/x0YeGwi/Txqlj/fXA+TUy+xGZD
-         YZfhMgwbaMQKDQPYrmPUZwkpD2lH7Kpzc/FwoUXoxSpLhtMUU9lauUOkOtXetWkoMj4k
-         ZCIA==
-X-Forwarded-Encrypted: i=1; AJvYcCXNJUGp38StEj9K7DKqb4Jb3sM9QmLjpERPtCwrrrdFAcEuxB7Ot4lfsiSbV9B6G8Q7x11jq6J8PwOs@vger.kernel.org
-X-Gm-Message-State: AOJu0YznWvOtFKiCdW36mLYhwAwGUv4ZSfJEVFASXyYSVsQAVs3QMNvH
-	Sy8PTs9qhJ0P6zoadvBkz5li3DIFFZaxcb2iTlDAqbUVXHE7MKlTxldLCMtniNfY2AF7jahUcl3
-	Z9iJV+xf1kh5uARjd0VFSiykOg1B9uf+gEGtX3XyCm791yc0G7nHtCfttXEFiF9IS
-X-Gm-Gg: ASbGncvXxCh8bV1p9Ol9f1z3WtBRQzaiH2isujNyPvlkoPA1CV4DRmd1e5zd0nFIC46
-	zrWm15ZIDz+ub9G2+ombHKl/ytg0chExUJDH9ojA4wyglMQX2OkCtVv+sfQNU3YnyIrHdMH9mAX
-	82uGBLeGI4z7J+mZnB13G+WC1oi/DdST5TeKsEIlbC9c2RC8XdlbMHNldCfm/z+Hr+OaXp4AOqI
-	/GrDUwW4ppzaZ3xUfINsrG4xEzz6tP1j/d0a/JQmssgSC7aVkkZI8zqQBnXr8r8W9axvg1ilcui
-	1+fJ1lchswEZTjNeEN7r0IqLdgHOHExnikk00P0HSfC6lidCB+hlZCkxgfTctF23Cc/MPL0BUUv
-	YHpUya+HGGDpTgFXp1hfDgnZ9
-X-Received: by 2002:a05:6a20:431b:b0:215:efed:acfc with SMTP id adf61e73a8af0-237d5f28f06mr9124558637.7.1752713745952;
-        Wed, 16 Jul 2025 17:55:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEsusfkryQNV4zgPxlZ3pgSGcpHupRiF5HVteLlYpaFodV/KYUSAfdyKsskldFXBYJwvAiNtA==
-X-Received: by 2002:a05:6a20:431b:b0:215:efed:acfc with SMTP id adf61e73a8af0-237d5f28f06mr9124527637.7.1752713745535;
-        Wed, 16 Jul 2025 17:55:45 -0700 (PDT)
-Received: from [10.133.33.228] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b3bbe6bd7d1sm14379656a12.35.2025.07.16.17.55.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Jul 2025 17:55:44 -0700 (PDT)
-Message-ID: <4850a2a5-dbeb-43f4-9005-1cc022545dcd@oss.qualcomm.com>
-Date: Thu, 17 Jul 2025 08:55:39 +0800
+	s=arc-20240116; t=1752714392; c=relaxed/simple;
+	bh=E/o5q32lrliVlIiezxtyhXSPy3bCBk3SHNXPSTWSu4c=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=dgJWDcuJ8OvmEgi6pRyg0+zk4qZT8tn3rn5KWiywC7JEnwsb/ud9x6ToALoxW5+pQcKI18jEke4nz2GMkxBdduuiaYJ+n2VosbXWUNEBu9PgI5pPoT9Phev4T1gNURXJhs0rrbFSb2ib2FUFNbtSMcwMaWHAbkTTeoEi0uURXnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=IetQkNUL; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: by linux.microsoft.com (Postfix, from userid 1053)
+	id AD8C92116DA7; Wed, 16 Jul 2025 18:06:30 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com AD8C92116DA7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1752714390;
+	bh=mS4Xl0mEd8rJOC6nXkcW6spg29QPJDbs/V520XmhqoQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=IetQkNULdOZlJ3MYx8joprNyNqwFxICBPPMoVQk1rxITNqRTiEkbGYBtoNpObYIwX
+	 wlINXsTIWfNHdUIxk81acTIn8ZIDjXAdN7QedT802fTfRQXhIhO36sy9ERDYOAHrdS
+	 PeJMboKpovK4OnSNM6MvdKf7DnRJkStvMYGgiLx0=
+From: Vijay Balakrishna <vijayb@linux.microsoft.com>
+To: Borislav Petkov <bp@alien8.de>,
+	Tony Luck <tony.luck@intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: James Morse <james.morse@arm.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Robert Richter <rric@kernel.org>,
+	linux-edac@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tyler Hicks <code@tyhicks.com>,
+	Marc Zyngier <maz@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	devicetree@vger.kernel.org,
+	Vijay Balakrishna <vijayb@linux.microsoft.com>
+Subject: [v12 PATCH 0/2] Add L1 and L2 error detection for A72
+Date: Wed, 16 Jul 2025 18:06:28 -0700
+Message-Id: <1752714390-27389-1-git-send-email-vijayb@linux.microsoft.com>
+X-Mailer: git-send-email 1.8.3.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 RESEND 01/10] coresight: core: Refactoring
- ctcu_get_active_port and make it generic
-To: Mike Leach <mike.leach@linaro.org>, Jie Gan <jie.gan@oss.qualcomm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Mao Jinlong <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250714063109.591-1-jie.gan@oss.qualcomm.com>
- <20250714063109.591-2-jie.gan@oss.qualcomm.com>
- <CAJ9a7VjyWtopbnTirRnd4-486PrdQH00cvUR0kcPde2hxCUH-A@mail.gmail.com>
-Content-Language: en-US
-From: Jie Gan <jie.gan@oss.qualcomm.com>
-In-Reply-To: <CAJ9a7VjyWtopbnTirRnd4-486PrdQH00cvUR0kcPde2hxCUH-A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE3MDAwNSBTYWx0ZWRfX5QhQEcYSFV8Z
- 533vnuy6yuDfOVrTa03UX4G7zgEuNbniPrLcYfjAtjRAkJyjhxRfgFS3Ujjcb36XbPCiezNAUAF
- fYQJaJrfpdwjXrxkrDmP61JmGJWSH0be9dz316wbhEL8JyqOjieSH7a21XmzGPwGv9fPbWNcirY
- oQH/Ptco1cprQmcK3oy9SQ5zon7LL2agPi+nv+Y3YCv+D2I3jFdGSFgui3b5FNkw2lm7E5tzALM
- TdR74lgQhuBtZqISwXxsaHgnz3FaxSgnJraqGuT9RF+s9QoDv5SpeETnOVjWguoNmBBype+u2z2
- 312uSFQs37cKIbt73beKcIOjMWHHZOSkcTCqSd/FSk/1L6T78Lbp2HJEKD6MWr/NKBwi5rHe7Hx
- JxpVhTK+qqk1g33Xxu57rB7PPiSLxRrTSXgmwkJAG8012saSssoDrAiEf3u55lRIFHnY3fef
-X-Proofpoint-GUID: rtr8MOtrERWxdB2VP8lnlai5BsBFY1Iz
-X-Proofpoint-ORIG-GUID: rtr8MOtrERWxdB2VP8lnlai5BsBFY1Iz
-X-Authority-Analysis: v=2.4 cv=N9YpF39B c=1 sm=1 tr=0 ts=68784a13 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=CCvaVWANnUWFBPVUepYA:9
- a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-16_05,2025-07-16_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 lowpriorityscore=0 mlxlogscore=999 bulkscore=0 adultscore=0
- priorityscore=1501 clxscore=1015 mlxscore=0 suspectscore=0 impostorscore=0
- phishscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507170005
+
+This is an attempt to revive [v5] series. I have attempted to address comments
+and suggestions from Marc Zyngier since [v5]. Additionally, I have limited
+the support only for A72 processors per [v8] discussion. Testing the driver
+on a problematic A72 SoC has led to the detection of Correctable Errors (CEs).
+Below are logs captured from the problematic SoC during various boot instances.
+
+[  876.896022] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+
+[ 3700.978086] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+
+[  976.956158] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+
+[ 1427.933606] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+
+[  192.959911] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+
+Testing our product kernel involved adding the 'edac-enabled' property to CPU
+nodes in the DTS. For mainline sanity checks, we tested under QEMU by
+extracting the default DTB and modifying the DTS to include the 'edac-enabled'
+property. We then verified the presence of /sysfs nodes for CE and UE counts
+for the emulated A72 CPUs.
+
+Our primary focus is on A72. We have a significant number of A72-based systems
+in our fleet, and timely replacements via monitoring CEs will be instrumental
+in managing them effectively.
+
+I am eager to hear your suggestions and feedback on this series.
+
+Thanks,
+Vijay
+
+[v5] https://lore.kernel.org/all/20210401110615.15326-1-s.hauer@pengutronix.de/#t
+[v6] https://lore.kernel.org/all/1744241785-20256-1-git-send-email-vijayb@linux.microsoft.com/
+[v7] https://lore.kernel.org/all/1744409319-24912-1-git-send-email-vijayb@linux.microsoft.com/#t
+[v8] https://lore.kernel.org/all/1746404860-27069-1-git-send-email-vijayb@linux.microsoft.com/
+[v9] https://lore.kernel.org/all/1747353973-4749-1-git-send-email-vijayb@linux.microsoft.com/
+[v10] https://lore.kernel.org/all/1748387790-20838-1-git-send-email-vijayb@linux.microsoft.com/
+[v11] https://lore.kernel.org/all/1748487628-30123-1-git-send-email-vijayb@linux.microsoft.com/
+
+Changes since v11: 
+- driver file name change: edac_a72.c -> a72_edac.c (Boris)
+- align defines (Boris)
+- the device is registered before driver
+- in module exit unregister the device
+
+Changes since v10: 
+- edac_a72.c: copyright line add (Jonathan)
+- cpus.yaml: drop stale comment line (Krzysztof)
+- added  "Reviewed-by" tags
+
+Changes since v9: 
+- commit title, message and prefix update (Boris)
+- fix spelling in Kconfig help text (Boris)
+- prepared patches against edac-for-next (Boris)
+- struct naming update from "merrsr" to "mem_err_synd_reg" (Boris)
+- grouping of all defines (Boris)
+- function variable declarations in reverse fir tree order (Boris)
+- simplify naming of static functions (Boris)
+- protect smp_call_function_single() against CPU hotplug (Boris)
+- "CPU" in visible string instead of "cpu" (Boris)
+- error message reflects "edac_a72" driver name (Boris)
+- fixed the issues with device_node release using scope exit (Jonathan)
+- of_cpu_device_node_get() instead of of_get_cpu_node() (Jonathan)
+- make dt-binding update applicable only for A72 using if/then schema (Rob)
+
+Changes since v8: 
+- removed support for A53 and A57
+- added entry to MAINTAINERS
+- added missing module exit point to enable unload
+
+Changes since v7: 
+- v5 was based on the internal product kernel, identified following upon review
+- correct format specifier to print CPUID/WAY
+- removal of unused dynamic attributes for edac_device_alloc_ctl_info() 
+- driver remove callback return type is void
+
+Changes since v6:
+- restore the change made in [v5] to clear CPU/L2 syndrome registers
+  back to read_errors()
+- upon detecting a valid error, clear syndrome registers immediately
+  to avoid clobbering between the read and write (Marc)
+- NULL return check for of_get_cpu_node() (Tyler)
+- of_node_put() to avoid refcount issue (Tyler)
+- quotes are dropped in yaml file (Krzysztof)
+
+Changes since v5:
+- rebase on v6.15-rc1
+- the syndrome registers for CPU/L2 memory errors are cleared only upon
+  detecting an error and an isb() after for synchronization (Marc)
+- "edac-enabled" hunk moved to initial patch to avoid breaking virtual
+  environments (Marc)
+- to ensure compatibility across all three families, we are not reporting
+  "L1 Dirty RAM," documented only in the A53 TRM
+- above prompted changing default CPU L1 error meesage from "unknown"
+  to "Unspecified"
+- capturing CPUID/WAY information in L2 memory error log (Marc)
+- module license from "GPL v2" to "GPL" (checkpatch.pl warning)
+- extend support for A72
+
+Sascha Hauer (2):
+  EDAC: Add EDAC driver for ARM Cortex A72 cores
+  dt-bindings: arm: cpus: Add edac-enabled property
+
+ .../devicetree/bindings/arm/cpus.yaml         |  17 ++
+ MAINTAINERS                                   |   7 +
+ drivers/edac/Kconfig                          |   8 +
+ drivers/edac/Makefile                         |   1 +
+ drivers/edac/a72_edac.c                       | 230 ++++++++++++++++++
+ 5 files changed, 263 insertions(+)
+ create mode 100644 drivers/edac/a72_edac.c
 
 
-
-On 7/16/2025 6:20 PM, Mike Leach wrote:
-> Hi,
-> 
-> On Mon, 14 Jul 2025 at 07:31, Jie Gan <jie.gan@oss.qualcomm.com> wrote:
->>
->> Remove ctcu_get_active_port from CTCU module and add it to the core
->> framework.
->>
->> The port number is crucial for the CTCU device to identify which ETR
->> it serves. With the port number we can correctly get required parameters
->> of the CTCU device in TMC module.
->>
->> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
->> ---
->>   drivers/hwtracing/coresight/coresight-core.c  | 24 +++++++++++++++++++
->>   .../hwtracing/coresight/coresight-ctcu-core.c | 19 +--------------
->>   drivers/hwtracing/coresight/coresight-priv.h  |  2 ++
->>   3 files changed, 27 insertions(+), 18 deletions(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
->> index 1accd7cbd54b..5297a5ff7921 100644
->> --- a/drivers/hwtracing/coresight/coresight-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-core.c
->> @@ -580,6 +580,30 @@ struct coresight_device *coresight_get_sink(struct coresight_path *path)
->>   }
->>   EXPORT_SYMBOL_GPL(coresight_get_sink);
->>
->> +/**
->> + * coresight_get_port_helper: get the in-port number of the helper device
->> + * that is connected to the csdev.
->> + *
-> 
-> As written this looks at all connections, not just those that are
-> helpers. That is fine, so perhaps rename as such.
-> 
-> e.g. coresight_get_in_port_dest
-> 
-> and name the input parameters src , dest respectively.
-
-Make sense for me, will update in next version.
-Thanks for the suggestion.
-
-> 
->> + * @csdev: csdev of the device that is connected to helper.
->> + * @helper: csdev of the helper device.
->> + *
->> + * Return: port number upson success or -EINVAL for fail.
-> 
-> sp: upon/upson
-> 
->> + */
->> +int coresight_get_port_helper(struct coresight_device *csdev,
->> +                             struct coresight_device *helper)
->> +{
->> +       struct coresight_platform_data *pdata = helper->pdata;
->> +       int i;
->> +
->> +       for (i = 0; i < pdata->nr_inconns; ++i) {
->> +               if (pdata->in_conns[i]->src_dev == csdev)
->> +                       return pdata->in_conns[i]->dest_port;
->> +       }
->> +
->> +       return -EINVAL;
->> +}
->> +EXPORT_SYMBOL_GPL(coresight_get_port_helper);
->> +
->>   u32 coresight_get_sink_id(struct coresight_device *csdev)
->>   {
->>          if (!csdev->ea)
->> diff --git a/drivers/hwtracing/coresight/coresight-ctcu-core.c b/drivers/hwtracing/coresight/coresight-ctcu-core.c
->> index c6bafc96db96..28ea4a216345 100644
->> --- a/drivers/hwtracing/coresight/coresight-ctcu-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-ctcu-core.c
->> @@ -118,23 +118,6 @@ static int __ctcu_set_etr_traceid(struct coresight_device *csdev, u8 traceid, in
->>          return 0;
->>   }
->>
->> -/*
->> - * Searching the sink device from helper's view in case there are multiple helper devices
->> - * connected to the sink device.
->> - */
->> -static int ctcu_get_active_port(struct coresight_device *sink, struct coresight_device *helper)
->> -{
->> -       struct coresight_platform_data *pdata = helper->pdata;
->> -       int i;
->> -
->> -       for (i = 0; i < pdata->nr_inconns; ++i) {
->> -               if (pdata->in_conns[i]->src_dev == sink)
->> -                       return pdata->in_conns[i]->dest_port;
->> -       }
->> -
->> -       return -EINVAL;
->> -}
->> -
->>   static int ctcu_set_etr_traceid(struct coresight_device *csdev, struct coresight_path *path,
->>                                  bool enable)
->>   {
->> @@ -147,7 +130,7 @@ static int ctcu_set_etr_traceid(struct coresight_device *csdev, struct coresight
->>                  return -EINVAL;
->>          }
->>
->> -       port_num = ctcu_get_active_port(sink, csdev);
->> +       port_num = coresight_get_port_helper(sink, csdev);
->>          if (port_num < 0)
->>                  return -EINVAL;
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-priv.h b/drivers/hwtracing/coresight/coresight-priv.h
->> index 33e22b1ba043..07a5f03de81d 100644
->> --- a/drivers/hwtracing/coresight/coresight-priv.h
->> +++ b/drivers/hwtracing/coresight/coresight-priv.h
->> @@ -156,6 +156,8 @@ void coresight_remove_links(struct coresight_device *orig,
->>   u32 coresight_get_sink_id(struct coresight_device *csdev);
->>   void coresight_path_assign_trace_id(struct coresight_path *path,
->>                                     enum cs_mode mode);
->> +int coresight_get_port_helper(struct coresight_device *csdev,
->> +                             struct coresight_device *helper);
->>
-> rename here too
-
-will do.
-
-Best Regards,
-Jie
-
-> 
->>   #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM3X)
->>   int etm_readl_cp14(u32 off, unsigned int *val);
->> --
->> 2.34.1
->>
-> 
-> regards
-> 
-> Mike
+base-commit: 6beda760db7eb6b06cdbf77d4749af0bf9aca1e0
+-- 
+2.49.0
 
 
