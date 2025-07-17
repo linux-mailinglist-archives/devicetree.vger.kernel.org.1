@@ -1,253 +1,263 @@
-Return-Path: <devicetree+bounces-197435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1D4FB0933A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 19:30:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD331B0939C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 19:51:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51DAD1C22273
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:31:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2166F1C479B7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 17:51:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC28A2FD59D;
-	Thu, 17 Jul 2025 17:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8ACD2FEE09;
+	Thu, 17 Jul 2025 17:51:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bvn9fuBY"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FJfC3E6s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C9F287254;
-	Thu, 17 Jul 2025 17:30:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F1FB2FE383;
+	Thu, 17 Jul 2025 17:51:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752773453; cv=none; b=e4Pjnfj62pFSPo5ViZhLBolajPSAUzElJtUhVhSm+aDM9kIwj6cw7NRNRpz6ixBOjD0DjsjXV/2ZhKPstYzzztcbUEkctKjm3wO1o2dneM/8okRRAwGdy7o3hphO7rJIXDSTM35J5gF5kTaWasLVrFNWmumftPFxnueHq0ZxrBk=
+	t=1752774688; cv=none; b=uI7OCyAKDGUOt0Gmf/2pw5awmflHLFoTVuJQnWxzqsQKrVTKRn4W5Un5hzYbnf/QRuE2QSxQfSyFfytH2skr+GIOuZtX0Uh+vTYrMCjMSHHGIjHlVQR4aKGtBoJ3pEzRzMaL9C6ThUriLzdIucLpsHtaG7/iLe8q+Pest30tduw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752773453; c=relaxed/simple;
-	bh=/pLsXovothPJruGBndBMhFdhBuU009HRKnVZRRUJY/I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sAQLY1b0MiitHC3bAQU+cE2sU3GwEMcFcANVrgPy8Qq63YgkNM+jTD4p45aRauf24RSbT5IaA7TmQfdzvbQG3PpEA2RvWd4lJemS4WueHR/wYuSeMPPv7YAxNwQpW8xJFzcXSjjPyJFl/+GVGtqbGjas+d9k6MHNzbkqHo6Xk6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bvn9fuBY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD0F9C4CEE3;
-	Thu, 17 Jul 2025 17:30:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752773452;
-	bh=/pLsXovothPJruGBndBMhFdhBuU009HRKnVZRRUJY/I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bvn9fuBYIQdA/I3AbcqXRhWhEIPtJ9ZpuPB/TpIutLy7ua/1waBrw1ZH4dVMP1GGA
-	 USu+wy3fCeACCSVIb8eihVtqiKMzDqRf92Itbi0gEVJXd3rzvklqMxVy++RddjdAvt
-	 qbR0aYDD56f4YHC7QvctaOPWoTdk4nuQcACB1I3Of0P6V73cO1tw48qHEBsR4G/l9c
-	 x7afxaiPH/4juxV4Hkaae+cPUQ+E8ZcAo9irND49FBkgHRVXcyOx4W+R14/5yICSA8
-	 00MrPtDpbI3iN56lkvBI+AooWCAfA4xx87QY2G0xg0IhgYk0UHMB0NvISIe6uuegWp
-	 BUMyJBpQk9NIA==
-Date: Thu, 17 Jul 2025 12:30:50 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Saravana Kannan <saravanak@google.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, Georgi Djakov <djakov@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: mailbox: qcom,apcs: Add separate node
- for clock-controller
-Message-ID: <qawoswiuojk7no32jf2vejh4wcocv74fn37kn5xjqbbnwshmkv@r6yitwwx64xb>
-References: <7vszdea2djl43oojvw3vlrip23f7cfyxkyn6jw3wc2f7yowht5@bgsc2pqscujc>
- <aCNGSwL7043GoJBz@linaro.org>
- <20250514160841.GA2427890-robh@kernel.org>
- <aCUHTJGktLFhXq4Q@linaro.org>
- <20250521-psychedelic-cute-grouse-ee1291@kuoka>
- <aC-AqDa8cjq2AYeM@linaro.org>
- <20250523-markhor-of-fortunate-experience-1f575e@kuoka>
- <jvsdn67x2qm2avaktnpqzoixcd46xuuf6i5kpeolsnewgoqt6q@jid7unlmmu65>
- <175053907628.4372.13105365536734444855@lazor>
- <aFlT7fLePVmvoxBQ@linaro.org>
+	s=arc-20240116; t=1752774688; c=relaxed/simple;
+	bh=7gqdu9FRzLbWwVYcJ1xgji2kq0oWwr4gM+5MAVL14+0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=U5mgNjyjZ4YlrRIuem3rJugalZ3NExZ9fUcG9RE7xzkQBAAsyXpGnFp0qF3tOFPGG0zR2Z60wW8M+h9LB43LUqZIv4Dp+0MxH5EfjqUHBOzuglUDHbxyDyGC0y3CbM0iNONCOUn99SCjBtXwhn8bzhMeAkkQ9sFGQ1gr7xWgJj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FJfC3E6s; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56HHp6UQ063119;
+	Thu, 17 Jul 2025 12:51:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752774666;
+	bh=JlYC+23jy0kiGaogzz7XRNceSyu876I7Z5My7gH79ig=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=FJfC3E6sk6iJDG+kR3lsMTlFsjvO72vldw+zpi9S1Qj9bsuehnk3kHJ9qjuV0HiCT
+	 NC1y7xQzBZYz5dBZatvnShADDDH11r28UDV/yim9w8pwc7JQar3gXsQXFqso3VgFK/
+	 wIH78uPKYpQWht8K9xRbNTEoLF9hS6DO7f0UUfrk=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56HHp6Gf397301
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 17 Jul 2025 12:51:06 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 17
+ Jul 2025 12:51:06 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 17 Jul 2025 12:51:05 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56HHp64m2244017;
+	Thu, 17 Jul 2025 12:51:06 -0500
+Message-ID: <4826def7-5dcb-4453-ab3b-0d14880dab93@ti.com>
+Date: Thu, 17 Jul 2025 12:51:05 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aFlT7fLePVmvoxBQ@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] watchdog: rti_wdt: Add reaction control
+To: Andrew Davis <afd@ti.com>, Guenter Roeck <linux@roeck-us.net>
+CC: Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250707180002.3918865-1-jm@ti.com>
+ <20250707180002.3918865-3-jm@ti.com>
+ <cc37e797-d3e5-444d-8016-c437a0534001@roeck-us.net>
+ <d96541bc-644d-4c90-b9f7-1e4afd16aeb6@ti.com>
+ <953f78a8-3928-479d-8700-dfe1cea15454@roeck-us.net>
+ <299c363a-23c7-4522-b58c-100f49c4eece@ti.com>
+ <7d2bb793-14d0-45d8-b8bd-b770cdb4ca70@roeck-us.net>
+ <fc095373-1171-4718-b492-8a74d03f99ba@ti.com>
+ <92be34eb-2408-4273-9e37-bec0b0d68f10@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <92be34eb-2408-4273-9e37-bec0b0d68f10@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Jun 23, 2025 at 03:17:33PM +0200, Stephan Gerhold wrote:
-> wOn Sat, Jun 21, 2025 at 01:51:16PM -0700, Stephen Boyd wrote:
-> > Quoting Bjorn Andersson (2025-06-10 20:31:57)
-> > > I'm still sceptical here.
-> > > 
-> > > In the first snippet above, we describe a single IP block which provides
-> > > mailboxes and clocks.
-> > > 
-> > > In the second snippet we're saying that the IP block is a mailbox, and
-> > > then it somehow have a subcomponent which is a clock provider.
-> > > 
-> > > It seems to me that we're choosing the second option because it better
-> > > fits the Linux implementation, rather than that it would be a better
-> > > representation of the hardware. To the point that we can't even describe
-> > > the register range of the subcomponent...
-> > > 
-> > 
-> > Agreed. Don't workaround problems in the kernel by changing the binding
-> > to have sub-nodes.
-> 
-> I can describe the register range for the subcomponent if you prefer
-> (it's reg = <0x50 0xc>; within the parent component). That would be easy
-> to add.
-> 
-> Your more fundamental concern (working around problems in the kernel by
-> changing the binding) is a more tricky and subtle one. I had exactly the
-> same thought when I started making this patch series. However, if you
-> start looking more closely you will see that this is much easier said
-> than done. I tried to explain the problem already a few times (in the
-> cover letter, the commit messages and responses to this series), but let
-> me try again. Perhaps in different words it will become more
-> understandable.
-> 
-> Just for clarity, let's take the current device tree description again:
-> 
-> 	apcs1_mbox: mailbox@b011000 {
-> 		compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
-> 		reg = <0x0b011000 0x1000>;
-> 		#mbox-cells = <1>;
-> 		clocks = <&a53pll_c1>, <&gcc GPLL0_VOTE>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> 		clock-names = "pll", "aux", "ref";
-> 		#clock-cells = <0>;
-> 	};
-> 
-> Clearly this is a mailbox (#mbox-cells) and a clock controller
-> (#clock-cells). In the hardware these are stuffed into one register
-> region, but they don't have anything to do with each other. In
-> particular, the specified clocks are only used by the clock controller.
-> They are not used or related in any way to the mailbox component.
-> 
-> We need to have the mailbox available early to proceed with booting. The
-> clock controller can probe anytime later. The &rpmcc clock required by
-> the clock controller depends on having the mailbox available.
-> 
-> In Linux, I cannot get the mailbox driver to probe as long as the &rpmcc
-> clock is specified inside this device tree node (or by using
-> post-init-providers, but see [1]). This is not something I can fix in
-> the driver. The "problem in the kernel" you are referring to is
-> essentially "fw_devlink". Independent of the device-specific bindings we
-> define, it is built with the assumption that resources specified in a
-> device tree node are required to get a device functioning.
-> 
-> We usually want this behavior, but it doesn't work in this case. I argue
-> this is because we describe *two* devices as part of a *single* device
-> tree node. By splitting the *two* devices into *two* device tree nodes,
-> it is clear which resources belong to which device, and fw_devlink can
-> function correctly.
-> 
+Hi Andrew,
 
-We have many cases where there are cyclic links in the DeviceTree
-representation - clock controllers depending on clock providers that
-depend on the same clock controller, regulators being supplied by
-regulators of the same PMIC etc.
+On 7/17/25 11:44 AM, Andrew Davis wrote:
+> On 7/17/25 10:24 AM, Judith Mendez wrote:
+>> Hi Guenter,
+>>
+>> On 7/16/25 1:50 PM, Guenter Roeck wrote:
+>>> On 7/10/25 07:08, Judith Mendez wrote:
+>>>> Hi Guenter, Andrew,
+>>>>
+>>>> On 7/7/25 5:55 PM, Guenter Roeck wrote:
+>>>>> On Mon, Jul 07, 2025 at 04:49:31PM -0500, Andrew Davis wrote:
+>>>>>> On 7/7/25 3:58 PM, Guenter Roeck wrote:
+>>>>>>> On Mon, Jul 07, 2025 at 01:00:02PM -0500, Judith Mendez wrote:
+>>>>>>>> This allows to configure reaction between NMI and reset for WWD.
+>>>>>>>>
+>>>>>>>> On K3 SoC's other than AM62L SoC [0], watchdog reset output is 
+>>>>>>>> routed
+>>>>>>>> to the ESM module which can subsequently route the signal to safety
+>>>>>>>> master or SoC reset. On AM62L, the watchdog reset output is routed
+>>>>>>>> to the SoC HW reset block. So, add a new compatible for AM62l to 
+>>>>>>>> add
+>>>>>>>> SoC data and configure reaction to reset instead of NMI.
+>>>>>>>>
+>>>>>>>> [0] https://www.ti.com/product/AM62L
+>>>>>>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>>>>>>> ---
+>>>>>>>>    drivers/watchdog/rti_wdt.c | 32 ++++++++++++++++++++++++++++----
+>>>>>>>>    1 file changed, 28 insertions(+), 4 deletions(-)
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/watchdog/rti_wdt.c 
+>>>>>>>> b/drivers/watchdog/rti_wdt.c
+>>>>>>>> index d1f9ce4100a8..c9ee443c70af 100644
+>>>>>>>> --- a/drivers/watchdog/rti_wdt.c
+>>>>>>>> +++ b/drivers/watchdog/rti_wdt.c
+>>>>>>>> @@ -35,7 +35,8 @@
+>>>>>>>>    #define RTIWWDRXCTRL    0xa4
+>>>>>>>>    #define RTIWWDSIZECTRL    0xa8
+>>>>>>>> -#define RTIWWDRX_NMI    0xa
+>>>>>>>> +#define RTIWWDRXN_RST    0x5
+>>>>>>>> +#define RTIWWDRXN_NMI    0xa
+>>>>>>>>    #define RTIWWDSIZE_50P        0x50
+>>>>>>>>    #define RTIWWDSIZE_25P        0x500
+>>>>>>>> @@ -63,22 +64,29 @@
+>>>>>>>>    static int heartbeat;
+>>>>>>>> +struct rti_wdt_data {
+>>>>>>>> +    bool reset;
+>>>>>>>> +};
+>>>>>>>> +
+>>>>>>>>    /*
+>>>>>>>>     * struct to hold data for each WDT device
+>>>>>>>>     * @base - base io address of WD device
+>>>>>>>>     * @freq - source clock frequency of WDT
+>>>>>>>>     * @wdd  - hold watchdog device as is in WDT core
+>>>>>>>> + * @data - hold configuration data
+>>>>>>>>     */
+>>>>>>>>    struct rti_wdt_device {
+>>>>>>>>        void __iomem        *base;
+>>>>>>>>        unsigned long        freq;
+>>>>>>>>        struct watchdog_device    wdd;
+>>>>>>>> +    const struct rti_wdt_data *data;
+>>>>>>>>    };
+>>>>>>>>    static int rti_wdt_start(struct watchdog_device *wdd)
+>>>>>>>>    {
+>>>>>>>>        u32 timer_margin;
+>>>>>>>>        struct rti_wdt_device *wdt = watchdog_get_drvdata(wdd);
+>>>>>>>> +    u8 reaction;
+>>>>>>>>        int ret;
+>>>>>>>>        ret = pm_runtime_resume_and_get(wdd->parent);
+>>>>>>>> @@ -101,8 +109,13 @@ static int rti_wdt_start(struct 
+>>>>>>>> watchdog_device *wdd)
+>>>>>>>>         */
+>>>>>>>>        wdd->min_hw_heartbeat_ms = 520 * wdd->timeout + 
+>>>>>>>> MAX_HW_ERROR;
+>>>>>>>> -    /* Generate NMI when wdt expires */
+>>>>>>>> -    writel_relaxed(RTIWWDRX_NMI, wdt->base + RTIWWDRXCTRL);
+>>>>>>>> +    /* Reset device if wdt serviced outside of window or 
+>>>>>>>> generate NMI if available */
+>>>>>>>
+>>>>>>> Shouldn't that be "or generate NMI if _not_ available" ?
+>>>>>>>
+>>>>>>
+>>>>>> For almost all the K3 devices, the WDT has two selectable outputs, 
+>>>>>> one resets
+>>>>>> the device directly, the other is this "NMI" which is wired to an 
+>>>>>> ESM module
+>>>>>> which can take other actions (but usually it just also resets the 
+>>>>>> device).
+>>>>>> For AM62L that second NMI output is not wired (no ESM module), so 
+>>>>>> our only
+>>>>>> choice is to set the WDT to direct reset mode.
+>>>>>>
+>>>>>> The wording is a little strange, but the "or generate NMI if 
+>>>>>> available" meaning
+>>>>>> if NMI is available, then do that. Reset being the fallback when 
+>>>>>> _not_ available.
+>>>>>>
+>>>>>> Maybe this would work better:
+>>>>>>
+>>>>>> /* If WDT is serviced outside of window, generate NMI if 
+>>>>>> available, or reset device */
+>>>>>>
+>>>>>
+>>>>> The problem is that the code doesn't match the comment. The code 
+>>>>> checks the
+>>>>> "reset" flag and requests a reset if available. If doesn't check an 
+>>>>> "nmi"
+>>>>> flag.
+>>>>>
+>>>>> If the preference is NMI, as your comment suggests, the flag should 
+>>>>> be named
+>>>>> "nmi" and be set if NMI is available. That would align the code and 
+>>>>> the
+>>>>> comment. Right now both code and comment are misleading, since the 
+>>>>> presence
+>>>>> of a reset flag (and setting it to false) suggests that a direct 
+>>>>> reset is
+>>>>> not available, and that reset is preferred if available. A reset is 
+>>>>> the
+>>>>> normally expected behavior for a watchdog, so the fact that this is 
+>>>>> _not_
+>>>>> the case for this watchdog should be made more visible.
+>>>>
+>>>>
+>>>> How about:
+>>>>
+>>>>
+>>>> /* If WWDT serviced outside of window, generate NMI or reset the device
+>>>> if NMI not available */
+>>>>
+>>>> if (wdt->data->reset)
+>>>>      reaction = RTIWWDRXN_RST;
+>>>> else
+>>>>      reaction = RTIWWDRXN_NMI;
+>>>>
+>>>
+>>> As I have said before, the problem is the "reset" flag. Its name 
+>>> suggests that
+>>> it means "reset is available". That is not what it actually means. It 
+>>> means
+>>> "NMI is not available". So I suggested to rename it to "nmi" or maybe 
+>>> "no_nmi".
+>>> Please educate me - why is that such a problem to name the flag to 
+>>> match its
+>>> meaning ?
+>>
+>> wdt->data->reset makes more sense because it shows there is a
+>> physical line routed to the MAIN RESET HW LOGIC:
+>>
+>>  >> if (wdt->data->reset)
+>>  >>      reaction = RTIWWDRXN_RST;
+>>  >> else
+>>  >>      reaction = RTIWWDRXN_NMI;
+>>
+>> If there is a direct reset line to MAIN RESET HW logic, then the
+>> reaction should be reset, if there is no reset line, then generate
+>> and NMI to ESM.
+>>
+> 
+> There is a reset line on all K3 devices, if you did it this way then
+> all devices would have wdt->data->reset set to true and you wouldn't
+> need this logic at all. The thing that changes is if NMI/ESM is
+> available or not, so as Guenter suggests the flag should be called
+> "nmi" or similar and you switch on that.
 
-From a DeviceTree point of view this looks quite similar, but from an
-implementation perspective this is simpler than those examples - we
-don't even need to do async resolution per resource here.
+Looking at the integration spec, I do not see a direct reset line for
+any device besides am62l, could you confirm that what I am reading
+is correct please?
 
-> You argue this is a problem to be solved in the kernel. In practice,
-> this would mean one of the following:
-> 
->  - Remove fw_devlink from Linux.
->  - Start adding device-specific quirks into the generic fw_devlink code.
->    Hardcode device links that cannot be deferred from the device tree
->    because our hardware description is too broad.
-> 
-> Both of these are not really desirable, right?
-> 
+  ~ Judith
 
-fw_devlink is supposed to optimize the probe order, it must not prevent
-the system from booting just because there is cyclic dependencies
-between IP-blocks.
-
-If fw_devlink is authoritative in determining which order things must
-happen, then it needs to deal with these things.
-
-> I don't think there is a good way around making the hardware description
-> more precise by giving the two devices separate device tree nodes. There
-> are many different options for modelling these, and I would be fine with
-> all of them if you think one of them fits better:
-> 
-> Top-level siblings:
-> 
-> 	apcs1_mbox: mailbox@b011008 {
-> 		compatible = "qcom,msm8939-apcs-mbox";
-> 		reg = <0x0b011008 0x4>;
-> 		#mbox-cells = <1>;
-> 	};
-> 
-> 	apcs1_clk: clock-controller@b011050 {
-> 		compatible = "qcom,msm8939-apcs-clk";
-> 		reg = <0x0b011050 0xc>;
-> 		clocks = <&a53pll_c1>, <&gcc GPLL0_VOTE>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> 		clock-names = "pll", "aux", "ref";
-> 		#clock-cells = <0>;		
-> 	};
-
-This doesn't scale to any example where you have more than single
-resources laid out in a convenient order.
-
-> 
-> Top-level syscon wrapper with two children:
-> 
-> 	syscon@b011000 {
-> 		compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
-> 		reg = <0x0b011000 0x1000>;
-> 		#adress-cells = <1>;
-> 		#size-cells = <1>;
-> 		ranges = <0 0x0b011000 0x1000>;
-> 
-> 		apcs1_mbox: mailbox@8 {
-> 			compatible = "qcom,msm8939-apcs-mbox";
-> 			reg = <0x8 0x4>;
-> 			#mbox-cells = <1>;
-> 		};
-> 
-> 		apcs1_clk: clock-controller@50 {
-> 			compatible = "qcom,msm8939-apcs-clk";
-> 			reg = <0x0b011050 0xc>;
-> 			clocks = <&a53pll_c1>, <&gcc GPLL0_VOTE>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> 			clock-names = "pll", "aux", "ref";
-> 			#clock-cells = <0>;
-> 		};
-> 	};
-
-This is clearly implementation-driven. Until fw_devlink "forced" you
-into this model we considered APCS KPSS global to be one entity.
-
-> 
-> Mailbox as parent (what I did in this series):
-> 
-> 	apcs1_mbox: mailbox@b011000 {
-> 		compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
-> 		reg = <0x0b011000 0x1000>;
-> 		#mbox-cells = <1>;
-> 
-> 		apcs1_clk: clock-controller {
-> 			clocks = <&a53pll_c1>, <&gcc GPLL0_VOTE>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> 			clock-names = "pll", "aux", "ref";
-> 			#clock-cells = <0>;
-> 		};
-> 	};
-
-This is just a pragmatic variant of above.
-
-> 
-> Maybe it makes more sense with this explanation and the other options.
-> Let me know what you think!
-> 
-
-Regards,
-Bjorn
-
-> Thanks,
-> Stephan
-> 
-> [1]: https://lore.kernel.org/linux-arm-msm/aC-AqDa8cjq2AYeM@linaro.org/
 
