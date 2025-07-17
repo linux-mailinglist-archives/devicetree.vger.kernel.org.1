@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-197262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE0BAB08A42
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 12:06:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEB49B08A48
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 12:08:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D5253A7F54
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 10:06:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 712E24E33CA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 10:07:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF1702989B7;
-	Thu, 17 Jul 2025 10:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39EAF298CCD;
+	Thu, 17 Jul 2025 10:08:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WyTzkd0x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tsGOlj71"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1451DE8A3;
-	Thu, 17 Jul 2025 10:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F197C295DBA;
+	Thu, 17 Jul 2025 10:08:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752746807; cv=none; b=fu8nKc84n/C6Sc8nIr+Ea4N42uknvc8ss46znokpHbh/wGzs/e4TUZVA9EBX+dlzipK6tSt/a61HiOB/wckmx8i6Qaa6WoCtaYbYb5OZN5iXI65qPKIkx5Sw+8op/8z141HiTKnChIeoMrW/RMzsp2RefeJZvUphyhYbYiCqkDc=
+	t=1752746899; cv=none; b=REQ/IC3qX44HpwrnLquIyk73nYDeWF1LGB8w59ukPoKXmExqzaF3pVwwKLUkdD9md/RSGMOxx47LK811LKzJgSsm0KlnUnkflIDfqY7BJDJmtLQZXiW6P1AmZ5zxtn+J7C21dPGDYTPF8CeABLaeB1K8KpL+hGRx3W+6stZppGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752746807; c=relaxed/simple;
-	bh=4LG7lHvKvNtxJnEv2fwhP1DwGB3dKz4VjTEbeapa9qk=;
+	s=arc-20240116; t=1752746899; c=relaxed/simple;
+	bh=4hP+nyTzsHr+HW8bo2r86lHJYv3b9wAQ8DWbNVa32jg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pJbJ6BQ4xgdM2ZKHKREza18beDgISeotMqMiY/2wmt7UvaS83j5dBv7yOk+lp1W/Joybe6QdxTaLZabIsLssaGEDa9grvZJvjDAeY+/NNpEcmGMSTJ+vBLZNdyY0XDi5Bkk98xC0rmRSWAbu2UTnH3BepDuBsQPntDzswxV7dHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WyTzkd0x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1527C4CEE3;
-	Thu, 17 Jul 2025 10:06:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=a/0IIHTOL9JNLmtOR3AOfv04W7kaZF7B0dTJ/1byd8PpdfTto3jLnH6gS6T5Qj4oQfktdj/luPwztbZHLviLVU2zHT7bjX9YsheZVtW3pUn1lu9EhiyZXxA3bgdhAk5Ql3itxqQjhmOIWMwtFeI22kniFqbInRqAjvkeCqOVSG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tsGOlj71; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56691C4CEE3;
+	Thu, 17 Jul 2025 10:08:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752746807;
-	bh=4LG7lHvKvNtxJnEv2fwhP1DwGB3dKz4VjTEbeapa9qk=;
+	s=k20201202; t=1752746896;
+	bh=4hP+nyTzsHr+HW8bo2r86lHJYv3b9wAQ8DWbNVa32jg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WyTzkd0x/SxDJrygPtyjibS2Fq94y3StDCJmjc0XvcsiJ/fzirQcUKAqH+7wylUmw
-	 p9n6ezaJARydmDVTawMrJMhQjCwQ6Fll8jsW4N4Md0IvaqGBMSSSkjP6YgEb+FRRTz
-	 8Qb829jMUIe6BfjCvdGWrqwedbvCsWku+5l91NYWjhfYybymVcFHCZB+Q9QVWoq9A2
-	 0roKRQuxZQFRxp+8ddyptDZZ5tiYI7TojetMXonwB69zgcBmTPb0BP64AE57vaVfii
-	 8uYbulsMFwt77P8edQdkDPssZcDtMwShub92mdPCbuSOzasNhhKBLoA8aihy4cndBk
-	 0qSIr4n9uFUCw==
-Message-ID: <af75073c-4ce8-44c1-9e48-b22902373e81@kernel.org>
-Date: Thu, 17 Jul 2025 12:06:40 +0200
+	b=tsGOlj71QTbjVVS4eK+K5Y1lblwMDlpMc8Wf8ZWAF2bSbk1ytL2w/z2bj46HRN8RK
+	 57t0UIhUFY+TwwNRf+gpNOa/5ooaQEwjPN2idbtKgnzlmsusVHGmLRvqfoURMtC/fT
+	 TCdz6tOb0tCYLXj2A7M3feWkzB0/w2Kdk9G8iU1NkygHqEJkFxwwapPKiUSSHsFjkb
+	 0r+LbeQ8YqhUxIL8Dufk67n+S8DGpEzXwDXEO8wCW1//FaB6KNdlbq+Xw8YWvm3fY7
+	 15cYza3sUK6aOMW9je5KoztIstgkiAXuS/ZHrFjroWtPWuPAsCqwQ4zd25eke6cUVQ
+	 SyzIS8sY1xZVw==
+Message-ID: <40534488-24f6-4958-b032-d45a177dfd80@kernel.org>
+Date: Thu, 17 Jul 2025 12:08:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,35 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 net-next 02/14] dt-bindings: net: add nxp,netc-timer
- property
-To: Wei Fang <wei.fang@nxp.com>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "richardcochran@gmail.com" <richardcochran@gmail.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, Clark Wang
- <xiaoning.wang@nxp.com>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
- "davem@davemloft.net" <davem@davemloft.net>,
- "edumazet@google.com" <edumazet@google.com>,
- "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
- <pabeni@redhat.com>, "vadim.fedorenko@linux.dev"
- <vadim.fedorenko@linux.dev>, Frank Li <frank.li@nxp.com>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>, "F.S. Peng" <fushi.peng@nxp.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>
-References: <20250716073111.367382-1-wei.fang@nxp.com>
- <20250716073111.367382-3-wei.fang@nxp.com>
- <20250717-sceptical-quoll-of-protection-9c2104@kuoka>
- <PAXPR04MB8510EB38C3DCF5713C6AC5C48851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <20250717-masterful-uppish-impala-b1d256@kuoka>
- <PAXPR04MB85109FE64C4FCAD6D46895428851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+Subject: Re: [PATCH 7/7] clk: qcom: gcc: Add support for Global Clock
+ Controller
+To: Abel Vesa <abel.vesa@linaro.org>,
+ Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: sboyd@kernel.org, mturquette@baylibre.com, andersson@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ quic_rjendra@quicinc.com, taniya.das@oss.qualcomm.com,
+ linux-clk@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250716152017.4070029-1-pankaj.patil@oss.qualcomm.com>
+ <20250716152017.4070029-8-pankaj.patil@oss.qualcomm.com>
+ <aHjJG2nrJJZvqxSu@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -124,45 +107,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <PAXPR04MB85109FE64C4FCAD6D46895428851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+In-Reply-To: <aHjJG2nrJJZvqxSu@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/07/2025 11:49, Wei Fang wrote:
->>>
->>> I do not think it is timestamper. Each ENETC has the ability to record
->>> the sending/receiving timestamp of the packets on the Tx/Rx BD, but
->>> the timestamp comes from the Timer. For platforms have multiple Timer
+On 17/07/2025 11:57, Abel Vesa wrote:
+> On 25-07-16 20:50:17, Pankaj Patil wrote:
+>> From: Taniya Das <taniya.das@oss.qualcomm.com>
 >>
->> Isn't this exactly what timestamper is supposed to do?
+>> Add support for Global clock controller for Glymur platform.
 >>
-> According to the definition, timestamper requires two parameters, one is
-> the node reference and the other is the port, and the timestamper is added
-> to the PHY node, and is used by the gerneric mdio driver. The PTP driver
-
-
-We do not speak about drivers.
-
-> provides the interfaces of mii_timestamping_ctrl. So this property is to
-> provide PTP support for PHY devices.
+>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+>> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+>> ---
+>>  drivers/clk/qcom/Kconfig      |   10 +
+>>  drivers/clk/qcom/Makefile     |    1 +
+>>  drivers/clk/qcom/gcc-glymur.c | 8623 +++++++++++++++++++++++++++++++++
+>>  3 files changed, 8634 insertions(+)
+>>  create mode 100644 drivers/clk/qcom/gcc-glymur.c
+>>
+>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+>> index 051301007aa6..1d9e8c6aeaed 100644
+>> --- a/drivers/clk/qcom/Kconfig
+>> +++ b/drivers/clk/qcom/Kconfig
+>> @@ -645,6 +645,16 @@ config SAR_GPUCC_2130P
+>>  	  Say Y if you want to support graphics controller devices and
+>>  	  functionality such as 3D graphics.
+>>  
+>> +config SC_GCC_GLYMUR
 > 
+> Wait, are we going back to this now?
 > 
-> timestamper:	provides control node reference and
-> 			the port channel within the IP core
-> 
-> The "timestamper" property lives in a phy node and links a time
-> stamping channel from the controller device to that phy's MII bus.
-> 
-> But for NETC, we only need the node parameter, and this property is
-> added to the MAC node.
+> X Elite had CLK_X1E80100_GCC, so maybe this should be CLK_GLYMUR_GCC
+> then.
 
-I think we do not understand each other. I ask if this is the
-timestamper and you explain about arguments of the phandle. The
-arguments are not relevant.
 
-What is this purpose/role/function of the timer device?
+Yeah, the SC is meaningless here, unless you call it CLK_SC8480XP_GCC,
+so the authors need to decide on one naming. Not mixtures..
 
-What is the purpose of this new property in the binding here?
 
 Best regards,
 Krzysztof
