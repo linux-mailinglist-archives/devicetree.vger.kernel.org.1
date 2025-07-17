@@ -1,88 +1,90 @@
-Return-Path: <devicetree+bounces-197375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54DCBB08F17
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:23:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44ACFB08F1C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:24:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05A95A62AD6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:23:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D15E7BBE9E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:22:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E063D2F9488;
-	Thu, 17 Jul 2025 14:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECFE22F85E7;
+	Thu, 17 Jul 2025 14:22:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xlsaWxi9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yNfZz1le"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B9502F85C2
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 14:22:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC422F85D7
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 14:22:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752762159; cv=none; b=aU6JybvyhjjFzLx7zDSeAL+1/o0c7+A2AehW6gPwjiSzFoNms8h34TUAuWkhGQgPU6FQZvrSBfGGL8/3SpDVFofkkTsAaqi06ox9C/T7pAOtRs/h9xplGoq7Ff1+35A1MHuCongmNl6BF7MpCtk/FGNzzLNoLfFr/dTPREB9P80=
+	t=1752762173; cv=none; b=FvlnQVHQbFUh+qwYaSoMH6JeqHwbWpOGEpr/TZhyzZErv/E8Em+8OC9a5CDTwQWJlAeaUSBhdmRl+juyLg6mKwk96sj0TvtnsfhI/nQwtLbE4oheqHuR56WCJMqi26A0OOT5iYLGuEaSoVTJ87Rf3CPtGJtZwEOIubt1lGgVjkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752762159; c=relaxed/simple;
-	bh=OH4wrDfav89XkdNsE1p0BQDzGHuGj2x+JYSvAAX8m3o=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HjDM+BuiiazcgStEO4RiBDnjIOcDFmB3ouDQvYtEz/J9gn+leUbMeQD8vg02TNXWwVmP0ikOpf//3SGX1eB1JvdPN5bqXytES0UCwwpiPRU8IxyirAEebU9Guj8GcPzGyPAUY++RTRGXVBwiqxyH+IpazOwszucLgCxCZ/kfLxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xlsaWxi9; arc=none smtp.client-ip=209.85.218.52
+	s=arc-20240116; t=1752762173; c=relaxed/simple;
+	bh=uujvZIEacMR4RmI0viShcrE6nyskrRbnFlw1trpWzkg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TcsdCYXanPUMtmqAMUA2U1dxYB2OqGSRMf8lMHBormEMyua5TJsZLHP6LwA1vRokckpdUB/57HPe+MXkxcanGNkoYdz1QXv6oCD28rR8Kd2SgvCr6yKal/rggEy++hPjJ+8R9pCReqC4K/zyneActuyNtJNX5fDSxSjf3Xv1EOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yNfZz1le; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ae0e0e464ecso20128666b.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 07:22:36 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ae0e0e464ecso20138466b.3
+        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 07:22:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752762155; x=1753366955; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1752762170; x=1753366970; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZzNSUPnzBkKdR3mW5wA88jSoaUKRv7J/6KX45+OJCEo=;
-        b=xlsaWxi9O8W8k51M3yMHxlN9ZQAx3290Ehzb64ILx+L/VnQi2t/uBABmARvXYcu6NM
-         QIgsswDQ/KQYpicVmNLRdHRm5GOSSh2SRaXI0jdUPdf4uLxL4In04RxmA0OnNb7gYAs/
-         7lKmOjHed2PcQ0pJ8/4YmYRDb85IIsfrW1P0h5x+zNjatpaYQLc5Z3M5B1jpHje7+/KH
-         Pc2ExdUGuJofu6WFzk7zf6UpbsZDN7aVjehseVgzy9mAJIkX5+bbRgm69P6dy600aeZM
-         NCijeNyHYO0mPcKtgP+5pc0g6qqmQdKQQrR5trgWLHdAItjNPt5zWUC9ajP6KTIQNsTK
-         o63w==
+        bh=uUMs6u1zn9GnSxixdQQj+KqICw4gE2MY7effcI0/DiY=;
+        b=yNfZz1leGosM3s5QDbUVwNjNGpXhQQTgKLzvKcGTsPP8ABHw6BYqCeHmMVVGRK3QYQ
+         yhzkaWFWXGB2bF32KqJZITkwyt0adyJ+Iod4545kdQIClmH0IcLxb7BLdcdxzzQrEEF1
+         Lsrgu6csuHKk69LsXVdrnbFLALbgx+kHku/p/aIOS4B8WuO4xUJESubqehrj8IiB864X
+         dLex2N9hr+3fyFEEkv9zt2DRRNBg9hjK3GcVd1pGuzuBuSbMUoEbIYOhDp6PfCbY/Eil
+         i4gT9KQTQp9HBAMqDUUQKQs1+5w00nxrNcc+ayuV91NHCXnJfr++hfTrAp4CKuE9Y71D
+         GuLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752762155; x=1753366955;
+        d=1e100.net; s=20230601; t=1752762170; x=1753366970;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ZzNSUPnzBkKdR3mW5wA88jSoaUKRv7J/6KX45+OJCEo=;
-        b=wYO1NTD3nHyD12OWIAJTGHJuUcYiEPHaijDn09hBVsQdH9NSkWCiQIvS2R3i51A9hV
-         Q3Oi6Lv10nTCIcy7EFxIdPoWZW95EoDq9ytJI1g1oFBij2YkLJLlbyNxLt3p/ZO4Ld7i
-         +OaXsQq0YNu3gSGVkuWoD9cLQVOP2mIo2Csa1BcJ3dzdWj3kYg2NBZ73MdjwKSfQ2zL8
-         onkmS9y0XKBVvzAjyZ7AYxR8w0z7Y498j+u2FVGRdD5ckVrgGW8eMpIq93PY8bNWVwio
-         7zfW8uuwy6FoZ+NphCV8egtZEGqb9kzz9HSFipFwMavK010LFbm8MWs/HH6rbNznUVl/
-         OLGA==
-X-Forwarded-Encrypted: i=1; AJvYcCVHQKXPvlY/fSdK1kajtHOUDIkMTfP+J5DZVaXsZAIJUA10OstaH+Fom5xO1Dv7AFjk3OF9bBdUpdz8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNK1cPfEMTDhsFLGfroNfEt1O5UsaxIdl85TDOcbnGPSBIONUR
-	JofEbXeBbjdG7F+RNH5N52CrsXMdzAFr8E2+bJJ5HdsSB05eBHSKwAnRPXZO5VAqmRk=
-X-Gm-Gg: ASbGncsRgG5/OuhwdZ+u/08pCvVV+cQ4dIhzjuhWZMCxfqTluGu/zFc988WgzpxLHLk
-	TAMLtf295ENROgA5y9R0+2Fa3LU/1W3hllZIaRBAhVzs1miRYGtQDeaJYTL+TSpWut8RPmS7YTi
-	+MT+lAwSPKEaNWmICH5TSftO6zOT/yvgyvrDER1OU/cTggJ1QDpWFD2dwHzJiUN35PWcnfpQf3I
-	URpyqr2eBUXwRq1wGPtHMAd/KaofCj9DWOa9qb9OnjOCN6+ZqNEaJ67Nw65qCc8zp7CQ4ZXJCzA
-	lFHRITwyO2g6XS/yiPyKkc9rlZue+TbZWT8AijXB/QT1UWDV1NK5DHjBowtlmVkUSUpA1f7F4rM
-	RUYNIZoiCxfLHA4N0aLXVUrgnHU5adPcK
-X-Google-Smtp-Source: AGHT+IG1+74iXCF3EHn6v+R1gCnqSq7/v8FseRyLjKbV9H4v/JXHyiAaJgnSRbcKuMka+iOoDn2N6w==
-X-Received: by 2002:a17:907:72c8:b0:ad8:9207:b436 with SMTP id a640c23a62f3a-ae9c99a0f28mr261270566b.5.1752762154888;
-        Thu, 17 Jul 2025 07:22:34 -0700 (PDT)
+        bh=uUMs6u1zn9GnSxixdQQj+KqICw4gE2MY7effcI0/DiY=;
+        b=T+lUufYxAcoX9TmFogm337MudDB9Ef35N7Rege+0/7rcJTOyoWu+PljisL5tYQSXF3
+         207exLxexTmZNkDZFGFoaaPr+lh+F7JN8qnnak6Xvx9sIgB6Px08b2Af6YY6lGaMrw4K
+         rNXVEJk4AAlgvbEpg7Op3AE8vo/e84qWNvvu0n92ApcArU26oyCFBndqPzD/XBAduW88
+         mPXGRPOlQRwU5NL756TWLmJ4BmUNbp60ARHTb5ukTeugU7s1cLgG4AZju7v82yXzt53A
+         iuZMJjtwkWlA09WYK7ilN+5w2ELtg4UlEZWLSJja2uqc54IavFDDYROnK81QWn0UfGxA
+         4LmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVgIu3gZJ0ZpvEHkPCBLgw5Md3N40CenI3XEi5iSIiqUqbKqLU6dc9GvrTUnLhiELSP7R+hT5l+vB/g@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkMKlRjP1w3EwFAl9FPu7tYyGvSiBl/IfhYR0CsIaDTPESVj3E
+	GRadyF2no2QwcM2AL2uLzzbIKpfGwGaZVIEbL+wTfHhpjmDYB8dBwGxS7K99f7ajKykQHrLa+v1
+	1+DeeeMg=
+X-Gm-Gg: ASbGncu/taLBj9ATUYFzaw0aUtyXi4zdOVnJNTCg6CInqCfLD1u5Z7tGa+2I1XarXfd
+	bl+/qGbut2ebq4BarNWVo/lHELG9gHio2TvuabNvz/okRsmjrNrnPG8av3E3Crtr40aB6m8Rq8q
+	ZmmkzlYXsMSE3aljJJ79/dt9KRMSEJ5OpaGsZsXIPaxsG2+fisPa8ueB39IEiPirFJKWEkeZuOT
+	JEJE+gAJ5dGb5y1nVyalzHqIS5N1DEXiQj5PbBZRhbrI/fPAMMrgcoeGSOnTJRopBGVTapNV0Yh
+	xP6M346GaIQfYUoC/BmKmLs241GPFyKoCfe6EPwrDasgOeDAXBvlHfVNNrbwyZPjyL4sazSR61h
+	U2w1LPhmd3EtdDRDDF0eZ/iawuzpklmb1iXeDaGjqpbs=
+X-Google-Smtp-Source: AGHT+IFZX9BGgT9x3QocepLQl5WhOnUhBgwxIkPHZcxu8L9iFIb0/kRnbcbOnsyPXf7VCVGi0goryg==
+X-Received: by 2002:a17:907:1b03:b0:ae3:5d47:634 with SMTP id a640c23a62f3a-ae9c9ae83fdmr247023766b.9.1752762169843;
+        Thu, 17 Jul 2025 07:22:49 -0700 (PDT)
 Received: from kuoka.. ([178.197.222.89])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e82e3a8csm1379333266b.154.2025.07.17.07.22.33
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e7e910fesm1371235366b.1.2025.07.17.07.22.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Jul 2025 07:22:34 -0700 (PDT)
+        Thu, 17 Jul 2025 07:22:48 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Tony Lindgren <tony@atomide.com>,
+To: Viresh Kumar <vireshk@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-omap@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	soc@lists.linux.dev,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: ti: omap4: Use generic "ethernet" as node name
-Date: Thu, 17 Jul 2025 16:22:13 +0200
-Message-ID: <20250717142212.92333-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: st: spear: Use generic "ethernet" as node name
+Date: Thu, 17 Jul 2025 16:22:46 +0200
+Message-ID: <20250717142245.92492-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -90,19 +92,19 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1385; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=OH4wrDfav89XkdNsE1p0BQDzGHuGj2x+JYSvAAX8m3o=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoeQcU4/pS61bv71IWPMnOqEVyfmAQdhNqJGsd1
- Xeya8hli1uJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaHkHFAAKCRDBN2bmhouD
- 19IjD/9qbG1sGKejcxxyfQtCjdj7pECUhqmNjsxjo05Sb57GTglnGbl8sd5s45fF6LXh7/FYn8L
- 6bnTv/xa70PBMtvfjmvBCJwp5ipAptLRXCW9oG5gEP/KWqnZhkclU4Nv1euWv0P9M9T7cvZlMng
- cIVqMV67MaYVKIUHxEcZFAl3mVw1gnZQUlie0iaVoKgh5mi8MriaZkP7wnrKkzG42gtT66LT+gB
- 6JNkbUMWm2CschRyB0tN82rBuE0buJFlICyZhbZCp2I7qMUAgRCsxwTl1yb0T6kKnW+5ZnjmehX
- dbvCWjy5J07YuUYPgnhrKkkoxamE98iK4gTdIsqrxK/L1m2mKztSz1bHdah3ipcHgiTKx+8R6J+
- OlGD6+xJFBWGi5J6emkPNrqLIf0a1n5/PYrwbVqHY2loEFeND8KkFAVkaG85meogz4Qg9+zAQaw
- mCY4EL8gRcekWxxitpBhQLjsq/Pk+U0jnG3akQsR5qsPKnNjlGlS0WAVdNW49I44xSQ6Gf9Mmfj
- GFzqwK7Ooq/3rt+ieNGiG/nhkvPacZf02SY0iRsBV2O902Lprvg+CE+OF9sVyxsUaT93w37q/2J
- LCAKmIiD/FCXB12uoWms7wL5AqJePnsi9y4yUxEIvA7ZXnB1dgp7vrsoyWuLRKiY1vncdQ5UT/X JjPkCR07dI3rK5A==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4702; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=uujvZIEacMR4RmI0viShcrE6nyskrRbnFlw1trpWzkg=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoeQc1nazIsXmyvnrckGiynmTvQnQDrqclaTwNs
+ 09NE3Zpv6uJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaHkHNQAKCRDBN2bmhouD
+ 1ziUD/4xRIoA9qa8jB6p8q9H6du3tZw9quXQJhekhD31jMX4VcsCOcjBIiktkHqvRK+VHXCx8SF
+ IlsxNiot9I64M/+CVxK9HOBiD5w2C3MflRYkbeAH3BfbfTvafMU+fo9JgTFr3aOT+vDTGtEfkm9
+ RAeLbqDe6beDNFeG71n25GvTULT8ECpzou92GkVNv2CNf5vG6NmxjOz2/CLn0XlhgWToS8S+tig
+ P8A62nu8Mqmr2sUJ2354HQ4MPB0+yR/iuBfoDU2SuYyUZkf5XvaSligGVsDh0jk+3fjUglX1ne7
+ m4RxY5rg28N6bvXVJpHVW7tcmg89/xdKzOIk0BHk/tlDPjs3XN4BiZu6cW1GC0RSz243zjIJkwY
+ rSE37Vk/lUFbOkuUgXnY9KdkjkywXFBgl2VlQDIyaUZRhV8BBQaIZT0gjFgixzL+Uf3e4LkmQBg
+ FCeEhBHKB9FfYoPgP680CVLj1MUSewy9Z6U3gyXMAr6wq17itAUNRXZbfy90ayzO4NRo7R41Fxk
+ EYVPf23yT0fiaONZv4S3yx8fnt5j25SRnIy+6cM6cMBpKOpWGVKb0dypLdJNxnfRfifT9c0nrcz
+ ZONV3p1k3TigfZKPhQCvzuCkk6L6+/FgYFSAm26bWvXbBPMSzN2GYMii/2DLqSc8Rbze0lZbFAX IzY3tofXGHWcLiQ==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
 
@@ -112,36 +114,147 @@ Recommendation".  Verified lack of impact using dtx_diff.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/ti/omap/omap4-sdp.dts                  | 2 +-
- arch/arm/boot/dts/ti/omap/omap4-var-om44customboard.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/st/spear1310-evb.dts | 2 +-
+ arch/arm/boot/dts/st/spear1310.dtsi    | 8 ++++----
+ arch/arm/boot/dts/st/spear1340-evb.dts | 2 +-
+ arch/arm/boot/dts/st/spear13xx.dtsi    | 2 +-
+ arch/arm/boot/dts/st/spear300-evb.dts  | 2 +-
+ arch/arm/boot/dts/st/spear310-evb.dts  | 2 +-
+ arch/arm/boot/dts/st/spear320-evb.dts  | 2 +-
+ arch/arm/boot/dts/st/spear3xx.dtsi     | 2 +-
+ 8 files changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-sdp.dts b/arch/arm/boot/dts/ti/omap/omap4-sdp.dts
-index b535d24c6140..b550105585a1 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-sdp.dts
-+++ b/arch/arm/boot/dts/ti/omap/omap4-sdp.dts
-@@ -467,7 +467,7 @@ &mcspi1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcspi1_pins>;
+diff --git a/arch/arm/boot/dts/st/spear1310-evb.dts b/arch/arm/boot/dts/st/spear1310-evb.dts
+index 089bd7db55c7..417a064db11e 100644
+--- a/arch/arm/boot/dts/st/spear1310-evb.dts
++++ b/arch/arm/boot/dts/st/spear1310-evb.dts
+@@ -159,7 +159,7 @@ button@1 {
+ 			};
+ 		};
  
--	eth@0 {
-+	ethernet@0 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ks8851_pins>;
+-		gmac0: eth@e2000000 {
++		gmac0: ethernet@e2000000 {
+ 			phy-mode = "gmii";
+ 			status = "okay";
+ 		};
+diff --git a/arch/arm/boot/dts/st/spear1310.dtsi b/arch/arm/boot/dts/st/spear1310.dtsi
+index ba827d60bf07..1498996be14e 100644
+--- a/arch/arm/boot/dts/st/spear1310.dtsi
++++ b/arch/arm/boot/dts/st/spear1310.dtsi
+@@ -128,7 +128,7 @@ pcie2: pcie@b4000000 {
+ 			status = "disabled";
+ 		};
  
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-var-om44customboard.dtsi b/arch/arm/boot/dts/ti/omap/omap4-var-om44customboard.dtsi
-index cadc7e02592b..80e89a2f8be1 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-var-om44customboard.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/omap4-var-om44customboard.dtsi
-@@ -194,7 +194,7 @@ &mcspi1 {
- 	pinctrl-0 = <&mcspi1_pins>;
- 	status = "okay";
+-		gmac1: eth@5c400000 {
++		gmac1: ethernet@5c400000 {
+ 			compatible = "st,spear600-gmac";
+ 			reg = <0x5c400000 0x8000>;
+ 			interrupts = <0 95 0x4>;
+@@ -137,7 +137,7 @@ gmac1: eth@5c400000 {
+ 			status = "disabled";
+ 		};
  
--	eth@0 {
-+	ethernet@0 {
- 		compatible = "ks8851";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ks8851_irq_pins>;
+-		gmac2: eth@5c500000 {
++		gmac2: ethernet@5c500000 {
+ 			compatible = "st,spear600-gmac";
+ 			reg = <0x5c500000 0x8000>;
+ 			interrupts = <0 96 0x4>;
+@@ -146,7 +146,7 @@ gmac2: eth@5c500000 {
+ 			status = "disabled";
+ 		};
+ 
+-		gmac3: eth@5c600000 {
++		gmac3: ethernet@5c600000 {
+ 			compatible = "st,spear600-gmac";
+ 			reg = <0x5c600000 0x8000>;
+ 			interrupts = <0 97 0x4>;
+@@ -155,7 +155,7 @@ gmac3: eth@5c600000 {
+ 			status = "disabled";
+ 		};
+ 
+-		gmac4: eth@5c700000 {
++		gmac4: ethernet@5c700000 {
+ 			compatible = "st,spear600-gmac";
+ 			reg = <0x5c700000 0x8000>;
+ 			interrupts = <0 98 0x4>;
+diff --git a/arch/arm/boot/dts/st/spear1340-evb.dts b/arch/arm/boot/dts/st/spear1340-evb.dts
+index d24146c3c9e8..9e7c356b1d9e 100644
+--- a/arch/arm/boot/dts/st/spear1340-evb.dts
++++ b/arch/arm/boot/dts/st/spear1340-evb.dts
+@@ -157,7 +157,7 @@ partition@1200000 {
+ 			};
+ 		};
+ 
+-		gmac0: eth@e2000000 {
++		gmac0: ethernet@e2000000 {
+ 			phy-mode = "rgmii";
+ 			status = "okay";
+ 		};
+diff --git a/arch/arm/boot/dts/st/spear13xx.dtsi b/arch/arm/boot/dts/st/spear13xx.dtsi
+index 76749992394d..159e941708ca 100644
+--- a/arch/arm/boot/dts/st/spear13xx.dtsi
++++ b/arch/arm/boot/dts/st/spear13xx.dtsi
+@@ -149,7 +149,7 @@ fsmc: flash@b0000000 {
+ 			status = "disabled";
+ 		};
+ 
+-		gmac0: eth@e2000000 {
++		gmac0: ethernet@e2000000 {
+ 			compatible = "st,spear600-gmac";
+ 			reg = <0xe2000000 0x8000>;
+ 			interrupts = <0 33 0x4>,
+diff --git a/arch/arm/boot/dts/st/spear300-evb.dts b/arch/arm/boot/dts/st/spear300-evb.dts
+index 7d4e6412d558..80fae76d4610 100644
+--- a/arch/arm/boot/dts/st/spear300-evb.dts
++++ b/arch/arm/boot/dts/st/spear300-evb.dts
+@@ -69,7 +69,7 @@ fsmc: flash@94000000 {
+ 			status = "okay";
+ 		};
+ 
+-		gmac: eth@e0800000 {
++		gmac: ethernet@e0800000 {
+ 			status = "okay";
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/st/spear310-evb.dts b/arch/arm/boot/dts/st/spear310-evb.dts
+index 459182210825..a3449eb7e59b 100644
+--- a/arch/arm/boot/dts/st/spear310-evb.dts
++++ b/arch/arm/boot/dts/st/spear310-evb.dts
+@@ -88,7 +88,7 @@ fsmc: flash@44000000 {
+ 			status = "okay";
+ 		};
+ 
+-		gmac: eth@e0800000 {
++		gmac: ethernet@e0800000 {
+ 			status = "okay";
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/st/spear320-evb.dts b/arch/arm/boot/dts/st/spear320-evb.dts
+index 6ac53d993cf3..984075e60634 100644
+--- a/arch/arm/boot/dts/st/spear320-evb.dts
++++ b/arch/arm/boot/dts/st/spear320-evb.dts
+@@ -84,7 +84,7 @@ fsmc: flash@4c000000 {
+ 			status = "okay";
+ 		};
+ 
+-		gmac: eth@e0800000 {
++		gmac: ethernet@e0800000 {
+ 			status = "okay";
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/st/spear3xx.dtsi b/arch/arm/boot/dts/st/spear3xx.dtsi
+index f54bb80ba28a..54e87ac98164 100644
+--- a/arch/arm/boot/dts/st/spear3xx.dtsi
++++ b/arch/arm/boot/dts/st/spear3xx.dtsi
+@@ -46,7 +46,7 @@ dma@fc400000 {
+ 			status = "disabled";
+ 		};
+ 
+-		gmac: eth@e0800000 {
++		gmac: ethernet@e0800000 {
+ 			compatible = "snps,dwmac-3.40a";
+ 			reg = <0xe0800000 0x8000>;
+ 			interrupts = <23 22>;
 -- 
 2.48.1
 
