@@ -1,437 +1,227 @@
-Return-Path: <devicetree+bounces-197218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D4B0B087E7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 10:29:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B512BB087F0
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 10:30:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A0C61AA4EDB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 08:30:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11F1A3AC403
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 08:29:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FBC028641F;
-	Thu, 17 Jul 2025 08:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C91A2749EC;
+	Thu, 17 Jul 2025 08:30:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="3zZO/bQw"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="d+vZ+0PD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011052.outbound.protection.outlook.com [40.107.130.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5B7027A468
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 08:29:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752740982; cv=none; b=HE1eReUSJGlPIorHyuwUSzT83isLnuLLEzP2Xwgmm5Z56oboeOdn7f+Q/VktwTRy7wI6Pv50dIq4iB2Nk0zkDEqaGjCDbt7I+LNajhGP4l7tLd83eDv7QRrf0Qg6EznkS/o1bzCYVjcu77RzT+zTL5FsQvGr5s6T74G2Hn2qGFA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752740982; c=relaxed/simple;
-	bh=UNunHUNkH+TN7AOcVml1jP+DpDLBcanyZCyw+pldQvE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=m25g90nBtEQ1CC/yE/ptOg2wdyI2a5o0qDswIQePdPPFWFKtI7OM46+9rRQLe58C9nIes/0CGovuxLJQCaDxoJqOmLClrY1fV/9yUwvM52PZFffHRoubMH4eLPu7KuXz4tSEBbhwceDmHFurZhxF/EwGIf47JA8EoPNWeNCSUyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=3zZO/bQw; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-607434e1821so1027592a12.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 01:29:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1752740978; x=1753345778; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ry2yqY4fcB8r6JNTuIg6GJi9ZBAG4EVyeQwgDvrWgsM=;
-        b=3zZO/bQwku27icG21ERWuH7SL6EIVSr/97M3536zv5kGuN1/dmzOy026I6R+otzsH5
-         Qc3mBy9t96Arvk3yWMke97BdB7dQYwy7dLrXY+o2yzK/6TtsRMtWeuxqglzwGtjGATT2
-         6i5Pu+ZOft0LFimO+QgTH34kXDKPfwFYEF8eC9FtDDjg6+SXzK4pPC1wKrHB45rr4mxU
-         6FCzOlt1ocVWLVyHshdurd8ou39ppYsquQ4CFhYJ1b4jQT9PIzZ42DrrmZvJGF/ibyrA
-         KBDCT+kQj9g+O3Eeqnyu+IUo8l6XMTJRk6O3osvzCtGUAwwlIHSERKr9/naKhneiJ7HW
-         tgcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752740978; x=1753345778;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ry2yqY4fcB8r6JNTuIg6GJi9ZBAG4EVyeQwgDvrWgsM=;
-        b=GvCwZH2b/ZdS6mxTHQ0H5WvK61VGh0tShoBKKBXzaLs7wj43sKMnw/thNK+Ruw/iEi
-         oExddivV7Bm5w8nboDmhseNcCNTGrTxucUiNfv0wlEaZ0wKYNwA29jGcpqvOnyoQastr
-         mLsgwvgB89UVnDPI0sOiunjVnIJqte9jfrxKUbV1aap9zA6bjnVipR8F9oM02NXANuqT
-         x1+gVHmotMd1YYCOOZjjupSkq8ZNvI53OTSpA1xpTiBszw/gL6qjlZPbN8bteSVybSqV
-         t08AismXLTLjshePm+8OeYqnJLzI9vd0oxNn6SldXyni4ZDzbnkQjafcSiTKNeAJCyr/
-         CU8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW001dabaocNkOUEY9+HsEt5oiEmwP5DXG/EGKgTcX43A+EiG0YPe5wk03uvZ0QksnXP78ljBVIWmxt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx59f5Lob5ndUV11keMUyZM3ag8SdNkQv7NrtJxPHPFCWGhaHbd
-	73WgLEKDBqzQPoJZ0SJfloRAkH63FjEKhTzf3Lz/v7xz8nBZfpjG8UsrfBw4sck062s=
-X-Gm-Gg: ASbGncvLGlflGtTv7tXpmKHuFIlEqwd60nqxSgVUF32YQZ7qZO9PyKFtYCEH9VwGOaY
-	XSDE/fBG/uNaYp+qmqI1Ll3VHtCwHh0byH3WP3p+2nR55JTyHywMkp9KYp9nD91o1DiiKaqV6l9
-	ATnf5p+uho6962DuSSp6ScWIpNfIgmatBPJl8KZYZN2yQDbwRM3bjBacPphRifC4KwKwn9LMEc6
-	lEFKpG2LSJ/io/ZmdeK5xV6AL6rOgVesrv24cntIRv+QUgSjcZz/QSJmgl+InN+n7uuMZmkJlOA
-	5oiEtMfOtI1Xzf72arNzUrYkhnwGHy7FjmYeF15HzS2YH3hnxI1hwRiMATCMr3IJ90F0qp6Zsbq
-	DNV0NUL/9Fboyf+CiR2E7FgWLG9+5x2+aYlx5ccwLl6bE2o487rWE4T1sg8X6Fczk9OM=
-X-Google-Smtp-Source: AGHT+IE+TdhlMPh+u91g6pE8N6/1/E6+tgQ36t4anhpy9DrzlSFmbhQrj6aJo6OAcbvrAeM2GDcPYg==
-X-Received: by 2002:a05:6402:35c4:b0:608:6501:6a1f with SMTP id 4fb4d7f45d1cf-61285916635mr4613521a12.1.1752740978021;
-        Thu, 17 Jul 2025 01:29:38 -0700 (PDT)
-Received: from localhost (212095005146.public.telering.at. [212.95.5.146])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-611c9796432sm9746425a12.73.2025.07.17.01.29.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Jul 2025 01:29:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E48E1FAC4E;
+	Thu, 17 Jul 2025 08:30:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752741021; cv=fail; b=W/xDsToI7csdgr1Rf/c8Rf6Vbvymrw9b1VgrDXUx0L3LqkhvkRcucnIftWOaCcMQND6ORht2K6LMp5ZGFAEq2coP0KYTQx1kjaekBELPvxU7JsgfEonJr2s71VxFQlsjz1NNWwbHVkxpUJOQDtzxpODztEFkgIG/yP3/kqVR6QM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752741021; c=relaxed/simple;
+	bh=gQ8UfW+w0AnMHoUGBBTw7tpLpV9jHzbSTGJTBZhlhVU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=tqLwehB78lq5gbuz8StrxovK4wR4dgrHU0tr0+UTIcPgx8wvDA+ypY721d/Th8hQhglsn5TlyMYQjFRaXm5PS1X4xQWXbGJox+BpHlGTrXcBXGs1pnvsBr9pd6nrWaahMfLhKKIy5YOzZRN0iM8E557xBsgdb2finFT91H8gO3o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=d+vZ+0PD; arc=fail smtp.client-ip=40.107.130.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HcgyAGbL+UmSyl1r+FoUORlV7goyDBEcbYZT38aAb584s7U0k27gLlcJGVX3qAxRdhVw9XUAFzXvXRn6+wTB8WxhsJtzHzoJevomkQD+/zTPm3CDYA0qme5dR/3S+C055oC22kkNHW7xK+TA1h8j8pkR6Pw9mRU6237DXnX/aCfozfEKSw5oVoYrojgQDNWKE1l7D/t6bnXbbs/JzM4fmtwsz1JtWi2tVbNRgGZf4ZnjQGk3GZqnXxIYp2hUurXydbAO72FAiosY7AcsuBBSip/dOlbufhx6Q4yomJ2k9+cflpyShB/Rb9l1ZvzHf3Q/+mRAxqjnnK1Apo9tvf5XtA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=V30GmcfnZc2yGIXCx4iWmeqjOvRq8ZcWpoGi4VUFg5I=;
+ b=bLpdx0kFGKKdVpY86U2s7ppg1rfdQRw97mhPCKDnASdCQOgQOMcsOAdW5Y87HKGB1pDd1EHZtI4dmDbXb4MKMfNTIZ170u+f9azSlg8xzWa2FiEMkBquvKJZTY/00aoKN7m/qiLiMOzVIf9VC1vHJ5lTKwNntvbgpSTuglXa4RqyGaaoWBMR6LvJg1pAZk7GoYHYZ8oVjdvdg0kv2/RzfI7BvPAAu+6709CM0ct2bvzw0G42Do3BSsaJAa26HJp12+52checwEvdm4eBRCWczoERY39LAdKfE30hK31x8+KOH47IulElpZlY+hX2np+j3UgjDyRRyCYKJ88nGi5+Wg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V30GmcfnZc2yGIXCx4iWmeqjOvRq8ZcWpoGi4VUFg5I=;
+ b=d+vZ+0PDPHvc/Llvw2VSR1WGS5whfyGBGD+0ljjjPcfx/tU+QyDwmpCVlTZpsVKym9rbPqV8pdinuKqtp7tauib/m24pDwZShfVD0vktYBHNXFUpvKs/eO19Qd9Rm/SEoH2Muwpmv3CyeG7ACkFfpeVplr7hrWTFiby67gW+PY/QBNRTfa9kBIAw4vcAQKxP4bph5qX04aq6vPvEGnkfs5MvdWCmz5fF0or55aZQR7BBGJuWdaHAafTwFQq5+iE6nh3pZ9xIDU575EZ1xesQ4Xc5qEC0/Oj8OMzwjmPQA7pgTViM9/IwDhcjKU8AL1wgD5zwhFQ7pf4fal4LhdW5nA==
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
+ by AS1PR04MB9682.eurprd04.prod.outlook.com (2603:10a6:20b:472::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.39; Thu, 17 Jul
+ 2025 08:30:15 +0000
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db%5]) with mapi id 15.20.8922.028; Thu, 17 Jul 2025
+ 08:30:14 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"richardcochran@gmail.com" <richardcochran@gmail.com>, Claudiu Manoil
+	<claudiu.manoil@nxp.com>, Vladimir Oltean <vladimir.oltean@nxp.com>, Clark
+ Wang <xiaoning.wang@nxp.com>, "andrew+netdev@lunn.ch"
+	<andrew+netdev@lunn.ch>, "davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>, "kuba@kernel.org"
+	<kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>, Frank Li
+	<frank.li@nxp.com>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "festevam@gmail.com"
+	<festevam@gmail.com>, "F.S. Peng" <fushi.peng@nxp.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>, "kernel@pengutronix.de"
+	<kernel@pengutronix.de>
+Subject: RE: [PATCH v2 net-next 01/14] dt-bindings: ptp: add NETC Timer PTP
+ clock
+Thread-Topic: [PATCH v2 net-next 01/14] dt-bindings: ptp: add NETC Timer PTP
+ clock
+Thread-Index: AQHb9iZhkd5V4Hmtg0ufc8muIqXiyLQ178gAgAAHnYA=
+Date: Thu, 17 Jul 2025 08:30:14 +0000
+Message-ID:
+ <PAXPR04MB8510F642E509E915B85062318851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+References: <20250716073111.367382-1-wei.fang@nxp.com>
+ <20250716073111.367382-2-wei.fang@nxp.com>
+ <20250717-furry-hummingbird-of-growth-4f5f1d@kuoka>
+In-Reply-To: <20250717-furry-hummingbird-of-growth-4f5f1d@kuoka>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|AS1PR04MB9682:EE_
+x-ms-office365-filtering-correlation-id: 25938e4e-3432-4ee9-cebb-08ddc50c2767
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|19092799006|1800799024|366016|376014|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?hYNjEnQI4D8qbfq+cJ22T3cKbXm46x5tmZEZuMVqKylLj6uofsL3LOS2lwgy?=
+ =?us-ascii?Q?Ow/0xOPdmwZvWUHiTUq7FOigGmtJb+k1U++dDiWxytBTFji8K+GZHM8JLviC?=
+ =?us-ascii?Q?PNqWGnYA0AtAKWB60kBdS7vg0dkPDWBncQALugDZydduXgy4/OfTeuqa+49J?=
+ =?us-ascii?Q?wnYFBaSCFnPYJC3SB6V579IJtITt66QqBfSd7Z0KCoGoxZlkBqzE82eMfPjs?=
+ =?us-ascii?Q?wOUydILKuvlDiRZJIFgyEGONlPbk1lnpmjV44so9bGjT239gh566Y+VnlOW4?=
+ =?us-ascii?Q?N1bbctq4q2Iq3aWcosS9IvaQPnQsUQJ67jBTQau09F7KsxU174o3X/XZY/xx?=
+ =?us-ascii?Q?pdY957GlfRcNF9KZmRu1hAjteux5cZwlg6UZgcva6y64el6p7LPHyePZdnmE?=
+ =?us-ascii?Q?2vMmf82HEptq+kOY0iCLsZXIE1lnszgfS9UvLO1vFwymsOMEw3V1JoKgaF1L?=
+ =?us-ascii?Q?K4iIqgkluo3fUD7+M26DQqsy3C8YvHbTCeXnSB5tgcRR/DWVCprTvr/ZHHyi?=
+ =?us-ascii?Q?SFUQ0EzEbYMbO7tLNc3B1I81FAZsHaM3jFmPyuPF84UPEISeVvpUrsrqtsTS?=
+ =?us-ascii?Q?KLGd8V4hR0tCXKbiJ4q5FWDqIX+W/wLXS1emxbvN7B03rJx6GFLcM4eLNKlp?=
+ =?us-ascii?Q?tq/snlTOaxbHF49MUyBvD1IRJB90d9xqZ19LENTJYJ2czQnZIeDmsb2J+ODd?=
+ =?us-ascii?Q?huOImXhm8m/NCKmzEkQ5sZ54q0fqQE3pfAENJLhqYrCkNAEAdu1VtaUlh5T9?=
+ =?us-ascii?Q?Q2cl3gmISW1q7sjgulBxaOIEdxioqA+G+k/M0RaW3r6dSkmJr5gp93oQrTZr?=
+ =?us-ascii?Q?4p+EIxu3HaDFaYxWFtgUNhJtxvfD/2gpcsUpAOYGFoVjwR2tpR9fins0oDa6?=
+ =?us-ascii?Q?50hR8ce+FGAICq16ZFNcyrIPhZKySHZbTPc6B/lkm5WOgrhk+w4Js6RSGFfD?=
+ =?us-ascii?Q?tcVZIP2elg7Wfq2+uB+GiYzoom8THyX7l5fcXCkp/LpnfBxDRElGWQuoOgbK?=
+ =?us-ascii?Q?pmwB56hYf/o+Vkvqq7uRICuxIXIKdrXz9uoVr2PFJepicFPfGSadJrqitcE9?=
+ =?us-ascii?Q?bJrwrhDi90yLckt+PwFqJGvxgXV2ezmUf0FhWv6+df6GcWi7mfn5v/xX09uM?=
+ =?us-ascii?Q?zzdccCIaWko207F58grqfivAcG2KEsFMYKbO8DYJtXV5BwqYjinoyyAj4NmS?=
+ =?us-ascii?Q?AxAn8yU3a3pLNvg9rdmlyUPvm3I1R+WawZfolHks0s8Tv0YR5QX0njIZ9FoQ?=
+ =?us-ascii?Q?sx8ntV6DsughG6Tm8ECGmoHsjTP04eqSfwwGDZHoxvMrjg1gxvaucCijzOb+?=
+ =?us-ascii?Q?MjXg2XaOX9cvBwH4Z6QV50uZV1MVIywq/7ncZEQXb0go6DDQ5XRTwzMo+X17?=
+ =?us-ascii?Q?n/TStbhKTR5sD998OQmG64eG5TrsXijfJxVf7oZROwzYqN4uec40uTZcSrNs?=
+ =?us-ascii?Q?IDNRPg7hh3lepC9PNnAtgWT1U5Az6aNVHFBRcX4eoAYvN0pxQCoAiA=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(366016)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?pA2vPaUFF6kj8fyGLt8pk11fBt1T9C/UT/BEKgVXd8bO2Cgd3evYsctRhWYa?=
+ =?us-ascii?Q?sPoam/C8ccm3xXAPHH2iLoOngMuLFiBjEafzuVIIg1gU709w8zMLTQiDipk6?=
+ =?us-ascii?Q?+9TIUBUyvdXFU4Mxp2TikRDTSoT9MCDBJ2bIiQY3o5LGrrTfwn2txTtdVQrC?=
+ =?us-ascii?Q?Jho++jxjItoNXHhncqb4akulRHf4kPNOw48Gf+eHKZLNLZ1kayG7H0/8xAcx?=
+ =?us-ascii?Q?CyQ66ExrTATQzT4OzGFZxb/Iz0HzPTihK43NmhnVv9UAsWgjyryeRD/fDEu6?=
+ =?us-ascii?Q?+6mGbDsmAK/scrHjYUjE3BZmKLHy8AmZmJceriDEIRGCTUfRmqnPvBotyeCe?=
+ =?us-ascii?Q?aeaRxAT1X/8kWYcQkE32LBzJiHSB+k9JpN9wrdUeOBQ/mwcZy4kMtm3bl5vJ?=
+ =?us-ascii?Q?HnQS5eoh9piLs99c24luTdv1fMZBKEeVUMRV710jI43IPPnKaWQY6CZLXL5L?=
+ =?us-ascii?Q?n+ouCGW6A6tWc4zSDVfCtlushs/tTfJNJIL6EJpajZpvyx3G6oPQHk6U1cJs?=
+ =?us-ascii?Q?dTgEMWl7f5nPfCqmkWDT52X/687JW0u2vs1XUxQgXlEa0YlDyKm383mLzjNt?=
+ =?us-ascii?Q?ZbHV0kLt+pYIT9iE9xI1ClQCigHr7zsaDCqChZomQZsm+6PDckmknkvpUxZC?=
+ =?us-ascii?Q?gcRbjGOddN0iwKFdBs/507wLvjy/miLxm4tqcw9tiK9Y4JZdFfo1zetx5L44?=
+ =?us-ascii?Q?FvxWjHgbqB+aA1pbvo3wfEZynqW7YLHmEary14nMGF5HD7R4yGDX1QnH4UBd?=
+ =?us-ascii?Q?APKJ+clto7AdXRiylvyDOAd1LKkxvOK0vkzVM0Vbdg+sqVmdSK5qSH9nzv5/?=
+ =?us-ascii?Q?iOgvKI4yDoWRhSA/6KKHhvU3rimDUXi61MsVnKIYGjBGk1dv1hlEXZJJNDny?=
+ =?us-ascii?Q?kDYTWaKTv819f+2MowVHOSq3oM9Vv62wavLWun13ayJ39UHGJ3hYyRidOlgx?=
+ =?us-ascii?Q?7dCxdn2h7lSKTsGkKIM7B1A4C0mE97CvraQVeABcpbgTknHDi0iaH3RGwjqz?=
+ =?us-ascii?Q?f0r2ybG/p929oXTsA80gFRvuoXU0r9HqJ/fLJZAB9ZsOETWGVN+F5MS/75G2?=
+ =?us-ascii?Q?AUzz9UT3Jnd2gWsTjd4BIlWMLUpxY15RGIoqUnaQucBIplkVlAFsdElLTnBo?=
+ =?us-ascii?Q?2uwx/ZB0Hq+aJc1DyPX3sZJi4HBt9VKTwdsNRgcaEsUatn8xnaaxNJw/DKcO?=
+ =?us-ascii?Q?XT3WMxAGD1ppwdWBDY9XvJoBHcrqt+p0i6dWh6nzLSsukZuqfSWMWiEtHkMD?=
+ =?us-ascii?Q?EiJy+fBxTohFqRR3F3M0NHUTuAgrQ2VoxOLD2tfCQ8zzIY+SsLBZy45JA9jY?=
+ =?us-ascii?Q?2vevhYksU8qlvOfCDsAEfA//U7okQIu0vhM2FyznoWLAMSbJR5Wdk9snt1xq?=
+ =?us-ascii?Q?AfoiWwoC8apQD+iUq9L9DR2b0xKc9srv1obvMh/VZf49/PMy2BqlQ6qpzSmE?=
+ =?us-ascii?Q?3zPj61fU8+yTRI3uk+Xb0r3pXgucDiN/Q7P5GYSTJxwIeHEmONmaaWvccOTE?=
+ =?us-ascii?Q?BunS65iROYEjsqS2suN6GBIDiSPtr17DMMtMGaKafiyH8VVrP6dfUh6fDB9b?=
+ =?us-ascii?Q?oqjhOgfkTB41oRV9nug=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 17 Jul 2025 10:29:35 +0200
-Message-Id: <DBE6TK1KDOTP.IIT72I1LUN5M@fairphone.com>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-crypto@vger.kernel.org>, <dmaengine@vger.kernel.org>,
- <linux-mmc@vger.kernel.org>
-Subject: Re: [PATCH v2 14/15] arm64: dts: qcom: Add initial Milos dtsi
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Will Deacon"
- <will@kernel.org>, "Robin Murphy" <robin.murphy@arm.com>, "Joerg Roedel"
- <joro@8bytes.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Rafael J.
- Wysocki" <rafael@kernel.org>, "Viresh Kumar" <viresh.kumar@linaro.org>,
- "Manivannan Sadhasivam" <mani@kernel.org>, "Herbert Xu"
- <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>,
- "Vinod Koul" <vkoul@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>, "Robert Marko"
- <robimarko@gmail.com>, "Das Srinagesh" <quic_gurus@quicinc.com>, "Thomas
- Gleixner" <tglx@linutronix.de>, "Jassi Brar" <jassisinghbrar@gmail.com>,
- "Amit Kucheria" <amitk@kernel.org>, "Thara Gopinath"
- <thara.gopinath@gmail.com>, "Daniel Lezcano" <daniel.lezcano@linaro.org>,
- "Zhang Rui" <rui.zhang@intel.com>, "Lukasz Luba" <lukasz.luba@arm.com>,
- "Ulf Hansson" <ulf.hansson@linaro.org>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250713-sm7635-fp6-initial-v2-0-e8f9a789505b@fairphone.com>
- <20250713-sm7635-fp6-initial-v2-14-e8f9a789505b@fairphone.com>
- <3e0299ad-766a-4876-912e-438fe2cc856d@oss.qualcomm.com>
-In-Reply-To: <3e0299ad-766a-4876-912e-438fe2cc856d@oss.qualcomm.com>
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25938e4e-3432-4ee9-cebb-08ddc50c2767
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jul 2025 08:30:14.7242
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JBQI3omvZSDNElhHMhy0oNGEPL7lHMfQymgxyX9nWIXZqt321Dzr632gwbmJtVZob5hQ5+6WoBbV8q2j7Zlstw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9682
 
-On Mon Jul 14, 2025 at 1:06 PM CEST, Konrad Dybcio wrote:
-> On 7/13/25 10:05 AM, Luca Weiss wrote:
->> Add a devicetree description for the Milos SoC, which is for example
->> Snapdragon 7s Gen 3 (SM7635).
->>=20
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->
-> [...]
->
->> +		cpu-map {
->> +			cluster0 {
->> +				core0 {
->> +					cpu =3D <&cpu0>;
->> +				};
->> +
->> +				core1 {
->> +					cpu =3D <&cpu1>;
->> +				};
->> +
->> +				core2 {
->> +					cpu =3D <&cpu2>;
->> +				};
->> +
->> +				core3 {
->> +					cpu =3D <&cpu3>;
->> +				};
->> +			};
->> +
->> +			cluster1 {
->> +				core0 {
->> +					cpu =3D <&cpu4>;
->> +				};
->> +
->> +				core1 {
->> +					cpu =3D <&cpu5>;
->> +				};
->> +
->> +				core2 {
->> +					cpu =3D <&cpu6>;
->> +				};
->> +			};
->> +
->> +			cluster2 {
->> +				core0 {
->> +					cpu =3D <&cpu7>;
->> +				};
->> +			};
->> +		};
->
-> I'm getting mixed information about the core topology..=20
->
-> What does dmesg say wrt this line?
->
-> CPU%u: Booted secondary processor 0x%010lx [0x%08x]\n
+> On Wed, Jul 16, 2025 at 03:30:58PM +0800, Wei Fang wrote:
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - pci1131,ee02
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description:
+> > +      The reference clock of NETC Timer, if not present, indicates tha=
+t
+> > +      the system clock of NETC IP is selected as the reference clock.
+>=20
+> If not present...
+>=20
+> > +
+> > +  clock-names:
+>=20
+> ... this also is not present...
+>=20
+> > +    description:
+> > +      NETC Timer has three reference clock sources, set
+> TMR_CTRL[CK_SEL]
+> > +      by parsing clock name to select one of them as the reference clo=
+ck.
+> > +      The "system" means that the system clock of NETC IP is used as t=
+he
+> > +      reference clock.
+> > +      The "ccm_timer" means another clock from CCM as the reference
+> clock.
+> > +      The "ext_1588" means the reference clock comes from external IO
+> pins.
+> > +    enum:
+> > +      - system
+>=20
+> So what does system mean?
+>=20
 
-[    0.003570] CPU1: Booted secondary processor 0x0000000100 [0x410fd801]
-[    0.004738] CPU2: Booted secondary processor 0x0000000200 [0x410fd801]
-[    0.005783] CPU3: Booted secondary processor 0x0000000300 [0x410fd801]
-[    0.007206] CPU4: Booted secondary processor 0x0000000400 [0x410fd811]
-[    0.008206] CPU5: Booted secondary processor 0x0000000500 [0x410fd811]
-[    0.009073] CPU6: Booted secondary processor 0x0000000600 [0x410fd811]
-[    0.010406] CPU7: Booted secondary processor 0x0000000700 [0x410fd811]
-
->
->> +	pmu-a520 {
->> +		compatible =3D "arm,cortex-a520-pmu";
->> +		interrupts =3D <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
->> +	};
->> +
->> +	pmu-a720 {
->> +		compatible =3D "arm,cortex-a720-pmu";
->> +		interrupts =3D <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
->> +	};
->
-> See:
->
-> 9ce52e908bd5 ("arm64: dts: qcom: sm8650: switch to interrupt-cells 4 to a=
-dd PPI partitions")
-> 2c06e0797c32 ("arm64: dts: qcom: sm8650: add PPI interrupt partitions for=
- the ARM PMUs")
-
-Sure, will take a look.
-
->
-> [...]
->
->> +		gcc: clock-controller@100000 {
->> +			compatible =3D "qcom,milos-gcc";
->> +			reg =3D <0x0 0x00100000 0x0 0x1f4200>;
->> +
->> +			clocks =3D <&rpmhcc RPMH_CXO_CLK>,
->> +				 <&sleep_clk>,
->> +				 <0>, /* pcie_0_pipe_clk */
->> +				 <0>, /* pcie_1_pipe_clk */
->> +				 <0>, /* ufs_phy_rx_symbol_0_clk */
->> +				 <0>, /* ufs_phy_rx_symbol_1_clk */
->> +				 <0>, /* ufs_phy_tx_symbol_0_clk */
->> +				 <0>; /* usb3_phy_wrapper_gcc_usb30_pipe_clk */
->> +			protected-clocks =3D <GCC_PCIE_1_AUX_CLK>, <GCC_PCIE_1_AUX_CLK_SRC>,
->> +					<GCC_PCIE_1_CFG_AHB_CLK>, <GCC_PCIE_1_MSTR_AXI_CLK>,
->> +					<GCC_PCIE_1_PHY_RCHNG_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
->> +					<GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
->> +					<GCC_PCIE_1_PIPE_DIV2_CLK>, <GCC_PCIE_1_PIPE_DIV2_CLK_SRC>,
->> +					<GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>;
->
-> Does access control disallow accessing these on your prod-fused
-> device?
-
-Hm, taking another look, this property should probably be moved to
-device dts.
-
-Downstream has this in volcano.dtsi but volcano6i.dtsi (QCM6690?) and
-volcano6ip.dtsi (QCS6690?) have a /delete-property/ for this, because
-they have PCIe available.
-
-I don't think this has anything to do with secure boot fuses, but I
-don't think I have tried enabling these clocks on my SB-off prototype.
-
->
-> [...]
->
->> +		usb_1: usb@a600000 {
->> +			compatible =3D "qcom,milos-dwc3", "qcom,snps-dwc3";
->> +			reg =3D <0x0 0x0a600000 0x0 0x10000>;
->
-> size =3D 0xfc_000
-
-Ack
-
->
-> [...]
->
->> +
->> +			clocks =3D <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
->> +				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
->> +				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
->> +				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
->> +				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
->> +				 <&rpmhcc RPMH_CXO_CLK>;
->> +			clock-names =3D "cfg_noc",
->> +				      "core",
->> +				      "iface",
->> +				      "sleep",
->> +				      "mock_utmi",
->> +				      "xo";
->> +
->> +			assigned-clocks =3D <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
->> +					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
->> +			assigned-clock-rates =3D <19200000>, <133333333>;
->
-> Set the latter to 200000000 - your device doesn't have USB3, but the
-> next person may lose their hair about tracking down why it doesn't
-> work on theirs
-
-Ah, I think I only checked the downstream reference which was patched to
-be qcom,core-clk-rate =3D <133333333>; for FP6. The original file does
-have:
-
-  qcom,core-clk-rate =3D <200000000>;
-  qcom,core-clk-rate-disconnected =3D <133333333>;
-
->
-> [...]
->
->> +		pdc: interrupt-controller@b220000 {
->> +			compatible =3D "qcom,milos-pdc", "qcom,pdc";
->> +			reg =3D <0x0 0x0b220000 0x0 0x30000>, <0x0 0x174000f0 0x0 0x64>;
->
-> 1 per line, please
-
-Ack
-
->
->> +			interrupt-parent =3D <&intc>;
->> +
->> +			qcom,pdc-ranges =3D <0 480 40>, <40 140 11>, <51 527 47>,
->> +					  <98 609 31>, <129 63 1>, <130 716 12>,
->> +					  <142 251 5>;
->> +
->> +			#interrupt-cells =3D <2>;
->> +			interrupt-controller;
->> +		};
->> +
->> +		tsens0: thermal-sensor@c228000 {
->> +			compatible =3D "qcom,milos-tsens", "qcom,tsens-v2";
->> +			reg =3D <0x0 0x0c228000 0x0 0x1ff>, /* TM */
->> +			      <0x0 0x0c222000 0x0 0x1ff>; /* SROT */
->
-> drop the comments
->
-> the sizes are 0x1000 for both regions for both controllers
-
-Ack
-
->
->> +
->> +			interrupts =3D <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
->
-> pdc 26
-
-You mean replace <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH> with
-<&pdc 26 IRQ_TYPE_LEVEL_HIGH> (plus interrupts-extended)?
-
-I assume you got this from internal docs, but just to mention,
-volcano-thermal.dtsi contains GIC_SPI 506 (+ 507 for tsens1).
-
->
->> +				     <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names =3D "uplow",
->> +					  "critical";
->> +
->> +			#qcom,sensors =3D <15>;
->> +
->> +			#thermal-sensor-cells =3D <1>;
->> +		};
->> +
->> +		tsens1: thermal-sensor@c229000 {
->> +			compatible =3D "qcom,milos-tsens", "qcom,tsens-v2";
->> +			reg =3D <0x0 0x0c229000 0x0 0x1ff>, /* TM */
->> +			      <0x0 0x0c223000 0x0 0x1ff>; /* SROT */
->> +
->> +			interrupts =3D <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
->
-> pdc 27
-
-same as above
-
->
->> +				     <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names =3D "uplow",
->> +					  "critical";
->> +
->> +			#qcom,sensors =3D <14>;
->> +
->> +			#thermal-sensor-cells =3D <1>;
->> +		};
->> +
->> +		aoss_qmp: power-management@c300000 {
->> +			compatible =3D "qcom,milos-aoss-qmp", "qcom,aoss-qmp";
->> +			reg =3D <0x0 0x0c300000 0x0 0x400>;
->> +
->> +			interrupt-parent =3D <&ipcc>;
->> +			interrupts-extended =3D <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLI=
-NK_QMP
->> +						     IRQ_TYPE_EDGE_RISING>;
->> +
->> +			mboxes =3D <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
->> +
->> +			#clock-cells =3D <0>;
->> +		};
->> +
->> +		sram@c3f0000 {
->> +			compatible =3D "qcom,rpmh-stats";
->> +			reg =3D <0x0 0x0c3f0000 0x0 0x400>;
->> +		};
->> +
->> +		spmi_bus: spmi@c400000 {
->> +			compatible =3D "qcom,spmi-pmic-arb";
->
-> There's two bus instances on this platform, check out the x1e binding
-
-Will do
-
->
-> [...]
->
->> +		intc: interrupt-controller@17100000 {
->> +			compatible =3D "arm,gic-v3";
->> +			reg =3D <0x0 0x17100000 0x0 0x10000>,	/* GICD */
->> +			      <0x0 0x17180000 0x0 0x200000>;	/* GICR * 8 */
->
-> drop the comments please
-
-Ack
-
->
-> [...]
->
->> +			clocks =3D <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
->> +			clock-names =3D "xo", "alternate";
->
-> 1 a line, please
-
-Ack
-
->
-> [...]
->
->> +		cpuss0-thermal {
->> +			thermal-sensors =3D <&tsens0 1>;
->> +
->> +			trips {
->> +				cpuss0-hot {
->> +					temperature =3D <110000>;
->> +					hysteresis =3D <1000>;
->> +					type =3D "hot";
->> +				};
->> +
->> +				cpuss0-critical {
->> +					temperature =3D <115000>;
->> +					hysteresis =3D <0>;
->> +					type =3D "critical";
->> +				};
->> +			};
->> +		};
->
-> See:
->
-> 06eadce93697 ("arm64: dts: qcom: x1e80100: Drop unused passive thermal tr=
-ip points for CPU")
->
-> (tldr drop non-critical trips for CPU)
-
-Will take a look.
-
-Regards
-Luca
-
->
-> Konrad
+"system" is the system clock of the NETC subsystem, we can explicitly speci=
+fy
+this clock as the PTP reference clock of the Timer in the DT node. Or do no=
+t
+add clock properties to the DT node, it implicitly indicates that the refer=
+ence
+clock of the Timer is the "system" clock.
 
 
