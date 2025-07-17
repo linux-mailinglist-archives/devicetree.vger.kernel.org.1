@@ -1,84 +1,68 @@
-Return-Path: <devicetree+bounces-197110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ED6CB083C8
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 06:31:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 028A7B083D5
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 06:32:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBA2A1C20EBE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 04:31:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E8BD3ABDB1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 04:31:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BFA41F8724;
-	Thu, 17 Jul 2025 04:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80EC20C000;
+	Thu, 17 Jul 2025 04:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="enOTDJXh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YDwkfBVY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A95318C31;
-	Thu, 17 Jul 2025 04:31:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 973171ADFFB;
+	Thu, 17 Jul 2025 04:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752726679; cv=none; b=CrHaEw/0g+JWXcZH+cS1lbOFzdqWd1YifuY0YWTDghNB30e98LJSbugtnw6om0YgX4H7f4Ehv5NBFPJ9VKY8zfg6W0JkD/tPqd2ngDOam2gLmfHxwEJBZ24ZkV/uGnYeRvAU9QvXbiSbzNaIOO20ET8/bJvzIK8uHoXix+QKDFg=
+	t=1752726682; cv=none; b=CDsNy6KHHYtAzXwajv4odW3a9m1W1fTPnXIfe9w1mi9YWlxTNh0G6jVnzDOJTrMPy87z6jpqrvd+AIwGiNDBnhnA5ipcr5v+HUKLS6e3YHYSqvBiwYQZ5fYAWoDcq+Z/pE/zNaqNDsSS7qHzxgNWmL0JOrOvW2tmNukZLOuAsD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752726679; c=relaxed/simple;
-	bh=x3k38YgM7pT0R+UbD5jaz5YqCqk54/Ulve4u9NBd+Pk=;
+	s=arc-20240116; t=1752726682; c=relaxed/simple;
+	bh=AYiGcW5LXQG22qWNR7kIzwJHzASQsDRufP44m+rTla4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GJKIwUo+H35oNBMR27c/M8vRIqYyIzufQmuPgPRNkpBSk5mjXH5IcMx3Skrq1vT08EkttshYXM1Z9P5T50YSujDlE3n9zs3dwqajjMJdb6s22nqlEPe7hALHcVyGRmuIczojWeXoKB2fiO8Jf1u5/pngubCWTvIHH2QeeozHC+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=enOTDJXh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6FCDC4CEE3;
-	Thu, 17 Jul 2025 04:31:16 +0000 (UTC)
+	 MIME-Version:Content-Type; b=TsFEKmd5U6ySamszcgwcvCHb/eyVvp2v92urNwl+2w8uIbo5eFijFEpAlAMArQaWraVWGuz24m8QXR9TIHgOazGY3vOvJWNFydU1EJ/H7+IPEAk/qVLDA0wWi8Km+PrrZl7wzqO+IPNRsYv0cbkk2fkixrok+mIS/fJ5/EHISH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YDwkfBVY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30EB3C4CEFE;
+	Thu, 17 Jul 2025 04:31:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752726678;
-	bh=x3k38YgM7pT0R+UbD5jaz5YqCqk54/Ulve4u9NBd+Pk=;
+	s=k20201202; t=1752726682;
+	bh=AYiGcW5LXQG22qWNR7kIzwJHzASQsDRufP44m+rTla4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=enOTDJXhI0p2+BgVz7sGN+ipLqHVKXox/clCzv3nCga8X79fuU0izlkdHUyFv//TT
-	 P9jL1ijF6+nK7rQi7m2D50n/TiElRvLOPxnHgzGP01T5fuwo85ArM84kY7YFUf+Aen
-	 intA4GMXLZI6gHL7FTFvvhh1VSiMf/7uaRAlW5mG2BsCVjOiOSq2fEiZuQyzBVVR5q
-	 As2JItT2oR691EnIWGirRvhR1NXPFh0yWLX8PyTenrc4bE/oanX5HA1iD4DcG1RVqL
-	 SShiBHPZCoFoawtvB9h70n2T8JMHHGFKLIX1328s1ks1Cb/Kz+P0WWQWTR4SUM4bnV
-	 w+PfUP+4s9EgQ==
+	b=YDwkfBVYTJ46hnyCOjVU+bDIxuPNvO/O8VpVy5s5pUxt0t39WMFCbnz/7qyH/BKmD
+	 AxCcYVuLV3YQwbr3n1npYwW+k41P+oCeBpL64M6ZtckfgJIZk4/5JbfPQgrTQ1qurj
+	 OVqRBVvvNrrJ6uKwrghFPwjFICmnD5NxXfVgwXsxXnVVX26ZFdTb8t8EjwOfj1mtAn
+	 FQ0RxP4hFKOUe0ua2xBurqFKDMynHnsjNgx7uIHJAkVxy92N5rMf1UD3vyQrRR2roc
+	 KE0rb5MpVjtZRB19R4oDJiJ1t6+FnyZeZfFVVk5IC+jV0/WkGI23VTL+cUPqUIDCO8
+	 SLrUUhgk0INHg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Rob Clark <robin.clark@oss.qualcomm.com>,
-	Sean Paul <sean@poorly.run>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Viresh Kumar <vireshk@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
+	Luo Jie <quic_luoj@quicinc.com>,
+	Lee Jones <lee@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	George Moussalem <george.moussalem@outlook.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v4 0/4] Support for Adreno X1-45 GPU
-Date: Wed, 16 Jul 2025 23:30:52 -0500
-Message-ID: <175272667115.130869.4357209750133500599.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v4 0/5] Add CMN PLL clock controller support for IPQ5018
+Date: Wed, 16 Jul 2025 23:30:55 -0500
+Message-ID: <175272667141.130869.3942726331849650833.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250623-x1p-adreno-v4-0-d2575c839cbb@oss.qualcomm.com>
-References: <20250623-x1p-adreno-v4-0-d2575c839cbb@oss.qualcomm.com>
+In-Reply-To: <20250516-ipq5018-cmn-pll-v4-0-389a6b30e504@outlook.com>
+References: <20250516-ipq5018-cmn-pll-v4-0-389a6b30e504@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,20 +73,24 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 23 Jun 2025 19:42:05 +0530, Akhil P Oommen wrote:
-> Add support for X1-45 GPU found in X1P41200 chipset (8 cpu core
-> version). X1-45 is a smaller version of X1-85 with lower core count and
-> smaller memories. From UMD perspective, this is similar to "FD735"
-> present in Mesa.
+On Fri, 16 May 2025 16:36:07 +0400, George Moussalem wrote:
+> The CMN PLL block of IPQ5018 supplies output clocks for XO at 24 MHZ,
+> sleep at 32KHZ, and the ethernet block at 50MHZ.
 > 
-> Tested Glmark & Vkmark on Debian Gnome desktop.
+> This patch series extends the CMN PLL driver to support IPQ5018. It also
+> adds the SoC specific header file to export the CMN PLL output clock
+> specifiers for IPQ5018. A new table of output clocks is added for the
+> CMN PLL of IPQ5018, which is acquired from the device according to the
+> compatible.
 > 
 > [...]
 
 Applied, thanks!
 
-[4/4] arm64: dts: qcom: Add GPU support to X1P42100 SoC
-      commit: 2c66665d8defe1c36bdd2848b245dc906d4f3ab4
+[1/5] clk: qcom: ipq5018: keep XO clock always on
+      commit: 693a723291d0634eaea24cff2f9d807f3223f204
+[3/5] clk: qcom: ipq-cmn-pll: Add IPQ5018 SoC support
+      commit: 25d12630561d8d0906f1f5eceb055da3af67c8c9
 
 Best regards,
 -- 
