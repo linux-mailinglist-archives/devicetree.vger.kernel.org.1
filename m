@@ -1,112 +1,110 @@
-Return-Path: <devicetree+bounces-197238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C590B08926
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 11:21:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF5EB08929
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 11:21:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C68A3BE3BB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 09:20:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 541D2565CBD
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 09:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AFCA289829;
-	Thu, 17 Jul 2025 09:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602F3288CBD;
+	Thu, 17 Jul 2025 09:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="KwCM4q16"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33CB34503B;
-	Thu, 17 Jul 2025 09:21:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AEE4503B;
+	Thu, 17 Jul 2025 09:21:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752744067; cv=none; b=Wx6jvuNIMw5GFm8Ju082+1auWR3jX7GCBmIN6ZxcQ5keDbinhSMvFy5X7UDDXNCHPD4XSuYI5UQHd9jsApeMyFM4LBF9Pm83vaRlwUZDCgEcLOn2zsYwE5AWVFznc0OEp9GcaYKje31+Kl1LHL4nM3tFS8uzIqhpijlHUX3M3CU=
+	t=1752744078; cv=none; b=Wd7ppCzZnad++klupTQN7vMGBzzXGqxnc1Gf3TMMaYSa7N1hSF7ZMXfD58jJh5bkNlR/N9p4aIwWGrUvirNRxGraCrDcUyiryjBACl2AaqJxQKIzoss7DiYB091uX3CpSFmVEDFnixbirzCzk7YryProI2Q1RTiIut4dsHhC2PU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752744067; c=relaxed/simple;
-	bh=nU19RtklzUHY7WY64Ssw7G0Wx4k8Zq+35hz9TBSimKw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SbHfX7trULilgGCJXiEl0GYuBhhADVT8nWGindfXpTpDym0glCJwsBnlnjPcTf7ACGvJ7+xfYQSktIA9l9k8MOqwxnp+hFOk0Oyz9b0ZOXNH6yM+rTrNTJ5MbkGMnHBjuU6LFK8WV7b+sXZV59ePnWYhGdFU0OUAczuaYlGk46U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C455543123;
-	Thu, 17 Jul 2025 09:20:58 +0000 (UTC)
-Message-ID: <96fad5ac-3ddd-44eb-b82d-03d2ddfb978c@ghiti.fr>
-Date: Thu, 17 Jul 2025 11:20:57 +0200
+	s=arc-20240116; t=1752744078; c=relaxed/simple;
+	bh=ghYODKwRN56ZF4az5gyzpDmfGnkll1VEDNzXJkGJV08=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=O1dBOyxn5MNYoUJmMkBVCTxN2TUnTD1a3g9TfxrHYratEowBnsOb62em391u3fEj7+qCSss/jsUGjTQMUfQoF7ued1V946frw8UDV7CYeh7u5epvKOisQSJaajIuHcbU0XdXo1JC0Rf4cCP+Rs5oeK5P1/ru7zJkvT5fj7ixI5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=KwCM4q16; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-23dea2e01e4so8528805ad.1;
+        Thu, 17 Jul 2025 02:21:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1752744075; x=1753348875; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ghYODKwRN56ZF4az5gyzpDmfGnkll1VEDNzXJkGJV08=;
+        b=KwCM4q16XwuaXyFI1NYXMnLcMmWSmOqNjCynEQW3mLeyuftMzeYvY1oMHMcXxO7fEd
+         UdPnJqgSz9OMWdacJEbAg6oDBfBvqbb//ZQrYF6a8ETuw9m2r7zXf4WD+s8GBanpLRZs
+         z+XZ2FJbloxKx+oI/irN+KllNpai/PDY/69xBY+sMs5OJqhPKRYr2aZvMEKOiPDQ+Ge8
+         ksdj/4aRaoK0RnZ6d5zCD8rWT3Swc8kjMl6gDdOQxS4mhd1clTxQcIwP2hRXIy2rsJCo
+         Mejbw7lrLWwZbt3DzpvakRcBVUNQ13maiNCDKp3CMLqoULD7gGTohvqJ6ikNfzML5F59
+         uYtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752744075; x=1753348875;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ghYODKwRN56ZF4az5gyzpDmfGnkll1VEDNzXJkGJV08=;
+        b=TkabxaSAgAPgSJn3JTSSIOaQWwv6VGNVqckxiNvDWHQ6xu1agS+2NDu0F01sAaY04c
+         hMZZQmXdEUIsDzLVF8xhGX05TSkMk2oOGupldVZerD+yo28iCdopLIylBhlhNOKp2yn0
+         4L5dLMZ4pEL3M/CgyeMu7rP2bj7u0EPenY5SGhOqyq6wPRf+BV4LQzmxS9Z2pLQpf2DQ
+         hZwKKkKw9+dD7+NEkfNXLwCFPsrTMBUUKupO8DgrOltQyntsTgcxvrxEJHxxIrfGB+tv
+         C/6KUJys9x4Ztd8bWzXlV5lwGNohUhkDoUViJEDFFBdZbmVCtmPIiIa/tGyt64uUYHoD
+         NDbA==
+X-Forwarded-Encrypted: i=1; AJvYcCXClinLyTEQMLY+Xb0LMM+xpfVTa8Bm0jkhAQB02rdbmtKhR7NMSs8Qd9NnjNFfCcM/BdgupZ4RJbfERDxt@vger.kernel.org, AJvYcCXXuszv+8pU71HS/oMM5lfWQNB3HGFSS3MaBtcNeY65tJOHcatnOx7Zc1NibMHRULncjzrC/HejdQzr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxO3pkteZIujvHWOc3bT2PU+33M1iRMe1N6c+GAz6VHkAsvhuf6
+	1eF0lsSP7MfamKa4W3XlBpvWffOc4A+gSYZZwYraSDI7Et630pjnwodkbpNKrLWq/BTYGfTjvqF
+	aNtGvQ2okWxPiY1/2orllM3EkJzz6Bk9ZP9Ub
+X-Gm-Gg: ASbGnctKeqER/cvAxMBreHzNTLlK1VNVKZdl4B+XW/GBboTG+v7C9ydRXwnNSppyXjc
+	TexA15LDMxUZIwgEufUp7HYtCLeC4FAA5hLh/AUoP0suut/2hWutOWyq7rKs/nisYQ+i7c7Mues
+	vhvFE7vMvWIrP/lrosvfFMFwTaa5aPtelFuqivuXNPmkIHfXy0iu92gVkUPtfM6m6M6cw2O1DKW
+	bpHOVflWb/ly0WcJuv+NA==
+X-Google-Smtp-Source: AGHT+IEcw73AwQCInDdk9e0fzVxi3F3aT9Uz+CuAK+CmNG9Ean6QVZRmPBfCDgf60QUEuP6JoBidzpPFe7BSToB5Gas=
+X-Received: by 2002:a17:902:ea0c:b0:234:f580:9ed with SMTP id
+ d9443c01a7336-23e256b4d4dmr80702645ad.21.1752744075391; Thu, 17 Jul 2025
+ 02:21:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/7] riscv: hwprobe: Document MIPS xmipsexectl vendor
- extension
-To: aleksa.paunovic@htecgroup.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Jonathan Corbet <corbet@lwn.net>
-Cc: Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20250625-p8700-pause-v4-0-6c7dd7f85756@htecgroup.com>
- <20250625-p8700-pause-v4-5-6c7dd7f85756@htecgroup.com>
-Content-Language: en-US
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20250625-p8700-pause-v4-5-6c7dd7f85756@htecgroup.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdeitddvudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtjeertddtvdejnecuhfhrohhmpeetlhgvgigrnhgurhgvucfihhhithhiuceorghlvgigsehghhhithhirdhfrheqnecuggftrfgrthhtvghrnheptdfhleefjeegheevgeeljeellefgvefhkeeiffekueejteefvdevhfelvdeggeeinecukfhppedukeehrddvudefrdduheegrdduhedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepudekhedrvddufedrudehgedrudehuddphhgvlhhopegluddtrddugedrtddrudefngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopedugedprhgtphhtthhopegrlhgvkhhsrgdrphgruhhnohhvihgtsehhthgvtghgrhhouhhprdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgruhhlrdifrghlmhhslhgvhiesshhifhhivhgvrdgtohhmpdhrtghpthhtohepphgrlhhmvghrsegurggssggvl
- hhtrdgtohhmpdhrtghpthhtoheprghouhesvggvtghsrdgsvghrkhgvlhgvhidrvgguuhdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvth
-X-GND-Sasl: alex@ghiti.fr
+References: <20250717-fix-pwm-node-v1-1-45021777efa9@amlogic.com>
+In-Reply-To: <20250717-fix-pwm-node-v1-1-45021777efa9@amlogic.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 17 Jul 2025 11:21:04 +0200
+X-Gm-Features: Ac12FXwP557lN0EiWARNaS9MW00Id1I7t6G7YIjyMJYQJpebiGcfQOd7_3xIoHM
+Message-ID: <CAFBinCAs2Ra6GiF6y-EDPCZXoi6sM+wyPUWp0vE4UVbXByXa=g@mail.gmail.com>
+Subject: Re: [PATCH] dts: arm: amlogic: fix pwm node for c3
+To: xianwei.zhao@amlogic.com
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chuan Liu <chuan.liu@amlogic.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 6/25/25 16:21, Aleksa Paunovic via B4 Relay wrote:
-> From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+Hello,
+
+On Thu, Jul 17, 2025 at 10:59=E2=80=AFAM Xianwei Zhao via B4 Relay
+<devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
 >
-> Document support for MIPS vendor extensions using the key
-> "RISCV_HWPROBE_KEY_VENDOR_EXT_MIPS_0" and xmipsexectl vendor extension
-> using the key "RISCV_HWPROBE_VENDOR_EXT_XMIPSEXECTL".
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 >
-> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-> ---
->   Documentation/arch/riscv/hwprobe.rst | 9 +++++++++
->   1 file changed, 9 insertions(+)
+> Fix reg address for c3 pwm node.
 >
-> diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
-> index 2aa9be272d5de1c15559a978a956bc36c34de81c..2f449c9b15bdd6b9813c9a968deca1a4c4ff9b14 100644
-> --- a/Documentation/arch/riscv/hwprobe.rst
-> +++ b/Documentation/arch/riscv/hwprobe.rst
-> @@ -327,6 +327,15 @@ The following keys are defined:
->     * :c:macro:`RISCV_HWPROBE_MISALIGNED_VECTOR_UNSUPPORTED`: Misaligned vector accesses are
->       not supported at all and will generate a misaligned address fault.
->   
-> +* :c:macro:`RISCV_HWPROBE_KEY_VENDOR_EXT_MIPS_0`: A bitmask containing the
-> +  mips vendor extensions that are compatible with the
-> +  :c:macro:`RISCV_HWPROBE_BASE_BEHAVIOR_IMA`: base system behavior.
-> +
-> +  * MIPS
-> +
-> +    * :c:macro:`RISCV_HWPROBE_VENDOR_EXT_XMIPSEXECTL`: The xmipsexectl vendor
-> +        extension is supported in the MIPS ISA extensions spec.
-> +
->   * :c:macro:`RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0`: A bitmask containing the
->     thead vendor extensions that are compatible with the
->     :c:macro:`RISCV_HWPROBE_BASE_BEHAVIOR_IMA`: base system behavior.
->
+> Fixes: 431a5281e701 ("arm64: dts: amlogic: Add Amlogic C3 PWM")
+Commit 431a5281e701 is "arm64: dts: amlogic: C3: Add clk-measure
+controller node"
+I think the correct commit hash is be90cd4bd422
 
-FWIW, just a note that in the documentation you mentioned in patch 1, 
-xmipsexectl extension also provides 2 barrier instructions that are not 
-implemented in this patchset.
-
-Anyway:
-
-Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-
-Thanks,
-
-Alex
-
+The actual change itself is fine for me
 
