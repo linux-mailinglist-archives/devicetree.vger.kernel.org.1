@@ -1,208 +1,147 @@
-Return-Path: <devicetree+bounces-197374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B73CB08F11
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:23:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54DCBB08F17
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 16:23:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B84EFA45BC4
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:22:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05A95A62AD6
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 14:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FB492F8C3E;
-	Thu, 17 Jul 2025 14:22:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E063D2F9488;
+	Thu, 17 Jul 2025 14:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g0viwvB6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xlsaWxi9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A28A2F85FC;
-	Thu, 17 Jul 2025 14:22:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B9502F85C2
+	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 14:22:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752762132; cv=none; b=k1MvvAGBQBqPcd5mwIWKrBA8RIg1p6X9SDxSRa+M5GVx/gN3/+Xe/i85wCf40xv53KFCveLtPGnQ5Rfqci+M4LUYlIrvskzKLsma56MjsqTN5EkCqazjuC/8KMVnz9/9ND2c2zaaA5faESrcnNQgqVbtsF+PKKoi6mCkISh9GlA=
+	t=1752762159; cv=none; b=aU6JybvyhjjFzLx7zDSeAL+1/o0c7+A2AehW6gPwjiSzFoNms8h34TUAuWkhGQgPU6FQZvrSBfGGL8/3SpDVFofkkTsAaqi06ox9C/T7pAOtRs/h9xplGoq7Ff1+35A1MHuCongmNl6BF7MpCtk/FGNzzLNoLfFr/dTPREB9P80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752762132; c=relaxed/simple;
-	bh=ZNKvvXt+/bXU1LK1aGng3ojIseGctVptiaidMgbARDQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=puK8Z8sf93DDcBl2GOQO22FdKQFEScr02kifW69TYrAlpExkyGVfgQpgq5GYG+O/zd7A8Aba72SYcvILuo2H6gBeLPCshVX55dv95y7xXiq6a00+GAmmcZYZ/BQ3YW5vDKcPFYOAzgnGsJdTI5RrA9PXmq5PLvzcCGAwLrvDS+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g0viwvB6; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-553dceb342fso950138e87.0;
-        Thu, 17 Jul 2025 07:22:09 -0700 (PDT)
+	s=arc-20240116; t=1752762159; c=relaxed/simple;
+	bh=OH4wrDfav89XkdNsE1p0BQDzGHuGj2x+JYSvAAX8m3o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HjDM+BuiiazcgStEO4RiBDnjIOcDFmB3ouDQvYtEz/J9gn+leUbMeQD8vg02TNXWwVmP0ikOpf//3SGX1eB1JvdPN5bqXytES0UCwwpiPRU8IxyirAEebU9Guj8GcPzGyPAUY++RTRGXVBwiqxyH+IpazOwszucLgCxCZ/kfLxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xlsaWxi9; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ae0e0e464ecso20128666b.3
+        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 07:22:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752762128; x=1753366928; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4jzyEI3ac/uOo6smhtFQv3Lt7kPNZfLb7UDBGDyA0w8=;
-        b=g0viwvB6nlPIgCFsYfQA3ugBQvGNsBLHN6AOt0Qpc6GGgKEiDc2TlFskRDpvMylAe9
-         sQ6dCsyVu5r5XIzytEDZuTdjjnrEwkzeTKK8orb9Q7ukGa2a8Pcrzm9gn48T8UbbfIbi
-         chA0+A7ZhrZyK8wA+egfTjwpvX65nSW/W4hIp7TOsqd7hPv8guKS/l40gSFaVAOX9yS+
-         DPJnObbeFCSesJq/RmKgBHTSMFlMmPcfb1WDi940Ve3mkgBgK/zXZe3qIIAYS/ovOIWL
-         rNRCTJm4dYBCsYgggnWN4ebETFkVhzJLZ7yNYrC1j6AseVrtbAR7wA3pn3GSAaK7cTvH
-         WBhA==
+        d=linaro.org; s=google; t=1752762155; x=1753366955; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZzNSUPnzBkKdR3mW5wA88jSoaUKRv7J/6KX45+OJCEo=;
+        b=xlsaWxi9O8W8k51M3yMHxlN9ZQAx3290Ehzb64ILx+L/VnQi2t/uBABmARvXYcu6NM
+         QIgsswDQ/KQYpicVmNLRdHRm5GOSSh2SRaXI0jdUPdf4uLxL4In04RxmA0OnNb7gYAs/
+         7lKmOjHed2PcQ0pJ8/4YmYRDb85IIsfrW1P0h5x+zNjatpaYQLc5Z3M5B1jpHje7+/KH
+         Pc2ExdUGuJofu6WFzk7zf6UpbsZDN7aVjehseVgzy9mAJIkX5+bbRgm69P6dy600aeZM
+         NCijeNyHYO0mPcKtgP+5pc0g6qqmQdKQQrR5trgWLHdAItjNPt5zWUC9ajP6KTIQNsTK
+         o63w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752762128; x=1753366928;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4jzyEI3ac/uOo6smhtFQv3Lt7kPNZfLb7UDBGDyA0w8=;
-        b=YFY9N81467ELGCZ5jXpLZ6qcJK3xGOHzpfOZF2RxZxuS2QgkvOYGXPay07A0/U3b+3
-         mbNH5s8Ij5+Q97oove3T4EPEZO/lpgelORcYe2eq+xFZVuIlgYQw8PLp7SK1WD3BpoUX
-         /jbOWSsA8neu0o1q21B7nz1dNWBz1lZm4xE0anAM4+4eCwl/w7QqthW78shvyjugYfhi
-         QkMjWyL+IaF/8leTFvua/CBwCdEvVnwrZV8mVJQyF9lI1PeUFqCxp1qOBU1oAld5wMgt
-         +9V74XSgUN19OMa1T8tmZDcUsQ7gPtmNTL2ay7lrZhg/V4S1ex0ZUm3YStG+fgvcFfvg
-         G9OA==
-X-Forwarded-Encrypted: i=1; AJvYcCVNz5PgB/Cl3+2xImJBHznASykh/qZucLli1zu9JFMRJgClFxiz43EJGIP0OxtiM5xxPy3qR0qbd021@vger.kernel.org, AJvYcCVaNncqf/ZlFoq5lv+zq6dHe8FPxCiCKK5ge9nzphBxGtxSI9EunbJVY/pdcPQKD+u3QzzWT7CxnekMAdLM@vger.kernel.org, AJvYcCVkm6xis3cDZDNb9B9fr5PnuMFES7RHOzdxwiNTXOXLuSrYNxUeSsuEEMyfQ1uClTTe0CDEk4O3djtO@vger.kernel.org, AJvYcCXZRQ7RdJaOSYPUe8cLJ1zikJMPrbS6tIYLz9bsqSAw7j/Dkv2gaJtmih652VOqVfGMCYl5UYlYhqF9APA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxF8uD2Cvs3MoxNT1sVWCjhiwoVsLfH7+5Ied0SUxsiErIyoHlz
-	oCNvUS0CapFXF2R3wsyEovINN00iErzk8bFNnp4pomBMsZTAVq2karmG
-X-Gm-Gg: ASbGncu/c5ingS1WsqYws7Q7zsT6qhEra9ZZlvFq+3Y3SC0VP5tgTI/7mXXSHTXJJiM
-	lqaM0ptA88J0I117TuI3+WvzoeLV7asHII6uYWv+AQrq8rgNpDHq+VWcq3BuzGDrNAcYhfxUePE
-	hchhfEj4+7KDzxj5OmQWMURQ368+3NYtf0bZczqR7mqpBMzBJyO6Svu/3mWOOJgxRYXfFbzNYTQ
-	HaBWT5oF+wRENjjbXySsUsu/nhfjCdBvNOjjD578Lr8skxUxwNtE2h/5xggYV5f/O9NB6Qzq/gQ
-	WbNyTkI6L91UedA9htgloCDHz+/b0e+ZUhUk2PJAzX4rLgAWdE9Bv5CmqcyYi+BNGV0bLn/VvS/
-	A3kGoicGb+ahz4Q8XXJcJzcGA
-X-Google-Smtp-Source: AGHT+IESYH2Sz2RGJLeVpKp3IKX4ZOErGb7b+04X70EABSWL+fmITawGH+Sfa4Vm3XmfnZhj3gzEDg==
-X-Received: by 2002:a05:6512:3f25:b0:553:314e:8200 with SMTP id 2adb3069b0e04-55a2958fc8emr1141661e87.8.1752762127827;
-        Thu, 17 Jul 2025 07:22:07 -0700 (PDT)
-Received: from xeon.. ([188.163.112.60])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55943b61134sm3079983e87.162.2025.07.17.07.22.06
+        d=1e100.net; s=20230601; t=1752762155; x=1753366955;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZzNSUPnzBkKdR3mW5wA88jSoaUKRv7J/6KX45+OJCEo=;
+        b=wYO1NTD3nHyD12OWIAJTGHJuUcYiEPHaijDn09hBVsQdH9NSkWCiQIvS2R3i51A9hV
+         Q3Oi6Lv10nTCIcy7EFxIdPoWZW95EoDq9ytJI1g1oFBij2YkLJLlbyNxLt3p/ZO4Ld7i
+         +OaXsQq0YNu3gSGVkuWoD9cLQVOP2mIo2Csa1BcJ3dzdWj3kYg2NBZ73MdjwKSfQ2zL8
+         onkmS9y0XKBVvzAjyZ7AYxR8w0z7Y498j+u2FVGRdD5ckVrgGW8eMpIq93PY8bNWVwio
+         7zfW8uuwy6FoZ+NphCV8egtZEGqb9kzz9HSFipFwMavK010LFbm8MWs/HH6rbNznUVl/
+         OLGA==
+X-Forwarded-Encrypted: i=1; AJvYcCVHQKXPvlY/fSdK1kajtHOUDIkMTfP+J5DZVaXsZAIJUA10OstaH+Fom5xO1Dv7AFjk3OF9bBdUpdz8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNK1cPfEMTDhsFLGfroNfEt1O5UsaxIdl85TDOcbnGPSBIONUR
+	JofEbXeBbjdG7F+RNH5N52CrsXMdzAFr8E2+bJJ5HdsSB05eBHSKwAnRPXZO5VAqmRk=
+X-Gm-Gg: ASbGncsRgG5/OuhwdZ+u/08pCvVV+cQ4dIhzjuhWZMCxfqTluGu/zFc988WgzpxLHLk
+	TAMLtf295ENROgA5y9R0+2Fa3LU/1W3hllZIaRBAhVzs1miRYGtQDeaJYTL+TSpWut8RPmS7YTi
+	+MT+lAwSPKEaNWmICH5TSftO6zOT/yvgyvrDER1OU/cTggJ1QDpWFD2dwHzJiUN35PWcnfpQf3I
+	URpyqr2eBUXwRq1wGPtHMAd/KaofCj9DWOa9qb9OnjOCN6+ZqNEaJ67Nw65qCc8zp7CQ4ZXJCzA
+	lFHRITwyO2g6XS/yiPyKkc9rlZue+TbZWT8AijXB/QT1UWDV1NK5DHjBowtlmVkUSUpA1f7F4rM
+	RUYNIZoiCxfLHA4N0aLXVUrgnHU5adPcK
+X-Google-Smtp-Source: AGHT+IG1+74iXCF3EHn6v+R1gCnqSq7/v8FseRyLjKbV9H4v/JXHyiAaJgnSRbcKuMka+iOoDn2N6w==
+X-Received: by 2002:a17:907:72c8:b0:ad8:9207:b436 with SMTP id a640c23a62f3a-ae9c99a0f28mr261270566b.5.1752762154888;
+        Thu, 17 Jul 2025 07:22:34 -0700 (PDT)
+Received: from kuoka.. ([178.197.222.89])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e82e3a8csm1379333266b.154.2025.07.17.07.22.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Jul 2025 07:22:07 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
+        Thu, 17 Jul 2025 07:22:34 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Tony Lindgren <tony@atomide.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Thierry Reding <treding@nvidia.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Peter De Schrijver <pdeschrijver@nvidia.com>,
-	Prashant Gaikwad <pgaikwad@nvidia.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	Dmitry Osipenko <digetx@gmail.com>
-Cc: dri-devel@lists.freedesktop.org,
+	linux-omap@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v1 5/5] ARM: tegra: add MIPI calibration binding for Tegra20/Tegra30
-Date: Thu, 17 Jul 2025 17:21:39 +0300
-Message-ID: <20250717142139.57621-6-clamor95@gmail.com>
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: ti: omap4: Use generic "ethernet" as node name
+Date: Thu, 17 Jul 2025 16:22:13 +0200
+Message-ID: <20250717142212.92333-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250717142139.57621-1-clamor95@gmail.com>
-References: <20250717142139.57621-1-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1385; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=OH4wrDfav89XkdNsE1p0BQDzGHuGj2x+JYSvAAX8m3o=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoeQcU4/pS61bv71IWPMnOqEVyfmAQdhNqJGsd1
+ Xeya8hli1uJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaHkHFAAKCRDBN2bmhouD
+ 19IjD/9qbG1sGKejcxxyfQtCjdj7pECUhqmNjsxjo05Sb57GTglnGbl8sd5s45fF6LXh7/FYn8L
+ 6bnTv/xa70PBMtvfjmvBCJwp5ipAptLRXCW9oG5gEP/KWqnZhkclU4Nv1euWv0P9M9T7cvZlMng
+ cIVqMV67MaYVKIUHxEcZFAl3mVw1gnZQUlie0iaVoKgh5mi8MriaZkP7wnrKkzG42gtT66LT+gB
+ 6JNkbUMWm2CschRyB0tN82rBuE0buJFlICyZhbZCp2I7qMUAgRCsxwTl1yb0T6kKnW+5ZnjmehX
+ dbvCWjy5J07YuUYPgnhrKkkoxamE98iK4gTdIsqrxK/L1m2mKztSz1bHdah3ipcHgiTKx+8R6J+
+ OlGD6+xJFBWGi5J6emkPNrqLIf0a1n5/PYrwbVqHY2loEFeND8KkFAVkaG85meogz4Qg9+zAQaw
+ mCY4EL8gRcekWxxitpBhQLjsq/Pk+U0jnG3akQsR5qsPKnNjlGlS0WAVdNW49I44xSQ6Gf9Mmfj
+ GFzqwK7Ooq/3rt+ieNGiG/nhkvPacZf02SY0iRsBV2O902Lprvg+CE+OF9sVyxsUaT93w37q/2J
+ LCAKmIiD/FCXB12uoWms7wL5AqJePnsi9y4yUxEIvA7ZXnB1dgp7vrsoyWuLRKiY1vncdQ5UT/X JjPkCR07dI3rK5A==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
 
-Add MIPI calibration device node for Tegra20 and Tegra30.
+Common name for Ethernet controllers is "ethernet", not "eth", also
+recommended by Devicetree specification in "Generic Names
+Recommendation".  Verified lack of impact using dtx_diff.
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/nvidia/tegra20.dtsi | 14 ++++++++++++++
- arch/arm/boot/dts/nvidia/tegra30.dtsi | 18 ++++++++++++++++++
- 2 files changed, 32 insertions(+)
+ arch/arm/boot/dts/ti/omap/omap4-sdp.dts                  | 2 +-
+ arch/arm/boot/dts/ti/omap/omap4-var-om44customboard.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra20.dtsi b/arch/arm/boot/dts/nvidia/tegra20.dtsi
-index 92d422f83ea4..521261045cc8 100644
---- a/arch/arm/boot/dts/nvidia/tegra20.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra20.dtsi
-@@ -74,6 +74,16 @@ vi@54080000 {
- 			status = "disabled";
- 		};
+diff --git a/arch/arm/boot/dts/ti/omap/omap4-sdp.dts b/arch/arm/boot/dts/ti/omap/omap4-sdp.dts
+index b535d24c6140..b550105585a1 100644
+--- a/arch/arm/boot/dts/ti/omap/omap4-sdp.dts
++++ b/arch/arm/boot/dts/ti/omap/omap4-sdp.dts
+@@ -467,7 +467,7 @@ &mcspi1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mcspi1_pins>;
  
-+		/* DSI MIPI calibration logic is a part of VI/CSI */
-+		mipi: mipi@54080220 {
-+			compatible = "nvidia,tegra20-mipi";
-+			reg = <0x54080220 0x100>;
-+			clocks = <&tegra_car TEGRA20_CLK_VI>,
-+				 <&tegra_car TEGRA20_CLK_CSI>;
-+			clock-names = "vi", "csi";
-+			#nvidia,mipi-calibrate-cells = <1>;
-+		};
-+
- 		epp@540c0000 {
- 			compatible = "nvidia,tegra20-epp";
- 			reg = <0x540c0000 0x00040000>;
-@@ -219,9 +229,13 @@ dsi@54300000 {
- 			clock-names = "dsi", "parent";
- 			resets = <&tegra_car 48>;
- 			reset-names = "dsi";
-+			nvidia,mipi-calibrate = <&mipi 0>;
- 			power-domains = <&pd_core>;
- 			operating-points-v2 = <&dsi_dvfs_opp_table>;
- 			status = "disabled";
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 		};
- 	};
+-	eth@0 {
++	ethernet@0 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&ks8851_pins>;
  
-diff --git a/arch/arm/boot/dts/nvidia/tegra30.dtsi b/arch/arm/boot/dts/nvidia/tegra30.dtsi
-index 50b0446f43fc..c52ad3715505 100644
---- a/arch/arm/boot/dts/nvidia/tegra30.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra30.dtsi
-@@ -164,6 +164,16 @@ vi@54080000 {
- 			status = "disabled";
- 		};
+diff --git a/arch/arm/boot/dts/ti/omap/omap4-var-om44customboard.dtsi b/arch/arm/boot/dts/ti/omap/omap4-var-om44customboard.dtsi
+index cadc7e02592b..80e89a2f8be1 100644
+--- a/arch/arm/boot/dts/ti/omap/omap4-var-om44customboard.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap4-var-om44customboard.dtsi
+@@ -194,7 +194,7 @@ &mcspi1 {
+ 	pinctrl-0 = <&mcspi1_pins>;
+ 	status = "okay";
  
-+		/* DSI MIPI calibration logic is a part of VI/CSI */
-+		mipi: mipi@54080220 {
-+			compatible = "nvidia,tegra30-mipi";
-+			reg = <0x54080220 0x100>;
-+			clocks = <&tegra_car TEGRA30_CLK_VI>,
-+				 <&tegra_car TEGRA30_CLK_CSI>;
-+			clock-names = "vi", "csi";
-+			#nvidia,mipi-calibrate-cells = <1>;
-+		};
-+
- 		epp@540c0000 {
- 			compatible = "nvidia,tegra30-epp";
- 			reg = <0x540c0000 0x00040000>;
-@@ -321,9 +331,13 @@ dsi@54300000 {
- 			clock-names = "dsi", "parent";
- 			resets = <&tegra_car 48>;
- 			reset-names = "dsi";
-+			nvidia,mipi-calibrate = <&mipi 0>;
- 			power-domains = <&pd_core>;
- 			operating-points-v2 = <&dsia_dvfs_opp_table>;
- 			status = "disabled";
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 		};
- 
- 		dsi@54400000 {
-@@ -334,9 +348,13 @@ dsi@54400000 {
- 			clock-names = "dsi", "parent";
- 			resets = <&tegra_car 84>;
- 			reset-names = "dsi";
-+			nvidia,mipi-calibrate = <&mipi 0>;
- 			power-domains = <&pd_core>;
- 			operating-points-v2 = <&dsib_dvfs_opp_table>;
- 			status = "disabled";
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 		};
- 	};
- 
+-	eth@0 {
++	ethernet@0 {
+ 		compatible = "ks8851";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&ks8851_irq_pins>;
 -- 
 2.48.1
 
