@@ -1,184 +1,377 @@
-Return-Path: <devicetree+bounces-197444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F73B0945E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 20:49:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EDE6B09460
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 20:50:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88D6A7BD6BD
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 18:48:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80D1F1C251B0
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 18:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC7FD2FF492;
-	Thu, 17 Jul 2025 18:47:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B9A20F091;
+	Thu, 17 Jul 2025 18:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="NzUrke6Q"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HCeXrNCb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011067.outbound.protection.outlook.com [52.101.65.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06782FEE32
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 18:47:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752778071; cv=none; b=V0GQu0u3yXLDoNvo1Y8DjoiTvAMGIBt67fWbiZPDsb9Orp5hktNwJgB1ae9yzRr9fO2lH8oknN4SK5DiGAwnQLXKKNbIw2kjmAVCeVttaTpeenjgiIp29ZNOWr8OjxdswDnGYI7qKxSqxBT1NWqDQlloim/NhzeDUmnVM8k6DlM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752778071; c=relaxed/simple;
-	bh=LdBhSp51sgIxbWO70ik51gWkwXQAZkXdQ9kZ0tOT0fE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ksata6Mvlxp4V+qzOTGLlt7YmrRtpUcDiWpo2sZ+LPFaSBEyMhyTGPmITX0a/A0ex/VHu7j0NQrCLJrhRpUwiKIlQmfu1o7VsZhqnSYxN3lxi5nwIDBWhz3k5XMBKs5emGbZYG8/AJoGjSHkE7tBkJXfI/0UETKhO3t+PsW4k0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=NzUrke6Q; arc=none smtp.client-ip=209.85.219.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-7048d8fec46so24212556d6.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 11:47:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1752778069; x=1753382869; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=JknLTMIxalS8m7aHFC3+s6nvFC/sGZyolLVvw55splI=;
-        b=NzUrke6Q2i7Kz9RJmPyUQqfzbDBjhODTPk4w1gauD+c/kAxCmQE/fNnXNv4KoyEN0N
-         Us+XP4iW9/qSFvP5zOqURbvYSPKFWS34t5GU96xWzCrm6mdu4OVyHLAWX1dbHfAshe7F
-         Km2volV8bc5AqCMcNqfaI/75DNPcVAigJArpE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752778069; x=1753382869;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JknLTMIxalS8m7aHFC3+s6nvFC/sGZyolLVvw55splI=;
-        b=Nr1i5MsQ1CjY9RrPmYkQVs03ej0IY7wXiP9k51/+F7Cz5/XPUpnTxNBmNzi9Iv2HDJ
-         /nEvBR6C4QUL7W5SeVhosjbJuKKDs+f6PQEiZMbJhKi+ZoKt2ddaRHM6T8j9q9qZYatc
-         0GQuRcD9IQomXrUSxHVzi5qpRZoUoxYdbbcSrmmOjmX63IljkAIjMgzxkmvuWfymfYPp
-         TNucHep2MNG+Y61JhATnXJJHMGoqT5gZNHcYvmV2gERwAJrEo/WYVIqB1Ww196HbNscp
-         u+8Z77rPaFVd0OhBZ3jciTus2CIsjl1mQjYjBLNLlvnZxdtR1s7RfJJCN+GC3EYuPQ3W
-         iNBg==
-X-Forwarded-Encrypted: i=1; AJvYcCXt63/1L/84K/dZ6wU+fcwP/EGJn+txnrl4qettbY9ftlQfMm7ETfiRFMs+M9o4d3WEZjvBc329VeoT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzT0jN113dFMwK0arsYb7p/UsYobtLGHoatSBjVMJ2Mou1KYwrJ
-	2lXVcJh8zPGh+dy+yUjKde4g09VuMXjJoUsmoxN/pzJ8BQd1eNZ3L7Xgs+Og8SIevA==
-X-Gm-Gg: ASbGncu6z5WdgbQWh+QZ5FJYSbHpYg/xNgDLPsHIsURBkOWjnW4sNSXOgUWe9c3KjPz
-	/PhMb47ShMdjWodh1IfblfNplczrwZxkYuO72lli9gqr7KWGQd9wT9ilArIXlb8HXb6ez6+zwDe
-	EIp/HHJgcDKE6VVbCt5Exx4gDlsm9SNKdK0HI6RB5bNoBtEooeHyk2psGeVDcDMPcvgjpVCtkws
-	wfQVmFhIUv4fPaHJDfYWuG1K1P3OzbPSAma//8pCLb5FO9RSlUQBuPlh7ra43OfMED3E5MMXaI3
-	Nxls/hmZVqOf9AmG4er2cSXdZaz0fBIegZiv/bizTm+1dUg20yRXXAe2qYPAnKOnfSS6KE8YMHH
-	ey7VUXrs8rNYHWQ0I3/C2CbkphsK56IFxcT0owj5hvvEonUbwarFu2t6AlI4zHg==
-X-Google-Smtp-Source: AGHT+IFDwAq1THb3IWIpQF0E9OZ0Tl++RLOgxwEZiStS6SKC57nMiie5HsehYdbEwen2VMn2oam5hw==
-X-Received: by 2002:a05:6214:5098:b0:704:9584:c370 with SMTP id 6a1803df08f44-7050551d1f1mr61874956d6.7.1752778068551;
-        Thu, 17 Jul 2025 11:47:48 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-70497db12ecsm87656826d6.102.2025.07.17.11.47.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Jul 2025 11:47:46 -0700 (PDT)
-Message-ID: <af7e4420-b773-48dd-aaf4-269f63c624e1@broadcom.com>
-Date: Thu, 17 Jul 2025 11:47:38 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D745F202983;
+	Thu, 17 Jul 2025 18:48:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752778128; cv=fail; b=WPOhiWJ+QCvhCwnLG8rNOJ+sDlIlmiN/ly7t0a+sZ1TzEpUgiFc62KTgQZecJTqd5xZj1FK8DudBVpgJSbezFPGVFj9BPyzOWeg0WmHwcGZfZ2FZsJn8Q3fWpyAx3Hm+NHE85O5J34WyBHj6cMOdT2JAkXE+ZabKLpCVVhyvNMM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752778128; c=relaxed/simple;
+	bh=2mHdESWnAywp/byjDccqWQ35zAyBKRPQZgRduwNaykM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=U5JQQa3Y7e+v1C9wUt2R3dt0erPwRC3Y7+5dyz76VkpNFw9UO5FJKSciKK2r63kVFXwme4hXwXRWF8oXa28TvPtCXW2/MbEZ9x8SbJbo8RXt428HCr89JxEUU6DvmEXJsCjDW0ahmzS8G5j3HxHoRqXMdCZEaDivFTtK+757GJc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HCeXrNCb; arc=fail smtp.client-ip=52.101.65.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ef4AF8mrwKE3bBgHzcf+q5/jfeFXOBFhlrr5ZoE5+MYWpIJQHxlJ8/nRh6WW9mqaPbYXUban86kZv848CtwL0EKbXeSVdpw1Yvc7r6eA3I15zKhi8NmPURCdNUZX/VpTvWAxg7HPDD7Qo/r2fBq7853XcxEGHo+90TBPhDRrDG2YTxwOl8pEbbCFW25omIzV8oph4W1K+TmGnBFIpt2DjVs4DHXR9SIsNPkK7GGsxBsspbsG1Tk5HEg9kKEU0EJ7We8gQ1pX++gl2M0kt3JBMEgArQjxOCJIBFqPhTzTVl2ttfoa6H4+2qcuIEKZWZd8QgEGuL6E11UjXuUZEqmN+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PdpVbjah1VqH9ezJVy6y4h5GJIxy8A46F74FvAS1uXI=;
+ b=W0X/DsgmavgjtE/VchyVGpyVc/yuMcTGSRZmNgO4VIygHr6VfrLhkpQlkNlQuZTm1V9ZsLKq+Nhwm2cyt6AKKIOYBp5oyIwbnZTeg8krpieTWnwDRgwgdsGn7EnBvdKh4ZqHgO3DqX+aLEhqt56phEofoutelFYEy4XuLl384FqZ8OL1VzQzuyvKPT8bPzkZpoFBKtDt7vuztPKCbY/5iKsNkoiCJ4/XS5ibTuOvM9IJDxBi4laMQ6uCQBaECFyvPcJxGXV6wxzBgJqWKTRzntcCwRUN5cFRV6TZJlvWn8pC4RS6tCiAgNQqrKGMYzEOSyDTL2Ad7+6sfcZWDLOXaA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PdpVbjah1VqH9ezJVy6y4h5GJIxy8A46F74FvAS1uXI=;
+ b=HCeXrNCbW2au9JQsqSA8tCkVaq3UKp9MU3lIkPBAC6GSqPCKV5HbrbV/9sekL16L+W7JRA6srttcgyc0w7C5DcTZ6iB08OiYZ5EezIu0z/zyt7GSI9Jo8Pa+Ih4q+GnbeeI7JJR3Pn4C0zCmIKgSI3jyvgVoRRyBeUx3UWwhWn2ybQZ5dwJ54zIGMox6nAtOFuRgtfTklPDDdm+pNnzYZJlwMu6Wrn6x44qi9tUDeUP2aFh4RM4nKp/9rW/AClUxLdz/8zs7zzYWFXdHoLWF10FtIQLYJBsylsSjMIULyHMX3OyUN3t+HXH2UWmX8i2IQn8pCwYo3fQ8kgY3WWeBnA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU4PR04MB11411.eurprd04.prod.outlook.com (2603:10a6:10:5ed::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.39; Thu, 17 Jul
+ 2025 18:48:43 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8922.037; Thu, 17 Jul 2025
+ 18:48:43 +0000
+Date: Thu, 17 Jul 2025 14:48:38 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: i3c: renesas,i3c: Add binding for
+ Renesas I3C controller
+Message-ID: <aHlFhsdRkURwZOdy@lizhi-Precision-Tower-5810>
+References: <20250717122455.9521-1-wsa+renesas@sang-engineering.com>
+ <20250717122455.9521-2-wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250717122455.9521-2-wsa+renesas@sang-engineering.com>
+X-ClientProxiedBy: AS4PR10CA0006.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5dc::6) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 5/8] net: dsa: b53: mmap: Add register layout for
- bcm63268
-To: Kyle Hendry <kylehendrydev@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
-Cc: noltari@gmail.com, jonas.gorski@gmail.com,
- Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250716002922.230807-1-kylehendrydev@gmail.com>
- <20250716002922.230807-6-kylehendrydev@gmail.com>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250716002922.230807-6-kylehendrydev@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU4PR04MB11411:EE_
+X-MS-Office365-Filtering-Correlation-Id: 204382ba-fbff-4694-49b7-08ddc5628d82
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|366016|52116014|7416014|376014|1800799024|7053199007|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?cndtaTcE4VQgt/YJlV2/sNfGFZo7wKI67Io8nZYfz4mww3HJv5PAnIkPSzgs?=
+ =?us-ascii?Q?Cs472rYRfCBoXV9fy+PGVBMB9ttv+OcNo4jQjWvEu8p0jkh//cRqneugMZOx?=
+ =?us-ascii?Q?+upjktuOyF+vW2mkWnf5fK7iCzA8mSa4qqUm4Hkk9WPNuXC7wgiot/YonM2P?=
+ =?us-ascii?Q?e0DFn9PBg5wz50qv4ZXbRzhYSUXW/NzuHGgRxPWELtt1viVHGcsXD/ptJRte?=
+ =?us-ascii?Q?l7Uwg9ShTXcHbRS4lZsaZhusvM508cdI1jTa5h4vyk5kjf6d0WUL4NtWNEtZ?=
+ =?us-ascii?Q?1hhpSXOJjb+Qbvu7+E7ArcubMK4CnW+ZwHM74IHfgM1zsu07MD4BpcUJ3IlZ?=
+ =?us-ascii?Q?3k4W8iUGOlBnSS+t7aZtdWAGg5v++leTXCwH1ufHtc3sxcSZKT7XWRTLEmL0?=
+ =?us-ascii?Q?SP5jQo4Z55NG01+US6Wuzn2VNraWLEQYI1PEgFgg5LejNIVvUS8ihSilD3eG?=
+ =?us-ascii?Q?vxtrsweeqIqXv9UG65DsaHGohkqc+Fe142QuNzCSIP+Yd/NW9BmJRP8OuaOc?=
+ =?us-ascii?Q?jcVyf8eUoxfuYvcAAFcudb1ENzFbpBiMUstfOvfQkKp7ryTVjK2HR3siLSw8?=
+ =?us-ascii?Q?IyjDcJCLIalfnWzUvHtKfgjAZSdWbt8sgHVGSlncFV4ENHJsSEv2RkBmE8/E?=
+ =?us-ascii?Q?zRQTVbL+pzcp1T45UDg4eJKHVU1EwiGAsI6YVb8VGiraUjZfx0Eh3ZfpDlCg?=
+ =?us-ascii?Q?IEdPcDZMmYDD25TVDlUbW7tk+Gafygc7wf6b+2PecvvUuU3pn7R8YSf8BnsI?=
+ =?us-ascii?Q?d7I4YN4umEL7RqRlixUgsPLOuv/tkc1RNtoZWU2og0Hs82kHXh7GAR8O9Gga?=
+ =?us-ascii?Q?bDEGVr3eGRO11JGIF9IjnGyeH4krhrG/DMGaFnbAB7BB3+T055F5F2Ur1Mm9?=
+ =?us-ascii?Q?0fBZwMAQ6IvgfqubMVy6mOHGDS1vp3rJYoiW/aAjSZCSlxqVSDraUcOwSAiA?=
+ =?us-ascii?Q?LizvbCDIPeNEnLG9vLaDCdXlg4XJbb9VcshZbPzdH90yh4xP4kLOhb+GtUjG?=
+ =?us-ascii?Q?ENqKJO2lXGNLnErCPfpa+QJJkyJt11me9ZHQx8QT6m0dgOrSo7WbDNvxWluE?=
+ =?us-ascii?Q?OG840ubA/oHVhI6Bl9F6PuSTtbxGkQrO8xG7/0InfGHMlDhr+to0veWUiZ81?=
+ =?us-ascii?Q?dW8fpg1myduh/+HC1QTzxastdcoWhQFUkSYwdslaa+swISnzXycq9bxYBSQg?=
+ =?us-ascii?Q?tlMEazG15ncprEBoe+xYfBzVvwIZ8Svj9J3NVDMoRtLw8IwDQK6jC5Kf6qqb?=
+ =?us-ascii?Q?h6sH4ugPLMk9/21BROTb5sLNHB1yDeE9c8PTFQL59j80b/XwJ3qVELdha07N?=
+ =?us-ascii?Q?6bz6+jstuExcqyg8nbKfzXflEXNfgY6xuc7w874DrAA0+8aFYpOIFyhT1EaA?=
+ =?us-ascii?Q?hZ8rZpNcVTtlPU6lXRrGbu9DiyOEAiQZc8sy1oYwuc9ivirRlbhvRTNao2vS?=
+ =?us-ascii?Q?WinAChSc20ccy4lHbpZ6uuaTLrfJStwO?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(52116014)(7416014)(376014)(1800799024)(7053199007)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?zwYRmgb5zAfX49uGAxQigIfXycMnSCkxc8Oua4ZnoGFq5PsbtEOazYJOK05N?=
+ =?us-ascii?Q?GkqMobNsDnVmqXmD0Jx83eXQQoxrkahTdWPyiNg/sE4Uyb3jIpjlEiJArLk+?=
+ =?us-ascii?Q?LPDvcB3mKGQn6CV/EusPKoQsPSevihVtFTgwdboPHKQHGifSC5XoF+h1ud1P?=
+ =?us-ascii?Q?nJQR+pfCB+EbMozwsFYxJd61LTW4UyHPr/cM7nPppoqeVpQoWIzolutx83Jl?=
+ =?us-ascii?Q?tBce7BTc0+ojgoMBSq7Fqqe0yOf3ia/uiITIwl5dbqWPDCtkXRlBrnSRg+3a?=
+ =?us-ascii?Q?XAtZo4+h2pM8TSruWXJ7iD5rXkMSQIcIOEqe3AQiA+xRSp7QewG09W6YrsRm?=
+ =?us-ascii?Q?hyrsTd1gLOkoPNNqI9eqycVj4OQsPzCywqaVoZOzvEwUhbwbH29ZPamLe0HM?=
+ =?us-ascii?Q?dcoofRGFtIqJ8I2AhLpJSwiJqnLa5h/wrCfzUr68ujkd6pPWcaTIiK7XhuL2?=
+ =?us-ascii?Q?XmhcnSNzuMwe00pixlcPwD5gJHIjeRNVQnt9Jatxnj3gukjGnZOsSoZkWbWH?=
+ =?us-ascii?Q?6YL6yMdce2gGi4+xE9Y88nITK9NqsPDTfJY+JRJIqwv1R801f147imV6kEN4?=
+ =?us-ascii?Q?8mdyP+FmBTng81/8SXG5bOX2vfGwIE8ILGXJ8+nbd9+CDuElq3w+BjelWcXl?=
+ =?us-ascii?Q?fEEVRw0GAbMXTwNJXqYfnQTjbrLQEtZw/r0e/HvTLuyK1AYSkcRYeXpdjw7H?=
+ =?us-ascii?Q?eC+anGnE7sadfTAf9NklHdjgADzWAnX4m+en3N2S7bme8sdOTHor47+lrLzs?=
+ =?us-ascii?Q?iGt31pfAo7uWFpS/yH0w8AZ9FLycJWsjyXwTN97rZ8hj1xqBWpF5bjFd+5me?=
+ =?us-ascii?Q?Ge6Utrlt63HP3wMjWSSfYy0VLNCVjUWLeC+qA+V+mqNOJxTWd+M+2N36WGcK?=
+ =?us-ascii?Q?RQUWDVVG9HRsa/w3C5n3P4WwMTFolBIEkoLgy51scycJii40k58Hr8+idbIO?=
+ =?us-ascii?Q?edYpqeeQSUk+otPwjOpHZqPzAzp3Ez85HNP5ZoLXZny6PtR0ADrGOsM3+LZU?=
+ =?us-ascii?Q?/LhQQlsJp67jEeaPC02EH9M2zRoMu6Tpl86q7wsr3C4NW/pNwMp0Q4z0LKCw?=
+ =?us-ascii?Q?LBfYAkL+IuBb8kZnIlcNeXNZ6LkdIOv9eDxILDyuCwSgCtXIq6EbgyHKNnYg?=
+ =?us-ascii?Q?4Ip2Cv8v8aYDVCfXJvlkdb20sRhMHytLCzUW+uDEH4UUKrg5TPxHEg9EaEdf?=
+ =?us-ascii?Q?WTINNKa11Qt/+Bv8KNHv6w6cV7bTLc6E4kRjmcHqpmvrFH3p5FCag0YbOJ/9?=
+ =?us-ascii?Q?dAhdeVxFnaU9MttYLTeTtvB68frCW3A1gQ1AZ70UicgzEUCDsPcvNyzlAPUr?=
+ =?us-ascii?Q?WWnTvqWoCimSRaz54mC1TU4YMiuuQJpl6iaP8UJaXC+52RNsGctOeARU2J+h?=
+ =?us-ascii?Q?D0r1DH9InzI9IsvKTbn9OGjWMiuvV2fHJv5DC3ozWHyZFNaW30PbDVxRsFJh?=
+ =?us-ascii?Q?6U4xT63rXv5TU9pRsrNT75XceYy6/dke2jahOJi/BjQ64e9k82OLGSesdZkZ?=
+ =?us-ascii?Q?V33GlchM/Ji8CbUHJTEZ6cwT/rpmGlfNui24qamfnxo59G0LeKVVwhof+YXp?=
+ =?us-ascii?Q?GKwZlnJducirecovpMUBZpG9+pHr7kYfrrwyWjxQ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 204382ba-fbff-4694-49b7-08ddc5628d82
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2025 18:48:43.1362
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nwUIpfNoR7y3H9nZKryoqZSCeSD6lsQzg1p9cSdVWvBZBkGXFwOwtnGvqd9aZQj5VmjPG+G9YA7nmynawgwi/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB11411
 
-On 7/15/25 17:29, Kyle Hendry wrote:
-> Add a structure to describe the ephy control register
-> and add register info for bcm63268.
-> 
-> Signed-off-by: Kyle Hendry <kylehendrydev@gmail.com>
+On Thu, Jul 17, 2025 at 02:24:52PM +0200, Wolfram Sang wrote:
+> From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+
+Subject: remove binding.
+
+dt-bindings: i3c: Add renesas I3C controller
+
+>
+> Available in R9A08G045, R9A09G047 SoCs.
+
+Add renesas I3C controller, which are Available in R9A08G045, R9A09G047 SoCs.
+
+Frank
+>
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 > ---
->   drivers/net/dsa/b53/b53_mmap.c | 21 +++++++++++++++++++++
->   1 file changed, 21 insertions(+)
-> 
-> diff --git a/drivers/net/dsa/b53/b53_mmap.c b/drivers/net/dsa/b53/b53_mmap.c
-> index 09631792049c..35bf39ab2771 100644
-> --- a/drivers/net/dsa/b53/b53_mmap.c
-> +++ b/drivers/net/dsa/b53/b53_mmap.c
-> @@ -27,9 +27,26 @@
->   
->   #include "b53_priv.h"
->   
-> +struct b53_phy_info {
-> +	u32 ephy_enable_mask;
-> +	u32 ephy_port_mask;
-> +	u32 ephy_bias_bit;
-> +	const u32 *ephy_offset;
-> +};
+>
+> Changes since v1:
+> * removed useless generic "renesas,i3c" compatible
+>
+>  .../devicetree/bindings/i3c/renesas,i3c.yaml  | 179 ++++++++++++++++++
+>  1 file changed, 179 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
+> new file mode 100644
+> index 000000000000..fe2e9633c46f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
+> @@ -0,0 +1,179 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i3c/renesas,i3c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->   struct b53_mmap_priv {
->   	void __iomem *regs;
->   	struct regmap *gpio_ctrl;
-> +	const struct b53_phy_info *phy_info;
-> +};
+> +title: Renesas RZ/G3S and RZ/G3E I3C Bus Interface
 > +
-> +static const u32 bcm63268_ephy_offsets[] = {4, 9, 14};
+> +maintainers:
+> +  - Wolfram Sang <wsa+renesas@sang-engineering.com>
+> +  - Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 > +
-> +static const struct b53_phy_info bcm63268_ephy_info = {
-> +	.ephy_enable_mask = GENMASK(4, 0),
-> +	.ephy_port_mask = GENMASK((ARRAY_SIZE(bcm63268_ephy_offsets) - 1), 0),
-> +	.ephy_bias_bit = 24,
-> +	.ephy_offset = bcm63268_ephy_offsets,
->   };
->   
->   static int b53_mmap_read8(struct b53_device *dev, u8 page, u8 reg, u8 *val)
-> @@ -316,6 +333,10 @@ static int b53_mmap_probe(struct platform_device *pdev)
->   	priv->regs = pdata->regs;
->   
->   	priv->gpio_ctrl = syscon_regmap_lookup_by_phandle(np, "brcm,gpio-ctrl");
-> +	if (!IS_ERR(priv->gpio_ctrl)) {
-
-This check IMHO belongs in patch #2, even though it only starts being 
-useful now. Up to you, and depending upon other comments.
--- 
-Florian
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,r9a08g045-i3c # RZ/G3S
+> +          - renesas,r9a09g047-i3c # RZ/G3E
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Non-recoverable internal error interrupt
+> +      - description: Normal transfer error interrupt
+> +      - description: Normal transfer abort interrupt
+> +      - description: Normal response status buffer full interrupt
+> +      - description: Normal command buffer empty interrupt
+> +      - description: Normal IBI status buffer full interrupt
+> +      - description: Normal Rx data buffer full interrupt
+> +      - description: Normal Tx data buffer empty interrupt
+> +      - description: Normal receive status buffer full interrupt
+> +      - description: START condition detection interrupt
+> +      - description: STOP condition detection interrupt
+> +      - description: Transmit end interrupt
+> +      - description: NACK detection interrupt
+> +      - description: Arbitration lost interrupt
+> +      - description: Timeout detection interrupt
+> +      - description: Wake-up condition detection interrupt
+> +      - description: HDR Exit Pattern detection interrupt
+> +    minItems: 16
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: ierr
+> +      - const: terr
+> +      - const: abort
+> +      - const: resp
+> +      - const: cmd
+> +      - const: ibi
+> +      - const: rx
+> +      - const: tx
+> +      - const: rcv
+> +      - const: st
+> +      - const: sp
+> +      - const: tend
+> +      - const: nack
+> +      - const: al
+> +      - const: tmo
+> +      - const: wu
+> +      - const: exit
+> +    minItems: 16
+> +
+> +  clocks:
+> +    items:
+> +      - description: APB bus clock
+> +      - description: transfer clock
+> +      - description: SFRs clock
+> +    minItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pclk
+> +      - const: tclk
+> +      - const: pclkrw
+> +    minItems: 2
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    items:
+> +      - description: Reset signal
+> +      - description: APB interface reset signal/SCAN reset signal
+> +
+> +  reset-names:
+> +    items:
+> +      - const: presetn
+> +      - const: tresetn
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - clock-names
+> +  - clocks
+> +  - power-domains
+> +  - resets
+> +  - reset-names
+> +
+> +allOf:
+> +  - $ref: i3c.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a08g045-i3c
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 2
+> +        clock-names:
+> +          maxItems: 2
+> +        interrupts:
+> +          minItems: 17
+> +        interrupt-names:
+> +          minItems: 17
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g047-i3c
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
+> +        clock-names:
+> +          minItems: 3
+> +        interrupts:
+> +          maxItems: 16
+> +        interrupt-names:
+> +          maxItems: 16
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r9a08g045-cpg.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    i3c@1005b000 {
+> +        compatible = "renesas,r9a08g045-i3c";
+> +        reg = <0x1005b000 0x1000>;
+> +        clocks = <&cpg CPG_MOD R9A08G045_I3C_PCLK>,
+> +                 <&cpg CPG_MOD R9A08G045_I3C_TCLK>;
+> +        clock-names = "pclk", "tclk";
+> +        interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 294 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 295 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 296 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 297 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 298 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 299 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-names = "ierr", "terr", "abort", "resp",
+> +                          "cmd", "ibi", "rx", "tx", "rcv",
+> +                          "st", "sp", "tend", "nack",
+> +                          "al", "tmo", "wu", "exit";
+> +        resets = <&cpg R9A08G045_I3C_PRESETN>,
+> +                 <&cpg R9A08G045_I3C_TRESETN>;
+> +        reset-names = "presetn", "tresetn";
+> +        power-domains = <&cpg>;
+> +        #address-cells = <3>;
+> +        #size-cells = <0>;
+> +    };
+> +...
+> --
+> 2.47.2
+>
 
