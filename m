@@ -1,148 +1,190 @@
-Return-Path: <devicetree+bounces-197126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2729B08446
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 07:29:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D65BB0846B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 07:57:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAAB87B0714
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 05:28:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E97233B8818
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 05:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F33A1FBEB0;
-	Thu, 17 Jul 2025 05:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC821A23AC;
+	Thu, 17 Jul 2025 05:57:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="osh6IZKI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QzQNGPgx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B69A1DE4C2;
-	Thu, 17 Jul 2025 05:29:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063A84689;
+	Thu, 17 Jul 2025 05:57:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752730183; cv=none; b=kPA765ni1rMhFXdV3KvzngUHkn1fW4cZ4yL4XevmVQ3Tnh4jLqZamLQtujm5Q7ETL3BS3YuJiVM+EBuW5qOGIHJE7w+dCVstspWOwHx14kvh8a0N1cwDA1ifQ5dM5yFxTZSwkmWdH7J7PiXATxFU7biRSgyo+KocZ+1J9kUNNb0=
+	t=1752731856; cv=none; b=pmyUzwYdt1kjXkyGk4WnhxZThfZHx1o2zxJGDFzGQ5JEyGzn+zJLJ5iM3B4JRDRRzkvdp++px4f6pJJY4PPTFM9gdgnVZgh3KueGqH5yd5CchME7cEdgOHMyGWv0RsR2mOHK0mlkt1DvijxljA37O+5RxcVSoCNrVGdzTSepuwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752730183; c=relaxed/simple;
-	bh=1YOTVp4nHv0BZ7i58c4SKiaJdSMcdRVXOcAQIUL+unc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SU48t89pP034MkmTF20ESb5HJiRB74tun0SZxuW81Iuby0IExNspmmf1THqPC4/rysyKbPetYIHmSa0TF2dyBSw5C9kmTCcmfPm9JBo8zYSh1udgDuetLRXMBMicWsURb2ydmuevTD6WaDbzi1g6yoZZzHkhjvvUBvavHSXKZ2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=osh6IZKI; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56H5RGPQ021636;
-	Thu, 17 Jul 2025 05:29:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3MhQvyCES0nl5lKNd0WhTNMhyxl4JLHMvRYThxKdV2c=; b=osh6IZKImUiId3uP
-	I8i+mJvt6GH8K4tI7cXffyX9b72ST5SjurEhaNzQnFMbTvNCNf0IBVWrwUQOsRaQ
-	A3WZ1+5wncBQdWZQJWkQlxeZrkr6wMGmGTJknR8DkoI5lMZmxd+qHztfYjWqQ1ri
-	nnELRbdKAuwTcLjFlC+9L1tSgw4BA0AA3z6duA0cYPY53xL16TTNMU6AImq4U+Cu
-	9DrWmelnAfwtWq9fRipYT+ktZRA2zi1cazc9mSWD6G25YzzjrEVEJsxI5Ni7aWw6
-	d+K5LRX0BQyoYRiwSSGU3PjOigJWg7qK5CvaCwPJ9JpHtgAXZsHpQnVpOSLqvlEX
-	2IU7xQ==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufu8e7a5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Jul 2025 05:29:21 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56H5TKml028519
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Jul 2025 05:29:20 GMT
-Received: from [10.216.39.173] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 16 Jul
- 2025 22:29:16 -0700
-Message-ID: <0cac2138-391e-ffc9-4cdc-07668795e6d1@quicinc.com>
-Date: Thu, 17 Jul 2025 10:59:13 +0530
+	s=arc-20240116; t=1752731856; c=relaxed/simple;
+	bh=i+OYdUkzIJ+AokfBhPSqQ383cgIi3Nc46oS6KmIomUc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VkQWc15uwyxlc1lXL3OpbqeQofP2VSP2sgpLTttf4W87znVDd9iKr9oWjBmBktm7g6FPFEZn9iqEDh5/it9jqH3weRU0iWDrfEy6hWYDI/gAnA9smKSTHRsikzhs15A9DI6/9ZCHUUjAga9lBkPx4wpXvycaFSUMpZoAfIDjr7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QzQNGPgx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFE41C4CEE3;
+	Thu, 17 Jul 2025 05:57:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752731855;
+	bh=i+OYdUkzIJ+AokfBhPSqQ383cgIi3Nc46oS6KmIomUc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QzQNGPgxrWisoas4UiKWJ+SQc43/UbFnhh64wImY0/frHWCs3kfshTqOF5lcf20PQ
+	 OMR0N89h5OW4RJmGCXtUPB5RaDXXjuZ26oHAJptytCCa4PHzT2sKzm5LYwUeyhYUzu
+	 jMbVtlfSI4jBnIG+oO1bSOWD9/vZEO50YB80oaOhDyMYJ8RWBXxw5Qeqjm1zwVXGPN
+	 Vj2ivN79F6dvPmn9Go6Py0y71gW/92ilydfQ1CFeacRyzsO2Ofzhqt5pek4SJDrG07
+	 sXNMN724JJfe19hc9QYfxjTTB+M4fzZc6ycGcbejGblHnNnihmrY+YfqHQX6uexYHa
+	 GsKznhW3oErFA==
+Message-ID: <a1c9e261-9889-4652-abd0-fc46b53594cb@kernel.org>
+Date: Thu, 17 Jul 2025 07:57:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] dt-bindings: media: qcom,sm8550-iris: Add X1E80100
- compatible
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] riscv: dts: Add the device tree of the XiangShan
+ platform's nanhu soc
+To: =?UTF-8?B?56em5bCR6Z2S?= <qinshaoqing@bosc.ac.cn>,
+ "paul.walmsley" <paul.walmsley@sifive.com>, palmer <palmer@dabbelt.com>,
+ aou <aou@eecs.berkeley.edu>, robh <robh@kernel.org>,
+ krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>
+Cc: linux-riscv <linux-riscv@lists.infradead.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ devicetree <devicetree@vger.kernel.org>, =?UTF-8?B?546L54S2?=
+ <wangran@bosc.ac.cn>
+References: <20250103063040.10817-1-qshaoqing926@163.com>
+ <2c75df56-fb55-4dd3-ac63-518233e61c8f.qinshaoqing@bosc.ac.cn>
+ <17ab3ebb-2f46-4c61-a194-57d72f382517.qinshaoqing@bosc.ac.cn>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Stephan Gerhold <stephan.gerhold@linaro.org>,
-        Dikshita Agarwal
-	<quic_dikshita@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-CC: Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Stefan Schmidt
-	<stefan.schmidt@linaro.org>
-References: <20250704-x1e-iris-v1-1-c3137d979e43@linaro.org>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <20250704-x1e-iris-v1-1-c3137d979e43@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE3MDA0NSBTYWx0ZWRfXzXvZnxdlIFUW
- YfMJOUFPu8u80vhbhYSjfAa0WOJ601mDot1uUuO06Re1+JhvDW1OJ04S9oLA8ZqO1lKh9Mt0Qdg
- tJwBy+WBVAdtGF+QO2eE2mVUJiYEEnQjLhinH5q+LDdi6/0xLZOO1ELKmuiUrosnej2rcVFW7Ms
- Zlx0wkgzo4lzUpBBodCs4IAQQuOPikUbE92FSl8cdrxUn9qBu3k4xpJlCWrxctcDXscjQlMpPXD
- 0wZAb098YJcTivF+7nf2VX93qgDZfXenMa/QbFdf34tDpZCTI6xndMk5Ootym2ZGPaJ54o4ayR6
- 06t2fqlb9YHsHshVgNY429jDwm7xx7151Scwf+kJaVxBHINRnHYETKS6hh4UUorhMAGfrq9ZT0j
- I78Ldzi+wbgZyIvb3Ap6o/G8JuqbLc2Im29b4ZDIGtCnJYUl+mBuD3OkPTukg7kkzXp9AfA4
-X-Proofpoint-ORIG-GUID: NOrIs6m6EPrQvtJYahuhIBUGYXCJ0QYX
-X-Proofpoint-GUID: NOrIs6m6EPrQvtJYahuhIBUGYXCJ0QYX
-X-Authority-Analysis: v=2.4 cv=f59IBPyM c=1 sm=1 tr=0 ts=68788a31 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=KKAkSRfTAAAA:8
- a=COk6AnOGAAAA:8 a=NRAvYGhPTOzaQrcWcUcA:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-17_01,2025-07-16_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 lowpriorityscore=0 malwarescore=0 spamscore=0 mlxscore=0
- bulkscore=0 suspectscore=0 impostorscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=999 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507170045
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <17ab3ebb-2f46-4c61-a194-57d72f382517.qinshaoqing@bosc.ac.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-On 7/4/2025 7:08 PM, Stephan Gerhold wrote:
-> Iris in X1E80100 is pretty much identical to SM8550. We can use the same
-> firmware image and the same definitions in the driver, so just add
-> qcom,x1e80100-iris to the existing list with qcom,sm8550-iris as fallback
-> compatible.
+On 17/07/2025 04:36, 秦少青 wrote:
 > 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+> 
+> This patch adds the device tree support for the XiangShan platform's nanhu soc
+
+Please read submitting patches document. It will also tell you which
+tools you must also run.
+
+> 
+> Signed-off-by: qinshaoqing <qinshaoqing@bosc.ac.cn>
 > ---
->  Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/riscv/Kconfig.socs                     |   5 +
+>  arch/riscv/boot/dts/Makefile                |   1 +
+>  arch/riscv/boot/dts/xiangshan/Makefile      |   2 +
+>  arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts | 226 ++++++++++++++++++++
+>  4 files changed, 234 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/xiangshan/Makefile
+>  create mode 100644 arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts
 > 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> index c79bf2101812d83b99704f38b7348a9f728dff44..9504d7ea23f4a30fd2d03e8683721641f8b1a115 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> @@ -20,6 +20,7 @@ properties:
->        - items:
->            - enum:
->                - qcom,sa8775p-iris
-> +              - qcom,x1e80100-iris
->            - const: qcom,sm8550-iris
->        - enum:
->            - qcom,qcs8300-iris
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> index f51bb24bc84c..89c80fd493fb 100644
+> --- a/arch/riscv/Kconfig.socs
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -80,4 +80,9 @@ config SOC_CANAAN_K210
+>   help
+>     This enables support for Canaan Kendryte K210 SoC platform hardware.
 > 
-> ---
+> +config SOC_XIANGSHAN
+> +        bool "XiangShan SoCs"
+> +        help
+> +          This enables support for XiangShan SoC platform hardware
+> +
+>  endmenu # "SoC selection"
+> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
+> index fdae05bbf556..43a79cc9dd7c 100644
+> --- a/arch/riscv/boot/dts/Makefile
+> +++ b/arch/riscv/boot/dts/Makefile
+> @@ -7,5 +7,6 @@ subdir-y += sifive
+>  subdir-y += sophgo
+>  subdir-y += starfive
+>  subdir-y += thead
+> +subdir-y += xiangshan
+> 
+>  obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_SOURCE))
+> diff --git a/arch/riscv/boot/dts/xiangshan/Makefile b/arch/riscv/boot/dts/xiangshan/Makefile
+> new file mode 100644
+> index 000000000000..41e585490a97
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/xiangshan/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +dtb-$(CONFIG_SOC_XIANGSHAN) += nanhu-v3a.dtb
+> diff --git a/arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts b/arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts
+> new file mode 100644
+> index 000000000000..560de7c7f22e
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts
+> @@ -0,0 +1,226 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/* Copyright (c) 2024-2025 BOSC */
+> +
+> +/dts-v1/;
+> +
+> +/ {
+> + #address-cells = <2>;
+> + #size-cells = <2>;
+> + compatible = "bosc,nanhu-v3a";
 
-Reviewed-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+
+Please follow kernel and DTS coding style.
+
+Once you fix all the warnings, please paste dtbs_check W=1 report.
+
+Best regards,
+Krzysztof
 
