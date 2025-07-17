@@ -1,130 +1,211 @@
-Return-Path: <devicetree+bounces-197224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B55C6B0882B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 10:47:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7110DB08875
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 10:53:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0220F4A7E26
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 08:47:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B77323B1A03
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 08:52:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 559921F9F73;
-	Thu, 17 Jul 2025 08:47:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eGz8+Z0R"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A15C428A1E2;
+	Thu, 17 Jul 2025 08:51:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571E31F9EC0;
-	Thu, 17 Jul 2025 08:47:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC91F2874F1;
+	Thu, 17 Jul 2025 08:51:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752742024; cv=none; b=j8F+33napE5p3mm39iOEPHBhW3FQEbHqFlQj2ITOg2gAeDeFu76WmVgyK+W0WzGKqliG8UfF0uiyyMTbvzWUcY23sasLq3KKvsTKlUm4Sqw3I+54Yp6KlY2xs9CMYijC1Ee7UcJ41iXIU5oK7pEYBYnxMNKh8HQbDI6FDTLTeeM=
+	t=1752742310; cv=none; b=Sq2TbhU9abiABroWPM+/HLbZXFcDLZHRh/xEHKkszAt7K+Whzm+9Y82sBCRSAUy3ALJLx9nD0Zf1VgSJV3gzJaLUBNQMkwvLRp6lqayP6mA6cEDxZWqb8KQmIxHbntUDvIM1iku38Efv2/9u4YG/ilG+Pb1GrGIVTq8hTfUP94s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752742024; c=relaxed/simple;
-	bh=SoZi3uH4bM8ut3s23CSSIKzUfpDb/RYJxJSCVL7F3f4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pRHW68sRLWj06UjlQP+WdijkpzbsErSVEqPxQwQqXPmuXEgSbzsUmXLfPTt3jpzg+nuVjlUhDhTaHCyaguTLzvc8tyZl8QnQeUGFHbtw+5s8wNApM8jdaJV4V7HVD2UUfeyqUBNrfkJ1TRntwW3JJLk248YbG3jwmEDTvZ9CbX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eGz8+Z0R; arc=none smtp.client-ip=209.85.160.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-4ab63f8fb91so6825801cf.0;
-        Thu, 17 Jul 2025 01:47:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752742019; x=1753346819; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SoZi3uH4bM8ut3s23CSSIKzUfpDb/RYJxJSCVL7F3f4=;
-        b=eGz8+Z0RMA5AIAh5fIt/cMmUZQCUjX2jAfw6hzu6R7ECe5s73t1WWGMj3nxZC/8Eqw
-         9QSk91Tg5c7z/D1R21ia8FR0qxd5ADPogE62b3uTYWsGfZjRy0/45nrcevuxzCE3OhoT
-         KcRylI3OgqygsKX1pyjkxWQFhOJ2HFrHUFvx/rZpLtIeCs/W6/vezw13hDidm++nktHN
-         SXWVOJkegmNNe92mUeZVSlltS+xrKX/yRHjqYBAoDircfEPM396ITCQzXgL7CcfzWI/F
-         63PAgDRFE30ZCjlqXu47DgMofFx1ijtEZX+1TWLf7ejJwIw/AsHxgWwAaeAOqvTLgnuc
-         y6Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752742019; x=1753346819;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SoZi3uH4bM8ut3s23CSSIKzUfpDb/RYJxJSCVL7F3f4=;
-        b=g6os2MGZrowrzscp55eJemg3MItY7vZ8waTFT+lXZ7GIOWzAexyp1ZstcD8/yKwFtO
-         5jqXAq/GE62sOIq48N1u6W7RV/dM341Mb0ErvmfR1vakUg6LyfNeh17/wjjvkxPRNFfe
-         vA5wt/C3Th78EJEMW2SF3wX+VgoSlH0YGejvoAAUzjX62HiIhxLLKUMhrLTRTOWlFynF
-         4nTGxMY1SC694a84mKQNFsR8Dbaxe4DBK1IVPdWSDaczI+dLBSBgCpgHL1h4h+/XBRRb
-         Jc/eGygTjW7ol6ODSLJOdupt6MIjS6d+S4Qs8NYEl6zhNzpkngWEeoHW59ESNMKQUk+/
-         djAA==
-X-Forwarded-Encrypted: i=1; AJvYcCWDBbA7L0ZYGw8K+TcCwMbOUHfPdIa/JxhRm2oRsubkY0pPGJj4/mYdTRyyVR7vSZr8Qse/7m7IMxz+I2VF@vger.kernel.org, AJvYcCXQA3pdK84nghYUfFbnM4JMb1VTws85/t7pYml6RUVbS5pzWI2BubIKpbkRK2aT0aY8GERuuMgvlffd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4xj8GskFxoXxMJH2+OxxJBsW2ZeNoBQVPYXLbBvEXUiHkG1Bm
-	mlWDKcJkC15QxTcybal3pb0yiwmKNOMmhvZnOb3L1TCa/kA/YPYKGCK++BsM0ix4mET4V1GZcTA
-	W0LIQ5SlO2KAgSAFNtVIEebWVTJwPRT0=
-X-Gm-Gg: ASbGncvXi0rQ/GZRn15QN8WzDSNwWvOPLB01lPfx4wohuPjTevIItnRL+vBMN0Vcgov
-	8C6ch7ZFw60J1LPlymHvlGGsUHUSxTNnuNoHdBI3c2ItYTV6O+nkYGA3dCptZD7F+xnWs77GYLG
-	evCiGgrNClKgxP346MAEGpS1Qp/EOLEamy4DlGKU4w4Vlx3VkBCHfP9hKmn6X/6EJ09GIZ58CBM
-	+PbP73pkOv1YyD4
-X-Google-Smtp-Source: AGHT+IHjj5vn0+lqcDlxTyECjf51uWo+wHz/e3GDdA4Lfz1XnPAokoHWuCf3MPYFpyI+USr4C4GDng9B+wsuijb5spQ=
-X-Received: by 2002:a05:622a:228b:b0:4a5:912a:7c64 with SMTP id
- d75a77b69052e-4ab93d49434mr62145001cf.30.1752742019019; Thu, 17 Jul 2025
- 01:46:59 -0700 (PDT)
+	s=arc-20240116; t=1752742310; c=relaxed/simple;
+	bh=XVnrJrnPlbmyF5O6waoygGLEWehIpZKU6n4gcMXuS+w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T78A/BbvQ9Fva4cOBtNQJrkyyrjUFDCgKa3VD00F726c3YGWZF/akQycq97uiQovNVqu4D9XP3qzDFCEjWfeR9ZkURjWcSMXCHu/56ue3dm5nf7fTjyI/VfWor9MGNsBcUylRaoJKeuVaXmEn9+UBIO/Tr725z/a2zk1JmIvR7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5B0C2433EE;
+	Thu, 17 Jul 2025 08:51:35 +0000 (UTC)
+Message-ID: <412b2b72-093d-4d55-b012-b185a840aa7e@ghiti.fr>
+Date: Thu, 17 Jul 2025 10:51:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <b6f8f705-f661-46cf-9dda-6f18f8658622@kwiboo.se> <20250717070006.192765-1-amadeus@jmu.edu.cn>
-In-Reply-To: <20250717070006.192765-1-amadeus@jmu.edu.cn>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 17 Jul 2025 12:46:47 +0400
-X-Gm-Features: Ac12FXzqkgYPLwPzfI0Wfzx3xJg_aHq911YS94XX9w26rk3khvCHNvT0xMmUc6s
-Message-ID: <CABjd4Yxz=mrNpqgnHSgD0tr4ALH3YW9MvLULES568yHNFiPB_w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency
- scaling support
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: jonas@kwiboo.se, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	heiko@sntech.de, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	ziyao@disroot.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/7] riscv: Add xmipsexectl as a vendor extension
+To: aleksa.paunovic@htecgroup.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Jonathan Corbet <corbet@lwn.net>
+Cc: Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20250625-p8700-pause-v4-0-6c7dd7f85756@htecgroup.com>
+ <20250625-p8700-pause-v4-2-6c7dd7f85756@htecgroup.com>
+Content-Language: en-US
+From: Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <20250625-p8700-pause-v4-2-6c7dd7f85756@htecgroup.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdeitdduhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtjeertddtvdejnecuhfhrohhmpeetlhgvgigrnhgurhgvucfihhhithhiuceorghlvgigsehghhhithhirdhfrheqnecuggftrfgrthhtvghrnheptdfhleefjeegheevgeeljeellefgvefhkeeiffekueejteefvdevhfelvdeggeeinecukfhppedukeehrddvudefrdduheegrdduhedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepudekhedrvddufedrudehgedrudehuddphhgvlhhopegluddtrddugedrtddrudefngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopedugedprhgtphhtthhopegrlhgvkhhsrgdrphgruhhnohhvihgtsehhthgvtghgrhhouhhprdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgruhhlrdifrghlmhhslhgvhiesshhifhhivhgvrdgtohhmpdhrtghpthhtohepphgrlhhmvghrsegurggssggvl
+ hhtrdgtohhmpdhrtghpthhtoheprghouhesvggvtghsrdgsvghrkhgvlhgvhidrvgguuhdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvth
+X-GND-Sasl: alex@ghiti.fr
 
-On Thu, Jul 17, 2025 at 11:01=E2=80=AFAM Chukun Pan <amadeus@jmu.edu.cn> wr=
-ote:
+Hi Aleksa,
+
+On 6/25/25 16:20, Aleksa Paunovic via B4 Relay wrote:
+> From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
 >
-> Hi Jonas,
+> Add support for MIPS vendor extensions. Add support for the xmipsexectl
+> vendor extension.
 >
-> > One possible difference here is that the actual CPU rate is controlled
-> > by a PVTPLL where TF-A will configure a osc ring-length based on the
-> > requested rate and Linux only configure the regulator voltage.
-> >
-> > I have no idea if the configuration made by TF-A will have any affect o=
-n
-> > power usage, but I suggest we keep all opp here because both TF-A and
-> > Linux is involved in configuring the CPU rate.
-> >
-> > The measured rate can typically be read from a PVTPLL status reg, it
-> > will be different depending on the ring-length, voltage and silicon
-> > quality for the rates >=3D 816 MHz.
+> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+> ---
+>   arch/riscv/Kconfig.vendor                       | 13 +++++++++++++
+>   arch/riscv/include/asm/vendor_extensions/mips.h | 16 ++++++++++++++++
+>   arch/riscv/kernel/vendor_extensions.c           | 10 ++++++++++
+>   arch/riscv/kernel/vendor_extensions/Makefile    |  1 +
+>   arch/riscv/kernel/vendor_extensions/mips.c      | 22 ++++++++++++++++++++++
+>   5 files changed, 62 insertions(+)
 >
-> Alexey suggested that we remove 408MHz, 600MHz and 816MHz from the
-> opp-table. Do you think it is acceptable to use 850mV for 1008MHz?
+> diff --git a/arch/riscv/Kconfig.vendor b/arch/riscv/Kconfig.vendor
+> index e14f26368963c178e3271e0f716b27fff7671e78..3c1f92e406c3f21481b56e61229716fd02ab81b2 100644
+> --- a/arch/riscv/Kconfig.vendor
+> +++ b/arch/riscv/Kconfig.vendor
+> @@ -16,6 +16,19 @@ config RISCV_ISA_VENDOR_EXT_ANDES
+>   	  If you don't know what to do here, say Y.
+>   endmenu
+>   
+> +menu "MIPS"
+> +config RISCV_ISA_VENDOR_EXT_MIPS
+> +	bool "MIPS vendor extension support"
+> +	select RISCV_ISA_VENDOR_EXT
+> +	default y
+> +	help
+> +	  Say N here to disable detection of and support for all MIPS vendor
+> +	  extensions. Without this option enabled, MIPS vendor extensions will
+> +	  not be detected at boot and their presence not reported to userspace.
+> +
+> +	  If you don't know what to do here, say Y.
+> +endmenu
+> +
+>   menu "SiFive"
+>   config RISCV_ISA_VENDOR_EXT_SIFIVE
+>   	bool "SiFive vendor extension support"
+> diff --git a/arch/riscv/include/asm/vendor_extensions/mips.h b/arch/riscv/include/asm/vendor_extensions/mips.h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..757c941cfd86e9fced6169b1a82200e6bb5c6132
+> --- /dev/null
+> +++ b/arch/riscv/include/asm/vendor_extensions/mips.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2025 MIPS.
+> + */
+> +
+> +#ifndef _ASM_RISCV_VENDOR_EXTENSIONS_MIPS_H
+> +#define _ASM_RISCV_VENDOR_EXTENSIONS_MIPS_H
+> +
+> +#include <asm/vendor_extensions.h>
+> +#include <linux/types.h>
+> +
+> +#define RISCV_ISA_VENDOR_EXT_XMIPSEXECTL	0
+> +
+> +extern struct riscv_isa_vendor_ext_data_list riscv_isa_vendor_ext_list_mips;
+> +
+> +#endif // _ASM_RISCV_VENDOR_EXTENSIONS_MIPS_H
+> diff --git a/arch/riscv/kernel/vendor_extensions.c b/arch/riscv/kernel/vendor_extensions.c
+> index 92d8ff81f42c9ceba63bef0170ab134564a24a4e..bb4a7592368560ebacbcd8a5ce335eea6312ea5c 100644
+> --- a/arch/riscv/kernel/vendor_extensions.c
+> +++ b/arch/riscv/kernel/vendor_extensions.c
+> @@ -6,6 +6,7 @@
+>   #include <asm/vendorid_list.h>
+>   #include <asm/vendor_extensions.h>
+>   #include <asm/vendor_extensions/andes.h>
+> +#include <asm/vendor_extensions/mips.h>
+>   #include <asm/vendor_extensions/sifive.h>
+>   #include <asm/vendor_extensions/thead.h>
+>   
+> @@ -16,6 +17,9 @@ struct riscv_isa_vendor_ext_data_list *riscv_isa_vendor_ext_list[] = {
+>   #ifdef CONFIG_RISCV_ISA_VENDOR_EXT_ANDES
+>   	&riscv_isa_vendor_ext_list_andes,
+>   #endif
+> +#ifdef CONFIG_RISCV_ISA_VENDOR_EXT_MIPS
+> +	&riscv_isa_vendor_ext_list_mips,
+> +#endif
+>   #ifdef CONFIG_RISCV_ISA_VENDOR_EXT_SIFIVE
+>   	&riscv_isa_vendor_ext_list_sifive,
+>   #endif
+> @@ -49,6 +53,12 @@ bool __riscv_isa_vendor_extension_available(int cpu, unsigned long vendor, unsig
+>   		cpu_bmap = riscv_isa_vendor_ext_list_andes.per_hart_isa_bitmap;
+>   		break;
+>   	#endif
+> +	#ifdef CONFIG_RISCV_ISA_VENDOR_EXT_MIPS
+> +	case MIPS_VENDOR_ID:
+> +		bmap = &riscv_isa_vendor_ext_list_mips.all_harts_isa_bitmap;
+> +		cpu_bmap = riscv_isa_vendor_ext_list_mips.per_hart_isa_bitmap;
+> +		break;
+> +	#endif
+>   	#ifdef CONFIG_RISCV_ISA_VENDOR_EXT_SIFIVE
+>   	case SIFIVE_VENDOR_ID:
+>   		bmap = &riscv_isa_vendor_ext_list_sifive.all_harts_isa_bitmap;
+> diff --git a/arch/riscv/kernel/vendor_extensions/Makefile b/arch/riscv/kernel/vendor_extensions/Makefile
+> index a4eca96d1c8a2fd165220f6439a3884cf90a9593..ccad4ebafb43412e72e654da3bdb9face53b80c6 100644
+> --- a/arch/riscv/kernel/vendor_extensions/Makefile
+> +++ b/arch/riscv/kernel/vendor_extensions/Makefile
+> @@ -1,6 +1,7 @@
+>   # SPDX-License-Identifier: GPL-2.0-only
+>   
+>   obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_ANDES)	+= andes.o
+> +obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_MIPS)  	+= mips.o
+>   obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_SIFIVE)	+= sifive.o
+>   obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_SIFIVE)	+= sifive_hwprobe.o
+>   obj-$(CONFIG_RISCV_ISA_VENDOR_EXT_THEAD)	+= thead.o
+> diff --git a/arch/riscv/kernel/vendor_extensions/mips.c b/arch/riscv/kernel/vendor_extensions/mips.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..f691129f96c21f2ef089124f4b64a6f0a8e6d4aa
+> --- /dev/null
+> +++ b/arch/riscv/kernel/vendor_extensions/mips.c
+> @@ -0,0 +1,22 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2025 MIPS.
+> + */
+> +
+> +#include <asm/cpufeature.h>
+> +#include <asm/vendor_extensions.h>
+> +#include <asm/vendor_extensions/mips.h>
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/cpumask.h>
+> +#include <linux/types.h>
+> +
+> +/* All MIPS vendor extensions supported in Linux */
+> +static const struct riscv_isa_ext_data riscv_isa_vendor_ext_mips[] = {
+> +	__RISCV_ISA_EXT_DATA(xmipsexectl, RISCV_ISA_VENDOR_EXT_XMIPSEXECTL),
+> +};
+> +
+> +struct riscv_isa_vendor_ext_data_list riscv_isa_vendor_ext_list_mips = {
+> +	.ext_data_count = ARRAY_SIZE(riscv_isa_vendor_ext_mips),
+> +	.ext_data = riscv_isa_vendor_ext_mips,
+> +};
 
-But why 850 mV? Vendor .dtsi [1] implies that chips with leakage
-values of L0..L4 might be unstable at this frequency with a 850 mV
-supply and need 875 mV instead.
 
-As long as we don't read out OTP leakage values, we should pick a
-voltage for each OPP that is sufficient for all possible chip
-characteristics, meaning the maximum of all opp-microvolt* given in
-each OPP. This will result in higher -L* chips burning more power than
-they have to, but at least they will be stable.
+Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
 
-[1] https://github.com/rockchip-linux/kernel/blob/792a7d4273a59e80dafca48ba=
-11438f43a6d8bda/arch/arm64/boot/dts/rockchip/rk3528.dtsi#L268
+Thanks,
 
-Best regards,
-Alexey
+Alex
+
 
