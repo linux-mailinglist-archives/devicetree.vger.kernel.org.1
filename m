@@ -1,88 +1,63 @@
-Return-Path: <devicetree+bounces-197454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52596B0957C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 22:10:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BD1CB09580
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 22:10:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F8D1173D18
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 20:10:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81CB4175DBB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jul 2025 20:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4084224220;
-	Thu, 17 Jul 2025 20:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F3152248A8;
+	Thu, 17 Jul 2025 20:10:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Yvs+WD0v"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="C2NLJF2g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC9F1DE4E1
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 20:10:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2352D1DE4E1;
+	Thu, 17 Jul 2025 20:10:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752783014; cv=none; b=q+4yQVkMCEYT85CkUZ91xudBZYIAOCFYk7BXPhZWYK8OKD2Zn256tM8GUTjK1fADx8zykTZgWtq8f08tJPuLYhatsCkk9CvCy+tYz/+SKenSRk81wMQD0LxUrxIIUrlmkMWpwwziPfqLOFV9dz0RrbybvMUt38uuQUDapUT989M=
+	t=1752783043; cv=none; b=Ko5LwT8UqHmSi8Lmmnl0Qg32xGYEJKPU92/iDQ5dTwKtSw5DoF/D3nlsnPGPN/lfCVRIXlms72wz0EmHpMI924jtIp/CAHLbzKy3H5N3ovjyg9Vw57WRTmA6ZiVI4I6Dvq9eJwsai6S5MtTBAQkkW0//dLEpgHRlPk6pyarwjSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752783014; c=relaxed/simple;
-	bh=EKPy52oDvGVZSqhCAVKk47J2X7s3CsyNooGD7tK/m/w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CtIBNy+Ugfy0o19U7f0/GosGQPtz/mmFjzQCE7+4Vn9u/MkZEf15Xt9W7ZaHOR5JagXeHR09dBe3WtGzogap7jXvN8WllXYjhKgRcU1CyeeYPKYXCiCQAjiukFK8hiyv88q6VVbxX5re6szM29vD09QY5a5hKNs4eyZ12Z8zr3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Yvs+WD0v; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56HChcE5021699
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 20:10:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cYmO1GfNb8ToOrGv1oJJtmJMYTy9sY9g5g+UCjbEQSU=; b=Yvs+WD0v1Vs9fhxP
-	s7ASfobm5K0SuvMJSVGkgoYSVHCxiLbwnbtxNcg7zfXi0TS8fHRn/GDgRO+CZlUE
-	mOaFAMkkY3nSor2LSpwysqq15d8SpeOSUQX9KFjijN0o6qe8dZdjefshrEFhJko2
-	cYhumOKdSSdlneojGuYX4/c9lg++JgogmhXp9s4U9GnOPNftpnlkHw15RgFBWAbu
-	tohdak3Ttze7/EtERgpE3AlbMA+xWLuRVw0ck906PA4Ueri55u5MDt8cSgqDLd37
-	RifYOUr8S/GAIParP+ZSaMUMubdmxyRFP6A3X+6CsF5LfojaElqWUkVNXC4pIf40
-	1SSRZQ==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufu8gw3d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 20:10:11 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6fb030f541bso4818166d6.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Jul 2025 13:10:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752783011; x=1753387811;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cYmO1GfNb8ToOrGv1oJJtmJMYTy9sY9g5g+UCjbEQSU=;
-        b=Jl1wz7WdJpaLLwaZGOJFf5dWV5UnpgGnRI5Ovu9B/rfKyavX4mVaSK7KTZi0mCZ5XU
-         DSAivgc4keNUxmOhTZwK7znoFVzEVGj0HtyJvODUatKSjzzcsFJpelSyybM+0HXKlvV1
-         N5adJMbu9mmdmrHjBPxbxlaTR6gqr+o+18ersS4wt0NV+yYkUi57Q8Cyzkoeww0hgDXa
-         R9XFTNoN5pd27c+03uhIcqAag3p953CdcVR5g9Eb6HPtdKCvc6Uedg1o37YE4jaCgvAP
-         PcuSlGz3896ER+l35XRrT8htwCCN6gPMJWymu4uBrmZC2UGFpiHOdAKdJhS7UxHn4XkK
-         GPYw==
-X-Forwarded-Encrypted: i=1; AJvYcCWcUShPaD1H6ME8SecQBJilvh22sWpVcz8VlYuJ09spHwp+aHbPPjEIvYl+B7Qq5dDgsQ+llAZpiwAc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmW4EVgEQhg4+wdAebbMT7/0JZkpd3moDYvCN6ZxTQjY/xgpiN
-	WlCZF5VWsvo+ENQUx/61U/resm6V/5CDl9JWybUn5qzdpzvY/yCg/7j65xOcKbZA53xNOexVC+I
-	lIzGkfYv0Fysl8Q9y3biPyvNTM6ZvDo6/Z9nm7+rwJWyPsHBLyc/uUhugMdC3mbKf
-X-Gm-Gg: ASbGncvIfMEECC+GYTJu3eyGe5wlYvWfojVjeSKp8maXgO+1U8FXyg7bw4MpIFO7rif
-	m1S8pckCEh497G1maC0KaKb04QIMXJh8n+zR0SKKDJHfSwKK2rXwD1ujCt4UO9Dxh0OrOkL88D9
-	dAqJSn34ZbPhd/LVLhu1S0vhhboAWcX9uGHluReR/nnWkafpEZ3rP1WJnSwmGo/B54W8qUQQf0u
-	D34FYZw8/H5qb0pVHbQrJvMwIJMz6/iOwfyO/m4BjjJ9U1I4ifPPdWd4tAUS+Boils3nRHXIJUZ
-	3oToxBszk6meo+5LgIwJCpvEXQ/9O+Z+rTJ5U7fi4D5/VwBK44Sc2kcQP1F3Vlufre98hGU+2LA
-	w4s1CtpRv8FKAZFM/yuuo
-X-Received: by 2002:a05:620a:172a:b0:7c0:b3cd:9be0 with SMTP id af79cd13be357-7e342b416b3mr491272485a.10.1752783011004;
-        Thu, 17 Jul 2025 13:10:11 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEOAfee9N81jpOmhQ5PZ3hk1t3eQcHZyJcOmJC48exwPfVSuJeo/nSdRV/0obqjOo192WJTNA==
-X-Received: by 2002:a05:620a:172a:b0:7c0:b3cd:9be0 with SMTP id af79cd13be357-7e342b416b3mr491269985a.10.1752783010505;
-        Thu, 17 Jul 2025 13:10:10 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae6e7c09dfdsm1407562266b.0.2025.07.17.13.10.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Jul 2025 13:10:09 -0700 (PDT)
-Message-ID: <3a381014-cfe4-4b3c-a3c7-df688c1e87cc@oss.qualcomm.com>
-Date: Thu, 17 Jul 2025 22:10:05 +0200
+	s=arc-20240116; t=1752783043; c=relaxed/simple;
+	bh=yxbEKm3kaDuHVnicyiV1PpDl4IEnn1IFYSQCTLLBIZo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JpoZvzU8XoBEgSHqW0YMVaTXD7oq+BHWxWrqEPoAHwrURFLYG93amD4DRw7CoQLAmckMnKancS2lFWktU9/I+9S9Lx4Fy/4u0QmIcIgsu0E/M8kOFRVNX3WF+PsfBeGW5PrP2mHzfwerx5g9TgrFE2r6i9SmbJSu+b4I4tqumXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=C2NLJF2g; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56HKAF18554130;
+	Thu, 17 Jul 2025 15:10:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752783015;
+	bh=Xl5CvRJMkvPrwF5sIZsDzwi9Q/UTJFP/8yg3QmmeaV8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=C2NLJF2gd4XPOSz4EEWQvPqzCNCP2vvKSBASO8gh9t//qVg11bdHglpyuJ6dbHnlR
+	 mARXC0FFfD652EbrTlThi2Ztbk1I9w1s2ckMz8HXshdJzkn9d3IbjTzLRZnjJynAEu
+	 +kmJmckZOFpYJm9dlP4vVSNWBI7xzlxR0tbs084s=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56HKAFDx3008894
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 17 Jul 2025 15:10:15 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 17
+ Jul 2025 15:10:15 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 17 Jul 2025 15:10:15 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56HKAEHR2718676;
+	Thu, 17 Jul 2025 15:10:14 -0500
+Message-ID: <c89718cd-63b8-459b-a543-204b175f2108@ti.com>
+Date: Thu, 17 Jul 2025 15:10:14 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,104 +65,187 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: Add HAMOA-IOT-SOM platform
-To: Stephan Gerhold <stephan.gerhold@linaro.org>,
-        Yijie Yang <yijie.yang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 2/2] watchdog: rti_wdt: Add reaction control
+To: Judith Mendez <jm@ti.com>, Guenter Roeck <linux@roeck-us.net>
+CC: Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250716-hamoa_initial-v1-0-f6f5d0f9a163@oss.qualcomm.com>
- <20250716-hamoa_initial-v1-3-f6f5d0f9a163@oss.qualcomm.com>
- <aHkhcUVBnrwadKfa@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250707180002.3918865-1-jm@ti.com>
+ <20250707180002.3918865-3-jm@ti.com>
+ <cc37e797-d3e5-444d-8016-c437a0534001@roeck-us.net>
+ <d96541bc-644d-4c90-b9f7-1e4afd16aeb6@ti.com>
+ <953f78a8-3928-479d-8700-dfe1cea15454@roeck-us.net>
+ <299c363a-23c7-4522-b58c-100f49c4eece@ti.com>
+ <7d2bb793-14d0-45d8-b8bd-b770cdb4ca70@roeck-us.net>
+ <fc095373-1171-4718-b492-8a74d03f99ba@ti.com>
+ <92be34eb-2408-4273-9e37-bec0b0d68f10@ti.com>
+ <4826def7-5dcb-4453-ab3b-0d14880dab93@ti.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <aHkhcUVBnrwadKfa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <4826def7-5dcb-4453-ab3b-0d14880dab93@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE3MDE3OCBTYWx0ZWRfX+OrO0pny1SqQ
- TG5F+a+gb16rAOGB9HyJeNQXxaQT0hmaxQkRdolWSGppXNAttbvuXs8J3zt4tTIkOU3pk7cMbJQ
- WUA5oYUR89OR522idNXAgTxZqCScUWfPldDMgaAlPNP+l/xes+MxUl3TqTnaWvTjsn9H9nsyFwR
- ivWPxqfvdgROGPQf+c/yJNQYo5XDtxaI0dS8FWwDwsAJ1oEy/zFI3RPSxfTPgGNVgp1JfLIpWki
- N3y06XxK4jWcbcVznhjJIOzmXhcWz7picbamRU3WMCu8/vQRB92z/zn7CXBN4SYAgbWroLFdS56
- ChAdLQ2HAgjMrtYlVb5k1Uh4qomjDgG/5oR2QzFJRca5ClZTf6N547jbfaJiyyvAE6XV3bbxuIZ
- Ln54XKICOI7C5kGiMzgiSeylpiX0fBPj9iIbuGOK4one4VTbri93+ZRub1dBwa9qpDI5GfXB
-X-Proofpoint-ORIG-GUID: meK3pKyy_2D4a9vgYYFJLV-bf8s_32k1
-X-Proofpoint-GUID: meK3pKyy_2D4a9vgYYFJLV-bf8s_32k1
-X-Authority-Analysis: v=2.4 cv=f59IBPyM c=1 sm=1 tr=0 ts=687958a3 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=DGOirDVRF9kFrzJQLnUA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-17_03,2025-07-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 lowpriorityscore=0 malwarescore=0 spamscore=0 mlxscore=0
- bulkscore=0 suspectscore=0 impostorscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=999 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507170178
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 7/17/25 6:14 PM, Stephan Gerhold wrote:
-> On Wed, Jul 16, 2025 at 05:08:41PM +0800, Yijie Yang wrote:
->> The HAMOA-IOT-SOM is a compact computing module that integrates a System
->> on Chip (SoC) — specifically the x1e80100 — along with essential
->> components optimized for IoT applications. It is designed to be mounted on
->> carrier boards, enabling the development of complete embedded systems.
->>
->> This change enables and overlays the following components:
->> - Regulators on the SOM
->> - Reserved memory regions
->> - PCIe6a and its PHY
->> - PCIe4 and its PHY
->> - USB0 through USB6 and their PHYs
->> - ADSP, CDSP
->> - WLAN, Bluetooth (M.2 interface)
-
-[...]
-
->> +&usb_mp_hsphy0 {
->> +	vdd-supply = <&vreg_l2e_0p8>;
->> +	vdda12-supply = <&vreg_l3e_1p2>;
->> +
->> +	status = "okay";
->> +};
->> +
->> +&usb_mp_hsphy1 {
->> +	vdd-supply = <&vreg_l2e_0p8>;
->> +	vdda12-supply = <&vreg_l3e_1p2>;
->> +
->> +	status = "okay";
->> +};
->> +
->> +&usb_mp_qmpphy0 {
->> +	vdda-phy-supply = <&vreg_l3e_1p2>;
->> +	vdda-pll-supply = <&vreg_l3c_0p8>;
->> +
->> +	status = "okay";
->> +};
->> +
->> +&usb_mp_qmpphy1 {
->> +	vdda-phy-supply = <&vreg_l3e_1p2>;
->> +	vdda-pll-supply = <&vreg_l3c_0p8>;
->> +
->> +	status = "okay";
->> +};
->>
+On 7/17/25 12:51 PM, Judith Mendez wrote:
+> Hi Andrew,
 > 
-> Assuming the USB ports are located on the carrier board and not the
-> SoM(?):
+> On 7/17/25 11:44 AM, Andrew Davis wrote:
+>> On 7/17/25 10:24 AM, Judith Mendez wrote:
+>>> Hi Guenter,
+>>>
+>>> On 7/16/25 1:50 PM, Guenter Roeck wrote:
+>>>> On 7/10/25 07:08, Judith Mendez wrote:
+>>>>> Hi Guenter, Andrew,
+>>>>>
+>>>>> On 7/7/25 5:55 PM, Guenter Roeck wrote:
+>>>>>> On Mon, Jul 07, 2025 at 04:49:31PM -0500, Andrew Davis wrote:
+>>>>>>> On 7/7/25 3:58 PM, Guenter Roeck wrote:
+>>>>>>>> On Mon, Jul 07, 2025 at 01:00:02PM -0500, Judith Mendez wrote:
+>>>>>>>>> This allows to configure reaction between NMI and reset for WWD.
+>>>>>>>>>
+>>>>>>>>> On K3 SoC's other than AM62L SoC [0], watchdog reset output is routed
+>>>>>>>>> to the ESM module which can subsequently route the signal to safety
+>>>>>>>>> master or SoC reset. On AM62L, the watchdog reset output is routed
+>>>>>>>>> to the SoC HW reset block. So, add a new compatible for AM62l to add
+>>>>>>>>> SoC data and configure reaction to reset instead of NMI.
+>>>>>>>>>
+>>>>>>>>> [0] https://www.ti.com/product/AM62L
+>>>>>>>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>>>>>>>> ---
+>>>>>>>>>    drivers/watchdog/rti_wdt.c | 32 ++++++++++++++++++++++++++++----
+>>>>>>>>>    1 file changed, 28 insertions(+), 4 deletions(-)
+>>>>>>>>>
+>>>>>>>>> diff --git a/drivers/watchdog/rti_wdt.c b/drivers/watchdog/rti_wdt.c
+>>>>>>>>> index d1f9ce4100a8..c9ee443c70af 100644
+>>>>>>>>> --- a/drivers/watchdog/rti_wdt.c
+>>>>>>>>> +++ b/drivers/watchdog/rti_wdt.c
+>>>>>>>>> @@ -35,7 +35,8 @@
+>>>>>>>>>    #define RTIWWDRXCTRL    0xa4
+>>>>>>>>>    #define RTIWWDSIZECTRL    0xa8
+>>>>>>>>> -#define RTIWWDRX_NMI    0xa
+>>>>>>>>> +#define RTIWWDRXN_RST    0x5
+>>>>>>>>> +#define RTIWWDRXN_NMI    0xa
+>>>>>>>>>    #define RTIWWDSIZE_50P        0x50
+>>>>>>>>>    #define RTIWWDSIZE_25P        0x500
+>>>>>>>>> @@ -63,22 +64,29 @@
+>>>>>>>>>    static int heartbeat;
+>>>>>>>>> +struct rti_wdt_data {
+>>>>>>>>> +    bool reset;
+>>>>>>>>> +};
+>>>>>>>>> +
+>>>>>>>>>    /*
+>>>>>>>>>     * struct to hold data for each WDT device
+>>>>>>>>>     * @base - base io address of WD device
+>>>>>>>>>     * @freq - source clock frequency of WDT
+>>>>>>>>>     * @wdd  - hold watchdog device as is in WDT core
+>>>>>>>>> + * @data - hold configuration data
+>>>>>>>>>     */
+>>>>>>>>>    struct rti_wdt_device {
+>>>>>>>>>        void __iomem        *base;
+>>>>>>>>>        unsigned long        freq;
+>>>>>>>>>        struct watchdog_device    wdd;
+>>>>>>>>> +    const struct rti_wdt_data *data;
+>>>>>>>>>    };
+>>>>>>>>>    static int rti_wdt_start(struct watchdog_device *wdd)
+>>>>>>>>>    {
+>>>>>>>>>        u32 timer_margin;
+>>>>>>>>>        struct rti_wdt_device *wdt = watchdog_get_drvdata(wdd);
+>>>>>>>>> +    u8 reaction;
+>>>>>>>>>        int ret;
+>>>>>>>>>        ret = pm_runtime_resume_and_get(wdd->parent);
+>>>>>>>>> @@ -101,8 +109,13 @@ static int rti_wdt_start(struct watchdog_device *wdd)
+>>>>>>>>>         */
+>>>>>>>>>        wdd->min_hw_heartbeat_ms = 520 * wdd->timeout + MAX_HW_ERROR;
+>>>>>>>>> -    /* Generate NMI when wdt expires */
+>>>>>>>>> -    writel_relaxed(RTIWWDRX_NMI, wdt->base + RTIWWDRXCTRL);
+>>>>>>>>> +    /* Reset device if wdt serviced outside of window or generate NMI if available */
+>>>>>>>>
+>>>>>>>> Shouldn't that be "or generate NMI if _not_ available" ?
+>>>>>>>>
+>>>>>>>
+>>>>>>> For almost all the K3 devices, the WDT has two selectable outputs, one resets
+>>>>>>> the device directly, the other is this "NMI" which is wired to an ESM module
+>>>>>>> which can take other actions (but usually it just also resets the device).
+>>>>>>> For AM62L that second NMI output is not wired (no ESM module), so our only
+>>>>>>> choice is to set the WDT to direct reset mode.
+>>>>>>>
+>>>>>>> The wording is a little strange, but the "or generate NMI if available" meaning
+>>>>>>> if NMI is available, then do that. Reset being the fallback when _not_ available.
+>>>>>>>
+>>>>>>> Maybe this would work better:
+>>>>>>>
+>>>>>>> /* If WDT is serviced outside of window, generate NMI if available, or reset device */
+>>>>>>>
+>>>>>>
+>>>>>> The problem is that the code doesn't match the comment. The code checks the
+>>>>>> "reset" flag and requests a reset if available. If doesn't check an "nmi"
+>>>>>> flag.
+>>>>>>
+>>>>>> If the preference is NMI, as your comment suggests, the flag should be named
+>>>>>> "nmi" and be set if NMI is available. That would align the code and the
+>>>>>> comment. Right now both code and comment are misleading, since the presence
+>>>>>> of a reset flag (and setting it to false) suggests that a direct reset is
+>>>>>> not available, and that reset is preferred if available. A reset is the
+>>>>>> normally expected behavior for a watchdog, so the fact that this is _not_
+>>>>>> the case for this watchdog should be made more visible.
+>>>>>
+>>>>>
+>>>>> How about:
+>>>>>
+>>>>>
+>>>>> /* If WWDT serviced outside of window, generate NMI or reset the device
+>>>>> if NMI not available */
+>>>>>
+>>>>> if (wdt->data->reset)
+>>>>>      reaction = RTIWWDRXN_RST;
+>>>>> else
+>>>>>      reaction = RTIWWDRXN_NMI;
+>>>>>
+>>>>
+>>>> As I have said before, the problem is the "reset" flag. Its name suggests that
+>>>> it means "reset is available". That is not what it actually means. It means
+>>>> "NMI is not available". So I suggested to rename it to "nmi" or maybe "no_nmi".
+>>>> Please educate me - why is that such a problem to name the flag to match its
+>>>> meaning ?
+>>>
+>>> wdt->data->reset makes more sense because it shows there is a
+>>> physical line routed to the MAIN RESET HW LOGIC:
+>>>
+>>>  >> if (wdt->data->reset)
+>>>  >>      reaction = RTIWWDRXN_RST;
+>>>  >> else
+>>>  >>      reaction = RTIWWDRXN_NMI;
+>>>
+>>> If there is a direct reset line to MAIN RESET HW logic, then the
+>>> reaction should be reset, if there is no reset line, then generate
+>>> and NMI to ESM.
+>>>
+>>
+>> There is a reset line on all K3 devices, if you did it this way then
+>> all devices would have wdt->data->reset set to true and you wouldn't
+>> need this logic at all. The thing that changes is if NMI/ESM is
+>> available or not, so as Guenter suggests the flag should be called
+>> "nmi" or similar and you switch on that.
 > 
-> Are carrier boards required to make use of all these USB
-> ports/interfaces? In my experience it's not unusual that embedded
-> carrier boards use only the functionality that they need. Maybe this
-> should just set the common properties and enabling individual ports for
-> PCIe and USB should be up to the carrier boards.
+> Looking at the integration spec, I do not see a direct reset line for
+> any device besides am62l, could you confirm that what I am reading
+> is correct please?
+> 
 
-The PHYs are on the SoC and if the kernel is told they're "disabled",
-they may possibly be left dangling from the bootloader
+I'm not even finding the direct reset line for AM62L, some of these
+datasheets are lacking the reset routing.
 
-Konrad
+Anyway, one thing I did notice in these datasheets is that the
+default value for the RTIWWDRXCTRL register is 0x5 (send reset).
+So even if these other devices do not wire the reset we are still
+changing the default by setting the register to 0xa (NMI), so the
+point would still stand. Setting the value to NMI is a change from
+the default and so should be codded that way: have a NMI flag, set
+to true for all devices that have it, leave false for AM62L.
+
+Andrew
 
