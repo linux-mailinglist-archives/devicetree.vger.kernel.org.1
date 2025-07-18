@@ -1,225 +1,107 @@
-Return-Path: <devicetree+bounces-197636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F40B0A04C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 12:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 731C3B0A056
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 12:07:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F01121C23B7D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 10:05:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1510D1C242F6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 10:08:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A65BC298CCD;
-	Fri, 18 Jul 2025 10:05:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfXynAf2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF93829C33A;
+	Fri, 18 Jul 2025 10:07:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F611E51F1;
-	Fri, 18 Jul 2025 10:05:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54CED29B76B;
+	Fri, 18 Jul 2025 10:07:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752833100; cv=none; b=t7G1Oxl9MHjB+YWdS+x7vLx+CIJyBKiDbh0twjtehBgDtS+8WhvCXRUsFuIQqeX35COROZMo/a1DHvwuYHQikg2uBXEFSORoWssojY/M1OfN4UR8bAV1lMYUzQQH6ONXCzXyqwsTWwKJuU+YBefqYFU2fWp0znPyfpoy6lpDzbs=
+	t=1752833260; cv=none; b=DHN7BnmH6OUUEH7m0WaIcsCIhW9OigAdpfrXZqZELjAGI1n7Edm008nnkowE0POGIX9sMGHJt81nR14B910qRSCmOBa2dU76YGeG0Qc8e11VXkBIeC0wgOA6kADVTUlyj3JYJorSUw6+z2YG1Rv78Pg/BuyXvY+eN8OnPbgReEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752833100; c=relaxed/simple;
-	bh=MKsDCNHJ/zLOTrq55OSIxwQgE0tak99afxdnm4AIHrA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QfMjVM2WCYaoRXT23a6Tpch+uw4NSGV4NzExsWmWsAA33lO1pjhKCcletZalItMC64lWVVGlFtfXC/JODSaegfNtqEy+tpJlgdu7+eaV06ok7GUKONA/NOdTUMhAj9U1TAWw2UyDwum1Yj6YNtgqzIxVPZnDzL6f4tiCMg1S34A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfXynAf2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFD57C4CEEB;
-	Fri, 18 Jul 2025 10:04:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752833100;
-	bh=MKsDCNHJ/zLOTrq55OSIxwQgE0tak99afxdnm4AIHrA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LfXynAf2MEGucMm92lkrxW03CrTEJgg0+fOZ3omPiMfoyAMk3uT9e0ukT+qptgi1E
-	 1gdAq0Sdi2daoih0SV3ZUMsE8xts7gROP+KGeWTTlLeTDRY4SEG7WrNo1vbYm8AgMR
-	 MWDfmjTonnkUsYGX1/i/m8LH2w9UPmmEZBs/AFIyYuK/HPhK8ga7dDUHT3K1hwILD1
-	 IifVOiYZ3UBexZy3R8wubFdzfPZpH5dikEkQRy8LDX3EIa2x4xUvg6rGZMn3zlcMjb
-	 mpJvLxLC9acMA2p90/VYnsP2NeG0ThDge+tsoRwcju1j9BLZQryxpJf6dujHz6aVMJ
-	 nAYuf82uoE63Q==
-Message-ID: <56d4e911-5bec-458e-acd1-3594a6d8b91d@kernel.org>
-Date: Fri, 18 Jul 2025 12:04:54 +0200
+	s=arc-20240116; t=1752833260; c=relaxed/simple;
+	bh=keXTVKHuCD0L5Qb/JscNYjXIELHz1c4oi3RqVYlTU6o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NrZgqYuwJdErMkg4NbiDyGkpTayOF1N+6pv3TcEshdo5fiAG21BQVi2/YiRc2CIsbhbqzhBkvBTL4jAJs0opFCoTOrKZtndN5P/57uwZZc6KPPoj38T/nfTP/aYmGw9l+COy1bSZMbofjMINZfOWLkxz1WpkpJm+LQZ0adAZRpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.48.207])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 3380A340F28;
+	Fri, 18 Jul 2025 10:07:37 +0000 (UTC)
+Date: Fri, 18 Jul 2025 18:07:32 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Vivian Wang <wangruikang@iscas.ac.cn>
+Cc: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr, palmer@dabbelt.com,
+	skhan@linuxfoundation.org, linux-kernel-mentees@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] riscv: dts: spacemit: Add OrangePi RV2 board
+ device tree
+Message-ID: <20250718100732-GYA700698@gentoo>
+References: <20250718084339.471449-1-hendrik.hamerlinck@hammernet.be>
+ <20250718084339.471449-3-hendrik.hamerlinck@hammernet.be>
+ <8ade99a6-84a0-4e69-8ebf-d9dfdc9141b5@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/7] media: dt-bindings: venus: Add qcm2290 dt schema
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, quic_vgarodia@quicinc.com,
- quic_dikshita@quicinc.com, krzk+dt@kernel.org, konradybcio@kernel.org,
- mchehab@kernel.org, andersson@kernel.org, conor+dt@kernel.org,
- amit.kucheria@oss.qualcomm.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250715204749.2189875-1-jorge.ramirez@oss.qualcomm.com>
- <20250715204749.2189875-2-jorge.ramirez@oss.qualcomm.com>
- <8a63f517-a443-48e4-9b9c-0c4b362f59f8@linaro.org> <aHiZpnFhhR5O0h97@trex>
- <0bb2867a-393b-46f9-ad6f-1aeee5a3a9d4@kernel.org> <aHjbjw8Z79Xcd/ZJ@trex>
- <aHksJum91s4ZmI56@trex> <5afbaf46-bbb1-47d8-84aa-29b18987564f@kernel.org>
- <18d013e5-352e-457b-ba96-3dd19f1cbaed@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <18d013e5-352e-457b-ba96-3dd19f1cbaed@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8ade99a6-84a0-4e69-8ebf-d9dfdc9141b5@iscas.ac.cn>
 
-On 18/07/2025 12:02, Konrad Dybcio wrote:
-> On 7/18/25 8:27 AM, Krzysztof Kozlowski wrote:
->> On 17/07/2025 19:00, Jorge Ramirez wrote:
->>> On 17/07/25 13:16:31, Jorge Ramirez wrote:
->>>> On 17/07/25 08:45:17, Krzysztof Kozlowski wrote:
->>>>> On 17/07/2025 08:35, Jorge Ramirez wrote:
->>>>>> On 17/07/25 00:22:53, Bryan O'Donoghue wrote:
->>>>>>> On 15/07/2025 21:47, Jorge Ramirez-Ortiz wrote:
->>>>>>>> Add a schema for the venus video encoder/decoder on the qcm2290.
->>>>>>>>
->>>>>>>> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
->>>>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>>>>>>> ---
->>>>>>>>   .../bindings/media/qcom,qcm2290-venus.yaml    | 127 ++++++++++++++++++
->>>>>>>>   1 file changed, 127 insertions(+)
->>>>>>>>   create mode 100644 Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
->>>>>>>>
->>>>>>>> diff --git a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
->>>>>>>> new file mode 100644
->>>>>>>> index 000000000000..0371f8dd91a3
->>>>>>>> --- /dev/null
->>>>>>>> +++ b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
->>>>>>>> @@ -0,0 +1,127 @@
->>>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>>>>> +%YAML 1.2
->>>>>>>> +---
->>>>>>>> +$id: http://devicetree.org/schemas/media/qcom,qcm2290-venus.yaml#
->>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>>> +
->>>>>>>> +title: Qualcomm QCM2290 Venus video encode and decode accelerators
->>>>>>>> +
->>>>>>>> +maintainers:
->>>>>>>> +  - Vikash Garodia <quic_vgarodia@quicinc.com>
->>>>>>>
->>>>>>> Shouldn't you be on this list ? If you upstream a file I think you should
->>>>>>> list yourself as responsible for its glory or its mess.
->>>>>>
->>>>>> happy to do it. The MAINTAINER's file covered all the files named
->>>>>
->>>>> This should be the person(s) interested and caring about this hardware,
->>>>> which means:
->>>>> 1. Subsystem maintainers: no
->>>>> 2. Driver maintainers: usually yes
->>>>> 3. Author(s) of new hardware support: usually yes
->>>>
->>>> perfect, will do 
->>>>
->>>>>
->>>>>> schemas/media/*venus* so my understanding was that I shouldn't.
->>>>>
->>>>> I cannot comment why people decided to go one way or another in other
->>>>> code, but it as well could be just incorrect choice thinking only people
->>>>> in MAINTAINERS care about hardware.
->>>>>
->>>>> ...
->>>>>
->>>>>>>> +
->>>>>>>> +        memory-region = <&pil_video_mem>;
->>>>>>>> +        iommus = <&apps_smmu 0x860 0x0>,
->>>>>>>> +                 <&apps_smmu 0x880 0x0>,
->>>>>>>> +                 <&apps_smmu 0x861 0x04>,
->>>>>>>> +                 <&apps_smmu 0x863 0x0>,
->>>>>>>> +                 <&apps_smmu 0x804 0xe0>;
->>>>>>>
->>>>>>> You're listing five iommus.
->>>>>>>
->>>>>>> I understand there's some disagreement about whether or not to list all of
->>>>>>> the potential use-cases but, TBH I don't think those are good arguments.
->>>>>>>
->>>>>>> Unless there's some technical prohibition I can't think of listing all five
->>>>>>> maxItems:5 .. let's just do that.
->>>>>>
->>>>>> since the device tree should describe hardware and not policy, and the
->>>>>> driver seems to be able to ignore the unused SIDs I think this is the
->>>>>> right thing to do.
->>>>>
->>>>>
->>>>> It was never about the driver but about whether you should describe in
->>>>> DTS for non-secure world the entries which are secure world. The answer
->>>>> in general is that you can and there will be benefits (e.g. sharing DTS
->>>>> with secure world implementations).
->>>>
->>>> all right, sounds good then, thanks
->>>
->>> Not sure if I’ve shared this before, but following an internal
->>> discussion, I think it’s worth highlighting a functional dependency in
->>> the current kernel:
->>>
->>>  - the driver only works if the first two IOMMUs in the list — the
->>> non-secure ones — are placed at the beginning. Reordering them breaks
->>> functionality, which introduces unexpected fragility.
->>>
->>> Regardless, this seems like a valid concern to me — a driver shouldn't
->>> rely on the order of phandles — and I just wanted to make sure you're
->>> aware of it before I post a v8 (likely sometime next week or the
->>> following, as I’ll be taking a short break soon).
->>
->>
->> Hm? Order of lists is strictly defined. That's actually an overlook that
->> we never do it for iommus, but the core rule stays.
+Hi Vivian,
+
+On 17:10 Fri 18 Jul     , Vivian Wang wrote:
+> Hi Hendrik,
 > 
-> (FWIW "items:" is an ordered list, "enum:" is unordered)
+> On 7/18/25 16:43, Hendrik Hamerlinck wrote:
+> > Add initial device tree support for the OrangePi RV2 board [1], which is
+> > marketed as using the Ky X1 SoC but has been confirmed to be 
+> > identical to the SpacemiT K1 [2].
+> >
+> > The device tree is adapted from the OrangePi vendor tree [3], and similar
+> > integration can be found in the Banana Pi kernel tree [4], confirming SoC
+> > compatibility.
+> 
+> This isn't particularly crucial, but I wonder if we can do something
+> similar to a jh7110-common.dtsi arrangement, where most of the boards
+> sharing similar designs can also share devicetree source files.
+> 
+> Easier said than done, probably, but I think it should be possible by
+> just comparing the vendor dts files.
+> 
+> Again this doesn't need to block this patch.
+> 
+Sure
 
-enum is not a list, but enumeration, meaning one item of multiple values.
+> Yixun: I'm assuming you'll be handling this. What do you think about a
+> k1-common.dtsi?
+> 
 
-Best regards,
-Krzysztof
+Sharing dtsi file for similar boards is generally fine, I saw a few
+other SoC maintainers have done the same..
+
+In the practical cases, we have to evaluate and plan carefully, it
+should be manageable to support fixed number of boards for one file,
+but would be nasty if expect one common dts file to cover all boards..
+
+Anyhow, I think we can revisit this idea and having incremental patch
+later, it's not the problem for now
+
+Thanks for the suggestion
+
+-- 
+Yixun Lan (dlan)
 
