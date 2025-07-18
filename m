@@ -1,140 +1,314 @@
-Return-Path: <devicetree+bounces-197686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D49FEB0A4A3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 14:59:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3EBBB0A4E2
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:13:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68EBE1AA773E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 12:59:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 320FB1C80BBF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 13:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DA1A2DAFA5;
-	Fri, 18 Jul 2025 12:59:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E81412DC321;
+	Fri, 18 Jul 2025 13:13:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JLmTt+7g"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="jV95u3dN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 709AA2D979C
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 12:59:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72A6218EA8;
+	Fri, 18 Jul 2025 13:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752843556; cv=none; b=HrBv9iorNI86KbItu8LC5cFUC0Viaww64FAJVG0w16KNgjTmRgn4LhgjUupdKbonmzer6Ns04IENpnG3WUD4wwo7Q53s6Kb0ur//GYQS5owpn5RP26hWYqBt9oO5kn+bWGSzjdejh/9HmACtbzs56+IY+gQJgSy7OpCVHHu9R2k=
+	t=1752844413; cv=none; b=eZ0hhYG3JPBb9HJVA9qaZVCaghzj0Kh8SqYLLcZ/P+Z3VugepWmNn1RLGjhiomIpyTRO98S7uPsRo48uZPjG7pHdnud4XyDyAHbEkLnY8OG3XHR+NPrpCUELlTEksrEyd+zNW49HUvRP22djh+JKq8y8n4THI7s7FEqETOlvNjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752843556; c=relaxed/simple;
-	bh=oU9JFIpnW9IiwP/zLLrdn3UtCIAWt6eXdWUgszQQbz4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MnvroDpHPciIraXgN9Im15RKf1mCX6x2Y+TeXjdfw9S1fUmARN9nt5YJoDkTavEU75mT7m8FhpE0IuyX9ieXGi5cO6v3PXN0LQKRA661evbNngF3QH+/cUga6SjuLSob8VmlAzCDlrTL0Jg5KUngZNaWyxgdAWUMlJr94fgyd4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JLmTt+7g; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-75001b1bd76so1369148b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 05:59:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752843555; x=1753448355; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PYpcavPW85ROVk3E1axG+f3muOD/wyEeug4NFZEIWg8=;
-        b=JLmTt+7gCJpleS4ivc4h024LObg32opRMy26LFXe26hl3fMoiPHJCc74Ai7EJv7kGt
-         csXdNVH2EXZEpV/XR5D3rb3AKllyulCywgF2ifdCEZwQ0cE+m+GFROjQjIUzqsIzMDQL
-         rOvB1LsN5/FwZW0JVYMsIySdmQievYyWwCT3WKe2RLmnRVUQH9KMHerj1G/b+wbnUd0x
-         D5re06Dt3H+ajHWIqwZIA+aAaztsJbe12HFLC20oBPt8puVpyjPQY6OviP978ZtpX8/q
-         tuYUDjHvKfW9Nnt3g9t6T8J9xWtlSKT7zeNlyDzQdA9yANNLPFecrRQA1AIfJMcyJwSl
-         6Wyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752843555; x=1753448355;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PYpcavPW85ROVk3E1axG+f3muOD/wyEeug4NFZEIWg8=;
-        b=pEpxm+aUioV1j9mrDgxk8nOqEE+QbhbUobH/Zaj39BKCUCBL8w9biCQF8iM6trYciZ
-         V0CIAnbYWRHMqX3h1uoE/rO0HyfrzjzES2ep6TUuXsQdr28VHykgvpEnL013k8Xa+0qE
-         7YPuPVxl5mJfoizLTStezN+VpP2pVzf4foXtFgf8gNJh94Oz/F7MUNuCCUAU3Mq05ovg
-         iUYlC19vcbAt+95eGs/FzHXMtG2cNplbDnSy3ggdYvnllKfNxgl5zh1aamUA/7Scxa15
-         nFrZeAFatNWZZLSdsypWuXQRJVydRzKKp3a6Q+ZlCSLg1lY9CMNIRKF7/cUy0lB5a+Yz
-         gIDw==
-X-Gm-Message-State: AOJu0YzrbqKNRXTjhRTUcn+y3Aa4Nm8eGpu5vL4kY5fjeE14HJuhyvLu
-	wLTkgq5hpdo36BmeWlIMTzclkgVzKqx2rkLCLsiXAsqtFUplQ50Wkj72PVMXLjte/2f5DHxFm0G
-	ohUnBkGsm4RI/1yELdQzGcMFzAYG9/eHom30W1teLpw==
-X-Gm-Gg: ASbGncvBlK/s1rdgGHW4kf/LlZIzB9HCyutWe1puA4AxrsbnakyWLsL9d80G3519y6P
-	LFgO4PQ5OJ8OOgEWHWMp97d4HUReQy3IlImV8ExmOxXKbR3NYJRQg/f2C6AonfJW+AyoZAgJRI6
-	BSWmm81W40AED8TutVslSxHNWyQk44CTnJtr0PViR3KI8Ik8LVvQg0O+Zr4mVBuEkyYkGmLLpvY
-	PFanVOh9eqqYll8nIA=
-X-Google-Smtp-Source: AGHT+IHDAc74U25eHKTb9aulfz0KG+bpqSbOJrJeexu2ZAbE44hVvJk6HDFdKtlGLhZcV0OjSUhQj942abhhql0IydM=
-X-Received: by 2002:a05:6a00:bd84:b0:748:f74f:6d27 with SMTP id
- d2e1a72fcca58-75725480a1bmr16226717b3a.24.1752843554551; Fri, 18 Jul 2025
- 05:59:14 -0700 (PDT)
+	s=arc-20240116; t=1752844413; c=relaxed/simple;
+	bh=k5Lvd6QsK9i9CQiyoBh4UKXppPI6pOqni0PK6x7BnYY=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VLd6gx8ZHJDyzIFQYr5+1VI7IA13sCF6pUFeBncwTnHXDDfS5zmLG1g1yWv0KRYwrGDjmiDWKz/jYA3ji42vLE4dfV9hYbmb4fnxXYt9Da9GPflmBDQ5GOGQBeduchUI4oV8eyLveYl5yB2CxHwY0hAJCUMz0Hg+Xg4JiZb7BhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=jV95u3dN; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:To:From:Reply-To:Cc;
+	bh=y0H/c0Ji+eywIdBM4fr0ycDaR0fc5KCfJryYKKmDwVo=; b=jV95u3dNl3PKnP2QHxBGu6zErr
+	F5zuKxGoYXPPBziJNCgTpDTuDRy4JPZJa7RlMlHUhun2mDiLUQ5lRL7qJpdU1t5Bhq5+TM4ruDmbb
+	8HcjiRJV28yrttM7Uqa92pfdISc9V0YKhz0NIH/kIAWU6C5d4vTMERBxhnFbaUW6OWHP/dIs1+jEO
+	A503BzZbmVDdY0TKgUIjaGncscelcuUIK7Yi6sCTM7SEkISqpdDbGB+vFOJujwqBdOnWKzYv6Dxcq
+	9jpBdcITtwpxuXdKkkeCk79VBa1NvNtH8Q8ZyDSRXK9L55YFMtysDEcnqVKKOLcdwkuWu8yAb4s/L
+	qGjVZrLQ==;
+Received: from cst-prg-35-241.cust.vodafone.cz ([46.135.35.241] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1ucktu-00045r-BP; Fri, 18 Jul 2025 15:13:22 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ soc@lists.linux.dev, Erik Beck <xunil@tahomasoft.com>
+Subject:
+ Re: [PATCH 1/1] arm: dts: rockchip: Add initial support for LinkStar
+ H68K-1432v1 Board with RK3568 SoC
+Date: Fri, 18 Jul 2025 15:13:21 +0200
+Message-ID: <10784977.EvYhyI6sBW@phil>
+In-Reply-To: <20250718075058.243a5619.xunil@tahomasoft.com>
+References: <20250718075058.243a5619.xunil@tahomasoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250718094848.587-1-alireza.sanaee@huawei.com> <20250718094848.587-6-alireza.sanaee@huawei.com>
-In-Reply-To: <20250718094848.587-6-alireza.sanaee@huawei.com>
-From: Mike Leach <mike.leach@linaro.org>
-Date: Fri, 18 Jul 2025 13:59:03 +0100
-X-Gm-Features: Ac12FXxq5RyQqwd6GSdHy6cONAY5fWKaaHEWBZ5tvug2yoehd6FJ-cPiMbA37wc
-Message-ID: <CAJ9a7VjdF0a_5gswt5j+LX9_pxK40ODNpYiYUSmYfsWZYA+Wjg@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] coresight: Use of_cpu_phandle_to_id for grabbing
- CPU ID
-To: Alireza Sanaee <alireza.sanaee@huawei.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	jonathan.cameron@huawei.com, coresight@lists.linaro.org, 
-	dianders@chromium.org, james.clark@linaro.org, krzk@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org, 
-	linuxarm@huawei.com, mark.rutland@arm.com, robh@kernel.org, 
-	ruanjinjie@huawei.com, saravanak@google.com, 
-	shameerali.kolothum.thodi@huawei.com, suzuki.poulose@arm.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Fri, 18 Jul 2025 at 10:51, Alireza Sanaee <alireza.sanaee@huawei.com> wrote:
->
-> Use the newly created API (of_cpu_phandle_to_id) to grab CPU ID.
->
-> Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
-> Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
-> ---
->  drivers/hwtracing/coresight/coresight-platform.c | 15 +--------------
->  1 file changed, 1 insertion(+), 14 deletions(-)
->
-> diff --git a/drivers/hwtracing/coresight/coresight-platform.c b/drivers/hwtracing/coresight/coresight-platform.c
-> index 0db64c5f4995..95d46ea08936 100644
-> --- a/drivers/hwtracing/coresight/coresight-platform.c
-> +++ b/drivers/hwtracing/coresight/coresight-platform.c
-> @@ -167,20 +167,7 @@ of_coresight_get_output_ports_node(const struct device_node *node)
->
->  static int of_coresight_get_cpu(struct device *dev)
->  {
-> -       int cpu;
-> -       struct device_node *dn;
-> -
-> -       if (!dev->of_node)
-> -               return -ENODEV;
-> -
-> -       dn = of_parse_phandle(dev->of_node, "cpu", 0);
-> -       if (!dn)
-> -               return -ENODEV;
-> -
-> -       cpu = of_cpu_node_to_id(dn);
-> -       of_node_put(dn);
-> -
-> -       return cpu;
-> +       return of_cpu_phandle_to_id(dev->of_node, NULL, 0);
->  }
->
->  /*
-> --
-> 2.43.0
->
+Hi Erik,
 
-Reviewed-by: Mike Leach <mike.leach@linaro.org>
+Am Freitag, 18. Juli 2025, 13:50:58 Mitteleurop=C3=A4ische Sommerzeit schri=
+eb Erik Beck:
+> Hello,
+>=20
+> Below please find a patch to three files to provide initial support for
+> the LinkStar H68K-1432v1 board with Rockchip rk3568 SOC.=20
+>=20
+> This has been tested on the hardware and works well in support of
+> router features. Namely, it supports:
+>=20
+> * Two 1 Gbs Ethernet ports
+> * Two 2.5 Gbs Ethernet ports
+> * Two USB 3.0 Type A sockets
+> * One USB 3.0 Type C socket
+> * One USB 2.0 Type A socket
+> * WiFi
+> * LED
+> * Debug console
+>=20
+> I look forward to receiving and responding to questions, comments,
+> concerns, and critiques.
+>=20
+> Thank you for your reviews.
+>=20
+> Regards,
+>=20
+> Erik
 
---
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+The above test reads more like a cover-letter instead of a commit
+message. Please take look at how other board additions are worded.
+
+> Signed-off-by: Erik Beck <xunil@tahomasoft.com>
+> Tested-by: Erik Beck <xunil@tahomasoft.com>
+>=20
+>  .../devicetree/bindings/arm/rockchip.yaml          |   5 +
+>  arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+>  .../dts/rockchip/rk3568-linkstar-h68k-1432v1.dts   | 777
+
+please split this into two commits, one adding the yaml binding and
+one adding the board devicetree.
+
+Also please check scripts/get_maintainer.pl to see who to Cc explicitly
+(like the devicetree maintainers)
+
+
+>  +++++++++++++++++++++ 3 files changed, 783 insertions(+)
+>=20
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> b/Documentation/devicetree/bindings/arm/rockchip.yaml index
+> 28db6bd6aa5b..e48b168cfffe 100644 ---
+
+please try to use "git send-email" to send patches, because it looks
+like your mail program mangled the patch by adding line breaks
+(more of them below). So the patch most likely won't apply.
+
+
+> diff --git
+> a/arch/arm64/boot/dts/rockchip/rk3568-linkstar-h68k-1432v1.dts
+> b/arch/arm64/boot/dts/rockchip/rk3568-linkstar-h68k-1432v1.dts new file
+> mode 100644 index 000000000000..f8f80c7616cd --- /dev/null +++
+> b/arch/arm64/boot/dts/rockchip/rk3568-linkstar-h68k-1432v1.dts @@ -0,0
+> +1,777 @@ +// SPDX-License-Identifier: (GPL-2.0+ OR MIT) +// Copyright
+> (c) 2022 AmadeusGhost <amadeus@jmu.edu.cn> +//
+> +// Copyright (c) 2025 TahomaSoft xunil@tahomasoft.com
+> +//
+> +// Support for Seeed LinkStar H68K-1432v1
+> +// Also likely supports LinkStar H68K-1432v2
+> +// NB: Hinlink H68K is same or very similar under different trade name
+
+please use preferred comment style - see other kernel devicetrees.
+
+> +
+> +/dts-v1/;
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/soc/rockchip,vop2.h>
+> +#include "rk3568.dtsi"
+> +
+> +
+> +/ {
+> +        model =3D "Seeed LinkStar H68K-1432V1 (RK3568) DDR4 Board";
+> +        compatible =3D "seeed,rk3568-linkstar-h68k-1432v1",
+> "rockchip,rk3568"; +
+> +        aliases {
+> +                ethernet0 =3D &gmac0;
+> +                ethernet1 =3D &gmac1;
+> +
+> +                /* fixed eMMC */
+> +                mmc0 =3D &sdhci;  /* sdhci:=3D @fe310000 */ /* mmcblk0...
+> */
+
+no need for the comments before and after the alias, same below
+
+> +
+> +                /* removable uSD/TF Card */
+> +                mmc1 =3D &sdmmc0; /* sdmmc0:=3D @fe2b0000 */ /* mmcblk1.=
+=2E.
+> */ +
+> +                rtc0 =3D &rk809;
+> +
+> +               led-boot =3D &led_one; /* status LED, green */
+> +               led-failsafe =3D &led_three; /* heartbeat LED */
+> +               led-running =3D &led_one; /* status LED, green */
+> +               led-upgrade =3D &led_two; /* function LED, amber */
+
+I don't think those are specified? What is supposed to use those?
+
+> +
+
+unneeded empty line
+
+> +        };
+> +
+
+[...]
+
+> +        gpio-keys {
+> +                compatible =3D "gpio-keys";
+> +                pinctrl-0 =3D <&reset_button_pin>;
+> +                pinctrl-names =3D "default";
+> +
+> +        /* Middle inset/recessed button,
+> +                  marked by clockwise arrow/circle */
+> +
+> +                button-reset { /* gpiochip=3D0, line=3D0 */
+
+again unneeded comment ... that content is contained in the gpios
+property already
+
+> +                        label =3D "button:system:reset";
+> +                        gpios =3D <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
+> +                        linux,code =3D <KEY_RESTART>;
+> +                        debounce-interval =3D <50>;
+> +                };
+> +
+> +        };
+> +
+> + /* gpio chip 0, line 24 responds to console key press */
+> +
+> +        gpio-leds {
+> +                compatible =3D "gpio-leds";
+> +                pinctrl-names =3D "default";
+> +                pinctrl-0 =3D <&led_white_pin>, <&led_green_pin>,
+> +                         <&led_amber_pin>, <&led_blue_pin>;
+> +
+> +                /* White LED inset in power button */
+
+that commment is helpful, so could stay
+
+> +
+> +                led_zero: led_white   { /* gpiochip=3D0, line=3D14 */
+
+preferred naming would probably be
+  led_white: led-0 {}
+
+similar for the other ones
+
+> +                        color =3D <LED_COLOR_ID_WHITE>;
+> +                        default-state =3D "on";
+> +                        function =3D LED_FUNCTION_POWER;
+> +                        gpios =3D <&gpio0 RK_PB6 GPIO_ACTIVE_HIGH>;
+> +                        label =3D "power_button_led:white_led";
+> +                        linux,default-trigger =3D "default-on";
+> +
+> +                };
+> +
+> +        vcc12v_dcin: vcc12v-dcin {
+
+vcc12v_dcin: regulator-vcc12v-dcin {}
+
+same for the others
+
+> +                compatible =3D "regulator-fixed";
+> +                regulator-always-on;
+> +                regulator-boot-on;
+> +                regulator-min-microvolt =3D <12000000>;
+> +                regulator-max-microvolt =3D <12000000>;
+> +                regulator-name =3D "vcc12v_dcin";
+> +        };
+> +
+
+> +&gmac0 {
+> +        assigned-clocks =3D <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
+> +        assigned-clock-parents =3D <&cru SCLK_GMAC0_RGMII_SPEED>;
+> +        assigned-clock-rates =3D <0>, <125000000>;
+> +        clock_in_out =3D "output";
+> +        phy-mode =3D "rgmii-id";
+> +        pinctrl-names =3D "default";
+> +        pinctrl-0 =3D <&gmac0_miim
+> +                     &gmac0_tx_bus2
+> +                     &gmac0_rx_bus2
+> +                     &gmac0_rgmii_clk
+> +                     &gmac0_rgmii_bus>;
+> +        snps,reset-gpio =3D <&gpio2 RK_PD3 GPIO_ACTIVE_LOW>;
+> +        snps,reset-active-low;
+> +        snps,reset-delays-us =3D <0 20000 100000>;
+> +        tx_delay =3D <0x3c>;
+> +        rx_delay =3D <0x2f>;
+
+please see other recent mails about those
+The rgmii-id above should not need those delays?
+
+> +        phy-handle =3D <&rgmii_phy0>;
+> +        status =3D "okay";
+> +};
+> +
+> + /* combphy0/multi-phy0 supports one of: usb3.0 otg, sata0 */
+
+drop the comments
+
+> +&combphy0 {
+> +        status =3D "okay";
+> +
+> +};
+> +
+> + /* combphy1/multi-phy1 supports one of:
+> +                         - usb3.0 host
+> +                         - sata1
+> +                         - qsgmii/sgmii
+> + */
+> +
+> +&combphy1 {
+> +        status =3D "okay";
+> +};
+> +
+> + /* combphy2/multi-phy2 supports one of:
+> +                         - pcie2.1
+> +                         - sata2
+> +                         - qsgmii/sgmii
+> + */
+> +
+> +&combphy2 {
+> +        status =3D "okay";
+> +};
+> +
+
+I did stop here for now.
+
+Heiko
+
+
 
