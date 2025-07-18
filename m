@@ -1,213 +1,117 @@
-Return-Path: <devicetree+bounces-197574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B956B09DD5
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 10:25:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28775B09DEB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 10:28:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 523D97A746F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 08:23:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A08117BB00
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 08:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245882222B6;
-	Fri, 18 Jul 2025 08:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14F29292B4F;
+	Fri, 18 Jul 2025 08:28:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m3v6K64d"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ufm+SFhk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1AF0221557;
-	Fri, 18 Jul 2025 08:25:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE0B21859A;
+	Fri, 18 Jul 2025 08:28:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752827116; cv=none; b=je0zGXNU4PtX6A3SdaSjEZcl35dG0oQD/GUJesva1+MYE5VReR+q3pmIxgDwqI1LvVm+P6HgxZEoW4XHRDhkE0kZvotk+JihysMRKcxNUpt4KirfHDJz7zVIQDOaeX1ciXPL0X5BfRCZzv8ywHFW90JeTz7/EvGPpkAQ5dqrsDw=
+	t=1752827302; cv=none; b=dgjeLN1S+bID1ytFNifFVKPVUXTAhTb9TYshr/lu+Z7Ki33JYpEwSSh1pY8wipCX45gTM6u2/uM04q6TtklJKg3btkAfRtkQVG5Hcqe4kqUHfUeDTBV+HaNnIZEPfm6uCWqpzzi4w8IvVlpjJ8375FjAPpoGLtCc5oEgsZUxais=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752827116; c=relaxed/simple;
-	bh=gpXICn11IMQTSwpyTqBxNS75wVJrjuLqjC0FBSJXjvE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=gRKLUq1aaVcubS+y6BDlAiMnkup//X4q/U+WttIywBPtXm7UUjXhFaGWmhqLdJeFJyaTsHegH+4BPY8TWaT/UzhCYDz+W6eL2dcDapTlGlOkw5So6O1gi5dLtXxFQJg7goUqKTP5U15YhhPOdi6zC7U5RzZaXjZd+7CXKBR6eGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m3v6K64d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6828EC4CEEB;
-	Fri, 18 Jul 2025 08:25:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752827115;
-	bh=gpXICn11IMQTSwpyTqBxNS75wVJrjuLqjC0FBSJXjvE=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=m3v6K64dOO7xCAf+4YLvT6PzA6lYbRD0Z1LRhio0iQzZoK4vLkjXgnUpiqiUWw0oM
-	 GERYcHXCV9idZ+oUH0TuvbFn7mPk6q7b1Kt+c45kLbGwEO4bme8Y/jFEeAq6Kfmy1Q
-	 rYK5nuYo55H9b26Z1ytoS5StNPCkZMPuv8XnPQQuEQR/eomGK09QHghOKBHOVoXV1+
-	 SkcZYQKIvEFeR+BhwgTLnl6fhiLvGFIc+tH7V2do4EuKeo3+g/cQnK0EWo8MOUIqj1
-	 c9vtRpGrbmXOYEw16tJrkDTzU7t7WuF2BqClidYEmLWW2ia4gM6209k009IhueESDa
-	 NoiipSVQ6PwCQ==
-Message-ID: <87fea8b4-950c-4dcc-9185-d473a1f36876@kernel.org>
-Date: Fri, 18 Jul 2025 10:25:11 +0200
+	s=arc-20240116; t=1752827302; c=relaxed/simple;
+	bh=HbZBhh8aKvnhhix2oGCGJTp89m5dueVh/VgsyDh6rLI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jPFTeSFfAsHG0sTuQPOcxBZcRJ48z9ph4JitxlLKWF9HJu7o3iuZaiCFIYpaaAQH4f3/MffsDhYUabwzpZgrFbjjdY2yTzRvAiyzfwIeDoH1bgFauPKj6KCMWBUKNqWrxpbP4+Gcgjk0FkJN07LDqyA1eAAlUKizNWPQBA+Vjcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=ufm+SFhk; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 24f1958463b111f0b33aeb1e7f16c2b6-20250718
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=GPpm2gPg2nj0QzhFjf8hC7nhh7xr1REmHdo2vA7Y9Hs=;
+	b=ufm+SFhk52Dl4xbIp2INabMeaB8XUGraku5bsPaQytP8aPeqo+amRqWvhkBtPPmvwsfAVm5FAHGvYn96VALAQRh3lDiPnAsFlRJTMAk8q2jWu3xvKEYH1k+Ih35nozpQv8h6KzCO56KCyQX5vyFDEUUuCQ8QGFrPjiROYTMWHxo=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.2,REQID:da9e0b7a-f74c-4bd4-a871-1143ed360839,IP:0,UR
+	L:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:-5
+X-CID-META: VersionHash:9eb4ff7,CLOUDID:5bf89484-a7ec-4748-8ac1-dca5703e241f,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 24f1958463b111f0b33aeb1e7f16c2b6-20250718
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 668366403; Fri, 18 Jul 2025 16:28:12 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Fri, 18 Jul 2025 16:28:11 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Fri, 18 Jul 2025 16:28:11 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Peter Wang
+	<peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>, "James E . J
+ . Bottomley" <James.Bottomley@HansenPartnership.com>, "Martin K . Petersen"
+	<martin.petersen@oracle.com>, <linux-scsi@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<openembedded-core@lists.openembedded.org>, <patches@lists.linux.dev>,
+	<stable@vger.kernel.org>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Ramax Lo <ramax.lo@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
+	Macpaul Lin <macpaul@gmail.com>, MediaTek Chromebook Upstream
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH 1/3] scsi: ufs: ufs-mediatek: Add UFS host support for MT8195 SoC
+Date: Fri, 18 Jul 2025 16:27:16 +0800
+Message-ID: <20250718082719.653228-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] regulator: rt5133: Add DT binding document for Richtek
- RT5133
-To: jeff_chang@richtek.com, lgirdwood@gmail.com, broonie@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250718081432.2685902-1-jeff_chang@richtek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250718081432.2685902-1-jeff_chang@richtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On 18/07/2025 10:12, jeff_chang@richtek.com wrote:
-> From: Jeff Chang <jeff_chang@richtek.com>
-> 
-> Add DT binding document for Richtek RT5133 voltage regulator.
+Add "mediatek,mt8195-ufshci" to the of_device_id table to enable
+support for MediaTek MT8195/MT8395 UFS host controller. This matches the
+device node entry in the MT8195/MT8395 device tree and allows proper driver
+binding.
 
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+---
+ drivers/ufs/host/ufs-mediatek.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-1. Please use subject prefixes matching the subsystem. You can get them
-for example with `git log --oneline -- DIRECTORY_OR_FILE` on the
-directory your patch is touching. For bindings, the preferred subjects
-are explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
+index 182f58d0c9db..e1dbf0231c5e 100644
+--- a/drivers/ufs/host/ufs-mediatek.c
++++ b/drivers/ufs/host/ufs-mediatek.c
+@@ -50,6 +50,7 @@ static const struct ufs_dev_quirk ufs_mtk_dev_fixups[] = {
+ 
+ static const struct of_device_id ufs_mtk_of_match[] = {
+ 	{ .compatible = "mediatek,mt8183-ufshci" },
++	{ .compatible = "mediatek,mt8195-ufshci" },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, ufs_mtk_of_match);
+-- 
+2.45.2
 
-2. A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-3. Missing threading or user of the binding.
-
-4. Please version your patches correctly, e.g. use b4 or git
-format-patch -vX, and add changelog in cover letter or under '---' of
-individual patches describing changes from previous version.
-
-
-
-> 
-> Signed-off-by: Jeff Chang <jeff_chang@richtek.com>
-> ---
->  .../bindings/regulator/richtek,rt5133.yaml    | 178 ++++++++++++++++++
->  1 file changed, 178 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
-> new file mode 100644
-> index 000000000000..c1ba2d9d83c6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
-> @@ -0,0 +1,178 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/richtek,rt5133.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Richtek RT5133 PMIC Regulator
-> +
-> +maintainers:
-> +  - ShihChia Chang <jeff_chang@richtek.com>
-> +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  RT5133 is an integrated chip. It includes 8 LDOs and 3 GPOs that can be
-> +  used to drive output high/low purpose. The dependency of the GPO block
-> +  is internally LDO1 Voltage. If LDO1 voltage output disabled, GPO cannot
-> +  be used to drive output high. It need to pay more attention on the usage.
-> +
-> +allOf:
-> +  - $ref: regulator.yaml#
-
-No, this is not a regulator.
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - richtek,rt5133
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  enable-gpios:
-> +    description: A connection of the 'enable' gpio line.
-
-Drop description, redundant.
-
-> +    maxItems: 1
-> +
-> +  wakeup-source: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  regulators:
-> +    type: object
-
-What is in this node? Missing additionalProperties: false. Also missing
-tests which would tell you that.
-
-> +
-> +  BASE:
-
-I doubt this was ever tested... totally messed indentation.
-
-Also, only lowercase.
-
-
-Best regards,
-Krzysztof
 
