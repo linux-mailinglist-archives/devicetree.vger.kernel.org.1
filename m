@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-197518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86CD7B09BD2
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 08:58:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 652D9B09BEF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:04:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9B691C26F21
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 06:58:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79BB2AA224C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 07:03:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D21A20B7F4;
-	Fri, 18 Jul 2025 06:58:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A021217701;
+	Fri, 18 Jul 2025 07:01:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N4etpxKs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J7WFTJxx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40356191F91;
-	Fri, 18 Jul 2025 06:58:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 203C9213E66;
+	Fri, 18 Jul 2025 07:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752821905; cv=none; b=lEYb6Wsx/8BRxIa/98iUEhjQCtvaQmmj1vBfsq/NJX+bgghdG1U0zRLOCi8BFNKvaxPkHAhCYI5gQ82wuxZE4sImLoOir5mFl/pQFW2H6Y817cLx5BC93qDe4pdI3jD4kd8iceSkF/5Rkc445/LBpyTflF2gVVEC9bmAidsEz9A=
+	t=1752822105; cv=none; b=glcVa6VYCaPWEh8oce/VYT4Bl8z1hS+Cr9wz0A2CbD63dl66psQWeGwKh8FnnmrkGxsS/3zQqMlNyPQyWUC6ZXkL0kpC5KZg/KoMk0CRZJPWMVEUdVnzRyCOZpNTZf7meY3cLHwV9t3di1hdvFs1P+FgxTvV6KNc/Z5iJl23A18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752821905; c=relaxed/simple;
-	bh=T5uSaa59ZcpxKsSpCtMW9Kqg9CzSkSltBAd6eZ7yKzk=;
+	s=arc-20240116; t=1752822105; c=relaxed/simple;
+	bh=gzbq5j2z0iedLxL5BYipuBmbgmJx+4FhDgYGBigfprY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u+FM9RwYY6+8Kt1KFLQOXcchcJ7l/FYDHF8yVD5qHxpyPxNkxGSETs7ZZJ3PkQVJ/aeoQzJ9J1fNr8/N5cm9dCK7kHUGE2XeFjfgNErpapOEwN3pWUrFDkkZ7QYlFDU3GK4By0qwvms+GUx0YsGilRsP+xtEmPp7GuJKhweOUt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N4etpxKs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E0C7C4CEED;
-	Fri, 18 Jul 2025 06:58:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=b9l3o8ZkTs5QshcoDzgJ2VtPL4afMd0BM3bXlUdxRx4V9F+6FMY+HuVoFLKYRdlij8pMJTrdiOcrNJiz4Qv/PtU+sCYCsFDV8fL8YKfEUX7rp9QUhjf29NzPvxV3WGkc21KKFFfT4K36SsXZ7uUioRuXBj/aNQaZcMnnF2GPrMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J7WFTJxx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 769BFC4CEED;
+	Fri, 18 Jul 2025 07:01:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752821904;
-	bh=T5uSaa59ZcpxKsSpCtMW9Kqg9CzSkSltBAd6eZ7yKzk=;
+	s=k20201202; t=1752822104;
+	bh=gzbq5j2z0iedLxL5BYipuBmbgmJx+4FhDgYGBigfprY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=N4etpxKsapQJmAfKa0yqNoo3v3Q4I5eTGkUtgELe6/VKbo9KdTdvg+ODQmmXZIuR1
-	 4eEqWE4a1mPv1K/H/Wg66+ZgzoqtsXmnV/+62phLdnu/VScJLRroQD3YwFTfoKgG8K
-	 1+LCkvlltMT2HQ7j5BCHDUryaFi3r5P9HVLYg4R/LzD3JniII+fK5L1UjQnA0Wa8ip
-	 ssrilNxGvor+u21xXf6NqlGxVlrP5c2pgtO+18hnaerBU0JGK0nU43WKn2t2nNVUdP
-	 rFfIVj62ZKD7mx7cD9sVyO33ZB9CmoXzp3iYwpbEyPUteW5a/IbYHDQFWRRZiASRTT
-	 9slZ1HNJ3rj+w==
-Message-ID: <95b3a17e-a5a2-4d84-960c-2539af9d5450@kernel.org>
-Date: Fri, 18 Jul 2025 08:58:19 +0200
+	b=J7WFTJxxcsaZwKdWYUU1YytAg5L7+TY3KKwZevc0BI5gG5j6ctn3Gg3D9uCFGgJ50
+	 6JmPq7i5A/VyREMkvpgl8EAQDhN3cPGd8PoaChDl08PUHUxd8TVNfPjPlu63vwrEVY
+	 +QiNEt7J05YOFtV6PiBO34XllQdaJDWGvsFazcz7MzDeXomNlKbOyNth1IY5mmJWi1
+	 yyaCtj1bPEyPUus5xe1sdndOcPboKXzukrGWamFt/OMYq+CDUan/UDuS7X66YrCkHW
+	 sL5chBNpGt3H/U+UC6nRvsVIg2jDnJNlIZfavtE+ga5+ICSYAw5ZnLVAaPJoGYA345
+	 UGbeeO5wOQTjA==
+Message-ID: <a29c60ea-5db2-4bb4-9962-8e88e299b246@kernel.org>
+Date: Fri, 18 Jul 2025 09:01:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: s32g3: Fix whitespace issue in device
- tree
-To: Dan Carpenter <dan.carpenter@linaro.org>, Xu Yang <xu.yang_2@nxp.com>
-Cc: Chester Lin <chester62515@gmail.com>, Matthias Brugger
- <mbrugger@suse.com>, Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: Add OmniVision OV6211 image
+ sensor
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- imx@lists.linux.dev, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1752703107.git.dan.carpenter@linaro.org>
- <52960eb1-4432-436b-89aa-d50fc7da2c3a@sabinyo.mountain>
+ <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Hans Verkuil <hverkuil@kernel.org>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250717124001.108486-1-vladimir.zapolskiy@linaro.org>
+ <20250717124001.108486-2-vladimir.zapolskiy@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,22 +105,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <52960eb1-4432-436b-89aa-d50fc7da2c3a@sabinyo.mountain>
+In-Reply-To: <20250717124001.108486-2-vladimir.zapolskiy@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/07/2025 00:46, Dan Carpenter wrote:
-> Checkpatch points out that this should use spaces instead of tabs.
-> "ERROR: code indent should use tabs where possible".
-> 
-> Reported-by: Xu Yang <xu.yang_2@nxp.com>
-> Closes: https://lore.kernel.org/all/u7glt7mn33lbdeskbr4ily6tjjifvffy64llwpi5b2rrhx5tnv@y2h2y3oz3xc4/
-> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
-> ---
+On 17/07/2025 14:40, Vladimir Zapolskiy wrote:
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        additionalProperties: false
 
-Patches were not merged, so this should be squashed there... or you
-meant they went with Greg USB? Then no, that's dissapointing, you are
-not supposed to send DTS patches to Greg's subsystem.
+This should be just unevaluatedProperties: false
+
+> +
+> +        properties:
+> +          link-frequencies: true
+> +          remote-endpoint: true
+
+and these three lines are not needed.
+
+> +
+> +        required:
+> +          - link-frequencies
+> +
+
+
 
 Best regards,
 Krzysztof
