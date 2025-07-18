@@ -1,60 +1,58 @@
-Return-Path: <devicetree+bounces-197529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3618B09C30
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:16:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72FD6B09C47
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:22:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21AF2165DFB
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 07:16:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13CC51898483
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 07:22:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CEA91DEFD2;
-	Fri, 18 Jul 2025 07:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D6321770A;
+	Fri, 18 Jul 2025 07:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="APPixPty"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uoGgGC3Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E38E811CAF;
-	Fri, 18 Jul 2025 07:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 946A6D517;
+	Fri, 18 Jul 2025 07:21:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752822988; cv=none; b=bLoQ1llMKVjtT0qacBfXShKHCwcLq6qqRp4xb28p4pXNaJ/Ig9q/FK825ROhKpiBmTlZ99DaYn2Ohkv4yTmF8e1I2d5BJEsewZHZLIbG1d+AifDRMPDe3umh9eztFd9phQUjo/wDCicjMrplmgqc/xfdzIYuVfX35sIcbs+EuE8=
+	t=1752823317; cv=none; b=QRkSGLd47zjOlKXTg+RhbCiJ31iL9L5SBRHTND7P9fQFomxJdPBD8eZqRQ0f4gxlu10Y1jPmsTI/XzjpbpMQU/IkoCyrJY4h7OkvWpdhnLqv6V3y9ztsbzxLgvYe3xhLk4IkB/Y0KtMUqbIuYlovgFz95rqic0hkpqtFwJDpRR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752822988; c=relaxed/simple;
-	bh=Lge0NYoif5nduRoA5W6c1yvWLXuJuaMaklUH0UN7kVI=;
+	s=arc-20240116; t=1752823317; c=relaxed/simple;
+	bh=RAtTqDOWL/XAjaNBY/+86h+M/+JsdXfM7kai5mMTbnQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BZOw4lDHvw35L6q+QNIL5Yn3XoVvWgd5GsACo510axHEiqTtZihoiKQqkXfI76NaiM5PQ0fexRtw5IWOX47NuGvD1X/uCKSlmZnw9qariYWGBJNvHFV+aOGiiK/VZYbVmZidwJUsgC+fQcxU2ftNKJ4G6Ldt07Nq5FZKOBIzYNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=APPixPty; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D60F4C4CEED;
-	Fri, 18 Jul 2025 07:16:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DLd2EQwFV5c3C1Al3RrHMPV/dFH2E3i4/WgFQhDe640nAsFtwXFpH3hjh+Y9f16zUrRTSpy7CfZ5HwypWCTbqLTTL4oMtLhyd9mHs+6gS3nAX/e1krFtRUpVp/KmUTO8Nj7onVWNDJwpT/Unvtsu6r2hfa2Ez0Q1gS1EDhJCHn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uoGgGC3Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E8E1C4CEED;
+	Fri, 18 Jul 2025 07:21:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752822987;
-	bh=Lge0NYoif5nduRoA5W6c1yvWLXuJuaMaklUH0UN7kVI=;
+	s=k20201202; t=1752823316;
+	bh=RAtTqDOWL/XAjaNBY/+86h+M/+JsdXfM7kai5mMTbnQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=APPixPty1AKa3jggu5DmHwWzFjk4Aw8XCzbc7r+Zt91ghlSphQWWgMxTb4lJKsIjp
-	 tPyJzSP1hQtgW3c7/W0IIiRA8DFUvt6jWXWBK2vTvrVBV0zHwJ/dvQW0yxvljhdkl0
-	 k4b1tBlU9Dhx01woCdMZupkJaU95cPlfowpMUUX1+xRgFLvndkGYiJ6a0BAdqxoNFS
-	 NfF55YbX4bDNFm5dRnRJgdwNdlSUuj34BlPiGWs+sANtYna/YKGKl/vPXNySvpNWmL
-	 gY9OOPAHFryUStT7E9yKZIwgI7nD9WxHb5O1J8o+JBhf40ljmtv1kIq46J06rV6C8n
-	 GYJttDb3syDpQ==
-Date: Fri, 18 Jul 2025 09:16:24 +0200
+	b=uoGgGC3QVW4LBVOALUcdkPhsEN+qlgqbHSHFBo8xHwn/RVwmCjos2IVkA3sClQ9WO
+	 /QVuHkyjYGBTGE8WEityyVJmEztQhf1xq7CFF4QKQ9Iz+omXlMuFbr0t6gUYFttV+E
+	 cE9ZsEcmGm01lju7TLkRUo5wFOHkNVaoqPsQ8m2Qthm2p2010N4/lZbFe4guUunW5R
+	 3ykf1n96b1WaxzM5RlrHTFTTjhbCkkcs8l4xgaRTpOzZlswz02IlTYXcdTf136rj6C
+	 WvWl1t41u9SwIBPlrAG+7zntw4X9x/Cd8qlOV6LTjb7wH/DJOVrd9j4TispkG0uEpo
+	 C6gEHKOyjuFVg==
+Date: Fri, 18 Jul 2025 09:21:53 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, Pavel Machek <pavel@kernel.org>, 
-	Lucca Fachinetti <luccafachinetti@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: leds: is31fl32xx: convert the
- binding to yaml
-Message-ID: <20250718-dangerous-smart-guppy-b8aa74@kuoka>
-References: <20250717-leds-is31fl3236a-v4-0-72ef946bfbc8@thegoodpenguin.co.uk>
- <20250717-leds-is31fl3236a-v4-1-72ef946bfbc8@thegoodpenguin.co.uk>
- <175277045533.3779995.9523277801474945480.robh@kernel.org>
- <CAA6zWZLyUt9X4+dAgYBVGqdNchasJorWhNH1O1Ti=UBO-J6q9g@mail.gmail.com>
+To: Remi Buisson <remi.buisson@tdk.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/8] dt-bindings: iio: imu: Add inv_icm45600
+Message-ID: <20250718-industrious-hysterical-axolotl-b0ef7a@kuoka>
+References: <20250717-add_newport_driver-v3-0-c6099e02c562@tdk.com>
+ <20250717-add_newport_driver-v3-1-c6099e02c562@tdk.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,17 +61,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAA6zWZLyUt9X4+dAgYBVGqdNchasJorWhNH1O1Ti=UBO-J6q9g@mail.gmail.com>
+In-Reply-To: <20250717-add_newport_driver-v3-1-c6099e02c562@tdk.com>
 
-On Fri, Jul 18, 2025 at 07:50:51AM +0100, Pawel Zalewski wrote:
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date
-> 
-> Hmm interesting, I did run it, have yamlint installed and see no
-> errors. Will upgrade dtschema and try again.
+On Thu, Jul 17, 2025 at 01:25:53PM +0000, Remi Buisson wrote:
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      enum:
+> +        - INT1
+> +        - INT2
+> +    description: Choose chip interrupt pin to be used as interrupt input.
 
-Are you sure you tested patch #1 only?
+I don't see any improvements (nor explanations in the changelog)
 
 Best regards,
 Krzysztof
