@@ -1,139 +1,99 @@
-Return-Path: <devicetree+bounces-197781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 145E7B0A9A9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 19:40:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FB8CB0A9C5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 19:47:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 727AD7A7A81
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 17:39:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C00215A4D91
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 17:47:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244302E7643;
-	Fri, 18 Jul 2025 17:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32BA32E717F;
+	Fri, 18 Jul 2025 17:47:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CVdRvKlI"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="wlirihv7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78DEC156678;
-	Fri, 18 Jul 2025 17:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A66A2951CA;
+	Fri, 18 Jul 2025 17:47:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752860435; cv=none; b=GrB33lmUKdeePFRF1dt2hg0F4wNZetDQiEaplHutuTqX/g3IpD4whRpoy0aIJnwpvGIDUhuO2JReknQenlsy+4MbUVEv2TO6xZ8JkVz/JeZwt4/cVFBTDCR4WmxBRxAN5QkmupMn3lMRkmR9XlK+VZBESuBr7VLvc3N452tD91w=
+	t=1752860852; cv=none; b=Zk64IYI+VBMZf0+waOMK9hSNx95fUUCKMgKoMaMdi0LklNNQM5g8IV4fNqYpo8BMaBTc1Bnnv3qFpR4ojCPcqtcfoWoJ4fXxyCe/GhpzWRtd/QPtE1KZY8dcnQpkz4PMsUHYGV+TZoSw6XvfSp6pXPbRqvYKz+3rvCMu49u7Czw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752860435; c=relaxed/simple;
-	bh=mQMolIgpTH7FjE+3w+cIHxeevW8RkXD0lhrk1Zqnq1U=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o4O/+O6Sr/SwKfuJUYlZnJN4mUnzTo/GZQtaiq63ZZxSwYCWEVgd9LWVjLE5B1J/aJqxbU3W55tXJNC8FPrWX45XSFTsvaioOIO3PqrTEFAHvk5dGGz8zrsYOcnjuTzkg4Srj3ONPVOgxf/PEBb5Odjad204KIj6bxU4vddNlk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CVdRvKlI; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5FD8E443B3;
-	Fri, 18 Jul 2025 17:40:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1752860425;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fQqUsJ+Qb6MnonChra2CtKhIIlviGmLlJPe1nhDRgAA=;
-	b=CVdRvKlIHFHsWfAgRCHtzqd+wMzGyGeJV7woFCUMSefTHo6gS4gAbmWGFLMC+KtyhK8Sep
-	7mSo0vOFEg1xkQv2/aKJ8M1I+NOfJbKxBXNwO/iXiopx9mRRBngl1EYJMtucYoz3/Ckc3e
-	qGdMo6s7sj/FPzERN7FrV5S5pNO//q3meaQqQ4YyAf0x/K3K4I2X4TjryooGndNCD1CXog
-	wSAvnuP9QxJZ5z/3+UOpSAyL8PV7vbx23Nn7aboo5j8HvfRiFRj1M3/zSF92soI9YTFFo8
-	msJwRCY5Tbz/C9eqdCnQPrhN76K1qnNze4lKNr1tJe5RxthKM4S6M5wfXQE4jw==
-Date: Fri, 18 Jul 2025 19:40:22 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski
- <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
- linux-arm-kernel@lists.infradead.org, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>, Marek
- =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
- <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
- mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Romain
- Gantois <romain.gantois@bootlin.com>, Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: Re: [PATCH net-next v9 02/15] net: ethtool: common: Indicate that
- BaseT works on up to 4 lanes
-Message-ID: <20250718194022.4d01088e@kmaincent-XPS-13-7390>
-In-Reply-To: <20250717073020.154010-3-maxime.chevallier@bootlin.com>
-References: <20250717073020.154010-1-maxime.chevallier@bootlin.com>
-	<20250717073020.154010-3-maxime.chevallier@bootlin.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1752860852; c=relaxed/simple;
+	bh=U0E/UkXN9tZDVC+Cvo2L0bymR6SulDUIwFpdsD2rypo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gNKWUZRRnzXMPMYbhrL944J6d7nI238s1Vjq5gfGVmw7pNUdlq6h0mjoJHpvlAfVit3PcTNeC2a1jmdJ26SXdMtYKWzHM+bulMpyPEa7bElSZVcrSbop8BfHjQe2IDCI7Bb7nMuT66OUB6c1AsKZ2RCcTnOZTN9yY/qeCBCXO80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=wlirihv7; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=YSPaaQKD+1KQwE0RoZaqBfGqciSCheGL4nggpnlyPHk=; b=wl
+	irihv7J6I0SLdkRjKy8NvcQcyBKNBcFfGm9BxhDwNRKoOd9xRwUDTbrxMTMT1+uzSjAlkcByMLc37
+	1FZG1tjoPTw0PBHCXGXHE/tBnQldrKWr2s5qmaF5AD3E+FB/iGmXPQ0luHxn0L8/H9ggfdgEE6rIw
+	UOXdspGlKsOBbtI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ucpAz-0021D4-Ci; Fri, 18 Jul 2025 19:47:17 +0200
+Date: Fri, 18 Jul 2025 19:47:17 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christoph Stoidner <C.Stoidner@phytec.de>
+Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Stefan Wahren <wahrenst@gmx.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"upstream@lists.phytec.de" <upstream@lists.phytec.de>,
+	Primoz Fiser <primoz.fiser@norik.com>
+Subject: Re: [Upstream] Re: [PATCH v3] arm64: dts: freescale:
+ imx93-phycore-som: Delay the phy reset by a gpio
+Message-ID: <07a0c325-03f5-4b5d-b6e7-9477aec4e5ad@lunn.ch>
+References: <bf0eb48fc72f4b0abbf62077c2f1fe4438579746.camel@phytec.de>
+ <967484d9-4165-4b75-bbb7-a203c36e8beb@gmx.net>
+ <517be266ebc3b55da53372a76a139245f8945cd8.camel@phytec.de>
+ <5afa6d62-4a3f-4c28-8165-363075ac36d8@lunn.ch>
+ <a948b903766a82897e5fc17a840ab40e29f5eda4.camel@phytec.de>
+ <8e448625-b4ad-4bf1-8930-6fecdedb1d8d@lunn.ch>
+ <78ec24d09d129d52d3442f6319cf1ef5b6ce7f3d.camel@phytec.de>
+ <739f93d0-4cb4-4f1a-8792-84502d4beefe@lunn.ch>
+ <626bca58-e481-4d6f-9bb7-252c040f4b3b@norik.com>
+ <ad5e7450c5cf3a2f9a5d3c23f7219eb08be31062.camel@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdeigedtkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefguddtfeevtddugeevgfevtdfgvdfhtdeuleetffefffffhffgteekvdefudeiieenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgduheemfegvgeemtgehtddtmeekvddttgemiegvtddumeejkegrtgemvdgtugefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduheemfegvgeemtgehtddtmeekvddttgemiegvtddumeejkegrtgemvdgtugefpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefuddprhgtphhtthhopehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtp
- hhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ad5e7450c5cf3a2f9a5d3c23f7219eb08be31062.camel@phytec.de>
 
-Le Thu, 17 Jul 2025 09:30:06 +0200,
-Maxime Chevallier <maxime.chevallier@bootlin.com> a =C3=A9crit :
+On Fri, Jul 18, 2025 at 05:33:05PM +0000, Christoph Stoidner wrote:
+> On Di, 2025-07-08 at 10:35 +0200, Primoz Fiser wrote:
+> > Hi all,
+> > 
+> > is there something holding up this patch?
+> 
+> I dont see any blocker.
+> @Maintainers: If there is any missing/blocking point, could you
+> please comment.
 
-> The way BaseT modes (Ethernet over twisted copper pairs) are represented
-> in the kernel are through the following modes :
->=20
->   ETHTOOL_LINK_MODE_10baseT_Half
->   ETHTOOL_LINK_MODE_10baseT_Full
->   ETHTOOL_LINK_MODE_100baseT_Half
->   ETHTOOL_LINK_MODE_100baseT_Full
->   ETHTOOL_LINK_MODE_1000baseT_Half
->   ETHTOOL_LINK_MODE_1000baseT_Full
->   ETHTOOL_LINK_MODE_2500baseT_Full
->   ETHTOOL_LINK_MODE_5000baseT_Full
->   ETHTOOL_LINK_MODE_10000baseT_Full
->   ETHTOOL_LINK_MODE_100baseT1_Full
->   ETHTOOL_LINK_MODE_1000baseT1_Full
->   ETHTOOL_LINK_MODE_10baseT1L_Full
->   ETHTOOL_LINK_MODE_10baseT1S_Full
->   ETHTOOL_LINK_MODE_10baseT1S_Half
->   ETHTOOL_LINK_MODE_10baseT1S_P2MP_Half
->   ETHTOOL_LINK_MODE_10baseT1BRR_Full
->=20
-> The baseT1* modes explicitly specify that they work on a single,
-> unshielded twister copper pair.
->=20
-> However, the other modes do not state the number of pairs that are used
-> to carry the link. 10 and 100BaseT use 2 twisted copper pairs, while
-> 1GBaseT and higher use 4 pairs.
->=20
-> although 10 and 100BaseT use 2 pairs, they can work on a Cat3/4/5+
-> cables that contain 4 pairs.
->=20
-> Change the number of pairs associated to BaseT modes to indicate the
-> allowable number of pairs for BaseT. Further commits will then refine
-> the minimum number of pairs required for the linkmode to work.
->=20
-> BaseT1 modes aren't affected by this commit.
->=20
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+This _might_ be broken for NFS root. But that can be fixed when
+somebody actually has a problem with it.
 
-Reviewed-by: Kory Maincent <kory.maincent@bootlin.com>
-
-Thank you!
-
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+	Andrew
 
