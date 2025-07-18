@@ -1,132 +1,130 @@
-Return-Path: <devicetree+bounces-197712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81D27B0A6E3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 17:13:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 299BCB0A6FE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 17:21:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C8811C26E1C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:14:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0F0E3B89D1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:20:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 276D02DCF71;
-	Fri, 18 Jul 2025 15:13:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B8F32D9EC4;
+	Fri, 18 Jul 2025 15:21:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XLnx3t66"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C51D514D283;
-	Fri, 18 Jul 2025 15:13:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE741D6AA
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 15:21:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752851619; cv=none; b=bqnoHzPAb/ACetm5dFEjIQfNPKvdiqsyEFcyzMZwWh1r1Fix18KHOUdt9bjKdOAfvkSHcnsXioXveJ1X22bOgpM26zBH3eg0vrPPh6XltiSSBgKRP0btMWY0Y9acJbGrfZ080UThVOlITF6fWTD+hj+6t4dVlw0c7IFPG00sHwQ=
+	t=1752852066; cv=none; b=f3HZ3iPaLQlAwKvRLdPIPVOTY2p7GPOS3+429mEPOC3/TUgYjt4iZw1gCZMC7thyMNSCf9v6HqI39dH/t+kHvlS+8xjRQdsm8MFuummIaWrQY7zS4YwuhWy6VV1tCqK3sDvglV34ZyD4EWZTIxiRxoZzb/kMCQ/4nDynllHKwRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752851619; c=relaxed/simple;
-	bh=Qc90R/wKlwZzydgUbeWgdwRR5Gjg0u1fsWOFnERsnQ4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=hQHxAwFqqbazXXwruqSza40eh1o++Avgtzz9I1Ue+Sgv93nNxwvDnlRWqtnx0zSrbphwY7Y1Dc9biq02UrTntG3JtvxbqpeySVWsAPKdES1ZrEy0+uh/Zf28HO1c7rIgnqrNyKVly7MnFA7r4ySkC2ff5zF21/Te33QPj0B46io=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from [127.0.0.1] (unknown [116.232.48.207])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id BF3A133BEA5;
-	Fri, 18 Jul 2025 15:13:33 +0000 (UTC)
-From: Yixun Lan <dlan@gentoo.org>
-Date: Fri, 18 Jul 2025 23:13:23 +0800
-Subject: [PATCH] riscv: dts: spacemit: uart: set dummy clock to silent dt
- warning
+	s=arc-20240116; t=1752852066; c=relaxed/simple;
+	bh=E3zelDCTh/t8II8UuBRX1FtcJbTydx6/K8VxkByBAQM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fRIzlKLlhrhKglUnK5bqSBgBzIo4Ox2fzanhZhFVXyoUFHLFhJXPo0w49dbpSeW/Xv+TDfZB58DDHEqgo+xDShPvhp8sn29V+l7GYhv9ujS1WoOPhS6O/qmTDJTagI6Y0iiQABDYLs3xWvz0vcpKkMyRXFRLHr/UQ5zjNyrUCgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XLnx3t66; arc=none smtp.client-ip=209.85.167.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-40a4de175a3so1261490b6e.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 08:21:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752852064; x=1753456864; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qYuxKIpCYIcO+gJn+7H1gBQp96uaiFhZpQnHXL5+kYE=;
+        b=XLnx3t66zFzuUFX/hWxVEh+Py2eJ+N7dKWeMWAdPaQ6OJ9SsJViCjIoT71lZPd1L9D
+         N3q12WI7ixpjRSSfhIXZMM5AfrLP/T4Ap+Du7yJEG13vw3hYu1hHH6qulJqK2XiILaoh
+         XUo0FcXmfdHMK3ATHeayEZKYlsOqMaPFqcqYlgKhRs57scrPyL1j8SiURaJNBSDrchjW
+         WzlKsOeVZl9GvbjkkzC43MmZAzDTs3KNFo+yzQZbFDNJgbXBdksLS58mYgTNLVD3D8N1
+         1lZzEqyXNOfaex1kaj1bcFni9vUvwZOvY38tIFLiPc/U4s2VQ9oe0jYnH6trRXgIOdZK
+         GfnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752852064; x=1753456864;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qYuxKIpCYIcO+gJn+7H1gBQp96uaiFhZpQnHXL5+kYE=;
+        b=BPuoBiRf9I3U2h0s14Dp0cPwlw27HU7AWepgiF/cDEeXWfjlB0BYWs2dIDS6UiZA4B
+         vN/Xp0WI1NWoJGl48eAfA5L5oNOvFaMkYpIQxpPi1i0GnASjC5P9BykW5EkwbDSGaYRn
+         J7a2zdESflCFWhw8hXbopB3/1Iwf2XXDU8UnKMUJ5kSnKylzLI0YQ6KS0YTZEKvTljbN
+         Cou8GzDkPoHGd2Yzc8DfJS++gmeE4XtC/mPijMzEpsPcNBwewMScBGeXq/D1ZRDCz8IM
+         mWGbHm3uFwFWCb7sUBnB1N8ZffZduhyndFIlwv+cDlccI7NAlhmpQSDoVv69yd6uzzwf
+         nFBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWwgcErY/Ez0Bkcnu5LGifTawYL7JsXV9P1U76YwMzNpP5G/d8coQlPOa6k/wtGbpjupwlnzhLHRMKt@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVbW0i5RhQ1tpS1LwEE+eZ11R4/VYb714pjVoatwwSwcGxGdJJ
+	nbDlAeSCqPl095z6X5iNqz1Lb1oZ3L680RGrYqkxqKE8HSk2wXb/QMdlWGOkCLeXdeU=
+X-Gm-Gg: ASbGncvLO6k8Tr5Di63hfUNrB9wb33VnnbB8ZzCYXDtY+deoEb5HXV0i+EaW8uTRVlE
+	2z+luSQLbBl8jRe6WdjwbPpSMDN9UpN3N28qZLD25VhpC2Xenbub0EAzbZXpUGss1+gij5IfCJj
+	Bb6u6CjiwAe6sM2bi+9HTRMBFRn80hqaOQ9kO+Cy7yMlcW5qF2lyycKkzxYsMCNU+W4rtIKzHMe
+	u+JRbzcgEk6zCixrDcBCGS2tSOwsyvuGGNgacVpy5M0fvfu1FK3H+foynaiouNit7Y/6N/QDacu
+	BfWKpUIc06uEgF+vw7LBdeEEhRxlthQo5LH8HWD8ObJxs+v1KUo2wXPsNn5/NvITEMbu0cHJI7e
+	4TWsejKsEZQtBEH20ONNGr4ZNJ5/Keg==
+X-Google-Smtp-Source: AGHT+IFHYUOrLnCL26v1j/YOSaFa73FuGV6iSj194qbCo/8B+uaKvogFvTM462nA+ygYaDPEodMSug==
+X-Received: by 2002:a05:6808:1301:b0:406:7704:b2e9 with SMTP id 5614622812f47-41d036ec35amr7991928b6e.9.1752852063904;
+        Fri, 18 Jul 2025 08:21:03 -0700 (PDT)
+Received: from localhost ([2603:8080:b800:f700:e5d3:a824:1a57:fcaf])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-41fd5951f20sm458273b6e.44.2025.07.18.08.21.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Jul 2025 08:21:03 -0700 (PDT)
+Date: Fri, 18 Jul 2025 18:21:00 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Xu Yang <xu.yang_2@nxp.com>, Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: s32g3: Fix whitespace issue in device
+ tree
+Message-ID: <e4c5fe15-87c8-42d5-b4d7-09e3d1f7e712@suswa.mountain>
+References: <cover.1752703107.git.dan.carpenter@linaro.org>
+ <52960eb1-4432-436b-89aa-d50fc7da2c3a@sabinyo.mountain>
+ <95b3a17e-a5a2-4d84-960c-2539af9d5450@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250718-02-k1-uart-clock-v1-1-698e884aa717@gentoo.org>
-X-B4-Tracking: v=1; b=H4sIAJJkemgC/x3MTQqAIBBA4avErBsYhejnKtEibazBqNCKQLp70
- vJbvJcgchCO0BUJAt8SZd8yVFmAXcZtZpQpGzTpimrVIGn0Cq8xnGjX3Xokw6Zlp8gxQc6OwE6
- ef9kP7/sBAWU3SmIAAAA=
-X-Change-ID: 20250718-02-k1-uart-clock-0beb9ef10fe0
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Yixun Lan <dlan@gentoo.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1624; i=dlan@gentoo.org;
- h=from:subject:message-id; bh=Qc90R/wKlwZzydgUbeWgdwRR5Gjg0u1fsWOFnERsnQ4=;
- b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBoemSaDXUiJarkoPAv74cbl3GPf+0St8IFpnfeS
- +CWcnTv4zSJApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCaHpkml8UgAAAAAAuAChp
- c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
- CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277ZmtD/9VwLCxQcQ0hB0Tcz
- Hiv7P4pGgYimXWcwy99P2oCnsLxUZVSyviVHcWMACml/PEvWLipk0/B5tBHIL5oj34ugP1rYR+f
- GdF8k5YVYUYsYlIlyG+XsPfmqMDnb/EWqK5ZKibRm5ar6zHWY0rDkuv3B44sS5mtR7If+VFX+gc
- elqsMCB3eR8BWLnY+6fN2olUi0X6n2l6AOB6IKNVA+7RS8qbPk15bUB5njopP+OtrphXMe0+GIm
- RVquSD4+CaWl5/WEtlxP5XwUbC/x1OrGxKm4ruV5/SpB+WCgNyGHJCm/9PB9MzdyjgTmR/pcS/U
- xazeRCa1FXY06JWQqK1MATtLzzQzOBtVaGZk5qT2otjr/AnJPLl7rtbjT3FHUlKLxO0syT76wWF
- M1OuN1qFsWdexeFZ5k6mgzJ9lafmZhtbW5k5GM1gZe0bkcsGjjSUmXYWuxjFSzWqKoGinnSqQpU
- eWQrx/3GfLv3WtCTCsru9iafxpxx1ugWVhHzOxsWmHlHZjpREgN511ven8nGT7cwGW/Hkgwqbsn
- 3oYI+WMvj4SF6d2+QOWa8QmaH6gTvMebQp3Mfcnbc5Vrr88+rqdPC0669PHt/tlAJ26eb3FL20j
- s/5ccko2FWSpp5xINaF0xTUal4UNi8N9lum6EUhcl4lAGb/GT6bF4q8VlnsDrZtIo2oA==
-X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <95b3a17e-a5a2-4d84-960c-2539af9d5450@kernel.org>
 
-sec_uart1 is reserved in DT, and no clock is implemented in the CCF
-framework, thus 'make dtbs_check' will eject this warning message:
-  serial@f0612000: 'clock-names' is a required property
+On Fri, Jul 18, 2025 at 08:58:19AM +0200, Krzysztof Kozlowski wrote:
+> On 17/07/2025 00:46, Dan Carpenter wrote:
+> > Checkpatch points out that this should use spaces instead of tabs.
+> > "ERROR: code indent should use tabs where possible".
+> > 
+> > Reported-by: Xu Yang <xu.yang_2@nxp.com>
+> > Closes: https://lore.kernel.org/all/u7glt7mn33lbdeskbr4ily6tjjifvffy64llwpi5b2rrhx5tnv@y2h2y3oz3xc4/
+> > Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+> > ---
+> 
+> Patches were not merged, so this should be squashed there... or you
+> meant they went with Greg USB? Then no, that's dissapointing, you are
+> not supposed to send DTS patches to Greg's subsystem.
 
-So, adding a dummy clock to the device tree to fulfill the clock
-requirement, then silent this dt check warning.
+I worry that I have accidentally stepped into politics...
 
-Signed-off-by: Yixun Lan <dlan@gentoo.org>
----
- arch/riscv/boot/dts/spacemit/k1.dtsi | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Yes, it went through Greg's tree.  I'm just using get_maintainer.pl.
+Looking at it now, Greg and linux-usb weren't even on the Cc list for
+the DTS patches.  There was probably some b4 magic which let him apply
+the whole series.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index c0f8c5fca975d73b6ea6886da13fcf55289cb16c..e9b98f2a3b1cc38f569d7de336630df846cbfbe7 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -309,6 +309,13 @@ cluster1_l2_cache: l2-cache1 {
- 	};
- 
- 	clocks {
-+		clk_dummy: clock-dummy {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <0>;
-+			clock-output-names = "clk_dummy";
-+		};
-+
- 		vctcxo_1m: clock-1m {
- 			compatible = "fixed-clock";
- 			clock-frequency = <1000000>;
-@@ -556,8 +563,9 @@ clint: timer@e4000000 {
- 		sec_uart1: serial@f0612000 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xf0612000 0x0 0x100>;
-+			clocks = <&clk_dummy>, <&clk_dummy>;
-+			clock-names = "core", "bus";
- 			interrupts = <43>;
--			clock-frequency = <14857000>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "reserved"; /* for TEE usage */
+How was this supposed to have worked?
 
----
-base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-change-id: 20250718-02-k1-uart-clock-0beb9ef10fe0
-
-Best regards,
--- 
-Yixun Lan
-
+regards,
+dan carpenter
 
