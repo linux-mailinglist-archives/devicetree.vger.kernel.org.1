@@ -1,217 +1,220 @@
-Return-Path: <devicetree+bounces-197619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30AB1B09F95
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:28:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12642B09FDB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:34:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00691A458E0
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:27:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60E7F560783
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:33:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8732989B4;
-	Fri, 18 Jul 2025 09:28:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F29298987;
+	Fri, 18 Jul 2025 09:33:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HRxMhSIS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eGWOK2O0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B77829617D
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 09:28:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D5222AE45
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 09:33:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752830900; cv=none; b=lkpW0SsEPh5HJKUqfVFJNCIgFeezrVDjvUalfJNuB94pdZa0L0yP4FKwCKbKxGsIP+E/fyeWkyknUrmVsCn7DqQ3FSHdP5LrjbcXGL6phtIlLUXkkFseL9IctQ517djsBTBUj6GEhhIIkTCDKHDhRiQ0TiLSW2MbzXOJ4eixwEA=
+	t=1752831221; cv=none; b=baLdYZk+DF2YTwOmwO+Qh3oJrkeCu9bmNegkmMD8HCrP66MZyKsvFdsY6vJNAjnsipUMOgXP43LTA7JEvlLXupkwDQVKbW2dHlrDEHXqgJAnrde++P9NQYXbMsCmBAsAIy5HdJLirG3GPMgK+obLWKCAL58PYubC7ixf7xHxTzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752830900; c=relaxed/simple;
-	bh=NbnKZfzGqskNbEfXayr5hGk/GwKuQRNSeP/X0NfYCeY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fRMTmtHMi9fYpxUNbDm9QFgx7v9i3AwsWvzVGSZRq3UUGddZynMl/j05ZH0YLAMxziZE77Sc8Y7gx7iBrY6Eo7jEkfRJwkYp2+zIhmnEuU6igLSSCSm3prfc8RhmdqxMjW9HsFXkVMTkR+XXi7S9khoVB8x1wJI5YBYuCtGwQqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HRxMhSIS; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I9DEYM016003
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 09:28:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1+VRe0Ju/sp1iGJc3RkyEXgFVAS/G2F4yjLjeyBrp8U=; b=HRxMhSISSIU/oC2I
-	fbV7H+d23qjgP3ITqLd6VHqpcNpA1JPdwO4DhtdRFd/Cio4n93BywGXELX8Ck3/7
-	oVixkQM2nHiG3W20ztqBz4RWvr9tIqpBucgGLvldcAcWgtaTQtDMRUSu6sNFdCAE
-	1KGyGGtiiF64hAFz2wzmx4pUBusBkKAD4Z0n5VM2CVvQC22WEsfQ888XrCkz5/f8
-	FZfNI8uuS3u+G6vJT18ZiEDtcmofujrxe5AuzCqElCrvxAnPjnoDY/SEzv5UdlUU
-	/c50vngyayo0IQE83pyZfflmEy/Iz1Dk2VeNK5ck5hRu6UGamiuJk/LzLcylGzSo
-	T81KzA==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47y3tc2tmv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 09:28:18 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7dea65840b8so30626885a.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 02:28:18 -0700 (PDT)
+	s=arc-20240116; t=1752831221; c=relaxed/simple;
+	bh=65C0cULWq6n1kIBMVWReYCSkEHWLR3vPQpO6wxz9lfY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N084PIPWxAZ6181a2iaDxrX3cb08ylbfL8JZ8d2HEwKHOX0vHCij/RLBiBXMpjf2pBddP+MI94/cMl5qhVI+qAc9lgme0xxS7qhFtNibR/XUbFjAKAh635PTgHno1Ahoz10BB4+mcoctpFqDNUyT6j/slTtJGyniKfHxn72heyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eGWOK2O0; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45619d70c72so24214655e9.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 02:33:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752831217; x=1753436017; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mkSzFym5h6ECIpSmRLEDdJL88SxsBS8iIr1XUgerRNk=;
+        b=eGWOK2O0qldpQts2fZAXqE7n2fUSAeM3DBU9hkBLq/4giESm9U7XZ087/e6fQqwaI3
+         /lJMFCE4DmkkXckc/efYGSrSMqe9+Gy7tSNfAhiao/E0DZIILqJ7f79jcL6viEzX3F11
+         +WnlkZmmK59eGv5kIxZMGNe/nZLY5eTE6VZ/c0gDpCciFKTyPDrZ+nBYULeRLDqrNuCZ
+         pTxTqZOeQiNufgRRObdX9wHEs8ZB/aRuJilfZMcbX0gRI1vtgke3r9Rw6/qvAeMGvKg7
+         WZNGsH4mPLk7XvD560dP8O+guKMslf4nelCdnjGujkRSA56mftWCZgK+Texl4PNejHzF
+         pIcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752830897; x=1753435697;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1+VRe0Ju/sp1iGJc3RkyEXgFVAS/G2F4yjLjeyBrp8U=;
-        b=EvJK6/yURf/CH1+bCmWShz5lYUdWWvvk331NEQpXRKVKxLh9ZX4mFuwchSMhKwb6Sw
-         6C0i0V5tC7nRJHvzwbiUB5PnNWGUakXpBpP4M8te9bsTOcmMtiA3MrtOKGF3Ac+W4S4C
-         6XtC02FZ5mdXvmc1bG7U/zLuYbhWE9U2DwYEooouc5GBW0BaKEPbm2jPp8o6jMGKA2RR
-         etCfGnHwwDf/2zqvVm3BhZIm+fPY11r4uAVG/oYm46jzn7tUP4JiMA4Zway76JT4cKPv
-         B0Zyo90vj/qPjwNwFXTJoZrF+/Jz5RSqKJ+ya+9UiZj9tkKBFXfDjUSDSQGDgTVduRJ6
-         tuAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVfYQuZctyJ+s2Rju3Lt1Q0+RLqAEq6TJdEXuSYe9Eo2Sq98smfBSMt8qO6Lq/LzFjot7b++nmT8d2M@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYu74bc86x2W6gBONuqk1scl6moIB0Iad3XznhVyy+GYb1PlUZ
-	G8MFmh9c0u2e1sNrnccXcwrwKmEcMq2uSzIPbuGBBnPhFw0Mz0OBRXMpp9k2LQyoYDCyMPdYhs/
-	ylMceGr7SnVKv+lDUa1Pjac4V8befmT6XRN24t6mfcJ0H5va0zYzNQ84raXlJlMDN
-X-Gm-Gg: ASbGncuSU3cp3b3hmu+bbVoec5UHrhW1tvFcxiP7Cx35wL8GA18/uFvFtqdJJ6ZZgSV
-	7rvjNMNTu1Ic1F3btyr0ugzomCAR3us6rINwSeU16emV2gpkdELOUne5EaTjdelMl9w7HAiRSW0
-	qm8cKQAdcReraIbFbbqy4DtN+/HhCV35P9TuWm//6/IkowZIyy8iWft95NhYe/iWk1TnVi/C5F/
-	gAcEhKDFBxCEXM+AcxMMqPgGFKb4gXHGTZ/pCNCr0jyV6Fu6vRsiIV97fS9+2u185TwW1EhT7g6
-	yL7ra23VB/pudJLMKQIWN6H4wIW9uy9sdVY4AgJRTf9ZkF1HF/MQ07eBQ06pgTtDTxV23Vz7ajD
-	rltOJ76u2s0pNL4sdVVsN
-X-Received: by 2002:a05:620a:4153:b0:7d0:9ded:31e0 with SMTP id af79cd13be357-7e3429d39b2mr559973985a.0.1752830897011;
-        Fri, 18 Jul 2025 02:28:17 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFC1R6EIQ1c6MEMXvvejqhCbTPlrLcU2EQqZ1eX8XkE7MU2u6NGRZ77ayYNHvIednR+yi5YWg==
-X-Received: by 2002:a05:620a:4153:b0:7d0:9ded:31e0 with SMTP id af79cd13be357-7e3429d39b2mr559972685a.0.1752830896492;
-        Fri, 18 Jul 2025 02:28:16 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-612c907bb58sm696134a12.57.2025.07.18.02.28.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Jul 2025 02:28:15 -0700 (PDT)
-Message-ID: <a383041e-7b70-4ffd-ae15-2412b2f83770@oss.qualcomm.com>
-Date: Fri, 18 Jul 2025 11:28:12 +0200
+        d=1e100.net; s=20230601; t=1752831217; x=1753436017;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mkSzFym5h6ECIpSmRLEDdJL88SxsBS8iIr1XUgerRNk=;
+        b=hsHikGFsQ4rxYFeHRutpk4vvIXwjgY9o6LCzTB/m8SJSl4K4WIK9BPJyo7UlQ/f6Qx
+         Bkz+NFRmN5LZKO/SbOmNS0xGX8ugf9PpVK1Z1PjTfRLB+i3k2U1iJfadk/uv7E3Vphwo
+         mAOErivRLlvfpKceuvg3uQAXflbJBqpFQlou0HKW/JN/2gRodvzErvbzAebt8FIikoJx
+         dWKbP5Xs5Zkhza7okd+skmti4WHshG7ilDphxed5knZsA+pTPqF7ylQbsXeqetOWY0eG
+         i0NpQKEJSKRPxEiOd1D0sUTqB0zlPt5ZdoFdGlZ+roE3gsuFbYqTHdoKrho5aREfMwK9
+         zsZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUuPhQV/+/3M3x3jnN2VptnQi2zCHsM9hxHX0p1oWlfBhjcu+JXfapYIY2cU1UUdFufLrSCr0QI88Yi@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLR3redxLl8804cBrHlSMm/K19auUrP28e9Fb1JK44duaECOME
+	4/ydW+DaA7V80HIjA911gSWL45dTWcbiZxZ/GGgtNl5/jhjmy+J0MUioyaATMS3k7k8=
+X-Gm-Gg: ASbGnctkexBN0kOaZ7HkGYgxubwy6yL2ta+LVBamzLjIIBw4ZV78eDs21LJw4WtXE+J
+	9bP0dHZgNUMJi4UZxMXEk9VVIyn7NiEWhOqkk8Spz7Jj/mVwDQG/DMU+WT6xuwaXgSAj1acYzLp
+	EyuZS6itE4UDWI9p7Uma3T/I/uZk4KtJkb03V5FaLXK+QExJiQ/buNk0RtH8ADzYNFzqiKvMVJ0
+	TrX8Ot2tIkochltL2d4P92h/jYzWYZwoMdql+StENQRykT1ZTXaILoYyC3Z3SvVLZS8HUfCKfbj
+	i1n9DxwCzud2FT0zUn2myko+4IzUy0SfFCELPONyiH2AmAPmvBR1+R7vzyJDFL261U4H+gzpIWH
+	ztyIGo1yr7AJcUFPyUuFA5Hzn82cA5DcycA==
+X-Google-Smtp-Source: AGHT+IFXlYFdlruDA4D2jZKW4fN0q1iRAh64fALjB6JacdJeK+SN/LG9ZRXlz5YqMJ7iU6uoea4sEg==
+X-Received: by 2002:a05:6000:1ac5:b0:3a4:f7e7:3630 with SMTP id ffacd0b85a97d-3b613abeebfmr6799083f8f.15.1752831217212;
+        Fri, 18 Jul 2025 02:33:37 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:ef30:db06:bc5a:2982:a0fa])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b61ca48bc0sm1313550f8f.55.2025.07.18.02.33.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Jul 2025 02:33:36 -0700 (PDT)
+Date: Fri, 18 Jul 2025 11:33:32 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Yijie Yang <yijie.yang@oss.qualcomm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
+Message-ID: <aHoU7MnweSHGPwxp@linaro.org>
+References: <20250716-hamoa_initial-v1-0-f6f5d0f9a163@oss.qualcomm.com>
+ <20250716-hamoa_initial-v1-4-f6f5d0f9a163@oss.qualcomm.com>
+ <aHkm4qjgSaklHGp0@linaro.org>
+ <4363f117-cc25-4904-84cf-4b3779797223@oss.qualcomm.com>
+ <ng7koaqz6s4cslugrujklsrprsl7v7wijtserr6edvsvbeqfkv@pldexeryni7h>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/10] dt-bindings: clock: ipq9574: Rename NSS CC
- source clocks to drop rate
-To: Luo Jie <quic_luoj@quicinc.com>, Rob Herring <robh@kernel.org>
-Cc: Georgi Djakov <djakov@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Anusha Rao <quic_anusha@quicinc.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
-        quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
-        quic_suruchia@quicinc.com
-References: <20250710-qcom_ipq5424_nsscc-v3-0-f149dc461212@quicinc.com>
- <20250710-qcom_ipq5424_nsscc-v3-5-f149dc461212@quicinc.com>
- <20250710225412.GA25762-robh@kernel.org>
- <93082ccd-40d2-4a6b-a526-c118c1730a45@oss.qualcomm.com>
- <2f37c7e7-b07b-47c7-904b-5756c4cf5887@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <2f37c7e7-b07b-47c7-904b-5756c4cf5887@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Z5PsHGRA c=1 sm=1 tr=0 ts=687a13b2 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VT5E6NTcuoebdF1Bc4oA:9
- a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-ORIG-GUID: vTLOc34csq-oNIE0sIn8FVnIHxf0b27p
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDA3NCBTYWx0ZWRfXw0qBOpyXVYUu
- r6MQdf3lkmMGYi/D33WjR/WBvBfAFE/SvNxXkTX21yhIsNq6RRjz2P8J77/oZje7RYfMrZB1QRX
- pbDE/UrY3R4J50uNnHd+b5SRuytqGNnR1qht/WXZCd4nKqMX0FpGliL21W1FD26du72hz3QDQqN
- rlz7r46VJQoR+5gjPc0SgFZoQ7aEWk623l2BFEtz1XpqXmN7pSt+NoT9sKm5S0TYskapZA0pDyL
- MqIuX5VgS43SKGEqiPkNuecwUN0CvPC+L+tyxMIE+U3w/K1ZMKkrPoI8tg1vsDDTfN7gDtKR3TM
- ZwRVRiR18kJQaxcKgbAk/jMChKDbAIJ+PAhCa3nWsrHQE7IRNlsx+zhzTm1QAdw3koYM3eY7/87
- 1FqRqQRjzSd56s6FkDSZggeuO1I4AU6+iJgtYU09d9ZvvdxRUuMMh6sVJ3PE8rxr5kHQPug5
-X-Proofpoint-GUID: vTLOc34csq-oNIE0sIn8FVnIHxf0b27p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-18_02,2025-07-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 mlxlogscore=999 suspectscore=0 spamscore=0 clxscore=1015
- mlxscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0 adultscore=0
- priorityscore=1501 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507180074
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ng7koaqz6s4cslugrujklsrprsl7v7wijtserr6edvsvbeqfkv@pldexeryni7h>
 
-On 7/18/25 11:12 AM, Luo Jie wrote:
+On Fri, Jul 18, 2025 at 12:27:34PM +0300, Dmitry Baryshkov wrote:
+> On Fri, Jul 18, 2025 at 04:19:13PM +0800, Yijie Yang wrote:
+> > On 2025-07-18 00:37, Stephan Gerhold wrote:
+> > > On Wed, Jul 16, 2025 at 05:08:42PM +0800, Yijie Yang wrote:
+> > > > The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
+> > > > the Hamoa IoT SoM and a carrier board. Together, they form a complete
+> > > > embedded system capable of booting to UART.
+> > > > 
+> > > > This change enables and overlays the following peripherals on the carrier
+> > > > board:
+> > > > - UART
+> > > > - On-board regulators
+> > > > - USB Type-C mux
+> > > > - Pinctrl
+> > > > - Embedded USB (EUSB) repeaters
+> > > > - NVMe
+> > > > - pmic-glink
+> > > > 
+> > > > Written with contributions from Shuai Zhang (added Bluetooth).
+> > > > 
+> > > > Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> > > > ---
+> > > >   arch/arm64/boot/dts/qcom/Makefile          |   1 +
+> > > >   arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 835 +++++++++++++++++++++++++++++
+> > > >   2 files changed, 836 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > > > index 4bfa926b6a0850c3c459bcba28129c559d50a7cf..c5994b75d3e56e74ffb64b2389ee1bcc086f3065 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > > > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > > > @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
+> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
+> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
+> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
+> > > > +dtb-$(CONFIG_ARCH_QCOM)	+= hamoa-iot-evk.dtb
+> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
+> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-tplink-archer-ax55-v1.dtb
+> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp441.dtb
+> > > > diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+> > > > new file mode 100644
+> > > > index 0000000000000000000000000000000000000000..843f39c9d59286a9303a545411b2518d7649a059
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+> > > > [...]
+> > > > +	vreg_wcn_3p3: regulator-wcn-3p3 {
+> > > > +		compatible = "regulator-fixed";
+> > > > +
+> > > > +		regulator-name = "VREG_WCN_3P3";
+> > > > +		regulator-min-microvolt = <3300000>;
+> > > > +		regulator-max-microvolt = <3300000>;
+> > > > +
+> > > > +		gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
+> > > > +		enable-active-high;
+> > > > +
+> > > > +		pinctrl-0 = <&wcn_sw_en>;
+> > > > +		pinctrl-names = "default";
+> > > > +
+> > > > +		regulator-boot-on;
+> > > > +	};
+> > > > +
+> > > > +	/*
+> > > > +	 * TODO: These two regulators are actually part of the removable M.2
+> > > > +	 * card and not the CRD mainboard. Need to describe this differently.
+> > > > +	 * Functionally it works correctly, because all we need to do is to
+> > > > +	 * turn on the actual 3.3V supply above.
+> > > > +	 */
+> > > > +	vreg_wcn_0p95: regulator-wcn-0p95 {
+> > > > +		compatible = "regulator-fixed";
+> > > > +
+> > > > +		regulator-name = "VREG_WCN_0P95";
+> > > > +		regulator-min-microvolt = <950000>;
+> > > > +		regulator-max-microvolt = <950000>;
+> > > > +
+> > > > +		vin-supply = <&vreg_wcn_3p3>;
+> > > > +	};
+> > > > +
+> > > > +	vreg_wcn_1p9: regulator-wcn-1p9 {
+> > > > +		compatible = "regulator-fixed";
+> > > > +
+> > > > +		regulator-name = "VREG_WCN_1P9";
+> > > > +		regulator-min-microvolt = <1900000>;
+> > > > +		regulator-max-microvolt = <1900000>;
+> > > > +
+> > > > +		vin-supply = <&vreg_wcn_3p3>;
+> > > > +	};
+> > > 
+> > > Like the TODO comment already says, regulators located on a M.2 card
+> > > shouldn't be described as part of the device DT. We need a proper
+> > > solution for modelling the M.2 slots together with the standard power
+> > > supplies (3.3V and 1.8V) and hook this up to the pwrseq subsystem. This
+> > > is also the reason why the CRD does not have Bluetooth enabled upstream
+> > > yet, this needs to be solved first.
+> > > 
+> > > As far as I know, there is no one actively working on addressing this at
+> > > the moment. Perhaps you can assign someone at QC to work on solving this
+> > > upstream.
+> > 
+> > This power section is now managed by UEFI, rendering these regulator nodes
+> > unnecessary. Therefore, I will remove them in the next version.
 > 
+> No. The regulators for the M.2 slot should be present here so that Linux
+> doesn't disable them. Which triggers a question: how are they
+> controlled? I don't see a GPIO line there.
 > 
-> On 7/11/2025 8:15 PM, Konrad Dybcio wrote:
->> On 7/11/25 12:54 AM, Rob Herring wrote:
->>> On Thu, Jul 10, 2025 at 08:28:13PM +0800, Luo Jie wrote:
->>>> Drop the clock rate suffix from the NSS Clock Controller clock names for
->>>> PPE and NSS clocks. A generic name allows for easier extension of support
->>>> to additional SoCs that utilize same hardware design.
->>>
->>> This is an ABI change. You must state that here and provide a reason the
->>> change is okay (assuming it is). Otherwise, you are stuck with the name
->>> even if not optimal.
->>
->> The reason here seems to be simplifying the YAML.. which is not a good
->> reason really..
->>
->> I would instead suggest keeping the clocks list as-is for ipq9574 (this
->> existing case), whereas improving it for any new additions
->>
->> Konrad
-> 
-> Thanks Rob and Konrad for the comments.
-> 
-> "nss_1200" and "nss" refer to the same clock pin on different SoC.
-> As per Krzystof's previous comment on V2, including the frequency
-> as a suffix in the clock name is not required, since only the
-> frequencies vary across different IPQ SoCs, while the source clock
-> pins for 'PPE' and 'NSS' clocks are the same. Hence this ABI change
-> was deemed necessary.
-> 
-> By removing the frequency suffix, the device tree bindings becomes
-> more flexible and easier to extend for supporting new hardware
-> variants in the future.
-> 
-> Impact due to this ABI change: The NSS clock controller node is only
-> enabled for the IPQ9574 DTS. In this patch series, the corresponding
-> DTS changes for IPQ9574 are also included to align with this ABI
-> change.
 
-The point of an ABI is to keep exposing the same interface without
-any change requirements, i.e. if a customer ships the DT from
-torvalds/master in firmware and is not willing to update it, they
-can no longer update the kernel without a workaround.
+The 0.95V and 1.9V regulators are located on the inserted M.2 *card* and
+get automatically enabled by the 3.3V supply of the M.2 *slot*. If you
+remove the card or insert a different one, they won't be present. This
+is why they shouldn't be part of the DT. The M.2 slot only has a 3.3V
+supply and a 1.8V supply.
 
-> Please let me know if further clarification or adjustments are needed.
+The only reason why they are here is that the current bindings for the
+WCN7850 require describing the whole PMU and internal regulators of the
+M.2 card. Ideally, we should have a generic description for the M.2
+slot/connector instead.
 
-What we're asking for is that you don't alter the name on the
-existing platform, but use a no-suffix version for the ones you
-introduce going forward
-
-i.e. (pseudo-YAML)
-
-if:
-  properties:
-    compatible:
-      - const: qcom,ipq9574-nsscc
-then:
-  properties:
-    clock-names:
-      items:
-        - clockname_1200
-else:
-  properties:
-    clock-names:
-      items:
-        - clockname # no suffix
-
-Konrad
+Thanks,
+Stephan
 
