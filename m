@@ -1,136 +1,136 @@
-Return-Path: <devicetree+bounces-197485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5397EB09942
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 03:38:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 952F6B09964
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 03:52:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DF37169821
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 01:38:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EF6F1C47D1C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 01:52:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1E8219D880;
-	Fri, 18 Jul 2025 01:38:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0EA198A2F;
+	Fri, 18 Jul 2025 01:52:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GFSBLDIT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J4vIJ27u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D41192D68;
-	Fri, 18 Jul 2025 01:38:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFD5191F89;
+	Fri, 18 Jul 2025 01:52:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752802687; cv=none; b=md28EvsIoTUd05WvWT3xwtf5hsuXZLfrfbFLcFAKJOTwPGxUPCHUuiVNs5mWOS4WD2o6Ge2tWsunBv0CBbfID/MZE13oyDZz1Cfs/80EmD5+/omf45gNOe+p2BA/Iu7kqwU6aJtrKnbGqMhnbD1w3sPiBXjs3NFMan+i93QJ3bg=
+	t=1752803540; cv=none; b=fr8xac2AMcXvqDOLpZw1GLwXainuzzNccE4G15y1SSHl2t9oYWBW4bJK/9EQ+4GwfQV6jxOuJsZomKKioHwDEbeQEiPXwmL/YVg8+F46D/giNpgoE8sRU+aozyna2Ve/xjdP5yA/L5XtqU5vuQ71Q/gyPgJ7f1qHQ9Vmff/+M8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752802687; c=relaxed/simple;
-	bh=Gxsb4twQZ7MutHEiCFwLHr/tvz7swWwvohxSb9zPqnI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X+svdXMtQbTGTo5RSg+ysn4z9OLHsGS2udfsfoK7oct2FylmsYwj0PjCnW9Iq2/Y53hs74g1ztVnO4jHmG2qtu8Zy4T9/dQIbgkckJQBrcZPTfLwU4YCumJdLrHMjSnFhWAYZ8xSDGR98g4bb56UFSlcJup8euefPhpq0MxpG/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GFSBLDIT; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1752802686; x=1784338686;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Gxsb4twQZ7MutHEiCFwLHr/tvz7swWwvohxSb9zPqnI=;
-  b=GFSBLDITQ+l58IoZ9XTMrSx8ZlUcrziKWd2vxr63qEyF1U+Z+fVXZjae
-   M2k496EkQHtulhi9cdcNcv7JUM32DQPB1Sr7jgDKYncnxcJg8mmbnn+62
-   h5Ln8HueQ4q7q47ropDSYls6to9xNFUEgyJ/ALPNw1SjMDvW/cZOivF95
-   tuhUSCetGQS8SQ/2XbWktUyNYDLmKi2A4HDrk0UofvQxnnzdE6QergkMP
-   hclqe/ZNRadxnK/LAQr/xzljISRXWKLYDBAJ5gNWROPRJ2ajx8r/Yji7W
-   X7d4HqMcrmqS+76KzFq8ogmWZ0wJ5s1ZMWo7YoFo3rv1JySiIIVuOezmF
-   w==;
-X-CSE-ConnectionGUID: eFpetS8qQYmExQAtivm0nA==
-X-CSE-MsgGUID: YV+dlN8xS1Gjls+VcNuHYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="72661797"
-X-IronPort-AV: E=Sophos;i="6.16,320,1744095600"; 
-   d="scan'208";a="72661797"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jul 2025 18:38:03 -0700
-X-CSE-ConnectionGUID: Z2UUVbOuQFuAmZyMGnYsEA==
-X-CSE-MsgGUID: 5uXw69UySuOliODhA/VrLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,320,1744095600"; 
-   d="scan'208";a="162216196"
-Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 17 Jul 2025 18:37:59 -0700
-Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uca2u-000ECp-2C;
-	Fri, 18 Jul 2025 01:37:56 +0000
-Date: Fri, 18 Jul 2025 09:37:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Cosmin Tanislav <demonsingur@gmail.com>,
-	Cosmin Tanislav <cosmin.tanislav@analog.com>,
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Julien Massot <julien.massot@collabora.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Linus Walleij <linus.walleij@linaro.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-staging@lists.linux.dev,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v6 15/24] media: i2c: add Maxim GMSL2/3 serializer and
- deserializer framework
-Message-ID: <202507180909.8Mnk3jkp-lkp@intel.com>
-References: <20250716193111.942217-16-demonsingur@gmail.com>
+	s=arc-20240116; t=1752803540; c=relaxed/simple;
+	bh=T8ojarsyUU3VdRkPNIjPH+hMXuJfPiLhUJlGAKELHag=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fMFr8hpMHz6mZ7iyqR5j54F08kxHCdgzUIbTynv1H6Udy3HR8S866mEzIQl80n0YKwP1ZJUQewf7MkEskdfVdXorIYVBzZrpwLqyRCZs49htMzU0Nvt+ee8Rd2Fkf772TfaRY0R1sZBVWnS2bgnjUovC6KSsZrExWrTaAgobtbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J4vIJ27u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9F330C4CEE3;
+	Fri, 18 Jul 2025 01:52:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752803539;
+	bh=T8ojarsyUU3VdRkPNIjPH+hMXuJfPiLhUJlGAKELHag=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=J4vIJ27ucyYSoQEfQeynNX2zuRsnmDUzQBbU0pxzcm08a0xg6CLc5OOV3MzCIpmPn
+	 RMvTMDB/zDPPXrlsgpwFXxe+LASf1DF4xJlwQmL53fV/HIWww2E9DufdYileRAjDaI
+	 KNljkw0hU8axRLMr1r51PBiNu0xAMNEGX6XSUDoS6L8qVkOiVecBEuGDFmt9BjxgT2
+	 WFxupPiuLmHCf4/POeaL0aTSjbsEyzZKKaXxWT7Y2yEXXu7IkgkxjwGqmzGtXIP6FB
+	 3d2SDBhzFlSkEesBz6fHNDt5AzVjv2ncP5ee6+0c0apoRpe4jt/hkEwSYue2XncKdW
+	 9NRRYyYg0fjJw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B1ECC83F22;
+	Fri, 18 Jul 2025 01:52:19 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v5 0/3] support for amlogic the new SPI IP
+Date: Fri, 18 Jul 2025 09:52:15 +0800
+Message-Id: <20250718-spisg-v5-0-b8f0f1eb93a2@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250716193111.942217-16-demonsingur@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM+oeWgC/2XOyQrCMBSF4VeRrI1kaIa68j3ERYbbNqCmNBIU6
+ bubFouVLk/I93PfKMEQIKHj7o0GyCGFeC9D7HfIdebeAg6+bMQIE0QSjlMfUouVbhiVmoE1DpW
+ //QBNeM6d86XsLqRHHF5zNtPpdSlU30KmmGCha+4t1L4W/GRu19gGd3DxhqZGZitH1eLY5KiRR
+ BhdWS+2jq8cWy7OvDinOG2EAqZrt3XVz6nfnVVx0hboGwuSkn83juMHG2hVM0QBAAA=
+To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752803537; l=2119;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=T8ojarsyUU3VdRkPNIjPH+hMXuJfPiLhUJlGAKELHag=;
+ b=Hw+zDiRsCmR+NB0r3zy0ptubSX5gfKCJ+VfAzYdlVxGanxFEZQbe9kezOWqTaE13KNUo+5uq3
+ T2KAn61MQ+3BmQgtZcypOcX9fJNXM/+80R+skSaIE4pZxgg4iERjMrO
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Hi Cosmin,
+Introduced support for the new SPI IP (SPISG). The SPISG is
+a communication-oriented SPI controller from Amlogic,supporting
+three operation modes: PIO, block DMA, and scatter-gather DMA.
 
-kernel test robot noticed the following build warnings:
+Add the drivers and device tree bindings corresponding to the SPISG.
 
-[auto build test WARNING on next-20250716]
-[also build test WARNING on v6.16-rc6]
-[cannot apply to robh/for-next staging/staging-testing staging/staging-next staging/staging-linus arm64/for-next/core linus/master v6.16-rc6 v6.16-rc5 v6.16-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v5:
+- The location for interrupting registration has been adjusted.
+- Unexpected interrupt return IRQ_NONE.
+- Modify div clk register and process reset_dev return value.
+- Link to v4: https://lore.kernel.org/r/20250704-spisg-v4-0-6b731dfbe610@amlogic.com
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Cosmin-Tanislav/media-mc-Add-INTERNAL-pad-flag/20250717-033901
-base:   next-20250716
-patch link:    https://lore.kernel.org/r/20250716193111.942217-16-demonsingur%40gmail.com
-patch subject: [PATCH v6 15/24] media: i2c: add Maxim GMSL2/3 serializer and deserializer framework
-config: nios2-kismet-CONFIG_I2C_MUX-CONFIG_VIDEO_MAXIM_SERDES-0-0 (https://download.01.org/0day-ci/archive/20250718/202507180909.8Mnk3jkp-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20250718/202507180909.8Mnk3jkp-lkp@intel.com/reproduce)
+Changes in v4:
+- Add resets prop and modify some formats for bindings.
+- Remove irrelevant headers files and fix some issues.
+- Link to v3: https://lore.kernel.org/r/20250623-spisg-v3-0-c731f57e289c@amlogic.com
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507180909.8Mnk3jkp-lkp@intel.com/
+Changes in v3:
+- Rename of bit definition and fix some issues.
+- Enable runtime_suspend function.
+- Link to v2: https://lore.kernel.org/r/20250617-spisg-v2-0-51a605a84bd5@amlogic.com
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for I2C_MUX when selected by VIDEO_MAXIM_SERDES
-   WARNING: unmet direct dependencies detected for I2C_MUX
-     Depends on [n]: I2C [=n]
-     Selected by [y]:
-     - VIDEO_MAXIM_SERDES [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y]
-   
-   WARNING: unmet direct dependencies detected for I2C_ATR
-     Depends on [n]: I2C [=n]
-     Selected by [y]:
-     - VIDEO_MAXIM_SERDES [=y] && MEDIA_SUPPORT [=y] && VIDEO_DEV [=y]
+Changes in v2:
+- Use regmap to operation register and drop bitfied define.
+- Use "SPISG" prefix intead of "SPICC", and declare clock div table in the spisg_device. 
+- Delete other power operation functions except for runtime_supspend and runtime_resume.
+- Fix some format corrections.
+- Link to v1: https://lore.kernel.org/r/20250604-spisg-v1-0-5893dbe9d953@amlogic.com
 
+---
+Sunny Luo (2):
+      spi: dt-bindings: Add binding document of Amlogic SPISG controller
+      spi: Add Amlogic SPISG driver
+
+Xianwei Zhao (1):
+      MAINTAINERS: Add an entry for Amlogic spi driver
+
+ .../devicetree/bindings/spi/amlogic,a4-spisg.yaml  |  59 ++
+ MAINTAINERS                                        |   9 +
+ drivers/spi/Kconfig                                |   9 +
+ drivers/spi/Makefile                               |   1 +
+ drivers/spi/spi-amlogic-spisg.c                    | 888 +++++++++++++++++++++
+ 5 files changed, 966 insertions(+)
+---
+base-commit: bd30b995df8fd053e13d10f78dbc7b2fa5ed1aae
+change-id: 20250603-spisg-78f21682ebac
+
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
