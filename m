@@ -1,89 +1,89 @@
-Return-Path: <devicetree+bounces-197733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA363B0A759
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 17:30:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69519B0A75B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 17:31:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B122D18894C3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:30:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE7121C8360B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:30:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56D442E49B8;
-	Fri, 18 Jul 2025 15:25:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D29152DECBC;
+	Fri, 18 Jul 2025 15:25:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jE7/do6g"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iOuGNCl3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E66D2E4275
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 15:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC272E4990
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 15:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752852356; cv=none; b=iODUt67QdfpVyKNXYaHfh3GNQNxDGmhVnxHsMgHdkiX9yN7/3z411V8j0AuThvb3/sQrOEKypwvqqFDBvIE0687bdISi32054RciAsX78Cqt75dTu7Sl3Z9aTB4gHyU5viz3khYS0WhHYHpuAq+AuWtxwTphlrfug4l8SiQtfRU=
+	t=1752852357; cv=none; b=B87UmcQ1YZFBHdp7oTcmkiIqd8mM3lugU3wq1gWO8EPH9Rzbcf4oaZ5QNtArYvs19xO5pBLYQDNdidwzgTlYJePHRsi0+i8tawklPYayfay63VntTKBGwZKBq/4i2YOFmlmnqSPeDVpCZP4f+xid1PovtavioLF7vvi3kjods8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752852356; c=relaxed/simple;
-	bh=KFivjcvc5uwaOS6pig/dxIx9C+kkOFMIUz1GqsieT8o=;
+	s=arc-20240116; t=1752852357; c=relaxed/simple;
+	bh=H5UmIvUo7LQWe2Migv7tSh5KSIEnuEJyZElnvQeZk5I=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=L6diEorY8qqJuguweWG+aSzJoDDpYcInelfTHCBl2YW4Vo0WoFJayXuKtyZXWlu5jabd2to49+S1mTuVQEbVgQK+3wNJhxDu6QllQuzTvjuckZe1ftpNje3nagrupCgR/ZWBEAwifNECwpGXGDCkYAJxJbEXG8tdsTU1xhaD/6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jE7/do6g; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=YWt61e3BUz+BC0P/wFU3NVTgdYYqFC4iIQ7P8Vx/KDv2DQR/kT+1Ikg0PhOPWV83bEz7jUl6kAZoB+H/EbQcY3/9jEuH1Z2sMCIs9Lm4zjv+xmpRJA5pEV3bUCm3k7dL3XYPi24qlqQlvoFCcwbF4Jq1JyJ+sHOKtYaCsFSZYQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iOuGNCl3; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I7v9L1000541
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 15:25:53 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I8wIns008417
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 15:25:54 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LifYEedfVBPmhEMXXCNqquLGdptBfuqEdiolVCncaLM=; b=jE7/do6gpNN0QoaI
-	LQ9spngAeSAfGIDwcYCnmeKcoZ83zCwHZXXz05iY7Plg6nMYkVpMq0p9TrJURVPj
-	tSoNy9nA2reVgAabysYO24lS2EmczqVc7+9YwdtuK+8G05Al1039lfnhu8AXnJXt
-	9vEGQMpLbPuBAAyhMbDChKxDTyGWIrnHHSmstK8DMIAEajLCuxkSakGA/j8g9B7Z
-	26VUzvOLwip80p3kPIHNOXxIRug/Mj81JWZuYO44RbJ0G2M5rJwy7fuucpxTTJ49
-	90bFMXxgKEgg/1SRqj+gvJjVNwZOdlPoj7KlHAAiuhFjKQR6r7Pf46OJ40MSqGf+
-	NkiFmw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47w5dry498-1
+	5K2XGMBh9O5MReKiBN1SLoFGkqLPj7SyaVN7/UiJX0Y=; b=iOuGNCl3yrRE26TS
+	vH4H1+fKyxxrrXD67MqktB3qaDss/N0c8NaPrXmFR7VFwTi3o+riIea36RgA9K5u
+	NabZzLLd7isgzy7YfJvWSugamwqg7VQCumi/I2t3GAfAsJVVNIN1XVqDA4icqLX8
+	fikyD4hdVeGlA9fNfJODcdGwtFE6wcYImHPg5CEhCDLM7eNolt21CzrWd8S6ebJG
+	tiPaHLYJm4bVLs8O10MU8o1IkYMwjISGJY+jX2M5XHr59NE68ao6TdZqfrvCUmNX
+	70sDxPs/sufesmjBgFAqKmiO9F7c0z2S6pWvrWkGWMBC+WkJFocO1wHZc6uwOk33
+	u/yPKQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47wfcad7xk-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 15:25:53 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ab76d22670so41516711cf.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 08:25:53 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 15:25:54 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7e095227f5dso350398085a.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 08:25:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752852352; x=1753457152;
+        d=1e100.net; s=20230601; t=1752852354; x=1753457154;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LifYEedfVBPmhEMXXCNqquLGdptBfuqEdiolVCncaLM=;
-        b=HiLqUPYIoFaPOWoQliKG8YgqfDTCHDxBMN+08bdGkDxfQysoIw5QyEJuae+W3mqLB7
-         qK0iRV4fVNlkeb6bEFsFhf9RYYaiXyq+soOGjbqWe+nyjXlhqiLyEK7KB8F06zQ3uwTj
-         lcntJlfm3fXElLgdCEWisR7UX77ni7pDEanLeYQxvi3BmZ3m00cOv+svxb8TWvUd9yYO
-         32X4/ZfJ+16plCY/R+Pcnkrpcm/8yBb4h5JcdD9Ws+/3Wz9yOAkJWDrZ+hkjbUrVkMIo
-         dQk/id5BDu1p/4ZW2khsfrPjiXVBMzxgum4pZOYJ5tubNIH5jCSxpHGqroYJVy2uDTVw
-         nVKw==
-X-Forwarded-Encrypted: i=1; AJvYcCVTNrph+/f7t56lFhVwo5Os7NNfS28YNl9fADfgohG6rHWMxeOvD9IHWriPWaUku7qGEYzlRAeusNwB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaG8qp8jkUizOtW75fZS4jiCJLM4z5JRkcYlL4ZUyYYzOTsgZd
-	hmH2KvzaWrHI3j0N4G2kOxh7D7TzAwtKy+0IzwxcWeBHh65J6R31vfGzzX2YUfTGXkPVIwx6sEY
-	jSX//XYWf9183O5oNjlMoqAjgO0kDro2s+hvayA9a1kk1dku5+ZooJxb7R+N4BN1O9iP8MhcM
-X-Gm-Gg: ASbGncsgk1Hp2jPU1X5LXYhSZpWtIcuuQg6rxi9GjrfEXJGqZherjzvuephiLyThuC9
-	dqLIIJ5IKws53+FG4n2r01d1Vr1AJIpjGNeTp4t7KvTxM/Pe/KKx++SnlJUJKejwUua5jMBYx0N
-	IpjqDByncNnVu35RMjutghf4L9LYSO81XywQKsz635Y2cmlf5uSKTHX5DthseMidVB/7vwBwtvH
-	u8hciXdZxvaTb4Ll2NaF6kQVMKaAVXHDEUTd5aijfbnZI1GsKzVz8nakuuGBJAacsnTkxOUhHZN
-	t4C5MD4K6Rm0QJKYoQkDVlfy2e3ELwdyvmWdoiaRLqntDbs7tAwIPKvA0yuI94cnoidSwcoRzcp
-	wbzDMt1EASAplSL6KGjn1Oe8IlOOvn+tIPqzYIOUZwzCf1/wrl9O6
-X-Received: by 2002:a05:620a:1792:b0:7e2:b1f3:dbfc with SMTP id af79cd13be357-7e343570365mr1838853585a.21.1752852346838;
-        Fri, 18 Jul 2025 08:25:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IECw0QgnBCIgtQlzYIwnmLDxP/2ryY/OmUtNvUAwei8Hn7WvQW8hwCRlJyWeurocJ81CEOvaQ==
-X-Received: by 2002:a05:620a:1792:b0:7e2:b1f3:dbfc with SMTP id af79cd13be357-7e343570365mr1838831585a.21.1752852344566;
-        Fri, 18 Jul 2025 08:25:44 -0700 (PDT)
+        bh=5K2XGMBh9O5MReKiBN1SLoFGkqLPj7SyaVN7/UiJX0Y=;
+        b=Mt/kfD9/Kn/5mGhUX7yVcBIrCo4ZjFpuDw3yfJOZUQdhF5q9AIrdy6y/T87IzkN2rf
+         kD74wFNm7fy4B9QnU+D2mXXTX1nfGu3fFRaX+iirtJAsDxC6kMoC5l3tjXjSRnbOgIQc
+         eOGqwVyee51NGl566ekeHvprnGFID14nEPTrFzGlFI6so8Z3OZowU5Cw6+Qtq/81gZSd
+         wGTdSeg3IkQd9bjqdN1WjeaOmUmkePnKK5KRmg/UNqsxznHBk3dK4tzWZZL2dVeHYZM9
+         iqIG5OSPm+1UpooOtrXNCVmLGeyYzGfE7jxFMdA+50Bilu/2n8ZV8kd3lzo4FA3TdNcA
+         tVNw==
+X-Forwarded-Encrypted: i=1; AJvYcCXm3Thd5rV19q6sI3SqCQctVHuYSxpeiUO6Hy/jOOS8nYSpu7NGnGGVkIRA4PF99bgrzifdB63Zq97o@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGUsTyVHYMs7SBxaxDASIEzkhi3VNMebksjGYXqBXTJznyXS1B
+	M7nBuFciX+Glr4p8psy+kRbjEQ0KmSJHqnYl2HWA2c32NIfgLQqMFc9IMAbBXWChqi/o7IXq4Sm
+	WCk1v5LB+Xi+WPCgZT/QQ6Gs1RKZtRM+begh6Gv8EBIPO0zDDmm57uR+s5SZvmH/U
+X-Gm-Gg: ASbGncttUcf1RdmDRol3qn5hyvyUbHdAWlVUIfol4fD/bKgVm0xucHtYw/Z8MRRbBgy
+	83INA0CdR6cHui9sfHh+C8IMK5ZfrBum71ph83eQOh2xGMnGWC7uNStFC6fOoce7ZXsVLnDXx7A
+	bLcnE2r7nqJ8xQyX7TKKIvrr2QD7O/xlNPFFdbLC4RnvW1c1iJd2j6j2fVdiRsmWBqc2wQW0H8o
+	J9Bu/mw4PRBvv4nRe0yxzsuqATHy4DFLkcOTbJK36T1PrGR1bSJwTMJ15gJJ0R5sMig6MLCd7Zr
+	QjRWB6HL0xX5ThoqGRqfbKuD+17m7QonmHAMqbYtt9CgEYasV6fGeHyHtGU+WeKydTQQrOYJRXb
+	ZzMmHO3ZVL/RYZkbimLjGUfpxhNnVDXVFLS/t0wf3TBw95kUnbs59
+X-Received: by 2002:a05:620a:6007:b0:7d4:3bcc:85bf with SMTP id af79cd13be357-7e342a5eda7mr1399725985a.12.1752852353695;
+        Fri, 18 Jul 2025 08:25:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEggOb9po8Z3KgzQOQPbQZul31JWCo9ugabQ7H/MSY3eKHvImtsITPWszPtj+g49k/Y+6XRAg==
+X-Received: by 2002:a05:620a:6007:b0:7d4:3bcc:85bf with SMTP id af79cd13be357-7e342a5eda7mr1399683785a.12.1752852347508;
+        Fri, 18 Jul 2025 08:25:47 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-330a91d994csm2466821fa.84.2025.07.18.08.25.43
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-330a91d994csm2466821fa.84.2025.07.18.08.25.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jul 2025 08:25:43 -0700 (PDT)
+        Fri, 18 Jul 2025 08:25:46 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Fri, 18 Jul 2025 18:25:40 +0300
-Subject: [PATCH v2 3/4] arm64: dts: qcom: sm8250: stop using SoC-specific
+Date: Fri, 18 Jul 2025 18:25:41 +0300
+Subject: [PATCH v2 4/4] arm64: dts: qcom: sm8550: stop using SoC-specific
  genpd indices
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -93,7 +93,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250718-fix-rpmhpd-abi-v2-3-0059edb9ddb3@oss.qualcomm.com>
+Message-Id: <20250718-fix-rpmhpd-abi-v2-4-0059edb9ddb3@oss.qualcomm.com>
 References: <20250718-fix-rpmhpd-abi-v2-0-0059edb9ddb3@oss.qualcomm.com>
 In-Reply-To: <20250718-fix-rpmhpd-abi-v2-0-0059edb9ddb3@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -108,246 +108,66 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10295;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1159;
  i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=KFivjcvc5uwaOS6pig/dxIx9C+kkOFMIUz1GqsieT8o=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoemdzEWSd2rK+U2wXX1XhzWo8jw/tqEe02J/Si
- FCkOd+c1MSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaHpncwAKCRCLPIo+Aiko
- 1QieB/9qcIBoto+O7KBQLssTFy7cOS3Zd9PI6Z/gyCgR6Sal2Z3RNlF5PKWyF92H/9F6Z39uhML
- aQV9bqyCgvrIr0t50FU2VXK8g4KETImXQqky9MY8MRxlrGr7Y10ZW2GbDDF7evcouY5P4KNB0U4
- pq7+AnMHqHD3NG6TPBQLHEY/Matj848YOSXG8bWxkJ9Ltp2naKVfHTdYRGsnhbdJ/4xXJe2ZTdA
- fWFvikwGZrfl828VbPjyJD2JoJUDq+MA76Xjar9m4B7Fzc4F6TH317KpbbahyvT6ci/W63OwuPV
- lUhzKGf2Db6QMkdR02bh/6XJ4nDkD0LcYQ9MAG3ArAvPcAbz
+ bh=H5UmIvUo7LQWe2Migv7tSh5KSIEnuEJyZElnvQeZk5I=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoemdzL+wwxdRAvn/dW/Fgxt9ssFTlQfCMVMZ8j
+ eFEaMzeiXyJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaHpncwAKCRCLPIo+Aiko
+ 1RkJCACuN9DQAUNI4hr20SEIbwT6XwG3vTte/s2Xaox+qFhz60zOZI9kTeiNjzLXskGp7mr2kSX
+ YFHe4+PR2Lc1GXvz9hCTIRUzjZk7cOR5n/X5HbuPn5XTu+iTVaSZpe1d0/czlxgdJpqF9x7w9U5
+ GBSz9quyNBMI1MZEI1LecIVOWa0KOJmRnZ5mWsE+WP34rNBhctH84OUProDO/9oZn0+vVA7OeMs
+ ISwAiL1XkQNF/Rhxpp3XkaQjX0TZUq/JYRjpcYdPpf2fVe4A5ZFr2CUQ/mNsQ20MVyfQ84l/kcM
+ a0a86mnuvzGxwDj5DQyqmdMYUpLBcJo9ijV6w9yJ5F15IanK
 X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-ORIG-GUID: I4CCaPdoH2ku2dCRlMlmWJjyX9nekrO1
-X-Authority-Analysis: v=2.4 cv=D4xHKuRj c=1 sm=1 tr=0 ts=687a6781 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=Z9UKu4E7OKxfHwI3Q_UA:9 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-GUID: I4CCaPdoH2ku2dCRlMlmWJjyX9nekrO1
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDExOSBTYWx0ZWRfXxDvfnnD25LNM
- eOk6Db0ZmQI0Y51AqGrNYoZwif0pozOxseoaP9LFdpdkdqhhPKmM/Peejeie6kk2/9evv0VkdBb
- CwM3iVehKs2Yz1pd34YbV/wU9sIulz5Un7OeAGUQw6HYL5Rmlykc/zi/sTnTqBIdMbtIdYXjOuN
- s/xi3snDiPZojPpOKNO87nJ/GfLYZRkn3sBK4JDw29dvhu/G8WRUH0nflUGbCpM5Dy7U3+R3KOh
- ZBF4/orFtV0cPhjXow3Ichg0WIS0mN8e3+vuzHJ7/Ba1Zov8b+jCCihujPDyTaCKIyIio3a5KJ+
- i8YkhE77C1HOEg5M3WFGL3rnBvwkKEkhQYXM+CP1+2TRw1SiUdjaqhChf+yqBisdmnAESn58Rqp
- Y2TdryZtnj+MXALS2akjF5P6nUAkZ7I1SXnb99AzedjfoJ8nWlWGlvMillSFMRBZFwOOSO+k
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDExOSBTYWx0ZWRfX4nfb+EvYPDAo
+ NNDc2W8MJfhP8IQWbrRV++ypcs8hnVDH6i5LrlqxiC1j2WSoCaDKpmnevimK0pqo6q0XdwKrnGE
+ NAK8TSbum5apsP/etgUAxQTLkejSH9FlFGLeKG8et/xoP5A2XeU5r3Pe8uijU/FqxDwBIkJdbqt
+ Np68X04Qb7VmkBYM55mNy/KTSNYu82EbHwK4TwQqm3YWG4+hccyaV+yJFZmFUdyb+8jakn9nSAb
+ a8njn2v82Bm1Aj9dLRNz1UrhJRaq/fj17i4STlbDryPudQmvaP1Bxye6+FhCAIok4jVotdujgWI
+ Zg++vdKLGm07TLTvi+pnm3JF/b97KBLThGtR4+tgdhqNm1EHM87UDPrUpdCWgBtmeb0mjCsIGK6
+ YfnrTCzblbgCnrMd3rkBSePJAskcjmD83z82PQjfuLXH04ldIGWacSNil5CJxsN9hTlNDJ+R
+X-Proofpoint-GUID: Lv0-xidqA76sGXlg9FaFEou9yQJloz2v
+X-Authority-Analysis: v=2.4 cv=SeX3duRu c=1 sm=1 tr=0 ts=687a6782 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=e06P08YCo0CmzbESZgoA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: Lv0-xidqA76sGXlg9FaFEou9yQJloz2v
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-07-18_03,2025-07-17_02,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxlogscore=908 impostorscore=0 spamscore=0 clxscore=1015
- lowpriorityscore=0 malwarescore=0 suspectscore=0 bulkscore=0 mlxscore=0
- priorityscore=1501 phishscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507180119
+ spamscore=0 mlxscore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ lowpriorityscore=0 mlxlogscore=788 impostorscore=0 clxscore=1015 adultscore=0
+ suspectscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507180119
 
-The SM8250 has switched to RPMHPD_* indices for RPMh power domains,
-however commit 86a9264b6c56 ("arm64: dts: qcom: sm8250: Add
-interconnects and power-domains to QUPs") brought some more old-style
-indices. Convert all of them to use common RPMh PD indices.
+The SM8550 has switched to RPMHPD_* indices for RPMh power domains,
+however commit e271b59e39a6 ("arm64: dts: qcom: sm8550: Add camera clock
+controller") brought some more old-style indices. Convert all of them to
+use common RPMh PD indices.
 
-Fixes: 86a9264b6c56 ("arm64: dts: qcom: sm8250: Add interconnects and power-domains to QUPs")
+Fixes: e271b59e39a6 ("arm64: dts: qcom: sm8550: Add camera clock controller")
 Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 42 ++++++++++++++++++------------------
- 1 file changed, 21 insertions(+), 21 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index b0197602c677d49f7833f31d71f72436499bfe84..244339cfbed5c32708c282de18f5655535e2ff45 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -1030,7 +1030,7 @@ i2c14: i2c@880000 {
- 				dmas = <&gpi_dma2 0 0 QCOM_GPI_I2C>,
- 				       <&gpi_dma2 1 0 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_2 0 &qup_virt SLAVE_QUP_CORE_2 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_2 0>,
- 						<&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1075,7 +1075,7 @@ i2c15: i2c@884000 {
- 				dmas = <&gpi_dma2 0 1 QCOM_GPI_I2C>,
- 				       <&gpi_dma2 1 1 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_2 0 &qup_virt SLAVE_QUP_CORE_2 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_2 0>,
- 						<&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1120,7 +1120,7 @@ i2c16: i2c@888000 {
- 				dmas = <&gpi_dma2 0 2 QCOM_GPI_I2C>,
- 				       <&gpi_dma2 1 2 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_2 0 &qup_virt SLAVE_QUP_CORE_2 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_2 0>,
- 						<&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1165,7 +1165,7 @@ i2c17: i2c@88c000 {
- 				dmas = <&gpi_dma2 0 3 QCOM_GPI_I2C>,
- 				       <&gpi_dma2 1 3 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_2 0 &qup_virt SLAVE_QUP_CORE_2 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_2 0>,
- 						<&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1227,7 +1227,7 @@ i2c18: i2c@890000 {
- 				dmas = <&gpi_dma2 0 4 QCOM_GPI_I2C>,
- 				       <&gpi_dma2 1 4 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_2 0 &qup_virt SLAVE_QUP_CORE_2 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_2 0>,
- 						<&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1289,7 +1289,7 @@ i2c19: i2c@894000 {
- 				dmas = <&gpi_dma2 0 5 QCOM_GPI_I2C>,
- 				       <&gpi_dma2 1 5 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_2 0 &qup_virt SLAVE_QUP_CORE_2 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_2 0>,
- 						<&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1370,7 +1370,7 @@ i2c0: i2c@980000 {
- 				dmas = <&gpi_dma0 0 0 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 0 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_0 0>,
- 						<&aggre2_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1415,7 +1415,7 @@ i2c1: i2c@984000 {
- 				dmas = <&gpi_dma0 0 1 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 1 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_0 0>,
- 						<&aggre2_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1460,7 +1460,7 @@ i2c2: i2c@988000 {
- 				dmas = <&gpi_dma0 0 2 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 2 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_0 0>,
- 						<&aggre2_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1522,7 +1522,7 @@ i2c3: i2c@98c000 {
- 				dmas = <&gpi_dma0 0 3 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 3 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_0 0>,
- 						<&aggre2_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1567,7 +1567,7 @@ i2c4: i2c@990000 {
- 				dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 4 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_0 0>,
- 						<&aggre2_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1612,7 +1612,7 @@ i2c5: i2c@994000 {
- 				dmas = <&gpi_dma0 0 5 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 5 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_0 0>,
- 						<&aggre2_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1657,7 +1657,7 @@ i2c6: i2c@998000 {
- 				dmas = <&gpi_dma0 0 6 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 6 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_0 0>,
- 						<&aggre2_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1719,7 +1719,7 @@ i2c7: i2c@99c000 {
- 				dmas = <&gpi_dma0 0 7 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 7 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_0 0>,
- 						<&aggre2_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1797,7 +1797,7 @@ i2c8: i2c@a80000 {
- 				dmas = <&gpi_dma1 0 0 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 0 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_1 0>,
- 						<&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1842,7 +1842,7 @@ i2c9: i2c@a84000 {
- 				dmas = <&gpi_dma1 0 1 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 1 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_1 0>,
- 						<&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1887,7 +1887,7 @@ i2c10: i2c@a88000 {
- 				dmas = <&gpi_dma1 0 2 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 2 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_1 0>,
- 						<&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1932,7 +1932,7 @@ i2c11: i2c@a8c000 {
- 				dmas = <&gpi_dma1 0 3 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 3 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_1 0>,
- 						<&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -1977,7 +1977,7 @@ i2c12: i2c@a90000 {
- 				dmas = <&gpi_dma1 0 4 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 4 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_1 0>,
- 						<&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -2039,7 +2039,7 @@ i2c13: i2c@a94000 {
- 				dmas = <&gpi_dma1 0 5 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 5 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
--				power-domains = <&rpmhpd SM8250_CX>;
-+				power-domains = <&rpmhpd RPMHPD_CX>;
- 				interconnects = <&qup_virt MASTER_QUP_CORE_1 0 &qup_virt SLAVE_QUP_CORE_1 0>,
- 						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_1 0>,
- 						<&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI_CH0 0>;
-@@ -4789,7 +4789,7 @@ mdss_dp: displayport-controller@ae90000 {
- 				#sound-dai-cells = <0>;
- 
- 				operating-points-v2 = <&dp_opp_table>;
--				power-domains = <&rpmhpd SM8250_MMCX>;
-+				power-domains = <&rpmhpd RPMHPD_MMCX>;
- 
- 				status = "disabled";
- 
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 45713d46f3c52487d2638b7ab194c111f58679ce..a4ca06679c2f1eebacdd5938e380981c1b17925b 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -3623,7 +3623,7 @@ camcc: clock-controller@ade0000 {
+ 				 <&bi_tcxo_div2>,
+ 				 <&bi_tcxo_ao_div2>,
+ 				 <&sleep_clk>;
+-			power-domains = <&rpmhpd SM8550_MMCX>;
++			power-domains = <&rpmhpd RPMHPD_MMCX>;
+ 			required-opps = <&rpmhpd_opp_low_svs>;
+ 			#clock-cells = <1>;
+ 			#reset-cells = <1>;
 
 -- 
 2.39.5
