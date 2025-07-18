@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-197511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1261EB09B8F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 08:40:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E73B09B9F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 08:45:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B0F01C20A61
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 06:40:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDCC21651F8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 06:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 342BA1EDA03;
-	Fri, 18 Jul 2025 06:40:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FCD01FF1B5;
+	Fri, 18 Jul 2025 06:45:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jLror3kV"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Fu23QsMJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 077A419E97C;
-	Fri, 18 Jul 2025 06:40:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DDF01FE45D;
+	Fri, 18 Jul 2025 06:45:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752820817; cv=none; b=sg35QbFpuQUnP90G2bOX+Z+uhkkCNVODPfYNoebFLZ/JiJFzNKgM6KoxuR0SOU9qgCQxBKjh5uh+IPoaJ8sjzBmvWlhexP2SbSUdKnRQJR/9krmjKrZJ67l1H+IuAojnbANJXhidZjOxMGDiLnfau4LzIN4ofwkbaORP/RMTvS4=
+	t=1752821105; cv=none; b=MOxCehCbA6XhWPmSGe66YGMAuevS5tSL7LxGoT8xjHX+PbQnAQ4hjfehXSBAVmfHsbfBx8oIQpXKH9TZgt+ixPgS2WErwonEU1h1jwkdwRWWvl9dGcWb0StMPigSCBgzMIFf7taWQMyk+Qjzm9Opzf5R/ZxVnC2xbdb+HPmRY+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752820817; c=relaxed/simple;
-	bh=GhzeLVbX/3PMXar6M1Ezq8hE094AhVZL61bD69xgm/I=;
+	s=arc-20240116; t=1752821105; c=relaxed/simple;
+	bh=sGbj5FKKg+88/BDygAxdWai9Cf3SHGZigk3s46T72ok=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K0WeBJlX5FtdagVCSpfdgylbfFoDtswPxGYw5kjqcQ1zD5MfXvwQYxFB0zX5CSTStwT6UJeao73fAIpQrtCFriup7RWx0walZc+fr5J/nffAzGF0LsayZRPxKnq/kSwEJTV5WB5D6wSyWY/YwfHffNyzb+KXnc62xCL3lFff2gM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jLror3kV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37AD0C4CEED;
-	Fri, 18 Jul 2025 06:40:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752820816;
-	bh=GhzeLVbX/3PMXar6M1Ezq8hE094AhVZL61bD69xgm/I=;
+	 In-Reply-To:Content-Type; b=uXMym6PQelDLQETFOujLRj0cpdbpjWT2jcm1ljsrgfc18dmZnbiaNioaabiJUxTs4T+mGNbGsptoNaoBhIeM6igfNYg5fvveT9Qw4RVytB+Abx4NgJ7naAd8KfEysDcBalTUQ/zshhoJORGUSIh4me7Mx+1zLAs0EqFqgH5gbnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Fu23QsMJ; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1752821101;
+	bh=sGbj5FKKg+88/BDygAxdWai9Cf3SHGZigk3s46T72ok=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jLror3kVYaJZGYbecDAxZ2y+xV4l9vuv4UkLDXg79ffbS3mcsGRrAdpHaMtRfX6bN
-	 7ukmnULtfGL06Ob3Zd2yEz/PCYvLzeQtO7j/9HR4ShyaiPmLCMbH4vXLbnz7Fd0sq8
-	 4WdOf6YztGL0/tmuKUVSdxAiCk/spSoWxX86Nog96CUoH6lxaT3zb6mwtYu43REda3
-	 Ald4hoQ80XB3d1ZnfxU9FFt1cVuFk5xHZcCPVybucYi05c8/gQFO/l5xb0lAeT//mB
-	 gMEYhlrRW+b//RIRP8mNne/RLv7bpTdtUAvnyL6x5K+QvG3WcXkeUhGwveMjadGJmW
-	 fvL7jlaTWU5Fw==
-Message-ID: <dcc64217-2320-49d3-a237-631793cd3ebc@kernel.org>
-Date: Fri, 18 Jul 2025 08:40:12 +0200
+	b=Fu23QsMJypE9g+UTg1Qa9uvMU6FeZvBncgIcGIexPNIiog9kWIkqimRqQSHiGziYK
+	 3+y9SEAiaPmtjT4oQnCZBLUXo2dF1gsixtdBYWnMNMg1DhqFjDkKMkoO7vjdPqWfyQ
+	 78KqzOMmjs513mek6T7pYDbJk1eZKi8pVpiFmSiyS6VzN/hDXPK8GPAsENlz2vNZOH
+	 n+bNno/I0fVLR3v5A6eyY0XgNjXkgvnV74G2/W2W6h7sltRV/gedGj8GHBSM93PUoO
+	 xyx84itTrjWg6/UuAyz1libm0gzIYB38MR8S20AEsZ70fTBdCwggQyfts7i7N2ubiz
+	 IHMZxHkv7uS+g==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A03DE17E1439;
+	Fri, 18 Jul 2025 08:45:00 +0200 (CEST)
+Message-ID: <987aeeef-6f3e-4ba3-b04f-a60e0cf201ac@collabora.com>
+Date: Fri, 18 Jul 2025 08:44:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,83 +57,81 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: Add HAMOA-IOT-SOM platform
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Yijie Yang <yijie.yang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 2/3] arm64: dts: mediatek: mt8189: Add pinmux macro
+ header file
+To: Cathy Xu <ot_cathy.xu@mediatek.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250716-hamoa_initial-v1-0-f6f5d0f9a163@oss.qualcomm.com>
- <20250716-hamoa_initial-v1-3-f6f5d0f9a163@oss.qualcomm.com>
- <b4nxjsx4fu4xmookpxukumw36wlcpzelh6axjucqe4lyswptm4@kczsldalq53n>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Sean Wang <sean.wang@kernel.org>
+Cc: Lei Xue <lei.xue@mediatek.com>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Yong Mao <yong.mao@mediatek.com>, Wenbin Mei <Wenbin.Mei@mediatek.com>,
+ Axe Yang <Axe.Yang@mediatek.com>
+References: <20250711094513.17073-1-ot_cathy.xu@mediatek.com>
+ <20250711094513.17073-3-ot_cathy.xu@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <b4nxjsx4fu4xmookpxukumw36wlcpzelh6axjucqe4lyswptm4@kczsldalq53n>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20250711094513.17073-3-ot_cathy.xu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 17/07/2025 20:52, Dmitry Baryshkov wrote:
->>
+Il 11/07/25 11:44, Cathy Xu ha scritto:
+> Add the pinctrl header file on MediaTek mt8189.
 > 
->> +&remoteproc_adsp {
->> +	firmware-name = "qcom/hamoa-iot/adsp.mbn",
->> +			"qcom/hamoa-iot/adsp_dtb.mbn";
+> Signed-off-by: Cathy Xu <ot_cathy.xu@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h | 1125 +++++++++++++++++
+>   1 file changed, 1125 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h
 > 
-> Is there a significant difference qcom/x1e80100/adsp.mbn ? If not, can
-> we use that firmware?
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h b/arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h
+> new file mode 100644
+> index 000000000000..f9c270ebab89
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h
+> @@ -0,0 +1,1125 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2025 MediaTek Inc.
+> + * Author: Lei Xue <lei.xue@mediatek.com>
+> + *         Cathy Xu <ot_cathy.xu@mediatek.com>
+> + */
+> +
+> +#ifndef __MT8189_PINFUNC_H
+> +#define __MT8189_PINFUNC_H
+> +
+> +#include "mt65xx.h"
+> +
+..snip..
 
-Another problem is that we split FW per SoC and the SoC is x1e80100, not
-hamoa-iot. This patchset should not bring so many inconsistencies. It
-must adhere TO EXISTING rules. You don't get renames of everything just
-because company decided on new naming.
+> +#define PINMUX_GPIO27__FUNC_GPIO27 (MTK_PIN_NO(27) | 0)
+> +#define PINMUX_GPIO27__FUNC_DP_TX_HPD (MTK_PIN_NO(27) | 1)
 
-We've been there with sa8775p.
 
-Best regards,
-Krzysztof
+> +#define PINMUX_GPIO27__FUNC_mbistreaden_trigger (MTK_PIN_NO(27) | 2)
+                                ^^^^^^^^^^^^^^^^^^^
+Please fix: this has to be uppercase as much as the other definitions.
+
+
+> +#define PINMUX_GPIO27__FUNC_MD32_0_GPIO0 (MTK_PIN_NO(27) | 3)
+> +#define PINMUX_GPIO27__FUNC_TP_UCTS1_VCORE (MTK_PIN_NO(27) | 4)
+> +#define PINMUX_GPIO27__FUNC_CMVREF4 (MTK_PIN_NO(27) | 5)
+> +#define PINMUX_GPIO27__FUNC_EXTIF0_ACT (MTK_PIN_NO(27) | 6)
+> +#define PINMUX_GPIO27__FUNC_ANT_SEL0 (MTK_PIN_NO(27) | 7)
+> +
+> +#define PINMUX_GPIO28__FUNC_GPIO28 (MTK_PIN_NO(28) | 0)
+> +#define PINMUX_GPIO28__FUNC_EDP_TX_HPD (MTK_PIN_NO(28) | 1)
+> +#define PINMUX_GPIO28__FUNC_mbistwriteen_trigger (MTK_PIN_NO(28) | 2)
+
+same here
+
+> +#define PINMUX_GPIO28__FUNC_MD32_1_GPIO0 (MTK_PIN_NO(28) | 3)
+> +#define PINMUX_GPIO28__FUNC_TP_URTS1_VCORE (MTK_PIN_NO(28) | 4)
+> +#define PINMUX_GPIO28__FUNC_EXTIF0_PRI (MTK_PIN_NO(28) | 6)
+> +#define PINMUX_GPIO28__FUNC_ANT_SEL1 (MTK_PIN_NO(28) | 7)
+> +
+Cheers,
+Angelo
 
