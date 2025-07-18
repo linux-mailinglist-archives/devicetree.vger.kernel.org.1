@@ -1,131 +1,125 @@
-Return-Path: <devicetree+bounces-197709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31403B0A6C5
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 17:02:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60602B0A6C8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 17:03:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B0B4A879FF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:01:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 064BB3B4B20
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:03:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 761FA2D9ECB;
-	Fri, 18 Jul 2025 15:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33B3314D283;
+	Fri, 18 Jul 2025 15:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SkUwnIJ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B3B1B87F0;
-	Fri, 18 Jul 2025 15:02:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2E918024;
+	Fri, 18 Jul 2025 15:03:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752850929; cv=none; b=ocrBdmp0gi0uL0SGbjGvrlMBG3jf5jgvESgsO8lCpSmSih9aEZXe3wee9TFkZ3hmJK74sffNOOO+BgwnEyIzeJ57PmuJnkUKZkcmJiHhkc6pIDSLRgY0EsklBK2z2rO+lBHzKVuqEUypycOGaSnS5LAXQBv7H4jxdMxuk8oYv3k=
+	t=1752851013; cv=none; b=evZX3rhkBaj2Ev2FBuO0YD8tRTGesvrmrKgDwZcMeXqUSff7RtBNXTlWToKUqzhO8zTxwT32jZYhtR7TAZIJi1gjW72aeGnWDEkJ0qfb06kRoXbd3dMWIZ8m/RZhNxz7W/9fS1vBSUiZoscYCSgffUColpIRsEdREGP4rsi91Qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752850929; c=relaxed/simple;
-	bh=gaE4ZC3ILEUagvfAVqvzN406gZmK89Cu8YYw+eY8jXs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ACnu7f8halKZ7Z3z6JfQIz98KEPbvJpG6nqnNTYcsMy6BWH7qBs2aYv22ZFytBZiQqJBKXdBg+zOUa0sGyN+rH8YbksVTG22Wl0m3QxIh7MUBaR+jB4aMRz1PTK6O06U4CUn3SvMVE2mef854Mn318TrZ6wAMK9kG9T5gAlYdmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8CF4216A3;
-	Fri, 18 Jul 2025 08:01:59 -0700 (PDT)
-Received: from J2N7QTR9R3 (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 617CB3F6A8;
-	Fri, 18 Jul 2025 08:02:04 -0700 (PDT)
-Date: Fri, 18 Jul 2025 16:01:58 +0100
-From: Mark Rutland <mark.rutland@arm.com>
-To: Nick Chan <towinchenmi@gmail.com>
-Cc: Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Sven Peter <sven@kernel.org>,
-	Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
-	asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RESEND v7 00/21] drivers/perf: apple_m1: Add Apple
- A7-A11, T2 SoC support
-Message-ID: <aHph5u4-b6mfggPv@J2N7QTR9R3>
-References: <20250616-apple-cpmu-v7-0-df2778a44d5c@gmail.com>
- <aHUeUMmn_19EayL1@willie-the-truck>
- <be327242-ad55-476a-bed4-44c33c263962@gmail.com>
- <aHkRJdAuvhS2mNQj@J2N7QTR9R3>
- <705f1dfb-7e1b-4930-a1a9-c763299a4305@gmail.com>
+	s=arc-20240116; t=1752851013; c=relaxed/simple;
+	bh=IaPqhmr8I8MG3sHhnHr618dEFB92sPQdSnz5qoyYh/o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JpMNZpsGWfyKmzBzff4PKGfVZy86B7ewaoatvimv5TPZ4O/bNYQ5+MtesFAA6+B5sWu64GPXaano5qBf2TZipkuQxxQYgEQNPVr343ZxCk7NzR1HbMSsGywAZbgWQJqK/ooxeV7FlWgX2r5uugqIminqvBWxzAgc9xrMQ8osuSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SkUwnIJ6; arc=none smtp.client-ip=209.85.160.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-4ab3fb340e7so38968791cf.1;
+        Fri, 18 Jul 2025 08:03:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752851010; x=1753455810; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IaPqhmr8I8MG3sHhnHr618dEFB92sPQdSnz5qoyYh/o=;
+        b=SkUwnIJ6Zed8ZmjO1XS4sB40Mhl7pJnrZWp7Q56pYp7LXqXca3GNEHPP30TcVuQY3X
+         2clBdKsQC1vlEEw/wdAkGoHsos6ZJaM9lqTfYoKzrr4w/RbohLGVT8Mjnhlf3EW3fto7
+         atJL1DHT0EAvBKoKpmKBTroouSd6UHbWBWmLqTdY8W50MpeCS0MM3doZhenEU8j1gJwu
+         9HVnXPUsUTNlPh2u8txxFWPbEIorIc0M8QTlueGoo9Qaec3ksj0bdB8Vpt2Mk4j+UP4d
+         hIX9lqr/DwcztKVueOGPBXCAQvOuArY1PcD/InJHiDFOgPe+Jrmd9XkC/5WCraGk0Gxi
+         JYdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752851010; x=1753455810;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IaPqhmr8I8MG3sHhnHr618dEFB92sPQdSnz5qoyYh/o=;
+        b=mWSqov9qKxADHVIHiuYqyXc5P1kf1U1Z3xl0NebZlAsFDGHXRMR8Tu99RUBIRd6eiM
+         OnTmnQ2zGJZA5S0FWtCTm105WEhSwQoq0sQ9wmbumacS43wzrK5z3iE28AfGUxItZJHm
+         mWPcwElUkAF59uPrBkqnKGRfiUKaj9EIspxIvR5JejWQVS/VVDbdwSNcDhoopO2+bois
+         iU/AMeWPSj4TXOkDaH6xQlCOYID4LNeVIWiMTbD09Gon/YbLn7/3kmz7eIdM2nRm50FT
+         rKxcmCouGhxlYdlxhVcx7Zr4tQzW58aLlLdKMyR6NrRDFge56w5zA9HvDRkz5P4C696T
+         OHQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVmFWFczKuaWpV/Vu5vH5e3ETCiwcQ3dbQZU7PG0RMq+4xiFVYGKeSLumXFg9vdpr3FUxOqBrT+a7vF@vger.kernel.org, AJvYcCWoNTsPFt3l/DR05TqmL+UVKnj8w5E83jreIS4v3rQT+h0FuYHd1PELbdO7Z//65B1lOOi/rMbuTHTra7aT@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDJcg5+G30YsPXG6MUJ8uy6tZ6ZS4DzVQLSEHUIGmW6Q7qcRdP
+	zeGRFCIzVKANU6riJDh/W9tohPWt3e2mMST3JadfQxOO/8ftFntbHiNiKbtSX0umo4WAT4fOwyr
+	pFcpr8zSELtunnGHA3Dqb3flxdOjIIuu4nfg8
+X-Gm-Gg: ASbGnctxxnctRmq1FrSPCGATVjOP6j9Js+zWP2RE0yXeKIAsvdiy/iTep2ZRaZ65q4x
+	apkluYR5+nh01shfKhE882bSQuqlDdFCDlTATF1hfH+/udbMPMaQd+ELnrCLHFK3JFOxkSIizBD
+	a4Ruz8XHQDMFoyS9kvmhZLxywVemrqcsiv9b0XRwVMzgwXQmTcvCy8mWJ0MN3aqqd/t3bvy6KGf
+	xaNmoTS
+X-Google-Smtp-Source: AGHT+IGa8swPXXVAGbewHZ/SdoCPvBaIYn9opH5hqxkroYSjw7vm/HyHQEtmf/m9BpPT+G/u/pQ40OxmjrLtqI9uzx4=
+X-Received: by 2002:a05:622a:648:b0:4aa:df09:133f with SMTP id
+ d75a77b69052e-4abb4578b0dmr39626691cf.50.1752851008967; Fri, 18 Jul 2025
+ 08:03:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <705f1dfb-7e1b-4930-a1a9-c763299a4305@gmail.com>
+References: <CABjd4Yxz=mrNpqgnHSgD0tr4ALH3YW9MvLULES568yHNFiPB_w@mail.gmail.com>
+ <20250718140110.308996-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20250718140110.308996-1-amadeus@jmu.edu.cn>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Fri, 18 Jul 2025 19:03:17 +0400
+X-Gm-Features: Ac12FXy8oFQyajABj_LuZ7IBJacD8iw-8MfdCYFevfgzhAwQT7Tsgn3fiksLCw8
+Message-ID: <CABjd4YzLaAgd-5Cg9fMSAgCS6Wt6=uC8K3WRhcAtnjjg1je87Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency
+ scaling support
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de, 
+	jonas@kwiboo.se, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	ziyao@disroot.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 18, 2025 at 01:00:45AM +0800, Nick Chan wrote:
-> On 17/7/2025 23:05, Mark Rutland wrote:
-> > On Mon, Jul 14, 2025 at 11:59:36PM +0800, Nick Chan wrote:
-> >> Will Deacon 於 2025/7/14 夜晚11:12 寫道:
-> >>> On Mon, Jun 16, 2025 at 09:31:49AM +0800, Nick Chan wrote:
-> >>>> Patch 8-12 adds support for the older SoCs.
-> >>> ... but I'm not sure if anybody actually cares about these older SoCs
-> >>> and, even if they do, what the state of the rest of Linux is on those
-> >>> parts. I recall horror stories about the OS being quietly migrated
-> >>> between CPUs with incompatible features, at which point I think we have
-> >>> to question whether we actually care about supporting this hardware.
-> >> The "horror" story you mentioned is about Apple A10/A10X/T2, which
-> >> has a big little switcher integrated into the cpufreq block, so when the
-> >> cpufreq driver switch between states in the same way as on other
-> >> SoCs, on these SoCs that would silently cause a CPU migration. There
-> >> is only one incompatible feature that I am aware of which is 32-bit EL0
-> >> support.
-> > 
-> > Surely the MIDR/REVIDR/AIDR also change?
-> They do not change. ID_AA64PFR0_EL1 also does not change (fixed 0x12).
-> What *does* change however is MPIDR. (P-cores has bit 16 set while
-> E-cores do not)
+On Fri, Jul 18, 2025 at 6:01=E2=80=AFPM Chukun Pan <amadeus@jmu.edu.cn> wro=
+te:
+>
+> Hi,
+>
+> > > Alexey suggested that we remove 408MHz, 600MHz and 816MHz from the
+> > > opp-table. Do you think it is acceptable to use 850mV for 1008MHz?
+> >
+> > But why 850 mV? Vendor .dtsi [1] implies that chips with leakage
+> > values of L0..L4 might be unstable at this frequency with a 850 mV
+> > supply and need 875 mV instead.
+>
+> Because the actual frequency generated by 850mV is closer to 1008MHz.
 
-The MPIDR changing isn't ok either. You might get away with that today,
-but that's not supposed to change behind the back of the kernel.
+Which likely means that you have an -L5 chip. It will be different on
+other chips - it's a lottery of silicon quality.
 
-Is there anything else that can change, or are we absolutley certain
-that *only* MPIDR changes?
+> Since we removed frequencies below 1GHz, all remaining frequencies are
+> generated by PVTPLL. I think it may not be necessary to use the maximum
+> values of opp-microvolt* ?
 
-> >> As mentioned above, it does all work fine when CONFIG_EXPERT is not
-> >> enabled, and if it is enabled, then 32-bit process may crash with illegal
-> >> instruction but everything else will still works fine.
-> > 
-> > I don't think that's quite true, unless these parts are also violating
-> > the architecture.
-> > 
-> > If the CPU doesn't implement AArch32, then an ERET to AArch32 is
-> > illegal. The way illegal exception returns are handled means that this
-> > will result in a (fatal) illegal execution state exception being taken
-> > from the exception return code in the kernel, not an UNDEF being taken
-> > from userspace that would result in a SIGILL.
-> Speaking from experience, when testing with the userspace cpufreq governor,
-> trying to run AArch32 code on the ecores really does result in illegal
-> instruction for that process while everything else remains fine.
-> 
-> Referencing ID_AA64PFR0_EL1, the E-cores does claim to support
-> AArch32 EL0, even though they could not execute it for real.
+Only if we deliberately ignore the unlucky users who got lower quality
+silicon (-L0 to -L4). They might have problems if we run 1008 MHz at
+850 mV, which PVTPLL may or may not be able to make up for (depends on
+which ring length gets applied for this frequency by bl31). If those
+chips didn't need higher voltage to run stable at 1008 MHz then I
+doubt Rockchip engineers would have put 875 mV in their .dtsi
 
-Ok, so that's a clear violation of the architecture, and doesn't fill me
-with confidence about anything else.
-
-> > I do not think that we should pretend to support hardware with silent
-> > microarchitectural migration. So at the very least, we do not care about
-> > A10/A10X/T2.
-> As explained above, what actually happens on the hardware is different
-> from what you believed, so please do reconsider.
-
-Different certainly, but still problematic.
-
-I maintain that we should not pretend to support this hardware.
-
-Mark.
+Best regards,
+Alexey
 
