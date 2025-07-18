@@ -1,220 +1,231 @@
-Return-Path: <devicetree+bounces-197620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12642B09FDB
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:34:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 861E4B09FEB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:36:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60E7F560783
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:33:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9B8016988B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F29298987;
-	Fri, 18 Jul 2025 09:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF7229898C;
+	Fri, 18 Jul 2025 09:36:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eGWOK2O0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OOpgf8ho"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D5222AE45
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 09:33:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5766E201266
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 09:36:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752831221; cv=none; b=baLdYZk+DF2YTwOmwO+Qh3oJrkeCu9bmNegkmMD8HCrP66MZyKsvFdsY6vJNAjnsipUMOgXP43LTA7JEvlLXupkwDQVKbW2dHlrDEHXqgJAnrde++P9NQYXbMsCmBAsAIy5HdJLirG3GPMgK+obLWKCAL58PYubC7ixf7xHxTzE=
+	t=1752831404; cv=none; b=FPYBjB9uI+fFLJfZDYQaP4ZJjQKXSARXA/MnfH9Zq1V/u8iX0Lz2RzfRB+es3R6uAsiv4rYRH4ShTVahkPkJCuxmJrjjbO+2BOMaYu3LzlFm9q9cp3DedwXBphWsIQLoJollsIYBhbMZiev25GhVz9OTH0boQMFDJjlecrwbTqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752831221; c=relaxed/simple;
-	bh=65C0cULWq6n1kIBMVWReYCSkEHWLR3vPQpO6wxz9lfY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N084PIPWxAZ6181a2iaDxrX3cb08ylbfL8JZ8d2HEwKHOX0vHCij/RLBiBXMpjf2pBddP+MI94/cMl5qhVI+qAc9lgme0xxS7qhFtNibR/XUbFjAKAh635PTgHno1Ahoz10BB4+mcoctpFqDNUyT6j/slTtJGyniKfHxn72heyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eGWOK2O0; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45619d70c72so24214655e9.0
-        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 02:33:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1752831217; x=1753436017; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mkSzFym5h6ECIpSmRLEDdJL88SxsBS8iIr1XUgerRNk=;
-        b=eGWOK2O0qldpQts2fZAXqE7n2fUSAeM3DBU9hkBLq/4giESm9U7XZ087/e6fQqwaI3
-         /lJMFCE4DmkkXckc/efYGSrSMqe9+Gy7tSNfAhiao/E0DZIILqJ7f79jcL6viEzX3F11
-         +WnlkZmmK59eGv5kIxZMGNe/nZLY5eTE6VZ/c0gDpCciFKTyPDrZ+nBYULeRLDqrNuCZ
-         pTxTqZOeQiNufgRRObdX9wHEs8ZB/aRuJilfZMcbX0gRI1vtgke3r9Rw6/qvAeMGvKg7
-         WZNGsH4mPLk7XvD560dP8O+guKMslf4nelCdnjGujkRSA56mftWCZgK+Texl4PNejHzF
-         pIcg==
+	s=arc-20240116; t=1752831404; c=relaxed/simple;
+	bh=qEFZ5DH2AG+giULJkp/4FDX1QNcmSbW+QRxBkpWw1p0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GGYGoSspLmU9iKfbxddpRVj/HZ3T7P1jIxEMycNgH+4ElWSZJG/QeM3v5FWnCokwJsDA0DcBTxndSjOu5N3RZz/F61cbKXOw6Ftb+rDywrnZBv67zkLeKX2HoiXptN2LOBllGy/fejnbNee7A/NfagApR75xbhLAQhiNwDK8GJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OOpgf8ho; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I04QuC016007
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 09:36:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	72fuRZDHA2C4w80oHJ+JOeIuL4vnW4n3bjADol5r4EQ=; b=OOpgf8hoD7V37vAx
+	B2k1F++oE8DrbU5e9psagCXnTfbdUG664WOHtYv5bXYTWSZYWUNVbXFOTKF+VkTE
+	TXrVjMF0uzp9pzSoumW8oAW0JzeYMw3u78Uq4vO+tA2Vo/oRw4kmLFp6KbLdJP1K
+	z+UBkzh8jHVpRKXM462OwntkvVH1VQRzmwnLzNSAVMI2vj2apa9WVuOQlMILUhBH
+	x6VDwpiZ79+qs9zOGAo+M5i/fIlsNJlSbOIdAzRQYIhLE0RnIBDGh35ZZ5SMtaPU
+	7iRu1qFz+yqEuuAEvTLCIOXQuZ6rlIPZTGqOvXBeYKRwdjsUzoJF6wzs6JfWbc1J
+	Zqaleg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47y3tc2ukk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 09:36:42 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2382607509fso13560555ad.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 02:36:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752831217; x=1753436017;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mkSzFym5h6ECIpSmRLEDdJL88SxsBS8iIr1XUgerRNk=;
-        b=hsHikGFsQ4rxYFeHRutpk4vvIXwjgY9o6LCzTB/m8SJSl4K4WIK9BPJyo7UlQ/f6Qx
-         Bkz+NFRmN5LZKO/SbOmNS0xGX8ugf9PpVK1Z1PjTfRLB+i3k2U1iJfadk/uv7E3Vphwo
-         mAOErivRLlvfpKceuvg3uQAXflbJBqpFQlou0HKW/JN/2gRodvzErvbzAebt8FIikoJx
-         dWKbP5Xs5Zkhza7okd+skmti4WHshG7ilDphxed5knZsA+pTPqF7ylQbsXeqetOWY0eG
-         i0NpQKEJSKRPxEiOd1D0sUTqB0zlPt5ZdoFdGlZ+roE3gsuFbYqTHdoKrho5aREfMwK9
-         zsZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUuPhQV/+/3M3x3jnN2VptnQi2zCHsM9hxHX0p1oWlfBhjcu+JXfapYIY2cU1UUdFufLrSCr0QI88Yi@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLR3redxLl8804cBrHlSMm/K19auUrP28e9Fb1JK44duaECOME
-	4/ydW+DaA7V80HIjA911gSWL45dTWcbiZxZ/GGgtNl5/jhjmy+J0MUioyaATMS3k7k8=
-X-Gm-Gg: ASbGnctkexBN0kOaZ7HkGYgxubwy6yL2ta+LVBamzLjIIBw4ZV78eDs21LJw4WtXE+J
-	9bP0dHZgNUMJi4UZxMXEk9VVIyn7NiEWhOqkk8Spz7Jj/mVwDQG/DMU+WT6xuwaXgSAj1acYzLp
-	EyuZS6itE4UDWI9p7Uma3T/I/uZk4KtJkb03V5FaLXK+QExJiQ/buNk0RtH8ADzYNFzqiKvMVJ0
-	TrX8Ot2tIkochltL2d4P92h/jYzWYZwoMdql+StENQRykT1ZTXaILoYyC3Z3SvVLZS8HUfCKfbj
-	i1n9DxwCzud2FT0zUn2myko+4IzUy0SfFCELPONyiH2AmAPmvBR1+R7vzyJDFL261U4H+gzpIWH
-	ztyIGo1yr7AJcUFPyUuFA5Hzn82cA5DcycA==
-X-Google-Smtp-Source: AGHT+IFXlYFdlruDA4D2jZKW4fN0q1iRAh64fALjB6JacdJeK+SN/LG9ZRXlz5YqMJ7iU6uoea4sEg==
-X-Received: by 2002:a05:6000:1ac5:b0:3a4:f7e7:3630 with SMTP id ffacd0b85a97d-3b613abeebfmr6799083f8f.15.1752831217212;
-        Fri, 18 Jul 2025 02:33:37 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:db06:bc5a:2982:a0fa])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b61ca48bc0sm1313550f8f.55.2025.07.18.02.33.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jul 2025 02:33:36 -0700 (PDT)
-Date: Fri, 18 Jul 2025 11:33:32 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Yijie Yang <yijie.yang@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
-Message-ID: <aHoU7MnweSHGPwxp@linaro.org>
-References: <20250716-hamoa_initial-v1-0-f6f5d0f9a163@oss.qualcomm.com>
- <20250716-hamoa_initial-v1-4-f6f5d0f9a163@oss.qualcomm.com>
- <aHkm4qjgSaklHGp0@linaro.org>
- <4363f117-cc25-4904-84cf-4b3779797223@oss.qualcomm.com>
- <ng7koaqz6s4cslugrujklsrprsl7v7wijtserr6edvsvbeqfkv@pldexeryni7h>
+        d=1e100.net; s=20230601; t=1752831402; x=1753436202;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=72fuRZDHA2C4w80oHJ+JOeIuL4vnW4n3bjADol5r4EQ=;
+        b=P0d6fj0IMZ8nXz66Iva1MHp/EE5FltM9T7AB8AHkyFaoEN3vYux5hNVOUKKy+gB4ge
+         sErwjqWTDz4d8rziT+ioiuBuqZLKyMJ1VhRAdHctjK3VgrtqSDCa9egMyMVwqU42VCD8
+         EKerMufXgjbst33a+6G0Pj3Q/OYwmPIAHYkBVryFZc3THImyO0yK7gtIesGI2As8+8xe
+         zPmZoelv673eJyqnhY+goxCaU4TwHI21DqrdvEKXvuZo8/6+Z1CMRJelDRDT/fLgGYV4
+         mwNfGLKtoQi2/wwGGzu4xkhqjzwCuqvzDITD2HB3CRvxPs58Yazx3wHCy6VTvKUtG3kG
+         Fj2w==
+X-Forwarded-Encrypted: i=1; AJvYcCUpTFZtbm+IkNqmubXjPx5iYeAhZtYloZIPp4dgn0JibGE+d1aUHenHfyU8whoctgMQ28Znv8XZ0Ptd@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMxSdNVNB1VDAIC3kzcRwzuwmzIKovwTGhkLw802KZgtiuAj+G
+	oiD+ljRabWgVV2bMoGrwXlkncBD2VjZexry4A+T0SNl2xfThorMbPy3DUh6WgQ7m19wQIDAcESO
+	hKeKCYDoZ6/LRp3xFjtg6byn3hpMBRBKv1MieXeLw+G5wdtgq7wlk0gcu8bprYimA
+X-Gm-Gg: ASbGncsC7Vb1Gy2ZPuR56qAApljn68yZ3/Vf02+vPbAGVnQMR97oEkK3dSz/BmrDi6o
+	Z6u1uQ2yCtOWCxgTZyLyI9gkawxxrAf3WV5rB8dvLjK5xIIvg1uKaVevfqf7mCCxr+StidDq5Lu
+	modufgYyxlGMEXq+U1k8RDU8m6fnrorVORya0EqoV0g2QsUOI/0aV618E/7YWnO9rLtZD24yIyQ
+	eu++ic/wG3mdt+ysmObP7rWGlpZ8k9GS0NgiRQFtJ7IWUcxxvTlW3FL4qSUp9QDd5iqKPZnJ9EZ
+	/f/rNqwGvakt4XEHwPS3sLFVwgwcbJAI/r4GGZ0Sixos3IrG63ZIBM9//ozMLFOfif3r5wAyQ79
+	trlaDZRNUosYMRPADVK8qVG8=
+X-Received: by 2002:a17:902:c943:b0:234:ba37:87a5 with SMTP id d9443c01a7336-23e24f4a7c9mr130870295ad.25.1752831401593;
+        Fri, 18 Jul 2025 02:36:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEp4sFfqHaGHRuWJ/EeS/AGLmlnSykkRcmXhCvLfBNJz2Ba7o/Pxq0DoSFqc2RPSb3hpiQ0Kw==
+X-Received: by 2002:a17:902:c943:b0:234:ba37:87a5 with SMTP id d9443c01a7336-23e24f4a7c9mr130869955ad.25.1752831401127;
+        Fri, 18 Jul 2025 02:36:41 -0700 (PDT)
+Received: from [10.133.33.13] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23e3b6d2a82sm9687825ad.156.2025.07.18.02.36.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Jul 2025 02:36:40 -0700 (PDT)
+Message-ID: <da49f445-7365-4863-bb41-f7a55150c4dd@oss.qualcomm.com>
+Date: Fri, 18 Jul 2025 17:36:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ng7koaqz6s4cslugrujklsrprsl7v7wijtserr6edvsvbeqfkv@pldexeryni7h>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 RESEND 02/10] coresight: core: add a new API to
+ retrieve the helper device
+To: Mike Leach <mike.leach@linaro.org>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Mao Jinlong <quic_jinlmao@quicinc.com>,
+        Jie Gan <quic_jiegan@quicinc.com>, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250714063109.591-1-jie.gan@oss.qualcomm.com>
+ <20250714063109.591-3-jie.gan@oss.qualcomm.com>
+ <CAJ9a7VikU9UktC-fpLfR5EdpGupHHor2GaDGAujBnQJky=W17w@mail.gmail.com>
+Content-Language: en-US
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <CAJ9a7VikU9UktC-fpLfR5EdpGupHHor2GaDGAujBnQJky=W17w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=Z5PsHGRA c=1 sm=1 tr=0 ts=687a15aa cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=4z_qIjeFvS-qpd6pgFUA:9
+ a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: Gkxyq97ELtbLyeUtjzALrF5TQoChM6Pi
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDA3NSBTYWx0ZWRfX5h32k4tyyke4
+ P0F73m4RzQoZ5L8yuY5AYHbWs/OsVlhMRhT5Fihjlg1NWBZf59i3LEOXv0gf+MxlAfGcdvBXU4L
+ s5XfnbhcudJR+3R16aVD7lpPDakGzhwbcvyk8e4qdxkqQGmBmEEXLXG56D+nHvREajf5TnhNaWn
+ mgw7xR+lKeH9EKF3vC0t2jU4ZD/VpP25Oe2za3593lNBkV8n6toT0E6jbjhScaJaOUuJeGYMOD6
+ hJLocASmoUxYCMfYw2hRZKOfJj16tx033MXZ4ZZHtyHOfLg5cgFw1QQlr9rskXCCtQekBJFcAKF
+ e9kYENSGI/Svve4MPU7AkETt7IG+DAIRb+I65S4nZMwyw6FTzv3PnsT3fu93nzZOUqNKiIGKCpC
+ lzr1qKQGIGJkh6k3xNLKWPg8wpnRWMiE6tCEzBPNhrN4y81TdhvK6YPjHVDfHKXIOY/MyVOa
+X-Proofpoint-GUID: Gkxyq97ELtbLyeUtjzALrF5TQoChM6Pi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-18_02,2025-07-17_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 mlxlogscore=999 suspectscore=0 spamscore=0 clxscore=1015
+ mlxscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0 adultscore=0
+ priorityscore=1501 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507180075
 
-On Fri, Jul 18, 2025 at 12:27:34PM +0300, Dmitry Baryshkov wrote:
-> On Fri, Jul 18, 2025 at 04:19:13PM +0800, Yijie Yang wrote:
-> > On 2025-07-18 00:37, Stephan Gerhold wrote:
-> > > On Wed, Jul 16, 2025 at 05:08:42PM +0800, Yijie Yang wrote:
-> > > > The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
-> > > > the Hamoa IoT SoM and a carrier board. Together, they form a complete
-> > > > embedded system capable of booting to UART.
-> > > > 
-> > > > This change enables and overlays the following peripherals on the carrier
-> > > > board:
-> > > > - UART
-> > > > - On-board regulators
-> > > > - USB Type-C mux
-> > > > - Pinctrl
-> > > > - Embedded USB (EUSB) repeaters
-> > > > - NVMe
-> > > > - pmic-glink
-> > > > 
-> > > > Written with contributions from Shuai Zhang (added Bluetooth).
-> > > > 
-> > > > Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
-> > > > ---
-> > > >   arch/arm64/boot/dts/qcom/Makefile          |   1 +
-> > > >   arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 835 +++++++++++++++++++++++++++++
-> > > >   2 files changed, 836 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > > > index 4bfa926b6a0850c3c459bcba28129c559d50a7cf..c5994b75d3e56e74ffb64b2389ee1bcc086f3065 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > > > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > > > @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
-> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
-> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
-> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
-> > > > +dtb-$(CONFIG_ARCH_QCOM)	+= hamoa-iot-evk.dtb
-> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
-> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-tplink-archer-ax55-v1.dtb
-> > > >   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp441.dtb
-> > > > diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> > > > new file mode 100644
-> > > > index 0000000000000000000000000000000000000000..843f39c9d59286a9303a545411b2518d7649a059
-> > > > --- /dev/null
-> > > > +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> > > > [...]
-> > > > +	vreg_wcn_3p3: regulator-wcn-3p3 {
-> > > > +		compatible = "regulator-fixed";
-> > > > +
-> > > > +		regulator-name = "VREG_WCN_3P3";
-> > > > +		regulator-min-microvolt = <3300000>;
-> > > > +		regulator-max-microvolt = <3300000>;
-> > > > +
-> > > > +		gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
-> > > > +		enable-active-high;
-> > > > +
-> > > > +		pinctrl-0 = <&wcn_sw_en>;
-> > > > +		pinctrl-names = "default";
-> > > > +
-> > > > +		regulator-boot-on;
-> > > > +	};
-> > > > +
-> > > > +	/*
-> > > > +	 * TODO: These two regulators are actually part of the removable M.2
-> > > > +	 * card and not the CRD mainboard. Need to describe this differently.
-> > > > +	 * Functionally it works correctly, because all we need to do is to
-> > > > +	 * turn on the actual 3.3V supply above.
-> > > > +	 */
-> > > > +	vreg_wcn_0p95: regulator-wcn-0p95 {
-> > > > +		compatible = "regulator-fixed";
-> > > > +
-> > > > +		regulator-name = "VREG_WCN_0P95";
-> > > > +		regulator-min-microvolt = <950000>;
-> > > > +		regulator-max-microvolt = <950000>;
-> > > > +
-> > > > +		vin-supply = <&vreg_wcn_3p3>;
-> > > > +	};
-> > > > +
-> > > > +	vreg_wcn_1p9: regulator-wcn-1p9 {
-> > > > +		compatible = "regulator-fixed";
-> > > > +
-> > > > +		regulator-name = "VREG_WCN_1P9";
-> > > > +		regulator-min-microvolt = <1900000>;
-> > > > +		regulator-max-microvolt = <1900000>;
-> > > > +
-> > > > +		vin-supply = <&vreg_wcn_3p3>;
-> > > > +	};
-> > > 
-> > > Like the TODO comment already says, regulators located on a M.2 card
-> > > shouldn't be described as part of the device DT. We need a proper
-> > > solution for modelling the M.2 slots together with the standard power
-> > > supplies (3.3V and 1.8V) and hook this up to the pwrseq subsystem. This
-> > > is also the reason why the CRD does not have Bluetooth enabled upstream
-> > > yet, this needs to be solved first.
-> > > 
-> > > As far as I know, there is no one actively working on addressing this at
-> > > the moment. Perhaps you can assign someone at QC to work on solving this
-> > > upstream.
-> > 
-> > This power section is now managed by UEFI, rendering these regulator nodes
-> > unnecessary. Therefore, I will remove them in the next version.
+
+
+On 7/18/2025 4:37 PM, Mike Leach wrote:
+> Hi,
 > 
-> No. The regulators for the M.2 slot should be present here so that Linux
-> doesn't disable them. Which triggers a question: how are they
-> controlled? I don't see a GPIO line there.
+> On Mon, 14 Jul 2025 at 07:31, Jie Gan <jie.gan@oss.qualcomm.com> wrote:
+>>
+>> Retrieving the helper device of the specific coresight device based on
+>> its helper_subtype because a single coresight device may has multiple types
+>> of the helper devices.
+>>
+>> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+>> ---
+>>   drivers/hwtracing/coresight/coresight-core.c | 30 ++++++++++++++++++++
+>>   drivers/hwtracing/coresight/coresight-priv.h |  2 ++
+>>   2 files changed, 32 insertions(+)
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
+>> index 5297a5ff7921..76e10c36a8a1 100644
+>> --- a/drivers/hwtracing/coresight/coresight-core.c
+>> +++ b/drivers/hwtracing/coresight/coresight-core.c
+>> @@ -580,6 +580,36 @@ struct coresight_device *coresight_get_sink(struct coresight_path *path)
+>>   }
+>>   EXPORT_SYMBOL_GPL(coresight_get_sink);
+>>
+>> +/**
+>> + * coresight_get_helper: find the helper device of the assigned csdev.
+>> + *
+>> + * @csdev: The csdev the helper device is conntected to.
+>> + * @type:  helper_subtype of the expected helper device.
+>> + *
+>> + * Retrieve the helper device for the specific csdev based on its
+>> + * helper_subtype.
+>> + *
+>> + * Return: the helper's csdev upon success or NULL for fail.
+>> + */
+>> +struct coresight_device *coresight_get_helper(struct coresight_device *csdev,
+>> +                                             int type)
+>> +{
+>> +       int i;
+>> +       struct coresight_device *helper;
+>> +
+>> +       for (i = 0; i < csdev->pdata->nr_outconns; ++i) {
+>> +               helper = csdev->pdata->out_conns[i]->dest_dev;
+>> +               if (!helper || !coresight_is_helper(helper))
+>> +                       continue;
+>> +
+> 
+> Manipulating the connections list almost certainly requires some
+> locking. See other functions in this file
 > 
 
-The 0.95V and 1.9V regulators are located on the inserted M.2 *card* and
-get automatically enabled by the 3.3V supply of the M.2 *slot*. If you
-remove the card or insert a different one, they won't be present. This
-is why they shouldn't be part of the DT. The M.2 slot only has a 3.3V
-supply and a 1.8V supply.
-
-The only reason why they are here is that the current bindings for the
-WCN7850 require describing the whole PMU and internal regulators of the
-M.2 card. Ideally, we should have a generic description for the M.2
-slot/connector instead.
+Thanks for pointing out. I will fix it in next version.
 
 Thanks,
-Stephan
+Jie
+
+> Mike
+> 
+> 
+>> +               if (helper->subtype.helper_subtype == type)
+>> +                       return helper;
+>> +       }
+>> +
+>> +       return NULL;
+>> +}
+>> +EXPORT_SYMBOL_GPL(coresight_get_helper);
+>> +
+>>   /**
+>>    * coresight_get_port_helper: get the in-port number of the helper device
+>>    * that is connected to the csdev.
+>> diff --git a/drivers/hwtracing/coresight/coresight-priv.h b/drivers/hwtracing/coresight/coresight-priv.h
+>> index 07a5f03de81d..5b912eb60401 100644
+>> --- a/drivers/hwtracing/coresight/coresight-priv.h
+>> +++ b/drivers/hwtracing/coresight/coresight-priv.h
+>> @@ -158,6 +158,8 @@ void coresight_path_assign_trace_id(struct coresight_path *path,
+>>                                     enum cs_mode mode);
+>>   int coresight_get_port_helper(struct coresight_device *csdev,
+>>                                struct coresight_device *helper);
+>> +struct coresight_device *coresight_get_helper(struct coresight_device *csdev,
+>> +                                             int type);
+>>
+>>   #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM3X)
+>>   int etm_readl_cp14(u32 off, unsigned int *val);
+>> --
+>> 2.34.1
+>>
+> 
+> 
+
 
