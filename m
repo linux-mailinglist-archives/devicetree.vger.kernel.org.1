@@ -1,520 +1,428 @@
-Return-Path: <devicetree+bounces-197557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6446B09D45
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 10:00:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D96CB09D5A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 10:04:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23609A8578A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 07:59:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8A94581A14
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 08:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54DE2BDC39;
-	Fri, 18 Jul 2025 07:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B92E221ABDC;
+	Fri, 18 Jul 2025 08:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="BNRdUCY8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n739tt50"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78BAF2192E5;
-	Fri, 18 Jul 2025 07:56:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86051249F9;
+	Fri, 18 Jul 2025 08:04:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752825405; cv=none; b=V2FnFUSPzejT3j2KKgwepmDgCwBP2qItKqVeShPVVENeu8AfBvLxO7ZzD57TRHTzjU9GjhZA8cbrI9LYOlmEzSkxuQyCEhsUh9mRDW+Cm1xPYF/5eTgiqmCgs0Nv5z1dx7zFj4u1/c+8k/1DSArgFjJABpq6lDe7aZrSkFClTgc=
+	t=1752825879; cv=none; b=ckadEB0JcXu3AdXjfjzH/8mnLuEeo7JH70dkjLVjakatPnDHNf2SEWxMF6I+rzdhmq4yx7kMwBez0ymIlElZtsesC4u8nZ4Ioh20VaGG7W0dPYlzwr+j4oIK4sn4tpPKKbslKxJxrv84xr59g22FZxuI9gG0rz47GF7sibmmTBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752825405; c=relaxed/simple;
-	bh=Z8B+Blm0I4uBjuD2AinRp+Den6ZkFfGK8+2jSgQ8MN0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fB5aJmg7RfKoqFL0QVgIGZpZf/16hLmcm2eS1PeZ0/Hy5s2qYPo58wAlYjEA48P1N726fEpbaBEdfjl+Cgnf9cU8UD9YyZ1aYutg+LflIOtNOHQKfnCeseAqiJoAw05RHLpNUpirGnRLFmc46aVXJGHmdm/6JWBFxXZgueGxycY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=BNRdUCY8; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: b8c33f5663ac11f08b7dc59d57013e23-20250718
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=oOBDPqVaVLFOkbDjEUy5OLBRzIKJPbB3p4tu+JvybV4=;
-	b=BNRdUCY8VdOz0jfQzWJAtuKiiz4VAjOZU7CggBChAjn2LyXiGq7Q/5oIRNvm7LfSWS8kP7mJoWQoXzfVNiRYnfkJkGxPLKwPf0l3UMPeKjW7c0MZMyhPjEsINxhnDbu8YvGgkd17eTswTwHsTd1d1ER7mUfJmhAI/grq5312xVo=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.2,REQID:e3c14289-69b1-4e20-88ef-adb955e21af5,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:9eb4ff7,CLOUDID:cc93eb0e-6968-429c-a74d-a1cce2b698bd,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: b8c33f5663ac11f08b7dc59d57013e23-20250718
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-	(envelope-from <sirius.wang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 632779790; Fri, 18 Jul 2025 15:56:33 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Fri, 18 Jul 2025 15:56:31 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Fri, 18 Jul 2025 15:56:32 +0800
-From: Sirius Wang <sirius.wang@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, "Matthias
- Brugger" <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@mediatek.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <wenst@chromium.org>,
-	<xavier.chang@mediatek.com>, Sirius Wang <sirius.wang@mediatek.com>
-Subject: [PATCH v5 3/3] arm64: dts: mt8189: Add mt8189 dts evaluation board and Mafefile
-Date: Fri, 18 Jul 2025 15:56:26 +0800
-Message-ID: <20250718075630.644870-4-sirius.wang@mediatek.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250718075630.644870-1-sirius.wang@mediatek.com>
-References: <20250718075630.644870-1-sirius.wang@mediatek.com>
+	s=arc-20240116; t=1752825879; c=relaxed/simple;
+	bh=5YLH0B30wGVpAwrxZAlI6qNxZW0jgLZa03hx5hfBDvw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jCR+/+bjqNk5JHDUi3sbhcsTkbxAO9py34DbfdBkIKfBj3GHNxk34dwmCBQzQEob4YWi2D0bMZSI/PPTrBuO1/+Qvljn+hTbQuiALM7mPXvDrrdya4TahLTZUV9auw/1MrLDskiq+tyviZlhMP+VTZI43I0PtbsGl9apxiWiRSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n739tt50; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1154AC4CEEB;
+	Fri, 18 Jul 2025 08:04:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752825879;
+	bh=5YLH0B30wGVpAwrxZAlI6qNxZW0jgLZa03hx5hfBDvw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=n739tt50+rk7LcNgfsBniXYm/fzHIEVS5DrXPv3xg8fU44MabAAQamBbhSMDf2SI0
+	 V+1rFKDPl3auNf3j4hrYUGKQ4i5jFxaN4PzS2rHGkGiDtGvTQJofE4P6Zkpxj1vMJ1
+	 U868EJsNvtlxDdE/f9F1f7ugKx5xbrKtUFz8qFwgOGkq3KpAssGlqutzbfzkRxpIKy
+	 L53QpGEr4IeHcATVb5NKYXbsy/V+HP3zcdRjtcuaDob/9JKKlWcDywiU8Pckyw2Mxu
+	 BkF2a9sj42ul3btq64bWGN476JsMxrtttmMSLnuUKGvXmcwbrC7S9Kx2D25TIcgSnk
+	 mI6WGY1bIll3Q==
+Message-ID: <0c7e171d-056d-4c00-a30b-0fd39e25bf4c@kernel.org>
+Date: Fri, 18 Jul 2025 10:04:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 2/4] leds: add basic support for TI/National
+ Semiconductor LP5812 LED Driver
+To: Nam Tran <trannamatk@gmail.com>, lee@kernel.org
+Cc: pavel@kernel.org, rdunlap@infradead.org, christophe.jaillet@wanadoo.fr,
+ krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+ linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20250714172355.84609-1-trannamatk@gmail.com>
+ <20250714172355.84609-3-trannamatk@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250714172355.84609-3-trannamatk@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add mt8189 dts evaluation board and Mafefile
+On 14/07/2025 19:23, Nam Tran wrote:
+>> +static int lp5812_parse_led(struct device_node *np,
+> +			    struct lp5812_led_config *cfg,
+> +			    int led_index)
+> +{
+> +	int num_colors = 0, ret;
+> +
+> +	of_property_read_string(np, "label", &cfg[led_index].name);
+> +
+> +	ret = of_property_read_u32(np, "reg", &cfg[led_index].chan_nr);
 
-Signed-off-by: Sirius Wang <sirius.wang@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/Makefile       |   1 +
- arch/arm64/boot/dts/mediatek/mt8189-evb.dts |  20 ++
- arch/arm64/boot/dts/mediatek/mt8189.dtsi    | 375 ++++++++++++++++++++
- 3 files changed, 396 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8189-evb.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8189.dtsi
+You mix code for probe with code for regular operation. This is not
+expected and confusing. All functions related to probe must be before
+the probe function is defined.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index a4df4c21399e..52c5b799308e 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -88,6 +88,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku4.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku5.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku6.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku7.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8189-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-spherion-r0.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8189-evb.dts b/arch/arm64/boot/dts/mediatek/mt8189-evb.dts
-new file mode 100644
-index 000000000000..e5d9ce1b8e61
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8189-evb.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 MediaTek Inc.
-+ * Author: Sirius Wang <sirius.wang@mediatek.com>
-+ */
-+/dts-v1/;
-+#include "mt8189.dtsi"
-+
-+/ {
-+	model = "MediaTek MT8189 evaluation board";
-+	compatible = "mediatek,mt8189-evb", "mediatek,mt8189";
-+
-+	chosen: chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8189.dtsi b/arch/arm64/boot/dts/mediatek/mt8189.dtsi
-new file mode 100644
-index 000000000000..2444c3e553ec
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8189.dtsi
-@@ -0,0 +1,375 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (c) 2025 MediaTek Inc.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	compatible = "mediatek,mt8189";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	clk32k: oscillator-clk32k {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32000>;
-+		clock-output-names = "clk32k";
-+	};
-+
-+	clk13m: oscillator-clk13m {
-+		compatible = "fixed-factor-clock";
-+		#clock-cells = <0>;
-+		clocks = <&clk26m>;
-+		clock-mult = <1>;
-+		clock-div = <2>;
-+		clock-output-names = "clk13m";
-+	};
-+
-+	clk26m: oscillator-clk26m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <26000000>;
-+		clock-output-names = "clk26m";
-+	};
-+
-+	clk104m: oscillator-clk104m {
-+		compatible = "fixed-factor-clock";
-+		#clock-cells = <0>;
-+		clocks = <&clk26m>;
-+		clock-mult = <4>;
-+		clock-div = <1>;
-+		clock-output-names = "clk104m";
-+	};
-+
-+	ulposc: oscillator-ulposc {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <520000000>;
-+		clock-output-names = "ulposc";
-+	};
-+
-+	ulposc3: oscillator-ulposc3 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <26000000>;
-+		clock-output-names = "ulposc3";
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x000>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x200>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x300>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu4: cpu@400 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x400>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu5: cpu@500 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x500>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu6: cpu@600 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x600>;
-+			enable-method = "psci";
-+			clock-frequency = <3000000000>;
-+			capacity-dmips-mhz = <958>;
-+			cpu-idle-states = <&cpu_off_b>, <&cpu_s2idle>;
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_1>;
-+			performance-domains = <&performance 1>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu7: cpu@700 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x700>;
-+			enable-method = "psci";
-+			clock-frequency = <3000000000>;
-+			capacity-dmips-mhz = <958>;
-+			cpu-idle-states = <&cpu_off_b>, <&cpu_s2idle>;
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_1>;
-+			performance-domains = <&performance 1>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+				core2 {
-+					cpu = <&cpu2>;
-+				};
-+				core3 {
-+					cpu = <&cpu3>;
-+				};
-+				core4 {
-+					cpu = <&cpu4>;
-+				};
-+				core5 {
-+					cpu = <&cpu5>;
-+				};
-+				core6 {
-+					cpu = <&cpu6>;
-+				};
-+				core7 {
-+					cpu = <&cpu7>;
-+				};
-+			};
-+		};
-+
-+		idle-states {
-+			entry-method = "psci";
-+
-+			cpu_off_l: cpu-off-l {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x00010000>;
-+				local-timer-stop;
-+				entry-latency-us = <25>;
-+				exit-latency-us = <57>;
-+				min-residency-us = <5700>;
-+			};
-+
-+			cpu_off_b: cpu-off-b {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x00010000>;
-+				local-timer-stop;
-+				entry-latency-us = <35>;
-+				exit-latency-us = <82>;
-+				min-residency-us = <1890>;
-+			};
-+
-+			cpu_s2idle: cpu-s2idle {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x020180ff>;
-+				local-timer-stop;
-+				entry-latency-us = <10000>;
-+				exit-latency-us = <10000>;
-+				min-residency-us = <4294967295>;
-+			};
-+		};
-+
-+		l2_0: l2-cache0 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-size = <131072>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			next-level-cache = <&l3_0>;
-+			cache-unified;
-+		};
-+
-+		l2_1: l2-cache1 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			next-level-cache = <&l3_0>;
-+			cache-unified;
-+		};
-+
-+		l3_0: l3-cache {
-+			compatible = "cache";
-+			cache-level = <3>;
-+			cache-size = <1048576>;
-+			cache-line-size = <64>;
-+			cache-sets = <2048>;
-+			cache-unified;
-+		};
-+	};
-+
-+	memory: memory@40000000 {
-+		device_type = "memory";
-+		/* This memory size is filled in by the bootloader */
-+		reg = <0 0x40000000 0 0>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	timer: timer {
-+		compatible = "arm,armv8-timer";
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		dma-ranges = <0x0 0x0 0x0 0x0 0x10 0x0>;
-+
-+		performance: performance-controller@11bc10 {
-+			compatible = "mediatek,cpufreq-hw";
-+			reg = <0 0x0011bc10 0 0x120>, <0 0x0011bd30 0 0x120>;
-+			#performance-domain-cells = <1>;
-+		};
-+
-+		gic: interrupt-controller@c000000 {
-+			compatible = "arm,gic-v3";
-+			#interrupt-cells = <4>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			interrupt-parent = <&gic>;
-+			interrupt-controller;
-+			reg = <0 0xc000000 0 0x40000>, /* distributor */
-+			      <0 0xc040000 0 0x200000>; /* redistributor */
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+			ppi-partitions {
-+				ppi_cluster0: interrupt-partition-0 {
-+					affinity = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
-+				};
-+
-+				ppi_cluster1: interrupt-partition-1 {
-+					affinity = <&cpu6 &cpu7>;
-+				};
-+			};
-+		};
-+
-+		uart0: serial@11001000 {
-+			compatible = "mediatek,mt8189-uart", "mediatek,mt6577-uart";
-+			reg = <0 0x11001000 0 0x1000>;
-+			interrupts = <GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>, <&clk26m>;
-+			clock-names = "baud", "bus";
-+			status = "disabled";
-+		};
-+	};
-+};
--- 
-2.45.2
+> +	if (ret)
+> +		return ret;
+> +
+> +	for_each_available_child_of_node_scoped(np, child) {
+> +		ret = lp5812_parse_led_channel(child, cfg, led_index, num_colors);
+> +		if (ret)
+> +			return ret;
+> +		num_colors++;
+> +	}
+> +
+> +	if (num_colors == 0) {
+> +		ret = lp5812_parse_led_channel(np, cfg, led_index, 0);
+> +		if (ret)
+> +			return ret;
+> +		num_colors = 1;
+> +		cfg[led_index].is_sc_led = true;
+> +	} else {
+> +		cfg[led_index].is_sc_led = false;
+> +	}
+> +
+> +	cfg[led_index].num_colors = num_colors;
+> +
+> +	return 0;
+> +}
+> +
+> +static int lp5812_of_populate_pdata(struct device *dev,
+> +				    struct device_node *np,
+> +				    struct lp5812_chip *chip)
+> +{
+> +	struct lp5812_led_config *cfg;
+> +	int num_channels, i = 0, ret;
+> +
+> +	num_channels = of_get_available_child_count(np);
+> +	if (num_channels == 0) {
+> +		dev_err(dev, "no LED channels\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	cfg = devm_kcalloc(dev, num_channels, sizeof(*cfg), GFP_KERNEL);
+> +	if (!cfg)
+> +		return -ENOMEM;
+> +
+> +	chip->led_config = &cfg[0];
+> +	chip->num_channels = num_channels;
+> +
+> +	for_each_available_child_of_node_scoped(np, child) {
+> +		ret = lp5812_parse_led(child, cfg, i);
+> +		if (ret)
+> +			return -EINVAL;
+> +		i++;
+> +	}
+> +
+> +	of_property_read_string(np, "label", &chip->label);
+> +	return 0;
+> +}
+> +
 
+This is a messy driver :/
+
+....
+
+> +
+> +static struct lp5812_led *lp5812_dev_to_led(struct device *dev)
+> +{
+> +	struct led_classdev *cdev = dev_get_drvdata(dev);
+> +	const char *name = dev->platform_data;
+> +
+> +	if (strcmp(name, LP5812_SC_LED) == 0)
+> +		return container_of(cdev, struct lp5812_led, cdev);
+> +
+> +	return container_of((struct led_classdev_mc *)cdev, struct lp5812_led, mc_cdev);
+
+
+No, just pass correct pointer to platform data, no need with strcmp and
+then different container of...
+
+
+...
+
+> +
+> +static int lp5812_init_led(struct lp5812_led *led, struct lp5812_chip *chip, int chan)
+> +{
+> +	struct device *dev = &chip->client->dev;
+> +	struct mc_subled *mc_led_info;
+> +	struct led_classdev *led_cdev;
+> +	int i, ret = 0;
+> +
+> +	if (chip->led_config[chan].name) {
+> +		led->cdev.name = chip->led_config[chan].name;
+> +	} else {
+> +		led->cdev.name = devm_kasprintf(dev, GFP_KERNEL, "%s:channel%d",
+> +						chip->label ? : chip->client->name, chan);
+> +		if (!led->cdev.name)
+> +			return -ENOMEM;
+> +	}
+> +
+> +	if (!chip->led_config[chan].is_sc_led) {
+> +		mc_led_info = devm_kcalloc(dev,
+> +					   chip->led_config[chan].num_colors,
+> +					   sizeof(*mc_led_info), GFP_KERNEL);
+> +		if (!mc_led_info)
+> +			return -ENOMEM;
+> +
+> +		led_cdev = &led->mc_cdev.led_cdev;
+> +		led_cdev->name = led->cdev.name;
+> +		led_cdev->brightness_set_blocking = lp5812_set_mc_brightness;
+> +		led->mc_cdev.num_colors = chip->led_config[chan].num_colors;
+> +		for (i = 0; i < led->mc_cdev.num_colors; i++) {
+> +			mc_led_info[i].color_index =
+> +				chip->led_config[chan].color_id[i];
+> +			mc_led_info[i].channel =
+> +					chip->led_config[chan].led_id[i];
+> +		}
+> +
+> +		led->mc_cdev.subled_info = mc_led_info;
+> +	} else {
+> +		led->cdev.brightness_set_blocking = lp5812_set_brightness;
+> +	}
+> +
+> +	led->cdev.groups = lp5812_led_groups;
+> +	led->chan_nr = chan;
+> +
+> +	if (chip->led_config[chan].is_sc_led) {
+> +		ret = devm_led_classdev_register(dev, &led->cdev);
+> +		if (ret == 0) {
+> +			led->cdev.dev->platform_data = devm_kstrdup(dev, LP5812_SC_LED, GFP_KERNEL);
+> +			if (!led->cdev.dev->platform_data)
+> +				return -ENOMEM;
+> +		}
+> +	} else {
+> +		ret = devm_led_classdev_multicolor_register(dev, &led->mc_cdev);
+> +		if (ret == 0) {
+> +			led->mc_cdev.led_cdev.dev->platform_data =
+> +				devm_kstrdup(dev, LP5812_MC_LED, GFP_KERNEL);
+> +			if (!led->mc_cdev.led_cdev.dev->platform_data)
+> +				return -ENOMEM;
+> +
+> +			ret = sysfs_create_groups(&led->mc_cdev.led_cdev.dev->kobj,
+> +						  lp5812_led_groups);
+> +			if (ret)
+> +				dev_err(dev, "sysfs_create_groups failed\n");
+> +		}
+> +	}
+> +
+> +	if (ret) {
+> +		dev_err(dev, "led register err: %d\n", ret);
+
+Why are you printing same error multiple times?
+
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int lp5812_register_leds(struct lp5812_led *led, struct lp5812_chip *chip)
+> +{
+> +	struct lp5812_led *each;
+> +	int num_channels = chip->num_channels;
+> +	int ret, i, j;
+> +
+> +	for (i = 0; i < num_channels; i++) {
+> +		each = led + i;
+> +		ret = lp5812_init_led(each, chip, i);
+> +		if (ret)
+> +			goto err_init_led;
+> +
+> +		each->chip = chip;
+> +
+> +		for (j = 0; j < chip->led_config[i].num_colors; j++) {
+> +			ret = lp5812_auto_dc(chip, chip->led_config[i].led_id[j],
+> +					     chip->led_config[i].led_id[j]);
+> +			if (ret)
+> +				goto err_init_led;
+> +
+> +			ret = lp5812_set_led_mode(chip, chip->led_config[i].led_id[j],
+> +						  LP5812_MODE_MANUAL);
+> +			if (ret)
+> +				goto err_init_led;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +
+> +err_init_led:
+> +	return ret;
+> +}
+> +
+> +static int lp5812_register_sysfs(struct lp5812_chip *chip)
+> +{
+> +	struct device *dev = &chip->client->dev;
+> +	const struct lp5812_device_config *cfg = chip->cfg;
+> +	int ret;
+> +
+> +	ret = sysfs_create_group(&dev->kobj, cfg->dev_attr_group);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static void lp5812_unregister_sysfs(struct lp5812_led *led, struct lp5812_chip *chip)
+> +{
+> +	struct device *dev = &chip->client->dev;
+> +	const struct lp5812_device_config *cfg = chip->cfg;
+> +	struct lp5812_led *each;
+> +	int i;
+> +
+> +	sysfs_remove_group(&dev->kobj, cfg->dev_attr_group);
+> +
+> +	for (i = 0; i < chip->num_channels; i++) {
+> +		if (!chip->led_config[i].is_sc_led) {
+> +			each = led + i;
+> +			sysfs_remove_groups(&each->mc_cdev.led_cdev.dev->kobj, lp5812_led_groups);
+> +		}
+> +	}
+> +}
+> +
+> +static int lp5812_probe(struct i2c_client *client)
+> +{
+> +	struct lp5812_chip *chip;
+> +	const struct i2c_device_id *id = i2c_client_get_device_id(client);
+> +	struct device_node *np = dev_of_node(&client->dev);
+> +	struct lp5812_led *led;
+> +	int ret;
+> +
+> +	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
+> +	if (!chip)
+> +		return -ENOMEM;
+> +
+> +	chip->cfg = i2c_get_match_data(client);
+> +
+> +	if (np) {
+> +		ret = lp5812_of_populate_pdata(&client->dev, np, chip);
+> +		if (ret)
+> +			goto err_init;
+> +	} else {
+> +		return dev_err_probe(&client->dev, -EINVAL, "No platform data\n");
+
+This is confusing syntax. Expected is:
+if (!missing something)
+	return -EINVAL
+
+The other problem is that you claim this can match and bind without OF,
+but here you say it is a requirement. So either this code is wrong or
+your I2C ID table should be removed.
+
+
+> +	}
+> +
+> +	led = devm_kcalloc(&client->dev, chip->num_channels, sizeof(*led), GFP_KERNEL);
+> +	if (!led)
+> +		return -ENOMEM;
+> +
+> +	chip->client = client;
+> +
+> +	mutex_init(&chip->lock);
+> +
+> +	i2c_set_clientdata(client, led);
+> +
+> +	ret = lp5812_init_device(chip);
+> +	if (ret)
+> +		goto err_init;
+> +
+> +	dev_info(&client->dev, "%s Programmable led chip found\n", id->name);
+
+Drop. You have only one device type (look at your binding), so you
+cannot "find" devices.
+
+> +
+> +	ret = lp5812_register_leds(led, chip);
+> +	if (ret)
+> +		goto err_out;
+> +
+> +	ret = lp5812_register_sysfs(chip);
+> +	if (ret) {
+> +		dev_err_probe(&client->dev, ret, "Registering sysfs failed\n");
+> +		goto err_out;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_out:
+> +	lp5812_deinit_device(chip);
+> +err_init:
+> +	return ret;
+> +}
+> +
+> +static void lp5812_remove(struct i2c_client *client)
+> +{
+> +	struct lp5812_led *led = i2c_get_clientdata(client);
+> +
+> +	lp5812_unregister_sysfs(led, led->chip);
+> +	lp5812_deinit_device(led->chip);
+> +
+> +	dev_info(&client->dev, "Removed driver\n");
+
+No, drop, useless.
+
+
+Best regards,
+Krzysztof
 
