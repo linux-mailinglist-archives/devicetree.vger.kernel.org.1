@@ -1,250 +1,179 @@
-Return-Path: <devicetree+bounces-197671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38DDFB0A300
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 13:47:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC88EB0A378
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 13:50:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E8565A5DDE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:47:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36FDE1C24E5F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:50:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D20629993E;
-	Fri, 18 Jul 2025 11:47:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3A4C2D94A4;
+	Fri, 18 Jul 2025 11:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PvyQsUsb"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="fdyaruFF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2048.outbound.protection.outlook.com [40.107.212.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B22EC2EAE3
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 11:47:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752839228; cv=none; b=SIzPQL0MxuZQ1mJeGbAb9qm0D67vqOrpu1lXqIq2Q88sNrpA/lmJ4lnG+nRSskI0g0DXxyJDq4uW5qHCR/RGxfmPsLgXgSzmj9ejIpvGVqRpnvAvlp3kXr8aoIgWrO+HuN+JyMVzh4cVJGSWaxH7BxP0OgFof/Y74IgAbTjy6iQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752839228; c=relaxed/simple;
-	bh=ytkcnLwqiafPf/jGRtT7S0382mzgavn9/7lB3ddQiNM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lPtD7UZnsxhxn6HckMLRxg+0OEn6rpwycU2/+itQx4dB4TmMCccP5Jk2tqllmNN0/0MNAxz7DADA9rCNe9KGlT8u86Sugj1JCMQbmPtVo3TigeGGLk7L0OkHSg+vbhYKN0viOd0k21f0IDWFYmkM/eIpSAo5SQWYyfblPO/6+T8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PvyQsUsb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I7BQSh016170
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 11:47:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=esD0BgiWEWaYJCdGXCJIJorS
-	TkPDE9pqdzuFw4kpSBU=; b=PvyQsUsbuyHkGWf/T7KjP7sJx9J/bysQi5Oz0U8x
-	gf3ssH10xYtGOZshAZ3AUrVXJwwoARElKaPXb7SdTzv4wIRNgkiJiFEvYO4kVGQ3
-	Nx6xOjw42W7pYJZ8BSYKpgX+sFVt/TXloMQ5rDnAscdKkhkTzxs+r3Z0WSiHkUrl
-	+oBXnBScM2Jh2130W1vY2qcivnlgnIjpItqhCtQ1xtVRYzDquA20z17X22j9jCEa
-	MrH3jnLU8JLPdvfsYcV4iS6uSd6Esf8ltRGho2NqkjYkpQFv7lx9IjVPY6uTg/Qq
-	T68kr2tu3TT7LvpbWGioZFq6mkgHrs0i1DqDeArFAulpxw==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47w5dyxacm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 11:47:05 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-313fab41f4bso2776273a91.0
-        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 04:47:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752839225; x=1753444025;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=esD0BgiWEWaYJCdGXCJIJorSTkPDE9pqdzuFw4kpSBU=;
-        b=rG0dm+FOciL3bXONREnF55lEGWFuEuDYLet38aT1CBdVvs/ss8Nh7QJICyxOfnQW/m
-         YjDIgW8mdColgr1Y7XtTOdA4uT3q3XaCA++SwUAedmAHIhtFf3x+tqC7f79DyRzQ/+Dn
-         9sOhwHAw6x2/xrrQcfLxBMZ+E9gq8zZ31pbq4GNGdi/tpm+zia6rE+Nyy/O6LlnekS3C
-         DYvw55p+fwrsk/kVgOgGCUHttHMh2GOO2tJoGr+8dBiq6u79w8b9P+3T6P6ssKVbOedk
-         cAzWNiSKT/WfQMy/nY9fHHa8Mjm0Nz5qHhKyKPjaMQ6NwfTJJVUXYlVlgLkUhjEJC+b9
-         2prw==
-X-Forwarded-Encrypted: i=1; AJvYcCWsvu88ErOuYm76z5uBKLC0QlZRDBqPhGmT5X9dSVQGwl4NAlQ2XMmPre1U6nJtl1ox88s6wIzIpIQI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxY4KjQCQgP/77rkuAaMJHytVKUNnMuDORMfdSbuhqSoO8PyprV
-	4nLCgmZKqvrhCPpXYgxfzw7Yctd9p3FDe6rUu2BcDM+ajxvAhEYDi0jImeAXA9+WKnjjcRtCKUO
-	n0AqUjAVGOUtM6TKNpQJjIsNXt7USXE+PeXdd1HHJkNhzQtQBO129rrJDkC2Zgw3X8JdBtPjtOX
-	SnVUxoRAJftcvN6IpwhDZUgdiymUqqYO0IYbFVRlI=
-X-Gm-Gg: ASbGncuWWKS56R8A/fmXyeJd+RSCTN4izVJdeq/QtNsd7D5uO1aGCKbfjxezNG4DK7Y
-	4cNVGmHXP/OABIWHsCY1UNuAxvtHO6/VlDW2Ypm+b44s+KGdZyZNEH2/FhwhlHlsw/LIpijz8Dw
-	UExfXKy4hCEREOYNW8Oj0QdJlb4z+W1VFSdYI=
-X-Received: by 2002:a17:90a:e70e:b0:313:279d:665c with SMTP id 98e67ed59e1d1-31caf821883mr8766066a91.7.1752839224579;
-        Fri, 18 Jul 2025 04:47:04 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH/e2gTuOuRLymJ4eOQ4DhprwaCxsJiNfGjI9j8p3zBknk5c0ZzcCU5OhLtMQ+p3evd2nstjb8g0a74HKuWdfs=
-X-Received: by 2002:a17:90a:e70e:b0:313:279d:665c with SMTP id
- 98e67ed59e1d1-31caf821883mr8766034a91.7.1752839224131; Fri, 18 Jul 2025
- 04:47:04 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B05F29993E;
+	Fri, 18 Jul 2025 11:50:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.212.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1752839421; cv=fail; b=X7HRqgIfUfcRQWeQygDcWFc+2dj+mCErGN0wLGG4/W9Q3XdJFyneCT37G3UCR8Zy+n4oBfQs1D4lLzFXd9Fd6GX6OoKuO/ANyA9/pwM6CJzzujq8A4YWkf+10lo/MK7qAzSUweYpOJ64uFB7j9HS+YYXeMP3CCmtsCEyh2Q5gNc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1752839421; c=relaxed/simple;
+	bh=vxYMMKjJC+D+27A0KhfLdlsKGFJDWUoq3H7lz7K4Nxc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sSCJroyGai9sRd0WCNhBrBoPzAyVksX0dlkKv0tF9KDX3fFp6ySRTM/IdqzsDSqPfbZeJ8isH0cb0+8V0UTmAm930xPPg8RnKa9XCJPBejNwt9Xwc28mudNvvRZ2poVEZt+V17+cwrDLkDjDkmSC72oOrzCzso7IxiFxhfKKfn4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=fdyaruFF; arc=fail smtp.client-ip=40.107.212.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SX4hKqHUh5RIR1OSSKS4gSwbS3CbJlRy5ami+ESarPv80rbl+OlxMUrjW5OU+UGxqgxjS47pVbfbb4LPk3hIaOduCNPvR6AZMJbuo9qMyiQg8E3pfrjl/zC7kcgPKHzMcAhCf1Linjfcd0QAVPpha1e8/u1M57l9lSbqlP0pfBrX6T9PWKlKEJHlXCwTE7YflBK9+4bYuanLTVM2zr+EbSaGB0OC8Ti0JuM3W8+CkC8cokk4O8VGdc7kDuWKgyCjrx0H3QiBjGpQIfsiLUo8qhWDdlBa5qyIk+ykKG8v7x3PE2qP0FWKheBdj+Gfle9klJFWHEqxHSHz+uT+m0yCdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WgSmQyWgPhUykhvt5z+/AAOL+315BCTCTp6p+lq1WgE=;
+ b=yznWA/T/a6Op1NgsFYQcqk3B9s3PLORAziiHs7/UyLf8qMSeAsZHWnuqf/BJnnxD7gTEBGmaIbMWO9bazQtgv2sEtg9HM8JPKTTiETT3Nn+yh2SVqqQOJiMumzQMyEfbzewLYYAuS6VgPRz7iC7sPflpEHSxpOdwWQx9TVP5ZcaWmJE1WaVhpAEpiaN5rJHYlA5jk+8rwfJeiRqmDWZFdFiCxUWb6Ez0X18Ouv7v/D0MAnIC1G9GUqUnxxeOKipeCCNyqKqRfx7F3Mj+/y83QkH7obF79Pjq77R7T5IKBJ4jLtXQVvv2yfVVclzjAHjX9viCjgNmFG/IYWb6zG7zDA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WgSmQyWgPhUykhvt5z+/AAOL+315BCTCTp6p+lq1WgE=;
+ b=fdyaruFFvhAwfWFufMihfEBzxYVw85wfui8nYIct6TVZr/Q92+YE9XNDXJ5lCLENqfwSFcwXbyzYqgrNLfBHd89PUUtzgwgWbIf2QyZ4u9I1E0zTduJ5lQQYqltc+HGTBFp/MyCdYwrK8Y2uZpshbWGUndsfo5hoDEnoi5zCMEY=
+Received: from BN0PR08CA0029.namprd08.prod.outlook.com (2603:10b6:408:142::15)
+ by CH2PR12MB9541.namprd12.prod.outlook.com (2603:10b6:610:27e::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.35; Fri, 18 Jul
+ 2025 11:50:16 +0000
+Received: from BN2PEPF0000449E.namprd02.prod.outlook.com
+ (2603:10b6:408:142:cafe::d5) by BN0PR08CA0029.outlook.office365.com
+ (2603:10b6:408:142::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8943.21 via Frontend Transport; Fri,
+ 18 Jul 2025 11:50:16 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN2PEPF0000449E.mail.protection.outlook.com (10.167.243.149) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8943.21 via Frontend Transport; Fri, 18 Jul 2025 11:50:15 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 18 Jul
+ 2025 06:50:15 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 18 Jul
+ 2025 06:50:14 -0500
+Received: from localhost (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39 via Frontend
+ Transport; Fri, 18 Jul 2025 06:50:13 -0500
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated
+ list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] arm64: zynqmp: Enable PSCI 1.0
+Date: Fri, 18 Jul 2025 13:50:10 +0200
+Message-ID: <32be8050838512d4340486227c32f38298ddde57.1752839409.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250716-hamoa_initial-v1-0-f6f5d0f9a163@oss.qualcomm.com>
- <20250716-hamoa_initial-v1-4-f6f5d0f9a163@oss.qualcomm.com>
- <aHkm4qjgSaklHGp0@linaro.org> <4363f117-cc25-4904-84cf-4b3779797223@oss.qualcomm.com>
- <ng7koaqz6s4cslugrujklsrprsl7v7wijtserr6edvsvbeqfkv@pldexeryni7h> <aHoU7MnweSHGPwxp@linaro.org>
-In-Reply-To: <aHoU7MnweSHGPwxp@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Fri, 18 Jul 2025 14:46:52 +0300
-X-Gm-Features: Ac12FXy2Ni2DJVd4IxEHAjNLlJqPYCR_DtiPN2YpU_IHj7Inv-raVfZg2vrnC-g
-Message-ID: <CAO9ioeWZYht=oJHKeHqwpPmOyJkDE5H2hxh-+Ppp0V=OPv7bJw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Yijie Yang <yijie.yang@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Proofpoint-ORIG-GUID: pAaxYxSpYuaNFtlq-vEJHSYKnryy6R-b
-X-Authority-Analysis: v=2.4 cv=RtXFLDmK c=1 sm=1 tr=0 ts=687a3439 cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10
- a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=YHsmNHqWrCgzcmbIdFEA:9 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDA5MSBTYWx0ZWRfX545mgEDeMkIQ
- 2AaWu1xZcma9lQKhL04d11wpkqznhUU3BTsQb/ALKtDgE1QyVoZQTDOh/j6fUysiX9fTSp8qa4D
- 6V9258jD4dIaZzyOrBfO/pmvpBa21KFvbaND9eTGwyrOIWxT4tIC77l0fQy+kWsHlGCvorGyTam
- TEaPxVceNGHgPknndLmgXGgCo17fmk2gSw2XKxolyW1wuPbkAMfpZF981dZ/R/+RaNNiUeBUdMO
- 7R6rEOzoFa59g91sGsoHVutYB0GdW8HtFuoCsKJMKpWYsZt2RXvm6R+36o1e51+HJABBCbDVMoW
- /Py1fuZk9ChxXXARJg2xl4ZMUSlYS+JpgFqk6mBciJcswMkPH6G6QyH+EjHW99y59gVzOUAwv2v
- xW/xa+kSxYJqjYTsd+rMP1NaUsDheHWBSyeGUg9dp8D9j4VMPFQdhs3rAJqCzim60qzKgZSV
-X-Proofpoint-GUID: pAaxYxSpYuaNFtlq-vEJHSYKnryy6R-b
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-18_02,2025-07-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
- impostorscore=0 malwarescore=0 clxscore=1015 mlxlogscore=999
- priorityscore=1501 phishscore=0 spamscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507180091
+X-Developer-Signature: v=1; a=openpgp-sha256; l=722; i=michal.simek@amd.com; h=from:subject:message-id; bh=vxYMMKjJC+D+27A0KhfLdlsKGFJDWUoq3H7lz7K4Nxc=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWRUmXwuiJze8SEmL+xOlGpziLo/76m/Qd9U2V6rGy2Ls lBXY/XvKGVhEONgkBVTZJnOpOOw5tu1pWLLI/Nh5rAygQxh4OIUgIlYrGJkuPk8o+h2SPLMNN+q ZK+NnefkPL9b7umSqHhh8nLO0WVn/zAyzLvqubHoelrbS+fdK5v+7DxYtvX12qXaf/KyUuYWBSz awg8A
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB05.amd.com: michal.simek@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF0000449E:EE_|CH2PR12MB9541:EE_
+X-MS-Office365-Filtering-Correlation-Id: 13b58935-a670-48cf-93db-08ddc5f1431a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?3wcXaDiRoSFevuINhFVRNFZ+pNVfmIK8Y6o+2/sBo66bvZLmclxSlfaORfhl?=
+ =?us-ascii?Q?qdkrDKfLVqEWfl/cxJvlUlx3BK/RTmOx8OH+LuhXLdo+keJaS2Coj1SeJKXM?=
+ =?us-ascii?Q?YL8rS/lUWfelwJb1YHqLOoBSfTEP4taL6sWJW7AuZwQDOG96T7/U0iZXgM+i?=
+ =?us-ascii?Q?y6na01llEJqtKMMkeW7Ai+qZI3qkIMV8xFP+CyDfIpX5ZRJTEWth0SOQuMJU?=
+ =?us-ascii?Q?LdZ2r2ILOYuldTNbMyPRMKUxnMjaYS06djmf/J4vfnNOitftK6eN1IRUckn7?=
+ =?us-ascii?Q?Vubrmu3hj/FcQ/2HQz3l1L3qKNZxlfITlRN9GdsgzluWjDqh3+oQ0PWL1gyQ?=
+ =?us-ascii?Q?b/oWkYGVWF7kKYUrXRMZ0fgcXKH8559AbQ9FS2G7Ci6ZEdQLoVQy+zkRl2eR?=
+ =?us-ascii?Q?3AduNeJcZtExWMnCYcUrKL63Q9Epb9HIu9aXiqvkMbqfFgIfHQrB5n4M+gIQ?=
+ =?us-ascii?Q?Cv4jDEyFhYUoEFMe2VMMYzlUYAA/7KV3X26V2JF9cyqMPdl9u/Ep84idbf77?=
+ =?us-ascii?Q?oyOcgBAjzkh+Ll09Gqt1Ui5QXnsNMF7TPa1ZHom60RgQgCn2BteS9LK50sas?=
+ =?us-ascii?Q?7FqEevyE14VPaChbFPngsFySuBH7iCoGEJ4SfbISDpflbrh7QgBI7JKcymXF?=
+ =?us-ascii?Q?aPBfF0lF2v1wqLHHT2aP4wYId2PqylhxqmYJVbIeeqQQLIPkckHC930Rhkwi?=
+ =?us-ascii?Q?kHKPs9WIkzg6p3s0An6Q8HRdA5/oGoKdD44rItIt96CmULpXsPxyRVEkcbYJ?=
+ =?us-ascii?Q?Vh0ijKrV4BdxfFleAwGhHgg0bLdFSo4zOxk7iYA7PQg1YDRRWRdLcvAw9MgK?=
+ =?us-ascii?Q?eF+IOlDAyxYJYj2eIgIGw39ZMdAhBIK6YBMYQA/C4IRn+EE4y5PFN17KkkjS?=
+ =?us-ascii?Q?iQh9MjYKjRPEgWxE/S/3Y/EgJqdgYvoxAm1j+iN1LmXGjiu64oR5gQyUfmMr?=
+ =?us-ascii?Q?t6vaF44GTwsu9G24Ezmzu9bokqBMyrXKZP9tyZN43ZbWIAajY130bfoJxe9U?=
+ =?us-ascii?Q?IHVjgoTeR8bC3y3fEOjI0RjSbdUrJ7Hqz6NE0r3Gd378GkXelHL+2bVrY5qE?=
+ =?us-ascii?Q?0hXEoNqXexuFOrw4ft+tgB+T6kYFqQfY3IAa1Ygx2qzMelBDvkAONJVL2jzH?=
+ =?us-ascii?Q?6r/II4uTh1bC8azwuJ3yrQfiovzhQoV/DoE96p/binqcL5hq3/PsMVxTwpN5?=
+ =?us-ascii?Q?/m6lYCg+5suNKdheA7au6mYiztDe60h8XvrUk/p8hXBKrnrUihrBQb0CzELf?=
+ =?us-ascii?Q?uPC89QSOlrnZqGFSCOEBJhC5NJIlwUwtmIq3AaljEuKxEVTVvPWvoFXgGilm?=
+ =?us-ascii?Q?E3UXRrJcubeIa7rBfCmqXG+9RrTakXeFU+kpDm5fcnLpU7FImMZP8iLPAYEp?=
+ =?us-ascii?Q?5EHX00pzrvFUix1qmeA6qvtSKd8GrzyQsyzn2CZuXIW178srm53wWQHb6k/r?=
+ =?us-ascii?Q?27jZVmoOuV6hLUumuLrgp1gjkATCX5OAg+zR2bt6UZSrvIQ3MMkNvgSjUV/Y?=
+ =?us-ascii?Q?Z8vxEWTgGWS9VeYLxphAjt3s7xdxOuKrXez2?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2025 11:50:15.9656
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13b58935-a670-48cf-93db-08ddc5f1431a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN2PEPF0000449E.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB9541
 
-On Fri, 18 Jul 2025 at 12:33, Stephan Gerhold
-<stephan.gerhold@linaro.org> wrote:
->
-> On Fri, Jul 18, 2025 at 12:27:34PM +0300, Dmitry Baryshkov wrote:
-> > On Fri, Jul 18, 2025 at 04:19:13PM +0800, Yijie Yang wrote:
-> > > On 2025-07-18 00:37, Stephan Gerhold wrote:
-> > > > On Wed, Jul 16, 2025 at 05:08:42PM +0800, Yijie Yang wrote:
-> > > > > The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
-> > > > > the Hamoa IoT SoM and a carrier board. Together, they form a complete
-> > > > > embedded system capable of booting to UART.
-> > > > >
-> > > > > This change enables and overlays the following peripherals on the carrier
-> > > > > board:
-> > > > > - UART
-> > > > > - On-board regulators
-> > > > > - USB Type-C mux
-> > > > > - Pinctrl
-> > > > > - Embedded USB (EUSB) repeaters
-> > > > > - NVMe
-> > > > > - pmic-glink
-> > > > >
-> > > > > Written with contributions from Shuai Zhang (added Bluetooth).
-> > > > >
-> > > > > Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
-> > > > > ---
-> > > > >   arch/arm64/boot/dts/qcom/Makefile          |   1 +
-> > > > >   arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 835 +++++++++++++++++++++++++++++
-> > > > >   2 files changed, 836 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > > > > index 4bfa926b6a0850c3c459bcba28129c559d50a7cf..c5994b75d3e56e74ffb64b2389ee1bcc086f3065 100644
-> > > > > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > > > > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > > > > @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_QCOM)       += apq8039-t2.dtb
-> > > > >   dtb-$(CONFIG_ARCH_QCOM)       += apq8094-sony-xperia-kitakami-karin_windy.dtb
-> > > > >   dtb-$(CONFIG_ARCH_QCOM)       += apq8096-db820c.dtb
-> > > > >   dtb-$(CONFIG_ARCH_QCOM)       += apq8096-ifc6640.dtb
-> > > > > +dtb-$(CONFIG_ARCH_QCOM)        += hamoa-iot-evk.dtb
-> > > > >   dtb-$(CONFIG_ARCH_QCOM)       += ipq5018-rdp432-c2.dtb
-> > > > >   dtb-$(CONFIG_ARCH_QCOM)       += ipq5018-tplink-archer-ax55-v1.dtb
-> > > > >   dtb-$(CONFIG_ARCH_QCOM)       += ipq5332-rdp441.dtb
-> > > > > diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> > > > > new file mode 100644
-> > > > > index 0000000000000000000000000000000000000000..843f39c9d59286a9303a545411b2518d7649a059
-> > > > > --- /dev/null
-> > > > > +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> > > > > [...]
-> > > > > +       vreg_wcn_3p3: regulator-wcn-3p3 {
-> > > > > +               compatible = "regulator-fixed";
-> > > > > +
-> > > > > +               regulator-name = "VREG_WCN_3P3";
-> > > > > +               regulator-min-microvolt = <3300000>;
-> > > > > +               regulator-max-microvolt = <3300000>;
-> > > > > +
-> > > > > +               gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
-> > > > > +               enable-active-high;
-> > > > > +
-> > > > > +               pinctrl-0 = <&wcn_sw_en>;
-> > > > > +               pinctrl-names = "default";
-> > > > > +
-> > > > > +               regulator-boot-on;
-> > > > > +       };
-> > > > > +
-> > > > > +       /*
-> > > > > +        * TODO: These two regulators are actually part of the removable M.2
-> > > > > +        * card and not the CRD mainboard. Need to describe this differently.
-> > > > > +        * Functionally it works correctly, because all we need to do is to
-> > > > > +        * turn on the actual 3.3V supply above.
-> > > > > +        */
-> > > > > +       vreg_wcn_0p95: regulator-wcn-0p95 {
-> > > > > +               compatible = "regulator-fixed";
-> > > > > +
-> > > > > +               regulator-name = "VREG_WCN_0P95";
-> > > > > +               regulator-min-microvolt = <950000>;
-> > > > > +               regulator-max-microvolt = <950000>;
-> > > > > +
-> > > > > +               vin-supply = <&vreg_wcn_3p3>;
-> > > > > +       };
-> > > > > +
-> > > > > +       vreg_wcn_1p9: regulator-wcn-1p9 {
-> > > > > +               compatible = "regulator-fixed";
-> > > > > +
-> > > > > +               regulator-name = "VREG_WCN_1P9";
-> > > > > +               regulator-min-microvolt = <1900000>;
-> > > > > +               regulator-max-microvolt = <1900000>;
-> > > > > +
-> > > > > +               vin-supply = <&vreg_wcn_3p3>;
-> > > > > +       };
-> > > >
-> > > > Like the TODO comment already says, regulators located on a M.2 card
-> > > > shouldn't be described as part of the device DT. We need a proper
-> > > > solution for modelling the M.2 slots together with the standard power
-> > > > supplies (3.3V and 1.8V) and hook this up to the pwrseq subsystem. This
-> > > > is also the reason why the CRD does not have Bluetooth enabled upstream
-> > > > yet, this needs to be solved first.
-> > > >
-> > > > As far as I know, there is no one actively working on addressing this at
-> > > > the moment. Perhaps you can assign someone at QC to work on solving this
-> > > > upstream.
-> > >
-> > > This power section is now managed by UEFI, rendering these regulator nodes
-> > > unnecessary. Therefore, I will remove them in the next version.
-> >
-> > No. The regulators for the M.2 slot should be present here so that Linux
-> > doesn't disable them. Which triggers a question: how are they
-> > controlled? I don't see a GPIO line there.
-> >
->
-> The 0.95V and 1.9V regulators are located on the inserted M.2 *card* and
-> get automatically enabled by the 3.3V supply of the M.2 *slot*. If you
-> remove the card or insert a different one, they won't be present. This
-> is why they shouldn't be part of the DT. The M.2 slot only has a 3.3V
-> supply and a 1.8V supply.
->
-> The only reason why they are here is that the current bindings for the
-> WCN7850 require describing the whole PMU and internal regulators of the
-> M.2 card. Ideally, we should have a generic description for the M.2
-> slot/connector instead.
+TF-A is using PSCI 1.0 version for quite a long time but it was never
+reflected in DT.
 
-Agree.
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index b20a560741e5..5f26649c9e11 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -187,7 +187,7 @@ pmu {
+ 	};
+ 
+ 	psci {
+-		compatible = "arm,psci-0.2";
++		compatible = "arm,psci-1.0", "arm,psci-0.2";
+ 		method = "smc";
+ 	};
+ 
 -- 
-With best wishes
-Dmitry
+2.43.0
+
+base-commit: eed5dcc142db02f5c07b96b50eb72796b9d0dbc1
+branch: zynqmp/dt2
 
