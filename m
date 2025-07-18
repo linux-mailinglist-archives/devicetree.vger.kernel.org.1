@@ -1,336 +1,204 @@
-Return-Path: <devicetree+bounces-197690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABDF5B0A4F8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:22:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB665B0A50E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:25:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C7211891265
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 13:22:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE0D617EBC2
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 13:24:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F332DAFDA;
-	Fri, 18 Jul 2025 13:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F5B2DC32A;
+	Fri, 18 Jul 2025 13:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b="ZzdIhJCv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDLP4QJe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from chumsalmon.baetis.net (chumsalmon.baetis.net [209.222.21.150])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D55A2E370B;
-	Fri, 18 Jul 2025 13:21:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.222.21.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42CEB2D97B4;
+	Fri, 18 Jul 2025 13:24:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752844919; cv=none; b=DCQsvmfIbnx/hRFJtQ4IlR6MeL8aevKuLjTLYt2KDTCRhp56EKK4LyEqCPdbG5Rxv7wtMjUy83eFqa/bF4YcDItjLPLGlJmMu69mlRaDg55CbkdhVh1aGACKP5kvpdpvzMG8Zjp0hbREeIHS1drZaVkJMS52JlpQfiSRmeqaByY=
+	t=1752845043; cv=none; b=W3MMxTnN9QQdrA8IugLpdSEJSXx0uWlh0aYJhHJi5WFGBk0MIOJpwU/XIFAKzMonNKjBreqicumt4Jg61HCKVr0kjEFgyZlEdPiZvR2obyn8aTuMCIrv5o3glOsINBedxxc/qVindGyT6yfA3Vts4AOpjYEBvXB2jr6lE00LJgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752844919; c=relaxed/simple;
-	bh=gFqa07GuZLWjPhMOTb9JYXP+kYKe334i95u4Rjn0D6Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UGLa1FjvpoNWb37ltIN/Bw2jCif22794RqPhJOBei9plpuDudvsbRb4S/QLfhV950dgjV33ZWRVmZxFwfX1VE9Y6UYeA5JaPRyXx9xYl22HQwIstcHIOZGr2ln1x0y8S8oqLC0c0uz1WFimhOKHUuAO/GCgcgQuYvGDw2UzuZMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tahomasoft.com; spf=pass smtp.mailfrom=tahomasoft.com; dkim=fail (0-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b=ZzdIhJCv reason="key not found in DNS"; arc=none smtp.client-ip=209.222.21.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tahomasoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tahomasoft.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tahomasoft.com;
-	s=default; t=1752844916;
-	bh=gFqa07GuZLWjPhMOTb9JYXP+kYKe334i95u4Rjn0D6Q=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ZzdIhJCvyl9S+9c/bFW/Tr8/3XrTzcJoJgRPppGcKEOP1+m+RbYDB7ESUW7W3a8PX
-	 asJkIC/tuma0UinGh+vO4xR+q/vxfEpotWbrcLtgSmZLpP/4KMHcp1eJ5qTIspZAL3
-	 gb5DegAwymQvv5L+tzVTNlxn3+OqDmoHL3Z7adwxuqqIkS2FfH9aR5XtJOvFlG1bKb
-	 YdYejz/7f8bOPYfF97fzPmUUow8xJFXqPgafFR9yEaYhSveVTzP9HZqe6xbg9+9Wjk
-	 9msjJXcGQ9ueNSqPQ9aA5wyJGTbmrqaKOC0DTvQ43TxtYdsgrVtDmaBOrul2+Uf89p
-	 52kW67jG1o0kw==
-Received: from WahpenayoPeak.tahoma.link (unknown [IPv6:2600:4040:50b7:b604:3b13:d53e:3e62:ce43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by chumsalmon.baetis.net (Postfix) with ESMTPSA id 8A18F27E434;
-	Fri, 18 Jul 2025 13:21:56 +0000 (UTC)
-Date: Fri, 18 Jul 2025 09:21:55 -0400
-From: Erik Beck <xunil@tahomasoft.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, soc@lists.linux.dev
-Subject: Re: [PATCH 1/1] arm: dts: rockchip: Add initial support for
- LinkStar H68K-1432v1 Board with RK3568 SoC
-Message-ID: <20250718092155.5c756e3f.xunil@tahomasoft.com>
-In-Reply-To: <10784977.EvYhyI6sBW@phil>
-References: <20250718075058.243a5619.xunil@tahomasoft.com>
-	<10784977.EvYhyI6sBW@phil>
-Organization: Tahoma Soft
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1752845043; c=relaxed/simple;
+	bh=L6YBXu9x6pSAB4gABlg8mIrc72K2kdHir/4TsQxtUY4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L6cqmU0lmVFsuE5v6PGATXMtN8mcmyLVt8+WW6IFU34A6H2Z8iz5LU+JUvN18BRrkkHSJdZhYQzHEAKyxENPrjx/Gmd+M9okYBjRGOGY6pmruKpOw1gCaFuyO/SbhgNHrLtvQt3OqMwuJVVth/9mJt6I/Aub+SGHyKJyccLEjWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDLP4QJe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C56CC4CEEB;
+	Fri, 18 Jul 2025 13:24:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752845042;
+	bh=L6YBXu9x6pSAB4gABlg8mIrc72K2kdHir/4TsQxtUY4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aDLP4QJe6l6vXRZG1COSN6q9o8Eanm3I3DZDrVbn6NYwBx5dpyJRK+pT/v2Wxslk8
+	 ctY96+0uTG23swxTmV4pZZbEaCWiCG36J3j04VZGUrdcd+h51w1iGAw5yO7Zp6lLi/
+	 W32OSJzgL8f3v/pdwyT/HZt+/bqvci4e37SjdmWAmfdR7tJAM5IxSEZ0HN9YtTZjK7
+	 y2/0Hvbc1fKXRV2CPiCbYwudkKRoWegArEua7sXKUpIrQdAmzkQI7NrKlqjTEKGf4u
+	 2X5YnvnBtHsfXOi1Y5PurSsTWaMwyd9fCKWGAFNB7TXvbiiyAuz7/nPLU8iPr2HTBt
+	 jQiy4mdHAV1rg==
+Date: Fri, 18 Jul 2025 14:23:58 +0100
+From: Lee Jones <lee@kernel.org>
+To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc: "pavel@kernel.org" <pavel@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
+Subject: Re: [PATCH V3 2/2] leds: pwm: Add optional GPIO enable pin support
+Message-ID: <20250718132358.GD11056@google.com>
+References: <20250703035256.225289-1-Qing-wu.Li@leica-geosystems.com.cn>
+ <20250703035256.225289-2-Qing-wu.Li@leica-geosystems.com.cn>
+ <20250710093726.GD1431498@google.com>
+ <AM9PR06MB7955567B37C06BA7FCB05E22D754A@AM9PR06MB7955.eurprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AM9PR06MB7955567B37C06BA7FCB05E22D754A@AM9PR06MB7955.eurprd06.prod.outlook.com>
 
-Thanks for the prompt feedback Heiko!
+On Mon, 14 Jul 2025, LI Qingwu wrote:
 
-I'll get to work on responding to your comments, which are quite
-helpful.
+> 
+> > -----Original Message-----
+> > From: Lee Jones <lee@kernel.org>
+> > Sent: Thursday, July 10, 2025 5:37 PM
+> > To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+> > Cc: pavel@kernel.org; robh@kernel.org; krzk+dt@kernel.org;
+> > conor+dt@kernel.org; linux-leds@vger.kernel.org; devicetree@vger.kernel.org;
+> > linux-kernel@vger.kernel.org; GEO-CHHER-bsp-development
+> > <bsp-development.geo@leica-geosystems.com>
+> > Subject: Re: [PATCH V3 2/2] leds: pwm: Add optional GPIO enable pin support
+> > 
+> > This email is not from Hexagon’s Office 365 instance. Please be careful while
+> > clicking links, opening attachments, or replying to this email.
+> > 
+> > 
+> > On Thu, 03 Jul 2025, LI Qingwu wrote:
+> > 
+> > > add support for optional GPIO-based enable pin control to PWM LED driver.
+> > > some PWM LED chips have a dedicated enable GPIO. This commit adds the
+> > > support to specify such GPIO, activating the pin when LED brightness
+> > > is non-zero and deactivating it when off.
+> > >
+> > > Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+> > > ---
+> > >  drivers/leds/leds-pwm.c | 22 ++++++++++++++++++++++
+> > >  1 file changed, 22 insertions(+)
+> > 
+> > Couple of nits.
+> > 
+> > > diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c index
+> > > c73134e7b9514..1397149464b35 100644
+> > > --- a/drivers/leds/leds-pwm.c
+> > > +++ b/drivers/leds/leds-pwm.c
+> > > @@ -17,6 +17,7 @@
+> > >  #include <linux/err.h>
+> > >  #include <linux/pwm.h>
+> > >  #include <linux/slab.h>
+> > > +#include <linux/gpio/consumer.h>
+> > >
+> > >  struct led_pwm {
+> > >       const char      *name;
+> > > @@ -29,6 +30,7 @@ struct led_pwm_data {
+> > >       struct led_classdev     cdev;
+> > >       struct pwm_device       *pwm;
+> > >       struct pwm_state        pwmstate;
+> > > +     struct gpio_desc        *enable_gpio;
+> > >       unsigned int            active_low;
+> > >  };
+> > >
+> > > @@ -51,6 +53,9 @@ static int led_pwm_set(struct led_classdev *led_cdev,
+> > >       if (led_dat->active_low)
+> > >               duty = led_dat->pwmstate.period - duty;
+> > >
+> > > +     gpiod_set_value_cansleep(led_dat->enable_gpio,
+> > > +                              brightness == LED_OFF ? 0 : 1);
+> > 
+> > Put this on one line.
+> > 
+> 
+> putting it on one line would result in 87 columns as you noted. 
+> I was following the 80-column guideline from
+> Documentation/process/coding-style.rst, which states "The preferred 
+> limit on the length of a single line is 80 columns."
+> Additionally, I used clang-format to format the code, which automatically 
+> split this line to stay within the 80-column limit. The current formatting 
+> follows the kernel's .clang-format configuration.
 
-Regards,
+The 80-char limit was penned by the ancient Egyptians.  We have 4k
+monitors now.  Feel free to use up to 100-chars in order to prevent
+these silly line-wraps in this subsystem.
 
-Erik
+> > > +
+> > >       led_dat->pwmstate.duty_cycle = duty;
+> > >       /*
+> > >        * Disabling a PWM doesn't guarantee that it emits the inactive level.
+> > > @@ -132,6 +137,23 @@ static int led_pwm_add(struct device *dev, struct
+> > led_pwm_priv *priv,
+> > >               break;
+> > >       }
+> > >
+> > > +     /* Claim the GPIO as ASIS and set the value
+> > 
+> > Explain what ASIS is please.
+> > 
+> > > +      * later on to honor the different default states
+> > > +      */
+> > 
+> > Use proper multi-line comments please.
+> > 
+> You're absolutely right about the multi-line comment format, I'll fix that.
+> 
+> > > +     led_data->enable_gpio =
+> > > +             devm_fwnode_gpiod_get(dev, fwnode, "enable",
+> > GPIOD_ASIS,
+> > > + NULL);
+> > 
+> > One line please.
+> > 
+> 
+> result in 96 columns, do you really want that?
+> > > +
+> > 
+> > Drop this line.
+> > 
+> > > +     /* enable_gpio is optional */
+> > 
+> > Comments start with a capital letter.
+> > 
+> > Place this comment inside the second if () statement.
+> > 
+> > > +     if (IS_ERR(led_data->enable_gpio)) {
+> > > +             if (PTR_ERR(led_data->enable_gpio) == -ENOENT)
+> > > +                     led_data->enable_gpio = NULL;
+> > > +             else
+> > > +                     return PTR_ERR(led_data->enable_gpio);
+> > > +     }
+> > > +
+> > > +     gpiod_direction_output(led_data->enable_gpio,
+> > > +                            !!led_data->cdev.brightness);
+> > 
+> > One line.
+> 
+> result in 84 columns.
 
+Great!  16 left to go!
 
-On Fri, 18 Jul 2025 15:13:21 +0200
-Heiko Stuebner <heiko@sntech.de> wrote:
+[...]
 
-> Hi Erik,
->=20
-> Am Freitag, 18. Juli 2025, 13:50:58 Mitteleurop=C3=A4ische Sommerzeit
-> schrieb Erik Beck:
-> > Hello,
-> >=20
-> > Below please find a patch to three files to provide initial support
-> > for the LinkStar H68K-1432v1 board with Rockchip rk3568 SOC.=20
-> >=20
-> > This has been tested on the hardware and works well in support of
-> > router features. Namely, it supports:
-> >=20
-> > * Two 1 Gbs Ethernet ports
-> > * Two 2.5 Gbs Ethernet ports
-> > * Two USB 3.0 Type A sockets
-> > * One USB 3.0 Type C socket
-> > * One USB 2.0 Type A socket
-> > * WiFi
-> > * LED
-> > * Debug console
-> >=20
-> > I look forward to receiving and responding to questions, comments,
-> > concerns, and critiques.
-> >=20
-> > Thank you for your reviews.
-> >=20
-> > Regards,
-> >=20
-> > Erik =20
->=20
-> The above test reads more like a cover-letter instead of a commit
-> message. Please take look at how other board additions are worded.
->=20
-> > Signed-off-by: Erik Beck <xunil@tahomasoft.com>
-> > Tested-by: Erik Beck <xunil@tahomasoft.com>
-> >=20
-> >  .../devicetree/bindings/arm/rockchip.yaml          |   5 +
-> >  arch/arm64/boot/dts/rockchip/Makefile              |   1 +
-> >  .../dts/rockchip/rk3568-linkstar-h68k-1432v1.dts   | 777 =20
->=20
-> please split this into two commits, one adding the yaml binding and
-> one adding the board devicetree.
->=20
-> Also please check scripts/get_maintainer.pl to see who to Cc
-> explicitly (like the devicetree maintainers)
->=20
->=20
-> >  +++++++++++++++++++++ 3 files changed, 783 insertions(+)
-> >=20
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > b/Documentation/devicetree/bindings/arm/rockchip.yaml index
-> > 28db6bd6aa5b..e48b168cfffe 100644 --- =20
->=20
-> please try to use "git send-email" to send patches, because it looks
-> like your mail program mangled the patch by adding line breaks
-> (more of them below). So the patch most likely won't apply.
->=20
->=20
-> > diff --git
-> > a/arch/arm64/boot/dts/rockchip/rk3568-linkstar-h68k-1432v1.dts
-> > b/arch/arm64/boot/dts/rockchip/rk3568-linkstar-h68k-1432v1.dts new
-> > file mode 100644 index 000000000000..f8f80c7616cd --- /dev/null +++
-> > b/arch/arm64/boot/dts/rockchip/rk3568-linkstar-h68k-1432v1.dts @@
-> > -0,0 +1,777 @@ +// SPDX-License-Identifier: (GPL-2.0+ OR MIT) +//
-> > Copyright (c) 2022 AmadeusGhost <amadeus@jmu.edu.cn> +//
-> > +// Copyright (c) 2025 TahomaSoft xunil@tahomasoft.com
-> > +//
-> > +// Support for Seeed LinkStar H68K-1432v1
-> > +// Also likely supports LinkStar H68K-1432v2
-> > +// NB: Hinlink H68K is same or very similar under different trade
-> > name =20
->=20
-> please use preferred comment style - see other kernel devicetrees.
->=20
-> > +
-> > +/dts-v1/;
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/leds/common.h>
-> > +#include <dt-bindings/input/input.h>
-> > +#include <dt-bindings/pinctrl/rockchip.h>
-> > +#include <dt-bindings/soc/rockchip,vop2.h>
-> > +#include "rk3568.dtsi"
-> > +
-> > +
-> > +/ {
-> > +        model =3D "Seeed LinkStar H68K-1432V1 (RK3568) DDR4 Board";
-> > +        compatible =3D "seeed,rk3568-linkstar-h68k-1432v1",
-> > "rockchip,rk3568"; +
-> > +        aliases {
-> > +                ethernet0 =3D &gmac0;
-> > +                ethernet1 =3D &gmac1;
-> > +
-> > +                /* fixed eMMC */
-> > +                mmc0 =3D &sdhci;  /* sdhci:=3D @fe310000 */ /*
-> > mmcblk0... */ =20
->=20
-> no need for the comments before and after the alias, same below
->=20
-> > +
-> > +                /* removable uSD/TF Card */
-> > +                mmc1 =3D &sdmmc0; /* sdmmc0:=3D @fe2b0000 */ /*
-> > mmcblk1... */ +
-> > +                rtc0 =3D &rk809;
-> > +
-> > +               led-boot =3D &led_one; /* status LED, green */
-> > +               led-failsafe =3D &led_three; /* heartbeat LED */
-> > +               led-running =3D &led_one; /* status LED, green */
-> > +               led-upgrade =3D &led_two; /* function LED, amber */ =20
->=20
-> I don't think those are specified? What is supposed to use those?
->=20
-> > + =20
->=20
-> unneeded empty line
->=20
-> > +        };
-> > + =20
->=20
-> [...]
->=20
-> > +        gpio-keys {
-> > +                compatible =3D "gpio-keys";
-> > +                pinctrl-0 =3D <&reset_button_pin>;
-> > +                pinctrl-names =3D "default";
-> > +
-> > +        /* Middle inset/recessed button,
-> > +                  marked by clockwise arrow/circle */
-> > +
-> > +                button-reset { /* gpiochip=3D0, line=3D0 */ =20
->=20
-> again unneeded comment ... that content is contained in the gpios
-> property already
->=20
-> > +                        label =3D "button:system:reset";
-> > +                        gpios =3D <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
-> > +                        linux,code =3D <KEY_RESTART>;
-> > +                        debounce-interval =3D <50>;
-> > +                };
-> > +
-> > +        };
-> > +
-> > + /* gpio chip 0, line 24 responds to console key press */
-> > +
-> > +        gpio-leds {
-> > +                compatible =3D "gpio-leds";
-> > +                pinctrl-names =3D "default";
-> > +                pinctrl-0 =3D <&led_white_pin>, <&led_green_pin>,
-> > +                         <&led_amber_pin>, <&led_blue_pin>;
-> > +
-> > +                /* White LED inset in power button */ =20
->=20
-> that commment is helpful, so could stay
->=20
-> > +
-> > +                led_zero: led_white   { /* gpiochip=3D0, line=3D14 */ =
-=20
->=20
-> preferred naming would probably be
->   led_white: led-0 {}
->=20
-> similar for the other ones
->=20
-> > +                        color =3D <LED_COLOR_ID_WHITE>;
-> > +                        default-state =3D "on";
-> > +                        function =3D LED_FUNCTION_POWER;
-> > +                        gpios =3D <&gpio0 RK_PB6 GPIO_ACTIVE_HIGH>;
-> > +                        label =3D "power_button_led:white_led";
-> > +                        linux,default-trigger =3D "default-on";
-> > +
-> > +                };
-> > +
-> > +        vcc12v_dcin: vcc12v-dcin { =20
->=20
-> vcc12v_dcin: regulator-vcc12v-dcin {}
->=20
-> same for the others
->=20
-> > +                compatible =3D "regulator-fixed";
-> > +                regulator-always-on;
-> > +                regulator-boot-on;
-> > +                regulator-min-microvolt =3D <12000000>;
-> > +                regulator-max-microvolt =3D <12000000>;
-> > +                regulator-name =3D "vcc12v_dcin";
-> > +        };
-> > + =20
->=20
-> > +&gmac0 {
-> > +        assigned-clocks =3D <&cru SCLK_GMAC0_RX_TX>, <&cru
-> > SCLK_GMAC0>;
-> > +        assigned-clock-parents =3D <&cru SCLK_GMAC0_RGMII_SPEED>;
-> > +        assigned-clock-rates =3D <0>, <125000000>;
-> > +        clock_in_out =3D "output";
-> > +        phy-mode =3D "rgmii-id";
-> > +        pinctrl-names =3D "default";
-> > +        pinctrl-0 =3D <&gmac0_miim
-> > +                     &gmac0_tx_bus2
-> > +                     &gmac0_rx_bus2
-> > +                     &gmac0_rgmii_clk
-> > +                     &gmac0_rgmii_bus>;
-> > +        snps,reset-gpio =3D <&gpio2 RK_PD3 GPIO_ACTIVE_LOW>;
-> > +        snps,reset-active-low;
-> > +        snps,reset-delays-us =3D <0 20000 100000>;
-> > +        tx_delay =3D <0x3c>;
-> > +        rx_delay =3D <0x2f>; =20
->=20
-> please see other recent mails about those
-> The rgmii-id above should not need those delays?
->=20
-> > +        phy-handle =3D <&rgmii_phy0>;
-> > +        status =3D "okay";
-> > +};
-> > +
-> > + /* combphy0/multi-phy0 supports one of: usb3.0 otg, sata0 */ =20
->=20
-> drop the comments
->=20
-> > +&combphy0 {
-> > +        status =3D "okay";
-> > +
-> > +};
-> > +
-> > + /* combphy1/multi-phy1 supports one of:
-> > +                         - usb3.0 host
-> > +                         - sata1
-> > +                         - qsgmii/sgmii
-> > + */
-> > +
-> > +&combphy1 {
-> > +        status =3D "okay";
-> > +};
-> > +
-> > + /* combphy2/multi-phy2 supports one of:
-> > +                         - pcie2.1
-> > +                         - sata2
-> > +                         - qsgmii/sgmii
-> > + */
-> > +
-> > +&combphy2 {
-> > +        status =3D "okay";
-> > +};
-> > + =20
->=20
-> I did stop here for now.
->=20
-> Heiko
->=20
->=20
->=20
-
+-- 
+Lee Jones [李琼斯]
 
