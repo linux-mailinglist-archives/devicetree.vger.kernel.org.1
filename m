@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-197528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A976AB09C29
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:14:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3618B09C30
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:16:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6A741893DD9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 07:14:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21AF2165DFB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 07:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE64218585;
-	Fri, 18 Jul 2025 07:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CEA91DEFD2;
+	Fri, 18 Jul 2025 07:16:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oVP99uSg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="APPixPty"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E291E8322;
-	Fri, 18 Jul 2025 07:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E38E811CAF;
+	Fri, 18 Jul 2025 07:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752822843; cv=none; b=XykLrqkgDQxE6eHUse0mQg2uNU98CZEdinE07ZJ3zpnUqX3l+twjFUjQhi0+mg2tcv9C2X5mSfuPI2iZ1lXPZPv4UzeM/CRW6vRQ4pjL8QnYAeQaaa/qFfX5LeH8PaoO9ZRUTKARqN5BLg+jb6I4Eto7PG3hYjprpjNkDvBD/qQ=
+	t=1752822988; cv=none; b=bLoQ1llMKVjtT0qacBfXShKHCwcLq6qqRp4xb28p4pXNaJ/Ig9q/FK825ROhKpiBmTlZ99DaYn2Ohkv4yTmF8e1I2d5BJEsewZHZLIbG1d+AifDRMPDe3umh9eztFd9phQUjo/wDCicjMrplmgqc/xfdzIYuVfX35sIcbs+EuE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752822843; c=relaxed/simple;
-	bh=6wnS2xtxbpcAFUB1BnrJaz1aAjdAqzNZyXAbUulIYnU=;
+	s=arc-20240116; t=1752822988; c=relaxed/simple;
+	bh=Lge0NYoif5nduRoA5W6c1yvWLXuJuaMaklUH0UN7kVI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h5+OyXi8jl9rKi/nb7cntQFqP5xBH32zEGZZ6mrbpls2QEOg/jzPXLSZqYlyH3KIrmqVyTtZ76p34/0VozbYuyj1/jUwoeVAe2k516ppXgWocvMDQTijlbxyV5SNyPgJbei6EW+kNvIp896dkM98YujQm09Fgyul82Nokx91SQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oVP99uSg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48874C4CEED;
-	Fri, 18 Jul 2025 07:14:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BZOw4lDHvw35L6q+QNIL5Yn3XoVvWgd5GsACo510axHEiqTtZihoiKQqkXfI76NaiM5PQ0fexRtw5IWOX47NuGvD1X/uCKSlmZnw9qariYWGBJNvHFV+aOGiiK/VZYbVmZidwJUsgC+fQcxU2ftNKJ4G6Ldt07Nq5FZKOBIzYNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=APPixPty; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D60F4C4CEED;
+	Fri, 18 Jul 2025 07:16:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752822842;
-	bh=6wnS2xtxbpcAFUB1BnrJaz1aAjdAqzNZyXAbUulIYnU=;
+	s=k20201202; t=1752822987;
+	bh=Lge0NYoif5nduRoA5W6c1yvWLXuJuaMaklUH0UN7kVI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oVP99uSgcEX3099jFyPoXovhI+iXC/4894QOq8GLAMo+8ebJE8XBwBedRXTWsAVxv
-	 Am+ULddeOWzprPWACkqZhMt8wTHF7woLG05KwrO3HplkKO+5Ecjvl73cm/8WR5qGyh
-	 AjCP5KKDgn6SXcFjY95xtpDaObC5JjKzRGewdpdb+11XE1bV/JSh93YYgPOxa64DY5
-	 1I6d88v7lpNz1dUgM3VqJUBMticCE+k5fUtnBslcCm4gf7wY3uhVe/I+jBniKkbbOd
-	 9MwThN779mxxK6FZsZMx+EEiZGTMy/Jt6Hvku7db46Sohp1ZQnZN37vkA02kZ4pWr/
-	 /MquzMECERMag==
-Date: Fri, 18 Jul 2025 09:14:00 +0200
+	b=APPixPty1AKa3jggu5DmHwWzFjk4Aw8XCzbc7r+Zt91ghlSphQWWgMxTb4lJKsIjp
+	 tPyJzSP1hQtgW3c7/W0IIiRA8DFUvt6jWXWBK2vTvrVBV0zHwJ/dvQW0yxvljhdkl0
+	 k4b1tBlU9Dhx01woCdMZupkJaU95cPlfowpMUUX1+xRgFLvndkGYiJ6a0BAdqxoNFS
+	 NfF55YbX4bDNFm5dRnRJgdwNdlSUuj34BlPiGWs+sANtYna/YKGKl/vPXNySvpNWmL
+	 gY9OOPAHFryUStT7E9yKZIwgI7nD9WxHb5O1J8o+JBhf40ljmtv1kIq46J06rV6C8n
+	 GYJttDb3syDpQ==
+Date: Fri, 18 Jul 2025 09:16:24 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v4 1/7] dt-bindings: net: airoha: npu: Add
- memory regions used for wlan offload
-Message-ID: <20250718-sceptical-blue-bird-7e96e3@kuoka>
-References: <20250717-airoha-en7581-wlan-offlaod-v4-0-6db178391ed2@kernel.org>
- <20250717-airoha-en7581-wlan-offlaod-v4-1-6db178391ed2@kernel.org>
+To: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+	Lucca Fachinetti <luccafachinetti@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: leds: is31fl32xx: convert the
+ binding to yaml
+Message-ID: <20250718-dangerous-smart-guppy-b8aa74@kuoka>
+References: <20250717-leds-is31fl3236a-v4-0-72ef946bfbc8@thegoodpenguin.co.uk>
+ <20250717-leds-is31fl3236a-v4-1-72ef946bfbc8@thegoodpenguin.co.uk>
+ <175277045533.3779995.9523277801474945480.robh@kernel.org>
+ <CAA6zWZLyUt9X4+dAgYBVGqdNchasJorWhNH1O1Ti=UBO-J6q9g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,26 +63,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250717-airoha-en7581-wlan-offlaod-v4-1-6db178391ed2@kernel.org>
+In-Reply-To: <CAA6zWZLyUt9X4+dAgYBVGqdNchasJorWhNH1O1Ti=UBO-J6q9g@mail.gmail.com>
 
-On Thu, Jul 17, 2025 at 08:57:42AM +0200, Lorenzo Bianconi wrote:
-> Document memory regions used by Airoha EN7581 NPU for wlan traffic
-> offloading. The brand new added memory regions do not introduce any
-> backward compatibility issues since they will be used just to offload
-> traffic to/from the MT76 wireless NIC and the MT76 probing will not fail
-> if these memory regions are not provide, it will just disable offloading
-> via the NPU module.
+On Fri, Jul 18, 2025 at 07:50:51AM +0100, Pawel Zalewski wrote:
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date
+> 
+> Hmm interesting, I did run it, have yamlint installed and see no
+> errors. Will upgrade dtschema and try again.
 
-That's not what I see entirely. I see the same problem I told you already.
-of_reserved_mem_region_to_resource_byname returns error ->
-airoha_npu_wlan_init_memory returns error -> your other patchset prints
-big fat warning in mt7996_pci_probe().
-
-So all correct DTS now gets a warning. Warning is a state of failure,
-even if probe proceeds.
-
-I don't understand why you can't make it fully optional, so also fully
-backwards compatible.
+Are you sure you tested patch #1 only?
 
 Best regards,
 Krzysztof
