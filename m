@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-197586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB79B09E3D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 10:44:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8609AB09E3F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 10:44:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E47DA16F13E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 08:44:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18D8B1C200C3
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 08:45:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90AB295513;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED43295517;
 	Fri, 18 Jul 2025 08:44:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b="WmeL5ltz"
+	dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b="UFf9n5XH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DDE62951C8
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 08:44:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08153293C45
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 08:44:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752828270; cv=none; b=Ymfc7gsKXQVRAxe2xomJ+eN/U7inZiWq+1cYUGV0Bh8BUhXI3ZVgdI5H+opZu5VEq5AB05KQaY/zsoE37GdUIOEL3UsC/bkx4oQj1Ud+2fXVDJ4V2XN3kZjwO0AcNloy3+yLJfifXlfeVcP+/JjRIw2s6J/Gnt0Z4j6ZLaqYR/Y=
+	t=1752828270; cv=none; b=pIibGLAeVBLvDfy507btLCZQpmZELDHNrIyv103jotb+hPUpWRj6KbKz/f9xYjRBIKlVYqgLp908IOtR15a2ni19mQUHZxOrq5SPs3PrA6mLM1ddNgZD7b8Wf7NEnosMV2Lw8SsrLP/c4ZcpWRzxAg/W/a62zNZwKnB70xCyqTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1752828270; c=relaxed/simple;
-	bh=KAk0DmLd1Szc+8RqLN4Q1eSR/knVV6oNPm+weoQTnSI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GNKo4lxzsNQtJrJ/ifLTlVXPlcg8iqiqDaDXxj2Ylo3fmFs9VqMM3Nuz/IqoNlnn5wU0YkdxvUxYBofb/cwok0arEHyigbB/VxeAuIMNEl8/PiLy25qk739kihtXs4g5UNcx9OUPy0OhcbBGiDn52JRb/JqIsdKmRKjgNU4eZ6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be; spf=fail smtp.mailfrom=hammernet.be; dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b=WmeL5ltz; arc=none smtp.client-ip=209.85.221.48
+	bh=Uoj/2NsPxaTTI2japwMQ43nh93mfeyzRyN0+brvXZjI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=YDsZgJH1ofnAjtpe3j50BFOxGMdcetmKWMSoA1vvoUVGz5rJuCGga9QSr8CerG/1Yb5j2ZKPFrlEZqYhGfpM9w17Td7LA2w5DchiVnmw9OJ6ferr679UIjEnQWksf/fKI1aC7eIjxnbbL7w9o1HNGtCCuYnK061hn8nL5D5j/XU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be; spf=fail smtp.mailfrom=hammernet.be; dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b=UFf9n5XH; arc=none smtp.client-ip=209.85.221.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=hammernet.be
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3a52874d593so1461507f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 01:44:27 -0700 (PDT)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3a4f379662cso1363994f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 01:44:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=hammernet-be.20230601.gappssmtp.com; s=20230601; t=1752828266; x=1753433066; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EQUcoTZuNnVFMQcqVlD/dsEaFXowm3+QSDfAXy+mm2Y=;
-        b=WmeL5ltzdinHjQf2EXI9JODM46w8e3K/9omwK4aP1W+7U9Kteu16IDKy5RbLhRuzSZ
-         hu6/4929MCrKHpVQm63+DRCUM8wZvl7sRAsRiyVbf6TT1N/rBnVPFXwXRHQmWV4W8bK2
-         0RZmhIWMURlQff0pycSmyOb6UWPmxvxnPWHieeDNRRn6dfqDxFrblrB9Tvz6+gflP/Vw
-         ej5qnbSef5NtFUkkEr0TtYa3gzdEh7Goei2kQX4gFxRyyhWXhKai9skgK/pHE/RAEjlh
-         XVOk7Y++f1+DcFKrGAFsnCGN10g1NOXmXoz0nX1+UfTR59t3u2VbQ9FTZc/xeSi3mcam
-         xulA==
+        d=hammernet-be.20230601.gappssmtp.com; s=20230601; t=1752828267; x=1753433067; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jIjJ267yEtDnmiN+Y1fTBADY4HhOVJqHNJYRhatCK9Q=;
+        b=UFf9n5XH8neSI0tY48Ff6SvIsl76S1yy9e1XB26c8f4cL+pGv80VKgWqjq1kMTGU2i
+         J53XnZN5+rXGnyg0qNHtoe/aVDHdiv5BeWhkfS8cPLfm0BAVrvGKMfs/ppNXLP26ucBp
+         w/gdJNSIrQXD0bEZtDWymDATPjmJ0a/GPtXCIkzBGq1nfk+SqU9gnEwjEPZoyacpfMCK
+         rA+jSETsU2aN2wWL/UT0QeMx1we/lIarqk7fd9QeirHyAG3W2GueZOJaD+L/H2bLQOej
+         3pwamZt9g97j8xBTj5WOPM9iXVv4EY4UtrYhdzBCR6WTTE7HyatpmzJd+XkOUVx30Te8
+         8ruA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752828266; x=1753433066;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EQUcoTZuNnVFMQcqVlD/dsEaFXowm3+QSDfAXy+mm2Y=;
-        b=jtRtFyFSW5o3f7YeYWGnagC/8Y9tz4OC2IgYFZdVgOdHwIKZXIiDQSBahAjYRH/wm6
-         iJKAAcmvGCCSITFnqj3M6ACaoCtsoR4oXmtaZEx8gi08Fb7PeJyPwcmB4vn4fnPIlMjD
-         rm+sUDQvH3nxMQ8lcUpxO+k+XPYXj6GOrhWtBYkovh83m2ptaCbuLkrDOrCSJ01Kvyaf
-         r0hfRl755kygpEfbcL/bLiLMEV7XNWHmjlBwoUEvjbvmbnuMac9CEFDx6C8uWIKbtbZT
-         ZTCWuNzQqK4Le8SoN1ZSTyQpUhBac0FPcWr6SHeYTy/S3JAsPrVJPNMg/wL4tTHIFzjL
-         bUTA==
-X-Forwarded-Encrypted: i=1; AJvYcCXorpI0ec2Nti4YCJCIZigkApmFtF5QDLS0Fr5T1jzJZc76Ak+okbOdUJ2L5tP5aFA5B6krYCfA2c8U@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGvJ6CNPe58Ov5R6HaUZkt1cCeT2G+2/7U6gQXOKHqJijsrszM
-	KG0HPJxURusMFHyOBLe+dY+WHQuETrqiL+gL0EW9VFjxwm6CU7wccw907ZyKysAtg0M=
-X-Gm-Gg: ASbGncssfZ2gCZD2CpyCzOjLBsG0dqE8wiImMraodTTps16y9CgWj4q8oCa6yGRv58x
-	0YT7lIKjmharHCAMB6CeNQ3Cmop050VGzZt+2HcwAhKAhGbrw+XLLfgF5CBQDINpEAsleORNXPG
-	gyZRooCcNjJvmRAtF9ekem2LFr7rjlZioSdgJsWPVkwKVIj+bCglp3KapG4bTtEfGaRn7v4zU5v
-	RRZadds8IYsP7E9eSe1C7HRt6Ivx+JDPAoyftr3S/4YhG+MiJfibWVnPoEQbc1ZOE1eitReicVu
-	HQ/1fQDRJFod2iZg5EaazQCxz+gCQhEWg/cCehd+6zgewAhe8Cihho6gDdV7ODLkYue9vtfO4Vh
-	qLtenuvEjRvrIHHvtEL2vN2oYwcRf0g4JhriVetDScmYWQo6q
-X-Google-Smtp-Source: AGHT+IF1DTxp68FxooAN2QX2xUqfuF3c4Mb9kU6Zx0w2YlTbaB6gQlG+uHFwhWQB3m0w5QaqnggY7g==
-X-Received: by 2002:a5d:584c:0:b0:3a4:ef33:e60 with SMTP id ffacd0b85a97d-3b60e51844bmr7888727f8f.40.1752828266224;
-        Fri, 18 Jul 2025 01:44:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1752828267; x=1753433067;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jIjJ267yEtDnmiN+Y1fTBADY4HhOVJqHNJYRhatCK9Q=;
+        b=Dk+GHOhSXtnQhETI3/7iI5DT/VjOmeqw86Hwf6JJZVrOr0n8P323E+KWTl7OS/uhXU
+         YpM2hTaWujq0qvfZ95ROUvxzjGqukqZOBw8Q4TUgcVZU1Vzt+/zwCgK342n4mK22fQnj
+         UrYrHBd+zW6v9R4jREPbh50ynWDL9s20AQIuI+Eef2Mzta88d7wekU3+qAorahE9BYT6
+         YELw1Htm7w82Z4gARXBsQv9pxL1R+MrQhu0O3Dxf25Tgb9xA1uSwNMp6bdtlQ/Fzm+Jx
+         hm6Q3WbnmRnAKqP4SSd1MlHrPNIekA5QDaxJZFzTTrHbu2pnp63Jd59AUFYsixzIGNj0
+         VIUw==
+X-Forwarded-Encrypted: i=1; AJvYcCWAfa1WpcLSVID+feFEbm8/nk1+5IfPcPV77fAqyVUhrPxSDz8Xv7G0P7Z1SQ/R0szZaQ7sg7FdYyAQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIWIOgrG6F7ELUlkKIU/HSs+PQDCVeys7gq0OGlNZ7rLrjRCKN
+	MueYTo1mbaw72jfNX9JgWnJnzOOon95dzOJ4eCG9caP+m2Y1CN5bK4uWYfQ7e8/7IeE=
+X-Gm-Gg: ASbGncv2OWQ8PPCDYNlSswLVsxvMroDiYgwExdt7Y7yxF2Od/3VoXxkvI4Ee49VpMco
+	5FLyZUEEKrFOH1PZ7C/bWZOxdOU3NQLE5kMgZRkE0JjgNkY00Sf3jDpRlWvySbhVAWEGFPgSXfq
+	+zu59fdhEUtuNCyH21nJJoq5W3xR+OKm82N4ys/XbUPvAA/spr4uf3D3XuqSLvZCCzl7WTd2ijA
+	kWrE3EtQ9oFrZy3saYIthRRhE1Qg8pMyyAKxtymtZju9jKaKf1Ri/IeBrLLW/q9WOcKAM/Ysshv
+	QcOeybk5vscNY9ujCoH9594Nk2JGu1uTNYsnExKODvd2L/V8DDSoynhOe0msKux8yfKvAYmlw8Z
+	V/gyO++kPFf8yJDI8slb5ic9SEnmEbkylCIJcoorM6DYaOCTM
+X-Google-Smtp-Source: AGHT+IHMJeUs8RlmFkrQ9WTk0wqJZT629erQHVUIzMmI6akez7WS0GHbIEYfQ+fiZr6Q6Fy6PniGIg==
+X-Received: by 2002:a05:6000:2385:b0:3a4:dd8e:e16d with SMTP id ffacd0b85a97d-3b60e4c2194mr8115453f8f.15.1752828267262;
+        Fri, 18 Jul 2025 01:44:27 -0700 (PDT)
 Received: from pop-os.telenet.be ([2a02:1807:2a00:3400:9aa9:dd5c:bad6:e31])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45627962384sm58208115e9.2.2025.07.18.01.44.25
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45627962384sm58208115e9.2.2025.07.18.01.44.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jul 2025 01:44:25 -0700 (PDT)
+        Fri, 18 Jul 2025 01:44:26 -0700 (PDT)
 From: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
 To: dlan@gentoo.org,
 	robh@kernel.org,
@@ -87,10 +89,12 @@ Cc: skhan@linuxfoundation.org,
 	spacemit@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-Subject: [PATCH v2 0/2] riscv: dts: spacemit: Add initial support for OrangePi RV2
-Date: Fri, 18 Jul 2025 10:43:37 +0200
-Message-ID: <20250718084339.471449-1-hendrik.hamerlinck@hammernet.be>
+Subject: [PATCH v2 1/2] dt-bindings: riscv: spacemit: Add OrangePi RV2 board
+Date: Fri, 18 Jul 2025 10:43:38 +0200
+Message-ID: <20250718084339.471449-2-hendrik.hamerlinck@hammernet.be>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250718084339.471449-1-hendrik.hamerlinck@hammernet.be>
+References: <20250718084339.471449-1-hendrik.hamerlinck@hammernet.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,51 +103,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This patchset adds initial device tree support for the OrangePi RV2 board.
-
-The OrangePi RV2 [1] is marketed as using the Ky X1 SoC.
-However, after research and testing, it is in fact identical to the 
-SpacemiT K1 [2]. This is supported by the following:
-
-- Similar integration in the Banana Pi kernel tree [3], which uses the 
-  OrangePi RV2 and identifies it as the SpacemiT K1.
-- Comparison of the device tree code showing a match to the OrangePi RV2 
-  Linux tree [4].
-- Locally tested the OrangePi RV2 with the SpacemiT K1 device tree, 
-  confirming it boots and operates correctly.
-
-Patch #1 documents the compatible string for the OrangePi RV2, and 
-patch #2 adds its minimal device tree. This enables booting to a serial
-console with UART output and blinking a LED, similar to other K1-based 
-boards such as the Banana Pi BPI-F3 or the Milk-V Jupiter.
+Document the compatible string for the OrangePi RV2 board [1], which
+is marketed as using the Ky X1 SoC but is in fact identical to
+the SpacemiT K1 SoC [2].
 
 Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-RV2.html [1]
 Link: https://www.spacemit.com/en/key-stone-k1 [2]
-Link: https://github.com/BPI-SINOVOIP/pi-linux/blob/linux-6.6.63-k1/arch/riscv/boot/dts/spacemit/k1-x_orangepi-rv2.dts [3]
-Link: https://github.com/orangepi-xunlong/linux-orangepi/tree/orange-pi-6.6-ky [4]
+Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+---
+v2: No changes.
+---
+ Documentation/devicetree/bindings/riscv/spacemit.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes in v2:
-Patch 1: no changes.
-Patch 2:
-- Added aliases section to the device tree.
-- Removed the memory section, as it is populated by the bootloader.
-- Updated copyright header.
-
-Here is version 1 of this series:
-  https://lore.kernel.org/spacemit/20250711183245.256683-1-hendrik.hamerlinck@hammernet.be/
-This series is intended for the v6.18 merge window.
-I'll follow up after the v6.17-rc1 is released as suggested.
-
-Hendrik Hamerlinck (2):
-  dt-bindings: riscv: spacemit: Add OrangePi RV2 board
-  riscv: dts: spacemit: Add OrangePi RV2 board device tree
-
- .../devicetree/bindings/riscv/spacemit.yaml   |  1 +
- arch/riscv/boot/dts/spacemit/Makefile         |  1 +
- .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 40 +++++++++++++++++++
- 3 files changed, 42 insertions(+)
- create mode 100644 arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-
+diff --git a/Documentation/devicetree/bindings/riscv/spacemit.yaml b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+index 077b94f10dca..c56b62a6299a 100644
+--- a/Documentation/devicetree/bindings/riscv/spacemit.yaml
++++ b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+@@ -22,6 +22,7 @@ properties:
+           - enum:
+               - bananapi,bpi-f3
+               - milkv,jupiter
++              - xunlong,orangepi-rv2
+           - const: spacemit,k1
+ 
+ additionalProperties: true
 -- 
 2.43.0
 
