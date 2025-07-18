@@ -1,185 +1,198 @@
-Return-Path: <devicetree+bounces-197616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3488CB09F84
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:26:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47287B09F88
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:26:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DB633A4224
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:25:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A66C33A58A0
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB796291882;
-	Fri, 18 Jul 2025 09:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B11C298989;
+	Fri, 18 Jul 2025 09:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CVwtCmkb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Yryr+SyN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DC3D29824E;
-	Fri, 18 Jul 2025 09:26:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87935298261
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 09:26:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752830782; cv=none; b=FKG2mMO0Zp3meWVigMbcNEo1p9cVniNbq5bQc/3m4MrJiB1rGiJwVfnQrKD/u0fX3yi6vBxMN45wb0F0GBhkA041lgCyaAS0OUVA8kelri7KKSS3Js6QwkQXrKL6VF0Qw7O2A2lcv7eqyN/E+Tr6JgGt1RLqejlxPumlpnR5SGs=
+	t=1752830793; cv=none; b=UvSu+IQrdMZHZU6CQ534aYAa3nTlAuaKta2MjM028yPO2ZXqxdckLf4ZqpFl7orzLJ1df4/rM8s4V8H6wyoqCvqzg+PpIdUC3wUzYP/mlPTceuPNqCSLk7LoPpcJmVqKte5F8xTPIu41J3yzxeiOpn3TxZlLW2pI0i+hKhsW6N4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752830782; c=relaxed/simple;
-	bh=fuvT3v3Xzq0r7FVfwU3PziQOx7mb046oNzfhheqrsHU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gBZ/m2TcbJRD2T0BR0VZrfV1POWaE8oWCI5/r/0U6lIiPc4I0ZzEEHrh/jwff/tA2ECuagJ+W01myE5iKGNZPEu3k3NkTlP8huXliwqMu/jHe9/9baexkQlA9TiYFEVvNqjJxYRqSXbjnh8iu8oosaGwfXwAO4gZlHdzbuLOLsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CVwtCmkb; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a6e2d85705so916340f8f.0;
-        Fri, 18 Jul 2025 02:26:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752830778; x=1753435578; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YgExZNhP/TQ7TZbqz2PLAB+ZQROoSd4CHB0RnRy8pHo=;
-        b=CVwtCmkb27Rfm1uab7y37Y5gZalhcnUNOcvUZgMUAuKc5EZA2xchunlF7lz3rVMGAJ
-         oVrkshVTYwxthIy3UkOPQxKYP2WTko02xjeHgNMUAL374zWaoDn/t9jU6D/oC/TGaMn+
-         YhMzvGKFoxotX7Bzl6dAJCV2MaG+44PdrHz2iGwOgLsGk8hDO9bHhR6pUx1H/+noiXyf
-         Y5UNyL2AgvWKaMhKHVuTDVqtP+yWZN/kL416FPngMx9Zm9c2pRbHtCBi4Paq23yinITX
-         sziKMm6O/hZe/8Nu96RTil0CazoU37X7wqnyXRecWso4hnjWd0OermEsESTLTYYmLAdO
-         jHxA==
+	s=arc-20240116; t=1752830793; c=relaxed/simple;
+	bh=smS1OUgSzyUIU0rtJExIYiq4cV0O0jPRf2zTTzbUCgM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gAXJR9E78yq/bvzvMbpNZdjmr1txiqjERJsfvm1rMciKkIbBbyN6dZf997GdaNWt3tM6Uzi2AyZ5HT/uQZEkfzTD8iRCLmTVoe5ljGdAMgT62xFpON9QuH4DclwRJ4eQatcTO53rt4FOyMpKAEMfpmAWjVdDCIqD5CJkoOZuR90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Yryr+SyN; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I7ZGlG016545
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 09:26:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	COoiyLtsPRDlOGmj2f0fDl3bkCfHbow0lzqZhkT/2HI=; b=Yryr+SyNF7Y/9D6S
+	6gMKQsrrWdxVdG9IfnBC90Cuhc4tplEXzE2U5NoRa0Q0bKVYrwTFjJsemNOwpOxv
+	pepm0F9PyOfLeyd0ROf5CQtFNKgbiLQ9i3R5DmkW4buhAVgaa/jK/SYVtSImjvUi
+	cavRR87EQ5uM8Ib1y/uZrTsWbHyF5ZJiqDoaIi4ABya6ABVNF8FNCXoTqhQDSkpY
+	3/3S+7nLe004t5+MsDz1y5ES+5cLJ700NOjTPKJhTeM78YJl9xFNt3i7oCEjMT8i
+	zvKrlmzfod5L+8ieBSd+XP4GGWf215q2MhtcFdmwgABlji77IcT80Uw85A1dtRlb
+	05akZg==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47w5dywwdw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 09:26:25 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7e348600cadso245512785a.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 02:26:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752830778; x=1753435578;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YgExZNhP/TQ7TZbqz2PLAB+ZQROoSd4CHB0RnRy8pHo=;
-        b=iof8/WBIDhN0kVjDrtbkQ1GdbjGAdkkHEPDMoCruM0wiOvwnGPofOa+hOg+6/By5Ab
-         UZyWrZGfIDwZYEpTw7B/PnG0vDoze6UL6MgwSSn4ANsE7vhZVdnyua1IStErouzv1BbJ
-         /f/fHEoV7eIPNNmeHmUclPAapKQN2yePW17ujof6GedgPrkU92J3rpaLK3aOcPaXNpvm
-         kGbH5qUyVD4ofrBALlChdWX+zFrHxlorjW3uIrpSwE00WKG5j/EXrQXeClugmaMK7PA8
-         bBTda+1MaQcBW7tu4kPdsMZuzGAfsHecrS/WDXWYYxQLZvO5puOCFP08elE9EqZUbJT3
-         rAFw==
-X-Forwarded-Encrypted: i=1; AJvYcCUNWgm7eBPjGXSk+smHyEMAW5yRq28h2IZTirSsUqLxzLHgRD9ZINwrAlEkuS8Y5OOyD03M4p6WV8pH@vger.kernel.org, AJvYcCWDcx48WH/TakvvqrEx3VSIdRyDlcB+Ms2YZkG3a0LCi8Z+yGc2zr1RU4iVtwFH9A1qulEKZThCnZOZ@vger.kernel.org, AJvYcCWzyFdx/VYXstZIC88RDIhCGmtSuRR5zO3iX+krxGXW8T9mWa7JUtIuHtrjGcq2QaMZcPCaSb7ccmo0IWJl@vger.kernel.org, AJvYcCXAXa/JBqU6O7cCBXQk53/tDfmJIo0HPz37lFcfdHlJ+QXl3fjs0M/DTvpWTdVm3sCnIWoY01ppZokIIlU=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1f2tYm6CvTerCDfNwfkAx/AWB+jj98yCihLvyvtkfrUibyud7
-	SOlpWhebrrbRimv3INp/7iJWmwgxK0z7/mu76+YVm0apa/yz3MImrYqhxszi/WJQpgX6gBxKkT7
-	Pha+TshizRAXbKBhVzYJPa73b8BFtOilbmw==
-X-Gm-Gg: ASbGncuYkg0v/sMNCegzt75xGclqlS/REmniFZqMVDq7JMrhM2wd9kACCpQGeRvo+t3
-	RKOz+8OjCT1EmKoqSerzRY446QjLumEaZMLyIMxPAAUdRFPrqnzYecQptTgWTAudfj9yRF61ELy
-	f7fDXWJtSl0LilXWHpfSahRCtVF0RptEAZyk8hyfn0ZeMscCe7zZluMgXPFA6ue4eXZu9koIUPp
-	li/EvXWiTQ4k2I9EJg=
-X-Google-Smtp-Source: AGHT+IE0CZJqfMmd1YFPzJ7hCnSvHejeMeUg8VdqfZngXzMLICt2zU9gwaqmpvwTh2mK2YmmXBgGxVRTXD7xj0ov0CE=
-X-Received: by 2002:a05:6000:4305:b0:3a4:d0dc:184d with SMTP id
- ffacd0b85a97d-3b60dd95c4dmr8894808f8f.27.1752830778095; Fri, 18 Jul 2025
- 02:26:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1752830784; x=1753435584;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=COoiyLtsPRDlOGmj2f0fDl3bkCfHbow0lzqZhkT/2HI=;
+        b=F0QXgHo7sGnF+tu+4PI+FDp13P/3S10AcwTSar2z5vYACfh9xOqzlYgenBrrQCtne5
+         gKge/DBHt63HZ0DwHwbOnSYVsWPiOehhE398MKvxyyolM/uOM+6qLyOGlWUfR+nQt0J5
+         8/4hKAZwbuDdVnnnbfTV8sKybuFt77H7iNZK8QsETosN1fIRi6NyO8vSjQgy7V0BLajK
+         dmMincUoevvJyNpCMxx/C0cYuMsvQKNENbNnDJeuyaZXGNHglUvcSmRV8ZFDnvYw1hlx
+         WbLg+VMRDeKuLLg29zU1hUatfLWQWnr3f7sNpigZoDFX/j5VStW0oQADYVfS53TEUNBY
+         v6aw==
+X-Forwarded-Encrypted: i=1; AJvYcCUdSPIQJS1V8tR94hPt9CxydgxyBG4UlPxUZbpSXKIHb/dfTKDJLvtJiWpTQHqzVWcFaqIy48wv18Nb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3XuuXFL+EFyiLAUVI7xSgM/nDsIhRMVdTZczeJBaoikpAU3mn
+	QvxsomeP1M3d5E3JhRgeGXM+r6Gj8XArFVavaQWMH5b72nBMjYsi3qaqhClFbL/TpA5DO4aecdd
+	C4yUpd4r0CdjZ8eVX6VBd2TD2NxjV4RoXid3Kx1SEgDQbReXPsYbtvWeBGHWgYTbp
+X-Gm-Gg: ASbGncvOKti6IeF7BUh3iDLLsswEAi/9NrkQs+1+ybyphPytnLOXaQglb1eXxB0jQzZ
+	+nLR1Uk71e1koFmwi6td8luRDKUAb+Mtwu/4yRdztAmoQ3hA9QgkhcIqmeFxc12tNo4doVJ3mKY
+	qCehUnRVd0tBtxgMMx7/66+P1P8eZ/qREqglTBf3DCc8LZKep13pqLNpgghq9Pphf+X1gMZh84X
+	RtBZ6SbAzPkyGV9q4KuZAgbFdP3N/s361qNLjr09OSscP7Tkm0j8FHtWSVMRzCSqS4wDy3a2KC4
+	XhmZMLD5iThib8gv+sIeWnkZrhszsxJ5eJADSTVabxqTOJj3nkhijtWSntIlTRD34DbVLyeyglN
+	f9biI6g+0nasz1gbnXRSYfqapg2LU8MMpwh4f99BAhHMl7h7B8KyS
+X-Received: by 2002:a05:620a:6904:b0:7e3:430c:5e0e with SMTP id af79cd13be357-7e3430c62femr877497485a.18.1752830784282;
+        Fri, 18 Jul 2025 02:26:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF0ULvdLv8+JBhbfjsjnyFteMc4V0YqUWrlV8q9vEs/1OYuftM9PI5a+ZhXXON7UyumHdQcLQ==
+X-Received: by 2002:a05:620a:6904:b0:7e3:430c:5e0e with SMTP id af79cd13be357-7e3430c62femr877495585a.18.1752830783799;
+        Fri, 18 Jul 2025 02:26:23 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55a31a9bb43sm186031e87.32.2025.07.18.02.26.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Jul 2025 02:26:22 -0700 (PDT)
+Date: Fri, 18 Jul 2025 12:26:20 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Yijie Yang <yijie.yang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: Add HAMOA-IOT-SOM platform
+Message-ID: <rsybfhs6bb46putaytvp4tikauvhynhsam6aufxaflo6vkvzwh@qrh7sm3g7i73>
+References: <20250716-hamoa_initial-v1-0-f6f5d0f9a163@oss.qualcomm.com>
+ <20250716-hamoa_initial-v1-3-f6f5d0f9a163@oss.qualcomm.com>
+ <b4nxjsx4fu4xmookpxukumw36wlcpzelh6axjucqe4lyswptm4@kczsldalq53n>
+ <822af9fe-5db0-4620-8f08-9232c608d443@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250717142139.57621-1-clamor95@gmail.com> <4191623.PYKUYFuaPT@senjougahara>
- <CAPVz0n3W1yhrOsiYmYecxtPeYdZiK2_UY7vVc2tiYbYwfWPp7g@mail.gmail.com> <26197475.6Emhk5qWAg@senjougahara>
-In-Reply-To: <26197475.6Emhk5qWAg@senjougahara>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Fri, 18 Jul 2025 12:26:06 +0300
-X-Gm-Features: Ac12FXyATAxMwj6Lv9_7Hfs3i1vL0RU41Y-t1rhajaPZ2VFDLW-nCMuPkMpGoxs
-Message-ID: <CAPVz0n1f=bAHqZiF3yMGS2T5Bg6C=CbJbLCGQMGfiAqK1YVzFg@mail.gmail.com>
-Subject: Re: [PATCH v1 5/5] ARM: tegra: add MIPI calibration binding for Tegra20/Tegra30
-To: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Dmitry Osipenko <digetx@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <822af9fe-5db0-4620-8f08-9232c608d443@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: zyNfyEBBbcGyPy9Whf1Es46_xw2MsJIy
+X-Authority-Analysis: v=2.4 cv=RtXFLDmK c=1 sm=1 tr=0 ts=687a1341 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=H507J6Sm5dMqOWlkyu0A:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDA3NCBTYWx0ZWRfX6mzZB7zK+hCs
+ 9Ee8whkbiMMOQs5ON1Vp9fgXwF/uo6NxAVzmY/DENh11CSjP8nyh6X/yDvv3AngMXX//3xI8Ihq
+ oTHWj2IjZH4PPxnCMAuB9KC/9iL8wBmD77JVIuTwFNaoUmYoSOWrBCOBUOJE+3e74rCsrKompbf
+ LH7LtuY45VPCJcnyUUZctngZZ65/rEyIJKkMHwrT9awm11/cPqe3eRU8chD5K1IPSLCbz2cN9UN
+ PRUj7ns/RQu8Om4IcOs5q/MZDAbSSoz+juVvV5gsKNCFXxJWaeKIxAz+dkY45VSHULjF8PMGkbC
+ dVnP+FZYW9328iGyv2XBl/dBasJWZ/bZ0ch35MzuBsmc7/9SN/jHLmZ7AS58+aBEQgIu/iNKPeC
+ 2Utc8Xv6KMiSxnAk3vyROagDlWjPXXkIVxRNWgYOmXLIfu3n4pzu8b1/VSVNt9ZAPm+Is3De
+X-Proofpoint-GUID: zyNfyEBBbcGyPy9Whf1Es46_xw2MsJIy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-18_02,2025-07-17_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 mlxscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 clxscore=1015 mlxlogscore=999
+ priorityscore=1501 phishscore=0 spamscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507180074
 
-=D0=BF=D1=82, 18 =D0=BB=D0=B8=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 12:22 Mikk=
-o Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Friday, July 18, 2025 6:15=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > =D0=BF=D1=82, 18 =D0=BB=D0=B8=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 12:01 =
-Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> > > On Thursday, July 17, 2025 11:21=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > > > Add MIPI calibration device node for Tegra20 and Tegra30.
-> > > >
-> > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > ---
-> > > >
-> > > >  arch/arm/boot/dts/nvidia/tegra20.dtsi | 14 ++++++++++++++
-> > > >  arch/arm/boot/dts/nvidia/tegra30.dtsi | 18 ++++++++++++++++++
-> > > >  2 files changed, 32 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm/boot/dts/nvidia/tegra20.dtsi
-> > > > b/arch/arm/boot/dts/nvidia/tegra20.dtsi index 92d422f83ea4..5212610=
-45cc8
-> > > > 100644
-> > > > --- a/arch/arm/boot/dts/nvidia/tegra20.dtsi
-> > > > +++ b/arch/arm/boot/dts/nvidia/tegra20.dtsi
-> > > > @@ -74,6 +74,16 @@ vi@54080000 {
-> > > >
-> > > >                       status =3D "disabled";
-> > > >
-> > > >               };
-> > > >
-> > > > +             /* DSI MIPI calibration logic is a part of VI/CSI */
-> > > > +             mipi: mipi@54080220 {
-> > > > +                     compatible =3D "nvidia,tegra20-mipi";
-> > > > +                     reg =3D <0x54080220 0x100>;
-> > > > +                     clocks =3D <&tegra_car TEGRA20_CLK_VI>,
-> > > > +                              <&tegra_car TEGRA20_CLK_CSI>;
-> > > > +                     clock-names =3D "vi", "csi";
-> > > > +                     #nvidia,mipi-calibrate-cells =3D <1>;
-> > > > +             };
-> > > > +
-> > >
-> > > As you say in the comment, MIPI calibration on Tegra20/30 is part of
-> > > VI/CSI. We can't add a "mipi" device here since such a device doesn't
-> > > exist in the hardware hierarchy. We already have the VI device in the
-> > > device tree, so we need to use that.
-> >
-> > I understand your point, but embedding MIPI calibration logic into
-> > VI/CSI driver will bring up another lever of unnecessary complexity
-> > and excessive coding. While approach I have proposed preserves
-> > separation between CSI and DSI and reuses already existing MIPI
-> > calibration framework.
->
-> We can consider different driver architectures to simplify things, but th=
-e
-> device tree has to conform to hardware. The host1x bus has no 'mipi' devi=
-ce on
-> it so we can't put one in the device tree.
->
+On Fri, Jul 18, 2025 at 02:33:50PM +0800, Yijie Yang wrote:
+> 
+> 
+> On 2025-07-18 02:52, Dmitry Baryshkov wrote:
+> > On Wed, Jul 16, 2025 at 05:08:41PM +0800, Yijie Yang wrote:
+> > > The HAMOA-IOT-SOM is a compact computing module that integrates a System
+> > > on Chip (SoC) — specifically the x1e80100 — along with essential
+> > > components optimized for IoT applications. It is designed to be mounted on
+> > > carrier boards, enabling the development of complete embedded systems.
+> > > 
+> > > This change enables and overlays the following components:
+> > > - Regulators on the SOM
+> > > - Reserved memory regions
+> > > - PCIe6a and its PHY
+> > > - PCIe4 and its PHY
+> > > - USB0 through USB6 and their PHYs
+> > > - ADSP, CDSP
+> > > - WLAN, Bluetooth (M.2 interface)
+> > > 
+> > > Written with contributions from Yingying Tang (added PCIe4 and its PHY to
+> > > enable WLAN).
+> > > 
+> > > Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> > > ---
+> > >   arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi | 607 ++++++++++++++++++++++++++++
+> > >   1 file changed, 607 insertions(+)
+> > > 
+> > 
+> > > +&remoteproc_adsp {
+> > > +	firmware-name = "qcom/hamoa-iot/adsp.mbn",
+> > > +			"qcom/hamoa-iot/adsp_dtb.mbn";
+> > 
+> > Is there a significant difference qcom/x1e80100/adsp.mbn ? If not, can
+> > we use that firmware?
+> 
+> I believe there are differences in firmware between it and the EVK, even if
+> they’re minor. Therefore, it's better to maintain a dedicated folder for
+> each board and move the code to the carrier board.
 
-I assume then placing mipi node as CSI or VI child would resolve your conce=
-rn?
+Then it's not a 'hamoa-iot'. It should be 'qcom/hamoa/iot-board-name'.
+Please submit the firmware to linux-firmware and also move existing
+x1e80100 firmware to the 'hamoa' subdir, maintaining the compatibility
+x1e80100 -> hamoa symlink.
 
-> >
-> > > A driver for tegra20-vi already exists in
-> > > staging/drivers/media/tegra-video. We should aim not to break it. Per=
-haps
-> > > bring it out of staging? (At least partially, but then why not the wh=
-ole
-> > > thing.)
-> >
-> > It does not break VI/CSI, I have a WIP CSI implementation for
-> > Tegra20/Tegra30 which I hope to submit soon.
->
-> We have to use the tegra20-vi node as that matches hardware, and each nod=
-e can
-> only be probed to one device, hence the issue.
->
-> Great to see a CSI driver!
->
-> Mikko
->
-> >
-> > > Thanks,
-> > > Mikko
->
->
->
->
+> 
+> > 
+> > > +
+> > > +	status = "okay";
+> > > +};
+> > > +
+> > > +&remoteproc_cdsp {
+> > > +	firmware-name = "qcom/hamoa-iot/cdsp.mbn",
+> > > +			"qcom/hamoa-iot/cdsp_dtb.mbn";
+> > > +
+> > > +	status = "okay";
+> > > +};
+> > > +
+> > 
+> 
+> -- 
+> Best Regards,
+> Yijie
+> 
+
+-- 
+With best wishes
+Dmitry
 
