@@ -1,191 +1,127 @@
-Return-Path: <devicetree+bounces-197537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9849B09CD2
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E499B09CE6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:44:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08E6316987D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 07:41:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FD8717138F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 07:44:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFFB523E344;
-	Fri, 18 Jul 2025 07:41:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24B292690E7;
+	Fri, 18 Jul 2025 07:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QTy2Kqxm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YdXLjNuR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF1661A8F97;
-	Fri, 18 Jul 2025 07:41:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC41F23C50B;
+	Fri, 18 Jul 2025 07:44:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752824513; cv=none; b=mAHm2QcANWWhxx/hPDVQ8ITfwsS//Du78odCNNxO6yi5xaA7cybgkvo/JulfUbehHEQiS+5v/wsupkQNBhBL2ccGIE+bXUhJONMIfvRgZlHsVM4eCBCY658/ElevdoCyIlGNsHxbe3AFn18PQQPyjVPzwTF8iKzs6VyJUcgf8wE=
+	t=1752824669; cv=none; b=bHP/fXCxAxGt47xRBkO0gcm7oXcN/oY60TRSeKV7h6lctqePBdUWlYuA7rH37RhLoVpnVR6FsN0y+QI/69Y9ikgJdYoIwsaocsewoN/3Z30G4IGJNpse9Kl7Zvx8dogmRetYxYRekXF5t3K2bRAZvKE5xaaouOAOAc9D6cV81Xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752824513; c=relaxed/simple;
-	bh=J5kKqTKlg4ioIqTAnV2dtolGEeERqKQr/KzPEPbUKz8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UcJGE+H5fJ4tsFyMhaFg/DBF8raW/C6nPGIZny9Ka0VYF/usrsSe9DpjnTj+rJ9NYahCz8sp/AZheL5b49yeKCh87CHGAZWI8xmXazcl7OVBo6alglOJu8LQc3CkwSWx2Et3WFhsEAp74sKMezXB+d95Nm0LFqNgtEa6FsjcL4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QTy2Kqxm; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I7cjHo009576;
-	Fri, 18 Jul 2025 07:41:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FFAOMChFqrKhKYfUFTQm9VW1DmXhkt4PhiDLnZ9VC2M=; b=QTy2Kqxm09sxhe30
-	oq1riXFH+6JvVlsJoFElb+y9/z/QhwqNLKFRBtJjZzmaQWg5tHu//P6+gSglvwBD
-	d/XYDK+zzityzeIoJg8CoPQlhhQrnr/V7pQxxL37da/FUkMQFzhtLsQYT2Iszk6w
-	63YSdnPxT750gWzVEBmmXh8MxwS5tf63HQUUgC3gtwbRYIQ6YEQHiBwlIimpNie/
-	yVuIzzxlgG9DxKQuBn9APVvv1aQGT/hejB78Q/68Jiiw7o8NGcd0h22o7BFBxzAz
-	skWtQLq2Ro78XdLHsk2GBJHmgDSSd8EENrM/w+sbaDuivQsNO+kg1m6yC56GY0yc
-	7LYZIg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufxbam37-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Jul 2025 07:41:34 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56I7fXVK013574
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Jul 2025 07:41:33 GMT
-Received: from [10.253.76.178] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 18 Jul
- 2025 00:41:27 -0700
-Message-ID: <13ca4d6e-d5db-4fd5-af14-9ccda55ddba2@quicinc.com>
-Date: Fri, 18 Jul 2025 15:41:24 +0800
+	s=arc-20240116; t=1752824669; c=relaxed/simple;
+	bh=WDBDIUqsCnzltvgUWzAq0CeGp4GzUUJd8bx41+z9Kcg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E1zYBrPUMAmc7j1hY6gYC/gNR4YOVNeyD9QzGDoknbApT+nbHwaDoDReLjAi6nWx9xm8LO/95HYGu/c3WQXB1Bk9S4M8t2SNXB3pHyvqlPdhsYkrmAdnhOPWWovyxocJTS84OU8cTy5OpeLnPvfXn/priJqx4H8aZ1Sx6CdQu5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YdXLjNuR; arc=none smtp.client-ip=209.85.166.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3e292dcc066so10783055ab.1;
+        Fri, 18 Jul 2025 00:44:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1752824667; x=1753429467; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tmlpmnVcGL0avS3PpdVEZ5nI3yJOcG/fmYBWhlTK0Do=;
+        b=YdXLjNuRl+cTjksW/2mCUCPgLSgxSNZgP5wqgdDakwTluuqbh2rcSKIFTTSgX3gm8q
+         qfTEt8/ixHEN5MsW8rH1gtm+tyIsEYILT2j/Rgwqyu6AZBajoGU11LxjLuaSQfquIxaB
+         Zwhkw+PmtZkU73B4MfwNziTm3uzbZfS3jIBgsH35sEIHSKjtreDgm5eNa3gB1tLgAWj1
+         UJ+SpJvXoZqfvyZ3PQvQSSmwerjZs2LKX08u2/rhssRSkEWtd+xFeyWow8SvsWpNQzMz
+         Kx/k/GfuFuLSe1e1Y7Pkbbpey3xoNzDNaPeWpjR+fh1Hd3ar4YIZXGyerZH331r8ur7B
+         Mygw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752824667; x=1753429467;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tmlpmnVcGL0avS3PpdVEZ5nI3yJOcG/fmYBWhlTK0Do=;
+        b=sbO7hYaLvS5qLi8mmjDZqxo7KWoyQikqAQFDuL8TsHlFTaJdWCPugmEfMcf3g4LbCe
+         6Y0pRP2mMP5yNQsRyfkE/nKW4SkgJq/RBLlG/ZqQGXTwflTV9yTb4wIuhGhJrEfkfvli
+         7SdQ07gIcOJUiRCg+DcU9w/wEF8jDLep9cxUdJQ5601KBL+tmzxSmYfe/w11TidnQBsD
+         ippuqnI53FcFcXpvXh0KTWhfFyMJt4VUhok8V/Gp3ScmjsqYyCe5ncqG1503+/uahaTE
+         KmOmyipSbh9GEDSl2gDxAdnSIvebCvXqwPcqNCrR+WozzH9GVc4DYbVnQA2rI0R99uyE
+         HH5w==
+X-Forwarded-Encrypted: i=1; AJvYcCV/KG5Yk/UNuGXsTee8tab+2w2tdUhTOao2RUmvR47gyxClex3hIY1AmFQeupJR0UqIZNRtc5RQy6w4@vger.kernel.org, AJvYcCWZWs4/9oAQtySwihc4L54OoTPEyXaNbP8F4RYtgT2Cq5Lvy2VK/sXnvcPkb8nVnnbRS+eYD5fwfWYOVjRL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyf9+bfNNW2PJoQZGQhQRtblUjPEWb6X0lWq+vT+7NtA/SFAIvU
+	Gf65pEfQD46d620ix2jm9n2UfJVQkcUnp9Lt+xCfEGk2txdji+QSHNWcQCV9xErqbSEGl4xDcCN
+	XjzuXv6GOocX/zusEgpik6Em907dc/Uo2Hg==
+X-Gm-Gg: ASbGnct/5T67MXNuVEAHL5NOt+I0fnZdXvuxF6edw5FsV+J0AeuOKKfsYeFY2LP8AWc
+	ghMtheEBHgtD+FkXppbEFmz6cCrkm9Epra43x7bQDpp22dLak677hq0povRnzJ6YSs69Q2HeioW
+	e0vZUmElbUmoz101XtKbYg7Hsa+7gs+/G/0cn/r+JNpf9IiP5N0/8Jn37gNJ7Qhip/MhU9jazbH
+	uygPmE=
+X-Google-Smtp-Source: AGHT+IH/Caf1fGdiRCnZGzyv7uHAPCmM1WdkO9Z9jQd0Axtk4U1Tyu/Cj/IpUNTfhnOI1VU+WUcrVTv2SPAHM7ZXCgM=
+X-Received: by 2002:a05:6e02:2188:b0:3de:14d4:a755 with SMTP id
+ e9e14a558f8ab-3e282ed01dfmr112246985ab.21.1752824666722; Fri, 18 Jul 2025
+ 00:44:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v5 10/14] net: ethernet: qualcomm: Initialize PPE
- RSS hash settings
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Andrew Lunn
-	<andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Eric
- Dumazet" <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lei Wei
-	<quic_leiwei@quicinc.com>,
-        Suruchi Agarwal <quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
-        "Gustavo A. R.
- Silva" <gustavoars@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>
-References: <20250626-qcom_ipq_ppe-v5-0-95bdc6b8f6ff@quicinc.com>
- <20250626-qcom_ipq_ppe-v5-10-95bdc6b8f6ff@quicinc.com>
- <793434f9-7cdc-409f-b855-380be7a2b0db@oss.qualcomm.com>
-Content-Language: en-US
-From: Luo Jie <quic_luoj@quicinc.com>
-In-Reply-To: <793434f9-7cdc-409f-b855-380be7a2b0db@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: d_Ee6WCGIkzRAaD8MJrO82z3Rn9nrrvQ
-X-Proofpoint-ORIG-GUID: d_Ee6WCGIkzRAaD8MJrO82z3Rn9nrrvQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDA1OSBTYWx0ZWRfXzWtpS0NkR21S
- bKygKN8oh1IUv8AVDh/vUd/98aZ1oaCRQpBNmnNHVo+bU0S20YIhwjsQfAGy8QYS8WmMWEhjMuh
- dOEjt7OBI0xihMiqz95prDVSpkl+qR5vNDTqFFu/S5iixN7P4Q7k/dPXBGiu4152Y64ZCT0kgy4
- IsNKfG6OInSNOWwIGk1E2H5zs0CecuE8LQnvsSa3h8/Bk1kynfcR/EYLONf5ZsGaParQWlh+ZgF
- 6bFwKiSXXkavGCM0iDeit/p5+CBfc4c5N8BvrbaMeMovs8UT0JHfNz0rA2J1BcLXaCde1PXtTbU
- OSeDdCdNTQ1CyL+HvZjr+IU6AVKhPnr1440unU7xxT0Ht2vq/MPuQF++CpGHHjclr3DfAWQgh4V
- kGt0b7fqYgCsDzRrgTV5rnNQrs8tJx5idRSJgbWUJj6ShIHBnq6AWK0QWpwM7pjEN0Jbfnie
-X-Authority-Analysis: v=2.4 cv=Xc2JzJ55 c=1 sm=1 tr=0 ts=6879faae cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8
- a=8GLID_3tYxgRnLsb8HMA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-18_01,2025-07-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 mlxscore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
- phishscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
- clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507180059
+References: <20250716061114.2405272-1-shengjiu.wang@nxp.com> <CAEnQRZC=qApo9C0zBDQoxpV56atLeXpoxZdyBuQ=o2y59YJEqA@mail.gmail.com>
+In-Reply-To: <CAEnQRZC=qApo9C0zBDQoxpV56atLeXpoxZdyBuQ=o2y59YJEqA@mail.gmail.com>
+From: Shengjiu Wang <shengjiu.wang@gmail.com>
+Date: Fri, 18 Jul 2025 15:44:14 +0800
+X-Gm-Features: Ac12FXyAcDWebSNzkWDN6xJ8YvjSpNbbipIAuGrOnyFeWn6RtnLG3gfVuS2c34w
+Message-ID: <CAA+D8ANSdiEqKwgyb8S18QcuZv58211nxn+cCnRcmovgtu8Yqw@mail.gmail.com>
+Subject: Re: [PATCH 0/3] arm64: dts: imx8m: support more sample rates
+To: Daniel Baluta <daniel.baluta@gmail.com>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, festevam@gmail.com, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Jul 16, 2025 at 3:53=E2=80=AFPM Daniel Baluta <daniel.baluta@gmail.=
+com> wrote:
+>
+> On Wed, Jul 16, 2025 at 9:11=E2=80=AFAM Shengjiu Wang <shengjiu.wang@nxp.=
+com> wrote:
+> >
+> > The wm8524 codec is connected to the SAI interface. There are two audio
+> > plls on i.MX8MQ, i.MX8MM, i.MX8MN, one pll can be the clock source of
+> > 44kHz series rates, another pll can be clock source of 48kHz series rat=
+es.
+> >
+> > Shengjiu Wang (3):
+> >   arm64: dts: imx8mm-evk: support more sample rates for wm8524 card
+> >   arm64: dts: imx8mq-evk: support more sample rates for wm8524 card
+> >   arm64: dts: imx8mn-evk: support more sample rates for wm8524 card
+>
+> Hi Shengjiu,
+>
+> I think it would be useful to specify which are the current supported rat=
+es
+> and which will be the ones supported after your patch  (in the commit mes=
+sages).
+>
+yes, will update the commit message to make it more clear.
 
+best regards
+Shengjiu Wang
 
-On 7/18/2025 4:48 AM, Konrad Dybcio wrote:
-> On 6/26/25 4:31 PM, Luo Jie wrote:
->> The PPE RSS hash is generated during PPE receive, based on the packet
->> content (3 tuples or 5 tuples) and as per the configured RSS seed. The
->> hash is then used to select the queue to transmit the packet to the
->> ARM CPU.
->>
->> This patch initializes the RSS hash settings that are used to generate
->> the hash for the packet during PPE packet receive.
->>
->> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->> ---
->>   drivers/net/ethernet/qualcomm/ppe/ppe_config.c | 194 ++++++++++++++++++++++++-
->>   drivers/net/ethernet/qualcomm/ppe/ppe_config.h |  39 +++++
->>   drivers/net/ethernet/qualcomm/ppe/ppe_regs.h   |  40 +++++
->>   3 files changed, 272 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/net/ethernet/qualcomm/ppe/ppe_config.c b/drivers/net/ethernet/qualcomm/ppe/ppe_config.c
->> index dd7a4949f049..3b290eda7633 100644
->> --- a/drivers/net/ethernet/qualcomm/ppe/ppe_config.c
->> +++ b/drivers/net/ethernet/qualcomm/ppe/ppe_config.c
->> @@ -1216,6 +1216,143 @@ int ppe_counter_enable_set(struct ppe_device *ppe_dev, int port)
->>   	return regmap_set_bits(ppe_dev->regmap, reg, PPE_PORT_EG_VLAN_TBL_TX_COUNTING_EN);
->>   }
->>   
->> +static int ppe_rss_hash_ipv4_config(struct ppe_device *ppe_dev, int index,
->> +				    struct ppe_rss_hash_cfg cfg)
->> +{
->> +	u32 reg, val;
->> +
->> +	switch (index) {
->> +	case 0:
->> +		val = FIELD_PREP(PPE_RSS_HASH_MIX_IPV4_VAL, cfg.hash_sip_mix[0]);
->> +		break;
->> +	case 1:
->> +		val = FIELD_PREP(PPE_RSS_HASH_MIX_IPV4_VAL, cfg.hash_dip_mix[0]);
->> +		break;
->> +	case 2:
->> +		val = FIELD_PREP(PPE_RSS_HASH_MIX_IPV4_VAL, cfg.hash_protocol_mix);
->> +		break;
->> +	case 3:
->> +		val = FIELD_PREP(PPE_RSS_HASH_MIX_IPV4_VAL, cfg.hash_dport_mix);
->> +		break;
->> +	case 4:
->> +		val = FIELD_PREP(PPE_RSS_HASH_MIX_IPV4_VAL, cfg.hash_sport_mix);
->> +		break;
->> +	default:
->> +		return -EINVAL;
->> +	}
->> +
->> +	reg = PPE_RSS_HASH_MIX_IPV4_ADDR + index * PPE_RSS_HASH_MIX_IPV4_INC;
->> +
->> +	return regmap_write(ppe_dev->regmap, reg, val);
-> 
-> FWIW you can assign the value in the switch statement and only FIELD_PREP
-> it in the regmap_write, since the bitfield is the same
-> 
-> Konrad
-
-Thank you for the suggestion, I'll update the code accordingly.
-
+> On NXP BSP you can run:
+>
+> ../../unit_tests/Audio/mxc_alsa_hw_params.out hw:X,Y p r
+>
+> to get the rates.
 
