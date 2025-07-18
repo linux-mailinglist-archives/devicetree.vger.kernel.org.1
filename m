@@ -1,63 +1,80 @@
-Return-Path: <devicetree+bounces-197748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E1AB0A7EE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 17:52:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FF86B0A7F3
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 17:53:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55FC17B2156
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:50:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC8AB169670
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 005CD2E5B0F;
-	Fri, 18 Jul 2025 15:52:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34822E5B11;
+	Fri, 18 Jul 2025 15:53:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hvjsz9KN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="quEXalad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com [209.85.221.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B0122E54DD;
-	Fri, 18 Jul 2025 15:51:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E942DECB2
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 15:53:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752853919; cv=none; b=HJSTGyaA7+GHmY0Vxwu0Yvcvl5LGNMMsWKTU193z/QaxAMEJAqcwamGCQnDpH77/hG2f3xzN5hAWX+dhEecYFt6/bs0bPqe5/YwWxAPA3A1CU2dj6YHOaaAA9iBgltU+6t+/t0v3nsfNFTC//6HSy8YXXKQa1swC5EnfoUqyIH0=
+	t=1752854003; cv=none; b=tiCYv50My4Dq/TMLvNHK6U/FQF4YU76drxXYHLlZIhg2WOaTiGgy1fedvQkdhiduwUmmlKZ7h6OpsLJ8MZ9Mq1obIkuah40VYRJ8NDWWStL976BxmQe5D1A6Jl8JrsHrLroThT7PC4no5KkLGPUnXaZkJ+zH/rZMdA5jfntdwQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752853919; c=relaxed/simple;
-	bh=ZmLI6Lb1LvfHG6SCEsSJziJG2r4OiqLyWXnZcvnsj28=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=W0OmovBniFlw7NmjORxyTaw9B+ATjT+xDtGQaPyUOp1FoB65MoFsHY10RLnSpqnw23evcqBD3VW/zvhJcySzIVXRtSrUnFxVD1NhLbZZdOqiwp4HeLt4a7JMPDYvBrfzyuLQbS1DlJ/gdDDv64yIWvN4SGdzefVfxiRlCr1P8lU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hvjsz9KN; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I82XQK008788;
-	Fri, 18 Jul 2025 15:51:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2MwpE18oEWe1TtY+7fRTUbZYuWq3/eUiaszGmutvhXc=; b=hvjsz9KNImQc69k6
-	B57Q7A/nEjvt48CWpwZOfm0hPQ6V41r5vWikejleKnXpg7quK0qRrugRZYX7t/VT
-	YipSPxQb8X3wzXbw1Z2RMLqqeIq1r0+7D6WvUVKcLmxrz1zH/qL7FwV7g+Wbb6lL
-	RyA+iYmOUet4bnUj2j86ChPl5sV7FRN1mvFoMHgmwuLSFFsmiVDQk7YfMWvx/QxM
-	3qdcM0dUOiOFMxHlhRgfrDQ75jpD/HUvA10d5oNPrhmpxtFb0u2cj3+qdNC8VVCv
-	1z/RLHC73W+V+TxpyKchtkyuAB7cL4Foe+76fhBCO++r/KNvgR4sGvkDEfpfixX+
-	Oh0m8w==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufxbc5tc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Jul 2025 15:51:44 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56IFphaO006119
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Jul 2025 15:51:43 GMT
-Received: from [10.253.76.178] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 18 Jul
- 2025 08:51:36 -0700
-Message-ID: <830f3989-d1ac-4b7c-8888-397452fe0abe@quicinc.com>
-Date: Fri, 18 Jul 2025 23:51:34 +0800
+	s=arc-20240116; t=1752854003; c=relaxed/simple;
+	bh=j2W+9vWZsygzydsPzqO/o9VE+ojXl/rNKKXIRCB7PdM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Qt9LWWa9ohmT6oQQBa2FMeWtOabXFdSuegzAcWLK0yL53cHrx4cd/AUdBtJpx1zQJjVRa+br3xDUMHpwqfU96kKkwRdRAexV/654fzsoRjf0rN1VjRdj3nSzfs28iXuCpDONoEdYh8HB+Rc/HE2P49zGF+Y46ByNqOX2Rl3uKYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=quEXalad; arc=none smtp.client-ip=209.85.221.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f68.google.com with SMTP id ffacd0b85a97d-3a6e8b1fa37so1575584f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 08:53:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1752854000; x=1753458800; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=83xEI2XLKwN+ObHpZw5yMzUhkwEXU5BkIjkQsIobU8g=;
+        b=quEXaladmKW2q5CV7phoOgsBo3VW6XelB0O7YB9YouJED79d+6VRoS7ia+rfw8P8+L
+         LXc9l76LgIYHq7U+6+SX4ZmFzITIq7ANMXJR8HSlXl1aAsrdbZoKTx5ZAb5pE7JuBGKD
+         tu2IGnIAS0yyIHLJSWqijU77SbSGG8KEt+u72yoT6h4jqX9rGne8QptIROZqqnfupZwv
+         WicYiE1CIy00jcvXrXJt4GjRnIYz9ncAbaOOtk273wsGvrhRXlGhfkziILgYA98+/9Gk
+         DUEVaSq8/1VuIOMvkK8oNI+EWBS472zKHLvF9BTerwHQ7L5wXg/LwbRQREN3qkw/87z4
+         gHEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752854000; x=1753458800;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=83xEI2XLKwN+ObHpZw5yMzUhkwEXU5BkIjkQsIobU8g=;
+        b=v7EJPbXhhBHkgn1rHa4ErckAbREXkzLB+Jjk0Q99r2if4Yus+izl2p0K0Lu1G7K6x2
+         7di7gXrJzZSlFDqPnULH4buCPelCgln1YGWty1ytvMKIz2KhH+pgKk+KxysDcjzlXyBs
+         HRAsdNC87dj1D0fZQYziIJYCXIBHQKZG/D4/jn4o3piEPiAgrQGX1MDcKglxjafvTnva
+         7lHQjrf4oYX1FLshx1RbT3WznRVG5eWBA+ui27puiZn9eYK3hn9cMuzi0jVZcpo/kSON
+         C2Od2BJsyQuIR32lpQN5b6V+FPOEAyORLJtcm5qHDzp4VjIf7dP50F7Ya+euJrUoVCF4
+         AUAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUvgBZMtJC35xi+LPcBkn9xTDoQeSs12fUEIJA8JRyg+vV2aDCbiEiAjcRxZtNvV5pQMUxpmux5JCE7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxywwdnVeziyDMLA5T9Mn4uyrNcz2TC83WxOM3tGlmNpjS6tGUf
+	Q2KGHxafWan8Z4YbE54YAlWS5rT7A/B2IE9H554D7MvwEzmiQY/cMBssfQUZ+UC2sGA=
+X-Gm-Gg: ASbGncvgHnWAo/FgeaAKQKDxYQydBg01HIQavUneoh80MxvbHhJcutk0xMRY3j/6WPt
+	+yIKwKNyj349zYng4U+NM0VMCxsCCOXkLXeu+9+TlUfx8heb1Jv2cVVb+3b9P4y6CqCJUj+/zSr
+	trllNZG+hwL0Bp21uBqtDpEEH8Dpu3PktQ3x+jyYqtYBzhq8hMXv57vfNJG0nbRujzIhaYSmg4i
+	NFEGq4glEu80e0tg9DcYmoWkq3iQgQH1gmb8qfNu4hI1jjnrRKkNRJKtK+mxonIlxXuLCDGNNrW
+	ulbALpCtA8QizTcrZ5qrL8x7jz+uEQi/cq2LhNyiBz2kw4dag9JC4HSUPhwB80jCVDN03mLh+MD
+	1zaPeV/yFJ+PE4t8wXksIlzfvyzkgT+xIA6SO5YIFAR5MADqy0VezZ4FYBk9oudI=
+X-Google-Smtp-Source: AGHT+IF0QxuN6b53Ajqhh8pPWoHEegj14l8lxBEfG99eop0NenvhhCX6GWM4sUaNBmu1FVWFfiXd9Q==
+X-Received: by 2002:a05:6000:310d:b0:3b6:c6b:e4e6 with SMTP id ffacd0b85a97d-3b60e4be9b2mr9606302f8f.11.1752853998584;
+        Fri, 18 Jul 2025 08:53:18 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b61ca25678sm2264632f8f.12.2025.07.18.08.53.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Jul 2025 08:53:18 -0700 (PDT)
+Message-ID: <fd107ad0-27b4-48f0-a441-03294e7b029e@linaro.org>
+Date: Fri, 18 Jul 2025 16:53:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,156 +82,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/10] dt-bindings: clock: ipq9574: Rename NSS CC
- source clocks to drop rate
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Herring
-	<robh@kernel.org>
-CC: Georgi Djakov <djakov@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>,
-        Anusha Rao <quic_anusha@quicinc.com>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Richard
- Cochran" <richardcochran@gmail.com>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <quic_leiwei@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_suruchia@quicinc.com>
-References: <20250710-qcom_ipq5424_nsscc-v3-0-f149dc461212@quicinc.com>
- <20250710-qcom_ipq5424_nsscc-v3-5-f149dc461212@quicinc.com>
- <20250710225412.GA25762-robh@kernel.org>
- <93082ccd-40d2-4a6b-a526-c118c1730a45@oss.qualcomm.com>
- <2f37c7e7-b07b-47c7-904b-5756c4cf5887@quicinc.com>
- <a383041e-7b70-4ffd-ae15-2412b2f83770@oss.qualcomm.com>
+Subject: Re: [PATCH v4 0/4] Add Dell Inspiron 7441 / Latitude 7455
+ (X1E-80-100)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To: Val Packett <val@packett.cool>
+Cc: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250716003139.18543-1-val@packett.cool>
+ <a2681844-a96a-465a-a48d-49e1ede526c6@linaro.org>
+ <316007b6-6e24-4095-be24-fbd4ae7d425c@linaro.org>
+ <2c5b3ddb-d171-4b30-9b64-def913ca5af2@linaro.org>
 Content-Language: en-US
-From: Luo Jie <quic_luoj@quicinc.com>
-In-Reply-To: <a383041e-7b70-4ffd-ae15-2412b2f83770@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: swRjQQ_PQW7tkbAY8VLMWgv-9_THV1oX
-X-Proofpoint-ORIG-GUID: swRjQQ_PQW7tkbAY8VLMWgv-9_THV1oX
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDEyMyBTYWx0ZWRfX0rs5m2C5d6kq
- iOCt6fzRXoqLcO+VZqKrhn2T/n1JPvh4kMObWVCir6flsG/WvmGHPln2rTlPSXVuOyF3ZNR/vLK
- 1ttQGcOS9Rqp3T1GHWxOvLKIuBDylXWTI4ncoRtx4LDI360HJfLrE4ojeSKSj87AREHUW0nsMzN
- a1omT0z7UCJSmgVJtCX+N0KF03kHaRsTIzh9F0XWokoN1Sjt66NUf1dVyjdg/jwhTgiqH7P1mKS
- cULx+yur6mxu0VcaqFU/RqQAnYnVGWxGWjCZ+flHvRE9pYmFex3mibflqi/bnou4zQ1bSdulCac
- r3qnCNZZckY4F1mLL32IuuVswoNuCwO2is3/Hccc1wlFtt5o0KDcuxV+qlSQn0Npxwi8fPO0Yvy
- prHagNyramkTOU7PfvfJjv33Eb9E77R2ZeuAImyTIGm0jJzEDoxhsq+rG+1BrBmP6FncA+5R
-X-Authority-Analysis: v=2.4 cv=Xc2JzJ55 c=1 sm=1 tr=0 ts=687a6d90 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8
- a=an1i8R5mwEVpawc4EucA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-18_03,2025-07-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 mlxscore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
- phishscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
- clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507180123
+In-Reply-To: <2c5b3ddb-d171-4b30-9b64-def913ca5af2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-
-On 7/18/2025 5:28 PM, Konrad Dybcio wrote:
-> On 7/18/25 11:12 AM, Luo Jie wrote:
->>
->>
->> On 7/11/2025 8:15 PM, Konrad Dybcio wrote:
->>> On 7/11/25 12:54 AM, Rob Herring wrote:
->>>> On Thu, Jul 10, 2025 at 08:28:13PM +0800, Luo Jie wrote:
->>>>> Drop the clock rate suffix from the NSS Clock Controller clock names for
->>>>> PPE and NSS clocks. A generic name allows for easier extension of support
->>>>> to additional SoCs that utilize same hardware design.
+On 18/07/2025 16:34, Bryan O'Donoghue wrote:
+> On 18/07/2025 16:33, Bryan O'Donoghue wrote:
+>> On 16/07/2025 11:53, Bryan O'Donoghue wrote:
+>>> On 16/07/2025 01:26, Val Packett wrote:
+>>>> Since v3[1]:
 >>>>
->>>> This is an ABI change. You must state that here and provide a reason the
->>>> change is okay (assuming it is). Otherwise, you are stuck with the name
->>>> even if not optimal.
+>>>> - Applied R-b tags
+>>>> - Skipping the eDP panel ID patch now since it's been applied
+>>>> - Fixed the last remaining '-names before -0' order issue
+>>>> - Changed usb_mp: keep the unused PHYs enabled in the DT
+>>>>    (to let them go to sleep), like how it is done for the XPS
+>>>>
+>>>> [1]: https://lore.kernel.org/all/20250706205723.9790-2- 
+>>>> val@packett.cool/
+>>>>
+>>>> Bryan O'Donoghue (2):
+>>>>    dt-bindings: arm: qcom: Add Dell Inspiron 14 Plus 7441
+>>>>    arm64: dts: qcom: Add support for Dell Inspiron 7441 / Latitude 7455
+>>>>
+>>>> Val Packett (2):
+>>>>    dt-bindings: arm: qcom: Add Dell Latitude 7455
+>>>>    firmware: qcom: scm: Allow QSEECOM on Dell Inspiron 7441 / Latitude
+>>>>      7455
+>>>>
+>>>>   .../devicetree/bindings/arm/qcom.yaml         |    2 +
+>>>>   arch/arm64/boot/dts/qcom/Makefile             |    4 +
+>>>>   arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi   | 1666 +++++++++++++ 
+>>>> ++++
+>>>>   .../x1e80100-dell-inspiron-14-plus-7441.dts   |   52 +
+>>>>   .../dts/qcom/x1e80100-dell-latitude-7455.dts  |   53 +
+>>>>   drivers/firmware/qcom/qcom_scm.c              |    2 +
+>>>>   6 files changed, 1779 insertions(+)
+>>>>   create mode 100644 arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
+>>>>   create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-dell- 
+>>>> inspiron-14-plus-7441.dts
+>>>>   create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-dell- 
+>>>> latitude-7455.dts
+>>>>
 >>>
->>> The reason here seems to be simplifying the YAML.. which is not a good
->>> reason really..
+>>> Just tested on the 14p this updated version seems to work just about 
+>>> fine - or no worse than previous.
 >>>
->>> I would instead suggest keeping the clocks list as-is for ipq9574 (this
->>> existing case), whereas improving it for any new additions
->>>
->>> Konrad
+>>> Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 >>
->> Thanks Rob and Konrad for the comments.
+>> Ah I was booting my old dts with the spelling mistake "inspir I on" 
+>> booting the insprion.dtb here is a no-boot for me.
 >>
->> "nss_1200" and "nss" refer to the same clock pin on different SoC.
->> As per Krzystof's previous comment on V2, including the frequency
->> as a suffix in the clock name is not required, since only the
->> frequencies vary across different IPQ SoCs, while the source clock
->> pins for 'PPE' and 'NSS' clocks are the same. Hence this ABI change
->> was deemed necessary.
+>> Please hold off on applying this, until its root-caused.
 >>
->> By removing the frequency suffix, the device tree bindings becomes
->> more flexible and easier to extend for supporting new hardware
->> variants in the future.
->>
->> Impact due to this ABI change: The NSS clock controller node is only
->> enabled for the IPQ9574 DTS. In this patch series, the corresponding
->> DTS changes for IPQ9574 are also included to align with this ABI
->> change.
+>> ---
+>> bod
 > 
-> The point of an ABI is to keep exposing the same interface without
-> any change requirements, i.e. if a customer ships the DT from
-> torvalds/master in firmware and is not willing to update it, they
-> can no longer update the kernel without a workaround.
-> 
->> Please let me know if further clarification or adjustments are needed.
-> 
-> What we're asking for is that you don't alter the name on the
-> existing platform, but use a no-suffix version for the ones you
-> introduce going forward
-> 
-> i.e. (pseudo-YAML)
-> 
-> if:
->    properties:
->      compatible:
->        - const: qcom,ipq9574-nsscc
-> then:
->    properties:
->      clock-names:
->        items:
->          - clockname_1200
-> else:
->    properties:
->      clock-names:
->        items:
->          - clockname # no suffix
-> 
-> Konrad
+> [sic] inspiron.dtb
 
-We had adopted this proposal in version 2 previously, but as noted in
-the discussion linked below, Krzysztof had suggested to avoid using the
-clock rate in the clock names when defining the constraints for them.
-However I do agree that we should keep the interface for IPQ9574
-unchanged and instead use a generic clock name to support the newer
-SoCs.
+Ah no it is OK to boot.
 
-https://lore.kernel.org/all/20250701-optimistic-esoteric-swallow-d93fc6@krzk-bin/
+For some reason my encrypted disk prompt is a blank screen with this dts 
+but other than that it appears to work the same.
 
-Request Krzysztof to provide his comments as well, on whether we can
-follow your suggested approach to avoid breaking ABI for IPQ9574.
+No reason to hold it up.
 
+---
+bod
 
