@@ -1,314 +1,108 @@
-Return-Path: <devicetree+bounces-197687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3EBBB0A4E2
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:13:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E70C9B0A4EA
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:16:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 320FB1C80BBF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 13:13:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3402F1693B4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 13:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E81412DC321;
-	Fri, 18 Jul 2025 13:13:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 149492DC321;
+	Fri, 18 Jul 2025 13:16:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="jV95u3dN"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="lqBr9JbL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail-4317.protonmail.ch (mail-4317.protonmail.ch [185.70.43.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72A6218EA8;
-	Fri, 18 Jul 2025 13:13:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0AA82E370B;
+	Fri, 18 Jul 2025 13:16:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752844413; cv=none; b=eZ0hhYG3JPBb9HJVA9qaZVCaghzj0Kh8SqYLLcZ/P+Z3VugepWmNn1RLGjhiomIpyTRO98S7uPsRo48uZPjG7pHdnud4XyDyAHbEkLnY8OG3XHR+NPrpCUELlTEksrEyd+zNW49HUvRP22djh+JKq8y8n4THI7s7FEqETOlvNjA=
+	t=1752844595; cv=none; b=Ll3QcaMTC1NM2P4h8EsldQAi30KyIiACiWVHj5BmFcdIiUzni+vdDF34kCTzFAi8+TAY4AXz0JfKf2rWoYEa/tu6F9ACVOxb2WU1KQ4Zbw4zpSESJmYN4Ee5lHytea/uFB5enhGfKZKpBLYmomJ2lReYnnMi+InZADR4Wb3hfkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752844413; c=relaxed/simple;
-	bh=k5Lvd6QsK9i9CQiyoBh4UKXppPI6pOqni0PK6x7BnYY=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VLd6gx8ZHJDyzIFQYr5+1VI7IA13sCF6pUFeBncwTnHXDDfS5zmLG1g1yWv0KRYwrGDjmiDWKz/jYA3ji42vLE4dfV9hYbmb4fnxXYt9Da9GPflmBDQ5GOGQBeduchUI4oV8eyLveYl5yB2CxHwY0hAJCUMz0Hg+Xg4JiZb7BhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=jV95u3dN; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:To:From:Reply-To:Cc;
-	bh=y0H/c0Ji+eywIdBM4fr0ycDaR0fc5KCfJryYKKmDwVo=; b=jV95u3dNl3PKnP2QHxBGu6zErr
-	F5zuKxGoYXPPBziJNCgTpDTuDRy4JPZJa7RlMlHUhun2mDiLUQ5lRL7qJpdU1t5Bhq5+TM4ruDmbb
-	8HcjiRJV28yrttM7Uqa92pfdISc9V0YKhz0NIH/kIAWU6C5d4vTMERBxhnFbaUW6OWHP/dIs1+jEO
-	A503BzZbmVDdY0TKgUIjaGncscelcuUIK7Yi6sCTM7SEkISqpdDbGB+vFOJujwqBdOnWKzYv6Dxcq
-	9jpBdcITtwpxuXdKkkeCk79VBa1NvNtH8Q8ZyDSRXK9L55YFMtysDEcnqVKKOLcdwkuWu8yAb4s/L
-	qGjVZrLQ==;
-Received: from cst-prg-35-241.cust.vodafone.cz ([46.135.35.241] helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1ucktu-00045r-BP; Fri, 18 Jul 2025 15:13:22 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- soc@lists.linux.dev, Erik Beck <xunil@tahomasoft.com>
-Subject:
- Re: [PATCH 1/1] arm: dts: rockchip: Add initial support for LinkStar
- H68K-1432v1 Board with RK3568 SoC
-Date: Fri, 18 Jul 2025 15:13:21 +0200
-Message-ID: <10784977.EvYhyI6sBW@phil>
-In-Reply-To: <20250718075058.243a5619.xunil@tahomasoft.com>
-References: <20250718075058.243a5619.xunil@tahomasoft.com>
+	s=arc-20240116; t=1752844595; c=relaxed/simple;
+	bh=aRnDQrCYUBk/LDKhnGyuWMtVBPgBQdZosKC63wybPCc=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=l4gI5eXAAPJm+dw+UmWMKGw5HRgrdPISrI+hU1knkJ5w8zIX+InmP8TFbkPzfSVfG3SGKr6wW133Y6ZSL+6TxUpsXmOvuBOLcC+mpmIgd7Fmj5sxo0L9Co3Sl4kH88pEAtQN62WwSzhENVvC7jXAf1GgXeErJ4ZCyFrZ9Espf7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=lqBr9JbL; arc=none smtp.client-ip=185.70.43.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
+	s=protonmail; t=1752844584; x=1753103784;
+	bh=w5mFdxT2E55cBl/6uXS9G8hfrL+IO2X+Cc4+swbUN2Q=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=lqBr9JbLrA3cUDVZDcRJPSh39bcoH7zgIMzkz8a4SdXkc0E+qtkBvKzQp3mmShmeO
+	 mSHJBcYCHZPv5S1bRioStQq16a/U9ov1c2wPakrJDU97nJc0ILifinIxWj6S+dt/CI
+	 4vJFEbeY7TWT4JGTaxfOEmJQ6kbDwJbGOvlJovcQpnfiSIN1nfhXRPdntRx6SNgkvb
+	 uBY15upqiIqIX5IWYBAlXMkpwT8Xp1v8m1iNBPv2La0JgkJEEFxZYiZjWhBkehCnbh
+	 Gc7Dl/C/qXfXucvhWitKrRRuSFikUhQo5F94V+tXBaTQq7jeGg4ypHb8LZyRFRTesh
+	 OmIe96G8Epcqw==
+Date: Fri, 18 Jul 2025 13:16:16 +0000
+To: samuel.kayode@savoirfairelinux.com
+From: Sean Nyekjaer <sean@geanix.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>, imx@lists.linux.dev, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>, Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>, Robin Gong <yibin.gong@nxp.com>, Enric Balletbo i Serra <eballetbo@gmail.com>, Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Subject: Re: [PATCH v9 4/6] input: pf1550: add onkey support
+Message-ID: <67ki6m7dg5sbh7wknrnlermv5l3pw5fyx4agjtljbv54e5pxyj@d3l5jbz7osiz>
+In-Reply-To: <20250716-pf1550-v9-4-502a647f04ef@savoirfairelinux.com>
+References: <20250716-pf1550-v9-0-502a647f04ef@savoirfairelinux.com> <20250716-pf1550-v9-4-502a647f04ef@savoirfairelinux.com>
+Feedback-ID: 134068486:user:proton
+X-Pm-Message-ID: b4707700d9b27a7fb9b454f27aadd55bfec2e4c5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
 
-Hi Erik,
-
-Am Freitag, 18. Juli 2025, 13:50:58 Mitteleurop=C3=A4ische Sommerzeit schri=
-eb Erik Beck:
-> Hello,
+On Wed, Jul 16, 2025 at 11:11:47AM +0100, Samuel Kayode via B4 Relay wrote:
+> From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
 >=20
-> Below please find a patch to three files to provide initial support for
-> the LinkStar H68K-1432v1 board with Rockchip rk3568 SOC.=20
+> Add support for the onkey of the pf1550 PMIC.
 >=20
-> This has been tested on the hardware and works well in support of
-> router features. Namely, it supports:
->=20
-> * Two 1 Gbs Ethernet ports
-> * Two 2.5 Gbs Ethernet ports
-> * Two USB 3.0 Type A sockets
-> * One USB 3.0 Type C socket
-> * One USB 2.0 Type A socket
-> * WiFi
-> * LED
-> * Debug console
->=20
-> I look forward to receiving and responding to questions, comments,
-> concerns, and critiques.
->=20
-> Thank you for your reviews.
->=20
-> Regards,
->=20
-> Erik
-
-The above test reads more like a cover-letter instead of a commit
-message. Please take look at how other board additions are worded.
-
-> Signed-off-by: Erik Beck <xunil@tahomasoft.com>
-> Tested-by: Erik Beck <xunil@tahomasoft.com>
->=20
->  .../devicetree/bindings/arm/rockchip.yaml          |   5 +
->  arch/arm64/boot/dts/rockchip/Makefile              |   1 +
->  .../dts/rockchip/rk3568-linkstar-h68k-1432v1.dts   | 777
-
-please split this into two commits, one adding the yaml binding and
-one adding the board devicetree.
-
-Also please check scripts/get_maintainer.pl to see who to Cc explicitly
-(like the devicetree maintainers)
-
-
->  +++++++++++++++++++++ 3 files changed, 783 insertions(+)
->=20
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> b/Documentation/devicetree/bindings/arm/rockchip.yaml index
-> 28db6bd6aa5b..e48b168cfffe 100644 ---
-
-please try to use "git send-email" to send patches, because it looks
-like your mail program mangled the patch by adding line breaks
-(more of them below). So the patch most likely won't apply.
-
-
-> diff --git
-> a/arch/arm64/boot/dts/rockchip/rk3568-linkstar-h68k-1432v1.dts
-> b/arch/arm64/boot/dts/rockchip/rk3568-linkstar-h68k-1432v1.dts new file
-> mode 100644 index 000000000000..f8f80c7616cd --- /dev/null +++
-> b/arch/arm64/boot/dts/rockchip/rk3568-linkstar-h68k-1432v1.dts @@ -0,0
-> +1,777 @@ +// SPDX-License-Identifier: (GPL-2.0+ OR MIT) +// Copyright
-> (c) 2022 AmadeusGhost <amadeus@jmu.edu.cn> +//
-> +// Copyright (c) 2025 TahomaSoft xunil@tahomasoft.com
-> +//
-> +// Support for Seeed LinkStar H68K-1432v1
-> +// Also likely supports LinkStar H68K-1432v2
-> +// NB: Hinlink H68K is same or very similar under different trade name
-
-please use preferred comment style - see other kernel devicetrees.
-
-> +
-> +/dts-v1/;
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +#include <dt-bindings/soc/rockchip,vop2.h>
-> +#include "rk3568.dtsi"
-> +
-> +
-> +/ {
-> +        model =3D "Seeed LinkStar H68K-1432V1 (RK3568) DDR4 Board";
-> +        compatible =3D "seeed,rk3568-linkstar-h68k-1432v1",
-> "rockchip,rk3568"; +
-> +        aliases {
-> +                ethernet0 =3D &gmac0;
-> +                ethernet1 =3D &gmac1;
-> +
-> +                /* fixed eMMC */
-> +                mmc0 =3D &sdhci;  /* sdhci:=3D @fe310000 */ /* mmcblk0...
-> */
-
-no need for the comments before and after the alias, same below
-
-> +
-> +                /* removable uSD/TF Card */
-> +                mmc1 =3D &sdmmc0; /* sdmmc0:=3D @fe2b0000 */ /* mmcblk1.=
-=2E.
-> */ +
-> +                rtc0 =3D &rk809;
-> +
-> +               led-boot =3D &led_one; /* status LED, green */
-> +               led-failsafe =3D &led_three; /* heartbeat LED */
-> +               led-running =3D &led_one; /* status LED, green */
-> +               led-upgrade =3D &led_two; /* function LED, amber */
-
-I don't think those are specified? What is supposed to use those?
-
-> +
-
-unneeded empty line
-
-> +        };
-> +
+> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+> ---
 
 [...]
 
-> +        gpio-keys {
-> +                compatible =3D "gpio-keys";
-> +                pinctrl-0 =3D <&reset_button_pin>;
-> +                pinctrl-names =3D "default";
 > +
-> +        /* Middle inset/recessed button,
-> +                  marked by clockwise arrow/circle */
+> +static int pf1550_onkey_probe(struct platform_device *pdev)
+> +{
+> +=09struct onkey_drv_data *onkey;
+> +=09struct input_dev *input;
+> +=09bool key_power =3D false;
+> +=09int i, irq, error;
 > +
-> +                button-reset { /* gpiochip=3D0, line=3D0 */
-
-again unneeded comment ... that content is contained in the gpios
-property already
-
-> +                        label =3D "button:system:reset";
-> +                        gpios =3D <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
-> +                        linux,code =3D <KEY_RESTART>;
-> +                        debounce-interval =3D <50>;
-> +                };
+> +=09onkey =3D devm_kzalloc(&pdev->dev, sizeof(*onkey), GFP_KERNEL);
+> +=09if (!onkey)
+> +=09=09return -ENOMEM;
 > +
-> +        };
+> +=09onkey->dev =3D &pdev->dev;
 > +
-> + /* gpio chip 0, line 24 responds to console key press */
+> +=09onkey->pf1550 =3D dev_get_drvdata(pdev->dev.parent);
+> +=09if (!onkey->pf1550->regmap)
+> +=09=09return dev_err_probe(&pdev->dev, -ENODEV,
+> +=09=09=09=09     "failed to get regmap\n");
 > +
-> +        gpio-leds {
-> +                compatible =3D "gpio-leds";
-> +                pinctrl-names =3D "default";
-> +                pinctrl-0 =3D <&led_white_pin>, <&led_green_pin>,
-> +                         <&led_amber_pin>, <&led_blue_pin>;
+> +=09onkey->wakeup =3D device_property_read_bool(pdev->dev.parent,
+> +=09=09=09=09=09=09  "wakeup-source");
 > +
-> +                /* White LED inset in power button */
+> +=09if (device_property_read_bool(pdev->dev.parent,
+> +=09=09=09=09      "nxp,disable-key-power")) {
+> +=09=09error =3D regmap_write(onkey->pf1550->regmap,
+> +=09=09=09=09     PF1550_PMIC_REG_PWRCTRL1, 0);
 
-that commment is helpful, so could stay
+I would use regmap_clear_bits() here.
 
-> +
-> +                led_zero: led_white   { /* gpiochip=3D0, line=3D14 */
-
-preferred naming would probably be
-  led_white: led-0 {}
-
-similar for the other ones
-
-> +                        color =3D <LED_COLOR_ID_WHITE>;
-> +                        default-state =3D "on";
-> +                        function =3D LED_FUNCTION_POWER;
-> +                        gpios =3D <&gpio0 RK_PB6 GPIO_ACTIVE_HIGH>;
-> +                        label =3D "power_button_led:white_led";
-> +                        linux,default-trigger =3D "default-on";
-> +
-> +                };
-> +
-> +        vcc12v_dcin: vcc12v-dcin {
-
-vcc12v_dcin: regulator-vcc12v-dcin {}
-
-same for the others
-
-> +                compatible =3D "regulator-fixed";
-> +                regulator-always-on;
-> +                regulator-boot-on;
-> +                regulator-min-microvolt =3D <12000000>;
-> +                regulator-max-microvolt =3D <12000000>;
-> +                regulator-name =3D "vcc12v_dcin";
-> +        };
-> +
-
-> +&gmac0 {
-> +        assigned-clocks =3D <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
-> +        assigned-clock-parents =3D <&cru SCLK_GMAC0_RGMII_SPEED>;
-> +        assigned-clock-rates =3D <0>, <125000000>;
-> +        clock_in_out =3D "output";
-> +        phy-mode =3D "rgmii-id";
-> +        pinctrl-names =3D "default";
-> +        pinctrl-0 =3D <&gmac0_miim
-> +                     &gmac0_tx_bus2
-> +                     &gmac0_rx_bus2
-> +                     &gmac0_rgmii_clk
-> +                     &gmac0_rgmii_bus>;
-> +        snps,reset-gpio =3D <&gpio2 RK_PD3 GPIO_ACTIVE_LOW>;
-> +        snps,reset-active-low;
-> +        snps,reset-delays-us =3D <0 20000 100000>;
-> +        tx_delay =3D <0x3c>;
-> +        rx_delay =3D <0x2f>;
-
-please see other recent mails about those
-The rgmii-id above should not need those delays?
-
-> +        phy-handle =3D <&rgmii_phy0>;
-> +        status =3D "okay";
-> +};
-> +
-> + /* combphy0/multi-phy0 supports one of: usb3.0 otg, sata0 */
-
-drop the comments
-
-> +&combphy0 {
-> +        status =3D "okay";
-> +
-> +};
-> +
-> + /* combphy1/multi-phy1 supports one of:
-> +                         - usb3.0 host
-> +                         - sata1
-> +                         - qsgmii/sgmii
-> + */
-> +
-> +&combphy1 {
-> +        status =3D "okay";
-> +};
-> +
-> + /* combphy2/multi-phy2 supports one of:
-> +                         - pcie2.1
-> +                         - sata2
-> +                         - qsgmii/sgmii
-> + */
-> +
-> +&combphy2 {
-> +        status =3D "okay";
-> +};
-> +
-
-I did stop here for now.
-
-Heiko
-
+/Sean
 
 
