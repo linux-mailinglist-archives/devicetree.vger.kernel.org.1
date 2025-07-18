@@ -1,87 +1,291 @@
-Return-Path: <devicetree+bounces-197699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6447CB0A5C1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 16:01:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55F91B0A5C6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 16:02:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2C2E566259
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 14:01:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 555E61C43837
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 14:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FCD114F9D6;
-	Fri, 18 Jul 2025 14:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 663C018C011;
+	Fri, 18 Jul 2025 14:01:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Iwp7qCr4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F943398B;
-	Fri, 18 Jul 2025 14:01:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7641156678;
+	Fri, 18 Jul 2025 14:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752847289; cv=none; b=q8ofvIi3lBsQclpSwhshqUDMi2wr9Mgl98H+tzbR9T85kuIRUf/3Izui2diwWvvDmwb/a/C40b8kQE0FE4taytqqSrBNW08WizQFVryyvgNZSFJroB9ASR1qVvZfLaXb5YvGDh9mqmuER9tYSEccE9ZuHtpvT9kKOnFjlcbdprQ=
+	t=1752847318; cv=none; b=LEnZpJ5NB6WK7cmgY0yKcniMEkA1PWZ4xwwf12mYejkR4hw7+7j6vD0a5kHMRxbWf+5K6I1KQQLIo6yolyh5xOpjyX+3ZDqZDW3moNsFMj2mg67qCUDn03Rf+i9IU+flU1J7ztdwjp5RSb6NdhDUDX7P++eNUuExorh1iBoskyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752847289; c=relaxed/simple;
-	bh=DyuxpNUL4xgUnJwP+uRxB8mktXU+l1QCYKIzstnbAPA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=hHjUN+c8kDliwunPukEJDQcxyzYqdBB8AIU6gJccZWl0X23R2yEfNMQa6n8gNyWxtzInNK4Nemh8/L4TUJmH+Cs5AajJiQ3EGE6YlPdyElXDw/8sfc8xDkmTlQwLLt2coXGpe0LPKgjCSX64YMv6uaZ0EybhkR+A7mU059PLheU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.214.181])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1c823ab2f;
-	Fri, 18 Jul 2025 22:01:14 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: alchark@gmail.com
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	ziyao@disroot.org
-Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency scaling support
-Date: Fri, 18 Jul 2025 22:01:10 +0800
-Message-Id: <20250718140110.308996-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <CABjd4Yxz=mrNpqgnHSgD0tr4ALH3YW9MvLULES568yHNFiPB_w@mail.gmail.com>
-References: <CABjd4Yxz=mrNpqgnHSgD0tr4ALH3YW9MvLULES568yHNFiPB_w@mail.gmail.com>
+	s=arc-20240116; t=1752847318; c=relaxed/simple;
+	bh=PBs4a9fPLCz1+DNyAz5OytyPz7qiMysYZWEYj95qD5E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=pVJl5wnFxA60gdihYAr7T9Uz8Vby7E4WAxfuXas+9NIJWquBSvvxv+g8C2EQaRoVRA5SfBkZYw8Q5ewPuRMLDuK+RfBI6GWIFslPlR3nj5r2YY6ohM/sgj+G1QJa1HTFtm+3b53bgtP+jqoO3JGHJsRPowPOqEuKtctsHW2Sk0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Iwp7qCr4; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56IE1TN1265671;
+	Fri, 18 Jul 2025 09:01:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1752847289;
+	bh=G1kGVlfDgAu8j0QyCJPAzWfZjC3mjLxrIuA9tVOKSB8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Iwp7qCr428ghEw1HPgzN8SJGS/xKDc86KZI2Ecs+/6dK+UCmYBl0Jh4k7UVqlaetF
+	 oMRh8YpqzQ66uHkDAT0OzkCulTAJ/PTHKtB8uUuArOCGCXBsJlpDN2j/A73m3YEHGL
+	 A+xLPzu/YUMNvfIBhCgBtOcg79A+oKAFfhpzuyto=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56IE1Te32418901
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 18 Jul 2025 09:01:29 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 18
+ Jul 2025 09:01:29 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 18 Jul 2025 09:01:29 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56IE1SS23930785;
+	Fri, 18 Jul 2025 09:01:28 -0500
+Message-ID: <bb4b6974-9118-46fb-b86e-2ec2ad57c5a5@ti.com>
+Date: Fri, 18 Jul 2025 09:01:28 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] watchdog: rti_wdt: Add reaction control
+To: Andrew Davis <afd@ti.com>, Guenter Roeck <linux@roeck-us.net>
+CC: Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250707180002.3918865-1-jm@ti.com>
+ <20250707180002.3918865-3-jm@ti.com>
+ <cc37e797-d3e5-444d-8016-c437a0534001@roeck-us.net>
+ <d96541bc-644d-4c90-b9f7-1e4afd16aeb6@ti.com>
+ <953f78a8-3928-479d-8700-dfe1cea15454@roeck-us.net>
+ <299c363a-23c7-4522-b58c-100f49c4eece@ti.com>
+ <7d2bb793-14d0-45d8-b8bd-b770cdb4ca70@roeck-us.net>
+ <fc095373-1171-4718-b492-8a74d03f99ba@ti.com>
+ <92be34eb-2408-4273-9e37-bec0b0d68f10@ti.com>
+ <4826def7-5dcb-4453-ab3b-0d14880dab93@ti.com>
+ <c89718cd-63b8-459b-a543-204b175f2108@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <c89718cd-63b8-459b-a543-204b175f2108@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a981dd6d34f03a2kunm16f712c5ce93
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDTUNKVhhKGRhIShlPHxgZQlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVU
-	tZBg++
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi,
+Hi all,
 
-> > Alexey suggested that we remove 408MHz, 600MHz and 816MHz from the
-> > opp-table. Do you think it is acceptable to use 850mV for 1008MHz?
->
-> But why 850 mV? Vendor .dtsi [1] implies that chips with leakage
-> values of L0..L4 might be unstable at this frequency with a 850 mV
-> supply and need 875 mV instead.
+On 7/17/25 3:10 PM, Andrew Davis wrote:
+> On 7/17/25 12:51 PM, Judith Mendez wrote:
+>> Hi Andrew,
+>>
+>> On 7/17/25 11:44 AM, Andrew Davis wrote:
+>>> On 7/17/25 10:24 AM, Judith Mendez wrote:
+>>>> Hi Guenter,
+>>>>
+>>>> On 7/16/25 1:50 PM, Guenter Roeck wrote:
+>>>>> On 7/10/25 07:08, Judith Mendez wrote:
+>>>>>> Hi Guenter, Andrew,
+>>>>>>
+>>>>>> On 7/7/25 5:55 PM, Guenter Roeck wrote:
+>>>>>>> On Mon, Jul 07, 2025 at 04:49:31PM -0500, Andrew Davis wrote:
+>>>>>>>> On 7/7/25 3:58 PM, Guenter Roeck wrote:
+>>>>>>>>> On Mon, Jul 07, 2025 at 01:00:02PM -0500, Judith Mendez wrote:
+>>>>>>>>>> This allows to configure reaction between NMI and reset for WWD.
+>>>>>>>>>>
+>>>>>>>>>> On K3 SoC's other than AM62L SoC [0], watchdog reset output is 
+>>>>>>>>>> routed
+>>>>>>>>>> to the ESM module which can subsequently route the signal to 
+>>>>>>>>>> safety
+>>>>>>>>>> master or SoC reset. On AM62L, the watchdog reset output is 
+>>>>>>>>>> routed
+>>>>>>>>>> to the SoC HW reset block. So, add a new compatible for AM62l 
+>>>>>>>>>> to add
+>>>>>>>>>> SoC data and configure reaction to reset instead of NMI.
+>>>>>>>>>>
+>>>>>>>>>> [0] https://www.ti.com/product/AM62L
+>>>>>>>>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>>>>>>>>> ---
+>>>>>>>>>>    drivers/watchdog/rti_wdt.c | 32 
+>>>>>>>>>> ++++++++++++++++++++++++++++----
+>>>>>>>>>>    1 file changed, 28 insertions(+), 4 deletions(-)
+>>>>>>>>>>
+>>>>>>>>>> diff --git a/drivers/watchdog/rti_wdt.c 
+>>>>>>>>>> b/drivers/watchdog/rti_wdt.c
+>>>>>>>>>> index d1f9ce4100a8..c9ee443c70af 100644
+>>>>>>>>>> --- a/drivers/watchdog/rti_wdt.c
+>>>>>>>>>> +++ b/drivers/watchdog/rti_wdt.c
+>>>>>>>>>> @@ -35,7 +35,8 @@
+>>>>>>>>>>    #define RTIWWDRXCTRL    0xa4
+>>>>>>>>>>    #define RTIWWDSIZECTRL    0xa8
+>>>>>>>>>> -#define RTIWWDRX_NMI    0xa
+>>>>>>>>>> +#define RTIWWDRXN_RST    0x5
+>>>>>>>>>> +#define RTIWWDRXN_NMI    0xa
+>>>>>>>>>>    #define RTIWWDSIZE_50P        0x50
+>>>>>>>>>>    #define RTIWWDSIZE_25P        0x500
+>>>>>>>>>> @@ -63,22 +64,29 @@
+>>>>>>>>>>    static int heartbeat;
+>>>>>>>>>> +struct rti_wdt_data {
+>>>>>>>>>> +    bool reset;
+>>>>>>>>>> +};
+>>>>>>>>>> +
+>>>>>>>>>>    /*
+>>>>>>>>>>     * struct to hold data for each WDT device
+>>>>>>>>>>     * @base - base io address of WD device
+>>>>>>>>>>     * @freq - source clock frequency of WDT
+>>>>>>>>>>     * @wdd  - hold watchdog device as is in WDT core
+>>>>>>>>>> + * @data - hold configuration data
+>>>>>>>>>>     */
+>>>>>>>>>>    struct rti_wdt_device {
+>>>>>>>>>>        void __iomem        *base;
+>>>>>>>>>>        unsigned long        freq;
+>>>>>>>>>>        struct watchdog_device    wdd;
+>>>>>>>>>> +    const struct rti_wdt_data *data;
+>>>>>>>>>>    };
+>>>>>>>>>>    static int rti_wdt_start(struct watchdog_device *wdd)
+>>>>>>>>>>    {
+>>>>>>>>>>        u32 timer_margin;
+>>>>>>>>>>        struct rti_wdt_device *wdt = watchdog_get_drvdata(wdd);
+>>>>>>>>>> +    u8 reaction;
+>>>>>>>>>>        int ret;
+>>>>>>>>>>        ret = pm_runtime_resume_and_get(wdd->parent);
+>>>>>>>>>> @@ -101,8 +109,13 @@ static int rti_wdt_start(struct 
+>>>>>>>>>> watchdog_device *wdd)
+>>>>>>>>>>         */
+>>>>>>>>>>        wdd->min_hw_heartbeat_ms = 520 * wdd->timeout + 
+>>>>>>>>>> MAX_HW_ERROR;
+>>>>>>>>>> -    /* Generate NMI when wdt expires */
+>>>>>>>>>> -    writel_relaxed(RTIWWDRX_NMI, wdt->base + RTIWWDRXCTRL);
+>>>>>>>>>> +    /* Reset device if wdt serviced outside of window or 
+>>>>>>>>>> generate NMI if available */
+>>>>>>>>>
+>>>>>>>>> Shouldn't that be "or generate NMI if _not_ available" ?
+>>>>>>>>>
+>>>>>>>>
+>>>>>>>> For almost all the K3 devices, the WDT has two selectable 
+>>>>>>>> outputs, one resets
+>>>>>>>> the device directly, the other is this "NMI" which is wired to 
+>>>>>>>> an ESM module
+>>>>>>>> which can take other actions (but usually it just also resets 
+>>>>>>>> the device).
+>>>>>>>> For AM62L that second NMI output is not wired (no ESM module), 
+>>>>>>>> so our only
+>>>>>>>> choice is to set the WDT to direct reset mode.
+>>>>>>>>
+>>>>>>>> The wording is a little strange, but the "or generate NMI if 
+>>>>>>>> available" meaning
+>>>>>>>> if NMI is available, then do that. Reset being the fallback when 
+>>>>>>>> _not_ available.
+>>>>>>>>
+>>>>>>>> Maybe this would work better:
+>>>>>>>>
+>>>>>>>> /* If WDT is serviced outside of window, generate NMI if 
+>>>>>>>> available, or reset device */
+>>>>>>>>
+>>>>>>>
+>>>>>>> The problem is that the code doesn't match the comment. The code 
+>>>>>>> checks the
+>>>>>>> "reset" flag and requests a reset if available. If doesn't check 
+>>>>>>> an "nmi"
+>>>>>>> flag.
+>>>>>>>
+>>>>>>> If the preference is NMI, as your comment suggests, the flag 
+>>>>>>> should be named
+>>>>>>> "nmi" and be set if NMI is available. That would align the code 
+>>>>>>> and the
+>>>>>>> comment. Right now both code and comment are misleading, since 
+>>>>>>> the presence
+>>>>>>> of a reset flag (and setting it to false) suggests that a direct 
+>>>>>>> reset is
+>>>>>>> not available, and that reset is preferred if available. A reset 
+>>>>>>> is the
+>>>>>>> normally expected behavior for a watchdog, so the fact that this 
+>>>>>>> is _not_
+>>>>>>> the case for this watchdog should be made more visible.
+>>>>>>
+>>>>>>
+>>>>>> How about:
+>>>>>>
+>>>>>>
+>>>>>> /* If WWDT serviced outside of window, generate NMI or reset the 
+>>>>>> device
+>>>>>> if NMI not available */
+>>>>>>
+>>>>>> if (wdt->data->reset)
+>>>>>>      reaction = RTIWWDRXN_RST;
+>>>>>> else
+>>>>>>      reaction = RTIWWDRXN_NMI;
+>>>>>>
+>>>>>
+>>>>> As I have said before, the problem is the "reset" flag. Its name 
+>>>>> suggests that
+>>>>> it means "reset is available". That is not what it actually means. 
+>>>>> It means
+>>>>> "NMI is not available". So I suggested to rename it to "nmi" or 
+>>>>> maybe "no_nmi".
+>>>>> Please educate me - why is that such a problem to name the flag to 
+>>>>> match its
+>>>>> meaning ?
+>>>>
+>>>> wdt->data->reset makes more sense because it shows there is a
+>>>> physical line routed to the MAIN RESET HW LOGIC:
+>>>>
+>>>>  >> if (wdt->data->reset)
+>>>>  >>      reaction = RTIWWDRXN_RST;
+>>>>  >> else
+>>>>  >>      reaction = RTIWWDRXN_NMI;
+>>>>
+>>>> If there is a direct reset line to MAIN RESET HW logic, then the
+>>>> reaction should be reset, if there is no reset line, then generate
+>>>> and NMI to ESM.
+>>>>
+>>>
+>>> There is a reset line on all K3 devices, if you did it this way then
+>>> all devices would have wdt->data->reset set to true and you wouldn't
+>>> need this logic at all. The thing that changes is if NMI/ESM is
+>>> available or not, so as Guenter suggests the flag should be called
+>>> "nmi" or similar and you switch on that.
+>>
+>> Looking at the integration spec, I do not see a direct reset line for
+>> any device besides am62l, could you confirm that what I am reading
+>> is correct please?
+>>
+> 
+> I'm not even finding the direct reset line for AM62L, some of these
+> datasheets are lacking the reset routing.
 
-Because the actual frequency generated by 850mV is closer to 1008MHz.
-Since we removed frequencies below 1GHz, all remaining frequencies are
-generated by PVTPLL. I think it may not be necessary to use the maximum
-values of opp-microvolt* ?
+You can only find in integration spec, not any other spec or datasheet.
 
-Thanks,
-Chukun
+> 
+> Anyway, one thing I did notice in these datasheets is that the
+> default value for the RTIWWDRXCTRL register is 0x5 (send reset).
+> So even if these other devices do not wire the reset we are still
+> changing the default by setting the register to 0xa (NMI), so the
+> point would still stand. Setting the value to NMI is a change from
+> the default and so should be codded that way: have a NMI flag, set
+> to true for all devices that have it, leave false for AM62L.
+Fine, will fix with v4.
 
---
-2.25.1
+Thanks for reviewing (:
+
+~ Judith
 
 
