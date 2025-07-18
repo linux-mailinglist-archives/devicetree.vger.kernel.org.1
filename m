@@ -1,162 +1,125 @@
-Return-Path: <devicetree+bounces-197525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40B3CB09C13
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:12:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 848DEB09C24
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:14:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 716F6584756
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 07:12:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CF9B1C42100
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 07:14:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C4C21C9E5;
-	Fri, 18 Jul 2025 07:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD8DF218EA8;
+	Fri, 18 Jul 2025 07:13:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="p1R6L2VY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ePewANYk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22DD42163B2;
-	Fri, 18 Jul 2025 07:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B10DD217F26;
+	Fri, 18 Jul 2025 07:13:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752822747; cv=none; b=eaptDTJSGQQhyaY+5ahPQISu/9x3dAGwwsCZxGkpEEhl/vnGoigBMTgO2volC0XuU+76bHAJxswU+Cw0YSVichz1hNT0yGZFBGDrTyFgvCPTnJFBiZaX+vKvx7VLQLP10iB7Q87PR069a/1/MIGDSWlbCGjKpzdQpUHH4u7MbMY=
+	t=1752822830; cv=none; b=PHWWj8pqpG+Nn3uUERvkNh3AUC8tbK1rk9im2K4zdsjG81JIqpf9YuZaG4eC6b/kE9jWn+DjDLH3QxSOQ6mwf8YIlHatO3WXAT5c6eVNFqD5qWYcdFJondHRniu2wSrEd9/+u8W2PyAmoHKg7D5xEcgcs2tSFrolegRh5bCY1tM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752822747; c=relaxed/simple;
-	bh=5F3rJh53OGfhTG6OkGEjNQ4u6hNt6y4sVMVgFxE0Gpc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=B1UmTzSj6EcEb2TS1fujX+hZKSOIIDE9pQZV8aJ8tpGRbrBIGCvenzX4hDxfv/KLJD0hz1WGi4SQdt3TRNLDIoBim+fyErGnucbHgwFQfU/UfNnoiyui+Oxkvd2LEBMr8e6fN2F1+8YaBWDUVKzQ0S2GkKqgABRAOSeLZUboTng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=p1R6L2VY; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I5QrOv020649;
-	Fri, 18 Jul 2025 07:12:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=UWQZ0nNWnlj
-	s6goigZQ9Wp5EzPuV+qmj7TVM8pqS9x4=; b=p1R6L2VYvR+rbYE0ErhAlxR3Jd5
-	QApqbPGLEGNjNAY1SGXalBXp4Dc3tR02HFFPxtxIJCRjhaqSBH81xaaUAhuRD8Ka
-	GqZPhqUjA+G4HXhZide2EOaM18hRfgd1rJQuMsroM0KEwiwikWDxccm5A7oTmiMU
-	WJskzWiAuetoraerIR+clMIwaAX821owAPMeBMVJ/q/OY3nvKJebPXbfd90j0M+4
-	8xYJTSwbaVuhvEiIREJ3xm0FsIKMIka2SaBMutH6Rt8dDBZxjBI4GPvXTjVqZFRs
-	vjQ236i7ri0CzcRy3OYjJ7ou/Inw0NulZ9xHDInRGu6d2r3RAQ9VmCm/Ijg==
-Received: from aptaippmta02.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47w5dpnjyv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Jul 2025 07:12:15 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA02.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 56I7CCnw006328;
-	Fri, 18 Jul 2025 07:12:12 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 47ugsn143x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Jul 2025 07:12:12 +0000
-Received: from APTAIPPMTA02.qualcomm.com (APTAIPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 56I7CCTE006311;
-	Fri, 18 Jul 2025 07:12:12 GMT
-Received: from cse-cd01-lnx.ap.qualcomm.com (cse-cd01-lnx.qualcomm.com [10.64.75.209])
-	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 56I7CB7B006304
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Jul 2025 07:12:12 +0000
-Received: by cse-cd01-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
-	id 06E2220F23; Fri, 18 Jul 2025 15:12:10 +0800 (CST)
-From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-        kw@linux.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-        Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v4 4/4] arm64: dts: qcom: sa8775p: add link_down reset for pcie
-Date: Fri, 18 Jul 2025 15:12:07 +0800
-Message-Id: <20250718071207.160988-5-ziyue.zhang@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250718071207.160988-1-ziyue.zhang@oss.qualcomm.com>
-References: <20250718071207.160988-1-ziyue.zhang@oss.qualcomm.com>
+	s=arc-20240116; t=1752822830; c=relaxed/simple;
+	bh=OdMtW5lc/8Syc5fXGf6jT6SkSmBc/+J9IqjG6QyQdco=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bycZgQ0oNJK3Gm4ORjB6nRm4w1k82EOWCNiuRvgmryX5gkX/1yWAnVtVn8IbJZf++3F17KpyVDgH3mfF/NxalpyU+rfdoeHRKDKtoxJyPv3OypP5RVEOsCERTnguZi3jSDxNgCyCVR/ZCOx9ihbHMEF9lFIToWTdlskaR7cdT2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ePewANYk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5025FC4CEED;
+	Fri, 18 Jul 2025 07:13:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752822830;
+	bh=OdMtW5lc/8Syc5fXGf6jT6SkSmBc/+J9IqjG6QyQdco=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ePewANYkgnoEx2ygQsQvJACtYlUxJX7ZPXEaGZx4yZPWGwfwv36vcFSEXPy2sVVTJ
+	 Ad7oPxtO4whFPSp2Zmsy23uRQj76Mr12mFlgsKxjiyUh+xIvle7Wct3hdHe4MRPS5v
+	 JJZnZURuQV0mBzHFwgpbpBoXYFVBrxcK04ob2HdCGV40fXTJFxHpE6/bwSDFmZ0g7o
+	 sofviehkHfxQ41ppbdE9cygODg9jMlrigX4Pln0QjicFxQFe4qLMZuEpR4lpZEx7XK
+	 62g5cyqgkSih8R2S3pgc0TApOd0F/AO6Gai0iIlrZ5yB6Hu3cGbg015Kvt45yYQxtm
+	 pKeYehf9WSnwA==
+Date: Fri, 18 Jul 2025 08:13:44 +0100
+From: Lee Jones <lee@kernel.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Michael Walle <mwalle@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Julien Panis <jpanis@baylibre.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [GIT PULL] Immutable branch between MFD, Misc and Pinctrl due
+ for the v6.17 merge window
+Message-ID: <20250718071344.GA11056@google.com>
+References: <20250613114518.1772109-1-mwalle@kernel.org>
+ <20250710094906.GG1431498@google.com>
+ <aG-OmSNn-oULfEuB@finisterre.sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDA1NSBTYWx0ZWRfX//Z/P3nxct/6
- K2YvvgFPjCdgoLpP05w48eQ5DU/yk4HrRnXSA9sT9RkXUPY/H8O1EfEWoUjGR5FI1NwPf8VpGyn
- xb0kmjxJHqGG8ezypsVtUf/XhF1YXwSrLq6dAgJ2jFwFCyZf0aCeZnl2G+KjRhOnzH79KDiSxtH
- oOxcI7ijBVWN3UFhloEFjsGv3LrTT9kJQA6Df2x46P0ZpwQG/YOG5YfE31olM//+JApO3n8q1de
- jQgsrSsT8KGjfo737YkGYQkWCm+1XBVGnWGnn9gCpl7+ZwgrTwpNVGyXUk05fvMZS/Ozq0KMGVu
- eLsigafwem+KeQ8bo6wveGK6yUXmWk+9epbZJRrS9sDGCFO5X3tHOU4YTyj9PAmDkBjbNum/4pz
- rkiYzO4nHOjK3xjohYWPqjAXRP6MyyDavAt3m3KH4fYAuc+TOQY7MvtD22TBqHaCEBWT4skl
-X-Proofpoint-GUID: yfLTp_vpkimuWxa5cg1tI4BXKGlihcTF
-X-Proofpoint-ORIG-GUID: yfLTp_vpkimuWxa5cg1tI4BXKGlihcTF
-X-Authority-Analysis: v=2.4 cv=Y+r4sgeN c=1 sm=1 tr=0 ts=6879f3cf cx=c_pps
- a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=UMluCPnEzjiUAf4N7sYA:9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-18_01,2025-07-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 mlxlogscore=999 phishscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 impostorscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0
- bulkscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507180055
+In-Reply-To: <aG-OmSNn-oULfEuB@finisterre.sirena.org.uk>
 
-SA8775p supports 'link_down' reset on hardware, so add it for both pcie0
-and pcie1, which can provide a better user experience.
+On Thu, 10 Jul 2025, Mark Brown wrote:
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+> On Thu, Jul 10, 2025 at 10:49:06AM +0100, Lee Jones wrote:
+> > Enjoy!
+> > 
+> > The following changes since commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494:
+> > 
+> >   Linux 6.16-rc1 (2025-06-08 13:44:43 -0700)
+> > 
+> > are available in the Git repository at:
+> > 
+> >   git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-misc-pinctrl-v6.17
+> > 
+> > for you to fetch changes up to d90171bc2e5f69c038d1807e6f64fba3d1ad6bee:
+> > 
+> >   dt-bindings: mfd: ti,tps6594: Add TI TPS652G1 PMIC (2025-07-10 10:40:21 +0100)
+> > 
+> > ----------------------------------------------------------------
+> > Immutable branch between MFD, Misc and Pinctrl due for the v6.17 merge window
+> 
+> Is there some reason you didn't also pick up the regulator patches?
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 731bd80fc806..d0a6303cb133 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -7635,8 +7635,11 @@ pcie0: pcie@1c00000 {
- 		iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
- 			    <0x100 &pcie_smmu 0x0001 0x1>;
- 
--		resets = <&gcc GCC_PCIE_0_BCR>;
--		reset-names = "pci";
-+		resets = <&gcc GCC_PCIE_0_BCR>,
-+			 <&gcc GCC_PCIE_0_LINK_DOWN_BCR>;
-+		reset-names = "pci",
-+			      "link_down";
-+
- 		power-domains = <&gcc PCIE_0_GDSC>;
- 
- 		phys = <&pcie0_phy>;
-@@ -7803,8 +7806,11 @@ pcie1: pcie@1c10000 {
- 		iommu-map = <0x0 &pcie_smmu 0x0080 0x1>,
- 			    <0x100 &pcie_smmu 0x0081 0x1>;
- 
--		resets = <&gcc GCC_PCIE_1_BCR>;
--		reset-names = "pci";
-+		resets = <&gcc GCC_PCIE_1_BCR>,
-+			 <&gcc GCC_PCIE_1_LINK_DOWN_BCR>;
-+		reset-names = "pci",
-+			      "link_down";
-+
- 		power-domains = <&gcc PCIE_1_GDSC>;
- 
- 		phys = <&pcie1_phy>;
+Is that a joke?  I'm going to assume that you're not serious!
+
+https://lore.kernel.org/all/aCWfre2-n_PSuhxR@finisterre.sirena.org.uk/
+
+  ">   1. Apply this now and merge the dependents next cycle
+   >   2. Apply this now and provide an IB
+   >   3. Wait for all Acks and apply as a unified set
+   >
+   > We usually choose 3, hence my assumptions above.
+
+   Well, you choose 3 - I do think it'd be a lot easier to go with option
+   2, or with applying the rest to your tree as acks come in.  There seemed
+   to still be a reasonable amount of discussion on the MFD bits (eg,
+   there's some formatting comments still) so I was expecting this series
+   to churn some more and was waiting for a resend."
+
+https://lore.kernel.org/all/601dd4c7-0940-498b-815e-99e570e732d2@sirena.org.uk/
+
+  "So not apply the first two patches and share a branch like you said
+   above...  TBH these serieses would probably be a bit more legible if
+   the branch were created with just the MFD patches, that'd also mean
+   smaller cross merges."
+
+IRC:
+
+  "<b*****e> Probably the easiest thing is a tag with the MFD bits and then I can apply the regulator patches?"
+
+Etc ...
+
 -- 
-2.34.1
-
+Lee Jones [李琼斯]
 
