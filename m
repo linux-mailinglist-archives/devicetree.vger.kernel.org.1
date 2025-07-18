@@ -1,126 +1,121 @@
-Return-Path: <devicetree+bounces-197692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D470CB0A51A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:26:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 557C6B0A525
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 15:28:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AD133BF48C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 13:26:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 962205A6FC7
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 13:28:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907A62DC339;
-	Fri, 18 Jul 2025 13:26:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077FC2DC358;
+	Fri, 18 Jul 2025 13:28:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="CBkffhpO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JLyam8DJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEFC62D3236
-	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 13:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C949D2DC34B;
+	Fri, 18 Jul 2025 13:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752845186; cv=none; b=ObTaB4MEMtUaDc09KuwG1pVplST68aA2ucpprDS6DJkB5ilxy21+1MyNW6MERIj5f/qJX7WklDBqxakPmF35NLmCRfHQ0KwUFt7Iui8tb05iqybSVEx3zjfcGMVyz1t/tgpmtFJKnqU21Z8+YpUFyOZfjeT+hYi72mY2EGJ+1SY=
+	t=1752845279; cv=none; b=e+gdIrMNR5pSlyzcv9p6jmNKPbv3kTd0puwN8ysB/ywOK5D88q4TaDxbTz+C/HfmIu70UrTdFXF+pz+cANgud8fonUY9ySqSmAsiDu4nHmg+KwpreGqgIYASnJenwCqC7X+Oxo+Gk32X8acde/hsgAT4W9LVyOxalut+qWgkCtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752845186; c=relaxed/simple;
-	bh=eWsb5uSBhu6bPzZbSom7WozOJmoigRto8Pj5BCIHyeU=;
+	s=arc-20240116; t=1752845279; c=relaxed/simple;
+	bh=MKiE6huY3GBf2rYcIW9ksdAkmQcp0EAZzQu+6JbDnxU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UKBHl1/ztdo0D69WbXdB2okByrqb1NJmNdzEYsUul5UbP6pXvP5Ck1dcFxMpGgxwT3/jhFumQ+Z0b5QFx2DlpFTOJAg1gGvcFJhUf847rI4E5+dfwZxxBzQxamzIUHcbmOIW/VCX0mxrRFh/QcmXlSkyhGXzIVQdK7lMBU2zmXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=CBkffhpO; arc=none smtp.client-ip=209.85.219.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6fd1b2a57a0so20132676d6.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 06:26:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1752845184; x=1753449984; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=eWsb5uSBhu6bPzZbSom7WozOJmoigRto8Pj5BCIHyeU=;
-        b=CBkffhpOZayaxr1TAMRBLvIuUh3AFm+C/tgijlIIKNfWD9zDUlWR6CuvShPwfhmnVT
-         eHMMNntb+FLoDCc1FokCpzxS3LFwPpPs+yBku7RstNzHZTzc+7QwBgT7gAlUZ0KozSdC
-         7sigJx9D6MNS45ha9iTlZmIZPa6/+AHwxxERCHBl09fmwd4TG6npNe2wPv/rzBY+Khio
-         8Jd8EnyJyU4dWf1wfLo5iAdgHg06sxc0UuuGBbs3qPwseNknj4FnT3T0mbhfrwwhdPun
-         xAIZQiKUxOl/5FhZlpKpi4+MBDaS8uCxIrrq9KY+fqF11Qj/yBd1O3rNlQqzZciRHq2b
-         iMwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752845184; x=1753449984;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eWsb5uSBhu6bPzZbSom7WozOJmoigRto8Pj5BCIHyeU=;
-        b=jQRPNyI4sZ45qQnrfjIdiAWkDhus060KT3vEj3hUmz7MnK6BmfZWgKHiwC4gKLKCWl
-         Eo5lBk/1yTA3jXd3IuhtRRZ8vSK2HP8Qa+aHA2tTeV9Id2cYZq3HLptyxri4oPuNHWXp
-         5BJOT/MJz8Q62fHFs4/j/0lr6ktsz78IqBHdtKyVPE5Bm+a6oTUD8liennv1vpNaAI6Z
-         l/K+cP/kXcP9NZM+obXhyggRZp3yw6fX9LiLnyCBsUGZxDyEc+pxma50s7Cir5kwDA2U
-         ZoR68KQPMZWPIfEn+KNxUstsQuSpRusirVzZq3Wg5iTpqLIgD7ha+BU3IVtjoBhafaks
-         bUJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXTe+CD5MiOk8Qj1K5XpvewT4CdHXpzXbI4WcHQB5foHRGm08JEKJuhfH3+r0KLegTYu/mtUlxFSnzd@vger.kernel.org
-X-Gm-Message-State: AOJu0YxH07NatycdNelhptlTU3YFE9oPnjmVw1YpBQdUViwD6FcJ74Jr
-	W6CAHgjnLWEDJ6ZqkCcoapLvIlhcnkwwMT0pWlzQWKyfwRIB7NyCMTr5DRCH/y4J3U8=
-X-Gm-Gg: ASbGncsXotKHxKK67SQjXC2bx9Sc0Y0mfzChpGaqeZFPH4a1ZgNGUR/zI+tZhQXH4Ep
-	wlVxYpW1AsYZgPTUCFUYmxcczC4jBWH1sXZuZsHcGtVtAIEGJgGbVI+jWsePXGGTiBcJ2l08jK1
-	eOcg5yENOCSy6tM6OK4IL3lz5bj1BPBhSUkDjIMGSIeDUKjy3JjAjcD/LPfr1T1y+ruXN9AsGmS
-	PHH5abWRnMHvlpyACzZbgPciZi1VsqbsQ8sDpMTensi9BfLXlJ3D/D96nd0QShGC1/pbdp5pXns
-	wW/E42/Isa443pSqSpS9GqetjtA9E5FYFHiiYT7HkXxHcRLOoFFxBsbMV58G+LRmjHd9R7j1jzX
-	21NI37YP8QWcDbz4nGN9N5XmK/1g5mYqa2mtzj6XREhCgi8V9tzTyPaJppMoRYvuS8HwPzsjgIw
-	==
-X-Google-Smtp-Source: AGHT+IHxe3HazeTMlNhrIdTEfQ3VTjX7wXKy+xR8Lh7PRfCMXJiCHtJEIAJGMTKjnmoXNaUXBSYUhw==
-X-Received: by 2002:a05:6214:1d2d:b0:701:9a6:92f1 with SMTP id 6a1803df08f44-704f480de58mr194846736d6.10.1752845183716;
-        Fri, 18 Jul 2025 06:26:23 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-142-167-56-70.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.167.56.70])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4abb4980463sm6903981cf.12.2025.07.18.06.26.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jul 2025 06:26:23 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1ucl6U-00000009yt2-29EA;
-	Fri, 18 Jul 2025 10:26:22 -0300
-Date: Fri, 18 Jul 2025 10:26:22 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Will Deacon <will@kernel.org>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	joro@8bytes.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, heiko@sntech.de,
-	nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v6 3/5] iommu: Add verisilicon IOMMU driver
-Message-ID: <20250718132622.GC2206214@ziepe.ca>
-References: <20250710082450.125585-1-benjamin.gaignard@collabora.com>
- <20250710082450.125585-4-benjamin.gaignard@collabora.com>
- <aHTzPwTob8_5rtBS@willie-the-truck>
- <baa1fcde-f167-4a1b-afca-0a2957a688cc@collabora.com>
- <aHozv0NG1OBlAH6c@willie-the-truck>
- <b4169471-fcd0-4415-8281-c5bd722e5f2b@arm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AQdja+ayvFUS0rrza96agZlz4eErNkr1M7Qm4Nn/v7iywE1nUyCj3VrbYGQoprsKJrWZCuzJ1FK+8RTyorxDWAzolehs1CYaj5F4UQCdK6kZfcZ9yzryhtSKxquHWD72PvPG6R9aMrbd8CumAU/ebADppvILEYQmnjV0fO1Mx3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JLyam8DJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 158B3C4CEEB;
+	Fri, 18 Jul 2025 13:27:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752845279;
+	bh=MKiE6huY3GBf2rYcIW9ksdAkmQcp0EAZzQu+6JbDnxU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JLyam8DJsm8zglGPZCdy/rgU9vO8nWwUSTXhKU2XiJ0BHLhWCWH1xKjg2HlTEOzz3
+	 x0vqjGHcRs4Ur/1YsjHB3id9soYG4fgU5G03Ejw5PHEPBW/B9vTfUeCg74X2zVtUMN
+	 nrFtZzOljkfbR+09yIz1xOSXCWBD7qBP4O7yBaiXU0JznMIRxetOG0kEsmCesZY0LM
+	 sfcIrn4IdN7OKQhF4pVhy6Z3pjkvic1jYMCQFTkfE3c4E1yP0LZ0ra4EX7grkxwWM1
+	 cdmBcwz4zFjNesKX0M1GfdW2YemENU9+vRUQUs6++VEYUHMJyGCeL6SrOUv3GrlPsM
+	 goK4d+CpAOXiQ==
+Date: Fri, 18 Jul 2025 14:27:54 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Michael Walle <mwalle@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Julien Panis <jpanis@baylibre.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [GIT PULL] Immutable branch between MFD, Misc and Pinctrl due
+ for the v6.17 merge window
+Message-ID: <b57e761b-c1f7-46fc-a1bd-c419062ceb18@sirena.org.uk>
+References: <20250613114518.1772109-1-mwalle@kernel.org>
+ <20250710094906.GG1431498@google.com>
+ <aG-OmSNn-oULfEuB@finisterre.sirena.org.uk>
+ <20250718071344.GA11056@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/cZ4yH0iHo5i4rrv"
+Content-Disposition: inline
+In-Reply-To: <20250718071344.GA11056@google.com>
+X-Cookie: Accordion, n.:
+
+
+--/cZ4yH0iHo5i4rrv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b4169471-fcd0-4415-8281-c5bd722e5f2b@arm.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 18, 2025 at 01:56:36PM +0100, Robin Murphy wrote:
+On Fri, Jul 18, 2025 at 08:13:44AM +0100, Lee Jones wrote:
+> On Thu, 10 Jul 2025, Mark Brown wrote:
+> > On Thu, Jul 10, 2025 at 10:49:06AM +0100, Lee Jones wrote:
 
-> All they really have in common is that they're 2-level formats with 32-bit
-> PTEs and 10 bits per level (as is tegra-smmu too). The permission encodings
-> have some overlap but are not fully equivalent. Crucially, the schemes for
-> packing >32-bit PAs into PTEs are incompatibly different, so if you're
-> really keen to genericise things to *that* extent, that's what Jason's
-> already working on.
+> > > Immutable branch between MFD, Misc and Pinctrl due for the v6.17 merg=
+e window
 
-Right, I agree with this. The page table code is duplicated
-extensively across iommu and the way to fix it is what I'm working on.
+> > Is there some reason you didn't also pick up the regulator patches?
 
-It is all the same code, same patterns, same problems, same bugs :)
+> Is that a joke?  I'm going to assume that you're not serious!
 
-I think it is best to leave this as is for now.
+There's two things here.  One is that the discussions you've linked were
+=66rom back in April/May which was before the merge window and things only
+got applied a day or two before the merge window opened.   Then rather
+than resending after the merge window as expected whoever it was
+complained about the patches not being applied just did that with no
+further context and it didn't occur to me to look at the date and as a
+result I missed that, sorry.
 
-Jason
+The other issue is that due to the constant drip of MFD serieses getting
+resends what I'm doing I'm just glancing at the relevant patches and
+then not looking further if I've already reviewed them.  I frequently
+have no recollection of any individual series, especially if there's
+been non-trivial time since I actively looked at it.
+
+--/cZ4yH0iHo5i4rrv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmh6S9kACgkQJNaLcl1U
+h9BzxQf9HgNXcrdqJk0N9l+gDL3CUY99ag1YSESEtUwsyG9at5OljiwnL0Ytv8i2
+DyufIaI0ICYQRSJ7vrNO83BT6MA6q9t/n+Tm+/NhB13lqC6CV786qyoi8YcUgAm5
+59xoevx0C67LSplqcSX6DYHIBiIN2808whUE00AtMHzz+wpeMOKCc2G+MyGUyA92
+9DSK6KAEJ8jR/KssY2SnZvOvCNUA/4Q9tHO+6ed7qlZvp0CPJTG5YlHqwo/sinPL
+4iu+MvnLNqz7Pvs19/EGd46KGWEPtawr/rNgZ9ap+nGRLTjF+qrRKw9h7FJ4pJ2d
+yA5AayYRJDzYpBHBbXbBGj06W1gI4g==
+=EirP
+-----END PGP SIGNATURE-----
+
+--/cZ4yH0iHo5i4rrv--
 
