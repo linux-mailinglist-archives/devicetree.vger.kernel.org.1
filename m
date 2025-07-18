@@ -1,100 +1,113 @@
-Return-Path: <devicetree+bounces-197630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98FE7B0A01E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:52:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64172B0A032
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:58:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C0D4188CC49
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:52:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0274C1C205FB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:58:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DAD529B204;
-	Fri, 18 Jul 2025 09:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D0D29B226;
+	Fri, 18 Jul 2025 09:58:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AzVlDQP7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8288290DB1;
-	Fri, 18 Jul 2025 09:52:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CBD01EEA55;
+	Fri, 18 Jul 2025 09:58:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752832322; cv=none; b=riprM0IgjbMDwqkQXS6wSv0olBlXWQUrbSYlQZjkdmBmNKFehee9aoJ6Dq/yCHcjIe3JzP8Evt7IrOcqoJs1lU6xWHiESRp8Tss8XErHr7K6jFp7KagxyZV3PWVCO65TrAyZxTZHixhaOZlmyNR9OINPHLUVSG6UsceQqhsPP1o=
+	t=1752832695; cv=none; b=Fatcg6z9K2DFGGFvQCBeHxGg5KZjEhYPRbiE/OUoe0n729fevWqmHE6u7Zsmok3pbXtmFNBvPB+bIpCSIN04WTA895BPM4JFPlcWxIvjtXAhCqtzxk2q2VvF/d7hEDfSa06E7ncaeud5OofhjemRl6uB+Psk9TL0f9WOkLSEVZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752832322; c=relaxed/simple;
-	bh=OE9iF+3fAxeBzvI4kXUwvQLeQcEHlgYjTmXHu/73AZI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DHmNGkfpeQ/8Rz9xuLzQKNAgLaiFK0sz0tR6jTUvCeH9033nCOgS6L2wD6m/WlobCCt9+y/pG9YmIfvxMCR4QNr612BQ1x1CGR1X+J73gatJCPXYkKgSq7XF/rIcRGk/aDa+47d+V4yTIYXr9oB7eA8fKdh7feBjJlMi6XUJir4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bk4mL0VbBz6H6pQ;
-	Fri, 18 Jul 2025 17:50:42 +0800 (CST)
-Received: from frapeml500003.china.huawei.com (unknown [7.182.85.28])
-	by mail.maildlp.com (Postfix) with ESMTPS id EC67F14027A;
-	Fri, 18 Jul 2025 17:51:58 +0800 (CST)
-Received: from a2303103017.china.huawei.com (10.203.177.99) by
- frapeml500003.china.huawei.com (7.182.85.28) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 18 Jul 2025 11:51:57 +0200
-From: Alireza Sanaee <alireza.sanaee@huawei.com>
-To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jonathan.cameron@huawei.com>, <coresight@lists.linaro.org>,
-	<dianders@chromium.org>, <james.clark@linaro.org>, <krzk@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
-	<linuxarm@huawei.com>, <mark.rutland@arm.com>, <mike.leach@linaro.org>,
-	<robh@kernel.org>, <ruanjinjie@huawei.com>, <saravanak@google.com>,
-	<shameerali.kolothum.thodi@huawei.com>, <suzuki.poulose@arm.com>
-Subject: [PATCH v3 6/6] perf/arm-dsu: refactor cpu id retrieval via new API of_cpu_phandle_to_id
-Date: Fri, 18 Jul 2025 10:48:48 +0100
-Message-ID: <20250718094848.587-7-alireza.sanaee@huawei.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250718094848.587-1-alireza.sanaee@huawei.com>
-References: <20250718094848.587-1-alireza.sanaee@huawei.com>
+	s=arc-20240116; t=1752832695; c=relaxed/simple;
+	bh=NfmOqmeSOcfW01whIDBlzmIOyiOsJC5Q+mnMOm68vwc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zw8O9UitaTRTsmpcBJ++vS7QN6zo6si/SKHIwZW1FKWQsxrRykUtG1Z8p3pnVMmNKWbiqa4yFiGhwXDDLpujyQcc8rHlSkvfDfpgWT8ycfLKPB074/W4QJEuXHG2W9Z+/UhMvDAzKHRh0ndGVX1dXy0WCsPuS9+1U9egTglLsE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AzVlDQP7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 060F0C4CEEB;
+	Fri, 18 Jul 2025 09:58:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752832695;
+	bh=NfmOqmeSOcfW01whIDBlzmIOyiOsJC5Q+mnMOm68vwc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AzVlDQP7xThkbAW4ildT7244pG9paEzEfTrI4Sdg9INXObFp8/Xfdeyrcj6ifANnw
+	 2NualuVxLRj7B4r5qspIrEqHXA2lpxurZnDJROTK9c+TlqFcbdpi6m2E81awemqhd+
+	 WYovK3CueWFy0WpxcH/lxIcZj7FGTNajWj0Z7hrnRSeDuu22LKj4QbLSMDuuKPFX7f
+	 SPP3CFCd/2ehB6IT+663pFuYychzE5Gbnza8J4OOsFpWJ66MHUwVnMMMZZkp9r62DQ
+	 gN2Xxszm9eAlTX2XPRjlSp+ZztCX3SVVh/h++Hb7bgTFArCFtn98Xq3PfNXuPcFPvz
+	 lUX2vCmMdy06g==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uchqw-000000007n3-1HHC;
+	Fri, 18 Jul 2025 11:58:07 +0200
+Date: Fri, 18 Jul 2025 11:58:06 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
+	mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
+	kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
+	kw@linux.com, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+	qiang.yu@oss.qualcomm.com, quic_krichai@quicinc.com,
+	quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v5 1/4] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
+ Update pcie phy bindings
+Message-ID: <aHoarsqbnsBGtwni@hovoldconsulting.com>
+References: <20250718081718.390790-1-ziyue.zhang@oss.qualcomm.com>
+ <20250718081718.390790-2-ziyue.zhang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
- frapeml500003.china.huawei.com (7.182.85.28)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250718081718.390790-2-ziyue.zhang@oss.qualcomm.com>
 
-Update arm-dsu to use the new API (of_cpu_phandle_to_id).
-
-Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
----
- drivers/perf/arm_dsu_pmu.c | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
-
-diff --git a/drivers/perf/arm_dsu_pmu.c b/drivers/perf/arm_dsu_pmu.c
-index cb4fb59fe04b..8f76bd94349c 100644
---- a/drivers/perf/arm_dsu_pmu.c
-+++ b/drivers/perf/arm_dsu_pmu.c
-@@ -591,17 +591,12 @@ static struct dsu_pmu *dsu_pmu_alloc(struct platform_device *pdev)
- static int dsu_pmu_dt_get_cpus(struct device *dev, cpumask_t *mask)
- {
- 	int i = 0, n, cpu;
--	struct device_node *cpu_node;
+On Fri, Jul 18, 2025 at 04:17:15PM +0800, Ziyue Zhang wrote:
+> The gcc_aux_clk is required by the PCIe controller but not by the PCIe
+> PHY. In PCIe PHY, the source of aux_clk used in low-power mode should
+> be gcc_phy_aux_clk. Hence, remove gcc_aux_clk and replace it with
+> gcc_phy_aux_clk.
  
- 	n = of_count_phandle_with_args(dev->of_node, "cpus", NULL);
- 	if (n <= 0)
- 		return -ENODEV;
- 	for (; i < n; i++) {
--		cpu_node = of_parse_phandle(dev->of_node, "cpus", i);
--		if (!cpu_node)
--			break;
--		cpu = of_cpu_node_to_id(cpu_node);
--		of_node_put(cpu_node);
-+		cpu = of_cpu_phandle_to_id(dev->of_node, NULL, i);
- 		/*
- 		 * We have to ignore the failures here and continue scanning
- 		 * the list to handle cases where the nr_cpus could be capped
--- 
-2.43.0
+> Removed the phy_aux clock from the PCIe PHY binding as it is no longer
+> used by any instance.
 
+This paragraph no longer applies to this patch (but to the qcs8300 one
+that removes the clock).
+
+> Fixes: fd2d4e4c1986 ("dt-bindings: phy: qcom,qmp: Add sa8775p QMP PCIe PHY")
+> Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+
+> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+> @@ -176,6 +176,8 @@ allOf:
+>            contains:
+>              enum:
+>                - qcom,qcs615-qmp-gen3x1-pcie-phy
+> +              - qcom,sa8775p-qmp-gen4x2-pcie-phy
+> +              - qcom,sa8775p-qmp-gen4x4-pcie-phy
+>                - qcom,sc8280xp-qmp-gen3x1-pcie-phy
+>                - qcom,sc8280xp-qmp-gen3x2-pcie-phy
+>                - qcom,sc8280xp-qmp-gen3x4-pcie-phy
+> @@ -197,8 +199,6 @@ allOf:
+>            contains:
+>              enum:
+>                - qcom,qcs8300-qmp-gen4x2-pcie-phy
+> -              - qcom,sa8775p-qmp-gen4x2-pcie-phy
+> -              - qcom,sa8775p-qmp-gen4x4-pcie-phy
+>      then:
+>        properties:
+>          clocks:
+
+Johan
 
