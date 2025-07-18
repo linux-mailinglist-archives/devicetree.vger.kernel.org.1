@@ -1,63 +1,88 @@
-Return-Path: <devicetree+bounces-197700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55F91B0A5C6
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 16:02:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32518B0A5C9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 16:03:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 555E61C43837
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 14:02:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68CBA5C005F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 14:03:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 663C018C011;
-	Fri, 18 Jul 2025 14:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4571922F5;
+	Fri, 18 Jul 2025 14:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Iwp7qCr4"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fdR20Z8T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7641156678;
-	Fri, 18 Jul 2025 14:01:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 528F63398B
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 14:03:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752847318; cv=none; b=LEnZpJ5NB6WK7cmgY0yKcniMEkA1PWZ4xwwf12mYejkR4hw7+7j6vD0a5kHMRxbWf+5K6I1KQQLIo6yolyh5xOpjyX+3ZDqZDW3moNsFMj2mg67qCUDn03Rf+i9IU+flU1J7ztdwjp5RSb6NdhDUDX7P++eNUuExorh1iBoskyo=
+	t=1752847384; cv=none; b=urnYEfXLZCfrD52faljSd3KAjJY7bPMMenrxsdGV7XUwPbN6GAevcsTfydNMlL5lFLDHPx+BkjmfYCX/IbB7SOlM6EOhYWGEkf7smKdtwvLnvk0KqMox0cUsEi/3TpmZr87I9BKWY/4I86AiT+WCG7yOPZ8CckJyvpFO4H/B7kM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752847318; c=relaxed/simple;
-	bh=PBs4a9fPLCz1+DNyAz5OytyPz7qiMysYZWEYj95qD5E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pVJl5wnFxA60gdihYAr7T9Uz8Vby7E4WAxfuXas+9NIJWquBSvvxv+g8C2EQaRoVRA5SfBkZYw8Q5ewPuRMLDuK+RfBI6GWIFslPlR3nj5r2YY6ohM/sgj+G1QJa1HTFtm+3b53bgtP+jqoO3JGHJsRPowPOqEuKtctsHW2Sk0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Iwp7qCr4; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56IE1TN1265671;
-	Fri, 18 Jul 2025 09:01:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1752847289;
-	bh=G1kGVlfDgAu8j0QyCJPAzWfZjC3mjLxrIuA9tVOKSB8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Iwp7qCr428ghEw1HPgzN8SJGS/xKDc86KZI2Ecs+/6dK+UCmYBl0Jh4k7UVqlaetF
-	 oMRh8YpqzQ66uHkDAT0OzkCulTAJ/PTHKtB8uUuArOCGCXBsJlpDN2j/A73m3YEHGL
-	 A+xLPzu/YUMNvfIBhCgBtOcg79A+oKAFfhpzuyto=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56IE1Te32418901
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 18 Jul 2025 09:01:29 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 18
- Jul 2025 09:01:29 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 18 Jul 2025 09:01:29 -0500
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56IE1SS23930785;
-	Fri, 18 Jul 2025 09:01:28 -0500
-Message-ID: <bb4b6974-9118-46fb-b86e-2ec2ad57c5a5@ti.com>
-Date: Fri, 18 Jul 2025 09:01:28 -0500
+	s=arc-20240116; t=1752847384; c=relaxed/simple;
+	bh=oxn3IwVTE7XSOYRmBd//e1DLeZb2q0A+/xIJwcd3XFQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hXX/rw25q9PSvWV4ZT7p61YskWgUEf1JadfXBc5CAApK7dP7DH8Lbhmrf2ZHAs/RaO+UVF1z4ttq7ew62idyQgb2W5jvdHxd8CR8mIPQlSYemDe84gd61uxroema4A3AhNDU+YJM7MC2bCXMYueY/uhvKl4mpcB8B+PMWVx2JwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fdR20Z8T; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I7u4Tm015616
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 14:03:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Sqth6q6knDV0c4169t8Y4KfYUSLGiSnvgG9U5KJWf+I=; b=fdR20Z8Tv2bfQ4RS
+	ivUOSzvyP0AQHfycy2lFDqDXwSpa+5S0dmXjQWR4Uufqu/sW2guK3wPUKJSNvcs9
+	kg5d2D8FgTZ4/dtZ3NeUzqEla0+ZT9NCGhREZx+RTRA3PuHEtB6FnGki+eXI64VG
+	SK02lCALPeJXLR2wbAyPhUZKnlM0Dp0f2KWfK1e6aG0aSKePiWzS5aYqcoyqPTHO
+	zGd8TLoee4LofmzpFKvV9fHmvcMZU+7uzVfkcUR6cXN9XyczFpW4hH+2ZWZhr9RF
+	GtTiWziFm4UcHmxoxWpMg+rVX+mqSwogqnWjF1mdXyCNAE2g6RbEHehIWslkkJ27
+	PqbCPA==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47w5dyxrjh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 14:03:02 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3141a9a6888so2063929a91.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Jul 2025 07:03:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752847381; x=1753452181;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sqth6q6knDV0c4169t8Y4KfYUSLGiSnvgG9U5KJWf+I=;
+        b=QG7kg4C2PdoAdTmx7O1dPGTa25uLWYlnngWt66lSXCmYXcDR14L7NMP/E2A4NXc8Az
+         MPebOX9Nb+jATNgQXt/uvyI2tVDW4cyFtDLYBVqginzhPHmwqLl6ggTge603gmQ8C7m5
+         dUVYOeQ9G5Kmq+Mb9vy/3FWwQckbm/iug6ExP0+x6DbN7mSs9Lbe+NaoQwzBNSWERI94
+         vCeIfwBONkI1Y7N/qUnBs4VOPO79fKJFxuGxzlQjn9trrHkLWshcZ31JmojuZmbpntw9
+         rvN6GhTl0Cj5IMhXhvgzLK2/ygGzQIo1Dd6gamdnu70mdj4un/Y9eFuZ0gh3abz4sQBp
+         YnXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVjaFooP9YdBUlY9y1vz3e6VgxVspi2DVC5M+L+vWzIyrmTOMniMhA0NnwjZ5RFWo4Vp5H6smkQIXjI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6Ny1BJ0/lX29jeSv/W4VhxBIP6x8gQ33auW0E4CwFwo3zz4yS
+	N0sSdDMwRQY1vrTSZ1uVc6cwzM58SFBPPz38Do4mZd0OuBaiizdcMI0KrEpbXhJwjO6vXSKc5xj
+	B40CJt1qW9hWiVeZVkik14n2O2cvlcpfqXO4sSGiQYnuovfHrBnh1bbTmiI+8Z5bn
+X-Gm-Gg: ASbGnculOsFhuy3Kk8yJJzI25GhZYhyi/ArL2rs9x7Uu7AOoaN8Iwdn7CgW7A8ttoMn
+	de94tI2nrnJchSdN9tCXDJkoi5seZZkwPTikpbvU8hGEdA3zfNVnSzMCwYwayuMM04IxJNjvOgD
+	6en9BmftWLxKI1GA5LhyzMTw4Ut4xpXYALIsuOoo+WeRn9awfaKiO10rmb17omHbZnNhB5w6fFL
+	Dj/SDdKgPAeGcVk6e3q/m1QixdHaD4otnPHdIAebhJXQIf1SFeb4nj6Rm3fvAvN1VaQRblh3XnC
+	mYUtucWYfdE32D/Lua4K3cC8ti5McPlPWPh7cJpnIvmWBuBzJmrR3JSG3rWA3020O6MlaMF8mCQ
+	D+y5ADFa69tmwZLUjgZ6ELQSCmWrSXKWrKG4GByrQ1HouGqXQkAbD
+X-Received: by 2002:a17:90a:fc46:b0:2ee:d371:3227 with SMTP id 98e67ed59e1d1-31c9e7617d1mr18338308a91.17.1752847381210;
+        Fri, 18 Jul 2025 07:03:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHx/Y9pNMGr8gS5RpnPZrq5fjuBLOtCovUN4eitkJ53U2heLtj7mZN3nIf+YOVTn/RDfU4J8g==
+X-Received: by 2002:a17:90a:fc46:b0:2ee:d371:3227 with SMTP id 98e67ed59e1d1-31c9e7617d1mr18338214a91.17.1752847380598;
+        Fri, 18 Jul 2025 07:03:00 -0700 (PDT)
+Received: from [10.79.195.52] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31cc3e45e6csm1391851a91.3.2025.07.18.07.02.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Jul 2025 07:03:00 -0700 (PDT)
+Message-ID: <a2be3ff9-d364-4a6e-a8e2-e0391e979b11@oss.qualcomm.com>
+Date: Fri, 18 Jul 2025 19:32:36 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,227 +90,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] watchdog: rti_wdt: Add reaction control
-To: Andrew Davis <afd@ti.com>, Guenter Roeck <linux@roeck-us.net>
-CC: Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250707180002.3918865-1-jm@ti.com>
- <20250707180002.3918865-3-jm@ti.com>
- <cc37e797-d3e5-444d-8016-c437a0534001@roeck-us.net>
- <d96541bc-644d-4c90-b9f7-1e4afd16aeb6@ti.com>
- <953f78a8-3928-479d-8700-dfe1cea15454@roeck-us.net>
- <299c363a-23c7-4522-b58c-100f49c4eece@ti.com>
- <7d2bb793-14d0-45d8-b8bd-b770cdb4ca70@roeck-us.net>
- <fc095373-1171-4718-b492-8a74d03f99ba@ti.com>
- <92be34eb-2408-4273-9e37-bec0b0d68f10@ti.com>
- <4826def7-5dcb-4453-ab3b-0d14880dab93@ti.com>
- <c89718cd-63b8-459b-a543-204b175f2108@ti.com>
+Subject: Re: [PATCH 2/2] pinctrl: qcom: Add glymur pinctrl driver
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
+        linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quic_rjendra@quicinc.com
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250716150822.4039250-1-pankaj.patil@oss.qualcomm.com>
+ <20250716150822.4039250-3-pankaj.patil@oss.qualcomm.com>
+ <e69e6128-3f50-4bd3-89bb-09d7b237a568@oss.qualcomm.com>
+ <19b62fb0-fb49-4a90-bff4-f5634547f2fe@kernel.org>
 Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <c89718cd-63b8-459b-a543-204b175f2108@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+In-Reply-To: <19b62fb0-fb49-4a90-bff4-f5634547f2fe@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: XGOta13Kspi7wEoJWNGzSAWV7G66dPOK
+X-Authority-Analysis: v=2.4 cv=RtXFLDmK c=1 sm=1 tr=0 ts=687a5416 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=ISValDjW7LgzQFoTVgsA:9
+ a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDEwNyBTYWx0ZWRfX49uHwJkanGlg
+ aGRGK/kR5RjTHCl3l+nzc1cEsOPmGSm7+sC/ALjJMwLgd64z7Oy+77EqabGhbonke/KnC8WCkHi
+ aBCFPBKN2JpSFcHNPbuK6WSCPrTgRj5N6WkmPyqvGI7sQqA6CGTebfmB7LICFIKrVRaxmdF5z9h
+ QPLPUu3uWOItJ1g9D2LiUZzG3GK8JW1ZWrQc4G3FcQFv9XMwuOoyh0jhEQW247e2GbKSbfTIhBT
+ PGO7dyQ5LdjlQIcGBEcckZ1gYZxVtRhESEQYED9DtEhXx62DBf+I6e0LTaN1I4AmPGKv39ilchn
+ xscvM1UdAtLpNDMTw15h2o14WBSL+0qh5wvvjLkhcuc1VEc88K4RDTLQnXZzw8P11Z69Wtrk2xB
+ fkkUg0rmcSRynT1FMxafUClozIcoABejNkDZe38LnEn0+5LeavRfNh558F/ufFN495aRZ92s
+X-Proofpoint-GUID: XGOta13Kspi7wEoJWNGzSAWV7G66dPOK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-18_03,2025-07-17_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 mlxscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 clxscore=1015 mlxlogscore=948
+ priorityscore=1501 phishscore=0 spamscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507180107
 
-Hi all,
-
-On 7/17/25 3:10 PM, Andrew Davis wrote:
-> On 7/17/25 12:51 PM, Judith Mendez wrote:
->> Hi Andrew,
->>
->> On 7/17/25 11:44 AM, Andrew Davis wrote:
->>> On 7/17/25 10:24 AM, Judith Mendez wrote:
->>>> Hi Guenter,
->>>>
->>>> On 7/16/25 1:50 PM, Guenter Roeck wrote:
->>>>> On 7/10/25 07:08, Judith Mendez wrote:
->>>>>> Hi Guenter, Andrew,
->>>>>>
->>>>>> On 7/7/25 5:55 PM, Guenter Roeck wrote:
->>>>>>> On Mon, Jul 07, 2025 at 04:49:31PM -0500, Andrew Davis wrote:
->>>>>>>> On 7/7/25 3:58 PM, Guenter Roeck wrote:
->>>>>>>>> On Mon, Jul 07, 2025 at 01:00:02PM -0500, Judith Mendez wrote:
->>>>>>>>>> This allows to configure reaction between NMI and reset for WWD.
->>>>>>>>>>
->>>>>>>>>> On K3 SoC's other than AM62L SoC [0], watchdog reset output is 
->>>>>>>>>> routed
->>>>>>>>>> to the ESM module which can subsequently route the signal to 
->>>>>>>>>> safety
->>>>>>>>>> master or SoC reset. On AM62L, the watchdog reset output is 
->>>>>>>>>> routed
->>>>>>>>>> to the SoC HW reset block. So, add a new compatible for AM62l 
->>>>>>>>>> to add
->>>>>>>>>> SoC data and configure reaction to reset instead of NMI.
->>>>>>>>>>
->>>>>>>>>> [0] https://www.ti.com/product/AM62L
->>>>>>>>>> Signed-off-by: Judith Mendez <jm@ti.com>
->>>>>>>>>> ---
->>>>>>>>>>    drivers/watchdog/rti_wdt.c | 32 
->>>>>>>>>> ++++++++++++++++++++++++++++----
->>>>>>>>>>    1 file changed, 28 insertions(+), 4 deletions(-)
->>>>>>>>>>
->>>>>>>>>> diff --git a/drivers/watchdog/rti_wdt.c 
->>>>>>>>>> b/drivers/watchdog/rti_wdt.c
->>>>>>>>>> index d1f9ce4100a8..c9ee443c70af 100644
->>>>>>>>>> --- a/drivers/watchdog/rti_wdt.c
->>>>>>>>>> +++ b/drivers/watchdog/rti_wdt.c
->>>>>>>>>> @@ -35,7 +35,8 @@
->>>>>>>>>>    #define RTIWWDRXCTRL    0xa4
->>>>>>>>>>    #define RTIWWDSIZECTRL    0xa8
->>>>>>>>>> -#define RTIWWDRX_NMI    0xa
->>>>>>>>>> +#define RTIWWDRXN_RST    0x5
->>>>>>>>>> +#define RTIWWDRXN_NMI    0xa
->>>>>>>>>>    #define RTIWWDSIZE_50P        0x50
->>>>>>>>>>    #define RTIWWDSIZE_25P        0x500
->>>>>>>>>> @@ -63,22 +64,29 @@
->>>>>>>>>>    static int heartbeat;
->>>>>>>>>> +struct rti_wdt_data {
->>>>>>>>>> +    bool reset;
->>>>>>>>>> +};
->>>>>>>>>> +
->>>>>>>>>>    /*
->>>>>>>>>>     * struct to hold data for each WDT device
->>>>>>>>>>     * @base - base io address of WD device
->>>>>>>>>>     * @freq - source clock frequency of WDT
->>>>>>>>>>     * @wdd  - hold watchdog device as is in WDT core
->>>>>>>>>> + * @data - hold configuration data
->>>>>>>>>>     */
->>>>>>>>>>    struct rti_wdt_device {
->>>>>>>>>>        void __iomem        *base;
->>>>>>>>>>        unsigned long        freq;
->>>>>>>>>>        struct watchdog_device    wdd;
->>>>>>>>>> +    const struct rti_wdt_data *data;
->>>>>>>>>>    };
->>>>>>>>>>    static int rti_wdt_start(struct watchdog_device *wdd)
->>>>>>>>>>    {
->>>>>>>>>>        u32 timer_margin;
->>>>>>>>>>        struct rti_wdt_device *wdt = watchdog_get_drvdata(wdd);
->>>>>>>>>> +    u8 reaction;
->>>>>>>>>>        int ret;
->>>>>>>>>>        ret = pm_runtime_resume_and_get(wdd->parent);
->>>>>>>>>> @@ -101,8 +109,13 @@ static int rti_wdt_start(struct 
->>>>>>>>>> watchdog_device *wdd)
->>>>>>>>>>         */
->>>>>>>>>>        wdd->min_hw_heartbeat_ms = 520 * wdd->timeout + 
->>>>>>>>>> MAX_HW_ERROR;
->>>>>>>>>> -    /* Generate NMI when wdt expires */
->>>>>>>>>> -    writel_relaxed(RTIWWDRX_NMI, wdt->base + RTIWWDRXCTRL);
->>>>>>>>>> +    /* Reset device if wdt serviced outside of window or 
->>>>>>>>>> generate NMI if available */
->>>>>>>>>
->>>>>>>>> Shouldn't that be "or generate NMI if _not_ available" ?
->>>>>>>>>
->>>>>>>>
->>>>>>>> For almost all the K3 devices, the WDT has two selectable 
->>>>>>>> outputs, one resets
->>>>>>>> the device directly, the other is this "NMI" which is wired to 
->>>>>>>> an ESM module
->>>>>>>> which can take other actions (but usually it just also resets 
->>>>>>>> the device).
->>>>>>>> For AM62L that second NMI output is not wired (no ESM module), 
->>>>>>>> so our only
->>>>>>>> choice is to set the WDT to direct reset mode.
->>>>>>>>
->>>>>>>> The wording is a little strange, but the "or generate NMI if 
->>>>>>>> available" meaning
->>>>>>>> if NMI is available, then do that. Reset being the fallback when 
->>>>>>>> _not_ available.
->>>>>>>>
->>>>>>>> Maybe this would work better:
->>>>>>>>
->>>>>>>> /* If WDT is serviced outside of window, generate NMI if 
->>>>>>>> available, or reset device */
->>>>>>>>
->>>>>>>
->>>>>>> The problem is that the code doesn't match the comment. The code 
->>>>>>> checks the
->>>>>>> "reset" flag and requests a reset if available. If doesn't check 
->>>>>>> an "nmi"
->>>>>>> flag.
->>>>>>>
->>>>>>> If the preference is NMI, as your comment suggests, the flag 
->>>>>>> should be named
->>>>>>> "nmi" and be set if NMI is available. That would align the code 
->>>>>>> and the
->>>>>>> comment. Right now both code and comment are misleading, since 
->>>>>>> the presence
->>>>>>> of a reset flag (and setting it to false) suggests that a direct 
->>>>>>> reset is
->>>>>>> not available, and that reset is preferred if available. A reset 
->>>>>>> is the
->>>>>>> normally expected behavior for a watchdog, so the fact that this 
->>>>>>> is _not_
->>>>>>> the case for this watchdog should be made more visible.
->>>>>>
->>>>>>
->>>>>> How about:
->>>>>>
->>>>>>
->>>>>> /* If WWDT serviced outside of window, generate NMI or reset the 
->>>>>> device
->>>>>> if NMI not available */
->>>>>>
->>>>>> if (wdt->data->reset)
->>>>>>      reaction = RTIWWDRXN_RST;
->>>>>> else
->>>>>>      reaction = RTIWWDRXN_NMI;
->>>>>>
->>>>>
->>>>> As I have said before, the problem is the "reset" flag. Its name 
->>>>> suggests that
->>>>> it means "reset is available". That is not what it actually means. 
->>>>> It means
->>>>> "NMI is not available". So I suggested to rename it to "nmi" or 
->>>>> maybe "no_nmi".
->>>>> Please educate me - why is that such a problem to name the flag to 
->>>>> match its
->>>>> meaning ?
->>>>
->>>> wdt->data->reset makes more sense because it shows there is a
->>>> physical line routed to the MAIN RESET HW LOGIC:
->>>>
->>>>  >> if (wdt->data->reset)
->>>>  >>      reaction = RTIWWDRXN_RST;
->>>>  >> else
->>>>  >>      reaction = RTIWWDRXN_NMI;
->>>>
->>>> If there is a direct reset line to MAIN RESET HW logic, then the
->>>> reaction should be reset, if there is no reset line, then generate
->>>> and NMI to ESM.
->>>>
->>>
->>> There is a reset line on all K3 devices, if you did it this way then
->>> all devices would have wdt->data->reset set to true and you wouldn't
->>> need this logic at all. The thing that changes is if NMI/ESM is
->>> available or not, so as Guenter suggests the flag should be called
->>> "nmi" or similar and you switch on that.
->>
->> Looking at the integration spec, I do not see a direct reset line for
->> any device besides am62l, could you confirm that what I am reading
->> is correct please?
->>
-> 
-> I'm not even finding the direct reset line for AM62L, some of these
-> datasheets are lacking the reset routing.
-
-You can only find in integration spec, not any other spec or datasheet.
-
-> 
-> Anyway, one thing I did notice in these datasheets is that the
-> default value for the RTIWWDRXCTRL register is 0x5 (send reset).
-> So even if these other devices do not wire the reset we are still
-> changing the default by setting the register to 0xa (NMI), so the
-> point would still stand. Setting the value to NMI is a change from
-> the default and so should be codded that way: have a NMI flag, set
-> to true for all devices that have it, leave false for AM62L.
-Fine, will fix with v4.
-
-Thanks for reviewing (:
-
-~ Judith
-
+On 7/17/2025 8:09 PM, Krzysztof Kozlowski wrote:
+> On 17/07/2025 13:52, Konrad Dybcio wrote:
+>>> +static const struct msm_pinctrl_soc_data glymur_tlmm = {
+>>> +	.pins = glymur_pins,
+>>> +	.npins = ARRAY_SIZE(glymur_pins),
+>>> +	.functions = glymur_functions,
+>>> +	.nfunctions = ARRAY_SIZE(glymur_functions),
+>>> +	.groups = glymur_groups,
+>>> +	.ngroups = ARRAY_SIZE(glymur_groups),
+>>> +	.ngpios = 250,
+>> 251 (0..=250, incl. ufs reset)
+>
+> The binding said 238 GPIOs...
+>
+>> Konrad
+>
+> Best regards,
+> Krzysztof
+Will correct the bindings along with the driver fixes in v2.
 
