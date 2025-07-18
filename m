@@ -1,63 +1,39 @@
-Return-Path: <devicetree+bounces-197594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58D0CB09EA3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:06:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A50E8B09EB3
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 11:10:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD616189EE88
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:06:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 442631C4481E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jul 2025 09:11:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA0C2951BA;
-	Fri, 18 Jul 2025 09:06:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gvmy/OZZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3643429550F;
+	Fri, 18 Jul 2025 09:10:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A2B15278E;
-	Fri, 18 Jul 2025 09:06:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06FE217719;
+	Fri, 18 Jul 2025 09:10:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752829578; cv=none; b=My1YtUbd6AWapQP5PmYlY1T2VJ5OHs2yu+Z+FKCsFS1SKOT/p5wloPG62uxqwRfUJltb1nLMGqjjcuuP//HMtBIozkSOap3TdK+lPXBJub8pZ8PytDFSVJ8BnwX4iGGR4ChKpswLzlKduLAGYWbGyHxJ//IhdnxjOrPbc/Z69mo=
+	t=1752829848; cv=none; b=WHUHlFpFRFvDf8AeuB/fgC0KKmtKJt4krVyxbI5kEnAPvcf8Mcq+tyP+FJTycQsxDLkn+gm3JPyNung+kSv1wALeH7s+dY4Di62eEE2x2SIo1kd6bsdmqGjYPxkPHP9CO/uXkhfsM22Zdk/01iAiHQOuh9Fpcvtj9Iv+Uo9Edec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752829578; c=relaxed/simple;
-	bh=z9BUvmWIt7hCxYtCLxNT6F///XMUiL2OyAVIWUDKtzM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QWDm3RnPydUxSlRAI2BMwjGGn6U83qnIOGsJ9p1h09wI9xsg6/wsaPCYjUeYWiapeX3SkiWHpKIjimqbcSfCFyeOZm8K98usHUi07t+wsDgX2L+NHkE6CIFWBQRhYsnKqS3jofv3ogNNflFnaafTEG3rldJgVa3O0Fpq4ToGN6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gvmy/OZZ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I8h2Bk008487;
-	Fri, 18 Jul 2025 09:05:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zteTB79X+fUFIDXx8fj+5FQ3KCq88qFTkVFdV3sKo+g=; b=gvmy/OZZ3WysJgWy
-	ZIeKGMdraUZK3CLSKAg4lJmyZT/akQCx8UCrO3VktWYp6qabPJnkOiV31U76rUJA
-	TL3MxzFySkAVyhRuVkKpTJBxBYR0F74yJnwzziUuO6NcUqexemEYJjOhikTPYFbZ
-	O4u/6K+lr19pSzDcOeUFffpyeg5vSoGjioKnT0qkpKSBhH8JCQIj6jxYb06URDEk
-	hI/FTTtDhd1CWCY293nWyClCF5qdeuajIwiUTf7qPgUQDVy+85XEGUfmAOoDh9Ii
-	EyqoMwYGe039OY5cWIQuaBkSdzpgFff+3gQiMjzVpDAuiyGVnJpRy7FbPqm0S4LD
-	A7//tg==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufxbavc8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Jul 2025 09:05:58 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56I95vF1018192
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Jul 2025 09:05:57 GMT
-Received: from [10.253.76.178] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 18 Jul
- 2025 02:05:51 -0700
-Message-ID: <49d5d360-6a2f-4dd4-bbd7-1a902e556f00@quicinc.com>
-Date: Fri, 18 Jul 2025 17:05:49 +0800
+	s=arc-20240116; t=1752829848; c=relaxed/simple;
+	bh=cBX8jb8/E8dXl35jg55xxJT05v9kGOTkRga0coGmOZk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oOI38YwKxalKSMA4nJXUsA0ElL88Jpp4mHRqz5Nr9NYbsuRTb/ujZ5RQh2n2UPJ7WXLALpw4QJDZcD0TEzI886pDwvj3DVaaaUrKYc9gA47X33o+oBeAmBuZIxja1642SYAP9kI4hRCDrRu5yKdYdfdLkZYG63UyqU0K5Jc0F+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.106] (unknown [114.241.87.235])
+	by APP-05 (Coremail) with SMTP id zQCowAAnulp+D3poBZ4XBQ--.32570S2;
+	Fri, 18 Jul 2025 17:10:23 +0800 (CST)
+Message-ID: <8ade99a6-84a0-4e69-8ebf-d9dfdc9141b5@iscas.ac.cn>
+Date: Fri, 18 Jul 2025 17:10:22 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,118 +41,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 07/10] dt-bindings: clock: qcom: Add NSS clock
- controller for IPQ5424 SoC
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Herring
-	<robh@kernel.org>
-CC: Georgi Djakov <djakov@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>,
-        Anusha Rao <quic_anusha@quicinc.com>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Richard
- Cochran" <richardcochran@gmail.com>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <quic_leiwei@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_suruchia@quicinc.com>
-References: <20250710-qcom_ipq5424_nsscc-v3-0-f149dc461212@quicinc.com>
- <20250710-qcom_ipq5424_nsscc-v3-7-f149dc461212@quicinc.com>
- <20250710225539.GA29510-robh@kernel.org>
- <0ef83a1e-38c3-41bb-8fd2-c28565f2a0ba@oss.qualcomm.com>
+Subject: Re: [PATCH v2 2/2] riscv: dts: spacemit: Add OrangePi RV2 board
+ device tree
+To: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>, dlan@gentoo.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ paul.walmsley@sifive.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+ palmer@dabbelt.com
+Cc: skhan@linuxfoundation.org, linux-kernel-mentees@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250718084339.471449-1-hendrik.hamerlinck@hammernet.be>
+ <20250718084339.471449-3-hendrik.hamerlinck@hammernet.be>
 Content-Language: en-US
-From: Luo Jie <quic_luoj@quicinc.com>
-In-Reply-To: <0ef83a1e-38c3-41bb-8fd2-c28565f2a0ba@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20250718084339.471449-3-hendrik.hamerlinck@hammernet.be>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: AZYG4c9OW3-sedX7DX_sxsCBKToCgLEp
-X-Proofpoint-ORIG-GUID: AZYG4c9OW3-sedX7DX_sxsCBKToCgLEp
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDA3MSBTYWx0ZWRfX5LbihV0UUb0t
- o21O7oJbdD4zibgNivY2bBbTBmsoB+iplPPmx6rChx/ut7gn7Oak9Xo/Cba0tVImzdtQkjf1JHs
- oBhPicQoATtb1Fewi02B34i2fBfDyxh3jYR9b0phAg+OD5StpMgfsgLmQYmCOShN9QFNsCKMzOn
- 26tvTc4F9OyOLprj0x3bKaZAaGpQlEg1fhfuj99i0Q8gwfUgzDY6traYYcPkyKmuIIXwsK17vIe
- TJCR//Ud9056pCQTdr4hFGqOk1FzaAQpT5pfn+wgYcVmWY2xUQ+wpP1ORBNOzNz25K2QkDbzspP
- 8DK+tiwNRq5rISN3CmyTieuEroCtcDkvB990oXHNm3lmCjGtGTPDHYuRECylvgScCL67CvfA0CJ
- m+MV1TXB/J3gdyyDPiGbtHPDnjLNTBAeVONL7gP9/lZJabYnuwN1kjL+WO0vQiEzYhGtlMJj
-X-Authority-Analysis: v=2.4 cv=Xc2JzJ55 c=1 sm=1 tr=0 ts=687a0e76 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8
- a=zwoUeVU6iwdCpd6WVVcA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-18_02,2025-07-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 mlxscore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
- phishscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
- clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507180071
+X-CM-TRANSID:zQCowAAnulp+D3poBZ4XBQ--.32570S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Kw4kWr4UWw4ruF13AF1fWFg_yoW8Ar1DpF
+	Z7uFs3AF1DtF4fKr42g3W8Way8urn5XF47t3y2g3s09Fn8XFyFqwn29ay5uF1UArn3uFWq
+	yF4UW348G3Z8ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I
+	8E87Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxUqiFxDUUUU
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
+Hi Hendrik,
 
+On 7/18/25 16:43, Hendrik Hamerlinck wrote:
+> Add initial device tree support for the OrangePi RV2 board [1], which is
+> marketed as using the Ky X1 SoC but has been confirmed to be 
+> identical to the SpacemiT K1 [2].
+>
+> The device tree is adapted from the OrangePi vendor tree [3], and similar
+> integration can be found in the Banana Pi kernel tree [4], confirming SoC
+> compatibility.
 
-On 7/11/2025 8:16 PM, Konrad Dybcio wrote:
-> On 7/11/25 12:55 AM, Rob Herring wrote:
->> On Thu, Jul 10, 2025 at 08:28:15PM +0800, Luo Jie wrote:
->>> NSS clock controller provides the clocks and resets to the networking
->>> blocks such as PPE (Packet Process Engine) and UNIPHY (PCS) on IPQ5424
->>> devices.
->>>
->>> Add the compatible "qcom,ipq5424-nsscc" support based on the current
->>> IPQ9574 NSS clock controller DT binding file. ICC clocks are always
->>> provided by the NSS clock controller of IPQ9574 and IPQ5424, so add
->>> interconnect-cells as required DT property.
->>>
->>> Also add master/slave ids for IPQ5424 networking interfaces, which is
->>> used by nss-ipq5424 driver for providing interconnect services using
->>> icc-clk framework.
->>>
->>> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->>> ---
-> 
+This isn't particularly crucial, but I wonder if we can do something
+similar to a jh7110-common.dtsi arrangement, where most of the boards
+sharing similar designs can also share devicetree source files.
+
+Easier said than done, probably, but I think it should be possible by
+just comparing the vendor dts files.
+
+Again this doesn't need to block this patch.
+
+Yixun: I'm assuming you'll be handling this. What do you think about a
+k1-common.dtsi?
+
+Vivian "dramforever" Wang
+
+> This minimal device tree enables booting into a serial console with UART
+> output and a blinking LED.
+>
+> Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-RV2.html [1]
+> Link: https://www.spacemit.com/en/key-stone-k1 [2]
+> Link: https://github.com/BPI-SINOVOIP/pi-linux/blob/linux-6.6.63-k1/arch/riscv/boot/dts/spacemit/k1-x_orangepi-rv2.dts [3]
+> Link: https://github.com/orangepi-xunlong/linux-orangepi/tree/orange-pi-6.6-ky [4]
+> Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+> ---
+> Changes since v1:
+> - Added the aliases section to the device tree.
+> - Removed the memory section, as it is populated by the bootloader.
+> - Replaced unclear copyright similar to the other K1-based boards.
+> ---
 > [...]
-> 
->>>     clocks:
->>>       items:
->>> @@ -57,6 +61,7 @@ required:
->>>     - compatible
->>>     - clocks
->>>     - clock-names
->>> +  - '#interconnect-cells'
->>
->> You just made this required for everyone. Again, that's an ABI change.
-> 
-> In this case it's actually valid, but should be a separate fixup change
-> 
-> Konrad
-
-Making #interconnect-cells a required property does introduce an ABI
-change in the device tree bindings. However, this change is necessary
-to ensure proper functionality and integration with the interconnect
-framework, which increasingly relies on this property for accurate
-configuration and resource management.
-
-Yes, this is a fixup change. Since the current NSS clock controller DTS 
-node for IPQ9574 already includes '#interconnect-cells', I will separate 
-this modification into a standalone fixup patch.
-
-
 
 
