@@ -1,93 +1,112 @@
-Return-Path: <devicetree+bounces-197866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C71DB0B02D
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 15:11:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4807B0B039
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 15:24:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C9BD1AA4008
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 13:11:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79B817A524B
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 13:23:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32D332046B3;
-	Sat, 19 Jul 2025 13:10:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA952226D1D;
+	Sat, 19 Jul 2025 13:24:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nZrsEDcQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z8PcE7pP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECDB5DDC1;
-	Sat, 19 Jul 2025 13:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3781A7AE3;
+	Sat, 19 Jul 2025 13:24:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752930653; cv=none; b=ODr1tkKXUKFbhMXKA+pdWhWQxucBXWpqLU7V9DHxUIkDz2rR0biCayLDeAvlzFEix9m2qamnDBRu1l73wHCuVg+1vCJK36DOFfbG0RUtugKjQgkyI3U6qF4scYFpyVwU8uDM2xsEO5D+EZO1VOmKoOFkSR8UYR6w3M4WJcx3S/E=
+	t=1752931486; cv=none; b=gdbetVlhG3EbSzzrAm9FCFhq6KUDj31K1p20Gy1muqYw5DbpgOidbXfJmdsVNH7xlxgOJhheQjW0yfseAlCvKQV56hAWUnvWzvJ8NL066QF55/o1qcaO8xylllSZkmFW2KCFzIuz6uj/gsPUgRW3KMT6XMXt1BKPjvXwI4CIkAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752930653; c=relaxed/simple;
-	bh=rSTIGzJE4AZYfml7shVbzMPVYvWAf8JVrO1QpxdZuh0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EAcQRGrDv6vha2uMoYgy7GUL1gl1ZlS4cuj/3OmCptBK7iuaLApMcmQLT3GajTlfK0BWItDvD46G/b8/tVQJoObva6aASkU50bsgqk6yGbKPTsCNH3hsD+yem6CP+XB7svRal+dBtqsMgt7wTrwWm0/AO0xsyIV/xZXUtS4tp68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nZrsEDcQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B95A9C4CEE3;
-	Sat, 19 Jul 2025 13:10:49 +0000 (UTC)
+	s=arc-20240116; t=1752931486; c=relaxed/simple;
+	bh=K6ehNrIeWFbo2IhyErHCbxwdJtL8CPLpZhn861VUH1I=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=nU1mk6PAKjhH2JJimLcpaH3UjZ+JamM8IcQIbpF15v9pQkpf6n+TwzvDpVtulv43GLR4ToyyN0422d+nMKydYbCq7KWACco0no9RlTsXI6/LJzZKTizKS4XOCWpHRxr6cKSybVUnpknhGqR9/gk82bQQCRrfVEb4RJLRdICehsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z8PcE7pP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4D5AC4CEE3;
+	Sat, 19 Jul 2025 13:24:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752930652;
-	bh=rSTIGzJE4AZYfml7shVbzMPVYvWAf8JVrO1QpxdZuh0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nZrsEDcQp7EjPt8b6W+QExMsYf8U6TiOGHeo8WXIbgH3bzxNijIviTLT+bMd6S3pt
-	 RILQ5JwahYtLFDFypUEGy3nX0D+ebLT1JvykCytL2c/wJSdt7e1r4zSQTrVokRiv0G
-	 PosLZ2kDExIbc8isbgk8KmCur2leHVapofN+WITyYx4dxvsIHUZubAEFwk8X6NVqCw
-	 v8uvPrEE1Q8bW/JRa8qlpYWaeNzgUg6VLsdP3aF6kLeIUnDDG4JsV1J0/P5kXxMFYe
-	 7rMlTWu6xCKpeW6v5Qn65qPBlaNbUzn2yhabpGqKqOfemEn0azOOyDsH3Xz3Kqj72a
-	 eZSu1Kp86Kvhw==
-Message-ID: <43aaf42a-6756-4133-8422-03ab99a59d19@kernel.org>
-Date: Sat, 19 Jul 2025 15:10:48 +0200
+	s=k20201202; t=1752931486;
+	bh=K6ehNrIeWFbo2IhyErHCbxwdJtL8CPLpZhn861VUH1I=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Z8PcE7pPpWF/Bf/0ZcbCfDXnDswj+gRhGP/EwCZEzZIP8apc6DmlsTps2OyvxW4Mr
+	 yB0rpFUEjN5Rb07ZilqPP4iveE+p4VCoKfA737lJAPRYhPC9DOuvfbQ7xoNS3A2MGn
+	 0xNQMBlRs4BmHK0owTCJ8BN9IRdRS9FIKOEkh6txGyfak2T+EPyW/RiyJcDrMGVYsK
+	 iRdswvcEIQHcuhalueN7pwesLDCErNkvUC2CussPNG9SXwrE54eemsgcmpxjM8l3Hm
+	 TOev1MfDdZRme8lx5cKiSVHuy42U3XIf40xfv5k/0tl9YjrukzzrPqQQBXi+tP94sD
+	 StiLiltdTz1yQ==
+Date: Sat, 19 Jul 2025 08:24:44 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/9] dt-bindings: i2c: apple,i2c: Document Apple
- A7-A11, T2 compatibles
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Alyssa Rosenzweig <alyssa@rosenzweig.io>, Janne Grunau <j@jannau.net>,
- Nick Chan <towinchenmi@gmail.com>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Neal Gompa <neal@gompa.dev>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <20250610-i2c-no-t2-v2-0-a5a71080fba9@gmail.com>
- <20250610-i2c-no-t2-v2-1-a5a71080fba9@gmail.com>
-Content-Language: en-US
-From: Sven Peter <sven@kernel.org>
-In-Reply-To: <20250610-i2c-no-t2-v2-1-a5a71080fba9@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, 
+ Orson Zhai <orsonzhai@gmail.com>, dri-devel@lists.freedesktop.org, 
+ David Airlie <airlied@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Kevin Tang <kevin.tang@unisoc.com>, devicetree@vger.kernel.org, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ Maxime Ripard <mripard@kernel.org>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org
+To: =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
+In-Reply-To: <20250719-ums9230-drm-v1-1-e4344a05eb3d@abscue.de>
+References: <20250719-ums9230-drm-v1-0-e4344a05eb3d@abscue.de>
+ <20250719-ums9230-drm-v1-1-e4344a05eb3d@abscue.de>
+Message-Id: <175293148489.4113846.8949388873166546770.robh@kernel.org>
+Subject: Re: [PATCH 01/12] dt-bindings: display: sprd: adapt for UMS9230
+ support
 
-On 10.06.25 15:45, Nick Chan wrote:
-> The I2C controllers found on Apple A7-A11, T2 SoCs are compatible with
-> the existing driver so add their per-SoC compatibles.
+
+On Sat, 19 Jul 2025 14:09:37 +0200, Otto Pflüger wrote:
+> Add the compatible strings for the display controller found in the
+> UMS9230 SoC and bindings for a gate clock. Add IOMMU-related bindings
+> to the display-subsystem node.
 > 
-> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
 > ---
+>  .../bindings/display/sprd/sprd,display-subsystem.yaml  | 11 +++++++++++
+>  .../bindings/display/sprd/sprd,sharkl3-dpu.yaml        | 18 +++++++++++++-----
+>  .../bindings/display/sprd/sprd,sharkl3-dsi-host.yaml   | 11 ++++++++---
+>  3 files changed, 32 insertions(+), 8 deletions(-)
+> 
 
-Hi Andi,
+My bot found errors running 'make dt_binding_check' on your patch:
 
-I think usually this dt-binding change adding new compatibles should go 
-through your tree.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml:38:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml:41:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
-If you want to I can also take it together with the other dts changes 
-though.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.example.dtb: dpu@63000000 (sprd,sharkl3-dpu): clocks: [[4294967295, 21], [4294967295, 13]] is too long
+	from schema $id: http://devicetree.org/schemas/display/sprd/sprd,sharkl3-dpu.yaml#
 
+doc reference errors (make refcheckdocs):
 
-Best,
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250719-ums9230-drm-v1-1-e4344a05eb3d@abscue.de
 
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Sven
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
+pip3 install dtschema --upgrade
 
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
