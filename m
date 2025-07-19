@@ -1,112 +1,83 @@
-Return-Path: <devicetree+bounces-197867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4807B0B039
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 15:24:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22FD8B0B081
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 16:35:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79B817A524B
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 13:23:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C1D3563738
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 14:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA952226D1D;
-	Sat, 19 Jul 2025 13:24:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z8PcE7pP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D6A22A1D5;
+	Sat, 19 Jul 2025 14:35:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3781A7AE3;
-	Sat, 19 Jul 2025 13:24:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB2C148838;
+	Sat, 19 Jul 2025 14:35:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752931486; cv=none; b=gdbetVlhG3EbSzzrAm9FCFhq6KUDj31K1p20Gy1muqYw5DbpgOidbXfJmdsVNH7xlxgOJhheQjW0yfseAlCvKQV56hAWUnvWzvJ8NL066QF55/o1qcaO8xylllSZkmFW2KCFzIuz6uj/gsPUgRW3KMT6XMXt1BKPjvXwI4CIkAc=
+	t=1752935730; cv=none; b=RQlB6yk0zfazrHfHWybIpbVlR1lqjzsaCDKFukNssSNrRXvMPxYAYkihumFg9+bSUDITsP2Citl0zNxbctH1b5va1KbJUOi69GvlvwftbbNn8wUVVbhQ9/rzcdkNypLZEZx0yIYbM4nkel8Sfll7PXAXBGvBPntPcB1RTwEPfNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752931486; c=relaxed/simple;
-	bh=K6ehNrIeWFbo2IhyErHCbxwdJtL8CPLpZhn861VUH1I=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=nU1mk6PAKjhH2JJimLcpaH3UjZ+JamM8IcQIbpF15v9pQkpf6n+TwzvDpVtulv43GLR4ToyyN0422d+nMKydYbCq7KWACco0no9RlTsXI6/LJzZKTizKS4XOCWpHRxr6cKSybVUnpknhGqR9/gk82bQQCRrfVEb4RJLRdICehsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z8PcE7pP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4D5AC4CEE3;
-	Sat, 19 Jul 2025 13:24:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752931486;
-	bh=K6ehNrIeWFbo2IhyErHCbxwdJtL8CPLpZhn861VUH1I=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Z8PcE7pPpWF/Bf/0ZcbCfDXnDswj+gRhGP/EwCZEzZIP8apc6DmlsTps2OyvxW4Mr
-	 yB0rpFUEjN5Rb07ZilqPP4iveE+p4VCoKfA737lJAPRYhPC9DOuvfbQ7xoNS3A2MGn
-	 0xNQMBlRs4BmHK0owTCJ8BN9IRdRS9FIKOEkh6txGyfak2T+EPyW/RiyJcDrMGVYsK
-	 iRdswvcEIQHcuhalueN7pwesLDCErNkvUC2CussPNG9SXwrE54eemsgcmpxjM8l3Hm
-	 TOev1MfDdZRme8lx5cKiSVHuy42U3XIf40xfv5k/0tl9YjrukzzrPqQQBXi+tP94sD
-	 StiLiltdTz1yQ==
-Date: Sat, 19 Jul 2025 08:24:44 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1752935730; c=relaxed/simple;
+	bh=1qXl/txmWEl/CHkCfq4k8N/fK5Ptvhrb+z6hE3Agwig=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=jPw8mU9bGGJg4s2eXbS60Jnexw+r8M3HxbnWpGP6ts1N5Z7AwdFNcerACphUAy45OeyrM+k3n7KzKEe4gVxMqH+CAm/2/fIGjbyvU0gDXFaxCBg3P/WjSHBsP6bLsPN/gKweu5IicoXvMcHJzoQhw3rxlcSOdzLtrVE47zPU8Pg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.214.181])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1c936174f;
+	Sat, 19 Jul 2025 22:30:13 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: knaerzche@gmail.com
+Cc: amadeus@jmu.edu.cn,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	ziyao@disroot.org
+Subject: Re: [PATCH v3 0/6] arm64: dts: rockchip: Add ROCK 2A/2F, Sige1 and NanoPi Zero2
+Date: Sat, 19 Jul 2025 22:30:08 +0800
+Message-Id: <20250719143008.54288-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <104a501d-b9b2-494e-b073-932ddadd7129@gmail.com>
+References: <104a501d-b9b2-494e-b073-932ddadd7129@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, 
- Orson Zhai <orsonzhai@gmail.com>, dri-devel@lists.freedesktop.org, 
- David Airlie <airlied@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
- Kevin Tang <kevin.tang@unisoc.com>, devicetree@vger.kernel.org, 
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- Maxime Ripard <mripard@kernel.org>, Chunyan Zhang <zhang.lyra@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org
-To: =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-In-Reply-To: <20250719-ums9230-drm-v1-1-e4344a05eb3d@abscue.de>
-References: <20250719-ums9230-drm-v1-0-e4344a05eb3d@abscue.de>
- <20250719-ums9230-drm-v1-1-e4344a05eb3d@abscue.de>
-Message-Id: <175293148489.4113846.8949388873166546770.robh@kernel.org>
-Subject: Re: [PATCH 01/12] dt-bindings: display: sprd: adapt for UMS9230
- support
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a982317b60e03a2kunma5e02ceb86108
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCTEMaVhhIGRgaSkxDH0keSVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSUJNS0pVSktLVU
+	tZBg++
 
+Hi,
 
-On Sat, 19 Jul 2025 14:09:37 +0200, Otto Pflüger wrote:
-> Add the compatible strings for the display controller found in the
-> UMS9230 SoC and bindings for a gate clock. Add IOMMU-related bindings
-> to the display-subsystem node.
-> 
-> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
-> ---
->  .../bindings/display/sprd/sprd,display-subsystem.yaml  | 11 +++++++++++
->  .../bindings/display/sprd/sprd,sharkl3-dpu.yaml        | 18 +++++++++++++-----
->  .../bindings/display/sprd/sprd,sharkl3-dsi-host.yaml   | 11 ++++++++---
->  3 files changed, 32 insertions(+), 8 deletions(-)
-> 
+> The issue I was seeing is that there actually *is* a variant called
+> 'RK3528' which at least according to the latest datasheets slightly differs
+> from 'RK3528A'. We are doing development based on 'RK3528A' and calling it
+> 'rockchip,rk3528' which might make it hard to add the non-A-variant in
+> future (unless we call it 'rockchip,the-actual-rk3528').
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I think this can be ignored, because rockchip only provides RK3528A chip.
+RK3528A should be a revised version of RK3528, which solves some bugs,
+so we have never seen the silk screen printed with RK3528.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml:38:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml:41:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+Thanks,
+Chukun
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.example.dtb: dpu@63000000 (sprd,sharkl3-dpu): clocks: [[4294967295, 21], [4294967295, 13]] is too long
-	from schema $id: http://devicetree.org/schemas/display/sprd/sprd,sharkl3-dpu.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250719-ums9230-drm-v1-1-e4344a05eb3d@abscue.de
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+--
+2.25.1
 
 
