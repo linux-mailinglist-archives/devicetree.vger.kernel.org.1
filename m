@@ -1,114 +1,268 @@
-Return-Path: <devicetree+bounces-197874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FB50B0B0F7
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 18:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7310B0B106
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 19:13:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDFDBAA687B
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 16:57:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F388AA1F1C
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 17:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 429C62882C4;
-	Sat, 19 Jul 2025 16:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 961E9287266;
+	Sat, 19 Jul 2025 17:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="pDnwgip7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XCL31juy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E21320B80A;
-	Sat, 19 Jul 2025 16:57:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F6986352;
+	Sat, 19 Jul 2025 17:13:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752944278; cv=none; b=quNhEYnTlMtB+t5dMy5g1JOo1u5A01lGZKtgxF2bgHIVacjCBoT35r7+ph/y9V16NALRzxTqwT+AfdfeFH24SeFmTxEnsD4z+B3vfao+gyfJpsmFPJlkww1Z7qQPK8hzhN1liDIP2sl44KZwfMpa9qJQW2hmfnwwjeGgrLq84sM=
+	t=1752945198; cv=none; b=kXmzReeQJXvvtAnXE1Gh7pwENhcHG47HV2bBtquYwA0qvwGGW/Up17hGr7S6Un6EP4AG0MHUa3BeioDGRmgLot7uQj9W4Arh/yphSY1Zhjdgj5WC/4dvGpguQ1zntC6m58icb5RcnjgURLUK+RVP6kaYJNEvGAFLe6rLXwLxe3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752944278; c=relaxed/simple;
-	bh=vqvz+1tGu+LpaR4QvDy5MuUcglJGRzLgrNDVSW5K+4c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lGgpCFIl7BhPAqr+xNjAph9LyyFcnYfP3ZskIeU/nTjLy1/e/cSGhtUESJ7/w23B+1oclmAMKp57MbsnoTQ5ODG7S91BVvhTbRphsm20LUFrTvVn9uOTwk+1f24IXb7zm+Q838OLlqBVM+O91ODcoO6p3nxLXko4VgO/R+CBtNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=pDnwgip7; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=1mfA517rjzPZoRXNHzM0lVU9Rb/n66iO6+Wm0YH3JEY=; b=pDnwgip7JjpRRWIQ+7eRa13nTL
-	sQhiLhgkqwUNQzTMjMiV6IwiXk3MJxORqA/jcroj65TMl3vSBO6v6/9F/sFhmRJLyGC2ssIVr/z6t
-	xIGP+9TukEbjzMlariteXOPgxw88EJGzpxqNhZ+1M9Fk8GCP87KYK0v7j40u+srk3kNg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1udAsS-0025PX-Nw; Sat, 19 Jul 2025 18:57:36 +0200
-Date: Sat, 19 Jul 2025 18:57:36 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-	Stephen Boyd <swboyd@chromium.org>,
-	Andre Draszik <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	Elliot Berman <quic_eberman@quicinc.com>,
-	Srinivas Kandagatla <srini@kernel.org>
-Subject: Re: [PATCH v11 2/8] power: reset: reboot-mode: Add support for 64
- bit magic
-Message-ID: <8d4a42b6-657f-4c30-8e25-4213d8d53a89@lunn.ch>
-References: <20250717-arm-psci-system_reset2-vendor-reboots-v11-0-df3e2b2183c3@oss.qualcomm.com>
- <20250717-arm-psci-system_reset2-vendor-reboots-v11-2-df3e2b2183c3@oss.qualcomm.com>
- <6vlm3ybjpy2jq3cr2pzj4vcmqwoissdml2xmhfzlulfbrpzakt@xrepu6c5zykb>
- <713b2cc8-1bc7-a8b7-678b-5fc7fe25615a@oss.qualcomm.com>
+	s=arc-20240116; t=1752945198; c=relaxed/simple;
+	bh=1Jar+Yx49EFElUCCKG9zjE7yeAM24bhqG28+S0W1bI0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rLzt7fechG3IrDNyXaW+u1aKLooVyM4pFfd6LvAXyxbap2yfNq/GKawJgYBRMPVAKd+cShZ4xUw60gJcjwlIN7Aoae3VpBokj5L0Wln+oxP+BSxwvYvlhRf3oFm3GuZ4r1057D3PvEICPTS6R1PLKyHt7VL3MuD4UI5ivuL/VL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XCL31juy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB75CC4CEE3;
+	Sat, 19 Jul 2025 17:13:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752945196;
+	bh=1Jar+Yx49EFElUCCKG9zjE7yeAM24bhqG28+S0W1bI0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=XCL31juyFkSmc/xTAEGowsSChS17KgEmckdBD7luj8Q0zbARyKSeoGKbnt2K0Os2M
+	 Bl0tZGHpQ8hhVOruzeYSC1wNULW6IFeBtJ/Fqa45g31BVWuTSQvyF6jsj7LfwS9pza
+	 LuuhABjIH9tv5bIRh+uBK9cRUFYs+aNOaN/xivlPkNAcq86zMKP2qnx9obMb9AjGNg
+	 VrohOssZ05BohG5ToVhOSbh1Dxs9NbVkhpwvVxqX1u3mpZaN/xzfOVLtZgtu7I/WeR
+	 mihETWrm69BGr+8A6MdjzUg0UQqyyD8cJYikygKsnuaX2NYCMU84oJ6dUDry8YmYd0
+	 Hc7KolDO3XLdg==
+Date: Sat, 19 Jul 2025 18:13:05 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andreas Klinger <ak@it-klinger.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ lars@metafoo.de, javier.carrasco.cruz@gmail.com, mazziesaccount@gmail.com,
+ andriy.shevchenko@linux.intel.com, arthur.becker@sentec.com,
+ perdaniel.olsson@axis.com, mgonellabolduc@dimonoff.com,
+ muditsharma.info@gmail.com, clamor95@gmail.com, emil.gedenryd@axis.com,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/3] iio: light: add support for veml6046x00 RGBIR
+ color sensor
+Message-ID: <20250719181305.738641cb@jic23-huawei>
+In-Reply-To: <20250715085810.7679-3-ak@it-klinger.de>
+References: <20250715085810.7679-1-ak@it-klinger.de>
+	<20250715085810.7679-3-ak@it-klinger.de>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <713b2cc8-1bc7-a8b7-678b-5fc7fe25615a@oss.qualcomm.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-> >> +static int qcom_pon_reboot_mode_write(struct reboot_mode_driver *reboot, u64 magic)
-> >>  {
-> >>  	struct qcom_pon *pon = container_of
-> >>  			(reboot, struct qcom_pon, reboot_mode);
-> >> @@ -37,7 +36,7 @@ static int qcom_pon_reboot_mode_write(struct reboot_mode_driver *reboot,
-> >>  	ret = regmap_update_bits(pon->regmap,
-> >>  				 pon->baseaddr + PON_SOFT_RB_SPARE,
-> >>  				 GENMASK(7, pon->reason_shift),
-> >> -				 magic << pon->reason_shift);
-> >> +				 ((u32)magic) << pon->reason_shift);
+On Tue, 15 Jul 2025 10:58:09 +0200
+Andreas Klinger <ak@it-klinger.de> wrote:
 
-As a general rule of thumb, code with casts is poor quality code. Try
-to write the code without casts.
+> Add Vishay VEML6046X00 high accuracy RGBIR color sensor.
+> 
+> This sensor provides three colour (red, green and blue) as well as one
+> infrared (IR) channel through I2C.
+> 
+> Support direct and buffered mode.
+> 
+> An optional interrupt for signaling green colour threshold underflow or
+> overflow is not supported so far.
+> 
+> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+A few minor things inline.  We are now at the point where anything other than
+fixes is 6.18 material so no great rush.
 
-Maybe something like
+> diff --git a/drivers/iio/light/veml6046x00.c b/drivers/iio/light/veml6046x00.c
+> new file mode 100644
+> index 000000000000..bad4bd7f3f3f
+> --- /dev/null
+> +++ b/drivers/iio/light/veml6046x00.c
+> @@ -0,0 +1,1037 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * VEML6046X00 High Accuracy RGBIR Color Sensor
+> + *
+> + * Copyright (c) 2025 Andreas Klinger <ak@it-klinger.de>
+> + */
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/dev_printk.h>
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +#include <linux/time.h>
+> +#include <linux/types.h>
+> +#include <linux/units.h>
+> +
+> +#include <asm/byteorder.h>
+> +
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+Check these includes.  This one for example is only use for custom
+attributes and you don't seem to have any.
 
-      If (magic > MAX_U32)
-      	   return -EINVAL;
+> +#include <linux/iio/trigger_consumer.h>
+> +#include <linux/iio/triggered_buffer.h>
 
-      magic_32 = magic;
 
-You might be able to go further, and validate that magic actually fits
-into the field when you consider the << pon->reason_shift.
+> +
+> +static int veml6046x00_single_read(struct iio_dev *iio,
+> +				   enum iio_modifier modifier, int *val)
+> +{
+> +	struct veml6046x00_data *data = iio_priv(iio);
+> +	struct device *dev = regmap_get_device(data->regmap);
+> +	unsigned int addr, it_usec;
+> +	int ret;
+> +	__le16 reg;
+> +
+> +	switch (modifier) {
+> +	case IIO_MOD_LIGHT_RED:
+> +		addr = VEML6046X00_REG_R;
+> +		break;
+> +	case IIO_MOD_LIGHT_GREEN:
+> +		addr = VEML6046X00_REG_G;
+> +		break;
+> +	case IIO_MOD_LIGHT_BLUE:
+> +		addr = VEML6046X00_REG_B;
+> +		break;
+> +	case IIO_MOD_LIGHT_IR:
+> +		addr = VEML6046X00_REG_IR;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +	ret = pm_runtime_resume_and_get(dev);
 
-	Andrew
+Will be interesting to consider the new ACQUIRE stuff that will (I think)
+hit cleanup.h in the new cycle can be applied to runtime pm.
+Note I'm not asking for a change, but more saying I might look into updating
+this code during the next cycle.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = veml6046x00_get_it_usec(data, &it_usec);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to get integration time ret: %d", ret);
+> +		goto no_data;
+> +	}
+> +
+> +	ret = regmap_field_write(data->rf.mode, 1);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to write mode ret: %d", ret);
+> +		goto no_data;
+
+I'm struggling a bit with why these error paths result in the
+runtime pm calls, but some below do not.  Seems to be a lack
+of consistency that will leave missbalanced counts.
+
+
+> +	}
+> +
+> +	ret = regmap_field_write(data->rf.trig, 1);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to write trigger ret: %d", ret);
+> +		goto no_data;
+> +	}
+> +
+> +	/* integration time + 12.5 % to ensure completion */
+> +	fsleep(it_usec + it_usec / 8);
+> +
+> +	ret = veml6046x00_wait_data_available(iio, it_usec * 4);
+> +	if (ret < 0)
+here for example.
+
+> +		return ret;
+> +	if (ret == 0)
+> +		return -EAGAIN;
+> +
+> +	if (!iio_device_claim_direct(iio))
+> +		return -EBUSY;
+> +
+> +	ret = regmap_bulk_read(data->regmap, addr, &reg, sizeof(reg));
+> +	iio_device_release_direct(iio);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pm_runtime_mark_last_busy(dev);
+> +	pm_runtime_put_autosuspend(dev);
+> +
+> +	*val = le16_to_cpu(reg);
+> +
+> +	return IIO_VAL_INT;
+> +
+> +no_data:
+> +	pm_runtime_mark_last_busy(dev);
+> +	pm_runtime_put_autosuspend(dev);
+> +
+> +	return -EAGAIN;
+> +}
+
+
+
+> +static int veml6046x00_probe(struct i2c_client *i2c)
+> +{
+> +	struct device *dev = &i2c->dev;
+> +	struct veml6046x00_data *data;
+> +	struct iio_dev *iio;
+> +	struct regmap *regmap;
+> +	int ret;
+> +
+> +	regmap = devm_regmap_init_i2c(i2c, &veml6046x00_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to set regmap\n");
+> +
+> +	iio = devm_iio_device_alloc(dev, sizeof(*data));
+> +	if (!iio)
+> +		return -ENOMEM;
+> +
+> +	data = iio_priv(iio);
+> +	/* struct iio_dev is retrieved via get_drv_data(). */
+
+dev_get_drvdata()
+
+> +	i2c_set_clientdata(i2c, iio);
+> +	data->regmap = regmap;
+
+> +
+> +	ret = devm_iio_triggered_buffer_setup(dev, iio, NULL,
+> +					      veml6046x00_trig_handler,
+> +					      &veml6046x00_buffer_setup_ops);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to register triggered buffer");
+> +
+> +	pm_runtime_mark_last_busy(dev);
+
+Given this will now merge after 6.17-rc1 you could drop this as now incorporated
+in the next call. It's harmless and I'll hopefully remember to tweak all code
+for next cycle that has pm_runtime_mark_last_busy() in it.
+
+> +	pm_runtime_put_autosuspend(dev);
+> +
+> +	ret = devm_iio_device_register(dev, iio);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to register iio device");
+> +
+> +	return 0;
+> +}
+
 
