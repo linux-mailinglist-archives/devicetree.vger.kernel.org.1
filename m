@@ -1,242 +1,136 @@
-Return-Path: <devicetree+bounces-197837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 217ADB0AF6C
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 12:56:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 954D8B0AF98
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 13:29:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A93C73A2C0A
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 10:56:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8049188E7CF
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jul 2025 11:29:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923E922127E;
-	Sat, 19 Jul 2025 10:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90C39223322;
+	Sat, 19 Jul 2025 11:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="P4HrsYYq"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EKd0b2JQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEB8E33086;
-	Sat, 19 Jul 2025 10:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF71D221278;
+	Sat, 19 Jul 2025 11:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752922593; cv=none; b=NnwUHfygPPjxIxkTkzMOh43BpvcBsU+yEyl6AAgzUK9tmbKy1J8NCcIYLqAQzTNYCewfEN2UGzsdW+ruRo9aOgPzwQbOfU9zxpsKlfcFa7kPD8h5Xex2fq8Iu51++E9MIhwzj0/5Hr8HM5x+D41vsL30oQvn/d0V7wBHEvTh5ZE=
+	t=1752924551; cv=none; b=TuBm1hFMFMJbL7+GVet2MzWV8glscr9j/z/ZGgwAA9b46vEM8dU+fAUidM9WEmNBMI4rixonZ40Uwfe+X4vlR8d/j/xm+ofagINCcHZUxLJJlaDKL6OlMydLEejp7S7JKx1ZkGADJoY/5EvDypLMFkrGwTlMc5z2riNAYwmlv3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752922593; c=relaxed/simple;
-	bh=8CDwXX3HzreVp6VcPV55yzgMZETSE5j2+/qjBNZKVYU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QbMDJJStegxpfMgGKPY99PbjOAgTchS9nSG+fBOAQ2mNztesihdhrUp3oGKF8xxt2S1UrWIsW2S2CoAhJx56UHz4QZh0cidnJMp5EKxUUJffuM6EUzbIFH2d8dCuoX5dcr9U3xm725EgxqGNUKlhhLbIFR5mLYHfU/fS/k2Vwx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=P4HrsYYq; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0EAF71F68D;
-	Sat, 19 Jul 2025 10:56:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1752922581;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=u+V4okcQg5oev0dJo7W9WyupRbgSuk/hNGg+xMr7j5I=;
-	b=P4HrsYYqAhmsXl1kclEkZQG9JsrFGmEV54vH98kLPctV2Q6P14yJc5XQdbugAbDGEtBefU
-	2NTFBx17uTgNhAYS8OJVSkgsFIvVErk9re1JfRlxzl3+hD2o8zk2VQP0f3jLaluiueuONu
-	UVhOoySTeVWarG+s3JB/khD9TQ8H56+sC4O4tyyBtgflwXHXeD7yHuddsZI3yw1DT5EFJe
-	IzQXU1/czG/fPBdnlEg3P0GVQ2T1nxUBq2DhTojmRUGwYVA4DtjYev5rQiCtlgMJWimVu8
-	tX9GkfkKqqVB1nR3UuiircLA7AoVjiB5yBitGLYqAUEZU9V/MgefpOvQ0X7nqA==
-Date: Sat, 19 Jul 2025 12:56:16 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski
- <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
- linux-arm-kernel@lists.infradead.org, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>, Marek
- =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
- <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
- mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Romain
- Gantois <romain.gantois@bootlin.com>, Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: Re: [PATCH net-next v9 05/15] net: phy: dp83822: Add support for
- phy_port representation
-Message-ID: <20250719125616.336ece14@kmaincent-XPS-13-7390>
-In-Reply-To: <20250717073020.154010-6-maxime.chevallier@bootlin.com>
-References: <20250717073020.154010-1-maxime.chevallier@bootlin.com>
-	<20250717073020.154010-6-maxime.chevallier@bootlin.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1752924551; c=relaxed/simple;
+	bh=Cy9pjvo9o1sugb4I0cfDyzykkSUFG6R+svA2UCozKws=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YliWtIUN+TJd4JEAb3T8Cjpfmpa9jlFa7xjnLweM2VbQG9YlkpmIzrQqO1MFcahdBwKMn9oXKc/qqcuLrthUgblVz2gmMRzgZXcu3pUr6+Lw/ViMXaN8efQAPtSoJL3CKC+MXh/yCKmleVQwBRsSGoA4uxknFsG8C+2ndbvjnsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EKd0b2JQ; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752924550; x=1784460550;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Cy9pjvo9o1sugb4I0cfDyzykkSUFG6R+svA2UCozKws=;
+  b=EKd0b2JQZfhI6CKzMe9UGgyMY/e7ei+WsK0UbfuqnD0QhtmReIW9LQyq
+   OrCL3w8Ee9qgAuZSNQYIjGXsU/L5URd+DI0Ql8e0bJ2a5WrzzeJWVWNDR
+   i3lKQH5eQ3zilcAnBYbhL7ocZ+i7XGnvDUVSEUwJHW1fLbNTLXH2Tqkcz
+   bcSZydGOuW2dX/YZMWnnrfZ8ZMIzP4mmINQbk4jPClhCxJoGtvD58NWqC
+   aG+9VcSvNgTT1qTsE3Eazxn2irVt9DjeuHzkZEOvPv4zvn3LktNomCgUo
+   nnyQvXL4Y+uBHM94LZa8Cn6+Ql0TKAHXPqps6FRJFXvUtKZP/VeICmvoZ
+   A==;
+X-CSE-ConnectionGUID: hRBmqWLSTOyLHv2dBQnL8g==
+X-CSE-MsgGUID: mAfbnlq7TQOpIbvGiC8D1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="55058401"
+X-IronPort-AV: E=Sophos;i="6.16,324,1744095600"; 
+   d="scan'208";a="55058401"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jul 2025 04:29:09 -0700
+X-CSE-ConnectionGUID: ZjNNKKktSRucpl6nlv0sWA==
+X-CSE-MsgGUID: XKT4BK0RT6yU74MkNWddxA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,324,1744095600"; 
+   d="scan'208";a="158091958"
+Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 19 Jul 2025 04:29:06 -0700
+Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ud5kV-000FSV-1N;
+	Sat, 19 Jul 2025 11:29:03 +0000
+Date: Sat, 19 Jul 2025 19:28:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>,
+	robh@kernel.org, m.szyprowski@samsung.com, robin.murphy@arm.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	saravanak@google.com, quic_obabatun@quicinc.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, william.zhang@broadcom.com,
+	kernel@oss.qualcomm.com, will@kernel.org, djakov@kernel.org,
+	Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
+Subject: Re: [PATCH v2] of: reserved_mem: Restructure call site for
+ dma_contiguous_early_fixup()
+Message-ID: <202507191943.suIkiLRK-lkp@intel.com>
+References: <20250718234504.2702128-1-oreoluwa.babatunde@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdeiieduhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefguddtfeevtddugeevgfevtdfgvdfhtdeuleetffefffffhffgteekvdefudeiieenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgduheemfegvgeemtgehtddtmeejtggsvgemiedtieeimeeirgdufhemtggsuggunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduheemfegvgeemtgehtddtmeejtggsvgemiedtieeimeeirgdufhemtggsuggupdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefuddprhgtphhtthhopehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtp
- hhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250718234504.2702128-1-oreoluwa.babatunde@oss.qualcomm.com>
 
-Le Thu, 17 Jul 2025 09:30:09 +0200,
-Maxime Chevallier <maxime.chevallier@bootlin.com> a =C3=A9crit :
+Hi Oreoluwa,
 
-> With the phy_port representation intrduced, we can use .attach_port to
+kernel test robot noticed the following build warnings:
 
-*introduced
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.16-rc6 next-20250718]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-As you will have to resend a new version ;)
+url:    https://github.com/intel-lab-lkp/linux/commits/Oreoluwa-Babatunde/of-reserved_mem-Restructure-call-site-for-dma_contiguous_early_fixup/20250719-074651
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250718234504.2702128-1-oreoluwa.babatunde%40oss.qualcomm.com
+patch subject: [PATCH v2] of: reserved_mem: Restructure call site for dma_contiguous_early_fixup()
+config: i386-buildonly-randconfig-005-20250719 (https://download.01.org/0day-ci/archive/20250719/202507191943.suIkiLRK-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250719/202507191943.suIkiLRK-lkp@intel.com/reproduce)
 
-else
-Reviewed-by: Kory Maincent <kory.maincent@bootlin.com>
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202507191943.suIkiLRK-lkp@intel.com/
 
-Thank you!
+All warnings (new ones prefixed by >>):
 
-> populate the port information based on either the straps or the
-> ti,fiber-mode property. This allows simplifying the probe function and
-> allow users to override the strapping configuration.
->=20
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> ---
->  drivers/net/phy/dp83822.c | 71 +++++++++++++++++++++++++--------------
->  1 file changed, 45 insertions(+), 26 deletions(-)
->=20
-> diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-> index 33db21251f2e..2657be2e9034 100644
-> --- a/drivers/net/phy/dp83822.c
-> +++ b/drivers/net/phy/dp83822.c
-> @@ -11,6 +11,7 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/phy.h>
-> +#include <linux/phy_port.h>
->  #include <linux/netdevice.h>
->  #include <linux/bitfield.h>
-> =20
-> @@ -811,17 +812,6 @@ static int dp83822_of_init(struct phy_device *phydev)
->  	int i, ret;
->  	u32 val;
-> =20
-> -	/* Signal detection for the PHY is only enabled if the FX_EN and the
-> -	 * SD_EN pins are strapped. Signal detection can only enabled if
-> FX_EN
-> -	 * is strapped otherwise signal detection is disabled for the PHY.
-> -	 */
-> -	if (dp83822->fx_enabled && dp83822->fx_sd_enable)
-> -		dp83822->fx_signal_det_low =3D device_property_present(dev,
-> -
-> "ti,link-loss-low");
-> -	if (!dp83822->fx_enabled)
-> -		dp83822->fx_enabled =3D device_property_present(dev,
-> -
-> "ti,fiber-mode"); -
->  	if (!device_property_read_string(dev, "ti,gpio2-clk-out", &of_val)) {
->  		if (strcmp(of_val, "mac-if") =3D=3D 0) {
->  			dp83822->gpio2_clk_out =3D DP83822_CLK_SRC_MAC_IF;
-> @@ -950,6 +940,48 @@ static int dp83822_read_straps(struct phy_device *ph=
-ydev)
->  	return 0;
->  }
-> =20
-> +static int dp83822_attach_port(struct phy_device *phydev, struct phy_port
-> *port) +{
-> +	struct dp83822_private *dp83822 =3D phydev->priv;
-> +	int ret;
-> +
-> +	if (port->mediums) {
-> +		if (phy_port_is_fiber(port))
-> +			dp83822->fx_enabled =3D true;
-> +	} else {
-> +		ret =3D dp83822_read_straps(phydev);
-> +		if (ret)
-> +			return ret;
-> +
-> +#if IS_ENABLED(CONFIG_OF_MDIO)
-> +		if (dp83822->fx_enabled && dp83822->fx_sd_enable)
-> +			dp83822->fx_signal_det_low =3D
-> +				device_property_present(&phydev->mdio.dev,
-> +							"ti,link-loss-low");
-> +
-> +		/* ti,fiber-mode is still used for backwards compatibility,
-> but
-> +		 * has been replaced with the mdi node definition, see
-> +		 * ethernet-port.yaml
-> +		 */
-> +		if (!dp83822->fx_enabled)
-> +			dp83822->fx_enabled =3D
-> +				device_property_present(&phydev->mdio.dev,
-> +							"ti,fiber-mode");
-> +#endif /* CONFIG_OF_MDIO */
-> +
-> +		if (dp83822->fx_enabled) {
-> +			port->lanes =3D 1;
-> +			port->mediums =3D BIT(ETHTOOL_LINK_MEDIUM_BASEF);
-> +		} else {
-> +			/* This PHY can only to 100BaseTX max, so on 2 lanes
-> */
-> +			port->lanes =3D 2;
-> +			port->mediums =3D BIT(ETHTOOL_LINK_MEDIUM_BASET);
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int dp8382x_probe(struct phy_device *phydev)
->  {
->  	struct dp83822_private *dp83822;
-> @@ -968,27 +1000,13 @@ static int dp8382x_probe(struct phy_device *phydev)
-> =20
->  static int dp83822_probe(struct phy_device *phydev)
->  {
-> -	struct dp83822_private *dp83822;
->  	int ret;
-> =20
->  	ret =3D dp8382x_probe(phydev);
->  	if (ret)
->  		return ret;
-> =20
-> -	dp83822 =3D phydev->priv;
-> -
-> -	ret =3D dp83822_read_straps(phydev);
-> -	if (ret)
-> -		return ret;
-> -
-> -	ret =3D dp83822_of_init(phydev);
-> -	if (ret)
-> -		return ret;
-> -
-> -	if (dp83822->fx_enabled)
-> -		phydev->port =3D PORT_FIBRE;
-> -
-> -	return 0;
-> +	return dp83822_of_init(phydev);
->  }
-> =20
->  static int dp83826_probe(struct phy_device *phydev)
-> @@ -1172,6 +1190,7 @@ static int dp83822_led_hw_control_get(struct phy_de=
-vice
-> *phydev, u8 index, .led_hw_is_supported =3D dp83822_led_hw_is_supported,
-> \ .led_hw_control_set =3D dp83822_led_hw_control_set,	\
->  		.led_hw_control_get =3D dp83822_led_hw_control_get,	\
-> +		.attach_port =3D dp83822_attach_port		\
->  	}
-> =20
->  #define DP83825_PHY_DRIVER(_id, _name)				\
+>> drivers/of/of_reserved_mem.c:152:1: warning: no previous prototype for function 'dma_contiguous_early_fixup' [-Wmissing-prototypes]
+     152 | dma_contiguous_early_fixup(phys_addr_t base, unsigned long size)
+         | ^
+   drivers/of/of_reserved_mem.c:151:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+     151 | void __weak
+         | ^
+         | static 
+   1 warning generated.
 
 
+vim +/dma_contiguous_early_fixup +152 drivers/of/of_reserved_mem.c
 
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+   150	
+   151	void __weak
+ > 152	dma_contiguous_early_fixup(phys_addr_t base, unsigned long size)
+   153	{
+   154	}
+   155	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
