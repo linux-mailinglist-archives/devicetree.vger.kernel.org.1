@@ -1,106 +1,144 @@
-Return-Path: <devicetree+bounces-197986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48827B0B76F
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 19:36:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C652B0B783
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 19:55:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9A773BBCC3
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 17:35:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6165189159F
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 17:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F3822127A;
-	Sun, 20 Jul 2025 17:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CCB3219E8D;
+	Sun, 20 Jul 2025 17:55:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="n7/Hit4k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from srv01.abscue.de (abscue.de [89.58.28.240])
+Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16173B661;
-	Sun, 20 Jul 2025 17:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.28.240
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AFDD1CFBC
+	for <devicetree@vger.kernel.org>; Sun, 20 Jul 2025 17:55:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753032957; cv=none; b=sVJsMGhTyzQ7NGvkhnI2uVLIt7Pfd0JVHoptM2RpGokanz0HtdFMbBlcskebhxxfERi7SsaGremdK7aMLIaMfyCMJZqW3RpTB2/sCccK/SPTxBfZWeWEkOU+u5+TQKSa+y2XfURdngj4PLlLz9E5yBNJLUOwJOUcv2AC9Ny+4EE=
+	t=1753034150; cv=none; b=T2T+cjtui8Y7RghS3GTCQyPLynhrxNeX/sZkGsDAEhoEtc5Bydy2zabqvxhmXBx2kjfCKnF7A0bmb5h9EAj4vx5Og1PdQ9uMLuNfTw1hsLAGfnzOohGjDgQmKw3+vUoXjMqX94GfzZcn4TX6UhHaa/3bCSKRYECOnW1FwiyndMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753032957; c=relaxed/simple;
-	bh=Xl53gsa0NBpvxNdRwVcXtVzlpFZwfVPNNlWbYnyO2kw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SM59BSy301pONHc4uZo7P7yzBNGs49IPo0QPhu/IubyNVWX6OrscLqYh+dv0wc1gfrxsyI2B+eS1XbnFUtHe+jRn/F0jtGTKulQsee/GddGnIKsikc82C9KyCDmCm6w8voSGW3TvaLzejx1+30qzIRxxbDdq+xmtyCsDlu+Au24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; arc=none smtp.client-ip=89.58.28.240
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=abscue.de
-Received: from srv01.abscue.de (localhost [127.0.0.1])
-	by spamfilter.srv.local (Postfix) with ESMTP id D3BE11C025E;
-	Sun, 20 Jul 2025 19:35:51 +0200 (CEST)
-X-Spam-Level: 
-Date: Sun, 20 Jul 2025 19:35:24 +0200
-From: Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Kevin Tang <kevin.tang@unisoc.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/12] dt-bindings: display: sprd: adapt for UMS9230
- support
-Message-ID: <aH0o3HlyPci3-7DK@abscue.de>
-References: <20250719-ums9230-drm-v1-0-e4344a05eb3d@abscue.de>
- <20250719-ums9230-drm-v1-1-e4344a05eb3d@abscue.de>
- <9966b9e4-399b-4446-81e4-15daf9acbff7@kernel.org>
- <aHz1Z94swDewvriQ@abscue.de>
- <40fd4502-71d5-435e-83f2-2df933c0467b@kernel.org>
+	s=arc-20240116; t=1753034150; c=relaxed/simple;
+	bh=KjZzS8XBgTZPPOnkKB3OMbLXCrHeBc/DuwjqhPGv1yk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=BSLISa0OLlAyLV21Hxqlmy6AfU+4kXfWaWq+oq+G9hhVqzbYmm1SUhAAMavCn0s6gr0Xtx6QUcwtIzwT3OeaO4EHH8XJG1prl6sKfRcEQ3N21dKjTovY5JRCCfnmmfNXLxq+ZSxek1YkbQ3O8ZmJr4dTmJgHTXrADjNmbyrAvHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=n7/Hit4k; arc=none smtp.client-ip=212.77.101.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
+Received: (wp-smtpd smtp.wp.pl 39467 invoked from network); 20 Jul 2025 19:49:06 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
+          t=1753033746; bh=ZoV8pDRAyWULEp5ZRBitKk63UkguBuNR7jm0lOnkgcM=;
+          h=From:To:Cc:Subject;
+          b=n7/Hit4kzTHWgHPbjsYJTjEH9Qxe0xVT4tOZE6b7w738YiHZ8vNvtQVgSx6K8DlAr
+           Jx8p4aia2GHBhn+Xs9kefJjss58UlcEBvkYeaqzUnyLI6PgU6zAj3WviaCSE1H5HfP
+           1OCxNR6hjQANdcbH8XE4DZEN+3rsEWJnE+0RYFV/GyCFLSlGX1edHsrwaXPVytKP9y
+           EDb/IbCEMnqoDS7lPa3CV+N02bpgx1hF/gAVh9Spbu6Y/jkv5a7yuMfx/1MXs47P7x
+           9kLLjZodNlQz5rrPZprJYfLInFMhzuhQb/Qsiwxdg+Tkoq4mmxVt/xQB3Cuuf5JFMA
+           R4WXK7+RZ3Evw==
+Received: from 83.24.129.157.ipv4.supernova.orange.pl (HELO localhost.localdomain) (olek2@wp.pl@[83.24.129.157])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <herbert@gondor.apana.org.au>; 20 Jul 2025 19:49:06 +0200
+From: Aleksander Jan Bajkowski <olek2@wp.pl>
+To: herbert@gondor.apana.org.au,
+	davem@davemloft.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	atenart@kernel.org,
+	linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Cc: Aleksander Jan Bajkowski <olek2@wp.pl>,
+	Sam Shih <sam.shih@mediatek.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/2] dt-bindings: crypto: inside-secure,safexcel: make eip/mem IRQ optional
+Date: Sun, 20 Jul 2025 19:49:02 +0200
+Message-Id: <20250720174903.1321533-1-olek2@wp.pl>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <40fd4502-71d5-435e-83f2-2df933c0467b@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-WP-MailID: 1a3ebb6bead59a00b80590b1222a87ba
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 0000008 [ATvR]                               
 
-On Sun, Jul 20, 2025 at 05:38:02PM +0200, Krzysztof Kozlowski wrote:
-> > 
-> > The clocks should be the same on sharkl3 (sc9863a) and ums9230, but
-> > the existing bindings don't really make sense here or are incomplete.
-> > AFAIK there is no SoC in which this display controller is directly
-> > connected to the PLL as shown in the example. The DSI controller is
-> 
-> This is not the PLL. Gate either. You are looking from wrong side - how
-> clock is generated.
-> 
-> You describe here CLOCK INPUT.
-> 
-> > connected to a clock gate. The DPU actually does have two clocks, both
-> > of which are clock muxes that allow selecting different frequencies and
-> > one of which is behind a clock gate. I can add the second clock for the
-> > DPU if needed.
-> > 
-> > Since nothing seems to be using these bindings at the moment, would it
-> > be okay to drop the old clock names that refer to specific frequencies?
-> 
-> It is still completely irrelevant whether these are muxes. Dropping
-> existing properties is ABI change, but anyway first figure out what is
-> here really.
+Binding for this cryptographic engine defined 6 interrupts since its
+beginning. It seems however only 4 rings IRQs are really required for
+operating this hardware. Linux driver doesn't use "eip" or "mem" IRQs
+and it isn't clear if they are always available (MT7986 devicetree
+doesn't specify them).
 
-I was trying to point out that the existing clock names are incorrect
-because they refer to a specific source that is not necessarily used
-for these clocks, instead of giving a name for the clock input.
+The hardware reference manual [1] for the EIP-197 IP core only defines
+ring interrupts and a global interrupt ("eip"). Ring interrupts can
+optionaly be routed via the main interrupt. Role of the "mem" interrupt
+is unknown.
 
-For the DPU, would "core" and "dpi" be more appropriate as clock names?
-DPI refers to the interface used internally between the DPU and the DSI
-controller.
+This deals with:
+arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: crypto@10320000: interrupts: [[0, 116, 4], [0, 117, 4], [0, 118, 4], [0, 119, 4]] is too short
+        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
+arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: crypto@10320000: interrupt-names: ['ring0', 'ring1', 'ring2', 'ring3'] is too short
+        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
 
-For the DSI controller, it seems that the clock is actually an APB bus
-clock needed for accessing the control registers. Again, it is not
-required to be connected to a 96MHz clock source as the name used in the
-binding suggests. Would something like "apb_clk" or "pclk" be more
-descriptive?
+[1] https://www.scribd.com/document/665924595/Security-IP-197-HW3-4-Hardware-Reference-Manual-RevA
+Cc: Antoine Tenart <atenart@kernel.org>
+Cc: Sam Shih <sam.shih@mediatek.com>
+CC: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+---
+ .../crypto/inside-secure,safexcel.yaml        | 21 ++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
+index 343e2d04c797..97af96bfe5f6 100644
+--- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
++++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
+@@ -26,16 +26,23 @@ properties:
+     maxItems: 1
+ 
+   interrupts:
++    minItems: 4
+     maxItems: 6
+ 
+   interrupt-names:
+-    items:
+-      - const: ring0
+-      - const: ring1
+-      - const: ring2
+-      - const: ring3
+-      - const: eip
+-      - const: mem
++    oneOf:
++      - items:
++          - const: ring0
++          - const: ring1
++          - const: ring2
++          - const: ring3
++          - const: eip
++          - const: mem
++      - items:
++          - const: ring0
++          - const: ring1
++          - const: ring2
++          - const: ring3
+ 
+   clocks:
+     minItems: 1
+-- 
+2.39.5
+
 
