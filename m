@@ -1,127 +1,111 @@
-Return-Path: <devicetree+bounces-197995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11DB5B0B80F
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 21:48:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5849B0B811
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 21:51:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 765F63B9C82
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 19:47:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 471163B9D03
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 19:50:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E2F1C6FF4;
-	Sun, 20 Jul 2025 19:48:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CD89207E1D;
+	Sun, 20 Jul 2025 19:51:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="YBcYJKot";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="DF02umNP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZIk0er9R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586AA18EFD1;
-	Sun, 20 Jul 2025 19:48:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58CD1DB154;
+	Sun, 20 Jul 2025 19:51:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753040901; cv=none; b=jMHuhkjBnel3WNwY0o7oZK0qK7TFxnbiu4yA2njUIioJMgouxAN+UhEWuCLKQyh33yVyna/K/cjfaQvuKOQupTU/wUXROL+OcGQmbw00crE00+FakZBXch4K5tcqN8IX9x6rVILarWjYD++kqyhHXlnb5nviE4DDhA0npCSkhcs=
+	t=1753041076; cv=none; b=pWftn2vXKO2q/N9Otb5AKX0kvF8f7+ee0TXgkHmMyCfNQrKBvMC069TkJere9fBE5muOZKiVGBlm15MJ8G+hPW4yJHiMl/sfFOLmKVjxhayIKbXVL+dz/CBm2k8aCbEtrLC3RxetbJusPwDooi8hv6uFzUJ28GC3MlY+2x6tA7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753040901; c=relaxed/simple;
-	bh=1utAwfN3FoW+z41/AXJFsLb5hAD2w7rjDAlXB0LMog4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=K+FxBDpyAkERPbal1FjPUGPjUSb9vVFXybfm6dGcTLkEsWGi4tHBPH7Lk83x9y2BgAE3WMo8F+XyHAoZR86PEPZWLV53Ov9SoWHI6KeYiKdYMq/Z3t1mNQyJHV25/Z8saA+lelc6Ayv+ut9Z58vhEJnV8k1yUFMkhc4G1gXJ/2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=YBcYJKot; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=DF02umNP; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4blYwq3Jt0z9sQ0;
-	Sun, 20 Jul 2025 21:48:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1753040891;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=T3lOadESAAHh4H6HI80AHcX9AqZoCllRYNj5xpAyhn0=;
-	b=YBcYJKot6u3su4O3fSJb8OKwEuTQXWWrgCbvOcFYspuxNDF+0d/3N2oe+u7GfWq58kFg7w
-	ZkH/wZWkOkWj2SyJopDE05GM0zlRZyHitH/ZSPO8KveyctPNaw+MPDRiS2DPfQlO7tg4bw
-	rA2wCjZu7KCKgxZBQFNiC5mo/mRVteSkNP84hzfBm1rM646j9ArGCgjICIUTNzP1KqlqRJ
-	kiswQCTt+v+byfKvuknma8Mlr9zED7t+aS6Q7ngB4NwZS0RH5x2LDyGmNAkkFRZjJ4avFf
-	+G6FOh3I6jwqCH3K6yrlDH2UO7xgvPOiZPt9jjYCW2z9EGy5Lraxg7FKxcXFgA==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=DF02umNP;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1753040889;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=T3lOadESAAHh4H6HI80AHcX9AqZoCllRYNj5xpAyhn0=;
-	b=DF02umNPEg9sXSEzfmvPby4B0GTYlEHNPYYaqK1vACGp9wpEzrnmQXHFaAy8sR2AGlvJIU
-	vJovo0VHCfQboOY8aZxo0x+SDoS76Mw6zyylE7gkETVz8dqd8OCqaJzZ9owV+l8LxrObGK
-	kAqArU27PX7s3O11rLSWXhDHGoHG4HU0NWa23JQeniyj375rG0MdbOVPxEp0DR2969JXv+
-	AVKQCVOuCbfa4mhNkmUwCZHlSU0RPRO3ZTJ1qC8owr7vhQWvhjrEaMRIYZja3g68mllCAb
-	HC11wvOK2bo5t7AwnEUebzhxp+mWQ8UEiqXec5Z8Ion1tEMCF4FW8swenbaxMw==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] arm64: dts: renesas: r8a779g3: Describe generic SPI NOR support on Retronix R-Car V4H Sparrow Hawk board
-Date: Sun, 20 Jul 2025 21:47:35 +0200
-Message-ID: <20250720194756.413341-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1753041076; c=relaxed/simple;
+	bh=wZMKlEUOX68JrTzkSRvjH2OJEUfyYEUoS2SLk9u7Dow=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fzboQZiroOIHtt6jWHwA4i7TXGOPvTJycmLXDfwnuM4lqqPrLgLEpkTTMuPI9Gcjbgs9UmSc8wZM/we42V133opuOlZGgaVGl6ZMc2WgxshNp6NTW/GOGqeGn4cML1pj6zi1Z9wfIxchkOW9cOpPZXzDI0yiA/47/viYNDZL1lw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZIk0er9R; arc=none smtp.client-ip=209.85.167.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-41bc2668f75so2058784b6e.0;
+        Sun, 20 Jul 2025 12:51:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753041074; x=1753645874; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8pdUiGWbsgg0CJ4pLUwtMgPfW72vVxz6DKVN1oZBlnk=;
+        b=ZIk0er9RN4B4QBH3i3rORVdFMjye7l6qPUOi9viTmWp8+qWYdvtkTBuCfi9q4Y/OWo
+         pQ96DaK1Y82o6O6WwBsr6QiAKUUJQXFCvP5p8iPQESmGDKaCBLxvCMoMiq2qri+ve4So
+         ZPzWHr+9ul6PsaZ/Y/wR0cskhZ4wzbkz4apBTQgs/fJbNXU+C/3qlOlPVbT+3k7ix0Y2
+         U1B8fFQcY1Ra3D0cY1DfAxMVBC0HnhgyZAROCzsTIRH+dX6GKu66fhPk5+9Fup1GjfAa
+         nGdVHW/2ct4SL9AL8Ea4jYmXXtRWSi9wnbwM8gy4Cgd2cX8D69Oi8sqSgzHLm+xlMQjq
+         P3gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753041074; x=1753645874;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8pdUiGWbsgg0CJ4pLUwtMgPfW72vVxz6DKVN1oZBlnk=;
+        b=wqN+Fq2Vb31uUjysp6a1M+baPj6UOjX6pj6TpwDB94WqWWNEokSWD3hcK4UqTMHU2J
+         jI9Bwdr6F4ZOTyIu6Q1A1+8djEr3nUYGKFRmEs8nQFTj0v8fxE3OYYMo2YM0T68O/ArA
+         jaLwN0lNg+S7aOxJ63DROB0fdiLKxmaAlKGC2lKblNMn4eA9k0WoXkbWf9RCmSqY7vgO
+         cHHwKgYvp3MmXHNjVkiwIBlhhfy9hQRN3NPJCcbmZ26Lv5M309CWCoMF21LLLRqMYM0G
+         3e7Xwq/CnRMZ81qVIDic3ufZjt5bijRT+rYLbLMHM1nWw/kzwakoWdJtPrAnJnUebO/j
+         JkbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWmnULnI1PXUT0gWgko1I7xHOsVQpSBtkCYJ0JEswzlm4tr1P/2QjRemOHm11TSleRrVPZVeQoXpQim@vger.kernel.org, AJvYcCXKzFKBrBU/YPHAWAu6hgDBJpkBSlWVbjh/ZJ4bn2H378mXp1zCATL29NaR2uJjENkZyXkDnzBMRNrgU4V+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSWbgeM5A5HhXgvS1wHy3m8b1jnfz9KcbZut1ghbpRHkZILUog
+	hZpmgadw7B6xsI/SiNbBcV4IfQim9zSouMVY6sGhSFEF0SIjP3s15hTcqM0RDL5+4N0AJEp6w2C
+	L3N5hy7ZkQBjs4uIrR+IuD+LaGRa94Gw=
+X-Gm-Gg: ASbGncscqjjn+5rDMGLRpWVnXMNcssNOlLYwm4gTPfqddBxy68mIUIyZZ+0kwcUyWJV
+	v4Bfh14Ui+ZQibKRVgVDkkkjWDnd4AwpGqdnn1IBUGuP8VmFca6b2z0gBDlNT8bxmy7VU1shTAO
+	Rw03WnJExGqkHq+1R97t2TMmkitlUbg2cdMVkYOtDx+u6l8suLd8q1CHrtO6JKh8naV3y52OOOB
+	Rb4wyqJUHbH0Tfq1oE=
+X-Google-Smtp-Source: AGHT+IHt9uAWCHbIYGEdJFOU/DaDUPPXZITgD+rBr+XvH6npb6aGodI/kJwOtF692HkZTJVuU0Kx7GBVi3i4oDGR0Dk=
+X-Received: by 2002:a05:6808:2226:b0:41b:f2a0:28f7 with SMTP id
+ 5614622812f47-41d05756050mr10790464b6e.36.1753041073815; Sun, 20 Jul 2025
+ 12:51:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 17fbfd472437da73ad1
-X-MBO-RS-META: 1ydpdb5fm69ntrknicfhkpw98gwodaqz
-X-Rspamd-Queue-Id: 4blYwq3Jt0z9sQ0
+References: <20250702011956.47479-1-jammy_huang@aspeedtech.com> <20250702011956.47479-3-jammy_huang@aspeedtech.com>
+In-Reply-To: <20250702011956.47479-3-jammy_huang@aspeedtech.com>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Sun, 20 Jul 2025 14:51:02 -0500
+X-Gm-Features: Ac12FXwcwYnjAjxqqsPWb8Z6fZqKu8-qloc1mBHuXxX-CpWSK48rSruJh4ba31s
+Message-ID: <CABb+yY1kyZdMqcMRUEdqCYByQE=DurfnejtvuQsMf9wfLiij2g@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] mailbox: aspeed: add mailbox driver for AST27XX
+ series SoC
+To: Jammy Huang <jammy_huang@aspeedtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au, 
+	andrew@codeconstruct.com.au, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Retronix R-Car V4H Sparrow Hawk EVTA1 is populated with Spansion S25FS512S,
-EVTB1 is populated with Winbond W77Q51NW. Describe the SPI NOR using generic
-"spi-flash" compatible, because both flashes can be auto-detected based on
-their built-in IDs.
+On Tue, Jul 1, 2025 at 8:19=E2=80=AFPM Jammy Huang <jammy_huang@aspeedtech.=
+com> wrote:
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+.....
+> +               /* Read the message data */
+> +               for (data_reg =3D mb->rx_regs + IPCR_DATA + mb->msg_size =
+* n,
+> +                    word_data =3D chan->con_priv,
+> +                    num_words =3D (mb->msg_size / sizeof(u32));
+> +                    num_words;
+> +                    num_words--, data_reg +=3D sizeof(u32), word_data++)
+> +                       *word_data =3D readl(data_reg);
+> +
+Please clean this for loop.
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-index 900807fbca8b..ebff536afdd3 100644
---- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-@@ -767,7 +767,11 @@ &rpc {
- 	status = "okay";
- 
- 	flash@0 {
--		compatible = "spansion,s25fs512s", "jedec,spi-nor";
-+		/*
-+		 * EVTA1 is populated with Spansion S25fS512S
-+		 * EVTB1 is populated with Winbond W77Q51NW
-+		 */
-+		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <40000000>;
- 		spi-rx-bus-width = <4>;
--- 
-2.47.2
-
+Thanks
+-Jassi
 
