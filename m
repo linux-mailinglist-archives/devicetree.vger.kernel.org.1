@@ -1,290 +1,356 @@
-Return-Path: <devicetree+bounces-197908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52C76B0B381
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 06:18:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22BDCB0B3CB
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 08:34:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0E53189A92A
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 04:18:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BF35177B3B
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 06:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 605E119DF4D;
-	Sun, 20 Jul 2025 04:18:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA8BF1A8401;
+	Sun, 20 Jul 2025 06:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZG86+t1B"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="JngO2yWG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D40D299;
-	Sun, 20 Jul 2025 04:18:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8048317A31C
+	for <devicetree@vger.kernel.org>; Sun, 20 Jul 2025 06:34:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752985098; cv=none; b=fEXAJoYf3eAOv5bxBywadH3cbUfDbBuxolsH/TqDX5EGo7f0q93fT70FfLvsqR9iTiHRQwZoGkZUdG0E+Gkgqwy+nQpnVmg1yZTHu7rtkdsNLLUT807IHUHB6HGNAgsn8lXIRthThWWiaJD8iGj+YOQSByi5nIQlR6af0i1fNio=
+	t=1752993269; cv=none; b=EJtkfX41jzERBjFibVNi4SNIt/nQHMUJcZcbkJ+ulGYU+zb+GJ14VogxAbFmgf7Oh+Omotn/qRxp0wmJXdXym+2FdDWy1yzbFOyqddpHNXGx0GAGcpbD5nfoAigiIf6UIeWnCOYeRYmfY0/H1Ho95zwKitqfU8wOBEDJokAAW3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752985098; c=relaxed/simple;
-	bh=zTPSGV2RN1Tag3sEwHr3Y8/f9dwXxNdVFtcCN53nUPg=;
+	s=arc-20240116; t=1752993269; c=relaxed/simple;
+	bh=/fJ5kAJ+93ddS4YMlpRMSjib4Szey4L57kankOohY2M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VsXWb50GL0Vy28K52nY7hmZJgOTp/7RgNvLQe+UPD/BvW8wblR4ZRIrK3YhQUDSW3nvkFIme+V0nwhs2wT7O3s8RxwPpAUF8jHVH1T4qUpQ+yst234A8Y/kqrnZMuTTl0yjbXGXrQeF8VcUHPTka7K3NCniG2fZHby8SMc63T0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZG86+t1B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00B37C4CEEB;
-	Sun, 20 Jul 2025 04:18:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752985097;
-	bh=zTPSGV2RN1Tag3sEwHr3Y8/f9dwXxNdVFtcCN53nUPg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZG86+t1BxJ2IZOGOWK2RipHXXZRclzaoCksosk0COZBjY4IKxMJBvU742bR+9SMCN
-	 j4FlKXrs6HzltarHh5XbDHN24uOk6r715RmwVMVEAe8P9aVWXamB4v6Z47JlQjCy+4
-	 P0Tr7cdiiq1Xkbm05D3yN1+FYJ43BGToh9ifzLQ/nb6hVym5sJkt90K5MRtKHvw/DT
-	 0CLJbCf1cRURhX9TFUYBd+7veU7DMOoSR8FYCJDdSBuCBxaQEp3d+HPcr1v6xQisGe
-	 JdrVB2dQbk33rxqp+bNqqGEBoysu1LXw6VxlBPbm+DroFqIedKw3GZfdhvjch5aE0L
-	 Q9WcxdlS9yRsw==
-Date: Sat, 19 Jul 2025 23:18:15 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
-Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, dmitry.baryshkov@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] soc: qcom: pmic_glink: Add support for subsystem
- restart (SSR)
-Message-ID: <isc35khjez4yvuyqtfakalgbdsub477shqh2h2ejiii4rutfk3@qlhrjvfwr734>
-References: <20250716004004.311001-1-anjelique.melendez@oss.qualcomm.com>
- <20250716004004.311001-3-anjelique.melendez@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dvkg/vCGhmU4do23hhTyNzThlY4aAao8v64F/mAcJ0jvmjqUHt+CDCw8TNm+gTIoW0auewA3b4PlaSf3fiJv675u1Z7P7GhTJn9xNrLyR0tfsidHfkbNPlCoPG2XsjOvtux04gaFYGgLUMLbB8QMVVQs3KThXO4/VC//qy2WusQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=JngO2yWG; arc=none smtp.client-ip=91.218.175.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Sun, 20 Jul 2025 14:34:07 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1752993255;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4a6BlUCJFTdlEQ0RUAp02uN+GKSkSEWnLMZUJiFP/Xk=;
+	b=JngO2yWGJIX+G68ni4+M6O1sO3WqdOl9dvW1ZsxEuDyoyBlLfX5g4CLYxGldviUuuqCvOb
+	h/EoN6HmwwW/NvPOIah/8/xaWXF+/+RnoPO5OhHIuJyk6/C7cJ5UzPsTDjJSqdfvDXHXVa
+	IdkWEH/vy/bP69RebiZhRlIO29plDBk=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ze Huang <huang.ze@linux.dev>
+To: Alex Elder <elder@ieee.org>, Ze Huang <huang.ze@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] usb: dwc3: add generic driver to support flattened
+Message-ID: <aHyN3-uoHofF8Hg3@monica.localdomain>
+References: <20250712-dwc3_generic-v6-0-cc87737cc936@linux.dev>
+ <20250712-dwc3_generic-v6-2-cc87737cc936@linux.dev>
+ <d2e9a521-568e-433d-a59b-9b98138ace2b@ieee.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250716004004.311001-3-anjelique.melendez@oss.qualcomm.com>
+In-Reply-To: <d2e9a521-568e-433d-a59b-9b98138ace2b@ieee.org>
+X-Migadu-Flow: FLOW_OUT
 
-On Tue, Jul 15, 2025 at 05:40:04PM -0700, Anjelique Melendez wrote:
-> Add support for PMIC Glink clients to receive notificiation when
-> the subsystem goes down and comes up again.
+On Tue, Jul 15, 2025 at 03:50:54PM -0500, Alex Elder wrote:
+> On 7/12/25 2:49 AM, Ze Huang wrote:
+> > To support flattened dwc3 dt model and drop the glue layer, introduce the
+> > `dwc3-generic` driver. This enables direct binding of the DWC3 core driver
+> > and offers an alternative to the existing glue driver `dwc3-of-simple`.
+> 
+> I'm not familiar with dwc-of-simple.c, and won't comment on
+> how this differs from that (or does not).
+> 
+> Given you're implementing an alternative though, can you explain
+> in a little more detail what's different between the two?  Why
+> would someone choose to use this driver rather than the other one?
+
+They are basically the same.
+
+dwc-generic use a plain dt node while dwc-of-simple will nest the dwc3
+node as its child.
+
+Both will use dwc3_core_probe() to finish the probe process. But now we
+can simplify the process by just calling it, instead of calling
+of_platform_populate() and create another snps,dwc3 device driver.
+
+> 
+> > 
+> > Signed-off-by: Ze Huang <huang.ze@linux.dev>
+> > ---
+> >   drivers/usb/dwc3/Kconfig             |  11 +++
+> >   drivers/usb/dwc3/Makefile            |   1 +
+> >   drivers/usb/dwc3/dwc3-generic-plat.c | 182 +++++++++++++++++++++++++++++++++++
+> >   3 files changed, 194 insertions(+)
+> > 
+> > diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
+> > index 310d182e10b50b253d7e5a51674806e6ec442a2a..4925d15084f816d3ff92059b476ebcc799b56b51 100644
+> > --- a/drivers/usb/dwc3/Kconfig
+> > +++ b/drivers/usb/dwc3/Kconfig
+> > @@ -189,4 +189,15 @@ config USB_DWC3_RTK
+> >   	  or dual-role mode.
+> >   	  Say 'Y' or 'M' if you have such device.
+> > +config USB_DWC3_GENERIC_PLAT
+> > +	tristate "DWC3 Generic Platform Driver"
+> > +	depends on OF && COMMON_CLK
+> > +	default USB_DWC3
+> > +	help
+> > +	  Support USB3 functionality in simple SoC integrations.
+> > +	  Currently supports SpacemiT DWC USB3. Platforms using
+> > +	  dwc3-of-simple can easily switch to dwc3-generic by flattening
+> > +	  the dwc3 child node in the device tree.
+> > +	  Say 'Y' or 'M' here if your platform integrates DWC3 in a similar way.
+> > +
+> >   endif
+> > diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
+> > index 830e6c9e5fe073c1f662ce34b6a4a2da34c407a2..96469e48ff9d189cc8d0b65e65424eae2158bcfe 100644
+> > --- a/drivers/usb/dwc3/Makefile
+> > +++ b/drivers/usb/dwc3/Makefile
+> > @@ -57,3 +57,4 @@ obj-$(CONFIG_USB_DWC3_IMX8MP)		+= dwc3-imx8mp.o
+> >   obj-$(CONFIG_USB_DWC3_XILINX)		+= dwc3-xilinx.o
+> >   obj-$(CONFIG_USB_DWC3_OCTEON)		+= dwc3-octeon.o
+> >   obj-$(CONFIG_USB_DWC3_RTK)		+= dwc3-rtk.o
+> > +obj-$(CONFIG_USB_DWC3_GENERIC_PLAT)	+= dwc3-generic-plat.o
+> > diff --git a/drivers/usb/dwc3/dwc3-generic-plat.c b/drivers/usb/dwc3/dwc3-generic-plat.c
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..766f4cf17b6909793956f44660d3b3febad50a23
+> > --- /dev/null
+> > +++ b/drivers/usb/dwc3/dwc3-generic-plat.c
+> > @@ -0,0 +1,182 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * dwc3-generic-plat.c - DesignWare USB3 generic platform driver
+> > + *
+> > + * Copyright (C) 2025 Ze Huang <huang.ze@linux.dev>
+> > + *
+> > + * Inspired by dwc3-qcom.c and dwc3-of-simple.c
+> > + */
+> > +
+> > +#include <linux/clk.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/reset.h>
+> > +#include "glue.h"
+> > +
+> > +struct dwc3_generic {
+> > +	struct device		*dev;
+> > +	struct dwc3		dwc;
+> > +	struct clk_bulk_data	*clks;
+> > +	int			num_clocks;
+> > +	struct reset_control	*resets;
+> > +};
+> > +
+> > +static void dwc3_generic_reset_control_assert(void *data)
+> > +{
+> > +	reset_control_assert(data);
+> > +}
+> > +
+> 
+> The next function can go away.  (See below.)
 > 
 
-When I restart the adsp on my devices, I can see pmic glink reacting to
-that (and UCSI oopsing). So please describe what's actually missing in
-the current implementation.
+OK
 
-Regards,
-Bjorn
-
-> Signed-off-by: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
-> ---
->  drivers/soc/qcom/pmic_glink.c | 80 ++++++++++++++++++++++++++---------
->  1 file changed, 59 insertions(+), 21 deletions(-)
+> > +static void dwc3_generic_clk_bulk_disable_unprepare(void *data)
+> > +{
+> > +	struct dwc3_generic *dwc3 = data;
+> > +
+> > +	clk_bulk_disable_unprepare(dwc3->num_clocks, dwc3->clks);
+> > +}
+> > +
+> > +static int dwc3_generic_probe(struct platform_device *pdev)
+> > +{
+> > +	struct dwc3_probe_data probe_data = {};
+> > +	struct device *dev = &pdev->dev;
+> > +	struct dwc3_generic *dwc3;
+> > +	struct resource *res;
+> > +	int ret;
+> > +
+> > +	dwc3 = devm_kzalloc(dev, sizeof(*dwc3), GFP_KERNEL);
+> > +	if (!dwc3)
+> > +		return -ENOMEM;
+> > +
+> > +	dwc3->dev = dev;
+> > +
+> > +	platform_set_drvdata(pdev, dwc3);
+> > +
+> > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > +	if (!res) {
+> > +		dev_err(&pdev->dev, "missing memory resource\n");
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	dwc3->resets = devm_reset_control_array_get_optional_exclusive(dev);
+> > +	if (IS_ERR(dwc3->resets))
+> > +		return dev_err_probe(dev, PTR_ERR(dwc3->resets), "failed to get resets\n");
+> > +
 > 
-> diff --git a/drivers/soc/qcom/pmic_glink.c b/drivers/soc/qcom/pmic_glink.c
-> index 0a6d325b195c..3e755073db60 100644
-> --- a/drivers/soc/qcom/pmic_glink.c
-> +++ b/drivers/soc/qcom/pmic_glink.c
-> @@ -2,6 +2,7 @@
->  /*
->   * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
->   * Copyright (c) 2022, Linaro Ltd
-> + * ​​​​Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->   */
->  #include <linux/auxiliary_bus.h>
->  #include <linux/cleanup.h>
-> @@ -9,6 +10,7 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-> +#include <linux/remoteproc/qcom_rproc.h>
->  #include <linux/rpmsg.h>
->  #include <linux/slab.h>
->  #include <linux/soc/qcom/pdr.h>
-> @@ -23,13 +25,18 @@ enum {
->  	PMIC_GLINK_CLIENT_UCSI,
->  };
->  
-> +struct pmic_glink_data {
-> +	unsigned long	client_mask;
-> +	char		*ssr_name;
-> +};
-> +
->  struct pmic_glink {
->  	struct device *dev;
->  	struct pdr_handle *pdr;
->  
->  	struct rpmsg_endpoint *ept;
->  
-> -	unsigned long client_mask;
-> +	const struct pmic_glink_data *data;
->  
->  	struct auxiliary_device altmode_aux;
->  	struct auxiliary_device ps_aux;
-> @@ -39,10 +46,14 @@ struct pmic_glink {
->  	struct mutex state_lock;
->  	unsigned int client_state;
->  	unsigned int pdr_state;
-> +	unsigned int ssr_state;
->  
->  	/* serializing clients list updates */
->  	spinlock_t client_lock;
->  	struct list_head clients;
-> +
-> +	struct notifier_block ssr_nb;
-> +	void *ssr_handle;
->  };
->  
->  static struct pmic_glink *__pmic_glink;
-> @@ -205,10 +216,13 @@ static void pmic_glink_state_notify_clients(struct pmic_glink *pg)
->  	unsigned long flags;
->  
->  	if (pg->client_state != SERVREG_SERVICE_STATE_UP) {
-> -		if (pg->pdr_state == SERVREG_SERVICE_STATE_UP && pg->ept)
-> +		if ((pg->pdr_state == SERVREG_SERVICE_STATE_UP ||
-> +		     pg->ssr_state == QCOM_SSR_AFTER_POWERUP) && pg->ept)
->  			new_state = SERVREG_SERVICE_STATE_UP;
->  	} else {
-> -		if (pg->pdr_state == SERVREG_SERVICE_STATE_DOWN || !pg->ept)
-> +		if (pg->pdr_state == SERVREG_SERVICE_STATE_DOWN ||
-> +		    pg->ssr_state == QCOM_SSR_BEFORE_SHUTDOWN ||
-> +		    !pg->ept)
->  			new_state = SERVREG_SERVICE_STATE_DOWN;
->  	}
->  
-> @@ -231,6 +245,18 @@ static void pmic_glink_pdr_callback(int state, char *svc_path, void *priv)
->  	pmic_glink_state_notify_clients(pg);
->  }
->  
-> +static int pmic_glink_ssr_callback(struct notifier_block *nb, unsigned long code, void *data)
-> +{
-> +	struct pmic_glink *pg = container_of(nb, struct pmic_glink, ssr_nb);
-> +
-> +	mutex_lock(&pg->state_lock);
-> +	pg->ssr_state = code;
-> +
-> +	pmic_glink_state_notify_clients(pg);
-> +	mutex_unlock(&pg->state_lock);
-> +	return 0;
-> +}
-> +
->  static int pmic_glink_rpmsg_probe(struct rpmsg_device *rpdev)
->  {
->  	struct pmic_glink *pg;
-> @@ -280,7 +306,6 @@ static struct rpmsg_driver pmic_glink_rpmsg_driver = {
->  
->  static int pmic_glink_probe(struct platform_device *pdev)
->  {
-> -	const unsigned long *match_data;
->  	struct pdr_service *service;
->  	struct pmic_glink *pg;
->  	int ret;
-> @@ -297,12 +322,10 @@ static int pmic_glink_probe(struct platform_device *pdev)
->  	spin_lock_init(&pg->client_lock);
->  	mutex_init(&pg->state_lock);
->  
-> -	match_data = (unsigned long *)of_device_get_match_data(&pdev->dev);
-> -	if (!match_data)
-> +	pg->data = of_device_get_match_data(&pdev->dev);
-> +	if (!pg->data)
->  		return -EINVAL;
->  
-> -	pg->client_mask = *match_data;
-> -
->  	pg->pdr = pdr_handle_alloc(pmic_glink_pdr_callback, pg);
->  	if (IS_ERR(pg->pdr)) {
->  		ret = dev_err_probe(&pdev->dev, PTR_ERR(pg->pdr),
-> @@ -310,17 +333,17 @@ static int pmic_glink_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI)) {
-> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI)) {
->  		ret = pmic_glink_add_aux_device(pg, &pg->ucsi_aux, "ucsi");
->  		if (ret)
->  			goto out_release_pdr_handle;
->  	}
-> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE)) {
-> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE)) {
->  		ret = pmic_glink_add_aux_device(pg, &pg->altmode_aux, "altmode");
->  		if (ret)
->  			goto out_release_ucsi_aux;
->  	}
-> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT)) {
-> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_BATT)) {
->  		ret = pmic_glink_add_aux_device(pg, &pg->ps_aux, "power-supply");
->  		if (ret)
->  			goto out_release_altmode_aux;
-> @@ -333,6 +356,16 @@ static int pmic_glink_probe(struct platform_device *pdev)
->  		goto out_release_aux_devices;
->  	}
->  
-> +	if (device_property_present(&pdev->dev, "qcom,subsys-restart")) {
-> +		pg->ssr_nb.notifier_call = pmic_glink_ssr_callback;
-> +		pg->ssr_handle = qcom_register_ssr_notifier(pg->data->ssr_name, &pg->ssr_nb);
-> +		if (IS_ERR(pg->ssr_handle)) {
-> +			ret = dev_err_probe(&pdev->dev, PTR_ERR(pg->ssr_handle),
-> +					"failed adding ssr notifier\n");
-> +			goto out_release_aux_devices;
-> +		}
-> +	}
-> +
->  	mutex_lock(&__pmic_glink_lock);
->  	__pmic_glink = pg;
->  	mutex_unlock(&__pmic_glink_lock);
-> @@ -340,13 +373,13 @@ static int pmic_glink_probe(struct platform_device *pdev)
->  	return 0;
->  
->  out_release_aux_devices:
-> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
-> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
->  		pmic_glink_del_aux_device(pg, &pg->ps_aux);
->  out_release_altmode_aux:
-> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
-> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
->  		pmic_glink_del_aux_device(pg, &pg->altmode_aux);
->  out_release_ucsi_aux:
-> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
-> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
->  		pmic_glink_del_aux_device(pg, &pg->ucsi_aux);
->  out_release_pdr_handle:
->  	pdr_handle_release(pg->pdr);
-> @@ -360,23 +393,28 @@ static void pmic_glink_remove(struct platform_device *pdev)
->  
->  	pdr_handle_release(pg->pdr);
->  
-> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
-> +	if (pg->ssr_handle)
-> +		qcom_unregister_ssr_notifier(pg->ssr_handle, &pg->ssr_nb);
-> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
->  		pmic_glink_del_aux_device(pg, &pg->ps_aux);
-> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
-> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
->  		pmic_glink_del_aux_device(pg, &pg->altmode_aux);
-> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
-> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
->  		pmic_glink_del_aux_device(pg, &pg->ucsi_aux);
->  
->  	guard(mutex)(&__pmic_glink_lock);
->  	__pmic_glink = NULL;
->  }
->  
-> -static const unsigned long pmic_glink_sm8450_client_mask = BIT(PMIC_GLINK_CLIENT_BATT) |
-> -							   BIT(PMIC_GLINK_CLIENT_ALTMODE) |
-> -							   BIT(PMIC_GLINK_CLIENT_UCSI);
-> +static const struct pmic_glink_data pmic_glink_sm8450_data = {
-> +	.client_mask = BIT(PMIC_GLINK_CLIENT_BATT) |
-> +		       BIT(PMIC_GLINK_CLIENT_ALTMODE) |
-> +		       BIT(PMIC_GLINK_CLIENT_UCSI),
-> +	.ssr_name = "lpass",
-> +};
->  
->  static const struct of_device_id pmic_glink_of_match[] = {
-> -	{ .compatible = "qcom,pmic-glink", .data = &pmic_glink_sm8450_client_mask },
-> +	{ .compatible = "qcom,pmic-glink", .data = &pmic_glink_sm8450_data },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, pmic_glink_of_match);
-> -- 
-> 2.34.1
+> It isn't enforced on exclusive resets, but I'm pretty sure
+> resets are assumed to be asserted initially.
+> 
+
+I'd like to keep it. We cannot guarantee what environment was passed
+in (from bootloader), right?
+
+> > +	ret = reset_control_assert(dwc3->resets);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "failed to assert resets\n");
+> > +
+> > +	ret = devm_add_action_or_reset(dev, dwc3_generic_reset_control_assert, dwc3->resets);
+> > +	if (ret)
+> > +		return ret;
+> 
+> The re-assert shouldn't be set up unless the deassert below
+> succeeds.
+> 
+
+Will move behind the deassert.
+
+> > +	usleep_range(10, 1000);
+> 
+> This seems like a large range.  You could just do msleep(1);
+> Also, can you add a comment explaining why a delay is needed,
+> and why 1 millisecond is the right amount of time to sleep?
+> 
+
+I will check the range with spacemit and reply soon.
+
+> > +	ret = reset_control_deassert(dwc3->resets);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "failed to deassert resets\n");
+> > +
+> > +	ret = devm_clk_bulk_get_all(dwc3->dev, &dwc3->clks);
+> > +	if (ret < 0)
+> > +		return dev_err_probe(dev, ret, "failed to get clocks\n");
+> 
+> Call devm_clk_bulk_get_all_enabled() instead of doing the two
+> steps separately here.
+> 
+
+Will do, thanks.
+
+> 					-Alex
+> 
+> > +	dwc3->num_clocks = ret;
+> > +
+> > +	ret = clk_bulk_prepare_enable(dwc3->num_clocks, dwc3->clks);
+> > +	if (ret)
+> j> +		return dev_err_probe(dev, ret, "failed to enable clocks\n");
+> > +
+> > +	ret = devm_add_action_or_reset(dev, dwc3_generic_clk_bulk_disable_unprepare, dwc3);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	dwc3->dwc.dev = dev;
+> > +	probe_data.dwc = &dwc3->dwc;
+> > +	probe_data.res = res;
+> > +	probe_data.ignore_clocks_and_resets = true;
+> > +	ret = dwc3_core_probe(&probe_data);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "failed to register DWC3 Core\n");
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static void dwc3_generic_remove(struct platform_device *pdev)
+> > +{
+> > +	struct dwc3_generic *dwc3 = platform_get_drvdata(pdev);
+> > +
+> > +	dwc3_core_remove(&dwc3->dwc);
+> > +}
+> > +
+> > +static int dwc3_generic_suspend(struct device *dev)
+> > +{
+> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > +	int ret;
+> > +
+> > +	ret = dwc3_pm_suspend(&dwc3->dwc);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	clk_bulk_disable_unprepare(dwc3->num_clocks, dwc3->clks);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int dwc3_generic_resume(struct device *dev)
+> > +{
+> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > +	int ret;
+> > +
+> > +	ret = clk_bulk_prepare_enable(dwc3->num_clocks, dwc3->clks);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = dwc3_pm_resume(&dwc3->dwc);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int dwc3_generic_runtime_suspend(struct device *dev)
+> > +{
+> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > +
+> > +	return dwc3_runtime_suspend(&dwc3->dwc);
+> > +}
+> > +
+> > +static int dwc3_generic_runtime_resume(struct device *dev)
+> > +{
+> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > +
+> > +	return dwc3_runtime_resume(&dwc3->dwc);
+> > +}
+> > +
+> > +static int dwc3_generic_runtime_idle(struct device *dev)
+> > +{
+> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > +
+> > +	return dwc3_runtime_idle(&dwc3->dwc);
+> > +}
+> > +
+> > +static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
+> > +	SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+> > +	RUNTIME_PM_OPS(dwc3_generic_runtime_suspend, dwc3_generic_runtime_resume,
+> > +		       dwc3_generic_runtime_idle)
+> > +};
+> > +
+> > +static const struct of_device_id dwc3_generic_of_match[] = {
+> > +	{ .compatible = "spacemit,k1-dwc3", },
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, dwc3_generic_of_match);
+> > +
+> > +static struct platform_driver dwc3_generic_driver = {
+> > +	.probe		= dwc3_generic_probe,
+> > +	.remove		= dwc3_generic_remove,
+> > +	.driver		= {
+> > +		.name	= "dwc3-generic-plat",
+> > +		.of_match_table = dwc3_generic_of_match,
+> > +		.pm	= pm_ptr(&dwc3_generic_dev_pm_ops),
+> > +	},
+> > +};
+> > +module_platform_driver(dwc3_generic_driver);
+> > +
+> > +MODULE_LICENSE("GPL");
+> > +MODULE_DESCRIPTION("DesignWare USB3 generic platform driver");
+> > 
 > 
 
