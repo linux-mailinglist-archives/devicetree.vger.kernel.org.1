@@ -1,121 +1,116 @@
-Return-Path: <devicetree+bounces-197998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45A99B0B81C
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 22:08:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 998C9B0B829
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 22:38:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C39718915C0
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 20:08:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D501E168698
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 20:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B917B1FF7D7;
-	Sun, 20 Jul 2025 20:08:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDE8219A91;
+	Sun, 20 Jul 2025 20:38:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="UvTqpPD1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GZFVmnC3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C821198E9B;
-	Sun, 20 Jul 2025 20:08:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A95C1DF96F;
+	Sun, 20 Jul 2025 20:38:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753042085; cv=none; b=WyhztM4FdIF8tFBal7oDgBvhpCxr0/TUqY2XYtQydqBkCkd8vAP9Tk8KjY3OhGll/Ynd2eRWl3yAbRXdFZgPXR2qqrEyM9aByItqwDJB/FcHd2aH9317UtzQG/j2KNP9ujGbGS7O7LrrehY1HoNIUFbo/nB0/L/Tq6KOiceO6+o=
+	t=1753043898; cv=none; b=FHTGN23sGMv3nbBG/LEVj+HS6BX4UKvYmiNcMdBkNM5W7eamEDd6X8aZo+hlKkwHbErx/IcJKoIYRxwbQ99QHHpWNbMmQm3XGEKkchqrYPtlDp+2tZLu6afn2LI0MWyXeMKMQkJVAFPPkN97Ruk8xHESnIAOePmj6hnT79nDiMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753042085; c=relaxed/simple;
-	bh=HE5XfTbqoBFUbJB80+/8sdW4W7hcnSgLwxV3XXsUcw8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oSwr4Qs0iJkApKWRObQlYHZuKWiT2oq0hoPss6dZboODq1P12guRX6c6eBw6zm9JBqRZnFNwSudXHRnqKf4uI61MSzsBvG2NJtWEtvGN7ASpWCOv+21mTzF4vmP3zStzUn12eD+rk2O1PMulvIxyjBwJGgALhe4TiZuEfngpPC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=UvTqpPD1; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4blZMh3GvHz9sjY;
-	Sun, 20 Jul 2025 22:08:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1753042080;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=f2mnKQ0A6cmyOjTY4uC1w0qQca4Edbna8BbLEyyk48c=;
-	b=UvTqpPD17fL7QiwSGNffDuWHFM1alqTcV7ulBZJ5x7levFeT5zhMBeVDu1BxlQyPqUM9fd
-	ec3XL+nE7uWwsy9HoSE//tfpSFIXmpCNBUmtAX+yKE4A5NbIDVvF7K/176pgbYvejeUBls
-	O/Rws2O/OqwfdsMgE/xjLgS8o1LQwnqY4PIUkmf8lja+l+6iZFqq9GCmNvH7WMXiUzPCJ2
-	UIOTNsIXhpdyBTC8fENyPEiPZLr8ROctIsem9uMY0wd0ogKLyzh53VVuUuphft90EqjTzK
-	+94MCqtUMdvnoTFXbZA/JLuI/9c+DSw8SU/pM1Qid8DakkMenS9SBNRU3qo2Hg==
-Message-ID: <9ba974d7-456d-4255-bb74-cfd1998a43ae@mailbox.org>
-Date: Sun, 20 Jul 2025 22:07:57 +0200
+	s=arc-20240116; t=1753043898; c=relaxed/simple;
+	bh=pzq+r9yMIm0uTkpbSqWC8pZkfh6urePDYePki9/XTlo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Bdrsb6S3uvmODoB3dgz/zpeOo6IF5FpxomXmF0hZKRqW101jbiwQHwX8L/BWpshoGzMW2QOV/QMJbcOtyhw0wHiDxAjG4G/gxwdW35ejfBQYnRL4i5pWpFvN3/XdBtdKg/k21BZ+yqg711axgiaTUUxI9qzo/cbbazt3ooI+dhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GZFVmnC3; arc=none smtp.client-ip=209.85.167.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-41b6561d3c6so591500b6e.2;
+        Sun, 20 Jul 2025 13:38:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753043896; x=1753648696; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pzq+r9yMIm0uTkpbSqWC8pZkfh6urePDYePki9/XTlo=;
+        b=GZFVmnC3wKYnl/cJkf0+N48gMBpw4jVqds8haEWFGIsaU+X+hLwh7fD0wBAwaVIOBO
+         RV4e6OoDkIYCR+ymqVib4f3/EKKNVndLOzl2vOMRHFb4wWQXjn+iLKCDrolgo0Qc37Zx
+         AN2tsxU/Dq7pKUnuD++yr/9fNfslWGeAxHnheP5YVnfHQ5VUrAnImFihiZopu+t+mOh2
+         wUO2e/gOymc3bXlqESEqaC7n1S96wGAikO9R+me1TkhMWdFISgZr3dqNC3DdMGRBuW9m
+         Xar1rv+vIH9QE0Yi711+nQMMUFCE6PGFYA3wnt3NYO501AxOF6MwyvkiRFSBZtgj8CQR
+         EISA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753043896; x=1753648696;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pzq+r9yMIm0uTkpbSqWC8pZkfh6urePDYePki9/XTlo=;
+        b=nkOKdZmax2MsQ8eqO5/TH3b26mFSPwYfCdbC6JxKKAguXDucA9hrMLpNaNXSWXW3kg
+         7XqdHWSI2AMfrz0tnxvOF0giWf0WF5SI1KPDCtdN+WPKSCGfAYLaOGDCQGJznTxvMNIg
+         V/Yg3A/SCdUUEGOAmCKrVcArNUC0Qj6PhVYq11Le1dgMBWxR4dUwlWxWfmndV+ljD9so
+         97ZDueWYD0ct2s3/+oLmbakmi3LhuVOfsRJlTLREWhyr0tSgFOowKdXZLKd7wKSM6WSb
+         h5VdxpiU/XkXU9omb+J8nFBcLZB/zdtEbjYo6cfnm88GvzDTeoXFY8Yp3KF2nbBYkrgF
+         4fBw==
+X-Forwarded-Encrypted: i=1; AJvYcCWjXeQKte712lVz3SVYCDM5DHOqOg5uQji7piqplOSkCvKMvIeiJSRhE6t9yEFPdbiPYBtsYQbBtHpxbMHz@vger.kernel.org, AJvYcCXHfTyhciDPr1UEL1QD9AJANySJRDlPNx3nLK35HVwCmMtaRDp91Iegn04YX2/h7gcJVHMzSMcrtxBj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5t5OrNmijdR4vYPREeUZIP56UK2dSDD83vx1G8f88c5Yo/JAn
+	VuF3CwAadYlqF1bXMS4xXD9y/y3IpNR3RitbQ2+Q2C7aI2hEW40xQ6v3y4VMDeZ+mPtsGE/spB4
+	Gc6uQnwrTWPK9Goy3ries4McvyRULUJs=
+X-Gm-Gg: ASbGnctyObtPWyj2q9wv8PLriKCr9VDVCYwvFLNaDAtoj6P21Lu9NcYnJaZ9p4PiEJJ
+	tnuN7ORE2nzcj7ftpxJu2cU/BBliIU0WPY5AdTIzVjCbvjLNFVJbcihTAmeYTIn7d6XJjPxY+jE
+	mrKU06g86YIV2BE6SJ0qWqyiwo/0rDbxRlhNj7MF9XJrnY1in+kEA/khR24vfMoQ4wvq5IfgK9r
+	NrT6pdZ
+X-Google-Smtp-Source: AGHT+IFqM5NWjeucoA8iIWZcczbHnSPghvrG/jBV6uyfAA3kNLOPfjqdTo8q+7Q/oChHK5krN/lZwLiMN7UUnVF4/1s=
+X-Received: by 2002:a05:6808:3010:b0:41c:cbbc:8abe with SMTP id
+ 5614622812f47-41cf04d9d0amr12433440b6e.31.1753043896177; Sun, 20 Jul 2025
+ 13:38:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document after shutdown
- fan settings
-To: Rob Herring <robh@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20250629220301.935515-1-marek.vasut+renesas@mailbox.org>
- <20250708155058.GA477029-robh@kernel.org>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20250708155058.GA477029-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: am9qc1c5pjaufgrd1fewytyoucn99ho8
-X-MBO-RS-ID: 9153788d8f5d9aa425f
+References: <20250717072209.176807-1-peter.chen@cixtech.com> <20250717072209.176807-6-peter.chen@cixtech.com>
+In-Reply-To: <20250717072209.176807-6-peter.chen@cixtech.com>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Sun, 20 Jul 2025 15:38:05 -0500
+X-Gm-Features: Ac12FXypnws4z96JaG_5CTTaH26H_l_f9V-btMxxJmE2pbuUWr7F44HPoNjyEoI
+Message-ID: <CABb+yY0toMbsRkzBO4fpR=r2KsTfT9ms=ZYQ9r=yhsB_YY88AQ@mail.gmail.com>
+Subject: Re: [PATCH v10 5/9] mailbox: add CIX mailbox driver
+To: Peter Chen <peter.chen@cixtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com, maz@kernel.org, 
+	sudeep.holla@arm.com, kajetan.puchalski@arm.com, eballetb@redhat.com, 
+	Guomin Chen <Guomin.Chen@cixtech.com>, Gary Yang <gary.yang@cixtech.com>, 
+	Lihua Liu <Lihua.Liu@cixtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 7/8/25 5:50 PM, Rob Herring wrote:
-> On Mon, Jun 30, 2025 at 12:02:08AM +0200, Marek Vasut wrote:
->> Document fan-shutdown-percent property, used to describe fan RPM in percent
->> set during shutdown. This is used to keep the fan running at fixed RPM after
->> the kernel shut down, which is useful on hardware that does keep heating
->> itself even after the kernel did shut down, for example from some sort of
->> management core.
-> 
-> This sounds more like "don't ever let the fan go below this RPM" or
-> "don't ever turn off the fan". IOW, it is more than just shutdown.
+On Thu, Jul 17, 2025 at 2:22=E2=80=AFAM Peter Chen <peter.chen@cixtech.com>=
+ wrote:
+>
+> From: Guomin Chen <Guomin.Chen@cixtech.com>
+>
+> The CIX mailbox controller, used in the Cix SoCs, like sky1.
+> facilitates message transmission between multiple processors
+> within the SoC, such as the AP, PM, audio DSP, SensorHub MCU,
+> and others.
+>
+> Reviewed-by: Peter Chen <peter.chen@cixtech.com>
+> Signed-off-by: Guomin Chen <Guomin.Chen@cixtech.com>
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> Signed-off-by: Lihua Liu <Lihua.Liu@cixtech.com>
+> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
 
-This property is literally only used during/after shutdown , this does 
-not limit or affect fan RPM during runtime in any way.
+Acked-by: Jassi Brar <jassisinghbrar@gmail.com>
 
-Also, sorry for the late reply.
-
->> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->> index 8b4ed5ee962f..a84cc3a4cfdc 100644
->> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
->> @@ -31,6 +31,15 @@ properties:
->>         it must be self resetting edge interrupts.
->>       maxItems: 1
->>   
->> +  fan-shutdown-percent:
->> +    description:
->> +      Fan RPM in percent set during shutdown. This is used to keep the fan
->> +      running at fixed RPM after the kernel shut down, which is useful on
->> +      hardware that does keep heating itself even after the kernel did shut
->> +      down, for example from some sort of management core.
->> +    minimum: 0
->> +    maximum: 100
->> +
->>     fan-stop-to-start-percent:
->>       description:
->>         Minimum fan RPM in percent to start when stopped.
->> -- 
->> 2.47.2
->>
-
-
--- 
-Best regards,
-Marek Vasut
+Thanks
+Jassi
 
