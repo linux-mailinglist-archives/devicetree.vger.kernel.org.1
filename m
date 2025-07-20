@@ -1,196 +1,145 @@
-Return-Path: <devicetree+bounces-197960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E53A8B0B61B
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 14:26:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E14A4B0B625
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 14:30:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70987189B850
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 12:26:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C95763B7F37
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 12:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC871EEA28;
-	Sun, 20 Jul 2025 12:26:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D8BC21578D;
+	Sun, 20 Jul 2025 12:30:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="krEhdMlL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KBT9ZL/G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A5F4101E6;
-	Sun, 20 Jul 2025 12:26:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C0D021170D
+	for <devicetree@vger.kernel.org>; Sun, 20 Jul 2025 12:30:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753014385; cv=none; b=Cj1aO1XEjXt5BG0SBgk7m410s8bjwS4vvUe4p5wjSqhiUx61eQ7e5hPVgdBPdB3L+Fud7nLcZN6r9nJV7bYRTGnTM22+1qvrRqtuZl5k8C8cNSn4CbTxgKTa/aZnU8RY2VymXWCzI0D6SyZPAgEIhsKMdHjw7Wbh0OobhYgOVTw=
+	t=1753014617; cv=none; b=XnPY3mE3G777l9PcZuS5eVrvJcr1Nl3DF7NobjhnWKKQuQS0AMVGlG+xaqf8X+N/6XZsToTFuxJQb0oN+OAch/dQxgivdnaOtTfa2IqNOFu7ks6XDGaAgvpX+f82MnpOBYj/faCicNMnYENxFNJ8ShXyp/7IIFH0miGuOTAAl3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753014385; c=relaxed/simple;
-	bh=7fG1ZiX1kVoYPnjokhnLvlTdKwDkkEtf2WSeMJ/wqZY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AE1HgPm2qDux/7pN7DUyysXz8O7MLrMneC9r4kk3kqA7L1pabztkBbpr5CgBjWZzxdS4Is5d+2Mz70K+xdfsmRUvCTBQ0AOgnaff/Y2FYLrdB5gUmrSXkTIM898dEegq5GCZdPWjP87bb0kr0R1+yI0JVMEpLHz88SLVzY3BaP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=krEhdMlL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91BFDC4CEE7;
-	Sun, 20 Jul 2025 12:26:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753014385;
-	bh=7fG1ZiX1kVoYPnjokhnLvlTdKwDkkEtf2WSeMJ/wqZY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=krEhdMlLaqBd2zE/tloojMtkv+FGoTCF/y4/yyAd/eHosmUkraXur0gyeZH72nSRQ
-	 l5xV+CqSvvQX+s9G21P51NlHbpnL5aJ03geKtYvG3YQ/0cWLETN5FNntAnEQgapm4c
-	 pm94mtrqZxDdl0TJUQQFy3O0R4r9ljEQ18OHsOY00oAGTVEF3YoQV2zRapgB2C8ivi
-	 H6eWfY0lIWu6GiMYwXoFBUYOrkceFwPedb+Wf58CAoDlWw77SJTUtaL57Q28mwb49Q
-	 4BRkgpwQR5cAQfMmtZ27USJoUoc/vBrh6wjAEBotcJC1AOPYALvOVDzs2sovlD+DLR
-	 sp4HU4rbEGC8A==
-Message-ID: <9966b9e4-399b-4446-81e4-15daf9acbff7@kernel.org>
-Date: Sun, 20 Jul 2025 14:26:19 +0200
+	s=arc-20240116; t=1753014617; c=relaxed/simple;
+	bh=lrVr6vyO/GU3pnxEMXTf5/aN2EXpLcZcEs388mBJkEI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=O2Q/PPTKz1FtNiYPUN7q0w0Dk3u+TwUrx3TvMPWNVwywJ3ACc9CFQYqf/ODFiYxBUMo0ewx0IQ4has2wgsToq+8geSq9myHEalNBpShD78kXp+w9YdTMocth3jb9yFOTbGhNXaOZ0Wflil2XVyVNRWgRV9tJ0wv6QC76BuJhMCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KBT9ZL/G; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-456107181f8so1805065e9.2
+        for <devicetree@vger.kernel.org>; Sun, 20 Jul 2025 05:30:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753014612; x=1753619412; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WOmXIHslm007FzsXzToQ9K53LoS29sfzMlaZ0QeflvU=;
+        b=KBT9ZL/GuzbWX3kZTO+axpYSAqnQJWqwUYSP9W8eG/AdhK4BEzk7Lad55T5usssWo2
+         zTGn2QTXXAcTx3LN/9PIH3vvdBnNg+8JVvqhALTv1WP8Uur9QHeQIlJNa4AWNEHsCzJX
+         +JIn99Oq3Bj2CX63DoryA9SiJC4ctP1OG/6qNJRO0AX4Xmj3QHNcGQBeOpiVcEtFYMZY
+         k6l+xhLs+h6z5g5nlxSruzUsBIfpoKUJ1S7/zMC7sat4S2dmttITMnUn4ak4xyP5cClH
+         L+GY7pSWlHSPrkezCLvYetrkBNh7QjjgPOAB2nkAaKpk16ReGNWyGgtl94HKknGImLqz
+         spOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753014612; x=1753619412;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WOmXIHslm007FzsXzToQ9K53LoS29sfzMlaZ0QeflvU=;
+        b=Z0I/xCz+68PP3Lx1aVOEBtPvfFU7I4CqyDef8LRNPwL0+lIo7FSuQwCFKlPNS5qF/M
+         4kv8cPFa2l9sxlOxtD2ZSw120rwAO51m6ABRFLwdaVz0kDs5sqZf7pRHs3wsAyVFTcxZ
+         kmryhifhd43Sp1/fp+RzCrDpbLuWuHQNLaQpDGxYCB5JuWKIy+k3Zuqwoo2mPcWz8z7I
+         xOom6C2Xh9ia86dZWfSSeTltW9RCM0hQmNk9lPbbJGighraRJSXy/sL7neOmRxV2NWhT
+         M5ateHeIa9U4MveY7F9wqB4gdL3MUwJkZ6ro2gR/IY9ZKx4IGqXS92NgdGtSqYabkFSF
+         ThkA==
+X-Forwarded-Encrypted: i=1; AJvYcCU0BlgfalKABiYfLYO1iC8IYDPG6YrvJSKHvWAIs2pBIjZpifBoa99mVpBsaoVh2648hsRfmjSbBulY@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywfbaz5PYoYJf6L5ZXzJf0exu4ekg1oJRbBkTCT2Qs2ii6OLcVS
+	tsKq9ceORMNLU7Lx7CZnjW2kWuMKPoiYQ0BQIRVb/5UMDWoOZEMqpUUcQ7v5f/cGfDk=
+X-Gm-Gg: ASbGncuSA0AEYmqThxNquNNvXSknY4P827Du07KsU1+yist0MiQFJIecTf+sPmdenCn
+	5z4VsAMf2cpvj1nfAEP60rWbX8r9UlNs56y1FclIXAkQWyzIzZL4rCGtgCFhdQFM5NZQVmk5uZq
+	5pFXtyOwfbNPa8ddt8+Sv52CreHsFkZ9xZVXGt3GMplArtxsclaOAykGbqIPArvwz0LdYwveyTX
+	YdVsGe3FrZX7GMWfTdv9XVbR2pwFbs4LbcTrB+GVwKzSNKkscE4swYbfIV7VEmBI7n1E+eNuyWF
+	iHjni8B3tMCLoYrs553h1DZeoeSLLeef79qsRhMYUBALiYbQQhCUI8XfmgT8dCZM7RbVwfOuwZ2
+	ljHC8Y0SRTVGmVsuUcgrENWafD/a/QXaxT3RSJwX6ePA=
+X-Google-Smtp-Source: AGHT+IF1jb/t3lMEYkuVgJjgGXy7n6gJqv+86XFthlPcTDAu6sCMAg/ieEjC5qGzPo+xE85GYYxQBw==
+X-Received: by 2002:a05:600c:3591:b0:453:9b3:5b70 with SMTP id 5b1f17b1804b1-4562e23d1ebmr67166885e9.8.1753014612459;
+        Sun, 20 Jul 2025 05:30:12 -0700 (PDT)
+Received: from kuoka.. ([178.197.222.89])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4562e8ab7a1sm131396955e9.34.2025.07.20.05.30.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Jul 2025 05:30:11 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Kevin Tang <kevin.tang@unisoc.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	stable@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: display: sprd,sharkl3-dpu: Fix missing clocks constraints
+Date: Sun, 20 Jul 2025 14:30:04 +0200
+Message-ID: <20250720123003.37662-3-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/12] dt-bindings: display: sprd: adapt for UMS9230
- support
-To: =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Kevin Tang <kevin.tang@unisoc.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250719-ums9230-drm-v1-0-e4344a05eb3d@abscue.de>
- <20250719-ums9230-drm-v1-1-e4344a05eb3d@abscue.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250719-ums9230-drm-v1-1-e4344a05eb3d@abscue.de>
-Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=973; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=lrVr6vyO/GU3pnxEMXTf5/aN2EXpLcZcEs388mBJkEI=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBofOFL04wCWPK1JMPYGESdpRjENFrgPOAvPGkpY
+ xCwQQkWfu+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaHzhSwAKCRDBN2bmhouD
+ 1x9WD/0c9aIWe7bwg6zEBRiI80exn32zI0JiolaPNhMaTwhqjLrrmYp3+NdbgjCQCOTVxjRkUdn
+ pz5HBCu6MBE7Yi9GVGdAxeZMi51UywuDupAmA7dssM8ZpmdRNQLQn5ExISOj64Dn6rN0BcdVjGT
+ xblZd32kRtFzI20IFQNzAiGhTtzMYyO57saKQJDIbKFYuYwxjimgkQFp/muc/aBEID/Ynza9PSO
+ /gOyOyjzzV4f0APpL3vQhgg5gRXcLVqpJNl0a5XJ2RCtYlx1HLli3x0FYQxu7aXFDJdfTTHlON8
+ ho1hDAFLZyZjQRM6PAs1aVGjYjmLbkonywGjPDGf3P8YkfnMH95XQjTzKtpFwEWHyRQpA8D/XDV
+ KdyX2/56W7OuCbfSnYUCPCEygMZr/xk7iUiUaYgX4hXiHwOTlwZ8N7YfEHh86W2rxkwhJKttzrh
+ drtPn5x9l0zbzBIGiv1/5wZ741vOqBe26o2gm1Bz/LIuZGo4N+crTHrzbZ6yVYGjIWHoTFG6Sn9
+ OGK4XS8F9GoTvSdA1w63RPyBc+nSR8Kw0bfdzUNtbVKXMa1maAUmWrehcrhYNKl7wKsvaGGq7E7
+ G9d5SinQagBmL54VEoQYFEydP+u0WVjs+mVjzKYnmjDcskdSRuiK0KO0ShHV1z4Vei6O+yR40g7 31ylTJUR0XYBl1g==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
 
-On 19/07/2025 14:09, Otto Pflüger wrote:
-> diff --git a/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
-> index 4ebea60b8c5ba5f177854e3a8d89e93e7304e18b..6fedb6e508b247eb71da17ced589b8ed09085592 100644
-> --- a/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
-> +++ b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
-> @@ -16,7 +16,12 @@ description: |
->  
->  properties:
->    compatible:
-> -    const: sprd,sharkl3-dpu
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - sprd,ums9230-dpu
-> +          - const: sprd,sharkl3-dpu
-> +      - const: sprd,sharkl3-dpu
->  
->    reg:
->      maxItems: 1
-> @@ -25,12 +30,15 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> -    minItems: 2
-> +    minItems: 1
+'minItems' alone does not impose upper bound, unlike 'maxItems' which
+implies lower bound.  Add missing clock constraint so the list will have
+exact number of items (clocks).
 
-This is wrong. You miss maxItems. I will fix existing bindings.
+Fixes: 8cae15c60cf0 ("dt-bindings: display: add Unisoc's dpu bindings")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml      | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->  
->    clock-names:
-> -    items:
-> -      - const: clk_src_128m
-> -      - const: clk_src_384m
-> +    oneOf:
-> +      - items:
-> +        - const: clk_src_128m
-> +        - const: clk_src_384m
-> +      - items:
-> +        - const: enable
->  
->    power-domains:
->      maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
-> index bc5594d18643010b91376c92a8f235a522d7dc3d..8438d2da0a4277db03e30b13cb270684c0c360cb 100644
-> --- a/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
-> +++ b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
-> @@ -11,7 +11,9 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    const: sprd,sharkl3-dsi-host
-> +    enum:
-> +      - sprd,sharkl3-dsi-host
-> +      - sprd,ums9230-dsi-host
->  
->    reg:
->      maxItems: 1
-> @@ -23,8 +25,11 @@ properties:
->      minItems: 1
->  
->    clock-names:
-> -    items:
-> -      - const: clk_src_96m
-> +    oneOf:
-> +      - items:
-> +          - const: clk_src_96m
-> +      - items:
-> +          - const: enable
+diff --git a/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
+index 4ebea60b8c5b..8c52fa0ea5f8 100644
+--- a/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
+@@ -25,7 +25,7 @@ properties:
+     maxItems: 1
+ 
+   clocks:
+-    minItems: 2
++    maxItems: 2
+ 
+   clock-names:
+     items:
+-- 
+2.48.1
 
-Why this is completely different clock? How same class device could have
-completely different clock INPUT?
-
->  
->    power-domains:
->      maxItems: 1
-> 
-
-
-Best regards,
-Krzysztof
 
