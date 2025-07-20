@@ -1,165 +1,89 @@
-Return-Path: <devicetree+bounces-197968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CECCEB0B64F
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 15:56:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34124B0B651
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 16:00:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C98607A9406
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 13:54:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C787A3B9755
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 14:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DAA2192E3;
-	Sun, 20 Jul 2025 13:56:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BBD2339A1;
+	Sun, 20 Jul 2025 14:00:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from srv01.abscue.de (abscue.de [89.58.28.240])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12B8920C48A;
-	Sun, 20 Jul 2025 13:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.28.240
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40821E515;
+	Sun, 20 Jul 2025 14:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753019769; cv=none; b=RQ9yqQ2H+FBQXcO2rAfNe90e1IfSht/nNfKA3nkcFhHIkOXWIC+R2jCASY05TET70NABjxGV/w8g1z2vQp8bA12/B6ZmscQqYjS2yusIJpJe8C3rBZ61jm4F9545LBefKbvGSCQQNtvRKUvBA356FV84hfS0mBhj9Qh3vuFXVss=
+	t=1753020028; cv=none; b=UDxpM4eCjfyscCTZ/FdmiyDyuBjlnIZDyJHdnBISHc7DTmH7e4NACBgL8fCTf7Lm49qwpxtICLC9bdQ/b2v0hKuh9XOzCDpLcVKyVOf7ed328kjmxpQT9wMqkzIra6f5Wo3LC6PGT4m8t4eTc1yv6YVBR3wCRayDIcUwWECduKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753019769; c=relaxed/simple;
-	bh=hTKwUnvtj0A0tq4ZN9BtDBtvHLfzofQo8pGcks5pqHY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kTd+My7ZMrGhHjCb5sUOCoJBHdzD7ibEe0Q4RkOoFLI/aFHkSpVm7UvBDBlME9nFELp9xxvkL3juo1ge9DyQG08XWY2/bxwfbChIzwApJcighZokQTHoKhJPHQVrX8iKdncLtvEhhfgS0vzjI7QsY6SDBeQbAmvDfvJ+x0qYoos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; arc=none smtp.client-ip=89.58.28.240
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=abscue.de
-Received: from srv01.abscue.de (localhost [127.0.0.1])
-	by spamfilter.srv.local (Postfix) with ESMTP id 2E5941C025E;
-	Sun, 20 Jul 2025 15:55:56 +0200 (CEST)
-X-Spam-Level: 
-Date: Sun, 20 Jul 2025 15:55:51 +0200
-From: Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Kevin Tang <kevin.tang@unisoc.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/12] dt-bindings: display: sprd: adapt for UMS9230
- support
-Message-ID: <aHz1Z94swDewvriQ@abscue.de>
-References: <20250719-ums9230-drm-v1-0-e4344a05eb3d@abscue.de>
- <20250719-ums9230-drm-v1-1-e4344a05eb3d@abscue.de>
- <9966b9e4-399b-4446-81e4-15daf9acbff7@kernel.org>
+	s=arc-20240116; t=1753020028; c=relaxed/simple;
+	bh=9t87LG+JY9mL/NHcffMb6/uz2WDX/GBSAxyE7CBWJk4=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=o5B+vhWzlFOr3kFzw0Lx1G0UTB4QID9+xYtPvhhtxHdCAN14zbT6iH7fp07oAJEhbDgnjSqk0ZVnSVjDwr7b99tzfl9bW1ng9PfwMZrs1RnYgnIkDmlyapq+JyQKhh0o5QSH0UY7zdZC8jryKwOCb0sf31k2KDCp+qTajXGeokk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [119.122.214.181])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1c9e8d0e9;
+	Sun, 20 Jul 2025 22:00:21 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: alchark@gmail.com
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	ziyao@disroot.org
+Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency scaling support
+Date: Sun, 20 Jul 2025 22:00:10 +0800
+Message-Id: <20250720140010.218235-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <CABjd4YzLaAgd-5Cg9fMSAgCS6Wt6=uC8K3WRhcAtnjjg1je87Q@mail.gmail.com>
+References: <CABjd4YzLaAgd-5Cg9fMSAgCS6Wt6=uC8K3WRhcAtnjjg1je87Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9966b9e4-399b-4446-81e4-15daf9acbff7@kernel.org>
+X-HM-Tid: 0a982822b92903a2kunmf6523c78f9cde
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaHh5LVhpOT0MdSRpNTUoaQ1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVU
+	tZBg++
 
-On Sun, Jul 20, 2025 at 02:26:19PM +0200, Krzysztof Kozlowski wrote:
-> On 19/07/2025 14:09, Otto Pflüger wrote:
-> > diff --git a/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
-> > index 4ebea60b8c5ba5f177854e3a8d89e93e7304e18b..6fedb6e508b247eb71da17ced589b8ed09085592 100644
-> > --- a/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
-> > +++ b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
-> > @@ -16,7 +16,12 @@ description: |
-> >  
-> >  properties:
-> >    compatible:
-> > -    const: sprd,sharkl3-dpu
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - sprd,ums9230-dpu
-> > +          - const: sprd,sharkl3-dpu
-> > +      - const: sprd,sharkl3-dpu
-> >  
-> >    reg:
-> >      maxItems: 1
-> > @@ -25,12 +30,15 @@ properties:
-> >      maxItems: 1
-> >  
-> >    clocks:
-> > -    minItems: 2
-> > +    minItems: 1
-> 
-> This is wrong. You miss maxItems. I will fix existing bindings.
+Hi,
 
-Will fix this, thanks.
+> > Because the actual frequency generated by 850mV is closer to 1008MHz.
+>
+> Which likely means that you have an -L5 chip. It will be different on
+> other chips - it's a lottery of silicon quality.
 
-> 
-> >  
-> >    clock-names:
-> > -    items:
-> > -      - const: clk_src_128m
-> > -      - const: clk_src_384m
-> > +    oneOf:
-> > +      - items:
-> > +        - const: clk_src_128m
-> > +        - const: clk_src_384m
-> > +      - items:
-> > +        - const: enable
-> >  
-> >    power-domains:
-> >      maxItems: 1
-> > diff --git a/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
-> > index bc5594d18643010b91376c92a8f235a522d7dc3d..8438d2da0a4277db03e30b13cb270684c0c360cb 100644
-> > --- a/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
-> > +++ b/Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
-> > @@ -11,7 +11,9 @@ maintainers:
-> >  
-> >  properties:
-> >    compatible:
-> > -    const: sprd,sharkl3-dsi-host
-> > +    enum:
-> > +      - sprd,sharkl3-dsi-host
-> > +      - sprd,ums9230-dsi-host
-> >  
-> >    reg:
-> >      maxItems: 1
-> > @@ -23,8 +25,11 @@ properties:
-> >      minItems: 1
-> >  
-> >    clock-names:
-> > -    items:
-> > -      - const: clk_src_96m
-> > +    oneOf:
-> > +      - items:
-> > +          - const: clk_src_96m
-> > +      - items:
-> > +          - const: enable
-> 
-> Why this is completely different clock? How same class device could have
-> completely different clock INPUT?
+The rk3528 board I have has -L3 and -L5 levels.
+-L3 level tested at 850mV (mainline kernel) actual frequency is 1055MHz.
 
-The clocks should be the same on sharkl3 (sc9863a) and ums9230, but
-the existing bindings don't really make sense here or are incomplete.
-AFAIK there is no SoC in which this display controller is directly
-connected to the PLL as shown in the example. The DSI controller is
-connected to a clock gate. The DPU actually does have two clocks, both
-of which are clock muxes that allow selecting different frequencies and
-one of which is behind a clock gate. I can add the second clock for the
-DPU if needed.
+Frankly speaking, I have always doubted whether the voltage value of BSP
+is correct. The voltage of BSP kernel at 1800MHz and 2016MHz is too low,
+and no board can reach the corresponding actual frequency.
+For example, if we set the CPU frequency to 2016MHz when running the BSP
+kernel, the actual frequency can only reach 1800MHz.
 
-Since nothing seems to be using these bindings at the moment, would it
-be okay to drop the old clock names that refer to specific frequencies?
+Thanks,
+Chukun
 
-> 
-> >  
-> >    power-domains:
-> >      maxItems: 1
-> > 
-> 
-> 
-> Best regards,
-> Krzysztof
+--
+2.25.1
+
 
