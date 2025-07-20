@@ -1,237 +1,155 @@
-Return-Path: <devicetree+bounces-197893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1363BB0B2EE
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 02:07:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10582B0B2FA
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 02:20:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92949188BA13
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 00:07:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C0FD7AB3F1
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 00:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04945746E;
-	Sun, 20 Jul 2025 00:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FAFFC8F0;
+	Sun, 20 Jul 2025 00:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pEtxp9jq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gp/L4yUe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C627F522A;
-	Sun, 20 Jul 2025 00:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07C7815A8;
+	Sun, 20 Jul 2025 00:20:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1752970010; cv=none; b=jOgetxCvha1SlLkr4MB3AncLBHbJ5NwC17p/LRiVFmv0SF2CjfImI/WDvhCJ2s0pz46V0dZtIkWuSKnVjiolExbt3Z220qhuI6/fCmcm8OVC7uBxTVthk3v+u6IvU+2Pa7F1NSAR3+Y0tN2dDPeIssF2j1a/JPVMMUe8iRJaf3Q=
+	t=1752970847; cv=none; b=bdliAp7R8+2mWdd8i+nVCKYxKVKj4mMfeaACMf1DFIJVBREUhSRI6jQNt5iPx028EyYUrq6zXbbTVxDIf1xr2KB9RwoOn7lQxgt1/f9YxkGoHsLO4zBuRSCNwJbyYb5Wwi6h9V540FdLkXaVScyI6tNmQALWf13Ga36EUFUxIFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1752970010; c=relaxed/simple;
-	bh=EApa/B3qVNDfcExaLR6bhySD8ifVqpdKzBSj8T1Yzv8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=GiDtAbEWZ8aSIkIPh6NfnkApsHTjrc1WP9+0Krb2/qHhXAq2UMYodN6gVbiJ0ZWs9eE7bHG53mEU1013GnGLMNpvwvbjEpoo5d+gtQFK2pKnERI4d5Bx59L9ntcae+Nr9GVCzvl4WyUg3DidYJWwwZKCUQmQXwUZYa4pjKPgQxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pEtxp9jq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13700C4CEF7;
-	Sun, 20 Jul 2025 00:06:50 +0000 (UTC)
+	s=arc-20240116; t=1752970847; c=relaxed/simple;
+	bh=OtFSKnQJLty8pNLNiDG+01ViY9iOpad5TmroInGnKcw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=oJTFZUSHxbx3356YFalhtkTTNo2d181UTWXY5Lln8e07Qw7tIf9QJJ3N2ZzODX8rMzAzWwCmfKYZv5Vyr8w6cOATA1TtzOrnICVr7sWtYPHdHQjnLOe75LStJIgguOLCr69LJvPJg0QZYyav3Wh3YvMelNM5qwe/vEZ7b+vNuM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gp/L4yUe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF514C4CEE3;
+	Sun, 20 Jul 2025 00:20:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752970010;
-	bh=EApa/B3qVNDfcExaLR6bhySD8ifVqpdKzBSj8T1Yzv8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=pEtxp9jqGZO/EZuUwwHs96LA4wrnlAkGCZ4Pg0R4zbUB4294vQFYHYJTV1LBCw2H1
-	 04kSoJNYJMhAtTEUS7WcSFj0U3uh7AAnoun76XMx8phL4VcGr0ejm4qGizm0MnRhwi
-	 bsAhIocqOL2gdDrJk1yPAkxQmmD8KfytwnDGJkt26gwL29NcHKv7tZa+1kZPF56Ty8
-	 D3q5im5bsSV5jcEnWvJo9ek5gcWPf3KOzh3Oh8RP7MRnoCAZ9uCAQO8GaLyLCNoxld
-	 ZDb5f/yRhPsNzBzlGohtFYDLYlaVe+kNf4a+KhbJLutSbLx0FZ96kG2jMVDoyCLjjz
-	 34Q0P2ptEK31Q==
-Date: Sat, 19 Jul 2025 19:06:49 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1752970846;
+	bh=OtFSKnQJLty8pNLNiDG+01ViY9iOpad5TmroInGnKcw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=gp/L4yUeeuj6moNS7hE8ns2uEdOo4Nyg0bhcpd4SZ0ID+jaFjSLW4qjENp5xWKOxs
+	 ba8zlU3l729BseY5uWou352gHYh1h/FgxSDKWrIyUfnCsVExiTxOQCXPXTKSGHn04e
+	 Fr3B4B8EjJUZLppBfVeGODlDFcqnQerC6JLGlTJwFzDf40DACNofGhMJwffixr24qK
+	 FwoRyYbnlLpwGXOo84BbZQj899W/CBoVmQerDv65bcQvKrpeCxCNx0T8uYn5Lmm4MC
+	 jc7IQ/t1Ct51Hz605ZImGBeZZVVmGfcYGybqxA/S9eHoRo4jldYV/1sAIKwwqnd4gF
+	 2yghXXgl36L3w==
+From: William Breathitt Gray <wbg@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: William Breathitt Gray <wbg@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Yury Norov <yury.norov@gmail.com>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Dave Ertman <david.m.ertman@intel.com>,
+	Ira Weiny <ira.weiny@intel.com>,
+	Leon Romanovsky <leon@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	kernel@collabora.com,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Detlev Casanova <detlev.casanova@collabora.com>
+Subject: Re: [PATCH v2 6/7] counter: Add rockchip-pwm-capture driver
+Date: Sun, 20 Jul 2025 09:20:15 +0900
+Message-ID: <20250720002024.696040-1-wbg@kernel.org>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250602-rk3576-pwm-v2-6-a6434b0ce60c@collabora.com>
+References: 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Abhinav Kumar <abhinav.kumar@linux.dev>, 
- cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, Sean Paul <sean@poorly.run>, 
- freedreno@lists.freedesktop.org, 
- Krishna Manikandan <quic_mkrishn@quicinc.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>, 
- Yongxing Mou <quic_yongmou@quicinc.com>, 
- Danila Tikhonov <danila@jiaxyga.com>, 
- Kuogee Hsieh <quic_khsieh@quicinc.com>, Maxime Ripard <mripard@kernel.org>, 
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Stephen Boyd <sboyd@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Abhinav Kumar <abhinav.kumar@oss.qualcomm.com>, 
- linux-kernel@vger.kernel.org, 
- Marijn Suijten <marijn.suijten@somainline.org>, linux-clk@vger.kernel.org, 
- Rob Clark <robin.clark@oss.qualcomm.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Mahadevan <quic_mahap@quicinc.com>, 
- Simona Vetter <simona@ffwll.ch>, Konrad Dybcio <konradybcio@kernel.org>, 
- devicetree@vger.kernel.org
-To: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
-In-Reply-To: <20250717-dp_mst_bindings-v3-0-72ce08285703@oss.qualcomm.com>
-References: <20250717-dp_mst_bindings-v3-0-72ce08285703@oss.qualcomm.com>
-Message-Id: <175296991792.777248.14434286781609695390.robh@kernel.org>
-Subject: Re: [PATCH v3 0/5] dt-bindings: msm/dp: Add support for 4 pixel
- streams
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3362; i=wbg@kernel.org; h=from:subject; bh=OtFSKnQJLty8pNLNiDG+01ViY9iOpad5TmroInGnKcw=; b=owGbwMvMwCW21SPs1D4hZW3G02pJDBk1ZoZ8Gz+aTdhw53D1hbVX5Nc3ZaxsPTyL8/YuN56Cw FKrq62WHaUsDGJcDLJiiiy95mfvPrikqvHjxfxtMHNYmUCGMHBxCsBEli5g+GcXl79B3f4I/867 8fImitd+ThGcE1JmLzIzvlMjR/6602qG/9H/Jmx+MC3/sEbhh10T7266ybuXNelCScrmxZ2RmW0 3XnMBAA==
+X-Developer-Key: i=wbg@kernel.org; a=openpgp; fpr=8D37CDDDE0D22528F8E89FB6B54856CABE12232B
+Content-Transfer-Encoding: 8bit
 
-
-On Thu, 17 Jul 2025 16:28:42 -0700, Jessica Zhang wrote:
-> On some MSM chipsets, the display port controller is capable of supporting
-> up to 4 streams.
+On Mon, Jun 02, 2025 at 06:19:17PM +0200, Nicolas Frattaroli wrote:
+> Among many other things, Rockchip's new PWMv4 IP in the RK3576 supports
+> PWM capture functionality.
 > 
-> To drive these additional streams, the pixel clocks for the corresponding
-> stream needs to be enabled.
+> Add a basic driver for this that works to capture period and duty cycle
+> values and return them as nanoseconds to the user. It's quite basic, but
+> works well enough to demonstrate the device function exclusion stuff
+> that mfpwm does, in order to eventually support all the functions of
+> this device in drivers within their appropriate subsystems, without them
+> interfering with each other.
 > 
-> Fixup the documentation of some of the bindings to clarify exactly which
-> stream they correspond to, then add the new bindings and device tree
-> changes.
+> Once enabled, the counter driver waits for enough high-to-low and
+> low-to-high interrupt signals to arrive, and then writes the cycle count
+> register values into some atomic members of the driver instance's state
+> struct. The read callback can then do the conversion from cycle count to
+> the more useful period and duty cycle nanosecond values, which require
+> knowledge of the clock rate, which requires a call that the interrupt
+> handler cannot make itself because said call may sleep.
 > 
-> ---
-> Changes in v3:
-> - Fixed dtschema errors (Rob Herring)
-> - Documented all pixel stream clocks (Dmitry)
-> - Ordered compatibility list alphabetically (Dmitry)
-> - Dropped assigned-clocks too (Dmitry)
-> - Link to v2: https://lore.kernel.org/r/20250530-dp_mst_bindings-v2-0-f925464d32a8@oss.qualcomm.com
+> To detect the condition of a PWM signal disappearing, i.e. turning off,
+> we modify the delay value of a delayed worker whose job it is to simply
+> set those atomic members to zero. Should the "timeout" so to speak be
+> reached, we assume the PWM signal is off. This isn't perfect; it
+> obviously introduces a latency between it being off and the counter
+> reporting it as such. Because there isn't a way to reset the internal
+> double-buffered cycle count in the hardware, we filter out unreliable
+> periods above the timeout value in the counter read callback.
 > 
-> Changes in v2:
-> - Rebased on top of next-20250523
-> - Dropped merged maintainer patch
-> - Added a patch to make the corresponding dts change to add pixel 1
->   stream
-> - Squashed pixel 0 and pixel 1 stream binding patches (Krzysztof)
-> - Drop assigned-clock-parents bindings for dp-controller (Krzysztof)
-> - Updated dp-controller.yaml to include all chipsets that support stream
->   1 pixel clock (Krzysztof)
-> - Added missing minItems and if statement (Krzysztof)
-> - Link to v1: https://lore.kernel.org/r/20241202-dp_mst_bindings-v1-0-9a9a43b0624a@quicinc.com
-> 
-> ---
-> Abhinav Kumar (4):
->       dt-bindings: Fixup x1e80100 to add DP MST support
->       dt-bindings: clock: Add SC7280 DISPCC DP pixel 1 clock binding
->       dt-bindings: display/msm: drop assigned-clock-parents for dp controller
->       dt-bindings: display/msm: add stream pixel clock bindings for MST
-> 
-> Jessica Zhang (1):
->       arm64: dts: qcom: Add MST pixel streams for displayport
-> 
->  .../bindings/display/msm/dp-controller.yaml        | 53 +++++++++++-----
->  .../bindings/display/msm/qcom,sa8775p-mdss.yaml    | 14 +++--
->  .../bindings/display/msm/qcom,sar2130p-mdss.yaml   | 11 ++--
->  .../bindings/display/msm/qcom,sc7180-mdss.yaml     |  3 -
->  .../bindings/display/msm/qcom,sc7280-mdss.yaml     | 12 ++--
->  .../bindings/display/msm/qcom,sm7150-mdss.yaml     |  5 --
->  .../bindings/display/msm/qcom,sm8750-mdss.yaml     | 11 ++--
->  .../bindings/display/msm/qcom,x1e80100-mdss.yaml   | 21 +++----
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 34 +++++++---
->  arch/arm64/boot/dts/qcom/sar2130p.dtsi             | 10 ++-
->  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 10 ++-
->  arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 20 ++++--
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 72 +++++++++++++++-------
->  arch/arm64/boot/dts/qcom/sm8150.dtsi               | 10 ++-
->  arch/arm64/boot/dts/qcom/sm8250.dtsi               | 10 ++-
->  arch/arm64/boot/dts/qcom/sm8350.dtsi               | 10 ++-
->  arch/arm64/boot/dts/qcom/sm8450.dtsi               | 10 ++-
->  arch/arm64/boot/dts/qcom/sm8550.dtsi               | 10 ++-
->  arch/arm64/boot/dts/qcom/sm8650.dtsi               | 10 ++-
->  arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 30 ++++++---
->  include/dt-bindings/clock/qcom,dispcc-sc7280.h     |  2 +
->  21 files changed, 235 insertions(+), 133 deletions(-)
-> ---
-> base-commit: 7a88d609b069b7d2f4d10113b18fea02921bedb1
-> change-id: 20241202-dp_mst_bindings-7536ffc9ae2f
-> 
-> Best regards,
-> --
-> Jessica Zhang <jessica.zhang@oss.qualcomm.com>
-> 
-> 
-> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
+Hi Nicolas,
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Would you help me understand the computations in this driver?
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+If I understand the purpose of this driver correctly, it's meant to
+compute the period and duty cycle of a PWM signal. What do LPC and HPC
+represent? I'm guessing they are the low period count (LPC) and the high
+period count (HPC). So then you calculate the total period by adding
+LPC and HPC, whereas the duty cycle derives from HPC.
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Am I understanding the algorithm correctly? What are the units of HPC
+and LPC; are they ticks from the core clock? Are PWMV4_INT_LPC and
+PWM4_INT_HPC the change-of-state interrupts for LPC and HPC
+respectively?
 
-  pip3 install dtschema --upgrade
+The Counter subsystem can be used to derive the period and duty cycle of
+a signal, but I believe there's a more idiomatic way to implement this.
+Existing counter drivers such as microchip-tcb-capture achieve this by
+leveraging Counter events exposed via the Counter chrdev interface.
 
+The basic idea would be:
+    * Expose LPC and HPC as count0 and count1;
+    * Push the PWMV4_INT_LPC and PWMV4_INT_HPC interrupts as
+      COUNTER_EVENT_CHANGE_OF_STATE events on channel 0 and channel 1
+      respectively;
+    * Register Counter watches in userspace to capture LPC and HPC on
+      each interrupt;
 
-This patch series was applied (using b4) to base:
- Base: base-commit 7a88d609b069b7d2f4d10113b18fea02921bedb1 not known, ignoring
- Base: attempting to guess base-commit...
- Base: tags/v6.16-rc2-698-g6b93840116df (exact match)
+The Counter chrdev interface records a timestamp in nanoseconds with
+each event capture. So to compute period and duty cycle, you would
+subtract the difference between two HPC/LPC captures; the difference in
+the timestamps gives you the elapsed time between the two captures in
+nanoseconds.
 
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
+Would that design work for your use case?
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250717-dp_mst_bindings-v3-0-72ce08285703@oss.qualcomm.com:
-
-arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['edp-panel'], 'enable-gpios': [[71, 74, 0]], 'power-supply': [[258]], 'pinctrl-0': [[259]], 'pinctrl-names': ['default'], 'port': {'endpoint': {'remote-endpoint': [[260]], 'phandle': 257}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['edp-panel'], 'power-supply': [[276]], 'phandle': 597, 'port': {'endpoint': {'remote-endpoint': [[277]], 'phandle': 275}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['samsung,atna45dc02', 'samsung,atna33xc20'], 'enable-gpios': [[275, 4, 0]], 'power-supply': [[276]], 'pinctrl-0': [[277]], 'pinctrl-names': ['default'], 'port': {'endpoint': {'remote-endpoint': [[278]], 'phandle': 274}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1p42100-crd.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['samsung,atna45af01', 'samsung,atna33xc20'], 'enable-gpios': [[268, 4, 0]], 'power-supply': [[269]], 'pinctrl-0': [[270]], 'pinctrl-names': ['default'], 'port': {'endpoint': {'remote-endpoint': [[271]], 'phandle': 267}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1p42100-crd.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['edp-panel'], 'power-supply': [[272]], 'backlight': [[273]], 'port': {'endpoint': {'remote-endpoint': [[274]], 'phandle': 271}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-qcp.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['edp-panel'], 'power-supply': [[268]], 'port': {'endpoint': {'remote-endpoint': [[269]], 'phandle': 267}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-qcp.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['samsung,atna56ac03', 'samsung,atna33xc20'], 'enable-gpios': [[261, 4, 0]], 'power-supply': [[262]], 'pinctrl-0': [[263]], 'pinctrl-names': ['default'], 'port': {'endpoint': {'remote-endpoint': [[264]], 'phandle': 260}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['edp-panel'], 'power-supply': [[276]], 'backlight': [[277]], 'phandle': 603, 'port': {'endpoint': {'remote-endpoint': [[278]], 'phandle': 275}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-hp-elitebook-ultra-g1q.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['edp-panel'], 'power-supply': [[272]], 'backlight': [[273]], 'port': {'endpoint': {'remote-endpoint': [[274]], 'phandle': 271}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-hp-elitebook-ultra-g1q.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus15.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['edp-panel'], 'backlight': [[266]], 'power-supply': [[267]], 'port': {'endpoint': {'remote-endpoint': [[268]], 'phandle': 265}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus15.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-crd.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['samsung,atna45af01', 'samsung,atna33xc20'], 'enable-gpios': [[278, 4, 0]], 'power-supply': [[279]], 'pinctrl-0': [[280]], 'pinctrl-names': ['default'], 'port': {'endpoint': {'remote-endpoint': [[281]], 'phandle': 277}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-crd.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus13.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): aux-bus: False schema does not allow {'panel': {'compatible': ['edp-panel'], 'backlight': [[266]], 'power-supply': [[267]], 'port': {'endpoint': {'remote-endpoint': [[268]], 'phandle': 265}}}}
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus13.dtb: displayport-controller@aea0000 (qcom,x1e80100-dp): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-
-
-
-
-
+William Breathitt Gray
 
