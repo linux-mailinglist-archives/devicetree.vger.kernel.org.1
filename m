@@ -1,164 +1,121 @@
-Return-Path: <devicetree+bounces-197997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28C1CB0B813
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 21:51:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45A99B0B81C
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 22:08:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B18091898A41
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 19:51:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C39718915C0
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 20:08:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38FA22127A;
-	Sun, 20 Jul 2025 19:51:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B917B1FF7D7;
+	Sun, 20 Jul 2025 20:08:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RA6Sy04t"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="UvTqpPD1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D22204866;
-	Sun, 20 Jul 2025 19:51:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C821198E9B;
+	Sun, 20 Jul 2025 20:08:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753041090; cv=none; b=kqfCVM/vR1rS/ijfCPCjmNaflwcE2E20xkX2t3OwvJ/jlSJUQXlFxgxxv8JlpgBdsFeAC47+4XZVSCDYROfsLPjqLHBZnw3nToftjju7EdeP2e9EdjrBY02daEuiE1kF/GecNFiFxlasOzAOkFmgBkNF5tuU4oVMT1iZ4KhgasI=
+	t=1753042085; cv=none; b=WyhztM4FdIF8tFBal7oDgBvhpCxr0/TUqY2XYtQydqBkCkd8vAP9Tk8KjY3OhGll/Ynd2eRWl3yAbRXdFZgPXR2qqrEyM9aByItqwDJB/FcHd2aH9317UtzQG/j2KNP9ujGbGS7O7LrrehY1HoNIUFbo/nB0/L/Tq6KOiceO6+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753041090; c=relaxed/simple;
-	bh=qOsIxA97IITUd+yl9dvmO+aUvms8OxRzYVHcfojfXdg=;
+	s=arc-20240116; t=1753042085; c=relaxed/simple;
+	bh=HE5XfTbqoBFUbJB80+/8sdW4W7hcnSgLwxV3XXsUcw8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XecEa4O9YRWmZJY6yLPydzYxOSoxwqtDPmBczfx0gbFrTSdcHlNzV/ivIQwzIP8Pktq163JG8gMT9hnSmB5IpjNPj6KE/YAcyuTf3eIjKLT1Akc1pXhX4vBIiZvgDQLdxDQizQUREkWFIFHIGJi7nO9Ox5yGIJWNWGaK80MyN+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RA6Sy04t; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4561514c7f0so38153925e9.0;
-        Sun, 20 Jul 2025 12:51:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753041087; x=1753645887; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ORKaYSW+0DS70Ut8rRvu8xLUy32VpcjZ83O5mq3akq0=;
-        b=RA6Sy04t2V1nIA+WWuMVwXfGQa04zXZuWCxEdFn9dVc85BGennGzQfVv312IYb/HBw
-         6ytCPUak2wFw1dfNxlxAaoy2pHPz//o/vp53aXi5LWp8UW7PkauHaZuVcfSMmn4NA3By
-         /1czBjq/wSx1kMZl/4D9cWX7o0ADf+mlEwkGJlSF8G0n3BWtwemLx0w4RYojBZ2pAsgj
-         VhwUs74IX+N5BLN3/25CSBlyHf7pC0vBMbLYw1TPuMaVxX+dsEwPfDpyZfCdzXJR/BWM
-         t2XTRnQHdTptzS93XHHln2+7mMA+9+NZWGFIJcCEu+qjBTSYLMLObcI9fqHQ1FSywyFO
-         edLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753041087; x=1753645887;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ORKaYSW+0DS70Ut8rRvu8xLUy32VpcjZ83O5mq3akq0=;
-        b=sh7sn4GyPdCS4CJg/8rrTXvIj6uTWc0nLCIokSOmby64e0KiZPmNV50UY5/jZ6UMcC
-         s/4WsS0pIJBEOk6s9+zEuxM7R9Z+W6uyOLp1oyDTJVx+vkmYqi+6JEQLa78X1uQkzm0Y
-         pq8FCtGKgzyAK0s/NkglYgSW1+BCWqzdRtIqMAEO/BrB7b/ip9j4lAYb0jtkff02fmhZ
-         3rzgXsUQ5UhogRF9hXcEBA84hsxMx9plKa4UbTrbeIAjNsJcnri/zngb7t2OO4zFlPtd
-         0K31h2OSEf9CEDA7Tzv9+bUBQ5kxdf9ufdsOj4CNcaqc4RqmpLzG86w3z0JF9/Y8h/2d
-         BOWg==
-X-Forwarded-Encrypted: i=1; AJvYcCUyH2X5zfZuYTPMcKzgtlsz/gfxAI4n1gtHLLhwJKj/P0yYFJCDvqfA5bTBl6/mSAQKax+0UvGHhxav@vger.kernel.org, AJvYcCWkcSmCgJ1WwbjOb8fEBtr68pLzLFG2yX35OWKl4ZyTSkCD7F49WzRmHxFsnZrhzXHvaY9J/HezQKQ6G3T/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRYnYtDhAYiH/pSEfty0WAfIwuu9q2/mmO3tUbNbsKfniQthy2
-	FgYtCq691DTozDjApfuNTO+coKVBYn/73av5PMnGdhODGHUDDN/eSkRsdcWgdQ==
-X-Gm-Gg: ASbGncsfQVAKwqYhEG5hZJDcgq61bQgPtjZzi9vg3CWHHqZg0hFNcYqzwaVn+LHKUlI
-	dSbceotwd/ZoZoi8PQpn8M3FbYIeNNHpnA1TiIxdD5FRj01Exms+L9JrPcysPgxlH9WWigVJ/1t
-	iHq7/5FsPek0YrWnYfxfw3C+2Y9XUvoPtj8yFLS1IRIgf2o+WzjXh3INicQpY+ByvS/8UnXmRfw
-	iG/Oy1Uz5kR6jztVM0LFHb6pb1AtmLKVBTs/MKbaeH2PKlhauYH5DUmJKyXG5n5DSYQ4wCNS0/5
-	UAB849Nwoq4VpOGowj8kICjKbSTkwugOkRtfGWNdYcTgwve2DJt7443Xx/yiWl3c5tYBTuQl5Yv
-	CMSt04o3XOiKg0o1lrQaNXP7NiNKcrs56pvAFRAfDuj8m+jY9Pl/BcRha5NAnZK3y5Uc77fcHO3
-	MqEK/iAQGIoe7LRk+8
-X-Google-Smtp-Source: AGHT+IHbROicXgIbFXt4H2trn3TgwRdZgCpt1/XSB+sTWjHrdlpcqHOi+10wzwuYUbnTNKUUz76ycQ==
-X-Received: by 2002:a05:6000:4211:b0:3b5:e714:9770 with SMTP id ffacd0b85a97d-3b60e4c8eb5mr13096381f8f.14.1753041086716;
-        Sun, 20 Jul 2025 12:51:26 -0700 (PDT)
-Received: from ?IPV6:2001:9e8:f12d:7332:185c:3e5:d93f:669? ([2001:9e8:f12d:7332:185c:3e5:d93f:669])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4562e7f2d4fsm143228585e9.4.2025.07.20.12.51.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Jul 2025 12:51:26 -0700 (PDT)
-Message-ID: <0a2a0fa6-ee82-40be-b62d-847a4ef04626@gmail.com>
-Date: Sun, 20 Jul 2025 21:51:25 +0200
+	 In-Reply-To:Content-Type; b=oSwr4Qs0iJkApKWRObQlYHZuKWiT2oq0hoPss6dZboODq1P12guRX6c6eBw6zm9JBqRZnFNwSudXHRnqKf4uI61MSzsBvG2NJtWEtvGN7ASpWCOv+21mTzF4vmP3zStzUn12eD+rk2O1PMulvIxyjBwJGgALhe4TiZuEfngpPC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=UvTqpPD1; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4blZMh3GvHz9sjY;
+	Sun, 20 Jul 2025 22:08:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1753042080;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=f2mnKQ0A6cmyOjTY4uC1w0qQca4Edbna8BbLEyyk48c=;
+	b=UvTqpPD17fL7QiwSGNffDuWHFM1alqTcV7ulBZJ5x7levFeT5zhMBeVDu1BxlQyPqUM9fd
+	ec3XL+nE7uWwsy9HoSE//tfpSFIXmpCNBUmtAX+yKE4A5NbIDVvF7K/176pgbYvejeUBls
+	O/Rws2O/OqwfdsMgE/xjLgS8o1LQwnqY4PIUkmf8lja+l+6iZFqq9GCmNvH7WMXiUzPCJ2
+	UIOTNsIXhpdyBTC8fENyPEiPZLr8ROctIsem9uMY0wd0ogKLyzh53VVuUuphft90EqjTzK
+	+94MCqtUMdvnoTFXbZA/JLuI/9c+DSw8SU/pM1Qid8DakkMenS9SBNRU3qo2Hg==
+Message-ID: <9ba974d7-456d-4255-bb74-cfd1998a43ae@mailbox.org>
+Date: Sun, 20 Jul 2025 22:07:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: i2c: realtek,rtl9301-i2c: extend for
- RTL9310 support
-Content-Language: en-GB
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-i2c@vger.kernel.org,
- Chris Packham <chris.packham@alliedtelesis.co.nz>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Markus Stockhausen <markus.stockhausen@gmx.de>
-References: <20250712194255.7022-1-jelonek.jonas@gmail.com>
- <20250712194255.7022-3-jelonek.jonas@gmail.com>
- <20250714-magnificent-powerful-nuthatch-afcc01@krzk-bin>
-From: Jonas Jelonek <jelonek.jonas@gmail.com>
-In-Reply-To: <20250714-magnificent-powerful-nuthatch-afcc01@krzk-bin>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document after shutdown
+ fan settings
+To: Rob Herring <robh@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20250629220301.935515-1-marek.vasut+renesas@mailbox.org>
+ <20250708155058.GA477029-robh@kernel.org>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20250708155058.GA477029-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: am9qc1c5pjaufgrd1fewytyoucn99ho8
+X-MBO-RS-ID: 9153788d8f5d9aa425f
 
-Hi Krzysztof,
+On 7/8/25 5:50 PM, Rob Herring wrote:
+> On Mon, Jun 30, 2025 at 12:02:08AM +0200, Marek Vasut wrote:
+>> Document fan-shutdown-percent property, used to describe fan RPM in percent
+>> set during shutdown. This is used to keep the fan running at fixed RPM after
+>> the kernel shut down, which is useful on hardware that does keep heating
+>> itself even after the kernel did shut down, for example from some sort of
+>> management core.
+> 
+> This sounds more like "don't ever let the fan go below this RPM" or
+> "don't ever turn off the fan". IOW, it is more than just shutdown.
 
+This property is literally only used during/after shutdown , this does 
+not limit or affect fan RPM during runtime in any way.
 
-On 14.07.2025 08:00, Krzysztof Kozlowski wrote:
-> On Sat, Jul 12, 2025 at 07:42:54PM +0000, Jonas Jelonek wrote:
->>  properties:
->>    compatible:
->> @@ -23,7 +25,14 @@ properties:
->>                - realtek,rtl9302c-i2c
->>                - realtek,rtl9303-i2c
->>            - const: realtek,rtl9301-i2c
->> +      - items:
->> +          - enum:
->> +              - realtek,rtl9311-i2c
->> +              - realtek,rtl9312-i2c
->> +              - realtek,rtl9313-i2c
->> +          - const: realtek,rtl9310-i2c
->>        - const: realtek,rtl9301-i2c
->> +      - const: realtek,rtl9310-i2c
-> So these two are just enum.
+Also, sorry for the late reply.
 
-Could you be more precise on that please? Sadly, I don't get what you're trying
-to tell me.
->> +    minimum: 1
->> +    maximum: 2
+>> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>> index 8b4ed5ee962f..a84cc3a4cfdc 100644
+>> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+>> @@ -31,6 +31,15 @@ properties:
+>>         it must be self resetting edge interrupts.
+>>       maxItems: 1
+>>   
+>> +  fan-shutdown-percent:
+>> +    description:
+>> +      Fan RPM in percent set during shutdown. This is used to keep the fan
+>> +      running at fixed RPM after the kernel shut down, which is useful on
+>> +      hardware that does keep heating itself even after the kernel did shut
+>> +      down, for example from some sort of management core.
+>> +    minimum: 0
+>> +    maximum: 100
 >> +
->>  patternProperties:
->> -  '^i2c@[0-7]$':
->> +  '^i2c@([0-9]|1[0-1])$':
->>      $ref: /schemas/i2c/i2c-controller.yaml
->>      unevaluatedProperties: false
->>  
-> As mentioned last time, missing constraints.
->
-> How did you solve this:
->
-> "you should clearly narrow this per variant"?
->
-> See example schema. It has EXACTLY this case.
->
-> https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml#L212
->
-> You also need to narrow the number of children.
+>>     fan-stop-to-start-percent:
+>>       description:
+>>         Minimum fan RPM in percent to start when stopped.
+>> -- 
+>> 2.47.2
+>>
 
-I missed that from your previous review by mistake, sorry for that.
 
-I managed to narrow it per variant whether 'realtek,mst-id' is required or not.
-But I'm not really able to do the same for the different regex patterns or the
-number of children. Although I'm trying to follow various examples,
-dt_binding_check just fails not taking the regex patterns into account.
-
-Since you have a lot of expertise on that and I obviously fail to find
-documentation that helps me to do that properly, could you give me some hints
-on how that has to look? I'd really appreciate this.
-
->
-> Best regards,
-> Krzysztof
->
-
+-- 
+Best regards,
+Marek Vasut
 
