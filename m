@@ -1,89 +1,108 @@
-Return-Path: <devicetree+bounces-197969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34124B0B651
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 16:00:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA092B0B66A
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 16:32:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C787A3B9755
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 14:00:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33A683B12D4
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 14:31:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BBD2339A1;
-	Sun, 20 Jul 2025 14:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E25F1F1905;
+	Sun, 20 Jul 2025 14:32:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LJoms7f3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40821E515;
-	Sun, 20 Jul 2025 14:00:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449A42AE6D;
+	Sun, 20 Jul 2025 14:32:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753020028; cv=none; b=UDxpM4eCjfyscCTZ/FdmiyDyuBjlnIZDyJHdnBISHc7DTmH7e4NACBgL8fCTf7Lm49qwpxtICLC9bdQ/b2v0hKuh9XOzCDpLcVKyVOf7ed328kjmxpQT9wMqkzIra6f5Wo3LC6PGT4m8t4eTc1yv6YVBR3wCRayDIcUwWECduKc=
+	t=1753021941; cv=none; b=XtsyWJn9L0ADeWlPeJ45QmcvTsxSUwLzE+Xp2TrlbBMh8BhtXVafGh24pLur6H2+uaHHJWiUKknYBbkYF65UAxVCUnCZDoHxbdn6Djvgfd47ly8cC/SIOTyk7X0P+G7d59+R+OSCbQhEVHeQQkhQ6wadi8zkhpQ/WPjupPkl56A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753020028; c=relaxed/simple;
-	bh=9t87LG+JY9mL/NHcffMb6/uz2WDX/GBSAxyE7CBWJk4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=o5B+vhWzlFOr3kFzw0Lx1G0UTB4QID9+xYtPvhhtxHdCAN14zbT6iH7fp07oAJEhbDgnjSqk0ZVnSVjDwr7b99tzfl9bW1ng9PfwMZrs1RnYgnIkDmlyapq+JyQKhh0o5QSH0UY7zdZC8jryKwOCb0sf31k2KDCp+qTajXGeokk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [119.122.214.181])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1c9e8d0e9;
-	Sun, 20 Jul 2025 22:00:21 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: alchark@gmail.com
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	ziyao@disroot.org
-Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency scaling support
-Date: Sun, 20 Jul 2025 22:00:10 +0800
-Message-Id: <20250720140010.218235-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <CABjd4YzLaAgd-5Cg9fMSAgCS6Wt6=uC8K3WRhcAtnjjg1je87Q@mail.gmail.com>
-References: <CABjd4YzLaAgd-5Cg9fMSAgCS6Wt6=uC8K3WRhcAtnjjg1je87Q@mail.gmail.com>
+	s=arc-20240116; t=1753021941; c=relaxed/simple;
+	bh=uSx96+KzW5uSVtm6QxLt0ynjUYHR1GTPKf5JRTP4qIw=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=GTbzf1cOqQHSYFtSz7Q3P9G9q9n0X7ghnR37Pw/nHSlnIU5DY/siZZRM9EnF++T4SJzk+gAww/M2cspnP1/hAVLJpGxio/QbCZjHX7tnW4PPZYDD+WGzX8ncaKF7sNG18j4eqd5QFBFuoGUfxDR5zhfFz65ZyIl5iTj8g1tJJ0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LJoms7f3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A08D9C4CEE7;
+	Sun, 20 Jul 2025 14:32:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753021940;
+	bh=uSx96+KzW5uSVtm6QxLt0ynjUYHR1GTPKf5JRTP4qIw=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=LJoms7f3GofnOd3wdsHXW7ThunP+oLJ9ETKMRaFxT9zXQjEdSLkVkL86VxXCVBcWX
+	 AriodnEgDqkzd9nYqN3qE5DKAG3eJ/xp7MUZzBPeB5swEfAW3BCotvBJh3sDffWaIs
+	 Uzjp8FeZX0C8fBYaP/dK0i5+55Tw2yTGl6hcgXDNzsY7abxzfsUi081kUaK2654Mg2
+	 JLJR1pqeKxzFbnA9odBHDSgqyyF5O3eD3AM5F+Z8VgfKO5eAn44DIxEk3Iyd2kYdpR
+	 yD0Xf4VNx4NE2cTI8JcJYerIIkr4I4/nzLMxSCbn9Ad6Qem5VXWZ0rdMBB4mSSxZug
+	 R4xle/EKtGNsg==
+Date: Sun, 20 Jul 2025 09:32:19 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a982822b92903a2kunmf6523c78f9cde
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaHh5LVhpOT0MdSRpNTUoaQ1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVU
-	tZBg++
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, dri-devel@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Simona Vetter <simona@ffwll.ch>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, linux-kernel@vger.kernel.org
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+In-Reply-To: <20250720-panel-samsung-s6e8aa5x01-v4-1-7d9258fa3f4a@disroot.org>
+References: <20250720-panel-samsung-s6e8aa5x01-v4-0-7d9258fa3f4a@disroot.org>
+ <20250720-panel-samsung-s6e8aa5x01-v4-1-7d9258fa3f4a@disroot.org>
+Message-Id: <175302193978.2019800.11858097552460826975.robh@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: display: panel: document Samsung
+ AMS561RA01 panel with S6E8AA5X01 controller
 
-Hi,
 
-> > Because the actual frequency generated by 850mV is closer to 1008MHz.
->
-> Which likely means that you have an -L5 chip. It will be different on
-> other chips - it's a lottery of silicon quality.
+On Sun, 20 Jul 2025 17:33:07 +0530, Kaustabh Chakraborty wrote:
+> Samsung AMS561RA01 is an AMOLED panel, using the Samsung S6E8AA5X01 MIPI
+> DSI panel controller. Document the compatible and devicetree properties
+> of this hardware. It has a reset GPIO and two voltage regulators.
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+>  .../panel/samsung,s6e8aa5x01-ams561ra01.yaml       | 55 ++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+> 
 
-The rk3528 board I have has -L3 and -L5 levels.
--L3 level tested at 850mV (mainline kernel) actual frequency is 1055MHz.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Frankly speaking, I have always doubted whether the voltage value of BSP
-is correct. The voltage of BSP kernel at 1800MHz and 2016MHz is too low,
-and no board can reach the corresponding actual frequency.
-For example, if we set the CPU frequency to 2016MHz when running the BSP
-kernel, the actual frequency can only reach 1800MHz.
+yamllint warnings/errors:
 
-Thanks,
-Chukun
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/display/panel/samsung,s6e8aa5x01-ams561ra01.example.dtb: /example-0/dsi/panel@0: failed to match any schema with compatible: ['samsung,s6e8aa5x01']
 
---
-2.25.1
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250720-panel-samsung-s6e8aa5x01-v4-1-7d9258fa3f4a@disroot.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
