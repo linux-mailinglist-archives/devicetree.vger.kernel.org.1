@@ -1,141 +1,132 @@
-Return-Path: <devicetree+bounces-197976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B28B0B6C9
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 17:51:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D17B0B6CE
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 17:57:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FB5718967C1
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 15:51:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67E667AC68D
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 15:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC72A1DFE0B;
-	Sun, 20 Jul 2025 15:51:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE8221C190;
+	Sun, 20 Jul 2025 15:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M2irRZXi"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="vaQydxC+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24A8935973;
-	Sun, 20 Jul 2025 15:51:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D4F20D4FC;
+	Sun, 20 Jul 2025 15:57:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753026687; cv=none; b=NOVM7lTxXnbbV+OtoLEJdnV8gsYwsKdj0w+1kafuh+3hoYHef4xluRMRXIflI7FOhQSHeAA3R3KbXd41JKyRuDBO0hw+w02xE1HHl+iyhFiWBt945EqO49CCyMLnaVoZvigSvhhqhFuq7quwK3OTFB9yrivrNLZPOoKdFW8tCTQ=
+	t=1753027030; cv=none; b=OgvsmgiUdlqKwww3i9nDP9XfQUosgJ/578P1Z2f8kj1PGoDAbwPdmIDmQvkEsKjPd8HXJiHsVDSg7LgAdd3OkxC+QJv7TcejF4U+m1e3izNdmrQU2w28lTDRIWNgdrKVPtQhkDS8YwpNFGhtYAShcnGlTg3rhNxwAlXn+Au7uJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753026687; c=relaxed/simple;
-	bh=nE5xxbedLd/LuxKiwHI+0glshnqFf2+IZaNg3zPZlHk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JGWQvjrFY3xq3expSnGKNQBdJVENSLePjbRFtwch4dQsvNOkU5oL+FoYprk0MsaAg5vkDBpBkY530y2X/oiDtV35Q2wlDqyT7XMhnzAewIwSmA8z7Kpuwj9ssOFxedbLxw3C3TNmXRsr8IqF6wHBlBNfHmEnGfJiJykqu+dTKkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M2irRZXi; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3a6d77b43c9so2776712f8f.3;
-        Sun, 20 Jul 2025 08:51:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753026684; x=1753631484; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZhSlIzB6MVuqbW9qSicrU8zQ+g68g+LUEKaipuQGk8g=;
-        b=M2irRZXiNjrY5Mq7/iI4MzwxSjKoc+At0vPGlQ/lOOYaHh52rnWn3BiED71toqvTbu
-         2/snMNKUxzp70fz2Ti76Q0fhFWI/6gNhb/fI5ft53Fex58LwTAyR7eebhGkD1VOGc8Me
-         FaR1K0z4vqSDd3P2Bd+vPga38pVxjCOG5ZCUk1HTdMJBl2fGS9LVYZIgfNnwg8wST5QL
-         NIQjbxazE2RfwXXwfBYpy2bG0zeaVpbZ9QXi5RoHMKuffr7pq6EswbRXNuTLTb1/TroS
-         iTz1NhceuU57x69neteRTziXC9eC83IT4FT7neZlDyN1HpJm9ZK0eTfK9CEGpe67fY3h
-         pUXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753026684; x=1753631484;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZhSlIzB6MVuqbW9qSicrU8zQ+g68g+LUEKaipuQGk8g=;
-        b=o1gMB7baJD732Wc1A6EOxANnspEowtxjp298Gtu+wGsgZhd8Tb53iNBCnvRICQSRRF
-         Y3b/34S46pdB0n9H/Quww9igXFt8a8h2OCYaipvBkChXgfT38H7MO2GUgidPi2qCS9Dj
-         vR63jBRhPsOZCyA6/5kNKyauTl6ZBHJtc+cC9Gt5IhxcQtrWwbMYc0aImPDu/GLBO6xM
-         nSYasuMEpJZPedByEwloNNU+n59iGplaitiTcGw13qaXg7iFr3f+NNFQTuBCK0Ym1ZBG
-         fnE6vV6uwFX0YMb+aRagmi9l39tbVIEbpVntFngVXkJ36NOrajxJ+vjHSjeMHN+1KoAW
-         DRBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWdxms9Z8xN9LScDKD7ZPoh8pIC7wfnp1jbGg95BI/oGgB+N08dYwgmYrJ4cIIOKR/6Z6nv4x8TyeWlICk=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJMUX98nT2eM1Yly6Ihl52WhcbDwTEyq0QJIUXAk6eERLmsgbw
-	UV+46wG+Z/xGyzZKVJmkUtdR7wjXV1swNFugdiaUJg9kLL3A+orZSXi3TT7K
-X-Gm-Gg: ASbGncskhy+Yp3tMqUTz78qugJJOCfWHSOZcyE7/DrEqTOqTg6fU4DLkfHaZX7h+9nu
-	eOxZjgXUfgayMgnkFaPeDmx+ab36/evLIs83eC4XDYyfhIMiRF75oJZEmneo/IZNV3jLbuwoCip
-	ciGwhzeg6CTMqNh7YTAHP0dozSXPOqAqydYkRpdbAj25+eZLUvIc+LXF2m8yUWPQ9Y6ww7LXZt7
-	NnR5H0ZJ5ARE/if0rQL8HBjvqEV/fRhxKyZASeYERgjKzPdz5pIrWBdzEsibFo1vMu9AAm6T6Qh
-	LcCvayQhF4YEX4DPpP6GKxLdINC3euoz+BtvtsqtMGybIcfnihSoi2ebrpWQlP9WD7FsRQ/jJjS
-	sunSdAcs9BWQlo9LZxbOCrcwuvQ/SvFTfpvCSe3wizv/c335m+qzvz2DYMB4NG8BnTYkg
-X-Google-Smtp-Source: AGHT+IG+5w27E9q1sMLm5Y1WlTy33FG/bBzJqXE6w27xvGt5x1K2hO4i0gkfmLaVrTrtj/ZKRMJ/bA==
-X-Received: by 2002:adf:e195:0:b0:3a4:ed62:c7e1 with SMTP id ffacd0b85a97d-3b60e4bf986mr13518949f8f.12.1753026684061;
-        Sun, 20 Jul 2025 08:51:24 -0700 (PDT)
-Received: from ?IPV6:2a02:810b:f13:8500:8b91:8a7e:bd07:2736? ([2a02:810b:f13:8500:8b91:8a7e:bd07:2736])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4562e7f2e8csm135189035e9.5.2025.07.20.08.51.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Jul 2025 08:51:23 -0700 (PDT)
-Message-ID: <3c83e8cc-9ef0-4560-b6d7-127abab50541@gmail.com>
-Date: Sun, 20 Jul 2025 17:51:22 +0200
+	s=arc-20240116; t=1753027030; c=relaxed/simple;
+	bh=acbZNQ8wzNe9UhG8osyw9whHFhX2+PMv5SqAhvGrJxw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L/AEniIwqusWQWg/s19Nxp8a78/xRzw/E9qN9wj70xz42+vxnew5DQ/Whhj429exVt4LcCC3hJ9U/9cl/cnCvkzW2SkFRQwft312z+Y8tn7lOt3VsKCwh4NqP0MPk7+YfxWdLiXrV60q5rQinyUHJK91uqadhu2mSjSNVxfShAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=vaQydxC+; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=64nxx6o3UjsOD65DzGW1UiFh1tmvoBz5/OywLQywsuk=; b=vaQydxC+p99n0aFgzK9ODIGBcE
+	c76b8JTV9FtYQnKIKBUYRnVxAgRqBNSAog0CuByr5QNViO1mr7noGT96HP2S9J2aZnexf+OOdtvLR
+	BtlA2X5etCJ/8aBcZK1Ofb/cBSZZhlFLAMNxrzlFZPxcMFvZ9mvDizTm0cbnarAdYX/M=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1udWPE-002Cro-Fp; Sun, 20 Jul 2025 17:56:52 +0200
+Date: Sun, 20 Jul 2025 17:56:52 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Tristram.Ha@microchip.com
+Cc: Woojung Huh <woojung.huh@microchip.com>,
+	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Marek Vasut <marex@denx.de>, UNGLinuxDriver@microchip.com,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v4 3/7] net: dsa: microchip: Transform register
+ for use with KSZ8463
+Message-ID: <4dd544ad-fa71-4759-bc23-d1dd7f554eb8@lunn.ch>
+References: <20250719012106.257968-1-Tristram.Ha@microchip.com>
+ <20250719012106.257968-4-Tristram.Ha@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] arm64: dts: rockchip: Add ROCK 2A/2F, Sige1 and
- NanoPi Zero2
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: devicetree@vger.kernel.org, heiko@sntech.de, jonas@kwiboo.se,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, ziyao@disroot.org
-References: <86814bf6-5d1b-47f3-ad1d-962cae4a543f@gmail.com>
- <20250720134005.215346-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <20250720134005.215346-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250719012106.257968-4-Tristram.Ha@microchip.com>
 
+> +static inline bool ksz_is_ksz8463(struct ksz_device *dev)
+> +{
+> +	return dev->chip_id == KSZ8463_CHIP_ID;
+> +}
+> +
+> +static inline u32 reg8(struct ksz_device *dev, u32 reg)
+> +{
+> +	if (ksz_is_ksz8463(dev))
+> +		return ((reg >> 2) << 4) | (1 << (reg & 3));
+> +	return reg;
+> +}
+> +
+> +static inline u32 reg16(struct ksz_device *dev, u32 reg)
+> +{
+> +	if (ksz_is_ksz8463(dev))
+> +		return ((reg >> 2) << 4) | (reg & 2 ? 0x0c : 0x03);
+> +	return reg;
+> +}
+> +
+> +static inline u32 reg32(struct ksz_device *dev, u32 reg)
+> +{
+> +	if (ksz_is_ksz8463(dev))
+> +		return ((reg >> 2) << 4) | 0xf;
+> +	return reg;
+> +}
+> +
+>  static inline int ksz_read8(struct ksz_device *dev, u32 reg, u8 *val)
+>  {
+>  	unsigned int value;
+> -	int ret = regmap_read(ksz_regmap_8(dev), reg, &value);
+> +	int ret = regmap_read(ksz_regmap_8(dev), reg8(dev, reg), &value);
 
-Hi,
-> Hi,
->
->> Just for the record: There actually is a non-A version of the
->> RK3528, which I actually own (but forgot about - perhaps my subconscious
->> made me reply to this thread). It's on the Mango Pi M28K board [0][1][2] -
->> which, to my knowledge, is one of the first RK3528-based SBCs.
-> Thanks for sharing this. M28S is an engineering test board, and the official
-> version was later renamed M28K. The MangoPi M28K board uses the RK3528A SoC.
+I'm wondering if there is a less intrusive way to do this. When you
+create a regmap, you can optionally pass it methods to use for
+read/write/update etc.
 
-I'm not sure where you are getting your information from, but as I told
-before I actually *own* this board in the non-development version and it
-has an RK3528 SoC/silkscreen - I just was too lazy to photograph it my own -
-but I did now [0]
+struct regmap_config {
+...
+	int (*reg_read)(void *context, unsigned int reg, unsigned int *val);
+	int (*reg_write)(void *context, unsigned int reg, unsigned int val);
+	int (*reg_update_bits)(void *context, unsigned int reg,
+			       unsigned int mask, unsigned int val);
 
-[0] https://imgur.com/a/6jwx4dC
+Could you provide your own methods for the ksz8463 which perform the
+register modification, and then call the normal regmap SPI function to
+do the operation?
 
-> As for the M28S board, the silkscreen of SoC is indeed RK3528. [1]
-> But then the interesting thing comes, uboot reports it is RK3528A:
->
-> U-Boot 2025.07-rc1-OpenWrt-r30114-9b777547be (Jun 18 2025 - 18:35:23 +0000)
->
-> Model: Generic RK3528
-> SoC:   RK3528A
-> DRAM:  2 GiB
-> Core:  130 devices, 20 uclasses, devicetree: separate
-> MMC:   mmc@ffbf0000: 0, mmc@ffc30000: 1
-> Loading Environment from nowhere... OK
-> In:    serial@ff9f0000
-> Out:   serial@ff9f0000
-> Err:   serial@ff9f0000
-> Hit any key to stop autoboot:  0
->
-> [1] https://imgur.com/a/ddLsnmt
->
-> Thanks,
-> Chukun
->
-> --
-> 2.25.1
->
+If you cannot get direct access to the regmap SPI functions, you can
+stack one regmap on top of another regmap. Have the top regmap do the
+register modifications, and then call a normal SPI regmap to do the
+read/write.
+
+What i don't like about the current code is that developers adding new
+code could miss they need to add reg8().. to all regmap calls. So
+ideally you want to hide that away so they don't need to care, it just
+works.
+
+	Andrew
 
