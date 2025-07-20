@@ -1,231 +1,136 @@
-Return-Path: <devicetree+bounces-197928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-197929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC642B0B462
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 10:52:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C583BB0B49E
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 11:46:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FEC23B2A7D
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 08:51:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7636B189448C
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 09:46:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C4CF1E47B3;
-	Sun, 20 Jul 2025 08:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C011AF0A7;
+	Sun, 20 Jul 2025 09:45:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="eR/0RPPV";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="UhQ49MEj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YGy6qXu8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b3-smtp.messagingengine.com (fout-b3-smtp.messagingengine.com [202.12.124.146])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE0511E1A33
-	for <devicetree@vger.kernel.org>; Sun, 20 Jul 2025 08:52:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B51B12D1F1;
+	Sun, 20 Jul 2025 09:45:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753001536; cv=none; b=jFdyO6DKRmtvqSvfrVK8ArFmmvPwfOD3GxfyhoMh9adjFZXHYq/B0SthBrLRWuYARrqMZ0fjTfoFCdar3B0hpjgIh/nLbA5cg3s79QD+Pcd8+CIHwu+HKKAkh8Ki0oSOm066whTiKbVVpJoW3n9CsY9qIY9cMPURWjUwajQ+wng=
+	t=1753004759; cv=none; b=VZ7A5EgCJan+80DdLWszcSo1pjpdIBb4RKJrA/FuegY1t1mQkMSF2PeaSkmClM5g8ap3l3bbt+SFItONk9F2DS22XBwf72ivr0VdIhX4r9bVslWASnkOXEOBXQoCrz5JN4tWulGBKpoYAYnTfoQcnbt4gSsu1s7q5rYbZtR7YW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753001536; c=relaxed/simple;
-	bh=Jr8gfTfSFvTSsVwehEXbOF5RzI8yWevzV4MOkL/Lp8k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gI7n1zYMdsfNmHvs02emzZPeSZ5suQHFP6DghvTjbqtUVpbDonch0nMOmCGq6jKXQAQerYEFbJxWiwYIgagaY9ZUEqJbMhbA/+hR3k12rdhJcCOVHEPIUzrq9EAdCCJ343+H4zfAKGPRJkRe0uWzO5cxSoFAs9s8Xrb5hnjZPCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=eR/0RPPV; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=UhQ49MEj; arc=none smtp.client-ip=202.12.124.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-01.internal (phl-compute-01.phl.internal [10.202.2.41])
-	by mailfout.stl.internal (Postfix) with ESMTP id 0659D1D00173;
-	Sun, 20 Jul 2025 04:52:14 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-01.internal (MEProxy); Sun, 20 Jul 2025 04:52:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1753001533; x=
-	1753087933; bh=2Cq+yCGapDwyKPChXnRev/CmW/kDVVVBDCyd5GJYNcY=; b=e
-	R/0RPPVe2sk9LFqNgF7Wb0n0iVV+kpoa4vOksIH5AyGCERV/E3a6BhLW5JHZGw7a
-	ETrXjZaG6Rkd2kxBjUc0r2KxyDwXwIAVTU4aTGRoisUJxz/WMmgo8PefR+WJ08hF
-	uqvcP5VMjXUoFGurNQI0qV12e2spqi3LnualvhWVy1mDODJdMmAUiPTi7aKSqSc4
-	5vRV2urYWpdzZlnxA0yW+R8NFrrRuSA+ZshklWJvYOhXEC90wGKptNz9D9Wdpmrz
-	cElJm8LDIIhRmJ84NPfHKWTDzxRW43jhBno+sbJ+f5HZsPPXQk4/L1g774J9PNNO
-	nmaDM+aUpKILlP6HH2ubg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm2; t=1753001533; x=1753087933; bh=2
-	Cq+yCGapDwyKPChXnRev/CmW/kDVVVBDCyd5GJYNcY=; b=UhQ49MEjPzKa6Qltx
-	N6a75JjeUJ/XaKOWQ5vdGa/CHJux+gSUGwEjYl3rdh9hrCMD54bQIcM2oPtA2S+D
-	5MFByNm6uPfxDIIoVRokKJDtx3YgzQqWNN8NEjB4RMoAW57PUDGV+uTAx9kE9rGk
-	FrFsHqNn3/0e34CimU6OewLNeDWjPR+A3k6J2xgaNpXJ5LK1VzUCFWLFAbhRBVUL
-	f6yZTxgFfzaNMVGdXEGRyFHk7iNd3l0F0gdDHbpZeXyP0enUblSgDnNqTARhmr3E
-	wGjPspWBs5mn6yoLRP1KESaW2fgbLkuq6X20eWfpOudi+cn7BQYvbKIJUETxsSdS
-	4Skjg==
-X-ME-Sender: <xms:Pa58aCPomVWdvw3ZSXxiSQMsq2qfckuF9GMwJi9y09GSZ3-rJA7LYA>
-    <xme:Pa58aL1kV4nl9qWmHwgVHr7e4aqAwkJd4dPu-IqeT-i76Fd367nD3Lb0hK0CruCiY
-    yYnbT50GRoSUAME7A>
-X-ME-Received: <xmr:Pa58aDf-WZSwZAQoWitYDsaNhoOHatiGuHobu7IY__zAJgK08HOosnssV_N4P4pdLfn1-PjDqvpzTUz2oXqMGeu7smq5YA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdeikeejjecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefthigrnhcuhggr
-    lhhklhhinhcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecuggftrfgrthhtvg
-    hrnhepffehieffgedtgfffjeetveegfeekleeileekveeuteffteetudffveegieeiheet
-    necuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomheprhihrg
-    hnsehtvghsthhtohgrshhtrdgtohhmpdhnsggprhgtphhtthhopeduiedpmhhouggvpehs
-    mhhtphhouhhtpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtth
-    hopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgu
-    theskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepfigvnhhssegtshhivgdrohhrghdprh
-    gtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtgesghhmrghilhdrtghomhdprhgtphht
-    thhopehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgpdhrtghpthhtoheprghnughrvg
-    drphhriiihfigrrhgrsegrrhhmrdgtohhmpdhrtghpthhtohepmhgrtghrohgrlhhphhgr
-    kedvsehgmhgrihhlrdgtohhmpdhrtghpthhtohepkhhikhhutghhrghnleeksehgmhgrih
-    hlrdgtohhm
-X-ME-Proxy: <xmx:Pa58aEblaeFeTWY-TCNOY2NCjiaIBPnNSEcCfaRdJAZTdYCMQXnk6g>
-    <xmx:Pa58aAUB1GpmY0-HRa32uwAfBrpdQgkWuQc0XLe8aPuOw4E8CROZAg>
-    <xmx:Pa58aPTydxrhGfFAjGhCIBw_iLEePAUJujM-q2bfd8DwBLLJDTX3_A>
-    <xmx:Pa58aNFzy0f1wdx4AdVIL0cA1vhTgIQA1gkPpTVXa6FZKfIoSIHi6g>
-    <xmx:Pa58aHobzA92A2wBIZZI9_B4agccR9WP8xSmGEMJ5zuJ4y8ckchDKgtc>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 20 Jul 2025 04:52:09 -0400 (EDT)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	Ryan Walklin <ryan@testtoast.com>,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v2 12/12] arm64: dts: allwinner: rg35xx: Enable LCD output
-Date: Sun, 20 Jul 2025 20:48:50 +1200
-Message-ID: <20250720085047.5340-13-ryan@testtoast.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250720085047.5340-1-ryan@testtoast.com>
-References: <20250720085047.5340-1-ryan@testtoast.com>
+	s=arc-20240116; t=1753004759; c=relaxed/simple;
+	bh=fWi1BSw48dJ5MnmuCiKh1ZhQTGZGSkNjdo4jWx0gGL8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=DNUm2DiABbdPFvrur0Ttyy1JzaCUPVEWSgyWjdNIG3fZhdODquHHt250X1BB1oRHU3B/YOSiOxwYGNRtFE+WiKT451xhKOKms2JBT/liX3LbCT57XlqJnP0SF1mxMkW++/vYOPrFXVTppeM0nnEGUcbS1HBKGXxlIXSfAyBJr+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YGy6qXu8; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a6d1369d4eso1998672f8f.2;
+        Sun, 20 Jul 2025 02:45:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753004755; x=1753609555; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Zwjkw9KFxFD4C47j/XMBwDbWOsjV7wxr/S1vVbiJ7vI=;
+        b=YGy6qXu8HhT/4A0HkgGwn43DkZQiszp2RtTRHYQIRQiNLSKMjemZp7WSHP3t7fcRMJ
+         4XopoPCpwR/aLVFUUS6soHTNTQg/WEfDwIw1aKcpB2JZDhxryqGfAiw0ekWwTKAWm3ry
+         pcEW9U/eFNiq2bHfMq5R6zYI5q+0fsJDe5hOdgvj5Jnk90TzsoTy5FgaiU7+4CTppzS6
+         C0qmtHPTj7E5ZkNg0BqFpp+kK1FnUNOknmRAq/46fF7N2YXdzD+uZjiMesl4z5T9DwKz
+         UNB2HoZd9btsbeUZQIYLjG7OZwocK9sbqojaYZh+kRdl9AEJ+/ismeWPQfUumxdC1n5M
+         EyFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753004755; x=1753609555;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zwjkw9KFxFD4C47j/XMBwDbWOsjV7wxr/S1vVbiJ7vI=;
+        b=fspVdrt3YV1S6g2YXoWbJM0WuYL0+bBcuPNtJK5FdUb7lN4Ze2v4dGevCqyE2KkQOd
+         BlATfWB04USdrjmYYk0jdBnpgEue5ozQ/9iFO7FRW6dQqKjIQsMFd3VQqPcdMcvIMvRB
+         R2w/JCq0nVVwdOcjETRgdRlMRL2n9F29iVgS4+K4Pci3kXY9xJBDLXw94A33oU25v+7q
+         ClOItQm8ZAmPKnGNeCYZxI/sHK1tAC8CrlLE2M67FFm6BcUNUkESsPkG7nkoWekQTPzS
+         7dimYN2LDTAIYCbsHiFrCoKuG3uIHb6+UnvaemToqHorEFyclwigooPgOzLpcDYj7JyT
+         G6ZA==
+X-Forwarded-Encrypted: i=1; AJvYcCWKGVahNn47SUeST4DWNSD842daAQbYia8ZiJiBMgSmPRY/YV/yQiI6j077SX1HNkc6SmZiYaYFY8+XH3E=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4Wb8NtPIieOr/YkTqdtyES/81SeM5uEstlxpRUtSpWm48ujMz
+	qxZdGE/PbnqWh0kWgUKcr9fa4ouMmEcV4TypnYFzVUvoDMsNDnnlct8=
+X-Gm-Gg: ASbGncs0spfeD9SqzSN9xiDctIs8BbT2PhVBM6SxUft7JQh93TQIHzD9Jmwompr0aiV
+	3CLeF8sa5aeMwLLxL2i0fcdekOIKM/xLh79LrfjqFO+ug/EoTe1kbPdLgUpNo47Vcdk1PDVsvMG
+	jtjPBdnEgkmV5jvs6GE0l5TNIOS16a+FLzbUm/mnyo47+HVjZOxGYonkZ0g348qcmPpBZZZVwlT
+	OgY+e5MvmEeUVEo1P6a+8fpwu3DR8HddYojzZr7Q702glA10EPZYJNuGkMidnGEkahVg+cVFs1t
+	Jm2plBwqoKEBFDXpPHSgnATqLSaK1HtLFMr9CKQxjZ8TTSfkH3A0FFEC7TIQUFKbDBZgOMTxcd8
+	Yeg3RFCl9DeMG9B23zNG6iWsgUmZv2QS5fhzWEUqq+vv9CA8nkrL5zbvEK70eLvfbdo3U
+X-Google-Smtp-Source: AGHT+IGq7fcfZpYeNzACrrAxWMs1ClbmBrmlPl+zvYuNlRQCCRF3nxdfAa5q1h5I6jmuSNUlkpRoBg==
+X-Received: by 2002:a05:6000:4305:b0:3a4:d0dc:184d with SMTP id ffacd0b85a97d-3b60dd95c4dmr14388787f8f.27.1753004754967;
+        Sun, 20 Jul 2025 02:45:54 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f13:8500:8b91:8a7e:bd07:2736? ([2a02:810b:f13:8500:8b91:8a7e:bd07:2736])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b61ca2b81asm7107712f8f.20.2025.07.20.02.45.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Jul 2025 02:45:54 -0700 (PDT)
+Message-ID: <86814bf6-5d1b-47f3-ad1d-962cae4a543f@gmail.com>
+Date: Sun, 20 Jul 2025 11:45:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] arm64: dts: rockchip: Add ROCK 2A/2F, Sige1 and
+ NanoPi Zero2
+From: Alex Bee <knaerzche@gmail.com>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: devicetree@vger.kernel.org, heiko@sntech.de, jonas@kwiboo.se,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, ziyao@disroot.org
+References: <104a501d-b9b2-494e-b073-932ddadd7129@gmail.com>
+ <20250719143008.54288-1-amadeus@jmu.edu.cn>
+ <24ef5e60-dcea-4102-b87f-8a5572c7497f@gmail.com>
+Content-Language: en-US
+In-Reply-To: <24ef5e60-dcea-4102-b87f-8a5572c7497f@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The RG35XX has a 640x480 RGB/SPI LCD panel, supported by the SoC display
-pipeline and an NV3052C controller. The H616 SOC's GPIO bank D contains
-the muxed display pins for RGB and LVDS output support.
 
-The backlight for this device is not modelled as the PWM driver for the
-H616 is not yet implemented.
+>
+>> Hi,
+>>
+>>> The issue I was seeing is that there actually *is* a variant called
+>>> 'RK3528' which at least according to the latest datasheets slightly 
+>>> differs
+>>> from 'RK3528A'. We are doing development based on 'RK3528A' and 
+>>> calling it
+>>> 'rockchip,rk3528' which might make it hard to add the non-A-variant in
+>>> future (unless we call it 'rockchip,the-actual-rk3528').
+>> I think this can be ignored, because rockchip only provides RK3528A 
+>> chip.
+>> RK3528A should be a revised version of RK3528, which solves some bugs,
+>> so we have never seen the silk screen printed with RK3528.
+> Thanks for sharing that inside.
+> I wonder why there's an v1.4 of "Rockchip RK3528 Datasheet" dated
+> 2024-05-12 which differs from v1.4 "Rockchip RK3528A Datasheet" dated
+> 2025-05-12. Anyway: If everybody is happy as-is I guess it's fine.
+>
+Just for the record: There actually is a non-A version of the
+RK3528, which I actually own (but forgot about - perhaps my subconscious
+made me reply to this thread). It's on the Mango Pi MK28 board [0][1][2] -
+which, to my knowledge, is one of the first RK3528-based SBCs.
 
-Enable the display engine and LCD timing controller, configure the
-panel, and add a fixed 3.3v GPIO-controlled regulator for the panel, and
-a VCC supply for the display pins as per the other GPIO banks.
+[0] https://mangopi.org/m28k
+[1] https://x.com/mangopi_sbc/status/1729384633979322512
+[2] 
+https://pbs.twimg.com/ext_tw_video_thumb/1729382603202170880/pu/img/k-mVxtpl3ey4V3sX.jpg:large
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Tested-by: Philippe Simons <simons.philippe@gmail.com>
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-
-Changelog v1..v2:
-- Remove GPIO backlight node.
----
- .../sun50i-h700-anbernic-rg35xx-2024.dts      | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-index 1a750c5f6fac..7d1da4463adf 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-@@ -181,6 +181,49 @@ reg_vcc5v: regulator-vcc5v { /* USB-C power input */
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
- 	};
-+
-+	reg_lcd: regulator-gpio-lcd-vdd {
-+		compatible = "regulator-fixed";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-name = "vdd-lcd";
-+		gpio = <&pio 8 15 GPIO_ACTIVE_HIGH>; // PI15
-+		enable-active-high;
-+	};
-+
-+	spi_lcd: spi {
-+		compatible = "spi-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		sck-gpios = <&pio 8 9 GPIO_ACTIVE_HIGH>; // PI9
-+		mosi-gpios = <&pio 8 10 GPIO_ACTIVE_HIGH>; // PI10
-+		cs-gpios = <&pio 8 8 GPIO_ACTIVE_HIGH>; // PI8
-+		num-chipselects = <1>;
-+
-+		panel: panel@0 {
-+			compatible = "anbernic,rg35xx-plus-panel";
-+
-+			reg = <0>;
-+
-+			spi-max-frequency = <3125000>;
-+			spi-3wire;
-+
-+			reset-gpios = <&pio 8 14 GPIO_ACTIVE_LOW>; // PI14
-+
-+			power-supply = <&reg_lcd>;
-+
-+			pinctrl-0 = <&lcd0_rgb888_pins>;
-+			pinctrl-names = "default";
-+
-+			port {
-+				panel_in_rgb: endpoint {
-+					remote-endpoint = <&tcon_lcd0_out_lcd>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &codec {
-@@ -196,6 +239,10 @@ &cpu0 {
- 	cpu-supply = <&reg_dcdc1>;
- };
- 
-+&de {
-+	status = "okay";
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-@@ -220,6 +267,7 @@ &ohci0 {
- &pio {
- 	vcc-pa-supply = <&reg_cldo3>;
- 	vcc-pc-supply = <&reg_cldo3>;
-+	vcc-pd-supply = <&reg_cldo3>;
- 	vcc-pe-supply = <&reg_cldo3>;
- 	vcc-pf-supply = <&reg_cldo3>;
- 	vcc-pg-supply = <&reg_aldo4>;
-@@ -379,3 +427,11 @@ &usbotg {
- &usbphy {
- 	status = "okay";
- };
-+
-+&tcon_lcd0 {
-+	status = "okay";
-+};
-+
-+&tcon_lcd0_out_lcd {
-+	remote-endpoint = <&panel_in_rgb>;
-+};
--- 
-2.50.1
-
+>> Thanks,
+>> Chukun
+>>
+>> -- 
+>> 2.25.1
+>>
 
