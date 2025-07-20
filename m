@@ -1,68 +1,64 @@
-Return-Path: <devicetree+bounces-198029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A0B9B0B948
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 01:41:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB473B0B94B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 01:43:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B10C1775E0
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 23:41:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D0403AED1A
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 23:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F9022DFB6;
-	Sun, 20 Jul 2025 23:41:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C49B22DFB6;
+	Sun, 20 Jul 2025 23:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nky8uBrB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ABLkidrE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48377221F1C;
-	Sun, 20 Jul 2025 23:41:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E189984D02;
+	Sun, 20 Jul 2025 23:43:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753054905; cv=none; b=WcmI3k4xBLWuttuC93tu90SoFWrevPMZVoCZ6Mu7yTVLyLMeg28fYaNGJrjhzNtL5Ox9jn2eA9g3O1vkYmG/9y7Zey6RvI0NuVOqHnRva9AwNgxhVJoy8AVt/K754kAl4cAMQuNnWU+sAwPJVCag6nhZqAaG8KE3joKvbjeDGKI=
+	t=1753054985; cv=none; b=hFIHe/yx8gaKgCKJygp9jJvmsBQ3x3WfM88KV+iDhhWxKfFJT/G5ktlBoyJOsgI9cNF2V4B4XxDTtHrR3uvftTr39LWHuwf3bOQnEyv2ELD2FKpYYqNB0mex9NZU5gaNYtLb3gx3qPxDlYsZOJ6NzjfIZZn3shPMJ6G0hIQqK5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753054905; c=relaxed/simple;
-	bh=NhV7g08fNchnFfGQ92cKt4QKjfGGOaHm0GdCOyMWic4=;
+	s=arc-20240116; t=1753054985; c=relaxed/simple;
+	bh=hi1P1Md3lx0mFctv/IZEeLMfN66v8OwqSqJnjru2AKs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UwMJvXKvaIRD32qUQ0/h6SQseO8wbp3hXKTNTndX32XLQg1xuChfGwMKzMLP6S7xyXlZF9t5SaNdAgM+ovuSrZzTPDM914fspu+sQ2U40il/eGi+thyVi7/cPvir9oChkwnknxu5zRx9hNOcpk8U+RCCpcAN0nhELlCF6U70UWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nky8uBrB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91B38C4CEE7;
-	Sun, 20 Jul 2025 23:41:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=g9XHC58MZk2yGrOuKGsPBJYejfMc42nkwcYT0kNjEA9HvHnqkPGkcn6/vK9MEh87eik47+LCfwnNIWOiuj80e+fQTCjovXdT0iya9BuvW9hEeqTmI4UgEQwqIeg4oZ431TKih2fuq+8eUuf/Kd+JVKuDr7CZK841KUXBNG2Xj7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ABLkidrE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30910C4CEF1;
+	Sun, 20 Jul 2025 23:43:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753054903;
-	bh=NhV7g08fNchnFfGQ92cKt4QKjfGGOaHm0GdCOyMWic4=;
+	s=k20201202; t=1753054984;
+	bh=hi1P1Md3lx0mFctv/IZEeLMfN66v8OwqSqJnjru2AKs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nky8uBrB/EvnKM+oitV/yd5SqlKBu3bud1ogpJumYos/CaS01zyftcs9h5Wd8Am8M
-	 TlMV7ZyuwxqtmAFOHr/36PyMPDSK7c4LaTEItH+ifoNQqQPpI2yHHFzFItv9Six6Kb
-	 fdFxcnN1UwsnsqlGzi4dNHddsF68OqHNS3Mu3F8NI255UGznsYRLUJK7LMkX3RjzHX
-	 TsT3KnZVLf8cbCsQawOJGEL2eiMRHX5qpe7eluxFMj8JO+0fB7Xe/4sDW2uj0jqoMg
-	 xm6XDyeeT8S3FLDkXie3zkBvkw5mFyJMXZX0ohP8CuuQxDNrne/6Vhj/O2DFxDhNgy
-	 /GD4jswr3eTng==
-Date: Sun, 20 Jul 2025 18:41:42 -0500
-From: Rob Herring <robh@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Guillaume La Roque <glaroque@baylibre.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Liming Xue <liming.xue@amlogic.com>
-Subject: Re: [PATCH 1/3] dt-bindings: thermal: amlogic: Add compatible string
- for C3
-Message-ID: <20250720234142.GA3079305-robh@kernel.org>
-References: <20250718-c3-thermal-v1-0-674f9a991690@amlogic.com>
- <20250718-c3-thermal-v1-1-674f9a991690@amlogic.com>
+	b=ABLkidrEM2saNjFzmOPHi29nSFhi1ImiUstYIa9yWmskrhoktNS5WuZjis65jTXRz
+	 EKhBUHbQbM7wE+228YJdxf53icCDaPhE6RyY7JHHEWJ9u+BS1lwFX86/0myp3zyBqu
+	 Mt4GYUjy4msPoJe2Z9JFKjXlB3lSfPnG6CZOj8lIApsV9xKadTvLKiVtuo+wUfMXnx
+	 aWFRM71T9t7WhjFLb1Q4/RVPP9stBFqHPL4jiR69gVan7MbPsdz9THwJUtT995xlHB
+	 aff7lL8tlUBv0Xx4k8QZPGMSbwLtIkj2nRavbC14DeD4vBniYJfOL3yMCAeJOAhjsT
+	 EgYnWx+7oM20w==
+Date: Sun, 20 Jul 2025 18:43:03 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, quic_krichai@quicinc.com, vkoul@kernel.org,
+	bhelgaas@google.com, lpieralisi@kernel.org, krzk+dt@kernel.org,
+	jingoohan1@gmail.com, qiang.yu@oss.qualcomm.com,
+	abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org, kw@linux.com,
+	neil.armstrong@linaro.org, mani@kernel.org,
+	devicetree@vger.kernel.org, johan+linaro@kernel.org,
+	andersson@kernel.org, linux-pci@vger.kernel.org,
+	kwilczynski@kernel.org, linux-kernel@vger.kernel.org,
+	quic_vbadigan@quicinc.com, kishon@kernel.org,
+	konradybcio@kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v5 2/4] dt-bindings: PCI: qcom,pcie-sa8775p: document
+ link_down reset
+Message-ID: <175305498292.3083407.12105009386525845667.robh@kernel.org>
+References: <20250718081718.390790-1-ziyue.zhang@oss.qualcomm.com>
+ <20250718081718.390790-3-ziyue.zhang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,36 +67,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250718-c3-thermal-v1-1-674f9a991690@amlogic.com>
+In-Reply-To: <20250718081718.390790-3-ziyue.zhang@oss.qualcomm.com>
 
-On Fri, Jul 18, 2025 at 02:37:41PM +0800, Xianwei Zhao wrote:
-> Add the compatible properties for Amlogic C3 SoC family.
-> C3 family supports only one thermal node - CPU thermal
-> sensor.
+
+On Fri, 18 Jul 2025 16:17:16 +0800, Ziyue Zhang wrote:
+> Each PCIe controller on SA8775P includes a 'link_down' reset line in
+> hardware. This patch documents the reset in the device tree binding.
 > 
-> Signed-off-by: Liming Xue <liming.xue@amlogic.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> The 'link_down' reset is used to forcefully bring down the PCIe link
+> layer, which is useful in scenarios such as link recovery after errors,
+> power management transitions, and hotplug events. Including this reset
+> line improves robustness and provides finer control over PCIe controller
+> behavior.
+> 
+> As the 'link_down' reset was omitted in the initial submission, it is now
+> being documented. While this reset is not required for most of the block's
+> basic functionality, and device trees lacking it will continue to function
+> correctly in most cases, it is necessary to ensure maximum robustness when
+> shutting down or recovering the PCIe core. Therefore, its inclusion is
+> justified despite the minor ABI change.
+> 
+> Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/pci/qcom,pcie-sa8775p.yaml    | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> index 70b273271754..095b92aa5ace 100644
-> --- a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> @@ -22,6 +22,7 @@ properties:
->                - amlogic,g12a-ddr-thermal
->            - const: amlogic,g12a-thermal
->        - const: amlogic,a1-cpu-thermal
-> +      - const: amlogic,c3-cpu-thermal
 
-Combine with the a1 entry using 'enum'.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
->  
->    reg:
->      maxItems: 1
-> 
-> -- 
-> 2.37.1
-> 
 
