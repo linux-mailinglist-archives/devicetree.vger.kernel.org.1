@@ -1,116 +1,179 @@
-Return-Path: <devicetree+bounces-197999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998C9B0B829
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 22:38:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5199EB0B87C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 00:22:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D501E168698
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 20:38:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AE571898372
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jul 2025 22:22:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDE8219A91;
-	Sun, 20 Jul 2025 20:38:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8D9F218AC1;
+	Sun, 20 Jul 2025 22:22:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GZFVmnC3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X4vBWyG5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A95C1DF96F;
-	Sun, 20 Jul 2025 20:38:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9650A1C32;
+	Sun, 20 Jul 2025 22:22:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753043898; cv=none; b=FHTGN23sGMv3nbBG/LEVj+HS6BX4UKvYmiNcMdBkNM5W7eamEDd6X8aZo+hlKkwHbErx/IcJKoIYRxwbQ99QHHpWNbMmQm3XGEKkchqrYPtlDp+2tZLu6afn2LI0MWyXeMKMQkJVAFPPkN97Ruk8xHESnIAOePmj6hnT79nDiMU=
+	t=1753050151; cv=none; b=jMAmEdRm1Ru385DY0ZY0nOnhSvbrgxZ+RPiWaYPF3ClbmwRu9y2KQM9sKUt1eDcpeOSKLNqGtK+H0zmNLsOubOLTjGuHAkkjICigL8udAEulmwH1hRclzwU3uBzBSjwvIswwFwoD00sbuoX20QTGaeQSdLHP12LfZc+BHHj3va8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753043898; c=relaxed/simple;
-	bh=pzq+r9yMIm0uTkpbSqWC8pZkfh6urePDYePki9/XTlo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Bdrsb6S3uvmODoB3dgz/zpeOo6IF5FpxomXmF0hZKRqW101jbiwQHwX8L/BWpshoGzMW2QOV/QMJbcOtyhw0wHiDxAjG4G/gxwdW35ejfBQYnRL4i5pWpFvN3/XdBtdKg/k21BZ+yqg711axgiaTUUxI9qzo/cbbazt3ooI+dhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GZFVmnC3; arc=none smtp.client-ip=209.85.167.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-41b6561d3c6so591500b6e.2;
-        Sun, 20 Jul 2025 13:38:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753043896; x=1753648696; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pzq+r9yMIm0uTkpbSqWC8pZkfh6urePDYePki9/XTlo=;
-        b=GZFVmnC3wKYnl/cJkf0+N48gMBpw4jVqds8haEWFGIsaU+X+hLwh7fD0wBAwaVIOBO
-         RV4e6OoDkIYCR+ymqVib4f3/EKKNVndLOzl2vOMRHFb4wWQXjn+iLKCDrolgo0Qc37Zx
-         AN2tsxU/Dq7pKUnuD++yr/9fNfslWGeAxHnheP5YVnfHQ5VUrAnImFihiZopu+t+mOh2
-         wUO2e/gOymc3bXlqESEqaC7n1S96wGAikO9R+me1TkhMWdFISgZr3dqNC3DdMGRBuW9m
-         Xar1rv+vIH9QE0Yi711+nQMMUFCE6PGFYA3wnt3NYO501AxOF6MwyvkiRFSBZtgj8CQR
-         EISA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753043896; x=1753648696;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pzq+r9yMIm0uTkpbSqWC8pZkfh6urePDYePki9/XTlo=;
-        b=nkOKdZmax2MsQ8eqO5/TH3b26mFSPwYfCdbC6JxKKAguXDucA9hrMLpNaNXSWXW3kg
-         7XqdHWSI2AMfrz0tnxvOF0giWf0WF5SI1KPDCtdN+WPKSCGfAYLaOGDCQGJznTxvMNIg
-         V/Yg3A/SCdUUEGOAmCKrVcArNUC0Qj6PhVYq11Le1dgMBWxR4dUwlWxWfmndV+ljD9so
-         97ZDueWYD0ct2s3/+oLmbakmi3LhuVOfsRJlTLREWhyr0tSgFOowKdXZLKd7wKSM6WSb
-         h5VdxpiU/XkXU9omb+J8nFBcLZB/zdtEbjYo6cfnm88GvzDTeoXFY8Yp3KF2nbBYkrgF
-         4fBw==
-X-Forwarded-Encrypted: i=1; AJvYcCWjXeQKte712lVz3SVYCDM5DHOqOg5uQji7piqplOSkCvKMvIeiJSRhE6t9yEFPdbiPYBtsYQbBtHpxbMHz@vger.kernel.org, AJvYcCXHfTyhciDPr1UEL1QD9AJANySJRDlPNx3nLK35HVwCmMtaRDp91Iegn04YX2/h7gcJVHMzSMcrtxBj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5t5OrNmijdR4vYPREeUZIP56UK2dSDD83vx1G8f88c5Yo/JAn
-	VuF3CwAadYlqF1bXMS4xXD9y/y3IpNR3RitbQ2+Q2C7aI2hEW40xQ6v3y4VMDeZ+mPtsGE/spB4
-	Gc6uQnwrTWPK9Goy3ries4McvyRULUJs=
-X-Gm-Gg: ASbGnctyObtPWyj2q9wv8PLriKCr9VDVCYwvFLNaDAtoj6P21Lu9NcYnJaZ9p4PiEJJ
-	tnuN7ORE2nzcj7ftpxJu2cU/BBliIU0WPY5AdTIzVjCbvjLNFVJbcihTAmeYTIn7d6XJjPxY+jE
-	mrKU06g86YIV2BE6SJ0qWqyiwo/0rDbxRlhNj7MF9XJrnY1in+kEA/khR24vfMoQ4wvq5IfgK9r
-	NrT6pdZ
-X-Google-Smtp-Source: AGHT+IFqM5NWjeucoA8iIWZcczbHnSPghvrG/jBV6uyfAA3kNLOPfjqdTo8q+7Q/oChHK5krN/lZwLiMN7UUnVF4/1s=
-X-Received: by 2002:a05:6808:3010:b0:41c:cbbc:8abe with SMTP id
- 5614622812f47-41cf04d9d0amr12433440b6e.31.1753043896177; Sun, 20 Jul 2025
- 13:38:16 -0700 (PDT)
+	s=arc-20240116; t=1753050151; c=relaxed/simple;
+	bh=bM5zL7tOJogVkxC/dBJDYgKh+3nVk9kFwkbmG9c9IYc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SNzkoRG8PHvLDkCZpzjz/6QCV+46cwLsBEd8HMYmdmzSXhrRgMQ7vBiivJVYttBbWXRIcfVhiqqqFfyYXf0qDg0iEtLtSuXkIgiTUBFoaaJVrZ3x2cZWId4YCD7imZlMeSSeeA+d+TwFy8Uk2EQimrS7j/MVGyBsWWXiU9zOty0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X4vBWyG5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49802C4CEE7;
+	Sun, 20 Jul 2025 22:22:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753050151;
+	bh=bM5zL7tOJogVkxC/dBJDYgKh+3nVk9kFwkbmG9c9IYc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X4vBWyG5vYZwDD4v2i65ZI4jQq15qc+dO83q2BtBhpT8khyJea2edi80gvwCjdceK
+	 rVvzMuoo5dguYkK7l33e59cKcnmQnmwC3cLPs8NEx/EwhpPwlGjhlHU1f49uuSuaGw
+	 Y9zyAoOUeZ4oruAML2zbIcz1nQwCmW530rt0I/Y7bZkT3y6/I8Q4Gw8Ax7SzTf2nRD
+	 uoltJpkQZcGDywtPuKMPvKQZaryHCNXQNy1siQfPmiEypjDkTSFZna8idcQLfh64Wl
+	 w7th2aSsgrAX6dzEtrww2rquC1AaugyP6S2V6tHsuk5SPMlPY1TBdVwom3UQ67WxNi
+	 6p+5Yv/wbVEMA==
+Date: Sun, 20 Jul 2025 17:22:30 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kwilczynski@kernel.org" <kwilczynski@kernel.org>,
+	"mani@kernel.org" <mani@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"joel@jms.id.au" <joel@jms.id.au>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	BMC-SW <BMC-SW@aspeedtech.com>
+Subject: Re: [PATCH v2 06/10] ARM: dts: aspeed-g6: Add PCIe RC node
+Message-ID: <20250720222230.GA2842356-robh@kernel.org>
+References: <20250715034320.2553837-1-jacky_chou@aspeedtech.com>
+ <20250715034320.2553837-7-jacky_chou@aspeedtech.com>
+ <CAL_JsqJ4yeYGAyCwHi=4CBurxGOc5oAqTQqun+5+Ps4hxwDU9Q@mail.gmail.com>
+ <SEYPR06MB5134EB5D018F8518E88495FF9D56A@SEYPR06MB5134.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250717072209.176807-1-peter.chen@cixtech.com> <20250717072209.176807-6-peter.chen@cixtech.com>
-In-Reply-To: <20250717072209.176807-6-peter.chen@cixtech.com>
-From: Jassi Brar <jassisinghbrar@gmail.com>
-Date: Sun, 20 Jul 2025 15:38:05 -0500
-X-Gm-Features: Ac12FXypnws4z96JaG_5CTTaH26H_l_f9V-btMxxJmE2pbuUWr7F44HPoNjyEoI
-Message-ID: <CABb+yY0toMbsRkzBO4fpR=r2KsTfT9ms=ZYQ9r=yhsB_YY88AQ@mail.gmail.com>
-Subject: Re: [PATCH v10 5/9] mailbox: add CIX mailbox driver
-To: Peter Chen <peter.chen@cixtech.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com, maz@kernel.org, 
-	sudeep.holla@arm.com, kajetan.puchalski@arm.com, eballetb@redhat.com, 
-	Guomin Chen <Guomin.Chen@cixtech.com>, Gary Yang <gary.yang@cixtech.com>, 
-	Lihua Liu <Lihua.Liu@cixtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SEYPR06MB5134EB5D018F8518E88495FF9D56A@SEYPR06MB5134.apcprd06.prod.outlook.com>
 
-On Thu, Jul 17, 2025 at 2:22=E2=80=AFAM Peter Chen <peter.chen@cixtech.com>=
- wrote:
->
-> From: Guomin Chen <Guomin.Chen@cixtech.com>
->
-> The CIX mailbox controller, used in the Cix SoCs, like sky1.
-> facilitates message transmission between multiple processors
-> within the SoC, such as the AP, PM, audio DSP, SensorHub MCU,
-> and others.
->
-> Reviewed-by: Peter Chen <peter.chen@cixtech.com>
-> Signed-off-by: Guomin Chen <Guomin.Chen@cixtech.com>
-> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
-> Signed-off-by: Lihua Liu <Lihua.Liu@cixtech.com>
-> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+On Wed, Jul 16, 2025 at 03:51:11AM +0000, Jacky Chou wrote:
+> Hi Rob,
+> 
+> Thank you for your reply.
+> 
+> > >                                 quality = <100>;
+> > >                         };
+> > >
+> > > +                       pcie_phy1: syscon@1e6ed200 {
+> > > +                               compatible = "aspeed,pcie-phy",
+> > "syscon";
+> > > +                               reg = <0x1e6ed200 0x100>;
+> > 
+> > This looks like part of something else? It should be a child of that.
+> > 
+> > If this is the controls for the PCIe PHY, then use the PHY binding instead of your
+> > own custom phandle property.
+> > 
+> 
+> Our PCIe design has multiple functions. And the series of patches are submitted for
+> PCIe RC. The other PCIe functions also use this phy node.
+> I traced the PHY driver interface, it cannot meet our usage.
 
-Acked-by: Jassi Brar <jassisinghbrar@gmail.com>
+Why not?
 
-Thanks
-Jassi
+There is also no requirement that using the DT PHY binding means you 
+have to use the Linux PHY subsystem.
+
+> Therefore, the RC driver uses the phandle property to configure.
+> And this syscon also is used by the other PCIe functions.
+
+Like what?
+
+> > > +                       };
+> > > +
+> > > +                       pcie_cfg: syscon@1e770000 {
+> > > +                               compatible = "aspeed,pcie-cfg",
+> > "syscon";
+> > > +                               reg = <0x1e770000 0x80>;
+> > 
+> > Looks like this is really part of the PCIe block as a h/w block isn't going to start
+> > at offset 0xc0.
+> > 
+> > 
+> 
+> Actually.
+> There are two PCIe bus in AST2600
+> We use the other one PCIe to EP mode, here I call PCIe A.
+> I call the pcie0 node as PCIe B.
+> We do not provide PCIe A to RC mode for usage, just EP mode.
+> But, when PCIe A is used as RC, it reg mapping is starting from 0x1e770080.
+> I list there mapping.
+> 
+> 0x1e77_0000 ~ 0x1e77_007f : common usage
+> 0x1e77_0080 ~ 0x1e77_00bf : PCIE A
+> 0x1e77_00C0 ~ 0x1e77_00ff : PCIE B
+> 
+> So, it is why we create one node to describe common usage for PCIe A and B.
+> And, why the pcie0 reg mapping is starting from 0x1e77_00c0.
+
+In that case, maybe you need a common parent node with 2 child nodes for 
+each bus.
+
+Rob
+
+> 
+> > > +                       };
+> > > +
+> > > +                       pcie0: pcie@1e7700c0 {
+> > > +                               compatible = "aspeed,ast2600-pcie";
+> > > +                               device_type = "pci";
+> > > +                               reg = <0x1e7700c0 0x40>;
+> > > +                               linux,pci-domain = <0>;
+> > 
+> > No need for this. You only have 1 PCI host.
+> > 
+> 
+> Agreed.
+> We only provide one RC.
+> 
+> > > +                               #address-cells = <3>;
+> > > +                               #size-cells = <2>;
+> > > +                               interrupts = <GIC_SPI 168
+> > IRQ_TYPE_LEVEL_HIGH>;
+> > > +                               bus-range = <0x80 0xff>;
+> > 
+> > Does this h/w not support bus 0-0x7f for some reason?
+> > 
+> 
+> List:
+> PCIE A: 0-0x7f
+> PCIE B: 0x80-0xff
+> 
+> It is our design on PCIe B to use bus-range 0x80-0xff.
+
+That's a policy or h/w limitation?
+
+Rob
 
