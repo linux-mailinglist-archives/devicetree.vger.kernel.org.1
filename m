@@ -1,129 +1,168 @@
-Return-Path: <devicetree+bounces-198217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21785B0C16A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:41:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DD68B0C192
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:45:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A93F3BEE7F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:40:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE6047AA960
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31EB5296150;
-	Mon, 21 Jul 2025 10:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06D61290095;
+	Mon, 21 Jul 2025 10:44:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="LTKzrNl1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NE1ly3ak"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13DD2293C5B;
-	Mon, 21 Jul 2025 10:39:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA2F28FA87;
+	Mon, 21 Jul 2025 10:44:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753094371; cv=none; b=H/24C/2NhFVKsXHPiWr8RqpTzTXRE2izARj6jSoBC1g4811FH6r7WEyg/xLsXCXtxxkkD3gxt6ct29YayYJ2wInDKrUT5t/Bez8WvUtPzaEtAYZZDeYzZWuPAHWCACeDHe1Qqy8u0IN/JoC2IS7xGEgRhmZEZf1kGTPVadt/K5s=
+	t=1753094654; cv=none; b=r0ccoEYpILQQ7cPmaZ2Raa9Dp1m7EAdo3NFcjLBMMqphS4TRg9OUMLMJIYxNTFZ4+dIxpLPuD1fZX54AQQG7WrlnVmUFw9ySzcSRmpt2mQT4T4KvucXnqk/zuFkxz3kUPZp0Xcx1VwHEy6DgDv98KB3X9COgB+GyiILobL79YTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753094371; c=relaxed/simple;
-	bh=VkvH6Buso6lrWIYra616eiCuQkUS05CN7ivD1UTUDL4=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CLubxu1kZNGHPzMW1pbJsBMwN4XPV9b3r6juewRE7poOGsIbJ1edjgNtzEA1NUZm1yO67RFTcc5D0KdY2aTKnkFYDJerq1RvMpkR4fe11Vcmx5PSt0QPewOnsaKTS2rmTnBCUOszQ2CBQ5IWF+5nT7HaBBYdKWKiDHf2KcVK7co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=LTKzrNl1; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: f6af467e661e11f08b7dc59d57013e23-20250721
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:From; bh=cn3htOReln+vOcAcfeE1LgSCT/Ev3OONSHgeMyS579U=;
-	b=LTKzrNl18ADOmpfxyBl7hFMWSegmZ4FL8vVBvPHuCCIZ9iggXSYICfc5TTeYwg+tqe2oUZsAIC6da5GUD86FMSvRn8dJe2ep4HwD2VD7/DR24OnbpKDuaCd4ss9W16VsdYS4MXzovom0EdZehnWWNgYs05JlWW+RSB+Fmb4zCaU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.2,REQID:04d4f6e6-6b27-4b98-9987-42dcd9185514,IP:0,UR
-	L:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:-5
-X-CID-META: VersionHash:9eb4ff7,CLOUDID:8586ab84-a7ec-4748-8ac1-dca5703e241f,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: f6af467e661e11f08b7dc59d57013e23-20250721
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-	(envelope-from <kyrie.wu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 437503621; Mon, 21 Jul 2025 18:39:22 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Mon, 21 Jul 2025 18:39:20 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Mon, 21 Jul 2025 18:39:20 +0800
-From: Kyrie Wu <kyrie.wu@mediatek.com>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
-	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>
-Subject: [PATCH v1 8/8] media: mediatek: encoder: Add MT8189 encoder compatible data
-Date: Mon, 21 Jul 2025 18:39:04 +0800
-Message-ID: <20250721103905.5393-9-kyrie.wu@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250721103905.5393-1-kyrie.wu@mediatek.com>
-References: <20250721103905.5393-1-kyrie.wu@mediatek.com>
+	s=arc-20240116; t=1753094654; c=relaxed/simple;
+	bh=CqXvKoIpv47+9Jo8IQqETyCXrvf0/tNJtdJBkk4iTms=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SsF+klk1XnNBuVGmTqLAi+0NvdbsxJtR45YrrpuLeylw3UBufCw7ZX3iHQtOu4K0odxslZmt0S5lCe2SVkaunid373RKhFRf7TLkl8Rg94/Qk90u55Xf/wN52Zh8elU6DVHXbgu+fWktc5b5Qi36F+Bal8ocsRt6neHULrNL3Sc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NE1ly3ak; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-556373661aaso3507409e87.2;
+        Mon, 21 Jul 2025 03:44:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753094650; x=1753699450; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MloNkOxsM+6t7pP0mYVWFSXRLps1DlPfl53Fxu1h82E=;
+        b=NE1ly3akTmCzH5GDAHgPgECk1HrMg7haO1lrnY5FW6Sy/p/fHVTF61xU/iRLhJZ956
+         Y6gYt7a7wAsneLSQtBILmtHOiATldLgFFjR2Xz6w7HYGIvqzbLKvatY1onGlw68/Uh2v
+         K3VmD+7vZVf8ockqzDCYAN4BeXOIgxZa45iTsbKN20WCHm4FSolq6SrjfFP/bR3FsKx/
+         aP659unu7N+Mafj5FlEWexFsUGUXhS3tSzEyd0PH25F0jckjPSuAfd2kb+Z4siD0DTte
+         xv+X34wUJQabjPUg3hNDd1fmorUszbf/Ib0Upg1vnlp0ix5HI90bnvfqh96T0+eEsPAB
+         +iJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753094650; x=1753699450;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MloNkOxsM+6t7pP0mYVWFSXRLps1DlPfl53Fxu1h82E=;
+        b=u6C/DVcsntPrhX6BxBdwuETQ8l5CK+gfzVzXgBvMCZwi15J70ra+ozM0eddmXLonSH
+         O9f4Y45R4aEoPmIxljw3aP4YgCwnM/dZC+zxK+JMPEHs1C4lY1C+LlI1ymIuWkZ6M2W4
+         /d5hZ9kluUp5dCx7GTvqO0pAYr4+XKTAnBN3ppfAIJQTnrJyxfQUlTyAzTg7VE55YqsN
+         Ek+WFtco/ge7bRrNtAD9wiz3h9p/tG1roBPv/haUc3A2UZ25QWH+01et+TnAWZznBmWs
+         ahRThyqem4lbdydJNn3hmcmkuS+DxTRQ0G5OQ5dk3N11hn9RqRgXssZz4wIz9/eogCxg
+         OAuA==
+X-Forwarded-Encrypted: i=1; AJvYcCWdEdltOWaWAhooh9A30Z2V19yjSg7b9vZZm4TiAH0vS22KbcHOB5RD1FOcuveI0IhPW6BaT1/jBPNl@vger.kernel.org, AJvYcCXxfI81o3SQsiohGv1s4q3JspAoeRCxA8sSSgTCU79NsWVykk9xcBl/VqXmgy9gm3/LEZAxUqTN2MutFI7S@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEmZB27ZHcYoY2TUPwVklzxlGDsHaOkY8iZ8mmxqIey65slaKw
+	OWJOr9niEWckJLXId1WfAQrbtDS++8RSEf2kIGZ2EvqmGGNJz5NBjprp8gK+NR2HKQk=
+X-Gm-Gg: ASbGncsFz9babugFS1wYD0A/ORmNexU+d8w/SR59L9rgu9i9Qk/XGC9RJI3bMYn87I1
+	IrYGZmp2l3DqF973lifoHjW8UfAuX58CF0V4DR1n4e/eAOh76LUXgGF14KELePV9NxKzYRVyp9V
+	vJHYnG0UXCJ+PLNUR81AM5WYprqruMH0uBQWy9h4F18irCday7G4ZEGFbrCFP0h9KvYKhIU1Mxd
+	ANoLjHSwROyuhYsTAHLzgg15hGJKJ9kNBKVcgcX5BndFziqpV/fNdLZ1iaUDbdUuCpUxxYRjFEB
+	/roujlQNZoSN3qEX0D1EvwA+SqXnRFxY00XyWjSs/VTKKj8WHspDv8W0BjkyDQFhC535hgKMz5z
+	hFWUYivYzDNPv60dlXXOgMlnWhQYk2Vjd1OQyv7wS57wemPJRhMQG93E7LtVplt7y4vQ=
+X-Google-Smtp-Source: AGHT+IEaTLVSFdGKI+Xh6r3i/xROhu8qw2nQSim/N5dEd1SjI4SK+6UEvIHqBEAnpSME0bPwhkjASA==
+X-Received: by 2002:a05:6512:3054:b0:555:61e:ca7e with SMTP id 2adb3069b0e04-55a23300424mr6273856e87.10.1753094649919;
+        Mon, 21 Jul 2025 03:44:09 -0700 (PDT)
+Received: from [192.168.1.198] (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55a31db89bbsm1505164e87.237.2025.07.21.03.44.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Jul 2025 03:44:08 -0700 (PDT)
+From: Marcus Folkesson <marcus.folkesson@gmail.com>
+Subject: [PATCH v2 0/6] drm/st7571-i2c: add support for grayscale xrgb8888
+Date: Mon, 21 Jul 2025 12:43:30 +0200
+Message-Id: <20250721-st7571-format-v2-0-159f4134098c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANIZfmgC/13MQQ7CIBCF4as0sxYDk1KMK+9huqB0aCeRYqBpN
+ A13F+vO5f+S9+2QKTFluDY7JNo4c1xq4KkBN9tlIsFjbUCJWmqUIq9GGyV8TMGuAh11gx1de3E
+ d1M8zkefX4d372jPnNab3wW/qu/4ko9o/aVNCCouGtFI4WO9vU7D8OLsYoC+lfACAokjqqgAAA
+ A==
+X-Change-ID: 20250520-st7571-format-2ce6badc48c6
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Javier Martinez Canillas <javierm@redhat.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2088;
+ i=marcus.folkesson@gmail.com; h=from:subject:message-id;
+ bh=CqXvKoIpv47+9Jo8IQqETyCXrvf0/tNJtdJBkk4iTms=;
+ b=owEBbQKS/ZANAwAIAYiATm9ZXVIyAcsmYgBofhnUYdvsOrhAWxNuyYe1ew+jZfPzZ5HsvXCsm
+ cT6jJBh67OJAjMEAAEIAB0WIQQFUaLotmy1TWTBLGWIgE5vWV1SMgUCaH4Z1AAKCRCIgE5vWV1S
+ MnQ+D/4xXxBUtCdOxdnnv1BsrNkNDNDdSuYB6TUb8xOO6EIB2oKUhrg59fICxw+6QMxZt7e2/cD
+ fUg2KAODJc2MHYAansVBcSN0mXR3SgevWE4YYaP9GHg5ATwbOCBQGGypw6Ly8wuJCfG744saoNr
+ FiACbUffA2ZAdxnmoM7rcZvg3rQyhA2MyuS4RhdJ4GatSN9HNkSXO/me3CSrwf8J0qBA8/fZ71D
+ nHjHGxp2qJxDhANpBhGglvmo9+Y2bAMlsgLqkMQ4Z2xpMkBMjHdZZEjIySl++029bDJ8/hvjy3L
+ 6xyK8iih7pm81MbZ7YD4UGXPb8LEvqXEu8slSx3q6GL5vSoElRzHA3WhM0p1eI0qXg7zahbBWBn
+ 7Q6JGzh4CUmB+JhgDO0dWYEoseZZ+/bBuLQ95A7GSNhCvQTngWBMsT/8MPBut395flDUsC2KISf
+ n+p/gnIfjRrDWpfFem6AFEWqrvDTPzTsh+XM+iPleluHs/HXLyU0rMtDL4aHkW0wSnokHR+2AHd
+ GmzKVnjLY+v9nkiSjj4Lymt8njqv5M4AALOnjq8xjiQxe0Pbta7lQXVDdo0Ew2nM1U+ykV5gkmU
+ PSMI3/ZPsN5az/Iv8KSoeYjq6gIaHKkMS83UnjqLSKMOoPZTQ7DLRuuWkqZKgWmb6yCK1OKfuN/
+ 4ArybFy4w6MnLdA==
+X-Developer-Key: i=marcus.folkesson@gmail.com; a=openpgp;
+ fpr=AB91D46C7E0F6E6FB2AB640EC0FE25D598F6C127
 
-add compatible data to support MT8189 encoding.
+The goal with this series is to add support for 2bit grayscale with
+the xrgb8888 pixel format for the st7571 display controller.
 
-Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+The first patch only corrects a comment of the pixel format.
+
+The next four patches adds support for inverting pixels. This is
+necessary as the connected display may or may not use the "right" (0 =>
+black, 1 => white) pixel format expected by the supported formats
+(R1/R2/XRGB8888).
+
+The fifth patch adds a helper function (drm_fb_xrgb8888_to_gray2) to
+convert xrgb8888 to gray2.
+
+The last path adds support for gray2 in the st7571 driver.
+Compare the mono [1] and the gray2 [2] variants of our penguin.
+
+[1] https://www.marcusfolkesson.se/gray2.png
+[2] https://www.marcusfolkesson.se/xrgb8888.png
+
+Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
 ---
- .../mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c   | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Changes in v2:
+- Do not share code between _to_mono() and _to_gray2()
+- Correct formatting (remove  "|") in the dt bindings
+- Implement support for inverting pixels for st7567
+- Link to v1: https://lore.kernel.org/r/20250714-st7571-format-v1-0-a27e5112baff@gmail.com
 
-diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-index c869c4245ebc..4f5c2d8d2855 100644
---- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-+++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-@@ -468,6 +468,19 @@ static const struct mtk_vcodec_enc_pdata mt8196_pdata = {
- 	.set_dma_bit_mask = true,
- };
- 
-+static const struct mtk_vcodec_enc_pdata mt8189_pdata = {
-+	.venc_model_num = 8189,
-+	.capture_formats = mtk_video_formats_capture_h264,
-+	.num_capture_formats = ARRAY_SIZE(mtk_video_formats_capture_h264),
-+	.output_formats = mtk_video_formats_output,
-+	.num_output_formats = ARRAY_SIZE(mtk_video_formats_output),
-+	.min_bitrate = 64,
-+	.max_bitrate = 100000000,
-+	.core_id = VENC_SYS,
-+	.uses_common_fw_iface = true,
-+	.set_dma_bit_mask = true,
-+};
-+
- static const struct of_device_id mtk_vcodec_enc_match[] = {
- 	{.compatible = "mediatek,mt8173-vcodec-enc",
- 			.data = &mt8173_avc_pdata},
-@@ -478,6 +491,7 @@ static const struct of_device_id mtk_vcodec_enc_match[] = {
- 	{.compatible = "mediatek,mt8192-vcodec-enc", .data = &mt8192_pdata},
- 	{.compatible = "mediatek,mt8195-vcodec-enc", .data = &mt8195_pdata},
- 	{.compatible = "mediatek,mt8196-vcodec-enc", .data = &mt8196_pdata},
-+	{.compatible = "mediatek,mt8189-vcodec-enc", .data = &mt8189_pdata},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_vcodec_enc_match);
+---
+Marcus Folkesson (6):
+      drm/st7571-i2c: correct pixel data format description
+      dt-bindings: display: sitronix,st7571: add optional inverted property
+      dt-bindings: display: sitronix,st7567: add optional inverted property
+      drm/st7571-i2c: add support for inverted pixel format
+      drm/format-helper: introduce drm_fb_xrgb8888_to_gray2()
+      drm/st7571-i2c: add support for 2bit grayscale for XRGB8888
+
+ .../bindings/display/sitronix,st7567.yaml          |   5 +
+ .../bindings/display/sitronix,st7571.yaml          |   5 +
+ drivers/gpu/drm/drm_format_helper.c                | 108 +++++++++++++++++++++
+ drivers/gpu/drm/sitronix/st7571-i2c.c              |  41 ++++----
+ include/drm/drm_format_helper.h                    |   4 +
+ 5 files changed, 144 insertions(+), 19 deletions(-)
+---
+base-commit: ca2a6abdaee43808034cdb218428d2ed85fd3db8
+change-id: 20250520-st7571-format-2ce6badc48c6
+
+Best regards,
 -- 
-2.46.0
+Marcus Folkesson <marcus.folkesson@gmail.com>
 
 
