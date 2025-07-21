@@ -1,172 +1,137 @@
-Return-Path: <devicetree+bounces-198298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F45B0C4BE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 15:05:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B641EB0C4ED
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 15:11:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 345BE18853FD
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 13:05:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C23D1162303
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 13:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602602D8771;
-	Mon, 21 Jul 2025 13:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3842D5C61;
+	Mon, 21 Jul 2025 13:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KtoWkbN5"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GJXuiBC/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 305532D77E7;
-	Mon, 21 Jul 2025 13:04:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9AA02957BA;
+	Mon, 21 Jul 2025 13:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753103095; cv=none; b=hf7IxRwqqoy9vzbZz53BrwWf51PxKvFa+NxlFvrFz0ZvT67jO/fiJcFC5zD2qt/0nT9GQUV6+nSWfQBic53+xUE36SJCGbaloken2PQ38riesuPNsQRl74FDVo8zj3PBJEj1o5maqYeDfV2M6mtXElZI66LvYKdKRUlu5brn0Uw=
+	t=1753103470; cv=none; b=oEp4+MJYnwvQnQOUl1dgbJ4yu5Qe1rkJs24sCwwdsi78YW7BIlposbh0oYxibybxJAHbu/OdzF/JOKRtr1x/nRsBhQLJsh1gRfKDWUwRZNu9Id9gG2EvFN8u/xJArIcOEWSGnJKf8TPKMps48GTCLLgvopOgsO5Tqy45Y4mJSJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753103095; c=relaxed/simple;
-	bh=lTEh95RpPckhSDcCuGDs75biDi8vj53jbp0ovaUO/IQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nv7lFRnPFJh94OTXEBv5ESxxBcJmCmM2B6PGYnDflbVGavJ1j8i2L9H/v54tHzftz2g/6eFLkd/ntGuQGfUg72wD/bpMR87txYZL7qxyAUB+TTKbl+L913ppGRearWDYg+IX4X71ZRWIZb3HafksMaT4Ti4Q6CjNFIAj8bNoE4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KtoWkbN5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA570C4CEED;
-	Mon, 21 Jul 2025 13:04:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753103095;
-	bh=lTEh95RpPckhSDcCuGDs75biDi8vj53jbp0ovaUO/IQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KtoWkbN5nWyERZwRkXCVPFgzR2BwITsv+FVSpATKu06WNahZJItEB4cQfAo4JNqnH
-	 dbSw8YkWDkql34vt2sAj4YGEj5mmrweb5iM//9I5MP215f2jGMGtA6AvcxfgSxwObR
-	 P0ZuawTbagnnTd9lDgAVbWrFEJLNk7H/0zwZ8oOfTif8dq7mfIM6d6DGBomQqt2CK1
-	 wVtl0zR/u3UTjQpBrNAJxkK4z5sr8i7oA5gmViqlN2yL6WZYAUZ7fplRIXgmdwc9PN
-	 XCJHcHPGEx+5+eeve9/FlzhKz0eAzv13Tl6enelD+aPoFNO1roq5hzG23UX/ZB8rik
-	 GbmxhghuNu16Q==
-Message-ID: <14fc39f9-39dd-4ac6-ad44-349bbe4e5427@kernel.org>
-Date: Mon, 21 Jul 2025 15:04:50 +0200
+	s=arc-20240116; t=1753103470; c=relaxed/simple;
+	bh=GyzrlvwKW5tsANlW8MqKVrstmtRTarD+3tRn5itgUzI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X9rpWf98OoItxGKA07KFM+rOrDOhvwnIbLx3tYXsnwDWdc6MY8CnDlFSeKn0gg+NMJJIE3nM1ify9UrLgVDenVqAhWt9yATr8/IuRj7HkRj86I01CHoKxXifPJKzsAWT8BtePpujUf9jTfMkAgBVtcUVTozJRWfT6Vbn99abR9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GJXuiBC/; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=2EDIiB7F78ZZl6mL2M2TE1SlEuzFD+iUDjhHgloH2UQ=; b=GJXuiBC/9awoiua23kOQl4lLOW
+	CFBVBr2ilT1eXsLt4slNEf2a9gf4h450QI1ETxHQgiF/Wsjr1DB4gTHOLzMfCNsnHM6XunnilUISW
+	GNoFh56TtE+Rd/JtZlZtO7oZCxgWmeODHCUp1c5Oo9nK2+L9eQjBBBvtqSSojLiiDLk8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1udqIB-002MCv-Vx; Mon, 21 Jul 2025 15:10:55 +0200
+Date: Mon, 21 Jul 2025 15:10:55 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?utf-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
+Cc: weishangjuan@eswincomputing.com, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
+	yong.liang.choong@linux.intel.com, vladimir.oltean@nxp.com,
+	jszhang@kernel.org, jan.petrous@oss.nxp.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, inochiama@gmail.com,
+	boon.khai.ng@altera.com, dfustini@tenstorrent.com, 0x1207@gmail.com,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
+Subject: Re: Re: Re: [PATCH v3 2/2] ethernet: eswin: Add eic7700 ethernet
+ driver
+Message-ID: <6b3c8130-77f0-4266-b1ed-2de80e0113b0@lunn.ch>
+References: <20250703091808.1092-1-weishangjuan@eswincomputing.com>
+ <20250703092015.1200-1-weishangjuan@eswincomputing.com>
+ <c212c50e-52ae-4330-8e67-792e83ab29e4@lunn.ch>
+ <7ccc507d.34b1.1980d6a26c0.Coremail.lizhi2@eswincomputing.com>
+ <e734f2fd-b96f-4981-9f00-a94f3fd03213@lunn.ch>
+ <6c5f12cd.37b0.1982ada38e5.Coremail.lizhi2@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] ASoC: dt-bindings: Add FS2104/5S audio amplifiers
-To: Nick Li <nick.li@foursemi.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
- xiaoming.yang@foursemi.com, danyang.zheng@foursemi.com, like.xy@foxmail.com,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250721103805.531758-1-nick.li@foursemi.com>
- <20250721103805.531758-3-nick.li@foursemi.com>
- <83f7c489-7001-49cd-97a5-4280eba95fe0@kernel.org>
- <F04DD98A69286426+aH4sT_P0GvttoCOq@foursemi.com>
- <ea2f30ff-b2cf-4b88-9fe8-78950a03d882@kernel.org>
- <0D06FAB8CF1A9D4C+aH41IrERxjlsEAPr@foursemi.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <0D06FAB8CF1A9D4C+aH41IrERxjlsEAPr@foursemi.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6c5f12cd.37b0.1982ada38e5.Coremail.lizhi2@eswincomputing.com>
 
-On 21/07/2025 14:40, Nick Li wrote:
-> On Mon, Jul 21, 2025 at 02:15:38PM +0200, Krzysztof Kozlowski wrote:
->> On 21/07/2025 14:02, Nick Li wrote:
->>> On Mon, Jul 21, 2025 at 12:48:24PM +0200, Krzysztof Kozlowski wrote:
->>>> On 21/07/2025 12:38, Nick wrote:
->>>>> +  firmware-name:
->>>>> +    maxItems: 1
->>>>> +    description: |
->>>>> +      The firmware(*.bin) contains:
->>>>> +      a. Register initialization settings
->>>>> +      b. DSP effect parameters
->>>>> +      c. Multi-scene sound effect configurations(optional)
->>>>> +      It's gernerated by FourSemi's tuning tool.
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>> +  - '#sound-dai-cells'
->>>>> +  - reset-gpios
->>>>> +  - firmware-name
->>>>
->>>>
->>>> I do not see how you resolved my comment from v1 or v2. Nothing in the
->>>> changelog explains that either.
->>>
->>> Change logs are in the cover letter:
->>
->>
->> And as I said I do not see resolution of my comment.
->>
->> If you reject reviewers comment, usually it should be mentioned in the
->> changelog.
->>
->> Otherwise you get now the same review as v1 or v2. Devices cannot work
->> without power.
+> > > Let me clarify the purpose of the three elements in each dly_param_* array:
+> > >   dly_param_[x][0]: Delay configuration for TXD signals
+> > >   dly_param_[x][1]: Delay configuration for control signals (e.g., TX_EN, RX_DV, RX_CLK)
+> > >   dly_param_[x][2]: Delay configuration for RXD signals
+> > 
+> > Maybe add a #define or an enum for the index.
+> > 
+> > Do these delays represent the RGMII 2ns delay?
+> > 
 > 
-> I explained it in the previous email:
-> The power may be connected to the baterry/adapter directly,
-> it may not be under the control of the software,
-> in this case, the supplies are use as dummy regulators?
+> Yes, these delays refer to the RGMII delay, but they are not strictly 2ns. There are a few points that require further clarification:
+> 1. Regarding delay configuration logic:
+>    As you mentioned in version V2, rx-internal-delay-ps and tx-internal-delay-ps will be mapped to and overwrite the corresponding bits in the EIC7700_DELAY_VALUE1 register, which controls the rx_clk and tx_clk delays. Is this understanding and approach correct and feasible?
 
-You describe here this device, not the board. Does this device needs
-this to be connected to source of power? Battery is such source.
+Please configure your email client to wrap at about 78
+characters. Standard network etiquette.
 
-> 
-> And we tested the driver without the supplies in DTS,
+Yes, if rx-internal-delay-ps or/and tx-internal-delay-ps are in DT,
+they should configure the delay the MAC applies.
 
-That's a terrible argument. If I do random changes in my bootloader like
-toggle on clocks, does that mean that hardware does not need that thing
-(like clocks)?
 
-> so I didn't mark the supplies as the required items.
+> 2. About the phy-mode setting:
+>    In our platform, the internal delays are provided by the MAC. When configuring rx-internal-delay-ps and tx-internal-delay-ps in the device tree, is it appropriate to set phy-mode = "rgmii-id" in this case?
 
-Changelog also did not say you did not implement the comment.
+Please read:
 
-Best regards,
-Krzysztof
+https://elixir.bootlin.com/linux/v6.15.7/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L287
+
+It gives a detailed description of what phy-mode = "rmgii-id" means. 
+
+> 3. Delay values being greater than 2ns:
+>    In our platform, the optimal delay values for rx_clk and tx_clk are determined based on the board-level timing adjustment, and both are greater than 2ns. Given this, is it reasonable and compliant with the RGMII specification to set both rx-internal-delay-ps and tx-internal-delay-ps to values greater than 2ns in the Device Tree?
+
+It is O.K. when the total delay is > 2ns. However, please note what is
+said, the normal way to implement delays in Linux. The PHY does the
+2ns delay. The MAC can then do fine tuning, adding additional small
+delays.
+
+> There is a question that needs clarification:
+> The EIC7700_DELAY_VALUE0 and EIC7700_DELAY_VALUE1 registers contain the optimal delay configurations determined through board-level phase adjustment. Therefore, they are also used as the default values in our platform. If the default delay is set to 0ps, the Ethernet interface may fail to function correctly in our platform.
+
+So there is only every going to be one board? There will never produce
+a cost optimised version with a different, cheaper PHY? You will never
+support connecting the MAC directly an Ethernet switch? You will never
+make use of a PHY which can translate to SGMII/1000BaseX, and then
+have an SFP cage?
+
+DT properties are there to make your hardware more flexible. You can
+use it to describe such setups, and handle the timing needed for each.
+
+By default, when phy-mode is rgmii-id, the MAC adds 0ns, the PHY 2ns,
+and most systems will just work. That 2ns is what the RGMII standard
+requires. You can then fine tune it with rx-internal-delay-ps and
+tx-internal-delay-ps if your design does not correctly follow the
+RGMII standard.
+
+	Andrew
 
