@@ -1,89 +1,153 @@
-Return-Path: <devicetree+bounces-198141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE3FFB0BDB0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:33:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 903EFB0BDBA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:35:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23F5B7A261D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 07:31:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 342211885D6A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 07:35:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0948283FC3;
-	Mon, 21 Jul 2025 07:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF33A284669;
+	Mon, 21 Jul 2025 07:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WQVMx82I"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kGGSv0HF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8021C2836B4;
-	Mon, 21 Jul 2025 07:33:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F9F4283FC4
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 07:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753083186; cv=none; b=okJ4BYliiaAEONJe5PxoUmRZlXHxPJ3vbdjgGODnl5f1j/PG4Lz9upMWwubLUFKeHJeNPw5ebuam/e9eP2hyNOpjPmwDF7GwZeZCsZ2aq4HuLoxEMWQzd2hF3EIBb7V1x4SRRwZJh28ljrnnCzTrZlss1Untq8+CoqyxXSEJrd4=
+	t=1753083320; cv=none; b=LGGaGlIt8bN+0zwRvGDqG/epl8anwuPdulhJqb/kuO8gn85Zh2XxKVqzvVONQ521ayMKaoEhe/1otOI4tlpES38gvvsDJo1ihFUEfX3wZowFrOMHGq0p7cRK5uK1skhhqocNNWOW00GLlPsvNCSDFVGNe76Zx0SOlD9WwQd5lt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753083186; c=relaxed/simple;
-	bh=mdw1CJUvpPFP7q0+Tbu+h7FrEywRakCiECzX+/r2WGE=;
+	s=arc-20240116; t=1753083320; c=relaxed/simple;
+	bh=75yem3WjluK+t3HLkk9qsg5NT0tv+wkaJxCTWsY2V44=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gr9Q/cCP9PL5/vg4ZU7ahlHlm9P7/rPJgL8qYX7sjfiQwuH0Of60uFuVtNcfIspI+Mjw0hvs8FFtdlopdIcjIU4QtNkhlFnb0EDDC95m90JBYVtWaBVej7Cx5JTAk/2807mOgBr3kUQbEoBsUrVd3Ggo++GjKgRN44mfcW0OrWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WQVMx82I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E6E1C4CEED;
-	Mon, 21 Jul 2025 07:33:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753083186;
-	bh=mdw1CJUvpPFP7q0+Tbu+h7FrEywRakCiECzX+/r2WGE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WQVMx82I8bVkS4iAB/XBcHjAZN+OhmUhogG2a6aPNGFZLGTIRUdJ+WBnlccVGR+8P
-	 LfxhMHXvqI8vOZ7ABVpKYeYoFLtLKhtW9T5yvCVp46/OM/CfrGPH1urmhIOAEWZSvX
-	 W2KZwAUGG/oTmXoaUgQ07oYeT+0gubuEN3FBGwfZWsmBQGS4vU8e2Jo1VAqehDPfqH
-	 J0e660hGsA067rNtYNL6MoNdw9AvRanwG93tWFmsX9hyJAI7qsg+74XlsaHZutiMVA
-	 ds9o1mVOzxHqahjQ2F2L5BBU+e0CuLzCqHO8O3IFZNypfMuE1lVKAPGq/v7Z8bnMYS
-	 BhZDW8+x+8IxA==
-Date: Mon, 21 Jul 2025 09:33:03 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
-	kernel@oss.qualcomm.com, Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Subject: Re: [PATCH v7 3/9] ASoC: dt-bindings: qcom,lpass-va-macro: Update
- bindings for clocks to support ADSP
-Message-ID: <20250721-fervent-panda-of-effort-f962b5@kuoka>
-References: <20250720173215.3075576-1-quic_pkumpatl@quicinc.com>
- <20250720173215.3075576-4-quic_pkumpatl@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VMZCRA3oyeVhq2rSSN8SWCpgiiJS7Zhu2dalJQmZYCHBkHLDjtYzzekwlqIXtgTvQFOBONmck7krH0T/VG2cPjz+DVSO1JAfP2ueAKPzUDow1xNtGuiI9Z1kyFDid6cHx31ghtMCIKWiLZ+RupSukwIVPTQ8OY4n95mRcr9+xtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kGGSv0HF; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-234b9dfb842so31956035ad.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 00:35:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753083318; x=1753688118; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=z5dBnPu5UuatkXMTVj9BGvrncU8K1V9rUHxc0C/1nEk=;
+        b=kGGSv0HFtXZDd/hf8OoliuSHGqTcVMDJmtt+p69A1UB+zSfVBODkqmNY2aiPHYoJ14
+         jKSpkiU4TkRSUkRSbw0Ul6L+xEDsIRhAU14VTBOpBdsVfZ7bDP/mYjfhawa56kHmO+yt
+         VfYUKhjdZ2yZAEx7YrVTb7EJhbrpEa4qkk/D+9qoZPDhY9pwkq+GWNJR7AA4k9U8D+cP
+         FlcC0hoB9s2ztApoLKJoZi4qBmhHvI9z5cGSCjJzgfSWVGJrSElYYe8wV54Z7Y/UyQcg
+         GrZva1rov1N6CJUCRIDCDHOpo6BODt7/TRHIWuLhSAAQYB8fZ/Trcnban2blXlBgKjbp
+         p/+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753083318; x=1753688118;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z5dBnPu5UuatkXMTVj9BGvrncU8K1V9rUHxc0C/1nEk=;
+        b=uPw+JU7PABaUePzccPr5j7vLJGZiasYwyweKqQAAikWAWkWPBRaXAIndfnK8bse0dm
+         soTQeoAl5LuGSeZu1urZhufUMzfp1JqAZy/F6UJNyfMpK154kanZ5DpJnND3/sirQ5ge
+         NCIDVn4CNPPmN1Z5L8a+17bf6aQO0DDIOEBqDOFLBb113Vs7IxztNAU7t+g6L9tSDOoL
+         i+bEjINKHu/0iuOQ/dThmf1dTz1QgCo7vkudxko2IX517K4+poO726sX+F8WnFPPIyon
+         lO/Ck6qBJHP/ZETFAsc1a7VMkkUW+L0kl6otINrm+lWrdiw7wvsELbZm3EGFBYn/3L5P
+         DW+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUS+2HY+BfUwbsFe2UYabcYQ5lpiLsoJvUXUdKFcVkpG28NqmBV6alneuT7WzmpXogbBUfepXFiaV/M@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFlwdKRDBgqfSC1Xj3c39ZaQiDBiBDn8VVxjE+utQ4eneXDWVR
+	2dfM0nV1z27ewBlWfVWFyjOa8qpTNbZ7R91L8VYdd43YW6hb7SNW7igJQQAR/YCnT14=
+X-Gm-Gg: ASbGnctFkQjut25ZfmmGHxwrv4TBIIdeEh0Ga+fasufFxBXuiLGqscUajzg7aO5atJz
+	Y7JliMyJhAYeR4VrLOroOqua8BFOh/SU0usuooo3dbzgCpG0bbuapNf8ML1dNKWo0oAsUokwhMt
+	Glku7fTGXlSnn3lUfT/Nov6bVMmn89DJqLvSD/g6GP+YXswl46S8mRq3yHvfmGC7Aa2rFvE+juE
+	CRwC+b9uH2ea3iY5zNLuRZKZYZyhFfxfF3fzvawz0GjGeEgrNF7NAb8oi2AiOeMip5T9C+boykM
+	ctkUT4DV4QRtC7wXoJLxeMrLlj3p84L3j6oEAchdJf39No4avLyINHmJEv6+wrGR9QwJqEO5wfo
+	F9p/DWxLfMN4W3tk9txvWEbEPpD8jUQq0Xw==
+X-Google-Smtp-Source: AGHT+IETNDRZoddMesKOQhKRvcZzakzOmMfiCHJxW7eO5wvM2qbmpmfxE8rY5ugFlkzEUO27/HUOzQ==
+X-Received: by 2002:a17:902:d58c:b0:234:a139:120a with SMTP id d9443c01a7336-23e2572ab00mr258734915ad.32.1753083318367;
+        Mon, 21 Jul 2025 00:35:18 -0700 (PDT)
+Received: from localhost ([122.172.81.72])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23e3b6d239dsm52577175ad.155.2025.07.21.00.35.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Jul 2025 00:35:17 -0700 (PDT)
+Date: Mon, 21 Jul 2025 13:05:15 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Dave Ertman <david.m.ertman@intel.com>,
+	Ira Weiny <ira.weiny@intel.com>, Leon Romanovsky <leon@kernel.org>,
+	Breno Leitao <leitao@debian.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+	FUJITA Tomonori <fujita.tomonori@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 04/10] rust: cpufreq: use `core::ffi::CStr` method
+ names
+Message-ID: <20250721073515.2srip46utnyap7fb@vireshk-i7>
+References: <20250719-core-cstr-fanout-1-v2-0-e1cb53f6d233@gmail.com>
+ <20250719-core-cstr-fanout-1-v2-4-e1cb53f6d233@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250720173215.3075576-4-quic_pkumpatl@quicinc.com>
+In-Reply-To: <20250719-core-cstr-fanout-1-v2-4-e1cb53f6d233@gmail.com>
 
-On Sun, Jul 20, 2025 at 11:02:09PM +0530, Prasad Kumpatla wrote:
-> From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+On 19-07-25, 18:42, Tamir Duberstein wrote:
+> Prepare for `core::ffi::CStr` taking the place of `kernel::str::CStr` by
+> avoid methods that only exist on the latter.
 > 
-> Manage clock settings for ADSP solution. On Existing ADSP bypass
-> solutions, the macro and dcodec GDSCs are enabled using power domains
-> in lpass-va-macro which is not applicable for ADSP based platform.
-> 
-> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+> Link: https://github.com/Rust-for-Linux/linux/issues/1075
+> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+> Reviewed-by: Benno Lossin <lossin@kernel.org>
+> Acked-by: Danilo Krummrich <dakr@kernel.org>
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 > ---
->  .../bindings/sound/qcom,lpass-va-macro.yaml   | 23 +++++++++++++++----
->  1 file changed, 18 insertions(+), 5 deletions(-)
+>  rust/kernel/cpufreq.rs | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/rust/kernel/cpufreq.rs b/rust/kernel/cpufreq.rs
+> index e8d231971276..71d601f7c261 100644
+> --- a/rust/kernel/cpufreq.rs
+> +++ b/rust/kernel/cpufreq.rs
+> @@ -1018,7 +1018,7 @@ impl<T: Driver> Registration<T> {
+>      };
+>  
+>      const fn copy_name(name: &'static CStr) -> [c_char; CPUFREQ_NAME_LEN] {
+> -        let src = name.as_bytes_with_nul();
+> +        let src = name.to_bytes_with_nul();
+>          let mut dst = [0; CPUFREQ_NAME_LEN];
+>  
+>          build_assert!(src.len() <= CPUFREQ_NAME_LEN);
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
-Best regards,
-Krzysztof
-
+-- 
+viresh
 
