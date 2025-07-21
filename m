@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-198309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71D3CB0C5F3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 16:14:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18FE5B0C62A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 16:23:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E7727A3CA9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:12:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39B995437AB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:23:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5128F2DCBF7;
-	Mon, 21 Jul 2025 14:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0137B2DAFB4;
+	Mon, 21 Jul 2025 14:22:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Tan0eiZc"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="5iIxQfL4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5605F2DCBE0;
-	Mon, 21 Jul 2025 14:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2582D6617;
+	Mon, 21 Jul 2025 14:22:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753107195; cv=none; b=pmQgtHW86pqoNMH8GQuiilIBcASKEada5DrRsgF67JBjmMBeZKhR3hVIFBY8fULF657dbm5c6vEQY9kN9LSSJ1/d9xPh/sm2qVdz22H9bGmD0lIolvYO1CemwN6VTLAu/NDrejYUSwGstijI1EWODRmoVw9aRdQpWYqprEjFLic=
+	t=1753107768; cv=none; b=sooTnhuoVDyNms92lBfQsxSkE5rGB4ubYGTqpCn+Hva7t80eeo+JRtJPfzj+BBkhJ9acg8hYelGgs10mvQD7bzFzUKPjQdKFAX0kL9J6KHpX+py5cYIGbFA7Xesl8jRW7wr+691atpNFJGhSTm7/bBfnSkBwvoz1gaBY8Pg4OUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753107195; c=relaxed/simple;
-	bh=8RFdCQOm4vZFdehj3bUDpcy+jvON4CmFDASZMU7AMWA=;
+	s=arc-20240116; t=1753107768; c=relaxed/simple;
+	bh=4mTsBe71F88u3XVMXKY9/rSzIS8TxslEt+Beazy+yD4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=eomNdBUFdXFZvUkHcSkRx7CzdNn0m5tRi1y/TR82T7snqc2zM9ogY5lXJpI1srtGWczcj3XNPux3kcd6VPkfndMiUuGsHniLCzDWZVIP+jJ3MP6nyXjvxWhXkHnYQLtpL2Ix9GeoEa8Or91dsTRrRBCD0sQ1Akq2ThrvJww2PCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Tan0eiZc; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56LED2k1822189;
-	Mon, 21 Jul 2025 09:13:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1753107182;
-	bh=Nh59/lkpsvmg1ZVKHRMN4ZHHZVoi4kbwnBYZr5gHbjk=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Tan0eiZcqW0I4uKlbNIWRM0tM9SYQhScxKr03owyfIXsdfK6Eg2wbd4rpAVZT3mHK
-	 LJFMV0SATt60zWidBxtGSs2JPgwg0KciWceCgh6iOwIzZ87vjLxNE+WDLN9Skg4Qmg
-	 2P62ufFNwCpBx3CIv/H0Mbrx9LFEnvVcwgVgdwh0=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56LED2ux1417486
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 21 Jul 2025 09:13:02 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 21
- Jul 2025 09:13:02 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 21 Jul 2025 09:13:02 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56LECvBl3955460;
-	Mon, 21 Jul 2025 09:12:58 -0500
-Message-ID: <86bbb4c1-18a9-4917-8554-97d540b72b5a@ti.com>
-Date: Mon, 21 Jul 2025 19:42:57 +0530
+	 In-Reply-To:Content-Type; b=o3yIw1GEV1c83HkaZO7pn45jX11wRRUUm0FyLN9xLGk8kh6lcmNYA1bSe/0yBhsSuwDt2CJCqj7VlQOMG7UV1QK7J84xrvc2LlzwhhNtOxoPJ51bxFJpI1R5XaJzHAqrmjDYhgcX7jQzFDCouEdBhXhexiAjAz4up/nTygZTyPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=5iIxQfL4; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56LCPm57020352;
+	Mon, 21 Jul 2025 16:22:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	MlPUcJGCX9eGUJmog410SGdHvgab8UL6u6jJvem96Jg=; b=5iIxQfL4YWN2yOno
+	Nav6nT0ot5lu7hhSPyXgIerU2aur1+pWl2zGqeVjwo5/MoRbNadUTCrznjLT6TA2
+	TaNHCcQbUg79u4zgfZ1O9g9Vzdl9kvccvLpIX9bvOJJaLruoh8epwg9EXkyX5bZI
+	HBffxDudJzyO/nBTZnXGGRTuIBlzLysZ8qs1DiKVOZiSbSdG/gSZSIL+QQcDwfNM
+	8lHkW+sNsPxrhPb3JUzOj/Fg5nvwoylJ3DKlGL8PWv6cyARyZE2P2qxSoGTxpeJ8
+	ClX+EVBlHiLtWapJDla7SIQTQ2zQW1eT6/lUrBSu7KW2M741cnudg2Mve0D671uW
+	QvzB2A==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4802q21em4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Jul 2025 16:22:16 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2B30240054;
+	Mon, 21 Jul 2025 16:20:32 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2988376EA8E;
+	Mon, 21 Jul 2025 16:19:09 +0200 (CEST)
+Received: from [10.48.87.141] (10.48.87.141) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 21 Jul
+ 2025 16:19:08 +0200
+Message-ID: <b95e3439-717b-4159-acf9-7ce76d1c43d4@foss.st.com>
+Date: Mon, 21 Jul 2025 16:19:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,51 +67,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] arm64: dts: ti: k3-j721s2-main: Add interrupts
- property
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Yemike Abhilash Chandra
-	<y-abhilashchandra@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vaishnav.a@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <imx@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
-        <u-kumar1@ti.com>
-References: <20250714092708.3944641-1-y-abhilashchandra@ti.com>
- <20250714092708.3944641-2-y-abhilashchandra@ti.com>
- <72545187-4605-40bb-9c68-54670c2e5332@ti.com>
- <92627ace-1fc8-45a7-a25e-76f410427f0c@kernel.org>
+Subject: Re: [PATCH net-next 3/4] net: phy: smsc: fix and improve WoL support
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, Simon Horman <horms@kernel.org>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Florian Fainelli
+	<florian.fainelli@broadcom.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250721-wol-smsc-phy-v1-0-89d262812dba@foss.st.com>
+ <20250721-wol-smsc-phy-v1-3-89d262812dba@foss.st.com>
+ <cca8e9e6-a063-4e00-87af-f59ea926cce3@lunn.ch>
 Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <92627ace-1fc8-45a7-a25e-76f410427f0c@kernel.org>
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <cca8e9e6-a063-4e00-87af-f59ea926cce3@lunn.ch>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-21_04,2025-07-21_01,2025-03-28_01
 
+Hello Andrew,
 
-On 7/21/2025 7:39 PM, Krzysztof Kozlowski wrote:
-> On 21/07/2025 16:07, Kumar, Udit wrote:
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> index 62f45377a2c9..6f32a2b0c40c 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> @@ -1248,6 +1248,9 @@ ti_csi2rx0: ticsi2rx@4500000 {
->>>    		cdns_csi2rx0: csi-bridge@4504000 {
->>>    			compatible = "ti,j721e-csi2rx", "cdns,csi2rx";
->>>    			reg = <0x00 0x04504000 0x00 0x1000>;
->>> +			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
->> Just cosmetic thing, if you are doing v2 then consider 152 first ,
->> followed by 153.
->
-> No, you cannot just randomly change numbers or the order.
->
-To be precise both , interrupt-names and interrupts,
+On 7/21/25 15:26, Andrew Lunn wrote:
+>> +static int smsc_phy_suspend(struct phy_device *phydev)
+>> +{
+>> +	if (!phydev->wol_enabled)
+>> +		return genphy_suspend(phydev);
+>> +
+>> +	return 0;
+>> +}
+> 
+> Suspend/resume is somewhat complex, and i don't know all the
+> details. But this looks odd. Why does the phylib core call suspend
+> when phydev->wol_enabled is true? That at least needs an explanation
+> in the commit message.
+> 
 
-if this make sense to change.
+As stated by Russel, this callback is not needed because phy_suspend()
+will not call this suspend() callback if phydev->wol_enabled is set.
+Therefore, I'm removing it vor V2.
 
+>> +static int smsc_phy_resume(struct phy_device *phydev)
+>> +{
+>> +	int rc;
+>> +
+>> +	if (!phydev->wol_enabled)
+>> +		return genphy_resume(phydev);
+>> +
+>> +	rc = phy_read_mmd(phydev, MDIO_MMD_PCS, MII_LAN874X_PHY_MMD_WOL_WUCSR);
+>> +	if (rc < 0)
+>> +		return rc;
+>> +
+>> +	if (!(rc & MII_LAN874X_PHY_WOL_STATUS_MASK))
+>> +		return 0;
+>> +
+>> +	dev_info(&phydev->mdio.dev, "Woke up from LAN event.\n");
+> 
+> Please don't spam the log. It is clear the system woke up, there are
+> messages in the log...
 
-> Best regards,
-> Krzysztof
+I wanted to state clearly that the wake up happended because of a WoL
+event but sure, I understand that it's best if log isn't spammed. Do you
+prefer it completely removed or dev_info()->dev_dbg() ?
+
+Best regards,
+Gatien
+
+> 
+> 	Andrew
 
