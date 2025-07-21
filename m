@@ -1,87 +1,64 @@
-Return-Path: <devicetree+bounces-198273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61798B0C39F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 13:49:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA44DB0C3BE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 13:58:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 940E4178D46
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:49:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 172AF3BE07C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:57:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C89B22D0C8E;
-	Mon, 21 Jul 2025 11:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE3B2C158E;
+	Mon, 21 Jul 2025 11:58:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AEsuE/+y"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="p36aVARw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411582BE034;
-	Mon, 21 Jul 2025 11:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4CC1F2B88
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 11:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753098546; cv=none; b=OmSP9S2d70EIXbZtHjr8eTo+WNR6Rru5YZq+A6Sy4XjeLjr9IRSz+2qW3hphA3mTJHiW+V/eGISJKH99VaAENGOMd2L18XacHZy2KOyHtk51dCw/0MyCPle1pKpJlVjN4RUwfDzQewhmbdr8HzusS/7nznRIWYdXAi2qF8uCjpg=
+	t=1753099087; cv=none; b=EA49DNMJy7DDIQgViBeDmW4hHkYQDyqiZdS3ESH7nT+dhz53jv8mPvKoG/DS5wTd0Bhb9hiUzdkYom0aexVEojP75nj1zYWhd/Q1PcRS1vEWmHLi9uZHycHZKiQN7qZlP+K/hqcdhxs5+FAYJmlQQyTri5kns69BdtKP+fu/wPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753098546; c=relaxed/simple;
-	bh=1USdMMY/Dt/apuRlYWAJH3O/Cgl8c0BbbIsXoxHC+dI=;
+	s=arc-20240116; t=1753099087; c=relaxed/simple;
+	bh=FWnSi8E8XYIWk4QCaR4TwKiOWABo39dyPNERnvREGtw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oRwcWuJPCYRodBQeIgyQ7xFixC+RC5hgohvLYC++z+DUfAMrvf0cUf5eHt/wtf9P/gcsBtZ14QAssnFXCt9J/+E0pEmjXp/YI+Y3DK5foYPQHyjRb5/u/osdUkBcUNVmhnTWRfp3K+j9K99SSK1xdrV5PdBg7JHJzPl691oxxlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AEsuE/+y; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1753098545; x=1784634545;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1USdMMY/Dt/apuRlYWAJH3O/Cgl8c0BbbIsXoxHC+dI=;
-  b=AEsuE/+yu7Xq15WP23VKbeATL4pd1brdrK7gVifI1L/1tP5tRHoy58Ky
-   gfK0wrAZ0Dk1yJBZSAvWwdmp/GcKFsusradgZvpLI0ZQLiKCp1ukQcRu2
-   +2klVVBhOA/l4udaubgJs4CLw+DVC5XA+iTBt8bxDkW9Co0kN5IchdM3l
-   smOYVPyWy8fQr0vARXh/ajJP92FWm+fNhDlwpA3aTPdEOIHHbysN2gcnT
-   x+7vMqTum9Wfc0k/waSPKUo/jIXiQcb+cMkm/v+PXOFjVIWPK0w2W1BwF
-   5EijLadxvINteR83MUXnCciUuMaLYftzVwzzdhoJ0fT30FUTMRGVueg3+
-   Q==;
-X-CSE-ConnectionGUID: J9DizsDUT86o5KfT/tmLLQ==
-X-CSE-MsgGUID: sCwVmAMkRLyAXTBYzD/K6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11498"; a="66658697"
-X-IronPort-AV: E=Sophos;i="6.16,328,1744095600"; 
-   d="scan'208";a="66658697"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 04:49:05 -0700
-X-CSE-ConnectionGUID: dKMeJe5pRzKtObbPfE5X+w==
-X-CSE-MsgGUID: 5Wx/00ziQcy5MG7/QHr0Lw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,329,1744095600"; 
-   d="scan'208";a="189771909"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO svinhufvud.fi.intel.com) ([10.245.244.75])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 04:48:35 -0700
-Received: from svinhufvud (localhost [IPv6:::1])
-	by svinhufvud.fi.intel.com (Postfix) with ESMTPS id 53E0E41826;
-	Mon, 21 Jul 2025 14:48:32 +0300 (EEST)
-Date: Mon, 21 Jul 2025 14:48:30 +0300
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Mehdi Djait <mehdi.djait@linux.intel.com>
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=A7X2aPnbYdLxh9xnXHdOBxI+0M96wIZJuEt/6ynwoLGn1LtkIdQb3seFdLlLEk2dEsXK7SsXXDfijUO8mlqxON4/ZPk01iaHFo/nxFXX4Ag0ur9lT4sLFgvRoA//RifNSswZpWQ4fEKch08SuMSHV/JNxdsJdpgFz0pfSQSmSHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=p36aVARw; arc=none smtp.client-ip=91.218.175.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Mon, 21 Jul 2025 19:57:56 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1753099082;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=bfrHdHadKeOGrxubHlclT+KsEtO7bFXUMTU/oDEY5dQ=;
+	b=p36aVARw7D43XfPT4ZZedi3YcLfN/KR5oUPoLSSqFTzIk6/rRnSzX8rESovL+8J02HVpqK
+	U992BQVKcaz3RmNJ5lrzf3drMvWTqoYIvY1gWUbhXWMl26WB00iJSqa3Ka9D1Z70ZXJrx7
+	02rJ8Oad5yjpUM8tTyLq8oiqLFz/Pgw=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ze Huang <huang.ze@linux.dev>
+To: Philipp Zabel <p.zabel@pengutronix.de>, Ze Huang <huang.ze@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] media: i2c: Add OmniVision OV6211 image sensor driver
-Message-ID: <aH4pDtoBuQYZgyZS@svinhufvud>
-References: <20250717124001.108486-1-vladimir.zapolskiy@linaro.org>
- <20250717124001.108486-3-vladimir.zapolskiy@linaro.org>
- <175276139540.560048.14744394485094549778@ping.linuxembedded.co.uk>
- <CAPY8ntCiKFFdfepqW0ms_0dhCtJJCwJoT=bxmJ5i0K254i6fkA@mail.gmail.com>
- <7bb16a20-166a-477d-a103-a00fe83ecb66@linaro.org>
- <6w5vwjdhs2mbidaadzkkwx32rr6fkfqgrjlvbu7kvcre34rmn2@qifmnxaertxo>
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: dwc3: add support for SpacemiT
+ K1
+Message-ID: <aH4rRKPHzB0kd7Ek@monica.localdomain>
+References: <20250712-dwc3_generic-v6-0-cc87737cc936@linux.dev>
+ <20250712-dwc3_generic-v6-1-cc87737cc936@linux.dev>
+ <468961ac17fb5dd4365943a24206040575b0e982.camel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,36 +67,95 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6w5vwjdhs2mbidaadzkkwx32rr6fkfqgrjlvbu7kvcre34rmn2@qifmnxaertxo>
+In-Reply-To: <468961ac17fb5dd4365943a24206040575b0e982.camel@pengutronix.de>
+X-Migadu-Flow: FLOW_OUT
 
-Hi Mehdi, Vladimir,
-
-On Mon, Jul 21, 2025 at 12:38:28PM +0200, Mehdi Djait wrote:
-> It has already been reviewed but yes still not in the media tree.
-> Too late for 6.17 but it will be in the media tree soon.
-
-I'll send a PR including that once we have next rc1 in the media tree.
-
-> 
-> > 2. the only needed change to get support of the new helper is to replace
-> > the single line of devm_clk_get_optional() with devm_v4l2_sensor_clk_get(),
-> > no more than that,
+On Mon, Jul 21, 2025 at 01:02:54PM +0200, Philipp Zabel wrote:
+> On Sa, 2025-07-12 at 15:49 +0800, Ze Huang wrote:
+> > Add support for the USB 3.0 Dual-Role Device (DRD) controller embedded
+> > in the SpacemiT K1 SoC. The controller is based on the Synopsys
+> > DesignWare Core USB 3 (DWC3) IP, supporting USB3.0 host mode and USB 2.0
+> > DRD mode.
 > > 
-> 
-> Correct.
-> 
-> > 3. the internal complexity of devm_v4l2_sensor_clk_get() seems excessive
-> > right over here, what's worse I can not test devm_v4l2_sensor_clk_get()
-> > in this driver on any ACPI platform...
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Ze Huang <huang.ze@linux.dev>
+> > ---
+> >  .../devicetree/bindings/usb/spacemit,k1-dwc3.yaml  | 107 +++++++++++++++++++++
+> >  1 file changed, 107 insertions(+)
 > > 
+> > diff --git a/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml b/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..c967ad6aae50199127a4f8a17d53fc34e8d9480b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
+> > @@ -0,0 +1,107 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/spacemit,k1-dwc3.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: SpacemiT K1 SuperSpeed DWC3 USB SoC Controller
+> > +
+> > +maintainers:
+> > +  - Ze Huang <huang.ze@linux.dev>
+> > +
+> > +description: |
+> > +  The SpacemiT K1 embeds a DWC3 USB IP Core which supports Host functions
+> > +  for USB 3.0 and DRD for USB 2.0.
+> > +
+> > +  Key features:
+> > +  - USB3.0 SuperSpeed and USB2.0 High/Full/Low-Speed support
+> > +  - Supports low-power modes (USB2.0 suspend, USB3.0 U1/U2/U3)
+> > +  - Internal DMA controller and flexible endpoint FIFO sizing
+> > +
+> > +  Communication Interface:
+> > +  - Use of PIPE3 (125MHz) interface for USB3.0 PHY
+> > +  - Use of UTMI+ (30/60MHz) interface for USB2.0 PHY
+> > +
+> > +allOf:
+> > +  - $ref: snps,dwc3-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: spacemit,k1-dwc3
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    const: usbdrd30
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  phys:
+> > +    items:
+> > +      - description: phandle to USB2/HS PHY
+> > +      - description: phandle to USB3/SS PHY
+> > +
+> > +  phy-names:
+> > +    items:
+> > +      - const: usb2-phy
+> > +      - const: usb3-phy
+> > +
+> > +  resets:
+> > +    items:
+> > +      - description: USB3.0 AHB reset line
+> > +      - description: USB3.0 VCC reset line
+> > +      - description: USB3.0 PHY reset line
 > 
-> You don't need to test it on a ACPI-based platform to use the helper, if
-> it works for your DT-based platform that's enough.
+> Are we sure all resets will only ever need to be triggered together?
+>
+> Otherwise it might be safer to add a reset-names property.
+>
 
-Agreed.
+Yeah, that's helpful. Will add reset-names property in next version.
 
--- 
-Kind regards,
-
-Sakari Ailus
+> 
+> regards
+> Philipp
 
