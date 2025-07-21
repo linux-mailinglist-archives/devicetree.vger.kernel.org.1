@@ -1,128 +1,149 @@
-Return-Path: <devicetree+bounces-198392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13FE2B0CA4A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 20:08:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71F8BB0CA4D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 20:08:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DB444E3E61
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 18:08:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 432077A00D6
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 18:07:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE232E4244;
-	Mon, 21 Jul 2025 18:07:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38A712E2659;
+	Mon, 21 Jul 2025 18:07:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FkJT29d2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LaJQTg4P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D15F92E3B1A;
-	Mon, 21 Jul 2025 18:07:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28BC82882B9;
+	Mon, 21 Jul 2025 18:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753121259; cv=none; b=d3T5Qu6J3UgsQ1y1yWjv1a6PcK5M6WgU6QmiBeDlSuEwOESStlMNQyt0FQRxnooDyPMRPUx+0BbByju664DCNtIj6hmS+ouB8YYnDqw5wk1LVTK6BMqe+7wHYDEOGLpuYPrjY+F/6fuOsTTgHHhJBEoTMKWeVpPp1dzRBIGS2L8=
+	t=1753121270; cv=none; b=Y7a1+1o66T41/CvsKXM7/k0eQZpoGykrQyeqHaNHmSMhft05C/jUXBaCuiILzbrZX5P4o9/IutlZ5IPLp4XuP/noCkXGd+eYMCLwWUeMHgr8qoTiJpzeJ2ZsSWPuE15FBY63l3caF1KECmb6A7P17xWNDW0CRcXB2r8DPB/QKBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753121259; c=relaxed/simple;
-	bh=XuqdLOxXDPO9JQSHjDKhnVmvk5hC7cXCT51JI5Zeh+0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oyqjrCx5t17Ai/moUXsPJwzaTss5zX8YQBw88+GnKfJuT9Q7o3VBiXl8Rsiwwsozn+MZRYgDJw5QOSJe5im/ayDLyS2rvWXRz9RaA9qZqjKgSGmB5j7IgH6rH5lNhh5q57GiIbkzM9AseDkFMdCetU844a6/lbXP1dFvLTux8y0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FkJT29d2; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1753121270; c=relaxed/simple;
+	bh=AxR3SLpD7uj8M+SVLIg4R+XGie4XxMhuFzefg7QRlow=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kO3wlGa4Wl7IAmGxfCBmwFYNExLlYjyPQJSSvSQVKkPhqb//J9uv8nvtU/9Q1rae0vAOl8XlfBrvxR5cBM9SslRLddYVk5Dw88a7VY2LyXW5EoKed54JmEnk5lM+d01gfaBZPO2YKlTH/PGyHckTj8gMo7G/QVo2m+LCGbgZaKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LaJQTg4P; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4555f89b236so46517715e9.1;
-        Mon, 21 Jul 2025 11:07:36 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3b49ffbb31bso2959917f8f.3;
+        Mon, 21 Jul 2025 11:07:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753121255; x=1753726055; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Flp2kuB43upoDmZKHtPKy1TYQrSu+LhhKaLm1sYr4pw=;
-        b=FkJT29d2trZDS7EIdy0grU0vj5MaaImtN29CovUEUqf5dkx9Hp21R3ouFdwK0bO4pi
-         chjQJqR9zUeGzfM/hyGB6Gwot4DkcdITxRwFiS8O0OpEVkrjydYp0hE2NyKtRHqBr/y3
-         gXMEU0SFhZs2JOICrRgA5p3rBSkf1hqwaSalAFM4EwNaO7JG/iU4LjUGVSOQ0ClRIHIz
-         9KoVjucbDHymX+8epU3h0W9Q3sUdWMljD6QgNd0qUcPgTD8B102xhSDsuxPpLI1x1iPb
-         8cia5AbOxtktlEayQ6P5y7fgjhzz+1Fhlrnyy/ekAnM1GB8tDmLBqjEvUphln7fBQRMo
-         QpJA==
+        d=gmail.com; s=20230601; t=1753121266; x=1753726066; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ArCMIs8cHMmaU6eRMIXZBua41omBX5hUlQZNBFR+A9w=;
+        b=LaJQTg4P6m3qN+IWl3fO1kuny2HanJLCjdabjFptQRMXFbN+ezcAIYSqNUZw7+G3b0
+         IRUl6KUVEi9s1EBQWuKqY6QV5eosrnv5G8RL/ceg6rT2lik4GGavx/xVhwdfCbo8cWWG
+         NOOUsq0NFzjVlevtU0HiLuFMppYj8oRcqpWQGJEtkVstzeaugXx9kHjbrDv3bK/UalbY
+         4sAvQBtoAOh7qUzlQcf++Fw2UThdxk4EclYRzsCCZFDXrvsFqLH5np/ez7kt2yYV9o/4
+         KVrZySAr9JwmWsareFQyXta0/ELD/lcnechGhvT+zwz+v/I0Aot9zWyvJWFnm2BOmcXd
+         19xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753121255; x=1753726055;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Flp2kuB43upoDmZKHtPKy1TYQrSu+LhhKaLm1sYr4pw=;
-        b=C2mRKvvbdLaAc6hzplx7QbtX3aGN+bH8gylej3LvN36KdXcXNK33luN4M3G2isb5jJ
-         W6hrUPC31XBNILVz05NIyKTsdhYGvKf0TnnFyhGjAIeZliVrnig9O3Wl0t2o8BZoW77I
-         h+EWTz33nr8A1qO7og0SK4yqIoRVhsTrxWqL2W66icdYYQjCgpnOs7fzK8n/D93l49k2
-         av1h+W2KOCgIJSrca+cJZ4+gvpdHaCIA738LD5qKphqxFp/L4JjMYsDZI2kfy8zq6u3O
-         tBDKWPTlMY4zjYtqUc71VXffcwlF/R09Z29A73ybKCXH11R9LMvzQLARxWa4ChXIo5IB
-         UKfw==
-X-Forwarded-Encrypted: i=1; AJvYcCURoXzCxxxiXW9pJU/q5FZt6WOXMcQ8yR3fOKMdBnFbDTZNX9rQyB98RA1P9JAeaeCqeGhu7Rd9lNUzLKY2@vger.kernel.org, AJvYcCUvJwDMGd2zARoQ3rI2ZI6FY0wk8lAsAkwxrI9B5qT6hnJPwMfqnKHYjjvdvAFHSqNTM25g3tN+Boje@vger.kernel.org, AJvYcCXiavR4dgiKoas1JwRg8Gb2O7DXggSwT0hiPAcAlbV1uYxs+fyI+POTruYjjv6qLybhCfHVzCmkahKK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxp0LXgaQcankJ/YZ5IaTP13cT/hX/AqVbgRj2esix1CXLF2J2f
-	wGKdWsKWgrwEMqFsEceq9jGOifbXO7+KVbY9LMjw2N1wH8TKQIGImSlu
-X-Gm-Gg: ASbGnctLx2lVB+upWbVagXPNtWacY0QMcWXZwxvzWNvQHDLc6GPS+tfxWATZgNu4IzY
-	9278ijZFq9ugxoVwG0fWdcIDjLVNlXiQY8ZUeSYYZLeMhVF+YbIK2pHUKRrMnjQD/nv98xHFCBQ
-	LVBcWmixk8G0nCY+zShqrogjOtMRcitqaHexi3D8SNNBsg8rcwSaIWLSYw5EUndgmLyTip2Qrlj
-	W5LqJ7pBktX6clrjpfs4rtft0BA4YRUBBO3w6t3bMKBltJxT7hetMoRBmO5IuPazLArIGj95QUk
-	WPLtuuc1uhXseKDPngvkMzvwh4MYlkZCwz+1br/ov+HfsWuI8V557MXIgt5R2MPT3HK5Es5/B/T
-	wcUyq+aC0AgjLdefFOheF45g=
-X-Google-Smtp-Source: AGHT+IHMDl1HdTYdt7dKUNczFNSMkURtUfgoOq1Dch3s+qbqN05Wekq5XqXHAV+JIJaRsdTcIptzmA==
-X-Received: by 2002:a05:6000:26c9:b0:3b4:9dbd:eee9 with SMTP id ffacd0b85a97d-3b60e510026mr17022246f8f.36.1753121254931;
-        Mon, 21 Jul 2025 11:07:34 -0700 (PDT)
-Received: from Ansuel-XPS24 ([109.52.136.49])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3b61ca25443sm11183370f8f.9.2025.07.21.11.07.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Jul 2025 11:07:34 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Stefan Roese <sr@denx.de>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v2 5/5] i2c: mt7621: make device reset optional
-Date: Mon, 21 Jul 2025 20:05:56 +0200
-Message-ID: <20250721180710.2116-6-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250721180710.2116-1-ansuelsmth@gmail.com>
-References: <20250721180710.2116-1-ansuelsmth@gmail.com>
+        d=1e100.net; s=20230601; t=1753121266; x=1753726066;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ArCMIs8cHMmaU6eRMIXZBua41omBX5hUlQZNBFR+A9w=;
+        b=PqPZpaF1jW/tjOsY4V6QluRmSoaDfvX3zxSrembqb71bZE26X+BqBG+DrGAgcCITt4
+         CefLTkcUwYKdoN3we96dJQFebAc4/R54YbCW+GV/WYqKNLgb4A2nqaWqBl+QsNvFHLdH
+         HCRUcmwmNVutRR5Xuk6h89uEkF6AGqZzRZYv9tv/cjW7VIaYt2CXwlo36FYA50WAY2gc
+         73NpUxBAeoeApVa4U4iyr8WTu89tXD+RtP5EgW21q0MLUvKgWByYg4WrvygUmWbLPtK2
+         UGw48xkGH7j78tFKAVsArBfpQYoHdRrxjwCVOJh1TaWfTnL6X4BtA54RUu1HJIpDMWcM
+         r39g==
+X-Forwarded-Encrypted: i=1; AJvYcCWHJce8ZzPsYBzEaPL+PXZ4XddH8UrkVlpU2ZDG3AF+FhW2n6VB2rS7928plkp2ngBHqYBhzuWJZ78T0fA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQSMpr8z0nKjp3Urd4wuw2QtmR8IFCkCoxoCTpvklQxOsUKjav
+	ejxHdRDaYzFqUHz020yoM0td0V+m2rNOZDIVBm3jdDcs5A4yneVYo5A=
+X-Gm-Gg: ASbGnctFYRqjBgBVYYk2m9QIaS0ogD62ASV33iw9OoQWK1mmNmfpPZ/0v4EPs/1Ijwt
+	KqMvtjiiibuSz41JjHY1BFnBBURto+hjmQpE0mJKRawkt/WBlBodyc37zjGSCkQWh3HYheDzMIb
+	qR9zLnbPKFnflzn/bi45GG8z1RjT+Bbt6nMpPsk4xZsPJYbkfXZCmLx37hMmhPXioF4VNO5AB86
+	XAXho0mDZndasAwRRuwVywxCPIbxObLeEyqZLMiAragWuhheJq9op7prQBtOue2kwJqq/T0Sc0l
+	6qHNEsUdZFkcSDnF4j8esQ0U/ERTLRjXTbKQFHN1w203zfdf+UTm0BndJS1TT21t+1ejs9exx6x
+	m68eXTN4zZ+6jGbJ1g4C8SsppO6SXPBARE2QKNdJ0txaExD112gnI/rUBTYjs7Y4=
+X-Google-Smtp-Source: AGHT+IGcDPzV6KQjobcMBQcBoKbIIcGU6ckQH+xCZ1tWbwJRYmX8A1xwQRCZIhBoNEVRk2XrDOitug==
+X-Received: by 2002:a05:6000:481a:b0:3a4:e2d8:75e2 with SMTP id ffacd0b85a97d-3b613eaae20mr11933859f8f.50.1753121266097;
+        Mon, 21 Jul 2025 11:07:46 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f13:8500:e3:9af7:6c0e:f2a1? ([2a02:810b:f13:8500:e3:9af7:6c0e:f2a1])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4562e886286sm171024705e9.26.2025.07.21.11.07.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Jul 2025 11:07:45 -0700 (PDT)
+Message-ID: <6d93c92d-2bba-4247-960d-5f2e5e12b594@gmail.com>
+Date: Mon, 21 Jul 2025 20:07:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] arm64: dts: rockchip: Add ROCK 2A/2F, Sige1 and
+ NanoPi Zero2
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: devicetree@vger.kernel.org, heiko@sntech.de, jonas@kwiboo.se,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, ziyao@disroot.org
+References: <3c83e8cc-9ef0-4560-b6d7-127abab50541@gmail.com>
+ <20250721140016.308800-1-amadeus@jmu.edu.cn>
+Content-Language: en-US
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <20250721140016.308800-1-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Airoha SoC that makes use of the same Mediatek I2C driver/logic doesn't
-have reset line for I2C so use optional device_reset variant.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/i2c/busses/i2c-mt7621.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Am 21.07.25 um 16:00 schrieb Chukun Pan:
+> Hi,
+>
+>> I'm not sure where you are getting your information from, but as I told
+>> before I actually *own* this board in the non-development version and it
+>> has an RK3528 SoC/silkscreen - I just was too lazy to photograph it my own
+>> but I did now [0]
+> I have the MangoPi M28S, M28K and M28C boards.
+> The M28K board does have a silkscreen of RK3528A. [2]
+Nope.
 
-diff --git a/drivers/i2c/busses/i2c-mt7621.c b/drivers/i2c/busses/i2c-mt7621.c
-index b4dc1fb269a6..6e3848f163f0 100644
---- a/drivers/i2c/busses/i2c-mt7621.c
-+++ b/drivers/i2c/busses/i2c-mt7621.c
-@@ -91,7 +91,7 @@ static void mtk_i2c_reset(struct mtk_i2c *i2c)
- 	u32 reg;
- 	int ret;
- 
--	ret = device_reset(i2c->adap.dev.parent);
-+	ret = device_reset_optional(i2c->adap.dev.parent);
- 	if (ret)
- 		dev_err(i2c->dev, "I2C reset failed!\n");
- 
--- 
-2.50.0
+Are you really questioning my picture? Ridiculous ... see [0]
+> Regardless of whether the silkscreen is RK3528 or RK3528A,
+> U-Boot reports that the SoC on these boards is RK3528A. (via OTP [1])
+> So one possibility is that Rockchip forgot to update the silkscreen.
+>
+> Comparison chip block diagram:
+> 1. Earlier version: https://docs.armsom.org/img/sige/rk3528.png
+> 2. Final   version: https://docs.radxa.com/img/e/e20c/radxa-e20c-chip-diagram.webp
+>
+> The difference seems to be that RK3528 uses I2S while RK3528A uses SAI.
+> But from the updated diagram here [3], RK3528 also uses the SAI interface.
+>
+> Rockchip BSP does not make any distinction between RK3528 and RK3528A,
+> so it is meaningless to continue to worry about non-A versions.
+I'm sort of impressed on with which conviction you continue to claim plain
+wrong things: [1], [2], [3].
+I'm fine if upstream decides not to care. But it is and remains wrong to
+claim that the other version does not exist - otherwise I doubt Rockchip
+would have gone to the trouble of building the distinction into their SDK
+AND publishing different datasheets.
 
+[0] https://wikidevi.wi-cat.ru/MangoPi_M28K
+
+[1] https://github.com/HermanChen/mpp/blob/develop/osal/mpp_soc.c#L957-L982
+
+[2] 
+https://github.com/rockchip-linux/kernel/blob/develop-6.1/drivers/soc/rockchip/rockchip-cpuinfo.c#L212-L218
+
+[3] 
+https://github.com/rockchip-linux/u-boot/commit/89e1f532de7747d2e962644330666fb1b465926b
+
+> [1] https://github.com/u-boot/u-boot/blob/master/arch/arm/mach-rockchip/rk3528/rk3528.c#L131
+> [2] https://x.com/mangopi_sbc/status/1847851624804602316?t=5hwScxgwCAAid0eCJgrP5w&s=19
+> [3] https://x.com/mangopi_sbc/status/1785115827437760769?t=H5PXRDwbjOfBYa7QotjIZw&s=19
+>
+> --
+> 2.25.1
+>
 
