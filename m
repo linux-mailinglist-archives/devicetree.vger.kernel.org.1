@@ -1,171 +1,163 @@
-Return-Path: <devicetree+bounces-198377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7285EB0C9D1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:38:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C8B5B0C9F1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:46:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54F516C1D41
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:37:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C16D754437C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669322E091D;
-	Mon, 21 Jul 2025 17:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B6DC2E264D;
+	Mon, 21 Jul 2025 17:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="crNHOQ5Y"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XYZ8wwlz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 853572DECB5;
-	Mon, 21 Jul 2025 17:38:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09D02E1742;
+	Mon, 21 Jul 2025 17:46:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753119484; cv=none; b=VvJFoGZDzwwzfOXSJf6RrP8bCCOf8rPhEfnsUieIPIg7I9MsyDgDkNGZ4Xe/BmHr/zV13rbMnEG576JGn7NG1vIWuXp5/Z4f4thT3I0ZvYhxEKnIWoEs+2raQletzw9U2CFpmG0UdYB5ia/JfALNFUP6g8wmvmUfClcTL90APz4=
+	t=1753119971; cv=none; b=PNVtqDm6P3TUUklnHwki+RZ4fjCrGYABr1RfjimqVTZAvVAr+mnSWlhil3kojbABLNPjiV7C7MpKyIMtCFMEj6vAB3+dnROGFAGl5PVqM1GnulISwl4G4LCTwNHRBhKnLn9aF4CztEAYljgMLZyutVBh1Et0uNKCOsd3TmEnmPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753119484; c=relaxed/simple;
-	bh=JQeKeyjQ550mGYzRoXjGCK3oDO8pvfYR6KeZGy7cwls=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=l/GFSVZ8top+GJufSrsO14+Uf0DNPyGxhmA6eSK6qs716mqpdy2CJqdDo6TAB/FEN6JoXnlF15C7PZef79IDeRex9RcuTOoID/AvqJfYXWO1ooHTNwyaCIUZdio7IlOlY5JHJWN+SI6Q4VnJaPUxz9EsWjcKhDl/BYL6mgZxq/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=crNHOQ5Y; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-60707b740a6so6618967a12.0;
-        Mon, 21 Jul 2025 10:38:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753119480; x=1753724280; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=i5aYttvmuPho8Hr/hRnl5TjyZg+8OVRSRk5gmU1kZpA=;
-        b=crNHOQ5YvO5EnAAUGiPNkmGTIfe7JMRtHlZAY5aBtWvULAnRNnhNKmyAqErnL6xmXt
-         zPftPrzhlHDrCHXKwxApYoUBgkD6OMZucBKOAB1JzAPVfTMELOZGi3AjVTaRDJKI8cqZ
-         VdOrLLsWjJCCN8dcenW6QoDce04+QrFvR0TIrL2cvmZBKQuvVmSbQzuXN8fY5LVoRTw8
-         jn4vq/nvZcE5Ri5ilMmvX+JuOB6BRv3lAozyDpbJI0iBSWrPZtXe3ymKyXq1lcDrCv3u
-         R/pOCFvfhypDKBfsTPswSFv56NQcDvXAw/wgil6GFZpK+qNtbAl4IdBq+rjZEO6z+m2U
-         Dd1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753119480; x=1753724280;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=i5aYttvmuPho8Hr/hRnl5TjyZg+8OVRSRk5gmU1kZpA=;
-        b=LdyAmM49OspMlnOtbBZcNYaJdoM0F958/Men5xxlvDjToBQsruX/zJtaL5uIPEa/gq
-         MJVr+9W6gNNR4uN3BnIrWpWm3fjQN9TLcr8+OuqDnx09FKOPIdhqMDuZqdlQlo2KYDQE
-         Ad1K9mpw8Yx9xxKN4TrBLJQhGpPmLTnWiFBWk/HBKThZmikgbjWA7/TECHjV6db+zNMh
-         JntfcpRaGMM6rK4nyvf3ehx0iloFZNDdBOaP89kWxgZ4opwrY6UNPw/ds7oR54FuSWef
-         BCnaRstoTOUe8J/YwOXsS82CVPRXtLeorHvYSJtLkIMfsct61v8GA9VgwZ7u+GP3m56T
-         oomQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUIlcJmpE63MUzrg1w9G+RR1QT5Wmr38hPDU+tax8h3FGrvClzkDAQVRRIzGhAh+vp8zKG+dXbB9U+w@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/IaAf/CImiGkmXxRd8cpuJdPmtLicrxKhQB5EZSCR2OqpVzMf
-	gLQ1kvqVgUA1RPZ1iCWsAA2xGHXlYwKpDl89y+j24O6kbiYtCz9vXoukbqrj3yaY
-X-Gm-Gg: ASbGncv04fe2sbIXxZil7vwU0K4DTcRtMAfydp9M0dAF8FA+934dCQlAKgY4F6zrCxp
-	x1TDQwqUiIVJbPD5n61dWGgym2F8kFWOhLJpR1KYeG9vuKtOP5uMNF8axHMTq900UTapFPX5ygz
-	ho48KfBkj26LFBRbqhFX9yzkJ8KGCh/hYyCSkRfHIr8K8Szgf0V8Cg/26pMbKlb4DpLqbdPzHXx
-	f7LkrtcOplyIThL+yKR2E0dvAKRwVz0WUtcW9+C/HUCul51n30dXtWMpbMZNRtzRLuggGHmQrMD
-	swAnli+uqIABKzA5T8CVWIti4ngrRMqjf8h8RK8U9VDQqsMzGmy51xo36K9Fo7OxsspqsMSeCI8
-	XTTY8YD75r9C4hOdyITsoyBNAVWrPLD6fPq4Ehb5LKFuz28q7rvQBRSKjFXVlsBUV7PUbZhR0Co
-	y1lDQ=
-X-Google-Smtp-Source: AGHT+IFEsc1qZOuWRAAkyRNnNZ2Vit1sRj4YvitU/IhJG0Vc2xsnI9fjQ01jyLofTpmOHPK/wEH/lA==
-X-Received: by 2002:a17:907:da0:b0:af0:3bac:4f88 with SMTP id a640c23a62f3a-af03bac510fmr326278466b.26.1753119480257;
-        Mon, 21 Jul 2025 10:38:00 -0700 (PDT)
-Received: from fedora.tux.internal (85.191.78.244.dynamic.dhcp.aura-net.dk. [85.191.78.244])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aec6ca315d5sm715812566b.98.2025.07.21.10.37.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Jul 2025 10:37:59 -0700 (PDT)
-From: Bruno Thomsen <bruno.thomsen@gmail.com>
-To: linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Tony Lindgren <tony@atomide.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bruno Thomsen <bruno.thomsen@gmail.com>
-Subject: [PATCH] ARM: dts: am33xx-l4: fix UART compatible
-Date: Mon, 21 Jul 2025 19:37:41 +0200
-Message-ID: <20250721173741.6369-1-bruno.thomsen@gmail.com>
-X-Mailer: git-send-email 2.50.1
+	s=arc-20240116; t=1753119971; c=relaxed/simple;
+	bh=SjytDc8WlpvqjacFKfLPp6CVFWgNIvdU9cdms1oGaUo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=P1Q7PGmCXjE+lXajWGoyXLH2KtGL+lmwW6TsBl7pzcdeZzvK75D8CJ4Zn1NWvh2gWlJcJGR5lo99g9ZDpLz/yORYRu4CZ77unweWF0llVDfBWYL0qNk5KPBsmBQ4gPY/T3V3lg8BiChkwdzWkXOKskl931Fd07+sO4bfPBMIsWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XYZ8wwlz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56LGTTnq000919;
+	Mon, 21 Jul 2025 17:45:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=5dtR7qlH8D4LRg2XdKu+ZYf/tjmhk0aNzJDd0i2GGxA=; b=XY
+	Z8wwlzP/xhEbzqLGMslC2MIncFnOQ+vNsyLcnBkDklXnnV3o/WBFZ5/9K+iUO4Go
+	xzA4swAtyzsZM0wXbRWfYMFdin2cPxbZUbADb/a8dstSWAPi/0JiCoY03Y/eA7Fx
+	1I6YjaO6OXt6XefSXGH7LhWpm0WPSsRL3gxQJ/z3q+IdzU7xIRXfrwWxPrUv+UA4
+	D9Bw2RKFpCji+zrTngMTD97XxIisirOzakLAPm9Yox6+xF8vamt05pNPQnwIPfpT
+	BPpVJrgxZCZNGK3y+VEArX4bX6lPaMatTvner9H6O/y2YlW4IwzBVrWwILtzAigp
+	i7YKjrKqDd6TSgkFYGfA==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48044degsu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Jul 2025 17:45:56 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56LHjtWH000861
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Jul 2025 17:45:55 GMT
+Received: from hu-ptalari-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Mon, 21 Jul 2025 10:45:50 -0700
+From: Praveen Talari <quic_ptalari@quicinc.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby
+	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Praveen
+ Talari" <quic_ptalari@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dmitry.baryshkov@oss.qualcomm.com>, <bryan.odonoghue@linaro.org>
+CC: <psodagud@quicinc.com>, <djaggi@quicinc.com>, <quic_msavaliy@quicinc.com>,
+        <quic_vtanuku@quicinc.com>, <quic_arandive@quicinc.com>,
+        <quic_cchiluve@quicinc.com>, <quic_shazhuss@quicinc.com>
+Subject: [PATCH v7 0/8] Enable QUPs and Serial on SA8255p Qualcomm platforms
+Date: Mon, 21 Jul 2025 23:15:24 +0530
+Message-ID: <20250721174532.14022-1-quic_ptalari@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=BJ6zrEQG c=1 sm=1 tr=0 ts=687e7cd4 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=Wb1JkmetP80A:10 a=wPpz0gULE6-aHRqVbM0A:9
+X-Proofpoint-GUID: VGAt20fRZM2vLkEJaoOEvzWmqcQTAbAa
+X-Proofpoint-ORIG-GUID: VGAt20fRZM2vLkEJaoOEvzWmqcQTAbAa
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIxMDE1NyBTYWx0ZWRfX9XT1HDrcxPkE
+ ssMUc5tzCQEKIWTRwvdjo1RiZ/iE7lJl72HA1PK/yeSLHsdBlWCEr0Gz6lx1r4TGpm0v6iUbtSZ
+ kFljE8RewDlBnmVhTEyVMRgdA9jjU+FX78WQkdRjCJ8WtqAvZvbkizmWaJQxI508DNxRNmTOb41
+ vgBE1cK/QJkwI9cXQ/PkRKcOFTs3toh5gzcLYyScwmg2jg0S3Rh3ayOun+vmYUwVpqgdPi++5tm
+ jT2SsPkstHktoKx2fS1UXM/rEewsMHBSNBdTZxtNjmu5BfUYIteiZprzTE+xzAe/wWsq0sCZc0M
+ zTpbZsrDnozk/kB8rIKb6HeQO1l7Hb7EI+kmVTh/so/KU4uSPzxXvz27DGtGU+4wBOgrDuDV3p3
+ 2Yl+XchrCHJcjfbeK41F+5gP5vKYd+F+h5DKXaCs8i3C19NwteDpkjXoIkHw0JtyNpRugyIz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-21_05,2025-07-21_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 lowpriorityscore=0 clxscore=1015 spamscore=0
+ mlxlogscore=790 suspectscore=0 impostorscore=0 phishscore=0 adultscore=0
+ mlxscore=0 malwarescore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507210157
 
-Fixes the following dtschema check warning:
+The Qualcomm automotive SA8255p SoC relies on firmware to configure
+platform resources, including clocks, interconnects and TLMM. The device
+drivers request resources operations over SCMI using power and
+performance protocols.
 
-serial@0 (ti,am3352-uart): compatible: 'oneOf' conditional failed, one must be fixed:
-	['ti,am3352-uart', 'ti,omap3-uart'] is too long
-	'ti,am3352-uart' is not one of ['ti,am64-uart', 'ti,j721e-uart']
-	'ti,am654-uart' was expected
-	from schema $id: http://devicetree.org/schemas/serial/8250_omap.yaml#
+The SCMI power protocol enables or disables resources like clocks,
+interconnect paths, and TLMM (GPIOs) using runtime PM framework APIs,
+such as resume/suspend, to control power states(on/off).
 
-Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+The SCMI performance protocol manages UART baud rates, with each baud
+rate represented by a performance level. Drivers use the
+dev_pm_opp_set_level() API to request the desired baud rate by
+specifying the performance level.
+
+The QUP drivers are SCMI clients, with clocks, interconnects, pinctrl
+and power-domains abstracted by a SCMI server.
+
+The serial driver has a dependency on the dev_pm_opp_set_level() function,
+which is applied in the OPP tree's linux-next branch.
+
+Nikunj Kela (2):
+  dt-bindings: serial: describe SA8255p
+  dt-bindings: qcom: geni-se: describe SA8255p
+
+Praveen Talari (6):
+  soc: qcom: geni-se: Enable QUPs on SA8255p Qualcomm platforms
+  serial: qcom-geni: move resource initialization to separate function
+  serial: qcom-geni: move resource control logic to separate functions
+  serial: qcom-geni: move clock-rate logic to separate function
+  serial: qcom-geni: Enable PM runtime for serial driver
+  serial: qcom-geni: Enable Serial on SA8255p Qualcomm platforms
 ---
- arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+v3 -> v4
+- removed patch "[PATCH v3 1/9] opp: add new helper API dev_pm_opp_set_level()"
+  from series and serial driver has dependency of this API which is
+  applied in the OPP tree's linux-next branch.
+---
 
-diff --git a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
-index d6a143abae5f..cef24aafed1a 100644
---- a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
-@@ -200,7 +200,7 @@ SYSC_OMAP2_SOFTRESET |
- 			ranges = <0x0 0x9000 0x1000>;
- 
- 			uart0: serial@0 {
--				compatible = "ti,am3352-uart", "ti,omap3-uart";
-+				compatible = "ti,am3352-uart";
- 				clock-frequency = <48000000>;
- 				reg = <0x0 0x1000>;
- 				interrupts = <72>;
-@@ -1108,7 +1108,7 @@ SYSC_OMAP2_SOFTRESET |
- 			ranges = <0x0 0x22000 0x1000>;
- 
- 			uart1: serial@0 {
--				compatible = "ti,am3352-uart", "ti,omap3-uart";
-+				compatible = "ti,am3352-uart";
- 				clock-frequency = <48000000>;
- 				reg = <0x0 0x1000>;
- 				interrupts = <73>;
-@@ -1139,7 +1139,7 @@ SYSC_OMAP2_SOFTRESET |
- 			ranges = <0x0 0x24000 0x1000>;
- 
- 			uart2: serial@0 {
--				compatible = "ti,am3352-uart", "ti,omap3-uart";
-+				compatible = "ti,am3352-uart";
- 				clock-frequency = <48000000>;
- 				reg = <0x0 0x1000>;
- 				interrupts = <74>;
-@@ -1770,7 +1770,7 @@ SYSC_OMAP2_SOFTRESET |
- 			ranges = <0x0 0xa6000 0x1000>;
- 
- 			uart3: serial@0 {
--				compatible = "ti,am3352-uart", "ti,omap3-uart";
-+				compatible = "ti,am3352-uart";
- 				clock-frequency = <48000000>;
- 				reg = <0x0 0x1000>;
- 				interrupts = <44>;
-@@ -1799,7 +1799,7 @@ SYSC_OMAP2_SOFTRESET |
- 			ranges = <0x0 0xa8000 0x1000>;
- 
- 			uart4: serial@0 {
--				compatible = "ti,am3352-uart", "ti,omap3-uart";
-+				compatible = "ti,am3352-uart";
- 				clock-frequency = <48000000>;
- 				reg = <0x0 0x1000>;
- 				interrupts = <45>;
-@@ -1828,7 +1828,7 @@ SYSC_OMAP2_SOFTRESET |
- 			ranges = <0x0 0xaa000 0x1000>;
- 
- 			uart5: serial@0 {
--				compatible = "ti,am3352-uart", "ti,omap3-uart";
-+				compatible = "ti,am3352-uart";
- 				clock-frequency = <48000000>;
- 				reg = <0x0 0x1000>;
- 				interrupts = <46>;
+ .../serial/qcom,sa8255p-geni-uart.yaml        |  69 ++++
+ .../soc/qcom/qcom,sa8255p-geni-se-qup.yaml    | 107 ++++++
+ drivers/soc/qcom/qcom-geni-se.c               |  13 +-
+ drivers/tty/serial/qcom_geni_serial.c         | 338 ++++++++++++++----
+ 4 files changed, 452 insertions(+), 75 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,sa8255p-geni-se-qup.yaml
 
-base-commit: 89be9a83ccf1f88522317ce02f854f30d6115c41
+
+base-commit: 97987520025658f30bb787a99ffbd9bbff9ffc9d
 -- 
-2.50.1
+2.17.1
 
 
