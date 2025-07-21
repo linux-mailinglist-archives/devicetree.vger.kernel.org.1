@@ -1,126 +1,134 @@
-Return-Path: <devicetree+bounces-198340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 705BFB0C716
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 16:59:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D8EB0C71A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:00:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D66B18876DE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:59:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0435163CD9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 15:00:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A7528853D;
-	Mon, 21 Jul 2025 14:59:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFFAD2DEA67;
+	Mon, 21 Jul 2025 15:00:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IB/CSD6V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F9452BCF6A
-	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 14:59:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80E2514D70E;
+	Mon, 21 Jul 2025 15:00:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753109968; cv=none; b=OQp4q7kNgVEnBBgkHafVhscLGcYaI6/vPgDIIV+qr+PVGSbjB2EeSTeAW2vR7oprdKb6WzcuOKZhjG4vO+pRwhFYCallpjmC8JyKTtDYGLRbxiFMD3V3riRkDmRIqnJhC9jj2871w6OokejbbveRzSeFtlkaJ/n+SuhikNgO0bg=
+	t=1753110012; cv=none; b=Z3wQYCwdtYQi9RgmrA19CbnBfrq3FvQtZzFGRRYIN4+MDWV2xk8KrlloQF99eAPirPJNgwatXdTha/J2STRq7NhJ730N3f84b9jkxJnWkpc2iN3JCBk7DmCMuJ2Ch8lwr98Ab8aNnQbrEkgSbFgU6sKlfyrpPETDnySuzXDZVZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753109968; c=relaxed/simple;
-	bh=oJFGLxx4w+WvcpaBlQ7bCMY8tA2AjyOdVqFYYfNhzDw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hPQfin6fu/K1DV+seELW+nLgmXMMeu/1kgLv/epFImJO3JGtWHbRkF75Lloypoea/u+qPCpFOu8nnLvQEoOAYd7FxOip9hxagLqZvyiq0lTdFkJO4CceImAm5S0ZxwqsiD6VapGJAposJrFtfrW9S7jASWHTRKyg09CPq4OXgDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-553dceb342fso3926654e87.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 07:59:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753109963; x=1753714763;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0rmsuabFxgO5HQbcS/AHuTJwDw0eGQTKollo0RZOzC8=;
-        b=KsL2yhbwC1AQc1Ntq6+qqagcioxz3N5Ln1Qjn/iT7KrQ00kfTJQQzvJ496cpa8Umg+
-         jmO5kc/FZndMLYXFW1etOqDhvz8bfn3B3R9BjisPM2xZv0zevciPfs783eOlfX7NS2Is
-         qX6OLNi9x6evUGbpbRygoJHEt+EepDDNjLu3YBicxKWW3sbsUdJUyPQk63+8HePKW0QR
-         ychHTcZ0B+h7wEwEr21lifv0nMsb+rew4FrbyiL6rghDcnOll7MQar+nsvyzuTkLn8/p
-         S1VRxrGaZmZf4+S6d0F4ER1+zCr/lgXLLz7FnYqCP255j+Q6UbGpnx0wCrD5zxtSUfas
-         L6Sw==
-X-Forwarded-Encrypted: i=1; AJvYcCVlL/Q08epwDDzndVe19fpN/mmPyPMb30zpj4bCSe1lrLQse08Ncv3PwqVkb2ZScC/KgfnZK5l4rXZE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx07RaKxX9ew6SPWspdUs2Ubgr+t/bZxy0jOIPBi83QfkEfi2Ld
-	RavBt+dYen5fdnsF4t2LdQ2Y6hZ+0Sv2IDR7DFE0t49f42IdxZ6bprID4XVXqL5E
-X-Gm-Gg: ASbGnct6oJm7lShM3xIOSzgkW4/ylK6VcnUy1/Ts256Ux1jXGmShXMSWobdyYJp3+4e
-	Qj5UFOxpgJ5jmQ4598VV6asZWOsa5+7DMsi0FxXPHbuWEetIabt4Lyh5zVJxvnVrhk8PQdJ+buH
-	BWBMPkbJVwhPr2DpiCY2So1C2gKBMeE4YBxvdrArrYYWydsrGDq8rKzCe+tu6N68zRopLWAPgKC
-	/Fxx+aakN5VgY99VEXMPbdG/pAn3U2SlChnlYef07pFDLxK15owJr8Ok13C2c0IuOhG0TgnTDXT
-	Lt9nHlHxm6SK0pymHFS2BpEDu/oRWooq4Hs1GXdGAvbaWxQCV5wzsWYPO9IxJFrrqKDSpOECaFu
-	Gt4K+m6XHHp42w+GxzTWAhxno2bN4xnOAS0WOxYF3fGP06Ddt5Z1Q0oxk9iKUB+kycA==
-X-Google-Smtp-Source: AGHT+IG3H7uJlsZQ+URcKWB64aJTdIYj32DSqinVBQjHCQVEI9MDRMWoXao9QpFipM2JNqKB1miwEQ==
-X-Received: by 2002:a05:6512:124f:b0:553:ae47:6856 with SMTP id 2adb3069b0e04-55a2958fe3bmr5184230e87.10.1753109962315;
-        Mon, 21 Jul 2025 07:59:22 -0700 (PDT)
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com. [209.85.208.172])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55a31aac3e2sm1591190e87.50.2025.07.21.07.59.21
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Jul 2025 07:59:22 -0700 (PDT)
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-32b435ef653so33542531fa.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 07:59:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWcQzFK2rLDMK26CH2nMvGVnQBAKgieAuqp7v0Ir7O3/o11f7EfLgCKZa4f+iomgjSKMB5s0H87OVfT@vger.kernel.org
-X-Received: by 2002:a05:651c:b10:b0:32f:3671:4d6d with SMTP id
- 38308e7fff4ca-3309a469ac4mr36664631fa.1.1753109960994; Mon, 21 Jul 2025
- 07:59:20 -0700 (PDT)
+	s=arc-20240116; t=1753110012; c=relaxed/simple;
+	bh=VZAFEBYGkW7zkA9QHXJ+nLYWvFYNy70boXd5O+3hoTc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CThkbw7vwvo4QVbd+i+lhb9yA0Gnt4W6Rkwak2V8su7FEd0uHy0JlPiKS2r9F7YD576YTJUPcRyBI8ZNQmgKe/EAwrYw+znm+TUkMO9Sl4UAn0h6hmH5A6m9Tlv7FUXYOQKsPI/O8QZ7mZlUaqBLZnhep5VZybkD3TUyp4fB9vI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IB/CSD6V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39475C4CEED;
+	Mon, 21 Jul 2025 15:00:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753110012;
+	bh=VZAFEBYGkW7zkA9QHXJ+nLYWvFYNy70boXd5O+3hoTc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IB/CSD6Vq+QSQx7hD4TITcqcR5SxQBlyS50DA0avSGhIjlvqkcRKYI17VaEjvhG9G
+	 8EkxIyAshM5qj5/Ca5ztlQkj1/5by7Mn9fXzKf4k03zrNSF4q6xKRa+9ynRjtY32c1
+	 koQ/MqhOdb++vqwtjVnKSWpw8D55HKl5tj8mVRhwr8N/crPeyeNEJXMwY/S5CE8p8V
+	 kD7P+aQdsXlW2q/DsTXwF+7EQEN/Fa5+0Tg3w6c5t9/A3e3yqdRXuhO3vmRAcdsZfN
+	 IVxJw+tZ2vk2x/To/uEb0vgzEKb9n3+yTioSZBLwKbhoPU54izO08bAtR3kGxOEwzH
+	 TX8rvX67snRIQ==
+Date: Mon, 21 Jul 2025 10:00:11 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-rockchip@lists.infradead.org, linaro-mm-sig@lists.linaro.org,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	linux-media@vger.kernel.org, Oded Gabbay <ogabbay@kernel.org>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-doc@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+	Daniel Stone <daniel@fooishbar.org>, Da Xue <da@libre.computer>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	dri-devel@lists.freedesktop.org,
+	Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
+	Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH v9 06/10] dt-bindings: npu: rockchip,rknn: Add bindings
+Message-ID: <175311001041.629023.12786244001330541185.robh@kernel.org>
+References: <20250721-6-10-rocket-v9-0-77ebd484941e@tomeuvizoso.net>
+ <20250721-6-10-rocket-v9-6-77ebd484941e@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250720085047.5340-1-ryan@testtoast.com> <20250720085047.5340-2-ryan@testtoast.com>
-In-Reply-To: <20250720085047.5340-2-ryan@testtoast.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Mon, 21 Jul 2025 22:59:08 +0800
-X-Gmail-Original-Message-ID: <CAGb2v6641hLu85FJieWGH5YJsRmxCD1U-tXgStMZtCN1u0sFBQ@mail.gmail.com>
-X-Gm-Features: Ac12FXy8xxyVpMZUJXrjnYkRucYHTAN65deHIYaoxabOBlfZwoY8o6UDGEBDiMM
-Message-ID: <CAGb2v6641hLu85FJieWGH5YJsRmxCD1U-tXgStMZtCN1u0sFBQ@mail.gmail.com>
-Subject: Re: [PATCH v2 01/12] dt-bindings: allwinner: Add TCON_TOP_LCD clock defines
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>, 
-	Chris Morgan <macroalpha82@gmail.com>, Hironori KIKUCHI <kikuchan98@gmail.com>, 
-	Philippe Simons <simons.philippe@gmail.com>, linux-sunxi@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi.
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250721-6-10-rocket-v9-6-77ebd484941e@tomeuvizoso.net>
 
 
-On Sun, Jul 20, 2025 at 4:51=E2=80=AFPM Ryan Walklin <ryan@testtoast.com> w=
-rote:
->
-> The Allwinner H700 exposes RGB and LVDS pins as well as a HDMI
-> connector. This requires additional clocks for the TCON_TOP as per the
-> T507 datasheet (which shares the same die).
->
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+On Mon, 21 Jul 2025 11:17:33 +0200, Tomeu Vizoso wrote:
+> Add the bindings for the Neural Processing Unit IP from Rockchip.
+> 
+> v2:
+> - Adapt to new node structure (one node per core, each with its own
+>   IOMMU)
+> - Several misc. fixes from Sebastian Reichel
+> 
+> v3:
+> - Split register block in its constituent subblocks, and only require
+>   the ones that the kernel would ever use (Nicolas Frattaroli)
+> - Group supplies (Rob Herring)
+> - Explain the way in which the top core is special (Rob Herring)
+> 
+> v4:
+> - Change required node name to npu@ (Rob Herring and Krzysztof Kozlowski)
+> - Remove unneeded items: (Krzysztof Kozlowski)
+> - Fix use of minItems/maxItems (Krzysztof Kozlowski)
+> - Add reg-names to list of required properties (Krzysztof Kozlowski)
+> - Fix example (Krzysztof Kozlowski)
+> 
+> v5:
+> - Rename file to rockchip,rk3588-rknn-core.yaml (Krzysztof Kozlowski)
+> - Streamline compatible property (Krzysztof Kozlowski)
+> 
+> v6:
+> - Remove mention to NVDLA, as the hardware is only incidentally related
+>   (Kever Yang)
+> - Mark pclk and npu clocks as required by all clocks (Rob Herring)
+> 
+> v7:
+> - Remove allOf section, not needed now that all nodes require 4 clocks
+>   (Heiko Stübner)
+> 
+> v8:
+> - Remove notion of top core (Robin Murphy)
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Tested-by: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
 > ---
->  include/dt-bindings/clock/sun8i-tcon-top.h | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/include/dt-bindings/clock/sun8i-tcon-top.h b/include/dt-bind=
-ings/clock/sun8i-tcon-top.h
-> index 25164d767835..2a12d047d2e1 100644
-> --- a/include/dt-bindings/clock/sun8i-tcon-top.h
-> +++ b/include/dt-bindings/clock/sun8i-tcon-top.h
-> @@ -7,5 +7,7 @@
->  #define CLK_TCON_TOP_TV0       0
->  #define CLK_TCON_TOP_TV1       1
->  #define CLK_TCON_TOP_DSI       2
-> +#define CLK_TCON_TOP_LCD0      3
-> +#define CLK_TCON_TOP_LCD1      4
+>  .../bindings/npu/rockchip,rk3588-rknn-core.yaml    | 112 +++++++++++++++++++++
+>  1 file changed, 112 insertions(+)
+> 
 
-I'm confused as I don't see these new ones used anywhere in the series.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-ChenYu
 
