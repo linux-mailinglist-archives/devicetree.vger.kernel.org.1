@@ -1,112 +1,160 @@
-Return-Path: <devicetree+bounces-198145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12985B0BDE9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:42:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0098B0BDF0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:42:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FE85171395
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 07:42:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 332F53A81F4
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 07:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04E4284679;
-	Mon, 21 Jul 2025 07:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723C3285074;
+	Mon, 21 Jul 2025 07:42:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rqw0Vu6c"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="ZHmo0Ofm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B57B4280014;
-	Mon, 21 Jul 2025 07:42:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 089B9284687
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 07:42:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753083744; cv=none; b=sPZJy4ohdL9Ej9d9a51cRHF5yhXTX9weHD0Kco6qPRm+AnslhHACFcgqWfoL+ax18GNFYs7ILg+CL4e52HGAIqwI5tjEIFeRICqxFA5FVxJH7jzK+0a+aehGv6HwV1VodwqUKWT5okxTXRITFAVa/Txxlzs/k/hMRujNf7hupcw=
+	t=1753083764; cv=none; b=IMAhRUgawpM/hp5zuy6ZJSRBN2NhWfll1YeQ9xMc9z8JpMP1ybmZ2d+CMNG7YGSEvGqu8B+tWHvcKHAtuKq8FMrrQ7dxyqOkf4enwlf/lLO7gz8POT1tERdDPXrUly7bQ9LCAl3MyDBkEnjPxLJ9LCaEtqFxZXZO4euU5SCTQUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753083744; c=relaxed/simple;
-	bh=XYtXJcSx59acBjNpYrTcaOZ+McBebEu8GwQdfjrYlxM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SKfxmpEO6X0BLxNIzcXGLYeeGPuPpagCuwNA43eY4m73UaKU8kRF+XRXp51/GPVgEUSXAc8Z3bY3zBRdVxb5lXkP/7V2rZYP6pbQXaGYPtvWL5R2GeOe2OqbdlRTw0dqCteZYbNOJcEMprVSx5yFDE88TdDYMIk06unbILwhM/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rqw0Vu6c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98E87C4CEED;
-	Mon, 21 Jul 2025 07:42:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753083744;
-	bh=XYtXJcSx59acBjNpYrTcaOZ+McBebEu8GwQdfjrYlxM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rqw0Vu6cS5IaBiWbim5p6hULKDwdbtHJ26JLb4fSYufdL1D0VYixws+yPTzF8Fhne
-	 eg6YXEPS6EnKMjn4OeT0TDyP7oCF7oqeGz9DcklGt5n36uc1mFN/f5NXo6ihTmacFl
-	 zJlB5duUWRDI9Uohc6JfFlPqqpsLR2bw0qc8YJULxmJ/3O6IcaqlvsmJKDdhWcD9d9
-	 Vhwtzfh9sU6u8oOaTG2rdUZQQdwTMeNIrkx2cbLktSVpHxrQclCbSzkTlWsGrtM1IR
-	 DgUUI1dx065lxFQtYNnOIoWejKjCMuTfDhog7oC8XKb+Jyz3nGmcLmLA+pbJ4ZT6Lm
-	 WXxj8IOMIXSLg==
-Date: Mon, 21 Jul 2025 09:42:21 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Donald Shannon <donalds@nvidia.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] Documentation: devicetree: Add binding for NVIDIA
- GB200-UT3.0b platform
-Message-ID: <20250721-auspicious-uptight-parrot-b1e19f@kuoka>
-References: <20250718231118.3330855-1-donalds@nvidia.com>
- <20250718231118.3330855-2-donalds@nvidia.com>
+	s=arc-20240116; t=1753083764; c=relaxed/simple;
+	bh=chzQDhpRR0KkFFSvGWLDbsXZDi/1ZGpp4j7nqK/5mxo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=iRLAdTPFYBY0PVVV5Bgsem+gQ7Df4U7a4vxUOcgBzSFQAj03OLvgro9lC/TX0VDJeGO9k5deKgqRipmFIWtBOLbIc6N2J5+v5whPITtoPa46ENmq+LJ/eX0qDdCvy8C0K+j8AMg2fvafNnq5G2imSVXDgRke2Y6rWHEVwg7wiUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=ZHmo0Ofm; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ae3be3eabd8so768795466b.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 00:42:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1753083759; x=1753688559; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/Jn2uM1C1hodxQz3Up00DI8ehhdUTfz2Vy9NLN+SJQA=;
+        b=ZHmo0Ofmh0GkYtbtnBrkBXAph6ck5S93mdvYHgMT1Cne2rvnNOQkE27CEbOH1xWS/7
+         NhgvCVGwAxxwAxh22dRuKuoulqNM/d/FsUKcb1VemcCWyMYH6QgERk6Q5tOpz62rJ3QC
+         zIhQHa5gKeToe3Un+4ndbomLZDjnQMxtXkTO5MWnxxlbEnNeq+td2/Ll52U7KBTMz+Sc
+         +aVIqO0NTLIbMfJVE6AyOWI25bcEen6y3VcNIEKh58NRUzqIG5si1ez5wHVgcp2YseYr
+         vXxugd/AKgiPEnver6TieHzQH8MHdowWSrW/lf842esl8Y/aPjTuhRbtFzirf+5gDuRd
+         nZYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753083759; x=1753688559;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/Jn2uM1C1hodxQz3Up00DI8ehhdUTfz2Vy9NLN+SJQA=;
+        b=H8LyQ8L/nWUOW4+ubNLLn1XKQJBeoXNL0hsByAQ9m/ps29+/RvwlC6Z4RSEXfq8Oy7
+         csoO/hFOD+vvFHmfZSsKtemmjjR2zyGaamYANWfeHAa+VV/mCEFNYIRYU0eIStzabysR
+         a7d4MVz/0qF02Nl0LspxsUzlqJ7CJSPx2DB2+/OsDFY/u8kPnATz4hVKd1Mz7Yvn73AK
+         Y0VADwur6zv0UC3x8cV7aPEJH4qZ0cMrz7b22HaJBI/NPT7b6ZX/d5rLmZ8Kk7LWFeOa
+         PkvGRVN8xbuu1IuedT4NkokJR7CRC77d68fFZ0hd/UTRJ/GGqMtfxKmRJ9d41g8Lj7jQ
+         oRMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVnFIbVSfd5M2uEWul2wlWH3EQhYfsi7q+bEiAP1TwchLcYLA1/3MdV8uc1tUEen8EAfXXU4b8ckBoF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSXUXaLJ22Z1oAStQhxut/lw9WEtlKNtPMShH52hNqnQRHkQRQ
+	Ux9q2NYzLa0UFoRvN1E/eurd1WkmzzzRvm8Eh1TJVwFHjufVkMgS+9k5IMNQp0rir7Y=
+X-Gm-Gg: ASbGnctJE6QBbAYcqHrLaeLLyB5wxmSZZVy8qQlU3ugMnGQj7LpawOl8r70ByU8c8CB
+	CCXm0hNQio/5AKawPSX4o2smiaeAjhnO3jSeXn42yZbt9wbOjKr2Wf7TqcNhh7VfAOyjI6Eu8PC
+	G7LZWVMNk+qYfhj51nbGxHiCUjDsYrWiTJLJSCTkQC7ibIBjaP03jHlHPktt2I3y5Wc9IvQSCC6
+	wTNJUESfVbuz6YnO4S2kl8o1txuSNA9W01GK9p6bFmt1YTAwkiV0RnCrRATmBaij7EPRhfhTXB+
+	q2HAP1hAd3hwBTat1ogOP05cQYUeVRgKXyzfYJZuPM2GR6LSTm4TLOQZZa8MLOq3RtdxU5ffEZ1
+	i+nHqU5CrBPLGuKPKsEtjV/coXjJAIZpBmlVIRoWQF7EA+3CHzgidwxXlnQDdaKpNNXbIBXzVE+
+	ll/T3e5amGv7lulsOPBSeSPLLQamLmLhg=
+X-Google-Smtp-Source: AGHT+IHojokpIKOVzO2mTGfd8U+xB3sxarTMHuXH9C3us/pGvkjTIHvaL7YhUPwGxvFGX/BiGyYmDg==
+X-Received: by 2002:a17:907:a901:b0:ae0:a465:1c20 with SMTP id a640c23a62f3a-aec4de61a29mr1564976266b.14.1753083759251;
+        Mon, 21 Jul 2025 00:42:39 -0700 (PDT)
+Received: from localhost (2001-1c00-3b8a-ea00-c4de-d39d-05f4-c77a.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b8a:ea00:c4de:d39d:5f4:c77a])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aec6daf4579sm615655866b.77.2025.07.21.00.42.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Jul 2025 00:42:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250718231118.3330855-2-donalds@nvidia.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 21 Jul 2025 09:42:38 +0200
+Message-Id: <DBHKBSK14XHM.E3ZUQMEJKEOJ@fairphone.com>
+Subject: Re: [PATCH v3 2/2] interconnect: qcom: Add Milos interconnect
+ provider driver
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Georgi Djakov" <djakov@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250709-sm7635-icc-v3-0-c446203c3b3a@fairphone.com>
+ <20250709-sm7635-icc-v3-2-c446203c3b3a@fairphone.com>
+ <d8955532-9a3b-451f-b5c7-549cee7d749e@kernel.org>
+In-Reply-To: <d8955532-9a3b-451f-b5c7-549cee7d749e@kernel.org>
 
-On Fri, Jul 18, 2025 at 04:11:17PM -0700, Donald Shannon wrote:
-> This is an Aspeed AST2600 based unit testing platform for GB200.
-> UT3.0b is different than nvidia-gb200nvl-bmc due to networking topology
-> differences, additional gpio expanders, and voltage regulator gating
-> some devices.
-> 
-> Reference to Ast2600 SOC [1].
-> Reference to Blackwell GB200NVL Platform [2].
+Hi Georgi,
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+On Mon Jul 21, 2025 at 9:36 AM CEST, Georgi Djakov wrote:
+> Hi Luca,
+>
+> On 7/9/25 4:14 PM, Luca Weiss wrote:
+>> Add driver for the Qualcomm interconnect buses found in Milos based
+>> platforms. The topology consists of several NoCs that are controlled by
+>> a remote processor that collects the aggregated bandwidth for each
+>> master-slave pairs.
+>>=20
+>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>> ---
+>>   drivers/interconnect/qcom/Kconfig  |    9 +
+>>   drivers/interconnect/qcom/Makefile |    2 +
+>>   drivers/interconnect/qcom/milos.c  | 1837 ++++++++++++++++++++++++++++=
+++++++++
+>>   3 files changed, 1848 insertions(+)
+>>=20
+> [..]
+>> +
+>> +static struct qcom_icc_qosbox qhm_qup1_qos =3D {
+>> +	.num_ports =3D 1,
+>> +	.port_offsets =3D { 0xc000 },
+>> +	.prio =3D 2,
+>> +	.urg_fwd =3D 0,
+>> +	.prio_fwd_disable =3D 1,
+>> +};
+>
+> Thanks for adding QoS!
+>
+>> +
+>> +static struct qcom_icc_node qhm_qup1 =3D {
+>> +	.name =3D "qhm_qup1",
+>> +	.channels =3D 1,
+>> +	.buswidth =3D 4,
+>> +	.qosbox =3D &qhm_qup1_qos,
+>> +	.link_nodes =3D { &qns_a1noc_snoc, NULL },
+>> +};
+>
+> It's very nice that you switched to the dynamic IDs, but please use the
+> current style of links (like in v1), as the the NULL terminated lists
+> are not merged yet. All the rest looks good!
 
-A nit, subject: drop second/last, redundant "binding". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Is what's in todays linux-next a good base? Or what branch should I base
+this on? But correct, I currently have v2 of dynamic ID patches in the
+base for this.
 
-With above two:
+Also If I send the next revision by e.g. Wednesday can it still go into
+6.17? Just wondering how quick I need to work on this.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Regards
+Luca
 
-
-<form letter>
-This is an automated instruction, just in case, because many review
-tags are being ignored. If you know the process, just skip it entirely
-(please do not feel offended by me posting it here - no bad intentions
-intended, no patronizing, I just want to avoid wasted efforts). If you
-do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here ('b4 trailers -u ...').
-However, there's no need to repost patches *only* to add the tags. The
-upstream maintainer will do that for tags received on the version they
-apply.
-
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
-</form letter>
-
-Best regards,
-Krzysztof
+>
+> Thanks,
+> Georgi
 
 
