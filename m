@@ -1,182 +1,119 @@
-Return-Path: <devicetree+bounces-198375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D397B0C999
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:23:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED925B0C9C1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:35:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1CEE1887D45
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:22:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFF164E044D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:34:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A902DF3FB;
-	Mon, 21 Jul 2025 17:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCAA2E11C9;
+	Mon, 21 Jul 2025 17:34:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LRc9+Xpx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M7diNgsZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 641F52DEA81;
-	Mon, 21 Jul 2025 17:22:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1C72E11D6;
+	Mon, 21 Jul 2025 17:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753118524; cv=none; b=QDGW7yTdDp0ymCTa9ZUZfG2DiqhxPCDVcDQnhiEYNyxRY6B8Nd+eEk1yBGaaSapeOWHxZy6ae3lpEjCOFQ3qnOzZIbRSV7R5l4Hc16W+MWvXKyMVM9yU7tgrv6YpyMtwsGUOb8q3Roj+BuveS+JSn/ooL6eDqQn06ntAG9RMhBk=
+	t=1753119287; cv=none; b=m4unM7xlfGzT06qCjN241mVhmqFu91QONVihSgOBLg+hwnq7Mrrp2C8szeAS6boijoZKpALr7IG7BsOyKVX7EPsnIpVgGz5eTKJMxEYkALYm/T/ihEedImih8EfAfwkJ9szvYuLrAe3TwfWa+0p8d1XDGPwq1n0fsOqK7/xkOBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753118524; c=relaxed/simple;
-	bh=19QnsmtMaBJp/ZLnLTtT9839sTSAbE07uxa6iOYsNMQ=;
+	s=arc-20240116; t=1753119287; c=relaxed/simple;
+	bh=V/CfjxoEsKYCsa9Ewp5zLHqhCdlau2qmxdYvbksj8K0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=seJNKbxmmW3Gg+X45H5kLiegsEGc4EKP53SaReyB7eAoMUqWLsfBVmINXG40nAucYfVrwIjuGQuaJbCFIZ+emkuIWmgEw0wIjRqa5jrB/4JHYcIxe3ZgqQ/paK7pS873JCA5HOc+7MxfCnmG7BuSfWHsLmwllLgWfb+w1GKLKBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LRc9+Xpx; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1753118523; x=1784654523;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=19QnsmtMaBJp/ZLnLTtT9839sTSAbE07uxa6iOYsNMQ=;
-  b=LRc9+XpxI2hP+C1C8fgJAU4a/79h2AmugPTeAMT8okxyZtoiZN+mzemX
-   xORNfdutjA/Nr97pZZ+ceDzXfFHbNNSm6nKbPWo1seLYHE5T2RUwl/yh6
-   lYKIysGwf/j+y+Oat0v6ID9E/XkJioRZsczv0EAIF60C1VK3NtP07vSBy
-   c8HvVeA7L+8wZy7j+BN4Yj3ayY5pFfwABBwG0HabircZN66No7zcU/Q8n
-   EobLVm/kTnFT1o87bcQEacVpgGiF4GWMC/DCbeVksDOB6wsR7CaFxT+5x
-   6tgn2WqQhlXHhVJf4w6B2mYm0VsX4h21+8WRqc4XWDrXBOv6I7x8SV/ib
-   A==;
-X-CSE-ConnectionGUID: rCid1t7ORtukg5YQfZ3JhA==
-X-CSE-MsgGUID: 8TYuxRsETnSuTf+D6l4mNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11499"; a="55435195"
-X-IronPort-AV: E=Sophos;i="6.16,329,1744095600"; 
-   d="scan'208";a="55435195"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 10:22:02 -0700
-X-CSE-ConnectionGUID: pU2NcPsoToq9C/4WY93oBg==
-X-CSE-MsgGUID: 5J6kS8FAT4uXfvx9Nyvhiw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,329,1744095600"; 
-   d="scan'208";a="163451965"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 10:21:56 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uduD1-0000000HOPq-47vg;
-	Mon, 21 Jul 2025 20:21:51 +0300
-Date: Mon, 21 Jul 2025 20:21:51 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-Cc: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
-	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Hans de Goede <hansg@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Matthias Fend <matthias.fend@emfend.at>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/2] media: i2c: add ov2735 image sensor driver
-Message-ID: <aH53L948F7m16eHZ@smile.fi.intel.com>
-References: <20250716134426.8348-1-hardevsinh.palaniya@siliconsignals.io>
- <20250716134426.8348-3-hardevsinh.palaniya@siliconsignals.io>
- <aHe7NFJz6aCUqZXL@smile.fi.intel.com>
- <PN3P287MB351951A3DBA4FA85404DA410FF51A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
- <aHjubei5Aex9n-HI@smile.fi.intel.com>
- <PN3P287MB35199EB9309448F3EDD43402FF51A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VC2ARtHexC83OO3nxP2EXq2U6asVCa0nW5oCyk1Ujl1b2riINBkGCUHnQzq4Lpch3C20b/C+E9ajVrkJF4YYASxVKqyWMgmksmke+UNHHV6BvTL8BguT8xQY2nQF8GGnRLFzqZetw5wQn94jtAYRBC1W3f4meNcyWLyO2UGU364=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M7diNgsZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2A63C4CEF4;
+	Mon, 21 Jul 2025 17:34:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753119287;
+	bh=V/CfjxoEsKYCsa9Ewp5zLHqhCdlau2qmxdYvbksj8K0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M7diNgsZycI8nmdD1vqsLiLyvQW4lt3MSDPn42taIptUhJV3ffM3zqJMHttjZt3+u
+	 nf/A/8luOCJRRFowuIDDdn4zdPBS4hZCv7Dg36XjWDsep4ZWov6Bb0mfT6rRrAO2p1
+	 ThFPJkv20FUbw64XzqcdkXHnqHS5TxSD5Mhf+jWb88c4EqzT5eoeyCYQKn20KvcdjK
+	 uMJjuz95HD3IgiWDH/iJwmir+eEq8QOnIk0ipej8m2x9s58y6wZ75f4sM0HshkuRuz
+	 P4DzghlEEyXQXYqBOFFB3oGozWRnXFKZg7DKgBG69At9457gttbA237nC9+z8yjgHk
+	 MeAaOKAPZ9JxQ==
+Date: Mon, 21 Jul 2025 18:34:40 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-spi@vger.kernel.org, Heiko Schocher <hs@denx.de>,
+	linux-kernel@vger.kernel.org,
+	Andrei Lalaev <andrey.lalaev@gmail.com>,
+	Chanh Nguyen <chanh@os.amperecomputing.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Grant Peltier <grantpeltier93@gmail.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v1 0/3] spidev: introduce trivial abb sensor
+ device
+Message-ID: <2a99b64a-b6d4-46de-acb1-8a9328b7d5f6@sirena.org.uk>
+References: <20250719063355.73111-1-hs@denx.de>
+ <175311337130.327079.7374455187420344577.b4-ty@kernel.org>
+ <d677ecd9-42d6-43fe-8fe1-a5afd4d270e2@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="WCNX58Rd1dpGFNKG"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <PN3P287MB35199EB9309448F3EDD43402FF51A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-
-On Thu, Jul 17, 2025 at 01:11:53PM +0000, Hardevsinh Palaniya wrote:
-> > On Thu, Jul 17, 2025 at 07:26:49AM +0000, Hardevsinh Palaniya wrote:
-> > > > On Wed, Jul 16, 2025 at 07:14:17PM +0530, Hardevsinh Palaniya wrote:
-
-...
-
-> > > > > +static int ov2735_page_access(struct ov2735 *ov2735,
-> > > > > +                           u32 reg, void *val, int *err, bool is_read)
-> > > > > +{
-> > > > > +     u8 page = (reg >> CCI_REG_PRIVATE_SHIFT) & 0xff;
-> > > > > +     u32 addr = reg & ~CCI_REG_PRIVATE_MASK;
-> > > > > +     int ret = 0;
-
-> > > > > +     if (err && *err)
-> > > > > +             return *err;
-
-^^^ (1)
-
-> > > > > +     mutex_lock(&ov2735->page_lock);
-> > > > > +
-> > > > > +     /* Perform page access before read/write */
-> > > > > +     if (ov2735->current_page != page) {
-> > > > > +             ret = cci_write(ov2735->cci, OV2735_REG_PAGE_SELECT, page, &ret);
-> > > > > +             if (ret)
-> > > > > +                     goto err_mutex_unlock;
-> > > > > +             ov2735->current_page = page;
-> > > > > +     }
-> > > > > +
-> > > > > +     if (is_read)
-> > > > > +             ret = cci_read(ov2735->cci, addr, (u64 *)val, err);
-> > > > > +     else
-> > > > > +             ret = cci_write(ov2735->cci, addr, *(u64 *)val, err);
-> > > > > +
-> > > > > +err_mutex_unlock:
-> > > >
-> > > > > +     if (ret && err)
-> > > >
-> > > > Why do you need to check for ret != 0?
-> > >
-> > > To prevents overwriting *err with 0 on successful operations, which could
-> > > obscure previous errors.
-> > 
-> > Can you elaborate a bit how the *err is not 0 at this point
-> > (assuming err != NULL)?
-> 
-> A previous operation have already failed and stored a non-
-> zero error code in *err.
-
-Right and this function is no-op already for this case.
-
-> Assuming this function is used in a sequence of write (or read) 
-> operations. If the current operation succeeds (i.e., ret == 0) and we 
-> unconditionally write *err = ret, we would overwrite the 
-> existing error with 0, falsely indicating that all operations 
-> were successful.
-
-I don't see this scenario. I see that we apply *err = 0 when *err == 0 already.
-
-> Therefore, the condition if (ret && err) ensures that we only 
-> update *err when there's a new error, preserving any previously 
-> recorded failures.
-> 
-> Let me know if you have a different suggestion for how this should 
-> be handled.
-
-Have you taken into account 1) above?
-
--- 
-With Best Regards,
-Andy Shevchenko
+In-Reply-To: <d677ecd9-42d6-43fe-8fe1-a5afd4d270e2@kernel.org>
+X-Cookie: Microwaves frizz your heir.
 
 
+--WCNX58Rd1dpGFNKG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Mon, Jul 21, 2025 at 06:24:55PM +0200, Krzysztof Kozlowski wrote:
+> On 21/07/2025 17:56, Mark Brown wrote:
+
+> > [1/3] dt-bindings: trivial-devices: Document ABB sensors
+> >       commit: aad2f87cbcab56b322109d26d7b11842a09df91f
+> > [2/3] spi: spidev: Add an entry for the ABB spi sensors
+> >       commit: d60f7cab7c04944a79af16caa43c141e780a59c6
+
+> That's unexpected, Mark. Patches received two objections/comments and I
+> don't think discussion was resolved.
+
+Oh, sorry - I'd missed those (possibly due to only being CCed on part of
+the series).  I guess I'll drop this then.
+
+--WCNX58Rd1dpGFNKG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmh+ei8ACgkQJNaLcl1U
+h9Ce3wf7Bhl+JzqbBICKswFFhvnGdkCuL1QR2PvMdJB/QjSKKq/6JpkPEt53OxqO
+tBQJYCf6QNpcc+HJqlVumz4r4cwpyp8SXuwmwaxihthqVYRcCyiLA1d/RHFIJ9n9
+CyAl/gGjzncNxEIe3trDjSvAzTjGadbAaqmLN54jvS0KPnWfK2S9lzr7r9mkRfqr
+m6iikZoind5xRzssX5XFuiCmMxI3wY9StJ4LocjQB2GPD/aWOtNnIQFBUFiaAE4u
+376S1CX9/m5tthTqMtLfHRICcz4nAFULDsfYmBPq638I5ZguqDiXhz0JoioTP+ka
+SiTSXqIh1a/YSdVXjWkgt6fEzQV0Hw==
+=Xbls
+-----END PGP SIGNATURE-----
+
+--WCNX58Rd1dpGFNKG--
 
