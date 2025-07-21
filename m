@@ -1,107 +1,190 @@
-Return-Path: <devicetree+bounces-198137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C56D8B0BD97
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:21:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70064B0BD9E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:29:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CE1A7A6B38
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 07:20:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26891188302C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 07:29:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5854B280309;
-	Mon, 21 Jul 2025 07:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EEF92820CB;
+	Mon, 21 Jul 2025 07:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="j+v6Ue7B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DpNw7YRQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 186623BB48;
-	Mon, 21 Jul 2025 07:21:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F06F146D6A;
+	Mon, 21 Jul 2025 07:29:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753082497; cv=none; b=r0b/kniUdAPk4DCzEqOg9ySOb+mDim9ju0FDuTWAmPrep0YOa33ce82GOYTjOAQoTZ2TMylq/wMDs4ZyM6q4dk/j2wRX+3dfAtPfYsPEdTKEM72blMOPUnuty5T9RiJui3VaCNxaed+0ImOABC3e9s60TW16veKko/9M51ygJow=
+	t=1753082944; cv=none; b=ibZJf26IMVEfkoOwm5hCFUi1I9fZH2046BDEZvh0r7FPtVSKLzCEQ5nWsOmeaidnDcznOLuhif4PHCekyCRZWDWB1CX/wJ80xu9f7baJLi0KNlO31t4zUVz4TCQuwpmqAY2BIfKisczA6z9djuHApenTTMMVyOrl/2azuCVJfvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753082497; c=relaxed/simple;
-	bh=2oaGPuuDj0uRoNLZedS/V22QFQi9DwxfT2TGmhogcQg=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s4hWmpLDlEB4N+H82WsZPhSemhH/Te37BozNK+1HvNS+SUx+73IZfpXLdaWX9nkElV7nb6beRnYLHUHNIMg+kFN+LSx+3iJDNW99X2N4628pzi4tuTXTtvC+8p0pYVjeAhbO542qC+hWcaPH9Xt8jGI1ZkbiTHP5eG/urwwT+Hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=j+v6Ue7B; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56L7L8OZ752519;
-	Mon, 21 Jul 2025 02:21:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1753082468;
-	bh=Pzzj8GjdEcvknYctYdwrrCPn6t7CVQ+ZlgbfQZ6H/f4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=j+v6Ue7BX+/w4cxYeYVTxgnSHIQ5WQ69WF2IJcL9ZB5aK6MYNQgR+mUM8RullUQMu
-	 w+WDJWSFl2wfwCMNEzsIzxcFfL29cJKYvV3fu5XA+l53HIL+K0DrKJg9CrCFR/BLvr
-	 I1HR4R4Owy3C4clDneFh2BWpedm04C13z7vEATSs=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56L7L8lk107316
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 21 Jul 2025 02:21:08 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 21
- Jul 2025 02:21:08 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 21 Jul 2025 02:21:07 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.169])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56L7L6gT3438091;
-	Mon, 21 Jul 2025 02:21:07 -0500
-Date: Mon, 21 Jul 2025 12:51:06 +0530
-From: s-vadapalli <s-vadapalli@ti.com>
-To: <huaqian.li@siemens.com>
-CC: <s-vadapalli@ti.com>, <baocheng.su@siemens.com>, <bhelgaas@google.com>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <diogo.ivo@siemens.com>, <helgaas@kernel.org>,
-        <jan.kiszka@siemens.com>, <kristo@kernel.org>, <krzk+dt@kernel.org>,
-        <kw@linux.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <lpieralisi@kernel.org>, <nm@ti.com>, <robh@kernel.org>,
-        <ssantosh@kernel.org>, <vigneshr@ti.com>
-Subject: Re: [PATCH v10 4/7] PCI: keystone: Add support for PVU-based DMA
- isolation on AM654
-Message-ID: <7eb6b36c-da94-4363-9ee2-d3d38ec46a22@ti.com>
-References: <20250721025945.204422-1-huaqian.li@siemens.com>
- <20250721025945.204422-5-huaqian.li@siemens.com>
+	s=arc-20240116; t=1753082944; c=relaxed/simple;
+	bh=99tcxX9Mv+sSzg0Pq7/FvisH8MO5rj5LQBuYaspEdT8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dhbytWIlR5aJ5xo2Xn7LURfpXQ+6fYs6Z+x5Y4VTeos9vlyeW4qxHNbV8YDDA+mjJ9C/3gXAS05RFF0UYxPUQbuMHUsy+0fYnHdQZEIB+bOZWFC0HLw1/3FegX6xV5JCVl3lWn8NFj1TXHz3XiIomrjSqqFaG7gm9suQ/z6MDgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DpNw7YRQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF47DC4CEED;
+	Mon, 21 Jul 2025 07:29:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753082943;
+	bh=99tcxX9Mv+sSzg0Pq7/FvisH8MO5rj5LQBuYaspEdT8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DpNw7YRQX9Bdi2hiAZb9CHVkiu23f+NA3UHy2lga7F3ih28UJjcaKrShgW+IRP9Ur
+	 syjzTMmCY9MyVsvPFy4N1D3CMVCX9qs3vn1n2xrtO35JYLbWEhSBCAt39iyLekuxyD
+	 Sjvh/BU9HBDkTZbHKNGdMAgVmswsD2r7NLl1JJrCyHekgDsbfidXRGJeIm+VR9ekQ6
+	 yRT70Pu5l/xV/QYvzVZpqiVZiRwhBVriKR8qMsCW3uVQmQV6FsAwgr85+XgCWbhzON
+	 RMn3BoQ1jgjiA/GYs3rGJUvHfhsnMobYhSaAQ14auTVxWcwtA2LBGnYgJWdwXbS8wx
+	 5GhbB/2Eswxxg==
+Message-ID: <e9f38e38-7df7-4d19-b5c0-2f18aeebcc78@kernel.org>
+Date: Mon, 21 Jul 2025 09:28:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250721025945.204422-5-huaqian.li@siemens.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: add PF0900 regulator yaml
+To: Joy Zou <joy.zou@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, Frank Li <Frank.Li@nxp.com>, Ye Li <ye.li@nxp.com>,
+ Jacky Bai <ping.bai@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>
+References: <20250721-b4-pf09-v2-v2-0-e2c568548032@nxp.com>
+ <20250721-b4-pf09-v2-v2-1-e2c568548032@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250721-b4-pf09-v2-v2-1-e2c568548032@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jul 21, 2025 at 10:59:42AM +0800, huaqian.li@siemens.com wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> The AM654 lacks an IOMMU, thus does not support isolating DMA requests
-> from untrusted PCI devices to selected memory regions this way. Use
-> static PVU-based protection instead. The PVU, when enabled, will only
-> accept DMA requests that address previously configured regions.
-> 
-> Use the availability of a restricted-dma-pool memory region as trigger
-> and register it as valid DMA target with the PVU. In addition, enable
-> the mapping of requester IDs to VirtIDs in the PCI RC. Use only a single
-> VirtID so far, catching all devices.
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
+On 21/07/2025 09:11, Joy Zou wrote:
 
-Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+Subject: Reverse prefixes.
 
-Regards,
-Siddharth.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
+> +
+> +  regulators:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      VAON:
+
+Lowercase names.
+
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +    patternProperties:
+> +      "^LDO[1-3]$":
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +      "^SW[1-5]$":
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          nxp,dvs-run-microvolt:
+> +            minimum: 300000
+> +            maximum: 1350000
+> +            description:
+> +              PMIC default "RUN" state voltage in uV.
+
+Why existing properties are not suitable?
+
+> +
+> +          nxp,dvs-standby-microvolt:
+
+Why existing standby state bindings are not suitable?
+
+> +            minimum: 300000
+> +            maximum: 1350000
+> +            description:
+> +              PMIC default "STANDBY" state voltage in uV.
+> +
+> +  nxp,i2c-crc-enable:
+> +    type: boolean
+> +    description: If the PMIC OTP_I2C_CRC_EN is enable, you need to add this property.
+
+
+1. Why you cannot just read registers to check for this?
+2. You need anyway proper description what is this about and then wrap
+according to Linux coding style.
+
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - regulators
+> +
+> +additionalProperties: false
+> +
+
+
+
+Best regards,
+Krzysztof
 
