@@ -1,218 +1,182 @@
-Return-Path: <devicetree+bounces-198374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6B49B0C944
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:13:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D397B0C999
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:23:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E86CE4E73E0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:12:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1CEE1887D45
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9A32E11C9;
-	Mon, 21 Jul 2025 17:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A902DF3FB;
+	Mon, 21 Jul 2025 17:22:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PIGkMBg+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LRc9+Xpx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FFBD2E0934
-	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 17:13:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 641F52DEA81;
+	Mon, 21 Jul 2025 17:22:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753117996; cv=none; b=sHiUEanhR7M+sxPijcnqiM+dIBmhaCnVERPf2UaU5GfzD30KNm9pGj4hx25B5UDsE8ru9nKnwNX0eFwd8qz2Z7Doc8htdCzptE/UT80mk9c/I7YBd2j8w0voKyTlNd1LC4RAY8A/M+vOvIvyMHZ1rdJk79rCm/roHcvOQ9WGIwI=
+	t=1753118524; cv=none; b=QDGW7yTdDp0ymCTa9ZUZfG2DiqhxPCDVcDQnhiEYNyxRY6B8Nd+eEk1yBGaaSapeOWHxZy6ae3lpEjCOFQ3qnOzZIbRSV7R5l4Hc16W+MWvXKyMVM9yU7tgrv6YpyMtwsGUOb8q3Roj+BuveS+JSn/ooL6eDqQn06ntAG9RMhBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753117996; c=relaxed/simple;
-	bh=XfILMrJpqF/tuCduLTWyeK1Shsuk0EcxoJjjw57ON60=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rezlOZWL7z1FAuGhElz9jWytnppFGAPGhpHSVObCcNtin1tJiN/7WcvatiDa69/7yJdiR/rF5cmuHFUbWvmkLD77Cl3NfGPjiKj6TbYScKqRj+E9s0iFnvyNNb7Wz2DTsfLacdTWp3I7EWBK+ov62VIPw4LtIChF4wXKSjiE4kE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PIGkMBg+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56LG3hmK005535
-	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 17:13:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DZ/4PF6N3vG+rQh7F+qrpcJmMG+VX0PeJtiX8Xsn9C4=; b=PIGkMBg+PDrOua3o
-	Bf9XtefUwHEa0dPJX+byF9cMvYGIEgfv1u4T0/BhuqIguPzjt1DNaSqDRYoMGitI
-	PZ36BouhUWFSYP/rG1uYmqRJLwJ3k7BtoDMQxDvD+emqNTwBluWh/emAZN+Dpv0Y
-	hzyYnZVN1aMn5zSZLGoB/PEK/QKV1DAIcO78kPY0C9iqTI+ni1JTgmmExWet9s5P
-	hTgmI/k0f7hKLzUjmJnk8RnhR9umCyK87B+Vka2iOOM1X3xDylUG6vMhuv7sutg1
-	iV0dkHPKDyyvLEPm1OCvsqaDDDLEk6R23aZJ5D56lpNj3Qbx7ojqFwMMW2fQL7k6
-	AwKAcQ==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48047q6g7g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 17:13:13 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-74943a7cd9aso6772718b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 10:13:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753117992; x=1753722792;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DZ/4PF6N3vG+rQh7F+qrpcJmMG+VX0PeJtiX8Xsn9C4=;
-        b=R7mEB6emgROnprapQgf7T5M/YSsrv0dJRDRgxZLxHgV7/0XN7HiO6GykYb7Q4dKbjr
-         Q69Qjj91XkiAjkhekGJg70Ninxa1r1YqiuHYEw+FDQYcanQZsf7E0DrDidXaYIS2fHza
-         2JZ2V08vV6GNhU/x4up/c6THh97kvarSKZTPMO1XX8i/PtU7KcU96u1HA1fu4xkhybKo
-         ztvDE9O6yQVb0h6tTrO2hpX+9Ymvgjp4eIdGajhQIlTXUf2b4EIAxuQzXzBqJV9jlxQy
-         1Qrnzhhxy/HOkW555hlzCXZP8UrsGjUi08yQBbNh8WoE2xoKI17RNOGuvvsfxCgDobvs
-         G83Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU6qFSx9J9GhCmnUVJ5HrnLqRrwJbQvkwNtEdaL9UmQrWiWHYuFoGVSuF+B+Vw6mBQERnaDal2Vod0A@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx26RpZliV1tXpV1P8nOULlu/iS1GzGrIbVdm15Uq7V4yVH7Oa4
-	EV5866yzUwOHaq0sk00Jp5keh5It8crQkv38VnVa7FA2x56YwVuO/jmpUZIyVm5EqUKj+FRsnsE
-	2/1DG70CPVD7HQ85hRTuR29Y1mdoB47d96IBIim8n0cfKtMjhmoOsRllI+61pFt/k
-X-Gm-Gg: ASbGncuJKeLo7y2BBFsROe1mJ9GMjVQ+kt+Y1LmFKMpUCxr2AGonH1i5JdC41DBI1F3
-	cU777UFpfw2X2n4D3htGrm+nIXsG+cQ/DFheFkDuLxOwRtfpABrrufemqUP15nILxrnmy1TmaRB
-	3dKsn+t7nP1qMEKeQ0xHTmKLyX8k4oXzgYD/bfAJG9DrYbo1cAQxtNwSWozvx5GZcRAbv7s6Cwg
-	pKP/Hnh6VTFWQ5cM80j/B8rH8GYEebVbhtwlyeIH2BrQyO5jvj/oFMEtDzAJ+/pcsl0ofRj94mX
-	6F5frEqmI0EeMsVzV8hZ5osm0Hd2gfJYTdX6dvPo+Asu/F7QNaYSUykynmzt2Afq333l
-X-Received: by 2002:a05:6a20:9392:b0:1f5:8a1d:3905 with SMTP id adf61e73a8af0-23810d55d86mr34423450637.7.1753117991857;
-        Mon, 21 Jul 2025 10:13:11 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGe2/ShNvywiZ+DxmeZg+ZMZ/GKOcyhXqBS+iKk7LMIrbdvIY81RYqsoTDycOuer7bfi9e1ag==
-X-Received: by 2002:a05:6a20:9392:b0:1f5:8a1d:3905 with SMTP id adf61e73a8af0-23810d55d86mr34423411637.7.1753117991359;
-        Mon, 21 Jul 2025 10:13:11 -0700 (PDT)
-Received: from [192.168.0.195] ([49.204.29.160])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b3f2fe659a5sm5633550a12.4.2025.07.21.10.13.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Jul 2025 10:13:10 -0700 (PDT)
-Message-ID: <5b569e5f-066b-4e12-8a05-d77852ce11f6@oss.qualcomm.com>
-Date: Mon, 21 Jul 2025 22:43:05 +0530
+	s=arc-20240116; t=1753118524; c=relaxed/simple;
+	bh=19QnsmtMaBJp/ZLnLTtT9839sTSAbE07uxa6iOYsNMQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=seJNKbxmmW3Gg+X45H5kLiegsEGc4EKP53SaReyB7eAoMUqWLsfBVmINXG40nAucYfVrwIjuGQuaJbCFIZ+emkuIWmgEw0wIjRqa5jrB/4JHYcIxe3ZgqQ/paK7pS873JCA5HOc+7MxfCnmG7BuSfWHsLmwllLgWfb+w1GKLKBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LRc9+Xpx; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1753118523; x=1784654523;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=19QnsmtMaBJp/ZLnLTtT9839sTSAbE07uxa6iOYsNMQ=;
+  b=LRc9+XpxI2hP+C1C8fgJAU4a/79h2AmugPTeAMT8okxyZtoiZN+mzemX
+   xORNfdutjA/Nr97pZZ+ceDzXfFHbNNSm6nKbPWo1seLYHE5T2RUwl/yh6
+   lYKIysGwf/j+y+Oat0v6ID9E/XkJioRZsczv0EAIF60C1VK3NtP07vSBy
+   c8HvVeA7L+8wZy7j+BN4Yj3ayY5pFfwABBwG0HabircZN66No7zcU/Q8n
+   EobLVm/kTnFT1o87bcQEacVpgGiF4GWMC/DCbeVksDOB6wsR7CaFxT+5x
+   6tgn2WqQhlXHhVJf4w6B2mYm0VsX4h21+8WRqc4XWDrXBOv6I7x8SV/ib
+   A==;
+X-CSE-ConnectionGUID: rCid1t7ORtukg5YQfZ3JhA==
+X-CSE-MsgGUID: 8TYuxRsETnSuTf+D6l4mNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11499"; a="55435195"
+X-IronPort-AV: E=Sophos;i="6.16,329,1744095600"; 
+   d="scan'208";a="55435195"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 10:22:02 -0700
+X-CSE-ConnectionGUID: pU2NcPsoToq9C/4WY93oBg==
+X-CSE-MsgGUID: 5J6kS8FAT4uXfvx9Nyvhiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,329,1744095600"; 
+   d="scan'208";a="163451965"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 10:21:56 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uduD1-0000000HOPq-47vg;
+	Mon, 21 Jul 2025 20:21:51 +0300
+Date: Mon, 21 Jul 2025 20:21:51 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+Cc: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
+	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Hans de Goede <hansg@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Matthias Fend <matthias.fend@emfend.at>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/2] media: i2c: add ov2735 image sensor driver
+Message-ID: <aH53L948F7m16eHZ@smile.fi.intel.com>
+References: <20250716134426.8348-1-hardevsinh.palaniya@siliconsignals.io>
+ <20250716134426.8348-3-hardevsinh.palaniya@siliconsignals.io>
+ <aHe7NFJz6aCUqZXL@smile.fi.intel.com>
+ <PN3P287MB351951A3DBA4FA85404DA410FF51A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+ <aHjubei5Aex9n-HI@smile.fi.intel.com>
+ <PN3P287MB35199EB9309448F3EDD43402FF51A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] clk: qcom: gcc: Add support for Global Clock
- Controller
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>, sboyd@kernel.org,
-        mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, quic_rjendra@quicinc.com,
-        linux-clk@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250716152017.4070029-1-pankaj.patil@oss.qualcomm.com>
- <20250716152017.4070029-8-pankaj.patil@oss.qualcomm.com>
- <aHjJG2nrJJZvqxSu@linaro.org>
- <40534488-24f6-4958-b032-d45a177dfd80@kernel.org>
- <2f5b5e6e-5041-453e-b3f7-b10b40bc6f57@oss.qualcomm.com>
- <52ytt5ag5l65hdjjmvjft2l7ofvt4rgdn6r3bytcpjvyqia7ry@uzajn7qjng4a>
-Content-Language: en-US
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-In-Reply-To: <52ytt5ag5l65hdjjmvjft2l7ofvt4rgdn6r3bytcpjvyqia7ry@uzajn7qjng4a>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIxMDE1MSBTYWx0ZWRfX4Hg4SVWXBOHO
- vcMnnnxTp9X5WESHLxLjBujDzx4fKbCkJzCPUZS/bVaQ6gbA/NSz8uaBM+G1h3jxBr6BDvHMz0b
- siqVbQu6eXWAGgjW0qG4u5WKwCXVZ7UsSc/dqDJgZFq8uDkZVrBn0HWQuCPmXxVkDWU1Vc718Xj
- c/yXG0jxLqs874j6a/ZIAkXvyrB9nrUXXhoF+/53kk27CbM8UbmJjuPx4vTRpaBl3zTepgTfBg7
- LYC7/dW/g3wWsUdriCt072ZzqBgy4SXEhBDg8B9cEvxYhhfVPNVgDSUkp+PD+CiMENwFqja+cFP
- ge5tSXxZMepldkFrdjI65oF9U1nVMVBMvwuZQMxIANckJm+qgLkjt8XS1EBj6oipvyhFy7q7d+u
- lXyz0TVvLtvSViowTAytbq84dod676U9Jsv6jIfRyEl/+eaEIUWnZkOqvUxOKHNmzyNIe0E8
-X-Proofpoint-ORIG-GUID: nwxUbZqIGFxGLLzy24iIKntORuJl-KVe
-X-Proofpoint-GUID: nwxUbZqIGFxGLLzy24iIKntORuJl-KVe
-X-Authority-Analysis: v=2.4 cv=IrMecK/g c=1 sm=1 tr=0 ts=687e7529 cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=7nFZtJUvBAfdOgjOLm7NAA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=9SSxU1ZdH87hVqYcdAkA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-21_04,2025-07-21_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0 clxscore=1015
- priorityscore=1501 spamscore=0 mlxscore=0 mlxlogscore=999 phishscore=0
- impostorscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507210151
+In-Reply-To: <PN3P287MB35199EB9309448F3EDD43402FF51A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
+On Thu, Jul 17, 2025 at 01:11:53PM +0000, Hardevsinh Palaniya wrote:
+> > On Thu, Jul 17, 2025 at 07:26:49AM +0000, Hardevsinh Palaniya wrote:
+> > > > On Wed, Jul 16, 2025 at 07:14:17PM +0530, Hardevsinh Palaniya wrote:
 
+...
 
-On 7/20/2025 9:30 AM, Bjorn Andersson wrote:
-> On Fri, Jul 18, 2025 at 11:07:23PM +0530, Taniya Das wrote:
->>
->>
->> On 7/17/2025 3:38 PM, Krzysztof Kozlowski wrote:
->>> On 17/07/2025 11:57, Abel Vesa wrote:
->>>> On 25-07-16 20:50:17, Pankaj Patil wrote:
->>>>> From: Taniya Das <taniya.das@oss.qualcomm.com>
->>>>>
->>>>> Add support for Global clock controller for Glymur platform.
->>>>>
->>>>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->>>>> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
->>>>> ---
->>>>>  drivers/clk/qcom/Kconfig      |   10 +
->>>>>  drivers/clk/qcom/Makefile     |    1 +
->>>>>  drivers/clk/qcom/gcc-glymur.c | 8623 +++++++++++++++++++++++++++++++++
->>>>>  3 files changed, 8634 insertions(+)
->>>>>  create mode 100644 drivers/clk/qcom/gcc-glymur.c
->>>>>
->>>>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
->>>>> index 051301007aa6..1d9e8c6aeaed 100644
->>>>> --- a/drivers/clk/qcom/Kconfig
->>>>> +++ b/drivers/clk/qcom/Kconfig
->>>>> @@ -645,6 +645,16 @@ config SAR_GPUCC_2130P
->>>>>  	  Say Y if you want to support graphics controller devices and
->>>>>  	  functionality such as 3D graphics.
->>>>>  
->>>>> +config SC_GCC_GLYMUR
->>>>
->>>> Wait, are we going back to this now?
->>>>
->>>> X Elite had CLK_X1E80100_GCC, so maybe this should be CLK_GLYMUR_GCC
->>>> then.
->>>
->>>
->>> Yeah, the SC is meaningless here, unless you call it CLK_SC8480XP_GCC,
->>> so the authors need to decide on one naming. Not mixtures..
->>>
->>>
->> Glymur follows the "SC" naming convention, and historically we've
->> adhered to the format: "SC/SM/SDX/SA_<Clock Controller>_<Target Name or
->> Chipset>". This structure has helped maintain consistency and clarity
->> across platforms.
->>
-> 
-> The platform isn't named SCGLYMUR - which is where the SC prefix would
-> come from.
-> 
-> I'm not sure there's a benefit to quickly be able to know if a clock
-> controller is for a SC, SM, SA, MSM, etc platform. Please let me know if
-> I'm missing something.
-> 
+> > > > > +static int ov2735_page_access(struct ov2735 *ov2735,
+> > > > > +                           u32 reg, void *val, int *err, bool is_read)
+> > > > > +{
+> > > > > +     u8 page = (reg >> CCI_REG_PRIVATE_SHIFT) & 0xff;
+> > > > > +     u32 addr = reg & ~CCI_REG_PRIVATE_MASK;
+> > > > > +     int ret = 0;
 
-Bjorn it was more of an alignment for "Compute", "Mobile" and so on and
-such was the definition to be used for the clock controllers as well.
+> > > > > +     if (err && *err)
+> > > > > +             return *err;
 
->> The case of X1E80100 appears to be an exceptionâ€”likely influenced by its
->> unique naming convention at the time.
->>
->> That said, Iâ€™d prefer to stay aligned with the established convention
->> used for earlier chipsets to preserve continuity. Iâ€™d appreciate hearing
->> your thoughts on this as well.
->>
-> 
-> We're changing the naming model completely, so there is no continuity.
-> In fact the Hamoa "exception" would suite us very well for Glymur.
-> 
-> And look how nicely the CLK_X1E80100_* entries are grouped together in
-> the Kconfig.
-> 
-> Change to CLK_GLYMUR_* please.
-> 
+^^^ (1)
 
-Sure, will align, but hope we are all good with the clock driver name
-<cc>-<target>.c.
+> > > > > +     mutex_lock(&ov2735->page_lock);
+> > > > > +
+> > > > > +     /* Perform page access before read/write */
+> > > > > +     if (ov2735->current_page != page) {
+> > > > > +             ret = cci_write(ov2735->cci, OV2735_REG_PAGE_SELECT, page, &ret);
+> > > > > +             if (ret)
+> > > > > +                     goto err_mutex_unlock;
+> > > > > +             ov2735->current_page = page;
+> > > > > +     }
+> > > > > +
+> > > > > +     if (is_read)
+> > > > > +             ret = cci_read(ov2735->cci, addr, (u64 *)val, err);
+> > > > > +     else
+> > > > > +             ret = cci_write(ov2735->cci, addr, *(u64 *)val, err);
+> > > > > +
+> > > > > +err_mutex_unlock:
+> > > >
+> > > > > +     if (ret && err)
+> > > >
+> > > > Why do you need to check for ret != 0?
+> > >
+> > > To prevents overwriting *err with 0 on successful operations, which could
+> > > obscure previous errors.
+> > 
+> > Can you elaborate a bit how the *err is not 0 at this point
+> > (assuming err != NULL)?
+> 
+> A previous operation have already failed and stored a non-
+> zero error code in *err.
+
+Right and this function is no-op already for this case.
+
+> Assuming this function is used in a sequence of write (or read) 
+> operations. If the current operation succeeds (i.e., ret == 0) and we 
+> unconditionally write *err = ret, we would overwrite the 
+> existing error with 0, falsely indicating that all operations 
+> were successful.
+
+I don't see this scenario. I see that we apply *err = 0 when *err == 0 already.
+
+> Therefore, the condition if (ret && err) ensures that we only 
+> update *err when there's a new error, preserving any previously 
+> recorded failures.
+> 
+> Let me know if you have a different suggestion for how this should 
+> be handled.
+
+Have you taken into account 1) above?
 
 -- 
-Thanks,
-Taniya Das
+With Best Regards,
+Andy Shevchenko
+
 
 
