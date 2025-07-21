@@ -1,303 +1,128 @@
-Return-Path: <devicetree+bounces-198150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 720DCB0BE63
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:04:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91151B0BE7C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:16:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFA0917C7E7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 08:04:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC53D3B8FDF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 08:15:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9976228504C;
-	Mon, 21 Jul 2025 08:04:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40FD28504C;
+	Mon, 21 Jul 2025 08:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K7N5W7ta"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="d2vt7Ffj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66BEE283FF9;
-	Mon, 21 Jul 2025 08:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F18ABA27;
+	Mon, 21 Jul 2025 08:16:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753085085; cv=none; b=I5g9JP/u41w8V4HSPgsT2ymkTtNYKABcAqAl3tdRisE/m0v2JCvAoG//MAfJwBTHOjIcIyXNvrmGKaIlmCF62wc/YW3ZLlszhlXwhuWviqMCE2JbH2JKRCCeKLDoQmyO0M3Z+BXHQQ958U6fA07l8L7EYuycOsJHWeWlk2khzTQ=
+	t=1753085780; cv=none; b=c+2ih6KGl1JmyQuE6jBcNDaY2nuwULjMfa53PAPKj8/rAMWnsn60TYgnbMWFbuAwGAgbPysWpsCMOM8sF5M48gf/gXpd0n6Gm9VawtgTwQyA7oGM6sM6fKxD2U74B8CDn9ajZudDk5erK0Iagl+4MbPRcVU1Ll1PFvOIHdTb6F4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753085085; c=relaxed/simple;
-	bh=QgDLhVT5/Im3WYhce4U20WhSBJqy+kOhesA7mNbWrHc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ik4fR6jAatlX0X9eYroa0cbkYjNVV14GFm2W56A61GCtaAG3PRPNFn0GQTxI62yvC4zDkoh6UEAeLMpQBSKjdukr6VNK0FX4JISTe1pDl+pd/zCfp0RvLaHS5F/tUrEeB2qclzElp/72DXWPPFwvyjAY/VJZHPLVsfevFRcMUPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K7N5W7ta; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C987C4CEED;
-	Mon, 21 Jul 2025 08:04:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753085084;
-	bh=QgDLhVT5/Im3WYhce4U20WhSBJqy+kOhesA7mNbWrHc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K7N5W7tai1vfrQpA1hq53JrFSkqITF78cHo0BN+Tetz3lQFvqOr24uWsEOqX9WcYd
-	 Orkuv6Wk0OIZZ9NnN71Kw0AZJ5VJjde3EQtsnQeVMWc0NknnM7vK+tY8Vj0Ng3IcKC
-	 2QadC4DZMmHJSKzWz4SAlXDsc4ZsdMPmiAUTk0791CNQxKEgOQ6gd+EiNiR1VQcqgC
-	 MeLDyPHumO/ToS+tDk2FfeHWP3KqyBF6j1kpN5EgjiRthLO+NEnBgcu9Buhc8nrFEN
-	 8kXMFH50s9RjwtTdZ0W8ULdm3yGBxXDIvPe4qtmt3hvkwehclT1bd3aBW9IHePZAWS
-	 MXt9K0szD2zkA==
-Date: Mon, 21 Jul 2025 10:04:42 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: jeff_chang@richtek.com
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: regulator: Add Richtek RTR5133 DT
- Binding Documentation
-Message-ID: <20250721-wonderful-auk-of-whirlwind-8beda4@kuoka>
-References: <20250721060215.2718217-1-jeff_chang@richtek.com>
- <20250721060215.2718217-2-jeff_chang@richtek.com>
+	s=arc-20240116; t=1753085780; c=relaxed/simple;
+	bh=P/NW1/RI1132VsYmYKCFxP8GrB7AQikCUoRaUgB9NlU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=fWVY8l+uG0x9MP70n0m6nijIq5A/kpvbMUdh4xYqL3PYvtiHZLK35akRrHLSZTmR+FNxhWi1nMlL9iFG0dkCX0vJ48/g0o273lNDcy0OAL2Nz+/uLkDKNw36atWDRBI8sG6AGzqC+m/G7Vdzw765xfDMue6rjfgFLqOvDZCm920=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=d2vt7Ffj; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1753085774;
+	bh=P/NW1/RI1132VsYmYKCFxP8GrB7AQikCUoRaUgB9NlU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=d2vt7FfjA92IQpPa27iET473qr9XduKfdAIj2hbhGq5weWnE7xeL/66k7rXl+I87V
+	 Z8vTshWw+odRWdQoEPJmgNlJX+dEjy3kOM1eZT7SOwLkNb2WPfWsR+fD2GqfpfUo8x
+	 a3UgMeVVuEzyX0PyQVBz9kP/l+vzenvMH2qmNs4e7tFC7UtBw7ILj9vSUrPF4pGBkR
+	 dhwrKhpI9x8352MFWf4ZB1MDfIl4V8zYJfeD31DvN2DuzWsJSXY9A+w8Bh8W0QQrrF
+	 /hkolxfiW/+DVotXZeT3Vk6IEAxhz8WKzM3VgQF+yGbYmsmzKaZB6ROrJAFoo/3EYC
+	 TTjh8sVGcSzHQ==
+Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:4487:69c6:40a:81be])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laura.nao)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1BC7217E0F66;
+	Mon, 21 Jul 2025 10:16:13 +0200 (CEST)
+From: Laura Nao <laura.nao@collabora.com>
+To: srini@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	rafael@kernel.org,
+	daniel.lezcano@linaro.org,
+	rui.zhang@intel.com,
+	lukasz.luba@arm.com,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com
+Cc: nfraprado@collabora.com,
+	arnd@arndb.de,
+	colin.i.king@gmail.com,
+	u.kleine-koenig@baylibre.com,
+	andrew-ct.chen@mediatek.com,
+	lala.lin@mediatek.com,
+	bchihi@baylibre.com,
+	frank-w@public-files.de,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	kernel@collabora.com,
+	Laura Nao <laura.nao@collabora.com>
+Subject: [PATCH 0/9] Add thermal sensor driver support for Mediatek MT8196
+Date: Mon, 21 Jul 2025 10:14:50 +0200
+Message-Id: <20250721081459.16278-1-laura.nao@collabora.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250721060215.2718217-2-jeff_chang@richtek.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jul 21, 2025 at 02:01:35PM +0800, jeff_chang@richtek.com wrote:
-> From: Jeff Chang <jeff_chang@richtek.com>
-> 
+This patch series extends the MediaTek LVTS thermal driver to support the
+MT8196 SoC.
 
-Missing commit msg.
+MT8196 uses a positive temp_factor for temperature conversion, requiring
+slight adjustments in the conversion logic.
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+To support this, the series introduces:
 
+- A new struct lvts_platform_ops to allow platform-specific
+  conversion logic between raw sensor values and temperature
+- A variant of the lvts_temp_to_raw() implementation for SoCs with positive
+  temp_factor values
+- Platform data and controller definitions for MT8196
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+Laura Nao (9):
+  dt-bindings: thermal: mediatek: Add LVTS thermal controller support
+    for MT8196
+  thermal/drivers/mediatek/lvts: Make number of calibration offsets
+    configurable
+  thermal/drivers/mediatek/lvts: Guard against zero temp_factor in
+    lvts_raw_to_temp
+  thermal: mediatek: lvts: Add platform ops to support alternative
+    conversion logic
+  thermal/drivers/mediatek/lvts: Add lvts_temp_to_raw variant for
+    positive temp_factor
+  thermal/drivers/mediatek/lvts: Add support for ATP mode
+  thermal/drivers/mediatek/lvts: Support MSR offset for 16-bit
+    calibration data
+  thermal/drivers/mediatek/lvts_thermal: Add MT8196 support
+  dt-bindings: nvmem: mediatek: efuse: Add support for MT8196
 
-I already asked for it. Did you really read what I linked last time?
+ .../bindings/nvmem/mediatek,efuse.yaml        |   1 +
+ .../thermal/mediatek,lvts-thermal.yaml        |   2 +
+ drivers/thermal/mediatek/lvts_thermal.c       | 315 ++++++++++++++++--
+ .../thermal/mediatek,lvts-thermal.h           |  26 ++
+ 4 files changed, 325 insertions(+), 19 deletions(-)
 
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-I already asked for it, so you ignored another comment. Why are you not
-responding or implementing the comments?
-
-Bindings go before users, so please re-order patches (see submitting
-patches in DT dir).
-
-> Signed-off-by: Jeff Chang <jeff_chang@richtek.com>
-> ---
-> 
-> PATCH v3
-> 1. fix Subject format
-> 2. using correct patches version
-> 3. remove '|'
-> 4. remove allOf: &ref regulator.yaml#
-> 5. remove redundant description
-> 6. move BASE to base property with correct indentation
-> 7. only using lowercase node name
-> 8. make DT_CHECKER_FLAG=-m DT_SCHEMA_FILES=richtek,rt5133.yaml dt_binding_check pass
-> 
-> 
->  .../bindings/regulator/richtek,rt5133.yaml    | 197 ++++++++++++++++++
->  1 file changed, 197 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
-> new file mode 100644
-> index 000000000000..a92e7f775832
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
-> @@ -0,0 +1,197 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/richtek,rt5133.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Richtek RT5133 PMIC Regulator
-> +
-> +maintainers:
-> +  - ShihChia Chang <jeff_chang@richtek.com>
-> +
-> +description:
-> +  RT5133 is an integrated chip. It includes 8 LDOs and 3 GPOs that can be
-> +  used to drive output high/low purpose. The dependency of the GPO block
-> +  is internally LDO1 Voltage. If LDO1 voltage output disabled, GPO cannot
-> +  be used to drive output high. It need to pay more attention on the usage.
-
-Last statement does not feel relevant.
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - richtek,rt5133
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +
-> +  wakeup-source: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  regulators:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      base:
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        unevaluatedProperties: false
-> +        description:
-> +          Properties for base regulator which for force-off base circuit
-
-That's not a regulator supply or you need to provide proper description
-of hardware.
-
-> +
-> +        properties:
-> +          regulator-compatible:
-> +            description: Compatible string for regulator
-> +            $ref: /schemas/types.yaml#/definitions/string
-
-Drop property.
-
-> +
-> +          oc-shutdown-all:
-
-Missing vendor prefix.
-
-> +            type: boolean
-> +            description:
-> +              Anyone of LDO OC state, shut down all channels.
-
-I don't understand the description at all.
-
-> +
-> +          pgb-shutdown-all:
-> +            type: boolean
-> +            description:
-> +              Anyone of PGB OC state, shut down all channels.
-
-Same problems here
-
-> +
-> +        required:
-> +          - regulator-name
-> +          - regulator-compatible
-
-No, drop compatible. Please read the bindings.
-
-> +
-> +    patternProperties:
-> +      "^ldo([1-6])$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        unevaluatedProperties: false
-> +        description:
-> +          Properties for single LDO regulator
-> +
-> +        properties:
-> +          regulator-compatible:
-> +            description: Compatible string for regulator
-> +            $ref: /schemas/types.yaml#/definitions/string
-> +
-> +        required:
-> +          - regulator-name
-> +          - regulator-compatible
-> +
-> +      "^ldo([7-8])$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        unevaluatedProperties: false
-> +        description:
-> +          Properties for single LDO regulator
-> +
-> +        properties:
-> +          regulator-compatible:
-> +            description: Compatible string for regulator
-> +            $ref: /schemas/types.yaml#/definitions/string
-> +
-> +          rt5133-ldo1-supply:
-> +            description: |
-> +              Only for ldo7 ldo8, pvin7 and pvin8 reference design are RT5133 ldo1.
-> +              If not connect to ldo1 vout, this property for pvin7 and pvin8 is necessary.
-> +
-> +        required:
-> +          - regulator-name
-> +          - regulator-compatible
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts-extended
-
-interrupts instead
-
-> +  - wakeup-source
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      rt5133: rt5133@18 {
-
-Drop unused labels.
-
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +        compatible = "richtek,rt5133";
-> +        reg = <0x18>;
-> +        wakeup-source;
-> +        interrupts-extended = <&pio 187 0x0>;
-
-Use proper defines
-
-> +        enable-gpios = <&pio 186 0x0>;
-
-Use proper defines.
-
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        regulators {
-> +          base {
-> +            regulator-compatible = "BASE";
-> +            regulator-name = "rt5133,base";
-> +            oc-shutdown-all;
-> +            pgb-shutdown-all;
-> +          };
-> +          rt5133_ldo1: ldo1 {
-
-Drop unused labels.
-
-Best regards,
-Krzysztof
+-- 
+2.39.5
 
 
