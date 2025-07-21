@@ -1,253 +1,202 @@
-Return-Path: <devicetree+bounces-198433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFAAFB0CC3B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 23:06:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1732DB0CCBC
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 23:37:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9C957AEBE3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 21:05:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18F8A545F37
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 21:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43DE323B639;
-	Mon, 21 Jul 2025 21:06:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CAEC242D94;
+	Mon, 21 Jul 2025 21:37:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="LDA9mQZe"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="a7Cs9nET"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B6E202F8B;
-	Mon, 21 Jul 2025 21:06:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613DD2417C5
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 21:37:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753131983; cv=none; b=Jt2ft9MA2/ALQ4RFCD5pu5E8Tt4VLUjnY9cBpcRW++5RfasFQ/UFx3ysWkTQnhgOeZp7+4LbbLR6VQFGWZyzjrV0rQ1TdXx3TgeqIVJwpACppxa8l5XPXLLP9uETFcseoPSP1MrZopN/KVzsQWc7Ai6pLtb+XeDr/jvc7N/sq+c=
+	t=1753133824; cv=none; b=MdgSxyOfCQRcCc1vSQQsf7vpz1RJrn2tpXN+kCSkElPUe/RTODVZi5/QTGS1OM+jJHedjBr364EU0nG8IpF+7wjtql3TPdgrsxbLmw67dhE0/zl/J5SBvDFBJyfKwTbc7TjO2nsfrQM77nXAgH9Fp0lcJRqFegtr6Gs6k/ZtTaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753131983; c=relaxed/simple;
-	bh=zjLicVkc0C/6IAdAKsOjFSGUc3j3ugV0Pp2+JYkGJ4o=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ae8I63DlPRLssOceqL4GRdFvN/+VumBcphkdPefyGoomS008jzsSo4vAm7zK378nv8oLAj9kVBJV5mfDswrBiSl6f9zJQLF6tfY9UJnzyiFVXrIr+0a+O6HS5nX+hVULZTm6wjMf8oyu2kV/b4RVspuyXElwPzFDWkpqINd4K8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=LDA9mQZe; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D5E5D1027235A;
-	Mon, 21 Jul 2025 23:06:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1753131977; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=thKRdw3kXRGji+6JCd7tx86+QfpE7R4ymI26oelJ9l0=;
-	b=LDA9mQZeGJ84HzhFTkWldHixuCTUA/2gE47EdutdCG+Queg5IVgKVkacRhbSBE9pi4toBn
-	YJd+Q+hW3wat8/0owk0Y66IS3WJaNw5Rwyng+Is6zLxORIdFz5YH8OaN+ULShn7wwQn7+L
-	dWPT/cbpL76ZkNS3FINCOYXeQQaI3Szr4cnkhOCpmPDoQtFxWdICD5Ru8Ea4HvdjTig3Q2
-	aSoHgioT/8mOJp0+c+Ihr5af1VabgqEYZDZKxuUEZY8/y/Jv90wx4vJG+6+xwE5Co0uTvZ
-	3YFyhX1rxpWhfqXtj4o1f0b7WkhYqwQlZPq4y0EcKaQHGRBDGW1inBrF/1GXPA==
-Date: Mon, 21 Jul 2025 23:06:11 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Richard Cochran
- <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
- <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
- <andrew@lunn.ch>
-Subject: Re: [net-next v15 04/12] net: mtip: The L2 switch driver for imx287
-Message-ID: <20250721230611.45fb74df@wsk>
-In-Reply-To: <20250718181028.00cda754@kernel.org>
-References: <20250716214731.3384273-1-lukma@denx.de>
-	<20250716214731.3384273-5-lukma@denx.de>
-	<20250718181028.00cda754@kernel.org>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1753133824; c=relaxed/simple;
+	bh=NhZKKC0lMBkpQr5YwAYsG7J4EHYPJs4VzzhXBQifSEo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WE/ePnj+ru7/Bb9LHVuDneusRWzbw4C9g2UJThME9jkBG7PhRd50TJvb/zLE5wQacazo4Dtgsd8mb8BfqaeoU3fyNmpZgEOW39kfRyH9zJrLMCUfbbBGACgy+uwJV+hcrdPPxT8FE76Ior8AYRz7gp5JuSZl4HcUH3QKqNzF/OU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=a7Cs9nET; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56LIh8Qh012287
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 21:37:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=XSeneYubwoKFVumkVWiLXeNw
+	ksNpoI4nzayH5GcuL7o=; b=a7Cs9nETT2sN9EK3jsfH7FtrU8CgqAwo9tVFk5g0
+	wkb797A1k4AlBoloSn2mci4IjK6bVR4nLUcJMJoW0kcMlwrHd/syVoym51qWUjAk
+	yZ6iNu3r0vS5nyOkIgN/8TDWRUsp8AkaHAiUIpHcY/jTL92mql8ymbDlwGfE6Q76
+	SemUdAD3yHBaa4pbrssgNQVPIc3rZlufh67xn0ePJfENPvCM0lnDdskEdqDPWwbS
+	tsScXZ+hTuN2EeoE4VHOWwPt5g3Imd3QBFzsvr9ptfzliRw8B6jCPAygPjRcuiKd
+	B+vjlF0AESonxfs5SYJRw5bra8wmqp21quhvVv5bNlu69A==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 480459nr2x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 21:37:01 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7e350915d2aso1288661085a.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 14:37:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753133820; x=1753738620;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XSeneYubwoKFVumkVWiLXeNwksNpoI4nzayH5GcuL7o=;
+        b=dEY5bWOqsWG7rhonidqYfKUNRHEX98byQ1po+z6DpoPW3QnKgpQ2Jub/htGjt04CAY
+         /x1Gn3uf2EHXwpcBi/SuC6mMQRNdRSjbT1jeWl8NI9d3fKwufA5VRQNG53qbNIDE2zyO
+         ikKO/cKYpbBgfRj9IUtEq3ZkhSBTf2xLFX+5EFKad9nVsZ5XbXCCjXqauLrZV99sZqz6
+         Ac8db8gQRz+n0dHofUSqaTWN1bVg4HJjbDZD6510xZR2EV7TIr0wawlrumKyLh6ouS6f
+         EHTnDVOARQFTSLcfwzlua709MJqkWLaSi64s8K33Bipg85HkycJ8Mfsw8vz49NwjNi04
+         3GCA==
+X-Forwarded-Encrypted: i=1; AJvYcCWmrS+GJdYUQUCCpBC/bIkePcTmdA0xOMOElHpXQfyc0T1zl88gKSvUlCuCtoDgO2xAcAkYfLtWE8pH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFy7B1PINd5Skn8c2Td1AbOlbO87lA0VQtVWlfr/IPsoNJ+UnS
+	NQbb0KtIT0u7CyKN9epW3PGTjf5wu1WOZlPt/UuVbwKzje8VeVMRYlDeHnYrJ8uh/nE8OV+k5ef
+	3OzfPQC+GvgBFT1glRVZETa3/5YbXhp6ABhB09+HDZixQiJJQyri7OkJancFfRgwH
+X-Gm-Gg: ASbGncsHVBPJQAF95XPJTBqRtxqkxBim0Mc5Ond4eGdtZ6ScAlHt9DoRFQROo1rfP8a
+	ehkZUAk+S7E1zIr3MpvPs4o5rChOU8SK1Vmh9JTSOxVHG8ha4M7DaK+8GnUnyNLKSQQfRXyHSml
+	KBKf+LeTErfs15SpVh8QMMqa0e7uhaKB/3XED7rARe7zHCY53OFKev4ZqU1707rLyX2X/asgCk6
+	knhNDF+1UmeduyIfeviqqejiM74PhRPfsvUSFKJNkKlm1HCeMIRrC235Iy3Gf33gaVpQd2wou2U
+	/2cSxPleVdahqot3SI6gQrDx1GaRou6obObHzd1G8W5WFhlmShyUivdK3G8FQhMBMM6vCX2tKp3
+	Mc2YqlmqyF729it1kciGobr85EwEbEZDy6/ldeRKS7FMMXOyXq9Lf
+X-Received: by 2002:a05:620a:2852:b0:7e3:5129:db49 with SMTP id af79cd13be357-7e356b06e5dmr1803432285a.45.1753133819767;
+        Mon, 21 Jul 2025 14:36:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFF4jT0+GbYEvvHgqyFvbhxqSYTWAMQbDApGgQWdExppcPmAG6eo15SkHyeIVhHgv8/4M2flg==
+X-Received: by 2002:a05:620a:2852:b0:7e3:5129:db49 with SMTP id af79cd13be357-7e356b06e5dmr1803430085a.45.1753133819325;
+        Mon, 21 Jul 2025 14:36:59 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55a31d7c690sm1698974e87.110.2025.07.21.14.36.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Jul 2025 14:36:58 -0700 (PDT)
+Date: Tue, 22 Jul 2025 00:36:56 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andre Draszik <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Srinivas Kandagatla <srini@kernel.org>
+Subject: Re: [PATCH v12 1/8] power: reset: reboot-mode: Add device tree
+ node-based registration
+Message-ID: <33gq4iyx5jxrr6f5w3ctgy7l7om53jdvb4tmfmxzourhfvpc3t@cr5re2dab4tc>
+References: <20250721-arm-psci-system_reset2-vendor-reboots-v12-0-87bac3ec422e@oss.qualcomm.com>
+ <20250721-arm-psci-system_reset2-vendor-reboots-v12-1-87bac3ec422e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/yEbJNgP2XSHi9_nucQvhE7B";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250721-arm-psci-system_reset2-vendor-reboots-v12-1-87bac3ec422e@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: HmL6ULUo7ENI2l_KUcP3RxrFMChC-CjY
+X-Authority-Analysis: v=2.4 cv=fdyty1QF c=1 sm=1 tr=0 ts=687eb2fd cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=1bIxdRCwe99oYZTV_csA:9 a=CjuIK1q_8ugA:10
+ a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: HmL6ULUo7ENI2l_KUcP3RxrFMChC-CjY
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIxMDE5MiBTYWx0ZWRfX2bhIPGiqSbfD
+ IhFEJVT/6FZ9gBfCR82Le+Fw4hq10PHUD+41FrIRL2iRgF0TmbXgCNj3sU+DFyMPvT+ox3OAP7E
+ a2Lsky7bUW3gB5ERGA0GJfS/XyiqnamLxPEg56jaTl5aAm0FyzyhAnnxejApR2hu0w+rGaK13L8
+ 0xOhmcI0HUtCgLwIGw2PV6HClncpkOekkucIYY9rzeD7q6WJ1/qzFUCKkmcs/QZfml/A4oc6yyf
+ SuFBN2jhZs4c6Yw+xJ0hzYQJcHFyHtDwLQ0H42rzCjeAnD7GuqWm9R4pVoy+D5UUD8AhtjYe15H
+ mgOIV7H3srJCo3BJ8JQXw+QittxUhCyREraKWs+aDdIOEOza0kkySoyDePPj9PfsozWeBZ5sG5P
+ 4KVJDiXm2KXXK5NYn2M6dHXoDavHL5EUDnSqaUe2WV0yiKychANXPKEkuc+HP9nqMaRhf+Rc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-21_05,2025-07-21_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 priorityscore=1501 phishscore=0 impostorscore=0
+ mlxlogscore=999 mlxscore=0 spamscore=0 bulkscore=0 malwarescore=0
+ lowpriorityscore=0 adultscore=0 clxscore=1015 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507210192
 
---Sig_/yEbJNgP2XSHi9_nucQvhE7B
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Mon, Jul 21, 2025 at 11:58:48PM +0530, Shivendra Pratap wrote:
+> The reboot-mode driver does not have a strict requirement for
+> device-based registration. It primarily uses the device's of_node
+> to read mode-<cmd> properties and the device pointer for logging.
+> 
+> Remove the dependency on struct device and introduce support for
+> Device Tree (DT) node-based registration. This enables drivers
+> that are not associated with a struct device to leverage the
+> reboot-mode framework.
+> 
+> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+> ---
+>  drivers/power/reset/reboot-mode.c | 45 +++++++++++++++++++++++++++++----------
+>  include/linux/reboot-mode.h       |  6 +++++-
+>  2 files changed, 39 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
+> index fba53f638da04655e756b5f8b7d2d666d1379535..5dd3f06ca88cb28606d9fd2100ce03383c14d215 100644
+> --- a/drivers/power/reset/reboot-mode.c
+> +++ b/drivers/power/reset/reboot-mode.c
+> @@ -3,13 +3,17 @@
+>   * Copyright (c) 2016, Fuzhou Rockchip Electronics Co., Ltd
+>   */
+>  
+> +#define pr_fmt(fmt)	"reboot-mode: " fmt
+> +
+>  #include <linux/device.h>
+>  #include <linux/init.h>
+>  #include <linux/kernel.h>
+> +#include <linux/list.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/reboot.h>
+>  #include <linux/reboot-mode.h>
+> +#include <linux/slab.h>
+>  
+>  #define PREFIX "mode-"
+>  
+> @@ -55,7 +59,9 @@ static int reboot_mode_notify(struct notifier_block *this,
+>  	unsigned int magic;
+>  
+>  	reboot = container_of(this, struct reboot_mode_driver, reboot_notifier);
+> +	mutex_lock(&reboot->rb_lock);
 
-Hi Jakub,
+This one should go into the get_reboot_mode_magic() function, otherwise
+it's not obvious why do you need it here.
 
-> On Wed, 16 Jul 2025 23:47:23 +0200 Lukasz Majewski wrote:
-> > +static void mtip_ndev_cleanup(struct switch_enet_private *fep)
-> > +{
-> > +	struct mtip_ndev_priv *priv;
-> > +	int i;
-> > +
-> > +	for (i =3D 0; i < SWITCH_EPORT_NUMBER; i++) {
-> > +		if (fep->ndev[i]) { =20
->=20
-> this just checks if netdev is NULL
->=20
-> > +			priv =3D netdev_priv(fep->ndev[i]);
-> > +			cancel_work_sync(&priv->tx_timeout_work);
-> > +
-> > +			unregister_netdev(fep->ndev[i]); =20
->=20
-> and if not unregisters
->=20
-> > +			free_netdev(fep->ndev[i]);
-> > +		}
-> > +	}
-> > +}
-> > +
-> > +static int mtip_ndev_init(struct switch_enet_private *fep,
-> > +			  struct platform_device *pdev)
-> > +{
-> > +	struct mtip_ndev_priv *priv;
-> > +	int i, ret =3D 0;
-> > +
-> > +	for (i =3D 0; i < SWITCH_EPORT_NUMBER; i++) {
-> > +		fep->ndev[i] =3D alloc_netdev(sizeof(struct
-> > mtip_ndev_priv), =20
->=20
-> but we assign the pointer immediatelly
->=20
-> > +					    fep->ndev_name[i],
-> > NET_NAME_USER,
-> > +					    ether_setup);
-> > +		if (!fep->ndev[i]) {
-> > +			ret =3D -ENOMEM;
-> > +			break;
-> > +		}
-> > +
-> > +		fep->ndev[i]->ethtool_ops =3D &mtip_ethtool_ops;
-> > +		fep->ndev[i]->netdev_ops =3D &mtip_netdev_ops;
-> > +		SET_NETDEV_DEV(fep->ndev[i], &pdev->dev);
-> > +
-> > +		priv =3D netdev_priv(fep->ndev[i]);
-> > +		priv->dev =3D fep->ndev[i];
-> > +		priv->fep =3D fep;
-> > +		priv->portnum =3D i + 1;
-> > +		fep->ndev[i]->irq =3D fep->irq;
-> > +
-> > +		mtip_setup_mac(fep->ndev[i]);
-> > +
-> > +		ret =3D register_netdev(fep->ndev[i]); =20
->=20
-> and don't clear it when register fails
->=20
-> > +		if (ret) {
-> > +			dev_err(&fep->ndev[i]->dev,
-> > +				"%s: ndev %s register err: %d\n",
-> > __func__,
-> > +				fep->ndev[i]->name, ret);
-> > +			break;
-> > +		}
-> > +
-> > +		dev_dbg(&fep->ndev[i]->dev, "%s: MTIP eth L2
-> > switch %pM\n",
-> > +			fep->ndev[i]->name,
-> > fep->ndev[i]->dev_addr);
-> > +	}
-> > +
-> > +	if (ret)
-> > +		mtip_ndev_cleanup(fep); =20
->=20
-> You're probably better off handling the unwind on error separately
-> from the full cleanup function, but I guess that's subjective.
+Also, please split mutex addition to a separate patch.
 
-Yes, you are right - I shall add:
-fep->ndev[i] =3D NULL;
+>  	magic = get_reboot_mode_magic(reboot, cmd);
+> +	mutex_unlock(&reboot->rb_lock);
+>  	if (magic)
+>  		reboot->write(reboot, magic);
+>  
 
-just after free_ndev(fep->ndev[i]); in the
-mtip_ndev_cleanup() function.
-
->=20
-> > +	return ret;
-> > +} =20
->=20
-> > +static int mtip_sw_probe(struct platform_device *pdev)
-> > +{ =20
->=20
-> > +	ret =3D mtip_ndev_init(fep, pdev);
-> > +	if (ret) {
-> > +		dev_err(&pdev->dev, "%s: Failed to create virtual
-> > ndev (%d)\n",
-> > +			__func__, ret);
-> > +		goto ndev_init_err;
-> > +	}
-> > +
-> > +	ret =3D mtip_switch_dma_init(fep); =20
->=20
-> > +	ret =3D mtip_mii_init(fep, pdev); =20
->=20
-> Seems like we're registering the netdevs before fully initializing=20
-> the HW? Is it safe if user (or worse, some other kernel subsystem)=20
-> tries to open the netdevs before the driver finished the init?
-> =20
-
-This needs to be reordered - the ndev registration shall be the last
-step.
-
-Thanks for pointing this out.
-
->=20
-> > +	if (ret) {
-> > +		dev_err(&pdev->dev, "%s: Cannot init phy bus
-> > (%d)!\n", __func__,
-> > +			ret);
-> > +		goto mii_init_err;
-> > +	}
-> > +	/* setup timer for learning aging function */
-> > +	timer_setup(&fep->timer_mgnt, mtip_mgnt_timer, 0);
-> > +	mod_timer(&fep->timer_mgnt,
-> > +		  jiffies +
-> > msecs_to_jiffies(LEARNING_AGING_INTERVAL)); +
-> > +	return 0;
-> > +
-> > + mii_init_err:
-> > + dma_init_err:
-> > +	mtip_ndev_cleanup(fep); =20
->=20
-> Please name the labels after the action they jump to, not the location
-> where they jump from.
-
-Ok.
-
->=20
-> > + ndev_init_err:
-> > +
-> > +	return ret; =20
-
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH, Managing Director: Johanna Denk,
-Tabea Lutz HRB 165235 Munich, Office: Kirchenstr.5, D-82194
-Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/yEbJNgP2XSHi9_nucQvhE7B
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmh+q8MACgkQAR8vZIA0
-zr0HdggAwco5wjKk7FZTResfk+vt1Mqevf2S3izXGuVnFYMYDXkwS5yUJyI858DL
-fafdGgSK3ohngKrEv4OIz35sfT8KxYWCtxMo0hNP8YyJsknOAQSeAvrofp75T/Ej
-R9bgz/dJKUls586SPXfLjy37a567H06CJHVk9kGuxDigPKbmv9PgTyS31ng+n9jq
-0Ugb4u4zU4/I7Ul4BjnwWC6tckzbtawepEyHEO/pcaVdpI+W7yoOetDfCShbYnL/
-VPwticChtJfuOgKiXD9HVcP0QVL0PkCXlKluklqKnHeSPHC8J5W7CnAtOZhi3IHH
-+S9Q+H1D5mGWD+M2PeMRZYcn8aZ5sA==
-=1O0w
------END PGP SIGNATURE-----
-
---Sig_/yEbJNgP2XSHi9_nucQvhE7B--
+-- 
+With best wishes
+Dmitry
 
