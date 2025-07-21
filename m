@@ -1,355 +1,136 @@
-Return-Path: <devicetree+bounces-198407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA04CB0CB03
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 21:35:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF153B0CB12
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 21:38:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55F441AA8097
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:36:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEEDA1AA808A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:39:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39CDB22D9F1;
-	Mon, 21 Jul 2025 19:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74BC2231852;
+	Mon, 21 Jul 2025 19:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iJLGNzlF"
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="ALmF0Q5R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEEB71F418E;
-	Mon, 21 Jul 2025 19:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF0D2309BE
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 19:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753126547; cv=none; b=sUitDs0pGb2SCTVgqXRLmOqm1Gs5tV85jE486W2zvVq7XgkKccFX7IbgdBbhRKoDD63QRJvOkzZdOLDZCoY8EaEtqx7pTG6E4iuHjoOThd1HIJYIN+HNDw9TWwdKwJJRABfa3F1I9If59PtwfrIiqgcjgj3lshbi6do8EC+OeyU=
+	t=1753126720; cv=none; b=WNAGZqDk6QSHOXwmOsNKZrBYM5ed14wAgbP6RY/yGlVpuM0bJznD7W/9nsFxe8n66P0/m5dcMw5shLGoyCMtY/eA976WSvzpfna9V4wFB8cuZYOoabVO46Wxnm8ZyBlYByzEHNbkyILaFxnxMU6oxRbO3GjoCHRW1JiIpJzwEBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753126547; c=relaxed/simple;
-	bh=qjouUFzxPYNotW041AuPIzLMf72AQH27dBeTZYw1Yz8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RplREynMY5S/E27h7QkEF1LP+y7H7kGFgS5wCRPGEeWURPtiwWcAf+7Jr+ihss+ojp22IGeKWT4AWpBsy8g6eYceMRdPRrabrWpw+7+wUPYFoS9T6CvCvoTcrUZK1SQQGHf2C2DnPkpv5ZL6sUGhXk4VXhYpH1YQITbxctIE8ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iJLGNzlF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B8E5C4CEED;
-	Mon, 21 Jul 2025 19:35:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753126546;
-	bh=qjouUFzxPYNotW041AuPIzLMf72AQH27dBeTZYw1Yz8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iJLGNzlFYPgQacKD4XtBiQDOMY8iAHszXduqI57oUzq2TGz5yN8wVEtvGHjR4Z2EM
-	 +40Pxtyo15LNS6mWimMs/P8xlzXpXUUBxF3bHkK9L/ditDna+bg8+R8i/EPSpjtsXM
-	 CXI1RgTj4HNixP7mR/dS4J5T5Ngu9rcxtf3ixrZy4w4qmfRxKym687smWajkxHlva/
-	 UorLdnpn8f5ZPf9IMW1XMry4edR0F2re7+4uw3/sXb+tjvOZ6mtnS4uDshGUJybDic
-	 gSO08YvyCmas2rwPcYCv4bZXCpUvg7W1rhFo/VUu8y7KfJGoywCUZ7l+LFRxS69UWr
-	 rcj9MIVwqkDBQ==
-Date: Mon, 21 Jul 2025 14:35:45 -0500
-From: Rob Herring <robh@kernel.org>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lei Wei <quic_leiwei@quicinc.com>,
-	Suruchi Agarwal <quic_suruchia@quicinc.com>,
-	Pavithra R <quic_pavir@quicinc.com>,
-	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
-	quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com
-Subject: Re: [PATCH net-next v6 01/14] dt-bindings: net: Add PPE for Qualcomm
- IPQ9574 SoC
-Message-ID: <20250721193545.GA1119033-robh@kernel.org>
-References: <20250720-qcom_ipq_ppe-v6-0-4ae91c203a5f@quicinc.com>
- <20250720-qcom_ipq_ppe-v6-1-4ae91c203a5f@quicinc.com>
+	s=arc-20240116; t=1753126720; c=relaxed/simple;
+	bh=eW6uMrYnoIZtzJ2yB57lCiBdnZbYU7iDn4Kv3bpDms4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=G6iTnOfdIeYA7dwIp/w121fkQia8rEMyLPGsaQxebClx5PPXi8RfWDrxvEA0aI3OkKjBfs3TTRZDLLvGxrEgeQ2SUlS0YizXzoxRQ2BQt3A/EMtWwFC1dpjSe/mu0F7eQ5eYLi+Xnv+U9H0piLjWy/+cpZYHDLHTN92Qsduyssk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=ALmF0Q5R; arc=none smtp.client-ip=212.77.101.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
+Received: (wp-smtpd smtp.wp.pl 24661 invoked from network); 21 Jul 2025 21:38:29 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
+          t=1753126709; bh=hpMtOqZiSLiIGO8kc1mIrDBucAWcsR8PwKegbblgEpc=;
+          h=From:To:Cc:Subject;
+          b=ALmF0Q5REAESnZClzcSPXbk7RPTkysq8AN1uN+U+CuuuzhZjZPdZKVqhnjGqkwmco
+           DANvb/2IhVZTafk+n8HJPoO1PnNDAzF4MNiYLSGMNU3kmkWAWk3yn8Fm4T1YdwNIkT
+           JVdQHkTTnib7D+y0LzZNqPnklsqUCDoCEKPGvPi5OTOj5F/SXcNtReuSQznqWEqVW0
+           rciqdOefhpL9/qmk2ZgQ4/BgRz1gOF6QPDsElx+qh+rY5YU6huVOLEkPH8AccWPdty
+           79uDgaWOQYAhqWcO6FxGiFqJZZ3zgYomi31SKCjJwDj31uPvfE1qPPQHy/YEiNgZaE
+           9GiI3vq4RD1CA==
+Received: from 83.24.129.157.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.129.157])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <robh@kernel.org>; 21 Jul 2025 21:38:29 +0200
+From: Aleksander Jan Bajkowski <olek2@wp.pl>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
+Subject: [PATCH] arm64: dts: mediatek: add LED and key support on Xiaomi AX3000T
+Date: Mon, 21 Jul 2025 21:38:19 +0200
+Message-Id: <20250721193819.2465981-1-olek2@wp.pl>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250720-qcom_ipq_ppe-v6-1-4ae91c203a5f@quicinc.com>
+Content-Transfer-Encoding: 8bit
+X-WP-DKIM-Status: good (id: wp.pl)                                                      
+X-WP-MailID: 80b19409167d9e40770cbfef1a4bc0d4
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 000000A [4UM0]                               
 
-On Sun, Jul 20, 2025 at 06:57:08PM +0800, Luo Jie wrote:
-> The PPE (packet process engine) hardware block is available in Qualcomm
-> IPQ chipsets that support PPE architecture, such as IPQ9574. The PPE in
-> the IPQ9574 SoC includes six ethernet ports (6 GMAC and 6 XGMAC), which
-> are used to connect with external PHY devices by PCS. It includes an L2
-> switch function for bridging packets among the 6 ethernet ports and the
-> CPU port. The CPU port enables packet transfer between the ethernet ports
-> and the ARM cores in the SoC, using the ethernet DMA.
-> 
-> The PPE also includes packet processing offload capabilities for various
-> networking functions such as route and bridge flows, VLANs, different
-> tunnel protocols and VPN.
-> 
-> The PPE switch is modeled according to the ethernet switch schema, with
-> additional properties defined for the switch node for interrupts, clocks,
-> resets, interconnects and Ethernet DMA. The switch port node is extended
-> with additional properties for clocks and resets.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> ---
->  .../devicetree/bindings/net/qcom,ipq9574-ppe.yaml  | 529 +++++++++++++++++++++
->  1 file changed, 529 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ipq9574-ppe.yaml b/Documentation/devicetree/bindings/net/qcom,ipq9574-ppe.yaml
-> new file mode 100644
-> index 000000000000..d48169a8ba7c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/qcom,ipq9574-ppe.yaml
-> @@ -0,0 +1,529 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/qcom,ipq9574-ppe.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm IPQ packet process engine (PPE)
-> +
-> +maintainers:
-> +  - Luo Jie <quic_luoj@quicinc.com>
-> +  - Lei Wei <quic_leiwei@quicinc.com>
-> +  - Suruchi Agarwal <quic_suruchia@quicinc.com>
-> +  - Pavithra R <quic_pavir@quicinc.com>
-> +
-> +description: |
-> +  The Ethernet functionality in the PPE (Packet Process Engine) is comprised
-> +  of three components, the switch core, port wrapper and Ethernet DMA.
-> +
-> +  The Switch core in the IPQ9574 PPE has maximum of 6 front panel ports and
-> +  two FIFO interfaces. One of the two FIFO interfaces is used for Ethernet
-> +  port to host CPU communication using Ethernet DMA. The other is used
-> +  communicating to the EIP engine which is used for IPsec offload. On the
-> +  IPQ9574, the PPE includes 6 GMAC/XGMACs that can be connected with external
-> +  Ethernet PHY. Switch core also includes BM (Buffer Management), QM (Queue
-> +  Management) and SCH (Scheduler) modules for supporting the packet processing.
-> +
-> +  The port wrapper provides connections from the 6 GMAC/XGMACS to UNIPHY (PCS)
-> +  supporting various modes such as SGMII/QSGMII/PSGMII/USXGMII/10G-BASER. There
-> +  are 3 UNIPHY (PCS) instances supported on the IPQ9574.
-> +
-> +  Ethernet DMA is used to transmit and receive packets between the six Ethernet
-> +  ports and ARM host CPU.
-> +
-> +  The follow diagram shows the PPE hardware block along with its connectivity
-> +  to the external hardware blocks such clock hardware blocks (CMNPLL, GCC,
-> +  NSS clock controller) and ethernet PCS/PHY blocks. For depicting the PHY
-> +  connectivity, one 4x1 Gbps PHY (QCA8075) and two 10 GBps PHYs are used as an
-> +  example.
-> +
-> +           +---------+
-> +           |  48 MHZ |
-> +           +----+----+
-> +                |(clock)
-> +                v
-> +           +----+----+
-> +    +------| CMN PLL |
-> +    |      +----+----+
-> +    |           |(clock)
-> +    |           v
-> +    |      +----+----+           +----+----+  (clock) +----+----+
-> +    |  +---|  NSSCC  |           |   GCC   |--------->|   MDIO  |
-> +    |  |   +----+----+           +----+----+          +----+----+
-> +    |  |        |(clock & reset)      |(clock)
-> +    |  |        v                     v
-> +    |  |   +----+---------------------+--+----------+----------+---------+
-> +    |  |   |       +-----+               |EDMA FIFO |          | EIP FIFO|
-> +    |  |   |       | SCH |               +----------+          +---------+
-> +    |  |   |       +-----+                        |              |       |
-> +    |  |   |  +------+   +------+               +-------------------+    |
-> +    |  |   |  |  BM  |   |  QM  |  IPQ9574-PPE  |    L2/L3 Process  |    |
-> +    |  |   |  +------+   +------+               +-------------------+    |
-> +    |  |   |                                             |               |
-> +    |  |   | +-------+ +-------+ +-------+ +-------+ +-------+ +-------+ |
-> +    |  |   | |  MAC0 | |  MAC1 | |  MAC2 | |  MAC3 | | XGMAC4| |XGMAC5 | |
-> +    |  |   | +---+---+ +---+---+ +---+---+ +---+---+ +---+---+ +---+---+ |
-> +    |  |   |     |         |         |         |         |         |     |
-> +    |  |   +-----+---------+---------+---------+---------+---------+-----+
-> +    |  |         |         |         |         |         |         |
-> +    |  |     +---+---------+---------+---------+---+ +---+---+ +---+---+
-> +    +--+---->|                PCS0                 | |  PCS1 | | PCS2  |
-> +    |(clock) +---+---------+---------+---------+---+ +---+---+ +---+---+
-> +    |            |         |         |         |         |         |
-> +    |        +---+---------+---------+---------+---+ +---+---+ +---+---+
-> +    +------->|             QCA8075 PHY             | | PHY4  | | PHY5  |
-> +     (clock) +-------------------------------------+ +-------+ +-------+
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,ipq9574-ppe
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: PPE core clock from NSS clock controller
-> +      - description: PPE APB (Advanced Peripheral Bus) clock from NSS clock controller
-> +      - description: PPE ingress process engine clock from NSS clock controller
-> +      - description: PPE BM, QM and scheduler clock from NSS clock controller
+This patch adds support for keys and LEDs on the XIaomi AX3000T.
 
-Drop 'from NSS clock controller'. That's outside the scope of this 
-binding.
+Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+---
+ .../dts/mediatek/mt7981b-xiaomi-ax3000t.dts   | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ppe
-> +      - const: apb
-> +      - const: ipe
-> +      - const: btq
-> +
-> +  resets:
-> +    maxItems: 1
-> +    description: PPE reset, which is necessary before configuring PPE hardware
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: PPE switch miscellaneous interrupt
-> +
-> +  interconnects:
-> +    items:
-> +      - description: Clock path leading to PPE switch core function
-> +      - description: Clock path leading to PPE register access
-> +      - description: Clock path leading to QoS generation
-> +      - description: Clock path leading to timeout reference
-> +      - description: Clock path leading to NSS NOC from memory NOC
-> +      - description: Clock path leading to memory NOC from NSS NOC
-> +      - description: Clock path leading to enhanced memory NOC from NSS NOC
+diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-xiaomi-ax3000t.dts b/arch/arm64/boot/dts/mediatek/mt7981b-xiaomi-ax3000t.dts
+index a314c3e05e50..db399cb3ead7 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7981b-xiaomi-ax3000t.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7981b-xiaomi-ax3000t.dts
+@@ -1,6 +1,9 @@
+ // SPDX-License-Identifier: GPL-2.0-only OR MIT
+ 
+ /dts-v1/;
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
+ 
+ #include "mt7981b.dtsi"
+ 
+@@ -12,4 +15,37 @@ memory@40000000 {
+ 		reg = <0 0x40000000 0 0x10000000>;
+ 		device_type = "memory";
+ 	};
++
++	keys {
++		compatible = "gpio-keys";
++
++		key-mesh {
++			label = "MESH";
++			gpios = <&pio 0 GPIO_ACTIVE_LOW>;
++			linux,code = <BTN_9>;
++			linux,input-type = <EV_SW>;
++		};
++
++		key-reset {
++			label = "RESET";
++			gpios = <&pio 1 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_RESTART>;
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led-0 {
++			color = <LED_COLOR_ID_BLUE>;
++			function = LED_FUNCTION_STATUS;
++			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
++		};
++
++		led-1 {
++			color = <LED_COLOR_ID_YELLOW>;
++			function = LED_FUNCTION_STATUS;
++			gpios = <&pio 10 GPIO_ACTIVE_LOW>;
++		};
++	};
+ };
+-- 
+2.39.5
 
-Clock path? This should be bus interconnect paths.
-
-> +
-> +  interconnect-names:
-> +    items:
-> +      - const: ppe
-> +      - const: ppe_cfg
-> +      - const: qos_gen
-> +      - const: timeout_ref
-> +      - const: nssnoc_memnoc
-> +      - const: memnoc_nssnoc
-> +      - const: memnoc_nssnoc_1
-> +
-> +  ethernet-dma:
-> +    type: object
-> +    additionalProperties: false
-> +    description:
-> +      EDMA (Ethernet DMA) is used to transmit packets between PPE and ARM
-> +      host CPU. There are 32 TX descriptor rings, 32 TX completion rings,
-> +      24 RX descriptor rings and 8 RX fill rings supported.
-> +
-> +    properties:
-> +      clocks:
-> +        items:
-> +          - description: EDMA system clock from NSS Clock Controller
-> +          - description: EDMA APB (Advanced Peripheral Bus) clock from
-> +              NSS Clock Controller
-> +
-> +      clock-names:
-> +        items:
-> +          - const: sys
-> +          - const: apb
-> +
-> +      resets:
-> +        maxItems: 1
-> +        description: EDMA reset from NSS clock controller
-> +
-> +      interrupts:
-> +        minItems: 65
-> +        maxItems: 65
-> +
-> +      interrupt-names:
-> +        minItems: 65
-> +        maxItems: 65
-> +        description:
-> +          Interrupts "txcmpl_[0-31]" are the Ethernet DMA TX completion ring interrupts.
-> +          Interrupts "rxfill_[0-7]" are the Ethernet DMA RX fill ring interrupts.
-> +          Interrupts "rxdesc_[0-23]" are the Ethernet DMA RX Descriptor ring interrupts.
-> +          Interrupt "misc" is the Ethernet DMA miscellaneous error interrupt.
-
-items:
-  oneOf:
-    - pattern: '^txcmpl_([1-2]?[0-9]|3[01])$'
-    - pattern: '^rxfill_[0-7]$'
-    - pattern: '^rxdesc_(1?[0-9]|2[0-3])$'
-    - const: misc
-
-> +
-> +    required:
-> +      - clocks
-> +      - clock-names
-> +      - resets
-> +      - interrupts
-> +      - interrupt-names
-> +
-> +patternProperties:
-> +  "^(ethernet-)?ports$":
-
-New binding, does 'ethernet-' part need to be optional? No.
-
-> +    patternProperties:
-> +      "^ethernet-port@[1-6]+$":
-> +        type: object
-> +        unevaluatedProperties: false
-> +        $ref: ethernet-switch-port.yaml#
-> +
-> +        properties:
-> +          reg:
-> +            minimum: 1
-> +            maximum: 6
-> +            description: PPE Ethernet port ID
-> +
-> +          clocks:
-> +            items:
-> +              - description: Port MAC clock from NSS clock controller
-> +              - description: Port RX clock from NSS clock controller
-> +              - description: Port TX clock from NSS clock controller
-> +
-> +          clock-names:
-> +            items:
-> +              - const: mac
-> +              - const: rx
-> +              - const: tx
-> +
-> +          resets:
-> +            items:
-> +              - description: Port MAC reset from NSS clock controller
-> +              - description: Port RX reset from NSS clock controller
-> +              - description: Port TX reset from NSS clock controller
-> +
-> +          reset-names:
-> +            items:
-> +              - const: mac
-> +              - const: rx
-> +              - const: tx
-> +
-> +        required:
-> +          - reg
-> +          - clocks
-> +          - clock-names
-> +          - resets
-> +          - reset-names
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - interconnects
-> +  - interconnect-names
-> +  - ethernet-dma
-> +
-> +allOf:
-> +  - $ref: ethernet-switch.yaml
-> +
-> +unevaluatedProperties: false
 
