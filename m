@@ -1,181 +1,125 @@
-Return-Path: <devicetree+bounces-198272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F2FB0C361
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 13:41:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61798B0C39F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 13:49:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DC104E012E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:41:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 940E4178D46
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83AF42D3EF1;
-	Mon, 21 Jul 2025 11:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C89B22D0C8E;
+	Mon, 21 Jul 2025 11:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nr6+SyD4"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AEsuE/+y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD0642D3744;
-	Mon, 21 Jul 2025 11:39:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411582BE034;
+	Mon, 21 Jul 2025 11:49:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753097945; cv=none; b=MmOP0dy5h3UFN/QqX7gZbD5bOcopZdA4rEn8lMd99O8dJ2NTWCz8Dn4PROqrWimjq/X01IBQBUJ6jzr3AEQe6lf6qdOWKngXA4ghh29IlHa7x9t1n8EMEmIeY0Z2eCAtwHp+UE0I4SYKxqFQOTlY37vxcEvvFi1RDNb0FaE0zqM=
+	t=1753098546; cv=none; b=OmSP9S2d70EIXbZtHjr8eTo+WNR6Rru5YZq+A6Sy4XjeLjr9IRSz+2qW3hphA3mTJHiW+V/eGISJKH99VaAENGOMd2L18XacHZy2KOyHtk51dCw/0MyCPle1pKpJlVjN4RUwfDzQewhmbdr8HzusS/7nznRIWYdXAi2qF8uCjpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753097945; c=relaxed/simple;
-	bh=Jj2hjt/p/kDW9rpYHB1UHsSQqtiClT24invxFV5SBzM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MFGEkMkgFkeGH++SK+jr1u4aVFY00uMdkhpiCTbhaHcQBVAIEV6yOqmyGOtoO6C9XQ7GYfJcpfxoel2mx+RQiJfsCdMKf3z0wGnIMlol4ivHJsT+xuVaiW+/pF44qlhp3efDjzr2fKripfQOmNQH7veJ+kBb4sydeIF2gbL8U9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nr6+SyD4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2608CC4CEED;
-	Mon, 21 Jul 2025 11:39:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753097944;
-	bh=Jj2hjt/p/kDW9rpYHB1UHsSQqtiClT24invxFV5SBzM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nr6+SyD4lomAnh2RT38WToMmEjmMRbDzmi37dpqeJ7iEPfLPLaFsI9i6VOZ0s/Ugz
-	 xOnlH1kTaNejHt3JZ/RqAquuBEVBwujgnYK7Vy4BleOGZypUbj5WFOpy0C1BcZRskW
-	 UOhS67Rp9hlaUQHQeh60XH+YB4YPZfjJKvW06mQkzjxGTYTK3IJe/YX8icsJCLJdWF
-	 aa3WjzmrZ6CZD/Yw/8wdMm0K7hT8sS7cKa/xwUl9BXntObfAVL6OgEbSEEUsYSpWvv
-	 BAv3oQWppCvX8Xkw0jy4RrR+dy1bXMr/al2107xbYEn/hFsMD1yrX+wj4/catLuXv6
-	 0S9K25w2OjnMA==
-Message-ID: <2d7707cc-0a49-47a6-b222-9032f08bac0c@kernel.org>
-Date: Mon, 21 Jul 2025 13:38:59 +0200
+	s=arc-20240116; t=1753098546; c=relaxed/simple;
+	bh=1USdMMY/Dt/apuRlYWAJH3O/Cgl8c0BbbIsXoxHC+dI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oRwcWuJPCYRodBQeIgyQ7xFixC+RC5hgohvLYC++z+DUfAMrvf0cUf5eHt/wtf9P/gcsBtZ14QAssnFXCt9J/+E0pEmjXp/YI+Y3DK5foYPQHyjRb5/u/osdUkBcUNVmhnTWRfp3K+j9K99SSK1xdrV5PdBg7JHJzPl691oxxlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AEsuE/+y; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1753098545; x=1784634545;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1USdMMY/Dt/apuRlYWAJH3O/Cgl8c0BbbIsXoxHC+dI=;
+  b=AEsuE/+yu7Xq15WP23VKbeATL4pd1brdrK7gVifI1L/1tP5tRHoy58Ky
+   gfK0wrAZ0Dk1yJBZSAvWwdmp/GcKFsusradgZvpLI0ZQLiKCp1ukQcRu2
+   +2klVVBhOA/l4udaubgJs4CLw+DVC5XA+iTBt8bxDkW9Co0kN5IchdM3l
+   smOYVPyWy8fQr0vARXh/ajJP92FWm+fNhDlwpA3aTPdEOIHHbysN2gcnT
+   x+7vMqTum9Wfc0k/waSPKUo/jIXiQcb+cMkm/v+PXOFjVIWPK0w2W1BwF
+   5EijLadxvINteR83MUXnCciUuMaLYftzVwzzdhoJ0fT30FUTMRGVueg3+
+   Q==;
+X-CSE-ConnectionGUID: J9DizsDUT86o5KfT/tmLLQ==
+X-CSE-MsgGUID: sCwVmAMkRLyAXTBYzD/K6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11498"; a="66658697"
+X-IronPort-AV: E=Sophos;i="6.16,328,1744095600"; 
+   d="scan'208";a="66658697"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 04:49:05 -0700
+X-CSE-ConnectionGUID: dKMeJe5pRzKtObbPfE5X+w==
+X-CSE-MsgGUID: 5Wx/00ziQcy5MG7/QHr0Lw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,329,1744095600"; 
+   d="scan'208";a="189771909"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO svinhufvud.fi.intel.com) ([10.245.244.75])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 04:48:35 -0700
+Received: from svinhufvud (localhost [IPv6:::1])
+	by svinhufvud.fi.intel.com (Postfix) with ESMTPS id 53E0E41826;
+	Mon, 21 Jul 2025 14:48:32 +0300 (EEST)
+Date: Mon, 21 Jul 2025 14:48:30 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Mehdi Djait <mehdi.djait@linux.intel.com>
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] media: i2c: Add OmniVision OV6211 image sensor driver
+Message-ID: <aH4pDtoBuQYZgyZS@svinhufvud>
+References: <20250717124001.108486-1-vladimir.zapolskiy@linaro.org>
+ <20250717124001.108486-3-vladimir.zapolskiy@linaro.org>
+ <175276139540.560048.14744394485094549778@ping.linuxembedded.co.uk>
+ <CAPY8ntCiKFFdfepqW0ms_0dhCtJJCwJoT=bxmJ5i0K254i6fkA@mail.gmail.com>
+ <7bb16a20-166a-477d-a103-a00fe83ecb66@linaro.org>
+ <6w5vwjdhs2mbidaadzkkwx32rr6fkfqgrjlvbu7kvcre34rmn2@qifmnxaertxo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: remoteproc: qcom,milos-pas: Document
- remoteprocs
-To: Peng Fan <peng.fan@oss.nxp.com>, Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250709-sm7635-remoteprocs-v3-0-c943be976180@fairphone.com>
- <20250709-sm7635-remoteprocs-v3-1-c943be976180@fairphone.com>
- <20250721064256.GB4844@nxa18884-linux.ap.freescale.net>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250721064256.GB4844@nxa18884-linux.ap.freescale.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6w5vwjdhs2mbidaadzkkwx32rr6fkfqgrjlvbu7kvcre34rmn2@qifmnxaertxo>
 
-On 21/07/2025 08:42, Peng Fan wrote:
->> +
->> +  interrupt-names:
->> +    minItems: 6
->> +    maxItems: 6
-> 
-> Ditto.
-> 
-> Do you need to define the list?
+Hi Mehdi, Vladimir,
 
+On Mon, Jul 21, 2025 at 12:38:28PM +0200, Mehdi Djait wrote:
+> It has already been reviewed but yes still not in the media tree.
+> Too late for 6.17 but it will be in the media tree soon.
 
-Did you read the entire binding? It reminds me Frank's comment as well -
-instead of actually checking you just ask question which you would find
-answer by yourselves if you really opened the code.
+I'll send a PR including that once we have next rc1 in the media tree.
 
 > 
->> +
->> +  qcom,qmp:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description: Reference to the AOSS side-channel message RAM.
->> +
->> +  smd-edge: false
->> +
->> +  firmware-name:
->> +    $ref: /schemas/types.yaml#/definitions/string-array
->> +    minItems: 1
->> +    items:
->> +      - description: Firmware name of the Hexagon core
->> +      - description: Firmware name of the Hexagon Devicetree
->> +
->> +  memory-region:
->> +    minItems: 1
->> +    items:
->> +      - description: Memory region for core Firmware authentication
->> +      - description: Memory region for Devicetree Firmware authentication
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - memory-region
->> +
->> +allOf:
->> +  - $ref: /schemas/remoteproc/qcom,pas-common.yaml#
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - qcom,milos-adsp-pas
->> +            - qcom,milos-cdsp-pas
->> +    then:
->> +      properties:
->> +        memory-region:
->> +          minItems: 2
->> +          maxItems: 2
->> +        firmware-name:
->> +          minItems: 2
->> +          maxItems: 2
+> > 2. the only needed change to get support of the new helper is to replace
+> > the single line of devm_clk_get_optional() with devm_v4l2_sensor_clk_get(),
+> > no more than that,
+> > 
 > 
-> Just keep minItems if maxItems is same value.
+> Correct.
+> 
+> > 3. the internal complexity of devm_v4l2_sensor_clk_get() seems excessive
+> > right over here, what's worse I can not test devm_v4l2_sensor_clk_get()
+> > in this driver on any ACPI platform...
+> > 
+> 
+> You don't need to test it on a ACPI-based platform to use the helper, if
+> it works for your DT-based platform that's enough.
 
+Agreed.
 
-This is not a correct advice.
+-- 
+Kind regards,
 
-
-Best regards,
-Krzysztof
+Sakari Ailus
 
