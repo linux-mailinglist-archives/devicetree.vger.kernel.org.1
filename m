@@ -1,147 +1,163 @@
-Return-Path: <devicetree+bounces-198263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D72DB0C2C0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 13:22:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF390B0C281
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 13:17:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE2851AA094B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:22:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C51E53ABC46
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:16:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEF7E2BD58C;
-	Mon, 21 Jul 2025 11:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F77A284685;
+	Mon, 21 Jul 2025 11:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="f5nmHjvn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vKdIE93M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0448129E108;
-	Mon, 21 Jul 2025 11:21:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B9461AA7BF;
+	Mon, 21 Jul 2025 11:16:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753096872; cv=none; b=hfc9fzs5E/AdykevIvobucCg7O21p2x6hgWZ2anoePUQJsHXTRhuZ4pFNaoZBtcaJTtbUOWvzSCm75dmHvYt1TrSrKqjBV8W0oWbAUkwaFolF6h6Ghz1WWctn8ZRQ2SKtP2+cUgbqQHg41Pu+jtglPrYicIukgHLzv9A1VMVbf4=
+	t=1753096611; cv=none; b=HexAF9TpHRhEfo/h0OHcW4eQePisKCo15yXvUWCJitGrMzUas24DlbHcxNL7rb2YNyLXBUXyG22vuelF4rMTpF86eDA7nkykT8n/cXMCnTNb6zft/joIYlL/vrSbwLseTwvjL0leGVtYDWtLA+6q9X330IDrPRE6w0NNmWQBOh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753096872; c=relaxed/simple;
-	bh=5zlOyseGY2a12mIH0pp7n82/QDRPL8mVnq+tTRpVY5E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=WA4XJatsGr3ipYt20ntLX6PkeSVlOeTExU5J7pHtdPMIUkJK+PLPExyAlFWenE7tupZKxgx/yURYBIlfJMl7iZeXJ9EkRphMD3ItJhB4tv/errA+NN+lrW0v0g/vjGZ167L++j4ptaVETKgqkL2C3R4aZiC8vIm6gxJ7RQiy0/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=f5nmHjvn; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56LB6qGI018077;
-	Mon, 21 Jul 2025 13:20:46 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	fPGrfqg8UaxEktjEHfSecm4NyduW08Yu5c4nY2o6pg8=; b=f5nmHjvn4IpzkOBS
-	T9BjLS6WLAVsGTndvlbqeiKu7xeh5SADJr8xPJLXgSfi/P2ENunRwsTEZDACrdxD
-	ouQqSNZPnjGvjDOFf+u6DBzYv0jNWJof5JbchdAFj4K822olnI8syeC8wnRC2h4Z
-	u/C2Cwp0tFPnc6wjYWwhUdvlsLtM9da3Ihrh2NHTA3Wy6LYdZMGM/KJcyD+Os/C5
-	V9pWZnJLpC2Mz9D9qnl1/EZzDHpaRZr8OwHjWtP2CsGRgAq1Ek/zw/bJnRV1kaiY
-	K+4L7jMeTv2C6BQb2XjpRsq840oxFe0Slp3dCpbHvwOklXQoL/grEClMYXpU+2Er
-	afmK9g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4802q20mm9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Jul 2025 13:20:46 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D2AAA40052;
-	Mon, 21 Jul 2025 13:19:07 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 119277A16E0;
-	Mon, 21 Jul 2025 13:17:49 +0200 (CEST)
-Received: from localhost (10.48.87.141) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 21 Jul
- 2025 13:17:48 +0200
-From: Gatien Chevallier <gatien.chevallier@foss.st.com>
-Date: Mon, 21 Jul 2025 13:14:46 +0200
-Subject: [PATCH net-next 4/4] arm: dts: st: activate ETH1 WoL from PHY on
- stm32mp135f-dk
+	s=arc-20240116; t=1753096611; c=relaxed/simple;
+	bh=55EhzGIl81BP/e7L8TVkPpybBa7KDMQqGBs45xJUNqY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IgUlGIT+SYXW/4dD58iBdT6zzfwgFk2PEE+vEoHah0c5YQSQvOnr0UezRiLsdGcNm3IdM1438RUTszXg0HnphRPa3YIbugzBrZdrVkgU15glEN6t8KWGxkHmxRelSKJ9umLmwTAfohzLmfqMS6jdh/1Of2ap7HhfuMCxI1ly200=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vKdIE93M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A4ADC4CEED;
+	Mon, 21 Jul 2025 11:16:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753096610;
+	bh=55EhzGIl81BP/e7L8TVkPpybBa7KDMQqGBs45xJUNqY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=vKdIE93MdcqylLptkpAws2ZqEORF6AbVFRK/+0xvYuplEmUQr9+H0weorESD4VwoV
+	 POt+1a/4oUa7TqHNx9918kuj6/Qp09kKiBD5Fu8fKglNJ/TScMahk60npcV6j46VXm
+	 Aeie44glcpuKjf5gIa/wX7J9JSA8waSs8XoojHHrNHchymgL04CYmxRvmsgxuOHd6Q
+	 FAt8CKEdRPOG9ehNRGIG1lYCu8ijs9NGpPkl/i8D/D/bXXCYtcxzHfPaKg8xrdxFzw
+	 RhdbXKSlNmu948edHaUPNUVugvYc4EXni0qdPM6cadZXxzdpbhfhiYGBrP7C5LhB7t
+	 HggqBJ63go/+A==
+Message-ID: <4f57cca8-49a8-4431-b41c-78097eb11da9@kernel.org>
+Date: Mon, 21 Jul 2025 13:16:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/3] dt-bindings: leds: is31fl32xx: convert the binding
+ to yaml
+To: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>,
+ Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org,
+ Lucca Fachinetti <luccafachinetti@gmail.com>
+References: <20250721-leds-is31fl3236a-v5-0-264e841f4da9@thegoodpenguin.co.uk>
+ <20250721-leds-is31fl3236a-v5-1-264e841f4da9@thegoodpenguin.co.uk>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250721-leds-is31fl3236a-v5-1-264e841f4da9@thegoodpenguin.co.uk>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250721-wol-smsc-phy-v1-4-89d262812dba@foss.st.com>
-References: <20250721-wol-smsc-phy-v1-0-89d262812dba@foss.st.com>
-In-Reply-To: <20250721-wol-smsc-phy-v1-0-89d262812dba@foss.st.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>,
-        Andrew Lunn <andrew@lunn.ch>, Heiner
- Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, Simon
- Horman <horms@kernel.org>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        Florian
- Fainelli <florian.fainelli@broadcom.com>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Gatien Chevallier <gatien.chevallier@foss.st.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=731;
- i=gatien.chevallier@foss.st.com; h=from:subject:message-id;
- bh=5zlOyseGY2a12mIH0pp7n82/QDRPL8mVnq+tTRpVY5E=;
- b=owEB7QES/pANAwAKAar3Rq6G8cMoAcsmYgBofiHZMUPjiV5/QfVT9gWzWZYWZtjpH9vw1Lm1Z
- fKGFiG/opGJAbMEAAEKAB0WIQRuDsu+jpEBc9gaoV2q90auhvHDKAUCaH4h2QAKCRCq90auhvHD
- KJxPDACVprDiGGi6h62GgbvAIbaolnGJjbtI3aAQUy0LzF8zbEIgUY/GruoXoMtHLOEpIYWosco
- R3udACN4dTSARxGTXGEB09/s/QQ7gsm4JnJ+pT3zGPghDKb4fZrrDkXfBjYQfUoayN8dn0HylCt
- 1RsKyLZ8HNqbeqcvQSyCugjKrXUqnsMqXs/t326ToQAGXcdPKl2uy/NeiCijpFaaA/Hgclwjdsk
- 9CXiEHYIrLdTZJd2PaBBlOpd3thUXZZAEwmhboqZhJKzn4j3wSLMcCkSnWZXB6JYQhoo3u1XdYb
- z+THksSe77k6vlhS809zwnHywkwT70Zfk4Wouje8pe8bvTFIlPHOafNqXcPSNdfBxQJTolTWk6i
- 1QcO2iPovhd8SYHyH475smn4qm8Z9OWsPY1eKaOHsP1d+zDjIDsVoGrvhsch6XX3kHey72ksXzq
- PzHgTqYnPaXdoScj8smDS94Q8EbUpPAHGbJpsmLRb7iKEbpKk7Odx0ALbdu1S38J8IosI=
-X-Developer-Key: i=gatien.chevallier@foss.st.com; a=openpgp;
- fpr=6E0ECBBE8E910173D81AA15DAAF746AE86F1C328
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-21_03,2025-07-21_01,2025-03-28_01
 
-On this board, the ETH1 supports WoL from PHY. Add the "st,phy-wol"
-property to support it.
+On 21/07/2025 12:55, Pawel Zalewski wrote:
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - issi,is31fl3236
+> +      - issi,is31fl3235
+> +      - issi,is31fl3218
+> +      - issi,is31fl3216
 
-Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
----
- arch/arm/boot/dts/st/stm32mp135f-dk.dts | 1 +
- 1 file changed, 1 insertion(+)
+Keep alphabetical order.
 
-diff --git a/arch/arm/boot/dts/st/stm32mp135f-dk.dts b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-index 9764a6bfa5b428c8524a5902c10b7807dda46b3d..d746424b039013759bfbcce5193a701ff775e715 100644
---- a/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-+++ b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
-@@ -193,6 +193,7 @@ &ethernet1 {
- 	pinctrl-names = "default", "sleep";
- 	phy-mode = "rmii";
- 	phy-handle = <&phy0_eth1>;
-+	st,phy-wol;
- 
- 	mdio {
- 		#address-cells = <1>;
+> +      - si-en,sn3218
+> +      - si-en,sn3216
 
--- 
-2.35.3
+Here as well.
 
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^led@[1-9a-f][0-9a-f]*$":
+
+This still does not match min/max constraints. You already got the
+comment on this and nothing improved.
+
+> +    type: object
+> +    $ref: common.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        description:
+> +          LED channel number (1..N)
+> +        minimum: 0x1
+> +        maximum: 0x24
+
+And these are supposed to be decimal.
+
+
+Best regards,
+Krzysztof
 
