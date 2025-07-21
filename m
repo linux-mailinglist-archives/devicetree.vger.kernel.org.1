@@ -1,257 +1,685 @@
-Return-Path: <devicetree+bounces-198286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 341E6B0C40F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE53FB0C55D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 15:39:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C4F93BE8A9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:26:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42E494E0EAF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 13:39:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9042D3EC6;
-	Mon, 21 Jul 2025 12:26:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 232902D94AA;
+	Mon, 21 Jul 2025 13:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="ncOqW8X9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YMEmf8BM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011008.outbound.protection.outlook.com [40.107.130.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29BAA3C0C;
-	Mon, 21 Jul 2025 12:26:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753100796; cv=fail; b=LkhY6QoiFy+l8A9m3/NCDcdDLdRxR1Il6CvctVunCoyG0AKAGvX63RNKqnzZcqLxqdNUqT0t4Dp9fTjmRg23Xn9k6TLOHUhnibAIWtSW+FYgR1ICr+pSBmlr8/tGNPt+sxNTFZJ+KeVXR99BZ0jyd+/x/ZWa9oSUUEAzbq4kjpg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753100796; c=relaxed/simple;
-	bh=uu2qiwgtlP5QiTwPszxmRCFsDVVzqsVuAPqk3oVF1t4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=PKIxMJL4K4nhqJSm5psRQVLhohc4WtYixtzSow3AVfe4i4nEGxblGeSqozSVxw1Zc329eLE++oLcwE2BlrDc7ioPolZf0ZFcHmdiU2LEyOQm68ribdayCn1kJxZrwpb1FQRWhrst/ABfNu7oqBagw8ET78OK5oOCB6uqUasAe/w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=ncOqW8X9; arc=fail smtp.client-ip=40.107.130.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=w3GZNER4hoZrIIL5iWXmmUEsIcdAcbXkfr1zTm03QerXKXLYMfjDFxXouvdOvihkDvY09bAHAtiiLPhD6/CtRchVZ3q9WWfSHBtg4YwzsriLZ/tynOxdlyZOmbbKpasqAM/U7vd6RuuLbfJirD+PMnBakSTTTrPW+Tw31bs4ZsjJjIHKoc1dQLAUKM5+qUYIhyHQBrN3YtS0ZeaYHuosdtEOmnk/ihQpj3E3hU2RdHWGDPAri9MLkRhIDTsuUApnXUzfGB6qD3ypjkuzE3VKlX5nkDh797l9FziLEDW1CibqTmfkcTCaOozNjAXrMEHAYefgwPWcctL7jMsrxAq9zw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=piJwhJQ919phfQ5OxKysnUVS95zLVy0Ri9N7o+nxZk8=;
- b=nepNABozmhIK0AupjAxA/cWFW8tP5GHGajUxVRB6dsDZfG1qtVm4qqlmtMpNAXfnK6WpjOkfWXkQ+tEeWnIXtaBuP4/9hHmEue8AMRoWw7uiFU7FXMqncXqUMEV5Mo1BsQ4G0pbdBzeQHh4+NbyrlwwvLCO72FZINR5q4NGy4IOQKK3K49VnX3t3dkiUDOI2zx5s+6xDwINLRG5npFAWkCAUfZGPQARU3PP//e9guinkB4Yzr1Y3Oo5DkVNPX2o4OkKIPT87H2nmcIHuCGZMeOHW73+HyxcBmi2RMlz6WGd3+1lqDYYHdDIZDBZU9n2+oG4adEJ92HGKfZSSYlHMJQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=piJwhJQ919phfQ5OxKysnUVS95zLVy0Ri9N7o+nxZk8=;
- b=ncOqW8X9REHPBpnaNc/oA8hP+GDzv24TPV6a7K9QmOSeXsm58uyq7v/+W9r7vdQjqd050W2l7YFnXwI2FpbVbt1kEipZ75JNa5k/qVKfYpekYq8TdtcSDG73tD07ct5qPjgvxSybSBZeMknH10LIRVp/xqB6gLKABOZFdbKaIDhghyBb5I8p3mTD+zocfDIcoJGPZaHBwA/QIGUa+9GO5srju+RDe4l00aUDAPEOeFhcnBWM8dQOmpdrP4rrbaOmCzQylsiUnNSYEROiG9xNUEuAixMe3mqAxyam19927phX/S9V45i/YY0mQsQGzPnr1NJovNQ1rM+nNz7asP+EaA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by DB9PR04MB9260.eurprd04.prod.outlook.com (2603:10a6:10:370::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Mon, 21 Jul
- 2025 12:26:30 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%7]) with mapi id 15.20.8943.029; Mon, 21 Jul 2025
- 12:26:30 +0000
-Date: Mon, 21 Jul 2025 21:36:56 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
-	Frank Li <frank.li@nxp.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Abel Vesa <abel.vesa@linaro.org>
-Subject: Re: [PATCH v3 6/6] arm64: dts: imx943: Add LVDS/DISPLAY CSR nodes
-Message-ID: <20250721133656.GB27698@nxa18884-linux.ap.freescale.net>
-References: <20250707-imx95-blk-ctl-7-1-v3-0-c1b676ec13be@nxp.com>
- <20250707-imx95-blk-ctl-7-1-v3-6-c1b676ec13be@nxp.com>
- <o4sxmotqixib4tqbvjb5m3l6tnbwbjzodywla4ezf66zmwd2t2@5bd27bkfnsy2>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <o4sxmotqixib4tqbvjb5m3l6tnbwbjzodywla4ezf66zmwd2t2@5bd27bkfnsy2>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-ClientProxiedBy: MA0PR01CA0049.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ac::10) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7AB2D8DD3
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 13:39:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753105186; cv=none; b=AmT6M3paHdMoKUhZHhUxnK5Fzza/z9jWnmlxKKNRgyD9LDSpTX0DyXbmVcxUj1kdNSj9wwn7BM/FWFjAgVA8DtnWZNmoU+L9YzHorne9eVhFVNrbfEm9vXsGE/dOU58cFkaSepVGiGRkBxyf3MX9Mxs7wW8J+h+6yjpOzwu97PY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753105186; c=relaxed/simple;
+	bh=2eNDLn+YyCIwsq1Es5lp0mqYeCo60XI8pnUkjNeuZn4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GMjyfARtcvsohmuMz+HlvR78pgctGbYYd6QNJPuKLk2qqH3D+/kmx+adiOnV3NA1sGsUeOrc+uvWLyx0f6xzcetPAQ7E3QrSHy95/7+hLBBXThqZijKSufC1abuGA0kyYOvPENb6aoVNxC38kNuo39Dme3MUEhs2SeYHRcFFhTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YMEmf8BM; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-747e41d5469so4649334b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 06:39:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753105182; x=1753709982; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WU+koiRvPpWM3Lk9QRY8XW0AvpkpTpJai/G97RsHcJc=;
+        b=YMEmf8BMoIS/Lj62OhgZC9Fjt1M2AUZI2XNFgW1or6euA5Z23sVmDIuuN8hf33tABO
+         CBNWE+4yQV52gBwpQIe4ruipmO0JEVDNW4iU8+w5Z+aer1gyfsSv7r3XC/Nb/GlNQ9mx
+         kmcQA4vyyiFKkhYHL1zx7sn8gaz5WKhoy1ALD4VyZOHr8ofOO01Wb44P7Glu1jPW61ha
+         CYKtp0Et9qzQ3HJH+e9NM9DVvYKu1KNeHucT8sSNP/hWRZOq8yK296YdcsaT168p9rAK
+         XvRXglTsNlACI9iN1vO/rLecruMOQHRh6ixaRGutm1CDzK20ZzDzhonpGQpSW1vVbBVR
+         f7Vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753105182; x=1753709982;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WU+koiRvPpWM3Lk9QRY8XW0AvpkpTpJai/G97RsHcJc=;
+        b=GV/s4DzNqLXWWKwsJYnMNtaVVxh1P7NpOcqKwXO3Hd6TPS8kNMs/McILtqF0RxlHOH
+         E8AEKbEfsYrNO+TJ+SzBUvnLiFRQOwIW7dpmobUipHj9gvJ+Ien9j09mQwnseFk2UMsp
+         O7NvyGNwzg2B8xFi9Ng4jW2ka4K8aZ8u1eN/zi+yDNyAUJV9K1exrNK/+PU40iw/gllF
+         iZjN1756UhhJlzCjkhKtAXTB4w9ygjjURCctGZJjBhfOQF+7lKslovOYty+pxMyiL4W0
+         PV/eSbes9IuV04/OgDqG6uLp49QHdaeBGSs+IJOA7I+/wh3lP8AGHUHWevTL7sFzrCGH
+         qcmA==
+X-Forwarded-Encrypted: i=1; AJvYcCUhdiCVMPFrl0AtmNnvHynQBuA8EOqCDq2C0m0HT9FRFWAF1kciXMx1P7gZ7FbeuEbY6X+XDsAWOzPX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdKdTqHaG2nyzGw7iLaAc/P39XsrDyWORPumI6ZhN5D4z155aN
+	biIGwq0fbd9ChX3pqn8ePy1K5K8oiPN6n43FnQMwBXemyQNY0z8VOzl6ShnkLQfguq7P7uHAfD/
+	MjAFr4DBt8M+HKxxkzKEYGp7c8Zj/6OpwBm38hzJwQA==
+X-Gm-Gg: ASbGncsRilgoOyGaGk/r2EsB+xdShF98UOigSrO4Pg6ErqdJCOSUheLduaF5ZTnFJ5u
+	6/D+2CHqOKlrRWzcbZ++DWeT00DURkhiekxHjDUXpVCpa30PM3ZeKB3PwVqxVEroL5wok1xwIc8
+	focrBZqmsvaVZnKLExNcLG7+S5M8jGoX4ZkNSiJk37hyM2zBr6XxKztFI3YwAgC4YN0V1dYt2Z6
+	z/yvgmijByo3hgRFbU=
+X-Google-Smtp-Source: AGHT+IGAAtNUaXs33zAFno+P1tBKfElss1sdbqjfD7O5kTD+3hr1k7nPaHkkJvFCQeb8pIhtCClyTPIur4xOw4C8PxE=
+X-Received: by 2002:a05:6a20:3948:b0:220:4750:1fb1 with SMTP id
+ adf61e73a8af0-23810d560admr32797105637.4.1753105182347; Mon, 21 Jul 2025
+ 06:39:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|DB9PR04MB9260:EE_
-X-MS-Office365-Filtering-Correlation-Id: 04c5fd78-7281-40eb-9c72-08ddc851d20e
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|19092799006|376014|52116014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?3kU+bgdIxyYZ23kfFxyAJxpJzyrLOsxvo4WL2pcynqveTmk1/oGmilXIdkP6?=
- =?us-ascii?Q?PC7WrYxpvgD2egRBdaSnzhTDe0Pv8s+EgToY9+rS6acnlya10LPExao2hw+u?=
- =?us-ascii?Q?ee+3G2QVk1m3sZVo6W0cuqBQpgr8ikiDrWKJfKqN75G3RqgJQDjKVqmu7cLn?=
- =?us-ascii?Q?asJyCg1cWdVN9BMel5iecFZHMrRaXhOd508GXy094yVHuwC09XrOs1pFpHQk?=
- =?us-ascii?Q?EggQ/i2hh76vCZRMHwOXLN5FVBxEZz1zPWI+UPIUNkIh2WCMmjKOSDc4p5fr?=
- =?us-ascii?Q?rTgoc+N99PedX6Rh7VaUCNmM6FXqXVtlDq/kPBfJDLWnpuf8JVu6CSkmO/L3?=
- =?us-ascii?Q?NTpeEuSYrUVJ+KyhxGaob8BLHbOrvP+2MQBXa8QbxbEzotSCGj1dEu+14T2i?=
- =?us-ascii?Q?hr9IHhyTdR0vWBNjZRDGCP3sCoeZHEDkw4+GGiqpJG7LqLaXj24hwzIkW4Sa?=
- =?us-ascii?Q?UN9WtTsiS+GrQfLOaRu95QnUHU6m9idbmaPfhdK+nuvuizc/ftI2wiCgGejO?=
- =?us-ascii?Q?kHwD8rGmhplJIgIYbnG+UHdXfSXT3oS7PfOAH/dWfFMVSqpvWGTScrEhUkJA?=
- =?us-ascii?Q?fSBaqcV9ule9uwJa6isqxekQA3276dyv8UxjZyZxk/NyOWKffmt2OSsMYcGE?=
- =?us-ascii?Q?tB/MkQMty8e1IWeiDXgmuA1P4a72LVVz2HJDHrCS/G2/ZvVrlzjjoo1xg3qI?=
- =?us-ascii?Q?GN8drObklwtUfpDXPiiYJkPBCnCSDBUkFlwyh4mqCVhXS/miBE7hWuAw/I/t?=
- =?us-ascii?Q?S6/lLX36k3u3+gQVnbCed3ebP7lmH9jjoFzJnzKyJ8HyHBrkkA57J/ajsSBc?=
- =?us-ascii?Q?svCzoBbccOslNIYU+o9YxCz8MAUUOUdAQtBv+685xXGM+eBatW6zKYeXpfTA?=
- =?us-ascii?Q?9Y8FR1EPA/ftLS4buuR0FmBTu3og0aeUMznh1xYVD+2mUByGEsX9hNpki0OR?=
- =?us-ascii?Q?rwf2yZtiUh3N8BMGeXdxgRINCgzOzrF5XNmPHgczCdHCe7u40wDZ/t0IyOcw?=
- =?us-ascii?Q?stxYSS7SZ7kKpIOIbGTqY2PJ/IErOj/VpEoumWG8f4McphExtIe8/vbaRMU8?=
- =?us-ascii?Q?tzJTVqYTG2OVjezc1fjxVcT79Zg6LXHCY0X5L4xhxb1dWxsDC2K5D8FhFMW7?=
- =?us-ascii?Q?yPvGokICgShL3tIqmIljKHnio8EYhgRNdEpY0HRecTwBiSwqGEJdxQUwU5S/?=
- =?us-ascii?Q?PC2uKymHFLYlRQMRXYg4xTLXYQ1CmJrG2GUfwhnFxm5/T8J29GomJIft6faK?=
- =?us-ascii?Q?tXmVi1C+2VCPsERSlF0at1OkO9awp9afx29SXVFBrDK3uxtT37eloBbWHXmC?=
- =?us-ascii?Q?epeQ531C3rKrF8u7edn898EXyLt4WqTn8geJdrt8bLAosSWU28avD1mU/ERT?=
- =?us-ascii?Q?XwKbOrFAm1BZVMLxjnggb29311Z/YaslYThzRJkfgltNw6e08BkfmRQ0KVnm?=
- =?us-ascii?Q?rzLud1EwWRGVMRN8l8HDbvP88FMelWdZ1/o/9MEXuPrr56yzDYVnmg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?xGTloRC7j/PNmuV3/AfGeKY25rlk7Yr4pQuSe4i6KXfB/aRkSGOcHJN3a5ng?=
- =?us-ascii?Q?HVwgXP+lhdvd6xp/RjnRJzojDcjzXCCDh6orkMyTCodEN2tixajETj7kAjLw?=
- =?us-ascii?Q?vnBgHFfyXcb4i4nZpgEnPGYz+nUM22EyPl1YAbobmdxLfVL+7QRmSL74/Dg9?=
- =?us-ascii?Q?nKQBP3X/4WcHHZ/qPRNopnIwlLewzppU1jBLRkAwTwnBcm1BYEbAR6xrNcH7?=
- =?us-ascii?Q?gc4uVlIsR6Lb44RZtnxKvAR7FYnLjVP87SLfWJr/+/f4ORlPN8mtWPUJzjLv?=
- =?us-ascii?Q?zrt9DRfXJtA8aw8gdAl6m2esTtjSxTZNpRZyfbmqBbmYLQjbf5nok/LWsCPB?=
- =?us-ascii?Q?UQRFEdWLTdaMZnkeuf2YbQ3DQsbEYEsd9QDPCprksQRRrEOkduAOVHNLo2fW?=
- =?us-ascii?Q?TfW/WI0JpLdxxwGL8oNObXttbercWV4OSBaK1NfQZbLtzQxtKUhQklDo0Pfi?=
- =?us-ascii?Q?VjFPcxopoaEeHFCC5BNsrd3IP+Xbd0W1HrtAzFXrvrUU3Q3g1EUYUwmoNIBZ?=
- =?us-ascii?Q?03MJJpHa82j0NN0cKGXWoPSMEPanDJXlv/BckfUISMcHoU0pjzaNlktGSu93?=
- =?us-ascii?Q?JaOUJ3K8x+TLWhJ8tSRq8k5z04L/LhwbHsqHDwZFIxEAuf5OnfDHZciJDScT?=
- =?us-ascii?Q?edyyNR7YXHoBdFjRypLH9SyNNitul4fi4m98ilamEMEGjwCCtzG8KH28Nl0o?=
- =?us-ascii?Q?CjGxVyc78Yya94DqL3ORj3L6iuseM0b/U2h91jvS74Mee7aAjuNwFeKcpbb4?=
- =?us-ascii?Q?/D6zLMG6Wx9iwSMiJd6Qw0U3E6JwbVFOAg3q53HvY3NBkEV+NY4cVJqJmoxB?=
- =?us-ascii?Q?5GOuguuP80I+cxE8ynrRRlrGFcUcqLV4UWAp3rL0ZwQDZwCjnZnyNvdDIoVz?=
- =?us-ascii?Q?VskgRCeUfA5rJL5pAV5SQr1HPCa548HZoyPpq1yhSRspB7PMHWhkFv7+NTug?=
- =?us-ascii?Q?PH9LklERc0NRqk2o5a5osPVccosQy/7zi4JUscGGHZKzVWdR8X58EzolzSB0?=
- =?us-ascii?Q?OoMnKQcaV82AKzixluRBz3ExQGa+ouhXZPj3NterAdAHooSQH4uOt4AiceFq?=
- =?us-ascii?Q?AsGNYpc+5/oWzMSOXRVk+aS35IweW8++cNil5kK1zd1VIPPk1LX+hFyecmyV?=
- =?us-ascii?Q?EbWhwp9JRnqDuLwDf3CztdcOmP6sGT8l31eWzgyuVOyonKP8N82HrQzKlS41?=
- =?us-ascii?Q?2yux2HYaGKjUSVgjNIbOK/RCCYQ5mo/nVwy5/gYaGP/FEW9JwyW8eUjlsVPF?=
- =?us-ascii?Q?Z2RhiV9dtoCDSrdu+YL5HY1Gx/l/tAbDgbOQQCdPQXUgfDDQ9Jl0dbF6X9Yj?=
- =?us-ascii?Q?20jACZzylR4vK3Dvp6UeRvMNOB3ySJuS07AL6rr6yHkDoOBVQ3q08A0c/eCs?=
- =?us-ascii?Q?ImS8BqrxKLE1nZzz8sdIUEOKCv2R7uG08IwIWQo87w3yFdke/78Dr2HfWLph?=
- =?us-ascii?Q?PADCSoOuucf+m77AIX5wZ1+RrMftR2Oa6ZUlzSrTS7ryQ02jPJU4/33l/tHL?=
- =?us-ascii?Q?YqTCcsnJoF1e0+5JCjwKDHFG5deN9Cbo6pvLwWW2fIp330/uw8in0E+0Tw2N?=
- =?us-ascii?Q?CMqK0mbbubnNwoTsky13rwjQmF4znxf51YcuBwcl?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04c5fd78-7281-40eb-9c72-08ddc851d20e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2025 12:26:30.1873
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XJoXwCk88/pQFmk6PtEVD3Lap0b+DHIoRbwP+rwbkFmk6ukM524intt99THniZ3Xvibh5Ff6GjkJktosAvuXIQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9260
+References: <20250709104114.22240-1-songchai@qti.qualcomm.com>
+In-Reply-To: <20250709104114.22240-1-songchai@qti.qualcomm.com>
+From: Mike Leach <mike.leach@linaro.org>
+Date: Mon, 21 Jul 2025 14:39:30 +0100
+X-Gm-Features: Ac12FXwm3nrLBLlQiU2e8O43a5-gvnweUsazAiwwcewVJnj1Ww3j7vPds4vudN4
+Message-ID: <CAJ9a7Vgrm+Hog58C=Zknc1AiJ8MX6u6CRKjm333Qqt02A42Hug@mail.gmail.com>
+Subject: Re: [PATCH v6 0/7] Provides support for Trigger Generation Unit
+To: songchai <songchai@qti.qualcomm.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@arm.com>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, quic_songchai@quicinc.com, 
+	linux-kernel@vger.kernel.org, coresight@lists.linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 08, 2025 at 03:19:26PM +0300, Laurentiu Palcu wrote:
->Hi Peng,
->
->On Mon, Jul 07, 2025 at 10:24:42AM +0800, Peng Fan wrote:
->> Add nodes for LVDS/DISPLAY CSR.
->> 
->> Add clock-ldb-pll-div7 node which is used for clock source of DISPLAY CSR.
->> 
->> Reviewed-by: Frank Li <Frank.Li@nxp.com>
->> Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
->> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->> ---
->>  arch/arm64/boot/dts/freescale/imx943.dtsi | 34 +++++++++++++++++++++++++++++++
->>  1 file changed, 34 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/freescale/imx943.dtsi b/arch/arm64/boot/dts/freescale/imx943.dtsi
->> index 45b8da758e87771c0775eb799ce2da3aac37c060..657c81b6016f21270a1b13d636af72c14ab4f8ef 100644
->> --- a/arch/arm64/boot/dts/freescale/imx943.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx943.dtsi
->> @@ -3,6 +3,8 @@
->>   * Copyright 2025 NXP
->>   */
->>  
->> +#include <dt-bindings/clock/nxp,imx94-clock.h>
->> +
->>  #include "imx94.dtsi"
->>  
->>  / {
->> @@ -145,4 +147,36 @@ l3_cache: l3-cache {
->>  			cache-unified;
->>  		};
->>  	};
->> +
->> +	clock-ldb-pll-div7 {
->
->You need to add a label to this node, so it can be referenced from
->other nodes. I hit this issue while trying to prepare the DCIF patches
->for sending upstream, using your latest patchset.
+Hi,
 
-Thanks for the comment. Let's add a label when there is a real reference
-in the file. Since you adds the label in your patch to support i.MX943
-DCIF as we talked, I will leave this patch at it is.
-
-Thanks,
-Peng
-
+On Wed, 9 Jul 2025 at 11:41, songchai <songchai@qti.qualcomm.com> wrote:
 >
->Thanks,
->Laurentiu
+> From: Songwei Chai <quic_songchai@quicinc.com>
 >
->> +		compatible = "fixed-factor-clock";
->> +		#clock-cells = <0>;
->> +		clocks = <&scmi_clk IMX94_CLK_LDBPLL>;
->> +		clock-div = <7>;
->> +		clock-mult = <1>;
->> +		clock-output-names = "ldb_pll_div7";
->> +	};
->> +
->> +	soc {
->> +		dispmix_csr: syscon@4b010000 {
->> +			compatible = "nxp,imx94-display-csr", "syscon";
->> +			reg = <0x0 0x4b010000 0x0 0x10000>;
->> +			clocks = <&scmi_clk IMX94_CLK_DISPAPB>;
->> +			#clock-cells = <1>;
->> +			power-domains = <&scmi_devpd IMX94_PD_DISPLAY>;
->> +			assigned-clocks = <&scmi_clk IMX94_CLK_DISPAXI>,
->> +					  <&scmi_clk IMX94_CLK_DISPAPB>;
->> +			assigned-clock-parents = <&scmi_clk IMX94_CLK_SYSPLL1_PFD1>,
->> +						 <&scmi_clk IMX94_CLK_SYSPLL1_PFD1_DIV2>;
->> +			assigned-clock-rates = <400000000>,  <133333333>;
->> +		};
->> +
->> +		lvds_csr: syscon@4b0c0000 {
->> +			compatible = "nxp,imx94-lvds-csr", "syscon";
->> +			reg = <0x0 0x4b0c0000 0x0 0x10000>;
->> +			clocks = <&scmi_clk IMX94_CLK_DISPAPB>;
->> +			#clock-cells = <1>;
->> +			power-domains = <&scmi_devpd IMX94_PD_DISPLAY>;
->> +		};
->> +	};
->>  };
->> 
->> -- 
->> 2.37.1
->> 
->> 
+> Provide support for the TGU (Trigger Generation Unit), which can be
+> utilized to sense a plurality of signals and create a trigger into
+> the CTI or generate interrupts to processors once the input signal
+> meets the conditions. We can treat the TGU=E2=80=99s workflow as a flowsh=
+eet,
+> it has some =E2=80=9Csteps=E2=80=9D regions for customization. In each st=
+ep region,
+> we can set the signals that we want with priority in priority_group, set
+> the conditions in each step via condition_decode, and set the resultant
+> action by condition_select. Meanwhile, some TGUs (not all) also provide
+> timer/counter functionality. Based on the characteristics described
+> above, we consider the TGU as a helper in the CoreSight subsystem.
+> Its master device is the TPDM, which can transmit signals from other
+> subsystems, and we reuse the existing ports mechanism to link the TPDM to
+> the connected TGU.
+>
+> Here is a detailed example to explain how to use the TGU:
+>
+> In this example, the TGU is configured to use 2 conditions, 2 steps, and
+> the timer. The goal is to look for one of two patterns which are generate=
+d
+> from TPDM, giving priority to one, and then generate a trigger once the
+> timer reaches a certain value. In other words, two conditions are used
+> for the first step to look for the two patterns, where the one with the
+> highest priority is used in the first condition. Then, in the second step=
+,
+> the timer is enabled and set to be compared to the given value at each
+> clock cycle. These steps are better shown below.
+>
+>             |-----------------|
+>             |                 |
+>             |       TPDM      |
+>             |                 |
+>             |-----------------|
+>                      |
+>                      |
+>   --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ------
+>   |                  |                                                 |
+>   |                  |                          |--------------------| |
+>   |    |---- --->    |                          |  Go to next steps  | |
+>   |    |             |                |--- ---> |  Enable timer      | |
+>   |    |             v                |         |                    | |
+>   |    |    |-----------------|       |         |--------------------| |
+>   |    |    |                 |  Yes  |                    |           |
+>   |    |    |   inputs=3D=3D0xB   | ----->|                    | <-------=
+- |
+>   |    |    |                 |       |                    |      No | |
+>   | No |    |-----------------|       |                    v         | |
+>   |    |             |                |          |-----------------| | |
+>   |    |             |                |          |                 | | |
+>   |    |             |                |          |      timer>=3D3   |-- =
+|
+>   |    |             v                |          |                 |   |
+>   |    |    |-----------------|       |          |-----------------|   |
+>   |    |    |                 |  Yes  |                    |           |
+>   |    |--- |   inputs=3D=3D0xA   | ----->|                    | Yes     =
+  |
+>   |         |                 |                            |           |
+>   |         |-----------------|                            v           |
+>   |                                              |-----------------|   |
+>   |                                              |                 |   |
+>   |                                              |      Trigger    |   |
+>   |                                              |                 |   |
+>   |                                              |-----------------|   |
+>   |  TGU                                                   |           |
+>   |--- --- --- --- --- --- --- --- --- --- --- --- --- --- |--- --- -- |
+>                                                            |
+>                                                            v
+>                                                   |-----------------|
+>                                                   |The controllers  |
+>                                                   |which will use   |
+>                                                   |triggers further |
+>                                                   |-----------------|
+>
+> steps:
+>        1. Reset TGU /*it will disable tgu and reset dataset*/
+>        - echo 1 > /sys/bus/coresight/devices/<tgu-name>/reset_tgu
+>
+>        2. Set the pattern match for priority0 to 0xA =3D 0b1010 and for
+>           priority 1 to 0xB =3D 0b1011.
+>        - echo 0x11113232 > /sys/bus/coresight/devices/<tgu-name>/step0_pr=
+iority0/reg0
+>        - echo 0x11113233 > /sys/bus/coresight/devices/<tgu-name>/step0_pr=
+iority1/reg0
+>
+>        Note:
+>             Bit distribution diagram for each priority register
+>     |-------------------------------------------------------------------|
+>     |   Bits          |       Field Nam   |    Description              |
+>     |-------------------------------------------------------------------|
+>     |                 |                   | 00 =3D bypass for OR output  =
+ |
+>     |     29:28       |   SEL_BIT7_TYPE2  | 01 =3D bypass for AND output =
+ |
+>     |                 |                   | 10 =3D sense input '0' is tru=
+e|
+>     |                 |                   | 11 =3D sense input '1' is tru=
+e|
+>     |-------------------------------------------------------------------|
+>     |                 |                   | 00 =3D bypass for OR output  =
+ |
+>     |     25:24       |   SEL_BIT6_TYPE2  | 01 =3D bypass for AND output =
+ |
+>     |                 |                   | 10 =3D sense input '0' is tru=
+e|
+>     |                 |                   | 11 =3D sense input '1' is tru=
+e|
+>     |-------------------------------------------------------------------|
+>     |                 |                   | 00 =3D bypass for OR output  =
+ |
+>     |     21:20       |   SEL_BIT5_TYPE2  | 01 =3D bypass for AND output =
+ |
+>     |                 |                   | 10 =3D sense input '0' is tru=
+e|
+>     |                 |                   | 11 =3D sense input '1' is tru=
+e|
+>     |-------------------------------------------------------------------|
+>     |                 |                   | 00 =3D bypass for OR output  =
+ |
+>     |     17:16       |   SEL_BIT4_TYPE2  | 01 =3D bypass for AND output =
+ |
+>     |                 |                   | 10 =3D sense input '0' is tru=
+e|
+>     |                 |                   | 11 =3D sense input '1' is tru=
+e|
+>     |-------------------------------------------------------------------|
+>     |                 |                   | 00 =3D bypass for OR output  =
+ |
+>     |     13:12       |   SEL_BIT3_TYPE2  | 01 =3D bypass for AND output =
+ |
+>     |                 |                   | 10 =3D sense input '0' is tru=
+e|
+>     |                 |                   | 11 =3D sense input '1' is tru=
+e|
+>     |-------------------------------------------------------------------|
+>     |                 |                   | 00 =3D bypass for OR output  =
+ |
+>     |      9:8        |   SEL_BIT2_TYPE2  | 01 =3D bypass for AND output =
+ |
+>     |                 |                   | 10 =3D sense input '0' is tru=
+e|
+>     |                 |                   | 11 =3D sense input '1' is tru=
+e|
+>     |-------------------------------------------------------------------|
+>     |                 |                   | 00 =3D bypass for OR output  =
+ |
+>     |      5:4        |  SEL_BIT1_TYPE2   | 01 =3D bypass for AND output =
+ |
+>     |                 |                   | 10 =3D sense input '0' is tru=
+e|
+>     |                 |                   | 11 =3D sense input '1' is tru=
+e|
+>     |-------------------------------------------------------------------|
+>     |                 |                   | 00 =3D bypass for OR output  =
+ |
+>     |      1:0        |  SEL_BIT0_TYPE2   | 01 =3D bypass for AND output =
+ |
+>     |                 |                   | 10 =3D sense input '0' is tru=
+e|
+>     |                 |                   | 11 =3D sense input '1' is tru=
+e|
+>     |-------------------------------------------------------------------|
+>         These bits are used to identify the signals we want to sense, wit=
+h
+>         a maximum signal number of 140. For example, to sense the signal
+>         0xA (binary 1010), we set the value of bits 0 to 13 to 3232, whic=
+h
+>         represents 1010. The remaining bits are set to 1, as we want to u=
+se
+>         AND gate to summarize all the signals we want to sense here. For
+>         rising or falling edge detection of any input to the priority, se=
+t
+>         the remaining bits to 0 to use an OR gate.
+>
+>        3. look for the pattern for priority_i i=3D0,1.
+>        - echo 0x3 > /sys/bus/coresight/devices/<tgu-name>/step0_condition=
+_decode/reg0
+>        - echo 0x30 > /sys/bus/coresight/devices/<tgu-name>/step0_conditio=
+n_decode/reg1
+>
+>     |--------------------------------------------------------------------=
+-----------|
+>     |   Bits          |    Field Nam        |            Description     =
+           |
+>     |--------------------------------------------------------------------=
+-----------|
+>     |                 |                     |For each decoded condition, =
+this       |
+>     |      24         |       NOT           |inverts the output. If the c=
+ondition   |
+>     |                 |                     |decodes to true, and the NOT=
+ field     |
+>     |                 |                     |is '1', then the output is N=
+OT true.   |
+>     |--------------------------------------------------------------------=
+-----------|
+>     |                 |                     |When '1' the output from the=
+ associated|
+>     |      21         |  BC0_COMP_ACTIVE    |comparator will be actively =
+included in|
+>     |                 |                     |the decoding of this particu=
+lar        |
+>     |                 |                     |condition.                  =
+           |
+>     |--------------------------------------------------------------------=
+-----------|
+>     |                 |                     |When '1' the output from the=
+ associated|
+>     |                 |                     |comparator will need to be 1=
+ to affect |
+>     |      20         |   BC0_COMP_HIGH     |the decoding of this conditi=
+on.        |
+>     |                 |                     |Conversely, a '0' here requi=
+res a '0'  |
+>     |                 |                     |from the comparator         =
+           |
+>     |--------------------------------------------------------------------=
+-----------|
+>     |                 |                     |When '1' the output from the=
+ associated|
+>     |      17         |                     |comparator will be actively =
+included in|
+>     |                 |  TC0_COMP_ACTIVE    |the decoding of this particu=
+lar        |
+>     |                 |                     |condition.                  =
+           |
+>     |--------------------------------------------------------------------=
+-----------|
+>     |                 |                     |When '1' the output from the=
+ associated|
+>     |                 |                     |comparator will need to be 1=
+ to affect |
+>     |      16         |  TC0_COMP_HIGH      |the decoding of this particu=
+lar        |
+>     |                 |                     |condition.Conversely, a 0 he=
+re         |
+>     |                 |                     |requires a '0' from the comp=
+arator     |
+>     |--------------------------------------------------------------------=
+-----------|
+>     |                 |                     |When '1' the output from Pri=
+ority_n    |
+>     |                 |                     |OR logic will be actively   =
+           |
+>     |     4n+3        | Priority_n_OR_ACTIVE|included in the decoding of =
+           |
+>     |                 |    (n=3D0,1,2,3)      |this particular condition.=
+             |
+>     |                 |                     |                            =
+           |
+>     |--------------------------------------------------------------------=
+-----------|
+>     |                 |                     |When '1' the output from Pri=
+ority_n    |
+>     |                 |                     |will need to be '1' to affec=
+t the      |
+>     |     4n+2        |  Priority_n_OR_HIGH |decoding of this particular =
+           |
+>     |                 |    (n=3D0,1,2,3)      |condition. Conversely, a '=
+0' here      |
+>     |                 |                     |requires a '0' from Priority=
+_n OR logic|
+>     |--------------------------------------------------------------------=
+-----------|
+>     |                 |                     |When '1' the output from Pri=
+ority_n    |
+>     |                 |                     |AND logic will be actively  =
+           |
+>     |     4n+1        |Priority_n_AND_ACTIVE|included in the decoding of =
+this       |
+>     |                 |  (n=3D0,1,2,3)        |particular condition.     =
+             |
+>     |                 |                     |                            =
+           |
+>     |--------------------------------------------------------------------=
+-----------|
+>     |                 |                     |When '1' the output from Pri=
+ority_n    |
+>     |                 |                     |AND logic will need to be '1=
+' to       |
+>     |      4n         | Priority_n_AND_HIGH |affect the decoding of this =
+           |
+>     |                 |   (n=3D0,1,2,3)       |particular condition. Conv=
+ersely,      |
+>     |                 |                     |a '0' here requires a '0' fr=
+om         |
+>     |                 |                     |Priority_n AND logic.       =
+           |
+>     |--------------------------------------------------------------------=
+-----------|
+>         Since we use `priority_0` and `priority_1` with an AND output in =
+step 2, we set `0x3`
+>         and `0x30` here to activate them.
+>
+>        4. Set NEXT_STEP =3D 1 and TC0_ENABLE =3D 1 so that when the condi=
+tions
+>           are met then the next step will be step 1 and the timer will be=
+ enabled.
+>        - echo 0x20008 > /sys/bus/coresight/devices/<tgu-name>/step0_condi=
+tion_select/reg0
+>        - echo 0x20008 > /sys/bus/coresight/devices/<tgu-name>/step0_condi=
+tion_select/reg1
+>
+>         |----------------------------------------------------------------=
+-------------|
+>         |   Bits          |       Field Nam   |            Description   =
+             |
+>         |----------------------------------------------------------------=
+-------------|
+>         |                 |                   |This field defines the nex=
+t step the   |
+>         |    18:17        |     NEXT_STEP     |TGU will 'goto' for the as=
+sociated     |
+>         |                 |                   |Condition and Step.       =
+             |
+>         |----------------------------------------------------------------=
+-------------|
+>         |                 |                   |For each possible output t=
+rigger       |
+>         |    13           |     TRIGGER       |available, set a '1' if yo=
+u want       |
+>         |                 |                   |the trigger to go active f=
+or the       |
+>         |                 |                   |associated condition and S=
+tep.         |
+>         |----------------------------------------------------------------=
+-------------|
+>         |                 |                   |This will cause BC0 to inc=
+rement if the|
+>         |    9            |     BC0_INC       |associated Condition is de=
+coded for    |
+>         |                 |                   |this step.                =
+             |
+>         |----------------------------------------------------------------=
+-------------|
+>         |                 |                   |This will cause BC0 to dec=
+rement if the|
+>         |    8            |     BC0_DEC       |associated Condition is de=
+coded for    |
+>         |                 |                   |this step.                =
+             |
+>         |----------------------------------------------------------------=
+-------------|
+>         |                 |                   |This will clear BC0 count =
+value to 0 if|
+>         |    7            |     BC0_CLEAR     |the associated Condition i=
+s decoded    |
+>         |                 |                   |for this step.            =
+             |
+>         |----------------------------------------------------------------=
+-------------|
+>         |                 |                   |This will cause TC0 to inc=
+rement until |
+>         |    3            |     TC0_ENABLE    |paused or cleared if the a=
+ssociated    |
+>         |                 |                   |Condition is decoded for t=
+his step.    |
+>         |----------------------------------------------------------------=
+-------------|
+>         |                 |                   |This will cause TC0 to pau=
+se until     |
+>         |    2            |     TC0_PAUSE     |enabled if the associated =
+Condition    |
+>         |                 |                   |is decoded for this step. =
+             |
+>         |----------------------------------------------------------------=
+-------------|
+>         |                 |                   |This will clear TC0 count =
+value to 0   |
+>         |    1            |     TC0_CLEAR     |if the associated Conditio=
+n is         |
+>         |                 |                   |decoded for this step.    =
+             |
+>         |----------------------------------------------------------------=
+-------------|
+>         |                 |                   |This will set the done sig=
+nal to the   |
+>         |    0            |     DONE          |TGU FSM if the associated =
+Condition    |
+>         |                 |                   |is decoded for this step. =
+             |
+>         |----------------------------------------------------------------=
+-------------|
+>         Based on the distribution diagram, we set `0x20008` for `priority=
+0` and `priority1` to
+>         achieve "jump to step 1 and enable TC0" once the signal is sensed=
+.
+>
+>        5. activate the timer comparison for this step.
+>        -  echo 0x30000  > /sys/bus/coresight/devices/<tgu-name>/step1_con=
+dition_decode/reg0
+>
+>         |----------------------------------------------------------------=
+---------------|
+>         |                 |                     |When '1' the output from=
+ the associated|
+>         |      17         |                     |comparator will be activ=
+ely included in|
+>         |                 |  TC0_COMP_ACTIVE    |the decoding of this par=
+ticular        |
+>         |                 |                     |condition.              =
+               |
+>         |----------------------------------------------------------------=
+---------------|
+>         |                 |                     |When '1' the output from=
+ the associated|
+>         |                 |                     |comparator will need to =
+be 1 to affect |
+>         |      16         |  TC0_COMP_HIGH      |the decoding of this par=
+ticular        |
+>         |                 |                     |condition.Conversely, a =
+0 here         |
+>         |                 |                     |requires a '0' from the =
+comparator     |
+>         |----------------------------------------------------------------=
+---------------|
+>         Accroding to the decode distribution diagram , we give 0x30000 he=
+re to set 16th&17th bit
+>         to enable timer comparison.
+>
+>        6. Set the NEXT_STEP =3D 0 and TC0_PAUSE =3D 1 and TC0_CLEAR =3D 1=
+ once the timer
+>           has reached the given value.
+>        - echo 0x6 > /sys/bus/coresight/devices/<tgu-name>/step1_condition=
+_select/reg0
+>
+>        7. Enable Trigger 0 for TGU when the condition 0 is met in step1,
+>           i.e. when the timer reaches 3.
+>        - echo 0x2000 > /sys/bus/coresight/devices/<tgu-name>/step1_condit=
+ion_select/default
+>
+>         Note:
+>             1. 'default' register allows for establishing the resultant a=
+ction for
+>             the default condition
+>
+>             2. Trigger:For each possible output trigger available from
+>             the Design document, there are three triggers: interrupts, CT=
+I,
+>             and Cross-TGU mapping.All three triggers can occur, but
+>             the choice of which trigger to use depends on the user's
+>             needs.
+>
+>        8. Compare the timer to 3 in step 1.
+>        - echo 0x3 > /sys/bus/coresight/devices/<tgu-name>/step1_timer/reg=
+0
+>
+>        9. enale tgu
+>        - echo 1 > /sys/bus/coresight/devices/<tgu-name>/enable_tgu
+> ---
+> Link to V5: https://lore.kernel.org/all/20250529081949.26493-1-quic_songc=
+hai@quicinc.com/
+>
+> Changes in V6:
+> - Replace spinlock with guard(spinlock) in tgu_enable.
+> - Remove redundant blank line.
+> - Update publish date and contact member's name in "sysfs-bus-coresight-d=
+evices-tgu".
+> ---
+> Link to V4: https://patchwork.kernel.org/project/linux-arm-msm/cover/2025=
+0423101054.954066-1-quic_songchai@quicinc.com/
+>
+> Changes in V5:
+> - Update publish date and kernel_version in "sysfs-bus-coresight-devices-=
+tgu"
+> ---
+> Link to V3: https://lore.kernel.org/all/20250227092640.2666894-1-quic_son=
+gchai@quicinc.com/
+>
+> Changes in V4:
+> - Add changlog in coverletter.
+> - Correct 'year' in Copyright in patch1.
+> - Correct port mechansim description in patch1.
+> - Remove 'tgu-steps','tgu-regs','tgu-conditions','tgu-timer-counters' fro=
+m dt-binding
+> and set them through reading DEVID register as per Mike's suggestion.
+> - Modify tgu_disable func to make it have single return point in patch2 a=
+s per
+> Mike's suggestion.
+> - Use sysfs_emit in enable_tgu_show func in ptach2.
+> - Remove redundant judgement in enable_tgu_store in patch2.
+> - Correct typo in description in patch3.
+> - Set default ret as SYSFS_GROUP_INVISIBLE, and returnret at end in pacth=
+3 as
+> per Mike's suggestion.
+> - Remove tgu_dataset_ro definition in patch3
+> - Use #define constants with explanations of what they are rather than
+> arbitrary magic numbers in patch3 and patch4.
+> - Check -EINVAL before using 'calculate_array_location()' in array in pat=
+ch4.
+> - Add 'default' in 'tgu_dataset_show''s switch part in patch4.
+> - Document the value needed to initiate the reset in pacth7.
+> - Check "value" in 'reset_tgu_store' and bail out with an error code if 0=
+ in patch7.
+> - Remove dev_dbg in 'reset_tgu_store' in patch7.
+> ---
+> Link to V2: https://lore.kernel.org/all/20241010073917.16023-1-quic_songc=
+hai@quicinc.com/
+>
+> Changes in V3:
+> - Correct typo and format in dt-binding in patch1
+> - Rebase to the latest kernel version
+> ---
+> Link to V1: https://lore.kernel.org/all/20240830092311.14400-1-quic_songc=
+hai@quicinc.com/
+>
+> Changes in V2:
+>  - Use real name instead of login name,
+>  - Correct typo and format in dt-binding and code.
+>  - Bring order in tgu_prob(declarations with and without assignments) as =
+per
+> Krzysztof's suggestion.
+>  - Add module device table in patch2.
+>  - Set const for tgu_common_grp and tgu_ids in patch2.
+>  - Initialize 'data' in tgu_ids to fix the warning in pacth2.
+> ---
+>
+> Songwei Chai (7):
+>   dt-bindings: arm: Add support for Coresight TGU trace
+>   coresight: Add coresight TGU driver
+>   coresight-tgu: Add signal priority support
+>   coresight-tgu: Add TGU decode support
+>   coresight-tgu: add support to configure next action
+>   coresight-tgu: add timer/counter functionality for TGU
+>   coresight-tgu: add reset node to initialize
+>
+>  .../testing/sysfs-bus-coresight-devices-tgu   |  51 ++
+>  .../bindings/arm/qcom,coresight-tgu.yaml      |  92 +++
+>  drivers/hwtracing/coresight/Kconfig           |  11 +
+>  drivers/hwtracing/coresight/Makefile          |   1 +
+>  drivers/hwtracing/coresight/coresight-tgu.c   | 776 ++++++++++++++++++
+>  drivers/hwtracing/coresight/coresight-tgu.h   | 255 ++++++
+>  6 files changed, 1186 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices=
+-tgu
+>  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-=
+tgu.yaml
+>  create mode 100644 drivers/hwtracing/coresight/coresight-tgu.c
+>  create mode 100644 drivers/hwtracing/coresight/coresight-tgu.h
+>
+>
+
+As per the discussion here in v3 of this patchset
+
+https://lists.infradead.org/pipermail/linux-arm-kernel/2025-March/1012896.h=
+tml
+
+this component is primarily a part of the qualcom proprietary QPMDA
+subsystem, and is capable of operating independently from the
+CoreSight hardware trace generation system.
+
+The only link to Coresight is via the trigger input to CTI
+component(s).  CTI triggers can either be part of the ARM architected
+or recommended connections between Coresight infrastructure from the
+coresight specs and TRM documents, or platform specific triggers from
+components external to coresight. For example on the Juno board a
+trigger from the PL011 serial port is input to one of the system CTIs
+on the board.
+
+Having Coresight management registers does not necessarily mean that
+the component should be maintained under the hwtracing/coresight. Some
+ARM Corelink interconnect components have the capability to generate
+ATB trace into the coresight subsystem, and have some of the coresight
+management registers. However, I would not expect the drivers for
+these components to appear in hwtracing/coresight.
+
+As such this component could probably be better managed and maintained
+as part of the /drivers/soc/qcom or similar area.
+
+The only changes to the Coresight infrastructure you should need to
+get this component connected, is to alter the CTI declaration in board
+device tree to add the incoming trigger as per the CTI bindings.
+
+Regards
+
+Mike
+
+
+
+--
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
 
