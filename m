@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-198170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FC35B0BF92
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:03:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78BC1B0BFA2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:06:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C966F173E2C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:03:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BF98189DF32
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39842882A6;
-	Mon, 21 Jul 2025 09:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E4D028A1D9;
+	Mon, 21 Jul 2025 09:05:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HkOy6hTH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PcLdB/5O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 992CA28466D;
-	Mon, 21 Jul 2025 09:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56F7828A1D5;
+	Mon, 21 Jul 2025 09:05:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753088613; cv=none; b=OJfZtS+byKLE6IhNtsQOf+iuRK5w8aciFSMMZQIhP+b/n40FHf8nsVPDTOKH4y1kzd8uqIej0KA20fjXVUzffkJo49Jf5GujdP69xisce+y9gbAzKvF1P9L3izvfRtgqkQi3EglFtIC0/YelI2hwQ67yr1TJNKhOy95sphgH04E=
+	t=1753088711; cv=none; b=A9lXQK+N44d5eh58DLjTM9ODgmBDKCZzkUIGNivvY+bkoRUG2mLJvYB6MlhjNlVDydn2m21HAYzZy0RIN/94R0jPp6E0upJ5jzTkDXXJi70rFU/OBbmVzwYVZz9Opp//FoDhihcUUQd6aDJv9kT1vEl+4kgjsEYn35ZfPIDtLbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753088613; c=relaxed/simple;
-	bh=2WyU0FIwwAaqd7wKJ14a9HbxLjKc9PEgGxTV9aHjfwE=;
+	s=arc-20240116; t=1753088711; c=relaxed/simple;
+	bh=mPz06fvHGJS3IqG6pR8pv22PSERO2G5DHxglf8CS8S8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hnCMNsHCpg81D9/OUhMICPwuub4GVZr0Eb3k+D++Rb/NRflKdLIHXWeQFaQ0XrqX5aC7O/6GX7sFtYb/Tf5Voe121iCLzM5xzIwD8eex/audI6pqe6xYFE/jsU7Xa6MPcV4U5g0JhvkIGvlul1WtNgWydSHaIRZgrx4V8mX3RDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HkOy6hTH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91394C4CEED;
-	Mon, 21 Jul 2025 09:03:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZFbw5oB6bmwDIbbYS2sfvskMHlkHDZDseQtqP/VjuCL1sMO0QNkwZ8QT/orAYJKWeh11/uWdKeERtPf9fddC55DTWHF+aKLa7VoN1y+httsYLpaEtcaiJ1sfRwLzX2CjI/QKxL3HRWkwxDK8f7ZQ54QtSXJDMsHokfW628xZSzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PcLdB/5O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EB0FC4CEED;
+	Mon, 21 Jul 2025 09:05:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753088613;
-	bh=2WyU0FIwwAaqd7wKJ14a9HbxLjKc9PEgGxTV9aHjfwE=;
+	s=k20201202; t=1753088710;
+	bh=mPz06fvHGJS3IqG6pR8pv22PSERO2G5DHxglf8CS8S8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HkOy6hTH5OkSNlT+Ks1wifmkI4AbOHdrXmvPN0zXOiYQEw8c30+iPdqSyFsAl2LKV
-	 gEIl4zbosH9WaOKEquHdrKFCkwi2vfa1AQKd6127Vl9woCogY6Yy6ZF/AE9wagCw7b
-	 YIJ0OvPYGoa3JLETOoM8wTwgqei4JM0gQ+3EzfGrcNbMuJbMcZOlkenp9Zv5NpdU4a
-	 vl5UmzhnsZ7a4Stjzkg47tMX82ydOP7X3YKDUIOQtTLwnGF3ySqhccVuPrIa2y6KL0
-	 9nabpSOiCrhhX+GCnafaIiYJLEvmYt84BSfIbaWorS58FnF+dSIoUX4Xdrz4PFw6i6
-	 9ssz9OAyrbFTQ==
-Date: Mon, 21 Jul 2025 11:03:30 +0200
+	b=PcLdB/5OATdpifzdPVHBnD7jY4ntBYQ+RoyAN3kug0ppoeuK5wqX7nW6oK3Bntx70
+	 TeZan1U82ZkJOi7jjGEO8fmavhEDrS0r6H5n/VrgNXrhFyorNxACbd9Le+9k3h/gMO
+	 gdH/v+ENMDfI1202+ct9ZKBzuZBK5r5fWhzzibbPykeyYv5LeB2/lXXzioaHJZZcpQ
+	 fo5/x5z3lE0MsulrODgHIU+FtSdW42z6RDHqmFlVxUOrmFnJ10lOyAD41p7CPDSOeG
+	 bZyl1g3zv3de+tGcAQ5XBIa+9iYJImpTSgl7nBr0tqZvj5cxUOMaSET4u94Ha/EMLr
+	 3Mu77StA38p+A==
+Date: Mon, 21 Jul 2025 11:05:08 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Ryan Walklin <ryan@testtoast.com>
 Cc: Rob Herring <robh@kernel.org>, 
@@ -51,11 +51,11 @@ Cc: Rob Herring <robh@kernel.org>,
 	Hironori KIKUCHI <kikuchan98@gmail.com>, Philippe Simons <simons.philippe@gmail.com>, 
 	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	dri-devel@lists.freedesktop.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v2 04/12] dt-bindings: display: sun4i: Add compatible
- strings for H616 TCON TOP
-Message-ID: <20250721-heretic-solid-firefly-05ce87@kuoka>
+Subject: Re: [PATCH v2 06/12] dt-bindings: sram: sunxi-sram: Add H616 SRAM C
+ compatible
+Message-ID: <20250721-spry-nifty-bandicoot-c7c4ad@kuoka>
 References: <20250720085047.5340-1-ryan@testtoast.com>
- <20250720085047.5340-5-ryan@testtoast.com>
+ <20250720085047.5340-7-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,21 +64,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250720085047.5340-5-ryan@testtoast.com>
+In-Reply-To: <20250720085047.5340-7-ryan@testtoast.com>
 
-On Sun, Jul 20, 2025 at 08:48:42PM +1200, Ryan Walklin wrote:
-> Add compatible string for allwinner,sun50i-h616-tcon-top with a
-> fallback string of allwinner,sun50i-h6-tcon-top.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> 
-> --
-> Changelog v1..v2:
-> - Add H616 TCON TOP compatible.
-> ---
->  .../display/allwinner,sun8i-r40-tcon-top.yaml       | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
+On Sun, Jul 20, 2025 at 08:48:44PM +1200, Ryan Walklin wrote:
+> Add a compatible string for the H616 SRAM C region which is
+> functionally similar to the A64 SRAM C region.
+
+h616 for the parent device is already documented in the top, right? This
+should be one patch.
+
+Post complete bindings for the device, not chunk by chunk.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
