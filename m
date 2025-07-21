@@ -1,82 +1,123 @@
-Return-Path: <devicetree+bounces-198036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC539B0B99A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 02:39:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F42B0B9B7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 03:12:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C01D176C7A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 00:39:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C26A3AD148
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 01:11:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB15584D13;
-	Mon, 21 Jul 2025 00:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E424E155A30;
+	Mon, 21 Jul 2025 01:12:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EVXOMk0o"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Pqbl3gkg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAD0C566A;
-	Mon, 21 Jul 2025 00:39:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C8A0FC0A;
+	Mon, 21 Jul 2025 01:12:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753058388; cv=none; b=m5HAzMvzSK3Aw5/lNsxQMdTh9O5aykaavHHV+6tqtxuMHOfL97B8dJRhT0Egln7C1v04xwarZ7+XN7rjf5J5crUt7kkpaomqlJwF6UUy21+e+2jFNBKwpOsoIfMFL4CrSHdhEc4FAS8RnFc2RlnY6+TP82N/asGvBE46Nfsd8jg=
+	t=1753060332; cv=none; b=MKhizYXyEaleidN15H4arv0sjfor1dj3DbOAjP2rZf+MBz3E0FvJGtn9yKtJPSRWIMlQMk+RTWVvuidaIsWYyPZvj7AWTgspXcfljLQWWmLEjwiqPOWYfvE3W+1lRMxLwG5tn7swX1OrDwrLfr2NAzhVeSPpGi3FjdfBe7O5q+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753058388; c=relaxed/simple;
-	bh=DcAxps/FGdwNvvt1KUL0mg84vdvjjbvyVNUzZyC1NQk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PuMjVf6yHKBL+bGGf0teo1QhCe6LWStDUqBLODKq1LDpkuPG4hVTUzhJoYNrga0U85mASAJnCYEAOif0am2gLFqRKtW0ak/MFW664YDfxUrgLNpU3puOGBf71tXfOoPTueTPtSwm6pjqXrcVAdAsoJx41LBq68tcyhbFAzucV6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EVXOMk0o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3069AC4CEE7;
-	Mon, 21 Jul 2025 00:39:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753058388;
-	bh=DcAxps/FGdwNvvt1KUL0mg84vdvjjbvyVNUzZyC1NQk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EVXOMk0ouM5Coaraip90bgDOb+w452a4nPgiKLNRQ0k17QLIABHBTRf/Wp9Thtdmw
-	 70ozK9bOxCAhB1n80sYSpx/6ptOWUdf+wNnEpvXhyJ1kk/S5WgsHWlaZZykpX1iun+
-	 Z7U1d9GlukCtkVEQHvG4eEusM4Nr2V4x6x28ayGUXdCjWxCPD8UP51KIObxY9R7ZRO
-	 S9+Fp67BSmq7l/nIhleQrenNVkIdyVaSrbnFL/LaB6Oyl0/vyYYvvNZ7lMH7yG2yS4
-	 sZRKdg8RK4Dt/TbmL3jhj3k6wcC9ih6sPxddMSoiD/e61O42/A7ek38r01yrZSQg+h
-	 6Md0qotk0QBog==
-Date: Sun, 20 Jul 2025 19:39:47 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Alex Elder <elder@riscstar.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>
-Subject: Re: [PATCH] dt-bindings: serial: 8250: spacemit: set clocks property
- as required
-Message-ID: <175305838704.3151611.2882961129510039332.robh@kernel.org>
-References: <20250718-01-k1-uart-binding-v1-1-a92e1e14c836@gentoo.org>
+	s=arc-20240116; t=1753060332; c=relaxed/simple;
+	bh=oOcvYWfw0l3RKHi2FRHUu9eHl1KmJbPDtCcJR/Sh3lA=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Rg7YyME4zYmDE+1mEdcOoBMaJfx5FPYeXwkGwp8/trqnM8dFjvQgd6sDoSWAJNkGVGSCusWY6rVVSXDC9VXDR9LO7FIhpnqtVkx3lGw9XE1d15GtHEQ2ANo8Ezu+UrvRx1NRmfs1gkoLouDkGRagqRFo3pdz2jSLrm5Lk55KnsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Pqbl3gkg; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1753060326;
+	bh=s//7MjuX07y4aMFmJCpTEwCT9TCj/TYkQ55O0eQjT4I=;
+	h=Subject:From:To:Date:In-Reply-To:References;
+	b=Pqbl3gkgwV28WX8LMF7FFKluhrO2t0iskwad6rrW6ZNv0dkVaSarK2ey92y9gEMOX
+	 LGvjl/Zy4czwCdITA9MMQ+6srHX+KsESqY1ZXNfQwzQSvcojwuUhGk8pU7Bw2LI5iI
+	 Q6YGhuceFsEqgcshG/gHVKukz3OGhTPgNE1AULMrQwsHSFB1B9JBGN8zjtm+C+DH+O
+	 OSnOr0fyXffZpA9nrC8Nyg07E5EzysIyFJp0LkHWr216oO2+72EUjDABLyiIXo4IvM
+	 wQZznT4B56QHjxwOIp+OeAOI04nLwIE62l3BKzZYkOg5wWJYHUqLsPKNmViXqy0C9f
+	 IXHrXVKuscvpA==
+Received: from [192.168.68.112] (unknown [180.150.112.70])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 3FD3D6443C;
+	Mon, 21 Jul 2025 09:12:04 +0800 (AWST)
+Message-ID: <0b9b6c712bff18a25da218c507d18b9a8f18c7e8.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2 5/9] ARM: dts: aspeed: wedge400: Extend data0
+ partition to 64MB
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: rentao.bupt@gmail.com, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel
+ Stanley <joel@jms.id.au>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>, Tao Ren
+ <taoren@meta.com>
+Date: Mon, 21 Jul 2025 10:42:03 +0930
+In-Reply-To: <20250706042404.138128-6-rentao.bupt@gmail.com>
+References: <20250706042404.138128-1-rentao.bupt@gmail.com>
+	 <20250706042404.138128-6-rentao.bupt@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250718-01-k1-uart-binding-v1-1-a92e1e14c836@gentoo.org>
 
-
-On Fri, 18 Jul 2025 23:04:37 +0800, Yixun Lan wrote:
-> In SpacemiT's K1 SoC, the clocks for UART are mandatory needed, so
-> for DT, both clocks and clock-names property should be set as required.
-> 
-> Fixes: 2c0594f9f062 ("dt-bindings: serial: 8250: support an optional second clock")
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+On Sat, 2025-07-05 at 21:23 -0700, rentao.bupt@gmail.com wrote:
+> From: Tao Ren <rentao.bupt@gmail.com>
+>=20
+> Extend wedge400 BMC flash's data0 partition to 64MB for larger
+> persistent storage.
+>=20
+> Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
 > ---
->  Documentation/devicetree/bindings/serial/8250.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+> Changes in v2:
+> =C2=A0 - None (the patch is introduced in v2).
+>=20
+> =C2=A0arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts | 2 +-
+> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts b/=
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
+> index 3e4d30f0884d..cf6c768cbad5 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
+> @@ -92,7 +92,7 @@ tpm@0 {
+> =C2=A0 * Both firmware flashes are 128MB on Wedge400 BMC.
+> =C2=A0 */
+> =C2=A0&fmc_flash0 {
+> -#include "facebook-bmc-flash-layout-128.dtsi"
+> +#include "facebook-bmc-flash-layout-128-data64.dtsi"
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+My preference here is that we maintain two separate DTS for Wedge400:
 
+- aspeed-bmc-facebook-wedge400.dts
+- aspeed-bmc-facebook-wedge400-data64.dts
+
+We do so such that we implement aspeed-bmc-facebook-wedge400.dts like:
+
+   > cat aspeed-bmc-facebook-wedge400.dts
+   #include "aspeed-bmc-facebook-wedge400-data64.dts"
+  =20
+   &fmc_flash0 {
+   /delete-node/partitions;
+   #include "facebook-bmc-flash-layout-128.dtsi"
+   };
+
+aspeed-bmc-facebook-wedge400-data64.dts includes facebook-bmc-flash-
+layout-128-data64.dtsi as usual.
+
+From there we can consider aspeed-bmc-facebook-wedge400.dts to be
+deprecated and can remove it in a future release. At least with this
+arrangement any revert of the (future) patch removing aspeed-bmc-
+facebook-wedge400.dts has no other impact. Further, both layouts will
+be supported in at least one release, making it possible to update the
+kernel without requiring a simultaneous update to the flash layout.
+
+Andrew
 
