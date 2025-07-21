@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-198188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 739E9B0C058
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:32:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EED92B0C064
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:35:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A253C3AAC79
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:31:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF32B179234
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C68828AAEA;
-	Mon, 21 Jul 2025 09:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C37A428BA92;
+	Mon, 21 Jul 2025 09:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YAoj0vA4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K4khWPmn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417D428A1DE;
-	Mon, 21 Jul 2025 09:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95DA5487A5;
+	Mon, 21 Jul 2025 09:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753090324; cv=none; b=GAN8QljHctOeVxWL/hk39i4Pt33mxCPqsjBlCwfob9lM4kUmjHCNNZfMeswt3vYdTuewd9enWUVB+NN9KNSbqHcg9IqVVpz2Gs2Pd2OltrwXmpPgRhuSRO02Ba0t4Gnkmc1N5gkoW3UlC6A1NTPONySZDMzhTESA1IxeLDnqrg0=
+	t=1753090521; cv=none; b=YyosiW2HoTr2WTo8HHxCChj8UEOfXZlBZT9kbwPql5hqEGBii8UfFCNsjlgemLDkR7mkp4SwIPCbXN60hXnA+1owZr8yCBvvq/vk7kpVwNDduG9M9ucQNje7uRYLny706PKwWyF54sADFK8PCHM1JxNBj+g73Rw7RG+e2O6EOFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753090324; c=relaxed/simple;
-	bh=tMQd51DR2PhlSANSMzu8tnUKCfa7HWDsrUeedOQDGV8=;
+	s=arc-20240116; t=1753090521; c=relaxed/simple;
+	bh=X8v0vyphKABw6mn9MwF3K64kGeZMYpZRS3X8znvpDDY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aZm8dSXJs0kZ7UnB9T97thnzU3jS+de6IUSP+IceEgMK/9wcxirCjGGsitlFS4xUo4/hmnNOJvlDaiWMXc4fIO1hgVYzRqggaGfibxNogAtDzCT0WlE5s5gmp2D1NOtCdpfNH/FO3cwozdKxhYfWmpul2iLa1dU+/FCZtM1ICUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YAoj0vA4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67591C4CEED;
-	Mon, 21 Jul 2025 09:32:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pgYmc7LSPJ0YKmzRqpKPH+AW/D50OxPcBI1WmEiSXBDBoFcRdGi37ivXV3KyHK9hRA7b3jqT4ht1IvQWIOk6pjXa234HDtu5l9PRE7N8FE8KE7oZqd8/udikIndpYTWOhibWnQ1xaTNtvMjiSx37xd0Qn+2gQ0UNCTPnZLLh6h4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K4khWPmn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7C2BC4CEED;
+	Mon, 21 Jul 2025 09:35:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753090324;
-	bh=tMQd51DR2PhlSANSMzu8tnUKCfa7HWDsrUeedOQDGV8=;
+	s=k20201202; t=1753090521;
+	bh=X8v0vyphKABw6mn9MwF3K64kGeZMYpZRS3X8znvpDDY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YAoj0vA4RH1GRqkxXn895QzFv0xG59k/y01og9h9chrcRef6I1zl+kY8HjU/CScJO
-	 fY6cqeDqwoJnAHxHg5TT0pPw09FzspU5f5hyj8JuGqtHfoWALjOkzT+D1yKkCVCLir
-	 LkmBbUIU1HkWq/06QbM/t0zB4AjvW2jMyvv0tuPNjzt/l9bsiKFDea2bnq8JBtnwn4
-	 lEN+sm57+hqBfZ91Bs8LemSMzLfr5/ulb8jaQXyTYeM5sbgAtv1iZnB/jRYbe2Olce
-	 X0eZUchellO9l6S2rSHcDoS8eZy12eh7DMSKJ4kpvXVOYnAbij6mH1lfnqStNVZ6KI
-	 bFeg8JqF8qZPA==
-Date: Mon, 21 Jul 2025 11:32:01 +0200
+	b=K4khWPmnVZphjAbFKboI0FSmd3tz3XjB48JFWgQMxBkdhtRUqkLuPZ/WQM+YtW/Sk
+	 kvnT4Zbi1WHSjCOm+0CkRKFvOIRLJUPmbZjXpLpim8de/LSP0U/2wkiY4NgSCh8Dii
+	 rQ5f+nx2gWPmKs8InPBNUpBAB6/iMExS1HUuhuUguy8qeMiOCB3eYU5l8ORSDZdzuA
+	 9td3HTwLrd3thWxQ/LhgV6u9OSkjoZlMsGM93Zk74GSDZsUi4cxeysomfMlvjiF4kD
+	 SJjlDSvyWOOyEWFPCUQcla2SqaPzksJyBpIe2FQrW9ThzvInu6+oeAzLfebMclPQ9F
+	 +qRQF7pqt3fqA==
+Date: Mon, 21 Jul 2025 11:35:18 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Stefan Roese <sr@denx.de>, Andi Shyti <andi.shyti@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 3/5] dt-bindings: i2c: mt7621: Document an7581 compatible
-Message-ID: <20250721-amorphous-perch-from-jupiter-cecfaa@kuoka>
-References: <20250719125617.8886-1-ansuelsmth@gmail.com>
- <20250719125617.8886-4-ansuelsmth@gmail.com>
+To: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: herbert@gondor.apana.org.au, davem@davemloft.net, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, atenart@kernel.org, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	Sam Shih <sam.shih@mediatek.com>, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/2] dt-bindings: crypto: inside-secure,safexcel: make
+ eip/mem IRQ optional
+Message-ID: <20250721-utopian-jumping-yak-8cc53e@kuoka>
+References: <20250720174903.1321533-1-olek2@wp.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,34 +62,73 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250719125617.8886-4-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250720174903.1321533-1-olek2@wp.pl>
 
-On Sat, Jul 19, 2025 at 02:56:13PM +0200, Christian Marangi wrote:
-> Airoha SoC implement the same Mediatek logic for I2C bus with the only
-> difference of not having a dedicated reset line to reset it.
-> 
-> Add a dedicated compatible for the Airoha AN7581 SoC and reject the
-> unsupported property.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+On Sun, Jul 20, 2025 at 07:49:02PM +0200, Aleksander Jan Bajkowski wrote:
+> Binding for this cryptographic engine defined 6 interrupts since its
+> beginning. It seems however only 4 rings IRQs are really required for
+> operating this hardware. Linux driver doesn't use "eip" or "mem" IRQs
+
+Are the lines there in hardware or not? See writing bindings - they
+exactly cover this case.
+
+> and it isn't clear if they are always available (MT7986 devicetree
+> doesn't specify them).
+
+You need SoC specific compatibles which will narrow this per variant of
+the block.
+
+>=20
+> The hardware reference manual [1] for the EIP-197 IP core only defines
+> ring interrupts and a global interrupt ("eip"). Ring interrupts can
+> optionaly be routed via the main interrupt. Role of the "mem" interrupt
+> is unknown.
+>=20
+> This deals with:
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: crypto@10320000=
+: interrupts: [[0, 116, 4], [0, 117, 4], [0, 118, 4], [0, 119, 4]] is too s=
+hort
+>         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
+re,safexcel.yaml#
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: crypto@10320000=
+: interrupt-names: ['ring0', 'ring1', 'ring2', 'ring3'] is too short
+>         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
+re,safexcel.yaml#
+>=20
+> [1] https://www.scribd.com/document/665924595/Security-IP-197-HW3-4-Hardw=
+are-Reference-Manual-RevA
+> Cc: Antoine Tenart <atenart@kernel.org>
+> Cc: Sam Shih <sam.shih@mediatek.com>
+> CC: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
 > ---
->  .../bindings/i2c/mediatek,mt7621-i2c.yaml          | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml b/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
-> index 118ec00fc190..38118007b601 100644
-> --- a/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
-> @@ -14,7 +14,9 @@ allOf:
->  
->  properties:
->    compatible:
-> -    const: mediatek,mt7621-i2c
-> +    enum:
-> +      - mediatek,mt7621-i2c
-> +      - airoha,an7581-i2c
+>  .../crypto/inside-secure,safexcel.yaml        | 21 ++++++++++++-------
+>  1 file changed, 14 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safex=
+cel.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.=
+yaml
+> index 343e2d04c797..97af96bfe5f6 100644
+> --- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
+> @@ -26,16 +26,23 @@ properties:
+>      maxItems: 1
+> =20
+>    interrupts:
+> +    minItems: 4
+>      maxItems: 6
+> =20
+>    interrupt-names:
+> -    items:
+> -      - const: ring0
+> -      - const: ring1
+> -      - const: ring2
+> -      - const: ring3
+> -      - const: eip
+> -      - const: mem
 
-Keep list ordered.
+You just miss minItems: 4 and no need for all the rest.
 
 Best regards,
 Krzysztof
