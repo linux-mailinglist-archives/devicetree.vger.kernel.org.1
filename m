@@ -1,62 +1,72 @@
-Return-Path: <devicetree+bounces-198412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B9CAB0CB3B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 21:58:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 598B6B0CB5B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 22:09:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D35687B378E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:57:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F6157A6429
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 20:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF39238C08;
-	Mon, 21 Jul 2025 19:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1838E239E80;
+	Mon, 21 Jul 2025 20:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AViKdRQU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DLNm4FZ5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F227230BE0;
-	Mon, 21 Jul 2025 19:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3EB621FF3E;
+	Mon, 21 Jul 2025 20:09:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753127902; cv=none; b=oDFLVST1zvvvgoiyPB4Jv6xIPDTCgMMo/rY/3sXl8wHlVq0QOgXGlfyy1TfrubxMYxIhmo3uiSd95ivIBxqJkntHaw1eNGY7ZKzzuURktlQvF70Hd1wQvKaCAPmLIR93rbdEadRea3sJ3HP29/PAK1BVWNQkvNK31Mggt/4sD3s=
+	t=1753128568; cv=none; b=dkdJZwL2Mo2gpxmDZSHCBleD4Yyq4ofaHaeyZaggLSmz4Mm5V09FIKNoJhbwuBhUUsLEoCH/Y82Ey185Nz6/DFyZ0ejfamVI1UiTNXMConu5bn51ctO8fwDD40AmY/aoVzwNOjBZc0w2XyRa5tGiq2WXqRImCMPIcMZcXy2NP+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753127902; c=relaxed/simple;
-	bh=KuJmPdgYM52TyEfb5GOaYYy/Wz8zkqWtBSMWMCCCUXo=;
+	s=arc-20240116; t=1753128568; c=relaxed/simple;
+	bh=0tI7Ckz46vRExgHt7/KrtPSDrZcdVJNbVoF8HN/Bt+w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hXuTxOVAwA2zQt5/08czuP0tiBVliatbnZBDswxHX1yiUO8Luuez2ugmiM9DISTe7PvvbNnO+I8yPQmTeBC7pbk5HKhZ5a9XXuVYiK/mPUGbH4YypTgRKOy0PdReuv0QGqEjEutCl4CvtCgdo0tPsNNmGCHcHLlXXl8Zll5R8g0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AViKdRQU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB1E7C4CEED;
-	Mon, 21 Jul 2025 19:58:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AtuPoHWwgyApaRHoWVJEyD7VhKJI6Z5qJ10OtkC/Pb0rp7XDoWFtzozYLhVU1Iep23TnOBCWnbMbrfuJWtzdgwQWYiK5smbtRcgAy0Byo83kvE2w22orn08CXdKCbs91C6UVlLkpPce42e8u1upH+K0d9tCUQCRCiCI9iqd+/FE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DLNm4FZ5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E3ACC4CEED;
+	Mon, 21 Jul 2025 20:09:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753127902;
-	bh=KuJmPdgYM52TyEfb5GOaYYy/Wz8zkqWtBSMWMCCCUXo=;
+	s=k20201202; t=1753128567;
+	bh=0tI7Ckz46vRExgHt7/KrtPSDrZcdVJNbVoF8HN/Bt+w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AViKdRQUgjZkH+Mbtvssorka8bkheIkitMNfiDbxUfb+690Dt1VuzCqU+7ttwe5Ad
-	 kMPF6GD1v1DRk3vz0S1w8yKh2jsTm5YgQeqEbAGIhhM9HefDaeosAA4fK27RVMkKfy
-	 qVsIHS6OB9L6yMwapvunD/anMfISkff2B8R0uhxqJkO8u/CFZlLgJdJcwAtJ+O8pr1
-	 l493eO1Ku7LwqQMqMStazmD7gJXCwEMZ/VQL+lvqHIMD+CeqOiNbr5zO4epfHrA7sS
-	 InnBoE+iqnd4Zpmy6wFJQOL3gt+1C1e8oyT6R8g3Rl78Kc8gaEU7F+Zhmlwo9piLu4
-	 35tiwJnZhQuGg==
-Date: Mon, 21 Jul 2025 14:58:21 -0500
+	b=DLNm4FZ5DqGkI0BU+e1MbrutQHnfbD5PddxRwA7qx8WwP7lB0AdvIUP/ThYm8iPFN
+	 SzXrVa8azY5hs/h1p1uGNUckSDkGI+j5pLuDgpF1xTD27zOPveIAn/U3TNhXOWxkLh
+	 iNa+jVUmuI78lSAg9urGHTuq+UnDFppKmiIM3TgHmxCbNwxN4OAcF8blVRSMn3Q9s2
+	 XdaY67ZvK907ChVjCXl2eRgw1fNC/xfInBrQmQYfBSlo30m6JyPTesbV1rgE9LbDoF
+	 a2gUXEOWrFnK/RNCSniPEmuDVSgcZIEkvoH+3R7565JMM81xzjMZ8u4JVPdN9I0rkv
+	 FLJoxRcsCc4sw==
+Date: Mon, 21 Jul 2025 15:09:26 -0500
 From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, ulf.hansson@linaro.org,
-	y.oudjana@protonmail.com, fshao@chromium.org, wenst@chromium.org,
-	lihongbo22@huawei.com, mandyjh.liu@mediatek.com, mbrugger@suse.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-	kernel@collabora.com,
-	=?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>
-Subject: Re: [PATCH v2 03/10] dt-bindings: power: mediatek: Document
- access-controllers property
-Message-ID: <20250721195821.GA1163453-robh@kernel.org>
-References: <20250707105605.98248-1-angelogioacchino.delregno@collabora.com>
- <20250707105605.98248-4-angelogioacchino.delregno@collabora.com>
+To: =?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>
+Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Gatien Chevallier <gatien.chevallier@foss.st.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Le Goffic <legoffic.clement@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 05/16] dt-bindings: memory: add jedec,ddr[3-4]-channel
+ binding
+Message-ID: <20250721200926.GA1179079-robh@kernel.org>
+References: <20250711-ddrperfm-upstream-v2-0-cdece720348f@foss.st.com>
+ <20250711-ddrperfm-upstream-v2-5-cdece720348f@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,101 +76,69 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250707105605.98248-4-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250711-ddrperfm-upstream-v2-5-cdece720348f@foss.st.com>
 
-On Mon, Jul 07, 2025 at 12:55:58PM +0200, AngeloGioacchino Del Regno wrote:
-> Allow specifying access-controllers in the main power controller
-> node and deprecate the old mediatek,infracfg, mediatek,infracfg-nao
-> and mediatek,smi properties located in the children.
+On Fri, Jul 11, 2025 at 04:48:57PM +0200, Clément Le Goffic wrote:
+> Introduce as per jedec,lpddrX-channel binding, jdec,ddr[3-4]-channel
+> binding.
 > 
-> This is done in order to both simplify the power controller
-> nodes and in preparation for adding support for new generation
-> SoCs like MT8196/MT6991 and other variants, which will need
-> to set protection on new busses.
-> 
-> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
 > ---
->  .../power/mediatek,power-controller.yaml      | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
+>  .../memory-controllers/ddr/jedec,ddr-channel.yaml  | 53 ++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> index 9c7cc632abee..82bfd3899b22 100644
-> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> @@ -44,6 +44,17 @@ properties:
->    '#size-cells':
->      const: 0
->  
-> +  access-controllers:
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,ddr-channel.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,ddr-channel.yaml
+> new file mode 100644
+> index 000000000000..31daa22bcd4a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,ddr-channel.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,ddr-channel.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: DDR channel with chip/rank topology description
+> +
+> +description:
+> +  A DDR channel is a logical grouping of memory chips that are connected
+> +  to a host system. The main purpose of this node is to describe the
+> +  overall DDR topology of the system, including the amount of individual
+> +  DDR chips.
+> +
+> +maintainers:
+> +  - Clément Le Goffic <legoffic.clement@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - jedec,ddr3-channel
+> +      - jedec,ddr4-channel
+> +
+> +  io-width:
 > +    description:
-> +      A number of phandles to external blocks to set and clear the required
-> +      bits to enable or disable bus protection, necessary to avoid any bus
-> +      faults while enabling or disabling a power domain.
-> +      For example, this may hold phandles to INFRACFG and SMI.
-> +    minItems: 1
-> +    maxItems: 3
+> +      The number of DQ pins in the channel. If this number is different
+> +      from (a multiple of) the io-width of the DDR chip, that means that
+> +      multiple instances of that type of chip are wired in parallel on this
+> +      channel (with the channel's DQ pins split up between the different
+> +      chips, and the CA, CS, etc. pins of the different chips all shorted
+> +      together).  This means that the total physical memory controlled by a
+> +      channel is equal to the sum of the densities of each rank on the
+> +      connected DDR chip, times the io-width of the channel divided by
+> +      the io-width of the DDR chip.
+> +    enum:
+> +      - 8
+> +      - 16
+> +      - 32
+> +      - 64
+> +      - 128
 
-> +    items:
-> +      maxItems: 1
+This is duplicating what's in jedec,lpddr-channel.yaml. Refactor or add 
+to it rather than duplicating.
 
-Drop 'items' as how many cells is up to the provider.
+Is there some reason regular DDR3/4 doesn't have ranks? I'm pretty sure 
+it can...
 
-> +
->  patternProperties:
->    "^power-domain@[0-9a-f]+$":
->      $ref: "#/$defs/power-domain-node"
-> @@ -123,14 +134,17 @@ $defs:
->        mediatek,infracfg:
->          $ref: /schemas/types.yaml#/definitions/phandle
->          description: phandle to the device containing the INFRACFG register range.
-> +        deprecated: true
->  
->        mediatek,infracfg-nao:
->          $ref: /schemas/types.yaml#/definitions/phandle
->          description: phandle to the device containing the INFRACFG-NAO register range.
-> +        deprecated: true
->  
->        mediatek,smi:
->          $ref: /schemas/types.yaml#/definitions/phandle
->          description: phandle to the device containing the SMI register range.
-> +        deprecated: true
->  
->      required:
->        - reg
-> @@ -138,6 +152,31 @@ $defs:
->  required:
->    - compatible
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8183-power-controller
-> +    then:
-> +      properties:
-> +        access-controllers:
-> +          minItems: 2
-> +          maxItems: 2
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8365-power-controller
-> +    then:
-> +      properties:
-> +        access-controllers:
-> +          minItems: 3
-> +          maxItems: 3
-> +
->  additionalProperties: false
->  
->  examples:
-> -- 
-> 2.49.0
-> 
+Rob
 
