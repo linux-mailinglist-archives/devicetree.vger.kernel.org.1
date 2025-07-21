@@ -1,119 +1,171 @@
-Return-Path: <devicetree+bounces-198376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED925B0C9C1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:35:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7285EB0C9D1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:38:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFF164E044D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:34:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54F516C1D41
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCAA2E11C9;
-	Mon, 21 Jul 2025 17:34:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669322E091D;
+	Mon, 21 Jul 2025 17:38:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M7diNgsZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="crNHOQ5Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1C72E11D6;
-	Mon, 21 Jul 2025 17:34:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 853572DECB5;
+	Mon, 21 Jul 2025 17:38:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753119287; cv=none; b=m4unM7xlfGzT06qCjN241mVhmqFu91QONVihSgOBLg+hwnq7Mrrp2C8szeAS6boijoZKpALr7IG7BsOyKVX7EPsnIpVgGz5eTKJMxEYkALYm/T/ihEedImih8EfAfwkJ9szvYuLrAe3TwfWa+0p8d1XDGPwq1n0fsOqK7/xkOBg=
+	t=1753119484; cv=none; b=VvJFoGZDzwwzfOXSJf6RrP8bCCOf8rPhEfnsUieIPIg7I9MsyDgDkNGZ4Xe/BmHr/zV13rbMnEG576JGn7NG1vIWuXp5/Z4f4thT3I0ZvYhxEKnIWoEs+2raQletzw9U2CFpmG0UdYB5ia/JfALNFUP6g8wmvmUfClcTL90APz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753119287; c=relaxed/simple;
-	bh=V/CfjxoEsKYCsa9Ewp5zLHqhCdlau2qmxdYvbksj8K0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VC2ARtHexC83OO3nxP2EXq2U6asVCa0nW5oCyk1Ujl1b2riINBkGCUHnQzq4Lpch3C20b/C+E9ajVrkJF4YYASxVKqyWMgmksmke+UNHHV6BvTL8BguT8xQY2nQF8GGnRLFzqZetw5wQn94jtAYRBC1W3f4meNcyWLyO2UGU364=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M7diNgsZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2A63C4CEF4;
-	Mon, 21 Jul 2025 17:34:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753119287;
-	bh=V/CfjxoEsKYCsa9Ewp5zLHqhCdlau2qmxdYvbksj8K0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M7diNgsZycI8nmdD1vqsLiLyvQW4lt3MSDPn42taIptUhJV3ffM3zqJMHttjZt3+u
-	 nf/A/8luOCJRRFowuIDDdn4zdPBS4hZCv7Dg36XjWDsep4ZWov6Bb0mfT6rRrAO2p1
-	 ThFPJkv20FUbw64XzqcdkXHnqHS5TxSD5Mhf+jWb88c4EqzT5eoeyCYQKn20KvcdjK
-	 uMJjuz95HD3IgiWDH/iJwmir+eEq8QOnIk0ipej8m2x9s58y6wZ75f4sM0HshkuRuz
-	 P4DzghlEEyXQXYqBOFFB3oGozWRnXFKZg7DKgBG69At9457gttbA237nC9+z8yjgHk
-	 MeAaOKAPZ9JxQ==
-Date: Mon, 21 Jul 2025 18:34:40 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-spi@vger.kernel.org, Heiko Schocher <hs@denx.de>,
-	linux-kernel@vger.kernel.org,
-	Andrei Lalaev <andrey.lalaev@gmail.com>,
-	Chanh Nguyen <chanh@os.amperecomputing.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Grant Peltier <grantpeltier93@gmail.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	s=arc-20240116; t=1753119484; c=relaxed/simple;
+	bh=JQeKeyjQ550mGYzRoXjGCK3oDO8pvfYR6KeZGy7cwls=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=l/GFSVZ8top+GJufSrsO14+Uf0DNPyGxhmA6eSK6qs716mqpdy2CJqdDo6TAB/FEN6JoXnlF15C7PZef79IDeRex9RcuTOoID/AvqJfYXWO1ooHTNwyaCIUZdio7IlOlY5JHJWN+SI6Q4VnJaPUxz9EsWjcKhDl/BYL6mgZxq/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=crNHOQ5Y; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-60707b740a6so6618967a12.0;
+        Mon, 21 Jul 2025 10:38:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753119480; x=1753724280; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=i5aYttvmuPho8Hr/hRnl5TjyZg+8OVRSRk5gmU1kZpA=;
+        b=crNHOQ5YvO5EnAAUGiPNkmGTIfe7JMRtHlZAY5aBtWvULAnRNnhNKmyAqErnL6xmXt
+         zPftPrzhlHDrCHXKwxApYoUBgkD6OMZucBKOAB1JzAPVfTMELOZGi3AjVTaRDJKI8cqZ
+         VdOrLLsWjJCCN8dcenW6QoDce04+QrFvR0TIrL2cvmZBKQuvVmSbQzuXN8fY5LVoRTw8
+         jn4vq/nvZcE5Ri5ilMmvX+JuOB6BRv3lAozyDpbJI0iBSWrPZtXe3ymKyXq1lcDrCv3u
+         R/pOCFvfhypDKBfsTPswSFv56NQcDvXAw/wgil6GFZpK+qNtbAl4IdBq+rjZEO6z+m2U
+         Dd1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753119480; x=1753724280;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=i5aYttvmuPho8Hr/hRnl5TjyZg+8OVRSRk5gmU1kZpA=;
+        b=LdyAmM49OspMlnOtbBZcNYaJdoM0F958/Men5xxlvDjToBQsruX/zJtaL5uIPEa/gq
+         MJVr+9W6gNNR4uN3BnIrWpWm3fjQN9TLcr8+OuqDnx09FKOPIdhqMDuZqdlQlo2KYDQE
+         Ad1K9mpw8Yx9xxKN4TrBLJQhGpPmLTnWiFBWk/HBKThZmikgbjWA7/TECHjV6db+zNMh
+         JntfcpRaGMM6rK4nyvf3ehx0iloFZNDdBOaP89kWxgZ4opwrY6UNPw/ds7oR54FuSWef
+         BCnaRstoTOUe8J/YwOXsS82CVPRXtLeorHvYSJtLkIMfsct61v8GA9VgwZ7u+GP3m56T
+         oomQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUIlcJmpE63MUzrg1w9G+RR1QT5Wmr38hPDU+tax8h3FGrvClzkDAQVRRIzGhAh+vp8zKG+dXbB9U+w@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/IaAf/CImiGkmXxRd8cpuJdPmtLicrxKhQB5EZSCR2OqpVzMf
+	gLQ1kvqVgUA1RPZ1iCWsAA2xGHXlYwKpDl89y+j24O6kbiYtCz9vXoukbqrj3yaY
+X-Gm-Gg: ASbGncv04fe2sbIXxZil7vwU0K4DTcRtMAfydp9M0dAF8FA+934dCQlAKgY4F6zrCxp
+	x1TDQwqUiIVJbPD5n61dWGgym2F8kFWOhLJpR1KYeG9vuKtOP5uMNF8axHMTq900UTapFPX5ygz
+	ho48KfBkj26LFBRbqhFX9yzkJ8KGCh/hYyCSkRfHIr8K8Szgf0V8Cg/26pMbKlb4DpLqbdPzHXx
+	f7LkrtcOplyIThL+yKR2E0dvAKRwVz0WUtcW9+C/HUCul51n30dXtWMpbMZNRtzRLuggGHmQrMD
+	swAnli+uqIABKzA5T8CVWIti4ngrRMqjf8h8RK8U9VDQqsMzGmy51xo36K9Fo7OxsspqsMSeCI8
+	XTTY8YD75r9C4hOdyITsoyBNAVWrPLD6fPq4Ehb5LKFuz28q7rvQBRSKjFXVlsBUV7PUbZhR0Co
+	y1lDQ=
+X-Google-Smtp-Source: AGHT+IFEsc1qZOuWRAAkyRNnNZ2Vit1sRj4YvitU/IhJG0Vc2xsnI9fjQ01jyLofTpmOHPK/wEH/lA==
+X-Received: by 2002:a17:907:da0:b0:af0:3bac:4f88 with SMTP id a640c23a62f3a-af03bac510fmr326278466b.26.1753119480257;
+        Mon, 21 Jul 2025 10:38:00 -0700 (PDT)
+Received: from fedora.tux.internal (85.191.78.244.dynamic.dhcp.aura-net.dk. [85.191.78.244])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aec6ca315d5sm715812566b.98.2025.07.21.10.37.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Jul 2025 10:37:59 -0700 (PDT)
+From: Bruno Thomsen <bruno.thomsen@gmail.com>
+To: linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Tony Lindgren <tony@atomide.com>,
 	Rob Herring <robh@kernel.org>,
-	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH v1 0/3] spidev: introduce trivial abb sensor
- device
-Message-ID: <2a99b64a-b6d4-46de-acb1-8a9328b7d5f6@sirena.org.uk>
-References: <20250719063355.73111-1-hs@denx.de>
- <175311337130.327079.7374455187420344577.b4-ty@kernel.org>
- <d677ecd9-42d6-43fe-8fe1-a5afd4d270e2@kernel.org>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bruno Thomsen <bruno.thomsen@gmail.com>
+Subject: [PATCH] ARM: dts: am33xx-l4: fix UART compatible
+Date: Mon, 21 Jul 2025 19:37:41 +0200
+Message-ID: <20250721173741.6369-1-bruno.thomsen@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WCNX58Rd1dpGFNKG"
-Content-Disposition: inline
-In-Reply-To: <d677ecd9-42d6-43fe-8fe1-a5afd4d270e2@kernel.org>
-X-Cookie: Microwaves frizz your heir.
+Content-Transfer-Encoding: 8bit
 
+Fixes the following dtschema check warning:
 
---WCNX58Rd1dpGFNKG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+serial@0 (ti,am3352-uart): compatible: 'oneOf' conditional failed, one must be fixed:
+	['ti,am3352-uart', 'ti,omap3-uart'] is too long
+	'ti,am3352-uart' is not one of ['ti,am64-uart', 'ti,j721e-uart']
+	'ti,am654-uart' was expected
+	from schema $id: http://devicetree.org/schemas/serial/8250_omap.yaml#
 
-On Mon, Jul 21, 2025 at 06:24:55PM +0200, Krzysztof Kozlowski wrote:
-> On 21/07/2025 17:56, Mark Brown wrote:
+Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+---
+ arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-> > [1/3] dt-bindings: trivial-devices: Document ABB sensors
-> >       commit: aad2f87cbcab56b322109d26d7b11842a09df91f
-> > [2/3] spi: spidev: Add an entry for the ABB spi sensors
-> >       commit: d60f7cab7c04944a79af16caa43c141e780a59c6
+diff --git a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
+index d6a143abae5f..cef24aafed1a 100644
+--- a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
++++ b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
+@@ -200,7 +200,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x9000 0x1000>;
+ 
+ 			uart0: serial@0 {
+-				compatible = "ti,am3352-uart", "ti,omap3-uart";
++				compatible = "ti,am3352-uart";
+ 				clock-frequency = <48000000>;
+ 				reg = <0x0 0x1000>;
+ 				interrupts = <72>;
+@@ -1108,7 +1108,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x22000 0x1000>;
+ 
+ 			uart1: serial@0 {
+-				compatible = "ti,am3352-uart", "ti,omap3-uart";
++				compatible = "ti,am3352-uart";
+ 				clock-frequency = <48000000>;
+ 				reg = <0x0 0x1000>;
+ 				interrupts = <73>;
+@@ -1139,7 +1139,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x24000 0x1000>;
+ 
+ 			uart2: serial@0 {
+-				compatible = "ti,am3352-uart", "ti,omap3-uart";
++				compatible = "ti,am3352-uart";
+ 				clock-frequency = <48000000>;
+ 				reg = <0x0 0x1000>;
+ 				interrupts = <74>;
+@@ -1770,7 +1770,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0xa6000 0x1000>;
+ 
+ 			uart3: serial@0 {
+-				compatible = "ti,am3352-uart", "ti,omap3-uart";
++				compatible = "ti,am3352-uart";
+ 				clock-frequency = <48000000>;
+ 				reg = <0x0 0x1000>;
+ 				interrupts = <44>;
+@@ -1799,7 +1799,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0xa8000 0x1000>;
+ 
+ 			uart4: serial@0 {
+-				compatible = "ti,am3352-uart", "ti,omap3-uart";
++				compatible = "ti,am3352-uart";
+ 				clock-frequency = <48000000>;
+ 				reg = <0x0 0x1000>;
+ 				interrupts = <45>;
+@@ -1828,7 +1828,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0xaa000 0x1000>;
+ 
+ 			uart5: serial@0 {
+-				compatible = "ti,am3352-uart", "ti,omap3-uart";
++				compatible = "ti,am3352-uart";
+ 				clock-frequency = <48000000>;
+ 				reg = <0x0 0x1000>;
+ 				interrupts = <46>;
 
-> That's unexpected, Mark. Patches received two objections/comments and I
-> don't think discussion was resolved.
+base-commit: 89be9a83ccf1f88522317ce02f854f30d6115c41
+-- 
+2.50.1
 
-Oh, sorry - I'd missed those (possibly due to only being CCed on part of
-the series).  I guess I'll drop this then.
-
---WCNX58Rd1dpGFNKG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmh+ei8ACgkQJNaLcl1U
-h9Ce3wf7Bhl+JzqbBICKswFFhvnGdkCuL1QR2PvMdJB/QjSKKq/6JpkPEt53OxqO
-tBQJYCf6QNpcc+HJqlVumz4r4cwpyp8SXuwmwaxihthqVYRcCyiLA1d/RHFIJ9n9
-CyAl/gGjzncNxEIe3trDjSvAzTjGadbAaqmLN54jvS0KPnWfK2S9lzr7r9mkRfqr
-m6iikZoind5xRzssX5XFuiCmMxI3wY9StJ4LocjQB2GPD/aWOtNnIQFBUFiaAE4u
-376S1CX9/m5tthTqMtLfHRICcz4nAFULDsfYmBPq638I5ZguqDiXhz0JoioTP+ka
-SiTSXqIh1a/YSdVXjWkgt6fEzQV0Hw==
-=Xbls
------END PGP SIGNATURE-----
-
---WCNX58Rd1dpGFNKG--
 
