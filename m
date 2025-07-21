@@ -1,118 +1,303 @@
-Return-Path: <devicetree+bounces-198149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51957B0BE16
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:52:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 720DCB0BE63
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:04:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A171188F112
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 07:52:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFA0917C7E7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 08:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E882127FD76;
-	Mon, 21 Jul 2025 07:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9976228504C;
+	Mon, 21 Jul 2025 08:04:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VMss2JQT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K7N5W7ta"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5255F222590;
-	Mon, 21 Jul 2025 07:52:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66BEE283FF9;
+	Mon, 21 Jul 2025 08:04:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753084334; cv=none; b=OaeVjoNrJgX+CP3D0usZ8ev8fHIJTB8Q0o4Nue20FNRZl9jzcyAp3Hz5QtF7rTlDWRicclsyiB7CDXc8hGyjcm54Z9Lr3yxLNse+BoyXZ0PCIKe+Q9ND7iZZDt75tMG0e6JH1mEBJ/QNOQ7pqqTyijB1LV5ezNY/D7GJH0rseGc=
+	t=1753085085; cv=none; b=I5g9JP/u41w8V4HSPgsT2ymkTtNYKABcAqAl3tdRisE/m0v2JCvAoG//MAfJwBTHOjIcIyXNvrmGKaIlmCF62wc/YW3ZLlszhlXwhuWviqMCE2JbH2JKRCCeKLDoQmyO0M3Z+BXHQQ958U6fA07l8L7EYuycOsJHWeWlk2khzTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753084334; c=relaxed/simple;
-	bh=S81qr9hFOduDkWryR/8Zook9qEaCBaFDKK8h/sGo2HY=;
+	s=arc-20240116; t=1753085085; c=relaxed/simple;
+	bh=QgDLhVT5/Im3WYhce4U20WhSBJqy+kOhesA7mNbWrHc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sMBj8axarmBFXiBkzR5wPg1NZ+NE5JoyYtF2WWgH7ajcImhAohXEKfvn2A6e+/bMgr9ADoNcw0z2ldUruYHJBx8ntIhTzbvvuNiAK29tgpqXHSuDPh2EUzYt1Of0NnCNV8bCMEBmPoEjoW6iIqdM1VoCg1F2iYKQ8V+UHrA8TX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VMss2JQT; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1753084333; x=1784620333;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=S81qr9hFOduDkWryR/8Zook9qEaCBaFDKK8h/sGo2HY=;
-  b=VMss2JQTMY5hbXmJlSbFyXVdGLQnBmvOjFzQgzlmnn5D72TrB92WQfc3
-   crZzT8b8HvqbpZs+X2P5pAKJ/2w0p21cXaala9BRdC/7/Qqu6K6ZS5vAo
-   REDevpLgS4KWtFe6kCMbgvFoM/p2dio3TNEK4PYlVRFuYlpWlGQa8fC6h
-   japYvjh9hT81M3zBX5/PQm4tKWz6maiS+Y0RHZGLYTbqQbGIU+9DN6jwq
-   9kQA3y5nVE13qPYHfpCgMtv8V701uUAfCfQ1aYq+PffuVEYoo90gvq1qD
-   cZv2oz2l+sK8Wgzp0h1t3eTZTWrDS9xwVG44l+6s1Gp37JxVr2Rchxhf5
-   w==;
-X-CSE-ConnectionGUID: 1p3K8cpmSvGxJB/HMUmDfw==
-X-CSE-MsgGUID: ImGINN3LSHOOkCrk8WqzUQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11498"; a="55249411"
-X-IronPort-AV: E=Sophos;i="6.16,328,1744095600"; 
-   d="scan'208";a="55249411"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 00:52:12 -0700
-X-CSE-ConnectionGUID: o0q7XRb0RPitcVimaam3ZA==
-X-CSE-MsgGUID: khK44DSEQ5igeY5q8Fawhw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,328,1744095600"; 
-   d="scan'208";a="182474746"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 00:52:07 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1udlJb-0000000HHid-2Qi4;
-	Mon, 21 Jul 2025 10:52:03 +0300
-Date: Mon, 21 Jul 2025 10:52:03 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: ">" <sanjaysuthar661996@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, ribalda@kernel.org,
-	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	neil.armstrong@linaro.org, khilman@baylibre.com,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
-Subject: Re:
-Message-ID: <aH3xo8PeReb0s-QD@smile.fi.intel.com>
-References: <CADU64hCr7mshqfBRE2Wp8zf4BHBdJoLLH=VJt2MrHeR+zHOV4w@mail.gmail.com>
- <20250720182627.39384-1-sanjaysuthar661996@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ik4fR6jAatlX0X9eYroa0cbkYjNVV14GFm2W56A61GCtaAG3PRPNFn0GQTxI62yvC4zDkoh6UEAeLMpQBSKjdukr6VNK0FX4JISTe1pDl+pd/zCfp0RvLaHS5F/tUrEeB2qclzElp/72DXWPPFwvyjAY/VJZHPLVsfevFRcMUPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K7N5W7ta; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C987C4CEED;
+	Mon, 21 Jul 2025 08:04:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753085084;
+	bh=QgDLhVT5/Im3WYhce4U20WhSBJqy+kOhesA7mNbWrHc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K7N5W7tai1vfrQpA1hq53JrFSkqITF78cHo0BN+Tetz3lQFvqOr24uWsEOqX9WcYd
+	 Orkuv6Wk0OIZZ9NnN71Kw0AZJ5VJjde3EQtsnQeVMWc0NknnM7vK+tY8Vj0Ng3IcKC
+	 2QadC4DZMmHJSKzWz4SAlXDsc4ZsdMPmiAUTk0791CNQxKEgOQ6gd+EiNiR1VQcqgC
+	 MeLDyPHumO/ToS+tDk2FfeHWP3KqyBF6j1kpN5EgjiRthLO+NEnBgcu9Buhc8nrFEN
+	 8kXMFH50s9RjwtTdZ0W8ULdm3yGBxXDIvPe4qtmt3hvkwehclT1bd3aBW9IHePZAWS
+	 MXt9K0szD2zkA==
+Date: Mon, 21 Jul 2025 10:04:42 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: jeff_chang@richtek.com
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] dt-bindings: regulator: Add Richtek RTR5133 DT
+ Binding Documentation
+Message-ID: <20250721-wonderful-auk-of-whirlwind-8beda4@kuoka>
+References: <20250721060215.2718217-1-jeff_chang@richtek.com>
+ <20250721060215.2718217-2-jeff_chang@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250720182627.39384-1-sanjaysuthar661996@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20250721060215.2718217-2-jeff_chang@richtek.com>
 
-On Sun, Jul 20, 2025 at 11:56:27PM +0530, > wrote:
-> Changes in v2:
-> - Fixed commit message grammar
-> - Fixed subject line style as per DT convention
-> - Added missing reviewers/maintainers in CC
+On Mon, Jul 21, 2025 at 02:01:35PM +0800, jeff_chang@richtek.com wrote:
+> From: Jeff Chang <jeff_chang@richtek.com>
 > 
-> From 5c00524cbb47e30ee04223fe9502af2eb003ddf1 Mon Sep 17 00:00:00 2001
-> From: sanjay suthar <sanjaysuthar661996@gmail.com>
-> Date: Sun, 20 Jul 2025 01:11:00 +0530
-> Subject: [PATCH v2] dt-bindings: cleanup: fix duplicated 'is is' in YAML docs
+
+Missing commit msg.
+
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
+
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
+I already asked for it. Did you really read what I linked last time?
+
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+I already asked for it, so you ignored another comment. Why are you not
+responding or implementing the comments?
+
+Bindings go before users, so please re-order patches (see submitting
+patches in DT dir).
+
+> Signed-off-by: Jeff Chang <jeff_chang@richtek.com>
+> ---
 > 
-> Fix minor grammatical issues by removing duplicated "is" in two devicetree
-> binding documents:
+> PATCH v3
+> 1. fix Subject format
+> 2. using correct patches version
+> 3. remove '|'
+> 4. remove allOf: &ref regulator.yaml#
+> 5. remove redundant description
+> 6. move BASE to base property with correct indentation
+> 7. only using lowercase node name
+> 8. make DT_CHECKER_FLAG=-m DT_SCHEMA_FILES=richtek,rt5133.yaml dt_binding_check pass
 > 
-> - net/amlogic,meson-dwmac.yaml
-> - iio/dac/ti,dac7612.yaml
+> 
+>  .../bindings/regulator/richtek,rt5133.yaml    | 197 ++++++++++++++++++
+>  1 file changed, 197 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
+> new file mode 100644
+> index 000000000000..a92e7f775832
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
+> @@ -0,0 +1,197 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/richtek,rt5133.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Richtek RT5133 PMIC Regulator
+> +
+> +maintainers:
+> +  - ShihChia Chang <jeff_chang@richtek.com>
+> +
+> +description:
+> +  RT5133 is an integrated chip. It includes 8 LDOs and 3 GPOs that can be
+> +  used to drive output high/low purpose. The dependency of the GPO block
+> +  is internally LDO1 Voltage. If LDO1 voltage output disabled, GPO cannot
+> +  be used to drive output high. It need to pay more attention on the usage.
 
-This mail is b0rken.
+Last statement does not feel relevant.
 
--- 
-With Best Regards,
-Andy Shevchenko
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - richtek,rt5133
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +
+> +  wakeup-source: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  regulators:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      base:
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        unevaluatedProperties: false
+> +        description:
+> +          Properties for base regulator which for force-off base circuit
 
+That's not a regulator supply or you need to provide proper description
+of hardware.
+
+> +
+> +        properties:
+> +          regulator-compatible:
+> +            description: Compatible string for regulator
+> +            $ref: /schemas/types.yaml#/definitions/string
+
+Drop property.
+
+> +
+> +          oc-shutdown-all:
+
+Missing vendor prefix.
+
+> +            type: boolean
+> +            description:
+> +              Anyone of LDO OC state, shut down all channels.
+
+I don't understand the description at all.
+
+> +
+> +          pgb-shutdown-all:
+> +            type: boolean
+> +            description:
+> +              Anyone of PGB OC state, shut down all channels.
+
+Same problems here
+
+> +
+> +        required:
+> +          - regulator-name
+> +          - regulator-compatible
+
+No, drop compatible. Please read the bindings.
+
+> +
+> +    patternProperties:
+> +      "^ldo([1-6])$":
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        unevaluatedProperties: false
+> +        description:
+> +          Properties for single LDO regulator
+> +
+> +        properties:
+> +          regulator-compatible:
+> +            description: Compatible string for regulator
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +
+> +        required:
+> +          - regulator-name
+> +          - regulator-compatible
+> +
+> +      "^ldo([7-8])$":
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        unevaluatedProperties: false
+> +        description:
+> +          Properties for single LDO regulator
+> +
+> +        properties:
+> +          regulator-compatible:
+> +            description: Compatible string for regulator
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +
+> +          rt5133-ldo1-supply:
+> +            description: |
+> +              Only for ldo7 ldo8, pvin7 and pvin8 reference design are RT5133 ldo1.
+> +              If not connect to ldo1 vout, this property for pvin7 and pvin8 is necessary.
+> +
+> +        required:
+> +          - regulator-name
+> +          - regulator-compatible
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts-extended
+
+interrupts instead
+
+> +  - wakeup-source
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      rt5133: rt5133@18 {
+
+Drop unused labels.
+
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +        compatible = "richtek,rt5133";
+> +        reg = <0x18>;
+> +        wakeup-source;
+> +        interrupts-extended = <&pio 187 0x0>;
+
+Use proper defines
+
+> +        enable-gpios = <&pio 186 0x0>;
+
+Use proper defines.
+
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        regulators {
+> +          base {
+> +            regulator-compatible = "BASE";
+> +            regulator-name = "rt5133,base";
+> +            oc-shutdown-all;
+> +            pgb-shutdown-all;
+> +          };
+> +          rt5133_ldo1: ldo1 {
+
+Drop unused labels.
+
+Best regards,
+Krzysztof
 
 
