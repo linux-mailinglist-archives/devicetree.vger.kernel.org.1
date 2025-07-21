@@ -1,199 +1,109 @@
-Return-Path: <devicetree+bounces-198315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C4BB0C634
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 16:24:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7458EB0C636
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 16:24:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A1214E6E94
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:23:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7396A1624D2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:23:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C66E42D8DCA;
-	Mon, 21 Jul 2025 14:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2FA32DA740;
+	Mon, 21 Jul 2025 14:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cwUqWgJh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jp4tc4v/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B8BA2DAFC9
-	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 14:23:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8809B2D8DCA;
+	Mon, 21 Jul 2025 14:23:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753107839; cv=none; b=QPR8yFIlXTOyonLKqxf+U1BLFgLAJf2Zs8GtQdtFWFOX6l+NlrF7JhLaT1f0/E5xFSlC9UMG6PWrVakA0RKpx+jUJEt7rlfnV/t/fg9yap6xOQd2/NB6pkLByU018vk7nZ7RhRQLsvgWoCJfQDoyiZnl+pMptLDr90BK9f2Y134=
+	t=1753107833; cv=none; b=sxhxXPQDMfPdmCXbNGBmB4HLFuhXTx9hBbdMq6K0vvCGRkcoafUB289FF6Ty0Sfpc0LTjs/T3QCai3LojXv0BmElh1rsUQx2XjhCcPdQOq0hGAMRpXoTOwTixUwhb+X+2uYDx1wZm1R7Bq3IbvKczlWXL9Cu8hLvJzD+qpCmlow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753107839; c=relaxed/simple;
-	bh=9UWeOXuEiJg9VoDu4+qGBOxg4g4hjfQ2KqGwyAhrNtg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NLUNP011pQABN82tNGQlJ5JlLlecW+dtm6IUQo+uq+gzqMJ8fJURynUp6evfO0LnWSO5iiL0ruEatN9eRnTOfpXDRK0+nTkRIaOzGZnFENFTM+ahbrO1dk4xmdcsNvV6kFSwVCrMmfx4ZVwcDWtnRhdCtjKT2iO12a12ptKozrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cwUqWgJh; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-608acb0a27fso7289778a12.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 07:23:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753107835; x=1753712635; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=SEyx7mXp0CBN5U4A0GlAKryjyrraw4ilP0q5c6hZVxA=;
-        b=cwUqWgJhQ7B2kIOfwkb+btBbx4JJaJCGrZATUSC1WR+DClfnZaEMXToo+lrlKBNIQT
-         m/N5Zi90S91dhub2KSY1aw4y/ZHZDg6nZDEvuBIvk+5A3rF9Q8vJZqq6F3LFBhyXRheT
-         avH+xB5HJv6w1md0JPWUSKCavVZyNSdkF0UCi5+NByRE0SUTklVaHZ+bPtvqF/OFfdOg
-         8cEKE0NkEU6vT/hkl8Z98cyR/kQqofjUy8WnVf++jIEVFEvzp5CqSQQ8ltzY6HhKNv9O
-         kQwGZ1PuSjbbsAt2hx8Sd+OLPBPS37ImVP9YK/lDLz9UpoCSb/L5EeynvPGorjRxoEun
-         jq0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753107835; x=1753712635;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SEyx7mXp0CBN5U4A0GlAKryjyrraw4ilP0q5c6hZVxA=;
-        b=VtS3x0OEVCvPmFf+nnIGQEY597iG5NacaHIbX9eIGLZKGij5M5OvTRQpqw8Z0g26cf
-         mKLxnp5gu7fwvwnUU4f/WZ4QDpdi9x5/YEuZlOy43mdt5cxTn76JABbm2U5pR8B8UcgD
-         ecvMDyPfs2pRFNOQVNocy959Iu88BFEQE+yQdOF0Wg6QDkBnv0Nhoa3r2+k50cn6v+iE
-         o+AsFBuMlfMsConO/n7Qv6Fy15Ldm9Iyc+dJnwohYqIqJhrE4lDNAp0nFQJVagbd3aMN
-         GgulV9HQime9Iwrq4PCMyTpij3isy3mpnd7fWoc150KwGvGsK4jXOfuvyIh+LPtAfTrt
-         jR2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUk8tLpGT4rVvBRHNYNymDA3OmCgKJX4VlRs28RTU+TJ3PNM+SHID02W4N/D7Ig527B21DEWZih8M6k@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/jRCfuBjHzAFkO8x9XqAU186oJLttB1N7w/mBbJ9VOD6TFd4v
-	+zYE3NFd2uupJZQ84puccr3Cu3b2yfSbdcLx2mURUE4nO2ChM9uBKCQYebgtlYMIjNLd5jr4nuG
-	VCzPpA7Fp0gC6RvAU3fz8Dod3nLr3aAdRfeYNGWcrnw==
-X-Gm-Gg: ASbGnctg0trEW3yxVzMi+J9W9vie2xNYiUkyVTFGXYTRt9FHufL2TEHaNeyPNP05T/O
-	QgaoPPASpr2aKWz4TMzBxsJznphC78OwvApcYThUspwPvkXeLSEKR1KldWDzOwmzwdtDpwOiBMn
-	Hx1lS2SlDTdKr+pxiCMCTdXL4IK4MKeWOaXKDKXxWjIOPmG7qKPC0y+qepip/VClKKAmQ92pRB/
-	4KZj68boeygmwwbjhplkMpGfvuPBPmWb0aOZANx/w==
-X-Google-Smtp-Source: AGHT+IHor38rIn1pKQ8nwqf0yJIzbBDIXbeXdkm2JdEKFu+t76hq+Bk4KT28Qumkw/JEGQLQ2XhgOcoW88Ao9YcH/5g=
-X-Received: by 2002:a05:6402:1d55:b0:612:b057:90ab with SMTP id
- 4fb4d7f45d1cf-612b05793femr13050702a12.17.1753107834605; Mon, 21 Jul 2025
- 07:23:54 -0700 (PDT)
+	s=arc-20240116; t=1753107833; c=relaxed/simple;
+	bh=LFCoSZD4NWrIChMOUuVxocYbxokpEvpjrJtNREcmERw=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=l8phPIOeHvrCp0wQhmse6/mCY4H8l+wbjHAlAtkNIPwDGPa2N8Mz2q0D21mldARaA43BEsHffzL3Q9VoVK+GdRDJYTjCZqTBl2GtN0TQjTXKkWnTP/2qUc5sss5OVC4VkyBmPW+f9Ic/LMe0gb+QA0WgDCTPzyO2CBKIWKo6TLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jp4tc4v/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDBE5C4CEED;
+	Mon, 21 Jul 2025 14:23:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753107833;
+	bh=LFCoSZD4NWrIChMOUuVxocYbxokpEvpjrJtNREcmERw=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=jp4tc4v/1WABJZWDeN1oV5PMzXYQNfy0HMlNuwhGzRliNL3gmpung6F19zOA1VRVj
+	 bTPqrlRa6HPPoGQmt1Q12K1d7eqnxiTWu64JIvH0Br1FSSYdHXr4kp/i/X50xa95UD
+	 ts0OrGBCs8sSrchua7LJ1OGfCD9pzaMAHIKeXJrXRAFbTa5MctcVFVlw5tlMNVoBsX
+	 grwYgbNjJ6e3mfi5x7AWMB8m3zphmQqGoLjZxnG8pjpty2b+TejYHoxE4XCjAg+vSj
+	 oE8HvAlcXKVLI7wZTiauz4JBMYlF3p4YdhGM/yxOj5Qc6OdZUSIbDPVO3DdOo310YO
+	 Q0wn/XwZFhJ+Q==
+Date: Mon, 21 Jul 2025 09:23:52 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250710-imx95-rproc-1-v4-0-a7123e857dfb@nxp.com>
- <175224423523.783161.17907302929832941912.robh@kernel.org>
- <PAXPR04MB845959EF2767C96794EAE6DD8854A@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <aHkNS51jgV5ulsNB@p14s> <20250718082033.GA25126@nxa18884-linux>
- <aHp-_BRk7Iz81OFp@p14s> <20250721041823.GA4844@nxa18884-linux.ap.freescale.net>
-In-Reply-To: <20250721041823.GA4844@nxa18884-linux.ap.freescale.net>
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-Date: Mon, 21 Jul 2025 08:23:42 -0600
-X-Gm-Features: Ac12FXyw4hdh1l-EicP3Q_nexU8h_sXbH3xvX_eih-XxJ9DgAS3dub9_bfFRYgM
-Message-ID: <CANLsYkwZz4xLOG25D6S-AEGFeUBWwyp1=ytmu2q90NyEpkoX9g@mail.gmail.com>
-Subject: Re: [PATCH v4 0/5] remoteproc: imx_rproc: Support i.MX95
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>, "Rob Herring (Arm)" <robh@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Frank Li <frank.li@nxp.com>, 
-	Bjorn Andersson <andersson@kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Iuliana Prodan <iuliana.prodan@nxp.com>, Fabio Estevam <festevam@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Daniel Baluta <daniel.baluta@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, jic23@kernel.org, 
+ linux-kernel@vger.kernel.org, conor+dt@kernel.org
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+In-Reply-To: <20250721112455.23948-2-antoniu.miclaus@analog.com>
+References: <20250721112455.23948-1-antoniu.miclaus@analog.com>
+ <20250721112455.23948-2-antoniu.miclaus@analog.com>
+Message-Id: <175310783209.583289.11600965085224467710.robh@kernel.org>
+Subject: Re: [PATCH v2 2/5] dt-bindings: iio: adc: add ade9000
 
-On Sun, 20 Jul 2025 at 21:08, Peng Fan <peng.fan@oss.nxp.com> wrote:
->
-> On Fri, Jul 18, 2025 at 11:06:04AM -0600, Mathieu Poirier wrote:
-> >On Fri, Jul 18, 2025 at 04:20:34PM +0800, Peng Fan wrote:
-> >> On Thu, Jul 17, 2025 at 08:48:43AM -0600, Mathieu Poirier wrote:
-> >> >On Mon, Jul 14, 2025 at 11:52:05AM +0000, Peng Fan wrote:
-> >> >> > Subject: Re: [PATCH v4 0/5] remoteproc: imx_rproc: Support i.MX95
-> >> >> >
-> >> >> [...]
-> >> >> > New warnings running 'make CHECK_DTBS=y for
-> >> >> > arch/arm64/boot/dts/freescale/' for 20250710-imx95-rproc-1-v4-0-
-> >> >> > a7123e857dfb@nxp.com:
-> >> >> >
-> >> >> > arch/arm64/boot/dts/freescale/imx95-tqma9596sa-mb-smarc-2.dtb:
-> >> >> > scmi (arm,scmi): Unevaluated properties are not allowed
-> >> >> > ('protocol@80', 'protocol@81', 'protocol@82', 'protocol@84' were
-> >> >> > unexpected)
-> >> >>
-> >> >> Same as replied in v3.
-> >> >> This is because [1] is still not picked, not because of my patchset.
-> >> >
-> >> >I won't move on this patchset until this is resolved.
-> >> >
-> >>
-> >> Not understand why hold on this patchset. I suppose you may not
-> >> understand what the error means. The warning is totally irrelevant
-> >> to this patchset, there is no dependency.
-> >>
-> >> Others added a property to arch/arm64/boot/dts/freescale/imx95-tqma9596sa.dtsi
-> >> &scmi_bbm {
-> >>         linux,code = <KEY_POWER>;
-> >> };
-> >> But this "linux,code" property not landed(missed to be picked up) to DT binding.
-> >>
-> >> This patchset does not touch scmi_bbm. I could help address the warning
-> >> in the other patch, but I do not see why "linux,code" under scmi_bbm node
-> >> could block this patchset.
-> >>
-> >> Please help clarify if you still think to hold on this patchset.
-> >>
-> >> BTW: with [1] "remoteproc: imx_rproc: skip clock enable when M-core is managed by the SCU"
-> >> merged in Ulf's tree, there is a minor conflict with patch 2. Please suggest
-> >> what I should do with this patchset.
-> >>
-> >
-> >I was afraid of that.  The best way forward with this work is to wait for the
-> >"linux,code" property to be picked up by Sudeep.  I suggest you make sure that
-> >he, or anyone else, picks it up for the next merge window.  If that happens
->
->
-> I respect you as maintainer, but there is no reason to block this patch
-> because of "linux,code" property. It is totally irrelevant.
->
-> Even if I help to resubmit that "linux,code" patch, there is no chance to
-> land into 6.17-rc1, both Sudeep and Shawn sent their PR to arm-soc earlier
-> before your comments. You could raise in V3.. which there was time left.
->
 
-I don't know what you mean by V3.
+On Mon, 21 Jul 2025 14:24:42 +0300, Antoniu Miclaus wrote:
+> Add devicetree bindings support for ade9000.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> changes in v2:
+>  - move interrup-names near interrupts
+>  - remove properties related to the waveform buffer and make them runtime attributes
+>  - remove egy-time property and make it a runtime attribute.
+>  - remove wf-src and use filter_type in the driver.
+>  - add vref, vdd support.
+>  - use adc standard channels instead of phase channels.
+>  .../bindings/iio/adc/adi,ade9000.yaml         | 122 ++++++++++++++++++
+>  1 file changed, 122 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml
+> 
 
-> >everything should be set for you to resend this patchset when 6.17-rc1 comes
-> >out.
->
-> Because of the code conflict in Ulf's tree, I will hold on until 6.17-rc1.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Exactly
+yamllint warnings/errors:
 
-> Patch 4 and 5 will be removed from this patchset in V5. The two patches
-> should go through Shawn's tree, I will resend them in a separate thread
-> with "linux,code" patch included. There will be no more CHECK_DTBS
-> warning in V5 for i.MX95 remoteproc support.
->
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml:
+	Error in referenced schema matching $id: http://devicetree.org/schemas/spi/spi-peripheral-props.yaml
+	Tried these paths (check schema $id if path is wrong):
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/spi/spi-peripheral-props.yaml
+	/usr/local/lib/python3.11/dist-packages/dtschema/schemas/spi/spi-peripheral-props.yaml
 
-That is a better way to proceed.
+doc reference errors (make refcheckdocs):
 
-> If you have concern on patch 1-3 or else, please raise earlier. As of now,
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250721112455.23948-2-antoniu.miclaus@analog.com
 
-If I remember correctly, those patches looked fine to me.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> patch 1-3 in V5 will be almost same as V4 with only a minor code
-> conflict resolved, with below change
-> @@ -1030,7 +1030,8 @@ static int imx_rproc_clk_enable(struct imx_rproc *priv)
->         int ret;
->
->         /* Remote core is not under control of Linux or it is managed by SCU API */
-> -       if (dcfg->method == IMX_RPROC_NONE || dcfg->method == IMX_RPROC_SCU_API)
-> +       if (dcfg->method == IMX_RPROC_NONE || dcfg->method == IMX_RPROC_SCU_API ||
-> +           dcfg->method == IMX_RPROC_SCU_SM)
->                 return 0;
->
-> Regards,
-> Peng
-> >
-> >> [1]https://lore.kernel.org/linux-remoteproc/20250629172512.14857-3-hiagofranco@gmail.com/T/#u
-> >>
-> >> Thanks,
-> >> Peng
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
