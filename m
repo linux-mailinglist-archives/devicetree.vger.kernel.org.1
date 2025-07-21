@@ -1,65 +1,55 @@
-Return-Path: <devicetree+bounces-198280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD80B0C3EB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:14:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 721DEB0C3E5
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:13:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B7313BB521
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:14:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AC921AA3CB3
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0F9F2D3ECF;
-	Mon, 21 Jul 2025 12:14:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD79F2BEC5A;
+	Mon, 21 Jul 2025 12:13:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="nfDgjGed"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="p2m3sLSR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E115C29E118;
-	Mon, 21 Jul 2025 12:14:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A377B2D3206
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 12:13:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753100086; cv=none; b=t2GouTezEPr08UTaagt2QViMJJqPysGDY19uKrMtWXhSSN2aTQafpGLS261rSNhCiVSdfstOvxyDqiCQEFCahax1TZNFlZ5jTFcpgWCz9DluGx9SZzptCQcIgjZqIfwDzhNeVyNFzobfVCVco0DzGC4moGfVOSNleDDjoI3BR+I=
+	t=1753100021; cv=none; b=PT2GcFytwrBnpCsw7xMFr58NbS+b6zwfHftzfRxJKtvepp0ezkgmypyg9Z8Q76IRLRdfEePelfW+yDP+4gLwpgvnnpGxrYRcEyNSnTsrXUbus4XZKLm0Hp8KGusUFaZhYh3WFW4keG8TQywuBsYTohqXcqg8sB6biIE7jhhskgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753100086; c=relaxed/simple;
-	bh=pgXl5KqLuQH7o5JIOTqTdfkbgIO+MeyUkuPddaZGmUE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Wfw9TsfBGUae5rsZCopt1Q3C30XeKnx4kK0m+Y6+AeAkHj6nSIYmv5kxz5mggXDq/uQGHzmjQBuuRKrzAu9PwoIpvJpqlQ6s/sDA0kuDkOZph8kYfXFSPNbKNqg3LrbCxHpY8bJaUwHvY+ntu9iA6n8Kjjj3i6qK9cAC1+b+Vo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=nfDgjGed; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56LC5CAG018486;
-	Mon, 21 Jul 2025 14:14:21 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	IbLO7yjcp13kgrbLMrtPsgFowoaqk261CAPX88WxiV0=; b=nfDgjGedwxd5bWa9
-	NsZdWaCUY3TXRY5k6E72h1w+zNKywB4A0/XE33NGR7muKiXNosUtj28QRr/VU2xb
-	9KLPQ2UDIdnhw7iVmy7/g0SL1U7rsI7NxYN9InjJyKnFI17fUpEDBQzKm4Xwx/Lp
-	hzNSgJbW4nL6/bUXqwaWLOgZBKqneJafjGGIPVxZEz5UD1ZO8bKfn3yS3zt4rcAk
-	syHDwt6zvexxg0ERTSKAkgv6psGf32BliwvVL5Azr6aOOw5JtEsbn1aaQzfDx/Wa
-	PWEhfhoGKpb5V8IvchroZDmFIBjFSBNEk1KWeEq7oJAQm8W0gUxKWUrJZis/h5U7
-	GmKraA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4802q20v4v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Jul 2025 14:14:21 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B4BED40051;
-	Mon, 21 Jul 2025 14:12:22 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A35B6787C05;
-	Mon, 21 Jul 2025 14:10:54 +0200 (CEST)
-Received: from [10.48.87.141] (10.48.87.141) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 21 Jul
- 2025 14:10:53 +0200
-Message-ID: <f5c4bb6d-4ff1-4dc1-9d27-3bb1e26437e3@foss.st.com>
-Date: Mon, 21 Jul 2025 14:10:48 +0200
+	s=arc-20240116; t=1753100021; c=relaxed/simple;
+	bh=89si7M0WjZ1kR/Rl/+DZDesVyoQF4BNz1KXqMbCzo4Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cQW0SdO2KGkFMiSJiw+F0GY5cRq6WzPXchK4vRjijsgJy++h0LzKABZTIQjt80+ghEzNJyLd048UtHhXeMD2X6k+cjhFtAuH5yDukFEXGFehH1xHaPWIWZ4ayA8JwaoBWQ4giaKHqcviCrfcATw75tYYNNIS6bvsYy68sGEA8BA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=p2m3sLSR; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1753100017;
+	bh=89si7M0WjZ1kR/Rl/+DZDesVyoQF4BNz1KXqMbCzo4Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=p2m3sLSRllogqBs79NyF8DpM0mdySNUVj4lyfqlTzxqVc7TQCb9Sw54jwx8lGMc7O
+	 HAeoUofH3fXwXuh8D0Q+qveJKsy6D/7JxCOthcP3CZTHo4jUM1zcU4vkAvan2LlQBH
+	 pNYj1SBIoauhQT/dd1N6SLT05P5ITtDUGEQ7CMlpWFEQsmfpsVua8BaYptZsvI50lm
+	 s5aIW9bFV6YKpjMo1S2pXO1dIWN0blw9tfZIVtiaRPiJX7pc1p85O1INHV22vY1QV2
+	 Ug2qfL9b7X6GGZjAs4e9qUZIRFqXyq960GO/ZtSdosJhmyRpg3YfHNmAbU3qZ7V757
+	 mVncr6rK7EPhA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E9D0E17E0CE6;
+	Mon, 21 Jul 2025 14:13:36 +0200 (CEST)
+Message-ID: <e2a58394-356f-4c23-bb98-198439cfbce1@collabora.com>
+Date: Mon, 21 Jul 2025 14:13:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,69 +57,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: document st,phy-wol
- property
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrew Lunn
-	<andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Christophe Roullier <christophe.roullier@foss.st.com>,
-        Andrew Lunn
-	<andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King
-	<linux@armlinux.org.uk>, Simon Horman <horms@kernel.org>,
-        Tristram Ha
-	<Tristram.Ha@microchip.com>,
-        Florian Fainelli <florian.fainelli@broadcom.com>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250721-wol-smsc-phy-v1-0-89d262812dba@foss.st.com>
- <20250721-wol-smsc-phy-v1-1-89d262812dba@foss.st.com>
- <faea23d5-9d5d-4fbb-9c6a-a7bc38c04866@kernel.org>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Remove suspend-breaking
+ reset from pcie0
+To: Guoqing Jiang <guoqing.jiang@canonical.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ jianjun.wang@mediatek.com, tinghan.shen@mediatek.com
+Cc: macpaul.lin@mediatek.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20250721095959.57703-1-guoqing.jiang@canonical.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <faea23d5-9d5d-4fbb-9c6a-a7bc38c04866@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <20250721095959.57703-1-guoqing.jiang@canonical.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-21_03,2025-07-21_01,2025-03-28_01
 
-Hello Krzysztof,
-
-On 7/21/25 13:30, Krzysztof Kozlowski wrote:
-> On 21/07/2025 13:14, Gatien Chevallier wrote:
->> The "st,phy-wol" property can be set to use the wakeup capability of
->> the PHY instead of the MAC.
+Il 21/07/25 11:59, Guoqing Jiang ha scritto:
+> When test suspend resume with 6.8 based kernel, system can't resume
+> and I got below error which can be also reproduced with 6.16 rc6+
+> kernel.
 > 
+> mtk-pcie-gen3 112f0000.pcie: PCIe link down, current LTSSM state: detect.quiet (0x0)
+> mtk-pcie-gen3 112f0000.pcie: PM: dpm_run_callback(): genpd_resume_noirq returns -110
+> mtk-pcie-gen3 112f0000.pcie: PM: failed to resume noirq: error -110
 > 
-> And why would that be property of a SoC or board? Word "can" suggests
-> you are documenting something which exists, but this does not exist.
-Can you elaborate a bit more on the "not existing" part please?
-
-For the WoL from PHY to be supported, the PHY line that is raised
-(On nPME pin for this case) when receiving a wake up event has to be
-wired to a wakeup event input of the Extended interrupt and event
-controller(EXTI), and that's implementation dependent.
-
-Best regards,
-Gatien
-
+> After investigation, looks pcie0 has the same problem as pcie1 as
+> decribed in commit 3d7fdd8e38aa ("arm64: dts: mediatek: mt8195:
+> Remove suspend-breaking reset from pcie1").
 > 
-> Best regards,
-> Krzysztof
+> Fixes: ecc0af6a3fe6 ("arm64: dts: mt8195: Add pcie and pcie phy nodes")
+> Signed-off-by: Guoqing Jiang <guoqing.jiang@canonical.com>
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
 
 
