@@ -1,67 +1,78 @@
-Return-Path: <devicetree+bounces-198372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAB78B0C92B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:01:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEA71B0C935
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 19:07:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 785E51AA5E72
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:01:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1ABD64E6611
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:07:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D5C52D949E;
-	Mon, 21 Jul 2025 17:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7F872E03FD;
+	Mon, 21 Jul 2025 17:07:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TUEzYCpk"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="X/7TOYbi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E672915199A;
-	Mon, 21 Jul 2025 17:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FC341E32D3;
+	Mon, 21 Jul 2025 17:07:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753117262; cv=none; b=IupwJVBGkUqXgf0WVgEd0x8AsYxo6xyq1vqhmZi2jG0s49AGZSwkl44qIo75HIZSxSQrt76QV+DGbossV5L1blsezFTVZH5Vqk/KwubU7xXRuujl040jt/hnx1yHvp8nNM3iDvYP0nKB+MdjnNErgyXS/ickA2+orsOGBumcCMY=
+	t=1753117652; cv=none; b=aXv7H4YLIR9jiKRM9aS/WVClLiWK97ZNovX9HFYTApt7awMjFjcvG8YhLPY3y7nDnNzPiz8L2S221HBxzRQURh72EbtU6z5k/hwhc/ZgcmVhhZgwODVxn9UQgwvfG7FxDEq6mcQgo2EqWj2dcmbhbSiNnALOtHJEsmNsoVrMBEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753117262; c=relaxed/simple;
-	bh=h1oejTOcfn/FE2b+ejcQflWVFtGGLIORTNGbuq1sNOY=;
+	s=arc-20240116; t=1753117652; c=relaxed/simple;
+	bh=he3TT+P6tlhNCxwJTUuZrgo1/Mm06oMGX2ulhjwdQ40=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T4lHz/sOz3fcWIA4HPtJpVMn86iltU5WhHkgzhW6o17Gy3mglq8vqhc2cQ9lyih8WJIZXakRCSORQcrFAYHxxklrE0RslN2Wqa4GdNolpudKLkCpcUtj5wXJK4TFXjIr531h7LeHEAg/BAqEQ29qa0HPgU9GO88xT+i07cE6xhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TUEzYCpk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D047CC4CEED;
-	Mon, 21 Jul 2025 17:00:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753117261;
-	bh=h1oejTOcfn/FE2b+ejcQflWVFtGGLIORTNGbuq1sNOY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TUEzYCpk6R0hOoLdylSHY9tzBvWrPk7MG4kTCcEuyTLuXsy5JbkpMw7I64vt8uJAt
-	 QFQZigkgYTI0hFOk/H+Gx18kPZn7qsOtQ6MQdTygt+QDY1v9zGHnyPEBNO9ibWpWki
-	 OOZsYOy1kjXnH5n/Jwo7PQyxmnJn/XmMyUVJtU9LBTgI1iwvPbysL7sztT8Iq+hh4o
-	 0FpRNDxxuEzG6xEYzOIE0LejGHj/u7T/Rr5Tm3CE7zz5hs6yiehrTQj0QcIQ3E3A5w
-	 e4nVjMb8VUM+BvOhw7L3iLfnrb0gYSyA+2WZrKaU2Q6t3CDWmG54JwayRUH1Q5faWg
-	 yGE4xjbIXAVMQ==
-Date: Mon, 21 Jul 2025 18:00:55 +0100
-From: Will Deacon <will@kernel.org>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Robin Murphy <robin.murphy@arm.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	joro@8bytes.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, heiko@sntech.de,
-	nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v6 3/5] iommu: Add verisilicon IOMMU driver
-Message-ID: <aH5yR9CkYSJ4PaZV@willie-the-truck>
-References: <20250710082450.125585-1-benjamin.gaignard@collabora.com>
- <20250710082450.125585-4-benjamin.gaignard@collabora.com>
- <aHTzPwTob8_5rtBS@willie-the-truck>
- <baa1fcde-f167-4a1b-afca-0a2957a688cc@collabora.com>
- <aHozv0NG1OBlAH6c@willie-the-truck>
- <b4169471-fcd0-4415-8281-c5bd722e5f2b@arm.com>
- <aHpQXy-bnwW56rCn@willie-the-truck>
- <20250718141401.GD2206214@ziepe.ca>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qWO3skC7HTNC8o/9ZpXwlY9xSPb841Lvl74Z+Ne5HMmjHcI/3Q8A3n1FiUUOj+kFkNZig7U/Gp44gA1Gjko//hJPWdELIV+HuHGm/r59AKnQdoNZWZ1H+pYIbK6us83SIwrXyeDr2PBugJV8dHWmLcVi5maF9XBMkeAnmOSjuaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=X/7TOYbi; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=ATPRMv6WRS4ltcYjhWI+utSCYQ2pU0+YQZ54Mw2Wv9c=; b=X/7TOYbiNymO23APCZZzJWZm11
+	8JWuJ8rAH5b6g52xjDQVrrwKBJyvzOj0yDTbRxXe46pU/cyK/RGilf8hLDFIfFnKS6RJGXlv8VNjW
+	wt7HMYS/Vq8zsFgSpNfc+r1HGX0ov6+lSZwPlpzdgiKTlwnu+eMlz53omjI0l+fuHh2Y=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1udtyp-002Nch-Dr; Mon, 21 Jul 2025 19:07:11 +0200
+Date: Mon, 21 Jul 2025 19:07:11 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>,
+	Tristram Ha <Tristram.Ha@microchip.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: document st,phy-wol
+ property
+Message-ID: <5b8608cb-1369-4638-9cda-1cf90412fc0f@lunn.ch>
+References: <20250721-wol-smsc-phy-v1-0-89d262812dba@foss.st.com>
+ <20250721-wol-smsc-phy-v1-1-89d262812dba@foss.st.com>
+ <faea23d5-9d5d-4fbb-9c6a-a7bc38c04866@kernel.org>
+ <f5c4bb6d-4ff1-4dc1-9d27-3bb1e26437e3@foss.st.com>
+ <e3c99bdb-649a-4652-9f34-19b902ba34c1@lunn.ch>
+ <38278e2a-5a1b-4908-907e-7d45a08ea3b7@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,60 +81,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250718141401.GD2206214@ziepe.ca>
+In-Reply-To: <38278e2a-5a1b-4908-907e-7d45a08ea3b7@foss.st.com>
 
-On Fri, Jul 18, 2025 at 11:14:01AM -0300, Jason Gunthorpe wrote:
-> On Fri, Jul 18, 2025 at 02:47:11PM +0100, Will Deacon wrote:
-> 
-> > Just because the existing drivers are a mess doesn't mean we should
-> > proliferate it!
-> 
-> If you want to insist on something here it should be for this driver
-> to use the new generic page table code I've written.
-> 
-> Otherwise I don't see the point in trying to improve this in some
-> lesser way.
-> 
-> If this had come in a years time I would probably insist on that, but
-> right now it isn't merged yet and it will still be a little bit before
-> people have time to review it.
-> 
-> Perhaps a compromise where Benjamin comes with an iommupt format
-> header that works for this and we can progress this series and be
-> ready to swap it out down the road?
+> Regarding this property, somewhat similar to "mediatek,mac-wol",
+> I need to position a flag at the mac driver level. I thought I'd go
+> using the same approach.
 
-I went back and applied the verisilicon patches locally so that I could
-look at them side-by-side with the rockchip driver. Even then, setting
-aside the generic page-table code (which I agree is premature to start
-insisting on for new drivers), the callbacks for .default_domain_ops()
-are very clearly doing the same thing:
+Ideally, you don't need such a flag. WoL should be done as low as
+possible. If the PHY can do the WoL, the PHY should be used. If not,
+fall back to MAC.
 
-.attach_dev:
-	The two big differences are that (1) the VSI driver has two
-	locks instead of one (and it makes me wonder about the RK
-	locking in the IRQ handler and suspend/resume) and (2) the VSI
-	hardware has a TLB flush register whereas the RK driver does
-	a disable/enable cycle.
+Many MAC drivers don't support this, or they get the implementation
+wrong. So it could be you need to fix the MAC driver.
 
-.map_pages:
-	Basically the same but note that the RK driver _already_ has a
-	hook in 'rk_ops' for decoding the DTE
+MAC get_wol() should ask the PHY what it supports, and then OR in what
+the MAC supports.
 
-.unmap_pages:
-	The big difference here is that the RK driver has TLB
-	invalidation whereas I don't think the VSI one does. Yes, it
-	implements .flush_iotlb_all, but that's not used any more (and
-	we should probably try to remove it again).
+When set_wol() is called, the MAC driver should ask the PHY driver to
+do it. If it return 0, all is good, and the MAC driver can be
+suspended when times comes. If the PHY driver returns EOPNOTSUPP, it
+means it cannot support all the enabled WoL operations, so the MAC
+driver needs to do some of them. The MAC driver then needs to ensure
+it is not suspended.
 
-.iova_to_phys:
-	Same comments as .map_pages.
+If the PHY driver is missing the interrupt used to wake the system,
+the get_wol() call should not return any supported WoL modes. The MAC
+will then do WoL. Your "vendor,mac-wol" property is then pointless.
 
-.free:
-	The only difference is that the VSI driver has to free its
-	single-entry top-level (the "PTA").
+Correctly describe the PHY in DT, list the interrupt it uses for
+waking the system.
 
-and so moving these somewhere where they can be shared just seems like
-the obvious, straightforward thing to do.
-
-Will
+	Andrew
 
