@@ -1,207 +1,275 @@
-Return-Path: <devicetree+bounces-198097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A5F0B0BBB4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 06:18:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5579B0BBBF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 06:25:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EEFA189651C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 04:19:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6141518966C9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 04:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA84921A433;
-	Mon, 21 Jul 2025 04:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 894AB21480B;
+	Mon, 21 Jul 2025 04:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Pd+gqMZN"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Yf1saEEI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCF521931C
-	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 04:18:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8A614885D
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 04:25:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753071508; cv=none; b=ZQjttV3qe1HsDVnE8CDbT2qL2YKT6IGtEyWDDhEqWPv4ex21IRdCihyDgouUCUSlH4FCo8p504sC8pzGQgVYkrfK2exNBlqN+k5mSRu6jyv3uuO/ACqaG7J7E181Me+n+lvGnJ3W9O1ghNg7cgvwODm05KfwvTmkTNTqHJTX71U=
+	t=1753071909; cv=none; b=GX7I8ZIp9rdvkIkXI38E/meNUPB5x0PzwjUf96cdyuUNRq3MeY5PwrWi0LFUwTzd/cF6k0CPFW6qWelSsFkG6Z32YFOuA1TW5vHHuUCFCGy9R+JvqWnPF2oAPDoLO4iZ9xdgm1HfhH9HEHZbnQ6VfKlcE5gkLpRIyIdDFTfRR+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753071508; c=relaxed/simple;
-	bh=zVvUOIlnKKCqQgJ3kE21UViYgXE0z1AIp5kpX5JAwaU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N9mslsKN0YSwfyQ00tQ7FzNlWfyp+lxAt6YKrwQE9MBQowO5ru1J+meEcTvjf5mnDGN9zxKQ7mV2+eOJ8wtC7ztwMy9RS4RIx0rD5iaxbjy+ScwdVH9FlqGqEnnjEL0WFnZlkLFnOzTmywTHQPqQTa/VdNNko2NTinjuaNGY4WQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Pd+gqMZN; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56L40bkc029264
-	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 04:18:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0HxS55+QTxxnhovCNlJMVgeCUCIs7adrQbeCrM4+8pY=; b=Pd+gqMZN6VlsReQ2
-	ApLJJ3KRx8yfPGzjKNebwJ80Go6FToeUYYa4O3lfQ5S2qmB4E34dhEzTL4M9KXN7
-	vU58SaWiWgI4OzuOYPgSrgb4RQf375zxiPkmT2RUyzmLU7FJsSnJTkBQqSIc0xQe
-	hH68NESm3siMXM5EMpgKo76pIExrNphUcOUVqi/jQgSj23wvtEG8dmGSi6TaCuPI
-	thk+Z/BVtHM2Lw4D3n6mBmBwz1l9IKfKnqGriP6TdGbt06GYnx+uoH91zzfPDYI6
-	F/Oi+QNMY1ijMZcOsntm8K2USXBvnjx669FrqrQIPQixelVh80lAKL/3UoieitQL
-	j6WMLQ==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48048tba3p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 04:18:25 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-75a23a16107so188609b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 20 Jul 2025 21:18:25 -0700 (PDT)
+	s=arc-20240116; t=1753071909; c=relaxed/simple;
+	bh=YHpGq/EVF3hR1Mn16LA+qjwUkfBdGFxSmAKlt0kUjrY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lajm1lXKDivgMua5d0ozF3wgd+V67dH3rL+tv14+anTH0yx+gxt8laQlTeofZOPn7WM5Bx3cV/xA5mZ5XhJXOOcdv2NYwIIAJtb152lSXiOpGkJje9hTidINzjuhMHtWLTbvkvUPV7Tfx5+cjLGCPjSbtpYsBCACGEF6pPqeWZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Yf1saEEI; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-32f1df5703aso30566721fa.3
+        for <devicetree@vger.kernel.org>; Sun, 20 Jul 2025 21:25:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1753071905; x=1753676705; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=quI4bQg7HruKkSCY0E/bW8y75jmL2fc1qxlCHyjOA4E=;
+        b=Yf1saEEIgz8OlGaFDGenCkqdMATtqCV3MtqJ6Fv4290iNM9CDP/vV5p694yN4YLZyF
+         xpupBF6Pb3o/10W33nCIU/RvEnDs2hFDVkus0trB3NLmJTpjTEEshgZJc5hcVRK6kzep
+         dXEpTvRRfUr+ynFy12Qa5iUIcLThg4xTBgpw453AbTzQvp0Xzwg6mvKxiFy5no5hJRSl
+         V7HwfensiDDyDXCkJPyVMeyo0QOLZlSfB2CsJ4pdbNtCItgSOveU8jBikP/VwvLwHGye
+         ohzQQRUQmSJ0ZW+M6WzDbxy4yMZ3tjgUzNKF+8iTpXxgsaf8YEOssfFbHUKW+LDps0Rf
+         uDnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753071504; x=1753676304;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0HxS55+QTxxnhovCNlJMVgeCUCIs7adrQbeCrM4+8pY=;
-        b=jYj3hMRx4lni4tEhUmrQcdtyZTDyWvHpufoUoQ6sA1APwvuxhOT/Uco6n63+jCU9nh
-         tNOoI1wO6nnT1QDpUcLC+23kdm2QcdWxfQ9dgXsp7jIoSJhUHbDlaEQlycdNzhuu95wl
-         ikAojzKRaWephxDNP0+yLcB37Njw57qDHsAA2Ow4Ee3zrw0yTpFCNQ22vWLyEQHIBkqq
-         +kGg8EeC9S/zUEGAz/HKhlEyE+CujNirSSvWcIsHLoonMn9JEHlD2w70KnLTG/wvvQi4
-         X4uJsnTjYrUH9QHfB4N4UKFA5D3OEijPfkihk091zEkVWou2wtdeExYo/kMXADsAghxE
-         XYpg==
-X-Forwarded-Encrypted: i=1; AJvYcCVC8kYrB+ZinAW/z2DCQLU7Dd/BbapCkNYrnjYP/3XpAw2kGUcKypgFu8ImGmfm5p6K/Dt/NXZwLBEV@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzduecTuRRhRIR1AJ/M6FLSL9D/PH3Uvch6JnU2gaTcSSRWdXe
-	QjJqur43htuPvAxpk/W3jrYZYB2RC63ssHfTJ4UlKqcd1S5gzn9+ahZoTGtjpqaJGF2oqvysqIG
-	hlObYhi4S5BhA0BQ8bxLTJmflnw3/H8zyhxmmlbeKC1SKuNzjbT+MFLJbH4zeOxZc
-X-Gm-Gg: ASbGncv1QUwmmKXCA9e9dPVOvBbndpoa4qwjkDGkWz3vN6DLKb9LmXfXpRSTQEMUM9H
-	KjzcmLDEuLmMG4uXl8i/YRf9lGZVQmMndBb7xYrztPxlWOYpv0y8ZqxDvA1PNhf/oTecrYANNz5
-	52Zyq3zGubiVezmfdCmjwgMwGtf6mGhimks9VTq7LoVTXdfZKdhNmYezPud0Ht/odnVQnCqRB5T
-	YuXbsYnZYsRl6TMsJSTTAw23CIGNWsk1BUa7KCRRkWKMetJAOwsU12TasDjM5BzU8H4I01VS0bA
-	OptpljNShxMBoOtkWmH0T3Hk6BZYiphAWupgd/GrplXwiAZx5EdspvtQUabHcb1RW2kW8NpzR0s
-	eOunGaNzZ8YNlQNSJTuYmSJazTeQr
-X-Received: by 2002:a05:6a20:9147:b0:1ee:d6da:b645 with SMTP id adf61e73a8af0-237d5c0df9emr13823350637.4.1753071504481;
-        Sun, 20 Jul 2025 21:18:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE9E+Jpxuf/n9mwdKcrc+ICdr6n87fGKbL6wE5SUt8XIJ2tugZsZ8TP4nLkT2kWBtaUKyMt+w==
-X-Received: by 2002:a05:6a20:9147:b0:1ee:d6da:b645 with SMTP id adf61e73a8af0-237d5c0df9emr13823324637.4.1753071503997;
-        Sun, 20 Jul 2025 21:18:23 -0700 (PDT)
-Received: from [10.133.33.17] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b3f2fe8ea7bsm4493637a12.21.2025.07.20.21.18.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Jul 2025 21:18:23 -0700 (PDT)
-Message-ID: <a723b6a6-c70a-442f-9785-9f607548664f@oss.qualcomm.com>
-Date: Mon, 21 Jul 2025 12:18:16 +0800
+        d=1e100.net; s=20230601; t=1753071905; x=1753676705;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=quI4bQg7HruKkSCY0E/bW8y75jmL2fc1qxlCHyjOA4E=;
+        b=YNVyn6gcO+LDNS89SeNlIqWKo1Ik6iYa0x1iRGjw0mwi1Lh832ynJBAms3JEZpIm4x
+         NUIDCtrzCFsopmYQgvsZPw8uy5X7J5wXI9fdrFtvoXmN2NTrLD04M6AevWzLqiqXxg5J
+         GC8a3PHI0dnI/Dg93kISLJrf4ZJiRMo8sIf9npNdaja4gXNNNdfDOxpaKl4KLxFPH/zF
+         Nxpe3o61Phe7wBMFSw4r8THSvvZoPqphiDkYG0rsTdpcYNhHruAgxawJf1z1WeoHr2K6
+         X/6pk9HV6Ic2PaMq40CsY8/OLgQlaBcrJSYOM6Z3UvE174aVmdQhOuKcPt4+cyEv//wZ
+         ZMyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVn58qVDIYkyLvRAOsaIwarAdnLAtHPHqommKwi+bP7BL8aWJOtLEZ+b/LkEcZ0013tlBW9EaSwM4qg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2fFLhmLXPbaHfKo+0GvdcNB66mN/qVqpzzGarWhFxpUh/I5Jg
+	IqHwDcpbKtmh+1SuCEBCQdeAB+aiZA8uGFhoue1F4LXmfs++4iveP5vuXPKhuIMLw0vXAU7Wqk8
+	J9tJeBluJpHDpoyTakBsmhV72h6kWeyDAdlZ+y5adQA==
+X-Gm-Gg: ASbGncsFfvWUwenClkQn17KiiAs0baMFasU0bBGq7P1kj5Ytl0HUOUi54ZhOzF1vukL
+	FNsChpN20qU9XeQoNGzmB+TVgPDyW0iy3McX+jI4m8rkqGNEajuAtshrFcg329UdN/Ht6RPF3o3
+	Tb+eU49X0pvPnkRg+uvKFn16tbmaeMEy2K+KAIaJrLH3xOU1pHFzJTDQgCezsd22RRzfVensZso
+	egMDoim
+X-Google-Smtp-Source: AGHT+IFfBIZ9tw9xk6izt+Pp1RDKhrneM/4V0xMQ3SQcQyw8bxtVQ+yk7ZX4FkrasMb7cm8JZje8oaxcUAv/6th9jac=
+X-Received: by 2002:a2e:80d4:0:b0:32b:755e:6cd7 with SMTP id
+ 38308e7fff4ca-3308e56e179mr51708341fa.32.1753071904344; Sun, 20 Jul 2025
+ 21:25:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] drm/msm/dp: Retry Link Training 2 with lower pattern
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski
- <brgl@bgdev.pl>, quic_lliu6@quicinc.com,
-        quic_fangez@quicinc.com, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
-        quic_xiangxuy@quicinc.com
-References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
- <20241129-add-displayport-support-for-qcs615-platform-v1-7-09a4338d93ef@quicinc.com>
- <CAA8EJpoN1qBHyZrQJT_=e_26+tcaKRnSrhtxrK6zBP4BwpL=Hg@mail.gmail.com>
- <b4345b9e-62c6-470d-b1b0-4758cef7f175@quicinc.com>
- <xlmgdysjah3ueypdrdu5b6botvidb2wn4rfm4qpeysclscmuwy@vpfv2ymprblj>
- <b4e1ea54-ff3c-408e-8716-f48001ec9113@oss.qualcomm.com>
- <d427de7d-76ac-4e5b-b79a-3b7638a8e7fc@oss.qualcomm.com>
- <w66xyhu5w7ajpkennvj24cad4j6izvapsp3reyla7iui2jdgkx@d43b6z3qw5tj>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <w66xyhu5w7ajpkennvj24cad4j6izvapsp3reyla7iui2jdgkx@d43b6z3qw5tj>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIxMDAzNCBTYWx0ZWRfXxv4DLQbnpoy2
- 7hU1wruLv22/J0d6lhpjDdRJlo2J2KjaDsMFoJYwdUFosMOFiXaaLITOaWdWOq36urImPY/IpTN
- 563ieejmFYtO/LwnRK8nqp6j++3BNVwCRM4mDzoOkGrH3x9SYG2pYXpQeEY+XPybMaQq58Ooeg7
- m/a64J5wwjoI6LTYhbuZoY9lruEJHskqaoQB/Ld5HQaYHIJiG7m9TF6E53lQ7I7ZRR9+z+f/2ha
- 1+5DymQ9EmJGRdYmP6aqLaLd+QMduKEWJZbn0MRD72HXA7kzjvf2/bjFjRPl6OfwEwgLHcS4FUs
- /XrjQgYqBu5Cny4UYc6jddlIPnMC9SruSl8Vc76LrjoEBRu4AcAINiLgmMEhFLC5yLdRiSmr2/F
- +ZvMWFHmXBaR36kNSBodKzc2fsRqZO068kWyCWmOhADUql79X/gRKXZv7rrLvwogr4JQmej5
-X-Authority-Analysis: v=2.4 cv=Jb68rVKV c=1 sm=1 tr=0 ts=687dbf91 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=q-zp-rPcFIMxVU44S18A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 2OgOc3pbApvtviN625_nCGvpb7jNgSdy
-X-Proofpoint-ORIG-GUID: 2OgOc3pbApvtviN625_nCGvpb7jNgSdy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-21_02,2025-07-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999 adultscore=0 priorityscore=1501 clxscore=1015 phishscore=0
- lowpriorityscore=0 suspectscore=0 bulkscore=0 malwarescore=0 mlxscore=0
- spamscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507210034
+References: <20250704070356.1683992-1-apatel@ventanamicro.com> <CABb+yY0mf08KU-GgjCVKMFpSf-jVSSRadtYfk6VHcbcMw6xztA@mail.gmail.com>
+In-Reply-To: <CABb+yY0mf08KU-GgjCVKMFpSf-jVSSRadtYfk6VHcbcMw6xztA@mail.gmail.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Mon, 21 Jul 2025 09:54:52 +0530
+X-Gm-Features: Ac12FXy5l4nDu-013iesLxkoer-0bUk6pdvS3VWXraud9GJ1aiQP15I-8GohFJE
+Message-ID: <CAK9=C2VfZ8PneOnChoUn4-mYZFut+TXoW8iDzKXc4XOW9X2qKw@mail.gmail.com>
+Subject: Re: [PATCH v8 00/24] Linux SBI MPXY and RPMI drivers
+To: Jassi Brar <jassisinghbrar@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On 7/19/2025 5:43 PM, Dmitry Baryshkov wrote:
-> On Wed, Jul 09, 2025 at 05:16:02PM +0800, Xiangxu Yin wrote:
->>
->> On 5/28/2025 4:49 AM, Konrad Dybcio wrote:
->>> On 12/3/24 3:07 PM, Dmitry Baryshkov wrote:
->>>> On Tue, Dec 03, 2024 at 04:13:22PM +0800, Xiangxu Yin wrote:
->>>>>
->>>>> On 11/29/2024 9:53 PM, Dmitry Baryshkov wrote:
->>>>>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
->>>>>>> Add a mechanism to retry Link Training 2 by lowering the pattern level
->>>>>>> when the link training #2 first attempt fails. This approach enhances
->>>>>>> compatibility, particularly addressing issues caused by certain hub
->>>>>>> configurations.
->>>>>> Please reference corresponding part of the standard, describing this lowering.
->>>>>>
->>>>> Per DisplayPort 1.4a specification Section 3.5.1.2 and Table 3-10, while the standard doesn't explicitly define a TPS downgrade mechanism, it does specify:
->>>> Anything in DP 2.1?
->>>>
->> In the DP 2.1 spec, mainly on section '3.6.7.2 8b/10b DP Link Layer LTTPR Link Training Mandates', defined 'LTTPR shall support TPS4'.
->> The other parts seems similar to the 1.4 spec.
->>>>> - All devices shall support TPS1 and TPS2
->>>>> - HDR2-capable devices shall support TPS3
->>>>> - HDR3-capable devices shall support TPS4
->>>>> While these capabilities are explicitly defined DPCD for sink devices, source device capabilities are less strictly defined, with the minimum requirement being support for TPS1 and TPS2.
->>>>> In QCS615 DP phy is only supporting to HBR2, we observed a critical interoperability scenario with a DP->HDMI bridge. When link training at TPS4 consistently failed, downgrading to the next lower training pattern successfully established the link and display output successfully.
->>>> Any other driver doing such TPS lowering? Or maybe we should be
->>>> selecting TPS3 for HBR2-only devices?
->> This logic is porting from qualcomm downstream, 
-> Hopefully a downstream has some sensible commit message which describes
-> the issue and the configuration to reproduce it?
-
-The downstream commit log shows in 2019/08, SM8250 (kernel 4.19) type-c DP meet LT2 failures on Samsung HDR curved monitor, the pattern lowering fix was adopted.
-On QCS615, an mDP-to-HDMI adapter cable exhibited similar LT failure pattern, and it's works with this solution.
-However, It's rare compatibility case with special device and lowering seems violates protocol standards, maybe not suitable for general deployment.
-
->> For other device, only found in some older Tx chips like i915（intel_dp_training_pattern) used the maximum hardware-supported patterns, but not lowering.
->>
->> According to the description in DPCD table 2-232 003h, From the DP spec perspective, it appears that all supported cases should preferably adopt TPS4, as it is more robust.
-> If other drivers don't perform this kind of lowering, I'd prefer if we
-> don't perform it too.
-Agree,  I'll remove this patch in an upcoming version soon.
+On Mon, Jul 21, 2025 at 1:09=E2=80=AFAM Jassi Brar <jassisinghbrar@gmail.co=
+m> wrote:
 >
->> 'DPRXs should support TPS4 and set this bit, regardless of whether the DPRX supports HBR3 because TPS4 is more conducive to robust link establishment than TPS2 and TPS3.
->> 0 = TPS4 is not supported.
->> 1 = TPS4 is supported (shall be supported for downstream devices with DPCD r1.4, except for eDPRXs).'
->>
->> Although maximum capability of QCS615 is HBR2, but the actual pattern supports TPS4. 
->> From pure design perspective, it would be cleaner to drop this lowering in next patch. 
->>> Bump, this patch looks interesting and I'd like to see it revisited if
->>> it's correct
->>>
->>> Konrad
->>
+> On Fri, Jul 4, 2025 at 2:04=E2=80=AFAM Anup Patel <apatel@ventanamicro.co=
+m> wrote:
+> >
+> > The SBI v3.0 (MPXY extension) [1] and RPMI v1.0 [2] specifications
+> > are frozen and finished public review at the RISC-V International.
+> >
+> > Currently, most of the RPMI and MPXY drivers are in OpenSBI whereas
+> > Linux only has SBI MPXY mailbox controller driver, RPMI clock driver
+> > and RPMI system MSI driver This series also includes ACPI support
+> > for SBI MPXY mailbox controller and RPMI system MSI drivers.
+> >
+> > These patches can be found in the riscv_sbi_mpxy_mailbox_v8 branch
+> > at: https://github.com/avpatel/linux.git
+> >
+> > To test these patches, boot Linux on "virt,rpmi=3Don,aia=3Daplic-imsic"
+> > machine with OpenSBI and QEMU from the dev-upstream branch at:
+> > https://github.com/ventanamicro/opensbi.git
+> > https://github.com/ventanamicro/qemu.git
+> >
+> > [1] https://github.com/riscv-non-isa/riscv-sbi-doc/releases
+> > [2] https://github.com/riscv-non-isa/riscv-rpmi/releases
+> >
+> > Changes since v7:
+> >  - Addressed comments on PATCH3, PATCH7, PATCH10, PATCH14, and PATCH21
+> >
+> > Changes since v6:
+> >  - Rebased the series on Linux-6.16-rc4
+> >  - Added Stephen's Reviewed-by in appropriate patches
+> >  - Addressed Andy's comments on PATCH5, PATCH6, PATCH9, and PATCH14
+> >  - New PATCH6 in this series which is factored-out from PATCH7
+> >
+> > Changes since v5:
+> >  - Rebased the series on Linux-6.16-rc2
+> >  - Added Conor's Reviewed-by in all DT binding patches
+> >  - Addressed Andy's comments on PATCH5
+> >  - Addressed Tglx's comments on PATCH12 and PATCH21
+> >
+> > Changes since v4:
+> >  - Rebased the series on Linux-6.16-rc1
+> >  - Dropped PATCH1 since a similar change is already merged
+> >    https://lore.kernel.org/linux-riscv/20250523101932.1594077-4-cleger@=
+rivosinc.com/
+> >  - Addressed Andy's comments on PATCH4, PATCH5, PATCH6, PATCH7,
+> >    PATCH13, and PATCH17
+> >  - Addressed Atish's comments on PATCH11 and PATCH12
+> >  - Addressed Conor's comments on PATCH9
+> >
+> > Changes since v3:
+> >  - Rebased the series on Linux-6.15-rc7
+> >  - Updated PATCH2 DT bindings as-per Rob's suggestion
+> >  - Improved request_threaded_irq() usage in PATCH7
+> >  - Updated PATCH10 clk-rpmi driver as-per commments from Andy
+> >  - Updated PATCH13 irq-riscv-rpmi-sysmsi driver as-per comments
+> >    from Andy and Tglx
+> >  - Addressed ACPI related comments in PATCH14, PATCH15, PATCH18,
+> >    PATCH20 and PATCH21
+> >
+> > Changes since v2:
+> >  - Dropped the "RFC" tag from series since the SBI v3.0 and
+> >    RPMI v1.0 specifications are now frozen
+> >  - Rebased the series on Linux-6.15-rc5
+> >  - Split PATCH8 of v2 into two patches adding separate DT
+> >    bindings for "riscv,rpmi-mpxy-clock" and "riscv,rpmi-clock"
+> >  - Split PATCH10 of v2 into two patches adding separate DT
+> >    bindings for "riscv,rpmi-mpxy-system-msi" and
+> >    "riscv,rpmi-system-msi"
+> >  - Addressed comments from TGLX on PATCH11 of v2 adding irqchip
+> >    driver for RPMI system MSI
+> >  - Addressed ACPI related comments in PATCH15 and PATCH16 of v2
+> >  - New PATCH17 and PATCH18 in this series
+> >
+> > Changes since v1:
+> >  - Addressed DT bindings related comments in PATCH2, PATCH3, and
+> >    PATCH7 of v1 series
+> >  - Addressed comments in PATCH6 and PATCH8 of v1 series
+> >  - New PATCH6 in v2 series to allow fwnode based mailbox channel
+> >    request
+> >  - New PATCH10 and PATCH11 to add RPMI system MSI based interrupt
+> >    controller driver
+> >  - New PATCH12 to PATCH16 which adds ACPI support in SBI MPXY
+> >    mailbox driver and RPMI system MSI driver
+> >  - New PATCH17 to enable required kconfig option to allow graceful
+> >    shutdown on QEMU virt machine
+> >
+> > Anup Patel (14):
+> >   dt-bindings: mailbox: Add bindings for RPMI shared memory transport
+> >   dt-bindings: mailbox: Add bindings for RISC-V SBI MPXY extension
+> >   RISC-V: Add defines for the SBI message proxy extension
+> >   mailbox: Add common header for RPMI messages sent via mailbox
+> >   mailbox: Allow controller specific mapping using fwnode
+> >   byteorder: Add memcpy_to_le32() and memcpy_from_le32()
+> >   mailbox: Add RISC-V SBI message proxy (MPXY) based mailbox driver
+> >   dt-bindings: clock: Add RPMI clock service message proxy bindings
+> >   dt-bindings: clock: Add RPMI clock service controller bindings
+> >   dt-bindings: Add RPMI system MSI message proxy bindings
+> >   dt-bindings: Add RPMI system MSI interrupt controller bindings
+> >   irqchip: Add driver for the RPMI system MSI service group
+> >   RISC-V: Enable GPIO keyboard and event device in RV64 defconfig
+> >   MAINTAINERS: Add entry for RISC-V RPMI and MPXY drivers
+> >
+> > Rahul Pathak (1):
+> >   clk: Add clock driver for the RISC-V RPMI clock service group
+> >
+> > Sunil V L (9):
+> >   ACPI: property: Refactor acpi_fwnode_get_reference_args() to support
+> >     nargs_prop
+> >   ACPI: Add support for nargs_prop in acpi_fwnode_get_reference_args()
+> >   ACPI: scan: Update honor list for RPMI System MSI
+> >   ACPI: RISC-V: Create interrupt controller list in sorted order
+> >   ACPI: RISC-V: Add support to update gsi range
+> >   ACPI: RISC-V: Add RPMI System MSI to GSI mapping
+> >   irqchip/irq-riscv-imsic-early: Export imsic_acpi_get_fwnode()
+> >   mailbox/riscv-sbi-mpxy: Add ACPI support
+> >   irqchip/riscv-rpmi-sysmsi: Add ACPI support
+> >
+> >  .../bindings/clock/riscv,rpmi-clock.yaml      |   64 ++
+> >  .../bindings/clock/riscv,rpmi-mpxy-clock.yaml |   64 ++
+> >  .../riscv,rpmi-mpxy-system-msi.yaml           |   67 ++
+> >  .../riscv,rpmi-system-msi.yaml                |   74 ++
+> >  .../mailbox/riscv,rpmi-shmem-mbox.yaml        |  124 ++
+> >  .../bindings/mailbox/riscv,sbi-mpxy-mbox.yaml |   51 +
+> >  MAINTAINERS                                   |   15 +
+> >  arch/riscv/configs/defconfig                  |    2 +
+> >  arch/riscv/include/asm/irq.h                  |    6 +
+> >  arch/riscv/include/asm/sbi.h                  |   63 +
+> >  drivers/acpi/property.c                       |  128 ++-
+> >  drivers/acpi/riscv/irq.c                      |   75 +-
+> >  drivers/acpi/scan.c                           |    2 +
+> >  drivers/base/property.c                       |    2 +-
+> >  drivers/clk/Kconfig                           |    8 +
+> >  drivers/clk/Makefile                          |    1 +
+> >  drivers/clk/clk-rpmi.c                        |  616 ++++++++++
+> >  drivers/irqchip/Kconfig                       |    7 +
+> >  drivers/irqchip/Makefile                      |    1 +
+> >  drivers/irqchip/irq-riscv-imsic-early.c       |    2 +
+> >  drivers/irqchip/irq-riscv-rpmi-sysmsi.c       |  328 ++++++
+> >  drivers/mailbox/Kconfig                       |   11 +
+> >  drivers/mailbox/Makefile                      |    2 +
+> >  drivers/mailbox/mailbox.c                     |   65 +-
+> >  drivers/mailbox/riscv-sbi-mpxy-mbox.c         | 1017 +++++++++++++++++
+> >  include/linux/byteorder/generic.h             |   16 +
+> >  include/linux/mailbox/riscv-rpmi-message.h    |  243 ++++
+> >  include/linux/mailbox_controller.h            |    3 +
+> >  include/linux/wordpart.h                      |   16 +
+> >  29 files changed, 2990 insertions(+), 83 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/riscv,rpmi-=
+clock.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/clock/riscv,rpmi-=
+mpxy-clock.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-control=
+ler/riscv,rpmi-mpxy-system-msi.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-control=
+ler/riscv,rpmi-system-msi.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,rpm=
+i-shmem-mbox.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,sbi=
+-mpxy-mbox.yaml
+> >  create mode 100644 drivers/clk/clk-rpmi.c
+> >  create mode 100644 drivers/irqchip/irq-riscv-rpmi-sysmsi.c
+> >  create mode 100644 drivers/mailbox/riscv-sbi-mpxy-mbox.c
+> >  create mode 100644 include/linux/mailbox/riscv-rpmi-message.h
+> >
+> For the mailbox changes ...
+> Acked-by: Jassi Brar <jassisinghbrar@gmail.com>
+
+Thanks Jassi !
+
+--Anup
 
