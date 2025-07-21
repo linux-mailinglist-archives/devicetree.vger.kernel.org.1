@@ -1,61 +1,67 @@
-Return-Path: <devicetree+bounces-198171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78BC1B0BFA2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:06:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E20FB0BFA9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:07:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BF98189DF32
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:06:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39093189D1C0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E4D028A1D9;
-	Mon, 21 Jul 2025 09:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947A8288C0E;
+	Mon, 21 Jul 2025 09:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PcLdB/5O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UN1h/7cl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56F7828A1D5;
-	Mon, 21 Jul 2025 09:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5865221D5AA;
+	Mon, 21 Jul 2025 09:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753088711; cv=none; b=A9lXQK+N44d5eh58DLjTM9ODgmBDKCZzkUIGNivvY+bkoRUG2mLJvYB6MlhjNlVDydn2m21HAYzZy0RIN/94R0jPp6E0upJ5jzTkDXXJi70rFU/OBbmVzwYVZz9Opp//FoDhihcUUQd6aDJv9kT1vEl+4kgjsEYn35ZfPIDtLbo=
+	t=1753088838; cv=none; b=Go3zX4IVPUqMY2Xhs3kW2c/SpuCQUQE07Px4Y/7gFbcG/eR7cH32xU9H0D5aCVAeBfxi4ppTX6/QdQOChwbaPD4c3c1qHS1hkGxOCzj5GIsXo7vhv/7yRbz5xP/lxHI4nDMVXnAMFFi7x4e9GuWQWpd4VOMzkOgAGDOeuigv/+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753088711; c=relaxed/simple;
-	bh=mPz06fvHGJS3IqG6pR8pv22PSERO2G5DHxglf8CS8S8=;
+	s=arc-20240116; t=1753088838; c=relaxed/simple;
+	bh=mWbYUZ8RpLg7sOJxNI1MKrXpqhPZ6q61NO8r6g1VBL4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZFbw5oB6bmwDIbbYS2sfvskMHlkHDZDseQtqP/VjuCL1sMO0QNkwZ8QT/orAYJKWeh11/uWdKeERtPf9fddC55DTWHF+aKLa7VoN1y+httsYLpaEtcaiJ1sfRwLzX2CjI/QKxL3HRWkwxDK8f7ZQ54QtSXJDMsHokfW628xZSzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PcLdB/5O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EB0FC4CEED;
-	Mon, 21 Jul 2025 09:05:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=j0r/KkOl+OLmovvqvcciz5MhVRBWa7sCjW5EhXQ9Y5C6iEWsJoZhHQQD4Z6hIJyAVcyKvmN+gczzxtNf7DvTJpj+f0zHprzNpclaAhKKRbwAu9FHy0Wb5A/uQKH0Fi8K4VBuM6FNreRvwtxR5Z+/8voKwoSCxIr4Zz+tB8o91RU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UN1h/7cl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DBB4C4CEED;
+	Mon, 21 Jul 2025 09:07:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753088710;
-	bh=mPz06fvHGJS3IqG6pR8pv22PSERO2G5DHxglf8CS8S8=;
+	s=k20201202; t=1753088836;
+	bh=mWbYUZ8RpLg7sOJxNI1MKrXpqhPZ6q61NO8r6g1VBL4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PcLdB/5OATdpifzdPVHBnD7jY4ntBYQ+RoyAN3kug0ppoeuK5wqX7nW6oK3Bntx70
-	 TeZan1U82ZkJOi7jjGEO8fmavhEDrS0r6H5n/VrgNXrhFyorNxACbd9Le+9k3h/gMO
-	 gdH/v+ENMDfI1202+ct9ZKBzuZBK5r5fWhzzibbPykeyYv5LeB2/lXXzioaHJZZcpQ
-	 fo5/x5z3lE0MsulrODgHIU+FtSdW42z6RDHqmFlVxUOrmFnJ10lOyAD41p7CPDSOeG
-	 bZyl1g3zv3de+tGcAQ5XBIa+9iYJImpTSgl7nBr0tqZvj5cxUOMaSET4u94Ha/EMLr
-	 3Mu77StA38p+A==
-Date: Mon, 21 Jul 2025 11:05:08 +0200
+	b=UN1h/7clLpuilJSIuDW6BgG2LU/Flp/JeMU1x1rxzWje9mT+WqDL3tq35C9NCu1+3
+	 J1WWmV1kj+/HeOfsdY7LOxE+f4sX5mA/RowNQ71AM8wE0SF541udqLwfvQGFO+So1z
+	 ueMPbao8XuTqLtD1JXIITALW3ZCzf9VfxMsMZIFoG4dyTLURNE8lMGc4P4CRHBfgrD
+	 krx70SFQzeY7gVh2pkg44a1G14sa8NB+CoXCwE9R8HIpHxDE1NO9zbpO2w01+WvzGd
+	 8kPcK1mGUXCJ+JA2y8fnDIg/BsyZPtQJbFnKC48KdC1HVGpRJW1OUH72brBOGCxJi7
+	 Dhn4x7kOQLs3Q==
+Date: Mon, 21 Jul 2025 11:07:14 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ryan Walklin <ryan@testtoast.com>
+To: Aaron Kling <webgeek1234@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Andre Przywara <andre.przywara@arm.com>, Chris Morgan <macroalpha82@gmail.com>, 
-	Hironori KIKUCHI <kikuchan98@gmail.com>, Philippe Simons <simons.philippe@gmail.com>, 
-	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v2 06/12] dt-bindings: sram: sunxi-sram: Add H616 SRAM C
- compatible
-Message-ID: <20250721-spry-nifty-bandicoot-c7c4ad@kuoka>
-References: <20250720085047.5340-1-ryan@testtoast.com>
- <20250720085047.5340-7-ryan@testtoast.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nagarjuna Kristam <nkristam@nvidia.com>, 
+	JC Kuo <jckuo@nvidia.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Mathias Nyman <mathias.nyman@intel.com>, 
+	Peter De Schrijver <pdeschrijver@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-usb@vger.kernel.org, Thierry Reding <treding@nvidia.com>, 
+	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 01/17] dt-bindings: soc: tegra: pmc: Document
+ Tegra210B01
+Message-ID: <20250721-logical-lorikeet-of-upgrade-6dce4f@kuoka>
+References: <20250720-t210b01-v2-0-9cb209f1edfc@gmail.com>
+ <20250720-t210b01-v2-1-9cb209f1edfc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,18 +70,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250720085047.5340-7-ryan@testtoast.com>
+In-Reply-To: <20250720-t210b01-v2-1-9cb209f1edfc@gmail.com>
 
-On Sun, Jul 20, 2025 at 08:48:44PM +1200, Ryan Walklin wrote:
-> Add a compatible string for the H616 SRAM C region which is
-> functionally similar to the A64 SRAM C region.
+On Sun, Jul 20, 2025 at 09:14:55PM -0500, Aaron Kling wrote:
+> Add the PMC driver compatible strings for Tegra210B01
 
-h616 for the parent device is already documented in the top, right? This
-should be one patch.
+And what is Tegra210B01? Do not say what you are doing - it is obvious
+from the diff. In this case here say what you are ADDING, what hardware
+is this.
 
-Post complete bindings for the device, not chunk by chunk.
+> 
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml b/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml
+> index 7140c312d8986b0b733c519b1e89e360d9602add..eddcafc2f9398ad6fb4d2d46b3181ab91c89a229 100644
+> --- a/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml
+> +++ b/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml
+> @@ -18,6 +18,7 @@ properties:
+>        - nvidia,tegra114-pmc
+>        - nvidia,tegra124-pmc
+>        - nvidia,tegra210-pmc
+> +      - nvidia,tegra210b01-pmc
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why they are not compatible? Commit msg is also silent on that.
 
 Best regards,
 Krzysztof
