@@ -1,218 +1,135 @@
-Return-Path: <devicetree+bounces-198229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C4A1B0C19F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:46:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36837B0C1AF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:48:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2ADF18939AC
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:46:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB225189F6DA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:48:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B08B291C2D;
-	Mon, 21 Jul 2025 10:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CA823507E;
+	Mon, 21 Jul 2025 10:48:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OMInJzBg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QkR6bOFw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589C4293C53;
-	Mon, 21 Jul 2025 10:44:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38E6C8F5A;
+	Mon, 21 Jul 2025 10:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753094663; cv=none; b=JlH7ZeEmLUrAcuvy7JIF0/Qd9YNR2FUhYXuYqcXUrl0jS6a4FJBKh6n6f7g++QrI/RoJHoawAFDcH2kmXa2tdd1bNG6E2oDjyQi0dCKNT8iQLImpBMTvgImGlSjzC8C8fvihX8m5eRSl4mTVZehKqitKg1coZ+k1S0mLJSRcKVo=
+	t=1753094910; cv=none; b=oGoLUFGTbIp2jVHx0XL2eCeOlheu4zr7V5qTVryF5SssfVTK78IwR5VCXJpmxzbnXU/QLYUqFFRDY2AH7zh6xoFgoomfy0iSkhT8jP1otdfWIO6z7rGRcsLaIaeRg4uiefuMqXzJo3fmMCke+UPdaSUX2cumV1hjy+VodWFDxQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753094663; c=relaxed/simple;
-	bh=ja2G1eJ+TGuBldLn7eDuIWTNyT69bULS5f7eLL4mV1U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=huBFeO3G7YMD2sYe0pt2lWIONgGaWO+D51KxBiNV8oXRa2/edNAgY0fIDpJnzp5E6mLuXU1sRarXatgfd1UdPZFqEJ3yC5pm7NhIC3tDIvxUYceSxGTfGTlW2cTVe4Izbh+QM/M9/76OrUNnN5MGQ3Q0XmeiF2CTj7A4o+KWb84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OMInJzBg; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5561d41fc96so4829371e87.1;
-        Mon, 21 Jul 2025 03:44:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753094659; x=1753699459; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cEVQJX/SYaok2ELlEAnWGTHXSwBKm7K9AhgOU6uSUA4=;
-        b=OMInJzBgkmGJbBkAp3sX0fZpWX0RR84w4u4/xwOTZYo+x5ttoofgVsUBG5KloOZZs/
-         gQl9WZUkV/9qTIjW6vJCfDNmjHvdpP+YEFMQJ3h8dpix/EN/Pqw6roUJ3ZGE7dVp3F/O
-         6LK09kvYkrnimXvxaTyYcJrgVAzwe6fCGZlEV9MGZx7fMvHcT6LJSWnyCRIg4848sJDd
-         oTUpiwiObzS5nWVuaL/VcQrurtNLsSR7h+mN0TsJH/nOWrZfSjZu4AJKb7upG//T83fh
-         X/GfxIzroo5jLoGQrCgqDJtmYMBNn/tbsHrsgBy+UIP/ZC1Ffbys3GjNYDWQZO18ABdT
-         7elw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753094659; x=1753699459;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cEVQJX/SYaok2ELlEAnWGTHXSwBKm7K9AhgOU6uSUA4=;
-        b=aiZSycnHiXO4zK3O1f3GW36AEUiA1lERGK3e1n34OxmH0jZHx/nlE+bJwrhE5+oOv9
-         TL5cXxptr7NrqkKkXkc5qv3rRnFOz5hw5Ug89ldm75KN9myK4U7cbU7hk4gD8iNVco1A
-         joc1UcYzRhZkn9FN1cFGNF3/RPwUVbo8pMPb+6R2jHg7bIL7kxzMZvlFob1Ba/VbKasI
-         ahJL8ESpurBWlUQ6njKNsLncpXJ2IkmdYqCJDjFV8JNve9iLomUPVf2nC/6EKtA6yOsU
-         XGEOFNCMp6XyzG2MnokZmEtBoD5kuPMyH6ZfgA/dAj8MdoV3LP8p1ZkX1Bhq8r9BrCqF
-         E67A==
-X-Forwarded-Encrypted: i=1; AJvYcCXj35NXLrIDu5bGq46fDumMhfkTxFGeYv654EPg78kjxil8s7O5zihw/HoIoQrO5Xv9GgMB2H0Q4MIf@vger.kernel.org, AJvYcCXsiLaw3wwygTpT5uRASEuIqU+TttTB75EhSVHipjcxxFLh7rcXUGxpiMCwxqy65hvolJ93xuzwT0gwFy//@vger.kernel.org
-X-Gm-Message-State: AOJu0YzispUcr+WvkpP6KCOLdnKyJTv3AQXqmNuPGmusU044WifWFOZS
-	H0sFbM29b4OS3GXNZt/z+K7xhW9t5Un5tSbFLC7yNT7/vuHtF1ZIP4pBhO2YL2h9KvM=
-X-Gm-Gg: ASbGnct8ZCgi9BvR4VEKE5EhlosF6lM5rKGmm9TeBbJY4JSKVTsP6yl5PwdcZ+m+LeY
-	MV9SeJwOCo9UjNPncRkvN6nADpFGDJ5swx6LSyekp92vIKcWDWGuhS2cIDoAJ0kJXgnUmBsP6sd
-	KcdKICHIUrMJr1mg1sMuFEAzevHVLeaK314oh2ia2fWU8SqUk6/ic/3U2mr3aqFtkcosZZuDqo7
-	WWj8GrDIGVWSjr4DO5vYGC8VStVJg+C31l8A+sI4c1KEehdfwxkXt3ICO5X0VcY1iMdJUurhVUx
-	WCf9tq+ED/RUKhbiBdKetngRv7xmpLBI9DQ5O2gm3Ui0K/RSlUYmZDFqz/SIgzxYu9keV54dcSd
-	gfOQx8tApDPzZMsEHjeDslDUETNIhVLgKoIjbXOMIn7uCI/M2fTxrCwuX88c9Asd/5hY=
-X-Google-Smtp-Source: AGHT+IHXrE/b7Rgb/FIQPijG5gK8yp/2SErYc3pBimq59GRkoNvzydms1sqxH8TRJFa3u4jKeHLB9Q==
-X-Received: by 2002:a05:6512:4002:b0:551:f0ce:80e3 with SMTP id 2adb3069b0e04-55a23f2d1e1mr5119301e87.25.1753094658913;
-        Mon, 21 Jul 2025 03:44:18 -0700 (PDT)
-Received: from [192.168.1.198] (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55a31db89bbsm1505164e87.237.2025.07.21.03.44.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Jul 2025 03:44:18 -0700 (PDT)
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-Date: Mon, 21 Jul 2025 12:43:36 +0200
-Subject: [PATCH v2 6/6] drm/st7571-i2c: add support for 2bit grayscale for
- XRGB8888
+	s=arc-20240116; t=1753094910; c=relaxed/simple;
+	bh=1D6Q+vB8GdDib25O5GIwmz/D4EaEnE+u79Ut0a/wXbA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KV0VzE8r2ZwU8iK7Rr4q1vJUyJ9Y02eopq14IGUFZaZhdnhI/RTBHM04KvOjfL473pqKLU/DnAuWYFRgmznXc1F5g9CS3qgmuuMrSq3yU+XqS51prgvMTnUE/s7uPezrnE0D/j9wH5mKFm7sgA5b4KHMtAleTjmqjYntsBf7ifU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QkR6bOFw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D7C4C4CEED;
+	Mon, 21 Jul 2025 10:48:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753094909;
+	bh=1D6Q+vB8GdDib25O5GIwmz/D4EaEnE+u79Ut0a/wXbA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QkR6bOFwjxfQZA9mL83Zdg/cSi2VHUD4kCn6CdoPYz/RGQDYSFs+QdkyNoRanXhVq
+	 tndPK8mTYBzJk9NdpoSShJNNtY9a54pa65Vt1kYLYomnVzjk22bWqbqvcS9qb+zm5o
+	 u9AhG3zAV9BtwCoUrZ2o+HKpnXMYmlZtPzZ7E8ZIsw/yukIo9YnytiCOU3IzvMMstq
+	 0dZAmrfI2kxtVnTT1R2bDxp2o0BST0Ysr2v+fSimdHYLy930VSvWBPM8RZHbs/r33P
+	 J4SEC/dI9fP/OiGxn/KIPdbvSVQAjfZB9OM3HLGiz1PgDT+k2JyC/h9nY8e7rvWGCT
+	 0hxBtrvtOTeZA==
+Message-ID: <83f7c489-7001-49cd-97a5-4280eba95fe0@kernel.org>
+Date: Mon, 21 Jul 2025 12:48:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] ASoC: dt-bindings: Add FS2104/5S audio amplifiers
+To: Nick <nick.li@foursemi.com>, lgirdwood@gmail.com, broonie@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
+ tiwai@suse.com
+Cc: xiaoming.yang@foursemi.com, danyang.zheng@foursemi.com,
+ like.xy@foxmail.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250721103805.531758-1-nick.li@foursemi.com>
+ <20250721103805.531758-3-nick.li@foursemi.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250721103805.531758-3-nick.li@foursemi.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250721-st7571-format-v2-6-159f4134098c@gmail.com>
-References: <20250721-st7571-format-v2-0-159f4134098c@gmail.com>
-In-Reply-To: <20250721-st7571-format-v2-0-159f4134098c@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Javier Martinez Canillas <javierm@redhat.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3639;
- i=marcus.folkesson@gmail.com; h=from:subject:message-id;
- bh=ja2G1eJ+TGuBldLn7eDuIWTNyT69bULS5f7eLL4mV1U=;
- b=owEBbQKS/ZANAwAIAYiATm9ZXVIyAcsmYgBofhnyibw5+htt8L/mz/Z6LY19g2cML7+of3ndE
- OqD2okki9yJAjMEAAEIAB0WIQQFUaLotmy1TWTBLGWIgE5vWV1SMgUCaH4Z8gAKCRCIgE5vWV1S
- MoaXD/9EaTHWfHlZ+G1qRPSwOSFiQsBlb/EiAKzsJwKXxKbakXiCIXx9td6UhhxPUR/IyJuvVn/
- mHP3Goy+tleR+6GD5woJb/5ZhNT1i7ixI918yfPeDF96GbX3EPp8/8Fqn/cbvvOMxAqBt/Y47Zu
- 9KffqVAa0Jkw3q9+yse1eX+9aaO0PjzAr8Sdsf4xbggmoRMU4kKNN0mgo6jqy25XP1Mi6beXDHf
- HzToFKyAcESqeLuN8d4OG/ELhs62cLRYpL5A5C2NdIU4kHH0RCjGhDFyQgTLE5WaUzV07rFz9Sx
- VVRzRyG8FIpc1N2p5r60+FJNTJuDL08znCG1187KgPiL2fk8g6DdijmeapZlviN3FZtE2wDNklC
- PHfs3DeZfD9YGgn9OsbvQoC3taMhet8qvpBIHTxMNM15sH2hkjlTwt2IKGLy+SqOK26d9oSJ11R
- V7Xl4yIEiRi88m4ZXo4UJR+n0PdfUAOmvzLNpkwQ1NEK5UUDUHqO+gT07DuQRUp3YkBAQYoF+XH
- qm3I5q7S0RM23k+oAsFTw2kllk2tLXJ+T4+UydTIIaL9F1VcWdmZnVlh/vF/+qBN1T+EeOF3818
- 9uF0ru6G7rAw+XGorLS5VnqeGI+6Q60cKFfXp7dcXenUypYI40xLMDhQ1KV2k+AWk59BJYFpB4e
- DgdrnByYHPxK3NQ==
-X-Developer-Key: i=marcus.folkesson@gmail.com; a=openpgp;
- fpr=AB91D46C7E0F6E6FB2AB640EC0FE25D598F6C127
 
-Add support for 2bit grayscale and use it for XRGB8888 when grayscale is
-supported.
+On 21/07/2025 12:38, Nick wrote:
+> +  firmware-name:
+> +    maxItems: 1
+> +    description: |
+> +      The firmware(*.bin) contains:
+> +      a. Register initialization settings
+> +      b. DSP effect parameters
+> +      c. Multi-scene sound effect configurations(optional)
+> +      It's gernerated by FourSemi's tuning tool.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#sound-dai-cells'
+> +  - reset-gpios
+> +  - firmware-name
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
----
- drivers/gpu/drm/sitronix/st7571-i2c.c | 26 +++++++++++++-------------
- 1 file changed, 13 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/sitronix/st7571-i2c.c b/drivers/gpu/drm/sitronix/st7571-i2c.c
-index 9f2de057ce9d990fdd77e395a6c32ba1e2f36137..6c5935c37a2abf99116f8c2f67eec25bad90c8a8 100644
---- a/drivers/gpu/drm/sitronix/st7571-i2c.c
-+++ b/drivers/gpu/drm/sitronix/st7571-i2c.c
-@@ -219,10 +219,11 @@ static int st7571_send_command_list(struct st7571_device *st7571,
- 	return ret;
- }
- 
--static inline u8 st7571_transform_xy(const char *p, int x, int y)
-+static inline u8 st7571_transform_xy(const char *p, int x, int y, u8 bpp)
- {
- 	int xrest = x % 8;
- 	u8 result = 0;
-+	u8 row_len = 16 * bpp;
- 
- 	/*
- 	 * Transforms an (x, y) pixel coordinate into a vertical 8-bit
-@@ -237,7 +238,7 @@ static inline u8 st7571_transform_xy(const char *p, int x, int y)
- 
- 	for (int i = 0; i < 8; i++) {
- 		int row_idx = y + i;
--		u8 byte = p[row_idx * 16 + x];
-+		u8 byte = p[row_idx * row_len + x];
- 		u8 bit = (byte >> xrest) & 1;
- 
- 		result |= (bit << i);
-@@ -304,11 +305,11 @@ static void st7571_prepare_buffer_grayscale(struct st7571_device *st7571,
- 	struct iosys_map dst;
- 
- 	switch (fb->format->format) {
--	case DRM_FORMAT_XRGB8888: /* Only support XRGB8888 in monochrome mode */
--		dst_pitch = DIV_ROUND_UP(drm_rect_width(rect), 8);
-+	case DRM_FORMAT_XRGB8888:
-+		dst_pitch = DIV_ROUND_UP(drm_rect_width(rect), 4);
- 		iosys_map_set_vaddr(&dst, st7571->hwbuf);
- 
--		drm_fb_xrgb8888_to_mono(&dst, &dst_pitch, vmap, fb, rect, fmtcnv_state);
-+		drm_fb_xrgb8888_to_gray2(&dst, &dst_pitch, vmap, fb, rect, fmtcnv_state);
- 		break;
- 
- 	case DRM_FORMAT_R1:
-@@ -334,7 +335,7 @@ static int st7571_fb_update_rect_monochrome(struct drm_framebuffer *fb, struct d
- 
- 	for (int y = rect->y1; y < rect->y2; y += ST7571_PAGE_HEIGHT) {
- 		for (int x = rect->x1; x < rect->x2; x++)
--			row[x] = st7571_transform_xy(st7571->hwbuf, x, y);
-+			row[x] = st7571_transform_xy(st7571->hwbuf, x, y, 1);
- 
- 		st7571_set_position(st7571, rect->x1, y);
- 
-@@ -359,14 +360,13 @@ static int st7571_fb_update_rect_grayscale(struct drm_framebuffer *fb, struct dr
- 	rect->y2 = min_t(unsigned int, round_up(rect->y2, ST7571_PAGE_HEIGHT), st7571->nlines);
- 
- 	switch (format) {
--	case DRM_FORMAT_XRGB8888:
--		/* Threated as monochrome (R1) */
--		fallthrough;
- 	case DRM_FORMAT_R1:
--		x1 = rect->x1;
--		x2 = rect->x2;
-+		x1 = rect->x1 * 1;
-+		x2 = rect->x2 * 1;
- 		break;
- 	case DRM_FORMAT_R2:
-+		fallthrough;
-+	case DRM_FORMAT_XRGB8888:
- 		x1 = rect->x1 * 2;
- 		x2 = rect->x2 * 2;
- 		break;
-@@ -374,7 +374,7 @@ static int st7571_fb_update_rect_grayscale(struct drm_framebuffer *fb, struct dr
- 
- 	for (int y = rect->y1; y < rect->y2; y += ST7571_PAGE_HEIGHT) {
- 		for (int x = x1; x < x2; x++)
--			row[x] = st7571_transform_xy(st7571->hwbuf, x, y);
-+			row[x] = st7571_transform_xy(st7571->hwbuf, x, y, 2);
- 
- 		st7571_set_position(st7571, rect->x1, y);
- 
-@@ -395,7 +395,7 @@ static int st7571_fb_update_rect_grayscale(struct drm_framebuffer *fb, struct dr
- 			 * For monochrome formats, write the same value twice to get
- 			 * either a black or white pixel.
- 			 */
--			if (format == DRM_FORMAT_R1 || format == DRM_FORMAT_XRGB8888)
-+			if (format == DRM_FORMAT_R1)
- 				regmap_bulk_write(st7571->regmap, ST7571_DATA_MODE, row + x, 1);
- 		}
- 	}
+I do not see how you resolved my comment from v1 or v2. Nothing in the
+changelog explains that either.
 
--- 
-2.49.0
 
+Best regards,
+Krzysztof
 
