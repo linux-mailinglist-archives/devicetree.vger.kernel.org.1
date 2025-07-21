@@ -1,132 +1,238 @@
-Return-Path: <devicetree+bounces-198123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B969B0BCDB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 08:42:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8017B0BCE6
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 08:44:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 646053B694F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 06:42:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 188657A2455
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 06:43:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED36F27EFEE;
-	Mon, 21 Jul 2025 06:42:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D98A127F182;
+	Mon, 21 Jul 2025 06:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gdgWa7zU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="koyHUpY3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04D627EC80;
-	Mon, 21 Jul 2025 06:42:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABDD027F00A;
+	Mon, 21 Jul 2025 06:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753080159; cv=none; b=q8CrhTLiCskqxWK6PuLxMY8XSBWs13l6it0UWwR9p+xhlfhrYuZzX42LCOUfpNg4DYGTabUrEGoVQ/vzA0X1FiFx1w922OEs6tUz+7JkOvmY1bVlNgdyCFPru/Z2Nf/drnm80LDVMuTGcfzCK8lXoqsEYALbSufU4orsro7H/TY=
+	t=1753080284; cv=none; b=Qx+pmB7QyV7vFOEKWwb1s2ScZHdkH/Htnkk3/5ejhPdWKLydjyB/hlEZHfehmPjqmaVER3jjN+x3C5ipqm3TLHSgQw8Q+aUF2Svb1wVeo19783jXE92PcLalwNWlQPPO8fyHTBv4ft2zQkSLsnPKlwnALicpRBYr9b9XO8cO568=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753080159; c=relaxed/simple;
-	bh=R0y01Ira8vxCv34EaQba0Oh2JfMMnOt+9HcYYnrhJ8k=;
-	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
-	 In-Reply-To; b=P8Y7F4bJJC8l3mY/76P5dsGDoG1yAh67chvOW4ZFRKDXWimOpKnMlJ+VnK5HH9sjol7R6ziBooKM+WvpZAWnr8+enXaDg9YXjgDMtbPgCFUHOY4tZuvP/6XK6//cgZiOBRRj8TtXzCyui+fyzOQpWb9VxiCpjILuVNwVhDb60JU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gdgWa7zU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7184C4CEED;
-	Mon, 21 Jul 2025 06:42:36 +0000 (UTC)
+	s=arc-20240116; t=1753080284; c=relaxed/simple;
+	bh=wvxEQfO5q7696mFzNxs9ne5fSgIF2uWYH+60V8ROAmo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z63QUB/q32dDqCce3+2U5zn/xw1lOm9rqRgBOvfC9IGhQ8z00aoxjDKs6snFJWEFtebPFJpyFd9rYT3rNB05WCS1jJQnQH4i8ayFIxsWA/SDnEAqkxbIbfbtM0916RsPdFcQLnpfucu3qlvTSgzstlhSH2EGwsDR6FLs5hK49tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=koyHUpY3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD43DC4CEED;
+	Mon, 21 Jul 2025 06:44:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753080157;
-	bh=R0y01Ira8vxCv34EaQba0Oh2JfMMnOt+9HcYYnrhJ8k=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
-	b=gdgWa7zUKhWWxVb7zMuTgFjTlM1F+8XSUbzJPspaVX2xc0YJAT2JgY3r5NY6cIRAh
-	 zh92DAxdjN0+sk/aZHrW2NVRKdvOXB1rPZZrIb8P+xytL2AkWCnI4eXpnFR6jyvtaz
-	 3n2fufub4WDiqSlRrpxWad+N6tBteybAPGTG73n5qu7yD7UjmqgPLjnh7yNLJsaF/p
-	 PCn8rPS3j3SkC5HO1EVVqT1T3YYcFjqdIiKjOmGKxmbA79TUwZlCDZJmrVinsW0iC4
-	 yaOksr5ZNyRJ6S3Hj9LK8bk7dedaskp1gZD3WZDeIuFHtfzJ8LailcJqBEv/TuIifz
-	 NScTJ6JNUthtA==
-Content-Type: multipart/signed;
- boundary=6493458b0ac4188a6504b0b3b194601da3c29538be77290fa402a0754a70;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Mon, 21 Jul 2025 08:42:32 +0200
-Message-Id: <DBHJ1S8MTSA2.35ZZDZFQGFNB1@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: Add power-button option for TI
- TPS6594 PMIC
-Cc: "Job Sava" <jsava@criticallink.com>, "Krzysztof Kozlowski"
- <krzk@kernel.org>, "Lee Jones" <lee@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Julien Panis" <jpanis@baylibre.com>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-input@vger.kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Jon Cormier" <jcormier@criticallink.com>, "Jerome Neanne"
- <jneanne@baylibre.com>, "Markus Schneider-Pargmann" <msp@baylibre.com>
-X-Mailer: aerc 0.16.0
-References: <20250520-linux-stable-tps6594-pwrbutton-v1-0-0cc5c6e0415c@criticallink.com> <20250520-linux-stable-tps6594-pwrbutton-v1-1-0cc5c6e0415c@criticallink.com> <20250521-wandering-tested-porpoise-acbef7@kuoka> <CAKMwjwTP=xSsX3UuK02sKbXWaU7y-ErytNYCL_P0UveDytQW2A@mail.gmail.com> <20250529-wise-tremendous-stork-a7d091@kuoka> <CAKMwjwQOBE651A-5VVjwcv5TspO2eNZfgwWzMpTTWxhR3nGKUw@mail.gmail.com> <0fb4b411-1b27-43fc-8d48-e5220fc85478@kernel.org> <CAKMwjwSZEhXav2U-bd+JNyVDK3JdJoN1kJjnxpfKXBKsW2XxdQ@mail.gmail.com> <DBEDT0OKPYAC.EX6HDQCKUWIS@walle.cc> <CADL8D3bpVVrswNUvS5nSeQYuZbyPOfMoMFG_JrPSFb9YkNEKdg@mail.gmail.com>
-In-Reply-To: <CADL8D3bpVVrswNUvS5nSeQYuZbyPOfMoMFG_JrPSFb9YkNEKdg@mail.gmail.com>
+	s=k20201202; t=1753080284;
+	bh=wvxEQfO5q7696mFzNxs9ne5fSgIF2uWYH+60V8ROAmo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=koyHUpY3JFkN64NrYE9EI1KXTEwY/vPI0Jp0RcWoI542qQcQxlthOETZ2QIzqKzaQ
+	 HxWlFfgqat8RqDd+pQo4q7Y/pBuk8Ce+YdQdJovRuKjNkUBp+SE1xC6ZluHdzYPD6b
+	 5svg/VaZN7OqRY1MRnIOZ0jxbd7NLHVK7LniR2mPO9XIffWPdd2UEi/fu42q1Sk7LZ
+	 W45mf/I3UIsCiKmUirHIrbMMUWEs3RI3UTUJ/vw5KDztLAXQv9t8knQHzkuM85Nd/8
+	 96UdFxayHhtlhJqx1VFA23Gl2bC3rskloySAw4BMvV7xkkjEuxjOCSH87F+w3Q/CrM
+	 OVoffsOZUzfEg==
+Message-ID: <6dc0c8d7-e081-4a3d-b289-368b6da69011@kernel.org>
+Date: Mon, 21 Jul 2025 08:44:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-
---6493458b0ac4188a6504b0b3b194601da3c29538be77290fa402a0754a70
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/9] ASoC: dt-bindings: sound: Add Samsung ExynosAuto ABOX
+ binding
+To: ew kim <ew.kim@samsung.com>, broonie@kernel.org, s.nawrocki@samsung.com,
+ robh@kernel.org, krzk+dt@kernel.org
+Cc: lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz, conor+dt@kernel.org,
+ alim.akhtar@samsung.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250721023052.3586000-1-ew.kim@samsung.com>
+ <CGME20250721024611epcas2p47ebaf8cb494fc2bf71a83b00ba47f2b3@epcas2p4.samsung.com>
+ <20250721023052.3586000-4-ew.kim@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250721023052.3586000-4-ew.kim@samsung.com>
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-[+ Jerome and Markus ]
+On 21/07/2025 04:30, ew kim wrote:
+> Add the device tree binding documentation for the Samsung Exynos Automotive
+> ABOX generic audio management core. This binding describes how to configure
+> the maximum number of PCM playback, PCM capture, and dummy I2S backend
+> instances for the ABOX core. Actual hardware functionality is provided
+> by child audio sub-drivers.
+> 
+> Signed-off-by: ew kim <ew.kim@samsung.com>
+> ---
+>  .../bindings/sound/samsung,exynosauto.yaml    | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/samsung,exynosauto.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/samsung,exynosauto.yaml b/Documentation/devicetree/bindings/sound/samsung,exynosauto.yaml
+> new file mode 100644
+> index 000000000000..b1e49f38ffe9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/samsung,exynosauto.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/samsung,exynosauto.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung Exynos Automotive Abox Generic
+> +
+> +maintainers:
+> +  - Eunwoo Kim <ew.kim@samsung.com>
+> +
+> +description: |
+> +  The Samsung Exynos Automotive Abox Generic node represents a
+> +  generic audio management platform device inside Exynos Automotive SoCs.
 
-Hi,
+No, we do not add bindings for "generic" stuff.
 
-> > > > Someone knowing the device should come with arguments whether
-> > > > other states for this are useful at all. Or not useful and then arg=
-ument
-> > > > that in commit msg for example.
-> > > The other states are not useful for the kernel. Only the push button
-> > > has a need for an interrupt handler. The other states the PMIC handle=
-s
-> > > on its own.
-> > >
-> > > What exactly do you want me to change?
-> >
-> > Because the driver isn't setting the configuration anyway, wouldn't
-> > it be possible to read the config bits (Register 0x3c, bits 7-6) to
-> > figure out whether the pin is configured as power-button instead of
-> > having this property?
-> >
-> > I mean, the correct config is likely stored in the NVM anyway, and
-> > reconfiguring it to another value seems unlikely.
-> Currently, the TPS MFD driver only loads the power button driver if
-> the flag is set.  We could put that discovery code in the MFD driver,
-> but what if the system designer doesn't want the power button driver?
+Describe the SoC.
 
-The device tree is not for configuration. The designer can just
-ignore the input event in that case.
+> +  It does not directly control hardware resources itself, but acts as
 
-> I'm not sure auto detecting it makes sense.
+Does not control hardware? so not suitable for bindings and DTS.
 
-Why?
+> +  a common interface to manage child audio sub-drivers for PCM playback,
+> +  PCM capture, and I2S dummy backends.
 
-> We are basing this on the other TI PMIC drivers and how they are
-> configured. I'm not sure I want to reinvent the wheel, so to speak.
+Not relevant.
 
-That was never a good reason. Maybe there was a reason for the
-TPS65219. Markus? Jerome? I haven't found anything in the commit
-messages or cover letters. Only that it is "optional". Not sure what
-that means. According to the TPS65219 datasheet, that pin if not
-used shall be configured as EN and be connected to VSYS.
+> +
+> +  Typically, this node provides configuration for the maximum number of
+> +  PCM playback and capture devices (ALSA PCM) and the maximum number
+> +  of dummy I2S backend devices. The actual hardware control is handled
+> +  by child drivers attached to this generic core.
 
--michael
+Not relevant. Describe the hardware.
 
---6493458b0ac4188a6504b0b3b194601da3c29538be77290fa402a0754a70
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +  This node must exist for the platform driver to probe,
+> +  even though it does not map any physical hardware address.
 
------BEGIN PGP SIGNATURE-----
+Drivers are not relevant, read writing bindings.
 
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaH3hWRIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/hFtAF/d1kdDlZUxRD9dqbtdD3Pkp9siZiMMOkP
-A8dvPl4Q37apv3pBGU1xvF/RwwElPKGKAYCPjkNWw/8Pjy9QYI485mpRElbm8EqP
-Q4yItP4WaDZtZykP4FGO1RMMYyvT5pHWopY=
-=4oih
------END PGP SIGNATURE-----
+> +
+> +properties:
+> +  compatible:
+> +    const: samsung,abox_generic
 
---6493458b0ac4188a6504b0b3b194601da3c29538be77290fa402a0754a70--
+You did not implement previous feedback. This does not follow DTS coding
+style and writing bindings.
+
+I already asked you to read DTS coding style and nothing improved, no
+issues were resolved.
+
+> +
+> +  samsung,num-pcm-playback:
+> +    description: Maximum number of PCM playback instances (ALSA PCM devices).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  samsung,num-pcm-capture:
+> +    description: Maximum number of PCM capture instances (ALSA PCM devices).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  samsung,num-i2s-dummy-backend:
+> +    description: Maximum number of dummy I2S backend instances.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+Nothing above describes hardware. Bindings are not for ALSA.
+
+> +
+> +  '#address-cells':
+> +    description: Required for child nodes that may declare address space.
+> +    const: 2
+> +
+> +  '#size-cells':
+> +    description: Required for child nodes that may declare address space.
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - samsung,num-pcm-playback
+> +  - samsung,num-pcm-capture
+> +  - samsung,num-i2s-dummy-backend
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    abox_generic {
+
+Did you read DTS coding style?
+
+> +      compatible = "samsung,abox_generic";
+> +      samsung,num-pcm-playback = <32>;
+> +      samsung,num-pcm-capture = <32>;
+> +      samsung,num-i2s-dummy-backend = <5>;
+> +      status = "disabled";
+
+No.
+
+> +      #address-cells = <2>;
+> +      #size-cells = <1>;
+> +    };
+
+
+Best regards,
+Krzysztof
 
