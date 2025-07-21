@@ -1,67 +1,61 @@
-Return-Path: <devicetree+bounces-198207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB47BB0C0F5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:11:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8684BB0C171
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:42:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9480518C1C42
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:11:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEB257A91A8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:40:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F45291C1F;
-	Mon, 21 Jul 2025 10:09:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="BbXKXmjW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C548829009A;
+	Mon, 21 Jul 2025 10:40:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.fris.de (mail.fris.de [116.203.77.234])
+Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 083DF291C11;
-	Mon, 21 Jul 2025 10:09:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F60E28FFCD;
+	Mon, 21 Jul 2025 10:39:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753092544; cv=none; b=LIxvKE3eTUZ1j2gbmNAa0eD1urqsIApSTvRJ37DuAZW6JEDA0QZSKghm2LpKzRxfBjK6G75NQ+8clTTUK6Z7PveJYCx/FvfRLgGjFP93q78FAaWqcUIckiIKhjI1iS+n9py+3DDjsBn99dAiYbfbDKglxOoGwCQsH/hR2xqFd9s=
+	t=1753094401; cv=none; b=IHU5lnfHG+NNaK5OOzVxs1Zsi0na7KPHwq5+N3dHrOFw9loa65ZZVG7k1u2q4Eo/9s4/Hqrio0uzSQMIFahFo+vgImWHnXoPup6V58w4wxKymc/wZhWeZbxcR0WsZIpbIzQH7i2OwK4hePRU7roN8hShutX8cnYyRMmxO0Zhgng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753092544; c=relaxed/simple;
-	bh=QcOTgdqFbWIVlAzniKM64lk1QgcWvoUMOayy7LHY3Oo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SZQosSM91rIWClCYLD9Yp5D7yX1XoA85ao6gJ3yd0zIk6heEHis7ajVnlC1tXCEUn9KSBX8V7yLxTQLX8amPcJx57XKNQkAPq43noTB2VFyYVRpRzObBjCXuSdOKJQiX81CYNZcbz/OpYKERaJ7YWqrjrnwJ93R0WYA7rH1l7Rk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=BbXKXmjW; arc=none smtp.client-ip=116.203.77.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fris.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8D421C75F6;
-	Mon, 21 Jul 2025 12:09:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-	t=1753092540; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Fi0fGJ9AJQqZATBmEm6EZuwX+ZDWl2PPzFs07T+Av88=;
-	b=BbXKXmjWwD7TB2flQXuc32pjwrX0tyzpybW8EiUto+FvMGUad1rlb7Q68hRwlrTjEwrnsl
-	Y7S6w237oZ9ytjRe49tmcQikhonH2XoB/rnm8uHKJ/Cz0xb12nqrsH4yStpvQFURjOZUwt
-	FhlCgYxpnC+hhem6ATxvw93G73r6T4wZBXY7CjuIFJ+nSslqDY9xWtF95mKm8+8YoZQteM
-	G6K+l+Gtmk06BWiccCf3ELKct3w55/rLiJAEM3WgJAixSKEGF3Mr2zKOOJvQDSxykOk+IW
-	UakIcCoNjv9BKvOaCdKvndzToTXS9YPnoNnyH6Tg0kHcCYfAp9bPWhoVuaGL3A==
-From: Frieder Schrempf <frieder@fris.de>
-To: linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1753094401; c=relaxed/simple;
+	bh=H1W0pqeQxw8AWbGmsEsUGvw/bKSf3E5qBKHzdHc689Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PsWyCPMEaGHNUvozrgEgt5x+OuK11wyx1uGgXs09vyxgiBuefBuDzQ4/vypKlCtCuv3wblPpoBZKgEy/AqtmIwob4XBbO2jui0LrticApHdfp/Yp+vhZTcz2OsCOzCf+niHzMcQZP+JT2gXYUc/g3RjC40W94Ga4egxBiYxEFTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=54.254.200.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
+X-QQ-mid: zesmtpgz7t1753094348t04ff833c
+X-QQ-Originating-IP: lp/HNeAsaEzNby3rIXE7ZRE8R6io7QwLW8SgkUXJoic=
+Received: from localhost.localdomain ( [113.89.235.49])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 21 Jul 2025 18:39:06 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 11538204947286758838
+EX-QQ-RecipientCnt: 14
+From: Nick <nick.li@foursemi.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	perex@perex.cz,
+	tiwai@suse.com,
+	nick.li@foursemi.com
+Cc: xiaoming.yang@foursemi.com,
+	danyang.zheng@foursemi.com,
+	like.xy@foxmail.com,
+	linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	imx@lists.linux.dev,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Annette Kobou <annette.kobou@kontron.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v2 12/12] arm64: dts: imx93-kontron: Fix USB port assignment
-Date: Mon, 21 Jul 2025 12:05:46 +0200
-Message-ID: <20250721100701.115548-13-frieder@fris.de>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250721100701.115548-1-frieder@fris.de>
-References: <20250721100701.115548-1-frieder@fris.de>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/4] ASoC: codecs: Add support for FourSemi FS2104/5S
+Date: Mon, 21 Jul 2025 18:38:01 +0800
+Message-Id: <20250721103805.531758-1-nick.li@foursemi.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,59 +63,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: OBATINHf7lTMm+OTyxcigpfmyugEMMMBwpZLcE0AZvyb1Y5vBXo5kHb5
+	RqEcELdcFNDnE+LTsqUmkHEqAYnK7hRvwYAQfnE3qjJ/SfKP+mvskIREUMaMMRKTKoQKUWJ
+	TAZbaURmLBEkgEX3mMRL4zehku+8VkUp+xELg5OjWpFSVWW84Aqxgtjws1SlOs7DJRS0Eg/
+	Qok+s/zx3ttzuzc9evkz/IISILYITbQde8mzRhtU6Nq09PO6PZPi0XgtBSRFos2TPe4z5gv
+	2XYXQoTchlX5jDjLA+VWW8K8CpBK4nVBQeAZIKpSO2qySl3u3JUMfDTNYlX1vDr07YowBzS
+	tTezIQrOIZcPKB38J6pVH1Z6xcyvR0qqfEVAYw9w8N1xifrK4+T7fG+lMW17jhpcU10oZrg
+	e5ltd6gSW1QnjOzipbPOuUCmn05y7Zz6t9/EaB1JRwLj9QcWru2Kg18eYd2FkqYmzhx+QDV
+	Ae9NlZ99HoGDyIAAX294sWRFpDd2/fsRU5VealJiLYHsnRRXl8DxWtkIq40gPKT06LqkTY0
+	DY3/nKcZBAOGcRiT7D1UvYyVrAq9RnspkH+dQgXJ3TrJTMGXtJiV/jOcQvYePOmuiRdecfl
+	R4SVDY2U77ZMUGZeel4yVKntNB/Ff80wgq/5adGq1w1p160oJHz57wglATnovIAxBROPCLk
+	yH+RYAmxcpAnWtDIZGBwFHphUFqtTZYWI2UgdwP8vgQbBCrSNvq9WyhIfyvmeTZkinsFBHm
+	iAuYibSVi5KD96kHlEvxmgT4NWpcwqjvGGvsrzF4lZXoDYoli8jH3oDQkktnLc5Zk8wx+Ua
+	YojoyxnKLUc7jh3dyZI/NDnAkYIUNHSN0lbjMqA+v7ZetsGCbddCG0Pv3IbW8GxVdYl8KUD
+	XEuuZPnfFjMpti/4tKO10j0Du92XoZ3uLnalUnoeqqTLmfV6/PLkxkPtsrVqGa1rNN1KJTG
+	eRoL3D1CDJ/rELpmbG3hxJcWD261qYPV3j9muO3JK03bR45Vk/3woVEKk3loUFciVWSqPjx
+	usEiMPMDatLr/jUiMkVGITqUyEq5VD3zFocQ3LXaFk0dlsASc4s7Jzfhs0eMQVQe2Ii+v/q
+	5JL3sx7rR7lerpGMqCQQhM=
+X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
+X-QQ-RECHKSPAM: 0
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+The FS2104/5S are Inductor-Less, Stereo, Closed-Loop,
+Digital Input Class-D Power Amplifiers with Enhanced Signal Processing
+FS2104 can deliver 2x15W into 4ohm BTL speaker loads,
+FS2105S can deliver 2x30W into 8ohm BTL speaker loads.
 
-The assignment of the USB ports is wrong and needs to be swapped.
-The OTG (USB-C) port is on the first port and the host port with
-the onboard hub is on the second port.
+Most functions have been built and tested on EVB boards:
+ARMv8-A, Linux version 6.16.0-rc6-v8
 
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-Fixes: 2b52fd6035b7 ("arm64: dts: Add support for Kontron i.MX93 OSM-S SoM and BL carrier board")
----
- .../dts/freescale/imx93-kontron-bl-osm-s.dts  | 20 +++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+v3 -> v4:
+Fix warnings reported by clang-20(W=1):
+warnings: variable 'ret' is used uninitialized
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts b/arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts
-index 9a9e5d0daf3ba..c3d2ddd887fdf 100644
---- a/arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts
-@@ -137,6 +137,16 @@ &tpm6 {
- };
- 
- &usbotg1 {
-+	adp-disable;
-+	hnp-disable;
-+	srp-disable;
-+	disable-over-current;
-+	dr_mode = "otg";
-+	usb-role-switch;
-+	status = "okay";
-+};
-+
-+&usbotg2 {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 	disable-over-current;
-@@ -149,16 +159,6 @@ usb1@1 {
- 	};
- };
- 
--&usbotg2 {
--	adp-disable;
--	hnp-disable;
--	srp-disable;
--	disable-over-current;
--	dr_mode = "otg";
--	usb-role-switch;
--	status = "okay";
--};
--
- &usdhc2 {
- 	vmmc-supply = <&reg_vdd_3v3>;
- 	status = "okay";
+v2 -> v3:
+.../foursemi,fs2105s.yaml(patch 0002)
+- Drop "schema for " in the patch subject
+- Delete the description of the property reg
+- Restore the property clocks to v1
+- Keep the same order as in list of properties
+
+.../Kconfig(patch 0004)
+- Write the help of config symbol with at least 4 lines
+
+.../fs210x.c/h(patch 0004)
+- Update entries comment to C++ style
+- Use linux/gpio/consumer.h instead of linux/of_gpio.h
+- Use a private lock instead of a global one
+- Delete driver version and log
+- Drop checking of pval in fs210x_reg_read
+- Drop most of the debug logs and unused codes
+- Drop registers dumping in monitor
+- Use fsleep instead of usleep_range
+- Update mixer to a standard control:
+  PCM Playback Volume
+- Add 2 new standard controls:
+  DAC Mute Switch: Mute/Unmute
+  DAC Fade Switch: Fade enable/disable
+- Fix errors reported by mixer-test in mixer:
+  Effect Scene
+- Integrate the operation of reset(sdz) pin into chip init/reset 
+- Add DAPM event for playback:
+  Start/stop device in DAPM instead of mute_stream
+  Start/stop delay works in mute_stream only
+- Drop use_pmdown_time in component driver for DAPM event
+- Add dai ops startup:
+  Report format&sample rates in constraints
+- Add dai ops trigger:
+  Start device in trigger when we can't obtain/control the bclk clock
+- Use description words: PROVIDER, consumer
+- Add a sysfs node for monitor period(fs210x->check_interval_ms)
+- Do the initialisations of delayed works and clock in i2c probe
+- Prevent new work after the device is suspended
+- Update regmap cache type to MAPLE
+  Define volatile registers
+- Simplify the logic of getting and setting clock
+- Simplify the logic of getting and setting reset gpio
+- Use dev_err_probe for error logs
+- Remove fs210x_parse_platdata and use fs210x_parse_dts in fs210x_init
+- Drop null checking for regmap in i2c probe
+- Add a suffix(instances id) to dai name
+- Drop compatible of "foursemi,fs2104"
+- Drop ifdef CONFIG_OF and of_match_ptr
+
+v1 -> v2:
+- Adjust the order of patches according to the dependency relationship
+- Rename yaml file to foursemi,fs2105s.yaml
+- Fix some properties and error definitions in foursemi,fs2105s.yaml:
+  sdz-gpios -> reset->gpios
+  fs,fwm-name -> firmware-name
+  Delete fs,dai-name
+- Drop "dt-bindings for" from subject
+- Update the driver code according to the update of DT schema
+- Fix warnings/errors reported by running checkpatch.pl --strict
+- Fix warnings/errors reported by running make dt_bindings_check
+
+Nick Li (4):
+  dt-bindings: vendor-prefixes: Add Shanghai FourSemi Semiconductor
+    Co.,Ltd
+  ASoC: dt-bindings: Add FS2104/5S audio amplifiers
+  ASoC: codecs: Add library for FourSemi audio amplifiers
+  ASoC: codecs: Add FourSemi FS2104/5S audio amplifier driver
+
+ .../bindings/sound/foursemi,fs2105s.yaml      |   99 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ sound/soc/codecs/Kconfig                      |   16 +
+ sound/soc/codecs/Makefile                     |    4 +
+ sound/soc/codecs/fs-amp-lib.c                 |  265 +++
+ sound/soc/codecs/fs-amp-lib.h                 |  150 ++
+ sound/soc/codecs/fs210x.c                     | 1583 +++++++++++++++++
+ sound/soc/codecs/fs210x.h                     |   75 +
+ 8 files changed, 2194 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/foursemi,fs2105s.yaml
+ create mode 100644 sound/soc/codecs/fs-amp-lib.c
+ create mode 100644 sound/soc/codecs/fs-amp-lib.h
+ create mode 100644 sound/soc/codecs/fs210x.c
+ create mode 100644 sound/soc/codecs/fs210x.h
+
+
+base-commit: ed73a24357531e1747a6e140c329015da6429629
 -- 
-2.50.1
+2.39.5
 
 
