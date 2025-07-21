@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-198127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C70A8B0BCF4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 08:47:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1815B0BCFE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 08:52:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2556E3B4837
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 06:47:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B767E1892ABA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 06:53:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C97127F4CB;
-	Mon, 21 Jul 2025 06:47:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F3327F010;
+	Mon, 21 Jul 2025 06:52:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DHD8hyGf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t9G7JeCG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E025D223302;
-	Mon, 21 Jul 2025 06:47:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC0219DF62;
+	Mon, 21 Jul 2025 06:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753080461; cv=none; b=N5ENwM65Md6yP1RSJsBTy4yAyXUq0glfVd4SnPUobOdHCM6pOaErXeJw7uI6rw2ukakkYHRrkhVeIjw4g2QR3q/w2OJpuAfili5rfjBNsT4YoVCp39mIx5U8GxHFnhpct/QqBAL+x/urAIcwUmPHV2ZZn1HK8rjgOpbAbyc8Rgk=
+	t=1753080762; cv=none; b=QZW5EeBnw1l9bLsWFQhgk7ZhtSf4ooJSODtfK6f5/yPWQK5pT3mtY126U5B0gspAdU5iqjj1nhB3jyAPcwQQsY1BWykR22VFM/pSk25dBxTr+4Y7dz/M3Ue+hyLVGrmUit+5sLsTgPko+LI/DtpDyausF0iMJbHrSHqfFl2bqcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753080461; c=relaxed/simple;
-	bh=ZjVTcKbsRevDk/Oaru45By4rM0QU89TkvkSHMwWvxxw=;
+	s=arc-20240116; t=1753080762; c=relaxed/simple;
+	bh=Fj2B+JNw6UkLmg+kDNy6fM5RkSwPiSm8KCZnRQSQWss=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VVIALukgMjSkLLmGgdCoMueMjcA+T8j36AcO3c40KeGXvXhHVayf3yP8Tw6n9J58KkvqS5Yca7OMuWSb5hOEAhKDh0NKpTkLixmwQ/ITNyv/55804cV/6W/iU3dkV6yp+kW7iauqDCdw+2kldVWBRpP3fmD7FCQWC4drIFUB6lE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DHD8hyGf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E94BBC4CEED;
-	Mon, 21 Jul 2025 06:47:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=XT4YwvO63PCzHXhNnsqHljsc8HrrjkXMeJERAI3wIfAO4bBgtMLHf/FnX5Jy5P1ZQooGaHgVkjBiXbV5xsC9nk3Ii2+d8rUyGo0rqdD5dwChbbDRcqt8APO4kHJHNbPogpAtYz/kctfdh6aXee2plpg5eQrl4RYmDdj4ICnN6KY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t9G7JeCG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8065DC4CEED;
+	Mon, 21 Jul 2025 06:52:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753080460;
-	bh=ZjVTcKbsRevDk/Oaru45By4rM0QU89TkvkSHMwWvxxw=;
+	s=k20201202; t=1753080761;
+	bh=Fj2B+JNw6UkLmg+kDNy6fM5RkSwPiSm8KCZnRQSQWss=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DHD8hyGfljx5ywckYjCud4sf1NSOvkJJzeSwoh63ofX0BinD6/Is+W3UNNQyT0IH6
-	 J20S2JoL/VRTsKFF/kfrU9rn1B5NmVqiSm5FCush5ffiuUfr7kexOtIEG6Z1riU4n8
-	 4jLmkIQCy+YAjEGCdsmxN9EmGKiPqwXWZetMMZpzhxkIHoRd3+2iBWQOF2WzF8seRg
-	 Xf8reRoJOv4nMNmJhsh8CRi0RNzGKo4iBNdBNF+JNiWj356CCQsLw7fuzH60gTjktT
-	 Xa+m0o/ogOiteifEirY7u3iWm2OmsVgmF0+E9OtH+iafG68f0AU5A92IF6pkvLNEeT
-	 ot2NqjjqqMlsQ==
-Message-ID: <2b6481e8-9a70-4676-bca4-da3ee00e73ba@kernel.org>
-Date: Mon, 21 Jul 2025 08:47:35 +0200
+	b=t9G7JeCGjETBbBP5rsHRIZo0lCY01I/emLq5/di0udM/ulJsYhAuzB09xkp1atpLt
+	 tZlTpNevJ7rDxKm6EbgqR8Xg66c5aeaQmfKJUuNCY3Hcm0qbLiajaMOGoyUAdv2111
+	 JboHLReaD4JA09x/9Mtfo8/O1W/ZOsduvoOr+4OtTXUUjE7L4YkPjkXqweRaL8hWZK
+	 OivoX+yF0GZTTgxWIJmnpJAe35LDYaFroyXB1e/UvgsCoKnw94F5lxrt06fXHcJaw3
+	 7kiLPSfvKbkWzqpGR1324EyDQ85mBwLyEG7LzbvZtVIhvkZoFPkMNimWFfheBuWbPi
+	 kf6GWNzVquXzg==
+Message-ID: <9574826f-3023-4fe1-9346-eacd70990d73@kernel.org>
+Date: Mon, 21 Jul 2025 08:52:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 9/9] ASoC: dt-bindings: sound: exynosauto: add PCM
- frontend nodes for ABOX generic
-To: ew kim <ew.kim@samsung.com>, broonie@kernel.org, s.nawrocki@samsung.com,
- robh@kernel.org, krzk+dt@kernel.org
-Cc: lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz, conor+dt@kernel.org,
- alim.akhtar@samsung.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250721023052.3586000-1-ew.kim@samsung.com>
- <CGME20250721024612epcas2p122d627cfb90eac508b6ed3667acd9b9b@epcas2p1.samsung.com>
- <20250721023052.3586000-10-ew.kim@samsung.com>
+Subject: Re:
+To: David Lechner <dlechner@baylibre.com>, ">"
+ <sanjaysuthar661996@gmail.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+ netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+Cc: ribalda@kernel.org, jic23@kernel.org, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, neil.armstrong@linaro.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+References: <CADU64hCr7mshqfBRE2Wp8zf4BHBdJoLLH=VJt2MrHeR+zHOV4w@mail.gmail.com>
+ <20250720182627.39384-1-sanjaysuthar661996@gmail.com>
+ <84ad0f66-311e-4560-870d-851852c6f902@baylibre.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,45 +110,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250721023052.3586000-10-ew.kim@samsung.com>
+In-Reply-To: <84ad0f66-311e-4560-870d-851852c6f902@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/07/2025 04:30, ew kim wrote:
-> This patch extends the Exynos Automotive ABOX generic device tree bindings
-> to support PCM playback and capture frontend nodes.
+On 20/07/2025 21:30, David Lechner wrote:
+>>    - Ricardo Ribalda Delgado <ricardo@ribalda.com>
+>> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+>> index 0cd78d71768c..5c91716d1f21 100644
+>> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+>> @@ -149,7 +149,7 @@ properties:
+>>        - description:
+>>            The first register range should be the one of the DWMAC controller
+>>        - description:
+>> -          The second range is is for the Amlogic specific configuration
+>> +          The second range is for the Amlogic specific configuration
+>>            (for example the PRG_ETHERNET register range on Meson8b and newer)
+>>  
+>>    interrupts:
 > 
-> Each PCM device node describes an audio stream interface handled by the
-> ABOX DSP. These nodes include properties for stream ID, IRQ, ADSP core
-> assignment, buffer limits, and stream category (deep_buffer or compress).
-> 
-> The bindings use patternProperties to match playback and capture nodes
-> as children of the abox_generic controller.
-
-This split of one device into three makes no sense. Adding new binding
-is one commit.
-
-> 
-> Signed-off-by: ew kim <ew.kim@samsung.com>
-> ---
->  .../bindings/sound/samsung,exynosauto.yaml    | 126 +++++++++++++++++-
->  1 file changed, 123 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/samsung,exynosauto.yaml b/Documentation/devicetree/bindings/sound/samsung,exynosauto.yaml
-> index 3a7b5be627ee..e477550afc7c 100644
-> --- a/Documentation/devicetree/bindings/sound/samsung,exynosauto.yaml
-> +++ b/Documentation/devicetree/bindings/sound/samsung,exynosauto.yaml
-> @@ -28,6 +28,14 @@ properties:
->    compatible:
->      const: samsung,abox_generic
->  
-> +  status:
-> +    enum: [ okay, disabled ]
-> +    description: DTS node enablement state
+> I would be tempted to split this into two patches. It's a bit odd to have
 
 
-Sorry, but why are you writing something entirely different than every
-other binding?
+No, it's a churn to split this into more than one patch.
+
+> a single patch touching two unrelated bindings.
+
+
 
 
 Best regards,
