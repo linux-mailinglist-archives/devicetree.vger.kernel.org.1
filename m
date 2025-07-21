@@ -1,59 +1,57 @@
-Return-Path: <devicetree+bounces-198144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F15CB0BDD4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:38:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12985B0BDE9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:42:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14D711889674
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 07:38:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FE85171395
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 07:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABCD8284685;
-	Mon, 21 Jul 2025 07:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04E4284679;
+	Mon, 21 Jul 2025 07:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GzhaY/YI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rqw0Vu6c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 836F7283FE8;
-	Mon, 21 Jul 2025 07:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B57B4280014;
+	Mon, 21 Jul 2025 07:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753083462; cv=none; b=LLXiOjKfLinXZ6wLPcEu0ETrIZB3FUgem++9fj9sirR5oOBtQFQRMrXunI5CcgBX/ovYFy9XrPhnppJePEmQp5lOO3d7MfeQCJHOSYo60J3Z8HNzDxZv0fN7vStWa5sv+z03jVMSEZ4MWWIecTDNPA/Grh4uYTImdoTcgl2Y2Fo=
+	t=1753083744; cv=none; b=sPZJy4ohdL9Ej9d9a51cRHF5yhXTX9weHD0Kco6qPRm+AnslhHACFcgqWfoL+ax18GNFYs7ILg+CL4e52HGAIqwI5tjEIFeRICqxFA5FVxJH7jzK+0a+aehGv6HwV1VodwqUKWT5okxTXRITFAVa/Txxlzs/k/hMRujNf7hupcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753083462; c=relaxed/simple;
-	bh=gX1shcXkNq8kGP80WbZWZhNw8XOGe5hjaiGjaxBIe8Y=;
+	s=arc-20240116; t=1753083744; c=relaxed/simple;
+	bh=XYtXJcSx59acBjNpYrTcaOZ+McBebEu8GwQdfjrYlxM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=USrLOw7QpWy1YTqNk95Rr93kQ8oGEaFT3r4XYpuHcgWxwhaGV+eosuDOQ5Uu923OksgXfMWsXuLRKQTqopi1Zr/5e5DyyAPIg4fM/5M/AuXwxs+77u4MCJ+7mJ8WuGmwuQIUGahB/f3h+P7DB/PzYdsrm19hEzvs8Kmo0dnqDcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GzhaY/YI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C61DDC4CEED;
-	Mon, 21 Jul 2025 07:37:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SKfxmpEO6X0BLxNIzcXGLYeeGPuPpagCuwNA43eY4m73UaKU8kRF+XRXp51/GPVgEUSXAc8Z3bY3zBRdVxb5lXkP/7V2rZYP6pbQXaGYPtvWL5R2GeOe2OqbdlRTw0dqCteZYbNOJcEMprVSx5yFDE88TdDYMIk06unbILwhM/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rqw0Vu6c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98E87C4CEED;
+	Mon, 21 Jul 2025 07:42:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753083462;
-	bh=gX1shcXkNq8kGP80WbZWZhNw8XOGe5hjaiGjaxBIe8Y=;
+	s=k20201202; t=1753083744;
+	bh=XYtXJcSx59acBjNpYrTcaOZ+McBebEu8GwQdfjrYlxM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GzhaY/YI+eCsiSfFYzJm8buehbzWYHGIXYnYXgb4lf1dQrFqS+h45vTifmAUkYPGw
-	 aYxn8U9Y/NBXFxevEhnjarI0hetPPfpgp5aQ7qiN3/sOFtoJLLtudv49hxJojd2Z43
-	 fK0NQxk9/oJnfuA11stiV6dez/R3ngVp3MZOQ176Dr5gz/uJE7qfFASffvAlfDVkJU
-	 F12lNJ5pEW8sVytZBNEwIMk8IPJaBna02sRuvF41IN0Xl9V8iiGY0BhIpQ6PSofg/s
-	 EIHw5kXmqkeSq39gBFqj2KtYoO2s6drkLTC9tO4a4AqgMkZTFO3DRJdYbFOyul1ItO
-	 k+ikcX/R0SoSA==
-Date: Mon, 21 Jul 2025 09:37:39 +0200
+	b=rqw0Vu6cS5IaBiWbim5p6hULKDwdbtHJ26JLb4fSYufdL1D0VYixws+yPTzF8Fhne
+	 eg6YXEPS6EnKMjn4OeT0TDyP7oCF7oqeGz9DcklGt5n36uc1mFN/f5NXo6ihTmacFl
+	 zJlB5duUWRDI9Uohc6JfFlPqqpsLR2bw0qc8YJULxmJ/3O6IcaqlvsmJKDdhWcD9d9
+	 Vhwtzfh9sU6u8oOaTG2rdUZQQdwTMeNIrkx2cbLktSVpHxrQclCbSzkTlWsGrtM1IR
+	 DgUUI1dx065lxFQtYNnOIoWejKjCMuTfDhog7oC8XKb+Jyz3nGmcLmLA+pbJ4ZT6Lm
+	 WXxj8IOMIXSLg==
+Date: Mon, 21 Jul 2025 09:42:21 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Frank Li <Frank.Li@nxp.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	gastmaier@gmail.com
-Subject: Re: [PATCH v6 1/2] dt-bindings: i3c: Add adi-i3c-master
-Message-ID: <20250721-large-daffy-vole-d2d25d@kuoka>
-References: <20250717-adi-i3c-master-v6-0-6c687ed71bed@analog.com>
- <20250717-adi-i3c-master-v6-1-6c687ed71bed@analog.com>
- <20250720232726.GA3055763-robh@kernel.org>
+To: Donald Shannon <donalds@nvidia.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] Documentation: devicetree: Add binding for NVIDIA
+ GB200-UT3.0b platform
+Message-ID: <20250721-auspicious-uptight-parrot-b1e19f@kuoka>
+References: <20250718231118.3330855-1-donalds@nvidia.com>
+ <20250718231118.3330855-2-donalds@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,52 +60,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250720232726.GA3055763-robh@kernel.org>
+In-Reply-To: <20250718231118.3330855-2-donalds@nvidia.com>
 
-On Sun, Jul 20, 2025 at 06:27:26PM -0500, Rob Herring wrote:
-> > +description: |
-> > +  FPGA-based I3C controller designed to interface with I3C and I2C peripherals,
-> > +  implementing a subset of the I3C-basic specification. The IP core is tested
-> > +  on arm, microblaze, and arm64 architectures.
-> > +
-> > +  https://analogdevicesinc.github.io/hdl/library/i3c_controller
-> > +
-> > +maintainers:
-> > +  - Jorge Marques <jorge.marques@analog.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: adi,i3c-master-v1
+On Fri, Jul 18, 2025 at 04:11:17PM -0700, Donald Shannon wrote:
+> This is an Aspeed AST2600 based unit testing platform for GB200.
+> UT3.0b is different than nvidia-gb200nvl-bmc due to networking topology
+> differences, additional gpio expanders, and voltage regulator gating
+> some devices.
 > 
-> If you want to use version numbers, they need to correlate to something 
-> and you need to document what that is. I don't see anything in the above 
-> link about a version 1. Kind of feels like you just made it up.
+> Reference to Ast2600 SOC [1].
+> Reference to Blackwell GB200NVL Platform [2].
 
-I asked already at v4 to document the naming/versioning, which was a
-result of one of previous discussions, in the binding description. :/
+Please use subject prefixes matching the subsystem. You can get them for
+example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-> 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    items:
-> > +      - description: The AXI interconnect clock, drives the register map.
-> > +      - description: The I3C controller clock. AXI clock drives all logic if not provided.
-> 
-> Is that a description of how the h/w works? The controller clock input 
-> can literally be left disconnected? If 1 clock source drives both 
-> inputs, then the binding should reflect that.
+A nit, subject: drop second/last, redundant "binding". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-This was explained in reply, but never made as proper explanation to the binding.
+With above two:
 
-Jorge,
-When you answer to a review about uncertain pieces like that, usually
-outcome of the discussion must end up also in new patch - either in
-commit msg or better in the binding itself. I also asked about this -
-documenting the outcode - in v4.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+<form letter>
+This is an automated instruction, just in case, because many review
+tags are being ignored. If you know the process, just skip it entirely
+(please do not feel offended by me posting it here - no bad intentions
+intended, no patronizing, I just want to avoid wasted efforts). If you
+do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here ('b4 trailers -u ...').
+However, there's no need to repost patches *only* to add the tags. The
+upstream maintainer will do that for tags received on the version they
+apply.
+
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
+</form letter>
 
 Best regards,
 Krzysztof
