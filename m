@@ -1,95 +1,86 @@
-Return-Path: <devicetree+bounces-198423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67D2BB0CB8D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 22:17:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 327E4B0CB99
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 22:17:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B04D3B277C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 20:16:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E60171C226AE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 20:18:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2850923B633;
-	Mon, 21 Jul 2025 20:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A387123A9A0;
+	Mon, 21 Jul 2025 20:17:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b="lir3akk+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KNkNYQMb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from chumsalmon.baetis.net (chumsalmon.baetis.net [209.222.21.150])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C26F23AB9C;
-	Mon, 21 Jul 2025 20:16:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.222.21.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796C623816D;
+	Mon, 21 Jul 2025 20:17:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753129011; cv=none; b=Os6v7P1AEEUnL7ecI74pzosiyM5+KrWuiY94yEHMjj2EqM63JASFLmPyPCxDVoMEk4zw6kjBreA28pdkj5hwpOZrnldOjMxsR0ESXKw/7RoRIpl9TLM/KGHHHiOB7wGzrobhad0ZGX8SEZiZVvrfzmeuGyVY7ezmUuvccPnsnZc=
+	t=1753129032; cv=none; b=rvmnTd4+jGkZDuvOw/ZfuB/dLZkCzil0JrA6j1Z/u50ljOXah5TLQY5N8t70IepFJPi+Vj5BgJbrG7/FI1e7zi3AmLlRJGPWy0pBD38hsrnL9yJFpD3Mji0GU1H1fq6Wm0QWeskk4vCgq/sDMCiw929NEHHXpxoS8ehAMYQ2vrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753129011; c=relaxed/simple;
-	bh=lbNJOuD5DxygxivCxcXM0GtHg4S7UZs0gYbcGcYNsx8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TMi40+cuiKtDT1rOWsxHlaZ12U+uRETMUdM9ETa0vUeLC+IPzj68FvujJaj6LwhLmUrycWwolSPOr3sZ4TXzaS9NFHKiBBNCJc8TuJ0ffpLtZDQErsI8lxtA03xg0bAUQq5SpqxNPgkRAkaek9pvny0sf5eSIux6jnrfJmM2NYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tahomasoft.com; spf=pass smtp.mailfrom=tahomasoft.com; dkim=fail (0-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b=lir3akk+ reason="key not found in DNS"; arc=none smtp.client-ip=209.222.21.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tahomasoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tahomasoft.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tahomasoft.com;
-	s=default; t=1753129008;
-	bh=lbNJOuD5DxygxivCxcXM0GtHg4S7UZs0gYbcGcYNsx8=;
-	h=From:To:Cc:Subject:Date:From;
-	b=lir3akk+MEcTMngiasVNYd3AiCRjP2vTJd9qMKlDuZVQvDswujN2eMfVZR6eWKBgi
-	 RBjOntfG6lFahnqjFcpdDnV1kqtps6H/AW5QhA/whI2I0mxf3BzKAbxSlzsqNA51HA
-	 lnrpSvB1MBPAFQvzRYKHidzz2r2hHPZ8cMq5VjDzEF10v21irwtAJwaIfiSBRJxDvM
-	 85IC19yebpVHqP8lYzssEHX4T765jKGFJoyDVMCdprHvICdAp6RXS5vds6qAD4Xw91
-	 VSCJyXduMOdgmswy7TXhUG/uz5j9AwICgrh1so9k24Xx/FBSEDK3XTelQS0LIj4daW
-	 CGjJ+ZUPNx81Q==
-Received: from localhost (unknown [IPv6:2600:4040:50b7:b604:da10:58b0:4f02:7df4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by chumsalmon.baetis.net (Postfix) with ESMTPSA id BD79127E5BC;
-	Mon, 21 Jul 2025 20:16:48 +0000 (UTC)
-From: Erik Beck <xunil@tahomasoft.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1753129032; c=relaxed/simple;
+	bh=zsoAwwBko42CkVECzPsq8auhWL/xsEzIc97plmn6jec=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AJkCaje7z4NBRXqEE7gDQdn2CTIPkCsE+r2pmIMwq8+DngO+MsVmrVth8DzHJJGa/F8QeZmVYR/GPOeSH6XtqSpDw5CtfScrQrODlTl+XUPCcyyU68iYMGe6g1mSbsMX6FgXfJpiEA84eLVspWV9dMCF9+d1bZUY3MEAgPhEZfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KNkNYQMb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E36CDC4CEED;
+	Mon, 21 Jul 2025 20:17:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753129032;
+	bh=zsoAwwBko42CkVECzPsq8auhWL/xsEzIc97plmn6jec=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KNkNYQMbWATXsZca7uECJh52TBQOODxYQsDYpWchJQxNuXKrA3n6QxfTQqlyf2DXp
+	 8O9P3kApfSVThW5ioV5bC6VMj885JSOXK4utaVtFbCq2jmJdYe5W2BnwxgfbzmRvOy
+	 u2rE5/BPq2MCA2MKeRo6YZ5tz8KLk4/15NNF5ViPy/FAPnxNp5N3SXMjlgFXm7zKJ6
+	 sNpJQWhV9BpOxtx6vVmlXvKvHQBqJtZVSc3chFMUwXgQxqtuIP2rNwHJwnOVQchS3p
+	 coEqzM7h36xXVukQtHdWd1TJIkz4F0cvtz5Ym4kGZ9M/5jEaM2Oa27ue8o03jek+55
+	 NXaY/8AZThvKA==
+Date: Mon, 21 Jul 2025 15:17:10 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	Andi Shyti <andi.shyti@kernel.org>, Stefan Roese <sr@denx.de>,
+	linux-mediatek@lists.infradead.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Erik Beck <xunil@tahomasoft.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2 v2a]: New board support,LinkStar-H68k-1432v1 (RK3568)
-Date: Mon, 21 Jul 2025 16:16:37 -0400
-Message-ID: <20250721201640.233818-1-xunil@tahomasoft.com>
-X-Mailer: git-send-email 2.43.0
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 3/5] dt-bindings: i2c: mt7621: Document an7581
+ compatible
+Message-ID: <175312902965.1260431.17671364110549858903.robh@kernel.org>
+References: <20250721180710.2116-1-ansuelsmth@gmail.com>
+ <20250721180710.2116-4-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250721180710.2116-4-ansuelsmth@gmail.com>
 
-Signed-off-by: Erik Beck <xunil@tahomasoft.com>
----
- Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 5772d905f390..7f3904b69293 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -1109,6 +1109,11 @@ properties:
-           - const: rockchip,rk3588-toybrick-x0
-           - const: rockchip,rk3588
- 
-+      - description: Seeed LinkStar H68K-1432v1 RK3568
-+        items:
-+          - const: seeed,rk3568-linkstar-h68k-1432v1
-+          - const: rockchip,rk3568
-+
-       - description: Sinovoip RK3308 Banana Pi P2 Pro
-         items:
-           - const: sinovoip,rk3308-bpi-p2pro
--- 
-2.43.0
+On Mon, 21 Jul 2025 20:05:54 +0200, Christian Marangi wrote:
+> Airoha SoC implement the same Mediatek logic for I2C bus with the only
+> difference of not having a dedicated reset line to reset it.
+> 
+> Add a dedicated compatible for the Airoha AN7581 SoC and reject the
+> unsupported property.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/i2c/mediatek,mt7621-i2c.yaml          | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
+> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
