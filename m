@@ -1,104 +1,139 @@
-Return-Path: <devicetree+bounces-198275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 081C3B0C3C2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:00:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6475CB0C3C7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:03:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C91C2189FA8B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:01:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B22467A2DBA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:01:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEED02BE626;
-	Mon, 21 Jul 2025 12:00:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oyvt4w/F"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866692BF015;
+	Mon, 21 Jul 2025 12:03:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7212868A6;
-	Mon, 21 Jul 2025 12:00:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A1FB291C0A;
+	Mon, 21 Jul 2025 12:03:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753099251; cv=none; b=il7HaQsTdjcWFrJJHMMi4Sy7k4Uo3TCs/d0h5ptqrQLzb4LNeXjitJjlIEVqSkvBE5Lid+CcyJea6RCflyEMDxZDy3rpABCKxR6wQxSBuQ9te7YJfw1CM/sktN8RvqzFMHq8SVfaInPGtLIwW/WFdWE/ClMS4I440M9WNp6yIzE=
+	t=1753099399; cv=none; b=Jd7X0nRPdlvDHt9ukW9qN3K9iifHFlb9R7tg1QNWasDehRfvihvtqrAgTZYp3qv000YQTzV/q8KGZpXHXYdMEPhft6Edln4s+fkX5wLXVY6Bz/1v/OWS3wUpLfW4ckYDqPmkt9p08WJZmwCTeLAdcDiV47LH7UwaSjOUP3WFeHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753099251; c=relaxed/simple;
-	bh=eZrqXDRoArSD+He7HcN7c1ckjiiP/g2WQgcUTvBuw0g=;
+	s=arc-20240116; t=1753099399; c=relaxed/simple;
+	bh=L5qsIxuvHyfcqD23PAauHEBvAc9IlcRhaka9YEdv+lU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=egeZ8srmDaXZSAfPHRSJZNkSBrxkk4xQGLmUBEW0ioe8Dh/kbKGQ0mc/gmlTLSc49JB5iALoTDe1dji8+VebLQV9njafnG3z3gMkrYKBxwA3WOveIyH0DEhTm35GTkhCEprDuncag34Rio/nHgDKbAKHVVIhnHzMd2mg8vfMcck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oyvt4w/F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B680C4CEED;
-	Mon, 21 Jul 2025 12:00:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753099251;
-	bh=eZrqXDRoArSD+He7HcN7c1ckjiiP/g2WQgcUTvBuw0g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oyvt4w/Fg25JiliT3I5h4KIo42BbZIMQAdpRXWNj4NiI4uESUka0Bj08XTLctidX2
-	 gkavhwuRHacqXptKHjSseGibMhG8WCGi3s4eKesRvlZ28nsAMJIGTolLHZcP4sAmWb
-	 AhLsvOJGEYwIrh35p9twCkKEDtbDUf+Eu1NL7yJmcZrq7eQENWLrzNZ3HSH2zMJP2j
-	 qcQ1zRA9QDaGy5avtfxXiTh+AZ9JMVAoBh6F3wWzVanWy5wMWoy229/erMjDa3LnZX
-	 dl/40Jp7obz9ISFW7htiRWtlFYKCqyV51QndgeXOV6n2YSwB74Ah+nY7XSIl+E3I4d
-	 hHYxvmHTeAA6A==
-Date: Mon, 21 Jul 2025 13:00:45 +0100
-From: Mark Brown <broonie@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=P0ElnFSHLDYPmBF6ZOEwdOdYgFlOk1WKgyHkcfElKRb4YYs74jGEzEMY/qX0RHf4TnJxM6Dp5NwXFUcPpQ7GUkZCA5uMjjI946lPAFZFw09Sra7YcQ/Ty/4EYcIz7zUheTMUe+vywjioWXVrWML95dDKA70xL/HT1GBiKOt1tb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=15.184.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
+X-QQ-mid: esmtpsz21t1753099345t7e73bfbf
+X-QQ-Originating-IP: AXZvxwazFJGly/vNa7p+LCy4S+Cfg47Zclcv/a3cTWM=
+Received: from localhost ( [113.89.235.49])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 21 Jul 2025 20:02:24 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 12701394614821551690
+EX-QQ-RecipientCnt: 14
+Date: Mon, 21 Jul 2025 20:02:23 +0800
+From: Nick Li <nick.li@foursemi.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Joy Zou <joy.zou@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	Frank Li <Frank.Li@nxp.com>, Ye Li <ye.li@nxp.com>,
-	Jacky Bai <ping.bai@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: add PF0900 regulator yaml
-Message-ID: <e0777d1d-8e69-495b-8067-9f4896b2b845@sirena.org.uk>
-References: <20250721-b4-pf09-v2-v2-0-e2c568548032@nxp.com>
- <20250721-b4-pf09-v2-v2-1-e2c568548032@nxp.com>
- <e9f38e38-7df7-4d19-b5c0-2f18aeebcc78@kernel.org>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
+	tiwai@suse.com, xiaoming.yang@foursemi.com,
+	danyang.zheng@foursemi.com, like.xy@foxmail.com,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] ASoC: dt-bindings: Add FS2104/5S audio amplifiers
+Message-ID: <F04DD98A69286426+aH4sT_P0GvttoCOq@foursemi.com>
+References: <20250721103805.531758-1-nick.li@foursemi.com>
+ <20250721103805.531758-3-nick.li@foursemi.com>
+ <83f7c489-7001-49cd-97a5-4280eba95fe0@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="UHW08PibDF+bPV5c"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <e9f38e38-7df7-4d19-b5c0-2f18aeebcc78@kernel.org>
-X-Cookie: Microwaves frizz your heir.
+In-Reply-To: <83f7c489-7001-49cd-97a5-4280eba95fe0@kernel.org>
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MQqtfF4R/f2xKtcKgY4SDDHMLtkrTNkiroXOvfJw3YOcpLyRSXlFcbA4
+	d2NF0IJaJm3W8sQ+322H67UDvLUIe+9vW9Teq84LLuU0Bj85qX2dy/U9i7IbRHR6uXO0ZTK
+	5C4TVDyXPPOhad+13hX53nblnwThHP2XkQk4XT2tVMB/Sv0cceo9tjdxm9JTAMdqVqQu6vu
+	jFgbgdikqUkG0MGDR3A4GgNsk7+d9WC+8m4n+Rr2Oe4c2fdHR2JcdtXt4/k+GnrT6B6EUP+
+	JDDURWlwEJjx/eG3KTQJy7ZXshen8Mbat6epxDGKjO0JoqNFn36UMKjMLjHoykXftjHnvJX
+	ApFn0RcKxr7Vai3abT01eMsLjHldpW6FPpQnYgqqMphZTNGloszk//CLOcW6nrrd19yh+16
+	icvxJC4HijN4lKp2dG0MkS59zmSD8m8Z+csxOdU0pTUxRy/eDDMUUZqZgwKu/p327TYOuAd
+	4a3MhJv9KOJnv2cLdPnGcmdJlDUnTgm8ewggSmaLO4YFZX/YO6jMQLKyvYzALHR/ecwXvxI
+	WKQrRS4XAuVKplT7CIVmtO9YJGgt9H21du2vdAJDyLVOH8pHJA3D/Jta6HB6xwh42h1wvIH
+	vZskYsazIcYKNMn6CzwitBGWqcSB6AXDzvED08gd1jSXOyQf7FRCOVgS70p84kPDo6rkP2s
+	DrRXjMgMkHXNSDfOLAbIqVUCj5wpHBnlgcH1rdT0P5lXk5noF8rQ26enCxrILqCM7K0T/z4
+	WCDNzTdqhb2Nm0w2AOoTchiXZQ0rVDSmz5NulzqQTC4/5aTIw95Gwaz78kr6Jaw/9wvCDC9
+	vlzqZkaZHM8TT4mVAx5BtT2th6zDMOuPrVh7E4ELOMrkbiVNqJUvfpk0DfoqNqhafNYy88L
+	Tu+koPzf7efhQhf6m1XTiObiGP2MKpwYlNn7j4JuEuEvtTYcCIzce4flldBQYIa4bqWKZTB
+	ToYgCCpXYBc8FSyjxUPDiuKN0TH0DV7ixfIEGz6l2HeU5ZK22BziJNDwFDko3IOnOnsFFub
+	AaK9Ft+TSjxxaBE3j16hG4k4paGxy65uUcI79d+ZJzrm+CT4YH3XFYr2bFN1ll6NqQcWMGq
+	g==
+X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
+X-QQ-RECHKSPAM: 0
 
+On Mon, Jul 21, 2025 at 12:48:24PM +0200, Krzysztof Kozlowski wrote:
+> On 21/07/2025 12:38, Nick wrote:
+> > +  firmware-name:
+> > +    maxItems: 1
+> > +    description: |
+> > +      The firmware(*.bin) contains:
+> > +      a. Register initialization settings
+> > +      b. DSP effect parameters
+> > +      c. Multi-scene sound effect configurations(optional)
+> > +      It's gernerated by FourSemi's tuning tool.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - '#sound-dai-cells'
+> > +  - reset-gpios
+> > +  - firmware-name
+> 
+> 
+> I do not see how you resolved my comment from v1 or v2. Nothing in the
+> changelog explains that either.
 
---UHW08PibDF+bPV5c
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Change logs are in the cover letter:
+...
+v2 -> v3:
+.../foursemi,fs2105s.yaml(patch 0002)
+- Drop "schema for " in the patch subject
+- Delete the description of the property reg
+- Restore the property clocks to v1
+- Keep the same order as in list of properties
+...
+v1 -> v2:
+- Adjust the order of patches according to the dependency relationship
+- Rename yaml file to foursemi,fs2105s.yaml
+- Fix some properties and error definitions in foursemi,fs2105s.yaml:
+  sdz-gpios -> reset->gpios
+  fs,fwm-name -> firmware-name
+  Delete fs,dai-name
+- Drop "dt-bindings for" from subject
+- Update the driver code according to the update of DT schema
+- Fix warnings/errors reported by running checkpatch.pl --strict
+- Fix warnings/errors reported by running make dt_bindings_check
 
-On Mon, Jul 21, 2025 at 09:28:59AM +0200, Krzysztof Kozlowski wrote:
+Thanks.
 
-> > +  nxp,i2c-crc-enable:
-> > +    type: boolean
-> > +    description: If the PMIC OTP_I2C_CRC_EN is enable, you need to add this property.
+Best regards,
+Nick
 
-> 1. Why you cannot just read registers to check for this?
-> 2. You need anyway proper description what is this about and then wrap
-> according to Linux coding style.
-
-Looking at the driver code the CRCs are also done on reads as well.
-
---UHW08PibDF+bPV5c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmh+K+0ACgkQJNaLcl1U
-h9DzBwf/aBg3HMcKbw20S0T9cViDfv3UCOdAdgy5dEcBir0qtCHEDpVkuOkNBya0
-8I4T3pt+M1Aepw5L+918G6UJD8jaD/UzKbu5DwOPCbFabF9ijzAVguwaSiELlv/5
-1wezdzlz9De1v0BDAzU4dJSEYfYV+YTbDHLOucluwzDkoqqTzxpaMyPWkWwDUJM2
-XkcucMB8RfzNakHqnb1VJDJ2lvp95aWnKdFWpLJt3Cluf4eMSq7BLuKiMwrYZ+Km
-/L4we5+2vpexsk4kT5ovz2Yb6oDNHGp1H5W6ya6zP9tFgXrynZ1EoP0dENCuoPF2
-Jr80quKyqA/NqNbpUWcpIRfQZl9Yqg==
-=aCZh
------END PGP SIGNATURE-----
-
---UHW08PibDF+bPV5c--
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
