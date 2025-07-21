@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-198187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36FE8B0C021
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:23:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 739E9B0C058
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:32:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57BD83C10FE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:23:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A253C3AAC79
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E981F28C851;
-	Mon, 21 Jul 2025 09:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C68828AAEA;
+	Mon, 21 Jul 2025 09:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KOMVstTG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YAoj0vA4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCC528B4F0;
-	Mon, 21 Jul 2025 09:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417D428A1DE;
+	Mon, 21 Jul 2025 09:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753089814; cv=none; b=pZOpNOs8l+hKOYYr7ib4usmyhmtnnTWMK+nNL9Y6FQQbcIOikFUpsgpmceY8pNcBhVsiQ1QDJy0HzZZ3bX4p1Kb3X79C/88awDVDqaqch1dtxmKNsB6B4t9qS9OJK+Y4O9yKxSEhB7RMAH9rkH6SsYBFe906ZQ9x3uYLLt73qLc=
+	t=1753090324; cv=none; b=GAN8QljHctOeVxWL/hk39i4Pt33mxCPqsjBlCwfob9lM4kUmjHCNNZfMeswt3vYdTuewd9enWUVB+NN9KNSbqHcg9IqVVpz2Gs2Pd2OltrwXmpPgRhuSRO02Ba0t4Gnkmc1N5gkoW3UlC6A1NTPONySZDMzhTESA1IxeLDnqrg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753089814; c=relaxed/simple;
-	bh=uxjP2gEJbOBmQlv81I1IvKh2j8a6dIhhumYLQw1WC38=;
+	s=arc-20240116; t=1753090324; c=relaxed/simple;
+	bh=tMQd51DR2PhlSANSMzu8tnUKCfa7HWDsrUeedOQDGV8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jm/5OcDF9GJl/zknxE+o6TpHX6hI/EydTuIimK4682wrpL2beR57lSbYspMHpfYos9tmAjOpwXehbOtcSXIg2Mz0t7SkqKyuDyXVoFEFq+POSPKH6co+ZPbwLZxZuaehLQpkYBN3SZBZvnhdxX8VsT1nu8p8LDs8acn6F5yGNZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KOMVstTG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCD45C4CEF1;
-	Mon, 21 Jul 2025 09:23:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aZm8dSXJs0kZ7UnB9T97thnzU3jS+de6IUSP+IceEgMK/9wcxirCjGGsitlFS4xUo4/hmnNOJvlDaiWMXc4fIO1hgVYzRqggaGfibxNogAtDzCT0WlE5s5gmp2D1NOtCdpfNH/FO3cwozdKxhYfWmpul2iLa1dU+/FCZtM1ICUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YAoj0vA4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67591C4CEED;
+	Mon, 21 Jul 2025 09:32:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753089814;
-	bh=uxjP2gEJbOBmQlv81I1IvKh2j8a6dIhhumYLQw1WC38=;
+	s=k20201202; t=1753090324;
+	bh=tMQd51DR2PhlSANSMzu8tnUKCfa7HWDsrUeedOQDGV8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KOMVstTGQRd2VVqlltIRirx/UjZsTgs+tGRJ2vk9tPMTNIthsL3LwKRCl2Nzc5gQS
-	 NrTF7WBojA/mhex9+9B1H3irU+dS0N6T/Hsj4GjMrd+OMH1CNCbVPMSegQxqTDKiWG
-	 Wf/jyUwF46O8oJacFEjy1aj/5y3TCAfTyiaiWfkEqePtk6vrP7e2TzRpFmj3QrJ8KO
-	 ISLrGoW1tBPlYRw4MCfyPRB5TJasGkxQD/shwa2ekiT6uZuelmmtimiIDrdEWAdsn5
-	 zZKjzFto9RUnrtypGKGECkudk5+Ba+or3Z6h9hrVKhtVleG3svcxI4WsmyktbWWm4k
-	 xFJWfSDwX8aDA==
-Date: Mon, 21 Jul 2025 11:23:31 +0200
+	b=YAoj0vA4RH1GRqkxXn895QzFv0xG59k/y01og9h9chrcRef6I1zl+kY8HjU/CScJO
+	 fY6cqeDqwoJnAHxHg5TT0pPw09FzspU5f5hyj8JuGqtHfoWALjOkzT+D1yKkCVCLir
+	 LkmBbUIU1HkWq/06QbM/t0zB4AjvW2jMyvv0tuPNjzt/l9bsiKFDea2bnq8JBtnwn4
+	 lEN+sm57+hqBfZ91Bs8LemSMzLfr5/ulb8jaQXyTYeM5sbgAtv1iZnB/jRYbe2Olce
+	 X0eZUchellO9l6S2rSHcDoS8eZy12eh7DMSKJ4kpvXVOYnAbij6mH1lfnqStNVZ6KI
+	 bFeg8JqF8qZPA==
+Date: Mon, 21 Jul 2025 11:32:01 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: dpll: Add clock ID property
-Message-ID: <20250721-lean-strong-sponge-7ab0be@kuoka>
-References: <20250717171100.2245998-1-ivecera@redhat.com>
- <20250717171100.2245998-2-ivecera@redhat.com>
- <5ff2bb3e-789e-4543-a951-e7f2c0cde80d@kernel.org>
- <6937b833-4f3b-46cc-84a6-d259c5dc842a@redhat.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Stefan Roese <sr@denx.de>, Andi Shyti <andi.shyti@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 3/5] dt-bindings: i2c: mt7621: Document an7581 compatible
+Message-ID: <20250721-amorphous-perch-from-jupiter-cecfaa@kuoka>
+References: <20250719125617.8886-1-ansuelsmth@gmail.com>
+ <20250719125617.8886-4-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,49 +62,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <6937b833-4f3b-46cc-84a6-d259c5dc842a@redhat.com>
+In-Reply-To: <20250719125617.8886-4-ansuelsmth@gmail.com>
 
-On Fri, Jul 18, 2025 at 02:16:41PM +0200, Ivan Vecera wrote:
-> Hi Krzysztof,
+On Sat, Jul 19, 2025 at 02:56:13PM +0200, Christian Marangi wrote:
+> Airoha SoC implement the same Mediatek logic for I2C bus with the only
+> difference of not having a dedicated reset line to reset it.
 > 
-> On 18. 07. 25 8:55 dop., Krzysztof Kozlowski wrote:
-> > On 17/07/2025 19:10, Ivan Vecera wrote:
-> > > Add property to specify the ID of the clock that the DPLL device
-> > > drives. The ID value represents Unique Clock Identified (EUI-64)
-> > > defined by IEEE 1588 standard.
-> > 
-> > With the exception of clock-output-names and gpio-hogs, we do not define
-> > how the output looks like in the provider bindings.
-> > 
-> > I also don't understand how this maps to channels and what "device
-> > drives a clock" means. Plus how this is not deducible from the compatible...
+> Add a dedicated compatible for the Airoha AN7581 SoC and reject the
+> unsupported property.
 > 
-> The clock-id property name may have been poorly chosen. This ID is used by
-> the DPLL subsystem during the registration of a DPLL channel, along with its
-> channel ID. A driver that provides DPLL functionality can compute this
-> clock-id from any unique chip information, such as a serial number.
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/i2c/mediatek,mt7621-i2c.yaml          | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
 > 
-> Currently, other drivers that implement DPLL functionality are network
-> drivers, and they generate the clock-id from one of their MAC addresses by
-> extending it to an EUI-64.
-> 
-> A standalone DPLL device, like the zl3073x, could use a unique property such
-> as its serial number, but the zl3073x does not have one. This patch-set is
-> motivated by the need to support such devices by allowing the DPLL device ID
-> to be passed via the Device Tree (DT), which is similar to how NICs without
-> an assigned MAC address are handled.
+> diff --git a/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml b/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
+> index 118ec00fc190..38118007b601 100644
+> --- a/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
+> @@ -14,7 +14,9 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    const: mediatek,mt7621-i2c
+> +    enum:
+> +      - mediatek,mt7621-i2c
+> +      - airoha,an7581-i2c
 
-You use words like "unique" and MAC, thus I fail to see how one fixed
-string for all boards matches this. MACs are unique. Property value set
-in DTS for all devices is not.
-
-You also need to explain who assigns this value (MACs are assigned) or
-if no one, then why you cannot use random? I also do not see how this
-property solves this...  One person would set it to value "1", other to
-"2" but third decide to reuse "1"? How do you solve it for all projects
-in the upstream?
-
-All this must be clearly explained when you add new, generic property.
+Keep list ordered.
 
 Best regards,
 Krzysztof
