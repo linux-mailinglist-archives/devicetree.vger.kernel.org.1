@@ -1,176 +1,116 @@
-Return-Path: <devicetree+bounces-198248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16FDCB0C255
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 13:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE37B0C279
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 13:16:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B678A188F556
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:12:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9519F18C3BE5
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 11:16:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B90FD2882C0;
-	Mon, 21 Jul 2025 11:12:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 127F8298CC4;
+	Mon, 21 Jul 2025 11:14:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BZtWWBlE"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="Ng8qHnwK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36404295524
-	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 11:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753096344; cv=none; b=J7sryHpK8XnrwebRrrXNajpz9MZei5FYYAsafeuKCgTPzMpSOs0ahcwnTpYgBiEko5dX2DcQ/80vO1bJvch/aS1BO2LeHOOYzPUqXsV4gHCGyPSGsdDgaad6omnr7rtaRVLupMChQ3ULELIRQR1ZuOERm9fkA7hgooff2fY1jeI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753096344; c=relaxed/simple;
-	bh=ksZkhhiBwulOE/IukbPeIEXyJFBXFotH7naTuSJS5cM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f+xYoH/as0u670y8wTtGUXkZZZc0KfpZ+OPV/161alCR6aTDBfRHSxPxEB/UXfHR9sxUuOtOOM7vES4ORAWiPRwybjqRycfbxT0oQ0Yjrlf7kxnvUtQMFGIqs+T6ZKYHQG0Bw1g1n0G0z1kNSKIg1h0O+NsGKMmVdD6SebrCtN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=BZtWWBlE; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-32b43cce9efso35128201fa.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 04:12:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1753096340; x=1753701140; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZvD8IUqr+Bzg9GKWiYPMFuwvqaPjoCioCLoAukeES3o=;
-        b=BZtWWBlE6Sh0kiPqNgEAjIpk/NmTjn3bfieRPCAs39tzUBnYHZsLcMpqyj0UoWPPn5
-         xeVdmiOnhzh7ksGLjacQeGaKRUXVLiV0OTbQ2yep4QvzAAXbIHhD5mUStkURaa8s37sW
-         AzrRuWpr+LC1ZZ8PZF61dH0OLPQD7JTwlOESs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753096340; x=1753701140;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZvD8IUqr+Bzg9GKWiYPMFuwvqaPjoCioCLoAukeES3o=;
-        b=va1YSKikQbf41/lAezptWNkgA7kAG1GnYEziX+2b4wq11MW83s3rDZhmnWzQTUd/gL
-         c6Tzv3GFTCGmuIQvruvy2Duaqkc5p8ATFgERJbka0OhmmGizXm8gPdBfry8ilp/4c/1C
-         NQNu9LkrubFKGBSZ+4cr3OoyKHPyusH8c1i8nvA4ETMvm4XrJMQTIXzGyUESKGry0ZZU
-         Jt1NSJUS9RxOQruLcCDVawxvzYg+a7SF7awpSy1srkAnsNrCFeb21TFbOWunOgZ07LK7
-         tv/LKC9KWxnzYNIIHf7w/0QUHqpvL3HehQdMNV+pDJ7H1SVeroK9Z2jJK11OfMIqTiuD
-         tKnA==
-X-Forwarded-Encrypted: i=1; AJvYcCXQw5uAGe5HeG+9oeh7vFMZILwTewBZf2hKNvCZOQEY6DNqVUqQXw99VNxUTOLfANnYS6AwqGn4kM9x@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5FI/k+sxkQTsLzc159EBUIF6uZtcZrB0WCvalW2CLYjH2nJTB
-	JvrzkfEwQCiKaQeLlivQ9MEV6al6GQOJtEckCxR9gIPutrvY1RHOxmDK6+lkIEMVrDLHyMeFlwV
-	sn3Bp9iyQcM/3dfGnu+U5s0GU4fTqvyv/SnSaJoOI
-X-Gm-Gg: ASbGncuTOVxzXZWVJA2SFznQaP1SbSo10S3EFNcgMMX3ob5bdF1WYknBlEuJZaChfZk
-	y9RSTS6OOrKq99xUkOeDgl0EK2rCLO+ykjW5kDPTKCJgBbXFXJRi+TgJ81ehlGCwoQNAFvsP0Q7
-	pm/RkZlzMaFpxRN56F2haXqwQdtc3YMsTUfYSqtgh0bzOWQLjAGTw1ZZ18ARhYBRu9/0CR74Zl5
-	fYk+PTYqlZA6OzWXzztRAGV0APvGcF84Z0=
-X-Google-Smtp-Source: AGHT+IFBcIrODyu5ElS2DkB5XwLAm0Yi8m6vfMTv3g3vNlbCwrZrTFNYjxARMwbJuH0gzP751/Mkg4oUm0Irdkz6hQA=
-X-Received: by 2002:a05:651c:154a:b0:32a:7270:5c29 with SMTP id
- 38308e7fff4ca-3308f4c5293mr49883741fa.2.1753096340224; Mon, 21 Jul 2025
- 04:12:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42CFB2BCF66;
+	Mon, 21 Jul 2025 11:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753096486; cv=pass; b=BrGSVd/y4tvbZirfbP0WSjDrlaoJve3vq8XXi/7+KGzmh24R321NfNDtXyP81YYZiqw47CnZJjTn0FZcuRAUS4Z+V0TCarOjEjhoPx9Om3XlnUwgmr0IDoCuRsEbZQ7MwMSoViAJo1nZCpQ3KhKTSCsF7ty93g64dxmL7J7E1gQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753096486; c=relaxed/simple;
+	bh=apcXxEnb0qJg1v9Cl7JQ6npH3CzfQYbUnRtZrZ2JRQo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i5b0Fdcjzu5sPrlMsO/zlmHHuf6UIo2X/TO/G/tjZiYo4XRgXjEYxuDpSFYpvIIpRIKISAH5Hhiq9rPLjFDgPztkNqzVuRZt/S+0OGgZIdZ49nY77EgWTVWu5GDKkauo3gSxCOnlS6AIPuzi+WK5cB8Xp60ukXiVJ7Ed4XZwbZo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=Ng8qHnwK; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1753096461; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=jYDbMhT8vW1zZ55sI4R7g1B58Oih9oqWj6/OHCkN7i3soW0oBjrysLGZCIOIwKpbi/S4R9R6I9DzaB3/a/jfCHc0jge426lJOeXddipzWya2vUv9BJR51q/V5Ym2hd6Xn9XhbIccR0vCC1hhPJZp8pixppyUATKFwpUQMuTxQx4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1753096461; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=apcXxEnb0qJg1v9Cl7JQ6npH3CzfQYbUnRtZrZ2JRQo=; 
+	b=DtIObIS9tuE0ada0VjeUzVrB6+WAlE06f1oeU6I4KkV87vFL40WUPjQkWn0Qvkk+z/tZ+6ikJFy0J8KzcQ5xIFLHApyCEqyFnQQKMzI3t6NyqUtKahukCqEiCOiFghfwduWM2LKZhq6e47wNS9VpVwcFtxfkHF+Am+V/Z49XFrg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753096461;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=apcXxEnb0qJg1v9Cl7JQ6npH3CzfQYbUnRtZrZ2JRQo=;
+	b=Ng8qHnwKp0kseIgsBGNF47L3UKdRF5Gn/rEgrTYuEvTl8P3sWznvC3DDRjddwmj/
+	MrPA+UxXE8ZA3+nMRDuFpZDlOLPlg8RZ57XhLM8Pjv+PN+NFaBihL/2tuYAEDBCTEsB
+	N3aDH1R05bBv2dMGMnp79lTpx9sLG7SNaiWUlAz4=
+Received: by mx.zohomail.com with SMTPS id 1753096458959568.7003735740404;
+	Mon, 21 Jul 2025 04:14:18 -0700 (PDT)
+Message-ID: <e96b1d2f-bff8-4b79-9995-6929648a810b@collabora.com>
+Date: Mon, 21 Jul 2025 13:14:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250721081459.16278-1-laura.nao@collabora.com> <20250721081459.16278-6-laura.nao@collabora.com>
-In-Reply-To: <20250721081459.16278-6-laura.nao@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 21 Jul 2025 19:12:08 +0800
-X-Gm-Features: Ac12FXwjyLsGb66oW3wQunTIZj2TIT6qrKAAeEzwRJZc_WREeNFVgKGeEo3jG4M
-Message-ID: <CAGXv+5F9NwJ7uGFPWZM-Dywbbk4f6aiYS5M4m6_VFETVGEwr9A@mail.gmail.com>
-Subject: Re: [PATCH 5/9] thermal/drivers/mediatek/lvts: Add lvts_temp_to_raw
- variant for positive temp_factor
-To: Laura Nao <laura.nao@collabora.com>
-Cc: srini@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com, 
-	lukasz.luba@arm.com, matthias.bgg@gmail.com, 
-	angelogioacchino.delregno@collabora.com, andrew-ct.chen@mediatek.com, 
-	lala.lin@mediatek.com, arnd@arndb.de, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, nfraprado@collabora.com, 
-	devicetree@vger.kernel.org, u.kleine-koenig@baylibre.com, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	kernel@collabora.com, colin.i.king@gmail.com, bchihi@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/5] iommu: Add verisilicon IOMMU driver
+To: Jason Gunthorpe <jgg@ziepe.ca>, Will Deacon <will@kernel.org>
+Cc: Robin Murphy <robin.murphy@arm.com>, joro@8bytes.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ kernel@collabora.com
+References: <20250710082450.125585-1-benjamin.gaignard@collabora.com>
+ <20250710082450.125585-4-benjamin.gaignard@collabora.com>
+ <aHTzPwTob8_5rtBS@willie-the-truck>
+ <baa1fcde-f167-4a1b-afca-0a2957a688cc@collabora.com>
+ <aHozv0NG1OBlAH6c@willie-the-truck>
+ <b4169471-fcd0-4415-8281-c5bd722e5f2b@arm.com>
+ <aHpQXy-bnwW56rCn@willie-the-truck> <20250718141401.GD2206214@ziepe.ca>
+Content-Language: en-US
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <20250718141401.GD2206214@ziepe.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jul 21, 2025 at 4:31=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
- wrote:
+
+Le 18/07/2025 à 16:14, Jason Gunthorpe a écrit :
+> On Fri, Jul 18, 2025 at 02:47:11PM +0100, Will Deacon wrote:
 >
-> The current lvts_temp_to_raw() implementation assumes a negative
-> temperature-to-raw slope (temp_factor), which holds for the SoCs
-> currently supported by the driver. However, this assumption breaks on
-> MT8196/MT6991, where the slope is positive.
-
-I don't think that's really a problem. The formula is:
-
-    temp =3D (raw * factor) >> 14 + golden
-
-If we move the terms around we get
-
-    ((temp - golden) << 14) / factor =3D raw
-
-Or
-
-    raw =3D ((golden - temp) << 14) / -factor
-
-
-The calculations should work regardless of whether the factor is positive
-or negative, as long as the intermediate and final values are within
-the range of s64.
-
-> Add a variant of the function that inverts the calculation logic
-> accordingly. This ensures accurate raw value generation for temperature
-> thresholds,avoiding spurious thermal interrupts or unintended hardware
-> resets on MT8196/MT6991.
+>> Just because the existing drivers are a mess doesn't mean we should
+>> proliferate it!
+> If you want to insist on something here it should be for this driver
+> to use the new generic page table code I've written.
 >
-> Signed-off-by: Laura Nao <laura.nao@collabora.com>
-> ---
->  drivers/thermal/mediatek/lvts_thermal.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> Otherwise I don't see the point in trying to improve this in some
+> lesser way.
 >
-> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/me=
-diatek/lvts_thermal.c
-> index db83137c7537..3c34956e37c1 100644
-> --- a/drivers/thermal/mediatek/lvts_thermal.c
-> +++ b/drivers/thermal/mediatek/lvts_thermal.c
-> @@ -296,6 +296,18 @@ static u32 lvts_temp_to_raw(int temperature, int tem=
-p_factor)
->         return div_s64(raw_temp, -temp_factor);
->  }
+> If this had come in a years time I would probably insist on that, but
+> right now it isn't merged yet and it will still be a little bit before
+> people have time to review it.
 >
-> +static u32 lvts_temp_to_raw_v2(int temperature, int temp_factor)
-> +{
-> +       u32 raw_temp;
-> +
-> +       if (temp_factor =3D=3D 0)
-> +               return temperature;
-> +
-> +       raw_temp =3D temperature - golden_temp_offset;
-> +
-> +       return div_s64((s64)temp_factor << 14, raw_temp);
-> +}
+> Perhaps a compromise where Benjamin comes with an iommupt format
+> header that works for this and we can progress this series and be
+> ready to swap it out down the road?
 
-Here you have
+I have take some time to try to understand this new framework and I have
+to admit it isn't super clear in my mind how to use it right now.
+I don't have catch the benefit behind the macro and the nested structures.
 
-    raw =3D (factor << 14) / (temp - golden)
+Anyway, if VSI driver need to be updated I could, at least, validate the
+changes on my board or make the fix make self (but I will need to see
+more example of drivers using this new feature.
 
-which, barring integer arithmetic limitations, is actually the
-multiplicative inverse of the original version.
+Benjamin
 
-So I think the commit message is misleading. It's not negative or
-positive that matters, but that the hardware expects the
-multiplicative inverse in this version.
-
-(or the downstream code is just botched.)
-
-ChenYu
-
-> +
->  static int lvts_get_temp(struct thermal_zone_device *tz, int *temp)
->  {
->         struct lvts_sensor *lvts_sensor =3D thermal_zone_device_priv(tz);
-> --
-> 2.39.5
 >
->
+> Jason
 
