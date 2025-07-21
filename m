@@ -1,137 +1,156 @@
-Return-Path: <devicetree+bounces-198294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D05FFB0C43A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:41:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DEFFB0C480
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 14:55:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 934091627F3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:41:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A37B54182D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE8282D3EC5;
-	Mon, 21 Jul 2025 12:41:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43F972D77FD;
+	Mon, 21 Jul 2025 12:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="VtaarHBc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EF742D0C8C;
-	Mon, 21 Jul 2025 12:41:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F4682D640A
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 12:54:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753101676; cv=none; b=OOcvB9Ldd8ABDtaFRpfKGx8mECFr4URJP3qsZ6LbKRYzRqUB8fB90WDcTCVT7mrJqlGvT2idrYgCZjNNFhXnSRM4FkqQ0B6bAffgyAbxTweRBkZZBM9HBEtHnIayPKqZsjQv0jy8O4i2iEMe/RlVmWtM+08WjeHFB3nhTdLak68=
+	t=1753102458; cv=none; b=XpjbmS6Ts8niEC0uZAoCKMO1KK5WyejjnUjJxnQLviw5qGUrUVgCC+ez2d2IZPejDmcI9Pp7XN5z4zmujmcK07nNBEHvmBE5lHesxwEFWnT3uzJlSRT2/W9GDCLVfcMfpsAQzVw3ZM+7FBFwdY/8Yu3VcU+ADSfuVApcTaqzmiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753101676; c=relaxed/simple;
-	bh=HKypV4u1z7AQtKEV8qXfKdvAJq3j2oYfgAV7NWh5XKw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=muKcMFs4kYRRWSmMeB6etviw0q3e+yDIIe5jvHIseUa+aHePUnGf9VgdPXwel6HhhLwoJ0MMEfDyo4t5Ot3OGgj6CiFfFL8iKQIG0qt4NPEixniJML7Zbnx6PNWwXlzWbYHjOVM5xKwL8FTsFXzdDiBIIJYOMkdXgkqtUN3KQGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=54.207.19.206
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
-X-QQ-mid: zesmtpsz2t1753101613t8c8f9366
-X-QQ-Originating-IP: MoVW0Qm5NMBWEz3uPCzh4xqGQRVxpVf/CTDZ4DOFxxU=
-Received: from localhost ( [113.89.235.49])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 21 Jul 2025 20:40:12 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 5610268674547387337
-EX-QQ-RecipientCnt: 14
-Date: Mon, 21 Jul 2025 20:40:02 +0800
-From: Nick Li <nick.li@foursemi.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
-	tiwai@suse.com, xiaoming.yang@foursemi.com,
-	danyang.zheng@foursemi.com, like.xy@foxmail.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] ASoC: dt-bindings: Add FS2104/5S audio amplifiers
-Message-ID: <0D06FAB8CF1A9D4C+aH41IrERxjlsEAPr@foursemi.com>
-References: <20250721103805.531758-1-nick.li@foursemi.com>
- <20250721103805.531758-3-nick.li@foursemi.com>
- <83f7c489-7001-49cd-97a5-4280eba95fe0@kernel.org>
- <F04DD98A69286426+aH4sT_P0GvttoCOq@foursemi.com>
- <ea2f30ff-b2cf-4b88-9fe8-78950a03d882@kernel.org>
+	s=arc-20240116; t=1753102458; c=relaxed/simple;
+	bh=Wxgy61aHWs80GLSEAoDrVpWj0lXnEnhZvB9jx/Dm55Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LL1GBRTXzFeJHHH+uy5LgFXjG4zQxEmD01iHfcpW+Q8wZ9I1LgrdhkLYbi8M4uk6kjut3HOP/BVQZeLavS9FrqaIRpqn/0/j/VwVQ+2GwUtyRwsQ5mN/wuzmN/A87WXN3uo1FkrYQrgvvQtxb8Fa03WvGSzTfbixT2AXvGgC0M4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=VtaarHBc; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1753102455;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LGouRhTIcOCzuKVibZby8lQPcGeoVn/9FPgTrCUEtjg=;
+	b=VtaarHBcHCZ/LQSR1GmJs17mY6pvP95MG5qYs0FE0Fm+BHNUCq2pvzbAr/0wL7Ccr+iM2c
+	Kft2c7f1euC3Y0svTZa6w5BgSN1VlkbXeRZKy+C+LeWBtDDjpDLoIGmA9QTZzmg+aZEghn
+	HqTGx06ADbkqAqGGrkODPR3IB1tBoyM=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-466-gieTfNIxPD2_m1auPkgj5w-1; Mon,
+ 21 Jul 2025 08:54:11 -0400
+X-MC-Unique: gieTfNIxPD2_m1auPkgj5w-1
+X-Mimecast-MFC-AGG-ID: gieTfNIxPD2_m1auPkgj5w_1753102450
+Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id AE7AF1800878;
+	Mon, 21 Jul 2025 12:54:09 +0000 (UTC)
+Received: from [10.45.226.7] (unknown [10.45.226.7])
+	by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 174641956094;
+	Mon, 21 Jul 2025 12:54:05 +0000 (UTC)
+Message-ID: <804b4a5f-06bc-4943-8801-2582463c28ef@redhat.com>
+Date: Mon, 21 Jul 2025 14:54:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <ea2f30ff-b2cf-4b88-9fe8-78950a03d882@kernel.org>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: N0fHFfxtkpsjEWs3A0xBuJ3MCCGLm1f5F5Y/t4u4jUD0ofASZGMC5o4P
-	oJmZo2RQQTTTZUMaEJub+Y/fDMxP9XQuQ5sxiL8MCSjjDoUd+ci60S2Rb58BmbYWmQw1ILz
-	EUUBXzkTLWHzd79MPqg7PJ9ykQ1j2QT+p/3WQCK6Q0YOmzkj9APbCwQekZ/Dyl2oCKfuOED
-	x0sq70ybB9JJtqI+NqwMdoo6yaMzPXDLuvawAYmcaW3XThfXx+DATJyY1s56gHfiS1yxXK1
-	X++kyhMERdDHSIY8wWN6+0QyjqJAqungWaRlIsArJJrX6UDEiCjnz3t+sYj1hf54MzrzTTp
-	tWTCpYuGuXQFSA0QWfLPtXuStoFZb5N7I/GmTxZFuwnzy+0flPsxfJ/1N9YCSXuzM0MZGDq
-	fH9Qb2DYJ/mBgZvQR3A9KAuuD48TcFSkFLUShKnL3ZcugPIh53soSkTs86EAcg2vFXPlH8i
-	j6du9YaJRv8Ip6gHXt+3ED2XsrULDRXYL7Escw/OmwkEbOOi4qvPRfSJSt9+juLjT5RtecA
-	jACJPeUL7tKszRHEZP26aGtRQN2o0BRlfWCQG8k8PVBx6+khxkZS/U67lOtU8C0A9NR8Ymq
-	JQbdaG+TvAByKeD2Jmt8m7gqoUgfvTNWhDm2hmExfM9/eWtG3potHx0Dg7OSumb0yuWHTS2
-	BvhUQCjxLrihq19+cpZQVRY6ishZRn0hWwfXXwxY5ZB+jveLg1UrG+jWcCUT7U30UlLQvOt
-	93k1Ef27buYU2J3mjaz0HMOBCNXzpQptgXMYWVDQHYTS1fEE0iv0IdGR3umXSzliyrgHy2T
-	RKM+AGFFA2PexWe+uQdjThf3ysW+ok3kGDxwKHgnpI96wVg6w9EtaZE2uh9QB7D90XnJBXl
-	+kydeWZovTPP1Hr2tVqGkx3N5lYQZiJ3bn54OodH+luUXqz3DELWarmNNRaJ4g1SO3ZOF1j
-	5kLxhobshWGyOXBlA3vSzrU5P6obBmrYDisKc0OZJjZoueQH2DURy7YNVOY//X8zka93unx
-	DPegShYFk0IO6QEeVwkPK4Gt35oiAmMqRTDd+f+d0waUK3a/Vs
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-X-QQ-RECHKSPAM: 0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 1/2] dt-bindings: dpll: Add clock ID property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
+References: <20250717171100.2245998-1-ivecera@redhat.com>
+ <20250717171100.2245998-2-ivecera@redhat.com>
+ <5ff2bb3e-789e-4543-a951-e7f2c0cde80d@kernel.org>
+ <6937b833-4f3b-46cc-84a6-d259c5dc842a@redhat.com>
+ <20250721-lean-strong-sponge-7ab0be@kuoka>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <20250721-lean-strong-sponge-7ab0be@kuoka>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
 
-On Mon, Jul 21, 2025 at 02:15:38PM +0200, Krzysztof Kozlowski wrote:
-> On 21/07/2025 14:02, Nick Li wrote:
-> > On Mon, Jul 21, 2025 at 12:48:24PM +0200, Krzysztof Kozlowski wrote:
-> >> On 21/07/2025 12:38, Nick wrote:
-> >>> +  firmware-name:
-> >>> +    maxItems: 1
-> >>> +    description: |
-> >>> +      The firmware(*.bin) contains:
-> >>> +      a. Register initialization settings
-> >>> +      b. DSP effect parameters
-> >>> +      c. Multi-scene sound effect configurations(optional)
-> >>> +      It's gernerated by FourSemi's tuning tool.
-> >>> +
-> >>> +required:
-> >>> +  - compatible
-> >>> +  - reg
-> >>> +  - '#sound-dai-cells'
-> >>> +  - reset-gpios
-> >>> +  - firmware-name
-> >>
-> >>
-> >> I do not see how you resolved my comment from v1 or v2. Nothing in the
-> >> changelog explains that either.
-> > 
-> > Change logs are in the cover letter:
+On 21. 07. 25 11:23 dop., Krzysztof Kozlowski wrote:
+> On Fri, Jul 18, 2025 at 02:16:41PM +0200, Ivan Vecera wrote:
+>> Hi Krzysztof,
+>>
+>> ...
+>>
+>> The clock-id property name may have been poorly chosen. This ID is used by
+>> the DPLL subsystem during the registration of a DPLL channel, along with its
+>> channel ID. A driver that provides DPLL functionality can compute this
+>> clock-id from any unique chip information, such as a serial number.
+>>
+>> Currently, other drivers that implement DPLL functionality are network
+>> drivers, and they generate the clock-id from one of their MAC addresses by
+>> extending it to an EUI-64.
+>>
+>> A standalone DPLL device, like the zl3073x, could use a unique property such
+>> as its serial number, but the zl3073x does not have one. This patch-set is
+>> motivated by the need to support such devices by allowing the DPLL device ID
+>> to be passed via the Device Tree (DT), which is similar to how NICs without
+>> an assigned MAC address are handled.
 > 
-> 
-> And as I said I do not see resolution of my comment.
-> 
-> If you reject reviewers comment, usually it should be mentioned in the
-> changelog.
-> 
-> Otherwise you get now the same review as v1 or v2. Devices cannot work
-> without power.
+> You use words like "unique" and MAC, thus I fail to see how one fixed
+> string for all boards matches this. MACs are unique. Property value set
+> in DTS for all devices is not.
+>> You also need to explain who assigns this value (MACs are assigned) or
+> if no one, then why you cannot use random? I also do not see how this
+> property solves this...  One person would set it to value "1", other to
+> "2" but third decide to reuse "1"? How do you solve it for all projects
+> in the upstream?
 
-I explained it in the previous email:
-The power may be connected to the baterry/adapter directly,
-it may not be under the control of the software,
-in this case, the supplies are use as dummy regulators?
+Some background: Any DPLL driver has to use a unique number during the
+DPLL device/channel registration. The number must be unique for the
+device across a clock domain (e.g., a single PTP network).
 
-And we tested the driver without the supplies in DTS,
-so I didn't mark the supplies as the required items.
+NIC drivers that expose DPLL functionality usually use their MAC address
+to generate such a unique ID. A standalone DPLL driver does not have
+this option, as there are no NIC ports and therefore no MAC addresses.
+Such a driver can use any other source for the ID (e.g., the chip's
+serial number). Unfortunately, this is not the case for zl3073x-based
+hardware, as its current firmware revisions do not expose information
+that could be used to generate the clock ID (this may change in the
+future).
 
-Best regards,
-Nick
+There is no authority that assigns clock ID value ranges similarly to
+MAC addresses (OUIs, etc.), but as mentioned above, uniqueness is
+required across a single PTP network so duplicates outside this
+single network are not a problem.
 
-> 
+A randomly generated clock ID works, but the problem is that the value
+is different after each reboot. Yes, there is an option to override the
+clock ID using the devlink interface, but this also has to be done after
+every reboot or power-up.
+
+> All this must be clearly explained when you add new, generic property.
+
+Would it be acceptable to define a hardware-specific property, since
+only this hardware has this particular problem (the absence of a chip
+unique attribute)? I'm referring to a property like 'microchip,id' or
+'microchip,dpll-id' defined in microchip,zl30731.yaml.
+
 > Best regards,
 > Krzysztof
-> 
+
+Thanks,
+Ivan
+
 
