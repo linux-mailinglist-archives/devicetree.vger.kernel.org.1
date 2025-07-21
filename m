@@ -1,137 +1,172 @@
-Return-Path: <devicetree+bounces-198242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 776F6B0C1F1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:58:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCDBEB0C1EA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 12:57:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 871843BBB1D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:57:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 130A3188AE57
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:57:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC3BF29C33B;
-	Mon, 21 Jul 2025 10:55:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A4B5299948;
+	Mon, 21 Jul 2025 10:55:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="rTHZnCbO"
+	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="T4xmTlte"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 750192980B4;
-	Mon, 21 Jul 2025 10:55:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F822951D5
+	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 10:55:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753095343; cv=none; b=Sv/wWTxDhpWxWIeig8zrEpNYPx2e/Wv0BUOBQNacGfVjYE1C79yZ7mUJcH4480MAt7BzHLQC/Jv6VOhpGB6fGDZXztlvvEudjmUN5lgeRDS8WB19TUC6CkQnLXX10BfvTy8uhwzzArIyLvQhmnnH+F4QvkskW19n9gwbTNzCcOw=
+	t=1753095341; cv=none; b=Ozl5m2bp0uv4AUMAwKVigzyD8PO5d+EWXADMFG8dkFow/uWd670cF2Mc8hBm0t9jE1jzHBND51aGq6MO2H2blTaG5TjaPiNyzi8s1NcRxg/2kqKreIf3oz5lnGuQEnz37bLIGTAH9XY65brABL0X4Kt6tj0orNmBj7fxAqkMrkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753095343; c=relaxed/simple;
-	bh=VkvH6Buso6lrWIYra616eiCuQkUS05CN7ivD1UTUDL4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iKCZ3NiseD+LWsnRuM5b8tbXnQSv9TWCbNdc8B8pGSW6r8Cj4EqFPCOHwsCMIQNkgsA/N3BqhQUE33UKbogxmBNhnSJBaDKD36XDE3thyoKQClMz2SfcfKSWGFdQB3UWqsUi0UWMgvp8vSfe6c40pgB7l7birgKn4pOD+Ce5iFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=rTHZnCbO; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 3b926ff8662111f0b33aeb1e7f16c2b6-20250721
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=cn3htOReln+vOcAcfeE1LgSCT/Ev3OONSHgeMyS579U=;
-	b=rTHZnCbO3LRMEWoF4mkqQoCgQzdPgNIcdV9+Q/8o6UVvbYqXc9Ot6/xlGQW5HRFYJ4zdetGNOMjQfEHtzuUjz0XJr0EspozVDcicLYkhi0l2xTpiDSG2/JmjpTn8BcKDcghQN/CCyJ7WwvxsYNtPVRwla3eEjXKJ0yb/qlmFKlg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.2,REQID:ebaf45b6-b84e-40fe-8844-aeba54cd03f6,IP:0,UR
-	L:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:-5
-X-CID-META: VersionHash:9eb4ff7,CLOUDID:7fa0ab84-a7ec-4748-8ac1-dca5703e241f,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 3b926ff8662111f0b33aeb1e7f16c2b6-20250721
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
-	(envelope-from <kyrie.wu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1978442139; Mon, 21 Jul 2025 18:55:36 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Mon, 21 Jul 2025 18:55:35 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Mon, 21 Jul 2025 18:55:34 +0800
-From: Kyrie Wu <kyrie.wu@mediatek.com>
-To: Tiffany Lin <tiffany.lin@mediatek.com>, Andrew-CT Chen
-	<andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, Mauro
- Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>, Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>, Christophe JAILLET
-	<christophe.jaillet@wanadoo.fr>, Sebastian Fricke
-	<sebastian.fricke@collabora.com>, Nathan Hebert <nhebert@chromium.org>, Arnd
- Bergmann <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>, George Sun
-	<george.sun@mediatek.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
-	<andrzejtp2010@gmail.com>
-Subject: [PATCH v1 8/8] media: mediatek: encoder: Add MT8189 encoder compatible data
-Date: Mon, 21 Jul 2025 18:55:20 +0800
-Message-ID: <20250721105520.5625-9-kyrie.wu@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250721105520.5625-1-kyrie.wu@mediatek.com>
-References: <20250721105520.5625-1-kyrie.wu@mediatek.com>
+	s=arc-20240116; t=1753095341; c=relaxed/simple;
+	bh=HmcsUc2mLbVnkeCJ/4BvetsKmAW914Lfl6jnnsvAPWA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DLv87jkvygMi5A78OlbznpglLc6JtbzYVvikg/lzm8irU5Z5zGgIWBbKSenO/QpFqLnunvEZkb8vptiTow1NpdpVpnqV/yJ39mRiQD+eZ94YBz15UmfVRiIjna3hAoTGtRl1bIi9QPVeau+oZ1s1w2wqptslEvXLy9kMRM4dl4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=T4xmTlte; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4560add6cd2so33944385e9.0
+        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 03:55:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1753095337; x=1753700137; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VzHECdJWTQqWAbkBdrXAKUXoxi3Toeb13Fsou0Mpd7s=;
+        b=T4xmTltefBSg9xxbM45Ns2Dsc0AB9V4cPXUcH5KCN4L0pummy1SkyoQmFOhIpJZJrz
+         OmyWd/KrRNmCmnLDPpY6FSdt8+gm8rjzjDQUKLTpPgFPGRzABu6YCcOaJmv0yULoMqra
+         s1/XPWaqh/8wGlEyt66ZN13/q38z30Kd/fLXG0Qcx8he78OleIAS7lJfWOWVwrE/IdjZ
+         sdHGgcaJnbAnUfrC7pXlDi9QERZzAl3Wl9m3NbgzUXP4RYf+gD8x91HED8QQvc9LUJIZ
+         I7/JPyL2ppoKYnv9dE5hws3kUoqGO1T6xgJMwUOnLZD3GVF/JQA0wZl/xSlFv2jmJXa+
+         LwEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753095337; x=1753700137;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VzHECdJWTQqWAbkBdrXAKUXoxi3Toeb13Fsou0Mpd7s=;
+        b=cJVXRFYSeXoGP4LK/EznZCGxs9y99WDb0ZVEcKEh24ZJefyjsowXwgz41WpQ9p/Flt
+         njpIRJgZ/PtC5OqYXO7DKJR+yTMuU5vmzUawbnh0arCNqLthjqLpDo32g780FUD8sHZr
+         30CHHGNyMqMOsg4y5qHJET8ILNIHd4+GvhHFIiu2cGU1F9LdNT3m6dewdEj6OzU+FS8M
+         n0XlHVMJpYZWHlkAreib14PMrDzBc/yTt012UKX8J1aA7kuBJeXpNM4eRqzswnwk18EH
+         p2HhY46GEDhNfemw8hej2VfNhNstx3ntohhX9t/aF0wciE3p9QKV/1olEh1hpRgOJDOz
+         w44A==
+X-Forwarded-Encrypted: i=1; AJvYcCVlnPzgZvZof1SXbBIf9wc8v2KBi0nEWuNXa5LZHhgx4g9Ye240l9FweBowhBHC27umHRRG+cfIyvnZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/QP+3VUTFZ8FAbEX+TtgFeahnEM3MQ0Xylg9bXDfM/MdK6tKv
+	z8iyvDA1BNgYT0bU+OutoVQ+3HZV9DPJXYaJD1FT/QAgRo68cW/pC0454HckAx7mfNKnldBDp+k
+	tZvmK
+X-Gm-Gg: ASbGncurxGTYPXaklkIpHRdUMw0zNCRDrh5ARFXIEipb2BJnHcasr37l6bq3Ox7tV01
+	QJkNbkapX48ZcVxcwkHUZ45esEJlNDPGZUdDXDtuygC1H7syCKlDtMP4TyBd71NDlE+ZWE7emSc
+	6nHGIk5z1dCL0ulGWAvws0D/runTTZNXejoLRPTyqJ15xnOvIPCU6weaAQIACTHpKjuqpYuEcYU
+	vephIl61aw6V80AXYycCfec9dEwGieyjGkBZKTYbJFFnNNnjbOGbJk56XtxMIkgl99Nrp44QmRy
+	4Sy6bOoOtl6l+/NWCWc5xD4O3B1TjAw/r4LihUpGTOnrM3om2c48H2ZTOmKCcjowdswyoAE3WWP
+	5O5STqLQNwMzvpgGJ8jozgMvlEJu7FyUUnhLFdI0=
+X-Google-Smtp-Source: AGHT+IFNPLTkejDZ8LrHgeFc0yIvvIywen972HO2LqymJvVWwHlf3dMeClqns17yswZZnYq2wd3lBA==
+X-Received: by 2002:a05:600c:256:b0:43c:ed33:a500 with SMTP id 5b1f17b1804b1-4563a5416ddmr91892725e9.10.1753095337350;
+        Mon, 21 Jul 2025 03:55:37 -0700 (PDT)
+Received: from [127.0.1.1] ([2a00:23c7:1d1a:9c01:f373:f0d1:903c:a9bc])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4566dd6b8bfsm18141065e9.35.2025.07.21.03.55.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Jul 2025 03:55:36 -0700 (PDT)
+From: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+Subject: [PATCH v5 0/3] Add support for is31fl3236a LED controller
+Date: Mon, 21 Jul 2025 11:55:33 +0100
+Message-Id: <20250721-leds-is31fl3236a-v5-0-264e841f4da9@thegoodpenguin.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKUcfmgC/3XNTQ6CMBCG4auQri2B/lpX3sO4gDKFRtOSFhoN4
+ e4WEuNCXb5fMs8sKEKwENGpWFCAZKP1Lgc/FEgPjesB2y43IhXhlSAc36GL2EZamzslVDSYKm0
+ 4MUooLVE+GwMY+9jJyzX3YOPkw3P/kMi2vjH5jSWCK2wEGMkU1yD4eRqg974bwfWzdaX25XxDm
+ 5vYx5L1L4tlSxIwionWtPr4x1rX9QVf9sXtBwEAAA==
+X-Change-ID: 20250625-leds-is31fl3236a-39cf52f969c7
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org, 
+ Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>, 
+ Lucca Fachinetti <luccafachinetti@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1753095336; l=2667;
+ i=pzalewski@thegoodpenguin.co.uk; s=20250625; h=from:subject:message-id;
+ bh=HmcsUc2mLbVnkeCJ/4BvetsKmAW914Lfl6jnnsvAPWA=;
+ b=g221d6/IcdzDTaMt06Oe7t6LBjaVqrhO955i825p4pYZOQG+Q4uAHPWOk8agzIM23yBo5RD1G
+ So1bk/7Azg3A982L6XwzKzwJ90iw52W7zz4+VgZyPipBZ/O6ub0yJ86
+X-Developer-Key: i=pzalewski@thegoodpenguin.co.uk; a=ed25519;
+ pk=hHrwBom/yjrVTqpEvKpVXLYfxr6nqBNP16RkQopIRrI=
 
-add compatible data to support MT8189 encoding.
+This series of patches adds support for the is31fl3236a led
+controller. The main difference between this IC and the
+is31fl3236 is that there is a new parameter/register that
+moves the operating frequency of the PWM outputs out of 
+the audible range.
 
-Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+To support the new register a property was added in the dt-bindings,
+as this property is at the board layout level ie. not all
+boards will have analog audio and have to worry about it.
+
+To add the new property the old .txt binding documentation was
+ported to .yaml format. There was a previous attempt to do this
+in 2024 but the original author has never acted on the feedback
+given [1]. So I have implemented changes requested in that 
+review and added his Signed-off-by.
+
+The new functionality was tested by scoping the PWM signal. Out of
+reset the IC is in 3kHz mode, thus action is taken only if the new
+boolean value is set to true in the device tree.
+
+[1] https://lore.kernel.org/linux-leds/20240701-overview-video-34f025ede104@spud/
+
+Changes in v2:
+- Added cover letter
+- Ported dt-binding to yaml
+- Refactored driver module
+- Link to v1: https://lore.kernel.org/linux-leds/CAA6zWZ+TbcHrZaZ0ottm0s1mhCLa8TXASii47WKSLn2_zV95bw@mail.gmail.com/T/#t
+
+Changes in v3:
+- Aligned/refactored code properly in C module
+- Refactored dt-bindings yml file
+- Link to v2: https://lore.kernel.org/r/20250627-leds-is31fl3236a-v2-0-f6ef7495ce65@thegoodpenguin.co.uk
+
+Changes in v4:
+- Aligned compatible strings array in the C module
+- Addressed Krzysztof's feedback regarding dt-bindings
+- Link to v3: https://lore.kernel.org/r/20250708-leds-is31fl3236a-v3-0-d68979b042dd@thegoodpenguin.co.uk
+
+Changes in v5:
+- dt-bindings: fixed typo in the regex expression
+- dt-bindings: rebased patches to follow common sense
+- Link to v4: https://lore.kernel.org/r/20250717-leds-is31fl3236a-v4-0-72ef946bfbc8@thegoodpenguin.co.uk
+
+Signed-off-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
 ---
- .../mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c   | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Lucca Fachinetti (1):
+      dt-bindings: leds: is31fl32xx: convert the binding to yaml
 
-diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-index c869c4245ebc..4f5c2d8d2855 100644
---- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-+++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-@@ -468,6 +468,19 @@ static const struct mtk_vcodec_enc_pdata mt8196_pdata = {
- 	.set_dma_bit_mask = true,
- };
- 
-+static const struct mtk_vcodec_enc_pdata mt8189_pdata = {
-+	.venc_model_num = 8189,
-+	.capture_formats = mtk_video_formats_capture_h264,
-+	.num_capture_formats = ARRAY_SIZE(mtk_video_formats_capture_h264),
-+	.output_formats = mtk_video_formats_output,
-+	.num_output_formats = ARRAY_SIZE(mtk_video_formats_output),
-+	.min_bitrate = 64,
-+	.max_bitrate = 100000000,
-+	.core_id = VENC_SYS,
-+	.uses_common_fw_iface = true,
-+	.set_dma_bit_mask = true,
-+};
-+
- static const struct of_device_id mtk_vcodec_enc_match[] = {
- 	{.compatible = "mediatek,mt8173-vcodec-enc",
- 			.data = &mt8173_avc_pdata},
-@@ -478,6 +491,7 @@ static const struct of_device_id mtk_vcodec_enc_match[] = {
- 	{.compatible = "mediatek,mt8192-vcodec-enc", .data = &mt8192_pdata},
- 	{.compatible = "mediatek,mt8195-vcodec-enc", .data = &mt8195_pdata},
- 	{.compatible = "mediatek,mt8196-vcodec-enc", .data = &mt8196_pdata},
-+	{.compatible = "mediatek,mt8189-vcodec-enc", .data = &mt8189_pdata},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_vcodec_enc_match);
+Pawel Zalewski (2):
+      dt-bindings: leds: issi,is31fl3236: add support for is31fl3236a
+      leds/leds-is31fl32xx: add support for is31fl3236a
+
+ .../devicetree/bindings/leds/issi,is31fl3236.yaml  | 120 +++++++++++++++++++++
+ .../devicetree/bindings/leds/leds-is31fl32xx.txt   |  52 ---------
+ drivers/leds/leds-is31fl32xx.c                     |  47 ++++++--
+ 3 files changed, 161 insertions(+), 58 deletions(-)
+---
+base-commit: 52da431bf03b5506203bca27fe14a97895c80faf
+change-id: 20250625-leds-is31fl3236a-39cf52f969c7
+
+Best regards,
 -- 
-2.46.0
+Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
 
 
