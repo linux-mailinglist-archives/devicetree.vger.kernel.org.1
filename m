@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-198130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A410B0BD1D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:00:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF30B0BD29
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 09:02:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BE623B9A76
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 07:00:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19C0B17AACA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 07:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA6C28314A;
-	Mon, 21 Jul 2025 07:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F5A27F177;
+	Mon, 21 Jul 2025 07:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/5ToINq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iZm4zOci"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA86028312F;
-	Mon, 21 Jul 2025 07:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D3818EB0;
+	Mon, 21 Jul 2025 07:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753081228; cv=none; b=G51MO4mN5pp2lXX/Yz8dHMr0VGEXRqXAOqa7MMv98mS/NHIsJwOQN2QUlE4v6xj6aeBlM4EEQJalsPR5VDjoBg1jlLjyqfkDNLbnp5tPsqod7/K/Pndrz292o26aan/bX7+2SqqqJ9L9mXWUySyhHIE++tpcgQX6OljSAm/KpcY=
+	t=1753081358; cv=none; b=NeWhMZd4zTYVoVnDfzDbjTg3LAFVA0ME/eA/ohBFGfWxwOw0jS1lV1l8j4ZwdTi1divKoxX+KNWwy3r76YAZ+LNRn9MMi4wqsgLU1ZyIa+Aq4ChCgkc7pSfkwW3QCYhz1NgLFHT/2pT0no9WTJkjU4FpcbMFcCRN5DYH0JYvMoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753081228; c=relaxed/simple;
-	bh=Aq6sqTvO2EJFyQZNPFUjG/kya8yXEfAE0I1DrQtAHzE=;
+	s=arc-20240116; t=1753081358; c=relaxed/simple;
+	bh=6M8wcO5ghSDQstD+yUFu+09zG0kOCXRbJgoraNTHOFw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TaOczFZmvRQuRNkpfFC7lsDR2T9DdP7xVif+Hu5KLbds5DhsqLjESYDIhfbM3F7TiuOyfyOHFFQL6FO2KhtKfWbeebxq4VzxXpfhBDWBtrHY4IzeYMEIExsNhVe7afQ6dWUimlRwSi+iNePfxgWtBjcJ8/MroCpGMJP+XOWi+mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/5ToINq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E249BC4CEED;
-	Mon, 21 Jul 2025 07:00:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=AR1zTq+qhcJSuv2HY+j1DI/mXak0AkPw167rGZI8cKjDIAQtPYylyNwgtG7m5cInvYK4mLw8DsCNEDUfZiUDTJy0Fv5eHJEgUPVKXjMsYGDtTxSJcJQ9ix5JU2kLOsZ/5Yl0Hdu3IrDcsVkFK+Yse2RQcHyROQmRSGft500emYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iZm4zOci; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF147C4CEED;
+	Mon, 21 Jul 2025 07:02:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753081228;
-	bh=Aq6sqTvO2EJFyQZNPFUjG/kya8yXEfAE0I1DrQtAHzE=;
+	s=k20201202; t=1753081357;
+	bh=6M8wcO5ghSDQstD+yUFu+09zG0kOCXRbJgoraNTHOFw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=R/5ToINqDFunQxMIXOXkyeOJSkXuGvT3n29ixS8OfDMz+cmZdukN3ZKkp32dyV202
-	 nLAU317BNnhKJv9i7NVBKtbR8L8P8cXlVLQLjHWrFz3nmQWfAkUaY1Q7V8li1UmkOZ
-	 WURkrDv5wCsmpw2X78GzKOKXnBZiu4xsMRDCbpTUgwuT/vwSlt3+pcxOss81mc3MQN
-	 3MMu3z4KqzoMdM3qoPgFrZo6edK45mTyW/sncjC4QN3vX5dPCOOCFm5Oo4Z8ErM7Bn
-	 SekWmBpgdKQfpgdxh6DNyjHelUlrMR3JMcH40FF/IDAb1yg2ZTx9Hc3aL16P238G68
-	 Xc7ndcRFPZ2VQ==
-Message-ID: <61ced029-987e-4484-9a0a-7c911518ffd8@kernel.org>
-Date: Mon, 21 Jul 2025 09:00:21 +0200
+	b=iZm4zOcidzx9QsgSF7Cxp3bvLayGEkEym9virFlMCDDoJS5yvaA5T2+Er0Jzmf1tM
+	 w/o8gjvBMF/zNIGnWm0+GV3/mT2RPS7kit4lBM5bNMxmx3bLmU3pYEM7sNLvkvpSFj
+	 Te00G+Y5PJ6PoAFIwgk+la4FittJYRfSFGnolDd3FyF2xtXZrSFuuDfsNo+uwhrLnT
+	 4Zrn6lXZkBGqdzQcqXKZjGyv+m4aphSNLF9aBlYXNDbjWAQ24E/wVtw38FvTUgMoDc
+	 Apb7QjmM2g2v/NQzhu4wX6YNGVMOhj7ai7n9UIa3BzXBpqtWGqlVkccaOspNVvi8sK
+	 JClNSkWTs97+g==
+Message-ID: <df947cbe-e207-4619-957f-0c961c6d7139@kernel.org>
+Date: Mon, 21 Jul 2025 09:02:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,32 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOWbnuimhjogW1BBVENIIHYyIDAzLzEwXSBkdC1iaW5kaW5nczog?=
- =?UTF-8?Q?PCI=3A_Add_ASPEED_PCIe_RC_support?=
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
- "mani@kernel.org" <mani@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
- <joel@jms.id.au>, "andrew@codeconstruct.com.au"
- <andrew@codeconstruct.com.au>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- BMC-SW <BMC-SW@aspeedtech.com>
-References: <20250715034320.2553837-1-jacky_chou@aspeedtech.com>
- <20250715034320.2553837-4-jacky_chou@aspeedtech.com>
- <20250716-watchful-enigmatic-condor-0fc6b3@krzk-bin>
- <SEYPR06MB5134F8732785F280CB4339309D5DA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: i2c: realtek,rtl9301-i2c: extend for
+ RTL9310 support
+To: Jonas Jelonek <jelonek.jonas@gmail.com>
+Cc: linux-i2c@vger.kernel.org,
+ Chris Packham <chris.packham@alliedtelesis.co.nz>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Markus Stockhausen <markus.stockhausen@gmx.de>
+References: <20250712194255.7022-1-jelonek.jonas@gmail.com>
+ <20250712194255.7022-3-jelonek.jonas@gmail.com>
+ <20250714-magnificent-powerful-nuthatch-afcc01@krzk-bin>
+ <0a2a0fa6-ee82-40be-b62d-847a4ef04626@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -121,26 +108,77 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <SEYPR06MB5134F8732785F280CB4339309D5DA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+In-Reply-To: <0a2a0fa6-ee82-40be-b62d-847a4ef04626@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 21/07/2025 05:44, Jacky Chou wrote:
->>> +patternProperties:
->>> +  "^pcie@[0-9a-f,]+$":
->>
->> Why do you need it? Also, order things according to example schema.
->>
+On 20/07/2025 21:51, Jonas Jelonek wrote:
+> Hi Krzysztof,
 > 
-> Thanks for your question.
 > 
-> In the v1 discussion, another reviewer suggested that we should support a
-> multi-port structure for the PCIe root complex, 
-> where each port is represented as a child node (e.g., pcie@...).
-> That's why patternProperties was added here — to explicitly allow such
-> subnodes and validate them properly.
+> On 14.07.2025 08:00, Krzysztof Kozlowski wrote:
+>> On Sat, Jul 12, 2025 at 07:42:54PM +0000, Jonas Jelonek wrote:
+>>>  properties:
+>>>    compatible:
+>>> @@ -23,7 +25,14 @@ properties:
+>>>                - realtek,rtl9302c-i2c
+>>>                - realtek,rtl9303-i2c
+>>>            - const: realtek,rtl9301-i2c
+>>> +      - items:
+>>> +          - enum:
+>>> +              - realtek,rtl9311-i2c
+>>> +              - realtek,rtl9312-i2c
+>>> +              - realtek,rtl9313-i2c
+>>> +          - const: realtek,rtl9310-i2c
+>>>        - const: realtek,rtl9301-i2c
+>>> +      - const: realtek,rtl9310-i2c
+>> So these two are just enum.
+> 
+> Could you be more precise on that please? Sadly, I don't get what you're trying
+> to tell me.
 
-And schema does not allow it already?
+
+These two last lines should be part of one enum.
+
+>>> +    minimum: 1
+>>> +    maximum: 2
+>>> +
+>>>  patternProperties:
+>>> -  '^i2c@[0-7]$':
+>>> +  '^i2c@([0-9]|1[0-1])$':
+>>>      $ref: /schemas/i2c/i2c-controller.yaml
+>>>      unevaluatedProperties: false
+>>>  
+>> As mentioned last time, missing constraints.
+>>
+>> How did you solve this:
+>>
+>> "you should clearly narrow this per variant"?
+>>
+>> See example schema. It has EXACTLY this case.
+>>
+>> https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml#L212
+>>
+>> You also need to narrow the number of children.
+> 
+> I missed that from your previous review by mistake, sorry for that.
+> 
+> I managed to narrow it per variant whether 'realtek,mst-id' is required or not.
+> But I'm not really able to do the same for the different regex patterns or the
+> number of children. Although I'm trying to follow various examples,
+> dt_binding_check just fails not taking the regex patterns into account.
+> 
+> Since you have a lot of expertise on that and I obviously fail to find
+> documentation that helps me to do that properly, could you give me some hints
+> on how that has to look? I'd really appreciate this.
+
+
+So in your if:then: block where you narrow mst-id, you add on same level
+as properties:
+
+patternProperties:
+  YOUR_REGEX: false
+
 
 Best regards,
 Krzysztof
