@@ -1,157 +1,158 @@
-Return-Path: <devicetree+bounces-198346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55D85B0C7FA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:47:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 900E7B0C80D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:51:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1F8B543E0E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 15:47:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 836C67A60E6
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 15:49:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77E562D9489;
-	Mon, 21 Jul 2025 15:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C275D2DFA5A;
+	Mon, 21 Jul 2025 15:51:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="3xbpjXFn"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="HXoLZVTA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87CD32989B4;
-	Mon, 21 Jul 2025 15:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753112866; cv=none; b=WWJQvAhqaWdNm6+ERyMZU4NUFcCSiHmb1oHwIPpJXLTu+T3NYV8cOqHzb6GwVA6HFHOqT3PUhMF3Ek+FsTJ+fv9pIZ0IrWovmaE4sIz8x1GsW50IaClAXephqqXjitlK4FDF/klswi6Q5r5C8wfKUFjSMWDLqFpfGbB8TrbrNwc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753112866; c=relaxed/simple;
-	bh=yf93avLfOcBjv9y23grxTOASqvyH83/l7cM6ZlT0nAM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=URB4eYZzf6pObeOwSj72yKpxEBuzFT6MyPVHNuxnyKFKVv3Ml6r7tsUlAdtKj1Nisk+9Srv8gCy0b9QeINyUSyameQAy5dHG9T0cEwjJ7ZtcZSHzKsxMRjRRVVEL8zpjHDLm+zfIfeQhpU1Ncy6jyQzYF1iNZLr4hJMYv9HJleM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=3xbpjXFn; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56LDt62k020590;
-	Mon, 21 Jul 2025 17:47:23 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	P1ZuzEzRREiwLydWZlhzK+dlWBAxlIhEYuf20M8l1eU=; b=3xbpjXFnyMs0SC5A
-	i2NSTVksJj+qckbzFNDpYbQCrsNAuBlK574aC/pSgp9d95ovb31I7jR/KuivJ7Z7
-	vrlAF+Tjwygg8on9g8Nk5p0sTilTUvoy9mumnLwxZBwjmm5NG/irpmq9NNUmkiFu
-	0wrn5CM/J1V4wrupgXWM38kPE8qB0Av7ZcgyJMY415Yd2dEUQK7cZuJkMRI5BKp/
-	DW2K9XPdF4dI97k5wGLSQiynVfnweB2tJ1SZhLZSWwfrcbbY7ZWOHj3Oq1ycURsO
-	5wh+4Djrh+l9cQH6KWUDkkJClULDqjLBmk0Ufn2f8W5yGH6gc1qtD7k05Ef/cmMt
-	a3Wd6g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4800g8hn2a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Jul 2025 17:47:23 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 822DF4007D;
-	Mon, 21 Jul 2025 17:46:05 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 36E51768F09;
-	Mon, 21 Jul 2025 17:44:23 +0200 (CEST)
-Received: from [10.252.5.249] (10.252.5.249) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 21 Jul
- 2025 17:44:21 +0200
-Message-ID: <162aa05f-69df-4607-bf47-fbec60589f95@foss.st.com>
-Date: Mon, 21 Jul 2025 17:44:20 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 847E62D5C9B;
+	Mon, 21 Jul 2025 15:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753113061; cv=pass; b=u4Ki5nb+OghTpEa9xkSsAH6b+5f2RquAreaRZ9uxQZotWjm9zV2xJ3XVt2WG70i5yAGu8mwHQ27pAvlDqnlpiZKibc96jNn/CUtG9TysI8Ya08un2dftywbKOtu1g8SZOfnYZlESft+qcTgJ9iiMcrWQw0IeAq++IMCCNvQXopw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753113061; c=relaxed/simple;
+	bh=r3dWtS0DfR1Rn/ACuj4nW8IHgBNJ1oWA5UeVc8umEeA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=odumRqzm+M23TovrM4Pg4i5WMvmv9R/hLyB1O2/KMcVspbCU6wlQM4tdElHnLRdovTdvRvarZz6+e7IKLv4q/+cK/yMAY30sgCYXHsHhCWKW66IfGEPzSKE2a7q4nLGvFhtvxPzSwPnvMN8CmYUcg0LJodcUq+lanTwYfXDsIWg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=HXoLZVTA; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1753113014; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=KqKKAmYf2zvkxQUXdERjNM5NdmxSKj95ZivuIYjAQSr9NcnUbjeqH05Ig811ifwullI+anb8sSV9MzaD4ZzYbtUlY7h0A+5LSBs1y3UH+iUTGZJGCKcwlCFM7nrNq/P0tX+2z+69DCiPklNMMiNBST/CIVayapHKDCiGs8Fiffs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1753113014; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=87b0yZUM9BV8txVqBiMLUvYqikzqvjOolhiCh3LlqBM=; 
+	b=Q2H3/9gfOTJOJcdaxLmqepir5VYQnWH47L0hqzKP3O1TJkIBbSeneNHAlRpDxCcSQRLXrGRuEdoe8VnbsMEzFszq9d+cfhzRhp1vWIMKAf6YEgiIfri5ugTRsqdI4St0Jf1QdlVNl49WMPPxK5daPg5Bk10NRdX5NNnLAccKFE4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753113014;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=87b0yZUM9BV8txVqBiMLUvYqikzqvjOolhiCh3LlqBM=;
+	b=HXoLZVTA9EydJ2ytaU4mDZd8N9ii1xhoRs5KNTQjSmjytAxdI1ETtiEXGLy34/Te
+	/FXA2xSkH/LxMDbqrMp3hKyGhRvpmeyHeGqEvh0Je//HFuesGoYN5xo5TC+JXrUszIt
+	QXOEY78Nwl/Jw8yN5rFK1HiEbPD8Rzxw9BeJnLNY=
+Received: by mx.zohomail.com with SMTPS id 1753113011689418.4639332270798;
+	Mon, 21 Jul 2025 08:50:11 -0700 (PDT)
+From: Junhui Liu <junhui.liu@pigmoral.tech>
+Subject: [PATCH RFC 00/10] riscv: Add initial support for Anlogic DR1V90
+Date: Mon, 21 Jul 2025 23:46:06 +0800
+Message-Id: <20250721-dr1v90-basic-dt-v1-0-5740c5199c47@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/16] arm64: dts: st: add LPDDR channel to
- stm32mp257f-dk board
-To: Rob Herring <robh@kernel.org>
-CC: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Gabriel Fernandez
-	<gabriel.fernandez@foss.st.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Le
- Goffic <legoffic.clement@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-perf-users@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-References: <20250711-ddrperfm-upstream-v2-0-cdece720348f@foss.st.com>
- <20250711-ddrperfm-upstream-v2-6-cdece720348f@foss.st.com>
- <20250715032020.GB4144523-robh@kernel.org>
- <ae960a16-65ad-4b22-b9fb-89efbffacd3e@foss.st.com>
- <20250715150224.GA1319886-robh@kernel.org>
-Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <20250715150224.GA1319886-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-21_04,2025-07-21_02,2025-03-28_01
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL5gfmgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDc0MD3ZQiwzJLA92kxOLMZN2UEl1jU6NUy8RU08TkJAsloK6CotS0zAq
+ widFKQW7OSrG1tQD4JAXsZgAAAA==
+X-Change-ID: 20250710-dr1v90-basic-dt-352e9ae5acb8
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Anup Patel <anup@brainfault.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
+ linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org, 
+ Junhui Liu <junhui.liu@pigmoral.tech>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1753112991; l=3155;
+ i=junhui.liu@pigmoral.tech; s=20250507; h=from:subject:message-id;
+ bh=r3dWtS0DfR1Rn/ACuj4nW8IHgBNJ1oWA5UeVc8umEeA=;
+ b=ZdozYEXri0BuBkNJKSKCxzXLS6f3dOB74CXec9evRvaicTz9MbnHLk/ezbFEqrk406Ll2ISPJ
+ oAAp5VoBPn8DYB4v1eAYsr83a2u9Y0GmkwWFbCUeg4y4+BfiRA10/T0
+X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
+ pk=d3i4H2mg9LUn4SQemoLAjLRQy0nTcyknIv6zgKMwiBA=
+X-ZohoMailClient: External
 
-Hi Rob
+This patch series introduces initial support for the Anlogic DR1V90 SoC
+[1] and the Milianke MLKPAI-FS01 [2] board.
 
-On 7/15/25 17:02, Rob Herring wrote:
-> On Tue, Jul 15, 2025 at 10:32:09AM +0200, Clement LE GOFFIC wrote:
->> Hi Rob,
->>
->> Thanks for the review !
->>
->> On 7/15/25 05:20, Rob Herring wrote:
->>> On Fri, Jul 11, 2025 at 04:48:58PM +0200, Clément Le Goffic wrote:
->>>> Add 32bits LPDDR4 channel to the stm32mp257f-dk board.
->>>>
->>>> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
->>>> ---
->>>>    arch/arm64/boot/dts/st/stm32mp257f-dk.dts | 7 +++++++
->>>>    1 file changed, 7 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
->>>> index a278a1e3ce03..a97b41f14ecc 100644
->>>> --- a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
->>>> +++ b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
->>>> @@ -54,6 +54,13 @@ led-blue {
->>>>    		};
->>>>    	};
->>>> +	lpddr_channel: lpddr4-channel {
->>>> +		#address-cells = <1>;
->>>> +		#size-cells = <0>;
->>>> +		compatible = "jedec,lpddr4-channel";
->>>
->>> Not tested because this doesn't match the binding.
->>
->> Hmm, I've tested with make dtbs_check and dt_binding_check and it didn't
->> complain on my side.
->> What I have miss ?
-> 
-> Oh wait, we already have a binding for that. I was confused with your
-> adding "jedec,ddr4-channel". Sorry for the noise.
+The DR1V90 is a RISC-V based FPSoC from Anlogic, featuring a Nuclei
+UX900 [3] core as its processing system (PS) and 94,464 LUTs in the
+programmable logic (PL) part. The Milianke MLKPAI-FS01 board is one of
+the first platforms based on this SoC, with UART1 routed to a Type-C
+interface for console access.
 
-It's fine no worries.
-However, in the patch 8, I add the property "memory-channel" that is not 
-in the dtschema repo and I didn't get any reviews on it.
-Is it ok for you ? or maybe should we discuss it over there ?
-I can try to do a PR on the dtschema thought, if it is ok.
+Tested upon Milianke MLKPAI-FS01 board based on vendor's OpenSBI and
+U-Boot with log [4]. The log indicates that OpenSBI is running at
+0x3fe00000. Since the region 0x20000000-0x3fffffff is a mirror of
+0x00000000-0x1fffffff, the actual physical base address for OpenSBI is
+0x1fe00000.
+
+Notice: A "no4lvl" bootarg is currently required for successful boot on
+the DR1V90 platform, since the SoC hangs if the kernel attempts to use
+unsupported 4-level or 5-level paging modes. I plan to submit a
+follow-up patch to allow the kernel to query the supported MMU mode
+directly from the "mmu-type" property in the device tree, to avoid
+probing unsupported SATP modes.
+
+This patch series is marked as RFC because basic drivers such as clock,
+reset and pinctrl are not yet supported. These essential drivers will be
+submitted in later patch series.
+
+Link: https://www.anlogic.com/product/fpga/saldragon/dr1 [1]
+Link: https://www.milianke.com/product-item-104.html [2]
+Link: https://nucleisys.com/product/900.php [3]
+Link: https://gist.github.com/pigmoral/7a61297593386dadbf357837d93adc95 [4]
+Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+---
+Junhui Liu (10):
+      dt-bindings: vendor-prefixes: Add Anlogic, Milianke and Nuclei
+      dt-bindings: riscv: Add Nuclei UX900 compatibles
+      dt-bindings: riscv: Add Anlogic DR1V90
+      dt-bindings: timer: Add Anlogic DR1V90 CLINT
+      dt-bindings: interrupt-controller: Add Anlogic DR1V90 PLIC
+      dt-bindings: serial: snps-dw-apb-uart: Add Anlogic DR1V90 uart
+      riscv: Add Anlogic SoC famly Kconfig support
+      riscv: dts: Add initial Anlogic DR1V90 SoC device tree
+      riscv: dts: anlogic: Add Milianke MLKPAI FS01 board
+      riscv: defconfig: Enable Anlogic SoC
+
+ .../interrupt-controller/sifive,plic-1.0.0.yaml    |  1 +
+ .../devicetree/bindings/riscv/anlogic.yaml         | 27 +++++++
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |  1 +
+ .../bindings/serial/snps-dw-apb-uart.yaml          |  1 +
+ .../devicetree/bindings/timer/sifive,clint.yaml    |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |  6 ++
+ arch/riscv/Kconfig.socs                            |  5 ++
+ arch/riscv/boot/dts/Makefile                       |  1 +
+ arch/riscv/boot/dts/anlogic/Makefile               |  2 +
+ arch/riscv/boot/dts/anlogic/dr1v90-mlkpai-fs01.dts | 28 +++++++
+ arch/riscv/boot/dts/anlogic/dr1v90.dtsi            | 86 ++++++++++++++++++++++
+ arch/riscv/configs/defconfig                       |  1 +
+ 12 files changed, 160 insertions(+)
+---
+base-commit: 89be9a83ccf1f88522317ce02f854f30d6115c41
+change-id: 20250710-dr1v90-basic-dt-352e9ae5acb8
 
 Best regards,
-Clément
+-- 
+Junhui Liu <junhui.liu@pigmoral.tech>
+
 
