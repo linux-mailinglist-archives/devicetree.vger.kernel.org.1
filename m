@@ -1,113 +1,87 @@
-Return-Path: <devicetree+bounces-198160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90CA1B0BEA0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:19:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D494DB0BEA9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 10:20:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F177B3BF6E4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 08:17:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5319B188ACD8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 08:19:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A2B128A714;
-	Mon, 21 Jul 2025 08:16:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0E2286410;
+	Mon, 21 Jul 2025 08:19:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Ql7Vz9ts"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NcihLUuN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7227128A1F2;
-	Mon, 21 Jul 2025 08:16:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D67285068;
+	Mon, 21 Jul 2025 08:19:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753085792; cv=none; b=L1MX0EyPk704OTpxM3nCds8wNe6L4uFAkRaBQ/+dwG1zbd1ijgvnT8zMUgLdMx5qpWu6FLSFQ2u4CaYNPAPyv8vXsFFsJPzQqz+jKOIxw6VlCiHqYnyLf+Xalqfm3C1H/qyDcRJipWCxKh7vGfaSAOHN9FermauzOMAqKnpIPc0=
+	t=1753085966; cv=none; b=gwrJQqyGGY13HYaNhZDv6dsIKCyLIU4PlyYU7K1xeU7jo+fUdg53TL0+HRjDraDky4RS3PtjFWCpQuJAfdT1wf5QfVWpsHHSHK3u5UpzBhnfDvkum33yh6dSnavvTXlfCgFtTgCBguiFHRaSsTPwNqj+0Zd5MeFghkCgfBUfwKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753085792; c=relaxed/simple;
-	bh=w6sh/7u7ae2yAWUxtx6cgY5xdFm6qlPDPDfS1bNNr9M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=LH2gIqHXPffKrOofaAaQXd5sTyUl9h//GNWVx2SJ2TKgumrVUP67oETXQulaCGKLZRvPe+gBCU6URenS9xsBTQkgvTOmAxLeiJcqiBgHk1x3+3qose0C3khvdPJDrscEIyXinFqfXKNMDqNhbd9qh2zvW4JEEH8I4O46jHenRF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ql7Vz9ts; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1753085789;
-	bh=w6sh/7u7ae2yAWUxtx6cgY5xdFm6qlPDPDfS1bNNr9M=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Ql7Vz9tszCFPv6ICq2j2HeW8YhQ/rWQg6eDqXi6u7jqFFvlqtK/7npwqHaIRVlnuj
-	 prYaHEZJLTboETdYQi8j7Eytttphl6P7XOejOqmeTIt6aw25Gx3VS0bquszf+t9WW3
-	 zlkrtwibyy5o6UWzpqv8U6nMbUX+AyefKPaDKW43jy4V1NPNGGkfnMyOu2Zf0w3lEa
-	 /F8stPxdhySbNajuAuyBZeSd7OFZDSw+j15gjB5LFVVWH9pcrP28yxh2FHflPcU0qz
-	 HAia5o6fHpw97g5vihxJ2T7+VShqH0WPKUXCQid2yuFDJmRBBHz04Wm9lc36ltaHtx
-	 gZzDnVV4or+iA==
-Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:4487:69c6:40a:81be])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laura.nao)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id AA0B917E0F66;
-	Mon, 21 Jul 2025 10:16:27 +0200 (CEST)
-From: Laura Nao <laura.nao@collabora.com>
-To: srini@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	rafael@kernel.org,
-	daniel.lezcano@linaro.org,
-	rui.zhang@intel.com,
-	lukasz.luba@arm.com,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com
-Cc: nfraprado@collabora.com,
-	arnd@arndb.de,
-	colin.i.king@gmail.com,
-	u.kleine-koenig@baylibre.com,
-	andrew-ct.chen@mediatek.com,
-	lala.lin@mediatek.com,
-	bchihi@baylibre.com,
-	frank-w@public-files.de,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com,
-	Laura Nao <laura.nao@collabora.com>
-Subject: [PATCH 9/9] dt-bindings: nvmem: mediatek: efuse: Add support for MT8196
-Date: Mon, 21 Jul 2025 10:14:59 +0200
-Message-Id: <20250721081459.16278-10-laura.nao@collabora.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250721081459.16278-1-laura.nao@collabora.com>
-References: <20250721081459.16278-1-laura.nao@collabora.com>
+	s=arc-20240116; t=1753085966; c=relaxed/simple;
+	bh=uEB0HtD55uZd7rEhL/zvPezmMEb4PcqPNChda79sX/s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GKycc6buwRVAu7YSjHgctKQY4iA2KgoZTT4dp2745y4+XVhxHVjnki9WNuMzsX5Z8GjSnGWaJCJIeMyaqlwdA8/NCQpmQYhl7S5h8bE+l2LEzr56/Pb1jTpadzmBzFgZa3caVgdwKnjM3rBLITtrJFc8EkOawrm5tA3+l4Znb+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NcihLUuN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D588C4CEF1;
+	Mon, 21 Jul 2025 08:19:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753085965;
+	bh=uEB0HtD55uZd7rEhL/zvPezmMEb4PcqPNChda79sX/s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NcihLUuNxprB7aVI87hJ70Aq89aNIFkCBA5Xod+cxuVDOeA5BT1DMmlVmg44Mt0D7
+	 iNx95HJ121pWyOUpiDH/nn0baxboJIxpnnFTSKiv/R5tiW8BOSdidC5qdw2lmmpK9x
+	 5mx3GlZmm1boMS/N4pcHkZ/Fe01krAXdzqugtHtWZtuX0LlVfdgPIk/02lVvTPpGNZ
+	 fwWBCZTXCA2opGSlY2+5DsuJcIE8UsqH5hc3tbgTn618iOS+Rv2dujqztZvuDrpDsi
+	 GOi7UkOfFkux++E6spsVkyIR94Z+TmZD2zduV+fkw8IfSVSMSBrFc0bvRRee+t6c39
+	 ljhZaj4WJC6ug==
+Date: Mon, 21 Jul 2025 10:19:23 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+Cc: Srinivas Kandagatla <srini@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	quic_pkumpatl@quicinc.com, kernel@oss.qualcomm.com
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: qcom,wsa8830: Add reset-gpios
+ for shared line
+Message-ID: <20250721-teal-vole-of-finesse-82debf@kuoka>
+References: <20250718104628.3732645-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20250718104628.3732645-2-mohammad.rafi.shaik@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250718104628.3732645-2-mohammad.rafi.shaik@oss.qualcomm.com>
 
-Add compatible for MT8196 SoC.
+On Fri, Jul 18, 2025 at 04:16:27PM +0530, Mohammad Rafi Shaik wrote:
+> On Qualcomm platforms such as QCS6490-RB3Gen2, the WSA883x speaker
+> amplifiers share the SD_N GPIO line between two speakers, thus
+> requires coordinated control when asserting the GPIO. Linux supports
+> shared GPIO handling via the "reset-gpios" property, which can be
+> used to specify either the powerdown or reset GPIOs.
+> 
+> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/sound/qcom,wsa883x.yaml       | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
 
-Signed-off-by: Laura Nao <laura.nao@collabora.com>
----
- Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-index 32b8c1eb4e80..e209a1132a26 100644
---- a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-@@ -37,6 +37,7 @@ properties:
-               - mediatek,mt8188-efuse
-               - mediatek,mt8192-efuse
-               - mediatek,mt8195-efuse
-+              - mediatek,mt8196-efuse
-               - mediatek,mt8516-efuse
-           - const: mediatek,efuse
-       - const: mediatek,mt8173-efuse
--- 
-2.39.5
+Best regards,
+Krzysztof
 
 
