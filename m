@@ -1,273 +1,772 @@
-Return-Path: <devicetree+bounces-198110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75CEBB0BC2D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 08:01:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71A7DB0BC39
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 08:02:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A07971797AD
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 06:01:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F3B53B5BF7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 06:01:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55165202F8F;
-	Mon, 21 Jul 2025 06:00:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F131021D3C0;
+	Mon, 21 Jul 2025 06:02:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="J4NxiTTE"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="Jv6ixg7V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011055.outbound.protection.outlook.com [52.101.65.55])
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FADE13A3F7;
-	Mon, 21 Jul 2025 06:00:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753077658; cv=fail; b=r4DQecnyIozlt/Jfur1aU57v6iaw4ZSoBOPWMDfs2akydFJc5TTib9XCbs+2Jq8aIWM1mAMKWT1DKjDRx0eaYjE719LDfeZYZumsCzVVeW5x35yFBgw/v1oZI6Z07f6MsUe2U0u+nKmeVFoXI10EWEOJf5Vkwn8FPcDJXygrgDA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753077658; c=relaxed/simple;
-	bh=tzWaCk6vBfiPiscI91sIDWTaqNg4SdHz5e980x5b8JY=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=CUC/zlRVVw+OiIRKuoG6PbycAhXjz8mYRLnLu9y6xom4IKw52ZD6jteDxWsto0SMTw0bRIa6tjHJl0pzzkmXnLQQ/DdpiVFH3sRC2ZHli9Z8bbVZWLtNlDfNpOd4UG4ABuL1idaXFUSQ0Ig9O25BebZrUAUroGJEztFkSVInz6U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=J4NxiTTE; arc=fail smtp.client-ip=52.101.65.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X1bTjbDZuQUQvCdpxGKRB88Z3McHSiYxJ4E7bX/rY+/VETHLLF+MFa+0mmxtxQdWM4WBtSOGdCSlLDPZdT+XEMzqzhUYqeGnuVHyUj3dFJZja6EKHtUwRchQ4LFeneATgrHbGmlRsw4XgzweFsj5nJ1Mtx+3oxH0bAf0YHQlZdyiyYJOOOHcvEllzfVz0hCQ+Y27HBS7fayb9dARm6kFi+/s0EDdvpZgftybh02Ca8pw5TESBI/Q9TcmrIcLW78nRwheuxrZ05MXZkTypF/kE04SvuFVo23P2d6bcrUmROfbgBGiZOPDjG7mSbjVOJMMWY584t+2cAijLybu03T6Dw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+5e1ps42iavB3NamcKKq+JN+reNhKLAxE7uvaq+dP2Y=;
- b=w8s/t9NcWuJ8nQbLpHS6ijVOSyIBSt4hGALd1BVt+7i7nLNLxZm63Q36QcljnbMGqNKJCQHgvzdql6NlPAPM99XOFFIqLp4MUsKiBg6A2t7yj1/Gxo+8S50cwZ2Roto15rgC2jQQXmdzxTwx0nzMiPqkckm0Fyek/iWpqSt/xISmmCXSDY+HOSr+U0EpQEDn13ODq08/KyE1T9shhElAHA3b73D8lCVXAdpLIEpwlJVLPLlZERb1reqOzhvLgSMUWNP3Ow93+Uo/oDoobcDT9Rloxb+cxQpods458XFizwKOK4QIk6FMz+N7Ro2jfc2J71UYeYcPahCr3Lo9sKnS/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+5e1ps42iavB3NamcKKq+JN+reNhKLAxE7uvaq+dP2Y=;
- b=J4NxiTTEN9nmHfpf/lffuuxOv8aQ1bV38zmTC75y4dnRxzA6Y9ZEiZnZGX5y8vnFAJyUauz5EfVbxDiSndxnVtO65CXdNmtyuZQjXkhoNypATnZldElSTyI3/comxSinD7OGafSnrTNZOC57iAjaL7nt9DZinI6/v+Otonp69c/Toyk5AnhJASQMeF71G4/7iKeBnn2QeGINMhnVN5u7eRxOqdH5i+W6QhOh8xMBIhUZqqPAposcckCnNb9JAF2pIUssWd1t/+cibIwkMHK+b8YzeP/YDg49O3HvOmcLwmul5b8j/IJxuFEPhb9PPtDgtTViBtcnr3LFjQdMZn780w==
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
- by PAWPR04MB9838.eurprd04.prod.outlook.com (2603:10a6:102:380::10) with
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF541DF751;
+	Mon, 21 Jul 2025 06:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753077723; cv=none; b=kw0d45MJu1NFFnp/XjODGdooQS+3fIBSi4WQ2WOKDHEa0/4wSjc456SavUiSQNhCGCIi0SbuG/TnaaxIUO/dy6vK8BZD2bQBgUHHpbUe6/DraEGn7naYRd52EDNp2kpWu8QTx3hkJoqosBd94ytOnit5ZuVAuRPYPjc2cworhaw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753077723; c=relaxed/simple;
+	bh=8d7OIzskznL00w8Hxmma2IC/FllH0zCR75P9INRNlLs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=usyhHVtH9YwM/NWWS/znaYNjti6UcHhuxl0gERpt7Jse9o1JOWbFkCvY7ZPwDDf5NDhSD8D1KiYBQQ1+Nezn6FHbH636ZpiIO/4RuNtsRaZtaBbW5UEI7opIFO19wt6lNAnU4iFr9+Oe1xTrw5FzswnGiHlBfRVtA/JDwUCDHpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=Jv6ixg7V; arc=none smtp.client-ip=220.130.44.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1753077712;
+	bh=/wKvnS7TEMi83QWreO7K1Yzq/8AdUGTyTy0IYqZWqfY=; l=21115;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=Jv6ixg7Vdb06P0EgqJAZVGShleZsOoyUge2zi3i63mPlq4i0lCFlKhoLVITM4vr60
+	 3j4eDqGhNTVSKPmfrtdSCoqxPPCm7iCVkqL6vtASE2ddVUY5C6UGheD84cT6HPYkd7
+	 j88GUJLscvRFxDQDiHOk9b9j+oQ/PdbTJKWfrhIYjg4rlr1xHYJoesFa0tcQTY0WpC
+	 O5zW5rcYvCkIBR7bRrPmoIdkkVX2IUtbwmtPTugtXY4sFPZlX+IDecSmaDy2R79XCi
+	 l4ifFTRBUVgX/wIPgpo+gLG/AvtWOzacDlK7Ml9z0vMH4R3RpflNd6kCCesNfN+zT0
+	 VSwxjkdIF9WNA==
+Received: from 192.168.10.46
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(244573:0:AUTH_RELAY)
+	(envelope-from <jeff_chang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Mon, 21 Jul 2025 14:01:37 +0800 (CST)
+Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Mon, 21 Jul
- 2025 06:00:51 +0000
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db%5]) with mapi id 15.20.8922.042; Mon, 21 Jul 2025
- 06:00:51 +0000
-From: Wei Fang <wei.fang@nxp.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>, Krzysztof Kozlowski
-	<krzk@kernel.org>, "richardcochran@gmail.com" <richardcochran@gmail.com>
-CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Claudiu
- Manoil <claudiu.manoil@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net"
-	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>, Frank Li
-	<frank.li@nxp.com>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "festevam@gmail.com"
-	<festevam@gmail.com>, "F.S. Peng" <fushi.peng@nxp.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, "kernel@pengutronix.de"
-	<kernel@pengutronix.de>
-Subject: RE: [PATCH v2 net-next 02/14] dt-bindings: net: add nxp,netc-timer
- property
-Thread-Topic: [PATCH v2 net-next 02/14] dt-bindings: net: add nxp,netc-timer
- property
-Thread-Index:
- AQHb9iZmm/EQyWHMi0uUtvbMzlnJDrQ18GUAgAAJ0BCAAA9ogIAAAdxwgAANNACAAAF4IIABaaAAgABHNYCABCbhIA==
-Date: Mon, 21 Jul 2025 06:00:51 +0000
-Message-ID:
- <PAXPR04MB8510333427EE012CF3E2A312885DA@PAXPR04MB8510.eurprd04.prod.outlook.com>
-References: <20250716073111.367382-1-wei.fang@nxp.com>
- <20250716073111.367382-3-wei.fang@nxp.com>
- <20250717-sceptical-quoll-of-protection-9c2104@kuoka>
- <PAXPR04MB8510EB38C3DCF5713C6AC5C48851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <20250717-masterful-uppish-impala-b1d256@kuoka>
- <PAXPR04MB85109FE64C4FCAD6D46895428851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <af75073c-4ce8-44c1-9e48-b22902373e81@kernel.org>
- <PAXPR04MB8510426F58E3065B22943D8C8851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <20250718-enchanted-cornflower-llama-f7baea@kuoka>
- <20250718120105.b42gyo7ywj42fcw4@skbuf>
-In-Reply-To: <20250718120105.b42gyo7ywj42fcw4@skbuf>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|PAWPR04MB9838:EE_
-x-ms-office365-filtering-correlation-id: 516adcb2-3cc1-432d-4ed5-08ddc81bf252
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|19092799006|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?5xV+bhksVFdAh3Y+PzYwLxDGkyEac6wbmyjZ7puT6VJC/ytcSLmCkL8WPhJy?=
- =?us-ascii?Q?o67RBbOdoyBUFf0p/iyK2GqvR42wDFDxtyGqpJ3Gan48xa75054wHHVRvsD8?=
- =?us-ascii?Q?cps0ATfsWGbxKzmzSqnHrfyKFYC5RxPBOQOJEKvoSVXofn4pdXZ3Zpg/YnEm?=
- =?us-ascii?Q?qWWjwsQxEbh92/uF/sMtE8567Qv9lmkrocAfNytPm3WGUmW827i/5Gfq6U3n?=
- =?us-ascii?Q?Kn12iTkqRGav1Arb7lRGSbFBWUCd9kc37iO4S+YB/ZB/2arCdW/Rld4fiDol?=
- =?us-ascii?Q?aZK+xaIV7SXEfy31n3/7nrUfo5io3fCp6C1qOWRpR73BFwxCD8lQF2VpdJCd?=
- =?us-ascii?Q?Ik6dT8+ZtbUb9xc+WmkTJzaQ/0K6Iicsj5xjKy8wzmjicniWE6To2fzUVdA4?=
- =?us-ascii?Q?nC+lP05kNSSy72KpTkJviFnfLxro79jnbhLDvUEL7lQgalSxxhEuzTfBmJ0+?=
- =?us-ascii?Q?gdcmVvtWB+QHDjSom9CtP0qrR4SnRuGni2OP+V8OIwya/iUAJjBQsil/CrB7?=
- =?us-ascii?Q?L+JNS2WTVw+pYARRHzmVIrkakd2dXXOebi+N6KV60NaxQHFFw+Iqt7XsBZ10?=
- =?us-ascii?Q?DmqTbM5wgTU1Dc5ZkUlzxoicO/i20P2reA+hfj6cZnoDM2Lso1smD2h6ICpG?=
- =?us-ascii?Q?N4fT8XCwHz9vcN4Gr8VcVQP+uJNZc0w/BxO4NGSaVl1GPeBpN917kMB2i/Dz?=
- =?us-ascii?Q?Di20LgRUH78QZOmlnVQqu/y05qlT39Iu2vMrXthuVCDntRSyDdfzMad7vNfM?=
- =?us-ascii?Q?JqrPdaPuuaN2uyn8/tCDiYv5zgJXk/m8pGvUvj8dpAPTxJPLNzXfowEHeOv0?=
- =?us-ascii?Q?7WQRhkG42RLG1fkkdSxjQyJWul7cuZt6eQqIQYJHs/EGwJzHh0dALnfAbBSH?=
- =?us-ascii?Q?2mIMe55cMoB3N5J+kWuv5pFOoZ5wEidb61Oo7Tp6LXudqH8J1vmbStFq+sAz?=
- =?us-ascii?Q?Bm17rCfQsZOVXXNV826fy3rl+mZCoyTDxNsYWB29q5qhODjiEoGnq+VsmaLh?=
- =?us-ascii?Q?wQq46VcdRS3kHw2cFqtE+jie1YS2v/NqcsgUKKYAQ+G4F+fXD0Yrpdp8QufM?=
- =?us-ascii?Q?HTdIuf0lqSz+87tisoeU0GqIe5ZnpRsw6gihk3OMm/JZo1uf9Nf6WTgrbeiv?=
- =?us-ascii?Q?g7LGXXKcyYA4oVilk4DTWah0bjVfv61UTcxknPoqhTjSVwkm36QHWWNOWsbZ?=
- =?us-ascii?Q?NEe6PId9+lDkk+Irm9dIAiVDjtRxdxPmuka1I9vwweyqPr5sucNdEJDVIHES?=
- =?us-ascii?Q?AuoQtxXnjEStwWMFlsI9PiEQf6uvAJHRBJ/BoCIuaKssngOzRnURrMiU5CCS?=
- =?us-ascii?Q?OXcR2RbP6/A3XmTenElmcrk1pHsToMHTdqFRw9hKeH+/EY8x39woyOhaB8Eh?=
- =?us-ascii?Q?QeLn8gBKO/G7h9acFFibB1dPuf7IVDr/pfhZibpZ2G3u2Laxt6ky0KRoWbMq?=
- =?us-ascii?Q?Wx0xI8Z0xn+D0DDbrIPraJqSlA7wbVOS60FzYQV7cEuU8gAT8p4yxw=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(19092799006)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?o7vZIphq01OaiJPtOKDC/zNDT5kZBgG9+APJmzDzq1B2S7KdL/VEdVi3XxqJ?=
- =?us-ascii?Q?ynjx2+E1wuwg6V8SYoSbcKrxZkJ8C8yAi4lI5uEj7K7P3BQdfAW6VfJ353jS?=
- =?us-ascii?Q?IpydNYp8ApNz3pk1wczfVJz22UiT2X0ak/ggXeSz2wLe9ASIKWJuI4X/uqrd?=
- =?us-ascii?Q?vWUnuvI6142crLBOccZ4UbLxwiG7w0yOvJ26dlCkwVV3oPY44pMAeJ9ezmHO?=
- =?us-ascii?Q?3sgOtS7V6iScccWeyrjRrZEgO6sEe3x/45Xw74KyOJNsxt99Wo5M0bKLLB/o?=
- =?us-ascii?Q?8euwL+g34JXSUjf29ysAtQsEEtYbakRkIaajpORL2LS8U3bswRPZRdljk7DD?=
- =?us-ascii?Q?jNNIqjrDKByu6APR7GqH4tvyDM7zi7YCm4rgZpGggIJucJtICC2Qzp8lOPtO?=
- =?us-ascii?Q?pdLzgn3wPo/SygZBW7WJ20fsEphP2eOpOs6AoqNKzVEAyftHFc48dMcBa7Ta?=
- =?us-ascii?Q?NePMalDk2oLFzDRAfb6saxYXOKZSVCltIzr15jI4jtKlK4SrTYgjAWtcpk0R?=
- =?us-ascii?Q?enfLFo+BPnYiaLy4lHQGNVwn1KpJo/cKehR0RWrIFlItK6VW4T1ywwlDHyok?=
- =?us-ascii?Q?GJfh8TkW6iyjA0aB8QnTpbtEwjTHsQZlrVNtMgup/hxZsftEAjct0xIOr8Xm?=
- =?us-ascii?Q?v+bEJl5jEx/9WY+n0MoraNe0o3pyz2CCHktJrQvyTYy8P8gUbnXksucK/xrt?=
- =?us-ascii?Q?IW6azf/pQaHeuqecj16ZwHQHLU7DNWYyzZMsPg3sQ+S1yV8slmXfpqlutI/Y?=
- =?us-ascii?Q?kUooNtMK1snPGAzjipGWJD3x4p5soba6N2fTB+svdOVU2fB6vGx52GyTaavX?=
- =?us-ascii?Q?XdmT2jBFcM/KybyULb2HrK4xnC7jFpl+9LFtBPLFG93+DYA0ko0DVD5Z8Y+v?=
- =?us-ascii?Q?BD2fCjpfmOdj3hxhZK19qqHYF09wflz9tLk3bY8W46kUO6KI7oxFIyoWz9EN?=
- =?us-ascii?Q?fl47Koh6R7FeRdS7hITPInGoNPxYaEcoXqVS+QLskLJQJqEKpQFeQkm8ZFHw?=
- =?us-ascii?Q?bDOckLSpQh2F7OWKo63uXWc/UnkwzWAXPgUN3YHy531ssx1QZs/kVzGPkK4c?=
- =?us-ascii?Q?qxwU6YujBF5ChHNoBMdFznYWt/Ndz5WOlONG9eWbCtp4hS4vOU7wmErOfEvb?=
- =?us-ascii?Q?lcf6vrPnPmcQjhQQ9NrB1qsiVAFwTWiDMQVEW7q5hqnOLHM3DDNqlsFMnsrQ?=
- =?us-ascii?Q?DaxQr6tQGf6pdeCiJfavq767BUPfJkeoAy1nNgst8wQJ9NieS3kRxzeQ1AQU?=
- =?us-ascii?Q?z7LQxwgLIDcluAchMXMUXdxN+4twKEK4/Ts+cK1Opd47FYpV3qxY+Olu8Ogd?=
- =?us-ascii?Q?oHPb9QASN0MSI0TzorwycxGtHucKVKP4L1VKs1AfQgODx9t3bHDwdz628pSH?=
- =?us-ascii?Q?LimXBeetDbY1BKs87YtFRvm/U+GIDcuhB9mbS+8nHRihttrSXsdXdGRP+lDb?=
- =?us-ascii?Q?CUKIbGNUO7J1NF4GQ6nQ7zSLoncf3m4yb4Ia3O9G8EN9X2cOLNZAhqrowcCZ?=
- =?us-ascii?Q?DfWhJLGUlxbxGy65h+SZJfRQRuR0qJmJvS883Sr7fktZIGA7zAqrH7fnLkci?=
- =?us-ascii?Q?+1uxSugdnI+w+vFUb+M=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 21 Jul
+ 2025 14:01:36 +0800
+Received: from git-send.richtek.com (192.168.10.154) by ex4.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
+ Transport; Mon, 21 Jul 2025 14:01:36 +0800
+From: <jeff_chang@richtek.com>
+To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+CC: <jeff_chang@richtek.com>
+Subject: [PATCH v3 1/2] regulator: rt5133: Add RT5133 PMIC regulator Support
+Date: Mon, 21 Jul 2025 14:01:34 +0800
+Message-ID: <20250721060215.2718217-1-jeff_chang@richtek.com>
+X-Mailer: git-send-email 2.43.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 516adcb2-3cc1-432d-4ed5-08ddc81bf252
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jul 2025 06:00:51.1106
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AgFouE9uL98uAbALMCnL8ZYluukObzU8LQX5QrKFO3rxm6Ts4++s9W7kYMKF3g3D/LRUr7F5240OwXckhMQJSQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB9838
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-> > > > > timestamper:	provides control node reference and
-> > > > > 			the port channel within the IP core
-> > > > >
-> > > > > The "timestamper" property lives in a phy node and links a time
-> > > > > stamping channel from the controller device to that phy's MII bus=
-.
-> > > > >
-> > > > > But for NETC, we only need the node parameter, and this property =
-is
-> > > > > added to the MAC node.
-> > > >
-> > > > I think we do not understand each other. I ask if this is the
-> > > > timestamper and you explain about arguments of the phandle. The
-> > > > arguments are not relevant.
-> > > >
-> > > > What is this purpose/role/function of the timer device?
-> > >
-> > > The timer device provides PHC with nanosecond resolution, so the
-> > > ptp_netc driver provides interfaces to adjust the PHC, and this PHC
-> > > is used by the ENETC device, so that the ENECT can capture the
-> > > timestamp of the packets.
-> > >
-> > > >
-> > > > What is the purpose of this new property in the binding here?
-> > > >
-> > >
-> > > This property is to allow the ENETC to find the timer device that is
-> > > physically bound to it. so that ENETC can perform PTP synchronization
-> > > with other network devices.
-> >
-> >
-> > Looks exactly how existing timestamper property is described.
-> >
-> > If this is not timestamper then probably someone with better domain
-> > knowledge should explain it clearly, so I will understand why it is not
-> > timestamper and what is the timestamper property. Then you should think
-> > if you need new generic binding for it, IOW, whether this is typical
-> > problem you solve here or not, and add such binding if needed.
-> >
-> > Maybe there is another property describing a time provider in the
-> > kernel or dtschema. Please look for it. This all looks like you are
-> > implementing typical use case in non-typical, but vendor-like, way.
-> >
-> > Best regards,
-> > Krzysztof
->=20
-> An MII timestamper and a PTP clock (as integrated in a MAC or a PHY) are
-> similar but have some notable differences.
->=20
-> A timestamper is an external device with a free-running counter, which
-> sniffs the MII bus between the MAC and the PHY, and provides timestamps
-> when the first octet of a packet hits the wire.
->=20
-> A PTP clock is also a high precision counter, which can be free-running
-> or it can be precisely adjusted. It does not have packet timestamping
-> capabilities itself, instead the Ethernet MAC can snapshot this counter
-> when it places the first octet of a packet on the MII bus. PTP clocks
-> frequently have other auxiliary functions, like emitting external
-> signals based on the internal time, or snapshotting external signals.
->=20
-> The timestamper is not required to have these functions. In fact, I am
-> looking at ptp_ines.c, the only non-PHY MII timestamper supported by the
-> kernel, and I am noting the fact that it does not call ptp_clock_register=
-()
-> at all, presumably because it has no controllable PTP clock to speak of.
->=20
-> That being said, my understanding is based on analyzing the public code
-> available to me, and I do not have practical experience with MII bus
-> snooping devices, so if Richard could chime in, it would be great.
->=20
-> I am also in favor of using the "ptp-timer" phandle to describe the link
-> between the MAC and the internal PTP clock that will be snapshot when
-> taking packet timestamps. The fman-dtsec.yaml schema also uses it for an
-> identical purpose.
+From: Jeff Chang <jeff_chang@richtek.com>
 
-Hi Vladimir,
+RT5133 is an intefrated chip. It includes 8 LDOs and 3 GPOs that
+can be used to drive output high/low purpose. The dependency of the
+GPO block is internally LDO1 Voltage. If LDO1 voltage output disabled,
+GPO cannot be used to drive output high. It need to pay more attention
+on the usage.
 
-Thanks for the detailed explanation, I think so too, but my previous
-explanation was not as convincing and professional as yours, many thanks.
+Signed-off-by: Jeff Chang <jeff_chang@richtek.com>
+---
 
-I am not aware of any similar cases before. Thank you for pointing out the
-"ptp-timer" property. And I also find the "ptimer-handle" in fsl,fman.yaml,
-which has the same purpose as "ptp-timer". Actually, these two properties
-are exactly the property I want.  And I think this is exactly what Krzyszto=
-f
-said, use existing properties instead of adding new properties customized
-by the vendor to implement a typical use case.
+PATCH v3:
+1. Fix typo intefrated -> integrated
+2. Remove yaml file
+3. Remove soft-start-time-sel property
+4. Remove GPL-4.0, using GPL-2.0
+5. Using C++ comment
+6. Using standard dev_dbg
+7. Remove driver version
+8. Using dev_dbg for base event occured. And return IRQ_HANDLED 9. Because of CRC8 for IO, we don't use cache for regmap_config 10. Remove tracing logs. 
+11. Set can_sleep = true for gpio operations. 
+12. Kconfig add depends on OF
+	
+
+ drivers/regulator/Kconfig            |  13 +
+ drivers/regulator/Makefile           |   1 +
+ drivers/regulator/rt5133-regulator.c | 624 +++++++++++++++++++++++++++
+ 3 files changed, 638 insertions(+)
+ create mode 100644 drivers/regulator/rt5133-regulator.c
+
+diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+index 6d8988387da4..2e0c35449fcb 100644
+--- a/drivers/regulator/Kconfig
++++ b/drivers/regulator/Kconfig
+@@ -1229,6 +1229,19 @@ config REGULATOR_RT5120
+ 	  600mV to 1395mV, per step 6.250mV. The others are all fixed voltage
+ 	  by external hardware circuit.
+ 
++config REGULATOR_RT5133
++	tristate "Richtek RT5133 PMIC Regulators"
++	depends on I2C && GPIOLIB && OF
++	select REGMAP
++	select CRC8
++	select OF_GPIO
++	help
++	  RT5133 is an integrated chip. It includes 8 LDOs and 3 GPOs that
++	  can be used to drive output high/low purpose. The dependency of the
++	  GPO block is internally LDO1 Voltage. If LDO1 voltage output disabled,
++	  GPO cannot be used to drive output high. It need to pay more attention
++	  on the usage.
++
+ config REGULATOR_RT5190A
+ 	tristate "Richtek RT5190A PMIC"
+ 	depends on I2C
+diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+index c0bc7a0f4e67..709384ae0a0c 100644
+--- a/drivers/regulator/Makefile
++++ b/drivers/regulator/Makefile
+@@ -145,6 +145,7 @@ obj-$(CONFIG_REGULATOR_RT4803)	+= rt4803.o
+ obj-$(CONFIG_REGULATOR_RT4831)	+= rt4831-regulator.o
+ obj-$(CONFIG_REGULATOR_RT5033)	+= rt5033-regulator.o
+ obj-$(CONFIG_REGULATOR_RT5120)	+= rt5120-regulator.o
++obj-$(CONFIG_REGULATOR_RT5133)	+= rt5133-regulator.o
+ obj-$(CONFIG_REGULATOR_RT5190A) += rt5190a-regulator.o
+ obj-$(CONFIG_REGULATOR_RT5739)	+= rt5739.o
+ obj-$(CONFIG_REGULATOR_RT5759)	+= rt5759-regulator.o
+diff --git a/drivers/regulator/rt5133-regulator.c b/drivers/regulator/rt5133-regulator.c
+new file mode 100644
+index 000000000000..7c5792b1f067
+--- /dev/null
++++ b/drivers/regulator/rt5133-regulator.c
+@@ -0,0 +1,624 @@
++// SPDX-License-Identifier: GPL-2.0
++// Copyright (C) 2025 Richtek Technology Corp.
++// Author: ChiYuan Huang <cy_huang@richtek.com>
++// Author: ShihChia Chang <jeff_chang@richtek.com>
++
++#include <linux/crc8.h>
++#include <linux/delay.h>
++#include <linux/gpio/consumer.h>
++#include <linux/gpio/driver.h>
++#include <linux/i2c.h>
++#include <linux/interrupt.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/regmap.h>
++#include <linux/regulator/driver.h>
++
++#define RT5133_REG_CHIP_INFO		0x00
++#define RT5133_REG_RST_CTRL		0x06
++#define RT5133_REG_BASE_CTRL		0x09
++#define RT5133_REG_GPIO_CTRL		0x0B
++#define RT5133_REG_BASE_EVT		0x10
++#define RT5133_REG_BASE_MASK		0x16
++#define RT5133_REG_LDO_SHDN		0x19
++#define RT5133_REG_LDO1_CTRL1		0x20
++#define RT5133_REG_LDO1_CTRL2		0x21
++#define RT5133_REG_LDO1_CTRL3		0x22
++#define RT5133_REG_LDO2_CTRL1		0x24
++#define RT5133_REG_LDO2_CTRL2		0x25
++#define RT5133_REG_LDO2_CTRL3		0x26
++#define RT5133_REG_LDO3_CTRL1		0x28
++#define RT5133_REG_LDO3_CTRL2		0x29
++#define RT5133_REG_LDO3_CTRL3		0x2A
++#define RT5133_REG_LDO4_CTRL1		0x2C
++#define RT5133_REG_LDO4_CTRL2		0x2D
++#define RT5133_REG_LDO4_CTRL3		0x2E
++#define RT5133_REG_LDO5_CTRL1		0x30
++#define RT5133_REG_LDO5_CTRL2		0x31
++#define RT5133_REG_LDO5_CTRL3		0x32
++#define RT5133_REG_LDO6_CTRL1		0x34
++#define RT5133_REG_LDO6_CTRL2		0x35
++#define RT5133_REG_LDO6_CTRL3		0x36
++#define RT5133_REG_LDO7_CTRL1		0x38
++#define RT5133_REG_LDO7_CTRL2		0x39
++#define RT5133_REG_LDO7_CTRL3		0x3A
++#define RT5133_REG_LDO8_CTRL1		0x3C
++#define RT5133_REG_LDO8_CTRL2		0x3D
++#define RT5133_REG_LDO8_CTRL3		0x3E
++#define RT5133_REG_LDO8_CTRL4		0x3F
++
++#define RT5133_LDO_REG_BASE(_id)	(0x20 + ((_id) - 1) * 4)
++
++#define RT5133_VENDOR_ID_MASK		GENMASK(7, 4)
++#define RT5133_RESET_CODE		0xB1
++
++#define RT5133_FOFF_BASE_MASK		BIT(1)
++#define RT5133_OCSHDN_ALL_MASK		BIT(7)
++#define RT5133_OCSHDN_ALL_SHIFT		(7)
++#define RT5133_PGBSHDN_ALL_MASK		BIT(6)
++#define RT5133_PGBSHDN_ALL_SHIFT	(6)
++
++#define RT5133_OCPTSEL_MASK		BIT(5)
++#define RT5133_PGBPTSEL_MASK		BIT(4)
++#define RT5133_STBTDSEL_MASK		GENMASK(1, 0)
++
++#define RT5133_LDO_ENABLE_MASK		BIT(7)
++#define RT5133_LDO_VSEL_MASK		GENMASK(7, 5)
++#define RT5133_LDO_AD_MASK		BIT(2)
++#define RT5133_LDO_SOFT_START_MASK	GENMASK(1, 0)
++
++#define RT5133_GPIO_NR			3
++
++#define RT5133_LDO_PGB_EVT_MASK		GENMASK(23, 16)
++#define RT5133_LDO_PGB_EVT_SHIFT	16
++#define RT5133_LDO_OC_EVT_MASK		GENMASK(15, 8)
++#define RT5133_LDO_OC_EVT_SHIFT		8
++#define RT5133_VREF_EVT_MASK		BIT(6)
++#define RT5133_BASE_EVT_MASK		GENMASK(7, 0)
++#define RT5133_INTR_CLR_MASK		GENMASK(23, 0)
++#define RT5133_INTR_BYTE_NR		3
++
++#define RT5133_MAX_I2C_BLOCK_SIZE	1
++
++#define RT5133_CRC8_POLYNOMIAL		0x7
++
++#define RT5133_I2C_ADDR_LEN		1
++#define RT5133_PREDATA_LEN		2
++#define RT5133_I2C_CRC_LEN		1
++#define RT5133_REG_ADDR_LEN		1
++#define RT5133_I2C_DUMMY_LEN		1
++
++#define I2C_ADDR_XLATE_8BIT(_addr, _rw)	((((_addr) & 0x7F) << 1) | (_rw))
++
++enum {
++	RT5133_REGULATOR_BASE = 0,
++	RT5133_REGULATOR_LDO1,
++	RT5133_REGULATOR_LDO2,
++	RT5133_REGULATOR_LDO3,
++	RT5133_REGULATOR_LDO4,
++	RT5133_REGULATOR_LDO5,
++	RT5133_REGULATOR_LDO6,
++	RT5133_REGULATOR_LDO7,
++	RT5133_REGULATOR_LDO8,
++	RT5133_REGULATOR_MAX
++};
++
++struct chip_data {
++	const struct regulator_desc *regulators;
++	const u8 vendor_id;
++};
++
++struct rt5133_priv {
++	struct device *dev;
++	struct regmap *regmap;
++	struct gpio_desc *enable_gpio;
++	struct regulator_dev *rdev[RT5133_REGULATOR_MAX];
++	struct gpio_chip gc;
++	const struct chip_data *cdata;
++	unsigned int gpio_output_flag;
++	u8 crc8_tbls[CRC8_TABLE_SIZE];
++};
++
++static const unsigned int vout_type1_tables[] = {
++	1800000, 2500000, 2700000, 2800000, 2900000, 3000000, 3100000, 3200000
++};
++
++static const unsigned int vout_type2_tables[] = {
++	1700000, 1800000, 1900000, 2500000, 2700000, 2800000, 2900000, 3000000
++};
++
++static const unsigned int vout_type3_tables[] = {
++	900000, 950000, 1000000, 1050000, 1100000, 1150000, 1200000, 1800000
++};
++
++static const unsigned int vout_type4_tables[] = {
++	855000, 900000, 950000, 1000000, 1040000, 1090000, 1140000, 1710000
++};
++
++static const struct regulator_ops rt5133_regulator_ops = {
++	.list_voltage = regulator_list_voltage_table,
++	.set_voltage_sel = regulator_set_voltage_sel_regmap,
++	.get_voltage_sel = regulator_get_voltage_sel_regmap,
++	.enable = regulator_enable_regmap,
++	.disable = regulator_disable_regmap,
++	.is_enabled = regulator_is_enabled_regmap,
++	.set_active_discharge = regulator_set_active_discharge_regmap,
++};
++
++static const struct regulator_ops rt5133_base_regulator_ops = {
++	.enable = regulator_enable_regmap,
++	.disable = regulator_disable_regmap,
++	.is_enabled = regulator_is_enabled_regmap,
++};
++
++static int rt5133_of_parse_cb(struct device_node *node,
++			      const struct regulator_desc *desc,
++			      struct regulator_config *config)
++{
++	struct rt5133_priv *priv = config->driver_data;
++	unsigned int val = 0;
++	int ret = 0;
++
++	switch (desc->id) {
++	case RT5133_REGULATOR_BASE:
++		if (!of_property_read_bool(node, "oc-shutdown-all"))
++			val = 0;
++		else
++			val = 1 << RT5133_OCSHDN_ALL_SHIFT;
++		ret = regmap_update_bits(priv->regmap, RT5133_REG_LDO_SHDN,
++					 RT5133_OCSHDN_ALL_MASK, val);
++		if (ret)
++			return ret;
++
++		if (!of_property_read_bool(node, "pgb-shutdown-all"))
++			val = 0;
++		else
++			val = 1 << RT5133_PGBSHDN_ALL_SHIFT;
++		return regmap_update_bits(priv->regmap, RT5133_REG_LDO_SHDN,
++					  RT5133_PGBSHDN_ALL_MASK, val);
++	default:
++		break;
++	};
++
++	return 0;
++}
++
++#define RT5133_REGULATOR_DESC(_name, vtables, _supply) \
++{\
++	.name = #_name,\
++	.id = RT5133_REGULATOR_##_name,\
++	.of_match = of_match_ptr(#_name),\
++	.regulators_node = of_match_ptr("regulators"),\
++	.supply_name = _supply,\
++	.of_parse_cb = rt5133_of_parse_cb,\
++	.type = REGULATOR_VOLTAGE,\
++	.owner = THIS_MODULE,\
++	.ops = &rt5133_regulator_ops,\
++	.n_voltages = ARRAY_SIZE(vtables),\
++	.volt_table = vtables,\
++	.enable_reg = RT5133_REG_##_name##_CTRL1,\
++	.enable_mask = RT5133_LDO_ENABLE_MASK,\
++	.vsel_reg = RT5133_REG_##_name##_CTRL2,\
++	.vsel_mask = RT5133_LDO_VSEL_MASK,\
++	.active_discharge_reg = RT5133_REG_##_name##_CTRL3,\
++	.active_discharge_mask = RT5133_LDO_AD_MASK,\
++}
++
++static const struct regulator_desc rt5133_regulators[] = {
++	/* For digital part, base current control */
++	{
++		.name = "rt5133,base",
++		.id = RT5133_REGULATOR_BASE,
++		.of_match = of_match_ptr("BASE"),
++		.regulators_node = of_match_ptr("regulators"),
++		.of_parse_cb = rt5133_of_parse_cb,
++		.type = REGULATOR_VOLTAGE,
++		.owner = THIS_MODULE,
++		.ops = &rt5133_base_regulator_ops,
++		.enable_reg = RT5133_REG_BASE_CTRL,
++		.enable_mask = RT5133_FOFF_BASE_MASK,
++		.enable_is_inverted = true,
++	},
++	RT5133_REGULATOR_DESC(LDO1, vout_type1_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO2, vout_type1_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO3, vout_type2_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO4, vout_type2_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO5, vout_type2_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO6, vout_type2_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO7, vout_type3_tables, "rt5133-ldo1"),
++	RT5133_REGULATOR_DESC(LDO8, vout_type3_tables, "rt5133-ldo1"),
++};
++
++static const struct regulator_desc rt5133a_regulators[] = {
++	/* For digital part, base current control */
++	{
++		.name = "rt5133,base",
++		.id = RT5133_REGULATOR_BASE,
++		.of_match = of_match_ptr("BASE"),
++		.regulators_node = of_match_ptr("regulators"),
++		.of_parse_cb = rt5133_of_parse_cb,
++		.type = REGULATOR_VOLTAGE,
++		.owner = THIS_MODULE,
++		.ops = &rt5133_base_regulator_ops,
++		.enable_reg = RT5133_REG_BASE_CTRL,
++		.enable_mask = RT5133_FOFF_BASE_MASK,
++		.enable_is_inverted = true,
++	},
++	RT5133_REGULATOR_DESC(LDO1, vout_type1_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO2, vout_type1_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO3, vout_type2_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO4, vout_type2_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO5, vout_type2_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO6, vout_type2_tables, "rt5133,base"),
++	RT5133_REGULATOR_DESC(LDO7, vout_type3_tables, "rt5133-ldo1"),
++	RT5133_REGULATOR_DESC(LDO8, vout_type4_tables, "rt5133-ldo1"),
++};
++
++static const struct chip_data regulator_data[] = {
++	{ rt5133_regulators, 0x70},
++	{ rt5133a_regulators, 0x80},
++};
++
++static int rt5133_gpio_direction_output(struct gpio_chip *gpio,
++					unsigned int offset, int value)
++{
++	struct rt5133_priv *priv = gpiochip_get_data(gpio);
++
++	if (offset >= RT5133_GPIO_NR)
++		return -EINVAL;
++
++	return regmap_update_bits(priv->regmap, RT5133_REG_GPIO_CTRL,
++				  BIT(7 - offset) | BIT(3 - offset),
++				  value ? BIT(7 - offset) | BIT(3 - offset) : 0);
++}
++
++static int rt5133_gpio_get(struct gpio_chip *chip, unsigned int offset)
++{
++	struct rt5133_priv *priv = gpiochip_get_data(chip);
++
++	return !!(priv->gpio_output_flag & BIT(offset));
++}
++
++static int rt5133_get_gpioen_mask(unsigned int offset, unsigned int *mask)
++{
++	if (offset >= RT5133_GPIO_NR)
++		return -EINVAL;
++
++	*mask = (BIT(7 - offset) | BIT(3 - offset));
++
++	return 0;
++}
++
++static void rt5133_gpio_set(struct gpio_chip *chip, unsigned int offset,
++			    int set_val)
++{
++	struct rt5133_priv *priv = gpiochip_get_data(chip);
++	unsigned int mask = 0, val = 0, next_flag = priv->gpio_output_flag;
++	int ret = 0;
++
++	ret = rt5133_get_gpioen_mask(offset, &mask);
++	if (ret) {
++		dev_err(priv->dev, "%s get gpion en mask failed, offset(%d)\n", __func__, offset);
++		return;
++	}
++
++	val = set_val ? mask : 0;
++
++	if (set_val)
++		next_flag |= BIT(offset);
++	else
++		next_flag &= ~BIT(offset);
++
++	ret = regmap_update_bits(priv->regmap, RT5133_REG_GPIO_CTRL, mask, val);
++	if (ret) {
++		dev_err(priv->dev, "Failed to set gpio [%d] val %d\n", offset,
++			set_val);
++		return;
++	}
++
++	priv->gpio_output_flag = next_flag;
++}
++
++static irqreturn_t rt5133_intr_handler(int irq_number, void *data)
++{
++	struct rt5133_priv *priv = data;
++	u32 intr_evts = 0, handle_evts;
++	int i, ret;
++
++	ret = regmap_bulk_read(priv->regmap, RT5133_REG_BASE_EVT, &intr_evts,
++			       RT5133_INTR_BYTE_NR);
++	if (ret) {
++		dev_err(priv->dev, "%s, read event failed\n", __func__);
++		return IRQ_HANDLED;
++	}
++
++	handle_evts = intr_evts & RT5133_BASE_EVT_MASK;
++	/*
++	 * VREF_EVT is a special case, if base off
++	 * this event will also be trigger. Skip it
++	 */
++	if (handle_evts & ~RT5133_VREF_EVT_MASK)
++		dev_dbg(priv->dev, "base event occurred [0x%02x]\n",
++			handle_evts);
++
++	handle_evts = (intr_evts & RT5133_LDO_OC_EVT_MASK) >>
++		RT5133_LDO_OC_EVT_SHIFT;
++
++	for (i = RT5133_REGULATOR_LDO1; i < RT5133_REGULATOR_MAX && handle_evts; i++) {
++		if (!(handle_evts & BIT(i - 1)))
++			continue;
++		regulator_notifier_call_chain(priv->rdev[i],
++					      REGULATOR_EVENT_OVER_CURRENT,
++					      &i);
++	}
++
++	handle_evts = (intr_evts & RT5133_LDO_PGB_EVT_MASK) >>
++		RT5133_LDO_PGB_EVT_SHIFT;
++	for (i = RT5133_REGULATOR_LDO1; i < RT5133_REGULATOR_MAX && handle_evts; i++) {
++		if (!(handle_evts & BIT(i - 1)))
++			continue;
++		regulator_notifier_call_chain(priv->rdev[i],
++					      REGULATOR_EVENT_FAIL, &i);
++	}
++
++	ret = regmap_bulk_write(priv->regmap, RT5133_REG_BASE_EVT, &intr_evts,
++				RT5133_INTR_BYTE_NR);
++	if (ret)
++		dev_err(priv->dev, "%s, clear event failed\n", __func__);
++
++	return IRQ_HANDLED;
++}
++
++static int rt5133_enable_interrupts(int irq_no, struct rt5133_priv *priv)
++{
++	u32 mask = RT5133_INTR_CLR_MASK;
++	int ret;
++
++	/* Force to write clear all events */
++	ret = regmap_bulk_write(priv->regmap, RT5133_REG_BASE_EVT, &mask,
++				RT5133_INTR_BYTE_NR);
++	if (ret) {
++		dev_err(priv->dev, "Failed to clear all interrupts\n");
++		return ret;
++	}
++
++	/* Unmask all interrupts */
++	mask = 0;
++	ret = regmap_bulk_write(priv->regmap, RT5133_REG_BASE_MASK, &mask,
++				RT5133_INTR_BYTE_NR);
++	if (ret) {
++		dev_err(priv->dev, "Failed to unmask all interrupts\n");
++		return ret;
++	}
++
++	return devm_request_threaded_irq(priv->dev, irq_no, NULL,
++					 rt5133_intr_handler, IRQF_ONESHOT,
++					 dev_name(priv->dev), priv);
++}
++
++static int rt5133_regmap_hw_read(void *context, const void *reg_buf,
++				 size_t reg_size, void *val_buf,
++				 size_t val_size)
++{
++	struct rt5133_priv *priv = context;
++	struct i2c_client *client = to_i2c_client(priv->dev);
++	u8 reg = *(u8 *)reg_buf, crc;
++	u8 *buf;
++	int buf_len = RT5133_PREDATA_LEN + val_size + RT5133_I2C_CRC_LEN;
++	int read_len, ret;
++
++	buf = kzalloc(buf_len, GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++
++	buf[0] = I2C_ADDR_XLATE_8BIT(client->addr, I2C_SMBUS_READ);
++	buf[1] = reg;
++
++	read_len = val_size + RT5133_I2C_CRC_LEN;
++	ret = i2c_smbus_read_i2c_block_data(client, reg, read_len,
++					    buf + RT5133_PREDATA_LEN);
++
++	if (ret < 0)
++		goto out_read_err;
++
++	if (ret != read_len) {
++		ret = -EIO;
++		goto out_read_err;
++	}
++
++	crc = crc8(priv->crc8_tbls, buf, RT5133_PREDATA_LEN + val_size, 0);
++	if (crc != buf[RT5133_PREDATA_LEN + val_size]) {
++		ret = -EIO;
++		goto out_read_err;
++	}
++
++	memcpy(val_buf, buf + RT5133_PREDATA_LEN, val_size);
++	dev_dbg(priv->dev, "reg = 0x%02x, data = 0x%02x\n", reg, *(u8 *)val_buf);
++
++out_read_err:
++	kfree(buf);
++	return (ret < 0) ? ret : 0;
++}
++
++static int rt5133_regmap_hw_write(void *context, const void *data, size_t count)
++{
++	struct rt5133_priv *priv = context;
++	struct i2c_client *client = to_i2c_client(priv->dev);
++	u8 reg = *(u8 *)data, crc;
++	u8 *buf;
++	int buf_len = RT5133_I2C_ADDR_LEN + count + RT5133_I2C_CRC_LEN +
++		RT5133_I2C_DUMMY_LEN;
++	int write_len, ret;
++
++	buf = kzalloc(buf_len, GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++
++	buf[0] = I2C_ADDR_XLATE_8BIT(client->addr, I2C_SMBUS_WRITE);
++	buf[1] = reg;
++	memcpy(buf + RT5133_PREDATA_LEN, data + RT5133_REG_ADDR_LEN,
++	       count - RT5133_REG_ADDR_LEN);
++
++	crc = crc8(priv->crc8_tbls, buf, RT5133_I2C_ADDR_LEN + count, 0);
++	buf[RT5133_I2C_ADDR_LEN + count] = crc;
++
++	write_len = count - RT5133_REG_ADDR_LEN + RT5133_I2C_CRC_LEN +
++		RT5133_I2C_DUMMY_LEN;
++	ret = i2c_smbus_write_i2c_block_data(client, reg, write_len,
++					     buf + RT5133_PREDATA_LEN);
++
++	dev_dbg(priv->dev, "reg = 0x%02x, data = 0x%02x\n", reg,
++		*(u8 *)(buf + RT5133_PREDATA_LEN));
++	kfree(buf);
++	return ret;
++}
++
++static const struct regmap_bus rt5133_regmap_bus = {
++	.read = rt5133_regmap_hw_read,
++	.write = rt5133_regmap_hw_write,
++	/* Due to crc, the block read/write length has the limit */
++	.max_raw_read = RT5133_MAX_I2C_BLOCK_SIZE,
++	.max_raw_write = RT5133_MAX_I2C_BLOCK_SIZE,
++};
++
++// Due to crc, cache is not necessary
++static const struct regmap_config rt5133_regmap_config = {
++	.reg_bits = 8,
++	.val_bits = 8,
++	.max_register = RT5133_REG_LDO8_CTRL4,
++};
++
++static int rt5133_chip_reset(struct rt5133_priv *priv)
++{
++	int ret;
++
++	ret = regmap_write(priv->regmap, RT5133_REG_RST_CTRL,
++			   RT5133_RESET_CODE);
++	if (ret)
++		return ret;
++
++	/* Wait for register reset to take effect */
++	udelay(2);
++
++	return 0;
++}
++
++static int rt5133_validate_vendor_info(struct rt5133_priv *priv)
++{
++	unsigned int val = 0;
++	int i, ret;
++
++	ret = regmap_read(priv->regmap, RT5133_REG_CHIP_INFO, &val);
++	if (ret)
++		return ret;
++
++	for (i = 0; i < ARRAY_SIZE(regulator_data); i++) {
++		if ((val & RT5133_VENDOR_ID_MASK) ==
++						regulator_data[i].vendor_id){
++			priv->cdata = &regulator_data[i];
++			break;
++		}
++	}
++	if (IS_ERR(priv->cdata)) {
++		dev_err(priv->dev, "Failed to find regualtor match version\n");
++		return -ENODEV;
++	}
++
++	return 0;
++}
++
++static int rt5133_probe(struct i2c_client *i2c)
++{
++	struct rt5133_priv *priv;
++	struct regulator_config config = {0};
++	int i, ret;
++
++	priv = devm_kzalloc(&i2c->dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	priv->dev = &i2c->dev;
++	crc8_populate_msb(priv->crc8_tbls, RT5133_CRC8_POLYNOMIAL);
++
++	priv->enable_gpio = devm_gpiod_get_optional(&i2c->dev, "enable",
++						    GPIOD_OUT_HIGH);
++	if (IS_ERR(priv->enable_gpio))
++		dev_err(&i2c->dev, "Failed to request HWEN gpio, check if default en=high\n");
++
++	priv->regmap = devm_regmap_init(&i2c->dev, &rt5133_regmap_bus, priv,
++					&rt5133_regmap_config);
++	if (IS_ERR(priv->regmap)) {
++		dev_err(&i2c->dev, "Failed to register regmap\n");
++		return PTR_ERR(priv->regmap);
++	}
++
++	ret = rt5133_validate_vendor_info(priv);
++	if (ret) {
++		dev_err(&i2c->dev, "Failed to check vendor info [%d]\n", ret);
++		return ret;
++	}
++
++	ret = rt5133_chip_reset(priv);
++	if (ret) {
++		dev_err(&i2c->dev, "Failed to execute sw reset\n");
++		return ret;
++	}
++
++	config.dev = &i2c->dev;
++	config.driver_data = priv;
++	config.regmap = priv->regmap;
++
++	for (i = 0; i < RT5133_REGULATOR_MAX; i++) {
++		priv->rdev[i] = devm_regulator_register(&i2c->dev,
++							priv->cdata->regulators + i,
++							&config);
++		if (IS_ERR(priv->rdev[i])) {
++			dev_err(&i2c->dev,
++				"Failed to register [%d] regulator\n", i);
++			return PTR_ERR(priv->rdev[i]);
++		}
++	}
++
++	priv->gc.label = dev_name(&i2c->dev);
++	priv->gc.parent = &i2c->dev;
++	priv->gc.base = -1;
++	priv->gc.ngpio = RT5133_GPIO_NR;
++	priv->gc.set = rt5133_gpio_set;
++	priv->gc.get = rt5133_gpio_get;
++	priv->gc.direction_output = rt5133_gpio_direction_output;
++	priv->gc.can_sleep = true;
++
++	ret = devm_gpiochip_add_data(&i2c->dev, &priv->gc, priv);
++	if (ret)
++		return ret;
++
++	ret = rt5133_enable_interrupts(i2c->irq, priv);
++	if (ret) {
++		dev_err(&i2c->dev, "enable interrupt failed\n");
++		return ret;
++	}
++
++	i2c_set_clientdata(i2c, priv);
++
++	return ret;
++}
++
++static const struct of_device_id __maybe_unused rt5133_of_match_table[] = {
++	{ .compatible = "richtek,rt5133", },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, rt5133_of_match_table);
++
++static struct i2c_driver rt5133_driver = {
++	.driver = {
++		.name = "rt5133",
++		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
++		.of_match_table = rt5133_of_match_table,
++	},
++	.probe = rt5133_probe,
++};
++module_i2c_driver(rt5133_driver);
++
++MODULE_DESCRIPTION("RT5133 Regulator Driver");
++MODULE_LICENSE("GPL v2");
+-- 
+2.43.0
 
 
