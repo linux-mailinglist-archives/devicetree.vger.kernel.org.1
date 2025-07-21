@@ -1,241 +1,243 @@
-Return-Path: <devicetree+bounces-198345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD463B0C7EF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:47:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA0D8B0C832
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 17:54:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12C6A543A1B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 15:47:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35A0E6C2F95
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jul 2025 15:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D52112D8DCA;
-	Mon, 21 Jul 2025 15:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7396B2E041D;
+	Mon, 21 Jul 2025 15:52:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ajoXNZX0"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="XD51qGFa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011039.outbound.protection.outlook.com [52.101.65.39])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E098B1E520A
-	for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 15:46:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753112817; cv=none; b=gx8g2om3EKmJ5a92YFuJtpucMBVzwrn5l8DnHRI0G6zf2TWeR8H10k45RSZG5Y5RnagLREq0xZYd6dqeupjGb5NCWcdfsQiFoVpby/8OGDEcRwKkNwO/ABMw6yypZnhAI0w+ceg7bZKHgVdiK88Jr8LsW/fPwCFlSL4JveHUvHE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753112817; c=relaxed/simple;
-	bh=pEmFK3YtX71Ss7IoSfHexKR6lboNbFxDMXbiAmk0Md8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ZCwgCHz4S4KAH6Hh4Y19bZwb6RxGkT0iLzbchbcHhqU32UPyCAMVDE1r8oiEV0nEyCBI3WaNEkgcRaGXz6NGs/XACPvLt45KHjm2NqzQef/V8C8MaePCLwgkVCSpUVGpLtva71JB7jN3T6y4tfnNtuumZmYHVNZEQ0UotsdZMMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ajoXNZX0; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3b611665b96so2478519f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 08:46:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753112814; x=1753717614; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=71JdOjhcRzTfEZ2kGP13U0soxm4bQUZhtALxxJcwpGY=;
-        b=ajoXNZX0nijaUEfy6fHi3fC+TeAleT4F5zR/05w7v0YqoY3AhHQn2guCyCAhfeFheX
-         WX7lTiAolW5qSUZF/AFiQjtCoH4Pg95uSKJb7vMD6gcF+70gmOGEG8/bNGHlp8qFdJ/U
-         +yB2RMpJ7FmjQdsaQe2iO6R+kwfZv8tPhXEDyeYxCnTfJo7q3SS/6MVswKZiIWYeQkrh
-         papCUYMV4k/0geWEw1lxpJiqZBr4yvHPxSU325G+r5Khi0EFxqTBUEGzLQriJtfyucd0
-         bWvx97pCqWuQrmqbACEMKYdCc16haDnDnUgOaXlBx7tTL/7MbEIWnQKyj85D3CmhK0vj
-         jC5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753112814; x=1753717614;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=71JdOjhcRzTfEZ2kGP13U0soxm4bQUZhtALxxJcwpGY=;
-        b=Pl8CmP3YY+ZuxD+YdUWRUWCU2I2KP9CdvzN2zaCPzR7CadLjgLUZDLoC35/dRp6jiB
-         cR3SYKFvq2i3eWM7l/1xVpsCpX/6zAUeZXWLOiC65GdoNch11qVuj3RyQxZlwcKfqlvl
-         7lpaStAH3BucP8f74F+HHWu5gepRBMw4tEs/QhCClx+TN3zQ0rwvEpdv36lv70NuR6EA
-         ow72J0UmIT+EcGOUQAHtwk+R/H8RmErKoRZWAKonfUTqQDT2mHPoPyoctBjkgPJJma8/
-         aMLz+ToRbD1FgqrA8OcB3RATLA8C6Bk4yWU+pwRJlHfVrwBaiLqZloYHcQGn9iaC0qrX
-         oJAA==
-X-Forwarded-Encrypted: i=1; AJvYcCUzKjD56JiJzeRE2gASiz9gJDuR0BKiLQjoDN9QIJLijaxheob/zUejWMqQqFf/JtW7FWExpxHGo+un@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvZd9bbkHHCBrVV4Ha66XBWRu93hCXla9nT8ukWIYdNJx1faaw
-	DG+4pvy9uRR2zhELI69R2CbDScfENpciRsR009m3ZsjUErFTutrAKc2J0uCyeasYq08=
-X-Gm-Gg: ASbGncsjUy2jUrEQjq0IWf/EwpKs7xAy+23UawqM9I/UgWC8LAFC+eAyf4WxLAxMuzB
-	cF9yq8NoW9ZPnUM9R5hQAwfrPDad1MG9sat/Q9CwyZDEqZEW2is12fHYLMMLrZxBIh6eyFacxxV
-	gBc6VRujp2ZhtBWgSva7TeY8G+GvpVW8y/VzPSCoHsjZold7QdqIEN2pvS5qxuzTG18o/e08nRS
-	YSzBRmttR9JXjUqmC+fCM7EOUxtdocTQwZYg8dqWY7cIzHgoPe/onabAEkLp4nGY34EDlqN7Yd7
-	BwPriSLPCZSLtRMC2ZsCcX7oVWK2gaDP/QLboAgDYGBAVLOxxQVeEzwED6Vd1pJgcLsnF5T7Kdu
-	aCTro5owu4/g32et4ipQTdrgJeGL0buGZ46tC0u9Ox0HSD0feMC8/1LE8oVyjA07HIGHanUzPc1
-	o=
-X-Google-Smtp-Source: AGHT+IE18IBrQLiihCAuzNQ8PIrN0f+oNCcFrb048tnw4oH4ReNy5YSqf9fO8yU7sBsWjafeYv0hqA==
-X-Received: by 2002:a5d:64c1:0:b0:3a6:d967:380e with SMTP id ffacd0b85a97d-3b60e4c521dmr14461783f8f.3.1753112814028;
-        Mon, 21 Jul 2025 08:46:54 -0700 (PDT)
-Received: from ?IPV6:2001:861:c12:13d0:4146:67eb:7420:1c39? ([2001:861:c12:13d0:4146:67eb:7420:1c39])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4562e8ab7a1sm164661725e9.34.2025.07.21.08.46.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Jul 2025 08:46:53 -0700 (PDT)
-Message-ID: <8b908a20-0bf3-447d-82ea-a5ecee1bf54c@linaro.org>
-Date: Mon, 21 Jul 2025 17:46:52 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AFCE2E3363;
+	Mon, 21 Jul 2025 15:52:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.39
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753113136; cv=fail; b=WmoKs2uMmt35mKoPPorLSg7Q/cP4/jwTIPg10zhT6S+At+oSwFKcHtQYF0YVpfMtMGOx0UpeRuSRDyLNjlpJE7xEH6FIztpu3XXz+Xu2vfkVWcBv1PEcJtTZhigjoBySBIgpMoE9k++jfO40CSdWut3rqtVyEtuYcRO5oOGLNqA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753113136; c=relaxed/simple;
+	bh=lB8E1hpndIcVf9N88HkPxvJ/XRLzFKQcykn3wI/ihso=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=FxAyzmI9mZ56Te8zksyhFOz9aNCbdmvxWnMyNC1wSN4eb6bKXsonKqSJKBXE8hss/qNpX8nfOCotFgCx09lHphnf0Ge3ezp3v/H9eQb478fyFo+K8C5191QWRo/kS+RtvtlgpkTL7ZdpzomaA3RfaAi9VLzKKussXJH0U1f8Gv8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=XD51qGFa; arc=fail smtp.client-ip=52.101.65.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rqIz8KKOnWBEA4578YUkx0dYDxNdgGiAwl5yybhWBooXDDpfw7r4KwUHwanJ7WCHk3GiZKTmOseMwcydq6LBErKpApv3NKTznTkAeVsd1qj32nW4k4ciDTojZqUxpIDBiNzJEz4LdkFiv9aM1etsOhjoWX/BSnVkWFhzbuXUQtw033OrItArgDJE1lXPZgC1EUipWTLlnNM2qoJuqoT9ONxpxva4zsLyEsv0Bm7CwUc2k6tGuo9MvC4DlviygCSllmxeG/hhfbGoz4zjXUXZXavSZVJNa9SYW8orbnweFET5dQjtCIau3MzsbDF3bCKDtEIcSaDWVrqxcNSOEcWuNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sl98lHr/lBvVShYVFKsZVQcXfKoH2ktLkkvelEYbJ08=;
+ b=BU27i9TvSCX0RVELJRQbkgCV7/R2ahJAcFd26TgvuPvVenmoelaZG7MVCVY1s0TCfWwtaRimWONbe5ELpxvUwzE/tuop4YgwbNpacV1oZDHanXYt72gjrFnMDN/7C7CQPnAc9xIpMr9VWvE3sTBgvLdCgHT0CSx/F0dsCAgkvpmBZo3HivCBRC983vHmPMlyC6SaQxJp769Jqz954s991duXGarZI2CtIb93se6N5rUzRrEQ5LWUpLydM5rghllTNA1VX8Wa29NJ0oIlVEfSSGI3xDOwN4TIxssIcviXpxCEtyIQaPInkCqHWumUPUO69erSm6O+UQXJ55q8UWqJaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sl98lHr/lBvVShYVFKsZVQcXfKoH2ktLkkvelEYbJ08=;
+ b=XD51qGFatuwHhWukwfXBA4fdL/LqCIIceD4tcTWPwbuY6Wz5smdRyJIt3OzXgkvK7bw0eMvMOQbPViEVrEI/80XBv+FOzkKhOeliSrmwHOCE1qDLGqTvlWpx0sUaF53Q87x5vAHN+xr1Zc3jjKQRk59uOhBn9K2NEWmDq3oK6TS0SPjlaUqTIAtW7Bfp/AdLHdNtQP7x40ZEC3yYA6+JML/vP6iOf4dx8rv+nbpU9gRthwSMNEoEIyp6g0H+MEDiqkHz+C7atuY5mAXgL1UfJBUxv2X5ZQjAOn9ef9w5byq/v+LFVGwmqQonWDF2vFSZ5tzH7WwGv/QqSI6CGJBPew==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GV1PR04MB10329.eurprd04.prod.outlook.com (2603:10a6:150:1cb::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Mon, 21 Jul
+ 2025 15:52:10 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8943.029; Mon, 21 Jul 2025
+ 15:52:10 +0000
+Date: Mon, 21 Jul 2025 11:52:03 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	shengjiu.wang@gmail.com
+Subject: Re: [PATCH v2 1/3] arm64: dts: imx8mm-evk: support more sample rates
+ for wm8524 card
+Message-ID: <aH5iI0qR7eW6Yg7Z@lizhi-Precision-Tower-5810>
+References: <20250721083433.25711-1-shengjiu.wang@nxp.com>
+ <20250721083433.25711-2-shengjiu.wang@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250721083433.25711-2-shengjiu.wang@nxp.com>
+X-ClientProxiedBy: AS4P190CA0060.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:656::13) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI D-PHY driver
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Vinod Koul
- <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Bryan O'Donoghue <bod@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250710-x1e-csi2-phy-v1-0-74acbb5b162b@linaro.org>
- <20250710-x1e-csi2-phy-v1-2-74acbb5b162b@linaro.org>
- <11b573d5-ce4d-476c-b94c-216d427cd838@linaro.org>
- <08261aa4-689b-4d6b-bfd2-221c1976d254@linaro.org>
- <a7f64b31-4767-4281-b452-a2bc5351d745@mleia.com>
- <c93624bb-ee7b-45ac-8b53-b5391f11c9c9@linaro.org>
- <eac3a877-a4aa-4789-9013-ab8b6c91e0f3@linaro.org>
- <0a12879f-dc4a-47fb-87a0-ac4b8bcd4d75@linaro.org>
- <53a19b1d-5665-4937-a07c-5dd1fcde06c5@linaro.org>
- <3b760685-97db-46e3-80a3-7fad69ad31cd@oss.qualcomm.com>
- <94b75177-9401-4e0c-966b-5847a29cb6f7@linaro.org>
- <427548c0-b0e3-4462-a15e-bd7843f00c7f@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <427548c0-b0e3-4462-a15e-bd7843f00c7f@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GV1PR04MB10329:EE_
+X-MS-Office365-Filtering-Correlation-Id: 492dae1c-97d9-4d55-56c6-08ddc86e8d75
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|19092799006|52116014|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?tD+OKx0ujopFItz0gf3IQhsjRV3l0ysjCB1A1IVl7jnjxhzhOiWb/5Hgq8sz?=
+ =?us-ascii?Q?HWcvKY8KBqBNquR9MQjQT/KmGGHxiooumZkzXaX3DjjyDb8dXyFhDMXGy/0T?=
+ =?us-ascii?Q?habW/WvqgJKc40x8HWANmkmrYoZ7Tflo9ugoTEwMpO6fNhF+ow8gQTtc1U68?=
+ =?us-ascii?Q?/LDfrH6b/1XEs+b2eTm+z7v+VNDeqgcu05TFm2SauIKTmldpj/GfpkZQRMLN?=
+ =?us-ascii?Q?H3RDXim1gbiY80FY6Z/RVUBnmiAG6mje4OWVw2Y7z38kgE7VYcmtqN851psX?=
+ =?us-ascii?Q?aO5dIjKkRABGHpcgyHISJoE1blb1bWPM4pdhC+n5rhHWcAr3QSS0WuamytK3?=
+ =?us-ascii?Q?ZJfwNwJgZZmRLjhQwgmss/m3HFQDWu8r6aMS219wWZoU1C17iJAKn4liHOui?=
+ =?us-ascii?Q?KXIqmML3BKi9psF1BvgAuivH60AzRPW4pb4IqRD77NQTz2nUEosulosgPtIq?=
+ =?us-ascii?Q?XEf7wqT0w1z0/nqL/Fc61AIOSMnMNFvFvtNTr84gkOQTrgJFSUkGTD5F5P2O?=
+ =?us-ascii?Q?f7Dc+lrZUWS/nfgzzSEeX/kj1Tn3oRf2bUYWtN/mteba1DSYJ0Rpc8VJ2lS6?=
+ =?us-ascii?Q?wVZTA3MIs4vWN4ZUJY7A6cVBF1Nkp0W3XPaOxWvJZ5PZ0VBTIFIuslodx47w?=
+ =?us-ascii?Q?QBwN5V9GRfKB/+ToTSUNt0/gAuN74XCrS8Iw4hlxwWzKXEU/8quiy74gUnxD?=
+ =?us-ascii?Q?fXwOX7rwcK05xFkiw9OJwNDALPYWg1xE3RPgK6R4N7jQ7OB9siaZ1HXBjqIL?=
+ =?us-ascii?Q?JIrjvtP0GnLZZtb63Evc0IYUyLuBd7mTYIGUrIJ3s8I+65HpDea6TL9ib9YR?=
+ =?us-ascii?Q?Ob03RT6ZvC0Fk8PXN5ErtwrfzTFn1FioWEhraOQ7+Qh93T0+GH0/9+/Wsp9h?=
+ =?us-ascii?Q?8w8FLgy9PkGVC9FZHvuBXriLTbG1jqJPyTOwLSexB5AeR1SCmYYvg5/NCJht?=
+ =?us-ascii?Q?L7naug1tcHYpQtd5J1cj77mstgVgzAPVD9fG7aoQBtJPLsdyUF4PMNGqAF2x?=
+ =?us-ascii?Q?5YF+qdI5kq3d0+Wt3JPP+6NK93hAPq4q1BC1+mtzHAymTGVE1PcYMLMuTgdV?=
+ =?us-ascii?Q?cip/3cc6WzRn3Is0Auxb29AG06cRy/lWMiv91Y2TWC5Zkr8WLq5S61PlbAL/?=
+ =?us-ascii?Q?ERUxCiCV/q0Smv7/WnJ/78bPeVqROReM0K9ruaTlbN+z/JvOBEdvy61uc8yv?=
+ =?us-ascii?Q?sO/QPo4YqL4lIxR6GR8waBLlRdx+8+6gxr6/uqQ35rIotx+tSaiZFzwdILKH?=
+ =?us-ascii?Q?B+gkIjQ7Fg7urna/sPcX+dCxvrwoz2YqpoipFIjl5x5ScfNDWODuvlCYf1ax?=
+ =?us-ascii?Q?GJSnKVxyOnc+8FnUBYG+aBGQ64z8hicAQmJ6V65Rg+htT6fuW7RUlKIwtKUP?=
+ =?us-ascii?Q?baNxNDGy2E4YfuYDvnbJKSrhe0K7fMcqZhjRhYVW8v0Rmc++2H3JIUsIrU1H?=
+ =?us-ascii?Q?g/AHmkEEL6lgdgsXx4WWLdoewqC4zgjUpVybKtZchNdUITKbsTWBHw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?hY9AMDp5d8bUQCWjbH6CWA5K8FRd7H9adA9jmIYDmICjn4ZsC3NAlnnB3FYQ?=
+ =?us-ascii?Q?B81vRA7QOp86WRBteWO81wKgnueioqsT4Ty96580x1WF6+C1aQAH+Tv4YsAZ?=
+ =?us-ascii?Q?eQZyrXGDaTo6dyCeD60yVkfR16RPjzZ83Wynyw4Nf3ZKX8EnDt4yyCINcwTi?=
+ =?us-ascii?Q?TyZ1fe3HkZcdQ8pToTrZmV104rmVgHcS0pKM5UdUGIxFZKBRmMioRcX0pZ+4?=
+ =?us-ascii?Q?5lu4FzoJmoT9LAVi06XeCfbvZx5qbgmkyoO0ujKfZ6qOUEAdnMkMZfnY+uXE?=
+ =?us-ascii?Q?jrbwXQLFQm4kfPuzpcU6P6EQk2bm191VQA0N8G/DbouZFhJONMN6DRDr2BmJ?=
+ =?us-ascii?Q?vdpJNWGFfWU30QTUormLqojU2f2WTkUDey1B43vB8MttNLGlymOO+mOlLekG?=
+ =?us-ascii?Q?HkBSjdzk4VvLVrdZh6TRFzO7IUxDYawl6OK3L9R+1ZyGPfFMIL5eeQnQP+AN?=
+ =?us-ascii?Q?0br0Z/Dzo1STughHxq0RR1/xfldRKEbpsgxi27X66nLdnLP3xRZk1gxn5y7o?=
+ =?us-ascii?Q?cSprQ+anJGT7k0AiJqBnC/VN0d7UVuOaT07AvWWb13R84TqpDyB6rA6crcfj?=
+ =?us-ascii?Q?UccARSo9ccA39NGmh2LAE3zuouN9HRB+kx5IpL1vX7eHnl12X+bcYMPS0WB7?=
+ =?us-ascii?Q?ZeOAXyq7IDTv6WdhXD2jPtOfxn0tOPMKIOSdNSZe/vLEFkSEkMMv+1T/l1Gy?=
+ =?us-ascii?Q?LfAPTpd4hYWhOJnrEh8MEFCMVF+EhIT6GS816POxAWAE2EKXxkl0lu4bJ95j?=
+ =?us-ascii?Q?rrdxowT34FTLVhiKDLv48sMReLMgl7YOsOcvEOykOS/OB2jgV++rfYDPj8u8?=
+ =?us-ascii?Q?q9aTdK5UqxogMOVE5G0beqHA5k8KDhpjhuCCZN62a++EsfY3yHfIR+hT3Il+?=
+ =?us-ascii?Q?W9yCdVO+aoSFpGtBWIZ9ov7EGW5F110/pteu6EsbZK9+qphU8Fyy9+226ZN6?=
+ =?us-ascii?Q?kn+OEKLCa5QJo5YgqS9ED0SutC5hoOkR99/waCHDdXb4WZWGe2sizw5nq621?=
+ =?us-ascii?Q?jbUuW1KEU+QPAg4uyRBkrFNhKezVCQu0zohS895vuzcJEGSgApjqjZyrplv5?=
+ =?us-ascii?Q?sXTP+CpkPQekY5B5ORL7QdFUTxuGnTcwZlU893Wwa89zkOLXatXR/ezgix9S?=
+ =?us-ascii?Q?McyqN/egNwyjCeCjjcBnmHHVxK37eQWsPHjM0pD3xCGhi6xQ5fLaxUUvK8JY?=
+ =?us-ascii?Q?ChLUJDT50OyCtE3E//mCzT1CCUdVgA4zFRS+EcyPkPCtx1Pxa9sbGIuUc5EC?=
+ =?us-ascii?Q?/RYK54puoF6CFlpVFYUCnGuHCwrIiNJIWY00s0At9Kku7pDlNnQHRrMaK6JN?=
+ =?us-ascii?Q?Z4UiWCJFP8sFiaehs+VcBw24+7QCOPforbe8yJqY0PT/aNKgfPxF5LtijkYS?=
+ =?us-ascii?Q?3f3fqCXdU6cnndjrC3vRUvIHiDFbUxQ+OT8bQP9ROIHFxLmP4hkxsJZliJK/?=
+ =?us-ascii?Q?8p6y0PJRqg8FYQ45UjkBe9UD4+ipeG4Y31JEHxO8PA8A3WPZ+RXzMw4F2ZTL?=
+ =?us-ascii?Q?OQFfFgE7IBaORECUR01+LIm/x3lk3HhTVqPXr3foJhpsSJVAm33iGnxXcP41?=
+ =?us-ascii?Q?ZpRxPFoUN32nwpadtL76Kfo2npqwPXf1Ks9m3Ku3?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 492dae1c-97d9-4d55-56c6-08ddc86e8d75
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2025 15:52:10.3242
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0XGl3NX2I9kFPCtPgm0e0P1qyHBaAnFKTx7zXrOThMPq6O280B7fI5C+rpxFYVhFIcdecpRlRg+iLSXASqPLOA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10329
 
-On 15/07/2025 11:33, Konrad Dybcio wrote:
-> On 7/15/25 11:20 AM, Vladimir Zapolskiy wrote:
->> On 7/15/25 12:01, Konrad Dybcio wrote:
->>> On 7/15/25 8:35 AM, Vladimir Zapolskiy wrote:
->>>> On 7/15/25 03:13, Bryan O'Donoghue wrote:
->>>>> On 14/07/2025 16:30, Vladimir Zapolskiy wrote:
->>>>>>>
->>>>>>> I think that is genuinely something we should handle in camss-csid.c
->>>>>>> maybe with some meta-data inside of the ports/endpoints..
->>>>>>>
->>>>>>
->>>>>> This is a CSIPHY property, a CSIPHY hardware configuration and a wiring
->>>>>> of sensors to a CSIPHY. Where is the relation to CSID here? There is no.
->>>>>
->>>>> All the PHY really needs to know is the # of lanes in aggregate, which
->>>>> physical lanes to map to which logical lanes and the pixel clock.
->>>>>
->>>>> We should add additional support to the Kernel's D-PHY API parameters
->>>>> mechanism to support that physical-to-logical mapping but, that's not
->>>>> required for this series or for any currently know upstream user of CAMSS.
->>>>>
->>>>>> Please share at least a device tree node description, which supports
->>>>>> a connection of two sensors to a single CSIPHY, like it shall be done
->>>>>> expectedly.
->>>>> &camss {
->>>>>         port@0 {
->>>>>             csiphy0_lanes01_ep: endpoint0 {
->>>>>                 data-lanes = <0 1>;
->>>>>                 remote-endpoint = <&sensor0_ep>;
->>>>>             };
->>>>>
->>>>>             csiphy0_lanes23_ep: endpoint0 {
->>>>>                 data-lanes = <2 3>;
->>>>>                 remote-endpoint = <&sensor1_ep>;
->>>>>             };
->>>>>          };
->>>>> };
->>>>
->>>> Don't you understand that this is broken?.. That's no good.
->>>>
->>>> Please listen and reread the messages given to you above, your proposed
->>>> "solution" does not support by design a valid hardware setup of two
->>>> sensors connected to the same CSIPHY.
->>>>
->>>> I would propose to stop force pushing an uncorrectable dt scheme, it
->>>> makes no sense.
->>>
->>> If all you're asking for is an ability to grab an of_graph reference
->>> from the camss (v4l2) driver, you can simply do something along the
->>> lines of of_graph_get_remote_port(phy->dev->of_node)
->>>
->>
->> It's not about the driver specifics, my comment is about a proper
->> hardware description in dts notation, please see the device tree node
->> names.
-> 
-> I'm a little lost on what you're trying to argue for..
-> 
-> I could make out:
-> 
-> 1. "the phy should be a multimedia device"
-> 2. "There is no ports at all, which makes the device tree node unusable,
->    since you can not provide a way to connect any sensors to the phy."
-> 
-> I don't really understand #1.. maybe that could be the case if the PHY
-> has a multitude of tunables (which I don't know if it does, but wouldn't
-> be exactly surprised if it did) that may be usecase/pipeline-specific
-> 
-> As for #2, I do think it makes sense to connect the sensors to the PHY,
-> as that's a representation of electrical signals travelling from the
-> producer to the consumer (plus the data passed in e.g. data-lanes is
-> directly related to the PHY and necessarily consumed by its driver)
+On Mon, Jul 21, 2025 at 04:34:31PM +0800, Shengjiu Wang wrote:
+> The wm8524 codec is connected to the SAI interface. There are two audio
+> plls on i.MX8MM, one pll can be the clock source of 44kHz series rates,
+> another pll can be clock source of 48kHz series rates.
+>
+> Previously it only supported 48kHz series rates, with this change the
+> supported rates will include 44kHz series rates, from 8kHz to 192kHz.
+>
+> As commit 17cc308b1833 ("ASoC: wm8524: enable constraints when sysclk is
+> configured.") make wm8524 release the constraint when codec's sysclk is
+> not configured, so we can configure the cpu dai's sysclk to support more
+> rates with the 'clocks' property removed.
 
-The port/endpoint should represent the data flow, and if the signal is the following:
+nit: remove 'we can'
 
-sensor -> csiphy -> csid
+>
+> Add mclk-fs property for the sysclk ratio, which is required by
+> calculating the sysclk, 256 is a common ratio for audio.
+>
+> 'system-clock-direction-out' is a must have property after
 
-and in addition the "csiphy" can handle up to two sensors by splitting the lanes,
-then the DT should take this in account and effectively the "csiphy" should be
-an element of the graph and should take it's configuration from the DT graph
-to properly configure the lanes configuration.
+nit" 'must have' to 'required'
 
-While it can feel simpler to simply move the csiphy code into standalone
-PHY device and just replace camss code with phy_*() calls, it doesn't
-solve the proper representation on the data flow and doesn't fix how
-the combo mode could be handled.
+> commit 5725bce709db ("ASoC: simple-card-utils: Unify clock direction by
+> clk_direction") to specify the clock direction.
+>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
 
-The solution shared by Vladimir (I think the "csiphy" node should be out
-of the camss node), solves all this and will be able to handle more
-complex situations with shared resources between "csiphys" and start
-moving elements out of the gigantic camss node.
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-Neil
-
-
-> 
-> Konrad
-> 
-
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 17 +++++++++++++----
+>  1 file changed, 13 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> index 622caaa78eaf..ff7ca2075230 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> @@ -147,6 +147,7 @@ sound-wm8524 {
+>  		simple-audio-card,format = "i2s";
+>  		simple-audio-card,frame-master = <&cpudai>;
+>  		simple-audio-card,bitclock-master = <&cpudai>;
+> +		simple-audio-card,mclk-fs = <256>;
+>  		simple-audio-card,widgets =
+>  			"Line", "Left Line Out Jack",
+>  			"Line", "Right Line Out Jack";
+> @@ -158,11 +159,11 @@ cpudai: simple-audio-card,cpu {
+>  			sound-dai = <&sai3>;
+>  			dai-tdm-slot-num = <2>;
+>  			dai-tdm-slot-width = <32>;
+> +			system-clock-direction-out;
+>  		};
+>
+>  		simple-audio-card,codec {
+>  			sound-dai = <&wm8524>;
+> -			clocks = <&clk IMX8MM_CLK_SAI3_ROOT>;
+>  		};
+>  	};
+>
+> @@ -570,9 +571,17 @@ &sai2 {
+>  &sai3 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_sai3>;
+> -	assigned-clocks = <&clk IMX8MM_CLK_SAI3>;
+> -	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
+> -	assigned-clock-rates = <24576000>;
+> +	assigned-clocks = <&clk IMX8MM_AUDIO_PLL1>,
+> +			  <&clk IMX8MM_AUDIO_PLL2>,
+> +			  <&clk IMX8MM_CLK_SAI3>;
+> +	assigned-clock-parents = <0>, <0>, <&clk IMX8MM_AUDIO_PLL1_OUT>;
+> +	assigned-clock-rates = <393216000>, <361267200>, <24576000>;
+> +	fsl,sai-mclk-direction-output;
+> +	clocks = <&clk IMX8MM_CLK_SAI3_IPG>, <&clk IMX8MM_CLK_DUMMY>,
+> +		<&clk IMX8MM_CLK_SAI3_ROOT>, <&clk IMX8MM_CLK_DUMMY>,
+> +		<&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_AUDIO_PLL1_OUT>,
+> +		<&clk IMX8MM_AUDIO_PLL2_OUT>;
+> +	clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3", "pll8k", "pll11k";
+>  	status = "okay";
+>  };
+>
+> --
+> 2.34.1
+>
 
