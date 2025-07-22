@@ -1,151 +1,177 @@
-Return-Path: <devicetree+bounces-198582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C1DBB0D76E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:37:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47F1CB0D76F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:37:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84D121C2511C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:37:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68FFC1C2509D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16AC82E2F0F;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626902E3385;
 	Tue, 22 Jul 2025 10:37:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="Um0vZbyW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vdww0zWn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 733D52E11BF
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281952E1757
 	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 10:37:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753180641; cv=none; b=P9UTOarG7WnKyyw/F/Ng+5A0qOx8OarHC5rZzqQzt5F8/qZbreQQqZq0SHOugF95B8lZfDDukhh8dqSfJcfbfuEIg2xM6vixuCL/4jKe3K7LD/3Gsb0UExpBcsiDtqrywrT2C3awuMc/8wU1IMnUPjcVCX3/DllTOXgTo1SxcxE=
+	t=1753180641; cv=none; b=Ifm2m+KNGsYyLyoN22ItaM4XGgWs3XuM5rxrSBPbfbcwGupszWKyAPGzNbfUTnDTjLit+MR+EeeoZ3/tQjZdUi459UWWIMoCkhTL/5jDoOtgZpN8cAoLEP7bMTNvwpSrTpDP0IEx127alY+zSJuhqj06PcrcR6koAPkC2Y2GdSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1753180641; c=relaxed/simple;
-	bh=6DM9dMZAtcwlDKvhQvsmdFJDn+355Evyd4COdeLDukI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=A6HzVW4JKf6I4wOdU9Eb4MEqqwgC/zDhVTc5AczolEZ2g75c0sJltdYHFELGpyWS+QW58IArRZoMDashnfqvr3vX0u8T+sCQ7YpOZdxvaPGwmMbj2DOIha/16zNJNwYzWKqxQC7yVn5bRwJkUhXeneTCL/F3QkyeXpb06HJC2cY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=Um0vZbyW; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ae0bc7aa21bso1047329666b.2
+	bh=EcaPmOZF17vzAybqgUPsCVqCSYrKhcslVWazMxbu63M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sTpVBFS1ZzpCKEsbBJ3tFPL8/DQCbPF6SdoN1FeJBfZXc+eZ0ZtQAB8TcKZrhWms45nICsIgdAt6FjfL7TgypW4iFkT3Um5c7MxZNo8QIpsK2j8eFN4MV+xJMdwU+iNTrCbCPpv43w7++CciUnORWC5xPeXq+n9rCLE2uB/af7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vdww0zWn; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a57ae5cb17so2591473f8f.0
         for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 03:37:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1753180637; x=1753785437; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GtY6xQODciaFQXT13QEjMt2xFfxEtt0WYueluTMBhAE=;
-        b=Um0vZbyWwagJoJVoyvzt10dufXbWiL9BGSf+gyy83x4GxniBv0Oh/KyASUkabJNAUv
-         yqKz8yorgGOLhv3OffBbkgUhnovWOstmmvFbET8yAwMMQmzo3YJ9Am9WfQDFuHX1GGOj
-         yG3YRxoz4ZeHiLmsNaqE9EDhg1eVta4sUyq4M=
+        d=linaro.org; s=google; t=1753180637; x=1753785437; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/Y4ZK31qukkhLkAHxdpW7gih6/ZCt1oA0i9NknuiOE4=;
+        b=vdww0zWnoWp9QeU1u00mPbHHCE6Vq4Dszs2UlBmvmeWgey68lOYoQJnaur6eL3KcFv
+         0/+0RPu9W91z6Q3ecq4lE6WyCvswGAqgyIXkGWc4N8QlvXw2+Glzldt8KvssKewDUvj2
+         AyUJJ8y4pVZGU8GlvkrWyd3w2GOO5VrfBLw22K+KT08m+OevW7xqIcZSXScCbxAcX/Qc
+         xTQeXTIJOPa6+PIj23bDw236w5oaHfrMg/+WG7lCIvR5v1Z3ycsXL28iai6H11IlZB43
+         aLzrvNmbs8073u+Zd1Y2d2zfDnulnM8BvS54LdYeBxG0wND9tGGPf2PQYtgDTY5zxNB3
+         CDPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1753180637; x=1753785437;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GtY6xQODciaFQXT13QEjMt2xFfxEtt0WYueluTMBhAE=;
-        b=HZI4TKXwJmErhlXm1Tr4n0PIZ3fFvMXVexxXAbbFHypFSWzbCBZh5Bk3wqPZoo57wg
-         2EeQBZTgE2nwIqoU3KqyemXy2EZHOWaQpm5hP3Nu84LUUJ7wiifXqQOtNgFR7kxIE8hj
-         GhR/Vn4xXnXg1nyxLCt+K/V6iOvkZ7Rbnkbo6J33/3roFpBKwmsQjfrvndZbq9bJhHOy
-         csXW/wiPbsDfca6J1bUawPc9+vatstPPrCi350LUOH2EAkWOT+iuI/Cu+27HOMaxEiZj
-         HucamXJffJjSLN2yXkV0SlDfrGnsWuOVEttm1EzS+KvNTkNP4L+N58qvgqMfJ6SHUkq5
-         GLww==
-X-Forwarded-Encrypted: i=1; AJvYcCXEQy8tNF02WgHcVeeLR94wZSMt4yHbzcyAzEqzSJQG9WnzO7NgltYCK9SeI0eUjgs6xyUo7OxVECDr@vger.kernel.org
-X-Gm-Message-State: AOJu0YymOSiv5ovQ8Gu73CmwD1BiqjFrpqMGs85xMux86yBkeMrkCp1y
-	So6KxTL4CMTnqWXBUcv+YTewBcJWOjNSUGbuKanCYZB/T3y9aGiUlIm61wlbTmteB4E=
-X-Gm-Gg: ASbGncsRTMEQLQzV39P9TTYKaGC3M2tpQENH9+2wmizVjtvEh7JHRjsh5s7G9kutMwg
-	bZ3TfJgRGJM9a2Q8Lk7i2Y47h9wxoOQ1V3R7gd/HG3dd/DnsXldjM04voWYQdl4jdW+PS0R88lK
-	MwbEINulyO8gKf8EGCtY6+KCH+e09b0hgAqVZ1CTqJRikX74oJZtgI4tDvCkJBigXtj+yb7duh4
-	g7vsA8fryWd2CVUFHPY5qZvanfGcxMCFu2FpLalY3h+uwjBK/27u2J6oJ2AO5pL/SdVqFtlNFZs
-	l5wZVT97sknvEHWhNISeMbj56e69ZdP+nq5J8mSbgm4+5ikTgd757egWBT2p84zlSdSAnYHvocA
-	EaTcLAEzVRfpsBZYTUb5TBV/qHHm9nwRsukgpZWmg9g4d7KhkeFK2h2UeDHw=
-X-Google-Smtp-Source: AGHT+IGaHOYHJrE7/OlnHeCdJT7X6M+1OGRNxK7Jx2o38iPchbY1YGECx/VXRXtQUdO2o2c/K0RoAQ==
-X-Received: by 2002:a17:906:9fc9:b0:ae3:cd73:e95a with SMTP id a640c23a62f3a-ae9ce0d2aedmr2549138266b.36.1753180636628;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/Y4ZK31qukkhLkAHxdpW7gih6/ZCt1oA0i9NknuiOE4=;
+        b=GHteLO/sZVgeCrhL9LvQio3prhkBkaqe0XvqMYwCiaYEhQjhhmROzR/bGquloHjK+v
+         oufSvFaLWnsiKqC6sH0C3aHfzsDRIH01cCKA10XIwLMhw9d+PMQ3HMhUp+kLoT8NwhQB
+         0D4vf8N0Wve984M/wsqVbqAoZVT1gvoDUPjfSETYDpa/4LwF1cYLXuG2EI30KUaUAjKA
+         4hcfjhX5+lDDTlF7nweLI1AwqGfeYahZK3Sklhaequ7b9yCr8WLOspXDmPsOwAOk+MOW
+         7gasO616uBrTtp9crgX7hGoaEtt1XtcJsTqDMdwj7yDgxqsB0KKlH5DMgnmmdkXsN1cI
+         bJhA==
+X-Forwarded-Encrypted: i=1; AJvYcCU1msnoaVpiffyGlx+sfTrDXWK5JLvo/ni1HERjkgTCtRWxL1PqeyMf6e8YS57azAAMq4olLA6BHBn7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRTuzNUyvQ1LlJiJ0R85dXTnwCuG7Vn2MnEWPdZeEMvoj6D3oP
+	weZ8u+++qxEshxt1lYiaCF3vY3MPko1PHi1dpIv0ho2r0jO7ZgVMM4QZwbjXAevo4x8=
+X-Gm-Gg: ASbGncuXZUhAnPWDvGMs3TRczbhob8Nr/oVLqoJ+HH9sB/Kpx2cEi/ovkVKLoZQd2jf
+	VytY0Kv1T1jedVodCLwFHv5bB45p/afrTyCupwUs+SbiBgbJ1n59ztZyWtfk69qvrda3V5Pdofk
+	hqlrRTlgHrPe64neXdxS8yrcXMixKwo7N53Lh8a+40OzQX/LQvJMrEcS2k2IdB9+glnDQB6ThLV
+	6rSdensNit37mH6IK/o9xJSXyXZgJ0Oz+gDxC7ICow5s3fupmJFnRXHE+0jh7ONcihrDfFzJbCf
+	UHcBKrCHj0ZGyZp4pxldqDRdZt5EiWhXIpYM4Cn3FxSe/y0Kre5kUoEuADWmaMQISI5wsVRNQZ4
+	mWMSPCZO7PsLJjFnDFYMfzaDMaL85cp7jHi+LyL6wIXCrz4ZeIOm0W6F7ZskorCQ=
+X-Google-Smtp-Source: AGHT+IGTCim13XVcGSW21AueFsi3fYd4EJtmzmvQeTtBGNVJD3KZN4i5HjdFzRy4dW3lSossDfE26A==
+X-Received: by 2002:a05:6000:288b:b0:3a5:8934:493a with SMTP id ffacd0b85a97d-3b60e51bb18mr20015822f8f.44.1753180637147;
+        Tue, 22 Jul 2025 03:37:17 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b61ca4d581sm12938939f8f.64.2025.07.22.03.37.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
         Tue, 22 Jul 2025 03:37:16 -0700 (PDT)
-Received: from localhost.localdomain ([2001:b07:6474:ebbf:2bba:d7b0:8e79:c982])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aec6ca310e2sm844568766b.79.2025.07.22.03.37.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jul 2025 03:37:16 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-input@vger.kernel.org
-Subject: [PATCH 2/4] dt-bindings: input: touchscreen: fsl,imx6ul-tsc: add fsl,glitch-threshold
-Date: Tue, 22 Jul 2025 12:36:16 +0200
-Message-ID: <20250722103706.3440777-3-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250722103706.3440777-1-dario.binacchi@amarulasolutions.com>
-References: <20250722103706.3440777-1-dario.binacchi@amarulasolutions.com>
+Message-ID: <7e1073da-6773-489e-80f5-97409f013acc@linaro.org>
+Date: Tue, 22 Jul 2025 11:37:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI D-PHY driver
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250710-x1e-csi2-phy-v1-0-74acbb5b162b@linaro.org>
+ <20250710-x1e-csi2-phy-v1-2-74acbb5b162b@linaro.org>
+ <11b573d5-ce4d-476c-b94c-216d427cd838@linaro.org>
+ <08261aa4-689b-4d6b-bfd2-221c1976d254@linaro.org>
+ <a7f64b31-4767-4281-b452-a2bc5351d745@mleia.com>
+ <c93624bb-ee7b-45ac-8b53-b5391f11c9c9@linaro.org>
+ <eac3a877-a4aa-4789-9013-ab8b6c91e0f3@linaro.org>
+ <0a12879f-dc4a-47fb-87a0-ac4b8bcd4d75@linaro.org>
+ <53a19b1d-5665-4937-a07c-5dd1fcde06c5@linaro.org>
+ <3b760685-97db-46e3-80a3-7fad69ad31cd@oss.qualcomm.com>
+ <94b75177-9401-4e0c-966b-5847a29cb6f7@linaro.org>
+ <427548c0-b0e3-4462-a15e-bd7843f00c7f@oss.qualcomm.com>
+ <3UXVZ6ANM9mDjVdMV4SXsiIx_pT3S1lp3RC_Q7mh_o7jF2dpYsni1Sl2TAWv6OCMCRTFmi9aE6BxDquGkOnwEg==@protonmail.internalid>
+ <8b908a20-0bf3-447d-82ea-a5ecee1bf54c@linaro.org>
+ <57501e81-7e9c-4cb1-9a37-18307d1e06ca@linaro.org>
+ <33d76d7f-ab14-4e76-8ffb-eb370901a046@linaro.org>
+ <4edefe21-27b6-4884-befa-ddb451bb9376@linaro.org>
+ <84eea632-02d8-4b7f-a4ca-36ce7159a170@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <84eea632-02d8-4b7f-a4ca-36ce7159a170@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add support for glitch threshold configuration. A detected signal is valid
-only if it lasts longer than the set threshold; otherwise, it is regarded
-as a glitch.
+On 22/07/2025 10:59, Neil Armstrong wrote:
+> On 22/07/2025 11:08, Bryan O'Donoghue wrote:
+>> On 22/07/2025 09:32, Neil Armstrong wrote:
+>>> The whole key point here is the combo mode, as I understood the combo 
+>>> mode feature
+>>> makes the PHY lanes available as 2 separate streams, like if you got 
+>>> 2 "controllers"
+>>> attached to the same PHY. So in fact, the PHY should have a single 
+>>> node, but 2 PHY
+>>> interfaces in combo mode.
+>>>
+>>> This makes all this controller/phy model very complex to handle and 
+>>> add a lot of
+>>> logic in the camss side. Moving the "csiphy" as an independent media 
+>>> device that
+>>> can declare up to 2 endpoints in combo mode makes things much 
+>>> simpler, and allows
+>>> us to attach each "csiphy" stream to any "controller" side of camss.
+>>
+>> I think there should be a generic extension to PHY/linux-media to 
+>> support that instead of something Qualcomm specific.
+> 
+> Can you point out what's missing ? AFAIK it's more a matter of proper 
+> representation of all
+> the CAMSS components with a proper ports/endpoint graph design that 
+> adding new kernel APIs.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Perhaps I'm not understanding the pushback.
+
+Vlad's design puts the CSIPHY nodes under CAMSS and doesn't use the 
+upstream PHY API, which if I've understood right is done to facilitate 
+multiple sensors on the same CSIPHY.
+
+If the kernel APIs or standard representations of CSIPHYs in the 
+upstream kernel are insufficent to facilitate this model, then I think 
+that change should be done separately so that all of the existing 
+upstream stuff can benefit.
+
+CAMSS should have a standard PHY interface. That's what this series 
+provides.
+
+If multiple sensors on the CSIPHY can't fit into that standard model, 
+then we need a series to rectify.
+
+I've given an example of how two sensors could be routed to one CSIPHY 
+in DT. Another possibility is virtual channels.
+
+I don't know if your sensors support VCs, have you explored that ?
+
+If the message is "we need a custom PHY interface in CAMSS for multiple 
+sensors" then I think in fact what that points to additional work that 
+needs to be done in CAMSS and perhaps in the kernel linux-media and PHY 
+layer to facilitate.
+
+Like I say I'm happy to help you guys do that, ship me some hardware.
+
 ---
-
- .../input/touchscreen/fsl,imx6ul-tsc.yaml      | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-tsc.yaml b/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-tsc.yaml
-index 678756ad0f92..2fee2940213f 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-tsc.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-tsc.yaml
-@@ -62,6 +62,23 @@ properties:
-     description: Number of data samples which are averaged for each read.
-     enum: [ 1, 4, 8, 16, 32 ]
- 
-+  fsl,glitch-threshold:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+    enum: [ 0, 1, 2, 3 ]
-+    description: |
-+      Indicates the glitch threshold. The threshold is defined by number
-+      of clock cycles. A detect signal is only valid if it is exist longer
-+      than threshold; otherwise, it is regarded as a glitch.
-+      0: Normal function: 8191 clock cycles
-+         Low power mode: 9 clock cycles
-+      1: Normal function: 4095 clock cycles
-+         Low power mode: 7 clock cycles
-+      2: Normal function: 2047 clock cycles
-+         Low power mode: 5 clock cycles
-+      3: Normal function: 1023 clock cycles
-+         Low power mode: 3 clock cycles
-+
- required:
-   - compatible
-   - reg
-@@ -94,4 +111,5 @@ examples:
-         measure-delay-time = <0xfff>;
-         pre-charge-time = <0xffff>;
-         touchscreen-average-samples = <32>;
-+        fsl,glitch-threshold = <2>;
-     };
--- 
-2.43.0
-
+bod
 
