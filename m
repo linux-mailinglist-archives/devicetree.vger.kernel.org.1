@@ -1,107 +1,101 @@
-Return-Path: <devicetree+bounces-198720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19A25B0E032
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 17:17:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DACDAB0E03E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 17:19:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FEDE16D6B7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:16:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4717018837B1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:18:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00CEA245028;
-	Tue, 22 Jul 2025 15:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ADEA25229D;
+	Tue, 22 Jul 2025 15:18:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DycZFgPq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QANBn87i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B5923B62B;
-	Tue, 22 Jul 2025 15:15:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70E01E990E;
+	Tue, 22 Jul 2025 15:18:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753197353; cv=none; b=ANhmYwGP5uDyJDLUEbZkTO/ewacVJZ1t2Yl16WizxNvUUDnbY3Ghz5ZuumEOL8S6EhW3WsHK8qtGvM7HA4inXCGcJ9G2OW4UF27LDdANrhCzjAJAnfmcuQsl2dTaimNuL4OaSpji157rEPageWRlyWIKd2eXbUbrmKXpcN9feEE=
+	t=1753197497; cv=none; b=fqX2tIOkGsC5VThnIC/jIPyYZA31JXSi2jGfO93FhURzwXzdsjHIsniMQINvIMRlXkLGaae0U4g7KYo03lQaovQkn6tMKLCnV00v/jdr9NxkTHDHsMyfnsD01FTnE4rLquT1Ubsja+As5cLI+AVFdKSnJO50n24bG0rL/0fOgbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753197353; c=relaxed/simple;
-	bh=uk8lMsAdJeKUbDd8hlCoUXYBYkf+zJJniYwJBxbKCps=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rsVdlNri7owPYfI2SZJbvpQwJYJm5oIFrXY+gMJGrl6SX/p/FXIMOeNqtoF0nEr48A8/eSGbN3yXVUbDGP3YYhtEVRzYUJsGhYw8XAmrtDAYqz4Zw//gR4y5FegVcyQxkzZ/qd55I9YLUbTbAwR8JjhyzkdKvrnvA6KTvOHI4PU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DycZFgPq; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 420A0438DC;
-	Tue, 22 Jul 2025 15:15:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1753197349;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ggz89UiruJ+IKaN9iykZ93xSbQgCXL3G5HnjNJV4Ruk=;
-	b=DycZFgPqUJO1s7o1dKpaCc7NJ8sV4IseRQyuTonuGnk+GcQwJuoxCx9l9oI9wqa+bTg7dS
-	E2aJPqTJvRPRIo6LQZ9WLcU7wX03RiFzXnxZxd+p8h85dc9rQfGeo97W+nIOWoABlaJQeP
-	ysEDPWqMk9T3/i5Sv201t873pFHs3PHzxjx0/frsd6dmnJkvtbCZBkZB+MgaZuDVMIX8Lq
-	EkZtdpDPtnQG26Qn9LBvdDMo3sQDuD5XAVmUk4has2gHCsI9ovt5H90XJeTOwT2r9Cv5R2
-	NBNbRNrqokwFBoDIVvSDIUG/IHYjJnLLPmAha1wnSeaYTSbROHJeezuD+U0BnQ==
-From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-Date: Tue, 22 Jul 2025 17:15:21 +0200
-Subject: [PATCH 2/2] MIPS: mobileye: dts: eyeq6h: rename the emmc
- controller
+	s=arc-20240116; t=1753197497; c=relaxed/simple;
+	bh=fGAsWfNt/z2iWfbEh9n7rz2FAHRGTRMDGKrGQIo3ivc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VWMHJ38bAcu04scOG+Q4f9HRaSXCYU7gCDaaxou0BokzCmI8in2EYp7CV5CQYYeLIk9TK0WKkSBqDy5e+Tsb9lxLQHWy9t8OT7i0GiSls52l5JMHa8gsQASZRm2IwnsIxykUUup1kJ/8MfYuBIPlsCYQMtRVXv+VJBxYssH8g1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QANBn87i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBA2BC4CEEB;
+	Tue, 22 Jul 2025 15:18:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753197497;
+	bh=fGAsWfNt/z2iWfbEh9n7rz2FAHRGTRMDGKrGQIo3ivc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QANBn87iMG9qnMcejys0/rBOp/MPEBt2RfiqQ4Z3kAl0CdUwvRsnjmpobqFpfXitG
+	 0xQ9+/qwCPyAs+3UlRxho4xxG/kua6Xc9t9TIOUOXu9DQ5EKZEIkxPQbCvmX6IVsL/
+	 ZjHCsp73PPQZEpbAa/OpjLkHQcZ0rurpFcALk1i1r1JgVH1GXHvsr+oBw2zDe/6z8d
+	 2L8LVv8/1vEX6TE3xmt53Jt3rhMNDqbwhHPjqfFJr70a1AYEc7r3r0z3Ru+cHXKkcE
+	 H4Y2cd72e4TUodbeB/hSNHKlQeiUx1UiLgGpsGeU4gaPnFyzgNannH2XsESjxEDowC
+	 XyLigMYiK+y/Q==
+Date: Tue, 22 Jul 2025 16:18:12 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+	git@xilinx.com, Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Rob Herring <robh@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH] dt-bindings: riscv: cpus: Add AMD MicroBlaze V 64bit
+ compatible
+Message-ID: <20250722-glitzy-worshiper-7574af025084@spud>
+References: <adf316c097ae416eb8565f2f1d67a98c413a71d2.1753169138.git.michal.simek@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250722-mmc_dts_warnings-v1-2-8a8a1594dfd2@bootlin.com>
-References: <20250722-mmc_dts_warnings-v1-0-8a8a1594dfd2@bootlin.com>
-In-Reply-To: <20250722-mmc_dts_warnings-v1-0-8a8a1594dfd2@bootlin.com>
-To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
- kernel test robot <lkp@intel.com>
-X-Mailer: b4 0.14.2
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdejhedvfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephfffufggtgfgkfhfjgfvvefosehtkeertdertdejnecuhfhrohhmpeeuvghnohpfthcuofhonhhinhcuoegsvghnohhithdrmhhonhhinhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfefvdejledtvddvudehueejjeelhedtgfdvueffiedtieeutdegueetteejgeeinecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeduheefjeemfhefheemleefiegumegvledvheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemudehfeejmehffeehmeelfeeiugemvgelvdehpdhhvghloheplgduledvrdduieekrddutddrudejvdgnpdhmrghilhhfrhhomhepsggvnhhoihhtrdhmohhnihhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvr
- hhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthgrfihfihhkrdgsrgihohhukhesmhhosghilhgvhigvrdgtohhmpdhrtghpthhtoheplhhinhhugidqmhhiphhssehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepthhssghoghgvnhgusegrlhhphhgrrdhfrhgrnhhkvghnrdguvg
-X-GND-Sasl: benoit.monin@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="r+Au2k4XYYAgwXda"
+Content-Disposition: inline
+In-Reply-To: <adf316c097ae416eb8565f2f1d67a98c413a71d2.1753169138.git.michal.simek@amd.com>
 
-The name should match the pattern defined in the mmc-controller binding.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202507220215.wVoUMK5B-lkp@intel.com/
-Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
----
- arch/mips/boot/dts/mobileye/eyeq6h.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--r+Au2k4XYYAgwXda
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/mips/boot/dts/mobileye/eyeq6h.dtsi b/arch/mips/boot/dts/mobileye/eyeq6h.dtsi
-index bbd463435ad658105a862c5b550d21e1110e7c8c..5ae939d25ea87ddc15cb848c249beed3d07e32e0 100644
---- a/arch/mips/boot/dts/mobileye/eyeq6h.dtsi
-+++ b/arch/mips/boot/dts/mobileye/eyeq6h.dtsi
-@@ -109,7 +109,7 @@ olb_east: system-controller@d3358000 {
- 			clock-names = "ref";
- 		};
- 
--		emmc: sdhci@d8010000 {
-+		emmc: mmc@d8010000 {
- 			compatible = "mobileye,eyeq-sd4hc", "cdns,sd4hc";
- 			reg = <0 0xd8010000 0x0 0x1000>;
- 			interrupt-parent = <&gic>;
+On Tue, Jul 22, 2025 at 09:25:40AM +0200, Michal Simek wrote:
+> 32bit version has been added by commit 4a6b93f56296 ("dt-bindings: riscv:
+> cpus: Add AMD MicroBlaze V compatible") but 64bit version also exists and
+> should be covered by binding too.
+>=20
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 
--- 
-2.50.1
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Although maybe I should pick this up myself? LMK if you want me to,
+rather than it going via the xilinx tree.
+
+--r+Au2k4XYYAgwXda
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaH+rtAAKCRB4tDGHoIJi
+0vacAP4zbN3Fu+D/dt7INleDrr3nJ9mrPD2r+G3p5CicM2ALCAEA08iTkS686xJY
+Uu4OrgvMrLyDB2t1mClhYrqsyJcw0wM=
+=Lceo
+-----END PGP SIGNATURE-----
+
+--r+Au2k4XYYAgwXda--
 
