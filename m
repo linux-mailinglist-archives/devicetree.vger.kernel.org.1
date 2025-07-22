@@ -1,158 +1,86 @@
-Return-Path: <devicetree+bounces-198567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73F51B0D649
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:51:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47EDDB0D64E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59BC61C22C0B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:51:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B2217A50ED
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:50:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD2242DC348;
-	Tue, 22 Jul 2025 09:51:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HaIsBVE8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6A72DC348;
+	Tue, 22 Jul 2025 09:52:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC8DD2CCC1;
-	Tue, 22 Jul 2025 09:51:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B87C2DEA9D;
+	Tue, 22 Jul 2025 09:51:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753177895; cv=none; b=R8+PggxT3027qBE3zm4E2xGle0EdFNxe+3fCb4DPZjTe8epwdkfJJSTDfGxn9gUIkO0gmLcW1OXlb6au4GnL9CiYnxnUBdPdwBto7Qrb/8kc5lpMGSP88miZvMoFU0phmnbQThNt7vw62Hlzj6UAsC+C/okHtyD1gI0rIHnPWxA=
+	t=1753177921; cv=none; b=hYhz7xVWEvYPBhDWyCMfispfPNxsEOwwp8WvIsRBpwf7zZzQO9/kYyvdR8zletm33ibThJvrAzQlk5JYSlL5jj7mqLcqvpaTxnv2Xj7kScFl0FSWzcsyJWArYYfODKHjCRMKr1BYpzd+OBRG59Us0DsE5tm6tzBMo0HA+jp/CDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753177895; c=relaxed/simple;
-	bh=lVxHa2zhNH+2LvdHq/VYL69cUHX2Etw2hbHzGQ0URVo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A2MpzADBvKPsRGYDZkkMAJW50y9q8zrRxOXDbATVaw4MIJps7Pd28IiU/Z5gzdLEAUXnUX1Jc/KGsUuibPOng8U9H4FChRnCZ/0fpoEJ0VVvy13ISEVixUron11jRg/4ZFSeauuRwzEwAceEc5mmMY7qFQ2M6QUt4kkRfgjGlc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HaIsBVE8; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1753177892;
-	bh=lVxHa2zhNH+2LvdHq/VYL69cUHX2Etw2hbHzGQ0URVo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=HaIsBVE8eb/H8dV25NCgrOEWFYTe4t/eYFuI/rz3+JDB+8bOoCx4I/92/IvQb5kcc
-	 cqq1Gn+T91lmo3V7bp9P1lUM2TZN755yPWu4pszqk5oxSaQJj3woP59HmLtiMY2Ljd
-	 G7WYyATvPVKQCWH/6UENC+7bTtSF4+pVO1IV9txxnpH31sQRIHoNfzXtXPooYZolGF
-	 pvKdFcs7RX7wJFTbxBJEWM2am1eizZU2h+vFnCpiqo1ytdiU9N3NugbEKZIP3oa+wW
-	 ZtXKGlxCT3YJPA5SbOL/0IfIAV4OYkNgNKfqxZ/aNYWqp8DV/YZDfJk+atR9mHB893
-	 IT0sZ5j8piJ0g==
-Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:bd9c:eae9:88b0:783c])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laura.nao)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id AAF6817E10D6;
-	Tue, 22 Jul 2025 11:51:30 +0200 (CEST)
-From: Laura Nao <laura.nao@collabora.com>
-To: wenst@chromium.org
-Cc: andrew-ct.chen@mediatek.com,
-	angelogioacchino.delregno@collabora.com,
-	arnd@arndb.de,
-	bchihi@baylibre.com,
-	colin.i.king@gmail.com,
-	conor+dt@kernel.org,
-	daniel.lezcano@linaro.org,
-	devicetree@vger.kernel.org,
-	kernel@collabora.com,
-	krzk+dt@kernel.org,
-	lala.lin@mediatek.com,
-	laura.nao@collabora.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-pm@vger.kernel.org,
-	lukasz.luba@arm.com,
-	matthias.bgg@gmail.com,
-	nfraprado@collabora.com,
-	rafael@kernel.org,
-	robh@kernel.org,
-	rui.zhang@intel.com,
-	srini@kernel.org,
-	u.kleine-koenig@baylibre.com
-Subject: Re: [PATCH 0/9] Add thermal sensor driver support for Mediatek MT8196
-Date: Tue, 22 Jul 2025 11:50:46 +0200
-Message-Id: <20250722095046.27549-1-laura.nao@collabora.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <CAGXv+5EmigF=m1zDZ71AMv02XwyYWQxpiRpiwc7YMg=8vc2FZA@mail.gmail.com>
-References: <CAGXv+5EmigF=m1zDZ71AMv02XwyYWQxpiRpiwc7YMg=8vc2FZA@mail.gmail.com>
+	s=arc-20240116; t=1753177921; c=relaxed/simple;
+	bh=PT53kWuiP2WqxLGSJ4oCc+1vLX6oy7vXbe/AGWMwlV8=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OBxewmbpX8fAkPIwRaeNyL7/oneioYHOsBRC8zgOVSPKq2apJc0OcHuae20SqyJazm2DX82ex0sbVtaNs95eH/cR8VvtqwZgl47LZIIjaGYW+8XtSzZ2bvsm28q51dKbk0CB7J1YMyAD1iOBSR2Yas6V3+N3OQE+DbolGlHzIgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 22 Jul
+ 2025 17:51:56 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 22 Jul 2025 17:51:56 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, Thomas Gleixner
+	<tglx@linutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Kevin Chen
+	<kevin_chen@aspeedtech.com>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>
+Subject: [PATCH v3 0/2] irqchip: aspeed: Add AST2700 INTC debugfs support and yaml update
+Date: Tue, 22 Jul 2025 17:51:54 +0800
+Message-ID: <20250722095156.1672873-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
-Hi ChenYu,
+This patch series adds device tree bindings and driver support for the
+AST2700 SoC¡¦s two interrupt controllers (INTC0 and INTC1), along with
+debugfs entries for runtime inspection of routing and register protection
+status, and bindings example refine.
 
-On 7/22/25 09:40, Chen-Yu Tsai wrote:
-> Hi,
->
-> On Mon, Jul 21, 2025 at 4:18â€¯PM Laura Nao <laura.nao@collabora.com> wrote:
->>
->> This patch series extends the MediaTek LVTS thermal driver to support the
->> MT8196 SoC.
->>
->> MT8196 uses a positive temp_factor for temperature conversion, requiring
->> slight adjustments in the conversion logic.
->>
->> To support this, the series introduces:
->>
->> - A new struct lvts_platform_ops to allow platform-specific
->>   conversion logic between raw sensor values and temperature
->> - A variant of the lvts_temp_to_raw() implementation for SoCs with positive
->>   temp_factor values
->> - Platform data and controller definitions for MT8196
->
-> I see the GPU and APU thermal sensors were left out. Was there a reason
-> for this?
->
+v3:
+- aspeed,ast2700-intc.yaml
+  - improve commit message description.
+- irq-aspeed-intc.c
+  - add platform driver for "aspeed,ast2700-intc0/1" compatible nodes.
 
-Based on my testing, the GPU and APU sensors are not functional at this 
-stage - the APU controller returns an invalid ID, and the GPU sensors 
-report invalid values. I suspect that both the GPU and APU need to be 
-fully initialized for the sensors to operate correctly, so I'm planning 
-to upstream support for those at a later stage.
+v2:
+- fix dt bindingcheck
 
-Best,
+Ryan Chen (2):
+  dt-bindings: interrupt-controller: aspeed: Add parent node compatibles
+    and refine documentation
+  irqchip: aspeed: add debugfs support and AST2700 INTC0/INTC1
+    routing/protection display
 
-Laura
+ .../aspeed,ast2700-intc.yaml                  | 158 ++++++++----
+ drivers/irqchip/irq-aspeed-intc.c             | 238 ++++++++++++++++++
+ 2 files changed, 353 insertions(+), 43 deletions(-)
 
-> Thanks
-> ChenYu
->
->> Laura Nao (9):
->>   dt-bindings: thermal: mediatek: Add LVTS thermal controller support
->>     for MT8196
->>   thermal/drivers/mediatek/lvts: Make number of calibration offsets
->>     configurable
->>   thermal/drivers/mediatek/lvts: Guard against zero temp_factor in
->>     lvts_raw_to_temp
->>   thermal: mediatek: lvts: Add platform ops to support alternative
->>     conversion logic
->>   thermal/drivers/mediatek/lvts: Add lvts_temp_to_raw variant for
->>     positive temp_factor
->>   thermal/drivers/mediatek/lvts: Add support for ATP mode
->>   thermal/drivers/mediatek/lvts: Support MSR offset for 16-bit
->>     calibration data
->>   thermal/drivers/mediatek/lvts_thermal: Add MT8196 support
->>   dt-bindings: nvmem: mediatek: efuse: Add support for MT8196
->>
->>  .../bindings/nvmem/mediatek,efuse.yaml        |   1 +
->>  .../thermal/mediatek,lvts-thermal.yaml        |   2 +
->>  drivers/thermal/mediatek/lvts_thermal.c       | 315 ++++++++++++++++--
->>  .../thermal/mediatek,lvts-thermal.h           |  26 ++
->>  4 files changed, 325 insertions(+), 19 deletions(-)
->>
->> --
->> 2.39.5
->>
->>
+-- 
+2.34.1
 
 
