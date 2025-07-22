@@ -1,132 +1,168 @@
-Return-Path: <devicetree+bounces-198731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 104DCB0E0C5
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 17:40:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 663CDB0E102
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 17:56:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19096188C23A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:40:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87897580DA3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:56:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5E522AE75;
-	Tue, 22 Jul 2025 15:40:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC30279DC3;
+	Tue, 22 Jul 2025 15:55:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kcsm+nJ0"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="R2kR/Wp2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C927F9;
-	Tue, 22 Jul 2025 15:40:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0298A279354
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 15:55:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753198821; cv=none; b=Ak83d8fj6lp0YaWsRPfuttO5W8+5UucU2YDpSvGdypZAnHr3XPUoxUKN2YK5V+g/PWfHwUIz5JJZE/GsC+vbiS6oLPu1nALSsxoiK84z/zso8GD0b+e8OS1JW0xghAkzuMQhLwo8ZC/7ePPrWAI8CEMTeEkNRodg/vSPJMmD5Zo=
+	t=1753199755; cv=none; b=rthFNp88Cou6ZbdBPfjnCyc2+GEgzpLwvtpUwWYBmF/ny+UoqAnDmES77UGWz485i7+ehfWVWowbbC5lgu0dFYDPljeh9FZzIftt2Uy/uk//3N+Ev7ok8bEHSjpRPuc3T7E/5IJmbnyF5o3ZDR5zL8/QHLj/iKvP2HT1EjxqjfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753198821; c=relaxed/simple;
-	bh=auL+hG0nmvo3opx1RXwaVoxmnBRbux+9KiGUSw4cmUM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ugvANSSCi7SCA4nUKgciRzAFzD9p4LXsCd4Zher7ncYt9is2+lhbhjkqJQKsvir5chFUcziNRULK19lxdN4goF4O6zzknnpa8/zAMoWBZNZFDkhrSnWTqdVRsjXmer9jq0aHihYGWPZxRXdQP2XJMuwZMLzoz1CU16R/BLz8V5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kcsm+nJ0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E1F7C4CEEB;
-	Tue, 22 Jul 2025 15:40:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753198821;
-	bh=auL+hG0nmvo3opx1RXwaVoxmnBRbux+9KiGUSw4cmUM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kcsm+nJ06ETXO/OPXma7PwnI41nkDrONNfPjsM3pQLxkwBKcMhCF+dU36BaPArHOw
-	 Kpu2HYQtR/llc2FkJGWpaS+xv7jFGtMD5PU9X6Yq5u7Kxn81RP+5kqEAHbmBMsvpvj
-	 USeuMRfcjPaJtMkdQorebhqaEQ8XEvAeQj5qdSEMxS/aXOzGPvqCKuDZuo8q9riZzh
-	 pvb10ZxUfzhOMHKkWVXVbLZ0ewG+jIlZrNgb7mwHfSUJ0fjQRy9NtD71LcC/vypzLc
-	 r39FUY5ujW3Dmn963y+zZRbiepH9tIe/HQl23Ml5WwlymQ/UvriofhO/PTXYhdWWRo
-	 DSg1N+R/CxVQg==
-Message-ID: <8557c0f0-d851-4d08-a92e-ff8a0e2b3c60@kernel.org>
-Date: Tue, 22 Jul 2025 17:40:16 +0200
+	s=arc-20240116; t=1753199755; c=relaxed/simple;
+	bh=R51j62/d3CRnomk9oqStk+xbuVTnaY01yvb81U2I9eI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SCqvEpR1O7MQJqg5Yg/WU6tXrcR+n9UMd7t73C7BKSsRqYpaXMr4nF0AsNRnj5R+zTezyYwDFbmOGkWmaU05s7nMx0nkN/5aoIv6ptNnTTroVcprmwcxRIQeZ0sAY8ukLr7C+95033X1BDtozYGwFRnmi0tNM6p22IyigZCmJ/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=R2kR/Wp2; arc=none smtp.client-ip=91.218.175.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Tue, 22 Jul 2025 23:55:46 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1753199752;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8KY8tFgOhzhn8LNLMXuaA9xgGEARgCxSjBTz/EP1VVU=;
+	b=R2kR/Wp2Mi8qtrn439VWPFydY4QshjUyYiawYDYZeGH/x+EbV4oDOYKzqSVYo36mR8xw2r
+	vPOYdVTKNiLmmtAN0XeGDnyKuVc5H3jGinAYZScLSCcT2BuQfa8AMm6vCd5Brxvu9XXLgz
+	4BVvqd01NDmH8FlEpM+GoLB1VQ6zIOQ=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ze Huang <huang.ze@linux.dev>
+To: Yao Zi <ziyao@disroot.org>, Ze Huang <huang.ze@linux.dev>,
+	Alex Elder <elder@ieee.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] usb: dwc3: add generic driver to support flattened
+Message-ID: <aH-0d0OyLIo9tlkd@monica.localdomain>
+References: <20250712-dwc3_generic-v6-0-cc87737cc936@linux.dev>
+ <20250712-dwc3_generic-v6-2-cc87737cc936@linux.dev>
+ <d2e9a521-568e-433d-a59b-9b98138ace2b@ieee.org>
+ <aHyN3-uoHofF8Hg3@monica.localdomain>
+ <aH4tpgVPbf9DOzSe@monica.localdomain>
+ <aH7cpr0faRPVnxXL@pie>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] MIPS: mobileye: dts: eyeq6h: rename the emmc
- controller
-To: =?UTF-8?Q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- kernel test robot <lkp@intel.com>
-References: <20250722-mmc_dts_warnings-v1-0-8a8a1594dfd2@bootlin.com>
- <20250722-mmc_dts_warnings-v1-2-8a8a1594dfd2@bootlin.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250722-mmc_dts_warnings-v1-2-8a8a1594dfd2@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <aH7cpr0faRPVnxXL@pie>
+X-Migadu-Flow: FLOW_OUT
 
-On 22/07/2025 17:15, Benoît Monin wrote:
-> The name should match the pattern defined in the mmc-controller binding.
+On Tue, Jul 22, 2025 at 12:34:46AM +0000, Yao Zi wrote:
+> On Mon, Jul 21, 2025 at 08:08:06PM +0800, Ze Huang wrote:
+> > On Sun, Jul 20, 2025 at 02:34:07PM +0800, Ze Huang wrote:
+> > > On Tue, Jul 15, 2025 at 03:50:54PM -0500, Alex Elder wrote:
+> > > > On 7/12/25 2:49 AM, Ze Huang wrote:
+> > > > > To support flattened dwc3 dt model and drop the glue layer, introduce the
+> > > > > `dwc3-generic` driver. This enables direct binding of the DWC3 core driver
+> > > > > and offers an alternative to the existing glue driver `dwc3-of-simple`.
+> > > > 
+> > > > I'm not familiar with dwc-of-simple.c, and won't comment on
+> > > > how this differs from that (or does not).
+> > > > 
+> > > > Given you're implementing an alternative though, can you explain
+> > > > in a little more detail what's different between the two?  Why
+> > > > would someone choose to use this driver rather than the other one?
+> > > 
+> > > They are basically the same.
+> > > 
+> > > dwc-generic use a plain dt node while dwc-of-simple will nest the dwc3
+> > > node as its child.
+> > > 
+> > > Both will use dwc3_core_probe() to finish the probe process. But now we
+> > > can simplify the process by just calling it, instead of calling
+> > > of_platform_populate() and create another snps,dwc3 device driver.
+> > 
+> > [...]
+> > 
+> > > > > +	ret = reset_control_assert(dwc3->resets);
+> > > > > +	if (ret)
+> > > > > +		return dev_err_probe(dev, ret, "failed to assert resets\n");
+> > > > > +
+> > > > > +	ret = devm_add_action_or_reset(dev, dwc3_generic_reset_control_assert, dwc3->resets);
+> > > > > +	if (ret)
+> > > > > +		return ret;
+> > > > 
+> > > > The re-assert shouldn't be set up unless the deassert below
+> > > > succeeds.
+> > > > 
+> > > 
+> > > Will move behind the deassert.
+> > > 
+> > > > > +	usleep_range(10, 1000);
+> > > > 
+> > > > This seems like a large range.  You could just do msleep(1);
+> > > > Also, can you add a comment explaining why a delay is needed,
+> > > > and why 1 millisecond is the right amount of time to sleep?
+> > > > 
+> > > 
+> > > I will check the range with spacemit and reply soon.
+> > > 
+> > 
+> > the resets are asynchronous with no strict timing. But to be safe, each
+> > reset should stay active for at least 1 µs. I’ll switch to a udelay(2)
+> > and add comment accordingly.
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202507220215.wVoUMK5B-lkp@intel.com/
-> Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
-> ---
->  arch/mips/boot/dts/mobileye/eyeq6h.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> This may be a little farsight: do you think it's better to make the
+> reset timing part of the of_match_data? This is more flexible and
+> reduces future burden when introducing a new platform that comes with a
+> different reset timing, which is a very likely case we'll face since
+> it's a "generic" driver.
+> 
 
-This should be squashed. It is trivial node name alignment with schema.
-We don't fix it one by one, it's a churn.
+Hi Zi Yao, thanks for the suggestion.
 
-Best regards,
-Krzysztof
+The delay is only for safety. I think there will not be much device require
+this setting. I'd prefer to keep the logic simple and just cover the
+currently known compatible devices.
+
+If we encounter future platforms that require different timing constraints,
+we can revisit this and introduce of_match_data as needed.
+
+> > > > > +	ret = reset_control_deassert(dwc3->resets);
+> > > > > +	if (ret)
+> > > > > +		return dev_err_probe(dev, ret, "failed to deassert resets\n");
+> > > > > +
+> > > > > +	ret = devm_clk_bulk_get_all(dwc3->dev, &dwc3->clks);
+> > > > > +	if (ret < 0)
+> > > > > +		return dev_err_probe(dev, ret, "failed to get clocks\n");
+> > > > 
+> > > > Call devm_clk_bulk_get_all_enabled() instead of doing the two
+> > > > steps separately here.
+> > > > 
+> > > 
+> > > Will do, thanks.
+> > > 
+> > > > 					-Alex
+> > 
+> 
+> Regards,
+> Yao Zi
 
