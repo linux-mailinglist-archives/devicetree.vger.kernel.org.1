@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-198574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8D1B0D6DD
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:07:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5209FB0D6EE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:09:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFCF418921C4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:06:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6261D56384C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:06:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685A82222A0;
-	Tue, 22 Jul 2025 10:04:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F096D2E0417;
+	Tue, 22 Jul 2025 10:05:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="caYdDcHz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TiZIeG6f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 715CD72626
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 10:04:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06CD22DE703
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 10:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753178677; cv=none; b=AMhUBFhxOEdrFMkweibq9mQmVVfD/lhCdNW9lE67DK1dX9vEwQ8kH53kdCASsICnPZxb7C89EiEFsi63B6yze/4netcXm8CqQByC4bgFureZPKbxkFxrL6/OvU330MCBAmIpYIfpAy0iz2UP1POWqbrB/rewned2HZFibO+2LUQ=
+	t=1753178721; cv=none; b=sEWYbfVVT5k3I4c+Bkvk0QjiMNKJEXuNMv6DvJGDRMabqudPtHZVBHRcWGtsf8UUrVVkgQgtCd/eeh9zaKVnBYeuA2WASuyHt8OCpPSbw+JFEPIygkLtcZWHZx5tw++Be0Q30YDpv/3NM+hmu5gjnGDLJ/YdiMvDYgcEWoNbd/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753178677; c=relaxed/simple;
-	bh=cbUV/aoxPgUWCJZMY6VxKNUjXQckwm3iK0y+j5W/5Ho=;
+	s=arc-20240116; t=1753178721; c=relaxed/simple;
+	bh=CzlgOk5IV5cLTyLvTOjZpyhrA7PFnTxC8JSq1EdM4/U=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=P0pT/oaJZBriPq/G1TMN+/yPgEsSZ4uFWjUIfW3In0b747xj6FkjTC/fqvz1ALwzmWhkeW8fA+MYuT74cQ3Knl2oOylCKXlXCSz5nA5ro9Nm+awK2c2HHfMx+rBDenSVOoCoJs0KxvjbKZYhwiOSG7fDuDFd8TnAbMsoQ7kX5qM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=caYdDcHz; arc=none smtp.client-ip=209.85.128.42
+	 In-Reply-To:Content-Type; b=Lc0t7LTUL1/QKh6fYVvlSKGks9v0NfAZsVuvb90OkWwPzOcGp2JrauuALKlBTSInIpCxJizR8oyo/TBf8QyaUGbW61B8k++q4j7O6pPzbGnGcjOoXGhegvPI3cp4sGOuZ1l3KOihpBXJiEz8pBNQ1EYV0RDru2y8wF7dZw89gec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TiZIeG6f; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45634205adaso25792445e9.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 03:04:35 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3a531fcaa05so2427372f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 03:05:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753178674; x=1753783474; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1753178718; x=1753783518; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=th8LkjBfkv7nYvFuNNGaT8FWdqcCdRHWy+pWo6pVRT4=;
-        b=caYdDcHz735mhJEx22QLAABDbV4/r2dcFCKK1RCBzAPqTIgOP/PsyIzQJcU4HAT6qd
-         tVZ9lP5k0h6QxWDS3jBp5xvqtTzFoNhliGVwR55BD4W6Ram5ZrUzRT71OUEC0o95LHv4
-         UDhXi7n+JHYNtJJ2MNcF6RRi5qCqWSwAyo+sQ+AxcBb41AUiXNaTddejXxSiZWMaK1Kh
-         SBgr9Rhn3rfMqWhVsTyVOqUN52ebvb/XSDe5FBV4JTcC8MvhiGCG5F/ow479il9w5xJ9
-         SiEsKtxZ3elbY6gaPqgqZ8xygOubn2Atwcr/Ot1YBx1e4Y1eS882vTWFp1iZpTu+K8sY
-         6pcw==
+        bh=eACVn/AeNUkJSj6fqs1SPdUKZxcJXedSP1FDf4UsU+0=;
+        b=TiZIeG6fzsvLv7dqU8mWL5HBnR1LR+h3em+XLazGLi/sb5eEP3XqP8wEKgsgyms5NA
+         MtaZBUsn7E/bGVL46hFtqtzPXdQvXKXSBoiNY4NuzI7c1eRoU15nekGd23lpdNRvtw6j
+         /HUK9NKuhNxa3fT5aWVYNPhHH3VDLAnPtklzUBG7Qc8izNgDHy8Dx0x5sY6Pq1U8FCaM
+         JbFsAHgC+nCSJAtIEnTIPfFW228ARWfCRxGZCD/TR5QvjyTM33HzvJK/3p87oxTbcsm8
+         kr6ZAUVUK0uzgC1Igjvo6tBa6ZsXf1CMPf+/6XA1TJ5LVeycrd5YP3LXO89bjCFEfSnW
+         p2qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753178674; x=1753783474;
+        d=1e100.net; s=20230601; t=1753178718; x=1753783518;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=th8LkjBfkv7nYvFuNNGaT8FWdqcCdRHWy+pWo6pVRT4=;
-        b=Bm8yPRhMczraOWLuMwJ48/3KtrQeC+EevGKwBd8S+0Ab0If4TZdN4Ivf2+//wtebpp
-         Iw+BlLuR98p5OloUsCkRrBA+Ij0KyuZgHnX+9ZwQ3QMxKFTBVeSwYbypeasjjb6AZlIu
-         Hvhsd3r+qkTAcS9XK6GjL9RhdIq5qQ6D89UdAScwKJpKsnZ86jfshL7N4bnBZZWL7ys6
-         vNLGKDb/ALmR4XZUnoYRZxPtCEWS90JuZIaGF4KeQFOyutd/w+8ceJ9mfHJx5Tk+FZFV
-         +C3Fk7tWTc7/qkJ4/jHfZ3WFgPDoiefJhMB+/YK7FPwE0US69bbQj7L+wyp69WEs5L4S
-         eZ9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWQkYQk+BhtwKsaBOS8H+nBFiizB5t3TGP4r/gPOPDipq/UneXV6diJ0V45HdKQPxEOH9QNtm7AWmp1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTYeEjYSBgpclJWIaG02OljIobngJrc/W54pScYAwCwTrAvU9+
-	F/i6wAI6OxB6bmJ+0hKKfAQrQzvooafqbf9UPvCgidF1IuedWzzaedCc59eyxY9rxWA=
-X-Gm-Gg: ASbGncvjJ8c8pDJbnoJvMAi/loLnUt94awFpc2mJ2s3M1pu8yHk0q6qwqjcgS6xHgZ1
-	cfiW+w60EoX8bjHpY9CrR8N9Tegzp3oyXaC0ZHDE/pjlsQYoNOZKhO5EkjBkCKdW+DPPaJYNUCV
-	jWhcRBGgAVFuk6PhNXbMCqPS55HecOmjPzdvmCtmJtZ7yOe5y30jk6tpqQq7q5+fz3rqcOPkLUz
-	KRWSeHToBasUCjHrQ7hLhjJTFFaiI4a0NW3okZbQzLslzqdrQ+Oaax8wNlqtPfgerP8gFONMFH/
-	Y0UlW2GM3bidlBR/lJwqWoh5g1T8FZi6kcmrFvVVbgaw7gUTx18tJBK1txigyoE8sYwLErM6M5r
-	RjfYYEgOOxilrSxlzkPJ8SEO1QktArErzWBeX8UNsqixcOnocYObPBys/pnKVVqfFr5wO+7o2df
-	Y=
-X-Google-Smtp-Source: AGHT+IFejVtWV8JytlClgGlAbQ/sASXBqbtoY0roVwh48A/QZMJB/xCFqE4nYCMj0t7+saAYfB6ttw==
-X-Received: by 2002:a05:600c:4688:b0:456:a1b:e906 with SMTP id 5b1f17b1804b1-4562e3cbb03mr196476655e9.33.1753178673594;
-        Tue, 22 Jul 2025 03:04:33 -0700 (PDT)
+        bh=eACVn/AeNUkJSj6fqs1SPdUKZxcJXedSP1FDf4UsU+0=;
+        b=IoLz6qjgOgcrHHQfG/QeXCkIqgKM41MGDC4pJ8dwQsXgPiR7vT0q1JmDynZSqDegat
+         2QXEKBEH7ff/iZ/I59Qx+gUDw6uv0he7HSNy6XnEL9khrwFhNpfvbMIAvWibvc53yDc1
+         G89ps8WqGSuPc2K7CvUdKGjj4bRs/0+jUtIxzYtnznqsv3a87nd5Jcc8BzhqlyYACU7b
+         XsKneqiYN9jHcD4/U8PQk4nKYoReVrjYa7PTEWruaKhlxk73OGXhp/c2iaVAAzOaLjQi
+         uILra7MHBYWXJlcw8g7T0+u+FskHI8DfQMeFrfJnxsakeds1YJLihMvrXxPAci9UqCLw
+         W7bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWN1mofqCQSlPYRQu6RH5hcV6ElMtVlM0WZac7rcomifk0giMEMdRRM2/FbeAnOyvRxothPB9vR5d0W@vger.kernel.org
+X-Gm-Message-State: AOJu0YynTZ0yQDZCFUoEUoSrMC5dEpmDaAlYUVo2VGNhRSvK2dHkMgRd
+	0PKN+uqkVXMcI/kZUjy+AhwRjfe13Wf2SBzL50nYgQjwkMH9VoOq4ru3xgEKq/tjFQ0=
+X-Gm-Gg: ASbGnctIi4KbJKve9ypvgNhO+Ovy9l7dVfSmdRjjd44gug1eJiSiZxATj2cBUPr/Lec
+	H03IwsozNnseqd2fXZHZ0K9rQYud0zHOT3tudxxHssjmJW+Op2oMN9lRsVHjBk7fyJuM9Js+dJa
+	/REEOWQn8mMNSwD2urFlEgqeH0TsoAULLkGuctx2c+QTHqXrbWUfz0Y09fkR+mmltlZyndsJWlQ
+	9m58160DzxVxwgqJX8Cei667nNdnwfkCh+8qUdJpNwwlLKkHl1nQmRy7SOJSbczXa4/ZCEO8AIv
+	2FJYzpD7DUOTSeWsi+rXCoMK5lrxoVHl0QsBA0H1I9gdYkukFWLDNDE7IDg+mo9FWt9SwVtfBsA
+	ADhi7Dlxg7cbeWjpxz7xU5vdRMWYfrID2r3W2wtAomKFL3h5tBG2NymXx9OFpzB7dVeok3uxlZk
+	g=
+X-Google-Smtp-Source: AGHT+IGRKY81gkhXWhMn/9LTWKt4F1bWwxEHclEpgsQnRjAMZGrMWAwlAapyO/AgjZWzNQLVWrBoIw==
+X-Received: by 2002:a5d:5f46:0:b0:3a5:2d42:aa17 with SMTP id ffacd0b85a97d-3b60e5127efmr20108404f8f.31.1753178718150;
+        Tue, 22 Jul 2025 03:05:18 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:bce4:725d:6922:d1ba? ([2a01:e0a:3d9:2080:bce4:725d:6922:d1ba])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4562e7f33f0sm184133915e9.2.2025.07.22.03.04.32
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b75baa7072sm6012611f8f.2.2025.07.22.03.05.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Jul 2025 03:04:33 -0700 (PDT)
-Message-ID: <942aa300-fc49-47e8-93b7-85fd1e1fd123@linaro.org>
-Date: Tue, 22 Jul 2025 12:04:32 +0200
+        Tue, 22 Jul 2025 03:05:17 -0700 (PDT)
+Message-ID: <6692f1e4-978e-4138-9d76-ac2b80613a65@linaro.org>
+Date: Tue, 22 Jul 2025 12:05:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,8 +87,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/3] thermal: amlogic: Support C3 thermal controller
- driver
+Subject: Re: [PATCH 3/3] arm64: dts: amlogic: c3: Add tempsensor controller
+ node
 To: xianwei.zhao@amlogic.com, Guillaume La Roque <glaroque@baylibre.com>,
  "Rafael J. Wysocki" <rafael@kernel.org>,
  Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
@@ -101,7 +101,7 @@ Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, Liming Xue <liming.xue@amlogic.com>
 References: <20250718-c3-thermal-v1-0-674f9a991690@amlogic.com>
- <20250718-c3-thermal-v1-2-674f9a991690@amlogic.com>
+ <20250718-c3-thermal-v1-3-674f9a991690@amlogic.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -128,53 +128,43 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250718-c3-thermal-v1-2-674f9a991690@amlogic.com>
+In-Reply-To: <20250718-c3-thermal-v1-3-674f9a991690@amlogic.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 18/07/2025 08:37, Xianwei Zhao via B4 Relay wrote:
 > From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> Add the thermal controller driver for the C3 SoC family.
-> 
-> The main difference compared to other Amlogic chips lies in the
-> offset of the sec_ao base (referred to as u_efuse_off), which is
-> handled differently. Everything else remains consistent.
+> Add the Tempsensor controller node for C3 SoC family.
 > 
 > Signed-off-by: Liming Xue <liming.xue@amlogic.com>
 > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->   drivers/thermal/amlogic_thermal.c | 10 ++++++++++
->   1 file changed, 10 insertions(+)
+>   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
 > 
-> diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
-> index 5448d772db12..d1b08119c818 100644
-> --- a/drivers/thermal/amlogic_thermal.c
-> +++ b/drivers/thermal/amlogic_thermal.c
-> @@ -226,6 +226,12 @@ static const struct amlogic_thermal_data amlogic_thermal_a1_cpu_param = {
->   	.regmap_config = &amlogic_thermal_regmap_config_g12a,
->   };
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> index cb9ea3ca6ee0..c853390eca6c 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> @@ -727,6 +727,17 @@ clkc_pll: clock-controller@8000 {
+>   					      "fix";
+>   			};
 >   
-> +static const struct amlogic_thermal_data amlogic_thermal_c3_cpu_param = {
-> +	.u_efuse_off = 0x108,
-> +	.calibration_parameters = &amlogic_thermal_g12a,
-> +	.regmap_config = &amlogic_thermal_regmap_config_g12a,
-> +};
+> +			temperature-sensor@20000 {
+> +				compatible = "amlogic,c3-cpu-thermal";
+> +				reg = <0x0 0x20000 0x0 0x50>;
+> +				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&clkc_periphs CLKID_TS>;
+> +				assigned-clocks = <&clkc_periphs CLKID_TS>;
+> +				assigned-clock-rates = <500000>;
+> +				amlogic,ao-secure = <&sec_ao>;
+> +				#thermal-sensor-cells = <0>;
+> +			};
 > +
->   static const struct of_device_id of_amlogic_thermal_match[] = {
->   	{
->   		.compatible = "amlogic,g12a-ddr-thermal",
-> @@ -239,6 +245,10 @@ static const struct of_device_id of_amlogic_thermal_match[] = {
->   		.compatible = "amlogic,a1-cpu-thermal",
->   		.data = &amlogic_thermal_a1_cpu_param,
->   	},
-> +	{
-> +		.compatible = "amlogic,c3-cpu-thermal",
-> +		.data = &amlogic_thermal_c3_cpu_param,
-> +	},
->   	{ /* sentinel */ }
->   };
->   MODULE_DEVICE_TABLE(of, of_amlogic_thermal_match);
+>   			eth_phy: mdio-multiplexer@28000 {
+>   				compatible = "amlogic,g12a-mdio-mux";
+>   				reg = <0x0 0x28000 0x0 0xa4>;
 > 
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
