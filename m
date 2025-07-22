@@ -1,93 +1,108 @@
-Return-Path: <devicetree+bounces-198801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A167B0E50F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 22:46:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E212B0E52C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 23:00:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FF15A61026
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 20:46:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A23E27A334B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 20:58:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D7E21516E;
-	Tue, 22 Jul 2025 20:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C17285C81;
+	Tue, 22 Jul 2025 21:00:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oiW39NK+"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DMD8TWmY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ABBF273FD;
-	Tue, 22 Jul 2025 20:46:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F01D22857F0;
+	Tue, 22 Jul 2025 21:00:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753217190; cv=none; b=jweLa8s2d6l0PAE/WYHkElldHbwsVlUn6o73EQIXKUOTau4/+p0nA1b2rY+KxFcole8UARzCnERsjRIKvTuhAIECKAdzh3WECwe8obBgCFqzJHLxgc17OLWPVxhzY087jkPaoYv4F+5l0S+zU468EwA4b2c/uesVc5RO7rmHY5M=
+	t=1753218012; cv=none; b=Z58v2115a9vgU/A4RxgtKTZBNGvrKT8620MAuUxvDcdTqgio4ieho74lQNR6rZEjH25luGI3zj8Uu1g7hiz5Yy9ezvsMOZuY07qpOEGGYuqbyr+D4T7DGbkNj6iJiZaHI6MsFeUhPej4lOrg65nwycP7ElEjXUTILA54HXZr6vQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753217190; c=relaxed/simple;
-	bh=0/n304EBrrhIwO7/beO/35oY4Q23YLMRLyZG02akt0A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Mbw+VNeKUCCtUcouD2Oxximnc1PAV0GlypIuwoo6wS4kOVBTcvurOkEr58B03bi+kSxaGGyWQKtnGXuIuZYbwW2Nm6WGpZU/JYdfKDdILpmIAwzS1uVdE7A5TaZQoumM1zaUQK1fIzmgBq4nFp2zsPki2AFfxrKUhGKp8yLk7DY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oiW39NK+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05AD6C4CEEB;
-	Tue, 22 Jul 2025 20:46:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753217189;
-	bh=0/n304EBrrhIwO7/beO/35oY4Q23YLMRLyZG02akt0A=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oiW39NK+mCtAQPGjca3Jqr2+w7Rfzh2qLntlAWoiQ7RuE/s9Rgx4ZnePLwBWWnKgr
-	 y/zRaIsYUFffwaVTF0LOf3AlT+2f2RzCvrViyWtTnRf2mRJnpJBXq2UZ/pUlAiJpCo
-	 bc82H5c6No2OPgh0YO3sjZBAxjfGYT5GFrXkKniNeANO0/GTtEg5AQSlH3/MQGc1PN
-	 FNvaBSadEQvQP9XGac0p7EwZp3QED6MDh3Hq3Ldf9m2h0TOP+lHLv2X+VaBs6PfaMZ
-	 tLb5eiCCeYoGc6CMCgdAa5fNG1v0BQBt4M19q2Cl2LcpB3DRMazoPsQugzSHevQoBJ
-	 okZfTIme9TOYA==
-From: Conor Dooley <conor@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	monstr@monstr.eu,
-	git@xilinx.com,
-	Michal Simek <michal.simek@amd.com>
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
+	s=arc-20240116; t=1753218012; c=relaxed/simple;
+	bh=424qtBj7As3BusOn+abIiFBQyCjPATLbPyyiCsGTn/I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T4dDJMiTKqR89eP63vP9R2dyFQxBHspYIdTcWjcjefz36iC6GpEEjg4Htb7G+2YpnuJAD58iDa0d0rhAMR+ewvO85i3NdmdwWGLfhF+MxRvRkLKxXfEVc5lal4idv5QKsWRloxRF9GhVJMV2ouIqDkDyCXKi2U8Lvr3+PFWp04s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=DMD8TWmY; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=eVLbWCzQczw2dFn7K3G8G8HQYlWdsk18wtghWYXLXEs=; b=DMD8TWmYpjGyDAzTKybNamT+9v
+	SMMohcfkCxMGht1XfGZKiyP/Qib/NSMjLLos+LeLQa96Y4GQGSFrjFFwqk/pQ5VgZmgaYiqNsVZi9
+	5T9ER95fROMwNnkI03V/xl204eX2geij4sBPIBBSPkjVK3onQrXq4cPe4MPu/8yU1NOM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ueK5X-002VRl-Bv; Tue, 22 Jul 2025 22:59:51 +0200
+Date: Tue, 22 Jul 2025 22:59:51 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH] dt-bindings: riscv: cpus: Add AMD MicroBlaze V 64bit compatible
-Date: Tue, 22 Jul 2025 21:46:18 +0100
-Message-ID: <20250722-activator-anthem-b93b62c92527@spud>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To:  <adf316c097ae416eb8565f2f1d67a98c413a71d2.1753169138.git.michal.simek@amd.com>
-References:  <adf316c097ae416eb8565f2f1d67a98c413a71d2.1753169138.git.michal.simek@amd.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Tristram Ha <Tristram.Ha@microchip.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: document st,phy-wol
+ property
+Message-ID: <ae31d10f-45cf-47c8-a717-bb27ba9b7fbe@lunn.ch>
+References: <20250721-wol-smsc-phy-v1-0-89d262812dba@foss.st.com>
+ <20250721-wol-smsc-phy-v1-1-89d262812dba@foss.st.com>
+ <faea23d5-9d5d-4fbb-9c6a-a7bc38c04866@kernel.org>
+ <f5c4bb6d-4ff1-4dc1-9d27-3bb1e26437e3@foss.st.com>
+ <e3c99bdb-649a-4652-9f34-19b902ba34c1@lunn.ch>
+ <38278e2a-5a1b-4908-907e-7d45a08ea3b7@foss.st.com>
+ <5b8608cb-1369-4638-9cda-1cf90412fc0f@lunn.ch>
+ <383299bb-883c-43bf-a52a-64d7fda71064@foss.st.com>
+ <2563a389-4e7c-4536-b956-476f98e24b37@lunn.ch>
+ <aH_yiKJURZ80gFEv@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=440; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=QylGl+iLXLcbSGxTurC8fdLCuWCGw2TfymnB3GGjO9Q=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDBn1P2Zph/0+lDNpc11KQvgt9xNTFeu4+KPfS39k4dRWX navT/9lRykLgxgHg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACaysJKR4dvpjarGS7K/ca85 vELGWqX//GHh8uwvW728m22DLDe9ms7IcORZcq/iihX1x4uevGWz2nx5la3EU55d07e8bNXrFj7 uxggA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aH_yiKJURZ80gFEv@shell.armlinux.org.uk>
 
-From: Conor Dooley <conor.dooley@microchip.com>
+>         if (!priv->plat->pmt) {
 
-On Tue, 22 Jul 2025 09:25:40 +0200, Michal Simek wrote:
-> 32bit version has been added by commit 4a6b93f56296 ("dt-bindings: riscv:
-> cpus: Add AMD MicroBlaze V compatible") but 64bit version also exists and
-> should be covered by binding too.
+Let me start with maybe a dumb question. What does pmt mean? Why would
+it be true?
+
+>                 struct ethtool_wolinfo wol = { .cmd = ETHTOOL_GWOL };
 > 
-> 
+>                 phylink_ethtool_get_wol(priv->phylink, &wol);
+>                 device_set_wakeup_capable(priv->device, !!wol.supported);
+>                 device_set_wakeup_enable(priv->device, !!wol.wolopts);
 
-Applied to riscv-dt-for-next, thanks!
+Without knowing what pmt means, this is pure speculation....  Maybe it
+means the WoL output from the PHY is connected to a pin of the stmmac.
+It thus needs stmmac to perform the actual wakeup of the system, as a
+proxy for the PHY?
 
-[1/1] dt-bindings: riscv: cpus: Add AMD MicroBlaze V 64bit compatible
-      https://git.kernel.org/conor/c/28fa0dcb571a
+	Andrew
 
-Thanks,
-Conor.
 
