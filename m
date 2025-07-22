@@ -1,155 +1,128 @@
-Return-Path: <devicetree+bounces-198450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD81FB0D0C6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 06:05:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F0CB0D0CD
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 06:10:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CAFD47A91BF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 04:04:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2DF63A9D17
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 04:10:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99E423B60F;
-	Tue, 22 Jul 2025 04:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6991628BAB0;
+	Tue, 22 Jul 2025 04:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="SDY32tfS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wr/BPF+v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86FF81A0BDB;
-	Tue, 22 Jul 2025 04:05:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C3823FC52
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 04:10:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753157126; cv=none; b=DmOEBiCrDLpE2tFuBUh+ZzcjatwSYTy6Sxt41ybGnDAMTKsmLopmnLaQHrs3XfNXzW9UP9DQ7q3Vp/2OlFokA89tK5gq4lgWMeMUoYgv5UBpzcbfMv+rf7r0R8Hojplemfv6IqnWX8eYnGHDQS3uErGoPCmAFMfnCTnqvvjkxLM=
+	t=1753157452; cv=none; b=b2Cjmqja1iYkBiN+HyNjCd5e6w1Msz1ShO/jjIzqoGQhBHoZV0/OzLMSDo/FTBwnSZr/7jxmHC6pR++Uj24u0zd19Ed+mrW+qW3+yFFj2OzfPZlJ38YQpmFtYpFN7QtJYUrUzimCEbaIOa3i/pPea9OAE7i8HRB6lGufKszY2G8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753157126; c=relaxed/simple;
-	bh=K55yD1Ma6eC2A9HLm8c2k7UNaTufGqyNoR229HTD7Jk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bCBJ+KgZEG37eZjonP9eDxOlOWkBXH05+rhqv2fXrijx8RbnNdiSmiFh+wnnZB0/az+jYVMjeZNNsRwNC3fvGStnFB45il3+AFncZXs7ZVwhHGvezMb08LyaitLOcrNIhgvBTL3037d+VtDmGO5bjJ1b+WemP0Cmvr93QG5g+H4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=SDY32tfS; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 824221026E02A;
-	Tue, 22 Jul 2025 06:05:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1753157121;
-	h=from:reply-to:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=m7b5hGarLAQZ7wJX3z+HKwupNShCIskH0D5h01nt0B4=;
-	b=SDY32tfSFz9zqLNKR+pX3Uk/W/Xzd5ZVXPEe2q4ZUeHX9EYBDOu+y3zT0mwKenJdgN3v+0
-	5+MD523v3CJvOvs2LVpxJ7xzUTuZYyCiqaUxeKBa83xzMdTf3e1G7Lgbmytn0OFHvKh0bS
-	JMDz4IVw0Ztc628Hbc0RqGVbYBg3Hi9SQrB8eSKCk84hsLWAkde6tW86HY5+rGgI0dZlFH
-	yl7LppaXBVsN8EMt1+4CQMcmvXcWfXSep+IFQIUyHspcOlre4bdBSWZrjan7oheXBckaNp
-	lFByEhJrXrlDnVH2AR+Im6UKjYKVFrvAMEQR8T3N2t261YXDOWPGTXVfrNVTzw==
-Message-ID: <8a8106ea-83d3-e02a-9ae7-ea4a66e4c248@denx.de>
-Date: Tue, 22 Jul 2025 06:05:36 +0200
+	s=arc-20240116; t=1753157452; c=relaxed/simple;
+	bh=OqCNRS+72uajszDzG6n+T34z5A+LL4ACekiWWd6EEzc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uCi8tVqjMvQIv5SyAaD2ZiGGnnKP1kTLeYnx706dCHWejBExzr0dct9BO6rKLwoQjZV92j1Tus0RAvm736oNdMzedrego9q8x7Fmi3ar56nHaCd3LZZiMz1iEcMOjgm/gQZrZhB+6xN2KJpdfy88dikcBBv3t2GnLFkR7hENpTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Wr/BPF+v; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7490acf57b9so3414794b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 21:10:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753157449; x=1753762249; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nlBEY6HRx3gs6GmX9n8FOaCyjO7em88PtYwWGu+mg9c=;
+        b=Wr/BPF+vf/8Jh980foQMoEUznzRA7ZAjuL3JQ+v8LvyydzqW1nNIZBWDXvAzE4qfAG
+         xKz54LHvoq4IRfpFzYo2PWvqNb7t9Jsw5K5qRJl3rzI9EDyaMs+MAEx5wHm7BVGSJCni
+         XBbs/wnGUmxlDyTtf6pIynJrBFtYJpk4pKxb7wvl/ct4gRuVTJXPB9WoVCdAMW3Z3RZK
+         kA/r/AG90FM0V03YkXEJB5LwLCONJir1WUq7x2BkeFD/5LRLfr3bgZgBWqYN3ZGAQSsI
+         uqa11XqJPLt0hXQmtGJHoCmLLj6v6MkaDP9QqdCCD5OrKqxIEpzhKbhOOWkiODpImmDh
+         VqPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753157449; x=1753762249;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nlBEY6HRx3gs6GmX9n8FOaCyjO7em88PtYwWGu+mg9c=;
+        b=GIZmJMDNPG73X9Xno+sVyfYjr3d/0n/KwIwq6oUYNIU9oOH1QOwbcnvL1hiZ6wZzQy
+         87cMEOLThBrsWqfF/+iL4X51zKTPwtW13GUHDsSo963ULnUvyo/bXO/AvCfY4JOG+WaW
+         BMZTf9vIzERLSAHVGfczjOfGbPw2CAmJLn+h7JwBQWBxNh2xtLXM/YHaHzWHMn9w3Nsx
+         a19EidT9FlG68V2Wgrgx8xN+2/3a9R/qTN9Dyi5oRTckZ5pKzIrYmbHBPlKcl/XyqgL7
+         5VBw3ynjowdLE0DzP12/w/VNKj8pXEHyWQbWIUeZnQ3q79gFdWnG08VyffWTAUebb0NU
+         O2uA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtoa++TEIvWHelbCnQYPncZ0LLXtH40nFZzgTvNVsFGJz4Jo1J8ehHTf+mOcA7P6kyllpjoV/a89zL@vger.kernel.org
+X-Gm-Message-State: AOJu0YyShqUGIP9+V/tuFPvqWxyIoHNl/EnMw5n3TS1vyWeJqA7ns6bh
+	EnPJbaLIYWBI8ny6OKWogHMTHGmdQpMeTEbBylpq7WFLV83CIWF0irrmy8Q5aQEY6Rw=
+X-Gm-Gg: ASbGncvbtOKPgDkD3hg/0OzknCt15+Gmw15Yl2T4Z8y5szIGwfhFARGCxlM3WvR4FvK
+	0s9YynVv5ZREHGw4Q7G4p51WOABbyZMym0I10/UTFD7c7lt+i6RVQVQZW0SnSajW2Lfp7vPz+s2
+	hrmK8BQzvlowHzFq4WOmGwAXZUlE7xoJLkK2Zu+m7Eslb+W0Pmq7ug/p6oRMz+X1Lm5+F6Gg2D5
+	2vsh2KoaFRZ5XE+XtHRM47dGQwKJiufctGoTJfjvlRDBEi/trs9eSZ8W/pgoOJ4wcOCIe64bvJc
+	++ub2UAJfXRKEKrntsrtv+olyUd42ggo6u/mzEkW0AdHDDO5rCG2b6LGiUse/9o4GCNKf+8ClV4
+	8GgtALB9i7HBYRRim56DzG/EXh7ZKOj0D+w==
+X-Google-Smtp-Source: AGHT+IHOKWMEzyu46KKsaJPjgo0xgycpcDzWx6CxVzgF6SZy+41yLFML71qXIxEHlqlltMpTlo5GzA==
+X-Received: by 2002:a05:6a21:648a:b0:231:4bbc:ff09 with SMTP id adf61e73a8af0-2381313ca9bmr31553876637.36.1753157449486;
+        Mon, 21 Jul 2025 21:10:49 -0700 (PDT)
+Received: from localhost ([122.172.81.72])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-759c84e2c91sm6537501b3a.5.2025.07.21.21.10.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Jul 2025 21:10:48 -0700 (PDT)
+Date: Tue, 22 Jul 2025 09:40:46 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	kernel@collabora.com, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 0/4] MT8196 CPUFreq Support
+Message-ID: <20250722041046.lf4b267bmolm4exq@vireshk-i7>
+References: <20250716-mt8196-cpufreq-v3-0-d440fb810d7e@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: (subset) [PATCH v1 0/3] spidev: introduce trivial abb sensor
- device
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, Mark Brown <broonie@kernel.org>,
- linux-spi@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, Andrei Lalaev <andrey.lalaev@gmail.com>,
- Chanh Nguyen <chanh@os.amperecomputing.com>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Grant Peltier <grantpeltier93@gmail.com>, Guenter Roeck
- <linux@roeck-us.net>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Michal Simek <michal.simek@amd.com>,
- Naresh Solanki <naresh.solanki@9elements.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20250719063355.73111-1-hs@denx.de>
- <175311337130.327079.7374455187420344577.b4-ty@kernel.org>
- <d677ecd9-42d6-43fe-8fe1-a5afd4d270e2@kernel.org>
-Reply-To: hs@denx.de
-From: Heiko Schocher <hs@denx.de>
-In-Reply-To: <d677ecd9-42d6-43fe-8fe1-a5afd4d270e2@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250716-mt8196-cpufreq-v3-0-d440fb810d7e@collabora.com>
 
-Hello Krzysztof,
-
-On 21.07.25 18:24, Krzysztof Kozlowski wrote:
-> On 21/07/2025 17:56, Mark Brown wrote:
->> On Sat, 19 Jul 2025 08:33:51 +0200, Heiko Schocher wrote:
->>> This series introduces the changes needed for trivial spi
->>> based sensors from ABB, currently operated from userspace.
->>>
->>> The last patch adds the spidevices to the DTS files, already
->>> in mainline.
->>>
->>> make dtbs_check showed no errors/warnings for the dts files
->>>
->>> [...]
->>
->> Applied to
->>
->>     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
->>
->> Thanks!
->>
->> [1/3] dt-bindings: trivial-devices: Document ABB sensors
->>        commit: aad2f87cbcab56b322109d26d7b11842a09df91f
->> [2/3] spi: spidev: Add an entry for the ABB spi sensors
->>        commit: d60f7cab7c04944a79af16caa43c141e780a59c6
->>
+On 16-07-25, 19:51, Nicolas Frattaroli wrote:
+> This series adds the necessary bindings and driver changes to integrate
+> MT8196 CPUFreq into the existing mediatek-cpufreq-hw driver. This
+> necessitated two preparatory cleanup patches to the driver.
 > 
+> The CPU frequency was verified to actually be changing by comparing
+> sysbench cpu numbers between fdvfs being enabled and it not being
+> enabled.
 > 
-> That's unexpected, Mark. Patches received two objections/comments and I
-> don't think discussion was resolved.
+> Enablement in the DT will be done once the MT8196 DT lands, so don't be
+> surprised that no node uses these new compatibles so far.
 > 
-> ABB is huge company, probably making hundreds or more of sensors. The
-> patchset basically claims that all of them work with spidev. It does not
-> providing any model names or details, so it seems really incomplete to
-> call them trivial devices.
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+> Changes in v3:
+> - bindings: changed title as per angelo's suggestions
+> - bindings: dropped the fdvfs magic register range
+> - bindings: dropped redundant description for #performance-domain-cells
+> - driver: made fdvfs frequency divisor a `#define` instead of part of
+>   the variant struct
+> - driver: dropped fdvfs magic check
+> - driver: reworked performance domain resource offset
+> - Link to v2: https://lore.kernel.org/r/20250714-mt8196-cpufreq-v2-0-cc85e78855c7@collabora.com
 
-I do not know how many different sensors they have, nor if that department can
-speak for the whole company...
+Applied. Thanks.
 
-What I have as information is:
-https://lore.kernel.org/linux-spi/2477dc64-92a0-9dc9-d168-56646d0d796e@denx.de/
-
-and I get no more information about them currently. May I should
-add some sort of trivial into compatible name? Something like
-
-"abb,spi-trivial-sensor"
-or
-"abb,spidev-trivial-sensor"
-
-which makes it clearer, that only ABB trivial sensor, controlled through spidev
-driver, is connected here?
-
-Looking into definiton of "trivial devices" in
-Documentation/devicetree/bindings/trivial-devices.yaml
-"""
-description: |
-   This is a list of trivial I2C and SPI devices that have simple device tree
-   bindings, consisting only of a compatible field, an address and possibly an
-   interrupt line.
-"""
-
-which fits exactly, as they even have nothing more than the SPI lines
-connected to the carrier board(s).
-
-bye,
-Heiko
 -- 
-DENX Software Engineering GmbH, Managing Director: Johanna Denk, Tabea Lutz
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
+viresh
 
