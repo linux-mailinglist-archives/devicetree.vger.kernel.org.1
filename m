@@ -1,119 +1,111 @@
-Return-Path: <devicetree+bounces-198600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C444B0D884
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 13:47:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9407B0D896
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 13:54:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 092547AF69B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:46:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0962254120A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE9AA2E0919;
-	Tue, 22 Jul 2025 11:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE25B2E3394;
+	Tue, 22 Jul 2025 11:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="NgCQTdb/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FESul+EF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3AD7289811;
-	Tue, 22 Jul 2025 11:47:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753184853; cv=pass; b=HEuPl7P2h/9qN6tZFuKfSrpwaGP3SScKJ+Cn5QZwcWhN65O6JSHw/LTEkJbATzpz2TRS+WGLO00S/NmGzBnJdDjURi1B5cKtpKHpeDUWmhNoBGzWzGk1Ft2mLXnCWz/SwJvIgtOqWAm5U1cZ0Qchs1f3DuPwHJmuSONUXTDImPE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753184853; c=relaxed/simple;
-	bh=xpegnxQs3ZbtY7JbpoeqaEx7Okr5XdmawkN2WmtMZnQ=;
-	h=MIME-Version:From:To:In-Reply-To:Cc:Subject:Message-ID:Date:
-	 Content-Type; b=Y6sovS6F9bXHFKKU/CZGX4vtxJFVi5ZH/NsE2U5l0waPPXxmstylCRx77KnLXf7UhqgGjgOviGnpPfY2LMGa3MDyDD6SnFmblV/Ezb9HfG9G0jxF2eM34mo3itEqLOXw7Al4qeY9bwZMq1njDcUWXojn1RrAMYj4kYNhSkwG3sk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=NgCQTdb/; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1753184822; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=DdBCLaeCsAfj/AcN99FfwGfHj8oCOHBcr24JxgrFvH7b49ZdsHVI7xw74RCbY++5eysOePiGQzNZCU5huPjEw0UBIunOaO42tf8col8GXE/ScGkF3pOFEY8jjTY3g4bKgJa0fYN1NYUnwiqTca7rwa7I8DxXUH4yS5Hg7WRmBtw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1753184822; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=iLoaiwS+Ud2yCbXeC9zL0Mtugd211TCM6YPAiCXDkGs=; 
-	b=WcNS2HjKW4KJIauGA/uu5xDWgUkHF7q+I84+DA22Stjr9UjuOQVA71A2EhiOo/L39QzJIP9ENcimPH1cLvWLs81irpd6HIBPdUspriV/OIS9Ei96uNC6lxoZ0IPSrkpSKTWANywBJ8j97nTVL4IpUgJD5BjeAc0AUEtsXcpwRbw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753184822;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=MIME-Version:From:From:To:To:In-Reply-To:Cc:Cc:Subject:Subject:Message-ID:Date:Date:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=iLoaiwS+Ud2yCbXeC9zL0Mtugd211TCM6YPAiCXDkGs=;
-	b=NgCQTdb/5h4sQYxngtfLCx56kgvIKBKfK43c0olNs8WqxaXrbI1RINvaX/npx/G4
-	kTsXKPscdSZUbIexWIJMWZaEwxmmM/1KHXfONk6/RKO0ZsNOM+304c0jH36hUA7Xkgo
-	qEBCSyt7r8DMh9gKInrUkIJdRPFzNZB3W28xJVqE=
-Received: by mx.zohomail.com with SMTPS id 1753184818692439.0197627599191;
-	Tue, 22 Jul 2025 04:46:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D102E1753;
+	Tue, 22 Jul 2025 11:54:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753185253; cv=none; b=iLTQfsz93eTgEQ+hYY4JwIqesoJcenzOPU6xDbwvK+pahxILcdr9naEejdnbRcOiqjkPEg8ruTKsTv52GOVo/Lu6vUJB6rMoRAAO5ZPVBqCouhvOrtqTbQ4ZUHJWDpt3g7RLnKq6JbEn9dRX3877kNgFJggEZg7/3CoQSZ9grg0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753185253; c=relaxed/simple;
+	bh=B9E98Eh1WXnC39xyxUMFUauO9zpXBqS/fOh6mlUvJSA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f7A/z8njpG3qr5Ukn4UVM5dKGB/sXVp3LaFtyEYc3zfiUDSi9tZjxXRGR2TW4SfEmqZHYj3FmfI3vvOfWO3No59ru1oZxTc+wRj0W0wof2YArT4zcTE0S7SaoaNx/gP0xZnSummaOOYxB173fQTmP4N8fcGMt7mhpY0xp5Cyp9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FESul+EF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41E8CC4CEEB;
+	Tue, 22 Jul 2025 11:54:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753185253;
+	bh=B9E98Eh1WXnC39xyxUMFUauO9zpXBqS/fOh6mlUvJSA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FESul+EFfx0IOy9epSM4NK9vIs+nEBxJxGSaNo3a9L6cgXUnKDUzjoFb0Jb/dEf4t
+	 cHaQTmP92G1VeYeBrL0LyBIAjAHEKJ8KaqjYIpFOgi1RGtgY2VSKMf2129Zgu357lD
+	 pgzohjSwYO5J9f4UMiCvwJJQd6VNnVfGfh6jlLZrYf3R8n4Vr/br3cbpRuJa3YGWhu
+	 NDEyeq6rInYgYcfxr6+T1+0+cNdMQcrUGJBC9ljeG7djKP+aRwkvUev+PME262TyX2
+	 SoThCJoZ850e/IlaXn++XmCPqiDzCALuEmAW5RR+aQaSyW+EfzDbehP4Q+KvlUUSDy
+	 JoYV5XT+gWq4A==
+Date: Tue, 22 Jul 2025 12:54:07 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: jeff_chang@richtek.com, lgirdwood@gmail.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: regulator: Add Richtek RTR5133
+ Support
+Message-ID: <50908790-f4a3-41ee-a270-83be3e74c1a1@sirena.org.uk>
+References: <20250722083543.2730796-1-jeff_chang@richtek.com>
+ <f4505b19-3496-4fab-ad74-d190d847eb17@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-In-Reply-To: <20250722-proud-polar-mink-12caa8@kuoka>
-Cc: "Rob Herring" <robh@kernel.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
-	"Conor Dooley" <conor+dt@kernel.org>, 
-	"Paul Walmsley" <paul.walmsley@sifive.com>, 
-	"Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, 
-	"Alexandre Ghiti" <alex@ghiti.fr>, 
-	"Daniel Lezcano" <daniel.lezcano@linaro.org>, 
-	"Thomas Gleixner" <tglx@linutronix.de>, 
-	"Samuel Holland" <samuel.holland@sifive.com>, 
-	"Anup Patel" <anup@brainfault.org>, 
-	"Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, 
-	"Jiri Slaby" <jirislaby@kernel.org>, <devicetree@vger.kernel.org>, 
-	<linux-kernel@vger.kernel.org>, "Palmer Dabbelt" <palmer@sifive.com>, 
-	"Conor Dooley" <conor@kernel.org>, <linux-riscv@lists.infradead.org>, 
-	<linux-serial@vger.kernel.org>
-Subject: Re: [PATCH RFC 09/10] riscv: dts: anlogic: Add Milianke MLKPAI FS01
-	 board
-Message-ID: <1854904c2bf8d2d8.e7cd4abd4f21761b.29b7782965d4456e@Jude-Air.local>
-Date: Tue, 22 Jul 2025 11:46:51 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-ZohoMailClient: External
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ESxqwv6SVKxL8cxQ"
+Content-Disposition: inline
+In-Reply-To: <f4505b19-3496-4fab-ad74-d190d847eb17@kernel.org>
+X-Cookie: Don't Worry, Be Happy.
 
 
+--ESxqwv6SVKxL8cxQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 22/07/2025 09:31, Krzysztof Kozlowski wrote:
-> On Mon, Jul 21, 2025 at 11:46:15PM +0800, Junhui Liu wrote:
->> Add support for the Milianke MLKPAI FS01 board based on the Anlogic
->> DR1V90 SoC. The board features 512MB of onboard memory, with the region
->> after 0x1fe00000 reserved for OpenSBI.
->>=20
->> Currently, the board can boot to a console via UART1, which is connected
->> to the onboard serial chip and routed to the Type-C interface.
->>=20
->> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
->> ---
->>  arch/riscv/boot/dts/Makefile                       |  1 +
->>  arch/riscv/boot/dts/anlogic/Makefile               |  2 ++
->>  arch/riscv/boot/dts/anlogic/dr1v90-mlkpai-fs01.dts | 28 ++++++++++++++++=
-++++++
->>  3 files changed, 31 insertions(+)
->=20
-> You need maintainers entry for your entire sub-arch. Otherwise why would
-> we want unmaintained code?
+On Tue, Jul 22, 2025 at 11:04:51AM +0200, Krzysztof Kozlowski wrote:
+> On 22/07/2025 10:34, jeff_chang@richtek.com wrote:
 
-Thanks for your reminder, I will add the relevant information to the
-MAINTAINERS file.
+> > +      base:
+> > +        type: object
+> > +        $ref: regulator.yaml#
+> > +        unevaluatedProperties: false
+> > +        description:
+> > +          Properties for base regulator which control force-off base circuit.
+> > +          Base circuit is the power source for LDO1~LDO6. Disabling it will
+> > +          reduce IQ for Chip.
 
->=20
-> Best regards,
-> Krzysztof
+> I don't understand what this regulator is for. Your example is also
+> incomplete - missing min/max constraints like voltage.
 
---=20
-Best regards,
-Junhui Liu
+> Explain, what is this output pin? I already asked for explanations. I
+> have diagram in front of me, so explain precisely instead of sending THE
+> SAME again - which pin is it?
 
+It's the top level supply for the chip, it's likely not externally
+visible and sounds like it's just an on/off switch rather than
+regulating voltages.  This seems fairly clear with domain knowledge.
+
+--ESxqwv6SVKxL8cxQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmh/e94ACgkQJNaLcl1U
+h9AgaAf/XwVPnaOAi8nc84FMjLYM0D6FojULEW9XQuYYHe6oyjnJin0+iChgWHB+
+TnEMFZvXRF52mT7kpLAdl1cZbxoaZlx0Io/TmjGoPuu01PM1dAidyyHUSqXD6YFm
+9+ww8QVAGYlnfSigDDmzxFSeczgko5uy/+KrAY+B2EnMo3Cbwnjh9kYFzj9abwil
+UMHAiRX8X6Ab9X525Xu/H4IgHw9836Rmtm/gn1iMPVh9RCwtg4oLK+ocDbsMyK3L
+HsSUcMNyPEaE/KDI53H28y6TSKWRVBaG9V26cFp4xFGSmQjdJgnLnmo3kJEAZp4Y
+LZpF/JtFy5NgPVMR9g1btq0xOavp1g==
+=Em+H
+-----END PGP SIGNATURE-----
+
+--ESxqwv6SVKxL8cxQ--
 
