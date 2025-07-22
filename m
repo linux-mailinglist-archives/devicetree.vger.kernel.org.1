@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-198575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5209FB0D6EE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:09:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23956B0D6E5
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:07:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6261D56384C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:06:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E0A13A049C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:06:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F096D2E0417;
-	Tue, 22 Jul 2025 10:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F3622E1723;
+	Tue, 22 Jul 2025 10:05:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TiZIeG6f"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BSH6ISmE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06CD22DE703
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 10:05:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9499D289808
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 10:05:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753178721; cv=none; b=sEWYbfVVT5k3I4c+Bkvk0QjiMNKJEXuNMv6DvJGDRMabqudPtHZVBHRcWGtsf8UUrVVkgQgtCd/eeh9zaKVnBYeuA2WASuyHt8OCpPSbw+JFEPIygkLtcZWHZx5tw++Be0Q30YDpv/3NM+hmu5gjnGDLJ/YdiMvDYgcEWoNbd/0=
+	t=1753178759; cv=none; b=VQisREc4uUcji2JRkj6/F464NQ/08MOwnswvkHQVgyIUnepkhelG9VaPoWHZiO/ocVVkeQsStZm9QUJsOp/edWglRv6uXwep4qqhVW2mrXm0Pqqevd5GxlC2WJphZWp0yJp1PYXTe33pIYAJ330ozeNA9qfeZbFnbSQVuAIf6cs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753178721; c=relaxed/simple;
-	bh=CzlgOk5IV5cLTyLvTOjZpyhrA7PFnTxC8JSq1EdM4/U=;
+	s=arc-20240116; t=1753178759; c=relaxed/simple;
+	bh=39YNoWp4OX6qnLsieXmLV9zCGjbhYjyloInkDj4pUC8=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Lc0t7LTUL1/QKh6fYVvlSKGks9v0NfAZsVuvb90OkWwPzOcGp2JrauuALKlBTSInIpCxJizR8oyo/TBf8QyaUGbW61B8k++q4j7O6pPzbGnGcjOoXGhegvPI3cp4sGOuZ1l3KOihpBXJiEz8pBNQ1EYV0RDru2y8wF7dZw89gec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TiZIeG6f; arc=none smtp.client-ip=209.85.221.43
+	 In-Reply-To:Content-Type; b=YQ7aVzz3wbi33JBMfKni/a/JVgEyuP4iVfk5t+QAeFHGE+zWMfQFwd7YvW/2s48zuf/g5MzoTcUkOQYc2nCKuxc1+SrWZcpntW5xqTad+yt+zG7yXlLR3IyZ4dOVvXFcT9v3Au2kvdoDfrf6PdqBndbUgX0Oo1f4v4xdUJmcEc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BSH6ISmE; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3a531fcaa05so2427372f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 03:05:19 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4561a4a8bf2so59016495e9.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 03:05:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753178718; x=1753783518; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1753178756; x=1753783556; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eACVn/AeNUkJSj6fqs1SPdUKZxcJXedSP1FDf4UsU+0=;
-        b=TiZIeG6fzsvLv7dqU8mWL5HBnR1LR+h3em+XLazGLi/sb5eEP3XqP8wEKgsgyms5NA
-         MtaZBUsn7E/bGVL46hFtqtzPXdQvXKXSBoiNY4NuzI7c1eRoU15nekGd23lpdNRvtw6j
-         /HUK9NKuhNxa3fT5aWVYNPhHH3VDLAnPtklzUBG7Qc8izNgDHy8Dx0x5sY6Pq1U8FCaM
-         JbFsAHgC+nCSJAtIEnTIPfFW228ARWfCRxGZCD/TR5QvjyTM33HzvJK/3p87oxTbcsm8
-         kr6ZAUVUK0uzgC1Igjvo6tBa6ZsXf1CMPf+/6XA1TJ5LVeycrd5YP3LXO89bjCFEfSnW
-         p2qg==
+        bh=K6tvj/DkNBulYt/YV/mLvh6U0WsYjvJUAB4Jgyqsz68=;
+        b=BSH6ISmE69q5IXtzmw3SbUWR11Ed02ig44M8tcvHldMKuOS3pCR/cX5r/7biuxZDwh
+         akqq7aBnYxtoDCqu+15Tx0uZ7HPypCNF7ZIfsX9e1aod+ACfpom1vhRclKuCHK8nK9Lo
+         nHSkQGDAPBqPxA/TLJ4OMi4RIPF6FvbWN8Fl0jdx//HIZk3z8QssmJYK+lxV0WPtO0GI
+         X6APd5W07f3qQo1kaH7vTOpF3CRBeRzqKo9adujoLJNzFj99d7vitOUS1W57R5C8ynpB
+         CLPYbjLP7EaNuI5uPc5SOgEXXnLSOzvI90iPviYGY9xmtf8xcppzjwjW1Dt3dNQgF5MI
+         Hmtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753178718; x=1753783518;
+        d=1e100.net; s=20230601; t=1753178756; x=1753783556;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=eACVn/AeNUkJSj6fqs1SPdUKZxcJXedSP1FDf4UsU+0=;
-        b=IoLz6qjgOgcrHHQfG/QeXCkIqgKM41MGDC4pJ8dwQsXgPiR7vT0q1JmDynZSqDegat
-         2QXEKBEH7ff/iZ/I59Qx+gUDw6uv0he7HSNy6XnEL9khrwFhNpfvbMIAvWibvc53yDc1
-         G89ps8WqGSuPc2K7CvUdKGjj4bRs/0+jUtIxzYtnznqsv3a87nd5Jcc8BzhqlyYACU7b
-         XsKneqiYN9jHcD4/U8PQk4nKYoReVrjYa7PTEWruaKhlxk73OGXhp/c2iaVAAzOaLjQi
-         uILra7MHBYWXJlcw8g7T0+u+FskHI8DfQMeFrfJnxsakeds1YJLihMvrXxPAci9UqCLw
-         W7bQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWN1mofqCQSlPYRQu6RH5hcV6ElMtVlM0WZac7rcomifk0giMEMdRRM2/FbeAnOyvRxothPB9vR5d0W@vger.kernel.org
-X-Gm-Message-State: AOJu0YynTZ0yQDZCFUoEUoSrMC5dEpmDaAlYUVo2VGNhRSvK2dHkMgRd
-	0PKN+uqkVXMcI/kZUjy+AhwRjfe13Wf2SBzL50nYgQjwkMH9VoOq4ru3xgEKq/tjFQ0=
-X-Gm-Gg: ASbGnctIi4KbJKve9ypvgNhO+Ovy9l7dVfSmdRjjd44gug1eJiSiZxATj2cBUPr/Lec
-	H03IwsozNnseqd2fXZHZ0K9rQYud0zHOT3tudxxHssjmJW+Op2oMN9lRsVHjBk7fyJuM9Js+dJa
-	/REEOWQn8mMNSwD2urFlEgqeH0TsoAULLkGuctx2c+QTHqXrbWUfz0Y09fkR+mmltlZyndsJWlQ
-	9m58160DzxVxwgqJX8Cei667nNdnwfkCh+8qUdJpNwwlLKkHl1nQmRy7SOJSbczXa4/ZCEO8AIv
-	2FJYzpD7DUOTSeWsi+rXCoMK5lrxoVHl0QsBA0H1I9gdYkukFWLDNDE7IDg+mo9FWt9SwVtfBsA
-	ADhi7Dlxg7cbeWjpxz7xU5vdRMWYfrID2r3W2wtAomKFL3h5tBG2NymXx9OFpzB7dVeok3uxlZk
-	g=
-X-Google-Smtp-Source: AGHT+IGRKY81gkhXWhMn/9LTWKt4F1bWwxEHclEpgsQnRjAMZGrMWAwlAapyO/AgjZWzNQLVWrBoIw==
-X-Received: by 2002:a5d:5f46:0:b0:3a5:2d42:aa17 with SMTP id ffacd0b85a97d-3b60e5127efmr20108404f8f.31.1753178718150;
-        Tue, 22 Jul 2025 03:05:18 -0700 (PDT)
+        bh=K6tvj/DkNBulYt/YV/mLvh6U0WsYjvJUAB4Jgyqsz68=;
+        b=QKl/zONqhD0AAacFbkVOixuk0OcfLKrLTGxhv7Qcvp1c2630dDVJPSFpoRWXsmpNGQ
+         MpmCNcOEL+hVNDyZNZKxJZjwvX8J6w6/1FktmsJquk1TiI+LDYK1UAjfQowr6zIOWmwd
+         BsNC0r/dTCtcyPievNvsKED9fYujVVuQFmjqcpkaSM+xKxO1gFAGoI5LKAhCiCZxEOTv
+         R8HQs0w6csy7d45KS0U6Yrr+U+CkaQr9nhLXazSxqklQFYDWL2PREV/wW/1Tjb01t+ux
+         MPCdCaCjsBas8oOMCL2VtvVTlSuh3T7OkgJAvtDxeTsMUaWU4w2fd8FNA7Mk49wLbV46
+         uPlw==
+X-Forwarded-Encrypted: i=1; AJvYcCX3aafJB4HYrsaSkWOQ0sgXhb33VezsoknoM6e78MHwdcvulLBi0JzhX5zvOWy8NWJgvv5p4KwxyJQg@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrwZqc66xeT3AH8Vv3lMqCO3if4PENKQLHpETXjFiPeHAemwVd
+	ss6+lj5lZIfMc2DhZsw+wmEvODKsbYzQHm02iCw/m6sGblGd7/xof5QS4dWaXgiWsqc=
+X-Gm-Gg: ASbGnctH7YHVuyfvfbWUphdWaH8uzFDqBePyQMrdY3VclOOgYmz7fnWDicn6JeW7A+R
+	gdC2n/2bGMN1yawPCDsK9LabsUYIzUnb0uz+FwXJJoINGqYvx9E+Oxl+dj+KJt1BFGqcUUNY0ut
+	EDqrEr8W4X+ktDfbZnJqmkZiKm8pD+tjK9bhrU3pbOj7QHeeK27gomFhwyCIv1yLCf4Y9rNWU1O
+	81QKxmq7KGext176Bt+ExnYWHZteZzpVuyjYzFKX9+GeRxutf4IoWJrmK+a5fYQAUFe2OmfgbyJ
+	iqXEVnQNz4PagPqLbioyN6TARAfhZ9xLEYfDv5aRNBwN22hFoW0Y2ShBse0r3mnCojDwtrkv4q2
+	DqW5cgwS0K31c5bsLtrW+m5xs1Pb3g7CWieHMP9ak5g+ikF+AoKTiuPx0QKi0hWBS4mb2Q2uwKb
+	xw1E3XJqg9Kw==
+X-Google-Smtp-Source: AGHT+IF6xHLS/NKb0FDDLslT+SQ8Ge7DpH9qHjfZKBiFCLY7EOoCDjUS/Zdn1Tv9T1Zp8mEzCtRq7w==
+X-Received: by 2002:a05:600c:3acf:b0:456:e39:ec1a with SMTP id 5b1f17b1804b1-456348e70f4mr208884215e9.14.1753178755675;
+        Tue, 22 Jul 2025 03:05:55 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:bce4:725d:6922:d1ba? ([2a01:e0a:3d9:2080:bce4:725d:6922:d1ba])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b75baa7072sm6012611f8f.2.2025.07.22.03.05.17
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b61c9f16d9sm13213953f8f.0.2025.07.22.03.05.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Jul 2025 03:05:17 -0700 (PDT)
-Message-ID: <6692f1e4-978e-4138-9d76-ac2b80613a65@linaro.org>
-Date: Tue, 22 Jul 2025 12:05:16 +0200
+        Tue, 22 Jul 2025 03:05:55 -0700 (PDT)
+Message-ID: <4a78f570-62fd-4779-aba2-1c9c558989f2@linaro.org>
+Date: Tue, 22 Jul 2025 12:05:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,21 +87,18 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 3/3] arm64: dts: amlogic: c3: Add tempsensor controller
- node
-To: xianwei.zhao@amlogic.com, Guillaume La Roque <glaroque@baylibre.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: C3: Add RTC controller node
+To: xianwei.zhao@amlogic.com, Yiting Deng <yiting.deng@amlogic.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
+Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Liming Xue <liming.xue@amlogic.com>
-References: <20250718-c3-thermal-v1-0-674f9a991690@amlogic.com>
- <20250718-c3-thermal-v1-3-674f9a991690@amlogic.com>
+ linux-arm-kernel@lists.infradead.org
+References: <20250717-rtc-c3-node-v1-0-4f9ae059b8e6@amlogic.com>
+ <20250717-rtc-c3-node-v1-2-4f9ae059b8e6@amlogic.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -128,43 +125,54 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250718-c3-thermal-v1-3-674f9a991690@amlogic.com>
+In-Reply-To: <20250717-rtc-c3-node-v1-2-4f9ae059b8e6@amlogic.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 18/07/2025 08:37, Xianwei Zhao via B4 Relay wrote:
+On 17/07/2025 11:38, Xianwei Zhao via B4 Relay wrote:
 > From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> Add the Tempsensor controller node for C3 SoC family.
+> Add the RTC controller node for C3 SoC family.
 > 
-> Signed-off-by: Liming Xue <liming.xue@amlogic.com>
 > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 11 +++++++++++
->   1 file changed, 11 insertions(+)
+>   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 16 ++++++++++++++++
+>   1 file changed, 16 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> index cb9ea3ca6ee0..c853390eca6c 100644
+> index cb9ea3ca6ee0..b81bffac7732 100644
 > --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
 > +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -727,6 +727,17 @@ clkc_pll: clock-controller@8000 {
->   					      "fix";
->   			};
+> @@ -53,6 +53,13 @@ xtal: xtal-clk {
+>   		#clock-cells = <0>;
+>   	};
 >   
-> +			temperature-sensor@20000 {
-> +				compatible = "amlogic,c3-cpu-thermal";
-> +				reg = <0x0 0x20000 0x0 0x50>;
-> +				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clkc_periphs CLKID_TS>;
-> +				assigned-clocks = <&clkc_periphs CLKID_TS>;
-> +				assigned-clock-rates = <500000>;
-> +				amlogic,ao-secure = <&sec_ao>;
-> +				#thermal-sensor-cells = <0>;
-> +			};
+> +	xtal_32k: xtal-clk-32k {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <32768>;
+> +		clock-output-names = "xtal_32k";
+> +		#clock-cells = <0>;
+> +	};
 > +
->   			eth_phy: mdio-multiplexer@28000 {
->   				compatible = "amlogic,g12a-mdio-mux";
->   				reg = <0x0 0x28000 0x0 0xa4>;
+>   	sm: secure-monitor {
+>   		compatible = "amlogic,meson-gxbb-sm";
+>   
+> @@ -967,6 +974,15 @@ nand: nand-controller@8d000 {
+>   				clock-names = "core", "device";
+>   				status = "disabled";
+>   			};
+> +
+> +			rtc@9a000 {
+> +				compatible = "amlogic,c3-rtc",
+> +					     "amlogic,a5-rtc";
+> +				reg = <0x0 0x9a000 0x0 0x38>;
+> +				interrupts = <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>;
+> +				clocks = <&xtal_32k>, <&clkc_periphs CLKID_SYS_RTC>;
+> +				clock-names = "osc", "sys";
+> +			};
+>   		};
+>   
+>   		ethmac: ethernet@fdc00000 {
 > 
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
