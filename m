@@ -1,791 +1,326 @@
-Return-Path: <devicetree+bounces-198522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CAF2B0D4C0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:35:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2207B0D4CE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:38:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F03331AA819E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 08:35:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C8F73A6965
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 08:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4718B2D8793;
-	Tue, 22 Jul 2025 08:35:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1BB92D46A3;
+	Tue, 22 Jul 2025 08:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="21fmAHEj"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BoVWvkHA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95F82D3EFA;
-	Tue, 22 Jul 2025 08:35:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CE132D23BC
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 08:38:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753173333; cv=none; b=mb8k84fom9YoYRP+dnKZhkU6OWJ8/sL1WLZC7Z0BHiLZx5b+Px7KexsewHzUQDzI6thAweCwRFOdHq5hGTjfprnZ/M5T5nLVyeoEC5SqBBqW5GeUWy7+wPshPpmVXY5LrHqlbgAzZ5GfrRC/qaKnkbW6SQlpRqVpk0QI+4dVY0g=
+	t=1753173495; cv=none; b=STFJ/8OEQevOKe/+JkH01ArHI5PDPZAzKffomY+b0WzFVJ7oGETjTVJ+K148zPgzz0Pv2DOfD46HyQ+KndlRKKErDkiXrI0wwn/z4GqNoVEBM8pYkIl7h4ZG+sRe2dlA7/kx3pWc0+AEolrTQi7hrow0DOnlEneIbxYpERdDJCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753173333; c=relaxed/simple;
-	bh=P5AjsW8dsuTLhNeKt2ojZE2lixC1Wok3R8d3AeOrB8U=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NrMYa9k/j9Xb2GX2CHnhSjrDWHQzTstwkHRdTCMzxwTIfVjEuoz9tqBrefWcfS0eTehdEJcEPSjqr6YqoSC5ieP2OSpb/LyhCkt8/VAYTceC8+NJ4Axg2LLT5AJWTwG7yEMv0/2HV06yVBmEoaqWdmxb7wsvNYL/fbDxP3BNCDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=21fmAHEj; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1753173320;
-	bh=TMwMF+ttmrloBY2tiLJfdEHSPL15XjX0rblrfWDsaIw=; l=21684;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=21fmAHEj4sXqPqcTXeiUvOjnGM9nTp3xqjEbz6j43aV7Rrj+AMuRtKVH8ZFm06il7
-	 jI1oNhGgvYO1n5vYi4PCRe1f3FQiiK0GqxioLRU8SCMmRXXfaeBPx3m0mFZJjqJmt5
-	 D16Bm9tmkOL4nD5kxkUAhjRjCo5wQx1xZ62+mDNka0247tmmsE7ys0t5U8dLg51dxS
-	 Ao2bkT5YYkQdsAYSG2EcJOH/uCCPSu5Go05Ma5tgfwAnQLBFD3pGYwgawlHDD1esyH
-	 rk6zhujJzhhLlZRHLzYVmrV9pkBiRGW3tvPExJeXwiTVhmsT8AYSP5C6NJQUe/3KmP
-	 aFFJOVpL5FtAg==
-Received: from 192.168.10.46
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(244572:0:AUTH_RELAY)
-	(envelope-from <jeff_chang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Tue, 22 Jul 2025 16:35:06 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 22 Jul
- 2025 16:35:06 +0800
-Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
- Transport; Tue, 22 Jul 2025 16:35:06 +0800
-From: <jeff_chang@richtek.com>
-To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-CC: <jeff_chang@richtek.com>
-Subject: [PATCH v4 2/2] regulator: rt5133: Add RT5133 PMIC regulator Support
-Date: Tue, 22 Jul 2025 16:34:18 +0800
-Message-ID: <20250722083543.2730796-2-jeff_chang@richtek.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20250722083543.2730796-1-jeff_chang@richtek.com>
-References: <20250722083543.2730796-1-jeff_chang@richtek.com>
+	s=arc-20240116; t=1753173495; c=relaxed/simple;
+	bh=lmIvWyBDeEiVaN97TTNHpP5KW9wFUzTN08PUdWFTNPQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pK2vjLxMzo0AjCOlXx/MtF3nCGo4DIidaYv97S4KxcS6l0tXHafMvNYSNxSaKeD8JfPBLPqYHSW+V3F8rrv4UllL7RW/n7nDrHcfaZpoBMz2FClAC1hnEFthF3CyAUMKK1yyaJfLVEnea+9uaTTHU4V3Uug/XjVZlDQhbwrFFRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BoVWvkHA; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56M7VS7N004441
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 08:38:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=1LN3juNr35Nerg/PZAItQ7sh
+	/peCDRI4YAsD2qwMZyw=; b=BoVWvkHAGvdAI4rzH7r1eOMj16IDjtqa4Ny/iBq+
+	mwlDIczIE1TwFupSa1JXzY8AWNzdlKSQY+kkxCOFOZiGfZpkCxbUnjdP6Ie6J75I
+	aDS46WDDUjsAL08I9iJyVSvdz0UqXSxx2TBpTrCGaNtYvWqMjuiDA9IQ34yZBwYp
+	Pc/+E3AAvKXl6JwXRqZXWzdPr82LHGc9+wOKc4Qayh3nMELJ2qlpjr9LX3Kv0ik6
+	E8bKze18XmZJgAtwgKCk2EXECWMnKR1qWv3usaIlgwQw/r4T6bdbAmVJgNjlWzQk
+	PMfmjttFiIhSKnyBKOYL8pk+qolWY5Oosb3qmA8+bzKAvg==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48045vy3s4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 08:38:13 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7e1aeab456cso610506185a.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 01:38:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753173492; x=1753778292;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1LN3juNr35Nerg/PZAItQ7sh/peCDRI4YAsD2qwMZyw=;
+        b=eRrxQJnaGTMC/AHZwn2UzMZQEnB4PVBfEqJHpMDiJlDps9zFlmGqnQMgaLqvxMxUGt
+         RQ4e23cv+9cVNx8gha9/Jk3c9sD0qHIPWEjIKmJolSk47GPlUcb3yJfF3rOp99dnVsGe
+         uKB2wyqXs3J9mYbG5i7/uDFhHXb1RsReH/N0cQ4Ex7MtsZ5ibnYmx4+bQjkF5CsPJoAF
+         4WKS1uDEteFWrwowfiTtnYK+ioWpuuT+Z+mPFU0ldOayHRMlLL06eSiKmB+xWZRM0FSY
+         S4R+ocmXQ0a1gkH6idOFBt5UQ+FoEkz9QdfZlZh10S+NkBjzijMgdK/T7GuBaOu+PC+B
+         zXNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWgjnbAAff8Vwn8gMl7AZ9wq3/u7z8GxDfW+UjsoNI3TTXeWNyM+VP83ihUAaki11tKX2XBgAsNl5SB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxjhy5Nin+FZU+lRA/ntl0rvDhPF0qncht5gh377GHcR0Z7CXL+
+	wlxEnRgDfeEwze+ZM67GNLVP7Vlk9u6IU9uwr/FzB5D6OyoO/wEt/fz87zjDpKqdW1P8EMgmT8I
+	oLKeXQWRns9zZwaK0lkD+STOvyGL/ZLCA+zJTbRHBfJCVpZFvD7jdiFwnfMFrUhxB
+X-Gm-Gg: ASbGncukz+hDDuhZHZyJdjCdYrKj+CScfhal2xNaeelecQ51O0WGg6KSXtbEXDu3ARg
+	VdyRos6PhJKu36hYmJA774/nEapx/OF67f4sGJ5TazKPw3F2bzgbPl0NG4xkZfQTNkdxbcONi2w
+	uhVYL9SxKGuG1RANQwg827DSBtVhRgL4yeyQHci97naTH5+M7huGRf/KUKqnarvafuymT4sxDCZ
+	BEn8R4FwdQDsvO4wlMFbtQgtPaRJyuTUhsBG4BLL9H0rtFz1UCSqN1JD6y+qcyH4RKnKZ3EM8rf
+	w/3ZJPJzUW4xKbg39YoOwz07qTZgKtVI2iadcT87fHhad6T/JhlaGUZsdSUcejKkSXCs/UXaiMJ
+	LSEy2bIQnu8AZL69yAxTaQX2MkoGXXg5Hc/pcjjeQEGAsey95sR/R
+X-Received: by 2002:a05:620a:406:b0:7e3:4413:e493 with SMTP id af79cd13be357-7e34413e881mr2290742285a.59.1753173491893;
+        Tue, 22 Jul 2025 01:38:11 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHFbsL3wu7P/XdnVzAH3W4UCqCA/Ov1LUyaPJbXnyrUZTuDLtE4QZ32mMPQ6V1IvABbTSx6EA==
+X-Received: by 2002:a05:620a:406:b0:7e3:4413:e493 with SMTP id af79cd13be357-7e34413e881mr2290739285a.59.1753173491349;
+        Tue, 22 Jul 2025 01:38:11 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55a4ba29d2esm101582e87.59.2025.07.22.01.38.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Jul 2025 01:38:10 -0700 (PDT)
+Date: Tue, 22 Jul 2025 11:38:08 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        konrad.dybcio@oss.qualcomm.com, fange.zhang@oss.qualcomm.com,
+        quic_lliu6@quicinc.com, quic_yongmou@quicinc.com
+Subject: Re: [PATCH v2 02/13] dt-bindings: phy: Add binding for QCS615
+ standalone QMP DP PHY
+Message-ID: <jemfu5sy7k4a2iar55im5bhyhxzlrwpftmpqmps3b2tco7r6a2@oodls7gi45yy>
+References: <20250722-add-displayport-support-for-qcs615-platform-v2-0-42b4037171f8@oss.qualcomm.com>
+ <20250722-add-displayport-support-for-qcs615-platform-v2-2-42b4037171f8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250722-add-displayport-support-for-qcs615-platform-v2-2-42b4037171f8@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=LL1mQIW9 c=1 sm=1 tr=0 ts=687f4df5 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
+ a=BMzRNCE2on2YpiivjS8A:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+ a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-GUID: ACCdhoiq_8_nzVs6n-DLtgyDoiVG92ll
+X-Proofpoint-ORIG-GUID: ACCdhoiq_8_nzVs6n-DLtgyDoiVG92ll
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIyMDA3MSBTYWx0ZWRfX5+CCObRpBor0
+ MstUi6D3pwlVNyMd0IM4T7AQHlBi06f0rO/iS6j+po+Xad3YtTRHs3ZPdBwZjEXG8QoBDJGpRCU
+ Bv72s+EwhpQT066HXJFjdITvpXy4UnC3S2q2PFfYouwHodiWObtnzIaKo11P237vzALT7DLYG/i
+ TwmeTl42bkz3Tc9pRdi/jq5mG5i4weyHfgBMNoF+VGiVPo44HaA/b5mF6E76qydiwDqm772Vtpz
+ AVjXgMKrQ4gylMW1KtJddgk3VWoMzB/eLTClu7jJqlrX3VqE5oLrygSlgdA2eyuNk0P8OrlHVii
+ 3K9396A3dexheBenGJJ4oTTP6h2EINrxdgT6mlOM8+8h9x9TI+p6HuGahACCfBhnbIPhLoB+xpu
+ iacska/NdDyYPY0+ZCqA1tfkpxR5yPIP+t0mzNUY6z1KRsPrRb4Fjac7KgTn6z6SORfGxs/g
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-22_01,2025-07-21_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 mlxlogscore=999 clxscore=1015 mlxscore=0 adultscore=0
+ suspectscore=0 spamscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ lowpriorityscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507220071
 
-From: Jeff Chang <jeff_chang@richtek.com>
+On Tue, Jul 22, 2025 at 03:22:03PM +0800, Xiangxu Yin wrote:
+> Introduce device tree binding documentation for the Qualcomm QMP DP PHY
+> on QCS615 SoCs. This PHY supports DisplayPort functionality and is
+> designed to operate independently from the USB3 PHY.
+> 
+> Unlike combo PHYs found on other platforms, the QCS615 DP PHY is
+> standalone and does not support USB/DP multiplexing. The binding
+> describes the required clocks, resets, TCSR configuration, and clock/PHY
+> cells for proper integration.
 
-RT5133 is a highly-integrated chip. It includes 8 LDOs and 3 GPOs that can
-be used to drive output high/low purpose. The dependency of the GPO block is
-internally LDO1 Voltage.
+Simply put: no, this is not correct. Even if you go to the SM6150 block
+diagram, it points out that DP uses the USB3 PHY, not a separate DP PHY.
 
-Signed-off-by: Jeff Chang <jeff_chang@richtek.com>
----
+I thought that we have discussed it beforehand.
 
-PATCH v4
-1. Re-order patches. DT patch before driver patch.
-2. Return IRQ_NONE if rt5133_intr_handler handle nothing.
-3. Using cache for regmap_config.
-4. Add prefix for vendor property richtek,oc-shutdown-all and richtek,pgb-shutdown-all.
-5. Add _node_name to RT5133_REGULATOR_DESC for lowercase regulator node.
+I can quote my comment from the previous thread:
 
- drivers/regulator/Kconfig            |  12 +
- drivers/regulator/Makefile           |   1 +
- drivers/regulator/rt5133-regulator.c | 649 +++++++++++++++++++++++++++
- 3 files changed, 662 insertions(+)
- create mode 100644 drivers/regulator/rt5133-regulator.c
+>> No. It means replacing extending existing entries with bigger reg and
+>> #phy-cells = <1>. The driver must keep working with old node definitions
+>> as is to ensure backwards compatibility. New nodes should make it
+>> register two PHYs (USB3 and DP). On the driver side modify generic code
+>> paths, all platforms supported by the driver should be able to support
+>> USB3+DP combination.
 
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 6d8988387da4..bada46e86cd0 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -1229,6 +1229,18 @@ config REGULATOR_RT5120
- 	  600mV to 1395mV, per step 6.250mV. The others are all fixed voltage
- 	  by external hardware circuit.
+Looking at the hardware memory maps:
 
-+config REGULATOR_RT5133
-+	tristate "Richtek RT5133 PMIC Regulators"
-+	depends on I2C && GPIOLIB && OF
-+	select REGMAP
-+	select CRC8
-+	select OF_GPIO
-+	help
-+	  This driver adds support for RT5133 PMIC regulators.
-+	  RT5133 is an integrated chip. It includes 8 LDOs and 3 GPOs that
-+	  can be used to drive output high/low purpose. The dependency of the
-+	  GPO block is internally LDO1 Voltage.
-+
- config REGULATOR_RT5190A
- 	tristate "Richtek RT5190A PMIC"
- 	depends on I2C
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index c0bc7a0f4e67..709384ae0a0c 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -145,6 +145,7 @@ obj-$(CONFIG_REGULATOR_RT4803)	+= rt4803.o
- obj-$(CONFIG_REGULATOR_RT4831)	+= rt4831-regulator.o
- obj-$(CONFIG_REGULATOR_RT5033)	+= rt5033-regulator.o
- obj-$(CONFIG_REGULATOR_RT5120)	+= rt5120-regulator.o
-+obj-$(CONFIG_REGULATOR_RT5133)	+= rt5133-regulator.o
- obj-$(CONFIG_REGULATOR_RT5190A) += rt5190a-regulator.o
- obj-$(CONFIG_REGULATOR_RT5739)	+= rt5739.o
- obj-$(CONFIG_REGULATOR_RT5759)	+= rt5759-regulator.o
-diff --git a/drivers/regulator/rt5133-regulator.c b/drivers/regulator/rt5133-regulator.c
-new file mode 100644
-index 000000000000..48c09682c01a
---- /dev/null
-+++ b/drivers/regulator/rt5133-regulator.c
-@@ -0,0 +1,649 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (C) 2025 Richtek Technology Corp.
-+// Author: ChiYuan Huang <cy_huang@richtek.com>
-+// Author: ShihChia Chang <jeff_chang@richtek.com>
-+
-+#include <linux/crc8.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/driver.h>
-+
-+#define RT5133_REG_CHIP_INFO		0x00
-+#define RT5133_REG_RST_CTRL		0x06
-+#define RT5133_REG_BASE_CTRL		0x09
-+#define RT5133_REG_GPIO_CTRL		0x0B
-+#define RT5133_REG_BASE_EVT		0x10
-+#define RT5133_REG_LDO_PGB_STAT		0x15
-+#define RT5133_REG_BASE_MASK		0x16
-+#define RT5133_REG_LDO_SHDN		0x19
-+#define RT5133_REG_LDO_ON		0x1A
-+#define RT5133_REG_LDO_OFF		0x1B
-+#define RT5133_REG_LDO1_CTRL1		0x20
-+#define RT5133_REG_LDO1_CTRL2		0x21
-+#define RT5133_REG_LDO1_CTRL3		0x22
-+#define RT5133_REG_LDO2_CTRL1		0x24
-+#define RT5133_REG_LDO2_CTRL2		0x25
-+#define RT5133_REG_LDO2_CTRL3		0x26
-+#define RT5133_REG_LDO3_CTRL1		0x28
-+#define RT5133_REG_LDO3_CTRL2		0x29
-+#define RT5133_REG_LDO3_CTRL3		0x2A
-+#define RT5133_REG_LDO4_CTRL1		0x2C
-+#define RT5133_REG_LDO4_CTRL2		0x2D
-+#define RT5133_REG_LDO4_CTRL3		0x2E
-+#define RT5133_REG_LDO5_CTRL1		0x30
-+#define RT5133_REG_LDO5_CTRL2		0x31
-+#define RT5133_REG_LDO5_CTRL3		0x32
-+#define RT5133_REG_LDO6_CTRL1		0x34
-+#define RT5133_REG_LDO6_CTRL2		0x35
-+#define RT5133_REG_LDO6_CTRL3		0x36
-+#define RT5133_REG_LDO7_CTRL1		0x38
-+#define RT5133_REG_LDO7_CTRL2		0x39
-+#define RT5133_REG_LDO7_CTRL3		0x3A
-+#define RT5133_REG_LDO8_CTRL1		0x3C
-+#define RT5133_REG_LDO8_CTRL2		0x3D
-+#define RT5133_REG_LDO8_CTRL3		0x3E
-+#define RT5133_REG_LDO8_CTRL4		0x3F
-+
-+#define RT5133_LDO_REG_BASE(_id)	(0x20 + ((_id) - 1) * 4)
-+
-+#define RT5133_VENDOR_ID_MASK		GENMASK(7, 4)
-+#define RT5133_RESET_CODE		0xB1
-+
-+#define RT5133_FOFF_BASE_MASK		BIT(1)
-+#define RT5133_OCSHDN_ALL_MASK		BIT(7)
-+#define RT5133_OCSHDN_ALL_SHIFT		(7)
-+#define RT5133_PGBSHDN_ALL_MASK		BIT(6)
-+#define RT5133_PGBSHDN_ALL_SHIFT	(6)
-+
-+#define RT5133_OCPTSEL_MASK		BIT(5)
-+#define RT5133_PGBPTSEL_MASK		BIT(4)
-+#define RT5133_STBTDSEL_MASK		GENMASK(1, 0)
-+
-+#define RT5133_LDO_ENABLE_MASK		BIT(7)
-+#define RT5133_LDO_VSEL_MASK		GENMASK(7, 5)
-+#define RT5133_LDO_AD_MASK		BIT(2)
-+#define RT5133_LDO_SOFT_START_MASK	GENMASK(1, 0)
-+
-+#define RT5133_GPIO_NR			3
-+
-+#define RT5133_LDO_PGB_EVT_MASK		GENMASK(23, 16)
-+#define RT5133_LDO_PGB_EVT_SHIFT	16
-+#define RT5133_LDO_OC_EVT_MASK		GENMASK(15, 8)
-+#define RT5133_LDO_OC_EVT_SHIFT		8
-+#define RT5133_VREF_EVT_MASK		BIT(6)
-+#define RT5133_BASE_EVT_MASK		GENMASK(7, 0)
-+#define RT5133_INTR_CLR_MASK		GENMASK(23, 0)
-+#define RT5133_INTR_BYTE_NR		3
-+
-+#define RT5133_MAX_I2C_BLOCK_SIZE	1
-+
-+#define RT5133_CRC8_POLYNOMIAL		0x7
-+
-+#define RT5133_I2C_ADDR_LEN		1
-+#define RT5133_PREDATA_LEN		2
-+#define RT5133_I2C_CRC_LEN		1
-+#define RT5133_REG_ADDR_LEN		1
-+#define RT5133_I2C_DUMMY_LEN		1
-+
-+#define I2C_ADDR_XLATE_8BIT(_addr, _rw)	((((_addr) & 0x7F) << 1) | (_rw))
-+
-+enum {
-+	RT5133_REGULATOR_BASE = 0,
-+	RT5133_REGULATOR_LDO1,
-+	RT5133_REGULATOR_LDO2,
-+	RT5133_REGULATOR_LDO3,
-+	RT5133_REGULATOR_LDO4,
-+	RT5133_REGULATOR_LDO5,
-+	RT5133_REGULATOR_LDO6,
-+	RT5133_REGULATOR_LDO7,
-+	RT5133_REGULATOR_LDO8,
-+	RT5133_REGULATOR_MAX
-+};
-+
-+struct chip_data {
-+	const struct regulator_desc *regulators;
-+	const u8 vendor_id;
-+};
-+
-+struct rt5133_priv {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct gpio_desc *enable_gpio;
-+	struct regulator_dev *rdev[RT5133_REGULATOR_MAX];
-+	struct gpio_chip gc;
-+	const struct chip_data *cdata;
-+	unsigned int gpio_output_flag;
-+	u8 crc8_tbls[CRC8_TABLE_SIZE];
-+};
-+
-+static const unsigned int vout_type1_tables[] = {
-+	1800000, 2500000, 2700000, 2800000, 2900000, 3000000, 3100000, 3200000
-+};
-+
-+static const unsigned int vout_type2_tables[] = {
-+	1700000, 1800000, 1900000, 2500000, 2700000, 2800000, 2900000, 3000000
-+};
-+
-+static const unsigned int vout_type3_tables[] = {
-+	900000, 950000, 1000000, 1050000, 1100000, 1150000, 1200000, 1800000
-+};
-+
-+static const unsigned int vout_type4_tables[] = {
-+	855000, 900000, 950000, 1000000, 1040000, 1090000, 1140000, 1710000
-+};
-+
-+static const struct regulator_ops rt5133_regulator_ops = {
-+	.list_voltage = regulator_list_voltage_table,
-+	.set_voltage_sel = regulator_set_voltage_sel_regmap,
-+	.get_voltage_sel = regulator_get_voltage_sel_regmap,
-+	.enable = regulator_enable_regmap,
-+	.disable = regulator_disable_regmap,
-+	.is_enabled = regulator_is_enabled_regmap,
-+	.set_active_discharge = regulator_set_active_discharge_regmap,
-+};
-+
-+static const struct regulator_ops rt5133_base_regulator_ops = {
-+	.enable = regulator_enable_regmap,
-+	.disable = regulator_disable_regmap,
-+	.is_enabled = regulator_is_enabled_regmap,
-+};
-+
-+static int rt5133_of_parse_cb(struct device_node *node,
-+			      const struct regulator_desc *desc,
-+			      struct regulator_config *config)
-+{
-+	struct rt5133_priv *priv = config->driver_data;
-+	unsigned int val = 0;
-+	int ret = 0;
-+
-+	switch (desc->id) {
-+	case RT5133_REGULATOR_BASE:
-+		if (!of_property_read_bool(node, "richtek,oc-shutdown-all"))
-+			val = 0;
-+		else
-+			val = 1 << RT5133_OCSHDN_ALL_SHIFT;
-+		ret = regmap_update_bits(priv->regmap, RT5133_REG_LDO_SHDN,
-+					 RT5133_OCSHDN_ALL_MASK, val);
-+		if (ret)
-+			return ret;
-+
-+		if (!of_property_read_bool(node, "richtek,pgb-shutdown-all"))
-+			val = 0;
-+		else
-+			val = 1 << RT5133_PGBSHDN_ALL_SHIFT;
-+		return regmap_update_bits(priv->regmap, RT5133_REG_LDO_SHDN,
-+					  RT5133_PGBSHDN_ALL_MASK, val);
-+	default:
-+		break;
-+	};
-+
-+	return 0;
-+}
-+
-+#define RT5133_REGULATOR_DESC(_name, _node_name, vtables, _supply) \
-+{\
-+	.name = #_name,\
-+	.id = RT5133_REGULATOR_##_name,\
-+	.of_match = of_match_ptr(#_node_name),\
-+	.regulators_node = of_match_ptr("regulators"),\
-+	.supply_name = _supply,\
-+	.of_parse_cb = rt5133_of_parse_cb,\
-+	.type = REGULATOR_VOLTAGE,\
-+	.owner = THIS_MODULE,\
-+	.ops = &rt5133_regulator_ops,\
-+	.n_voltages = ARRAY_SIZE(vtables),\
-+	.volt_table = vtables,\
-+	.enable_reg = RT5133_REG_##_name##_CTRL1,\
-+	.enable_mask = RT5133_LDO_ENABLE_MASK,\
-+	.vsel_reg = RT5133_REG_##_name##_CTRL2,\
-+	.vsel_mask = RT5133_LDO_VSEL_MASK,\
-+	.active_discharge_reg = RT5133_REG_##_name##_CTRL3,\
-+	.active_discharge_mask = RT5133_LDO_AD_MASK,\
-+}
-+
-+static const struct regulator_desc rt5133_regulators[] = {
-+	/* For digital part, base current control */
-+	{
-+		.name = "rt5133,base",
-+		.id = RT5133_REGULATOR_BASE,
-+		.of_match = of_match_ptr("base"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.of_parse_cb = rt5133_of_parse_cb,
-+		.type = REGULATOR_VOLTAGE,
-+		.owner = THIS_MODULE,
-+		.ops = &rt5133_base_regulator_ops,
-+		.enable_reg = RT5133_REG_BASE_CTRL,
-+		.enable_mask = RT5133_FOFF_BASE_MASK,
-+		.enable_is_inverted = true,
-+	},
-+	RT5133_REGULATOR_DESC(LDO1, ldo1, vout_type1_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO2, ldo2, vout_type1_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO3, ldo3, vout_type2_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO4, ldo4, vout_type2_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO5, ldo5, vout_type2_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO6, ldo6, vout_type2_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO7, ldo7, vout_type3_tables, "rt5133-ldo1"),
-+	RT5133_REGULATOR_DESC(LDO8, ldo8, vout_type3_tables, "rt5133-ldo1"),
-+};
-+
-+static const struct regulator_desc rt5133a_regulators[] = {
-+	/* For digital part, base current control */
-+	{
-+		.name = "rt5133,base",
-+		.id = RT5133_REGULATOR_BASE,
-+		.of_match = of_match_ptr("base"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.of_parse_cb = rt5133_of_parse_cb,
-+		.type = REGULATOR_VOLTAGE,
-+		.owner = THIS_MODULE,
-+		.ops = &rt5133_base_regulator_ops,
-+		.enable_reg = RT5133_REG_BASE_CTRL,
-+		.enable_mask = RT5133_FOFF_BASE_MASK,
-+		.enable_is_inverted = true,
-+	},
-+	RT5133_REGULATOR_DESC(LDO1, ldo1, vout_type1_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO2, ldo2, vout_type1_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO3, ldo3, vout_type2_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO4, ldo4, vout_type2_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO5, ldo5, vout_type2_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO6, ldo6, vout_type2_tables, "rt5133,base"),
-+	RT5133_REGULATOR_DESC(LDO7, ldo7, vout_type3_tables, "rt5133-ldo1"),
-+	RT5133_REGULATOR_DESC(LDO8, ldo8, vout_type4_tables, "rt5133-ldo1"),
-+};
-+
-+static const struct chip_data regulator_data[] = {
-+	{ rt5133_regulators, 0x70},
-+	{ rt5133a_regulators, 0x80},
-+};
-+
-+static int rt5133_gpio_direction_output(struct gpio_chip *gpio,
-+					unsigned int offset, int value)
-+{
-+	struct rt5133_priv *priv = gpiochip_get_data(gpio);
-+
-+	if (offset >= RT5133_GPIO_NR)
-+		return -EINVAL;
-+
-+	return regmap_update_bits(priv->regmap, RT5133_REG_GPIO_CTRL,
-+				  BIT(7 - offset) | BIT(3 - offset),
-+				  value ? BIT(7 - offset) | BIT(3 - offset) : 0);
-+}
-+
-+static int rt5133_gpio_get(struct gpio_chip *chip, unsigned int offset)
-+{
-+	struct rt5133_priv *priv = gpiochip_get_data(chip);
-+
-+	return !!(priv->gpio_output_flag & BIT(offset));
-+}
-+
-+static int rt5133_get_gpioen_mask(unsigned int offset, unsigned int *mask)
-+{
-+	if (offset >= RT5133_GPIO_NR)
-+		return -EINVAL;
-+
-+	*mask = (BIT(7 - offset) | BIT(3 - offset));
-+
-+	return 0;
-+}
-+
-+static void rt5133_gpio_set(struct gpio_chip *chip, unsigned int offset,
-+			    int set_val)
-+{
-+	struct rt5133_priv *priv = gpiochip_get_data(chip);
-+	unsigned int mask = 0, val = 0, next_flag = priv->gpio_output_flag;
-+	int ret = 0;
-+
-+	ret = rt5133_get_gpioen_mask(offset, &mask);
-+	if (ret) {
-+		dev_err(priv->dev, "%s get gpion en mask failed, offset(%d)\n", __func__, offset);
-+		return;
-+	}
-+
-+	val = set_val ? mask : 0;
-+
-+	if (set_val)
-+		next_flag |= BIT(offset);
-+	else
-+		next_flag &= ~BIT(offset);
-+
-+	ret = regmap_update_bits(priv->regmap, RT5133_REG_GPIO_CTRL, mask, val);
-+	if (ret) {
-+		dev_err(priv->dev, "Failed to set gpio [%d] val %d\n", offset,
-+			set_val);
-+		return;
-+	}
-+
-+	priv->gpio_output_flag = next_flag;
-+}
-+
-+static irqreturn_t rt5133_intr_handler(int irq_number, void *data)
-+{
-+	struct rt5133_priv *priv = data;
-+	u32 intr_evts = 0, handle_evts;
-+	int i, ret;
-+
-+	ret = regmap_bulk_read(priv->regmap, RT5133_REG_BASE_EVT, &intr_evts,
-+			       RT5133_INTR_BYTE_NR);
-+	if (ret) {
-+		dev_err(priv->dev, "%s, read event failed\n", __func__);
-+		return IRQ_NONE;
-+	}
-+
-+	handle_evts = intr_evts & RT5133_BASE_EVT_MASK;
-+	/*
-+	 * VREF_EVT is a special case, if base off
-+	 * this event will also be trigger. Skip it
-+	 */
-+	if (handle_evts & ~RT5133_VREF_EVT_MASK)
-+		dev_dbg(priv->dev, "base event occurred [0x%02x]\n",
-+			handle_evts);
-+
-+	handle_evts = (intr_evts & RT5133_LDO_OC_EVT_MASK) >>
-+		RT5133_LDO_OC_EVT_SHIFT;
-+
-+	for (i = RT5133_REGULATOR_LDO1; i < RT5133_REGULATOR_MAX && handle_evts; i++) {
-+		if (!(handle_evts & BIT(i - 1)))
-+			continue;
-+		regulator_notifier_call_chain(priv->rdev[i],
-+					      REGULATOR_EVENT_OVER_CURRENT,
-+					      &i);
-+	}
-+
-+	handle_evts = (intr_evts & RT5133_LDO_PGB_EVT_MASK) >>
-+		RT5133_LDO_PGB_EVT_SHIFT;
-+	for (i = RT5133_REGULATOR_LDO1; i < RT5133_REGULATOR_MAX && handle_evts; i++) {
-+		if (!(handle_evts & BIT(i - 1)))
-+			continue;
-+		regulator_notifier_call_chain(priv->rdev[i],
-+					      REGULATOR_EVENT_FAIL, &i);
-+	}
-+
-+	ret = regmap_bulk_write(priv->regmap, RT5133_REG_BASE_EVT, &intr_evts,
-+				RT5133_INTR_BYTE_NR);
-+	if (ret)
-+		dev_err(priv->dev, "%s, clear event failed\n", __func__);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int rt5133_enable_interrupts(int irq_no, struct rt5133_priv *priv)
-+{
-+	u32 mask = RT5133_INTR_CLR_MASK;
-+	int ret;
-+
-+	/* Force to write clear all events */
-+	ret = regmap_bulk_write(priv->regmap, RT5133_REG_BASE_EVT, &mask,
-+				RT5133_INTR_BYTE_NR);
-+	if (ret) {
-+		dev_err(priv->dev, "Failed to clear all interrupts\n");
-+		return ret;
-+	}
-+
-+	/* Unmask all interrupts */
-+	mask = 0;
-+	ret = regmap_bulk_write(priv->regmap, RT5133_REG_BASE_MASK, &mask,
-+				RT5133_INTR_BYTE_NR);
-+	if (ret) {
-+		dev_err(priv->dev, "Failed to unmask all interrupts\n");
-+		return ret;
-+	}
-+
-+	return devm_request_threaded_irq(priv->dev, irq_no, NULL,
-+					 rt5133_intr_handler, IRQF_ONESHOT,
-+					 dev_name(priv->dev), priv);
-+}
-+
-+static int rt5133_regmap_hw_read(void *context, const void *reg_buf,
-+				 size_t reg_size, void *val_buf,
-+				 size_t val_size)
-+{
-+	struct rt5133_priv *priv = context;
-+	struct i2c_client *client = to_i2c_client(priv->dev);
-+	u8 reg = *(u8 *)reg_buf, crc;
-+	u8 *buf;
-+	int buf_len = RT5133_PREDATA_LEN + val_size + RT5133_I2C_CRC_LEN;
-+	int read_len, ret;
-+
-+	buf = kzalloc(buf_len, GFP_KERNEL);
-+	if (!buf)
-+		return -ENOMEM;
-+
-+	buf[0] = I2C_ADDR_XLATE_8BIT(client->addr, I2C_SMBUS_READ);
-+	buf[1] = reg;
-+
-+	read_len = val_size + RT5133_I2C_CRC_LEN;
-+	ret = i2c_smbus_read_i2c_block_data(client, reg, read_len,
-+					    buf + RT5133_PREDATA_LEN);
-+
-+	if (ret < 0)
-+		goto out_read_err;
-+
-+	if (ret != read_len) {
-+		ret = -EIO;
-+		goto out_read_err;
-+	}
-+
-+	crc = crc8(priv->crc8_tbls, buf, RT5133_PREDATA_LEN + val_size, 0);
-+	if (crc != buf[RT5133_PREDATA_LEN + val_size]) {
-+		ret = -EIO;
-+		goto out_read_err;
-+	}
-+
-+	memcpy(val_buf, buf + RT5133_PREDATA_LEN, val_size);
-+	dev_dbg(priv->dev, "%s, reg = 0x%02x, data = 0x%02x\n", __func__, reg, *(u8 *)val_buf);
-+
-+out_read_err:
-+	kfree(buf);
-+	return (ret < 0) ? ret : 0;
-+}
-+
-+static int rt5133_regmap_hw_write(void *context, const void *data, size_t count)
-+{
-+	struct rt5133_priv *priv = context;
-+	struct i2c_client *client = to_i2c_client(priv->dev);
-+	u8 reg = *(u8 *)data, crc;
-+	u8 *buf;
-+	int buf_len = RT5133_I2C_ADDR_LEN + count + RT5133_I2C_CRC_LEN +
-+		RT5133_I2C_DUMMY_LEN;
-+	int write_len, ret;
-+
-+	buf = kzalloc(buf_len, GFP_KERNEL);
-+	if (!buf)
-+		return -ENOMEM;
-+
-+	buf[0] = I2C_ADDR_XLATE_8BIT(client->addr, I2C_SMBUS_WRITE);
-+	buf[1] = reg;
-+	memcpy(buf + RT5133_PREDATA_LEN, data + RT5133_REG_ADDR_LEN,
-+	       count - RT5133_REG_ADDR_LEN);
-+
-+	crc = crc8(priv->crc8_tbls, buf, RT5133_I2C_ADDR_LEN + count, 0);
-+	buf[RT5133_I2C_ADDR_LEN + count] = crc;
-+
-+	write_len = count - RT5133_REG_ADDR_LEN + RT5133_I2C_CRC_LEN +
-+		RT5133_I2C_DUMMY_LEN;
-+	ret = i2c_smbus_write_i2c_block_data(client, reg, write_len,
-+					     buf + RT5133_PREDATA_LEN);
-+
-+	dev_dbg(priv->dev, "%s, reg = 0x%02x, data = 0x%02x\n", __func__, reg,
-+		*(u8 *)(buf + RT5133_PREDATA_LEN));
-+	kfree(buf);
-+	return ret;
-+}
-+
-+static const struct regmap_bus rt5133_regmap_bus = {
-+	.read = rt5133_regmap_hw_read,
-+	.write = rt5133_regmap_hw_write,
-+	/* Due to crc, the block read/write length has the limit */
-+	.max_raw_read = RT5133_MAX_I2C_BLOCK_SIZE,
-+	.max_raw_write = RT5133_MAX_I2C_BLOCK_SIZE,
-+};
-+
-+static bool rt5133_is_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case RT5133_REG_CHIP_INFO:
-+	case RT5133_REG_BASE_EVT...RT5133_REG_LDO_PGB_STAT:
-+	case RT5133_REG_LDO_ON...RT5133_REG_LDO_OFF:
-+	case RT5133_REG_LDO1_CTRL1:
-+	case RT5133_REG_LDO2_CTRL1:
-+	case RT5133_REG_LDO3_CTRL1:
-+	case RT5133_REG_LDO4_CTRL1:
-+	case RT5133_REG_LDO5_CTRL1:
-+	case RT5133_REG_LDO6_CTRL1:
-+	case RT5133_REG_LDO7_CTRL1:
-+	case RT5133_REG_LDO8_CTRL1:
-+		return true;
-+	default:
-+		return false;
-+	};
-+}
-+
-+static const struct regmap_config rt5133_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = RT5133_REG_LDO8_CTRL4,
-+	.cache_type = REGCACHE_FLAT,
-+	.num_reg_defaults_raw = RT5133_REG_LDO8_CTRL4 + 1,
-+	.volatile_reg = rt5133_is_volatile_reg,
-+};
-+
-+static int rt5133_chip_reset(struct rt5133_priv *priv)
-+{
-+	int ret;
-+
-+	ret = regmap_write(priv->regmap, RT5133_REG_RST_CTRL,
-+			   RT5133_RESET_CODE);
-+	if (ret)
-+		return ret;
-+
-+	/* Wait for register reset to take effect */
-+	udelay(2);
-+
-+	return 0;
-+}
-+
-+static int rt5133_validate_vendor_info(struct rt5133_priv *priv)
-+{
-+	unsigned int val = 0;
-+	int i, ret;
-+
-+	ret = regmap_read(priv->regmap, RT5133_REG_CHIP_INFO, &val);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < ARRAY_SIZE(regulator_data); i++) {
-+		if ((val & RT5133_VENDOR_ID_MASK) ==
-+						regulator_data[i].vendor_id){
-+			priv->cdata = &regulator_data[i];
-+			break;
-+		}
-+	}
-+	if (IS_ERR(priv->cdata)) {
-+		dev_err(priv->dev, "Failed to find regualtor match version\n");
-+		return -ENODEV;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rt5133_probe(struct i2c_client *i2c)
-+{
-+	struct rt5133_priv *priv;
-+	struct regulator_config config = {0};
-+	int i, ret;
-+
-+	priv = devm_kzalloc(&i2c->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->dev = &i2c->dev;
-+	crc8_populate_msb(priv->crc8_tbls, RT5133_CRC8_POLYNOMIAL);
-+
-+	priv->enable_gpio = devm_gpiod_get_optional(&i2c->dev, "enable",
-+						    GPIOD_OUT_HIGH);
-+	if (IS_ERR(priv->enable_gpio))
-+		dev_err(&i2c->dev, "Failed to request HWEN gpio, check if default en=high\n");
-+
-+	priv->regmap = devm_regmap_init(&i2c->dev, &rt5133_regmap_bus, priv,
-+					&rt5133_regmap_config);
-+	if (IS_ERR(priv->regmap)) {
-+		dev_err(&i2c->dev, "Failed to register regmap\n");
-+		return PTR_ERR(priv->regmap);
-+	}
-+
-+	ret = rt5133_validate_vendor_info(priv);
-+	if (ret) {
-+		dev_err(&i2c->dev, "Failed to check vendor info [%d]\n", ret);
-+		return ret;
-+	}
-+
-+	ret = rt5133_chip_reset(priv);
-+	if (ret) {
-+		dev_err(&i2c->dev, "Failed to execute sw reset\n");
-+		return ret;
-+	}
-+
-+	config.dev = &i2c->dev;
-+	config.driver_data = priv;
-+	config.regmap = priv->regmap;
-+
-+	for (i = 0; i < RT5133_REGULATOR_MAX; i++) {
-+		priv->rdev[i] = devm_regulator_register(&i2c->dev,
-+							priv->cdata->regulators + i,
-+							&config);
-+		if (IS_ERR(priv->rdev[i])) {
-+			dev_err(&i2c->dev,
-+				"Failed to register [%d] regulator\n", i);
-+			return PTR_ERR(priv->rdev[i]);
-+		}
-+	}
-+
-+	priv->gc.label = dev_name(&i2c->dev);
-+	priv->gc.parent = &i2c->dev;
-+	priv->gc.base = -1;
-+	priv->gc.ngpio = RT5133_GPIO_NR;
-+	priv->gc.set = rt5133_gpio_set;
-+	priv->gc.get = rt5133_gpio_get;
-+	priv->gc.direction_output = rt5133_gpio_direction_output;
-+	priv->gc.can_sleep = true;
-+
-+	ret = devm_gpiochip_add_data(&i2c->dev, &priv->gc, priv);
-+	if (ret)
-+		return ret;
-+
-+	ret = rt5133_enable_interrupts(i2c->irq, priv);
-+	if (ret) {
-+		dev_err(&i2c->dev, "enable interrupt failed\n");
-+		return ret;
-+	}
-+
-+	i2c_set_clientdata(i2c, priv);
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id __maybe_unused rt5133_of_match_table[] = {
-+	{ .compatible = "richtek,rt5133", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, rt5133_of_match_table);
-+
-+static struct i2c_driver rt5133_driver = {
-+	.driver = {
-+		.name = "rt5133",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+		.of_match_table = rt5133_of_match_table,
-+	},
-+	.probe = rt5133_probe,
-+};
-+module_i2c_driver(rt5133_driver);
-+
-+MODULE_DESCRIPTION("RT5133 Regulator Driver");
-+MODULE_LICENSE("GPL v2");
---
-2.43.0
+MSM8998: USB3 PHY regs at 0xc010000, DP PHY regs at 0xc011000
+SDM660: USB3 PHY regs at 0xc010000, DP PHY regs at 0xc011000
+QCM2290: USB3 PHY regs at 0x1615000, DP PHY regs at 0x1616000
+SM6115: USB3 PHY regs at 0x1615000, DP PHY regs at 0x1616000
 
+Now:
+SM6150: USB3 PHY regs at 0x88e6000
+        USB3 PHY regs at 0x88e8000, DP PHY regs at 0x88e9000
+
+I do not know, why msm-4.14 didn't describe second USB3 PHY. Maybe you
+can comment on it.
+
+But based on that list, the only special case that we need to handle is
+the first USB3 PHY, which doesn't have a corresponding DP PHY block. But
+it will be handled anyway by the code that implements support for the
+existing DT entries. All other hardware blocks are combo USB+DP PHYs.
+
+Having all of that in mind, please, for v3 patchset implement USB+DP
+support in the phy-qcom-qmp-usbc driver and add the following logic
+that also was requested in v1 review:
+
+>> Not quite. Both USB3 and DP drivers should be calling power_on / _off.
+>> If USB3 is on, powering on DP PHY should fail. Vice versa, if DP is on,
+>> powering on USB should fail.
+
+> 
+> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+> ---
+>  .../bindings/phy/qcom,qcs615-qmp-dp-phy.yaml       | 111 +++++++++++++++++++++
+>  1 file changed, 111 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qcs615-qmp-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qcs615-qmp-dp-phy.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..17e37c1df7b61dc2f7aa35ee106fd94ee2829c5f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qcs615-qmp-dp-phy.yaml
+> @@ -0,0 +1,111 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/qcom,qcs615-qmp-dp-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm QMP PHY controller (DP, QCS615)
+> +
+> +maintainers:
+> +  - Vinod Koul <vkoul@kernel.org>
+> +
+> +description:
+> +  The QMP DP PHY controller supports DisplayPort physical layer functionality
+> +  on Qualcomm QCS615 SoCs. This PHY is independent from USB3 PHY and does not
+> +  support combo mode.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,qcs615-qmp-dp-phy
+> +
+> +  reg:
+> +    maxItems: 4
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: cfg_ahb
+> +      - const: ref
+> +
+> +  clock-output-names:
+> +    maxItems: 2
+> +    description:
+> +      Names of the clocks provided by the PHY.
+> +
+> +  qcom,tcsr-reg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - items:
+> +          - description: phandle to TCSR hardware block
+> +          - description: offset of the DP PHY moode register
+> +    description:
+> +      DP PHY moode register present in the TCSR
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: phy
+> +
+> +  vdda-phy-supply: true
+> +
+> +  vdda-pll-supply: true
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +    description:
+> +      See include/dt-bindings/phy/phy-qcom-qmp.h
+> +
+> +  "#phy-cells":
+> +    const: 1
+> +    description:
+> +      See include/dt-bindings/phy/phy-qcom-qmp.h
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - clock-output-names
+> +  - qcom,tcsr-reg
+> +  - resets
+> +  - reset-names
+> +  - vdda-phy-supply
+> +  - vdda-pll-supply
+> +  - "#clock-cells"
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,qcs615-gcc.h>
+> +    #include <dt-bindings/clock/qcom,rpmh.h>
+> +
+> +    phy@88e9000 {
+> +      compatible = "qcom,qcs615-qmp-dp-phy";
+> +      reg = <0x088e9000 0x200>,
+> +            <0x088e9400 0x10c>,
+> +            <0x088e9800 0x10c>,
+> +            <0x088e9c00 0x200>;
+> +
+> +      clocks = <&gcc GCC_AHB2PHY_WEST_CLK>,
+> +               <&gcc GCC_USB3_SEC_CLKREF_CLK>;
+> +      clock-names = "cfg_ahb", "ref";
+> +      clock-output-names = "dp_phy_link_clk", "dp_phy_vco_div_clk";
+> +
+> +      qcom,tcsr-reg = <&tcsr 0xb24c>;
+> +
+> +      resets = <&gcc GCC_USB3_DP_PHY_SEC_BCR>;
+> +      reset-names = "phy";
+> +
+> +      vdda-phy-supply = <&vreg_l11a>;
+> +      vdda-pll-supply = <&vreg_l5a>;
+> +
+> +      #clock-cells = <1>;
+> +      #phy-cells = <1>;
+> +    };
+> 
+> -- 
+> 2.34.1
+> 
+
+-- 
+With best wishes
+Dmitry
 
