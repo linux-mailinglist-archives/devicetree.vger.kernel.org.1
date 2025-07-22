@@ -1,174 +1,137 @@
-Return-Path: <devicetree+bounces-198462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9631AB0D175
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 07:52:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12239B0D1AE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 08:08:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D58C1C22B5A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 05:52:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 001306C1D51
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 06:07:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F5628D827;
-	Tue, 22 Jul 2025 05:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NkULTkd8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4ACC28EBF1;
+	Tue, 22 Jul 2025 06:07:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872BD28C87F;
-	Tue, 22 Jul 2025 05:51:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D070828DB7F;
+	Tue, 22 Jul 2025 06:07:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753163467; cv=none; b=IhfxaE//JvtsFabV9cvIGtiPUgJ9LbW6eGCSvZAhjti6ybv9oYh3mU5L9NNhI/yUfLOKrDBU7rhJyJUnrfM4LPQojObyTXdNfsmOO5cfM3oXRB5W83j59pfy9UvUyHy7Sfr+g5ydeKtvEzB/LuhWOmO+VOf7FXv32ohqw6q4dpE=
+	t=1753164473; cv=none; b=ELSw9HGix3NTM1mu1xdrPrELgXwOCNHGLQX5xUT6p/3LJOWvynzwoYS1WxT6zHAmZoSJB9RQ0M1P8Yq6IFvqI2bXdn1UHgM0ED7CEk0wk4rwe0hSo2Xr0BlzHtYh1bQeGPSCDBjOZaGGGHomq2kOHqbmKp/vFywj8eJA2dUrS9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753163467; c=relaxed/simple;
-	bh=lLdzGqsqwQjhOsz2WfLsv4rKsYxR9ZpICAIUjq8d/nw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UgVtSNVY2EgZmdi4LDO8woduGrsN/FdZA6XOkN1orduh8v0150L87PIL5YV5FE7d4QIU4iK6alGMu1taa5jfukAbYe4sYwz3fy2+fc7AqiRprs0i0qPWTlaZLcsKlnMtU9bw7Q9cX6o+2PFAYv2v/uWvmPuY1IOByevUlREb5c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NkULTkd8; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56M5ouYR975209;
-	Tue, 22 Jul 2025 00:50:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1753163456;
-	bh=/HA54An8RWm8lbhsfU7W1tLrMDcipcyCl86TuK6LUpE=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=NkULTkd8CLRwZL9F4AcpCREgbRZ0ibeZauJ1ob/YiYnlraZPHpzoJgze025JXhc6w
-	 kCi1OsbCQoV3H9LJG83V5k3eXnqkESUqLaKSJOSYr9IqK7k3BXjhIqE5LQkkhQioyR
-	 uZonsnsJfF6Tin4Yk4T050tRH8cx5z+7P5jUGmBY=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56M5ouKh1882953
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 22 Jul 2025 00:50:56 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 22
- Jul 2025 00:50:55 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 22 Jul 2025 00:50:55 -0500
-Received: from [172.24.227.115] (abhilash-hp.dhcp.ti.com [172.24.227.115])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56M5opG6535126;
-	Tue, 22 Jul 2025 00:50:52 -0500
-Message-ID: <457e2428-f766-4e8d-bfb0-32084de45b5a@ti.com>
-Date: Tue, 22 Jul 2025 11:20:51 +0530
+	s=arc-20240116; t=1753164473; c=relaxed/simple;
+	bh=Ox3IhCjiBYh+MX6ejpkv6y1uIpwAtiQwJ7amkOxMuBg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Un1CZKAGkhlaXrqD7q+p0SxSH4/EKGuTk0y1wlEUJZVm4fvGekv34HAfJyQi+BM4LcLY4eL078jcHQijMisMit9UpXd6n6V+9WrPDppw+qb6sEU7pb6WK4lzCUsg2SRwIkOvV7bXDY/TS2LykMIdz1R3ioLkOUbgR+hce3hsZn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=15.184.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
+X-QQ-mid: zesmtpgz7t1753164408tad5392af
+X-QQ-Originating-IP: lRVZxkrx6pC3u9vYhC9bQPmaTVYkQx9JA3OJjBKNKT4=
+Received: from localhost ( [113.89.235.49])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 22 Jul 2025 14:06:46 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 11910796611481900965
+EX-QQ-RecipientCnt: 14
+Date: Tue, 22 Jul 2025 14:06:46 +0800
+From: Nick Li <nick.li@foursemi.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
+	tiwai@suse.com, xiaoming.yang@foursemi.com,
+	danyang.zheng@foursemi.com, like.xy@foxmail.com,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] ASoC: dt-bindings: Add FS2104/5S audio amplifiers
+Message-ID: <F429DD8B86709040+aH8qdpV2gn2Xk_4J@foursemi.com>
+References: <20250721103805.531758-1-nick.li@foursemi.com>
+ <20250721103805.531758-3-nick.li@foursemi.com>
+ <83f7c489-7001-49cd-97a5-4280eba95fe0@kernel.org>
+ <F04DD98A69286426+aH4sT_P0GvttoCOq@foursemi.com>
+ <ea2f30ff-b2cf-4b88-9fe8-78950a03d882@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] arm64: dts: ti: k3-j721s2-main: Add interrupts
- property
-To: "Kumar, Udit" <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vaishnav.a@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <imx@lists.linux.dev>, <linux-kernel@vger.kernel.org>
-References: <20250714092708.3944641-1-y-abhilashchandra@ti.com>
- <20250714092708.3944641-2-y-abhilashchandra@ti.com>
- <72545187-4605-40bb-9c68-54670c2e5332@ti.com>
- <05a07a03-3f59-489b-ae55-5f454266bafb@ti.com>
-Content-Language: en-US
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-In-Reply-To: <05a07a03-3f59-489b-ae55-5f454266bafb@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ea2f30ff-b2cf-4b88-9fe8-78950a03d882@kernel.org>
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MyhNtuNETreePwhjEFGswSHVX+yS2AT0r3JWkWPuEKTsKBZlgGww/McU
+	K2IDBlDmTmNYdPKRvJJpdVEOfQkyKadKcr7I7z4/IQgeJ3wT6txAsEEqIucdRrfzpxgnQqh
+	AnhqOdPNXAarvvdCuRQb98xUXweMYL3WUCDzYgArs17bjYIAHvlAw7wZYdfZrDYLp+X3ofr
+	OU23kpiXAgcrpKzAkuCNLqvxvzZRI2RKGTQJ4kO+iIYONhKNsLRomYbwzzoz328J01PbqBc
+	WmOVIjRQ00likWQFefVZH5wgF1ShlW1OkMdsb6aFv4eF3j4AfX1KX3iGztOmli5j6JQcQtQ
+	APNtJha1Dr98lYm+IihlbQ15D4wwrHvgW8bFZekgv7qryFdRqzOtr+nuN2PH1a2FDOe1OLa
+	yx4eWPxRNYRdlZ6t3Ouz2aBTRX5PBMLdBPQW1iO2P/JIlGP6r4ctc9BlvD0087I/VUyb3NU
+	lkyjH9qaGygi2Xg+E6jsoreKoLDEJlZGAb1t04RWSvcGiK0DPNyNTa8eqbUQqvRzStAK9KW
+	ukyO1G5WY3Rf0/gm15GlfYmGiLQ0yEFGtCzBYc+szzqWSRX+jK+ixecYa6vZcAVbbYt8k6N
+	ONwNFAO+WjWf2CGtzihlcyd0NUEqPNyIq5zr1QM1vD00pvt5513vPlKqo4vp6SvivIgotmB
+	CNfIWLpWqkK1vzZ3Pk93CcTRRvhlcczaGDR+7hTxFE8aZyNHDrZI0zwGspEB0PutLELRQpN
+	dSz6HTDdy8gyAmhskOu0u9+7f2RGC7ftdR1Fio7Z9JYIY5kVLZnr4qe+9KJz2OprBT089xn
+	42aHMv0pM4GQ3me0d7ZmvFAK79sE97z8leOXW9IVjD8dRnCfoRIi2L2FLiSrJZ5GVHkYjqG
+	4pqGmZljKX45MUUXa2t+2bXEmTlAsGW6nJVP/6u37Z+VKzRbIVss/29QTC/FVB0LfWd6bRD
+	uJsgA7+eRrqZRwU+5XOvBR5+VdGXXz7rz3pBm+LhK/9xkNKEuYfNWv/bd1CeKWbN9L0epeV
+	KwZeU/EF1aVKuPsFrmUNIFn+k8RAo=
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+X-QQ-RECHKSPAM: 0
 
-Hi Udit,
-
-Thanks for the review.
-
-On 21/07/25 19:40, Kumar, Udit wrote:
-> 
-> On 7/21/2025 7:37 PM, Kumar, Udit wrote:
->>
->> On 7/14/2025 2:57 PM, Yemike Abhilash Chandra wrote:
->>> Add interrupts property for CDNS CSI2RX. Interrupt IDs are taken from 
->>> the
->>> J721S2 TRM [0].
->>>
->>> Interrupt Line      | Source Interrupt
->>> --------------------|----------------------------
->>> GIC500SS_SPI_IN_153 | CSI_RX_IF1_CSI_ERR_IRQ_0
->>> GIC500SS_SPI_IN_152 | CSI_RX_IF1_CSI_IRQ_0
->>> GIC500SS_SPI_IN_157 | CSI_RX_IF2_CSI_ERR_IRQ_0
->>> GIC500SS_SPI_IN_156 | CSI_RX_IF2_CSI_IRQ_0
->>>
->>> [0]: https://www.ti.com/lit/zip/spruj28
->>>
->>> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
->>> ---
->>>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 6 ++++++
->>>   1 file changed, 6 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi 
->>> b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> index 62f45377a2c9..6f32a2b0c40c 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> @@ -1248,6 +1248,9 @@ ti_csi2rx0: ticsi2rx@4500000 {
->>>           cdns_csi2rx0: csi-bridge@4504000 {
->>>               compatible = "ti,j721e-csi2rx", "cdns,csi2rx";
->>>               reg = <0x00 0x04504000 0x00 0x1000>;
->>> +            interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
->>> +                     <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
->>
->> Just cosmetic thing, if you are doing v2 then consider 152 first , 
->> followed by 153.
->>
->> Otherwise
->>
->> Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+On Mon, Jul 21, 2025 at 02:15:38PM +0200, Krzysztof Kozlowski wrote:
+> On 21/07/2025 14:02, Nick Li wrote:
+> > On Mon, Jul 21, 2025 at 12:48:24PM +0200, Krzysztof Kozlowski wrote:
+> >> On 21/07/2025 12:38, Nick wrote:
+> >>> +  firmware-name:
+> >>> +    maxItems: 1
+> >>> +    description: |
+> >>> +      The firmware(*.bin) contains:
+> >>> +      a. Register initialization settings
+> >>> +      b. DSP effect parameters
+> >>> +      c. Multi-scene sound effect configurations(optional)
+> >>> +      It's gernerated by FourSemi's tuning tool.
+> >>> +
+> >>> +required:
+> >>> +  - compatible
+> >>> +  - reg
+> >>> +  - '#sound-dai-cells'
+> >>> +  - reset-gpios
+> >>> +  - firmware-name
+> >>
+> >>
+> >> I do not see how you resolved my comment from v1 or v2. Nothing in the
+> >> changelog explains that either.
+> > 
+> > Change logs are in the cover letter:
 > 
 > 
-> Sorry, sent too fast, offset of 32 missing .
+> And as I said I do not see resolution of my comment.
 > 
+> If you reject reviewers comment, usually it should be mentioned in the
+> changelog.
 
- From what I’ve seen, the SPI interrupt IDs on J721S2 start from 0,
-so I don’t think we need to subtract the 32 offset.
-
-
-Interrupt Input Line   Interrupt ID    Source Interrupt
--------------------------------------------------------------
-GIC500SS_SPI_IN_00     0               ESM0_ESM_INT_CFG_LVL_0
-
-To confirm this, I’ve latched onto the correct interrupt line, and
-my IRQ handler is getting triggered as expected. I’m also seeing the
-desired output [0].
-
-Let me know if I might be missing anything.
-
-[0]: 
-https://gist.github.com/Yemike-Abhilash-Chandra/f46587ec1ef72671ee31803dd93434b4
-
-Thanks and Regards
-Yemike Abhilash Chandra
+Understood.
 
 > 
->>
->>> +            interrupt-names = "error_irq", "irq";
->>>               clocks = <&k3_clks 38 3>, <&k3_clks 38 1>, <&k3_clks 38 
->>> 3>,
->>>                   <&k3_clks 38 3>, <&k3_clks 38 4>, <&k3_clks 38 4>;
->>>               clock-names = "sys_clk", "p_clk", "pixel_if0_clk",
->>> @@ -1301,6 +1304,9 @@ ti_csi2rx1: ticsi2rx@4510000 {
->>>           cdns_csi2rx1: csi-bridge@4514000 {
->>>               compatible = "ti,j721e-csi2rx", "cdns,csi2rx";
->>>               reg = <0x00 0x04514000 0x00 0x1000>;
->>> +            interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
->>> +                     <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
->>> +            interrupt-names = "error_irq", "irq";
->>>               clocks = <&k3_clks 39 3>, <&k3_clks 39 1>, <&k3_clks 39 
->>> 3>,
->>>                   <&k3_clks 39 3>, <&k3_clks 39 4>, <&k3_clks 39 4>;
->>>               clock-names = "sys_clk", "p_clk", "pixel_if0_clk",
+> Otherwise you get now the same review as v1 or v2. Devices cannot work
+> without power.
+
+OK.
+We will add the supplies into section[required] for the solution.
+
+Thanks.
+
+Best regards,
+Nick
+
+> 
+> Best regards,
+> Krzysztof
+> 
 
