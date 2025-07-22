@@ -1,129 +1,125 @@
-Return-Path: <devicetree+bounces-198626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D5CB0D97B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 14:25:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34F81B0D984
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 14:26:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F352162840
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:24:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AA94563AF5
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 267602EAB69;
-	Tue, 22 Jul 2025 12:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850352E9EAC;
+	Tue, 22 Jul 2025 12:23:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hfifZ1wo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OshxhfJX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8280244695;
-	Tue, 22 Jul 2025 12:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6C4723AB8D;
+	Tue, 22 Jul 2025 12:23:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753186951; cv=none; b=Fe0kT06jdiuEz5/3U7pBx/+ore8D/0xVyoucnq8KgYi7DTgyHKDTYLh1+V+R5diok2WugBxmdkFlPhHcQ+g557lYVffx/s2IDVJqnMFgmUEDrCKlei78PaFpdCgTYWTpdUh9gvtlfeZR5iQyzGS5GCCDBh5Cj7s48i1NW2+oNwo=
+	t=1753187038; cv=none; b=L06G+eGPze4dYSXIarUnwvjQzk94g9+0/7gN5mqzM4wTHfFmqCT7Pt+iiVqNNRVdnTJh7mVAhHeDljApAU1qWiftkVtX/0OOVJi0oE6pSmv4Zq5DQj0V1zYiRcp8mgEsZDSprdGPkMw9He4t6MKYPmtFAN/3uHZg2JpehRrnqdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753186951; c=relaxed/simple;
-	bh=tsa1Roe7wGwli/LZJRe4GgFwBYhR9gq3UlMLlPNQNc8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=USOxgE+5qKHuw2TCPDY0ruvtyGYtPvlKufUSNIrqzsv+beqipn88GT1bswkJ+m+jFquAOhRd0OvxnysSESEDpb+xTKH6w60AcXhsgc7g/bT5UHNO4cHVf7OTpvsy5vc7Ie+TH0HW88wndvRDAILPclJZVAXjjX591KrqaiyMecI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hfifZ1wo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E6B4C4CEEB;
-	Tue, 22 Jul 2025 12:22:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753186950;
-	bh=tsa1Roe7wGwli/LZJRe4GgFwBYhR9gq3UlMLlPNQNc8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hfifZ1woUL7CNtXmT7O6E5+ES5/yr5VykYclG/J7ymFsOoncvwXwNQEqTpluFaYNH
-	 KOxyeLKuNNC8vqdCKFFcAdqhDMId6oC+wvgtrtE/CkqYOiSv6VeVVUzV0MRS+w8d5V
-	 fJdS3eaOOhunXeQk05MOpiR5CAvSu/FRhV5xe+WKBfMPhlCTKQiXeHRJl8Y56hsn6n
-	 T1+j5LDOM8rWFGA/d1UAVlESp7qW7UcsV95H7xYISg9x3qUk30/3wIELRXxRNO9Mhc
-	 o1ks4itqkjiLGHUEyxe7gS/Vz1DQSTHTG3bjtWXReT7sWi6kpuBBvq/R5ocftfCoHG
-	 Ne0gcnGzvy8cw==
-Received: from johan by xi.lan with local (Exim 4.98.2)
-	(envelope-from <johan@kernel.org>)
-	id 1ueC0h-000000002qX-1Zj5;
-	Tue, 22 Jul 2025 14:22:20 +0200
-Date: Tue, 22 Jul 2025 14:22:19 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com,
-	johan+linaro@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-	neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v5 3/4] arm64: dts: qcom: sa8775p: remove aux clock from
- pcie phy
-Message-ID: <aH-Ce0obEcm1S2N9@hovoldconsulting.com>
-References: <20250718081718.390790-1-ziyue.zhang@oss.qualcomm.com>
- <20250718081718.390790-4-ziyue.zhang@oss.qualcomm.com>
- <aHobmsHTjyJVUtFj@hovoldconsulting.com>
- <86e14d55-8e96-4a2d-a9e8-a52f0de9dffd@oss.qualcomm.com>
- <c7342ed4-5705-4206-8999-e11d13bea1f2@oss.qualcomm.com>
+	s=arc-20240116; t=1753187038; c=relaxed/simple;
+	bh=WeTPywAQLUuchrmA0NvHrm6ddehj4OFPXPzgdioHAnw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=owLzFiWQxu54Tjgd3IF9mRgcJF9p2rSHBcM6v3Wy/kL2ZjyyUgUmejZDK8Q+b6G/NEk226bFml7vmAES4tBFyT2h1PiE76pQqanVAofFNOC+2Qc05HhwEDaJbBkXbUajZMk7eQaM0PJikF7a7La3L7ZP8qvGDZ8Bp62OhJliTAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OshxhfJX; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ae6fa02d8feso791092066b.0;
+        Tue, 22 Jul 2025 05:23:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753187035; x=1753791835; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=o9zVmz81PD3EcDqh5BGdUlKDbC/PBBgCXACORglCMmc=;
+        b=OshxhfJX1h7xkzClEekXTwDpl3I/BW6vkfq55EEtfJsOPKNI7ZU1zvHvKTXydggNcI
+         YI5tUjpKMoaH5cji9yKVJOnH9hSkMkcc5RY0yMi5dwzguuGVV0vqUkSc9EfJeIb03hJx
+         BoPPFVF/+2LSWrs0yhtUJ9DDCvByc3ARPrYjNRj8ULnkkkyrOBdAOdwFGQ/NV8wl9PnO
+         fWKYz7Qs+K8PzYk+dCwQGi/yCGlFIGHGkxtDbmjgEvmfN5ibXMGMta9PHAcga9P33LPF
+         BMGiaz99FKQgfxUxh0wIwNxntZHDD5atq7bYcJP3aWlNq1HQHYpQhI/R3jfVtxnaKTLK
+         aYfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753187035; x=1753791835;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o9zVmz81PD3EcDqh5BGdUlKDbC/PBBgCXACORglCMmc=;
+        b=gETbwkcuqxlTAIJ5Ebh+WlZst5g7WRHuJC+wZ5cwAqypHwCh7z75e81j1k8CX5sEcx
+         vcIVLVLHJ2kH86D1JSpqG2nFIPTl5NX7n9zFd20MWUqLniSzuzuBngkSfQOZxaEIEqKm
+         wIDKvAbCGIClIkmWRNG/2U58PgGYq+gmsv+6Hzg7dBaRYqbtBUHDcx8sL2yyZToX6/c4
+         DiLk78gRQy8R/ES7xAmSjx3qzlJcU/pWLke+WVxAAV8RNbldZy9tmOIvng4uXhrR9351
+         POoDvhcNfjNRW+si4QDeJxxS2bVGynBgpbSbkVurJ2HNnKl04LC4Kk4k1n/Op6teO/dv
+         kuQg==
+X-Forwarded-Encrypted: i=1; AJvYcCVi30HHFMjUZCDoKsyglykS9yxP/EgnpnKuI2yP3bGMJg4ShyDKW5//+eFRtrBuUkcO/Btoq18wck1eXy5E@vger.kernel.org, AJvYcCWwQTjJhPrh0GrZOhEJAQpOTClRHIe6A/mSH83OMYqP/D/r2ef8BhDO7jGTSG+ootHQs7WII9BwoJZJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmJqf4CezCX+Ud1nOPJmlPPc+Yf7Be+IlkUPIBbYKx+tSUihjh
+	YQ3cOGfOGxTjoU9ecJ1VTjSYOgTYwFm6g5uyUX9Klf0FmVp0NXBUzXhndxiCtg==
+X-Gm-Gg: ASbGnctGQT7pWtcGA5dJ5r9W/nzJ1dgWBHHA4GdVyCvxt9DaQpY/CmZdDAb8wF9Aa4N
+	riM+oBeqreMmqfAm0nYhnKFQ7J6kX88FF2OOSi0Rkhv0lLGaGkPGALtgE0jwuXhY9qM96xicMTN
+	t1guxxN6+dXghXxiWqJ43I+VSzwwc/4zCOX9eInZGo5kwthqxJS7MTEOBaWm3WZftYhDK4W2OTM
+	lqMrfmDz86jzDJGo66jBWMXbI7sY11v+5gCdxTIgVkSIWaBEf2LD/KIEUvONHX6E2ChAhyRYm+s
+	0v4EPt/JgzVBCXqybhWIkUXpmLuVhMah4Yx8C9RLTedH1cHAZrMqF5U7apC0MiFxBW+Xtoi+bc5
+	MaEr8fcusqHLomNy6N+waov+mmtTK7wB0q+U+1WoF83HENN0Im/EPtr0eNCVhCOUV7Bk197rLOA
+	==
+X-Google-Smtp-Source: AGHT+IGLZ9hBnU0L+6iBn36Ar8EtrC0DggxduYejAe7GRNOw5gatUgZQ863G8i/REynVRkoMww08NQ==
+X-Received: by 2002:a17:906:c00f:b0:ae3:7058:7b48 with SMTP id a640c23a62f3a-ae9cde31899mr1973204166b.25.1753187034636;
+        Tue, 22 Jul 2025 05:23:54 -0700 (PDT)
+Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aec6c79a056sm861358466b.14.2025.07.22.05.23.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Jul 2025 05:23:54 -0700 (PDT)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/4] arm64: dts: exynos2200: introduce serial busses, except spi
+Date: Tue, 22 Jul 2025 15:23:46 +0300
+Message-ID: <20250722122350.444019-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c7342ed4-5705-4206-8999-e11d13bea1f2@oss.qualcomm.com>
 
-On Tue, Jul 22, 2025 at 01:13:34PM +0800, Ziyue Zhang wrote:
-> On 7/18/2025 6:53 PM, Konrad Dybcio wrote:
-> > On 7/18/25 12:02 PM, Johan Hovold wrote:
-> >> On Fri, Jul 18, 2025 at 04:17:17PM +0800, Ziyue Zhang wrote:
-> >>> gcc_aux_clk is used in PCIe RC and it is not required in pcie phy, in
-> >>> pcie phy it should be gcc_phy_aux_clk, so remove gcc_aux_clk and
-> >>> replace it with gcc_phy_aux_clk.
-> >> Expanding on why this is a correct change would be good since this does
-> >> not yet seem to have been fully resolved:
-> >>
-> >> 	https://lore.kernel.org/lkml/98088092-1987-41cc-ab70-c9a5d3fdbb41@oss.qualcomm.com/
+Hey, folks!
 
-> > I dug out some deep memories and recalled that _PHY_AUX_CLK was
-> > necessary on x1e for the Gen4 PHY to initialize properly. This
-> > can be easily reproduced:
+Before anything, this patchset only has binding dependencies, without
+which it will have undocumented compatibles. They are the following:
 
-> > @@ -3312,7 +3312,7 @@ pcie3_phy: phy@1be0000 {
-> >                          compatible = "qcom,x1e80100-qmp-gen4x8-pcie-phy";
-> >                          reg = <0 0x01be0000 0 0x10000>;
-> >   
-> > -                       clocks = <&gcc GCC_PCIE_3_PHY_AUX_CLK>,
-> > +                       clocks = <&gcc GCC_PCIE_3_AUX_CLK>,
-> >                                   <&gcc GCC_PCIE_3_CFG_AHB_CLK>,
-> >                                   <&tcsr TCSR_PCIE_8L_CLKREF_EN>,
-> >                                   <&gcc GCC_PCIE_3_PHY_RCHNG_CLK>,
-> >
-> > ==>
-> > [    6.967231] qcom-qmp-pcie-phy 1be0000.phy: phy initialization timed-out
-> > [    6.974462] phy phy-1be0000.phy.0: phy poweron failed --> -110
-> >
-> > And the (non-PHY_)AUX_CLK is necessary for at least one of them, as
-> > removing it causes a crash on boot
+[1] - https://lore.kernel.org/all/20250722120859.443283-1-ivo.ivanov.ivanov1@gmail.com/
+[2] - https://lore.kernel.org/all/20250722121037.443385-1-ivo.ivanov.ivanov1@gmail.com/
+[3] - https://lore.kernel.org/all/20250722121434.443648-1-ivo.ivanov.ivanov1@gmail.com/
 
-Thanks for checking. I too had noticed that the pcie4 and pcie5 was
-using the non-phy aux clocks, and those are indeed gen3.
+This patchset adds serial busses, implemented in usi, as well as serial_0
+and serial_1 for exynos2200. It's missing spi, due to me having troubles
+with reads when testing.
 
-> I tried remove PHY_AUX_CLK in sa8775p platform like this, and
-> it will cause a crash on boot. And I checked the clock documentation
-> for sa8775p and found that the PHY_AUX_CLK  is also required.
+Best regards,
+Ivaylo
 
-Thanks, would still be good to say something in the commit message about
-the difference between the PHY_AUX_CLK and AUX_CLK clocks and why
-(only?) the gen4 PHYs need it (we seem to have other Qualcomm non-gen4
-PHYs using the PHY_AUX clock too).
+Ivaylo Ivanov (4):
+  arm64: dts: exynos2200: fix typo in hsi2c23 bus pins label
+  arm64: dts: exynos2200: increase peric1 and cmgp syscon sizes
+  arm64: dts: exynos2200: add serial_0/1 nodes
+  arm64: dts: exynos2200: define all usi nodes
 
-That is, please clarify which PHYs need the PHY_AUX_CLK and why they
-don't also need the AUX_CLK like some PHYs do.
+ .../boot/dts/exynos/exynos2200-pinctrl.dtsi   |    2 +-
+ arch/arm64/boot/dts/exynos/exynos2200.dtsi    | 1391 ++++++++++++++++-
+ 2 files changed, 1390 insertions(+), 3 deletions(-)
 
-Johan
+-- 
+2.43.0
+
 
