@@ -1,198 +1,277 @@
-Return-Path: <devicetree+bounces-198458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6382B0D11E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 07:13:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ECB4B0D123
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 07:18:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 981E01891C40
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 05:14:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D770F3B06C3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 05:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C43A528B7C2;
-	Tue, 22 Jul 2025 05:13:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 309CD28A71B;
+	Tue, 22 Jul 2025 05:18:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VnmMUUc9"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="CB2hntlr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39A941E522
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 05:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B7FB19E7D1
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 05:18:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753161227; cv=none; b=uKQDm7g0wxMkQYgBf7DU9KEjuFyeulHpKvr0VYvVvAEgCNYthetFZVSKXKsMk2KfNvLBu8R36nVDF3yK2D7bFVGusGXgYPaxga3XQTGUvwLKzCv1RTNm8pHMivEBfxC0VsgIXqF9d2+n2iOoQInZGn/ueeTp0XtJOsM4RkfMDnk=
+	t=1753161535; cv=none; b=qtzY0AXmaKF4bHUF8YJ8CKCcj7Enj2zYVBe7oeuR2utcqTCXAczrA5vxvLPrUkxLBQblcV9ZjKwXyvodUpyOT6+dxAkDg4cvpeQ0EeH3IV0EjBdkr/kNxaI8tdwRQCYuA16Bxv6n/31tSuypJxoVhYg/VoTnpbrUnEEI/HQe2mM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753161227; c=relaxed/simple;
-	bh=SX0zAXf2tbGFxsz/BNSsiSjvj/tgQ5Vx0HisWjoxfC8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Du3T4Uf2uEvc1tGgGfRIPl3Bvx2LjqFs4+n2yTvl/uI6aynbyeXHSGNmK4dK9LeOq69lYREEitLAO3Wh4FGC0FRna65tOzm6Yg52C/dFm6zVDQCr27nSY1HDpjTT9tveVDi9+IsfWbUtC6Xe+eUZGACELL0XAstpZGExJUZ/ZEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VnmMUUc9; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56LIgcNS015640
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 05:13:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Z34TxU6fYQCKQc+baHKHcHj+cYrndlzHUSD8HFvi1b4=; b=VnmMUUc9K5t8rfUV
-	5HrKEcBgn0nu9plJ5pCimjapo8/XZeHHwcjwLwReZ+9JVUdxc0DVHz5EDYLsP0GW
-	q+oRSmJ4B4nhBPh6cRU5NugIHjkh5GagJgV7IqVtTOhpRpymD7iOKMRAeJF2QA77
-	1FWG1SRPvwL6kYwtiIoJ/O3xh0Cd4K2t+Jwud1PmBn686kdnFTb3ZgUsoGnEpAs8
-	/yzowqMOmIZh8BqQX9IpP8SmcJIXqjUVoearaSMjgOH3GpKx46k13av4PtsMHBCv
-	dH//q0zD7WV7NnlPX7SR3V5mTMY7sJaHewKbAjzDRtJBVpFLGLnuNHn4A5QEhz5S
-	zVR7cw==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 481t6w19cu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 05:13:44 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-31327b2f8e4so4550496a91.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 22:13:44 -0700 (PDT)
+	s=arc-20240116; t=1753161535; c=relaxed/simple;
+	bh=POdV82zo5cmGp9v09l4JU1CbdGoMK0JAOxCCL+dJfos=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QFdx6hCDZOE69ZF588SgINycDNnT8Q6Y1vWdx2jiiCMgnNzzy55z5Mv2H/dOJqBn0/25tQqWULYOA7TGVY3ozcVPUoezMzNPwM8YQihrU6SdK9VvJUEa9ICRKYoLNWX/7f6b4rSj7mynDV9s1ejmw3oJRuqxVxJ6K5Vil0CB6C4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=CB2hntlr; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-32f1aaf0d60so50634751fa.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 22:18:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1753161531; x=1753766331; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fbjWKy8Lcwc8GEbZTAM6i4MM4xiUxqjSvPPv7uBUtNY=;
+        b=CB2hntlrqJC1/+fXuarM9HiGl98n8xIpTySomLWfO8dI1vwv2Sx/AKHmPe3FHhyrcw
+         xDz4pMM8/HTE1aVHB6Ik2QIxA0BFqVx902m9TwZH+DmZE+ciVHmhWz9BVJDG0qgvt1Xa
+         2uauPnFMnmgpqlcRqfJghSy3cKsa9LFhaAKKk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753161223; x=1753766023;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z34TxU6fYQCKQc+baHKHcHj+cYrndlzHUSD8HFvi1b4=;
-        b=fBCmJY10lAH+hTX8Mz4aDIc3G1zdnytleToRukt3gKFkglBL5SYBcaRetBUpGR74zw
-         SSRT03Iy7as8sgw6uELtjCdaBC7Rn77szpLBtiqpbzKjTESY7wkAKhmI3geXfjL6qHu+
-         xrkxR9dXPk3E/v0O/j9ZK4Q/YJXHAFQ+oPUgXvH4pfctWeNdwVx9zMvjE44que+RI3B1
-         cOu/VmWqC0eV7iUnD+ZzKeABWURx+lka9Q3P6XAzjCBJOP9/yEXPTHzwPxWlHjw65VW9
-         jD4H1/Hhe8F9Bjxvf26FfrK7P9OWcEd+CokjKo3jm1VfR+0eblt6iWBDgl6n4Xw1Rj+1
-         DIJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXWHjHWaIGJxqdHPG/IQTc9xEsZoUOLFG3iPuun3gdplX+nJWejSC03HfTCrnR20ucFJf4Re+ARGYC8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9GRyvzWTHyNX1ifAt6mBCdSx7Oo+g0CcNqy9Z4z22pqpdLBX0
-	GzDePnQeCm99XEkUWrh6wOy7URfi/hNupVYxprhvsID3PuBETZH5FFIECI/hmeX2rmLNZR9Kv1m
-	KC9zdNcC+G3zt3nkVR01uV7kSovqdTz3NT3ynpId7tvNcIA8dSEPoVHHEv9g5ibma
-X-Gm-Gg: ASbGnctQNlaEf+q96VhBoQC2rTzICdTz1xi9fteZu9k8IFlvGZtWvEsY1vrJXWnFSD9
-	BJXmNhksKAMzge0xi+JiDTMd2EUs0NdbotaGDk3w6oCKJyoKOfCGy3ZgAcGdtEX5YyEQwZ5/Get
-	Hyqsqpx2GS6GlUVnyvXFq3RYKtCqMHe8hYNSMFAapJtjzqNs9uOl+As3PnreDT+koJpsMONRfPk
-	DUPB80+fB6ThQ5AjQEE3H47vOXwNYag7INHMTiB10JWMP2PnQ1Vpso8Fz5WB0W+DIdN9DZsdEFa
-	eTkD6pBKCAr8gb61ixE4sU6tvO2MX7wlAJpX0bkWLBKR9cYhBDOGGOogTnXbKSQLHXd0lg08Id/
-	nZ7U5GhAuslqzlSevmw==
-X-Received: by 2002:a17:90b:514d:b0:311:b413:f5e1 with SMTP id 98e67ed59e1d1-31c9f45b1admr28828728a91.32.1753161223347;
-        Mon, 21 Jul 2025 22:13:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHYhGavDIomiy1NdWktoEpkCMViHWPVGYxxFEsASyjKD6sDrdiu2WKJkwtvY2LAXOjFjGQ2tQ==
-X-Received: by 2002:a17:90b:514d:b0:311:b413:f5e1 with SMTP id 98e67ed59e1d1-31c9f45b1admr28828682a91.32.1753161222854;
-        Mon, 21 Jul 2025 22:13:42 -0700 (PDT)
-Received: from [10.110.120.151] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31cc3e45083sm7115312a91.2.2025.07.21.22.13.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Jul 2025 22:13:42 -0700 (PDT)
-Message-ID: <c7342ed4-5705-4206-8999-e11d13bea1f2@oss.qualcomm.com>
-Date: Tue, 22 Jul 2025 13:13:34 +0800
+        d=1e100.net; s=20230601; t=1753161531; x=1753766331;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fbjWKy8Lcwc8GEbZTAM6i4MM4xiUxqjSvPPv7uBUtNY=;
+        b=kkWfQ3jUDmgd77lsEKZ0g20F3CXDJa9aMF/l/tXU+EUiUN2ZoMe/Kk7WutXU7AEkTh
+         3aokiVPkzQfEAhAAIzsZNPmU6c5KPHWzmTFZeVqoQWM07sBeiShavO/4nBanRu8938dC
+         11qtTSajPm4oQYVXhZ63QTJZCOZ9nPbWjZrzQ9STtJZE4PN6U9y9hCkPIMzNvAQY4Hyy
+         krVb4j6wcyk8wtFi93I6xzcU7YhA2cqfZBcsmQV9NQek7ML9exUkeLuddp3qNqapNZrN
+         XX+FFApHGtxiHNiCYWWWiVuZUUkk1ZY75evuw/rzxvfldBqbieQiDda/UgiCzg6Y3+3I
+         HIqA==
+X-Forwarded-Encrypted: i=1; AJvYcCUX+5NAlqcvVh8z94lr3ayv0bKXc2KE4cBWcMP2NYc20MTLlMUdJxjmydOtL3JldGTawDNvLPOvN8cc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8+rD7znr6IinbNP8K/UuqJ25byBD62QdSpujIzdY3TfdQzp00
+	wmyyanhdY3apuXGP1verYvhlN/0jT48zV06PNX+qMlTNtW+Stu2MXNSpA9iXIXeb3wdlfRbszxk
+	5MA241dyJJs8SebOU6idUu5JmTfMpxmqEMSn1xR8w
+X-Gm-Gg: ASbGncuUHvCCTujXoZNMv17VyfirR1GSggGS8KzkMcB9ujXwgl6X3FKeaIm3ixseAv7
+	FnC56X/c7cyThc6BHNd+/gc8Gns6+6VkSjxYgVDoVPSHXgjXlM0Ff3G3sgupe+AuHM9HSpOqlUO
+	3H/I4X+kGm72mt2MeLwrfkNkMEHq+uvhNuhHjmzQyTkvSQnHUCnsjhGGJp+5rydx+mo8zqMiyjd
+	n+zqSTuN6rdylABE98K0HttUXRUajUmfnM=
+X-Google-Smtp-Source: AGHT+IHXtp8/VRaNj5ad5vofsP+NxzY4Q7oTBNoQECt/CXJUr6VzTFYU6ZxOTJqcdAuOysJwJg5n/tSQs5v+X4qLoE4=
+X-Received: by 2002:a2e:a984:0:b0:32b:7ddd:278d with SMTP id
+ 38308e7fff4ca-3309a466439mr46938661fa.3.1753161531420; Mon, 21 Jul 2025
+ 22:18:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] arm64: dts: qcom: sa8775p: remove aux clock from
- pcie phy
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Johan Hovold <johan@kernel.org>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-        kw@linux.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
-        qiang.yu@oss.qualcomm.com, quic_krichai@quicinc.com,
-        quic_vbadigan@quicinc.com
-References: <20250718081718.390790-1-ziyue.zhang@oss.qualcomm.com>
- <20250718081718.390790-4-ziyue.zhang@oss.qualcomm.com>
- <aHobmsHTjyJVUtFj@hovoldconsulting.com>
- <86e14d55-8e96-4a2d-a9e8-a52f0de9dffd@oss.qualcomm.com>
-Content-Language: en-US
-From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-In-Reply-To: <86e14d55-8e96-4a2d-a9e8-a52f0de9dffd@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=SPpCVPvH c=1 sm=1 tr=0 ts=687f1e08 cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=MOqbobo4jd3P9B9bkYgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIyMDA0MCBTYWx0ZWRfX4JCIVOVPN/kz
- dR6ykYsaOCgx/ZBzO8zWkEJIUz1AF3kBpNda1WI1/Cu+5Hg2UJovkRlNPhLVZ7lROdYByFqiisC
- vU24/u3qssiRmuaqbwnQ3I7rCwZZ5e2AAY69Hcq8FsnayrTsPlKvP6PmfKyT2GJk+Nl5FktZtWm
- fgU/psQgXhApH1nbp9+nnt+riRNtA/IdXyTx61jCghTEmcy/QqDP/okwdgMQtSeDBTaelBvbvOm
- aCA2+wgDEXdJytvWg0JFgadPk0zLXni1AeRI0Gu8yEOZkyKryANP7z46Zyvj2A4h1glRRyuUk4K
- QHxz6K/6JG2t6QorQN1oxmaXz3gEMve5cvK6EY3q9wVsG98+TjczcqVD2FZ9vzU4wClBocaW73L
- 72f8Ou1aS4iqX0S4u8ciBlN7FYiYnhgNgZsqOn7vkpbJfqrsyppKe48HfCtgqPgCTs4UzCDU
-X-Proofpoint-ORIG-GUID: UgLZWefDisPPB7yNAVSTX6Cy_3z1wQ7r
-X-Proofpoint-GUID: UgLZWefDisPPB7yNAVSTX6Cy_3z1wQ7r
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-22_01,2025-07-21_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
- mlxscore=0 bulkscore=0 clxscore=1015 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507220040
+References: <20250715140224.206329-1-angelogioacchino.delregno@collabora.com> <20250715140224.206329-3-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250715140224.206329-3-angelogioacchino.delregno@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 22 Jul 2025 13:18:40 +0800
+X-Gm-Features: Ac12FXxOEwd1JP0Dvkx8jUbcy4EUYQzj1kXlmFlLaoGVbfWV7CBCgyEc3biTeW0
+Message-ID: <CAGXv+5GiKOTqmaJai-494XWDqk+onvrpqFyvwANr+_4_y-1WuA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/8] regulator: Add support for MediaTek MT6316 SPMI
+ PMIC Regulators
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	lgirdwood@gmail.com, broonie@kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On 7/18/2025 6:53 PM, Konrad Dybcio wrote:
-> On 7/18/25 12:02 PM, Johan Hovold wrote:
->> On Fri, Jul 18, 2025 at 04:17:17PM +0800, Ziyue Zhang wrote:
->>> gcc_aux_clk is used in PCIe RC and it is not required in pcie phy, in
->>> pcie phy it should be gcc_phy_aux_clk, so remove gcc_aux_clk and
->>> replace it with gcc_phy_aux_clk.
->> Expanding on why this is a correct change would be good since this does
->> not yet seem to have been fully resolved:
->>
->> 	https://lore.kernel.org/lkml/98088092-1987-41cc-ab70-c9a5d3fdbb41@oss.qualcomm.com/
-> I dug out some deep memories and recalled that _PHY_AUX_CLK was
-> necessary on x1e for the Gen4 PHY to initialize properly. This
-> can be easily reproduced:
+On Tue, Jul 15, 2025 at 10:03=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
 >
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index a9a7bb676c6f..d5ef6bef2b23 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -3312,7 +3312,7 @@ pcie3_phy: phy@1be0000 {
->                          compatible = "qcom,x1e80100-qmp-gen4x8-pcie-phy";
->                          reg = <0 0x01be0000 0 0x10000>;
->   
-> -                       clocks = <&gcc GCC_PCIE_3_PHY_AUX_CLK>,
-> +                       clocks = <&gcc GCC_PCIE_3_AUX_CLK>,
->                                   <&gcc GCC_PCIE_3_CFG_AHB_CLK>,
->                                   <&tcsr TCSR_PCIE_8L_CLKREF_EN>,
->                                   <&gcc GCC_PCIE_3_PHY_RCHNG_CLK>,
+> Add a driver for the regulators found on all types of the MediaTek
+> MT6316 SPMI PMIC, fully controlled by SPMI interface and featuring
+> four step down DCDC (buck) converters.
 >
-> ==>
-> [    6.967231] qcom-qmp-pcie-phy 1be0000.phy: phy initialization timed-out
-> [    6.974462] phy phy-1be0000.phy.0: phy poweron failed --> -110
+> In particular, this includes support for:
+>  - MT6316(BP/VP):    2+2 Phase (Phase 1: buck1+2, Phase 2: buck3+4)
+>  - MT6316(CP/HP/KP): 3+1 Phase (Phase 1: buck1+2+4, Phase 2: buck3)
+>  - MT6316(DP/TP):    4+0 Phase (Single phase, buck1+2+3+4)
+
+You should probably mention here or in the driver with comments that
+some parts are not described in the datasheet, or even contradict what
+the datasheet says. Examples include:
+
+  - set / clear registers for the enable bits
+  - voltage selector being in weird format
+
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  drivers/regulator/Kconfig            |   9 +
+>  drivers/regulator/Makefile           |   1 +
+>  drivers/regulator/mt6316-regulator.c | 345 +++++++++++++++++++++++++++
+>  3 files changed, 355 insertions(+)
+>  create mode 100644 drivers/regulator/mt6316-regulator.c
 >
-> And the (non-PHY_)AUX_CLK is necessary for at least one of them, as
-> removing it causes a crash on boot
+> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+> index 7423954153b0..81f2acd0f960 100644
+> --- a/drivers/regulator/Kconfig
+> +++ b/drivers/regulator/Kconfig
+> @@ -864,6 +864,15 @@ config REGULATOR_MT6315
+>           This driver supports the control of different power rails of de=
+vice
+>           through regulator interface.
 >
-> Konrad
-Hi Konrad, Johan
+> +config REGULATOR_MT6316
+> +       tristate "MT6316 SPMI PMIC regulator driver"
+> +       depends on SPMI || COMPILE_TEST
+> +       help
+> +          Say Y here to enable support for 2+2, 3+1 and 4 phase regulato=
+rs
+> +          found in the MediaTek MT6316 BP, CP, DP, HP, VP and TP SPMI PM=
+ICs.
+> +         This driver supports the control of different power rails of de=
+vice
+> +         through regulator interface.
+> +
+>  config REGULATOR_MT6323
+>         tristate "MediaTek MT6323 PMIC"
+>         depends on MFD_MT6397
+> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+> index be98b29d6675..46c0e75f6107 100644
+> --- a/drivers/regulator/Makefile
+> +++ b/drivers/regulator/Makefile
+> @@ -103,6 +103,7 @@ obj-$(CONFIG_REGULATOR_MP886X) +=3D mp886x.o
+>  obj-$(CONFIG_REGULATOR_MPQ7920) +=3D mpq7920.o
+>  obj-$(CONFIG_REGULATOR_MT6311) +=3D mt6311-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6315) +=3D mt6315-regulator.o
+> +obj-$(CONFIG_REGULATOR_MT6315)  +=3D mt6316-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6323) +=3D mt6323-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6331) +=3D mt6331-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6332) +=3D mt6332-regulator.o
+> diff --git a/drivers/regulator/mt6316-regulator.c b/drivers/regulator/mt6=
+316-regulator.c
+> new file mode 100644
+> index 000000000000..952852bbe923
+> --- /dev/null
+> +++ b/drivers/regulator/mt6316-regulator.c
+> @@ -0,0 +1,345 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// Copyright (c) 2024 MediaTek Inc.
+> +// Copyright (c) 2025 Collabora Ltd
+> +//                    AngeloGioacchino Del Regno <angelogioacchino.delre=
+gno@collabora.com>
+> +
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/regmap.h>
+> +#include <linux/spmi.h>
+> +
+> +#include <linux/regulator/driver.h>
+> +#include <linux/regulator/machine.h>
+> +#include <linux/regulator/of_regulator.h>
+> +
+> +#define MT6316_BUCK_MODE_AUTO                  0
+> +#define MT6316_BUCK_MODE_FORCE_PWM             1
+> +#define MT6316_BUCK_MODE_LP                    2
+> +
+> +#define MT6316_CHIP_ID                         0x20b
+> +#define MT6316_BUCK_TOP_CON0                   0x1440
+> +#define EN_SET_OFFSET                          0x1
+> +#define EN_CLR_OFFSET                          0x2
+> +
+> +#define MT6316_BUCK_TOP_CON1                   0x1443
+> +
+> +#define MT6316_BUCK_TOP_ELR0                   0x1448
+> +#define MT6316_BUCK_TOP_ELR2                   0x144a
+> +#define MT6316_BUCK_TOP_ELR4                   0x144c
+> +#define MT6316_BUCK_TOP_ELR6                   0x144e
+> +#define MT6316_VSEL_MASK                       GENMASK(8, 0)
+> +
+> +#define MT6316_VBUCK1_DBG                      0x14a8
+> +#define MT6316_VBUCK2_DBG                      0x1528
+> +#define MT6316_VBUCK3_DBG                      0x15a8
+> +#define MT6316_VBUCK4_DBG                      0x1628
+> +#define MT6316_BUCK_QI                         BIT(0)
+> +
+> +#define MT6316_BUCK_TOP_4PHASE_TOP_ANA_CON0    0x1688
+> +#define MT6316_BUCK_TOP_4PHASE_TOP_ELR_0       0x1690
+> +
+> +enum mt6316_type {
+> +       MT6316_TYPE_2PHASE,
+> +       MT6316_TYPE_3PHASE,
+> +       MT6316_TYPE_4PHASE
+> +};
+> +
+> +/**
+> + * struct mt6316_regulator_info - MT6316 regulators information
+> + * @desc: Regulator description structure
+> + * @debug_reg: Debug register for regulator status
+> + * @lp_mode_reg: Low Power mode register (normal/idle)
+> + * @lp_mode_mask: Low Power mode regulator mask
+> + * @modeset_reg: AUTO/PWM mode register
+> + * @modeset_mask: AUTO/PWM regulator mask
+> + */
+> +struct mt6316_regulator_info {
+> +       struct regulator_desc desc;
+> +       u16 debug_reg;
+> +       u16 lp_mode_reg;
+> +       u16 lp_mode_mask;
+> +       u16 modeset_reg;
+> +       u16 modeset_mask;
+> +};
+> +
+> +#define MT6316_BUCK(match, vreg_id, min, max, step, vs_reg)            \
+> +{                                                                      \
+> +       .desc =3D {                                                      =
+ \
+> +               .name =3D match,                                         =
+ \
 
-I tried remove PHY_AUX_CLK in sa8775p platform like this, and
-it will cause a crash on boot. And I checked the clock documentation
-for sa8775p and found that the PHY_AUX_CLK  is also required.
+.supply_name should probably be added for completeness.
 
-The changes are as follows:
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -7887,7 +7887,7 @@ pcie1_phy: phy@1c14000 {
-                 compatible = "qcom,sa8775p-qmp-gen4x4-pcie-phy";
-                 reg = <0x0 0x1c14000 0x0 0x4000>;
+> +               .of_match =3D of_match_ptr(match),                       =
+ \
+> +               .ops =3D &mt6316_vreg_setclr_ops,                        =
+ \
+> +               .type =3D REGULATOR_VOLTAGE,                             =
+ \
+> +               .owner =3D THIS_MODULE,                                  =
+ \
+> +               .n_voltages =3D (max - min) / step + 1,                  =
+ \
+> +               .min_uV =3D min,                                         =
+ \
+> +               .uV_step =3D step,                                       =
+ \
 
--               clocks = <&gcc GCC_PCIE_1_PHY_AUX_CLK>,
-+               clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
-                          <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
-                          <&gcc GCC_PCIE_CLKREF_EN>,
-                          <&gcc GCC_PCIE_1_PHY_RCHNG_CLK>,
+Given that the selector _always_ starts from 0 volts, I think this
+should have:
 
-BRs
-Ziyue
+                  .linear_min_sel =3D min / step,
+
+So that different minimum values work. Or the minimum value should just
+be dropped altogether to prevent miscalculation.
+
+See below for more.
+
+[...]
+
+> +/* MT6316BP/VP - 2+2 phase buck */
+> +static struct mt6316_regulator_info mt6316bv_regulators[] =3D {
+> +       MT6316_BUCK("vbuck12", 1, 0, 1277500, 2500, MT6316_BUCK_TOP_ELR0)=
+,
+
+I just noticed that the overview section of the datasheet mentions that
+the lowest voltage is 0.4V for all the regulators.
+
+
+ChenYu
+
+[...]
 
