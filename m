@@ -1,93 +1,75 @@
-Return-Path: <devicetree+bounces-198815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DFDFB0E602
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 00:01:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3F99B0E697
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 00:42:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69FE07AC9DB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 21:59:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69D851C87984
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 22:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1351A221FC9;
-	Tue, 22 Jul 2025 22:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9702288CA4;
+	Tue, 22 Jul 2025 22:42:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="efkh5OYu"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OiwP4pKb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36C22128395;
-	Tue, 22 Jul 2025 22:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB2C728727A;
+	Tue, 22 Jul 2025 22:42:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753221655; cv=none; b=rz4Iv/+3S/2WlD8Ssd4CZvPm3+mQq0yJPQ+P41FKBe1xcpoIX+gUuqZ7DZyHiPY+KkNhKcmlxxtR2k182wtCkJ3zEllQvR2vkGTgHZgeLndASp59ocZ5kmNlrBNTClWQykPdXa07Fc4WefI7KakucNU+tY53VSmZKj0ZPIJ5Lj4=
+	t=1753224141; cv=none; b=VBYcB75dINq0DtfznHP+rdD5BCZXwAbOmAdau9YW3B8292wxHudIPeHmjbCF+tZsYGbO66rV+RQ0c47eiMiCPnyrAv8K5vh6arIiA20uDQritQTrpF1ORRU7JukZlEJhROew/b1Znf3bqm6hSeOXS9HMAaP5yjU4Tpm0auXkFJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753221655; c=relaxed/simple;
-	bh=D28me53HqI/b4OOy5Jg1frH4LmAnj0yC4yp5g60srig=;
+	s=arc-20240116; t=1753224141; c=relaxed/simple;
+	bh=ldaHuURYnlqZqVA1+U4sCKk5t6+FG1lj5JJep03e6hg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t+Gm4eLlH2yElVX05iOS3D3sW4/PyH/ToG+hm7cPf3KVU/mJS8EN7o0l0PDm3l/b/Fvj2i11QF+Hh2OBp8CaQ6ScMlDgwJimrhb7LUqZOH+awAPCzF4EDybMc8OS/HNNuh9x5LSKPgPZ5HDLvXDaXlH+f0v8Bx7hOyeTAvj/yUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=efkh5OYu; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=XSSmyEAVCfx6UoBN6/vyS4ypSsBayt+epb+whGNpxlc=; b=efkh5OYuxMntLpQJfhREDs00bT
-	e31RvBopK3XWSjzCJceqzHhiBJnPqtcwtbFK2oBy1s+de/r7ALJUKHqz9WXbLx63YkB6KsGHefWJm
-	bVpZBLUWfqTjXLGYD+9/yA6JkLuiDEHB3SC1+2EKu+hGz0nnQxP1d51EvqA0oztSftHu8f8AOUXY6
-	Uh/2FYBf5MV7yTGyrYO4gHZrkZeLx8Ol7t4D5hCvcROVO2KkTqzCgOZJcAGkyqZoeh6yqbhEV3BMY
-	oRfBIsyD+K7rDqe/zylRjiXU91hxTdGab+qPmrM/htdnJM+aafdw8LQLtBZ3+B02TzBlV0zgqVBdg
-	xuuzHWUQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56144)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1ueL2L-0000hK-0z;
-	Tue, 22 Jul 2025 23:00:37 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1ueL2I-0007UG-0n;
-	Tue, 22 Jul 2025 23:00:34 +0100
-Date: Tue, 22 Jul 2025 23:00:34 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=m9jii7WSFCYbEM6xBBwWsGyipk6teiC3gC7v7InFA8iz8NbT5N+EWk4EL+xMv95fCtjZfSGjq4dHDIt0kgAz9tR6r/Gc5u4CXIGvKAe+Xh6Ny5O9t7Tr82A763grVKQcLzUbUSbPzDqpXWFDBo7kGvmMCzjhozsvoSAZQllctwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OiwP4pKb; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 69C9943275;
+	Tue, 22 Jul 2025 22:42:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1753224136;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=b5Yg+pdTXpo6t0O7UQl+RIbiB4LOKOnIdXdXoBOJyck=;
+	b=OiwP4pKbiIk4mcSLaL9RdN2P/6K+rHryH62SPWAsZd52iz5Z/rFoylJzCtRSvzA2tb7on4
+	Cc+C1huFf+QizyFqpxlSeHww+c27B+NZbxavUsmSYrsFLRmzmwATEOBRdHu/X4+i8rNedF
+	2Rt+a/ijrDx8kZhxNeKML482g2M6o/w7sLBzT7INqvxOROp87kjKZhylh0BO0pXsSKSaAm
+	8TCPBtxwgM1FWhZWQj5TMO6jTubmAUh0Ad+QSa1VcFrFdJ291BxVmw0E+cYdPHvpUTuVT3
+	uHDpKLgC1+i+WXdaDsm52o61H8G7VrwA+8WYRlDT/vS+J283lNr85hBFHGxudw==
+Date: Wed, 23 Jul 2025 00:42:14 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Harshit Shah <hshah@axiado.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	=?utf-8?Q?Przemys=C5=82aw?= Gaj <pgaj@cadence.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Boris Brezillon <bbrezillon@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	Tristram Ha <Tristram.Ha@microchip.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: document st,phy-wol
- property
-Message-ID: <aIAKAlkdB5S8UiYx@shell.armlinux.org.uk>
-References: <faea23d5-9d5d-4fbb-9c6a-a7bc38c04866@kernel.org>
- <f5c4bb6d-4ff1-4dc1-9d27-3bb1e26437e3@foss.st.com>
- <e3c99bdb-649a-4652-9f34-19b902ba34c1@lunn.ch>
- <38278e2a-5a1b-4908-907e-7d45a08ea3b7@foss.st.com>
- <5b8608cb-1369-4638-9cda-1cf90412fc0f@lunn.ch>
- <383299bb-883c-43bf-a52a-64d7fda71064@foss.st.com>
- <2563a389-4e7c-4536-b956-476f98e24b37@lunn.ch>
- <aH_yiKJURZ80gFEv@shell.armlinux.org.uk>
- <ae31d10f-45cf-47c8-a717-bb27ba9b7fbe@lunn.ch>
- <aIAFKcJApcl5r7tL@shell.armlinux.org.uk>
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Arnd Bergmann <arnd@arndb.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, soc@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+	Jan Kotas <jank@cadence.com>, linux-serial@vger.kernel.org,
+	linux-i3c@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 06/10] dt-bindings: i3c: cdns: add Axiado AX3000 I3C
+ controller
+Message-ID: <20250722224214cd72ae8b@mail.local>
+References: <20250722-axiado-ax3000-soc-and-evaluation-board-support-v6-0-543979a60ccf@axiado.com>
+ <20250722-axiado-ax3000-soc-and-evaluation-board-support-v6-6-543979a60ccf@axiado.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,67 +78,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aIAFKcJApcl5r7tL@shell.armlinux.org.uk>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20250722-axiado-ax3000-soc-and-evaluation-board-support-v6-6-543979a60ccf@axiado.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdejiedufecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehlvgigrghnughrvgcuuegvlhhlohhnihcuoegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegieduueethefhkeegjeevfefhiedujeeuhffgleejgfejgeekueejuefgheeggfenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmegsieehmegsvdhftdemkegsleekmeejledtheemrggsvgelmeduhedvvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemsgeiheemsgdvfhdtmeeksgelkeemjeeltdehmegrsggvleemudehvddvpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvgedprhgtphhtthhopehhshhhrghhsegrgihirgguohdrtghomhdprhgtphhtthhopehgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehjihhrihhsl
+ hgrsgihsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehmihgthhgrlhdrshhimhgvkhesrghmugdrtghomhdprhgtphhtthhopehpghgrjhestggruggvnhgtvgdrtghomhdprhgtphhtthhopefhrhgrnhhkrdfnihesnhigphdrtghomhdprhgtphhtthhopegssghrvgiiihhllhhonheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On Tue, Jul 22, 2025 at 10:39:53PM +0100, Russell King (Oracle) wrote:
-> rtl8211f_get_wol() does not take account of whether the PMEB pin is
-> wired or not. Thus, stmmac can't just forward the get_wol() and
-> set_wol() ops to the PHY driver and let it decide, as suggested
-> earlier. As stmmac gets used with multiple PHYs, (and hey, we can't
-> tell what they are, because DT doesn't list what the PHY actually is!)
-> we can't know how many other PHY drivers also have this problem.
+On 22/07/2025 13:15:34-0700, Harshit Shah wrote:
+> Add binding for AX3000 I3C controller. So far, no changes known,
+> so it can fallback to default compatible.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Harshit Shah <hshah@axiado.com>
 
-I've just read a bit more of the RTL8211F datasheet, and looked at the
-code, and I'm now wondering whether WoL has even been tested with
-RTL8211F. What I'm about to state doesn't negate anything I've said
-in my previous reply.
-
-
-So, the RTL8211F doesn't have a separate PMEB pin. It has a pin that
-is shared between "interrupt" and "PMEB".
-
-Register 22, page 0xd40, bit 5 determines whether this pin is used for
-PMEB (in which case it is pulsed on wake-up) or whether it is used as
-an interrupt. It's one or the other function, but can't be both.
-
-rtl8211f_set_wol() manipulates this bit depending on whether
-WAKE_MAGIC is enabled or not.
-
-The effect of this is...
-
-If we're using PHY interrupts from the RTL8211F, and then userspace
-configures magic packet WoL on the PHY, then we reconfigure the
-interrupt pin to become a wakeup pin, disabling the interrupt
-function - we no longer receive interrupts from the RTL8211F !!!!!!!
-
-Yes, the driver does support interrupts for this device!
-
-This is surely wrong because it will break phylib's ability to track
-the link state as there will be no further interrupts _and_ phylib
-won't be expecting to poll the PHY.
-
-The really funny thing is that the PHY does have the ability to
-raise an interrupt if a wakeup occurs through the interrupt pin
-(when configured as such) via register 18, page 0xa42, bit 7...
-but the driver doesn't touch that.
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
 
-Jetson Xavier NX uses interrupts from this PHY. Forwarding an
-ethtool .set_wol() op to the PHY driver which enables magic packet
-will, as things stand, switch the interrupt pin to wake-up only
-mode, preventing delivery of further link state change events to
-phylib, breaking phylib.
 
-Maybe there's a need for this behaviour with which-ever network
-driver first used RTL8211F in the kernel. Maybe the set of network
-drivers that use interrupts from the RTL8211F don't use WoL and
-vice versa. If there's any network drivers that do forward WoL
-calls to the RTL8211F driver _and_ use interrupts from the PHY...
-that's just going to break if magic packet WoL is ever enabled at
-the PHY.
+> ---
+>  Documentation/devicetree/bindings/i3c/cdns,i3c-master.yaml | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/i3c/cdns,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/cdns,i3c-master.yaml
+> index cad6d53d0e2e35ddaaad35215ec93dd182f28319..6fa3078074d0298d9786a26d7f1f2dd2c15329a7 100644
+> --- a/Documentation/devicetree/bindings/i3c/cdns,i3c-master.yaml
+> +++ b/Documentation/devicetree/bindings/i3c/cdns,i3c-master.yaml
+> @@ -14,7 +14,12 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    const: cdns,i3c-master
+> +    oneOf:
+> +      - const: cdns,i3c-master
+> +      - items:
+> +          - enum:
+> +              - axiado,ax3000-i3c
+> +          - const: cdns,i3c-master
+>  
+>    reg:
+>      maxItems: 1
+> 
+> -- 
+> 2.25.1
+> 
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
