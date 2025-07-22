@@ -1,255 +1,129 @@
-Return-Path: <devicetree+bounces-198625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5993B0D965
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 14:22:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D5CB0D97B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 14:25:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B7993BDAA6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:21:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F352162840
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DB362ED145;
-	Tue, 22 Jul 2025 12:17:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 267602EAB69;
+	Tue, 22 Jul 2025 12:22:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="C2aSMuVc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hfifZ1wo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B29E2ECE8A;
-	Tue, 22 Jul 2025 12:17:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8280244695;
+	Tue, 22 Jul 2025 12:22:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753186625; cv=none; b=TLpXkWjDQGSe2yapGIfnx17aiSOHURvw+JtElif9Qe8ojZynyLW94bvINhst5UMlayt0/fVxogajpITSLJdoPeS+mB8c2vGSzMRJvEWdzgddn943GgafgKzTFKVK9gyfEXvaMlY+q4fvrnsPW46VhueaKHFIAdOyl09zeqLFPPY=
+	t=1753186951; cv=none; b=Fe0kT06jdiuEz5/3U7pBx/+ore8D/0xVyoucnq8KgYi7DTgyHKDTYLh1+V+R5diok2WugBxmdkFlPhHcQ+g557lYVffx/s2IDVJqnMFgmUEDrCKlei78PaFpdCgTYWTpdUh9gvtlfeZR5iQyzGS5GCCDBh5Cj7s48i1NW2+oNwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753186625; c=relaxed/simple;
-	bh=4iCIznCivH4aGA0ttyVKRBcdez2hjKfMBipSEBcg8cs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JgNwLOgHnDvMm87TDVi2+hTjZtr1lovCB5DyWE4hGeFTn/BMrldA3t746ALliFBzYjRyvugysyvmT34S4VBPo727sWjblw4WoPKTmtpa843b7+Yk6hJUEah1vFC5qa2UwqJDxRxcX0isDeW6xCZ92lYKFYQk9vdnODasISMk1K4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=C2aSMuVc; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D8F5D43283;
-	Tue, 22 Jul 2025 12:16:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1753186620;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qwfjpuWzOqL0v/iplDEpOP4jb5xA+D0PeT+xm0y0iCs=;
-	b=C2aSMuVcqgQg29C2TzRHHE06ithjk8aE/L3mX14akKFm/wXPXQ+ddlryBPlU3BZOVV+pDe
-	EWaeBq1Nh3cZsdJIHQsCEjPQjl1YmIgm0VKUmY4qcIgLJavGef5shTTrkjnHmrkqUN3Yr6
-	21EzqWKEiKadnLxcXWs/z7xnwReTWDvB5JHEHU0yoUVUelg7n1IphlJ66Ko410W6njstee
-	/ZDEr6O2qdP7ERxHiP4PdINRz78AN4yKASWP04j1FEoAuURivPcEdyMcQnKlM3TzdHZP0E
-	aI6rpC1h6Oejsrhac7Nm26Nwb+1Wac6FvfrhtJSx4NBh16dCGJx2GZ6dsWCWpw==
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: davem@davemloft.net
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?UTF-8?q?Nicol=C3=B2=20Veronese?= <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: [PATCH net-next v10 15/15] Documentation: networking: Document the phy_port infrastructure
-Date: Tue, 22 Jul 2025 14:16:20 +0200
-Message-ID: <20250722121623.609732-16-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250722121623.609732-1-maxime.chevallier@bootlin.com>
-References: <20250722121623.609732-1-maxime.chevallier@bootlin.com>
+	s=arc-20240116; t=1753186951; c=relaxed/simple;
+	bh=tsa1Roe7wGwli/LZJRe4GgFwBYhR9gq3UlMLlPNQNc8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=USOxgE+5qKHuw2TCPDY0ruvtyGYtPvlKufUSNIrqzsv+beqipn88GT1bswkJ+m+jFquAOhRd0OvxnysSESEDpb+xTKH6w60AcXhsgc7g/bT5UHNO4cHVf7OTpvsy5vc7Ie+TH0HW88wndvRDAILPclJZVAXjjX591KrqaiyMecI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hfifZ1wo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E6B4C4CEEB;
+	Tue, 22 Jul 2025 12:22:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753186950;
+	bh=tsa1Roe7wGwli/LZJRe4GgFwBYhR9gq3UlMLlPNQNc8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hfifZ1woUL7CNtXmT7O6E5+ES5/yr5VykYclG/J7ymFsOoncvwXwNQEqTpluFaYNH
+	 KOxyeLKuNNC8vqdCKFFcAdqhDMId6oC+wvgtrtE/CkqYOiSv6VeVVUzV0MRS+w8d5V
+	 fJdS3eaOOhunXeQk05MOpiR5CAvSu/FRhV5xe+WKBfMPhlCTKQiXeHRJl8Y56hsn6n
+	 T1+j5LDOM8rWFGA/d1UAVlESp7qW7UcsV95H7xYISg9x3qUk30/3wIELRXxRNO9Mhc
+	 o1ks4itqkjiLGHUEyxe7gS/Vz1DQSTHTG3bjtWXReT7sWi6kpuBBvq/R5ocftfCoHG
+	 Ne0gcnGzvy8cw==
+Received: from johan by xi.lan with local (Exim 4.98.2)
+	(envelope-from <johan@kernel.org>)
+	id 1ueC0h-000000002qX-1Zj5;
+	Tue, 22 Jul 2025 14:22:20 +0200
+Date: Tue, 22 Jul 2025 14:22:19 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com,
+	johan+linaro@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+	neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
+	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v5 3/4] arm64: dts: qcom: sa8775p: remove aux clock from
+ pcie phy
+Message-ID: <aH-Ce0obEcm1S2N9@hovoldconsulting.com>
+References: <20250718081718.390790-1-ziyue.zhang@oss.qualcomm.com>
+ <20250718081718.390790-4-ziyue.zhang@oss.qualcomm.com>
+ <aHobmsHTjyJVUtFj@hovoldconsulting.com>
+ <86e14d55-8e96-4a2d-a9e8-a52f0de9dffd@oss.qualcomm.com>
+ <c7342ed4-5705-4206-8999-e11d13bea1f2@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdejgeekkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeevgedtffelffelveeuleelgfejfeevvdejhfehgeefgfffvdefteegvedutefftdenucfkphepledtrdejiedriedvrddujedunecuvehluhhsthgvrhfuihiivgepuddvnecurfgrrhgrmhepihhnvghtpeeltddrjeeirdeivddrudejuddphhgvlhhopehfvgguohhrrgdrrddpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefuddprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnu
- higqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: maxime.chevallier@bootlin.com
+In-Reply-To: <c7342ed4-5705-4206-8999-e11d13bea1f2@oss.qualcomm.com>
 
-This documentation aims at describing the main goal of the phy_port
-infrastructure.
+On Tue, Jul 22, 2025 at 01:13:34PM +0800, Ziyue Zhang wrote:
+> On 7/18/2025 6:53 PM, Konrad Dybcio wrote:
+> > On 7/18/25 12:02 PM, Johan Hovold wrote:
+> >> On Fri, Jul 18, 2025 at 04:17:17PM +0800, Ziyue Zhang wrote:
+> >>> gcc_aux_clk is used in PCIe RC and it is not required in pcie phy, in
+> >>> pcie phy it should be gcc_phy_aux_clk, so remove gcc_aux_clk and
+> >>> replace it with gcc_phy_aux_clk.
+> >> Expanding on why this is a correct change would be good since this does
+> >> not yet seem to have been fully resolved:
+> >>
+> >> 	https://lore.kernel.org/lkml/98088092-1987-41cc-ab70-c9a5d3fdbb41@oss.qualcomm.com/
 
-Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
- Documentation/networking/index.rst    |   1 +
- Documentation/networking/phy-port.rst | 111 ++++++++++++++++++++++++++
- MAINTAINERS                           |   1 +
- 3 files changed, 113 insertions(+)
- create mode 100644 Documentation/networking/phy-port.rst
+> > I dug out some deep memories and recalled that _PHY_AUX_CLK was
+> > necessary on x1e for the Gen4 PHY to initialize properly. This
+> > can be easily reproduced:
 
-diff --git a/Documentation/networking/index.rst b/Documentation/networking/index.rst
-index ac90b82f3ce9..f60acc06e3f7 100644
---- a/Documentation/networking/index.rst
-+++ b/Documentation/networking/index.rst
-@@ -96,6 +96,7 @@ Contents:
-    packet_mmap
-    phonet
-    phy-link-topology
-+   phy-port
-    pktgen
-    plip
-    ppp_generic
-diff --git a/Documentation/networking/phy-port.rst b/Documentation/networking/phy-port.rst
-new file mode 100644
-index 000000000000..6d9d46ebe438
---- /dev/null
-+++ b/Documentation/networking/phy-port.rst
-@@ -0,0 +1,111 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+.. _phy_port:
-+
-+=================
-+Ethernet ports
-+=================
-+
-+This document is a basic description of the phy_port infrastructure,
-+introduced to represent physical interfaces of Ethernet devices.
-+
-+Without phy_port, we already have quite a lot of information about what the
-+media-facing interface of a NIC can do and looks like, through the
-+:c:type:`struct ethtool_link_ksettings <ethtool_link_ksettings>` attributes,
-+which includes :
-+
-+ - What the NIC can do through the :c:member:`supported` field
-+ - What the Link Partner advertises through :c:member:`lp_advertising`
-+ - Which features we're advertising through :c:member:`advertising`
-+
-+We also have info about the number of lanes and the PORT type. These settings
-+are built by aggregating together information reported by various devices that
-+are sitting on the link :
-+
-+  - The NIC itself, through the :c:member:`get_link_ksettings` callback
-+  - Precise information from the MAC and PCS by using phylink in the MAC driver
-+  - Information reported by the PHY device
-+  - Information reported by an SFP module (which can itself include a PHY)
-+
-+This model however starts showing its limitations when we consider devices that
-+have more than one media interface. In such a case, only information about the
-+actively used interface is reported, and it's not possible to know what the
-+other interfaces can do. In fact, we have very few information about whether or
-+not there are any other media interfaces.
-+
-+The goal of the phy_port representation is to provide a way of representing a
-+physical interface of a NIC, regardless of what is driving the port (NIC through
-+a firmware, SFP module, Ethernet PHY).
-+
-+Multi-port interfaces examples
-+==============================
-+
-+Several cases of multi-interface NICs have been observed so far :
-+
-+Internal MII Mux::
-+
-+  +------------------+
-+  | SoC              |
-+  |          +-----+ |           +-----+
-+  | +-----+  |     |-------------| PHY |
-+  | | MAC |--| Mux | |   +-----+ +-----+
-+  | +-----+  |     |-----| SFP |
-+  |          +-----+ |   +-----+
-+  +------------------+
-+
-+Internal Mux with internal PHY::
-+
-+  +------------------------+
-+  | SoC                    |
-+  |          +-----+ +-----+
-+  | +-----+  |     |-| PHY |
-+  | | MAC |--| Mux | +-----+   +-----+
-+  | +-----+  |     |-----------| SFP |
-+  |          +-----+       |   +-----+
-+  +------------------------+
-+
-+External Mux::
-+
-+  +---------+
-+  | SoC     |  +-----+  +-----+
-+  |         |  |     |--| PHY |
-+  | +-----+ |  |     |  +-----+
-+  | | MAC |----| Mux |  +-----+
-+  | +-----+ |  |     |--| PHY |
-+  |         |  +-----+  +-----+
-+  |         |     |
-+  |    GPIO-------+
-+  +---------+
-+
-+Double-port PHY::
-+
-+  +---------+
-+  | SoC     | +-----+
-+  |         | |     |--- RJ45
-+  | +-----+ | |     |
-+  | | MAC |---| PHY |   +-----+
-+  | +-----+ | |     |---| SFP |
-+  +---------+ +-----+   +-----+
-+
-+phy_port aims at providing a path to support all the above topologies, by
-+representing the media interfaces in a way that's agnostic to what's driving
-+the interface. the struct phy_port object has its own set of callback ops, and
-+will eventually be able to report its own ksettings::
-+
-+             _____      +------+
-+            (     )-----| Port |
-+ +-----+   (       )    +------+
-+ | MAC |--(   ???   )
-+ +-----+   (       )    +------+
-+            (_____)-----| Port |
-+                        +------+
-+
-+Next steps
-+==========
-+
-+As of writing this documentation, only ports controlled by PHY devices are
-+supported. The next steps will be to add the Netlink API to expose these
-+to userspace and add support for raw ports (controlled by some firmware, and directly
-+managed by the NIC driver).
-+
-+Another parallel task is the introduction of a MII muxing framework to allow the
-+control of non-PHY driver multi-port setups.
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 853f11d7ee7a..715022ceb6c6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8965,6 +8965,7 @@ F:	Documentation/devicetree/bindings/net/ethernet-connector.yaml
- F:	Documentation/devicetree/bindings/net/ethernet-phy.yaml
- F:	Documentation/devicetree/bindings/net/mdio*
- F:	Documentation/devicetree/bindings/net/qca,ar803x.yaml
-+F:	Documentation/networking/phy-port.rst
- F:	Documentation/networking/phy.rst
- F:	drivers/net/mdio/
- F:	drivers/net/mdio/acpi_mdio.c
--- 
-2.49.0
+> > @@ -3312,7 +3312,7 @@ pcie3_phy: phy@1be0000 {
+> >                          compatible = "qcom,x1e80100-qmp-gen4x8-pcie-phy";
+> >                          reg = <0 0x01be0000 0 0x10000>;
+> >   
+> > -                       clocks = <&gcc GCC_PCIE_3_PHY_AUX_CLK>,
+> > +                       clocks = <&gcc GCC_PCIE_3_AUX_CLK>,
+> >                                   <&gcc GCC_PCIE_3_CFG_AHB_CLK>,
+> >                                   <&tcsr TCSR_PCIE_8L_CLKREF_EN>,
+> >                                   <&gcc GCC_PCIE_3_PHY_RCHNG_CLK>,
+> >
+> > ==>
+> > [    6.967231] qcom-qmp-pcie-phy 1be0000.phy: phy initialization timed-out
+> > [    6.974462] phy phy-1be0000.phy.0: phy poweron failed --> -110
+> >
+> > And the (non-PHY_)AUX_CLK is necessary for at least one of them, as
+> > removing it causes a crash on boot
 
+Thanks for checking. I too had noticed that the pcie4 and pcie5 was
+using the non-phy aux clocks, and those are indeed gen3.
+
+> I tried remove PHY_AUX_CLK in sa8775p platform like this, and
+> it will cause a crash on boot. And I checked the clock documentation
+> for sa8775p and found that the PHY_AUX_CLK  is also required.
+
+Thanks, would still be good to say something in the commit message about
+the difference between the PHY_AUX_CLK and AUX_CLK clocks and why
+(only?) the gen4 PHYs need it (we seem to have other Qualcomm non-gen4
+PHYs using the PHY_AUX clock too).
+
+That is, please clarify which PHYs need the PHY_AUX_CLK and why they
+don't also need the AUX_CLK like some PHYs do.
+
+Johan
 
