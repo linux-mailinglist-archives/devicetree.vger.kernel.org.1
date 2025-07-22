@@ -1,279 +1,120 @@
-Return-Path: <devicetree+bounces-198786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C16D4B0E3E4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 21:08:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15204B0E44D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 21:38:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FB251C85434
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 19:08:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAA571C827D9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 19:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D191A283FC3;
-	Tue, 22 Jul 2025 19:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2BE5283FDE;
+	Tue, 22 Jul 2025 19:38:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="QH511Cv4"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ENtn9vxk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 905DE27FB15
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 19:08:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2208F156677;
+	Tue, 22 Jul 2025 19:38:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753211286; cv=none; b=fDHL3xtACwtcG7C8VnB4BIV5rglBCd5g6rm4asOSS/rKF4KcqfKBZiOOBoKQVPq2uUXgOR/zQF7ZYSqwmlxU7Fz0E//DdpnAhiq1c6G05uT6rgbKrfDjDa8bbpVk/CIGDwetCogQjVVpMViUM7Ktg429niKx5JPLWLXNUgX+NkQ=
+	t=1753213124; cv=none; b=OfuaPreOMPeo2lBRLHhmbQDCdz8S4/y2EluMVZmNAXC9/eRKmycOx50GpBniiXpe3tA6ra7R+QjNPYuAm18B6SNqlZV8S+0Bj0uhegYw7K/LHfzQg6UlqhMjBLwD2rpS0nmLa/QDIspOfGuKdLJE6Hu7D17uE+gsx/ltBwfGxGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753211286; c=relaxed/simple;
-	bh=wIIr3Eq5+mruBmJwDNLoP86yr6SKvoFd6vplf1UWH/U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=l/EwZ1uT+AIBSrbuf5CKf50h7CTMnhQR1Bgq6oEjcEkALVF3q+ueecBHH0gxK3Oq82+yKek2BPlp6ixLYt4/uKeoH28wuvRDSrY9Y6Szq+6nTvyp2Hw4TZex6RJwA3//I5TSYbueppS8kJwWVgVsmLf8Vf6o+hqCVaFmnWf08g4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=QH511Cv4; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=q2tbQ78XMUCXgoXvl6eBgiuXxJ/yrsj8IFmq2bewwVM=; b=QH511C
-	v4SRO3N272uXlTWNVDqbpZwtrxkcU3rVY5q8augVHWf6eNlBUNqTsfkR7LQC6kBB
-	5wGfvS4A3ZsnUFFeaXSpbilctvG4FPb7dvpJBerKmegfQwkZjeAA5Ar5LjZxCoOj
-	qAN8A+Qu3ZbprPlyg08wY7PaFlmxOhj6RDLCBHe/ahGSVqfNI5uS0qVzZLSUNEFB
-	SvQdl/ONSpQ2emMVh7vsDdRBnQoUxr7NYerdc6X/sjgk8uzcb2gPS5/Pkxr3V0s0
-	roMUdx3EYRY8X747ToPlp8wbgZzFczyVM6oTJw7a4nTJ32lhGM5/ku5yQtmpD+jo
-	cKEGgel4zGxRjwpA==
-Received: (qmail 1427113 invoked from network); 22 Jul 2025 21:08:02 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 22 Jul 2025 21:08:02 +0200
-X-UD-Smtp-Session: l3s3148p1@QP+uT4k6mqIgAwDPXyBWAATEinPyanBm
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v4 3/4] dt-bindings: i3c: Add Renesas I3C controller
-Date: Tue, 22 Jul 2025 21:07:45 +0200
-Message-ID: <20250722190749.6264-4-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250722190749.6264-1-wsa+renesas@sang-engineering.com>
-References: <20250722190749.6264-1-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1753213124; c=relaxed/simple;
+	bh=jwyAwao4oPJjdf7FpSRPigfPtomo1g/hUFFqJP0uxSg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lxeykqw2su8VDeZ1VOhWUToTA14ue5U4Qr6J47Ep9iXXFzvc9s/i2OMyBO9tl1YBh1IxwG0HuauJXCTB68fomPDwV0nSL6Ke6zXWAlg3yO9kOnxFJtwsmWlA4e1Tm4LoTpxctN2QlqaBj2e98mScQAtQusc4VxWYfRnpG6LLv8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=ENtn9vxk; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-237311f5a54so47651465ad.2;
+        Tue, 22 Jul 2025 12:38:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1753213121; x=1753817921; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jwyAwao4oPJjdf7FpSRPigfPtomo1g/hUFFqJP0uxSg=;
+        b=ENtn9vxkNbAHTvF8nf6gvg4A9xEj6fv+YiZOODFR9eEd+uctWkcbJqSNhiPO6ZngRc
+         ZE1zHORCcjRND+pwU2VZguvVVhj8WizxXzNorjGZ+Aqrfa4KlMZvLm2BFv01GK2QJND2
+         nVGWxRnShKMH/NWesnbsPcer5DX/v5GwUDqUYd5IJWV/KiYH4jcv7lBIqkf1kcZziKuN
+         xAVCqx0nMYddGWqZCNMPOic388Sh7fXeipLx0yeIjmgLI/yf1Nin3Y6pU78rZQ2qZVh0
+         C85VuN4iYcwj4wzdihSuI2++xG1kVTmIvXyHO4ptxR95/SO/0lVSQRM4GBoVjQ4pFxMi
+         P/QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753213121; x=1753817921;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jwyAwao4oPJjdf7FpSRPigfPtomo1g/hUFFqJP0uxSg=;
+        b=la0EqY7UpYRC5ABE7amlHIVHxd0HJOPQL3u3VdOLy+E52PrlA2LNjB4ec9Gy0l5f/u
+         QDzrRhXFQyriIEgBKZgUd0SubKFjyTcQnFZD8yLthgMbqIZcPcW3aYDeWLPukojGAiJe
+         XL+1eivNJn4zjMG+cuTO5KULzcGKYnv0Kl1LhuzTVzz2h3/F3sYiragFwqr+ogc6LlIP
+         vQFS1Q8h3YZyDVxI4sA38lguaLFm65ms70ZmB+esyWEMOHD3agePZQnhul6Mt1EY3mg8
+         HmEfN28sroh75wn9YB4phoCk5z9W1TAJtPAuhJLLwaP+84LGJMW0t76re1VQgjiH56P3
+         u1kw==
+X-Forwarded-Encrypted: i=1; AJvYcCVJG2vs/ZAG3gFDC8FKIDyl+vP2SFpxKc0eFGB9gqx1XIh217o86/NB+wql5oBbboT+frpqzvHiDNVC@vger.kernel.org, AJvYcCWwV8Blj1V/fDukFtIVMG+LLwzsYut9SQG39PNKDKYXWgdj7JkITIVjdVw1eSbQYhDY8rLT2fyQ@vger.kernel.org, AJvYcCXa8BcBJZLs9YUmk6vZPB7bYjBUcBpzA9SosNCEQgtRlwpzYtauhTbn0Yy4osIFfm3tCicpmRE3ylVJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9qMVIqXxXmSKtud9ytkZVMOgQzTizcP43jIG9K+JfcJbz81r6
+	lb5COPSEyU1Pm5d9FjFzYfftb9tA1ZL8XNdPiwoexfYvsBwk2yKwzWxATE42YzpGJ2omuDc1bCM
+	qJgUcnSv6JJmOTfBcLbXRY75q1mcsT5E=
+X-Gm-Gg: ASbGncsrBlaxx/uKj90e0L6Dh5PHVCVafxeLeFYryV04WCMAub8OrPLCvs/ZQlfOHKj
+	urkXwJ6kwHKj2+6jzUTjLlBy3eSfTEUzE7e9G/3lO78vFNhvNoL20TubquOsMaDq4QqPD9EwY2d
+	Y5LOLOCtiHVW5Huz1Ht4wASRiqaCU1yFjcEDR7BXbu3ttIQnsQVsx01k711izU3YIwVaXyLf6Yt
+	lPU8cPUnlwZQ+ItYb8hew==
+X-Google-Smtp-Source: AGHT+IGsEsP2+Lauu71M+oW4n4HRG//Lxp5u7eb8uK45PKFMboS8RYf4aGCjOdXnbHCp/CGkWd7DOfhjjO/CU0YvNwA=
+X-Received: by 2002:a17:902:cec4:b0:23d:fa76:5c3b with SMTP id
+ d9443c01a7336-23f9814e9a7mr3452365ad.22.1753213121296; Tue, 22 Jul 2025
+ 12:38:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
+In-Reply-To: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 22 Jul 2025 21:38:30 +0200
+X-Gm-Features: Ac12FXwCtPAOsiQDY47hJ2_tvejllz9nr8xSmIyDW7TLGWTLqhLQAI8E9IianHU
+Message-ID: <CAFBinCCmsw=XGPtrk1XbphOu=OwhxmAiZ+2h4x_M-_f64Vo-7A@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: cleanup: fix duplicated 'is is' in YAML docs
+To: Sanjay Suthar <sanjaysuthar661996@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	ribalda@kernel.org, jic23@kernel.org, dlechner@baylibre.com, 
+	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
+	neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+On Tue, Jul 22, 2025 at 7:06=E2=80=AFPM Sanjay Suthar
+<sanjaysuthar661996@gmail.com> wrote:
+>
+> Fix minor grammatical issues by removing duplicated "is" in two devicetre=
+e
+> binding documents:
+>
+> - net/amlogic,meson-dwmac.yaml
+> - iio/dac/ti,dac7612.yaml
+>
+> Signed-off-by: Sanjay Suthar <sanjaysuthar661996@gmail.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Add Renesas I3C controller which is available in R9A08G045 (RZ/G3S) and
-R9A09G047 (RZ/G3E) SoCs.
+Thank you for spotting and fixing this!
 
-Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
----
-Changes since v3:
-* added rev-by from Frank, thanks!
+To my knowledge nobody else is currently working on amlogic,meson-dwmac cha=
+nges.
+Meaning: with an ACK from the netdev or iio maintainers this patch can
+go through any tree (iio, netdev, devicetree).
 
- .../devicetree/bindings/i3c/renesas,i3c.yaml  | 179 ++++++++++++++++++
- 1 file changed, 179 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
 
-diff --git a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-new file mode 100644
-index 000000000000..fe2e9633c46f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-@@ -0,0 +1,179 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i3c/renesas,i3c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G3S and RZ/G3E I3C Bus Interface
-+
-+maintainers:
-+  - Wolfram Sang <wsa+renesas@sang-engineering.com>
-+  - Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a08g045-i3c # RZ/G3S
-+          - renesas,r9a09g047-i3c # RZ/G3E
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Non-recoverable internal error interrupt
-+      - description: Normal transfer error interrupt
-+      - description: Normal transfer abort interrupt
-+      - description: Normal response status buffer full interrupt
-+      - description: Normal command buffer empty interrupt
-+      - description: Normal IBI status buffer full interrupt
-+      - description: Normal Rx data buffer full interrupt
-+      - description: Normal Tx data buffer empty interrupt
-+      - description: Normal receive status buffer full interrupt
-+      - description: START condition detection interrupt
-+      - description: STOP condition detection interrupt
-+      - description: Transmit end interrupt
-+      - description: NACK detection interrupt
-+      - description: Arbitration lost interrupt
-+      - description: Timeout detection interrupt
-+      - description: Wake-up condition detection interrupt
-+      - description: HDR Exit Pattern detection interrupt
-+    minItems: 16
-+
-+  interrupt-names:
-+    items:
-+      - const: ierr
-+      - const: terr
-+      - const: abort
-+      - const: resp
-+      - const: cmd
-+      - const: ibi
-+      - const: rx
-+      - const: tx
-+      - const: rcv
-+      - const: st
-+      - const: sp
-+      - const: tend
-+      - const: nack
-+      - const: al
-+      - const: tmo
-+      - const: wu
-+      - const: exit
-+    minItems: 16
-+
-+  clocks:
-+    items:
-+      - description: APB bus clock
-+      - description: transfer clock
-+      - description: SFRs clock
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: tclk
-+      - const: pclkrw
-+    minItems: 2
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    items:
-+      - description: Reset signal
-+      - description: APB interface reset signal/SCAN reset signal
-+
-+  reset-names:
-+    items:
-+      - const: presetn
-+      - const: tresetn
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clock-names
-+  - clocks
-+  - power-domains
-+  - resets
-+  - reset-names
-+
-+allOf:
-+  - $ref: i3c.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a08g045-i3c
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+        clock-names:
-+          maxItems: 2
-+        interrupts:
-+          minItems: 17
-+        interrupt-names:
-+          minItems: 17
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g047-i3c
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+        clock-names:
-+          minItems: 3
-+        interrupts:
-+          maxItems: 16
-+        interrupt-names:
-+          maxItems: 16
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a08g045-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    i3c@1005b000 {
-+        compatible = "renesas,r9a08g045-i3c";
-+        reg = <0x1005b000 0x1000>;
-+        clocks = <&cpg CPG_MOD R9A08G045_I3C_PCLK>,
-+                 <&cpg CPG_MOD R9A08G045_I3C_TCLK>;
-+        clock-names = "pclk", "tclk";
-+        interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 294 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 295 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 296 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 297 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 298 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 299 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "ierr", "terr", "abort", "resp",
-+                          "cmd", "ibi", "rx", "tx", "rcv",
-+                          "st", "sp", "tend", "nack",
-+                          "al", "tmo", "wu", "exit";
-+        resets = <&cpg R9A08G045_I3C_PRESETN>,
-+                 <&cpg R9A08G045_I3C_TRESETN>;
-+        reset-names = "presetn", "tresetn";
-+        power-domains = <&cpg>;
-+        #address-cells = <3>;
-+        #size-cells = <0>;
-+    };
-+...
--- 
-2.47.2
-
+Best regards,
+Martin
 
