@@ -1,102 +1,112 @@
-Return-Path: <devicetree+bounces-198760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94DEEB0E21D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 18:47:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9950B0E251
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 19:01:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C89FE566037
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 16:47:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAE815678AE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 17:01:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E66C27A462;
-	Tue, 22 Jul 2025 16:47:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D658127AC37;
+	Tue, 22 Jul 2025 17:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="jymGO8/t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o1qzI20y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2378A25A34F;
-	Tue, 22 Jul 2025 16:47:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51C5BA36;
+	Tue, 22 Jul 2025 17:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753202865; cv=none; b=gn4JUSYlMkMtb9wggkZoqXKsq5sx064QUEJ7ogkiwp4Ux6lINis72BN6jRwSgaDU+XD3v6nHifRdG4Iz72WOE1433d2aMlW9D0IfTUNh3zJ6ksVC2s49LvVYkX7C4pUzCkZW0WtOT7GMrd14KGItWpB2lXpcAsut5xtsN8f/lUk=
+	t=1753203680; cv=none; b=nQDwgk0cdG9lRBSEOSNl5zEShffj9Qhz5ovdoA1Lno8VfGwmXKVQuuNkUpn4SBf34AELpnzKlm4tTXZyLTT1FjZAru4lYPnRxoCH/MtD/FqdFTGRnelm2uL7rhQ0WuXptvDUp1mCUTG3NPNZipZC4QVdWVAy0iqCpgYYQO2Reg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753202865; c=relaxed/simple;
-	bh=rwAc0oq+8v45O1QJHR94JnMl109erpTHNRYkgJdzJgg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oGGkdttjT5sXKlnHF17eAJlIwzcoG9MTzMgs+v8DAv+ofdP2YPeWDJZ5gJ8roajc6RHxhgRUDW84q7Na5fO2+fD7Bm0Gcd7+Ttj16jMlRk3F52lp3QzE9MhrSQM4HZYa5qyJTjbfu3uF1OS9BCLmB0cXKb262bmxft1YNfCDrfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=jymGO8/t; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 2645E40E00CE;
-	Tue, 22 Jul 2025 16:47:39 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id FCv5m5ekeIus; Tue, 22 Jul 2025 16:47:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1753202856; bh=yLIo3MPCbt0p2Q33/yHvmPVwnryqr2AZpgItxfxfUA8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jymGO8/t7OohEs2KyyE9QM0o+Yb+a9vzpmPrZRmNWlfGxGcfND6WLhxzaHhmr8UL3
-	 utb1/BOrMwIpc80d+GhBa3rLMwSjOX7Nd3xqiy+X1Z1EwkyP437gx4+Rp6VvYM0f1t
-	 9wajTCB+5bH83mACfMcXPVTQGxF7JKsrkOMGKtBCY3corRO7U8eti8yUB411ieH9EY
-	 tg4GqTROeraVJxCIcX2c07OGXtP4382XCKl63usTeKEfhad3ptyf4xVr87BKuadhpk
-	 0fRU4z7o+21sWmyVecrd9DnoRjs1VGqTytfjYDhysGOMtQ8LtUkYauhAdxx5kWTCip
-	 2ssvyT16tcp3PkPnpez81UZ8K8U9zrp5nxilQ63tvJe82y+WHSBGuagrOjyTTnyT//
-	 oMfuVKPM/lQ/ZT213WYyrjhe2lilWGji2aUZNzHT5YfZIZ+1hnKRTf53wDZs6eVvm4
-	 wgJX6vrpdNIwEkIhnYOqYbpWTtcbrJ3Df6b6YWurxtExB7qa8Q7AUyUqd39Yf+wT9G
-	 hJ+yUL76b6FdeUA6VkJRSUyYTE96qCvHBfjvKZV57yQido74yH5lGg4cEhJ9dxASwb
-	 GaceoXiM85QRSc2/DSipDHE5o6eKLirYyretayojx7lh4582mHQj4owUIq7w5bUH8F
-	 67EXRGOju7LhahatEvcvjmUg=
-Received: from rn.tnic (unknown [78.130.214.207])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id 8240D40E0269;
-	Tue, 22 Jul 2025 16:47:22 +0000 (UTC)
-Date: Tue, 22 Jul 2025 18:49:21 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Rama devi Veggalam <rama.devi.veggalam@amd.com>
-Cc: tony.luck@intel.com, michal.simek@amd.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
-	devicetree@vger.kernel.org, james.morse@arm.com, mchehab@kernel.org,
-	rric@kernel.org, git@amd.com
-Subject: Re: [PATCH v2 0/4] Add support for Versal Xilsem edac
-Message-ID: <20250722164921.GBaH_BEb7bUJzf8Wjk@renoirsky.local>
-References: <20250722160315.2979294-1-rama.devi.veggalam@amd.com>
+	s=arc-20240116; t=1753203680; c=relaxed/simple;
+	bh=4ExxWF210EVKXVfZ8XRUE1perdO4miFY1lWLlDpGXyE=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Jeg4NF2gNFA7FslF+KBiq1EG581MzfwRU6vkOYK1IWey1EuqUoLvaQAdWvJSvJOvJWuoSMewa7tXdYleyH783nS3Yn6vZY0U4Zbq5g61tvr0m5gLekTA9MoSRa0BijDxMh7F3pgbkkOzp6ld7hB7cIZDtK0d0U/U34s2IYZ0rGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1qzI20y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 034DDC4CEEB;
+	Tue, 22 Jul 2025 17:01:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753203680;
+	bh=4ExxWF210EVKXVfZ8XRUE1perdO4miFY1lWLlDpGXyE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=o1qzI20yrVdhUnbNKS9chhnWZwfsufwiVXUoOBR5Nzqdw4VuznVLUtui48AqcvckC
+	 dksJVF+i5y4kslxWQZQSbXWGchZw/2Vnydl1hmZ8MCBw3tTb7lKjvZ80/jWQKNNGzF
+	 PxTgOs34OjapDTx9a2Y80Wk4bp7d1/jrUPkELzwhXxJn6f8UrfOIX0PIPqIVfqO2Df
+	 CJHRsHhmxBuI6EjTWH+DSFGpZpqzQ559K9Vt3euNX2h57Hoqhp123HjpkZUmQHGvrl
+	 OaieU6ya2bzCTb4dzFod3SamD0A9iFYEGl0+ELuDNjUWsaLEWupl7EPr1vj26f83VY
+	 MM1BiQ/ZB1Qbg==
+Date: Tue, 22 Jul 2025 12:01:19 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250722160315.2979294-1-rama.devi.veggalam@amd.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Will Deacon <will@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Gatien Chevallier <gatien.chevallier@foss.st.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Michael Turquette <mturquette@baylibre.com>, devicetree@vger.kernel.org, 
+ Mark Rutland <mark.rutland@arm.com>, Jonathan Corbet <corbet@lwn.net>, 
+ linux-clk@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Gabriel Fernandez <gabriel.fernandez@foss.st.com>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-perf-users@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>, Julius Werner <jwerner@chromium.org>, 
+ Le Goffic <legoffic.clement@gmail.com>, 
+ linux-stm32@st-md-mailman.stormreply.com, Stephen Boyd <sboyd@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>
+To: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+In-Reply-To: <20250722-ddrperfm-upstream-v3-11-7b7a4f3dc8a0@foss.st.com>
+References: <20250722-ddrperfm-upstream-v3-0-7b7a4f3dc8a0@foss.st.com>
+ <20250722-ddrperfm-upstream-v3-11-7b7a4f3dc8a0@foss.st.com>
+Message-Id: <175320367908.42297.8460265656019241171.robh@kernel.org>
+Subject: Re: [PATCH v3 11/19] dt-bindings: perf: stm32: introduce DDRPERFM
+ dt-bindings
 
-On Tue, Jul 22, 2025 at 09:33:11PM +0530, Rama devi Veggalam wrote:
-> Add sysfs interface for Xilsem scan operations initialize, start,
-> stop scan, error inject, read ECC, status and configuration values.
-> Handle correctable and uncorrectable xilsem error events.
 
-I had questions last time:
+On Tue, 22 Jul 2025 16:03:28 +0200, Clément Le Goffic wrote:
+> DDRPERFM is the DDR Performance Monitor embedded in STM32MPU SoC.
+> It allows to monitor DDR events that come from the DDR Controller
+> such as read or write events.
+> 
+> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+> ---
+>  .../devicetree/bindings/perf/st,stm32-ddr-pmu.yaml | 94 ++++++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+> 
 
-https://lore.kernel.org/all/20250422171737.GAaAfPMbFtNKN6paJT@renoirsky.local/
+My bot found errors running 'make dt_binding_check' on your patch:
 
-which went unanswered.
+yamllint warnings/errors:
 
-You shouldn't wonder if your submissions get ignored too.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/perf/st,stm32-ddr-pmu.example.dtb: /example-1/ddr3-channel: failed to match any schema with compatible: ['jedec,ddr3-channel']
 
--- 
-Regards/Gruss,
-    Boris.
+doc reference errors (make refcheckdocs):
 
-https://people.kernel.org/tglx/notes-about-netiquette
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250722-ddrperfm-upstream-v3-11-7b7a4f3dc8a0@foss.st.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
