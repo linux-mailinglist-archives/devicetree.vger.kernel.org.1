@@ -1,172 +1,176 @@
-Return-Path: <devicetree+bounces-198454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F03B0D0F6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 06:53:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83A14B0D0E8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 06:40:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E66454361F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 04:53:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37E161AA1A4D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 04:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CED6C28C02A;
-	Tue, 22 Jul 2025 04:53:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C034228BAB0;
+	Tue, 22 Jul 2025 04:40:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="IVT29UPX"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IFc8kYO+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA0528A1CE
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 04:53:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3432E136658
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 04:40:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753160027; cv=none; b=qPsbahA2Zp8bzru63qipdgBIatfVTv0LdK6Snwv+chIsduhgLg6xKNlpClW+HCzyHb2LSaHwt5ATdpegfpfyiSIIEqeAflhEN8JSHtRwbl+DUl3JQopbjdH27AqSUIzZTKMoYsG1RvXkX1leMrynHp+LdDjh0JslVfBO4Hcyy5Y=
+	t=1753159238; cv=none; b=RMSTXFMrweh3kf0wMXlnsSkkYsW95PDb0XzUqXsdEv3ORWRaKUA24Qx3lOAdZG5/I4AoPUDUJYiNpMERDrMCGZ/+uMQveGmfXc3KeFPOsItQ2W69lRdod5Xs5TbfmluqZpsjPcP5RT5GvfEIxzmUY0RD3ldV87FmnCUe557GPCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753160027; c=relaxed/simple;
-	bh=IV3D5VFa0b3TKylL0rBqO2E0kmhVFDoKkyFGukLBZQA=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=ZnnvxNH8FI0eoYQfzepTiIdQ6Rg40luSdozmLF5jQXB6Rpi4O/geIw32UNNnXoms0Ibx0USVNm5Wo4zp3gcn5THuZKcEdD/wPMTYMxwbINRqMC4ljL9V1tcE6Oxosz4QY2psTtA8+anv44iD10WnW3pzntMkCGOKstODvSKdzFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=IVT29UPX; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250722045337epoutp03d2a4d539644c70b9d7133e8a87f93dd8~Ueb9mEFNK0780207802epoutp03G
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 04:53:37 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250722045337epoutp03d2a4d539644c70b9d7133e8a87f93dd8~Ueb9mEFNK0780207802epoutp03G
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1753160017;
-	bh=oHgbp2zI6pWHBoFSpFNJfPfed8jnhU/boVEitqs7EpY=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=IVT29UPXc/lyldNPJUfmsb2cWuayt7gQHggZuv2uDnSQJjqqhRY+FHKHT9zVWh2/V
-	 6GqzvQeKyMt5jXRMnlQ3KqJ2HOK2UXzf9FCQxavd/7o/74jJwVUk36heqq6A9kWZCr
-	 MU9b8nNiJRsMC2dFFbq4A4fdNE35OIlQKsNMnRWM=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
-	20250722045336epcas5p40ecb63ff167b91f84375d516fef00fa5~Ueb8vawWq0587105871epcas5p4T;
-	Tue, 22 Jul 2025 04:53:36 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.88]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4bmPzg6htyz2SSKk; Tue, 22 Jul
-	2025 04:53:35 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250722043437epcas5p25e73a61921d2d15cae61388fa042de75~UeLXT5Vxm3047830478epcas5p2G;
-	Tue, 22 Jul 2025 04:34:37 +0000 (GMT)
-Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250722043434epsmtip131fb92dc6a6a0c2b894d89da91b3a9ab~UeLUTk9r90921009210epsmtip18;
-	Tue, 22 Jul 2025 04:34:33 +0000 (GMT)
-From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Krzysztof Kozlowski'"
-	<krzysztof.kozlowski@linaro.org>
-Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
-	<neil.armstrong@linaro.org>, <kauschluss@disroot.org>,
-	<ivo.ivanov.ivanov1@gmail.com>, <m.szyprowski@samsung.com>,
-	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <a43cfe4f-8ff9-4dbd-b7f4-07ccc3d8e01b@kernel.org>
-Subject: RE: [PATCH v4 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
- ExynosAutov920 HS phy compatible
-Date: Tue, 22 Jul 2025 10:04:32 +0530
-Message-ID: <00ff01dbfac1$ee528860$caf79920$@samsung.com>
+	s=arc-20240116; t=1753159238; c=relaxed/simple;
+	bh=DcWnCV5wiDFMtlUyE+DQhJbXPHzzcnoo0XyLl4KiE/w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K1HGySa3ansSqzKZ74/BATxnga1ZoNZVsniA3BEx5jyTKcaERLwtxfPB8mKLTGoA87Nh+PtRxaHpJBWYwJ1YqcmeqI4YLDgd1DemY/E0PZWAj24q8vScHb09bPNBZjIN/boFaLDUCb0dVVvFraXGtGI/RXCPV8C+lqyacOEW9gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IFc8kYO+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56LIe2Gc015134
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 04:40:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	QcTGOBXUA+STk52mHs0W4PauDtLBRWn0+OXc0q8RYuI=; b=IFc8kYO+nhkzRTcP
+	awect8oHXP0U/GDih52NV7CPNIpPNbBkERPbpHB1s61G6FfD2ExRFdytmIh6Q71P
+	cMXk28h6Mm4mg+miGb4f4OY9k6RPlw+0mS3zuEYivF5KbJ18HWuBIT5JwHpLw7dF
+	07sR39aZLa6RpLhFkaVL+Nw8lYfuWR9BuA3gmlSWG9K4FC+BRHXDY9DMCvm1S580
+	++eXtMmjupA7HPhNWcwPvN5ax9uHhudOpouwmbKubs0BI1AZKKYZhmHZPNQxoDiD
+	CfTmQ0Vse1I2V/cL974KZXj1rIXm4ag9pKTDYpBJmCQmU9uzvlARyT+8JHLw+W4i
+	hHMtQw==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4804n9xeeh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 04:40:36 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-748e1e474f8so7239728b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Jul 2025 21:40:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753159235; x=1753764035;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QcTGOBXUA+STk52mHs0W4PauDtLBRWn0+OXc0q8RYuI=;
+        b=MDBIbWtFmt3fpIlt8GENtYrHLGVG+N928W6oWU2lTAnKtvQMJ3arZg7KFjbTM7l8gU
+         62Gw+mCqvhudFdm80WKv24o5udmIw6giW5raQaNeJRsQ7hPjqETuj0UIs1Vxmk8hLpdA
+         abiwi0YsF0emCo7bJWCbFrT37Aq1UXp6BDokMW1URrmcVHfwLhl5jObqhGLdeaUu9sUZ
+         QM9kRA0AlaxcmtN5C551V2Vkwe1/FNLWSs23jJLM+/Ge6q1b8hIcyPoGBF3Rmm3iNzGA
+         29ljPudrJ0JonyVvhcCRyg4RxNMeJ9ZG2Nh+eax3gieO6wdPsdr53Wv7mZDhsVwK4U9P
+         aoQw==
+X-Forwarded-Encrypted: i=1; AJvYcCWgblTQsCGxDkCH1RcKq7qXZ6yQGBpC/UkQek3z7HMveop4QheLfr5in7Ymz05Hergrpnuc4hB5408y@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHH6TQlYBdxuTfO46d9lyUg6pD/wqaUx0UWZzjQU5bYwN259vz
+	BL5T1TSH6MlMojwKSlEzA4Z3WmfvcvSSZRVwrF13G/JsQNTJiZSKhjRI+si9jIz8/SkaaLZKD37
+	OIgJfZXQkLrL035rJRf5ORot6UluRmnOtpXxVLP4ZFc1sVjHz4/F3ri21NWjqpfCF
+X-Gm-Gg: ASbGncs+hNPgr7W2cme+ao+wg7QIeq0hSiV1bAPNHay2v/EddaCAFlCg7myKeXbx+fu
+	Hgi4otzm8Q9JBVsRmYqgS0vtQSjfA3kZck6L+d9qOIY/e+jFgnwuZBJDF9PgDo6AF2aw3bDZ2zg
+	giNRY51CPNAXV+6kILfyaXAzUulRCQblz0M5L8X4JMH510uukc8QVDrxKiRvulsM6l/y4Feo1WY
+	jzoEoxtXJdQqacwxw/zkPuveT2lVpDqgh+iKI8WB6Vlpta0PMZ409QouC6WCI7oAT0lWwIPlkc4
+	j0yiAGqMdVPReyAmut9RepEjXRw0H7rfOZuZvqO/QceecqsDBMFRrWprauJvLu9XygTDKU6rGUD
+	wz4h+AbN7qhC337YNPQ==
+X-Received: by 2002:a05:6a00:2189:b0:736:31cf:2590 with SMTP id d2e1a72fcca58-75724876a95mr27257782b3a.16.1753159235201;
+        Mon, 21 Jul 2025 21:40:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG1twrNaoE58MjndE1bdJRlSy7dI5BpM3+Jd8iUPOsl/CmInJrgSot5/C3EE7tyMWUpjbzqFw==
+X-Received: by 2002:a05:6a00:2189:b0:736:31cf:2590 with SMTP id d2e1a72fcca58-75724876a95mr27257748b3a.16.1753159234693;
+        Mon, 21 Jul 2025 21:40:34 -0700 (PDT)
+Received: from [10.110.120.151] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-759c84e20b7sm6725618b3a.28.2025.07.21.21.40.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Jul 2025 21:40:34 -0700 (PDT)
+Message-ID: <0b595166-d3b5-4b01-b8cd-ba9711c88f30@oss.qualcomm.com>
+Date: Tue, 22 Jul 2025 12:40:26 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJAgQZ9LFXBZrDskwNBYris6jFv1AKCX9A9Aa5wAf0Bi5UAqwCML2yKAWUlSf8CRPacEQIi1iyNsxPSqvA=
-Content-Language: en-in
-X-CMS-MailID: 20250722043437epcas5p25e73a61921d2d15cae61388fa042de75
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250701115955epcas5p320cfe73ca33522cd2f9f7970cfde1c63
-References: <20250701120706.2219355-1-pritam.sutar@samsung.com>
-	<CGME20250701115955epcas5p320cfe73ca33522cd2f9f7970cfde1c63@epcas5p3.samsung.com>
-	<20250701120706.2219355-2-pritam.sutar@samsung.com>
-	<20250706-fresh-meaty-cougar-5af170@krzk-bin>
-	<07d301dbf0ae$0658cbe0$130a63a0$@samsung.com>
-	<9a2d0ad7-cb1f-473d-a91a-3a1b59b71280@kernel.org>
-	<000c01dbf70b$ccdbf630$6693e290$@samsung.com>
-	<a43cfe4f-8ff9-4dbd-b7f4-07ccc3d8e01b@kernel.org>
-
-Hi Krzysztof,=20
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: 17 July 2025 04:59 PM
-> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; 'Krzysztof Kozlows=
-ki'
-> <krzysztof.kozlowski=40linaro.org>
-> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
-> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
-> andre.draszik=40linaro.org; peter.griffin=40linaro.org; neil.armstrong=40=
-linaro.org;
-> kauschluss=40disroot.org; ivo.ivanov.ivanov1=40gmail.com;
-> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com; linux-
-> phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
-amsung-
-> soc=40vger.kernel.org; rosa.pila=40samsung.com; dev.tailor=40samsung.com;
-> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
-> selvarasu.g=40samsung.com
-> Subject: Re: =5BPATCH v4 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
-dd
-> ExynosAutov920 HS phy compatible
->=20
-> On 17/07/2025 13:13, Pritam Manohar Sutar wrote:
-> >>
-> >>
-> >> Nothing is explained in changelog/cover letter. You claim you only add=
-ed Rb
-> tag.
-> >> This is an entirely silent change while keeping the review.
-> >
-> > Will add more explanations in cover letter/changelog why this block is =
-added.
-> >
-> >> Combined with not even following DTS style=21
-> >
-> > Ok got it. Will change supplies name as below avdd075_usb =3D>
-> > avdd075-usb
-> > avdd18_usb20 =3D> avdd18-usb20
-> > avdd33_usb20 =3D> avdd33-usb20
-> >
-> > Confirm the above change that is meant in terms of DTS style.
-> Yes. I have doubts that actual supplies have suffix usb20. Are there more=
- than
-> one avdd18 for this block?
->=20
-
-Yes, there are more than one vdd18 supplies for this block.=20
-
-Re-analysed your comment on adding new supplies.=20
-Going to re-use existing supplies as mentioned below, rather than=20
-introducing new supplies
-
-  dvdd-usb20-supply   =3D> for 0.75v
-  vddh-usb20-supply   =3D> for 1.8v
-  vdd33-usb20-supply =3D> for 3.3v
-
-> Best regards,
-> Krzysztof
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/4] arm64: dts: qcom: sa8775p: remove aux clock from
+ pcie phy
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Johan Hovold <johan@kernel.org>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
+        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
+        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
+        kw@linux.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+        qiang.yu@oss.qualcomm.com, quic_krichai@quicinc.com,
+        quic_vbadigan@quicinc.com
+References: <20250718081718.390790-1-ziyue.zhang@oss.qualcomm.com>
+ <20250718081718.390790-4-ziyue.zhang@oss.qualcomm.com>
+ <aHobmsHTjyJVUtFj@hovoldconsulting.com>
+ <86e14d55-8e96-4a2d-a9e8-a52f0de9dffd@oss.qualcomm.com>
+Content-Language: en-US
+From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+In-Reply-To: <86e14d55-8e96-4a2d-a9e8-a52f0de9dffd@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: ogVkldb4iSEvg32j8SO8CakvSWjx1kZo
+X-Proofpoint-ORIG-GUID: ogVkldb4iSEvg32j8SO8CakvSWjx1kZo
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIyMDAzNSBTYWx0ZWRfX6a+anUKLeifG
+ jpuYfminEzTSYHI5aFURiFoCrxh0DFJNuScMyaJ3f/+8X/s+WfsBdd6p43WoRJVo9UrTqIIgkPK
+ U/yp6D8EjkLU1qnAxhBtN82CSSdi2xYbKBAJEglRWfEx+j2yZZS8eJlM9RNY7gDJVcuqWzxDsQ6
+ 3OpuUIsJPkyaUcHx5c/ux8+XXpJgglinlPt8QqhmjwlwoEZP47EsOu2jIXg9yL2jSyo8wvOsiah
+ s2UH+Etm3Nqc7yEeHrfKgjTn9e6ZGVMzabj80Pji/Kv0Oe3D2h8+ZuDCDFtaN/sGF3THvTDbOp7
+ Xw7gPM3GrHlPEqIiFBQYsBx0cHcarmBZFIDGiIimaSNUSrc+wkntaSvofEqGsy5l3z5QycS+NK2
+ MosJojJbliB6QwJJsr/Cobi3Kg/nhxLUYJFmX+akQedl0OLs1tYhY0IPiVyqbM+BJQK+6mDl
+X-Authority-Analysis: v=2.4 cv=DoFW+H/+ c=1 sm=1 tr=0 ts=687f1644 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=_GfwqhGknvAR8v4wHWsA:9 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-21_05,2025-07-21_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0 clxscore=1015 mlxscore=0 mlxlogscore=999
+ bulkscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0
+ spamscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507220035
 
 
-Thank you.
-
-Regards,
-Pritam
-
+On 7/18/2025 6:53 PM, Konrad Dybcio wrote:
+> On 7/18/25 12:02 PM, Johan Hovold wrote:
+>> On Fri, Jul 18, 2025 at 04:17:17PM +0800, Ziyue Zhang wrote:
+>>> gcc_aux_clk is used in PCIe RC and it is not required in pcie phy, in
+>>> pcie phy it should be gcc_phy_aux_clk, so remove gcc_aux_clk and
+>>> replace it with gcc_phy_aux_clk.
+>> Expanding on why this is a correct change would be good since this does
+>> not yet seem to have been fully resolved:
+>>
+>> 	https://lore.kernel.org/lkml/98088092-1987-41cc-ab70-c9a5d3fdbb41@oss.qualcomm.com/
+> I dug out some deep memories and recalled that _PHY_AUX_CLK was
+> necessary on x1e for the Gen4 PHY to initialize properly. This
+> can be easily reproduced:
+>
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index a9a7bb676c6f..d5ef6bef2b23 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -3312,7 +3312,7 @@ pcie3_phy: phy@1be0000 {
+>                          compatible = "qcom,x1e80100-qmp-gen4x8-pcie-phy";
+>                          reg = <0 0x01be0000 0 0x10000>;
+>   
+> -                       clocks = <&gcc GCC_PCIE_3_PHY_AUX_CLK>,
+> +                       clocks = <&gcc GCC_PCIE_3_AUX_CLK>,
+>                                   <&gcc GCC_PCIE_3_CFG_AHB_CLK>,
+>                                   <&tcsr TCSR_PCIE_8L_CLKREF_EN>,
+>                                   <&gcc GCC_PCIE_3_PHY_RCHNG_CLK>,
+>
+> ==>
+> [    6.967231] qcom-qmp-pcie-phy 1be0000.phy: phy initialization timed-out
+> [    6.974462] phy phy-1be0000.phy.0: phy poweron failed --> -110
+>
+> And the (non-PHY_)AUX_CLK is necessary for at least one of them, as
+> removing it causes a crash on boot
+>
+> Konrad
 
