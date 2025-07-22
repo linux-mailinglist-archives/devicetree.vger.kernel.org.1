@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-198560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F4C1B0D5CC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:21:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A2D7B0D5D8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:23:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7B0B174E81
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:21:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BFBB1892390
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:23:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91792DAFB8;
-	Tue, 22 Jul 2025 09:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CFC22DAFB2;
+	Tue, 22 Jul 2025 09:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cWn0jZkU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fG6YjahE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C3BA1DFFC;
-	Tue, 22 Jul 2025 09:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD5E28AAE7;
+	Tue, 22 Jul 2025 09:23:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753176108; cv=none; b=dhjW644AP8T1bOzBu9af6yihf9gZuD94C+cOSvpsluzfVuqVT5eTVArtd/YbGJUuMEF45uZ+tLgU1f+qhis1dTlCYVGhHXtmIhyM8OyHh9q8bE7e7mpCutzNUZxhi7371mH9EBULRRO6wH/KDJhutg4JL+oE4fyLDSyhG7p7Gcc=
+	t=1753176194; cv=none; b=WBzOCZz2BiZI8zS1Bo9O/32emUBHvFMLVY2ZRlatuZbURZnIMWu504uc6DHfuQwTxS9tP1FoyRzTSOmkxzNUPig7MchD69gVIMUmZ7lId3vGCd01K2bCQiATNvG2rmX4aUbFzo0ada64FIdB8QKC1YS1v42KsgjymGPYp1AwERI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753176108; c=relaxed/simple;
-	bh=03h99rwdlaftyLCQRNswUUAcFdErDW9dGKOcWE+JySo=;
+	s=arc-20240116; t=1753176194; c=relaxed/simple;
+	bh=iYT38q0vkIlt677rfAYxqq2CIp6/tDmkB90sG8ZjiEg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n7O+haX7i0y4jKWX3plEq/XYSBp/Rc4Qv2XGP03MENtA61oK/WUPDuYA9SVY1zxU0ec8RGNlrp/7wTmPRnJ15XsqqJ6Gd1EIO+Zv/JKFAdHIYxDN3YdN4iox6dXTICSAkeoudsjEcw205OX0Ka1hM2oRccXzE885rKeUHElQNVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cWn0jZkU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC046C4CEEB;
-	Tue, 22 Jul 2025 09:21:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bB3MuFnh4Uu2HbX6Cltxa1WncAfFO9oaZdXMFhWQBlC2yO0dEuy2oz94XKagx/wg2B7vi0iuyYLNNGcSRd3QOG467dfpHHp+LgAw2/92HWIzuAvpL/gIE5ggGI4jvpmrCntbiRvVAMYLMnj3d+m2IDfNR/ucLWQ5nBniKyF3bGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fG6YjahE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 836E3C4CEEB;
+	Tue, 22 Jul 2025 09:23:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753176108;
-	bh=03h99rwdlaftyLCQRNswUUAcFdErDW9dGKOcWE+JySo=;
+	s=k20201202; t=1753176193;
+	bh=iYT38q0vkIlt677rfAYxqq2CIp6/tDmkB90sG8ZjiEg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cWn0jZkUFZOluvKv6bmbyATKVWy1bkg+lnaGFGhNjCvP7/rYMSavgYwuJrgYP54lr
-	 gJgttUHbssF+a8ZyVhH7i6BcqJIPGltXcAL1ylzxzG8AqEVTk9MYgWelPCYj4nFiv4
-	 IpfLpo0Pg+lph878RN6vKNnwxue/S0Kbd69fXilhr60tG4MW3Y9IBY7y2siD/yWFvl
-	 T4aUobIZgT1RPIP/6MgfJQRzSOwD4JSzx6ox25pVf5DEy9cvJ5CcfZuzaMy5zf4iyF
-	 qyncpPdW259n2TQMntkRLq82EFyimrCcKa7WMY0UTyGsMtaNJrFXKHufUjtS/FrKek
-	 P8r9HEqg7kWYA==
-Message-ID: <bca68e7a-cb36-4903-bde9-15cb1945c71e@kernel.org>
-Date: Tue, 22 Jul 2025 11:21:39 +0200
+	b=fG6YjahE5uoLdVNFku95vCJ0a0w4aUb1MNaf0i3k4IILzQIOxneUF7CiCk9cMNk8J
+	 hVbAjlkwQtXGKWGte08hqP8gHK3bxPA2hTsN3y4ogEQr0rwWYUfGTexv9FlacNI0lA
+	 Ti62dH2SIsDGg1MVS2bwJzOQRjtrXAeU9UuNhokrZKusXFj+SkupGiYlumvegg1Rvy
+	 2BshPnAIPHJYhBkmeIc7nHSYGQbl5aVF4iLsRMlgVPVewXgWkzdWWIHXeElNzCIyVs
+	 Rk90bpJ4sm7zIKNFnReSiO5HD7DVeY/MOq/twalrl8aPGVPZiTvXoeX8wY91f7wDxu
+	 V03OIqOcnMMTg==
+Message-ID: <b810f0d9-b1e8-4182-9551-601b248d572d@kernel.org>
+Date: Tue, 22 Jul 2025 11:23:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/13] drm/msm/dp: Add DisplayPort support for QCS615
-To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>,
+Subject: Re: [PATCH v2 01/13] dt-bindings: display/msm: Document DP on QCS615
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>,
  Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
  <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
  Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
@@ -65,11 +66,12 @@ To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>,
 Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
- fange.zhang@oss.qualcomm.com, quic_lliu6@quicinc.com,
- quic_yongmou@quicinc.com
+ konrad.dybcio@oss.qualcomm.com, fange.zhang@oss.qualcomm.com,
+ quic_lliu6@quicinc.com, quic_yongmou@quicinc.com
 References: <20250722-add-displayport-support-for-qcs615-platform-v2-0-42b4037171f8@oss.qualcomm.com>
- <20250722-add-displayport-support-for-qcs615-platform-v2-12-42b4037171f8@oss.qualcomm.com>
+ <20250722-add-displayport-support-for-qcs615-platform-v2-1-42b4037171f8@oss.qualcomm.com>
+ <e15df8ba-f058-4eb2-919c-bc327290e66a@kernel.org>
+ <5ec480ac-ee60-473d-83e6-c2f25d3d30d8@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,33 +117,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250722-add-displayport-support-for-qcs615-platform-v2-12-42b4037171f8@oss.qualcomm.com>
+In-Reply-To: <5ec480ac-ee60-473d-83e6-c2f25d3d30d8@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/07/2025 09:22, Xiangxu Yin wrote:
-> The Qualcomm QCS615 platform comes with a DisplayPort controller use the
-> same base offset as sc7180. add support for this in DP driver.
+On 22/07/2025 11:16, Dmitry Baryshkov wrote:
+> On 22/07/2025 12:13, Krzysztof Kozlowski wrote:
+>> On 22/07/2025 09:22, Xiangxu Yin wrote:
+>>> The QCS615 platform is based on the SM6150 SoC. Since the DP hardware is
+>>> shared with SM6150, the compatible string qcom,sm6150-dp is used to
+>>> represent the DP controller on QCS615.
+>>
+>>
+>> No, you cannot use other SoC compatible for different one. Look at
+>> qcs615.dtsi and board DTS - there is nothing saying that this is the
+>> same die.
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-> ---
->  drivers/gpu/drm/msm/dp/dp_display.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-> index d87d47cc7ec3eb757ac192c411000bc50b824c59..ddb22b50490035779904d4cab20e2fee7e0f9657 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_display.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-> @@ -196,6 +196,7 @@ static const struct of_device_id msm_dp_dt_match[] = {
->  	{ .compatible = "qcom,sc8280xp-dp", .data = &msm_dp_desc_sc8280xp },
->  	{ .compatible = "qcom,sc8280xp-edp", .data = &msm_dp_desc_sc8280xp },
->  	{ .compatible = "qcom,sdm845-dp", .data = &msm_dp_desc_sdm845 },
-> +	{ .compatible = "qcom,sm6150-dp", .data = &msm_dp_desc_sc7180 },
+> Please take another look, we even have renamed qcs615.dtsi to sm6150.dtsi
 
+I checked on recent next, although not latest next-20250716. Commit msg
+should explain that. Any qcs615 feel then inappropriate here.
 
-So devices are compatible? Why are you adding this entry instead of
-expressing compatibility?
+Subject says clearly "on QCS615". Patch does something completely else!
+
+For gods sake how anyone can understand this?
 
 Best regards,
 Krzysztof
