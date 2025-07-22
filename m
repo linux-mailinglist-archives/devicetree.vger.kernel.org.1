@@ -1,134 +1,163 @@
-Return-Path: <devicetree+bounces-198552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09240B0D57F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:13:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E3FDB0D586
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:14:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDA9E3AE59C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:13:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5689C3BA1FF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65B352DC33A;
-	Tue, 22 Jul 2025 09:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 727A82DAFC5;
+	Tue, 22 Jul 2025 09:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cOmEVJ0E"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="u/nfxHQb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 388BE2DC33B;
-	Tue, 22 Jul 2025 09:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 647E628A41B;
+	Tue, 22 Jul 2025 09:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753175628; cv=none; b=CZXEal/Y8v5ad6VJgHZEiX44kym7paw5qkoOLq0wHV0+2uMoRL/18TEpbdJeSTwNYfLCu/nlxgfHlZQHeo3HtevwlZsvIuXAV6J4eJE+kTc+QEmW0GafTpkgvUJ9cxzAG2UdC9wdSLY6gVxgigOxJYmW1YDci7MDBjUqFLa0rmc=
+	t=1753175653; cv=none; b=FwxaS52/gY7/GDu0tuz/htAuhdjDhnj8UPHVjdI6kMWxOsTT+BnH8iN1Wp6i7qyRBpiq7NqyX3aT7/BfhbqLJJqGFxablVafV0k3PpfSG9D1U7qXmdcOjHKq1dLdRYUx5WzJhyPTZqmypzoWrTljtGrIYOTJx1lEjALtmMhBWcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753175628; c=relaxed/simple;
-	bh=KRsv54cqTUpZUL0BV5Mw8aYJWJw4xyvwVfuzWnaYFFw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mKp0flWG7GxalF6q0j4kNfwri3wTs8mRX/Ufk7nhJf7BT1+z9FYqqaP4P07vvSfpLSHS9i1RfM6LWA318y4Lj7g1PNvVC0mPkPXhg8qIoiFh+kuijv+LxU7diAWyW4/DYrlm90L+OSWsYA+lC+9aBmADmuumdeypxqMz7hYf8eU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cOmEVJ0E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F381C4CEEB;
-	Tue, 22 Jul 2025 09:13:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753175627;
-	bh=KRsv54cqTUpZUL0BV5Mw8aYJWJw4xyvwVfuzWnaYFFw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cOmEVJ0EyAV7KzOnn44MHaZXzjabPuXnLbXJtS8kOPS+b5lDpbBBRKGa/M97/WlY1
-	 1Q98Z6G4XpXd1kqr8NnpSGv9BMH61xsKdEPLbCZOS1nT6tQPHEsu4Hr+CYFofu67rK
-	 e1Ks+Sh36r6+AYcm95gB8GhWL60Ps9a3VBInhsBiJgFLIHxF3ZCJiHjy76WXLx/yoD
-	 HTiwUDWJ2vmsdJ8zR79A+bmYzKqr5VelKclSNLg/i+n4hNbnYilDDTicOrkWMZMt86
-	 +dddeWgfGDaKCFP9OZ4dFFvoddjukFj1VcQYprPmkOwZA/hv16zZghomWEdnwZUY3a
-	 vSiiiyNcm38sQ==
-Message-ID: <e15df8ba-f058-4eb2-919c-bc327290e66a@kernel.org>
-Date: Tue, 22 Jul 2025 11:13:39 +0200
+	s=arc-20240116; t=1753175653; c=relaxed/simple;
+	bh=6I2J+jle/ELUqLINDZ2CMKxGZXVtXDUdJEEej3F4Gmk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ox007gZanCxjxJThw7WaUE78zNeUSsGWmF2hvIjYVzIdfSr5B4nubF02Sg0iyJdJfBaoeOXVZVHQhxOvCfyguvRX4VFmyJBP4uxwheJHYA4HeGjEDu5F1H8mytQvfXulSKP61/j8VdHOXy1VOZQ2KDNMuHWgx9w/yCMpUWf8//U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=u/nfxHQb; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=xnES4CkHik4n+XCGU7bJoql3BaxRdweXbLtakclHrz4=; b=u/nfxHQbWSa54l6Q24jW2OAPoX
+	6Yj4+uH0hBvTF+kb6dENrFod4oSsYqikrJzzCEzGxBoEtih/Zm5LtJDHAZz3mPqIYIyTZbZC9AVts
+	FJgoWVYUEL3EqlXJthKYUSxUQadSpYz9xqY5TxZha6h/I5HPyPMMdU9YzX96ch9JsIWpPGG2XI/mh
+	rTntgtN0DsVjmK1lSXDYXlUc8IdGkV68hmBuwOltT9+ymQhFFnlomQHoapJWhQ19w1VhArh0+OsC6
+	PAOLE2tr9DgBWoaryTp/9sVO06DPoEhKUEZYZdVabSXOt3rgWY/yjJCERjHz+n+XhKh8UP53zYLtJ
+	cFjESOiw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36626)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1ue94M-00088E-02;
+	Tue, 22 Jul 2025 10:13:54 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1ue94H-00072H-35;
+	Tue, 22 Jul 2025 10:13:49 +0100
+Date: Tue, 22 Jul 2025 10:13:49 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Tristram Ha <Tristram.Ha@microchip.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: document st,phy-wol
+ property
+Message-ID: <aH9WTYwty-tso66J@shell.armlinux.org.uk>
+References: <20250721-wol-smsc-phy-v1-0-89d262812dba@foss.st.com>
+ <20250721-wol-smsc-phy-v1-1-89d262812dba@foss.st.com>
+ <faea23d5-9d5d-4fbb-9c6a-a7bc38c04866@kernel.org>
+ <f5c4bb6d-4ff1-4dc1-9d27-3bb1e26437e3@foss.st.com>
+ <e3c99bdb-649a-4652-9f34-19b902ba34c1@lunn.ch>
+ <38278e2a-5a1b-4908-907e-7d45a08ea3b7@foss.st.com>
+ <5b8608cb-1369-4638-9cda-1cf90412fc0f@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/13] dt-bindings: display/msm: Document DP on QCS615
-To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
- fange.zhang@oss.qualcomm.com, quic_lliu6@quicinc.com,
- quic_yongmou@quicinc.com
-References: <20250722-add-displayport-support-for-qcs615-platform-v2-0-42b4037171f8@oss.qualcomm.com>
- <20250722-add-displayport-support-for-qcs615-platform-v2-1-42b4037171f8@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250722-add-displayport-support-for-qcs615-platform-v2-1-42b4037171f8@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5b8608cb-1369-4638-9cda-1cf90412fc0f@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 22/07/2025 09:22, Xiangxu Yin wrote:
-> The QCS615 platform is based on the SM6150 SoC. Since the DP hardware is
-> shared with SM6150, the compatible string qcom,sm6150-dp is used to
-> represent the DP controller on QCS615.
+On Mon, Jul 21, 2025 at 07:07:11PM +0200, Andrew Lunn wrote:
+> > Regarding this property, somewhat similar to "mediatek,mac-wol",
+> > I need to position a flag at the mac driver level. I thought I'd go
+> > using the same approach.
+> 
+> Ideally, you don't need such a flag. WoL should be done as low as
+> possible. If the PHY can do the WoL, the PHY should be used. If not,
+> fall back to MAC.
+> 
+> Many MAC drivers don't support this, or they get the implementation
+> wrong. So it could be you need to fix the MAC driver.
+> 
+> MAC get_wol() should ask the PHY what it supports, and then OR in what
+> the MAC supports.
+> 
+> When set_wol() is called, the MAC driver should ask the PHY driver to
+> do it. If it return 0, all is good, and the MAC driver can be
+> suspended when times comes. If the PHY driver returns EOPNOTSUPP, it
+> means it cannot support all the enabled WoL operations, so the MAC
+> driver needs to do some of them. The MAC driver then needs to ensure
+> it is not suspended.
+> 
+> If the PHY driver is missing the interrupt used to wake the system,
+> the get_wol() call should not return any supported WoL modes. The MAC
+> will then do WoL. Your "vendor,mac-wol" property is then pointless.
+> 
+> Correctly describe the PHY in DT, list the interrupt it uses for
+> waking the system.
 
+This would be a good idea if we were talking about a new PHY and MAC
+driver, but we aren't.
 
-No, you cannot use other SoC compatible for different one. Look at
-qcs615.dtsi and board DTS - there is nothing saying that this is the
-same die.
+Given the number of platform drivers that stmmac has with numerous
+PHY drivers, changing how this works _now_ will likely break current
+setups. Whether PHY-side WoL is used is dependent on a
+priv->plat->pmt flag which depends on MAC capabilties and also
+whether the platform glue sets/clears the STMMAC_FLAG_USE_PHY_WOL
+flag.
 
-Best regards,
-Krzysztof
+Yes, it's a mess, and it could do with being improved, which will
+likely take considerable time to do to shake out any regressions
+caused - both in stmmac and PHY drivers.
+
+I bet there are _numerous_ PHY drivers that report and accept WoL
+even when the hardware isn't wired to support WoL. For example,
+AT8031 reports that it supports WAKE_KAGIC irrespective of whether
+WOL_INT is wired, and whether or not the INT pin is capable of
+waking the system. I don't think we have any way that a driver can
+determine whether a particular interrupt _can_ wake the system.
+
+The problem for stmmac is that the PHY driver may support WAKE_MAGIC,
+but so can the MAC core. If the PHY isn't electrically capable of
+waking the system for whatever reason, but the PHY driver still
+reports that it can (like AT803x) and we don't program the MAC core,
+then under your idea, WoL will no longer work.
+
+The only thing I can think we can now do is to have yet another
+STMMAC_FLAG_xxx which platform glue can set to enable a new behaviour.
+Yay, a driver with multiple different behaviours depending on flags
+for the same feature.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
