@@ -1,176 +1,266 @@
-Return-Path: <devicetree+bounces-198572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF6AEB0D6BD
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:04:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DEBFB0D6D0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:06:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 210B67AE0F0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:01:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC6B1544C27
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:03:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 811402E6118;
-	Tue, 22 Jul 2025 10:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8F5273813;
+	Tue, 22 Jul 2025 10:00:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F274qOZ5"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="ECXq4U9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 759102DCF4F
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 10:00:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17B5C28C5AC
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 10:00:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753178404; cv=none; b=ZR0MJc81HlMuah+KmSRmnmgPprRm9BsIvyUaqTiBQvoJAcSiaexDBQ/p4YIbIIDU5I8KgUSgrvhyTjU7sbaeoWnbYaVovSGeeqYPBrZoHllJne6NT1m6JRbSRQkq4t3HIbkzrkqOU5N0jg9CsLUzICAbR9jy0ZtGza7NgGITyg8=
+	t=1753178421; cv=none; b=fzsTLuuHb4ZvIxLgCJ04GLhWlgcyDQOrlmo2OZMZyzl15vrPhhbFeGLCdV7xJn/5DzfRvEN7s7VBGjocK0okXTmdqKjrcTI27gZvQthlIxQsZoHB7pKsTyYJ00pgOk0tNQgNtkx/cXKaawIhOPxjntH8ZBgkVlzIt/29595m+Js=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753178404; c=relaxed/simple;
-	bh=l9j2EV2tpH6xu+YOscGGd1tAx9tRjSTtnP2IboucQDk=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ns7JURp6Vnc/08P8Fbl5eM929/WgWEMyQcY/WwSW3I684BnoHWsjqiY2Ra9pB+r1LCk8h2Dbduntjzic9NZ8IEGPJI2LEGeqLtnZuYdWdkMaWOSBACLEUuZ+NmA3nU4A5RXLO78cwG6dJKoC6yRJlWMYq/hN5yU/dBB4O1yoC70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F274qOZ5; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45622a1829eso16489195e9.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 03:00:02 -0700 (PDT)
+	s=arc-20240116; t=1753178421; c=relaxed/simple;
+	bh=GO4fTpcA70KLXWXTwF/R+wWOcX84CBX2JoHlDUkOOFc=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZdBwmwHAh3I2nHMlqGQ+CLfOe6KpWS27e6szvqLJlBQnBsZr+pFIH7E2zZbPckfMn/mUQOPQVkh2i0itvqoVU19LnpLh/20B8Ov0bPjbLFByeNlYSlub2mbvzU4SwYuSprsMfqbVvSOiIOe2OFZbIhSvRBWwU2vLw9JNlElA4hE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=ECXq4U9E; arc=none smtp.client-ip=209.85.208.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-60702d77c60so10300069a12.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 03:00:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753178401; x=1753783201; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B9mVbnLu7a1SKXyW78ldUvJa6+GK0T8z2V8R3kTNrD4=;
-        b=F274qOZ5agzEmzUN7yQ8cFkFMCdb65/i3OlE2Cqe/K81aZQPq4bsEADh9BMesOEQYD
-         IHV9tS82OFkQGqjEPCDUwryjMglTgw2w2WwREREAiCIFm0NtStNHmjMACdH56DBGdKQN
-         6tiok5z4R8gR+1UyVQTXd+uWYncS0lJ5qViXemn/N7Bb07q7I7gmGX7D/InNVNxuraVs
-         sTqLi4kGPPGwmFs2GoXuJbT820vpMpSCnTspHaP0D+0TNCrSThZrZz5PMubiFNCFOMv9
-         qm97iFQ8evKPh+J3mccoxx+WOpepkdbU3ORdnQb3fqinbV/7nWIJlMtIZnDbs848hqsD
-         UuFg==
+        d=suse.com; s=google; t=1753178417; x=1753783217; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VGtZBGKyhIZ2qBmToRF5pPNhe8YR+CyLhhQQdpkOTOg=;
+        b=ECXq4U9EqjiYoD92XY8txulV2656zxNWZBZNvecwO2Ox476zJvJdrxEI4XpspKPhBM
+         AjdpcYsxVQPOHgew4FB2dQ/fQVIeHjcMzbg9InaSoHJ1xz6BbUWo/j9xzPt9S51xLGU7
+         oZOFKieouTS/T6zidl9+3i0Pa3nllJUCtEG5Bup8hcEVp7NilOUP1n2ci/TE2OiVtkwg
+         DnO5B0Vp2gYYmT4IXSbXTi+9QBnXlkSlW2nGnodXwKYluxPx4nOZs8qpK8NhgH2JtigL
+         vqXnI9IRDPVtep3z9TlGIMj8WT1UyjWlyaQNK4GsHfznyTjNi/5IvMPc/3qSNPxIRzkC
+         ZeBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753178401; x=1753783201;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=B9mVbnLu7a1SKXyW78ldUvJa6+GK0T8z2V8R3kTNrD4=;
-        b=k2YmOFJmueQWBqeuvi3oulMdz/dno/w/SKaRZLkk4tomJN2TqfOkObPlU1pV412QiG
-         iYW90kenbmThPIuwtQizXQaM3B3F8RAYDD1Ystx6qxDRUYeztPLDOOcTEl8dg/HS0PJJ
-         pXEKDcjUmsQ2Dav2sVp2916LvJzMrL1R6sutIEkyzuA5tB0wfOlqIk6h4cH+l+d04+eE
-         MaJvCUeIb5abGXK9yuJygvcb9rYcyLfKS5rECHOnLpQ7XzaEpnr0CM0gIfCT24o4HKpn
-         4Ol6kUzfnupkZ8+RvZms95VmwdRce8207omlKWyJWn5bi1zHexn9Px/dVMSBO/uRrfOn
-         0Stg==
-X-Forwarded-Encrypted: i=1; AJvYcCV7F8eDlFSuoeIAhGNvNTt+1DN6hAU/T3Sw4pNc3v9+bx8Y48hXAiOmwugOF0A4G1Fkk5AbrfJCPIEA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkSy6aC/jyTrV4BJXTbFE9kbcWSpr57J0KvGOk+gI0ryJvDLun
-	OZGcoQw9wqVPL/r27PiUSDVo5vSMWXew4FnRsnWAjaqbZplr7VEn6X0hT6a/dx0dT7M=
-X-Gm-Gg: ASbGncuKSJBumyOf2Jv/A/ULY4Z6bUEwMev/qhY15IhHfYogrHVY1ne1sJ9EvQ5WpBr
-	EXKCgz9/jKvv6VPlVDe4DkMzLyUZA4ZeD7NGILtikxDv6YIgOBjHE3K0KqxPqt9Q90Gh8roOZts
-	Nn6rZbagmnWP5Tb7a2QDiD3UqTGl+pAV6vsYoAqSubO2fbqCeWJiVrpSL1yjz9n1Me5S/+hCt6h
-	WMTSXDgKFBdauJgsVtwG+4x+W/Kil5OhOysIbjb5G9EHkpTtBe86hCy7LqVhrdNDRV51kt44qJ0
-	9643TYrD9ExZ090QFZ/WD1ERb9qnVkKZQ0PNWyz3KvSsZAtn0G5zT4MYQisQ328Kx+AMeeUbdFl
-	CX+gdtht7XDvdgGkz0KKaMQg0ju1Nh0PRTgtIl+U83XECqfmppw4hLE6TjS0KlBgs723d6r2fwS
-	k=
-X-Google-Smtp-Source: AGHT+IGcJyJZcZl6JmFdEcmEQZt5L5wILaf0S4QQxyjYW5ekrqujhnwASeqFRVCxYUAXxFw93P/L3A==
-X-Received: by 2002:a05:6000:4b09:b0:3b5:f168:5e60 with SMTP id ffacd0b85a97d-3b61b0f1eadmr11797144f8f.19.1753178400603;
-        Tue, 22 Jul 2025 03:00:00 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:bce4:725d:6922:d1ba? ([2a01:e0a:3d9:2080:bce4:725d:6922:d1ba])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4562e88476csm189714485e9.21.2025.07.22.02.59.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Jul 2025 03:00:00 -0700 (PDT)
-Message-ID: <84eea632-02d8-4b7f-a4ca-36ce7159a170@linaro.org>
-Date: Tue, 22 Jul 2025 11:59:59 +0200
+        d=1e100.net; s=20230601; t=1753178417; x=1753783217;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VGtZBGKyhIZ2qBmToRF5pPNhe8YR+CyLhhQQdpkOTOg=;
+        b=i43eGoICkxUPTnj3lHGhfjODoSRCWceEv52SY5no4TF///dHr5Rup2i/iUInLC8OAh
+         rm+MUYbkX5q/31oRNaMfpaneSzCH7x1CY26hAzgND6dIuAssZoXbd3bIxjA7iOD2n41C
+         eNNrxnkjRGEH43fPl+y1G4cLzXAnh9pJkU+Qn2bhZL4L8azrsplkUnptsgIKhF7V3XGp
+         NIXWT8KUiiGUXydjWK9Bv12xUY0fvJtEzbwOQqWzBZ+mNxoiscupD4q4lBGEr/nqig4Y
+         oc5EwLDdnoTMCetBU7VEgktUFXW0aTd6vyeJ+NGQNCPof24Kb53FHxNbv1qQHq/GYZMQ
+         F4DA==
+X-Forwarded-Encrypted: i=1; AJvYcCXllbfHIfRxe2oSMVGowLpaC0SjWFtdemHDHJg13J6drwdm5Q4LyOxxlwL8t7QkcSRo7kPUnnYv5tZg@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrL1da4BtE3t+HW8TKB8KEewrsNfMhbRpeY8pKXzFHSsfecNOV
+	TAZ6kZiYdMkRdlJbal9Sqjp0ECxibOmi9bedtjVwb0/b6VL5qfPtsy31HrK6MCKwjhc=
+X-Gm-Gg: ASbGncsv9pVUEH2pEmMpxGjwihQejWqcpCxKCeF9NWTolmskRG4+JosjfNA814wIf22
+	AfqA2XP1N6LiZe1C1oxk6VpbpPLB57v3+bdjWsGEmK7RXGLFPCNTfIraImzT9PfiKrgKaTa6YLU
+	KaSIll9OfXkVrRrajBspqeYeTPdHlOzk7zBLiVviqPy0UJxMqbLYNxNtSQ+j0J4LXkeBgwt1P6N
+	vlaisiN+KJKmB8Uqo29QWRSwym4YvASn5UV5b55QxQ4TCiXT+OAquU/GpYd2mxsc6TnbBnmiggq
+	Dn1RqWu5p/z5bzk5lABaHRpNpmR9iU5g42DAgzqLSMRW+9+ShK/Or03kEx1yxHCZkMwBy5vNAD5
+	cwvHAIDcMkMllppVlQCBuHbDHeWU7bG34kVwqCFJki3XucvWv+0xd722uxh25o2I5VERbNxBUEy
+	md+tQ=
+X-Google-Smtp-Source: AGHT+IEYByDblsbsdG7luqkRNEVSZPdXvQIlF7+Af1ARSZWqI4XkQYoHGoB5zzWSTWUWze1gc9PnFA==
+X-Received: by 2002:a05:6402:520c:b0:608:a7a0:48 with SMTP id 4fb4d7f45d1cf-6128262b18dmr22272866a12.28.1753178417281;
+        Tue, 22 Jul 2025 03:00:17 -0700 (PDT)
+Received: from localhost (host-79-47-155-191.retail.telecomitalia.it. [79.47.155.191])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-612c90a8937sm6723101a12.64.2025.07.22.03.00.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Jul 2025 03:00:16 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Tue, 22 Jul 2025 12:02:01 +0200
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, florian.fainelli@broadcom.com,
+	wahrenst@gmx.net, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, iivanov@suse.de, svarbanov@suse.de,
+	mbrugger@suse.com
+Subject: Re: [PATCH 0/7] Add pin control driver for BCM2712 SoC
+Message-ID: <aH9hmVA2cEJipYiU@apocalypse>
+References: <cover.1752584387.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI D-PHY driver
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250710-x1e-csi2-phy-v1-0-74acbb5b162b@linaro.org>
- <20250710-x1e-csi2-phy-v1-2-74acbb5b162b@linaro.org>
- <11b573d5-ce4d-476c-b94c-216d427cd838@linaro.org>
- <08261aa4-689b-4d6b-bfd2-221c1976d254@linaro.org>
- <a7f64b31-4767-4281-b452-a2bc5351d745@mleia.com>
- <c93624bb-ee7b-45ac-8b53-b5391f11c9c9@linaro.org>
- <eac3a877-a4aa-4789-9013-ab8b6c91e0f3@linaro.org>
- <0a12879f-dc4a-47fb-87a0-ac4b8bcd4d75@linaro.org>
- <53a19b1d-5665-4937-a07c-5dd1fcde06c5@linaro.org>
- <3b760685-97db-46e3-80a3-7fad69ad31cd@oss.qualcomm.com>
- <94b75177-9401-4e0c-966b-5847a29cb6f7@linaro.org>
- <427548c0-b0e3-4462-a15e-bd7843f00c7f@oss.qualcomm.com>
- <3UXVZ6ANM9mDjVdMV4SXsiIx_pT3S1lp3RC_Q7mh_o7jF2dpYsni1Sl2TAWv6OCMCRTFmi9aE6BxDquGkOnwEg==@protonmail.internalid>
- <8b908a20-0bf3-447d-82ea-a5ecee1bf54c@linaro.org>
- <57501e81-7e9c-4cb1-9a37-18307d1e06ca@linaro.org>
- <33d76d7f-ab14-4e76-8ffb-eb370901a046@linaro.org>
- <4edefe21-27b6-4884-befa-ddb451bb9376@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <4edefe21-27b6-4884-befa-ddb451bb9376@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1752584387.git.andrea.porta@suse.com>
 
-On 22/07/2025 11:08, Bryan O'Donoghue wrote:
-> On 22/07/2025 09:32, Neil Armstrong wrote:
->> The whole key point here is the combo mode, as I understood the combo mode feature
->> makes the PHY lanes available as 2 separate streams, like if you got 2 "controllers"
->> attached to the same PHY. So in fact, the PHY should have a single node, but 2 PHY
->> interfaces in combo mode.
->>
->> This makes all this controller/phy model very complex to handle and add a lot of
->> logic in the camss side. Moving the "csiphy" as an independent media device that
->> can declare up to 2 endpoints in combo mode makes things much simpler, and allows
->> us to attach each "csiphy" stream to any "controller" side of camss.
+On 20:31 Tue 15 Jul     , Andrea della Porta wrote:
+> Hi,
 > 
-> I think there should be a generic extension to PHY/linux-media to support that instead of something Qualcomm specific.
+> The following patches add a pin control driver for the BCM2712 SoC and few
+> pin/gpio Devicetree nodes for Raspberry Pi 5.
+> 
+> Device driver is follow up version on what Andrea posted in April [1].
+> 
+> It is based on sources from here [2]. I just made few cosmetic changes
+> and addressed review comments from earlier submission. I don't have
+> documentation for this controller.
+> 
+> Patch 4 wire up power button on RPi5.
+> 
+> Patch 5 adds WiFi Devicetree node for RPi5.
+> 
+> Patch 6 adds Bluetooth Devicetree node for RPi5.
+> 
+> All this have been tested as kernel was directly booted RPi5 via
+> kernel= config.txt option and cmdline.txt file with following content
+> (Note I am using Tumbleweed RPi raw images)
+> 
+> # cat /boot/efi/cmdline.txt
+> root=/dev/mmcblk0p3 rootwait rw systemd.show_status=1 console=tty ignore_loglevel earlycon console=ttyAMA10,115200
+> 
+> With all these patches Bluetooth and Wifi are working fine (tm) with
+> firmware files provided by openSUSE Tumbleweed.
+> 
+> All comments and suggestions are welcome!
+> 
+> Happy hacking!
+> Ivan and Andrea
+> 
+> [1] https://lore.kernel.org/lkml/f6601f73-cb22-4ba3-88c5-241be8421fc3@broadcom.com/
+> [2] https://github.com/raspberrypi/linux/blob/rpi-6.6.y/drivers/pinctrl/bcm/pinctrl-bcm2712.c
+> [3] https://lore.kernel.org/lkml/20240605120712.3523290-1-florian.fainelli@broadcom.com/#t
+> [4] https://lore.kernel.org/all/bfc60a7e-54d2-48a6-a288-4fe76d66507a@gmx.net/
+> 
+> 
+> CHANGES in V2: (all patchset is based upon linux-next/master)
 
-Can you point out what's missing ? AFAIK it's more a matter of proper representation of all
-the CAMSS components with a proper ports/endpoint graph design that adding new kernel APIs.
+Sorry, I've just realized this patchset has been sent with no V2 in the subject.
+Anyway, I'm preparing a new revision (which will be V3) after amending it after
+Rob's automated script warning.
 
-Neil
+I'll also split the patchset into two, oen with binding / driver for SoC pin
+controller and another with thie remaining DTS related patches.
+
+Many thanks,
+Andrea
+
 
 > 
-> The first task is qcom/CAMSS specific which is separate the CSIPHYs out from the CAMSS block - done in this series and do so in a way that doesn't break the existing ABI - done in the context of adding Hamoa/x1e.
+> --- PINCTRL DRIVER ---
 > 
-> The second step should be to extend the existing linux-media and PHY API to support multiple sensors on the same CSIPHY in a generic way.
+> - dropped bcm2712_c0_aon_sgpio_pin_funcs[] and bcm2712_d0_aon_sgpio_pin_funcs[]
+>   struct array definitions since they are not used anywhere.
 > 
-> If you want to ship me some hardware, I'll help.
+> - dropped 'arg' variable in brcmstb_pinconf_set() as it's not used.
 > 
-> ---
-> bod
-
+> - updated copyright info at the top.
+> 
+> - several changes in the declared macros. Renaming the macro name and the
+>   macro parameters to better reflect the semantic.
+> 
+> - reworked MUX_BIT() macro to be more streamlined and easy to
+>   understand.
+> 
+> - added PAD_BIT() macro to avoid code duplication.
+> 
+> - renamed 'lock' variable to 'fsel_lock'.
+> 
+> - added some comments about non-existent pins on D0 silicon revision pin
+>   declarations.
+> 
+> - brcmstb_pinctrl_fsel_set(), brcmstb_pull_config_set()  and
+>   brcmstb_pinconf_set() (and functions that call them) can now return -EINVAL
+>   as error.
+> 
+> - added myself as MODULE_AUTHOR.
+> 
+> - dropped the 'brcm,bcm2712-[aon-]pinctrl' fallback compatible. Only c0 or d0
+>   compatibles are permitted now.
+> 
+> 
+> --- DTS ---
+> 
+> - moved 'clock-frequency' property from (uarta) board dts node to SoC dtsi node.
+> 
+> - added 'brcm,sdhci-brcmstb' compatible and 'clock-names' property to mmc node
+>   to avoid dt_binding_check errors.
+> 
+> - added 'brcm,bcm7445-gpio' compatible to gpio node to avoid dt_binding_check
+>   errors.
+> 
+> - renamed all pinctrl pin nodes as per yaml schema (*-state and *-pins).
+> 
+> - changed 'brcm,bcm2712-*pinctrl' to 'brcm,bcm2712c0-*pinctrl' since the
+>   former was more of a fallback and does not reflect a real silicon revision.
+> 
+> - moved status="okay" to the last entry in 'uarta' node.
+> 
+> - removed 'local-*-address' property from everywhere.
+> 
+> - dropped 'skip-init' property in 'uarta' node since it does not apply to
+>   linux kernel.
+> 
+> - renamed 'pwr-button' node to 'gpio-keys' and 'pwr_key' node to
+>   'power_button'.
+> 
+> - dropped an userspace related 'brcm,gpio-direct' property from gpio node.
+> 
+> 
+> 
+> --- DT BINDINGS ---
+> 
+> - binding schema file renamed to 'brcm,bcm2712c0-pinctrl.yaml' to reflect the
+>   compatible name.
+> 
+> - dropped the 'brcm,bcm2712-[aon-]pinctrl' fallback compatible. Only c0 or d0
+>   compatibles are permitted now.
+> 
+> - added example section.
+> 
+> - moved allOf: block at the beginning of the schema.
+> 
+> - dropped some unnecessary new lines.
+> 
+> - replaced current layout to describe the pin subnodes with patternProperties
+>   (nodes now end with -state and -pins).
+> 
+> - expanded the schema description to give some context about STB family of pin
+>   controller and added some details about C0 and D0 silicon variants. This is
+>   also reflected in the commit message.
+> 
+> 
+> --- MISC ---
+> 
+> - enabled CONFIG_PINCTRL_BRCMSTB in arm64 defconfig.
+> 
+> 
+> Andrea della Porta (1):
+>   arm64: defconfig: Enable BCM2712 on-chip pin controller driver
+> 
+> Ivan T. Ivanov (6):
+>   dt-bindings: pinctrl: Add support for Broadcom STB pin controller
+>   pinctrl: bcm: Add STB family pin controller driver
+>   arm64: dts: broadcom: bcm2712: Add pin controller nodes
+>   arm64: dts: broadcom: bcm2712: Add one more GPIO node
+>   arm64: dts: broadcom: bcm2712: Add second SDHCI controller node
+>   arm64: dts: broadcom: bcm2712: Add UARTA controller node
+> 
+>  .../pinctrl/brcm,bcm2712c0-pinctrl.yaml       |  123 ++
+>  .../dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts  |  134 ++
+>  arch/arm64/boot/dts/broadcom/bcm2712.dtsi     |   48 +
+>  arch/arm64/configs/defconfig                  |    1 +
+>  drivers/pinctrl/bcm/Kconfig                   |   13 +
+>  drivers/pinctrl/bcm/Makefile                  |    1 +
+>  drivers/pinctrl/bcm/pinctrl-brcmstb.c         | 1195 +++++++++++++++++
+>  7 files changed, 1515 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm2712c0-pinctrl.yaml
+>  create mode 100644 drivers/pinctrl/bcm/pinctrl-brcmstb.c
+> 
+> -- 
+> 2.35.3
+> 
 
