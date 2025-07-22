@@ -1,336 +1,250 @@
-Return-Path: <devicetree+bounces-198519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F29B0D465
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:22:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32964B0D4B6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:32:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96DC13B01FE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 08:21:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3F551899E14
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 08:32:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1531A2D94A3;
-	Tue, 22 Jul 2025 08:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F8828B3E8;
+	Tue, 22 Jul 2025 08:32:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="U5jjY7Fk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xfjmor6s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DF682D8DCA
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 08:21:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583B922F177
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 08:32:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753172509; cv=none; b=ukgRmc+4hO244Vj2IFUTqGILc+O3J3Y/9kUOHwlTrSwEFGo76hylRzMQ6Czf3gRwbAFgyYW0wmeWwpSNrCASfJ46AO2DpdGpxPNlNetWdrzQtgQ8t+OF5feJVF1nqqdRipFAFs1rl+Fcx5Rezr5O7oukIV4W/XL8wnSF/mE5CKA=
+	t=1753173142; cv=none; b=hpCEscTJGtpnjyShnwY7cFic1QEQhDlTK/xHLfbvvD0Ztu2jkPRVP7okUaOJTXXjPE4gGn3NKYxjBLXfewiLWBVGLhfdEhvYkPEwY5Js3/RaaO7AJB+ePtajDdoDRMyP+GQ4SaotyJ2SR3ahXMik6Q3jgI9uDktnesorLSNvXZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753172509; c=relaxed/simple;
-	bh=5hvUpuBFb5PZsSWX4mBVrbwRXF4hd7R1SuSVEmIaJ5s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BnA94E1V0sGDDOhoU3WXoHWi7Lqwmh0Xceo7NI+76hfRtRr3jEbRiFJuFC1n+v856GHIx45SFpo9dEc2GU3FWNDBe2cuPZhGcNk0tBZWZblApShaswb1S8EhkB6IwpSMVvJLB61l7pZnlGE9wga0baihKf/HuktQNM7rQFIkFkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=U5jjY7Fk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56M4wSJf015766
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 08:21:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Vqyel9XygKMRzI4rAmsYp1KMAyGT8TGuGdi8SAKMlKg=; b=U5jjY7FkwJpxcCSA
-	ZQVxZurHg+1jMHia+nN8QLvlUqXhburXalmi7HnNaF+/ra00ybvylReuO+VcTqxv
-	S89VCDyojhAjDDYzFNuPnoEQ6qPPeL5HJgE3eA5aN6L8kmKPCz9uTA51MmaprioM
-	9JAJ8P8vbkXobmwcXO6obGKZiPjyFKtKngDJV2+/Gp82/MetOgK1VzSHLXK8qUzW
-	MNnl/dyvEZwhccZ4vQFj5e4QlyPOqJjHeMDNj7eICKmui620Dv+BjFkwA8RW8T4D
-	fzLkHshl3IpSc33t4PNbePHCg0Cndn5GCBU788vtSxzkdRt05Vu+3EGs80MzNFJe
-	PoSyaA==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 480451ghkg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 08:21:45 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-235e3f93687so76769185ad.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 01:21:45 -0700 (PDT)
+	s=arc-20240116; t=1753173142; c=relaxed/simple;
+	bh=rAgS6t6wG20qiV2by2xORtgcZUviNn8FpaxxBJIUk60=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=bxIojQPYbmWfJxIdzv1+gHrd/O8k3c5VHBwDae09fItMCKeNNoZxVSlBS0ootKFeMrwk30s9i/guOUMiw3+WyCmccMz/oOuueecqcO3Xg/nUFo8rupqp3bAWLhLQe8djzC3MGAsYbULhgI9uUhrKPeQGwTAQuMzaFbIT3o9FhO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xfjmor6s; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-454f428038eso44519855e9.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 01:32:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753173139; x=1753777939; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EmqRihQE4cEXI6g+dRmCaPE8w5nJ7dL9XpOBOkXpgns=;
+        b=xfjmor6svATxlZ8LmTGr1Kz+UJlTuyf42SExZT6xP2k5IRtpvKYnU3zc51KFLKd4LY
+         DhO+a/BU9307Tg1eP9znKspXzKV7qvox0KHNs3UKr2FJ9Z9j0H74kz8W1JiYtDS/rUY0
+         BFpsprylV4JvPDkot+SlkOZd6NKQqDjnNxCIKn6FY6ucsfyd0Sbb7Ydk4VJ3xdEm1ReE
+         bcLaxrGmYCSfGeHoHokKxIJ5LjuIFRGv2pwIHpzzr6gj73A7fPxP+SEtFofU7cp49AFu
+         riVtijoonipwwopdDsXELOX+ygzJAwDGgj6PNZkIxK7xv5Wpqb3kX6+0PLhP8vH4TcPo
+         WiYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753172504; x=1753777304;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Vqyel9XygKMRzI4rAmsYp1KMAyGT8TGuGdi8SAKMlKg=;
-        b=csBOrZlRzk9HJlptcfbiSefjhUPX5ZNBOs0NfDr1puEvdazcKI1BVXcWfYkducDhcW
-         mcPSvyjV5wHV8pH1Bj+er8diktorf9zFPDbmDFItRtyGFyLr2dlYjTaFz/jTYAMuYB6n
-         nClRfxJhrv15TMHkRe7ZRmDi3kNKMWLsWGCdi5cNWwxdOYQf4bY47npcLRqwSSRdLemX
-         fcOXt9kDn27wRvzJ0l3y8nbgl1LR5wkrGPGv3GYsfqGLhwi7u5MIEof+UvKvkdPfuO4v
-         HGfHhfdC8E4wdsFIb/+x3MszNgjDqYBq3iUEhIsgEQkoP+vA852ahAscyT2KJP3Y2yS8
-         jDVA==
-X-Forwarded-Encrypted: i=1; AJvYcCUnbyXWRSn8qMFwifx188y1jDWgetDjPxxJr/BpmuJhQDbpfYervwCUjU6s15+4gRsxYXwAk9ClW67E@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXiLmWM+HnOL5hhNKUeRQcxauUE3aJLN5GhK/N2XHD8t1uOVwR
-	9CVRuOO2IPu9z9kgmcWLc3UMyDapOYmlspuU/REB7ByETaOLoMQHUbs/CVemuWhZeBur73Z1IT7
-	iMvDjZTS2P95CXmgNLA+ub0GZ4yF4oZxN7RfbMhhHOVGpALl9hcTaHQHzAlrzCd03
-X-Gm-Gg: ASbGncvBAZdxCIiC/Y5oGIFiyM9Z7/Q6J396gEcpFWYbqvw/BpzjPQ1i6dOK50cyL59
-	qkicJfmBGKPgU+TupkquBxgOR7sz1Fi8stFYYiP9E79+kh58K28heLPItZKDPbpt68fjYNas9Rv
-	ZrDxaRkgT4/LH3BlnntDZucfA06QLh0HhMpqRaJOJ0VtoIeJmirvoQ36CJ57a3sMQwEf/MiKG8D
-	EAEMPYEBAZ0jb573o6vL6l2UDBA30HCkIFqDRHjbnl78eWrYNfbno6bCZxHDHQw2pvxQVqJCFUr
-	bjFYfhu2OwBMriuA1DP/WF8lYmHvjyMuFhoS/KFxQmtsBw0UZoslHQ7IyO1c
-X-Received: by 2002:a17:903:228a:b0:235:e942:cb9c with SMTP id d9443c01a7336-23e2566aa35mr355286925ad.5.1753172504493;
-        Tue, 22 Jul 2025 01:21:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF8FsN56dYpM+D2/tY1R7h30mfP41e8CtpSvQgcfOrlldDMwkinZIFDcUM1nsH+jbPBJRf6aQ==
-X-Received: by 2002:a17:903:228a:b0:235:e942:cb9c with SMTP id d9443c01a7336-23e2566aa35mr355286615ad.5.1753172504067;
-        Tue, 22 Jul 2025 01:21:44 -0700 (PDT)
-Received: from yuzha-gv.ap.qualcomm.com ([114.94.8.21])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23e3b60eb01sm70994255ad.57.2025.07.22.01.21.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jul 2025 01:21:43 -0700 (PDT)
-From: "Yu Zhang(Yuriy)" <yu.zhang@oss.qualcomm.com>
-Date: Tue, 22 Jul 2025 16:21:28 +0800
-Subject: [PATCH v5 2/2] arm64: dts: qcom: qcs615-ride: Enable WiFi/BT nodes
+        d=1e100.net; s=20230601; t=1753173139; x=1753777939;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=EmqRihQE4cEXI6g+dRmCaPE8w5nJ7dL9XpOBOkXpgns=;
+        b=xLg6yWfX4KGrN401mJbxK2hKU+NHPMPeRfEkk9QlctLyEsyAssdouTVLm3+mmXzJvq
+         Pn7J/t7LhrdMX9deAurgNeRx9zx2XQoVAho9cnCUNXIldsS+6XrYxfwQJWHQbzb524T/
+         7gVHejBsgEtd0MVGVxY/DyahJ5fV1g6V/HfnIW93pvXfhscyONcyCPcv+NiInrR/bkxB
+         QpDxtlSsTIX9mCPDPowhWwi4/UtMHXw84ZxKVmtZiU9bAlkwMF8UJsDLDunysi5m1KsW
+         nr7H9VVGhSdRnSycSDWKwaS2x8ymjossdYzP0HUrwiVU4tScXrAvhtrekuhehV0HKDga
+         6M/w==
+X-Forwarded-Encrypted: i=1; AJvYcCWWCgXv3tP9SdIGWHhAk4TzYK4WeVxCRKQwR8KOvgJR/AyJZSt9W0bdoyxU7E3QW0jftxf/aGC2jSoP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8jd5RmyzbV6BmmA48NDQ1P16mB8idurthWcTR7WkQUiK4eMzO
+	mYFzIPc7Jo8sjtoz2XKePoEJtyH0zDdrcs2x3bOAcx7bAw3xVgkjvuMLfuf4AlmPJc4=
+X-Gm-Gg: ASbGncvO6tEX9L4WUwPUJ4LMEqkOulwptpwfGiLCfj1qNPA40oPIfU65QhuD2hPbkt/
+	5ueQUc70oboTbZAm14Ueb8ePzwgpthikyv684r5o69y4fnvvp3oXi1hFUkBydc75hs5QNfmcpSR
+	pAjFCI2grjdPFXRp2jwL2jyO52CYLqRuphYX8jgYNcfvMGu7hk57tSWFRmu0QTZrfwwGtEBH5D/
+	5ylCsTPzIGJfw/YwTLeAeZbNkUldxbDM9DXOFeQZWb9ZvKT/X7ZsLv5JYwcQkl3vOKvQHtrSMCk
+	jXpKI1s6UNfV+jFrDe4VfaXk2GWkTPhyYrdZrTWYZyFyT4FZkXR4d3et4t3DdD5Dq0ghXoKBxyk
+	xCpqYRKL43DRBDD7yECrYEuMtB7aIWHO2WHIUXa502IpF8dHpEwVCwVjNBoIMb/OVWyYjvwPjSf
+	M=
+X-Google-Smtp-Source: AGHT+IGZH+cXUgzHi50tWmYat0JhKpfjMAywO/xvrjiS+LeEv8IM/8RbRGSLqjTRz/gsQJZp0D0k7Q==
+X-Received: by 2002:a05:600c:1c88:b0:455:fc16:9ed8 with SMTP id 5b1f17b1804b1-4562e3b9144mr229030715e9.30.1753173138546;
+        Tue, 22 Jul 2025 01:32:18 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:bce4:725d:6922:d1ba? ([2a01:e0a:3d9:2080:bce4:725d:6922:d1ba])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4563b5a4055sm126753905e9.5.2025.07.22.01.32.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Jul 2025 01:32:18 -0700 (PDT)
+Message-ID: <33d76d7f-ab14-4e76-8ffb-eb370901a046@linaro.org>
+Date: Tue, 22 Jul 2025 10:32:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250722-615-v5-2-4677e70e25ae@oss.qualcomm.com>
-References: <20250722-615-v5-0-4677e70e25ae@oss.qualcomm.com>
-In-Reply-To: <20250722-615-v5-0-4677e70e25ae@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Yu Zhang (Yuriy)" <yu.zhang@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1753172496; l=4827;
- i=yu.zhang@oss.qualcomm.com; s=20250625; h=from:subject:message-id;
- bh=5hvUpuBFb5PZsSWX4mBVrbwRXF4hd7R1SuSVEmIaJ5s=;
- b=dvXdPQlNy4hJHF3vPFdQRKKzIw8GWv2jBBgI22FxXv7UjEXgBWx3KgSrW+4xKurFZolFF455n
- P0NRXx1iDUPCgMs3ejUyHMa1Bm/vVGQ7BDJckW8fsqIyYc9Af+x+Y9t
-X-Developer-Key: i=yu.zhang@oss.qualcomm.com; a=ed25519;
- pk=ZS+pKT1eEx1+Yb0k2iKe8mk1Rk+MUki89iurrz9iucA=
-X-Authority-Analysis: v=2.4 cv=EIMG00ZC c=1 sm=1 tr=0 ts=687f4a1a cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=cKvnr5XBRiLjHSnd2BMA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-ORIG-GUID: vBtRRQMqw_BctU0aT__6BzMwrB3oO53Z
-X-Proofpoint-GUID: vBtRRQMqw_BctU0aT__6BzMwrB3oO53Z
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIyMDA2OCBTYWx0ZWRfX2e+wVzODpEXV
- aVF//O/7QD7I+Uyn6spKXEgkjyX6hGupCSiaarnhKuL60Cvw9hDajsYYxUowvrz9I4QAEyvfHY9
- MUQYozqqkSMPX1AUnkVOpfUh1ZVCZxkrAJyWxo9sIkokVtAJXqMESjeUwEH/X2kZwuCPXYEy6im
- /H9e76EP1kH+p3cFBdyxuzDtiXz+QHBv18HEKnt5L1JUJqy5ZZZPrTEAblpNeGrqhx2QEVNSPES
- /aUdr4wgy6yVL/Ax2veABqz36kxBtGCi2/K7vOndy9ybhCw47R44s/liEUCqaVZh57eboX33ZEt
- LQlm09+0ulpW8IF7fjhjKmWjSdfxBRzVWu93UeZOkbwjx8Ek0t0MfI8oL1bmJRII4gqpRk4VdCo
- YfcYUfEWYz+SA2Yf1+yBLN2jqZbYSefEe/YkcHLWELS7vCQKvLlHjBMknr1/l6Lfr8PXBNni
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-22_01,2025-07-21_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 impostorscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
- priorityscore=1501 mlxlogscore=999 phishscore=0 mlxscore=0 clxscore=1015
- suspectscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507220068
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI D-PHY driver
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250710-x1e-csi2-phy-v1-0-74acbb5b162b@linaro.org>
+ <20250710-x1e-csi2-phy-v1-2-74acbb5b162b@linaro.org>
+ <11b573d5-ce4d-476c-b94c-216d427cd838@linaro.org>
+ <08261aa4-689b-4d6b-bfd2-221c1976d254@linaro.org>
+ <a7f64b31-4767-4281-b452-a2bc5351d745@mleia.com>
+ <c93624bb-ee7b-45ac-8b53-b5391f11c9c9@linaro.org>
+ <eac3a877-a4aa-4789-9013-ab8b6c91e0f3@linaro.org>
+ <0a12879f-dc4a-47fb-87a0-ac4b8bcd4d75@linaro.org>
+ <53a19b1d-5665-4937-a07c-5dd1fcde06c5@linaro.org>
+ <3b760685-97db-46e3-80a3-7fad69ad31cd@oss.qualcomm.com>
+ <94b75177-9401-4e0c-966b-5847a29cb6f7@linaro.org>
+ <427548c0-b0e3-4462-a15e-bd7843f00c7f@oss.qualcomm.com>
+ <3UXVZ6ANM9mDjVdMV4SXsiIx_pT3S1lp3RC_Q7mh_o7jF2dpYsni1Sl2TAWv6OCMCRTFmi9aE6BxDquGkOnwEg==@protonmail.internalid>
+ <8b908a20-0bf3-447d-82ea-a5ecee1bf54c@linaro.org>
+ <57501e81-7e9c-4cb1-9a37-18307d1e06ca@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <57501e81-7e9c-4cb1-9a37-18307d1e06ca@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Enable WiFi/BT on qcs615-ride by adding a node for the PMU module of the
-WCN6855 and assigning its LDO power outputs to the existing WiFi/BT
-module.
+On 21/07/2025 18:16, Bryan O'Donoghue wrote:
+> On 21/07/2025 16:46, neil.armstrong@linaro.org wrote:
+>> On 15/07/2025 11:33, Konrad Dybcio wrote:
+>>> On 7/15/25 11:20 AM, Vladimir Zapolskiy wrote:
+>>>> On 7/15/25 12:01, Konrad Dybcio wrote:
+>>>>> On 7/15/25 8:35 AM, Vladimir Zapolskiy wrote:
+>>>>>> On 7/15/25 03:13, Bryan O'Donoghue wrote:
+>>>>>>> On 14/07/2025 16:30, Vladimir Zapolskiy wrote:
+>>>>>>>>>
+>>>>>>>>> I think that is genuinely something we should handle in camss-csid.c
+>>>>>>>>> maybe with some meta-data inside of the ports/endpoints..
+>>>>>>>>>
+>>>>>>>>
+>>>>>>>> This is a CSIPHY property, a CSIPHY hardware configuration and a wiring
+>>>>>>>> of sensors to a CSIPHY. Where is the relation to CSID here? There is no.
+>>>>>>>
+>>>>>>> All the PHY really needs to know is the # of lanes in aggregate, which
+>>>>>>> physical lanes to map to which logical lanes and the pixel clock.
+>>>>>>>
+>>>>>>> We should add additional support to the Kernel's D-PHY API parameters
+>>>>>>> mechanism to support that physical-to-logical mapping but, that's not
+>>>>>>> required for this series or for any currently know upstream user of CAMSS.
+>>>>>>>
+>>>>>>>> Please share at least a device tree node description, which supports
+>>>>>>>> a connection of two sensors to a single CSIPHY, like it shall be done
+>>>>>>>> expectedly.
+>>>>>>> &camss {
+>>>>>>>          port@0 {
+>>>>>>>              csiphy0_lanes01_ep: endpoint0 {
+>>>>>>>                  data-lanes = <0 1>;
+>>>>>>>                  remote-endpoint = <&sensor0_ep>;
+>>>>>>>              };
+>>>>>>>
+>>>>>>>              csiphy0_lanes23_ep: endpoint0 {
+>>>>>>>                  data-lanes = <2 3>;
+>>>>>>>                  remote-endpoint = <&sensor1_ep>;
+>>>>>>>              };
+>>>>>>>           };
+>>>>>>> };
+>>>>>>
+>>>>>> Don't you understand that this is broken?.. That's no good.
+>>>>>>
+>>>>>> Please listen and reread the messages given to you above, your proposed
+>>>>>> "solution" does not support by design a valid hardware setup of two
+>>>>>> sensors connected to the same CSIPHY.
+>>>>>>
+>>>>>> I would propose to stop force pushing an uncorrectable dt scheme, it
+>>>>>> makes no sense.
+>>>>>
+>>>>> If all you're asking for is an ability to grab an of_graph reference
+>>>>> from the camss (v4l2) driver, you can simply do something along the
+>>>>> lines of of_graph_get_remote_port(phy->dev->of_node)
+>>>>>
+>>>>
+>>>> It's not about the driver specifics, my comment is about a proper
+>>>> hardware description in dts notation, please see the device tree node
+>>>> names.
+>>>
+>>> I'm a little lost on what you're trying to argue for..
+>>>
+>>> I could make out:
+>>>
+>>> 1. "the phy should be a multimedia device"
+>>> 2. "There is no ports at all, which makes the device tree node unusable,
+>>>     since you can not provide a way to connect any sensors to the phy."
+>>>
+>>> I don't really understand #1.. maybe that could be the case if the PHY
+>>> has a multitude of tunables (which I don't know if it does, but wouldn't
+>>> be exactly surprised if it did) that may be usecase/pipeline-specific
+>>>
+>>> As for #2, I do think it makes sense to connect the sensors to the PHY,
+>>> as that's a representation of electrical signals travelling from the
+>>> producer to the consumer (plus the data passed in e.g. data-lanes is
+>>> directly related to the PHY and necessarily consumed by its driver)
+>>
+>> The port/endpoint should represent the data flow, and if the signal is the following:
+>>
+>> sensor -> csiphy -> csid
+> 
+> I'll be honest.
+> 
+> I looked at your upstreamed code
+> 
+> drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c Documentation/devicetree/bindings/parch/arm64/boot/dts/amlogic/meson-khadas-vim3-ts050.dtsoc/meson-axg.dtsi
+> 
+> And didn't really think CSIPHY needed to be included in the data-graph.
 
-Signed-off-by: Yu Zhang(Yuriy) <yu.zhang@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 135 +++++++++++++++++++++++++++++++
- 1 file changed, 135 insertions(+)
+This is DSI, but I understand your point.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index 011f8ae077c256f079ce1b07720374a9bf721488..7d077310306db8431e906fa289b4dcc810911f6a 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -18,6 +18,7 @@ aliases {
- 		mmc0 = &sdhc_1;
- 		mmc1 = &sdhc_2;
- 		serial0 = &uart0;
-+		serial1 = &uart7;
- 	};
- 
- 	chosen {
-@@ -47,6 +48,85 @@ regulator-usb2-vbus {
- 		enable-active-high;
- 		regulator-always-on;
- 	};
-+
-+	vreg_conn_1p8: vreg-conn-1p8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_conn_1p8";
-+		startup-delay-us = <4000>;
-+		enable-active-high;
-+		gpio = <&pm8150_gpios 1 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vreg_conn_pa: vreg-conn-pa {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_conn_pa";
-+		startup-delay-us = <4000>;
-+		enable-active-high;
-+		gpio = <&pm8150_gpios 6 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	wcn6855-pmu {
-+		compatible = "qcom,wcn6855-pmu";
-+
-+		pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
-+		pinctrl-names = "default";
-+
-+		bt-enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
-+		wlan-enable-gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
-+
-+		vddio-supply = <&vreg_conn_pa>;
-+		vddaon-supply = <&vreg_s5a>;
-+		vddpmu-supply = <&vreg_conn_1p8>;
-+		vddpmumx-supply = <&vreg_conn_1p8>;
-+		vddpmucx-supply = <&vreg_conn_pa>;
-+		vddrfa0p95-supply = <&vreg_s5a>;
-+		vddrfa1p3-supply = <&vreg_s6a>;
-+		vddrfa1p9-supply = <&vreg_l15a>;
-+		vddpcie1p3-supply = <&vreg_s6a>;
-+		vddpcie1p9-supply = <&vreg_l15a>;
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn";
-+			};
-+
-+			vreg_pmu_aon_0p59: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p59";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p85: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p85";
-+			};
-+
-+			vreg_pmu_btcmx_0p85: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p85";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo5 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo6 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p7: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_1p7";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo8 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo9 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -234,6 +314,25 @@ &pcie_phy {
- 	status = "okay";
- };
- 
-+&pcie_port0 {
-+	wifi@0 {
-+		compatible = "pci17cb,1103";
-+		reg = <0x10000 0x0 0x0 0x0 0x0>;
-+
-+		qcom,calibration-variant = "QC_QCS615_Ride";
-+
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
-+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+	};
-+};
-+
- &pm8150_gpios {
- 	usb2_en: usb2-en-state {
- 		pins = "gpio10";
-@@ -257,6 +356,10 @@ &qupv3_id_0 {
- 	status = "okay";
- };
- 
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
- &remoteproc_adsp {
- 	firmware-name = "qcom/qcs615/adsp.mbn";
- 
-@@ -274,6 +377,13 @@ &rpmhcc {
- };
- 
- &tlmm {
-+	bt_en_state: bt-en-state {
-+		pins = "gpio85";
-+		function = "gpio";
-+		bias-pull-down;
-+		output-low;
-+	};
-+
- 	pcie_default_state: pcie-default-state {
- 		clkreq-pins {
- 			pins = "gpio90";
-@@ -296,6 +406,13 @@ wake-pins {
- 			bias-pull-up;
- 		};
- 	};
-+
-+	wlan_en_state: wlan-en-state {
-+		pins = "gpio98";
-+		function = "gpio";
-+		bias-pull-down;
-+		output-low;
-+	};
- };
- 
- &sdhc_1 {
-@@ -336,6 +453,24 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&uart7 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn6855-bt";
-+		firmware-name = "QCA6698/hpnv21", "QCA6698/hpbtfw21.tlv";
-+
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
-+	};
-+};
-+
- &usb_1_hsphy {
- 	vdd-supply = <&vreg_l5a>;
- 	vdda-pll-supply = <&vreg_l12a>;
+The whole key point here is the combo mode, as I understood the combo mode feature
+makes the PHY lanes available as 2 separate streams, like if you got 2 "controllers"
+attached to the same PHY. So in fact, the PHY should have a single node, but 2 PHY
+interfaces in combo mode.
 
--- 
-2.34.1
+This makes all this controller/phy model very complex to handle and add a lot of
+logic in the camss side. Moving the "csiphy" as an independent media device that
+can declare up to 2 endpoints in combo mode makes things much simpler, and allows
+us to attach each "csiphy" stream to any "controller" side of camss.
+
+Neil
+
+> 
+> ---
+> bod
 
 
