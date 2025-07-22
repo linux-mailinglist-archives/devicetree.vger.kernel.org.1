@@ -1,203 +1,195 @@
-Return-Path: <devicetree+bounces-198796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E771B0E4CA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 22:18:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55C8DB0E4E3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 22:21:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74A067B1678
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 20:16:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C7C67B2B9B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 20:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AAB5289809;
-	Tue, 22 Jul 2025 20:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D3128506B;
+	Tue, 22 Jul 2025 20:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="jq+Ad8rS"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="V4QT5v6a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2102.outbound.protection.outlook.com [40.107.237.102])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C307C287278;
-	Tue, 22 Jul 2025 20:16:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.102
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753215385; cv=fail; b=UMFiywhBZMLs52pYf3mMOK/iyZJmgHs+/aj1qUyXWG7DxAFZClP6WEs+AGqqV5VApsMaxkKavxtY2IMkTwwuErq1Ou32OFXjC2UebgNd54m/OMfYSzUON/5MOD0msBdpV5s1J7mAODSeaPa9ENhQKhF8yPHIK6rYW5feQgxIVqw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753215385; c=relaxed/simple;
-	bh=wasBNtUEn7bp/0zcFhO21l4GoYcsVPb4OUeNpfZS2j8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sLXhEAShVW+rYMwUElzAnkMPLdE/nQZjF34h2cOq5a07jW1MVk9lrQlw5GX0M7bgo5eEzR2xRnws09gl+egksUb+nyEu81U2mp/lN4lfD4DpqNoZtmBrS5YraxFXFmg7jSaYHDV1rUYjsPuWoI5YcsLv+ZQ4qui5r2hUOL4nU4Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=jq+Ad8rS; arc=fail smtp.client-ip=40.107.237.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kKwFy/IiqWjEfhKV2w7Aa5KrXH3sr4NmgaCy8pbxtR9YtShzaAAzsg9i/gmG7kxENKQcHvsIaJ83u/KHoxqXIS4DCzLpMwUo8416xiMvMkM8puDQZcThTgzWf6kLylkDUcCRhwn0evyraGe1A9CGCHlizCb6Qk5ngkChTvxWGDwBCiDwmtItz6qPfUyC4kgcA66QlyJGUoYik+NHVMXQXyt/R5y+BwB0Rfu8TXta5i5vu7g9FtZuJZzt3le1onrHdV/QMB5cuZD9d4X8OIwi82FBhTZqMkiZm167uNO79m0oxla4gcPyfpN8+MsVDwNoz6zKnfOc6indwkKPhpo65A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YEIMn8KbBodtPsyGOKZRn3S+q7LI0uFCEfEjI4itVoo=;
- b=T1RSwI5+TCgDHQIOcOn0w5cwN5cykGSRyhKK2Cx4vyhXlPBrIjXskSxn6hAudSvba46BbcuxhC11OFqE6xmjcxpAx3pkYkz7TdIBqV+Eyur6pZSkfPl/tBzj0hLntuDZxM0gatBbjg5Q03Rwf4ulHE/zLkogYvkUaH/JfhPRPFbJe9N9n8sRmJUOL4VZVAj8hEaKyB9EobXZLUJQh02x/noEdZIXXXGPX6Ogod1VkyIeMWJIiYpZJr2k5ZtynbE05WlUh5+5w5OsEINWY5gYbVvl2b8W6c+QOHTF5E0e6YbvJ9ch+xbhx+y5Z7+HcuCp4lr0sum1OQWenknwe+AIOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 50.233.182.194) smtp.rcpttodomain=arndb.de smtp.mailfrom=axiado.com;
- dmarc=none action=none header.from=axiado.com; dkim=none (message not
- signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YEIMn8KbBodtPsyGOKZRn3S+q7LI0uFCEfEjI4itVoo=;
- b=jq+Ad8rSJk1mdh0Bcay6QdkTkUGAecHyapoEZZ2TkWBEWiGy+dMtJ77ipytj8/VlDpMwXGX4HFo07mx4/zGUaPvlyqAzhAsJo10z5TfJt+hVp85pUH9tiy2lHj1Y+2+gea7DztMk2L8IkVH8qsks/SDVaN8djIcasWHyA5zBYdCKY1mRgYM/YU6YqylyVQyM3Kb3zd/zJ3JW/dGmcCwGtabo6E3QQ6p+zBp5xyywm9dxaDMeDCOEwS6B27NTKviKEi8NKrtLJkSctWkwuykODeAXEVp4QtG1qLUsl5Ih+OBnPuHM13Ql1OgX6lO7ra1eQ9rWC20EfearH4Dl29jDLg==
-Received: from CH0PR03CA0024.namprd03.prod.outlook.com (2603:10b6:610:b0::29)
- by SJ0PR18MB4494.namprd18.prod.outlook.com (2603:10b6:a03:3ba::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Tue, 22 Jul
- 2025 20:16:20 +0000
-Received: from CY4PEPF0000EDD7.namprd03.prod.outlook.com
- (2603:10b6:610:b0:cafe::8) by CH0PR03CA0024.outlook.office365.com
- (2603:10b6:610:b0::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8943.29 via Frontend Transport; Tue,
- 22 Jul 2025 20:16:19 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 50.233.182.194)
- smtp.mailfrom=axiado.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axiado.com;
-Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
- designate 50.233.182.194 as permitted sender)
- receiver=protection.outlook.com; client-ip=50.233.182.194; helo=[127.0.1.1];
-Received: from [127.0.1.1] (50.233.182.194) by
- CY4PEPF0000EDD7.mail.protection.outlook.com (10.167.241.203) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8964.20
- via Frontend Transport; Tue, 22 Jul 2025 20:16:18 +0000
-From: Harshit Shah <hshah@axiado.com>
-Date: Tue, 22 Jul 2025 13:15:38 -0700
-Subject: [PATCH v6 10/10] MAINTAINERS: Add entry for Axiado
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1049180C02;
+	Tue, 22 Jul 2025 20:20:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753215651; cv=none; b=m5qqh/UzSCqCVUSm3wl1zXZmDtaEiWW4dGC1GdScQgpmdFVEC6fsHSVXXTUGReS7csQ62ieqrGxKdhqISKWfUuD0eSWq2eaQs1ve4S+FFTS1yNHZrF5ip8ej4H7UDANUePNgF4pjaZYSJCZA+rhZ5k49r6iZBGFnElwuN/E+onY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753215651; c=relaxed/simple;
+	bh=vO15FQgzetEbZ5YgaOoYGILaqFconc2Gjk5Xwlt8/is=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rSvbInoajfR4ra4iAH6IaQ/NQ/1VhiaMc5hzcFQ+TwbRZCfiExKla8G/gVOmWvtqUnnGFdfVFhyq4twLt2sWC6APrUB5F9g64vtF+CebG3vC2QGKC0M02IEwjzRmfy///NGpGr6ehC5i5ML55KjWwKqW0m0jwSlcbHmPr5hgCY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=V4QT5v6a; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=kbhK64lKfzGoli4FgA99Y7jN3LYJzkq8kXFb4Szyfl4=; b=V4QT5v6a0Feyd72Kw5Aiz/opbu
+	w6blYrG1N35+yEilK7qBcjzE8zdnxuuOyZt1stdsPaQshuXWbw80NGGHcTMWdXoINB39EpoZn9/t6
+	aXgPDyrY/oGclFya19XRVhvmFGU18AEW/qehpAHn7X/L3GuEzqwURhj07XOWeyfcqnhWlTS4TzWHl
+	UQwDqUdWTEsI1/Qv5gnz8v2bNbPrJtlh/A7tvf6bpWyVnQLlQQFdupsoPYPJknNQyszHHAQehBEiR
+	jtnOEtFKWU09sJUjIyax8o3pAa4sMMCCjt+vbriqm018nAzaZpdqH60MrmeaMOaaCk1UNMRcw86lj
+	OKg/N+dQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:52434)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1ueJTQ-0000Y8-2A;
+	Tue, 22 Jul 2025 21:20:28 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1ueJTM-0007Qz-0W;
+	Tue, 22 Jul 2025 21:20:24 +0100
+Date: Tue, 22 Jul 2025 21:20:24 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Tristram Ha <Tristram.Ha@microchip.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: document st,phy-wol
+ property
+Message-ID: <aH_yiKJURZ80gFEv@shell.armlinux.org.uk>
+References: <20250721-wol-smsc-phy-v1-0-89d262812dba@foss.st.com>
+ <20250721-wol-smsc-phy-v1-1-89d262812dba@foss.st.com>
+ <faea23d5-9d5d-4fbb-9c6a-a7bc38c04866@kernel.org>
+ <f5c4bb6d-4ff1-4dc1-9d27-3bb1e26437e3@foss.st.com>
+ <e3c99bdb-649a-4652-9f34-19b902ba34c1@lunn.ch>
+ <38278e2a-5a1b-4908-907e-7d45a08ea3b7@foss.st.com>
+ <5b8608cb-1369-4638-9cda-1cf90412fc0f@lunn.ch>
+ <383299bb-883c-43bf-a52a-64d7fda71064@foss.st.com>
+ <2563a389-4e7c-4536-b956-476f98e24b37@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250722-axiado-ax3000-soc-and-evaluation-board-support-v6-10-543979a60ccf@axiado.com>
-References: <20250722-axiado-ax3000-soc-and-evaluation-board-support-v6-0-543979a60ccf@axiado.com>
-In-Reply-To: <20250722-axiado-ax3000-soc-and-evaluation-board-support-v6-0-543979a60ccf@axiado.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Michal Simek <michal.simek@amd.com>, 
- =?utf-8?q?Przemys=C5=82aw_Gaj?= <pgaj@cadence.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Frank Li <Frank.Li@nxp.com>, Boris Brezillon <bbrezillon@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Arnd Bergmann <arnd@arndb.de>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- soc@lists.linux.dev
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
- Jan Kotas <jank@cadence.com>, linux-serial@vger.kernel.org, 
- linux-i3c@lists.infradead.org, Harshit Shah <hshah@axiado.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=912; i=hshah@axiado.com;
- h=from:subject:message-id; bh=wasBNtUEn7bp/0zcFhO21l4GoYcsVPb4OUeNpfZS2j8=;
- b=owEB7QES/pANAwAKAfFYcxGhMtX7AcsmYgBof/GEBiobqdW6/akV0qP5Mqib3RJ/WTd6xOHQr
- LnUKSckGWyJAbMEAAEKAB0WIQRO3pC/7SkLS2viWOvxWHMRoTLV+wUCaH/xhAAKCRDxWHMRoTLV
- +/9VDACPtMCQDCl5i3YKK46wZKIoV4z4wUBIb2/lS+o5HrkVwXHiNSfifSQ0tBoEsncJwErP+b3
- cjimpB5ZQkGaShPUjhB8YYPf/XwQjqeBu6kUhruCYE7/LFBlzqdNl/WkUmAKdImoMS4VkZtD2nh
- 11HGfDCkiw5RRieWkZfHbi4OHh1XYoySdCkXVIiNEnLljsMQUsApeOWp7pT9IKxDqrNMMRklj7B
- FOtKI1yqhivnMXuqwAAvTfA43p4xE3qthThPI6NxaOctA2zIGWOVnO4txwWCEJ2soPHW3o3TGHf
- nRkfdBDyx3oBdoly83S4afCs3Ienscj1osH5Id4JmFWf/f+FV2UlcRJyXrBnY8rFSTpT512OzlB
- EQkG1EryKxd11l2d/KmTFyTuAAbVpjosIjFvEADrsiO/KB6v2uuHMsnE2xRx2PdNyuyWu9NLXN9
- 1HmPhUyLGPpJwQcI7J8M5WC3VFeb6KMaI67R/BN9TlyFpin0BwmDN3ytkUA0yyr61CbJA=
-X-Developer-Key: i=hshah@axiado.com; a=openpgp;
- fpr=4EDE90BFED290B4B6BE258EBF1587311A132D5FB
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD7:EE_|SJ0PR18MB4494:EE_
-X-MS-Office365-Filtering-Correlation-Id: c959c725-b9a2-4399-956d-08ddc95c9eee
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|36860700013|7416014|1800799024|82310400026|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?NXhWcW5nUnQySFJSQ2tVa0dzdUlvUTQxakxnNW90cmxYTk1BaWFqTnVBNUxV?=
- =?utf-8?B?NnNueGxURDBGQlR4Y0xwSFROTFc0NU95Yk1oKzRqMFh4aXZIWmN4ZnhLSlBi?=
- =?utf-8?B?d0ZVc3hWYnFjeHBCZTB6bk9jbDM1ZFZZTnZQeWpEMnA0ai9NcGVsNWU2c1Iv?=
- =?utf-8?B?OXBzb2QrSTlVOFQ3S0NsenZTb1h4Y2ZKSkl3K0o4UnFNRldZd1dlMnpLZlph?=
- =?utf-8?B?MTRqZ3VENWt4TVdUR2ZKSXVrYUtSTzY2dXJET3FHcGVibmp5dk9qTDF0WEE0?=
- =?utf-8?B?MnB3WEJ6aGRuZk4ycGRpR2FRdDhvTnhyWG1ydzhWWHJSS2IrTGNGbXpqd3dK?=
- =?utf-8?B?MWpqTUJLeExKWUFOY1VQVG1OaDRWMGdUMGJPK1UxZWc0aHZiUnhRQXVBQ1dn?=
- =?utf-8?B?MjBQRDRxNk8wdUxTc2RSZUlUUnpXQUVLWnBUdXMrNS9qblI0dFpuZDJGb214?=
- =?utf-8?B?MzVXU2x3UFJVcUp6MTNJK1MrMTRseDNIUzc5SDE1bEtVWlllbjViZStFOE9k?=
- =?utf-8?B?WTBUcEkxcnlGSENvcm5RVjZjWWUzU1JRS0k0VU5MZGpONDBFZjhYdks3OGo3?=
- =?utf-8?B?OFdmTWIvNzVEdFhwNThtVWtYRHpGYUkrNjRndXlSMmk4SjQvZkJ1YzhyYmZR?=
- =?utf-8?B?bUx5UTBwN3h0ZTJKUnJUOEVMUUE3TDFDRC83M3kzeWY1aFN0WXdkL2dVT1Av?=
- =?utf-8?B?QTgxYy92U01DNE9hbzNvTEg3UVBZaVdrZFdscjZKbWhKR0EvbU8xWTEySFRO?=
- =?utf-8?B?NFBDalJJNkRIQkF5b0ZIN0dxb0xLR3BMVGRYMEtyVlphbFpXUDM1eDhVQlEr?=
- =?utf-8?B?aHh5eDRwcEVDQ3VVa05nd25DTWdwcVRCNlF3T09wdTRJUC9SQzc5b01UY25K?=
- =?utf-8?B?dTliUmhKa09jRW43c3NlZmFTVlNYdittUDEyakVHeTVFZ2RtT2JkL0l1VnRL?=
- =?utf-8?B?MU4zcDE4VXFoWHpmaHNzUUVDNGV2aDl2ejBUNHJLTitJYkhtR3ppY3ZXNnEw?=
- =?utf-8?B?QkxwaXE1bEE4YUpJQkV0aUhjbDdzc3pFLzNuQVF4QlRNSTJDNUJBV3o5Z3ht?=
- =?utf-8?B?Q2FDT1lNQzZFcDlqSkVFMFZxY1FnMkNnVE1WckcyL05Ic2d4UVlENW0reUR0?=
- =?utf-8?B?RWJQNVRBYk02RjMvekhtZjFxbjNORWI2RjVTNlp6Vzdhdkt1eXpVNUZSYk1K?=
- =?utf-8?B?RE1qUE9nRFRac0lZdkpibTdpQzdxU1pUYTM5cFQ1OE5vQ3JsSG55SUVsSzEr?=
- =?utf-8?B?b1JkVGVHbVhkMmUxRUpoUmg0Q0k0WXRRbFE3TmhKcTlMKzVCem9vYkVGVnpW?=
- =?utf-8?B?ZEtEbjdNdmdPSWZ5Mm9DZlUrOW9vM3JocW41aVFRQ1RRMkJPYzE2KzVsZGNR?=
- =?utf-8?B?MG1kVGhhRVh2OW95cTNYZVpOZ0RuK1A2MEwrV2JoSm1zZU1acFVpeEExMWtK?=
- =?utf-8?B?c2dtS1JseWhaeFY0TDgvZVoxT2NHUllMdUNsZkFiOFJKOGJzRzdXVGxWd21E?=
- =?utf-8?B?NXlYK0ZFUTVVUUg2Mis0dU1xK0dTSWYyT2cxM1hzZVg2NzYxNFAwejlZM0lv?=
- =?utf-8?B?cThVcmRlU2I2TG43Yk9rKzBuMVRzdGtjYnlKZnhzTmtLYkFQQ1BodmhXYTVN?=
- =?utf-8?B?WWQrUmRnb00xZ2ZpME40d2daVllYQWRnOVI1L2dwL1QrWUlGVE11eHRkdURL?=
- =?utf-8?B?eWdQaVdXVXlRVFVFSFJwTitCUy9qakVJeE0wRk1lZUEyNkQ2RC8wejdxUEIy?=
- =?utf-8?B?WXhwRUtLR1ZJMmZoKzJiNTNrcXdLQW1INDFSenl3THdLdm9pSGRDY3Z0Z3Jq?=
- =?utf-8?B?NG0xdjk3YWlxVlZ0b21id2gyOTFkMk5YR1JJam1nT0NUOW15bkE4QVhONkpN?=
- =?utf-8?B?VkRsMjUyOVNTZDI0YzBuMmFuc2sxeTlmRW1uM0MzZ2U2NU4reHdLTkNYMlNj?=
- =?utf-8?B?SmhlNnhHQytyLytRdU9XWVhnbmRNWGRKOFpxVGVEbExySUMvMmxRRjVySDBv?=
- =?utf-8?B?RG1oSEluYi9IaXFvTWtqWkRqZGppMHI1VDY4RXZINmUyYVVVeGVlM2pvVSt0?=
- =?utf-8?B?aFVnUHNoV3pVVkdma0ZhZnJLSXNjWDdBSnhqUT09?=
-X-Forefront-Antispam-Report:
-	CIP:50.233.182.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:[127.0.1.1];PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(7416014)(1800799024)(82310400026)(921020);DIR:OUT;SFP:1102;
-X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 20:16:18.8119
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c959c725-b9a2-4399-956d-08ddc95c9eee
-X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[50.233.182.194];Helo=[[127.0.1.1]]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000EDD7.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR18MB4494
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2563a389-4e7c-4536-b956-476f98e24b37@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Add entry for Axiado maintainer and related files
+On Tue, Jul 22, 2025 at 03:40:16PM +0200, Andrew Lunn wrote:
+> I know Russell has also replied about issues with stmmac. Please
+> consider that when reading what i say... It might be not applicable.
+> 
+> > Seems like a fair and logical approach. It seems reasonable that the
+> > MAC driver relies on the get_wol() API to know what's supported.
+> > 
+> > The tricky thing for the PHY used in this patchset is to get this
+> > information:
+> > 
+> > Extract from the documentation of the LAN8742A PHY:
+> > "The WoL detection can be configured to assert the nINT interrupt pin
+> > or nPME pin"
+> 
+> https://www.kernel.org/doc/Documentation/devicetree/bindings/power/wakeup-source.txt
+> 
+> It is a bit messy, but in the device tree, you could have:
+> 
+>     interrupts = <&sirq 0 IRQ_TYPE_LEVEL_LOW>
+>                  <&pmic 42 IRQ_TYPE_LEVEL_LOW>;
+>     interrupt-names = "nINT", "wake";
+>     wakeup-source
+> 
+> You could also have:
+> 
+>     interrupts = <&sirq 0 IRQ_TYPE_LEVEL_LOW>;
+>     interrupt-names = "wake";
+>     wakeup-source
+> 
+> In the first example, since there are two interrupts listed, it must
+> be using the nPME. For the second, since there is only one, it must be
+> using nINT.
+> 
+> Where this does not work so well is when you have a board which does
+> not have nINT wired, but does have nPME. The phylib core will see
+> there is an interrupt and request it, and disable polling. And then
+> nothing will work. We might be able to delay solving that until such a
+> board actually exists?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Harshit Shah <hshah@axiado.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+(Officially, I'm still on vacation...)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0c1d245bf7b84f8a78b811e0c9c5a3edc09edc22..7a04bee308cda1d8079ef61d1c0c68bafa89fa12 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2414,6 +2414,14 @@ F:	arch/arm/boot/dts/aspeed/
- F:	arch/arm/mach-aspeed/
- N:	aspeed
- 
-+ARM/AXIADO ARCHITECTURE
-+M:	Harshit Shah <hshah@axiado.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/arm/axiado.yaml
-+F:	arch/arm64/boot/dts/axiado/
-+N:	axiado
-+
- ARM/AXM LSI SOC
- M:	Krzysztof Kozlowski <krzk@kernel.org>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+At this point, I'd like to kick off a discussion about PHY-based
+wakeup that is relevant to this thread.
+
+The kernel has device-based wakeup support. We have:
+
+- device_set_wakeup_capable(dev, flag) - indicates that the is
+  capable of waking the system depending on the flag.
+
+- device_set_wakeup_enable(dev, flag) - indicates whether "dev"
+  has had wake-up enabled or disabled depending on the flag.
+
+- dev*_pm_set_wake_irq(dev, irq) - indicates to the wake core that
+  the indicated IRQ is capable of waking the system, and the core
+  will handle enabling/disabling irq wake capabilities on the IRQ
+  as appropriate (dependent on device_set_wakeup_enable()). Other
+  functions are available for wakeup IRQs that are dedicated to
+  only waking up the system (e.g. the WOL_INT pin on AR8031).
+
+Issue 1. In stmmac_init_phy(), we have this code:
+
+        if (!priv->plat->pmt) {
+                struct ethtool_wolinfo wol = { .cmd = ETHTOOL_GWOL };
+
+                phylink_ethtool_get_wol(priv->phylink, &wol);
+                device_set_wakeup_capable(priv->device, !!wol.supported);
+                device_set_wakeup_enable(priv->device, !!wol.wolopts);
+        }
+
+This reads the WoL state from the PHY (a different struct device)
+and sets the wakeup capability and enable state for the _stmmac_
+device accordingly, but in the case of PHY based WoL, it's the PHY
+doing the wakeup, not the MAC. So this seems wrong on the face of
+it.
+
+Issue 2. no driver in phylib, nor the core, ever uses any of the
+device_set_wakeup_*() functions. As PHYs on their own are capable
+of WoL, isn't this an oversight? Shouldn't phylib be supporting
+this rather than leaving it to MAC drivers to figure something out?
+
+Issue 3. should pins like WOL_INT or nPME be represented as an
+interrupt, and dev_pm_set_dedicated_wake_irq() used to manage that
+interrupt signal if listed as an IRQ in the PHY's DT description?
+
+(Side note: I have tried WoL on the Jetson Xavier NX board I have
+which uses stmmac-based WoL, but it seems non-functional. I've
+dropped a private email to Jon and Thierry to see whether this is
+expected or something that needs fixing. I'm intending to convert
+stmmac to use core wakeirq support, rather than managing
+the enable_irq_wake()/disable_irq_wake() by itself.)
 
 -- 
-2.25.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
