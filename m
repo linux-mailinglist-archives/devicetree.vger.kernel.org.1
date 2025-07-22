@@ -1,172 +1,173 @@
-Return-Path: <devicetree+bounces-198810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93427B0E58C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 23:30:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADFC8B0E5A5
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 23:40:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F22547B26F5
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 21:29:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5F083AE0FF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 21:39:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0257C28C2C5;
-	Tue, 22 Jul 2025 21:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96BF3285C89;
+	Tue, 22 Jul 2025 21:40:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NZuWQ4Lz"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="aX37a1Rz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CE0F28B4F9;
-	Tue, 22 Jul 2025 21:29:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8BBE284B5D;
+	Tue, 22 Jul 2025 21:40:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753219750; cv=none; b=ml/frTnbQTtfQVl+X+I7VA5c5Cx5IX7dfAKAqZyeMbpazUyI1yICvy8CUfJB3W9xzrABimWPciHI0wB5m79ZAzBju3V55z3he5rjiQY3jJrUkkvmRUg4sh9tMOB3Dy53vg80U6XxrUvxy2Iazk4PBK9KFG8fhWqexdtVUx2UBgs=
+	t=1753220417; cv=none; b=rehuOiW/uibbINar82zBXxRVaZ4YqyG+3EFU7Xai8i1I6taZ4M7LDQNkxgjnoVPE+w0n8iEDY6YOxjsDfljOognVVHo5mf3YbciSISxioCB3l1kzB3TxRzn1vXFNf3rq/YXO4BZ+o3ozgghEazfvaFK1m5I/0XINfB7QOhDyLww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753219750; c=relaxed/simple;
-	bh=WlASZmzxpzAYoKS6z6rmk+EebRMMXhqLWuJ12i3hyCM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PO06lo7XicMAwXWPrOOa0Qi7b+RZb3aNF/ZnvTbEOnhWXZgY2DEu920PeENkBLYXrGslBXha8Eg+2EepuwO+yiuxVMc2ouL/a+45i/Eik6PUI4VCk/y1+U8THXwzbd4ew3kvQh8Ui37lNUWM/s6PaIlJTHMGrCcFwHYCq6eSZ2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NZuWQ4Lz; arc=none smtp.client-ip=209.85.215.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-b26f5f47ba1so4827393a12.1;
-        Tue, 22 Jul 2025 14:29:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753219748; x=1753824548; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=67QEz9S+95ZQDu3rHCjWe+DFBCPwq22amqFwl+XgLLI=;
-        b=NZuWQ4LztHDavN2mwgNpq0wwW34A0ururLf3VC67tdo9IZ1QoEacDicbOE2d09BweI
-         WahELTqLIJcEJuyc4z3uLe4kmZH2472KIJZxXU1rywVqchWALJkJuhoA3IQjcNulLiB0
-         tF2y9Tx8h0EifOO7IX+fxRAbK4JeX0+VJHiwZBNDL3IIldXdBHiyy2v7lJtr6M85SjC+
-         yGgJKGYv8TtFzucVOqmuIB2WZyd5otBaeK+NKBtL4eCoyYhdf/Nc3gelPQH6q06MqGD6
-         nya68ED3uzRbCRHNR+Fa+a4P+U9vcfl5YzrpSXLFIt0HKokByrL241W5+tSP4u1XlnL0
-         BpkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753219748; x=1753824548;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=67QEz9S+95ZQDu3rHCjWe+DFBCPwq22amqFwl+XgLLI=;
-        b=Q85UYg8tHeZEu5p4q8KQ4lKseJS4/Nau1h+SIiZUjNxgy1Xta6DDAahh08F9+uOhhi
-         +t+WvNhYEm80gSnPdPSWfk2iPCANW/S/dsztXMjPqyMT786f2kLq1c2HM+1sImND5vs3
-         0I3aHjFOVM2478wztB3BAHt+DK02KD2n+ZszpGQBFzbwI2+7j719MGv8WM6DkTIhB43k
-         hP3hB5WK+zxhEFcySIGTP93n9OX0zFWrnz8FX8tQQCpbKj9VVtJ/4ICJvtdP1RpD2e/l
-         MBnaubE9hQJ62mwc1zJmDQgiD/EsUtWcisoIvswkaBTpdtHZjxOSvdPqdjQAcSCHJVmB
-         JtkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUMiKHtzMM2rZJDcU4eMlBINVW6OZ9uPBTeSRmLhs9qQpdvdoUb/gQ8BTdRqPrbY9KSWJQF1mKQxTeevYeM@vger.kernel.org, AJvYcCXUvzxAWj0XLKRzc92KWOvtZVASIJd1yHd3Q28yhYgNhKOBS9GB3wZxU2efVc4zSiqlee36rFVrrlszcA==@vger.kernel.org, AJvYcCXyWtVLfoIIC8Zef8lvPEpDDbqq7rzE66e/Jol73Pcvbr8OcdtPE2YU5bokffc7j1VeR5WMCmihleZv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUh26Itd1cM2SI/6XPDYCCqwBsvqIhlGQVNdo74MIVi2byLyhA
-	xq0E7mOhQX8i44Is4HtCedmmbuyEZT8LT2nwnRjnXFFq3ZjrizQLA9ZZQgDfMyx7
-X-Gm-Gg: ASbGnctFQQSrqGDYX2jIOGMXR+HkLfZeXuWvWZIPLL/WAZGF1r2OfzhzDFXVwTiNaKo
-	djY9GDJ1nGRsrMOAg9zoVmKPs6w+pRDO67xXMPnAMGx1wPUNJl9mICKAZik5R6oSAu8PkLqTXU+
-	bgHlFGso7WimUxAHRlNf43Cm5mGEI08DpFz2deoZ25osT2Vv7RL8rk637Lifpzz6sPDj3aqCTBO
-	PF6eKJ0Kb+k8UId5kJ81qzFI/d9IIUSdsoeLPtSLVvIdmIac2oF6sqyVcbTn1vZSpTuvlGqMh0V
-	adLbiPaP2u6I4hlxuSGYFU550WSe2uN3QNl+TFoN2c2agk6FZiPNY8kwAMAlts3S/d3aqvph5EI
-	ySls=
-X-Google-Smtp-Source: AGHT+IHAVxGiZOrlaAUSxgUbUh6FKWopOqgmAMQnmnuTA3s27a7MO8YmCyqzn+U2fdYiR74X38P2ww==
-X-Received: by 2002:a17:90b:5844:b0:31c:3651:2d18 with SMTP id 98e67ed59e1d1-31e507b41d4mr1284874a91.16.1753219748471;
-        Tue, 22 Jul 2025 14:29:08 -0700 (PDT)
-Received: from archlinux.lan ([2601:644:8200:dab8::1f6])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31e519ce384sm94942a91.2.2025.07.22.14.29.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jul 2025 14:29:08 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: linux-wireless@vger.kernel.org
-Cc: Johannes Berg <johannes@sipsolutions.net>,
+	s=arc-20240116; t=1753220417; c=relaxed/simple;
+	bh=bCHXTqLhFd6VRoxKB9pYjZ6+JNbveHiRWnOYS/2Xryo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fa7Nx4L16ou/wFwJNYaR+2JqrE34SJNVeTtbPKOUub2koPIpZV87emUvPT2j22t4U4HEZIeS5AQYGF6vv+g+e9SqRBCjZzKHvT6kuS/ClDMu+uz56R1hdqOqplgQ/WcAbeC9Zxni29EzEFmOpBn24DHORxKZn0rJJVHtzLQI79c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=aX37a1Rz; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=QekdXNQU2gB5u6wAx4HFWIhwWvDRVo65LWC/6zm1k0s=; b=aX37a1Rz2YzyNrGAowMhxVDcRg
+	arIHJPBJkAEkkPtbjiC0svOsEC4EvGT0Z0R8NoxNQYMfpulErUWNaBuh/yKy7odP2J7DkW083mbIM
+	CPAMjoE9TGoJHHTUNHnS5qnY5uSz2WCPorKksvp8dASKu9BU69Ymtp6HQXCiRnI8BXNWH2LPnCOz4
+	lxrrbmd7P47utevVl/XfQqwnlTF0Tup/8OckYwp1zGawnPLhorxrkS8nUhDX287pGn1Xc4Ci8hoiH
+	E94mOUnJHd2N9YQJW9i/E753Dy/mj7PDOhsMMwhnBYZlUv47rhBy8ZBtnH/+wXCqQv5C+YgdZWivq
+	Abd//GWw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:53462)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1ueKiM-0000f5-0Q;
+	Tue, 22 Jul 2025 22:39:58 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1ueKiH-0007U5-22;
+	Tue, 22 Jul 2025 22:39:53 +0100
+Date: Tue, 22 Jul 2025 22:39:53 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Stanislaw Gruszka <stf_xl@wp.pl>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list),
-	linux-mips@vger.kernel.org (open list:MIPS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC support),
-	linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC support)
-Subject: [PATCHv5 wireless-next 7/7] dt-bindings: net: wireless: rt2800: add SOC Wifi
-Date: Tue, 22 Jul 2025 14:28:56 -0700
-Message-ID: <20250722212856.11343-8-rosenp@gmail.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250722212856.11343-1-rosenp@gmail.com>
-References: <20250722212856.11343-1-rosenp@gmail.com>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Tristram Ha <Tristram.Ha@microchip.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: document st,phy-wol
+ property
+Message-ID: <aIAFKcJApcl5r7tL@shell.armlinux.org.uk>
+References: <20250721-wol-smsc-phy-v1-1-89d262812dba@foss.st.com>
+ <faea23d5-9d5d-4fbb-9c6a-a7bc38c04866@kernel.org>
+ <f5c4bb6d-4ff1-4dc1-9d27-3bb1e26437e3@foss.st.com>
+ <e3c99bdb-649a-4652-9f34-19b902ba34c1@lunn.ch>
+ <38278e2a-5a1b-4908-907e-7d45a08ea3b7@foss.st.com>
+ <5b8608cb-1369-4638-9cda-1cf90412fc0f@lunn.ch>
+ <383299bb-883c-43bf-a52a-64d7fda71064@foss.st.com>
+ <2563a389-4e7c-4536-b956-476f98e24b37@lunn.ch>
+ <aH_yiKJURZ80gFEv@shell.armlinux.org.uk>
+ <ae31d10f-45cf-47c8-a717-bb27ba9b7fbe@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ae31d10f-45cf-47c8-a717-bb27ba9b7fbe@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Add device-tree bindings for the RT2800 SOC wifi device found in older
-Ralink/Mediatek devices.
+On Tue, Jul 22, 2025 at 10:59:51PM +0200, Andrew Lunn wrote:
+> >         if (!priv->plat->pmt) {
+> 
+> Let me start with maybe a dumb question. What does pmt mean? Why would
+> it be true?
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- .../bindings/net/wireless/ralink,rt2880.yaml  | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/wireless/ralink,rt2880.yaml
+->pmt being true means the MAC supports remote wakeup (in other words,
+magic packet or unicast), and the glue driver has not set the
+STMMAC_FLAG_USE_PHY_WOL flag to force the use of PHY WoL.
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/ralink,rt2880.yaml b/Documentation/devicetree/bindings/net/wireless/ralink,rt2880.yaml
-new file mode 100644
-index 000000000000..04dc5bb2edcc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/wireless/ralink,rt2880.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/wireless/ralink,rt2880.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Ralink RT2880 wireless device
-+
-+maintainers:
-+  - Stanislaw Gruszka <stf_xl@wp.pl>
-+
-+description: |
-+  This node provides properties for configuring RT2880 SOC wifi devices.
-+  The node is expected to be specified as a root node of the device.
-+
-+allOf:
-+  - $ref: ieee80211.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ralink,rt2880-wifi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    wifi@110180000 {
-+      compatible = "ralink,rt2880-wifi";
-+      reg = <0x10180000 0x40000>;
-+      clocks = <&sysc 16>;
-+      interrupt-parent = <&cpuintc>;
-+      interrupts = <6>;
-+    };
+->pmt being false means that the MAC doesn't support remote wakeup
+(in other words, has no ability to wake the system itself) _or_ the
+platform wishes to force the use of PHY WoL when the MAC does support
+remote wakeup.
+
+> 
+> >                 struct ethtool_wolinfo wol = { .cmd = ETHTOOL_GWOL };
+> > 
+> >                 phylink_ethtool_get_wol(priv->phylink, &wol);
+> >                 device_set_wakeup_capable(priv->device, !!wol.supported);
+> >                 device_set_wakeup_enable(priv->device, !!wol.wolopts);
+> 
+> Without knowing what pmt means, this is pure speculation....  Maybe it
+> means the WoL output from the PHY is connected to a pin of the stmmac.
+> It thus needs stmmac to perform the actual wakeup of the system, as a
+> proxy for the PHY?
+
+stmmac itself doesn't have an input for PHY interrupts, so a PHY
+which signals WoL via its interrupt pin (e.g. AR8035) wouldn't go
+through stmmac.
+
+
+I mentioned above the STMMAC_FLAG_USE_PHY_WOL flag. To see why this
+flag is needed, on the Jetson Xavier NX platform, a RTL8211 PHY is used
+with stmmac - I think it's RTL8211F (without powering it back up, I
+can't check.) This PHY supports WoL, but signals wake-up through a
+dedicated PMEB pin. If a platform decides not to wire the PMEB pin, WoL
+on the PHY is unusable.
+
+rtl8211f_get_wol() does not take account of whether the PMEB pin is
+wired or not. Thus, stmmac can't just forward the get_wol() and
+set_wol() ops to the PHY driver and let it decide, as suggested
+earlier. As stmmac gets used with multiple PHYs, (and hey, we can't
+tell what they are, because DT doesn't list what the PHY actually is!)
+we can't know how many other PHY drivers also have this problem.
+
+So, the idea put forward that ethernet drivers should forward get_wol()
+and set_wol() to the PHY driver and only do WoL at the MAC if the PHY
+doesn't support it is, I'm afraid, now fundamentally flawed.
+
+We can't retrofit such detection into PHY drivers - if we do so, we'll
+break WoL on lots of boards (we'd need to e.g. describe PMEB in DT for
+RTL8211F PHYs. While we can add it, if a newer kernel that expects
+PMEB to be described to allow WoL is run with an older DT, then that
+will be a regression.) Thus, I don't see how we could retrofit PHY
+WoL support detection to MAC drivers.
+
+So, while it is undesirable to have a flag in DT to say "we can use
+PHY WoL on this platform" and we can whinge that it isn't "describing
+hardware", DT _hasn't_ been describing the hardware, and trying to fix
+DT to properly describe the hardware now is going to cause _lots_ of
+breakage.
+
+I can't see a way forward on this unless someone is willing to relax
+over what seem to be hard requirements (e.g. no we don't want a flag
+in DT to say use PHY WoL.) We have collectively boxed ourselves into
+a corner on this.
+
 -- 
-2.50.0
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
