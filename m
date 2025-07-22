@@ -1,264 +1,292 @@
-Return-Path: <devicetree+bounces-198562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1493B0D5F2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:27:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E91DB0D60E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:38:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19AAA3B3821
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:27:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A77DE3B9F17
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:37:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B3882DC348;
-	Tue, 22 Jul 2025 09:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E4B02DD60E;
+	Tue, 22 Jul 2025 09:38:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="GZxr7HQ6"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SNaDaZlF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D8112DAFC8;
-	Tue, 22 Jul 2025 09:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321A62DCF4A
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 09:37:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753176452; cv=none; b=sukgYFzOmnrzFMTiPZdnSr6mN5YGVdViwsg6dmn2J3/sfo9lunHk0SXhxz84NtfqpzEHbuN7XKm96pLKHUVSwK2ZWiXV2o93xzPNOUMh5oifGU/YZFpbHfW18imZxYiiDMguv3gNaDZsJoNUUOyi24V2y9IE+lCSAEvcSEPGjz0=
+	t=1753177080; cv=none; b=s3vK3sEimSzOSZ5fbURKh+OYuMguUyecy42/6iOrf2xXeI/bRRLpsGuxqlHydL5Kp1CEM5VlbtSWcIHPzdl9mGEZxUeCREOluIwuxte0VATXtcGF87mLqp00uHEza3DF9gBc6AaLmcWrnL6gBsDABuQ2XiEaogO71bflEPxLkI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753176452; c=relaxed/simple;
-	bh=hm0MDNVGTHkfEQyNclOVv9LrcVhjQQoSmlBG0fSQl8k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FLcGql8e/Zxvd3v79bhNodsi6m8sqmgWd3QdhRqsddef9LC4YRoB7pC8e9C4qbeh+k1E5RBK9wqOsxPS1zEOisp5Ig3G7S9x5KJVKwfNeRe3PNa8zE6LOevK8YQ+QDoyhIngqXAiXEDOiALMd3QPsm9sLcmfNazjkHjz6OQkDrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=GZxr7HQ6; arc=none smtp.client-ip=18.194.254.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1753176435;
-	bh=TRVPd71zeoiK4DPqUkd8EQStv1Rk+guI8JA/3LPZ5WI=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=GZxr7HQ6IZ8qn13M0xgEFMJs7C5xiGNJioPvIfU/yziu3oxbUprl5fm8SDxWZvHsm
-	 SFbVyyPP/WoQ5Wg/L5qQVOmLsr0cZP63iBEoDgD7QT8oMLRtm6+dHt27FLiIygKsY5
-	 fa/tW0EjIle4O3mf31R+BDCOGCpuJfj9CmrBLUuw=
-X-QQ-mid: zesmtpsz3t1753176433ta948de66
-X-QQ-Originating-IP: hZhfkR09qBGZB9GkqYYtLQZx8UBF6GjcT9szJH6ufho=
-Received: from = ( [61.145.255.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 22 Jul 2025 17:27:11 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 4925773881467516370
-EX-QQ-RecipientCnt: 15
-Date: Tue, 22 Jul 2025 17:27:11 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Alex Elder <elder@riscstar.com>,
-	Haylen Chu <heylenay@4d2.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: clock: spacemit: CLK_SSPA_I2S_BCLK
- for SSPA
-Message-ID: <B79CAF56E128A7B3+aH9Zb9zNm6y_ovvW@LT-Guozexi>
-References: <20250722-k1-clk-i2s-v2-0-2f8edfe3dab4@linux.spacemit.com>
- <20250722-k1-clk-i2s-v2-2-2f8edfe3dab4@linux.spacemit.com>
- <20250722092101-GYB724801@gentoo>
+	s=arc-20240116; t=1753177080; c=relaxed/simple;
+	bh=ay7GBZH0XoTFRCFOySLUQ4uf7+hP8fYkuRqYZGwMoRY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Boae1h6tMaLeddWFu3YNUrd0cyuDj3qB0dauLf37PsaNz4xgzhU3LXnY5p46kQ4nCIvNl3RRRmPzO1oj+vzDandQU+EMK1PliHrlqyURahwZ60AJyQPjsnP/LOVhMmEXV9/3mYpx8dbrjep5DYsOjzOxB4FuokQDcRHUNpX+Z1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SNaDaZlF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56M8WtRf012550
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 09:37:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	akWLR5np0O8srsxKP+5qpNfRtwnATXLcGoSJVQnX9ww=; b=SNaDaZlF2db9r+m+
+	XLw7GDec1CAEnENrHZaBniAJap30ELbr+pbiVF1gortB7CE6Q7OVqwRTSCvjkj7/
+	LgDDqmT54Vq+Xyi00q9SPggAdjDuWvo/piPk8w/huGBSTCirlwXGS4eHMfo8yk7T
+	EAfzoMGtVVlb059KhDSz4QVE1G8RBmCXtabjHrn7G8GxSTUUE/CrTw/avPVdWReo
+	iLLoVPZTbv+X1iRTbmtsu0/Dc+RXuzRgdZuZCtFwNvRoXjTKaQgYD9h/CyZ3B38+
+	YoMAYZ5k/JKpVFlbVtmcHOMhXM1vJ1gSLRmcDgCPRWTS4NptavoZoivg1Ek2fLa8
+	SGHA2A==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 481qh6k880-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 09:37:55 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-754f57d3259so7711310b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 02:37:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753177075; x=1753781875;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=akWLR5np0O8srsxKP+5qpNfRtwnATXLcGoSJVQnX9ww=;
+        b=faqax9sGy/sL1lfUSkClU6t5Z1320Cocrsn4uY62B77RkX8wRuy+50tf5a1e/PFc1W
+         P1vQiamqZZpJjLKWuhXUOdMWqbzelivING06CLaB8V4q5+eykoHdYcVP5kh2w0znQV6j
+         RrQf+d+XKFeFosVIYKZE0sHs/6oA44kZ/65LvlEtZ4rI8TdLRXHzqe/eY/SVWQltGam0
+         9j4znDUdL23CXuE7HRgXP1TcxrYVEFAgAXJit3EdLNI2XP337obOhJcaA6K4g2ddJNFZ
+         tUNUH0Vhl+h8+dKd8GHFFvrHh0EgRuPtg7eC7BgTbUYIABbYXBK7dPWfL+8cEnTOTDwz
+         BBsw==
+X-Forwarded-Encrypted: i=1; AJvYcCV+qRKVoFDms7VynbHazWDpbooLJl2M+86VWah8/zXTDZ9kF2jllaYpNweKBTLPDXvtsoeXxF92qc1g@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUlZWo4O5vzv9SV3/zAh3LwFDU4aEwyZBEz65aFFzHFUJ4an0g
+	AvC0Gqm0VBMjGHsenXYHs4yIJ3yX8opDdoq3Oqyto0BnyWiDnL5QeMkTMcFLK/WIaZyIzLaKLF8
+	Nf3Up6ElIeMXe881Ajz9fLD9sT7FCxQSjDtC//vHEZGhmAO/UqykmzwhNWpSBWzSv
+X-Gm-Gg: ASbGncvJLZ8+RjPXBOi4xkzcg4Qlu6cqySO/Urx6LQarCqK7p21MnSD5mpawITmWkVU
+	braptf1w0p9CdI0+uhiCCZUqlp8nZ/USc7pZaIJ78WojXbYmPWwBzPWn/WrLG3qPv5Tawc/kUqx
+	8dE0m5PxhC4lPz61Yef8bAk5oJYA/SLFbVV8IqNXBempwNdRm4792klR0TrVOA0FwEBSFK8VSni
+	fncjuwna+J3UjInsmAriWJaJIbv1rE+I5zvajUnRpfZwDL3ymsW1DdKmDvftEpugNTjY3xAtPGF
+	zAFrgADDbnaeD3R9g88fMpsxK25/yY+UtmTCRqb6Qd6G5izvF0zVmIW04+WwY8kYypQkoscQXMb
+	GW24zHzuhYN/5NDSjDI5oQ5EnNBCeQ7hy+1p7RP5LcB9fgkSuFK1s
+X-Received: by 2002:a05:6a00:18a7:b0:748:fcfa:8be2 with SMTP id d2e1a72fcca58-75848c188b1mr27268415b3a.2.1753177074489;
+        Tue, 22 Jul 2025 02:37:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGnbrJIlPlS2ld1hHgKGm1W2SISx9Scg+A/kRt3BSJ2+CPL57THLlhTzUmEbaf7M61thzAyLw==
+X-Received: by 2002:a05:6a00:18a7:b0:748:fcfa:8be2 with SMTP id d2e1a72fcca58-75848c188b1mr27268375b3a.2.1753177073914;
+        Tue, 22 Jul 2025 02:37:53 -0700 (PDT)
+Received: from [10.50.52.170] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-759cb1575f0sm7127431b3a.75.2025.07.22.02.37.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Jul 2025 02:37:53 -0700 (PDT)
+Message-ID: <594ffaa5-4120-44bf-a3db-c1f61bb12940@oss.qualcomm.com>
+Date: Tue, 22 Jul 2025 15:07:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250722092101-GYB724801@gentoo>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: ND42uzdxTIzrTStEG2OTrO65ZHeduLJCLcFAQPsYqgyD3b7xZimz/LJu
-	y+i7RxhPZPbHS0WUvvQQtJu/M/nxHaBfJm/z86UqPuqC91lbinPT6WRjZVwK2MP/hJGktkx
-	loU5sWzhfuuhAam5L52Qur6PgDNaG0ZfT7oj30Ebr5ZBYuFe8f7nBKoU4ancz8Uehg9pV8L
-	X6q+PvQNaLQbr96JXdxcsQ45vOsRB0YuWk4r0chEliAX6AvvkY/xl2qbdLdAzXEhURrvBne
-	Xpu9sL7hIXrD+CKCKuszMU8lCetx4p/GKd3XYcasMmMOF6GN8EIZS8I9irw62igWefc2JnU
-	nY7+5ufrnQ2zMsZj3eYSIFZdLuk+ZPOhn/O/Z//mrNIvIjxhd1djwgvr5gYt9oSyNc6o1E4
-	RQyA9kLskKY42Sc0vDNCOqs9ew0MZzwzdkCdMvWF2oYkcaspXLPg/pOim3Q1j7n4T7lALMc
-	nYQ1QYQhOBeHg+OjCw1ODAFeVm0EjYsjHCll5M6eLwHTxD9CFZowgHyilf1sv/oH7FSC6IB
-	718uV6cNtgY/325LBjzi2qWcfokc7rby1lzkvsmxjSIPM7+12Xsj43lETcWye9Vrt/JOdcp
-	dOcsQ/0bmscl61tnj9SoDACuaGSoIFxO1Gh3pntyrXfjcOBMqobTPqHgMPaKI/f5Wk7k4Sa
-	mY37namuF6TblkcRDEuaAnkRWt/TsMKtxRw2n1goR8i5hs569hwED9mbojAfh8LLYYuEc7P
-	d45mhsSwWktrXgBLgk5vueiC67++Gkah2QhwdBdItMB9XFDaKpjNIXDZRv5sXtfsOEjzVm2
-	KE5vTvwnePewP/wWXkZAeeIHVfU8pjTpnpBn9bSaNRhz+CfhzWh8uiJS+zRW+hA5qf+rYeY
-	Z4uZF0Lqq8VpL6T9sBMLo2nEUvN+0ChpT++sSo25mtkpTthc0K6FrmemxMoQaVlKzBPyJQs
-	J0AanLIQpPoxbHCJLrq2BZaAFzsuT1GyxiUEu2ylfeKyuGREuJ5kVbBlgRfcvRmA7Olyp1E
-	ExeI1/QeIs0UTFNFcZcGg6HbvzFFwk0GIbQjW0LQ==
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-X-QQ-RECHKSPAM: 0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: Add Glymur pinctrl
+ bindings
+To: Rob Herring <robh@kernel.org>
+Cc: andersson@kernel.org, linus.walleij@linaro.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quic_rjendra@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250721163221.310746-1-pankaj.patil@oss.qualcomm.com>
+ <20250721163221.310746-2-pankaj.patil@oss.qualcomm.com>
+ <20250721195624.GA1160054-robh@kernel.org>
+Content-Language: en-US
+From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+In-Reply-To: <20250721195624.GA1160054-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=CZ4I5Krl c=1 sm=1 tr=0 ts=687f5bf4 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
+ a=XFrnbPTz3ZSepkxgYsgA:9 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+ a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-ORIG-GUID: jBvJTNO60sARyv8Q9RKV7yQm7g_888TF
+X-Proofpoint-GUID: jBvJTNO60sARyv8Q9RKV7yQm7g_888TF
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIyMDA3OSBTYWx0ZWRfXyMb7bNkvl8s0
+ qhYJn7JiekENZaVbZ1GJEHJD1pu8NuhyCXUNPFjfdGxDpH2jUbj2hpA23iXJHr+P+Cr9VYMhksj
+ ivyovdri2CANYIwTZSEBdQ2cq8BFh2r/rS8/2Y+riTeXyq43S8eHKJB3kyv6Oh3ZweRfPy5cADw
+ uutPFh6rx6MwPMJWiSeEEL9ioDSmcD2u20gRBzYyopLQNjaYyKgPJLTb+BeK/emX96qUOxnY/xf
+ HzjSBA/0nCeUFhsRu/aUZGXtFMEjYLlBJKul5OIrsIXpfxFTSZVwhriQqDmo0do0cg3CmUnQFO4
+ 86EnDAdSjEZSg9JJKdfXwZvarBTdePmS+qxizAurqjk7VWC4ay0L9G0xFiofNjIqZi7h1PTa4/m
+ n32HNGWFijahBeZUPstzcF56E/Iwq2y+byPAHCoMR5MzQK02kDhBp1W5s7cuC5w93BZ+2+k6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-22_01,2025-07-21_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 mlxlogscore=999 impostorscore=0
+ clxscore=1015 mlxscore=0 lowpriorityscore=0 phishscore=0 adultscore=0
+ bulkscore=0 spamscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507220079
 
-On Tue, Jul 22, 2025 at 05:21:01PM +0800, Yixun Lan wrote:
-> Hi Troy,
-> 
-> On 15:36 Tue 22 Jul     , Troy Mitchell wrote:
-> > This patch adds macro definitions: SSPAx_I2S_BCLK,
-> this is obvious, so no need to repeat, please add something useful
-> 
-> > to introduce a dummy gate for i2s_bclk.
->                 ~~~~~~ 'virtual'? if it isn't a real gate clock,
-> 	but I'm not sure it's a good approach to introduce such
-> 	virtual clock if underlying hw doesn't comply with this
-I'll leave this question to others.
+On 7/22/2025 1:26 AM, Rob Herring wrote:
+> On Mon, Jul 21, 2025 at 10:02:20PM +0530, Pankaj Patil wrote:
+>> Add DeviceTree binding for Glymur SoC TLMM block
+>>
+>> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+>> ---
+>> Changes in v3:
+>> Fixed indentation for example tlmm node
+>>
+>> Changes in v2:
+>> Updated gpio-line-names maxItems to 250
+>> Fixed example node reg property
+>>
+>> .../bindings/pinctrl/qcom,glymur-tlmm.yaml    | 128 ++++++++++++++++++
+>>  1 file changed, 128 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,glymur-tlmm.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,glymur-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,glymur-tlmm.yaml
+>> new file mode 100644
+>> index 000000000000..25ec99bde59d
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,glymur-tlmm.yaml
+>> @@ -0,0 +1,128 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/qcom,glymur-tlmm.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Technologies, Inc. Glymur TLMM block
+>> +
+>> +maintainers:
+>> +  - Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+>> +
+>> +description:
+>> +  Top Level Mode Multiplexer pin controller in Qualcomm Glymur SoC.
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: qcom,glymur-tlmm
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  gpio-reserved-ranges:
+>> +    minItems: 1
+>> +    maxItems: 119
+>> +
+>> +  gpio-line-names:
+>> +    maxItems: 250
+>> +
+>> +patternProperties:
+>> +  "-state$":
+>> +    oneOf:
+>> +      - $ref: "#/$defs/qcom-glymur-tlmm-state"
+>> +      - patternProperties:
+>> +          "-pins$":
+>> +            $ref: "#/$defs/qcom-glymur-tlmm-state"
+>> +        additionalProperties: false
+>> +
+>> +$defs:
+>> +  qcom-glymur-tlmm-state:
+>> +    type: object
+>> +    description:
+>> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+>> +      Client device subnodes use below standard properties.
+>> +    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
+>> +    unevaluatedProperties: false
+>> +
+>> +    properties:
+>> +      pins:
+>> +        description:
+>> +          List of gpio pins affected by the properties specified in this
+>> +          subnode.
+>> +        items:
+>> +          oneOf:
+>> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9])$"
+>> +            - enum: [ ufs_reset, sdc2_clk, sdc2_cmd, sdc2_data ]
+>> +        minItems: 1
+>> +        maxItems: 36
+>> +
+>> +      function:
+>> +        description:
+>> +          Specify the alternative function to be configured for the specified
+>> +          pins.
+>> +        enum: [ gpio, RESOUT_GPIO_N, aoss_cti, asc_cci, atest_char, atest_usb, audio_ext_mclk0,
+>> +                audio_ext_mclk1, audio_ref_clk, cam_asc_mclk4, cam_mclk, cci_async_in, cci_i2c_scl,
+>> +                cci_i2c_sda, cci_timer, cmu_rng, cri_trng, dbg_out_clk, ddr_bist_complete,
+>> +                ddr_bist_fail, ddr_bist_start, ddr_bist_stop, ddr_pxi, edp0_hot, edp0_lcd,
+>> +                edp1_lcd, egpio, eusb0_ac_en, eusb1_ac_en, eusb2_ac_en, eusb3_ac_en, eusb5_ac_en,
+>> +                eusb6_ac_en, gcc_gp1, gcc_gp2, gcc_gp3, host2wlan_sol, i2c0_s_scl, i2c0_s_sda,
+>> +                i2s0_data, i2s0_sck, i2s0_ws, i2s1_data, i2s1_sck, i2s1_ws, ibi_i3c, jitter_bist,
+>> +                mdp_vsync_out, mdp_vsync_e, mdp_vsync_p, mdp_vsync_s, pcie3a_clk, pcie3a_rst_n,
+>> +                pcie3b_clk, pcie4_clk_req_n, pcie5_clk_req_n, pcie6_clk_req_n, phase_flag,
+>> +                pll_bist_sync, pll_clk_aux, pmc_oca_n, pmc_uva_n, prng_rosc, qdss_cti, qdss_gpio,
+>> +                qspi, qup0_se0, qup0_se1, qup0_se2, qup0_se3_l0, qup0_se3, qup0_se4, qup0_se5,
+>> +                qup0_se6, qup0_se7, qup1_se0, qup1_se1, qup1_se2, qup1_se3, qup1_se4, qup1_se5,
+>> +                qup1_se6, qup1_se7, qup2_se0, qup2_se1, qup2_se2, qup2_se3, qup2_se4, qup2_se5,
+>> +                qup2_se6, qup2_se7, qup3_se0, qup3_se1, sd_write_protect, sdc4_clk,
+>> +                sdc4_cmd, sdc4_data, smb_acok_n, sys_throttle, tb_trig_sdc2, tb_trig_sdc4,
+>> +                tmess_prng, tsense_pwm, tsense_therm, usb0_dp, usb0_phy_ps, usb0_sbrx, usb0_sbtx,
+>> +                usb0_tmu, usb1_dbg, usb1_dp, usb1_phy_ps, usb1_sbrx, usb1_sbtx, usb1_tmu, usb2_dp,
+>> +                usb2_phy_ps, usb2_sbrx, usb2_sbtx, usb2_tmu, vsense_trigger_mirnat, wcn_sw,
+>> +                wcn_sw_ctrl ]
+> Wrap lines at 80 char.
+>
+>> +
+>> +    required:
+>> +      - pins
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    tlmm: pinctrl@f100000 {
+>> +        compatible = "qcom,glymur-tlmm";
+>> +        reg = <0x0f100000 0xf00000>;
+>> +        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+>> +        gpio-controller;
+>> +        #gpio-cells = <2>;
+>> +        interrupt-controller;
+>> +        #interrupt-cells = <2>;
+>> +        gpio-ranges = <&tlmm 0 0 249>;
+>> +        wakeup-parent = <&pdc>;
+>> +        gpio-reserved-ranges = <4 4>, <10 2>, <33 3>, <44 4>;
+>> +        qup_uart21_default: qup-uart21-default-state {
+>> +            tx-pins {
+>> +                pins = "gpio86";
+>> +                function = "qup2_se5";
+>> +                drive-strength = <2>;
+>> +                bias-disable;
+>> +            };
+>> +
+>> +            rx-pins {
+>> +                pins = "gpio87";
+>> +                function = "qup2_se5";
+>> +                drive-strength = <2>;
+>> +                bias-disable;
+>> +            };
+>> +        };
+>> +    };
+>> +...
+>> -- 
+>> 2.34.1
+>>
+Checkpatch.pl checks for 100 char by default,
+for bindings should the length fixed to 80?
 
-> 
-> > 
-> > Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> > ---
-> >  include/dt-bindings/clock/spacemit,k1-syscon.h | 114 +++++++++++++------------
-> >  1 file changed, 58 insertions(+), 56 deletions(-)
-> dt-binding patch should always go first
-get it
-
-> 
-> > 
-> > diff --git a/include/dt-bindings/clock/spacemit,k1-syscon.h b/include/dt-bindings/clock/spacemit,k1-syscon.h
-> > index 35968ae98246609c889eb4a7d08b4ff7360de53b..6914ccf5be45a1071d5b6eac354cacb67888e00c 100644
-> > --- a/include/dt-bindings/clock/spacemit,k1-syscon.h
-> > +++ b/include/dt-bindings/clock/spacemit,k1-syscon.h
-> > @@ -123,62 +123,64 @@
-> >  #define CLK_TIMERS2		41
-> >  #define CLK_AIB			42
-> >  #define CLK_ONEWIRE		43
-> > -#define CLK_SSPA0		44
-> > -#define CLK_SSPA1		45
-> > -#define CLK_DRO			46
-> > -#define CLK_IR			47
-> > -#define CLK_TSEN		48
-> > -#define CLK_IPC_AP2AUD		49
-> > -#define CLK_CAN0		50
-> > -#define CLK_CAN0_BUS		51
-> > -#define CLK_UART0_BUS		52
-> > -#define CLK_UART2_BUS		53
-> > -#define CLK_UART3_BUS		54
-> > -#define CLK_UART4_BUS		55
-> > -#define CLK_UART5_BUS		56
-> > -#define CLK_UART6_BUS		57
-> > -#define CLK_UART7_BUS		58
-> > -#define CLK_UART8_BUS		59
-> > -#define CLK_UART9_BUS		60
-> > -#define CLK_GPIO_BUS		61
-> > -#define CLK_PWM0_BUS		62
-> > -#define CLK_PWM1_BUS		63
-> > -#define CLK_PWM2_BUS		64
-> > -#define CLK_PWM3_BUS		65
-> > -#define CLK_PWM4_BUS		66
-> > -#define CLK_PWM5_BUS		67
-> > -#define CLK_PWM6_BUS		68
-> > -#define CLK_PWM7_BUS		69
-> > -#define CLK_PWM8_BUS		70
-> > -#define CLK_PWM9_BUS		71
-> > -#define CLK_PWM10_BUS		72
-> > -#define CLK_PWM11_BUS		73
-> > -#define CLK_PWM12_BUS		74
-> > -#define CLK_PWM13_BUS		75
-> > -#define CLK_PWM14_BUS		76
-> > -#define CLK_PWM15_BUS		77
-> > -#define CLK_PWM16_BUS		78
-> > -#define CLK_PWM17_BUS		79
-> > -#define CLK_PWM18_BUS		80
-> > -#define CLK_PWM19_BUS		81
-> > -#define CLK_SSP3_BUS		82
-> > -#define CLK_RTC_BUS		83
-> > -#define CLK_TWSI0_BUS		84
-> > -#define CLK_TWSI1_BUS		85
-> > -#define CLK_TWSI2_BUS		86
-> > -#define CLK_TWSI4_BUS		87
-> > -#define CLK_TWSI5_BUS		88
-> > -#define CLK_TWSI6_BUS		89
-> > -#define CLK_TWSI7_BUS		90
-> > -#define CLK_TWSI8_BUS		91
-> > -#define CLK_TIMERS1_BUS		92
-> > -#define CLK_TIMERS2_BUS		93
-> > -#define CLK_AIB_BUS		94
-> > -#define CLK_ONEWIRE_BUS		95
-> > -#define CLK_SSPA0_BUS		96
-> > -#define CLK_SSPA1_BUS		97
-> > -#define CLK_TSEN_BUS		98
-> > -#define CLK_IPC_AP2AUD_BUS	99
-> > +#define CLK_SSPA0_I2S_BCLK	44
-> > +#define CLK_SSPA1_I2S_BCLK	45
-> just append the clock at the end, instead of doing massive renaming
-The c file is written in the same order as the h file,
-and I don't want to disrupt this order..
-
-So should I keep this style or just append at the end?
-
-                - Troy
-> 
-> > +#define CLK_SSPA0		46
-> > +#define CLK_SSPA1		47
-> > +#define CLK_DRO			48
-> > +#define CLK_IR			49
-> > +#define CLK_TSEN		50
-> > +#define CLK_IPC_AP2AUD		51
-> > +#define CLK_CAN0		52
-> > +#define CLK_CAN0_BUS		53
-> > +#define CLK_UART0_BUS		54
-> > +#define CLK_UART2_BUS		55
-> > +#define CLK_UART3_BUS		56
-> > +#define CLK_UART4_BUS		57
-> > +#define CLK_UART5_BUS		58
-> > +#define CLK_UART6_BUS		59
-> > +#define CLK_UART7_BUS		60
-> > +#define CLK_UART8_BUS		61
-> > +#define CLK_UART9_BUS		62
-> > +#define CLK_GPIO_BUS		63
-> > +#define CLK_PWM0_BUS		64
-> > +#define CLK_PWM1_BUS		65
-> > +#define CLK_PWM2_BUS		66
-> > +#define CLK_PWM3_BUS		67
-> > +#define CLK_PWM4_BUS		68
-> > +#define CLK_PWM5_BUS		69
-> > +#define CLK_PWM6_BUS		70
-> > +#define CLK_PWM7_BUS		71
-> > +#define CLK_PWM8_BUS		72
-> > +#define CLK_PWM9_BUS		73
-> > +#define CLK_PWM10_BUS		74
-> > +#define CLK_PWM11_BUS		75
-> > +#define CLK_PWM12_BUS		76
-> > +#define CLK_PWM13_BUS		77
-> > +#define CLK_PWM14_BUS		78
-> > +#define CLK_PWM15_BUS		79
-> > +#define CLK_PWM16_BUS		80
-> > +#define CLK_PWM17_BUS		81
-> > +#define CLK_PWM18_BUS		82
-> > +#define CLK_PWM19_BUS		83
-> > +#define CLK_SSP3_BUS		84
-> > +#define CLK_RTC_BUS		85
-> > +#define CLK_TWSI0_BUS		86
-> > +#define CLK_TWSI1_BUS		87
-> > +#define CLK_TWSI2_BUS		88
-> > +#define CLK_TWSI4_BUS		89
-> > +#define CLK_TWSI5_BUS		90
-> > +#define CLK_TWSI6_BUS		91
-> > +#define CLK_TWSI7_BUS		92
-> > +#define CLK_TWSI8_BUS		93
-> > +#define CLK_TIMERS1_BUS		94
-> > +#define CLK_TIMERS2_BUS		95
-> > +#define CLK_AIB_BUS		96
-> > +#define CLK_ONEWIRE_BUS		97
-> > +#define CLK_SSPA0_BUS		98
-> > +#define CLK_SSPA1_BUS		99
-> > +#define CLK_TSEN_BUS		100
-> > +#define CLK_IPC_AP2AUD_BUS	101
-> >  
-> >  /* APMU clocks */
-> >  #define CLK_CCI550		0
-> > 
-> > -- 
-> > 2.50.1
-> > 
-> 
-> -- 
-> Yixun Lan (dlan)
-> 
+Will update in next revision.
 
