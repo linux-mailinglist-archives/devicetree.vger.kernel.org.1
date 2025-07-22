@@ -1,278 +1,176 @@
-Return-Path: <devicetree+bounces-198726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09452B0E093
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 17:35:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FBBCB0E0AC
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 17:37:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32AFE3B9204
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:34:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 591871C81533
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23E927876A;
-	Tue, 22 Jul 2025 15:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2263278751;
+	Tue, 22 Jul 2025 15:37:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="XG8zbXPi"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="TntS18SD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mout.web.de (mout.web.de [212.227.15.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD46265CAC
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 15:35:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7166124DCE1;
+	Tue, 22 Jul 2025 15:37:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753198507; cv=none; b=snKQHyEvcwGW3kmZTV3cjO7s86IS/cgAe3sDwlSYe52UE8HKQsuuljjRi+gViNwZTXPmRV8d8jXW2UA9peP6N4DdDVej/VHOy5fXCva602kMoFJxBmO+eGBOJ+rc9rYYooO9ZzUj8yxM1FBfowDJZH7wh9bjDxp6FuQIQbUQiCw=
+	t=1753198639; cv=none; b=AH4xoLuooCjuKusGk7kzEUaEdU64QQg46Z0RE5ZWDpvM17v5kiKy1AHnGDJJmX1N2RH7kvhrb8yhTrFPNTUStdhhRGXLeC85z4eToXWyItfazBTcYH/9uOS2EfeTm+Qc1gDVPzXkRbQlR9TwcdLuQkL8XygeLpE1bFf1p6iVhzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753198507; c=relaxed/simple;
-	bh=wj8oCg0M4eOhpz+9USCFUjXhviGU0qx9MMLVspcwlo4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SC5CKFoeZ0g7hzn9I7gLDhDYUTxJkiLF5lE3RDvSw/CvpFvRZiMhIeVRDtutwdfkg2rigOkh/9nz/xvuSr+bM9mwTV4nP57e+q+popkxC+YLfd6WR4VzBsi6FQXgDUp2hKMiV40mmKxeFvUa6Z6iIflfql7RfOpbIKsh3ZFEdkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=XG8zbXPi; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=ehnJxuXw+XO6CrSwoncc65XI3L5VH5gGZCLkA0frZ74=; b=XG8zbX
-	PioUJFUAXXO/JNAXyAEY1duS6gI5w3KDI7mhDSMUwQC/vko9Vc1xoNCYFCdF1s7Q
-	JO/WDiAjAKCbnGrjxU99u/6O2XnlHLi1LMcFsnqUxZ7xhSNDIh9S+MRdIrNHLZY+
-	3d6+x5R7QWUTQfLyfVUuywiQ0UrHJzW76kjuuGVVytfhj8tEYrfENXkNn1zL1fL3
-	Ln1W9rc4Mza+eOVtWY0rm3hz6voL1ocow458JMnRCnTuu11N5O0ODlkTXZ/9rRQu
-	VJMMz+A6GJPe8iZC9RnodVFdTgk37Wgwx7RFotWC21avlFxlisCsFkM9Q2OvLoH0
-	iGteBzGtFhYLgVGw==
-Received: (qmail 1374513 invoked from network); 22 Jul 2025 17:34:57 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 22 Jul 2025 17:34:57 +0200
-X-UD-Smtp-Session: l3s3148p1@BUKmVYY6nKggAwDPXyBWAATEinPyanBm
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 3/4] dt-bindings: i3c: Add Renesas I3C controller
-Date: Tue, 22 Jul 2025 17:34:41 +0200
-Message-ID: <20250722153445.5003-4-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250722153445.5003-1-wsa+renesas@sang-engineering.com>
-References: <20250722153445.5003-1-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1753198639; c=relaxed/simple;
+	bh=9vRudx1kT9fm0OhYSnpTEwatIGsSFR9B5AOqsXa3Mdw=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=DllkTSwPDjcqD6b8yta85UsKdzH5mBt961ONF6X5lEvhDPhL0mKVnCDLlyW750/OG+G7oMxvzrWWmaD1/xlKsIA6mrhJIEnQ7bRxKlPrA431sLJOqKL68lYVWwui/Dtu4Qiz2ZFw9X1/B0qxsye9T26sg9t8d46hrdbL30t1dNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=TntS18SD; arc=none smtp.client-ip=212.227.15.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1753198618; x=1753803418; i=markus.elfring@web.de;
+	bh=NaK6/RFxq9QNHVkIk7snI9Kx/nnfVL4eDyfpZlhWR6s=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=TntS18SDmVH+ZTtQOt5/4Q6XyHUPsnU2rp8adTXXxk0ZW7WARSngDd1SbgD9j09L
+	 G80+CKxJ33SuqaJGsrz3eOieG7SBA5oSKgvBdnQuI+vWPQIz27o2jbxbo58NHoyY6
+	 ELiBhnyZKZlJX0DEsitQ5PdLBlt5RkjX0ozDPdNR8swFhnktC3Kur3v+47QJohADO
+	 RIIqfuTP/8A/P1d+DtgaPk2SMF0sHUACx8hf3n4PJxuKI4YcHM5qhVOtQPDQCyiAq
+	 9OLILo/CZoR3yOhDv0jy3TLT5cIjgdaMHLmgl9WmH5WHKXBnr3qzf/SpHP44bdrK/
+	 tRiZVR51TSkFwqm1qw==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.92.215]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1Mf3qY-1v698l2nn8-00i12h; Tue, 22
+ Jul 2025 17:36:57 +0200
+Message-ID: <46fb997f-ba83-44af-aad3-c8406fc7cbea@web.de>
+Date: Tue, 22 Jul 2025 17:36:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+To: "Andrew F. Davis" <afd@ti.com>,
+ Basharath Hussain Khaja <basharath@couthit.com>,
+ Parvathi Pudi <parvathi@couthit.com>, Roger Quadros <rogerq@ti.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew+netdev@lunn.ch>,
+ Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Diogo Ivo <diogo.ivo@siemens.com>, Eric Dumazet <edumazet@google.com>,
+ Guillaume La Roque <glaroque@baylibre.com>,
+ Jacob Keller <jacob.e.keller@intel.com>, Jakub Kicinski <kuba@kernel.org>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Kory Maincent <kory.maincent@bootlin.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ MD Danish Anwar <danishanwar@ti.com>, Meghana Malladi <m-malladi@ti.com>,
+ Murali Karicheri <m-karicheri2@ti.com>, Paolo Abeni <pabeni@redhat.com>,
+ Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>,
+ Sai Krishna <saikrishnag@marvell.com>,
+ Santosh Shilimkar <ssantosh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Simon Horman <horms@kernel.org>,
+ Suman Anna <s-anna@ti.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, krishna@couthit.com,
+ mohan@couthit.com, pmohan@couthit.com, prajith@ti.com,
+ Praneeth Bajjuri <praneeth@ti.com>, Pratheesh Gangadhar <pratheesh@ti.com>,
+ Sriramakrishnan <srk@ti.com>, Roger Quadros <rogerq@kernel.org>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Vignesh Raghavendra <vigneshr@ti.com>
+References: <20250722132700.2655208-3-parvathi@couthit.com>
+Subject: Re: [PATCH net-next v11 2/5] net: ti: prueth: Adds ICSSM Ethernet
+ driver
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20250722132700.2655208-3-parvathi@couthit.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Q4vxNDLCNYUx/MWdxPaTqvyXy0TYyiEQrItXy+6yjhKJeurUc39
+ iabfAOmXG6R1Xij5VZILZVi7owC38NoG9RQqTd8jQo5OTvqZOfsSslyjU806hovQC1yUsoS
+ arWmk5++wRYYiZNSh2RbYYajjEWMp/cYSi2YtXLSPzhhFNRXNyztmCHgBynh1dQzAB5amxh
+ LR67e9vxzYMKjqKVsKR+w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:N1nOrVbTMis=;/rgcWO5i1NflaRGjsOEhKmS3+02
+ 5yjf3CM6gNDTAetsKK5yVS4PXZdqaXV3PQVPkGmFa69VCGsaQJEee4B6xET4HsDfzlF6UIQVC
+ FOErFhrr2Yg5gOI3QAY/maaSNIKDTS4gLOtxol+olVNgpYrhCGLaQGIQYgm455gasowDYnR8y
+ 4aJBuQI3YKTuAZnYw15NJXy+WsBLJoZfL1aP9CM/Y4X1a/toel+AuyI6iFl6NLjHODkJ2iqUH
+ aJWEmIY7qARh9TQUdVGsQmVbGJyFIQ26BjzSTsmdKij27KDs7+1rZrzXko9NaTGVnJ1MWomd7
+ 8vI5PYeWMfA88Rlj1+LWzURQOklk1/2+8wrW/bv08IEA4rBdGf8Yc1D7dIn3aiaDdsiq4NuH6
+ sgDxoQJL2ol/GUkW6y4h8sctBglWMvY3jN+lsAVSMKF7KBgtJXbB4HDC3ztVOxhNJHzJUPQLO
+ 61a+rQDHVkdYEpLEqPqFBMz1R17vuyl4LRUjvn0IerlGhn3iIW/osgwLAF9hmrLlPMog/eJf/
+ 1foEdJStgbJrA/l+rrK0droZlZwM5+UkZWwJKx8mJMgYP5T22z7H6vfH8IRiFbf/cFtT7FrOl
+ ZF4hah54KUnmpnfNfwD/KsUsi21MdZUiw7ikHAHWQomHFLXDvyBGk2ak5DqUZYAMMA6sPhy9s
+ mDafh2DrcgAF13UJCZ9LmNShogccEwN9DzYCl7G1slHyQk7Bf9aFKQjvaAZ9zoI0vL8tvk7Zg
+ p1Xgmx+VMC5056LkCHDk7GmmGtdXnH4FwN8yGJVhDDYmXbQ+q9Y764cBNSD+gdGBHPr3fZq0z
+ zmxQnkaEOrauaTT0mBTPTgDBYHuXA+Nrys+Q52+aASufLCMkz0TLrkdIAsdiaJVIVyH2Rf0xS
+ 0/kyllivkrrF3SZbrRZyIGjMlMC0Gu9D2XKDtzMYV1bfhKQEoGVnNJNhUv591VEayomX93aL1
+ Xl80okd1rTXFS6gHJg0T1gMQ9x1dbPqr04YoVeqRLlKJHxCdyEKDO1sMEdRCOaBm2ckWcpWj/
+ 2kbC/hYdZxiX2OUyLI06bhXVLNbXoguO/cQbFb+AalHVQBMmY3OSBgIWIXrAmCxUyDyIW+uOF
+ 7d43wNe5vd4ThRG2awuulyl5BSz+VNaGWi8hl6m1nK/7DIF6cm8Ph5p07eylfjl+1OdLsSlHT
+ vkS+prIBoU+3RPxd9G57Tkmcu1V24Qdr1VmO+WB640E3xjkG25L1xBjjXdGkN39bss2EXiAFk
+ KSuW33TRaVJRC5BE2QCiz9j963V7FUE915pmrnoy4yLAEDqb9h3i0vTfonvZSFFUGPdxJSQnW
+ z+rGfC714H4FP78s0mt0i/aZKcyYpd8EpwrbAI4vCuN4lfvfUGZdp7QjuHmz00CNBM6FmVMCH
+ 0T3NfpKzf9WrcRS1Tn/GWFpAis0zKX3hV6NRkq3kf1LwFAMZm7nm5QmACR0V4QD2EAysmrgQ8
+ aM2QSJJPo9as8fz/Wq8Ojz6YDX5yFo/tXJEZCChMoI6P7rUobIONIwoWGv2tUxcyAh0p+sC6f
+ wWZ9zD97/FLmZlVTfQ20LzdyP+2H/vtmCOxYC40hm43jT8Cq/Pgx3QqsRjpe5eMVTF2p3bvmt
+ 0d1SV3A/AJNB30CB0SNH0TLYp6z1PRu96fJQTHTuFRsnC5DWVHytE88iMiOtYXJKmidjEcjB8
+ ZmDNou4P7vtjDj8I9q/XeAFOjqCBqV4svTsk0zNayt9cqd1fkeQuKbSZG0Q6P6WitWCJX1JZa
+ iRskRMyxo6oanHKBVmZfEn+MV95uhzpXrSw/d8Kyna8JCTT4qY/vcdzH1D2S6ryZgtLbk0wwr
+ OcyNggzqYXDc6dLMUBAHiSHPeGzolvaMBgZ31JaGPyuhj7kHEUo5OSyjkV/+HG7vjd/UauinS
+ TvqnFDXYpz+bw8JywwZieoaFbiFZiLuksxjVLSQMpPxVeYZE5iI+g5sPRiewAVnCFGF8nuB55
+ F53D9i5q7f50GK3hIUW2gkKd6jwh+Qco1KbxyieoqQOiFIxB9j7hzkL1Ystg23bPNiJQr+obU
+ I/En/QI5OhjSCNkiqfg+h5hTS/J46To0IhOfDGHtTK75kyX6deuQtnVWdRJ18qsOn0NqfI+o9
+ S0f2EG4/54T87PJJWHWySJop3sY2/2/gcY/d0emIGndfPNlZ8IhSr+bMAo0jnsGHXov6ki1mg
+ CZ4stxlsvVT8PPJR1EWC/fSa8ti5wVUWOrTvqQ4DByTu65L8pttkNmejHWK3tSbzCaTmSiXvS
+ kA4QcisY+Tad3VK7LUCIyfRXJ1DblEaKE1TqAsB8qQz899jdhFsyGifWa+jEj19ySTACUimyR
+ MoXrNCZ4XIG942/a+Lvs4DNk1isC9Frel+fCiL5zg3fPeRlkxrUMpReS9HmdpKRsmpGaEByvg
+ UBIGSHmaTaoxvjy1ZgglxZY242off933R+NKXVA3W6caV0cdtohajilpEVbkhMNP1u6LLnoXW
+ D/0mqnTl6z1QqRkXJmh7sg/s41WarGC76kedLnhFfU2Gzr04woeEZ0Q4GnGfvAjYUd+Harclj
+ khkOEqyv14s0B3tcu4rUEgRCVCK3odMpQw1UVMKdqqPw2KZCIE70RN2eZXU41VdCKqFKUykuk
+ vf1gVBl6PurJ/2d9aXjuJJKC+8IUVFY1mTwUr8AE2L5eHWZbvDfoLZmDhN1k60VYHgPix4wb5
+ OR6wAgLuE86ligtCqpgEzCYueAb6X5/QSbdjdwJHNE3wMlVOCzB12WQhbSMARyzr6DKckKMJD
+ Kx7GgTJ+BwjMt2OtQZSB5P3D1FlWYGWtzXXhvLSM4NvrLu4xKxyZ52rL3Bo83PdAn9bnLaKf1
+ o9eUGtnfJd7lIHeeRdflaId9ikQxG3SSrEtYZKUGTUXsKQK3+/EFAg4IfCzc3Vy6ElKWZfqJZ
+ kbom7J5CVGJQF+qL781CSfvMSuvKYfXjJQP4NSpf3NUxhvXQKAWAGSXEeoYB2p9cm2dJ/tWVk
+ MSzggk47+gRVZ0q2PAvcURoANzkurZZw73D6TG++O9gE17oX6FuOqCvjoEyB7z1+CZ9QtHGnl
+ 81t6FYS3HCiZ92Uw2NBzSJkB1r5n3CrJi5AsVoioA6kHKSJZx1vYWZqcFjuNoq48um58IV0by
+ OT1jTkYOHF4tz/WFCL7hwX+04qGdhBZVXbcfWPxvsTabxU4utTSYHBqgwtao1ng0ded5ZyA9D
+ kEOEBBvksexTet2v08Ke6CP27Hxs1DJCbOEasFhy0fdW6IRCGFJM3C5fFKa5Vc/HQEGu0GEzq
+ IZ2Ua+zSQdMgELq4riKw+u7XdUqPZan78xR1IUK0+JPWn59QqNShJHNmgEzBMh9B83M5r8Vbm
+ C2O4vIRwNbIEdSHcKGzewN8KgU6rLAWwOZkGJM8iLvCL+tkunw=
 
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+=E2=80=A6
+> +++ b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+> @@ -0,0 +1,609 @@
+=E2=80=A6
+> +static int icssm_prueth_probe(struct platform_device *pdev)
+> +{
+=E2=80=A6
+> +	/* register the network devices */
+> +	if (eth0_node) {
+=E2=80=A6
+> +	}
+> +
+> +	if (eth1_node) {
+=E2=80=A6
+> +	}
+> +
+> +	if (eth1_node)
+> +		of_node_put(eth1_node);
+> +	if (eth0_node)
+> +		of_node_put(eth0_node);
+> +	return 0;
+=E2=80=A6
 
-Add Renesas I3C controller which is available in R9A08G045 (RZ/G3S) and
-R9A09G047 (RZ/G3E) SoCs.
+I suggest to avoid duplicate condition checks for such a function implemen=
+tation.
+Can any code be reused from another function?
 
-Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
----
-Change since v2:
-* rev-tag added, thanks Rob!
-
- .../devicetree/bindings/i3c/renesas,i3c.yaml  | 179 ++++++++++++++++++
- 1 file changed, 179 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-
-diff --git a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-new file mode 100644
-index 000000000000..fe2e9633c46f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-@@ -0,0 +1,179 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i3c/renesas,i3c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G3S and RZ/G3E I3C Bus Interface
-+
-+maintainers:
-+  - Wolfram Sang <wsa+renesas@sang-engineering.com>
-+  - Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a08g045-i3c # RZ/G3S
-+          - renesas,r9a09g047-i3c # RZ/G3E
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Non-recoverable internal error interrupt
-+      - description: Normal transfer error interrupt
-+      - description: Normal transfer abort interrupt
-+      - description: Normal response status buffer full interrupt
-+      - description: Normal command buffer empty interrupt
-+      - description: Normal IBI status buffer full interrupt
-+      - description: Normal Rx data buffer full interrupt
-+      - description: Normal Tx data buffer empty interrupt
-+      - description: Normal receive status buffer full interrupt
-+      - description: START condition detection interrupt
-+      - description: STOP condition detection interrupt
-+      - description: Transmit end interrupt
-+      - description: NACK detection interrupt
-+      - description: Arbitration lost interrupt
-+      - description: Timeout detection interrupt
-+      - description: Wake-up condition detection interrupt
-+      - description: HDR Exit Pattern detection interrupt
-+    minItems: 16
-+
-+  interrupt-names:
-+    items:
-+      - const: ierr
-+      - const: terr
-+      - const: abort
-+      - const: resp
-+      - const: cmd
-+      - const: ibi
-+      - const: rx
-+      - const: tx
-+      - const: rcv
-+      - const: st
-+      - const: sp
-+      - const: tend
-+      - const: nack
-+      - const: al
-+      - const: tmo
-+      - const: wu
-+      - const: exit
-+    minItems: 16
-+
-+  clocks:
-+    items:
-+      - description: APB bus clock
-+      - description: transfer clock
-+      - description: SFRs clock
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: tclk
-+      - const: pclkrw
-+    minItems: 2
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    items:
-+      - description: Reset signal
-+      - description: APB interface reset signal/SCAN reset signal
-+
-+  reset-names:
-+    items:
-+      - const: presetn
-+      - const: tresetn
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clock-names
-+  - clocks
-+  - power-domains
-+  - resets
-+  - reset-names
-+
-+allOf:
-+  - $ref: i3c.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a08g045-i3c
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+        clock-names:
-+          maxItems: 2
-+        interrupts:
-+          minItems: 17
-+        interrupt-names:
-+          minItems: 17
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g047-i3c
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+        clock-names:
-+          minItems: 3
-+        interrupts:
-+          maxItems: 16
-+        interrupt-names:
-+          maxItems: 16
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a08g045-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    i3c@1005b000 {
-+        compatible = "renesas,r9a08g045-i3c";
-+        reg = <0x1005b000 0x1000>;
-+        clocks = <&cpg CPG_MOD R9A08G045_I3C_PCLK>,
-+                 <&cpg CPG_MOD R9A08G045_I3C_TCLK>;
-+        clock-names = "pclk", "tclk";
-+        interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 294 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 295 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 296 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 297 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 298 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 299 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "ierr", "terr", "abort", "resp",
-+                          "cmd", "ibi", "rx", "tx", "rcv",
-+                          "st", "sp", "tend", "nack",
-+                          "al", "tmo", "wu", "exit";
-+        resets = <&cpg R9A08G045_I3C_PRESETN>,
-+                 <&cpg R9A08G045_I3C_TRESETN>;
-+        reset-names = "presetn", "tresetn";
-+        power-domains = <&cpg>;
-+        #address-cells = <3>;
-+        #size-cells = <0>;
-+    };
-+...
--- 
-2.47.2
-
+Regards,
+Markus
 
