@@ -1,120 +1,162 @@
-Return-Path: <devicetree+bounces-198814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA941B0E5E7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 00:00:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DFDFB0E602
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 00:01:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8001F568332
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69FE07AC9DB
 	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 21:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D10428C2B9;
-	Tue, 22 Jul 2025 21:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1351A221FC9;
+	Tue, 22 Jul 2025 22:00:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="UVCLt9hr"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="efkh5OYu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A5A528C002
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 21:58:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36C22128395;
+	Tue, 22 Jul 2025 22:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753221500; cv=none; b=IuX6zWj5pT7ZAU1lyELQGNWrRjDppfWal6UOaUTvdVZAkR8Ke2jOMuNtyjIrAU2lGGEfSrOOozMY0poXYCHXThdyyy74V1Gy9Gr7Yx3p6DwljWrMRZpEdlH352Iub4OlgrbzZmurAp2Vr4dKvcA+IF27H4gFWZN+OKLLJjKFplc=
+	t=1753221655; cv=none; b=rz4Iv/+3S/2WlD8Ssd4CZvPm3+mQq0yJPQ+P41FKBe1xcpoIX+gUuqZ7DZyHiPY+KkNhKcmlxxtR2k182wtCkJ3zEllQvR2vkGTgHZgeLndASp59ocZ5kmNlrBNTClWQykPdXa07Fc4WefI7KakucNU+tY53VSmZKj0ZPIJ5Lj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753221500; c=relaxed/simple;
-	bh=EngUjsKE6ntaSga2u9NxwJiCa0I8KWoIYhdBjksfnBg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qjcJKnIIX3vPLDMr24kyMo/AvVhnG0tVf+m8+TrI1n+kzq9Fn3civNnqs5ftmp2WtAs4L6MdhKZnfix4UtA0UiYFpaA3JDVw2M85ZdlWgl4FUEezellkh39UofFSh48BtisiZ5R9PpRF5AKFMLcstFnGINDKNfxmKD7nGhHyOok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=google.com; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=UVCLt9hr; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5f438523d6fso2191a12.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 14:58:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1753221497; x=1753826297; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XphRFYGKTpOm5xqnRvI7xsnYVXmfTKHiTieuuJNNgkI=;
-        b=UVCLt9hrIkRO21cndqVwG+FcQW3FCo2GmRfwuZDHOlTrI7SNrja+Mpmf7h185ZpHBH
-         HJny8RyTGLnAEK7fUBtNYdmPGFyHl8jSDINWskWNGEE2vM2twjUD0oAZ0W0Dt8nCS3MB
-         BHBj+GuCntnl741iXcVqJ3fnk3DhBbTd2LN0g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753221497; x=1753826297;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XphRFYGKTpOm5xqnRvI7xsnYVXmfTKHiTieuuJNNgkI=;
-        b=cbHk1QkvxGcgiYHm4LMW1a3acyQevhDyC0x9YEVP+a+AFZBNZxkgBH6UhCSXZc/U8q
-         njHncUtWiCkE0q7336GsLGbUdCo/IfuB3cGqIs12f5pHzTFuvOsGBMYm6DjDtcZqs0cf
-         g09hcmn0z24pFwjUEJYPUQjVvoO0BB9GvPMvTYhKis+gNK53M67/kEtFvOtSiwmFE/Sg
-         NLh+Vd5pM72Phr6pMt3zvyAIiENkEY0Y/FKQ8jFl1hOrA4Ji5QgK6fi4/sAqazTPcFGQ
-         MsOOhfTy4e/hZ8QenTwhZjjUPdrF2vJl2xWnJpx0Uyq/0Nc2TLM+/QfJJZIbJjH40YCh
-         qBeg==
-X-Forwarded-Encrypted: i=1; AJvYcCVzgYrivcyHjiI9NulMK6VKMBKMa+bOV0IDVp/mkg3Vj3p8UmeHsjg+zrIt8G0hTBcYLkBUnSHBeM6l@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsopD8iaKuwhNlsUY86TInmWFrenGNIA3Z3s76W8geXI3fstzV
-	sda8k4jAwnlWdt3kxZL3+maNTyeJ8N9Mc9Jcf0NvK6cEf64WDhUg57hO81D7RtZ6pR92Q86x8xW
-	i/V2p5NDpFbc6DbXCgIOsSLxP3DjC7ICduUDStu+Z
-X-Gm-Gg: ASbGncv7OMex8h4j0F621hGLCt95B9vaAV0rcBG++4Jz1t6H+KB/9qrYWKO85GGkBgF
-	el2AEfiZemSYZJGj7kKP5pnuyZUtstxOlrHZH8zToFJYmyEa6PWNWnVuVVTyDQEuDRxH1b3sTzr
-	NpklWZdvC8lzg9ZbA01CABvtO7pPpjQ0pJ+sDRZkn3VCcSWBea8hFDCMW1GsW7hZsB5RTJ/5pF9
-	u1oHpp0HhUKoyuj6Ak5VAGk8B0dRz7UrjbLyVUQRup/
-X-Google-Smtp-Source: AGHT+IFp5y+l1fTW8GtjpxnnyEe4EWyuH/zYE3JF5LoJQi9huRUvCNpCO/HKD9InP/jd87P+NKE1aVh/xMR3qwPcil0=
-X-Received: by 2002:a50:cd11:0:b0:612:7599:65c7 with SMTP id
- 4fb4d7f45d1cf-6149ac2e0b6mr29581a12.6.1753221496595; Tue, 22 Jul 2025
- 14:58:16 -0700 (PDT)
+	s=arc-20240116; t=1753221655; c=relaxed/simple;
+	bh=D28me53HqI/b4OOy5Jg1frH4LmAnj0yC4yp5g60srig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t+Gm4eLlH2yElVX05iOS3D3sW4/PyH/ToG+hm7cPf3KVU/mJS8EN7o0l0PDm3l/b/Fvj2i11QF+Hh2OBp8CaQ6ScMlDgwJimrhb7LUqZOH+awAPCzF4EDybMc8OS/HNNuh9x5LSKPgPZ5HDLvXDaXlH+f0v8Bx7hOyeTAvj/yUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=efkh5OYu; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=XSSmyEAVCfx6UoBN6/vyS4ypSsBayt+epb+whGNpxlc=; b=efkh5OYuxMntLpQJfhREDs00bT
+	e31RvBopK3XWSjzCJceqzHhiBJnPqtcwtbFK2oBy1s+de/r7ALJUKHqz9WXbLx63YkB6KsGHefWJm
+	bVpZBLUWfqTjXLGYD+9/yA6JkLuiDEHB3SC1+2EKu+hGz0nnQxP1d51EvqA0oztSftHu8f8AOUXY6
+	Uh/2FYBf5MV7yTGyrYO4gHZrkZeLx8Ol7t4D5hCvcROVO2KkTqzCgOZJcAGkyqZoeh6yqbhEV3BMY
+	oRfBIsyD+K7rDqe/zylRjiXU91hxTdGab+qPmrM/htdnJM+aafdw8LQLtBZ3+B02TzBlV0zgqVBdg
+	xuuzHWUQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56144)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1ueL2L-0000hK-0z;
+	Tue, 22 Jul 2025 23:00:37 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1ueL2I-0007UG-0n;
+	Tue, 22 Jul 2025 23:00:34 +0100
+Date: Tue, 22 Jul 2025 23:00:34 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Tristram Ha <Tristram.Ha@microchip.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: document st,phy-wol
+ property
+Message-ID: <aIAKAlkdB5S8UiYx@shell.armlinux.org.uk>
+References: <faea23d5-9d5d-4fbb-9c6a-a7bc38c04866@kernel.org>
+ <f5c4bb6d-4ff1-4dc1-9d27-3bb1e26437e3@foss.st.com>
+ <e3c99bdb-649a-4652-9f34-19b902ba34c1@lunn.ch>
+ <38278e2a-5a1b-4908-907e-7d45a08ea3b7@foss.st.com>
+ <5b8608cb-1369-4638-9cda-1cf90412fc0f@lunn.ch>
+ <383299bb-883c-43bf-a52a-64d7fda71064@foss.st.com>
+ <2563a389-4e7c-4536-b956-476f98e24b37@lunn.ch>
+ <aH_yiKJURZ80gFEv@shell.armlinux.org.uk>
+ <ae31d10f-45cf-47c8-a717-bb27ba9b7fbe@lunn.ch>
+ <aIAFKcJApcl5r7tL@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250722-ddrperfm-upstream-v3-0-7b7a4f3dc8a0@foss.st.com> <20250722-ddrperfm-upstream-v3-7-7b7a4f3dc8a0@foss.st.com>
-In-Reply-To: <20250722-ddrperfm-upstream-v3-7-7b7a4f3dc8a0@foss.st.com>
-From: Julius Werner <jwerner@chromium.org>
-Date: Tue, 22 Jul 2025 14:58:03 -0700
-X-Gm-Features: Ac12FXx4M-_tpsnv6SoYOcaCR3mVKSUiARmyCSX04o5wxXNHMo0oAxmxSQQ0MIM
-Message-ID: <CAODwPW-kVcnVtVakXs7aBcwb_nv0bLTaK5PKNo4zmJaJ=VC8Wg@mail.gmail.com>
-Subject: Re: [PATCH v3 07/19] dt-bindings: memory: factorise LPDDR channel
- binding into memory channel
-To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
-	Gatien Chevallier <gatien.chevallier@foss.st.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Gabriel Fernandez <gabriel.fernandez@foss.st.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Le Goffic <legoffic.clement@gmail.com>, 
-	Julius Werner <jwerner@chromium.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aIAFKcJApcl5r7tL@shell.armlinux.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-> +  purpose of this node is to overall memory topology of the system, including the
+On Tue, Jul 22, 2025 at 10:39:53PM +0100, Russell King (Oracle) wrote:
+> rtl8211f_get_wol() does not take account of whether the PMEB pin is
+> wired or not. Thus, stmmac can't just forward the get_wol() and
+> set_wol() ops to the PHY driver and let it decide, as suggested
+> earlier. As stmmac gets used with multiple PHYs, (and hey, we can't
+> tell what they are, because DT doesn't list what the PHY actually is!)
+> we can't know how many other PHY drivers also have this problem.
 
-nit: Might take the opportunity to fix the typo here (missing words:
-"is to describe the overall memory topology").
+I've just read a bit more of the RTL8211F datasheet, and looked at the
+code, and I'm now wondering whether WoL has even been tested with
+RTL8211F. What I'm about to state doesn't negate anything I've said
+in my previous reply.
 
->    - Julius Werner <jwerner@chromium.org>
 
-Why remove me? (Although I'm also not really sure why I'm maintainer
-for this file and Krzysztof for all the others, tbh.)
+So, the RTL8211F doesn't have a separate PMEB pin. It has a pin that
+is shared between "interrupt" and "PMEB".
 
->  examples:
->    - |
+Register 22, page 0xd40, bit 5 determines whether this pin is used for
+PMEB (in which case it is pulsed on wake-up) or whether it is used as
+an interrupt. It's one or the other function, but can't be both.
 
-I think that's a load-bearing pipe character you're removing here?
+rtl8211f_set_wol() manipulates this bit depending on whether
+WAKE_MAGIC is enabled or not.
 
-> -    lpddr-channel0 {
-> +    memory-channel0 {
+The effect of this is...
 
-Just to double-check, the name of this node doesn't really mean
-anything and isn't directly interpreted by the kernel, right? I'm fine
-with changing the example here to fit better with the new expanded
-scope of the schema, but we have existing firmware that generates
-nodes with the `lpddr-channel0` name, I want to make sure that it
-won't break from making changes here.
+If we're using PHY interrupts from the RTL8211F, and then userspace
+configures magic packet WoL on the PHY, then we reconfigure the
+interrupt pin to become a wakeup pin, disabling the interrupt
+function - we no longer receive interrupts from the RTL8211F !!!!!!!
+
+Yes, the driver does support interrupts for this device!
+
+This is surely wrong because it will break phylib's ability to track
+the link state as there will be no further interrupts _and_ phylib
+won't be expecting to poll the PHY.
+
+The really funny thing is that the PHY does have the ability to
+raise an interrupt if a wakeup occurs through the interrupt pin
+(when configured as such) via register 18, page 0xa42, bit 7...
+but the driver doesn't touch that.
+
+
+Jetson Xavier NX uses interrupts from this PHY. Forwarding an
+ethtool .set_wol() op to the PHY driver which enables magic packet
+will, as things stand, switch the interrupt pin to wake-up only
+mode, preventing delivery of further link state change events to
+phylib, breaking phylib.
+
+Maybe there's a need for this behaviour with which-ever network
+driver first used RTL8211F in the kernel. Maybe the set of network
+drivers that use interrupts from the RTL8211F don't use WoL and
+vice versa. If there's any network drivers that do forward WoL
+calls to the RTL8211F driver _and_ use interrupts from the PHY...
+that's just going to break if magic packet WoL is ever enabled at
+the PHY.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
