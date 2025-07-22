@@ -1,179 +1,189 @@
-Return-Path: <devicetree+bounces-198576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23956B0D6E5
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:07:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF975B0D6FB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 12:11:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E0A13A049C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:06:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF0227B4FC5
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 10:08:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F3622E1723;
-	Tue, 22 Jul 2025 10:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 248B22DFA28;
+	Tue, 22 Jul 2025 10:09:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BSH6ISmE"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="cqeK+ber"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9499D289808
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 10:05:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B15288C0A;
+	Tue, 22 Jul 2025 10:09:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753178759; cv=none; b=VQisREc4uUcji2JRkj6/F464NQ/08MOwnswvkHQVgyIUnepkhelG9VaPoWHZiO/ocVVkeQsStZm9QUJsOp/edWglRv6uXwep4qqhVW2mrXm0Pqqevd5GxlC2WJphZWp0yJp1PYXTe33pIYAJ330ozeNA9qfeZbFnbSQVuAIf6cs=
+	t=1753178983; cv=none; b=Iy/eKg8kiJlUytoIy1QPJNbXaTI9s2XXLnPqI9igUjKZFNV1YT4Aa+oqviNt3MYhKnaDWt8XbVzD5/qbEvGqmJTxAPCwT91qQoK/q9jsGQqTdK3HN92bGzLT++/DMBwsZZxJpi6Tpe7c1+zrR7lE8+nLcL9pYpkV90zZLl+4iis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753178759; c=relaxed/simple;
-	bh=39YNoWp4OX6qnLsieXmLV9zCGjbhYjyloInkDj4pUC8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=YQ7aVzz3wbi33JBMfKni/a/JVgEyuP4iVfk5t+QAeFHGE+zWMfQFwd7YvW/2s48zuf/g5MzoTcUkOQYc2nCKuxc1+SrWZcpntW5xqTad+yt+zG7yXlLR3IyZ4dOVvXFcT9v3Au2kvdoDfrf6PdqBndbUgX0Oo1f4v4xdUJmcEc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BSH6ISmE; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4561a4a8bf2so59016495e9.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 03:05:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753178756; x=1753783556; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K6tvj/DkNBulYt/YV/mLvh6U0WsYjvJUAB4Jgyqsz68=;
-        b=BSH6ISmE69q5IXtzmw3SbUWR11Ed02ig44M8tcvHldMKuOS3pCR/cX5r/7biuxZDwh
-         akqq7aBnYxtoDCqu+15Tx0uZ7HPypCNF7ZIfsX9e1aod+ACfpom1vhRclKuCHK8nK9Lo
-         nHSkQGDAPBqPxA/TLJ4OMi4RIPF6FvbWN8Fl0jdx//HIZk3z8QssmJYK+lxV0WPtO0GI
-         X6APd5W07f3qQo1kaH7vTOpF3CRBeRzqKo9adujoLJNzFj99d7vitOUS1W57R5C8ynpB
-         CLPYbjLP7EaNuI5uPc5SOgEXXnLSOzvI90iPviYGY9xmtf8xcppzjwjW1Dt3dNQgF5MI
-         Hmtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753178756; x=1753783556;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=K6tvj/DkNBulYt/YV/mLvh6U0WsYjvJUAB4Jgyqsz68=;
-        b=QKl/zONqhD0AAacFbkVOixuk0OcfLKrLTGxhv7Qcvp1c2630dDVJPSFpoRWXsmpNGQ
-         MpmCNcOEL+hVNDyZNZKxJZjwvX8J6w6/1FktmsJquk1TiI+LDYK1UAjfQowr6zIOWmwd
-         BsNC0r/dTCtcyPievNvsKED9fYujVVuQFmjqcpkaSM+xKxO1gFAGoI5LKAhCiCZxEOTv
-         R8HQs0w6csy7d45KS0U6Yrr+U+CkaQr9nhLXazSxqklQFYDWL2PREV/wW/1Tjb01t+ux
-         MPCdCaCjsBas8oOMCL2VtvVTlSuh3T7OkgJAvtDxeTsMUaWU4w2fd8FNA7Mk49wLbV46
-         uPlw==
-X-Forwarded-Encrypted: i=1; AJvYcCX3aafJB4HYrsaSkWOQ0sgXhb33VezsoknoM6e78MHwdcvulLBi0JzhX5zvOWy8NWJgvv5p4KwxyJQg@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrwZqc66xeT3AH8Vv3lMqCO3if4PENKQLHpETXjFiPeHAemwVd
-	ss6+lj5lZIfMc2DhZsw+wmEvODKsbYzQHm02iCw/m6sGblGd7/xof5QS4dWaXgiWsqc=
-X-Gm-Gg: ASbGnctH7YHVuyfvfbWUphdWaH8uzFDqBePyQMrdY3VclOOgYmz7fnWDicn6JeW7A+R
-	gdC2n/2bGMN1yawPCDsK9LabsUYIzUnb0uz+FwXJJoINGqYvx9E+Oxl+dj+KJt1BFGqcUUNY0ut
-	EDqrEr8W4X+ktDfbZnJqmkZiKm8pD+tjK9bhrU3pbOj7QHeeK27gomFhwyCIv1yLCf4Y9rNWU1O
-	81QKxmq7KGext176Bt+ExnYWHZteZzpVuyjYzFKX9+GeRxutf4IoWJrmK+a5fYQAUFe2OmfgbyJ
-	iqXEVnQNz4PagPqLbioyN6TARAfhZ9xLEYfDv5aRNBwN22hFoW0Y2ShBse0r3mnCojDwtrkv4q2
-	DqW5cgwS0K31c5bsLtrW+m5xs1Pb3g7CWieHMP9ak5g+ikF+AoKTiuPx0QKi0hWBS4mb2Q2uwKb
-	xw1E3XJqg9Kw==
-X-Google-Smtp-Source: AGHT+IF6xHLS/NKb0FDDLslT+SQ8Ge7DpH9qHjfZKBiFCLY7EOoCDjUS/Zdn1Tv9T1Zp8mEzCtRq7w==
-X-Received: by 2002:a05:600c:3acf:b0:456:e39:ec1a with SMTP id 5b1f17b1804b1-456348e70f4mr208884215e9.14.1753178755675;
-        Tue, 22 Jul 2025 03:05:55 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:bce4:725d:6922:d1ba? ([2a01:e0a:3d9:2080:bce4:725d:6922:d1ba])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b61c9f16d9sm13213953f8f.0.2025.07.22.03.05.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Jul 2025 03:05:55 -0700 (PDT)
-Message-ID: <4a78f570-62fd-4779-aba2-1c9c558989f2@linaro.org>
-Date: Tue, 22 Jul 2025 12:05:54 +0200
+	s=arc-20240116; t=1753178983; c=relaxed/simple;
+	bh=c77M5+AjDGCL+xjZzhin0cl7QZLtfKeuoPcGiiWC2Dk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YGs/o/nWrscsrwz40qa4a/vRT8jNrLmz5B/AnGNbYtNA+kd4s/kUhPxYbZbBkn2PrW4Z5fxgGeRvFngZwt8anH6DFYk+4Y/dc6r5llOnvcvr+a/gvNEziiA1XtJD6FeTWqxg4FVdlj9s7KFeD1l6+8nPqOW9RGkpeuIVtGAA+30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=cqeK+ber; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 5A42720D77;
+	Tue, 22 Jul 2025 12:09:37 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id y5IZS-10NB0S; Tue, 22 Jul 2025 12:09:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1753178976; bh=c77M5+AjDGCL+xjZzhin0cl7QZLtfKeuoPcGiiWC2Dk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=cqeK+berFWewY/R24UqFkJOwkmtREVJwqBwQeUOTVxBn/ydsUG4PZbN3k/Bd8jiPa
+	 eqSExBh72YGqJuw+dN6CDwzFivTyXTJpArqUolzDWBlX5jkxX9CqNzGMF8+93Lmo5D
+	 0ZWBwqbBQT7cZfsCJIfhNLCph4hBLNFvWshWlRwg3O8PQa/IelDTNkBL5IzQIisswh
+	 c/KFKbcHrDslkkU6no5PxUsY2ZNBR2jYAnRGiuz7ApIb1+e9jNrtzaEp8Ka8r5n39O
+	 zkMvWni/DJhWRbXQPnmiTpTPsaalSXDnCQzlqPH1IZldD0qIRf0kOkANl4rGI9n96t
+	 cYVdg5DFv85cA==
+Date: Tue, 22 Jul 2025 10:09:23 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Yixun Lan <dlan@gentoo.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Alex Elder <elder@riscstar.com>,
+	Haylen Chu <heylenay@4d2.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: clock: spacemit: CLK_SSPA_I2S_BCLK
+ for SSPA
+Message-ID: <aH9jUyzGb53B-aOu@pie>
+References: <20250722-k1-clk-i2s-v2-0-2f8edfe3dab4@linux.spacemit.com>
+ <20250722-k1-clk-i2s-v2-2-2f8edfe3dab4@linux.spacemit.com>
+ <20250722092101-GYB724801@gentoo>
+ <B79CAF56E128A7B3+aH9Zb9zNm6y_ovvW@LT-Guozexi>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: C3: Add RTC controller node
-To: xianwei.zhao@amlogic.com, Yiting Deng <yiting.deng@amlogic.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250717-rtc-c3-node-v1-0-4f9ae059b8e6@amlogic.com>
- <20250717-rtc-c3-node-v1-2-4f9ae059b8e6@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250717-rtc-c3-node-v1-2-4f9ae059b8e6@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <B79CAF56E128A7B3+aH9Zb9zNm6y_ovvW@LT-Guozexi>
 
-On 17/07/2025 11:38, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Tue, Jul 22, 2025 at 05:27:11PM +0800, Troy Mitchell wrote:
+> On Tue, Jul 22, 2025 at 05:21:01PM +0800, Yixun Lan wrote:
+> > Hi Troy,
+> > 
+> > On 15:36 Tue 22 Jul     , Troy Mitchell wrote:
+> > > This patch adds macro definitions: SSPAx_I2S_BCLK,
+> > this is obvious, so no need to repeat, please add something useful
+> > 
+> > > to introduce a dummy gate for i2s_bclk.
+> >                 ~~~~~~ 'virtual'? if it isn't a real gate clock,
+> > 	but I'm not sure it's a good approach to introduce such
+> > 	virtual clock if underlying hw doesn't comply with this
+> I'll leave this question to others.
 > 
-> Add the RTC controller node for C3 SoC family.
+> > 
+> > > 
+> > > Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> > > ---
+> > >  include/dt-bindings/clock/spacemit,k1-syscon.h | 114 +++++++++++++------------
+> > >  1 file changed, 58 insertions(+), 56 deletions(-)
+> > dt-binding patch should always go first
+> get it
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
+> > 
+> > > 
+> > > diff --git a/include/dt-bindings/clock/spacemit,k1-syscon.h b/include/dt-bindings/clock/spacemit,k1-syscon.h
+> > > index 35968ae98246609c889eb4a7d08b4ff7360de53b..6914ccf5be45a1071d5b6eac354cacb67888e00c 100644
+> > > --- a/include/dt-bindings/clock/spacemit,k1-syscon.h
+> > > +++ b/include/dt-bindings/clock/spacemit,k1-syscon.h
+> > > @@ -123,62 +123,64 @@
+> > >  #define CLK_TIMERS2		41
+> > >  #define CLK_AIB			42
+> > >  #define CLK_ONEWIRE		43
+> > > -#define CLK_SSPA0		44
+> > > -#define CLK_SSPA1		45
+> > > -#define CLK_DRO			46
+> > > -#define CLK_IR			47
+> > > -#define CLK_TSEN		48
+> > > -#define CLK_IPC_AP2AUD		49
+> > > -#define CLK_CAN0		50
+> > > -#define CLK_CAN0_BUS		51
+> > > -#define CLK_UART0_BUS		52
+> > > -#define CLK_UART2_BUS		53
+> > > -#define CLK_UART3_BUS		54
+> > > -#define CLK_UART4_BUS		55
+> > > -#define CLK_UART5_BUS		56
+> > > -#define CLK_UART6_BUS		57
+> > > -#define CLK_UART7_BUS		58
+> > > -#define CLK_UART8_BUS		59
+> > > -#define CLK_UART9_BUS		60
+> > > -#define CLK_GPIO_BUS		61
+> > > -#define CLK_PWM0_BUS		62
+> > > -#define CLK_PWM1_BUS		63
+> > > -#define CLK_PWM2_BUS		64
+> > > -#define CLK_PWM3_BUS		65
+> > > -#define CLK_PWM4_BUS		66
+> > > -#define CLK_PWM5_BUS		67
+> > > -#define CLK_PWM6_BUS		68
+> > > -#define CLK_PWM7_BUS		69
+> > > -#define CLK_PWM8_BUS		70
+> > > -#define CLK_PWM9_BUS		71
+> > > -#define CLK_PWM10_BUS		72
+> > > -#define CLK_PWM11_BUS		73
+> > > -#define CLK_PWM12_BUS		74
+> > > -#define CLK_PWM13_BUS		75
+> > > -#define CLK_PWM14_BUS		76
+> > > -#define CLK_PWM15_BUS		77
+> > > -#define CLK_PWM16_BUS		78
+> > > -#define CLK_PWM17_BUS		79
+> > > -#define CLK_PWM18_BUS		80
+> > > -#define CLK_PWM19_BUS		81
+> > > -#define CLK_SSP3_BUS		82
+> > > -#define CLK_RTC_BUS		83
+> > > -#define CLK_TWSI0_BUS		84
+> > > -#define CLK_TWSI1_BUS		85
+> > > -#define CLK_TWSI2_BUS		86
+> > > -#define CLK_TWSI4_BUS		87
+> > > -#define CLK_TWSI5_BUS		88
+> > > -#define CLK_TWSI6_BUS		89
+> > > -#define CLK_TWSI7_BUS		90
+> > > -#define CLK_TWSI8_BUS		91
+> > > -#define CLK_TIMERS1_BUS		92
+> > > -#define CLK_TIMERS2_BUS		93
+> > > -#define CLK_AIB_BUS		94
+> > > -#define CLK_ONEWIRE_BUS		95
+> > > -#define CLK_SSPA0_BUS		96
+> > > -#define CLK_SSPA1_BUS		97
+> > > -#define CLK_TSEN_BUS		98
+> > > -#define CLK_IPC_AP2AUD_BUS	99
+> > > +#define CLK_SSPA0_I2S_BCLK	44
+> > > +#define CLK_SSPA1_I2S_BCLK	45
+> > just append the clock at the end, instead of doing massive renaming
+> The c file is written in the same order as the h file,
+> and I don't want to disrupt this order..
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> index cb9ea3ca6ee0..b81bffac7732 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -53,6 +53,13 @@ xtal: xtal-clk {
->   		#clock-cells = <0>;
->   	};
->   
-> +	xtal_32k: xtal-clk-32k {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <32768>;
-> +		clock-output-names = "xtal_32k";
-> +		#clock-cells = <0>;
-> +	};
-> +
->   	sm: secure-monitor {
->   		compatible = "amlogic,meson-gxbb-sm";
->   
-> @@ -967,6 +974,15 @@ nand: nand-controller@8d000 {
->   				clock-names = "core", "device";
->   				status = "disabled";
->   			};
-> +
-> +			rtc@9a000 {
-> +				compatible = "amlogic,c3-rtc",
-> +					     "amlogic,a5-rtc";
-> +				reg = <0x0 0x9a000 0x0 0x38>;
-> +				interrupts = <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>;
-> +				clocks = <&xtal_32k>, <&clkc_periphs CLKID_SYS_RTC>;
-> +				clock-names = "osc", "sys";
-> +			};
->   		};
->   
->   		ethmac: ethernet@fdc00000 {
-> 
+> So should I keep this style or just append at the end?
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+This isn't only a style issue. This patch breaks devicetree ABI, old
+devicetree won't work with the change. Please don't modify existing
+definitions but only add new ones.
+
+>                 - Troy
+> > 
+> > > +#define CLK_SSPA0		46
+> > > +#define CLK_SSPA1		47
+> > > +#define CLK_DRO			48
+
+Regards,
+Yao Zi
 
