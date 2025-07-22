@@ -1,128 +1,85 @@
-Return-Path: <devicetree+bounces-198758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1231B0E1DA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 18:27:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 361DAB0E1F4
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 18:32:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E6CCAC0C7B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 16:26:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69FBD169840
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 16:32:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4142820DC;
-	Tue, 22 Jul 2025 16:24:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56591279DBA;
+	Tue, 22 Jul 2025 16:32:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bLGzyCoq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V/TbqYft"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8118281525;
-	Tue, 22 Jul 2025 16:24:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E28020CCDC;
+	Tue, 22 Jul 2025 16:32:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753201461; cv=none; b=JUKA6Kg0ov9St2oB+6HpX66trQFzYrf/IOytRIKfuemzOZa7fWV5O9YRUZYWlpav0jvdNLvcU7E2isikPxky97Xw4eMBorY4s/2GvpJ3euSDHMreQbBvN+RweYu6D5HSyXVmlM8k3Zp9koQh3LutRfWOo2Ft2yhOridErrOKqm8=
+	t=1753201958; cv=none; b=fFj3c9kva2NXYLIK/qY98BboSWWvRhvEMTFvY49tHN0NWhEWyq9f+r8HoQxm0l8B+cTWrsXDnyo0ELiWavRo6A3qTiuzbqaF460giOwmUwFvKNuedffs3e3VNfH26R3IoqwurdN8ILzcXl9v62vdbll7CMC1LljbYuauibtvgDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753201461; c=relaxed/simple;
-	bh=xJ6iY8o+ZOpmD8Y1clJfWaa8E3xKOaOVi2G4V5Rnvlk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EU1A85DcwiLw3A0px/fFHuLT7KlLjlxPbbuHGm915d8EsjB1qsiWrUfFQn4OIFH7y4mZosw4ePh6TH2nFkPlYNwoNqrDAuIbfGO4gXn+3OublTeTjdiDPdEN7vNQ7PyQdjB9z9JRw7yHLo4xyFaWd0nG+GBwl8M11VXovFZXAHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bLGzyCoq; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3903E442BA;
-	Tue, 22 Jul 2025 16:24:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1753201454;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Sx6wkia9Ry4UV/E6LGN80qIoVg+MTk5IsREllQ76Ch0=;
-	b=bLGzyCoqzxIMa79ZmkUahyDwsQ+XS6zaMNd5Pf5V2rhY8d7vNUINERAx5x5Mt8gYhp4F0B
-	Jg5Px/QOUd+A9V9dY7VAXZZwItq1PeQiMZqb13VBwgjme0i2RnRSM4QO1wjvQuyMdGM0JG
-	rlb47DSgd3f5XyvNx5daQyMTmsFUOzvmxUYnk9BrYUu+AtKZdF2ZCP9LBrNV4fvg3vEODl
-	+P9d0cWXD8buV5w5P0QGnFt2drcApwLWG56ynsnZULkyRTgcPfCo5fpGB6/4lEMEtCKZGt
-	B0OopUC/tfJ1PTjplNLMJk6iVQZhWlbtsaY8jnimobHo0Nqmq/i1iXtCh4/NRg==
-From: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Date: Tue, 22 Jul 2025 18:23:54 +0200
-Subject: [PATCH v12 10/10] MAINTAINERS: Add entry on MAX7360 driver
+	s=arc-20240116; t=1753201958; c=relaxed/simple;
+	bh=5VD5cDKyRTDctQiUs+WkrbH3QLqnv7mOwR2QHGRhog4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oByVZN6dyBJ6sf9hPRWwOB2hDOX9GEcvayF5RjVOMQTqz91pqmV+wxVrUFxYKmsbqDIGpdcyCZl9g6FwyhIyfPOLk44I3RZttNFZoB9V3g/1vJpTT5uAa7a0IlfWF0uGlfFhIC+xGBFhJlDRXRoAd5jkjEQN8wdDipTnNeHPpic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V/TbqYft; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5318C4CEEB;
+	Tue, 22 Jul 2025 16:32:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753201955;
+	bh=5VD5cDKyRTDctQiUs+WkrbH3QLqnv7mOwR2QHGRhog4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=V/TbqYftykloTh2bUPjIuXupDBI6PTFGIkG+VYgv5FQJnhwlmL087LTSfjEOLMlL1
+	 UTaKqBC4WeiX/RvCLDgYcl+URSDC4vrbWq/FZxHVJZkb21E8k1pIUwVFviFnoT2+oq
+	 p5ZfYpHYQOluJlwQEmCeqbQyM4aRWMIWrRerXv9ZQlv+RSnBoBSc0EW52seUrR97Cq
+	 ebuTjI9+mLqI1CWpyOlmJzYuSv+JigypIAjj2OLnuraDMh5xN8wd9yIZu3ZnGB5tA7
+	 fa99Y/H6GUz+olfZFjPYFsU9NHZMWzU1fd/d40UOPL2cdWjX/ZEqmVWZMhhABofsi6
+	 wTNBq+FIFFS2A==
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ae0c4945c76so773396066b.3;
+        Tue, 22 Jul 2025 09:32:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUUa83tJ2c4agd9/c3cgenXVXbPKFdNXFJAt+OtnR+zLAqYH8UQca8aAdUE2PG5U9IC7ObqsGs0dkHM@vger.kernel.org, AJvYcCXXdMWnOzWwNllmX38dCOmJJ+KEPHbR9lhPLTbWBQnOMu5cKoyeQTJAfvvhEoZk2DsyvMWwfdUo0zNnVV14@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRZcaxbr8bQqCjK/3M6RmgaN6KOILZbX3s9SZevGdnUoBxcTex
+	Ip0jr1frrTBCBwuZ4AW0dZgiTyQ4MWs/En3iImxl8Gu9RjEgdKntuwzFDCu16M0UuO6sJqvHcV/
+	8RxIuxoNrNNjBi+EOdIskzlEtvaRkbg==
+X-Google-Smtp-Source: AGHT+IFedQC2KkA9V8OFrvVFS5ZdEgjGD54xoCF0+NSBjrJ5HqpDkX7EoPPFEz3PSfwJ2JmxH+g9tRdXAosALL4gmas=
+X-Received: by 2002:a17:907:2da7:b0:aec:f8bb:abeb with SMTP id
+ a640c23a62f3a-aecf8bbaefemr1501206266b.42.1753201954257; Tue, 22 Jul 2025
+ 09:32:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250722-mdb-max7360-support-v12-10-3747721a8d02@bootlin.com>
-References: <20250722-mdb-max7360-support-v12-0-3747721a8d02@bootlin.com>
-In-Reply-To: <20250722-mdb-max7360-support-v12-0-3747721a8d02@bootlin.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kamel Bouhara <kamel.bouhara@bootlin.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1753201440; l=1082;
- i=mathieu.dubois-briand@bootlin.com; s=20241219; h=from:subject:message-id;
- bh=xJ6iY8o+ZOpmD8Y1clJfWaa8E3xKOaOVi2G4V5Rnvlk=;
- b=RCtvc6Srpi81Hw3SAZmo9YPbfFfM9Vq/dZhYOLivl7rVBPorISC3LthYFL0evjIQ9O0I0LgBM
- smlCMBzi1IPCGB54JVnNsV915RaNmFWhlivYJPIbbp5VuJ2sDKhD6vw
-X-Developer-Key: i=mathieu.dubois-briand@bootlin.com; a=ed25519;
- pk=1PVTmzPXfKvDwcPUzG0aqdGoKZJA3b9s+3DqRlm0Lww=
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdejheefiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpeforghthhhivghuucffuhgsohhishdquehrihgrnhguuceomhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnheptdfhgeetvddvheejieehheehueetjeelkedtfeehhefgfeeglefhteegtddthfetnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejieenucevlhhushhtvghrufhiiigvpeehnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejiedphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomhepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdefpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhgpdhrtghpthhtohepmhifrghllhgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhhihidrshhhv
- ghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheprhgrfhgrvghlsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhpfihmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlvggvsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+References: <20250721201625.233750-1-xunil@tahomasoft.com>
+In-Reply-To: <20250721201625.233750-1-xunil@tahomasoft.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 22 Jul 2025 11:32:22 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ3w-UDSrxC-TJG1e-0cE8zGTucCZ2UrpPnnt-i3jV1WQ@mail.gmail.com>
+X-Gm-Features: Ac12FXygKDpSX9VlkKrVQ5eehBFUyEHacDdAWrNyCzutyTh87Y5nRrHEPN7hOeM
+Message-ID: <CAL_JsqJ3w-UDSrxC-TJG1e-0cE8zGTucCZ2UrpPnnt-i3jV1WQ@mail.gmail.com>
+Subject: Re: [PATCH 0/2 v2a]: New board support,LinkStar-H68k-1432v1 (RK3568)
+To: Erik Beck <xunil@tahomasoft.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add myself as maintainer of Maxim MAX7360 driver and device-tree bindings.
+On Mon, Jul 21, 2025 at 3:16=E2=80=AFPM Erik Beck <xunil@tahomasoft.com> wr=
+ote:
+>
+> ** Resending with proper patch sequence numbers **
+> -- version 2a
 
-Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
----
- MAINTAINERS | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+That's creative. Version numbers are 1, 2, 3, 4,... That's all. Don't
+resend just for that.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 60bba48f5479..469317272dab 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14808,6 +14808,19 @@ L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	drivers/iio/temperature/max30208.c
- 
-+MAXIM MAX7360 KEYPAD LED MFD DRIVER
-+M:	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
-+F:	Documentation/devicetree/bindings/mfd/maxim,max7360.yaml
-+F:	drivers/gpio/gpio-max7360.c
-+F:	drivers/input/keyboard/max7360-keypad.c
-+F:	drivers/input/misc/max7360-rotary.c
-+F:	drivers/mfd/max7360.c
-+F:	drivers/pinctrl/pinctrl-max7360.c
-+F:	drivers/pwm/pwm-max7360.c
-+F:	include/linux/mfd/max7360.h
-+
- MAXIM MAX77650 PMIC MFD DRIVER
- M:	Bartosz Golaszewski <brgl@bgdev.pl>
- L:	linux-kernel@vger.kernel.org
-
--- 
-2.39.5
-
+Rob
 
