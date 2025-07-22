@@ -1,148 +1,300 @@
-Return-Path: <devicetree+bounces-198551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBE57B0D57A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:13:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6378EB0D55C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:11:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00382169B05
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:13:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 858B616A373
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 728452DBF40;
-	Tue, 22 Jul 2025 09:13:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="XvNedHfm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40D472DA77F;
+	Tue, 22 Jul 2025 09:11:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 992712D239F;
-	Tue, 22 Jul 2025 09:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3276F2DA77B
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 09:11:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753175609; cv=none; b=X7ZH3e0cXFTJ01B82BJtP6ZlfLnkpmov3X5Of56PqxHn6ndez0D3N0XPToIhNE+9qX0dslNgPESjugUXsh42/bq1aeKh7I9eWNage4LE50FYN0Ews8L1L8WG2L+wmL+OhH3QmC4G1Dji4oyFvdtgM3Ze9jqeSM3SYBich65A3cM=
+	t=1753175485; cv=none; b=Zr76LHJT4wqtQ8CD+iKFVMQTXmVdyyDzxuT8AaLNLJkzQ6N4PZl8tgpe0Fh9QDCN8pohWsWk9bt6lPt+klojvXHMJhoEwbwDjIaMdKRGxRUdfLEHdfuMWQFXr2VCc/OCBxHu8CZz9+m4NC4oW2pWWzkI2AhrmuCDrIeqKMNCE44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753175609; c=relaxed/simple;
-	bh=K46LKlryytsBzCQQYLjIod+ITNfG15qvoOugzrudCpc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sPkYmv7kNd0LREnZIMDrE4otTSy91W2jhZ8Yhzg9yLakTkwf1CCZFTs+24z1InWa7MFIij6/llA6coQMoq7Fw8M90KZhYSKxJS9jAEJv3fkiHlZH/A4xBnixuAteG5bLpi/8dMHTU0UgXHQQgX75NzluE6+EerNlGumjFbbwEGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=XvNedHfm; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56M8r4kG007617;
-	Tue, 22 Jul 2025 11:13:04 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	pw+9abg65qtzhopcWRW98RquusMS7BgzR4MlvBoonYE=; b=XvNedHfmkxe2wPK5
-	udHnCKBe65lKGJ/EmrVyk+X4ukBk8VCa4AOgxvwLVVYCc1eTGh2AeBx1MjKEUejr
-	qHXSFJHOIPEujzDGikw4mpaJEZ7drJvlj55iOPTjNy/lAJaDeCDvcy7H5VCW1YMg
-	HOu4UWZ5u5IXVD964KBVN0/dawCOcx7O0mI2Ep5wMymr/+sQngCM9Py2Zj9gboc/
-	mVpsh4djFXgZzKuT0NcTGfT0R51ezrk65713VYY0tE29KIAfSGhwrL8IFCR9GkQO
-	ytYY1FBVo9ELsJergwp0f9mVufzD79O7fult2etdIesVrT2OmYhR3/xYk6ATmHjn
-	yn56UA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4800skwnmg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Jul 2025 11:13:03 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 18F3540044;
-	Tue, 22 Jul 2025 11:11:22 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5702376C468;
-	Tue, 22 Jul 2025 11:10:41 +0200 (CEST)
-Received: from [10.48.87.141] (10.48.87.141) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 22 Jul
- 2025 11:10:40 +0200
-Message-ID: <cb006404-e7d1-4a08-b2b4-460ede971799@foss.st.com>
-Date: Tue, 22 Jul 2025 11:10:39 +0200
+	s=arc-20240116; t=1753175485; c=relaxed/simple;
+	bh=B+ALHIxSvZfleHOCGm3/XpUzcvYjO6YL3YckyYcIH84=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=fsOKCttVITu4bqG6nSa4JUJwQKDT7BkuXWnaZbMj0Egpac9xTdcALT2ZfzTqxP6+2YXgIfsAzyNbcYhf1DiBlJozpWfwQM+v/w8kWmUI9OjhZ3fcsH1IG+2abO4YX7uHi54bzwrUTxfscXgtArYp/Sk+djvsmzLvEWT7P8M19YA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.193])
+	by gateway (Coremail) with SMTP id _____8BxPOK3VX9onX8vAQ--.55670S3;
+	Tue, 22 Jul 2025 17:11:19 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.68.193])
+	by front1 (Coremail) with SMTP id qMiowJDx_8OzVX9o7bIhAA--.43818S2;
+	Tue, 22 Jul 2025 17:11:18 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-mtd@lists.infradead.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v1 4/8] mtd: rawnand: loongson: Add nand chip select support
+Date: Tue, 22 Jul 2025 17:11:03 +0800
+Message-ID: <b183cac3e7fc1613bd9ea07a19ec0de7b0f86e70.1753166096.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1753166096.git.zhoubinbin@loongson.cn>
+References: <cover.1753166096.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: document st,phy-wol
- property
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-CC: Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Christophe Roullier <christophe.roullier@foss.st.com>,
-        Heiner Kallweit
-	<hkallweit1@gmail.com>,
-        Simon Horman <horms@kernel.org>,
-        Tristram Ha
-	<Tristram.Ha@microchip.com>,
-        Florian Fainelli
-	<florian.fainelli@broadcom.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250721-wol-smsc-phy-v1-0-89d262812dba@foss.st.com>
- <20250721-wol-smsc-phy-v1-1-89d262812dba@foss.st.com>
- <faea23d5-9d5d-4fbb-9c6a-a7bc38c04866@kernel.org>
- <f5c4bb6d-4ff1-4dc1-9d27-3bb1e26437e3@foss.st.com>
- <e3c99bdb-649a-4652-9f34-19b902ba34c1@lunn.ch>
- <38278e2a-5a1b-4908-907e-7d45a08ea3b7@foss.st.com>
- <aH8-nQtNVuewNuwU@shell.armlinux.org.uk>
-Content-Language: en-US
-From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <aH8-nQtNVuewNuwU@shell.armlinux.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-22_01,2025-07-21_02,2025-03-28_01
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowJDx_8OzVX9o7bIhAA--.43818S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoW3Ar1kJF15Xw1rGFyUuryDJwc_yoW7KrWUpa
+	y5Aw4Skrn5KF1Uur4DKFs5Cr1ay3yrtrZrGFZ2934SkwnxJ347WF15CFyYqFWF9w1UKw1a
+	vw4vga97CF17WrcCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUBab4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAF
+	wI0_Cr1j6rxdM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWr
+	XVW3AwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7V
+	AKI48JMxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
+	6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
+	xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xII
+	jxv20xvE14v26F1j6w1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04
+	k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7Cj
+	xVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jfHUhUUUUU=
 
+The page address register describes the page address of the starting
+address for NAND read/write/erase operations.
 
+According to the manual, it consists of two parts:
+	{chip select, page number}
 
-On 7/22/25 09:32, Russell King (Oracle) wrote:
-> On Mon, Jul 21, 2025 at 05:56:17PM +0200, Gatien CHEVALLIER wrote:
->> Here's an extract from the Microchip datasheet for the LAN8742A PHY:
->>
->> "In addition to the main interrupts described in this section, an nPME
->> pin is provided exclusively for WoL specific interrupts."
-> 
-> So the pin on the PHY for WoL is called nPME? If this pin isn't wired
-> to an interrupt controller, then the PHY doesn't support WoL. If it is
-> wired, then could it be inferred that WoL is supported?
-> 
+The `chip select` is fixed at 2 bits, and the `page number` is
+determined based on the actual capacity of the single-chip memory.
+Therefore we need to determine the `chip select` bits base on the `page
+number`.
 
-For this PHY yes, but it's a bit more tricky. In my response to Andrew,
-I added a bit more information.
+For example, for a 1GB capacity chip (2K page size), it has 1M pages.
+Thus, [19:0] is used to represent the page number, and [21:20]
+represents the chip select.
 
-> If so, then it seems to me the simple solution here is for the PHY
-> driver to say "if the nPME pin is connected to an interrupt controller,
-> then PHY-side WoL is supported, otherwise PHY-side WoL is not
-> supported".
-> 
+Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+---
+ .../mtd/nand/raw/loongson-nand-controller.c   | 133 ++++++++++++++----
+ 1 file changed, 103 insertions(+), 30 deletions(-)
 
-If there's a proper way to do this, sure!
+diff --git a/drivers/mtd/nand/raw/loongson-nand-controller.c b/drivers/mtd/nand/raw/loongson-nand-controller.c
+index 97cd566420a8..5a51c7d299cc 100644
+--- a/drivers/mtd/nand/raw/loongson-nand-controller.c
++++ b/drivers/mtd/nand/raw/loongson-nand-controller.c
+@@ -82,6 +82,7 @@ struct loongson_nand_data {
+ 	unsigned int op_scope_field;
+ 	unsigned int hold_cycle;
+ 	unsigned int wait_cycle;
++	unsigned int nand_cs;
+ 	void (*set_addr)(struct loongson_nand_host *host, struct loongson_nand_op *op);
+ };
+ 
+@@ -90,6 +91,7 @@ struct loongson_nand_host {
+ 	struct nand_chip chip;
+ 	struct nand_controller controller;
+ 	const struct loongson_nand_data *data;
++	unsigned int addr_cs_field;
+ 	void __iomem *reg_base;
+ 	struct regmap *regmap;
+ 	/* DMA Engine stuff */
+@@ -215,6 +217,26 @@ static int loongson_nand_parse_instructions(struct nand_chip *chip, const struct
+ 	return 0;
+ }
+ 
++static void loongson_nand_set_addr_cs(struct loongson_nand_host *host)
++{
++	struct nand_chip *chip = &host->chip;
++	struct mtd_info *mtd = nand_to_mtd(chip);
++
++	if (!host->data->nand_cs)
++		return;
++
++	/*
++	 * The Manufacturer/Chip ID read operation precedes attach_chip, at which point
++	 * information such as NAND chip selection and capacity is unknown. As a
++	 * workaround, we use 128MB cellsize (2KB pagesize) as a fallback.
++	 */
++	if (!mtd->writesize)
++		host->addr_cs_field = GENMASK(17, 16);
++
++	regmap_update_bits(host->regmap, LOONGSON_NAND_ADDR2, host->addr_cs_field,
++			   host->data->nand_cs << __ffs(host->addr_cs_field));
++}
++
+ static void ls1b_nand_set_addr(struct loongson_nand_host *host, struct loongson_nand_op *op)
+ {
+ 	struct nand_chip *chip = &host->chip;
+@@ -263,6 +285,8 @@ static void ls1c_nand_set_addr(struct loongson_nand_host *host, struct loongson_
+ 			regmap_update_bits(host->regmap, LOONGSON_NAND_ADDR2, mask, val);
+ 		}
+ 	}
++
++	loongson_nand_set_addr_cs(host);
+ }
+ 
+ static void loongson_nand_trigger_op(struct loongson_nand_host *host, struct loongson_nand_op *op)
+@@ -603,42 +627,89 @@ static int loongson_nand_exec_op(struct nand_chip *chip, const struct nand_opera
+ 	return nand_op_parser_exec_op(chip, &loongson_nand_op_parser, op, check_only);
+ }
+ 
+-static int loongson_nand_attach_chip(struct nand_chip *chip)
++static int loongson_nand_get_chip_capacity(struct nand_chip *chip)
+ {
+ 	struct loongson_nand_host *host = nand_get_controller_data(chip);
+ 	u64 chipsize = nanddev_target_size(&chip->base);
+-	int cell_size = 0;
++	struct mtd_info *mtd = nand_to_mtd(chip);
+ 
+-	switch (chipsize) {
+-	case SZ_128M:
+-		cell_size = 0x0;
+-		break;
+-	case SZ_256M:
+-		cell_size = 0x1;
+-		break;
+-	case SZ_512M:
+-		cell_size = 0x2;
+-		break;
+-	case SZ_1G:
+-		cell_size = 0x3;
+-		break;
+-	case SZ_2G:
+-		cell_size = 0x4;
+-		break;
+-	case SZ_4G:
+-		cell_size = 0x5;
+-		break;
+-	case SZ_8G:
+-		cell_size = 0x6;
+-		break;
+-	case SZ_16G:
+-		cell_size = 0x7;
+-		break;
+-	default:
+-		dev_err(host->dev, "unsupported chip size: %llu MB\n", chipsize);
+-		return -EINVAL;
++	if (mtd->writesize == SZ_4K && chipsize == SZ_2G) {
++		host->addr_cs_field = GENMASK(20, 19);
++		return 0x4;
+ 	}
+ 
++	if (mtd->writesize == SZ_2K) {
++		switch (chipsize) {
++		case SZ_128M:
++			host->addr_cs_field = GENMASK(17, 16);
++			return 0;
++		case SZ_256M:
++			host->addr_cs_field = GENMASK(18, 17);
++			return 0x1;
++		case SZ_512M:
++			host->addr_cs_field = GENMASK(19, 18);
++			return 0x2;
++		case SZ_1G:
++			host->addr_cs_field = GENMASK(20, 19);
++			return 0x3;
++		default:
++			goto err;
++		}
++	}
++
++	if (mtd->writesize == SZ_8K) {
++		switch (chipsize) {
++		case SZ_4G:
++			host->addr_cs_field = GENMASK(20, 19);
++			return 0x5;
++		case SZ_8G:
++			host->addr_cs_field = GENMASK(21, 20);
++			return 0x6;
++		case SZ_16G:
++			host->addr_cs_field = GENMASK(22, 21);
++			return 0x7;
++		default:
++			goto err;
++		}
++	}
++
++	if (mtd->writesize == SZ_512) {
++		switch (chipsize) {
++		case SZ_8M:
++			host->addr_cs_field = GENMASK(15, 14);
++			return 0x9;
++		case SZ_16M:
++			host->addr_cs_field = GENMASK(16, 15);
++			return 0xa;
++		case SZ_32M:
++			host->addr_cs_field = GENMASK(17, 16);
++			return 0xb;
++		case SZ_64M:
++			host->addr_cs_field = GENMASK(18, 17);
++			return 0xc;
++		case SZ_128M:
++			host->addr_cs_field = GENMASK(19, 18);
++			return 0xd;
++		default:
++			goto err;
++		}
++	}
++
++err:
++	dev_err(host->dev, "Unsupported chip size: %llu MB with page size %u B\n",
++		chipsize, mtd->writesize);
++	return -EINVAL;
++}
++
++static int loongson_nand_attach_chip(struct nand_chip *chip)
++{
++	struct loongson_nand_host *host = nand_get_controller_data(chip);
++	int cell_size = 0;
++
++	cell_size = loongson_nand_get_chip_capacity(chip);
++	if (cell_size < 0)
++		return cell_size;
++
+ 	switch (chip->ecc.engine_type) {
+ 	case NAND_ECC_ENGINE_TYPE_NONE:
+ 		break;
+@@ -818,6 +889,7 @@ static const struct loongson_nand_data ls1b_nand_data = {
+ 	.status_field = GENMASK(15, 8),
+ 	.hold_cycle = 0x2,
+ 	.wait_cycle = 0xc,
++	.nand_cs = 0x0,
+ 	.set_addr = ls1b_nand_set_addr,
+ };
+ 
+@@ -828,6 +900,7 @@ static const struct loongson_nand_data ls1c_nand_data = {
+ 	.op_scope_field = GENMASK(29, 16),
+ 	.hold_cycle = 0x2,
+ 	.wait_cycle = 0xc,
++	.nand_cs = 0x0,
+ 	.set_addr = ls1c_nand_set_addr,
+ };
+ 
+-- 
+2.47.3
 
-> Then, I wonder if the detection of the WoL capabilities of the PHY
-> in stmmac_init_phy() could be used to determine whether PHY WoL
-> should be used or not.
-> 
-
-Yes, sure.
-
-Best regards,
-Gatien
 
