@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-198542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D022B0D55F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:11:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3FB9B0D560
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:11:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9213E16BD09
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:11:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDBAF188715F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:11:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6537A2DCBE0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F0B2DCBE2;
 	Tue, 22 Jul 2025 09:11:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716162DAFD9
-	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 09:11:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 715A72DAFCA
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 09:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753175489; cv=none; b=uo85obGj76Fp1Ju1GPR9azV7CCJoEZdlnMx8X8/7Kqp6UYJzacnE2NvqPU/LHHK1sWa4wgbMLwnf3/Z2RzqvRosY0+0Ucan7+ZzlfC7bWYjjjTdpPtp8yjh1NIWMcln8AQ4qn9oadrRXEu/PPq52PRlpTyNL2znqWPZ7OizLV5A=
+	t=1753175489; cv=none; b=Jlh6p12czB/r6VewA2qadmB6kGCpYog2BdyaS56/R0jF1hmMAoGZjPP6gpcbsyD0VMXy5AegOakxV16vmzRTcNwLsAWgFCNM84K1XRTtLEy78BjjIDa4NGzYkUbmJSdjHdnC9/iQQ/hnfrKpW9yzqOt6tsIDW50OUIGkW3AcfSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1753175489; c=relaxed/simple;
-	bh=dvJVM/elrQsyIivOoUzzZ0/YXhTUOUJYyfSprT5+qqE=;
+	bh=QQSmYlj7f3SHVbZNakKOwDZGBAXZCkqOrd/9cOpaRkI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DSufvycuQ4uNM3MYsLJ8xKVP0Uq5UC3QGmsH0Ytzf1MY9iW6FGb669fe7/pgP0SMKE3AV9iK8xoGio/kQKsO41PaRJgHhcTr53S6ZN3DubnfJvFd1DJYVtt8QeAMqrPfbhwyEuTCVx+XDGOEW0/EvXHr2JBVNfshxxoua0pIJcI=
+	 MIME-Version; b=CeUqhUzmZ3qcJrv0+TYtjbBWG4hdRPjbZ1Pq1aVoPqx4zo+0or8sG6r8/Ld9NZ33C9+i2JFHvDv9T/DtASEzdP/nXalYBVincaDV6arrVITjxAbvP0sl82/DAcq+J2H4084tX/SKhR6bT9iwe/fqqGsqVCgAAzj+1Y4D09E08pM=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
 Received: from loongson.cn (unknown [223.64.68.193])
-	by gateway (Coremail) with SMTP id _____8CxyuC8VX9orX8vAQ--.31592S3;
-	Tue, 22 Jul 2025 17:11:24 +0800 (CST)
+	by gateway (Coremail) with SMTP id _____8CxbWu9VX9osn8vAQ--.30326S3;
+	Tue, 22 Jul 2025 17:11:25 +0800 (CST)
 Received: from localhost.localdomain (unknown [223.64.68.193])
-	by front1 (Coremail) with SMTP id qMiowJDx_8OzVX9o7bIhAA--.43818S3;
-	Tue, 22 Jul 2025 17:11:20 +0800 (CST)
+	by front1 (Coremail) with SMTP id qMiowJDx_8OzVX9o7bIhAA--.43818S4;
+	Tue, 22 Jul 2025 17:11:23 +0800 (CST)
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 To: Binbin Zhou <zhoubb.aaron@gmail.com>,
 	Huacai Chen <chenhuacai@loongson.cn>,
@@ -49,9 +49,9 @@ Cc: Huacai Chen <chenhuacai@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-mtd@lists.infradead.org,
 	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v1 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller: Document the Loongson-2K0500 NAND controller
-Date: Tue, 22 Jul 2025 17:11:04 +0800
-Message-ID: <588639de591ada408bdaeb0d279c5d62a4b53d61.1753166096.git.zhoubinbin@loongson.cn>
+Subject: [PATCH v1 6/8] mtd: rawnand: loongson: Add Loongson-2K0500 NAND controller support
+Date: Tue, 22 Jul 2025 17:11:05 +0800
+Message-ID: <2e41c267a9d8e0fc0bfc729ccdeb1103def7ae84.1753166096.git.zhoubinbin@loongson.cn>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1753166096.git.zhoubinbin@loongson.cn>
 References: <cover.1753166096.git.zhoubinbin@loongson.cn>
@@ -62,11 +62,11 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJDx_8OzVX9o7bIhAA--.43818S3
+X-CM-TRANSID:qMiowJDx_8OzVX9o7bIhAA--.43818S4
 X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7Cw4xAr13trykCw4UWr18Xrc_yoW8Wr48pF
-	ZxC3yxKF1IyF13Za90ka48Cr13ZF93Jw4DJa9rJ347G3sxW34YqryayFn5X3W7AF4IqFWU
-	ZFyvga1rJ3WDCFbCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
+X-Coremail-Antispam: 1Uk129KBj93XoW3Jw13JFykCr17XF4xGryUArc_yoWxXF4xpr
+	W5Zay3Krs7KF429a1Yqa45Cr13Z34fJryDAa1qv34jgwnrJw1jga4UCF4Syr12yr15Wryx
+	uFWku39Y9anxJwbCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
 	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
 	0xBIdaVrnRJUUUBqb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
 	IYs7xG6rWj6s0DM7CIcVAFz4kK6r126r13M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
@@ -82,43 +82,175 @@ X-Coremail-Antispam: 1Uk129KBj93XoW7Cw4xAr13trykCw4UWr18Xrc_yoW8Wr48pF
 	xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWxJVW8Jr1lIxAIcVC2z280aVCY
 	1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8_9N7UUUUU==
 
-Add new compatible for the Loongson-2K NAND controller used for
-Loongson-2K0500 SoC.
+The Loongson-2K0500 NAND controller is similar to the Loongson-1C.
+
+It supports a maximum capacity of 16GB FLASH per chip with a maximum
+page size of 8KB, and it supports up to 4 chip selects and 4 RDY
+signals.
+
+Its DMA controller is defaulted to APBDMA0.
 
 Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 ---
- .../bindings/mtd/loongson,ls1b-nand-controller.yaml         | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/mtd/nand/raw/Kconfig                  |  2 +-
+ .../mtd/nand/raw/loongson-nand-controller.c   | 55 ++++++++++++++++++-
+ 2 files changed, 54 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mtd/loongson,ls1b-nand-controller.yaml b/Documentation/devicetree/bindings/mtd/loongson,ls1b-nand-controller.yaml
-index a09e92e416c4..4ec2b5d1e89d 100644
---- a/Documentation/devicetree/bindings/mtd/loongson,ls1b-nand-controller.yaml
-+++ b/Documentation/devicetree/bindings/mtd/loongson,ls1b-nand-controller.yaml
-@@ -4,13 +4,14 @@
- $id: http://devicetree.org/schemas/mtd/loongson,ls1b-nand-controller.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
+index d9e3f13666ac..7b0c5d06aa95 100644
+--- a/drivers/mtd/nand/raw/Kconfig
++++ b/drivers/mtd/nand/raw/Kconfig
+@@ -464,7 +464,7 @@ config MTD_NAND_NUVOTON_MA35
  
--title: Loongson-1 NAND Controller
-+title: Loongson NAND Controller
+ config MTD_NAND_LOONGSON
+ 	tristate "Loongson NAND controller"
+-	depends on LOONGSON1_APB_DMA || COMPILE_TEST
++	depends on LOONGSON1_APB_DMA || LOONGSON2_APB_DMA || COMPILE_TEST
+ 	select REGMAP_MMIO
+ 	help
+ 	  Enables support for NAND controller on Loongson family chips.
+diff --git a/drivers/mtd/nand/raw/loongson-nand-controller.c b/drivers/mtd/nand/raw/loongson-nand-controller.c
+index 5a51c7d299cc..7a15df3fcd31 100644
+--- a/drivers/mtd/nand/raw/loongson-nand-controller.c
++++ b/drivers/mtd/nand/raw/loongson-nand-controller.c
+@@ -3,6 +3,7 @@
+  * NAND Controller Driver for Loongson family chips
+  *
+  * Copyright (C) 2015-2025 Keguang Zhang <keguang.zhang@gmail.com>
++ * Copyright (C) 2025 Binbin Zhou <zhoubinbin@loongson.cn>
+  */
  
- maintainers:
-   - Keguang Zhang <keguang.zhang@gmail.com>
-+  - Binbin Zhou <zhoubinbin@loongson.cn>
+ #include <linux/kernel.h>
+@@ -26,6 +27,7 @@
+ #define LOONGSON_NAND_IDH_STATUS	0x14
+ #define LOONGSON_NAND_PARAM		0x18
+ #define LOONGSON_NAND_OP_NUM		0x1c
++#define LOONGSON_NAND_CS_RDY_MAP	0x20
  
- description:
--  The Loongson-1 NAND controller abstracts all supported operations,
-+  The Loongson NAND controller abstracts all supported operations,
-   meaning it does not support low-level access to raw NAND flash chips.
-   Moreover, the controller is paired with the DMA engine to perform
-   READ and PROGRAM functions.
-@@ -24,6 +25,7 @@ properties:
-       - enum:
-           - loongson,ls1b-nand-controller
-           - loongson,ls1c-nand-controller
-+          - loongson,ls2k0500-nand-controller
-       - items:
-           - enum:
-               - loongson,ls1a-nand-controller
+ /* Bitfields of nand command register */
+ #define LOONGSON_NAND_CMD_OP_DONE	BIT(10)
+@@ -40,6 +42,23 @@
+ #define LOONGSON_NAND_CMD_READ		BIT(1)
+ #define LOONGSON_NAND_CMD_VALID		BIT(0)
+ 
++/* Bitfields of nand cs/rdy map register */
++#define LOONGSON_NAND_MAP_CS1_SEL	GENMASK(11, 8)
++#define LOONGSON_NAND_MAP_RDY1_SEL	GENMASK(15, 12)
++#define LOONGSON_NAND_MAP_CS2_SEL	GENMASK(19, 16)
++#define LOONGSON_NAND_MAP_RDY2_SEL	GENMASK(23, 20)
++#define LOONGSON_NAND_MAP_CS3_SEL	GENMASK(27, 24)
++#define LOONGSON_NAND_MAP_RDY3_SEL	GENMASK(31, 28)
++
++#define LOONGSON_NAND_CS_SEL0	BIT(0)
++#define LOONGSON_NAND_CS_SEL1	BIT(1)
++#define LOONGSON_NAND_CS_SEL2	BIT(2)
++#define LOONGSON_NAND_CS_SEL3	BIT(3)
++#define LOONGSON_NAND_CS_RDY0	BIT(0)
++#define LOONGSON_NAND_CS_RDY1	BIT(1)
++#define LOONGSON_NAND_CS_RDY2	BIT(2)
++#define LOONGSON_NAND_CS_RDY3	BIT(3)
++
+ /* Bitfields of nand timing register */
+ #define LOONGSON_NAND_WAIT_CYCLE_MASK	GENMASK(7, 0)
+ #define LOONGSON_NAND_HOLD_CYCLE_MASK	GENMASK(15, 8)
+@@ -53,6 +72,8 @@
+ #define LOONGSON_NAND_READ_ID_SLEEP_US		1000
+ #define LOONGSON_NAND_READ_ID_TIMEOUT_US	5000
+ 
++#define LOONGSON_NAND_64BIT_DMA		BIT(0)
++
+ #define BITS_PER_WORD			(4 * BITS_PER_BYTE)
+ 
+ struct loongson_nand_host;
+@@ -83,6 +104,7 @@ struct loongson_nand_data {
+ 	unsigned int hold_cycle;
+ 	unsigned int wait_cycle;
+ 	unsigned int nand_cs;
++	unsigned int flags;
+ 	void (*set_addr)(struct loongson_nand_host *host, struct loongson_nand_op *op);
+ };
+ 
+@@ -751,7 +773,7 @@ static int loongson_nand_controller_init(struct loongson_nand_host *host)
+ 	struct device *dev = host->dev;
+ 	struct dma_chan *chan;
+ 	struct dma_slave_config cfg = {};
+-	int ret;
++	int ret, val;
+ 
+ 	host->regmap = devm_regmap_init_mmio(dev, host->reg_base, &loongson_nand_regmap_config);
+ 	if (IS_ERR(host->regmap))
+@@ -761,6 +783,9 @@ static int loongson_nand_controller_init(struct loongson_nand_host *host)
+ 		regmap_update_bits(host->regmap, LOONGSON_NAND_PARAM, host->data->id_cycle_field,
+ 				   host->data->max_id_cycle << __ffs(host->data->id_cycle_field));
+ 
++	if (host->data->flags & LOONGSON_NAND_64BIT_DMA)
++		dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
++
+ 	chan = dma_request_chan(dev, "rxtx");
+ 	if (IS_ERR(chan))
+ 		return dev_err_probe(dev, PTR_ERR(chan), "failed to request DMA channel\n");
+@@ -776,7 +801,14 @@ static int loongson_nand_controller_init(struct loongson_nand_host *host)
+ 
+ 	init_completion(&host->dma_complete);
+ 
+-	return 0;
++	val = FIELD_PREP(LOONGSON_NAND_MAP_CS1_SEL, LOONGSON_NAND_CS_SEL1)
++	    | FIELD_PREP(LOONGSON_NAND_MAP_RDY1_SEL, LOONGSON_NAND_CS_RDY1)
++	    | FIELD_PREP(LOONGSON_NAND_MAP_CS2_SEL, LOONGSON_NAND_CS_SEL2)
++	    | FIELD_PREP(LOONGSON_NAND_MAP_RDY2_SEL, LOONGSON_NAND_CS_RDY2)
++	    | FIELD_PREP(LOONGSON_NAND_MAP_CS3_SEL, LOONGSON_NAND_CS_SEL3)
++	    | FIELD_PREP(LOONGSON_NAND_MAP_RDY3_SEL, LOONGSON_NAND_CS_RDY3);
++
++	return regmap_write(host->regmap, LOONGSON_NAND_CS_RDY_MAP, val);
+ }
+ 
+ static int loongson_nand_chip_init(struct loongson_nand_host *host)
+@@ -890,6 +922,7 @@ static const struct loongson_nand_data ls1b_nand_data = {
+ 	.hold_cycle = 0x2,
+ 	.wait_cycle = 0xc,
+ 	.nand_cs = 0x0,
++	.flags = 0,
+ 	.set_addr = ls1b_nand_set_addr,
+ };
+ 
+@@ -901,6 +934,19 @@ static const struct loongson_nand_data ls1c_nand_data = {
+ 	.hold_cycle = 0x2,
+ 	.wait_cycle = 0xc,
+ 	.nand_cs = 0x0,
++	.flags = 0,
++	.set_addr = ls1c_nand_set_addr,
++};
++
++static const struct loongson_nand_data ls2k0500_nand_data = {
++	.max_id_cycle = 6,
++	.id_cycle_field = GENMASK(14, 12),
++	.status_field = GENMASK(23, 16),
++	.op_scope_field = GENMASK(29, 16),
++	.hold_cycle = 0x4,
++	.wait_cycle = 0x12,
++	.nand_cs = 0x0,
++	.flags = LOONGSON_NAND_64BIT_DMA,
+ 	.set_addr = ls1c_nand_set_addr,
+ };
+ 
+@@ -913,6 +959,10 @@ static const struct of_device_id loongson_nand_match[] = {
+ 		.compatible = "loongson,ls1c-nand-controller",
+ 		.data = &ls1c_nand_data,
+ 	},
++	{
++		.compatible = "loongson,ls2k0500-nand-controller",
++		.data = &ls2k0500_nand_data,
++	},
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, loongson_nand_match);
+@@ -929,5 +979,6 @@ static struct platform_driver loongson_nand_driver = {
+ module_platform_driver(loongson_nand_driver);
+ 
+ MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
++MODULE_AUTHOR("Binbin Zhou <zhoubinbin@loongson.cn>");
+ MODULE_DESCRIPTION("Loongson NAND Controller Driver");
+ MODULE_LICENSE("GPL");
 -- 
 2.47.3
 
