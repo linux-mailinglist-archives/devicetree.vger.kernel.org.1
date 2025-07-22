@@ -1,64 +1,60 @@
-Return-Path: <devicetree+bounces-198649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70DE9B0DB00
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:38:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 710D5B0DB04
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:38:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8125AA69D7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 13:37:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2D707B2A58
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 13:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A962E9EB9;
-	Tue, 22 Jul 2025 13:37:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 026842EA73D;
+	Tue, 22 Jul 2025 13:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lWaFhGhm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="os3M/V60"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A724A28AB11;
-	Tue, 22 Jul 2025 13:37:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB35D2EA73A;
+	Tue, 22 Jul 2025 13:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753191453; cv=none; b=IMWaVD5Ncy4nRd7R7JKJf67p9u1uHo3LEIyvEiOcXyiOESUpiLHDyZjUsKMb/KV6TZehB4H+9LOInocVRXHSUfBQRE2Hhl7awGM02nxH9JeDQp0T2WbeOUSbcCy2aOdpI9LvF5TRr/6Okk7mkKM3cK9kc98jVHebLsBMnX7/LPk=
+	t=1753191459; cv=none; b=H3Znpm5AP12mKgq3bDt2jWdqHZlx72v4zMko6AcMcBNHcnWduys80/E5syljPjBBMr3BDf6OFEINnrvKUMpewyMAfDz5BiBtFRBNyJmxJEVvMk/iJ87+0okZ4PygwO94rNHBBJwOif9X8L9XpQC8HNwqhLEtuADBsMBkhYPTmRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753191453; c=relaxed/simple;
-	bh=znd0BpuwRyqMnjpW3g9CjauNbjE2GqxOTGIzyRzKmUY=;
+	s=arc-20240116; t=1753191459; c=relaxed/simple;
+	bh=SNlXAgT++4m4TKztvKkQemORHWb8VSygCQCGkQvTGqs=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=rvzN9veFEo26dThL7u/t05yfpqPBkLsuS5fRoD0uL9oHiu6bMTVat3qEHwkwf6wErGzsBAyUsBYIRiKD01YvaPy/anoFQXlMjfROLrFLims0lwL03ZO0ZAaDR4QM147hMAp2MO3TxcirhDIXNWuDlgrXK8ZvEZLuWP6NJMwz2Nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lWaFhGhm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 697D6C4CEEB;
-	Tue, 22 Jul 2025 13:37:28 +0000 (UTC)
+	 MIME-Version:Content-Type; b=GdPDbrgCVPU38cMMAS9EPblpWXFVtzyqdLqRjXFsrrokc7X6DD9XIEusTvIP11BKvXEzFi/tX73RFRCbevbfqPQ8P68HekviVbLvc1jAfv4JT/72L6wJdNYZ3s3ObfWivSsVCgBfdX/Bv1O+IoV/oJc2T39oizujbf3q7m3MDZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=os3M/V60; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02005C4CEF6;
+	Tue, 22 Jul 2025 13:37:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753191453;
-	bh=znd0BpuwRyqMnjpW3g9CjauNbjE2GqxOTGIzyRzKmUY=;
+	s=k20201202; t=1753191459;
+	bh=SNlXAgT++4m4TKztvKkQemORHWb8VSygCQCGkQvTGqs=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=lWaFhGhmI344Ewhq2Jysi1G024uYpZARoP07K2ynbC7BwiVk3ia475yWj+Vv0+EX/
-	 +g5+aQXTVzBhXzRPOL5tEn2ewlWk5vI7PK78NylHKX7J2hjo3rZNsTfHGEbfmb3CmP
-	 H6guKKhJ2/sVfISkX7cQGu2Z/fhgCaeDREGizRR1sBtbEFPucQkO2Ek0pS1PI8j4V4
-	 8QUmgi4w/hR+JLU9YkRrHh/43yejbUL8JUDAU2XjGqVS2Wx/RtwDJTi3Oq0BnTncdD
-	 z5EFH8x9k0wBhrcwuyM8vQbEpGns63x5kMn+pW9g1AvkGV7Vwn/hWTeTO7WfgbHt5U
-	 VECtYxvJrCdGw==
+	b=os3M/V6064U011WPLr6/inhse5tmffGbF+A/kDc7oWH/l96EUna0n1Uwap08rd+4l
+	 +5xbh88EjKUOnhZFHR9Eqgg6BhIrGn9A9F/nAccoiTcuJZP63xLjU6+DCpT1O/uI7o
+	 0DT/5bakRSDKp+izCyb11VaFIS6JtV4wrL4WpBh/eJyYhkyg+pODGjeA8rHvJn+E0c
+	 6qkkxrXC++tmpWviZZX+88q/l44W+Ha8NHANOf0Rh62UQZEA7TDsDQhQt9hSAQwXPL
+	 YY39QLPrHsSkrPWjifBI0h1bnP1/4xy3FCyj3mfu3H5zBF925BZtwWelPAeskyjew6
+	 odi1KOfkMebiw==
 From: Vinod Koul <vkoul@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+To: Kishon Vijay Abraham I <kishon@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Abel Vesa <abel.vesa@linaro.org>, Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-In-Reply-To: <20250715-sm7635-eusb-phy-v3-0-6c3224085eb6@fairphone.com>
-References: <20250715-sm7635-eusb-phy-v3-0-6c3224085eb6@fairphone.com>
-Subject: Re: [PATCH v3 0/4] Changes for the eUSB2 PHY on Milos
-Message-Id: <175319144804.114152.2528801468931632951.b4-ty@kernel.org>
-Date: Tue, 22 Jul 2025 19:07:28 +0530
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>, 
+ Liu Ying <victor.liu@nxp.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev
+In-Reply-To: <20250707-dt-bindings-phy-mixel-mipi-dsi-phy-allow-assign-clock-properties-v1-1-5e34b257e1ef@nxp.com>
+References: <20250707-dt-bindings-phy-mixel-mipi-dsi-phy-allow-assign-clock-properties-v1-1-5e34b257e1ef@nxp.com>
+Subject: Re: [PATCH] dt-bindings: phy: mixel, mipi-dsi-phy: Allow
+ assigned-clock* properties
+Message-Id: <175319145662.114152.5665167328510255793.b4-ty@kernel.org>
+Date: Tue, 22 Jul 2025 19:07:36 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,21 +66,15 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Tue, 15 Jul 2025 09:29:33 +0200, Luca Weiss wrote:
-> Document the eUSB2 PHY on Milos and add some driver changes for it.
+On Mon, 07 Jul 2025 10:47:00 +0800, Liu Ying wrote:
+> assigned-clock* properties can be used by default now, so allow them.
 > 
 > 
 
 Applied, thanks!
 
-[1/4] dt-bindings: usb: qcom,snps-dwc3: Add Milos compatible
-      commit: 9e891b0d21bc889898e726783f20bd81f5fd4056
-[2/4] dt-bindings: phy: qcom,snps-eusb2: document the Milos Synopsys eUSB2 PHY
-      commit: bb39f49a433312ba7558b7cc44cfd9131b46bce1
-[3/4] phy: qcom: phy-qcom-snps-eusb2: Add missing write from init sequence
-      commit: 7f5f703210109366c1e1b685086c9b0a4897ea54
-[4/4] phy: qcom: phy-qcom-snps-eusb2: Update init sequence per HPG 1.0.2
-      commit: 828c3e9dce25a9551e52fd076136f4d9936c0498
+[1/1] dt-bindings: phy: mixel, mipi-dsi-phy: Allow assigned-clock* properties
+      commit: 429efeb1900d4a3164e1233b392ee5f489b6c3f8
 
 Best regards,
 -- 
