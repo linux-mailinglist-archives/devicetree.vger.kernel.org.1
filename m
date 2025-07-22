@@ -1,62 +1,67 @@
-Return-Path: <devicetree+bounces-198721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DACDAB0E03E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 17:19:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B7AB0E056
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 17:22:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4717018837B1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:18:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D739C188B698
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ADEA25229D;
-	Tue, 22 Jul 2025 15:18:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F4226A1A4;
+	Tue, 22 Jul 2025 15:21:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QANBn87i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dGWPeere"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70E01E990E;
-	Tue, 22 Jul 2025 15:18:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4544D26A0AB;
+	Tue, 22 Jul 2025 15:21:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753197497; cv=none; b=fqX2tIOkGsC5VThnIC/jIPyYZA31JXSi2jGfO93FhURzwXzdsjHIsniMQINvIMRlXkLGaae0U4g7KYo03lQaovQkn6tMKLCnV00v/jdr9NxkTHDHsMyfnsD01FTnE4rLquT1Ubsja+As5cLI+AVFdKSnJO50n24bG0rL/0fOgbk=
+	t=1753197688; cv=none; b=j4D9PMtkeECDeDC+VSfwarKU1x7EwJFrwORwg8PcqG22I23+ITNP1ZTKy6y3L+V61M8AJfWH2tLk1+oLQe6mdg10d/0fPY+CeYkj3//wdK6y8leUykGfGLQVVKLWCXvAfEAeeAimx5BgqfD61BlZodnyE1HTU7DhhcXeFxDFkH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753197497; c=relaxed/simple;
-	bh=fGAsWfNt/z2iWfbEh9n7rz2FAHRGTRMDGKrGQIo3ivc=;
+	s=arc-20240116; t=1753197688; c=relaxed/simple;
+	bh=cf0wdr1CvohXeEFUICFRM8xLV372zGAy0zsKMtrFMXQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VWMHJ38bAcu04scOG+Q4f9HRaSXCYU7gCDaaxou0BokzCmI8in2EYp7CV5CQYYeLIk9TK0WKkSBqDy5e+Tsb9lxLQHWy9t8OT7i0GiSls52l5JMHa8gsQASZRm2IwnsIxykUUup1kJ/8MfYuBIPlsCYQMtRVXv+VJBxYssH8g1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QANBn87i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBA2BC4CEEB;
-	Tue, 22 Jul 2025 15:18:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qyA2V7nWLeojXXMYNL7LLiCWR8s3oK3cbFAhr2ZSHEffjBaf/VyFK4r900eAFs+jfeqn5sktCtL4kTrwAWcNEDyVdZBHaX8cHyU+zifjXvs4j1Rx7da+A7bFE1PbbRIrGNgkdzrhQQXCsLWbdw6H6Wpe6elrc2dffqUZtal9J9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dGWPeere; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50A82C4CEEB;
+	Tue, 22 Jul 2025 15:21:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753197497;
-	bh=fGAsWfNt/z2iWfbEh9n7rz2FAHRGTRMDGKrGQIo3ivc=;
+	s=k20201202; t=1753197687;
+	bh=cf0wdr1CvohXeEFUICFRM8xLV372zGAy0zsKMtrFMXQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QANBn87iMG9qnMcejys0/rBOp/MPEBt2RfiqQ4Z3kAl0CdUwvRsnjmpobqFpfXitG
-	 0xQ9+/qwCPyAs+3UlRxho4xxG/kua6Xc9t9TIOUOXu9DQ5EKZEIkxPQbCvmX6IVsL/
-	 ZjHCsp73PPQZEpbAa/OpjLkHQcZ0rurpFcALk1i1r1JgVH1GXHvsr+oBw2zDe/6z8d
-	 2L8LVv8/1vEX6TE3xmt53Jt3rhMNDqbwhHPjqfFJr70a1AYEc7r3r0z3Ru+cHXKkcE
-	 H4Y2cd72e4TUodbeB/hSNHKlQeiUx1UiLgGpsGeU4gaPnFyzgNannH2XsESjxEDowC
-	 XyLigMYiK+y/Q==
-Date: Tue, 22 Jul 2025 16:18:12 +0100
+	b=dGWPeere1LxvDxtuOVyK02QKkMZdY/fVcf3E5EfkgtyPVXEpfIZetiJTqIPg6s6j9
+	 YJByTAcP1O7AxFqkFRYruTsfur3tgCok95h9i1AiVWwtTy8a7Hcs24Q50fvvoybvt4
+	 cYShSTzeVcdZZf5MkEgnSj/SWHw+I6njph+UnSvxkVAhPGJ2B0NlJE+q0MGlwXWtrF
+	 fZzVc3HoTb1KeDQediGCl/TFQtgf1d5g3kLFLIHbup9dx8+haFDDAJdtms4o/EOmrH
+	 3AOJ7RjTgegP+cTvP4CWvn4pwGiPFMFNP8CQ4j/rYnMTEdnAVH0AhROTlfa9taabHM
+	 EKu8+sih1BI1w==
+Date: Tue, 22 Jul 2025 16:21:21 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
-	git@xilinx.com, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
+To: Junhui Liu <junhui.liu@pigmoral.tech>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH] dt-bindings: riscv: cpus: Add AMD MicroBlaze V 64bit
- compatible
-Message-ID: <20250722-glitzy-worshiper-7574af025084@spud>
-References: <adf316c097ae416eb8565f2f1d67a98c413a71d2.1753169138.git.michal.simek@amd.com>
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@sifive.com>,
+	linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH RFC 08/10] riscv: dts: Add initial Anlogic DR1V90 SoC
+ device tree
+Message-ID: <20250722-proposal-gothic-e0c3725e0874@spud>
+References: <20250721-dr1v90-basic-dt-v1-0-5740c5199c47@pigmoral.tech>
+ <20250721-dr1v90-basic-dt-v1-8-5740c5199c47@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,38 +69,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="r+Au2k4XYYAgwXda"
+	protocol="application/pgp-signature"; boundary="afRjLr3VfY6LSQZo"
 Content-Disposition: inline
-In-Reply-To: <adf316c097ae416eb8565f2f1d67a98c413a71d2.1753169138.git.michal.simek@amd.com>
+In-Reply-To: <20250721-dr1v90-basic-dt-v1-8-5740c5199c47@pigmoral.tech>
 
 
---r+Au2k4XYYAgwXda
+--afRjLr3VfY6LSQZo
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 22, 2025 at 09:25:40AM +0200, Michal Simek wrote:
-> 32bit version has been added by commit 4a6b93f56296 ("dt-bindings: riscv:
-> cpus: Add AMD MicroBlaze V compatible") but 64bit version also exists and
-> should be covered by binding too.
->=20
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
+On Mon, Jul 21, 2025 at 11:46:14PM +0800, Junhui Liu wrote:
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		timebase-frequency = <800000000>;
+> +
+> +		cpu@0 {
+> +			compatible = "nuclei,ux900", "riscv";
+> +			device_type = "cpu";
+> +			reg = <0>;
+> +			riscv,isa = "rv64imafdc";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zba", "zbb", "zbc",
+> +					       "zbkc", "zbs", "zicntr", "zicsr", "zifencei",
+> +					       "zihintpause", "zihpm";
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Why do riscv,isa and riscv,isa-extensions differ?
+If riscv,isa is not even accurate, why not just remove it entirely?
 
-Although maybe I should pick this up myself? LMK if you want me to,
-rather than it going via the xilinx tree.
+> +			i-cache-block-size = <64>;
+> +			i-cache-size = <32768>;
+> +			i-cache-sets = <256>;
+> +			d-cache-block-size = <64>;
+> +			d-cache-size = <32768>;
+> +			d-cache-sets = <256>;
+> +			mmu-type = "riscv,sv39";
+> +
+> +			cpu0_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+> +	};
 
---r+Au2k4XYYAgwXda
+--afRjLr3VfY6LSQZo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaH+rtAAKCRB4tDGHoIJi
-0vacAP4zbN3Fu+D/dt7INleDrr3nJ9mrPD2r+G3p5CicM2ALCAEA08iTkS686xJY
-Uu4OrgvMrLyDB2t1mClhYrqsyJcw0wM=
-=Lceo
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaH+scQAKCRB4tDGHoIJi
+0kcxAQC07OuxpRCZ8Q37NhGJuCtcTQZB2khVWHrIO4eTpF1rigD9EGK+eM/M4tcx
+h1x5Hhtr6tSWm89moTRnYqNzdGKdzAw=
+=q4nA
 -----END PGP SIGNATURE-----
 
---r+Au2k4XYYAgwXda--
+--afRjLr3VfY6LSQZo--
 
