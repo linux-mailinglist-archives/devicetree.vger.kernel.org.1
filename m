@@ -1,128 +1,155 @@
-Return-Path: <devicetree+bounces-198449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3078B0D04A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 05:29:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD81FB0D0C6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 06:05:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD5B3540B89
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 03:29:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CAFD47A91BF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 04:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7BCC273817;
-	Tue, 22 Jul 2025 03:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99E423B60F;
+	Tue, 22 Jul 2025 04:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Edum0jjp"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="SDY32tfS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931BB22EF4;
-	Tue, 22 Jul 2025 03:28:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86FF81A0BDB;
+	Tue, 22 Jul 2025 04:05:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753154936; cv=none; b=USs7gsCOcjRW2UCCUJVKHZmb+K+qUtLkxnTC5hKFfXGvrjuLsoP2O6w6eOkVRPrYKwonNZCkLUsMsqHjroWKmhFhp5YURNpb0hWMHS60po2GS73F2RfouRdUxsAAViHzmH90Ar49tK8EjCiDONh7vDbQgfUzpjs+urJqD+nhI3A=
+	t=1753157126; cv=none; b=DmOEBiCrDLpE2tFuBUh+ZzcjatwSYTy6Sxt41ybGnDAMTKsmLopmnLaQHrs3XfNXzW9UP9DQ7q3Vp/2OlFokA89tK5gq4lgWMeMUoYgv5UBpzcbfMv+rf7r0R8Hojplemfv6IqnWX8eYnGHDQS3uErGoPCmAFMfnCTnqvvjkxLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753154936; c=relaxed/simple;
-	bh=kJw5y/pTKzs+28qiU9DcV11vaetOeUeIzA0KMoRkwUw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A2jrxV716qxrFntqUGpMZJeitaJ81Rj6DDUcitdo2Kqfjo52fA8/7sgrNYwgLH4IfHYHRx42O7dT/XFPprmrvSENYRzKmw4TvY2sNgYwtXSUHP8e+8F04/G0LOabjOudprzEJKHoBWEartPkeYtJg5IKkaNE3RVsdHbiZYMxv7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Edum0jjp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46001C4CEEB;
-	Tue, 22 Jul 2025 03:28:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753154936;
-	bh=kJw5y/pTKzs+28qiU9DcV11vaetOeUeIzA0KMoRkwUw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Edum0jjpxzTw1Zcr2ZQfQ0YJBn/OKDz+KbEw5VRXLgEdjSdKnBi6XXMdg7DVQzqLG
-	 tMp8xDDOyh4+W99O6mWTg2zIOWBZB5A5cx84e6XAVUGo9Sx8uu7zpQuUKOU/LxLKYR
-	 tTFvO6bWDFg9nEGElUDe08AU+7CdAA9x/RtWYUSgPpIpNQ+OZuWZkx+VKVp0IKXVMT
-	 3Tvau/AomJ0IvUErTDQ72XDptrcqnAyiHhDYI6TM2zoxbqBRjkmqfGI4mZYLnvax6T
-	 7sJJsDhATA2CnSMSrQujEcNcv8YoLHbJeHEUpPieQES+as6qoCnnZYUEToAJaBzgN4
-	 ZmxVNXVja1bUw==
-Date: Mon, 21 Jul 2025 22:28:53 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>, sboyd@kernel.org, 
-	mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	quic_rjendra@quicinc.com, taniya.das@oss.qualcomm.com, linux-clk@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/7] clk: qcom: gcc: Add support for Global Clock
- Controller
-Message-ID: <digzi2kxw3aexslmyx3hspwjptrjm5yd4kzkgz6gg45inadmmr@6zerdpg5njdb>
-References: <20250716152017.4070029-1-pankaj.patil@oss.qualcomm.com>
- <20250716152017.4070029-8-pankaj.patil@oss.qualcomm.com>
- <28ea2b11-a269-4536-8306-185bf272bd60@kernel.org>
- <2yekmjqihkzsfjr223vepigfj4hfruleigguhrlekp6s7riuxk@ta5kghr2kafi>
- <4559a710-8b4f-4988-b063-40486fe0ffe2@kernel.org>
+	s=arc-20240116; t=1753157126; c=relaxed/simple;
+	bh=K55yD1Ma6eC2A9HLm8c2k7UNaTufGqyNoR229HTD7Jk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bCBJ+KgZEG37eZjonP9eDxOlOWkBXH05+rhqv2fXrijx8RbnNdiSmiFh+wnnZB0/az+jYVMjeZNNsRwNC3fvGStnFB45il3+AFncZXs7ZVwhHGvezMb08LyaitLOcrNIhgvBTL3037d+VtDmGO5bjJ1b+WemP0Cmvr93QG5g+H4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=SDY32tfS; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 824221026E02A;
+	Tue, 22 Jul 2025 06:05:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1753157121;
+	h=from:reply-to:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=m7b5hGarLAQZ7wJX3z+HKwupNShCIskH0D5h01nt0B4=;
+	b=SDY32tfSFz9zqLNKR+pX3Uk/W/Xzd5ZVXPEe2q4ZUeHX9EYBDOu+y3zT0mwKenJdgN3v+0
+	5+MD523v3CJvOvs2LVpxJ7xzUTuZYyCiqaUxeKBa83xzMdTf3e1G7Lgbmytn0OFHvKh0bS
+	JMDz4IVw0Ztc628Hbc0RqGVbYBg3Hi9SQrB8eSKCk84hsLWAkde6tW86HY5+rGgI0dZlFH
+	yl7LppaXBVsN8EMt1+4CQMcmvXcWfXSep+IFQIUyHspcOlre4bdBSWZrjan7oheXBckaNp
+	lFByEhJrXrlDnVH2AR+Im6UKjYKVFrvAMEQR8T3N2t261YXDOWPGTXVfrNVTzw==
+Message-ID: <8a8106ea-83d3-e02a-9ae7-ea4a66e4c248@denx.de>
+Date: Tue, 22 Jul 2025 06:05:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4559a710-8b4f-4988-b063-40486fe0ffe2@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: (subset) [PATCH v1 0/3] spidev: introduce trivial abb sensor
+ device
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>, Mark Brown <broonie@kernel.org>,
+ linux-spi@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, Andrei Lalaev <andrey.lalaev@gmail.com>,
+ Chanh Nguyen <chanh@os.amperecomputing.com>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Grant Peltier <grantpeltier93@gmail.com>, Guenter Roeck
+ <linux@roeck-us.net>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Michal Simek <michal.simek@amd.com>,
+ Naresh Solanki <naresh.solanki@9elements.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20250719063355.73111-1-hs@denx.de>
+ <175311337130.327079.7374455187420344577.b4-ty@kernel.org>
+ <d677ecd9-42d6-43fe-8fe1-a5afd4d270e2@kernel.org>
+Reply-To: hs@denx.de
+From: Heiko Schocher <hs@denx.de>
+In-Reply-To: <d677ecd9-42d6-43fe-8fe1-a5afd4d270e2@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Sun, Jul 20, 2025 at 02:18:19PM +0200, Krzysztof Kozlowski wrote:
-> On 20/07/2025 05:46, Bjorn Andersson wrote:
-> > On Wed, Jul 16, 2025 at 06:28:15PM +0200, Krzysztof Kozlowski wrote:
-> >> On 16/07/2025 17:20, Pankaj Patil wrote:
-> > [..]
-> >>> diff --git a/drivers/clk/qcom/gcc-glymur.c b/drivers/clk/qcom/gcc-glymur.c
-> >>> new file mode 100644
-> >>> index 000000000000..a1a6da62ed35
-> >>> --- /dev/null
-> >>> +++ b/drivers/clk/qcom/gcc-glymur.c
-> >>> @@ -0,0 +1,8623 @@
-> >>> +// SPDX-License-Identifier: GPL-2.0-only
-> >>> +/*
-> >>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> >>
-> >> Missing date.
-> >>
-> > 
-> > Per updated company guidelines we don't want a year here. Please let us
-> > know if you have any concerns with this.
-> > 
-> I remember the guidelines and they were about publishing your code, not
-> about contributing to open-source projects. And whatever you have
-> internally does not cover us at all. You can have internal guideline
-> saying you need to buy me a beer or I need to buy you a beer. Does not
-> matter.
-> 
-> That above copyright statement without date does not adhere to expected
-> format. Explanation how this should be written:
-> 
-> https://www.gnu.org/licenses/gpl-howto.en.html#copyright-notice
-> 
-> The GPL-2.0 license in the kernel also uses date:
-> 
-> "Copyright (C) <year>  <name of author>    "
-> 
-> There is no option without date in the license or GPL faq. I am not a
-> lawyer, so no clue whether this is what we want, but I also should not
-> be my task to figure out whether different copyright statement is okay
-> or not. It's your burden.
-> 
+Hello Krzysztof,
 
-It's the guidelines/directives from our lawyers that has been updated to
-not include the year. I will bring this back for confirmation.
-Thanks for the link.
-
-> Or drop the Copyright statement complete to avoid any questions.
+On 21.07.25 18:24, Krzysztof Kozlowski wrote:
+> On 21/07/2025 17:56, Mark Brown wrote:
+>> On Sat, 19 Jul 2025 08:33:51 +0200, Heiko Schocher wrote:
+>>> This series introduces the changes needed for trivial spi
+>>> based sensors from ABB, currently operated from userspace.
+>>>
+>>> The last patch adds the spidevices to the DTS files, already
+>>> in mainline.
+>>>
+>>> make dtbs_check showed no errors/warnings for the dts files
+>>>
+>>> [...]
+>>
+>> Applied to
+>>
+>>     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+>>
+>> Thanks!
+>>
+>> [1/3] dt-bindings: trivial-devices: Document ABB sensors
+>>        commit: aad2f87cbcab56b322109d26d7b11842a09df91f
+>> [2/3] spi: spidev: Add an entry for the ABB spi sensors
+>>        commit: d60f7cab7c04944a79af16caa43c141e780a59c6
+>>
 > 
+> 
+> That's unexpected, Mark. Patches received two objections/comments and I
+> don't think discussion was resolved.
+> 
+> ABB is huge company, probably making hundreds or more of sensors. The
+> patchset basically claims that all of them work with spidev. It does not
+> providing any model names or details, so it seems really incomplete to
+> call them trivial devices.
 
-That I don't think we can do for new files.
+I do not know how many different sensors they have, nor if that department can
+speak for the whole company...
 
-@Pankaj, please include the year as you resubmit this, until we get
-other clarification on how to proceed.
+What I have as information is:
+https://lore.kernel.org/linux-spi/2477dc64-92a0-9dc9-d168-56646d0d796e@denx.de/
 
-Regards,
-Bjorn
+and I get no more information about them currently. May I should
+add some sort of trivial into compatible name? Something like
 
-> Best regards,
-> Krzysztof
+"abb,spi-trivial-sensor"
+or
+"abb,spidev-trivial-sensor"
+
+which makes it clearer, that only ABB trivial sensor, controlled through spidev
+driver, is connected here?
+
+Looking into definiton of "trivial devices" in
+Documentation/devicetree/bindings/trivial-devices.yaml
+"""
+description: |
+   This is a list of trivial I2C and SPI devices that have simple device tree
+   bindings, consisting only of a compatible field, an address and possibly an
+   interrupt line.
+"""
+
+which fits exactly, as they even have nothing more than the SPI lines
+connected to the carrier board(s).
+
+bye,
+Heiko
+-- 
+DENX Software Engineering GmbH, Managing Director: Johanna Denk, Tabea Lutz
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
 
