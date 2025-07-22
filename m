@@ -1,94 +1,124 @@
-Return-Path: <devicetree+bounces-198725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A0B2B0E079
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 17:28:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D50EB0E095
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 17:35:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A74C17E31E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:28:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5334056121A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 15:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDFF5267729;
-	Tue, 22 Jul 2025 15:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DA5627877F;
+	Tue, 22 Jul 2025 15:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="PVcXdh0a";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="2aMI2TLL"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="HEZMnfMu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5B325228B;
-	Tue, 22 Jul 2025 15:28:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ADB226980F
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 15:35:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753198107; cv=none; b=mqctI6grIPktuJ+votfQ8m6bJ3athRtVpNvbR90c9uU85phkjtJBKHa/gSI4oa02HvMScHAxUMsMJ43GfAu35aKMVoflAc284MhQYe//z0f5npFoA+51l3+hlKp+sv6g09QHxnbLyWS+yfmMVcGTsvoiLxPE1X1GTAOa6Dmgfrs=
+	t=1753198508; cv=none; b=dSe/kQeNB+1lNG3+OeftFrTrjxk2MgWl7UWjh6QGaEVhfchQXelBXtovxqI2p9NioWk+BHcL8Ad8LkjbQfoxVhGG3hoJZhHop5DTs2h6nRyP3hM8VY8DYdVM0afpDkTG79WoqDkqMcQa6Oh1lo9lZMcwjOuV3R4u0Ap52UnT+cY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753198107; c=relaxed/simple;
-	bh=3fd74I5Pb6rmLjOUK5XEQaXmUHbrPFDHe6ZUapTBwuQ=;
-	h=From:To:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=emPRp8Nl6eN9KUq0tzArJ/PPX4WeoKY4wHhfaMMD3VifgBbm1oYUhBmLC8v+DVXkLFnupgfbSuuNiaTDoVGJBKMnEF7pJGZgSWp/gV0HkOqOW9m1uk/mLxLHnxPiLvJq7jlP7dLAUIFqz66DU/0MAY3uw8BF+ZsSpReXsxbaz+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=PVcXdh0a; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=2aMI2TLL; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1753198104;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=85XrHWG9Jv3VTDn16FMltpEf586hn4QJABtiSR/Wwvs=;
-	b=PVcXdh0a6fdgzThlV2t988DT7q7CAo1ZE4pfVnd2r9kJnW0ZZzKeSQR/7lZYqzfG9szsKY
-	e5ri3xfR+DlYoP9g3JymbTygs+bX/evN+HtDtQaaFUyOUvtUlT2sggNJE7l17DW2+QLt8h
-	FKCnMJKvY5nQeUVwhvrBhP+jpERaMqtvJZM3kY4fn07vLLVBVSfkKVzlbeflEVDutThOiZ
-	Iv6/lU7GlnbZW9xi1iRbeowXeEpdGscP28u8aiB3VaP4v/carXHeZMTBMls64E4/Ba/yc5
-	OOPRDAgpqPKgz/f6+2o40R9HUN2hD6N5A3Ty9OiSWR/nJO+xPTJKMRZLLc2fYQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1753198104;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=85XrHWG9Jv3VTDn16FMltpEf586hn4QJABtiSR/Wwvs=;
-	b=2aMI2TLLvKRpRzdAWE6LR5GQ+UaMV1YrI5ZndoTpBlbt7m2b4vzw6/NttvrmH/VtNLuDzL
-	j2RFiW2PS4UfWyAg==
-To: Ryan Chen <ryan_chen@aspeedtech.com>, ryan_chen
- <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel
- Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
- Kevin Chen <kevin_chen@aspeedtech.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: interrupt-controller: aspeed: Add
- parent node compatibles and refine documentation
-In-Reply-To: <20250722095156.1672873-2-ryan_chen@aspeedtech.com>
-References: <20250722095156.1672873-1-ryan_chen@aspeedtech.com>
- <20250722095156.1672873-2-ryan_chen@aspeedtech.com>
-Date: Tue, 22 Jul 2025 17:28:23 +0200
-Message-ID: <87zfcws0rs.ffs@tglx>
+	s=arc-20240116; t=1753198508; c=relaxed/simple;
+	bh=DDPDqAZ85JT6AbnAWqvDRyp7mARhWlb8DCeoFLrmVxE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ijELhpy2H1QQ74hxmj/HmwVo9fOvCHDmoe8c+jt8QYvtQ8M+KX7rEAxhrNNALcx+m+hehwHUDHm7830JAInneEMTbCDKxWkmBYgfxwdoC6l8bwJQZtBvKZqzP3JOqblQ5ONYIR6bboVTGwYDHGcDBueGyFMqQ34vn1KYtWqMqBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=HEZMnfMu; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=bcvQKzCNCUbLQV
+	4lrtpyW3AYkFKo/MMXJO4kKx57llI=; b=HEZMnfMuxaulrs0tZDli2/ZsFxlRWY
+	gQqjDKDuU0wdL/hZ5/xyRj6YIco7+qijIuJRXAXCKO2hXlC7/WcBYV+uPwJ1oDCb
+	Nx4bguEyQUC+r+M8C7dXOcgO7kVoBc+SpKuVEP9G1B0AMuwaw1gfKu0raxKMsWa7
+	acTYDH46mu1WGLgD68xbqiy63rgar74h6r4KCkepFUFRau7aOVOYn8DZGXvuqIcL
+	zYHDOzUmkAh1HA2ya0qKaHzghF3NnmtW1WSvSnFpIb4020Xp9ihet1btScCfyTJ5
+	/SYSuKOzP/q8MuK2Y+SES1e95tIwdhLyl+Nzd4P00SzLZqp/dUhFvpVQ==
+Received: (qmail 1374377 invoked from network); 22 Jul 2025 17:34:54 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 22 Jul 2025 17:34:54 +0200
+X-UD-Smtp-Session: l3s3148p1@YrF7VYY6iKggAwDPXyBWAATEinPyanBm
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Frank Li <Frank.Li@nxp.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Kees Cook <kees@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-hardening@vger.kernel.org,
+	linux-i3c@lists.infradead.org,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Subject: [PATCH v3 0/4] i3c: add support for the Renesas controller
+Date: Tue, 22 Jul 2025 17:34:38 +0200
+Message-ID: <20250722153445.5003-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jul 22 2025 at 17:51, Ryan Chen wrote:
-> -        interrupt-controller@12101b00 {
-> -            compatible = "aspeed,ast2700-intc-ic";
-> -            reg = <0 0x12101b00 0 0x10>;
-> -            #interrupt-cells = <2>;
-> -            interrupt-controller;
-> -            interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>;
-> +        intc1_0: interrupt-controller@100 {
-> +          compatible = "aspeed,ast2700-intc-ic";
-> +          reg = <0x0 0x100 0x0 0x10>;
+Conceptual change since v2:
+* improve and add more parameters from the spec to master.h
+  (new patches 1+2)
 
-I doubt that the controller base address is at 0x100 ...
+Detailed changes since v2 are described in the individual patches. A
+branch with enablement patches for RZ/G3S+G3E can be found here:
+
+git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git renesas/g3s/i3c
+
+Old coverletter:
+
+Here is a basic driver for the I3C IP found in various Renesas SoCs like
+RZ/G3S and G3E. Missing features to be added incrementally are IBI,
+HotJoin and maybe target support. Other than that, this driver has been
+tested with I3C pure busses (2 targets) and mixed busses (2 I3C +
+various I2C targets). DAA and reading/writing to the temperature sensors
+worked reliably at different speeds. Scoping the bus, the output from
+the protocol analyzer seems reasonable, too. It was created by merging
+two versions of it from two different BSPs. Then, improved according to
+code analyzers, cleaned up with regard to coding style, and then
+refactored to hopefully match I3C subsystem standards.
+
+Looking forward to comments,
+
+   Wolfram
+
+
+Tommaso Merciai (1):
+  dt-bindings: i3c: Add Renesas I3C controller
+
+Wolfram Sang (3):
+  i3c: Harmonize defines representing specification parameters
+  i3c: Add more parameters for controllers to the header
+  i3c: master: Add basic driver for the Renesas I3C controller
+
+ .../devicetree/bindings/i3c/renesas,i3c.yaml  |  179 +++
+ MAINTAINERS                                   |    7 +
+ drivers/i3c/master.c                          |   12 +-
+ drivers/i3c/master/Kconfig                    |   10 +
+ drivers/i3c/master/Makefile                   |    1 +
+ drivers/i3c/master/dw-i3c-master.c            |    4 +-
+ drivers/i3c/master/renesas-i3c.c              | 1404 +++++++++++++++++
+ include/linux/i3c/master.h                    |   16 +-
+ 8 files changed, 1621 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
+ create mode 100644 drivers/i3c/master/renesas-i3c.c
+
+-- 
+2.47.2
+
 
