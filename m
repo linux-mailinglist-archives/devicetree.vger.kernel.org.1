@@ -1,48 +1,81 @@
-Return-Path: <devicetree+bounces-198535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3685BB0D53F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:05:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1095B0D54A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 11:08:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC9791890885
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:05:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7118118922FD
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 09:08:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5635B2DAFD5;
-	Tue, 22 Jul 2025 09:04:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FFB02D9ED6;
+	Tue, 22 Jul 2025 09:08:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D5Sp5GIs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OQYWW1tm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27D632DAFC5;
-	Tue, 22 Jul 2025 09:04:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461EE2D3EF6
+	for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 09:08:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753175096; cv=none; b=fzyNRi7o18vCBXEjVubEwaFUUFL58oM6zcVQrowzDo5FQpJKeZxIGDyfWIwET9VWFzEXp0alY6X68Hrz3mSd08lJP/W86T+EHq9/JCVSeN4jmEPi8Y58bTfRE2Tq2JZI0E38wHJFbOLJNYbl0CSUErQRIxvlOupMPeDC0DrS3JA=
+	t=1753175298; cv=none; b=f9Gp4/xD2dmLyCo1/gnisQx659hbbHdOpEol6c6OldSsx8voRV6uqzks56LMOUzN+do9Dn/UpFG2+jzfSEizSGQnd2viQnG6xafLswdyAiaDaM0XL89huIVnf2tk8/Z8hLAKWu9dt/WN7IfpGQmLaoVODFwZs6nHmFu+Nead8DU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753175096; c=relaxed/simple;
-	bh=5a3qmKtFanuttcsG8G7/hPPyMdc+1UznbE0m5pJOyuE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=kwn/lN4rBaLI592V5ecDJWe/1HWhPWPI97yx2fzW5LoqGLhpFIlOsxBW23MVTr9DzJTs9MX5FtbwCcBOTyraUtD/hRpJFrwEqLFrGgAmlr6tNGW2nE9Ad12Iw59DEuu8LaY2NTAym/89kBDQgAn4tmBy7vlEloiGKNZBZYj720M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D5Sp5GIs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F4EFC4CEF4;
-	Tue, 22 Jul 2025 09:04:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753175095;
-	bh=5a3qmKtFanuttcsG8G7/hPPyMdc+1UznbE0m5pJOyuE=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=D5Sp5GIs+vvmCirZ9FZ7MznRLxrxx/6/weDkhXt0CxVY1V8ztf70fY9q9Psk5ClQT
-	 yrjoEcP0ck5xRXNIyHFYZBwI6x1Z3QqHG5SD21wkjC8Iw/sJPEyYp+Ecf/9A7UA2pG
-	 OyCgpntGFkJkqVlRwrDVsHfPq4GC2QYWZcd3al5k4tsYgTP2Zn/d8Z27535bEIYXL4
-	 A7PpyW1ti8YhnB/7iPB/tRH0FwtsBoR9I6qmHYkzwxU89fdo3gBKazvPx2f7zUad8c
-	 Dkv5ua94XijNnce3P+9lVMgHBfGLil9GdDN099CsgsOipnkHR63Qhw5wXxfd6hfh7X
-	 8LaenmXvmzg+g==
-Message-ID: <f4505b19-3496-4fab-ad74-d190d847eb17@kernel.org>
-Date: Tue, 22 Jul 2025 11:04:51 +0200
+	s=arc-20240116; t=1753175298; c=relaxed/simple;
+	bh=83y5T3BM2ZAJfHW+ZSwnCHCOGkeZBOQGBR5TAJpsVHA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fU1KjyiNM6ieu1UD4q0Erlw97srqvhDVGC06SDqtDR/W4bZRHrxx+HmbyeWK60Z/wZKRfYPYpcJK4DB/qbZjo7HBI4IXtXHtomyNPPLly14O/pw+ly+ehAYbE4xnE5gTucPy54FVf9q64ApV5ZVVDiJadoTqFZMJf1KYfFZwG4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OQYWW1tm; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-451d41e1ad1so36676615e9.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 02:08:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753175294; x=1753780094; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=On3JvqZOf5viVWmDtf1F5EeuSK6iuUoSgcnf4ZkG6MQ=;
+        b=OQYWW1tmk8QoyecUn/2m5gL34JQVn5XkNTNdVTp5VHbJ8WGisQrKd/zf3DX/fsozq+
+         6+KfiAY4zwzwIpLYtV1iLOnEfqf18fdt4hWGMLCp664D5JNO9IXOxNDT14oUlYy9ERF2
+         XFMGvA5Orv4GbSoHLYRX/oHoJayimuWFBS+02fNtWom0ry5UKObAQu+PissT7eSVf7DW
+         igxOzdjeCHnbv0guO1FcY7bq8ytgZaQO7NUg9BCY8yDZDd03/YHg0C77rgUOt6m/b2Xr
+         OKU3x0jzBwx+FJu7Nk45iXAfxitXOeWRkFS36nvB7F8RdLwIy9gKvvoW4kHyNq2gJqwJ
+         +lUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753175294; x=1753780094;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=On3JvqZOf5viVWmDtf1F5EeuSK6iuUoSgcnf4ZkG6MQ=;
+        b=UPCWPQMLvJZAcIu5qFnkpLpx2pAD1pHAvc98iCKBjQRsyxuIQ8Qm6ARJJ2erX6+RrW
+         0Uk5pWT3UuXPLsgxJ7XTPFukgO0y2S+WIbx76deTf6rJIwP+JXoyB1cKOvpR7NuRPDAl
+         0Pckcf2I33hvFatnr+5eSoUkrUUQ/HkfwTfZJF89RJTkiO1R4YSH0l0KDj10rH4G8UN/
+         8hCZqbQtYB9saFTjQC6FSxPK2qlZzL4jMz95nxxZONZLrqPNMW3eAC7fUWY76xaNbhpr
+         q/UUnTUrFtkdRn/kh3gdCvoPZpeSq5ExM3Ht6LYuzrxv2fSGouNFuPDY7WSjldZ2xVOr
+         uz8A==
+X-Forwarded-Encrypted: i=1; AJvYcCUz8wHaL2W/n4F8DDntCqt7Du7C5YHskavPkKn/ao9/3iH20RQ21pjO+yTZQvoJ95YSNKFpUMr/Wrwt@vger.kernel.org
+X-Gm-Message-State: AOJu0YyspwueWMXySN+9sPsVKmUHFS8bwMq9LoWNEMxk9oupN53vlfok
+	TIADTK1220P0ZKZahxmZfxOSIsxvhh7JwYHNt4sbjKEP6v6LDYCVp6xZvFUAGWqyFqs=
+X-Gm-Gg: ASbGncvhbt0tyizUjk9wbVUtMq07wfnX0frn426rs7trZBmNMRpK/WfG8KLXxB7xMbo
+	yJLMrOrY/HzWx+Tp5I1uAG7BW2P2+aEsrxDW06WCpzhhR5fmutje/KSIwFyFqxBC7hAPDG+CxpS
+	6jzllrGzJcP67NOX8pq7cPD6CEu9sxA9eSuk3wwWPBxtYND+6q0PKCvNgIqWLL+B30N0+wqc8Pd
+	OGLVfwiBII9khhn7NpB310+z44ryJulsimx0cUz2Mbe91qVETc9C6ow/pFxhafFQK2q8CdtbvxJ
+	h8Fr+bOY+by8VzbYlBA7FJ3AxWDNhauQf+RUegwIxK0jPcVCX6Cq+OcnVRU8o/oQJl4q4n79pjs
+	a2lPL94KHUxuQL49rr0K3Dv43ChMV35e990doCslJjZzZnnOtCu6JWtCmkDCx95LNROUH1Sjzsg
+	==
+X-Google-Smtp-Source: AGHT+IGIe5v+xkseT1R+b83ynGM35H1dtttBfIBKdXEdhjXXuEssWueZy6PEB6lRJfSUU+5XBI6EAg==
+X-Received: by 2002:a05:600c:8b85:b0:456:2347:3f01 with SMTP id 5b1f17b1804b1-456355c60d3mr166991665e9.20.1753175294468;
+        Tue, 22 Jul 2025 02:08:14 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b61ca253f9sm13035086f8f.6.2025.07.22.02.08.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Jul 2025 02:08:13 -0700 (PDT)
+Message-ID: <4edefe21-27b6-4884-befa-ddb451bb9376@linaro.org>
+Date: Tue, 22 Jul 2025 10:08:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,248 +83,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: regulator: Add Richtek RTR5133
- Support
-To: jeff_chang@richtek.com, lgirdwood@gmail.com, broonie@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250722083543.2730796-1-jeff_chang@richtek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI D-PHY driver
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250710-x1e-csi2-phy-v1-0-74acbb5b162b@linaro.org>
+ <20250710-x1e-csi2-phy-v1-2-74acbb5b162b@linaro.org>
+ <11b573d5-ce4d-476c-b94c-216d427cd838@linaro.org>
+ <08261aa4-689b-4d6b-bfd2-221c1976d254@linaro.org>
+ <a7f64b31-4767-4281-b452-a2bc5351d745@mleia.com>
+ <c93624bb-ee7b-45ac-8b53-b5391f11c9c9@linaro.org>
+ <eac3a877-a4aa-4789-9013-ab8b6c91e0f3@linaro.org>
+ <0a12879f-dc4a-47fb-87a0-ac4b8bcd4d75@linaro.org>
+ <53a19b1d-5665-4937-a07c-5dd1fcde06c5@linaro.org>
+ <3b760685-97db-46e3-80a3-7fad69ad31cd@oss.qualcomm.com>
+ <94b75177-9401-4e0c-966b-5847a29cb6f7@linaro.org>
+ <427548c0-b0e3-4462-a15e-bd7843f00c7f@oss.qualcomm.com>
+ <3UXVZ6ANM9mDjVdMV4SXsiIx_pT3S1lp3RC_Q7mh_o7jF2dpYsni1Sl2TAWv6OCMCRTFmi9aE6BxDquGkOnwEg==@protonmail.internalid>
+ <8b908a20-0bf3-447d-82ea-a5ecee1bf54c@linaro.org>
+ <57501e81-7e9c-4cb1-9a37-18307d1e06ca@linaro.org>
+ <33d76d7f-ab14-4e76-8ffb-eb370901a046@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250722083543.2730796-1-jeff_chang@richtek.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <33d76d7f-ab14-4e76-8ffb-eb370901a046@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 22/07/2025 10:34, jeff_chang@richtek.com wrote:
-> From: Jeff Chang <jeff_chang@richtek.com>
+On 22/07/2025 09:32, Neil Armstrong wrote:
+> The whole key point here is the combo mode, as I understood the combo 
+> mode feature
+> makes the PHY lanes available as 2 separate streams, like if you got 2 
+> "controllers"
+> attached to the same PHY. So in fact, the PHY should have a single node, 
+> but 2 PHY
+> interfaces in combo mode.
 > 
-> Add bindings for Richtek RT5133 IC Controlled PMIC
+> This makes all this controller/phy model very complex to handle and add 
+> a lot of
+> logic in the camss side. Moving the "csiphy" as an independent media 
+> device that
+> can declare up to 2 endpoints in combo mode makes things much simpler, 
+> and allows
+> us to attach each "csiphy" stream to any "controller" side of camss.
 
-Subject - RTR or RT? Google tells me nothing about RTR.
+I think there should be a generic extension to PHY/linux-media to 
+support that instead of something Qualcomm specific.
 
-> 
-> Signed-off-by: Jeff Chang <jeff_chang@richtek.com>
-> ---
-> 
-> PATCH v4
-> 1. Add commit message and also /script/checkpatch --strict to fix warning.
-> 2. Using subject prefixes matching dt-binding subsystem.
-> 3. Re-order patches. DT patch before driver patch.
-> 4. Fix description of yaml.
-> 5. Add more description for base regulator.
-> 6. Drop regulator-compatible proeprty.
-> 7. Add prefix for vendor property richtek,oc-shutdown-all and richtek,pgb-shutdown-all.
-> 8. Add more description for shutdown-all property.
-> 9. Interrupts-extended -> interrupts.
-> 10. pio->gpio for proper defines.
-> 11. Drop unused labels. Keep rt5133_ldo1 label for ldo7 and ldo8.
-> 
->  .../bindings/regulator/richtek,rt5133.yaml    | 175 ++++++++++++++++++
->  1 file changed, 175 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
-> new file mode 100644
-> index 000000000000..0da725596a87
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/richtek,rt5133.yaml
-> @@ -0,0 +1,175 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/richtek,rt5133.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Richtek RT5133 PMIC Regulator
-> +
-> +maintainers:
-> +  - ShihChia Chang <jeff_chang@richtek.com>
-> +
-> +description:
-> +  The RT5133 is an integrated Power Management IC for portable devices, featuring
-> +  8 LDOs and 3 GPOs. It allows programmable output voltages, soft-start times,
-> +  and protections via I2C. GPO operation depends on LDO1 voltage.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - richtek,rt5133
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +
-> +  wakeup-source: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  regulators:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      base:
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        unevaluatedProperties: false
-> +        description:
-> +          Properties for base regulator which control force-off base circuit.
-> +          Base circuit is the power source for LDO1~LDO6. Disabling it will
-> +          reduce IQ for Chip.
+The first task is qcom/CAMSS specific which is separate the CSIPHYs out 
+from the CAMSS block - done in this series and do so in a way that 
+doesn't break the existing ABI - done in the context of adding Hamoa/x1e.
 
-I don't understand what this regulator is for. Your example is also
-incomplete - missing min/max constraints like voltage.
+The second step should be to extend the existing linux-media and PHY API 
+to support multiple sensors on the same CSIPHY in a generic way.
 
-Explain, what is this output pin? I already asked for explanations. I
-have diagram in front of me, so explain precisely instead of sending THE
-SAME again - which pin is it?
+If you want to ship me some hardware, I'll help.
 
-Also, what is IQ? Except Intelligence Quotient?
-
-
-> +
-> +        properties:
-> +          richtek,oc-shutdown-all:
-> +            type: boolean
-> +            description:
-> +              Anyone of LDO is in OC state, shut down all channels to protect CHIP.
-> +              Without this property, only shut down the OC LDO channel.
-
-I don't understand this. I also do not understand why this is property
-of "base" not the chip itself...
-
-So don't send next version with the same.
-
-> +
-> +          richtek,pgb-shutdown-all:
-> +            type: boolean
-> +            description:
-> +              Anyone of LDO is in PGB state, shut down all channels to protect CHIP.
-
-CHIP is an acronym? Or chip?
-
-> +              Without this property, only shut down the PGB LDO channel.
-> +
-> +        required:
-> +          - regulator-name
-> +
-> +    patternProperties:
-> +      "^ldo([1-6])$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        unevaluatedProperties: false
-> +        description:
-> +          Properties for single LDO regulator
-> +
-> +        required:
-> +          - regulator-name
-> +
-> +      "^ldo([7-8])$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        unevaluatedProperties: false
-> +        description:
-> +          Properties for single LDO regulator
-> +
-> +        properties:
-> +          rt5133-ldo1-supply:
-
-supplies do not have vendor prefixes.
-
-> +            description: |
-> +              Only for ldo7 ldo8, pvin7 and pvin8 reference design are RT5133 ldo1.
-> +              If not connect to ldo1 vout, this property for pvin7 and pvin8 is necessary.
-
-I don't understand why LDO1 supply is here.
-
-Again, which pin is it?
-
-> +
-> +        required:
-> +          - regulator-name
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - wakeup-source
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      rt5133@18 {
-
-Nothing improved.
-
-> +        compatible = "richtek,rt5133";
-> +        reg = <0x18>;
-> +        wakeup-source;
-> +        interrupts-extended = <&gpio 187 0x0>;
-
-Nothing improved
-
-Implement previous comments and respond to each of them to confirm you
-understood them.
-
-> 
-
-
-Best regards,
-Krzysztof
+---
+bod
 
