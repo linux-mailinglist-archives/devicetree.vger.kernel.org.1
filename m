@@ -1,159 +1,116 @@
-Return-Path: <devicetree+bounces-198442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83BBCB0CEC6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 02:35:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 634B8B0CF12
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 03:31:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA51F7A6B8A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 00:33:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6691954585E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 01:31:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 566B3347A2;
-	Tue, 22 Jul 2025 00:35:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="kuqp7Svq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B53B417E4;
+	Tue, 22 Jul 2025 01:31:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDD1D2E36EB;
-	Tue, 22 Jul 2025 00:35:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B80661D52B;
+	Tue, 22 Jul 2025 01:31:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753144519; cv=none; b=Us5lPnIH2ocbNUrUg8f2fy0kjP40Y9zivwYYiv46F1muWzUimemnHGyB/bIzEVm0rCVQJNP/6ig9uYLQydMOVlMNb1Ukxml3tUNEBxMVRcUmiGW4b9tL093fjIQGFgIw9mzX0qvDrx27zX2mY03+/bMFzmqQTrKAN5Oqq5d2t34=
+	t=1753147889; cv=none; b=sYnjpi2WDpUSyaNiNOBBsVmEtVSERj9TNK+TXXeeYApz1hJJkwVZU/+ldI3mekv6P8RD/5tz/69mExI8dPPVxGO3liHpaFAjY8Dcjlwa1hV0AAakVMOISOkByJHMCVcWCj7XapLzlYYWtosje6Rze2KaVJVkXsdXFMlrW+oVg1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753144519; c=relaxed/simple;
-	bh=NVJSthHoVBfvJ0DprsxJsTID3or77ayMtN3PtiGsObQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fVHD/rrwWpeRUgPginqCkBA2H0V7wAlMPkXSarB9HDUYVPjVpYFsWBRjajtjCbzjs0tybA51lkXRSJFhijlAAHQXY0B501g6gG7HW2mJsDGCyzLqLMEOmlHwSHmMRRUj7gMGf+GtfhVwZsfBHdL7yYjqRnhVKXwrpeKFeaQWzt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=kuqp7Svq; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 46DFF2082C;
-	Tue, 22 Jul 2025 02:35:14 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 2AWGV58KjTtc; Tue, 22 Jul 2025 02:35:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1753144513; bh=NVJSthHoVBfvJ0DprsxJsTID3or77ayMtN3PtiGsObQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=kuqp7SvqE3+gsACQYmTXKrC6X6J/IBJVAvyya0mbiIsDkonQbEAg4tHtU90nE2fOO
-	 maPB8WmFiNZIQBVtbQ5nZ1VKVgu8ehAoh0wGLNES47exI9ghg7zuUL54J4gtoTdMz5
-	 tJYNXt4HOTIzqW9tNieEM2P/1o7t0VXzKJeO0orz4Bkz5+SPeuGo15x0CxAontFdWS
-	 I/D91B2ADLRNe+Bu1Ta0N7jG3yVEU8LxLvF6XW7tawKRh0QjJP2JNDny4uwpMZXphy
-	 uaoLs/SQ3vpfwD+kycJR2prgJzg5LDK+22uzpxHx+3Y2p1pbHW2o3yIcylVoF1fzU3
-	 34If+OcvH0l6w==
-Date: Tue, 22 Jul 2025 00:34:46 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Ze Huang <huang.ze@linux.dev>, Alex Elder <elder@ieee.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] usb: dwc3: add generic driver to support flattened
-Message-ID: <aH7cpr0faRPVnxXL@pie>
-References: <20250712-dwc3_generic-v6-0-cc87737cc936@linux.dev>
- <20250712-dwc3_generic-v6-2-cc87737cc936@linux.dev>
- <d2e9a521-568e-433d-a59b-9b98138ace2b@ieee.org>
- <aHyN3-uoHofF8Hg3@monica.localdomain>
- <aH4tpgVPbf9DOzSe@monica.localdomain>
+	s=arc-20240116; t=1753147889; c=relaxed/simple;
+	bh=rGXFZZr4LmpobFPg6kQb46iyUwLIF5WadofvcodCtrs=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WmdbXDTNvzPNAFTk+Xy2uKp+TcKcDQMjGedIsmWAtFZQlQyLhM1O62q+AD3GZx0i1jTcdST0TYeCPncGhAgjGh9m+AIjx8aCnf//zaMcLomPby4EugyJSsZPRj173WFoD4X2rscsECivyraXfEcm6lbtLvvaXVkLQWExmuWMy3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 22 Jul
+ 2025 09:31:18 +0800
+Received: from mail.aspeedtech.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 22 Jul 2025 09:31:18 +0800
+From: Jammy Huang <jammy_huang@aspeedtech.com>
+To: <jassisinghbrar@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>
+Subject: [PATCH v7 0/2] ASPEED: Add mailbox driver for AST2700 series
+Date: Tue, 22 Jul 2025 09:31:15 +0800
+Message-ID: <20250722013117.2561025-1-jammy_huang@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aH4tpgVPbf9DOzSe@monica.localdomain>
+Content-Type: text/plain
 
-On Mon, Jul 21, 2025 at 08:08:06PM +0800, Ze Huang wrote:
-> On Sun, Jul 20, 2025 at 02:34:07PM +0800, Ze Huang wrote:
-> > On Tue, Jul 15, 2025 at 03:50:54PM -0500, Alex Elder wrote:
-> > > On 7/12/25 2:49 AM, Ze Huang wrote:
-> > > > To support flattened dwc3 dt model and drop the glue layer, introduce the
-> > > > `dwc3-generic` driver. This enables direct binding of the DWC3 core driver
-> > > > and offers an alternative to the existing glue driver `dwc3-of-simple`.
-> > > 
-> > > I'm not familiar with dwc-of-simple.c, and won't comment on
-> > > how this differs from that (or does not).
-> > > 
-> > > Given you're implementing an alternative though, can you explain
-> > > in a little more detail what's different between the two?  Why
-> > > would someone choose to use this driver rather than the other one?
-> > 
-> > They are basically the same.
-> > 
-> > dwc-generic use a plain dt node while dwc-of-simple will nest the dwc3
-> > node as its child.
-> > 
-> > Both will use dwc3_core_probe() to finish the probe process. But now we
-> > can simplify the process by just calling it, instead of calling
-> > of_platform_populate() and create another snps,dwc3 device driver.
-> 
-> [...]
-> 
-> > > > +	ret = reset_control_assert(dwc3->resets);
-> > > > +	if (ret)
-> > > > +		return dev_err_probe(dev, ret, "failed to assert resets\n");
-> > > > +
-> > > > +	ret = devm_add_action_or_reset(dev, dwc3_generic_reset_control_assert, dwc3->resets);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > 
-> > > The re-assert shouldn't be set up unless the deassert below
-> > > succeeds.
-> > > 
-> > 
-> > Will move behind the deassert.
-> > 
-> > > > +	usleep_range(10, 1000);
-> > > 
-> > > This seems like a large range.  You could just do msleep(1);
-> > > Also, can you add a comment explaining why a delay is needed,
-> > > and why 1 millisecond is the right amount of time to sleep?
-> > > 
-> > 
-> > I will check the range with spacemit and reply soon.
-> > 
-> 
-> the resets are asynchronous with no strict timing. But to be safe, each
-> reset should stay active for at least 1 µs. I’ll switch to a udelay(2)
-> and add comment accordingly.
+Add mailbox controller driver for AST27XX SoCs, which provides
+independent tx/rx mailbox between different processors. There are 4
+channels for each tx/rx mailbox and each channel has an 32-byte FIFO.
 
-This may be a little farsight: do you think it's better to make the
-reset timing part of the of_match_data? This is more flexible and
-reduces future burden when introducing a new platform that comes with a
-different reset timing, which is a very likely case we'll face since
-it's a "generic" driver.
+ v7 changes:
+  - Update driver
+     1. clean for loop
 
-> > > > +	ret = reset_control_deassert(dwc3->resets);
-> > > > +	if (ret)
-> > > > +		return dev_err_probe(dev, ret, "failed to deassert resets\n");
-> > > > +
-> > > > +	ret = devm_clk_bulk_get_all(dwc3->dev, &dwc3->clks);
-> > > > +	if (ret < 0)
-> > > > +		return dev_err_probe(dev, ret, "failed to get clocks\n");
-> > > 
-> > > Call devm_clk_bulk_get_all_enabled() instead of doing the two
-> > > steps separately here.
-> > > 
-> > 
-> > Will do, thanks.
-> > 
-> > > 					-Alex
-> 
+ v6 changes:
+  - Update document
+     1. Update description to preserve paragraphs.
+     2. Update for property, reg.
+     3. Add reg-names.
+     4. Add 'Reviewed-by' from Krok.
+  - Update driver
+     1. Use devm_platform_ioremap_resource_byname since we add reg-names now.
+     2. Update error code for ch not enabled. 
+ 
+ v5 changes:
+  - Update document
+     1. Separate reg from 1 to 2. 1st is tx controller; 2nd is rx.
+     2. Remove 'Reviewed-by' since the patch has changed.
+  - Update driver, no functional changes.
+     1. Update since there is 2 reg base now.
+     2. Refine reg definitions
+     3. Add spinlock to protect registers
+     4. Use bool as return value for ast2700_mbox_tx_done
+     5. Rename variable from drv_data to dev_data.
 
-Regards,
-Yao Zi
+ v4 changes:
+  - Update driver, no functional changes.
+     1. Remove unused variable, rx_buff, in struct ast2700_mbox.
+     2. Remove unneeded cast on device_get_match_data.
+     3. Remove the usage of writel/readl_relaxed.
+     4. Improve readability.
+ v3 changes:
+  - Correct document
+     1. Use 32-bit addressing in dts example property, reg.
+ v2 changes:
+  - Update document
+     1. Correct error in dts example.
+     2. Drop description for mbox-cell per suggestion previously.
+
+Jammy Huang (2):
+  dt-bindings: mailbox: Add ASPEED AST2700 series SoC
+  mailbox: aspeed: add mailbox driver for AST27XX series SoC
+
+ .../mailbox/aspeed,ast2700-mailbox.yaml       |  68 +++++
+ drivers/mailbox/Kconfig                       |   8 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/ast2700-mailbox.c             | 235 ++++++++++++++++++
+ 4 files changed, 313 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/aspeed,ast2700-mailbox.yaml
+ create mode 100644 drivers/mailbox/ast2700-mailbox.c
+
+
+base-commit: 8c2e52ebbe885c7eeaabd3b7ddcdc1246fc400d2
+-- 
+2.25.1
+
 
