@@ -1,82 +1,103 @@
-Return-Path: <devicetree+bounces-198775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0F0BB0E345
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 20:14:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C32BB0E373
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 20:25:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2B87AC0517
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 18:13:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B03C1C823F5
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jul 2025 18:26:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 627EC28003A;
-	Tue, 22 Jul 2025 18:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36DC280329;
+	Tue, 22 Jul 2025 18:25:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="PICMzMUD"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="J+lQtlmh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11012064.outbound.protection.outlook.com [52.101.71.64])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011039.outbound.protection.outlook.com [52.101.65.39])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0520720B81D;
-	Tue, 22 Jul 2025 18:14:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4820277814;
+	Tue, 22 Jul 2025 18:25:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.39
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753208054; cv=fail; b=PKJYXsaaUxMkWfkXseQs9upZimOT0V5eq5IKemnZ8vIJHxD11oUDIeE/13JrcJmgcQc0/Lj2c/YNzFjSu1J86Ne/X0M4fRFEGd/d882cz6TiF7VGQEtR5/m0Li2L4xbMH2LlASCQwtE4AVS8JestqUJLtv6K8HuB/+IJcthiOKU=
+	t=1753208742; cv=fail; b=SG0tEPq2g9MgcWLerQ8jlSUb0I32NcevtfKnvQvDsQqh+CGUiu5IW39xc/X3MddvnTjB5DABvDM5E0QNJXAnLFt5hkJ0n0ddpa8dwf+ILyoF/ePi1/z/NfxP5PRb1btV0C7OmddTT7/Bs8Op+hoO3sVEeXATVvmS0MyVJ6HTP18=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753208054; c=relaxed/simple;
-	bh=BNJgutWXByxrxgTSdKxYZl1MUfldDngmd769rmQO0mg=;
+	s=arc-20240116; t=1753208742; c=relaxed/simple;
+	bh=U8IYJ5PgTudt/wREZy9Oy3Xpy7bJjti/pz/IMhiPANQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=kNmob1BiL2JCVDlXsM74lqx9H6qfzzwzn5093C+Fd4g6hZvvY3mgfEtNQ5iRJ1Lql/0MaL1+HmHS2o+YNQxoFSJNVTa578xxrM9wWhKN81PLL69u9bvxY+BL+7IYU0EPU5iNT2nkarQkuj4+b6rjPg2CnIYoI4PQJpxXQV4G3YY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=PICMzMUD; arc=fail smtp.client-ip=52.101.71.64
+	 Content-Disposition:In-Reply-To:MIME-Version; b=gBdyLLEAherQZmNJqL4vjhULERhR9Hx2mhF6Uka1B7oXWsBnyhtb6P0b2C3b71FdA/riAdkQfqtN5cgifJ3iunBthf1CAudg3kB5R7faE2snB09kEJ/nqT7KIsr0zy0+iSCb4kSQe40dYnElN78i7G7ykmMX+ReeyXGY27AaCoU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=J+lQtlmh; arc=fail smtp.client-ip=52.101.65.39
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iYY/ekVKXdfPjTIzwYeyN7fo9gsFc+nAoM7OB6kdq6DEGumm+jhczureUe/34U94sSm/7FUQL00a+u5shB+wCdRoFfMPImZnJaOo3mk0fuyvzA9e6KtGFIsdU68eV8kUndxDIxeFzG1xIg1zsUCxVV2LKvat4dEN3697lwPhr7rRD+Wx7mn1l6Kp2RCtWnKo85MjIrBHA7iZ04FFEcRuBKwT60wYQdYjwmqwapJ0zucAFV+bg3Q0KpGdVNtx0We4DRbgK/NEz2YcEDOQm2Vi6egF1mLUnl5UQl5fLdjSuugUxppSBYnMuGfRLOFWqy7fCf+GRWVv8uEoF04oD7Dxug==
+ b=H1qogEADXa423yJmJPV9KRZ4ZzdBQpo9MfCd4k2U779KSsVbGkSE5NtwbQHEnACLuYzvAdAkqbHn9CTiBemXPkuqa2mI/wVn9dOY1xsudLrAI0i+YUZO9IFkdsmmenzFtkc3YMPIZZwputTzHUx4gtxCuINLeAKTOLd7MaxJq0epe9BURjX0iY19fQmlV7hqcoyrwEFZ787wdk+W51UFD8tRGE0rYna7+4WN4PrOPWAy6WG62ATHRYpNoly20kni1XoRV2F86M6Kog4NPaTzaXyj5wTb5DyvOsPneg6LrWY04a9VogmgNA2X31p2YEd5HAh6pbiZ15hs62Q1SExF1Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=daHTpruDF94xtr+Ml3+HYSItQ9jqsuTcTzkuo4tilhI=;
- b=a/5MqYDVG7618imTdutLd9s+854DHFNqMOhBRj3v6zTdJvyyoUQPKVq9yHZLKITYmQSogIhg6WmE1iZTInJBohw8gYsKUqDamF+0TwIMNxu9q1W/vd5QffDSvtP8T4hd8oXqtMlG52TDIBeTVicnUSiPFyGupjmlhWNguxjeA/UsQ+OrQKqh/pWm/CFrlVJ23+nKsA5SyEfGfsphwZI7wiZM6tw5k/zV5QeoAa8Xe6OV9xe6KPve6j8sm0UIrZ5eGX8Bu3KpuOURL5HiOUrQr76YCxtr17hUKyoPAAQaPAL16efGX3xuPW6a9vIqBH8Dy0niss+ytr0I+7vZATqBDg==
+ bh=U8IYJ5PgTudt/wREZy9Oy3Xpy7bJjti/pz/IMhiPANQ=;
+ b=w1AqND63pcg4cXoFNCKbUYpFT0zBEt68AzgvIDjPZBJJJKZJru+3nBQRWZR9GKJjS9Qpf3RWGtCi5z7rRK2fdLX9btBGZgs+c6ouCi3ye/eaWDR0XpDBt1cTdHcAmUT2Kda6nJWb64NljateFBF/HsufO5zKFdME2hFCs7qUmB/g4BD5BpgIN+KibbH8EC0AsaR6OmNVYwcWacUxt4bzVpl9eD5e4ZCEJ6KKBBeeOpTbwcL2mNE5YTL1o61CASr0RsrtbN5Key4gzQSx2kHEvVqvE5oExnh5mnjU03jorKXwPfHHhv7kdnVKIUBiFxHA44v1jvVc7G2u2ID0eUF0jw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=daHTpruDF94xtr+Ml3+HYSItQ9jqsuTcTzkuo4tilhI=;
- b=PICMzMUDJxXZj+73Gk4SxlyoUQZ3aHqnpNnCEoIjh8DMhI6DXOkZUdaow90QqA+4lUcAJxwukU79tieBHVVwQ0XN9sdUsul+1N0tCKMJTXIFqzlBkyRS3i5NBNkpLyCZ8Q+k8Jvfgp69777AZjPLQS2VtinhSYJJpkqs0xsY1TxXOiv6s8Cf6pi9WZwchyYtKSkJuIDwMK6q/eUQoI6uYUhZs+B4qDuHlxc20MgZz1FeeCIdJOszW/6d6S93FrATodxFNasauXJBFMXax9s87xBKZK9YpsJCBB5U8Z741iEPWizFWbbLhRSJvnlFY+c7EdO8+YbE0iyGdWsizqmlYQ==
+ bh=U8IYJ5PgTudt/wREZy9Oy3Xpy7bJjti/pz/IMhiPANQ=;
+ b=J+lQtlmhmiiP0TrtOMTbAdTeiTFKuwvgH7hkXTh3ljQUHEvQEz6eWBCFouveSzRfV7ewfhF9F25f71JsQaoeqqtBNRIZZLWApdyj1P2jE4cK9MX68mq3s6rGX4cYvfmcruKU+6hOVFF2kB9Cwcpj7+EUOBtvQDbDgNAKaNITlOAUdZa/bGJzDFvj9BKWNhEuucCU32fyBhPNlNavKOwZtou8kNw4S/3R45yh9Wzv/YDPew7hNEIErzDH4zaVvVfVbEFTvG2+qyG8BjvSTCsiA6xWtdlAG6jCyHteaNSuMTgOnS7Qsy3WvjS9o6omyhKZBCJJ7NnIVgmziux50TKumw==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DBBPR04MB7675.eurprd04.prod.outlook.com (2603:10a6:10:207::8) with
+ by AM0PR04MB6785.eurprd04.prod.outlook.com (2603:10a6:208:189::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Tue, 22 Jul
- 2025 18:14:05 +0000
+ 2025 18:25:38 +0000
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8943.029; Tue, 22 Jul 2025
- 18:14:04 +0000
-Date: Tue, 22 Jul 2025 14:13:59 -0400
+ 18:25:38 +0000
+Date: Tue, 22 Jul 2025 14:25:31 -0400
 From: Frank Li <Frank.li@nxp.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] dt-bindings: i3c: Add Renesas I3C controller
-Message-ID: <aH/U5xmQDipagMXf@lizhi-Precision-Tower-5810>
-References: <20250722153445.5003-1-wsa+renesas@sang-engineering.com>
- <20250722153445.5003-4-wsa+renesas@sang-engineering.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: Wei Fang <wei.fang@nxp.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"richardcochran@gmail.com" <richardcochran@gmail.com>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Clark Wang <xiaoning.wang@nxp.com>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"F.S. Peng" <fushi.peng@nxp.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: Re: [PATCH v2 net-next 01/14] dt-bindings: ptp: add NETC Timer PTP
+ clock
+Message-ID: <aH/Xm/TaJr0ZlvSw@lizhi-Precision-Tower-5810>
+References: <20250716073111.367382-1-wei.fang@nxp.com>
+ <20250716073111.367382-2-wei.fang@nxp.com>
+ <20250717-furry-hummingbird-of-growth-4f5f1d@kuoka>
+ <PAXPR04MB8510F642E509E915B85062318851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <20250717090547.f5c46ehp5rzey26b@skbuf>
+ <PAXPR04MB851096B3E7F59181C7377A128851A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <20250717124241.f4jca65dswas6k47@skbuf>
+ <aHkRbNu61h4tgByd@lizhi-Precision-Tower-5810>
+ <20250722143638.av4nlnbqdhgueygx@skbuf>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250722153445.5003-4-wsa+renesas@sang-engineering.com>
-X-ClientProxiedBy: AM0PR02CA0033.eurprd02.prod.outlook.com
- (2603:10a6:208:3e::46) To PAXPR04MB9642.eurprd04.prod.outlook.com
+In-Reply-To: <20250722143638.av4nlnbqdhgueygx@skbuf>
+X-ClientProxiedBy: AM0PR01CA0126.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:168::31) To PAXPR04MB9642.eurprd04.prod.outlook.com
  (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -85,287 +106,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBBPR04MB7675:EE_
-X-MS-Office365-Filtering-Correlation-Id: ca59a855-07fc-415e-807d-08ddc94b8ac7
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM0PR04MB6785:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50016bb9-c016-42b9-55e9-08ddc94d2821
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|19092799006|38350700014|7053199007;
+	BCL:0;ARA:13230040|1800799024|19092799006|376014|366016|52116014|7416014|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Rnln4MNa068mmORleouNZDTBZz8rFVnW7ca33lpL5l3s0NgqKAQDv9L/6rig?=
- =?us-ascii?Q?GKzanq5pcMLu08xKc4PsQoIWmh/erpYXU4LieumYhSNqulFe7BRjNF9lWLu9?=
- =?us-ascii?Q?akTGNTM6bVsN1Q6jISLkyNl8zNxb7L0SSDBB624WAdFOvQFC2IVuj/2kV/yw?=
- =?us-ascii?Q?YqMEMR+Q2kPfg2OMCFUfuUSuxI1xShB1yeNDNxaVDda4RKsDqSoBG3enFXvF?=
- =?us-ascii?Q?ppPenKOIHnM+nbeY9GexxW9QuJtDpmdzbYjx/e4b+23A1601WTOTYZMiBelZ?=
- =?us-ascii?Q?oRDjshKkKtOYGK7sFYLHkRwLSF6OsDyHg+1ZwzIwSfcAd9WL6lxTjqxHhk5V?=
- =?us-ascii?Q?4yrQqA/tizXzEA1xGh9/oOdw9wMOGYnqNepAmcY1skd37r6iY2PSWEjKw+uK?=
- =?us-ascii?Q?rpvFLf+iIIN5d6eoOGtsc8ly/ttHvaY5hJ373XX7i2GrIQ4sClXaI/ExAvOI?=
- =?us-ascii?Q?2v5DuTYXpV+wreYVpo+L6IDf0vDURrD/w5AghOx8+vccJf5BEECdF1jQAJiS?=
- =?us-ascii?Q?6lNrZeUZmHNeb0gdQeYtMQOdqrXbBEL2Eb2HgBNQ3T5gW2k/gb2q2jwZrXmF?=
- =?us-ascii?Q?4o/fesng4w4NGYRhSZxS5YjMR1KFJvTW3573Ssmg+0y/49S1a/ty717h947s?=
- =?us-ascii?Q?kkIQyadp59MMTLQb7HWqgXdO0zG2WPC9U5CJI4QWuXf7g4opjrb1y8qWrpxs?=
- =?us-ascii?Q?0jbrx5wYEVITYgdsi5MCmYG0oUyDI5ZN5+Qmh/t8x0ycAcayUc6qFYqYTIvj?=
- =?us-ascii?Q?thQU/tfroXN7sR9CjaJfmjDcGCFFi7z05WC9xP85r7vUGRADvVQ21944aEc2?=
- =?us-ascii?Q?HECqnwFkzhBlRKRD/xt2JnOYW/69DLfyfTFxk4vrufNvGzHtnPcREywRB5HA?=
- =?us-ascii?Q?MZODObB2BzG44dZCX8Mk1HMn7SS0b7MTiM40Yn/1q4I5YfAh2kjkMLkR+6gA?=
- =?us-ascii?Q?mf4xY4xhxeNza4p6RXEhAjyQVS3X45D1CuU2xPsjRxINJZSreQZ/V2xtgrFq?=
- =?us-ascii?Q?Uij2aVSY21Wg2KVewot4L50h38MGvZu4cQMYdkLR9ECu3Xs8BkzQijPIFiZI?=
- =?us-ascii?Q?YXOiGmOhRjQQ7O3XHodEPOGQ3IfjfVm302p5PTQQAX1XOiliJLNGBXoX7ji0?=
- =?us-ascii?Q?o/PkBGHuOsoaEjZEdflB6k0pL708PxlD6TiRmnV5rTYeoEgPKzFF0h0H3Kpd?=
- =?us-ascii?Q?fng5ppJ4jWhHcE6BSw+SEZIvcIirA4GIOS6h4TKlu2nTLyYyzzK0/Pnsmq0h?=
- =?us-ascii?Q?4oe+WXcQMevwOESBX3bw8dXfMZ41j6GYRJxDrIbLqIOdQQUTDvP0jwwc9EI9?=
- =?us-ascii?Q?UGYYl1SDLHODD2Kz4Ec2HyxA0QAO8po0kluyOUTfoAiM93m0hewD0OBu18Hv?=
- =?us-ascii?Q?Q+J3I3vTO8a2UMqCgGqzAMeIzgQ96DM5mwFR1e4gsTp/Bi0Zcr1lQYE3hZw7?=
- =?us-ascii?Q?NwWyCEWmPKc=3D?=
+	=?us-ascii?Q?5ITpg2BOYptrvDzvd3wfnbHul66rbvA6GHgP2XzwZpLyDjnYEoFUWKFDkAhf?=
+ =?us-ascii?Q?rPkMiNOM0X2Aw5W/tYD6XBtsX31GP76jZ7sUMOXcoV+TXmKsTlUowEOfgQ0+?=
+ =?us-ascii?Q?dyxanaV05c4iNyljpMmUaiWqgtjA4wwfcV5HGlFh3vq9watIqoUpbBHwymgn?=
+ =?us-ascii?Q?TtDvYdlgOmY18z3U/A6lPG6XbzbfOS569GqvaouxPJAOFMaVqj6AUox7pJVq?=
+ =?us-ascii?Q?sgmsk/m5HYR0LZrZDHkL2AQgQxeCBVoYYBFkkTvR6qSTY04Ly2NNjKQFZAef?=
+ =?us-ascii?Q?IKOPQmygmeCTN+qXloodEsIF53BuiFyA1drcCbdv8UHC5cJQtTOYTqhLG58K?=
+ =?us-ascii?Q?rMWmgAypNrEDsD4qn/Lj37QGL7sLJSzNgfaZhfn8Yvim2TpTmIcDMR2S7k7n?=
+ =?us-ascii?Q?UfjyvZ2fZ2AGeFBscvC4rXxDvOr1iUn2Fr7+e/khWyO1u6n5rW2HZSWyuoHG?=
+ =?us-ascii?Q?HpZ3pFTco1jylurCxBsr7d+vzvQDfNMpb2mtn7BdIIeF4FGQuu3EPdjvztVd?=
+ =?us-ascii?Q?n6ZvqvQGvYzyZY1UH2+2Hef5A8BZLc1cYxirIcuQBZAigV838/ArI9gFpcKS?=
+ =?us-ascii?Q?u9+WlYoJFKlidM29AzoZrl2YjgnYxkW/KZOOJ8MOP9tj5MD3jZdZkuZw5yCv?=
+ =?us-ascii?Q?UN7NVmlFNkukeiAI90A4PVZUK+8D/sq3bcvw6EuuntRsEqcYPhp4h9upE1ne?=
+ =?us-ascii?Q?aWygjw0YXnHH2ujK4pUNMK9zvfM3GzjFTfzm1Fi4rpJxsKTGnff5D+gblGf9?=
+ =?us-ascii?Q?E6wk/49r8yDLNwgfF/pSoOxP/ymG59/iZEo7mOva3lzd4j3HlcYJnb02Tlb6?=
+ =?us-ascii?Q?eyGQi/KFzWzKlXLP79bhg0AiUSj9m5Nfo9VbHIib7/GEvrbyHQoYzdZHDLTE?=
+ =?us-ascii?Q?WRn+lTzNDlg/DVdkFLFozad+8ZT14eECwY16+rnDmPQvpqGn1mwcgQPq1Xfa?=
+ =?us-ascii?Q?Ncxf09VxdS9CwGtXle9WyM31Myf4F8drL68pk8LV7WiHO4YhS9fF+6J08KUF?=
+ =?us-ascii?Q?8cHKRQBINp8YhjD062MWJ5LBGNCxNYx6FJxpVSt5n8dxGdakiEfZeqm2uGv/?=
+ =?us-ascii?Q?z7BMnLO/DFlnARJBBghPNYM9Y6ScgXTx0YvYCzuMgJ9W/Bh76CkBWb3xxrwR?=
+ =?us-ascii?Q?JUxWlwMQ4xeetzS1k1ff62/K0IOEp6pWMeXLsLJZp/urwSojlZehQYuyEVpl?=
+ =?us-ascii?Q?W7DP3sZEJQH30oCdkgqWmdVl8lgcYR9KiUbd2SmIVZtmD06yi6vowv53r3Fz?=
+ =?us-ascii?Q?BoALTgTHuaOpKpg3bCVePZad7RfMMZ8RTigKaduSqX+0vJLrkajGul5fXrFi?=
+ =?us-ascii?Q?KtXixELAOoN6irimRzEi6i5h5VcfWGtMGwh8F7Yvlhycsfj9q6dq1UxO8uQc?=
+ =?us-ascii?Q?zI1Cb99l54bWjyMAqxfhgJjWUKQKWrmrXmASDDsAfvfqmeSC+TJrGsHClwd9?=
+ =?us-ascii?Q?bOwfzVWzOVtkwzRs1GjxP0ue0oO6IX9mvyCGi7TYbAfoXyNkZ4ock3sSUVjm?=
+ =?us-ascii?Q?3oLVAutDKAvkO4Y=3D?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(19092799006)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(376014)(366016)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?BcWhv0j9DYMDzltLLDzK1OkYU5kmNTjy0iGxoD47IWvvvF/bru0AyCJ/5cYo?=
- =?us-ascii?Q?jICSC+ItBsYIauqwBgTR7b4dVHPSUkn3MHfUaXbDU2loO+yHhENUQOE70yjC?=
- =?us-ascii?Q?H+B8DI3UXPe64jDK/lTHjUoOHZS2S0bfJSTkWKJbbIeg8lgoNiC+C9zzqhya?=
- =?us-ascii?Q?nWkFH86e2B7Y9yUP3srC5tpzlxfYQ0xc4Jh2gS6vovf0xXxXk5tXx19am3yn?=
- =?us-ascii?Q?ZP71OWeVb1iXcmg4zFgqcyrrrhX3vetF3BWbGpB79+KKu44DbTTcKTE4ZeSL?=
- =?us-ascii?Q?SvDxo6SV1FLfp8ja7/X7IMSvkHhredXZ5rfIQtsK2VJMRrggmKHJuBXYv+Rg?=
- =?us-ascii?Q?9Z0yEsJE4uPtfniPyZjFyFbRoXK39KfgfO7NXF0CdChBrerQxThwHrDqG5gr?=
- =?us-ascii?Q?qhsAupvpV6zB8oCLLHdD03TRQwSgWS0uyTtfCq5C4EdROhEBHAM+MrczSjNh?=
- =?us-ascii?Q?FE+VtZMBR7j/LfHoFrL3fEml0PUA8n/mbHRnFvehXyaT7CCOHdUHlUuN19uG?=
- =?us-ascii?Q?ffyI9WLBNxTC23wR42LZs5ungNBIfvyzsx91W3thuweGW5yiqYxBHqFSIv0V?=
- =?us-ascii?Q?wUBsyHODXcDRfp5HYQoV3DANg4OZWQMvrUHMgGwL123Wul9YRISWprAliTQQ?=
- =?us-ascii?Q?+OLKEVtF73XAhJcI4x1Dh9EMSN6zEY3jyKF1heiuomEYo9LDNSMvt16EbeJt?=
- =?us-ascii?Q?z45jHf/sbnVMu69nJJKVo2mLJgYqbG0b6U9nMq2hvy6zZE0MCC0NTOddq0FW?=
- =?us-ascii?Q?cILqi3k6+iSwZoZH18YY4OkmWDuMsTYzSxNjEp8Df33sS89jTrxtww0wvcLs?=
- =?us-ascii?Q?Re/Pu2LFfUPOhQzfrOJdwrMLUDHiCq37eLkHMPjAMnGH7N75FIaMHsolVZGf?=
- =?us-ascii?Q?fiTZNejcmVz2BClud+Lqe8Z4LBSqLRUFQHSrxnkTvD2PkFiNC6w5SdCAcZ85?=
- =?us-ascii?Q?Z/2Z1sNJ4G06GjPX97oQA3+UoutJkSrUYbrVTCCCSQrOp76+8THalctEwdXl?=
- =?us-ascii?Q?EhqrRjtHVX8ZnzcK/pmA/t00VhvZ6+Y8Q9BrsHbUYvIhXvh3L8CpDbbvkPzc?=
- =?us-ascii?Q?labuz53QCe8QTo2jlxxjk4MLqBIkMBnvKJq1jlBZe4dnSoYsv+Vfrf8ADaR7?=
- =?us-ascii?Q?zaKCfFVpl0yls6jojPDZrPS2HbKjrD4pvg2/APqfz6Pw8y+4T8HFmfjB2S9h?=
- =?us-ascii?Q?TRkTgcVKPoen+Q7magoK86WW6p76OkVwuQzGftqkryczdlHAqHgSDaU33qbs?=
- =?us-ascii?Q?oCrI6FokCpmmCdyyHdtUcfFlWinhIA02c/kiiM0LMePuVxp+ThIeEcFSlPfC?=
- =?us-ascii?Q?CxhosNbv+kMprzOQYGNFaE0pYdq2gqsnPtj8ZS1zI59zUZ2nxYwzrGuyMdVR?=
- =?us-ascii?Q?ziSqoxxntz4MojdVKLfMdSBJOe2qblYJlxeNhQW0m+U6tmAUAGH1qb2HZcnP?=
- =?us-ascii?Q?fflvjYloe6j+AGhb8SCaa3c6gb3dEwqUutKNU9ZnnYfjFsxvMCl6yaUy1LM/?=
- =?us-ascii?Q?hmLOE/L0qeC6C58cbdTF+LOOY3Fi/mR8piMxc/4OCuLHS3IuUlBMCHPMqe8F?=
- =?us-ascii?Q?uHU050qCjQUVlL2u+nJhx3br51DK1l6qPDK6m152?=
+	=?us-ascii?Q?9z0n4kyoa9p3FH8MX2jNyQEysGDbejBCWaFvg+ytsMKLSP9eByPb9C/8uoLa?=
+ =?us-ascii?Q?2oCFsGsPSJtzinN3S08s9eQNXw3fKptbRvvBMqgut0inufYaHzyZmjHTADxF?=
+ =?us-ascii?Q?TcTliCpFw2IPnC420L+oczyFZNJrWmnzUGoq//XAn3NMbTXdFnQ4wu3NyIfG?=
+ =?us-ascii?Q?d65743tgPuTvUt+TICmy3FYiq833R9iJ51TwFBzlhm8H157BU0kMKRvTlYq7?=
+ =?us-ascii?Q?8nPCAEWFDvb2raHNu1FDkRtaFnJELIMJN0njasZi6/msqnJIBs1A2h/ALpS3?=
+ =?us-ascii?Q?FhRioy+49ergTBuKliqaCq8yPtFLqy0GpCWklTowjHGu0Obw7jfFc79JqaxD?=
+ =?us-ascii?Q?v3oHMU0RaeUjS+eKdJYRoo1KDtf3GKx/1TN0bSpi3Ab73qREV2BEBNwW87li?=
+ =?us-ascii?Q?g/rKGSe2w4RaL4bPq5raZY0d6ORuZJHuQCWTUySbgs+R/eYgu5PqRl1eBjcn?=
+ =?us-ascii?Q?MeQ2oVw7Pw4VwgEdT8mLSDCBYJ3I9YJCmn8kI2Tj3oM7I1Ou9FuJrj7tKZ1r?=
+ =?us-ascii?Q?43Da+x2O63ve5vsuv2DkFVcd1CDs11xDP4qt8iWaT6KmwhETDIdHGEFNN9CC?=
+ =?us-ascii?Q?u0qhmHmv9alTduBHSLEXTGy9NMOWfMePHk9daA+zTaAIFNQIZYWcsgWwaAzE?=
+ =?us-ascii?Q?Rf9Vh9R9hbDmswnDXbeH/wyE7iTdSFc2k8xFNQ7tDjeGszghioQrihDJapH/?=
+ =?us-ascii?Q?NKqmv6PJFnYUN3ISH7gTj3cD+s2WJSaYytwZ4U7wm4LAbix6AE94DhKmDJrh?=
+ =?us-ascii?Q?2YlYZcOa3wNRtcaGXy5u+0XivmIC5suw34UnUUWe1Vq+VDKIdFut+0deztJZ?=
+ =?us-ascii?Q?r6SEC35oDk/vmmMSFWecXwyJvmXKzVn4F8m5qQbn+jF0mVb3ZOV1VeAGC9uI?=
+ =?us-ascii?Q?Hj8p24P9G/Pvdd9N3xK5N/v5+KcE5nrdLn7MIvVMy0j4PGBZIeVCEGli8EiZ?=
+ =?us-ascii?Q?6tkt5VBBkWYA8ZRzniGQ0OJPAILUOhU2ir9JT+S3jdon/pba3hcIld15inWp?=
+ =?us-ascii?Q?Ul07FIAcM6q5OLZvtN5PkJBSN3Qmy9qzPzJYQfpFzUplWyIvIYUKjMr9GhG3?=
+ =?us-ascii?Q?eoxRWqDO++eAukDu2VUM/zNCfr7ftb0u3r0Xywy6euMN52+p2AKyE2pT0jDo?=
+ =?us-ascii?Q?TgE49WztU9Ec/9wkWvZUNK8B6aH4wOPk52grNI7dG0qcuoLZ/fwpxOXtGNoU?=
+ =?us-ascii?Q?MpNBk2CdL8+I+9naDc0Np9rIHHy7TLlTe6u4gAh93+3hQm2AxZVDhnoZe38J?=
+ =?us-ascii?Q?CGsV13ADxwuxAWvv3wpA1DPp9BayZJKUiQWnYMiEaQpul6JkGSNV9m/ANFFQ?=
+ =?us-ascii?Q?cAXD1uF1tKDon3srewZBA4OGA/QvmlOgSHsvTLdwXzBDSDngIHEbT4Cc2vs9?=
+ =?us-ascii?Q?f+neMX/Q04KBpSCeD7vaH04COTY7Q1klOIH4E8ar08lypukJBAOYMTVG6tZX?=
+ =?us-ascii?Q?Z51iuksKyVpTWflcodyecOsH2lIPw8b5bKrTcGV5KBfnmhBKdKDHvISI1ZrY?=
+ =?us-ascii?Q?bOXW+2kE1m5+1vK22CX2WRBdyISX7o/aODLeKqvyxmg5vsWhjt8rI7AZajqy?=
+ =?us-ascii?Q?OuUYloRPi9V65a8CVKdRHGrvcIaNf/QwSAyOp3sH?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca59a855-07fc-415e-807d-08ddc94b8ac7
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50016bb9-c016-42b9-55e9-08ddc94d2821
 X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 18:14:04.6125
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 18:25:38.1825
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: H/vvKIBdRfZZm/HOnBISPMrx+C8zV4ziHzUVpLwqSj3WX69OH3Oq12BBXbGgrnJg0M4aFXh2pKpwxoQO0lEnPw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7675
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9+0eQwYrKSDeiBADp+zT3eV7j6R9YDjwxgeNLZdAtRRxIOqZoQKkGDVqk/P1dug/DEtoXcP8E5vpJw/EkeYfBg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6785
 
-On Tue, Jul 22, 2025 at 05:34:41PM +0200, Wolfram Sang wrote:
-> From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+On Tue, Jul 22, 2025 at 05:36:38PM +0300, Vladimir Oltean wrote:
+> Hi Frank,
 >
-> Add Renesas I3C controller which is available in R9A08G045 (RZ/G3S) and
-> R9A09G047 (RZ/G3E) SoCs.
+> On Thu, Jul 17, 2025 at 11:06:20AM -0400, Frank Li wrote:
+> > On Thu, Jul 17, 2025 at 03:42:41PM +0300, Vladimir Oltean wrote:
+> > > On Thu, Jul 17, 2025 at 12:55:27PM +0300, Wei Fang wrote:
+> > > > > > "system" is the system clock of the NETC subsystem, we can explicitly specify
+> > > > > > this clock as the PTP reference clock of the Timer in the DT node. Or do not
+> > > > > > add clock properties to the DT node, it implicitly indicates that the reference
+> > > > > > clock of the Timer is the "system" clock.
+> > > > >
+> > > > > It's unusual to name the clock after the source rather than after the
+> > > > > destination. When "clock-names" takes any of the above 3 values, it's
+> > > > > still the same single IP clock, just taken from 3 different sources.
+> > > > >
+> > > > > I see you need to update TMR_CTRL[CK_SEL] depending on where the IP
+> > > > > clock is sourced from. You use the "clock-names" for that. Whereas the
+> > > > > very similar ptp-qoriq uses a separate "fsl,cksel" property. Was that
+> > > > > not an acceptable solution, do we need a new way of achieving the same
+> > > > > thing?
+> > > >
+> > > > This an option, as I also mentioned in v1, either we have to parse the
+> > > > clock-names or we need to add a new property.
+> > >
+> > > I think a new property like "fsl,cksel" is preferable, due to the
+> > > arguments above: already used for ptp_qoriq, and the alternative of
+> > > parsing the clock-names implies going against the established convention
+> > > that the clock name should be from the perspective of this IP, not from
+> > > the perspective of the provider.
+> >
+> > The similar problem already was discussed at
+> > https://lore.kernel.org/imx/20250403103346.3064895-2-ciprianmarian.costea@oss.nxp.com/
+> >
+> > Actually there are clock mux inside IP, which have some inputs. Only one
+> > was chosen. Rob prefer use clock-names to distingish which one is used.
+> >
+> > discuss thread in https://lore.kernel.org/imx/59261ba0-2086-4520-8429-6e3f08107077@oss.nxp.com/
+> >
+> > Frank
 >
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Thanks for the reference. From the linked discussion you provided, I
+> am not able to draw the conclusion "Rob prefers to use clock-names to
+> distinguish which one is used". This seems to have been Ciprian Costea's
+> preference, and Rob just stated "Really, you probably should [ list all
+> possible clock sources ] no matter what, as you need to describe what's
+> in the h/w, not configuration".
+>
+> Really, Rob just didn't object to the use of clock-names to identify the
+> source, but I don't see him expressing a preference for it.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Thank you carefull read again. Previously there are many discussion about
+clk-sel
 
-> ---
-> Change since v2:
-> * rev-tag added, thanks Rob!
->
->  .../devicetree/bindings/i3c/renesas,i3c.yaml  | 179 ++++++++++++++++++
->  1 file changed, 179 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
->
-> diff --git a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-> new file mode 100644
-> index 000000000000..fe2e9633c46f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-> @@ -0,0 +1,179 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i3c/renesas,i3c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G3S and RZ/G3E I3C Bus Interface
-> +
-> +maintainers:
-> +  - Wolfram Sang <wsa+renesas@sang-engineering.com>
-> +  - Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r9a08g045-i3c # RZ/G3S
-> +          - renesas,r9a09g047-i3c # RZ/G3E
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Non-recoverable internal error interrupt
-> +      - description: Normal transfer error interrupt
-> +      - description: Normal transfer abort interrupt
-> +      - description: Normal response status buffer full interrupt
-> +      - description: Normal command buffer empty interrupt
-> +      - description: Normal IBI status buffer full interrupt
-> +      - description: Normal Rx data buffer full interrupt
-> +      - description: Normal Tx data buffer empty interrupt
-> +      - description: Normal receive status buffer full interrupt
-> +      - description: START condition detection interrupt
-> +      - description: STOP condition detection interrupt
-> +      - description: Transmit end interrupt
-> +      - description: NACK detection interrupt
-> +      - description: Arbitration lost interrupt
-> +      - description: Timeout detection interrupt
-> +      - description: Wake-up condition detection interrupt
-> +      - description: HDR Exit Pattern detection interrupt
-> +    minItems: 16
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: ierr
-> +      - const: terr
-> +      - const: abort
-> +      - const: resp
-> +      - const: cmd
-> +      - const: ibi
-> +      - const: rx
-> +      - const: tx
-> +      - const: rcv
-> +      - const: st
-> +      - const: sp
-> +      - const: tend
-> +      - const: nack
-> +      - const: al
-> +      - const: tmo
-> +      - const: wu
-> +      - const: exit
-> +    minItems: 16
-> +
-> +  clocks:
-> +    items:
-> +      - description: APB bus clock
-> +      - description: transfer clock
-> +      - description: SFRs clock
-> +    minItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: tclk
-> +      - const: pclkrw
-> +    minItems: 2
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: Reset signal
-> +      - description: APB interface reset signal/SCAN reset signal
-> +
-> +  reset-names:
-> +    items:
-> +      - const: presetn
-> +      - const: tresetn
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clock-names
-> +  - clocks
-> +  - power-domains
-> +  - resets
-> +  - reset-names
-> +
-> +allOf:
-> +  - $ref: i3c.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a08g045-i3c
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 2
-> +        clock-names:
-> +          maxItems: 2
-> +        interrupts:
-> +          minItems: 17
-> +        interrupt-names:
-> +          minItems: 17
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g047-i3c
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 3
-> +        clock-names:
-> +          minItems: 3
-> +        interrupts:
-> +          maxItems: 16
-> +        interrupt-names:
-> +          maxItems: 16
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r9a08g045-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    i3c@1005b000 {
-> +        compatible = "renesas,r9a08g045-i3c";
-> +        reg = <0x1005b000 0x1000>;
-> +        clocks = <&cpg CPG_MOD R9A08G045_I3C_PCLK>,
-> +                 <&cpg CPG_MOD R9A08G045_I3C_TCLK>;
-> +        clock-names = "pclk", "tclk";
-> +        interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 294 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 295 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 296 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 297 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 298 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 299 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "ierr", "terr", "abort", "resp",
-> +                          "cmd", "ibi", "rx", "tx", "rcv",
-> +                          "st", "sp", "tend", "nack",
-> +                          "al", "tmo", "wu", "exit";
-> +        resets = <&cpg R9A08G045_I3C_PRESETN>,
-> +                 <&cpg R9A08G045_I3C_TRESETN>;
-> +        reset-names = "presetn", "tresetn";
-> +        power-domains = <&cpg>;
-> +        #address-cells = <3>;
-> +        #size-cells = <0>;
-> +    };
-> +...
-> --
-> 2.47.2
->
+https://lore.kernel.org/all/2d870984-fd5b-469b-8157-ca5ad52a0e01@oss.nxp.com/#t
+
+It is quite common for device, which are mux inside IP. we can continue
+to work with DT team to figure out direction if s32 rtc's method is not
+good enough.
+
+Frank
 
