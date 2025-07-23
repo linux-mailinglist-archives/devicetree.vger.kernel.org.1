@@ -1,105 +1,136 @@
-Return-Path: <devicetree+bounces-199123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A841B0F814
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 18:26:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2FB9B0F825
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 18:30:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9A4E547CE1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:26:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 988001897F25
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D4871F0994;
-	Wed, 23 Jul 2025 16:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 416A41F7910;
+	Wed, 23 Jul 2025 16:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N9kJJIZb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="idHk2KEl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DFFC45009;
-	Wed, 23 Jul 2025 16:26:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356FD1F5617;
+	Wed, 23 Jul 2025 16:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753288013; cv=none; b=ffi/2GPuCKSFoKnp3nF0OolxReZWEAfJlUsv+fFepfGsvUYsrEF4DP8Nqu7HxYSr/nddHdrArWay/qhqco3I3ibPkteH3aPFzkf4ezQdWqXT6IvtBhF2KT2nut14Fbsjk7SODGTafDGRsCYdMzmY4xAXppLlzcZrRZIRD8FNAXk=
+	t=1753288207; cv=none; b=cJ6Ds/s2JM466osNcNoTSGrXRTtY/cceec47pDFioZhDpZ7rAiJ2QgUeneIL6WuOPF0u62UUBjE+2DQga24X7C7H//EMNFNWipvcAL3/k/pv02ZKtBNENn/TWkHh8JwmKctdTfjFtBwXx0un5jQEIaCawnNv4iTk82HGTSwaFmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753288013; c=relaxed/simple;
-	bh=n3qXmtc19QU3ZmV4nZYz1SVUQ1cC1I+DIwzc4nirjyg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mrPrDe+I21VOYQHjJLjRqiPHmU32wMxFtcVS3M3ivaVF4fee2Cma5TxyHYUjA0sGri9Xj4X6p9cZWc2rJ16ywbw7HJCAPVfGfqVkXqvxrFSDoeKCFaYydHLgJsODUGzUx1Nv8Y0QLv+DL5pDyj8d7WY8PmV2EF8RrWKKVc8C06U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N9kJJIZb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01150C4CEF1;
-	Wed, 23 Jul 2025 16:26:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753288013;
-	bh=n3qXmtc19QU3ZmV4nZYz1SVUQ1cC1I+DIwzc4nirjyg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N9kJJIZbQJf6P9svGPJUD275iN2bEHWtom3WIIIQ7r4NHUvucLRzaFmcwM6DYXy/w
-	 eP8JMAD3toXG9dTz2WF6xlKU3KMM+rLmwOOw0NBmvEpBRJd6FZA5gXCq7mqYy+yd+V
-	 Z4x2uIW8DtG81v6WT9T8Uq85ff17hwtnI8CEtXn08YNtbV+NKarkzKOKjmTSYwCJQG
-	 Y183CBkHkZJmYJs72lK2Z/+DPX5LYt80yXPnETvNvaUNcjGjU2hAxbnvUbZcAphNI2
-	 k54Flizmov93mPe9r05TdbaIT9tVHzoplWF46nbNuOY89i4QqAzqq12nbkkUUZhPsA
-	 jJ4LgoDcEcSCg==
-Date: Wed, 23 Jul 2025 17:26:47 +0100
-From: Simon Horman <horms@kernel.org>
-To: Tristram.Ha@microchip.com
-Cc: Woojung Huh <woojung.huh@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Marek Vasut <marex@denx.de>, UNGLinuxDriver@microchip.com,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 3/6] net: dsa: microchip: Use different
- registers for KSZ8463
-Message-ID: <20250723162647.GK1036606@horms.kernel.org>
-References: <20250723022612.38535-1-Tristram.Ha@microchip.com>
- <20250723022612.38535-4-Tristram.Ha@microchip.com>
+	s=arc-20240116; t=1753288207; c=relaxed/simple;
+	bh=XRzabo+DQu+h1F9L/ij9Knih9rrXww9H/tsvoJcdIO0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ruM9t7e5Ay7OdZNAyDT4XsIHkS0JHHcala+ipT+h4uu3RSf7LuCcGoG5l06ty66t8mygPT4G+SfBw+vhNz/6zAJ8/S/L9uT+hYo+FDj9LHnvVF/UdtWRjeCAOgvKlbIXCo4N3FTIdCdcevMLbgTIderwJPrm+P3buBu7IHhqpFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=idHk2KEl; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-b2c4e46a89fso117686a12.2;
+        Wed, 23 Jul 2025 09:30:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753288204; x=1753893004; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2oLVQ+wEF7L0i9K+mBIHWmF3qtu8o6QfrkYubSnBjN0=;
+        b=idHk2KElHuGiaT65Uxir7hVuA/aTE8ftiOiOIe/53wKIEv2jMlDBGlKTeH9ryL5XyR
+         hqjpB4rnF6/Z4tvPdFutc+OulGMhYLSJ5pSjv1eeKRjPXz2/CnMlIR8gTDVcQyFjDZ7F
+         o9C9K7MpXIYHxQjWTqMsNYlYhU503CTYR+2wPWXfYzDZohQx4A/8BrWfMw5EfWvMpfLt
+         VrRkEkLNbERVak55aYraor0bkMd41Ri7yPa1b0SkUuIppb3JB93JpfS8QsWq/8I80yX0
+         tvK84EIiVQVMbtJ7XEFi10yK4RegrHG0uMe3LYdn/yr3Y/9zQmrBXXOI1EBzGr6bL2YF
+         05VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753288204; x=1753893004;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2oLVQ+wEF7L0i9K+mBIHWmF3qtu8o6QfrkYubSnBjN0=;
+        b=AKRP+gEl9R8c5vf0GuKYB5NFFwyBVns1O0yBCUaNhWp9v/ilteTQKmoVkIB1yO7me1
+         opbNdZ/FzsX3Tw5vKUJQM7EHdEI8lHlqX4lqUPXMJfSwzojuZWBtcoBj76ADhhkF622a
+         RuQBEGMUUSPhyT0fEBsT/5x73USIouhOHJZEFraTuG976r5wPlKWx9QB03oZORIi/0qV
+         DnVkG6QKB6addKXFn5JicufW4ENDmlZ3WaL42KNKXegAS7xFKrr7Q2wJojLIfcLK+lrL
+         cwRqZ5eXTqCq0uKjYo7x8higU45hQOZQ/6OYZyWYl+L8D1WT2CKZd5yf5P8yFRsa6WA9
+         /18Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUTdVbVlBz7cp9JXAs0vs571sIr7Wp0KLMsj83DW0GiWQyK49qLhvExEBZZiylOVgY7Qlh3d2Ys@vger.kernel.org, AJvYcCWETsKtvOiSn20V6YthZR2Kbp02Pe62/9VuFDDab7nSvzcwdDs6sPkjUAXMn4Zxy2295aNscer9e7u2@vger.kernel.org, AJvYcCX/SXpu2hhuKxO977HJUK33sQGBJb4yxmQPrRcJlWk0P3OTCJMnaiZc/Rwf3IqyUVUEbNDrs22ieuNZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxwkca31ntSGxNcrx3C+65Cx7AsvZWfcC51ORoF18BaPdqzGTt2
+	xNj1sT2JL5u/AkICjm6zJY0R/NIiEOgawtv46ZscZilauUrq4Q7G8xC+
+X-Gm-Gg: ASbGncsFzTEyH3CZiinn5W7THuWJy0RNaFVlcamJ5IaWYlMZD+VgZQW8lqzy29Dm3gr
+	USWJTYHvux2d0PTWK7IdiZuALRTG/QiICZKNSP5Ho53xmLzX3tKW/5D8jK+3v8HirWwUDrtr+oY
+	eYWYHz+JewLdYDIPRR8gLzNpCCZpKT6R+02gG6S/BME0osiEc9mQtr9YYt3kfJZR605t0d/glmt
+	jGeDYo4nuYmazCtnvlS1gznkMGqZ1E6rzwgIOXAzJw1QXzNYjDuJ8lTjXEzyBcFjKCNEd6sbI3+
+	mbwVCdk74OaHBGRwzlhNEchD8zCLsJklRXOmPjHpafe40O/DoQMnxn6mEf9+2AVE1BNjO4efaff
+	yJuYbexQ5gBNog1vTGOkr9eiBFMKNLCZAmWyK4lI=
+X-Google-Smtp-Source: AGHT+IE8R/cLesETtxNTKi6GADIN03ysXQ0xFDkmBNduvgzLi3IKVKIBX5o6E4+QQ7bIBNKgOSkiiw==
+X-Received: by 2002:a17:90b:3f8d:b0:311:e8cc:424c with SMTP id 98e67ed59e1d1-31e507cdcebmr5060289a91.25.1753288204285;
+        Wed, 23 Jul 2025 09:30:04 -0700 (PDT)
+Received: from [192.168.1.143] ([49.207.192.227])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31e519b11d1sm2037415a91.5.2025.07.23.09.29.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Jul 2025 09:30:03 -0700 (PDT)
+Message-ID: <8e5e1d09-0706-42b3-8ae1-00a0e2f5139a@gmail.com>
+Date: Wed, 23 Jul 2025 21:59:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250723022612.38535-4-Tristram.Ha@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] dt-bindings: cleanup: fix duplicated 'is is' in YAML
+ docs
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ ribalda@kernel.org, jic23@kernel.org, dlechner@baylibre.com,
+ nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com
+References: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
+ <CAFBinCCmsw=XGPtrk1XbphOu=OwhxmAiZ+2h4x_M-_f64Vo-7A@mail.gmail.com>
+Content-Language: en-US
+From: Sanjay Suthar <sanjaysuthar661996@gmail.com>
+In-Reply-To: <CAFBinCCmsw=XGPtrk1XbphOu=OwhxmAiZ+2h4x_M-_f64Vo-7A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jul 22, 2025 at 07:26:09PM -0700, Tristram.Ha@microchip.com wrote:
-> From: Tristram Ha <tristram.ha@microchip.com>
-> 
-> KSZ8463 does not use same set of registers as KSZ8863 so it is necessary
-> to change some registers when using KSZ8463.
-> 
-> Signed-off-by: Tristram Ha <tristram.ha@microchip.com>
+On 23/07/25 01:08, Martin Blumenstingl wrote:
 
-...
+> On Tue, Jul 22, 2025 at 7:06 PM Sanjay Suthar
+> <sanjaysuthar661996@gmail.com> wrote:
+>> Fix minor grammatical issues by removing duplicated "is" in two devicetree
+>> binding documents:
+>>
+>> - net/amlogic,meson-dwmac.yaml
+>> - iio/dac/ti,dac7612.yaml
+>>
+>> Signed-off-by: Sanjay Suthar <sanjaysuthar661996@gmail.com>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> Thank you for spotting and fixing this!
+>
+> To my knowledge nobody else is currently working on amlogic,meson-dwmac changes.
+> Meaning: with an ACK from the netdev or iio maintainers this patch can
+> go through any tree (iio, netdev, devicetree).
+>
+>
+> Best regards,
+> Martin
 
-> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
+Thanks for reviewing the patch. So you mentioned, now the patch can go 
+through any of above mentioned tree, Is there any Action item left on my 
+end related to this patch? Also will I be notified about when the patch 
+will be approved and merged by the respective owner?
 
-...
+Best regards,
 
-> @@ -2980,10 +2981,14 @@ static int ksz_setup(struct dsa_switch *ds)
->  	}
->  
->  	/* set broadcast storm protection 10% rate */
-> +	storm_mask = BROADCAST_STORM_RATE;
-> +	storm_rate = (BROADCAST_STORM_VALUE * BROADCAST_STORM_PROT_RATE) / 100;
-> +	if (ksz_is_ksz8463(dev)) {
-> +		storm_mask = swab16(storm_mask);
-> +		storm_rate = swab16(storm_rate);
-> +	}
+Sanjay Suthar
 
-I'm sorry to be difficult, but I think the topic of using
-swab16(), which I raised in reviewing the previous version of this
-patchset, is still open.
-
-https://lore.kernel.org/netdev/20250723162158.GJ1036606@horms.kernel.org/
-
-...
 
