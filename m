@@ -1,172 +1,117 @@
-Return-Path: <devicetree+bounces-199118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F7C9B0F728
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 17:37:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 718D2B0F774
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 17:50:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C6187ADE99
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:35:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64F783B3648
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:50:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BB91FDA61;
-	Wed, 23 Jul 2025 15:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C3C7189B84;
+	Wed, 23 Jul 2025 15:50:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lei4AiVg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SmBKNNWa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92001F9A89
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 15:36:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A243BB48;
+	Wed, 23 Jul 2025 15:50:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753284979; cv=none; b=MPcEueFFNmUd+znG9Lq8D9/dUHLtwZwvfrr5tbvgysGQWhhhgIltk/4df8X8LHBzGq6qN7k9ZYyFBGHMdouiRUEhWda2NjQJdBnzpbCRTy0mekMpjHFhqrKzC1guH98UhnGlFt0q9YprFpJz2NhjeUJxwJckSU3Uyr3X1djGaAA=
+	t=1753285831; cv=none; b=BZeZyF7kv7+qlfnQQSZAGhIgs95My/Pl8M6MHgV584SQEudZGmz7PeAGJDyoo6hP6QqWWswpM/6SldR/g0KGOcs+R8ITO1XKPH+rmsh+jldYgdVnObPwnLrLcO6CI/edwQojO+3M8AjhkF8ZyTXxpEFDkRbSfF0zij//JtLh0+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753284979; c=relaxed/simple;
-	bh=VA9c0QPMO5+Bov+cQomqLQw1whJoVSRf3QyImu7EoAg=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=GTyJM6YnzH1xuBy5y18h70HfdBSNMgZ4S0zShLkIWB2SWTo8v2OBQPsg1kEjmKMIJLHvRc9aGNczehcEYNMF36brfaMI0fxEoiWhPZG014L5mTSHgh1FA3LQJOxAr0nP+L+KFNqkDTnP6fpObwwGE01SXeBhaf6L/OP+PXIdhnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lei4AiVg; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45619d70c72so9999445e9.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 08:36:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753284976; x=1753889776; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yopYTcaLHy/YngxUjGRVUYbmllYbCh12wVB+pNQbzC0=;
-        b=lei4AiVgu1fISmd3tdJ1VZHkuQt/FJy6bpGQ+7cBfbD9IbsPjwsLT66kDkDpx71a+V
-         tPYouNvAfeMQa3PwzDOisS1but6Zw9CxcNZVHsW5zQ060WTPj9zhmdVk2gXho80iUrtL
-         MzPAOnv25PQposp+76XLEF5IgQ2K5derB5yfOHR/f5IX+NDG2l+TH4jSuO8Rau4RB3Tc
-         W0ZWkhSRz4pHbPeajmO3V3KuUQpWdqRmohdQ/LN6xtiQKN4WyKy1nHxJvvi7qeRGMt65
-         P6FMO29heFkE5R4aTZMKVvMoP7UQBPiJQTZHWhEd5ihxn8ZA/SFkIyUwYw2oH3I6BAdb
-         0KEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753284976; x=1753889776;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=yopYTcaLHy/YngxUjGRVUYbmllYbCh12wVB+pNQbzC0=;
-        b=U93OOw4757ICNsVGLmfGpVRL6ELpoN2+1ZCqCMO9SwTTWWQJfWWt5iMNSR6vFAC/aZ
-         RijABdCtk3zugFfOj5RWpJlfMp0Fj4I40N/qCUjeGuwCIG5z53IRH2v1wMi8FKXwe5Uo
-         tgtIAmnxrZOKqYDLTEvE4XrYHYaYRCnWrhrzIwH9XbJJrn08YcMt9DovmNA9OXnt2EO+
-         Tpl5E1xTFdVvVuMQBKCEhpH0SE5FMicGzusDbORPu1XYSIXHP7mzxObNeeYUACllDpty
-         NQvRRR3odFdGRb1k7HK/IsDlRjrOQxtixFPofjWbtlzm3z8p8vnpL3x2UuOdXAJq2hmW
-         S6+w==
-X-Forwarded-Encrypted: i=1; AJvYcCXCc700d3gAxQj9/WHEZEcVSqWcosnuAH8gdsehVBflt7lJwyTYKPvd7XNNUC+upYHTczQv2puySlWv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyg1e3HksVHu2fQTKRDCJK3Q+xyongvdpm7vCqMOsFlHtOwklTu
-	nDIR5LMjZRaRgQ3sYZE0ZYQHHtyY8ZI18XneETGOetUBvi6l005Mmrkr5ETxBr4uxTM=
-X-Gm-Gg: ASbGncsipEVxrz7fdpeQfQGFBHeMDAEvyxXZ4XNlAVQlEY9AaAFb0oSqU/vnDUj2ysa
-	9xI23WwHrolDFh68Zc0KklUj/gSMF+RCYEgcojEs1TKaFYrdXhlN/Vo4+i+5R4eNbRVe0aKa9pd
-	Gg6AeZsQJfcfGHyxwslNSztdE6P6+zFAgOIDSmzwbYaxxB04kWLbvKNXQGmDRYds7XMQciDPaDe
-	MhKwi839/tbaCiVi3MOodUmpp/t2hZbB77JL7TofeH2WhkT18vs46ZRG7ruMrRM8wB3ySTeDPub
-	RQFDNkqxS3jpYmd7hN5A25nEcRtLQgXwTAXtTSLmKDi7dH8Ju/QcEJfEvXtdSmUnGmKC7Xp9QQH
-	gZjcHyc+M/qrJ7pmqJV1Sr+bBy5eXSpojZgFA/rCo/j6fMx+7F9iS7GNPgLN/9Ezxiijpwg63We
-	jESqnG1JfqmepN
-X-Google-Smtp-Source: AGHT+IE36FCAwkzfiHLT8YUTKB5dl8mhn5lwwrUiNUjYfXCamvnt7XB94dMS1C8m5vdXXhKPLuuwTA==
-X-Received: by 2002:a05:600c:4fc9:b0:456:1157:59ac with SMTP id 5b1f17b1804b1-45868b23d24mr31817135e9.7.1753284975917;
-        Wed, 23 Jul 2025 08:36:15 -0700 (PDT)
-Received: from ?IPV6:2a01:cb14:150f:cf00:b6af:e6a0:6569:3a1? ([2a01:cb14:150f:cf00:b6af:e6a0:6569:3a1])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4586918094csm26728745e9.2.2025.07.23.08.36.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Jul 2025 08:36:15 -0700 (PDT)
-Message-ID: <268811ba-03c5-4957-b073-1dfbad77747b@linaro.org>
-Date: Wed, 23 Jul 2025 17:36:14 +0200
+	s=arc-20240116; t=1753285831; c=relaxed/simple;
+	bh=q0RdIwl2onvcmCTOyNGzyc8T7XKOzlJKJ3pq4M0YgrQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EUpr3FPCUE81IWvx14tBI3q6IeiLJe4gkKqOQGKlf+yq3DwKA+eYfOorM116DmdegKYZOqtgmMfGqOL91NOYMffT5+wF6+lGD6kHqaBmg5PjTH2xWEucZM+a7dTE5zU4BoTAK4WqjBdfFohlk6xFstad/mPCka8pYgnHBW103Ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SmBKNNWa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51412C4CEE7;
+	Wed, 23 Jul 2025 15:50:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753285830;
+	bh=q0RdIwl2onvcmCTOyNGzyc8T7XKOzlJKJ3pq4M0YgrQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=SmBKNNWav95G3vsgJvAXo6iiufNuKUnjGCOlLlJ6awlSazcT+GVpf/l5k87yZbNFn
+	 K3w14Y242PXRz3nw78+h6Bohl6wG5U54VpWGUqdcp902wpdo/m8CZ9QcdbAXqoUkC/
+	 E88MH/T5icJwck0NvRSwhX42ciMp0O4yRqq3ubK7dtAfV0yROA1MpfN0wepLgWQH2p
+	 pyIZKgqzA8UmZShrY5ukSSCQS83TLa3qcZKjZhtLj10JUjMMS6eHuhtoAd7S5qsi3k
+	 g6OXWs2k+9kN0XPOPyAYmdCVHrVdoerUCnEJG5Zsw9QA9QM5ruBrYV7+OvfkZZJipn
+	 G9io2fsDkj9ZA==
+Date: Wed, 23 Jul 2025 16:50:21 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Yao Zi <ziyao@disroot.org>, Chukun Pan <amadeus@jmu.edu.cn>,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] dt-bindings: iio: adc: rockchip-saradc: Allow
+ use of a power-domain
+Message-ID: <20250723165021.4e2dd324@jic23-huawei>
+In-Reply-To: <20250723085654.2273324-4-jonas@kwiboo.se>
+References: <20250723085654.2273324-1-jonas@kwiboo.se>
+	<20250723085654.2273324-4-jonas@kwiboo.se>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 14/15] arm64: dts: qcom: Add initial Milos dtsi
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Luca Weiss <luca.weiss@fairphone.com>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Vinod Koul <vkoul@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Robert Marko <robimarko@gmail.com>,
- Das Srinagesh <quic_gurus@quicinc.com>, Thomas Gleixner
- <tglx@linutronix.de>, Jassi Brar <jassisinghbrar@gmail.com>,
- Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Ulf Hansson <ulf.hansson@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-mmc@vger.kernel.org
-References: <20250713-sm7635-fp6-initial-v2-0-e8f9a789505b@fairphone.com>
- <20250713-sm7635-fp6-initial-v2-14-e8f9a789505b@fairphone.com>
- <3e0299ad-766a-4876-912e-438fe2cc856d@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <3e0299ad-766a-4876-912e-438fe2cc856d@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-Hi,
+On Wed, 23 Jul 2025 08:56:45 +0000
+Jonas Karlman <jonas@kwiboo.se> wrote:
 
-<snip>
+> The SARADC controller in most Rockchip SoCs are part of power domains
+> that are always powered on, i.e. PD_BUS or PD_PERI. These always powered
+> on power domains have typically not been described in the device tree.
 > 
->> +	pmu-a520 {
->> +		compatible = "arm,cortex-a520-pmu";
->> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
->> +	};
->> +
->> +	pmu-a720 {
->> +		compatible = "arm,cortex-a720-pmu";
->> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
->> +	};
+> Because these power domains have been left out of the device tree there
+> has not been any real need to properly describe the power domain of the
+> SARADC controller.
 > 
-> See:
+> On RK3528 the SARADC controller is part of the PD_VPU power domain.
 > 
-> 9ce52e908bd5 ("arm64: dts: qcom: sm8650: switch to interrupt-cells 4 to add PPI partitions")
-> 2c06e0797c32 ("arm64: dts: qcom: sm8650: add PPI interrupt partitions for the ARM PMUs")
+> Add support to describe an optional power-domains for the SARADC
+> controller in Rockchip SoCs.
 > 
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+Applied to the testing branch of iio.git.
 
-Yeah switch to 4 cells now, so you can properly route the PMU PPI interrupt to the right core.
+I'll be rebasing on rc1 once available.
 
-New SoCs DTs should have 4 interrupts-cells from now, I'll migrate sm8550 shortly.
+Thanks,
 
-Neil
+Jonathan
+
+> ---
+> v2: Update commit message
+> ---
+>  Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+> index 41e0c56ef8e3..f776041fd08f 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+> @@ -47,6 +47,9 @@ properties:
+>        - const: saradc
+>        - const: apb_pclk
+>  
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    resets:
+>      maxItems: 1
+>  
 
 
