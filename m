@@ -1,303 +1,160 @@
-Return-Path: <devicetree+bounces-199031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 638B1B0F1DB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:05:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49DC6B0F1E9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:07:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4B781AA5655
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 12:05:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C92DE3B548F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 12:07:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0819C2E54C9;
-	Wed, 23 Jul 2025 12:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1999E2E5B0E;
+	Wed, 23 Jul 2025 12:07:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j8YKL1qp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="U8soRlhm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F222E54C8
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 12:04:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5195F15A87C
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 12:07:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753272275; cv=none; b=F1v2mgpFHDwP6dTjI2gzBZy18gEo2gScd/5fBNUsoW9DEWJZruBS8a+I5QL/uCEeQ2GdnGD/ybLcfGES9WaPQ1StlJhxat3BeF8YR6frvD+V11mXx/IOE2LLGXaIjRNcg5AsoX8xKlRg4fA0gDQZU3z+fp8zsvAuhlStE+wtPp0=
+	t=1753272445; cv=none; b=olTttmgEaC34bJgFqypNPhnVv292d+cc4IONv91OlL2D3KJV44Xkc8WfVV1LCmLxk4UzeinIO9MrAAGXOBER6rIrQkqA2mhC5DjWZpuUbjG65OQbO2eaQ7zRSgR7HV3AH9IWEq4FxqQeb7qavMR24FIlNpbgd1EsQUTPQjonMUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753272275; c=relaxed/simple;
-	bh=tZtnr1t9b0UyyBWJF2pBQb3rRxn1BtGGkwNYgLCrcY0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=q1QTOBDzkohl35ghyNn4Fm8bQwCRoHnLq/lsXF5s461B3F1uEZ6XR4rjBEe5lbBce/KT/nN6ab3ef3QWL9V2dllCTdIlCQZVdw3IFo9yIXbR0kq2sp5kz1PHN5Q2O+TiNcnIxtsioFpHWWSwg9OC0WDuRLDnwMgt1JD6jded/gs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j8YKL1qp; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-6095cea1f4eso699664a12.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 05:04:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753272272; x=1753877072; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RfFmbru/LCAFgBCMPMUZ+BBCwsaXUjK95SJrm5H8vz8=;
-        b=j8YKL1qpZLwQ/iFxlAwIgYUybHsGGV0BKUXbwb0EkmTSqritWfpfUYPRxKLNutuk8v
-         oxVbg6ZyNt900Ofl/jPZCvJM6Iq8nwOvaSYeIP5jsUtYmdQYNEexgbcVT3Aw37nhK43H
-         uIoXyWtVKKUVfzABhExF34oHtloAN3nXOfmoKn5A447VcLkormZj55YK46JXTOvdomj2
-         xZqWZgnQDJT5hIC3WEQo3w8i2VH5pLQefygtSxD3XyF+f+Ke24butXF9/aQ6lzee237B
-         RTy02C/bFyB7zsGviXfr0KD8UN4tiIh99QzCQcCSARa7NU4HWSnAvu9DlVZpbOde2SkV
-         EMZQ==
+	s=arc-20240116; t=1753272445; c=relaxed/simple;
+	bh=l7h14Ukiz36WSUCzAfQ1B5MfKsDmhlXkecfI4fzWztY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ABTyL90qIjGqEP8csYUWKUlyS/6+2HdYrzw7C93RBF7WQ8ZVLOWigWzO5KBXzaOQrl7GzeacahDn7zV557Q1btr7A5U7REyYCtBAKZFdBYI/ydlsZIKAmU3Lpf/BQePO59hL9Gzoekt5fis+NC/ZR0HUCIRggr3TafrNCmfepNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=U8soRlhm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56N9TL2S007909
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 12:07:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ghA/VS95zinQDHhXlbeITIgaSp5qFlupk4F14AhAmp4=; b=U8soRlhmuc1ef6CV
+	mN/IJvlU8ogmLUzycLeymbxpm8aJGHje7tKHJ14C0LJO4kWvYXZ2fvhfS+HV3KxG
+	/C8fEavtkSA/3atvmAAYZ0B+dfk95e1g3cLR4He6QqaVV7qrkHpPjTerEGjKu2QV
+	NRIFYw0p+9btI2HiIq4YKnUAFnuzvqE4CInE1T4eVMNHkcfJtUHqSQqkwwySEvE4
+	RdzWKb4CrsgBHey4YPHCMH11+HTPkyJrujhKojLqJlg27EKjqmQcPrDYaGJ7d+cx
+	06BCukdIDa/ruZjxvbYlhHTH68jQklqrAA0GQZYDObw+9WwnvDjwmSO3xPKfHh9x
+	Zhx7oQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 482d3hu2tn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 12:07:22 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-74d15d90cdbso5702193b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 05:07:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753272272; x=1753877072;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RfFmbru/LCAFgBCMPMUZ+BBCwsaXUjK95SJrm5H8vz8=;
-        b=ERm3sH0/R8oVbD2A/oZairnA5uxjD3ipS3hQQeryJUBkXjGuRhvvQcVvp8mF5f6S4G
-         /WrtKgSahN6oHBViQl9kMi2pm35Kk+Hr0cJkQI3Xeko1hyKarhTwLKbV80UYTjMDGk6n
-         yzmj87q0KnShWEsWD2J2tLlIiK0DHbwg3YvzbTQGWLHAaep7IWzaxs/5E/tXUboXRZGn
-         xKtwmRxsqEI/thiIzJ8+eWyASK15djXeBdU0BfMNJTMsRttewwyC3aVx+sX8n+L4jjgR
-         2qxjxV83HQt+rvtPJ3L5YIYs3Op/70u/B0DvRKNnq2C7rqX2pn+BGv6QU1lMcT+aZvxH
-         TW1g==
-X-Forwarded-Encrypted: i=1; AJvYcCXdVqHh0mePgeFjRAznWwZmBfk8xhDAPFOKt7H1v35exNfWcBi1+46amK5Kp0pB+1aGJjnlSOL87qgU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2IUNEbO/ipqg+CFZjz8tvBxoZyZ4Cv+S6c7UQxp1TCTMgOdz+
-	oo5Ijj3BzulZOAf1Rk6jmZ5l7CefwirkVnaNJeH11NlGf1DaP9iPis7G1JjdNo5AQig=
-X-Gm-Gg: ASbGnctqQkNeP3MTg+ctiZTzpW2gF4ZE7QgUCmNVWqNgupqAJbriKwhgrrRjSmXF4pa
-	NFrmiPHI0skwi1c90/Mml/v9Yg21U0XJjUEyRjT6QTf3KamZA8qOJPko0V5lB8bIcxxiMt3EKre
-	CpeeQ2vmxBcIXc8XUPI9MrQ0lvBGQJ+lV2rGz2RayaFcy3smxvGq8DoToeJQ4pyl7kwN/tojfBj
-	tAZlCfrYL2B33Wlu/PL6orJCwfjFWUjXEe1QpKQt6GIekRCAkPGLemdy6xk0RDv71M/dM4B6xhJ
-	lOXOT6nmmEXW/4LHSs6zqQktSahSFgQsdPHCNbSXhwlkQBa+GWEK90APiWW3m5z3CxeMiT6RUDb
-	RMXHgR+aNFgJDzqp2cu4ooZ42uFEOc6Cu
-X-Google-Smtp-Source: AGHT+IFp/yhow1yu8WxEFj4kLLF/zSyEkqWJuG1rRXxqxsP0ns2I8R6QZIpkgSUWEiIfNYQhI6nfEQ==
-X-Received: by 2002:a05:6402:5256:b0:612:ce8b:8e1d with SMTP id 4fb4d7f45d1cf-6149b5afb99mr910771a12.10.1753272271408;
-        Wed, 23 Jul 2025 05:04:31 -0700 (PDT)
-Received: from kuoka.. ([178.197.203.90])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-612c90bb932sm8391470a12.67.2025.07.23.05.04.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Jul 2025 05:04:30 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH RFC DO NOT MERGE] arm64: dts: qcom: sm8750-mtp: Add WiFi and Bluetooth
-Date: Wed, 23 Jul 2025 14:04:28 +0200
-Message-ID: <20250723120427.52874-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.48.1
+        d=1e100.net; s=20230601; t=1753272441; x=1753877241;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ghA/VS95zinQDHhXlbeITIgaSp5qFlupk4F14AhAmp4=;
+        b=Ido9j/qHgc0QGLdbBr9+LNeEdYhOn41U7ULZsA51HC3fKjJcuOTBf1htj6PY9aXAaL
+         AypRfkUUfpLmHz9WkhHSnblHYSdvNdSR9QI75cLUABQECYgtBsWY0XJrBx0L9xgD8YSF
+         caRV2ydnm9bv2M2fbrInytma5Ob201chpJFnFnw71KxEEZGYIha+CnKVdSMW/H+IKPrR
+         j5ytS/nbLaAV4bGRzbl7oOTgy6UUJ3pvj8UtUj+qlKCJcSudEMBwysCIet7SDsmyJHE4
+         5vUKUT/emNp+lvW9PXoJTVvDJ3ruzSPG90WUw8fwl+JXjzqCXfMMUUT0xli1ZhLGJGBh
+         8Utw==
+X-Forwarded-Encrypted: i=1; AJvYcCXEEw7XWNykM4cogpUTPJ1y6ennl/Ke/9DKEgcPIwNWKKzE969HQK2NO8Hj2dd9BXdOTQHHIE48b161@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKvgbV6CgveN7dZ0MDggFxphgO3HeXNxdShoyxMJXnOkUs6wnr
+	6uO9xFHzlVDUoO41kqAec2xHd2O0LwasZldZlZsnNhMTlyIMRM7+YUuQ79ZvVMWwJGXICKL7BSX
+	ldlKoKeypHQNbDQJhGW/vdKCdL2jPiqk7UkzybuWhQF4C4hrcWjODNFIobEQSCp0y
+X-Gm-Gg: ASbGncvogvwyZwGxtuCnWzmbPuULXnB8DZIw6NztHSEEnt8sjxc4iFgAn3tteN0/Se6
+	pLARq7hxcoD5g/+ki5zCRIPoCHcty5FEAppUQB9g+mpjuYbCFsbIvZ0bpp2rmgVPUnWZmuiTI7v
+	jcMFx7Wcqb6YsGff/gOQ2DVzknB+ioyehGPN69YtA7bjqRjo+sJ6qS5/mtIn9zNaJacRDA8/MG8
+	8PZMz9DCiXpCNmatTgo032C0TKycUYvRfU1BM2upGJJPRJY3ITOjKqHJaGJfbB48C0KC9J7p1Fh
+	zp7i/eBTBZzTFd+9ad87Fxy4midgVEneFD70T4ZCY5iXCArdRxEUqcwf9IeDfn7Q9bC/AofjXNv
+	Qu9sIluHwLM92EOZmqfREpmB+w94XXTqLNMYQBk1yZ2e7j8u6tVrlvg==
+X-Received: by 2002:a05:6a00:1909:b0:748:ffaf:9b53 with SMTP id d2e1a72fcca58-760353d5d08mr3999943b3a.16.1753272440647;
+        Wed, 23 Jul 2025 05:07:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHUboQ8jvgpdXbLokFYRCm9swkz+x1eIWhQBORpRgtnNTRDZV/f+O4yVxWhMrDrPrbssQecVQ==
+X-Received: by 2002:a05:6a00:1909:b0:748:ffaf:9b53 with SMTP id d2e1a72fcca58-760353d5d08mr3999895b3a.16.1753272440071;
+        Wed, 23 Jul 2025 05:07:20 -0700 (PDT)
+Received: from [10.190.201.48] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-759cb155e25sm9630984b3a.94.2025.07.23.05.07.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Jul 2025 05:07:19 -0700 (PDT)
+Message-ID: <d31c5e0f-dc50-4e7b-bd81-256269c82ec3@oss.qualcomm.com>
+Date: Wed, 23 Jul 2025 17:37:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5199; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=tZtnr1t9b0UyyBWJF2pBQb3rRxn1BtGGkwNYgLCrcY0=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBogM/LXCYJpbCtSYtFUWvWkh/NaxRT6HqG6wP+s
- aY4feQMUl+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaIDPywAKCRDBN2bmhouD
- 1yE0D/4+Mhb6DPOTnylAUmuSnIfu3oPq9s7n6FoVE7B3Y8VFy2wwFZ5KlGwV55B5cw2GDLxigNg
- 16Fimj6sYCHavBIDtesFPceXbPGwn6fLkKBZw0keoyfSPvMiIFsrskQlXN5quxL8QMSVcMP7eqq
- 7cEt4zvuX/IcA3R8O/cXOVf7f1XS+ZWkVmP8LbwIuFPBAXYjZMBPQi8pgO+NlJ10K523O9uHvqd
- mOAu6OAkd4DtK1vU+5g3UuOW+6/r2U8A+yFETjOYBnPGYmaRSXGdQnW/NpT1m+uKuAK+2tOEUU3
- edoOUJz+K98QiZGmSjWe/AwG7rV01l5mKSz1SodZCfg4SouONJqpgMLeFnpMdj8AjHCJR75On7T
- Tds1InQlsWyZznZi1bgFhZuGpbogvQ4V6Vo8+p+9BEmyJcdFY4HzYl6PsLULnatRkwTt54xNTUn
- cdXxWq0ijR6pnBra9Y9puNdSkm2xkNTfC24jUzvYkC2oKCCcOXtU1bT9sYYdfVVkxYDagU+Ti/u
- cuhDMMsaa0IdHI+J8ZcVOyK+zaQlf88gRsp3pFpzQYFj7rPpLAsUoiam+5l4ijW9G18S2K4h2Xo
- /bGRV++x3MW+s94mJeZ6aHk5m0LMWvYJk7VPm07SzanFJWPQeXe5ZAOtPsOjyFyT8WFAdfvBcUm J9m8eI0Ozhls5ew==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add Glymur pinctrl
+ bindings
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
+        linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quic_rjendra@quicinc.com
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250723103644.4058213-1-pankaj.patil@oss.qualcomm.com>
+ <20250723103644.4058213-2-pankaj.patil@oss.qualcomm.com>
+ <70277682-94e7-4905-823d-25ae76f72ee2@oss.qualcomm.com>
+ <790fd85b-fb24-4d44-bdb1-706c534d1da5@oss.qualcomm.com>
+ <d37879af-a1fc-41d4-8e31-2abba6fd6d57@oss.qualcomm.com>
+Content-Language: en-US
+From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+In-Reply-To: <d37879af-a1fc-41d4-8e31-2abba6fd6d57@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=G8UcE8k5 c=1 sm=1 tr=0 ts=6880d07a cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=fmhopZmm7R1C_NTn11oA:9
+ a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIzMDEwMiBTYWx0ZWRfX1OIwhZtWPVBX
+ ifbgYvHF1a8USw8QrpDC1ZhX+7tp/q4ZvZ3A5q9ngJZJ+GWhU28fnbtnAeMyatoZAIARgnWqfxa
+ 1ZTmZHgaD2VY2Y1q0cTWaE9xDZ/ntxNLvqzKPuuer+hWVKI5IAp9/EKP8bqxcS3Vv6f5zJvFvHg
+ OLZonxCrudT1QRhpTZYTHGFL4sq1hcJn2XjlGXBRk8isJOH2OdJQXxQChhL8TvrLDGiMa5J0MpX
+ qBxO2u7uMnSm+mu/TG01wk1xjRYpvp7QEF8/kcGtCCwAFh9XuduyAMmsiGNiwcdP66NZXh5wVAa
+ G3qGZ7IvD1s/xAHRzjm1RhLem7DrlLtD/ea9HCzbNCr4NmsrDDu2XOOpKRpIhRXo+kUzouuC2Lp
+ UR3iEVL0AUcWVlM58nvxhwGTK3qxCASwd56yRldtpMKmwBm4+Z9umMkJj7FULkoCLHbonyWI
+X-Proofpoint-GUID: b0fW5UsdyI067mF08icMPxmMPIPXalVi
+X-Proofpoint-ORIG-GUID: b0fW5UsdyI067mF08icMPxmMPIPXalVi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-23_02,2025-07-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 mlxscore=0 suspectscore=0 priorityscore=1501 clxscore=1015
+ bulkscore=0 impostorscore=0 phishscore=0 spamscore=0 lowpriorityscore=0
+ mlxlogscore=845 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507230102
 
-MTP8750 rev 2.0 (power grid v8) boards come as two different variants
-with different WiFi chips: WCN7850 and WCN786x.  WCN7850 is already
-supported by the kernel, but WCN786x is not.  Both of the board variants
-are considered newest revisions and the difference is only in MCN
-numbers and internal codenames.
-
-Add WCN7850 WiFi and Bluetooth to the MTP8750, stating that this DTS
-represents the WCN7850 variant.  The S5F regulator should operate at
-0.85 V, thus adjust lower constraint and its label.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-Posting as RFC because it depends on unpublished PCI DTS patches thus it
-cannot be merged/build.
-
-Bluetooth not yet tested, because my user-space is incomplete.  I am
-working on fixing this but anyway I don't expect issues since it is
-exactly the same as previous SoCs.
----
- arch/arm64/boot/dts/qcom/sm8750-mtp.dts | 127 +++++++++++++++++++++++-
- 1 file changed, 124 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8750-mtp.dts b/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
-index 5a94c14425dc..e142927f7e75 100644
---- a/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8750-mtp.dts
-@@ -254,6 +254,77 @@ vph_pwr: vph-pwr-regulator {
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
-+
-+	/*
-+	 * MTPs rev 2.0 (power grid v8) come with two different WiFi chips:
-+	 * WCN7850 and WCN786x.
-+	 * They use the same enable GPIOs and share (almost) the same supplies.
-+	 * The WCN7850 supplies are superset of WCN786x variant.
-+	 *
-+	 * Device nodes here for the PMU, WiFi and Bluetooth describe the MTP
-+	 * variant with WCN7850.
-+	 */
-+	wcn7850-pmu {
-+		compatible = "qcom,wcn7850-pmu";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wlan_en>, <&bt_default>;
-+
-+		wlan-enable-gpios = <&tlmm 16 GPIO_ACTIVE_HIGH>;
-+		bt-enable-gpios = <&pm8550ve_f_gpios 3 GPIO_ACTIVE_HIGH>;
-+
-+		vdd-supply = <&vreg_s5f_0p85>;
-+		vddio-supply = <&vreg_l3f_1p8>;
-+		vddio1p2-supply = <&vreg_l2f_1p2>;
-+		vddaon-supply = <&vreg_s4d_0p85>;
-+		vdddig-supply = <&vreg_s1d_0p97>;
-+		vddrfa1p2-supply = <&vreg_s7i_1p2>;
-+		vddrfa1p8-supply = <&vreg_s3g_1p8>;
-+
-+		clocks = <&rpmhcc RPMH_RF_CLK1>;
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn";
-+			};
-+
-+			vreg_pmu_aon_0p59: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p59";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p85: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p85";
-+			};
-+
-+			vreg_pmu_btcmx_0p85: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p85";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo5 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo6 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p8: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_1p8";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo8 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo9 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -525,9 +596,9 @@ regulators-2 {
- 
- 		qcom,pmic-id = "f";
- 
--		vreg_s5f_0p5: smps5 {
--			regulator-name = "vreg_s5f_0p5";
--			regulator-min-microvolt = <500000>;
-+		vreg_s5f_0p85: smps5 {
-+			regulator-name = "vreg_s5f_0p85";
-+			regulator-min-microvolt = <852000>;
- 			regulator-max-microvolt = <1000000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
-@@ -1051,6 +1122,23 @@ &pcie0_phy {
- 	status = "okay";
- };
- 
-+&pcieport0 {
-+	wifi@0 {
-+		compatible = "pci17cb,1107";
-+		reg = <0x10000 0x0 0x0 0x0 0x0>;
-+
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+	};
-+};
-+
- &pmih0108_eusb2_repeater {
- 	status = "okay";
- 
-@@ -1186,6 +1274,14 @@ spkr_1_sd_n_active: spkr-1-sd-n-active-state {
- };
- 
- &tlmm {
-+	bt_default: bt-default-state {
-+		sw-ctrl-pins {
-+			pins = "gpio18";
-+			function = "gpio";
-+			bias-pull-down;
-+		};
-+	};
-+
- 	disp0_reset_n_active: disp0-reset-n-active-state {
- 		pins = "gpio98";
- 		function = "gpio";
-@@ -1221,6 +1317,31 @@ wcd_default: wcd-reset-n-active-state {
- 		bias-disable;
- 		output-low;
- 	};
-+
-+	wlan_en: wlan-en-state {
-+		pins = "gpio16";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-down;
-+	};
-+};
-+
-+&uart14 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn7850-bt";
-+
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-+
-+		max-speed = <3200000>;
-+	};
- };
- 
- &ufs_mem_phy {
--- 
-2.48.1
-
+On 7/23/2025 5:25 PM, Konrad Dybcio wrote:
+> On 7/23/25 1:48 PM, Pankaj Patil wrote:
+>> On 7/23/2025 5:10 PM, Konrad Dybcio wrote:
+>>> On 7/23/25 12:36 PM, Pankaj Patil wrote:
+>>>> Add DeviceTree binding for Glymur SoC TLMM block
+>>>>
+>>>> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+>>>> ---
+>>> [...]
+>>>
+>>>> +      function:
+>>>> +        description:
+>>>> +          Specify the alternative function to be configured for the specified
+>>>> +          pins.
+>>>> +        enum: [ gpio, RESOUT_GPIO_N, aoss_cti, asc_cci, atest_char, atest_usb,
+>>> Any reason for           /\ to be uppercase?
+>>>
+>>> Konrad
+>>>
+>> glymur_functions enum members fetched from ipcat,
+>> this does not exist for sm8750.
+> I'll repeat my question
+>
+> Konrad
+It's in uppercase because of the way it's in the driver,
+I'll update only the bindings to lowercase and repost.
+Thanks
 
