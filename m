@@ -1,288 +1,172 @@
-Return-Path: <devicetree+bounces-199117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C22F9B0F712
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 17:32:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F7C9B0F728
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 17:37:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A5EC1C80E4A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:32:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C6187ADE99
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:35:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E7F1DF963;
-	Wed, 23 Jul 2025 15:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BB91FDA61;
+	Wed, 23 Jul 2025 15:36:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a9RfqqZR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lei4AiVg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D20D19CC29;
-	Wed, 23 Jul 2025 15:32:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92001F9A89
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 15:36:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753284751; cv=none; b=QeIfplHTWjrJFDHCCZcLYAbLmO3bPd9eswhKCHWUwwjJ9zdzV+FgFtPMUkV8odEibG2CmgGbhJgVcMHSu4ohnJ4TMYKE+B0YbjMN4MwiienCuz6fQnCYOX7+jnaDoK/nk03mtkjr/bJcvPJvLZ4G2h43f5/KAmtkJxCVeMb9xok=
+	t=1753284979; cv=none; b=MPcEueFFNmUd+znG9Lq8D9/dUHLtwZwvfrr5tbvgysGQWhhhgIltk/4df8X8LHBzGq6qN7k9ZYyFBGHMdouiRUEhWda2NjQJdBnzpbCRTy0mekMpjHFhqrKzC1guH98UhnGlFt0q9YprFpJz2NhjeUJxwJckSU3Uyr3X1djGaAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753284751; c=relaxed/simple;
-	bh=HkcngKq7JR/WRYu7csRYIy3MdLYjoZUIv+jpqjw+ctU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=BHZtveXXOiJhX94vYGskrkN7vt10LfWDcUCTBy7/ij+Ps8Xaf76utrZHz+Evp5k9HngJtPgg5LBeKBZfh/cfzuzQpxwhxDFcKIc+MiqA8XOfEqxuj/4kQTWHp/Ol/7sRcIgn9oigBhsAloggW2t6ru1gcjUObrR++J5ZLZqHRSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a9RfqqZR; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-234b9dfb842so58908695ad.1;
-        Wed, 23 Jul 2025 08:32:29 -0700 (PDT)
+	s=arc-20240116; t=1753284979; c=relaxed/simple;
+	bh=VA9c0QPMO5+Bov+cQomqLQw1whJoVSRf3QyImu7EoAg=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=GTyJM6YnzH1xuBy5y18h70HfdBSNMgZ4S0zShLkIWB2SWTo8v2OBQPsg1kEjmKMIJLHvRc9aGNczehcEYNMF36brfaMI0fxEoiWhPZG014L5mTSHgh1FA3LQJOxAr0nP+L+KFNqkDTnP6fpObwwGE01SXeBhaf6L/OP+PXIdhnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lei4AiVg; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45619d70c72so9999445e9.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 08:36:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753284749; x=1753889549; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SAUZEw7Zyr/dH2MhdiUynRcdRRRh3d/M1xLFRoTpl7c=;
-        b=a9RfqqZRF1sptucDzj4hVEV8gKBLGJZqtpl6T7/bq2Mm9Dg2jkKv9xYiXAuOivTag7
-         i0UIa2jW5OA7Z+lfbOFC2byM4b/bq3S/Yt3Zc6h5PvVD2f2WcWIiTIwe9iGcKk0oLVJs
-         07XMvMP2CnNDiGW04LbKQRMjyRNEP+Ebo4xuQmmvjrcvJcLR0dk+JQou38KnNqMdN874
-         7fvctf0RdiDPpXCcgGXiKmnYjvUqhGizF4PIGOAz0G7femsfzEfmCRuFIdZ0hsmd1i4L
-         vyJJGDFWAHQs9vXMqgyet9Boq1koqmrLgYc04KjM9FkbRzZw8NQ04WPvBtDsYOI7FV6j
-         xTZA==
+        d=linaro.org; s=google; t=1753284976; x=1753889776; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yopYTcaLHy/YngxUjGRVUYbmllYbCh12wVB+pNQbzC0=;
+        b=lei4AiVgu1fISmd3tdJ1VZHkuQt/FJy6bpGQ+7cBfbD9IbsPjwsLT66kDkDpx71a+V
+         tPYouNvAfeMQa3PwzDOisS1but6Zw9CxcNZVHsW5zQ060WTPj9zhmdVk2gXho80iUrtL
+         MzPAOnv25PQposp+76XLEF5IgQ2K5derB5yfOHR/f5IX+NDG2l+TH4jSuO8Rau4RB3Tc
+         W0ZWkhSRz4pHbPeajmO3V3KuUQpWdqRmohdQ/LN6xtiQKN4WyKy1nHxJvvi7qeRGMt65
+         P6FMO29heFkE5R4aTZMKVvMoP7UQBPiJQTZHWhEd5ihxn8ZA/SFkIyUwYw2oH3I6BAdb
+         0KEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753284749; x=1753889549;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SAUZEw7Zyr/dH2MhdiUynRcdRRRh3d/M1xLFRoTpl7c=;
-        b=f7+A9lT2U9ouZcq/9VTVI8baU0U9zwEiD/lAnw0h5KfMaVPdZCoPFDcWdDPpeSg+GX
-         qzsQgqOBtE9rGV+BdvrjvCbzez44GY1s1bfCyl50vdrVHufFYC5QK//6vAeSbzgYXtsN
-         u9Z8fEnxuGoITKDZIBwcyOdFPmd9sRPf2MW9MwTXGYfHDoDux6u3zU0W+FetltkP4zs9
-         gM3FvQnuaDdp++zJVmQcIcSe7G8seKcZVbtOw9R8+oUZCYUOAfFyMkbLGkJ5PPnY54ov
-         8NOqlL/V8J6r6USMj9JIg5V6QzDmGXznaoKvkVvqH7PHXSgOtxsMaTisZiAIvkVzrhtZ
-         /5jg==
-X-Forwarded-Encrypted: i=1; AJvYcCUmrknXAqpAKpDW4BCZU58XhEM6uYiacsIT8aEnOTKMVMm+gISxJifO0Q3YENmcgzE95jTLsi5f6GfoFMeb@vger.kernel.org, AJvYcCVbOScDzV5BmbJzKrIuOzkEhogqFotyf5oQbxkJDwywCQ+7TkBPI2/wfXF24VS6ClMaJZKhzB6cNMb8@vger.kernel.org, AJvYcCWLvFk5kE2b9Viwjpu5BhmaZ+8PeCvjGBWeAPOg5eKr1foH6uPU/4fY+cQRnmHepbb5ChfXunTOGUBIVA==@vger.kernel.org, AJvYcCXs5GY62DJGMLvITqU3SSau6PhmxYp6swZ2BBrR/u2P+D4Kgi1NDlsBmLCZuY5jJ0I7dJlsRhMRXTnQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3ORb+9K8FxNEnYDJhiKrcIXnQbN3QNLdKApB2tKG5ykJyk7tY
-	7oxuBrOiDhFJbcTaXpcbu+4lNPQnWRo2O8T9L+1ie70EXBmTwBGds5TjJfXfdw==
-X-Gm-Gg: ASbGnctsJHPwBLT3MND++kewqaotE2ClnAESHRUPbW4O+tPNtYArD2MfxSvObI28RSg
-	xCTYFsWDP5QlS5q5eF4k7FtPXBhgv0j+V6gaj16LY7TJIIA4NHGKfOV9i9EuR4JS9lCGcKVManN
-	6XWjtohIOB+fC/6mPJ7b+tSstGN6mRrxtFA9zipObtMeOKIv94z5UEbO8ymlB1B06wZSw8g6cSz
-	yxqxub0HkuNeBQ2zb4XP4zImrjwTri6ZpJFogEXU/rixTZaP5ZBrSfWGZGAwLYpDVuSTQNmiKhn
-	l2xUIlPrwi108DYh7DOFPSp1RUuIB80n60fkiMkDGnsXSXGdp0f0b35cYpunpLTmVBQ0xtlGXcS
-	yl5V6OSuT8/ECoSBfSueSQyc6oyW4R/aO+JZcZaCwVYTs
-X-Google-Smtp-Source: AGHT+IHzrpP4vCfo3NRU61rWRBd8ZxUejRAEZpPjSFan9to0J9MpkOLFyF9oSRFuO4QjpYtIahwrQg==
-X-Received: by 2002:a17:903:2444:b0:23f:8d6a:8e45 with SMTP id d9443c01a7336-23f98140a01mr53243475ad.4.1753284748542;
-        Wed, 23 Jul 2025 08:32:28 -0700 (PDT)
-Received: from DESKTOP-P76LG1N.lan ([42.118.149.254])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23e3b5e3fcbsm99273685ad.48.2025.07.23.08.32.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Jul 2025 08:32:28 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: lee@kernel.org,
-	krzk+dt@kernel.org
-Cc: pavel@kernel.org,
-	rdunlap@infradead.org,
-	christophe.jaillet@wanadoo.fr,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v11 2/4] leds: add basic support for TI/National Semiconductor LP5812 LED Driver
-Date: Wed, 23 Jul 2025 22:32:21 +0700
-Message-Id: <20250723153221.96289-1-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <0c7e171d-056d-4c00-a30b-0fd39e25bf4c@kernel.org>
-References: <0c7e171d-056d-4c00-a30b-0fd39e25bf4c@kernel.org>
+        d=1e100.net; s=20230601; t=1753284976; x=1753889776;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=yopYTcaLHy/YngxUjGRVUYbmllYbCh12wVB+pNQbzC0=;
+        b=U93OOw4757ICNsVGLmfGpVRL6ELpoN2+1ZCqCMO9SwTTWWQJfWWt5iMNSR6vFAC/aZ
+         RijABdCtk3zugFfOj5RWpJlfMp0Fj4I40N/qCUjeGuwCIG5z53IRH2v1wMi8FKXwe5Uo
+         tgtIAmnxrZOKqYDLTEvE4XrYHYaYRCnWrhrzIwH9XbJJrn08YcMt9DovmNA9OXnt2EO+
+         Tpl5E1xTFdVvVuMQBKCEhpH0SE5FMicGzusDbORPu1XYSIXHP7mzxObNeeYUACllDpty
+         NQvRRR3odFdGRb1k7HK/IsDlRjrOQxtixFPofjWbtlzm3z8p8vnpL3x2UuOdXAJq2hmW
+         S6+w==
+X-Forwarded-Encrypted: i=1; AJvYcCXCc700d3gAxQj9/WHEZEcVSqWcosnuAH8gdsehVBflt7lJwyTYKPvd7XNNUC+upYHTczQv2puySlWv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyg1e3HksVHu2fQTKRDCJK3Q+xyongvdpm7vCqMOsFlHtOwklTu
+	nDIR5LMjZRaRgQ3sYZE0ZYQHHtyY8ZI18XneETGOetUBvi6l005Mmrkr5ETxBr4uxTM=
+X-Gm-Gg: ASbGncsipEVxrz7fdpeQfQGFBHeMDAEvyxXZ4XNlAVQlEY9AaAFb0oSqU/vnDUj2ysa
+	9xI23WwHrolDFh68Zc0KklUj/gSMF+RCYEgcojEs1TKaFYrdXhlN/Vo4+i+5R4eNbRVe0aKa9pd
+	Gg6AeZsQJfcfGHyxwslNSztdE6P6+zFAgOIDSmzwbYaxxB04kWLbvKNXQGmDRYds7XMQciDPaDe
+	MhKwi839/tbaCiVi3MOodUmpp/t2hZbB77JL7TofeH2WhkT18vs46ZRG7ruMrRM8wB3ySTeDPub
+	RQFDNkqxS3jpYmd7hN5A25nEcRtLQgXwTAXtTSLmKDi7dH8Ju/QcEJfEvXtdSmUnGmKC7Xp9QQH
+	gZjcHyc+M/qrJ7pmqJV1Sr+bBy5eXSpojZgFA/rCo/j6fMx+7F9iS7GNPgLN/9Ezxiijpwg63We
+	jESqnG1JfqmepN
+X-Google-Smtp-Source: AGHT+IE36FCAwkzfiHLT8YUTKB5dl8mhn5lwwrUiNUjYfXCamvnt7XB94dMS1C8m5vdXXhKPLuuwTA==
+X-Received: by 2002:a05:600c:4fc9:b0:456:1157:59ac with SMTP id 5b1f17b1804b1-45868b23d24mr31817135e9.7.1753284975917;
+        Wed, 23 Jul 2025 08:36:15 -0700 (PDT)
+Received: from ?IPV6:2a01:cb14:150f:cf00:b6af:e6a0:6569:3a1? ([2a01:cb14:150f:cf00:b6af:e6a0:6569:3a1])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4586918094csm26728745e9.2.2025.07.23.08.36.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Jul 2025 08:36:15 -0700 (PDT)
+Message-ID: <268811ba-03c5-4957-b073-1dfbad77747b@linaro.org>
+Date: Wed, 23 Jul 2025 17:36:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 14/15] arm64: dts: qcom: Add initial Milos dtsi
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Luca Weiss <luca.weiss@fairphone.com>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Vinod Koul <vkoul@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Robert Marko <robimarko@gmail.com>,
+ Das Srinagesh <quic_gurus@quicinc.com>, Thomas Gleixner
+ <tglx@linutronix.de>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
+ linux-mmc@vger.kernel.org
+References: <20250713-sm7635-fp6-initial-v2-0-e8f9a789505b@fairphone.com>
+ <20250713-sm7635-fp6-initial-v2-14-e8f9a789505b@fairphone.com>
+ <3e0299ad-766a-4876-912e-438fe2cc856d@oss.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <3e0299ad-766a-4876-912e-438fe2cc856d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, 18 Jul 2025, Krzysztof Kozlowski wrote:
+Hi,
 
-> On 14/07/2025 19:23, Nam Tran wrote:
-> >> +static int lp5812_parse_led(struct device_node *np,
-> > +			    struct lp5812_led_config *cfg,
-> > +			    int led_index)
-> > +{
-> > +	int num_colors = 0, ret;
-> > +
-> > +	of_property_read_string(np, "label", &cfg[led_index].name);
-> > +
-> > +	ret = of_property_read_u32(np, "reg", &cfg[led_index].chan_nr);
+<snip>
 > 
-> You mix code for probe with code for regular operation. This is not
-> expected and confusing. All functions related to probe must be before
-> the probe function is defined.
-
-I will restructured the code to move all probe-related helpers above the
-lp5812_probe() function.
-
-> > +
-> > +static struct lp5812_led *lp5812_dev_to_led(struct device *dev)
-> > +{
-> > +	struct led_classdev *cdev = dev_get_drvdata(dev);
-> > +	const char *name = dev->platform_data;
-> > +
-> > +	if (strcmp(name, LP5812_SC_LED) == 0)
-> > +		return container_of(cdev, struct lp5812_led, cdev);
-> > +
-> > +	return container_of((struct led_classdev_mc *)cdev, struct lp5812_led, mc_cdev);
+>> +	pmu-a520 {
+>> +		compatible = "arm,cortex-a520-pmu";
+>> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+>> +	};
+>> +
+>> +	pmu-a720 {
+>> +		compatible = "arm,cortex-a720-pmu";
+>> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+>> +	};
 > 
+> See:
 > 
-> No, just pass correct pointer to platform data, no need with strcmp and
-> then different container of...
-
-I will remove the string-based `platform_data` handling and now store a direct
-pointer to `struct lp5812_led` in `dev->platform_data`.
-This allows simplifying `lp5812_dev_to_led()` without the need for `strcmp()`
-or multiple `container_of()` usages.
-
-> > +static int lp5812_init_led(struct lp5812_led *led, struct lp5812_chip *chip, int chan)
-> > +{
-> > +	struct device *dev = &chip->client->dev;
-> > +	struct mc_subled *mc_led_info;
-> > +	struct led_classdev *led_cdev;
-> > +	int i, ret = 0;
-> > +
-> > +	if (chip->led_config[chan].name) {
-> > +		led->cdev.name = chip->led_config[chan].name;
-> > +	} else {
-> > +		led->cdev.name = devm_kasprintf(dev, GFP_KERNEL, "%s:channel%d",
-> > +						chip->label ? : chip->client->name, chan);
-> > +		if (!led->cdev.name)
-> > +			return -ENOMEM;
-> > +	}
-> > +
-> > +	if (!chip->led_config[chan].is_sc_led) {
-> > +		mc_led_info = devm_kcalloc(dev,
-> > +					   chip->led_config[chan].num_colors,
-> > +					   sizeof(*mc_led_info), GFP_KERNEL);
-> > +		if (!mc_led_info)
-> > +			return -ENOMEM;
-> > +
-> > +		led_cdev = &led->mc_cdev.led_cdev;
-> > +		led_cdev->name = led->cdev.name;
-> > +		led_cdev->brightness_set_blocking = lp5812_set_mc_brightness;
-> > +		led->mc_cdev.num_colors = chip->led_config[chan].num_colors;
-> > +		for (i = 0; i < led->mc_cdev.num_colors; i++) {
-> > +			mc_led_info[i].color_index =
-> > +				chip->led_config[chan].color_id[i];
-> > +			mc_led_info[i].channel =
-> > +					chip->led_config[chan].led_id[i];
-> > +		}
-> > +
-> > +		led->mc_cdev.subled_info = mc_led_info;
-> > +	} else {
-> > +		led->cdev.brightness_set_blocking = lp5812_set_brightness;
-> > +	}
-> > +
-> > +	led->cdev.groups = lp5812_led_groups;
-> > +	led->chan_nr = chan;
-> > +
-> > +	if (chip->led_config[chan].is_sc_led) {
-> > +		ret = devm_led_classdev_register(dev, &led->cdev);
-> > +		if (ret == 0) {
-> > +			led->cdev.dev->platform_data = devm_kstrdup(dev, LP5812_SC_LED, GFP_KERNEL);
-> > +			if (!led->cdev.dev->platform_data)
-> > +				return -ENOMEM;
-> > +		}
-> > +	} else {
-> > +		ret = devm_led_classdev_multicolor_register(dev, &led->mc_cdev);
-> > +		if (ret == 0) {
-> > +			led->mc_cdev.led_cdev.dev->platform_data =
-> > +				devm_kstrdup(dev, LP5812_MC_LED, GFP_KERNEL);
-> > +			if (!led->mc_cdev.led_cdev.dev->platform_data)
-> > +				return -ENOMEM;
-> > +
-> > +			ret = sysfs_create_groups(&led->mc_cdev.led_cdev.dev->kobj,
-> > +						  lp5812_led_groups);
-> > +			if (ret)
-> > +				dev_err(dev, "sysfs_create_groups failed\n");
-> > +		}
-> > +	}
-> > +
-> > +	if (ret) {
-> > +		dev_err(dev, "led register err: %d\n", ret);
+> 9ce52e908bd5 ("arm64: dts: qcom: sm8650: switch to interrupt-cells 4 to add PPI partitions")
+> 2c06e0797c32 ("arm64: dts: qcom: sm8650: add PPI interrupt partitions for the ARM PMUs")
 > 
-> Why are you printing same error multiple times?
 
-I will remove the redundant error message at the end of `lp5812_init_led()`
-to avoid double-printing.
-Now only the specific failure points log detailed errors.
+Yeah switch to 4 cells now, so you can properly route the PMU PPI interrupt to the right core.
 
-> > +static int lp5812_probe(struct i2c_client *client)
-> > +{
-> > +	struct lp5812_chip *chip;
-> > +	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-> > +	struct device_node *np = dev_of_node(&client->dev);
-> > +	struct lp5812_led *led;
-> > +	int ret;
-> > +
-> > +	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
-> > +	if (!chip)
-> > +		return -ENOMEM;
-> > +
-> > +	chip->cfg = i2c_get_match_data(client);
-> > +
-> > +	if (np) {
-> > +		ret = lp5812_of_populate_pdata(&client->dev, np, chip);
-> > +		if (ret)
-> > +			goto err_init;
-> > +	} else {
-> > +		return dev_err_probe(&client->dev, -EINVAL, "No platform data\n");
-> 
-> This is confusing syntax. Expected is:
-> if (!missing something)
-> 	return -EINVAL
+New SoCs DTs should have 4 interrupts-cells from now, I'll migrate sm8550 shortly.
 
-I will update it.
+Neil
 
-> The other problem is that you claim this can match and bind without OF,
-> but here you say it is a requirement. So either this code is wrong or
-> your I2C ID table should be removed.
-
-I will update the probe logic for clarity and removed the i2c_device_id table
-and .id_table field.
-
-> > +	led = devm_kcalloc(&client->dev, chip->num_channels, sizeof(*led), GFP_KERNEL);
-> > +	if (!led)
-> > +		return -ENOMEM;
-> > +
-> > +	chip->client = client;
-> > +
-> > +	mutex_init(&chip->lock);
-> > +
-> > +	i2c_set_clientdata(client, led);
-> > +
-> > +	ret = lp5812_init_device(chip);
-> > +	if (ret)
-> > +		goto err_init;
-> > +
-> > +	dev_info(&client->dev, "%s Programmable led chip found\n", id->name);
-> 
-> Drop. You have only one device type (look at your binding), so you
-> cannot "find" devices.
-
-I will drop it.
-
-> > +static void lp5812_remove(struct i2c_client *client)
-> > +{
-> > +	struct lp5812_led *led = i2c_get_clientdata(client);
-> > +
-> > +	lp5812_unregister_sysfs(led, led->chip);
-> > +	lp5812_deinit_device(led->chip);
-> > +
-> > +	dev_info(&client->dev, "Removed driver\n");
-> 
-> No, drop, useless.
-
-I will remove it.
-
-Thank you for your thorough review and helpful suggestions.
-
-Best regards,
-Nam Tran
 
