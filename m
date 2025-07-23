@@ -1,180 +1,191 @@
-Return-Path: <devicetree+bounces-199054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45146B0F27F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:45:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA3B8B0F28B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:50:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 070F7188E6A1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 12:45:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D015547B4D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 12:50:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C6E2E6D15;
-	Wed, 23 Jul 2025 12:45:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Th3ykaYL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 868DA2E6D2F;
+	Wed, 23 Jul 2025 12:50:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4650256C8A
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 12:45:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E6426E712
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 12:50:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753274725; cv=none; b=GcsTuVEA1v2kzEpyC2aoQB409Y4SaO1XCdxWyiYlNcNfkBLUygFnfD2VHONM9YpRsZ/Yt8BWO2Swrk1mnVSMj/j2MAOUFOP0eZVCh/86VFYeWF3cDQn7a2pjMRwh0HtFKnQSWZ6KoOSPRZurGwd9IgBRrutObCDIYsDl42idxxM=
+	t=1753275035; cv=none; b=aiSnCk5P2b15M1n48oqTUgV8oOTh/fe6rb09M9X+uq3UoZN39RQKfejVcVuYxsLTt5PwHwKOg94SjMnw2bRxxy+j1yAY2eysyBm7hGLiAdgjzSP6mM5n+M0KSm2XUVf/nVo1210WgJBy9t6EKJCTfZCyHrp0thyk5a8iHhWLDVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753274725; c=relaxed/simple;
-	bh=PSVh8+zmjXz2/3Itj97rR3bCxNouxj4qoJGhebydnM0=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=lPyjEKvAzvJWk089PHn3MUOXB7Ldzp+vCY1XPbOx3G5K87zb0mlABfPpui0CR7dbvUmbIJh1pIkADQ6YHdBcbuc3OxNgryTGZ0gq+bzuv0808CLlGlmJ/ElFGikCt3CHXRAdWqtb1V3wutIAnNdfLwuQTAMou/agKKMm0Eexwx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Th3ykaYL; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250723124516epoutp035c03c06b4bb4b7100daa7ea90c5968dd~U4hCx8Du62833228332epoutp035
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 12:45:16 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250723124516epoutp035c03c06b4bb4b7100daa7ea90c5968dd~U4hCx8Du62833228332epoutp035
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1753274716;
-	bh=PEOfka7o20zIZPmyJjhDlnK3FdIZ1ayZnAmiWFOAY8o=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=Th3ykaYLsbUr7KCPyz3pnLe7ntpQviosxGR/2/NTX7YjsIa2F6uvGG4/t8bK2qXi6
-	 +7KYSWEKgoP+QUS/P1ZtifH1h4YMgmiBvknkZH2QImhHyU2qDjLbf0tW2ADHno+lLk
-	 KQa+ncSUwSb50Qbsz0xYXyxOlH4+NZjURykH1CZE=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250723124515epcas5p1aaf594fdd1861aef3eb2f4883c0973b8~U4hBuY4AX2230822308epcas5p1z;
-	Wed, 23 Jul 2025 12:45:15 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.90]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4bnDPQ1b3Qz6B9m6; Wed, 23 Jul
-	2025 12:45:14 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250723124513epcas5p40a7150ee82c674eb479589288323da54~U4hAQiFXe2820028200epcas5p4a;
-	Wed, 23 Jul 2025 12:45:13 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250723124510epsmtip201e2e3138007aeaccacf564c5214f1c8~U4g9PPG5e2748727487epsmtip2V;
-	Wed, 23 Jul 2025 12:45:10 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Pritam Manohar Sutar'"
-	<pritam.sutar@samsung.com>, "'Krzysztof Kozlowski'"
-	<krzysztof.kozlowski@linaro.org>
-Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andre.draszik@linaro.org>,
-	<peter.griffin@linaro.org>, <neil.armstrong@linaro.org>,
-	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
-	<m.szyprowski@samsung.com>, <s.nawrocki@samsung.com>,
-	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <rosa.pila@samsung.com>,
-	<dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <6e1c67d2-9bfa-442a-9d53-8c5970a2a9ef@kernel.org>
-Subject: RE: [PATCH v4 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
- ExynosAutov920 HS phy compatible
-Date: Wed, 23 Jul 2025 18:15:08 +0530
-Message-ID: <2a1901dbfbcf$a21b45e0$e651d1a0$@samsung.com>
+	s=arc-20240116; t=1753275035; c=relaxed/simple;
+	bh=MSimA2+DDncNbgkF9xykJmmS+FJHGnRa1/2TzOvLbpU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bOnBWk3GFviFD2bq0g86wRznBpgoyii8EIBaaLiViROkbKb5SKALS/FsLOuSGtAyC3rfXBjreLxtsk4q+iN2x47Grz3TuRHzvsn4Aws31hRtri17XAWBireUhJQ1S5HcEUEDo4vf7/XoXYQtGqop0CvBsv9GpjSwyQw8nr2deKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <f.pfitzner@pengutronix.de>)
+	id 1ueYvL-0005Ys-Pi; Wed, 23 Jul 2025 14:50:19 +0200
+Message-ID: <fdfa4301-7b2d-47c5-9aca-fc00c4408bcf@pengutronix.de>
+Date: Wed, 23 Jul 2025 14:50:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-us
-Thread-Index: AQJAgQZ9LFXBZrDskwNBYris6jFv1AKCX9A9Aa5wAf0Bi5UAqwCML2yKAWUlSf8CRPacEQIi1iyNAmb2xVkCD/Nw+wC0VRd5AgU5Triy3GiwIA==
-X-CMS-MailID: 20250723124513epcas5p40a7150ee82c674eb479589288323da54
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250701115955epcas5p320cfe73ca33522cd2f9f7970cfde1c63
-References: <20250701120706.2219355-1-pritam.sutar@samsung.com>
-	<CGME20250701115955epcas5p320cfe73ca33522cd2f9f7970cfde1c63@epcas5p3.samsung.com>
-	<20250701120706.2219355-2-pritam.sutar@samsung.com>
-	<20250706-fresh-meaty-cougar-5af170@krzk-bin>
-	<07d301dbf0ae$0658cbe0$130a63a0$@samsung.com>
-	<9a2d0ad7-cb1f-473d-a91a-3a1b59b71280@kernel.org>
-	<000c01dbf70b$ccdbf630$6693e290$@samsung.com>
-	<a43cfe4f-8ff9-4dbd-b7f4-07ccc3d8e01b@kernel.org>
-	<00ff01dbfac1$ee528860$caf79920$@samsung.com>
-	<9a97cc9e-2221-44d6-83e9-25b1bec10a6f@kernel.org>
-	<000901dbfb90$42873060$c7959120$@samsung.com>
-	<6e1c67d2-9bfa-442a-9d53-8c5970a2a9ef@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] parse horizontal/vertical flip properties
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jacopo Mondi <jacopo@jmondi.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ entwicklung@pengutronix.de
+References: <20250718-fpf-media-dt-flip-v1-0-75b3a938b4be@pengutronix.de>
+ <ryuew3kxnocj6uqq4nadp3kyaxg27rxlrgnaieyy2hlpz5jkd3@iyetnsbfanee>
+ <35debf21-bca7-480f-a61e-7b0494f10ca5@pengutronix.de>
+ <mljx67lkcw4kh3cs344iprik244cm7hqfckmg4bj5j5atuyt62@lh2ht4mrtkjq>
+ <3ac271c7-a67a-4f6f-935d-256937516068@pengutronix.de>
+ <ffzxxsplmivvj7pib7n7lkutbyohl5npofdaxdxtoffo43yatw@gqm64zdgb4iy>
+Content-Language: en-US, de-DE
+From: Fabian Pfitzner <f.pfitzner@pengutronix.de>
+In-Reply-To: <ffzxxsplmivvj7pib7n7lkutbyohl5npofdaxdxtoffo43yatw@gqm64zdgb4iy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: f.pfitzner@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+On 7/23/25 14:21, Jacopo Mondi wrote:
+> Hi Fabian
+>
+> On Wed, Jul 23, 2025 at 12:09:58PM +0200, Fabian Pfitzner wrote:
+>> On 7/23/25 11:44, Jacopo Mondi wrote:
+>>> On Wed, Jul 23, 2025 at 11:29:27AM +0200, Fabian Pfitzner wrote:
+>>>> On 7/23/25 11:17, Jacopo Mondi wrote:
+>>>>> Hi Fabian
+>>>>>
+>>>>> On Wed, Jul 23, 2025 at 10:58:28AM +0200, Fabian Pfitzner wrote:
+>>>>>> There are cameras containing a mirror on their optical path e. g. when
+>>>>>> mounted upside down.
+>>>>> How is this different from 'rotation = 180' ?
+>>>> If you simply want to flip the output (e. g. horizontally), you cannot do
+>>>> this with a rotation.
+>>>> The camera I'm referring to is not only upside down, but also flipped
+>>>> horizontally.
+>>> 180 degress rotation = HFLIP + VFLIP
+>> I do not want to do both. Only one of them.
+>>> Yes, you can't express 'mirror' in DTS, because DTS are about the
+>>> physical mounting rotation of the camera. Sensor drivers shall not
+>>> apply any flip control automatically, it's userspace that by parsing
+>>> the rotation property through the associated v4l2 controls should decide
+>>> if it has to apply flips or not to correct the images.
+>>>
+>>> What is the use case you had in mind ? Tell the driver through a DTS
+>>> property it has to apply flips to auto-compensate ? Because I think we
+>>> shouldn't and if I'm not mistaken we also document it:
+>>> https://www.kernel.org/doc/html/latest/userspace-api/media/drivers/camera-sensor.html#rotation-orientation-and-flipping
+>> I have a camera that does a horizontal flip in its hardware, so the output
+> Sorry, I don't want to be annoying, but what does it mean "does a
+> horizontal flip in the hardware" ?
 
+Between the sensor and lenses (optical path) there might be a mirror 
+that causes a flip of the image.
+"Might be" because I do not know if its really something that comes from 
+the hardware itself or whether its inside the firmware (for the camera 
+I'm using right now).
+Either way, I cannot change it. So my idea was to set it via a device 
+tree property, such that the driver can "revert" the flip that was made.
+I thought, that it might be useful for other drivers as well that face 
+similar issues.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: Wednesday, July 23, 2025 2:13 PM
-> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; 'Krzysztof
-> Kozlowski' <krzysztof.kozlowski=40linaro.org>
-> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
-=5Bsnip=5D
-> >>>>> Ok got it. Will change supplies name as below avdd075_usb =3D>
-> >>>>> avdd075-usb
-> >>>>> avdd18_usb20 =3D> avdd18-usb20
-> >>>>> avdd33_usb20 =3D> avdd33-usb20
-> >>>>>
-> >>>>> Confirm the above change that is meant in terms of DTS style.
-> >>>> Yes. I have doubts that actual supplies have suffix usb20. Are
-> >>>> there more than one avdd18 for this block?
-> >>>>
-> >>>
-> >>> Yes, there are more than one vdd18 supplies for this block.
-> >>
-> >> And their names are?
-> >>
-> >>>
-> >>> Re-analysed your comment on adding new supplies.
-> >>> Going to re-use existing supplies as mentioned below, rather than
-> >>> introducing new supplies
-> >>>
-> >>>   dvdd-usb20-supply   =3D> for 0.75v
-> >>>   vddh-usb20-supply   =3D> for 1.8v
-> >>>   vdd33-usb20-supply =3D> for 3.3v
-> >>
-> >>
-> >> You just expect us to guess whether this is correct...
-> >
-> > Sorry about not being clear so far.
-> >
-> > V920 needs three supplies, 0.75v, 1.8v and 3.3v for USB PHY The naming
-> > convention used in the schematic are avdd075-usb, avdd18_usb20,
-> > avdd33_usb20.
-> >
-> > However, PHY's user manual just mentions DVDD, VDD33 and VDD18.
->=20
->=20
-> Then dvdd, vdd33 and vdd18.
->=20
-> > Since GS101 binding already using supply names similar to what is
-> mentioned in the PHY user manual.
->=20
->=20
-> GS101 has USB 2.0 and DP, thus the suffix made some sense. I think you ha=
-ve
-> only USB 2.0, that's why I question the suffix.
->=20
-I cross checked the schematic of v920 SADK, this is a combo PHY which suppo=
-rt USB-3.0 as well.=20
-=40 Pritam
-Schema should capture all the supplies including USB-3.0, similar to GS101 =
-(which has USB2.0 and DP combo).
-So that would be as below:
-dvdd075-usb20-supply
-vdd18-usb20-supply
-vdd33-usb20-supply
-dvdd075-usb30-supply
-vdd18-usb30-supply
-please cross check the supply at your end and do the needful.=20
-
->=20
-> Best regards,
-> Krzysztof
+>
+> In my understanding either "in hardware" means you can't control it
+> from software (and so there's no point in telling drivers what to do)
+> or you can control it from software and it's a regular HFLIP.
+>
+>> is not what I want. My example above was misleading. The rotation fixes the
+>> "upside down" problem, but does not fix the flip.
+>>
+>> Doing that in userspace might be a solution, but in my opinion it is a bit
+>> ugly to write a script that always sets the flip property from userspace
+>> when the device was started.
+>> A much cleaner way would be to simply set this property in the device tree
+>> such that the driver can be initially configured with the proper values.
+> Sorry, don't agree here. What if a sensor is mounted 90/270 degrees
+> rotated (typical for mobile devices in example) ? You can't compensate
+> it completely with flips, would you 270+HFLIP=90 ? would you leave it
+> unmodified ? Userspace has to know and act accordingly, doing things
+> in driver (will all drivers behave the same ? Will some compensate or
+> other won't ?) is a recipe for more complex behaviours to handle.
+Hmm, sure there might be more complex scenarios.
+The device tree property is for developer who know that there will not 
+be any changes in user space anymore (e. g. cameras that are fixed in place)
+And even if, it is still possible to make modifications from user space 
+(like for the rotation property). My changes are not enforce any 
+restrictions regarding that it is just an optional attribute.
+>
+>> PS: I have to send this email twice. The first one contained HTML parts that
+>> were rejected by some receivers...
+>>
+>>> TL;DR drivers shall not flip, userspace should. Mirroring is an effect
+>>> of drivers applying an HFLIP, because unless I'm missing something
+>>> obvious, 'mirror' is not a physical mounting configuration of the camera
+>>> sensor.
+>>>
+>>> FIY we're talking about something similar in libcamera
+>>> https://lists.libcamera.org/pipermail/libcamera-devel/2025-July/051533.html
+>>>
+>>>>>> Introduce two options to change the device's flip property via device tree.
+>>>>>>
+>>>>>> As there is already support for the panel-common driver [1], add it for cameras in the same way.
+>>>>>>
+>>>>>> [1] commit 3c0ecd83eee9 ("dt-bindings: display: panel: Move flip properties to panel-common")
+>>>>>>
+>>>>>> Signed-off-by: Fabian Pfitzner <f.pfitzner@pengutronix.de>
+>>>>>> ---
+>>>>>> Fabian Pfitzner (2):
+>>>>>>          media: dt-bindings: add flip properties
+>>>>>>          media: v4l: fwnode: parse horizontal/vertical flip properties
+>>>>>>
+>>>>>>     .../devicetree/bindings/media/video-interface-devices.yaml        | 8 ++++++++
+>>>>>>     drivers/media/v4l2-core/v4l2-fwnode.c                             | 3 +++
+>>>>>>     include/media/v4l2-fwnode.h                                       | 4 ++++
+>>>>>>     3 files changed, 15 insertions(+)
+>>>>>> ---
+>>>>>> base-commit: 6832a9317eee280117cd695fa885b2b7a7a38daf
+>>>>>> change-id: 20250718-fpf-media-dt-flip-7fcad30bcfb7
+>>>>>>
+>>>>>> Best regards,
+>>>>>> --
+>>>>>> Fabian Pfitzner <f.pfitzner@pengutronix.de>
+>>>>>>
+>>>> --
+>>>> Pengutronix e.K.                           | Fabian Pfitzner             |
+>>>> Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+>>>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+>>>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+>>>>
+>> --
+>> Pengutronix e.K.                           | Fabian Pfitzner             |
+>> Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+>>
+-- 
+Pengutronix e.K.                           | Fabian Pfitzner             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
 
