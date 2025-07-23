@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-198907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B84FFB0EBDC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 09:25:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC6DB0EBD6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 09:24:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39B374E6823
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 07:24:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2F283B1D96
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 07:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 745C92701CA;
-	Wed, 23 Jul 2025 07:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F2E272815;
+	Wed, 23 Jul 2025 07:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="HcPpDs/R"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Zopgn9CP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80877214A94;
-	Wed, 23 Jul 2025 07:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5C0226B741
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 07:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753255503; cv=none; b=MsKpmu5elQFVautJmcPoOOS9Li3fTgMKrqH3p+caYe8XjgkfbtoOjPRyE4QJy7A/1Ji3EGEm5I+dJenLcMufeMfSFlCamvLExL3FW5BjJRiyTcCcrybv6q01VSHrkHq+pEuitDbZLNjh0IWXcqsZjD+MYavXJ7BmpU3tRCFnp3o=
+	t=1753255407; cv=none; b=clQYOfEgV+21trfq5McKsWEEbF6S+hyD1+qI8mne8+nZsxbmvSOk1vABXKoa5onbBSARC19WE009fxLwxwJ11h8aWnw685nTS1PhJwouQLh0313yBJoH0YQ2k2MXrpABIvZZCNzCpi9G/p600u6wbwLQrb0zZVhlyagf3nYyCCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753255503; c=relaxed/simple;
-	bh=mPa055lDXGuCjncvznq4VpuXKfCAl6LgkLqzmU76KDU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=s54dJ33UsaYd16oVik3WdrcVM4eeOIxbT124VBOWdO6OIln9bzxVewsz/RYAIuFBDjmzRlNk3BHcRIUpT2QXkujrYVOZGssIhm41V7BVm/rvw8fR13gHgXhLEQG6nqUbhpz2egqZDiCyj3ZlWdEuGep8l/It1obxhNXiAfnYJu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=HcPpDs/R; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56N7Lt6M024254;
-	Wed, 23 Jul 2025 09:24:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	CPs0IDy2C8RbyiHKvygcSXpjPFxvYiEDTH1nW4mKVEI=; b=HcPpDs/RqqNEnyOk
-	5RCeB6v128EWGD/ngG1JxcypFqNCxc18ZO0OUB+A1cwEZG3hSGrKmMoVeUs73VZb
-	aksAstgDKVKCW90MYILB316mB8JYMB0+DlISSo+I2EEkr2fQupAfE7H722SwGO6A
-	IfM4S5mNjG4yybMgfnrw3HkqLwt9fEVdjIHSc/IBaF2Cv+ervlDdg2D7BGV5DYxm
-	Zxf5yFncpHhviCdLasEsOhB899EbZrORd2UW36ADw0ESPATsh7ippPW2g6U1KsUi
-	mSMI5zsfv2ssxeO/iJE6iO7g6CBiMu0qO4FwlVyhTYnoYZttRGIIRk67viTfxkFI
-	qb+/Rw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4802q2acb5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Jul 2025 09:24:34 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 205A440052;
-	Wed, 23 Jul 2025 09:23:00 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 60781768AAF;
-	Wed, 23 Jul 2025 09:21:50 +0200 (CEST)
-Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 23 Jul
- 2025 09:21:49 +0200
-Message-ID: <822bd852-2cbc-4a89-a077-d05a8327e149@foss.st.com>
-Date: Wed, 23 Jul 2025 09:21:48 +0200
+	s=arc-20240116; t=1753255407; c=relaxed/simple;
+	bh=Xn0EJQAyZjyg/Fu77DpWIs4Rt8b0AhawHCeV6mW4ueE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=otej7BrfIns5iMR9CnyXZoNy0fN/Nz5dEIYHojm4FiGmBhqM+RwL6GnFj1TwxFDSYy+wfyCzeQFyBaJM7m5wNu6jAY7OonOaPIGX6b9E6U4HShaed/K0ZSDigWAUkElR8BKbr/tnnlRnqc5oFR2wqjW3wAc8pEKOemVqUp/ID8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Zopgn9CP; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1753255404;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BwuDDZvpn5btO7c6PwfvFLxjjWRhR+iaw+Yy2+oI+rA=;
+	b=Zopgn9CP0QAgDyruwCkmixfewheCHUFom6akK310z+sOEGwnpo2WeEIB7Ki8CAPiEqJdbz
+	KDEZdc99Gc67noe3M87pe1YqQ7YYFSJDkRp1BnGLIKozmmUA4U641TC1NnYZf0DXzLc56R
+	Cs9I01rKH+31Uc+bIyFHpbrdfVu2GX4=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-457-4C7JxSxLN1WUyoGpdzreuA-1; Wed,
+ 23 Jul 2025 03:23:21 -0400
+X-MC-Unique: 4C7JxSxLN1WUyoGpdzreuA-1
+X-Mimecast-MFC-AGG-ID: 4C7JxSxLN1WUyoGpdzreuA_1753255399
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 579441800365;
+	Wed, 23 Jul 2025 07:23:18 +0000 (UTC)
+Received: from [10.44.32.30] (unknown [10.44.32.30])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id BAD6218004AD;
+	Wed, 23 Jul 2025 07:23:14 +0000 (UTC)
+Message-ID: <466e293c-122f-4e11-97d2-6f2611a5178e@redhat.com>
+Date: Wed, 23 Jul 2025 09:23:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,96 +66,105 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/19] dt-bindings: memory: factorise LPDDR props into
- memory props
-To: Julius Werner <jwerner@chromium.org>
-CC: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Gabriel Fernandez
-	<gabriel.fernandez@foss.st.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Le
- Goffic <legoffic.clement@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-perf-users@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-References: <20250722-ddrperfm-upstream-v3-0-7b7a4f3dc8a0@foss.st.com>
- <20250722-ddrperfm-upstream-v3-5-7b7a4f3dc8a0@foss.st.com>
- <CAODwPW_fDPY78bmwvLmLkt1yWpVdG=VC8h2NSdWtoiEknajhNw@mail.gmail.com>
+Subject: Re: [PATCH net-next 1/2] dt-bindings: dpll: Add clock ID property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
+References: <20250717171100.2245998-1-ivecera@redhat.com>
+ <20250717171100.2245998-2-ivecera@redhat.com>
+ <5ff2bb3e-789e-4543-a951-e7f2c0cde80d@kernel.org>
+ <6937b833-4f3b-46cc-84a6-d259c5dc842a@redhat.com>
+ <20250721-lean-strong-sponge-7ab0be@kuoka>
+ <804b4a5f-06bc-4943-8801-2582463c28ef@redhat.com>
+ <9220f776-8c82-474b-93fc-ad6b84faf5cc@kernel.org>
 Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <CAODwPW_fDPY78bmwvLmLkt1yWpVdG=VC8h2NSdWtoiEknajhNw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-23_01,2025-07-22_01,2025-03-28_01
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <9220f776-8c82-474b-93fc-ad6b84faf5cc@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 
-Hi Julius,
 
-Thanks for the review.
 
-On 7/22/25 23:57, Julius Werner wrote:
->>         Compatible strings can be either explicit vendor names and part numbers
->>         (e.g. elpida,ECB240ABACN), or generated strings of the form
->>         lpddrX-YY,ZZZZ where X is the LPDDR version, YY is the manufacturer ID
+On 23. 07. 25 8:25 dop., Krzysztof Kozlowski wrote:
+> On 21/07/2025 14:54, Ivan Vecera wrote:
+>> On 21. 07. 25 11:23 dop., Krzysztof Kozlowski wrote:
+>>> On Fri, Jul 18, 2025 at 02:16:41PM +0200, Ivan Vecera wrote:
+>>>> Hi Krzysztof,
+>>>>
+>>>> ...
+>>>>
+>>>> The clock-id property name may have been poorly chosen. This ID is used by
+>>>> the DPLL subsystem during the registration of a DPLL channel, along with its
+>>>> channel ID. A driver that provides DPLL functionality can compute this
+>>>> clock-id from any unique chip information, such as a serial number.
+>>>>
+>>>> Currently, other drivers that implement DPLL functionality are network
+>>>> drivers, and they generate the clock-id from one of their MAC addresses by
+>>>> extending it to an EUI-64.
+>>>>
+>>>> A standalone DPLL device, like the zl3073x, could use a unique property such
+>>>> as its serial number, but the zl3073x does not have one. This patch-set is
+>>>> motivated by the need to support such devices by allowing the DPLL device ID
+>>>> to be passed via the Device Tree (DT), which is similar to how NICs without
+>>>> an assigned MAC address are handled.
+>>>
+>>> You use words like "unique" and MAC, thus I fail to see how one fixed
+>>> string for all boards matches this. MACs are unique. Property value set
+>>> in DTS for all devices is not.
+>>>> You also need to explain who assigns this value (MACs are assigned) or
+>>> if no one, then why you cannot use random? I also do not see how this
+>>> property solves this...  One person would set it to value "1", other to
+>>> "2" but third decide to reuse "1"? How do you solve it for all projects
+>>> in the upstream?
+>>
+>> Some background: Any DPLL driver has to use a unique number during the
+>> DPLL device/channel registration. The number must be unique for the
+>> device across a clock domain (e.g., a single PTP network).
+>>
+>> NIC drivers that expose DPLL functionality usually use their MAC address
+>> to generate such a unique ID. A standalone DPLL driver does not have
+>> this option, as there are no NIC ports and therefore no MAC addresses.
+>> Such a driver can use any other source for the ID (e.g., the chip's
+>> serial number). Unfortunately, this is not the case for zl3073x-based
+>> hardware, as its current firmware revisions do not expose information
+>> that could be used to generate the clock ID (this may change in the
+>> future).
+>>
+>> There is no authority that assigns clock ID value ranges similarly to
+>> MAC addresses (OUIs, etc.), but as mentioned above, uniqueness is
+>> required across a single PTP network so duplicates outside this
+>> single network are not a problem.
 > 
-> When you say "in case of LPDDR" below, you should also change this
-> line to take other cases into account. Maybe the best way to write
-> this would be something like:
+> You did not address main concern. You will configure the same value for
+> all boards, so how do you solve uniqueness within PTP network?
+
+This value differs across boards, similar to the local-mac-address. The
+device tree specifies the entry, and the bootloader or system firmware
+(like U-Boot) provides the actual value.
+
+>> A randomly generated clock ID works, but the problem is that the value
+>> is different after each reboot. Yes, there is an option to override the
+>> clock ID using the devlink interface, but this also has to be done after
+>> every reboot or power-up.
+>>
+>>> All this must be clearly explained when you add new, generic property.
+>>
+>> Would it be acceptable to define a hardware-specific property, since
+>> only this hardware has this particular problem (the absence of a chip
+>> unique attribute)? I'm referring to a property like 'microchip,id' or
+>> 'microchip,dpll-id' defined in microchip,zl30731.yaml.
 > 
-> ...or generated strings of a memory type dependent form. For LPDDR
-> types, that form is lpddrX-YY,ZZZZ where X is [...same text...]. For
-> DDR types, that form is ddrX-YY,ZZZZZ... where X is [...new definition
-> for DDR types, based on what's available in SPD...].
-
-Yes I agree and if there is no SPD I'll mention the datasheet of the 
-memory chip.
-
+> It does not change anything, no problems solved.
 > 
->>     revision-id:
->>       $ref: /schemas/types.yaml#/definitions/uint32-array
->>       description:
->> -      Revision IDs read from Mode Register 6 and 7. One byte per uint32 cell (i.e. <MR6 MR7>).
->> +      Revision IDs read from Mode Register 6 and 7 in case of LPDDR.
->> +      One byte per uint32 cell (i.e. <MR6 MR7>).
 > 
-> If this doesn't exist for DDR, then rather than "in case of LPDDR"
-> this should probably say something like "LPDDR only"?
-
-It exists in case of DDR, but it is either in the SPD if the memory is 
-DIMM like or in the datasheet for soldered memory chip.
-
+> Best regards,
+> Krzysztof
 > 
->>     density:
->>       $ref: /schemas/types.yaml#/definitions/uint32
->>       description:
->> -      Density in megabits of SDRAM chip. Decoded from Mode Register 8.
->> +      Density in megabits of SDRAM chip. Decoded from Mode Register 8 in case of
->> +      LPDDR.
-> 
-> Can you list here where in SPD density and I/O width are stored for
-> the various DDR types?
 
-I'll try to find the info and yes.
-
-Best regards,
-Clément
 
