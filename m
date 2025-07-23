@@ -1,265 +1,193 @@
-Return-Path: <devicetree+bounces-198875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FA45B0E9F2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 07:10:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F91EB0E9F7
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 07:12:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 515AF543867
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 05:10:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 603573BC86E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 05:12:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A5FF238C2A;
-	Wed, 23 Jul 2025 05:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DBA2192F8;
+	Wed, 23 Jul 2025 05:12:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KkUr10Rw"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="YzpXVGae"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A76F1AAA1B
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 05:10:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A6113A265
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 05:12:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753247411; cv=none; b=fNhkZc1MZLCc2jW1GcUtyVmSt1QZFK0fZpV4hdkoz81HHa4lYWJIN40JFdd+VWufep57vyncaWlH9Ndma/eMhwNnzqgA8JWyyp/hg0nwO0A938Xune/tm+EcAOCa+i+3YnayLDaU6GZVLDoZGQ2dYnm6sld7Q7HkxQ0gxx0itps=
+	t=1753247552; cv=none; b=mti44+lWx3HKJU67L8g7p9eF1DnXrRQwPLikSWwQzDLaLpnfOS0J7ARheUiJ1ziNC+H81zljgRCGevS1wTG7TgrlX/26vVrI57Nwa+wb/ipgA6eXKDYxs9NG4IYRbT7R3FnramG8Cx29IWPEUj4rrkQCPyEupDPXN3VYJ13+mtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753247411; c=relaxed/simple;
-	bh=yxfvD+KWlF+2IZ8PhQE8OyGKC4+cYXwHtloQmA4xTTs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iZU2pGnID0ib0UgU3Fzo6wfmOmQQ2+gtEMI3HZdsJVwuJhx3ej1mI3Ad0UkCJc/Lsvzn0ExbIBbbB5/+v9AGk+2X6Tk5blW4OYA5FTS+qEYRuvz+gPbG72ftR15SG6m41tnKljc7nYJA/bAI9UMz5i76DSe0ZCSA57+Q4eXIQHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KkUr10Rw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56MMNrC9001768
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 05:10:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Yi0z3sLXRaxmxpY7Kis69SNdsBbMhtzvqAojxUzh/uk=; b=KkUr10RwMF1rqWEN
-	Lbz3IxId/QV35PzVEh25FsK7+ZO6s4c2z6LtvuSJhqQ0YaBc/8kXvXptzlcf0Q/L
-	PEIPmwbU9A2QbVvzj+ZXGr9IJ0GeINPRoDSJx5gpMewekr9vP8GF5oejbLz9uiGf
-	NSKCljJbmJlO+yI3AP72dykJWyDYce3p9Z+HgE8FhZrZmwZUZbOWq15lbHynzfrX
-	f1tohXW2IvwZ157HzI76XMRX/IyeDNmEMY0FjfWU+7bterSWsVmnyoeFqBj61GJy
-	mi0YrYF8huG6Al+8l4Pm9W0eFF9c3PsTiawaX8hMgrK+R68MHgC5HWpkdsbgJ9lG
-	Q3pXcg==
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 481t6w514t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 05:10:08 +0000 (GMT)
-Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b31ff607527so4675297a12.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 22:10:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753247407; x=1753852207;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yi0z3sLXRaxmxpY7Kis69SNdsBbMhtzvqAojxUzh/uk=;
-        b=cg0D3LtugM611BmsmG5tmkpRUHUrpEIUSTfLCmEDb9MLfJaWfm/WLZmlSGcu9OfS7V
-         PEobEAge5dHo5o/gBZtVtY1dYFPxXk7uex+02lK6Q9+F76oIJXpLvrI3mPWQ/BL8+JDL
-         KEnOTUW0RsyjV0pC5gS/8o/yPPeMjeuvAmuxT4Mv5/ntqFfcq/vkp9L3PJVY7PjY4HIW
-         aTGt8GgO7Q1oo11497QcalWVXkoZjTjmk/pueBUmta86hcE3jycrqptO7LVt5daLzWbm
-         gq6APdNK9hLn8TiBa2ji0wr5tpEQzRAFZNs1TNROroiIpQYNRIX0XxV4zWNkgqMcLzko
-         zrzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWfXcnWA8KERE0BT9XuaWg7LqhD0aHcQMvUua4TQEIEI14VFuZwYMkmb7HujvwOrqkrmdDiSbq1/f2O@vger.kernel.org
-X-Gm-Message-State: AOJu0YyilJ2wXgregmFo/AuVe6oi1HUdjgLrxwzX8/FGgY8X0BKAde/P
-	gYmN0zRMeBinJb3xLzBFx54Z+bI4ZHYg/uJAdmW928G8lZy1wcmR/ql+cbo09fqHkiKZSgcnlBS
-	glqSndJ+T3xjUjy9iALpZHkaLEwkhPrnmEZNlr9O9jGph8ITPUgD1jA7Ba9P76f7u
-X-Gm-Gg: ASbGnctT2xMWXfs0MMnT8BeIDBznT/z3LmoWFqHudCOXfQG44pA3M9f8p8lYIOseHHc
-	xFSpKBMF90aEog5sXaVJgw5p85oEt/zdGz9BjeNRvrvJuW7C80DWBqf6B7mKV7/LCOzzzJIHTKd
-	Je2PYxT/AlKdTPv4HD/OK19gqD3v5RqUVxi4g3N9DXhxWMhJWtzIW5yYvUMokpn2us00NGy4YfY
-	km4+OBlRpEkoDj1aXuEZSHezE6xNRzNofYWmNbbant8E3Gpr6H7sTX3UwTSBYV3a9ZtaYGuWRb8
-	gAXm2aqoDIpN62thDC+dTTykVPCQUxFoX/RKe4N/cmGMkCmlf8Zf+YIFUG5SJtxPC4SPn3IMrae
-	3tlVJ6tUOtxw9/0AUZ7R90ZE=
-X-Received: by 2002:a05:6a21:1fc7:b0:232:57c8:1bf4 with SMTP id adf61e73a8af0-23d48fe0711mr2218921637.9.1753247407568;
-        Tue, 22 Jul 2025 22:10:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFSzdu3XTzGZRuyXiNJVAUhtDAMRYXv0zE8ykPNMcULJMV8cEoBw/XVyfdTRcS32Pcplllgrw==
-X-Received: by 2002:a05:6a21:1fc7:b0:232:57c8:1bf4 with SMTP id adf61e73a8af0-23d48fe0711mr2218887637.9.1753247407159;
-        Tue, 22 Jul 2025 22:10:07 -0700 (PDT)
-Received: from [10.133.33.27] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b3f2fe67f96sm8032266a12.13.2025.07.22.22.10.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Jul 2025 22:10:06 -0700 (PDT)
-Message-ID: <838c6cda-6128-4fd5-a541-d71caee6c107@oss.qualcomm.com>
-Date: Wed, 23 Jul 2025 13:10:01 +0800
+	s=arc-20240116; t=1753247552; c=relaxed/simple;
+	bh=qDeUmMD82P8ZgrNOK+/tNlnWhFbGWqwTS61keOxqtUA=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=sh+B/QBaw8oAccQVjgEzykD2qW0vUCH6wo++0qGk/GYOix9BhyLrTSU/C6xxGDZDnBIBb+BlMnnwaps6ajpqQO1sq3OBAqi8p4/bgd467JJyv0URuxdp5/tQPpyLoyiP3unBzWpff/5NlQXFVH72MHd1BRXtOZo7OQLE1kk+G6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=YzpXVGae; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250723051215epoutp0168f848763b333060a510dd4f8beb57b6~UyVhCySMT0870108701epoutp01Z
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 05:12:15 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250723051215epoutp0168f848763b333060a510dd4f8beb57b6~UyVhCySMT0870108701epoutp01Z
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1753247535;
+	bh=IoOtrbeFHn5e1/Xtu2aEuqosP9/5TZJzgfaIJ8FAwVw=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=YzpXVGaeKBdahD4O1K7MxAae0WhiCSSMJ/4EqEiCWru/oOvUNtko+rgHcnJNA03hr
+	 94UXec9t3f7jWjVE0bpi72c6E5bY6BEY8VYztjvTqTpZcCapc4O83DDy5T6wWkvpdf
+	 tgcTdTJpoSP4byk6Y9GIFVEj0AvOSnPbA40pBn3k=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250723051215epcas5p212e2b5380f798498c5c80f442874a239~UyVgY52qc2028920289epcas5p2l;
+	Wed, 23 Jul 2025 05:12:15 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.92]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4bn2Lj5rTmz6B9m4; Wed, 23 Jul
+	2025 05:12:13 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250723051134epcas5p13eb4eedb2beb180423c5237f4a272f06~UyU66C8CP1233212332epcas5p1N;
+	Wed, 23 Jul 2025 05:11:34 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250723051131epsmtip2df639fe0e527bf88b1c968e311ad775e~UyU3yq7j60675706757epsmtip2K;
+	Wed, 23 Jul 2025 05:11:31 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Krzysztof Kozlowski'"
+	<krzysztof.kozlowski@linaro.org>
+Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<neil.armstrong@linaro.org>, <kauschluss@disroot.org>,
+	<ivo.ivanov.ivanov1@gmail.com>, <m.szyprowski@samsung.com>,
+	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <9a97cc9e-2221-44d6-83e9-25b1bec10a6f@kernel.org>
+Subject: RE: [PATCH v4 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 HS phy compatible
+Date: Wed, 23 Jul 2025 10:41:30 +0530
+Message-ID: <000901dbfb90$42873060$c7959120$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 RESEND 08/10] coresight: tmc: add a switch buffer
- function for byte-cntr
-To: Mike Leach <mike.leach@linaro.org>, Jie Gan <jie.gan@oss.qualcomm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Mao Jinlong <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250714063109.591-1-jie.gan@oss.qualcomm.com>
- <20250714063109.591-9-jie.gan@oss.qualcomm.com>
- <CAJ9a7VhLXrdP_CPQPgAYTAGWJfsVUa9SG9Bzv9dLtFzR4nFROg@mail.gmail.com>
-Content-Language: en-US
-From: Jie Gan <jie.gan@oss.qualcomm.com>
-In-Reply-To: <CAJ9a7VhLXrdP_CPQPgAYTAGWJfsVUa9SG9Bzv9dLtFzR4nFROg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=SPpCVPvH c=1 sm=1 tr=0 ts=68806eb0 cx=c_pps
- a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=RYLkNb92mBiLz5sOdEcA:9
- a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIzMDA0MSBTYWx0ZWRfX82XrjNPyRkMq
- z4FzJBheDg07Ks+vPHEeKp1VUQ7nOMrjOvNodKelbPJWk1mtq7q5nEgK0/pUStO38sNs1gExfDx
- /5ut1OR1OEG3vI2ZD5oXdjL0tphvHrr5WHBXlaw8VvSddId7QH4pEbzBtXEEkCbQvpTHxoLLZA5
- Jy6eFGUAo2eBAlcmai+JIittkN6hxbmk4HoKCf+8j0Y5E12J6+7/rD8zZ0Vsi07tAFyEEjVu/KO
- YL9PS5/RJhF6usfeY+n5gW/SudaDr0fZzmBz1wGP1gnSqJdCtWQzvlgvcOtHNkS2T2oaXeGPwIR
- 7KirgoOxwJm7ssv9bJwDDwmBDSmk5Gajkn6HFaYJVfFOQY0xKBh5ZdC1Wvhib27GpaA1VmkRkcx
- aGn/Gm5sipwojsO8DBRCF1rAee6c0cWjaXpgLMCrPLvHHAoIZYeJ9QwmOegAqlaT3r5UaZuI
-X-Proofpoint-ORIG-GUID: nvKg_NN5_V07cFxVuZQ45qdVgpEvRXmn
-X-Proofpoint-GUID: nvKg_NN5_V07cFxVuZQ45qdVgpEvRXmn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-23_01,2025-07-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
- mlxscore=0 bulkscore=0 clxscore=1015 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507230041
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJAgQZ9LFXBZrDskwNBYris6jFv1AKCX9A9Aa5wAf0Bi5UAqwCML2yKAWUlSf8CRPacEQIi1iyNAmb2xVkCD/Nw+7Lxui8Q
+Content-Language: en-in
+X-CMS-MailID: 20250723051134epcas5p13eb4eedb2beb180423c5237f4a272f06
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250701115955epcas5p320cfe73ca33522cd2f9f7970cfde1c63
+References: <20250701120706.2219355-1-pritam.sutar@samsung.com>
+	<CGME20250701115955epcas5p320cfe73ca33522cd2f9f7970cfde1c63@epcas5p3.samsung.com>
+	<20250701120706.2219355-2-pritam.sutar@samsung.com>
+	<20250706-fresh-meaty-cougar-5af170@krzk-bin>
+	<07d301dbf0ae$0658cbe0$130a63a0$@samsung.com>
+	<9a2d0ad7-cb1f-473d-a91a-3a1b59b71280@kernel.org>
+	<000c01dbf70b$ccdbf630$6693e290$@samsung.com>
+	<a43cfe4f-8ff9-4dbd-b7f4-07ccc3d8e01b@kernel.org>
+	<00ff01dbfac1$ee528860$caf79920$@samsung.com>
+	<9a97cc9e-2221-44d6-83e9-25b1bec10a6f@kernel.org>
 
+Hi Krzysztof,
 
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 22 July 2025 11:37 AM
+> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; 'Krzysztof Kozlows=
+ki'
+> <krzysztof.kozlowski=40linaro.org>
+> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
+> andre.draszik=40linaro.org; peter.griffin=40linaro.org; neil.armstrong=40=
+linaro.org;
+> kauschluss=40disroot.org; ivo.ivanov.ivanov1=40gmail.com;
+> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com; linux-
+> phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
+amsung-
+> soc=40vger.kernel.org; rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
+> selvarasu.g=40samsung.com
+> Subject: Re: =5BPATCH v4 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
+dd
+> ExynosAutov920 HS phy compatible
+>=20
+> On 22/07/2025 06:34, Pritam Manohar Sutar wrote:
+> >>>> Nothing is explained in changelog/cover letter. You claim you only
+> >>>> added Rb
+> >> tag.
+> >>>> This is an entirely silent change while keeping the review.
+> >>>
+> >>> Will add more explanations in cover letter/changelog why this block i=
+s
+> added.
+> >>>
+> >>>> Combined with not even following DTS style=21
+> >>>
+> >>> Ok got it. Will change supplies name as below avdd075_usb =3D>
+> >>> avdd075-usb
+> >>> avdd18_usb20 =3D> avdd18-usb20
+> >>> avdd33_usb20 =3D> avdd33-usb20
+> >>>
+> >>> Confirm the above change that is meant in terms of DTS style.
+> >> Yes. I have doubts that actual supplies have suffix usb20. Are there
+> >> more than one avdd18 for this block?
+> >>
+> >
+> > Yes, there are more than one vdd18 supplies for this block.
+>=20
+> And their names are?
+>=20
+> >
+> > Re-analysed your comment on adding new supplies.
+> > Going to re-use existing supplies as mentioned below, rather than
+> > introducing new supplies
+> >
+> >   dvdd-usb20-supply   =3D> for 0.75v
+> >   vddh-usb20-supply   =3D> for 1.8v
+> >   vdd33-usb20-supply =3D> for 3.3v
+>=20
+>=20
+> You just expect us to guess whether this is correct...
 
-On 7/22/2025 10:09 PM, Mike Leach wrote:
-> Hi,
-> 
-> This buffer swap code looks OK in principle. The ETR is stopped,
-> memory synced and set to be read.
-> See other comments inline.
-> 
-> On Mon, 14 Jul 2025 at 07:31, Jie Gan <jie.gan@oss.qualcomm.com> wrote:
->>
->> Switching the sysfs_buf when current buffer is full or the timeout is
->> triggered and resets rrp and rwp registers after switched the buffer.
->> Disable the ETR device if it cannot find an available buffer to switch.
->>
->> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
->> ---
->>   .../hwtracing/coresight/coresight-tmc-etr.c   | 52 +++++++++++++++++++
->>   1 file changed, 52 insertions(+)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
->> index 2b73bd8074bb..3e3e1b5e78ca 100644
->> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
->> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
->> @@ -1287,6 +1287,58 @@ static struct etr_buf *tmc_etr_get_sysfs_buffer(struct coresight_device *csdev)
->>          return ret ? ERR_PTR(ret) : drvdata->sysfs_buf;
->>   }
->>
->> +static bool tmc_byte_cntr_switch_buffer(struct tmc_drvdata *drvdata,
->> +                                       struct ctcu_byte_cntr *byte_cntr_data)
->> +{
-> 
-> This entire function should be in one of the byte_cntr source files,
-> not in the main etr files. Please keep byte cntr code separate as far
-> as possible
-> 
->> +       struct etr_buf_node *nd, *next, *curr_node, *picked_node;
->> +       struct etr_buf *curr_buf = drvdata->sysfs_buf;
->> +       bool found_free_buf = false;
->> +
->> +       if (WARN_ON(!drvdata || !byte_cntr_data))
->> +               return found_free_buf;
->> +
->> +       /* Stop the ETR before we start the switching process */
->> +       if (coresight_get_mode(drvdata->csdev) == CS_MODE_SYSFS)
-> 
-> Can this function be called if the mode is not CS_MODE_SYSFS?
-> 
->> +               __tmc_etr_disable_hw(drvdata);
+Sorry about not being clear so far.=20
 
-Hi Mike,
+V920 needs three supplies, 0.75v, 1.8v and 3.3v for USB PHY
+The naming convention used in the schematic are
+avdd075-usb,=20
+avdd18_usb20,=20
+avdd33_usb20.
 
-Since I need move the whole function to byte-cntr source file, is that 
-acceptable to export __tmc_etr_disable_hw from tmc-etr?
+However, PHY's user manual just mentions DVDD, VDD33 and VDD18.
+Since GS101 binding already using supply names similar to what is mentioned=
+ in the PHY user manual.
+I thought of using the same instead of earlier naming conventions (which wa=
+s as per v920 schematic).
 
-Same with __tmc_etr_enable_hw.
+Let me know if this make sense or we should be just using as per schematic?
 
-Thanks,
-Jie
+>=20
+> Best regards,
+> Krzysztof
 
->> +
->> +       list_for_each_entry_safe(nd, next, &drvdata->etr_buf_list, node) {
->> +               /* curr_buf is free for next round */
->> +               if (nd->sysfs_buf == curr_buf) {
->> +                       nd->is_free = true;
->> +                       curr_node = nd;
->> +               }
->> +
->> +               if (!found_free_buf && nd->is_free && nd->sysfs_buf != curr_buf) {
->> +                       if (nd->reading)
->> +                               continue;
->> +
->> +                       picked_node = nd;
->> +                       found_free_buf = true;
->> +               }
->> +       }
->> +
->> +       if (found_free_buf) {
->> +               curr_node->reading = true;
->> +               curr_node->pos = 0;
->> +               drvdata->reading_node = curr_node;
->> +               drvdata->sysfs_buf = picked_node->sysfs_buf;
->> +               drvdata->etr_buf = picked_node->sysfs_buf;
->> +               picked_node->is_free = false;
->> +               /* Reset irq_cnt for next etr_buf */
->> +               atomic_set(&byte_cntr_data->irq_cnt, 0);
->> +               /* Reset rrp and rwp when the system has switched the buffer*/
->> +               CS_UNLOCK(drvdata->base);
->> +               tmc_write_rrp(drvdata, 0);
->> +               tmc_write_rwp(drvdata, 0);
-> 
-> This cannot possibly be correct. RWP / RRP are pointers into the
-> system memory where the ETR stores data.
-> 
->> +               CS_LOCK(drvdata->base);
->> +               /* Restart the ETR when we find a free buffer */
->> +               if (coresight_get_mode(drvdata->csdev) == CS_MODE_SYSFS)
->> +                       __tmc_etr_enable_hw(drvdata);
-> 
-> What happens if the ETR is not restarted? Using __tmc_etr_disable_hw()
-> is correct for this use case, but if you do not restart then the extra
-> shutdown that would ordinarily happen in tmc_etr_disable_hw() does not
-> occur. How is this handled in the rest of the update?
-> 
->> +       }
->> +
->> +       return found_free_buf;
->> +}
->> +
->>   static int tmc_enable_etr_sink_sysfs(struct coresight_device *csdev)
->>   {
->>          int ret = 0;
->> --
->> 2.34.1
->>
-> 
-> Regards
-> 
-> Mike
-> 
-> --
-> Mike Leach
-> Principal Engineer, ARM Ltd.
-> Manchester Design Centre. UK
+Regards,
+Pritam
+
 
 
