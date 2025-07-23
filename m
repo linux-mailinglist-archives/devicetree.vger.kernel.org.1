@@ -1,217 +1,239 @@
-Return-Path: <devicetree+bounces-199190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D27BB0FDB2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 01:33:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C304B0FDB4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 01:37:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D196F188C386
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 23:33:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 760605855C0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 23:37:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556EF2777E2;
-	Wed, 23 Jul 2025 23:30:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 364CE2586DA;
+	Wed, 23 Jul 2025 23:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="koi8+vKM"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="1zxd9p2c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 620AB276038;
-	Wed, 23 Jul 2025 23:30:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF9FB233D88
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 23:37:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753313445; cv=none; b=kvxZp+rxPb9QPZTVWBAXqLq01B0vDj7UTCX3vtlH++HTEBD6aNH/aPZtBV8iMrGDBhulJu6bs8I35fFEssXdecT7Al10qL7YmTW/DnUsp6sNJLEFlmA4n4g7JGRx4rrj+Ep+tp12thCAI+NVVcv2fSdMOOY2H//6V6mougtslXo=
+	t=1753313826; cv=none; b=BYgP6i4kdW9+86hbIZMc4DHkvTaFu199zk9snpPis7i3CGPStmmliqNOVrYEMGZBDYnw8rbu895i9dMLMFpkYMlG5ckPP6fR2qo6T4jGiA2L3qBgQQ/nfdjDy4vWNuRFZRYur+6LhOQ4z1fzQnY5qhMARhKzNd9DWd99FpcUt3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753313445; c=relaxed/simple;
-	bh=Mlv/T6lwuWGECJtCisL2PL/Tqp5ceNvoJ7gk1fSnU+w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RXs9EGG17btp38Bf2APJ8mVT4Z409ugfqjb4F06TQk1zqQbp9VxpWt7DQCTptJXVB7HKlpWQTAXGlo2Cme7dvoj+cJmnJSEg3IJqjAa0P8LOgH/Cxf0UKMYQsWY1vwA5fS0EM31rKPhofxaLDzAlKyh2gOmmxMB30/wgzlH8ZqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=koi8+vKM; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-237311f5a54so2542225ad.2;
-        Wed, 23 Jul 2025 16:30:42 -0700 (PDT)
+	s=arc-20240116; t=1753313826; c=relaxed/simple;
+	bh=Ib/tM9Srsm8I5Qx6cFETwr67/e6J2GqVl6kcrW0x4Ds=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EsdZu+1jM+nhZ8lGD8TYu+D6rnMYGQ/Ce2Z2efs4W1LCsn82RfnMkGWiScpGqsVVcmcn1iLlDwJZmsu/3PXqpwVv7gV6cmuB22/bajo61P4A9YYy+bFJX9fL1toxiAv/1RavEcWULKP+Byz0b3N7b1KHpQ3eIGVYfnkQYDlcn6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=1zxd9p2c; arc=none smtp.client-ip=209.85.166.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-87653e3adc6so16375539f.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 16:37:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753313442; x=1753918242; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wWNqqAntiLueNlOOvISn5Xu4T7d1LNy1Kt3fgDDvAVM=;
-        b=koi8+vKMNq4jKZ5T7/0snu9fc0Gv3K2tmVd8cDnONY33e2yvHyfwra9Qe92ZefnTOz
-         U5uc9DnnpJ6P2MibFznydiHhmQBoE2PWk+XvcTkHyjZkztBKJ5kRcS4E48dW4bvP0/kb
-         x5TBlRvgZjK2CewYNowZ4sKVAcSD+Ww6zG+ZhLWOqbdljoUhwni+uVzUTQrKxkiUuHPU
-         QlcI0Yne8oU2vM2UaeuMyMrXwbvBY1IuBxEMf/D6pIlw5OUPEZONyFY1XW1OpGkq70pf
-         n0etoFH4xnLojKOgPESXAFDIEFOcMWXZRW/kf3+VgVxihky+MQJh1lJx1cyh/12nNQLt
-         6jOQ==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1753313823; x=1753918623; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DbymwJT8wdKqXZ17BAMdeDqv5d1KXToHThDYCoTXr1s=;
+        b=1zxd9p2czQsSEb4p2Uiro41odAGw7PGmjafAKO0pNmZGjP7sqEjP4wRO9lm0S5suLJ
+         KIhyboUUbI7iAvRzMl1zJtAgVASX3HKwkrlRA9gXfd1jpg3wDVuxVFJ3va6gt9r62KKx
+         IPQCDyWG2OdiXgZyILHHGTY0OD3C68WbKHwupxKY6avaFAQmEiRZrkGVeb853nUK0bUn
+         CAA2UhLa4nBm9UvV7n7fBh89CNPRShBDQ2YhRkNdj1TyUobLp0S3+RmnKs3keFub2Iln
+         B0QUOA+Pyfehd1Lu6gzHd8zeX14K8eeq7UOEvsFrijEJbP79KZXCl9K2tM61zVMfQMM/
+         IjJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753313442; x=1753918242;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wWNqqAntiLueNlOOvISn5Xu4T7d1LNy1Kt3fgDDvAVM=;
-        b=nxVf5dZ4uRLFiNSHb3imexDvO3qlJZnZY8SEqEcdkjcmzRLfGHzk1C2niEs1DtwuDX
-         plYssB0kuAwCmAOwA7nN8dDJvCwgOcPggoZblxNYLG1DHdCPH0QrpTWemzmFa/icY3x4
-         tiMjnGUBkSm72rHdA/yilB3PQgRYshlmUe+P5lFQ97Ueli1cFWAdsvq9/AfgKlZfWBii
-         PKDiHV0S0MTit03fSqP9ri5vc3MKTzob0JDNh8jt1HHHSHkrvNVBVMtsHij6w8B1MpWG
-         HVWsQsWm3qX3JBtnxUR+RDt9dtW06VO7jbpNK1g/Wr+frlMOKIEqU5M2bLk8P/EX5gmO
-         qu5g==
-X-Forwarded-Encrypted: i=1; AJvYcCUjId3CI/J/Yxqhnhb1Ki2Q6yVQx8bKrFSAHmsLV90qJ9v3m7JKeVZL/Qf2Y02p37nY7TIp7V1PclSNSJuP@vger.kernel.org, AJvYcCWLWyT78tllofYGku/L0bBpfYi91oiR89jkLZ+J0m756BqJLC1dlj7YmrA9sIuaH0lJwQxx9dljdFFG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNh5fgBMhKJsKp4+NyeQhl21eNHroWj08UwEEdoJs88P+1V2T6
-	CxZ0kSTrO0xgMztaPlBV/Bf3sy1LaorXXs+XrizKGNdEoiDk65xM4ae9
-X-Gm-Gg: ASbGncvfPonr6F5a0aDw9SqKebc53rnU6KhT4lw7I4us7nPFZGB35zby3PUkhjsF167
-	LePBdyOM9RDna4zpzycjGwield4bmTOCsXc+Da1F8H3C5CYm3/YiMwcizbPzTrbXTL5bSCCUn09
-	6sw6je7G3/ZzS8ZwAedMw1HsHPrmHAoc7Cx4Jthqj6ggRXlw1WPHwapb6o/HwpgHGrVTiIMORZw
-	Enniqe4Eo0y08daBDpaVChuF7+cw8n7/nOUGoAKJZb79C9SLuQPgMjY1NFWZpjQSzYKgn2yxPBB
-	wy/mDSKkj+cg9kAAre+y23cnGwIhQRxV1psWX8q5km0Fmsuk6jtGzkSYBhS+U776Eyt5aSYMpce
-	utjm4MRXoLIJfbTDmCYvcdq4OgFfxhiuS/tIU266ehAxVLfsbSw9z9+XZ3bpstN9isKuWili3p6
-	Q=
-X-Google-Smtp-Source: AGHT+IGMpmU9/y8jlws7TyyqNLtoPH3duLJVbY+xZiyyDKkZpeNxiVfJuwOA88XEZKJDN/jVR3l4cw==
-X-Received: by 2002:a17:903:1aa6:b0:234:c5c1:9b63 with SMTP id d9443c01a7336-23f9814eb24mr64705765ad.18.1753313441648;
-        Wed, 23 Jul 2025 16:30:41 -0700 (PDT)
-Received: from localhost.localdomain (c-76-133-73-115.hsd1.ca.comcast.net. [76.133.73.115])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23fa48bc6fbsm1260765ad.120.2025.07.23.16.30.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Jul 2025 16:30:41 -0700 (PDT)
-From: rentao.bupt@gmail.com
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>,
-	Tao Ren <taoren@meta.com>
-Cc: Tao Ren <rentao.bupt@gmail.com>
-Subject: [PATCH v3 13/13] ARM: dts: aspeed: Add Facebook Darwin (AST2600) BMC
-Date: Wed, 23 Jul 2025 16:30:09 -0700
-Message-ID: <20250723233013.142337-14-rentao.bupt@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20250723233013.142337-1-rentao.bupt@gmail.com>
-References: <20250723233013.142337-1-rentao.bupt@gmail.com>
+        d=1e100.net; s=20230601; t=1753313823; x=1753918623;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DbymwJT8wdKqXZ17BAMdeDqv5d1KXToHThDYCoTXr1s=;
+        b=Y0zN+X/OsGtY+vdWe1x2mMlSPfFfYQj0XWkqJcAKec3L67Txg6sVgrMLdRAsFB6Pwv
+         2JEFn8U8SQpTzCxwtUTvEF8I40Xn1ZqeWdCAtUHedDMDN/Zd7xF1E8otmDfoaYM0//dE
+         kTTw2rP+4u7jdEG5nqHKmnyaiBCZtpYjMYum98bBvMk6htgBlfqeybyUW3sT+y8NYG6o
+         oNnn7h9Y8rHoKuBu3MAk/2L/l5nZG8zo/KqsyFoPgTbbKWt/WfguehRPMtJKtI+Lrl/G
+         4bn496kG+29zm6vS8qRO0Vczrxy9gzKLeYO1WTnREkY7IIEJw2qxErUZAA+UWwT4b8ud
+         BuyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWlyI2h/jOB5nR6DSaHlosMp7RCkdSgksbil9PTl9LLETNID32MNn+t5WilH+qxNS7CHlZR9Ude3sYe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4Jbc+ojwnVFD0EKtJwuS5qIBBffnmUpsokkkiPoW/77d4NCBg
+	6ti20YV8wPl8ZZKJwCSZ7fz7aAzHTXB1EjN2JiQUsjvowdnSIRZCU2j0bfy1K1CZ2ec=
+X-Gm-Gg: ASbGnctp1xx3VU4MRqKWnxNkEjhm1vdo/bNykoq18uvNIVOYYcCqgD9Ws2NR/F2C1O7
+	p3OLM20QEP/UVEb0oCqOWHfLV//67f2Mvo7BwB8uJOExL7qBvONzzZwVI9cMkpBzSImA9Deeyz+
+	IP0eMhMkuKgDN46MtCcmavkjhAp30K0pyxXNFriqqmAp1O0dJuUu1uyxvV0/4r7Zwvz8zThFRMn
+	a6AXGa9CQpcM8USQkHylksvNazyiYIadXrP2GvEOMkUmhvPI6Gq5+D8o4HibN0+jcsh2bCInwgo
+	3N2tqUB4sXRRm6/ruKGgIeK3PdZcGt6dv2Ko27NKVggGpMnH9UQ+M1VR8Xrzz/1ZDF8L9MvEMoK
+	p7GYEdZhFHk6lqjmPhUiXT0xrqyttdxpI5A==
+X-Google-Smtp-Source: AGHT+IHNF5SD1Use82nEBRXm82QeoUFWLLGUU4rIloi5Cn7oMv86TpUYK3QDrbLvOOiD/JUxKOqJog==
+X-Received: by 2002:a05:6602:6403:b0:873:1a0e:a496 with SMTP id ca18e2360f4ac-87c6505de5dmr798601539f.10.1753313822955;
+        Wed, 23 Jul 2025 16:37:02 -0700 (PDT)
+Received: from [10.211.55.5] ([199.59.116.160])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-508aea8da22sm65011173.38.2025.07.23.16.37.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Jul 2025 16:37:02 -0700 (PDT)
+Message-ID: <6df61594-9a0c-4c18-8754-43fdff8474ca@riscstar.com>
+Date: Wed, 23 Jul 2025 18:37:00 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 5/8] rtc: spacemit: support the SpacemiT P1 RTC
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: lee@kernel.org, lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, mat.jonczyk@o2.pl, dlan@gentoo.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, troymitchell988@gmail.com, guodong@riscstar.com,
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20250710175107.1280221-1-elder@riscstar.com>
+ <20250710175107.1280221-6-elder@riscstar.com>
+ <20250723213956570da462@mail.local>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250723213956570da462@mail.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tao Ren <rentao.bupt@gmail.com>
+On 7/23/25 4:39 PM, Alexandre Belloni wrote:
+> On 10/07/2025 12:51:03-0500, Alex Elder wrote:
+>> +static int p1_rtc_read_time(struct device *dev, struct rtc_time *t)
+>> +{
+>> +	struct p1_rtc *p1 = dev_get_drvdata(dev);
+>> +	struct regmap *regmap = p1->regmap;
+>> +	u32 count = RTC_READ_TRIES;
+>> +	u8 seconds;
+>> +	u8 time[6];
+>> +	int ret;
+>> +
+>> +	if (!regmap_test_bits(regmap, RTC_CTRL, RTC_EN))
+>> +		return -ENODEV;		/* RTC is disabled */
+> 
+> That should be -EINVAL, as all the other drivers have standardized this.
+> 
+> With this fixed,
+> Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Add initial device tree for the Meta (Facebook) Darwin AST2600 BMC.
+OK thank you.  I'll plan to send v9 with this change included.
 
-Darwin is Meta's rack switch platform with an AST2600 BMC integrated for
-health monitoring purpose.
+					-Alex
 
-Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
----
-Changes in v3:
-  - Removed flash layout (use the "default" in common.dtsi).
-Changes in v2:
-  - Removed mac3 controller.
-  - Fixed DTB warnings.
-
- arch/arm/boot/dts/aspeed/Makefile             |  1 +
- .../dts/aspeed/aspeed-bmc-facebook-darwin.dts | 72 +++++++++++++++++++
- 2 files changed, 73 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
-
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index f6e714b7db2d..dce32ee0ace7 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-bletchley.dtb \
- 	aspeed-bmc-facebook-catalina.dtb \
- 	aspeed-bmc-facebook-cmm.dtb \
-+	aspeed-bmc-facebook-darwin.dtb \
- 	aspeed-bmc-facebook-elbert.dtb \
- 	aspeed-bmc-facebook-fuji-data64.dtb \
- 	aspeed-bmc-facebook-fuji.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
-new file mode 100644
-index 000000000000..58c107a1b6cf
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
-@@ -0,0 +1,72 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Copyright (c) 2021 Facebook Inc.
-+
-+/dts-v1/;
-+
-+#include "ast2600-facebook-netbmc-common.dtsi"
-+
-+/ {
-+	model = "Facebook Darwin BMC";
-+	compatible = "facebook,darwin-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial0 = &uart5;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+			      <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+			      <&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
-+			      <&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
-+	};
-+
-+	spi_gpio: spi {
-+		num-chipselects = <1>;
-+		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&i2c0 {
-+	eeprom@50 {
-+		compatible = "atmel,24c512";
-+		reg = <0x50>;
-+	};
-+};
-+
-+&adc0 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+		     &pinctrl_adc2_default &pinctrl_adc3_default
-+		     &pinctrl_adc4_default &pinctrl_adc5_default
-+		     &pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
-+		     &pinctrl_adc10_default &pinctrl_adc11_default
-+		     &pinctrl_adc12_default &pinctrl_adc13_default
-+		     &pinctrl_adc14_default &pinctrl_adc15_default>;
-+};
-+
-+&emmc_controller {
-+	status = "okay";
-+};
-+
-+&emmc {
-+	status = "okay";
-+
-+	non-removable;
-+	max-frequency = <25000000>;
-+	bus-width = <4>;
-+};
--- 
-2.47.3
+> 
+> 
+>> +
+>> +	ret = regmap_bulk_read(regmap, RTC_TIME, time, sizeof(time));
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	do {
+>> +		seconds = time[0];
+>> +		ret = regmap_bulk_read(regmap, RTC_TIME, time, sizeof(time));
+>> +		if (ret)
+>> +			return ret;
+>> +	} while (time[0] != seconds && --count);
+>> +
+>> +	if (!count)
+>> +		return -EIO;		/* Unable to get a consistent result */
+>> +
+>> +	t->tm_sec = time[0] & GENMASK(5, 0);
+>> +	t->tm_min = time[1] & GENMASK(5, 0);
+>> +	t->tm_hour = time[2] & GENMASK(4, 0);
+>> +	t->tm_mday = (time[3] & GENMASK(4, 0)) + 1;
+>> +	t->tm_mon = time[4] & GENMASK(3, 0);
+>> +	t->tm_year = (time[5] & GENMASK(5, 0)) + 100;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/*
+>> + * The P1 hardware documentation states that values in the registers are
+>> + * latched so when written they represent a consistent time snapshot.
+>> + * Nevertheless, this is not guaranteed by the implementation, so we must
+>> + * disable the RTC while updating it.
+>> + */
+>> +static int p1_rtc_set_time(struct device *dev, struct rtc_time *t)
+>> +{
+>> +	struct p1_rtc *p1 = dev_get_drvdata(dev);
+>> +	struct regmap *regmap = p1->regmap;
+>> +	u8 time[6];
+>> +	int ret;
+>> +
+>> +	time[0] = t->tm_sec;
+>> +	time[1] = t->tm_min;
+>> +	time[2] = t->tm_hour;
+>> +	time[3] = t->tm_mday - 1;
+>> +	time[4] = t->tm_mon;
+>> +	time[5] = t->tm_year - 100;
+>> +
+>> +	/* Disable the RTC to update; re-enable again when done */
+>> +	ret = regmap_clear_bits(regmap, RTC_CTRL, RTC_EN);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* If something goes wrong, leave the RTC disabled */
+>> +	ret = regmap_bulk_write(regmap, RTC_TIME, time, sizeof(time));
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return regmap_set_bits(regmap, RTC_CTRL, RTC_EN);
+>> +}
+>> +
+>> +static const struct rtc_class_ops p1_rtc_class_ops = {
+>> +	.read_time = p1_rtc_read_time,
+>> +	.set_time = p1_rtc_set_time,
+>> +};
+>> +
+>> +static int p1_rtc_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct rtc_device *rtc;
+>> +	struct p1_rtc *p1;
+>> +
+>> +	p1 = devm_kzalloc(dev, sizeof(*p1), GFP_KERNEL);
+>> +	if (!p1)
+>> +		return -ENOMEM;
+>> +	dev_set_drvdata(dev, p1);
+>> +
+>> +	p1->regmap = dev_get_regmap(dev->parent, NULL);
+>> +	if (!p1->regmap)
+>> +		return dev_err_probe(dev, -ENODEV, "failed to get regmap\n");
+>> +
+>> +	rtc = devm_rtc_allocate_device(dev);
+>> +	if (IS_ERR(rtc))
+>> +		return dev_err_probe(dev, PTR_ERR(rtc),
+>> +				     "error allocating device\n");
+>> +	p1->rtc = rtc;
+>> +
+>> +	rtc->ops = &p1_rtc_class_ops;
+>> +	rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
+>> +	rtc->range_max = RTC_TIMESTAMP_END_2063;
+>> +
+>> +	clear_bit(RTC_FEATURE_ALARM, rtc->features);
+>> +	clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, rtc->features);
+>> +
+>> +	return devm_rtc_register_device(rtc);
+>> +}
+>> +
+>> +static struct platform_driver p1_rtc_driver = {
+>> +	.probe = p1_rtc_probe,
+>> +	.driver = {
+>> +		.name = MOD_NAME,
+>> +	},
+>> +};
+>> +
+>> +module_platform_driver(p1_rtc_driver);
+>> +
+>> +MODULE_DESCRIPTION("SpacemiT P1 RTC driver");
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_ALIAS("platform:" MOD_NAME);
+>> -- 
+>> 2.45.2
+>>
+> 
 
 
