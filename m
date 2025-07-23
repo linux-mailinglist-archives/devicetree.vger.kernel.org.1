@@ -1,118 +1,295 @@
-Return-Path: <devicetree+bounces-198829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20655B0E846
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 03:47:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44B00B0E861
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 03:57:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B0AB4E1131
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 01:47:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FAE96C13F8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 01:57:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FB64204E;
-	Wed, 23 Jul 2025 01:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AF8719D88F;
+	Wed, 23 Jul 2025 01:57:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eSaxlIQU"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="gqZ3pOMZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2060.outbound.protection.outlook.com [40.107.223.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C835360;
-	Wed, 23 Jul 2025 01:47:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753235272; cv=none; b=o42kaD5CPf/cPsrhtzcPReQdh5mx7wGuqOWPlRRUkSst4d1CUFewCMz2GjYGB91KDIJtYTiIEHfO8TeGyZO1J9UiTJg3LqDmIeojDPqQK4B082MuB1iyoSueM5mh4w7RDy5lMEfNllmQxHR9KM6p26QWkjdY9yMC7zGaD1Xray4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753235272; c=relaxed/simple;
-	bh=Mb7U/KhjDFYsWZAeq7kpLX/tB1mdXgzYH+ofNnJA7w8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=c8MQcgCLTfrVnhsLjBL1z+biV32y6JI7jSwPpQ50oozIJ6cvh7H9sBEr+fBMV7kHhAYxVtIq9Lj3WW9cV87RryWio+qgJhbMlPmJmraEAj8gMUI6wrJgmtA0VM8nYNbLa1fQp93l4MvSiGbRnTjiLB9207zlH466cBc5LJBhipA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eSaxlIQU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A242C4CEEB;
-	Wed, 23 Jul 2025 01:47:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753235271;
-	bh=Mb7U/KhjDFYsWZAeq7kpLX/tB1mdXgzYH+ofNnJA7w8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=eSaxlIQUL3eEVbxCOQIkht46i9qOkmpPjC5awQyRZf+80aAT4OZIJZUgFL0KzvJob
-	 jJN9p51Z2Gn4Jjut7HLS2qSJ2CVjZLi7xvRlDmvJH6ovV+oomM+l9vLsoj9OnTbtpW
-	 gxs+lyqFOALDov3oq+hcqHiX5bceaHhcg3F2jZnSRCskO2KltNrL1K3hCADq/ykMAl
-	 dgy5YzH7L4s2rPVAubBNabH9/l+qwCEmNDieDGEv+uN28T8PLqc2BcIgO84RMCRbiz
-	 CXaYalL5ZiufedGuZVCYL1iAm0lLSPJPgbuugLy4hJuM57rIH6Gm01wEMYqpqD4y7f
-	 Cib+Y+5jAPyhA==
-Date: Tue, 22 Jul 2025 18:47:49 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Parvathi Pudi <parvathi@couthit.com>
-Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- ssantosh@kernel.org, richardcochran@gmail.com, s.hauer@pengutronix.de,
- m-karicheri2@ti.com, glaroque@baylibre.com, afd@ti.com,
- saikrishnag@marvell.com, m-malladi@ti.com, jacob.e.keller@intel.com,
- kory.maincent@bootlin.com, diogo.ivo@siemens.com,
- javier.carrasco.cruz@gmail.com, horms@kernel.org, s-anna@ti.com,
- basharath@couthit.com, linux-arm-kernel@lists.infradead.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, vadim.fedorenko@linux.dev, pratheesh@ti.com,
- prajith@ti.com, vigneshr@ti.com, praneeth@ti.com, srk@ti.com,
- rogerq@ti.com, krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
-Subject: Re: [PATCH net-next v11 2/5] net: ti: prueth: Adds ICSSM Ethernet
- driver
-Message-ID: <20250722184749.0c04d669@kernel.org>
-In-Reply-To: <20250722132700.2655208-3-parvathi@couthit.com>
-References: <20250722132700.2655208-1-parvathi@couthit.com>
-	<20250722132700.2655208-3-parvathi@couthit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87E988472;
+	Wed, 23 Jul 2025 01:57:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753235868; cv=fail; b=JKrFNPvuZ02JWcf8S8XP/fhKuZXdb2/za0ajZRK1wgplX2aDfR60dzJPo/tl1o8DhwIyEYKgD6wE3gTC3YiTIWBVLT3YTmzHz7ugM6fVEwNzNdcLBcQjzDh4Ag8yPWc2m1XUURSItEDAAGubiG+foBL3IxrtQElhJXEDYaSRJNI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753235868; c=relaxed/simple;
+	bh=rjmrZu0r9GfYgnvLZ8j9paa9WuEknMyLuUkPyz3Ms1w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=pgskNxlkIYnIV1kqmKPVenEWLXi0a8Ki7X8/8RnV2esZgJ+RZyQVoVyl5ESopsNv0viU/Ovxi9P7LIRWpcl5sMrx2i0/1mcu5bnUBpQjOhmWnulgDys4bAmWesw1f9UvFuNF2b78h4CMjhI1MDIIna4yUEBy7AZeTdyXXowH8+U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=gqZ3pOMZ; arc=fail smtp.client-ip=40.107.223.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pdd15UINhQn5uXst1ZE6fqkPCz65QwPag7EnvCtAtbzKgVqymVfW5LTXBbsqeDA1mOJ+7il23w2sC5F7mshwKHwZZ/3OCbAgzkrnezCENwcGgQuJSjt0ez+Ir34uj2YsrCUCL2mB1xzVbNmyD2miiGb03ZnEqzdAQB/av++s3s7pp4FUhlpkcrJJYTPdHAaYOKBs2vbiwFVXP0T6cstZJgmdHCFqa/8GkrN68w6rq62E4viyYWSC4IDAJGAhsL7kQye1hN+5UvDPZi+IxHEGenLqzmir0J9W9gRX+J9iJ9Nk2YvEoMZKbvfeHoM2Oi3m8Y6Xt0ctidAeChWBlyTUHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oyoGy40PzhQOoQRX+tkq05QEpPLmhF4JjRxCq7ml1Uk=;
+ b=UXCEedUbZPW/oVGq+9DzILsS5xVBc93zePeh6cOFBGNus6WuGjM5pIZtRyuL538S4PAPsuHXPjlhX4iwbXa1qJghmaAE2+tUxNmXU6KcVP1IntwKh8OdqZ96mZm+yDHbPpUMv8u51hTJUUcwI43BBi40de0hSrxPRGI+j4o6fBr9X1clQI+JJBo3hvTXsB4IinDcLQcB/D78UxZJ1PB2szkTvgvUsWCoLbnF60y+jsLJChUOwU9K8gKbdTv/Ezwrxf2D+il4Smwwt25CwK8luKA0ImEJ9zYksrkag1ATpvxKJXGQqrBchQJmwOqBOn7mMDxjDuez9Nw+8FFpheXyQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oyoGy40PzhQOoQRX+tkq05QEpPLmhF4JjRxCq7ml1Uk=;
+ b=gqZ3pOMZhLlkCVva3AMKeRb6ZFkl+PhNBjZsTuGlfMm7ajJchhnnHqYuD4eqkdsJaNRSVC4hvUbo6e2kSdRJY7dnFP37/iExrRKouMNQYUdEXu3D56sGFR+zoLWa9ycFkRzQr7SyKhQQcJDLfFKPV87QowJUgIGtxQo6sstfkIu9+lR02OeZsyDqNYvPFvLmqOY7Sm8qKaDySOydY62FIQMhj4KJk/cgDviPne2FFVZJIwopeUfuXDrqRhGVKiXLWHd8BP/QkuMOoxesMufqSlanbNLg9IoHlBx5DkWeHFtMuAGfW9BKxh8KyO9t7TnaJMPIcB9N3W+78fkJ/bc6aw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY5PR12MB6478.namprd12.prod.outlook.com (2603:10b6:930:35::19)
+ by CH3PR12MB9079.namprd12.prod.outlook.com (2603:10b6:610:1a1::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.21; Wed, 23 Jul
+ 2025 01:57:43 +0000
+Received: from CY5PR12MB6478.namprd12.prod.outlook.com
+ ([fe80::35dd:2a5e:d28d:55e7]) by CY5PR12MB6478.namprd12.prod.outlook.com
+ ([fe80::35dd:2a5e:d28d:55e7%4]) with mapi id 15.20.8922.028; Wed, 23 Jul 2025
+ 01:57:43 +0000
+From: Mikko Perttunen <mperttunen@nvidia.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Prashant Gaikwad <pgaikwad@nvidia.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Dmitry Osipenko <digetx@gmail.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject:
+ Re: [PATCH v1 5/5] ARM: tegra: add MIPI calibration binding for
+ Tegra20/Tegra30
+Date: Wed, 23 Jul 2025 10:57:38 +0900
+Message-ID: <4377642.OBFZWjSADL@senjougahara>
+In-Reply-To:
+ <CAPVz0n1f=bAHqZiF3yMGS2T5Bg6C=CbJbLCGQMGfiAqK1YVzFg@mail.gmail.com>
+References:
+ <20250717142139.57621-1-clamor95@gmail.com>
+ <26197475.6Emhk5qWAg@senjougahara>
+ <CAPVz0n1f=bAHqZiF3yMGS2T5Bg6C=CbJbLCGQMGfiAqK1YVzFg@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ClientProxiedBy: SG2PR04CA0206.apcprd04.prod.outlook.com
+ (2603:1096:4:187::21) To CY5PR12MB6478.namprd12.prod.outlook.com
+ (2603:10b6:930:35::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR12MB6478:EE_|CH3PR12MB9079:EE_
+X-MS-Office365-Filtering-Correlation-Id: 41580416-ab64-4660-2879-08ddc98c500d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|10070799003|7416014|376014|366016|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?V1BVdkFaLzdaWVJMWHhJVkVvWTB1Y0lsbmVDOG9CRU1HLytFNy9uek5OWk41?=
+ =?utf-8?B?NFkxa2VFNXpmOXN3TUtDRU8xT2JQbFVkaW5UOVBRSWNJbjhRak5NUnBnTjRp?=
+ =?utf-8?B?eVB6QjRWa1c3c1ZZcUJUbXdTNjBwN0NQM0NabVc0eE90akowWWpJNjNVaHgv?=
+ =?utf-8?B?TUJBZDFJN3VMdWZIbXpXRnVvdXZTR1QxTlQrUzBncUd4Z3ZxSWtEamhsdGZR?=
+ =?utf-8?B?Z2ZCMUhKMFo0R3hTblFoY3dCeG04R1NNOUlPVjh1REhReXpvOWpRSlpuZ29W?=
+ =?utf-8?B?WW9pdjk1dXhkS3EvUnRFek04VzFqRTVxV0cxSnVJQ2tqbXE3a2pxK2RyMXIv?=
+ =?utf-8?B?SGprcEt1UXA2NHN3NjFLL2pWcUlGc0wwVzZRSWptN3ZpWEFITEM4SGJoWmw2?=
+ =?utf-8?B?ZDFkbllOdlBFdjAxTjRabkJqMEJlR0V1RUN1Y2dSdTZHT1N6WUUycWRQYjV3?=
+ =?utf-8?B?WGhmZkpXV0xpekNNdGxhZkJFalY5M0pkSXpMcng4SWpGRnNFN3QwUU44OXlR?=
+ =?utf-8?B?SDMyTktoYWRGd1ZXUW9PSXhtV2JzMEFOK1REdDRFU0xlNmxiMTB5SHVCYlJx?=
+ =?utf-8?B?bHhpbXhWalUvL1ljbUJqaWlXRWZobTZOSzdyaTZid2FmdElTQXRLdElVV0tQ?=
+ =?utf-8?B?YmhNSURTb1ZvYlU2Y2RyWkhSdms4S0lHMVU5R2k5b1Z2d2kwenU5cFMzR3RM?=
+ =?utf-8?B?Q0NBQkZqS2NyU2l1SHA4QmRVNlc2SjBXVHpwSUpOOURPQlJIYU5LQ29QYzE5?=
+ =?utf-8?B?R2dvSTFZUEhQTHQ0b3h5TEVQektXSG00UTdiWE10RUNEOVJub1pka2oxbjVm?=
+ =?utf-8?B?cURGOE96ZzNjSy9sM0dQd1laVk56K2dOMjZlMFZtYzZnM0RTZW81QzlNRWpN?=
+ =?utf-8?B?cUg3UEhXTFh4TzdqTE9rcjZGUFNyNGF4bk9FNDh6cmx0KzF2UkhRUlJncjFY?=
+ =?utf-8?B?T29TeXM0YkVHZlY3UVYxNFY5dlgrdTVranBYUzdpa1Q2L0VnRDJKYUdCWVVG?=
+ =?utf-8?B?TDJLZHVMZ1FpQkJ2S0E0ZTYxY2R3QnE2WE9QdmJDb1FJdFJFbER6aDMxV2J6?=
+ =?utf-8?B?K2ZrZllYclhhSDk4S3R4QUJIck5TNjRFUmVyYnBwVExwMGNDVnhpVVdxMXN6?=
+ =?utf-8?B?OE1yWFVrMzBzYlNPNUtUSjZkeUkyaU1aUkMwN3Y5RjhSekQ1TS9KWm1jT0lZ?=
+ =?utf-8?B?RUw3a1p6SFJUV3FQbVMzU2hHOE81VWh4MFNMNWhhNmExU05PSWFaaFFYY1dh?=
+ =?utf-8?B?bUkxZXRuSFltTkgwOU56TU1WQURRY29GdU5WRUdLd3ZLaW5ieDE0K3FXc2VL?=
+ =?utf-8?B?dEpRVUxzZnRVT0g5bnZyZ0RvTDJXNm9vcGswVExnaStHK2Q2MHBLUDhKVnZD?=
+ =?utf-8?B?MEY2Q0ZSdU11QjRwNEpQNTIrbFcxQkUvK0tUc1NUazZmYVVGMUFJcjBtQXdV?=
+ =?utf-8?B?YVJKUVpackdPYkVGNWtmTGlqYzJadEQxdWprcmtFd0ZUVTFQa1FiNjBub0VC?=
+ =?utf-8?B?bzhZK05ZZHBRMkk1Y29xMmtqY2h0U2NVa3BuWlNMUVRtckw5b05VeTZUMVEz?=
+ =?utf-8?B?VlJPUDlYWjdYSFhteU43MVhidkllSmRYMXYycWtibitxMzd1akNqMjBTeDFw?=
+ =?utf-8?B?UmE4bC9XZFJXcHVlU0R6UDhzNjF0ZitwMDlNeVpWU3cxVmVKbUtFNG00UUpY?=
+ =?utf-8?B?NDE2THdzMFJsZUZEa3o4dndUY244VU8vM0xhWnREN1V4UFF6bnBScmRITGw3?=
+ =?utf-8?B?K0R1dlhMd085T0ZtU1V1N0xrR1dHYlBvYjRtZGdBZXlpREhtSFJ3UzEzZmpS?=
+ =?utf-8?B?YWt6RzhJbzl2MjVvcFRmS1FiQjZ2dnd6RGxqSEtjT2NScnc3SHkrV2ZCcjNw?=
+ =?utf-8?B?d01aM0pLVWsyUVgwcE9WUzBwMUV4MDl1Q0U3cm5pN1lja0hFemJmVTNPRVpC?=
+ =?utf-8?Q?2ShODjmoWaY=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY5PR12MB6478.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(7416014)(376014)(366016)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?QVVSdFhaSEc0emQwTm1zVWhUbU95UG8vbGJFVkpTTVdtRVpKYXNHNGVGaGtS?=
+ =?utf-8?B?K21KK2xJc2lERCtNbkp5S3V1b0pLZWNHck4vSUdsL3pXRk1Vck4xNy93MDU0?=
+ =?utf-8?B?VTV0MU9RS0Jmb3RWTDdIVlBVdmRCcm13MTRING9Jc0FtSi9NT1NHVXIrNXJt?=
+ =?utf-8?B?TEc2RHcrL1IxNXM1WFJ0UytWOWF6S0xUWnBFb204dVZHMmcySmhaREZjMXpt?=
+ =?utf-8?B?TVNvMERFeStnejhjY3EzQ3dLRWF4SHhNUm4xREdqeXN2bHM0ZXpibGpvQWNo?=
+ =?utf-8?B?MkMvRkprMTFGdlkzQ0hOL3lxUDlFa1F1Zzh0aXlVUmhXSTczYlBIWFhCT3NL?=
+ =?utf-8?B?VHZDVGpocVBCeWU0UGExbkxXWHFlck1ER2ZlUEgzQ1ZHUXJQZ0V0ejBaMlJV?=
+ =?utf-8?B?ek5kZS9TMXVtTUhtcmZRUW1wZkIvVUJHbythY2paRllpSXRKUUNkc3pqSVBv?=
+ =?utf-8?B?U1hKMW9YSDdoQm5MWWhkUFRQU3lLcWtMNFQvNlc5emp0RGhrcmJZckdVTGc1?=
+ =?utf-8?B?blFrTjZkMFcycWtxRUthZ0cxdzIxMm5yUGtNanpJL0NnZlJua29QM284MWVr?=
+ =?utf-8?B?SjZpMTJaVHVkNzBpVXdKQmRvTGFqbWdRZjNHeWRVdHhvSE41YlVJWi9YQSsw?=
+ =?utf-8?B?SWJSQUQvYjU2TGJRRHV3dHAyRHM0K1lQYXdHc2wvcWFtT1hzR3J5Z1NSM2ha?=
+ =?utf-8?B?UzFKQU51QTduQWIvMVZnWGZXdk50UkNrL3czUXhYUkh4QjU4UGExdjNtbTUz?=
+ =?utf-8?B?V1Z6Z2hqbUlnS1U3NTJvY2Q2U1NHZDBySFhBNG5XeGlzZ09aQmdlcy8yVnVI?=
+ =?utf-8?B?azRQUVp5UXR5YnlXTS84MVlVM0J2RS81Q09PazN4VWNTMElFVi91bU51Q3dj?=
+ =?utf-8?B?ek9mcjh2V2lQT0FpVXlBYXhLbVQ4N3R0K01NNzZsVGViV2psbW5HR2Z4bjlZ?=
+ =?utf-8?B?MlF2NVNpTWxtektvaDErd1kxamNrUmNRUVo3cUZYdUlUMHF1ZHZCanBzaDNL?=
+ =?utf-8?B?a01LNzZQM04xYnQxT2JTMm8vblhXNW1nM0xZRVVoUlc0R3N0OC9LaE9NQk9k?=
+ =?utf-8?B?L204cXpxNENEWkFtR0N6S3c2YzNMeERkT0FkVDlSc0lLNDRrMXRtc0JOdVEv?=
+ =?utf-8?B?RkV5RFVtRXkrR1pYRnJ5UU5ZQzQ2Sng0Q0F3c0g4bWFjWXFBSzN0SFdMalZQ?=
+ =?utf-8?B?TGsyMWJweFhHQUdUYzZBMWJlNElBV1NGamZrYUpndnRNTkNyTkxvVXpwMXBa?=
+ =?utf-8?B?MThmaVQ5TCtzU3I2eTdNM3Fxd0g5dEZXRjk5bG8rWDdKc0ZIUW5LZmlScUZW?=
+ =?utf-8?B?dExZYzh6ZXVRNVV5RXpkajc4ekhLY1BzRFE3V2NTdFRjTWZDcjg1ZE5jMHg3?=
+ =?utf-8?B?dkVIQ1lTNm1MczdOUmtEK21nTnVXdEViWGRuY0FBaGE3SVFucDVpK2N6cmJZ?=
+ =?utf-8?B?T2J3RWxBaUJjeHpPQ1p2S2JOb2Q2aVVJdUw4cmxhbGpsaTQxOU5aNUJBSnVS?=
+ =?utf-8?B?Zm5wSHFQM0ZuWWkvaXRNbmdZK3N4d3Z2KzhUdjI1OUMxNDFPZ0lRZldmdm5u?=
+ =?utf-8?B?d2M5cS9qZXFhTGlNQXVaM1lsbTBzWmMrbC8zaHRrT3lhVnVReFNHcExxN0hY?=
+ =?utf-8?B?YWhyUGhNWGkvdE1ySDl5VlhySWcxc25obmhuc3cyTVFrYUVUakR2ZVBDL0xp?=
+ =?utf-8?B?a21TM3ZGaFlXeWJqZVhESGxpeklLdFgvRGZJeGtJbWFIVzROWjZlUnc0SytE?=
+ =?utf-8?B?bmJKaGRCclBCZklzeUdMcGVkaXY3M1RlVysvaWlvWmNLenloUm4zNTlaelh4?=
+ =?utf-8?B?eFo2NVBjUWNCTyt0MkR2NDJ2R0Uwc2x5SWttYksxcXZTYjdqMklnVS9RZ1ZO?=
+ =?utf-8?B?a1l5UWttV0V4THRTKzh4S3l4TWFrN2s3cWE0RDJwalY2ekhVZys3UG9PeDNV?=
+ =?utf-8?B?aEcyNlhnMTlRbG03MWN4Vk5TeXpqMWhJSjZmYTNNTHQvWUdxS0doNXYvb1k2?=
+ =?utf-8?B?cGd4cTcwSEhJYS9iRGd4NWh4OHNMYXZralBleWU3dHBFYjNmYXhvY29keVpU?=
+ =?utf-8?B?VzNXZDZmWUpBR1FRSzRVa2EzNk9xMkU4QStyZlVnMHcvQW1XU3FuRnZUMU4w?=
+ =?utf-8?B?TFRyNi80aGIvT2RReXJIMU5XQ21USmlLbkVranJOZ0lFVmorejZWb244ekRO?=
+ =?utf-8?B?ZzhjVkdVejY5amcxMmk2WE1OanQ4RXZuKzhaZkQrQllZUW1yeElraU5BQS81?=
+ =?utf-8?B?STQ5RkZ6ZkZ1amZxRXVBTGhoMVR3PT0=?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41580416-ab64-4660-2879-08ddc98c500d
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6478.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2025 01:57:43.4264
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 534bT7slzZSCPpwF5KHX/rRAv26gXYjZHciQzHCIaMwB+/IjQdcjxzuTgMrWImTCPrnBDLLe5G7D5mxEluyLpw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9079
 
-On Tue, 22 Jul 2025 18:55:02 +0530 Parvathi Pudi wrote:
-> +	for_each_child_of_node(eth_ports_node, eth_node) {
-> +		u32 reg;
-> +
-> +		if (strcmp(eth_node->name, "ethernet-port"))
-> +			continue;
-> +		ret = of_property_read_u32(eth_node, "reg", &reg);
-> +		if (ret < 0) {
-> +			dev_err(dev, "%pOF error reading port_id %d\n",
-> +				eth_node, ret);
-> +			return ret;
+On Friday, July 18, 2025 6:26=E2=80=AFPM Svyatoslav Ryhel wrote:
+> =D0=BF=D1=82, 18 =D0=BB=D0=B8=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 12:22 Mi=
+kko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> > On Friday, July 18, 2025 6:15=E2=80=AFPM Svyatoslav Ryhel wrote:
+> > > =D0=BF=D1=82, 18 =D0=BB=D0=B8=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 12:0=
+1 Mikko Perttunen <mperttunen@nvidia.com>=20
+=D0=BF=D0=B8=D1=88=D0=B5:
+> > > > On Thursday, July 17, 2025 11:21=E2=80=AFPM Svyatoslav Ryhel wrote:
+> > > > > Add MIPI calibration device node for Tegra20 and Tegra30.
+> > > > >=20
+> > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > > > ---
+> > > > >=20
+> > > > >  arch/arm/boot/dts/nvidia/tegra20.dtsi | 14 ++++++++++++++
+> > > > >  arch/arm/boot/dts/nvidia/tegra30.dtsi | 18 ++++++++++++++++++
+> > > > >  2 files changed, 32 insertions(+)
+> > > > >=20
+> > > > > diff --git a/arch/arm/boot/dts/nvidia/tegra20.dtsi
+> > > > > b/arch/arm/boot/dts/nvidia/tegra20.dtsi index
+> > > > > 92d422f83ea4..521261045cc8
+> > > > > 100644
+> > > > > --- a/arch/arm/boot/dts/nvidia/tegra20.dtsi
+> > > > > +++ b/arch/arm/boot/dts/nvidia/tegra20.dtsi
+> > > > > @@ -74,6 +74,16 @@ vi@54080000 {
+> > > > >=20
+> > > > >                       status =3D "disabled";
+> > > > >              =20
+> > > > >               };
+> > > > >=20
+> > > > > +             /* DSI MIPI calibration logic is a part of VI/CSI *=
+/
+> > > > > +             mipi: mipi@54080220 {
+> > > > > +                     compatible =3D "nvidia,tegra20-mipi";
+> > > > > +                     reg =3D <0x54080220 0x100>;
+> > > > > +                     clocks =3D <&tegra_car TEGRA20_CLK_VI>,
+> > > > > +                              <&tegra_car TEGRA20_CLK_CSI>;
+> > > > > +                     clock-names =3D "vi", "csi";
+> > > > > +                     #nvidia,mipi-calibrate-cells =3D <1>;
+> > > > > +             };
+> > > > > +
+> > > >=20
+> > > > As you say in the comment, MIPI calibration on Tegra20/30 is part o=
+f
+> > > > VI/CSI. We can't add a "mipi" device here since such a device doesn=
+'t
+> > > > exist in the hardware hierarchy. We already have the VI device in t=
+he
+> > > > device tree, so we need to use that.
+> > >=20
+> > > I understand your point, but embedding MIPI calibration logic into
+> > > VI/CSI driver will bring up another lever of unnecessary complexity
+> > > and excessive coding. While approach I have proposed preserves
+> > > separation between CSI and DSI and reuses already existing MIPI
+> > > calibration framework.
+> >=20
+> > We can consider different driver architectures to simplify things, but =
+the
+> > device tree has to conform to hardware. The host1x bus has no 'mipi'
+> > device on it so we can't put one in the device tree.
+>=20
+> I assume then placing mipi node as CSI or VI child would resolve your
+> concern?
 
-missing put for eth_node
+The device tree is not intended to follow software architecture. Having a=20
+separate device node implies some sort of bus / parent-child hierarchy in=20
+hardware. So it seems a little difficult to justify.
 
-> +		}
-> +
-> +		of_node_get(eth_node);
-> +
-> +		if (reg == 0 && !eth0_node) {
-> +			eth0_node = eth_node;
-> +			if (!of_device_is_available(eth0_node)) {
-> +				of_node_put(eth0_node);
-> +				eth0_node = NULL;
-> +			}
-> +		} else if (reg == 1 && !eth1_node) {
-> +			eth1_node = eth_node;
-> +			if (!of_device_is_available(eth1_node)) {
-> +				of_node_put(eth1_node);
-> +				eth1_node = NULL;
-> +			}
-> +		} else {
-> +			if (reg == 0 || reg == 1)
-> +				dev_err(dev, "duplicate port reg value: %d\n",
-> +					reg);
-> +			else
-> +				dev_err(dev, "invalid port reg value: %d\n",
-> +					reg);
-> +
-> +			of_node_put(eth_node);
-> +		}
-> +	}
--- 
-pw-bot: cr
+In this case, it seems to me that it would be pretty easy to add/partially=
+=20
+copy a small VI driver while integrating with the staging driver, based on =
+how=20
+simple its probe function is. And given that you're planning on adding CSI=
+=20
+support as well, utilizing the tegra-video driver seems like it's in the ca=
+rds=20
+anyway.
+
+Thanks,
+Mikko
+
+> > > > A driver for tegra20-vi already exists in
+> > > > staging/drivers/media/tegra-video. We should aim not to break it.
+> > > > Perhaps
+> > > > bring it out of staging? (At least partially, but then why not the
+> > > > whole
+> > > > thing.)
+> > >=20
+> > > It does not break VI/CSI, I have a WIP CSI implementation for
+> > > Tegra20/Tegra30 which I hope to submit soon.
+> >=20
+> > We have to use the tegra20-vi node as that matches hardware, and each n=
+ode
+> > can only be probed to one device, hence the issue.
+> >=20
+> > Great to see a CSI driver!
+> >=20
+> > Mikko
+> >=20
+> > > > Thanks,
+> > > > Mikko
+
+
+
+
 
