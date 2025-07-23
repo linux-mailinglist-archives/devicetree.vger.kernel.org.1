@@ -1,57 +1,62 @@
-Return-Path: <devicetree+bounces-198865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79AD9B0E9AB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:36:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A263B0E9BD
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:41:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 793D93A4D4E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 04:36:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 432E01C86D55
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 04:41:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244D71FAC34;
-	Wed, 23 Jul 2025 04:36:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA5A214812;
+	Wed, 23 Jul 2025 04:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u1XN4AoV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tfm/xn3h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00651862;
-	Wed, 23 Jul 2025 04:36:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B779210F4A;
+	Wed, 23 Jul 2025 04:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753245409; cv=none; b=QTANrlVqezXco80YgxPKV76an+Dsgj6rbz46jGzlB+BfMiVU3EsLVXJ/1d0rQ8Wg/CBEXX1rfGIQTV6kCrszrpvBr+yRIPsSl/Y9wT/6Gfr8x9KPQ3Ac2ySKQNeJrpb0x59zr9uGKVfGsutU0rIQSFDgzgRPrMemPhEAr8yJVvs=
+	t=1753245689; cv=none; b=Waz8+PfsZSUn6mGsODo5dyakylCIB1nmDDtCv0nEb79mXXB3/3erj/5AYAHsvAlASEKvgV8H8QRmP+norhbsMlNcXVHiYnAlbeBVaksQ7MfxGxshJp8q6yea7v2ce6TR8u9gOYs/Z4wy66Ldt6lZgDkbzozhJeav1BEen6NvQBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753245409; c=relaxed/simple;
-	bh=p74UQxL37h+qr7qVg6gSZ2EFfhn9ij8y2knb2vj/tS8=;
+	s=arc-20240116; t=1753245689; c=relaxed/simple;
+	bh=wwIY2xZCBjZZJz2L/BRVUGlcwY9EU7yshxeruIN26XA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HulFDjVHorO/uZRFvoU9TYDh/awHWojhYQy4x4aHtkImDvwYL4oaSqI1WjWSFN5Vbsg71M7Ou1L+wll8CeffFgHpv7n/nLRO1QpCMC5XIIySDFrlUV9FtOxEMNGV8oVFfcnx6gMao9hfbOQsu5wxQqhDiwMOUZb1uyZ/rmwewv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u1XN4AoV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9522DC4CEE7;
-	Wed, 23 Jul 2025 04:36:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VI96DVoq10dyA9eoWw1FuFsna0fBcnMa7QiOT7qu7YqxCzeRJrtHa2zXjqMflCNXuiuYxBm2XfCCYh4vUTCOVUs/8rxY6u2FAXMVxRm8nPNxyhdfHjbUwxAmEU3STQMfcRtce/huu02rpbnEu1P+uaTsp2KUkeNCNtKUx2QD1Ac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tfm/xn3h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02B89C4CEE7;
+	Wed, 23 Jul 2025 04:41:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753245408;
-	bh=p74UQxL37h+qr7qVg6gSZ2EFfhn9ij8y2knb2vj/tS8=;
+	s=k20201202; t=1753245689;
+	bh=wwIY2xZCBjZZJz2L/BRVUGlcwY9EU7yshxeruIN26XA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u1XN4AoV+19gzg+G2YbU+hc/5erT24ot/DxijuT5PquMvXxd0voSi4pYmNhYNYlay
-	 tf+D35Tmv1hZ9SLgaHfsHMi0D//H90Ex3RKRvJH1PyTpQuIbkbkMQBq05sJlF6ANMx
-	 24DT9D8dQEldXjTNMGs1qgOO9ztMvWu7BklOD6yol70cNf14MbdqLDFf05hQ1wufVL
-	 lvS3gKMBL3nTvdQbIxF4hl4tvSiXp4IwZBL2V+sCCkBo5GTFe1joPPXqfntqFnFhGR
-	 Kbugk5NGriYPyTexgIjzph/fXP7ywPccDyMzIapaH5XlwBc4DCKBDw5YeveLMNl1pt
-	 OtqntMnO4l1CQ==
-Date: Tue, 22 Jul 2025 23:36:47 -0500
+	b=Tfm/xn3hdAnkKPGn1yixfoAD3w2ta11qQNWO1UQMR9fQxllwA9CizXX4AyPUpNLvB
+	 CqYGcUdfZvt19Xrm60Y3PIIFlIwzJxVF9r9QP3lyyjtReoFcu34oVe1wUb1wklpHI7
+	 cRz98aBanVXpNA5PSR4H6RMSJ+SUWmBrOP7G6wOXr/qlEyYy6JbvCL7qiDhpTwjIL3
+	 /1cfQbmOvflo8j1d/vjauTXjotxqp1LBhITvewsoh4rW+qsfW/Y3u9S+XM0oO99WJX
+	 NBMTCnUb2QWjozmJLY38VgrzhStaraq7cREWOeJIJBSqMRkdiWuzRolv5b+F/DWCwt
+	 PFLSd+90PCVZw==
+Date: Tue, 22 Jul 2025 23:41:28 -0500
 From: Rob Herring <robh@kernel.org>
-To: Erik Beck <xunil@tahomasoft.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2 v2a]: New board support,LinkStar-H68k-1432v1 (RK3568)
-Message-ID: <20250723043647.GA1201956-robh@kernel.org>
-References: <20250721201640.233818-1-xunil@tahomasoft.com>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: clock: spacemit: CLK_SSPA_I2S_BCLK
+ for SSPA
+Message-ID: <20250723044128.GA1207874-robh@kernel.org>
+References: <20250722-k1-clk-i2s-v2-0-2f8edfe3dab4@linux.spacemit.com>
+ <20250722-k1-clk-i2s-v2-2-2f8edfe3dab4@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,36 +65,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250721201640.233818-1-xunil@tahomasoft.com>
+In-Reply-To: <20250722-k1-clk-i2s-v2-2-2f8edfe3dab4@linux.spacemit.com>
 
-On Mon, Jul 21, 2025 at 04:16:37PM -0400, Erik Beck wrote:
-> Signed-off-by: Erik Beck <xunil@tahomasoft.com>
-
-The threading of your emails is messed up. This is the only one in the 
-thread. You need a commit messsage. Perhaps it can explain about this 
-device/board some.
-
+On Tue, Jul 22, 2025 at 03:36:31PM +0800, Troy Mitchell wrote:
+> This patch adds macro definitions: SSPAx_I2S_BCLK,
+> to introduce a dummy gate for i2s_bclk.
+> 
+> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  include/dt-bindings/clock/spacemit,k1-syscon.h | 114 +++++++++++++------------
+>  1 file changed, 58 insertions(+), 56 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 5772d905f390..7f3904b69293 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -1109,6 +1109,11 @@ properties:
->            - const: rockchip,rk3588-toybrick-x0
->            - const: rockchip,rk3588
->  
-> +      - description: Seeed LinkStar H68K-1432v1 RK3568
-> +        items:
-> +          - const: seeed,rk3568-linkstar-h68k-1432v1
-> +          - const: rockchip,rk3568
-> +
->        - description: Sinovoip RK3308 Banana Pi P2 Pro
->          items:
->            - const: sinovoip,rk3308-bpi-p2pro
-> -- 
-> 2.43.0
-> 
+> diff --git a/include/dt-bindings/clock/spacemit,k1-syscon.h b/include/dt-bindings/clock/spacemit,k1-syscon.h
+> index 35968ae98246609c889eb4a7d08b4ff7360de53b..6914ccf5be45a1071d5b6eac354cacb67888e00c 100644
+> --- a/include/dt-bindings/clock/spacemit,k1-syscon.h
+> +++ b/include/dt-bindings/clock/spacemit,k1-syscon.h
+> @@ -123,62 +123,64 @@
+>  #define CLK_TIMERS2		41
+>  #define CLK_AIB			42
+>  #define CLK_ONEWIRE		43
+> -#define CLK_SSPA0		44
+> -#define CLK_SSPA1		45
+
+> +#define CLK_SSPA0		46
+> +#define CLK_SSPA1		47
+
+Uh, no. You can't re-number things. This is an ABI and you just broke 
+it.
+
+Rob
 
