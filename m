@@ -1,110 +1,130 @@
-Return-Path: <devicetree+bounces-199089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0255B0F43E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:40:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 315F8B0F447
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:42:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 831641C80F7D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 13:41:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC3403A5AC5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 13:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04E842E7198;
-	Wed, 23 Jul 2025 13:40:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6142F2E7BD9;
+	Wed, 23 Jul 2025 13:41:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PmuG7qTl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A59AF8F58;
-	Wed, 23 Jul 2025 13:40:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FBB8F58;
+	Wed, 23 Jul 2025 13:41:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753278038; cv=none; b=Q9f7o+1nEHKTjAOFqZc0nYJkXOITxiDM+RR51N39VYAgE3gK3vgzxCOizvcgoBo1uPDScUQuQYHI+vxk66NX3G6ITE0+vWcWHaZCvZJpHLJCUo1/rM73VV9zPItxzYC4snJgcVjY86KNCI66dGYllfRxQCASPtgfgdFu2EObc6E=
+	t=1753278110; cv=none; b=HpYv5UkPUkYYvsZmzS+ivwf5zKK1iSryVEdfe4B78wTXI11ofH3qPC2x/71Vq9iIklG0G+ZKsWzQ70t10nKSb00QzSyh34qiLgkqaMiY7iLRRi1LlNWj8Eq340FPgq/BUyRnc0CDHgEd2xq8ZT8jOcT7wtKMmUTVIzjYVA+OwKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753278038; c=relaxed/simple;
-	bh=HNggllkUrnhj86EnsA0uyQ9qxt6zMSkV0XvPDFphXh4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=urRQCUbiU2m5KLa5p1qIjdArteDwzwOyNxkAP4ZRyJHH6TqXiFwRFPguwD6aERrFsTLIfB5IN+2dwTOdVh3LAhYd4oElPJrly+NUBf8ERWTuYjxdskB5DeMfA3IUYbn7055BV7VmrMrgxdz1XKkZyzVhM1yJfL8abSIZQ/mkzVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.214.181])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1d028433b;
-	Wed, 23 Jul 2025 21:40:24 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: knaerzche@gmail.com
-Cc: amadeus@jmu.edu.cn,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
+	s=arc-20240116; t=1753278110; c=relaxed/simple;
+	bh=zxxC/wQlJmLxLa47Q7NNudHjnXvG/vCvKPONP/39QCg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O9XLCCby8Zb0AdDah6bPznl6pd84WwpjTwHlf2AM6/YDb8zoS8j9FsKeFS+iTIj7wMR/luRDVlKklgFGKYIEPy72/09HpGdN8LUWL84nNA06sGTOhC03j32YPAybqlX1XePnrbJvn8k9dGrRlCLLV0wik4yhtfNuE4GFI50lf9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PmuG7qTl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83DD9C4CEE7;
+	Wed, 23 Jul 2025 13:41:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753278109;
+	bh=zxxC/wQlJmLxLa47Q7NNudHjnXvG/vCvKPONP/39QCg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PmuG7qTl4sg7/QMBKgyBmArSjY7MW6zMzETCIkWyLdi81B49I4VHdhuWfDtD85keA
+	 s1bLp3unFlREP9Un4fUUX5JziSZMKwf4Hw/KgMn4VmYohw3DYwp/XXVUfyBh5wkyD3
+	 R09TNEfWqkjGMY/LeDVi0f9DYMrxS2enzACUqqbvhnTzVcHNryjALifb57fyVeXAHb
+	 L1ILoKBkyV+Sg2NQ8JbJ+iBlFG6RrkLTutCNyS6FMTUcZyOmERe66AVfkM7t7YxQvS
+	 J5Dx9ktAMD/94OEX5E4E6anz65xzMbxXPuCU2irBMH4pS5JuXICjJt5QYIrsV2r6ZK
+	 GQzPzDIu1LfKg==
+Date: Wed, 23 Jul 2025 08:41:48 -0500
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>
+Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Gatien Chevallier <gatien.chevallier@foss.st.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Le Goffic <legoffic.clement@gmail.com>,
+	Julius Werner <jwerner@chromium.org>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	ziyao@disroot.org
-Subject: Re: [PATCH v3 0/6] arm64: dts: rockchip: Add ROCK 2A/2F, Sige1 and NanoPi Zero2
-Date: Wed, 23 Jul 2025 21:40:19 +0800
-Message-Id: <20250723134019.1076352-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <6d93c92d-2bba-4247-960d-5f2e5e12b594@gmail.com>
-References: <6d93c92d-2bba-4247-960d-5f2e5e12b594@gmail.com>
+	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v4 02/20] dt-bindings: stm32: stm32mp25: add
+ `access-controller-cell` property
+Message-ID: <20250723134148.GA2136293-robh@kernel.org>
+References: <20250723-ddrperfm-upstream-v4-0-1aa53ca319f4@foss.st.com>
+ <20250723-ddrperfm-upstream-v4-2-1aa53ca319f4@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDHR8eVh8dGh9DGUxITkwdHVYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVU
-	tZBg++
-X-HM-Tid: 0a9837838c6c03a2kunm45ceffd2fb6d7
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NhA6ATo4OTEdSTIsTCwhCw8Z
-	KBQaFDRVSlVKTE5ISUxDS0lOTEhCVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	QlVKSUlVSUpPVUpDSllXWQgBWUFKTEJMNwY+
+In-Reply-To: <20250723-ddrperfm-upstream-v4-2-1aa53ca319f4@foss.st.com>
 
-Hi,
+On Wed, Jul 23, 2025 at 03:05:46PM +0200, Clément Le Goffic wrote:
+> RCC is able to check the availability of a clock.
+> Allow to query the RCC with a firewall ID.
 
-> Nope.
->
-> Are you really questioning my picture? Ridiculous ... see [0]
-
-No, I mean some boards of this model have SoC silkscreen RK3528 and
-others have RK3528A. The same is true for another Hinlink H28K SBC.
-
-> I'm sort of impressed on with which conviction you continue to claim
-> plain wrong things: [1], [2], [3].
-
-If you spend a few minutes running mainline u-boot or BSP kernel
-on your RK3528 board before blaming me:
-
-BL31:
-INFO:    rk_otp_init finish!
-INFO:    RK3528 SoC (0x101)
-
-mainline u-boot:
-------
-U-Boot 2025.07-...
-
-Model: Generic RK3528
-SoC:   RK3528A
-------
-
-BSP kernel:
-[    0.768514] rockchip-cpuinfo cpuinfo: SoC            : 35281000
-[    0.768990] rockchip-cpuinfo cpuinfo: Serial         : ...
-
-> I'm fine if upstream decides not to care. But it is and remains wrong
-> to claim that the other version does not exist
-
-Unless Rockchip says they fused the wrong OTP during production.
-Regardless of the SoC silkscreen, the chip type on OTP is the same,
-so how does Rockchip distinguish these chips?
-
---
-2.25.1
-
-
+The subject is wrong. There is no such "access-controller-cell" 
+property.
+> 
+> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+> ---
+>  Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
+> index 88e52f10d1ec..4d471e3d89bc 100644
+> --- a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
+> @@ -31,6 +31,11 @@ properties:
+>    '#reset-cells':
+>      const: 1
+>  
+> +  '#access-controller-cells':
+> +    const: 1
+> +    description:
+> +      Contains the firewall ID associated to the peripheral.
+> +
+>    clocks:
+>      items:
+>        - description: CK_SCMI_HSE High Speed External oscillator (8 to 48 MHz)
+> @@ -123,6 +128,7 @@ required:
+>    - reg
+>    - '#clock-cells'
+>    - '#reset-cells'
+> +  - '#access-controller-cells'
+>    - clocks
+>  
+>  additionalProperties: false
+> @@ -136,6 +142,7 @@ examples:
+>          reg = <0x44200000 0x10000>;
+>          #clock-cells = <1>;
+>          #reset-cells = <1>;
+> +        #access-controller-cells = <1>;
+>          clocks =  <&scmi_clk CK_SCMI_HSE>,
+>                    <&scmi_clk CK_SCMI_HSI>,
+>                    <&scmi_clk CK_SCMI_MSI>,
+> 
+> -- 
+> 2.43.0
+> 
 
