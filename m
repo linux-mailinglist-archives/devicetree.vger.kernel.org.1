@@ -1,117 +1,159 @@
-Return-Path: <devicetree+bounces-199119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 718D2B0F774
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 17:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9629CB0F7C0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 18:04:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64F783B3648
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:50:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E6AAAA0312
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:04:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C3C7189B84;
-	Wed, 23 Jul 2025 15:50:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DFBC1EDA02;
+	Wed, 23 Jul 2025 16:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SmBKNNWa"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kju2Vkh5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A243BB48;
-	Wed, 23 Jul 2025 15:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1B01E990E
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 16:04:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753285831; cv=none; b=BZeZyF7kv7+qlfnQQSZAGhIgs95My/Pl8M6MHgV584SQEudZGmz7PeAGJDyoo6hP6QqWWswpM/6SldR/g0KGOcs+R8ITO1XKPH+rmsh+jldYgdVnObPwnLrLcO6CI/edwQojO+3M8AjhkF8ZyTXxpEFDkRbSfF0zij//JtLh0+0=
+	t=1753286657; cv=none; b=lpEFpudTqP4qF8l8BIF0V+xtY2ocOxv5NUdnO6YphYU3D0nWC/+SSJrym0VVUlgtZ//+7GmsHVr4cTPUjmJ2O33dImj4y07KkwcrGeFgtRUoIha52XB09NdCL+eYQ0jUsg/WrOx0nColIrzJRbf1WgRsbR5D1GlFRWxJzLEWzQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753285831; c=relaxed/simple;
-	bh=q0RdIwl2onvcmCTOyNGzyc8T7XKOzlJKJ3pq4M0YgrQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EUpr3FPCUE81IWvx14tBI3q6IeiLJe4gkKqOQGKlf+yq3DwKA+eYfOorM116DmdegKYZOqtgmMfGqOL91NOYMffT5+wF6+lGD6kHqaBmg5PjTH2xWEucZM+a7dTE5zU4BoTAK4WqjBdfFohlk6xFstad/mPCka8pYgnHBW103Ww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SmBKNNWa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51412C4CEE7;
-	Wed, 23 Jul 2025 15:50:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753285830;
-	bh=q0RdIwl2onvcmCTOyNGzyc8T7XKOzlJKJ3pq4M0YgrQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=SmBKNNWav95G3vsgJvAXo6iiufNuKUnjGCOlLlJ6awlSazcT+GVpf/l5k87yZbNFn
-	 K3w14Y242PXRz3nw78+h6Bohl6wG5U54VpWGUqdcp902wpdo/m8CZ9QcdbAXqoUkC/
-	 E88MH/T5icJwck0NvRSwhX42ciMp0O4yRqq3ubK7dtAfV0yROA1MpfN0wepLgWQH2p
-	 pyIZKgqzA8UmZShrY5ukSSCQS83TLa3qcZKjZhtLj10JUjMMS6eHuhtoAd7S5qsi3k
-	 g6OXWs2k+9kN0XPOPyAYmdCVHrVdoerUCnEJG5Zsw9QA9QM5ruBrYV7+OvfkZZJipn
-	 G9io2fsDkj9ZA==
-Date: Wed, 23 Jul 2025 16:50:21 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Yao Zi <ziyao@disroot.org>, Chukun Pan <amadeus@jmu.edu.cn>,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] dt-bindings: iio: adc: rockchip-saradc: Allow
- use of a power-domain
-Message-ID: <20250723165021.4e2dd324@jic23-huawei>
-In-Reply-To: <20250723085654.2273324-4-jonas@kwiboo.se>
-References: <20250723085654.2273324-1-jonas@kwiboo.se>
-	<20250723085654.2273324-4-jonas@kwiboo.se>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1753286657; c=relaxed/simple;
+	bh=KCfstuN77De2m94GHTvsNHvFZ1vdK9nOTEgDVUINVok=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=fcvxX0ti/1aYvinZXt70SSa5SJWXhJqoQ8qbOmzoPoKb2x3xUXrzn+81wDsnsHZHREH3Jiu0Ue0RGGZfUCaDT5vpUTBNaWsdEd9FjlPVOc3Nk9ZVQURR2D7QjnNHKAQceJMiECXQlIk016iwZWqm91m6ot6sqVYXaJjXceJBXTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kju2Vkh5; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56N9SGam016061
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 16:04:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1IVq+bSzc+i0gbcHvdWX5X0gFlHkos8QZkR6QJHMwvk=; b=kju2Vkh5qgJixjmy
+	0LuCVz/DmtBSHrsGDasQ2Tu4i4rfNXAg2XZijdJlxWiM0RpwLAZbVFKCm8Hoovgd
+	WyypJ2Tp2ECJ6/D1ZBIJHVqwaTsrmnVKfxO05S/8LVeJ0NmZJe+U7mjn8HyvKFW5
+	WcNqfS5NM8YhZeMkOp0DKg7PAe1X3OEvU2mHfm1mF6KDDKQijF22o/x9jptCNyUh
+	BOS1stNXo85wblzZy+glcyioFMYcaFb4KIcBZXUd5gJC3WFcJPxUA5DOEv/iR8ME
+	wjI4qeGDb7YbpAdubb2R/ukaMSlVLcn4TxEL7E+S9nP8vhm/uE+yAodgIFoYaY9w
+	wTDMiA==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48048vc5a7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 16:04:15 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7e350826d99so7298185a.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 09:04:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753286654; x=1753891454;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1IVq+bSzc+i0gbcHvdWX5X0gFlHkos8QZkR6QJHMwvk=;
+        b=akFOY+kjFOcFaTz1NW/K7WrKmMFvF3JnCLcYh2xXLJf8g1mzCw2W4k3X4e/k4MzD8q
+         4IxwhezxI89/Q1JOHXa/y9BOh3eE+8hxH9L+SWXbSZIuL6QFKKdg5gSjYQ9xUgN1164y
+         ktzGkPEyM0ztdaF/JLkLXPRyPcyxMQ68YDfIpxjudakL/5HH9VuHkZeW3uVcAMYh4XeY
+         5yNEau8nU9NkyjAKBwJbQm03uD6saHfR+l62qZXWINLQtF5447hQXQwTDcOiJ4vFjSI5
+         0sZ7wCKsSKd7AbR+OSV0kckRq5AyziXIa+x/QNBGiUtuxOqGNPXqFLOH95P5dCbO1QCa
+         xsyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW/PhNmW5lG/5BturiMmz1HmrzKisj8+zmPalH8g7R7VLq+kNkqUv/svOzKUNGF8eIJlPLQEnQ3szaf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPy+OcWKLF52Rl0ghLUDuvpIsqcGkZPLfSxcgdjDS3PjIFn9M5
+	Hw2YOEisj6LkVh2XPTBMB4yA48KnbcxplvrfS+NwSHlqFwNTOiuGUFVkDo9C1Lf8QWyJaM6v3jF
+	UNqtA18WM3ywT5QXUeK9UfoswQv0MycDYiv27j1qM4jtfd/EbiX3i5yavuVA+NERT
+X-Gm-Gg: ASbGncsrhqhYVaT2ezyNfRvfqLsfmF248tu7MJ+fi+DRzPKYLqRwTvC0qaPsY6LyhaU
+	eZ21tQE8XMB5J0wCpu1ZXGE/6NyYByyGSCVV4qd8LI89O1/vRnR3C0X1qUU3X3si7WduwSyHBmV
+	jf/hi9yjh90/lPZTWPFfs7Ddf6ZoZAsKeXAyWJIm8hGn0lRPg5cbO1dJIvFLbIPnNzP7O8Z5YyJ
+	2iIEIT0P7riNMVYGkXEMa+Sf9aJQPy14bi6wfdb4UCoyJe7im5ynunziHP/hxAFN4QrXqB2zA5d
+	CIC4a7fPpLACQ7SQTnHxoD6tCMSoy3yhlW4=
+X-Received: by 2002:a05:6214:1c86:b0:6fa:c81a:6231 with SMTP id 6a1803df08f44-707006aa843mr42537556d6.8.1753286653581;
+        Wed, 23 Jul 2025 09:04:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHhZaSVPPcM0H02S0SyrGlN2YH/RRRuvuVz7tS54TmJPI+kAWBGLQw4aW0+GxosM+D8oehJNQ==
+X-Received: by 2002:a05:6214:1c86:b0:6fa:c81a:6231 with SMTP id 6a1803df08f44-707006aa843mr42536996d6.8.1753286652887;
+        Wed, 23 Jul 2025 09:04:12 -0700 (PDT)
+Received: from [192.168.1.17] ([61.2.112.87])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-7051b8bc2dasm64468956d6.12.2025.07.23.09.04.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Jul 2025 09:04:12 -0700 (PDT)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+X-Google-Original-From: Manivannan Sadhasivam <mani@kernel.org>
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
+        lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com,
+        johan+linaro@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+        neil.armstrong@linaro.org, abel.vesa@linaro.org,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
+        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
+        Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+In-Reply-To: <20250718081718.390790-1-ziyue.zhang@oss.qualcomm.com>
+References: <20250718081718.390790-1-ziyue.zhang@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v5 0/4] pci: qcom: drop unrelated clock and
+ add link_down reset for sa8775p
+Message-Id: <175328664500.29282.12330427204137280127.b4-ty@kernel.org>
+Date: Wed, 23 Jul 2025 21:34:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
+X-Proofpoint-GUID: msdw9MkF7YMw7CycZ7lTambsj5EfHCnm
+X-Authority-Analysis: v=2.4 cv=SYL3duRu c=1 sm=1 tr=0 ts=688107ff cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=L2vWZV9GmkZVUxua0bORKQ==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=AxdmJqN1ex9b-t5leqYA:9
+ a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIzMDEzOCBTYWx0ZWRfXwtrkzh/4Yi7d
+ y0G2NW5Z4bam5UsY0QEmOYXRBjgUnuWGSDyov4iHhshdL3GtpuvPB2n0zoedF/EHWfiIDgKEObf
+ 0iWMAHWQC2LCVZl4gkZUafxW4iDgukIox7GxulcWqTLdw8IScc8MYItFydc62yRvtU/oVvcXUkO
+ D5Hm83ZjTUBq78BPXt1GrPkQhW1VdBNrhsnN8dkv7HnJJM6wcq1T9nburE2u+obug/aIfUkkYCe
+ KecEQjbibIMs+LJV8PVUK9hHJl3yZYN8vLfCHaA3VmqkJBzEQo89XMsZ/kHHoytXQCoL5/qoGcU
+ /LQ2XK3LXDUsmshJ2KU087xLdc7LqNTbzegz2VPwX2VIw/pc5MVONt+klxu767xxAJbGy4dOW9s
+ Wo94BFH+kb4AjQTEtgJ77YIOK840BR8ijUkD9bYt22FRqIyavSdCt/vahW3Ia4JKfEZYMAp4
+X-Proofpoint-ORIG-GUID: msdw9MkF7YMw7CycZ7lTambsj5EfHCnm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-23_02,2025-07-23_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 mlxscore=0 bulkscore=0 mlxlogscore=817
+ lowpriorityscore=0 phishscore=0 malwarescore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 adultscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507230138
 
-On Wed, 23 Jul 2025 08:56:45 +0000
-Jonas Karlman <jonas@kwiboo.se> wrote:
 
-> The SARADC controller in most Rockchip SoCs are part of power domains
-> that are always powered on, i.e. PD_BUS or PD_PERI. These always powered
-> on power domains have typically not been described in the device tree.
+On Fri, 18 Jul 2025 16:17:14 +0800, Ziyue Zhang wrote:
+> This series drop gcc_aux_clock in pcie phy, the pcie aux clock should
+> be gcc_phy_aux_clock. And sa8775p platform support link_down reset in
+> hardware, so add it for both pcie0 and pcie1 to provide a better user
+> experience.
 > 
-> Because these power domains have been left out of the device tree there
-> has not been any real need to properly describe the power domain of the
-> SARADC controller.
+> Have follwing changes:
+>   - Update pcie phy bindings for sa8775p.
+>   - Document link_down reset.
+>   - Remove aux clock from pcie phy.
+>   - Add link_down reset for pcie.
 > 
-> On RK3528 the SARADC controller is part of the PD_VPU power domain.
-> 
-> Add support to describe an optional power-domains for the SARADC
-> controller in Rockchip SoCs.
-> 
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-Applied to the testing branch of iio.git.
+> [...]
 
-I'll be rebasing on rc1 once available.
+Applied, thanks!
 
-Thanks,
+[2/4] dt-bindings: PCI: qcom,pcie-sa8775p: document link_down reset
+      commit: 10e7298dc0f14c52d9b5c52fb52558f567815b7c
 
-Jonathan
-
-> ---
-> v2: Update commit message
-> ---
->  Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-> index 41e0c56ef8e3..f776041fd08f 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-> @@ -47,6 +47,9 @@ properties:
->        - const: saradc
->        - const: apb_pclk
->  
-> +  power-domains:
-> +    maxItems: 1
-> +
->    resets:
->      maxItems: 1
->  
+Best regards,
+-- 
+Manivannan Sadhasivam <mani@kernel.org>
 
 
