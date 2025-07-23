@@ -1,125 +1,126 @@
-Return-Path: <devicetree+bounces-199105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3EEEB0F532
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:24:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3C08B0F54D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:30:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8691C583F80
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:24:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE5011893E96
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DF3C2EE27B;
-	Wed, 23 Jul 2025 14:24:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="g8TAycsk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A24D42E763B;
+	Wed, 23 Jul 2025 14:30:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 628D119CC3D;
-	Wed, 23 Jul 2025 14:24:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6111E24BC09;
+	Wed, 23 Jul 2025 14:30:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753280652; cv=none; b=OYmhCcSwqA7gvYPY+2ztQD0gSlTRavGqlMATVDp59K3lEdeiFgm1ZbkGTmWbeSctAwAOpjniPfJWHiHmNRCSGyA0RHVUsAfuAJwgAJgb/8++7XavFkwYHg2gS9gkpf5vpnHyRmlT75JVZvi4lXybZ2pdH/I4OMVt2ijCM3zVPAk=
+	t=1753281022; cv=none; b=U4XoWdLHn4u1ZOrrK+sbhcyKv9tIND0W/mSEL0BB29UtNeN9vm/PRr6+1eOpF3RL0VWDK6K3gWf5KKpyiYBA04tnCz9/CT8AX0uf+j7QvbrWkji7vj343jaF90mJ3FobO1MIuOAun6GC3TmDUEGlR6Y6BfnIbmHocJ7s7vYq2ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753280652; c=relaxed/simple;
-	bh=L9EA4XYDWWt7nuzahxqx5W5SRZ08rtg516cT2lVGNlE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=By+GBP6k1zeq3yWhzIZ6M5vIgvAGWyH4gWUJJ/j+CkhbQL46Fg7YYhljkCshSHw/BlpPSVj2kH23U9KY5qiL2TeGf6HpR+UhB/OH23WJGx5x9fxofJaa9wz9+pgKcm5EiRuXrPv/dtw3euoYnMyPwdcxxl2PoAy6QzBplgDJ7x0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=g8TAycsk; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=wGnkEZQrJ+KCotninbE6PxpnOQMilZmp9uMJbvlcMQ8=; b=g8TAycskRftknN7I5qk+Oh1vKa
-	XMC4Bjn7iTfccsiY/vnnITO0PQk7GPx6zLqJLGwhzTxL6ojmsFudhTCkxcPWwZUefUvfMXt+R8PBp
-	BUDjLcdZFuXBBGXSRzWF1jCV8F/TP/P6zPwioNQfXHGfuwfUx9PwuBmPesqPQ1gmisFU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1ueaNv-002b7y-9m; Wed, 23 Jul 2025 16:23:55 +0200
-Date: Wed, 23 Jul 2025 16:23:55 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	Tristram Ha <Tristram.Ha@microchip.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: document st,phy-wol
- property
-Message-ID: <9f00a6cf-c441-4b4c-84ca-5c41e6f0a9d9@lunn.ch>
-References: <faea23d5-9d5d-4fbb-9c6a-a7bc38c04866@kernel.org>
- <f5c4bb6d-4ff1-4dc1-9d27-3bb1e26437e3@foss.st.com>
- <e3c99bdb-649a-4652-9f34-19b902ba34c1@lunn.ch>
- <38278e2a-5a1b-4908-907e-7d45a08ea3b7@foss.st.com>
- <5b8608cb-1369-4638-9cda-1cf90412fc0f@lunn.ch>
- <383299bb-883c-43bf-a52a-64d7fda71064@foss.st.com>
- <2563a389-4e7c-4536-b956-476f98e24b37@lunn.ch>
- <aH_yiKJURZ80gFEv@shell.armlinux.org.uk>
- <ae31d10f-45cf-47c8-a717-bb27ba9b7fbe@lunn.ch>
- <aIAFKcJApcl5r7tL@shell.armlinux.org.uk>
+	s=arc-20240116; t=1753281022; c=relaxed/simple;
+	bh=AbZb5rI/gYo+qTcf+dpPtDgq68HPZ9t6Qo1QO26okX8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=petap0gwBhMPRuX9HWI05kVJtPx28p3msVl69a1IyDOgnf6agK8HLrzIFUHa/bNlc29bu6/ZJLqgoeYXvY+ntbKvr/DevPaMv2bVF7YpTLowaUitlkXC4AEGhmTK80eqAi32vXH7CaiOHsu2Sz/YqFGqv02GbciIQsP/i43UOZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.214.181])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1d03a2599;
+	Wed, 23 Jul 2025 22:30:14 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: jonas@kwiboo.se
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	kishon@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	robh@kernel.org,
+	vkoul@kernel.org,
+	ziyao@disroot.org
+Subject: Re: [PATCH 07/11] arm64: dts: rockchip: Add USB nodes for RK3528
+Date: Wed, 23 Jul 2025 22:30:06 +0800
+Message-Id: <20250723143006.1083489-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250723122323.2344916-8-jonas@kwiboo.se>
+References: <20250723122323.2344916-8-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aIAFKcJApcl5r7tL@shell.armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaThpCVh1JGRlKGU0dSx5LTlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVU
+	tZBg++
+X-HM-Tid: 0a9837b12a7003a2kunm2a36e8dcff846
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6P006STo4ODEpCDEODBk3HUIt
+	CQhPChpVSlVKTE5ISUNKS0pOTkhMVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpPVUpDSllXWQgBWUFJTENJNwY+
 
-> We can't retrofit such detection into PHY drivers - if we do so, we'll
-> break WoL on lots of boards (we'd need to e.g. describe PMEB in DT for
-> RTL8211F PHYs. While we can add it, if a newer kernel that expects
-> PMEB to be described to allow WoL is run with an older DT, then that
-> will be a regression.) Thus, I don't see how we could retrofit PHY
-> WoL support detection to MAC drivers.
+Hi,
 
-WoL is a mess. I wounder on how many boards it actually works
-correctly? How often is it tested?
+> The DWC3 node does not contain any default phys because out of current
+> and pending supported boards only one board, ROCK 2A, can use USB3.
+> Remaining boards use the Naneng Combo PHY for PCIe instead of USB3.
 
-I actually think this is similar to pause and EEE. Those were also a
-mess, and mostly wrongly implemented. The solution to that was to take
-as much as possible out of the driver and put it into the core,
-phylink.
+I have other RK3528 boards with USB3 and can test this in a few days.
+Or do you think that usb3-phy should be added in the dts of the device?
 
-We probably want a similar solution. The MAC driver indicates its WoL
-capabilities to phylink. The PHY driver indicates its capabilities to
-phylink. phylink implements all the business logic, and just tells the
-PHY what it should enable, and stay awake. phylink tells the MAC what
-is should enable, and that it should stay awake.
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> index 85bc3f5aa2c7..3e51a3f51e05 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> @@ -243,6 +243,29 @@ soc {
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> 
+> +		usb_host0_xhci: usb@fe500000 {
+> +			compatible = "rockchip,rk3528-dwc3", "snps,dwc3";
+> +			reg = <0x0 0xfe500000 0x0 0x400000>;
+> +			clocks = <&cru CLK_REF_USB3OTG>,
+> +				 <&cru CLK_SUSPEND_USB3OTG>,
+> +				 <&cru ACLK_USB3OTG>;
+> +			clock-names = "ref_clk", "suspend_clk", "bus_clk";
+> +			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
+> +			power-domains = <&power RK3528_PD_VPU>;
+> +			resets = <&cru SRST_A_USB3OTG>;
+> +			dr_mode = "otg";
+> +			phy_type = "utmi_wide";
+> +			snps,dis_enblslpm_quirk;
+> +			snps,dis-del-phy-power-chg-quirk;
+> +			snps,dis-tx-ipgap-linecheck-quirk;
+> +			snps,dis-u1-entry-quirk;
+> +			snps,dis-u2-entry-quirk;
+> +			snps,dis-u2-freeclk-exists-quirk;
+> +			snps,parkmode-disable-hs-quirk;
+> +			snps,parkmode-disable-ss-quirk;
 
-Is this going to happen? Given Russell limited availability, i guess
-not. It needs somebody else to step up and take this on. Are we going
-to break working systems? Probably. But given how broken this is
-overall, how much should we actually care? We can just fix up systems
-as they are reported broken.
+Maybe "snps,dis_u2_susphy_quirk" is needed?
+Downstream kernels add this on USB2.0 only devices:
+https://github.com/rockchip-linux/kernel/blob/develop-5.10/arch/arm64/boot/dts/rockchip/rk3528-demo.dtsi#L474
 
-I also think WoL, pause and EEE is a space we should have more tests
-for. To fully test WoL and pause you need a link partner, but i
-suspect you can do some basic API tests without one. WoL you
-definitely need a link partner. So this makes testing a bit more
-difficult. But that should not stop the community from writing such
-tests and making them available for developers to use.
+> +		u2phy: usb2phy@ffdf0000 {
+> +			u2phy_otg: otg-port {
+> +			u2phy_host: host-port {
 
-	Andrew
+I think it would be better to call it usb2phy, usb2phy0_otg and usb2phy0_host?
+In this way, we can put these USB nodes close together in the device's dts.
+
+--
+2.25.1
+
+
 
