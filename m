@@ -1,281 +1,270 @@
-Return-Path: <devicetree+bounces-198824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5895BB0E806
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 03:26:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13350B0E82E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 03:36:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7804056620C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 01:26:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BBD11C28463
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 01:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE1A170A26;
-	Wed, 23 Jul 2025 01:26:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0E491607AC;
+	Wed, 23 Jul 2025 01:36:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ls86somY"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="IUMEW2OP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2057.outbound.protection.outlook.com [40.107.244.57])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A7A213AD05
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 01:26:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753233994; cv=none; b=iJWmniPQb/jiDchvJyASfBvB2fPMZDOG0v96qrHHorW/CVyh6C/XpgU6Y2SHImPclyO0okU76ktw0dcdNkb38OKMt6eKW7P7ONTXw/BZwt8BQYezPHvZYAXVEJPACxQFplcmeq7vAM4M3/2w4JhIunMYGMj2NJfWcuWI9ooKW8A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753233994; c=relaxed/simple;
-	bh=hCjUuYTsR7TV0F+xdfDYAb9YgyUx+t6qw2BHAPvmPQY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZIKTMvBcjUsRJA7RnyUBFsA6tHxJv3hsH2eaB87E0i0XArpwMTGMvcOkcOUhQcFalM5WV2gYnS13Wujq37EaNuHGIlInTB+0wpOP/qYEhUW0/6w1vAEcUrMBY/Bjs4J3Vmh+l2DpeRdz+T0e5OgxMODXYpVph9GWNv3NQs+wwZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ls86somY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56MMOP0g030783
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 01:26:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GytfrVle3ILQWADnYNTelXzFoz+GMb/Nzm6XgJiXcyU=; b=Ls86somYWdbDbnpn
-	QFBqJejSiZyNFrpOvedFjpcyQqspMCymEvQ5Zv8uoTH+yBJvm0jmmN8kTJyruisR
-	nTj9JuP/gq6oRLSt6XlJLMBsWstGFGSKZny/QYpcbBR1S860caBGkuwFKNibNNZZ
-	Ajadv6Gkm90+SWHF4xwQYrxUAPFpqW70N1MRWsXdZ6c07SR6xq6n/WWcCB1FrFdr
-	eJJ6/Ju9EWsAQOxay3osysmhFV2HaA61oXj5Zi7Bd+xVzisB7YWmSqKUMhbCRkQ8
-	kP0zJXZs8ce/hQpDmQ2oosEp83Ac+2UYxNqyIiOQVw3i9ciME22renbn5byK3r6r
-	0dAZkg==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48048s3dt9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 01:26:30 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b31df10dfadso4205982a12.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 18:26:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753233990; x=1753838790;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GytfrVle3ILQWADnYNTelXzFoz+GMb/Nzm6XgJiXcyU=;
-        b=pqSjtzJuRnkVpDfFEiOl9Ea+H+4517Kjs2gV/HlncIKykkcgneIHtn8zmSXDngqOCf
-         3//GCX1zay+Q/OE5XseAouhJa4KQJZhUc5zqlqIDogDGI6fWywxBzQpOrVb7Ij5Zk+q7
-         VNyLbuMIVSceSnGQ6gaJAHt/yJHCD+dxTFyLlMSkynrKo2h4zuR2p38E6+buKnu1OihX
-         oXq92kTY1HLWGmPG2JowuQvitmrN3bwgitqsgGW0fuREUXafH7jQI3GbIKC8kAHlngJh
-         QESdmigdX0r8m/h1ZTz25QSPlPa6y0yvqNGMFiT4ijI+GohJtc9ItzJHXynxi1gvuMos
-         aGnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXM4tt/xQ4TvjN054xtLiuc4W7+heU8vE3O+/DmVn4wVFa6TWwoxX/l9uMxRoQarZyZUqfIIIzL6PN8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5AZ6hjzdfSPo22ODltcBe90iw04l9iG2+PXub69hTXi4vM0qF
-	EhiI2s6GUOx1ILM2pFRMYbUhoW1H4gXo5g5x0tib5lugNzy+yRv04JxzWLeaHH0NGImNUJ/VzH2
-	4POHhm4dzaB/jDnH8/cEMF4UpYv4661t0HPC51al4zY2iiOu9uSDex5wizIWCouJ6
-X-Gm-Gg: ASbGnctnhVMKB+AJzI2M9OB/+BL0FjOcFybJI0XjNATJPoOmU5n9lNNRxaVV+OXXOUX
-	X5BALB9wpaIyJxf2ishqYUAzWT4FYGC7L6DgQ6BeolNN8Vh4Yqerfurvc/DOwIo8EjXJW69Bv5/
-	l6rtBkF55qb6r70pzrwrzgpBmEyVjGzjbNSJ+bZKaSQnauAfcYX4fV05njmD8I543Lt5jaWn3G2
-	giMPHtgU/CsIDjQ5RcpFuaUnqXlPrzqYFU15pRYdMT9gaz25n6qgb5pqNXsZaUyzwP0frJUEwaA
-	BBdr6XOvlJSOW61eWue/fzeNru99o9pCPnbnLbupvrIHiwrcTWeuKKsF5yAzrh7BMjTHrgHtJAg
-	pnrfxWHimmdAaKwnp0hc1VWo=
-X-Received: by 2002:a17:90b:5448:b0:312:25dd:1c86 with SMTP id 98e67ed59e1d1-31e507c38f0mr1929461a91.18.1753233989544;
-        Tue, 22 Jul 2025 18:26:29 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH4PXhrm5s8sQWNmDBwncqbspLsfxjBdqDsY1USrfL+suPo/bCsRTBTtIyqK2QcU0YlP/HD1A==
-X-Received: by 2002:a17:90b:5448:b0:312:25dd:1c86 with SMTP id 98e67ed59e1d1-31e507c38f0mr1929412a91.18.1753233988997;
-        Tue, 22 Jul 2025 18:26:28 -0700 (PDT)
-Received: from [10.133.33.27] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31e519e16cfsm322575a91.12.2025.07.22.18.26.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Jul 2025 18:26:28 -0700 (PDT)
-Message-ID: <4752510e-dea8-4258-a7c2-1d8e1b50384d@oss.qualcomm.com>
-Date: Wed, 23 Jul 2025 09:26:24 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C5665464E;
+	Wed, 23 Jul 2025 01:36:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753234596; cv=fail; b=tN45GtzoO9sVN4hh+JTC+SM5J+pPTd/HAxQq+5uNtwaNIrBvd67tgYfTYa+dVBw2MzPFNybcmkYOsAm6awN3W9Uw/PNklF1WSNN2gH9QJb8zmk3Cg4Hs1JkUNAEgZ0s0521jeMiwPYp1ri3+GZ59GkrXY69eKsxyz2wGPG7xc0U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753234596; c=relaxed/simple;
+	bh=OgiWAnEWvpKuHFUJxP45gwL1KAGWb5NOXE/z1uPbZ38=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=A7oc6qV2NzrQfwG6aE+66NpRTb48+vhoeB/Bm3xSmPRLv5v0PNtW04SOWj7C+qmKN6UYXXBtNN7b2+frKEsuRxLfAQPaxSY8/uMJcPbybicfI4Oi5FZyhONb3xE5x050maXuWkjDXu0mJ8HcEPHMKzupT/NyMHMADHL+BM6Ukj0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=IUMEW2OP; arc=fail smtp.client-ip=40.107.244.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TFm2EdAq0RFRjoqm1YnpsG+I49qw2lGtMqZeXabCq/O+mQ4c1gLao3MuO/j0Emw0dFffXeD4mW6nRYaAgZR4Yg06pCdZN6EsUieu0Noyha9VTT9yzWpl2hHBTRdxnB/kqh1eaSfebfEt9bvdN1586HZnfLnntTWXmNHAcSmKJWxt53LsAm3pUqsE6HVaBCapuYp3CMoDAO+PeeGWXnGEVhdsmptLV4geEBq8xtLYCs4BBwO8Vmf25C3qE7Aj686lVRMVmxz0C41+eL2H9pUsuIJBQ4tqNvZi5aBwCoRaSHmD1Cw5/IwBaUr1GWlWtl0pT4iw/RrjTCh2cBEkCtmigA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nDunGlm+eMjJYLj6KyL6d3Jo/5Kd/P3/A03H5y4A0XI=;
+ b=Q6sdY2kMSl/2E/auVZ28E7fcKvruChHxKJpTMRFPKmgm2xvfh7lzsektrKngl16qcYFfbhu6i1ockmuGL6wvr2DO39lG3Il34qC9ooIpWyprw0j/bt2AJhgqHKeOxqxPcSQCB1dvZUzNLohCfiqfB32Y9VPV1URlBPHMUF4nr7DrIFr/dkvhEsMmoJbBzy9JNfDH/9S0jRn5efGFregu/eku7kUnk5016oeLAJfc9L/REou7t0dlNPw4Gb+DvdYuyOsXPzlvt2VmzXbSgpjo3NYxsi8tltgeB0pNao3NuEFdB5nPF2lrLj0y2II6Li/9RMLHuAhKweDyus5oheBZnA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nDunGlm+eMjJYLj6KyL6d3Jo/5Kd/P3/A03H5y4A0XI=;
+ b=IUMEW2OPujnuojjKKt5zA3lGUzp+UDG90ghS8RlF8TCAK+jePvGE0QI7KBB3YEtFLnKPMfDePbeWGXZj8XjmFIllsrobRAiw6c3o/bIdGu2/xa7AjKw7xk1N58hQa0PdrIm3qU+wo5+trBoZxDyGmi2EsAl9qiY12KjjkdZhfhxv99gj0gJgtjrBlD1biBcJXJWMsvZbEhY4tg4aFqLSNEtHnsi1Fejig/5IC9PvK1iliYo6ZaMg/mZrXUIT9XwGwPTobgXBny+azL8gRts/vtFViEUOXuiqgjTPTA/hc1XeVuGDvWyeaK1vgi21hdlnaE1IGZ5yXpOp0ZcIupB6Gg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY5PR12MB6478.namprd12.prod.outlook.com (2603:10b6:930:35::19)
+ by SA3PR12MB8764.namprd12.prod.outlook.com (2603:10b6:806:317::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Wed, 23 Jul
+ 2025 01:36:30 +0000
+Received: from CY5PR12MB6478.namprd12.prod.outlook.com
+ ([fe80::35dd:2a5e:d28d:55e7]) by CY5PR12MB6478.namprd12.prod.outlook.com
+ ([fe80::35dd:2a5e:d28d:55e7%4]) with mapi id 15.20.8922.028; Wed, 23 Jul 2025
+ 01:36:30 +0000
+From: Mikko Perttunen <mperttunen@nvidia.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Prashant Gaikwad <pgaikwad@nvidia.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Dmitry Osipenko <digetx@gmail.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject:
+ Re: [PATCH v1 3/5] gpu/drm: host1x: mipi: add Tegra20/Tegra30 MIPI
+ calibration logic
+Date: Wed, 23 Jul 2025 10:36:22 +0900
+Message-ID: <4158240.taCxCBeP46@senjougahara>
+In-Reply-To:
+ <CAPVz0n1TxOb_hKgKYTdeJ=Ka0STqfiHLtwAv+Ws=vtq=G-MAow@mail.gmail.com>
+References:
+ <20250717142139.57621-1-clamor95@gmail.com> <5474709.5fSG56mABF@senjougahara>
+ <CAPVz0n1TxOb_hKgKYTdeJ=Ka0STqfiHLtwAv+Ws=vtq=G-MAow@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ClientProxiedBy: SI2PR02CA0045.apcprd02.prod.outlook.com
+ (2603:1096:4:196::21) To CY5PR12MB6478.namprd12.prod.outlook.com
+ (2603:10b6:930:35::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 RESEND 00/10] coresight: ctcu: Enable byte-cntr
- function for TMC ETR
-To: Mike Leach <mike.leach@linaro.org>, Jie Gan <jie.gan@oss.qualcomm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Mao Jinlong <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250714063109.591-1-jie.gan@oss.qualcomm.com>
- <CAJ9a7ViCf=_wmLX93TzgT82vjZvbKj3XLbr8takyfC1niQESsg@mail.gmail.com>
-Content-Language: en-US
-From: Jie Gan <jie.gan@oss.qualcomm.com>
-In-Reply-To: <CAJ9a7ViCf=_wmLX93TzgT82vjZvbKj3XLbr8takyfC1niQESsg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIzMDAxMCBTYWx0ZWRfX7RFd3fFx+DEc
- jNo60ViRoHSrk1XBBtVF+PApgMu+4JHMzvK2O/Old+ZBRxpgECVHCFMfaUcnSqNx15ggDuFeLa4
- nwGxW3akHBARAA0tAAwYZ9++loTKmJibSAPGtFovAk6AHMnTTlwMlQ4tukihzRnlpRWb9SPbhuk
- ceuYT1hXDA3ZgtQbkEEnFDOH6RjttvRGFEw+jUamWNtdkb03hXkrOjQdT4Gm6lrAy6op2o+a4/P
- pdNtwHfTUEKjCFizPPhzKG1CAZ3bxIoouGU1Gw4c2D1oXkgmzRRMG7DOPrfYntwQmaAYhO8HMWk
- JvWC0MEogyJkfy2y+8WpeLp1qL+NjcvrrYlkt95PTdVbxQG2qNPsNJNJ2JMDE0GAzdSUtSbcYEo
- PDceA8vzMC9Uwq/AEHXPk+FG8CENfYoPvvCFSlSC1+Ca0/j9twHTwL03yQ9FeVJgd6URsfyY
-X-Proofpoint-ORIG-GUID: KlHIaD31AY7g6CRV3_6EZTFEq1FH75cA
-X-Proofpoint-GUID: KlHIaD31AY7g6CRV3_6EZTFEq1FH75cA
-X-Authority-Analysis: v=2.4 cv=OPUn3TaB c=1 sm=1 tr=0 ts=68803a46 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=HGROPD1eyzCyC6u9zXUA:9 a=QEXdDO2ut3YA:10
- a=x9snwWr2DeNwDh03kgHS:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-22_04,2025-07-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1015 mlxlogscore=999 lowpriorityscore=0 suspectscore=0
- spamscore=0 mlxscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- malwarescore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507230010
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR12MB6478:EE_|SA3PR12MB8764:EE_
+X-MS-Office365-Filtering-Correlation-Id: aa8c47ad-6af3-4368-71de-08ddc9895920
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|7416014|10070799003|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?VTNYZmdtK0pZczl4akY2ZGNiSWlpSUlwRjJxVnc1czBuM3AvRE9OaUJMWVdL?=
+ =?utf-8?B?K2JNRGJFSnpXRWRJNm5tcUxaWEtabUNZS1F6eUtFZjRSVUxWT0x0MmdVZUxv?=
+ =?utf-8?B?WVhIQlFTdTQvTWh3R2ZyWlBkbjdOaWdUekNmY2tFUmxRQ1FxUnNHbHZRK3lT?=
+ =?utf-8?B?TUlBNFk0WmhqdXJTV1ZYZ3hDMEVwMmkxTUc2T3lFYkxYNlF4bnZVT0ZrbTZq?=
+ =?utf-8?B?d1ZGcWo2Zk82ckZOUlRZSTVDK2dmR2NHMkJ1UG5hUUdhL0lqclg4aysrUktL?=
+ =?utf-8?B?RnNnNGV3a3RZL3A1ZVNGMktGbS8yNW1XVC8wNTYyYjJScjBBeEtub3llMmhl?=
+ =?utf-8?B?Y25PNWdPYWE5WHk3UkNnVTJHelZWNll6dWRsRnJuRWVEV2dYTkNUTDBnVzUy?=
+ =?utf-8?B?ckZGajVFKzEyUm5hZTVVdHRGRUFkd3NEK2tpOFU4aDdzYU5IT0kydjJReHE1?=
+ =?utf-8?B?K3A1YjF6M3EvWGFuWDIvaGR0WGNHWXNnZDJUYmMxenYrc0IwVTB4Z2lLYWd2?=
+ =?utf-8?B?WEhyeXRBUVVlZE1VQWVRbjFiQmNuWVlCTlV0bkg4Q0o0Q1Vab3hkS3k0OERi?=
+ =?utf-8?B?eUlrTWhNbzNXUHBWMXRVdU9CWWxJQ25oVHB0ZnY0SjNJVVJJQ0theDZnb092?=
+ =?utf-8?B?eFFnUitlYjZ2VUw3TmN1NFRQMjFwR2VOVTh0MFdXRGIzdUFSd0tOS05jWjVM?=
+ =?utf-8?B?TmpVYUdxbzZackxOKzdUVElDSE83Y1BLTTN3L2lnSUZiMHM5enUzYXlmSVIz?=
+ =?utf-8?B?QkpJbXFxK2E0L3pvY2l3TFVHemdOR0x6K016b05IOVZaUjRIeEk3NTBSRDBX?=
+ =?utf-8?B?TTE4dHFtYlhiMzVka05vSDcyUDJJRDJoU1lJOXM5ZHBxK1l6eXJDbnlBYnl5?=
+ =?utf-8?B?Z0NVTDVFa0V1S3k0VGlpNFhzSXZTcUJZeXRMcXUzSVdGMFIwZEE2TjVoc1ho?=
+ =?utf-8?B?VFhtTHlJOHh6OENWc2EzVjlmK0NLRVc4OEVUdmNJb2lFVENiK1YzbnovbVJI?=
+ =?utf-8?B?S2taKzBrZlhSR05GZzRWNnVmOEl1eWFSVHkweDh5V0hDdzBiWTNLSjF0ck5U?=
+ =?utf-8?B?aUlEOTRjL3NqeG4yWUU5OEx2eHNlelNBOStvMEYvWituTHlaMTg1WUYxTjN2?=
+ =?utf-8?B?bkN0anRoSTA3Ung1WDk5ZjVmY2FERFpwRnl2RGxhbUVsc3pxbDYwNVBvZDhC?=
+ =?utf-8?B?d3Z6UExGbUIyS01rWEdZdGZRT25UUVVtQTR0bERpY0JVdTIwUVhFaVNKcSt3?=
+ =?utf-8?B?R3gyeHl5WXQyTG1XTndGVEdqVit2M0w1ZjhrbkRha2puK0xCdDQ2K0src09K?=
+ =?utf-8?B?dis1M0pnZURSc1NLOGJrZHVZTmloV0ZzR2c5ZDB3UXhocUZDSVQySWppRDBF?=
+ =?utf-8?B?QlNRTytDWjI1eFhwWG1zeGhEeHdsZXIxVkptc2hTSmxuaHF0d3ZXL1ZxYlFk?=
+ =?utf-8?B?aXowWFBIbWtxRkM4QzNmOE40TmJvbjRGaTdLN2JVZWZTUEVlQ1ZPd2tOSk9y?=
+ =?utf-8?B?K25LZWI3bjNsUUxBUFFaTzFmNExQSW5CVURWNTg1TmVSSzVqOWEram96WEJG?=
+ =?utf-8?B?VytLQ2dUQ2FYNmhKbDhYemZMWE8rV3ZXV2YxWFVMOHVTa1JSdGhDeVVsNXI2?=
+ =?utf-8?B?RVhpVkw0L1l4TjFTNmpxOThGZng1dnRJRWlSUVd0dzVTQVRGcGJqNnBhNFlD?=
+ =?utf-8?B?WWhpeGdyYldUbHc3K3NLZzE4KzBrNnZzZkhTVC9JSVVVYThBYnVkRFY1MjJH?=
+ =?utf-8?B?T2V5LzJGb1hVYnErTnlmbkxBTXBFeEpaVGRJQWg3eVhHK0hOTEx5WlI5WVNE?=
+ =?utf-8?B?cWttaHNHVjVRa09DbTUwY2xsVGtZN1lPYSsxZkV3Z0UvaSt5bVdvdE4waW41?=
+ =?utf-8?B?MXFmSkFGN1VOUEZWZ01ad01oM01mSmZlWUZ1Vnp3UFdobDEyQXJST2FLNzBV?=
+ =?utf-8?Q?h2kEVKbdOd4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY5PR12MB6478.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(10070799003)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?eXZ2ZUh3U2JWMlp4ZWp2c2s4WnRLK2IvVE9qb0twVG9Hb3RoWEZoV2xoUFNq?=
+ =?utf-8?B?d3p2cjNIL1l5Y1BMUTFkbmM2Z0FSaUFSaDlSOEx2QkpzZHowNDludVNISzNP?=
+ =?utf-8?B?RWNPbzVZalhiN2ROa3ZwNHFGSThQNHRLaUZzbGhGMFo4Q1FUSy81Z0NXcE1o?=
+ =?utf-8?B?OEpKS29PYUhYMGNzbVlMVWM0WXI5N25SRGNVdXRUMS9xYVZHZXZFeU9ldUsv?=
+ =?utf-8?B?YXp1KzRRSGUrblVMQTFuVU9HQXJ2dUtGYlh4dHRIVmNNSlhaMDJWS1BJUVhQ?=
+ =?utf-8?B?UVpaUzZXazFoUW5hUStRZ2VUTlFWcDN2cVd4UVBHemlIUzQwRkRQOElMQmhZ?=
+ =?utf-8?B?TUxncWIrYmNGME02aWRDRWN0dGYyZm96OVF5dWwyUUF0Y29lU1p0cXRzaFlk?=
+ =?utf-8?B?Slh4K2xzUkZGUkRzYXR5ZGJpMGdQVURod0t2dzBseWF0TXBzVTgxWU1rRWhj?=
+ =?utf-8?B?YUJaTGFrSGxSTitRV1paSHl2ZGIwc2lTcmZObDYvVzJGL29MYnJtM1czalZE?=
+ =?utf-8?B?K1ZkZWNIa3F3WnZMRVd1c3hyRFdoampRZVM4QlNKVDVad0I2ejJRR0tBeEhP?=
+ =?utf-8?B?Sk9nZ0ZlQkRMbGZkajIwVGYyZVJoRkpmdnhBR056Z1ltSWpIS1FMckVlMXRI?=
+ =?utf-8?B?NkV5NnpYRUMwbmVQNGp0S21tbDdzTk8zSTZLTUZlYkQ2dk04b3RCeUc3VldI?=
+ =?utf-8?B?MUt4Mk9HVUtOSGVrTjdaT05ucFBVanM0N3BOa1VHb2N1NU9hWGZ0U3lYRDR0?=
+ =?utf-8?B?UWJkYkw3SHppckJMZkRjNm1LaWVVL1JIVlIvNk5kS1l4b1hqSDJTKzJubW5R?=
+ =?utf-8?B?bWFpV3FOYStnNUxkZ2VvZmptcmtWZUJxd0R1Q1h6b09nU0FjZ1J4VWd2emVZ?=
+ =?utf-8?B?VmJ4enl4MDAvVWVXZmJsaEFTcHJsTndjQ3QvYWlQdHFXb1F3MUxtU1lCbW9D?=
+ =?utf-8?B?S1JmNHNrZ2VqbjVhbnFpTi9rMXNlNjVIckI0ZU9PcERVTEdXQlptaXd4aU4y?=
+ =?utf-8?B?VTF4Tkt2R3ZxTXRDcGhhYlNHTTdxZER3SVl2T2pnY215MUh4aW1BWnlaN0Vx?=
+ =?utf-8?B?YkRyYnBsTHpUMjZUMnJ1Sm9iQ3U0RlkrMUJIKzk2V0lWMm9KZWgzYXF6REpa?=
+ =?utf-8?B?bEJickdBM0pmcjBVZWFtYWszQVp5Y3NhaS96ZGNvU1R2Wi9oZ2xJZ2grRXUx?=
+ =?utf-8?B?b0JtNHcwSSs1ajNFaU5vRmZieXR0a3JhWVRWcENBVDRWYTVObmlFazljZ0lw?=
+ =?utf-8?B?eWlLNW9IV0FHZ2k0MVF5Z0VSK2JIU3NZTVF4eWhkeEFlc3huclZHeHpydWVL?=
+ =?utf-8?B?anVvWGFaQnZzU01UL0o1SmhXREt2QVBFMHF2bHRjYjdqRTBCRkxZbnlZT2hR?=
+ =?utf-8?B?TWpVbi9TZGIxS3ppWHFMaDIrUThneUFDVkU4S29RSVJ4VitsMjdSdUJLTlZz?=
+ =?utf-8?B?aU5BdlFOcjA1Ty82RXlheVRwMTNCeTZuZE1mNm9QcnFwK0VENHkremg3SHow?=
+ =?utf-8?B?QmZHLzloRmZVeVE3YTJEMmRSQmFuK2JVdU9jbGVMUzFzWWtQd2J0ZXI2Mnhh?=
+ =?utf-8?B?WFUrYnQrSG1OQU1LWEwySVdoa1FzdXlLekYybGtqcXFmbGVQUlhhNFhaYjRp?=
+ =?utf-8?B?SFFEb09MRVNSYXMycHd2Ly9mOEhTcHRQQ2VSbXlaMmVPd2V2QXhJMjFxYzNn?=
+ =?utf-8?B?WVYyUjY0QmR1eTB4bDhHbjRPbGtlcnpyYi9yMWNodUJOTmJEbWRvSHhVZ2xF?=
+ =?utf-8?B?SHNReFpQU2xoNkNwSXFJMERJNWdtcHFsU2JpOTF2dDB1V0c2SWQ5eG9DRnlz?=
+ =?utf-8?B?T3pKZnNXMmo1OS90Ry9nZTd6MzA1aEY4NE9mSDF2MUtUdFdmVU5TcWZpOTJr?=
+ =?utf-8?B?clcxL21FTk83VC9hVU5xTk5hTDhSTjRMcDNoUzZTU1RXU1lFR2YyeEVhMTZ0?=
+ =?utf-8?B?ZzN4YzhFZFROS1dhWHMxYjhPcTJ3eWRJQXJZaCt4N2RmNm5uRUVlY2FuMVZN?=
+ =?utf-8?B?bGdUVXMwWURnejBpdGJxRStGUkZCRGNtVUJJc0RpZFpFaTRvaDJWdGkrZVZa?=
+ =?utf-8?B?VzRhVzNNcG5wMXNKYy9scjd5cFBvc0Fac2ltSWVpQWEzcVNhdnNSTFhzSVlB?=
+ =?utf-8?B?MzZJY2VVa0gwMnpjNDNLUkswNEpXblhDU3hJS1dYeWdMaDBhN1VVaE1oZTZC?=
+ =?utf-8?B?VytqejI5RURkSFJiVFB5QU9INm5lQjJZejFvalJmTG1URWp0eVl0SVJIalBt?=
+ =?utf-8?B?aDVKMllJbS9HWExvU2FQNFNLaUxnPT0=?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa8c47ad-6af3-4368-71de-08ddc9895920
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6478.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2025 01:36:30.2962
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9mQUIKOJE9hvKGNGR6iyL9g+CY2mjuxNMey2KFZX3w4BUwDP7VQ6IFoXQkrnSYAzt4cqV2Kt9cfIv5qrWJJN6A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8764
+
+On Friday, July 18, 2025 6:17=E2=80=AFPM Svyatoslav Ryhel wrote:
+> =D0=BF=D1=82, 18 =D0=BB=D0=B8=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 12:11 Mi=
+kko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> > On Thursday, July 17, 2025 11:21=E2=80=AFPM Svyatoslav Ryhel wrote:
+> > > ...
+> > > @@ -311,6 +330,43 @@ int tegra_mipi_finish_calibration(struct
+> > > tegra_mipi_device *device) }
+> > >=20
+> > >  EXPORT_SYMBOL(tegra_mipi_finish_calibration);
+> > >=20
+> > > +static int tegra20_mipi_calibration(struct tegra_mipi_device *device=
+)
+> > > +{
+> > > +     struct tegra_mipi *mipi =3D device->mipi;
+> > > +     const struct tegra_mipi_soc *soc =3D mipi->soc;
+> > > +     u32 value;
+> > > +     int err;
+> > > +
+> > > +     err =3D clk_enable(mipi->csi_clk);
+> > > +     if (err < 0)
+> > > +             return err;
+> > > +
+> > > +     mutex_lock(&mipi->lock);
+> > > +
+> > > +     value =3D MIPI_CAL_CONFIG_TERMOS(soc->termos);
+> > > +     tegra_mipi_writel(mipi, value, CSI_CILA_MIPI_CAL_CONFIG);
+> > > +
+> > > +     value =3D MIPI_CAL_CONFIG_TERMOS(soc->termos);
+> > > +     tegra_mipi_writel(mipi, value, CSI_CILB_MIPI_CAL_CONFIG);
+> > > +
+> > > +     value =3D MIPI_CAL_CONFIG_HSPDOS(soc->hspdos) |
+> > > +             MIPI_CAL_CONFIG_HSPUOS(soc->hspuos);
+> > > +     tegra_mipi_writel(mipi, value, CSI_DSI_MIPI_CAL_CONFIG);
+> > > +
+> > > +     value =3D MIPI_CAL_BIAS_PAD_DRV_DN_REF(soc->pad_drive_down_ref)=
+ |
+> > > +             MIPI_CAL_BIAS_PAD_DRV_UP_REF(soc->pad_drive_up_ref);
+> > > +     tegra_mipi_writel(mipi, value, CSI_MIPIBIAS_PAD_CONFIG);
+> > > +
+> > > +     tegra_mipi_writel(mipi, 0x0, CSI_CIL_PAD_CONFIG);
+> > > +
+> > > +     mutex_unlock(&mipi->lock);
+> > > +
+> > > +     clk_disable(mipi->csi_clk);
+> > > +     clk_disable(mipi->clk);
+> > > +
+> > > +     return 0;
+> > > +}
+> > > +
+> >=20
+> > Where does this sequence come from? It looks a bit strange to me, since=
+ it
+> > doesn't trigger calibration at all. It would be useful to mention the
+> > source in the commit message.
+> >=20
+> > Mikko
+>=20
+> Downstream nvidia sources, 3.1.10 and 3.4, dsi driver, function
+> tegra_dsi_pad_calibration
+
+Thanks!
+
+Indeed, looks like for DSI calibration, the HW calibration is never trigger=
+ed.=20
+However, for CSI pads, it is. We should take this into account in the devic=
+e=20
+tree binding (and driver when CSI support is added) -- the parameter in=20
+nvidia,mipi-calibrate should specify we're calibrating DSI (probably with a=
+n=20
+enumeration defined in a header file).
+
+Another thing -- the commit subject prefix for gpu/host1x is "gpu: host1x: =
+",=20
+and for gpu/drm/tegra "drm/tegra: ".
+
+Cheers,
+Mikko
 
 
-
-On 7/22/2025 11:09 PM, Mike Leach wrote:
-> Hi
-> 
-
-Hi Mike
-
-Thanks for your comments.
-
-> I have had a look at a few of the patches. The buffer swap mechanism
-> appears to be good.
-> 
-> However there is a lot of byte-ctr code in the "core" tmc / etr source
-> files. As much of this code as possible needs to be moved to the
-> byte-cntr specifc source.
-> 
-
-I will try move byte-cntr related codes to the ctcu-byte-cntr specific 
-source file.
-
-> I suggest having a helper function such as qcom_byte_ctr_in_use() to
-> call from the core code, and if true then call back into the byte-cntr
-> specific code to do the specialist functionality.
-
-Sounds a good idea, call the prepare/read function regards to whether 
-there is a valid helper callback defined. I will try this solution in 
-next version.
-
-I have a minor question about the solution. We expect enable/disable the 
-byte-cntr function at anytime. So when we jump to the byte-cntr 
-function, we have to check whether the byte-cntr function is enabled or 
-not first, jump back to the standard workflow if not, am right?
-
-> 
-> One other possibility is to have a flag / enum in the tmc->drvdata
-> structure to indicate a variant. - e.g. TMC_STD, TMC_QCOM_BYTE_CTR,
-> set at initialisation stage to remove the need for checking the device
-> tree every call.
-> 
-
-Also will check once, see which solution is better.
-
-Thanks,
-Jie
-
-> Regards
-> 
-> Mike
-> 
-> On Mon, 14 Jul 2025 at 07:31, Jie Gan <jie.gan@oss.qualcomm.com> wrote:
->>
->> The byte-cntr function provided by the CTCU device is used to count the
->> trace data entering the ETR. An interrupt is triggered if the data size
->> exceeds the threshold set in the BYTECNTRVAL register. The interrupt
->> handler counts the number of triggered interruptions.
->>
->> Based on this concept, the irq_cnt can be used to determine whether
->> the etr_buf is full. The ETR device will be disabled when the active
->> etr_buf is nearly full or a timeout occurs. The nearly full buffer will
->> be switched to background after synced. A new buffer will be picked from
->> the etr_buf_list, then restart the ETR device.
->>
->> The byte-cntr reading functions can access data from the synced and
->> deactivated buffer, transferring trace data from the etr_buf to userspace
->> without stopping the ETR device.
->>
->> The byte-cntr read operation has integrated with the file node tmc_etr,
->> for example:
->> /dev/tmc_etr0
->> /dev/tmc_etr1
->>
->> There are two scenarios for the tmc_etr file node with byte-cntr function:
->> 1. BYTECNTRVAL register is configured and byte-cntr is enabled -> byte-cntr read
->> 2. BYTECNTRVAL register is reset or byte-cntr is disabled -> original behavior
->>
->> Shell commands to enable byte-cntr reading for etr0:
->> echo 0x10000 > /sys/bus/coresight/devices/ctcu0/irq_val
->> echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
->> echo 1 > /sys/bus/coresight/devices/etm0/enable_source
->> cat /dev/tmc_etr0
->>
->> Reset the BYTECNTR register for etr0:
->> echo 0 > /sys/bus/coresight/devices/ctcu0/irq_val
->>
->> Changes in V3 resend:
->> 1. rebased on next-20250711.
->> Link to V3 - https://lore.kernel.org/all/20250624060438.7469-1-jie.gan@oss.qualcomm.com/
->>
->> Changes in V3:
->> 1. The previous solution has been deprecated.
->> 2. Add a etr_buf_list to manage allcated etr buffers.
->> 3. Add a logic to switch buffer for ETR.
->> 4. Add read functions to read trace data from synced etr buffer.
->> Link to V2 - https://lore.kernel.org/all/20250410013330.3609482-1-jie.gan@oss.qualcomm.com/
->>
->> Changes in V2:
->> 1. Removed the independent file node /dev/byte_cntr.
->> 2. Integrated the byte-cntr's file operations with current ETR file
->>     node.
->> 3. Optimized the driver code of the CTCU that associated with byte-cntr.
->> 4. Add kernel document for the export API tmc_etr_get_rwp_offset.
->> 5. Optimized the way to read the rwp_offset according to Mike's
->>     suggestion.
->> 6. Removed the dependency of the dts patch.
->> Link to V1 - https://lore.kernel.org/all/20250310090407.2069489-1-quic_jiegan@quicinc.com/
->>
->> Jie Gan (10):
->>    coresight: core: Refactoring ctcu_get_active_port and make it generic
->>    coresight: core: add a new API to retrieve the helper device
->>    dt-bindings: arm: add an interrupt property for Coresight CTCU
->>    coresight: ctcu: enable byte-cntr for TMC ETR devices
->>    coresight: tmc: add etr_buf_list to store allocated etr_buf
->>    coresight: tmc: add create/delete functions for etr_buf_node
->>    coresight: tmc: add prepare/unprepare functions for byte-cntr
->>    coresight: tmc: add a switch buffer function for byte-cntr
->>    coresight: tmc: add read function for byte-cntr
->>    arm64: dts: qcom: sa8775p: Add interrupts to CTCU device
->>
->>   .../testing/sysfs-bus-coresight-devices-ctcu  |   5 +
->>   .../bindings/arm/qcom,coresight-ctcu.yaml     |  17 ++
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi         |   5 +
->>   drivers/hwtracing/coresight/Makefile          |   2 +-
->>   drivers/hwtracing/coresight/coresight-core.c  |  54 ++++
->>   .../coresight/coresight-ctcu-byte-cntr.c      | 102 +++++++
->>   .../hwtracing/coresight/coresight-ctcu-core.c | 113 ++++++--
->>   drivers/hwtracing/coresight/coresight-ctcu.h  |  49 +++-
->>   drivers/hwtracing/coresight/coresight-priv.h  |   4 +
->>   .../hwtracing/coresight/coresight-tmc-core.c  |  70 ++++-
->>   .../hwtracing/coresight/coresight-tmc-etr.c   | 270 ++++++++++++++++++
->>   drivers/hwtracing/coresight/coresight-tmc.h   |  29 ++
->>   12 files changed, 688 insertions(+), 32 deletions(-)
->>   create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-ctcu
->>   create mode 100644 drivers/hwtracing/coresight/coresight-ctcu-byte-cntr.c
->>
->> --
->> 2.34.1
->>
-> 
-> 
 
 
