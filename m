@@ -1,128 +1,142 @@
-Return-Path: <devicetree+bounces-199009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96F7EB0F07A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 12:57:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E203B0F0B4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 13:03:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 843701C8487E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 10:57:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E53CA162258
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 11:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CD832C15B5;
-	Wed, 23 Jul 2025 10:57:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D3FD28935E;
+	Wed, 23 Jul 2025 11:03:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="af/NNxOA"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="qfN29ILP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from server.couthit.com (server.couthit.com [162.240.164.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44F22F43;
-	Wed, 23 Jul 2025 10:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D985D230268;
+	Wed, 23 Jul 2025 11:03:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753268233; cv=none; b=pNJ/KkA4ALWq+dZRAbaU5baODQVzD86rWBp5qaK0ye2EJOXnw/W2VtOn16TgOp6zZqv36vYnuvQ5R3oaILRtnzAxD7r/MGD0iRwG2KO5+HELLMbhYiEqaF4m++5fMzFlAPMhKOLFBEIaqHzvDYGARpx3TEulSWqxfiJD40ilX9s=
+	t=1753268602; cv=none; b=J+tuo8EXEzP7zlgn05QnD5KafSlRdhEAaov9muHmnN6pmvbt/xjyoNeQo7B2dW5MrU/GCtk1/WxmZGHRA5jsY3dJedxFS+6Rbs/v8quNFT4eG1voUNliAsssIvMCZ6WIW3R6Ae/xoh7Qb3eIkjt5bUJcE0NP15EPwV4mhdCjkrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753268233; c=relaxed/simple;
-	bh=HPsGtUKKZvPNP07XhtoQM/WjzCSSAlQSwl7BLAUuzGw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZyXxu3tczCHoefpwfCumlfCGKsgLSxz7CjAC25SK/jUXEzRzawHSxNZTvjFwgLjI94NbSkEkq6eRhIu00PFSSy066GyIcphB4AhbCLCts5gaps9CnUGmclQrnwsqOAR5o7RmOoKZoRw7t8XwS8+9IFEMIkoTsMU7PXyJuMmLb4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=af/NNxOA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0F38C4CEE7;
-	Wed, 23 Jul 2025 10:57:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753268232;
-	bh=HPsGtUKKZvPNP07XhtoQM/WjzCSSAlQSwl7BLAUuzGw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=af/NNxOAf7vkY2Qkhg/2CVlGUjT3tytfv7qNetZXTTP3vPPAPkUhOQX0szainxmK5
-	 /wYTkMlGlX/Ye86ZXKiMTAcrSvPS3EDOexlOm5S8BmrbagIIrFLok7omjbuxfyCkX2
-	 UXyqjgxY0Aw4N5pT2pDNZ81pNzRuFIA+okVKz20F1twdR65ZJHjQl6bji0LPk3RKIN
-	 3rlt0tfYiUecvAKd9MICy5NrbcvjPd56OfzHgqmCigQf9k6Y+tPrOwCIGzTveZF0i9
-	 BZhwvo2RQkR9ZzDyQs9lNGiV99OIl0PntSvZw0eHqgJX//YBHemSwfEmd4wwiblD3l
-	 po7xtEadje8jA==
-Date: Wed, 23 Jul 2025 11:57:04 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v2 0/5] Enable USB audio offloading on Fairphone 4
- smartphone
-Message-ID: <ac3f1eb2-5830-4bda-bc57-c4d29c22aba0@sirena.org.uk>
-References: <20250501-fp4-usb-audio-offload-v2-0-30f4596281cd@fairphone.com>
- <DBDAPORDD5IM.1BHXPK225E2PP@fairphone.com>
- <DBHIM4SA3OIK.PXX6HMDE93B8@fairphone.com>
+	s=arc-20240116; t=1753268602; c=relaxed/simple;
+	bh=QPxiXguHsz3/IgGxbGoTb29vEn8S9ZjWyH1BjKYamuY=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=c80nitdT1D4YovG30LQsM42D2nTzVO/gGpgNfc2WiEt5AZwBZ/yOsiBKpp19kl4HiZ3UP89h9UIhiEGiueHluvmbpZZGgYn3lGQSosOyHeWQRp9VLzwa3n5RQcn4pGWNfuyxSxDl9YzhW/MZWERAEbG151Qq3qfrklK7CR0EMJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=qfN29ILP; arc=none smtp.client-ip=162.240.164.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
+	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=tpUwu4il1VAiTMh13wOHJHOYU4uf2KEQd4xPzFOpTMk=; b=qfN29ILP5BDZQoV1YozWjQ2m92
+	ZlM0uuWGKU/sFaEY7+M0Upxd9Io6/DdLXOh/yhGIu9gvfBKELJgamULl8hSnqVSmdzk/JAf/uvW/S
+	kNsNOGwEbXYVdPHnKPXTLdyV2pDeMCFM+TOyt7qVKzVxtqxJZhPI3HyEooSuPSHHzqpw0mNIeLRbj
+	v0BRvORh1FxxPy1BmtUMToWTOFdCzsKIC3IcP7OCAYk9i6X/gVKFXglJZ4o16Lfz6pWuNHw8UFq6I
+	hRcivPL1CmMq7s4QIfwY7v9Q/wPYRAs77MOqmTo79Yi2ezt/4Z9QvxQV1pjeYU5eEEr3JoxzRMJqA
+	wt34HXPA==;
+Received: from [122.175.9.182] (port=24906 helo=zimbra.couthit.local)
+	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1ueXFg-00000006TmQ-1gKW;
+	Wed, 23 Jul 2025 07:03:12 -0400
+Received: from zimbra.couthit.local (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTPS id 231911782036;
+	Wed, 23 Jul 2025 16:33:03 +0530 (IST)
+Received: from localhost (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTP id F36BA17823D4;
+	Wed, 23 Jul 2025 16:33:02 +0530 (IST)
+Received: from zimbra.couthit.local ([127.0.0.1])
+	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id kVxGdNqyNizW; Wed, 23 Jul 2025 16:33:02 +0530 (IST)
+Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
+	by zimbra.couthit.local (Postfix) with ESMTP id 948C61782036;
+	Wed, 23 Jul 2025 16:33:02 +0530 (IST)
+Date: Wed, 23 Jul 2025 16:33:02 +0530 (IST)
+From: Parvathi Pudi <parvathi@couthit.com>
+To: kuba <kuba@kernel.org>
+Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
+	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
+	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
+	pabeni <pabeni@redhat.com>, robh <robh@kernel.org>, 
+	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
+	ssantosh <ssantosh@kernel.org>, 
+	richardcochran <richardcochran@gmail.com>, 
+	s hauer <s.hauer@pengutronix.de>, m-karicheri2 <m-karicheri2@ti.com>, 
+	glaroque <glaroque@baylibre.com>, afd <afd@ti.com>, 
+	saikrishnag <saikrishnag@marvell.com>, m-malladi <m-malladi@ti.com>, 
+	jacob e keller <jacob.e.keller@intel.com>, 
+	kory maincent <kory.maincent@bootlin.com>, 
+	diogo ivo <diogo.ivo@siemens.com>, 
+	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
+	horms <horms@kernel.org>, s-anna <s-anna@ti.com>, 
+	basharath <basharath@couthit.com>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+	netdev <netdev@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
+	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
+	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
+	mohan <mohan@couthit.com>
+Message-ID: <1390395318.23287.1753268582122.JavaMail.zimbra@couthit.local>
+In-Reply-To: <20250722184749.0c04d669@kernel.org>
+References: <20250722132700.2655208-1-parvathi@couthit.com> <20250722132700.2655208-3-parvathi@couthit.com> <20250722184749.0c04d669@kernel.org>
+Subject: Re: [PATCH net-next v11 2/5] net: ti: prueth: Adds ICSSM Ethernet
+ driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8K78IXY0YL/xImel"
-Content-Disposition: inline
-In-Reply-To: <DBHIM4SA3OIK.PXX6HMDE93B8@fairphone.com>
-X-Cookie: List was current at time of printing.
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC138 (Linux)/8.8.15_GA_3968)
+Thread-Topic: prueth: Adds ICSSM Ethernet driver
+Thread-Index: CS6Pxk1Q6vpt0yapW6BMmVo7ZPHfVw==
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.couthit.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
+X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+
+Hi,
+
+> On Tue, 22 Jul 2025 18:55:02 +0530 Parvathi Pudi wrote:
+>> +	for_each_child_of_node(eth_ports_node, eth_node) {
+>> +		u32 reg;
+>> +
+>> +		if (strcmp(eth_node->name, "ethernet-port"))
+>> +			continue;
+>> +		ret = of_property_read_u32(eth_node, "reg", &reg);
+>> +		if (ret < 0) {
+>> +			dev_err(dev, "%pOF error reading port_id %d\n",
+>> +				eth_node, ret);
+>> +			return ret;
+> 
+> missing put for eth_node
+> 
+
+Yes, We will address this and post the next version shortly.
 
 
---8K78IXY0YL/xImel
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jul 21, 2025 at 08:22:06AM +0200, Luca Weiss wrote:
-> On Wed Jul 16, 2025 at 9:19 AM CEST, Luca Weiss wrote:
-
-> > All dependencies for the patches have been applied already, so this
-> > series can land as well!
-
-> Is it still possible to pick up the sound patches (1-3) for 6.17? Dts
-> has been applied already.
-
-As previously discussed they won't apply until after the merge window.
-
-Please don't send content free pings and please allow a reasonable time
-for review.  People get busy, go on holiday, attend conferences and so=20
-on so unless there is some reason for urgency (like critical bug fixes)
-please allow at least a couple of weeks for review.  If there have been
-review comments then people may be waiting for those to be addressed.
-
-Sending content free pings adds to the mail volume (if they are seen at
-all) which is often the problem and since they can't be reviewed
-directly if something has gone wrong you'll have to resend the patches
-anyway, so sending again is generally a better approach though there are
-some other maintainers who like them - if in doubt look at how patches
-for the subsystem are normally handled.
-
---8K78IXY0YL/xImel
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiAv/8ACgkQJNaLcl1U
-h9Ae+Qf9G/KwU8POqV7s+PHu9EJIvX3PgyE7+ZWydn1B7bO0xyVfXy2RZ6ZLGm28
-mgg0FS/VFFIqQTykM5vO351ex1cy+nEZO6kvnfsQQ8cDPDFDJWFt+/+m/zswUOdw
-hJX/r5h4zyEeK9D3txuoNdAPlFME5joMd/leV9t7kK2YbTrKTPJrirRmD/wgprrd
-Cj/cNM/FIdHz3kLO/pII4QwtzXu4yF2urjbhGL/DxtSOppC9U+SyXojqLZRnbKlo
-DOjRD1lRseVnqfCyeeK+ws1plUxKs3YIG7WwbgHY2fzu0pbkYP+3VeHN5yNmECnU
-M7UWqNYsEgV8ihrNAY/RqsR/tDxmFg==
-=UFog
------END PGP SIGNATURE-----
-
---8K78IXY0YL/xImel--
+Thanks and Regards,
+Parvathi.
 
