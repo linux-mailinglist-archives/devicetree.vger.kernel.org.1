@@ -1,136 +1,260 @@
-Return-Path: <devicetree+bounces-199102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23AA9B0F4D6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:04:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 171ADB0F522
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:23:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EB9A18974E8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:04:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D25401CC1AC5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:23:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E155B2F3627;
-	Wed, 23 Jul 2025 14:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C7962EA733;
+	Wed, 23 Jul 2025 14:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="j/Mx/3+x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CGZTlqQ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C36442F2C44
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 14:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D59E62E5415;
+	Wed, 23 Jul 2025 14:22:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753279452; cv=none; b=MUoGiuNDhJCLfdrvzIPFmO58c/HUrsNR1cbRIMUFXk03kA7d/k5hRyQe9mv74BDnHwE/cJajgceYTiaLP1NGU8XIn6F+73ncHVpOyYDzJzER3zZ2adcsSP1xgmeftVu5HwZMaM4Dg0fMiEADnoNA0UrgKSbURYvhsa6ZtJqw6m0=
+	t=1753280578; cv=none; b=p+TtoA8H1MjecYTtquS1tvrdUI23W1lETZt5UvlcDTyfKAyJUd+2kO8IEXIvVFSHf1OA75nZd5ogxbcSynrz4VEBxAyUOQLInKs8EvBC0NNuOcQCRYNC4UEePldbc7a6aybcpj+EiSJnRoFEZqEkzLzsq9vSNlSuS5jLwDh8vss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753279452; c=relaxed/simple;
-	bh=0DEgaxktWtylE9tS47CHiAD37SUMRWPVx+JL0++K0w4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DT8W7zsvNRj7oQqScf2ZMkaL1DNQtq5PTQgsEpj9TC9A94S8y1hrS4PXdOMseGpGHY0FJo5wua/t7189f//3FtAYuuRB3Us2VfIgdKCZyYBmXLxdth3A9blwqIPah0ThXN2aMORDdFjAoQeeEehk/xojz6VEKZEPLAxeY05AxRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=j/Mx/3+x; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ae708b0e83eso1212009266b.2
-        for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 07:04:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1753279449; x=1753884249; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CBk3e+ZeNvt/w69kQtejS7uDHZHCYnTulCyNIFzv8gY=;
-        b=j/Mx/3+xc/XSy5nydHMfiBdlGr7U38LNfvKfdufoxuXRNy5/pvHa/sTcLcN3HU8j3L
-         UFdH3pQwEGMDh4e2L0NukJJ/Lym1TSPKzcZnj8pgfyb5YJrPQpNCk/WATy47ebJtVhs3
-         K2Ln9tXAXbv3imWTEg4myxpgFAxEoyWbwjobRdRX2xG8aM95TAWkQh3gi4MLNui6PdYz
-         LgM7hAPOcZ8ejCyzbCmwtMTcfiwdFHec7BwRCzg8WgKxfZ8LjV16Jwfvd0WHeLvnutXy
-         OL4Xw4UXh4z4G7PnsznF06MM2H3ShvFoUCf0N3m2lNUaBoETGYNOWGymixRrI32RhdiL
-         fN0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753279449; x=1753884249;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CBk3e+ZeNvt/w69kQtejS7uDHZHCYnTulCyNIFzv8gY=;
-        b=Qc/O0NdHQ37UnftWd9Xthj3zn6+aN8OVoNv3tx+YwKbIjUbKX7F9Y78ozcWa/+jfJ/
-         YgJWN9Z6D2FmDCBUuk11PRlx0bAWwsPOAODgzRGQqxj+Qer/DQPBJ9dmhR7bogokEKlN
-         ZiawC22Znr5IA6yAUXMrGYrL5LIwmpDvHFCbjX+b7IukZ1BcF5uIN0cAxFRJZWjhIlFK
-         vcSZge2XotP0UMkp//dIE1fAQHsIQse1vcjd31IzxWu0u3iV/3+uYUiw9ZnuNrOsj/t8
-         hO5pz3Or2Zo9f1IyrK0xDcKRMew0qf57Daz8OtfkN0xS+eQx+2Ia2405beSjKT9z+ZMJ
-         On6w==
-X-Forwarded-Encrypted: i=1; AJvYcCXcZMv4SeA3QVoAn50RB++uu2tY4z3vG4gW/k4hb1aH8n2DV++nSTGjEnSWPLdsvGXdOpaA1WMb/wNp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUcSRngTuFTNsylcIK7K7085DQcIyiIQUk4DhuZZMSknzqiZBi
-	tvkOE3QQb8B8fi1p8fQCBWzDznW569LgAMeHDqzui/MyS22EVZMozbM9itt3Izfo/ws=
-X-Gm-Gg: ASbGnct2FwzbVGvblUqEKIma0s7MesoEsMymxMVKvpNzFXV8tz2jug5LUPQAJItTZvf
-	LI2F0n5Gfld0xQY1H/yHrJwZfmb3KxaNaARtNzMui83gdnRv2kbr3thZjD50zqpgBK4tF/RfAgC
-	dl7hbDorFV5FYMYil+IHaaVGsLbCY8pMNO0vAxawO/Bkywlw8raTlYgiSHmL0REo822DGTJU8Tv
-	VK7KYSvTig2OD6HoR7cmB26lOgtNLd1tvnxNzrCviTWVg0Ov5FLpe7TE0oqirLCSKb2Q1lwNTK3
-	5fvo6kleutwJ5/L7xb6fMzu+yo6Ua7gQm9TEM3BPO5FocBpJbNEfdfYZhugYJVr43f6kv1QKg4l
-	N+NT9aoQfpNok86jGiDPkV4QXuLBWg9rf/1q/tQehEUg9y8feKm9yiuX4UAjqjQIAOu5A
-X-Google-Smtp-Source: AGHT+IFIf87TC3ZSe5JBmPzIIxrTRzYL4zD8nVpLsuTYwJfJNPVnPKmaSJbEvn9fuMpNBzzUCHRPOw==
-X-Received: by 2002:a17:907:3ea6:b0:ae0:be38:64bf with SMTP id a640c23a62f3a-af2f9178962mr309369766b.58.1753279448707;
-        Wed, 23 Jul 2025 07:04:08 -0700 (PDT)
-Received: from otso.local (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aec6c7d46ffsm1054830466b.42.2025.07.23.07.04.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Jul 2025 07:04:08 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Wed, 23 Jul 2025 16:03:40 +0200
-Subject: [PATCH v3 3/3] ASoC: qcom: sm8250: Add Fairphone 4 soundcard
- compatible
+	s=arc-20240116; t=1753280578; c=relaxed/simple;
+	bh=cYT83ItX8i0zQEyyAAKccpe8aP2G3UA6P+4s88looH8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rUP0RLOjxOOe9bZL4s3pY53FGS4ZDSz4GnEDaJt3qgows6XlE695ANeYuYEe5BB05ar1bEDSIC4GqK7g6fjHFyB57PX4qupSCO6Y7+4DOejkNlDoJ5AorkvxqF0Gm9h5iKq8ighf9zb4v3U0+ZbVDkeCYshxEDuU3dQOxU6rKJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CGZTlqQ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 804C5C4CEE7;
+	Wed, 23 Jul 2025 14:22:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753280578;
+	bh=cYT83ItX8i0zQEyyAAKccpe8aP2G3UA6P+4s88looH8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CGZTlqQ3fprVmpxMhYFaeGXDOwnsK2fIrIFXA5QycJ6N8mbZA44NkQk5NX4qhz9NI
+	 rz6x8cvMJ7dBBGTfDcyxWcT+xW7t63EJ444vmoPkhnigjSp/AT+U3u+RtV3hF2AQVV
+	 1yS21MLJ3c0vvChOSKKnWwXEquTznIn25vFDn6aADSUaEGmYY//1EK95N/elrP9enh
+	 2gekE1WJmRgt79l7UmSN3QPGMoY20+xefpx0MtXp/pgTcgNtPsW/HMAHUJ/ogah5C+
+	 tQsOeblnTDo13uAuge1mhZc1OHpwTQwKLFTiA8yhRoaVA6ra3UcdMEpAM6DI/hYHAD
+	 kLyqci7puio1Q==
+Date: Wed, 23 Jul 2025 19:52:48 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Sai Krishna Musham <sai.krishna.musham@amd.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, cassel@kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	michal.simek@amd.com, bharat.kumar.gogada@amd.com, thippeswamy.havalige@amd.com
+Subject: Re: [PATCH v6 2/2] PCI: amd-mdb: Add support for PCIe RP PERST#
+ signal handling
+Message-ID: <bozkhw7eebaxj7odsilphvlbfzfo7xmdfteng5dq5mtznroefi@trlegpl6fkcf>
+References: <20250719030951.3616385-1-sai.krishna.musham@amd.com>
+ <20250719030951.3616385-3-sai.krishna.musham@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250723-fp4-usb-audio-offload-v3-3-6be84ed4fc39@fairphone.com>
-References: <20250723-fp4-usb-audio-offload-v3-0-6be84ed4fc39@fairphone.com>
-In-Reply-To: <20250723-fp4-usb-audio-offload-v3-0-6be84ed4fc39@fairphone.com>
-To: Srinivas Kandagatla <srini@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1753279445; l=935;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=0DEgaxktWtylE9tS47CHiAD37SUMRWPVx+JL0++K0w4=;
- b=hPyNXoVJuPYBMO+z6fAdDJs+EMudff8F0d7QdXv5K9C7/1HEfTM0wMp+5A3PFEbn7KuJ2hALH
- IImnnwDdPE8A7AM4nyhN1JunBzXdF5RT/1FdCq0Vv2juqAMDtAEm055
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250719030951.3616385-3-sai.krishna.musham@amd.com>
 
-Add a compatible for the SM7225-based Fairphone 4 which can use this
-machine driver.
+On Sat, Jul 19, 2025 at 08:39:51AM GMT, Sai Krishna Musham wrote:
+> Add support for handling the AMD Versal Gen 2 MDB PCIe Root Port PERST#
+> signal via a GPIO by parsing the new PCIe bridge node to acquire the
+> reset GPIO. If the bridge node is not found, fall back to acquiring it
+> from the PCIe node.
+> 
+> As part of this, update the interrupt controller node parsing to use
+> of_get_child_by_name() instead of of_get_next_child(), since the PCIe
+> node now has multiple children. This ensures the correct node is
+> selected during initialization.
+> 
+> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
+> ---
+> Changes in v6:
+> - Simplified error checking condition logic.
+> - Removed unnecessary fallback message.
+> 
+> Changes in v5:
+> - Add fall back mechanism to acquire reset GPIO from PCIe node when PCIe Bridge
+> node is not present.
+> 
+> Changes in v4:
+> - Resolve kernel test robot warning.
+> https://lore.kernel.org/oe-kbuild-all/202506241020.rPD1a2Vr-lkp@intel.com/
+> - Update commit message.
+> 
+> Changes in v3:
+> - Implement amd_mdb_parse_pcie_port to parse bridge node for reset-gpios property.
+> 
+> Changes in v2:
+> - Change delay to PCIE_T_PVPERL_MS
+> 
+> v5 https://lore.kernel.org/all/20250711052357.3859719-1-sai.krishna.musham@amd.com/
+> v4 https://lore.kernel.org/all/20250626054906.3277029-1-sai.krishna.musham@amd.com/
+> v3 https://lore.kernel.org/r/20250618080931.2472366-1-sai.krishna.musham@amd.com/
+> v2 https://lore.kernel.org/r/20250429090046.1512000-1-sai.krishna.musham@amd.com/
+> v1 https://lore.kernel.org/r/20250326041507.98232-1-sai.krishna.musham@amd.com/
+> ---
+>  drivers/pci/controller/dwc/pcie-amd-mdb.c | 62 ++++++++++++++++++++++-
+>  1 file changed, 61 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-amd-mdb.c b/drivers/pci/controller/dwc/pcie-amd-mdb.c
+> index 9f7251a16d32..697f5b3fc75e 100644
+> --- a/drivers/pci/controller/dwc/pcie-amd-mdb.c
+> +++ b/drivers/pci/controller/dwc/pcie-amd-mdb.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/resource.h>
+>  #include <linux/types.h>
+>  
+> +#include "../../pci.h"
+>  #include "pcie-designware.h"
+>  
+>  #define AMD_MDB_TLP_IR_STATUS_MISC		0x4C0
+> @@ -56,6 +57,7 @@
+>   * @slcr: MDB System Level Control and Status Register (SLCR) base
+>   * @intx_domain: INTx IRQ domain pointer
+>   * @mdb_domain: MDB IRQ domain pointer
+> + * @perst_gpio: GPIO descriptor for PERST# signal handling
+>   * @intx_irq: INTx IRQ interrupt number
+>   */
+>  struct amd_mdb_pcie {
+> @@ -63,6 +65,7 @@ struct amd_mdb_pcie {
+>  	void __iomem			*slcr;
+>  	struct irq_domain		*intx_domain;
+>  	struct irq_domain		*mdb_domain;
+> +	struct gpio_desc		*perst_gpio;
+>  	int				intx_irq;
+>  };
+>  
+> @@ -284,7 +287,7 @@ static int amd_mdb_pcie_init_irq_domains(struct amd_mdb_pcie *pcie,
+>  	struct device_node *pcie_intc_node;
+>  	int err;
+>  
+> -	pcie_intc_node = of_get_next_child(node, NULL);
+> +	pcie_intc_node = of_get_child_by_name(node, "interrupt-controller");
+>  	if (!pcie_intc_node) {
+>  		dev_err(dev, "No PCIe Intc node found\n");
+>  		return -ENODEV;
+> @@ -402,6 +405,34 @@ static int amd_mdb_setup_irq(struct amd_mdb_pcie *pcie,
+>  	return 0;
+>  }
+>  
+> +static int amd_mdb_parse_pcie_port(struct amd_mdb_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->pci.dev;
+> +	struct device_node *pcie_port_node;
+> +
+> +	pcie_port_node = of_get_next_child_with_prefix(dev->of_node, NULL, "pcie");
+> +	if (!pcie_port_node) {
+> +		dev_err(dev, "No PCIe Bridge node found\n");
+> +		return -ENODEV;
+> +	}
+> +
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- sound/soc/qcom/sm8250.c | 1 +
- 1 file changed, 1 insertion(+)
+Please use for_each_child_of_node_with_prefix() and get rid of the above check.
+Since this is a scoped variant, you do not need to care about OF node refcount.
 
-diff --git a/sound/soc/qcom/sm8250.c b/sound/soc/qcom/sm8250.c
-index 69c514fad0b1babafae4b61bb5ac944c6b4906dd..f5b75a06e5bd20e00874f4cd29d1b947ee89d79f 100644
---- a/sound/soc/qcom/sm8250.c
-+++ b/sound/soc/qcom/sm8250.c
-@@ -208,6 +208,7 @@ static int sm8250_platform_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id snd_sm8250_dt_match[] = {
-+	{ .compatible = "fairphone,fp4-sndcard", .data = "sm7225" },
- 	{ .compatible = "fairphone,fp5-sndcard", .data = "qcm6490" },
- 	{ .compatible = "qcom,qrb4210-rb2-sndcard", .data = "sm4250" },
- 	{ .compatible = "qcom,qrb5165-rb5-sndcard", .data = "sm8250" },
+If your platform supports only one Root Port, you can add a comment on top that
+the loop will execute only once. Maybe you can also add a TODO so that someone
+could prepare the driver to handle multi Root Ports in the future.
+
+> +	/* Request the GPIO for PCIe reset signal and assert */
+
+Drop the comment.
+
+> +	pcie->perst_gpio = devm_fwnode_gpiod_get(dev, of_fwnode_handle(pcie_port_node),
+> +						 "reset", GPIOD_OUT_HIGH, NULL);
+> +	if (IS_ERR(pcie->perst_gpio)) {
+> +		if (PTR_ERR(pcie->perst_gpio) != -ENOENT) {
+> +			of_node_put(pcie_port_node);
+> +			return dev_err_probe(dev, PTR_ERR(pcie->perst_gpio),
+> +					     "Failed to request reset GPIO\n");
+> +		}
+> +		pcie->perst_gpio = NULL;
+
+Not required.
+
+> +	}
+> +
+> +	of_node_put(pcie_port_node);
+> +
+> +	return 0;
+> +}
+> +
+>  static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
+>  				 struct platform_device *pdev)
+>  {
+> @@ -426,6 +457,14 @@ static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
+>  
+>  	pp->ops = &amd_mdb_pcie_host_ops;
+>  
+> +	if (pcie->perst_gpio) {
+> +		mdelay(PCIE_T_PVPERL_MS);
+> +
+> +		/* Deassert the reset signal */
+> +		gpiod_set_value_cansleep(pcie->perst_gpio, 0);
+> +		mdelay(PCIE_T_RRS_READY_MS);
+> +	}
+> +
+>  	err = dw_pcie_host_init(pp);
+>  	if (err) {
+>  		dev_err(dev, "Failed to initialize host, err=%d\n", err);
+> @@ -444,6 +483,7 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  	struct amd_mdb_pcie *pcie;
+>  	struct dw_pcie *pci;
+> +	int ret;
+>  
+>  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+>  	if (!pcie)
+> @@ -454,6 +494,26 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, pcie);
+>  
+> +	ret = amd_mdb_parse_pcie_port(pcie);
+> +
+
+Spurious newline
+
+> +	/*
+> +	 * If amd_mdb_parse_pcie_port returns -ENODEV, it indicates that the
+> +	 * PCIe Bridge node was not found in the device tree. This is not
+> +	 * considered a fatal error and will trigger a fallback where the
+> +	 * reset GPIO is acquired directly from the PCIe node.
+
+s/PCIe node/PCIe Host Bridge node
+
+> +	 */
+> +	if (ret == -ENODEV) {
+
+Please use the below pattern:
+
+	if (ret) {
+		if (ret != -ENODEV) {
+			dev_err();
+			return ret;
+		}
+
+		pcie->perst_gpio = devm_gpiod_get_optional()...
+	}
+
+> +
+
+Spurious newline
+
+> +		/* Request the GPIO for PCIe reset signal and assert */
+
+Drop the comment
+
+- Mani
 
 -- 
-2.50.1
-
+மணிவண்ணன் சதாசிவம்
 
