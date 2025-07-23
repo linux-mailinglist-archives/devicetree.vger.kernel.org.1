@@ -1,41 +1,41 @@
-Return-Path: <devicetree+bounces-198967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55A9FB0EDEE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 11:00:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0B83B0EDEF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 11:00:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 201FC96684D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:58:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50495966CC4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:58:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3AE3285077;
-	Wed, 23 Jul 2025 08:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF1F6283FCD;
+	Wed, 23 Jul 2025 08:58:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B4FD28032F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044A92836AF
 	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 08:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753261119; cv=none; b=qwNoC3ByLKjwq8p/DqzeIpetMAnfd4wAOB/AdEGpYENG7Q3mI6AvAWllDKdgIYH7cpzJ1yXq7q2XnY0d+Ym95xLw6syEIKZDMH16FbJL/R6wBMPlaZy7FaXlh6Qj6WKtNEPJGhtfeljx6qCJ7nU/o2VsgNpeRjT6iG3osLklIOM=
+	t=1753261120; cv=none; b=Yr8sDwIoHFEaF0IR652W+O/sPvtvP8hkN/W6DN2qcLd1vunt6sdRiKboJhGfztkFrxL59BpDyM0B76eP6BOvjqZC0hCTAqHX7nkiK8/aYAsZg6KuHBKby9PrNvYdElMWyZJmqLPR3aw74Fqxzoe04jirHFfbbBKJeo0g4LUA74A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753261119; c=relaxed/simple;
-	bh=bxHJtEygIS65iMVXdeydJw3JfVyPHxTTM36jGaTq9cg=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PWDNrb144VmkXYpcFpkxW8RqopRzjuHSaZjVyUUQXM4S9Cnp/86IEzeRw5YNjT1ZomP17kQjOU5uP+jcJSvRNF+//jpJgHQKfarhcUyysZhyBTyEgC00FM/3G+Ty7KX0oLeuEvL/RAR4k2O5Adqn+km/pdYwUgl0QpXve3e+KWg=
+	s=arc-20240116; t=1753261120; c=relaxed/simple;
+	bh=NcWEOTDXj6f4kIBljalpFYQyrelfrCFtuzcgHNWiYlE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=tkiNPS/cOgJCk6u41a9qUJXRGGgt55TpdLfxLNktakwfslButocRCX0x4GGYIYXX6NESZPZkzhL6Nx5O2sogIUzBBvGoYdFSGWuKk7mEmkYfcHO1mH7F8QAImABo33FICoF1mNQcN5W3SvtBqugXIQz2YpMKdhb8XEl4BlzrJMw=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <f.pfitzner@pengutronix.de>)
-	id 1ueVJ0-0004xI-H0; Wed, 23 Jul 2025 10:58:30 +0200
+	id 1ueVJ0-0004xI-II; Wed, 23 Jul 2025 10:58:30 +0200
 From: Fabian Pfitzner <f.pfitzner@pengutronix.de>
-Subject: [PATCH 0/2] parse horizontal/vertical flip properties
-Date: Wed, 23 Jul 2025 10:58:28 +0200
-Message-Id: <20250718-fpf-media-dt-flip-v1-0-75b3a938b4be@pengutronix.de>
+Date: Wed, 23 Jul 2025 10:58:29 +0200
+Subject: [PATCH 1/2] media: dt-bindings: add flip properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,9 +44,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIADSkgGgC/x2N0QrCMAwAf2Xk2UA3kYq/Ij6kbeICrpZkiDD27
- 3Y+HsdxGzibssNt2MD4o67v2mE8DZBnqk9GLZ1hCtMlxPGK0gQXLkpYVpSXNoySqZxDypIi9C6
- RMyajmuejXMhXtkM0Y9Hvf3Z/7PsPavz7eXwAAAA=
+Message-Id: <20250718-fpf-media-dt-flip-v1-1-75b3a938b4be@pengutronix.de>
+References: <20250718-fpf-media-dt-flip-v1-0-75b3a938b4be@pengutronix.de>
+In-Reply-To: <20250718-fpf-media-dt-flip-v1-0-75b3a938b4be@pengutronix.de>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Jacopo Mondi <jacopo@jmondi.org>, 
@@ -65,26 +65,36 @@ mounted upside down.
 
 Introduce two options to change the device's flip property via device tree.
 
-As there is already support for the panel-common driver [1], add it for cameras in the same way.
+As there is already support for the panel-common driver [1], add it for cameras as well.
 
 [1] commit 3c0ecd83eee9 ("dt-bindings: display: panel: Move flip properties to panel-common")
 
 Signed-off-by: Fabian Pfitzner <f.pfitzner@pengutronix.de>
 ---
-Fabian Pfitzner (2):
-      media: dt-bindings: add flip properties
-      media: v4l: fwnode: parse horizontal/vertical flip properties
-
  .../devicetree/bindings/media/video-interface-devices.yaml        | 8 ++++++++
- drivers/media/v4l2-core/v4l2-fwnode.c                             | 3 +++
- include/media/v4l2-fwnode.h                                       | 4 ++++
- 3 files changed, 15 insertions(+)
----
-base-commit: 6832a9317eee280117cd695fa885b2b7a7a38daf
-change-id: 20250718-fpf-media-dt-flip-7fcad30bcfb7
+ 1 file changed, 8 insertions(+)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/media/video-interface-devices.yaml b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+index cf7712ad297c0..36d766992b271 100644
+--- a/Documentation/devicetree/bindings/media/video-interface-devices.yaml
++++ b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+@@ -383,6 +383,14 @@ properties:
+                         |                    |
+                         +--------------------+
+ 
++  flip-horizontal:
++    description: boolean to flip image horizontally
++    type: boolean
++
++  flip-vertical:
++    description: boolean to flip image vertically
++    type: boolean
++
+   orientation:
+     description:
+       The orientation of a device (typically an image sensor or a flash LED)
+
 -- 
-Fabian Pfitzner <f.pfitzner@pengutronix.de>
+2.39.5
 
 
