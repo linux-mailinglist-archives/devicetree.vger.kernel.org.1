@@ -1,130 +1,87 @@
-Return-Path: <devicetree+bounces-199090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 315F8B0F447
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61FDCB0F450
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:43:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC3403A5AC5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 13:41:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 716E13B4C6F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 13:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6142F2E7BD9;
-	Wed, 23 Jul 2025 13:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E5742E7BC8;
+	Wed, 23 Jul 2025 13:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PmuG7qTl"
+	dkim=pass (2048-bit key) header.d=adomerle.pw header.i=@adomerle.pw header.b="MyEuCp8j";
+	dkim=permerror (0-bit key) header.d=adomerle.pw header.i=@adomerle.pw header.b="VrfC2+B5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.adomerle.pw (mail.adomerle.pw [185.125.100.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FBB8F58;
-	Wed, 23 Jul 2025 13:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3C952E7165;
+	Wed, 23 Jul 2025 13:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.100.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753278110; cv=none; b=HpYv5UkPUkYYvsZmzS+ivwf5zKK1iSryVEdfe4B78wTXI11ofH3qPC2x/71Vq9iIklG0G+ZKsWzQ70t10nKSb00QzSyh34qiLgkqaMiY7iLRRi1LlNWj8Eq340FPgq/BUyRnc0CDHgEd2xq8ZT8jOcT7wtKMmUTVIzjYVA+OwKY=
+	t=1753278210; cv=none; b=uMDrK0yIMarL2/gwQvwh1Q+YHqirPEYJHHGFy1gbTzuuDsmXzXJgeUjFey2EeBOHJgvD+LJZ1FFuhkSWl6QyFUKAZKRDKkeQU7ihoX/HHenveLnZXQLr7XnHOkus6bT3K/4dq6PYEyjhrQ+T4mKn6ikXHJ55xbWNx217o38xJbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753278110; c=relaxed/simple;
-	bh=zxxC/wQlJmLxLa47Q7NNudHjnXvG/vCvKPONP/39QCg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O9XLCCby8Zb0AdDah6bPznl6pd84WwpjTwHlf2AM6/YDb8zoS8j9FsKeFS+iTIj7wMR/luRDVlKklgFGKYIEPy72/09HpGdN8LUWL84nNA06sGTOhC03j32YPAybqlX1XePnrbJvn8k9dGrRlCLLV0wik4yhtfNuE4GFI50lf9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PmuG7qTl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83DD9C4CEE7;
-	Wed, 23 Jul 2025 13:41:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753278109;
-	bh=zxxC/wQlJmLxLa47Q7NNudHjnXvG/vCvKPONP/39QCg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PmuG7qTl4sg7/QMBKgyBmArSjY7MW6zMzETCIkWyLdi81B49I4VHdhuWfDtD85keA
-	 s1bLp3unFlREP9Un4fUUX5JziSZMKwf4Hw/KgMn4VmYohw3DYwp/XXVUfyBh5wkyD3
-	 R09TNEfWqkjGMY/LeDVi0f9DYMrxS2enzACUqqbvhnTzVcHNryjALifb57fyVeXAHb
-	 L1ILoKBkyV+Sg2NQ8JbJ+iBlFG6RrkLTutCNyS6FMTUcZyOmERe66AVfkM7t7YxQvS
-	 J5Dx9ktAMD/94OEX5E4E6anz65xzMbxXPuCU2irBMH4pS5JuXICjJt5QYIrsV2r6ZK
-	 GQzPzDIu1LfKg==
-Date: Wed, 23 Jul 2025 08:41:48 -0500
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>
-Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Gatien Chevallier <gatien.chevallier@foss.st.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Le Goffic <legoffic.clement@gmail.com>,
-	Julius Werner <jwerner@chromium.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 02/20] dt-bindings: stm32: stm32mp25: add
- `access-controller-cell` property
-Message-ID: <20250723134148.GA2136293-robh@kernel.org>
-References: <20250723-ddrperfm-upstream-v4-0-1aa53ca319f4@foss.st.com>
- <20250723-ddrperfm-upstream-v4-2-1aa53ca319f4@foss.st.com>
+	s=arc-20240116; t=1753278210; c=relaxed/simple;
+	bh=axLciYc0DjxkH9pCxsN2v6yAL/K5kNdDcS6CRQnvp7A=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=WqPrqXuR50TGYm6xzrwUsb+wJXyHy+Fdz0Mqy3RQTB4CICblMwhHYngqoPvHGtLHFFD1L7BVngWXlMhx/buPUZ45Q1807yp7nbiTx+HZiiya685Jve038a3XCAho3YM5zwDmb2QMysmcpIJndQtvhCZSgdApfrF4DqgzoQMl0L4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=adomerle.pw; spf=pass smtp.mailfrom=adomerle.pw; dkim=pass (2048-bit key) header.d=adomerle.pw header.i=@adomerle.pw header.b=MyEuCp8j; dkim=permerror (0-bit key) header.d=adomerle.pw header.i=@adomerle.pw header.b=VrfC2+B5; arc=none smtp.client-ip=185.125.100.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=adomerle.pw
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=adomerle.pw
+DKIM-Signature: v=1; a=rsa-sha256; s=202506r; d=adomerle.pw; c=relaxed/relaxed;
+	h=To:Subject:From:Date:Message-ID; t=1753278174; bh=eWmW202fKN2m55O+smSp46+
+	HpeMk9N6O4tiZVZkb404=; b=MyEuCp8jLg3wVPiud2UbpWmVecvRtsBgHmk0wFbcKT0UQGl5uB
+	+ULUxVUCfThbckljFSg4ucQsiD7wL43Yzn9WiyZcvKoVSWyZSOJRWxG+nej/xl8p5S7QjOm71aE
+	nkMXT22G29dBlb90mRNyTBciN1duOUOZTCVzalIQvVkStbM09kHinSlIMRJjePNvmBrS38d/Bn1
+	E2HhqIMZxbOoW2XP9KSMiqju9KPnFbA9vmGQFJvZzTcD24MNgMyifA4bkvK6GhAVq+aVZHwwCBs
+	8Kqg8AeNBcUbmQT2io5pUX6TxwfCAF3+VhUfLQE09teaq46mzT+Ty8akSgRpg+UQtCg==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202506e; d=adomerle.pw; c=relaxed/relaxed;
+	h=To:Subject:From:Date:Message-ID; t=1753278174; bh=eWmW202fKN2m55O+smSp46+
+	HpeMk9N6O4tiZVZkb404=; b=VrfC2+B5FlWRLIEq4PKFokKKZ4PVXdA4j+Osyj+L1kI9BPgFf8
+	hbg1/rpADS6lx/f2JfuFPIrm30tIKlfptwAw==;
+Message-ID: <3c6cb602-63c4-4384-b4f6-1705167d3759@adomerle.pw>
+Date: Wed, 23 Jul 2025 17:42:52 +0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250723-ddrperfm-upstream-v4-2-1aa53ca319f4@foss.st.com>
+User-Agent: Mozilla Thunderbird
+From: Arseniy Velikanov <me@adomerle.pw>
+Subject: Re: [PATCH v1] dt-bindings: spi: mt65xx: Add compatible for MT6789
+To: Rob Herring <robh@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Leilk Liu <leilk.liu@mediatek.com>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20250715231921.4527-1-me@adomerle.pw>
+ <20250720223451.GA2915764-robh@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20250720223451.GA2915764-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jul 23, 2025 at 03:05:46PM +0200, Clément Le Goffic wrote:
-> RCC is able to check the availability of a clock.
-> Allow to query the RCC with a firewall ID.
+On 21.07.2025 02:34, Rob Herring wrote:
+> On Wed, Jul 16, 2025 at 03:19:21AM +0400, Arseniy Velikanov wrote:
+>> Add a SPI controller binding for the MT6789 SoC. As a note,
+>> MT6893 SPI is fully compatible with this SoC.
+> 
+> Then you should have a fallback compatible. Otherwise, there is no
+> driver change here, so how would this even work?
+>
+Thanks for feedback! I plan to send a fix in a new patch series, where I
+will add support for all compatible hardware.
 
-The subject is wrong. There is no such "access-controller-cell" 
-property.
-> 
-> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
-> ---
->  Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-> index 88e52f10d1ec..4d471e3d89bc 100644
-> --- a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-> @@ -31,6 +31,11 @@ properties:
->    '#reset-cells':
->      const: 1
->  
-> +  '#access-controller-cells':
-> +    const: 1
-> +    description:
-> +      Contains the firewall ID associated to the peripheral.
-> +
->    clocks:
->      items:
->        - description: CK_SCMI_HSE High Speed External oscillator (8 to 48 MHz)
-> @@ -123,6 +128,7 @@ required:
->    - reg
->    - '#clock-cells'
->    - '#reset-cells'
-> +  - '#access-controller-cells'
->    - clocks
->  
->  additionalProperties: false
-> @@ -136,6 +142,7 @@ examples:
->          reg = <0x44200000 0x10000>;
->          #clock-cells = <1>;
->          #reset-cells = <1>;
-> +        #access-controller-cells = <1>;
->          clocks =  <&scmi_clk CK_SCMI_HSE>,
->                    <&scmi_clk CK_SCMI_HSI>,
->                    <&scmi_clk CK_SCMI_MSI>,
-> 
-> -- 
-> 2.43.0
-> 
+-- 
+Kind regards,
+Arseniy.
 
