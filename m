@@ -1,117 +1,126 @@
-Return-Path: <devicetree+bounces-199132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C690B0F8C8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 19:16:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 391BBB0F8D6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 19:20:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FC995850B6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 17:16:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44BB8962E3E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 17:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02B8619F43A;
-	Wed, 23 Jul 2025 17:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C871E5B63;
+	Wed, 23 Jul 2025 17:20:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="vlHLPvdm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m6IixJ8I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A06B2E371B;
-	Wed, 23 Jul 2025 17:16:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5784019C54E;
+	Wed, 23 Jul 2025 17:20:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753290971; cv=none; b=TlajRNPn0Zde+WaL4/9arve3gzQuFFlLhYPSdSZvDQ4Jr1yvN7Oa7xKnfupjhkWU5PE7vFudcEISRpUxI8gaH9KuViMt4bBtXUtjoETZhH3jjsRnKkqcKkPVTHI4ocWuDdExWLyBURBb3I/HgT+zo3OYnSb7gzkUV2vW92nMs5U=
+	t=1753291205; cv=none; b=jnGIFjK0Jq51ABZE8xOXFzeuspsj8qPfT75kmIJx7X69jDZgmkbr/LwEsxtBglCLCBjPP0Eo1Ku1RBfGQtAU7Nqfs0+x1OAdozt2hctMH9LNTnVIAyChPp/NPbYVqFWzH+Hvqoyn79PSB7/He9/TB/x6EDj7UA04gUKPq9Pnn60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753290971; c=relaxed/simple;
-	bh=iVTDmofGQTAzngV/8kkO8hEyfpfo8lk01PQhA0Hog3E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UQc48qCEe7xqtc1IBe3l/VzUcyzAhI1X687aEqyv1hIDfX9AuVvaugOP6AgRk68I2IqOUtv5Czh8qrKXyxxeZCu0Ckbc0efB+5k+U2qcRYk26TfgHXDyKM4rC1b2SFxmwQPud0QDgvs6RlzlAYvJEm3+1aIUEhtpUFJhpjqFdlg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=vlHLPvdm; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=TUmK6VJp0+E0SJQueeIqF9DxsO4dtccjN/iCA5xVXSQ=; b=vlHLPvdmdD+XmzDdgEpCoJ37fR
-	4kA3gtamKP6pl7RUUKO7ce0QIfkO69/BZ/B8cVEnuum/5vFgJ/9z9LEreyN4BY0egcqVBEUlz4hoG
-	+oAv6TzUYbem5YxCixTJvUMOQfg1CBZLX7BcrP6MF8x+QqEcf+CfpK10/m6eDUp5axqo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1ued4T-002fhc-Qy; Wed, 23 Jul 2025 19:16:01 +0200
-Date: Wed, 23 Jul 2025 19:16:01 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Tristram.Ha@microchip.com
-Cc: Woojung Huh <woojung.huh@microchip.com>,
-	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Simon Horman <horms@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Marek Vasut <marex@denx.de>, UNGLinuxDriver@microchip.com,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 2/6] net: dsa: microchip: Add KSZ8463 switch
- support to KSZ DSA driver
-Message-ID: <857db988-fd4d-4cac-9774-43161f1f592a@lunn.ch>
-References: <20250723022612.38535-1-Tristram.Ha@microchip.com>
- <20250723022612.38535-3-Tristram.Ha@microchip.com>
+	s=arc-20240116; t=1753291205; c=relaxed/simple;
+	bh=zp+jX/kXfpkO7Tu8Jj84eW8FHZ9VneOw13Yz+OEtiW8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uF3ufP2AjV/VH4CblEPvadDzE8szv3AJmnDnFpIZEcD+bi1j4vb5yOBbjd3hcxDOOrxoENVxLqEa+t+CGIogtpKD0rsMW+WAvge3YYtTlTTqqslIOVRpYuFlXWkdtUbFK3QmxtzWwJlNjaZsoEZxxCpCU2AYV8EhlciNeo8oWpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m6IixJ8I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85E0AC4CEE7;
+	Wed, 23 Jul 2025 17:20:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753291204;
+	bh=zp+jX/kXfpkO7Tu8Jj84eW8FHZ9VneOw13Yz+OEtiW8=;
+	h=From:Subject:Date:To:Cc:From;
+	b=m6IixJ8I44Vn0PM8TJaI1DRBt9HlAW+TtStOnYhvTFtnhT6eLX2Z9CNXrzXLQFHvp
+	 HsmBn4TiFUVaSNXURh8Gg7dA9z6kjNRFWIGcSWL1E8rWzNGcZ4A4unK5jhIK9Rh+RM
+	 rFH7ldtrYelnpaHAzZ9DtK1iA9H6/cmdRU5iJoTMpR6fvvFMfmsxjy4TMl2QPqTRpY
+	 mtS2ZelfScivkcZS095Xwr+CK6MpLal3ny+ceNw9t0YKsZ3W0jfbqM5cQSb4aIfPHW
+	 wDKKpBzIIGfqjnj324O9sueI1hT1qL0WVS1rSQzcGWviQbblFjz7k45ZHv0qXMZw4f
+	 5YSFUnJoPEBZw==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH net-next v5 0/7] net: airoha: Introduce NPU callbacks for
+ wlan offloading
+Date: Wed, 23 Jul 2025 19:19:49 +0200
+Message-Id: <20250723-airoha-en7581-wlan-offlaod-v5-0-da92e0f8c497@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250723022612.38535-3-Tristram.Ha@microchip.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALYZgWgC/33OwYrDIBDG8Vcpnteijkazp32PZQ+TODayQYtZ0
+ i4l714bKKQUcvzP4ffNjU1UIk3s83BjheY4xZxqmI8D6wdMJ+LR12ZKKCOskBxjyQNyStY4yS8
+ jJp5DGDF73ti+9RiC0xZYBc6FQryu+PdP7SFOf7n8r1uzfFyfrNpjZ8kFdwKEaK0QHbivXyqJx
+ mMuJ/ZwZ7W1zK6lqgV9AGWdIXDyzYKNJfWuBetf2IUGkVrSb5beWnbX0tVqfCetg1aSVy/Wsix
+ 32QBQPKkBAAA=
+X-Change-ID: 20250701-airoha-en7581-wlan-offlaod-67c9daff8473
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Simon Horman <horms@kernel.org>, Felix Fietkau <nbd@nbd.name>, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.14.2
 
-> KSZ8463 switch is a 3-port switch based from KSZ8863.  Its major
-> difference from other KSZ SPI switches is its register access is not a
-> simple continual 8-bit transfer with automatic address increase but uses
-> a byte-enable mechanism specifying 8-bit, 16-bit, or 32-bit access.  Its
-> registers are also defined in 16-bit format because it shares a design
-> with a MAC controller using 16-bit access.  As a result some common
-> register accesses need to be re-arranged.  The 64-bit access used by
-> other switches needs to be broken into 2 32-bit accesses.
+Similar to wired traffic, EN7581 SoC allows to offload traffic to/from
+the MT76 wireless NIC configuring the NPU module via the Netfilter
+flowtable. This series introduces the necessary NPU callback used by
+the MT7996 driver in order to enable the offloading.
+MT76 support has been posted as RFC in [0] in order to show how the
+APIs are consumed.
 
-> +	if (ksz_is_ksz8463(dev)) {
-> +		int i;
-> +
-> +		for (i = 0; i < 2; i++)
-> +			ret = regmap_read(ksz_regmap_32(dev), reg + i * 4,
-> +					  &value[i]);
-> +		*val = (u64)value[0] << 32 | value[1];
-> +		return ret;
-> +	}
->  	ret = regmap_bulk_read(ksz_regmap_32(dev), reg, value, 2);
+[0] https://lore.kernel.org/linux-wireless/cover.1753173330.git.lorenzo@kernel.org/
 
-This needs a bit more explanation. When i look at
+---
+Changes in v5:
+- Rebase on top of net-next main branch
+- Link to v4: https://lore.kernel.org/r/20250717-airoha-en7581-wlan-offlaod-v4-0-6db178391ed2@kernel.org
 
-https://elixir.bootlin.com/linux/v6.15.7/source/drivers/base/regmap/regmap.c#L3117
+Changes in v4:
+- Improve commit messages
+- Link to v3: https://lore.kernel.org/r/20250714-airoha-en7581-wlan-offlaod-v3-0-80abf6aae9e4@kernel.org
 
-It appears to do something similar, looping over count doing
-_regmap_read().
+Changes in v3:
+- Rename 'binary' memory region in 'firmware'
+- Do not make memory-region-names property required
+- Link to v2: https://lore.kernel.org/r/20250705-airoha-en7581-wlan-offlaod-v2-0-3cf32785e381@kernel.org
 
-There is also:
+Changes in v2:
+- Introduce binding for memory regions used for wlan offload
+- Rely on of_reserved_mem_region_to_resource_byname
+- Export just wlan_{send,get}_msg NPU callback for MT76
+- Improve commit messages
+- Link to v1: https://lore.kernel.org/r/20250702-airoha-en7581-wlan-offlaod-v1-0-803009700b38@kernel.org
 
-https://elixir.bootlin.com/linux/v6.15.7/source/include/linux/regmap.h#L370
+---
+Lorenzo Bianconi (7):
+      dt-bindings: net: airoha: npu: Add memory regions used for wlan offload
+      net: airoha: npu: Add NPU wlan memory initialization commands
+      net: airoha: npu: Add wlan_{send,get}_msg NPU callbacks
+      net: airoha: npu: Add wlan irq management callbacks
+      net: airoha: npu: Read NPU wlan interrupt lines from the DTS
+      net: airoha: npu: Enable core 3 for WiFi offloading
+      net: airoha: Add airoha_offload.h header
 
- * @use_single_read: If set, converts the bulk read operation into a series of
- *                   single read operations. This is useful for a device that
- *                   does not support  bulk read.
- * @use_single_write: If set, converts the bulk write operation into a series of
- *                    single write operations. This is useful for a device that
- *                    does not support bulk write.
+ .../devicetree/bindings/net/airoha,en7581-npu.yaml |  19 +-
+ drivers/net/ethernet/airoha/airoha_npu.c           | 180 +++++++++++++-
+ drivers/net/ethernet/airoha/airoha_npu.h           |  36 ---
+ drivers/net/ethernet/airoha/airoha_ppe.c           |   2 +-
+ include/linux/soc/airoha/airoha_offload.h          | 259 +++++++++++++++++++++
+ 5 files changed, 452 insertions(+), 44 deletions(-)
+---
+base-commit: 56613001dfc9b2e35e2d6ba857cbc2eb0bac4272
+change-id: 20250701-airoha-en7581-wlan-offlaod-67c9daff8473
 
-It would be better if regmap_bulk_read() could be made to work, and
-hide away the differences, which is what regmap is all about.
+Best regards,
+-- 
+Lorenzo Bianconi <lorenzo@kernel.org>
 
-	Andrew
 
