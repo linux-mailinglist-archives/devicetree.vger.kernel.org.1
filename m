@@ -1,73 +1,65 @@
-Return-Path: <devicetree+bounces-198868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 123DEB0E9D7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:50:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 640A6B0E9D8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:51:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4992E7ACAE7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 04:48:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CE1F566009
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 04:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 436BF21B9F6;
-	Wed, 23 Jul 2025 04:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10A58215F4B;
+	Wed, 23 Jul 2025 04:51:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X3cMUCxT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uNGzEx7H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16AB85464E;
-	Wed, 23 Jul 2025 04:50:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA09D5223;
+	Wed, 23 Jul 2025 04:51:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753246211; cv=none; b=VDu2NzBWCttdygKbRyA6M9JAyoWVGCptv+w/4XjeJ2X/75DCn3vZhHpZ0yA4aOuSjIXemrbDdLbg6nEqkrnUyoEh06cHP4Waf3A40Uv4dygKIbF43I9+2ATdQ0MGhWzlGmZyJpWDUkA5HpjeXO40I3UtDJw4bJ3TaThewEixAww=
+	t=1753246304; cv=none; b=HwZiyXmoQIjpbWGOUaRe9F8vKSjdf3Mbn3n4Spwro8lPQ1CruucCw66nqTHce5KMe15SYYevHBi77AEvEvURkmOafUEMzBK43HGcLHRw2Mv1DXTXOFNT1V4kw2u/cmZBvLlKq4vt2g5ZGM0qwuoR7XNpQYFhq833vPUGKOxsM78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753246211; c=relaxed/simple;
-	bh=FRrcCCQQ4F/hJI3vXYnGQ/KyERQSqfeqQbk3YFvCDTg=;
+	s=arc-20240116; t=1753246304; c=relaxed/simple;
+	bh=c5i2bIwG0Z+7skW9ZiHKvSW09i+jTKJfniaboye5Wkc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tyMesLnMIYpCSTzkkSSfYnq6/H89XfGi+tcfobhYG5cLZzCgYFOweu7610iyPZUjkSWxNqKRxws2Z6CvrN2BLX5OzntES7bEa/jg/eS9V4XI1VwlTWe2Wf7cesnOkbUdW0x94dDUct5CIvbuQWR3Drpk2upQtXX6wb7caoEv3Ag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X3cMUCxT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E5CEC4CEE7;
-	Wed, 23 Jul 2025 04:50:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RIPE2ZdITHLahXM4Gz01SZaJG6S60ZcVFpgYQNB/c2UsquDZKyGaxc+2KHEHbFjzpYW1SRmdFydos5l30PDd9oaCtYMjYeZ/hsJ2enN1GNDgJEbeWTZada3nI8zrjl44cBhcE46ok/Et83sAWpOR0EF4sUPCcdUb1uh2V6gIN2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uNGzEx7H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 448FBC4CEE7;
+	Wed, 23 Jul 2025 04:51:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753246210;
-	bh=FRrcCCQQ4F/hJI3vXYnGQ/KyERQSqfeqQbk3YFvCDTg=;
+	s=k20201202; t=1753246303;
+	bh=c5i2bIwG0Z+7skW9ZiHKvSW09i+jTKJfniaboye5Wkc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X3cMUCxTLqzOQsWUObwmsbY2S/+091JqNYSeqdU0N/cOAtyVxdEmILr/RzkJdUnSl
-	 jb6gz+T51o/8zfFtk8GYNes4Ts0EHdyPETGXI0bFgyPbFZCuwSBMMZZ7/ibVIbLCun
-	 dcmBsj4jFXfbtdgBUhWu4B3pbbfFgS41JQZP8jRbGdXpuOqDsB8ON0qUmPiln5sVMw
-	 nfxEePuVh48sExCgQLvZ72J3jJBFLpXd4QkiJDvzFA4EBWDJGN3bzfQn//zlF7HVof
-	 MVpo5AsJn9fWRlbKJuIVhCTwuBscdHITGU90uxyDVzQe0o9gVoZDYvRqkrHL6s8Mnp
-	 GXAI0WxPGCzSw==
-Date: Tue, 22 Jul 2025 23:50:09 -0500
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Macpaul Lin <macpaul.lin@mediatek.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=uNGzEx7H2RrKv41icPRYaa2omTkYItLJMuKbqQ0wbF7Bw24ac+vB7AbMjYdJ7UT1C
+	 qRHjCfFDd/omD5E/H5L4tKH2mCiMeG0AfyKM8Xno7njfbd0IxT037oY/nG8rNDUP4e
+	 kN8CByMwzTPWUkTPBp93QRfpSqr+9FwnRJz3H+ad7VIWo060gkaPNXV3r1Hu11UKMe
+	 KUREnxJ1Bmt5LAiVEMX7sjoFXudekIvP0LBXqLY3bXUGOzqdzyMWN8arqQZiq7sSds
+	 N4JtG/sYQEitjv74LKnmCYdw3Wt2Wbrds8zibYE2tpMVBQ6+aQw84vytXZwHP6LY1W
+	 mxpAGFts9VDYw==
+Date: Tue, 22 Jul 2025 23:51:42 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Rob Herring <robh+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Peter Wang <peter.wang@mediatek.com>,
-	Stanley Jhu <chu.stanley@gmail.com>,
-	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Bear Wang <bear.wang@mediatek.com>,
-	Pablo Sun <pablo.sun@mediatek.com>,
-	Ramax Lo <ramax.lo@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: ufs: mediatek,ufs: add MT8195
- compatible and update clock nodes
-Message-ID: <20250723045009.GA1218051-robh@kernel.org>
-References: <20250722085721.2062657-1-macpaul.lin@mediatek.com>
- <20250722085721.2062657-3-macpaul.lin@mediatek.com>
- <b90956e8-adf9-4411-b6f9-9212fcd14b59@collabora.com>
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Huacai Chen <chenhuacai@kernel.org>, loongarch@lists.linux.dev,
+	Xuerui Wang <kernel@xen0n.name>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-mtd@lists.infradead.org,
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>
+Subject: Re: [PATCH v1 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller:
+ Document the Loongson-2K0500 NAND controller
+Message-ID: <175324630208.1226180.15885418620531152001.robh@kernel.org>
+References: <cover.1753166096.git.zhoubinbin@loongson.cn>
+ <588639de591ada408bdaeb0d279c5d62a4b53d61.1753166096.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,98 +68,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b90956e8-adf9-4411-b6f9-9212fcd14b59@collabora.com>
+In-Reply-To: <588639de591ada408bdaeb0d279c5d62a4b53d61.1753166096.git.zhoubinbin@loongson.cn>
 
-On Tue, Jul 22, 2025 at 11:39:54AM +0200, AngeloGioacchino Del Regno wrote:
-> Il 22/07/25 10:57, Macpaul Lin ha scritto:
-> > Add MT8195 UFSHCI compatible string.
-> > Relax the schema to allow between one to eight clocks/clock-names
-> > entries for all MediaTek UFS nodes. Legacy platforms may only need
-> > a few clocks, whereas newer devices such as the MT8195 require
-> > additional clock-gating domains. For MT8195 specifically, enforce
-> > exactly eight clocks and clock-names entries to satisfy its hardware
-> > requirements.
-> > 
-> > Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> > ---
-> >   .../devicetree/bindings/ufs/mediatek,ufs.yaml | 42 ++++++++++++++++---
-> >   1 file changed, 36 insertions(+), 6 deletions(-)
-> > 
-> > Changes for v2:
-> >   - Remove duplicate minItems and maxItems as suggested in the review.
-> >   - Add a description of how the MT8195 hardware differs from earlier
-> >     platforms.
-> > 
-> > diff --git a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-> > index 20f341d25ebc..1dec54fb00f3 100644
-> > --- a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-> > +++ b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-> > @@ -9,21 +9,20 @@ title: Mediatek Universal Flash Storage (UFS) Controller
-> >   maintainers:
-> >     - Stanley Chu <stanley.chu@mediatek.com>
-> > -allOf:
-> > -  - $ref: ufs-common.yaml
-> > -
-> >   properties:
-> >     compatible:
-> >       enum:
-> >         - mediatek,mt8183-ufshci
-> >         - mediatek,mt8192-ufshci
-> > +      - mediatek,mt8195-ufshci
-> >     clocks:
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 8
-> >     clock-names:
-> > -    items:
-> > -      - const: ufs
-> > +    minItems: 1
-> > +    maxItems: 8
-> >     phys:
-> >       maxItems: 1
-> > @@ -47,6 +46,37 @@ required:
-> >   unevaluatedProperties: false
-> > +allOf:
-> > +  - $ref: ufs-common.yaml
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - mediatek,mt8195-ufshci
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 8
-> > +        clock-names:
-> > +          items:
-> > +            - const: ufs
-> > +            - const: ufs_aes
-> > +            - const: ufs_tick
-> > +            - const: unipro_sysclk
-> > +            - const: unipro_tick
-> > +            - const: unipro_mp_bclk
-> 
-> The unipro mp_bclk really is the ufs-sap clock; besides, the standard has clocks
-> for both TX and RX symbols - and also MT8195 (and also MT6991, MT8196, and others)
-> UFS controller do have both TX and RX symbol clocks.
-> 
-> Besides, you're also missing the crypto clocks for UFS, which brings the count to
-> 12 total clocks for MT8195.
-> 
-> Please, look at my old submission, which actually fixes the compatibles other than
-> adding the right clocks for all UFS controllers in MediaTek platforms.
-> 
-> https://lore.kernel.org/all/20240612074309.50278-1-angelogioacchino.delregno@collabora.com/
-> 
-> I want to take the occasion to remind everyone that my fixes were discarded because
-> the MediaTek UFS driver maintainer wants to keep the low quality of the driver in
-> favor of easier downstream porting - which is *not* in any way adhering to quality
-> standards that the Linux community deserves.
 
-Sounds like we need a new maintainer then. They clearly don't understand 
-that downstream doesn't exist.
+On Tue, 22 Jul 2025 17:11:04 +0800, Binbin Zhou wrote:
+> Add new compatible for the Loongson-2K NAND controller used for
+> Loongson-2K0500 SoC.
+> 
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  .../bindings/mtd/loongson,ls1b-nand-controller.yaml         | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
 
-Rob
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
