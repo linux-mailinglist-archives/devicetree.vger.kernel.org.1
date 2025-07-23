@@ -1,197 +1,261 @@
-Return-Path: <devicetree+bounces-199064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDE3FB0F336
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:09:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AF14B0F35B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:12:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC84817FE95
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 13:07:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B87F91727E1
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 13:09:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC7AB2E8DEE;
-	Wed, 23 Jul 2025 13:04:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 474E62E7650;
+	Wed, 23 Jul 2025 13:09:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="e7YarCxg"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Bo0vPrhb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2041.outbound.protection.outlook.com [40.107.212.41])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601662E8DE6;
-	Wed, 23 Jul 2025 13:04:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.212.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753275857; cv=fail; b=c2/XVpFKlz/XVPUlKwjoR7EztlrmUyM5muLj596ooYAd3AN2Qx7l5ZLMgRobsFDA8X5h9l1h/gCnJeScwyHwcuoMLlOb860rPWmsPpww2c58iXiS1Up6HDESQDh5mGp7Wa9pQaDyp1u6A3Q3FR3YHWM6MUf93hbUvjfigzkvNhs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753275857; c=relaxed/simple;
-	bh=35Ejimmf5OccGjxkV9G9UHABHPXWl0WB+kTkxVznrKc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TNVNrl3HFMrrZlHzdag+TuuSGqmanqwMVcg4Juf06ks82LiIljWW+GM5w8ebVPkQcHMOKglwoqqweS//WVzxXR8Pdb7R/EdNUzSBI4xOvBF1+gwSoBOolRtYpzUTB5CLkeZHkmsp2GdghAjfZ7ANXqETGhyzQH40qnao2q1Pb0U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=e7YarCxg; arc=fail smtp.client-ip=40.107.212.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SSFZoqjD6bXgj2v2dMbWPwY6rmb4zjsbpf5hZrb1YzLG/1R6SWpg3yPbZGM18z7Ih16fTKOzIZJfCbqrKyBAcdFuNAPkwxAm6M1y1nk3obWoGLAtjBP5YbeTfEHzTap8xkSyB2Pc5gbsSI06OpCF+khRmr0Xb5YsN4GbPwgpXgiwnAbfFqbIt3nZP/LJkkwXLnqmbxqwXJRXb7icxyMhITqjxIjlC2YyuY20qgtI6Z6ahS53bIxxWhQmYWhvWkgZV5mQLZ6JPvTSK+U7VqlJ3BDDbUkguid0JwweKJpA1F7HJ2g3tN78Q4AjsE2EjzM3oSdiEhmbaTcQCtriXeRLxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Chv7YI5n/YVQjjKW07Od2qQWjqVBq4BJ7A1EWMyXA9g=;
- b=DgC1zSz4Ep2RFoPdCC/A5L2QnCy2264zX7PGcLdEDgulTD68JOkr8kuv4dQLbTa2vbGKxgnBn5OwWTKQ9Zc0LKTFFRn+Qsk5iYZ10iw272LO5fk8hM5gAwcNh4Mxaao76VCWJQuPdbwEO0NWIegjcKGA5swsHJ+vxVum78TA9hdGau68EoOu2q0WIfPtlVjw3uo5TIQDbCIJqJlBLAl/C4Xeej0IDYvrDD+38fSY7o+J7oiUfGLs6Rldop+9owzchjIE0w5zf6Z1s3ldkma5KnOl0K/1XD8Z5WOVyUj/GG2J7R/91RqbFQJlXebAsck6r4yVY+3Z5CU9ExR9dSScOQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Chv7YI5n/YVQjjKW07Od2qQWjqVBq4BJ7A1EWMyXA9g=;
- b=e7YarCxgQl2zyh7RDbmswP7Qtq6gssezxvVX2FV6Sn7J7Iu5XpTxvs5yr3AfyKTUyVz4MuYBihtROqDz3XPPZ9K+LQ/1MYjYQqO3yoF41H+tR13YpKTNauLJdr/fGHkEII1+ifa5zt4TXYXDxSbbW/Wxj/tV3btefPrlZjhETM72/P/lV4rMNwccN9zmObkPQSWYybF6MgKUiSN6GCofIskKI/JBk/cZFvWbg3eWzKF14ErZw7M6ZmJUlMqpXJsBWtmUf+eHeg6jaOMWZ42VqyuzM+fSFIg22BREsjmKyAY1NZ4fEIRdqMfTYl4XfXJBW6j0qzLs1e+NvsFNubAi4w==
-Received: from PH2PEPF00003848.namprd17.prod.outlook.com (2603:10b6:518:1::65)
- by BY5PR12MB4210.namprd12.prod.outlook.com (2603:10b6:a03:203::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Wed, 23 Jul
- 2025 13:04:09 +0000
-Received: from SN1PEPF00036F40.namprd05.prod.outlook.com
- (2a01:111:f403:f90f::2) by PH2PEPF00003848.outlook.office365.com
- (2603:1036:903:48::3) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8922.33 via Frontend Transport; Wed,
- 23 Jul 2025 13:04:09 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- SN1PEPF00036F40.mail.protection.outlook.com (10.167.248.24) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8964.20 via Frontend Transport; Wed, 23 Jul 2025 13:04:08 +0000
-Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Wed, 23 Jul
- 2025 06:03:51 -0700
-Received: from drhqmail203.nvidia.com (10.126.190.182) by
- drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Wed, 23 Jul 2025 06:03:51 -0700
-Received: from build-shgarg-noble-20250715.internal (10.127.8.11) by
- mail.nvidia.com (10.126.190.182) with Microsoft SMTP Server id 15.2.1544.14
- via Frontend Transport; Wed, 23 Jul 2025 06:03:51 -0700
-From: Shubhi Garg <shgarg@nvidia.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
-	<catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Jonathan Hunter <jonathanh@nvidia.com>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-rtc@vger.kernel.org>, <linux-tegra@vger.kernel.org>, Shubhi Garg
-	<shgarg@nvidia.com>
-Subject: [PATCH v5 4/4] arm64: defconfig: enable NVIDIA VRS RTC
-Date: Wed, 23 Jul 2025 13:03:43 +0000
-Message-ID: <20250723130343.2861866-5-shgarg@nvidia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250723130343.2861866-1-shgarg@nvidia.com>
-References: <20250723130343.2861866-1-shgarg@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C54D2E5B38;
+	Wed, 23 Jul 2025 13:09:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753276148; cv=none; b=rKa+wDNRb7Hqa1c/KO1PCk3UzzL81JPFcsLV0Djkx3bZDCD5+QrXnBPk03qfxyzTO0xZR+rJjaqROSltJYwSd4JvVuRg4GEb45f/dr8sXUmEQl2mWXmWNB/oOWH3QWtdyfdM3Dr/DypUd+ltjWcTJU44XUVUXEP1VS2Im1W5u+k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753276148; c=relaxed/simple;
+	bh=zMxBdqjl3NywDJxsEUsBa9BBb0Lv7OyQ8vnknlq88eU=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=sWlFNo91Hf4w6ChqvFxn8tmk24xs/ZrNzRcK6MGu+Hk9O/ED7FYfJk59YHrKmEATkldi5V6UuV7rBlrHNYoET9AuKi07sd6/vRPIwMf1yLAuRtMM58XgEPr8tCIpYvzyaINmy1HhqHJqhmJzt35FzAAzc+b03tAUBXhnM20zWZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Bo0vPrhb; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56NCVpp4020047;
+	Wed, 23 Jul 2025 15:08:47 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=gqjUBfZmAPTshwYSijQ6cS
+	Kj6QvH6tkjctPdCuS2eNo=; b=Bo0vPrhb+Jt+jvUHmAfcntVDrsoE5Dt5GY/cjT
+	URK9YNjEN6EloUit+bH06v8dac1mLwHPygKUJ6JJRQsi/aHczc+V84fLUAbAm0LE
+	qmIul4kAb6lpxm9j0FI1FoSzh+iYgBNiIUy1d5lUKQvGtwVVie7y4lgG2ALMmobV
+	dfEgV4kNcg4U0tU1Z34ZkzgPD19ViOhkdEBhrqN03FP9qa4I0Ju1uE4fHBI2LS0z
+	wk12jW2BE66gbGKB4k2MezmTh3hD1AS+ThQ61bFFzqPb6Dc+LdJDReuZQcFX9vR0
+	T+l+nTcCMtlpDUJ/hSFoyMHcVtueth3s4z/cQyKuxeqQ1JIw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4802q2c3h6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Jul 2025 15:08:46 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 446CA40046;
+	Wed, 23 Jul 2025 15:07:25 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 02F5C784EBE;
+	Wed, 23 Jul 2025 15:06:03 +0200 (CEST)
+Received: from localhost (10.48.86.185) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 23 Jul
+ 2025 15:06:02 +0200
+From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+Subject: [PATCH v4 00/20] Introduce STM32 DDR PMU for STM32MP platforms
+Date: Wed, 23 Jul 2025 15:05:44 +0200
+Message-ID: <20250723-ddrperfm-upstream-v4-0-1aa53ca319f4@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF00036F40:EE_|BY5PR12MB4210:EE_
-X-MS-Office365-Filtering-Correlation-Id: 081a96a1-2121-4372-c1c1-08ddc9e9695f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|1800799024|36860700013|376014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?NftJatD8NZ0/XsUFeN2uAwwIuazMeHRDxBFARn6lmxfVyHfkLTSVwOoQk7NX?=
- =?us-ascii?Q?Hu7XaVb2W5zNqdtpUFVBJFKQlLkLKDe1VQbYYsVGQqVTE94UBPTTb6Qkdm5X?=
- =?us-ascii?Q?sp2vhpoI96ol8dGGkqxyAGtqdtwWzwDFzVMcv80uIuzjR6ype0OF5fwkj87+?=
- =?us-ascii?Q?MatLW+5lRHHzmQSjg+sWxviIKW+wS0JqY6KwJgjR3y5klbcmf/tiX5NqGcPP?=
- =?us-ascii?Q?JaCRz/OtiJH9OZw2CbyCt3DH8RZ9C8ueoFd499ffZIshfOnJE2Yefbl4C7fN?=
- =?us-ascii?Q?uf3c8uL6QGAmj+hHQSdU+4OxWvETVGhpq9HwAi2TAFBvRVxH/KAycoF/VrAL?=
- =?us-ascii?Q?KpPvKAS+QNol0SP4VDzmwpTm1WzjR3+8ctUQ484XaYKXEXf1pBMhVBgBJC6+?=
- =?us-ascii?Q?Q+DIZTRFFbT5lB4M3kDm9+VSfXzY/rRgmpsnSrbOFLL5IpBjhJuU3ibiMei1?=
- =?us-ascii?Q?IuTzC21U8RLdWkDuHYwq6uib/vRQPEThtT4XyUp5y/a1AAoLkwmnxWWREPx8?=
- =?us-ascii?Q?VcuKT7Q+eA/ifQ2PErqtQC7+ZbJVJ6KnKSlyE60XLJz1pzpBUMI9D3XSwlsI?=
- =?us-ascii?Q?/OICmjqGUnMvFU+7ZQLpB/0QOSg8xbcjDi2ZGqqcR2NTg8/+ms7XH2HgWPdG?=
- =?us-ascii?Q?p+55FftYNZeD7ViY1PiF6+WoTe79G6qA/FbWgUeGHfyLw7u5SLyNXzrgICxe?=
- =?us-ascii?Q?wm0AM7VKvLFTiTkWzclxKcWB3KibvbPj+4fffoQm/dAX9oAl2KTM1kAUkhDT?=
- =?us-ascii?Q?mPJsZmq2HRIAhqFCTSlgqfFF6uUIH6SL9PMljbxEih07KW+lgxji49Te6fX/?=
- =?us-ascii?Q?Tlx2XDwwcX46Bi8Bu06t9t40/TkuVd68xT8bvZkBR+st6vmcaB7/92IkyNxJ?=
- =?us-ascii?Q?vh76XE8yV4dVEEq1iO7a/w5+dCi49WhJhVdvMlx418DxAman67W1+B0viLiQ?=
- =?us-ascii?Q?NOOifQGwHuMcAoOQuAwnN4YOHJC1Og4+n+fUR0JPH6PHrPtCcUxGXEVdMd0x?=
- =?us-ascii?Q?DyM0boj03lnyvlQYXnc0U0lWROat6H2kx5HW7r3cG+5jaDxPNZp39Yy1Zl49?=
- =?us-ascii?Q?CeWmyzAFAsQtQAejKUHqLhUUY7clppADVDhidzfA5BJHWpJomoRyGeqiDts9?=
- =?us-ascii?Q?w+zatJYgQPJdsVTWkYTuPhNB4MtshDMTWzBV+vxrAr9DtRYP3yrG+Wh3kgxu?=
- =?us-ascii?Q?b9k2jJdEPcuteorvZwSdnnEtTuYrzLJIrsEbvbWF+EkuaD+TVZmAFhJSbIwj?=
- =?us-ascii?Q?n3dXNM7DUKARD1m7Ceuihe5X8+c9+X/NwHasOSx2LWCGEPVD/6Yjiqn51YYk?=
- =?us-ascii?Q?64FrNk+2sA/0YooFahrrd6bPgF5ShSe83shZBjUMlp5qD5vbKu5gVjWyLWFg?=
- =?us-ascii?Q?zGECxNaFAsXituJZayvR/QLgA1PLdFxIPVGUWWTz/dg26uoP5thEFiah2YvT?=
- =?us-ascii?Q?XXX0vl4WuQgZtRAWV3Xf2HQtUM+oogzZFs2/XxZZqrhH5rAdij6hgd51yUGQ?=
- =?us-ascii?Q?1Q4Zm1KXvMv6WuiCzXN3qriIGwfhVAkwwEgs?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2025 13:04:08.7630
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 081a96a1-2121-4372-c1c1-08ddc9e9695f
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF00036F40.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4210
+X-B4-Tracking: v=1; b=H4sIACnegGgC/23OTQ7CIBAF4Ks0rKWBoS3VlfcwLigMlkV/ApVom
+ t5dWhca7ezeJPPNm0lA7zCQUzYTj9EFN/QpFIeM6Fb1N6TOpEyAQclKqKgxfkRvO3ofw+RRdbS
+ xTNpSSlkaRdLd6NG6x2Zerim3LkyDf24vIl+3b60CsaNFThmVxqbhVc2O7GyHEPIw5XroyOpF+
+ BiS8z0DkqENapTARFHbf0N8GQB7hlh7NFIVVhhdq58ey7K8AAz4lTc8AQAA
+X-Change-ID: 20250526-ddrperfm-upstream-bf07f57775da
+To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Gatien Chevallier
+	<gatien.chevallier@foss.st.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Gabriel Fernandez
+	<gabriel.fernandez@foss.st.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Le
+ Goffic <legoffic.clement@gmail.com>,
+        Julius Werner <jwerner@chromium.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>,
+        =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+X-Mailer: b4 0.15-dev-8018a
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-23_02,2025-07-22_01,2025-03-28_01
 
-Enable NVIDIA VRS (Voltage Regulator Specification) RTC device module.
-It provides functionality to get/set system time, retain system time
-across boot, wake system from suspend and shutdown state.
+This patch series introduces the DDR Performance Monitor (DDRPERFM) support for
+STM32MP platforms.
 
-Supported platforms:
-- NVIDIA Jetson AGX Orin Developer Kit
-- NVIDIA IGX Orin Development Kit
-- NVIDIA Jetson Orin NX Developer Kit
-- NVIDIA Jetson Orin Nano Developer Kit
+The series improves the STM32MP25 RCC driver to make it usable
+as an access controller, needed for driver probe.
 
-Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
+The series introduces support of DDR channel through dt-binding and
+devicetree entries.
+
+It also includes the addition of DDRPERFM device tree bindings,
+the DDRPERFM driver, the documentation and updates to the device tree files
+for STM32MP13, STM32MP15, STM32MP25 SoCs and stm32mp257f-dk and
+stm32mp257f-ev1 boards.
+The series also updates the MAINTAINERS file to include myself as the
+maintainer for the STM32 DDR PMU driver.
+
+Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
 ---
+Changes in v4:
+- Fix DDRPERFM dt-binding example with a DDR4 channel instead of DDR3
+- s/memory/sdram/ for factorising patches.
+- Improve properties description for the new SDRAM props binding by
+  adding information on compatible generation, revision-id, density and
+  io-width for DDR that comes with an SPD module.
+- Add a patch to standardise sdram channel node name.
+- Improve DDR4 compatible pattern.
+- Link to v3: https://lore.kernel.org/r/20250722-ddrperfm-upstream-v3-0-7b7a4f3dc8a0@foss.st.com
 
-v5:
-- removed VRS MFD CONFIG
-- changed VRS RTC CONFIG name
+Changes in v3:
+- dt-bindings:
+  - perf:
+    - fix compatible conditions and dtbs_check/dt_binding_check errors
+  - memory:
+    - Remove ddr-channel binding added in v2
+    - Generalise lpddr-props binding into memory-props binding
+    - Add ddr4 binding
+    - Generalise lpddr-channel binding into memory-channel-binding
+- devicetree:
+    - update stm32mp257f-ev1 board devicetree as per new ddr4-channel
+      binding
+- driver:
+    - Remove unneeded pmu and event pointer tests in
+      `stm32_ddr_pmu_get_counter()` as it would break before if they are
+      NULL
+    - Rename macro to be more driver specific
+    - Fix few trailing commas in array and enum last entries
+    - Stick to the use of `pmu->dev` in the probe instead of
+      `&pdev->dev`
+    - s/devm_clk_get_optional_prepared/devm_clk_get_optional_enabled/ to
+      fix unwinding issue and remove the `clk_enable()` of the probe.
+    - Move the `perf_pmu_register()` at the end of the probe
+    - Add lacking spaces in regspec structs
+    - Use DEFINE_SIMPLE_DEV_PM_OPS instead of SET_SYSTEM_SLEEP_PM_OPS
+- Link to v2: https://lore.kernel.org/r/20250711-ddrperfm-upstream-v2-0-cdece720348f@foss.st.com
 
-v4:
-- no changes
+Changes in v2:
+- MAINTAINERS:
+    Due to reorganisation, my contract with ST ends at the end of this month
+    and I will no longer have access to this mailbox.
+    Therefore, I will be available for any mission related to embedded and
+    kernel linux.
+    Change email address in MAINTAINERS file for STM32 DDR PMU driver.
+- devicetrees:
+  -stm32mp257f-dk: add LPDDR4 channel
+  -stm32mp257f-ev1: add DDR4 channel
+- dt-bindings:
+  - perf:
+    - Change Maintainer email address
+    - Drop obvious descriptions (clocks and reset property)
+    - Drop redundant "bindings" in commit message
+    - Drop unneedded "stm32mp151-ddr-pmu" compatible
+    - s/st,dram-type/memory-channel/, memory-channel property is not in
+      dtschema library so it will produce an error in the v2.
+  - rcc:
+    - Add required "access-controller-cells" property in example
+  - ddr-channel:
+    - Add bindings as per jedec,lpddrX-channel bindings
+- driver:
+  - Substitute the parsing of the 'st,dram-type' vendor devicetree
+    property value with the parsing of the [lp]ddr channel compatible
+  - Remove unneeded "stm32mp151-ddr-pmu" compatible
+  - Use dev_err_probe when possible
+  - Assert and deassert reset line unconditionnaly
+  - Use `devm_reset_control_get_optional_exclusive` instead of
+    `of_property_present` then `devm_reset_control_get`
+  - Use `devm_clk_get_optional_prepared` instead of `of_property_present`
+    then `devm_clk_get_prepared`
+  - Disable and unprepare the clock at end of probe
+  - Add io.h include as per LKP test report
+  - Removed `of_match_ptr` reference in `platform_driver` struct
+  - Add `pm_sleep_ptr` macro for `platform_driver` struct's `pm` field
+  - Link to v1: https://lore.kernel.org/r/20250623-ddrperfm-upstream-v1-0-7dffff168090@foss.st.com
 
-v3:
-- no changes
+---
+Clément Le Goffic (20):
+      bus: firewall: move stm32_firewall header file in include folder
+      dt-bindings: stm32: stm32mp25: add `access-controller-cell` property
+      clk: stm32mp25: add firewall grant_access ops
+      arm64: dts: st: set rcc as an access-controller
+      dt-bindings: memory: factorise LPDDR props into SDRAM props
+      dt-bindings: memory: introduce DDR4
+      dt-bindings: memory: factorise LPDDR channel binding into SDRAM channel
+      dt-binding: memory: add DDR4 channel compatible
+      dt-bindings: memory: SDRAM channel: standardise node name
+      arm64: dts: st: add LPDDR channel to stm32mp257f-dk board
+      arm64: dts: st: add DDR channel to stm32mp257f-ev1 board
+      dt-bindings: perf: stm32: introduce DDRPERFM dt-bindings
+      perf: stm32: introduce DDRPERFM driver
+      Documentation: perf: stm32: add ddrperfm support
+      MAINTAINERS: add myself as STM32 DDR PMU maintainer
+      ARM: dts: stm32: add ddrperfm on stm32mp131
+      ARM: dts: stm32: add ddrperfm on stm32mp151
+      arm64: dts: st: add ddrperfm on stm32mp251
+      arm64: dts: st: support ddrperfm on stm32mp257f-dk
+      arm64: dts: st: support ddrperfm on stm32mp257f-ev1
 
-v2:
-- moved VRS RTC config to correct place
+ Documentation/admin-guide/perf/index.rst           |   1 +
+ Documentation/admin-guide/perf/stm32-ddr-pmu.rst   |  86 ++
+ .../bindings/clock/st,stm32mp25-rcc.yaml           |   7 +
+ .../memory-controllers/ddr/jedec,ddr4.yaml         |  34 +
+ .../memory-controllers/ddr/jedec,lpddr-props.yaml  |  74 --
+ .../memory-controllers/ddr/jedec,lpddr2.yaml       |   2 +-
+ .../memory-controllers/ddr/jedec,lpddr3.yaml       |   2 +-
+ .../memory-controllers/ddr/jedec,lpddr4.yaml       |   2 +-
+ .../memory-controllers/ddr/jedec,lpddr5.yaml       |   2 +-
+ ...lpddr-channel.yaml => jedec,sdram-channel.yaml} |  40 +-
+ .../memory-controllers/ddr/jedec,sdram-props.yaml  |  92 +++
+ .../devicetree/bindings/perf/st,stm32-ddr-pmu.yaml |  94 +++
+ MAINTAINERS                                        |   7 +
+ arch/arm/boot/dts/st/stm32mp131.dtsi               |   7 +
+ arch/arm/boot/dts/st/stm32mp151.dtsi               |   7 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             |   8 +
+ arch/arm64/boot/dts/st/stm32mp257f-dk.dts          |  12 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         |  12 +
+ drivers/bus/stm32_etzpc.c                          |   3 +-
+ drivers/bus/stm32_firewall.c                       |   3 +-
+ drivers/bus/stm32_rifsc.c                          |   3 +-
+ drivers/clk/stm32/clk-stm32mp25.c                  |  40 +-
+ drivers/perf/Kconfig                               |  11 +
+ drivers/perf/Makefile                              |   1 +
+ drivers/perf/stm32_ddr_pmu.c                       | 896 +++++++++++++++++++++
+ {drivers => include/linux}/bus/stm32_firewall.h    |   0
+ 26 files changed, 1348 insertions(+), 98 deletions(-)
+---
+base-commit: 89be9a83ccf1f88522317ce02f854f30d6115c41
+change-id: 20250526-ddrperfm-upstream-bf07f57775da
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 4dcc43c62c4d..49a0e2372ab7 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1275,6 +1275,7 @@ CONFIG_RTC_DRV_MT6397=m
- CONFIG_RTC_DRV_XGENE=y
- CONFIG_RTC_DRV_TI_K3=m
- CONFIG_RTC_DRV_RENESAS_RTCA3=m
-+CONFIG_RTC_DRV_NVIDIA_VRS10=m
- CONFIG_DMADEVICES=y
- CONFIG_DMA_BCM2835=y
- CONFIG_DMA_SUN6I=m
--- 
-2.43.0
+Best regards,
+--  
+Clément Le Goffic <clement.legoffic@foss.st.com>
 
 
