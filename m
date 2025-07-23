@@ -1,295 +1,207 @@
-Return-Path: <devicetree+bounces-198830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B00B0E861
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 03:57:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 470ACB0E873
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 04:02:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FAE96C13F8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 01:57:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 397C83B7B17
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 02:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AF8719D88F;
-	Wed, 23 Jul 2025 01:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D493E1CD208;
+	Wed, 23 Jul 2025 02:02:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="gqZ3pOMZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pjT97HU7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2060.outbound.protection.outlook.com [40.107.223.60])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87E988472;
-	Wed, 23 Jul 2025 01:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753235868; cv=fail; b=JKrFNPvuZ02JWcf8S8XP/fhKuZXdb2/za0ajZRK1wgplX2aDfR60dzJPo/tl1o8DhwIyEYKgD6wE3gTC3YiTIWBVLT3YTmzHz7ugM6fVEwNzNdcLBcQjzDh4Ag8yPWc2m1XUURSItEDAAGubiG+foBL3IxrtQElhJXEDYaSRJNI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753235868; c=relaxed/simple;
-	bh=rjmrZu0r9GfYgnvLZ8j9paa9WuEknMyLuUkPyz3Ms1w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=pgskNxlkIYnIV1kqmKPVenEWLXi0a8Ki7X8/8RnV2esZgJ+RZyQVoVyl5ESopsNv0viU/Ovxi9P7LIRWpcl5sMrx2i0/1mcu5bnUBpQjOhmWnulgDys4bAmWesw1f9UvFuNF2b78h4CMjhI1MDIIna4yUEBy7AZeTdyXXowH8+U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=gqZ3pOMZ; arc=fail smtp.client-ip=40.107.223.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pdd15UINhQn5uXst1ZE6fqkPCz65QwPag7EnvCtAtbzKgVqymVfW5LTXBbsqeDA1mOJ+7il23w2sC5F7mshwKHwZZ/3OCbAgzkrnezCENwcGgQuJSjt0ez+Ir34uj2YsrCUCL2mB1xzVbNmyD2miiGb03ZnEqzdAQB/av++s3s7pp4FUhlpkcrJJYTPdHAaYOKBs2vbiwFVXP0T6cstZJgmdHCFqa/8GkrN68w6rq62E4viyYWSC4IDAJGAhsL7kQye1hN+5UvDPZi+IxHEGenLqzmir0J9W9gRX+J9iJ9Nk2YvEoMZKbvfeHoM2Oi3m8Y6Xt0ctidAeChWBlyTUHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oyoGy40PzhQOoQRX+tkq05QEpPLmhF4JjRxCq7ml1Uk=;
- b=UXCEedUbZPW/oVGq+9DzILsS5xVBc93zePeh6cOFBGNus6WuGjM5pIZtRyuL538S4PAPsuHXPjlhX4iwbXa1qJghmaAE2+tUxNmXU6KcVP1IntwKh8OdqZ96mZm+yDHbPpUMv8u51hTJUUcwI43BBi40de0hSrxPRGI+j4o6fBr9X1clQI+JJBo3hvTXsB4IinDcLQcB/D78UxZJ1PB2szkTvgvUsWCoLbnF60y+jsLJChUOwU9K8gKbdTv/Ezwrxf2D+il4Smwwt25CwK8luKA0ImEJ9zYksrkag1ATpvxKJXGQqrBchQJmwOqBOn7mMDxjDuez9Nw+8FFpheXyQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oyoGy40PzhQOoQRX+tkq05QEpPLmhF4JjRxCq7ml1Uk=;
- b=gqZ3pOMZhLlkCVva3AMKeRb6ZFkl+PhNBjZsTuGlfMm7ajJchhnnHqYuD4eqkdsJaNRSVC4hvUbo6e2kSdRJY7dnFP37/iExrRKouMNQYUdEXu3D56sGFR+zoLWa9ycFkRzQr7SyKhQQcJDLfFKPV87QowJUgIGtxQo6sstfkIu9+lR02OeZsyDqNYvPFvLmqOY7Sm8qKaDySOydY62FIQMhj4KJk/cgDviPne2FFVZJIwopeUfuXDrqRhGVKiXLWHd8BP/QkuMOoxesMufqSlanbNLg9IoHlBx5DkWeHFtMuAGfW9BKxh8KyO9t7TnaJMPIcB9N3W+78fkJ/bc6aw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CY5PR12MB6478.namprd12.prod.outlook.com (2603:10b6:930:35::19)
- by CH3PR12MB9079.namprd12.prod.outlook.com (2603:10b6:610:1a1::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.21; Wed, 23 Jul
- 2025 01:57:43 +0000
-Received: from CY5PR12MB6478.namprd12.prod.outlook.com
- ([fe80::35dd:2a5e:d28d:55e7]) by CY5PR12MB6478.namprd12.prod.outlook.com
- ([fe80::35dd:2a5e:d28d:55e7%4]) with mapi id 15.20.8922.028; Wed, 23 Jul 2025
- 01:57:43 +0000
-From: Mikko Perttunen <mperttunen@nvidia.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Dmitry Osipenko <digetx@gmail.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject:
- Re: [PATCH v1 5/5] ARM: tegra: add MIPI calibration binding for
- Tegra20/Tegra30
-Date: Wed, 23 Jul 2025 10:57:38 +0900
-Message-ID: <4377642.OBFZWjSADL@senjougahara>
-In-Reply-To:
- <CAPVz0n1f=bAHqZiF3yMGS2T5Bg6C=CbJbLCGQMGfiAqK1YVzFg@mail.gmail.com>
-References:
- <20250717142139.57621-1-clamor95@gmail.com>
- <26197475.6Emhk5qWAg@senjougahara>
- <CAPVz0n1f=bAHqZiF3yMGS2T5Bg6C=CbJbLCGQMGfiAqK1YVzFg@mail.gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-ClientProxiedBy: SG2PR04CA0206.apcprd04.prod.outlook.com
- (2603:1096:4:187::21) To CY5PR12MB6478.namprd12.prod.outlook.com
- (2603:10b6:930:35::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C32119C55E
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 02:02:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753236166; cv=none; b=Xa+DQH+GYAh/guWAw5gIWaYziXSw65dZPpGe6I4APzOyY08ua7MSRQ/wm/bfhIOqgdaWN1gDyWQ8eQ02T56PhYXT5WDl6RlSkyAQ76c8Sj5cNpAj9jSgsA+RXOOqBGr/i8Q/TwUwp92J7rXlGUxtVX9Ur51oUGktkbxxdIBLigU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753236166; c=relaxed/simple;
+	bh=6F3hhhDXHFYRN2PO7y3xC+W2D4Dq5tArMSG1+f373rY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DTgBUcijECQKHZA+9bN1Qj5JOtjUkmsL1yYynl/0zPr3RVFkQtN8e1DBrZqGDMiMQUIgTvYqhN/BjxYilhyd8jDFgxPnhnhWRkP6qxJG7nfd3PEtN6JyxiiGa9jXC0kyQILn9Czb19y+c1C0muTjq68BrhqE9tKBdgKQh5uPiTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pjT97HU7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56MMO8xD027886
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 02:02:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KvE3JK53Y0Xx+2JHZiTEwGbmVHErfebjgQfHhe4H/Q0=; b=pjT97HU7CwM9GBzk
+	teS0SC8m4jPfoWz/Sh54Oq+T+xR1hhyE4+Tlxp6+dPypaQrgjAUnNKTkauhdRFlt
+	uHnCTOQPEAFcFqrnHkPUp8NOqns1BLYgilKmS3YRxVLDjfB7sJtTCrcriUJN8smS
+	7rU+FtIg8tDJJAvgpmMaNfBvsvAYc54P46bqMnp5qBI8AqDyDsX0hz02YvdCCv2D
+	SyQyzYEuwAE+TqTTohoaWQQjqHlJCGHccbsWLaomk0/uWxJNrZCaHcKMQDqOeo1Z
+	vdBzxpv1HoWc6Yqt6p/3alGlpm2lMMfjzXoD4felKY5kLiv24krADClpfFlxU5VS
+	w8NMcg==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48048s3ge6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 02:02:43 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-74d15d90cdbso5212119b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 19:02:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753236162; x=1753840962;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KvE3JK53Y0Xx+2JHZiTEwGbmVHErfebjgQfHhe4H/Q0=;
+        b=H/ByldKLdX29AHASKG+FsaUGm0HFaz0wb46SgCwdD87YI2rLCXdgxQLndHoQMAzN9k
+         9jM2bhOB4qej2z5ziUT4aytE9ta2WbgdbA0gjvy3at6ee3y2c8NGdZJPpXR68aBr9rTT
+         zZ/YhL18emBvLysR+bcDFl2RQ59XJ6gfyKU/tlr7CSOVFJbQYhejEs0WwuAKiOE+jx4E
+         acF7Lp8IYoSZ6eC9hgZXN3mzklgcqyK/MvA40xVapEzgKXXp7ba+nngqvNlUThmlF5Bd
+         hjlb+/ikIuQNuq1e7XQLX0HWZSsgYt3ROduCkjbdoPL4pvS6CSW7uWa3DIK+MDvgeSVp
+         Y1lA==
+X-Forwarded-Encrypted: i=1; AJvYcCX1DNmJqt4X5A4jOfpOiTjHiIuqzDeZW5/QzyFbE73HOIHDNKYDsz7u1gntchToQgAzlntmngOJMDZO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDBqkHr7eXNIi5MWpKyQOZMf64Pd9knoifhKDQ/e3IUItWBYJ3
+	1uMF+Fg8BqUi43bh1jxiREx49ME62fphM3f9TrWMHcawr+a5+SXpVAzM2XTgz3dwEkqxkB9kLgU
+	s5SLKYnD6GHMD5wJwNozOdFtZE7lgdAw2p301etPWvoT5R04k4ecfR/nGVV5rxu7S
+X-Gm-Gg: ASbGncu4ElhHSoANBafSDolAXY6BCYxZzW5CUGnKmHFJBPmjdL9PDcwV22C88YT/gmp
+	YavwyvE8MRV3d3kbMGdi+aNu21y86/piL30rlgVDs1DV9BEEisehpyboUCnXS09Uu0eFDs9lMte
+	1mpiypENzB4tgeCMIQXMi8vXeWoPN7slPY79sz85kRGouUaSivFPC1lPoZFgReqqR55GGy98v/m
+	LIDWR6XXscyJEgcTqzxh6MwGH5TY3nWDw4kKQLojifPqc79vPZSsLFF6sCCDADUBSzadHi8haGB
+	tOKOo6DvUeKfHjT5Uh4OeWc33YTTgkfkMMmFrBogWjZWIMRIP5CJ8mwvlERIk23uYTtbTrLXtQS
+	hLgfrYnqz4ICHbUWY
+X-Received: by 2002:a05:6a00:b88:b0:74e:b9fd:4a3f with SMTP id d2e1a72fcca58-760348fd155mr1772419b3a.10.1753236162451;
+        Tue, 22 Jul 2025 19:02:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEz6Z/xfTkR7LVib4gNFjxlAUfzNLNwWomRsnZ+ul5/oJgVXhvsA7nk1F/qXuxTLMJb+eDqOQ==
+X-Received: by 2002:a05:6a00:b88:b0:74e:b9fd:4a3f with SMTP id d2e1a72fcca58-760348fd155mr1772380b3a.10.1753236161938;
+        Tue, 22 Jul 2025 19:02:41 -0700 (PDT)
+Received: from [10.110.52.219] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-759cb15698dsm8617323b3a.89.2025.07.22.19.02.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Jul 2025 19:02:41 -0700 (PDT)
+Message-ID: <469e2e9c-b950-4ecc-bfa9-82aa9178b65d@oss.qualcomm.com>
+Date: Wed, 23 Jul 2025 10:02:36 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR12MB6478:EE_|CH3PR12MB9079:EE_
-X-MS-Office365-Filtering-Correlation-Id: 41580416-ab64-4660-2879-08ddc98c500d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|10070799003|7416014|376014|366016|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?V1BVdkFaLzdaWVJMWHhJVkVvWTB1Y0lsbmVDOG9CRU1HLytFNy9uek5OWk41?=
- =?utf-8?B?NFkxa2VFNXpmOXN3TUtDRU8xT2JQbFVkaW5UOVBRSWNJbjhRak5NUnBnTjRp?=
- =?utf-8?B?eVB6QjRWa1c3c1ZZcUJUbXdTNjBwN0NQM0NabVc0eE90akowWWpJNjNVaHgv?=
- =?utf-8?B?TUJBZDFJN3VMdWZIbXpXRnVvdXZTR1QxTlQrUzBncUd4Z3ZxSWtEamhsdGZR?=
- =?utf-8?B?Z2ZCMUhKMFo0R3hTblFoY3dCeG04R1NNOUlPVjh1REhReXpvOWpRSlpuZ29W?=
- =?utf-8?B?WW9pdjk1dXhkS3EvUnRFek04VzFqRTVxV0cxSnVJQ2tqbXE3a2pxK2RyMXIv?=
- =?utf-8?B?SGprcEt1UXA2NHN3NjFLL2pWcUlGc0wwVzZRSWptN3ZpWEFITEM4SGJoWmw2?=
- =?utf-8?B?ZDFkbllOdlBFdjAxTjRabkJqMEJlR0V1RUN1Y2dSdTZHT1N6WUUycWRQYjV3?=
- =?utf-8?B?WGhmZkpXV0xpekNNdGxhZkJFalY5M0pkSXpMcng4SWpGRnNFN3QwUU44OXlR?=
- =?utf-8?B?SDMyTktoYWRGd1ZXUW9PSXhtV2JzMEFOK1REdDRFU0xlNmxiMTB5SHVCYlJx?=
- =?utf-8?B?bHhpbXhWalUvL1ljbUJqaWlXRWZobTZOSzdyaTZid2FmdElTQXRLdElVV0tQ?=
- =?utf-8?B?YmhNSURTb1ZvYlU2Y2RyWkhSdms4S0lHMVU5R2k5b1Z2d2kwenU5cFMzR3RM?=
- =?utf-8?B?Q0NBQkZqS2NyU2l1SHA4QmRVNlc2SjBXVHpwSUpOOURPQlJIYU5LQ29QYzE5?=
- =?utf-8?B?R2dvSTFZUEhQTHQ0b3h5TEVQektXSG00UTdiWE10RUNEOVJub1pka2oxbjVm?=
- =?utf-8?B?cURGOE96ZzNjSy9sM0dQd1laVk56K2dOMjZlMFZtYzZnM0RTZW81QzlNRWpN?=
- =?utf-8?B?cUg3UEhXTFh4TzdqTE9rcjZGUFNyNGF4bk9FNDh6cmx0KzF2UkhRUlJncjFY?=
- =?utf-8?B?T29TeXM0YkVHZlY3UVYxNFY5dlgrdTVranBYUzdpa1Q2L0VnRDJKYUdCWVVG?=
- =?utf-8?B?TDJLZHVMZ1FpQkJ2S0E0ZTYxY2R3QnE2WE9QdmJDb1FJdFJFbER6aDMxV2J6?=
- =?utf-8?B?K2ZrZllYclhhSDk4S3R4QUJIck5TNjRFUmVyYnBwVExwMGNDVnhpVVdxMXN6?=
- =?utf-8?B?OE1yWFVrMzBzYlNPNUtUSjZkeUkyaU1aUkMwN3Y5RjhSekQ1TS9KWm1jT0lZ?=
- =?utf-8?B?RUw3a1p6SFJUV3FQbVMzU2hHOE81VWh4MFNMNWhhNmExU05PSWFaaFFYY1dh?=
- =?utf-8?B?bUkxZXRuSFltTkgwOU56TU1WQURRY29GdU5WRUdLd3ZLaW5ieDE0K3FXc2VL?=
- =?utf-8?B?dEpRVUxzZnRVT0g5bnZyZ0RvTDJXNm9vcGswVExnaStHK2Q2MHBLUDhKVnZD?=
- =?utf-8?B?MEY2Q0ZSdU11QjRwNEpQNTIrbFcxQkUvK0tUc1NUazZmYVVGMUFJcjBtQXdV?=
- =?utf-8?B?YVJKUVpackdPYkVGNWtmTGlqYzJadEQxdWprcmtFd0ZUVTFQa1FiNjBub0VC?=
- =?utf-8?B?bzhZK05ZZHBRMkk1Y29xMmtqY2h0U2NVa3BuWlNMUVRtckw5b05VeTZUMVEz?=
- =?utf-8?B?VlJPUDlYWjdYSFhteU43MVhidkllSmRYMXYycWtibitxMzd1akNqMjBTeDFw?=
- =?utf-8?B?UmE4bC9XZFJXcHVlU0R6UDhzNjF0ZitwMDlNeVpWU3cxVmVKbUtFNG00UUpY?=
- =?utf-8?B?NDE2THdzMFJsZUZEa3o4dndUY244VU8vM0xhWnREN1V4UFF6bnBScmRITGw3?=
- =?utf-8?B?K0R1dlhMd085T0ZtU1V1N0xrR1dHYlBvYjRtZGdBZXlpREhtSFJ3UzEzZmpS?=
- =?utf-8?B?YWt6RzhJbzl2MjVvcFRmS1FiQjZ2dnd6RGxqSEtjT2NScnc3SHkrV2ZCcjNw?=
- =?utf-8?B?d01aM0pLVWsyUVgwcE9WUzBwMUV4MDl1Q0U3cm5pN1lja0hFemJmVTNPRVpC?=
- =?utf-8?Q?2ShODjmoWaY=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY5PR12MB6478.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(7416014)(376014)(366016)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?QVVSdFhaSEc0emQwTm1zVWhUbU95UG8vbGJFVkpTTVdtRVpKYXNHNGVGaGtS?=
- =?utf-8?B?K21KK2xJc2lERCtNbkp5S3V1b0pLZWNHck4vSUdsL3pXRk1Vck4xNy93MDU0?=
- =?utf-8?B?VTV0MU9RS0Jmb3RWTDdIVlBVdmRCcm13MTRING9Jc0FtSi9NT1NHVXIrNXJt?=
- =?utf-8?B?TEc2RHcrL1IxNXM1WFJ0UytWOWF6S0xUWnBFb204dVZHMmcySmhaREZjMXpt?=
- =?utf-8?B?TVNvMERFeStnejhjY3EzQ3dLRWF4SHhNUm4xREdqeXN2bHM0ZXpibGpvQWNo?=
- =?utf-8?B?MkMvRkprMTFGdlkzQ0hOL3lxUDlFa1F1Zzh0aXlVUmhXSTczYlBIWFhCT3NL?=
- =?utf-8?B?VHZDVGpocVBCeWU0UGExbkxXWHFlck1ER2ZlUEgzQ1ZHUXJQZ0V0ejBaMlJV?=
- =?utf-8?B?ek5kZS9TMXVtTUhtcmZRUW1wZkIvVUJHbythY2paRllpSXRKUUNkc3pqSVBv?=
- =?utf-8?B?U1hKMW9YSDdoQm5MWWhkUFRQU3lLcWtMNFQvNlc5emp0RGhrcmJZckdVTGc1?=
- =?utf-8?B?blFrTjZkMFcycWtxRUthZ0cxdzIxMm5yUGtNanpJL0NnZlJua29QM284MWVr?=
- =?utf-8?B?SjZpMTJaVHVkNzBpVXdKQmRvTGFqbWdRZjNHeWRVdHhvSE41YlVJWi9YQSsw?=
- =?utf-8?B?SWJSQUQvYjU2TGJRRHV3dHAyRHM0K1lQYXdHc2wvcWFtT1hzR3J5Z1NSM2ha?=
- =?utf-8?B?UzFKQU51QTduQWIvMVZnWGZXdk50UkNrL3czUXhYUkh4QjU4UGExdjNtbTUz?=
- =?utf-8?B?V1Z6Z2hqbUlnS1U3NTJvY2Q2U1NHZDBySFhBNG5XeGlzZ09aQmdlcy8yVnVI?=
- =?utf-8?B?azRQUVp5UXR5YnlXTS84MVlVM0J2RS81Q09PazN4VWNTMElFVi91bU51Q3dj?=
- =?utf-8?B?ek9mcjh2V2lQT0FpVXlBYXhLbVQ4N3R0K01NNzZsVGViV2psbW5HR2Z4bjlZ?=
- =?utf-8?B?MlF2NVNpTWxtektvaDErd1kxamNrUmNRUVo3cUZYdUlUMHF1ZHZCanBzaDNL?=
- =?utf-8?B?a01LNzZQM04xYnQxT2JTMm8vblhXNW1nM0xZRVVoUlc0R3N0OC9LaE9NQk9k?=
- =?utf-8?B?L204cXpxNENEWkFtR0N6S3c2YzNMeERkT0FkVDlSc0lLNDRrMXRtc0JOdVEv?=
- =?utf-8?B?RkV5RFVtRXkrR1pYRnJ5UU5ZQzQ2Sng0Q0F3c0g4bWFjWXFBSzN0SFdMalZQ?=
- =?utf-8?B?TGsyMWJweFhHQUdUYzZBMWJlNElBV1NGamZrYUpndnRNTkNyTkxvVXpwMXBa?=
- =?utf-8?B?MThmaVQ5TCtzU3I2eTdNM3Fxd0g5dEZXRjk5bG8rWDdKc0ZIUW5LZmlScUZW?=
- =?utf-8?B?dExZYzh6ZXVRNVV5RXpkajc4ekhLY1BzRFE3V2NTdFRjTWZDcjg1ZE5jMHg3?=
- =?utf-8?B?dkVIQ1lTNm1MczdOUmtEK21nTnVXdEViWGRuY0FBaGE3SVFucDVpK2N6cmJZ?=
- =?utf-8?B?T2J3RWxBaUJjeHpPQ1p2S2JOb2Q2aVVJdUw4cmxhbGpsaTQxOU5aNUJBSnVS?=
- =?utf-8?B?Zm5wSHFQM0ZuWWkvaXRNbmdZK3N4d3Z2KzhUdjI1OUMxNDFPZ0lRZldmdm5u?=
- =?utf-8?B?d2M5cS9qZXFhTGlNQXVaM1lsbTBzWmMrbC8zaHRrT3lhVnVReFNHcExxN0hY?=
- =?utf-8?B?YWhyUGhNWGkvdE1ySDl5VlhySWcxc25obmhuc3cyTVFrYUVUakR2ZVBDL0xp?=
- =?utf-8?B?a21TM3ZGaFlXeWJqZVhESGxpeklLdFgvRGZJeGtJbWFIVzROWjZlUnc0SytE?=
- =?utf-8?B?bmJKaGRCclBCZklzeUdMcGVkaXY3M1RlVysvaWlvWmNLenloUm4zNTlaelh4?=
- =?utf-8?B?eFo2NVBjUWNCTyt0MkR2NDJ2R0Uwc2x5SWttYksxcXZTYjdqMklnVS9RZ1ZO?=
- =?utf-8?B?a1l5UWttV0V4THRTKzh4S3l4TWFrN2s3cWE0RDJwalY2ekhVZys3UG9PeDNV?=
- =?utf-8?B?aEcyNlhnMTlRbG03MWN4Vk5TeXpqMWhJSjZmYTNNTHQvWUdxS0doNXYvb1k2?=
- =?utf-8?B?cGd4cTcwSEhJYS9iRGd4NWh4OHNMYXZralBleWU3dHBFYjNmYXhvY29keVpU?=
- =?utf-8?B?VzNXZDZmWUpBR1FRSzRVa2EzNk9xMkU4QStyZlVnMHcvQW1XU3FuRnZUMU4w?=
- =?utf-8?B?TFRyNi80aGIvT2RReXJIMU5XQ21USmlLbkVranJOZ0lFVmorejZWb244ekRO?=
- =?utf-8?B?ZzhjVkdVejY5amcxMmk2WE1OanQ4RXZuKzhaZkQrQllZUW1yeElraU5BQS81?=
- =?utf-8?B?STQ5RkZ6ZkZ1amZxRXVBTGhoMVR3PT0=?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 41580416-ab64-4660-2879-08ddc98c500d
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6478.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2025 01:57:43.4264
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 534bT7slzZSCPpwF5KHX/rRAv26gXYjZHciQzHCIaMwB+/IjQdcjxzuTgMrWImTCPrnBDLLe5G7D5mxEluyLpw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9079
-
-On Friday, July 18, 2025 6:26=E2=80=AFPM Svyatoslav Ryhel wrote:
-> =D0=BF=D1=82, 18 =D0=BB=D0=B8=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 12:22 Mi=
-kko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> > On Friday, July 18, 2025 6:15=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > > =D0=BF=D1=82, 18 =D0=BB=D0=B8=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 12:0=
-1 Mikko Perttunen <mperttunen@nvidia.com>=20
-=D0=BF=D0=B8=D1=88=D0=B5:
-> > > > On Thursday, July 17, 2025 11:21=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > > > > Add MIPI calibration device node for Tegra20 and Tegra30.
-> > > > >=20
-> > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > > ---
-> > > > >=20
-> > > > >  arch/arm/boot/dts/nvidia/tegra20.dtsi | 14 ++++++++++++++
-> > > > >  arch/arm/boot/dts/nvidia/tegra30.dtsi | 18 ++++++++++++++++++
-> > > > >  2 files changed, 32 insertions(+)
-> > > > >=20
-> > > > > diff --git a/arch/arm/boot/dts/nvidia/tegra20.dtsi
-> > > > > b/arch/arm/boot/dts/nvidia/tegra20.dtsi index
-> > > > > 92d422f83ea4..521261045cc8
-> > > > > 100644
-> > > > > --- a/arch/arm/boot/dts/nvidia/tegra20.dtsi
-> > > > > +++ b/arch/arm/boot/dts/nvidia/tegra20.dtsi
-> > > > > @@ -74,6 +74,16 @@ vi@54080000 {
-> > > > >=20
-> > > > >                       status =3D "disabled";
-> > > > >              =20
-> > > > >               };
-> > > > >=20
-> > > > > +             /* DSI MIPI calibration logic is a part of VI/CSI *=
-/
-> > > > > +             mipi: mipi@54080220 {
-> > > > > +                     compatible =3D "nvidia,tegra20-mipi";
-> > > > > +                     reg =3D <0x54080220 0x100>;
-> > > > > +                     clocks =3D <&tegra_car TEGRA20_CLK_VI>,
-> > > > > +                              <&tegra_car TEGRA20_CLK_CSI>;
-> > > > > +                     clock-names =3D "vi", "csi";
-> > > > > +                     #nvidia,mipi-calibrate-cells =3D <1>;
-> > > > > +             };
-> > > > > +
-> > > >=20
-> > > > As you say in the comment, MIPI calibration on Tegra20/30 is part o=
-f
-> > > > VI/CSI. We can't add a "mipi" device here since such a device doesn=
-'t
-> > > > exist in the hardware hierarchy. We already have the VI device in t=
-he
-> > > > device tree, so we need to use that.
-> > >=20
-> > > I understand your point, but embedding MIPI calibration logic into
-> > > VI/CSI driver will bring up another lever of unnecessary complexity
-> > > and excessive coding. While approach I have proposed preserves
-> > > separation between CSI and DSI and reuses already existing MIPI
-> > > calibration framework.
-> >=20
-> > We can consider different driver architectures to simplify things, but =
-the
-> > device tree has to conform to hardware. The host1x bus has no 'mipi'
-> > device on it so we can't put one in the device tree.
->=20
-> I assume then placing mipi node as CSI or VI child would resolve your
-> concern?
-
-The device tree is not intended to follow software architecture. Having a=20
-separate device node implies some sort of bus / parent-child hierarchy in=20
-hardware. So it seems a little difficult to justify.
-
-In this case, it seems to me that it would be pretty easy to add/partially=
-=20
-copy a small VI driver while integrating with the staging driver, based on =
-how=20
-simple its probe function is. And given that you're planning on adding CSI=
-=20
-support as well, utilizing the tegra-video driver seems like it's in the ca=
-rds=20
-anyway.
-
-Thanks,
-Mikko
-
-> > > > A driver for tegra20-vi already exists in
-> > > > staging/drivers/media/tegra-video. We should aim not to break it.
-> > > > Perhaps
-> > > > bring it out of staging? (At least partially, but then why not the
-> > > > whole
-> > > > thing.)
-> > >=20
-> > > It does not break VI/CSI, I have a WIP CSI implementation for
-> > > Tegra20/Tegra30 which I hope to submit soon.
-> >=20
-> > We have to use the tegra20-vi node as that matches hardware, and each n=
-ode
-> > can only be probed to one device, hence the issue.
-> >=20
-> > Great to see a CSI driver!
-> >=20
-> > Mikko
-> >=20
-> > > > Thanks,
-> > > > Mikko
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: qcs615-ride: add WiFi/BT nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250707-615-v4-0-1a2f74d167d7@oss.qualcomm.com>
+ <20250707-615-v4-2-1a2f74d167d7@oss.qualcomm.com>
+ <smnw6whsw5todddsoveeanohcaesfip27udzkbw5wk5dwlztzz@ic3xemwrbjwg>
+ <a63cab56-2d32-4d38-83f9-911561807e9d@oss.qualcomm.com>
+ <7117b159-6743-4db3-9ae5-1cf4ae051601@oss.qualcomm.com>
+Content-Language: en-US
+From: "Yu Zhang(Yuriy)" <yu.zhang@oss.qualcomm.com>
+In-Reply-To: <7117b159-6743-4db3-9ae5-1cf4ae051601@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIzMDAxNiBTYWx0ZWRfX4fGkM2ZpsC9G
+ DTDVmW9KgGJ/kovWSXOnUu4Smi2WP5P855uWMmwd1s7aapc/kYifyfoEsOQT81ZO+ealhEJjaQn
+ xGzY0YMCinrk8SAiEvuduGOTCqfB3o8CcKX2EHpWKgM9IVdXCIQbVMfARyy9p7GJoGD4u6VmbNQ
+ BUnv6+8T4fzdkVuaDKmhMM+lwGuLE+betcizGG1Ta+xCXIs9nYa+L9c7v4qwDKzZPATjrrQr/DD
+ jnaMTU9a6g7DRFDBWZjPIli3JDtUevZF8Wqer+mqeezQ1kXtwxMtL3tilEvlxt+pIwfN1tf39wO
+ jDThzsbbJVb8h2VRXvwykCTJ0HnZu4nAL8WbJxzwG8XIOUAiOjTeBuFKcdkaHaI08OZ1cZH2bFF
+ apTqJUZvhO4fKOX+4ZRCt1fDUPRk/JWWq+rUpva27H5K+qSQwSLHWNOFwldftYxVGeb2cRvJ
+X-Proofpoint-ORIG-GUID: 8SZY1K_SnBH36A5VIGgMNUcl6C_Knp3W
+X-Proofpoint-GUID: 8SZY1K_SnBH36A5VIGgMNUcl6C_Knp3W
+X-Authority-Analysis: v=2.4 cv=OPUn3TaB c=1 sm=1 tr=0 ts=688042c3 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=5zsccHoAccC9vreTiY0A:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-22_04,2025-07-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 mlxlogscore=999 lowpriorityscore=0 suspectscore=0
+ spamscore=0 mlxscore=0 bulkscore=0 priorityscore=1501 phishscore=0
+ malwarescore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507230016
 
 
 
+On 7/23/2025 1:36 AM, Dmitry Baryshkov wrote:
+> On 22/07/2025 18:58, Yu Zhang(Yuriy) wrote:
+>>
+>>
+>> On 7/19/2025 6:13 PM, Dmitry Baryshkov wrote:
+>>> On Mon, Jul 07, 2025 at 10:51:06AM +0800, Yu Zhang(Yuriy) wrote:
+>>>> Add a node for the PMU module of the WCN6855 present on the qcs615 ride
+>>>> board. Assign its LDO power outputs to the existing WiFi/BT module.
+>>>
+>>>
+>>> What is "existing WiFI/BT module"? There is no module in the DT. Not to
+>>> mention that PMU is a part of the WCN6855.
+>>>
+>>>>
+>>>> Signed-off-by: Yu Zhang(Yuriy) <yu.zhang@oss.qualcomm.com>
+>>>> ---
+>>>>   arch/arm64/boot/dts/qcom/qcs615-ride.dts | 135 +++++++++++++++++++ 
+>>>> + +++++++++++
+>>>>   1 file changed, 135 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/ 
+>>>> boot/dts/qcom/qcs615-ride.dts
+>>>> index 
+>>>> 011f8ae077c256f079ce1b07720374a9bf721488..2df8e7e3c1d3b6d6353a6753b8387c7411edd927 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>>>> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>>>> @@ -18,6 +18,7 @@ aliases {
+>>>>           mmc0 = &sdhc_1;
+>>>>           mmc1 = &sdhc_2;
+>>>>           serial0 = &uart0;
+>>>> +        serial1 = &uart7;
+>>>>       };
+>>>>       chosen {
+>>>> @@ -47,6 +48,85 @@ regulator-usb2-vbus {
+>>>>           enable-active-high;
+>>>>           regulator-always-on;
+>>>>       };
+>>>> +
+>>>> +    vreg_conn_1p8: vreg_conn_1p8 {
+>>>
+>>> No improvement. Please try again.
+>>>
+>> you mean should be "vreg_conn_1p8: vreg-conn-1p8",right? I'll update it, 
+> 
+> What is the node name for the previous regulator device? Anything 
+> preventing you from following the pattern?
+> 
+Do you mean the prefix 'regulator'?
+I just want to keep 'vreg_conn_1p8' and 'vreg_conn_pa' the same as in 
+sa8775p-ride.dtsi, because they're using the same module.
+
+>> thanks.>> +        compatible = "regulator-fixed";
+>>>> +        regulator-name = "vreg_conn_1p8";
+>>>> +        startup-delay-us = <4000>;
+>>>> +        enable-active-high;
+>>>> +        gpio = <&pm8150_gpios 1 GPIO_ACTIVE_HIGH>;
+>>>> +    };
+>>>> +
+>>>> +    vreg_conn_pa: vreg_conn_pa {
+>>>> +        compatible = "regulator-fixed";
+>>>> +        regulator-name = "vreg_conn_pa";
+>>>> +        startup-delay-us = <4000>;
+>>>> +        enable-active-high;
+>>>> +        gpio = <&pm8150_gpios 6 GPIO_ACTIVE_HIGH>;
+>>>> +    };
+>>>> +
+>>>
+>>
+> 
+> 
 
 
