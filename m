@@ -1,59 +1,67 @@
-Return-Path: <devicetree+bounces-199130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 546F4B0F87B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 18:54:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AE23B0F8A9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 19:10:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 168E4AC1F3B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:54:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 837DC17CDE0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 17:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50889202C5D;
-	Wed, 23 Jul 2025 16:54:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A54220E00B;
+	Wed, 23 Jul 2025 17:10:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZlIZ/VvH"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="m4EPov57"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B2B201278;
-	Wed, 23 Jul 2025 16:54:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 707CA20C00E;
+	Wed, 23 Jul 2025 17:10:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753289680; cv=none; b=fImNGl1OHpypHw6mj0/K1171O7U0TbZIOpTmriNdbWgIn1dWlhdH575MqCB9GeDIUmF8kb7TTCnTQAnFezpl2lbxeFFYMZj51VeSedmUcDZ/XaSNBjc85mseicmeB8g+Ev58UhYur+vhC1G5HS52qzJAJe4huk4pT5hSyzU2+VI=
+	t=1753290609; cv=none; b=LVytbD+3KHte70UV573LnH/Pm8CaMJ5ZXj33kcfVI3QpWgqiTRSTmEXQLZ0McbQ2/9RaStorlsVoV7S18lpvwd6CTPsB2oIF5RPtlG30MBlH5+RtXZAnb/58QozxEezNZQAiAc3wsKmiryYZO/Imh9/YL+IO4xcAs4MDNDAObM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753289680; c=relaxed/simple;
-	bh=qnh2o2DhNuYIBkSp7LUf3XJd8d68bR2VCco+1mnXmIc=;
+	s=arc-20240116; t=1753290609; c=relaxed/simple;
+	bh=YeQYhjTp5dduT427Tt7El0kEHKxVmhQSi0aw79AHZek=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CmLzECJdBHTuRT+yT9oBmtDDTmxgTwymo0gFxqB9bEEEiSdZQbptzNpNBLabgLaNhxF01qKi7pRZAcurio8i4GkkT7o/zbdNTvpDIsULftk2x7omdH0zngW0HnaBIxVtaGyWNqXf9BoudGw5boKeO2ET9sXr6OMOzffo8YpbMxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZlIZ/VvH; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 65AC51F68E;
-	Wed, 23 Jul 2025 16:54:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1753289675;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=KbfzRJvW5ulvA/Ta9laMhAujPy5SNsmsl3qxHLs6l0A=;
-	b=ZlIZ/VvHQUwmyP3kCf5I+kecKSpE3PojVoahqplx4VqQxOWglGGJs0ddMY70zvo0zYR06l
-	fdLEOq7zVaL435olpJQbAje1bfLdMpDvZ59wGunkIcpvV2yJcap1JfeVyu9L+2Y2InFvMv
-	Dn87+w1idH4t3ENIp3MEDwUyqmWmGQvBjeIckZx/1bmfBUu4jSxNOqJrLQxgW944RSs56A
-	MZ03lNUvEM3f7OlbPoyf0FBHNR6Dzcxl8reT2Dox6s15rDFPJlClB79ATCKgHoZo/YZPtA
-	bNGkguaxCmA8bzJp0KBeeILeInXunJtgMxQe/Qe1czzblzoWbfL6U+UkNeCRmw==
-Date: Wed, 23 Jul 2025 18:54:35 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org,
-	alexander.stein@ew.tq-group.com,
-	Antoni Pokusinski <apokusinski01@gmail.com>
-Cc: linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 0/3] add support for RV8063 SPI rtc
-Message-ID: <175328962925.785597.4433646531544130528.b4-ty@bootlin.com>
-References: <20250413130755.159373-1-apokusinski01@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=q1uIUXcoMpARePohzuCMfEEmC0TQ87TbD3mmEPf0wgNEmhyQlpAPYDcmuApSn4PWJ9YGbz9rbP45QPxnZqgbgqBWm7JkUL0lqRC+RAxmen6rb3ECR7iqKZnQ/sbop3tXD4+t75JubrKSVZWWxoV1M0GKtjN7jG1yTUcYgpXUfng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=m4EPov57; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=eEQLl89P4OrcuStEjktKkoC3l8QiiX66+dxj6MpfBDE=; b=m4EPov57YzBTbrZgGZ/wo7y9/4
+	OWl5BKdeEkLsvOhqGneoQOaYRwMbJdYu7aCKyClbLj8ZYZQwvTCAAdLbHqbNqk/8Rl39l9VPu7HvM
+	7QlYgIPDGSOjFlHnLwzCpc2wi6z4PG540Y9V2ApIquOIedeIEKsh62eT7Vs0XT99PmUU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uecyX-002fdW-Mm; Wed, 23 Jul 2025 19:09:53 +0200
+Date: Wed, 23 Jul 2025 19:09:53 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Tristram.Ha@microchip.com
+Cc: Woojung Huh <woojung.huh@microchip.com>,
+	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Simon Horman <horms@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Marek Vasut <marex@denx.de>, UNGLinuxDriver@microchip.com,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v5 2/6] net: dsa: microchip: Add KSZ8463 switch
+ support to KSZ DSA driver
+Message-ID: <b20340d8-e4e5-45b7-907f-be35a7809b91@lunn.ch>
+References: <20250723022612.38535-1-Tristram.Ha@microchip.com>
+ <20250723022612.38535-3-Tristram.Ha@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,36 +70,14 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250413130755.159373-1-apokusinski01@gmail.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdejkeeftdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehlvgigrghnughrvgcuuegvlhhlohhnihcuoegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedtgfehuddtfeduieeljedvgfegtdffffegtdekffejleelffffvdettedtheegvdenucffohhmrghinhepmhhitghrohgtrhihshhtrghlrdgtohhmpdhkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmegsieehmegsvdhftdemkegsleekmeejledtheemrggsvgelmeduhedvvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemsgeiheemsgdvfhdtmeeksgelkeemjeeltdehmegrsggvleemudehvddvpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeekpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkv
- ghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlvgigrghnuggvrhdrshhtvghinhesvgifrdhtqhdqghhrohhuphdrtghomhdprhgtphhtthhopegrphhokhhushhinhhskhhitddusehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhhinhhugidqrhhttgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <20250723022612.38535-3-Tristram.Ha@microchip.com>
 
-On Sun, 13 Apr 2025 15:07:52 +0200, Antoni Pokusinski wrote:
-> This patch series adds support for the Microcrystal RV8063 real time
-> clock module with SPI interface. This device is very similar to RV8263
-> (which however uses I2C), so I decided to extend the existing driver instead
-> of creating a new one.
-> 
-> RV8063 datasheet: https://www.microcrystal.com/fileadmin/Media/Products/RTC/App.Manual/RV-8063-C7_App-Manual.pdf
-> 
-> [...]
+> This patch adds the basic structure for using KSZ8463.  It cannot use the
+> same regmap table for other KSZ switches as it interprets the 16-bit
+> value as little-endian and its SPI commands are different.
 
-Applied, thanks!
+Thanks for adding the custom regmap. It makes the patch much smaller
+and less intrusive.
 
-[1/3] dt-bindings: rtc: pcf85063: add binding for RV8063
-      https://git.kernel.org/abelloni/c/b265cb1d68a9
-[2/3] rtc: pcf85063: create pcf85063_i2c_probe
-      https://git.kernel.org/abelloni/c/29ac4cedb00e
-[3/3] rtc: pcf85063: add support for RV8063
-      https://git.kernel.org/abelloni/c/a3c7f7e16ea8
-
-Best regards,
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+	Andrew
 
