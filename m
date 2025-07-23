@@ -1,62 +1,71 @@
-Return-Path: <devicetree+bounces-198866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A263B0E9BD
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:41:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39984B0E9C1
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:45:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 432E01C86D55
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 04:41:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3B9D1C27EB8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 04:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA5A214812;
-	Wed, 23 Jul 2025 04:41:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D19AA2080C0;
+	Wed, 23 Jul 2025 04:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tfm/xn3h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tOUnKlrk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B779210F4A;
-	Wed, 23 Jul 2025 04:41:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6BA2F852;
+	Wed, 23 Jul 2025 04:45:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753245689; cv=none; b=Waz8+PfsZSUn6mGsODo5dyakylCIB1nmDDtCv0nEb79mXXB3/3erj/5AYAHsvAlASEKvgV8H8QRmP+norhbsMlNcXVHiYnAlbeBVaksQ7MfxGxshJp8q6yea7v2ce6TR8u9gOYs/Z4wy66Ldt6lZgDkbzozhJeav1BEen6NvQBk=
+	t=1753245937; cv=none; b=OKqdq6TXMQExiJ9PVgEs7f+KwWsTLBHaSV70tv+kq31drbtYddaGFoWIwW/IkOJkZjatKMDj7ZEIwF5x/PkQEVKj3pE0tyMmUdkmswAgbtRYJAGEljtx3rOxaRU/AmDrTvpD+Rc9h4dLAXEazwAPx/1pnUdNBiOIZCfrhnnzvnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753245689; c=relaxed/simple;
-	bh=wwIY2xZCBjZZJz2L/BRVUGlcwY9EU7yshxeruIN26XA=;
+	s=arc-20240116; t=1753245937; c=relaxed/simple;
+	bh=BKZAmLwgvxaSIoSf5Jl7qz1ZZWhSXwuKKwePOfDXBws=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VI96DVoq10dyA9eoWw1FuFsna0fBcnMa7QiOT7qu7YqxCzeRJrtHa2zXjqMflCNXuiuYxBm2XfCCYh4vUTCOVUs/8rxY6u2FAXMVxRm8nPNxyhdfHjbUwxAmEU3STQMfcRtce/huu02rpbnEu1P+uaTsp2KUkeNCNtKUx2QD1Ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tfm/xn3h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02B89C4CEE7;
-	Wed, 23 Jul 2025 04:41:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hlfbs0oTvn7QISfz/sJD+9BSQgv849h4c3vB9NQedLFD1Jk04fcCWe19eXWDr5g125fHBjLCc16uGG5uwWWk7nXQU6Mvo9A4/l7Ge+Q4q5W93NIIgbVWuUSOpihVoRir5wlYHBv/3QmTWQVrplKiKwjEEy8ZyipE+Mm5aPQo2oE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tOUnKlrk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9AF1C4CEE7;
+	Wed, 23 Jul 2025 04:45:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753245689;
-	bh=wwIY2xZCBjZZJz2L/BRVUGlcwY9EU7yshxeruIN26XA=;
+	s=k20201202; t=1753245936;
+	bh=BKZAmLwgvxaSIoSf5Jl7qz1ZZWhSXwuKKwePOfDXBws=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Tfm/xn3hdAnkKPGn1yixfoAD3w2ta11qQNWO1UQMR9fQxllwA9CizXX4AyPUpNLvB
-	 CqYGcUdfZvt19Xrm60Y3PIIFlIwzJxVF9r9QP3lyyjtReoFcu34oVe1wUb1wklpHI7
-	 cRz98aBanVXpNA5PSR4H6RMSJ+SUWmBrOP7G6wOXr/qlEyYy6JbvCL7qiDhpTwjIL3
-	 /1cfQbmOvflo8j1d/vjauTXjotxqp1LBhITvewsoh4rW+qsfW/Y3u9S+XM0oO99WJX
-	 NBMTCnUb2QWjozmJLY38VgrzhStaraq7cREWOeJIJBSqMRkdiWuzRolv5b+F/DWCwt
-	 PFLSd+90PCVZw==
-Date: Tue, 22 Jul 2025 23:41:28 -0500
-From: Rob Herring <robh@kernel.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
+	b=tOUnKlrkZNQ30wvJmNd91NZsyelRJzyrBXpucF0GkpPNv2/hc+ynZF8gb4NJfMYte
+	 16HxU0tdOTDEXEAoNx3m7k8yQGfvbxDg7pfgexxilMUv6wdGjzWdcJJ6F75VRlHlv1
+	 mYEXS+DcNrI6MjpSD6K9kd+9FyscX+akEu9YC+yQf70//QiZ3yp9MubsEnQs8F/to9
+	 ErCotnPuTpVdwFlcUrAlZuICDe1BSvv9CCFBQwIxXErv1J2zfFmLaolLwFHIkS7GUl
+	 MFL6d5prxc+CvXLAd1ISFv4u42Rj5QdOzglqsVl/MAv356fD1Uf5R0YJDHQ4qj7YF7
+	 GRgBpOVmVJ40Q==
+Date: Tue, 22 Jul 2025 23:45:35 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Macpaul Lin <macpaul@gmail.com>, Peter Wang <peter.wang@mediatek.com>,
+	linux-scsi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Pablo Sun <pablo.sun@mediatek.com>,
+	linux-mediatek@lists.infradead.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: clock: spacemit: CLK_SSPA_I2S_BCLK
- for SSPA
-Message-ID: <20250723044128.GA1207874-robh@kernel.org>
-References: <20250722-k1-clk-i2s-v2-0-2f8edfe3dab4@linux.spacemit.com>
- <20250722-k1-clk-i2s-v2-2-2f8edfe3dab4@linux.spacemit.com>
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>, Ramax Lo <ramax.lo@mediatek.com>,
+	stable@vger.kernel.org, Bart Van Assche <bvanassche@acm.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	devicetree@vger.kernel.org, Bear Wang <bear.wang@mediatek.com>,
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	linux-kernel@vger.kernel.org,
+	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
+	Stanley Jhu <chu.stanley@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 2/4] dt-bindings: ufs: mediatek,ufs: add
+ ufs-disable-mcq flag for UFS host
+Message-ID: <175324593457.1217884.7283187331572765587.robh@kernel.org>
+References: <20250722085721.2062657-1-macpaul.lin@mediatek.com>
+ <20250722085721.2062657-2-macpaul.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,33 +74,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250722-k1-clk-i2s-v2-2-2f8edfe3dab4@linux.spacemit.com>
+In-Reply-To: <20250722085721.2062657-2-macpaul.lin@mediatek.com>
 
-On Tue, Jul 22, 2025 at 03:36:31PM +0800, Troy Mitchell wrote:
-> This patch adds macro definitions: SSPAx_I2S_BCLK,
-> to introduce a dummy gate for i2s_bclk.
+
+On Tue, 22 Jul 2025 16:57:18 +0800, Macpaul Lin wrote:
+> Add the 'mediatek,ufs-disable-mcq' property to the UFS device-tree
+> bindings. This flag corresponds to the UFS_MTK_CAP_DISABLE_MCQ host
+> capability recently introduced in the UFS host driver, allowing it
+> to disable the Multiple Circular Queue (MCQ) feature when present.
+> The binding schema has also been updated to resolve DTBS check errors.
 > 
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> Cc: stable@vger.kernel.org
+> Fixes: 46bd3e31d74b ("scsi: ufs: mediatek: Add UFS_MTK_CAP_DISABLE_MCQ")
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 > ---
->  include/dt-bindings/clock/spacemit,k1-syscon.h | 114 +++++++++++++------------
->  1 file changed, 58 insertions(+), 56 deletions(-)
+>  Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/include/dt-bindings/clock/spacemit,k1-syscon.h b/include/dt-bindings/clock/spacemit,k1-syscon.h
-> index 35968ae98246609c889eb4a7d08b4ff7360de53b..6914ccf5be45a1071d5b6eac354cacb67888e00c 100644
-> --- a/include/dt-bindings/clock/spacemit,k1-syscon.h
-> +++ b/include/dt-bindings/clock/spacemit,k1-syscon.h
-> @@ -123,62 +123,64 @@
->  #define CLK_TIMERS2		41
->  #define CLK_AIB			42
->  #define CLK_ONEWIRE		43
-> -#define CLK_SSPA0		44
-> -#define CLK_SSPA1		45
+> Changes for v2:
+>  - Split new property from the origin patch.
+>  - Add dependency description. Since the code in ufs-mediatek.c
+>    has been backport to stable tree. The dt-bindings should be backport
+>    to the same stable tree as well.
+> 
 
-> +#define CLK_SSPA0		46
-> +#define CLK_SSPA1		47
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Uh, no. You can't re-number things. This is an ABI and you just broke 
-it.
-
-Rob
 
