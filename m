@@ -1,492 +1,419 @@
-Return-Path: <devicetree+bounces-198996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3D9B0EED1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 11:53:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D941B0EEBB
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 11:47:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA7DF962044
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 09:52:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21A07188DA9B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 09:47:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 532EB28AB11;
-	Wed, 23 Jul 2025 09:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF83A286D53;
+	Wed, 23 Jul 2025 09:46:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="iG+3WP+a";
-	dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b="WNkC47qg"
+	dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b="red6ronA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
+Received: from outbound.mail.protection.outlook.com (mail-francecentralazon11013071.outbound.protection.outlook.com [40.107.162.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E693B28A1DA;
-	Wed, 23 Jul 2025 09:52:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.180.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEC70153BE9;
+	Wed, 23 Jul 2025 09:46:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.71
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753264366; cv=fail; b=sTP0+aeDcLGhFDaFhMZFlCWWtDWaeERcNaviQZfrqEw0nnPpaSqrgwhvxZE3/NsszGrRlASliI9V3Egr24HFu4VPlApfwM5rftzBeWtvCXRv+AbrTagKUgosPU5zvSXgKlSQnvteH4CaIFcLu9GupXMC+nnKHoYmunYDSCc1iGA=
+	t=1753264016; cv=fail; b=B1XhuO4FpRgpB3nMQ7x8vjSh9agwamk/vNVoiLhwDsIXjIx1i4XEcIbx/BMd9MvZNyrNfDirolMC1XTyDR9I2jfiNQqdNw2Lb+mGoEhrIcRGuuDMm6Ow9r/yGiSOS0uWN+/Uf08jWsI+/KwjMu/i+U0TM0tsBDtvFUQSZ5/Ag44=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753264366; c=relaxed/simple;
-	bh=uKrSoO/BMZm8xk1dC8V4j2zsUfH5mQKDqgMrYMlG5bs=;
+	s=arc-20240116; t=1753264016; c=relaxed/simple;
+	bh=HVfC2A6qKirJHO1RXncOAXb+j5emkZUYDUKBo+XMTWs=;
 	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=XyiYdKC6DhOYLu2O+oME1JYkl6G3JiyRnlv0CbDW+Sa4XokDiidMGvdC5jxziZ7fRC6unu6YRxnc5LVNIZmZOtDIP/eLXKZ5omXC940C9q/hhX0qUFEYSyg3UP79cmckLCXhtV5a0jVVNI0Jcj7FLhiJMWT/fwaKdlxWEPH/yhU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=iG+3WP+a; dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b=WNkC47qg; arc=fail smtp.client-ip=185.132.180.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
-Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
-	by mx07-00376f01.pphosted.com (8.18.1.8/8.18.1.8) with ESMTP id 56N72iTI3363460;
-	Wed, 23 Jul 2025 10:45:46 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=dk201812; bh=hWQurCFOwswlVtH95m4vdbuua
-	gjCjMt/pwEVDGQ+Oi0=; b=iG+3WP+aBlUfz18JvxjiL4L6e3NstpMClkaBhqla3
-	9u+vIjd2VcU2804vmFHQVYhkrAbTP7L+ivQG+HE1keRhAZwOIfTZHWtiOjw7vC+1
-	qR6zOG8EV+QDWB8o0laN//0rICmXTIGz6t8mzom/isMICBZdLjXU1T+zfdzwprA1
-	CZWCbc8Js5ixZNCROmq/tV6TTG7g0IaLBQXZNPKl3yxjuhU+PeDECkd7oV48pP7R
-	7JpQtMyhe2esYMV1f6OH+tPDrzOaxxxoLFoFZGP6gRrsAFOHebB0PW6dyedj/VVc
-	dwyARH9jm1zKR+QibhEg4lYLf2YOMTjyJBg2+aaj2klXA==
-Received: from cwxp265cu009.outbound.protection.outlook.com (mail-ukwestazon11021140.outbound.protection.outlook.com [52.101.100.140])
-	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 482jw50gkj-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 23 Jul 2025 10:45:45 +0100 (BST)
+	 Content-Type:MIME-Version; b=jhCHe3MS1ZntSakbJvKU3b2wi2iPWNzV2GOt0J+wpOSw12QkVbfsVxjdVelztmuJT8053UsOH2YTW0DPq1kh4IsHYnREfjkiTTBKkEFHVU/11G0vZ5cbqRdahfNmD0bmnVq0BEyA2OPcN9ektWVcPLSaYhxMU84cm/Y443dRiOM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com; spf=pass smtp.mailfrom=de.bosch.com; dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b=red6ronA; arc=fail smtp.client-ip=40.107.162.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=de.bosch.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ELGaRqo715k5jgBE/eJJyWgUyy4NKwWSISEmagcZgXVt48wBwHI6aulTP2Ie+bZmsHjv3pUK7QAkowTKBTQSIj8SiGy1mw91eToPX7EnshjyZsb4iTV3WYkWom7slTCXB0MhODuxuUOgPM5A+1onhbEv11yuHFpsh1TmWdWhv+Q811wzk6FuCdFs45k76PC9463Y6egM+wTJn9zBcqspeBLDeRli+hkCogFcpUbSAAfXwp+aG0oGJQ0FN7jrX26MK7sv0RDlC6iT+SzV7eekZXfgg88bZTwwMP3wqjuSwQnvL9oPbjhkRmQnIaLCaYPnYaxVI1xvtxtSk1ydArsT+g==
+ b=Fjr4EsWzoCfDrfxMHTjELORDY642jAMTsMZ0Fp4bjOuPdThrVVm1Pmj3ra0e28dPLpodZS3zcWIzOMVyHg+3djr4ZWrNGRKFJePn0EIvePkv9N4UwCs070S778xKMVoSo0mbf+gDOUSFR4t8B7ABt25FqQePeUmOv1rivY4lTZq3Ja12T68d9gf1jDSGLC+bd2UaFRq4+lVU286esJMHpuHkFUQMjdgvJRAe+Kbn1FSFiICnEUMMvk8juqRjhrnuD4n2/5203rIYOabDhcitPfiSq7b3sG7xd/LA3Hxy8A0TshGVUkTN4YjrB28uVGvJdYnAg+H2Ks6QVCKCQnA+Zg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hWQurCFOwswlVtH95m4vdbuuagjCjMt/pwEVDGQ+Oi0=;
- b=JQYOztTYsH1GepaJ/sSgtwdADGTzDHeOjtd2JownyBvBDg+K0xYOjeZhAH6Jr0axtvkr7IlW+cvMKpDGHWIUhYuWr3LzMg89x0BUT+1l3OxN0CByxNgwYz4GGBrW6h6C7cTB7EhXmJkYn6o5JTMZvZMzS5K3jyT0gQQc82+7b+94nTY/30CGfMle1NMqMeN1A/6WZhJWH8zcsGhRG/jRx8zgW0Ff7DeYpH8mxw3Z4NgjNSKuIdpPYF8/NiIcbcbfJinGEsZV4tA4P58WXe0fUcR9fMbGdCe8boCLLYWtCG9UEWDc41d8ImVFds29ok+7s7JB7CbtllTLmNCyN0uP6g==
+ bh=oxkIOlY0GeF8ymQLdvGK7dFYkJwyrpxQrBaGmh1uyLA=;
+ b=kPuDjTKqp3e+4z7jSvh/S9C5uFFe6URiRhYWMwXMto9kbMvNHqZsZezQfd5Wzc5XSJh9QhEuDVmJ6x8o/jWomzg7Y3JULmn6gGhs9ndsCdFHxJ00umce8gr6jhR8hfOlbtxF2OiB+i3uCrt7MV93xjQBEzrFt69edOEP16afKyeb64SCt39w18T+2huKrBXxPtYTidPg71LsvZbhh9afqFpnw1olAEHYhsd9DR8vKRExOAQVQg0kKMEsTX35hto4FdHVfZ/rpBBgDBooTrAaVfJP6rJnug63HlczPI8w+Z9nJl49bewe61SbmtPhQtRk5rdNZpIUJpXC4EmN8lwdRQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
- dkim=pass header.d=imgtec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
+ smtp.mailfrom=de.bosch.com; dmarc=pass action=none header.from=de.bosch.com;
+ dkim=pass header.d=de.bosch.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=de.bosch.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hWQurCFOwswlVtH95m4vdbuuagjCjMt/pwEVDGQ+Oi0=;
- b=WNkC47qgMs4UwqH7fPCGzxt+Pqlfppvi8ZsUp/2cXg2MFnYT7vGygu63CZY/WZ+67z+vFmS5Gb9Ujf0iyOp83I5qTLuq7QlDT2n73wxwD0XFZHjdZSi7cQclyC56XK892DevykWFu5+7EVyrYyYyAPNzPTnixZ0mMyZh74o3KHE=
-Received: from CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:e7::8) by
- LO0P265MB2777.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:13e::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8964.21; Wed, 23 Jul 2025 09:45:43 +0000
-Received: from CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8e9d:6b2f:9881:1e15]) by CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8e9d:6b2f:9881:1e15%7]) with mapi id 15.20.8964.019; Wed, 23 Jul 2025
- 09:45:43 +0000
-From: Matt Coster <Matt.Coster@imgtec.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>
-CC: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
-        Fu Wei
-	<wefu@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bartosz Golaszewski
-	<brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Frank Binns
-	<Frank.Binns@imgtec.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-        Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
-        Marek
- Szyprowski <m.szyprowski@samsung.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "linux-pm@vger.kernel.org"
-	<linux-pm@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH v6 5/8] dt-bindings: gpu: img,powervr-rogue: Add TH1520
- GPU compatible
-Thread-Topic: [PATCH v6 5/8] dt-bindings: gpu: img,powervr-rogue: Add TH1520
- GPU compatible
-Thread-Index: AQHb5d9F1EaSROGCxkS8VT4CcJNvq7Q/oV0A
-Date: Wed, 23 Jul 2025 09:45:42 +0000
-Message-ID: <f25c1e7f-bef2-47b1-8fa8-14c9c51087a8@imgtec.com>
-References: <20250623-apr_14_for_sending-v6-0-6583ce0f6c25@samsung.com>
- <CGME20250623114436eucas1p1ab8455b32937a472f5f656086e38f428@eucas1p1.samsung.com>
- <20250623-apr_14_for_sending-v6-5-6583ce0f6c25@samsung.com>
- <9c82a6bc-c6ff-4656-8f60-9d5fa499b61a@imgtec.com>
- <d154d2d0-3d59-4176-a8fb-3cb754cf2734@samsung.com>
- <e1a3d854-93bc-4771-9b8e-1639ca57b687@kernel.org>
- <d12fd4fb-0adb-40c4-8a0a-c685cd6327b3@samsung.com>
- <27068fd3-92b5-402b-9f3c-fd786db56668@kernel.org>
-In-Reply-To: <27068fd3-92b5-402b-9f3c-fd786db56668@kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
+ bh=oxkIOlY0GeF8ymQLdvGK7dFYkJwyrpxQrBaGmh1uyLA=;
+ b=red6ronANqAsebJmm87xM0THOjeDTZoeE3ZDSirSU5zYsZp8/AkGr/5TGO8Sq5uq2hYgkv4SyM7bp+W4E3azC5cYnShozCk6x90gxOU+K1/xB7KG2kGFCYZp7yoYLzrWP1xaiKxJSlxqejqb33aOWiIFMzmlj9OtnrSEvjWq83Dt0CmJnXjBAP3EEtIwAFF/4gie6SD8RsC98mdgkGPAwgbTHGBaEWpzOpssSiKyh3gPnbzTTK8xLM95nlld1Bh0A1kwdQIwKVxI5WE6EBod9dUbriJKj4yVvWzFa7OG8+y2SUDFBh9O1CS7aVo16XcVzWFoXfwaUjHYwUTWAToK1w==
+Received: from AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:315::22)
+ by PRAPR10MB5273.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:293::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Wed, 23 Jul
+ 2025 09:46:47 +0000
+Received: from AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::c75f:604a:ce59:8114]) by AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::c75f:604a:ce59:8114%6]) with mapi id 15.20.8943.029; Wed, 23 Jul 2025
+ 09:46:47 +0000
+From: "Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com>
+To: Jonathan Cameron <jic23@kernel.org>
+CC: "lars@metafoo.de" <lars@metafoo.de>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "dima.fedrau@gmail.com" <dima.fedrau@gmail.com>,
+	"marcelo.schmitt1@gmail.com" <marcelo.schmitt1@gmail.com>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Lorenz
+ Christian (ME-SE/EAD2)" <Christian.Lorenz3@de.bosch.com>, "Frauendorf Ulrike
+ (ME/PJ-SW3)" <Ulrike.Frauendorf@de.bosch.com>, "Dolde Kai (ME-SE/PAE-A3)"
+	<Kai.Dolde@de.bosch.com>
+Subject: AW: [PATCH v3 2/2] iio: imu: smi330: Add driver
+Thread-Topic: [PATCH v3 2/2] iio: imu: smi330: Add driver
+Thread-Index:
+ AQHb7DCnxFfdguezA0CMBsJ2vkpDJrQlVJwAgATVpeCABfU/AIADa+ZQgALjsgCACRRNsA==
+Date: Wed, 23 Jul 2025 09:46:47 +0000
+Message-ID:
+ <AM8PR10MB4721FB1A78F25B204BE3A26ACD5FA@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
+References: <20250703153823.806073-1-Jianping.Shen@de.bosch.com>
+	<20250703153823.806073-3-Jianping.Shen@de.bosch.com>
+	<20250706175328.7207d847@jic23-huawei>
+	<AM8PR10MB47217D838CA7DDACBE162D15CD49A@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
+	<20250713144214.6ee02f59@jic23-huawei>
+	<AM8PR10MB4721BAD5BD78B8FD0F5C9798CD57A@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
+ <20250717150440.5067862b@jic23-huawei>
+In-Reply-To: <20250717150440.5067862b@jic23-huawei>
+Accept-Language: en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
 X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=de.bosch.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CWXP265MB3397:EE_|LO0P265MB2777:EE_
-x-ms-office365-filtering-correlation-id: aae5b3f6-2a7e-40eb-507c-08ddc9cdb0da
+x-ms-traffictypediagnostic: AM8PR10MB4721:EE_|PRAPR10MB5273:EE_
+x-ms-office365-filtering-correlation-id: 2d36520f-16aa-4f89-0874-08ddc9cdd78b
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|7416014|376014|1800799024|4053099003|38070700018;
+ BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018;
 x-microsoft-antispam-message-info:
- =?utf-8?B?cEU1Q3lIWTFRaEY3MjMrdlBHb1pJTDFYeFFFRUFyVHRINXNqcVU5U3BjeTk5?=
- =?utf-8?B?QkpBdHo0V285ektjV2sySWsxNmxOS1VMakptbVQ4TmhDRlk0NGRuOFFnSmZV?=
- =?utf-8?B?ZnBoODFpZEhvWm5ETVhUUzRTV0lmdVYyQlFQR2t1Mkwwbk1UcnBuSjEyWkFY?=
- =?utf-8?B?SmQwYUF6NkZrajVydXdYbUh1RjVHQjVZK1lKL1cyeTlEaklJdFdiY0NuTFBw?=
- =?utf-8?B?OXZsUXZrZG9VQmY4NitxSjJDTzZGekJiVjR3K1Q0VEVBYmtVN0N6VTQ5MnVa?=
- =?utf-8?B?RUR5cUxVMFJWZWNuWlJWMm13a241N2tqdmNVZlJhWnUzVlVqUVgwa1VKZHNQ?=
- =?utf-8?B?S0hrNWNqYnhSVUtjMTl5dHlXaHcvVkVwNFprSmcrM3dyU3grMzNiUEJSdmJx?=
- =?utf-8?B?c0o4Ky9hakFCb2tFakU5N2l4cGdDQzg5T2lDeFJYa1kraTV5bFlTL0lXU3Y0?=
- =?utf-8?B?NElVTkRGU0w2V1RXZ0dIdzl0WmJNNDdoK2lsaVlUci9UdjV3LzdqSDVHK0tw?=
- =?utf-8?B?dXIvMUpEK3N5V0RVWkIzY1lQREVuSHZwVnVIR2NnWjcwSjJsWDRMSHpNQm81?=
- =?utf-8?B?RjVsclFXT2xPZHZ6TCtVV0lnc1hzSmNVVmN3L2VNblp1Q3hja0xPYzZ3b2N4?=
- =?utf-8?B?Mng0aHNsZGljR2N4Q1VkU2tCN21RNUtTSmhpZzhpNm1pK0RZdGlYZktqREE3?=
- =?utf-8?B?SGtMZkFMMWZhR2FMWmlwbGlOYkY0ZExrK2dDMWR3R2lRVzZIV3dTM1Nlbk9j?=
- =?utf-8?B?YWNLRTc2bDg3RjlDK0FDT1lycUtITTBWamNFQlhVYXVSNVpRQm0vRTFDdDhh?=
- =?utf-8?B?RzBXK2NUSWJPU0J5MEoxd05GUldVWHQ2Q29KT21VWUwzN0NXY3lFVkc5Sjlx?=
- =?utf-8?B?Uk5tTGlya0JHNm8vTnV3cTk0TUp5dFkybzkzSVdUa2tTQ0Q0QkZTN0pERXVO?=
- =?utf-8?B?aWVNaE5remxPUHdUN3g0bDd6bko3TXlUOW55SHRKK0Z4eithYzNHUi9QcUI5?=
- =?utf-8?B?TkdRZzVKUlp1Y0ZpVVZ2ajZRUGZHVTlxWDdCRUZ1Uy84OUxKVjV1V3FKMjFQ?=
- =?utf-8?B?eFBCRk56UEp6SytReTBGNWpwVGd0QURxR2k2ajErYjNBK0hvVmhKYnNNY2Ja?=
- =?utf-8?B?VUhsVzdlZVBYSFJ0OWMyQ3BYMG42MUNPTjBmamcwUlc3NkJCL2poK3d1S1hU?=
- =?utf-8?B?WVlOdmQ4SktZdHYyYVFXWktMeVlJQk9kY2hDUEN2RFRnZjVZYUNaSzVxYnNC?=
- =?utf-8?B?bnVWT0V6UXhsOGFnMFJPTGhhQ0h6Z2xKMWpocWFkNjdJMzQ4ZkVWZHNGa2NZ?=
- =?utf-8?B?V1hGdy9DTmVYTG9OM0c5MUl3RCs1ZWtRRmVUcjNGaGdkdkhDOTMwQ0ltcDZj?=
- =?utf-8?B?a3liaVFZQU5VS2ljV2xONHRVd2ZZLzlzb1NZKzV2SkZEWHBaakp5SGRxWmh6?=
- =?utf-8?B?RS8zQlUzLzRnTlhaREU0RldMK3B0N3l4SG9VUlcyU284QjVkaG1TWW4zUnVp?=
- =?utf-8?B?aFZoOEp2NEtGTFpHSWV5VWVlTzJvbmJQQURocGJLSXJnZU9OWmlMRUQxeHJl?=
- =?utf-8?B?SWhTd3FXQXJPcWtrUWFYWkE0S0w5d25UakoyNVVzc1plT0QxYlB1RUFjSVVC?=
- =?utf-8?B?TEFpRk1UZ2NIS1dlUnhBY2VQRzBiOWg3T081enRVMGxOMFBvOE10aGFNbUhD?=
- =?utf-8?B?dWphV0RiSVluM20rMGl2WXlwbEVDZDBsSm1qd1psSGozRGduZm42MlYwNUlW?=
- =?utf-8?B?OHFaOGRFTlMvWStuWng0NXA3cm04NHdWdUVSVTZjb1E1eVRhMEdPZjVNV0VJ?=
- =?utf-8?B?aXpta25kbDU5NkdBcnIvV2FGMlA2dkY5M0V2K0lmSXU3aFkxY0ZFdFhoTUZR?=
- =?utf-8?B?WHZwVkVhMEVzQWdxaTc0K3VPMXQrb0R6TVpYYzlhcTJ5clVodFNjUG5DcDA5?=
- =?utf-8?B?bnZ1dUltTFJVMXFwYXF6TDAzc1hrbkdqN1V0K3N6U0R4RGJ3NlhWNWo3MXhz?=
- =?utf-8?Q?FZOlhLQ+vY2I1xg0NSk++jowNZwqpQ=3D?=
+ =?us-ascii?Q?Cxk++10VN/F/mNF4rC8bo85kpKd4Hd4PF3DZVP5v5vEI+uV/DhGdCbQJ8hdi?=
+ =?us-ascii?Q?RD0M32GzV4MUj4a8f30q6DTw7HYtf+oAAGAMLXWMo6eKkFh8UIfz/c7We3AL?=
+ =?us-ascii?Q?TFR2X+iSz3OvRFyBIqGLhAZZw8HQmPIA+o46F6roHKIBjX7HSf0SumEpJPLV?=
+ =?us-ascii?Q?TI/BI5mwHgL2qP1qOM1Uw8va72II25zyLxyTYgL8cQrnVIdThwqbrOF2IkTY?=
+ =?us-ascii?Q?6pJNnm/z3TBc+yYto/I6kq0W2r4e4rbv5nPVloa3f3fl46h4Ga1tE3PJg+HT?=
+ =?us-ascii?Q?hYDRKTQ5YNxwobxI5C+py66rNLLojaSQXDdRdc4Envd0o25l0f6jAikDtbL7?=
+ =?us-ascii?Q?EEawrG8Xvo448NMAm+ofCVqLpwUZXGIOjzfc637NVohiAc0l/nvpezAHuUe3?=
+ =?us-ascii?Q?SCDh8RjLl/un7XaMQlCoc+DTN4Tes+3vVA674xZm8QyhsshbpFQq8umv67e+?=
+ =?us-ascii?Q?WVC5mkEVZLxYx0es2TudIeY8eHc6I8p02OslL6BbpZbS3cHVMDHqXHmOyKI4?=
+ =?us-ascii?Q?7kYGREKD9gCed7UVaSS32tNepHY3r6Ct/toWv/Jwk9FhELGMXStt/Ye3+udi?=
+ =?us-ascii?Q?Btbv5DI5HTvxfuLiDDpfqXNvfLDoDOno6i73PjfBFhYbxeyxQV8C9E0QCGsg?=
+ =?us-ascii?Q?5npQliJGsS6XuIMuYjmkpamnhet2h3hBuu5ztZiMIXwE0pflMZoxzRmU+Wmf?=
+ =?us-ascii?Q?w8/jwxIp8TKgPVBBkUu9wlNcnXOEfNtg2AyajgkomjG5FDQxTvzyaWo9Pce2?=
+ =?us-ascii?Q?A/iTYsnxS3eV1xSkdXuv5RStY/bI/hsjofxhuYXnOHCRJoNgsNm74GoTpXj/?=
+ =?us-ascii?Q?Hd0jjM+DU0xhoaeuPKYX2A3sSOAE76T5xwPmARRNMGvkan6IvSkSod5FGA0r?=
+ =?us-ascii?Q?5w4F/sXcp7usr5zQdoiAXovhS839IHZvuxy1bu78bkiFUHRR5EbHDBoIg8GS?=
+ =?us-ascii?Q?7s+Tv2WljZTiV8IuWASGOlASm2RAg4wfyp0lUhNYi0dZulvCL6TIvzvGK2PC?=
+ =?us-ascii?Q?9c0y+dJpgX+tyVUl+jbqA5frDTf0Umf31+2S8wRrLqM6JFbMR3tkC4IR5EjY?=
+ =?us-ascii?Q?LPd5orGY2/AULJGnefHFiA9F3bhOBTRjyg5lwJHu9/j77trwKQsLdlo5yrgr?=
+ =?us-ascii?Q?t55TlYQYRomkXILRvepWw4bQ9kVfHtY+ws1dAqfFJ9hBzkTyLW+Dx4spD2a0?=
+ =?us-ascii?Q?zDFzesa24ybAeWrtBS8WP+TwSTq97Xj7056DfLZ4UyjCPSYyZEIKA+4fNe09?=
+ =?us-ascii?Q?q6mByIRArb7FyrmaUnk0ESmP4ijOPXGrDA5rfrFqOSnXEIuDITdds7AWSctd?=
+ =?us-ascii?Q?rvyS+Urz7djbbVWNfz6szUUP2HN2t4NgHjkm22JtVGDaRyOW5VdXy+Uv5B2e?=
+ =?us-ascii?Q?Yv7+9hSmrA1vgTJmf9dS/LGjvaUmTdC0qUOblgajIndll/7kWE1fM6xGwTyX?=
+ =?us-ascii?Q?ZwV9NZFI574=3D?=
 x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(4053099003)(38070700018);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?TTRSRGp1aW1UOVdRWHJ3VUFOeXBQbkYrSkwzQTdFRlVHTkY3Z3pPc1Baamox?=
- =?utf-8?B?SjFZSHhTUlJSYXR3Yk9lRVBmL1BGMGpyZzlIUHQrZFZNWDFkN1A5UkFqSllD?=
- =?utf-8?B?MDZwVXlMclhJVTR1U2s5WWUrQjh3TDJac25wOC9SSHdXak9tYmt6VzhDOWNw?=
- =?utf-8?B?ZTRZdC9ZY3RydGZ0QXYzSVFXVGNsTkkrbFFqeFpQRjFRaHRsek9LVUhhdXdq?=
- =?utf-8?B?b0R2TVBqdTF4VHcvMWQxWlAzcmY5T2JSZGhiL2FqTTR2TEpFQTVpQlc3ek16?=
- =?utf-8?B?QVBhcVZOekpRelgveHIyNWJRc2dLWlFSZFVVcVFSUk01RlNiNFRBUHZMN3pq?=
- =?utf-8?B?bWoyclE2eDFZNXF3TUlXOTlBbnROeE9paXJwM2p1aHNMUzFHTmhVMEgyUVZj?=
- =?utf-8?B?eFdDcFdaTnpzb2lMK2ZSejU1YkpCZGhaZEpqTE80SzlXT2NRNzBvVTBKbk91?=
- =?utf-8?B?RlJxaEc0SVJWdWx4VWlZMnlmTUdPU1k1K0gzU3lSNmZ3ZERlcW5GZU9BenAz?=
- =?utf-8?B?b1JENTg4TDFyRTRqVklJaDFsY0YxTk9jQ3RZZHRjTHhHVXpLRlRrUlBLeGZy?=
- =?utf-8?B?T1ZMSndxYStJK05qVCtCTmJyMzJybWgzMER0VWpoNXQwdGVkdVRWR3c3NXcy?=
- =?utf-8?B?RmZKemcxMnNTbTJBYkUyMmFKYWpDWTlCL08rdWRqakQ3cDJCVHdncUlCTXRI?=
- =?utf-8?B?eUs3a0pKeUpkaThqbmEycmxpbmxFY1pmbDFTbEc3Vy9sZVM0UjhsdHA0L3FO?=
- =?utf-8?B?WXRqT0hGUmgrUFFvTnBxdlVIZHYzam02MTJNVXFTRGlTbUljcFd0OWFJYW40?=
- =?utf-8?B?b1AzYmx6cDNqdEovK21CT3JkenBTVDMzNGd5cnlBVVlXeVZaRDFhNkM4ZWhn?=
- =?utf-8?B?bldOcVpQa0ZOVExMdjhNai9NeGNGbGpKWVBDN0xLREhaN1pSQWE2LzhNYjFN?=
- =?utf-8?B?WFFnVkswZFBIaThZc1pUZGwraEplUURxVnE2V0duM0IwdjFUdjNOM2MxeWFI?=
- =?utf-8?B?Tnp6VHp0TFVTTWVQMElxTjZHR3FiajFIelZ4Yk04cDJnc2tsTXMwdjJwSVcw?=
- =?utf-8?B?MG1UZVpSV01iZnNyd3NibkpBazJzVWdRcmhSUURqZG41NW9TVEdENm9NMk4v?=
- =?utf-8?B?VGkybjJLVHl2WWUxYmNLZTBsSGpuWWI2OThPRG1ZSTFPeEg4NTlQR0Zxc3RD?=
- =?utf-8?B?M1FvTEN3MUtHN0hZdnJ2QURYVGVSRmZqL2Q2YktodngzY3hjZnhtYzZUZjhK?=
- =?utf-8?B?LzRvSWFPcmQxamZpQXNvVktsM1NrM3NJc2puZHRzdU9yeGhJTDVkQ1NGWUp5?=
- =?utf-8?B?WHFYelV1bTVkRVlSOTIrdHNjYkJIa2RRVklmN1V5QzVkT3R0OG9aL25ObTY5?=
- =?utf-8?B?SUlmT0E3SDJIRWRwQW16djJjREFhSEYxVDgxci9QV0ZOUERMZjFGWWR3MFBX?=
- =?utf-8?B?bVJHODduMmRLRHZCVGpQVzFBK0VTSUQ4czRmSzFjTnoyT0VkNlJYSDBYaHZm?=
- =?utf-8?B?ZnkvSHdxOUlJNnZLZUtJQ3BQcWNxNkJsQ2FBajdjcld5L0ZSOE1UYzV4SGUz?=
- =?utf-8?B?N1lHSEJFK2p6Z1g0V0RZMTgzSmJhQkFqYjFtbmxSbm9ka3BlaDM5M05aRHl3?=
- =?utf-8?B?RW5OTjhvMDNyNk1ZWWxDVUdzb3FFcG9BWnh3SU9hL01DWG5QQml1a1daVmV6?=
- =?utf-8?B?bC9JRWJHdU1ZSi9yVEgxTlg1V0haUTFkc2tlNCtTUWxKakRlTmVnVDJJMXpE?=
- =?utf-8?B?ZHRnU3BlTVpqTWQ2MklXamJ1ZHAvQ0M0TElEVmFxN0YwZDFRYmJyVGRjQUw4?=
- =?utf-8?B?Wkx2RzUwMmM0RXU1RzdIZERhWGhOSzVSU0cwUU9zSEhRUlVVVEdwdHp3aW9P?=
- =?utf-8?B?amhtYmttZkFrd0FvUmR6UHFrTXlpSDd6L3lJYytzZTAzTmRIOTJCcTIvSWFn?=
- =?utf-8?B?L3FXOVRRT0JRcE4yYWRabjlldjRXT3dKTm1ZcmltZDdqRmhteGJJdmRyd0Uw?=
- =?utf-8?B?RXlKbElFdDcwZUQ4YXpJVWYycXAwQzgrQzBYZHptRFFVRHZxNFVhT2NuOGdu?=
- =?utf-8?B?TFp2RDFBTFNmZ3pJWExZYjZBTXhOZ3h2N083MXNkTkxBQlB3RFV2SVBsM2Vz?=
- =?utf-8?B?SW9BTUJVMklFc0RtMHY5a0owaUdsWXVTQXcxOW55S2xOVzFBM1hpU2RSWm5q?=
- =?utf-8?B?RGc9PQ==?=
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="------------ab9h7gr6ve4yFtxIVhQtdlVL"
+ =?us-ascii?Q?6O84IhvgrxblYqOL91wgqNOwkIcw0FbrIm4Vu5h4zFqzj2zCPNzIJn8ECV7U?=
+ =?us-ascii?Q?V5VmctGmhZSYwPkPAMt9fJFM2Leg7OkLofBJW/WXfWvydua3xP2+9WOytvEY?=
+ =?us-ascii?Q?xC4JBTNccMUFlAjxxqjBgl6xc4zp0A22f6p/5FaYWFfScU74eVgoPuudqIqz?=
+ =?us-ascii?Q?UNlEQpVCaTnl9GuI19UFYMV54Vbhph0o+hsALyptExm3rUrSfrpfz9o9xWhg?=
+ =?us-ascii?Q?+J2JaqeIdL5cEXlnb36x894BmE1qOhTvGKzx4mpcTj6oUEJu8Htd0aDc5DM+?=
+ =?us-ascii?Q?WEGQedwXMYfapoAAJOVNaaThmMMsGHpi+88WUcrWeHPVYo+DYMUSso1dWCLZ?=
+ =?us-ascii?Q?XmM5cIRgGceuXXxYjOcng+EvS9K1zCaUEjUxO06amy09Iul7kcwSWVIS/a9U?=
+ =?us-ascii?Q?R2gMeSD7D5DdRj8kDXYzvy84OfMqthkPFZhPHuA2BjREb8kzyhap2Dew0a4A?=
+ =?us-ascii?Q?W1MIP5uX/zPR0hGzIlJn/K3t3z98W+z5WszcRvFg+TZCPNV8L74EseAUaYtv?=
+ =?us-ascii?Q?R2ekb3Dz1KU3KGMy5fGEwsqPAV//tm4CzR57UwCU3q3WZrcUPyeieqSPL/JX?=
+ =?us-ascii?Q?CGTSL0Skx+ePz4i+CLW7vU/hpP882EBl4q74vLrHTm97KS0TdNbe+kSplZWW?=
+ =?us-ascii?Q?rzHeMzPwptnve89BYbi2hv7tFauy0jxu8CXMcRSPIdClRXmVA0oYWpDo2GQA?=
+ =?us-ascii?Q?0tEhzzok47hZivHsdxUVNkfNfPADegGhYZ/PSUGhDkzVRgwiO2Lg7YMrRCWK?=
+ =?us-ascii?Q?dAnGM+1NdEyADesWYLwVTkhLMXfb8tswEmzpA8Q9quhi2AAkdQwumeKc4Nfh?=
+ =?us-ascii?Q?uMfyy46ArZs1yx3M5OtnPfoL7aVW9A592QLFI+nXPjjQxRMFvsJRJiUJ0umE?=
+ =?us-ascii?Q?wAaZ52J77q40d+57X7P0wmwXf6fhSpnjdF2VVv/1PS+PFs3Pvily/PxKAEbE?=
+ =?us-ascii?Q?KUe4/WWruD9ZznPN/JofETmX4zD5V/W5tp9WzHw9qc0B3LlKz9ycPWrRbII4?=
+ =?us-ascii?Q?glx3RCh1OeTHCWFpDZ48HuuC13DQCNiThys6l2JXCa4zgBEBpnsrWvkApMJ9?=
+ =?us-ascii?Q?YKWoJHQNH7FqCYAFerjcTCQt1e0rpMHqn8AwujriZrwhjf9UU9sKb7CqVIyC?=
+ =?us-ascii?Q?QVTgV7W0fvreGhHSiYv4sl1lfYV/b4rO+Srcvr0V/5T7gfF64aLgm4pTfNXo?=
+ =?us-ascii?Q?gCSylm3vX443iPgumjJxpjFnVLChr0l+piUVzSIobJX7UZmuDdJJ0KQyA7fy?=
+ =?us-ascii?Q?3qb88paX8JVDpsoqfTT7n2idDvfvlFiYy0Dned6Va8/+XyouHuyrcDxOxryo?=
+ =?us-ascii?Q?0llD+tqqCe1G2p1JGRAnTDPudFcPKXz732fPfXejPqKXUhKptQT0UWxL4ybA?=
+ =?us-ascii?Q?5V867SFUrvkh5lKlPl46Ny35BihUAm6ozuw4TO1Cdrs+ZyFbmm5qI7J7O3R0?=
+ =?us-ascii?Q?D6/D/V8QTJ2FOfFFIBKG+xMPWpxb68PqUiX1Wt8aotFqKZ95LTPJzk8Hispb?=
+ =?us-ascii?Q?4+FuWWtKqTTU0g63BEFBwJbyeJjoCq8OFCvc/fZkRrFZxs1C2nRHJUQKI7i6?=
+ =?us-ascii?Q?/Jt9seLgRLv+Fg2RsjI=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: imgtec.com
+X-OriginatorOrg: de.bosch.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: aae5b3f6-2a7e-40eb-507c-08ddc9cdb0da
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jul 2025 09:45:42.9017
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d36520f-16aa-4f89-0874-08ddc9cdd78b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jul 2025 09:46:47.7086
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
+X-MS-Exchange-CrossTenant-id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7yK0gRB1uZ5BCTc+xLnbMRBF3us0aI6+s26qRpiHGoN6yOC5krpUzJx1cNMXa/6rQFaywbkVflb+bPyEQyn/Zw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO0P265MB2777
-X-Proofpoint-GUID: h-9uEQOGSBk4slIdNxSRki9ak2GrSfcJ
-X-Proofpoint-ORIG-GUID: h-9uEQOGSBk4slIdNxSRki9ak2GrSfcJ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIzMDA4MiBTYWx0ZWRfX+hkroqj0NAlL
- hJuRuZex5zN07vey9cdzRyVqxtQle54NW7yofFiiwwdx9cz3RWimsdRKnYTNH3CW8q3OsLR+w0O
- +5enawyBQrNme3L0eqQByy7wblG56xlvgIDKLTMe5ZUf6qVvYO0Cn2/hPxnKkYJxzfRqF3v76k6
- K7XXljm0UVetbfWfeRSeUvOsjS+3162rpVgpKWWV+8RCPQ5lR5TZqYwGf6wHBvIiflwi2xYA2w6
- iJNK8HYxpWKh1kmlsY9MhurzjU0zBrMfvUeOKnsga8ELe+7F56pPEDpLmBrYCFMbhqhz6HWbVXI
- EWqIl+suUHTsGVS02Ry4uD/o+wVAUbnKa8Yd513flxj5SYO1oarINIjn95OWoCvVkBMwbAgy/18
- L1xHxo3V
-X-Authority-Analysis: v=2.4 cv=dp7bC0g4 c=1 sm=1 tr=0 ts=6880af4a cx=c_pps
- a=k+0uX8idyWF9koV3rWdvhw==:117 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
- a=xqWC_Br6kY4A:10 a=Wb1JkmetP80A:10 a=NgoYpvdbvlAA:10 a=KKAkSRfTAAAA:8
- a=hD80L64hAAAA:8 a=r_1tXGB3AAAA:8 a=BXWD1kwdEsBxI_JLQoEA:9 a=QEXdDO2ut3YA:10
- a=6h5F1V3u8ZvVygUH174A:9 a=FfaGCDsud1wA:10 a=cvBusfyB2V15izCimMoJ:22
- a=t8nPyN_e6usw4ciXM-Pk:22
+X-MS-Exchange-CrossTenant-userprincipalname: ZorJNaV9unwBmWisZAS+FiCv3Sd8AOE66jHEh+AHcfGGlNc4hC9guXIW8hjftEpF/hzftTmerDbpMZqjLCnbCA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PRAPR10MB5273
 
---------------ab9h7gr6ve4yFtxIVhQtdlVL
-Content-Type: multipart/mixed; boundary="------------DMA9MUXICW2ytHwYZ0MA8DKa";
- protected-headers="v1"
-From: Matt Coster <matt.coster@imgtec.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns
- <Frank.Binns@imgtec.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Message-ID: <f25c1e7f-bef2-47b1-8fa8-14c9c51087a8@imgtec.com>
-Subject: Re: [PATCH v6 5/8] dt-bindings: gpu: img,powervr-rogue: Add TH1520
- GPU compatible
-References: <20250623-apr_14_for_sending-v6-0-6583ce0f6c25@samsung.com>
- <CGME20250623114436eucas1p1ab8455b32937a472f5f656086e38f428@eucas1p1.samsung.com>
- <20250623-apr_14_for_sending-v6-5-6583ce0f6c25@samsung.com>
- <9c82a6bc-c6ff-4656-8f60-9d5fa499b61a@imgtec.com>
- <d154d2d0-3d59-4176-a8fb-3cb754cf2734@samsung.com>
- <e1a3d854-93bc-4771-9b8e-1639ca57b687@kernel.org>
- <d12fd4fb-0adb-40c4-8a0a-c685cd6327b3@samsung.com>
- <27068fd3-92b5-402b-9f3c-fd786db56668@kernel.org>
-In-Reply-To: <27068fd3-92b5-402b-9f3c-fd786db56668@kernel.org>
+Hi Jonathan,
 
---------------DMA9MUXICW2ytHwYZ0MA8DKa
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+we find out the reason why the timestamp is invalid in the iio buffer.
 
-On 25/06/2025 15:41, Krzysztof Kozlowski wrote:
-> On 25/06/2025 16:18, Michal Wilczynski wrote:
+https://elixir.bootlin.com/linux/v6.15.1/source/drivers/iio/industrialio-bu=
+ffer.c#L1093
+
+In "iio_buffer_update_demux" to copy the timestamp, the address calculation=
+ is the root causes.
+
+1083  in_loc +=3D length;
+....
+1093  in_loc =3D roundup(in_loc, length);
+
+When finish to copy the channel data, in_loc is just incremented and used a=
+s address of timestamp. This is correct only when the channel direct before=
+ timestamp is enabled.
+
+If there is a gap between the last enabled channel and timestamp, then iio =
+core will copy the wrong data.
+
+We have a fix to this issue,
+
+1093 in_loc =3D (indio_dev->scan_bytes / sizeof(int64_t) - 1) * length;
+
+just not sure, if there will be any side-effects with this fix.
+
+Are you going to fix this finding, or shall we create a new patch for that?
+
+Best regards
+Jianping Shen
+
+
 >>
+>> >>
+>> >> >> +
+>> >> >> +static irqreturn_t smi330_trigger_handler(int irq, void *p) {
+>> >> >> +      struct iio_poll_func *pf =3D p;
+>> >> >> +      struct iio_dev *indio_dev =3D pf->indio_dev;
+>> >> >> +      struct smi330_data *data =3D iio_priv(indio_dev);
+>> >> >> +      int ret, chan;
+>> >> >> +      int i =3D 0;
+>> >> >> +
+>> >> >> +      ret =3D regmap_bulk_read(data->regmap,
+>SMI330_ACCEL_X_REG, data-
+>> >> >>buf,
+>> >> >> +                             ARRAY_SIZE(smi330_channels));
+>> >> >> +      if (ret)
+>> >> >> +              goto out;
+>> >> >> +
+>> >> >> +      if (*indio_dev->active_scan_mask !=3D SMI330_ALL_CHAN_MSK)
+>{
+>> >> >> +              iio_for_each_active_channel(indio_dev, chan)
+>> >> >> +                      data->buf[i++] =3D data->buf[chan];
+>> >> >
+>> >> >If I follow this correctly you are reading all the channels and
+>> >> >just copying out the ones you want.  Just let the IIO core do that
+>> >> >for you by setting iio_dev-
+>> >> >>available_scan_masks =3D {  SMI330_ALL_CHAN_MSK, 0 }; and push the
+>> >> >>whole
+>> >> >buffer every time.
+>> >>
+>> >> For the most frequent use cases, we define available_scan_masks =3D {
+>> >SMI330_ALL_CHAN_MSK, SMI330_ACC_XYZ_MSK,
+>SMI330_GYRO_XYZ_MSK,
+>> >0 }; and push the whole buffer every time.
+>> >> From the user space we just enable 3 channels gyro_x, gyro_y, and gyr=
+o_z.
+>> >Then we enable buffer and expect that only the gyro values and
+>> >timestamp in iio_buffer. Nevertheless, we have 3 accelerometer values
+>> >and the timestamp in iio_buffer.
+>> >
+>> >> It seems that the iio core does not take care which channel is
+>> >> enabled,  just
+>> >copy the first 3 values (acc x,y,z) into iio_buffer.  Our driver code
+>> >still needs to take care and just copy the enabled channel value to buf=
+fer.
+>> >
+>> >Look again at how it works.  If you provide ACC_XYZ_MSK, then your
+>> >driver has to handle it.
+>> >available_scan_masks is saying what your driver supports. The driver
+>> >can check active_scan_mask to find out what is enabled.  So right
+>> >option here is only { SMI330_ALL_CHAN_MSK, 0, }  In that case the
+>> >driver never needs to check as there is only one option.
+>> >
+>> >Then if any subset of channels is enabled the IIO core copy out just
+>> >the data that is relevant.
+>> >
+>> >
+>> >>
+>> >> Another side effect after using available_scan_masks is that the
+>> >active_scan_masks sometimes does not reflect current channel
+>> >activation status.
+>> >>
+>> >> Is some step missing to properly use available_scan_masks ?  How
+>> >> can a user
+>> >find out from user space which channel combination is defined in
+>> >available_scan_masks ?
+>> >
+>> >Why would userspace want to?  Userspace requested a subset of
+>> >channels and it gets that subset.  So it if asks for the channels
+>> >that make up SMI330_ACC_XYZ_MSK, if available_scan_mask =3D=3D {
+>> >SMI330_ALL_CHAN_MSK,
+>> >0 } then the IIO core handling selects SMI330_ALL_CHAN_MSK (smallest
+>> >available mask that is superset of what we asked for) and sets
+>> >active_scan_mask to that.  The driver follows what active_scan_mask
+>> >specifies and passes all channel data via the iio_push_to_buffers*()
+>> >call. The demux in the IIO core than takes that 'scan' and repacks it
+>> >so that userspace receives just the data it asked for formatting
+>> >exactly as the driver would have done it if you had handled each channe=
+ls
+>separately in the driver.
+>> >
 >>
->> On 6/25/25 15:55, Krzysztof Kozlowski wrote:
->>> On 25/06/2025 14:45, Michal Wilczynski wrote:
->>>>
->>>>
->>>> On 6/24/25 15:53, Matt Coster wrote:
->>>>> On 23/06/2025 12:42, Michal Wilczynski wrote:
->>>>>> Update the img,powervr-rogue.yaml to include the T-HEAD TH1520 SoC=
-'s
->>>>>> specific GPU compatible string.
->>>>>>
->>>>>> The thead,th1520-gpu compatible, along with its full chain
->>>>>> img,img-bxm-4-64, and img,img-rogue, is added to the
->>>>>> list of recognized GPU types.
->>>>>>
->>>>>> The power-domains property requirement for img,img-bxm-4-64 is als=
-o
->>>>>> ensured by adding it to the relevant allOf condition.
->>>>>>
->>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
->>>>>> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>>>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->>>>>> ---
->>>>>>  Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml | 9 =
-++++++++-
->>>>>>  1 file changed, 8 insertions(+), 1 deletion(-)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rog=
-ue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
->>>>>> index 4450e2e73b3ccf74d29f0e31e2e6687d7cbe5d65..9b241a0c1f5941dc58=
-a1e23970f6d3773d427c22 100644
->>>>>> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml=
+>> Set available_scan_masks =3D {  SMI330_ALL_CHAN_MSK, 0 } and push the
+>> whole buffer. iio_push_to_buffers_with_timestamp (indio_dev, data->buf, =
+pf-
+>>timestamp); We enable the accX, accY, and accZ from userspace. And expect=
+ 3
+>acc values and the timestamp in iio buffer.
+>>
+>> Raw iio buffer data:
+>> 00000000: 3c00 d6ff 7510 0000 6100 f3ff 0000 0000  <...u...a.......
+>            ACCX ACCY ACCZ PAD_ TIMESTAMP__________
+>                               4093587712
+>> 00000010: 3f00 d2ff 8910 0000 0300 f6ff 0000 0000  ?...............
+>                               4143907584
+>> 00000020: 4900 dcff 7a10 0000 caff 0100 0000 0000  I...z...........
+>                               So this one looks bad.
+>
+>> 00000030: 4c00 d9ff 7910 0000 2f00 f8ff 0000 0000  L...y.../.......
+>                               4177473280
+>
+>> 00000040: 4b00 d9ff 8410 0000 1f00 0800 0000 0000  K...............
+>                               also bad.
+>> 00000050: 4700 daff 7f10 0000 3b00 eeff 0000 0000  G.......;.......
+>> 00000060: 3f00 d8ff 8410 0000 0c00 0900 0000 0000  ?...............
+>> 00000070: 4600 d9ff 8010 0000 0e00 0800 0000 0000  F...............
+>> 00000080: 4700 d7ff 7d10 0000 3400 feff 0000 0000  G...}...4.......
+>> 00000090: 4b00 d4ff 8010 0000 3e00 1200 0000 0000  K.......>.......
+>> 000000a0: 4600 d6ff 8d10 0000 4300 0000 0000 0000  F.......C.......
+>> 000000b0: 4900 d6ff 7710 0000 2500 f0ff 0000 0000  I...w...%.......
+>>
+>> Converted value
+>I guess this is different data as doesn't seem to line up with the above?
+>
+>> 0.015625 -0.009277 1.024411 589929
+>> 0.015869 -0.009521 1.040769 4294901719
+>> 0.020508 -0.008301 1.025632 458712
+>> 0.018799 -0.006836 1.032956 851960
+>> 0.019287 -0.009521 1.033201 4294836275
+>> 0.015625 -0.010498 1.031003 4293328982
+>> 0.015137 -0.010498 1.031980 4293853176
+>> 0.015869 -0.009521 1.031492 4293722141
+>> 0.018555 -0.011475 1.033445 4294311886
+>>
+>> The 3 acc values is correct in buffer.  Nevertheless, invalid timestamp.=
+ The
+>timestamp is actually the value of the gyroscope, which directly followed =
+by acc
+>values.
+>> If we enable the gyroX, gyroY, and gyroZ from userspace, then all the da=
+ta is
+>correct. Since the gyro values are the last 3 values and flowed by timesta=
+mp.
+>
+>Ok. That's odd and we should debug that.  This code is used in a lot of dr=
+ivers
+>so if it is not working correctly we need to figure out why asap and fix i=
+t.
+>
 
->>>>>> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml=
 
->>>>>> @@ -21,6 +21,11 @@ properties:
->>>>>>            # work with newer dts.
->>>>>>            - const: img,img-axe
->>>>>>            - const: img,img-rogue
->>>>>> +      - items:
->>>>>> +          - enum:
->>>>>> +              - thead,th1520-gpu
->>>>>> +          - const: img,img-bxm-4-64
->>>>>> +          - const: img,img-rogue
->>>>>>        - items:
->>>>>>            - enum:
->>>>>>                - ti,j721s2-gpu
->>>>>> @@ -93,7 +98,9 @@ allOf:
->>>>>>        properties:
->>>>>>          compatible:
->>>>>>            contains:
->>>>>> -            const: img,img-axe-1-16m
->>>>>> +            enum:
->>>>>> +              - img,img-axe-1-16m
->>>>>> +              - img,img-bxm-4-64
->>>>>
->>>>> This isn't right =E2=80=93 BXM-4-64 has two power domains like BXS-=
-4-64. I don't
->>>>> really know what the right way to handle that in devicetree is give=
+
+
+>However, I'm not seeing what looks to be gyro data in bytes 8-15 etc It is=
+n't the
+>stable sequence we'd expect for a timestamp though some specific values
+>might be plausible.
+>
+>Looking again at the code, the IIO_DECLARE_BUFFER_WITH_TS() is the wrong
+>size.  That should not include channel space for the timestamp. That shoul=
+d
+>make it too big though which shouldn't be a problem.
+>Also wrong type - should be using __le16 not s16 for the buffer elements g=
+iven
+>your channel declarations.
+>
+>Please could you add a print to your code alongside the
+>iio_push_buffer_with_timestamp() to verify that the value in the pf-
+>>timestamp is reasonable looking for a timestamp.
+>
+>For reference this is the code that handles the timestamp entry creation i=
 n the
->>>>> TH1520 appears to expose only a top-level domain for the entire GPU=
-, but
->>>>> there are definitely two separate domains underneath that as far as=
- the
->>>>> GPU is concerned (see the attached snippet from integration guide).=
-
->>>>>
->>>>> Since power nodes are ref-counted anyway, do we just use the same n=
-ode
->>>>> for both domains and let the driver up/down-count it twice?
->>>>
->>>> Hi Matt,
->>>>
->>>> Thanks for the very helpful insight. That's a great point, it seems =
-the
->>>> SoC's design presents a tricky case for the bindings.
->>>>
->>>> I see what you mean about potentially using the same power domain no=
-de
->>>> twice. My only hesitation is that it might be a bit unclear for some=
-one
->>>> reading the devicetree later. Perhaps another option could be to rel=
-ax
->>>> the constraint for this compatible?
->>>>
->>>> Krzysztof, we'd be grateful for your thoughts on how to best model t=
-his
->>>> situation.
->>>
->>>
->>> It's your hardware, you should tell us, not me. I don't know how many=
-
->>> power domains you have there, but for sure it is not one AND two doma=
-ins
->>> the same time. It is either one or two, because power domains are not=
-
->>> the same as regulator supplies.
+>demux tables.
+>https://elixir.b/
+>ootlin.com%2Flinux%2Fv6.15.1%2Fsource%2Fdrivers%2Fiio%2Findustrialio-
+>buffer.c%23L1086&data=3D05%7C02%7CJianping.Shen%40de.bosch.com%7Cf0
+>9eaf03f8e44dd1e6fe08ddc53ae596%7C0ae51e1907c84e4bbb6d648ee5841
+>0f4%7C0%7C0%7C638883578931715207%7CUnknown%7CTWFpbGZsb3d8
+>eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIj
+>oiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3Ds53tTw6o%2F2guA
+>iH3J9jBRd0%2Bj6UmcmgyhtBCuKK1HE0%3D&reserved=3D0
+>
+>Jonathan
+>
+>
 >>
->> Hi Krzysztof, Matt,
+>> Conclusion: Setting available_scan_masks =3D {  SMI330_ALL_CHAN_MSK, 0 }=
+,
+>the iio core is able to correct handle the enabled channel data, but not t=
+he
+>timestamp.
+>> The working solution for now is that our driver takes care and just copy=
+s the
+>enabled channel value to buffer without using available_scan_masks.
 >>
->> The img,bxm-4-64 GPU IP itself is designed with two separate power
->> domains. The TH1520 SoC, which integrates this GPU, wires both of thes=
-e
->> to a single OS controllable power gate (controlled via mailbox and E90=
-2
->> co-processor).
->=20
-> This helps... and also sounds a lot like regulator supplies, not power
-> domains. :/
-
-Apologies for taking so long to get back to you with this, I wanted to
-make sure I had the whole picture from our side before commenting again.
-
-=46rom the GPU side, a "typical" integration of BXM-4-64 would use two
-power domains.
-
-Typically, these domains exist in silicon, regardless of whether they
-are exposed to the host OS, because the SoC's power controller must have
-control over them. As part of normal operation, the GPU firmware (always
-in domain "a" on Rogue) will request the power-up/down of the other
-domains, including during the initial boot sequence. This all happens
-transparently to the OS. The GPU block itself has no power gating at
-that level, it relies entirely on the SoC integration.
-
-However, it turns out (unknown to me until very recently) that this
-functionality is optional. The integrator can opt to forego the
-power-saving functionality afforded by firmware-controlled power gating
-and just throw everything into a single domain, which appears to be
-what's happened here.
-
-My only remaining issue here, then, is the naming. Since this
-integration doesn't use discrete domains, saying it has one domain
-called "a" isn't correct*. We should either:
-
- - Drop the name altogether for this integration (and others like it
-   that don't use the low-power functionality, if there are any), or
- - Come up with a new domain name to signal this explicitly (perhaps
-   simply "gpu")? Something that's unlikely to clash with the "real"
-   names that are going to start appearing in the Volcanic bindings
-   (where we finally ditched "a", "b", etc.).
-
-Cheers,
-Matt
-
-*Yes, I know that's what we said for the AXE-1-16M, but that tiny GPU is
-the exception to the rule; AFAIK it's the only one we've ever produced
-that truly has only one power domain.
-
->=20
+>> >So the aim is that userspace never knows anything about this.  Just
+>> >set what channels you want and get that data.
+>> >
+>> >Jonathan
+>> >
+>> >
+>> >>
+>> >> >
+>> >> >The handling the core code is reasonably sophisticated and will
+>> >> >use bulk copying where appropriate.
+>> >> >
+>> >> >If there is a strong reason to not use that, add a comment here so
+>> >> >we don't have anyone 'fix' this code in future.
+>> >> >
+>> >> >> +      }
+>> >> >> +
+>> >> >> +      iio_push_to_buffers_with_timestamp(indio_dev, data->buf,
+>> >> >> +pf->timestamp);
+>> >> >> +
+>> >> >> +out:
+>> >> >> +      iio_trigger_notify_done(indio_dev->trig);
+>> >> >> +
+>> >> >> +      return IRQ_HANDLED;
+>> >> >> +}
+>> >>
 >>
->> This means a devicetree for the TH1520 can only ever provide one power=
 
->> domain for the GPU. However, a generic binding for img,bxm-4-64 should=
-
->=20
-> If this was a supply, you would have two supplies. Anyway internal
-> wirings of GPU do not matter in such case and more important what the
-> SoC has wired. And it has one power domain.
->=20
->=20
->> account for a future SoC that might implement both power domains.
->>
->> That's why I proposed to relax the constraints on the img,bmx-4-64 GPU=
-=2E
->=20
-> This should be constrained per each device, so 1 for you and 2 for
-> everyone else.
->=20
-> Best regards,
-> Krzysztof
-
-
---=20
-Matt Coster
-E: matt.coster@imgtec.com
-
---------------DMA9MUXICW2ytHwYZ0MA8DKa--
-
---------------ab9h7gr6ve4yFtxIVhQtdlVL
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wnsEABYIACMWIQS4qDmoJvwmKhjY+nN5vBnz2d5qsAUCaICvRgUDAAAAAAAKCRB5vBnz2d5qsDR/
-AQCVMkVo0DMTS2De7GE/E7OlGBVH9LFEnn7OO9TwShMFUAEAtA/lX9xjcxwhQEnaeVfxNMZTaSSZ
-kNOLOVuHGwFZyAA=
-=XFar
------END PGP SIGNATURE-----
-
---------------ab9h7gr6ve4yFtxIVhQtdlVL--
 
