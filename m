@@ -1,256 +1,100 @@
-Return-Path: <devicetree+bounces-199107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A00F0B0F561
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:34:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3946DB0F569
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:35:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BD631882B22
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:34:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2A0F585F33
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE88C2F235D;
-	Wed, 23 Jul 2025 14:34:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8052E7F01;
+	Wed, 23 Jul 2025 14:34:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="maIwifSS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OGuCA5ca"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F0A2E5419
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 14:34:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165682E7BBD;
+	Wed, 23 Jul 2025 14:34:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753281249; cv=none; b=YVHdAZetr72e7GP7gHxgb723KU+ZoZRKX49Vw1FYG9rWlmQuXo4t5HIPuRRbTRLDsKLxlRQ9eFKISqFoc+L+XRsT1kJnmjfZLcgs01e/SYZ4u0ZlsThMjZ/h7Nwx2wMriul+ZSUJZ9RwSEN6Nm8J4KWngMofheO+O571O1NfcOw=
+	t=1753281298; cv=none; b=LeKvIJtyRl4AzHV9zTFtwSU2Kx2eXxe3ZxABAUPpa7GWjzCvj7rtZIAKBvmCgFu96Z/aYpG0t/FY20aMaAE91XRfuevPo6rpVTVNPBFwcpNfmQs5w48vLvi9VjePFN2sFQoxuX/yuNENf2qUGZS/YJYFNVoCcRt+eEoQ+lhZQFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753281249; c=relaxed/simple;
-	bh=s2U6DW6ywBldcB4970d407QnV5OdXYvMoGTWnX4OGNc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pW+cTA5uNXIUif1E/eRLIEptL7wPH06EoQzJQ8z0QANyXr2wIdDxRDoPMudQoekpG4J2ZP3lum/0lAQc2CQMp+jfM4/APDiW63X8C/Mgf0JdESiMP3gQlC/A6qZdyuRhTICfUW+Xyl4bqsQGj8k0FGJOalocJkJkLrz7N/qTBHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=maIwifSS; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-70e64b430daso72064667b3.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 07:34:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1753281247; x=1753886047; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=i7J8HjQSm2OQjkU72pczPzlrbrT1qcIJ7YC84xB7FCM=;
-        b=maIwifSS2svN5/4n//AWmKgskRsN9Xj5I3PLLDuDz/B5UuBRnXccL2CtHOT64B0sHI
-         DLqBebCNeH32ENcyCDv7AHE4nYkNkUWuHU/MszBMKRE7PKgbjEAElJfdyQKfY7EruJ4P
-         Bv3UcCgMUJYRJ5jqUUyn9owj3xu+yiKW79GVn/J9sQij6tXD4hAUkXx7/cq4U9fEaJEu
-         QPmMWX25yLVl1ivueCIFkPvhp9MjsAqT6DWDn1LWxng3vV+YCI3hCMbf8GpHviWRcXu8
-         igM2cxyeuxA3If9rsLEj4qTTmTM9HNvfIWxfkpwy90pJJTxkUL/F03HiUYCJtUWQfoJ/
-         B7/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753281247; x=1753886047;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=i7J8HjQSm2OQjkU72pczPzlrbrT1qcIJ7YC84xB7FCM=;
-        b=AwfXGxfpAUq5/VBt5+jdxiolvJgIsCi3I3ubSVVnh8cMOGjGNygez9xfQttC5xBk7V
-         aOctct6MtwrJwlT6ZaHbBnRNcdsvRbeyadNgkI3dVErgJ/mekW4Be0kg0NNZF5fekmyq
-         EGZ51AvqPCEI1jU0ydSj+PvUVgAi3Z3pMki5hBZSifb2egadvMAtZeeBkUGL+oBaK84k
-         B3hUe07izm2D/SFwK2nQGD8m0pOkTvIi4iflxs7tKqDjZjeZ03TD06Cauhgx8NGHzXEz
-         3tKZxdHsB/nrCSnHNHMwHJ2klSAj6JObxjRs2BXrOESyrwRW90gfDbKnKVV0LahFEvnb
-         Zn5A==
-X-Forwarded-Encrypted: i=1; AJvYcCWztVtHuaxiE7no69FOq4ayufwUu0LGy7Wic5eYDBxLggaoaJNzj6PrjunnK/mQ0NSIQ1eEZxSub/No@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzu4ysUK/kJzlw65SK67XhGzFK5vD/M8Umn78WE1EZ4OXRxuxOq
-	18w1JnqB6cnO4dn8f1GNcAnD1sTaeR+T96is+viDt6trzrmDI5Fn7PolmLQJM8C37gT9zjPRkEx
-	yVM1kaxsqGfbleIFswrORV0UCog9KIXlUZgaGSuC1FQ==
-X-Gm-Gg: ASbGncu4X5eqrAtkrL5cxIvF/G2H2oSJC4SMHjdRxTu3Mi6RoBOIycrVBEr24FWqu4I
-	CvEm1RnvE9gn5tCzPaJdKBOhMLeIX5maaDdYtUIHrZrvWQLTxCeNCx8AGZMyTY+FsrJuzKUbPGK
-	L4rN1h7H+XnG0tpU5w3D+pnFRjOFlr0k09FFTfHA3iq0XJoVg41mzeAaYa3xftbWI9KFuJKzEHq
-	YrqFwumZ/1xRhJ6bROvfc05qy1lUFn3ORePyCY=
-X-Google-Smtp-Source: AGHT+IFdM0YGkTA31TcTNyjAMSUBkzoHDq8wTZY+3lQzK3Gvy55vMXJ7rJnbZqh2eAD8y0Yep59W+Ns3oYwHbz72V+E=
-X-Received: by 2002:a05:690c:4c06:b0:70f:8884:a5fc with SMTP id
- 00721157ae682-719b4129516mr39550997b3.4.1753281246521; Wed, 23 Jul 2025
- 07:34:06 -0700 (PDT)
+	s=arc-20240116; t=1753281298; c=relaxed/simple;
+	bh=hqQgXXO/2Sxe0qvV4ysJSFDc0vsyketKesbfM+KBHTo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UqXOU+UdB72JrcHmHcLOe7fd+QrRiXinxn+2xsOfh/5oS1ecOeznvNl1jGga6vHJXC3JZPjWWqGdOAyJiACN0xmRkvoeu1Q5iPU/MBe0YOcZPbdI06+xlsWCu7RVipUVBqThMxOIM5hJUdd096TAdts25FRfudjm+DqPOgAWwrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OGuCA5ca; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05D19C4CEF1;
+	Wed, 23 Jul 2025 14:34:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753281297;
+	bh=hqQgXXO/2Sxe0qvV4ysJSFDc0vsyketKesbfM+KBHTo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OGuCA5caY3RTuxc6BqatpaaL7WVJccOd+gLxQA/lKzjEzu/CcJ5sfCJgjkcB3p8qT
+	 0HzTnwQJOYZ7Eea4+VY4e2K91DiL/S6topwdE/Cr0xMovGlvW4qcvZ/D0oTNMLcAQx
+	 0WJ1EVJ8P+BA4+U1qWwpw0Ldi9iX2MwEfdZrVmbiMAZLndOgBn6CcV8R9bJ8O/QB2a
+	 4XSCnK+/kLmGyGPyLeZzjPY4rQgrw48Mj1d/WFbxtSRgIsU91XkieImQVehzzzp+T9
+	 EBrTWhjGqZEwUZrA5Uf8OT+oSXtdP6Y/AWI0ixHUHVlrvTYwKdE4gHeCKKji/2bZiZ
+	 KMeAdnXzlINRw==
+Date: Wed, 23 Jul 2025 20:04:46 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Wenbin Yao <quic_wenbyao@quicinc.com>
+Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
+	bhelgaas@google.com, sfr@canb.auug.org.au, qiang.yu@oss.qualcomm.com, 
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, andersson@kernel.org, 
+	konradybcio@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, krishna.chundru@oss.qualcomm.com, 
+	quic_vbadigan@quicinc.com, quic_mrana@quicinc.com, quic_cang@quicinc.com
+Subject: Re: [PATCH v5 1/3] PCI: dwc: enable PCI Power Control Slot driver
+ for QCOM
+Message-ID: <g4vti733clyly7uludeypp55s2s3ajznw4g3mjgo3segah3zdm@uixreuvty7px>
+References: <20250722091151.1423332-1-quic_wenbyao@quicinc.com>
+ <20250722091151.1423332-2-quic_wenbyao@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250718-fpf-media-dt-flip-v1-0-75b3a938b4be@pengutronix.de>
- <ryuew3kxnocj6uqq4nadp3kyaxg27rxlrgnaieyy2hlpz5jkd3@iyetnsbfanee>
- <35debf21-bca7-480f-a61e-7b0494f10ca5@pengutronix.de> <mljx67lkcw4kh3cs344iprik244cm7hqfckmg4bj5j5atuyt62@lh2ht4mrtkjq>
- <3ac271c7-a67a-4f6f-935d-256937516068@pengutronix.de> <ffzxxsplmivvj7pib7n7lkutbyohl5npofdaxdxtoffo43yatw@gqm64zdgb4iy>
- <CAPY8ntDLPDmgmE8+VQ4jchfNKLLEK5bZ10ftham9bK-x_HL8Xw@mail.gmail.com> <a89dbe5d-a30b-455d-adaf-31eadf2b3751@pengutronix.de>
-In-Reply-To: <a89dbe5d-a30b-455d-adaf-31eadf2b3751@pengutronix.de>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 23 Jul 2025 15:33:48 +0100
-X-Gm-Features: Ac12FXxCqzvs8tOlogOsNm4KLi0oz7j1OkzF1OLW8n-rahTjlq-sI0gx-wT9C3E
-Message-ID: <CAPY8ntC+t9miX2396=PuhF2LX-wwoyg4zhXsj4yKAbsCt7+muA@mail.gmail.com>
-Subject: Re: [PATCH 0/2] parse horizontal/vertical flip properties
-To: Fabian Pfitzner <f.pfitzner@pengutronix.de>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Jacopo Mondi <jacopo@jmondi.org>, linux-kernel@vger.kernel.org, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, entwicklung@pengutronix.de, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, linux-media@vger.kernel.org, 
-	hansg@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250722091151.1423332-2-quic_wenbyao@quicinc.com>
 
-On Wed, 23 Jul 2025 at 14:48, Fabian Pfitzner <f.pfitzner@pengutronix.de> wrote:
->
-> On 7/23/25 15:00, Dave Stevenson wrote:
-> > Hi Jacopo and Fabian
-> >
-> > On Wed, 23 Jul 2025 at 13:21, Jacopo Mondi
-> > <jacopo.mondi@ideasonboard.com> wrote:
-> >> Hi Fabian
-> >>
-> >> On Wed, Jul 23, 2025 at 12:09:58PM +0200, Fabian Pfitzner wrote:
-> >>> On 7/23/25 11:44, Jacopo Mondi wrote:
-> >>>> On Wed, Jul 23, 2025 at 11:29:27AM +0200, Fabian Pfitzner wrote:
-> >>>>> On 7/23/25 11:17, Jacopo Mondi wrote:
-> >>>>>> Hi Fabian
-> >>>>>>
-> >>>>>> On Wed, Jul 23, 2025 at 10:58:28AM +0200, Fabian Pfitzner wrote:
-> >>>>>>> There are cameras containing a mirror on their optical path e. g. when
-> >>>>>>> mounted upside down.
-> >>>>>> How is this different from 'rotation = 180' ?
-> >>>>> If you simply want to flip the output (e. g. horizontally), you cannot do
-> >>>>> this with a rotation.
-> >>>>> The camera I'm referring to is not only upside down, but also flipped
-> >>>>> horizontally.
-> >>>> 180 degress rotation = HFLIP + VFLIP
-> >>> I do not want to do both. Only one of them.
-> >>>> Yes, you can't express 'mirror' in DTS, because DTS are about the
-> >>>> physical mounting rotation of the camera. Sensor drivers shall not
-> >>>> apply any flip control automatically, it's userspace that by parsing
-> >>>> the rotation property through the associated v4l2 controls should decide
-> >>>> if it has to apply flips or not to correct the images.
-> >>>>
-> >>>> What is the use case you had in mind ? Tell the driver through a DTS
-> >>>> property it has to apply flips to auto-compensate ? Because I think we
-> >>>> shouldn't and if I'm not mistaken we also document it:
-> >>>> https://www.kernel.org/doc/html/latest/userspace-api/media/drivers/camera-sensor.html#rotation-orientation-and-flipping
-> >>> I have a camera that does a horizontal flip in its hardware, so the output
-> >> Sorry, I don't want to be annoying, but what does it mean "does a
-> >> horizontal flip in the hardware" ?
-> >>
-> >> In my understanding either "in hardware" means you can't control it
-> >> from software (and so there's no point in telling drivers what to do)
-> >> or you can control it from software and it's a regular HFLIP.
-> > Can you say what this sensor/module is?
-> ClairPixel 8320
-> >
-> > To change flips due to physical sensor orientation is a very unusual
-> > one. That would imply some weird mechanics in the sensor to add the
-> > mirror and some form of orientation sensor being built in.
-> Really? Imagine a door bell where an arbitrary camera is mounted such
-> that it faces upwards (e. g. due to space limitations).
-> Then you need a mirror in order to point into the "correct" direction.
+On Tue, Jul 22, 2025 at 05:11:49PM GMT, Wenbin Yao wrote:
+> From: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> 
+> Enable the pwrctrl driver, which is utilized to manage the power supplies
+> of the devices connected to the PCI slots. This ensures that the voltage
+> rails of the standard PCI slots on some platforms eg. X1E80100-QCP can be
+> correctly turned on/off if they are described under PCIe port device tree
+> node.
+> 
+> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
+> ---
+>  drivers/pci/controller/dwc/Kconfig | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> index ff6b6d9e1..deafc512b 100644
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -298,6 +298,7 @@ config PCIE_QCOM
+>  	select CRC8
+>  	select PCIE_QCOM_COMMON
+>  	select PCI_HOST_COMMON
+> +	select PCI_PWRCTRL_SLOT
 
-That's not a function of the sensor then. I'd interpreted what you'd
-written as the sensor itself magically changed the readout order to
-add flips based on how it was mounted.
+I guess you also need 'if HAVE_PWRCTRL'
 
-I'll agree with Jacopo that it is up to userspace to set the required
-flips based on information provided by the driver. Userspace could
-choose to flip the displayed image when rendering instead, which may
-be necessary if the sensor driver doesn't support flip controls.
+- Mani
 
-Your second patch parses these new properties into struct
-v4l2_fwnode_device_properties, but then does nothing further with
-them. I would have expected similar handling to V4L2_CID_ORIENTATION
-and V4L2_CID_ROTATION in v4l2_ctrl_new_fwnode_properties to convert
-them into V4L2 controls. Trying to change the behaviour in the driver
-would again require changes for each and every sensor driver.
-It does run the risk of conflicting with rotation though, so needs
-some careful thought and specification with regard operation order
-(rot 90 + HFLIP != HFLIP + rot 90).
-
-  Dave
-
-> Fixing the driver for an arbitrary camera driver does not seem to be a
-> good solution.
-> >
-> > The closest instance I can think of would be ov5647 where the sense of
-> > the H & V flip register bits are in opposition, but that doesn't
-> > change based on how the sensor is mounted.
-> > In that case the driver just needs to account for it when programming
-> > those registers [1]. And I now note that I haven't upstreamed the
-> > patch adding flip controls - another one for the to-do list. The
-> > hardcoded register set in the mainline driver sets HFLIP (0x3821 bit
-> > 2) but not VFLIP (0x3820 bit 2) [2].
-> >
-> >    Dave
-> >
-> > [1] https://github.com/raspberrypi/linux/commit/9e5d3fd3f47e91806a5c26f96732284f39098a58
-> > [2] https://elixir.bootlin.com/linux/v6.15.7/source/drivers/media/i2c/ov5647.c#L153
-> >
-> >>> is not what I want. My example above was misleading. The rotation fixes the
-> >>> "upside down" problem, but does not fix the flip.
-> >>>
-> >>> Doing that in userspace might be a solution, but in my opinion it is a bit
-> >>> ugly to write a script that always sets the flip property from userspace
-> >>> when the device was started.
-> >>> A much cleaner way would be to simply set this property in the device tree
-> >>> such that the driver can be initially configured with the proper values.
-> >> Sorry, don't agree here. What if a sensor is mounted 90/270 degrees
-> >> rotated (typical for mobile devices in example) ? You can't compensate
-> >> it completely with flips, would you 270+HFLIP=90 ? would you leave it
-> >> unmodified ? Userspace has to know and act accordingly, doing things
-> >> in driver (will all drivers behave the same ? Will some compensate or
-> >> other won't ?) is a recipe for more complex behaviours to handle.
-> >>
-> >>> PS: I have to send this email twice. The first one contained HTML parts that
-> >>> were rejected by some receivers...
-> >>>
-> >>>> TL;DR drivers shall not flip, userspace should. Mirroring is an effect
-> >>>> of drivers applying an HFLIP, because unless I'm missing something
-> >>>> obvious, 'mirror' is not a physical mounting configuration of the camera
-> >>>> sensor.
-> >>>>
-> >>>> FIY we're talking about something similar in libcamera
-> >>>> https://lists.libcamera.org/pipermail/libcamera-devel/2025-July/051533.html
-> >>>>
-> >>>>>>> Introduce two options to change the device's flip property via device tree.
-> >>>>>>>
-> >>>>>>> As there is already support for the panel-common driver [1], add it for cameras in the same way.
-> >>>>>>>
-> >>>>>>> [1] commit 3c0ecd83eee9 ("dt-bindings: display: panel: Move flip properties to panel-common")
-> >>>>>>>
-> >>>>>>> Signed-off-by: Fabian Pfitzner <f.pfitzner@pengutronix.de>
-> >>>>>>> ---
-> >>>>>>> Fabian Pfitzner (2):
-> >>>>>>>          media: dt-bindings: add flip properties
-> >>>>>>>          media: v4l: fwnode: parse horizontal/vertical flip properties
-> >>>>>>>
-> >>>>>>>     .../devicetree/bindings/media/video-interface-devices.yaml        | 8 ++++++++
-> >>>>>>>     drivers/media/v4l2-core/v4l2-fwnode.c                             | 3 +++
-> >>>>>>>     include/media/v4l2-fwnode.h                                       | 4 ++++
-> >>>>>>>     3 files changed, 15 insertions(+)
-> >>>>>>> ---
-> >>>>>>> base-commit: 6832a9317eee280117cd695fa885b2b7a7a38daf
-> >>>>>>> change-id: 20250718-fpf-media-dt-flip-7fcad30bcfb7
-> >>>>>>>
-> >>>>>>> Best regards,
-> >>>>>>> --
-> >>>>>>> Fabian Pfitzner <f.pfitzner@pengutronix.de>
-> >>>>>>>
-> >>>>> --
-> >>>>> Pengutronix e.K.                           | Fabian Pfitzner             |
-> >>>>> Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-> >>>>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> >>>>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
-> >>>>>
-> >>> --
-> >>> Pengutronix e.K.                           | Fabian Pfitzner             |
-> >>> Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-> >>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> >>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
-> >>>
-> >
-> --
-> Pengutronix e.K.                           | Fabian Pfitzner             |
-> Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
->
+-- 
+மணிவண்ணன் சதாசிவம்
 
