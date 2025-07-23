@@ -1,120 +1,98 @@
-Return-Path: <devicetree+bounces-198973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B53B0EE19
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 11:10:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08275B0EE36
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 11:17:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A70CE566D94
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 09:10:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 217B56C73E0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 09:17:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43F08283FC3;
-	Wed, 23 Jul 2025 09:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29B6F276050;
+	Wed, 23 Jul 2025 09:17:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="kf3q9YBU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16127283128;
-	Wed, 23 Jul 2025 09:10:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E6D22586EB;
+	Wed, 23 Jul 2025 09:17:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753261828; cv=none; b=V7gRYM/6CaZHF1d/pgXDZXAlAIdBr61/tkkRRV6dzU58CmpvGVZnbJOSGr9Qqm6KH7l9BGMs46B9sG5+FQ8jduVQ4fRBnMo7ge4MlrlEhQXvUUUPKB+jOubqIWpdyOiqTP0G+vz2jY9MgdrH3ajs2Zcz7GncK9xFZ854HUdn0v4=
+	t=1753262271; cv=none; b=FiQ9OyHoEf7jqXFK2a4YWHTIUUuvjigsUHhdPdPL65XakKXXYUqqhTt74YMvzdPbIP1zCTpKcDfqtU9PbeM4X5HQyB6lsw94sC4QLB/bMD+zKUvxHBnU+CVEXxxc8LRWjIRiO5pw3ZsWxQseJqIjJlFs9mJnEw0CXLMhVNj05n4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753261828; c=relaxed/simple;
-	bh=lT8blcXXw77g1cz/yAibCd665WXhnf7GvHfYU93BKsc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VKXas3DPrfnnrgDhAHkHhJuPekH/nipCEIQHTA61OVmmvHWLmLzowyYBUoj9qCRt4D/tFkXqvmHTsDifqkC5TVqFlqbz4QPu3Qxy/1D18VtUcL6mMx09Sp6uULFYKlahYZBStm0gj5kwxXo+8VmhJORPsZAqcUhVyiAj5YZAU94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=54.206.16.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
-X-QQ-mid: zesmtpsz5t1753261790tb48b40c0
-X-QQ-Originating-IP: WbNs+T0/ecBHX5fdSFEE2bEr651tUYnehK6KHcKsIX0=
-Received: from localhost.localdomain ( [183.17.231.145])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 23 Jul 2025 17:09:49 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 14805174978877968786
-EX-QQ-RecipientCnt: 14
-From: Nick <nick.li@foursemi.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	perex@perex.cz,
-	tiwai@suse.com,
-	nick.li@foursemi.com
-Cc: xiaoming.yang@foursemi.com,
-	danyang.zheng@foursemi.com,
-	like.xy@foxmail.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 5/5] MAINTAINERS: Add entry for FourSemi audio amplifiers
-Date: Wed, 23 Jul 2025 17:09:34 +0800
-Message-Id: <20250723090934.480055-6-nick.li@foursemi.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250723090934.480055-1-nick.li@foursemi.com>
-References: <20250723090934.480055-1-nick.li@foursemi.com>
+	s=arc-20240116; t=1753262271; c=relaxed/simple;
+	bh=OlVeLtr1mN38+yFX+jAt8pKsGYvaHsP65pKiGwEPXAU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H+lawzVJXutNX03OzOdnqYpfF/beIbEhm5Fo54aevjaWUeT9/1mtLxS6g3B+kJKJrpeojrWIaMcgYVvCnsOJoOKMfR5o6RqZ8JVJIDhgzSi3IA1USw+9T+OmGURhsWSwbN5CrImKLKuFsLb1US138onDsW0NRmnRSMesjqhsau8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=kf3q9YBU; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (93-46-82-201.ip106.fastwebnet.it [93.46.82.201])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BA6D98D4;
+	Wed, 23 Jul 2025 11:17:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1753262229;
+	bh=OlVeLtr1mN38+yFX+jAt8pKsGYvaHsP65pKiGwEPXAU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kf3q9YBUmieNCBlK1x1cC4QheRQ1IpJ/DuGjATJNG3sKYrk8iVsaOJTsgocBA/kvs
+	 Vdv6yseZdSCWLtTdQCgOQM8w09aJiw1YCV+/rGsgJOdJPi1nSqEYZPKuLINpzQkMwa
+	 yTmRY86hayyF8HVFHwqec/4fZcMxOEyx+vaF4oao=
+Date: Wed, 23 Jul 2025 11:17:42 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Fabian Pfitzner <f.pfitzner@pengutronix.de>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jacopo Mondi <jacopo@jmondi.org>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, entwicklung@pengutronix.de
+Subject: Re: [PATCH 0/2] parse horizontal/vertical flip properties
+Message-ID: <ryuew3kxnocj6uqq4nadp3kyaxg27rxlrgnaieyy2hlpz5jkd3@iyetnsbfanee>
+References: <20250718-fpf-media-dt-flip-v1-0-75b3a938b4be@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: M172b+tX+pVLtKkZBISweVia8o1tDcE7QmtqmW0XskSxO7sqEoP/jxOo
-	9Dt79HTYFwjyWHZuVCYuPdd6TB1OBdBi/9PNKJC6ppnkVLQtuNs0btgPv+CfkvcLF1k8RQ3
-	AkctHVmHsBROoE+YfniIqs0fPnJwwsMC65P6SaKZMWAH+JDN3SqS+fDG8C+1f5wiQPkWhHd
-	u8W9fhapYe4/JomCf4ABcpyezTU8SE75EPo/COlTe/vtpKLzBOflaG9l9bq4FmT2sWhzz0q
-	NQjBYNkdQYOuEhw6PKJdr6MX+rwxhTjy+kXaSZywtL9zrYlArRFXD3ToZwEdQCdW112zqt3
-	O9ow0Gxi2LNCDcol/slNnfKri2Pn2HLJ/NSXhymadWtiPASKjWD1CP/PKhZd+L+gIN9nh6+
-	JwHz7ATzP2IPr649KWEDHW0Zy3dgK9R3HtiGaxwdWD8AmdFUkL1m3G3Z5z/OxvPQ6DN0g6P
-	nTkkqrIk/UkOum+iIV2JLtkj/kyHVKoA6ISzwb3i82dFmy79pK0c51l/pzyM4H5NBQN8xAH
-	Hyq6wcZoIS+D24yMIBF0iaix49nn5iTroMkITsPhf4wo1uFoh2PeqAzIrj+2V0VakCfrNUq
-	/Iz7mQxiSUJjQNVgRp33NX7boCvMMWUueecDNLYQQGiJb4MtBNzdhkcAT+VcZ3ZNWGXJ7xk
-	X5j0jD5xZRCnxeKWnicyOl96qU6Q8jh9OSiTWs3twJ66icsjqsslZjHZW6Ss+agPDux/t6R
-	+rmjvbKo+nm6Ahm7hTCIM+0igQWDdvFe94AZSSsHExDyaba7b+wHkIxfHonmisctiNdBewV
-	73Aj9dUXWorfnZZ7ub43OMiSzkBHM47Wjw7T/0dxUR7tiyMoNLbkyLy1dIJgrW7jcy4cCA2
-	EOMD9vUIe4AAIxtGYJCd63pLZzFS6C+F1q1p/cMjUDsOvlD6dtgmzljeCbjs3nbSlhJTeqv
-	pn77kbulhArDSA6vHKJe+sXeiaUOS8r6nTOoUeLk9P+tr9OxQ2hDFTOViMMWwTTauR+u3Gs
-	yTH8PMByQr6VLkRZXUBkDNEDETE4j8QWphYJuYIFvgwur2dbHoM9rN2iGWkFnIf/eaE15Da
-	fRZWjG6NuAW
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250718-fpf-media-dt-flip-v1-0-75b3a938b4be@pengutronix.de>
 
-Add entry for FourSemi maintainer and related files
+Hi Fabian
 
-Signed-off-by: Nick <nick.li@foursemi.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Wed, Jul 23, 2025 at 10:58:28AM +0200, Fabian Pfitzner wrote:
+> There are cameras containing a mirror on their optical path e. g. when
+> mounted upside down.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 62d51c5a0..88354cd80 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9455,6 +9455,14 @@ F:	lib/tests/memcpy_kunit.c
- K:	\bunsafe_memcpy\b
- K:	\b__NO_FORTIFY\b
- 
-+FOURSEMI AUDIO AMPLIFIER DRIVER
-+M:	Nick Li <nick.li@foursemi.com>
-+L:	linux-sound@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/sound/foursemi,fs2105s.yaml
-+F:	sound/soc/codecs/fs-amp-lib.*
-+F:	sound/soc/codecs/fs210x.*
-+
- FPGA DFL DRIVERS
- M:	Wu Hao <hao.wu@intel.com>
- R:	Tom Rix <trix@redhat.com>
--- 
-2.39.5
+How is this different from 'rotation = 180' ?
 
+>
+> Introduce two options to change the device's flip property via device tree.
+>
+> As there is already support for the panel-common driver [1], add it for cameras in the same way.
+>
+> [1] commit 3c0ecd83eee9 ("dt-bindings: display: panel: Move flip properties to panel-common")
+>
+> Signed-off-by: Fabian Pfitzner <f.pfitzner@pengutronix.de>
+> ---
+> Fabian Pfitzner (2):
+>       media: dt-bindings: add flip properties
+>       media: v4l: fwnode: parse horizontal/vertical flip properties
+>
+>  .../devicetree/bindings/media/video-interface-devices.yaml        | 8 ++++++++
+>  drivers/media/v4l2-core/v4l2-fwnode.c                             | 3 +++
+>  include/media/v4l2-fwnode.h                                       | 4 ++++
+>  3 files changed, 15 insertions(+)
+> ---
+> base-commit: 6832a9317eee280117cd695fa885b2b7a7a38daf
+> change-id: 20250718-fpf-media-dt-flip-7fcad30bcfb7
+>
+> Best regards,
+> --
+> Fabian Pfitzner <f.pfitzner@pengutronix.de>
+>
 
