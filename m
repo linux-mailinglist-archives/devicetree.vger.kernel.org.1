@@ -1,149 +1,126 @@
-Return-Path: <devicetree+bounces-199173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3859B0FD06
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 00:43:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C691EB0FD0D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 00:45:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5BDB3B5E78
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 22:43:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2FB2168A4F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 22:45:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60EF215F4B;
-	Wed, 23 Jul 2025 22:43:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924BD237707;
+	Wed, 23 Jul 2025 22:45:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="T4kmCAI4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d5MM9fMQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D524E19C54B;
-	Wed, 23 Jul 2025 22:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29DB3229B12;
+	Wed, 23 Jul 2025 22:45:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753310614; cv=none; b=PZGHYUdGCZMQvScCR3RAOv3OVi4+XGJF1qFSCleK1eiXCY7tt1pr2Rq+JeJXs6DAwnJ3CPwpPYw5mYHdkqxL7uGQT68qESVdFmR2j1zVSHLnVTg0UaZoqNmg/m2HMBvfAB4w3pdiVpjlVNTkDcH+bDrbvgU1aD1zu5Q7tDr8Ef4=
+	t=1753310733; cv=none; b=AfAEUXBuTmNeJc9tzBs/iWcmoaW9x5++U7Myg3Vm2ixny+FTw1cfwTJE8AVSxWef34ftgQbQGQ0HA3j4sO+aZGzVCb9UK+wun4o4aYPP4vORQGGosmqEZ0TQhkQc7d9ygxQ0fmKnV0U0aZOfNUue59uofszjQamPXKeSYRdUYog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753310614; c=relaxed/simple;
-	bh=AB2be7bdlGypmACU4zZ0a1wnOFT1GBNtcZel1TManbs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QbqS05WVPvXUHOpKfUxRjOMq3tAjpX1362FzBF78umixEGGo4m9pootf3xjh6Wj5zVTxea34KSvp8o4O3T++YFw8wyAdEXAj3ddexomLMfm1aO1gaXhiVkBgUId930U6DEuOi/2p/oXJzRy5oXvqPtsVFlAtsFbzVGh9G7UsdB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=T4kmCAI4; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1753310613; x=1784846613;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AB2be7bdlGypmACU4zZ0a1wnOFT1GBNtcZel1TManbs=;
-  b=T4kmCAI4ezs1tii3zpNKI33/ss1aRp1tqWlKi/lQiOn+OBInQp0FmiJO
-   bkXEtrgVisZuREpnaEG06e7aSi0vKgJsgCQCXPi0pQLaWSJtmB7vOAbRS
-   jDN1NKRc+VGHHIEQercDOeZQEZmlhBUe8pxXK3yOu+amuTYuXoxUg/1Dj
-   dbkZZDPdv9md7vDjdfjgQs4pTXPxeXyfOozueJlxPHb0cFsiHdlb7s9rA
-   uupz54+lEX2hHZPAMtZ6Q0JLayz3lxGHWMx3e/ZKDL5K/GiahkDTiuHQ2
-   JsPQ59LQM3gRyvnS0FSY3l7CCPy+Csb4h7uyyXCAWnqb6spriaVUMUBFg
-   A==;
-X-CSE-ConnectionGUID: TXVvOhJ5SeioCAOlXXUEyg==
-X-CSE-MsgGUID: 0LGSJyHKQ2ms6l9JoDsLbQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="55551141"
-X-IronPort-AV: E=Sophos;i="6.16,335,1744095600"; 
-   d="scan'208";a="55551141"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jul 2025 15:43:32 -0700
-X-CSE-ConnectionGUID: 70TgYBp0R+So1kNDZjPRHg==
-X-CSE-MsgGUID: gGNfpaRzTpeqI3mV40pCAw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,335,1744095600"; 
-   d="scan'208";a="190751334"
-Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 23 Jul 2025 15:43:29 -0700
-Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ueiBK-000Jr9-1n;
-	Wed, 23 Jul 2025 22:43:26 +0000
-Date: Thu, 24 Jul 2025 06:43:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Kevin Tang <kevin.tang@unisoc.com>
-Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
-Subject: Re: [PATCH v2 14/15] drm: sprd: implement IOMMU-based buffer
- management
-Message-ID: <202507240607.WFI08aBs-lkp@intel.com>
-References: <20250722-ums9230-drm-v2-14-054276ec213d@abscue.de>
+	s=arc-20240116; t=1753310733; c=relaxed/simple;
+	bh=94UAvqGw5BU+XPP0OyfbGx1LunGov/eSC5+M+9sWAeA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jlNmjDX4HQhUlfm/pR1F26xBzxx7tUNg4SgEQHrSS9K61yXntCwj1esGFHNiWxM7BigPFdqtXQ/WJE2aCjnA49924u3Cf2oH/2ARRZQmXwrt7oU5LGxEg0eBKI4GBjr3TtlhwMelTPZeHqgbmGWREsJnUg+8pKvMxLHtWxrNW3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d5MM9fMQ; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b321bd36a41so393360a12.2;
+        Wed, 23 Jul 2025 15:45:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753310731; x=1753915531; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BsSQL3Vwnw+tLfFu0xgQFzyGewrOaXiW80oniV4mXuI=;
+        b=d5MM9fMQY0Hmb668cldkVu8i2NVFDocY4qINndZOiYOcxcoWsICV5Gueda5WoZBGoF
+         otwMpuXZGbLPUMxE0QpKgsq2DR2bz0SxBJ6czupaSvuNxn6Jl59/qanu+1lK4Vk+oxr4
+         /Y3Z+YEIgJoTE6KjxJF3VjiO07AJ912FuPzWhbDlHJp2wzqQpgtwXw9+xhG1SHyoyh07
+         6fmfutCC1qXnOavV2ky/mBTtJVJ4CEWhS5A/9Rac/5knx+7oGBSigDo0KBw1Eyxmvzg9
+         PmMSJFU8eC91R3sgUi9YWKTuibv+GjyRMV+txKYQaDqXca9l66q7S53dvfCF7oWA/DZM
+         jjUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753310731; x=1753915531;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BsSQL3Vwnw+tLfFu0xgQFzyGewrOaXiW80oniV4mXuI=;
+        b=UbfMYffTtqG1sL7GPFtyumIVhgTX5wcTbyvwUYu/GOGSyCTjq44V6Af4WVOW9wozXs
+         u2vAKcnUrLB1Rlxsnj3MRHIAOuznCnqTgv+lFzwsBOBqmQB3bubL2ZTplNYWESrhcyTn
+         Lja4FcO/GXUACM4YQbVqBHh7UxON+tlq1Ukn7m6+PxawhFkReVI3OmKjOfKokO3y9KN/
+         A3KGKVQRQKIDUyw8APZ8Kxq01HcYm+/thI5rpHK7sIu97AbYUnciiUvYt2ac4uKHNnaG
+         MZk9TAbAYqxxpw8+01c2ViDXzALyzBYH0Lc2AF9cP/yLw9hh3zuJ2Atk0J3kg9o2IkDA
+         sNuw==
+X-Forwarded-Encrypted: i=1; AJvYcCU7pyKnk6KFgxKE/jLNO4rR9PnVbDqA1F1gd6SOse/Q2gUruw1r7hfGqhGUdewAoOZx8qjv/BX4iwAYMVLn@vger.kernel.org, AJvYcCXQnJ8KeO6BXgYYHGsreT0j8Ie1n7wYWn+wlXHegcsa5yhBpvu4oUAatn/bEC4hkKEAKxKp9S1Pu1NC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yynxsvld5RFLjFNf5EOE7rqFtZColDBLt/FCFhoVB1B1JjwkgWu
+	GCkrxvKk2u+KJKk2SUFUoMhFXsDRqX4MUX/6J0eqUL9cSROlMCbbpQs=
+X-Gm-Gg: ASbGnctEa8/zKxhOD1dIGIpCtuKWxAN/Y63p8oF4r2Kt1MG4hG+3u51cyBLIlsIXw93
+	t8Q88BBEUQ2uvrs4slqQLZfwu1xqLy0hRNqR+tShT6STwdMOs67OKLOPdR33MB4YM+Xe9NNPL/o
+	kGZiivEQHTddsSTgWMlf8wUEoSBnA42wnZUHW+hqpyKfSHAs2YiDUb61nhvFO1M62gckSLJ+qqe
+	jxSHMY9NugOO9Hyo8gGLhPRD6EeJQefjqGVl0WMkA5FfNSTdfjIEPA9Qef000Mo+W1emKVnpo6w
+	HvfQJ2fPAy8lQFHoH1rNAC7wTqRXvPg98eNLDw2sGKIz6zw++S070u73wEHNU4m8DP5bPvYpnY3
+	z3B4n1cc7psgN+1A0EiqHw8mjFM9oi0wys4rUVMnsG7Kq
+X-Google-Smtp-Source: AGHT+IHiZHXZ3o9Sy0wMu/NV5ivRDKsQ0eXF4l4GSCt7RZOpjddgQKvcEcYp1RF9kO0kjPiHk6mgYA==
+X-Received: by 2002:a17:902:cece:b0:234:d431:ec6e with SMTP id d9443c01a7336-23f9813a90emr73288825ad.3.1753310731403;
+        Wed, 23 Jul 2025 15:45:31 -0700 (PDT)
+Received: from localhost.localdomain ([2a0d:e487:157f:651:b817:d1e:dd27:e736])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23fa475f83asm990235ad.41.2025.07.23.15.45.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Jul 2025 15:45:30 -0700 (PDT)
+From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+To: andrew@lunn.ch,
+	gregory.clement@bootlin.com,
+	sebastian.hesselbarth@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	jihed.chaibi.dev@gmail.com
+Subject: [PATCH] ARM: dts: armada-370-db: Fix stereo audio input routing on Armada 370
+Date: Thu, 24 Jul 2025 00:45:04 +0200
+Message-Id: <20250723224504.70862-1-jihed.chaibi.dev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250722-ums9230-drm-v2-14-054276ec213d@abscue.de>
+Content-Transfer-Encoding: 8bit
 
-Hi Otto,
+The simple-audio-card configuration for the Armada 370 development
+board incorrectly routed the left channel signal ("AIN1L") to both
+sides of the stereo "In Jack".
 
-kernel test robot noticed the following build warnings:
+This commit corrects the typo for the right channel, changing the
+second "AIN1L" entry to "AIN1R" to enable proper stereo input
+recording.
 
-[auto build test WARNING on 05adbee3ad528100ab0285c15c91100e19e10138]
+Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+---
+ arch/arm/boot/dts/marvell/armada-370-db.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Otto-Pfl-ger/dt-bindings-display-sprd-adapt-for-UMS9230-support/20250722-224414
-base:   05adbee3ad528100ab0285c15c91100e19e10138
-patch link:    https://lore.kernel.org/r/20250722-ums9230-drm-v2-14-054276ec213d%40abscue.de
-patch subject: [PATCH v2 14/15] drm: sprd: implement IOMMU-based buffer management
-config: hexagon-randconfig-r132-20250724 (https://download.01.org/0day-ci/archive/20250724/202507240607.WFI08aBs-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 853c343b45b3e83cc5eeef5a52fc8cc9d8a09252)
-reproduce: (https://download.01.org/0day-ci/archive/20250724/202507240607.WFI08aBs-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507240607.WFI08aBs-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/sprd/sprd_gem.c:157:16: sparse: sparse: Using plain integer as NULL pointer
-
-vim +157 drivers/gpu/drm/sprd/sprd_gem.c
-
-   135	
-   136	static struct sg_table *sprd_gem_object_get_sg_table(struct drm_gem_object *obj)
-   137	{
-   138		struct sprd_gem_obj *sprd_gem = to_sprd_gem_obj(obj);
-   139		struct sg_table *sgt;
-   140		int ret;
-   141	
-   142		if (sprd_gem->pages)
-   143			return drm_prime_pages_to_sg(obj->dev, sprd_gem->pages,
-   144						     obj->size >> PAGE_SHIFT);
-   145	
-   146		sgt = kzalloc(sizeof(*sgt), GFP_KERNEL);
-   147		if (!sgt)
-   148			return ERR_PTR(-ENOMEM);
-   149	
-   150		ret = dma_get_sgtable(obj->dev->dev, sgt, sprd_gem->vaddr,
-   151				      sprd_gem->dma_addr, obj->size);
-   152		if (ret < 0) {
-   153			kfree(sgt);
-   154			return ERR_PTR(ret);
-   155		}
-   156	
- > 157		return 0;
-   158	}
-   159	
-
+diff --git a/arch/arm/boot/dts/marvell/armada-370-db.dts b/arch/arm/boot/dts/marvell/armada-370-db.dts
+index a7dc4c04d..a9a05d826 100644
+--- a/arch/arm/boot/dts/marvell/armada-370-db.dts
++++ b/arch/arm/boot/dts/marvell/armada-370-db.dts
+@@ -119,7 +119,7 @@ sound {
+ 			"Out Jack", "HPL",
+ 			"Out Jack", "HPR",
+ 			"AIN1L", "In Jack",
+-			"AIN1L", "In Jack";
++			"AIN1R", "In Jack";
+ 		status = "okay";
+ 
+ 		simple-audio-card,dai-link@0 {
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.39.5
+
 
