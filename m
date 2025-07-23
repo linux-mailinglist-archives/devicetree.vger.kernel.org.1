@@ -1,247 +1,200 @@
-Return-Path: <devicetree+bounces-198895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301D3B0EAF3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:48:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BFCDB0EAFC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:51:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E81A73BED2D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:47:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 136397A9C65
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AFA826C393;
-	Wed, 23 Jul 2025 06:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 892E425291F;
+	Wed, 23 Jul 2025 06:51:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="BLjxWriK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lyJqum4I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80969191493;
-	Wed, 23 Jul 2025 06:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEDAD23D297
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 06:51:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753253270; cv=none; b=ir9lE4k3558hp305d7gZMeAY1hBMIgid/lgWqO7l2JajLmBR84p/sEFdzpFhOQl4W/pb7eKqV6MZFjrN6x1+fp7Np42UqEaqilieC+9zaiG9gM84ri3XVhatCiDa4dlJA7bUO8ccqXEu2kqmjkczysIc7UoDDkVDG52vOfyRK58=
+	t=1753253487; cv=none; b=gfm63AgiFUp4Om/rxVlsV5JCBDyqF2zC5Ibzp5022187Y/FJEbOkmWImak56FTVUYFWGjCu8GCieeIaFQPlb2Ij8TGWYz/MU36Vw+Sg2BAPgPzkNU8dYu+z/iKWlroDjbtppUAKcrn1zvR3Va93MdBpEmappdw4rvPxVUnQ8gFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753253270; c=relaxed/simple;
-	bh=+Yb4Wy6t52M4grBsczbkb2a6ETobnuJy4+jhoGQ6wxc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jJSpmXj2QeWmBvJmED2KWvuAPXtC/KtPsKtRtwuAyBOYt2gSTh6hVxE8+g0qLvxgD7ZoBvevhSq6+Fttg0Ixv/fCVIHbirxMU4v+NPcVdZfh/obvNlHWaZOQu7lVz7DMQ+VUqpkUmoZT9THcDg1Qk6JzYmyvSBCtAOO+acJ5ABk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=BLjxWriK; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1753253263;
-	bh=i1P2/ELUd1b9ULWl8PKW1VUWLzj7JvUrI0bGxJFYGBQ=; l=4628;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=BLjxWriKj3LAllpK8YtS3Lzo/Xt/Nte/71T9DSdXP6dFMxx+/1Gca2dmP2kWFqa8w
-	 Umlt7hBpdEm7/XkM+ZXy+xva8PWE6q+yxzLDLRUyJMtKWaqIvLFtuOUmkZD25qIbG+
-	 08G+GONfzhDn4qhepRB2x4YkLgNuAWOufH9E3CHIW3crFwkJgxxzLajPyXhQAaQPtr
-	 q+C0TEixfw0FO5GQKCGk6tSYtIh0IEKmHX7GI7caS/nW1ua1lslfHvDZU2jrtw2xQs
-	 +D2J0U0wR6YZAbxze30iT+sUzN5Qv/iONqTfaIwo0s89QOmzvT+tPD0tv/xDVB2wqr
-	 HZOT1z3dltneQ==
-Received: from 192.168.10.46
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(244587:0:AUTH_RELAY)
-	(envelope-from <jeff_chang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Wed, 23 Jul 2025 14:47:35 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 23 Jul
- 2025 14:47:34 +0800
-Received: from git-send.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
- Transport; Wed, 23 Jul 2025 14:47:34 +0800
-From: <jeff_chang@richtek.com>
-To: <krzk@kernel.org>
-CC: <broonie@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<jeff_chang@richtek.com>, <krzk+dt@kernel.org>, <lgirdwood@gmail.com>,
-	<linux-kernel@vger.kernel.org>, <robh@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: regulator: Add Richtek RTR5133 Support
-Date: Wed, 23 Jul 2025 14:47:38 +0800
-Message-ID: <20250723064813.2742303-1-jeff_chang@richtek.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <4ba4c608-e2e1-46e8-b796-e07c7c97dbb3@kernel.org>
-References: <4ba4c608-e2e1-46e8-b796-e07c7c97dbb3@kernel.org>
+	s=arc-20240116; t=1753253487; c=relaxed/simple;
+	bh=jwzBPgPewamRNsaxEfFNMIFmvlapYYp5J3XKIArutF8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Of1QBH+ioHlmZmiLK7C0XhJksMIpewzmh8qrGkyltKt8Bx/Kp3WJXwiSpNPxmhpHcjogazvPHNLsHVOOj201SvjhYIn27c0gKOIJOivbXSKUirvbS/CaRA7YteYzpc5xLhE1djyN0fmfoEohKXNa7/YGghTlOJuIjZaJOFgS+8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lyJqum4I; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45555e3317aso36490035e9.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Jul 2025 23:51:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753253484; x=1753858284; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HmDQpPxfKm8bqCiPdWg9uZmJGwJELrN8lL27X6M5AKY=;
+        b=lyJqum4IK5euPOQqRk07RkpDOt9Rhq477gNSqyyjz+ju4EZcOMBd5pjfBZdZx2mSF5
+         eWAzBJeUkw867eX1ZI9B4tvtwFp3lZ/U2fgj16DBUzCGv/+7txRfxEExgT3aQmrarlhb
+         B1X5WKIlvduQvoC8iofjnpk+bfKu34OByXeSJPprpn3bJLTdMTkMbuIb+V0JqWlHwiiK
+         l2f4YnXtk2EWuvjtGyZTOPKVC7WKmtKeCCNUE0m49JEtJpOIGrl60nBKyPXGstC3+T2O
+         L4nUW070zqDA6rqG2z3jvE4EjaVXkif9wCc5JgXJn62OzwvZJoH19InY5a2vrG2lZ2xI
+         ob+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753253484; x=1753858284;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HmDQpPxfKm8bqCiPdWg9uZmJGwJELrN8lL27X6M5AKY=;
+        b=FCrerS1/yi3Kh78wai7wwGn/QzpsHw5bL2o/Zz5G0vYO9Od/kwQQGHCBHgdGF9pto8
+         CnkJ4CSEzPF1CQGeU2LrnivFvCq2tRGFuWbmSJKmgSCIWRAjgzz32aGPjX39ou6oGHjJ
+         O/Z1azfxpYDMpkILyoW5bMkaC0kungMlQmF1Z6kjeRNPb9IIaZQKR1W5pw7alOR4ZYi/
+         /kjqFSw6v3aqQ3jvnGeoyTNGjzCxJVwm/QBw7ydRHjKvALZqvFUu/DbfV9SFNjSH2IU+
+         wp2BQ31wTWScjWwpPKvuo1p2aOHu6AM+mXAiiQ/lIr22mICdlpegueVXJyo3FR3hafsl
+         GOIg==
+X-Forwarded-Encrypted: i=1; AJvYcCX7C+IrSw0QiJBU8aSX3DPM2PTy7cDjEmq6vV4WhMdrdbX+5wfz4M7Vpf8BokxhhxWiIUGrkrM1eGmT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNWQzDFEGA/ewoNk9hSHlFd0rOZQD1Xs8UiCOHR9p4NTMktura
+	jc9vwg8cZ2SwPNyLADyYDgBTa5IibWGdeV5GBV5R95xDhe66/HcUyEVHFsaZqJkJ5qs=
+X-Gm-Gg: ASbGncsXd3AoSYHpfuT0BdSJD+kcPE8eszJwwgUaTLqxycwLxdyqV5PglMuqXC5zjU/
+	OWU29A85u2jcQVw6Nvuyq+7XiHJNlr1gYjogBOJ/TliAKVcx7sFMPOiA9dspyBIqdPVQZYLGge4
+	y67FLR4KcUAnkPnhOu++pHRNKnTJqyKUdjsTs2hhu0fnSrhBo4LOKpFa9lhorTAxc4tqfl4hz7l
+	FG8Xu2DP+Jw2RgGv3cF1Cg6xC2zH6UdWppjZhrvLVilliKoOfJmyx9kwvGp2R11/IknPBf0DZZR
+	8fWfMZolmkgKsNVvgmUKIdCiHj0Uv7Sbd/JRHXVVv4Nff+Fu5goQ1VQQiijF0LKvfZe8m2fKbu2
+	dk2mPnfWdYpzMTBvmYzWDhAvwjzzm1rBlGJhbUoI5bqL8DFv9KbTJUB6ZByoDoQOMvxZPClndd+
+	E=
+X-Google-Smtp-Source: AGHT+IEoaOAXH2QorgnFzRzUfqE4JxvZBAunYUky46cjn0XM/7dCjKSv+Bq3sv4bmyNmd02W6oc5ww==
+X-Received: by 2002:a05:600c:a08e:b0:455:f6cd:8703 with SMTP id 5b1f17b1804b1-45868d5326cmr11861405e9.31.1753253483979;
+        Tue, 22 Jul 2025 23:51:23 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:8813:2f0d:f9e0:5294? ([2a01:e0a:3d9:2080:8813:2f0d:f9e0:5294])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4586918b65dsm12638235e9.10.2025.07.22.23.51.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Jul 2025 23:51:23 -0700 (PDT)
+Message-ID: <e9c63414-8434-4e35-a159-66df1864f9f3@linaro.org>
+Date: Wed, 23 Jul 2025 08:51:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v5 0/3] Add support for OLED panel used on Snapdragon
+ Lenovo T14s Gen6
+To: Rui Miguel Silva <rmfrfs@gmail.com>, Johan Hovold <johan@kernel.org>,
+ Christopher Obbard <christopher.obbard@linaro.org>
+Cc: Douglas Anderson <dianders@chromium.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Rui Miguel Silva <rui.silva@linaro.org>,
+ Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org
+References: <20250402-wip-obbardc-qcom-t14s-oled-panel-v5-0-ff33f4d0020f@linaro.org>
+ <aCw9pYehCdfXXeiR@hovoldconsulting.com>
+ <aG-QyF12rGY55gcG@hovoldconsulting.com>
+ <d431435b-4ac0-44aa-922d-0bde126ca563@linaro.org>
+ <DBIMQO2CS0I3.17XLZPKPCVW2S@linaro.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <DBIMQO2CS0I3.17XLZPKPCVW2S@linaro.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Dear Krzysztof Kozlowski:
-
-	Thanks for your reply.
-
-	Please review my explanation for your questions.
-
-	If I have misunderstood or if there are any parts that need correction, please let me know.
-
-Thanks
-Jeff
-
-
-On 22/07/2025 10:34, jeff_chang@richtek.com wrote:
-> From: Jeff Chang <jeff_chang@richtek.com>
+On 22/07/2025 15:48, Rui Miguel Silva wrote:
+> Hey Neil,
 > 
-> Add bindings for Richtek RT5133 IC Controlled PMIC
+> On Tue Jul 22, 2025 at 2:01 PM WEST, Neil Armstrong wrote:
+> 
+>> On 10/07/2025 12:07, Johan Hovold wrote:
+>>> Hi Chris (and Neil),
+>>>
+>>> On Tue, May 20, 2025 at 10:30:29AM +0200, Johan Hovold wrote:
+>>>
+>>>> On Wed, Apr 02, 2025 at 03:36:31PM +0100, Christopher Obbard wrote:
+>>>>> The Snapdragon Lenovo T14s Gen6 can be bought with a number of different
+>>>>> panels. This patch series adds support for the OLED model which has a
+>>>>> Samsung ATNA40YK20 panel.
+>>>>>
+>>>>> With this patch series the backlight of the OLED eDP panel does not
+>>>>> illuminate since the brightness is incorrectly read from the eDP panel
+>>>>> as (to be clear this is not a regression). This is fixed in [0].
+>>>>>
+>>>>> [0]: https://lore.kernel.org/all/20250330-wip-obbardc-qcom-t14s-oled-panel-brightness-v6-1-84ad1cd1078a@linaro.org/
+>>>>
+>>>> It would be good to get OLED support for the T14s merged. Are you
+>>>> planning on sending another revision of this series?
+>>>
+>>> No reply for over a month. Do you intend to respin these or should
+>>> someone else take over?
+>>>
+>>> Neil, do you have the OLED version now?
+>>
+>> I'm not sure, how do I determine that ? Is there something specific in the type number ?
+> 
+> Yes, yours is the OLED version, the exact models stated above.
 
-Subject - RTR or RT? Google tells me nothing about RTR.
+Ack thx, I'll test and re-spin this patchset then.
 
---> I will fix it to RT5133 in next patch.
-
-
-> +
-> +    properties:
-> +      base:
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        unevaluatedProperties: false
-> +        description:
-> +          Properties for base regulator which control force-off base circuit.
-> +          Base circuit is the power source for LDO1~LDO6. Disabling it will
-> +          reduce IQ for Chip.
-
-I don't understand what this regulator is for. Your example is also
-incomplete - missing min/max constraints like voltage.
-
-Explain, what is this output pin? I already asked for explanations. I
-have diagram in front of me, so explain precisely instead of sending THE
-SAME again - which pin is it?
-
-Also, what is IQ? Except Intelligence Quotient?
-
---> Thanks to Mark's Suggestion. It's the top-level supply for LDO1 to LDO6.
-    It is not externally visible and functions merely as an on/off switch rather
-    than regulating voltages.
-    I will update the description as follows.
-
-   Properties for the base regulator, which is the top-level supply for LDO1 to LDO6.
-   It functions merely as an on/off switch rather than regulating voltages.
-   If none of LDO1 to LDO6 are in use, switching off the base will reduce the quiescent current.
-
-
-> +
-> +        properties:
-> +          richtek,oc-shutdown-all:
-> +            type: boolean
-> +            description:
-> +              Anyone of LDO is in OC state, shut down all channels to protect CHIP.
-> +              Without this property, only shut down the OC LDO channel.
-
-I don't understand this. I also do not understand why this is property
-of "base" not the chip itself...
-
-So don't send next version with the same.
-
---> It is a protection for LDO Over Current . The Description in datasheet like below. 
-
-    Anyone of LDO OC state, shut down all LDO channels
-    0 : LDO OC only shut down itself (default)
-    1 : LDO OC shut down all channels
-    We set it as a property of "base" for using regulator_desc -> of_parse_cb.
-    Should I move them to chip property? We bind it to base regulator for easily programming.
-
-
-> +
-> +          richtek,pgb-shutdown-all:
-> +            type: boolean
-> +            description:
-> +              Anyone of LDO is in PGB state, shut down all channels to protect CHIP.
-
-CHIP is an acronym? Or chip?
---> chip! I will use "chip" in next patch.
-
-> +              Without this property, only shut down the PGB LDO channel.
-> +
-> +        required:
-> +          - regulator-name
-> +
-> +    patternProperties:
-> +      "^ldo([1-6])$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        unevaluatedProperties: false
-> +        description:
-> +          Properties for single LDO regulator
-> +
-> +        required:
-> +          - regulator-name
-> +
-> +      "^ldo([7-8])$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        unevaluatedProperties: false
-> +        description:
-> +          Properties for single LDO regulator
-> +
-> +        properties:
-> +          rt5133-ldo1-supply:
-
-supplies do not have vendor prefixes.
-
-> +            description: |
-> +              Only for ldo7 ldo8, pvin7 and pvin8 reference design are RT5133 ldo1.
-> +              If not connect to ldo1 vout, this property for pvin7 and pvin8 is necessary.
-
-I don't understand why LDO1 supply is here.
-
-Again, which pin is it?
-
---> Please refer to PVIN7 and PVIN8 in the diagram. They are the power supplies
-    for LDO7 and LDO8, respectively. The reference for PVIN7 and PVIN8 is the VOUT of LDO1 (VOUT1).
-    In the driver, we set "rt5133-ldo1" as the supply_name in the regulator_desc
-    for LDO7 and LDO8. Users can overwrite the rt5133-ldo1-supply property according to their own layout.
-    Anyway I will just use vin-supply and I will remove vendor prefixes of supplies in next version.
-
-
-
-> +
-> +        required:
-> +          - regulator-name
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - wakeup-source
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      rt5133@18 {
-
-Nothing improved.
-
-> +        compatible = "richtek,rt5133";
-> +        reg = <0x18>;
-> +        wakeup-source;
-> +        interrupts-extended = <&gpio 187 0x0>;
-
-Nothing improved
-
---> I will update them like below.
-
-    pmic@18 {
-    interrupts-extended = <&gpio 187 IRQ_TYPE_LEVEL_LOW>;
-
-
-Implement previous comments and respond to each of them to confirm you
-understood them.
+Neil
 
 > 
-
-
-Best regards,
-Krzysztof
+> Cheers,
+>       Rui
+> 
+>>
+>> Neil
+>>
+>>>
+>>>>> Christopher Obbard (3):
+>>>>>         arm64: dts: qcom: x1e80100: add epd hpd pinctrl
+>>>>>         arm64: dts: qcom: x1e78100-t14s: add hpd gpio to dp controller
+>>>>
+>>>>>         arm64: dts: qcom: x1e78100-t14s-oled: add edp panel
+>>>>
+>>>> Strictly speaking you could have posted this last patch on it's own as
+>>>> it doesn't depend on adding the hpd pinctrl.
+>>>
+>>> Johan
+> 
+> 
+> 
 
 
