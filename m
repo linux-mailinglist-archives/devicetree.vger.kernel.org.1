@@ -1,174 +1,104 @@
-Return-Path: <devicetree+bounces-199141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27C74B0F8F2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 19:22:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CE8BB0F980
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 19:44:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB09E7A26F7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 17:21:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06B94171189
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 17:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014AE21CA0A;
-	Wed, 23 Jul 2025 17:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18C51244679;
+	Wed, 23 Jul 2025 17:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B4j1BZKS"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="dTEoClWJ";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="V/m9EQLS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BB082101B3;
-	Wed, 23 Jul 2025 17:21:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98EB915C158;
+	Wed, 23 Jul 2025 17:37:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753291280; cv=none; b=vGfTTEAvk4jHo7lfe2zW4V4c4Sn7/kI5TBwHphB8/47lYIY9gfWV3GsI6qTAkINefe0QJfns/xvdW0Dors6PcIxobBt4x91sP+uM+Z9fFvARGa9fpURceqKaQ7TuZs7JSXfneHHowLRSu7lMoRz6dgeZB2G4RQ3gidLbblIXGYk=
+	t=1753292251; cv=none; b=qGCxDMC7TqSk6/hF63KlgggkeEkgeR715CChXbUgyWvHkAXtz8o0yJcXMu4y+5Xrut6ijoKvgdths4qb+63d++ZFwK0xFgCluBuJY45Mvu5z2MGepIpP4/zTc033Dp/vxfYHAcLyy8XGhvq/Vh++CC05UQIdxOomR8yRaljpMUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753291280; c=relaxed/simple;
-	bh=xtv1v1vs8h+55gbAe/7DHcO2riCXUkdqyinSc/Mz4k0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DTeWvCoQBYuIOrtIornFO8ndagq36MdYX7QHhpsT50jGXyfpZgTVLkzAfIRsF7vLfjMOg8GWIg0a3eibkXxI+9l6iO9ZlNPffF9/Aw25wihqKjYukQE0VZmX06yRHDxFuFKBvTQkDqP81GhVUgtQP1usIeRDCd/g0U0ls0NHgi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B4j1BZKS; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-311bd8ce7e4so64321a91.3;
-        Wed, 23 Jul 2025 10:21:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753291279; x=1753896079; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JdHhJehaOGGRyz1yZkMniHUZHHY/gtuGeETDNFE6Evk=;
-        b=B4j1BZKSlmyh4jINlQz3FHIhl7PND+tvxMmrJUQ9LFcQneXgsH2kCFGtPAn/T+/VhJ
-         u7u6V3dtIDug3865IRz6NVvTpy/XgY1YvHfUwMMoaNj+GRUooqhyR5cGG8N2BrldFugB
-         x1gvgDGJzlgGNlttH1IAuJ2nna6/vIR6ECOP/Egk7aNnfbvOzXZGR08C7DRLBhJOsJl7
-         Qo8X0uKVcS6H8GGeklpduwec1gm/3R3Sw30xLVC/t6U4Yhi9+6HOwEGkaLyl9XSn/93m
-         txFbjA4hu7hdnGnlOleOMPWRsz/MKMuLXeLcJpgfu4/hy8ZaME+gufXaSB/trbRo6p9L
-         8QnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753291279; x=1753896079;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JdHhJehaOGGRyz1yZkMniHUZHHY/gtuGeETDNFE6Evk=;
-        b=llYaxyjt/LxBH22tcU6jQV2WOfVU8dC1FI8Kw+l2f1we3aHBMkJQPwWSX+j/XztjHO
-         e1biIVlpi0oJ79/oLMd4fqPqbgl1+4sbIlf9vjHBJ38Kqeu9rAlzRUCgn/xxsWArTsTC
-         /IX+wOZISdnvJg5FxcZpn91LM85L+SbEhFdcfblijPx7h2QkXh0kUlBBpbrvtbhf4Jyd
-         392Da3S3hk+4mHMpJs64/jUvtBHNixjAedt+NC4aCd4b1lCIiw+AwVseF9rvkiBLzYZZ
-         hp2pDxUuOjkRGowwqDqEFhe9oM4jcUfWcIpIy0uef0LC1DzHnvsOZ1G093ISK6Bo1avg
-         JHJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUJ6dpITcp6Xh3iUaCxo1RXCTc7vdygSeZpRpg4LmjEw9KAeavmY2oUszNSJbVh2wOVyNAQxpSDzExy@vger.kernel.org, AJvYcCWt0Bqqg6In1jfuABVmUt5iEB6r1IXzkqhpSpvSTbuzNSWlf00yBgJshxLJiI71POZQ2joHK96LFYQ=@vger.kernel.org, AJvYcCXpebgsMDs8Ksswz/Vgg8doyyi5x9g6Ib2snksfbrCKov2SK1jzbwLi4sLRdJFb8RoPeylUEqIPq99cjSzk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1lNfvU4+MQecf9hSS2vyXr4VDb2FcMoWtuBq0tgh4r2FGv67s
-	WXRRdxX1q4DFcXXCw+7p0TqqwljRYYewzrOlHyv0HV4nnblJY1TxWafzi/WyVxGILdYd7sUXoAU
-	jphFrDlTFwnZu90Mc5PY29iOeCPZ5jfw=
-X-Gm-Gg: ASbGncuPJKpl88TKSYCeNZruCSHm44idNfcWHk6Sw8H6LWbkhyvmhTOHgo4o4dLDbCY
-	1H6CbS6RgvfagB1oA0lz9bgtN1uhBDZhef1grD6/KsyqsXJKTpApSPXmwD/SItZuGp8RIb7yel2
-	E244KKA5gtm27bAn7RJTOVkX6T7dpFSRZyrYDIGnLCreINvurHhjTND3ASe2U6KVmnUm5wDYiYd
-	SZm/K7gYe3kK+LnOA==
-X-Google-Smtp-Source: AGHT+IGhqjYs4ux4jfZuva5tLAnfpmMqHOkhr1wVS9VTWIb8RSO5zHmqE5yUvKlSgMgvOyzAgKijetY+zLxjWE6uaW0=
-X-Received: by 2002:a17:90b:4e83:b0:31c:15d9:8aa with SMTP id
- 98e67ed59e1d1-31e507fe866mr5141730a91.34.1753291278497; Wed, 23 Jul 2025
- 10:21:18 -0700 (PDT)
+	s=arc-20240116; t=1753292251; c=relaxed/simple;
+	bh=SK0T/YPPJf5gjC7D4LgNCas0mCg0dqP26nQsyvEH/T4=;
+	h=From:To:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=RBXbBMYb/whvVQBxHa0DYg29tUcuAOJ7VeBjKa3JWseiJDVO0kHvoG4NlliyxVykQ0irnjy3vqiJ9V4+Bxg9Jdox/ESXHFry3xD1VAo0o065HnuyLtTYzE4YJKWtEI+bmo2vQq+LqT3+D/WRzsYAG61Y/zMpozGrXXLuI4p4L1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=dTEoClWJ; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=V/m9EQLS; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1753292247;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NAN36tnPlVScqFyW8H2kecVmf43LbzR0LCpjmIdCB6k=;
+	b=dTEoClWJpdbZ8dDT/H8RBibW5G3pXOOc7s0AFPsIuxm4wZIG3cAMH4PBg7kS9MSRq90Z7p
+	mdkx7DyiIBN13jDTsP4J3u7cq80L9uQDFENlrOzvWmmllj4cYDp8CWrhP73KFXPFDLa5Rh
+	ufDzvNPhC6DkMEy/jgY/NpIGpgsP+B3UQ2R+FnIHCYfKdbv+bgnfuL8jvPslRiwEdTRDM+
+	auRoX4DfeM7cJO5PagYEI1rkPT+ts9Xzm58KVrqTNA68AAbhiW1Z3PZmG3VezBuwE8bywZ
+	Wzlxur0f6tt0Lb1ZqpQkWyt9g+zWAgLuhXQHESNLqMoyf0QJyzB1S113gM9nsQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1753292247;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NAN36tnPlVScqFyW8H2kecVmf43LbzR0LCpjmIdCB6k=;
+	b=V/m9EQLSeALkvLMUgne5PHhsAdv3wLFBWfmwy/iiP2pq1OL7lDqxS5TYhKlnJ2UF4PJaNs
+	39ByRYfi3VRICtBw==
+To: Ryan Chen <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+ <andrew@codeconstruct.com.au>, Kevin Chen <kevin_chen@aspeedtech.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>
+Subject: RE: [PATCH v3 2/2] irqchip: aspeed: add debugfs support and AST2700
+ INTC0/INTC1 routing/protection display
+In-Reply-To: <OS8PR06MB7541516DD4FDEBD72A764042F25FA@OS8PR06MB7541.apcprd06.prod.outlook.com>
+References: <20250722095156.1672873-1-ryan_chen@aspeedtech.com>
+ <20250722095156.1672873-3-ryan_chen@aspeedtech.com> <8734aotfdq.ffs@tglx>
+ <OS8PR06MB7541516DD4FDEBD72A764042F25FA@OS8PR06MB7541.apcprd06.prod.outlook.com>
+Date: Wed, 23 Jul 2025 19:37:26 +0200
+Message-ID: <87wm7yrep5.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20220706234757.3162307-1-peng.fan@oss.nxp.com>
-In-Reply-To: <20220706234757.3162307-1-peng.fan@oss.nxp.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Wed, 23 Jul 2025 12:21:07 -0500
-X-Gm-Features: Ac12FXyiprxe_LGZo-24j2NghrBhcu3HCth78UZ6f-ppwtBUf5rP10c3ImRmsyI
-Message-ID: <CAHCN7xJts7ki+wHGxwMw8eEa4hXkyOwZComzEf_JXiZUBhpkaw@mail.gmail.com>
-Subject: Re: [PATCH V4] arm64: dts: imx8mp: add NoC node
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: djakov@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	festevam@gmail.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	abel.vesa@nxp.com, abailon@baylibre.com, l.stach@pengutronix.de, 
-	laurent.pinchart@ideasonboard.com, marex@denx.de, paul.elder@ideasonboard.com, 
-	Markus.Niebel@ew.tq-group.com, kernel@pengutronix.de, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-imx@nxp.com, abelvesa@kernel.org, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-On Wed, Jul 6, 2022 at 6:46=E2=80=AFPM Peng Fan (OSS) <peng.fan@oss.nxp.com=
-> wrote:
+On Wed, Jul 23 2025 at 06:02, Ryan Chen wrote:
+>> > +struct aspeed_intc {
+>> > +	void __iomem *base;
+>> > +	struct device *dev;
+>> > +	struct dentry *dbg_root;
+>> > +	int (*show_routing)(struct seq_file *s, void *unused);
+>> > +	int (*show_prot)(struct seq_file *s, void *unused); };
+>> 
+>> See the chapter about struct declarations and initializers in the documentation
+>> I linked to above.
 >
-> From: Peng Fan <peng.fan@nxp.com>
->
-> Add i.MX8MP NoC node to make the interconnect i.MX8MP driver could work.
-> Currently dynamic frequency scaling of the i.MX8MP NoC has not been
-> supported, only NoC initial settings are configured by interconnect
-> driver.
+> Sorry, I don't see the struct "> > +	int (*show_prot)(struct seq_file *s, void *unused); };"
 
-Peng,
+I fatfingered that, but that's not the problem.
 
-I noticed the Mini and Nano are both supported by the same NoC driver,
-but only the 8MP has a DT node.  Looking through the TRM on the Mini,
-I don't see the operating points listed.  Would they be the same 200M
-and 1000M on the Mini and Nano?
+> My original submit is following, it should ok. Am I right?
 
-adam
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->
-> V4:
->  Georgi has merged the V3 driver and bindings patches. So only resend
->  this patch. Per Georgi's comments:
->   - Drop syscon from compatbile
->   - Drop the header inclusion
->
->  Seems I not see this patch in patchwork or mailist, maybe sent failed.
->  So gave a resend of V4.
->
->  V3:
->   https://lore.kernel.org/linux-arm-kernel/20220703091132.1412063-1-peng.=
-fan@oss.nxp.com/
->
->  I not list the full change log, since this is only a minor patch
->
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mp.dtsi
-> index eb2d516278eb..42ed8ee08548 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1019,6 +1019,27 @@ eqos: ethernet@30bf0000 {
->                         };
->                 };
->
-> +               noc: interconnect@32700000 {
-> +                       compatible =3D "fsl,imx8mp-noc", "fsl,imx8m-noc";
-> +                       reg =3D <0x32700000 0x100000>;
-> +                       clocks =3D <&clk IMX8MP_CLK_NOC>;
-> +                       #interconnect-cells =3D <1>;
-> +
-> +                       operating-points-v2 =3D <&noc_opp_table>;
-> +
-> +                       noc_opp_table: opp-table {
-> +                               compatible =3D "operating-points-v2";
-> +
-> +                               opp-200M {
-> +                                       opp-hz =3D /bits/ 64 <200000000>;
-> +                               };
-> +
-> +                               opp-1000M {
-> +                                       opp-hz =3D /bits/ 64 <1000000000>=
-;
-> +                               };
-> +                       };
-> +               };
-> +
->                 aips4: bus@32c00000 {
->                         compatible =3D "fsl,aips-bus", "simple-bus";
->                         reg =3D <0x32c00000 0x400000>;
-> --
-> 2.25.1
->
+No. Read the chapter I pointed you to.
+
+> https://www.spinics.net/lists/kernel/msg5776957.html
+
+I have replied to this very mail. No need to paste me this and the pointer
+to some random mail archive
+
 
