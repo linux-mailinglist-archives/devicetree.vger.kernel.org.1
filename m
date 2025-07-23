@@ -1,230 +1,180 @@
-Return-Path: <devicetree+bounces-199053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E755AB0F271
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:42:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45146B0F27F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:45:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 653D31AA5DC8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 12:43:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 070F7188E6A1
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 12:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E8382E543E;
-	Wed, 23 Jul 2025 12:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C6E2E6D15;
+	Wed, 23 Jul 2025 12:45:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="YilIbIqi"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Th3ykaYL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EB282E611C
-	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 12:42:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4650256C8A
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 12:45:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753274572; cv=none; b=Cc5FePEjOFTELl0Ywk4EIUp7jXY3t6zaPfeOiOgR2R8THtSa2uPrEilP7R7XNuP3Xg1DCb2owtanK5XAWig3ldukUSg1aYcNAe+NMfc3TEMT2w9HqVRDTL8DeNA+HK8ExpHcEjQRBxyCu3u+1KH1ZfL7nFd9Lw+D5HJ7Fgdgdhs=
+	t=1753274725; cv=none; b=GcsTuVEA1v2kzEpyC2aoQB409Y4SaO1XCdxWyiYlNcNfkBLUygFnfD2VHONM9YpRsZ/Yt8BWO2Swrk1mnVSMj/j2MAOUFOP0eZVCh/86VFYeWF3cDQn7a2pjMRwh0HtFKnQSWZ6KoOSPRZurGwd9IgBRrutObCDIYsDl42idxxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753274572; c=relaxed/simple;
-	bh=s3GF7BZK1IbnAZRMzTFfekDE+ccoYiXy3ZkZDb60ad8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pwWuMq9WXheE9ITsiU+dy53aFLfz4tKVW2kb2a+Pb6iwBE/GJj8UI9SiMHLULveRfLCijUP2hRkZboSh0h3SQaRbsTg6hM7cGxR7x8pGlXRl4Ip//VtNWlDiBTFiBCbjcvKTR/HHEWpeAmPky8xAVc0BaeKAXYU1WCDQ4LFgIA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=YilIbIqi; arc=none smtp.client-ip=209.85.166.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3da73df6c4eso53641205ab.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 05:42:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1753274568; x=1753879368; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G0Ew/UlImyFN4HlGy+L8fhyDF3AVGX/UG84SYw3xHZQ=;
-        b=YilIbIqiqcpZntXBIaozMc2Lg4RxSqeJp3EFREdAfEZa60ilM4Q+wmogslSmCfTLhr
-         bQDkWK60rkRgCI4bP9TYHmSCLVNl/xtIr03kbHZn10S1aua96vedv6lb7FDTJRerqy12
-         pxl03dpx7/+xYlBbhR95twtviIj8GVB2dbPXmaMYZMB2qjY4Hf0Phng5y0Its1TPLi01
-         1c3fLtmMMLQcCeXLjAzL1wQYi8Zadq1yMtHmI+puh0PPfB8JdLpKaKi4niRjlnBM5yyD
-         iBTrXQaLT/Qx47FbNo6+bLEXGfnXVysAZgGp0Z88I2DB+HZ1IVKsXHqJn16XPTFf9hBG
-         k1pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753274568; x=1753879368;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G0Ew/UlImyFN4HlGy+L8fhyDF3AVGX/UG84SYw3xHZQ=;
-        b=uX8dc7CYxhUyU+wzM4QF8ac3uEXxgGcFqW2MoDCeO6txnm62cegLUs2rfodSIvTbQh
-         tfOlN3pxXa3GMXD0+KSHo20Hk7Anmn/+98riKCPpXw6DtmvGGsnslNozgBR0YOzbX3XG
-         yQA+4PuweVrKrLv/PqvJF6k6HNd94UQ1F5uDMv+ePAWY2mCjC40jYfYgP1quUvfAIhHb
-         Y1WVGMBV7zrGDLm75aMnzbofPFPcRO70oJ30Oj+uvekpV+vbZjTfLI8F/QoFYscNOZfd
-         HEGi9ATib5859MdJYyFD1jy2j6zkTMCIIW4D2/Ael82TUGcSJ/oVtX+ANvdkd+nB4sRX
-         R76Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWg/ORjnL88TSKJHVqCUmHzmnlvOeK/V0cs27AgqLVhEiQ8nhv0l2X6bOKhbFrsEue1FZJnZveiQW/K@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfX2oUl4DEX+55sWqxkDIQSJmQHFmErL6y4Jfc0oiTt30LWfbV
-	pvKXiSWIJ1j0mkzVllfSQoFhIYaylzphz5dnkrjMYZFpGyexgddnG2ntwWuOg7w36qU=
-X-Gm-Gg: ASbGnctcPX+jv/68feL3XZCMKGh7HjjY+L4cnIBlPqaR4D/GWn1s6+Yl238JNtPYFyy
-	bhvE/dA7p9RjSZbUYXFe6pI8GGz5fvgqoYBBGOK8rH7ZTfasW7wFf0/LYjz4M/MxzbQW1Qo434G
-	pyRj/Uqxr6btshk44KDQ/6xSlMxueRD90kIL/mXJZE5mt0nusFCfBMzWDceTmdT4LJURNNF1zGw
-	VM4rWZh5SplAGzOqxhSrPxrbTdale5Ah86lt1EMo5HnSxRSROAhmHOr11L0J0RnhniAgfeobDT8
-	geAbYT3ccEtHG8Zfb1meqivgnFbWw0sgJ4K4vs/3M5hO7p59Uw0DwheREziOSnQqz0JK9yDhLjW
-	FFTY38LlybvTRjm/P7KPNwtTVK/0bxwVvPQ==
-X-Google-Smtp-Source: AGHT+IEqaLJWveuGtuwL6xUVomxEyO/I/mq75BNTRkLodb+q0fudHO2/No8ZaCo9o8H/kGbU5GpHqw==
-X-Received: by 2002:a05:6e02:1f82:b0:3df:3d1a:2e76 with SMTP id e9e14a558f8ab-3e32fc22705mr56940445ab.1.1753274568312;
-        Wed, 23 Jul 2025 05:42:48 -0700 (PDT)
-Received: from [10.211.55.5] ([199.59.116.160])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3e2982aff75sm38954785ab.54.2025.07.23.05.42.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Jul 2025 05:42:47 -0700 (PDT)
-Message-ID: <877dcf99-107e-4d96-8790-6608976d13ca@riscstar.com>
-Date: Wed, 23 Jul 2025 07:42:45 -0500
+	s=arc-20240116; t=1753274725; c=relaxed/simple;
+	bh=PSVh8+zmjXz2/3Itj97rR3bCxNouxj4qoJGhebydnM0=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=lPyjEKvAzvJWk089PHn3MUOXB7Ldzp+vCY1XPbOx3G5K87zb0mlABfPpui0CR7dbvUmbIJh1pIkADQ6YHdBcbuc3OxNgryTGZ0gq+bzuv0808CLlGlmJ/ElFGikCt3CHXRAdWqtb1V3wutIAnNdfLwuQTAMou/agKKMm0Eexwx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Th3ykaYL; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250723124516epoutp035c03c06b4bb4b7100daa7ea90c5968dd~U4hCx8Du62833228332epoutp035
+	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 12:45:16 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250723124516epoutp035c03c06b4bb4b7100daa7ea90c5968dd~U4hCx8Du62833228332epoutp035
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1753274716;
+	bh=PEOfka7o20zIZPmyJjhDlnK3FdIZ1ayZnAmiWFOAY8o=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=Th3ykaYLsbUr7KCPyz3pnLe7ntpQviosxGR/2/NTX7YjsIa2F6uvGG4/t8bK2qXi6
+	 +7KYSWEKgoP+QUS/P1ZtifH1h4YMgmiBvknkZH2QImhHyU2qDjLbf0tW2ADHno+lLk
+	 KQa+ncSUwSb50Qbsz0xYXyxOlH4+NZjURykH1CZE=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250723124515epcas5p1aaf594fdd1861aef3eb2f4883c0973b8~U4hBuY4AX2230822308epcas5p1z;
+	Wed, 23 Jul 2025 12:45:15 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.90]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4bnDPQ1b3Qz6B9m6; Wed, 23 Jul
+	2025 12:45:14 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250723124513epcas5p40a7150ee82c674eb479589288323da54~U4hAQiFXe2820028200epcas5p4a;
+	Wed, 23 Jul 2025 12:45:13 +0000 (GMT)
+Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250723124510epsmtip201e2e3138007aeaccacf564c5214f1c8~U4g9PPG5e2748727487epsmtip2V;
+	Wed, 23 Jul 2025 12:45:10 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Pritam Manohar Sutar'"
+	<pritam.sutar@samsung.com>, "'Krzysztof Kozlowski'"
+	<krzysztof.kozlowski@linaro.org>
+Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andre.draszik@linaro.org>,
+	<peter.griffin@linaro.org>, <neil.armstrong@linaro.org>,
+	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
+	<m.szyprowski@samsung.com>, <s.nawrocki@samsung.com>,
+	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <rosa.pila@samsung.com>,
+	<dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <6e1c67d2-9bfa-442a-9d53-8c5970a2a9ef@kernel.org>
+Subject: RE: [PATCH v4 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 HS phy compatible
+Date: Wed, 23 Jul 2025 18:15:08 +0530
+Message-ID: <2a1901dbfbcf$a21b45e0$e651d1a0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/8] mfd: simple-mfd-i2c: specify max_register
-To: Lee Jones <lee@kernel.org>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, alexandre.belloni@bootlin.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, mat.jonczyk@o2.pl,
- dlan@gentoo.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, troymitchell988@gmail.com,
- guodong@riscstar.com, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250710175107.1280221-1-elder@riscstar.com>
- <20250710175107.1280221-3-elder@riscstar.com>
- <20250723095125.GR11056@google.com>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250723095125.GR11056@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 7/23/25 4:51 AM, Lee Jones wrote:
-> On Thu, 10 Jul 2025, Alex Elder wrote:
-> 
->> All devices supported by simple MFD use the same 8-bit register 8-bit
->> value regmap configuration.  There is an option available for a device
->> to specify a custom configuration, but no existing device uses it.
->>
->> Rather than specify a "full" regmap configuration to change only
->> the max_register value, Lee Jones suggested allowing max_register
->> to be specified in the simple_mfd_data structure.  If regmap_config
->> and max_register are both supplied, the max_register field is ignored.
->>
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> Suggested-by: Lee Jones <lee@kernel.org>
->> ---
->> v8: - Use regmap_config_8r_8v, modifying it if max_register supplied
->>
->>   drivers/mfd/simple-mfd-i2c.c | 8 ++++++--
->>   drivers/mfd/simple-mfd-i2c.h | 3 ++-
->>   2 files changed, 8 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
->> index 22159913bea03..5138aa72140b5 100644
->> --- a/drivers/mfd/simple-mfd-i2c.c
->> +++ b/drivers/mfd/simple-mfd-i2c.c
->> @@ -24,15 +24,16 @@
->>   
->>   #include "simple-mfd-i2c.h"
->>   
->> -static const struct regmap_config regmap_config_8r_8v = {
->> +static struct regmap_config regmap_config_8r_8v = {
->>   	.reg_bits = 8,
->>   	.val_bits = 8,
->> +	/* .max_register can be specified in simple_mfd_data */
-> 
-> Drop this comment please.
-> 
->>   };
->>   
->>   static int simple_mfd_i2c_probe(struct i2c_client *i2c)
->>   {
->>   	const struct simple_mfd_data *simple_mfd_data;
->> -	const struct regmap_config *regmap_config;
->> +	struct regmap_config *regmap_config;
->>   	struct regmap *regmap;
->>   	int ret;
->>   
->> @@ -43,8 +44,11 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2c)
->>   		regmap_config = &regmap_config_8r_8v;
->>   	else
->>   		regmap_config = simple_mfd_data->regmap_config;
->> +	if (simple_mfd_data && !simple_mfd_data->regmap_config)
->> +		regmap_config->max_register = simple_mfd_data->max_register;
-> 
-> If max_register is set in simple_mfd_data, it should take precedence.
-
-I don't really agree with that.  If simple_mfd_data->regmap_config
-is provided, why not use the max_register field already available
-there?
-
-This is why I said above that I think this feature doesn't add
-much value.  It provides a second way to specify something, but
-in the end it complicates the code more than it's worth.
-
-The only time this new simple_mfd_data->max_register field seems
-to make sense is if it were the only thing provided (without
-simple_mfd_data->regmap_config being supplied).  In that case,
-I see the benefit--a null simple_mfd_data->regmap_config means
-use regmap_config_8r_8v, and overlay it with the max_register
-value.  The new max_register field avoids defining another huge
-but mostly empty regmap_config structure.
-
-Anyway, back to your original point:  I said in v7 "If both
-are specified, the max_register value is ignored" and I think
-that's the simplest.  Specify one or the other--if you want
-to define things in regmap_config, then that's where you add
-your max_register.  If you like regmap_config_8r_8v but want
-to define a max_register value, just provide max_register.
-
-If you insist, I'll do what you say but before I sent another
-version I wanted to explain my reasoning.
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-us
+Thread-Index: AQJAgQZ9LFXBZrDskwNBYris6jFv1AKCX9A9Aa5wAf0Bi5UAqwCML2yKAWUlSf8CRPacEQIi1iyNAmb2xVkCD/Nw+wC0VRd5AgU5Triy3GiwIA==
+X-CMS-MailID: 20250723124513epcas5p40a7150ee82c674eb479589288323da54
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250701115955epcas5p320cfe73ca33522cd2f9f7970cfde1c63
+References: <20250701120706.2219355-1-pritam.sutar@samsung.com>
+	<CGME20250701115955epcas5p320cfe73ca33522cd2f9f7970cfde1c63@epcas5p3.samsung.com>
+	<20250701120706.2219355-2-pritam.sutar@samsung.com>
+	<20250706-fresh-meaty-cougar-5af170@krzk-bin>
+	<07d301dbf0ae$0658cbe0$130a63a0$@samsung.com>
+	<9a2d0ad7-cb1f-473d-a91a-3a1b59b71280@kernel.org>
+	<000c01dbf70b$ccdbf630$6693e290$@samsung.com>
+	<a43cfe4f-8ff9-4dbd-b7f4-07ccc3d8e01b@kernel.org>
+	<00ff01dbfac1$ee528860$caf79920$@samsung.com>
+	<9a97cc9e-2221-44d6-83e9-25b1bec10a6f@kernel.org>
+	<000901dbfb90$42873060$c7959120$@samsung.com>
+	<6e1c67d2-9bfa-442a-9d53-8c5970a2a9ef@kernel.org>
 
 
-> if (simple_mfd_data && simple_mfd_data->max_register)
-> 	regmap_config->max_register = simple_mfd_data->max_register;
-> 
->>   	regmap = devm_regmap_init_i2c(i2c, regmap_config);
->> +	regmap_config->max_register = 0;
-> 
-> Does max_register definitely have persistence over subsequent calls?
 
-It is a global variable.  Isn't that how they work?  When
-it was read-only there was no concern about that, nor about
-any possible concurrent access (though I don't think multiple
-probes can be using this code at once).
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: Wednesday, July 23, 2025 2:13 PM
+> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; 'Krzysztof
+> Kozlowski' <krzysztof.kozlowski=40linaro.org>
+> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+=5Bsnip=5D
+> >>>>> Ok got it. Will change supplies name as below avdd075_usb =3D>
+> >>>>> avdd075-usb
+> >>>>> avdd18_usb20 =3D> avdd18-usb20
+> >>>>> avdd33_usb20 =3D> avdd33-usb20
+> >>>>>
+> >>>>> Confirm the above change that is meant in terms of DTS style.
+> >>>> Yes. I have doubts that actual supplies have suffix usb20. Are
+> >>>> there more than one avdd18 for this block?
+> >>>>
+> >>>
+> >>> Yes, there are more than one vdd18 supplies for this block.
+> >>
+> >> And their names are?
+> >>
+> >>>
+> >>> Re-analysed your comment on adding new supplies.
+> >>> Going to re-use existing supplies as mentioned below, rather than
+> >>> introducing new supplies
+> >>>
+> >>>   dvdd-usb20-supply   =3D> for 0.75v
+> >>>   vddh-usb20-supply   =3D> for 1.8v
+> >>>   vdd33-usb20-supply =3D> for 3.3v
+> >>
+> >>
+> >> You just expect us to guess whether this is correct...
+> >
+> > Sorry about not being clear so far.
+> >
+> > V920 needs three supplies, 0.75v, 1.8v and 3.3v for USB PHY The naming
+> > convention used in the schematic are avdd075-usb, avdd18_usb20,
+> > avdd33_usb20.
+> >
+> > However, PHY's user manual just mentions DVDD, VDD33 and VDD18.
+>=20
+>=20
+> Then dvdd, vdd33 and vdd18.
+>=20
+> > Since GS101 binding already using supply names similar to what is
+> mentioned in the PHY user manual.
+>=20
+>=20
+> GS101 has USB 2.0 and DP, thus the suffix made some sense. I think you ha=
+ve
+> only USB 2.0, that's why I question the suffix.
+>=20
+I cross checked the schematic of v920 SADK, this is a combo PHY which suppo=
+rt USB-3.0 as well.=20
+=40 Pritam
+Schema should capture all the supplies including USB-3.0, similar to GS101 =
+(which has USB2.0 and DP combo).
+So that would be as below:
+dvdd075-usb20-supply
+vdd18-usb20-supply
+vdd33-usb20-supply
+dvdd075-usb30-supply
+vdd18-usb30-supply
+please cross check the supply at your end and do the needful.=20
 
-We could allocate a new one each time instead.
-
-I think what I offered in v5 was acceptable.  If you're
-willing to accept that I will be happy to keep discussing
-(and implementing) the max_register feature.
-
-					-Alex
-
-> 
->>   	if (IS_ERR(regmap))
->>   		return PTR_ERR(regmap);
->>   
->> diff --git a/drivers/mfd/simple-mfd-i2c.h b/drivers/mfd/simple-mfd-i2c.h
->> index 7cb2bdd347d97..ea2a96af8bce4 100644
->> --- a/drivers/mfd/simple-mfd-i2c.h
->> +++ b/drivers/mfd/simple-mfd-i2c.h
->> @@ -24,7 +24,8 @@
->>   #include <linux/regmap.h>
->>   
->>   struct simple_mfd_data {
->> -	const struct regmap_config *regmap_config;
->> +	struct regmap_config *regmap_config;
->> +	unsigned int max_register;	/* Ignored if regmap_config supplied */
->>   	const struct mfd_cell *mfd_cell;
->>   	size_t mfd_cell_size;
->>   };
->> -- 
->> 2.45.2
->>
-> 
+>=20
+> Best regards,
+> Krzysztof
 
 
