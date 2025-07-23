@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-198887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1023BB0EA7F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:20:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FAD2B0EA84
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:22:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E40957A8EBA
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:18:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9C247B6C99
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:20:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D11825A646;
-	Wed, 23 Jul 2025 06:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77EFE26B2D7;
+	Wed, 23 Jul 2025 06:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IfOmbHCy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="itr274h6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741D92E36F8;
-	Wed, 23 Jul 2025 06:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498252E36F8;
+	Wed, 23 Jul 2025 06:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753251597; cv=none; b=d6UxOc9rZz+kdaALbCo/94z1e4x1ZWFcPoI01M5d2qkUbo/ruaW9pyKeA8khrJTm7xu9SjvU6D5V7OWhogWdCP8U46yiJDQ1iThK6Y0boAVvIm2ZO2SZQjyBrFN74pmO3OxS8jgul38bGkVmHECJAY/nhykdy59A/IkLpLRkSu0=
+	t=1753251732; cv=none; b=Dj2WHi/iVrvNJ5XdUiNGPdonsvX6Z7XWjb06ixs0YJ0p7I7zt9U5ba/nD79+uTm9GZmYhpIiVLc4/94YlXHW56qTCmvIfRESCiaXwktv9uuRKKPYGvVu0FaFdXVS+NxiaQMEUZVVFsgpn7CQkn10ULaAo9LWRFC2HWxzN0G18SI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753251597; c=relaxed/simple;
-	bh=oZdkGtmxtTh9HKIAj5gYwQCRyXJDq/Rl7IxCv6JqD4o=;
+	s=arc-20240116; t=1753251732; c=relaxed/simple;
+	bh=tC8t7P9ZlvilCDjK7g37E/tE/OkcI3nesYZLYkuvIH4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SMG2EWnAwvhVK5JIV+rAPkobGh8GcOYA1U0xCo6NHeqYK1qRx+5b9eDEvETYSSt7tUFwqa+Nt15/beLl6mxqeKoPX9FCvZqxqTLZe5ipvG35PVX4Ud8t42bZwMZ+AHVtJtoIY1g91L2/TMYDOW+8MMohWJeW1f8KVbskaxxT9dY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IfOmbHCy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8702C4CEE7;
-	Wed, 23 Jul 2025 06:19:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GqW+yAK/Fov/iHWXJTBs0diaCMLiuGzZwlqSl17ZwjcFS7uJj0IRRYtcRROY+PyeUkOmI/HDEc2EcIdaC5HD42UkVGWJ9qvBZY7nCiy1AMBOZqweYlbUbwA0MBUTSJn05TUC1ja1OIInkQvFUdzfF5fQF7A2VsJ8jSYbkfvFEhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=itr274h6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12959C4CEE7;
+	Wed, 23 Jul 2025 06:22:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753251597;
-	bh=oZdkGtmxtTh9HKIAj5gYwQCRyXJDq/Rl7IxCv6JqD4o=;
+	s=k20201202; t=1753251731;
+	bh=tC8t7P9ZlvilCDjK7g37E/tE/OkcI3nesYZLYkuvIH4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IfOmbHCySCgi5/L3Du2D7fFfXoUWxn0K+Re1Sv2sSsmojsCa68x1BlHnMzpqVMdBA
-	 2sQN+MFV9s2rsVR2Cwx23eS3bziqBRr1IPzZ4lDTgXPB3fa7lB/kLKpEETYzUbc9OR
-	 PhO6Bfvrz+dszjj8KuN1XgYIPXT2EYragxmQhzaIsFlDJ1BnZnWWpSi04gBt/eYiCI
-	 MNIqE30IhsPd2uZIc5tyfWx0GSQ3XigNCf6BlKE4EParqGfG5BdpchqJaLUVzC3/CU
-	 vfE4Q4GyPbzSnzh7M5qVkapQcwJfcvDx6AsffnOwrNFgJBJI2g8iTsnw83ays2FHo3
-	 mPFfn9jRvRN/w==
-Message-ID: <4ba4c608-e2e1-46e8-b796-e07c7c97dbb3@kernel.org>
-Date: Wed, 23 Jul 2025 08:19:53 +0200
+	b=itr274h6X8bS3b1L2hF37DF+oNT/1t+IZBLXJ11FZRQIXjtAOo6VqDarmEjYp2fE/
+	 ng368IzkrySjNAKaPS+FRZ1ngF1bzHPzp8tXlGn9zeKd1UFgFVAOi0/GxNCC5CD+ke
+	 MvJdGT0vtxLhskt9bZ2XuECEKaqDeA/3FW7g3rkmlJhALSLC6yfRiuMHofWNPtWZaO
+	 byhjhcZhNcFdaZNACLuPOoDhQfseCbUs6LWm29gY/eItJKmdMU80c9cu+9G8Pbp9Dq
+	 5o7S4ZW3599BVzH2x9P5mCRdRNdOKRWBT1BSkeZsFcKHfRem89Jbz90gEihBJApR3a
+	 HAGjarSgI6/Xg==
+Message-ID: <3515f1dd-bed2-4f54-97fb-194850440e14@kernel.org>
+Date: Wed, 23 Jul 2025 08:22:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: regulator: Add Richtek RTR5133
- Support
-To: =?UTF-8?B?amVmZl9jaGFuZyjlvLXkuJbkvbMp?= <jeff_chang@richtek.com>
-Cc: "broonie@kernel.org" <broonie@kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20250722083543.2730796-1-jeff_chang@richtek.com>
- <f4505b19-3496-4fab-ad74-d190d847eb17@kernel.org>
- <TY1PPFAEA8AB8B70D7016E46DD1E5C1F9B4EC5FA@TY1PPFAEA8AB8B7.apcprd03.prod.outlook.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: i2c: realtek,rtl9301-i2c: extend for
+ RTL9310 support
+To: Jonas Jelonek <jelonek.jonas@gmail.com>
+Cc: linux-i2c@vger.kernel.org,
+ Chris Packham <chris.packham@alliedtelesis.co.nz>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Markus Stockhausen <markus.stockhausen@gmx.de>
+References: <20250712194255.7022-1-jelonek.jonas@gmail.com>
+ <20250712194255.7022-3-jelonek.jonas@gmail.com>
+ <20250714-magnificent-powerful-nuthatch-afcc01@krzk-bin>
+ <0a2a0fa6-ee82-40be-b62d-847a4ef04626@gmail.com>
+ <df947cbe-e207-4619-957f-0c961c6d7139@kernel.org>
+ <7b0c1f38-51f9-46a7-8e38-1fbeb189133c@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,50 +110,50 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <TY1PPFAEA8AB8B70D7016E46DD1E5C1F9B4EC5FA@TY1PPFAEA8AB8B7.apcprd03.prod.outlook.com>
+In-Reply-To: <7b0c1f38-51f9-46a7-8e38-1fbeb189133c@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 23/07/2025 04:32, jeff_chang(張世佳) wrote:
-> Confidential C - Richtek
-
-
-I cannot work with confidential data. Fix your email setup.
-
-> 
-> Dear Krzysztof Kozlowski:
-> 
->         Thanks for your reply.
-> 
->         Please review my explanation for your questions.
-> 
->         If I have misunderstood or if there are any parts that need correction, please let me know.
-> 
-> Thanks
-> Jeff
-> 
-> 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: Tuesday, July 22, 2025 5:05 PM
-> To: jeff_chang(張世佳) <jeff_chang@richtek.com>; lgirdwood@gmail.com; broonie@kernel.org; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; linux-kernel@vger.kernel.org; devicetree@vger.kernel.org
-> Subject: Re: [PATCH v4 1/2] dt-bindings: regulator: Add Richtek RTR5133 Support
-> 
-> On 22/07/2025 10:34, jeff_chang@richtek.com wrote:
->> From: Jeff Chang <jeff_chang@richtek.com>
+On 22/07/2025 20:25, Jonas Jelonek wrote:
+>>> Since you have a lot of expertise on that and I obviously fail to find
+>>> documentation that helps me to do that properly, could you give me some hints
+>>> on how that has to look? I'd really appreciate this.
 >>
->> Add bindings for Richtek RT5133 IC Controlled PMIC
+>> So in your if:then: block where you narrow mst-id, you add on same level
+>> as properties:
+>>
+>> patternProperties:
+>>   YOUR_REGEX: false
 > 
-> Subject - RTR or RT? Google tells me nothing about RTR.
-
-
-Why are you pasting my reply as yours?
-
+> How I thought of narrowing that in the first place was to make mst-id required
+> for RTL9310 but optional for RTL9300. In terms of describing the hardware, this
+> is valid for RTL9300 too (but there's no need for the driver or anything else to
+> know that).
 > 
-> --> I will fix it to RT5133 in next patch.
+> But I don't mind if you'd rather have it only defined in the 'then' block, or
+> just disallowed for RTL9300, effectively forbidding the usage for RTL9300.
+> 
+> Either way, it seems I'm still doing it wrong with the regex. Adding as you
+> suggested:
+> 
+> if:
+>     properties:
+>         compatible:
+>             contains:
+>                 const: realtek,rtl9301-i2c
+> then:
+>     patternProperties:
+>         '^i2c@([0-9]|1[0-1])$': false
+> 
+> breaks validation of the RTL9300 example. Probably I don't see how this
+> is expected to look like in a working state.
 
+RTL9300 has 8 controllers, so why are you disallowing them? We talk here
+only about new stuff. Why would you change EXISTING behavior when adding
+something new?
 
-Fix your email setup.
+You need pattern matching redundant children for existing device.
+
 
 Best regards,
 Krzysztof
