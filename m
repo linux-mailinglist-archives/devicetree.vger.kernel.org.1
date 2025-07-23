@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-198882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBF5DB0EA5D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:11:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D712B0EA65
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:13:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0BB91C23E5F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:12:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 428B65680F8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:13:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 345D9248864;
-	Wed, 23 Jul 2025 06:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5877C248894;
+	Wed, 23 Jul 2025 06:13:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lh8W2PMD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qe9rIbhE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C6F71DF270;
-	Wed, 23 Jul 2025 06:11:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC501A0BFD;
+	Wed, 23 Jul 2025 06:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753251110; cv=none; b=KZYEm/kkaEJmk9KWvDphQSBTAce4lPAWEjF50v8QZsE3lwK5/QZpwTwmm8YgtmOKqVU2TXeJgy+ACvnRlzYRJAN3ttZd/QJ9HlOj8BCSSd2oQUcLudCu/aC084Lr/sExGPpjWyTnTl4XLCwM8rgpzw1XP93fXyme9WXvBAOc9Ok=
+	t=1753251191; cv=none; b=cGjj1dQKKqesDcYY9bo6FbL2PwI+xyHQMzl+sHojFDJGDcdgWS6LC39oVGAtmgkoDmT3j6Bap1XnWQCQMJKklu6bMd5Z7uSsmRKFBlijHs790ZzsDQQ743yVRFcQYVuqLhjjY0h17wi/wXxaxRHH4WOgDKuHUl7ZVyzBItXevPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753251110; c=relaxed/simple;
-	bh=7KD0TY/wF93d5hyr/h7jkZ4IAKzTZ7thaLsaJUTLmj8=;
+	s=arc-20240116; t=1753251191; c=relaxed/simple;
+	bh=DEsrGV5+27jvFGqrXcClV0fRtpxtgFqr1qvc2Ieck5w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=QGICNd3HdxlFL5gWpc9aYZ5SY0rK+Ps9GPLCg0DdTrVkYwQlNtVDSM60U0c3OFVSTffcWMPK6KJTpSxzQO58NyePn+Kooc7NoAF8NUt6F5f96E8ARSimvTziEN+ZLI+0czv9v11/8jr5AaJAK9KTeri5MPgUgzHfgiCNlYNtvBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lh8W2PMD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9EE0C4CEE7;
-	Wed, 23 Jul 2025 06:11:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=J4dyiiYYQkE2CEzaThROQa/edpCsMV4+vdAYe0EPSiUkS4qq2NXgSaAIrFR9ok5r27BvLhCDuTT6H6lFIK9k18T9I4LCjleOPGz3WBRdko112wPGfae4C6Rx3IwpczLxx/TjpRWlYvgYrgg5DUKJWQMce7FuXUKmLsQF26PWxfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qe9rIbhE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0EA5C4CEF1;
+	Wed, 23 Jul 2025 06:13:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753251109;
-	bh=7KD0TY/wF93d5hyr/h7jkZ4IAKzTZ7thaLsaJUTLmj8=;
+	s=k20201202; t=1753251190;
+	bh=DEsrGV5+27jvFGqrXcClV0fRtpxtgFqr1qvc2Ieck5w=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=lh8W2PMDHY0ih+6EBXlSrGFW8YGUS89tCC0NVRzToezLCSChYYnPhA0e4Spfg2be7
-	 wMy9q5UHi6FeNGgD8Dp8O9Gtc4HWQHoqAIChh0c92e/QaDvD6Y803fVc4qAnk+l5Z+
-	 GVT2JLXcmcyAr6Xsvk4DlGbAuF3qulImPdq875y3GktTML7O1JJhEuTXVIoFoQnqtK
-	 RI0WYcJe+NrWl5kVC7br/cCxk/EkU+WGKo5DO4Cg5u+li+MocSEIRWCrMmwuE5jh63
-	 kdLROs4XRY2S/u1wA5uSvpJvsecpMv1UT4tvg5OGpKRLdJdS14YFuwKDxZjNVWbK+T
-	 WALlvpjlCmg4Q==
-Message-ID: <a9294387-ce7f-482e-89e1-7c85feaeeee9@kernel.org>
-Date: Wed, 23 Jul 2025 08:11:44 +0200
+	b=Qe9rIbhEo1QJP+4dyCirCEc2zOMFqO1LIsAzVxRcs630AFrhxUXbvfdWPJyklxILZ
+	 D9xm0VIGpJjIlyRGvl7UpOmXDDeeNbtsWYM2jSMVi40ckEWN5Ma5meDPWYKo0TcNzf
+	 zFkBtRMQtcdnKLiW9fecBIAsjy7W2DjYC6b1pkjVsotOoAXGGZ/ALb7jj1Jvp8fSDD
+	 fNrALZ2mdrVLeL5wLFRxQsToonraDTkSn42P3wUnfF0VwoHzXuHOEzhty7kNnXNjOr
+	 YfIceBeQP4Zfn3K0vEjcsOTJuODnQc/Ubjs/dRkUCq6ZIdqznN/vy+wFGwxB5wk06J
+	 4sXjjsH148NbQ==
+Message-ID: <001d37c7-f704-4554-a4db-0cc130e07dd6@kernel.org>
+Date: Wed, 23 Jul 2025 08:13:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -112,37 +112,35 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 22/07/2025 11:51, Ryan Chen wrote:
-> The AST2700 SoC contains two independent top-level interrupt controllers
-> (INTC0 and INTC1), each responsible for handling different peripheral
-> groups and occupying separate register spaces. Above them, PSP(CA35) GIC
-> controller acts as the root interrupt aggregator. Accurately describing
-> this hierarchical hardware structure in the device tree requires distinct
-> compatible strings for the parent nodes of INTC0 and INTC1.
-> 
-> - Adds 'aspeed,ast2700-intc0' and 'aspeed,ast2700-intc1' compatible
->  strings for parent interrupt controller nodes. (in addition to the
->  existing 'aspeed,ast2700-intc-ic' for child nodes)
+> +  INTC0 is used to assert GIC if interrupt in INTC1 asserted.
+> +  INTC1 is used to assert INTC0 if interrupt of modules asserted.
+> +  +-----+   +---------+
+> +  | GIC |---|  INTC0  |
+> +  +-----+   +---------+
+> +            +---------+
+> +            |         |---module0
+> +            | INTC0_0 |---module1
+> +            |         |---...
+> +            +---------+---module31
+> +            |---....  |
+> +            +---------+
+> +            |         |     +---------+
+> +            | INTC0_11| +---| INTC1   |
+> +            |         |     +---------+
+> +            +---------+     +---------+---module0
+> +                            | INTC1_0 |---module1
+> +                            |         |---...
+> +                            +---------+---module31
+> +                            ...
+> +                            +---------+---module0
+> +                            | INTC1_5 |---module1
+> +                            |         |---...
+> +                            +---------+---module31
 
-I don't understand how this solves your problem at all. Look at old
-diagram - is it correct? If not, what makes you think that new diagram
-is correct?
+You binding also said intc1 is the parent of intc-ic, so where is here
+intc-ic?
 
-What is the meaning of existing binding and existing intc-ic compatible?
-
-
-> - Clarifies the relationship and function of INTC0 parent
->  (intc0_0~x: child), INTC1 parent (intc1_0~x: child), and the GIC
->  in the documentation.
-> - Updates block diagrams and device tree examples to illustrate
->  the hierarchy and compatible usage.
-> - Refines documentation and example formatting.
-> 
-> This change allows the device tree and driver to distinguish between
-> parent (top-level) and child (group) interrupt controller nodes,
-> enabling more precise driver matching SOC register space allocation.
-
-And how it was not possible before? That's poor argument especially that
-DT does not have to ever distinguish that.
+This diagram and new binding do not match at all.
 
 
 Best regards,
