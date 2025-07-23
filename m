@@ -1,129 +1,98 @@
-Return-Path: <devicetree+bounces-199109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE831B0F57E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:38:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AFECB0F591
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:41:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBF693A2018
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:36:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16358565B53
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:41:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFD0C2DA74A;
-	Wed, 23 Jul 2025 14:37:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E922E9ECF;
+	Wed, 23 Jul 2025 14:41:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="Qx+ki/g6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5j4cQOM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12B80A31;
-	Wed, 23 Jul 2025 14:36:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131EE2E7F19;
+	Wed, 23 Jul 2025 14:41:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753281426; cv=none; b=EPfrrFYOBZHU0yH4/+31giU2IN4UHNADxg1jxM8dEYkApRj51F5rD9pbQyXsmLfeGgz7UNpSa58LKBJygWJeR8H6CGNg7PVsdqpRMZP3lJMlU93FXDSO729gQsCOXQOT1lwZWCO+iuqtEY1pvxMUi5E56ZzfboeFgU0x3hp1fdY=
+	t=1753281674; cv=none; b=oTHdWRh/9APmxH+nsSxtrNTuuizfhXLd4eQ7vV1RxZaQyYjm+goIHyPDEidR4LkiMXvVZ4ZLfeSO8SXZB/uk4TreP3EgPhd9H7wV26iQgNvbx+GCG3FZ7FofQOXQDp1Jj6Whs44GdZnqF+b/lj092tv9VlsQwpJolcvOV0qPcmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753281426; c=relaxed/simple;
-	bh=1Eu6C66aJDQYWOYhxnwsTT2t5y102QgUEg4VToHlsTI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FOXFgC8hHNqbEltxSVezTCxRPEJep2Kc/XHnjBNZA323cNObuLmHimR8l9pniSoi/9i9Our/2tCh98yL2a7kly6GMBDucSLUznBSXcyGRVAtU3iZmuXltt7DlYhVnsez9b8iteqRTKor3wZEKwh7Xv+ZiN0JIHoMKBKS2XsdOfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=Qx+ki/g6; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=JE8x8JbxhqSBlVW6JXjbTPZwTk8sConJh4EHbajYP/Q=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1753281394; v=1; x=1753713394;
- b=Qx+ki/g60yiW5sNkfABHdiHKQSO3ov0lBjHTRMsMXXzn6RW2Q8f8jllh88wEI3vqgruy96k3
- vNr09IAfbXnhBPvOy0iI4A6N7YQKAwo+iLgKglW2RUr5x7AQNHVPMagV1t9WFJaxme5ReDKGK7S
- sMPb8suMuouA92EagbLFWoCXvEktZNVxbUpzhlg3mylMvsuaqdkNrFvR8obiwBxfV2Cv3uxotZ7
- I/Wka1IBZ1E3uGUseK4LEGFaakYH+OrcUivdxpFv9WNffn2pAjgEbQveq9s8rS7ksRQUbnnvD0W
- bOCnEpSyAs78mKNPRXbOLogHAIyqmycyotxUlKT11ihaQ==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id 12094314; Wed, 23 Jul 2025 16:36:34 +0200
-From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje@dujemihanovic.xyz>
-To: Rob Herring <robh@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Adrian Hunter <adrian.hunter@intel.com>, Karel Balej <balejk@matfyz.cz>,
- David Wronek <david@mainlining.org>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject:
- Re: [PATCH RFC 1/2] dt-bindings: mmc: sdhci-pxa: add state_uhs pinctrl
-Date: Wed, 23 Jul 2025 16:36:33 +0200
-Message-ID: <5051937.31r3eYUQgx@radijator>
-In-Reply-To: <20250721143541.GA593898-robh@kernel.org>
-References:
- <20250718-pxav3-uhs-v1-0-2e451256f1f6@dujemihanovic.xyz>
- <20250718-pxav3-uhs-v1-1-2e451256f1f6@dujemihanovic.xyz>
- <20250721143541.GA593898-robh@kernel.org>
+	s=arc-20240116; t=1753281674; c=relaxed/simple;
+	bh=spxFbuCrDuTnv+sdA7w8h/okvSGm6H+gea+90kVlwiM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Eje1r8bjJV2vOF0pktnZjIv4O2OWBPcYp/+qaLsxqhs2yJBxnpgrKcJxSeKefemwgy8TSfj4WDVb0pWaZDpYzkiBNK8Xow7zHiqBxkMne9LDyhNS/xScYxmm7kIFIicc7q9HUn0W7556GWS44DiFs4jmolz8ABh8Zmkg5NXM6co=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5j4cQOM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CD08C4CEE7;
+	Wed, 23 Jul 2025 14:41:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753281673;
+	bh=spxFbuCrDuTnv+sdA7w8h/okvSGm6H+gea+90kVlwiM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M5j4cQOMl/TurLTv8Soh2IDnvM3wRP5z2sfkcYJ5aXlsOjV/mb03z/ET8ClfEiv8k
+	 2pGXyMI695U7qlEkyKJ17GOsdOjvC3+GCD09XrRGKbCsLA28O8mg7cMXLyAe/errbi
+	 cS1Vj2SEpezAFRVmgU1TI9UyYZswGXrZL3xLvIeYIouUudrjKK/s76mZu59jQ9PSod
+	 q+blNge2oQvLDO9eNAI8bmjYPSJLaY+7nOM/dZadkYk/02qCd5Z4EQxpEauiJr6O+t
+	 qErmToXfCSDee0j5QFeObtskQOPCgufyE/qD8gwYMVuxukeq8j76p88P9YChxbej+0
+	 8TbYEXG3z3UTA==
+Date: Wed, 23 Jul 2025 20:11:03 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
+	konradybcio@kernel.org, James.Bottomley@hansenpartnership.com, 
+	martin.petersen@oracle.com, agross@kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V1 0/3] Add DT-based gear and rate limiting support
+Message-ID: <tc57sqskjmjloocxzvhay2i5q6xdjjsaia566tmi2yknp5kwx5@3ae2gm3mgzgg>
+References: <20250722161103.3938-1-quic_rdwivedi@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250722161103.3938-1-quic_rdwivedi@quicinc.com>
 
-On Monday, 21 July 2025 16:35:41 Central European Summer Time Rob Herring=20
-wrote:
-> On Fri, Jul 18, 2025 at 11:12:38PM +0200, Duje Mihanovi=C4=87 wrote:
-> > On the pxav3 controller, increasing the drive strength of the data pins
-> > might be required to maintain stability on fast bus clocks (above 100
-> > MHz). Add a state_uhs pinctrl to allow this.
-> >=20
-> > The existing state_cmd_gpio pinctrl is changed to apply only on pxav1 as
-> > it's unneeded on the other controllers.
-> >=20
-> > Signed-off-by: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
-> > ---
-> >=20
-> >  .../devicetree/bindings/mmc/sdhci-pxa.yaml         | 45
-> >  +++++++++++++++++----- 1 file changed, 35 insertions(+), 10 deletions(=
-=2D)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml
-> > b/Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml index
-> >=20
-4869ddef36fd89265a1bfe96bb9663b553ac5084..7a9e2a63ac4351aea10b2763ca250ce48
-> > 89df1eb 100644 --- a/Documentation/devicetree/bindings/mmc/sdhci-pxa.ya=
-ml
-> > +++ b/Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml
-> >=20
-> > @@ -30,6 +30,39 @@ allOf:
-> >            maxItems: 1
-> >         =20
-> >          reg-names:
-> >            maxItems: 1
-> >=20
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: mrvl,pxav1-mmc
-> > +    then:
-> > +      properties:
-> > +        pinctrl-names:
-> > +          description:
-> > +            Optional for supporting PXA168 SDIO IRQ errata to switch C=
-MD
-> > pin between +            SDIO CMD and GPIO mode.
-> > +          items:
-> > +            - const: default
-> > +            - const: state_cmd_gpio
->=20
-> blank line
+On Tue, Jul 22, 2025 at 09:41:00PM GMT, Ram Kumar Dwivedi wrote:
+> This patch series adds support for limiting the maximum high-speed
+> gear and rate used by the UFS controller on Qualcomm platforms via
+> device tree.
+> 
+> Some automotive platforms, such as SA8155, require restricting the
+> maximum gear or rate due to hardware limitations. To support this,
 
-While at it, should I do the same with the properties: blocks in the existi=
-ng=20
-if: block?
+What do you mean by 'hardware limitation'? Please explain.
 
-Regards,
-=2D-
-Duje
+- Mani
 
+> the driver is extended to parse two new optional DT properties and
+> apply them during initialization. The default behavior remains
+> unchanged if these properties are not specified.
+> 
+> Ram Kumar Dwivedi (3):
+>   scsi: ufs: qcom: Add support for DT-based gear and rate limiting
+>   arm64: dts: qcom: sa8155: Add gear and rate limit properties to UFS
+>   dt-bindings: ufs: qcom: Document HS gear and rate limit properties
+> 
+>  .../devicetree/bindings/ufs/qcom,ufs.yaml     | 10 +++++++
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi          |  3 ++
+>  drivers/ufs/host/ufs-qcom.c                   | 29 +++++++++++++++----
+>  3 files changed, 36 insertions(+), 6 deletions(-)
+> 
+> -- 
+> 2.50.1
+> 
 
+-- 
+மணிவண்ணன் சதாசிவம்
 
