@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-198888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FAD2B0EA84
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:22:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8201B0EA8F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:25:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9C247B6C99
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:20:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF3B73B45E3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 06:25:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77EFE26B2D7;
-	Wed, 23 Jul 2025 06:22:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB8426B2DB;
+	Wed, 23 Jul 2025 06:25:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="itr274h6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YVH+SHzz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498252E36F8;
-	Wed, 23 Jul 2025 06:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFC4151991;
+	Wed, 23 Jul 2025 06:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753251732; cv=none; b=Dj2WHi/iVrvNJ5XdUiNGPdonsvX6Z7XWjb06ixs0YJ0p7I7zt9U5ba/nD79+uTm9GZmYhpIiVLc4/94YlXHW56qTCmvIfRESCiaXwktv9uuRKKPYGvVu0FaFdXVS+NxiaQMEUZVVFsgpn7CQkn10ULaAo9LWRFC2HWxzN0G18SI=
+	t=1753251930; cv=none; b=szKLwpcXH+oYL8nwAWpWJG8OlIHCx9tHWl1iVIUOFqCM1ZRwT6a+sZ7BMuGYxUYg9b4viIOimxFqGfAptjLwRdjRIjeL/OWij3153ggH4IZTnNNwvLIMWwa1BjvxnhdF74Y0r+gxNGwg2/LIXwMCS4PyOxW9cxxyJJ7CbWkpkE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753251732; c=relaxed/simple;
-	bh=tC8t7P9ZlvilCDjK7g37E/tE/OkcI3nesYZLYkuvIH4=;
+	s=arc-20240116; t=1753251930; c=relaxed/simple;
+	bh=5As5b9hDZCf2zDsqZ/ytZOfi5BQC+vAXvNGPONFtPF0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GqW+yAK/Fov/iHWXJTBs0diaCMLiuGzZwlqSl17ZwjcFS7uJj0IRRYtcRROY+PyeUkOmI/HDEc2EcIdaC5HD42UkVGWJ9qvBZY7nCiy1AMBOZqweYlbUbwA0MBUTSJn05TUC1ja1OIInkQvFUdzfF5fQF7A2VsJ8jSYbkfvFEhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=itr274h6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12959C4CEE7;
-	Wed, 23 Jul 2025 06:22:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kON3TKvg+8xarTUFuzFaw7cUkUHWUqw6lEhrETIEBVWrWzjRk/IK+Wsdt/l1rIys5oFvT4UElVrtzINz5+n4MeDa75T03NJvIBJeAG49Usb5de9MvDo86aR2CDb3L+NmPnD0fPvzlud45mmWZhSU5HJrkZyp6N+6Db/P9ftBvdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YVH+SHzz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76A46C4CEE7;
+	Wed, 23 Jul 2025 06:25:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753251731;
-	bh=tC8t7P9ZlvilCDjK7g37E/tE/OkcI3nesYZLYkuvIH4=;
+	s=k20201202; t=1753251929;
+	bh=5As5b9hDZCf2zDsqZ/ytZOfi5BQC+vAXvNGPONFtPF0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=itr274h6X8bS3b1L2hF37DF+oNT/1t+IZBLXJ11FZRQIXjtAOo6VqDarmEjYp2fE/
-	 ng368IzkrySjNAKaPS+FRZ1ngF1bzHPzp8tXlGn9zeKd1UFgFVAOi0/GxNCC5CD+ke
-	 MvJdGT0vtxLhskt9bZ2XuECEKaqDeA/3FW7g3rkmlJhALSLC6yfRiuMHofWNPtWZaO
-	 byhjhcZhNcFdaZNACLuPOoDhQfseCbUs6LWm29gY/eItJKmdMU80c9cu+9G8Pbp9Dq
-	 5o7S4ZW3599BVzH2x9P5mCRdRNdOKRWBT1BSkeZsFcKHfRem89Jbz90gEihBJApR3a
-	 HAGjarSgI6/Xg==
-Message-ID: <3515f1dd-bed2-4f54-97fb-194850440e14@kernel.org>
-Date: Wed, 23 Jul 2025 08:22:07 +0200
+	b=YVH+SHzzsT4EFqy6VtGrkUcwwcgbP9/KwOm/A/GBKrZvytCsA+G829kBI1CGWmWQn
+	 5cxoDQkYfmFDuN/ooh9yzVHEqi62jUYeKSoecogCazaHd1OCvHlwO6Ye0OGIs7K2K2
+	 7SAe1obrfgoRBASOrb56kUXvwiHu9YDKNHIan3NjGoUhcNkezMIDOaAhCWyBU0/eJG
+	 Tl25PNDHXjhuMW5FzPnSNEl185kAbuDEhhtAN4FHeXrxJUkOdKAfeIXkMZ7RP7vtu8
+	 oGBHSKwPx2N9OS8tr5YQYlvX9G8NhV8Bwf8vYBbgzPZXohI7kuW2LcMzFtgIzCEWRs
+	 NxnHYYZw7pRTA==
+Message-ID: <9220f776-8c82-474b-93fc-ad6b84faf5cc@kernel.org>
+Date: Wed, 23 Jul 2025 08:25:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: i2c: realtek,rtl9301-i2c: extend for
- RTL9310 support
-To: Jonas Jelonek <jelonek.jonas@gmail.com>
-Cc: linux-i2c@vger.kernel.org,
- Chris Packham <chris.packham@alliedtelesis.co.nz>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH net-next 1/2] dt-bindings: dpll: Add clock ID property
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Markus Stockhausen <markus.stockhausen@gmx.de>
-References: <20250712194255.7022-1-jelonek.jonas@gmail.com>
- <20250712194255.7022-3-jelonek.jonas@gmail.com>
- <20250714-magnificent-powerful-nuthatch-afcc01@krzk-bin>
- <0a2a0fa6-ee82-40be-b62d-847a4ef04626@gmail.com>
- <df947cbe-e207-4619-957f-0c961c6d7139@kernel.org>
- <7b0c1f38-51f9-46a7-8e38-1fbeb189133c@gmail.com>
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
+References: <20250717171100.2245998-1-ivecera@redhat.com>
+ <20250717171100.2245998-2-ivecera@redhat.com>
+ <5ff2bb3e-789e-4543-a951-e7f2c0cde80d@kernel.org>
+ <6937b833-4f3b-46cc-84a6-d259c5dc842a@redhat.com>
+ <20250721-lean-strong-sponge-7ab0be@kuoka>
+ <804b4a5f-06bc-4943-8801-2582463c28ef@redhat.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,49 +110,76 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <7b0c1f38-51f9-46a7-8e38-1fbeb189133c@gmail.com>
+In-Reply-To: <804b4a5f-06bc-4943-8801-2582463c28ef@redhat.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 22/07/2025 20:25, Jonas Jelonek wrote:
->>> Since you have a lot of expertise on that and I obviously fail to find
->>> documentation that helps me to do that properly, could you give me some hints
->>> on how that has to look? I'd really appreciate this.
+On 21/07/2025 14:54, Ivan Vecera wrote:
+> On 21. 07. 25 11:23 dop., Krzysztof Kozlowski wrote:
+>> On Fri, Jul 18, 2025 at 02:16:41PM +0200, Ivan Vecera wrote:
+>>> Hi Krzysztof,
+>>>
+>>> ...
+>>>
+>>> The clock-id property name may have been poorly chosen. This ID is used by
+>>> the DPLL subsystem during the registration of a DPLL channel, along with its
+>>> channel ID. A driver that provides DPLL functionality can compute this
+>>> clock-id from any unique chip information, such as a serial number.
+>>>
+>>> Currently, other drivers that implement DPLL functionality are network
+>>> drivers, and they generate the clock-id from one of their MAC addresses by
+>>> extending it to an EUI-64.
+>>>
+>>> A standalone DPLL device, like the zl3073x, could use a unique property such
+>>> as its serial number, but the zl3073x does not have one. This patch-set is
+>>> motivated by the need to support such devices by allowing the DPLL device ID
+>>> to be passed via the Device Tree (DT), which is similar to how NICs without
+>>> an assigned MAC address are handled.
 >>
->> So in your if:then: block where you narrow mst-id, you add on same level
->> as properties:
->>
->> patternProperties:
->>   YOUR_REGEX: false
+>> You use words like "unique" and MAC, thus I fail to see how one fixed
+>> string for all boards matches this. MACs are unique. Property value set
+>> in DTS for all devices is not.
+>>> You also need to explain who assigns this value (MACs are assigned) or
+>> if no one, then why you cannot use random? I also do not see how this
+>> property solves this...  One person would set it to value "1", other to
+>> "2" but third decide to reuse "1"? How do you solve it for all projects
+>> in the upstream?
 > 
-> How I thought of narrowing that in the first place was to make mst-id required
-> for RTL9310 but optional for RTL9300. In terms of describing the hardware, this
-> is valid for RTL9300 too (but there's no need for the driver or anything else to
-> know that).
+> Some background: Any DPLL driver has to use a unique number during the
+> DPLL device/channel registration. The number must be unique for the
+> device across a clock domain (e.g., a single PTP network).
 > 
-> But I don't mind if you'd rather have it only defined in the 'then' block, or
-> just disallowed for RTL9300, effectively forbidding the usage for RTL9300.
+> NIC drivers that expose DPLL functionality usually use their MAC address
+> to generate such a unique ID. A standalone DPLL driver does not have
+> this option, as there are no NIC ports and therefore no MAC addresses.
+> Such a driver can use any other source for the ID (e.g., the chip's
+> serial number). Unfortunately, this is not the case for zl3073x-based
+> hardware, as its current firmware revisions do not expose information
+> that could be used to generate the clock ID (this may change in the
+> future).
 > 
-> Either way, it seems I'm still doing it wrong with the regex. Adding as you
-> suggested:
-> 
-> if:
->     properties:
->         compatible:
->             contains:
->                 const: realtek,rtl9301-i2c
-> then:
->     patternProperties:
->         '^i2c@([0-9]|1[0-1])$': false
-> 
-> breaks validation of the RTL9300 example. Probably I don't see how this
-> is expected to look like in a working state.
+> There is no authority that assigns clock ID value ranges similarly to
+> MAC addresses (OUIs, etc.), but as mentioned above, uniqueness is
+> required across a single PTP network so duplicates outside this
+> single network are not a problem.
 
-RTL9300 has 8 controllers, so why are you disallowing them? We talk here
-only about new stuff. Why would you change EXISTING behavior when adding
-something new?
+You did not address main concern. You will configure the same value for
+all boards, so how do you solve uniqueness within PTP network?
 
-You need pattern matching redundant children for existing device.
+> 
+> A randomly generated clock ID works, but the problem is that the value
+> is different after each reboot. Yes, there is an option to override the
+> clock ID using the devlink interface, but this also has to be done after
+> every reboot or power-up.
+> 
+>> All this must be clearly explained when you add new, generic property.
+> 
+> Would it be acceptable to define a hardware-specific property, since
+> only this hardware has this particular problem (the absence of a chip
+> unique attribute)? I'm referring to a property like 'microchip,id' or
+> 'microchip,dpll-id' defined in microchip,zl30731.yaml.
+
+It does not change anything, no problems solved.
 
 
 Best regards,
