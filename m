@@ -1,91 +1,120 @@
-Return-Path: <devicetree+bounces-199097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF54B0F483
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 15:51:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0DBCB0F4C6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 16:02:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1562D3A5887
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 13:50:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBB1F3BA973
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 14:02:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FA452E7165;
-	Wed, 23 Jul 2025 13:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C8B1B0F19;
+	Wed, 23 Jul 2025 14:02:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="gdY94EqZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0102E7F06;
-	Wed, 23 Jul 2025 13:50:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46BA818DB01;
+	Wed, 23 Jul 2025 14:02:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753278630; cv=none; b=pQzKUFmm4b4RL6gZGe99HumpcC9WYJbvEqssVSMZ7Z5mN3ybfKs6ITNaj46pozrsyhRuSTsmHvQq5G5ihQV3L0nSeInbMVJ32A2YbwBAuZCy1mcsiOYosrbtS0Q1Jr6/PhEpxwL9FznfwdYLBq1PsEpDS98HhfGCKwbsH7pnlAk=
+	t=1753279346; cv=none; b=AP1DuriDzHICzIra4GcjXfy+HHTWfso6T1sAYuxHtsYqpzuxz7G/0ZyxLr1+9PzSpmqrSP+qcldQep25AO+HM2Ou9KBPLHlPaJeMdvrONyjqFvnekZcOe8vitQZzLznAzj0WRfTmCqJy/4gIZY43bcRhKvfVs9YDxZGZ7v4RxAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753278630; c=relaxed/simple;
-	bh=gpkcWz41TZmE9YdgRfbzuo/4iOQyH/lamzn9EHQO3j0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=m/qTTM91zZRtIM+GQTzvwKQ2Pu7bRhXrEXBw0aVEeuRNBvbDoz+eUqLTPPgdhVHNj0ygUntygb/CBMdDHJeBqY+jb5K5SDTNetr/ND32C+P8OKHxbqREw5O3UgChztTsqPbFVca+4Q0pX8Hc/NjMZHOjwURASchwd5qbh4dB0Sc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.214.181])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1d02843b4;
-	Wed, 23 Jul 2025 21:50:16 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: xunil@tahomasoft.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: Re: [PATCH 2/2 v2a]: New board support,LinkStar-H68k-1432v1 (RK3568)
-Date: Wed, 23 Jul 2025 21:50:08 +0800
-Message-Id: <20250723135008.1077970-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250721201714.233962-1-xunil@tahomasoft.com>
-References: <20250721201714.233962-1-xunil@tahomasoft.com>
+	s=arc-20240116; t=1753279346; c=relaxed/simple;
+	bh=Qt23hKMWooTOPyxlrtzHMCM+w7Fw6lCMWeDsrrEAB4k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WiK+7Cjwb0ftzTpXEFA6bYOZZt6KsXNkw6WPdhWdTlDcQ/vFZFMbKhsbCCbv0h3tcHiV+kG1udDxF/XpuWdqgFArzBFN8722BtlNyoecqIS5fOZgdXIr7B6CJXz4Egzmy59tOaLuUVf9Rmeb6WDputX9QS49M3q5GojQj8ymxnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=gdY94EqZ; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=hnXBrp6nZj1igjITrTimshdIDwjv73qcH+GOPbSCUXk=; b=gdY94EqZaE3KR5jXzRnewjo9j5
+	dUhX3/ZwF3t7tQ4kLjRQ80zgcsHZwbSkawzNvRgELZGmeQNNoi48mr4P3YBz1mIcSQbeHy1MooEf2
+	hRQNbLaUae0+pOCg6XV7N9BQQ9gLi593mxlmQeeNAuui0kCR8nF763Il9lhWAOPOhSZI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uea2m-002aZn-6G; Wed, 23 Jul 2025 16:02:04 +0200
+Date: Wed, 23 Jul 2025 16:02:04 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Tristram Ha <Tristram.Ha@microchip.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: document st,phy-wol
+ property
+Message-ID: <dea45ecd-c183-426b-abae-12220a2b6827@lunn.ch>
+References: <f5c4bb6d-4ff1-4dc1-9d27-3bb1e26437e3@foss.st.com>
+ <e3c99bdb-649a-4652-9f34-19b902ba34c1@lunn.ch>
+ <38278e2a-5a1b-4908-907e-7d45a08ea3b7@foss.st.com>
+ <5b8608cb-1369-4638-9cda-1cf90412fc0f@lunn.ch>
+ <383299bb-883c-43bf-a52a-64d7fda71064@foss.st.com>
+ <2563a389-4e7c-4536-b956-476f98e24b37@lunn.ch>
+ <aH_yiKJURZ80gFEv@shell.armlinux.org.uk>
+ <ae31d10f-45cf-47c8-a717-bb27ba9b7fbe@lunn.ch>
+ <aIAFKcJApcl5r7tL@shell.armlinux.org.uk>
+ <aIAKAlkdB5S8UiYx@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCGUwYVhhCHksdTkxKGkweTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VKQ0pZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE5VSktLVU
-	pCS0tZBg++
-X-HM-Tid: 0a98378c927103a2kunm1bf04eacfc331
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OVE6Mzo*NTEYPjIBDT42GjIN
-	L0oKCQJVSlVKTE5ISUxDTUpMS0xNVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	QlVKSUlVSUpPVUpDSllXWQgBWUFKSEJKNwY+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aIAKAlkdB5S8UiYx@shell.armlinux.org.uk>
 
-Hi,
+> I've just read a bit more of the RTL8211F datasheet, and looked at the
+> code, and I'm now wondering whether WoL has even been tested with
+> RTL8211F. What I'm about to state doesn't negate anything I've said
+> in my previous reply.
+> 
+> 
+> So, the RTL8211F doesn't have a separate PMEB pin. It has a pin that
+> is shared between "interrupt" and "PMEB".
+> 
+> Register 22, page 0xd40, bit 5 determines whether this pin is used for
+> PMEB (in which case it is pulsed on wake-up) or whether it is used as
+> an interrupt. It's one or the other function, but can't be both.
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-linkstar-h68k-1432v1.dts
-> @@ -0,0 +1,740 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2022 AmadeusGhost <amadeus@jmu.edu.cn>
+This sounds familiar.
 
-Please do not add my copyright.
-I don't know if your board is the same as my HINLINK H68K board.
+> rtl8211f_set_wol() manipulates this bit depending on whether
+> WAKE_MAGIC is enabled or not.
+> 
+> The effect of this is...
+> 
+> If we're using PHY interrupts from the RTL8211F, and then userspace
+> configures magic packet WoL on the PHY, then we reconfigure the
+> interrupt pin to become a wakeup pin, disabling the interrupt
+> function - we no longer receive interrupts from the RTL8211F !!!!!!!
 
-> +        model = "Seeed LinkStar H68K-1432V1 (RK3568) DDR4 Board";
-> +        compatible = "seeed,rk3568-linkstar-h68k-1432v1", "rockchip,rk3568";
+Ah. I thought that switch happened in the PHY driver suspend() call,
+and it gets restored in the resume() call? That does required that
+suspend/resume actually gets called despite WoL being enabled...
 
-Seeed is the name of the agent, not the actual manufacturer.
-LinkStar is an alias given by HINLINK. Their versions and names
-are quite confusing, like 1432V1 here.
-
---
-2.25.1
-
-
+	Andrew
 
