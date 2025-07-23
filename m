@@ -1,41 +1,42 @@
-Return-Path: <devicetree+bounces-198969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0B83B0EDEF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 11:00:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B312B0EDE4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 10:59:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50495966CC4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:58:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D99E5562D18
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 08:59:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF1F6283FCD;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A58028507E;
 	Wed, 23 Jul 2025 08:58:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044A92836AF
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 660DA283FE5
 	for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 08:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753261120; cv=none; b=Yr8sDwIoHFEaF0IR652W+O/sPvtvP8hkN/W6DN2qcLd1vunt6sdRiKboJhGfztkFrxL59BpDyM0B76eP6BOvjqZC0hCTAqHX7nkiK8/aYAsZg6KuHBKby9PrNvYdElMWyZJmqLPR3aw74Fqxzoe04jirHFfbbBKJeo0g4LUA74A=
+	t=1753261119; cv=none; b=pvanZqRV7eVGIiKfSuVymA1cOwMb8KdfIp2kTvF+XfjpLtIAJMljufPur6AfyqhFcR9ElK6wrPDps82NWS5NUgJhxfQ9zFP+2Tw3vHUtrJXzzbEWsH+C/DweURhFgWlYGInlJX4nIhxyVL/z7bJTAP1TA5U/C18Z2UaJqY13/wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753261120; c=relaxed/simple;
-	bh=NcWEOTDXj6f4kIBljalpFYQyrelfrCFtuzcgHNWiYlE=;
+	s=arc-20240116; t=1753261119; c=relaxed/simple;
+	bh=mWeU+1DOAnqTfJUWnya4OXPc3E5CUg3Td3dpwglJP7s=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tkiNPS/cOgJCk6u41a9qUJXRGGgt55TpdLfxLNktakwfslButocRCX0x4GGYIYXX6NESZPZkzhL6Nx5O2sogIUzBBvGoYdFSGWuKk7mEmkYfcHO1mH7F8QAImABo33FICoF1mNQcN5W3SvtBqugXIQz2YpMKdhb8XEl4BlzrJMw=
+	 In-Reply-To:To:Cc; b=HaPtDK9Wwg4RMuvhxd+DEJti/IHCGdfn/WfUXtBHnj8ClAe9POaTv5+WQtJi5bemTBd8b1tvz/feoQl4FtfTKErBd1YCleWH3KdJO5R5rIc4l5AsqGd7r00D5A/xKiHkptUJDzU1z6pBAdl4pwEG0/m6D5/TgyXn5B3gf1e6iLI=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <f.pfitzner@pengutronix.de>)
-	id 1ueVJ0-0004xI-II; Wed, 23 Jul 2025 10:58:30 +0200
+	id 1ueVJ0-0004xI-JX; Wed, 23 Jul 2025 10:58:30 +0200
 From: Fabian Pfitzner <f.pfitzner@pengutronix.de>
-Date: Wed, 23 Jul 2025 10:58:29 +0200
-Subject: [PATCH 1/2] media: dt-bindings: add flip properties
+Date: Wed, 23 Jul 2025 10:58:30 +0200
+Subject: [PATCH 2/2] media: v4l: fwnode: parse horizontal/vertical flip
+ properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,7 +45,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250718-fpf-media-dt-flip-v1-1-75b3a938b4be@pengutronix.de>
+Message-Id: <20250718-fpf-media-dt-flip-v1-2-75b3a938b4be@pengutronix.de>
 References: <20250718-fpf-media-dt-flip-v1-0-75b3a938b4be@pengutronix.de>
 In-Reply-To: <20250718-fpf-media-dt-flip-v1-0-75b3a938b4be@pengutronix.de>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -71,28 +72,43 @@ As there is already support for the panel-common driver [1], add it for cameras 
 
 Signed-off-by: Fabian Pfitzner <f.pfitzner@pengutronix.de>
 ---
- .../devicetree/bindings/media/video-interface-devices.yaml        | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/media/v4l2-core/v4l2-fwnode.c | 3 +++
+ include/media/v4l2-fwnode.h           | 4 ++++
+ 2 files changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/media/video-interface-devices.yaml b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
-index cf7712ad297c0..36d766992b271 100644
---- a/Documentation/devicetree/bindings/media/video-interface-devices.yaml
-+++ b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
-@@ -383,6 +383,14 @@ properties:
-                         |                    |
-                         +--------------------+
+diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/v4l2-core/v4l2-fwnode.c
+index cb153ce42c45d..7fd0936fbda80 100644
+--- a/drivers/media/v4l2-core/v4l2-fwnode.c
++++ b/drivers/media/v4l2-core/v4l2-fwnode.c
+@@ -845,6 +845,9 @@ int v4l2_fwnode_device_parse(struct device *dev,
+ 		dev_dbg(dev, "device rotation: %u\n", val);
+ 	}
  
-+  flip-horizontal:
-+    description: boolean to flip image horizontally
-+    type: boolean
++	props->hflip = fwnode_property_read_bool(fwnode, "flip-horizontal");
++	props->vflip = fwnode_property_read_bool(fwnode, "flip-vertical");
 +
-+  flip-vertical:
-+    description: boolean to flip image vertically
-+    type: boolean
-+
-   orientation:
-     description:
-       The orientation of a device (typically an image sensor or a flash LED)
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(v4l2_fwnode_device_parse);
+diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
+index f7c57c7765898..f8a51ab8317ae 100644
+--- a/include/media/v4l2-fwnode.h
++++ b/include/media/v4l2-fwnode.h
+@@ -75,10 +75,14 @@ enum v4l2_fwnode_orientation {
+  * struct v4l2_fwnode_device_properties - fwnode device properties
+  * @orientation: device orientation. See &enum v4l2_fwnode_orientation
+  * @rotation: device rotation
++ * @hflip: device horizontal flip
++ * @vflip: device vertical flip
+  */
+ struct v4l2_fwnode_device_properties {
+ 	enum v4l2_fwnode_orientation orientation;
+ 	unsigned int rotation;
++	bool hflip;
++	bool vflip;
+ };
+ 
+ /**
 
 -- 
 2.39.5
