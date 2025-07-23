@@ -1,129 +1,135 @@
-Return-Path: <devicetree+bounces-198911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-198910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 584BFB0EC02
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 09:33:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EA1CB0EBF9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 09:32:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D8DA3A7093
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 07:33:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E44337AF48E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 07:31:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D45276028;
-	Wed, 23 Jul 2025 07:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8549277CB8;
+	Wed, 23 Jul 2025 07:32:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="QE9mJsJW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nvSDty53"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145B217BA6;
-	Wed, 23 Jul 2025 07:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB892777E0;
+	Wed, 23 Jul 2025 07:31:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753256025; cv=none; b=VFWLZSmJVbQtrTYOSjHRwDcf5sYPyAIfGPSNlVPmVc2iKr5iukOgAI5EDNbpamEaa817aurS3octhbpwTP0suzFRX0KXtNoTLWnJvskesPirOu8T/8H5LVl5pSgABX8o4X1JkW3g2E+cFI6K7yP48aQLei403dSX31LZ6wJoQHU=
+	t=1753255920; cv=none; b=X9DPbSoQ73Mtv/KxojVJwjVGK15C1MtvTiyej1JOPHB8Mz5mA/B/r6BGKqemfra/rs1R36vNhHFncGrgOAG6dayqqRgHcrXjq5Pjw7JvQzuXz905CH0Qdab7O90pzIpCJDD/7NUPTE1gYubqbENWE8tisAVHsZ2dK9StuPDAtCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753256025; c=relaxed/simple;
-	bh=HYqDBmZ+DIG4v85gnV0KAQmC5ntc6zltb032y65ohnI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UpikBYHUBtDTWjmApQ/9g4MMggQBEdhHYVnO/USZzuFEf5k+dQ/FN3ooJaReJHN02T6G05Ptq9UbNkXAsVyDEPLTXijNj+ycMoFdUKAW02dFRL1ACc6NTGxQ9DmP7XMbKN9V5CABu/lBHjuZ8gIMLNAPh78WYbkzxUyY35CWo4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=QE9mJsJW; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56N7Wjxn025289;
-	Wed, 23 Jul 2025 09:33:25 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	OF2g8HL4znRWs7yyAJKVV9g93H6bltIAkBEQRriY5ak=; b=QE9mJsJW+BIaT3ge
-	CfuDSWegwRTrkywKHn6W0YG93ypZfNqeS7e8ZayRMnzEGT7SYFbolmtM4E8MisWR
-	aCwQ4JGQJpAMXkivdfGa/SE2XG0ni4nYyoTyPjA4ZmXcx7m86K+Vu5TCWrVbfL3n
-	c1dx45BTqRtDAhn0fM6nLUDojXJodArYz66bwaY6LDEybVWhCXIKdej6Ib23lFr0
-	kKfIFH80LJLqFFuOjo/MUtpCcAn+R5JgJFa+FkfylcX6IxoqLlpC8Uys6X9f8Pav
-	uP5j+u3SvKrYBbic8FwMTCXT5HsdGCJjpeGB75nfCM8arIn5f9H1gNpeJd5BYw2C
-	PnDKcA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4800g8t6nr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Jul 2025 09:33:25 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 249E640046;
-	Wed, 23 Jul 2025 09:32:06 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 14599768F12;
-	Wed, 23 Jul 2025 09:30:48 +0200 (CEST)
-Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 23 Jul
- 2025 09:30:47 +0200
-Message-ID: <3e59d670-ee96-4ff2-a6c6-99d8a030e16c@foss.st.com>
-Date: Wed, 23 Jul 2025 09:30:46 +0200
+	s=arc-20240116; t=1753255920; c=relaxed/simple;
+	bh=/QBxlH5zQrdTKHeyh1iGe7dLjZTdGC5Aeaobly9L2QU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FMeDEaPS0N2e+Y6tZj6nGLVNXM9FDV5sd0++fc4MVtiZ2kCbdblyAyDpKxaIiYzIguQ7ft6cqfEPCeVBJf2gKaNWR7vbXnBwx632BsRrl0IRN9O/GarsWTOprpXthrwqT/PI1p4IULoNrg2EttQRIA/YilZnCDjUuy/5cEhpJn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nvSDty53; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C844CC4CEFB;
+	Wed, 23 Jul 2025 07:31:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753255918;
+	bh=/QBxlH5zQrdTKHeyh1iGe7dLjZTdGC5Aeaobly9L2QU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nvSDty53hPukhZjxVudDihFZMxMriSEyT4HyGfP2MoxKHuFW9YUCOTXBbIdAo87oD
+	 w8dBRgA/gkGnu6MUyvmStlhdQB2wmAwBVFq188hHHRtvQFg5AYEcNcKy0H6xGDgDbY
+	 f8VbuwXvIIKhdcUKa9rKAFYIccGUzt/CS2c1CDUhYtpKBzmaVLE5xycAmDDBBXTm+9
+	 NyOQacP57fboxfeXojJVdZUKbL8I9KwK+ohJl/0Tz3eAGrUbcOTipniK076iiNHcAU
+	 5AeLFubD7Rop0sHqdOf7kxhSYACixY5ijEk6Yizy18IgyPija/aWeQkBD38C05CLJb
+	 U1MVZ8SlH3AWw==
+Received: from johan by xi.lan with local (Exim 4.98.2)
+	(envelope-from <johan@kernel.org>)
+	id 1ueTx8-000000002OG-1g36;
+	Wed, 23 Jul 2025 09:31:50 +0200
+Date: Wed, 23 Jul 2025 09:31:50 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Christopher Obbard <christopher.obbard@linaro.org>,
+	Douglas Anderson <dianders@chromium.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Rui Miguel Silva <rui.silva@linaro.org>,
+	Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] arm64: dts: qcom: x1e80100: add epd hpd pinctrl
+Message-ID: <aICP5pE6oXFIxHVk@hovoldconsulting.com>
+References: <20250402-wip-obbardc-qcom-t14s-oled-panel-v5-0-ff33f4d0020f@linaro.org>
+ <20250402-wip-obbardc-qcom-t14s-oled-panel-v5-1-ff33f4d0020f@linaro.org>
+ <Z_kB3jOH04-zFnym@hovoldconsulting.com>
+ <bc65cf3e-22ca-4383-bf7a-24a3d343eb26@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/19] dt-bindings: memory: introduce DDR4
-To: Julius Werner <jwerner@chromium.org>
-CC: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Gabriel Fernandez
-	<gabriel.fernandez@foss.st.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Le
- Goffic <legoffic.clement@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-perf-users@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-References: <20250722-ddrperfm-upstream-v3-0-7b7a4f3dc8a0@foss.st.com>
- <20250722-ddrperfm-upstream-v3-6-7b7a4f3dc8a0@foss.st.com>
- <CAODwPW_7aYdEzdUJ7b2nT4-zS9bu_hbNqjc7+_wSHbedXZXJ=Q@mail.gmail.com>
-Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <CAODwPW_7aYdEzdUJ7b2nT4-zS9bu_hbNqjc7+_wSHbedXZXJ=Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-23_01,2025-07-22_01,2025-03-28_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bc65cf3e-22ca-4383-bf7a-24a3d343eb26@linaro.org>
 
-Hi Julius,
-
-On 7/22/25 23:57, Julius Werner wrote:
->> +      - pattern: "^ddr4-[0-9a-f]{2},[0-9a-f]{4}$"
+On Wed, Jul 23, 2025 at 09:03:40AM +0200, Neil Armstrong wrote:
+> On 11/04/2025 13:49, Johan Hovold wrote:
+> > On Wed, Apr 02, 2025 at 03:36:32PM +0100, Christopher Obbard wrote:
+> >> Add edp_hpd_active pinctrl to the X1E80100 device tree.
+> > 
+> > Please squash this one with the patch adding the user.
+> >   
+> >> Signed-off-by: Christopher Obbard <christopher.obbard@linaro.org>
+> >> ---
+> >>   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 5 +++++
+> >>   1 file changed, 5 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> >> index 46b79fce92c90d969e3de48bc88e27915d1592bb..5b1b80c445404fd02e9f6e5dab207610b03ff9c5 100644
+> >> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> >> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> >> @@ -6389,6 +6389,11 @@ data-pins {
+> >>   					bias-pull-up;
+> >>   				};
+> >>   			};
+> >> +
+> >> +			edp_hpd_active: edp-hpd-active-state {
+> > 
+> > Please keep the nodes sorted by name.
+> > 
+> >> +				pins = "gpio119";
+> >> +				function = "edp_hot";
+> > 
+> > There is no "edp_hot" function on x1e so I wonder how this has been
+> > tested.
+> > 
+> > As I mentioned in a comment to an earlier revision this pin has been
+> > configured by the firmware as "edp0_hot".
 > 
-> This pattern doesn't really make sense when DDR4 doesn't have the same
-> manufacturer ID / revision ID format as LPDDR. You could either only
-> leave the fallback constant for now, or define a new auto-generated
-> format that matches what DDR4 SPD provides (which I believe, if I read
-> Wikipedia right, is a two byte manufacturer ID and then an up to 20
-> character ASCII part number string -- so it could be
-> `^ddr4-[0-9a-f{2},[0-9A-Za-z]{1,20}$`).
+> With edp_hot, screen stays black with UI comes up, with edp0_hot it works again.
 
-Oh ok I didn't catch that it should be from the SPD.
-I'll propose something.
+Right.
 
-Best regards,
-Clément
+> > Since there is also an "edp1_hot" pin, this needs to be reflected in the
+> > node name and label.
+> > 
+> > Pin configurations really do belong in board files, but unfortunately
+> > this was not followed for x1e. You should still include the bias
+> > configuration (somewhere).
+> 
+> Which bias ? do this pin config needs an additional bias config ?
+
+The boot firmware has disabled the bias, but we should not rely on the
+firmware to have configured the pin for us.
+
+Johan
 
