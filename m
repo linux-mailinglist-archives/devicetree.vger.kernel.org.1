@@ -1,118 +1,85 @@
-Return-Path: <devicetree+bounces-199267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE320B1026B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:54:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F15E4B1027B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:57:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B8AA54659E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:54:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9F651CE0529
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:57:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2263C2701D6;
-	Thu, 24 Jul 2025 07:54:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lQ1RJw1j"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E742459D7;
+	Thu, 24 Jul 2025 07:56:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEA4426D4E1;
-	Thu, 24 Jul 2025 07:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FEFD225D6;
+	Thu, 24 Jul 2025 07:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753343667; cv=none; b=un8uVV9/izFjQqVaBVviQmkKPASkBGtE0i5sokIAu5gL/jVgK7B+cEYCZTEy3nT9NmStmagjYfhnh6vt9D3pdyhkwMI/fuNahUWN5Jl0Zn4vgxfOSG7jur5xRCs3YfSuoOsk2PPHjYmuPc8L3xWbrp/bvEkToo3wH2N5x0NGQBg=
+	t=1753343816; cv=none; b=BZGc8L0V3ooAse/572DeUMYAgmEfBGUvubi1UA9pLO7Dcop1rLo4rTX/MDg6ondCJXcWXsclG26GiaN1s7bWwU6xUhMqUYq6dgYpZ4uSjq8/X1759JR+A52BgTCuAQW0K9g0wTTuMew8gIEQjJXqC7QSPozkk4pvdg8mReXc0AE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753343667; c=relaxed/simple;
-	bh=i2i4FvAvcuu68l81dS/YVmY3OFVFW2LN9O82CoVKe7I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uKjhySs7ClWSlHwt5/bu27k3/Us8ICPogChOk0elxmAo0wE9ajLFpUvWKT8TguxzZVAO8VjsQj162CZiTi8n9D2w8rogo2WNIdbQeyA7FMQK395s5G0esTTKLxbM7rIZWALMV2fjZqXExN/c91Q4MWEy1lobV/iRQ0zBnbTTGSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lQ1RJw1j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17996C4CEED;
-	Thu, 24 Jul 2025 07:54:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753343666;
-	bh=i2i4FvAvcuu68l81dS/YVmY3OFVFW2LN9O82CoVKe7I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lQ1RJw1jj5vQdH0uQDIh+j8DzG4WT0pzw1BFCODaK/ai5Be+TDcZckKWh6m7BRM0X
-	 Qc0N6jpaWb3Wp65fn5U8Fy1XO6H4Uexv+t5Z9AeZs0M1+6hzF9Ylb+z9LeDT8Ws/rN
-	 mr8nkjmOgTlmFkOhMemTJ0VOjd0I7ylq92bPH+8q0ao28yYivPvYLpfRwDgQqFrvP/
-	 7/jCbKR6hNfiLqmNh6DRmPgSYOqTEsWq7FYERfSrDMQmtSMWIoh3WL3K7VB6JgaJxb
-	 wWau+MTJmlC1y0iWM2ky+Zwcru9Lc4oqIZxNneD2pcRcqIQ8BRtyxUt/1/c1Otvg1W
-	 hzyyArKWXSZNA==
-Date: Thu, 24 Jul 2025 09:54:24 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Donald Shannon <donalds@nvidia.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v7 1/2] dt-bindings: arm: aspeed: Add NVIDIA GB200-UT3.0b
- board
-Message-ID: <20250724-sweet-radiant-stoat-10d86d@kuoka>
-References: <20250723222350.200094-1-donalds@nvidia.com>
- <20250723222350.200094-2-donalds@nvidia.com>
+	s=arc-20240116; t=1753343816; c=relaxed/simple;
+	bh=ghBB/PHxWvRV+AUck2mi8CWGeB3M55wT/OdGADJT6W0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QrSR82RzoDO60lglU8+Xl/Aj7j6LE2co3LbXSJXH2BsTGHlU6F1N7LJqeXrwNr49eIPtzvnBAVU1VM7txJMFABtgp6223RO6DCSVEVrSW/sSOT4NZ2lEOLpEnJt41zcmp4RrtfZgJoT5rWEEKgxDqh2GxDSE99YU7vZMYv5t9ck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from hay.lan (unknown [IPv6:2605:59c0:2078:cf00:6ecf:39ff:fe00:8375])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id A8DFDB4D05E5;
+	Thu, 24 Jul 2025 09:56:48 +0200 (CEST)
+From: E Shattow <e@freeshell.de>
+To: Conor Dooley <conor@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: E Shattow <e@freeshell.de>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] riscv: dts: starfive: jh7110-common: drop no-sdio property from mmc1
+Date: Thu, 24 Jul 2025 00:55:53 -0700
+Message-ID: <20250724075600.239522-1-e@freeshell.de>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250723222350.200094-2-donalds@nvidia.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jul 23, 2025 at 03:23:49PM -0700, Donald Shannon wrote:
-> This is an Aspeed AST2600 based unit testing platform for GB200.
-> UT3.0b is different than nvidia-gb200nvl-bmc due to networking topology
-> differences, additional gpio expanders, and voltage regulator gating
-> some devices.
-> 
-> Reference to Ast2600 SOC [1].
-> Reference to Blackwell GB200NVL Platform [2].
-> 
-> Link: https://www.aspeedtech.com/server_ast2600/ [1]
-> Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
-> Signed-off-by: Donald Shannon <donalds@nvidia.com>
-> ---
->  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
+Drop no-sdio property avoids a delete-property on variant board dts
+having an SDIO wireless module connected to mmc1.
 
-<form letter>
-This is a friendly reminder during the review process.
+Signed-off-by: E Shattow <e@freeshell.de>
+---
+ arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-It looks like you received a tag and forgot to add it.
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+index 2eaf01775ef5..a315113840e5 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+@@ -299,7 +299,6 @@ &mmc1 {
+ 	assigned-clock-rates = <50000000>;
+ 	bus-width = <4>;
+ 	bootph-pre-ram;
+-	no-sdio;
+ 	no-mmc;
+ 	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
+ 	disable-wp;
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here. However, there's no
-need to repost patches *only* to add the tags. The upstream maintainer
-will do that for tags received on the version they apply.
+base-commit: 28fa0dcb571ab8f3be4d919f0e20e01d4e44bcb1
+-- 
+2.50.0
 
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
-
-> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> index 456dbf7b5ec8..624581db2330 100644
-> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> @@ -99,6 +99,7 @@ properties:
->                - inventec,starscream-bmc
->                - inventec,transformer-bmc
->                - jabil,rbp-bmc
-> +              - nvidia,gb200-ut30b
->                - nvidia,gb200nvl-bmc
->                - qcom,dc-scm-v1-bmc
->                - quanta,s6q-bmc
-> -- 
-> 2.43.0
-> 
 
