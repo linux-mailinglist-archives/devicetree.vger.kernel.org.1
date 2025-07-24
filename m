@@ -1,253 +1,424 @@
-Return-Path: <devicetree+bounces-199506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCB88B10F35
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 17:56:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5290B10F38
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 17:56:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A28E518945FF
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 15:56:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BDC361CE4784
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 15:56:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42EDD2EA142;
-	Thu, 24 Jul 2025 15:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FAE42EA17B;
+	Thu, 24 Jul 2025 15:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MaERG3U2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JE3L3Rrf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A3362E5B07;
-	Thu, 24 Jul 2025 15:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E292E041A;
+	Thu, 24 Jul 2025 15:56:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753372559; cv=none; b=HuiudGc/G4OW9TJ97y43zIpviI3dKUikXgJ93MnY13quVXK6ZxNV8Q8sZH2jvQUP2iAeU0mcnVmkQd11DJIg+cWmxfGIbnKGSWhE9c9AnL7gmfJt3WHoU9O1drmI5ffif36yfnCA2s/XKjOkADsEG4WppusLgGqvjmQwuwIIHHQ=
+	t=1753372572; cv=none; b=UixnNJmBA85ahkoeC3tRScwCAqU0Ezt/bTmKDeL2lKuNd4OPkOBB7jNc9yobuUDQCM6pewwZzkoFO4pPX1dNbPCg2dUDd754baMHh+Zop70ES5XQtPYrYq1lPO2PC7+log1fYHDP8Jvd/caLPPomOlq09Wnvn191VIXWZbOVTow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753372559; c=relaxed/simple;
-	bh=4GbusBPSyHYrVuVP3IzlGn289shga9AVfcznEZxZscw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tyUGYpMI8gTiIYFaal7mm+ryoW2UIPRDnHreA2+4XP6ceKw2E/OKHrxNF0q+zZ9vlVw67fNGr3ej7ongdWM3x7k6R9YT4f4fa9mR7PtHOP7+l4+/kSJuUhlCpEkM4tvO80utjlB/aSEBon/JXvK9vMxXZYZb+HVHQc/3w+qPBwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MaERG3U2; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4561a4a8bf2so13519725e9.1;
-        Thu, 24 Jul 2025 08:55:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753372556; x=1753977356; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CQXNp7yhYRa+ohMVZxRS59p+inq7oHb3YiIWFn/pW5w=;
-        b=MaERG3U2Y/YhhFem5XlpEbLZJFazAxQhx+OOrOLX5NlSSD6LTEbo9G4uyNjJt3mCNR
-         DSb98DdNCULqYf96G2ev0CfBorzsmg/t4ULRVg3/RIT+dY448TZi4sgOo2+2srAy8BlG
-         v+KFcYm920AOqiGnV6f6K/YNGRs9z3Iv8INNX5IaYTvJXT5hot7hhRtUDzALCJpkDoeT
-         wISNugTn2wzNblPnWT4pzlXio02ZM/+C0ZHdQYT7YGEtFdblFN/r3POCEmQ7JQ/E8P3a
-         pefwc62XPVTR8ZzSiHqNvdakTn1Jc5VezM0xYFy1PQvxcvqz0Ld+g5pnWeeeGHlvtBvA
-         ZSMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753372556; x=1753977356;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CQXNp7yhYRa+ohMVZxRS59p+inq7oHb3YiIWFn/pW5w=;
-        b=iTQE+kxiUGH1eQf3eI9gDQ7hWCg3F4wWvdkULYM8cum6UhkmHKW/7VWGBQASVmTrSh
-         FplpAonmf1KWYdMPrr2Sjw6/BXW3hme3943aItgreqI9h8hdO0l2PpLRIAp1QCR3/rX/
-         UxbBdV/2MixORlidjgbMzSsv1F8oXJKnb1gyVUu7rDlfVz/g0mso2O1hw9OOBWLj/52l
-         utAxK/NuIcdM9v668woMXxQNtvjXaNEoE6bxQgk8p6kqG2YbVUn/a/+9953627hP156U
-         wWx9TYzuNwr1W0x1gkUpVth4DixddwRSzji8vAIX1fGSD5Vhtzb5vKa/XWOqlr3GVMaz
-         AjFw==
-X-Forwarded-Encrypted: i=1; AJvYcCVHt1BUYpb2Ve9kaYGP0HS22MACkuTGh61CtPdiLSV5XBuZETlgeKtU6BA9NMR8shRTOpBUxJFfywKK+7lbr4FyxW4=@vger.kernel.org, AJvYcCXOJJpYlGI15UKRuQsrdLPgOG71lasAs0btPXeN+HD01IabRteMwqZ9/0+mHboLU2kuDRpPTg7HviPR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUf6PvVl1+aJ22+gyS05yrRUT5W/Ue3fkoC/Axla9KI4SkYsip
-	Kqa8Qg5fx8cAKnYD26vebhLBflDWcbPFgpAmhoLBF/afTQz8mjhj6E2uCTV8NsVE/n2OqJgraql
-	MdJ4PH5ldxWvOs0dOo7SQ1HEuiHAL0Go=
-X-Gm-Gg: ASbGncugKmOOyGWmeG4InvAdLSv5Sqas7D6NS/jE6Zls97XWAKnB7D1fT4VYjKpN470
-	M3BmzkjLSfUwX0jy0lVgbqIEjWY+FPDeOhpwQEmiP7SNF/j0p9fzUKe2Ae1GSaAQwlzgZzbrQoj
-	wak8qHeusXnkL4Bf8hnBSXSV4mOemSHFBV/Ju+iaixc2O7Jd4VR+iPA1NrbidRP3bj5kNXqIlEl
-	yA1FNvO
-X-Google-Smtp-Source: AGHT+IFMnO6qItU+vRGyl4nDXCXdkg2NGNrZXC0avjMX7zs5Kl/eMq1l2xfLh7HRUy9Varv9K9gV8qL0CKfdQ2nHxts=
-X-Received: by 2002:a05:600c:35ca:b0:453:81a:2f3f with SMTP id
- 5b1f17b1804b1-45868d4f48bmr77390065e9.30.1753372555411; Thu, 24 Jul 2025
- 08:55:55 -0700 (PDT)
+	s=arc-20240116; t=1753372572; c=relaxed/simple;
+	bh=CZ8q0gBxMvXs9EgFgonDcz2pD1xsL8S1lNoStDKE+g0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aFBI8JdPpMGz3KSeqA2XfnNThrQvn7acdA8rPCJ4mQnopnTFft42WvkEjq5sFkLoNoAMTOgbCZDxyNT/gqzM4uxvYwrKTxmcVgQfUJfKuzSblfbjCbXfFcsspz0quo6lb+dKMAJfodkARMckox6hNPY/YjrL2aPaHHRZ5QJsYOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JE3L3Rrf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B9AAC4CEED;
+	Thu, 24 Jul 2025 15:56:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753372571;
+	bh=CZ8q0gBxMvXs9EgFgonDcz2pD1xsL8S1lNoStDKE+g0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=JE3L3Rrfd8NHgv4hM6qCsIYxLCMm2J8HhDCmsZrL7aCpxCYvha7W4D7tsnlGrE0RB
+	 0BepMiOMvt0syDrRiLsRjaXnlH5F2BS9sZBNediRGCNQNy6qK9DNyb735jSkkWlNZI
+	 8XRK8GAC2GE4ct2lxWG5Z70lcHB43oyH9VZLjDIcEO9+RCXPG6aarJfdbwdbGDVXPm
+	 0apFZ//eTzjjA26WhDSzD77mReqDQiTLxKLJAtQLzvfRyt+m8D45G8Vt3SaTSApvJs
+	 ykSRKewLAJjahAH0ML343Zj9hhcsNZr6epU/p1dg+vnaraaeb/VvmL21QKadRwFlNb
+	 LEx1k/RvgEgkg==
+Date: Thu, 24 Jul 2025 16:56:05 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>
+Cc: remi.buisson@tdk.com, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/8] iio: imu: inv_icm45600: add new inv_icm45600
+ driver
+Message-ID: <20250724165605.7bfe9447@jic23-huawei>
+In-Reply-To: <20250717-add_newport_driver-v3-2-c6099e02c562@tdk.com>
+References: <20250717-add_newport_driver-v3-0-c6099e02c562@tdk.com>
+	<20250717-add_newport_driver-v3-2-c6099e02c562@tdk.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250714-ivc-v4-0-534ea488c738@ideasonboard.com> <20250714-ivc-v4-1-534ea488c738@ideasonboard.com>
-In-Reply-To: <20250714-ivc-v4-1-534ea488c738@ideasonboard.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 24 Jul 2025 16:55:28 +0100
-X-Gm-Features: Ac12FXwe5ZLJsySMlTXpMt2Y8Acn98NBwBlSRLjuAJkA3ES3k2mkCyrzY6-wbOE
-Message-ID: <CA+V-a8sYp0eXwPdihvkh5u3rnZKq3STrwexAX3JsoNE=8n60hg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: media: Add bindings for the RZ/V2H
- IVC block
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, jacopo.mondi@ideasonboard.com, 
-	biju.das.jz@bp.renesas.com, laurent.pinchart@ideasonboard.com, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Daniel,
+On Thu, 17 Jul 2025 13:25:54 +0000
+Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org> wrote:
 
-Thank you for the patch.
+> From: Remi Buisson <remi.buisson@tdk.com>
+> 
+> Core component of a new driver for InvenSense ICM-45600 devices.
+> It includes registers definition, main probe/setup, and device
+> utility functions.
+> 
+> ICM-456xx devices are latest generation of 6-axis IMU,
+> gyroscope+accelerometer and temperature sensor. This device
+> includes a 8K FIFO, supports I2C/I3C/SPI, and provides
+> intelligent motion features like pedometer, tilt detection,
+> and tap detection.
+> 
+> Signed-off-by: Remi Buisson <remi.buisson@tdk.com>
 
-On Mon, Jul 14, 2025 at 4:28=E2=80=AFPM Daniel Scally
-<dan.scally@ideasonboard.com> wrote:
->
-> The RZ/V2H SoC has a block called the Input Video Control block which
-> feeds image data into the Image Signal Processor. Add dt bindings to
-> describe the IVC.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
-> Changes in v3:
->
->         - Rename from rzv2h-ivc.yaml to r9a09g057-ivc.yaml
->         - Update clock and reset names
->
-> Changes in v2:
->
->         - compatible matches filename
->         - Added power-domains
->         - Aligned clock and reset entries on opening "<"
->         - Removed status =3D "okay"; from example
-> ---
->  .../bindings/media/renesas,r9a09g057-ivc.yaml      | 103 +++++++++++++++=
-++++++
->  1 file changed, 103 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/media/renesas,r9a09g057-iv=
-c.yaml b/Documentation/devicetree/bindings/media/renesas,r9a09g057-ivc.yaml
+A few minor comments inline.
+
+Thanks,
+
+Jonathan
+
+
+> diff --git a/drivers/iio/imu/inv_icm45600/inv_icm45600.h b/drivers/iio/imu/inv_icm45600/inv_icm45600.h
 > new file mode 100644
-> index 0000000000000000000000000000000000000000..3ecccf0a4b05ffcf90c130924=
-bfe50065b06f87e
+> index 0000000000000000000000000000000000000000..59aed59b94ca2d4709b0c986ddeda80b33064f90
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,r9a09g057-ivc.yaml
-> @@ -0,0 +1,103 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/renesas,r9a09g057-ivc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/V2H Input Video Control Block
-> +
-s/ RZ/V2H/RZ/V2HP
-The 'P' variant is the one which has the Mali-C55 (also in the commit messa=
-ge).
+> +++ b/drivers/iio/imu/inv_icm45600/inv_icm45600.h
 
-Rest LGTM.
+> +};
 
-Cheers,
-Prabhakar
+> +
+> +/* all sensor data are 16 bits (2 registers wide) in big-endian */
+> +#define INV_ICM45600_REG_TEMP_DATA			0x000C
+> +#define INV_ICM45600_REG_ACCEL_DATA_X			0x0000
+> +#define INV_ICM45600_REG_ACCEL_DATA_Y			0x0002
+> +#define INV_ICM45600_REG_ACCEL_DATA_Z			0x0004
+> +#define INV_ICM45600_REG_GYRO_DATA_X			0x0006
+> +#define INV_ICM45600_REG_GYRO_DATA_Y			0x0008
+> +#define INV_ICM45600_REG_GYRO_DATA_Z			0x000A
+> +#define INV_ICM45600_DATA_INVALID			-32768
+That's all Fs.  GENMASK maybe?
 
-> +maintainers:
-> +  - Daniel Scally <dan.scally@ideasonboard.com>
+
+
+
+
+> +int inv_icm45600_debugfs_reg(struct iio_dev *indio_dev, unsigned int reg,
+> +			     unsigned int writeval, unsigned int *readval);
 > +
-> +description:
-> +  The IVC block is a module that takes video frames from memory and feed=
-s them
-> +  to the Image Signal Processor for processing.
+> +int inv_icm45600_core_probe(struct regmap *regmap, const struct inv_icm45600_chip_info *chip_info,
+Very long line.  Try to keep to 80 chars unless readability badly hurt (then it's fine to go a little
+above Tthat)
+
+> +				bool reset, inv_icm45600_bus_setup bus_setup);
 > +
-> +properties:
-> +  compatible:
-> +    const: renesas,r9a09g057-ivc
+> +struct iio_dev *inv_icm45600_gyro_init(struct inv_icm45600_state *st);
 > +
-> +  reg:
-> +    maxItems: 1
+> +int inv_icm45600_gyro_parse_fifo(struct iio_dev *indio_dev);
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +struct iio_dev *inv_icm45600_accel_init(struct inv_icm45600_state *st);
 > +
-> +  clocks:
-> +    items:
-> +      - description: Input Video Control block register access clock
-> +      - description: Video input data AXI bus clock
-> +      - description: ISP system clock
+> +int inv_icm45600_accel_parse_fifo(struct iio_dev *indio_dev);
 > +
-> +  clock-names:
-> +    items:
-> +      - const: reg
-> +      - const: axi
-> +      - const: isp
+> +#endif
+> diff --git a/drivers/iio/imu/inv_icm45600/inv_icm45600_core.c b/drivers/iio/imu/inv_icm45600/inv_icm45600_core.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..b961f774e54d0ad109b4ed19eec1cd9b65803c96
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm45600/inv_icm45600_core.c
+
 > +
-> +  power-domains:
-> +    maxItems: 1
+> +int inv_icm45600_set_gyro_conf(struct inv_icm45600_state *st,
+> +			       struct inv_icm45600_sensor_conf *conf,
+> +			       unsigned int *sleep_ms)
+> +{
+> +	struct inv_icm45600_sensor_conf *oldconf = &st->conf.gyro;
+> +	unsigned int val;
+> +	int ret;
 > +
-> +  resets:
-> +    items:
-> +      - description: Input Video Control block register access reset
-> +      - description: Video input data AXI bus reset
-> +      - description: ISP core reset
+> +	/* Sanitize missing values with current values. */
+> +	if (conf->mode == U8_MAX)
+> +		conf->mode = oldconf->mode;
+> +	if (conf->fs == U8_MAX)
+> +		conf->fs = oldconf->fs;
+> +	if (conf->odr == U8_MAX)
+> +		conf->odr = oldconf->odr;
+> +	if (conf->filter == U8_MAX)
+> +		conf->filter = oldconf->filter;
+
+Maybe worth factoring out this bit of code filling in current values as I think
+it's used twice.
+
 > +
-> +  reset-names:
-> +    items:
-> +      - const: reg
-> +      - const: axi
-> +      - const: isp
+> +	/* Force the power mode against ODR when sensor is on. */
+> +	if (conf->mode > INV_ICM45600_SENSOR_MODE_STANDBY) {
+> +		if (conf->odr >= INV_ICM45600_ODR_6_25HZ_LP) {
+> +			conf->mode = INV_ICM45600_SENSOR_MODE_LOW_POWER;
+> +			conf->filter = INV_ICM45600_GYRO_LP_AVG_SEL_8X;
+> +		} else {
+> +			conf->mode = INV_ICM45600_SENSOR_MODE_LOW_NOISE;
+> +		}
+> +	}
 > +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: Output parallel video bus
+> +	/* Set GYRO_CONFIG0 register (gyro fullscale & odr). */
+> +	if (conf->fs != oldconf->fs || conf->odr != oldconf->odr) {
+> +		val = FIELD_PREP(INV_ICM45600_GYRO_CONFIG0_FS_MASK, conf->fs) |
+> +		      FIELD_PREP(INV_ICM45600_GYRO_CONFIG0_ODR_MASK, conf->odr);
+> +		ret = regmap_write(st->map, INV_ICM45600_REG_GYRO_CONFIG0, val);
+> +		if (ret)
+> +			return ret;
+> +		oldconf->fs = conf->fs;
+> +		oldconf->odr = conf->odr;
+> +	}
 > +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/graph.yaml#/properties/endpoint
+> +	/* Set GYRO_LP_AVG_SEL register (gyro low-power average filter). */
+> +	if (conf->filter != oldconf->filter) {
+> +		val = FIELD_PREP(INV_ICM45600_IPREG_SYS1_170_GYRO_LP_AVG_MASK, conf->filter);
+> +		ret = regmap_update_bits(st->map, INV_ICM45600_IPREG_SYS1_REG_170,
+> +			INV_ICM45600_IPREG_SYS1_170_GYRO_LP_AVG_MASK, val);
+> +		if (ret)
+> +			return ret;
+> +		oldconf->filter = conf->filter;
+> +	}
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - resets
-> +  - reset-names
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/renesas,r9a09g057-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    isp-input@16040000 {
-> +      compatible =3D "renesas,r9a09g057-ivc";
-> +      reg =3D <0x16040000 0x230>;
-> +
-> +      clocks =3D <&cpg CPG_MOD 0xe3>,
-> +               <&cpg CPG_MOD 0xe4>,
-> +               <&cpg CPG_MOD 0xe5>;
-> +      clock-names =3D "reg", "axi", "isp";
-> +
-> +      power-domains =3D <&cpg>;
-> +
-> +      resets =3D <&cpg 0xd4>,
-> +               <&cpg 0xd1>,
-> +               <&cpg 0xd3>;
-> +      reset-names =3D "reg", "axi", "isp";
-> +
-> +      interrupts =3D <GIC_SPI 861 IRQ_TYPE_EDGE_RISING>;
-> +
-> +      port {
-> +        ivc_out: endpoint {
-> +          remote-endpoint =3D <&isp_in>;
-> +        };
-> +      };
-> +    };
-> +...
+> +	/* Set PWR_MGMT0 register (gyro sensor mode). */
+> +	return inv_icm45600_set_pwr_mgmt0(st, conf->mode, st->conf.accel.mode,
+> +					  sleep_ms);
+> +}
 >
-> --
-> 2.34.1
->
->
+
+> +static int inv_icm45600_enable_regulator_vddio(struct inv_icm45600_state *st)
+> +{
+> +	int ret;
+> +
+> +	ret = regulator_enable(st->vddio_supply);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Wait a little for supply ramp. */
+> +	usleep_range(3000, 4000);
+
+fsleep probably appropriate here.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static void inv_icm45600_disable_vddio_reg(void *_data)
+> +{
+> +	regulator_disable((struct regulator *) _data);
+> +}
+> +
+> +int inv_icm45600_core_probe(struct regmap *regmap, const struct inv_icm45600_chip_info *chip_info,
+> +				bool reset, inv_icm45600_bus_setup bus_setup)
+> +{
+> +	struct device *dev = regmap_get_device(regmap);
+> +	struct fwnode_handle *fwnode;
+> +	struct inv_icm45600_state *st;
+> +	struct regmap *regmap_custom;
+> +	int irq, irq_type;
+> +	bool open_drain;
+> +	int ret;
+> +
+> +	/* Get INT1 only supported interrupt. */
+> +	fwnode = dev_fwnode(dev);
+> +	if (!fwnode)
+> +		return dev_err_probe(dev, -ENODEV, "Missing FW node\n");
+> +
+> +	irq = fwnode_irq_get_byname(fwnode, "INT1");
+> +	if (irq < 0) {
+> +		if (irq != -EPROBE_DEFER)
+> +			dev_err_probe(dev, irq, "Missing INT1 interrupt\n");
+> +		return irq;
+> +	}
+> +
+> +	irq_type = irq_get_trigger_type(irq);
+
+Better to introduce this irq type etc when you use them.  That's probably the next patch?
+ 
+
+> +
+> +	open_drain = device_property_read_bool(dev, "drive-open-drain");
+> +
+> +	regmap_custom = devm_regmap_init(dev, &inv_icm45600_regmap_bus,
+> +					 regmap, &inv_icm45600_regmap_config);
+> +	if (IS_ERR(regmap_custom))
+> +		return dev_err_probe(dev, PTR_ERR(regmap_custom), "Failed to register regmap\n");
+> +
+> +	st = devm_kzalloc(dev, sizeof(*st), GFP_KERNEL);
+> +	if (!st)
+> +		return dev_err_probe(dev, -ENOMEM, "Cannot allocate memory\n");
+> +
+> +	dev_set_drvdata(dev, st);
+> +	ret = devm_mutex_init(dev, &st->lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->map = regmap_custom;
+> +
+> +	ret = iio_read_mount_matrix(dev, &st->orientation);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to retrieve mounting matrix\n");
+> +
+> +	st->vddio_supply = devm_regulator_get(dev, "vddio");
+> +	if (IS_ERR(st->vddio_supply))
+> +		return PTR_ERR(st->vddio_supply);
+> +
+> +	ret = devm_regulator_get_enable(dev, "vdd");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get vdd regulator\n");
+> +
+> +	/* IMU start-up time. */
+> +	fsleep(100000);
+> +
+> +	ret = inv_icm45600_enable_regulator_vddio(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_add_action_or_reset(dev, inv_icm45600_disable_vddio_reg, st->vddio_supply);
+
+I suspect you'll get an underflow on the vddio regulator enabled count if you remove
+the driver in whilst runtime suspended.  Avoiding that may require a dance where
+you force it out of runtime suspend at time of disabling runtime pm. 
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Setup chip registers. */
+I don't see the comment as adding much - so probably drop it.
+
+> +	ret = inv_icm45600_setup(st, chip_info, reset, bus_setup);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = inv_icm45600_timestamp_setup(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Setup runtime power management. */
+> +	ret = devm_pm_runtime_set_active_enabled(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pm_runtime_get_noresume(dev);
+> +	/* Suspend after 2 seconds. */
+> +	pm_runtime_set_autosuspend_delay(dev, 2000);
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_put(dev);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(inv_icm45600_core_probe, "IIO_ICM45600");
+> +
+> +/*
+> + * Suspend saves sensors state and turns everything off.
+> + * Check first if runtime suspend has not already done the job.
+> + */
+> +static int inv_icm45600_suspend(struct device *dev)
+> +{
+> +	struct inv_icm45600_state *st = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	st->suspended.gyro = st->conf.gyro.mode;
+> +	st->suspended.accel = st->conf.accel.mode;
+
+Can you use pm_runtime_force_suspend() here.  That basically calls the
+runtime suspend callback (safely) if we are not already runtime suspended.
+
+Pair it with pm_runtime_force_resume()
+
+You will need to be careful with locking though. Probably fine to just
+unlock the mutex before calling that.
+
+
+> +	if (pm_runtime_suspended(dev))
+> +		return 0;
+> +
+> +	ret = inv_icm45600_set_pwr_mgmt0(st, INV_ICM45600_SENSOR_MODE_OFF,
+> +					 INV_ICM45600_SENSOR_MODE_OFF, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regulator_disable(st->vddio_supply);
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * System resume gets the system back on and restores the sensors state.
+> + * Manually put runtime power management in system active state.
+> + */
+> +static int inv_icm45600_resume(struct device *dev)
+> +{
+> +	struct inv_icm45600_state *st = dev_get_drvdata(dev);
+> +	int ret = 0;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	if (pm_runtime_suspended(dev))
+> +		return 0;
+> +
+> +	ret = inv_icm45600_enable_regulator_vddio(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Restore sensors state. */
+> +	return inv_icm45600_set_pwr_mgmt0(st, st->suspended.gyro,
+> +					 st->suspended.accel, NULL);
+> +
+> +}
+> +
+> +/* Runtime suspend will turn off sensors that are enabled by iio devices. */
+> +static int inv_icm45600_runtime_suspend(struct device *dev)
+> +{
+> +	struct inv_icm45600_state *st = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	/* disable all sensors */
+> +	ret = inv_icm45600_set_pwr_mgmt0(st, INV_ICM45600_SENSOR_MODE_OFF,
+> +					 INV_ICM45600_SENSOR_MODE_OFF, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regulator_disable(st->vddio_supply);
+> +
+> +	return 0;
+> +}
+> +
+> +/* Sensors are enabled by iio devices, no need to turn them back on here. */
+> +static int inv_icm45600_runtime_resume(struct device *dev)
+> +{
+> +	struct inv_icm45600_state *st = dev_get_drvdata(dev);
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	return inv_icm45600_enable_regulator_vddio(st);
+> +}
+> +
+> +EXPORT_NS_GPL_DEV_PM_OPS(inv_icm45600_pm_ops, IIO_ICM45600) = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(inv_icm45600_suspend, inv_icm45600_resume)
+> +	SET_RUNTIME_PM_OPS(inv_icm45600_runtime_suspend,
+> +			   inv_icm45600_runtime_resume, NULL)
+> +};
+> +
+> +MODULE_AUTHOR("InvenSense, Inc.");
+> +MODULE_DESCRIPTION("InvenSense ICM-456xx device driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("IIO_INV_SENSORS_TIMESTAMP");
+> 
+
 
