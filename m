@@ -1,68 +1,50 @@
-Return-Path: <devicetree+bounces-199368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC5E6B106D2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:46:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1EE9B106F0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:50:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B81231CE7CFC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:42:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD82216E557
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:50:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8417B23ABAB;
-	Thu, 24 Jul 2025 09:41:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="MeqSrt+a"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3608255240;
+	Thu, 24 Jul 2025 09:49:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 558D223BD13
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 09:41:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A73D61F4606;
+	Thu, 24 Jul 2025 09:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753350116; cv=none; b=iEA1TdaUQVgQ/5mnJQmmzyMs0TptZXtk7bm+w0AiQ0vsZSoy1kAMbLELaaHH/kast0IIv3H9J+q/eJ2x5wFXAp0C9Yc0orfWYUUoi2InilI1JwTigMuxiBjEWkMHhzcEqmTam9HH47s6RE5oPyJK/kI2LxVcQS8rCDcOvr9rOtU=
+	t=1753350598; cv=none; b=VK1In5Da9xzHfrluoi7Z9A9GD4NFc6uIZTbnk6SBidkWeT/7N2eNpHNb2NYXW6VMCcNJsgpP6mF9Vg43LgyTTBdClbZ2RdJtsq7QSoxuXCAdw6IPv1VASguns4EoZeGCY4qsuPiXdZUDM0ZyxZmgUOrPh5ijez8lmVMEVXrMyeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753350116; c=relaxed/simple;
-	bh=2kB+/ViiQBadVqBH0fumCX7kNWKLUq87LxH72WsWKIA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mzr0lqxM+B/GStm7YqxdsRRGXiqlVNyta74vuheKShPjS91CCQCm1pbmlABejK3JepFXk5ATsiC8AhEClKWlfdNdhj+5GIBJbCzahJDnGetXIox5Ssd4jd3dr25JTiWX6rXSGFu3cBPVne7wCy++NiOjxCNXZcDqvl1xYpck3CU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=MeqSrt+a; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=mPQCtAY2PWiSk1733xoRQnXAMnPArMUT0zyz5TdJULc=; b=MeqSrt
-	+aNkBPyVGzSLj7iauThB4tyQ7/1k73l+q0soFGDmFZN8DTM4HVBWpo3+g+Fqgq1s
-	+At15iTnjmP3OKQ3U5UXUfGnwE6rfK/GSSnfHJqNQ5HLlkeEqNwJZUPj+K/XXkO5
-	WSgEHvwC0jJ9onXCjYaKKMABMhcLUxcRrT7Iy0BibD7H6zLmOTHNJhzRUy8WC0x+
-	hEtTvXaORW3bo3/CAPCU26WTBpoOHm2myAD+znb8+8cun/WqISc3Q1DrvvWJx6HZ
-	KOl9Q+KC471UyI9X2G1fWCBwCixwB5nWXtj8R77fiwJif9rmwn2XeCxvW+m7Cs1O
-	vy7KE9CMeK705HMA==
-Received: (qmail 2016600 invoked from network); 24 Jul 2025 11:41:50 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 24 Jul 2025 11:41:50 +0200
-X-UD-Smtp-Session: l3s3148p1@5/17oqk6DJkgAwDPXyBWAATEinPyanBm
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v5 3/4] dt-bindings: i3c: Add Renesas I3C controller
-Date: Thu, 24 Jul 2025 11:41:42 +0200
-Message-ID: <20250724094146.6443-4-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250724094146.6443-1-wsa+renesas@sang-engineering.com>
-References: <20250724094146.6443-1-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1753350598; c=relaxed/simple;
+	bh=0NPue2eQZiUVKuoMSC8bqNQVgW4t927OHHBU3I/s5j8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LD/kl0proqZaxcVTMtVyWGqXr/t4bxNC7Y/u1q29mgoy2g2Gxw2hqDu3/kriqZDYPY69RoERr4T2wrPXp29+fB4P9915oItXPN6SNlwsNDrw60/px6maJt+Ks3vjD5lbhspRxjNo3m6kwvH5HZjhobkMzkvgdzREY4+pL7fMQkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from hay.lan (unknown [IPv6:2605:59c0:2078:cf00:6ecf:39ff:fe00:8375])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id A911DB4D0064;
+	Thu, 24 Jul 2025 11:49:51 +0200 (CEST)
+From: E Shattow <e@freeshell.de>
+To: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	E Shattow <e@freeshell.de>,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v1 0/4] riscv: dts: starfive: Add Milk-V Mars CM (Lite) SoM
+Date: Thu, 24 Jul 2025 02:48:43 -0700
+Message-ID: <20250724094912.253723-1-e@freeshell.de>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,210 +53,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Milk-V Mars CM and Mars CM Lite System-on-Module both are based on the
+StarFive JH7110 SoC and compatible with the Raspberry Pi CM4IO Classic IO
+Board carrier. Mars CM Lite is Mars CM without the eMMC storage component
+on mmc0 and the mmc0 interface configured instead for SD Card use. The
+optional WiFi+BT chipset is connected via SDIO on the mmc1 interface that
+would otherwise be connected to an SD Card slot on the StarFive
+VisionFive2 reference design.
 
-Add Renesas I3C controller which is available in R9A08G045 (RZ/G3S) and
-R9A09G047 (RZ/G3E) SoCs.
+Add the related devicetree files for both Milk-V Mars CM and Milk-V Mars
+CM Lite describing the currently supported features, namely PMIC, UART,
+I2C, GPIO, eMMC or SD Card, WiFi+BT, QSPI Flash, and Ethernet.
 
-Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
----
+Caveat with vendor AP6256 firmware files present the firmware loading is
+successful but subsequently fails IRQ wake initialization. Common GPIO
+conflicts for "WiFi" optioned boards having this module:
 
-Changes since v4:
-* none
+pwmdac_pins:
+ - AP6256: WL_REG_ON>>WIFI_REG_ON_H_GPIO33
+ - AP6256: WL_HOST_WAKE>>WIFI_WAKE_HOST_H_GPIO34
 
- .../devicetree/bindings/i3c/renesas,i3c.yaml  | 179 ++++++++++++++++++
- 1 file changed, 179 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
+i2c2_pins:
+ - AP6256: UART_CTS_N<<UART1_RTSn_GPIO2
+ - AP6256: UART_RTS_N>>UART1_CTSn_GPIO3
 
-diff --git a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-new file mode 100644
-index 000000000000..fe2e9633c46f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-@@ -0,0 +1,179 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i3c/renesas,i3c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G3S and RZ/G3E I3C Bus Interface
-+
-+maintainers:
-+  - Wolfram Sang <wsa+renesas@sang-engineering.com>
-+  - Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a08g045-i3c # RZ/G3S
-+          - renesas,r9a09g047-i3c # RZ/G3E
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Non-recoverable internal error interrupt
-+      - description: Normal transfer error interrupt
-+      - description: Normal transfer abort interrupt
-+      - description: Normal response status buffer full interrupt
-+      - description: Normal command buffer empty interrupt
-+      - description: Normal IBI status buffer full interrupt
-+      - description: Normal Rx data buffer full interrupt
-+      - description: Normal Tx data buffer empty interrupt
-+      - description: Normal receive status buffer full interrupt
-+      - description: START condition detection interrupt
-+      - description: STOP condition detection interrupt
-+      - description: Transmit end interrupt
-+      - description: NACK detection interrupt
-+      - description: Arbitration lost interrupt
-+      - description: Timeout detection interrupt
-+      - description: Wake-up condition detection interrupt
-+      - description: HDR Exit Pattern detection interrupt
-+    minItems: 16
-+
-+  interrupt-names:
-+    items:
-+      - const: ierr
-+      - const: terr
-+      - const: abort
-+      - const: resp
-+      - const: cmd
-+      - const: ibi
-+      - const: rx
-+      - const: tx
-+      - const: rcv
-+      - const: st
-+      - const: sp
-+      - const: tend
-+      - const: nack
-+      - const: al
-+      - const: tmo
-+      - const: wu
-+      - const: exit
-+    minItems: 16
-+
-+  clocks:
-+    items:
-+      - description: APB bus clock
-+      - description: transfer clock
-+      - description: SFRs clock
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: tclk
-+      - const: pclkrw
-+    minItems: 2
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    items:
-+      - description: Reset signal
-+      - description: APB interface reset signal/SCAN reset signal
-+
-+  reset-names:
-+    items:
-+      - const: presetn
-+      - const: tresetn
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clock-names
-+  - clocks
-+  - power-domains
-+  - resets
-+  - reset-names
-+
-+allOf:
-+  - $ref: i3c.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a08g045-i3c
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+        clock-names:
-+          maxItems: 2
-+        interrupts:
-+          minItems: 17
-+        interrupt-names:
-+          minItems: 17
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g047-i3c
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+        clock-names:
-+          minItems: 3
-+        interrupts:
-+          maxItems: 16
-+        interrupt-names:
-+          maxItems: 16
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a08g045-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    i3c@1005b000 {
-+        compatible = "renesas,r9a08g045-i3c";
-+        reg = <0x1005b000 0x1000>;
-+        clocks = <&cpg CPG_MOD R9A08G045_I3C_PCLK>,
-+                 <&cpg CPG_MOD R9A08G045_I3C_TCLK>;
-+        clock-names = "pclk", "tclk";
-+        interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 294 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 295 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 296 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 297 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 298 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 299 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "ierr", "terr", "abort", "resp",
-+                          "cmd", "ibi", "rx", "tx", "rcv",
-+                          "st", "sp", "tend", "nack",
-+                          "al", "tmo", "wu", "exit";
-+        resets = <&cpg R9A08G045_I3C_PRESETN>,
-+                 <&cpg R9A08G045_I3C_TRESETN>;
-+        reset-names = "presetn", "tresetn";
-+        power-domains = <&cpg>;
-+        #address-cells = <3>;
-+        #size-cells = <0>;
-+    };
-+...
+i2c6_pins:
+ - AP6256: UART_RXD<<UART_TX_GPIO16
+ - AP6256: UART_TXD>>UART_RX_GPIO17
+
+Tested successfully for basic mmc0 storage, USB, and network functionality on:
+- Milk-V Mars CM 8GB
+- Milk-V Mars CM Lite 4GB
+- Milk-V Mars CM Lite WiFi 8GB
+
+E Shattow (4):
+  dt-bindings: riscv: starfive: add milkv,marscm-emmc
+  riscv: dts: starfive: add Milk-V Mars CM system-on-module
+  dt-bindings: riscv: starfive: add milkv,marscm-lite
+  riscv: dts: starfive: add Milk-V Mars CM Lite system-on-module
+
+ .../devicetree/bindings/riscv/starfive.yaml   |   2 +
+ arch/riscv/boot/dts/starfive/Makefile         |   2 +
+ .../dts/starfive/jh7110-milkv-marscm-emmc.dts | 163 ++++++++++++++++
+ .../dts/starfive/jh7110-milkv-marscm-lite.dts | 176 ++++++++++++++++++
+ 4 files changed, 343 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-emmc.dts
+ create mode 100644 arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+
+
+base-commit: 28fa0dcb571ab8f3be4d919f0e20e01d4e44bcb1
 -- 
-2.47.2
+2.50.0
 
 
