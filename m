@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-199408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB194B108C9
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 13:14:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDBABB108CB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 13:14:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4761D1884402
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:14:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5E7B3B6140
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:13:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54AE426D4E5;
-	Thu, 24 Jul 2025 11:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C421626FDA6;
+	Thu, 24 Jul 2025 11:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JdcniV1r"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OUXuB8dU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A7D26CE2A
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 11:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2421F26D4FC
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 11:14:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753355643; cv=none; b=Hzy5Cd/MnbszH2ka3eAPdKxgL5kLjImW+qODeuiS595N4vwDuy13tYw+/KJdkqmeYPY/bYeB9PLRG2HWxXVWd9kWS4NB9kY7Luqf+jrq1CZYOqjtsp45DqrUWtch7DQFWrwL/uBooQaypCZZoEcnn+NhZRO9zFRrwVjUhur0NSY=
+	t=1753355646; cv=none; b=IoDA5QLRuMeq84m2NbquFn3wiV4tSJypr/ZjQ7eTGVPCEezKFjZTlF5G8vK/RSApP7LZyHN4p1nnlo85bO66TGLlZsL4IA1I9OeVDWtZRWCmbIIfp/KklM9YZMY17y5bt7UKkP9yEA9wXqGlwf+hTm8jSerSzDMgU/nEuJ1NSb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753355643; c=relaxed/simple;
-	bh=zYD7UiO3dez7RbH8uvDCPOH/dX9cX5UxYcjvd1wxDbY=;
+	s=arc-20240116; t=1753355646; c=relaxed/simple;
+	bh=QUlUkMxYLf0SjVpBsl0OVkwsTq7YyKk/KjAw6Del9ZE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eMozk++e34eh8GqEY5aIdEk5fDf/YXVDJDmn1YAnplwC9gRNpXABwyIXXbIPW6wjCt5rKgnpuCcw/t19zCnUOdnHfioSE0AeZLSX42eGD6kqldaxg5A6w/MDqZxD3lrOcGdhghe7QQLKY3oLjmBRBTuYZbPIqc+4w6b/4PRwrNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JdcniV1r; arc=none smtp.client-ip=209.85.218.47
+	 MIME-Version; b=WQ1a+T2u3FF/g/1VUMwz5KqZvNUmlvk26jWWGrWjovvk+FDpv44rETbu9an4E8jZAg80yj0/klD2PKkVLiSeSw/VldsT7b9KlKZnqxVauTaD+f6iG4tEJDJDVqglfdkWtTohrqyXAFZWr4rEeufHv/8dkPNlgH2N2Dnol5b0PK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OUXuB8dU; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ae3521a124cso16208766b.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 04:14:01 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ae34f43be56so18730466b.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 04:14:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753355640; x=1753960440; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1753355642; x=1753960442; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OGjfPszrVrEVOxka0UUUD+znsu6IGYgXm5WWAeRergQ=;
-        b=JdcniV1rtzmZYxuFD9KH+D6fIZy89PYXWaPLGA2rxwi4tPKEHis45Ynu05O5Bz3NCB
-         vwFD+rrhD3B+HBC2LD6DcjwAGMRhEd/1gwHmbwf9Cy2naWd3WykW0OUSQ/pTKVa2fOWX
-         6zCUtbqcucjWqxnakDRA1lm0U7RRXDEalCYgdwmy71BMML0KxuAgAowJwWSakh5ydnQW
-         ulUFgqD2V90KPTtY8JaY0all+8B3K2B/Uo3BLE8EoNu5qrjavRHX3QV15e9qTJ1rhbZQ
-         CS9pF4KN0ns8OxmAopLjqmucXQyH2myePdb9DVR0aWxtXmuBzp57SU3m9nfX/CB6MkMi
-         wt8A==
+        bh=RlXiIo1YTe81LzNvByvFXaqoppLPAdO13nkKqXERm8A=;
+        b=OUXuB8dU0RZCQdve72E3reseoZ9KffQ+cRCr6FIx1sQYUb8ZiSFECkC1Uhn5wO4BFb
+         2Zjqen5Qv7xFb/q+ashmbPH6cEw0BtDrtvkxXvw7EXHtYZZ3tC48Wz4Prsz+2POr3fe0
+         TROa9I6SVthk6efxrxsr+XHLkDJV7Y0EU2MHWcHed/L15bis7yTJqK/SdLuhTu/vaTDk
+         CcNE6J6U5rKRLZFQv6+nP6hLc5PTpENqz6lowAyIKAEDZq9WL1Wj3VJQn4NVDFiNE4Je
+         wAhUrAZGCkEtgwDBp39yqs1wgx8UI8yECLdGMa5JvcwmdxWLk6LjL6H7KmI2anvcdZSq
+         bk+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753355640; x=1753960440;
+        d=1e100.net; s=20230601; t=1753355642; x=1753960442;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OGjfPszrVrEVOxka0UUUD+znsu6IGYgXm5WWAeRergQ=;
-        b=FFlrl3WK458xFnrKABVAG5ECvhEbusH+mXNvtqND4Xiv4gPQD0YrYOxEn3Cnr+0L10
-         IX3g0lv74LVFmZKCU88RR1yq0aky9BGlYgsP2A7En4EcBsBeWFNk+pj38PkAjfyCD02B
-         U0yNrT2MUVlFU4KH38Fvs+QCHkU3Uism6Wbymid4tqiTk0rqaGF0kHH2DpJsPMBWasX5
-         4Vd8QPWZhd81+oC6SJww8nJu1SaMp16uSoJS5uak342jS9p9eM/37jHXAniXl3TNBzb5
-         rrv5dYNzsdCYwZ+FGFmNpPtH0s9Yl09FvPLENxZb2IT613UivShwXUXz8ooO7FY7AiFA
-         lzDw==
-X-Forwarded-Encrypted: i=1; AJvYcCUvrv1YcmS0UYrMyY6W+1O3nDH02/RtFoKwjPVccT2ihoQV5OyXrPj8GPSuQWVhGQPQc5ocUm1bFWlV@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFNUlYMzIbiwte1jVfQAZCuDbGjDaVgPaIjjCX+YSGwYyLQM5v
-	FTu3ITM5IZQWOT3ASr5M+cwiOdEUdxarT2HAMMMQfLkD50JEUtJAxVERgm+Q9qyaSnc=
-X-Gm-Gg: ASbGncvD+iPjQVQMwBlOTiwwsvlXzSii+FaH3w8faCWHXJM/UxdI7+6aOO+k6hmCq+p
-	IUDDUzMJ/cciF/jESuME5AT5crw68v2SqChr8Inr47PQr84Jta+jgEG1X8lIuUFtBGktAXtoQ7f
-	Vr4hzoJQsgRJ2rLDZq0xGNOFlDMl+UCVKYi8kSHPjOUsUU3Cxgv6i0SrhLSzcGV9e3Wq8DNypUV
-	XhEBrCB9QcxPenL9MROwRW/6LFuqdicGHYyj5dZkVMuv1vwfGf1CxQ60PjpAPloYbPLHoQc2+KM
-	d9JS2S5IQOAYoXAUgKHIsH9Yvv9yPB2Pe7LwTaJHyxTRGJUgnlihfddl6aFq5tDqT//m5Eb0MoV
-	jfCH2Z6wXqmtPURp8Gf6MpKJArJrhSElU
-X-Google-Smtp-Source: AGHT+IGT5QDdYa15M0nAX2eTGKcvGeF8vLhDDbNPFrB/tqkQztblqIfePsQl2N6GdzxuxEtq31HroA==
-X-Received: by 2002:a17:907:6d23:b0:ad8:8702:bc97 with SMTP id a640c23a62f3a-af2f8e71cf2mr227712366b.13.1753355639425;
-        Thu, 24 Jul 2025 04:13:59 -0700 (PDT)
+        bh=RlXiIo1YTe81LzNvByvFXaqoppLPAdO13nkKqXERm8A=;
+        b=H4YEPMcZY7/Ohmuw98D0F838prqJSxASjxZ+4s+iWXAzSvIZb5aZt9tc2jWWV/hY0u
+         rBvkp52K3+FVsD0M2/16Rl9TiuP+V9AP9P2V3JkZlVv+mCektOkQAlSFJlgPaJ9u6dWh
+         AW5ZOPxwH/0xEsWjRyNG/jtxGkXBW0NJ0vcP/E64jb6y1kb9XhsQ5SQLh0UQoZKne8xF
+         H+ZsTszz5u/XFN2EPTX31w3f/9nM6FAF1CCWPJyXRNJP7dINJgntZD4uFJ+gZl6mwvNq
+         rIbMfHuc4fOYT+9uQO7xh8fr/OrWCYjNaGMtfqZ2A/Icx1+C/iOndkDGVpIqEaboRp+7
+         7HnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWZCFIPeyBx+uX17SpzRVNzhexse64UYI9jqYUBGZHofIhkbRRRZ8Rh2uXV7ocn2YwNnYwcp3CY/+KG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8C596HfDii5OyLPK6j/lGAOdluZtzZAKLBeS1C+Ex3gGC9hEt
+	IIDd+/ulA0BLBS1IHJvMIe3pYilaqVPZTRRrSYO90e/W29veU7201a1KmA41E/vaakk=
+X-Gm-Gg: ASbGnctm3uSZgDGjQxf1NzRwAw7h4Mtg+ya1dvAUcVDPmwrWPN1b5HB/FGLB0qp1Wcj
+	sceQT1TfFFF9ssMQi5T7WJfO7gJW1f73WeOqCmDDHjeLL9xPVUpdti4Aq180BMuS3qfvJB+u8YE
+	+smi9Oz7DFHsGMM651hv+ZFDHhFf/VMoOx/+kK0Ttqeca8SX4wY36C3Le2Z0+8xDHhMLv2cTJr5
+	KgnrhOZ94xInkrjaG071KlNQ3MUEx7OHEQvq+kCfDpGNYI2rPd81wnks6V2gk2CcAMCR7WFN1vo
+	7y4OJ1K9lLimCVC47CRnkQ+mq9bPLgXXvJGUoy6VPlGe1AVoc6h4tVMl+1vK6Mf+qGZ+/3R67uN
+	83LA8TSjUw26SjXuJPVt7GPBUWupQGku4
+X-Google-Smtp-Source: AGHT+IEFsO1jeCJCKKhxjlisy/SsUZZ3OuDpWFhFwhM5aFP4wr0fQrdhbCZsUAkk2m0dTOMZzux8qg==
+X-Received: by 2002:a17:906:7956:b0:aec:5d6d:2180 with SMTP id a640c23a62f3a-af2f8c55a72mr223332966b.13.1753355642274;
+        Thu, 24 Jul 2025 04:14:02 -0700 (PDT)
 Received: from kuoka.. ([178.197.203.90])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af47cc6b416sm98680266b.40.2025.07.24.04.13.57
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af47cc6b416sm98680266b.40.2025.07.24.04.13.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jul 2025 04:13:58 -0700 (PDT)
+        Thu, 24 Jul 2025 04:14:01 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Lars-Peter Clausen <lars@metafoo.de>,
 	Michael Hennerich <Michael.Hennerich@analog.com>,
@@ -112,9 +112,9 @@ To: Lars-Peter Clausen <lars@metafoo.de>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-samsung-soc@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/4] dt-bindings: iio: adc: Replace hard-coded GPIO/IRQ flag with a define
-Date: Thu, 24 Jul 2025 13:13:47 +0200
-Message-ID: <20250724111345.47889-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/4] dt-bindings: iio: adc: samsung,exynos-adc: Use correct IRQ level in example
+Date: Thu, 24 Jul 2025 13:13:48 +0200
+Message-ID: <20250724111345.47889-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250724111345.47889-5-krzysztof.kozlowski@linaro.org>
 References: <20250724111345.47889-5-krzysztof.kozlowski@linaro.org>
@@ -124,56 +124,62 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1546; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=zYD7UiO3dez7RbH8uvDCPOH/dX9cX5UxYcjvd1wxDbY=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoghVt6VNb8EiMjGMt4ZyBRzMjh+nf+5u/Li4cb
- AspQBZbA7iJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaIIVbQAKCRDBN2bmhouD
- 1yreD/9pAXwvGQvWMsustFAtHpbJbZEysb2q48IDvkbMYbOWCebNv0ITYPDGcuruq2O708eDewd
- YmVn88qZDD0cLdy28IZfI+xQ5USH50CizIjVevVOjhCd62C2jt8GzLuir+zh0ImdWOYMpTSad9p
- dooXHQX+Kwn4+5CjOKUWRJliaYpWWHubOlVDTaeX5/zzPMMJDWM5NrQVqmF6Lrz17U9HvQgkYHA
- 5ybZe0Q7/szL552pc6G/b8QCu3igFe+kpgVKt5aaX7/kcQAnI9m9zVXBLiAilqe8zTyGwlwuTfb
- sbqx6OPnH4VsKrRXcomLJC0e077hX+ArYstwfo8prizIQsdcBpf81EFxYq2bt5rEe7FMSJ4A7me
- t79ep/dKYeNiDbWU18ut1Ha8IUdwqWaeBiKjhv7v5aPXnLR/vTAS7b/6W6+yoz7MUvZUTj9U+tN
- 1eMDgfKBJVXu0bX+oywTOVNdDMoFasdPCy+ZYMRlWOpVKSAXypnFw/aK//zI4eZ8zo8uiPC8PMD
- Y5V1i5PXiyl2fPd7rW0tlldrzDfHegX5E+C77NTfaBhNaXmq2vgRpvWmnbGoz8RfNYlJzZlfCjD
- p+5fWU0WqttjpSIu2LzQsvEDEgsY06cxoI5hQut4/Y6ZIN032JG3YB+5lNjzz3yzgU5axclQ9XA Ni4tforndR1vKWA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1492; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=QUlUkMxYLf0SjVpBsl0OVkwsTq7YyKk/KjAw6Del9ZE=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoghVuzHS4uXkyTU6sLVWBewujbkHFikNttM/IZ
+ isOEeWsOKCJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaIIVbgAKCRDBN2bmhouD
+ 10l9D/9DQ2PDHDgUtLpbh1bG9p4sGi3ncJTi0AN2Is3G8KmpxmpfhMyu1KOOykbxxWYASd5nQQn
+ XLCKNWaU40/sTcE05eH6IeyPkaVbBAmrqOIKiWYnkGPWLk2hFeyeDjU1i/299W2erhYLqqImuFZ
+ BdUteV1wXC9ce8uWNX0o14sewzu6cz7tRYfaCcM+TSmP/Ngj1xDy+4HOIgw/dZb5jaDN0Dkx+oF
+ BX7F0Toypv9+/XDHBm/ToCHcF68AHBVsUH4Sun7kLo6gnUu8uqDZ3wyDq6inD9w+iUkkwb1kquX
+ kunMrEATyImHxNK9PBKolSZe1BnFjP6qM/G796nPqDzotG3blFp7admLxwk20kfNBGgeBF9LGPV
+ BSAbdxqQcxiN33p/icJcU6hLpEy7wsLgPguvVkL+3qwBWfKo9mlnlmf0GpyVGh1qAm5o9v3p/Mg
+ T/Ut7KQp4l00G0fmEBvTELyk8iXW4KRMZTFoeNFChPU+iXoJCKRfY5ULOtpSzXYn8wJnoRLwVkf
+ DSpoXxNqM1g8gim36z+BCRQgS5jFE9Miduv2EhAZQVedb+0Tu0Tep62i7ZLXUpl6KKGTCsmj3bE
+ vAdNuW2Cslh5TlRotpuzZ+fv3XaVrA+z6fLaIfLrL18NXt0ptrlGhgOjMlhPNV8wLYZZ/RG649H oPxf6PSkRACc8nQ==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
 
-For readability use known defines instead of hard-coding GPIO or
-interrupt flag.
+The interrupt line to GIC is IRQ_TYPE_LEVEL_HIGH, so use that instead of
+"none".  Also replace the hard-coded GIC_SPI flag.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/iio/adc/maxim,max1241.yaml | 2 +-
- Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml  | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/iio/adc/samsung,exynos-adc.yaml    | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/maxim,max1241.yaml b/Documentation/devicetree/bindings/iio/adc/maxim,max1241.yaml
-index ef8d51e74c08..592854766583 100644
---- a/Documentation/devicetree/bindings/iio/adc/maxim,max1241.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/maxim,max1241.yaml
-@@ -63,6 +63,6 @@ examples:
-             vdd-supply = <&adc_vdd>;
-             vref-supply = <&adc_vref>;
-             spi-max-frequency = <1000000>;
--            shutdown-gpios = <&gpio 26 1>;
-+            shutdown-gpios = <&gpio 26 GPIO_ACTIVE_LOW>;
-         };
-     };
-diff --git a/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml b/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml
-index 503285823376..4a8f127de7e3 100644
---- a/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml
-@@ -81,7 +81,7 @@ examples:
-             reg = <0x10>;
+diff --git a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
+index 4e40f6bed5db..8069e99ddac8 100644
+--- a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
+@@ -128,10 +128,12 @@ allOf:
  
-             interrupt-parent = <&gpio1>;
--            interrupts = <29 8>;
-+            interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
+ examples:
+   - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
+     adc: adc@12d10000 {
+         compatible = "samsung,exynos-adc-v1";
+         reg = <0x12d10000 0x100>;
+-        interrupts = <0 106 0>;
++        interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+         #io-channel-cells = <1>;
  
-             vdd-supply = <&dummyreg>;
-             iovdd-supply = <&dummyreg>;
+         clocks = <&clock 303>;
+@@ -152,11 +154,12 @@ examples:
+ 
+   - |
+     #include <dt-bindings/clock/exynos3250.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     adc@126c0000 {
+         compatible = "samsung,exynos3250-adc";
+         reg = <0x126c0000 0x100>;
+-        interrupts = <0 137 0>;
++        interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>;
+         #io-channel-cells = <1>;
+ 
+         clocks = <&cmu CLK_TSADC>,
 -- 
 2.48.1
 
