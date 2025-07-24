@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-199382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 307F0B10751
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 12:03:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51D12B10763
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 12:06:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F750AA3529
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:03:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7461D16BF57
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B853025A2A4;
-	Thu, 24 Jul 2025 10:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CB8825EF97;
+	Thu, 24 Jul 2025 10:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ezvtvU99"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vO0RCnci"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F9062417C6;
-	Thu, 24 Jul 2025 10:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D24E425E47D;
+	Thu, 24 Jul 2025 10:06:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753351404; cv=none; b=HL12Dum+tuI39e6vp92XdddJQ9MTCaScuTqNaor2J+TmE9Y13J0S7Vs5vg1HcXv8oOVVTwIQdGsYh4Qv4DYyOXBmIn67ugkcOsAE8BxToW5YrCfioLSPo+cncbebDSuHousi7sbJMKFJINrwWK3m+GcNynNfqxIZ31d0jlDGKuk=
+	t=1753351568; cv=none; b=IKrbUyVwtewO9iPyTWCcVMxn/zffmEaMfoEBLmHQsxm561TxHwNfFQ2BokxOOCnfUS8q8RQ5JlIgxgMtoYDKYcA5HYZbLMNd+2OCSrQsBaQYlT50XaXDvv80BLtgJr46rWVhHx7gjoDPagJmscdhe5lfaWQB7TCbis4cILEOCkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753351404; c=relaxed/simple;
-	bh=BkGnaoDjwlnG5d1b9npKldBWzlpT8LO20JP5ekflE2E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Ddrp48jI72Qm07SbjRq+n83+Q9O+hYqpTsAxy0JYA3f+mSQeQqUpLdtKa4AslyFkRxyQEYV3JEsyCfNsp/1DogRClivqhCXQGCG0FnOXfRguI+dz0l1o3xKNcJdZQEhq/RMl+cl4JshMzP8Aog8NgDJiPA4TnIF63UbKlvgpAoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ezvtvU99; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E522C4CEF4;
-	Thu, 24 Jul 2025 10:03:20 +0000 (UTC)
+	s=arc-20240116; t=1753351568; c=relaxed/simple;
+	bh=CZQB8Gu6DwGDSg7j2DBqQNvibsRcjWZdAQ1gA39lJRA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=A4N23JBzGBOdU2cDbLvzGnpxj03gbhVaIcXDThopmpEo+zkKtnPrUDy2mlvQtgv5HKliUC1EaKWXv+tbibVnIiPt9C1UcvzsLQTNbSBvcN48zhXOYL4smetStaPJX9jCuuwy1YPy4xjtlaxGIcasECVUb7MsW8kjDWg0HRcTAG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vO0RCnci; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 779F8C4CEED;
+	Thu, 24 Jul 2025 10:06:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753351404;
-	bh=BkGnaoDjwlnG5d1b9npKldBWzlpT8LO20JP5ekflE2E=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=ezvtvU99gUA8Pun4WBy42bxlMvIvPkqC2pO0ZHyvJBrHuz4idjHJY2dEZcXRPO38Z
-	 3qHJHg0VSEYUbIxTccizxFMPuOYcxTe80/GsJXOTNdO4s5agRJxg9QFqnagwqWM1lP
-	 U2ZxNSr71pPHD9+kmA7r+ChyEZc8i0lLCT5TEz1OQYXz2AcIME49N6DZWUgFAuedlx
-	 t1fVoRFuC6bHNW/cq14YjHgwan9906/30ATj+NuvS6P5eWtpg6OF/yRN0A7/nDgfix
-	 0JsQDaYcN2AN/xvPryMf/B+bNf9qCsM4Th7mY8pYSZ4nXBPb4rBJrN0ZeFuZOLYkBP
-	 ONfZBqjKQcA5Q==
-Message-ID: <83f69759-da06-4a20-8185-3f24f2ac5794@kernel.org>
-Date: Thu, 24 Jul 2025 12:03:19 +0200
+	s=k20201202; t=1753351568;
+	bh=CZQB8Gu6DwGDSg7j2DBqQNvibsRcjWZdAQ1gA39lJRA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=vO0RCnciK35ngvsiAvS+HQ6LEeTAuHwG8wjHqGvuEShhR1VdjpK20T9CdegHhFmGy
+	 XcIrTgYrFAc089yLAbZ5J/CGJMzGVH1osr69M9+vnoc5l0WWW5snxGkns8BZE0egih
+	 WNlUbskjHtnxwwv7w4g5Mwyhs13S0nQcSdG2nTUxUt9yzFAeVrx4Qem/TPVG/+SFR6
+	 XfS3HUyjlo3dHQGpbTwKOMiwy4kgW37nngOLE/+r/8wt13AKUAmK48rw+IuhgzhM2M
+	 mjqhgJhC/zhIThDghIhePdCrOcowq0Kf5zjVCVFKuvsUMJG1JyNw6nPKWefg//fM8Y
+	 ZGAQkDdVYuOgg==
+Message-ID: <f69a76c5-157d-4cb4-bf46-1acdb6a87319@kernel.org>
+Date: Thu, 24 Jul 2025 12:06:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/13] dt-bindings: arm: aspeed: add Facebook
- Wedge400-data64 board
-To: rentao.bupt@gmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
- Tao Ren <taoren@meta.com>
-References: <20250723233013.142337-1-rentao.bupt@gmail.com>
- <20250723233013.142337-7-rentao.bupt@gmail.com>
+Subject: Re: [PATCH v5 1/4] dt-bindings: rtc: Document NVIDIA VRS RTC
+To: Jon Hunter <jonathanh@nvidia.com>, Shubhi Garg <shgarg@nvidia.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rtc@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20250723130343.2861866-1-shgarg@nvidia.com>
+ <20250723130343.2861866-2-shgarg@nvidia.com>
+ <20250724-peridot-chachalaca-of-progress-a9f2ee@kuoka>
+ <2c59e665-6415-460b-8ff8-c06f8d94f9eb@nvidia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,19 +107,48 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250723233013.142337-7-rentao.bupt@gmail.com>
+In-Reply-To: <2c59e665-6415-460b-8ff8-c06f8d94f9eb@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/07/2025 01:30, rentao.bupt@gmail.com wrote:
-> From: Tao Ren <rentao.bupt@gmail.com>
+On 24/07/2025 11:41, Jon Hunter wrote:
 > 
-> Document the new compatibles used on Meta/Facebook Wedge400-data64
-> board.
+> On 24/07/2025 08:59, Krzysztof Kozlowski wrote:
+>> On Wed, Jul 23, 2025 at 01:03:40PM +0000, Shubhi Garg wrote:
+>>> +description:
+>>> +  NVIDIA VRS (Voltage Regulator Specification) RTC provides 32kHz RTC clock
+>>> +  support with backup battery for system timing. It provides alarm functionality
+>>> +  to wake system from suspend and shutdown state. The device also acts as an
+>>> +  interrupt controller for managing interrupts from the VRS.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: nvidia,vrs10-rtc
+>>
+>> Nothing improved. You never replied to comments and then replaced one
+>> redundant word into other redundant word.
+>>
+>> Respond to review or implement it fully, not partially.
+>>
+>> Or add COMPLETE bindings, not partial ones. See writing bindings doc.
 > 
-> Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
+> OK, right so the DT binding should describe the overall PMIC device, 
+> even though the driver needs to support the RTC.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+This is not a driver patch. This is patch for hardware. Sending
+incomplete pieces of a device, without complete picture is really not
+the right way. Knowing this is part of PMIC this should be rejected, but
+how can we decide on that if contributor never tells us this is a part
+of PMIC?
+
+> 
+> Shubhi, is vrs10 the version of the VRS spec for the PMIC device or just 
+> the RTC portion? If it is, the maybe 'nvidia,vrs10' is sufficient here.
+> 
+> Jon
+> 
+
 
 Best regards,
 Krzysztof
