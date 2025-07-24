@@ -1,253 +1,202 @@
-Return-Path: <devicetree+bounces-199562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82C4DB113AE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 00:15:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BB8FB11405
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 00:34:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BA4E188DE4D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 22:15:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0BAC1CE50DB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 22:34:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF4D23BF91;
-	Thu, 24 Jul 2025 22:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 824B1241CB6;
+	Thu, 24 Jul 2025 22:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="iIKxAq8N"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="SvLnwKim"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4A7523BCF7;
-	Thu, 24 Jul 2025 22:15:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EA4323BCE4;
+	Thu, 24 Jul 2025 22:33:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753395312; cv=none; b=kVrO1EruDYNdW0JBCORVczqQnpPIR55uxaw4aVAaeeZvKhqPv0s/syo3PAUciRLg7gYDY2xObzex0Ee97CSz1eFftqBBRojn3pRV8Bxn0nUUkmI4MoxyweOzgn3BgJ6bWObfR+LVnpryh7PeHhEmZLp/w3gKuxlyIRHj8/DOex4=
+	t=1753396435; cv=none; b=V1Vd3A3iLPX047PvfREHwIESWy0FYLNemvNScxw4gHFa0/OlNG9840Rb+OepXlmg2wagrwo4opPRwWi8AUohNz5TH8CRc8wTfYQ/LugWw2SwwNZGGHa15212Kn94mX4A9bPbOios3Jih+83JzLHQfv3v9o4YuMBPEfon8Xxxh94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753395312; c=relaxed/simple;
-	bh=wnDieMEk7I0tE4d8tFbRvCZXpUeQxwW/lMFB5n8RFBg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kvo5iuzn+/1Bo3m9sVcw2chhC5b1EMREVgMH/x1oI8saQwlbGnJCxII5klPQghDC+4w/T68EIz+pANUTYc09Yx9m+r1ZcPI4IvWdGgkyNIiTFOCxCqtVgtIbj3jgk/LX/2sMCxnJAHMOJ34xLPW883zc0jP45zWFJgz1wGDaJjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=iIKxAq8N; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 78DE4169;
-	Fri, 25 Jul 2025 00:14:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1753395268;
-	bh=wnDieMEk7I0tE4d8tFbRvCZXpUeQxwW/lMFB5n8RFBg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iIKxAq8NUNohSczhCUHjFjYjqGXvzOVyJgHf8JfWyG1deUVOrNEMGVQtTRSy2Gndc
-	 2Sg3ej8KtZL7H49g0cjQdnvEkPeMXmVH26rENhDo520m1dlD7IT579WdFLK5tOkZQr
-	 8evCoDc4SwrI+mq5D6iovJFdU1TD5D3YBx8Nb1m4=
-Date: Fri, 25 Jul 2025 01:15:04 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank.Li@nxp.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1753396435; c=relaxed/simple;
+	bh=ZU7QPNVicHahHGP/x1GNBLKUwIzvGJeMk8fuXUXOr/g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tLROW2tW1E/Xj2uceACFv32uaw9pjPtLAOf+/7U2mVerhGmg0kN3pkeXFFunrn2gD8yZJJwVwaMWuCSdsXnIRvik5aoS5dLVmklX1+t1JwCHytEJH/XcVUcsPtSjJNVd1tg0/Vr2IUGbnnvok3GyoDbONj1wRwEPt9G3Snyvshw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=SvLnwKim; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1979F10391E80;
+	Fri, 25 Jul 2025 00:33:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1753396424; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=saNao2TEFsS6+fbp/fnBqwGoKqCJ4jz58yV/lw4xvXk=;
+	b=SvLnwKimY2Sxa1GWeZaRqlyc+eQ+h8ljACW/kjPUzJOphgQQZdbRFsGHAsjpa3I4XPrJbR
+	8g1zufVcyriv/KCDY/uyt5r714ej6k5laGQ10aeEQzVf5V+FbeDBYNGGzfUjDAhFIWpZlg
+	tWGIvNg5QKbR/aUfZs34jCXcR8jFWPZ/BqTJbVi61ROea33UhhYXsU0o7gt6Xo+BP2X8c6
+	2RpHUBbpPu5x815mkV9NVTfbKu3ewLCb0gpKyNgVq+SXVildi3Zllsd4TFeWuZWH2o25bU
+	0LSkqmXr0ciaJpGCXclfXgmTKBOKtQwq0fTacVLpwvbd2mOwFEg4jLnjNj/jHg==
+From: Lukasz Majewski <lukma@denx.de>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Alice Yuan <alice.yuan@nxp.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: media: add i.MX parallel CPI support
-Message-ID: <20250724221504.GB17890@pendragon.ideasonboard.com>
-References: <20250708-imx8qxp_pcam-v3-0-c8533e405df1@nxp.com>
- <20250708-imx8qxp_pcam-v3-1-c8533e405df1@nxp.com>
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Simon Horman <horms@kernel.org>,
+	Lukasz Majewski <lukasz.majewski@mailbox.org>
+Subject: [net-next v16 00/12] net: mtip: Add support for MTIP imx287 L2 switch driver
+Date: Fri, 25 Jul 2025 00:33:06 +0200
+Message-Id: <20250724223318.3068984-1-lukma@denx.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250708-imx8qxp_pcam-v3-1-c8533e405df1@nxp.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Frank,
+From: Lukasz Majewski <lukasz.majewski@mailbox.org>
 
-On Tue, Jul 08, 2025 at 01:48:42PM -0400, Frank Li via B4 Relay wrote:
-> From: Alice Yuan <alice.yuan@nxp.com>
-> 
-> Document the binding for parallel CPI controller found in i.MX8QXP, i.MX93
-> and i.MX91 SoCs.
-> 
-> Signed-off-by: Alice Yuan <alice.yuan@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+This patch series adds support for More Than IP's L2 switch driver embedded
+in some NXP's SoCs. This one has been tested on imx287, but is also available
+in the vf610.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+In the past there has been performed some attempts to upstream this driver:
 
-> ---
-> Change in v3:
-> - use enum at compatible string
-> - add ref to video-interfaces.yaml#
-> - use cpi as node name in examples.
-> - replace csi (Camera Serial Interface) with CPI (Camera Parallel Interface)
-> in commit message.
-> 
-> Change in v2:
-> - use pcif surfix as Laurent Pinchart's suggest.
-> - put power-domains into required list
-> ---
->  .../devicetree/bindings/media/fsl,imx93-pcif.yaml  | 126 +++++++++++++++++++++
->  MAINTAINERS                                        |   1 +
->  2 files changed, 127 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/fsl,imx93-pcif.yaml b/Documentation/devicetree/bindings/media/fsl,imx93-pcif.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..f92e9af371c91636cef42e48573198d4ea5e15f5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/fsl,imx93-pcif.yaml
-> @@ -0,0 +1,126 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/fsl,imx93-pcif.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: i.MX8/9 Parallel Camera Interface
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +description: |
-> +  This is device node for the Parallel Camera Interface which enables the
-> +  chip to connect directly to external Parallel CMOS image sensors.
-> +  Supports up to 80MHz input clock from sensor.
-> +  Supports the following input data formats
-> +    - 8-bit/10-bit Camera Sensor Interface (CSI)
-> +    - 8-bit data port for RGB, YCbCr, and YUV data input
-> +    - 8-bit/10-bit data ports for Bayer data input
-> +  Parallel Camera Interface is hooked to the Imaging subsystem via the
-> +  Pixel Link.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - fsl,imx8qxp-pcif
-> +          - fsl,imx93-pcif
-> +      - items:
-> +          - enum:
-> +              - fsl,imx91-pcif
-> +          - const: fsl,imx93-pcif
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pixel
-> +      - const: ipg
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        unevaluatedProperties: false
-> +        description: Input port node.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              bus-type:
-> +                const: 5
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        unevaluatedProperties: false
-> +        description: Output port node.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              bus-type:
-> +                const: 5
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx93-clock.h>
-> +    #include <dt-bindings/power/fsl,imx93-power.h>
-> +
-> +    cpi@4ac10070 {
-> +        compatible = "fsl,imx93-pcif";
-> +        reg = <0x4ac10070 0x10>;
-> +        clocks = <&clk IMX93_CLK_MIPI_CSI_GATE>,
-> +                 <&clk IMX93_CLK_MEDIA_APB>;
-> +        clock-names = "pixel", "ipg";
-> +        assigned-clocks = <&clk IMX93_CLK_CAM_PIX>;
-> +        assigned-clock-parents = <&clk IMX93_CLK_VIDEO_PLL>;
-> +        assigned-clock-rates = <140000000>;
-> +        power-domains = <&media_blk_ctrl IMX93_MEDIABLK_PD_MIPI_CSI>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +
-> +                endpoint {
-> +                    remote-endpoint = <&mt9m114_ep>;
-> +                };
-> +            };
-> +
-> +            port@1 {
-> +                reg = <1>;
-> +                endpoint {
-> +                    remote-endpoint = <&isi_in>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8dc0f6609d1fe2e3eefd50088dbe566d9e107bfa..8ae0667d2bb41fb6a1549bd3b2b33f326cbd1303 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15107,6 +15107,7 @@ L:	linux-media@vger.kernel.org
->  S:	Maintained
->  T:	git git://linuxtv.org/media.git
->  F:	Documentation/admin-guide/media/imx7.rst
-> +F:	Documentation/devicetree/bindings/media/fsl,imx93-pcif.yaml
->  F:	Documentation/devicetree/bindings/media/nxp,imx-mipi-csi2.yaml
->  F:	Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
->  F:	Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+1. The 4.19-cip based one [1]
+2. DSA based one for 5.12 [2] - i.e. the switch itself was treat as a DSA switch
+   with NO tag appended.
+3. The extension for FEC driver for 5.12 [3] - the trick here was to fully reuse
+   FEC when the in-HW switching is disabled. When bridge offloading is enabled,
+   the driver uses already configured MAC and PHY to also configure PHY.
+
+All three approaches were not accepted as eligible for upstreaming.
+
+The driver from this series has floowing features:
+
+1. It is fully separated from fec_main - i.e. can be used interchangeable
+   with it. To be more specific - one can build them as modules and
+   if required switch between them when e.g. bridge offloading is required.
+
+   To be more specific:
+        - Use FEC_MAIN: When one needs support for two ETH ports with separate
+          uDMAs used for both and bridging can be realized in SW.
+
+        - Use MTIPL2SW: When it is enough to support two ports with only uDMA0
+          attached to switch and bridging shall be offloaded to HW. 
+
+2. This driver uses MTIP's L2 switch internal VLAN feature to provide port
+   separation at boot time. Port separation is disabled when bridging is
+   required.
+
+3. Example usage:
+        Configuration:
+        ip link set lan0 up; sleep 1;
+        ip link set lan1 up; sleep 1;
+        ip link add name br0 type bridge;
+        ip link set br0 up; sleep 1;
+        ip link set lan0 master br0;
+        ip link set lan1 master br0;
+        bridge link;
+        ip addr add 192.168.2.17/24 dev br0;
+        ping -c 5 192.168.2.222
+
+        Removal:
+        ip link set br0 down;
+        ip link delete br0 type bridge;
+        ip link set dev lan1 down
+        ip link set dev lan0 down
+
+4. Limitations:
+        - Driver enables and disables switch operation with learning and ageing.
+        - Missing is the advanced configuration (e.g. adding entries to FBD). This is
+          on purpose, as up till now we didn't had consensus about how the driver
+          shall be added to Linux.
+
+5. Clang build:
+	make LLVM_SUFFIX=-19 LLVM=1 mrproper
+	cp ./arch/arm/configs/mxs_defconfig .config
+	make ARCH=arm LLVM_SUFFIX=-19 LLVM=1 W=1 menuconfig
+	make ARCH=arm LLVM_SUFFIX=-19 LLVM=1 W=1 -j8 LOADADDR=0x40008000 uImage dtbs
+
+        make LLVM_SUFFIX=-19 LLVM=1 mrproper
+        make LLVM_SUFFIX=-19 LLVM=1 allmodconfig
+        make LLVM_SUFFIX=-19 LLVM=1 W=1 drivers/net/ethernet/freescale/mtipsw/ | tee llvm_build.log
+        make LLVM_SUFFIX=-19 LLVM=1 W=1 -j8 | tee llvm_build.log
+
+6. Kernel compliance checks:
+	make coccicheck MODE=report J=4 M=drivers/net/ethernet/freescale/mtipsw/
+	~/work/src/smatch/smatch_scripts/kchecker drivers/net/ethernet/freescale/mtipsw/
+
+7. GCC
+        make mrproper
+        make allmodconfig
+        make W=1 drivers/net/ethernet/freescale/mtipsw/
+
+Links:
+[1] - https://github.com/lmajewski/linux-imx28-l2switch/commits/master
+[2] - https://github.com/lmajewski/linux-imx28-l2switch/tree/imx28-v5.12-L2-upstream-RFC_v1
+[3] - https://source.denx.de/linux/linux-imx28-l2switch/-/tree/imx28-v5.12-L2-upstream-switchdev-RFC_v1?ref_type=heads
+
+Lukasz Majewski (12):
+  dt-bindings: net: Add MTIP L2 switch description
+  ARM: dts: nxp: mxs: Adjust the imx28.dtsi L2 switch description
+  ARM: dts: nxp: mxs: Adjust XEA board's DTS to support L2 switch
+  net: mtip: The L2 switch driver for imx287
+  net: mtip: Add buffers management functions to the L2 switch driver
+  net: mtip: Add net_device_ops functions to the L2 switch driver
+  net: mtip: Add mtip_switch_{rx|tx} functions to the L2 switch driver
+  net: mtip: Extend the L2 switch driver with management operations
+  net: mtip: Extend the L2 switch driver for imx287 with bridge
+    operations
+  ARM: mxs_defconfig: Enable CONFIG_NFS_FSCACHE
+  ARM: mxs_defconfig: Update mxs_defconfig to 6.16-rc5
+  ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW to support MTIP L2
+    switch
+
+ .../bindings/net/nxp,imx28-mtip-switch.yaml   |  150 ++
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/nxp/mxs/imx28-xea.dts       |   56 +
+ arch/arm/boot/dts/nxp/mxs/imx28.dtsi          |    9 +-
+ arch/arm/configs/mxs_defconfig                |   13 +-
+ drivers/net/ethernet/freescale/Kconfig        |    1 +
+ drivers/net/ethernet/freescale/Makefile       |    1 +
+ drivers/net/ethernet/freescale/mtipsw/Kconfig |   13 +
+ .../net/ethernet/freescale/mtipsw/Makefile    |    4 +
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.c  | 1957 +++++++++++++++++
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.h  |  651 ++++++
+ .../ethernet/freescale/mtipsw/mtipl2sw_br.c   |  132 ++
+ .../ethernet/freescale/mtipsw/mtipl2sw_mgnt.c |  443 ++++
+ 13 files changed, 3426 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Kconfig
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Makefile
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_mgnt.c
 
 -- 
-Regards,
+2.39.5
 
-Laurent Pinchart
 
