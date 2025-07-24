@@ -1,74 +1,76 @@
-Return-Path: <devicetree+bounces-199193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC1FCB0FDBB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 01:46:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375FDB0FDE2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 02:03:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D94DE587A94
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jul 2025 23:46:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C6211CE02B8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 00:04:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4088229B21;
-	Wed, 23 Jul 2025 23:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5318A4430;
+	Thu, 24 Jul 2025 00:03:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i1K9qzH7"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FFjMXEE0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89DA5A59;
-	Wed, 23 Jul 2025 23:46:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 020EC1362;
+	Thu, 24 Jul 2025 00:03:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753314381; cv=none; b=Zu8Tcqsw5hlb3HjqakuVfVwInrhwnAJWxBvOBueMostNHVe86x+qxL/TgSSWkgKbb5iR3iQ628ygEroiUyp8tAhxuW8pCLA0nutyzsDa50coE9GRdoDOMdOmkrIhr9YnxmlKnS7YkRqA13fWWV1lnkecPrDeOYRb9ErsfBxVqYY=
+	t=1753315432; cv=none; b=T+3S1dylt1regUhPRjBr4LYi+utyHmTPm8TNOuxu589ftAu0gp0FLUwOhmnblkCIAtZ5aDVcp//8qPOvSCDwhjvxW2yc3tqCRuSsNUBVdibKuYEINoowDN2/rRypQD3Zt/66AvSvSaUKUx28xN7u7TRdNahPq3LuByrKEhbXQXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753314381; c=relaxed/simple;
-	bh=L9TrYMjgYebm6KWIWcjYqtWR2XfIR95CuTK3iPlv5r4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=l7uU45rD1Iq+kR2bychZe8m5lEEBwxirzfqf43VPKrH88QB1eXiD64Sb+4X7cRcR87fGYVhvnWH6tjYJXEG4Cstr7mzfJKbJWSJ4mEBBtQ+Pz6j7ivPlUyVQRbtyFSEK0XWWPxrc2MMYemQk2llzkabQUHyK4bvZUk3cf4hbxes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i1K9qzH7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 525B2C4CEE7;
-	Wed, 23 Jul 2025 23:46:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753314381;
-	bh=L9TrYMjgYebm6KWIWcjYqtWR2XfIR95CuTK3iPlv5r4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=i1K9qzH7DG2h+g1yZsEjaOVZzigH1fChupHxonmAIx7JGqhCu+z87XlBnVEupXEt6
-	 KSqkbGRpnDxmrhXtnF1dcFlSHwR1cn5ToYnTcU2qtx8pk7v85TdPm10X605v4xe17R
-	 wpbUeQu7mCREt74xv0h5FygWr++g81Wpj85SOxBpjOmSJb251GcTyhRdonSQSdj3JI
-	 W7of1EJ+hb2S3xA6dWqjuH+45NyOpujnCTIPius9sxbeG/NSDlnyQztLfic65oghnN
-	 4TCL++mWSgE9usLvZUw6/KW0T9ZQpTwet84KvfyjPT3ptHhE9tlUoBWJTBc3AvBXUO
-	 fSVFmBk159VXw==
-Date: Wed, 23 Jul 2025 16:46:19 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Sanjay Suthar <sanjaysuthar661996@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- ribalda@kernel.org, jic23@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, pabeni@redhat.com, neil.armstrong@linaro.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com
-Subject: Re: [PATCH v3] dt-bindings: cleanup: fix duplicated 'is is' in YAML
- docs
-Message-ID: <20250723164619.303f1dcd@kernel.org>
-In-Reply-To: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
-References: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
+	s=arc-20240116; t=1753315432; c=relaxed/simple;
+	bh=mqCXqFAUkwR5ZJBO7H5kiZwhtz2lwVY344Ks3ls0Cek=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YW5q/YI64IKN6CD0snLvqXP+ItBCy8XTFMh+zCGzZV4JH8SpjF8XLMzsyRXQD9sWjDaaToZXT6hilHlQNV2wTJp9DFhFybuYYEYRIf9GODXg+r7T5d4KrdMj3gVWfPNnFf3Fzhz44Jbee8cpeFYeSeGgyppjjXNPFf00duvcNX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FFjMXEE0; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=wdMyNpyczdlOF7zghQKC0llIb5aOLp+CiZl88HV1/CY=; b=FFjMXEE0dft5Mn5To34aMAJvr8
+	FHxoLBZ+8iDP57LHB1cR5amgeViOAMJdI0zlKqag8LggouCHo55dVo9BBj3SgM/KamWMM6K2Fk0Cd
+	kDuszKOEo5VSLCKafxlGKhsjfMOevUJP5Md+PFzLd5xH5RdqPMbiO++iN42cyFe19FGs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uejQf-002hyY-0O; Thu, 24 Jul 2025 02:03:21 +0200
+Date: Thu, 24 Jul 2025 02:03:20 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: rentao.bupt@gmail.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Tao Ren <taoren@meta.com>
+Subject: Re: [PATCH v3 10/13] ARM: dts: aspeed: Add Facebook Fuji-data64
+ (AST2600) Board
+Message-ID: <d09667e5-992e-4ced-ae30-7a4116a72c62@lunn.ch>
+References: <20250723233013.142337-1-rentao.bupt@gmail.com>
+ <20250723233013.142337-11-rentao.bupt@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250723233013.142337-11-rentao.bupt@gmail.com>
 
-On Tue, 22 Jul 2025 22:35:13 +0530 Sanjay Suthar wrote:
-> - net/amlogic,meson-dwmac.yaml
+> +&mac3 {
+> +	status = "okay";
+> +	phy-mode = "rgmii";
 
-Acked-by: Jakub Kicinski <kuba@kernel.org>
+Does the PCB have extra long clock lines to implement the 2ns delay?
+
+	Andrew
 
