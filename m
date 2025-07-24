@@ -1,172 +1,159 @@
-Return-Path: <devicetree+bounces-199337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0702DB10516
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:00:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A301CB10523
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:01:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDB413A1AE9
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 08:56:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A3903A8D34
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 08:56:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D684275108;
-	Thu, 24 Jul 2025 08:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 170E92737EA;
+	Thu, 24 Jul 2025 08:55:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zfjmgph9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rhOgaKaf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F8D22080C1;
-	Thu, 24 Jul 2025 08:52:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A3127144C;
+	Thu, 24 Jul 2025 08:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753347159; cv=none; b=Zo0HaRiYmIVVtESRXKV+V4r5FR72D8zctzoVZp5ENFQ22os93z93JZ730oo8q3EpYX/opmoPy2PS5kKsiGxki0kNHgP/6sPA+ZOdKgPsqOK6ylSXyuLyoJ3KbnOWGtQlfX4a7psh775p7YF+z0YiYVu//u03QSwkydIpnxQQSMM=
+	t=1753347335; cv=none; b=Seh3Y7EHJlLsdJLWbAO0tZBcMdU+5T/+edXfedRsyIETk/wjY8uqFc4D2qH32IMPF1+89DWIUVHyTk6nfzPuum02RYWEJzZqgcwI3OvFvZFuwCWB+7TQzCQDubjLYGBGptFv7j6zkNp2oyBxe3Rc+3JbtJPgH3eX1R4kdVpRKFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753347159; c=relaxed/simple;
-	bh=lEUiukjpItIZOMLZybq8zVOV0E1VI31HPjpcqCCRXw0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=krP5CRQ3eiT8AFuwvwbrIia1BqP/wT805O2GfXwu++jXYqH+KGAoRk/GJj9Cre6G+OeC06TLpfgPidx1YOPy1wKXtk6wfPZxvqlVRU1J5JaqEHWxP7Cwl50rLhKPWsh+knn/j0n741ZD8kU8s376m74fLca2v8Qp+KeZIsqiaRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zfjmgph9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6FCDC4CEED;
-	Thu, 24 Jul 2025 08:52:35 +0000 (UTC)
+	s=arc-20240116; t=1753347335; c=relaxed/simple;
+	bh=7Rl73eTGs9cKwu4cmtief0kRNJb/4nA5rJoiL8w0XqM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JY8oLfewcyfF5t++ED9oZsJSHBNiMJIPApuT7Y+b2xrGhvgx6KeszjVcKCjHyoFnltlia1jEAkMZL7NqXQRZek3XpP54xZ3qRYxLAm+1zOf4NnM9HVfcRZbBpe+Otaq/Z18vsFpSQT8UT+/tU8C3oKmf+66ZfpQR3OSQ4NYOzrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rhOgaKaf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E5E2C4CEED;
+	Thu, 24 Jul 2025 08:55:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753347156;
-	bh=lEUiukjpItIZOMLZybq8zVOV0E1VI31HPjpcqCCRXw0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zfjmgph9vyQJ1Z52UaLvbtnXWS2GVe1JpGrut3ak0bCBBZw1wZjVZ//VT4dmUdI/2
-	 QoR2MDn1JkBNI121S3rhq4WChb5c/yoECIBnvhmPNxchnBFyOduvyiuUfaOr7BeCWb
-	 VXclpmlMokvspHjFgJBGkIMDxcpDqccxZY8BHMRBOidJpTAEGAJd/TjOQJoqTQDH9V
-	 8rjK97IQM5/zJ+lFH87y9FNJHqKKs93eG9to7basm5n/ECtEawU4o2JAxDERNzUDSa
-	 nW5V6aiTXZ/s2/89kJp6Trv+Cf+xHdyulQGLn/d6Je+d8oscg1CiDmqoM+oKXuGgLb
-	 J65mC6IVet3wA==
-Date: Thu, 24 Jul 2025 10:52:34 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
-	simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org, 
-	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, devicetree@vger.kernel.org, l.stach@pengutronix.de, 
-	shengjiu.wang@gmail.com, perex@perex.cz, tiwai@suse.com, linux-sound@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: display: imx: add HDMI PAI for
- i.MX8MP
-Message-ID: <20250724-straight-lorikeet-of-novelty-9124f8@kuoka>
-References: <20250724072248.1517569-1-shengjiu.wang@nxp.com>
- <20250724072248.1517569-2-shengjiu.wang@nxp.com>
+	s=k20201202; t=1753347334;
+	bh=7Rl73eTGs9cKwu4cmtief0kRNJb/4nA5rJoiL8w0XqM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rhOgaKafB01JlDdf8OmBacQSgkKTNO0rtPHQuGkfk2YpR+UQC4jkIg+jZqJbYM5LJ
+	 0DIW9r+bhkHk2D1iCdal1VbYwvdmfFJ9XfQ3XvHKMuPQRIewqj0ajSGDnAVF3D9yjQ
+	 6SG7/adqin0lxOKllPMgWIp7x3coZFgazAjMDBJ6UvE0RjY0ZE+ylAqIMYeRWHvpwc
+	 KDFUDXL475ujpsLCGvjL+ubuHytUdY9FUcKlW+IdUfJDLv0TTOFePhLk8Sq56DhjHQ
+	 fG9ofvEWAbRq4hTLO719Tu37R1SIj8tQh/K6X1w9ehil3bqTeWTBZIy8egovpzbO1q
+	 YRXHVvo+4KZ9g==
+Message-ID: <03dece78-44d5-4b85-b71c-bb6794849ddd@kernel.org>
+Date: Thu, 24 Jul 2025 10:55:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250724072248.1517569-2-shengjiu.wang@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/2] memory: mtk-smi: mt8188: Add SMI reset and clamp
+ for MT8188
+To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20250521063347.31578-1-friday.yang@mediatek.com>
+ <20250521063347.31578-3-friday.yang@mediatek.com>
+ <fe4d93d1-fb6a-4985-8316-7a76fa1a481f@kernel.org>
+ <7421d8f4f3d5fdb392f46df93bfee21a97cc2e1c.camel@mediatek.com>
+ <633ea291-2e02-44be-bd03-220634b3c62d@kernel.org>
+ <d7e6e9f9da7adf5c806f29c577f6bf51b35fdeed.camel@mediatek.com>
+ <1e9de035-9d32-45d1-9f11-33c3439143be@kernel.org>
+ <2cc7a0be13d2b35b8728fb23e56097620a40fc05.camel@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <2cc7a0be13d2b35b8728fb23e56097620a40fc05.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jul 24, 2025 at 03:22:43PM +0800, Shengjiu Wang wrote:
-> Add binding for the i.MX8MP HDMI parallel Audio interface block.
+On 24/07/2025 10:43, Friday Yang (杨阳) wrote:
+>>
+>>> ignore this tag. What I intended to explain here was that I decided
+>>> not
+>>> to use 'devm_pm_runtime_enable' to replace 'pm_runtime_enable'
+>>> functions. Unfortunately, the fake tag didn't explain this clearly
+>>> in
+>>> the changelog, which was my fault. To address this, I updated
+>>> patchset
+>>> v8 to include an explanation.
+>>>
+>>> In patchset v6, I replaced 'pm_runtime_enable' with
+>>> 'devm_pm_runtime_enable'. However, in patchset v8, I reverted this
+>>> change and included the reason for this decision in the changelog.
+>>> Apologize for the delay and the trouble again.
+>>
+>> Nothing above is related to my question about the
+>> fake/invented/questioned tag.
+>>
 > 
-> In fsl,imx8mp-hdmi-tx.yaml, add port@2 that linked to pai_to_hdmi_tx.
+> I got your point, you refer to the 'reviewed-by' and 'acked-by' tag in
+> this patch.
+> These are the tags from two reviewers.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  .../display/bridge/fsl,imx8mp-hdmi-tx.yaml    | 12 ++++
->  .../display/imx/fsl,imx8mp-hdmi-pai.yaml      | 69 +++++++++++++++++++
->  2 files changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
-> index 05442d437755..6211ab8bbb0e 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
-> @@ -49,6 +49,10 @@ properties:
->          $ref: /schemas/graph.yaml#/properties/port
->          description: HDMI output port
->  
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Parallel audio input port
-
-Which data path this represents? Feels like you are duplicating ASoC
-dai-links/cells...
+> https://lore.kernel.org/lkml/174172361378.44650.15345202042780383326.robh@kernel.org/
 
 
-> +
->      required:
->        - port@0
->        - port@1
-> @@ -98,5 +102,13 @@ examples:
->                      remote-endpoint = <&hdmi0_con>;
->                  };
->              };
-> +
-> +            port@2 {
-> +                reg = <2>;
-> +
-> +                endpoint {
-> +                    remote-endpoint = <&pai_to_hdmi_tx>;
-> +                };
-> +            };
->          };
->      };
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml
-> new file mode 100644
-> index 000000000000..4f99682a308d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi-pai.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8MP HDMI Parallel Audio Interface
-> +
-> +maintainers:
-> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
-> +
-> +description:
-> +  The HDMI TX Parallel Audio Interface (HTX_PAI) is a bridge between the
-> +  Audio Subsystem to the HDMI TX Controller.
-
-What is Audio Subsystem? Like Linux Audio or some name matching actual
-hardware?
-
-
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8mp-hdmi-pai
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: apb
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: Output to the HDMI TX controller.
-
-And how do you plug it into sound card? Where are any DAI links?
+You are really not responding to my initial comments and keep dragging
+this discussion in some confused directions. Do we talk here about that
+patch? No.
 
 Best regards,
 Krzysztof
-
 
