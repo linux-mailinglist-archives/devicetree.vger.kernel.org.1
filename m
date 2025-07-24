@@ -1,130 +1,120 @@
-Return-Path: <devicetree+bounces-199264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81ECDB1023D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:49:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FA99B1024F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:51:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB83B7AB8E3
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:48:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D011F161F89
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:51:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4240265CBB;
-	Thu, 24 Jul 2025 07:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83AEB20A5C4;
+	Thu, 24 Jul 2025 07:51:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AapSjLHu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tENqBHs8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E1219882B;
-	Thu, 24 Jul 2025 07:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F6351C6FF5
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 07:51:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753343389; cv=none; b=OyO4ljAOabsoWqICV2n1aST+WGza8104qD6ppNLZ+SPoetUoMTr5fhXHo7EGY0WiXhp/g78JbzKjtRRWpjhO/WxsRxjatprlq1REdLV+q144RCNTQhmzDMyY7pxrsUdhEg56jvk3okj4HiFXJPESJW1xtHM/pCCsKgRbV/p9l0E=
+	t=1753343509; cv=none; b=UB+CcgTCxXL9XbnINYwVyEmsFAYqEu/JQ0ag70Jc25fdcqUfuY2jKnSaq8pH8al5LFcSHCH7ubGABqTs7UpBB5DRTNKbE1kdnJ5MnQKQSVXF4cwPGGcbZUPvhIzwLfqCUQN5bUnfTaUMc5kfkfAMGX72ZG/MVMUk9lw/fa6Xz1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753343389; c=relaxed/simple;
-	bh=HC7IYoXji6jKfEBrN293aCaxM5q93xg9Cf9+C3xf31Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DsrvYZl82EQsmbgCVlRR0S/jH6OUoASCXOG93R+pgdoErVGPUK+tJQQEmlF5GWLpKQioJAae5djs3IzosXtmcUSFsebBKnon77xCjP0ojEaDHDOMRVMrh0L5HW+QXQM/1hVvVG6QSdwIagKw4nD6EmtvwKqJF8d9DK6he0XPt80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AapSjLHu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 274A9C4CEED;
-	Thu, 24 Jul 2025 07:49:44 +0000 (UTC)
+	s=arc-20240116; t=1753343509; c=relaxed/simple;
+	bh=ErnTdWvBlsIk3cNIsW0L5yIKseGJrQ0UPFbxni/vZzQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sSOJcR1wiFcBvcLDnWJdEZlXNgiPvaW9uMI6Z2Ad4RD8oNTluJ90rC1rYQc6V1oaBjnlmqtDA23oeFD9APfY3MEFb/ee4y5234h4QC65s7ADpDtv52A4WC/g4yOj9qCwKEj7NiTPJ4mTrh/mToaH+NXwLsWwyoH1iWVNRD4WJtc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tENqBHs8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54D03C4CEF1;
+	Thu, 24 Jul 2025 07:51:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753343389;
-	bh=HC7IYoXji6jKfEBrN293aCaxM5q93xg9Cf9+C3xf31Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AapSjLHubWxWfQD5G3m2rU72aqMAoUxcKdrPDWe5Y0pP1wxGHv7ycAFG8SbnAsrCi
-	 CzVeaFiNljXRoMy34cSQZ+/QWNGvZVWlRiX+brBk9O2hd764dvO2stDmKRNErH/3hj
-	 BnY9cvYJGHDFFgvNaTnsyqHnTPrQ/vPhhrC0sAhRjL2fvjoTEQ02HR0drE1ksWNk88
-	 6uQaacGqy/sWpIKMp1JKP8n1nZ4C38/qiGgjcao0VXfLVWPpsiRuihAnF/rMI34yj0
-	 Twfi4o33e76hvmMlfwaU7EiISzV0BFTiHt5Qsd+6ozuxv4OGh+8wR9/fsTWD4c9uhq
-	 umHDeoK6ef9AA==
-Message-ID: <a759f9fb-8e91-42ed-8709-b45281b8e964@kernel.org>
-Date: Thu, 24 Jul 2025 09:49:43 +0200
+	s=k20201202; t=1753343508;
+	bh=ErnTdWvBlsIk3cNIsW0L5yIKseGJrQ0UPFbxni/vZzQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tENqBHs8828cUQ4ui2dUhyyHuBSZRH4nYKG35YZNzxtwZPo2zq5e4y65IkrhZc/Y3
+	 i/zHPxqyhn5d0tLSbHEotT5feLe11dIWUpaEynleGuBmbjHWNuddHU+dp73nzl3jzV
+	 NGgPJfT6P7CwsmDjYnqO5KzELN1k/MtULB1NBQA2yhicP9qhxSaki5cOzRDYnYoSRs
+	 w1XQLYMpiCoW8BPkoSANfAyx1YhOAGWOND538pHjpHDWuWjLRm+x23GVR2JvxntuVN
+	 iFxSJULwKBbWcI0+JkeqQNHQOIzCiFxuUXKRmtYWbeRF31QNI1+Ay045eqCQx1BHpV
+	 f0LrzcUe9vy7w==
+Date: Thu, 24 Jul 2025 09:51:46 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alicja Michalska <alicja.michalska@9elements.com>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: display: panel: Add Samsung EA8076 panel
+Message-ID: <20250724-ancient-stork-of-youth-e56533@kuoka>
+References: <20250723145208.338162-2-alicja.michalska@9elements.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] ufs: ufs-qcom: Add support for DT-based gear and rate
- limiting
-To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, mani@kernel.org,
- alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org,
- James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com,
- agross@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250722161103.3938-1-quic_rdwivedi@quicinc.com>
- <20250722161103.3938-2-quic_rdwivedi@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250722161103.3938-2-quic_rdwivedi@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250723145208.338162-2-alicja.michalska@9elements.com>
 
-On 22/07/2025 18:11, Ram Kumar Dwivedi wrote:
-> +static void ufs_qcom_parse_limits(struct ufs_qcom_host *host)
-> +{
-> +	struct ufs_host_params *host_params = &host->host_params;
-> +	struct device_node *np = host->hba->dev->of_node;
-> +	u32 hs_gear, hs_rate = 0;
+On Wed, Jul 23, 2025 at 04:52:08PM +0200, Alicja Michalska wrote:
+> Add bindings for Samsung EA8076 LCD panel.
+> This panel was usually used in mid-high end smartphones manufactured by
+> Xiaomi in 2018 and 2019 (Mi 9 Lite and Mi Mix 3, with codenames
+> "xiaomi-pyxis" and "xiaomi-perseus", respectively).
+> 
+> Signed-off-by: Alicja Michalska <alicja.michalska@9elements.com>
+> ---
+>  .../display/panel/samsung,ea8076.yaml         | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,ea8076.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,ea8076.yaml b/Documentation/devicetree/bindings/display/panel/samsung,ea8076.yaml
+> new file mode 100644
+> index 000000000000..7ea0c9fedfa4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/samsung,ea8076.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/samsung,ea8076.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	if (!np)
-> +		return;
+> +title: Samsung EA8076 1080x2340 AMOLED panel
 > +
-> +	if (!of_property_read_u32(np, "limit-hs-gear", &hs_gear)) {
+> +description: EA8076 panel manufactured by Samsung Display. It's used in some Xiaomi smartphones from 2018 and 2019, such as xiaomi-pyxis or xiaomi-perseus.
 
-You cannot use ABI before you document it. Read submitting patches in DT.
+Please carefully follow Linux kernel coding style.
+
+> +
+> +maintainers:
+> +  - Alicja Michalska <alicja.michalska@9elements.com>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: samsung,ea8076
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  te-gpios: VSync GPIO pin, usually GPIO_ACTIVE_LOW.
+> +  reset-gpios: Reset GPIO pin, usually GPIO_ACTIVE_LOW.
+> +
+> +  port: Required on platforms using MDSS DSI (Qualcomm).
+
+None of above look like anything else in the bindings. Obviously also
+never tested. Please don't write code which is completely different than
+everything else.
 
 Best regards,
 Krzysztof
+
 
