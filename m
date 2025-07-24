@@ -1,109 +1,172 @@
-Return-Path: <devicetree+bounces-199335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02083B104FF
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:57:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0702DB10516
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:00:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B970258507A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 08:55:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDB413A1AE9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 08:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414F3274FC2;
-	Thu, 24 Jul 2025 08:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D684275108;
+	Thu, 24 Jul 2025 08:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gtqYM+bt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zfjmgph9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1495569D2B;
-	Thu, 24 Jul 2025 08:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F8D22080C1;
+	Thu, 24 Jul 2025 08:52:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753346941; cv=none; b=IZOY1BaPUGj8fxM156R2HZzbh6zHBF7xuEZVKgFghcXA015jk0lE3rRQRby2eOPQl+X0M+JW3JOtDHyMvbw63vwiI4egL8HAuDggi7QV6wHRhak34u73ukcruZmSpfM7cIzPgaHsbAT2iwN24Q3ETrX3w/pScu1KtaFqx6k4ehs=
+	t=1753347159; cv=none; b=Zo0HaRiYmIVVtESRXKV+V4r5FR72D8zctzoVZp5ENFQ22os93z93JZ730oo8q3EpYX/opmoPy2PS5kKsiGxki0kNHgP/6sPA+ZOdKgPsqOK6ylSXyuLyoJ3KbnOWGtQlfX4a7psh775p7YF+z0YiYVu//u03QSwkydIpnxQQSMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753346941; c=relaxed/simple;
-	bh=rzxMStLAEjWZwWfiymoUFIpQH/pUdeR+8sMJTcfv8OE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=qVeIwLukSkmzpsrLZxprzixAAtk5KCC/FTPQzKXvH6gwLS+1ljMe7IZIX9EvmJZQodhlRIEfqGck9iovTJw16WiDlz/HzHrqLos0PKVnhLhiMP4kd1fecF1qrQVAJAga011jdKpP1lBxKchiY9fcPriMCZqvb3ZuWoYS4Hrtdz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gtqYM+bt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D828BC4CEF4;
-	Thu, 24 Jul 2025 08:48:56 +0000 (UTC)
+	s=arc-20240116; t=1753347159; c=relaxed/simple;
+	bh=lEUiukjpItIZOMLZybq8zVOV0E1VI31HPjpcqCCRXw0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=krP5CRQ3eiT8AFuwvwbrIia1BqP/wT805O2GfXwu++jXYqH+KGAoRk/GJj9Cre6G+OeC06TLpfgPidx1YOPy1wKXtk6wfPZxvqlVRU1J5JaqEHWxP7Cwl50rLhKPWsh+knn/j0n741ZD8kU8s376m74fLca2v8Qp+KeZIsqiaRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zfjmgph9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6FCDC4CEED;
+	Thu, 24 Jul 2025 08:52:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753346940;
-	bh=rzxMStLAEjWZwWfiymoUFIpQH/pUdeR+8sMJTcfv8OE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=gtqYM+bt0rJWWmE2lWvgCnN2A3qpmeG0oIFEbqqLFzwujcr8YPsfno7KzJT91vwVY
-	 8j7Aa564MdLlm5pGW1V9Gqta5CO4s++D5C9id1bs2bmf+7rgn7TtG+rpzHItOOxIAY
-	 27KBdW5WhEBTO8xpkkFs9HbfchUFOWfJu+cbMPkvk3kE65MqL2nylmXI5+22IWexnK
-	 /QLhCmPQXlXXRITRyCRoekNFCbBwGsF8MNmcE2tcaK6RES+u0yJK5lC8T2wlEpPDu6
-	 C4vjr6jLAHasL+37oQOTN4zh7ul4Ph0Pac7aZ7uIrR2K/1UmjZtq5J6BZCQRcx69fG
-	 8xCphYvvBRQ0w==
-From: Lee Jones <lee@kernel.org>
-To: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- Neal Gompa <neal@gompa.dev>, Hector Martin <marcan@marcan.st>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
- Lee Jones <lee@kernel.org>, Marc Zyngier <maz@kernel.org>, 
- "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, 
- Sven Peter <sven@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-In-Reply-To: <20250610-smc-6-15-v7-0-556cafd771d3@kernel.org>
-References: <20250610-smc-6-15-v7-0-556cafd771d3@kernel.org>
-Subject: Re: (subset) [PATCH v7 00/10] Apple Mac System Management
- Controller
-Message-Id: <175334693659.1935861.13683239351116261977.b4-ty@kernel.org>
-Date: Thu, 24 Jul 2025 09:48:56 +0100
+	s=k20201202; t=1753347156;
+	bh=lEUiukjpItIZOMLZybq8zVOV0E1VI31HPjpcqCCRXw0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zfjmgph9vyQJ1Z52UaLvbtnXWS2GVe1JpGrut3ak0bCBBZw1wZjVZ//VT4dmUdI/2
+	 QoR2MDn1JkBNI121S3rhq4WChb5c/yoECIBnvhmPNxchnBFyOduvyiuUfaOr7BeCWb
+	 VXclpmlMokvspHjFgJBGkIMDxcpDqccxZY8BHMRBOidJpTAEGAJd/TjOQJoqTQDH9V
+	 8rjK97IQM5/zJ+lFH87y9FNJHqKKs93eG9to7basm5n/ECtEawU4o2JAxDERNzUDSa
+	 nW5V6aiTXZ/s2/89kJp6Trv+Cf+xHdyulQGLn/d6Je+d8oscg1CiDmqoM+oKXuGgLb
+	 J65mC6IVet3wA==
+Date: Thu, 24 Jul 2025 10:52:34 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org, 
+	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	p.zabel@pengutronix.de, devicetree@vger.kernel.org, l.stach@pengutronix.de, 
+	shengjiu.wang@gmail.com, perex@perex.cz, tiwai@suse.com, linux-sound@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: display: imx: add HDMI PAI for
+ i.MX8MP
+Message-ID: <20250724-straight-lorikeet-of-novelty-9124f8@kuoka>
+References: <20250724072248.1517569-1-shengjiu.wang@nxp.com>
+ <20250724072248.1517569-2-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-c81fc
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250724072248.1517569-2-shengjiu.wang@nxp.com>
 
-On Tue, 10 Jun 2025 15:29:41 +0000, Sven Peter wrote:
-> This series adds support for the System Management Controller found in
-> Apple Silicon devices which we model as a mfd. It also includes support
-> for the GPIO block and the power/reset block as sub-devices.
+On Thu, Jul 24, 2025 at 03:22:43PM +0800, Shengjiu Wang wrote:
+> Add binding for the i.MX8MP HDMI parallel Audio interface block.
 > 
-> Changes between v6 and v7:
->   - Rebased on 6.16-rc1
->   - Dropped mfd- prefix from the macsmc driver name
->   - Removed the check if the MBSE key exists in the reboot driver since
->     we can rely on the device tree now
->   - Changed my mail address to kernel.org
+> In fsl,imx8mp-hdmi-tx.yaml, add port@2 that linked to pai_to_hdmi_tx.
 > 
-> [...]
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  .../display/bridge/fsl,imx8mp-hdmi-tx.yaml    | 12 ++++
+>  .../display/imx/fsl,imx8mp-hdmi-pai.yaml      | 69 +++++++++++++++++++
+>  2 files changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
+> index 05442d437755..6211ab8bbb0e 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-tx.yaml
+> @@ -49,6 +49,10 @@ properties:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          description: HDMI output port
+>  
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Parallel audio input port
 
-Applied, thanks!
+Which data path this represents? Feels like you are duplicating ASoC
+dai-links/cells...
 
-[01/10] dt-bindings: gpio: Add Apple Mac SMC GPIO block
-        commit: 0f0a7bd04e7e00cef6da5f4955749d6f1fc27b32
-[02/10] dt-bindings: power: reboot: Add Apple Mac SMC Reboot Controller
-        commit: 51bb1f6d4694cd84491847ea59eb194311b7d7f8
-[03/10] dt-bindings: mfd: Add Apple Mac System Management Controller
-        commit: dbad719958e162ac021716c223ba9df9071bca55
-[04/10] soc: apple: rtkit: Make shmem_destroy optional
-        commit: ba9ae011e8373b1ff34aa4175c79288013de7fc8
-[05/10] mfd: Add Apple Silicon System Management Controller
-        commit: e038d985c9823a12cd64fa077d0c5aca2c644b67
-[06/10] gpio: Add new gpio-macsmc driver for Apple Macs
-        commit: 9b21051b0885912f5bb2cc9d4f95c6fca697da4d
-[07/10] power: reset: macsmc-reboot: Add driver for rebooting via Apple SMC
-        commit: 819687eb28e501d21dabd6a3f52454638a815071
 
---
-Lee Jones [李琼斯]
+> +
+>      required:
+>        - port@0
+>        - port@1
+> @@ -98,5 +102,13 @@ examples:
+>                      remote-endpoint = <&hdmi0_con>;
+>                  };
+>              };
+> +
+> +            port@2 {
+> +                reg = <2>;
+> +
+> +                endpoint {
+> +                    remote-endpoint = <&pai_to_hdmi_tx>;
+> +                };
+> +            };
+>          };
+>      };
+> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml
+> new file mode 100644
+> index 000000000000..4f99682a308d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi-pai.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8MP HDMI Parallel Audio Interface
+> +
+> +maintainers:
+> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> +
+> +description:
+> +  The HDMI TX Parallel Audio Interface (HTX_PAI) is a bridge between the
+> +  Audio Subsystem to the HDMI TX Controller.
+
+What is Audio Subsystem? Like Linux Audio or some name matching actual
+hardware?
+
+
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx8mp-hdmi-pai
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: apb
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description: Output to the HDMI TX controller.
+
+And how do you plug it into sound card? Where are any DAI links?
+
+Best regards,
+Krzysztof
 
 
