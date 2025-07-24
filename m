@@ -1,183 +1,209 @@
-Return-Path: <devicetree+bounces-199258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D461B10202
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:36:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B3C1B1020F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:38:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 471955873A1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:36:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 245934E5796
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C3723C8D5;
-	Thu, 24 Jul 2025 07:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47203266568;
+	Thu, 24 Jul 2025 07:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cWzsA12f"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="iSmpZvav";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="z4rbEGUw";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="iSmpZvav";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="z4rbEGUw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4C88229B02;
-	Thu, 24 Jul 2025 07:36:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5253125BF15
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 07:37:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753342598; cv=none; b=LOJRCrAG5WIsgSx3rYuj25fEqByjPFr8rEcyrOcFULCi7MdT+fr5todzl2qdWts/Y2Iu2ppGi3bSrVehbbSYET7Qf5jr7d2YG3im9QUUJL27sB3+nJt2PWgUG1MWX6Ww52h09AWFPgCAbuG3f8RlkuRqs/es8e+KaviV/Q39Wo0=
+	t=1753342635; cv=none; b=F59In1z22MlCj+5gHr12yAn8zPCglmow7rUSqTBzHSb22zlV1QeNZvQjvJ+w9oFsdFyLRoTcj9P6/ET37pq06PkiRBIIbwqFKNRmZlvfRS/zRq6HRxYPFfnGXJZSuKijLVkGBBj75QoLh9pR+30jO8vJrEQ2+n3RyDRBH9fG9R0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753342598; c=relaxed/simple;
-	bh=8hArgnR3Xspo67UySiPkrkARt/FHZ3ZDNi6yM3UJwBQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=l+nZTu7cXsZuhpr1BZsRWRoiufHDvyn2Q6mHEI6vdLPThLD0V8BdqU/vKXnrHamwHRzwPbViuaF8UKXFdXNTBM5CPYLjnvpxHCtVH72CHXLMO1llsA4Yp2l+TIgxyWZ+j512Wqj/vMNUjQLH6SNQBshSfwPQPeQNJ9Cf87hgs3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cWzsA12f; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56NMXHl5028529;
-	Thu, 24 Jul 2025 07:36:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	o8Usl2QLEW7pbqprF9FBNGE5XVt4zJMfMv4iaDCg0eU=; b=cWzsA12fSHbaqZ0N
-	O/iepvBZYKMOypdBVEOtc9/oxoBamUK2Kn74aXjn/yd6H5g3HEZBUTEKKFMVsOyd
-	5Ru0UHqAKEsjs+IM7Gar/8hVeBlmBYXV6e1KW45OgLEoTQgGTBcxIDq4S2bhHNzf
-	KbH3LuKdA3Brp4h4+P1Hq1SghLLURrDXBhd4fQ+mI2h1c+SyF584L1vaSz9jyMzn
-	moM5uGl/kpsb05DOm8nbN4To9ZHwZL8br1mGfISBFSwioR/RipTyFxrFBYFcuifE
-	ycakhYR1M6F0Et9PP+6AFQ3vUbet8XxK3cD+82fu3BPoTCodzJERr74oRoRwVz1E
-	HArr5g==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4826t1f5n2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Jul 2025 07:36:25 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56O7aON5008187
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Jul 2025 07:36:24 GMT
-Received: from [10.216.5.39] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 24 Jul
- 2025 00:36:17 -0700
-Message-ID: <cbe1f27d-44ad-41d2-9bc7-fa9211d52a30@quicinc.com>
-Date: Thu, 24 Jul 2025 13:06:13 +0530
+	s=arc-20240116; t=1753342635; c=relaxed/simple;
+	bh=oYliYTiynIz5BqhDzeFuwYRcIXemghySuaUubvcJXek=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rYbIzLbcA9X8067S7BzL/Z4Fop6ARySzRCEda/cFEVS0OzvKPmMc76W5oJI4zRwZr8gc3mawSDcX8s4/YXfIyxmd/OziAoHOi+LyEODjvmYJjpljiZsnELLwusqU68lcbL3WUxgTUiseRqbcvA09plJQucZmgXzAzSS4t791YmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=iSmpZvav; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=z4rbEGUw; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=iSmpZvav; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=z4rbEGUw; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 8AB781F394;
+	Thu, 24 Jul 2025 07:37:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1753342630; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/LBu7qSBaLkXMmbSWG/aE/FgzcMzPqdoHLqQXT0G0B0=;
+	b=iSmpZvav8lnYGFgYWT9RAL6mampmVxsQdOjORxZQmpl2iwQ5NuepLPirg2axvQMywNZgsg
+	sM/0rzB57rZzEH02wqXjW5wz+pcC37QvGMCoeNz+fEKMCHQtyI/iIz9EuMlZaSg5Zjlh9u
+	Cqykg5TDSqTxG//PZUt1z2wPWxaauJM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1753342630;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/LBu7qSBaLkXMmbSWG/aE/FgzcMzPqdoHLqQXT0G0B0=;
+	b=z4rbEGUwD7bCn2kBeVEXY5/AYO2k2An2G2PY3o03wE+J5eEo0PlaGSqS80GqXeQKv6Rpds
+	ExwDAG9wh3tpu4BA==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1753342630; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/LBu7qSBaLkXMmbSWG/aE/FgzcMzPqdoHLqQXT0G0B0=;
+	b=iSmpZvav8lnYGFgYWT9RAL6mampmVxsQdOjORxZQmpl2iwQ5NuepLPirg2axvQMywNZgsg
+	sM/0rzB57rZzEH02wqXjW5wz+pcC37QvGMCoeNz+fEKMCHQtyI/iIz9EuMlZaSg5Zjlh9u
+	Cqykg5TDSqTxG//PZUt1z2wPWxaauJM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1753342630;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/LBu7qSBaLkXMmbSWG/aE/FgzcMzPqdoHLqQXT0G0B0=;
+	b=z4rbEGUwD7bCn2kBeVEXY5/AYO2k2An2G2PY3o03wE+J5eEo0PlaGSqS80GqXeQKv6Rpds
+	ExwDAG9wh3tpu4BA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A643D13302;
+	Thu, 24 Jul 2025 07:37:09 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id 7gjAJqXigWjKMgAAD6G6ig
+	(envelope-from <tiwai@suse.de>); Thu, 24 Jul 2025 07:37:09 +0000
+Date: Thu, 24 Jul 2025 09:37:09 +0200
+Message-ID: <87jz3ykpju.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	lumag@kernel.org,
+	dianders@chromium.org,
+	cristian.ciocaltea@collabora.com,
+	luca.ceresoli@bootlin.com,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	victor.liu@nxp.com,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	l.stach@pengutronix.de,
+	shengjiu.wang@gmail.com,
+	perex@perex.cz,
+	tiwai@suse.com,
+	linux-sound@vger.kernel.org
+Subject: Re: [PATCH v2 2/6] ALSA: Add definitions for the bits in IEC958 subframe
+In-Reply-To: <20250724072248.1517569-3-shengjiu.wang@nxp.com>
+References: <20250724072248.1517569-1-shengjiu.wang@nxp.com>
+	<20250724072248.1517569-3-shengjiu.wang@nxp.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dt-bindings: ufs: qcom: Document HS gear and rate
- limit properties
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: <mani@kernel.org>, <alim.akhtar@samsung.com>, <avri.altman@wdc.com>,
-        <bvanassche@acm.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <James.Bottomley@hansenpartnership.com>,
-        <martin.petersen@oracle.com>, <agross@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250722161103.3938-1-quic_rdwivedi@quicinc.com>
- <20250722161103.3938-4-quic_rdwivedi@quicinc.com>
- <6yhnlwyuimkrlifmmdihcsuhws6qkdjzmjxdupu6cevu24nmi6@f4vk5dffjie2>
-Content-Language: en-US
-From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-In-Reply-To: <6yhnlwyuimkrlifmmdihcsuhws6qkdjzmjxdupu6cevu24nmi6@f4vk5dffjie2>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: c7a6Av9_1Pu_u_55MsmnK7KIQ_op3NXn
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI0MDA1MyBTYWx0ZWRfX+kkKcKhxiYgp
- MhAxojmH96+eSuh5q/K5ySTPk2dZdwpLvNTR5ONN8t2NPb/JqBAQEBpbz6xBHqE1BDEo7OvANC5
- m/a6p+bMPj0CP9IGSWGPT/4dtJJtEujZFHKYCf3uBiZ+F1rMfE/s6q55CnVsb+JDFEv9/gZnmhp
- pnJHQlh3l7du3zZsyM7hablsZ3+dRWhuYEF5mUwCdePQWH0atBCuKXR1RDEHkBwIGILpMFqVL84
- fXRdoo3R4LJ+mw6uMA+s6Bcc66iYoAi4FWN7EpgKbFTf4OQu8X/V3rxyqcLFV9rd3xxskh/dbhR
- jANCbDH0srIvP9YuIz9RI+I71uvW8dKD5Uq0RCSjPVuxVQ4lH+3e4D2UWHiUxgo9JuDQqM8JNOt
- 3I0z+/fQCrBtde12O24j0WvHMF9WlaMi/QNYeTLq7ByaQ6EQzbH1O48QXUGc9s9FfKSfECKb
-X-Authority-Analysis: v=2.4 cv=E8/Npbdl c=1 sm=1 tr=0 ts=6881e279 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8
- a=id758TG4R-jbu1JBe3wA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: c7a6Av9_1Pu_u_55MsmnK7KIQ_op3NXn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-23_03,2025-07-23_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 spamscore=0 bulkscore=0 lowpriorityscore=0
- priorityscore=1501 adultscore=0 suspectscore=0 clxscore=1015 phishscore=0
- mlxlogscore=999 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507240053
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Level: 
+X-Spamd-Result: default: False [-1.80 / 50.00];
+	BAYES_HAM(-3.00)[99.99%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[35];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,chromium.org,collabora.com,bootlin.com,lists.freedesktop.org,vger.kernel.org,nxp.com,pengutronix.de,lists.linux.dev,lists.infradead.org,perex.cz,suse.com];
+	RCVD_TLS_ALL(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	R_RATELIMIT(0.00)[to_ip_from(RL8m7tqgwaqu97o1bbfnn6ewdz)];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,suse.de:email,suse.de:mid,imap1.dmz-prg2.suse.org:helo]
+X-Spam-Flag: NO
+X-Spam-Score: -1.80
 
-
-
-On 23-Jul-25 12:32 AM, Dmitry Baryshkov wrote:
-> On Tue, Jul 22, 2025 at 09:41:03PM +0530, Ram Kumar Dwivedi wrote:
->> Add documentation for two new optional properties:
->>   - limit-hs-gear
->>   - limit-rate
->>
->> These properties allow platforms to restrict the maximum high-speed
->> gear and rate used by the UFS controller. This is required for
->> certain automotive platforms with hardware constraints.
+On Thu, 24 Jul 2025 09:22:44 +0200,
+Shengjiu Wang wrote:
 > 
-> Please reformat other way around: describe the actual problem (which
-> platforms, which constraints, what breaks, etc). Then describe your
-> solution.
+> The IEC958 subframe format SNDRV_PCM_FMTBIT_IEC958_SUBFRAME_LE are used
+> in HDMI and DisplayPort to describe the audio stream, but hardware device
+> may need to reorder the IEC958 bits for internal transmission, so need
+> these standard bits definitions for IEC958 subframe format.
 > 
-Hi Dmitry,
-
-I have addressed this in latest patchset.
-
-Thanks,
-Ram.
-
-
->>
->> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
->> ---
->>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 10 ++++++++++
->>  1 file changed, 10 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->> index 6c6043d9809e..9dedd09df9e0 100644
->> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->> @@ -111,6 +111,16 @@ properties:
->>      description:
->>        GPIO connected to the RESET pin of the UFS memory device.
->>  
->> +  limit-hs-gear:
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  include/sound/asoundef.h | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> If the properties are generic, they should go to the ufs-common.yaml. If
-> not (but why?), then they should be prefixed with 'qcom,' prefix, as
-> usual.
+> diff --git a/include/sound/asoundef.h b/include/sound/asoundef.h
+> index 09b2c3dffb30..7efd61568636 100644
+> --- a/include/sound/asoundef.h
+> +++ b/include/sound/asoundef.h
+> @@ -12,6 +12,15 @@
+>   *        Digital audio interface					    *
+>   *                                                                          *
+>   ****************************************************************************/
+> +/* IEC958 subframe format */
+> +#define IEC958_SUBFRAME_PREAMBLE_MASK	(0xf)
+> +#define IEC958_SUBFRAME_AUXILIARY_MASK	(0xf<<4)
+> +#define IEC958_SUBFRAME_SAMPLE_24_MASK	(0xffffff<<4)
+> +#define IEC958_SUBFRAME_SAMPLE_20_MASK	(0xfffff<<8)
+> +#define IEC958_SUBFRAME_VALIDITY	(0x1<<28)
+> +#define IEC958_SUBFRAME_USER_DATA	(0x1<<29)
+> +#define IEC958_SUBFRAME_CHANNEL_STATUS	(0x1<<30)
+> +#define IEC958_SUBFRAME_PARITY		(0x1<<31)
 
-Hi Dmitry,
+I'd use "U" suffix as it can reach to the MSB.
+Also, you can put spaces around the operators to align with the
+standard format, too.  I guess you followed to the other code there,
+but following to the standard coding style would be better.
 
-I have added qcom prefix in latest patchset.
+With those addressed, feel free to take my ack for this patch:
 
-Thanks,
-Ram.
+Reviewed-by: Takashi Iwai <tiwai@suse.de>
 
 
-> 
->> +    maxItems: 1
->> +    description:
->> +      Limit max phy hs gear
->> +
->> +  limit-rate:
->> +    maxItems: 1
->> +    description:
->> +      Limit max phy hs rate
->> +
->>  required:
->>    - compatible
->>    - reg
->> -- 
->> 2.50.1
->>
-> 
+thanks,
 
+Takashi
 
