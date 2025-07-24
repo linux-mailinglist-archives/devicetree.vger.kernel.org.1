@@ -1,322 +1,304 @@
-Return-Path: <devicetree+bounces-199461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1E8B10C37
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 15:55:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2A2DB10C39
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 15:56:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED3F1AA4F8F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 13:53:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08CA03B58C9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 13:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38DE72D5418;
-	Thu, 24 Jul 2025 13:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BF22DE701;
+	Thu, 24 Jul 2025 13:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="W1oB/1Er"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Q6mze2Uq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2229D2DE719;
-	Thu, 24 Jul 2025 13:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=192.198.163.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753365149; cv=fail; b=Y0JPfJmwT16isnIAh2nv1+85s/jIB1XLU84gNGkUoLQlFQVGbSx78rALe6yyBnrI6Sq4Gig1q8EOcUh/5XwLHLen76bSn2eFGvZWOMWdDzwjNx/mgFcpzEykJMTgdyJk7nz7QI6EiK2VanqXMnREyZhigNN82FuLz/nbP/J6jDY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753365149; c=relaxed/simple;
-	bh=WxEU0AzbBw+AfQFseMeSrw8ymCZ81PmZ2/H28nfI9fU=;
-	h=Message-ID:Date:Subject:To:CC:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=b+h0qebT49X5NjAmBzLTNF9vaZiJ5lEYhlXkWtKSTcR+9Dm4DhPrz1t05J+M/g7PjEpJ68y5dZuB1nhiDNxHT5fbhS7nBDbFJSZ0x5gabCX6dOjjcT7QJCas5Z/tkVZjYJ2CiXlSnatb1Ha+TES/GaIMkKp6OOCDCrnkOMnOPGs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=W1oB/1Er; arc=fail smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1753365147; x=1784901147;
-  h=message-id:date:subject:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=WxEU0AzbBw+AfQFseMeSrw8ymCZ81PmZ2/H28nfI9fU=;
-  b=W1oB/1ErZAUVQtKbMuvJqEXqJ6oW7SHyD9kw3NDHTVRZk76zZqERaC8H
-   HAfnjoHVdFdmUa2WsZbj5BnEU+JYiy2CFfwaDfE+DgMbtir565Gbhc74e
-   +1n3P9aI5h82Ld5ykFAyLUs5qgy9tUfPLw40rcMoV676zNrVhbU4iGuJI
-   ijyNIVQqho6FS6WOZYKd4r9w7NUqmNK0cjdb156dkmizmIdrBtnnj/VdS
-   T8U65SIGLbV9+a1HxRxHm1mG9MwCnNLYr6hxkTVqUhzXM7HLgDf9b1YUX
-   iswnNZZ1cOyTnfumBqcEGSW+Vr1/VpEBX2YWT5OqQAyrLqU4JlxsOqrzA
-   Q==;
-X-CSE-ConnectionGUID: Wu3FX5sqSt+Q6NeT2oMHWw==
-X-CSE-MsgGUID: pHy7I+kJQay+tcDyvKz6dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="55618914"
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; 
-   d="scan'208";a="55618914"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jul 2025 06:52:26 -0700
-X-CSE-ConnectionGUID: IAYCRoMkT0Ctq4qrIqIK6w==
-X-CSE-MsgGUID: PTrYRn56QYGueAOug6SdeA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; 
-   d="scan'208";a="160369552"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
-  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jul 2025 06:52:26 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 24 Jul 2025 06:52:25 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Thu, 24 Jul 2025 06:52:25 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.56)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 24 Jul 2025 06:52:24 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gx2KK4q0cP12DakxkCOjQKDCQMPxTravxtPM46ZGxGDVLAjZG5AT1AP6W0LIlNA36tAOVQL+jHc65ebXeJ6od3XUEyEAdWsVHA+ZUA7KctawuLNLsaNwNUZUw53G9L9L4/AtjJ53wAAlPfHYtlIqYsdRc4+VZxAhPLJuItQeMagh6nIdTa0m9RPvo7t3UgPse5PBnHr5aOETxdq1XonL+6KargC1QKua94sK6qvzdLXVzEknJdZY6Xk22j1Im+iDNOX+l6VcLZW3o2RyUp4cuO6NeSSut8Qeu0usoBomZCBJuhxBz0M/EEH91f9MfwBnKoS8NFMuR46LJ8bqizIrpg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nC+zpGEYPrYwRNE/b0z7bP1ixh5O1Ie0PQLCzORzCWA=;
- b=ckwqrRBcQr7e+Ycb/ZiXwDaleeIjIyPeqW7qXFQKgHCurpNds1DrwD29ud21nyEc6qd2FZ7cOMAb9+mqbTexf0p0NmY4bo664jKeLxp9CIvJy6L29XAd8/W4Nb6dyN/0UEPglZwuDNdrWRfogy3egLeiVjKPbpY3r15AA5QbHDI2t6xsYRQGdxuqqqS908ccEmWCmjeHIT8snJMRi2ttin2dHGecseGJRWA6YgPJHQM+3Mrti3OlzugGaS6IVESZKm5FAU/wlHxRiWS3Wac1dvToJIPChg1GHPbBThhPW6Sav4TyML8kSB8nazZmgARu/gE0i3OsRxQry7t/zZaxhA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com (2603:10b6:208:419::15)
- by DS0PR11MB8070.namprd11.prod.outlook.com (2603:10b6:8:12d::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.21; Thu, 24 Jul
- 2025 13:51:55 +0000
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::eeac:69b0:1990:4905]) by IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::eeac:69b0:1990:4905%5]) with mapi id 15.20.8964.021; Thu, 24 Jul 2025
- 13:51:54 +0000
-Message-ID: <4385ad70-f583-4ae3-ab14-cbc0cfe5129d@intel.com>
-Date: Thu, 24 Jul 2025 16:51:49 +0300
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 2/2] mmc: sdhci-pxav3: add state_uhs pinctrl setting
-To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>, Ulf Hansson
-	<ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>,
-	<linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <phone-devel@vger.kernel.org>,
-	<~postmarketos/upstreaming@lists.sr.ht>
-References: <20250718-pxav3-uhs-v1-0-2e451256f1f6@dujemihanovic.xyz>
- <20250718-pxav3-uhs-v1-2-2e451256f1f6@dujemihanovic.xyz>
-Content-Language: en-US
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: c/o Alberga Business Park,
- 6 krs, Bertel Jungin Aukio 5, 02600 Espoo, Business Identity Code: 0357606 -
- 4, Domiciled in Helsinki
-In-Reply-To: <20250718-pxav3-uhs-v1-2-2e451256f1f6@dujemihanovic.xyz>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DU2PR04CA0262.eurprd04.prod.outlook.com
- (2603:10a6:10:28e::27) To IA1PR11MB7198.namprd11.prod.outlook.com
- (2603:10b6:208:419::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2304D2DE6E1;
+	Thu, 24 Jul 2025 13:53:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753365189; cv=none; b=H5MVdgSA0awDgPQrjyKCLyNW/FybCOb8E7ZO6tCaYmTK4fNIUqJVUQoX6RqYPFGIEHIcaPjcvEOFM929IVsCmJLGDpKBNouUnZBlQVl+8ubEGXyioXVwJ0tnjTEjwW434UWhderA7cXzAp9RgSoeTsU67WD7I8XP2/YCmoURZ54=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753365189; c=relaxed/simple;
+	bh=yqn7eXWGIicat6ACtQ06fChq2+bwHai2eNzsQEGAiZc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pFmujNQ7x0dtmyexmvoy87HPyAvVMLSGWuJVfFihC0h0F/3uruyJui8+B/jJWY39Pzd0zxrudIdndUcoRZ023s0j/ADBy1vZkYTSUWKxbeqfVDiKVzoMOZWvNsudQwyXVdr33HeJOQEMiNc1xbNbd4YjVAWHBsDrNsiO5/OtGYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Q6mze2Uq; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 129698BF;
+	Thu, 24 Jul 2025 15:52:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1753365144;
+	bh=yqn7eXWGIicat6ACtQ06fChq2+bwHai2eNzsQEGAiZc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Q6mze2UqXFwh86Xtgaeu1xH+pGVtu3y3IGXfrWbM+IHtdZvLvV+KWdf1wPiHxCUUG
+	 wS5S2sHAqnfWVi4xOY5PgiM4mfRjJBG6AOYbYILNPM0dyegcAMR3HcMAvOJldHPuDH
+	 FFIaeNm6i+BIst7SC7YtTgFSfK9ibU/PTOGR506o=
+Date: Thu, 24 Jul 2025 16:52:59 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Tarang Raval <tarang.raval@siliconsignals.io>
+Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	=?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Arec Kao <arec.kao@intel.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Bingbu Cao <bingbu.cao@intel.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Bryan O'Donoghue <bod@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Scally <djrscally@gmail.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Dongchun Zhu <dongchun.zhu@mediatek.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Hans de Goede <hansg@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>, Hao Yao <hao.yao@intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Jacopo Mondi <jacopo@jmondi.org>,
+	Jason Chen <jason.z.chen@intel.com>, Jimmy Su <jimmy.su@intel.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Leon Luo <leonl@leopardimaging.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Matthew Majewski <mattwmajewski@gmail.com>,
+	Matthias Fend <matthias.fend@emfend.at>,
+	Mikhail Rudenko <mike.rudenko@gmail.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Pavel Machek <pavel@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Shunqian Zheng <zhengsq@rock-chips.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>,
+	Todor Tomov <todor.too@gmail.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Tony Lindgren <tony@atomide.com>, Zhi Mao <zhi.mao@mediatek.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+	"linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>
+Subject: Re: [PATCH 00/72] media: i2c: Reduce cargo-cult
+Message-ID: <20250724135259.GR11202@pendragon.ideasonboard.com>
+References: <20250710174808.5361-1-laurent.pinchart@ideasonboard.com>
+ <PN3P287MB1829DD1254FB74391A750F498B5EA@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+ <20250724115202.GK11202@pendragon.ideasonboard.com>
+ <PN3P287MB1829C9E8C78ADD70259A68F08B5EA@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB7198:EE_|DS0PR11MB8070:EE_
-X-MS-Office365-Filtering-Correlation-Id: ba968b3b-1743-421e-4813-08ddcab93f90
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YlRqb2lya3hndmZIYlEweXlhc1hLcEZtSjFaQ3oyWitkOFZyT0RhOERtZjJ6?=
- =?utf-8?B?M0NRb1VlU0t4aEhzUFdGTnBuYU90NTRNYXdrVmFjZVlEc2pSL0Z6Z25DditT?=
- =?utf-8?B?Skt3cFYwWlhzZ1RWUFJBRys5ckNPYnE4T243QWN3VFcxVDVhRitBUG1Yb25W?=
- =?utf-8?B?ckc5TkFUZWdLN2F6QlJhY0txb1hMa2ZNY3BhU2szT0hZcC9yVzUxMERJdGR6?=
- =?utf-8?B?ZlF2SDBvbG9YdkFnVHVoSVhVUHo2ZTlHWGpKRDZBS3NvdlhrZ3ErdVhLRzF2?=
- =?utf-8?B?a3BDV2RqT0JUbHZUUE9GcFlRRlhyNU43UHRFdFg2VjlsUnZYT2FmTGxHaVFG?=
- =?utf-8?B?emVKWlg4UXBIOUtNOXBadWpVVWhPZ1l4UVNRNGdQcUtkTkkreGMrYU4yWmtC?=
- =?utf-8?B?WUE3R1Baa1dmL2JmQldXdC9TOFZVNHFZQ3V0dDFKMkJvUGdzVmsyYTdwR3JJ?=
- =?utf-8?B?ajRVM3BWNzdQMVhQblFjQjE1UGRtNU55cXluRFFyVGN5SGlDMWNSMXJjNCtH?=
- =?utf-8?B?dHpWS3JWcGpST1lJbnNuVjAvMUUzNEpEc09EaUIxZkNRSEd0MUlqNTNqZ1Z2?=
- =?utf-8?B?MTJZT0xLSktLNWE5ajJWRm00ZmFudlVjandBbUZiSERBMDBsRVowSVRMcVhP?=
- =?utf-8?B?anJFbWdEQm9NR2hLVTgvTUgweVFDdVAyKzJOYzJnMnpYb3I4VGh4aW1vb0p6?=
- =?utf-8?B?ZjRjVWtuekFadkVFVTFWZmd1Y3l4cEhaY042Sk5UeDExS1Ryc2libXczQnM2?=
- =?utf-8?B?ZG0wdHlER2d6NW9FaXJsSHFGY2t4c1FxK1ZSTE5sMWZnNXM1b2FVc1RQMGIw?=
- =?utf-8?B?NmJvQ1J4VE9DZ2diY2hRakliZXdnNVlXbklwa0dyNTd0WnBwNlBzRkZUZGUv?=
- =?utf-8?B?Vm1VbDJIZEJwT01GcXYySUcvKzhiNnlMTVBwTENwU2xYQVlXcXVaSy85bzlM?=
- =?utf-8?B?TkhSank1YzVjMWN5UnI3RmlPZjVVdDJvellieE9QdFBhUjhWbTJTZm5CS1BE?=
- =?utf-8?B?bTEzMjB2VG1jeEwveDQzUktDWHdId2tUV1ZYVTV1ejFOSzhmNGUwNUIyWXM2?=
- =?utf-8?B?UEF6aDdTQUxlRGxKMXdxMjNFSm83dE5oMDlCbXJxbUgwV2JYSzNIdmFXK3A2?=
- =?utf-8?B?OHp1S0lHcWkyN3ptdEgwbXZrbmNia3c4TUFpc1VZN3lLdFFMQjdDRjZ6dlUw?=
- =?utf-8?B?ZTVTZy9haEx5L3JtdHFyVnkrNHdXZ2gyUndsS3hjbXYrR0pLeUJzRTNRTGpF?=
- =?utf-8?B?cUkvUE41NzFPZEIyOXdwT3lIVjdzNE53TWRVMThmWElEV2JXNVo3OHQrOXAw?=
- =?utf-8?B?MnJ4VUNZejNMUTVaajF6MUliSGxsNDRiYUVpQlZXajJSSS9aVWJCQ3ErWnVL?=
- =?utf-8?B?N3NZN0wrenRodEVUOE1zRWVHTEc2dHJTbU5vNjhFOFdXWXR3WnhFVGg4WU1y?=
- =?utf-8?B?RUZ1bHp3TnJLZmlrdEtkcVNsL2RVQkNPT1BvWXBPbmg3empRL1NKUWZGVnVY?=
- =?utf-8?B?QVFxMWp4dnQrQm9nVXRNVjQyRERDQzlnQWNRM0djbVc4S0RyTXhSMDBlbGE3?=
- =?utf-8?B?cHBDVlRLUWltQUtlR09JQXR4SFBTbWtOSUVWclZ0L2thN1Fpa0pRQXRPN2Ex?=
- =?utf-8?B?UGdoN2hTem52dWl1K0R4OUYvd2FWeTRPNVhXN2dWRVVuV1UxQ2l2eDJodEVM?=
- =?utf-8?B?eGZvNTVhUWU4T3BMVmt2OUdqUy9GLzlyVHVSVmFaMCtEQzJidGJ4M0ppVUtx?=
- =?utf-8?B?eVlwZnBBeXM0TnVJSWEvMm90MXY1RmNqZ0RGNVJKOUp6Y0Z4dHFTT3dyMDhY?=
- =?utf-8?B?RUhydzdKWUZPdU1HU3NpQ0NJNWpTYlFieEJOeU9PbzE4RUEzTG85QjVING1a?=
- =?utf-8?B?NDNHaFVXS29lQjJTZ2crWm5Qb0NaUDEvNEd4TVdwS28xOXFBRkFxWkVrRE1o?=
- =?utf-8?Q?lihjl9apjc4=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR11MB7198.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RzRaS0Y3ckZNZlM1WUZoQzc2NUpvSkx1cHAvaHFuelc3czJ1SFpoTklEM0Jr?=
- =?utf-8?B?Mnd0OVFRc3VOQktGaG9lNkF1czJGbGtPdDRJaEt3STh5dUUxWGxpTWI5MHYy?=
- =?utf-8?B?QjNlQzZNVjM5UVN1SWh6N2s2cFhPcDJUTHNwd0ZhVW1Fc2NUVWI4MDQxRHpJ?=
- =?utf-8?B?VTZobzBvNUpkaGcxV2ZCdWxtbmJRSFhQQS9DUnRrVU04MURKN1UyME9vQmw4?=
- =?utf-8?B?cDRFbWQ2b0dLeDNvRlNvWWRraWlZOFplNVV4czJ3MjBOL01JOFlLR0dwRmU4?=
- =?utf-8?B?amZ4YTRVakVRR2xUc1ZFT0U2NlQ1cjEybVpPa1Zhb1gvK2d3MnVUa2dZRWhC?=
- =?utf-8?B?YTBSOEo2K2E0MlBkT2pSNkhZMDZxN2VsMlpuais2bnV2aE1kZm1qckhYYm1u?=
- =?utf-8?B?clpGSXFHL2ErZFlUQk5mQ0hVYU1HUlB2eElDMWpXdFZROHJSYUpNMXFodHBu?=
- =?utf-8?B?b1pPNHU5VzVzZ014UVNTdGY0NHYyRDBJUGUyMjlIWnN5TWw2OEg2TWxScVBI?=
- =?utf-8?B?cEZkQ0J6TXdjZ3V0Tncza3hTYWxPN2tNcTc2UlFMSzJVSEUveStPMzF3RjIx?=
- =?utf-8?B?emdBVksxNjJmN1NzMlFvcmlzMzBHNDZZREJPWDZxS3p0bHFRNFkxMm1SYlA2?=
- =?utf-8?B?ZUdNRUxrYnlEMXNQRjdsL2xsNVJHM1J4RmRaT1E3OUhTN20rQ0RGbnNwT3F2?=
- =?utf-8?B?T25WYjRoemIxNm9qbGtJMjNpRy9DUlFqcDNwSWZTTHczRU96cXQ4dDBwTEtq?=
- =?utf-8?B?TUk0SlBiT3RudThYWFpmZ1ZhM0h5eGRudDV1QzM5Szl6eEJ5ZWpUcmd0bHgr?=
- =?utf-8?B?MGxiK09CMVMySXlhVHFUZFRFdWlqaVUveldSaW0vTTg1SThJRDRVdzVxUVNl?=
- =?utf-8?B?b3owb1pLUER2QUJFNEFPSGVKSVhlanV6elVBbU9nRDY4RHE2TEdmZ3JBR2JU?=
- =?utf-8?B?MWZOY1BxcFZPRWE5MXVpbnBTN3ZBcldIdEtlMGlnL1kzOTdRVTdUbEZUT0Fv?=
- =?utf-8?B?bjVlUnV4NHA0NFh6c0F6OFgybTFpUjB2V1d1TW1XNlU3SzlkRGlRNzlyTGpz?=
- =?utf-8?B?elRZSEhLVnF4ME1TUWxJM1U4Mjk2Q3U4ckZrTU9LV2tMN2xobE9NR05wTWs3?=
- =?utf-8?B?ZTRSU3g4cXJYbml0dFdsd0RhZ1lhUTUweHlzT3BJQ3Noa0NQeStKenFpM0JI?=
- =?utf-8?B?Q1ZOeWRUSDF0WUdNcWVxNzN6aGh1ZDJocDhnQUpFVTgxTER4NkFwVkFGdmRa?=
- =?utf-8?B?VThzVUpZdXRaUnRqaXpQZTBPYkpWVFFHRE9YSkNUMVovVHpoN21sQmVuV0ky?=
- =?utf-8?B?NWZmRkVRYTVRWHhoR2poNiswN1lXK0s2TTZzZHV1NGVqd2NHaGRNbXpuUXFP?=
- =?utf-8?B?ZngyWjhZRXVnRVRrQTIxY0JWOE5rZHFscGVkNWJ4NU9yWEFRWVM0U3RscHFv?=
- =?utf-8?B?RjhoMnUwVk5paWFOTUtNT0YxTHhiVWtJQzlqQWpDcExGQTJOcVIzMnd0VTBS?=
- =?utf-8?B?RDRqdGpwSDFpL200M3JGU1BOOFk4SUxjc2hSK0xRK2hKS2xJcnlvYmtoQ1hQ?=
- =?utf-8?B?WjFXYVNzc2twTXlvWUxJVTJ5UERDT2RxN2RxNGdLNkpNQ3Z5dEVIOUJvODJx?=
- =?utf-8?B?QlJSWmxCS3VCUzhoMGg0cUw1bUtyZTdPR2g2QjB2T05RYThxazlsWkppcFA3?=
- =?utf-8?B?bk9pcEd6SzM5ZmhjQUl0c0o0eUMwRGl6bFBDbkVnQ0FIUnBxOFJ5OENMZ1R0?=
- =?utf-8?B?NzVxODRuUFFrUitKMlBLdXd3Y0NjRWJqQW1oZndqSTdyTGpPbVo4UklZZlRI?=
- =?utf-8?B?UFgvc3BaMWZXaDk2UHhQb0FXVzkyRTBvdGJIT1lKdnhVV0VmbG5wVlZ2UWNO?=
- =?utf-8?B?UytVWERmaEFVMmxJRzFKSjdJQzRZdEhxclI4T0JXbGNFTTZYZVM2bEJHZU1X?=
- =?utf-8?B?Y3J4ZW9KWEZMSWtLbW1LMGEweWtEZXBqdEF1b1JzVGdmWExpRmFLcU5EWWRu?=
- =?utf-8?B?TmZMUGE1dXBwYVBkeFRKUGJRUWJ2VGQ0dWdpZ2JBKzJLVVgwZWxseWF0eElH?=
- =?utf-8?B?em1XMVNLL2dHUi9IWU4yNllNVGpnUHF2VHNWQjBQZWhJQ1AxYVQzQWdEZ2V6?=
- =?utf-8?B?QkI4UzVlMCt5V0FBdCtPSEVEay9JTjhkV0U1Y0lSbTFRQ3V3TE8wM2FYYUxh?=
- =?utf-8?B?Wnc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba968b3b-1743-421e-4813-08ddcab93f90
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7198.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2025 13:51:54.2816
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Xxldb8cLu7TPKqrRI1vElIugZWgKiCd1tTEM7aRd8IwAZwa8WMh4NHj8QINNo715T4Dljhv8K3B5V7USK/GDBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8070
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PN3P287MB1829C9E8C78ADD70259A68F08B5EA@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
 
-On 19/07/2025 00:12, Duje Mihanović wrote:
-> Different bus clocks require different pinctrl states to remain stable.
-> Add support for selecting between a default and UHS state according to
-> the bus clock.
+On Thu, Jul 24, 2025 at 01:24:24PM +0000, Tarang Raval wrote:
+> > On Thu, Jul 24, 2025 at 11:42:55AM +0000, Tarang Raval wrote:
+> > > Hi Laurent,
+> > >
+> > > > This patch series build on top of Mehdi's introduction of the
+> > > > devm_v4l2_sensor_clk_get() helper (see [1]) to drastically reduce
+> > > > cargo-cult in camera sensor drivers.
+> > > >
+> > > > A large number of camera sensor drivers directly use the
+> > > > "clock-frequency" property to retrieve the effective or desired external
+> > > > clock rate. This is standard behaviour on ACPI platforms that don't
+> > > > implement MIPI DisCo for Imaging, but usage of the property has leaked
+> > > > to OF-based platforms, due to a combination of historical reasons (using
+> > > > "clock-frequency" was initially considered right until before the
+> > > > introduction of "assigned-clock-rates") and plain cargo-cult.
+> > > >
+> > > > A large number of camera sensor drivers also set the rate of the
+> > > > external clock with clk_set_rate(). This behaviour is also fine on ACPI
+> > > > platforms, and has also leaked to OF-based platforms for the same
+> > > > reasons.
+> > > >
+> > > > Mehdi's "[PATCH v2 00/48] media: Add a helper for obtaining the clock
+> > > > producer" series improves the situation by centralizing clock handling
+> > > > for camera sensor in one helper function that implements the correct
+> > > > behaviour for all types of platforms (and should later allow support of
+> > > > MIPI DisCo for Imaging transparently for camera sensor drivers). It
+> > > > doesn't however address direct access of the "clock-frequency" property
+> > > > or direct calls to clk_set_rate() in drivers.
+> > > >
+> > > > This series builds on top of the new helper to replace manual handling
+> > > > of the clock frequency in camera sensor drivers. It starts by addressing
+> > > > the DT bindings and reprecating the clock-frequency property for camera
+> > > > sensor drivers in all YAML bindings (01/72) and in the et8ek8 text
+> > > > bindings (02/72). After that, patches 03/72 and 04/72 make the clocks
+> > > > property mandatory in the two camera sensor DT bindings that specified
+> > > > it as optional. Finally for the DT side, patches 05/72 to 14/72 replace
+> > > > clock-frequency with assigned-clock-rates, or drops the property
+> > > > altogether when the source clock has a fixed rate. This aligns the DT
+> > > > bindings and device tree sources to the current recommended practice.
+> > > >
+> > > > After that, the next 5 patches are assorted drive-by changes. Patch
+> > > > 15/72 drops an unused header the belonged to a long gone driver, and
+> > > > patch 17/72 drops unusued support for platform data in the mt9v032
+> > > > driver. Patch 18/72 is the first that addresses clock rate handling by
+> > > > dropping unneeded clock rate setting in the mt9v111 driver. Patch 19/72
+> > > > takes a harsher approach for the ov6650 by dropping the driver
+> > > > completely as the driver hasn't been used since v5.9.
+> > > >
+> > > > The next part of the series replaces manual clock rate handling with
+> > > > usage of the devm_v4l2_sensor_clk_get() helper in a large number of
+> > > > camera sensor drivers that implement clock rate handling in a standard
+> > > > way. This is done in patches 20/72 to 54/72. This interleaves the clock
+> > > > rate handling changes with drive-by refactoring (in separate patches) to
+> > > > make the code easier to deal with.
+> > > >
+> > > > The final part of the series addresses the remaining drivers that
+> > > > implement non-standard behaviours. It starts in 55/72 by adding a new
+> > > > devm_v4l2_sensor_clk_get_legacy() helper function for those drivers,
+> > > > similar to devm_v4l2_sensor_clk_get() but with a few more quirks. This
+> > > > function should not be used in any new driver. The remaining patches,
+> > > > from 53/72 to 72/72, use the new helper in drivers, interleaved with
+> > > > drive-by refactoring similarly to the previous part.
+> > > >
+> > > > Before this series, with Mehdi's series applied, 29 drivers read the
+> > > > "clock-frequency" property and 18 drivers set the external clock rate.
+> > > > With these series we go down to 1 and 3 respectively, namely the ccs,
+> > > > mt9p031 and mt9v032 drivers. Clock handling in the CCS driver is a bit
+> > > > more convoluted so I will leave to Sakari the honour of dropping the
+> > > > last direct user of "clock-frequency" :-) As for the mt9p031 and mt9v032
+> > > > driver, addressing the issue there is more difficult and likely not
+> > > > worth it.
+> > > >
+> > > > [1] https://lore.kernel.org/linux-media/
+> cover.1750942967.git.mehdi.djait@linux.intel.com
+> > > >
+> > > > Laurent Pinchart (72):
+> > > >   dt-bindings: media: Deprecate clock-frequency property for camera sensors
+> > > >   dt-bindings: media: et8ek8: Deprecate clock-frequency property
+> > > >   dt-bindings: media: imx258: Make clocks property required
+> > > >   dt-bindings: media: imx274: Make clocks property required
+> > > >   ARM: dts: nxp: imx6qdl-pico: Replace clock-frequency in camera sensor node
+> > > >   ARM: dts: nxp: imx6qdl-wandboard: Replace clock-frequency in camera sensor node
+> > > >   ARM: dts: samsung: exynos4210-i9100: Replace clock-frequency in camera sensor node
+> > > >   ARM: dts: samsung: exynos4412-midas: Replace clock-frequency in camera sensor node
+> > > >   ARM: dts: ti: omap3-n900: Replace clock-frequency in camera sensor node
+> > > >   ARM: dts: ti: omap3-n950: Replace clock-frequency in camera sensor node
+> > > >   ARM: dts: ti: omap3-n9: Replace clock-frequency in camera sensor node
+> > > >   arm64: dts: qcom: sdm845-db845c-navigation-mezzanine: Replace clock-frequency in camera sensor node
+> > > >   arm64: dts: renesas: aistarvision-mipi-adapter-2.1: Drop clock-frequency from camera sensor node
+> > > >   arm64: dts: renesas: rzg2l-smarc: Drop clock-frequency from camera sensor node
+> > > >   media: i2c: mt9v022: Drop unused mt9v022.h header
+> > > >   media: i2c: mt9v032: Replace client->dev usage
+> > > >   media: i2c: mt9v032: Drop support for platform data
+> > > >   media: i2c: mt9v111: Do not set clock rate manually
+> > > >   media: i2c: ov6650: Drop unused driver
+> > > >   media: i2c: hi556: Replace client->dev usage
+> > > >   media: i2c: hi556: Use V4L2 sensor clock helper
+> > > >   media: i2c: hi847: Replace client->dev usage
+> > > >   media: i2c: hi847: Use V4L2 sensor clock helper
+> > > >   media: i2c: imx208: Replace client->dev usage
+> > > >   media: i2c: imx208: Use V4L2 sensor clock helper
+> > > >   media: i2c: imx319: Replace client->dev usage
+> > > >   media: i2c: imx319: Use V4L2 sensor clock helper
+> > > >   media: i2c: imx355: Replace client->dev usage
+> > > >   media: i2c: imx335: Use V4L2 sensor clock helper
+> > > >   media: i2c: og01a1b: Replace client->dev usage
+> > > >   media: i2c: og01a1b: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov02c10: Replace client->dev usage
+> > > >   media: i2c: ov02c10: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov02e10: Replace client->dev usage
+> > > >   media: i2c: ov02e10: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov08d10: Replace client->dev usage
+> > > >   media: i2c: ov08d10: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov08x40: Replace client->dev usage
+> > > >   media: i2c: ov08x40: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov13858: Replace client->dev usage
+> > > >   media: i2c: ov13858: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov13b10: Replace client->dev usage
+> > > >   media: i2c: ov13b10: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov2740: Replace client->dev usage
+> > > >   media: i2c: ov2740: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov4689: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov5670: Replace client->dev usage
+> > > >   media: i2c: ov5670: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov5675: Replace client->dev usage
+> > > >   media: i2c: ov5675: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov5693: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov7251: Use V4L2 sensor clock helper
+> > > >   media: i2c: ov9734: Replace client->dev usage
+> > > >   media: i2c: ov9734: Use V4L2 sensor clock helper
+> > > >   media: v4l2-common: Add legacy camera sensor clock helper
+> > > >   media: i2c: et8ek8: Drop support for per-mode external clock frequency
+> > > >   media: i2c: et8ek8: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: gc05a2: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: gc08a3: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: imx258: Replace client->dev usage
+> > > >   media: i2c: imx258: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: imx290: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: ov02a10: Replace client->dev usage
+> > > >   media: i2c: ov02a10: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: ov2685: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: ov5645: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: ov5695: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: ov8856: Replace client->dev usage
+> > > >   media: i2c: ov8856: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: s5c73m3: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: s5k5baf: Use V4L2 legacy sensor clock helper
+> > > >   media: i2c: s5k6a3: Use V4L2 legacy sensor clock helper
+> > >
+> > > If you are planning a v2 version of this patch series, please consider
+> > > incorporating the following improvements:
+> > >
+> > > 1. In the imx219 driver, you can also replace direct client->dev usage.
+> > 
+> > The series doesn't touch the imx219 driver. The patches that replace
+> > client->dev usage were meant to simplify the other changes. Additional
+> > client->dev removal should be done on top (and likely through all camera
+> > sensor drivers in one go).
 > 
-> Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
-> ---
->  drivers/mmc/host/sdhci-pxav3.c          | 30 +++++++++++++++++++++++++++++-
->  include/linux/platform_data/pxa_sdhci.h |  7 +++++++
->  2 files changed, 36 insertions(+), 1 deletion(-)
+> Okay, great
 > 
-> diff --git a/drivers/mmc/host/sdhci-pxav3.c b/drivers/mmc/host/sdhci-pxav3.c
-> index 3fb56face3d81259b693c8569682d05c95be2880..0e1bd75a1252e5559deb0b3caabcdc75919aee3d 100644
-> --- a/drivers/mmc/host/sdhci-pxav3.c
-> +++ b/drivers/mmc/host/sdhci-pxav3.c
-> @@ -20,9 +20,11 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
-> +#include <linux/pinctrl/consumer.h>
->  #include <linux/pm.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/mbus.h>
-> +#include <linux/units.h>
->  
->  #include "sdhci.h"
->  #include "sdhci-pltfm.h"
-> @@ -313,8 +315,24 @@ static void pxav3_set_power(struct sdhci_host *host, unsigned char mode,
->  		mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, vdd);
->  }
->  
-> +static void pxav3_set_clock(struct sdhci_host *host, unsigned int clock)
-> +{
-> +	struct platform_device *pdev = to_platform_device(mmc_dev(host->mmc));
-> +	struct sdhci_pxa_platdata *pdata = pdev->dev.platform_data;
-> +
-> +	if (clock < 100 * HZ_PER_MHZ) {
-> +		if (!IS_ERR(pdata->pins_default))
-> +			pinctrl_select_state(pdata->pinctrl, pdata->pins_default);
-> +	} else {
-> +		if (!IS_ERR(pdata->pins_uhs))
-> +			pinctrl_select_state(pdata->pinctrl, pdata->pins_uhs);
-> +	}
-> +
-> +	sdhci_set_clock(host, clock);
-> +}
-> +
->  static const struct sdhci_ops pxav3_sdhci_ops = {
-> -	.set_clock = sdhci_set_clock,
-> +	.set_clock = pxav3_set_clock,
->  	.set_power = pxav3_set_power,
->  	.platform_send_init_74_clocks = pxav3_gen_init_74_clocks,
->  	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
-> @@ -441,6 +459,16 @@ static int sdhci_pxav3_probe(struct platform_device *pdev)
->  			host->mmc->pm_caps |= pdata->pm_caps;
->  	}
->  
-> +	pdata->pinctrl = devm_pinctrl_get(dev);
-> +	if (IS_ERR(pdata->pinctrl))
-> +		dev_warn(dev, "could not get pinctrl handle\n");
-> +	pdata->pins_default = pinctrl_lookup_state(pdata->pinctrl, "default");
-
-Mustn't use pdata->pinctrl if it is not valid
-
-> +	if (IS_ERR(pdata->pins_default))
-> +		dev_warn(dev, "could not get default state\n");
-> +	pdata->pins_uhs = pinctrl_lookup_state(pdata->pinctrl, "state_uhs");
-
-Mustn't use pdata->pinctrl if it is not valid, and probably don't
-want to change pin state unless both pdata->pins_default and
-pdata->pins_uhs are valid
-
-> +	if (IS_ERR(pdata->pins_uhs))
-> +		dev_warn(dev, "could not get uhs state\n");
-
-I'd suggest dev_dbg() rather than dev_warn() for all the
-new dev_warn()s
-
-> +
->  	pm_runtime_get_noresume(&pdev->dev);
->  	pm_runtime_set_active(&pdev->dev);
->  	pm_runtime_set_autosuspend_delay(&pdev->dev, PXAV3_RPM_DELAY_MS);
-> diff --git a/include/linux/platform_data/pxa_sdhci.h b/include/linux/platform_data/pxa_sdhci.h
-> index 899457cee425d33f82606f0b8c280003bc73d48d..540aa36db11243719707bdf22db23a8e2035674d 100644
-> --- a/include/linux/platform_data/pxa_sdhci.h
-> +++ b/include/linux/platform_data/pxa_sdhci.h
-> @@ -35,6 +35,9 @@
->   * @quirks: quirks of platfrom
->   * @quirks2: quirks2 of platfrom
->   * @pm_caps: pm_caps of platfrom
-> + * @pinctrl: pinctrl handle
-> + * @pins_default: default pinctrl state
-> + * @pins_uhs: pinctrl state for fast (>100 MHz) bus clocks
->   */
->  struct sdhci_pxa_platdata {
->  	unsigned int	flags;
-> @@ -47,5 +50,9 @@ struct sdhci_pxa_platdata {
->  	unsigned int	quirks;
->  	unsigned int	quirks2;
->  	unsigned int	pm_caps;
-> +
-> +	struct pinctrl	     *pinctrl;
-> +	struct pinctrl_state *pins_default;
-> +	struct pinctrl_state *pins_uhs;
->  };
->  #endif /* _PXA_SDHCI_H_ */
+> > > 2. In the regulator code, you can reduce boilerplate by using
+> > >    devm_regulator_bulk_get_enable().
+> > 
+> > devm_regulator_bulk_get_enable() doesn't seem to be a good idea. You
+> > generally don't want to enable power everywhere unconditionally, and
+> > sensors very often need a guaranteed power up sequence.
 > 
+> The regulators are optional, we supply power to the camera sensor directly
+> through dedicated power rails and there is no strict enable sequence 
+> required in this case.
 
+What exactly do you mean by "this case" ? Are you talking about one
+particular sensor ? One particular camera module ?
+
+> However, if you feel it's better to retain explicit handling for clarity 
+> and flexibility, I’m happy to stick with the current approach.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
