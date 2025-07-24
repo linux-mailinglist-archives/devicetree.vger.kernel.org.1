@@ -1,196 +1,192 @@
-Return-Path: <devicetree+bounces-199511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DED23B10F51
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 18:00:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 913E5B10F65
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 18:05:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0A481C22CFB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 16:00:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E11795424E2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 16:05:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFDD32EA758;
-	Thu, 24 Jul 2025 15:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A942EA491;
+	Thu, 24 Jul 2025 16:05:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SmiHpo44"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ilIxMiKJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 355802EA723
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 15:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1431E1C36;
+	Thu, 24 Jul 2025 16:05:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753372793; cv=none; b=lWbBHeBXorIlij6XhE6cibL42rsSAXy8QwSo+ItRfsPvGKeapGMbEw5zbPusooYcqdW6BREov2RqQV0NWGgtBBXHijeFsBo5OS/i2XFrVZag488RNTAfXdtnPXwiVvPkontx4MqQBohgA0zXwau0FqVkUWx7wVqfLciS48Wb5FU=
+	t=1753373149; cv=none; b=bnjUpvOLKN+qWnuT4VExgBLm4jKKk/T0kEwNjMaQPXhr3cfO9Xup9DtlJzOHUySdqHmHUP692q/gTSdedwV99G00vXltLFWgPuBvSiU5wfTXlSRgA3IFUdxDLHKb7havRgHTnq/LU6glnkKa/MsKYavTjP2JtyhpZJSQho7iIZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753372793; c=relaxed/simple;
-	bh=dx2VRA6BvKhPA5vORygkUm1H2jI84JUEt7OvOhDTkvQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Hjy6INlY4+8eGXTtfNi48ktNlW5xn2bqTMbkrLoMTLZGoi6+Au7i8H+ApN0awdzspYpOfBsoClJGTeAWz1/ymEplhW4gF+VG6E+dJa/vbjqJ0mnhc1oHv/m6OvfrE8+eEFZf64K9Rt5kjOxgQ1c0NXMOkIINlkody6kNVz8I1wo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SmiHpo44; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56O9slxs007119
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 15:59:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:to; s=
-	qcppdkim1; bh=E/S7e90kXRCRpl38LXl7BBpUAVdm4Oac/G4ZTBf/0QY=; b=Sm
-	iHpo44TuiBkl95lDh7s5/8i0ONsK14PxaGGh842salt4lKbHGDKYqRgWLSwY2FD1
-	nWZN01VGh/KDIt5MozcKhx0b+hLZPGfLScKAW+kP4w2GGA0UWthNiJmWpmaP9gyW
-	UwVFgqn4F1GgAogIuwYzluB5zv/hi5BG+65055wlaFJQMimr7ad4dlZdHkpturjN
-	UFqfeNC1i/wEsLzJmUAIHTdoAN9L7fESrsKXcU5MzVpODumiQ+1qMhy3YFgjaYH5
-	smZqlIdnJTc0Z4yiTbb7spGPk+fq56K03cbQ6AipBpn4GXdoEvAh03tJJqGh+KWe
-	UGg/6PcP5KnQTgBl+LsA==
-Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com [209.85.167.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48047qhb6h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 15:59:50 +0000 (GMT)
-Received: by mail-oi1-f198.google.com with SMTP id 5614622812f47-41b2bd86407so1172663b6e.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 08:59:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753372790; x=1753977590;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E/S7e90kXRCRpl38LXl7BBpUAVdm4Oac/G4ZTBf/0QY=;
-        b=B1DowbxWEaE23eYA4y5zJruhkgZo4awaXa337QUSQCVnsVUxn8bB09v1jTvSSc2EwM
-         dZAPW12bILESu1betnQLcmPE5ljQqmjXHnFruHBSjO+bwxsdSB5lRPNm0YzxW+2DaoVB
-         rCdwRK3gkQ8EqqE7vCUNtqv17VC69wgwssay/P/mk4xEbN8StEZj5uSU9Xd+rMipGtNo
-         3bM4VvJ7HW6t5A4kPRUiF17r7Cs5Ikifu4HkXo7HOyGAchXItoua2EJpzNJBU201SonK
-         2vvUTw+9ySxzmDIPj9mJRUip02tCecEA04PTRXMLOc6NhAUju4KKrXt++HkQL2D685Af
-         0QSw==
-X-Forwarded-Encrypted: i=1; AJvYcCWTiLRFWUFBMHUu7Z0UkNLuOLihVKkWHdgSrXc0viQ7mskT3CS65maDLUiyp1ju9Z1DDVr+FCSeglV9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8iuOi2zxcKfIcnenfa6fqjI1b8l2rplnNaVBOxyojzEsVkM/x
-	yJuzZXesVbeKbogTZE/OSiYF8SbeIw1EQfgAN9/rKlrxPOvQz46oBcZKgODkLETJOLAGqILqu+c
-	fC2iiZbqem6XUj64oAOxa7YPbCl4N7a0JR/WhK2YEiR1NSDmCESjdLHSm1md/oSTJJsPqY3y7lc
-	Gsa9PBXTdJA9B8kEBGHLuVxl85V+uwRb6I/TiWKB4=
-X-Gm-Gg: ASbGncvIHaWbwfXoWNUOrMym6B4MFbBhFFQ8x2jTSjlGBHwAvZpYNyooIHKvC8xxLsf
-	ZZqyCy/wIZBfCdhsKrtqw9mitK0W/nKns9IS9gmCKJM568LxODUm5Edu7oeBE5gO5Fi0xp9ywAD
-	MHkJ7YhfcXImLvEPWJJ71CgBFoNWqdG+x9p/Eso0vd/VyEBeWmbo58
-X-Received: by 2002:a05:6808:148d:b0:406:67dc:85e5 with SMTP id 5614622812f47-426ce19e982mr5554840b6e.32.1753372790012;
-        Thu, 24 Jul 2025 08:59:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFGpXcKJ3QbUsbLvKRbDwKfkM5/VNGjGNkn2YEywAD3WzJbVx/vrkRWsPUkc0+Fk08vMtSUlyQSZ5q6OmZK0oY=
-X-Received: by 2002:a05:6808:148d:b0:406:67dc:85e5 with SMTP id
- 5614622812f47-426ce19e982mr5554818b6e.32.1753372789630; Thu, 24 Jul 2025
- 08:59:49 -0700 (PDT)
+	s=arc-20240116; t=1753373149; c=relaxed/simple;
+	bh=GJhw+IDFcNu0ZATI0kH9MQ7rMbCT9gDxNBgjRWy5fJc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JxiqKw3YXbZKZx4OXexCZ+GQ4kvbVz1sCPV47Bepl+YmjXIpAK5nm0pR1DyvBMmU1KTcbMEoevfKdaaSaJyTHCCUWxfIDMbCL9Zzkh8DdlVD3qKZAl0bnsmFr8KlrIBduiNPptiYtrl4fC7eGgWX7HUkyA/LJRz4fog95ICxO6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ilIxMiKJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DA1DC4CEED;
+	Thu, 24 Jul 2025 16:05:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753373149;
+	bh=GJhw+IDFcNu0ZATI0kH9MQ7rMbCT9gDxNBgjRWy5fJc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ilIxMiKJ6KOdF3Fe1xa1v4qvSrXGNCkWEzwTUkvSueEs25FcoJGTTp8uyKSP5Outm
+	 1IztDg9ZVUXQ/8k1+EL5ocp3v61IDrgm/bPc1ZWbM2PO2mbHLZcCWnE3Z9tpSSTQJH
+	 N5etmzBoCoZRNmbaTB81ZJU0IEu+RZCMsoL+6qA38fhdA8+blEGEyUjw7yage6V0YB
+	 gbjGjh4aNK2Gvq3pZ2n0fdFTQq8KmUH8lTabPMrFZZkdIooV1Rk1JcZkVZQ11DwcRo
+	 QIwZFwZ0pqK+CZAX0nhb6lSYs3XLIaHKzSU14vSU1GHBjNJXCw4JmvjZDioP0WTNBs
+	 7RYD+lc2cc4lg==
+Date: Thu, 24 Jul 2025 17:05:39 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>
+Cc: remi.buisson@tdk.com, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/8] iio: imu: inv_icm45600: add buffer support in
+ iio devices
+Message-ID: <20250724170539.13cface5@jic23-huawei>
+In-Reply-To: <20250717-add_newport_driver-v3-3-c6099e02c562@tdk.com>
+References: <20250717-add_newport_driver-v3-0-c6099e02c562@tdk.com>
+	<20250717-add_newport_driver-v3-3-c6099e02c562@tdk.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250722144926.995064-1-wasim.nazir@oss.qualcomm.com>
- <20250722144926.995064-2-wasim.nazir@oss.qualcomm.com> <20250723-swinging-chirpy-hornet-eed2f2@kuoka>
- <159eb27b-fca8-4f7e-b604-ba19d6f9ada7@oss.qualcomm.com> <e718d0d8-87e7-435f-9174-7b376bf6fa2f@kernel.org>
-In-Reply-To: <e718d0d8-87e7-435f-9174-7b376bf6fa2f@kernel.org>
-Reply-To: rob.clark@oss.qualcomm.com
-From: Rob Clark <rob.clark@oss.qualcomm.com>
-Date: Thu, 24 Jul 2025 08:59:38 -0700
-X-Gm-Features: Ac12FXw0dD-ILdlDq0K6v0A1YBmDTK14Yafdqu4VzvYZpcerQkSvDG4iv4VMLfQ
-Message-ID: <CACSVV00jef8so-jqjCaqJehj-XN2OZ562_R+Dod64+C4-dmDhQ@mail.gmail.com>
-Subject: Re: [PATCH 1/7] arm64: dts: qcom: Rename sa8775p SoC to "lemans"
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Wasim Nazir <wasim.nazir@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        kernel@oss.qualcomm.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI0MDEyMSBTYWx0ZWRfXzprb97z7szxM
- TitLKf1aVNJuafbtmMyQnXWPQ1ZyxjHm+Cy5/7t+kOyDeY2AYGyv0Ss4pBOCp+T3wOd2vjFIgP0
- tU3qemY1sRmK54BaxJTR2LCMvUoK/Er1sWzNbNMAYmqiVa3H6nNrxzGtkomdqgHxis6mb6gUmjJ
- f10K2h+xCs64GcIOhixBlWPqof3pxG/T5MgV1nHx3MG9V9y2RMKCFDm5RoGmTp/YlQsUfYkXLCe
- i26ESy2h0c8b3eknC21NJmHd4P3gTohBvV2nU/+u+H6s6Dmo0vUmQfsmPftOpgavVHsCLKmz0xR
- LNgef81gdZv3P1X0OmMGZmMA4dNTPUBkg6ghqCw3JMcic4JEneOuG2qqv/prRhCjz8wPHgJ8lur
- KljXEGfxyafBEH9Z/cIemHVGglfzf1h7OX815oEnWDCT2K6mM40UQhdV790Yxm4IziFr4UJs
-X-Proofpoint-ORIG-GUID: BU1U0KidqSzg3xe8d-AFTWwAZUc4g15K
-X-Proofpoint-GUID: BU1U0KidqSzg3xe8d-AFTWwAZUc4g15K
-X-Authority-Analysis: v=2.4 cv=IrMecK/g c=1 sm=1 tr=0 ts=68825877 cx=c_pps
- a=4ztaESFFfuz8Af0l9swBwA==:117 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=oW_OSN6b07XpTVcMi7IA:9 a=QEXdDO2ut3YA:10
- a=TPnrazJqx2CeVZ-ItzZ-:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-24_02,2025-07-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0 clxscore=1015
- priorityscore=1501 spamscore=0 mlxscore=0 mlxlogscore=852 phishscore=0
- impostorscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507240121
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jul 24, 2025 at 5:52=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 24/07/2025 14:47, Konrad Dybcio wrote:
-> > On 7/23/25 10:29 AM, 'Krzysztof Kozlowski' via kernel wrote:
-> >> On Tue, Jul 22, 2025 at 08:19:20PM +0530, Wasim Nazir wrote:
-> >>> SA8775P, QCS9100 and QCS9075 are all variants of the same die,
-> >>> collectively referred to as lemans. Most notably, the last of them
-> >>> has the SAIL (Safety Island) fused off, but remains identical
-> >>> otherwise.
-> >>>
-> >>> In an effort to streamline the codebase, rename the SoC DTSI, moving
-> >>> away from less meaningful numerical model identifiers.
-> >>>
-> >>> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-> >>> ---
-> >>>  arch/arm64/boot/dts/qcom/{sa8775p.dtsi =3D> lemans.dtsi} | 0
-> >>>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi             | 2 +-
-> >>
-> >> No, stop with this rename.
-> >>
-> >> There is no policy of renaming existing files.
-> >
-> > There's no policy against renaming existing files either.
->
-> There is, because you break all the users. All the distros, bootloaders
-> using this DTS, people's scripts.
+On Thu, 17 Jul 2025 13:25:55 +0000
+Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org> wrote:
 
-I think that is a valid argument against renaming the toplevel .dts
-(and therefore .dtb), but renaming .dtsi should be a harmless internal
-detail to the kernel.  And less confusing, IMHO, than
-qsc9100-myboard.dts #including sa8775p.dtsi.
+> From: Remi Buisson <remi.buisson@tdk.com>
+> 
+> Add FIFO control functions.
+> Support hwfifo watermark by multiplexing gyro and accel settings.
+> Support hwfifo flush.
+> 
+> Signed-off-by: Remi Buisson <remi.buisson@tdk.com>
+A few minor things inline.
 
-So wouldn't the sensible way forward be to rename .dtsi but not .dts?
+> ---
+>  drivers/iio/imu/inv_icm45600/Makefile              |   1 +
+>  drivers/iio/imu/inv_icm45600/inv_icm45600.h        |   7 +
+>  drivers/iio/imu/inv_icm45600/inv_icm45600_buffer.c | 514 +++++++++++++++++++++
+>  drivers/iio/imu/inv_icm45600/inv_icm45600_buffer.h |  99 ++++
+>  drivers/iio/imu/inv_icm45600/inv_icm45600_core.c   | 137 +++++-
+>  5 files changed, 757 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/imu/inv_icm45600/Makefile b/drivers/iio/imu/inv_icm45600/Makefile
+> index 4f442b61896e91647c7947a044949792bae06a30..19c521ffba17b0d108a8ecb45ecdea35dff6fd18 100644
+> --- a/drivers/iio/imu/inv_icm45600/Makefile
+> +++ b/drivers/iio/imu/inv_icm45600/Makefile
+> @@ -2,3 +2,4 @@
+>  
+>  obj-$(CONFIG_INV_ICM45600) += inv-icm45600.o
+>  inv-icm45600-y += inv_icm45600_core.o
+> +inv-icm45600-y += inv_icm45600_buffer.o
+> \ No newline at end of file
 
-BR,
--R
+Fix this by adding one.
 
-> >
-> >> It's ridicilous. Just
-> >> because you introduced a new naming model for NEW SOC, does not mean y=
-ou
-> >> now going to rename all boards which you already upstreamed.
-> >
-> > This is a genuine improvement, trying to untangle the mess that you
-> > expressed vast discontent about..
-> >
-> > There will be new boards based on this family of SoCs submitted either
-> > way, so I really think it makes sense to solve it once and for all,
-> > instead of bikeshedding over it again and again each time you get a new
-> > dt-bindings change in your inbox.
-> >
-> > I understand you're unhappy about patch 6, but the others are
-> > basically code janitoring.
+> diff --git a/drivers/iio/imu/inv_icm45600/inv_icm45600.h b/drivers/iio/imu/inv_icm45600/inv_icm45600.h
+> index 59aed59b94ca2d4709b0c986ddeda80b33064f90..5625c437b6f54336f6e652c2ae2e4ea8f88e2396 100644
+> --- a/drivers/iio/imu/inv_icm45600/inv_icm45600.h
+> +++ b/drivers/iio/imu/inv_icm45600/inv_icm45600.h
+
+>  
+> +#define INV_ICM45600_SENSOR_CONF_KEEP_VALUES {U8_MAX, U8_MAX, U8_MAX, U8_MAX, }
+> +
+>  struct inv_icm45600_conf {
+>  	struct inv_icm45600_sensor_conf gyro;
+>  	struct inv_icm45600_sensor_conf accel;
+> @@ -127,6 +132,7 @@ extern const struct inv_icm45600_chip_info inv_icm45689_chip_info;
+>   *  @indio_gyro:	gyroscope IIO device.
+>   *  @indio_accel:	accelerometer IIO device.
+>   *  @timestamp:		interrupt timestamps.
+> + *  @fifo:		FIFO management structure.
+>   *  @buffer:		data transfer buffer aligned for DMA.
+>   */
+>  struct inv_icm45600_state {
+> @@ -143,6 +149,7 @@ struct inv_icm45600_state {
+>  		s64 gyro;
+>  		s64 accel;
+>  	} timestamp;
+> +	struct inv_icm45600_fifo fifo;
+
+Having that 8 thousand element buffer in here seem unwise.  Normally I encourage putting
+everything possible in here, but this maybe a case where a kzalloc() for that buffer is
+going to wasted less space.
+
+>  	union {
+>  		u8 buff[2];
+>  		__le16 u16;
+> diff --git a/drivers/iio/imu/inv_icm45600/inv_icm45600_buffer.c b/drivers/iio/imu/inv_icm45600/inv_icm45600_buffer.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..b37607e52721097daf6362bac20001b0d4210f4b
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm45600/inv_icm45600_buffer.c
+> @@ -0,0 +1,514 @@
+
 >
-> Renaming already accepted DTS is not improvement and not untangling
-> anything. These names were discussed (for very long time) and agreed on.
-> What is the point of spending DT maintainers time to discuss the sa8775p
-> earlier when year later you come and start reversing things (like in
-> patch 6).
->
->
-> Best regards,
-> Krzysztof
->
+> +void inv_icm45600_buffer_update_fifo_period(struct inv_icm45600_state *st)
+> +{
+> +	u32 period_gyro, period_accel, period;
+> +
+> +	if (st->fifo.en & INV_ICM45600_SENSOR_GYRO)
+> +		period_gyro = inv_icm45600_odr_to_period(st->conf.gyro.odr);
+> +	else
+> +		period_gyro = U32_MAX;
+> +
+> +	if (st->fifo.en & INV_ICM45600_SENSOR_ACCEL)
+> +		period_accel = inv_icm45600_odr_to_period(st->conf.accel.odr);
+> +	else
+> +		period_accel = U32_MAX;
+> +
+> +	if (period_gyro <= period_accel)
+> +		period = period_gyro;
+
+	st->fifo.period = min(period_gyro, period_accel);
+
+> +	else
+> +		period = period_accel;
+> +
+> +	st->fifo.period = period;
+> +}
+
+> +
+> +static unsigned int inv_icm45600_wm_truncate(unsigned int watermark, size_t packet_size,
+> +					     unsigned int fifo_period)
+> +{
+> +	size_t watermark_max, grace_samples;
+> +
+> +	/* Keep 20ms for processing FIFO. */
+> +	grace_samples = (20U * 1000000U) / fifo_period;
+
+I'mnot sure what the multipler here is but maybe 20U * MICRO
+> +	if (grace_samples < 1)
+> +		grace_samples = 1;
+> +
+> +	watermark_max = INV_ICM45600_FIFO_SIZE_MAX / packet_size;
+> +	watermark_max -= grace_samples;
+> +
+> +	if (watermark > watermark_max)
+> +		watermark = watermark_max;
+
+min?
+
+> +
+> +	return watermark;
+> +}
+
+
 
