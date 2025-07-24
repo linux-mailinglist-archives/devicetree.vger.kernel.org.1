@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-199583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC1E4B11478
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 01:26:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE3A3B1147B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 01:26:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 197B35828C0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 23:26:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCF5258268D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 23:26:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6AB124338F;
-	Thu, 24 Jul 2025 23:26:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06AD244688;
+	Thu, 24 Jul 2025 23:26:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="TZSTRtdQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Ig0Obm3O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06C41241CB6
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 23:26:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B95C924113D
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 23:26:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753399564; cv=none; b=ggOhIEWXZ1OADNlJHxZug5Nz+OJ6NBtwuRma8k2W5wD/5EMXvZX+1K7rCuCdwFXcNj7s+4Mpt42LaRsPSsSMGPj5bCUutuPbwp3GxSki0E/18ngtRYym+jWvCXVHQnMbL9kW7lB9ovPj6SPRfaE9RJ7F0hvmGc++60c4q3I1m/M=
+	t=1753399565; cv=none; b=WVEbcHJQJwTHW/s9vryWkx2wRg0QlqeY9Cr274oWHoT4O4mY46R3K8fw0JDDPVftvjid4cD+y5lrY8w4KotJOEB6p6TtnRMq0ovj33Z2Dp7eksl9cKF9/rrWWekgh7y05HRMcYMGcvReSoWsIipNdItVDpD3G2TgpQEoK+YYflc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753399564; c=relaxed/simple;
-	bh=fmzrk3rncQ2eQJPl7/ykSHqygcx2eIUuyWJF71tkk88=;
+	s=arc-20240116; t=1753399565; c=relaxed/simple;
+	bh=o/2bA0pR6AUw7lXgAjOEpMd1lrma/kJtl7JvrX3ogPY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CwGiyhBMw3txoyqSyld/rhYUS3uonA8ee0U5/otYQ8X5RS9plc7R/oEkWIkjYMCOZQVCNM8k3XeTkVA5jBL04etbOQTFv5Q0dAOax+pSNc7Ss4YHgODQYM48AeVDDZNiPi/CeW13OxuFTNEE/oK0ze25AEf0Mg27V9zm3gEMNbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=TZSTRtdQ; arc=none smtp.client-ip=209.85.210.53
+	 In-Reply-To:To:Cc; b=Mj09op8vkZrzw58R0M4UbFaELIVEgE57/NDoxTIUMjFxc88FFBnJA+S8G6lPmCXz22vR9wBz+n+ipxt9hxEXhelIWxQDl9djHqEk73r1gPfFNI/N+wW/yLu38Lr7oIRpGUnM/N6d/hjU8XqPZA4PfW8KmErEwT9XuEAbLQQ4lDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Ig0Obm3O; arc=none smtp.client-ip=209.85.160.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-73e650f3c31so447000a34.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 16:26:02 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-2e95f0b6cb7so746148fac.3
+        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 16:26:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1753399562; x=1754004362; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1753399563; x=1754004363; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=xlq3slX2bsUlFc85XSNMVLB7rlXT9FRFe+4IGTFjGSM=;
-        b=TZSTRtdQKFHFSJoUdjKep2Xy1DFakfvjK0C8VCYAeJUqCLJLHX0023CnANwrRx/4BQ
-         wDTAqzUGAKBRGropeOFzCoPgu/wpwX2Pk6V2aiYM01VIiB3kREMvufdfFHp5PN7Lx2v1
-         ICjtWiN1AJLAM2qNbD+0HKW+aAllgTDuS4mT7RJHSwHPb8LYLh4xW3H0Ebs1KTRq3He5
-         Yq493ZmY3NO8c3E8SpfdLv/4icPtohqyBOoMXhFpZSXflmulTL7tZvFRTeHkDf3gCw0W
-         1Hizejj6shyG8hjknzFQiSM0RCatmm54K6T+4eY8zmXaHi9F1jkBkURuuggW4UgModX8
-         c4GA==
+        bh=vfkMTGv2DjDQzlHRRIM99MWZaRgUgbrBbeXiEEEshC4=;
+        b=Ig0Obm3O1hkL3TKpAlYq4lSiFaqLN0iLrhOQi2UlLxNlx++8460u1/EbkG/6psJjV5
+         GYf7x0ghla2NoC5XZvRp4hPHAWM450OsOTO4WUJiWxhBAhSeRFRjiXIGKgR4XTUlHAfU
+         tD+QBcYO1lxSfYSlievT034xkVnMWaUxxmotdOS9wtRoi2lcDal5DoaLdxR0yKlEgTnH
+         Dxd3GFjSvyIY7SUWvfGt54vNXGx6cYYfPVgJvaiYU1nG+U58zEGWgStPaOd8LkCXAIAI
+         73o+188U/0dx+UXkZ5kUYOnyp9qJ+0If4sY9O9PNT5kS9vlVzoee9sVCvlrsHr0CYsbu
+         lFAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753399562; x=1754004362;
+        d=1e100.net; s=20230601; t=1753399563; x=1754004363;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xlq3slX2bsUlFc85XSNMVLB7rlXT9FRFe+4IGTFjGSM=;
-        b=K2Rb6A/7Ki2jW8mlHBnzEvgTF3guUNAnOAZ4eschh+f2RbUCx8BlOI4CbnJWQVeaCT
-         oAfabpLS5Mj5tpL8avvfL+36l8oIhCH8ZkcEV0wSAWfV0uWlsHPt/yk8zMQb1UubGv5e
-         bvH7Z6ei8J9OON4FhgxzNNHFo0zMpZ1DDGenJ2IrL4ha5SiYji+V5gqW2vZ80XXXM0Qb
-         7zV7+kQegSHqboE6UPx4eNEKT/Wq/648qO7OhNOC8fGFk6ttIoJtUdqoJcMeT0hox5kj
-         Mn/6QmjKiCqeSzE17qWq4C1duiiySlAplbLEJNnh9OBeQ0I5F+AsdweSCkawzbcGD2vX
-         2Jfg==
-X-Forwarded-Encrypted: i=1; AJvYcCVvpbtQJ2I1L5hViVulApRx8djbzsOcFlXvas1sENOp+65YqmQmH6BX2+ODmIH8p4GwmBCQjfcnydEG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQjyNVQTr16cEey33oz56StBIa631adKARYQEw92MYqFaWx1RO
-	MNrTZdLBdh+uLobXl3pE38iN/pycU3QrrvlCfxDfXc1AX/5MPxRYUdHhzaUOjHCMjVQ=
-X-Gm-Gg: ASbGncs1JNZlyoDV/sygT+h+rib8ZsRNFNQSFJYqkwm3vzoVzt8v7gisipPV22g0G0p
-	/h2Pfsj6/xJXZcKPcslM9iPccT14wHIHZ2zckpAHWuS1p5Y6NRJvfxkJJeCT2JBRLdwWsejJaqp
-	1ecPJ6aZl9gNKw9CsbI3RvXjjZtxZaG31fVxuVusYhrvFqohaQbtuvzIOxJaWMb7e+C+f7nUPlQ
-	tPilzdnzsVseEfHb4HsfHTlM8JFO8du4ZUKm72nX0PX/x8FS2AwrqmVDdpCqz59r4nb5GlK1WPn
-	6N0UGdYjaqjBVCMoUzzZgnnoFARqz6wI9qp3pFhHfu1vXTbNO7m3ysbFkgSn+3sPXqEdj7V2s7J
-	Aw4tMgXBAIuXTc6TOTvrJ0hiTcw==
-X-Google-Smtp-Source: AGHT+IGXTeHfeTVdmPBOo1aDwZVmbv/cw0ywKYUGitHn1VBq90zI7BwPKf14+Skvya3y6GRy/CD8LA==
-X-Received: by 2002:a05:6871:e2:b0:2d5:2955:aa6c with SMTP id 586e51a60fabf-306c72cce28mr5986875fac.31.1753399562041;
+        bh=vfkMTGv2DjDQzlHRRIM99MWZaRgUgbrBbeXiEEEshC4=;
+        b=gyhCkXIoM9ya2SsUkTqKnkPe0s9yH6yFwqMC7gZjP/t8b2/EJFprJbWwVjv4wCwPkm
+         x6CmtU0T6M9o74ilhVNQbTKu/+xhLZ+ggG/D8wgcRxjcqWgJWKOzc6nKLcUIULUWKTx0
+         1qxmxL5P9dWpxYelieZq4OONoPR/OMlQI95LP6hm4ptO1lHmWZhM6BEc6vhJ+47w63dS
+         GR4KCSFvecVCQvygOb3lJHHjNCgzEH03FNZTIj8aT6QWAEnobBS2y9QE7V05U76sp9Y+
+         +BnH/ZG8fycDkMcBJiqDYOFOU4n2Vsq9UVMN49amalIIvBsRBYwlS3F335p05v4xNrpD
+         jdtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV8ldIIJwcXhzL2HiwjkCg3pY5uhj13JX4nCcHqkrvpOKN6HZbaR+wZ32WKVleymb5Jrr6uX/E4j9NP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzS682+G4BOq95XsAH/mI9+VodWWOXUZi66icb7UbGN7AFWWjDn
+	hzdJn3PJ5i2BxII/1ZzK+oVmQrxvVOV6PITbVrr7Rvx34HUjgmgns8rwX/irbvdl/Ig=
+X-Gm-Gg: ASbGncs4HwZYGudoslj7QvBHUBa8xbjf/8iAcoJhLsPdntvC6yrD0ZCUG4Xr3GR1zDE
+	Fwk3d7CvIYxs+ivS+iJ9Ub/GYUqc5AwOZRr+UWwbF0aNNKHLjC+oxasNXwOGTbl0T81D8Oso4mM
+	JUC+u0nw1619tXk/ReXFbOWuNegQ743dQ8pLhlM3zT9uabQB6mmE42fD3PkCj9FgxU239qnoxDo
+	i36UNdvPh9adeE0ad2jmO5qfmsNa+c1tk3NxXg5ktI7I44fPlsOTAKsqUKFeepNEs58BINRI4LX
+	qnQNp4QJWas/Z5W5c17AElf6emk0kroTP07hOTcHhtcTid6j0QZmVorK3rtuwZLLF3qw6WDoybA
+	gG4F5j105VRA/gwr0UPR0Ygf33w==
+X-Google-Smtp-Source: AGHT+IEk+oExELM+u1/tsclf9JZXs9QdRNY4IH2N6Oln8OdD08TP9D4SWyvAP2Qs4ISlV4fW2+egnA==
+X-Received: by 2002:a05:6870:b12:b0:2e8:f5d4:6077 with SMTP id 586e51a60fabf-306c72fea4emr6063414fac.38.1753399562881;
         Thu, 24 Jul 2025 16:26:02 -0700 (PDT)
 Received: from [127.0.1.1] ([2600:8803:e7e4:1d00:337f:e3bf:e9d2:b3])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-306e3971332sm689626fac.0.2025.07.24.16.26.01
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-306e3971332sm689626fac.0.2025.07.24.16.26.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jul 2025 16:26:01 -0700 (PDT)
+        Thu, 24 Jul 2025 16:26:02 -0700 (PDT)
 From: David Lechner <dlechner@baylibre.com>
-Date: Thu, 24 Jul 2025 18:25:24 -0500
-Subject: [PATCH 3/4] iio: adc: ad7124: add external clock support
+Date: Thu, 24 Jul 2025 18:25:25 -0500
+Subject: [PATCH 4/4] iio: adc: ad7124: add clock output support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250724-iio-adc-ad7124-proper-clock-support-v1-3-88f35db2fcaf@baylibre.com>
+Message-Id: <20250724-iio-adc-ad7124-proper-clock-support-v1-4-88f35db2fcaf@baylibre.com>
 References: <20250724-iio-adc-ad7124-proper-clock-support-v1-0-88f35db2fcaf@baylibre.com>
 In-Reply-To: <20250724-iio-adc-ad7124-proper-clock-support-v1-0-88f35db2fcaf@baylibre.com>
 To: Michael Hennerich <Michael.Hennerich@analog.com>, 
@@ -96,111 +96,98 @@ To: Michael Hennerich <Michael.Hennerich@analog.com>,
 Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3341; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=fmzrk3rncQ2eQJPl7/ykSHqygcx2eIUuyWJF71tkk88=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBogsD5s1McE7kRUhIIogZWzaUMIjXrjyhzmcgAj
- +M7x5Yx7F6JATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaILA+QAKCRDCzCAB/wGP
- wPVkCACawH5RuJizqdWBRyp6wOto4jBK0NiQjllUY5OLK3zasHiNJXwem8MGPlOgbBwgpkC7vE+
- fQKJx3KYe66Y1dzsa40poFOtsAuKTMFt180/U5o+K5mFYrmIxy444hQKs2NRj0hg2EJSfVxBSr8
- kEskDVwdm6WDeYef+E6Fw2eePTtA7VTg1rdYs1yeDhGxl9GDPcHmEnYTynSr54Va7Qy5gSQiQXt
- +xbVWxpg3BeKIBwuPerIwB+sFSvoZpzJh4bJl702OgzM5mPVqbrXTHnhjwR6zFRkv3/rzbtJl/b
- vnbHxDtn05ZIgnL7ZlkKY5FsNfVtIuQgWDlJ8A+AVAmPnCTC
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2955; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=o/2bA0pR6AUw7lXgAjOEpMd1lrma/kJtl7JvrX3ogPY=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBogsEA5jFqG17re15CK3Tg3w5rSfJlRDHB+luVe
+ LSNkIdaGSmJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaILBAAAKCRDCzCAB/wGP
+ wEykB/49Gw3B+Sq8vaEMUQKX2HVbfGXwQftiXVBOMZCZKrJdxTIHfXyhhS7JerRmVnviDzXIrTz
+ Zpdvfm8HjDKp4GiTEgxI9b6Wb82VSIZEsqkwqvegTBHDdaCoi9+9X3jiGD9oIoxS2F82M1ATBHq
+ KjXCLSbLeL8XpsbhxOfbwzfURdp7Hm6FCYlpkAFRIEgDmif1bg08XtJkSRJNfI0fHACo/VLrJXg
+ Lpacg9RCuW/VN2gp4xntaHt1AzIpEHS9LCDIc74/thsdER6pa2VWnKDjcpWO9r11oKuYAVJKWTA
+ 5O4xvz1VuTmyJombBrlAqswA33JBRd/BQKIaTwo3WiDvet/B
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-Add support for an external clock source to the AD7124 ADC driver.
+Add support for the AD7124's internal clock output. If the #clock-cells
+property is present, turn on the internal clock output during probe.
 
-Previously, the driver only supported using the internal clock and had
-bad devicetree bindings that used a fake clock to essentially select
-the power mode. This is preserved for backwards compatibility.
-
-If the clock is not named "mclk", then we know that the devicetree is
-using the correct bindings and we can configure the chip to use an
-external clock source rather than internal.
-
-Also drop a redundant comment when configuring the register fields
-instead of adding more.
+If both the clocks and #clock-names properties are present (not allowed
+by devicetree bindings), assume that an external clock is being used so
+that we don't accidentally have two outputs fighting each other.
 
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
- drivers/iio/adc/ad7124.c | 42 ++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 40 insertions(+), 2 deletions(-)
+
+We could make this fancier and only turn on the output on demand of a
+clock consumer, but then we have to deal with locking of the SPI bus
+to be able to write to the register. So I opted for the simpler
+solution of always turning it on during probe. This would only be used
+for synchronizing with other similar ADCs, so implementing the functions
+for a more general-purpose clock seems a bit overkill.
+---
+ drivers/iio/adc/ad7124.c | 35 ++++++++++++++++++++++++++++++++---
+ 1 file changed, 32 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/iio/adc/ad7124.c b/drivers/iio/adc/ad7124.c
-index f587574e8a24040540a470e13fed412ec9c81971..b0b03f838eed730347a3afcd759be7c1a8ab201e 100644
+index b0b03f838eed730347a3afcd759be7c1a8ab201e..b18229ff037596c6e98e12dc22b1552bf13fdc4e 100644
 --- a/drivers/iio/adc/ad7124.c
 +++ b/drivers/iio/adc/ad7124.c
-@@ -18,6 +18,7 @@
- #include <linux/property.h>
- #include <linux/regulator/consumer.h>
- #include <linux/spi/spi.h>
-+#include <linux/units.h>
+@@ -7,6 +7,7 @@
+ #include <linux/bitfield.h>
+ #include <linux/bitops.h>
+ #include <linux/clk.h>
++#include <linux/clk-provider.h>
+ #include <linux/delay.h>
+ #include <linux/device.h>
+ #include <linux/err.h>
+@@ -125,10 +126,12 @@ static const unsigned int ad7124_reg_size[] = {
+ 	3, 3, 3, 3, 3
+ };
  
- #include <linux/iio/iio.h>
- #include <linux/iio/adc/ad_sigma_delta.h>
-@@ -44,6 +45,11 @@
- #define AD7124_STATUS_POR_FLAG			BIT(4)
++#define AD7124_INT_CLK_HZ 614400
++
+ static const int ad7124_master_clk_freq_hz[3] = {
+-	[AD7124_LOW_POWER] = 76800,
+-	[AD7124_MID_POWER] = 153600,
+-	[AD7124_FULL_POWER] = 614400,
++	[AD7124_LOW_POWER] = AD7124_INT_CLK_HZ / 8,
++	[AD7124_MID_POWER] = AD7124_INT_CLK_HZ / 4,
++	[AD7124_FULL_POWER] = AD7124_INT_CLK_HZ,
+ };
  
- /* AD7124_ADC_CONTROL */
-+#define AD7124_ADC_CONTROL_CLK_SEL		GENMASK(1, 0)
-+#define AD7124_ADC_CONTROL_CLK_SEL_INT			0
-+#define AD7124_ADC_CONTROL_CLK_SEL_INT_OUT		1
-+#define AD7124_ADC_CONTROL_CLK_SEL_EXT			2
-+#define AD7124_ADC_CONTROL_CLK_SEL_EXT_DIV4		3
- #define AD7124_ADC_CONTROL_MODE			GENMASK(5, 2)
- #define AD7124_ADC_CONTROL_MODE_CONTINUOUS		0
- #define AD7124_ADC_CONTROL_MODE_SINGLE			1
-@@ -1112,7 +1118,7 @@ static int ad7124_parse_channel_config(struct iio_dev *indio_dev,
- static int ad7124_setup(struct ad7124_state *st)
- {
- 	struct device *dev = &st->sd.spi->dev;
--	unsigned int power_mode;
-+	unsigned int power_mode, clk_sel;
- 	struct clk *mclk;
- 	int i, ret;
- 
-@@ -1155,9 +1161,41 @@ static int ad7124_setup(struct ad7124_state *st)
- 			if (ret)
- 				return dev_err_probe(dev, ret, "Failed to set mclk rate\n");
+ static const char * const ad7124_ref_names[] = {
+@@ -1163,6 +1166,32 @@ static int ad7124_setup(struct ad7124_state *st)
  		}
-+
-+		clk_sel = AD7124_ADC_CONTROL_CLK_SEL_INT;
-+	} else {
-+		struct clk *clk;
-+
-+		clk = devm_clk_get_optional_enabled(dev, NULL);
-+		if (IS_ERR(clk))
-+			return dev_err_probe(dev, PTR_ERR(clk), "Failed to get external clock\n");
-+
-+		if (clk) {
-+			unsigned long clk_hz;
-+
-+			clk_hz = clk_get_rate(clk);
-+			if (!clk_hz)
-+				return dev_err_probe(dev, -EINVAL, "Failed to get external clock rate\n");
-+
-+			/*
-+			 * The external clock may be 4x the nominal clock rate,
-+			 * in which case the ADC needs to be configured to
-+			 * divide it by 4. Using MEGA is a bit arbitrary, but
-+			 * the expected clock rates are either 614.4 kHz or
-+			 * 2.4576 MHz, so this should work.
-+			 */
-+			if (clk_hz > MEGA)
-+				clk_sel = AD7124_ADC_CONTROL_CLK_SEL_EXT_DIV4;
-+			else
-+				clk_sel = AD7124_ADC_CONTROL_CLK_SEL_EXT;
-+		} else {
-+			clk_sel = AD7124_ADC_CONTROL_CLK_SEL_INT;
-+		}
- 	}
  
--	/* Set the power mode */
-+	st->adc_control &= ~AD7124_ADC_CONTROL_CLK_SEL;
-+	st->adc_control |= FIELD_PREP(AD7124_ADC_CONTROL_CLK_SEL, clk_sel);
+ 		clk_sel = AD7124_ADC_CONTROL_CLK_SEL_INT;
++	} else if (!device_property_present(dev, "clocks") &&
++		   device_property_present(dev, "clock-names")) {
++		struct clk_hw *clk_hw;
++		char *name;
 +
- 	st->adc_control &= ~AD7124_ADC_CONTROL_POWER_MODE;
- 	st->adc_control |= FIELD_PREP(AD7124_ADC_CONTROL_POWER_MODE, power_mode);
++		name = devm_kasprintf(dev, GFP_KERNEL, "%s-clk",
++				      fwnode_get_name(dev_fwnode(dev)));
++		if (!name)
++			return -ENOMEM;
++
++		clk_hw = devm_clk_hw_register_fixed_rate(dev, name, NULL, 0,
++							 AD7124_INT_CLK_HZ);
++		if (IS_ERR(clk_hw))
++			return dev_err_probe(dev, PTR_ERR(clk_hw), "Failed to register clock provider\n");
++
++		ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
++						  clk_hw);
++		if (ret)
++			return dev_err_probe(dev, ret, "Failed to add clock provider\n");
++
++		/*
++		 * Treat the clock as always on. This way we don't have to deal
++		 * with someone trying to enable/disable the clock while we are
++		 * reading samples.
++		 */
++		clk_sel = AD7124_ADC_CONTROL_CLK_SEL_INT_OUT;
+ 	} else {
+ 		struct clk *clk;
  
 
 -- 
