@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-199338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A301CB10523
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:01:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C1F0B1051D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:00:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A3903A8D34
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 08:56:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3A561CE3EB7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 08:58:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 170E92737EA;
-	Thu, 24 Jul 2025 08:55:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E4E274FF7;
+	Thu, 24 Jul 2025 08:58:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rhOgaKaf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kau44+7l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A3127144C;
-	Thu, 24 Jul 2025 08:55:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088EAD2FB;
+	Thu, 24 Jul 2025 08:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753347335; cv=none; b=Seh3Y7EHJlLsdJLWbAO0tZBcMdU+5T/+edXfedRsyIETk/wjY8uqFc4D2qH32IMPF1+89DWIUVHyTk6nfzPuum02RYWEJzZqgcwI3OvFvZFuwCWB+7TQzCQDubjLYGBGptFv7j6zkNp2oyBxe3Rc+3JbtJPgH3eX1R4kdVpRKFE=
+	t=1753347486; cv=none; b=TIn5udf6aS744cTHvmb+6uwvDSVc0wIyZ3KS5IOTVZynqfeP6LqQZReZAn6ohaCh3EiyDJd1YlZGZYwhnGtS4nIyNZbQKeOZ8lCgPxARd6rYcXdBejDDatqkoclaTQIoj5h0AeCbeB/9qY3jx8a53vNBt5TY5Z7HtdqrDP/SB6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753347335; c=relaxed/simple;
-	bh=7Rl73eTGs9cKwu4cmtief0kRNJb/4nA5rJoiL8w0XqM=;
+	s=arc-20240116; t=1753347486; c=relaxed/simple;
+	bh=GuZPM20+5KNyABcyXSsAV2hVlyTNXPHB+gGjfUh/g9o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JY8oLfewcyfF5t++ED9oZsJSHBNiMJIPApuT7Y+b2xrGhvgx6KeszjVcKCjHyoFnltlia1jEAkMZL7NqXQRZek3XpP54xZ3qRYxLAm+1zOf4NnM9HVfcRZbBpe+Otaq/Z18vsFpSQT8UT+/tU8C3oKmf+66ZfpQR3OSQ4NYOzrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rhOgaKaf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E5E2C4CEED;
-	Thu, 24 Jul 2025 08:55:30 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=QzozTqJIjWs+qkJjyS8JCBZDAlbvTp/UG03+U1s/6Vsu5SI3wK5OFgvpGEN6oknXmW0LWV4iheT2u9f92jwRDOjXUAlzkfjb3ZY5ixCtszG7HLAjxN35JVfjXm+c63DNdshvDdLBs+vuog9SwXzhGEyhYLBdNzBIreGxc01ftrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kau44+7l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD855C4CEED;
+	Thu, 24 Jul 2025 08:58:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753347334;
-	bh=7Rl73eTGs9cKwu4cmtief0kRNJb/4nA5rJoiL8w0XqM=;
+	s=k20201202; t=1753347485;
+	bh=GuZPM20+5KNyABcyXSsAV2hVlyTNXPHB+gGjfUh/g9o=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rhOgaKafB01JlDdf8OmBacQSgkKTNO0rtPHQuGkfk2YpR+UQC4jkIg+jZqJbYM5LJ
-	 0DIW9r+bhkHk2D1iCdal1VbYwvdmfFJ9XfQ3XvHKMuPQRIewqj0ajSGDnAVF3D9yjQ
-	 6SG7/adqin0lxOKllPMgWIp7x3coZFgazAjMDBJ6UvE0RjY0ZE+ylAqIMYeRWHvpwc
-	 KDFUDXL475ujpsLCGvjL+ubuHytUdY9FUcKlW+IdUfJDLv0TTOFePhLk8Sq56DhjHQ
-	 fG9ofvEWAbRq4hTLO719Tu37R1SIj8tQh/K6X1w9ehil3bqTeWTBZIy8egovpzbO1q
-	 YRXHVvo+4KZ9g==
-Message-ID: <03dece78-44d5-4b85-b71c-bb6794849ddd@kernel.org>
-Date: Thu, 24 Jul 2025 10:55:29 +0200
+	b=Kau44+7laZSUwDctOmhk2uk5IS70MS4G8D9YzNuxq4XXoToKr5/pJuBxHCtxR4ohL
+	 Xs1zl2+mKJQhpZCfVSNRvsnFiyjrBwqNEaBvTxn+U2OtTMf3RO6x7wXJ6yD3HYl7wp
+	 R15X95pmBHOp5E1PAYxqi72BdBd2c0WqywQYzmIO/6mTZQeGWR91XUke7x4OgMTbnz
+	 lH1HqNCEIMknPCh7BftDLNRF0TilEsFlBRtUwAxj2nODbVQV/PS3/CHxcz2DrfTlxz
+	 p9U05DfFxVxUIP5SAa11caM12wFgNMTjRMU7ORxaLkAyV6JAm4mqIwHqz1PQ0Si9Y+
+	 B/WCvpGjO21rA==
+Message-ID: <e8b6a6bf-fe4a-4ff3-addf-142212368903@kernel.org>
+Date: Thu, 24 Jul 2025 10:57:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,30 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/2] memory: mtk-smi: mt8188: Add SMI reset and clamp
- for MT8188
-To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20250521063347.31578-1-friday.yang@mediatek.com>
- <20250521063347.31578-3-friday.yang@mediatek.com>
- <fe4d93d1-fb6a-4985-8316-7a76fa1a481f@kernel.org>
- <7421d8f4f3d5fdb392f46df93bfee21a97cc2e1c.camel@mediatek.com>
- <633ea291-2e02-44be-bd03-220634b3c62d@kernel.org>
- <d7e6e9f9da7adf5c806f29c577f6bf51b35fdeed.camel@mediatek.com>
- <1e9de035-9d32-45d1-9f11-33c3439143be@kernel.org>
- <2cc7a0be13d2b35b8728fb23e56097620a40fc05.camel@mediatek.com>
+Subject: Re: [PATCH 2/2] iio: temperature: Add driver for NXP P3T175x
+ temperature sensor.
+To: Lakshay Piplani <lakshay.piplani@nxp.com>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, jic23@kernel.org, dlechner@baylibre.com,
+ nuno.sa@analog.com, andy@kernel.org, marcelo.schmitt1@gmail.com,
+ gregkh@linuxfoundation.org, viro@zeniv.linux.org.uk, peterz@infradead.org,
+ jstephan@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org
+Cc: vikash.bansal@nxp.com, priyanka.jain@nxp.com,
+ shashank.rebbapragada@nxp.com, Frank.Li@nxp.com, carlos.song@nxp.com,
+ xiaoning.wang@nxp.com, haibo.chen@nxp.com
+References: <20250724083951.2273717-1-lakshay.piplani@nxp.com>
+ <20250724083951.2273717-2-lakshay.piplani@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -119,40 +108,139 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <2cc7a0be13d2b35b8728fb23e56097620a40fc05.camel@mediatek.com>
+In-Reply-To: <20250724083951.2273717-2-lakshay.piplani@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 24/07/2025 10:43, Friday Yang (杨阳) wrote:
->>
->>> ignore this tag. What I intended to explain here was that I decided
->>> not
->>> to use 'devm_pm_runtime_enable' to replace 'pm_runtime_enable'
->>> functions. Unfortunately, the fake tag didn't explain this clearly
->>> in
->>> the changelog, which was my fault. To address this, I updated
->>> patchset
->>> v8 to include an explanation.
->>>
->>> In patchset v6, I replaced 'pm_runtime_enable' with
->>> 'devm_pm_runtime_enable'. However, in patchset v8, I reverted this
->>> change and included the reason for this decision in the changelog.
->>> Apologize for the delay and the trouble again.
->>
->> Nothing above is related to my question about the
->> fake/invented/questioned tag.
->>
-> 
-> I got your point, you refer to the 'reviewed-by' and 'acked-by' tag in
-> this patch.
-> These are the tags from two reviewers.
-> 
-> https://lore.kernel.org/lkml/174172361378.44650.15345202042780383326.robh@kernel.org/
+On 24/07/2025 10:39, Lakshay Piplani wrote:
+> +
+> +static void p3t1755_ibi_handler(struct i3c_device *dev,
+> +				const struct i3c_ibi_payload *payload)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(&dev->dev);
+> +
+> +	dev_dbg(&dev->dev, "IBI received, handling threshold event\n");
 
+Drop
 
-You are really not responding to my initial comments and keep dragging
-this discussion in some confused directions. Do we talk here about that
-patch? No.
+> +
+> +	// Handle threshold event via helper
+> +	p3t1755_push_thresh_event(indio_dev);
+> +}
+> +
+> +/*
+> + * Both P3T1755 and P3T1750 share the same I3C
+> + * PID (0x011B:0x152A), making runtime differentiation
+> + * impossible, so a common "p3t175x" name in sysfs
+> + * and IIO for I3C based instances.
+> + */
+> +static const struct i3c_device_id p3t1755_i3c_ids[] = {
+> +	I3C_DEVICE(0x011B, 0x152A, (void *)&p3t175x_channels_info),
+> +	{ /* sentinel */ },
+> +};
+> +
+> +MODULE_DEVICE_TABLE(i3c, p3t1755_i3c_ids);
+> +
+> +static int p3t1755_i3c_probe(struct i3c_device *i3cdev)
+> +{
+> +	const struct regmap_config p3t1755_i3c_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	};
+> +
+> +	const struct i3c_device_id *id = i3c_device_match_id(i3cdev, p3t1755_i3c_ids);
+> +	const struct p3t17xx_info *chip = &p3t175x_channels_info;
+> +	struct device_node *np = i3cdev->dev.of_node;
+> +	bool alert_active_high = false;
+> +	struct i3c_ibi_setup ibi_setup;
+> +	struct regmap *regmap;
+> +	bool tm_mode = false;
+> +	int fq_bits = -1;
+> +	int ret;
+> +
+> +	regmap = devm_regmap_init_i3c(i3cdev, &p3t1755_i3c_regmap_config);
+> +	if (IS_ERR(regmap)) {
+> +		dev_err_probe(&i3cdev->dev, PTR_ERR(regmap),
+> +			      "Failed to register I3C regmap %ld\n", PTR_ERR(regmap));
+> +		return PTR_ERR(regmap);
+
+Syntax is return dev_err_probe
+
+> +	}
+> +
+> +	/* Parse optional device tree property for alert polarity */
+> +	alert_active_high = of_property_read_bool(np, "nxp,alert-active-high");
+> +
+> +	/* Parse optional device tree property for thermostat mode */
+> +	tm_mode = of_property_read_bool(np, "nxp,interrupt-mode");
+> +
+> +	/* Optional fault queue length */
+> +	if (np) {
+> +		u32 fq;
+> +
+> +		if (!of_property_read_u32(np, "nxp,fault-queue", &fq)) {
+> +			fq_bits = p3t1755_fault_queue_to_bits(fq);
+> +			if (fq_bits < 0) {
+> +				dev_err_probe(&i3cdev->dev, fq_bits,
+> +					      "invalid nxp,fault-queue %u (1/2/4/6)\n", fq);
+
+Syntax is return dev_err_probe
+
+> +				return fq_bits;
+> +			}
+> +		}
+> +	}
+> +
+> +	dev_info(&i3cdev->dev, "Using TM mode: %s\n", tm_mode ? "Interrupt" : "Comparator");
+> +	dev_info(&i3cdev->dev, "Alert polarity: %s\n",
+> +		 alert_active_high ? "Active-High" : "Active-Low");
+
+Drivers should be silent on success. See coding style as well.
+
+> +
+> +	if (id && id->data)
+> +		chip = (const struct p3t17xx_info *)id->data;
+> +
+> +	ret = p3t1755_probe(&i3cdev->dev, chip, regmap, tm_mode, alert_active_high, fq_bits);
+> +	if (ret) {
+> +		dev_err_probe(&i3cdev->dev, ret, "p3t175x probe failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (!tm_mode) {
+> +		dev_warn(&i3cdev->dev, "IBI not supported in comparator mode, skipping IBI registration\n");
+> +		return 0;
+> +	}
+> +
+> +	ibi_setup.handler = p3t1755_ibi_handler;
+> +	ibi_setup.num_slots = 4;
+> +	ibi_setup.max_payload_len = 0;
+> +
+> +	ret = i3c_device_request_ibi(i3cdev, &ibi_setup);
+> +	if (ret) {
+> +		dev_err_probe(&i3cdev->dev, ret, "Failed to request IBI: %d\n", ret);
+
+Syntax is return dev_err_probe
+
+> +		return ret;
+> +	}
+> +
+> +	ret = i3c_device_enable_ibi(i3cdev);
+> +	if (ret) {
+> +		dev_err_probe(&i3cdev->dev, ret, "Failed to enable IBI: %d\n", ret);
+
+Syntax is return dev_err_probe
+
+> +		i3c_device_free_ibi(i3cdev);
+> +		return ret;
+> +	}
+> +
+> +	dev_info(&i3cdev->dev, "IBI successfully registered\n");
+
+Drivers should be silent on success. See coding style as well.
+
+Same comments for all your other drivers here.
+
 
 Best regards,
 Krzysztof
