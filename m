@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-199240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25B68B1016E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:15:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0391AB1018C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:21:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5618016F86A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:15:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9F763A7526
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3580B2376E4;
-	Thu, 24 Jul 2025 07:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E50F222562;
+	Thu, 24 Jul 2025 07:21:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IctOpeca"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BUDYxYxn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A4AF237164;
-	Thu, 24 Jul 2025 07:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433361F462D;
+	Thu, 24 Jul 2025 07:21:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753341313; cv=none; b=Wh8CBqTYpgqCWDEirioxkA91jO9YU5T5mRLVxZb66Pn5juVd+/rCZZtXB8buoW7Oz8pMfk8/nQJtvRp2wTfLbFC1+1qUV+Sp2IfHRmTKnWXJ1Zc4HTwOkyBE1Mkl0bAX9wNXGF0vVnwJlUrUeszRtHdDuNCPrG+6D/GopN4PiTo=
+	t=1753341710; cv=none; b=e1Xs55RKHDm26oox1OE3Fu/81U0H/2C3KwinyVw9RbRflfOoiro0NpZNzoi3ckju6L73KFAnP1p31oc7sP6KTcgXdZE+izyMjF8aBsl0I61GkuG3kOqvGj7+wK1Hix1Nw2n1wOX7LIakCAp2UCX774BnqR32PtGulgJc3Iwp3yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753341313; c=relaxed/simple;
-	bh=h558vIU+vLMzU5JzTQ/qBXoZxTVns/ZZ41c9YyAKXlc=;
+	s=arc-20240116; t=1753341710; c=relaxed/simple;
+	bh=BSvuc5pnRqGXNQ2kMInN5Y/2/arf3vMX9ohVrSQOk4M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Syo7BGUC3XDPGHTGcLmJ6mY35nMuLmcquD5jQpGzYo8WFMMlVJlrxg4tSFgh+aG4L7Y3lRjFMzAMe60wktJKRUgQMSXiI6gacVLQcOsdO5go5ad+uwfozKOxNlZ7m41TkoEE4Fsb9MNsYCbn3JE66J4b6CWJtklfRv648FEPO5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IctOpeca; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC66AC4CEF1;
-	Thu, 24 Jul 2025 07:15:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Vhx9PCqjYmb1h9QJrwFPesC0Xohm75XZCTquvPFEXk0PXq2zhC73IxuGfHagSaG412FVGpxLGw9WLp7BdtT9/8Tb3Wwas6PFLwIb3GHNyDncPAOwPxcY6wPlvHX0QYilt8u9fYZhlNTBV0cwc8kj9c3LW8xsgRZ3BbSDr9q/uYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BUDYxYxn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4536C4CEED;
+	Thu, 24 Jul 2025 07:21:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753341312;
-	bh=h558vIU+vLMzU5JzTQ/qBXoZxTVns/ZZ41c9YyAKXlc=;
+	s=k20201202; t=1753341709;
+	bh=BSvuc5pnRqGXNQ2kMInN5Y/2/arf3vMX9ohVrSQOk4M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IctOpecaqk3CvBTcpZ+WSrGF10NxD5ONnxfUdQKxVTSnHFrkIiUqdq95A7/SxyZkU
-	 QNLRP0O2Js5wCNv2JU8ognpcWCWFHl4wxKKSZZksYSBa5qev+IOZUaFLM43UW3LaWY
-	 kzmK1EOwCHmaRK4QN7CvDItkKGP+qut5j3tg8fppx9qsxd6VDYFzfhwneKUyotqviN
-	 GxJBFgaM5Az7+7V/kTv1cpZxeu+NmPK1VNZjWWwSYyya3Mp6m7z1c/fql3oMQkQgR1
-	 oRWnlTaaHv0xN0EM5FTY+/uHnJQV77S3nRIQgwPR9oopeaXu35ucDGRlH5nWLpE7XW
-	 DBH0FeaulCqDQ==
-Message-ID: <ba1cb0dd-031a-4f55-8484-1acf321c4876@kernel.org>
-Date: Thu, 24 Jul 2025 09:15:08 +0200
+	b=BUDYxYxnwi6vUZx/SrOitw5d5O7c7efS/82YEY1eR4m4ngs9Sf3wAcO7nkgcOKF/T
+	 fuJC3YchmUsdBin+9tyg8KNLQ8R2Atjd2UTr1Llror7pAb6Z+sG34O2fKNYXncpy/v
+	 fNjSnJ7F9iC68GDPy6RrRpUue09+HcV/u8zd+p+QiqWbyedGGHWeBBQrpZVZH1wPik
+	 GWyrHhKf72m/2SPRdtNuOLiuHMaYJz/790/DuVvhDCx/ZW6/ab602GZmf2CPLEglw4
+	 5wyovqiU4Z9kTxkyuguOiQMMbWy0ZiWKeJNJE/gnmWH6xy8gJwfzn/L1YESDE0orLI
+	 Xo9IZUF3i1GLg==
+Message-ID: <a350e9b6-9bbe-4045-8d9c-e3886b758a99@kernel.org>
+Date: Thu, 24 Jul 2025 09:21:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: Add NVIDIA GB200-UT3.0b
- board
-To: Donald Shannon <donalds@nvidia.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20250723014239.22667-1-donalds@nvidia.com>
- <20250723014239.22667-2-donalds@nvidia.com>
- <d85fa0c5-f155-431e-bc09-0bb74d96d670@kernel.org>
- <24ce8704-1f9c-437e-ae72-1c6c3c672c2b@nvidia.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: crypto: Add node for True Random
+ Number Generator
+To: Harsh Jain <h.jain@amd.com>, herbert@gondor.apana.org.au,
+ davem@davemloft.net, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, mounika.botcha@amd.com,
+ sarat.chand.savitala@amd.com, mohan.dhanawade@amd.com, michal.simek@amd.com,
+ smueller@chronox.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250723182110.249547-1-h.jain@amd.com>
+ <20250723182110.249547-2-h.jain@amd.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,51 +105,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <24ce8704-1f9c-437e-ae72-1c6c3c672c2b@nvidia.com>
+In-Reply-To: <20250723182110.249547-2-h.jain@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/07/2025 23:58, Donald Shannon wrote:
-> On 7/22/25 22:56, Krzysztof Kozlowski wrote:
->> External email: Use caution opening links or attachments
->>
->>
->> On 23/07/2025 03:42, Donald Shannon wrote:
->>> This is an Aspeed AST2600 based unit testing platform for GB200.
->>> UT3.0b is different than nvidia-gb200nvl-bmc due to networking topology
->>> differences, additional gpio expanders, and voltage regulator gating
->>> some devices.
->>>
->>> Reference to Ast2600 SOC [1].
->>> Reference to Blackwell GB200NVL Platform [2].
->>>
->>> Link: https://www.aspeedtech.com/server_ast2600/ [1]
->>> Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
->>> Signed-off-by: Donald Shannon <donalds@nvidia.com>
->>> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
->> Why are you faking tags? No, you cannot just add whatever you want.
->>
->> Best regards,
->> Krzysztof
+On 23/07/2025 20:21, Harsh Jain wrote:
+> From: Mounika Botcha <mounika.botcha@amd.com>
 > 
-> Hi Krzysztof,
+> Add TRNG node compatible string and reg properities.
 > 
-> I think I was confused by your message on my V5 patch. I will remove the Acked-by and resubmit:
-> 
->> A nit, subject: drop second/last, redundant "binding". The
->> "dt-bindings" prefix is already stating that these are bindings.
->> See also:
->> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
->>
->> With above two:
->>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+Why did you placed my tag here?
 
-And what did you paste in your patch?
+> Signed-off-by: Mounika Botcha <mounika.botcha@amd.com>
+> Signed-off-by: Harsh Jain <h.jain@amd.com>
 
-And why?
-
+Who received the tag? When was the patch prepared?
 
 Best regards,
 Krzysztof
