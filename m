@@ -1,85 +1,88 @@
-Return-Path: <devicetree+bounces-199268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F15E4B1027B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:57:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C2AB10282
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:59:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9F651CE0529
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:57:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DA47587E22
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:59:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E742459D7;
-	Thu, 24 Jul 2025 07:56:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7508227144C;
+	Thu, 24 Jul 2025 07:59:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5k8s8ej"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FEFD225D6;
-	Thu, 24 Jul 2025 07:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4860F238C0A;
+	Thu, 24 Jul 2025 07:59:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753343816; cv=none; b=BZGc8L0V3ooAse/572DeUMYAgmEfBGUvubi1UA9pLO7Dcop1rLo4rTX/MDg6ondCJXcWXsclG26GiaN1s7bWwU6xUhMqUYq6dgYpZ4uSjq8/X1759JR+A52BgTCuAQW0K9g0wTTuMew8gIEQjJXqC7QSPozkk4pvdg8mReXc0AE=
+	t=1753343970; cv=none; b=Er5+9ve5m85GaC6DWtRwVuSJq4GVO1WYbvpW7g+Rngz9GoxsxbvZUyGFnrVNvy6xmPwZwLTXnARDEy+xPXlrR+RV7hCBiTAT2YOpfTxB9nrAoNyRJo22RcndzvaZ6ucs2JSavi34OFajYJl4u5VC8/WnToR+DYfkeU3PN9wVa3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753343816; c=relaxed/simple;
-	bh=ghBB/PHxWvRV+AUck2mi8CWGeB3M55wT/OdGADJT6W0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QrSR82RzoDO60lglU8+Xl/Aj7j6LE2co3LbXSJXH2BsTGHlU6F1N7LJqeXrwNr49eIPtzvnBAVU1VM7txJMFABtgp6223RO6DCSVEVrSW/sSOT4NZ2lEOLpEnJt41zcmp4RrtfZgJoT5rWEEKgxDqh2GxDSE99YU7vZMYv5t9ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from hay.lan (unknown [IPv6:2605:59c0:2078:cf00:6ecf:39ff:fe00:8375])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id A8DFDB4D05E5;
-	Thu, 24 Jul 2025 09:56:48 +0200 (CEST)
-From: E Shattow <e@freeshell.de>
-To: Conor Dooley <conor@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: E Shattow <e@freeshell.de>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] riscv: dts: starfive: jh7110-common: drop no-sdio property from mmc1
-Date: Thu, 24 Jul 2025 00:55:53 -0700
-Message-ID: <20250724075600.239522-1-e@freeshell.de>
-X-Mailer: git-send-email 2.50.0
+	s=arc-20240116; t=1753343970; c=relaxed/simple;
+	bh=2sfm/hHQDAv7ek2SA9VP2HbWZvRGZDzU9Rn9vZgZh/Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fHL7SwW11gyt/VF1YEkoTkjYBacO9v7eyAvwuIm/8u/kpgeuPS5jNxDnjHTIOwGxFq4sp5+3mOT4GAx6WlNJziTSH6CBdgzQMS0WnGxcmNJEQ8b+ySUAmQcV+gM4l4S0ZjerQcn9yX+cjDvoEBcm6rdTe5CNzuQFX+/d5kw5QtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5k8s8ej; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F08EC4CEF6;
+	Thu, 24 Jul 2025 07:59:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753343969;
+	bh=2sfm/hHQDAv7ek2SA9VP2HbWZvRGZDzU9Rn9vZgZh/Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M5k8s8ej1IMlqen1tEoYHXBV+DQZuvo7evitXpUOEh4NoSM8WxbVHfGlkP7NhY/V7
+	 fiO4N6T4JpMak8VYK1PfZhitjqE/tl3bh7de3pRfWKKipHtesSiCPCWhRSAg3E6bNU
+	 YCWYyxqyVZhq1Udhv+02PVX/OcUtZYcekM4r1sP9yb9zsbs51noSpzgIatXMRF2MOl
+	 XXoxEZRcwmm9kP8Ur0dOh3TPk516gufwWmaM2quJM2j0LkScKuBBT4fxEu59HBYLK/
+	 PiIkE5Rk+bh1h6u1GPZ4EK0WONhPpmYj+Qf6ByhKZYNewvpJN1Yn+bOTtl/U4AECI3
+	 razYpVeLYPGsg==
+Date: Thu, 24 Jul 2025 09:59:27 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Shubhi Garg <shgarg@nvidia.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: rtc: Document NVIDIA VRS RTC
+Message-ID: <20250724-peridot-chachalaca-of-progress-a9f2ee@kuoka>
+References: <20250723130343.2861866-1-shgarg@nvidia.com>
+ <20250723130343.2861866-2-shgarg@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250723130343.2861866-2-shgarg@nvidia.com>
 
-Drop no-sdio property avoids a delete-property on variant board dts
-having an SDIO wireless module connected to mmc1.
+On Wed, Jul 23, 2025 at 01:03:40PM +0000, Shubhi Garg wrote:
+> +description:
+> +  NVIDIA VRS (Voltage Regulator Specification) RTC provides 32kHz RTC clock
+> +  support with backup battery for system timing. It provides alarm functionality
+> +  to wake system from suspend and shutdown state. The device also acts as an
+> +  interrupt controller for managing interrupts from the VRS.
+> +
+> +properties:
+> +  compatible:
+> +    const: nvidia,vrs10-rtc
 
-Signed-off-by: E Shattow <e@freeshell.de>
----
- arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Nothing improved. You never replied to comments and then replaced one
+redundant word into other redundant word.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-index 2eaf01775ef5..a315113840e5 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-@@ -299,7 +299,6 @@ &mmc1 {
- 	assigned-clock-rates = <50000000>;
- 	bus-width = <4>;
- 	bootph-pre-ram;
--	no-sdio;
- 	no-mmc;
- 	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
- 	disable-wp;
+Respond to review or implement it fully, not partially.
 
-base-commit: 28fa0dcb571ab8f3be4d919f0e20e01d4e44bcb1
--- 
-2.50.0
+Or add COMPLETE bindings, not partial ones. See writing bindings doc.
+
+Best regards,
+Krzysztof
 
 
