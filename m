@@ -1,159 +1,159 @@
-Return-Path: <devicetree+bounces-199456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 988CAB10BA5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 15:37:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D5FB10BBF
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 15:42:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87CBA3AF74A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 13:37:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C5753B21D6
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 13:42:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5F52D5406;
-	Thu, 24 Jul 2025 13:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 543842D979A;
+	Thu, 24 Jul 2025 13:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N2inEA0T"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YDISVEdl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CEA1386DA;
-	Thu, 24 Jul 2025 13:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C915425F78D
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 13:42:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753364250; cv=none; b=e+gyT0hX6oYidYZb7ScEazJOshdYxmQdLmpfvzL0AS+oguI+Xp8c1NamWCQIFMX0eNJHnElNAN3BUL/z7Rj+db2l70dgYKpKTNhxKAg4EdXsgr3LDx/lH0DYvrcRHRG3wvsfM+8ik6S7rTDMllFlCmCB2rgmAYt+WhnQkeyxNyA=
+	t=1753364568; cv=none; b=WtfOztBZS2FZNcNpRKuZsmWfA1C9SSXYcAifNqHEINX9p6pIoX0W3Qa6jwP/aJ0vTwza9szVDkUGwkDDlyX0f9DPEnA/uesg5uDkk1Gox9SKCHeUCDsE6ET7zhgoPLWHBDRYYidI3XyAOLnSxP/ul8zVbfzdhIu8BVnqv12gjwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753364250; c=relaxed/simple;
-	bh=kXotk+okteeCQ0RJBs23AzOIkyneq/zYLkUenh1S6tM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pXP4eTkyGdONQ9Oo8gY8SUfuc9H4XojvZ1MDiYZi9DpzDH2lffz1fUFSIgtw/Ke8UryBfDZ3Oh3tb7tXB2GkiKIajSkVT74Ccb6JvjvfC0VVK7s3OvGNDInQ0kysXyH726udPrMdEisDW9QFMFQfuW8ShnqXTyrKgEK3Ab/G/Ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N2inEA0T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB163C4CEED;
-	Thu, 24 Jul 2025 13:37:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753364249;
-	bh=kXotk+okteeCQ0RJBs23AzOIkyneq/zYLkUenh1S6tM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N2inEA0TsfqJJgqci8QRcJudT4AAJlZ0bRODJvhUYqZGL4Hxotnm+Df70M4fAUt+S
-	 aSQ7NZhp4cY7uz+06XoUD8y0nlBI+oAD2WvQTMB0WGIMbAqNTUH/XXdR0WNGd8HAr7
-	 qjv0KwBEiJIDYzCyQKWW0e5OF5BaEgN9SP0x7TZjxjbIu53Xz0YK28cWMV6OIlzdpW
-	 K8QM9pN5K4MVNo49V978oKACJTSJXL3Bf3XD742TDLBvw5wJq1k4I416lSFv5qux89
-	 ZeUBFNst65RhfGLX/tHnRCvk8JYRwd4nRoY52YK0uZL7AfftSkgqHoxPa9fcxB18uh
-	 VpcSWXZnRskGA==
-Date: Thu, 24 Jul 2025 14:37:15 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Arec Kao <arec.kao@intel.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Bingbu Cao <bingbu.cao@intel.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Bryan O'Donoghue <bod@kernel.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Dongchun Zhu <dongchun.zhu@mediatek.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Hans de Goede <hansg@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>, Hao Yao <hao.yao@intel.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Jacopo Mondi <jacopo@jmondi.org>,
-	Jason Chen <jason.z.chen@intel.com>, Jimmy Su <jimmy.su@intel.com>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Leon Luo <leonl@leopardimaging.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Matthew Majewski <mattwmajewski@gmail.com>,
-	Matthias Fend <matthias.fend@emfend.at>,
-	Mikhail Rudenko <mike.rudenko@gmail.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Pavel Machek <pavel@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Shunqian Zheng <zhengsq@rock-chips.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>,
-	Todor Tomov <todor.too@gmail.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Tony Lindgren <tony@atomide.com>, Zhi Mao <zhi.mao@mediatek.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-	"linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>
-Subject: Re: [PATCH 00/72] media: i2c: Reduce cargo-cult
-Message-ID: <b23f1603-8682-46d8-9eb6-d017f1be081f@sirena.org.uk>
-References: <20250710174808.5361-1-laurent.pinchart@ideasonboard.com>
- <PN3P287MB1829DD1254FB74391A750F498B5EA@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
- <20250724115202.GK11202@pendragon.ideasonboard.com>
- <PN3P287MB1829C9E8C78ADD70259A68F08B5EA@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1753364568; c=relaxed/simple;
+	bh=kMhPDLRft58cFZj+7bDbN07osFzXbyRLO+xR3b0qJmg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RZK5bwprxlTSFyA5kIPFDQvMgb2V+yn9I2CNUi12XB7pru0vwZyuDM0tF65uTMJfuePw/uN8vqK7o9ZRD1zaAoLkW3mapL7v33xEbq2PCPrJAn3epSJBb6l0/129nWvw0Guck6eZpIGJxp38qX6nIrYMxfA7nFnZXiRBxRVmGhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YDISVEdl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56O9sx04012570
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 13:42:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=tsUjJO0iLJb/UG0dtmULJPTzB+FcOPgkwsm
+	DaJ4piAY=; b=YDISVEdlwwJL4Jp3sjRXEiZnt7qMrCT+tple+g2+hVnF7wei8xf
+	eKrbR4FPpc0u77TTC57OI0M4tw/8l0mrG9PyPqVu7enK4xFrCyk65eyqSagGoLK1
+	igjFIbB/aLVgKWYix+E6QQGQeHnVBbSceFEImZkGDnCPBjBdgosE7NEY2gINkvPK
+	/HqK8JXo+qvw0dezTKP36m07BnyDcOmEF4Px1WOkxBhwKwKrjQQIg75SGcK1B2fv
+	XIH9to7szgfYYKo7fdRpW/njQ2CucprPT89S1pdWcw+jcLSYG9A3Pm7OXHPy1u9V
+	2r77cd/hF+Iq+mcO0AC/CLFafQmIubS8GIA==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 482d3hxw18-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 13:42:45 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7ceb5b5140eso183751585a.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 06:42:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753364553; x=1753969353;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tsUjJO0iLJb/UG0dtmULJPTzB+FcOPgkwsmDaJ4piAY=;
+        b=XyVn3fU47kVuGQ1qBfF4x7wZp/j6pmJnbNq0wadmCtKwgE8fzXK4MEl+G+ZfgHesYN
+         Um4VbAMqGxt+pDzi3dRhnAUFCmGC/cgk4ZyaVLGHRLu0bphSo19h+GwJqWZcW4UweTUY
+         uKtgohvV9xdfOQS1f3Lp4EizDGmSxoHKX3xAbxRuzW5wnRvk281iXomWMBwj2iv/+imk
+         8J70WEzUBDrM9KjxudaEUb//Xl2HRRBbwf97Pqj6HI/ybNnYbH5FNQu3DucT5P2W1yTJ
+         1iPIhq55Ed5CJJ/ImNLcwwWGEucByKcYtOhSEaMIEnNbEKmUfBAHcHKW5RebN6EvfbuS
+         FICw==
+X-Forwarded-Encrypted: i=1; AJvYcCUTkYbO1c48rv1sEsl5EUVyqCZH1sQr1uGlR7DjqEB77iMye/6ZNsot6cZ6US91Jtq1ZaiR7lpxV8VO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy07aJtch8mmkWEas/fZAkqnQI/ZYUnQexFtcwcV8mAL3JSBCHB
+	tCEfLuW/nMe4Z9CKgWMjMdOd4QykeMpxFLFeAjY9bqtYFMyK3MbhRGYhGRgQ/XBuFXjKi5tl3qL
+	zFU5FGqPh1gOKdrw8jiJ490AaEUcclTrjE9NVPA4isjf7LDAhXprine+fqqt1yXzW
+X-Gm-Gg: ASbGncu79I6ERvLj3H/jBL4UlPAltSBgf59voJVZ6r7pElBhuIci3FR4U24DoN2uPnP
+	D6OIZk9FPSge80Ebk47WAqoIPL4jZfghnKLsXfQPLCThsLLH7+RiONhdSlNHIUtkdca4u3KLsTZ
+	nwHMPWcUdpwkteDTPAxOuRyhNajXDUbiFA+eLWPhxOeP/tXdlBg1QfvriAarpKgCyhSexVencGs
+	GR5nkPddvXKpRwwtDNVd2iEJm4/7dOC0d20gTbNIH+/R9A/equJf0lBqURVOq5CVrLUcLl1KwXm
+	FwOVJR2ibIaSjQqvn9W3omN+Lg1CBd8LpDCMwtzfoYeGg+mYsmnpsQ==
+X-Received: by 2002:a05:620a:4095:b0:7e3:4413:e494 with SMTP id af79cd13be357-7e62a1957b6mr823187985a.60.1753364552564;
+        Thu, 24 Jul 2025 06:42:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFaDLmi5F7qLiXnyBH4lS2oCZRlvOc0P2LHa/r9heMqn1DJzqor51NTb7bwX2PM8IlM8IoNgQ==
+X-Received: by 2002:a05:620a:4095:b0:7e3:4413:e494 with SMTP id af79cd13be357-7e62a1957b6mr823183085a.60.1753364552035;
+        Thu, 24 Jul 2025 06:42:32 -0700 (PDT)
+Received: from debian ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b76fc7885esm2228471f8f.35.2025.07.24.06.42.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Jul 2025 06:42:31 -0700 (PDT)
+From: srinivas.kandagatla@oss.qualcomm.com
+To: andersson@kernel.org, sboyd@kernel.org, broonie@kernel.org
+Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, srini@kernel.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Subject: [PATCH v2 0/2] clk: qcom: drop sm8250 lpass gfm driver
+Date: Thu, 24 Jul 2025 14:42:27 +0100
+Message-ID: <20250724134229.103001-1-srinivas.kandagatla@oss.qualcomm.com>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ufe5/KuOroOWejBo"
-Content-Disposition: inline
-In-Reply-To: <PN3P287MB1829C9E8C78ADD70259A68F08B5EA@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
-X-Cookie: Did I say 2?  I lied.
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=G8UcE8k5 c=1 sm=1 tr=0 ts=68823855 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=FWHBK-Jb_X8E8erFsI4A:9
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI0MDEwNCBTYWx0ZWRfXw1MtOpCYiO9D
+ EEiLHK1Y1h5yMAhOryYJxWMRBLxrHW53oc1tKFxJauhP7hGBWkyX6MYO2AmZJYduPkkmMNQvOEo
+ brT3qqEPrwk7L3T2qOQT5TO0PXMEd+Fa13e/WZ8odfVnE5s4B32P82O+Nab9FO8whbd0Ek8CbXc
+ z8pxTSdsM4NWLd+cUA2mrjOcvGoyl8xUkEjxVlg9Ukgc2SviqE29tf384OUcHUxa8Es8leTvVLO
+ fC/s6jO6I/GJKU4eHjIyrOEvEFMjssZiNswKPOwpeoqKG74aQ7wtVZ5QPd6A5eyqmpsJnlu26wD
+ gHURxjCx5brV/3cRNMZjQ6k8zN585kqCKy+rEiKb4FT+rwC9YRYc6S09+wBRxhTVlioF1+bKVPk
+ ZpbSX8Aqbj5rMeEFC9BMELE+BJfMrBeQ2RsC8e/rPp65PqgWW01c+VJMyW1kAIKcUaKNb5FU
+X-Proofpoint-GUID: pwGd51dfOHvu47IXtbP5J_miEOHH0O7E
+X-Proofpoint-ORIG-GUID: pwGd51dfOHvu47IXtbP5J_miEOHH0O7E
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-24_02,2025-07-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 mlxscore=0 suspectscore=0 priorityscore=1501 clxscore=1015
+ bulkscore=0 impostorscore=0 phishscore=0 spamscore=0 lowpriorityscore=0
+ mlxlogscore=664 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507240104
+
+From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
 
 
---ufe5/KuOroOWejBo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Its been more than few cycles of kernel releases that the device tree
+has been updated to use dsp clcoks directly, so there is no need for
+this driver.
 
-On Thu, Jul 24, 2025 at 01:24:24PM +0000, Tarang Raval wrote:
+iIts time to remvoe this driver, as there are no users for this driver
 
-> > > 2. In the regulator code, you can reduce boilerplate by using
-> > >    devm_regulator_bulk_get_enable().
+Remove this driver and associated device tree bindings.
 
-> > devm_regulator_bulk_get_enable() doesn't seem to be a good idea. You
-> > generally don't want to enable power everywhere unconditionally, and
-> > sensors very often need a guaranteed power up sequence.
+Changes since v1: 
+	- updated lpass-wsa bindings that was including a header from
+	  gfm.
 
-> The regulators are optional, we supply power to the camera sensor directly
-> through dedicated power rails and there is no strict enable sequence
-> required in this case.
+Srinivas Kandagatla (2):
+  ASoC: dt-bindings: lpass-wsa: remove un-used include
+  clk: qcom: lpass-gfm-sm8250: remove unused gfm driver
 
-Those dedicated power rails getting their power from....
+ .../bindings/clock/qcom,aoncc-sm8250.yaml     |  61 ----
+ .../bindings/clock/qcom,audiocc-sm8250.yaml   |  61 ----
+ .../bindings/sound/qcom,lpass-wsa-macro.yaml  |   1 -
+ drivers/clk/qcom/Kconfig                      |   7 -
+ drivers/clk/qcom/Makefile                     |   1 -
+ drivers/clk/qcom/lpass-gfm-sm8250.c           | 318 ------------------
+ .../clock/qcom,sm8250-lpass-aoncc.h           |  11 -
+ .../clock/qcom,sm8250-lpass-audiocc.h         |  13 -
+ 8 files changed, 473 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.yaml
+ delete mode 100644 drivers/clk/qcom/lpass-gfm-sm8250.c
+ delete mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
+ delete mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
 
---ufe5/KuOroOWejBo
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.50.0
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiCNwsACgkQJNaLcl1U
-h9BKWwf/d7kwgTILe2LgJL8LW/PyE6HHWWT9OLZ9efXIuFyBtRGSOTPoeL7ajshi
-e/2Xhvg9hGQEmne45bJkrdXKab7z7tqSG/ZB3NzM1BZx16Htk2R/5yAQW+Yno3bP
-z8sbs8YbPR67QDKGUXpw3Az8GRUsiM25uvdQ5GAxNZfF093brnUGnVn+BSJ03l0l
-8RQjGzwWnK8Jb9LymfsLuIIQVwlHdwgUqCT0VxnuLh0tcMgooyR94Wov/6MSr96+
-cA+gdiYqxLPOgiYKvjwQgoMFKIGCPoBtPczzFS6ExmBBQZx7JWTMF7/eqKui/ZCo
-w0YDLakGJSG5TZ5LF4mspWPlde5BJQ==
-=FeNU
------END PGP SIGNATURE-----
-
---ufe5/KuOroOWejBo--
 
