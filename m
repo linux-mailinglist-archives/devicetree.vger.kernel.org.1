@@ -1,81 +1,68 @@
-Return-Path: <devicetree+bounces-199584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE3A3B1147B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 01:26:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EACCB1148F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 01:34:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCF5258268D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 23:26:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A57CAC618A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 23:33:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06AD244688;
-	Thu, 24 Jul 2025 23:26:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FED123FC66;
+	Thu, 24 Jul 2025 23:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Ig0Obm3O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ypv9ArK+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B95C924113D
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 23:26:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C39E5D8F0;
+	Thu, 24 Jul 2025 23:34:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753399565; cv=none; b=WVEbcHJQJwTHW/s9vryWkx2wRg0QlqeY9Cr274oWHoT4O4mY46R3K8fw0JDDPVftvjid4cD+y5lrY8w4KotJOEB6p6TtnRMq0ovj33Z2Dp7eksl9cKF9/rrWWekgh7y05HRMcYMGcvReSoWsIipNdItVDpD3G2TgpQEoK+YYflc=
+	t=1753400051; cv=none; b=PgYZP+Qs7SdM7zWUgkbg5U4QxHx8GcjFPUFpQJ4KttHDyw4wnPUfUqY9hsBiEh6in67UTTl+82xhx3L94RqJtX8eABXxCqsuxfU6gXqRYexFlb6IxF1d8mLVJTe53xc+M1+9B5r07L5tkThxP/cawtePUXebuKLF+WYkrnNOTPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753399565; c=relaxed/simple;
-	bh=o/2bA0pR6AUw7lXgAjOEpMd1lrma/kJtl7JvrX3ogPY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Mj09op8vkZrzw58R0M4UbFaELIVEgE57/NDoxTIUMjFxc88FFBnJA+S8G6lPmCXz22vR9wBz+n+ipxt9hxEXhelIWxQDl9djHqEk73r1gPfFNI/N+wW/yLu38Lr7oIRpGUnM/N6d/hjU8XqPZA4PfW8KmErEwT9XuEAbLQQ4lDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Ig0Obm3O; arc=none smtp.client-ip=209.85.160.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-2e95f0b6cb7so746148fac.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 16:26:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1753399563; x=1754004363; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vfkMTGv2DjDQzlHRRIM99MWZaRgUgbrBbeXiEEEshC4=;
-        b=Ig0Obm3O1hkL3TKpAlYq4lSiFaqLN0iLrhOQi2UlLxNlx++8460u1/EbkG/6psJjV5
-         GYf7x0ghla2NoC5XZvRp4hPHAWM450OsOTO4WUJiWxhBAhSeRFRjiXIGKgR4XTUlHAfU
-         tD+QBcYO1lxSfYSlievT034xkVnMWaUxxmotdOS9wtRoi2lcDal5DoaLdxR0yKlEgTnH
-         Dxd3GFjSvyIY7SUWvfGt54vNXGx6cYYfPVgJvaiYU1nG+U58zEGWgStPaOd8LkCXAIAI
-         73o+188U/0dx+UXkZ5kUYOnyp9qJ+0If4sY9O9PNT5kS9vlVzoee9sVCvlrsHr0CYsbu
-         lFAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753399563; x=1754004363;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vfkMTGv2DjDQzlHRRIM99MWZaRgUgbrBbeXiEEEshC4=;
-        b=gyhCkXIoM9ya2SsUkTqKnkPe0s9yH6yFwqMC7gZjP/t8b2/EJFprJbWwVjv4wCwPkm
-         x6CmtU0T6M9o74ilhVNQbTKu/+xhLZ+ggG/D8wgcRxjcqWgJWKOzc6nKLcUIULUWKTx0
-         1qxmxL5P9dWpxYelieZq4OONoPR/OMlQI95LP6hm4ptO1lHmWZhM6BEc6vhJ+47w63dS
-         GR4KCSFvecVCQvygOb3lJHHjNCgzEH03FNZTIj8aT6QWAEnobBS2y9QE7V05U76sp9Y+
-         +BnH/ZG8fycDkMcBJiqDYOFOU4n2Vsq9UVMN49amalIIvBsRBYwlS3F335p05v4xNrpD
-         jdtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV8ldIIJwcXhzL2HiwjkCg3pY5uhj13JX4nCcHqkrvpOKN6HZbaR+wZ32WKVleymb5Jrr6uX/E4j9NP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzS682+G4BOq95XsAH/mI9+VodWWOXUZi66icb7UbGN7AFWWjDn
-	hzdJn3PJ5i2BxII/1ZzK+oVmQrxvVOV6PITbVrr7Rvx34HUjgmgns8rwX/irbvdl/Ig=
-X-Gm-Gg: ASbGncs4HwZYGudoslj7QvBHUBa8xbjf/8iAcoJhLsPdntvC6yrD0ZCUG4Xr3GR1zDE
-	Fwk3d7CvIYxs+ivS+iJ9Ub/GYUqc5AwOZRr+UWwbF0aNNKHLjC+oxasNXwOGTbl0T81D8Oso4mM
-	JUC+u0nw1619tXk/ReXFbOWuNegQ743dQ8pLhlM3zT9uabQB6mmE42fD3PkCj9FgxU239qnoxDo
-	i36UNdvPh9adeE0ad2jmO5qfmsNa+c1tk3NxXg5ktI7I44fPlsOTAKsqUKFeepNEs58BINRI4LX
-	qnQNp4QJWas/Z5W5c17AElf6emk0kroTP07hOTcHhtcTid6j0QZmVorK3rtuwZLLF3qw6WDoybA
-	gG4F5j105VRA/gwr0UPR0Ygf33w==
-X-Google-Smtp-Source: AGHT+IEk+oExELM+u1/tsclf9JZXs9QdRNY4IH2N6Oln8OdD08TP9D4SWyvAP2Qs4ISlV4fW2+egnA==
-X-Received: by 2002:a05:6870:b12:b0:2e8:f5d4:6077 with SMTP id 586e51a60fabf-306c72fea4emr6063414fac.38.1753399562881;
-        Thu, 24 Jul 2025 16:26:02 -0700 (PDT)
-Received: from [127.0.1.1] ([2600:8803:e7e4:1d00:337f:e3bf:e9d2:b3])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-306e3971332sm689626fac.0.2025.07.24.16.26.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jul 2025 16:26:02 -0700 (PDT)
-From: David Lechner <dlechner@baylibre.com>
-Date: Thu, 24 Jul 2025 18:25:25 -0500
-Subject: [PATCH 4/4] iio: adc: ad7124: add clock output support
+	s=arc-20240116; t=1753400051; c=relaxed/simple;
+	bh=V/nVDfUDu3zSIVPxQrgq0fLEk+npFlmaZe5/m6YKPSc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=aG9V5y33qRGoJHhV4+OzOQ+8GHu5V3O8yNX/SQp0LIZ+jEBmnL4pKCsES8VFDWS6HmZABlzvmFNjiCxCHGDngB7+tacYbokkf/aE1qZaXE8e7lUVGv6sttH123LHktYvKElT3rfU095cZ/XMEN+dzgcXTtGDAjQUzrsSVlHXzsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ypv9ArK+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86D46C4CEEF;
+	Thu, 24 Jul 2025 23:34:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753400050;
+	bh=V/nVDfUDu3zSIVPxQrgq0fLEk+npFlmaZe5/m6YKPSc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Ypv9ArK+bgmMc8teMUqXtnSAPN0MNSo+G0YqQESAZ/g8tiixTe3dRHOOdLQZf3AUi
+	 PaAebzgijsBynRI4Ii33DPDe0mT+d7eJn9KVTuP1BEnMcV/LSxamLMPXfNDy0bkr1h
+	 I7Gmmkia+LNw4kXBZu/7wu3ZYOg+R2QC1U+2rA9GTq0d4iqdlrWzszngmQYQCoiX6E
+	 OOpDoH24aknAi5Nl9yzeOCH1EVY5U9+DcFHtenrlAYgxO5SqANqpBcktfWgkxOPaOn
+	 DwQ2438D5NC8W7RFOJpS6Dc/MxZxx7HyHJm8XGAAvy2+PtBxq/WZODctPMgD9dSwad
+	 PzzSFFZ48DSDw==
+From: Mark Brown <broonie@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Longbin Li <looong.bin@gmail.com>, 
+ Zixian Zeng <sycamoremoon376@gmail.com>
+Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ sophgo@lists.linux.dev, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ Conor Dooley <conor.dooley@microchip.com>
+In-Reply-To: <20250720-sfg-spifmc-v4-0-033188ad801e@gmail.com>
+References: <20250720-sfg-spifmc-v4-0-033188ad801e@gmail.com>
+Subject: Re: (subset) [PATCH v4 0/4] spi: sophgo: Add SPI NOR controller
+ for SG2042
+Message-Id: <175340004627.192002.3302155786508203444.b4-ty@kernel.org>
+Date: Fri, 25 Jul 2025 00:34:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,113 +71,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250724-iio-adc-ad7124-proper-clock-support-v1-4-88f35db2fcaf@baylibre.com>
-References: <20250724-iio-adc-ad7124-proper-clock-support-v1-0-88f35db2fcaf@baylibre.com>
-In-Reply-To: <20250724-iio-adc-ad7124-proper-clock-support-v1-0-88f35db2fcaf@baylibre.com>
-To: Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2955; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=o/2bA0pR6AUw7lXgAjOEpMd1lrma/kJtl7JvrX3ogPY=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBogsEA5jFqG17re15CK3Tg3w5rSfJlRDHB+luVe
- LSNkIdaGSmJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaILBAAAKCRDCzCAB/wGP
- wEykB/49Gw3B+Sq8vaEMUQKX2HVbfGXwQftiXVBOMZCZKrJdxTIHfXyhhS7JerRmVnviDzXIrTz
- Zpdvfm8HjDKp4GiTEgxI9b6Wb82VSIZEsqkwqvegTBHDdaCoi9+9X3jiGD9oIoxS2F82M1ATBHq
- KjXCLSbLeL8XpsbhxOfbwzfURdp7Hm6FCYlpkAFRIEgDmif1bg08XtJkSRJNfI0fHACo/VLrJXg
- Lpacg9RCuW/VN2gp4xntaHt1AzIpEHS9LCDIc74/thsdER6pa2VWnKDjcpWO9r11oKuYAVJKWTA
- 5O4xvz1VuTmyJombBrlAqswA33JBRd/BQKIaTwo3WiDvet/B
-X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
- fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
+X-Mailer: b4 0.15-dev-cff91
 
-Add support for the AD7124's internal clock output. If the #clock-cells
-property is present, turn on the internal clock output during probe.
+On Sun, 20 Jul 2025 16:31:42 +0800, Zixian Zeng wrote:
+> Add support SPI NOR flash memory controller for SG2042, using upstreamed
+> SG2044 SPI NOR driver.
+> 
+> Tested on SG2042 Pioneer Box, read, write operations.
+> Thanks Chen Wang who provided machine and guidance.
+> 
+> 
+> [...]
 
-If both the clocks and #clock-names properties are present (not allowed
-by devicetree bindings), assume that an external clock is being used so
-that we don't accidentally have two outputs fighting each other.
+Applied to
 
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-We could make this fancier and only turn on the output on demand of a
-clock consumer, but then we have to deal with locking of the SPI bus
-to be able to write to the register. So I opted for the simpler
-solution of always turning it on during probe. This would only be used
-for synchronizing with other similar ADCs, so implementing the functions
-for a more general-purpose clock seems a bit overkill.
----
- drivers/iio/adc/ad7124.c | 35 ++++++++++++++++++++++++++++++++---
- 1 file changed, 32 insertions(+), 3 deletions(-)
+Thanks!
 
-diff --git a/drivers/iio/adc/ad7124.c b/drivers/iio/adc/ad7124.c
-index b0b03f838eed730347a3afcd759be7c1a8ab201e..b18229ff037596c6e98e12dc22b1552bf13fdc4e 100644
---- a/drivers/iio/adc/ad7124.c
-+++ b/drivers/iio/adc/ad7124.c
-@@ -7,6 +7,7 @@
- #include <linux/bitfield.h>
- #include <linux/bitops.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/delay.h>
- #include <linux/device.h>
- #include <linux/err.h>
-@@ -125,10 +126,12 @@ static const unsigned int ad7124_reg_size[] = {
- 	3, 3, 3, 3, 3
- };
- 
-+#define AD7124_INT_CLK_HZ 614400
-+
- static const int ad7124_master_clk_freq_hz[3] = {
--	[AD7124_LOW_POWER] = 76800,
--	[AD7124_MID_POWER] = 153600,
--	[AD7124_FULL_POWER] = 614400,
-+	[AD7124_LOW_POWER] = AD7124_INT_CLK_HZ / 8,
-+	[AD7124_MID_POWER] = AD7124_INT_CLK_HZ / 4,
-+	[AD7124_FULL_POWER] = AD7124_INT_CLK_HZ,
- };
- 
- static const char * const ad7124_ref_names[] = {
-@@ -1163,6 +1166,32 @@ static int ad7124_setup(struct ad7124_state *st)
- 		}
- 
- 		clk_sel = AD7124_ADC_CONTROL_CLK_SEL_INT;
-+	} else if (!device_property_present(dev, "clocks") &&
-+		   device_property_present(dev, "clock-names")) {
-+		struct clk_hw *clk_hw;
-+		char *name;
-+
-+		name = devm_kasprintf(dev, GFP_KERNEL, "%s-clk",
-+				      fwnode_get_name(dev_fwnode(dev)));
-+		if (!name)
-+			return -ENOMEM;
-+
-+		clk_hw = devm_clk_hw_register_fixed_rate(dev, name, NULL, 0,
-+							 AD7124_INT_CLK_HZ);
-+		if (IS_ERR(clk_hw))
-+			return dev_err_probe(dev, PTR_ERR(clk_hw), "Failed to register clock provider\n");
-+
-+		ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-+						  clk_hw);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "Failed to add clock provider\n");
-+
-+		/*
-+		 * Treat the clock as always on. This way we don't have to deal
-+		 * with someone trying to enable/disable the clock while we are
-+		 * reading samples.
-+		 */
-+		clk_sel = AD7124_ADC_CONTROL_CLK_SEL_INT_OUT;
- 	} else {
- 		struct clk *clk;
- 
+[1/4] spi: dt-bindings: spi-sg2044-nor: Change SOPHGO SG2042
+      commit: 7438379cfc47046f7507dfdb54906acf56288b9f
+[2/4] spi: spi-sg2044-nor: Add configurable chip_info
+      commit: 5653b4f8840801d9d141ba6a6c10e7cc15040c5b
+[3/4] spi: spi-sg2044-nor: Add SPI-NOR controller for SG2042
+      commit: f6b159431697c903da1418e70c825faa0cddbdae
 
--- 
-2.43.0
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
