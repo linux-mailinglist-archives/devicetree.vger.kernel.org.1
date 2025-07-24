@@ -1,154 +1,127 @@
-Return-Path: <devicetree+bounces-199427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CED7B109D7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 14:01:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 368A6B109FA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 14:19:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB43D5A5064
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 12:01:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 232CCAE012F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 12:19:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1164327F005;
-	Thu, 24 Jul 2025 12:01:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="RSV9t1fr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92202D0C8D;
+	Thu, 24 Jul 2025 12:19:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41B42C08DD;
-	Thu, 24 Jul 2025 12:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5859D2D0C8A;
+	Thu, 24 Jul 2025 12:19:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753358489; cv=none; b=bKRlcWW5Qy0kRqWNgVZ0ezaozlRoFqHAZHWAQDNbS1/DYoPAmwaTyoR36tdUUDDCLz5TOSfEDoyIfXb/NjrhnoIuEL8HoUoKnA+q8q6kBy4YRY0KbIRP2j57OlUMAjLbUwa2F7h/SViFCaNtC5sr/cusbZYgmbaaEKSiBtYRpyo=
+	t=1753359570; cv=none; b=hcRcsF9zi5+iVSLBfssTVm7KdAXyrK2kKwyFQYkryEraVB5XWdmDAvygkeagB/63JmfuYMld1mIsmsobRQra4Rb163KI18FG1vgKog5D/U+OpVDevlM24VunKhqgvMnwhQdA9r7KoBEgrKqHsSPRu/l7foQ0hkv+V5M5tzehUcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753358489; c=relaxed/simple;
-	bh=w7PbfBqTgMeAz8Q4ObOiOZb3ZgS9tORtq/NJuJ9lQfM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=MFhg28hPGGrzsBHpoJJ1kb07g+IJPrL/Q+MD63RDYHi3/KdERDK/C8rMCc3MN7gFxer8SHoBlHsKAcnKV9ynU3RaQaUOTnRblXbdxj4V4/aPCfeBXYBkNJOcUriIuPoyyVR+lpdwTgyoxCuV9Y+svIfsbfm/A/Jia0909OmXsn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=RSV9t1fr reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=0sHiDwJliauha+2ZqYLG22+5Mn4RxXcnn7wzkYD5rxw=; b=R
-	SV9t1fr1yKy0AfQU48621iWwaFqxmsJwJmlGIA0XrCTF3nSF02C2a9iUpJJC0Fo6
-	Rj/IMsWnqp01xaZi1+38bno/9mCEO2+TD6/kYtcmG44XYKnuRzK+ydw4Zc7hgHB1
-	mNXUkAzZ3IuoLYUrMF9B4xyu73BBQ6h1Tq6Z1dtHdY=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-106 (Coremail) ; Thu, 24 Jul 2025 20:00:05 +0800
- (CST)
-Date: Thu, 24 Jul 2025 20:00:05 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: dmitry.baryshkov@oss.qualcomm.com, heiko@sntech.de
-Cc: hjc@rock-chips.com, mripard@kernel.org, naoki@radxa.com,
-	stephen@radxa.com, cristian.ciocaltea@collabora.com,
-	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
-	yubing.zhang@rock-chips.com, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, robh@kernel.org,
-	sebastian.reichel@collabora.com,
-	"Andy Yan" <andy.yan@rock-chips.com>
-Subject: Re:[PATCH v5 00/10] Add support for RK3588 DisplayPort Controller
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20250519(9504565a)
- Copyright (c) 2002-2025 www.mailtech.cn 163com
-In-Reply-To: <20250716100440.816351-1-andyshrk@163.com>
-References: <20250716100440.816351-1-andyshrk@163.com>
-X-NTES-SC: AL_Qu2eAf+et0wr4ymQZekfmUkTh+o2Xca5uf0j3YBWOZh+jCDp+QI/WUd7PHfV+c6FAj2WqyCvXhFv2v9ITLdpdJIwy+P6kRHwohgDB5b8O/wqyA==
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1753359570; c=relaxed/simple;
+	bh=9WMQgzf1pZnKjl9mHmZEEf14iI8HzpbMzNBECea3/FY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b9MYnQ3X4tCec4mzaGf8zQnsTwCHkmdEuTkWEMFDy0BtJ/vXsiXL09RYX+MDV63GrCQGXjhwx2Zqh9dMLveBBTuXBGxqCfMczDLsZyFvcjEiWI7iEUfGIjRqLzDWM6vLytEKhP4hWcfdpG3Nn5SdCBm6uMPa/8++6PLn+AWltfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.48.207])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id A885F340FB1;
+	Thu, 24 Jul 2025 12:19:27 +0000 (UTC)
+Date: Thu, 24 Jul 2025 20:19:16 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Alex Elder <elder@riscstar.com>,
+	Vivian Wang <wangruikang@iscas.ac.cn>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Subject: Re: [PATCH v3 6/8] riscv: dts: spacemit: Add PDMA0 node for K1 SoC
+Message-ID: <20250724121916-GYA748228@gentoo>
+References: <20250714-working_dma_0701_v2-v3-0-8b0f5cd71595@riscstar.com>
+ <20250714-working_dma_0701_v2-v3-6-8b0f5cd71595@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <3eeb9150.90fb.1983c4e1163.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:aigvCgD3_1hGIIJoZ_QFAA--.53340W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEhaUXmiCGCWvpgACsS
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250714-working_dma_0701_v2-v3-6-8b0f5cd71595@riscstar.com>
 
-CkhlbGxvIERtaXRyeSwKICAgIENvdWxkIHlvdSBwbGVhc2UgY29udGludWUgdG8gcmV2aWV3IHRo
-aXMgcGF0Y2ggc2VyaWVzIGF0IHlvdXIgY29udmVuaWVuY2U/CiAgICBUaGFuayB5b3UhCgpBdCAy
-MDI1LTA3LTE2IDE4OjA0OjI3LCAiQW5keSBZYW4iIDxhbmR5c2hya0AxNjMuY29tPiB3cm90ZToK
-PkZyb206IEFuZHkgWWFuIDxhbmR5LnlhbkByb2NrLWNoaXBzLmNvbT4KPgo+Cj5UaGVyZSBhcmUg
-dHdvIERXIERQVFggYmFzZWQgRGlzcGxheVBvcnQgQ29udHJvbGxlciBvbiByazM1ODggd2hpY2gK
-PmFyZSBjb21wbGlhbnQgd2l0aCB0aGUgRGlzcGxheVBvcnQgU3BlY2lmaWNhdGlvbiBWZXJzaW9u
-IDEuNCB3aXRoCj50aGUgZm9sbG93aW5nIGZlYXR1cmVzOgo+Cj4qIERpc3BsYXlQb3J0IDEuNGEK
-PiogTWFpbiBMaW5rOiAxLzIvNCBsYW5lcwo+KiBNYWluIExpbmsgU3VwcG9ydCAxLjYyR2Jwcywg
-Mi43R2JwcywgNS40R2JwcyBhbmQgOC4xR2Jwcwo+KiBBVVggY2hhbm5lbCAxTWJwcwo+KiBTaW5n
-bGUgU3RyZWFtIFRyYW5zcG9ydChTU1QpCj4qIE11bHRpc3RyZWFtIFRyYW5zcG9ydCAoTVNUKQo+
-KiBUeXBlLUMgc3VwcG9ydCAoYWx0ZXJuYXRlIG1vZGUpCj4qIEhEQ1AgMi4yLCBIRENQIDEuMwo+
-KiBTdXBwb3J0cyB1cCB0byA4LzEwIGJpdHMgcGVyIGNvbG9yIGNvbXBvbmVudAo+KiBTdXBwb3J0
-cyBSQkcsIFlDYkNyNDo0OjQsIFlDYkNyNDoyOjIsIFlDYkNyNDoyOjAKPiogUGl4ZWwgY2xvY2sg
-dXAgdG8gNTk0TUh6Cj4qIEkyUywgU1BESUYgYXVkaW8gaW50ZXJmYWNlCj4KPlRoZSBjdXJyZW50
-IHZlcnNpb24gb2YgdGhpcyBwYXRjaCBzZXJpZXMgb25seSBzdXBwb3J0cyBiYXNpYyBkaXNwbGF5
-IG91dHB1dHMuCj5JIGNvbmR1Y3RlZCB0ZXN0cyB3aXRoIERQMCBpbiAxMDgwcCBhbmQgNEtANjAg
-WUNiQ3I0OjI6MCBtb2RlczsgdGhlIEFMVC9UeXBlLUMKPm1vZGUgd2FzIHRlc3RlZCBvbiBSb2Nr
-IDVCLCBEUDEgd2FzIHRlc3RlZCBvbiBSb2NrIDUgSVRYIGJ5IFN0ZXBoZW4gYW5kIFBpb3RyLgo+
-SERDUCBhbmQgYXVkaW8gZmVhdHVyZXMgcmVtYWluIHVuaW1wbGVtZW50ZWQuCj5Gb3IgUkszNTg4
-LCBpdCdzIG9ubHkgc3VwcG9ydCBTU1QsIHdoaWxlIGluIHRoZSB1cGNvbWluZyBSSzM1NzYsIGl0
-IGNhbiBzdXBwb3J0Cj5NU1Qgb3V0cHV0Lgo+Cj4KPkNoYW5nZXMgaW4gdjU6Cj4tIFVzZSBkcm1f
-ZHBfcmVhZF9zaW5rX2NvdW50X2NhcCBpbnN0ZWFkIG9mIHRoZSBwcml2YXRlIGltcGxlbWVudGF0
-aW9uLgo+LSBBZGQgTUFJTlRBSU5FUlMgZW50cnkuCj4tIExpbmsgdG8gdjQ6IGh0dHBzOi8vbG9y
-ZS5rZXJuZWwub3JnL2xpbnV4LXJvY2tjaGlwLzIwMjUwNjE5MDYzOTAwLjcwMDQ5MS0xLWFuZHlz
-aHJrQDE2My5jb20vCj4KPkNoYW5nZXMgaW4gdjQ6Cj4tIERyb3AgdW5uZWNlc3NhcnkgaGVhZGVy
-IGZpbGVzCj4tIFN3aXRjaCB0byBkZXZtX2RybV9icmlkZ2VfYWxsb2MKPi0gRHJvcCB1bnVzZWQg
-ZnVuY3Rpb24KPi0gQWRkIHBsYXRmb3JtX3NldF9kcnZkYXRhCj4tIExpbmsgdG8gdjM6IGh0dHBz
-Oi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXJvY2tjaGlwLzIwMjUwNDAzMDMzNzQ4LjI0NTAwNy0x
-LWFuZHlzaHJrQDE2My5jb20vCj4KPkNoYW5nZXMgaW4gdjM6Cj4tIFJlYmFzZSBvbiBkcm0tbWlz
-Yy1uZXh0Cj4tIFN3aXRjaCB0byBjb21tb24gaGVscGVycyB0byBwb3dlciB1cC9kb3duIGRwIGxp
-bmsKPi0gT25seSBwYXNzIHBhcmFtZXRlcnMgdG8gcGh5IHRoYXQgc2hvdWxkIGJlIHNldAo+LSBG
-aXJzdCBpbnRyb2R1Y2VkIGluIHRoaXMgdmVyc2lvbi4KPi0gRmlyc3QgaW50cm9kdWNlZCBpbiB0
-aGlzIHZlcnNpb24uCj4tIEFkZCBSQTYyMCBpbnRvIGJyaWRnZSBjaGFpbi4KPi0gTGluayB0byB2
-MjogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtcm9ja2NoaXAvMjAyNTAzMTIxMDQyMTQu
-NTI1MjQyLTEtYW5keXNocmtAMTYzLmNvbS8KPgo+Q2hhbmdlcyBpbiB2MjoKPi0gTGluayB0byBW
-MTogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtcm9ja2NoaXAvMjAyNTAyMjMxMTMwMzYu
-NzQyNTItMS1hbmR5c2hya0AxNjMuY29tLwo+LSBGaXggYSBjaGFyYWN0ZXIgZW5jb2RpbmcgaXNz
-dWUKPi0gRml4IGNvbXBpbGUgZXJyb3Igd2hlbiBidWlsZCBhcyBtb2R1bGUKPi0gQWRkIHBoeSBp
-bml0Cj4tIE9ubHkgdXNlIG9uZSBkd19kcF9saW5rX3RyYWluX3NldAo+LSBpbmxpbmUgZHdfZHBf
-cGh5X3VwZGF0ZV92c19lbXBoCj4tIFVzZSBkcF9zZHAKPi0gQ2hlY2sgcmV0dXJuIHZhbHVlIG9m
-IGRybV9tb2Rlc2V0X2xvY2sKPi0gTWVyZ2UgY29kZSBpbiBhdG9taWNfcHJlX2VuYWJsZS9tb2Rl
-X2ZpeHVwIHRvIGF0b21pY19jaGVjawo+LSBSZXR1cm4gTlVMTCBpZiBjYW4ndCBmaW5kIGEgc3Vw
-cG9ydGVkIG91dHB1dCBmb3JtYXQKPi0gRml4IG1heF9saW5rX3JhdGUgZnJvbSBwbGF0X2RhdGEK
-Pi0gbm8gaW5jbHVkZSB1YXBpIHBhdGgKPi0gc3dpdGNoIHRvIGRybW1fZW5jb2Rlcl9pbml0Cj4t
-IFNvcnQgaW4gYWxwaGFiZXRpY2FsIG9yZGVyCj4KPkFuZHkgWWFuICgxMCk6Cj4gIGR0LWJpbmRp
-bmdzOiBkaXNwbGF5OiByb2NrY2hpcDogQWRkIHNjaGVtYSBmb3IgUkszNTg4IERQVFggQ29udHJv
-bGxlcgo+ICBkcm0vYnJpZGdlOiBzeW5vcHN5czogQWRkIERXIERQVFggQ29udHJvbGxlciBzdXBw
-b3J0IGxpYnJhcnkKPiAgZHJtL3JvY2tjaGlwOiBBZGQgUkszNTg4IERQVFggb3V0cHV0IHN1cHBv
-cnQKPiAgTUFJTlRBSU5FUlM6IEFkZCBlbnRyeSBmb3IgRFcgRFBUWCBDb250cm9sbGVyIGJyaWRn
-ZQo+ICBkdC1iaW5kaW5nczogZGlzcGxheTogc2ltcGxlLWJyaWRnZTogQWRkIHJhNjIwIGNvbXBh
-dGlibGUKPiAgZHJtL2JpcmRnZTogc2ltcGxlLWJyaWRnZTogQWRkIHN1cHBvcnQgZm9yIHJhZHhh
-IHJhNjIwCj4gIGFybTY0OiBkdHM6IHJvY2tjaGlwOiBBZGQgRFAwIGZvciByazM1ODgKPiAgYXJt
-NjQ6IGR0czogcm9ja2NoaXA6IEFkZCBEUDEgZm9yIHJrMzU4OAo+ICBhcm02NDogZHRzOiByb2Nr
-Y2hpcDogRW5hYmxlIERpc3BsYXlQb3J0IGZvciByazM1ODhzIENvb2wgUGkgNEIKPiAgYXJtNjQ6
-IGR0czogcm9ja2NoaXA6IEVuYWJsZSBEUDJIRE1JIGZvciBST0NLIDUgSVRYCj4KPiAuLi4vZGlz
-cGxheS9icmlkZ2Uvc2ltcGxlLWJyaWRnZS55YW1sICAgICAgICAgfCAgICAxICsKPiAuLi4vZGlz
-cGxheS9yb2NrY2hpcC9yb2NrY2hpcCxkdy1kcC55YW1sICAgICAgfCAgMTUwICsrCj4gTUFJTlRB
-SU5FUlMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICAgOCArCj4gYXJjaC9h
-cm02NC9ib290L2R0cy9yb2NrY2hpcC9yazM1ODgtYmFzZS5kdHNpIHwgICAzMCArCj4gLi4uL2Fy
-bTY0L2Jvb3QvZHRzL3JvY2tjaGlwL3JrMzU4OC1leHRyYS5kdHNpIHwgICAzMCArCj4gLi4uL2Jv
-b3QvZHRzL3JvY2tjaGlwL3JrMzU4OC1yb2NrLTUtaXR4LmR0cyAgIHwgICA1OSArCj4gLi4uL2Jv
-b3QvZHRzL3JvY2tjaGlwL3JrMzU4OHMtY29vbHBpLTRiLmR0cyAgIHwgICAzNyArCj4gZHJpdmVy
-cy9ncHUvZHJtL2JyaWRnZS9zaW1wbGUtYnJpZGdlLmMgICAgICAgIHwgICAgNSArCj4gZHJpdmVy
-cy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9LY29uZmlnICAgICAgIHwgICAgNyArCj4gZHJpdmVy
-cy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9NYWtlZmlsZSAgICAgIHwgICAgMSArCj4gZHJpdmVy
-cy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9kdy1kcC5jICAgICAgIHwgMjA0NCArKysrKysrKysr
-KysrKysrKwo+IGRyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9LY29uZmlnICAgICAgICAgICAgICB8
-ICAgIDkgKwo+IGRyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9NYWtlZmlsZSAgICAgICAgICAgICB8
-ICAgIDEgKwo+IGRyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9kd19kcC1yb2NrY2hpcC5jICAgICB8
-ICAxNTAgKysKPiBkcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvcm9ja2NoaXBfZHJtX2Rydi5jICAg
-fCAgICAxICsKPiBkcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvcm9ja2NoaXBfZHJtX2Rydi5oICAg
-fCAgICAxICsKPiBpbmNsdWRlL2RybS9icmlkZ2UvZHdfZHAuaCAgICAgICAgICAgICAgICAgICAg
-fCAgIDIwICsKPiAxNyBmaWxlcyBjaGFuZ2VkLCAyNTU0IGluc2VydGlvbnMoKykKPiBjcmVhdGUg
-bW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvcm9j
-a2NoaXAvcm9ja2NoaXAsZHctZHAueWFtbAo+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dw
-dS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWRwLmMKPiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVy
-cy9ncHUvZHJtL3JvY2tjaGlwL2R3X2RwLXJvY2tjaGlwLmMKPiBjcmVhdGUgbW9kZSAxMDA2NDQg
-aW5jbHVkZS9kcm0vYnJpZGdlL2R3X2RwLmgKPgo+LS0gCj4yLjQzLjAKPgo+YmFzZS1jb21taXQ6
-IDYwODVhNDVhMDY5ZDJhZWFiNmJiM2U1ZjNmZGQzMmUyNTk3MDMxMDYKPmJyYW5jaDogcmszNTg4
-LWRwLXVwc3RyZWFtLXY1Cg==
+Hi Guodong,
+
+On 17:39 Mon 14 Jul     , Guodong Xu wrote:
+> Add PDMA0 dma-controller node under dma_bus for SpacemiT K1 SoC.
+> 
+> The PDMA0 node is marked as disabled by default, allowing board-specific
+> device trees to enable it as needed.
+> 
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> ---
+> v3:
+> - adjust pdma0 position, ordering by device address
+> - update properties according to the newly created schema binding
+> v2:
+> - Updated the compatible string.
+> - Rebased. Part of the changes in v1 is now in this patchset:
+>    - "riscv: dts: spacemit: Add DMA translation buses for K1"
+>    - Link: https://lore.kernel.org/all/20250623-k1-dma-buses-rfc-wip-v1-0-c0144082061f@iscas.ac.cn/
+> ---
+>  arch/riscv/boot/dts/spacemit/k1.dtsi | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> index abde8bb07c95c5a745736a2dd6f0c0e0d7c696e4..46dc002af947893cc2c234ee61e63c371cd966ca 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> @@ -660,6 +660,17 @@ dma-bus {
+>  			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
+>  				     <0x1 0x00000000 0x1 0x80000000 0x3 0x00000000>;
+>  
+> +			pdma0: dma-controller@d4000000 {
+does K1 has more than one pdma controller? No? as I checked..
+so, I'd suggest simply naming it as 'pdma' - which clear the confusion
+that there will be more than one pdma nodes..
+
+> +				compatible = "spacemit,k1-pdma";
+> +				reg = <0x0 0xd4000000 0x0 0x4000>;
+..
+> +				interrupts = <72>;
+for consistency in this dtsi file, I'd suggest moving "interrupts" after "clocks",
+or even after "resets"? leave "clocks & resets" together..
+
+> +				clocks = <&syscon_apmu CLK_DMA>;
+> +				resets = <&syscon_apmu RESET_DMA>;
+> +				dma-channels = <16>;
+> +				#dma-cells= <1>;
+> +				status = "disabled";
+> +			};
+> +
+>  			uart0: serial@d4017000 {
+>  				compatible = "spacemit,k1-uart",
+>  					     "intel,xscale-uart";
+> 
+> -- 
+> 2.43.0
+> 
+
+-- 
+Yixun Lan (dlan)
 
