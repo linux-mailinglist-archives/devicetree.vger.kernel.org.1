@@ -1,253 +1,128 @@
-Return-Path: <devicetree+bounces-199385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79BA2B10775
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 12:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC1BB1077D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 12:13:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89EA25667C6
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:10:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9830567D2B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1A6225F7BF;
-	Thu, 24 Jul 2025 10:10:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAD4325F97E;
+	Thu, 24 Jul 2025 10:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gDr6LT7X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F+KOmwgg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4018A25F7A4;
-	Thu, 24 Jul 2025 10:10:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873EE25E828;
+	Thu, 24 Jul 2025 10:12:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753351824; cv=none; b=fKNwJcyyeQ0xzv0ZzNJ2Ep5Q6KTLJrkUyRrMsRPbCal7SAvLTeSoZchoJgqPO7HpcW5rQ/oRW3Spa11jrrjQn1HJ3twgILS2hxZilJOxCRoJNblndQETHrI4cOVLxv/plvlKX+3X8ijeAocz8zIPZGyTTgSFYpUNcjhLg1EL6+I=
+	t=1753351980; cv=none; b=ENnbvfourRX/QZr9HsQK2a7cwWHfUm8x9I67OOfkwoLLdGG+pAPirXpBdFLEMhZrLXhKpuzHpCh/jJ2HDDFW6DuJQdH5aVpCwYzZQ0JP5VaLj6rAmaaO06TaM4sbCafmyMfTPirawP5SDXcJjVWGgcKaC2G/lzqf9zoN2xKGpHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753351824; c=relaxed/simple;
-	bh=c7QMAmpVaB48eq1HG5t3StXl8CnTj69VjPU/BHyPuSY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nc0bS9S2qlMnF3d++4aEj3sUMl89RA2yOULUqwckJNrNSwy/guLuBkkxC/96v+vBVWb8uAelHNGed/ksuDO4/R7ibLkQsqpI7qPZT2nHmEhAv19E/iycWXQ9R8TV7vLWtKxd06xrVluYVvaExMuC3urU568X0aSQIVwbecBeZqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gDr6LT7X; arc=none smtp.client-ip=209.85.166.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3da73df6c4eso6671715ab.0;
-        Thu, 24 Jul 2025 03:10:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753351822; x=1753956622; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0+meAXBdOYjti/xHVnSu9+/vlo6BxGcgq1eAbTOjxvs=;
-        b=gDr6LT7Xzv9hLLY/xA+SbN59y97bbeqphDs981wuJGdMlGhxlnzv/4wT6TAwkiPCvK
-         1ppjSb607Cjqc41yDXdFxtbZayIkvRRErJv7Zkg8SHpy3u9N7O7btopDWgrIgIrWiVzx
-         xnqMsJdHt2QDqBEY6I1DpcYIcORLtvLRJYuHSRyJjvI90/2ytwEBztyiubwa3yFpyZQ3
-         H96/a/Z66qG2GoTvioCkjchd5eYjAa7PwiUqA1Ybnk7A8ajxSLvpuv7MN+twMup5+1z2
-         2w/j0b5ltF/4h4KGV2e2whkI469FbOtzBA6pVOLfEbSLpD6bo5XAn9S4NEk2proNfs3B
-         C62A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753351822; x=1753956622;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0+meAXBdOYjti/xHVnSu9+/vlo6BxGcgq1eAbTOjxvs=;
-        b=qKxySJnZVk9ClXTRsH74T60eqJkpPApwbHncV9JIfvY63v9+JbdvLGJby1g4reaeCx
-         f3zaqsWHTtRbUiMUmndvwo6OrduixI48GOLb2BHaBoyYyAzIeM/NnAcJHGoOGMGxcfLL
-         yiPmoGXvLkSNCFrD0kZxklMzqdGZUXFwxw87TY/fd/1TUNnyVHdS80ZTxfFO6yttkepg
-         jesyyvVocJGcWMFIg/MrJelUMfMQeDkxyzZisnQVnpqnZi0miMbqEmjmTTEiv1DIlKLi
-         gYyEXT3UmvbMhDcMvt1Ucr0I1Z4HSqeNoN/MEXJ9px4E7TU7mL6xHaupnXXpXVm2p5AS
-         ikSA==
-X-Forwarded-Encrypted: i=1; AJvYcCV+e+su+k0YD8LM6nY9CVtyDIOpwxcbkEfFZvCFzgA51aP36Ce0JlDKEJHaSoY4dPmJZ+nt3dLaNPY7Tgk=@vger.kernel.org, AJvYcCVj1NpCXDI3FpEGv9fKdP4zzkurgdGbyrnVX7pzqGRLyleQQz5lXqJuazbGyPv0hTmlI2JJguj2Iopn9bCi@vger.kernel.org, AJvYcCWp+KaDO2cxXwLQnwxNa72HLDeZ/HH447Cnpa4TruBRmq3QdcBDp0q9B3OpKzWtCZnwjWOEQEScHZFf@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLynVV5j5tvOzbXsnzFg82FJRZZT5Lnpi6DvGb5TtTjS5sNCOX
-	Vs5wv9BMAoaiccAgw++vwIwx/cVl+kpa51LXlDtOFfgHlo5ewttJawlJyDKMZZSHTeWnD8DsltR
-	pjesG7F60lSMRl1/lFSXYCWQiDheDVwkrkrB5
-X-Gm-Gg: ASbGnctwzpEc5rtArnNG+aYcJOYu8sKFIIn1Ll2cbX1l5DtnqayFSJziTciFHNrlt8h
-	xcC/0fgzTXIY6Wl3LhnLXCfVJHH2AJ1SHLAYe6ksT/v4cBIIOjCDuGHYuOesCieL5wyZkmBkWD1
-	D/bLx2c1KYHjbNmitakKY05lg43EzZrXIQz+OQtyoPhxAkwsImv3t2TAZtN1DZ0WH/bHO8vyquO
-	qWU7H0=
-X-Google-Smtp-Source: AGHT+IF7M0baFlK3062K6BXEoa8kOdw9KDdHsQbjFyV5neQ+2sKDdzPXmbuSGlkwEtGraleUJvxc24KLjX8I3/Jqb8w=
-X-Received: by 2002:a92:cd8d:0:b0:3dd:d321:79ab with SMTP id
- e9e14a558f8ab-3e335535dc5mr117038895ab.18.1753351822074; Thu, 24 Jul 2025
- 03:10:22 -0700 (PDT)
+	s=arc-20240116; t=1753351980; c=relaxed/simple;
+	bh=MKTJsXoh0ovoIVsPRZJbybf8oVQe3fF6tNG1svHyD9Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=e7qPJ65kx14r6AMQoX9FF5LTk+hTpS25/JNOuNOEVUjay85CcjUR8eQmq3sRo8403iK1ZVC6cEw8pwFrXRcJUdrAICZyIWlIyaNb8fkVZuUnRZ6HL0/n3kNeyQaTlu5ZDsl1ye4vfnKU8Qwht2SCRXoAK60+LQk2cKERe8aKLyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F+KOmwgg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8C04C4CEF4;
+	Thu, 24 Jul 2025 10:12:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753351979;
+	bh=MKTJsXoh0ovoIVsPRZJbybf8oVQe3fF6tNG1svHyD9Q=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=F+KOmwgg+z7e6KttvqwjToMUUNQKbMcch6Kaqh7mZiJe+e9MtjQqK0QFMCc/r6Sja
+	 p+D1xm97+/1DEirZQdiS8y+/KFaz8D6qlqH/lfgk8mS6gp58TEMqhj6XVq6SYaXY5J
+	 zQuYjzsOKaKulq2ezVsbW2oiw0HNwtpngA5XWMEv7MyE5aSpR/zbmzYjpcXTHEcitb
+	 TfjwB0SaDiSzB8/wFtEMf3vnCWpMBWKbirWtqS8e6MvX9yNTXf0K3in3uJsMhAoGaZ
+	 Tmo1DaoDs2g06Y13IpqoEM1crzlFMx2a8w1h76uWBwcDwvJC1BSwoH7wUiLJemnoiU
+	 GobqWa0flpRbQ==
+Date: Thu, 24 Jul 2025 11:12:47 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Sanjay Suthar <sanjaysuthar661996@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ ribalda@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, neil.armstrong@linaro.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Subject: Re: [PATCH v3] dt-bindings: cleanup: fix duplicated 'is is' in YAML
+ docs
+Message-ID: <20250724111247.669d6955@jic23-huawei>
+In-Reply-To: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
+References: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250724072248.1517569-1-shengjiu.wang@nxp.com>
- <20250724072248.1517569-2-shengjiu.wang@nxp.com> <20250724-straight-lorikeet-of-novelty-9124f8@kuoka>
-In-Reply-To: <20250724-straight-lorikeet-of-novelty-9124f8@kuoka>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Thu, 24 Jul 2025 18:10:10 +0800
-X-Gm-Features: Ac12FXwoUiu0ZopeKo51pKtd4fVW0e5JyUbFY0Gq7Yw0jp0bxpzJja68FGRxr2Q
-Message-ID: <CAA+D8ANV74k1=_m7HfCO2n7nCU7mH=QMrd0CS5eMqGqDHn9HEw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: display: imx: add HDMI PAI for i.MX8MP
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, andrzej.hajda@intel.com, 
-	neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
-	airlied@gmail.com, simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org, 
-	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, p.zabel@pengutronix.de, devicetree@vger.kernel.org, 
-	l.stach@pengutronix.de, perex@perex.cz, tiwai@suse.com, 
-	linux-sound@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jul 24, 2025 at 4:52=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Thu, Jul 24, 2025 at 03:22:43PM +0800, Shengjiu Wang wrote:
-> > Add binding for the i.MX8MP HDMI parallel Audio interface block.
-> >
-> > In fsl,imx8mp-hdmi-tx.yaml, add port@2 that linked to pai_to_hdmi_tx.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  .../display/bridge/fsl,imx8mp-hdmi-tx.yaml    | 12 ++++
-> >  .../display/imx/fsl,imx8mp-hdmi-pai.yaml      | 69 +++++++++++++++++++
-> >  2 files changed, 81 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,i=
-mx8mp-hdmi-pai.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,imx8m=
-p-hdmi-tx.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,imx8m=
-p-hdmi-tx.yaml
-> > index 05442d437755..6211ab8bbb0e 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-=
-tx.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/fsl,imx8mp-hdmi-=
-tx.yaml
-> > @@ -49,6 +49,10 @@ properties:
-> >          $ref: /schemas/graph.yaml#/properties/port
-> >          description: HDMI output port
-> >
-> > +      port@2:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Parallel audio input port
->
-> Which data path this represents? Feels like you are duplicating ASoC
-> dai-links/cells...
+On Tue, 22 Jul 2025 22:35:13 +0530
+Sanjay Suthar <sanjaysuthar661996@gmail.com> wrote:
 
-Here it means from HDMI PAI to HDMI TX controller. not the ASoC dai link.
+> Fix minor grammatical issues by removing duplicated "is" in two devicetree
+> binding documents:
+> 
+> - net/amlogic,meson-dwmac.yaml
+> - iio/dac/ti,dac7612.yaml
+> 
+> Signed-off-by: Sanjay Suthar <sanjaysuthar661996@gmail.com>
 
-On i.MX8MP, for HDMI audio, it is separated into several hardware modules:
-1. Aud2HTX
-   driver:  sound/soc/fsl/fsl_aud2htx.c
-2. HDMI PAI
-   driver:  this patch set
-3. HDMI TX controller audio part
-    driver: drivers/gpu/drm/bridge/synopsys/dw-hdmi-gp-audio.c
+I'd have no problem with the argument that this can go through either
+tree if there was any interaction between the files or the changes, but
+here there isn't. This is just causing potential mess if either tree ends
+up with other changes overlapping this for no benefit.  Please split into
+two patches, one for each subsystem.  You should be fine to keep the
+various tags given here for the new patches.
 
-Aud2HTX is in the Audio subsystem,  HDMI PAI and HDMI TX are in the
-HDMI subsystem. The full data path is
-Aud2htx -> HDMI PAI -> HDMI TX controller.
+Jonathan
 
->
->
-> > +
-> >      required:
-> >        - port@0
-> >        - port@1
-> > @@ -98,5 +102,13 @@ examples:
-> >                      remote-endpoint =3D <&hdmi0_con>;
-> >                  };
-> >              };
-> > +
-> > +            port@2 {
-> > +                reg =3D <2>;
-> > +
-> > +                endpoint {
-> > +                    remote-endpoint =3D <&pai_to_hdmi_tx>;
-> > +                };
-> > +            };
-> >          };
-> >      };
-> > diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-h=
-dmi-pai.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdm=
-i-pai.yaml
-> > new file mode 100644
-> > index 000000000000..4f99682a308d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai=
-.yaml
-> > @@ -0,0 +1,69 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi-pai.yam=
-l#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale i.MX8MP HDMI Parallel Audio Interface
-> > +
-> > +maintainers:
-> > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
-> > +
-> > +description:
-> > +  The HDMI TX Parallel Audio Interface (HTX_PAI) is a bridge between t=
-he
-> > +  Audio Subsystem to the HDMI TX Controller.
->
-> What is Audio Subsystem? Like Linux Audio or some name matching actual
-> hardware?
 
-Audio subsystem is the name for hardware.
+> ---
+> Changes since V2:
+> - Corrected the subject line
+> - link to v2 : https://lore.kernel.org/linux-iio/20250720182627.39384-1-sanjaysuthar661996@gmail.com/T/#u
+> 
+>  Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml      | 2 +-
+>  Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml b/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
+> index 20dd1370660d..624c640be4c8 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
+> @@ -9,7 +9,7 @@ title: Texas Instruments DAC7612 family of DACs
+>  description:
+>    The DAC7612 is a dual, 12-bit digital-to-analog converter (DAC) with
+>    guaranteed 12-bit monotonicity performance over the industrial temperature
+> -  range. Is is programmable through an SPI interface.
+> +  range. It is programmable through an SPI interface.
+>  
+>  maintainers:
+>    - Ricardo Ribalda Delgado <ricardo@ribalda.com>
+> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> index 0cd78d71768c..5c91716d1f21 100644
+> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> @@ -149,7 +149,7 @@ properties:
+>        - description:
+>            The first register range should be the one of the DWMAC controller
+>        - description:
+> -          The second range is is for the Amlogic specific configuration
+> +          The second range is for the Amlogic specific configuration
+>            (for example the PRG_ETHERNET register range on Meson8b and newer)
+>  
+>    interrupts:
 
->
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: fsl,imx8mp-hdmi-pai
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    const: apb
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/properties/port
-> > +    description: Output to the HDMI TX controller.
->
-> And how do you plug it into sound card? Where are any DAI links?
-
-The hardware data path is Aud2htx -> HDMI PAI -> HDMI TX controller.
-
-From a software point of view. the path is
-Aud2htx -> hdmi_codec  (ALSA sound card)
-hdmi_codec -> dw-hdmi-gp-audio -> hdmi_pai
-
-hdmi_codec is registered by dw-hdmi-gp-audio.c,  hdmi_codec will call
-the function in dw-hdmi-gp-audio.c, dw-hdmi-gp-audio.c will call the
-function in hdmi pai driver.
-
-Aud2htx is cpu dai in ALSA
-hdmi-codec.c is the codec dai in ALSA
-Above is the dai link for ALSA, they already exist in the kernel.
-
-The HDMI PAI is the bridge, which is covered by this patch set.
-
-Best regards
-Shengjiu Wang
->
-> Best regards,
-> Krzysztof
->
 
