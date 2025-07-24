@@ -1,136 +1,211 @@
-Return-Path: <devicetree+bounces-199515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D63B10F8C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 18:20:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7465BB10FCC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 18:40:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E64354243B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 16:19:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75CE85C0B21
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 16:39:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ABCC2EAB91;
-	Thu, 24 Jul 2025 16:18:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3A92EBDC8;
+	Thu, 24 Jul 2025 16:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VYTChBJe"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Q04iZbE/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 615022D6611;
-	Thu, 24 Jul 2025 16:18:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9762EB5DC
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 16:38:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753373900; cv=none; b=dhSQ0gOkMJ/JVy+Xz574K3GusLvAmRRuh+ZppzcfMmtwT6sveAhf2BLWAAzVjc57dk5+SX6H6kJUc5gQZEhVXZkXm/cXrHSGerWwqtNDIJQv8BxL4PbY9m5vM1cQ7ruht2RJRIZpqYltlGNoNpEPfz/Q0MWkcmTD2Jxw8rrEi9w=
+	t=1753375089; cv=none; b=soh41+1sEMVELSfnjnxnitwsUInOjQsTTJjlwiOCqC4zyEU18KldslpekN11GbsxVtSkXS5/+r8nSXovVBXmYU3/Tgq/EjeEO+t5ECKqCHnP4MGXMQIuLqEtHLYa3NK+utI1qDbCoFDFEZwJXxxzqhAE+DDIRHbCjBnFeDSSqo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753373900; c=relaxed/simple;
-	bh=5uXWgZ17vXgqnlMvvfchoHBed3PsSQansHdP/cKKAWU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MShMRpxlOI96q7B4yHN9pfLDbSoSPo5C6qm8PJfr2zh1W/jctJk9N/2FIZpKusvVTXNXQ2Jde/EW6KShV720JUYoOyDtaApSHP8e8PuhbEW03Ee6Qf51+qfthoYRxhNX5EpD+uoULOlbAoKIwBFN/GCvE+z04W/qWx3aZ62VpqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VYTChBJe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E897DC4CEED;
-	Thu, 24 Jul 2025 16:18:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753373900;
-	bh=5uXWgZ17vXgqnlMvvfchoHBed3PsSQansHdP/cKKAWU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=VYTChBJe9dLgHX+CNn7d9y1Yz0NOOh+pyQAOc8y4SOeVwmV2gQl1UUENu7b8PSego
-	 D1HWR8gUmFNOWE4vMgK6rJIPPcZS7u+Ym6T9i3bX23kj4sGAToqz3leoeHJXBWqD/a
-	 AhnN5zbdXh9Pbt6QUvfXCiRoevLIRfr89+UD7cCzVJ6cMkfNwmsFHmw5sXZm6nUL/F
-	 ZhVcJCFLenyEK7AM8YTeLv7Oyg6C4yCT84R0JleZE4kMELta4/TkpfBJjyiHxFbliI
-	 OtOc4YtK4qEnz/SzMN+8vGlq7Oyo9XM1HgiXJfcXQZh3kMZF6wR/DMvV6/cSkXS3bf
-	 e3yWjT4fdRD0w==
-Date: Thu, 24 Jul 2025 17:18:11 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>
-Cc: remi.buisson@tdk.com, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 7/8] iio: imu: inv_icm45600: add I3C driver for
- inv_icm45600 driver
-Message-ID: <20250724171811.55b0bc0b@jic23-huawei>
-In-Reply-To: <20250717-add_newport_driver-v3-7-c6099e02c562@tdk.com>
-References: <20250717-add_newport_driver-v3-0-c6099e02c562@tdk.com>
-	<20250717-add_newport_driver-v3-7-c6099e02c562@tdk.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1753375089; c=relaxed/simple;
+	bh=/z1ZWH3AmE7m9qEL3wKFxAKY/0SRkQE/svi19xO62Ks=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i3MoQQXDjWKZlrLAPojHAcC9CNupGQrDOhOK5YFz6mBe/gOVEyh8uJ9CIm00A2WDbylQr49tKdRhempXErU14mvXgTw/jn+dDYi6/gutK+Nv70mfgAHBG/9C5mNUPdCueEpJdwEVp6/LtDXers8E87a65MxnzDpytyng3SzGqjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Q04iZbE/; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7e62a1cbf81so160202785a.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 09:38:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1753375087; x=1753979887; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=usvpr9L47YioWJ8ShpR64dzUqJAyhLB53MAvoTv4bGE=;
+        b=Q04iZbE/gWcxVdZLo9vdedJCnFu1t9m6ZJ16MkcbwthM5i1Z6tfGC85Xt7z8S+dkdA
+         j48NOjw90YQP7yGQ76MCtrHLF8jYO0ng9JDcQot4pp6E7nwijTr9Fx97zrDedd9Z+8Wg
+         ICHO1vzMHutBPY9wdxrBUAw9yaqdKq+ovBUMU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753375087; x=1753979887;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=usvpr9L47YioWJ8ShpR64dzUqJAyhLB53MAvoTv4bGE=;
+        b=XENS+OWnMmOocjounV7ShV46GXDhYWbX5Qvh9l9yIEHWhBSbD2YJMlj9LM9bihGcii
+         AQb7Ek/d2g8KOTtqCfRM1goICA8INpipWk+bX1NGPfEWIDeURMoOS7oN5Jk4ZcdflcCk
+         XlpaWwSQeq4HRUUPh1mm3V1rYuXaffA9A764f4vwaArzcKZnlX1zT+LLq0kMJo7xkUer
+         7Xi4JjVTTiYeiTXIGDekcDJCyjIR0gTXF0oW76D2RqQ8SswfY+h/QRCO0lkK8J0Y9QdE
+         HT3zcwOBIEDgvO0kWvwU0W+BtPzzKkVEfUpNo0Ss6SMGPkaw80mQP2yXn7QdfzLcIqye
+         3x4w==
+X-Forwarded-Encrypted: i=1; AJvYcCVa2lTUnuCwYpJf5/OqHzHJsueV2zN/16qYMXO7J9r1q/Io4Ni900AZtVyJCcbEpIw9XZDmgkzrsGJk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkF72CWtwl4fkY21kkWbu/DfARFizdEty5pgwmS4WoCzeEoEjI
+	stVgzeJMRo4JBEzGDZ7dKhLiLfDnuRUSpEKipv9/PNMku1AjsuFhjFdNCzGbYy8kbQ==
+X-Gm-Gg: ASbGncvd1WPCalvg2PrR+Qh3nPXmty0XhM9mcnxf5zoQRRyirpr4und/rmj3V519fuZ
+	ejxt5IvTAfi/kB/l8zoyPPX2MuvOceYNmyguiYnB4jK+SepZzucUMnivb80FZmV1l+i75Qze3JQ
+	aYUv1DwYaNhlpxEDia9npgn8xATgl2I29r7F+YBQrxOAPxKF6XHVUX1GawEjyu9mNdfw+MFaeAn
+	QXQHmOIKEIdjlX9+OINs+zqWjMWncOVvnTO/KrC2dbYOD08fWnhKIme2bWhLyAGxt2nHE5a0JIg
+	yOcv1EQKeta7a6WA+T8oizW0sZ3KTviw5hr2R+EXGSzkkjcAysF9OG7VP6YZqbGiw0Z38FMjhP9
+	EuPF/WFtszVGGFKoOSfWGXkbIe5M/i98m4DVEevf6AgV5SZXQVohm2ybQ5iq6sA==
+X-Google-Smtp-Source: AGHT+IGrgbcYhJ+tVe3J1al7OGjEmLmXFRtcoTyoF9bk75cMfSPlGVBH45dTALz6kduphv5+Hg8Jbg==
+X-Received: by 2002:a05:620a:400f:b0:7e3:3682:6dea with SMTP id af79cd13be357-7e62a0b2e23mr1083347685a.15.1753375086232;
+        Thu, 24 Jul 2025 09:38:06 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7e632e3c84asm139033985a.83.2025.07.24.09.38.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Jul 2025 09:38:05 -0700 (PDT)
+Message-ID: <20fad5dc-b0c7-4f16-b8ad-5f8ddceacfc0@broadcom.com>
+Date: Thu, 24 Jul 2025 09:38:00 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 0/8] Implement vendor resets for PSCI SYSTEM_RESET2
+To: Arnd Bergmann <arnd@arndb.de>,
+ Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+ Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Stephen Boyd <swboyd@chromium.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
+ <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ Elliot Berman <quic_eberman@quicinc.com>,
+ Srinivas Kandagatla <srini@kernel.org>,
+ Elliot Berman <elliot.berman@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250721-arm-psci-system_reset2-vendor-reboots-v12-0-87bac3ec422e@oss.qualcomm.com>
+ <beb26682-d2e4-40e6-89ac-87f18c0401d0@broadcom.com>
+ <56599da9-0200-72b5-012e-942a1fc954b2@oss.qualcomm.com>
+ <a1d3264f-a46a-42c4-b518-a66c8e0b70b4@kernel.org>
+ <f4725f3f-1b45-ebd2-aaf4-4f986a44eb8e@oss.qualcomm.com>
+ <36f62026-9517-42bd-8f9a-92f39fcdc136@app.fastmail.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <36f62026-9517-42bd-8f9a-92f39fcdc136@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Thu, 17 Jul 2025 13:25:59 +0000
-Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org> wrote:
-
-> From: Remi Buisson <remi.buisson@tdk.com>
+On 7/24/25 07:43, Arnd Bergmann wrote:
+> On Thu, Jul 24, 2025, at 16:04, Shivendra Pratap wrote:
+>> On 7/24/2025 6:18 PM, Krzysztof Kozlowski wrote:
+>>> On 24/07/2025 14:24, Shivendra Pratap wrote:
 > 
-> Add I3C driver for InvenSense ICM-45600 devices.
+>>> I strongly insist using compatible as way to find your device, not node
+>>> names.
+>> It will look better to switch to compatible. Will define a compatible for
+>> psci reboot-mode binding and align the patch to use the compatible for sysfs.
+>> Current patch defines reboot-mode as a property to psci, hope its fine to
+>> define a compatible for this property like "psci-vendor-reset" or
+>> "psci-reboot-modes"?
+>>
 > 
-> Signed-off-by: Remi Buisson <remi.buisson@tdk.com>
-A few more trivial things in here.
+> How about using the reboot driver name as the identifier in sysfs
+> instead of the compatible string? That would make it independent of
+> devicetree.
 
-Thanks,
-
-Jonathan
-
-> diff --git a/drivers/iio/imu/inv_icm45600/inv_icm45600_i3c.c b/drivers/iio/imu/inv_icm45600/inv_icm45600_i3c.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..9db249ca53ec3fecb0f85792a353d05463f52acb
-> --- /dev/null
-> +++ b/drivers/iio/imu/inv_icm45600/inv_icm45600_i3c.c
-> @@ -0,0 +1,82 @@
-
-> +};
-> +
-> +static const struct i3c_device_id inv_icm45600_i3c_ids[] = {
-> +	I3C_DEVICE_EXTRA_INFO(0x0235, 0x0000, 0x0011, (void *)NULL),
-> +	I3C_DEVICE_EXTRA_INFO(0x0235, 0x0000, 0x0084, (void *)NULL),
-> +	{ /* sentinel */ },
-
-no comma on sentinels.
-
-
-> +static int inv_icm45600_i3c_probe(struct i3c_device *i3cdev)
-> +{
-> +	int ret;
-> +	unsigned int whoami;
-> +	struct regmap *regmap;
-> +	const int nb_chip = ARRAY_SIZE(i3c_chip_info);
-> +	int chip;
-> +
-> +	regmap = devm_regmap_init_i3c(i3cdev, &inv_icm45600_regmap_config);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&i3cdev->dev, "Failed to register i3c regmap %ld\n", PTR_ERR(regmap));
-> +		return PTR_ERR(regmap);
-Use return dev_err_probe() for all error messages in probe.
-
-> +	}
-> +
-> +	ret = regmap_read(regmap, INV_ICM45600_REG_WHOAMI, &whoami);
-> +	if (ret) {
-> +		dev_err(&i3cdev->dev, "Failed to read part id %d\n", whoami);
-> +		return ret;
-> +	}
-> +
-> +	for (chip = 0; chip < nb_chip; chip++) {
-> +		if (whoami == i3c_chip_info[chip]->whoami)
-> +			break;
-> +	}
-> +
-> +	if (chip == nb_chip) {
-> +		dev_err(&i3cdev->dev, "Failed to match part id %d\n", whoami);
-> +		return -ENODEV;
-> +	}
-> +
-> +	return inv_icm45600_core_probe(regmap, i3c_chip_info[chip], false, NULL);
-> +}
++1
 
 > 
+> I had a related idea to provide some namespacing on the actual
+> reboot syscall parameter, as we have two (or more) orthogonal
+> concepts here, when there is more than one reboot driver and
+> drivers support multiple modes.
+> 
+> E.g. you could use
+> 
+>      syscall(__NR_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
+>              LINUX_REBOOT_CMD_RESTART2, "watchdog");
+> 
+> vs
+> 
+>      syscall(__NR_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
+>              LINUX_REBOOT_CMD_RESTART2, "psci");
+> 
+> to pick one of the drivers, or
+> 
+>      syscall(__NR_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
+>              LINUX_REBOOT_CMD_RESTART2, "bootloader");
+> 
+>      syscall(__NR_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
+>              LINUX_REBOOT_CMD_RESTART2, "recovery");
+> 
+> to ask for a reboot from any driver that supports a mode, or
+> combine the two and ask a specific mode in a specific driver like
+> 
+>      syscall(__NR_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
+>              LINUX_REBOOT_CMD_RESTART2, "psci:bootloader");
 
+Yes that seems entirely adequate as well.
+
+If there is a single reboot driver registered say "psci" then you could 
+go with the short hand of specifying "bootloader" which would be 
+functionally equivalent to "psci:bootloader". That is, the driver name 
+becomes optional. This would maintain user-space compatibility with 
+existing systems that already support custom reboot modes.
+-- 
+Florian
 
