@@ -1,124 +1,302 @@
-Return-Path: <devicetree+bounces-199379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71CE7B1072C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:59:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9B14B10735
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 12:00:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86FEC1881215
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:59:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9EC45869A1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8341825B1C5;
-	Thu, 24 Jul 2025 09:59:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="MJDwGuzd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC8525A2D8;
+	Thu, 24 Jul 2025 09:59:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from freeshell.de (freeshell.de [116.202.128.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68F6625A620
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 09:58:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2935825A2C2;
+	Thu, 24 Jul 2025 09:59:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753351140; cv=none; b=l0+pdyx67zadbj84d5OMypJOnBFfdKzDF5klNSUZ7lPHylfHKUc8SWWp1cB5Lm9CW9YZssRRvL2IB3Wph2TY4ip+1KYJundhSIt2rg1Czo1nD+6W/5REpx8V5tdQOdPKTG1N8PMMnzqu8roCMVO+Eg8YbtwHJG3GUnWpqN7ZU1Q=
+	t=1753351188; cv=none; b=k0i+AuVrsTn5mYChwNg46rj8N+OlY3sBl7vQhmbYi2MqxP3YxZyHQ1CFsmqVtUEASr2XRN8fGiY4quapaikSeYZEScvw9CLRlc5bVhl+pvRXVYmgquOH6VEBS3Yp7jptusB/hDACpqnCQqMESn5zanlZtOSP/8qHIAMmXCljVOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753351140; c=relaxed/simple;
-	bh=3lDH5ARB26e8DbHF4MxQq93Rk0WGstJeVZQEGstfRkg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DvTzR0HkvPdtqs7HbV1sVItGsOt4GLti+cJ3TXdmSzGmwmuMz3qhkgZpeUBqjLQmnAy+wMVKRW/HpYZvm1Ijfweh9Zln3KN6smMDrdNO4xpLBN6IM/jECjXsT3TPIRUtB+ZvGzBt20z2c7cMGDQjzyrelPTYZjqn+jqDAQwvzjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=MJDwGuzd; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-553ba7f11cbso850579e87.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 02:58:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1753351137; x=1753955937; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3lDH5ARB26e8DbHF4MxQq93Rk0WGstJeVZQEGstfRkg=;
-        b=MJDwGuzdBt8lJEfC5oMMVj5dgKxNuAi/xNdia9i31OCMslYNVG2vNAeRuO0iAUKzgL
-         b3J0gGVCbd+ivE/0w+/xSCJxTUi4kkSbE8IACHtpmhVNDZha5m/d5G9FgrsP2qlowuyk
-         yYWXslIJQsZ71G6vkM06Te+OZ+/L6ZQjzl508=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753351137; x=1753955937;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3lDH5ARB26e8DbHF4MxQq93Rk0WGstJeVZQEGstfRkg=;
-        b=ef6eJPXYIwfcmwZDoBtdEbzPAMglPLu8ibamjdZQn34RzMiN4WsdaaH74M/1UNe/eF
-         EYC3jom9xyqBV9XDEpskvV4/LVc1uxPNnJtJzQ28moO9OCNECnNux5ZrpxBzEQKtd0rz
-         ua9L8413xrTaoLykzEuom333wG0DyFS2xPxT57+A12Msx2EPjWB0V4I01+YISa5t+Y+Z
-         F0E9ReZPhBHbzVw1v4lp7E80MbnrHuVKjqGASYhWg3+yLozPOpHjLPCmxnD2fuTDGfzF
-         PaKYUeIsQ3wzZjkbnYwVvS74o7rfAqhlts9aYNxziZ7+feRrPqGCOFcSiB6MwJaAzsvY
-         2W8A==
-X-Forwarded-Encrypted: i=1; AJvYcCXrL6lZLglQrKz1SCFH6GiTxY34OTvv3R4HTxHzpftnW/iABMSckFY7Yu8CVB2Lz2Q+n7EkioKWVb7y@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjaO9tcWfkvVB33/D+YK+dgRnwB93LN9S7szE+ya6Wypo6Ac2l
-	sjFrKE26HAgBL8zufvSPAon1vjtI04vyChMNk3+qLSvEb6QEoz0Ro8y9YfQNAEqpfIPQkOEUK+x
-	QbsME3ERY3tgvRqapXPTwewwXCw2f2BnstLyur9HY
-X-Gm-Gg: ASbGncvyL1UrYXW+FpM4mES9JQWdbB51uvKOIb8mM/hE6l5v4haGPJHLUQZ8FrvWte+
-	DMJnUyoZWtUwON8Co7e9oCWxksQ1az5LowAl5PNIHSTXVe4V3Nx1y0TmkIeeiW8V+4FwVwDIpmu
-	73xs+NGXlK7/RHvJNKTzH/7ACB5/MoeN5wgXCNzbsPVkqyiJUiVKPxu94TxTAldcSUXRZLWq1hL
-	dxPHNAbQyIthc77DEXd78up4sjKsJbz9w8=
-X-Google-Smtp-Source: AGHT+IFbWpnNaQRMkmMGCWJwKWLSFPCgKrpUVJhkWhmCg8wuzEAglTGmiTQG4cugbeqoeX5uFAZWT86WnfNSaUywLGk=
-X-Received: by 2002:a05:6512:60d:20b0:554:f7ec:3b23 with SMTP id
- 2adb3069b0e04-55a51359f3dmr1559012e87.15.1753351136563; Thu, 24 Jul 2025
- 02:58:56 -0700 (PDT)
+	s=arc-20240116; t=1753351188; c=relaxed/simple;
+	bh=e8Kr6qHidQg5GTpisUorURaei4mV2rg75pt3clWPQRo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CXjj4l1/rohoeHzyvNuiJActXuIx/cR3DhbxOozCzbhdl1VcuscvUW4P8Tt0NsbJ5qSLPVXwvDi3gLTn0WBMjkzLnUKUFw636IoOXWbojxXPGuDckmqh3bXeki7J/Zyc2zVSAZWnFy/Dfj9LHfUT73JQTbq3oD6b5blk7GH2TfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [192.168.2.54] (unknown [143.105.119.201])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 59289B4D0DFE;
+	Thu, 24 Jul 2025 11:59:42 +0200 (CEST)
+Message-ID: <d12350a6-bd8c-416d-8c57-2d96e47bacbd@freeshell.de>
+Date: Thu, 24 Jul 2025 02:59:40 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com> <20250724083914.61351-37-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250724083914.61351-37-angelogioacchino.delregno@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 24 Jul 2025 17:58:45 +0800
-X-Gm-Features: Ac12FXwhroXh9igzrCvp17h0_fa0JxIrUDzrCtprSHzHickYMU-wGcIvqxYBtBo
-Message-ID: <CAGXv+5G3kbSzs99mogy57mh+LUdi_87zBmFH8GQFWvROhLFbDg@mail.gmail.com>
-Subject: Re: [PATCH 36/38] arm64: dts: mediatek: mt8195-cherry: Add missing
- regulators to rt5682
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, 
-	herbert@gondor.apana.org.au, davem@davemloft.net, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, 
-	airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, jassisinghbrar@gmail.com, 
-	mchehab@kernel.org, matthias.bgg@gmail.com, chunfeng.yun@mediatek.com, 
-	vkoul@kernel.org, kishon@kernel.org, sean.wang@kernel.org, 
-	linus.walleij@linaro.org, lgirdwood@gmail.com, broonie@kernel.org, 
-	andersson@kernel.org, mathieu.poirier@linaro.org, daniel.lezcano@linaro.org, 
-	tglx@linutronix.de, atenart@kernel.org, jitao.shi@mediatek.com, 
-	ck.hu@mediatek.com, houlong.wei@mediatek.com, 
-	kyrie.wu@mediatek.corp-partner.google.com, andy.teng@mediatek.com, 
-	tinghan.shen@mediatek.com, jiaxin.yu@mediatek.com, shane.chien@mediatek.com, 
-	olivia.wen@mediatek.com, granquet@baylibre.com, eugen.hristev@linaro.org, 
-	arnd@arndb.de, sam.shih@mediatek.com, jieyy.yang@mediatek.com, 
-	frank-w@public-files.de, mwalle@kernel.org, fparent@baylibre.com, 
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org, linux-sound@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/4] riscv: dts: starfive: add Milk-V Mars CM
+ system-on-module
+To: Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, E Shattow <e@freeshell.de>
+References: <20250724094912.253723-1-e@freeshell.de>
+ <20250724094912.253723-3-e@freeshell.de>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20250724094912.253723-3-e@freeshell.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jul 24, 2025 at 4:41=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Add the missing DBVDD and LDO1-IN power supplies to the codec
-> node as both RT5682i and RT5682s require those.
->
-> This commit only fixes a dtbs_check warning but doesn't produce
-> any functional changes because the VIO18 LDO is already powered
-> on because it's assigned as AVDD supply anyway.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+Oops... wrong S-o-by email address on this patch.
 
-Confirmed this matches the schematic.
+On 7/24/25 02:48, E Shattow wrote:
+> Milk-V Mars CM is a System-on-Module based on the StarFive VisionFive 2
+> board and Radxa CM3 System-on-Module compatible with the Raspberry Pi
+> CM4IO Classic IO Board.
+> 
+> Mars CM SoM features:
+> 
+> - StarFive JH7110 System on Chip with RV64GC up to 1.5GHz
+> - AXP15060 Power Management Unit
+> - LPDDR4 2GB / 4GB / 8GB DRAM memory
+> - BL24C04F 4K bits (512 x 8) EEPROM
+> - GigaDevice 25LQ128EWIG QSPI NOR Flash 16M or SoC ROM UART loader for
+>   boot (selectable by GPIO)
+> - eMMC5.0 8GB / 16GB / 32GB flash storage onboard
+> - AP6256 via SDIO 2.0 onboard wireless connectivity WiFi 5 + Bluetooth
+>   5.2 (optional, present in models with WiFi feature)
+> - 1x Motorcomm YT8531C Gigabit Ethernet PHY
+> - IMG BXE-4-32 Integrated GPU with 3D Acceleration:
+>   - H.264 & H.265 4K@60fps Decoding
+>   - H.265 1080p@30fps Encoding
+>   - JPEG encoder / decoder
+> 
+> Additional features available via 2x 100-pin connectors for CM4IO Board:
+> - 1x HDMI 2.0
+> - 1x MIPI DSI (4-lanes)
+> - 1x 2CH Audio out (via GPIO)
+> - 1x MIPI CSI (2x2-lanes or 1x4-lanes)
+> - 1x USB 2.0
+> - 1x PCIe 1-lane Host, Gen 2 (5Gbps)
+> - Up to 28x GPIO, supporting 3.3V
+> - UART x6
+> - PWM x8
+> - I2C x7
+> - SPI
+> - I2S
+> 
+> Link to Milk-V Mars CM schematics: https://github.com/milkv-mars/mars-files/tree/main/Mars-CM_Hardware_Schematices
+> Link to StarFive JH7110 Technical Reference Manual: https://doc-en.rvspace.org/JH7110/TRM/index.html
+> Link to Raspberry Pi CM4IO datasheet: https://datasheets.raspberrypi.com/cm4io/cm4io-datasheet.pdf
+> 
+> Add the devicetree file to make use of StarFive JH7110 common supported
+> features PMIC, EEPROM, UART, I2C, GPIO, eMMC, PCIe, PWM DAC, QSPI Flash,
+> PWM, and Ethernet. Also configure the common SD Card interface mmc1 for
+> onboard SDIO BT+WiFi.
+> 
+> Signed-off-by: E Shattow <e@freenode.de>
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Should be @freeshell.de
+
+> ---
+>  arch/riscv/boot/dts/starfive/Makefile         |   1 +
+>  .../dts/starfive/jh7110-milkv-marscm-emmc.dts | 163 ++++++++++++++++++
+>  2 files changed, 164 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-emmc.dts
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+> index b3bb12f78e7d..79742617ddab 100644
+> --- a/arch/riscv/boot/dts/starfive/Makefile
+> +++ b/arch/riscv/boot/dts/starfive/Makefile
+> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
+>  
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
+> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-emmc.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-emmc.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-emmc.dts
+> new file mode 100644
+> index 000000000000..59766cdb912b
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-emmc.dts
+> @@ -0,0 +1,163 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2025 E Shattow <e@freeshell.de>
+> + */
+> +
+> +/dts-v1/;
+> +#include <dt-bindings/pinctrl/starfive,jh7110-pinctrl.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include "jh7110-common.dtsi"
+> +
+> +/ {
+> +	model = "Milk-V Mars CM";
+> +	compatible = "milkv,marscm-emmc", "starfive,jh7110";
+> +
+> +	aliases {
+> +		i2c1 = &i2c1;
+> +		i2c3 = &i2c3;
+> +		i2c4 = &i2c4;
+> +		serial3 = &uart3;
+> +	};
+> +
+> +	sdio_pwrseq: sdio-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&sysgpio 33 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&gmac0 {
+> +	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
+> +	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
+> +	starfive,tx-use-rgmii-clk;
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	status = "disabled";
+> +};
+> +
+> +&i2c6 {
+> +	status = "disabled";
+> +};
+> +
+> +&mmc1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	mmc-pwrseq = <&sdio_pwrseq>;
+> +	non-removable;
+> +	status = "okay";
+> +
+> +	ap6256: wifi@1 {
+> +		compatible = "brcm,bcm43456-fmac", "brcm,bcm4329-fmac";
+> +		reg = <1>;
+> +		interrupt-parent = <&sysgpio>;
+> +		interrupts = <34 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "host-wake";
+> +		pinctrl-0 = <&wifi_host_wake_irq>;
+> +		pinctrl-names = "default";
+> +	};
+> +};
+> +
+> +&pcie0 {
+> +	status = "okay";
+> +};
+> +
+> +&phy0 {
+> +	rx-internal-delay-ps = <1500>;
+> +	tx-internal-delay-ps = <1500>;
+> +	motorcomm,rx-clk-drv-microamp = <3970>;
+> +	motorcomm,rx-data-drv-microamp = <2910>;
+> +	motorcomm,tx-clk-10-inverted;
+> +	motorcomm,tx-clk-100-inverted;
+> +	motorcomm,tx-clk-1000-inverted;
+> +	motorcomm,tx-clk-adj-enabled;
+> +};
+> +
+> +&pwm {
+> +	status = "okay";
+> +};
+> +
+> +&spi0 {
+> +	status = "okay";
+> +};
+> +
+> +&sysgpio {
+> +	uart1_pins: uart1-0 {
+> +		tx-pins {
+> +			pinmux = <GPIOMUX(16, GPOUT_SYS_UART1_TX,
+> +					      GPOEN_ENABLE,
+> +					      GPI_NONE)>;
+> +			bias-disable;
+> +			drive-strength = <12>;
+> +			input-disable;
+> +			input-schmitt-disable;
+> +		};
+> +
+> +		rx-pins {
+> +			pinmux = <GPIOMUX(17, GPOUT_LOW,
+> +					      GPOEN_DISABLE,
+> +					      GPI_SYS_UART1_RX)>;
+> +			bias-pull-up;
+> +			input-enable;
+> +			input-schmitt-enable;
+> +		};
+> +
+> +		cts-pins {
+> +			pinmux = <GPIOMUX(3, GPOUT_LOW,
+> +					     GPOEN_DISABLE,
+> +					     GPI_SYS_UART1_CTS)>;
+> +			bias-disable;
+> +			input-enable;
+> +			input-schmitt-enable;
+> +		};
+> +
+> +		rts-pins {
+> +			pinmux = <GPIOMUX(2, GPOUT_SYS_UART1_RTS,
+> +					     GPOEN_ENABLE,
+> +					     GPI_NONE)>;
+> +			bias-disable;
+> +			input-disable;
+> +			input-schmitt-disable;
+> +		};
+> +	};
+> +
+> +	usb0_pins: usb0-0 {
+> +		vbus-pins {
+> +			pinmux = <GPIOMUX(25, GPOUT_SYS_USB_DRIVE_VBUS,
+> +					      GPOEN_ENABLE,
+> +					      GPI_NONE)>;
+> +			bias-disable;
+> +			input-disable;
+> +			input-schmitt-disable;
+> +			slew-rate = <0>;
+> +		};
+> +	};
+> +
+> +	wifi_host_wake_irq: wifi-host-wake-irq {
+> +		wake-pins {
+> +			pinmux = <GPIOMUX(34, GPOUT_LOW,
+> +					      GPOEN_DISABLE,
+> +					      GPI_NONE)>;
+> +			input-enable;
+> +		};
+> +	};
+> +};
+> +
+> +&uart1 {
+> +	uart-has-rtscts;
+> +	pinctrl-0 = <&uart1_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+> +
+> +&usb0 {
+> +	dr_mode = "host";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&usb0_pins>;
+> +	status = "okay";
+> +};
+
+-E
 
