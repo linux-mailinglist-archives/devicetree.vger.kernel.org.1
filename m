@@ -1,124 +1,213 @@
-Return-Path: <devicetree+bounces-199371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27B61B106F5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5A7AB10716
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:56:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B56F1C20A11
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:50:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8D5A1896D14
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:56:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D73A0256C70;
-	Thu, 24 Jul 2025 09:50:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05182257AFB;
+	Thu, 24 Jul 2025 09:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Sx/xulJh"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="tXkLFpum"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009EA255F52
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 09:49:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90ABC257440
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 09:56:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753350601; cv=none; b=mTaG+KLofNPZbPwthkXyvpqC1jfW2PSk8pLAM0Oa2vNiVwXbek5nK8aK9O/cxKFK5PzQGzNHzk824JY+Kmq6bEwGoYD91HJ34GKo0FpAkxLaCfH9toBW2+X/AMeWGUsHHIN+Utfo0ZbKYl9GkTlS72wSh9wyhJ5QqXWZwW2MjfE=
+	t=1753350974; cv=none; b=FlbmtMlLfNxgeZtZ2+v3TGiXEDLaqVwkn/PkJ2YqwYCL3IG6wfZieWLExnJP/sLbsFL4zhOJt/0qxpEMycYEiEChOhaqg4BkL+puvjY2B8i2Cq240MYziKS+iEbBMjqNcrhKSculBqNx6QcPQ3nVS3nfxl27aGIc6iH/tRrgTvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753350601; c=relaxed/simple;
-	bh=+1yeaes/5WO9C98Ce+RQRl+sqAXx+8dUlJLLdWKreso=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H6PNU3UbQqGWbgfFlmN4yXoFvMiOQ6ifbfNVuYb69FI6FehtN/JyypcsiGmmOuB445yFVDs6qlFpQZeNnmqQxSYdYf39QnhFvgXQmzmQ9qpoIiVmYPXQiilbT7Z7FBeTeDBuoTDAZkx5z/N/68oDhN2Y44p3hJZzkFxdIo3O6Oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Sx/xulJh; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5551a770828so822626e87.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 02:49:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1753350598; x=1753955398; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+1yeaes/5WO9C98Ce+RQRl+sqAXx+8dUlJLLdWKreso=;
-        b=Sx/xulJhXt296mnd751zlozvO9hmHj6VxjVSAz8m6yTaPTLv9QBPC0UptAjx0eFuVc
-         XmD/9IGcm1tSFFDgNReWTVEZf+hA+8drt6emVomXJ7FjbsSwi83t3hHFemM7lEdWVSOt
-         sB/lZmGDjPF0DhLo9GZr1YyTbyTdsnurUXtf4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753350598; x=1753955398;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+1yeaes/5WO9C98Ce+RQRl+sqAXx+8dUlJLLdWKreso=;
-        b=m72nEIyuuIR/rph67aM2coKqqCuaOUQrl2BFZsQSh8msc4iyRfyPjBarfPlmX3uS/6
-         NYQ0wyNSGwfQUFYKCZkSQ4AHvBrUSyQSUL88PyPAfmajxumKl1ZJyLUcKwrf7qbaZ6F5
-         JSXxk4/umN39iVNYJuUwyG2Cf/pg7TbQ56Nopa0M4l/ofu0SpHsaFryAVemAxtIJde/v
-         DY+n2HWWoc6AAYrtjU+NejYFcYSr2fs/s6c/mfRTfc2mbGHpW+mXwylSgN+oeYryJGmO
-         NvsOEKHm34uQGjVCR1miTk6gBVttZZabJkurEkC9VJ/XVmbddXW8U02Y7LP1p6EU6Frj
-         pqmg==
-X-Forwarded-Encrypted: i=1; AJvYcCVqwR/vshLFDkcnqB6KyrTnd8TRjC4vQwHDcVYL8Me8aIsk/PjKDf4ScDDPyQf1H/FSq4MDFCS4CvDC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEJwiRdVVCmTIoiqfaxFKuWhlxMGH7hd2vUE4OVaR32rd5NHcB
-	CGO/PLAH5onn/FNoE6eHMsGlyqbfSKerHRxU72yQcBCbOfyEIKaEzQKx+K7pCdcU4AhFILw5B9E
-	KcatMYg6N1FrRkQBAW+WnogOEp7limU0pANA2K49S
-X-Gm-Gg: ASbGncsmsLf9x1V15o0tlZnyC0YVWVGIi5+PPraEtnWQVufONUnMpUvB23mVluUg14C
-	Fp+IU7HIS+7c3NUctRXJ5q1Y3zp54+gV5bcEagRDfjveYxyLAnRnlw3VNsnSE/uqdnECVB9KjSc
-	n7bP0UVioVt3JxAmJhzunFXr943FipTzk7V5FHqq5DDRBdHpf/aIqFV+Sasa+MCeryNimuyqaP6
-	Se8lmURYOKLYGJoGL2S5GPSJ5TR31/IhQ0=
-X-Google-Smtp-Source: AGHT+IGItj9eON5joXD9a2IIIdgBC35OTh38AkPzmXEBTTEZMPnEPcqJK3Z5OhBEkyMLKp8WCCWs6kzvOlePUXbqfGg=
-X-Received: by 2002:a05:6512:239d:b0:553:2dce:3ab2 with SMTP id
- 2adb3069b0e04-55a51354ddbmr1925545e87.6.1753350598082; Thu, 24 Jul 2025
- 02:49:58 -0700 (PDT)
+	s=arc-20240116; t=1753350974; c=relaxed/simple;
+	bh=xgv/6RY0aXaXcqVmGsKiJ7rv1l72xkz7t+/1yhSFO+4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=iSvFUFMvd6xZf2ElEcOGeugG+AmLdLyRxYGEJ4JpIQhIV2WZnx/zYVDHRm5haUaWG/cHRmoH4NawWVN31T/i/OpGckezEE8Zqt87YlpWTczaLCiKfIwq7symnjkQ5HMgOaovtTX0TqcEceSHuv13Tb8RVf9tOm1bDybE9mSKQB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=tXkLFpum; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250724095610epoutp02763f9736b10f9d2e075a2672456f47d6~VJ2sEi3sU1128811288epoutp02X
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 09:56:10 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250724095610epoutp02763f9736b10f9d2e075a2672456f47d6~VJ2sEi3sU1128811288epoutp02X
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1753350970;
+	bh=u9kGzbP2QPnTerojC0M6PdIstHffL6YDLYBkr55PnyQ=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=tXkLFpum7mpat6+Q/fQl/+zWboM7qSTARv5MQ60rP2NgdQh2zREwk5x/OgwCJm5al
+	 W+xnSoXjkNWYQYILSlCmiVs99fZHCMVTnvRJm0+q8WftqcM/JbEifzuPxwUWhUKSfK
+	 zTMAgiRRiw42zoNAp9+92fd9twRtNQrgHaxIWP/U=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250724095609epcas5p1f59c0b9b75b092d4b53af00a59df9b79~VJ2rY0ILh1609716097epcas5p1e;
+	Thu, 24 Jul 2025 09:56:09 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.93]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4bnmbr5q6pz6B9mJ; Thu, 24 Jul
+	2025 09:56:08 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250724095412epcas5p36b38fe9e1b835e731abdbcaf64be1174~VJ0_IgfWj0680206802epcas5p30;
+	Thu, 24 Jul 2025 09:54:12 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250724095409epsmtip2c71016c48766841f9a06c5d7f2a181f8~VJ069jbaJ1922819228epsmtip2E;
+	Thu, 24 Jul 2025 09:54:08 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Alim Akhtar'" <alim.akhtar@samsung.com>, "'Krzysztof Kozlowski'"
+	<krzk@kernel.org>, "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>
+Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andre.draszik@linaro.org>,
+	<peter.griffin@linaro.org>, <neil.armstrong@linaro.org>,
+	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
+	<m.szyprowski@samsung.com>, <s.nawrocki@samsung.com>,
+	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <rosa.pila@samsung.com>,
+	<dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <2a1901dbfbcf$a21b45e0$e651d1a0$@samsung.com>
+Subject: RE: [PATCH v4 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 HS phy compatible
+Date: Thu, 24 Jul 2025 15:24:07 +0530
+Message-ID: <000001dbfc80$e85fd690$b91f83b0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com> <20250724083914.61351-4-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250724083914.61351-4-angelogioacchino.delregno@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 24 Jul 2025 17:49:46 +0800
-X-Gm-Features: Ac12FXyptxSYdnZvhVmVzcLhUSOXFaRzx8la2O9AgbSx3nJkJt7JLwM6IxluTrU
-Message-ID: <CAGXv+5FWV+RtWUJW=e5pJKiSpeK57fHpTrst38bN=1OSgf6P9Q@mail.gmail.com>
-Subject: Re: [PATCH 03/38] dt-bindings: mailbox: mediatek, gce-mailbox: Make
- clock-names optional
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, 
-	herbert@gondor.apana.org.au, davem@davemloft.net, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, 
-	airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, jassisinghbrar@gmail.com, 
-	mchehab@kernel.org, matthias.bgg@gmail.com, chunfeng.yun@mediatek.com, 
-	vkoul@kernel.org, kishon@kernel.org, sean.wang@kernel.org, 
-	linus.walleij@linaro.org, lgirdwood@gmail.com, broonie@kernel.org, 
-	andersson@kernel.org, mathieu.poirier@linaro.org, daniel.lezcano@linaro.org, 
-	tglx@linutronix.de, atenart@kernel.org, jitao.shi@mediatek.com, 
-	ck.hu@mediatek.com, houlong.wei@mediatek.com, 
-	kyrie.wu@mediatek.corp-partner.google.com, andy.teng@mediatek.com, 
-	tinghan.shen@mediatek.com, jiaxin.yu@mediatek.com, shane.chien@mediatek.com, 
-	olivia.wen@mediatek.com, granquet@baylibre.com, eugen.hristev@linaro.org, 
-	arnd@arndb.de, sam.shih@mediatek.com, jieyy.yang@mediatek.com, 
-	frank-w@public-files.de, mwalle@kernel.org, fparent@baylibre.com, 
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org, linux-sound@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJAgQZ9LFXBZrDskwNBYris6jFv1AKCX9A9Aa5wAf0Bi5UAqwCML2yKAWUlSf8CRPacEQIi1iyNAmb2xVkCD/Nw+wC0VRd5AgU5TrgBzoneLbLPVtqQ
+Content-Language: en-in
+X-CMS-MailID: 20250724095412epcas5p36b38fe9e1b835e731abdbcaf64be1174
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250701115955epcas5p320cfe73ca33522cd2f9f7970cfde1c63
+References: <20250701120706.2219355-1-pritam.sutar@samsung.com>
+	<CGME20250701115955epcas5p320cfe73ca33522cd2f9f7970cfde1c63@epcas5p3.samsung.com>
+	<20250701120706.2219355-2-pritam.sutar@samsung.com>
+	<20250706-fresh-meaty-cougar-5af170@krzk-bin>
+	<07d301dbf0ae$0658cbe0$130a63a0$@samsung.com>
+	<9a2d0ad7-cb1f-473d-a91a-3a1b59b71280@kernel.org>
+	<000c01dbf70b$ccdbf630$6693e290$@samsung.com>
+	<a43cfe4f-8ff9-4dbd-b7f4-07ccc3d8e01b@kernel.org>
+	<00ff01dbfac1$ee528860$caf79920$@samsung.com>
+	<9a97cc9e-2221-44d6-83e9-25b1bec10a6f@kernel.org>
+	<000901dbfb90$42873060$c7959120$@samsung.com>
+	<6e1c67d2-9bfa-442a-9d53-8c5970a2a9ef@kernel.org>
+	<2a1901dbfbcf$a21b45e0$e651d1a0$@samsung.com>
 
-On Thu, Jul 24, 2025 at 4:39=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> The GCE Mailbox needs only one clock and the clock-names can be
-> used only by the driver (which, for instance, does not use it),
-> and this is true for all of the currently supported MediaTek SoCs.
->
-> Stop requiring to specify clock-names on all non-MT8195 GCEs.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+Hi,=20
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> -----Original Message-----
+> From: Alim Akhtar <alim.akhtar=40samsung.com>
+> Sent: 23 July 2025 06:15 PM
+> To: 'Krzysztof Kozlowski' <krzk=40kernel.org>; 'Pritam Manohar Sutar'
+> <pritam.sutar=40samsung.com>; 'Krzysztof Kozlowski'
+> <krzysztof.kozlowski=40linaro.org>
+> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> krzk+dt=40kernel.org; conor+dt=40kernel.org; andre.draszik=40linaro.org;
+> peter.griffin=40linaro.org; neil.armstrong=40linaro.org; kauschluss=40dis=
+root.org;
+> ivo.ivanov.ivanov1=40gmail.com; m.szyprowski=40samsung.com;
+> s.nawrocki=40samsung.com; linux-phy=40lists.infradead.org;
+> devicetree=40vger.kernel.org; linux-kernel=40vger.kernel.org; linux-arm-
+> kernel=40lists.infradead.org; linux-samsung-soc=40vger.kernel.org;
+> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
+> selvarasu.g=40samsung.com
+> Subject: RE: =5BPATCH v4 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
+dd
+> ExynosAutov920 HS phy compatible
+>=20
+>=20
+>=20
+> > -----Original Message-----
+> > From: Krzysztof Kozlowski <krzk=40kernel.org>
+> > Sent: Wednesday, July 23, 2025 2:13 PM
+> > To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; 'Krzysztof
+> > Kozlowski' <krzysztof.kozlowski=40linaro.org>
+> > Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> =5Bsnip=5D
+> > >>>>> Ok got it. Will change supplies name as below avdd075_usb =3D>
+> > >>>>> avdd075-usb
+> > >>>>> avdd18_usb20 =3D> avdd18-usb20
+> > >>>>> avdd33_usb20 =3D> avdd33-usb20
+> > >>>>>
+> > >>>>> Confirm the above change that is meant in terms of DTS style.
+> > >>>> Yes. I have doubts that actual supplies have suffix usb20. Are
+> > >>>> there more than one avdd18 for this block?
+> > >>>>
+> > >>>
+> > >>> Yes, there are more than one vdd18 supplies for this block.
+> > >>
+> > >> And their names are?
+> > >>
+> > >>>
+> > >>> Re-analysed your comment on adding new supplies.
+> > >>> Going to re-use existing supplies as mentioned below, rather than
+> > >>> introducing new supplies
+> > >>>
+> > >>>   dvdd-usb20-supply   =3D> for 0.75v
+> > >>>   vddh-usb20-supply   =3D> for 1.8v
+> > >>>   vdd33-usb20-supply =3D> for 3.3v
+> > >>
+> > >>
+> > >> You just expect us to guess whether this is correct...
+> > >
+> > > Sorry about not being clear so far.
+> > >
+> > > V920 needs three supplies, 0.75v, 1.8v and 3.3v for USB PHY The
+> > > naming convention used in the schematic are avdd075-usb,
+> > > avdd18_usb20, avdd33_usb20.
+> > >
+> > > However, PHY's user manual just mentions DVDD, VDD33 and VDD18.
+> >
+> >
+> > Then dvdd, vdd33 and vdd18.
+> >
+> > > Since GS101 binding already using supply names similar to what is
+> > mentioned in the PHY user manual.
+> >
+> >
+> > GS101 has USB 2.0 and DP, thus the suffix made some sense. I think you
+> > have only USB 2.0, that's why I question the suffix.
+> >
+> I cross checked the schematic of v920 SADK, this is a combo PHY which
+> support USB-3.0 as well.
+> =40 Pritam
+> Schema should capture all the supplies including USB-3.0, similar to GS10=
+1
+> (which has USB2.0 and DP combo).
+> So that would be as below:
+> dvdd075-usb20-supply
+> vdd18-usb20-supply
+> vdd33-usb20-supply
+> dvdd075-usb30-supply
+> vdd18-usb30-supply
+> please cross check the supply at your end and do the needful.
+>=20
 
-BTW, I see that the cmdq driver has support for sub-nodes which was never
-actually used, possibly originally intended for the MT8188.
+Yes, we have a combo PHY that supports USB20 and USB30 and=20
+need these supplies. Will update the binding accordingly.
+
+> >
+> > Best regards,
+> > Krzysztof
+
+Thank you.
+
+Regards,
+Pritam
+
 
