@@ -1,56 +1,57 @@
-Return-Path: <devicetree+bounces-199265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FA99B1024F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:51:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6171B10262
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:54:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D011F161F89
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:51:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD92EAC3E20
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:53:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83AEB20A5C4;
-	Thu, 24 Jul 2025 07:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AAB326FA52;
+	Thu, 24 Jul 2025 07:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tENqBHs8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hVQbuari"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F6351C6FF5
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 07:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6182826E711;
+	Thu, 24 Jul 2025 07:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753343509; cv=none; b=UB+CcgTCxXL9XbnINYwVyEmsFAYqEu/JQ0ag70Jc25fdcqUfuY2jKnSaq8pH8al5LFcSHCH7ubGABqTs7UpBB5DRTNKbE1kdnJ5MnQKQSVXF4cwPGGcbZUPvhIzwLfqCUQN5bUnfTaUMc5kfkfAMGX72ZG/MVMUk9lw/fa6Xz1o=
+	t=1753343653; cv=none; b=Y9eeeaIcm3UZwF+LrFMbMBlsg7nI/yohMeruK4SaFchrlw1BhzyAxJ9uW88XkdywAGBrzgBiDYH+hWDEhijZtkwZHEkxHTFWB8Z2BkyJrNfakRjCpGjsidFlWHdW21rS7XidJGrnqeoIW7MbxF2GxyBAIh7VvvMHES8mHdt+/58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753343509; c=relaxed/simple;
-	bh=ErnTdWvBlsIk3cNIsW0L5yIKseGJrQ0UPFbxni/vZzQ=;
+	s=arc-20240116; t=1753343653; c=relaxed/simple;
+	bh=fedaKSVKoXWJCia4hWOYvIVKJSIrOlYT8OjCgkSiOmo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sSOJcR1wiFcBvcLDnWJdEZlXNgiPvaW9uMI6Z2Ad4RD8oNTluJ90rC1rYQc6V1oaBjnlmqtDA23oeFD9APfY3MEFb/ee4y5234h4QC65s7ADpDtv52A4WC/g4yOj9qCwKEj7NiTPJ4mTrh/mToaH+NXwLsWwyoH1iWVNRD4WJtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tENqBHs8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54D03C4CEF1;
-	Thu, 24 Jul 2025 07:51:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eXPjDrddxHOhds8uO+22a0TOzW4R75JnCaTUumS4EkmNZu6QSp8zyECGlrY/alDPawACeT8gc2PJa9GgAzQVjxzty88hp8Tf57lysaKjKsdVv9J6SWa8VL+Vea/02mYWgrMpr8NLUooDFWJPxHXp5YAttvgN8Ox5A7hQeBRWmr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hVQbuari; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59CD5C4CEED;
+	Thu, 24 Jul 2025 07:54:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753343508;
-	bh=ErnTdWvBlsIk3cNIsW0L5yIKseGJrQ0UPFbxni/vZzQ=;
+	s=k20201202; t=1753343652;
+	bh=fedaKSVKoXWJCia4hWOYvIVKJSIrOlYT8OjCgkSiOmo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tENqBHs8828cUQ4ui2dUhyyHuBSZRH4nYKG35YZNzxtwZPo2zq5e4y65IkrhZc/Y3
-	 i/zHPxqyhn5d0tLSbHEotT5feLe11dIWUpaEynleGuBmbjHWNuddHU+dp73nzl3jzV
-	 NGgPJfT6P7CwsmDjYnqO5KzELN1k/MtULB1NBQA2yhicP9qhxSaki5cOzRDYnYoSRs
-	 w1XQLYMpiCoW8BPkoSANfAyx1YhOAGWOND538pHjpHDWuWjLRm+x23GVR2JvxntuVN
-	 iFxSJULwKBbWcI0+JkeqQNHQOIzCiFxuUXKRmtYWbeRF31QNI1+Ay045eqCQx1BHpV
-	 f0LrzcUe9vy7w==
-Date: Thu, 24 Jul 2025 09:51:46 +0200
+	b=hVQbuariQMeGlvpf5+/GWEx713YyM9MPKM5KQ601HdQVS5vhpB7/mKfwKY9waABvc
+	 lzeAJ1a0wBQp4pTGKr8KwYrOnQTeuhl9ljDXfw0lR2Pxlh95HcFNqp5xw1T+85fonQ
+	 Ws6dM8jr82IALG7HD+9jqaZDVQGpiFvDdI3tCrzQsudEpLWWFL76MBQDKdoKh3oN4m
+	 wIIm8GY6DEcPdii55F3mTnj5Gl2cNmMB5Y9hUK3fAqUdOiFhYp0tnkFxI5uonCfEQP
+	 CEXOpMkaUb1kKbyE/V1g/dppXzYaws8KcRDiSDciHZzGefQkMYs46ntPJF2rQ2g5k4
+	 sF/nDAWvXTKeQ==
+Date: Thu, 24 Jul 2025 09:54:10 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alicja Michalska <alicja.michalska@9elements.com>
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
-	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: display: panel: Add Samsung EA8076 panel
-Message-ID: <20250724-ancient-stork-of-youth-e56533@kuoka>
-References: <20250723145208.338162-2-alicja.michalska@9elements.com>
+To: Donald Shannon <donalds@nvidia.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v7 0/2] Adding device tree and binding for NVIDIA
+ GB200-UT3.0b
+Message-ID: <20250724-affable-gorgeous-dragon-130ac6@kuoka>
+References: <20250723222350.200094-1-donalds@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,60 +60,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250723145208.338162-2-alicja.michalska@9elements.com>
+In-Reply-To: <20250723222350.200094-1-donalds@nvidia.com>
 
-On Wed, Jul 23, 2025 at 04:52:08PM +0200, Alicja Michalska wrote:
-> Add bindings for Samsung EA8076 LCD panel.
-> This panel was usually used in mid-high end smartphones manufactured by
-> Xiaomi in 2018 and 2019 (Mi 9 Lite and Mi Mix 3, with codenames
-> "xiaomi-pyxis" and "xiaomi-perseus", respectively).
+On Wed, Jul 23, 2025 at 03:23:48PM -0700, Donald Shannon wrote:
+> Patch 1 adds the binding for the NVIDIA GB200-UT3.0b platform.
+> Patch 2 adds the device tree for the NVIDIA GB200-UT3.0b platform.
 > 
-> Signed-off-by: Alicja Michalska <alicja.michalska@9elements.com>
+> This is an Aspeed AST2600 based unit testing platform for GB200.
+> UT3.0b is different than nvidia-gb200nvl-bmc due to networking topology
+> differences, additional gpio expanders, and voltage regulator gating
+> some devices.
+> 
+> Reference to Ast2600 SOC [1].
+> Reference to Blackwell GB200NVL Platform [2].
+> 
+> Link: https://www.aspeedtech.com/server_ast2600/ [1]
+> Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
+> Signed-off-by: Donald Shannon <donalds@nvidia.com>
 > ---
->  .../display/panel/samsung,ea8076.yaml         | 71 +++++++++++++++++++
->  1 file changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,ea8076.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,ea8076.yaml b/Documentation/devicetree/bindings/display/panel/samsung,ea8076.yaml
-> new file mode 100644
-> index 000000000000..7ea0c9fedfa4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/samsung,ea8076.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/samsung,ea8076.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung EA8076 1080x2340 AMOLED panel
-> +
-> +description: EA8076 panel manufactured by Samsung Display. It's used in some Xiaomi smartphones from 2018 and 2019, such as xiaomi-pyxis or xiaomi-perseus.
+> Changes v1 -> v2:
+>   - Changed phy-mode to rgmii-id [Lunn]
+>   - Removed redundant max-speed for mac0 [Lunn]
+>   - Fixed typo from gb200nvl to gb200 in Makefile
+> Changes v2 -> v3:
+>  - Fixed whitespace issues [Krzysztof]
+>  - Fixed schema validation issues from my end ( there are still issues
+>  with the aspeed dtsi file that are not related to this new dts)
+>  [Herring]
+>  - Reordered to follow style guide [Krzysztof]
+>  - Removed redundant status okays
+>  - Changed vcc to vdd for the power gating on the gpio expanders
+> Changes v3 -> v4:
+>   - Added changelog [Krzysztof]
+>   - Added nvidia,gb200-ut30b board binding [Krzysztof]
+>   - Removed unused imports
+>   - Reordered a couple other style guide violations
+>   - Added back in a couple needed "status okay"s
+> Changes v4 -> v5:
+>  - Resumed my patch after a pause
+>  - Don't plan to make this include of nvidia-gb200nvl-bmc due to some
+>  platform differences
+>  - Fixed io expanders that weren't gated by the 3.3V standby regulator
+>  - Fixed incorrect interrupt pin for one IO expander
+>  - Removed some IO expanders and I2C busses
+> Changes v5 -> v6:
+>  - Fixed subject line
+>  - Added missing gpio-key compatible type to buttons
+> Changes v6 -> v7:
+>   - Removed Acked-by Krzysztof
 
-Please carefully follow Linux kernel coding style.
-
-> +
-> +maintainers:
-> +  - Alicja Michalska <alicja.michalska@9elements.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: samsung,ea8076
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  te-gpios: VSync GPIO pin, usually GPIO_ACTIVE_LOW.
-> +  reset-gpios: Reset GPIO pin, usually GPIO_ACTIVE_LOW.
-> +
-> +  port: Required on platforms using MDSS DSI (Qualcomm).
-
-None of above look like anything else in the bindings. Obviously also
-never tested. Please don't write code which is completely different than
-everything else.
+Why? You did not even give me chance to respond to your reply.
 
 Best regards,
 Krzysztof
