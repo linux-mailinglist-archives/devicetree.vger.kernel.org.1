@@ -1,155 +1,133 @@
-Return-Path: <devicetree+bounces-199383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D12B10763
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 12:06:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCC70B10770
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 12:10:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7461D16BF57
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:06:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5E76566823
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CB8825EF97;
-	Thu, 24 Jul 2025 10:06:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F88525F798;
+	Thu, 24 Jul 2025 10:10:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vO0RCnci"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="KT+7+EMi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com [95.215.58.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D24E425E47D;
-	Thu, 24 Jul 2025 10:06:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F831257423
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 10:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753351568; cv=none; b=IKrbUyVwtewO9iPyTWCcVMxn/zffmEaMfoEBLmHQsxm561TxHwNfFQ2BokxOOCnfUS8q8RQ5JlIgxgMtoYDKYcA5HYZbLMNd+2OCSrQsBaQYlT50XaXDvv80BLtgJr46rWVhHx7gjoDPagJmscdhe5lfaWQB7TCbis4cILEOCkk=
+	t=1753351803; cv=none; b=WlMHBu0S1eq/GgXMiaV2qvVwP6ZX0IYw37R9dKg+ga4D1N8WJjugSB+yeCSyeY/I1c+f0gBAfrYySOnMZOwuKkcYx5jqlzAegZt8xDLV8qrlcrVcRk4rVv2NI0nFAezvUDn4jj/y+KiPzVzXY+s1Zau9mVPvxOZWjdK6DqsYbZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753351568; c=relaxed/simple;
-	bh=CZQB8Gu6DwGDSg7j2DBqQNvibsRcjWZdAQ1gA39lJRA=;
+	s=arc-20240116; t=1753351803; c=relaxed/simple;
+	bh=zzy2iT6xVqMbADM2CVlsHoH3vD1stfeWWC2/NO4H8KY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A4N23JBzGBOdU2cDbLvzGnpxj03gbhVaIcXDThopmpEo+zkKtnPrUDy2mlvQtgv5HKliUC1EaKWXv+tbibVnIiPt9C1UcvzsLQTNbSBvcN48zhXOYL4smetStaPJX9jCuuwy1YPy4xjtlaxGIcasECVUb7MsW8kjDWg0HRcTAG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vO0RCnci; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 779F8C4CEED;
-	Thu, 24 Jul 2025 10:06:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753351568;
-	bh=CZQB8Gu6DwGDSg7j2DBqQNvibsRcjWZdAQ1gA39lJRA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vO0RCnciK35ngvsiAvS+HQ6LEeTAuHwG8wjHqGvuEShhR1VdjpK20T9CdegHhFmGy
-	 XcIrTgYrFAc089yLAbZ5J/CGJMzGVH1osr69M9+vnoc5l0WWW5snxGkns8BZE0egih
-	 WNlUbskjHtnxwwv7w4g5Mwyhs13S0nQcSdG2nTUxUt9yzFAeVrx4Qem/TPVG/+SFR6
-	 XfS3HUyjlo3dHQGpbTwKOMiwy4kgW37nngOLE/+r/8wt13AKUAmK48rw+IuhgzhM2M
-	 mjqhgJhC/zhIThDghIhePdCrOcowq0Kf5zjVCVFKuvsUMJG1JyNw6nPKWefg//fM8Y
-	 ZGAQkDdVYuOgg==
-Message-ID: <f69a76c5-157d-4cb4-bf46-1acdb6a87319@kernel.org>
-Date: Thu, 24 Jul 2025 12:06:03 +0200
+	 In-Reply-To:Content-Type; b=Mi2pQkB/xK2aVm1r4evlynjbC1w/L8pCyIKVByw2zqDQ62D1OxGeHWMfnPf7aX+AtIziREDtC28prwlMBU+SAByxlEzXFoYrGr+Nlxvx7dgyJZ6iQ4x1ipNuEuxVU4eqz25ITm6hzB356rroQ2bALbRDsfsT2p/IF156n2Pf5mY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=KT+7+EMi; arc=none smtp.client-ip=95.215.58.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <ff106cec-7e63-4475-a0e6-452bfcb823b3@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1753351799;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=p9N4kKF1ybQ5CXgh1GBlu4OfVzelg+1wad03LAF0VVI=;
+	b=KT+7+EMiLruXAUoUM3EAPX6VEEuwHxr71sLBL9KEsUx/rQCdAEU7Ar1IUZ5DUhU8Byfm4z
+	JK+8WatmU+6FhG/+atS/1qr9O/p9vm9keg/LSGw9cFa8enrGbUqsiKmcMJWVVDAEtxFcCj
+	HL6W46KKPKBUZAkjlraCt+uufSgtjCQ=
+Date: Thu, 24 Jul 2025 11:09:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/4] dt-bindings: rtc: Document NVIDIA VRS RTC
-To: Jon Hunter <jonathanh@nvidia.com>, Shubhi Garg <shgarg@nvidia.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rtc@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20250723130343.2861866-1-shgarg@nvidia.com>
- <20250723130343.2861866-2-shgarg@nvidia.com>
- <20250724-peridot-chachalaca-of-progress-a9f2ee@kuoka>
- <2c59e665-6415-460b-8ff8-c06f8d94f9eb@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH net-next v5 3/7] net: airoha: npu: Add wlan_{send,get}_msg
+ NPU callbacks
+To: Lorenzo Bianconi <lorenzo@kernel.org>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Simon Horman <horms@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250723-airoha-en7581-wlan-offlaod-v5-0-da92e0f8c497@kernel.org>
+ <20250723-airoha-en7581-wlan-offlaod-v5-3-da92e0f8c497@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <2c59e665-6415-460b-8ff8-c06f8d94f9eb@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+In-Reply-To: <20250723-airoha-en7581-wlan-offlaod-v5-3-da92e0f8c497@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On 24/07/2025 11:41, Jon Hunter wrote:
+On 23/07/2025 18:19, Lorenzo Bianconi wrote:
+> Introduce wlan_send_msg() and wlan_get_msg() NPU wlan callbacks used
+> by the wlan driver (MT76) to initialize NPU module registers in order to
+> offload wireless-wired traffic.
+> This is a preliminary patch to enable wlan flowtable offload for EN7581
+> SoC with MT76 driver.
 > 
-> On 24/07/2025 08:59, Krzysztof Kozlowski wrote:
->> On Wed, Jul 23, 2025 at 01:03:40PM +0000, Shubhi Garg wrote:
->>> +description:
->>> +  NVIDIA VRS (Voltage Regulator Specification) RTC provides 32kHz RTC clock
->>> +  support with backup battery for system timing. It provides alarm functionality
->>> +  to wake system from suspend and shutdown state. The device also acts as an
->>> +  interrupt controller for managing interrupts from the VRS.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: nvidia,vrs10-rtc
->>
->> Nothing improved. You never replied to comments and then replaced one
->> redundant word into other redundant word.
->>
->> Respond to review or implement it fully, not partially.
->>
->> Or add COMPLETE bindings, not partial ones. See writing bindings doc.
-> 
-> OK, right so the DT binding should describe the overall PMIC device, 
-> even though the driver needs to support the RTC.
-
-
-This is not a driver patch. This is patch for hardware. Sending
-incomplete pieces of a device, without complete picture is really not
-the right way. Knowing this is part of PMIC this should be rejected, but
-how can we decide on that if contributor never tells us this is a part
-of PMIC?
-
-> 
-> Shubhi, is vrs10 the version of the VRS spec for the PMIC device or just 
-> the RTC portion? If it is, the maybe 'nvidia,vrs10' is sufficient here.
-> 
-> Jon
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>   drivers/net/ethernet/airoha/airoha_npu.c | 58 ++++++++++++++++++++++++++++++++
+>   drivers/net/ethernet/airoha/airoha_npu.h | 21 ++++++++++++
+>   2 files changed, 79 insertions(+)
 > 
 
+[...]
 
-Best regards,
-Krzysztof
+> @@ -131,6 +147,12 @@ struct wlan_mbox_data {
+>   	u32 func_id;
+>   	union {
+>   		u32 data;
+> +		struct {
+> +			u32 dir;
+> +			u32 in_counter_addr;
+> +			u32 out_status_addr;
+> +			u32 out_counter_addr;
+> +		} txrx_addr;
+>   		u8 stats[WLAN_MAX_STATS_SIZE];
+>   	};
+>   };
+> @@ -424,6 +446,30 @@ static int airoha_npu_wlan_msg_send(struct airoha_npu *npu, int ifindex,
+>   	return err;
+>   }
+>   
+> +static int airoha_npu_wlan_msg_get(struct airoha_npu *npu, int ifindex,
+> +				   enum airoha_npu_wlan_get_cmd func_id,
+> +				   u32 *data, gfp_t gfp)
+> +{
+> +	struct wlan_mbox_data *wlan_data;
+> +	int err;
+> +
+> +	wlan_data = kzalloc(sizeof(*wlan_data), gfp);
+> +	if (!wlan_data)
+> +		return -ENOMEM;
+> +
+> +	wlan_data->ifindex = ifindex;
+> +	wlan_data->func_type = NPU_OP_GET;
+> +	wlan_data->func_id = func_id;
+> +
+> +	err = airoha_npu_send_msg(npu, NPU_FUNC_WIFI, wlan_data,
+> +				  sizeof(*wlan_data));
+> +	if (!err)
+> +		*data = wlan_data->data;
+> +	kfree(wlan_data);
+> +
+> +	return err;
+> +}
+
+Am I reading it correct, that on message_get you allocate 4408 + 8 byte, 
+setting it 0, then reallocate the same size in airoha_npu_send_msg() and
+copy the data, and then free both buffers, and this is all done just to
+get u32 value back?
 
