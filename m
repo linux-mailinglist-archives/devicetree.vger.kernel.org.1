@@ -1,140 +1,123 @@
-Return-Path: <devicetree+bounces-199520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26BFB11033
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 19:08:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF85B11057
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 19:28:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E99ED16B466
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 17:08:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 633794E3B75
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 17:28:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 691902D8795;
-	Thu, 24 Jul 2025 17:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFAD52EB5D1;
+	Thu, 24 Jul 2025 17:28:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mtrt+9Or"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s/2L//M7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2CB81E04BD;
-	Thu, 24 Jul 2025 17:08:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B3514286;
+	Thu, 24 Jul 2025 17:28:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753376909; cv=none; b=oWl3hXNsPqPQ/toz5uKOxBitRk7iktZr08BeBBlxgLnQyNTsFuX8l5+9ezRpuQf/cBCR1wIGIME9d0F5KFIp9zl2Wy2s8CF0ztYELSTNaWYWaL39iWt1OJvzXup4M9jTGLic3jcB65fC+z2MpmdNgO+oLAw4uw2lnKRXHQi6/d4=
+	t=1753378134; cv=none; b=NXhQKJuxuliAuZ5c6kFEX8XZYGJWHTuH5X7ldYsazlZ0l5QS7rdKJp6SjbbYS2Fu9VWqauySvqFlyEN5EE0SYVloZd3hE7n23eOp9g+1fX9Acl2BE36/JgUC6mtznAkTkotJd2OriHwfuep+NQIhXRiD3N858HtCR8nGwc9MaBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753376909; c=relaxed/simple;
-	bh=qYSnfnL2VgMMjK8m+ljl891kemuRYs9JU2Qv0COLK9E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tsb5U4HOz9hr5rBqwXmZLp8Kb7gxoxtDwgLOn0btN4V0dIhj8YYizq2+cGROKwnFwoW08iMQJhtu8/2fRH8rlfyIQIWstOJ3wsqIkRMvo5tiDGPc9yLh5yM6y83G86vZ8H7QYJDN5dLdZBzW7PsQ19QFQSX+pRDOfIIdKOZuzhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mtrt+9Or; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-23694cec0feso12831155ad.2;
-        Thu, 24 Jul 2025 10:08:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753376907; x=1753981707; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fGE95oQU+G3JZiNfJBXGaa5iowQ3KE+3XsZUyctMNlw=;
-        b=mtrt+9OrFPT1hUVVtmb3yKXOi11UU7SXOWI50lys/pLral8JzyoH23n1h83W9pW5Tn
-         eMu9O0ULQLRXB4FgjqI7CV/n636pjwuLNKM8Jwfy02pIAwZ02YqW9y+fbizpzWa5R8Hx
-         3zYCZ57ClVNUDwg1rC3AqATnPzKzZyE36pt25rQGjQrWJvit/ohNPSWzgh7FFDfE1TuB
-         ykjuNljw6iAWzhwloHnyoY5hBt+UjgjegD01Ko/ytM82FME8/3SsaZpUdowYhls34l5z
-         hnsK8N5fylRPo8kzgbbqgljNuZQ5qqoz+F5hsunesMWIThHQabEWcn7rSXw7XntfvPhI
-         4H7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753376907; x=1753981707;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fGE95oQU+G3JZiNfJBXGaa5iowQ3KE+3XsZUyctMNlw=;
-        b=tGcP0+1y6G8F1fxqas5O7UKYkLoqLG6ZuAau0BxjwqCoP67G699vEPBcqcAbTVKoC3
-         WIYmd5eJr/B7M+dLyNVBuhs9bmfLmdNCl1bo4yRA/i8uhplKlgx8BPjI4tPudLgk74bb
-         j8GPQPipDmI3baKgifsCyVKvFIeiKKWsKTUOVp8MUrAy47Sn7ozxoJ4fuB5YphHMTOW0
-         +w/Ht8tdMZNKNzEdwLSIPSuHADxVVoEDZ5w5U7jRk940XwBM3sx8NKBKmK+qwEBCG8wo
-         EKEeREpLBM7wF8VsqPV1KcZ298qFLLv09Eotlpkv4WXreLCVCdlI08h7wwZJVvi+fdwk
-         oiaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWbuo9mVAu3yXrz8MVwqRwnzke6froydE33WzW0V9xdsIqaRaGKnVbHCmLCPCr9txMlyZT+m+CJ@vger.kernel.org, AJvYcCWnBDjOcIDgA7jhgQkUGqCw3wOyYauGJSUZngfB3lj8JqdEJ2+S7/2GcN+RWy/MAEY14jodBYi981VK@vger.kernel.org, AJvYcCXBkbgAHGEXF6+EZUP2fqWrFeMoJYFbssAFcR998ikWavEgTUIbRZ3dTzxcjB+PBIo/zbDkDywFkIzd@vger.kernel.org
-X-Gm-Message-State: AOJu0YwD/FcKVQ4kK3uzTbTg6Ox0Q/oOKprVLHRg5ihEnDhnXPaqKPo3
-	wyKRMgacsUfuHsWb6u/K+yATIbwRjXC8soI1C3g6AgQW+z+TAf6K+TlXmnOq4liBNs4=
-X-Gm-Gg: ASbGnctrtKDVZ0hKEZ/tQ+oBFh7lkTdv+4yxZbIO/1H/rXyln4SsznXjx84oOWMijT7
-	/wpK3BhTxFwKcQpPHq0ihxczq3N/bC7S8ujl8H9z4EagoVb0yys1zzUdL/uI/HH2OZODdyC49DH
-	J7flgs6OCmlwSvWavcQv/FjdS45isU7jpiiKKucFaQqGPF+oBe1yamz3bk9r3IX/YEXMbUkoe/J
-	kCMbEix6KPFPoMfVziF9pe/9bE1d/LkL1reG8gPI6FLiciC67/J9U6Wr9lXfKw4lu0zNzMXmzKr
-	ZKYhn5Oj+sh6YjLEIxadZjRJTB3DOhXMrsmZmb29PKm4mg3reAdR34nozyr17jzMLb3fYdK9Koz
-	ogRtgDn3+MQGIqvHqPNYHt7mWdmRCWUKgAxEdloY=
-X-Google-Smtp-Source: AGHT+IECIHPgvbnvMyXkL6JhqYISUuCy4X6A0DDs5uMshC624UH9yIdwB+tffpJsfG2tPfQ34zHI+g==
-X-Received: by 2002:a17:903:3d10:b0:235:eb8d:7fff with SMTP id d9443c01a7336-23f981bb92bmr94356815ad.28.1753376907010;
-        Thu, 24 Jul 2025 10:08:27 -0700 (PDT)
-Received: from [192.168.1.134] ([49.207.192.227])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23fa48dd816sm19783735ad.136.2025.07.24.10.08.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Jul 2025 10:08:26 -0700 (PDT)
-Message-ID: <8f4358e8-ecd6-4d86-8326-25d21c3a4ea2@gmail.com>
-Date: Thu, 24 Jul 2025 22:38:14 +0530
+	s=arc-20240116; t=1753378134; c=relaxed/simple;
+	bh=F6qIB6kF4lFdDXyUQoTntjieBic9P6s1eVYX4GTmdA4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ihbg3HCWlRgDB5MBQrHNniQwxbIydjvCh/bOcXAwdfaFo1oNxoC4bqz36f2W3c9ANdOqRuqZAqm1isGSauGYnjifxzt7jg//kG7Y7eQmvqZylr9pXCBmVVHKlTI4O8JB665paYNdPekMWngDympvDbjp3ATSdR7u5J/mbZeYBoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s/2L//M7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50AE0C4CEF1;
+	Thu, 24 Jul 2025 17:28:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753378133;
+	bh=F6qIB6kF4lFdDXyUQoTntjieBic9P6s1eVYX4GTmdA4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=s/2L//M7d07eXxQkgyLgfs249md+rTG0Z76bMuAZfmbYe29F2EJoJpzy3AtdkiZ+h
+	 Xuw03ZYy7/lqs1CdJGy/pE/Th36IxYPvIEGjXW0KwVCpB3qYUa9xfaBVkyHd8n1kLN
+	 /fip5Iud1jVHzfUg5VV9ECYTntnweHbQcEBevd1tJMfts53ee+qhKOIcfLidiRHjPe
+	 5igs8qEZhI4x455ifmzqn7qaG5BX0r1FEQT+7ZXG+S3u07lg6rElTTVR0yXul/GODY
+	 jl75dYQDQILtshoTjZFeqmv9++Nji5x41Y158sp+HNC3Z0so5u5Z/C7TB4XLUa4yf2
+	 k3IuNjB1uTnyg==
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ae6fa02d8feso187313866b.0;
+        Thu, 24 Jul 2025 10:28:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV0QeaKGd1MBzshq54V8bcf3B6gnc3rxkN5D16ywu7Nb1p2P5biPv8oMfcQ6xRtMDjGrQ3FCsMzyMfdXz8=@vger.kernel.org, AJvYcCX04PsTTz+k3jmTK/uwdWBTvaE4BcK4D8QxSAcbnIVkPnxlnB/gi7TXCw96Ut/n1kj0qc3+dYlr/y7aMwRp@vger.kernel.org, AJvYcCXHIiBfed0ou+j2PRqTuWFosO3iOAWZ3wJSy0sM2sxUtFrgyZ+/F7ICwdAAvBjhqKF8fX7tkUPXtihA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+IetGg91EMqfXheKqhW17lR/8ZtS+7ueyTZZENqsYywP8y2rX
+	D7Wqz+nRKYgpqjnq45yfA/Ya5brXvdpnGNwswwNz60I1Iez5fJrYjTq9bRwev4+ZfqSPv3SjXSW
+	kzYL6v31/uDFs88Z7HY0xRtBRCw7svQ==
+X-Google-Smtp-Source: AGHT+IE0Bsb4bduOu2RoryQlc1uiDCJU1f+6Cs/aYA662lRWtt4rjAMlqY5HHo8781R7io7wFJbNbEC1s2avzSI1wR8=
+X-Received: by 2002:a17:907:2d10:b0:ae0:c355:2140 with SMTP id
+ a640c23a62f3a-af2f8d4dcd7mr832737466b.45.1753378131891; Thu, 24 Jul 2025
+ 10:28:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: cleanup: fix duplicated 'is is' in YAML
- docs
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- ribalda@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, neil.armstrong@linaro.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com
-References: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
- <20250724111247.669d6955@jic23-huawei>
-Content-Language: en-US
-From: Sanjay Suthar <sanjaysuthar661996@gmail.com>
-In-Reply-To: <20250724111247.669d6955@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250703103829.1721024-1-sumitg@nvidia.com> <5xkzehwr7k3ycpd3buqahmvamn6gvaol3exv46oe7nfpj7aw3q@eze4dbhplgqa>
+In-Reply-To: <5xkzehwr7k3ycpd3buqahmvamn6gvaol3exv46oe7nfpj7aw3q@eze4dbhplgqa>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 24 Jul 2025 12:28:40 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ-+Z6Trc_eo1-qoh9Ge4VuOdbZBESvPoY1fKkycHqmSg@mail.gmail.com>
+X-Gm-Features: Ac12FXylAvak32uY7xt-4JFETBFfsQBdN5NuE81l7emBIhMZIFxCnqEnU-upOIs
+Message-ID: <CAL_JsqJ-+Z6Trc_eo1-qoh9Ge4VuOdbZBESvPoY1fKkycHqmSg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/8] Support for Tegra264 and Tegra254 in CBB driver
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com, jonathanh@nvidia.com, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	tbergstrom@nvidia.com, bbasu@nvidia.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 24/07/25 15:42, Jonathan Cameron wrote:
-> On Tue, 22 Jul 2025 22:35:13 +0530
-> Sanjay Suthar <sanjaysuthar661996@gmail.com> wrote:
+On Wed, Jul 9, 2025 at 7:31=E2=80=AFAM Thierry Reding <thierry.reding@gmail=
+.com> wrote:
 >
->> Fix minor grammatical issues by removing duplicated "is" in two devicetree
->> binding documents:
->>
->> - net/amlogic,meson-dwmac.yaml
->> - iio/dac/ti,dac7612.yaml
->>
->> Signed-off-by: Sanjay Suthar <sanjaysuthar661996@gmail.com>
-> I'd have no problem with the argument that this can go through either
-> tree if there was any interaction between the files or the changes, but
-> here there isn't. This is just causing potential mess if either tree ends
-> up with other changes overlapping this for no benefit.  Please split into
-> two patches, one for each subsystem.  You should be fine to keep the
-> various tags given here for the new patches.
+> On Thu, Jul 03, 2025 at 04:08:21PM +0530, Sumit Gupta wrote:
+> > This patch series adds support for Tegra264 and Tegra254 SoCs in the
+> > Tegra CBB driver. It also includes a fix and some improvements to
+> > make the driver more generic to add new SoC support.
+> >
+> > The patches can be applied in sequence. Patch info:
+> > - Patch 1: Fix.
+> > - Patch 2: Change lingo from 'Master/Slave' to 'Initiator/Target'.
+> > - Patch 3 & 4: Improvements.
+> > - Patch 5: New feature for HW lookup.
+> > - Patch 6 & 7: Tegra264 SoC support.
+> > - Patch 8: Tegra254 SoC support.
+> >
+> > ---
+> > v1[1] -> v2:
+> > - patch 8: change name from GB10 to Tegra254.
+> > - patch 6: added ACK from Krzysztof
+> >
+> > Sumit Gupta (8):
+> >   soc: tegra: cbb: clear err force register with err status
+> >   soc: tegra: cbb: change master-slave to initiator-target
+> >   soc: tegra: cbb: make error interrupt enable and status per SoC
+> >   soc: tegra: cbb: improve handling for per SoC fabric data
+> >   soc: tegra: cbb: support hw lookup to get timed out target address
+> >   dt-bindings: arm: tegra: Add NVIDIA Tegra264 CBB 2.0 binding
+> >   soc: tegra: cbb: add support for cbb fabrics in Tegra264
+> >   soc: tegra: cbb: add support for cbb fabrics in T254
+> >
+> >  .../arm/tegra/nvidia,tegra234-cbb.yaml        |   4 +
+> >  drivers/soc/tegra/cbb/tegra194-cbb.c          |  34 +-
+> >  drivers/soc/tegra/cbb/tegra234-cbb.c          | 758 ++++++++++++++----
+> >  3 files changed, 606 insertions(+), 190 deletions(-)
+>
+> Applied with a few fixups to the subject lines and commit messages.
 
-Thanks for the review. I understand your concern regarding splitting the 
-changes. My intention was that, since the fix is a trivial and identical 
-grammatical correction across both subsystems, it didn’t seem necessary 
-to separate them.
+It looks like you missed the binding patch. These compatibles are not
+documented in linux-next:
 
-However, I’m open to either approach — keeping it as a single patch or 
-splitting it if that's preferred. As I’m still new to this process, I’ll 
-defer to @krzysztof and the DT maintainers for the final call on how 
-this should be handled.
+nvidia,tegra264-sys-cbb-fabric
+nvidia,tegra264-top0-cbb-fabric
+nvidia,tegra264-uphy0-cbb-fabric
+nvidia,tegra264-vision-cbb-fabric
 
-Please let me know the preferred direction, and I’ll be happy to update 
-accordingly.
-
-Best regards,
-
-Sanjay Suthar
-
+Rob
 
