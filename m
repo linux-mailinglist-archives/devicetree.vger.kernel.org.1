@@ -1,269 +1,163 @@
-Return-Path: <devicetree+bounces-199487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9C42B10E7A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 17:18:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FDFDB10E9A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 17:25:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0080170220
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 15:18:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4E6E16657B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 15:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C5D2E7BD8;
-	Thu, 24 Jul 2025 15:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D63052EA724;
+	Thu, 24 Jul 2025 15:23:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LoPzUSrn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NcRDUQQ5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA79347D5;
-	Thu, 24 Jul 2025 15:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A66782E9EB0;
+	Thu, 24 Jul 2025 15:23:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753370313; cv=none; b=ew+O15E5/6mE5V5cEaQ8fi32mIquEBnZsI3b3mSS61ERfAkYbnbQR6+ilp2F43JEZQ7DGtdbLbAxcIOvBja5sgFMM1JkNq6iS3P/AgpviOqAb2Ko712nM16MskAkHV8ibKmOITLczL6yjuiKvNESab6kRXnvmNR5RqAUVJ2EANw=
+	t=1753370614; cv=none; b=O1Uq+peXjLgu+tsibdyw1A1CLjhm3cQbp6jnaN9HU2eWqv4fb9WwTYlAw9uskbaBW6y9If/IADNnAV3Ejs7tx/8KAl94rFVDsfGvnB0itdUy7G16CmRIeYGGu6cnk8r/pxSXj85lI/42jYY9bfjJXNgqLH4swodJQkq0L2NDtGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753370313; c=relaxed/simple;
-	bh=+bp6pfjFYbsKUp64YHHqLCc5uIl+4qZHCE84GxhUcHU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J2tkXIktfDJHUfglU/jWDkPEjfvFKWLzVyEayF1MSKiPndc+VuFVJ/njZ336dap5qOFOAOPpyeUTfI3Yiifjm43CblzqRLCQpcT4uvDA7V6v2gdFcwNQqtoR0fKdpDFFWbAs0gVHsege1VtRlMpHXyhwXKETFIlAB3nXGm4nmf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LoPzUSrn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B19C4CEED;
-	Thu, 24 Jul 2025 15:18:25 +0000 (UTC)
+	s=arc-20240116; t=1753370614; c=relaxed/simple;
+	bh=yOZQ+GI825AT4Y9e0GYEa/xkkwvxuVvBv4OUaPISJY0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bAqPylQ3tEthSpF5Q91EQleZkuDvFFlfiD84fR7TLffB/0czNf4Z2Nt38i9Han4N3WOecvVpbzDvNZPb2WAs0mc5NUqNuHbIee4PuqHEyp5vTu4CGEHiQ0lPFgO+tiVIpipu9hhXtF3tHOBBmfBDJfuI1ojE1c1vTpHo7Jqh9/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NcRDUQQ5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 38D33C4CEED;
+	Thu, 24 Jul 2025 15:23:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753370313;
-	bh=+bp6pfjFYbsKUp64YHHqLCc5uIl+4qZHCE84GxhUcHU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=LoPzUSrn6r1oXxb3kNWN4MtXMDylnjukws8Eed4h76plciZYjuQdZKsPSyXZ+PRCs
-	 eIjt7QadV3qJM0q1SD5SBIqf6ZEq8Nt3zsXTV+pdJEAnj9SEpBnOKnrKdAStVn8ld8
-	 vPe95RerhCKQdJai2hXcUGkECzpmsqM7Z4yEpoV8YqdPDFEI8eg9aGzzUJCZfgT4E0
-	 /GzO3OZotadoLxuBlYAWpt6jv09cHslne3hPY0KfRCyhRJQdsS3VJycJtBNG1aSqSf
-	 pYjJjVlF2eaivil87NuFLKdBfd353lhVQH3/uenQQXSZ0ugrEdft7ZD9tZWnXBF6xj
-	 murJ3JuU0V2zg==
-Date: Thu, 24 Jul 2025 16:18:20 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Bough Chen <haibo.chen@nxp.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Nuno S?
- <noname.nuno@gmail.com>, Primoz Fiser <primoz.fiser@norik.com>, David
- Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn
- Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, "linux-iio@vger.kernel.org"
- <linux-iio@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "upstream@lists.phytec.de"
- <upstream@lists.phytec.de>, "andrej.picej@norik.com"
- <andrej.picej@norik.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: Add calibration
- properties
-Message-ID: <20250724161820.66e37f6c@jic23-huawei>
-In-Reply-To: <DU0PR04MB9496FCE8DF07CD0E270B72AF905DA@DU0PR04MB9496.eurprd04.prod.outlook.com>
-References: <20250710073905.1105417-1-primoz.fiser@norik.com>
-	<20250710073905.1105417-2-primoz.fiser@norik.com>
-	<2bcd758b-c2d0-488a-8ead-ec7fb39f93e2@baylibre.com>
-	<20250713160247.0f22bbfe@jic23-huawei>
-	<de2c8e15-14e9-4c61-9a13-97ef1ec567a4@norik.com>
-	<6b32118a13e9e28b7cf12152af33642c76367c34.camel@gmail.com>
-	<20250721093847.GD4844@nxa18884-linux.ap.freescale.net>
-	<DU0PR04MB9496FCE8DF07CD0E270B72AF905DA@DU0PR04MB9496.eurprd04.prod.outlook.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=k20201202; t=1753370614;
+	bh=yOZQ+GI825AT4Y9e0GYEa/xkkwvxuVvBv4OUaPISJY0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=NcRDUQQ5HSO4+5zD0F/DdOwWIfZB87+0dxOlIN2TaGnbRAOX206ZhTT7WPpzqNBbW
+	 xJhQmA3AlYm7X+KdJnqUSWRKsKfPEt/MMRUEtFLXXunHAudDxRsE3IUze/inK2D3Nu
+	 Tz+Z/aRic5jt7MJQDzP+KhlxgKFIqG/ukgHawvE7XEyN1ErBweeBhhqc2yKAvuSn+u
+	 l3hy/R4O+DWPObWIx6UHcrtO3Kd6tNOvQppIbxAquwS0S8jBzSegPIQ1zSbhD1g2AO
+	 KYfYAg0sVzOn4KpNHhIsS20btVeZQzMmevaB6M72jETXClCgj21HYx3uDW5CPFnGe4
+	 z8a13lJ2z6ZOw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 271D1C87FC5;
+	Thu, 24 Jul 2025 15:23:34 +0000 (UTC)
+From: Aleksa Paunovic via B4 Relay <devnull+aleksa.paunovic.htecgroup.com@kernel.org>
+Subject: [PATCH v5 0/7] riscv: Add support for xmipsexectl
+Date: Thu, 24 Jul 2025 17:23:24 +0200
+Message-Id: <20250724-p8700-pause-v5-0-a6cbbe1c3412@htecgroup.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOxPgmgC/1XMSw6DIBSF4a2YOy4NIbzsqPswDixchUGFgJI2h
+ r2X2lGH/0nOd0DG5DHDrTsgYfHZh7WFuHRg3LQuSLxtDYwyQTnjJGpFKYnTnpFY85C876VGxqE
+ 9YsLZv05tGFs7n7eQ3ide+Hf9OZKJP6dwQok0ylo1a6GEvLsNzZLCHq8mPGGstX4AeZlCiqoAA
+ AA=
+X-Change-ID: 20250424-p8700-pause-dcb649968e24
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Jonathan Corbet <corbet@lwn.net>
+Cc: Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
+ Djordje Todorovic <djordje.todorovic@htecgroup.com>, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Aleksa Paunovic <aleksa.paunovic@htecgroup.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Alexandre Ghiti <alexghiti@rivosinc.com>, 
+ Aleksandar Rikalo <arikalo@gmail.com>, 
+ Raj Vishwanathan4 <rvishwanathan@mips.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1753370612; l=3458;
+ i=aleksa.paunovic@htecgroup.com; s=20250514; h=from:subject:message-id;
+ bh=yOZQ+GI825AT4Y9e0GYEa/xkkwvxuVvBv4OUaPISJY0=;
+ b=8sv1pYiJyHX9Ir2MqQDmuaDGp5IItTyI1Q74xTDUYU67WFrZyJTy0rOANBrhUcUPV1BdZrmL6
+ Z7DoXZG8AMmBqkrWvbRDVaHs8M5HJSmaYR2esPqHrzX36LObGdCgI1T
+X-Developer-Key: i=aleksa.paunovic@htecgroup.com; a=ed25519;
+ pk=gFVSVYLKAgJiS5qCnDyUMGOFuczv8C6o0UmRs+fgisA=
+X-Endpoint-Received: by B4 Relay for aleksa.paunovic@htecgroup.com/20250514
+ with auth_id=403
+X-Original-From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+Reply-To: aleksa.paunovic@htecgroup.com
 
-On Mon, 21 Jul 2025 09:09:06 +0000
-Bough Chen <haibo.chen@nxp.com> wrote:
+This patch series adds support for the xmipsexectl vendor extension.
+A new hardware probe key has also been added to allow userspace to probe for MIPS vendor extensions.
 
-> > -----Original Message-----
-> > From: Peng Fan (OSS) <peng.fan@oss.nxp.com>
-> > Sent: 2025=E5=B9=B47=E6=9C=8821=E6=97=A5 17:39
-> > To: Nuno S? <noname.nuno@gmail.com>
-> > Cc: Primoz Fiser <primoz.fiser@norik.com>; Jonathan Cameron
-> > <jic23@kernel.org>; David Lechner <dlechner@baylibre.com>; Bough Chen
-> > <haibo.chen@nxp.com>; Nuno Sa <nuno.sa@analog.com>; Andy Shevchenko
-> > <andy@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
-> > <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Shawn Guo
-> > <shawnguo@kernel.org>; Sascha Hauer <s.hauer@pengutronix.de>;
-> > Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
-> > <festevam@gmail.com>; linux-iio@vger.kernel.org; imx@lists.linux.dev;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > linux-kernel@vger.kernel.org; upstream@lists.phytec.de;
-> > andrej.picej@norik.com
-> > Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: Add calibration =
-properties
-> >=20
-> > On Mon, Jul 14, 2025 at 05:11:31PM +0100, Nuno S? wrote: =20
-> > >On Mon, 2025-07-14 at 07:56 +0200, Primoz Fiser wrote: =20
-> > >> Hi all,
-> > >>
-> > >> On 13. 07. 25 17:02, Jonathan Cameron wrote: =20
-> > >> > On Thu, 10 Jul 2025 10:46:44 -0500
-> > >> > David Lechner <dlechner@baylibre.com> wrote:
-> > >> > =20
-> > >> > > On 7/10/25 2:39 AM, Primoz Fiser wrote: =20
-> > >> > > > From: Andrej Picej <andrej.picej@norik.com>
-> > >> > > >
-> > >> > > > Document i.MX93 ADC calibration properties and how to set them.
-> > >> > > >
-> > >> > > > Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> > >> > > > Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
-> > >> > > > ---
-> > >> > > > ??.../bindings/iio/adc/nxp,imx93-adc.yaml???????????? | 21
-> > >> > > > +++++++++++++++++++
-> > >> > > > ??1 file changed, 21 insertions(+)
-> > >> > > >
-> > >> > > > diff --git
-> > >> > > > a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-
-> > >> > > > adc.yaml
-> > >> > > > b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> > >> > > > index c2e5ff418920..d1c04cf85fe6 100644
-> > >> > > > ---
-> > >> > > > a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> > >> > > > +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.y
-> > >> > > > +++ aml
-> > >> > > > @@ -52,6 +52,27 @@ properties:
-> > >> > > > ???? "#io-channel-cells":
-> > >> > > > ???????? const: 1
-> > >> > > > ??
-> > >> > > > +?? nxp,calib-avg-en:
-> > >> > > > +?????? default: 1
-> > >> > > > +?????? description:
-> > >> > > > +?????????? Enable or disable calibration averaging function (=
-AVGEN).
-> > >> > > > +?????? $ref: /schemas/types.yaml#/definitions/uint32
-> > >> > > > +?????? enum: [ 0, 1 ]
-> > >> > > > +
-> > >> > > > +?? nxp,calib-nr-samples:
-> > >> > > > +?????? default: 512
-> > >> > > > +?????? description:
-> > >> > > > +?????????? Selects number of samples (NRSMPL) to be used duri=
-ng =20
-> > calibration. =20
-> > >> > > > +?????? $ref: /schemas/types.yaml#/definitions/uint32
-> > >> > > > +?????? enum: [ 16, 32, 128, 512 ] =20
-> > >> >
-> > >> > Allow 1 as a value and drop the enabled above.???? Averaging over 1
-> > >> > sample is same as no averaging and gives simpler binding.
-> > >> > =20
-> > >> > > > +
-> > >> > > > +?? nxp,calib-t-sample:
-> > >> > > > +?????? default: 22
-> > >> > > > +?????? description:
-> > >> > > > +?????????? Selects sample time (TSAMP) of calibration
-> > >> > > > +conversions in ADC
-> > >> > > > clock cycles
-> > >> > > > +?????? $ref: /schemas/types.yaml#/definitions/uint32
-> > >> > > > +?????? enum: [ 8, 16, 22, 32 ]
-> > >> > > > +
-> > >> > > > ??required:
-> > >> > > > ???? - compatible
-> > >> > > > ???? - reg?? =20
-> > >> > >
-> > >> > > This seem like things that should be set at runtime rather than
-> > >> > > in the devicetree. Unless there is some justification on why
-> > >> > > these values depend on how the chip is wired up? =20
-> > >>
-> > >> It depends how ADC 1.8V Vref is wired up, especially how noisy it is.
-> > >> =20
-> > >> >
-> > >> > Further to that, I'd like to see some explanation of why we care to
-> > >> > change it at all. Is it ever a bad idea to enable averaging and
-> > >> > pick a large number of samples for calibration? =20
-> > >>
-> > >> This is a snippet from the i.MX93 TRM, chapter Analog-to-Digital
-> > >> Converter (SAR_ADC) describing calibration steps:
-> > >>
-> > >> 1. Wait for deassertion of functional reset.
-> > >> 2. Configure SAR controller operating clock (MCR[ADCLKSE] =3D 0).
-> > >> 3. Bring ADC out of Power-down state (MCR[PWDN] =3D 0).
-> > >> 4. Configure desired calibration settings (default values kept for
-> > >> highest accuracy maximum time).
-> > >> ??? MCR[TSAMP]: Sample time for calibration conversion ???
-> > >> MCR[NRSMPL]: Number of samples in averaging ??? MCR[AVGEN]: Averaging
-> > >> function enable in calibration 5. Run calibration by writing a one to
-> > >> MCR[CALSTART].
-> > >> 6. Check calibration run status in MSR[CALBUSY]???wait until
-> > >> MSR[CALBUSY] =3D 0; alternatively, MSR[ADCSTAT] can be used to check
-> > >> status.
-> > >> 7. Check calibration pass/fail status in MSR[CALFAIL] field. If
-> > >> MSR[CALFAIL] =3D 1 then calibration failed. Detailed status can be
-> > >> checked in CALSTAT.
-> > >>
-> > >>
-> > >> See point 4).
-> > >>
-> > >> Not sure why would there be an option to configure i.MX93 ADC
-> > >> calibration parameters if one use-case (max accuracy max time) to
-> > >> rule them all?
-> > >> =20
-> > >
-> > >Sometimes HW guys just want to give you some options. Does not mean we
-> > >have to use them all :).
-> > >
-> > >I guess what Jonathan is interested in, is to understand in what
-> > >conditions the defaults are no good for the calibration? If we can have
-> > >a set of values that should pretty much always work, no need to further
-> > >complicate the bindings or the driver. =20
-> >=20
-> > Just my understanding, it is hard to use one fixed settings to fit all =
-kinds of
-> > conditions.
-> >=20
-> >                  Noise induced from PCB tracks  Electro- magnetic noise
-> > 		     |                           |
-> > 		     V                           V
-> >  ---------
-> > |SOC(ADC)|   <---------------------------------<- (~) external Signal
-> >  ---------
-> >                  ^                 ^
-> >                  |                 |
-> >              I/O coupled noise    Internal noise
-> >=20
-> >=20
-> > So OEM A's board may needs different settings compared with OEM B's boa=
-rd. =20
->=20
-> The noise on Vref did impact the calibration, we did get report from cust=
-omer, and IC guys suggested to do like the following patch, what's your com=
-ments?
->=20
-> https://patchwork.kernel.org/project/linux-iio/patch/20250423-adcpatch-v1=
--1-b0e84c27ae98@nxp.com/
+Additionally, since the standard Zihintpause PAUSE instruction encoding is not supported on some MIPS CPUs,
+an errata was implemented for replacing this instruction with the xmipsexectl MIPS.PAUSE alternative encoding.
 
-To me warning and accepting a failed calibration is better than tweaking se=
-ttings.
+Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+---
+Changes in v5:
+- Add MIPS.IHB and MIPS.EHB instructions
+- Rebase on alex-for-next
+- Address other smaller comments pointed out by Alexandre
+- Link to v4: https://lore.kernel.org/r/20250625-p8700-pause-v4-0-6c7dd7f85756@htecgroup.com
 
-The reason is I'm still failing to understand why we should (for example) r=
-educe the
-time over which the signal is averaged.  Why would that make it more likely=
- to pass
-in some noise conditions than another set?  It might increase the chance of=
- passing
-I guess, but it's still likely to fail sometimes.
+This is a continuation of a previous series, which did not implement the full
+xmipsexectl vendor extension. The title was updated accordingly.
 
-Jonathan
+Changes in v4:
+- Add support for the xmipsexectl vendor extension
+- Remove the ifdef/else from errata_list.h
+- Replace the ifdef/else with a hwprobe call in the userspace code.
 
->=20
-> Regards
-> Haibo Chen=20
-> >=20
-> > Regards,
-> > Peng
-> >  =20
-> > >
-> > >- Nuno S?? =20
-> > >> On the other hand, public TRM doesn't give much more information and=
- =20
-> > >> > =20
+Link to v3:
+https://lore.kernel.org/linux-riscv/20250129131703.733098-1-arikalo@gmail.com/
+
+---
+Aleksa Paunovic (6):
+      dt-bindings: riscv: Add xmipsexectl ISA extension description
+      riscv: Add xmipsexectl as a vendor extension
+      riscv: Add xmipsexectl instructions
+      riscv: hwprobe: Add MIPS vendor extension probing
+      riscv: hwprobe: Document MIPS xmipsexectl vendor extension
+      riscv: Add tools support for xmipsexectl
+
+Djordje Todorovic (1):
+      riscv: errata: Fix the PAUSE Opcode for MIPS P8700
+
+ Documentation/arch/riscv/hwprobe.rst               |  9 +++
+ .../devicetree/bindings/riscv/extensions.yaml      |  6 ++
+ arch/riscv/Kconfig.errata                          | 23 ++++++++
+ arch/riscv/Kconfig.vendor                          | 13 +++++
+ arch/riscv/errata/Makefile                         |  1 +
+ arch/riscv/errata/mips/Makefile                    |  5 ++
+ arch/riscv/errata/mips/errata.c                    | 67 ++++++++++++++++++++++
+ arch/riscv/include/asm/alternative.h               |  3 +
+ arch/riscv/include/asm/cmpxchg.h                   |  3 +-
+ arch/riscv/include/asm/errata_list.h               | 13 ++++-
+ arch/riscv/include/asm/errata_list_vendors.h       |  5 ++
+ arch/riscv/include/asm/hwprobe.h                   |  3 +-
+ arch/riscv/include/asm/vdso/processor.h            |  3 +-
+ arch/riscv/include/asm/vendor_extensions/mips.h    | 37 ++++++++++++
+ .../include/asm/vendor_extensions/mips_hwprobe.h   | 22 +++++++
+ arch/riscv/include/asm/vendorid_list.h             |  1 +
+ arch/riscv/include/uapi/asm/hwprobe.h              |  1 +
+ arch/riscv/include/uapi/asm/vendor/mips.h          |  3 +
+ arch/riscv/kernel/alternative.c                    |  5 ++
+ arch/riscv/kernel/sys_hwprobe.c                    |  4 ++
+ arch/riscv/kernel/vendor_extensions.c              | 10 ++++
+ arch/riscv/kernel/vendor_extensions/Makefile       |  2 +
+ arch/riscv/kernel/vendor_extensions/mips.c         | 22 +++++++
+ arch/riscv/kernel/vendor_extensions/mips_hwprobe.c | 23 ++++++++
+ arch/riscv/mm/init.c                               |  1 +
+ tools/arch/riscv/include/asm/vdso/processor.h      | 27 +++++----
+ 26 files changed, 298 insertions(+), 14 deletions(-)
+---
+base-commit: b6a4bae2f16162876842127d7507dad84e404f8f
+change-id: 20250424-p8700-pause-dcb649968e24
+
+Best regards,
+-- 
+Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+
 
 
