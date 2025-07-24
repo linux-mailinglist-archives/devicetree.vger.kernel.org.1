@@ -1,216 +1,149 @@
-Return-Path: <devicetree+bounces-199579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C7EB11455
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 01:06:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A15DB11470
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 01:26:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51D0956576C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 23:06:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA5F5544F66
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 23:26:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB9023BCE2;
-	Thu, 24 Jul 2025 23:06:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14972417E6;
+	Thu, 24 Jul 2025 23:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HT4Jx/W5"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="FgwimAvj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013046.outbound.protection.outlook.com [40.107.159.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06B9C61FFE;
-	Thu, 24 Jul 2025 23:06:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753398400; cv=fail; b=NLuPj0BLgnPArqg9fNJAGdocqDQdHJA3bWBVCv22llJWAeHu7ostvirQPcw0c7liUoRXKXWPTlk+AIZ++jsQuViW0Nd8PnXMJ4YqLB+RWNi6IwojtakfxZQ8Q1/uAMBYW16508MI9+gsPPodiaqCW87IVBNw+1MPkfzQcNpiPaE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753398400; c=relaxed/simple;
-	bh=/Mkov4QTm1v5F8DynSPD7YsEITZbjNaZPiwXaZ4gbwY=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=mjf9mU+O2UF+qnuYQoCB7Kelp3lGDVFs8zOwImS81id3SeHQvIpFqXpMBGks/HkJ8oPt1+O9jSsegK1K5WtovKdxflsTCT0dXdHcHi13Pd7zeXrFDCw5si1P/bCYbionh+J7K9UYenwWWxQcrAtB9F50NtPD4pAzgAJIMjLmzlQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HT4Jx/W5; arc=fail smtp.client-ip=40.107.159.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fnQ/HZ0LQ9B0ZVAKXonNWBG09PkdZ+B9sIHMPDDd4pS6dUrTduc3ZB1RNs1yWaQjdAhXz5RyiulNoadNTkO+hsW4SV4SFJ26XQVfp2TM/NIm+VeBh37SUpLgnqQnTd0aYOTQE3MFFvr1J7DO0KD27rYU7ycE89GzyaiYunyXnhbjICg5Vo0oZl+XoI9hLW9qrDU7B6vyV9rwVx9djNQGJLPkLbvnWXPSU0kjl8A+3krXKcgR2BK2lb5HBCeukAlFo+6P1MV//UPFXLrC/f4xMfEYYcHuKbX4os/mqYYZZrtgkv6TjTMiGygvBNmslqD7df8SIliDtdlWgxuth31Agg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZanX+tm9kOhlz7pzw7nH7WhoPxZeJkuErr5LRuzqZh0=;
- b=GvDjsk5VAKBSXPmVCosApKOtDfW1YjG0xwFyYMXH1KZn1Saadlku+efbn5nunKxo1M9mt7Rt4912rH+J4LyQAPQQbACmpzZy36Py7jv+ArzoEsjl+87XDZkpHNRXEEwDjVc0g7tZ9jJbtGrJhjnDiPHfZDz1mAeVZ3KfmTpLhWYGvy55zZ4cWVe7b3CqnBb9PlETf7z+1E8n06wu4xL2Y7U56t3SV8nLIGEcGowW4LHXI0Pnt8UZ/UGIA5doukKHTteSE8C56XB1yDSmRFkh03YcXyIoSmoQY8fYZQXJjt2Vb7AceRX5NwkmOjGpXqbNuDTHuTMmQHQQ3KNYFgzENA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZanX+tm9kOhlz7pzw7nH7WhoPxZeJkuErr5LRuzqZh0=;
- b=HT4Jx/W5rlEST8aZBhT350mPMmrG59/24JmPa5HmRjFRHIg4zOiJFlYYXl1vzs9AzZgnNrfXdw+HvKnr1nxGuK+M6iQV2JvNKTqwf7NRSeXuN4JuizM4zAYhBOwcRDv3mpYENEjAYdvgpcLhJrXtZXRscwzh2Mt1qXPZSiEQGK4CSVNBMFdYPO/iin9WD4r14iIVfNMCgGtlYVihDVRW419ho4bK1nXKUR4C2ioUMNWDO+db3ZSDGIRKffYxjwGr4Rm82rGCUTfsSm7GdAMLLWWILBN3KbN12mU2YJ5VlknswRdLKY0w70pfRU9joLQjRbbBQ/TRDnCT3xhvA/bxEA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8846.eurprd04.prod.outlook.com (2603:10a6:102:20d::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.22; Thu, 24 Jul
- 2025 23:06:33 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8943.029; Thu, 24 Jul 2025
- 23:06:33 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
-	Grant Peltier <grantpeltier93@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [RESEND v3 1/1] dt-bindings: trivial-devices: Add compatible string synaptics,synaptics_i2c
-Date: Thu, 24 Jul 2025 19:06:17 -0400
-Message-Id: <20250724230619.1480635-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0147.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::32) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0F9523F422
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 23:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753399562; cv=none; b=CjWtaBpPVPUgY9kQnxvjsB7X6KtDLT+oPBI94oF8an9wuXqtn/7Ejg9bWhP5K8QPKePI3VO9TBcLODtUXIaMNesnBHwEpRHgUAzUb/yAYZdwivVesas1twfhLEiXqAueaTxQmLVDcu17Y3joy822YIRr0xn6H0BgWp5lrEU0ybM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753399562; c=relaxed/simple;
+	bh=4jW3pY7SqSVCQKiEBRKbOYXg71w2gZjpd/3XjgMbwLk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SAM4CsowtYO+qTj8iD3mMhlpOV9hdXi6/gw2G3qYjPzllrNqW81ghkbdbV4Mc3+D0aEzrAhqRmNs/rtv63SnXepbFmDEc+ZhuGyb4KSRencVfbaxUhWRiu2tymeQqtelB/Y6q+8aB4oJuvRntViVRyDlZL/f5STLnIWEZVjLGys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=FgwimAvj; arc=none smtp.client-ip=209.85.210.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-72c09f8369cso853096a34.3
+        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 16:26:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1753399559; x=1754004359; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8ZOxB7bA+7HYwUpTJ9kokJfmZhb06fFUHF38bYEOqBc=;
+        b=FgwimAvja+5vtLrP03N1OCfFywKhzaDJqMppCHQGJjiRrlVSfovejo72CCMPQ33QdX
+         klzAA6o0sMuT7eQkB2GqhCVZXamOH6x41Mub0k066TmDWmZi3iodzHnweTW1dRdssy+5
+         mywHB5DjkpsSN46OeKf2Wx68q1K6bslRaRel9VPwELjrWx25QTPorIcbf734aVYZ0VRk
+         yw+RlBVxYqHZ7W0vyzgWDzCxM67O2xwPHwF2SvfL4aC8jdgBqpRMgJAWX7QfFwtHqsS9
+         ytvWy6G1/why78Ew6QmH1lb7OLPWL9982HKieAx7hUbhMK48aMh2XD4WLw08Li8RP1p0
+         m4eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753399559; x=1754004359;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8ZOxB7bA+7HYwUpTJ9kokJfmZhb06fFUHF38bYEOqBc=;
+        b=XFMaERzDQtPNS+en88fa/crDflgUUQep2VsquJLDbbrzFpPgWr/OoSLioKth28lyey
+         NELKGfm9iyXMB9kwqLOGkXvHqicaUhekNTrRUyu8PuYZj/YD+PMVnC1AJr6r90WMc1YQ
+         wcsgHhCsf1BCHzzq3zhSu0aczg9nXYDAE1s1IEtrFEjyc2XWCRKmhMmX0LTEHG7ioTcP
+         +0H3Uq1s2RyiMPKgOJxByfazKxq8Y4p4wM0akiun12ILsmD7/r/5+VFD72tkbd09Vh1W
+         rlCtP41Aem6xO9/bwdXkTgfwlM1Hd+9hPYBIJ+6Mw8ZE/drXWb9Zp22qgDRJfbwb0eBI
+         ss5A==
+X-Forwarded-Encrypted: i=1; AJvYcCVQwRc5cmCMejT/FwK99xPoMvRFpaqJ4HQ0ZJYluBNh6BV/Tp4E1dS4nC/h7pkyUtbtv4I1vxuG1aAS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIc8aiPw2ApcEOP2xwgVGRx6SwZR+6fzE0ryW++GU5UiSezTxN
+	kLiVSYbLx3APpoyIuZZqbkDWpAcLwJz9oPOaKzxNri4f0QOJobcBfkWC85gSUXbU0hc=
+X-Gm-Gg: ASbGncvcoSjrbNI8paR1Os03C169rm3GB4kFwb2zebWvMjaG42IlmYw+fWvsk2q1iX6
+	T6LpT4wELlvyv0p4sjDMwdxAT2ZLxYVYF/9M+dUWloLZrMHcS7R58oCm72M2axENPXwM4Y+K6G+
+	iq9G0eHHp6NkBp6PJsCV6+KgTlCWF16n7R5d/FsMNk3E6hW4RJucarBccma4ZYK6gcHORNTvmJn
+	tVZKsUk+TeViF7sGyM/MRjIwEk0hHGJIwW+392pk6agTw+h4uQxkpdkS+5LUhOxlpYfmBXSW6O8
+	V0R1ctU0rI8u5PEAw/a9Vbtg/orFBHyMqJZ1AS326aQSRmesmG4nNQQjIA2fuwT9/QaLCxuNRQa
+	w7BTFjpJLGPBzpO2zZF5B9afNZg==
+X-Google-Smtp-Source: AGHT+IFyQBU0YPkEhU7BAxUyYWNhtWpzvb8sHT0G4rkr83bULjkykMKjjpxSOQ3Vr0TrddZKjp2UoA==
+X-Received: by 2002:a05:6870:8dc8:b0:2f5:2b87:416a with SMTP id 586e51a60fabf-306c73012e0mr5599518fac.37.1753399559500;
+        Thu, 24 Jul 2025 16:25:59 -0700 (PDT)
+Received: from [127.0.1.1] ([2600:8803:e7e4:1d00:337f:e3bf:e9d2:b3])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-306e3971332sm689626fac.0.2025.07.24.16.25.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Jul 2025 16:25:59 -0700 (PDT)
+From: David Lechner <dlechner@baylibre.com>
+Subject: [PATCH 0/4] iio: adc: ad7124: proper clock support
+Date: Thu, 24 Jul 2025 18:25:21 -0500
+Message-Id: <20250724-iio-adc-ad7124-proper-clock-support-v1-0-88f35db2fcaf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8846:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e9294d7-61e5-4e2e-645d-08ddcb06bba4
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|366016|52116014|376014|7416014|19092799006|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?spXKRKJPbmoi7DzpAn4d1fIRX8fjqcfbfeuCSL+t6fghNqzmPbhzd+ZWMGMM?=
- =?us-ascii?Q?YnBGe6SxJz50oOcqaDROxMJhJhYYOyRxrxOe7ytK+hZGRrVf02sjxRbMnXDm?=
- =?us-ascii?Q?CV3haJsBLMhKblZ2yl3r0WTF2kvUwXyV93EhlDPUAR4YfsPNvi6im7zRDT6I?=
- =?us-ascii?Q?nvs2mGeY2Cd3CGtJ+ZkrKq3UDtX9phGSsO6qkf0S/OyQah8KGfXIXBnU4HUn?=
- =?us-ascii?Q?rvTrevrj44hUFOqYz7ZYy8EB6+idRe54DdO541Y3vQBrtv9r87QaA/lP4mwl?=
- =?us-ascii?Q?rRUToCfH2kAVeIKf/6we/nyW2DkzcN5tX2XxFo26Wajq6yH23X7JVDF1qG1M?=
- =?us-ascii?Q?bhq8wFBovYXbM7WGNdgaKEMsvsOFXmZKcOfttpJM5iok/r5l18rdFfAaZycr?=
- =?us-ascii?Q?S99Z428dH21RCO1f788zuGIpeAOqdxSJUsv0vCMkTRFErQOEJwXtcs2CYyg/?=
- =?us-ascii?Q?Y9O/jwqyNjbM1PSL89ehFFKB83c1kxJxsNpNG/Nn+svL0x9MbfAe5jDnArWE?=
- =?us-ascii?Q?XNNRgu81svjItTcvQiMk7m4Ww65k9ZKK4/SjxCZvxA96IWGmQ4kKQ9Zqt56Q?=
- =?us-ascii?Q?dL03QjPnYXRNyGeR8bx73+wOM5PURU7Ez42ucl8q3jkgsJi0I6ITNJ6X2Cc6?=
- =?us-ascii?Q?0XO786v0AailsQnj+VyJvQHaWS/qW6oXeqNNBTka15rUcFdSQB56XOnKIWHc?=
- =?us-ascii?Q?wrcasHOdUSs8y6L1/zMOEemXUBNDfOFcah4DKjwXQxH8fkdp6SdW5FfOwVC5?=
- =?us-ascii?Q?mEJHRiIRSZq50OnOz5SS99WXHi5jk7ym1LpLSmz/wMGMAXDoi8UeRywyqTRt?=
- =?us-ascii?Q?jothdfFyWKeAYMBAZ/gGMczLiXX8T+n8HrZC4jOUhcXWdbjVQk0d47581mGx?=
- =?us-ascii?Q?P5jsyLpr7hxE2r6wNyxqXdAq3kkrxor0els6fElZaRT8J88NdZJ80y9LNfNp?=
- =?us-ascii?Q?B2NP1sPDDMTy4ZVOS6dKmiObET3MKQ62zAKEjOOTNQ8en/D5+5ccwAmwgSbQ?=
- =?us-ascii?Q?JDjHOv0YLwEItkhkcxPHiPdcHb7EBd9pCIYf54JleNkUWsV18o26JYDbGlT0?=
- =?us-ascii?Q?g4KIVYWlprbl3wd5Apr5S/HdI8eyq60qyrewgx8/piNdbHaBayc3ZejRk7xV?=
- =?us-ascii?Q?XbiC37XXD4+sEiXWjBtKy90Jls2dVu8MRRmiTuqfxG96TKCucBnP7phgeo4h?=
- =?us-ascii?Q?nGZWZo4zAQHG+up84D4t6DjhnAgjV+5ddC0G6fbz9tPiLFK7sxghAh/RaTXh?=
- =?us-ascii?Q?oFMQQ/IHxWqwqsIh21ajC+ZJKapC8mzY+j8dw8lxB/+jhEsiEZv/bh6CBNsU?=
- =?us-ascii?Q?tsiJV4rLUd4v7P/nUiigktK2QratAHUfkueTFCZZ36ROZXtiNd0/S0IF1Rt+?=
- =?us-ascii?Q?PGOKwWC8svQYttH69sV52w1JErrm2sxBCDhzSE3f64n0K7S7WPsRWSN9VrAl?=
- =?us-ascii?Q?qkFkPXrSXN8oS96g0tqAVd8A+bwhMUr2kzDNIvOnqr4nBC5C78Z7k5tcmOjh?=
- =?us-ascii?Q?CbI8sfm/QJ5Il88=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(376014)(7416014)(19092799006)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?IzaxkmkqKbJqPZPROeceAmS3FV49RjjbgBMNDXS9QTcJonbRYss7Vawp4qE7?=
- =?us-ascii?Q?joa88z/0OafZvjsISDaLvu3+jo8U/9W5rv+yrlQ0GwWT9h5r+lo+33vhc2ui?=
- =?us-ascii?Q?5pW9dnwUMaD9Sa9AEBZH0XUzlfEEtPsofK3vEolR2F97hel8udYnJlKsl7oY?=
- =?us-ascii?Q?mU+JIihMZORMWXQFXGx36T0SV4lxOI9fuPHhwfkeiqlKuyYHqLiaIhFrWQvD?=
- =?us-ascii?Q?R/D8bTNmDZ1NfATBN0NAOq+9Df+tuB2UMQM+uvva0L1oPxe2lr0v8mqu0cJT?=
- =?us-ascii?Q?JqCXeXkFVSrvWyqd1wOxb5EYFr7e2zecyU6SuKgPJX2ljaocSqWIrPVlSuiy?=
- =?us-ascii?Q?p2bd5Cvll7OfPTAP6t/tYHOImnlqLJUxGgczaN3xBBuXV6wGuTSgyfJz12By?=
- =?us-ascii?Q?Zn+0UzKHWYT/WvncttkWuEhdSikhYG18+fEkRf/s6ktWwq+uHPny0Yujxq7Z?=
- =?us-ascii?Q?k6IvmIHEatiKpBe37KhjE8iVYNZBF0BbMi5/loLaXwx4aOHLypYjVX1ECM0Y?=
- =?us-ascii?Q?qKyh5Cv2IBXJ55kHsVlGzbWOc5Y3rCoPPuxhEydwb1kDjl804ep73ZzExgzp?=
- =?us-ascii?Q?SY8Hby0D2dE3iYphqBnZnbIut+sA9cHqnyA84JK77KbyumL5lka5rZkttpzD?=
- =?us-ascii?Q?07mwUi2wQJKKitPqHjh8a+rwnRzxssrzNAdVBE7yOZ2o2dTGbyMbq167qSJ7?=
- =?us-ascii?Q?ekbCHVuriyGhFMXC1+oleKecyye5dHZjCz1t7Czb0+SYWNiWumxvWzwYP59P?=
- =?us-ascii?Q?fa1a75Rl9mWx2W1SP7DrwxNS6zJN7A+U/f9fLP8A86zyoeeqaYPot9bN7o81?=
- =?us-ascii?Q?cA3oF8BLiTTcmAWOJUaejOvHDuhT6+LMVAKJec8VStr8fH55gfEzcuGTnbc/?=
- =?us-ascii?Q?daEcaDumG5PdCP4gpk3T8ZDLQL0+H3h7RmQnlwSjnZGOgk9cuN2JKm/MmwgH?=
- =?us-ascii?Q?NZB0Rcb7jRr9RlkhklEm0hTv34gzfsPTRBRXCkmPqNPViHeZGf3/KAbmGHZx?=
- =?us-ascii?Q?9dqEnNTMEdRwumKtmFCQj0niCSDJtgWr0PMPQi0Cz2jdnJBJfHDsfs5NT7IV?=
- =?us-ascii?Q?lcZtn3ByAnxw5yDeLMIobSG+F+krA7E0x69qoz7WdbylAmqQggDfBguA6mIf?=
- =?us-ascii?Q?9pYWedmHkhKvztQOpsMpD1uDUOD2uclLylc8j3jlfrx/rCa78NlrVCnvxnNL?=
- =?us-ascii?Q?ZQJDb/QfSWvQ17OYTWiti/SFkdlamHtag9EuRGr4yPCjWx5ZZ5WjZo74OL2r?=
- =?us-ascii?Q?xzanHSaNUmv8jHJArk07q/vG27Mqou3GElGb2R3jgMmJ2rirSB1UL6Yi+bHe?=
- =?us-ascii?Q?cRe5NDXA43X6NTtMlPw9m2bKSf6hppg55cBFBZBsiODAcfwbGu4mHcf6FGZ8?=
- =?us-ascii?Q?+K4kPaqtoL126NIMd33t4HsoPJK6wHU0KHlN67HVRQkUCFgCztvK4z47oC2B?=
- =?us-ascii?Q?6xUUhawB4KWvvtqhb9VjGmAlui/d0EJPt9TNEnMd+WfEGNiwGWt75cgtVZjV?=
- =?us-ascii?Q?gFKkFYszbMzFzK+ecNEIewOeHs7pMFGYKa/x5nb0yKjXHph7gve9PgG7n3Qr?=
- =?us-ascii?Q?J9TMeMQoiUCqt88SA6Q75u/GfbryqVpX7zk/ZIdF?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e9294d7-61e5-4e2e-645d-08ddcb06bba4
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2025 23:06:33.6929
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Jk70j3g5bf8m6qGRdC9e8fJBhAqbsL1W0kUCP5bJNIAKJNtTfENXtCKqqywMgM9N4YnSktYzQeYtG2acPHMazQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8846
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOHAgmgC/x2NMQrDMAwAvxI0V+AoDib9SulgHCUVLZGQ21II+
+ XtNhhtuuduhsgtXuHY7OH+lim5N+ksH5ZG3lVHm5kCBxpBoQBHFPJdG6imiuRo7lpeWJ9aPmfo
+ bE8UpEOU0xAlayZwX+Z2X2/04/voQIeR1AAAA
+X-Change-ID: 20250723-iio-adc-ad7124-proper-clock-support-7249022a7349
+To: Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1687; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=4jW3pY7SqSVCQKiEBRKbOYXg71w2gZjpd/3XjgMbwLk=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBogsDk2kxGitwpoI2C5iNvXL99PNbs7kFU+B8Ot
+ VhlwsArLSWJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaILA5AAKCRDCzCAB/wGP
+ wOagB/49rZVzTf4m+GGTp4DeXvt5j9hJ3M1CgTw1y7lsMMM8JocMr3vBXacc3toQyb5NtV9Lgp8
+ baSCYKGoAd/sP4pk+1b/vluEd2lmIVaxJ43nYvZxxcFIvCCqa55mIMbyLJSXrhBU34ApgBhwQiW
+ VRckzCg81YFYuRGED2Vs2sxzsTOyWB2gFHqqZNe+OYA2Q9T6AEMgHi+M+vT8ekmfbvtMvUAavIw
+ J12ilZbEn6mFZIOzoU+saRgC7kfPPg3hfPiZv40ckgfmqtNE8E1hpQynSCodKSmel5vF+5pQnbS
+ P0ql0mGTM/5s3/YArwR9+xtwQVWYDd628697tUoizz5haQ+A
+X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
+ fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-Add compatible string synaptics,synaptics_i2c for synaptics touch pad. It
-match existed driver drivers/input/mouse/synaptics_i2c.c.
+I started looking at adding some new features to the AD7124 driver and
+noticed that the clock support was not quite right. The devicetree
+bindings had a required "mclk" clock. MCLK is actually the name of an
+internal counter in the ADC and also the name of the external clock
+connection on the evaluation boards, so I guess it came from one or the
+other of those. However, what the hardware actually has is a CLK pin
+that can be wired up in one of three ways: not connected, input or
+output. So the existing bindings making the clock required don't make
+sense.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Furthermore, when looking at how this clock was being used in the
+driver, I found that essentially this was being used as a way to
+select the power mode of the ADC which is not at all how devicetree
+bindings are supposed to work. The clock rate is fixed and the power
+mode can change no matter what type of clock is being used. Again,
+this just doesn't make sense.
+
+So here is a series to fix the devicetree bindings and actually
+implement proper clock support in the driver.
+
 ---
-Resend v3 include Krzysztof Kozlowski's review tag
+David Lechner (4):
+      dt-bindings: iio: adc: adi,ad7124: fix clocks properties
+      iio: adc: ad7124: do not require mclk
+      iio: adc: ad7124: add external clock support
+      iio: adc: ad7124: add clock output support
 
-change in v3
-- fix order in vendor-prefixes
-change in v2
-- update vendor-prefixes
+ .../devicetree/bindings/iio/adc/adi,ad7124.yaml    |  21 +++-
+ drivers/iio/adc/ad7124.c                           | 134 +++++++++++++++++----
+ 2 files changed, 129 insertions(+), 26 deletions(-)
 ---
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 3 +++
- 2 files changed, 5 insertions(+)
+base-commit: ad59285dadaa0c0e54f5c30c7d0fb282b06e14a7
+change-id: 20250723-iio-adc-ad7124-proper-clock-support-7249022a7349
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index f3dd18681aa6f..8db4596c616b9 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -395,6 +395,8 @@ properties:
-           - sparkfun,qwiic-joystick
-             # Sierra Wireless mangOH Green SPI IoT interface
-           - swir,mangoh-iotport-spi
-+            # Synaptics I2C touchpad
-+          - synaptics,synaptics_i2c
-             # Ambient Light Sensor with SMBUS/Two Wire Serial Interface
-           - taos,tsl2550
-             # Digital PWM System Controller PMBus
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 77160cd47f540..1809601004f90 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1510,6 +1510,9 @@ patternProperties:
-     description: Sierra Wireless
-   "^syna,.*":
-     description: Synaptics Inc.
-+  "^synaptics,.*":
-+    description: Synaptics Inc.
-+    deprecated: true
-   "^synology,.*":
-     description: Synology, Inc.
-   "^synopsys,.*":
+Best regards,
 -- 
-2.34.1
+David Lechner <dlechner@baylibre.com>
 
 
