@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-199277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 368DFB102F5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:10:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C1A9B102F9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:11:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D78C7BB894
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 08:08:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC2151884CA6
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 08:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 291EF273D98;
-	Thu, 24 Jul 2025 08:08:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E7B272E71;
+	Thu, 24 Jul 2025 08:09:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bvj8CXAr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PsKqa4TU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3206A274672
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 08:08:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67B62272E43;
+	Thu, 24 Jul 2025 08:09:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753344526; cv=none; b=cEkdSroEomNxof0X+NcssQvXqsv73Z91PUM8jXBRyArZ/39XzSHhQoXzBY4L84Cj5d3nBEiF4bbUh89wN/MB7GQNMrLgQQ+nSBlMDlXNVKR6js33+RLpTHkFVxyR8nfuVaqj7QulmUkSVbzROdstsnCkN/IzZX2h0JvMcP5ekj0=
+	t=1753344583; cv=none; b=VZ65HRAdczEzkXMhci8i8wRfSdpgOrZxV5GGO2p5EN6Q0WpRIch+bS0jhHmZyA3yU6UN80KHvVlv1+7Iu8Gqe/tYsGB/0xUYzvhoK+a+ws6nYPuHp1yRd5VS96xdJk+VX8TwUyOFhOPBHNWevW2kcPVICtd2QF8g0ZUqLQNh004=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753344526; c=relaxed/simple;
-	bh=FCUZqDD6J0JS8ls1i9soYcA/RpHR7beqpYXfAk3fdUk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=AbtC3sT+vUXVVlXtA+Ty2YG3efirTrX/dv1OADEkO6sQfPO6WxnRnNkQHxcEbrS+v6bAdv5qoDiFoLhnjxDWZEat1D8RuIyYzYpK4in5LnmORED2SI2U+7RtUb9/Cna5unUh+sb5K072eOvYcpuv4veRdICIaTaN580J3rahtxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bvj8CXAr; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a4e749d7b2so113603f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 01:08:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753344521; x=1753949321; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X6feK6OFgHACtKacI1BI+FbR93W3Tq/Mf7RC2mQiLrc=;
-        b=bvj8CXAre/DPCbHw8xCq5dUoTaEIIWGUPwPc02wouerJZqzsbG8Gu0hn6J5yfpLsuD
-         4x1qTiCZef1IDTZitdGD6R8mG4NdWuKnYog+dtSI4cVGZf/QCQySTdezhHdfOojK/jfh
-         CkNb2rbsSAQd65+DluY22y6zj2s/8qrk8+ELP+3S8zDy3VkvXkc8Z8b7HPk+ul3gA2FL
-         BBjRmHLHGnYGBhD7UmJYRs2cR3Q3xR/E4ZeX7s84aeg/KNlOyGx3/WH8/kczVnkaVecV
-         ce7uUijyQJoB3AHIoIASNxBWaApZ3Y+1YHPgjIS7JM0MvpnIKjVtxrUqqJY2T4pvWCOa
-         1Vow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753344521; x=1753949321;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X6feK6OFgHACtKacI1BI+FbR93W3Tq/Mf7RC2mQiLrc=;
-        b=aNK6YB1DzDPCiCLFEYg0Qr8U4nTpPmjtOuqolje4l3ShbYqeujyUImc/b/uqeYN0/b
-         bxC+3LuCN8AdKspiURtOfRBgBfF7ANP6eFRmoupOqjZrvJCeQWZ/upmUiDpBWpFmBjLp
-         0SfEAK0Acp00MwxnrxXdgQHKXZzo99DmvFWWTSQScCSA+cDNQ2k+rU4cxF+p4jS/cDNB
-         yDZhIaN1ZYJIlC+G9jIBjB1Jo3BgNTJxu1LNImdYI8ZrfF956+CMoejZ2pfWpWmShQCr
-         omKIlQnQ7RUvAE+yOjollrjI0yB2nElHtfFUVMCaNjf95De+CdvvE/3zty3gDRZ7RIee
-         hO6g==
-X-Forwarded-Encrypted: i=1; AJvYcCWs0/ECfdtaA5wxcAiKMaOmDrS1ngUvW4hP7hhnSJBOQ7Tb0o7Oy1EoMPsX/P2rY4jYUBZRF0qQ5Q++@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoHd2L7tX0Duh4V06sV4hH4O8GoBezrQjCmT81Nc6G/QjELCtv
-	vz5d8Wpv+LqU9lpzpUgkRJut7ghPu2YP5LU8US1XV/50HegtgLPB34FCxEO1u9sVkJE=
-X-Gm-Gg: ASbGnctJwPCRAT7anuog/9boli63XQlVW+fMfs2ft5/9jPkapF7Y5SwTydQogGkce4R
-	PHMUenxpVfyjxETrKBRdeEy/AvlC2RQTlH5hx6RtJndbJH0+PY5+hEDROKMWiQ/OQ+qBmXd/qNg
-	maeMBlvAiK/dFLEuQJ54gUPa2WfuaVO0IR0xCKnGo82ktA3zDgkhW/BVDcJWKvHHelw1WKUMGPh
-	x+X0iaSaRpt8WYVRc3ChqFPbLp7bSnDcArzkoCtWW700FBBSwzAMv7SNKzO/L/1pW+XWHyppKzj
-	rNhY4FDJTkvqDxbyprY/WlM1qktVNyN9C+j/9hM2MvKRNygmWQeTuZA7LCYpkzK8FxaM+HU+DIo
-	tBKrEXTTNgpzflxvopge9OEIEKbb1a9SAVruM7hPF9A==
-X-Google-Smtp-Source: AGHT+IGNvZ9ZfabdgNPRQVULYvd6vF+PtGhm7iC6xOezk4H3zJPBVtSBlI43GvHwQ4wXtxX/owN69w==
-X-Received: by 2002:a05:6000:310d:b0:3a4:dc42:a0c2 with SMTP id ffacd0b85a97d-3b768edf03emr1779405f8f.1.1753344521209;
-        Thu, 24 Jul 2025 01:08:41 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.203.90])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45870568fb1sm10289275e9.27.2025.07.24.01.08.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Jul 2025 01:08:40 -0700 (PDT)
-Message-ID: <ab0294da-1ae3-434c-aa37-75532e538e56@linaro.org>
-Date: Thu, 24 Jul 2025 10:08:38 +0200
+	s=arc-20240116; t=1753344583; c=relaxed/simple;
+	bh=J+e0/YX5TuvDUu7nG/EdllqV7j18ePW7fJkME0Q1od4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HR4mhIGgGieQO+qVQUqI9FOVhlK4yz5POf4YvJnI3oaRGxUPv/nLB5j8nhek4lztmZawNdvzxdaR8KFoU9xwt1oTpaF82xW9dyj0pVxa9AeX0lwskckUuFyjJijB3UFXztZELvEZxsGPPUDDeptdNwQQUMYCjqEWBiF3eJG29rQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PsKqa4TU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24E82C4CEED;
+	Thu, 24 Jul 2025 08:09:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753344581;
+	bh=J+e0/YX5TuvDUu7nG/EdllqV7j18ePW7fJkME0Q1od4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PsKqa4TUSqX2xZA+/s3g1TpdFihf1LAPkHvDh5ndkl7O1//kxXR6obuNhx8jaDV/o
+	 LLPCkP73OdYsUiio/Y1U3z+HHI0w597M8Gph4poSbSo6yUfLZTSiR2LAo6oag/HSuH
+	 j/B81eLfl8XpDn7ySic1hDfyFuGiI7IZ8UtUlrg0XLxwUPg2g/BEGAX2o+JaI1Vc+E
+	 dIQ/uSCY61i3tqHO5GDI3HpcuY0cqPdlrCquuXs/iWoYWCOJAkRFT8NquWs9ZDYfzF
+	 ik6sc5Wl1kImszdja9X70QD39/e+hDViTaNfqGkRVh0aVY0pu9gyTylSghdDrvXjlK
+	 FzEBvW9rIdEAA==
+Message-ID: <1e9de035-9d32-45d1-9f11-33c3439143be@kernel.org>
+Date: Thu, 24 Jul 2025 10:09:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,28 +50,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: crypto: Add node for True Random
- Number Generator
-To: "Jain, Harsh (AECG-SSW)" <h.jain@amd.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
- "davem@davemloft.net" <davem@davemloft.net>,
- "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+Subject: Re: [PATCH v8 2/2] memory: mtk-smi: mt8188: Add SMI reset and clamp
+ for MT8188
+To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
  "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "Botcha, Mounika" <Mounika.Botcha@amd.com>,
- "Savitala, Sarat Chand" <sarat.chand.savitala@amd.com>,
- "Dhanawade, Mohan" <mohan.dhanawade@amd.com>,
- "Simek, Michal" <michal.simek@amd.com>,
- "smueller@chronox.de" <smueller@chronox.de>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
-References: <20250723182110.249547-1-h.jain@amd.com>
- <20250723182110.249547-2-h.jain@amd.com>
- <a350e9b6-9bbe-4045-8d9c-e3886b758a99@kernel.org>
- <DS0PR12MB9345EDA907BB0438C32EF12F975EA@DS0PR12MB9345.namprd12.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20250521063347.31578-1-friday.yang@mediatek.com>
+ <20250521063347.31578-3-friday.yang@mediatek.com>
+ <fe4d93d1-fb6a-4985-8316-7a76fa1a481f@kernel.org>
+ <7421d8f4f3d5fdb392f46df93bfee21a97cc2e1c.camel@mediatek.com>
+ <633ea291-2e02-44be-bd03-220634b3c62d@kernel.org>
+ <d7e6e9f9da7adf5c806f29c577f6bf51b35fdeed.camel@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -113,91 +84,139 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  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
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <DS0PR12MB9345EDA907BB0438C32EF12F975EA@DS0PR12MB9345.namprd12.prod.outlook.com>
+ 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 a/A=
+In-Reply-To: <d7e6e9f9da7adf5c806f29c577f6bf51b35fdeed.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 24/07/2025 10:04, Jain, Harsh (AECG-SSW) wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Thursday, July 24, 2025 12:52 PM
->> To: Jain, Harsh (AECG-SSW) <h.jain@amd.com>; herbert@gondor.apana.org.au;
->> davem@davemloft.net; linux-crypto@vger.kernel.org; devicetree@vger.kernel.org;
->> Botcha, Mounika <Mounika.Botcha@amd.com>; Savitala, Sarat Chand
->> <sarat.chand.savitala@amd.com>; Dhanawade, Mohan
->> <mohan.dhanawade@amd.com>; Simek, Michal <michal.simek@amd.com>;
->> smueller@chronox.de; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Subject: Re: [PATCH v4 1/3] dt-bindings: crypto: Add node for True Random
->> Number Generator
->>
->> Caution: This message originated from an External Source. Use proper caution
->> when opening attachments, clicking links, or responding.
+On 24/07/2025 09:59, Friday Yang (杨阳) wrote:
+> On Thu, 2025-07-24 at 09:08 +0200, Krzysztof Kozlowski wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
 >>
 >>
->> On 23/07/2025 20:21, Harsh Jain wrote:
->>> From: Mounika Botcha <mounika.botcha@amd.com>
+>> On 24/07/2025 03:49, Friday Yang (杨阳) wrote:
+>>> On Thu, 2025-06-12 at 17:16 +0200, Krzysztof Kozlowski wrote:
+>>>> External email : Please do not click links or open attachments
+>>>> until
+>>>> you have verified the sender or the content.
+>>>>
+>>>>
+>>>> On 21/05/2025 08:33, Friday Yang wrote:
+>>>>> From: "Friday Yang" <friday.yang@mediatek.com>
+>>>>>
+>>>>> To prevent handling glitch signals during MTCMOS on/off
+>>>>> transitions,
+>>>>> SMI requires clamp and reset operations. Parse the reset
+>>>>> settings
+>>>>> for
+>>>>> SMI LARBs and the clamp settings for the SMI Sub-Common.
+>>>>> Register
+>>>>> genpd callback for the SMI LARBs located in image, camera and
+>>>>> IPE
+>>>>> subsystems, and apply reset and clamp operations within the
+>>>>> callback.
+>>>>>
+>>>>> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+>>>>> Reviewed-by: AngeloGioacchino Del Regno <
+>>>>> angelogioacchino.delregno@collabora.com>
+>>>>> Acked-by: Rob Herring <robh@kernel.org>
+>>>>
+>>>> You did not respond to previous review. Sending the same while
+>>>> ignoring
+>>>> previous review is obvious NAK.
+>>>>
 >>>
->>> Add TRNG node compatible string and reg properities.
+>>> Apologies for missing the message. In the v6 patch, I replaced
+>>> 'pm_runtime_enable' with 'devm_pm_runtime_enable'. You pointed out
+>>> that
+>>> this change might alter the cleanup order and potentially introduce
+>>> errors.
 >>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> v6:
+>>>
+> https://lore.kernel.org/lkml/20250408033206.12176-3-friday.yang@mediatek.com/
+>>>
+>>> Therefore, in the v7 patch, I reverted this change and continued
+>>> using
+>>> 'pm_runtime_enable' in the SMI driver. However, I did not include a
+>>> clear description of the changes between v6 and v7 in the cover
+>>> letter.
+>>>
+>>> v7:
+>>>
+> https://lore.kernel.org/lkml/9f01a9a4-89b2-4bfc-97cd-827be989ef16@kernel.org/
+>>>
+>>> In the v8 patch, I have added a description in the cover letter.
+>>> This series just add functions for SMI clamp and not change
+>>> anything
+>>> else. Is this acceptable to you?
 >>
->> Why did you placed my tag here?
-> 
-> You shared Reviewed-by on v3. It’s the same patch. Isn't I am supposed to add it in subsequent patches if there is not change?
-> 
-> https://lore.kernel.org/linux-crypto/20250617-rational-benign-woodpecker-6ee31a@kuoka/
-
-And who sent the patch? Who received the tag? Why the tag is above
-existing SoB chain?
-
-> 
+>> That was month ago. Nothing form this thread is in my memory, nothing
+>> is
+>> in the mailbox. There is no cover letter to find anymore.
 >>
->>> Signed-off-by: Mounika Botcha <mounika.botcha@amd.com>
->>> Signed-off-by: Harsh Jain <h.jain@amd.com>
+>> Anyway, you did not respond to the actual comment and you send the
+>> same.
+>> Now you respond... to something else still ignoring the comment about
+>> fake tags.
 >>
->> Who received the tag? When was the patch prepared?
+>> I will not be wasting more time on this patchset.
+>>
 > 
-> Did I missed something here?
+> Changes v7:
+> - Remove the 'devm_pm_runtime_enable' change.
+> 
+> Above is the tag you ask. You are right, the 'devm_pm_runtime_enable'
+> tag I mentionded in the patchset v6 is truly a fake tag. So please
 
-Yes, using standard tools for the job - b4 -  or following the process
-if you do not want to use the tools.
+This is a function. Not a tag. I asked about tag.
+
+> ignore this tag. What I intended to explain here was that I decided not
+> to use 'devm_pm_runtime_enable' to replace 'pm_runtime_enable'
+> functions. Unfortunately, the fake tag didn't explain this clearly in
+> the changelog, which was my fault. To address this, I updated patchset
+> v8 to include an explanation.
+> 
+> In patchset v6, I replaced 'pm_runtime_enable' with
+> 'devm_pm_runtime_enable'. However, in patchset v8, I reverted this
+> change and included the reason for this decision in the changelog.
+> Apologize for the delay and the trouble again.
+
+Nothing above is related to my question about the
+fake/invented/questioned tag.
 
 Best regards,
 Krzysztof
