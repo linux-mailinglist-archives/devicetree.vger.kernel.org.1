@@ -1,365 +1,138 @@
-Return-Path: <devicetree+bounces-199485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A82EB10E51
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 17:08:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AC9CB10E77
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 17:17:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69EAC1CE6040
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 15:08:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09DE31C2850E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 15:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AAF02E92DE;
-	Thu, 24 Jul 2025 15:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 785362E9ECD;
+	Thu, 24 Jul 2025 15:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cz5IHKWM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dhjY7Olt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C0B255240;
-	Thu, 24 Jul 2025 15:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562D72D5423
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 15:17:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753369690; cv=none; b=eisGk37LrfJ+M5EnhyrrqwkfEWV5ISOfQDkR6EESvqzZpQcZQ2ZE8E+/29R0x0AAZAASL/+JD2mUof4iPqcUjslA7kqZBztAF3CJe2vgfIyISyCiK7sv0GL8yXJxax80lZH5+Iwq5WYSKw8IBqTPfbKVOdM3eZHrvikDGrRTrPU=
+	t=1753370226; cv=none; b=OTG70CMHJH4YBQCdTanUrGoIQI3+RxODEvMzM953a4fdFbqphxyU6hvA78WbiH7tU/h5R5vCBEe0kYfi7P81SR6k3ICWiglIz3rJ6DSjygMwZJGXrra1NQzVs8rFsUAwP6QC8GPH6u7Baf2U/Tkop2nRUq81iqqERTm7jZ1y++o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753369690; c=relaxed/simple;
-	bh=KCHH0eMuDliYL38Oq6svSPAp5b03jXyE7QuDM0e08R8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UFA0owq1EVMx7cbAB5eMKP8Tj43AlPE1Q6sYUhAoM53Qhs2B2IJze9lanQGjoC7/dQrm0zMfgVumnfGrZi4AU6fYgB6/H6Kz1BE+t82UC72rAZu2jXAbnnHyrfeYMoOA8/YTed5AG5YOW5qyhUCWmucL7/M+PbA/LvNuo42NufM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cz5IHKWM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AABACC4CEED;
-	Thu, 24 Jul 2025 15:08:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753369689;
-	bh=KCHH0eMuDliYL38Oq6svSPAp5b03jXyE7QuDM0e08R8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=cz5IHKWMrwsai9HgTjCfdOBZ2GwjDCkhK5KrhJF3ZHmtk/n+8Z8xgf4RaW/pVWrBE
-	 dRtOrObo7KzfknEu54vbj6ajX9Nmp11ObfDEALXOQxwJBOK2XeT2D9SfR1XP3gAZ4Y
-	 6Ux5YVAF6Nmndi1H/mXZRUUVJ5wvsAJH0hQGIQVLuxKTkafQqJl/wBnP3wfZrcH90v
-	 PqyxnT9K69j7fA7KdCXVE6Ep+zAi/I5OJLZwdCsnVL158aM5CGg/QR/2oUzNUbbxS8
-	 MzxCl7VBcKtEMM9am16/bgoxS7ytOuAIGO+nDTCS0uW0OiYaJ5qMrxcafz/+283LtP
-	 to54MUrMKe7UQ==
-Date: Thu, 24 Jul 2025 16:07:59 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: "Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com>
-Cc: "lars@metafoo.de" <lars@metafoo.de>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "dima.fedrau@gmail.com"
- <dima.fedrau@gmail.com>, "marcelo.schmitt1@gmail.com"
- <marcelo.schmitt1@gmail.com>, "linux-iio@vger.kernel.org"
- <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "Lorenz Christian (ME-SE/EAD2)"
- <Christian.Lorenz3@de.bosch.com>, "Frauendorf Ulrike (ME/PJ-SW3)"
- <Ulrike.Frauendorf@de.bosch.com>, "Dolde Kai (ME-SE/PAE-A3)"
- <Kai.Dolde@de.bosch.com>
-Subject: Re: [PATCH v3 2/2] iio: imu: smi330: Add driver
-Message-ID: <20250724160759.44d67e88@jic23-huawei>
-In-Reply-To: <AM8PR10MB4721FB1A78F25B204BE3A26ACD5FA@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
-References: <20250703153823.806073-1-Jianping.Shen@de.bosch.com>
-	<20250703153823.806073-3-Jianping.Shen@de.bosch.com>
-	<20250706175328.7207d847@jic23-huawei>
-	<AM8PR10MB47217D838CA7DDACBE162D15CD49A@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
-	<20250713144214.6ee02f59@jic23-huawei>
-	<AM8PR10MB4721BAD5BD78B8FD0F5C9798CD57A@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
-	<20250717150440.5067862b@jic23-huawei>
-	<AM8PR10MB4721FB1A78F25B204BE3A26ACD5FA@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1753370226; c=relaxed/simple;
+	bh=rRtJDDGQNkuc0IDMIF8Hm5MSrjYukLVoLEvXaEsR1bY=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=nFjaGQAaAZVktIC2UszE2bcF40+aNUu3LQ3q5wES6minmuK8Jxk5mR4zdjHk1s4/snISsemEKavpw/q1SAgbHxuvIhpwYSdFw11xqcXH4V4OsOt0EfBRPLb61LRCe3/2FjmK5yA85cYecQ9Vi2crnKQwFYRTmd7sBuFhSHNfwB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dhjY7Olt; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a531fcaa05so545939f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 08:17:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753370222; x=1753975022; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9ZljJ9jOeuFt5jY4KeARy4p3x6G+xgYYvDLqDLNf7nc=;
+        b=dhjY7OltHsxm/AGoY3QSsmkF2UkF/PFkRg/gZZrLCWFX7Hjvyr5WOO6WCvgSxdr76w
+         3Fpicaep8bZzv6FoD0NEmDpE90pdhTq3l+KQDSK/ypv+2rK9S2iZ9TeG5JNnfougRLre
+         nRZqm48H6ngL5rcIsVpMn+X+g+B2eHzuPce1J3T/zZfug4QPPgFSAo3Z9KHW1Un78gik
+         k7GAHek8eH0PAmZ5M+B+fVSGNFJr2h7Yhc+5LnBv/fEifosmSQc14lK0kaYhJXEsorFD
+         hxXvVxqRrYmrvBEpOkJplngc4NaP5eZpVnvto64gxhjFsSDmsr/FjNrowryW6Ozf2j1X
+         NKnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753370222; x=1753975022;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=9ZljJ9jOeuFt5jY4KeARy4p3x6G+xgYYvDLqDLNf7nc=;
+        b=I/N5FDE1LbEKiP2FGdZcRgaJonpdTewm441jbJ3KpiAffjfMuZs/oMJNp3J9+GWhgg
+         ooQYzLNhpPMU255LkAnkl2sE+gyistfLHeK/mJWo0Y4tuYG0QEW4v2yrQ2Mj6Yh2NE38
+         Si0Mv0kbyeR3Tu7bzJlluSoL9QteZPKD/YuN6mqZVQ5kYKZ3eGZIcFDNg9YeFqMIxY3U
+         B+G83vGjtBw8ddY21KsyUX7SvJ8d+dLc0+9c7mYNuFcF0ep65F6RrPg/Q/W9M8AbkbNG
+         6iGs/LiC3Mx+kuBK6lGul6UQoksVyTm3ytXWdUGecedPEQN1jqKF+7qhirIE81Mu0cBe
+         beVg==
+X-Forwarded-Encrypted: i=1; AJvYcCV9rtOmWIb8gD+1NSoLES3qSqcZWjTBTnvwLFSEWEdpl5VyuOrBpJ7EUHMvNBfkygmqQto+m9unn6ox@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeRlB2CiBESqKlzeWfHWt8JjKg5F6JsWrSrCsA/eHAxRTS9Smh
+	PtbJCx1OAftUISzg/C1LaHi1bI2hQLj+Mhk+HjS5c2tlJsoYmv1vykZ6YbVhQJASYXqyrZ2e9rG
+	WNeUe
+X-Gm-Gg: ASbGncvlyzRD8nzQ//DY+70dSZclTuyF18bGJOW/QzHOaD7gOn3ftSWNnXBZbknvhZR
+	titiIF1FcBI0STlZBgw0DjxzBVVdkB5oDxtObgnnpD5gddhuJP2Ac2IFrQCqkZ9Pl4+bfebyr55
+	PqfocYlJjr/Vw/d42HYvcxOF4XhUwdDw1OUvNAWIucnnoHtDegr7EijDrTspvYlJynPla8Q237C
+	KSai3xPF2640QhuP4SbwGx3n7OAS47uaF/kGdjaawxTFFSQ82lebBHYy7oJ33ggnMp5LlRoEnbS
+	systXVM4b27//FMo9k6wAEtyvzhQVXzieJlYg3SthLeMBSO9JCgYEXhIbxpLcI/3V6B6TccvYB9
+	PtRz+ViiW4QpkukTHaBPeuwD1mZU=
+X-Google-Smtp-Source: AGHT+IGJIwXjAl0x8bo9+v9cZ8DYgapXIAGw1HX/4H1PrXe4j7vZaMGeCQer0wRpipUiu61pr3zj2g==
+X-Received: by 2002:a05:6000:26c9:b0:3b3:9cb4:43f9 with SMTP id ffacd0b85a97d-3b768cb12c7mr6437878f8f.16.1753370221540;
+        Thu, 24 Jul 2025 08:17:01 -0700 (PDT)
+Received: from localhost ([2a00:2381:fd67:101:6c39:59e6:b76d:825])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b77078b1absm2257447f8f.1.2025.07.24.08.17.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Jul 2025 08:17:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 24 Jul 2025 16:17:00 +0100
+Message-Id: <DBKDVB96ZC98.NOF39E05HZ8H@linaro.org>
+Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>, "Jaroslav
+ Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
+ <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Dmitry
+ Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>, "Srinivas Kandagatla"
+ <srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: sound: add bindings for pm4125
+ audio codec
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Lee Jones" <lee@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250711-pm4125_audio_codec_v1-v2-0-13e6f835677a@linaro.org>
+ <20250711-pm4125_audio_codec_v1-v2-1-13e6f835677a@linaro.org>
+ <20250718134334.GF11056@google.com>
+In-Reply-To: <20250718134334.GF11056@google.com>
 
-On Wed, 23 Jul 2025 09:46:47 +0000
-"Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com> wrote:
+On Fri Jul 18, 2025 at 2:43 PM BST, Lee Jones wrote:
+> On Fri, 11 Jul 2025, Alexey Klimov wrote:
+>
+>> The audio codec IC is found on Qualcomm PM4125/PM2250 PMIC.
+>> It has TX and RX soundwire slave devices hence two files are added.
+>>=20
+>> While at this, also add pattern for respecive node in mfd
+>> qcom,spmi-pmic schema so the devicetree for this audio block of
+>> PMIC can be validated properly.
+>>=20
+>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>> ---
+>>  .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    |   4 +-
+>>  .../bindings/sound/qcom,pm4125-codec.yaml          | 134 ++++++++++++++=
++++++++
+>>  .../devicetree/bindings/sound/qcom,pm4125-sdw.yaml |  79 ++++++++++++
+>
+> Do you have to submit these all in a single patch?
 
-> Hi Jonathan,
-> 
-> we find out the reason why the timestamp is invalid in the iio buffer.
-> 
-> https://elixir.bootlin.com/linux/v6.15.1/source/drivers/iio/industrialio-buffer.c#L1093
-> 
-> In "iio_buffer_update_demux" to copy the timestamp, the address calculation is the root causes.
-> 
-> 1083  in_loc += length;
-> ....
-> 1093  in_loc = roundup(in_loc, length);
-> 
-> When finish to copy the channel data, in_loc is just incremented and used as address of timestamp. This is correct only when the channel direct before timestamp is enabled.
-> 
-> If there is a gap between the last enabled channel and timestamp, then iio core will copy the wrong data.
-> 
-> We have a fix to this issue,
-> 
-> 1093 in_loc = (indio_dev->scan_bytes / sizeof(int64_t) - 1) * length;
+qcom,pm4125-codec.yaml and qcom,pm4125-sdw.yaml describe one device (sub-de=
+vice)
+and change for qcom,spmi-pmic.yaml is needed to avoid failing dtbs check.
 
-That looks correct, but I'm not seeing why the roundup above doesn't land us
-in the same place.  I'm not that keen on handling the timestamp even more differently
-to other channels.
+In theory I can split soundwire slave bindings from IC bindings itself and
+I may get questions why bindgings for one device is submitted in two steps.
 
+If you really want me to do this, then please let me know.
+Otherwise I don't see huge benefits of splitting it since they
+are logically and physically connected.
 
-If we imagine an active scan with
-2-byte chanel we want, 2 2-byte channels we don't a 2-byte gap and an 8-byte timestamp
-struct scan {
-	u16 wanted;
-	u16 notwanted[2];
-	... gap...
-	aligned_s64 timestamp;
-	
-
-
-Cutting down to the parts that change in_loc only.
-
-	for_each_set_bit(out_ind, buffer->scan_mask, masklength) {
-		in_ind = find_next_bit(indio_dev->active_scan_mask,
-				       masklength, in_ind + 1);
-		while (in_ind != out_ind) {
-... length is the length of current channel
-.. We never enter here in the example.
-			/* Make sure we are aligned */
-			in_loc = roundup(in_loc, length) + length;
-
-			in_ind = find_next_bit(indio_dev->active_scan_mask,
-					       masklength, in_ind + 1);
-		}
-
-... length is the length of the current channel.  Get here on first hit.
-
-		in_loc = roundup(in_loc, length);
-
-		in_loc += length;
-.. in loc = 2
-	}
-	/* Relies on scan_timestamp being last */
-	if (buffer->scan_timestamp) {
-
-... length is 8 ...
-
-		in_loc = roundup(in_loc, length);
-.. I think in_lock = 8?
-		ret = iio_buffer_add_demux(buffer, &p, in_loc, out_loc, length);
-
-	}
-
-Perhaps you can talk through the example that is failing?
-
-> 
-> just not sure, if there will be any side-effects with this fix.
-> 
-> Are you going to fix this finding, or shall we create a new patch for that?
-
-Fine to send the proposed fix but first we need to step through why the
-current code isn't working.
-
-
-Thanks,
-
-Jonathan
-
-> 
-> Best regards
-> Jianping Shen
-> 
-> 
-> >>  
-> >> >>  
-> >> >> >> +
-> >> >> >> +static irqreturn_t smi330_trigger_handler(int irq, void *p) {
-> >> >> >> +      struct iio_poll_func *pf = p;
-> >> >> >> +      struct iio_dev *indio_dev = pf->indio_dev;
-> >> >> >> +      struct smi330_data *data = iio_priv(indio_dev);
-> >> >> >> +      int ret, chan;
-> >> >> >> +      int i = 0;
-> >> >> >> +
-> >> >> >> +      ret = regmap_bulk_read(data->regmap,  
-> >SMI330_ACCEL_X_REG, data-  
-> >> >> >>buf,
-> >> >> >> +                             ARRAY_SIZE(smi330_channels));
-> >> >> >> +      if (ret)
-> >> >> >> +              goto out;
-> >> >> >> +
-> >> >> >> +      if (*indio_dev->active_scan_mask != SMI330_ALL_CHAN_MSK)  
-> >{  
-> >> >> >> +              iio_for_each_active_channel(indio_dev, chan)
-> >> >> >> +                      data->buf[i++] = data->buf[chan];  
-> >> >> >
-> >> >> >If I follow this correctly you are reading all the channels and
-> >> >> >just copying out the ones you want.  Just let the IIO core do that
-> >> >> >for you by setting iio_dev-  
-> >> >> >>available_scan_masks = {  SMI330_ALL_CHAN_MSK, 0 }; and push the
-> >> >> >>whole  
-> >> >> >buffer every time.  
-> >> >>
-> >> >> For the most frequent use cases, we define available_scan_masks = {  
-> >> >SMI330_ALL_CHAN_MSK, SMI330_ACC_XYZ_MSK,  
-> >SMI330_GYRO_XYZ_MSK,  
-> >> >0 }; and push the whole buffer every time.  
-> >> >> From the user space we just enable 3 channels gyro_x, gyro_y, and gyro_z.  
-> >> >Then we enable buffer and expect that only the gyro values and
-> >> >timestamp in iio_buffer. Nevertheless, we have 3 accelerometer values
-> >> >and the timestamp in iio_buffer.
-> >> >  
-> >> >> It seems that the iio core does not take care which channel is
-> >> >> enabled,  just  
-> >> >copy the first 3 values (acc x,y,z) into iio_buffer.  Our driver code
-> >> >still needs to take care and just copy the enabled channel value to buffer.
-> >> >
-> >> >Look again at how it works.  If you provide ACC_XYZ_MSK, then your
-> >> >driver has to handle it.
-> >> >available_scan_masks is saying what your driver supports. The driver
-> >> >can check active_scan_mask to find out what is enabled.  So right
-> >> >option here is only { SMI330_ALL_CHAN_MSK, 0, }  In that case the
-> >> >driver never needs to check as there is only one option.
-> >> >
-> >> >Then if any subset of channels is enabled the IIO core copy out just
-> >> >the data that is relevant.
-> >> >
-> >> >  
-> >> >>
-> >> >> Another side effect after using available_scan_masks is that the  
-> >> >active_scan_masks sometimes does not reflect current channel
-> >> >activation status.  
-> >> >>
-> >> >> Is some step missing to properly use available_scan_masks ?  How
-> >> >> can a user  
-> >> >find out from user space which channel combination is defined in
-> >> >available_scan_masks ?
-> >> >
-> >> >Why would userspace want to?  Userspace requested a subset of
-> >> >channels and it gets that subset.  So it if asks for the channels
-> >> >that make up SMI330_ACC_XYZ_MSK, if available_scan_mask == {
-> >> >SMI330_ALL_CHAN_MSK,
-> >> >0 } then the IIO core handling selects SMI330_ALL_CHAN_MSK (smallest
-> >> >available mask that is superset of what we asked for) and sets
-> >> >active_scan_mask to that.  The driver follows what active_scan_mask
-> >> >specifies and passes all channel data via the iio_push_to_buffers*()
-> >> >call. The demux in the IIO core than takes that 'scan' and repacks it
-> >> >so that userspace receives just the data it asked for formatting
-> >> >exactly as the driver would have done it if you had handled each channels  
-> >separately in the driver.  
-> >> >  
-> >>
-> >> Set available_scan_masks = {  SMI330_ALL_CHAN_MSK, 0 } and push the
-> >> whole buffer. iio_push_to_buffers_with_timestamp (indio_dev, data->buf, pf-
-> >>timestamp); We enable the accX, accY, and accZ from userspace. And expect 3  
-> >acc values and the timestamp in iio buffer.  
-> >>
-> >> Raw iio buffer data:
-> >> 00000000: 3c00 d6ff 7510 0000 6100 f3ff 0000 0000  <...u...a.......  
-> >            ACCX ACCY ACCZ PAD_ TIMESTAMP__________
-> >                               4093587712  
-> >> 00000010: 3f00 d2ff 8910 0000 0300 f6ff 0000 0000  ?...............  
-> >                               4143907584  
-> >> 00000020: 4900 dcff 7a10 0000 caff 0100 0000 0000  I...z...........  
-> >                               So this one looks bad.
-> >  
-> >> 00000030: 4c00 d9ff 7910 0000 2f00 f8ff 0000 0000  L...y.../.......  
-> >                               4177473280
-> >  
-> >> 00000040: 4b00 d9ff 8410 0000 1f00 0800 0000 0000  K...............  
-> >                               also bad.  
-> >> 00000050: 4700 daff 7f10 0000 3b00 eeff 0000 0000  G.......;.......
-> >> 00000060: 3f00 d8ff 8410 0000 0c00 0900 0000 0000  ?...............
-> >> 00000070: 4600 d9ff 8010 0000 0e00 0800 0000 0000  F...............
-> >> 00000080: 4700 d7ff 7d10 0000 3400 feff 0000 0000  G...}...4.......
-> >> 00000090: 4b00 d4ff 8010 0000 3e00 1200 0000 0000  K.......>.......
-> >> 000000a0: 4600 d6ff 8d10 0000 4300 0000 0000 0000  F.......C.......
-> >> 000000b0: 4900 d6ff 7710 0000 2500 f0ff 0000 0000  I...w...%.......
-> >>
-> >> Converted value  
-> >I guess this is different data as doesn't seem to line up with the above?
-> >  
-> >> 0.015625 -0.009277 1.024411 589929
-> >> 0.015869 -0.009521 1.040769 4294901719
-> >> 0.020508 -0.008301 1.025632 458712
-> >> 0.018799 -0.006836 1.032956 851960
-> >> 0.019287 -0.009521 1.033201 4294836275
-> >> 0.015625 -0.010498 1.031003 4293328982
-> >> 0.015137 -0.010498 1.031980 4293853176
-> >> 0.015869 -0.009521 1.031492 4293722141
-> >> 0.018555 -0.011475 1.033445 4294311886
-> >>
-> >> The 3 acc values is correct in buffer.  Nevertheless, invalid timestamp. The  
-> >timestamp is actually the value of the gyroscope, which directly followed by acc
-> >values.  
-> >> If we enable the gyroX, gyroY, and gyroZ from userspace, then all the data is  
-> >correct. Since the gyro values are the last 3 values and flowed by timestamp.
-> >
-> >Ok. That's odd and we should debug that.  This code is used in a lot of drivers
-> >so if it is not working correctly we need to figure out why asap and fix it.
-> >  
-> 
-> 
-> 
-> 
-> >However, I'm not seeing what looks to be gyro data in bytes 8-15 etc It isn't the
-> >stable sequence we'd expect for a timestamp though some specific values
-> >might be plausible.
-> >
-> >Looking again at the code, the IIO_DECLARE_BUFFER_WITH_TS() is the wrong
-> >size.  That should not include channel space for the timestamp. That should
-> >make it too big though which shouldn't be a problem.
-> >Also wrong type - should be using __le16 not s16 for the buffer elements given
-> >your channel declarations.
-> >
-> >Please could you add a print to your code alongside the
-> >iio_push_buffer_with_timestamp() to verify that the value in the pf-  
-> >>timestamp is reasonable looking for a timestamp.  
-> >
-> >For reference this is the code that handles the timestamp entry creation in the
-> >demux tables.
-> >https://elixir.b/
-> >ootlin.com%2Flinux%2Fv6.15.1%2Fsource%2Fdrivers%2Fiio%2Findustrialio-
-> >buffer.c%23L1086&data=05%7C02%7CJianping.Shen%40de.bosch.com%7Cf0
-> >9eaf03f8e44dd1e6fe08ddc53ae596%7C0ae51e1907c84e4bbb6d648ee5841
-> >0f4%7C0%7C0%7C638883578931715207%7CUnknown%7CTWFpbGZsb3d8
-> >eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIj
-> >oiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=s53tTw6o%2F2guA
-> >iH3J9jBRd0%2Bj6UmcmgyhtBCuKK1HE0%3D&reserved=0
-> >
-> >Jonathan
-> >
-> >  
-> >>
-> >> Conclusion: Setting available_scan_masks = {  SMI330_ALL_CHAN_MSK, 0 },  
-> >the iio core is able to correct handle the enabled channel data, but not the
-> >timestamp.  
-> >> The working solution for now is that our driver takes care and just copys the  
-> >enabled channel value to buffer without using available_scan_masks.  
-> >>  
-> >> >So the aim is that userspace never knows anything about this.  Just
-> >> >set what channels you want and get that data.
-> >> >
-> >> >Jonathan
-> >> >
-> >> >  
-> >> >>  
-> >> >> >
-> >> >> >The handling the core code is reasonably sophisticated and will
-> >> >> >use bulk copying where appropriate.
-> >> >> >
-> >> >> >If there is a strong reason to not use that, add a comment here so
-> >> >> >we don't have anyone 'fix' this code in future.
-> >> >> >  
-> >> >> >> +      }
-> >> >> >> +
-> >> >> >> +      iio_push_to_buffers_with_timestamp(indio_dev, data->buf,
-> >> >> >> +pf->timestamp);
-> >> >> >> +
-> >> >> >> +out:
-> >> >> >> +      iio_trigger_notify_done(indio_dev->trig);
-> >> >> >> +
-> >> >> >> +      return IRQ_HANDLED;
-> >> >> >> +}  
-> >> >>  
-> >>  
-> 
-> 
-
+BR,
+Alexey
 
