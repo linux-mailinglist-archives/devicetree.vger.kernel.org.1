@@ -1,81 +1,40 @@
-Return-Path: <devicetree+bounces-199248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46467B101A8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:25:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5FA2B101E7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:33:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24D7D1CC6EF2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:25:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFF194E1901
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DC323A989;
-	Thu, 24 Jul 2025 07:24:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bp13qMKX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E219B1EE7C6;
+	Thu, 24 Jul 2025 07:32:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from freeshell.de (freeshell.de [116.202.128.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8E69239581;
-	Thu, 24 Jul 2025 07:24:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145111C6FF5;
+	Thu, 24 Jul 2025 07:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753341855; cv=none; b=TDHDAhYt8OnuFNW95x/G3OLnbNMoreHZYmhvDJQw9y0l+d8uQipQRuHg1/3ry7YN3ZGeMvIBHcn6dAR/PiF80WSMoJQlVFkNeSxiqPPkr4LmVfdOECAIG9Qj0dmnU2aiCijJN3MPk5f7bLrH3kq7l9W3WG7XHEEjFGNQS+SBE10=
+	t=1753342326; cv=none; b=ArZ3GssmnUbWi0ZmPgCIuv/CuWbr956SvD/ZY799PMKLecZkb6zxEHbPMPFMdNj9P1Ur4YOGvf62bMYBldNiB5xQWTLOehuEpWIgT/MqZftLXm3ypH6cZSs/W7Ii8Mk5aQQApFUXNDMh0O2uqV1SDtoa1RVjZ5/8PoZs8pWnE6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753341855; c=relaxed/simple;
-	bh=dUyLN2kfotLNLyofConSuTyLmjoZe/xUKspDkME1Jro=;
+	s=arc-20240116; t=1753342326; c=relaxed/simple;
+	bh=uXhv8JaXdJKLyDVUhGJOHoTyGJOvG23c+JKRyB42f5A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Iv0/QtW4bPRgBWSwoG7fIUFD8k2rpIIV+/Zbub0p4bp7sNTYI5JwAb5vP1FHii+6nXTgK97ZvqO4Jow+7MRhdDPNxXHPdPoodNt2QdPtzMNx9IZ2Rr1+puTsB25MkyJinGk1WXnYNkmoRLO/Hm/20YKvHb+qmeRSi4YdbHczCFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bp13qMKX; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4561514c7f0so6310015e9.0;
-        Thu, 24 Jul 2025 00:24:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753341852; x=1753946652; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o8vH8JfnKijTJB45W87819LYq2SjUU3QszzdXJjSPeo=;
-        b=Bp13qMKXrCU+BYsS/+gRMgzyJrbmU9N0qr9a6lyaUMv5bUggUSfb7sqDMIllgxYLVO
-         DL1W0EmYAtjuBMPyAVpx/+ntXm/9KSBsoK5qJ2+BiAFgG3g7RM43z/3BbefobbBLmyEU
-         AJYSyxd7Tg3elwSSL8pz+bgNVFk2K9YxPPXDLryTW2PtrsMlGb+w52pLmZ2FI8PFm+Xa
-         oIb2oTh9cfyvHFaKR6aXLeINYOgbh9WEFQFhZaNojprXBWuTBj4BwfP7MluTMhi5N3Cx
-         huKQ4czLjMgUiZb4T5WLVKC9pRFymKCwZ4X1o2BFvOnIowO1CHKoeCG/l27ZbKWYSkht
-         P6SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753341852; x=1753946652;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o8vH8JfnKijTJB45W87819LYq2SjUU3QszzdXJjSPeo=;
-        b=bu6WAWzFBW7nWB9y3yL6n52d8taZRVf2o7T9GUu565767khYDmvcbiyrOPaTYxcC8I
-         qxOck3PYXcPB4UJ8yaaqvv5oGuaxWviv2faspph+5bBRs4wHgVj3BXgoDTGi1zVgf2rS
-         3kY3Wk0CsGCfjliDc9ToLfHd8QJuu1Y/ARPISZkuI2hRk2ZTOnGPctX70p2EhPczfTV2
-         f66hbcTlGySTVxIWTuRGbi6PjpJ9b10XlgwpqFHQSBw1usqSPb4hMXx9bXinYq7sSkbm
-         XGYfX0wOEELJNbSfWnyk3AFd3Iyt1EF3HMX66y7kvjtowEhCUkzR3fUeLUJTAob8v7Aj
-         mW4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVaPgVroIh947akSqShDYWNFsTfEMwOsV7Wt2Ptn2sfXyfurlS9uTJPKWlEvlDH6Hd+dxM9QOK1qrLrEjMg@vger.kernel.org, AJvYcCXK8BGIlFlA3j2q/rrJ4jGjEPQAsC8xxzfZv9T3PnyqjAbqlfhXVia1YWo/RQr46RnKVmxjBA7uEmqc@vger.kernel.org, AJvYcCXN+UJQVm923/eDdJG7HKO6zuwxlUrPJ1fUWwAnvRdPMbGXQ+4vzBSjRJSeo9fOUidoCzriiwUkST4fUFnnjxE/Le0=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/KbpUy5IuMgusRYWMyXedypqqN/gu5i5gMiv9ngFiZHOTf3XB
-	DM6OR8s5aqW7nuIxg/u0Kn9QnmZBoLWnK9ErFrNcuqB0bq4vJsVrkm8hPILO4Q==
-X-Gm-Gg: ASbGncsdng7IymGsCKF4ilOPtX/tFKhy+iZmb97okKwK0F6+SbUuqs4plHlpSNyXGGf
-	d2RX7OgPq4lNPNiAsIetOxxyN1My1EpBQF70/2jnRjNwkqRqPAHICUZmAIlIXceDghbM7hNcNss
-	/HkabYDYdgr3QTs8py8tvv99H9aJb9L/U+M4KRhj2GwFu/bhFl1hntsjNGyjSOBJTCbo/nLd48j
-	qxTfoGM/3OBHJJIEjMPoNqCRYA+L+xDTWvdQx2/g9OTbJljUV6FvGaYoflntFAKGMuVslf7AElI
-	Rf6upfGBzXCLPPhFbWJxE0x1MDjhDaHvwdMJqnl9THLMAzJZqVOWq/cVOO9lrxMjKqw++jV4YAw
-	dUykpAZAsUYxEuf54oQ7lVa4i4wM8jOBHHAe6TqoVR7ZGzOJu5blnCahK9O+/NYG+e/ZXQuMEnw
-	NH
-X-Google-Smtp-Source: AGHT+IHJ2yzAoWayRGrUS7izFIhkrxGchhvycroHp+KIHa7mpc3HqJKp+E42uRSyubs/rDl8+yH73g==
-X-Received: by 2002:a05:600c:8717:b0:455:fc16:9ed8 with SMTP id 5b1f17b1804b1-45868d4eaf7mr55550145e9.30.1753341851836;
-        Thu, 24 Jul 2025 00:24:11 -0700 (PDT)
-Received: from [192.168.1.107] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458714605c2sm3269475e9.19.2025.07.24.00.24.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Jul 2025 00:24:11 -0700 (PDT)
-Message-ID: <f5022fe7-c3f6-4bea-bb0c-98dfe461d555@gmail.com>
-Date: Thu, 24 Jul 2025 10:24:10 +0300
+	 In-Reply-To:Content-Type; b=WiZTrfMCHM0uO7wlkpFlVy4FUYY/nDPddrbds8EBrZP7FOqfHLj059gxWaK0fBI0jq5Dh7yquyrp4Q1T7ItebhCZTaUSwiaOOYN3D2ewsbXBkXzs9cMxg8s2VPVt71WGYEjBjsDH+k69Awcxe+Ca/JMWkT7Y5phTo6WF9TzEnZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [192.168.2.54] (unknown [98.97.26.29])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id C3DF8B4D1921;
+	Thu, 24 Jul 2025 09:31:52 +0200 (CEST)
+Message-ID: <aa1d8223-618d-4420-b4f3-dbbbf639ce04@freeshell.de>
+Date: Thu, 24 Jul 2025 00:31:50 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,84 +42,298 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: soc: samsung: usi: allow 64-bit
- address space
-Content-Language: en-US
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+Subject: Re: [PATCH 2/2] riscv: dts: starfive: add DT for Orange Pi RV
+To: Yao Zi <ziyao@disroot.org>, Icenowy Zheng <uwu@icenowy.me>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Jisheng Zhang <jszhang@kernel.org>,
+ Michael Zhu <michael.zhu@starfivetech.com>,
+ Drew Fustini <drew@beagleboard.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <20250722121037.443385-1-ivo.ivanov.ivanov1@gmail.com>
- <20250723-hypnotic-malkoha-of-trust-9efdb6@kuoka>
- <3e1d7be9-e99f-41c3-8b0d-aaa426aa9de8@gmail.com>
- <CAPLW+4kPN65uX0tyG_F-4u5FQpPnwX9y6F1zrobq5UyVbks+-w@mail.gmail.com>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <CAPLW+4kPN65uX0tyG_F-4u5FQpPnwX9y6F1zrobq5UyVbks+-w@mail.gmail.com>
+References: <20250409091801.855083-1-uwu@icenowy.me>
+ <20250409091801.855083-2-uwu@icenowy.me> <Z_f30vAuATR1DCWk@pie>
+ <8fbd6ffdd053760b6d0980173c7f8af6c09963ba.camel@icenowy.me>
+ <e2ec3809-a538-4475-ac3a-db289271fe7a@freeshell.de> <aHfOeo7ZITHvg9P9@pie>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <aHfOeo7ZITHvg9P9@pie>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 7/24/25 06:02, Sam Protsenko wrote:
-> On Wed, Jul 23, 2025 at 3:21 AM Ivaylo Ivanov
-> <ivo.ivanov.ivanov1@gmail.com> wrote:
->> On 7/23/25 11:15, Krzysztof Kozlowski wrote:
->>> On Tue, Jul 22, 2025 at 03:10:36PM +0300, Ivaylo Ivanov wrote:
->>>> Some device trees, like the exynos2200 one, configure the root node
->>>> with #address-cells and #size-cells set to 2. However, the usi binding
->>>> expects 32 bit address space only. Allow these determining properties to
->>> So if USI expects 32 bit, then why do we allow 64?
+On 7/16/25 09:08, Yao Zi wrote:
+> On Tue, Jul 15, 2025 at 06:30:57PM -0700, E Shattow wrote:
+>> On 4/10/25 18:29, Icenowy Zheng wrote:
+>>> 在 2025-04-10星期四的 16:54 +0000，Yao Zi写道：
+>>>> On Wed, Apr 09, 2025 at 05:18:01PM +0800, Icenowy Zheng wrote:
+>>>>> Orange Pi RV is a newly released SBC with JH7110 SoC, single GbE
+>>>>> port
+>>>>> (connected to JH7110 GMAC0 via a YT8531 PHY), 4 USB ports (via a
+>>>>> VL805
+>>>>> PCIe USB controller connected to JH7110 PCIE0), a M.2 M-key slot
+>>>>> (connected to JH7110 PCIE1), a HDMI video output, a 3.5mm audio
+>>>>> output
+>>>>> and a microSD slot.
+>>>>>
+>>>>> Onboard peripherals contain a SPI NOR (which contains the U-Boot
+>>>>> firmware) and an Ampak AP6256 SDIO Wi-Fi module.
+>>>>>
+>>>>> As the schematics isn't available yet, the SDIO Wi-Fi is left
+>>>>> disabled
+>>>>> yet.
+>>>>>
+>>>>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+>>>>> ---
+>>>>>  arch/riscv/boot/dts/starfive/Makefile         |  1 +
+>>>>>  .../boot/dts/starfive/jh7110-orangepi-rv.dts  | 73
+>>>>> +++++++++++++++++++
+>>>>>  2 files changed, 74 insertions(+)
+>>>>>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-orangepi-
+>>>>> rv.dts
+>>>>>
+>>>>> diff --git a/arch/riscv/boot/dts/starfive/Makefile
+>>>>> b/arch/riscv/boot/dts/starfive/Makefile
+>>>>> index b3bb12f78e7d5..24f1a44828350 100644
+>>>>> --- a/arch/riscv/boot/dts/starfive/Makefile
+>>>>> +++ b/arch/riscv/boot/dts/starfive/Makefile
+>>>>> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-
+>>>>> visionfive-v1.dtb
+>>>>>  
+>>>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
+>>>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
+>>>>> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-orangepi-rv.dtb
+>>>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
+>>>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-
+>>>>> v1.2a.dtb
+>>>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-
+>>>>> v1.3b.dtb
+>>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>>>>> b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>>>>> new file mode 100644
+>>>>> index 0000000000000..bde01f117e0b2
+>>>>> --- /dev/null
+>>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>>>>> @@ -0,0 +1,73 @@
+>>>>> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+>>>>> +/*
+>>>>> + * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
+>>>>> + */
+>>>>> +
+>>>>> +/dts-v1/;
+>>>>> +#include "jh7110-common.dtsi"
+>>>>> +#include <dt-bindings/leds/common.h>
+>>>>> +
+>>>>> +/ {
+>>>>> +       model = "Xunlong Orange Pi RV";
+>>>>> +       compatible = "xunlong,orangepi-rv", "starfive,jh7110";
+>>>>> +
+>>>>> +       leds {
+>>>>> +               compatible = "gpio-leds";
+>>>>> +
+>>>>> +               led-ack {
+>>>>> +                       gpios = <&aongpio 3 GPIO_ACTIVE_HIGH>;
+>>>>> +                       color = <LED_COLOR_ID_GREEN>;
+>>>>> +                       function = LED_FUNCTION_HEARTBEAT;
+>>>>> +                       linux,default-trigger = "heartbeat";
+>>>>> +                       label = "ack";
+>>>>
+>>>> Should we sort the properties in alphabet order? i.e. color,
+>>>> function,
+>>>> gpios, label then linux,default-trigger. See dts-coding-style.rst,
 >>>
->>> Switching this to 2 means you use 64-bit addressing for children
->> I don't, but the main point was to avoid defining ranges for every single usi
->> node, because they are a lot.
+>>> Well in case of GPIO LED, I think gpios is something like reg? Although
+>>> this is only my personal feel, and label really needs to be reordered
+>>> then.
+>>>
 >>
-> If all MMIO addresses in your SoC are 32-bit (they probably are), I
-> think it'd be neater to just make the entire "soc" bus 32-bit (so both
-> address and size cells = <1>), and map it to the root node's address
-> space with "ranges", like this:
->
->     soc: soc@0 {
->         compatible = "simple-bus";
->         #address-cells = <1>;
->         #size-cells = <1>;
->         ranges = <0x0 0x0 0x0 0x20000000>;
->         ...
->
-> That's how it's done in exynos850 and gs101 dts for example. This way
-> you could drop all those extra "reg = <0x0 ...>" in the child nodes,
-> also avoid declaring "ranges" arrays in each USI node (just "ranges;"
-> would be enough), and this patch won't be needed.
-
-Yeah, but then we'll have one more DT patch that is way bigger, changing
-every single "reg =" in /soc. And the device tree for the SoC is merged already.
-
-I do think that the neatest option is to avoid that and set an enum in the
-binding, as otherwise we'd be making a stylistic change that has no
-impact on functionality.
-
-If we want the device tree to model hardware identically to how it is, then
-we'd want to define IPs per bus (which I cannot really do on my own, I don't
-even have TRMs).
-
-I'll leave it up to Krzysztof to decide what is best.
-
-Best regards,
-Ivaylo
-
-> Maybe I'm missing
-> some details though?
->
->> Best regards,
->> Ivaylo
+>> Status led description here does instead belong in jh7110-common.dtsi
+>> since all variant boards are using the same RGPIO3 (fourth GPIO on PMU
+>> domain).
 >>
->>>  and
->>> allowing DMA for >32 bit. This should be the true reason - what is the
->>> address space and DMA range for children?
->>>
->>> Best regards,
->>> Krzysztof
->>>
 
+I did send a patch for the status power LED in jh7110-common.dtsi that
+got picked up for-next, FYI. It's sparse with only the gpios property
+but there is an alias so you could add to that for a variant board if
+you like.
+
+>>>>
+>>>>> The following order of properties in device nodes is preferred:
+>>>>>
+>>>>> 1. "compatible"
+>>>>> 2. "reg"
+>>>>> 3. "ranges"
+>>>>> 4. Standard/common properties (defined by common bindings, e.g.
+>>>>> without
+>>>>> vendor-prefixes)
+>>>>> 5. Vendor-specific properties
+>>>>> 6. "status" (if applicable)
+>>>>> 7. Child nodes, where each node is preceded with a blank line
+>>>>
+>>>>> +               };
+>>>>> +       };
+>>>>> +};
+>>>>> +
+>>>>> +&gmac0 {
+>>>>> +       starfive,tx-use-rgmii-clk;
+>>>>> +       assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
+>>>>> +       assigned-clock-parents = <&aoncrg
+>>>>> JH7110_AONCLK_GMAC0_RMII_RTX>;
+>>>>> +       status = "okay";
+>>>>
+>>>> Vendor property starfive,tx-use-rgmii-clk should go after the common
+>>>> ones.
+>>>
+>>> Okay, I will fix this (and the one below) in next revision.
+>>>
+>>> Thanks,
+>>> Icenowy
+>>
+>> Well then does the documentation follow recommended sort ordering?
+>>
+>> https://www.kernel.org/doc/Documentation/devicetree/bindings/leds/common.yaml
+> 
+> I don't think so.
+> 
+>> Looks to me like it is not clear what is going on there with sort
+>> ordering. The recently accepted dts in-tree are a mix of "who cares?",
+>> alphabet sort, and preferentially but arbitrarily placing some things
+>> above others. The documentation is even different than all that.
+>>
+>> Maybe if the documentation should be followed we should follow it, else
+>> fix the documentation firstly.
+> 
+> Basically agree here, the "sort by alphabetical order" requirement
+> (described here[1]) doesn't seem to play well in all cases: what Icenowy
+> claimed sounds reasonable to me and looks more natural than the general
+> rule. So maybe we should "override" the rule in subsystem-specific
+> bindings. I suggest raising a formal discussion about leds/common.yaml
+> and see whether this could land formally in the led's binding, and I'm
+> willing to do so.
+> 
+> Futhermore, similar order issues don't only occur in the LED binding,
+> but also, for example, the pinctrl stuff. In the example of
+> pinctrl-binding.txt[2], pinctrl-names always goes before pinctrl-[0-9]*,
+> which doesn't follow the general rule as well, and we could see the
+> opposite is also poppular in the accepted devicetrees. This should be
+> clarified, too.
+> 
+
+Okay the devicetree style guide documentation needs some amendment with
+footnotes about how the kernel devs want this to look like going forward
+from now. That's for another discussion elsewhere, then.
+
+>>>
+>>>>> +};
+>>>>> +
+>>>>> +&i2c0 {
+>>>>> +       status = "okay";
+>>>>> +};
+>>>>> +
+>>>>> +&mmc0 {
+>>>>> +       /* TODO: Ampak AP6256 Wi-Fi module attached here */
+>>>>> +       status = "disabled";
+>>>>> +};
+>>
+>> Orange Pi RV schematic is published now. Please implement this
+>> description here.
+>>
+>> You may also wish to review the StarFive JH7100 devicetree descriptions
+>> (and schematic), and additionally the published Milk-V Mars CM / Mars CM
+>> Lite schematic, for clues about AP6256. The required firmware files'
+>> intellectual property when during the last discussion about
+>> linux-firmware was determined to be Synaptics (labeled as Broadcomm) and
+>> rejected from inclusion due to no clear licensed permission for
+>> distribution. Maybe it is time to revisit this and find someone willing
+>> to do the work of resolving the license ambiguity?
+>>
+>>>>> +
+>>>>> +&mmc1 {
+>>>>> +       /delete-property/ cd-gpios;
+>>>>> +       broken-cd;
+
+I'll send a patch to drop 'no-sdio' from mmc1 and I am also considering
+to part out cd-gpios to variant board dts away from jh7110-common.dtsi ;
+however parting out cd-gpios property is only if you really found it is
+broken here. So far I don't have any examples of where it is actually
+broken card detect, all examples I have of this 'broken-cd' property in
+use with JH7110 boards are copy and pasted from vendor code without
+verification.
+
+Are you sure Card Detect is broken for Orange Pi RV - it is in-fact on
+the schematic, it should be working...?
+
+>>>>> +};
+>>>>> +
+>>>>> +&pcie0 {
+>>>>> +       status = "okay";
+>>>>> +};
+>>>>> +
+>>>>> +&pcie1 {
+>>>>> +       status = "okay";
+>>>>> +};
+>>>>> +
+
+The USB Type-C port connection to JH7110 Cadence USB2.0 is missing a
+description here. Does the vendor board support package have this
+operating as a host mode port, or is it something different?
+
+>>>>> +&phy0 {
+>>>>> +       motorcomm,tx-clk-adj-enabled;
+>>>>> +       motorcomm,tx-clk-10-inverted;
+>>>>> +       motorcomm,tx-clk-100-inverted;
+>>>>> +       motorcomm,tx-clk-1000-inverted;
+>>>>> +       motorcomm,rx-clk-drv-microamp = <3970>;
+>>>>> +       motorcomm,rx-data-drv-microamp = <2910>;
+>>>>> +       rx-internal-delay-ps = <1500>;
+>>>>> +       tx-internal-delay-ps = <1500>;
+>>>>> +};
+>>>>
+>>>> Ditto, move the vendor properties below the common ones.
+>>
+>> Yes and, one of us may review what is already in starfive/ dts to fix
+>> and send a patch for this mess of devicetree sort order. The issue
+>> repeats every time we look for an existing sample to use.
+> 
+> Oops, I've never expected that there're so many vendor-specific
+> properties mixed with others in starfive's devicetrees. I'm willing to
+> clean them up when available, but feel free to take the work since I'm a
+> little busy.
+> 
+>>>>
+>>>>> +&pwmdac {
+>>>>> +       status = "okay";
+>>>>> +};
+
+pwmdac and a few other features on a different JH7110 SoM featuring
+AP6256 wireless module are in conflict with GPIO pins needed by the WiFi
+and Bluetooth reset/wake/data connections.  Have you reviewed to see
+what will need to be disabled for AP6256 SDIO functionality? Are all
+Orange Pi RV boards sold with this chipset or is it optional?
+
+>>>>> +
+>>>>> +&spi0 {
+>>>>> +       status = "okay";
+>>>>> +};
+>>>>> -- 
+>>>>> 2.49.0
+>>>>>
+>>>>
+>>>> Best regards,
+>>>> Yao Zi
+>>>
+>>
+>> B.R.,  -E Shattow
+> 
+> Regards,
+> Yao Zi
+> 
+> [1]: https://elixir.bootlin.com/linux/v6.16-rc6/source/Documentation/devicetree/bindings/dts-coding-style.rst#L115-L124
+> [2]: https://elixir.bootlin.com/linux/v6.16-rc6/source/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt#L74-L97
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+-E
 
