@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-199266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6171B10262
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:54:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE320B1026B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 09:54:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD92EAC3E20
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:53:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B8AA54659E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 07:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AAB326FA52;
-	Thu, 24 Jul 2025 07:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2263C2701D6;
+	Thu, 24 Jul 2025 07:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hVQbuari"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lQ1RJw1j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6182826E711;
-	Thu, 24 Jul 2025 07:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEA4426D4E1;
+	Thu, 24 Jul 2025 07:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753343653; cv=none; b=Y9eeeaIcm3UZwF+LrFMbMBlsg7nI/yohMeruK4SaFchrlw1BhzyAxJ9uW88XkdywAGBrzgBiDYH+hWDEhijZtkwZHEkxHTFWB8Z2BkyJrNfakRjCpGjsidFlWHdW21rS7XidJGrnqeoIW7MbxF2GxyBAIh7VvvMHES8mHdt+/58=
+	t=1753343667; cv=none; b=un8uVV9/izFjQqVaBVviQmkKPASkBGtE0i5sokIAu5gL/jVgK7B+cEYCZTEy3nT9NmStmagjYfhnh6vt9D3pdyhkwMI/fuNahUWN5Jl0Zn4vgxfOSG7jur5xRCs3YfSuoOsk2PPHjYmuPc8L3xWbrp/bvEkToo3wH2N5x0NGQBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753343653; c=relaxed/simple;
-	bh=fedaKSVKoXWJCia4hWOYvIVKJSIrOlYT8OjCgkSiOmo=;
+	s=arc-20240116; t=1753343667; c=relaxed/simple;
+	bh=i2i4FvAvcuu68l81dS/YVmY3OFVFW2LN9O82CoVKe7I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eXPjDrddxHOhds8uO+22a0TOzW4R75JnCaTUumS4EkmNZu6QSp8zyECGlrY/alDPawACeT8gc2PJa9GgAzQVjxzty88hp8Tf57lysaKjKsdVv9J6SWa8VL+Vea/02mYWgrMpr8NLUooDFWJPxHXp5YAttvgN8Ox5A7hQeBRWmr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hVQbuari; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59CD5C4CEED;
-	Thu, 24 Jul 2025 07:54:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uKjhySs7ClWSlHwt5/bu27k3/Us8ICPogChOk0elxmAo0wE9ajLFpUvWKT8TguxzZVAO8VjsQj162CZiTi8n9D2w8rogo2WNIdbQeyA7FMQK395s5G0esTTKLxbM7rIZWALMV2fjZqXExN/c91Q4MWEy1lobV/iRQ0zBnbTTGSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lQ1RJw1j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17996C4CEED;
+	Thu, 24 Jul 2025 07:54:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753343652;
-	bh=fedaKSVKoXWJCia4hWOYvIVKJSIrOlYT8OjCgkSiOmo=;
+	s=k20201202; t=1753343666;
+	bh=i2i4FvAvcuu68l81dS/YVmY3OFVFW2LN9O82CoVKe7I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hVQbuariQMeGlvpf5+/GWEx713YyM9MPKM5KQ601HdQVS5vhpB7/mKfwKY9waABvc
-	 lzeAJ1a0wBQp4pTGKr8KwYrOnQTeuhl9ljDXfw0lR2Pxlh95HcFNqp5xw1T+85fonQ
-	 Ws6dM8jr82IALG7HD+9jqaZDVQGpiFvDdI3tCrzQsudEpLWWFL76MBQDKdoKh3oN4m
-	 wIIm8GY6DEcPdii55F3mTnj5Gl2cNmMB5Y9hUK3fAqUdOiFhYp0tnkFxI5uonCfEQP
-	 CEXOpMkaUb1kKbyE/V1g/dppXzYaws8KcRDiSDciHZzGefQkMYs46ntPJF2rQ2g5k4
-	 sF/nDAWvXTKeQ==
-Date: Thu, 24 Jul 2025 09:54:10 +0200
+	b=lQ1RJw1jj5vQdH0uQDIh+j8DzG4WT0pzw1BFCODaK/ai5Be+TDcZckKWh6m7BRM0X
+	 Qc0N6jpaWb3Wp65fn5U8Fy1XO6H4Uexv+t5Z9AeZs0M1+6hzF9Ylb+z9LeDT8Ws/rN
+	 mr8nkjmOgTlmFkOhMemTJ0VOjd0I7ylq92bPH+8q0ao28yYivPvYLpfRwDgQqFrvP/
+	 7/jCbKR6hNfiLqmNh6DRmPgSYOqTEsWq7FYERfSrDMQmtSMWIoh3WL3K7VB6JgaJxb
+	 wWau+MTJmlC1y0iWM2ky+Zwcru9Lc4oqIZxNneD2pcRcqIQ8BRtyxUt/1/c1Otvg1W
+	 hzyyArKWXSZNA==
+Date: Thu, 24 Jul 2025 09:54:24 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Donald Shannon <donalds@nvidia.com>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
 	joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
 	openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v7 0/2] Adding device tree and binding for NVIDIA
- GB200-UT3.0b
-Message-ID: <20250724-affable-gorgeous-dragon-130ac6@kuoka>
+Subject: Re: [PATCH v7 1/2] dt-bindings: arm: aspeed: Add NVIDIA GB200-UT3.0b
+ board
+Message-ID: <20250724-sweet-radiant-stoat-10d86d@kuoka>
 References: <20250723222350.200094-1-donalds@nvidia.com>
+ <20250723222350.200094-2-donalds@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,12 +61,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250723222350.200094-1-donalds@nvidia.com>
+In-Reply-To: <20250723222350.200094-2-donalds@nvidia.com>
 
-On Wed, Jul 23, 2025 at 03:23:48PM -0700, Donald Shannon wrote:
-> Patch 1 adds the binding for the NVIDIA GB200-UT3.0b platform.
-> Patch 2 adds the device tree for the NVIDIA GB200-UT3.0b platform.
-> 
+On Wed, Jul 23, 2025 at 03:23:49PM -0700, Donald Shannon wrote:
 > This is an Aspeed AST2600 based unit testing platform for GB200.
 > UT3.0b is different than nvidia-gb200nvl-bmc due to networking topology
 > differences, additional gpio expanders, and voltage regulator gating
@@ -78,40 +76,43 @@ On Wed, Jul 23, 2025 at 03:23:48PM -0700, Donald Shannon wrote:
 > Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
 > Signed-off-by: Donald Shannon <donalds@nvidia.com>
 > ---
-> Changes v1 -> v2:
->   - Changed phy-mode to rgmii-id [Lunn]
->   - Removed redundant max-speed for mac0 [Lunn]
->   - Fixed typo from gb200nvl to gb200 in Makefile
-> Changes v2 -> v3:
->  - Fixed whitespace issues [Krzysztof]
->  - Fixed schema validation issues from my end ( there are still issues
->  with the aspeed dtsi file that are not related to this new dts)
->  [Herring]
->  - Reordered to follow style guide [Krzysztof]
->  - Removed redundant status okays
->  - Changed vcc to vdd for the power gating on the gpio expanders
-> Changes v3 -> v4:
->   - Added changelog [Krzysztof]
->   - Added nvidia,gb200-ut30b board binding [Krzysztof]
->   - Removed unused imports
->   - Reordered a couple other style guide violations
->   - Added back in a couple needed "status okay"s
-> Changes v4 -> v5:
->  - Resumed my patch after a pause
->  - Don't plan to make this include of nvidia-gb200nvl-bmc due to some
->  platform differences
->  - Fixed io expanders that weren't gated by the 3.3V standby regulator
->  - Fixed incorrect interrupt pin for one IO expander
->  - Removed some IO expanders and I2C busses
-> Changes v5 -> v6:
->  - Fixed subject line
->  - Added missing gpio-key compatible type to buttons
-> Changes v6 -> v7:
->   - Removed Acked-by Krzysztof
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
 
-Why? You did not even give me chance to respond to your reply.
+<form letter>
+This is a friendly reminder during the review process.
 
-Best regards,
-Krzysztof
+It looks like you received a tag and forgot to add it.
 
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
+
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
+
+> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> index 456dbf7b5ec8..624581db2330 100644
+> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> @@ -99,6 +99,7 @@ properties:
+>                - inventec,starscream-bmc
+>                - inventec,transformer-bmc
+>                - jabil,rbp-bmc
+> +              - nvidia,gb200-ut30b
+>                - nvidia,gb200nvl-bmc
+>                - qcom,dc-scm-v1-bmc
+>                - quanta,s6q-bmc
+> -- 
+> 2.43.0
+> 
 
