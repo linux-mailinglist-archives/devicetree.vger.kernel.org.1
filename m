@@ -1,304 +1,134 @@
-Return-Path: <devicetree+bounces-199462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2A2DB10C39
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 15:56:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1CFBB10CAE
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 16:08:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08CA03B58C9
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 13:53:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E85355445BC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 14:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BF22DE701;
-	Thu, 24 Jul 2025 13:53:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63B772DE707;
+	Thu, 24 Jul 2025 13:58:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Q6mze2Uq"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PbQfqYEe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2304D2DE6E1;
-	Thu, 24 Jul 2025 13:53:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 193242D5418
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 13:58:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753365189; cv=none; b=H5MVdgSA0awDgPQrjyKCLyNW/FybCOb8E7ZO6tCaYmTK4fNIUqJVUQoX6RqYPFGIEHIcaPjcvEOFM929IVsCmJLGDpKBNouUnZBlQVl+8ubEGXyioXVwJ0tnjTEjwW434UWhderA7cXzAp9RgSoeTsU67WD7I8XP2/YCmoURZ54=
+	t=1753365535; cv=none; b=fPifFETUhmNBVFBJffW2iKa8y0RAZlp15xwksK1Fo4lP1q52tVYQNO37PcmiLtRTythpvpO6hSMTAVeXmaWmYVDCF/iRTpMk5k2kDVL2NBy7DoABrK9O3xsI0ec06ZKQ/hCZgMmX+k1UzdMhnNsb2H+NnHM5MjCw2e/jusTVnRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753365189; c=relaxed/simple;
-	bh=yqn7eXWGIicat6ACtQ06fChq2+bwHai2eNzsQEGAiZc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pFmujNQ7x0dtmyexmvoy87HPyAvVMLSGWuJVfFihC0h0F/3uruyJui8+B/jJWY39Pzd0zxrudIdndUcoRZ023s0j/ADBy1vZkYTSUWKxbeqfVDiKVzoMOZWvNsudQwyXVdr33HeJOQEMiNc1xbNbd4YjVAWHBsDrNsiO5/OtGYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Q6mze2Uq; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 129698BF;
-	Thu, 24 Jul 2025 15:52:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1753365144;
-	bh=yqn7eXWGIicat6ACtQ06fChq2+bwHai2eNzsQEGAiZc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q6mze2UqXFwh86Xtgaeu1xH+pGVtu3y3IGXfrWbM+IHtdZvLvV+KWdf1wPiHxCUUG
-	 wS5S2sHAqnfWVi4xOY5PgiM4mfRjJBG6AOYbYILNPM0dyegcAMR3HcMAvOJldHPuDH
-	 FFIaeNm6i+BIst7SC7YtTgFSfK9ibU/PTOGR506o=
-Date: Thu, 24 Jul 2025 16:52:59 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	=?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Arec Kao <arec.kao@intel.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Bingbu Cao <bingbu.cao@intel.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Bryan O'Donoghue <bod@kernel.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Dongchun Zhu <dongchun.zhu@mediatek.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Hans de Goede <hansg@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>, Hao Yao <hao.yao@intel.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Jacopo Mondi <jacopo@jmondi.org>,
-	Jason Chen <jason.z.chen@intel.com>, Jimmy Su <jimmy.su@intel.com>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Leon Luo <leonl@leopardimaging.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Matthew Majewski <mattwmajewski@gmail.com>,
-	Matthias Fend <matthias.fend@emfend.at>,
-	Mikhail Rudenko <mike.rudenko@gmail.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Pavel Machek <pavel@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Shunqian Zheng <zhengsq@rock-chips.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>,
-	Todor Tomov <todor.too@gmail.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Tony Lindgren <tony@atomide.com>, Zhi Mao <zhi.mao@mediatek.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-	"linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>
-Subject: Re: [PATCH 00/72] media: i2c: Reduce cargo-cult
-Message-ID: <20250724135259.GR11202@pendragon.ideasonboard.com>
-References: <20250710174808.5361-1-laurent.pinchart@ideasonboard.com>
- <PN3P287MB1829DD1254FB74391A750F498B5EA@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
- <20250724115202.GK11202@pendragon.ideasonboard.com>
- <PN3P287MB1829C9E8C78ADD70259A68F08B5EA@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1753365535; c=relaxed/simple;
+	bh=r8m0H60OOKOoeR/NbCqxjR9n2Mi89/uUoIKCUGbAQns=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aABts9Js0Pu/EPlrr7hdbNeHtm74GR9BSY+vTh7+L9hW8BJCumqqdz1fWumyrpQ/0nmcolq/GlzTX2/9mi8M1X/goDzaTfNIwG02qAqXlCMAdmZOWWoshhoP6NQziHlO3Qj9ZgnfX+hNqNowK59Tfr8WfG6TlAk87NnTJUpRAvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PbQfqYEe; arc=none smtp.client-ip=209.85.161.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-6159fb8b2aaso502561eaf.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 06:58:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1753365532; x=1753970332; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n8lhkGM6eZ06qMIeQSqBFlLSi5hic1SbTRnA9SoJkZU=;
+        b=PbQfqYEe2Za1lQGP9TtLH+GROHBbNby4i5mr2IxOceP2kFqxinT9JZFFfEYiBcQjLb
+         xUQF1aafLpIfMI2zOX3dZ4cChUTmDRt6ZTNFBsdMpfXXja3bRo5TENQAywKb9LBo6UAk
+         DC6oxb4f7BAcusD2lnC7CftQeP7rqx/a+gXAXZyVUP0M0K6tPu/YKD1FSvBt75iSVolp
+         vrkgKP7IReNhzxygWuxZezFdQNIGrAHp+tXBWKsp7eOMZNkf1nFCICx11pIlqk6LHQ7b
+         ev1cI7MdOKr8mTz1UL6sStD01h8yGDABvaVeqeo8RV9KLe0GW63OkjclFG66N2O135Ut
+         WFAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753365532; x=1753970332;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n8lhkGM6eZ06qMIeQSqBFlLSi5hic1SbTRnA9SoJkZU=;
+        b=YfmSJMxq9lWHV4qdZoAqkZw10hZbTeBfNwyWY+C3Xp//1c4k2zTOSqrZdPdW34i6Us
+         f0Jf1UEISpL16QI4EEQERkqG39krp7grOQUFy4VvbP8XqCc+gPLV3FCI9C9TVcIFGvTd
+         ydM0R30mclu4NAaopjMHBbCLgwWWgubAaLcD31Ib/AqFU5f45yXNvG49NiJUmGkCqyOt
+         lHhppwIyxWkpwdgjGlIPJ8GL6zUnjGxTrIZF2MoG8fcnX5eePlleGUUB0ezG2NV/b/nW
+         c+UOzYUHXEz4v1O+71JR8Ph9F2MxiUSo0ewLt736F+4f0zZUgTkLfsHQU4RDuAp6k1dE
+         T+cA==
+X-Forwarded-Encrypted: i=1; AJvYcCXtADyUC8mRseK0l0uxSBOAY6mj+fmZ2iWsiHMhj98269LclmMP8olf8Wgkb04GCSErXr0qPd+FrzI9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjnhxupXtelnHbKJqDXUQ38afIwwatbOF24rtk7LeTTC7HpyX2
+	yeTjrJU80mOrQ1h/t46qwYA357yi+2ulI9AmvraCnSStvRs22ozAIimnzpJ7+WR4kLKXygrxTVV
+	lGRLv
+X-Gm-Gg: ASbGncsyhpWFrrbuzc2mlTyJUzdEquaheIwbUUTzqqUSoXYGkyEHY1FTe/1JJNtSB6J
+	XcwzbMP7Qr/HeF6UtmmJvSdG315M3Btv+CI4uTj/eIjbn87KUn0ANU016xpDGBhA++gIlj918zf
+	AMSxImP0d08xGmrmg+dLqeomnK+q3chCA+aCy/RLOxMfijzdte6NLb38DZ2rZoyB2NBHQMuDjZ+
+	/21g4yqVemnnFTXCJ73lCD8KHSy+ozQf+xxsfO0rVtMl5jKitkbJTDfKv5lj+SqkgVQ8V4WcnKO
+	8aqZ5BrbIkguurSjrh0zeRbocmCQFOsroCjyh2siWxyaZNJ1x6+pyTWO1UCs4/t52VaRpEsqCbr
+	3Y35ra0LO9DdHm6LmpfV81I5xc07apkyOO7hV2AvQXdoFbj97C8LwOF6/MU/iFsZcLlR5aaaIj5
+	c=
+X-Google-Smtp-Source: AGHT+IHZQzg7kaDuAlFKlh3XPZNFCAFVXmInWE92TfWbiWLHeoiep/6LdiR6Fg9xqiYfhuX5RRglmQ==
+X-Received: by 2002:a05:6820:6ac1:b0:615:c215:6134 with SMTP id 006d021491bc7-61873284b83mr5671009eaf.4.1753365532107;
+        Thu, 24 Jul 2025 06:58:52 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:9829:e9f9:e475:a206? ([2600:8803:e7e4:1d00:9829:e9f9:e475:a206])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-618fb44265asm223960eaf.11.2025.07.24.06.58.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Jul 2025 06:58:50 -0700 (PDT)
+Message-ID: <d292c93b-1ff6-43e5-9187-2ce851399bea@baylibre.com>
+Date: Thu, 24 Jul 2025 08:58:48 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <PN3P287MB1829C9E8C78ADD70259A68F08B5EA@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] iio: add power and energy measurement modifiers
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>, robh@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250711130241.159143-1-antoniu.miclaus@analog.com>
+ <20250711130241.159143-2-antoniu.miclaus@analog.com>
+ <1ead013c-56ef-4f11-afb9-2b11e0de7eb2@baylibre.com>
+ <20250724140940.2d9b4a1f@jic23-huawei>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250724140940.2d9b4a1f@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jul 24, 2025 at 01:24:24PM +0000, Tarang Raval wrote:
-> > On Thu, Jul 24, 2025 at 11:42:55AM +0000, Tarang Raval wrote:
-> > > Hi Laurent,
-> > >
-> > > > This patch series build on top of Mehdi's introduction of the
-> > > > devm_v4l2_sensor_clk_get() helper (see [1]) to drastically reduce
-> > > > cargo-cult in camera sensor drivers.
-> > > >
-> > > > A large number of camera sensor drivers directly use the
-> > > > "clock-frequency" property to retrieve the effective or desired external
-> > > > clock rate. This is standard behaviour on ACPI platforms that don't
-> > > > implement MIPI DisCo for Imaging, but usage of the property has leaked
-> > > > to OF-based platforms, due to a combination of historical reasons (using
-> > > > "clock-frequency" was initially considered right until before the
-> > > > introduction of "assigned-clock-rates") and plain cargo-cult.
-> > > >
-> > > > A large number of camera sensor drivers also set the rate of the
-> > > > external clock with clk_set_rate(). This behaviour is also fine on ACPI
-> > > > platforms, and has also leaked to OF-based platforms for the same
-> > > > reasons.
-> > > >
-> > > > Mehdi's "[PATCH v2 00/48] media: Add a helper for obtaining the clock
-> > > > producer" series improves the situation by centralizing clock handling
-> > > > for camera sensor in one helper function that implements the correct
-> > > > behaviour for all types of platforms (and should later allow support of
-> > > > MIPI DisCo for Imaging transparently for camera sensor drivers). It
-> > > > doesn't however address direct access of the "clock-frequency" property
-> > > > or direct calls to clk_set_rate() in drivers.
-> > > >
-> > > > This series builds on top of the new helper to replace manual handling
-> > > > of the clock frequency in camera sensor drivers. It starts by addressing
-> > > > the DT bindings and reprecating the clock-frequency property for camera
-> > > > sensor drivers in all YAML bindings (01/72) and in the et8ek8 text
-> > > > bindings (02/72). After that, patches 03/72 and 04/72 make the clocks
-> > > > property mandatory in the two camera sensor DT bindings that specified
-> > > > it as optional. Finally for the DT side, patches 05/72 to 14/72 replace
-> > > > clock-frequency with assigned-clock-rates, or drops the property
-> > > > altogether when the source clock has a fixed rate. This aligns the DT
-> > > > bindings and device tree sources to the current recommended practice.
-> > > >
-> > > > After that, the next 5 patches are assorted drive-by changes. Patch
-> > > > 15/72 drops an unused header the belonged to a long gone driver, and
-> > > > patch 17/72 drops unusued support for platform data in the mt9v032
-> > > > driver. Patch 18/72 is the first that addresses clock rate handling by
-> > > > dropping unneeded clock rate setting in the mt9v111 driver. Patch 19/72
-> > > > takes a harsher approach for the ov6650 by dropping the driver
-> > > > completely as the driver hasn't been used since v5.9.
-> > > >
-> > > > The next part of the series replaces manual clock rate handling with
-> > > > usage of the devm_v4l2_sensor_clk_get() helper in a large number of
-> > > > camera sensor drivers that implement clock rate handling in a standard
-> > > > way. This is done in patches 20/72 to 54/72. This interleaves the clock
-> > > > rate handling changes with drive-by refactoring (in separate patches) to
-> > > > make the code easier to deal with.
-> > > >
-> > > > The final part of the series addresses the remaining drivers that
-> > > > implement non-standard behaviours. It starts in 55/72 by adding a new
-> > > > devm_v4l2_sensor_clk_get_legacy() helper function for those drivers,
-> > > > similar to devm_v4l2_sensor_clk_get() but with a few more quirks. This
-> > > > function should not be used in any new driver. The remaining patches,
-> > > > from 53/72 to 72/72, use the new helper in drivers, interleaved with
-> > > > drive-by refactoring similarly to the previous part.
-> > > >
-> > > > Before this series, with Mehdi's series applied, 29 drivers read the
-> > > > "clock-frequency" property and 18 drivers set the external clock rate.
-> > > > With these series we go down to 1 and 3 respectively, namely the ccs,
-> > > > mt9p031 and mt9v032 drivers. Clock handling in the CCS driver is a bit
-> > > > more convoluted so I will leave to Sakari the honour of dropping the
-> > > > last direct user of "clock-frequency" :-) As for the mt9p031 and mt9v032
-> > > > driver, addressing the issue there is more difficult and likely not
-> > > > worth it.
-> > > >
-> > > > [1] https://lore.kernel.org/linux-media/
-> cover.1750942967.git.mehdi.djait@linux.intel.com
-> > > >
-> > > > Laurent Pinchart (72):
-> > > >   dt-bindings: media: Deprecate clock-frequency property for camera sensors
-> > > >   dt-bindings: media: et8ek8: Deprecate clock-frequency property
-> > > >   dt-bindings: media: imx258: Make clocks property required
-> > > >   dt-bindings: media: imx274: Make clocks property required
-> > > >   ARM: dts: nxp: imx6qdl-pico: Replace clock-frequency in camera sensor node
-> > > >   ARM: dts: nxp: imx6qdl-wandboard: Replace clock-frequency in camera sensor node
-> > > >   ARM: dts: samsung: exynos4210-i9100: Replace clock-frequency in camera sensor node
-> > > >   ARM: dts: samsung: exynos4412-midas: Replace clock-frequency in camera sensor node
-> > > >   ARM: dts: ti: omap3-n900: Replace clock-frequency in camera sensor node
-> > > >   ARM: dts: ti: omap3-n950: Replace clock-frequency in camera sensor node
-> > > >   ARM: dts: ti: omap3-n9: Replace clock-frequency in camera sensor node
-> > > >   arm64: dts: qcom: sdm845-db845c-navigation-mezzanine: Replace clock-frequency in camera sensor node
-> > > >   arm64: dts: renesas: aistarvision-mipi-adapter-2.1: Drop clock-frequency from camera sensor node
-> > > >   arm64: dts: renesas: rzg2l-smarc: Drop clock-frequency from camera sensor node
-> > > >   media: i2c: mt9v022: Drop unused mt9v022.h header
-> > > >   media: i2c: mt9v032: Replace client->dev usage
-> > > >   media: i2c: mt9v032: Drop support for platform data
-> > > >   media: i2c: mt9v111: Do not set clock rate manually
-> > > >   media: i2c: ov6650: Drop unused driver
-> > > >   media: i2c: hi556: Replace client->dev usage
-> > > >   media: i2c: hi556: Use V4L2 sensor clock helper
-> > > >   media: i2c: hi847: Replace client->dev usage
-> > > >   media: i2c: hi847: Use V4L2 sensor clock helper
-> > > >   media: i2c: imx208: Replace client->dev usage
-> > > >   media: i2c: imx208: Use V4L2 sensor clock helper
-> > > >   media: i2c: imx319: Replace client->dev usage
-> > > >   media: i2c: imx319: Use V4L2 sensor clock helper
-> > > >   media: i2c: imx355: Replace client->dev usage
-> > > >   media: i2c: imx335: Use V4L2 sensor clock helper
-> > > >   media: i2c: og01a1b: Replace client->dev usage
-> > > >   media: i2c: og01a1b: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov02c10: Replace client->dev usage
-> > > >   media: i2c: ov02c10: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov02e10: Replace client->dev usage
-> > > >   media: i2c: ov02e10: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov08d10: Replace client->dev usage
-> > > >   media: i2c: ov08d10: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov08x40: Replace client->dev usage
-> > > >   media: i2c: ov08x40: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov13858: Replace client->dev usage
-> > > >   media: i2c: ov13858: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov13b10: Replace client->dev usage
-> > > >   media: i2c: ov13b10: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov2740: Replace client->dev usage
-> > > >   media: i2c: ov2740: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov4689: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov5670: Replace client->dev usage
-> > > >   media: i2c: ov5670: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov5675: Replace client->dev usage
-> > > >   media: i2c: ov5675: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov5693: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov7251: Use V4L2 sensor clock helper
-> > > >   media: i2c: ov9734: Replace client->dev usage
-> > > >   media: i2c: ov9734: Use V4L2 sensor clock helper
-> > > >   media: v4l2-common: Add legacy camera sensor clock helper
-> > > >   media: i2c: et8ek8: Drop support for per-mode external clock frequency
-> > > >   media: i2c: et8ek8: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: gc05a2: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: gc08a3: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: imx258: Replace client->dev usage
-> > > >   media: i2c: imx258: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: imx290: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: ov02a10: Replace client->dev usage
-> > > >   media: i2c: ov02a10: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: ov2685: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: ov5645: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: ov5695: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: ov8856: Replace client->dev usage
-> > > >   media: i2c: ov8856: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: s5c73m3: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: s5k5baf: Use V4L2 legacy sensor clock helper
-> > > >   media: i2c: s5k6a3: Use V4L2 legacy sensor clock helper
-> > >
-> > > If you are planning a v2 version of this patch series, please consider
-> > > incorporating the following improvements:
-> > >
-> > > 1. In the imx219 driver, you can also replace direct client->dev usage.
-> > 
-> > The series doesn't touch the imx219 driver. The patches that replace
-> > client->dev usage were meant to simplify the other changes. Additional
-> > client->dev removal should be done on top (and likely through all camera
-> > sensor drivers in one go).
+On 7/24/25 8:09 AM, Jonathan Cameron wrote:
+> On Fri, 11 Jul 2025 14:23:14 -0500
+> David Lechner <dlechner@baylibre.com> wrote:
 > 
-> Okay, great
+>> On 7/11/25 8:02 AM, Antoniu Miclaus wrote:
+>>> Add new IIO modifiers to support power and energy measurement devices:
+>>>
+
+...
+
 > 
-> > > 2. In the regulator code, you can reduce boilerplate by using
-> > >    devm_regulator_bulk_get_enable().
-> > 
-> > devm_regulator_bulk_get_enable() doesn't seem to be a good idea. You
-> > generally don't want to enable power everywhere unconditionally, and
-> > sensors very often need a guaranteed power up sequence.
+>>
+>>>
+>>> Signal quality modifiers:
+>>> - IIO_MOD_RMS: Root Mean Square value  
+>>
+>> Suprised we don't have something like this already. altvoltageY isn't
+>> clear about if the value is peak-to-peak or RMS.
 > 
-> The regulators are optional, we supply power to the camera sensor directly
-> through dedicated power rails and there is no strict enable sequence 
-> required in this case.
+> Hohum.. My vague recollection is peak to peak, but oops we should
+> have documented that better.  Someone want to audit existing drivers?
+> 
+>>
 
-What exactly do you mean by "this case" ? Are you talking about one
-particular sensor ? One particular camera module ?
-
-> However, if you feel it's better to retain explicit handling for clarity 
-> and flexibility, I’m happy to stick with the current approach.
-
--- 
-Regards,
-
-Laurent Pinchart
+I did audit them (which is what lead to the Q/I modifier cleanup
+in the ABI docs). Most drivers are just using the frequency and/or
+phase components. The ads1210 uses peak-to-peak (I should know, I
+wrote the driver :-p). The envelope-detector driver mentions high
+and low when making an altvoltage_raw measurement so that sounds
+like peak-to-peak as well. There are a couple of frequency drivers
+that also have altvoltage_raw, but I didn't look as closely at
+them.
 
