@@ -1,95 +1,94 @@
-Return-Path: <devicetree+bounces-199419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DAB1B10959
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 13:38:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 109F0B1095C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 13:38:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1517AC32A1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:37:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BADE9AC81C4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 11:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4170F284689;
-	Thu, 24 Jul 2025 11:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E40283C83;
+	Thu, 24 Jul 2025 11:38:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fUeDQzul"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lMChI+KB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48680283FC3
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 11:38:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B42527465C
+	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 11:38:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753357095; cv=none; b=fSxW0DF0XsZksKj37EBshmCZNVuyMI3m8i+syMDnUgQqsfYfsG1o1fS2UlHGMEhcRkn+Exf/5lGK3QwOziK2mCqIvvs9e+hKKd7dn0zBIaAv3C3jWF1q4EQ7roblnTI0fTzUn9Y4o9iw+MB+mTo8RJDq0SErCKS55yDOSIMMG3s=
+	t=1753357121; cv=none; b=gYSdASkQnBGxA1kQFCHaYGYE4M8CxC9bbZ0ENHyR4QfQ4U/pB6eha9uE+M95CrahzeZCh3lL1Bch6mk14q86ifvJr4RNP78TS8ytre3iMGeFWUC2bujQ0zVuJA0H7jNemnLo51nHjgF8FWZWvfdl+VOVaZjZXxlGeQIyV1S7QVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753357095; c=relaxed/simple;
-	bh=45FaSWcT2H/J/lWN6laN5MjJAEyxRPSxwgKdw545+gM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VmZwu2PkGnUDoAshX5a9b6j5zcuqOIhN8WhQHJOqW97VZeXctQfergYGGbdtocKfE4rDihaIvIFhl/gQJfQrACn+MyeKapYoFr0j9K1qqTplw7g9Y5GedwhJOYW8ReiOj8MW3WQ+efscoOCEZLap8Gp8yBUaigwBPQGJUyvwexE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fUeDQzul; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1753357121; c=relaxed/simple;
+	bh=NkMGFi3p/c6kYxTwl4O888JKDkgwIVuVoG5nD328Dwc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kfh9mgjr9PRn3tJBHFCrrJCifA+XCLk/bNAvitCTVEPGVFX13k0ovrrIqjJeIii5wlZqRAlbrOg8MV7mOANPY//x6gZp/JMlYplT69IfPsikQpjessyLXVrjYaL7cCKjwK7W8TH2Ps5PHSvWmHRIOL9BZv1M7ptoKoK2bzzXzKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lMChI+KB; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-456053b5b8cso304575e9.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 04:38:13 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-456107181f8so432945e9.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 04:38:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753357091; x=1753961891; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1753357117; x=1753961917; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7SfT/H0IaQgoJ9/m5uHIPysxAkedCZccNPDptMCSI2Y=;
-        b=fUeDQzulOE2OF4JpbpuxPI+M6XTpLzppdkgTLwraVXNH2fsFHY95kZaA9ySWCsa+I7
-         SmBadUQU+AyA5EH/CRMr38oN7HgXJMArRWIlZgBn0u0T+a/J5zC2mSOqm32kMvZmZMoX
-         ZtyIuZcnxpVEWV7K9lH1CYiCvvfk8KE57TVf5um61EhMGYt8snSvh5zrhgpbS2sTdYN0
-         FQ4v1OyadpRUBlMLqK0CfuJZYWJ89mtTTcxc7lfcV/3E0GFDaYIaqmYldLkD1UFRAWi4
-         hB3J9Vt0YnmXEV+wJxY0M5cFu0Jn7Qg8ooYXAOjLhK0nXA+NIz02nvSWF/Vqr8lcQ1+T
-         0eQw==
+        bh=ZP1K4/AyesLutP+RsWSuK64TNdkfVSYVhgI2t7U6AVY=;
+        b=lMChI+KBcrg2TR08HUoPhRiNvteGfMPXg9DDl7YRDdI4vCAs7G4fAlm54kzPenugSJ
+         96JmDSLoGFMuHOyMQqHw7tb4uhN+WyAY7+vsCoAX4pdLTEdaHpQQDrhevFRpGf3xKk6r
+         mAB1y+VGMcXclxTE+wDUQ3tmhvf5tb4ZRsHSJ+eHCb/x4pzrXcdgUI3sEylFiEpOxnH3
+         iQnuEH6WqhwYArwCT/OOVc+I6LnwggXwobcCWBjIPrIXnRT++flNbtKa/MwrRtSbz1po
+         i/z+iNrknIrN9Xk4+6TiSLO0KWWF0zz47UOX5PcvM2xV+Si72dJO+DUn/LFLnvpm+8bI
+         VRxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753357091; x=1753961891;
+        d=1e100.net; s=20230601; t=1753357117; x=1753961917;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7SfT/H0IaQgoJ9/m5uHIPysxAkedCZccNPDptMCSI2Y=;
-        b=G+4ICHdYV6SrGCLovXT4vKj5dmpyPE5hYoKe5KRkZvnLV1JPDwBBLNVesJnWT7Bg3e
-         fzOyLVPbNeTLOG2mvUSZL/0wKEa/pAqooMEGpiyOJx0oU8eEsu0ccf6AFF7XpYUa4J1C
-         HGXl1UmuPYDgbHl90PI9+ttVSEr/2cdgr/81Gd19xR/amf+RfQjKVNXQmBp7HdwrqwHj
-         L8qrsP/s5s1gKkVLP60YDWmAF839bBZNuv7mh08PYCv8B59A21biOWmDiNz6Ywr1ZUma
-         9F+YbIWUkUTlczM9VCN9qRlv+n2f3gd0OSlukB0C17FooNe6KrR5QKTU99i7h2VAG0GT
-         A+HA==
-X-Forwarded-Encrypted: i=1; AJvYcCXqF9Zo48nri4+hQKGRi0N7iFvaroHnH5AKadKymTylbAC2yhxO1wrvbiWWdiUMiyOT/Ova08rQUi6u@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzo0jhyHRYj8UiznD1UjtAlS8O2Pvc5Nx7JcixNU0yJgkWVBtsZ
-	oRIu4zOyKIvVfUbrEh/UrIErmT22wjYSIIPt1Zp1GComfXhWjIjBycfPpBCQuRqAi70mw1qpuST
-	bwEcC
-X-Gm-Gg: ASbGncsecPJwwqjMqkmSmvjBh49Rf3RoPjMJbb0KFnac6m1uuA/AFf3jIvL1Gya9ebi
-	5wVEDSOguIMba4z8dTwLnHFfsa4LP0V6VvIjstZ+mQNmR9E5oldyLtGJvTuJSFTPZe4ZLZ0zPZv
-	Lr6LMY8O6HbVn6rtYSJDKUtZhK8EotDFJgQQvHteGKWuIfaKtyH0AwMKqne9QidndQlFMOU5Vwv
-	S+El44UDZv+v2ZXeO0XKKDeZhMXQftODK2oeF+Xyzij2wYdEAKQDKxh04dGngf7dWWSx4J7EHBe
-	+OGdTEJ3tRKl6BkkfgTSnB1xyb9qdvNdmrZFf/mLJQJMYAPflFN/BH2h5WQuYzmEtoKzTe7ndxw
-	kQ8Jk7ZxpQ5EXvZyLt+SSpids7djA/Gy8lsg8u3E/Zyg=
-X-Google-Smtp-Source: AGHT+IGloTURxwE1dU+QnMLX51vNMCm0IjURW0xHmmC87uccnrc9zCjlEuHTvSB3XoKDYy1Q98b1Vg==
-X-Received: by 2002:a05:600d:11:b0:456:4bb5:c956 with SMTP id 5b1f17b1804b1-45868d6b4ccmr22625275e9.7.1753357091441;
-        Thu, 24 Jul 2025 04:38:11 -0700 (PDT)
+        bh=ZP1K4/AyesLutP+RsWSuK64TNdkfVSYVhgI2t7U6AVY=;
+        b=GLnCMkk7NHWh2o/kSCwkrQDvGzwGmmO7I7lITJEF0qZGrSDr0kXrsqei3V/N4PT/ww
+         1C4TJhBQiOKuPgbsmJQXePWP9hnh1l7j6vmhadv8fLV55Q5faRnEZah9FL27T7P2FZQo
+         4Bebm3viWwe2oRDWPvWWUlrmQvpeAAzyVxW2b7yEyBSVoCUBjZUJE8dsyz2DNqvsYP8g
+         2QTJH5iJVkoFCsM7nWzxlerxSv03G37I4pBpBUJZjO2CQY7Bz9MTEuPuGKbO+Jd8O+Tq
+         ZelN3cmtFJWn9Qjw0C6A5Sh3r7XEuefLdVkzPUe9wZZtX9RvWRu30gCVlD3ecLZcLJf4
+         xYBg==
+X-Forwarded-Encrypted: i=1; AJvYcCWTtAxVm7D1b3Dk3379Np203Bey4r2p73jxKqSHmDUyrKD3bee/RfwuXnOUD5luS9zVKGrtKZOLmyJ1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfOKlJUSFzQb5VCernDUgSVtKyZ5iQY/ycnLAPe0w6a7wdVHFR
+	5C1x6v56RC9OENQM6ntJvfOqXD/q/Dc6Xlf0wqpj7RhqRK/uv6xXKk78LBpTRCQigrA=
+X-Gm-Gg: ASbGncuZHliM/JViwYSW3F/9cjE62JamryJTJFl56wpoh+eudwFf7wmtxunx/CojJwH
+	y6COY3NJjbJhVIiyEiU7x3WG+FLsEqsvhGPL2enuT/Fg/IKXEL9YK1RUriyFQrk4IwXjisLGCkg
+	s+I0i7ubfPFt8KtZO42HDythJ2M8olrw/0ecdoRzn8EPx0VjQL4fAsQVclH2xzI68PdzFmWuxiV
+	yZRx0BoDLmTTgHH/GUWOpVIRijlp4ZsUgS11T9ZnE+eyW2OEJ55kA5gd6M/IZ4S7iM65GGKu23r
+	YNRLSb52E48jbw+Jj+nYbVrmX38DssK3kB4BWB2dojnaZhogyCMwdK36yT+t22/Nb7JcTa+BTYU
+	om1MDs41H2IkteWcgHLO4AYMPGc2EF1Ql
+X-Google-Smtp-Source: AGHT+IGJovsvV+Udvl43JVG7zG6hcSS18i/FprIMOEeqKVHDNHs9rT/+/8QdJpPDobp2mvdjmrAffQ==
+X-Received: by 2002:a05:600c:4e05:b0:453:9b3:5b70 with SMTP id 5b1f17b1804b1-45868d7e0f1mr20719995e9.8.1753357117136;
+        Thu, 24 Jul 2025 04:38:37 -0700 (PDT)
 Received: from kuoka.. ([178.197.203.90])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458704aaf20sm18329565e9.0.2025.07.24.04.38.10
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b76fcb888csm1913059f8f.59.2025.07.24.04.38.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jul 2025 04:38:10 -0700 (PDT)
+        Thu, 24 Jul 2025 04:38:36 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Michael Hennerich <michael.hennerich@analog.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
+To: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	netdev@vger.kernel.org,
+	linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH net-next] dt-bindings: net: Replace bouncing Alexandru Tachici emails
-Date: Thu, 24 Jul 2025 13:37:59 +0200
-Message-ID: <20250724113758.61874-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: iio: Replace bouncing Analog emails
+Date: Thu, 24 Jul 2025 13:38:27 +0200
+Message-ID: <20250724113826.61998-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -97,27 +96,28 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1901; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=45FaSWcT2H/J/lWN6laN5MjJAEyxRPSxwgKdw545+gM=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoghsWBEmBafEeHRtRGJFliMCpvIzCTxrEH8ZE6
- 7sbsMzYYZuJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaIIbFgAKCRDBN2bmhouD
- 116PD/9ml2y2WOFTg7mpMdyOnPb4/iF/0R5DE4b95e7QeX7tBhleeGN/7Cd2ezr1mSTS43lCIv+
- uoY2XPUEyGDufj4rC7NZyFluis69FFz3NYp7WGMNEuweiGeUseSqrWZD4jAd9h/nMkGYLURamG5
- zuw67L+EeUxRxFQz3tBlexhbO9eBF0LrVjZdyrrdkl/bMCCgOohRbIiT0dJJg6Tfnx4T2w11Xep
- U1WYD1CxMfMckGlC6s4V6CSL1gMBvdTxb2VyCgmBd/1xVWKGNcnFrdTyXY87paz54rZ39t+3N+H
- gMHUJ2rvuRYdD7FZVubJ0TkNwBlwexhJKsPLLz+1nHNhIldx5Hxd1T+m2Zc2AdQ2f6rW+IsiA35
- D/sDKShzFWXKn9LIFXYfEW0JgRTHHCkaVHAOqxwrssUWXIVQHQGU2PCLmvMTcI/QTTL2QPLHP2i
- 1xNJ3aWxWwfPjtC79BWjkEh77sqPMs+1CtAv94aDmRzYbXS/YbPUp+VIc56OpMy5TyowVmjjBdG
- Dn64rtb9nwVRaW3Gppou03B7Cybb/rUnZs/S7VdtoSAR0hJu1H3lKJMjQ51C5Fg7wqQuvEuNeR+
- 0TpW3ko9S+d/7U2gUB+xgZtEmZDOieWDC7EP4XY5zy8i2fzwi+FBWnw37V/25aNlcL5o+fma7SY pRkGEm3acQXAdtQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5564; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=NkMGFi3p/c6kYxTwl4O888JKDkgwIVuVoG5nD328Dwc=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoghsyKE4QqAMvcESOFmKNB/B4cDT6bZfowAkjU
+ /PJSJ04CGmJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaIIbMgAKCRDBN2bmhouD
+ 15GnD/0UT1uTaaOeXKKbWxjuPDDInnv+fENGDm7QwsvjqrPMS069NzSH3a7rfr0VscLaYZgm4XK
+ H8BV8m8pbje0soM0TV7Zz/auzZKzpHSTWc8FZArkMVbBj57Zsn0yvsEpIvkOgUHcTOuDXCbJwv6
+ 5uZSWAa5thRN71BD05hYmMKmNHI/GDl1yGeKFEeCNfXX+CpHMadoKusyNxO42IoGNR9HqUX8bem
+ v62cKr4EmQNlcs0CHBqkSm1UJwrDqRKoj6aJwRVK0nCykndv+OU+nMwzXhpePe6NfoZd0bOlWwz
+ sUOnQXYkU0ml10xNF/wadoyYT2KjUpAiMKVz171R/IsmhSuKEued1+OP56akCi4IMamJkjsYTSs
+ npKumOTjj46myjZDfwswiD5TrBcHfo6rJ8hqBIU6dSj4Wsvs0eMXWSIb1glwc+TC7u9tnti3wuS
+ VKGU/iuZi+AUalK7Zu72vhAWmZor1V21LHHLxKWhaxlVZSPczzzpyep71kYoNjEOyGW4UK5FvAV
+ PvGWQcQNW6LKeiYZtfOK4VNwx/uMBBWFPUkr81NVO5nLq5yhV5aUiJwOfKFVCtgT28Q3VDw3A3v
+ Wkvs9d2ho1xG/CJAWMBUzpmzdbMb29MuabX5BN3wtP5nLjCT7CCzOC2afxtKc0gdZKlhCcI1/K4 cyBeN2rUnsxGvNw==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
 
-Emails to alexandru.tachici@analog.com bounce permanently:
+Emails to stefan.popa@analog.com and alexandru.tachici@analog.com bounce
+permanently:
 
   Remote Server returned '550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient not found by SMTP address lookup'
 
-so replace him with Marcelo Schmitt from Analog.
+so replace them with Marcelo Schmitt from Analog where appropriate.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
@@ -128,36 +128,105 @@ author from Analog of one of last commits.
 
 Marcelo Schmitt, could you confirm that you are okay (or not) with this?
 ---
- Documentation/devicetree/bindings/net/adi,adin.yaml     | 2 +-
- Documentation/devicetree/bindings/net/adi,adin1110.yaml | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml | 2 +-
+ Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml   | 2 +-
+ Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml      | 2 +-
+ Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml    | 1 -
+ Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml     | 2 +-
+ Documentation/devicetree/bindings/iio/frequency/adf4371.yaml   | 2 +-
+ Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml   | 2 +-
+ 7 files changed, 6 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/adi,adin.yaml b/Documentation/devicetree/bindings/net/adi,adin.yaml
-index 929cf8c0b0fd..c425a9f1886d 100644
---- a/Documentation/devicetree/bindings/net/adi,adin.yaml
-+++ b/Documentation/devicetree/bindings/net/adi,adin.yaml
+diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
+index 3dc973b98f81..40e9a40a7a60 100644
+--- a/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
++++ b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
 @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Analog Devices ADIN1200/ADIN1300 PHY
+ title: ADIS16240 Programmable Impact Sensor and Recorder driver
  
  maintainers:
 -  - Alexandru Tachici <alexandru.tachici@analog.com>
 +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
  
  description: |
-   Bindings for Analog Devices Industrial Ethernet PHYs
-diff --git a/Documentation/devicetree/bindings/net/adi,adin1110.yaml b/Documentation/devicetree/bindings/net/adi,adin1110.yaml
-index 9de865295d7a..0a73e01d7f97 100644
---- a/Documentation/devicetree/bindings/net/adi,adin1110.yaml
-+++ b/Documentation/devicetree/bindings/net/adi,adin1110.yaml
+   ADIS16240 Programmable Impact Sensor and Recorder driver that supports
+diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+index 88aa67bf2280..55e44c9292cf 100644
+--- a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
++++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
 @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: ADI ADIN1110 MAC-PHY
+ title: Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer
+ 
+ maintainers:
+-  - Stefan Popa <stefan.popa@analog.com>
++  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+ 
+ description: |
+   Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer that supports
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+index 7146a654ae38..958a37def56c 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+@@ -8,7 +8,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Analog Devices AD7124 ADC device driver
+ 
+ maintainers:
+-  - Stefan Popa <stefan.popa@analog.com>
++  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+ 
+ description: |
+   Bindings for the Analog Devices AD7124 ADC device. Datasheet can be
+diff --git a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+index 5207c919abe0..eac48166fe72 100644
+--- a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+@@ -9,7 +9,6 @@ title: Linear Technology / Analog Devices LTC2496 ADC
+ maintainers:
+   - Lars-Peter Clausen <lars@metafoo.de>
+   - Michael Hennerich <Michael.Hennerich@analog.com>
+-  - Stefan Popa <stefan.popa@analog.com>
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
+index 82b0eed6a7b7..058df4c8ddf8 100644
+--- a/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
+@@ -8,7 +8,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Analog Devices AD5770R DAC device driver
  
  maintainers:
 -  - Alexandru Tachici <alexandru.tachici@analog.com>
 +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
  
  description: |
-   The ADIN1110 is a low power single port 10BASE-T1L MAC-
+   Bindings for the Analog Devices AD5770R current DAC device. Datasheet can be
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+index 53d607441612..031b1657cde1 100644
+--- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
++++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Analog Devices ADF4371/ADF4372 Wideband Synthesizers
+ 
+ maintainers:
+-  - Popa Stefan <stefan.popa@analog.com>
++  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+ 
+ description: |
+   Analog Devices ADF4371/ADF4372 SPI Wideband Synthesizers
+diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
+index 7a1a74fec281..e49d5e6fab61 100644
+--- a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
++++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Analog Devices ADIS16480 and similar IMUs
+ 
+ maintainers:
+-  - Alexandru Tachici <alexandru.tachici@analog.com>
++  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+ 
+ properties:
+   compatible:
 -- 
 2.48.1
 
