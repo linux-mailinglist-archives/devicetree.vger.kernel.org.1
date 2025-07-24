@@ -1,168 +1,188 @@
-Return-Path: <devicetree+bounces-199387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C63E9B10785
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 12:14:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA810B1078A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 12:15:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E2C618889F0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:14:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D01A7AA5A9F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 10:14:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE0A0260563;
-	Thu, 24 Jul 2025 10:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE3326057C;
+	Thu, 24 Jul 2025 10:14:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VOvxIEhd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GDrsj7RG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69CD025FA10;
-	Thu, 24 Jul 2025 10:14:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BDA625FA3B;
+	Thu, 24 Jul 2025 10:14:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753352065; cv=none; b=hHHfnkuo4pYKKW1NcEG2wGjmhBLDlRlKly65GMvEbwA/Y+PP9PKHPX1jU4N+WRbVuoDZkIJdKIge9JI/sW4Qi4JbvTtsYD3hs14lp3zH6y//ihuxARrkE6lfq6sm5KkWBGerlTgiUHiNaAZQKGh+nN1qXVnN16dM1+2r6BnBuY0=
+	t=1753352094; cv=none; b=DXqUgDrLqVwm6JrOdU4f8Iyhzd4SywT9pS5r3+rgmzPZ4UgQyS1rv+xiTPoUR8AYAvaLY7S6wYd2J+oxPdwP8WV/xZ3yFSe6IvFIFGENDmxsdQkGFL2mQRElhftuxHXcxMmKZW+rwTrfJZ8gUDvin6/yrKdq7vTqnezd/OCsjko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753352065; c=relaxed/simple;
-	bh=j/tNROBJ9AqaM/+F/rmOXFHzO6aVOQ/0E5dPcthSGq0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BXY1uwk0Bca0uYIAV1HLAkY76vmpPorJPFQAlN7pXDq1az3NVpY4JyL0V3kxdyP1LIMCYmBbPhNGE7epFsUxWjJ26Yr0hMAHFoBI0VXVcF4fQdLgLmSYvGNHj9H4PbXi8nYnI3ONykAo6y2quc+PAPc0a/y9sHKam760w17ZXc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VOvxIEhd; arc=none smtp.client-ip=209.85.166.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-3de2b02c69eso3989175ab.1;
-        Thu, 24 Jul 2025 03:14:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753352063; x=1753956863; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zoxQrE9BQllINJgA23hOAwgoifAhEszw6BlmYIQoAW8=;
-        b=VOvxIEhd5xgO4Dm+vHyxrJNul3L0D3LoL5JxBdkX487Q5c6hJsHm8yn2q8HCZBLj1n
-         /MFg5LfY2SUzETrwuiZndxiT1+Jykj9oyHbXNSS+3GOHGnAvJ5yA8ce6ffA99LI7iiY0
-         P/c9WJQGrQ0jSlbIFbej0uTIIZFDlPlNkybZXHY3/coDrK1P0qR3owko8mtoBDcEjQIy
-         6kWiPEYO4ludeFcDF0WepAsI6LZ5QTjqN3/uh6/gIjkGYT+2bUXVdwC5VbNKRL3hHd9V
-         s6qStlwk7FKmh9jh19io/3EGkZVy2opoQHSzdA8ye/u+38kDNwiKDwEJsBLSBAfWT74J
-         6AKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753352063; x=1753956863;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zoxQrE9BQllINJgA23hOAwgoifAhEszw6BlmYIQoAW8=;
-        b=VH8+vxa3ckxvBA77hGeuPZS6c0EJNeowuh0i9RdK04LbVYHQ/0RCH9uCLNcc3u4vjI
-         bhOWWP0dOiBNRrT2GMP2HvbYPVHg4m67GCHCiMOuc00zHSv9UeJd30iE6NGuomGKXmfc
-         LZc3uJwJVxmQuUsf6cXzt6m3Aa11lt+ngRj/mZAiCLjEiD0u60eQY1je4W6R6dn/QRYl
-         G3fSmGTcXlOcStQdMBUzE8q0pdswB0yQ0/y9slszGLWjMpcjfYH3+5c23n8hpNRpXc5C
-         a0s8pn6UOuv6WwpDOj2MpQGX3XMbocrPXoQmQgCIyZiAXInKACaOc9XTptRiT5T3LqP5
-         q88w==
-X-Forwarded-Encrypted: i=1; AJvYcCUz2ILIO9XFDs+YzOkIS5Z1Mz3wnRwAUHz12Y4qR/u9TkF2vIvojXHraz62qXDoAFMt1I4dOxy9n7TsCpjx@vger.kernel.org, AJvYcCWbIlBHpZoYAcIABgfkb6HZLf2BJS1fCmsQVHoT9enK9fm8Cyz8xIK/Eq1GSKAnoVi3gHV7e25VDbfk@vger.kernel.org, AJvYcCX7EnApAad/Lv7NkZ1CMBKPtyIuZSLn3/yhJoAEtMRvAXj5caYdiVJtLEtf+TkhuL+EAZcus9ZpeNRxOP0=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQjwLCgOrQFZ8IoYabMv3FcU7aCqHYc59kCygzHwhY/+3yqEx6
-	+RNVa1Jf6rldD7I3m564kzJ4kVQ1TsimE5m4iX6mJ0+Zg1mbfaLcbAielV3ZiVlMx6L3rHTxfEL
-	m5VDNFmUVKu/AnFt2egqseaJCIiJK2nc=
-X-Gm-Gg: ASbGncshhLWcAJF2Ypp5dnVp7Tyt6ispUW1HSJU9BpMvyeHSC/ecVBjEZvegjrSHyxI
-	crIrjekH5TMGYAeatipF+EiCeRnGCmr0OimezMEouhyPlN0HdMBV9K3yRH+sD0uAar4uOvcE/wI
-	JBRE6+9P7Uva7DN10x0mOeQ3W3QsDC9CbHLDOlyFHfFsdOUTDBMBxiUS/gCCNe3liKJZQxDTfbF
-	Fme0VM=
-X-Google-Smtp-Source: AGHT+IFuX+HkjjMmIqfOcPi1Vf9XVVv1BJDb7TK2k3LjKb0AvDjYDmsh1XyejNfF4igxDfky969ahsCQGQoG5Rin4/s=
-X-Received: by 2002:a05:6e02:1945:b0:3e2:a40e:d29f with SMTP id
- e9e14a558f8ab-3e3418d71c5mr88504975ab.9.1753352063278; Thu, 24 Jul 2025
- 03:14:23 -0700 (PDT)
+	s=arc-20240116; t=1753352094; c=relaxed/simple;
+	bh=zORcxo3mS6brPEl87DE6MRdiyeVVqdihj/3FCEKbiTM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QSKkmBkuJsCw8rawUtgzccMF6pBcCKZYskU7exrgp0uSDFFQIsyD/Qktm1WSKVDYiWJPh2YUcOosPhnFmXsUu1zLCODN0WB+XR7Y+p9irRDhR3lGq9bvfN0yuoRxN13iXVZzR76YZd/gUnCb357l1NmOKWgKht99NFPXuGWiBdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GDrsj7RG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30D83C4CEF4;
+	Thu, 24 Jul 2025 10:14:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753352093;
+	bh=zORcxo3mS6brPEl87DE6MRdiyeVVqdihj/3FCEKbiTM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GDrsj7RGaUKmRFe2YmNRj6/sLBAYZIQjaT4lMyvILBdotUjyjjp9PjzGhfiKnPkhb
+	 wdo+ZkLnBwjW8MtDK3qrZT7gMrPKySmosNZNHnzunk3wcRAkiPozCGDIZanfeUFgR1
+	 JifMizySQ87kY9Pm3P9t03L8anZuOJDiarkZFUJ0flEAYrfHrsK18EJ2xknSeOXqRz
+	 kOeRWhTUSd9D/VoqhMCSIepkmo4hSmWSqD2ge6ibK6qHY9ZAPPSgQIbGWpUypKRJcv
+	 guW2Mq5oK6fCWyBpdzQlM/jYkEZrA0jC4Wt0ykT5pBBgdlJdG5Mk+6GNzR10ZpJps1
+	 lO2wqUbfktYPw==
+Date: Thu, 24 Jul 2025 11:14:47 +0100
+From: Lee Jones <lee@kernel.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, alexandre.belloni@bootlin.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	mat.jonczyk@o2.pl, dlan@gentoo.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	troymitchell988@gmail.com, guodong@riscstar.com,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/8] mfd: simple-mfd-i2c: specify max_register
+Message-ID: <20250724101447.GY11056@google.com>
+References: <20250710175107.1280221-1-elder@riscstar.com>
+ <20250710175107.1280221-3-elder@riscstar.com>
+ <20250723095125.GR11056@google.com>
+ <877dcf99-107e-4d96-8790-6608976d13ca@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250724072248.1517569-1-shengjiu.wang@nxp.com>
- <20250724072248.1517569-3-shengjiu.wang@nxp.com> <87jz3ykpju.wl-tiwai@suse.de>
- <20250724-fair-sheep-of-success-e02586-mkl@pengutronix.de>
-In-Reply-To: <20250724-fair-sheep-of-success-e02586-mkl@pengutronix.de>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Thu, 24 Jul 2025 18:14:10 +0800
-X-Gm-Features: Ac12FXy8l34qKKJsPON1hex-xaVDf1J211wM6fAeHOddOjpvI8f17HQ8iYSYGc8
-Message-ID: <CAA+D8AN2B_RZ9iZ3qE5zMBfs7BMAkruSRQupoXyrsr7Tt+Gfkg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/6] ALSA: Add definitions for the bits in IEC958 subframe
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Takashi Iwai <tiwai@suse.de>, Shengjiu Wang <shengjiu.wang@nxp.com>, imx@lists.linux.dev, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com, 
-	festevam@gmail.com, simona@ffwll.ch, robh@kernel.org, rfoss@kernel.org, 
-	airlied@gmail.com, tiwai@suse.com, jernej.skrabec@gmail.com, 
-	p.zabel@pengutronix.de, luca.ceresoli@bootlin.com, devicetree@vger.kernel.org, 
-	conor+dt@kernel.org, tzimmermann@suse.de, jonas@kwiboo.se, victor.liu@nxp.com, 
-	s.hauer@pengutronix.de, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	linux-sound@vger.kernel.org, perex@perex.cz, 
-	linux-arm-kernel@lists.infradead.org, neil.armstrong@linaro.org, 
-	lumag@kernel.org, dianders@chromium.org, kernel@pengutronix.de, 
-	cristian.ciocaltea@collabora.com, krzk+dt@kernel.org, shawnguo@kernel.org, 
-	l.stach@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <877dcf99-107e-4d96-8790-6608976d13ca@riscstar.com>
 
-On Thu, Jul 24, 2025 at 3:40=E2=80=AFPM Marc Kleine-Budde <mkl@pengutronix.=
-de> wrote:
->
-> On 24.07.2025 09:37:09, Takashi Iwai wrote:
-> > On Thu, 24 Jul 2025 09:22:44 +0200,
-> > Shengjiu Wang wrote:
-> > >
-> > > The IEC958 subframe format SNDRV_PCM_FMTBIT_IEC958_SUBFRAME_LE are us=
-ed
-> > > in HDMI and DisplayPort to describe the audio stream, but hardware de=
-vice
-> > > may need to reorder the IEC958 bits for internal transmission, so nee=
-d
-> > > these standard bits definitions for IEC958 subframe format.
-> > >
-> > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+On Wed, 23 Jul 2025, Alex Elder wrote:
+
+> On 7/23/25 4:51 AM, Lee Jones wrote:
+> > On Thu, 10 Jul 2025, Alex Elder wrote:
+> > 
+> > > All devices supported by simple MFD use the same 8-bit register 8-bit
+> > > value regmap configuration.  There is an option available for a device
+> > > to specify a custom configuration, but no existing device uses it.
+> > > 
+> > > Rather than specify a "full" regmap configuration to change only
+> > > the max_register value, Lee Jones suggested allowing max_register
+> > > to be specified in the simple_mfd_data structure.  If regmap_config
+> > > and max_register are both supplied, the max_register field is ignored.
+> > > 
+> > > Signed-off-by: Alex Elder <elder@riscstar.com>
+> > > Suggested-by: Lee Jones <lee@kernel.org>
 > > > ---
-> > >  include/sound/asoundef.h | 9 +++++++++
-> > >  1 file changed, 9 insertions(+)
-> > >
-> > > diff --git a/include/sound/asoundef.h b/include/sound/asoundef.h
-> > > index 09b2c3dffb30..7efd61568636 100644
-> > > --- a/include/sound/asoundef.h
-> > > +++ b/include/sound/asoundef.h
-> > > @@ -12,6 +12,15 @@
-> > >   *        Digital audio interface                                   =
-   *
-> > >   *                                                                  =
-        *
-> > >   *******************************************************************=
-*********/
-> > > +/* IEC958 subframe format */
-> > > +#define IEC958_SUBFRAME_PREAMBLE_MASK      (0xf)
-> > > +#define IEC958_SUBFRAME_AUXILIARY_MASK     (0xf<<4)
-> > > +#define IEC958_SUBFRAME_SAMPLE_24_MASK     (0xffffff<<4)
-> > > +#define IEC958_SUBFRAME_SAMPLE_20_MASK     (0xfffff<<8)
-> > > +#define IEC958_SUBFRAME_VALIDITY   (0x1<<28)
-> > > +#define IEC958_SUBFRAME_USER_DATA  (0x1<<29)
-> > > +#define IEC958_SUBFRAME_CHANNEL_STATUS     (0x1<<30)
-> > > +#define IEC958_SUBFRAME_PARITY             (0x1<<31)
-> >
-> > I'd use "U" suffix as it can reach to the MSB.
-> > Also, you can put spaces around the operators to align with the
-> > standard format, too.  I guess you followed to the other code there,
-> > but following to the standard coding style would be better.
-> >
-> > With those addressed, feel free to take my ack for this patch:
->
-> Or make use of the BIT() and GEN_MASK() helpers.
+> > > v8: - Use regmap_config_8r_8v, modifying it if max_register supplied
+> > > 
+> > >   drivers/mfd/simple-mfd-i2c.c | 8 ++++++--
+> > >   drivers/mfd/simple-mfd-i2c.h | 3 ++-
+> > >   2 files changed, 8 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+> > > index 22159913bea03..5138aa72140b5 100644
+> > > --- a/drivers/mfd/simple-mfd-i2c.c
+> > > +++ b/drivers/mfd/simple-mfd-i2c.c
+> > > @@ -24,15 +24,16 @@
+> > >   #include "simple-mfd-i2c.h"
+> > > -static const struct regmap_config regmap_config_8r_8v = {
+> > > +static struct regmap_config regmap_config_8r_8v = {
+> > >   	.reg_bits = 8,
+> > >   	.val_bits = 8,
+> > > +	/* .max_register can be specified in simple_mfd_data */
+> > 
+> > Drop this comment please.
+> > 
+> > >   };
+> > >   static int simple_mfd_i2c_probe(struct i2c_client *i2c)
+> > >   {
+> > >   	const struct simple_mfd_data *simple_mfd_data;
+> > > -	const struct regmap_config *regmap_config;
+> > > +	struct regmap_config *regmap_config;
+> > >   	struct regmap *regmap;
+> > >   	int ret;
+> > > @@ -43,8 +44,11 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2c)
+> > >   		regmap_config = &regmap_config_8r_8v;
+> > >   	else
+> > >   		regmap_config = simple_mfd_data->regmap_config;
+> > > +	if (simple_mfd_data && !simple_mfd_data->regmap_config)
+> > > +		regmap_config->max_register = simple_mfd_data->max_register;
+> > 
+> > If max_register is set in simple_mfd_data, it should take precedence.
+> 
+> I don't really agree with that.  If simple_mfd_data->regmap_config
+> is provided, why not use the max_register field already available
+> there?
 
-Is it acceptable to include the headers in this file?
+Why would a user add a max_register override to simple_mfd_data if they
+didn't want to use it?
 
-Best regards
-Shengjiu Wang
+> This is why I said above that I think this feature doesn't add
+> much value.  It provides a second way to specify something, but
+> in the end it complicates the code more than it's worth.
+> 
+> The only time this new simple_mfd_data->max_register field seems
+> to make sense is if it were the only thing provided (without
+> simple_mfd_data->regmap_config being supplied).  In that case,
+> I see the benefit--a null simple_mfd_data->regmap_config means
+> use regmap_config_8r_8v, and overlay it with the max_register
+> value.  The new max_register field avoids defining another huge
+> but mostly empty regmap_config structure.
 
+This is your use-case, right?
 
->
-> Marc
->
-> --
-> Pengutronix e.K.                 | Marc Kleine-Budde          |
-> Embedded Linux                   | https://www.pengutronix.de |
-> Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-> Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+> Anyway, back to your original point:  I said in v7 "If both
+> are specified, the max_register value is ignored" and I think
+> that's the simplest.  Specify one or the other--if you want
+> to define things in regmap_config, then that's where you add
+> your max_register.  If you like regmap_config_8r_8v but want
+> to define a max_register value, just provide max_register.
+> 
+> If you insist, I'll do what you say but before I sent another
+> version I wanted to explain my reasoning.
+
+I hear you and I get what you're saying.
+
+I see no use-case where a user would provide both regmap_config AND
+max_register either.  However, I see max_register in simple_mfd_data as
+an override, so I would like it to take precedence please.
+
+> > if (simple_mfd_data && simple_mfd_data->max_register)
+> > 	regmap_config->max_register = simple_mfd_data->max_register;
+> > 
+> > >   	regmap = devm_regmap_init_i2c(i2c, regmap_config);
+> > > +	regmap_config->max_register = 0;
+> > 
+> > Does max_register definitely have persistence over subsequent calls?
+> 
+> It is a global variable.  Isn't that how they work?  When
+> it was read-only there was no concern about that, nor about
+> any possible concurrent access (though I don't think multiple
+> probes can be using this code at once).
+> 
+> We could allocate a new one each time instead.
+> 
+> I think what I offered in v5 was acceptable.  If you're
+> willing to accept that I will be happy to keep discussing
+> (and implementing) the max_register feature.
+
+Yes, I'm inclined to agree.
+
+Make the call and I will respect your decision.
+
+-- 
+Lee Jones [李琼斯]
 
