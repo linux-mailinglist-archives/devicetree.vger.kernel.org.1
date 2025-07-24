@@ -1,153 +1,133 @@
-Return-Path: <devicetree+bounces-199232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9EBAB10109
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 08:46:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8352AB1012D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 08:57:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02D001CC5ED6
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 06:46:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1F567BA4F3
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 06:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44A0E221736;
-	Thu, 24 Jul 2025 06:46:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F87D221555;
+	Thu, 24 Jul 2025 06:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="a797IIi8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ac+74yz/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A91D1FF5EC
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 06:46:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5173721C18A;
+	Thu, 24 Jul 2025 06:56:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753339569; cv=none; b=vF2VN+vPjNfH0BR5zTqBI7lTzY2cW6lY+P7ITsaRT8x8rjanv6rqZ3vj5ivKEEPJ/dCAygMSyp7tg8ddHgV/JTDrKGNizpKwAZcKQiEhzB/T4IM0AdxnUG/Auq91YYDl74fBDH21D2A3xRfL2dsYlxtdXW7yk/lEF9LD/uqObC8=
+	t=1753340201; cv=none; b=rZJBXAjtEa55n+CRZ4eB0iFzR5H/bjPrz6SL5O+WhsFNgRK7NuRT41CDsYTXB33TYgKoYLNF1yBQik9K+uhqB2d75/8jqJzKh/k4hd+XqGmSg3JGfvpGfY4FG9HMLMJvPZlIWJ983QLgyJL1O0Wfeq54P5xteua8EP3JwGCAgnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753339569; c=relaxed/simple;
-	bh=E8K92WFLqixwgt8J2cex/loEksjjno4gWYC7Q3w7a8g=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=L0AS3kuGFQMozUSo4CZ1EypEXzC4YpJJ8iWiYIKFBVCPhE7hHPno+1H++BamKb/aI7F537sMx3etaenl72yvoxhD4em6P5oCXupzAFVnahNkRaGI9zvHSd6BcfxovVZ8X/iC9T6ibe9qy9JHyLx39Scse18CQSlIMMtAy67UoAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=a797IIi8; arc=none smtp.client-ip=209.85.218.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f68.google.com with SMTP id a640c23a62f3a-ae708b0e83eso137277866b.2
-        for <devicetree@vger.kernel.org>; Wed, 23 Jul 2025 23:46:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1753339565; x=1753944365; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O05wjEScA4kxCQO8+MTTv2LGUA2bVFgF29zptnElwW8=;
-        b=a797IIi8N3j5cNCflbBeedwgZ+4BEGPc8ZuLFQqDrJpHsBvRjT7it5c6GWTTCe6M9+
-         CSeoAAh9CsyUGQwpEemgRnaA0BuWG9r0VVnrsvVqwqi5T+hHGRgt0h62ZkelpnWRibIP
-         WQastMIl/Mpmb1JH9gdkd2P1QCkoyn6/RXW2BKs6vY6QF5ayAxsFTtF+P8RWbXWx/tWa
-         iwkncC9uhXG2BKuomXFXO5O0T2Pbg1ZM7gHA32+pC4h80xtWIl5Y74XCCBAZLfKVtusi
-         L/V7vA01Lb10Lr4yurpoBKIZ2QUkE5C9cp8ga8+wAWi/W0VHoECKVjJMa3rMkVuISVxp
-         0xFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753339565; x=1753944365;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=O05wjEScA4kxCQO8+MTTv2LGUA2bVFgF29zptnElwW8=;
-        b=rZnBAN2RSsxM/JFGJ2zh7yGWrpRRy/6NqAZhiQVdUREJhA3nO2jtLwfEucuozEwMbf
-         FEH8L2S51VgcGo5fTzCWU3PVbcz4N2iJD5ajD3SuJItkCFoMiW/I9ehH+eKNgFFHpCiG
-         MFA3bW9+KKNXJkDTt8egiGVIpzrrYj30fQa7xLX10W4YtVWe19Tjtk7EMxzXGAATldYB
-         /kCNFjT6XgvqWOFLbJRyUaBD37iMd1dNSyf5ZjuNqUOQOeHg0aoaTOj76SrReBhZnD6B
-         yCIIWqQoUq8AjKfy4cMD4g10Zwdh4sL2rsJ5ylKzGnXW1Dao4kErazixtLJFB5fbc8Cv
-         HRcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWEC9wyNNJRuVmNFXx7F8VZvoVoOTnooOcKuRRmndlpG4U0+ViSBSrSnl+jO+WO1PE+tkWlj55FzCU3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKzSm+/kAkdFUjeqgclmH40n30Csnhgo2vPD/bWnBnGT+OALVA
-	43OW29UhtoTaWU/kuhApcccOnUMvBZBnagLaQNOruk3xDgZa9AbDuGmQLBf7CWf87gE=
-X-Gm-Gg: ASbGncu9tjHju0gcJyBRJDblpqQ2PmMNfiEkmL5VIkOij7UZSYhOuHmjHyQWEgtJfu+
-	xEz/Gmz3se0YnIhlXT5BGU2QsQpWtCcic11zWQrC7+1Nq3p+v+3LT9fnGWpZm6/TtjupDbAIT7Z
-	jiNcRYfgLvG6Dk9GpxJ2R6OWbetP86foJLDexfvt6l/H42IEPj1IRsqacb6NnBJEFahF3WCiFI+
-	GRI/6EAtnXcxpGr34lmOK2XQCJSuUpO1M7NSBro4KrW1JJZQHVlabgKBKNFioptvbeomBTJaH64
-	dZElrYTAjRPWMNfljmlVahb/3IsD746xrmu/ayLLPhh99NO5Jl+KFWTJQ77qQKNWRrx2PP4RjJA
-	y0myZAmrL+IA1nutKtxpFwwwyl6YDcVRqdTdycXZZvSfusAEIvYUsPW5JpqCum9XzaNGdntZ0PU
-	yNHA==
-X-Google-Smtp-Source: AGHT+IHOJhHzF3e38nSkhr/JtaCTAW1NS3tTTx4AD/Gh7AcSikLRvVdo/lBTRPnndwMlCRIqVf21aw==
-X-Received: by 2002:a17:906:f585:b0:ae9:bf1c:50a4 with SMTP id a640c23a62f3a-af2f866213bmr566893066b.36.1753339564518;
-        Wed, 23 Jul 2025 23:46:04 -0700 (PDT)
-Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af47ff42cc4sm63770166b.139.2025.07.23.23.46.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Jul 2025 23:46:04 -0700 (PDT)
+	s=arc-20240116; t=1753340201; c=relaxed/simple;
+	bh=AWSNuPUztR7dmAKn+EbiK1jJ6BxIvP/WzUHFyZyX/HE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l5/nnmkfmNIqxiFehys3Mn2188xRFy2UUYZd74tjJcdhLceAK2Z6lvrp1TDTTZrQDXIfEmdyC7JdggNRB0tQ+9zFlvMvFbyCbzxtbA12HRf4d816a+PH7tIlrh0Uold5oyfYd/V4tP17HPqniDIGy1DiHrk7CUJS2SyiJ1G9QKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ac+74yz/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80C2DC4CEED;
+	Thu, 24 Jul 2025 06:56:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753340200;
+	bh=AWSNuPUztR7dmAKn+EbiK1jJ6BxIvP/WzUHFyZyX/HE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ac+74yz/VRitm1BE3E2bs+y4PmXQ5ZDgJxZ69F/2T9HrPKA6/2wfsnXib+FEofzyd
+	 WiRI9jdap5yX7WMPkzXZydFdjI2/P9AB5lCqOgsYBINj1vi6E1HVpvC2ZxBw6jb9dr
+	 tEe0qhemq9Lmciw/An4uHs7i4JkPPJY25r/Auo1Njr11OJlHX7iB5e+SCSjdp0+Meu
+	 4fbtG0oTxZZL9oTU8lAGpFGMpXuw659Lw8pr2GqiXC5gkp5WNx3GeSLNFB3aOOg4nB
+	 /tII2QvBEaRVLekl2PjHj77C+zC/XDkdHKP0LyRibMlVzZe69jvHcqzl3/nMs0o6YT
+	 tXl5h7DujCjpQ==
+Message-ID: <fbe025c9-2688-49f1-bd94-2cb0a1bbc8d2@kernel.org>
+Date: Thu, 24 Jul 2025 08:56:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: soc: samsung: usi: allow 64-bit
+ address space
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250722121037.443385-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250723-hypnotic-malkoha-of-trust-9efdb6@kuoka>
+ <3e1d7be9-e99f-41c3-8b0d-aaa426aa9de8@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <3e1d7be9-e99f-41c3-8b0d-aaa426aa9de8@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Thu, 24 Jul 2025 08:46:03 +0200
-Message-Id: <DBK303WXZ3OB.8SX718AMMYH8@fairphone.com>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
- <linux-sound@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Wesley
- Cheng" <quic_wcheng@quicinc.com>, "Dmitry Baryshkov"
- <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v3 0/3] Enable USB audio offloading on Fairphone 4
- smartphone
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Mark Brown" <broonie@kernel.org>, "Srinivas Kandagatla"
- <srini@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi
- Iwai" <tiwai@suse.com>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250723-fp4-usb-audio-offload-v3-0-6be84ed4fc39@fairphone.com>
- <175328933413.84720.17376811405962157319.b4-ty@kernel.org>
-In-Reply-To: <175328933413.84720.17376811405962157319.b4-ty@kernel.org>
+Content-Transfer-Encoding: 7bit
 
-On Wed Jul 23, 2025 at 6:48 PM CEST, Mark Brown wrote:
-> On Wed, 23 Jul 2025 16:03:37 +0200, Luca Weiss wrote:
->> Updated description for v3:
->> Add the missing bits for the sound subsystem to enable USB audio
->> offloading on the Fairphone 4. This is mostly sndcard enablement now.
->>=20
->>=20
->
-> Applied to
->
->    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-=
-next
->
-> Thanks!
->
-> [1/3] ASoC: dt-bindings: qcom,q6afe: Document q6usb subnode
->       commit: b102c9d89fecd72be83eaab9b384285e2d0dc940
-> [2/3] ASoC: dt-bindings: qcom,sm8250: Add Fairphone 4 sound card
->       commit: d664e75317e19bb79b6d207f7729e35eca504a6a
-> [3/3] ASoC: qcom: sm8250: Add Fairphone 4 soundcard compatible
->       commit: c58c35ef6ae62e36927f506a5afc66610b7261d9
+On 23/07/2025 10:21, Ivaylo Ivanov wrote:
+> On 7/23/25 11:15, Krzysztof Kozlowski wrote:
+>> On Tue, Jul 22, 2025 at 03:10:36PM +0300, Ivaylo Ivanov wrote:
+>>> Some device trees, like the exynos2200 one, configure the root node
+>>> with #address-cells and #size-cells set to 2. However, the usi binding
+>>> expects 32 bit address space only. Allow these determining properties to
+>> So if USI expects 32 bit, then why do we allow 64?
+>>
+>> Switching this to 2 means you use 64-bit addressing for children
+> 
+> I don't, but the main point was to avoid defining ranges for every single usi
 
-Thanks, appreciate it!
+I do not understand your "I don't", because you do. You change the child
+address space to 64 bit and switch to 36/64 bit DMA. That's the meaning
+of address cells 2.
 
-Regards
-Luca
 
->
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent to Linus during
-> the next merge window (or sooner if it is a bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
->
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
->
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
->
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
->
-> Thanks,
-> Mark
-
+Best regards,
+Krzysztof
 
