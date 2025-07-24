@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-199481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB3AEB10DD0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 16:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63188B10DE4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 16:42:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 918905640FB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 14:38:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 927EF17B4F8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 14:42:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F95F2DFF13;
-	Thu, 24 Jul 2025 14:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA5F2E2652;
+	Thu, 24 Jul 2025 14:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HsTFWnGt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g0pozWt1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C3562676E9;
-	Thu, 24 Jul 2025 14:38:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69517241CB6;
+	Thu, 24 Jul 2025 14:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753367900; cv=none; b=JmHcScdsEWlS4i0gK+5XJKbasOU/lZh1geAYTjyV61F/2bVqCEmBKXLIQkgdO/K8UT+Xn8LQDWxH2vdNRICGkaWBp21HotjzzanGQ5kVD0eNM5Gj5voyz5vrabavm61tmxdKGlwcbe/tsv3ofD8qjPTy7JZuuMfvDXWwaMG5k0Q=
+	t=1753368167; cv=none; b=KC1vhFAqNWJYz63gPDOUg6/9auQnjeBxH0yTzlal5+Uxlezt1lTD2FfWh/DCOmdLra23xoofOuS6EbM2AWbxda5EW8ZPDd4yBeomh+qPaDNo8Kq+BjUm6b/JVAfrTDueyWmNjtYikOO6epX0di1GW5TYGu64ml8ujZ0v5jkvgmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753367900; c=relaxed/simple;
-	bh=J+2CIa+PZT6ZTjOXWq7tTssnqG+kDDgqLvO7Suiluns=;
+	s=arc-20240116; t=1753368167; c=relaxed/simple;
+	bh=KSniqmvVPop7ZBfbM76NpcruOKat+g9pCk10WcIV1OA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BDCD59d7bye5Qb23HLAfbxG/3Lz8WbD5YNRTIqWsISmKH67K600aNlGMC4zdgM1TkfRTVounQkTfZcxOn+SLzoAlFChrpkShBivrBBk3H57zHmyShU2XOmFMEgrlSV2FgCQP5MgFEEevYpHYhK0CHvp/qBeX4JP/wgU/cwe7PFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HsTFWnGt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49ADFC4CEED;
-	Thu, 24 Jul 2025 14:38:13 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NWVWYOnGz3emYiMIla8uBBKN9+T+rz7gGd1vGFENkKlz6t26+31idk7+0IanJYzLqJ9WknTKIzHi64sl24XoPm8Qz2FWBABtRV9HEEQgookKlDpnE1XxPaT4jMprs+ztrVKH7S7kVQUVTmMXzqYvq9C3zXzbcqSzlrRTDJljkRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g0pozWt1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA7B4C4CEED;
+	Thu, 24 Jul 2025 14:42:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753367899;
-	bh=J+2CIa+PZT6ZTjOXWq7tTssnqG+kDDgqLvO7Suiluns=;
+	s=k20201202; t=1753368166;
+	bh=KSniqmvVPop7ZBfbM76NpcruOKat+g9pCk10WcIV1OA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HsTFWnGtUktymKD/MzWoKPp9mMJ8J7hdPiYRwnH/gX9Yyk0YWoi1zQuKcwMKkqmTZ
-	 U4ENjChvi76/4WavXvO4QCBxC+2/YMObnfkttI8vQEU8YE6ce1JGsY+nABrE8iT1N5
-	 fsvrjy6Sxq4P7KFt0/HSAoKCCJm7TauRFzfFrz6pICC7V4MzcBlBoLnlO+UYMVH66T
-	 vWl/Xg2sk05tWJpYL02rUUx+Ym3KdwHC0Fni5rYKRSUMQJ3cdo5OA+RLTP9X2GeOVi
-	 gcc4BWEYQEwm7naAtF2czbFwmrqIiUbUyKnYg8p7mp1iHOkqkI4XCi0RqrKtP3/AuB
-	 ILa9KQXLxxcXg==
-Message-ID: <217dfc7f-97d6-4598-ad6a-1cb48464c91c@kernel.org>
-Date: Thu, 24 Jul 2025 16:38:11 +0200
+	b=g0pozWt1eUa0aQbqU6JhZ4GaxIQ00YPSgEvrGorvNEoKoReaz0o9uUGxy4TgX3eSd
+	 5zu1HNr9wWKyX3JnbPgbuGL7V/Zqvda2D/cDjhrV4uu8sI27M/GcsfeGqVztPuAY03
+	 Sn6E31o9Js3fZWJb0XqZPsJbVFRDy+IgCQqtliGkQF32bvxfHDVKQeprLvFRB8rC5U
+	 nZ+pv3BACCJTToNXkgbVWynDGCQ4htKDA+JsDWufJDvJSzUuqmcyf0ItgHkluI69/x
+	 0XwZyN0Z/uAnz/31oHXLMQpD3fVAViR1s6xAgl+NaHg9ZUYd4t1zN4zDPD/6921cYh
+	 eUVuTEr7W3zvA==
+Message-ID: <a3846433-f1f8-4b83-a965-baec24ee5159@kernel.org>
+Date: Thu, 24 Jul 2025 16:42:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,35 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 0/8] Implement vendor resets for PSCI SYSTEM_RESET2
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
- Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: qcom: Add SM8750 GPU clocks
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
- Mark Rutland <mark.rutland@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
- Stephen Boyd <swboyd@chromium.org>, Andre Draszik
- <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- Elliot Berman <quic_eberman@quicinc.com>,
- Srinivas Kandagatla <srini@kernel.org>,
- Elliot Berman <elliot.berman@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250721-arm-psci-system_reset2-vendor-reboots-v12-0-87bac3ec422e@oss.qualcomm.com>
- <beb26682-d2e4-40e6-89ac-87f18c0401d0@broadcom.com>
- <56599da9-0200-72b5-012e-942a1fc954b2@oss.qualcomm.com>
- <a1d3264f-a46a-42c4-b518-a66c8e0b70b4@kernel.org>
- <f4725f3f-1b45-ebd2-aaf4-4f986a44eb8e@oss.qualcomm.com>
+ <conor+dt@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250723-topic-8750_gpucc-v2-0-56c93b84c390@oss.qualcomm.com>
+ <20250723-topic-8750_gpucc-v2-1-56c93b84c390@oss.qualcomm.com>
+ <20250724-blazing-therapeutic-python-1e96ca@kuoka>
+ <7d444f4c-fa1f-4436-b93a-f2d2b6d49de2@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -124,48 +109,93 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <f4725f3f-1b45-ebd2-aaf4-4f986a44eb8e@oss.qualcomm.com>
+In-Reply-To: <7d444f4c-fa1f-4436-b93a-f2d2b6d49de2@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/07/2025 16:04, Shivendra Pratap wrote:
->>>> For the sysfs bits, should not we be seeing "psci" instead of "reboot-mode" twice in this path:
->>>>
->>>> # cat /sys/class/reboot-mode/reboot-mode/reboot_modes
->>>> powercycle
->>> As per current patch, we create a class named - "reboot-mode".
->>> /sys/class/reboot-mode
+On 24/07/2025 12:53, Konrad Dybcio wrote:
+> On 7/24/25 10:18 AM, Krzysztof Kozlowski wrote:
+>> On Wed, Jul 23, 2025 at 10:38:48PM +0200, Konrad Dybcio wrote:
+>>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 >>>
->>> Then comes the DT node name of the registering driver.
->>> /sys/class/reboot-mode/<DT node name of the registering driver>/
+>>> The SM8750 features a "traditional" GPU_CC block, much of which is
+>>> controlled through the GMU microcontroller. Additionally, there's
+>>> an separate GX_CC block, where the GX GDSC is moved.
+>>>
+>>> Add bindings to accommodate for that.
+>>>
+>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>> ---
+> 
+> [...]
+> 
+>>> +title: Qualcomm Graphics Clock & Reset Controller on SM8750
 >>
->> This means that node name becomes part of the ABI? I am not happy about
->> it. Where is such ABI documented? Because your last patch tells
->> something completely else!
->>
->> I strongly insist using compatible as way to find your device, not node
->> names.
-> It will look better to switch to compatible. Will define a compatible for
-> psci reboot-mode binding and align the patch to use the compatible for sysfs.
-> Current patch defines reboot-mode as a property to psci, hope its fine to
-> define a compatible for this property like "psci-vendor-reset" or
-> "psci-reboot-modes"?
+>> There is no clocks nor resets here. Only power domains.
+> 
+> There are clocks and resets in this IP block (inside the register
+> space mentioned in the dt patch/example), but the OS is not supposed
+> to poke at them (it can in theory, but we have a uC - the GMU -
+> doing the same thing so it would be stepping on one another's toes..).
+> Not sure how to express that.
+> 
+> I could for example add #define indices in include/dt-bindings, listing
+> out the clocks and never consume them. Does that sound fair?
 
-
-Hm, sorry, what? That's not what I ask, but considering inconsistency
-mentioned here and in actual ABI document I do not even know what to
-suggest.
+Explain that in the binding description.
 
 > 
 >>
->> In any case you need to document such ABI in Devicetree bindings,
->> because sysfs ABI is not enough.
-> should reboot-mode Devicetree binding document this ABI? Can you
-> please share some more detail on this?
+>>> +
+>>> +maintainers:
+>>> +  - Konrad Dybcio <konradybcio@kernel.org>
+>>> +
+>>> +description: |
+>>> +  Qualcomm graphics clock control module provides the clocks, resets and power
+>>
+>> Also confusing.
+>>
+>>> +  domains on Qualcomm SoCs.
+>>> +
+>>> +  See also:
+>>> +    include/dt-bindings/reset/qcom,sm8750-gpucc.h
+>>
+>> reset or clock path?
+> 
+> Ugh, clock
+> 
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - qcom,sm8750-gxcc
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  power-domains:
+>>> +    items:
+>>> +      - description: GFX voltage rail
+>>> +      - description: MX_COLLAPSIBLE voltage rail
+>>> +      - description: GPU_CC_CX GDSC
+>>> +
+>>> +  '#power-domain-cells':
+>>> +    const: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - power-domains
+>>> +  - '#power-domain-cells'
+>>> +
+>>
+>> You miss ref... or this is a bit confusing.
+> ref to what? qcom,gcc? I specifically omitted it, as that adds
+> requirements which you stated above.
 
+Yes, qcom,gcc. If that was missing intentionally, it is fine assuming
+you implement the rest of comments.
 
-The binding for the device, whose node name you are using here as ABI,
-should document the ABI.
 
 Best regards,
 Krzysztof
