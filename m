@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-199553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03C8CB11302
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 23:22:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43605B11312
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 23:26:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6B56AC26DF
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 21:22:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43CB41C27464
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 21:26:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7C722EE275;
-	Thu, 24 Jul 2025 21:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A61C82EE971;
+	Thu, 24 Jul 2025 21:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sEd9Zfdy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bediCilz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF0626C383;
-	Thu, 24 Jul 2025 21:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F412EE962;
+	Thu, 24 Jul 2025 21:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753392158; cv=none; b=lXQ73gLT3gB91NE2wfGMPd3DulpcZ7mQ5s0q+PXi7k/e/19vxSrkd/mGLkAeXnbiZdcuxMaT4bz3XOzcV5BzCiIShCVUaV+uanlK8DKLaE3ElQMwY1bGCG4OS/cDbdnls4s5wXnbbn8y+/ILBwxIHBoBw/oNCRLmS1kPwDXwcRM=
+	t=1753392368; cv=none; b=qTUo7GenNuWC64P1i28kBLCMphvuAgwBUo8jbsieYJVrAW8nML6eP896dE4jGYXCK9Wlelw0ns+Z0hNueiOTfJ9HMCL7tytxb6VG++2p1Yg8El5ji1QbiNCdh9R7rdGYUl0uwTqrlKPMket6knAxtT0IXI2hfMKqARk8DN0av4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753392158; c=relaxed/simple;
-	bh=NV1hvyxJKKzHIHZJgLDzRN+VIKp6B6Xs0+8rC4DRIDE=;
+	s=arc-20240116; t=1753392368; c=relaxed/simple;
+	bh=d7nh7vIZnOGTJ2Q7+CHcn6S/FQkqs3hhF4VLfbiutBk=;
 	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=hWSuO1Ug9dyoLtEXBAW0yT53ubQWjjNVAwF60gpVuSwmX//AuYWb6SSnxMkNtc4CPYLjPKg4glIgTBiQPCXUT7iOtsyp/yuWmYXnZCpKf7/e+VFD+b75e0qlIPyPZORxsZDCALnZzQ0haKxjkCMpmPxcYrwc/OF9NuiamQiXvss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sEd9Zfdy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EC00C4CEED;
-	Thu, 24 Jul 2025 21:22:38 +0000 (UTC)
+	 To:Date:Message-ID; b=U0+DQ9RADDbj2lQRiC99KwTjJZUt/joWldMn7rmrMn0iRkrRw1hD+j6wz0yS2ko2bBMe5kQSykujP1bH3H+XUJycRFFLnUtippABLhHtzM5K3/LgJ3RfUBQkWC/FOZMh3r2OvUUQajADJNoU/zrKRdJhsv3wXqWiW0UIyv4VQiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bediCilz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6B05C4CEED;
+	Thu, 24 Jul 2025 21:26:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753392158;
-	bh=NV1hvyxJKKzHIHZJgLDzRN+VIKp6B6Xs0+8rC4DRIDE=;
+	s=k20201202; t=1753392367;
+	bh=d7nh7vIZnOGTJ2Q7+CHcn6S/FQkqs3hhF4VLfbiutBk=;
 	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=sEd9ZfdyJQTyCzKPnuPMCpoxHqB5c9+FRjFP2oBBQpVfQYU0Bt6HM+EDyYQEaPmvK
-	 rMcTRyDOXrjMRE1DUe5/JU7o2atRbIOLzuFZ14KoXEoit5S6hF5tgOv+taUhuLzLvw
-	 hyQbOhQb7tkafsmqyNBnLl2EIM2CeQ3LLR5tbIojaL55eS0zkMv3jIpvq9vbXlOGid
-	 EiJwofk81/NKmKqxIM9ZC/AlALe3dZALRpAqaVYxqB9J+FPCEoxFLAeILBOwE8+Psi
-	 TW3Lk/7iLL05cN/g4avOf5AMUjyyR6F70t/P7IRSNAtPEH+DJJjeODGRlrBeTRlQf4
-	 k3G1db2u0lSLA==
+	b=bediCilzphDUqADyYda7TkSGHJPd+s3alMQJh438M6Xq26Azcxe1d2POQfySLVG6Q
+	 NGWV41CKOIQ8ERu2aeq41M3gqnm3AkgtYS19vddlVPl7fp96mUR2XzDkfkR0VzPYn5
+	 Ro/jdnkQ14buJ7e36m+xn08jgQKEt2J5EoqF+VKUK0O3SrxOt1VjsVKeKW44YHcIuZ
+	 F7JVE4+/imb2J2+gD0duceCke9cwH+UD/8tCt69kkbI1hvSVIALH6ZiXiybMxLURt+
+	 Gc2i47TKhgtfDpM+EX0spX+gvpPrVhpOva24IXWFf05CXkPZRmu2QTwk1Y+x0sG9MM
+	 vH0jTrkRH3FBQ==
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -49,18 +49,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250630232625.3700213-1-robh@kernel.org>
-References: <20250630232625.3700213-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: clock: Convert qca,ath79-pll to DT schema
+In-Reply-To: <20250606162410.1361169-1-Frank.Li@nxp.com>
+References: <20250606162410.1361169-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 1/1] dt-bindings: clock: convert lpc1850-cgu.txt to yaml format
 From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To: Alban Bedel <albeu@free.fr>, Antony Pavlov <antonynpavlov@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring (Arm) <robh@kernel.org>
-Date: Thu, 24 Jul 2025 14:22:37 -0700
-Message-ID: <175339215777.3513.3466941664741809283@lazor>
+Cc: imx@lists.linux.dev
+To: Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 24 Jul 2025 14:26:06 -0700
+Message-ID: <175339236615.3513.13676829954251081345@lazor>
 User-Agent: alot/0.11
 
-Quoting Rob Herring (Arm) (2025-06-30 16:26:24)
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Quoting Frank Li (2025-06-06 09:24:09)
+> Convert lpc1850-cgu.txt to yaml format.
+>=20
+> Additional changes:
+> - remove extra clock source nodes in example.
+> - remove clock consumer in example.
+> - remove clock-output-names and clock-clock-indices from required list to
+>   match existed dts.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
 
 Applied to clk-next
