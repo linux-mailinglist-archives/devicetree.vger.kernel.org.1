@@ -1,211 +1,227 @@
-Return-Path: <devicetree+bounces-199516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7465BB10FCC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 18:40:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30765B10FDF
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 18:46:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75CE85C0B21
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 16:39:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08DE11CC7B7C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jul 2025 16:47:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3A92EBDC8;
-	Thu, 24 Jul 2025 16:38:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78C8F2EAD1B;
+	Thu, 24 Jul 2025 16:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Q04iZbE/"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Ch9gimG1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011023.outbound.protection.outlook.com [52.101.65.23])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9762EB5DC
-	for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 16:38:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753375089; cv=none; b=soh41+1sEMVELSfnjnxnitwsUInOjQsTTJjlwiOCqC4zyEU18KldslpekN11GbsxVtSkXS5/+r8nSXovVBXmYU3/Tgq/EjeEO+t5ECKqCHnP4MGXMQIuLqEtHLYa3NK+utI1qDbCoFDFEZwJXxxzqhAE+DDIRHbCjBnFeDSSqo0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753375089; c=relaxed/simple;
-	bh=/z1ZWH3AmE7m9qEL3wKFxAKY/0SRkQE/svi19xO62Ks=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i3MoQQXDjWKZlrLAPojHAcC9CNupGQrDOhOK5YFz6mBe/gOVEyh8uJ9CIm00A2WDbylQr49tKdRhempXErU14mvXgTw/jn+dDYi6/gutK+Nv70mfgAHBG/9C5mNUPdCueEpJdwEVp6/LtDXers8E87a65MxnzDpytyng3SzGqjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Q04iZbE/; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7e62a1cbf81so160202785a.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Jul 2025 09:38:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1753375087; x=1753979887; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=usvpr9L47YioWJ8ShpR64dzUqJAyhLB53MAvoTv4bGE=;
-        b=Q04iZbE/gWcxVdZLo9vdedJCnFu1t9m6ZJ16MkcbwthM5i1Z6tfGC85Xt7z8S+dkdA
-         j48NOjw90YQP7yGQ76MCtrHLF8jYO0ng9JDcQot4pp6E7nwijTr9Fx97zrDedd9Z+8Wg
-         ICHO1vzMHutBPY9wdxrBUAw9yaqdKq+ovBUMU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753375087; x=1753979887;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=usvpr9L47YioWJ8ShpR64dzUqJAyhLB53MAvoTv4bGE=;
-        b=XENS+OWnMmOocjounV7ShV46GXDhYWbX5Qvh9l9yIEHWhBSbD2YJMlj9LM9bihGcii
-         AQb7Ek/d2g8KOTtqCfRM1goICA8INpipWk+bX1NGPfEWIDeURMoOS7oN5Jk4ZcdflcCk
-         XlpaWwSQeq4HRUUPh1mm3V1rYuXaffA9A764f4vwaArzcKZnlX1zT+LLq0kMJo7xkUer
-         7Xi4JjVTTiYeiTXIGDekcDJCyjIR0gTXF0oW76D2RqQ8SswfY+h/QRCO0lkK8J0Y9QdE
-         HT3zcwOBIEDgvO0kWvwU0W+BtPzzKkVEfUpNo0Ss6SMGPkaw80mQP2yXn7QdfzLcIqye
-         3x4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVa2lTUnuCwYpJf5/OqHzHJsueV2zN/16qYMXO7J9r1q/Io4Ni900AZtVyJCcbEpIw9XZDmgkzrsGJk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkF72CWtwl4fkY21kkWbu/DfARFizdEty5pgwmS4WoCzeEoEjI
-	stVgzeJMRo4JBEzGDZ7dKhLiLfDnuRUSpEKipv9/PNMku1AjsuFhjFdNCzGbYy8kbQ==
-X-Gm-Gg: ASbGncvd1WPCalvg2PrR+Qh3nPXmty0XhM9mcnxf5zoQRRyirpr4und/rmj3V519fuZ
-	ejxt5IvTAfi/kB/l8zoyPPX2MuvOceYNmyguiYnB4jK+SepZzucUMnivb80FZmV1l+i75Qze3JQ
-	aYUv1DwYaNhlpxEDia9npgn8xATgl2I29r7F+YBQrxOAPxKF6XHVUX1GawEjyu9mNdfw+MFaeAn
-	QXQHmOIKEIdjlX9+OINs+zqWjMWncOVvnTO/KrC2dbYOD08fWnhKIme2bWhLyAGxt2nHE5a0JIg
-	yOcv1EQKeta7a6WA+T8oizW0sZ3KTviw5hr2R+EXGSzkkjcAysF9OG7VP6YZqbGiw0Z38FMjhP9
-	EuPF/WFtszVGGFKoOSfWGXkbIe5M/i98m4DVEevf6AgV5SZXQVohm2ybQ5iq6sA==
-X-Google-Smtp-Source: AGHT+IGrgbcYhJ+tVe3J1al7OGjEmLmXFRtcoTyoF9bk75cMfSPlGVBH45dTALz6kduphv5+Hg8Jbg==
-X-Received: by 2002:a05:620a:400f:b0:7e3:3682:6dea with SMTP id af79cd13be357-7e62a0b2e23mr1083347685a.15.1753375086232;
-        Thu, 24 Jul 2025 09:38:06 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7e632e3c84asm139033985a.83.2025.07.24.09.38.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Jul 2025 09:38:05 -0700 (PDT)
-Message-ID: <20fad5dc-b0c7-4f16-b8ad-5f8ddceacfc0@broadcom.com>
-Date: Thu, 24 Jul 2025 09:38:00 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 333D92E543E;
+	Thu, 24 Jul 2025 16:46:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.23
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753375603; cv=fail; b=jpRKh+avgZImlRXh999IOJ658eCqnvzNEqi4aFj0xwEK9EsuI7e3I3AmTpbamZEm37dGX7vlbDHXGisYBxxPPHjanN7aIC0zEWKr0AU42Pa6CAw/UIlR+N5HRzSEy9AgyrjRNZNM5qQnJYJXNCX8TMCzNhjFXxj6t/G68d3Lu8U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753375603; c=relaxed/simple;
+	bh=g3MQKkxIgCgHJywu5Pjcpunq0ZdANWBHM/thwC+NCzs=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Y47vuAolB12m9vmJUW+y+/5e8pjLNwirKBqUEdSw5Kbcjhg5TOwhWjAi86XOGDd/OV1l0l5PT/25eq7YNSCXYCLkBpngcRI9yKxHPDWxWOeEFNCENLihMABeDMmQtU43Qk4VriHVqJMdRq+Gcu/L5IwwubFafvaUZsKPzH4AlJw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Ch9gimG1; arc=fail smtp.client-ip=52.101.65.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BJOM3HBu+5D2HsQ0hZSrUDOB4AQgkhTw6eQpIMeRuUxBESFXHjfTqUxENCJipk1S5Q3ZgGPhV+nTXc/d2zIut5RuUg3fLxt8F/EBXip24sCTPh2y3bvJMGhjM3lKWLz9uYNxnuWJJ525LiWYYJ+oSj40PHOq7vxLEtcisPGR4ZHpt9MP7h1x5LrOgV0LjOfzUv2qTSLPE91QN+NmTGGGgxBSN3pw82U05vI19fIcnWS8V6cVRvhr+oMDHyKqfd3y3n94yBuYRQQKEEe2Hw4ueHGdX2LzKgqY6as6v1VCr7mgJdhEx5THczgYAC/qsp3eskP+grNaM/b1kBL+4yJ9wQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MuVn7eMBcjLxGug645DFCwocyXHw3L2aItQ9GwZPNnk=;
+ b=Y2VntzRG3dGLCz3Mgxc1VR5twJCRO56tt007eyKVS08jZGZhxDESLTG/6zdqK34x4KFVDjBRn28GXf5DYSm5QQkCDMI6R5iFq1/Bwe8gSyPjv8Z1LLSJm6Z/H8Q8n1Exg3Syl+a+7PTrUAy1MsroPkTb67vHioN/2Y+9Mr7ExFBGdxa8clKAmCF0K0A/gdmpny9TsqBB/gmNQoVkpHZX76Mi3ksFKRriE0TqpcUk8rwjic87bBzOt6Yx2g5yk/BudsR+F3IiY4j9LN0nUKinQAQi+qxGGc6VjYCcgrg9AHBtbbEdbpIz9kMhzxtEoNVuQSe3WDyGOwraOmAUQS1LFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MuVn7eMBcjLxGug645DFCwocyXHw3L2aItQ9GwZPNnk=;
+ b=Ch9gimG1ixuJjMk/vFXbisbAW7L632bD+DH2cCmts0NuIk4g1f1Ez6pjOQSHcyekWoNHgvuytShprhTy7PXLrfTSt9ewV55hbrxSyOQba7ZC459Ge8sTkXlxJIc/mQ4GCorCnKVFZI8o7CO7jTXzXPpXBBRdrMFaE26sGrOQZEBYeXe9IQxyCTD91I4LqtAMnysDG53IQ+SHuJj8kUkQwXxO3mHNpdM/sE1yhZEpErMaJDn8Do23AXUVGSHtxpTAeJI9afoKjmFIQ2KPLrf2GNOu5hMV8s58p0YCAFAuIcjEapVBUshexdEc/TZ6M5AVQpapkR3rYMp0RW6BrEDRtQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DB9PR04MB8267.eurprd04.prod.outlook.com (2603:10a6:10:24b::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.21; Thu, 24 Jul
+ 2025 16:46:38 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8943.029; Thu, 24 Jul 2025
+ 16:46:38 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org (open list:IRQCHIP DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+Cc: imx@lists.linux.dev
+Subject: [RESEND 1/1] dt-bindings: interrupt-controller: Add fsl,icoll.yaml
+Date: Thu, 24 Jul 2025 12:46:23 -0400
+Message-Id: <20250724164624.1271661-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: AS4P192CA0047.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:20b:658::19) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 0/8] Implement vendor resets for PSCI SYSTEM_RESET2
-To: Arnd Bergmann <arnd@arndb.de>,
- Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
- Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
- Mark Rutland <mark.rutland@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
- Stephen Boyd <swboyd@chromium.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
- <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- Elliot Berman <quic_eberman@quicinc.com>,
- Srinivas Kandagatla <srini@kernel.org>,
- Elliot Berman <elliot.berman@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250721-arm-psci-system_reset2-vendor-reboots-v12-0-87bac3ec422e@oss.qualcomm.com>
- <beb26682-d2e4-40e6-89ac-87f18c0401d0@broadcom.com>
- <56599da9-0200-72b5-012e-942a1fc954b2@oss.qualcomm.com>
- <a1d3264f-a46a-42c4-b518-a66c8e0b70b4@kernel.org>
- <f4725f3f-1b45-ebd2-aaf4-4f986a44eb8e@oss.qualcomm.com>
- <36f62026-9517-42bd-8f9a-92f39fcdc136@app.fastmail.com>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <36f62026-9517-42bd-8f9a-92f39fcdc136@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB8267:EE_
+X-MS-Office365-Filtering-Correlation-Id: d31c8dad-5989-48ef-d7f2-08ddcad1a88d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?qV2o+IGsRaNEo7u4PlEuC4iVNWfr6BxtNKXtOQwBw/wGKeloGFU0q9WLsGcd?=
+ =?us-ascii?Q?LYP2KrPaymCoROflVpIc/5Vxv0J2mnmI008d+mFpXjBTFebmsDArjZuVaN9D?=
+ =?us-ascii?Q?Ko4CsqglVn8w7ykToe+2B+gWUvZ9cEIx9uF3EmzpxqzEhSGCIfiWsLIB3es2?=
+ =?us-ascii?Q?eu4kj2/5pBOMAMV9dKs1ny9exk5S5H8DmoKsYDGu7U0tR1WfegcjMQVGTZp/?=
+ =?us-ascii?Q?DOjNpKXmHGyYMw+LgYZzarztsJt7Cgjmkx7tX4tXHBign1dNLgZRPNHBk+yH?=
+ =?us-ascii?Q?zlJ9V2ODZPDxbxQ0UcLveE+El9apMBmbu6qSaRnSquo28YGbZYcyXqD1edev?=
+ =?us-ascii?Q?hkf8aKMHKMrwbo4pWO+91VWAsiEkHOtr8mdWEb7MykLuPoSTdcWKdrb6Utjg?=
+ =?us-ascii?Q?BJE67ScL1Xadpox7+3W9EUWhfoRPbuGrHUtkFA9vKvR0kyNqqnBaGYNV+ka2?=
+ =?us-ascii?Q?xoNew674o+XurC7hkaDHGJB8S170ms1lw7Mx8OcR+Zj3jbbOSfLXq/+SnwEg?=
+ =?us-ascii?Q?z+qnSI5eVXfqBolGspZxbq0nSz0Q1/oHDyC70ox5KuuTPY0S2H6jbCEuux4e?=
+ =?us-ascii?Q?JxjSi4v2bWWpEKu1xIttA9efDndw5QJfneagwj9t6cpRAzAKTGM0uvjssEvn?=
+ =?us-ascii?Q?+8Hxz66tUGymsr4Yo9QUt9/jd4Wqb2ty4wOZRVDwGFITARwVr9ZZPt3ffPjQ?=
+ =?us-ascii?Q?DVi+oMo72iC50U2TyoejhXCQlxBGSyRVA5STYkph74ov6F2U3/4vwBbntDeO?=
+ =?us-ascii?Q?ysIlBMw5FPYjDrcLGy3t2izJ6MndJeYy3+FwP3uLjInge7Uqkgf0ItB/S3WL?=
+ =?us-ascii?Q?nVxqqt+NdIiIMTXv3+V+s02d0afcl3i9vY8uLJu4t58RsIeMbtqWQogSTt+c?=
+ =?us-ascii?Q?GVwb2CtZ87+pPKt+YZm34VBw1i7SZKOAhTvTx8HA506Xz1+gC2JFoXYP+0Hp?=
+ =?us-ascii?Q?JHed565gr8+ahBfeKEd9d8SelSKp+zth1FQyLUsD3iUh60ZLZxHnpoXETBrx?=
+ =?us-ascii?Q?81V3DyCrArBMH5loiHUa7NaH9aSxghvAH2ZV7YJU4XGQu4dcewiLo67QGq6j?=
+ =?us-ascii?Q?Sy9d6e7Xn4WzZI07oWow+ExwNp1v2tS7Kvj8h0gRs7inmnU+5E7KfRiYQE7V?=
+ =?us-ascii?Q?9weEyBxZG0S93STQhhkj9MKiXsHXvef/3IDM6ByxEYoWsUoXn5ut5YGy+eYW?=
+ =?us-ascii?Q?5tI1dY1DLpQ/qZHmndwRWRINmcwTf2dFxhnIOfx71X1LLOYBvpaqHohYsQkT?=
+ =?us-ascii?Q?RYpNRxzsPWLJJOJ/XwFbTn6+9k3el+YKy3WfV0amXfFnpy+GB5K9x4LP/4az?=
+ =?us-ascii?Q?SZgLNI1qE/FfDaRL4QRJcuT83pg1xjFaV5oCXqRc+27b6QsCSIpw+/ajmxyQ?=
+ =?us-ascii?Q?6TOwsNDP8PKzfolEilBIfBXh9qdjOZETkOJ3BA7t20MZX9J/pRlvV5PzZiMO?=
+ =?us-ascii?Q?CNb0r+g7fpA=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?mZYcsITEF5DIKwEMhAcS8knmB+OoDPWHcM4H5tZMcExQCvVJTs+K8nhZG9MY?=
+ =?us-ascii?Q?jFSuNsXLRPCxRmw2ODd00Y4xeUlY8i7oo3x2vLIgBUhMOziKuYeRSRlvor20?=
+ =?us-ascii?Q?O1W4kCrozxT9dAtba1K4ViiXdtxj64l2PlFzZUUTIVWR5lmEfEd4oiskkHOr?=
+ =?us-ascii?Q?4ou94m6JHVSnfyVpk8bp0u7NzNhibJgPXoZ1urbvk6u1x3UD07wcGtuV461u?=
+ =?us-ascii?Q?Z2rEsbTsjDqHVPRaBP1sdKKmETw1CsBNwL84HreOTcowRwo+5ySF15xuNoqW?=
+ =?us-ascii?Q?z7M7nXmKUYWK5/HtbsDpyWowULsPLP+9nEx4F2id88+r9nWDiWaeOsO9tId4?=
+ =?us-ascii?Q?ellHxZk+6RttqA/SVYlI/L87L2Wn8LiSeBjIzt3DmbYSetM7rlafDHWQwPdz?=
+ =?us-ascii?Q?BgZen79qZPOB4eugSOJZOzVL1nAL4jJlOPDuucc/RN6qcEJPyAgbXxi8pm2r?=
+ =?us-ascii?Q?0FNgp9piQdahWk4SS5AFbyll8kalmm9bhKV2I/EvrNTdtwuKWavSy0qGqS6C?=
+ =?us-ascii?Q?7sGV3+ndRRta1wa1vIST5eT/h1RmFHB2DUHDe0QCemyHagdRvCzNHwec22vH?=
+ =?us-ascii?Q?q0aPvsCoyCouM5Zam2mdSX3rpG00HqZrNBMxKbYifvcx229QBjnc5RJANWwU?=
+ =?us-ascii?Q?uZg96u/N5Pp4NjKOHUEnliSYquvlgN0RAq37Sec0WgKGPM1rKyFmfG0TWaGf?=
+ =?us-ascii?Q?2hkXIASc1wXpa8eRR3fClQA2htwLNu7fMM3H9lUEZDKzZXdcLHFy2BG3QTbt?=
+ =?us-ascii?Q?3826vU4VevZAXZxzXt2k5HTB6ONomVdpEznmQvVBuNy2OX2134P1V5DGmPb4?=
+ =?us-ascii?Q?XbC0j578XxlPnx7H9aXAfMGbgvW22c8z+YLUQtCx+7PHs3USHpHD66GEapnE?=
+ =?us-ascii?Q?rLKe+FtAjKEPUR0B+weJN1UiUGeUoCJACp12fmSBg9FBNGp9C/+1GfIJRyJ3?=
+ =?us-ascii?Q?aXj58+mx0lcimYOaavTyLowpjZ6I6cYrc/O9hrep9IE6wjEfHVK+3gDUDhGk?=
+ =?us-ascii?Q?wyqe2KiXbjnkX15Y+CT8+d/oh938cfLVr8XY5FT+aqGeHjmH1Oyabf2FkCeo?=
+ =?us-ascii?Q?LT7ybFqJIfp5SP7T+z3sMzIAQ6VObJJjQScFxrUQHqGCykRYZ3qcdOlQk4fg?=
+ =?us-ascii?Q?sWfrIg8eN0vqGCFfGu5NnrN2qkuWyY/E3+kdg9tqXxDrdJ656HrWOiMgHqtC?=
+ =?us-ascii?Q?Ik2bhK/xgiSaYfgY+H/gAJBskVrmWMfBC5c1d5kkXhZr9bYzQxEgC3Qih0AA?=
+ =?us-ascii?Q?dCwUYn+mHc3rM2lZv+xYPAzuaRKM23P7FZ8I1VUZFK2bWDcnMTkBlGQiXKZS?=
+ =?us-ascii?Q?l0YXNHZm1cWeWeAWZ6yAeePmC0nEcwJKKXAhW4P2Evr42NTc+e/K74tCD9vY?=
+ =?us-ascii?Q?Czs3WSfhbpAnXkA8D0ge2FSKm8f+Fp1ad1JqJX1FyDgNs5/R8X5w5GQgJusz?=
+ =?us-ascii?Q?ozCVc3/ZCW0om8YPysmDJDcKq3CtvZyzUQwICeU4zuKDX8oGAu/bwxSHz8jD?=
+ =?us-ascii?Q?aWZXN9slOXU/WJxiqcbn0+eSvEfLZtSmMv3VPvh5VQw+Zead1fPhK7RXE9y0?=
+ =?us-ascii?Q?yz4GCWmvme07M3Ixj4A=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d31c8dad-5989-48ef-d7f2-08ddcad1a88d
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2025 16:46:38.4083
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zMPVHCbIVh6ottem9U/gE/W0LiaSzdzuqkrNEWM2dHZr3JpRpk1AeMq2G6lf9rhPfwWtO2Pfplx5lMhCOeYwDA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8267
 
-On 7/24/25 07:43, Arnd Bergmann wrote:
-> On Thu, Jul 24, 2025, at 16:04, Shivendra Pratap wrote:
->> On 7/24/2025 6:18 PM, Krzysztof Kozlowski wrote:
->>> On 24/07/2025 14:24, Shivendra Pratap wrote:
-> 
->>> I strongly insist using compatible as way to find your device, not node
->>> names.
->> It will look better to switch to compatible. Will define a compatible for
->> psci reboot-mode binding and align the patch to use the compatible for sysfs.
->> Current patch defines reboot-mode as a property to psci, hope its fine to
->> define a compatible for this property like "psci-vendor-reset" or
->> "psci-reboot-modes"?
->>
-> 
-> How about using the reboot driver name as the identifier in sysfs
-> instead of the compatible string? That would make it independent of
-> devicetree.
+Add fsl,icoll.yaml for i.MX23 and i.MX28.
 
-+1
+Also add a generic fallback compatible string "fsl,icoll" for legacy
+devices, which have existed for over 15 years.
 
-> 
-> I had a related idea to provide some namespacing on the actual
-> reboot syscall parameter, as we have two (or more) orthogonal
-> concepts here, when there is more than one reboot driver and
-> drivers support multiple modes.
-> 
-> E.g. you could use
-> 
->      syscall(__NR_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
->              LINUX_REBOOT_CMD_RESTART2, "watchdog");
-> 
-> vs
-> 
->      syscall(__NR_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
->              LINUX_REBOOT_CMD_RESTART2, "psci");
-> 
-> to pick one of the drivers, or
-> 
->      syscall(__NR_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
->              LINUX_REBOOT_CMD_RESTART2, "bootloader");
-> 
->      syscall(__NR_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
->              LINUX_REBOOT_CMD_RESTART2, "recovery");
-> 
-> to ask for a reboot from any driver that supports a mode, or
-> combine the two and ask a specific mode in a specific driver like
-> 
->      syscall(__NR_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
->              LINUX_REBOOT_CMD_RESTART2, "psci:bootloader");
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Change in v2
+- Add conor's review tag
+- update commit message for old device.
+---
+ .../interrupt-controller/fsl,icoll.yaml       | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,icoll.yaml
 
-Yes that seems entirely adequate as well.
-
-If there is a single reboot driver registered say "psci" then you could 
-go with the short hand of specifying "bootloader" which would be 
-functionally equivalent to "psci:bootloader". That is, the driver name 
-becomes optional. This would maintain user-space compatibility with 
-existing systems that already support custom reboot modes.
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,icoll.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,icoll.yaml
+new file mode 100644
+index 0000000000000..7b09fd7d588f2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,icoll.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/fsl,icoll.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale MXS icoll Interrupt controller
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - fsl,imx23-icoll
++              - fsl,imx28-icoll
++          - const: fsl,icoll
++
++  reg:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - interrupt-controller
++  - '#interrupt-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    interrupt-controller@80000000 {
++        compatible = "fsl,imx28-icoll", "fsl,icoll";
++        reg = <0x80000000 0x2000>;
++        interrupt-controller;
++        #interrupt-cells = <1>;
++    };
++
 -- 
-Florian
+2.34.1
+
 
