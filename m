@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-199848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CEC9B12740
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 01:21:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14372B12745
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 01:22:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0C42AC216F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 23:20:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A0901CC74F1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 23:23:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F14F925F784;
-	Fri, 25 Jul 2025 23:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797CC26056E;
+	Fri, 25 Jul 2025 23:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MoeHct9o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G9vZtIgi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C583325A630;
-	Fri, 25 Jul 2025 23:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E36725FA1D;
+	Fri, 25 Jul 2025 23:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753485667; cv=none; b=FoJAZaYrbciCzL2Vd74oEY74dgPA1ieXGra6JutARv+U6oBVfIt9Bzjv4pN9/gJ0SkjsebO0V7nAbcjwKKYzu0GHkRss07QJA71fIkckU/0N0LSG+yUts9R0xevjrAXM6+XHvKOi63kfAZpYzzEPFMJY2yuofLLAsau/Rh3hoQM=
+	t=1753485759; cv=none; b=XJZvxBFYpzOWo/qki8+NLG/VkCSnlpOt3kT89Y0h7s9BtI/6N5RTkan/tFj3V9BtkFP0KXT2g3VDXxOBsFTbJ7m2CKs6ldZGGuOuW75UZbSRwO4mEtzOq1VX3MYmIUBdAFBTcRwaTqu+XoA65/KN74eK8T2W+Z4bpLMJZdWJ97M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753485667; c=relaxed/simple;
-	bh=BBbnP/4MNf1hkVbz0RltTl/5YUhhWEOI5p2ZZ36l+Qc=;
+	s=arc-20240116; t=1753485759; c=relaxed/simple;
+	bh=6pdt6fOe5Ng2y+5SEcgtxmNL2gVOlsVaG2k9rbu1QfI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E3XWeTjAYWMMZzzL+rSk13UMFpnrM25UtA4S0aYAweT+qELVD/cAIJHitQZl2t1evPd1iJosCCb5pmL984Is/81R61Gxunx3dwigZTtSTPlzcd7fDB26V/WIWfWaiJSeRum2osuYTjWD9+vc3sLBlclATR0xwHXPNHzqbtv8jLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MoeHct9o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D5C2C4CEF4;
-	Fri, 25 Jul 2025 23:21:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dem6LC5uKvdz7wgNfPZREOuKSCSMGs+79rIKMSaP6KTU93iLBi1aCCjbgEil1CjeIwG6BKoni0qNla29zK8mqrTRll/hWM7GzAK8qvNXiWMVaunMWFW5wGWcJvCVV7+jjByvOND4xG4FUFinrB5WyrAN1E/u+WPEkLyy8i95u3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G9vZtIgi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3A71C4CEF5;
+	Fri, 25 Jul 2025 23:22:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753485667;
-	bh=BBbnP/4MNf1hkVbz0RltTl/5YUhhWEOI5p2ZZ36l+Qc=;
+	s=k20201202; t=1753485759;
+	bh=6pdt6fOe5Ng2y+5SEcgtxmNL2gVOlsVaG2k9rbu1QfI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MoeHct9owQ0TJYqxPbYILn2DIwz1UQ3WNTsQSvyveva+Ja7slR9M9uhszd1ZpvMNc
-	 TbH/TeVGWI0GEPaQryDc+XXxQt+7an2B5Z1WfGxeIIauy0dlZ4WUE7EXHb1lEskUpV
-	 p3xYT+k0jcGpoguLeWee47SgDgSDxBrDf7XbsTKE9D/QtfrktmtaWqiYvjb2Ec8422
-	 Wbot2YsUvrMmzCz+suY00GWz/kwQaDd6LFh+w0qDhdc5VIVjCVKhHeHNn1h0B4Cxww
-	 znk9I0vRM9f1FiW6R4HvSZhbVgOakf2QzEuIcFdzFyBHv7p0TqdpwiqjtbXW9YuLHB
-	 zTD6ewCS/A5yw==
-Date: Fri, 25 Jul 2025 18:21:06 -0500
+	b=G9vZtIgibQSXkgj+hXMN2ee8Tm0V97h4S3Bx9cvE4gbBGys8DpRsq62//HMMYyiXw
+	 /R/FxcQWcYQu2wJLcM3hbdIkJKHo9UzFQbS3PglyenXQrnKss/CzGcUMysU9T6FnuK
+	 wzAwuWWXy0hEy52RXO8r0NrUs55U523/uK8EmB4Mwn+mAqB/taEtj6POcSzFOTzicP
+	 Lba4YHFFcsyBkr93YkPsgESmOXFzWAPaVuHGUVmJehBk8sFmDNdK0cxFdusxGw502H
+	 4e033E32crXYA8qmUAB6r984wIwSVXIhlE2NT0I3ewWIIMI5oMBlyYZLvwmXbCjd0E
+	 sz67ZdA+z7Y3w==
+Date: Fri, 25 Jul 2025 18:22:38 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: Replace bouncing Analog emails
-Message-ID: <175348566588.2019384.4908547984111781460.robh@kernel.org>
-References: <20250724113826.61998-2-krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: arm: qcom: Drop redundant free-form SoC list
+Message-ID: <175348575733.2021152.1272810357973183431.robh@kernel.org>
+References: <20250724132436.77160-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,34 +60,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250724113826.61998-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250724132436.77160-2-krzysztof.kozlowski@linaro.org>
 
 
-On Thu, 24 Jul 2025 13:38:27 +0200, Krzysztof Kozlowski wrote:
-> Emails to stefan.popa@analog.com and alexandru.tachici@analog.com bounce
-> permanently:
+On Thu, 24 Jul 2025 15:24:37 +0200, Krzysztof Kozlowski wrote:
+> The schema and Devicetree specification defines how list of top-level
+> compatibles should be created, thus first paragraph explaining this is
+> completely redundant.
 > 
->   Remote Server returned '550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient not found by SMTP address lookup'
-> 
-> so replace them with Marcelo Schmitt from Analog where appropriate.
+> The list of SoCs is redundant as well, because the schema lists them.
+> On the other hand, Linux kernel should not be place to store marketing
+> names of some company products, so such list is irrelevant here.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
 > ---
-> 
-> I don't know who from Analog should maintain these devices, so I chosen
-> author from Analog of one of last commits.
-> 
-> Marcelo Schmitt, could you confirm that you are okay (or not) with this?
-> ---
->  Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml | 2 +-
->  Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml   | 2 +-
->  Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml      | 2 +-
->  Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml    | 1 -
->  Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml     | 2 +-
->  Documentation/devicetree/bindings/iio/frequency/adf4371.yaml   | 2 +-
->  Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml   | 2 +-
->  7 files changed, 6 insertions(+), 7 deletions(-)
+>  .../devicetree/bindings/arm/qcom.yaml         | 94 -------------------
+>  1 file changed, 94 deletions(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
