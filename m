@@ -1,73 +1,71 @@
-Return-Path: <devicetree+bounces-199631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB9DBB11858
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 08:16:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71DBAB1185D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 08:16:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0FC21CE21DE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 06:16:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA1215A1935
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 06:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D8EC288C2A;
-	Fri, 25 Jul 2025 06:14:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A39245032;
+	Fri, 25 Jul 2025 06:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="aPPZdLTK";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="VxiPD51T"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Gr5S8W2f";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="EXcgreaC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA3522874F6;
-	Fri, 25 Jul 2025 06:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3078FDDA9;
+	Fri, 25 Jul 2025 06:16:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753424095; cv=none; b=U9o58wxPl6deQ8ENRwzYcgFbC8lfRwAhNz20KEZlZ60xWyJOdPbbbIHNTqOCRSPIQ0T6v3hnOsBUXBSJUrDzDjsYqoGWeOpDHfaVjusW2kHc1Z2/hyTjAMV4RxDcxovcH703oLnZkL8RNpEk9+j/6/QNFj4xJvnm221QmikJ0E4=
+	t=1753424205; cv=none; b=ZTHVGoh4aQiPiQyGN/PCZuEXldO1ubOv7DAffvtCW94NjrTdX1SSZbbaHL1YdqTlc1ImveZ7tgglkK0SXOyzlAYa8o27x3TkIK1lyQA1u6GfN/l4H5GxXJP4McDNtQtzGZJtGzNbEJsYKV+GdXgPhZ9iW6T62wTb08s/KDCIWgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753424095; c=relaxed/simple;
-	bh=IBEHMlmvNvS2HelLPRea91hJuq0QkQseCc7mrW4Psug=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=p92jUpi7RZSgo1cS5FjEevHwFmnF/Y7/KU8/agoTTjGDFMgK6NNUtwZq33FJFQ6R0QAMsZlqC303szjXghep5lmiDbbjTnlutp5BCev617MJ3XKBzcPs02KcGh0ZkX8lUt0mbSbIRXz+L1Fw+rvg2R4PYGUgeUlNPhL9srWMKbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=aPPZdLTK; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=VxiPD51T reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+	s=arc-20240116; t=1753424205; c=relaxed/simple;
+	bh=B4wdDdOknFYIOahXNKei7CLoCcpWfH2LGYMPjvzMNYw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lDIzmoVJ2HtegZGIGpgw3KROVZBeYnOLfoJNnni3q5Jz89xGsQHhcu53+Pmn/fsiVOI8Lefgcjw+jaHHL/JY7rmp+sXruWLdXGj1nAdvUUP6DXd5IvD0XuFZJeNuEOxO+PbJz9PPRx26R5IgWuq0zHgNGM52YIfDDmo1h+jQQjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Gr5S8W2f; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=EXcgreaC reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1753424093; x=1784960093;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=2M5zCaIWhbk8FXF6KTQw3rrtOvrfwFLiMBbwugEplvA=;
-  b=aPPZdLTK5oskHGudMZNaPkhRPiOCztR9FShVJI35LfN4a0YrcYskXN5Z
-   hPSW2ybsR5QGH+BuYfG2pUcxtkGSD/TXvawSdwPjK+MjdaYagV5pbOBLY
-   YzxalHVHbFmKtjLQ8TiN4uRP+GVjHnK49nHcytY3/jL6aKoyogASiF7VB
-   WOeVe/f7AR0v6O0D0VkO/ChIbjUjnqSI1zhR/mEJOpYyqoT1ZJujDnBQ9
-   SOUw81p4sFhiIcqzI7o66ZN/vnVBNccAGAaqvMI710YXxwJONdJ2nKeyJ
-   jY2sY8Vju8LH8bHKheQQYRG3lnDlps+PEd+G6xfLe2fNAMheb8jWlJIPe
-   w==;
-X-CSE-ConnectionGUID: vj0Xval+TU6L4E+KkYFKHQ==
-X-CSE-MsgGUID: e0UYQv07Rr2IU+5AcuTbHg==
+  t=1753424203; x=1784960203;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=XM9iXBp8IqXzGuZRucgzJovFOCvW94kDLWRDrJTUflo=;
+  b=Gr5S8W2flZl1HJqCj+ojKTalnPQLJY8UZHj8oixmYZfyEwd4Yz+zEG6K
+   K+d6w50MbaOCTI/vdsDiANbyE1KeD/T1XKZMenK6pYVLN9zz6fRxStPuX
+   x7TiY/NSHa3q+iq8itUK6GwMEBwP5jQ7UkkpRVqBzdBarH3PHDUk965/7
+   N2kLyCpq9oOZiO9f12WcuGLoOsW76aUOnQkQ6cf/x+k1JAV3nTnKP+ABy
+   4hmwXlbPgypdBTn0lPoeNomlHWOFzFVU4hmSBtfbxYNPihlWR68IFmwTq
+   FlhLGnVjmx76Hrvo1IMn2kyndN1pHtBuMXEWAvR0jjZcZxqpMxkOb+mjM
+   g==;
+X-CSE-ConnectionGUID: W9UZgxk6Tm6SRkqx9pYAOQ==
+X-CSE-MsgGUID: FVqbObs7Sc2VCHCIJs/FcA==
 X-IronPort-AV: E=Sophos;i="6.16,338,1744063200"; 
-   d="scan'208";a="45413070"
+   d="scan'208";a="45413149"
 Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 25 Jul 2025 08:14:35 +0200
-X-CheckPoint: {688320CB-15-4FC15ADB-CD71293B}
-X-MAIL-CPID: 7817297EFDE73460672EC898B02D0DEB_0
-X-Control-Analysis: str=0001.0A002105.688320CC.000F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E6552173655;
-	Fri, 25 Jul 2025 08:14:30 +0200 (CEST)
+  by mx1.tq-group.com with ESMTP; 25 Jul 2025 08:16:40 +0200
+X-CheckPoint: {68832148-19-943DFC15-D71A48EE}
+X-MAIL-CPID: 2331C9402F859EDB0778B4294738099F_5
+X-Control-Analysis: str=0001.0A002111.68832144.00B0,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D1201173655;
+	Fri, 25 Jul 2025 08:16:35 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1753424071;
+	s=dkim; t=1753424196;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2M5zCaIWhbk8FXF6KTQw3rrtOvrfwFLiMBbwugEplvA=;
-	b=VxiPD51TJoIhGqddFUk3rSN6Lk88z/vA/Zzm+qLUqzE3qOn9qqrX6NOJN2OMiatew+LAFm
-	647oOsbU+HkUpShphEQkrc+/ib5sx6io/ufZvlpP3tMD4HtpJpTK4xJXhtXdaCwfrKsPrX
-	iPLcYu3LUj8bWlyPAv6o2MJIUr5YaJ8EYS2z9lNb9xbqZJKNdgDGjjToQp6bL7+KGI5Bab
-	h2ffTe8COXw0x5fSFMro3QDrvLgFW3jNOlyHO7SKzXXLb8blfAazY+BqKWp1XhXjHBeO1e
-	TacC3iu5Qjm2TTvGB8+Ij0Z0/uf2Wi8x2n18+Kz9LG8zJ6PyNnM8f2qy/dYrJQ==
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=XM9iXBp8IqXzGuZRucgzJovFOCvW94kDLWRDrJTUflo=;
+	b=EXcgreaCubRwd2R3HaVwbNxUdzvj8RJM5l+/rjZ9LKz2tE5RwO6R4V2ZQn+d7oYt+i0FPb
+	a5+7HXQBpGthjRgVkvcvmxiHQlSOD/4FhXsgtJTA6KUo6Ug5+oLtWEGQC/JC9XCY4AkIBt
+	BegzVl38hWRXJGM4LVp7QfveDtRnk28fohwY3174c4oK9IXakTuyiXn8gQFyP2eTFpqpdo
+	Fbd7o4IBIRSbPJmda3B743sRiav+VkDagGUuffrH8LefE/zsZVGEMZKP42upXi7pANIeho
+	4QeQuqoGme4WvM2spv/Snbnxyn7cCwGpYZOdWowJPIqa/fuLQu6uUcMuBsaz2Q==
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Shawn Guo <shawnguo@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -77,12 +75,10 @@ Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 10/10] ARM: dts: ls1021a: remove undocumented 'big-endian' for memory-controller node
-Date: Fri, 25 Jul 2025 08:13:35 +0200
-Message-ID: <20250725061339.266125-11-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 1/2] ARM: dts: ls1021a-tqmals1021a: Remove superfluous address and size cells for qflash
+Date: Fri, 25 Jul 2025 08:16:31 +0200
+Message-ID: <20250725061633.267174-1-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250725061339.266125-1-alexander.stein@ew.tq-group.com>
-References: <20250725061339.266125-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,30 +88,27 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-According to binding doc mmc/fsl,esdhc.yaml and driver
-drivers/mmc/host/sdhci-of-esdhc.c, default is big-endian, should
-use little-endian for little-endian system. Remove 'big-endian' to fix
-below warning:
-
-esdhc@1560000 (fsl,ls1021a-esdhc): Unevaluated properties are not allowed ('big-endian', 'bus-width' were unexpected)
+The jedec SPI-NOR flash node itself has no partitions, but the partitions
+subnode.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm/boot/dts/nxp/ls/ls1021a.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi b/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
-index d8a43c5aac80b..abb3e5ed7e027 100644
---- a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
-+++ b/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
-@@ -161,7 +161,6 @@ esdhc: esdhc@1560000 {
- 			clock-frequency = <0>;
- 			voltage-ranges = <1800 1800 3300 3300>;
- 			sdhci,auto-cmd12;
--			big-endian;
- 			bus-width = <4>;
- 			status = "disabled";
- 		};
+diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a.dtsi b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a.dtsi
+index 271001eb5ad7f..167559521ae10 100644
+--- a/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a.dtsi
++++ b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a.dtsi
+@@ -66,8 +66,6 @@ &qspi {
+ 
+ 	qflash0: flash@0 {
+ 		compatible = "jedec,spi-nor";
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+ 		spi-max-frequency = <20000000>;
+ 		spi-rx-bus-width = <4>;
+ 		spi-tx-bus-width = <4>;
 -- 
 2.43.0
 
