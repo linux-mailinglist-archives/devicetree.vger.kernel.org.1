@@ -1,182 +1,112 @@
-Return-Path: <devicetree+bounces-199656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 774FBB11943
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 09:40:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDEF9B11946
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 09:40:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44C173AAEAA
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 07:39:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32135171D19
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 07:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89D625BEFD;
-	Fri, 25 Jul 2025 07:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7299528A1C4;
+	Fri, 25 Jul 2025 07:40:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fvLj/ANp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XH2AO74M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1D31CEADB;
-	Fri, 25 Jul 2025 07:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C54262FED;
+	Fri, 25 Jul 2025 07:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753429213; cv=none; b=S/n+fZetL3Evhd5c8ecOgrKx3hLHNBHaqVIZhBSOADswE2hE7uBMg88N5Lyuu2qr4LB+AmatBX3oKa9qaQ+ieeNJBC6J+ZDNCmvKUtSHyZlWECCVdGsWBtCf5P+EHvk5XWwnR9Ib6FIfL5IpHrktkumKQ7igNjAoeqJeLll5IL4=
+	t=1753429240; cv=none; b=qAG2ELza+0g4OfHnfYCTB8hqzFtFaEo7JkKW5SVF4gYqaCWkD1w04koJ510YjOrgbPB6N4PZu/CI5gjctZI4ia7cwEtUVGhBEyh83HLJbRpNmpLxHDJGjWRZlWUyv67Z+psc5I1xBNI6iESaocVaI2r0KE8DFlrZNx/iTI8mYrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753429213; c=relaxed/simple;
-	bh=7VzQscuh58heLqHgPQucnd5aA5ZutPjS50+G0o0BO0Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ijfG4nfymECvlKLjcKJ698+0a0jO7SqWyBQZ4j7Nrpn4TWAvOSRV9jqCkxquDl9ym+HgI5xKS7jpdLnSAo5cis5aPpIgoV0A2/rlpcon728cDlCpWE1IT/Tj+rnJsLYitZ+nVaxhvINU+xLbNqhPVh7elCi/XlY63KIIrIbaa50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fvLj/ANp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F5CAC4CEE7;
-	Fri, 25 Jul 2025 07:40:10 +0000 (UTC)
+	s=arc-20240116; t=1753429240; c=relaxed/simple;
+	bh=mQb7ii/iz5xvC8IcCbRWR06c9PIGYpUz0dlyEmD+2U4=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=IrXK8GJJNn8nzDG3gWMQ+oNLspgg9E+86B6W9yCbkM35V7P4t+MRMBBPrE4NHS3HaOO41U/n3Qm8URN1Jnur6VUlzR29PsFfts0nwwrAGVDUb2V2ZEpWbMpN8IQFG2w1lcUuOLLYSMJux2jMHNvmMl7rpQfImRsozYZn0Ecq/sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XH2AO74M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D1BDC4CEE7;
+	Fri, 25 Jul 2025 07:40:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753429213;
-	bh=7VzQscuh58heLqHgPQucnd5aA5ZutPjS50+G0o0BO0Y=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=fvLj/ANpkT2bNwQYRbeyhJMU70oyrqXfxsFj7Mou4iNQBHzz21IOMS24MZA4v65qm
-	 wMw8+QYyzq3avcoG94kfAnX2OHP6TVXc+UneLCbFDyPMVI5fR8AV7vjz59D6zatuJc
-	 7lTgFRvqsfeGAwzue0TY86lPQ4rtXGE6Zyed2I43w/fQvUTNMXAezuXx/HyXlFbKX+
-	 TjhEHkoRzVeSfT0e8RqofNNKSc8KvuQCUyZxSSBO7C2WMCKAtW0ZHkEocRTNSRS6jF
-	 FltryL1O+/oslxIaenw3ZSkLhBuSAvznsXbb2x0eQzaXtv3y41z6MAF4s2CphYvGmb
-	 oAvjrcKKlIeig==
-Message-ID: <384635a3-c6ed-44f8-a54a-2b20e20694cd@kernel.org>
-Date: Fri, 25 Jul 2025 09:40:08 +0200
+	s=k20201202; t=1753429235;
+	bh=mQb7ii/iz5xvC8IcCbRWR06c9PIGYpUz0dlyEmD+2U4=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=XH2AO74M+7RES9iiESI6Vto2I7IXUo4PR6MniKzpyZPWXPo399sCeL0XtLqdNKVQR
+	 0UpE3tn+NM6YrWvu4dF2C94dp/IpHuIer7qL+f5Az6Gw38VG5ILuwt4QSxK0KVp2MW
+	 +JnwfXA92D06mfKcu+vdtr9jwnaqGV1EqmAbw6/D43khBpKNdyUORaCOrYrGkFlEyT
+	 xiiBOS90s3m3SorOlWZW2StNm26M0SP6M8DHSkxl5XP70mEf5l/p83QsNsVDRsUKJr
+	 t/Rvw0OuqdyQkHKLakxF2tSFG7cvkM/U2QPMo07cSwLFd6pot26Ix3xgn463DAITuw
+	 cwt7Q2CuDXW/w==
+Date: Fri, 25 Jul 2025 02:40:34 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: interrupt-controller: aspeed: Add
- parent node compatibles and refine documentation
-To: Ryan Chen <ryan_chen@aspeedtech.com>, Thomas Gleixner
- <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Kevin Chen <kevin_chen@aspeedtech.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
-References: <20250722095156.1672873-1-ryan_chen@aspeedtech.com>
- <20250722095156.1672873-2-ryan_chen@aspeedtech.com>
- <001d37c7-f704-4554-a4db-0cc130e07dd6@kernel.org>
- <OS8PR06MB7541F8D3AEE1A618DB31F07BF25FA@OS8PR06MB7541.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <OS8PR06MB7541F8D3AEE1A618DB31F07BF25FA@OS8PR06MB7541.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-tegra@vger.kernel.org, nm@ti.com, andersson@kernel.org, 
+ krzk+dt@kernel.org, linux-mmc@vger.kernel.org, kyarlagadda@nvidia.com, 
+ thierry.reding@gmail.com, linux-i2c@vger.kernel.org, sjg@chromium.org, 
+ andi.shyti@kernel.org, conor+dt@kernel.org, ulf.hansson@linaro.org, 
+ devicetree@vger.kernel.org, jonathanh@nvidia.com
+To: Rajesh Gumasta <rgumasta@nvidia.com>
+In-Reply-To: <20250725052225.23510-3-rgumasta@nvidia.com>
+References: <20250725052225.23510-1-rgumasta@nvidia.com>
+ <20250725052225.23510-3-rgumasta@nvidia.com>
+Message-Id: <175342923470.141295.13172940562486185515.robh@kernel.org>
+Subject: Re: [PATCH V3 2/3] dt-binding: i2c: nvidia,tegra20-i2c: Add
+ register-setting support
 
-On 23/07/2025 10:08, Ryan Chen wrote:
->> Subject: Re: [PATCH v3 1/2] dt-bindings: interrupt-controller: aspeed: Add
->> parent node compatibles and refine documentation
->>
->> On 22/07/2025 11:51, Ryan Chen wrote:
->>> +  INTC0 is used to assert GIC if interrupt in INTC1 asserted.
->>> +  INTC1 is used to assert INTC0 if interrupt of modules asserted.
->>> +  +-----+   +---------+
->>> +  | GIC |---|  INTC0  |
->>> +  +-----+   +---------+
->>> +            +---------+
->>> +            |         |---module0
->>> +            | INTC0_0 |---module1
->>> +            |         |---...
->>> +            +---------+---module31
->>> +            |---....  |
->>> +            +---------+
->>> +            |         |     +---------+
->>> +            | INTC0_11| +---| INTC1   |
->>> +            |         |     +---------+
->>> +            +---------+     +---------+---module0
->>> +                            | INTC1_0 |---module1
->>> +                            |         |---...
->>> +                            +---------+---module31
->>> +                            ...
->>> +                            +---------+---module0
->>> +                            | INTC1_5 |---module1
->>> +                            |         |---...
->>> +                            +---------+---module31
->>
->> You binding also said intc1 is the parent of intc-ic, so where is here intc-ic?
->>
->> This diagram and new binding do not match at all.
+
+On Fri, 25 Jul 2025 10:52:24 +0530, Rajesh Gumasta wrote:
+> Add register setting support for the NVIDIA Tegra20 I2C controllers. An
+> i2c-controller-common.yaml binding document has been added a top-level
+> binding document so that all I2C controllers can use this binding. This
+> new binding document defines some generic register setting properties
+> for I2C and some standard I2C operating modes that the register settings
+> need to be programmed for. This new binding document is used by the
+> NVIDIA Tegra20 I2C binding to enable the use of the 'reg-settings'
+> binding for this device.
 > 
-> The corresponded compatible is following.
+> Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
+> ---
+>  .../bindings/i2c/i2c-controller-common.yaml   | 73 +++++++++++++++++++
+>  .../bindings/i2c/nvidia,tegra20-i2c.yaml      | 64 +++++++++++++++-
+>  2 files changed, 134 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-controller-common.yaml
 > 
->   +-----+   +---------+
->   | GIC |---|  INTC0  | -> (parent : aspeed,ast2700-intc0)
->   +-----+   +---------+
->             +---------+
->             |        |---module0
->             | INTC0_0 |---module1
-> 			(child : aspeed,ast2700-intc-ic)
->             |        |---...
->             +---------+---module31
->             |---....  |
->             +---------+
->             |         |    					 +---------+
->             | INTC0_11 | +----------------------------	| INTC1   |  -> -> (parent : aspeed,ast2700-intc1)
 
-AGAIN (second time): that's not what your binding said.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Your binding is explicit here, which is what we want in general. It says
-that inct1 is one of the parents of intc-ic.
+yamllint warnings/errors:
 
-Let me be clear, because you will be dragging this talk with irrelevant
-arguments forever - changing this binding is close to no. If you come
-with correct arguments, maybe would work. But the main point is that you
-probably do not have to even change the binding to achieve proper
-hardware description. Work on that.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.example.dts:24.22-73.11: Warning (i2c_bus_bridge): /example-0/i2c@7000c000: incorrect #address-cells for I2C bus
+Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.example.dts:24.22-73.11: Warning (i2c_bus_bridge): /example-0/i2c@7000c000: incorrect #size-cells for I2C bus
+Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'i2c_bus_bridge'
 
-Best regards,
-Krzysztof
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250725052225.23510-3-rgumasta@nvidia.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
