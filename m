@@ -1,66 +1,101 @@
-Return-Path: <devicetree+bounces-199833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ED84B126E2
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 00:30:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 160E7B12704
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 01:00:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 464C01CC7A69
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 22:30:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C497DAC175C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 22:59:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E8D2571A9;
-	Fri, 25 Jul 2025 22:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A94C2586C8;
+	Fri, 25 Jul 2025 22:59:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f3xWzfDn"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iAd7xqbV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 151222528FC;
-	Fri, 25 Jul 2025 22:30:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5350223C4F1
+	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 22:59:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753482603; cv=none; b=t6tKeEGGb8RB2ZWI3M2vfIyd6zdSvL48i3FbHDIldCCoawNlrof4wUm7KoSbGMbPknR90BajmxsN9ndb38QkQ7vShGn4Imyrt4fUFcCG3+AA8Mpddzf5iUZj1JE7L98n/ZJAsuTW7TE1/HuwM9F/sfmT1CzOXmz7xubOHcB86dg=
+	t=1753484396; cv=none; b=BFLIMi00mu5muqiYtPDHPgQb1K7gimDtSWCacXkMqcUkMDl7kh7MYAPDJnXKjBf0jIMO7Pan5rSOgH0Sc86RgSfynvKQcY4h85XgMTEHd+73STycHUvPULaFIp6ULMO70ovGB2PbtnaTsbLLTV+dPoctQhHv/b88qOASg5wVSy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753482603; c=relaxed/simple;
-	bh=aTk1baJauPVy9kyysWM7wg/om96SyQAhBaQ0STr1Sns=;
+	s=arc-20240116; t=1753484396; c=relaxed/simple;
+	bh=N8e1kdafjcd8n8CUehxkPxDQvMbFHTTKeQYYd9Ny/9M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hRcwo+uamNob4XthajK3joRY57uxRElseCj4INto4CQeYX/gLq+jq2lve8olz+acv0DFsVJ8iTiRxKEDIJ+dNBDrbsCib8C88SDV9Gp8DShKsS1CU5K65RKArSGS/LgF2sczCj+L3AZ4MUwBEGnidZIwYK+rzhhN1ix7jNqMAOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f3xWzfDn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68A89C4CEE7;
-	Fri, 25 Jul 2025 22:30:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753482602;
-	bh=aTk1baJauPVy9kyysWM7wg/om96SyQAhBaQ0STr1Sns=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=f3xWzfDn9oK86XHoFYy9UyG3hyAJhOoD7gpBgz8JWOIfzi5SMFItyHVboQgc1TqKb
-	 HFA9ahrgeomwjbtfozFtAxzf8k9rBIq7S7dHYCrl2o3kOddZokqqGVm15pBhGDb8KC
-	 PyKLSvG0XNnBoqbHOc5nUBIFfD5MJhgTvoS9UPo+TDjRSTmKeBNyr1ZiD33Mt2jxH+
-	 GxM2jGIdGtM6fdved1fHMLkN/V9XiepV1D0GkJu2wp6RiOHg/Xi8fUSfZvp58snyf/
-	 QrZOOKdb126BAIus36KplAFd2SZ8t1IlLzsSjd4CpczIqN45ocXONc8wh9lGxQFpyQ
-	 k1dMEkCU4oI2w==
-Date: Fri, 25 Jul 2025 17:30:01 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Junhui Liu <junhui.liu@pigmoral.tech>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	linux-riscv@lists.infradead.org, Conor Dooley <conor@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	linux-serial@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, Jiri Slaby <jirislaby@kernel.org>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Alexandre Ghiti <alex@ghiti.fr>, Palmer Dabbelt <palmer@sifive.com>
-Subject: Re: [PATCH RFC 06/10] dt-bindings: serial: snps-dw-apb-uart: Add
- Anlogic DR1V90 uart
-Message-ID: <175348260118.1950815.4384320284007344403.robh@kernel.org>
-References: <20250721-dr1v90-basic-dt-v1-0-5740c5199c47@pigmoral.tech>
- <20250721-dr1v90-basic-dt-v1-6-5740c5199c47@pigmoral.tech>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RE0O1JsG0wj112H99LqQN25hOvWg3G+Tv07/QiD/+SPhaicCXnFt0Y3SW4LTkCsmWHrW1tNGKd7pV80P2mgbN0b8BFeICjZqBUazIJ0Vin6WYC4HStD7LAySSRPSwkDgM+3q9lVHwRFPOAOTAO/0iFW7VKODdYglErEcDzJsNcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iAd7xqbV; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56PK110X028127
+	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 22:59:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=YIKA470xrZiayxUPdNqdVwH4
+	9IURz2Ovf5lBbRciHu0=; b=iAd7xqbV3jp6RDE5Fx3/yt4s3TANlAx+gbRcqWdJ
+	2ZuEzjtHfbMvxgU/plgYgmHf9UF9xaDloJChlIOZyQsSL6kljdlyrDwRRmuKl0LK
+	xAjr8q/wi35M4fd9C7A9qG2/6pN3f+4WQfrMOYP/YvOAcPNruAeZXoMjGijukDzu
+	iz3WtBbeOw/zSoJ2+eZsubfUVApOmXDNdETD55wGVte+/lQHdRDB7Rbjf7zFPp7I
+	9dnMATe9MfiTb8BAoWoLYsK7WkCYf7E1VBZkqrkfq/qeV7lEwnfYYhGBY/wt1BLf
+	l+n1UWd0MnYHZ9+7x1e3KHJ0eHKzYXctMIU4WqKLFnHjiQ==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 483w2u3r1p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 22:59:53 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6fd5e0bc378so44336746d6.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 15:59:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753484392; x=1754089192;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YIKA470xrZiayxUPdNqdVwH49IURz2Ovf5lBbRciHu0=;
+        b=BFqZ+GhhA6lK3f9DpayPkMi9wLLaVhQKBGwXbmWEt4bU3pFRdjetUHU05/yA0/nIq+
+         w8bkOyOncautt4hM0y8g/mrXBZR0Jrwyw70CkU6KoSJuLR5mUWXzEB5+5J8TZ7n249QO
+         5uLMXxcy5OW/esaHp0J1hUHHYiYLy17H+bGXdT3cG7HoTQqVYy8arVJ4drx4Unv7Qvx2
+         vA25vKUknf3Q6c6012PYVM6m7UETetW+f4gYcq/G4T5NKvo7vYINSxnH8Fu7Da+064fx
+         B13ubKjqyDNedb/ybkiAvWj95CzbfRdyjRo0VhixSM0t/8prtc28da5RKlqZQDfwAAT6
+         zpFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUMTLb5G94+wc1/SPdj4KnCPPKpDXztr1x1h34HkdAO/E+FWk+drWEsg5TQKyY7MKVH3L8GzUC/nxdL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8Atsy9jHwTx5d/uq1tYDRvOGenSe+56efHyMh7Ipm3G6wcPWL
+	JHKMW9PgB5RRFX7JAN5zQohl9Y8qp6aw4hfmRa2F967Pxcp8B4+oS448v6F15Bp9uuceiEtxCAr
+	ZwhQL2+tHfvVmaPlmMjJwCdzT5MxuvJw8mvsiKMliVJAGmhSyizj82aU4r66AkUNd
+X-Gm-Gg: ASbGnctxP1INKs4rgY+wQ5zDjbnsTreL7UBh0gsWy+kawkDQFe5DwwJgoslt7lfmDtu
+	pJVEyj1cLEYo9f5uf1BcTX8mF4tYbFT64NcdG1mek/zFUhsIjA7mYFnD/BK5XvvUcruRXQGtxZT
+	XAr5xw923K+jnNP/RsOqWwgzKmjnFIuQO2vdyHGwi1Ir1JLg6ukQrji2J+L22Q8IKjSOgO0pSCv
+	7brllxKaTEb4/K6vn8YWTyXy163VG9Me788mVI/SdoKl6ZUve0AfBp1NH7YQxaM9ZVmi5mk3XDx
+	GUeIWMYk3ecKfHvF+Bc8OSEiN9M6eRrtz3znOjmhCWbeWU1QYlqvcjpHAxXYrpAMQ8yytejSMiN
+	k+5pHT99f7EF9lMapUoD7oCUIIjHq2ezmKNq/kUVCoFkK47Er5/wO
+X-Received: by 2002:a05:6214:2021:b0:702:d6e6:aab8 with SMTP id 6a1803df08f44-707205d08fdmr50274576d6.38.1753484391728;
+        Fri, 25 Jul 2025 15:59:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFiRRVVhBi4an9ryBUjXC1SCWBg0iBp7Xv7AcbxFmoNVWkRbiK75bGzcC12xTzL/6iwaeU2SQ==
+X-Received: by 2002:a05:6214:2021:b0:702:d6e6:aab8 with SMTP id 6a1803df08f44-707205d08fdmr50274156d6.38.1753484391196;
+        Fri, 25 Jul 2025 15:59:51 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b63363b6csm165468e87.98.2025.07.25.15.59.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Jul 2025 15:59:49 -0700 (PDT)
+Date: Sat, 26 Jul 2025 01:59:46 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, mripard@kernel.org, naoki@radxa.com,
+        stephen@radxa.com, cristian.ciocaltea@collabora.com,
+        neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
+        yubing.zhang@rock-chips.com, krzk+dt@kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, robh@kernel.org,
+        sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v5 02/10] drm/bridge: synopsys: Add DW DPTX Controller
+ support library
+Message-ID: <bznw5qg3ag7rugqrvoxtqm4njrnxclbohzd64jajhspe6w65w7@ya4wpxpibpli>
+References: <20250716100440.816351-1-andyshrk@163.com>
+ <20250716100440.816351-3-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,19 +104,147 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250721-dr1v90-basic-dt-v1-6-5740c5199c47@pigmoral.tech>
+In-Reply-To: <20250716100440.816351-3-andyshrk@163.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI1MDE5OSBTYWx0ZWRfX1ZnZVFW3Vp17
+ NnhjPS5Yj1LE1tTy5YhuU+gMwqwazIxxiICMC0DOUtxozJHTRvz/G7EH2uNRVo0ygeFif/+DYtR
+ rXnr2v3Y4V+OG+dUAq4e5vK8446HLRrUnDB55U15BBnE/oYISTHlgV/Kx3IVQ5p59IY9J5STdjf
+ gz1rVExesHOb6JclxsCW0RSoUP3PT+4VLdu/vlUYEzNIiP9QZCipDXXfoLqGD7CRJCHtO+hJ8Az
+ 9y8T0+B1tcz9WHqJOSjSbl1gJ/JjgksGMsducCeuL5WWYwhPHiGGZqhHxSjX3E6J3Ud7bceDX78
+ VGjCrxfM8bUwYwpVA3X2z1TMqWZbVnbF31i/3snuo4V3+wuZzib3aBq4LDAu5QURmeO05kn3EDQ
+ GhKDJFfPdLJ9XGFHm3zQRrtNlG+bNDvFvs/J/9W/yW79RyUOyiGw9G72gVmBDhRT5M5t3IAT
+X-Proofpoint-ORIG-GUID: VyJrB25nXaVj-5yXGMabnpvxoswFOBK-
+X-Authority-Analysis: v=2.4 cv=FcA3xI+6 c=1 sm=1 tr=0 ts=68840c69 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=s8YR1HE3AAAA:8 a=r9cyQ1YxkPkt54pAdh4A:9 a=CjuIK1q_8ugA:10
+ a=iYH6xdkBrDN1Jqds4HTS:22 a=jGH_LyMDp9YhSvY-UuyI:22
+X-Proofpoint-GUID: VyJrB25nXaVj-5yXGMabnpvxoswFOBK-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-25_06,2025-07-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 adultscore=0 suspectscore=0 impostorscore=0
+ malwarescore=0 spamscore=0 lowpriorityscore=0 priorityscore=1501
+ mlxlogscore=999 clxscore=1015 mlxscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507250199
 
-
-On Mon, 21 Jul 2025 23:46:12 +0800, Junhui Liu wrote:
-> The Anlogic DR1V90 SoC integrates a UART controller compatible with
-> snps,dw-apb-uart, operating at a 50 MHz clock.
+On Wed, Jul 16, 2025 at 06:04:29PM +0800, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+> The DW DP TX Controller is compliant with the DisplayPort Specification
+> Version 1.4 with the following features:
+> 
+> * DisplayPort 1.4a
+> * Main Link: 1/2/4 lanes
+> * Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
+> * AUX channel 1Mbps
+> * Single Stream Transport(SST)
+> * Multistream Transport (MST)
+> * Type-C support (alternate mode)
+> * HDCP 2.2, HDCP 1.3
+> * Supports up to 8/10 bits per color component
+> * Supports RBG, YCbCr4:4:4, YCbCr4:2:2, YCbCr4:2:0
+> * Pixel clock up to 594MHz
+> * I2S, SPDIF audio interface
+> 
+> Add library with common helpers to make it can be shared with
+> other SoC.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> 
 > ---
->  Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> 
+> Changes in v5:
+> - Use drm_dp_read_sink_count_cap instead of the private implementation.
+> 
+> Changes in v4:
+> - Drop unnecessary header files
+> - Switch to devm_drm_bridge_alloc
+> 
+> Changes in v3:
+> - Rebase on drm-misc-next
+> - Switch to common helpers to power up/down dp link
+> - Only pass parameters to phy that should be set
+> 
+> Changes in v2:
+> - Fix compile error when build as module
+> - Add phy init
+> - Only use one dw_dp_link_train_set
+> - inline dw_dp_phy_update_vs_emph
+> - Use dp_sdp
+> - Check return value of drm_modeset_lock
+> - Merge code in atomic_pre_enable/mode_fixup to atomic_check
+> - Return NULL if can't find a supported output format
+> - Fix max_link_rate from plat_data
+> 
+>  drivers/gpu/drm/bridge/synopsys/Kconfig  |    7 +
+>  drivers/gpu/drm/bridge/synopsys/Makefile |    1 +
+>  drivers/gpu/drm/bridge/synopsys/dw-dp.c  | 2044 ++++++++++++++++++++++
+>  include/drm/bridge/dw_dp.h               |   20 +
+>  4 files changed, 2072 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/synopsys/dw-dp.c
+>  create mode 100644 include/drm/bridge/dw_dp.h
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> +
+> +/*
+> + * Limits for the video timing for DP:
+> + * 1. the hfp should be 2 pixels aligned;
+> + * 2. the minimum hsync should be 9 pixel;
+> + * 3. the minimum hbp should be 16 pixel;
+> + */
+> +static int dw_dp_bridge_atomic_check(struct drm_bridge *bridge,
+> +				     struct drm_bridge_state *bridge_state,
+> +				     struct drm_crtc_state *crtc_state,
+> +				     struct drm_connector_state *conn_state)
+> +{
+> +	struct dw_dp *dp = bridge_to_dp(bridge);
+> +	struct dw_dp_video *video = &dp->video;
+> +	struct drm_display_mode *m = &video->mode;
+> +	struct drm_display_mode *adjusted_mode = &crtc_state->adjusted_mode;
+> +	const struct dw_dp_output_format *fmt;
+> +	int min_hbp = 16;
+> +	int min_hsync = 9;
+> +
+> +	fmt = dw_dp_get_output_format(bridge_state->output_bus_cfg.format);
+> +	if (!fmt)
+> +		return -EINVAL;
+> +
+> +	video->video_mapping = fmt->video_mapping;
+> +	video->color_format = fmt->color_format;
+> +	video->bpc = fmt->bpc;
+> +	video->bpp = fmt->bpp;
 
+This unfortunately is a bad part. You are updating your bridge structure
+from the atomic_check() callback. There is no guarantee that this state
+will be applied immediately. In fact there is no guarantee that this
+state needs to be applied at all (the state can be verified w/o
+comitting). So, these parts of dw_dp_video should be converted into a
+structure containing drm_bridge_state. You will have to update state
+allocation accordingly. Then you are safe to touch and change those
+fields in .atomic_check() and use them in other atomic_*() callbacks.
+
+> +
+> +	if ((adjusted_mode->hsync_start - adjusted_mode->hdisplay) & 0x1) {
+> +		adjusted_mode->hsync_start += 1;
+> +		dev_warn(dp->dev, "hfp is not 2 pixeel aligned, fixup to aligned hfp\n");
+> +	}
+> +	if (adjusted_mode->hsync_end - adjusted_mode->hsync_start < min_hsync) {
+> +		adjusted_mode->hsync_end = adjusted_mode->hsync_start + min_hsync;
+> +		dev_warn(dp->dev, "hsync is too narrow, fixup to min hsync:%d\n", min_hsync);
+> +	}
+> +	if (adjusted_mode->htotal - adjusted_mode->hsync_end < min_hbp) {
+> +		adjusted_mode->htotal = adjusted_mode->hsync_end + min_hbp;
+> +		dev_warn(dp->dev, "hbp is too narrow, fixup to min hbp:%d\n", min_hbp);
+> +	}
+> +
+> +	drm_mode_copy(m, adjusted_mode);
+> +
+> +	return 0;
+> +}
+> +
+
+-- 
+With best wishes
+Dmitry
 
