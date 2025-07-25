@@ -1,101 +1,148 @@
-Return-Path: <devicetree+bounces-199824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9075CB1258B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 22:31:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66EEEB125E2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 22:56:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 109711CE6ADF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 20:31:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E35258093A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 20:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F8F25C80F;
-	Fri, 25 Jul 2025 20:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD1CE25C70C;
+	Fri, 25 Jul 2025 20:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dbW8S110"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="SzrkzrFh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76F4D4501A;
-	Fri, 25 Jul 2025 20:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59AE9257451
+	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 20:56:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753475428; cv=none; b=D25ZMGuZbXZOspgEUyjavzXX50BS62MH4CNfKERfWXjuolTp1ttJ8tfZ+RTPE1Yv3RcYR+RoP8qne8BnTy74ByoOBfnYPqtu8ITU77N7SXhFEEdmrYlIIurLGoYcrwb+DB/+wb2+hWdyikzqv2Pq9EZSMsMENyzEnt7h/YgfSoY=
+	t=1753476997; cv=none; b=DiqnGTinoG3eonoMi6pThh0kmjCV7jmQeiQDGK/atfckV5WjbYQCwoInxYXq6D9eJsPBLCv4DhCSQ/npIGh5ij7k93SgiYidEcKgBqxFo1MdUY9theoBffkshmIzCtpjrYYZ9xa9p4L1kcAXfdQ0UJJWEnBXSJr6j8bHJxmNcl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753475428; c=relaxed/simple;
-	bh=ba7r3CQWnc9Pg59zckBMYOhewHfZtzF4js8BFZ+0f9c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lzhtPT0sbaWZxRe8SArobNPOQEcfwKcMUS1ITQMH/S5t7o0ne4APmgZHL7lz0dGN0HloMt+j99Ht2jc2ssWuOAcXo7x3pH33hWdhzA4AC05KH91G6FeDUS+VhbiRVYa8k+5Rhspt353oLTK6WAtQfN9MzHGxCtwDzz2+0p+RK8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dbW8S110; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3FC8C4CEE7;
-	Fri, 25 Jul 2025 20:30:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753475428;
-	bh=ba7r3CQWnc9Pg59zckBMYOhewHfZtzF4js8BFZ+0f9c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dbW8S110p3NBmLaJdPOPH54qeqD00XyhjoRdv89Oc/9seV5Gebju3lz+V2fFMuB/Q
-	 ZG8upnvyRHMVpuySek1hBhmyctGYtzAQ6cXCXKjp1lQQHSzkE4iUJER7UN+9bgbZVA
-	 QD1lVSbKRyDW0ZEe0/EMwhfbQ3E0gDpivtn/VhyvaLE9BDL80GMlVu3pdeb2Z5HYzH
-	 TunHOOTBpQ6fbovuC8fjR2Xisgued54rZ+8BjIfP0ES1hs+vhy0arR1Uy65Q8BhfC2
-	 L9k/9/uQq129XN7CqmqHgViTcChBd1BD0wYRt70Q9poeuLwbSEYOWmAUrgkw/tMMZW
-	 DvOdLKPmgYbZg==
-Date: Fri, 25 Jul 2025 15:30:27 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: andersson@kernel.org, devicetree@vger.kernel.org, ck.hu@mediatek.com,
-	olivia.wen@mediatek.com, linus.walleij@linaro.org,
-	tglx@linutronix.de, mathieu.poirier@linaro.org,
-	sean.wang@kernel.org, andy.teng@mediatek.com,
-	jiaxin.yu@mediatek.com, kishon@kernel.org,
-	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
-	jieyy.yang@mediatek.com, simona@ffwll.ch,
-	linux-mediatek@lists.infradead.org, krzk+dt@kernel.org,
-	linux-remoteproc@vger.kernel.org, mwalle@kernel.org,
-	davem@davemloft.net, airlied@gmail.com, chunfeng.yun@mediatek.com,
-	linux-crypto@vger.kernel.org, tinghan.shen@mediatek.com,
-	arnd@arndb.de, chunkuang.hu@kernel.org, atenart@kernel.org,
-	linux-phy@lists.infradead.org, frank-w@public-files.de,
-	linux-media@vger.kernel.org, sam.shih@mediatek.com,
-	mripard@kernel.org, lgirdwood@gmail.com, daniel.lezcano@linaro.org,
-	maarten.lankhorst@linux.intel.com, houlong.wei@mediatek.com,
-	dri-devel@lists.freedesktop.org, herbert@gondor.apana.org.au,
-	matthias.bgg@gmail.com, jassisinghbrar@gmail.com, vkoul@kernel.org,
-	mchehab@kernel.org, linux-gpio@vger.kernel.org,
-	kyrie.wu@mediatek.corp-partner.google.com,
-	linux-arm-kernel@lists.infradead.org, shane.chien@mediatek.com,
-	conor+dt@kernel.org, p.zabel@pengutronix.de, granquet@baylibre.com,
-	jitao.shi@mediatek.com, fparent@baylibre.com, tzimmermann@suse.de,
-	eugen.hristev@linaro.org, broonie@kernel.org
-Subject: Re: [PATCH 12/38] dt-bindings: regulator: mediatek,mt6331: Add
- missing compatible
-Message-ID: <175347542615.1838505.12887834541571951617.robh@kernel.org>
-References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com>
- <20250724083914.61351-13-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1753476997; c=relaxed/simple;
+	bh=E5bdNz261qKtTQmvwA0gJMEnObQVbdYh+Ixvu70Kq/k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o33DlEySZMisnSZHRbOxfNmxD0TiJkFlKW14J+bC+EmV1t3EgjFYCsQFf/bLo5uTndNrVz3tWQUYRppDYiwzFNl2+WP6BxM8vv2jm9wl6R8X3BFw4oXOJ68kQsohLgnJLCb6XooL06Bpw1FMcv5Kcd97deeHCSfWtDOdF96in0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=SzrkzrFh; arc=none smtp.client-ip=209.85.222.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7e34399cdb2so259039385a.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 13:56:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1753476994; x=1754081794; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=SV8ZxG4aNS+z9YboIvJ/1WYzIOmDJ3h4iBc7Sd4YJ4M=;
+        b=SzrkzrFhETcpS4cgiHMXbCewnblm3lzFBtgTWEPZB9Ll790d5qTjHDzSma0z1qMQEp
+         3cpP1BiN/wtmB5gy/h4MLo5YFKQu59XxWOh/f/CGB+KpuM5PosceDz5dmlE5V3qOY+IQ
+         KXju7voLIlN1y7iqQUHy8AMkRs8GBeRDOZIyo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753476994; x=1754081794;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SV8ZxG4aNS+z9YboIvJ/1WYzIOmDJ3h4iBc7Sd4YJ4M=;
+        b=uNW2qXwd5qTk6MTc4ulxmrDG2flDpvH0X9dZbkQ3mToDQ83EwDxH71xl+SYU9N24gS
+         OdRo91EGvtMPWlKIUbywH1gzth51MTc7fuDrnK9fajijkOW3KjwUWgfhADrhWgV2oqEW
+         07MmUpAstdkoQO1jGQP+Uqc/S3HlARzVmEdatEUwrPI9215gMb2b2TFU7KOTGDD5JmAj
+         a2tr73DI7CfDbWrHnKiXrt79V3Mknq7GDIDXNchVJqnpzA2/rFSsk0nlWVkwukKAVI0R
+         xZl7C9BaCVq1mJhXz0W/bjK/a4XDDiFjvs8LATnTK8Gfo82aHyJ7bxBqHFYAQFJ6ZNJm
+         7H/A==
+X-Forwarded-Encrypted: i=1; AJvYcCVR5BUcr2jnLW4DgRtdxFHUMpCT7iOghF/ehakqGH2FRcQWaPMCN2nxe861ygWGkBtqBAsfkXriCMUN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwcrvqoAJiczUWSPnfy3TEN8PdpV+lPQTjK2VQDAxt3k8P9GLQ
+	XXf2LoPkLFs7yJ+VTCPaicE/qtV4QVN6nkgBIlnQPMF6WKHvYjXUKBLDOgBhzUjiCg==
+X-Gm-Gg: ASbGncthSHMgVlrzXMjMmuK1tfBotM8yyko6vgHUQF4UQ3xy/W1fsUafSdl989fIj6H
+	LztVbMxZPdZvy1SxRHTj0m6DkOpkbX7qdNeVMowOyfcOo8wmLrKD+h1gL0BM1u0d9vA7jJ7LH+p
+	9UYfirr93gPcwjYaG5bih+7Kqotpp/vDKuRxbotMKHN5MVHDIXzGLdD9EcmeLmztWrXROdpPCLk
+	oYIbCzjy702HxX1ZMQtOAs2Jn98nqKnvzy2+3dcWISoRZwZt0n5iaUwGnE2EaoAq624wcD+ekOO
+	Ap1sehQqoGBNVUqWDHfdoAuENfvaBZBpin8OaehQQfBEdWylUFJWnEltjfqAyvxlDszoUA6VMl7
+	k5LmRzBtRHb3EtRUBnWftbwyfCZIyNmClYvoocBLx0mChm328SGjZABpw0+Xnbg==
+X-Google-Smtp-Source: AGHT+IFSTZ+SCGF5izkSCPq5knYBp2oBX5HEqgFo37c7o180TXKO8s7SOGpJoaRPR+w5yNwCG0n6dg==
+X-Received: by 2002:a05:620a:28cd:b0:7e3:4fcb:4f0c with SMTP id af79cd13be357-7e63bfc631amr409670685a.52.1753476993979;
+        Fri, 25 Jul 2025 13:56:33 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7e64327d41esm40507385a.15.2025.07.25.13.56.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Jul 2025 13:56:33 -0700 (PDT)
+Message-ID: <a820b204-d02c-4f7a-9364-95b25a1ca3a9@broadcom.com>
+Date: Fri, 25 Jul 2025 13:56:30 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250724083914.61351-13-angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 4/7] net: dsa: b53: mmap: Add syscon reference
+ and register layout for bcm63268
+To: Kyle Hendry <kylehendrydev@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
+Cc: noltari@gmail.com, jonas.gorski@gmail.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250724035300.20497-1-kylehendrydev@gmail.com>
+ <20250724035300.20497-5-kylehendrydev@gmail.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20250724035300.20497-5-kylehendrydev@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 24 Jul 2025 10:38:48 +0200, AngeloGioacchino Del Regno wrote:
-> This binding had no compatible and for this reason would not be
-> applied to anything: add the missing "mediatek,mt6331-regulator"
-> comaptible.
+On 7/23/25 20:52, Kyle Hendry wrote:
+> On bcm63xx SoCs there are registers that control the PHYs in
+> the GPIO controller. Allow the b53 driver to access them
+> by passing in the syscon through the device tree.
 > 
-> Fixes: 6385e21692bb ("regulator: Add bindings for MT6331 regulator")
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../bindings/regulator/mediatek,mt6331-regulator.yaml      | 7 +++++++
->  1 file changed, 7 insertions(+)
+> Add a structure to describe the ephy control register
+> and add register info for bcm63268.
 > 
+> Signed-off-by: Kyle Hendry <kylehendrydev@gmail.com>
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+-- 
+Florian
 
 
