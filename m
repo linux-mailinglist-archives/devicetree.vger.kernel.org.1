@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-199852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E6ECB12772
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 01:27:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A013B12781
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 01:35:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 734B65A370C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 23:27:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80DA25485D3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 23:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93CA262FC1;
-	Fri, 25 Jul 2025 23:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A88402571A9;
+	Fri, 25 Jul 2025 23:35:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ihiRRkKq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s7FsWj76"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD773262D14;
-	Fri, 25 Jul 2025 23:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 783BE236430;
+	Fri, 25 Jul 2025 23:35:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753486027; cv=none; b=gY32MRvIj5sin5nz2JTR6W8t4WKGFLrtFWNM1q4XtILA+zkszxLo2tBoCpUYP/i2nI3mHuOMv/cFkBO3xUIbCjjrazAc1stcgZ4KYHWXA1DgIdCuBPX7n/af2i9lu41nL0NKnQBD4SGyDwa0g/Ch2+SLi3UAbIrn/JzSJqNt68w=
+	t=1753486555; cv=none; b=SAoWvIz1+sfUqdowJc1fMJD3gC3o3D68aqqf3ue/2Hcm+nrt/zPW67NxYnJOSbuEVLH/DzQrWV4W7AjRwBxEVdTJnZC/tHAhN7G/wGgJiNqU22o9E7VsV+C79yTvDUhS85jelLn8tAHEFhxn7ZD7EVWt/ur7A5VrXyWR1Xro5Zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753486027; c=relaxed/simple;
-	bh=1D5Cen4w32EzTcG4YKubhAFWUoYoIC6LSnVdLASv/X0=;
+	s=arc-20240116; t=1753486555; c=relaxed/simple;
+	bh=Z2ML6z3GECKPol1IXrz6zBSrJw03TCZ07Q4UlyVizNU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EpY8QF+If68ha+jZiTUOxJf2bFWBUqZ6yRRZrvAxkKR+jCsxRgxdC7Vkks7p2FKBcNyMaCT7EwF4BSQLjTVJDcmBitd/lgQSg0R1ayZjhXRJQNz0fN0Md05lRbmRdYR327C8V1JgFPEpUIPlmhP2yr1/l9aAfJQVRwYRVjQ5R2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ihiRRkKq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74A4AC4CEF4;
-	Fri, 25 Jul 2025 23:27:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pxn8mYRszLP4qcjttPX4fhORi67wDGjsm7fnkmDOvOQD4AMjtn2G/0fDg8dIXc67dsQNAzgCoA3Z2JWm8w27pPMQF2jJV9zdcazBt9NgSga9MEP622kQm9ZpNdhKkDKg4vyexjVXdsZGbe5EpfdXQONnuwx7voInu6tGueuz/Uk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s7FsWj76; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1414C4CEE7;
+	Fri, 25 Jul 2025 23:35:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753486027;
-	bh=1D5Cen4w32EzTcG4YKubhAFWUoYoIC6LSnVdLASv/X0=;
+	s=k20201202; t=1753486554;
+	bh=Z2ML6z3GECKPol1IXrz6zBSrJw03TCZ07Q4UlyVizNU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ihiRRkKqmOS5fWcijJ50OOIjmcgkrCWXXaTX4XcAV+SehMWjdHq99jRncjBz7bk6N
-	 WO3A340rTt0y4zEti0YuC625hSD/Koafe7zB0X9Zjz8WdwDrNlt9X3rTQTR/pteC3P
-	 /VO0mx8iPHetcr+/S1p2nrztYifXuhUTs+4mbQBWQOI0oAB9/dVNd0BqfcJieyov+1
-	 b3mmki+sAsX6qvxd7cEloIlxOKyRyVYqcYmtD6p+EpLAsWHNzQk7ln7LqKLkefAHKt
-	 VkWioRoeqYo5wZBK4/Iy/XlDUgXEL+hDzGzydrTWi/FGjNayvMSm05dZSeSd1I30D3
-	 taQ9CVREn8jCA==
-Date: Fri, 25 Jul 2025 18:27:06 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	b=s7FsWj76SMCHaskzmoX/r6i35XPPGoRN1Kl8VCcllEJ8ZDz+29HKpg5wcaKToXT4P
+	 r3UQ6rUnBHLBPuJCxe27pGUpmz7ufMWGbN+XCXmOljnJJ7S40D09/0nwcM7+AnA3zL
+	 zKzB34v5F/HvtPK6gNi+X8r63GsMGa8LwTrsm+/ekWDGTlnfMd47mF6sNLPYoMB7Iu
+	 tFpITXxs1OlCgHcHmGLtR2+0gvGz1KPfX2KpBm4cqnBp0RVpl11a7VHGWBzrYMn1PD
+	 rt2h+RuwB2NVAKflq36KVuJmipJlDNlnu7nWfcZqj5KdazGqCr8qMpnnkffJ/sh5LT
+	 Y5s/LHZUNEYUg==
+Date: Fri, 25 Jul 2025 18:35:54 -0500
+From: Rob Herring <robh@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: adi,ad7124: fix clocks
- properties
-Message-ID: <175348602635.2026537.7901713448810166521.robh@kernel.org>
-References: <20250724-iio-adc-ad7124-proper-clock-support-v1-0-88f35db2fcaf@baylibre.com>
- <20250724-iio-adc-ad7124-proper-clock-support-v1-1-88f35db2fcaf@baylibre.com>
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: mmc: fsl,esdhc: Add explicit reference
+ to mmc-controller-common
+Message-ID: <20250725233554.GA2028042-robh@kernel.org>
+References: <20250725060152.262094-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,40 +61,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250724-iio-adc-ad7124-proper-clock-support-v1-1-88f35db2fcaf@baylibre.com>
+In-Reply-To: <20250725060152.262094-1-alexander.stein@ew.tq-group.com>
 
-
-On Thu, 24 Jul 2025 18:25:22 -0500, David Lechner wrote:
-> Use correct clocks properties for the AD7124 family of ADCs.
+On Fri, Jul 25, 2025 at 08:01:51AM +0200, Alexander Stein wrote:
+> Even though it is referenced by mmc/mmc-controller.yaml it still raises
+> the warning:
+>   esdhc@1560000 (fsl,ls1021a-esdhc): Unevaluated properties are not allowed ('bus-width' was unexpected)
 > 
-> These ADCs have an internal clock along with an optional external clock
-> that can be connected to the CLK pin. This pin can be wired up 3 ways:
-> 1. Not connected - the internal clock is used.
-> 2. Connected to an external clock (input) - the external clock is used.
-> 3. Connected to the CLK pin on another ADC (output) - the internal clock
->    is used on one and the other is configured for an external clock.
+> Adding an explicit reference fixes this.
 > 
-> The new bindings describe these 3 cases by picking one of the following:
-> 1. Omit both clocks and #clock-cells properties.
-> 2. Include only the clocks property with a phandle to the external clock.
-> 3. Include only the #clock-cells property on the ADC providing the output.
-> 
-> The clock-names property is now deprecated and should not be used. The
-> MCLK signal that it refers to is an internal counter in the ADC and
-> therefore does not make sense as a devicetree property as it can't be
-> connected to anything external to the ADC. Since there is only one
-> possible external clock, the clock-names property is not needed anyway.
-> Based on the implementation of the Linux driver, it looks like the
-> "mclk" clock was basically being used as a control to select the power
-> mode of the ADC, which is not something that should be done in the
-> devicetree.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
->  .../devicetree/bindings/iio/adc/adi,ad7124.yaml     | 21 ++++++++++++++++-----
->  1 file changed, 16 insertions(+), 5 deletions(-)
+> I don't know if this is a tooling problem or whatever. I would have
+> expected that mmc-controller-common.yaml is added via
+> mmc-controller.yaml. But apparently this is missing resulting in the
+> given warning. Hence adding the reference
+
+The issue is the nodename. Since validation of it fails, the whole 
+referenced schema is not 'evaluated' and bus-width is unevaluated. Best 
+I can tell, that's correct behavior for json-schema.
+
+I guess this is an adequate work-around.
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 > 
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+>  Documentation/devicetree/bindings/mmc/fsl,esdhc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl,esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl,esdhc.yaml
+> index 62087cf920df8..f45e592901e24 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl,esdhc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl,esdhc.yaml
+> @@ -90,6 +90,7 @@ required:
+>  
+>  allOf:
+>    - $ref: sdhci-common.yaml#
+> +  - $ref: mmc-controller-common.yaml#
+>  
+>  unevaluatedProperties: false
+>  
+> -- 
+> 2.43.0
+> 
 
