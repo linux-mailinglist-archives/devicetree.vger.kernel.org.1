@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-199637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA71B118A5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 08:48:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88661B118B2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 08:51:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17AC81CC6D84
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 06:49:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19F1A7AC966
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 06:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998CE28A402;
-	Fri, 25 Jul 2025 06:48:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2EA928937A;
+	Fri, 25 Jul 2025 06:51:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T08xpa5e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uzk0/dXp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD761DED4A;
-	Fri, 25 Jul 2025 06:48:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95E971B6D06;
+	Fri, 25 Jul 2025 06:51:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753426116; cv=none; b=nmLkQXeIXJPshfhU8csITGT8xt+NrBX1iMeRjmec4TqJ83TFrApPOEsJVvs1rDIJFIS4fkQxei9ZxQVOT3shoMC5qYjQbIeqm9QSznXI2L+GqZT9pSwkq/NtYLyRxqlMSTyroUh79cze7yI7I5fanhiIsrlsSHYHr1D4PJXSAMg=
+	t=1753426296; cv=none; b=LGALQtnbdrgx9y+I6E1gmUDbtkXnZkg8p5C0L87hNqP64ivBm00XGDQ2Vzu09nPj41Z4PvcuVqGHFAf6KY9EGHKlbXK2GJcUwJ/o7t97Z2xZ53KOJHA4KSNLB2RviROTrlI3v6gyeHjLcOzwjhik9ysIKltj4/Dvwg2/KBMXe/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753426116; c=relaxed/simple;
-	bh=lZXXy7Xqod/ctUPKOXgUXwhbmc85tctUCisy7a/nmM8=;
+	s=arc-20240116; t=1753426296; c=relaxed/simple;
+	bh=gLUshUA1TgSdXTjpzha90muIbsAVm3Yu54q+UsSO9Yw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LjUdyti/ObzZMErKJxAyWabdd9mgoSfNFUQKG9KLxZCCOnXQTEBrWLAnKrZuOMOQr+tazUEEYd2iTsuvsM1+HCQ43aN3tByYtz+bB0paDDL5dIq1IAEw+fWhWe0bIc7VPyxYYRG8cvYXLqn4s1cnZZr39axR1rP59kuAfD7krHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T08xpa5e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CD8FC4CEE7;
-	Fri, 25 Jul 2025 06:48:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Ad+bqRgW0srtGv0WHA0xbbw7TajffNOomUBwq5SsqmC3WJLh1nO3vhpuv/aDjLTcnI/sq4/BTbmECl1prtR0KWhwa83xpWk/6clnDE22pBE7oNdSRlI8KkCKmLqiagHs53ZnRi5MrD5zl+D5+se0CrmxtvidhFZ9WXWUEZBxUfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uzk0/dXp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A12DAC4CEE7;
+	Fri, 25 Jul 2025 06:51:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753426116;
-	bh=lZXXy7Xqod/ctUPKOXgUXwhbmc85tctUCisy7a/nmM8=;
+	s=k20201202; t=1753426294;
+	bh=gLUshUA1TgSdXTjpzha90muIbsAVm3Yu54q+UsSO9Yw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=T08xpa5eQDBaQWN5jNMKA5gBz1orTUVIzb9P+bkczrFTg/Wgf/b8medot63Foz9DG
-	 Xcu/DCP+dBTmvGkt7b6/GDJKc9/x2zGSqaNNL/l7tVXjYDloDwgv0tZE/WpANvnXZf
-	 V/8zLFu+uCr87jVd548C0RpYhGjwTfY0Oz8EJFy7DG+Yzjm5HqhEpstx99i5CqKIWq
-	 C6OY/n3DTuwy0S8Jg5BPR62io/vpcywQ9LlTV6NCMLthCtMx25HNndFtWoVuFQwOy4
-	 z3AAC7mxMzl+f05AIHXBkKt4GMQB2xCnutRXrI73ZXYvfM3hQiVB4SiFxzkLlt6V8H
-	 PFFxwcS8s8aaA==
-Message-ID: <696774c5-db1c-4fcc-a5f6-139dc22ead87@kernel.org>
-Date: Fri, 25 Jul 2025 08:48:30 +0200
+	b=Uzk0/dXpv+8Q1MFP1v84ZJ5HaUNTzNstEJUUVRLkZkj6bL9Eo7/ftsIiaOhI8/9Bs
+	 CRkv1CzvHNJ6zkRmPRQpHi4YsPv4CV+smV0DKZGAh81BzQPLnvuk2xXBRLWTLUHdwx
+	 wwNgAoBXdQfpDiQn3bk5coQ06FFxyDsfB5BWt1hQBald6QGetBnlec/qnYmysVWlTd
+	 iRGZQsxaPjtbjUNWezt1vn9w/fN+DzKJe0oPN4nzgDqwXk7uoVJxS9OMrqcTOgUua6
+	 CiZTJqpBFql3u/KetpUkuYNNQr8mb6F5aRMgFBWtopjEd4GLA8qOAfru4zIFEjhiG6
+	 od+zG+dOu++mw==
+Message-ID: <d55f79ed-0bec-4045-8bc6-9005d19f865d@kernel.org>
+Date: Fri, 25 Jul 2025 08:51:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 0/3] Introduce a generic register settings dt-binding
-To: Rajesh Gumasta <rgumasta@nvidia.com>, krzk+dt@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org,
- ulf.hansson@linaro.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
- kyarlagadda@nvidia.com
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org, andersson@kernel.org,
- sjg@chromium.org, nm@ti.com
-References: <20250725052225.23510-1-rgumasta@nvidia.com>
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
+To: Yijie Yang <yijie.yang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250724-hamoa_initial-v2-0-91b00c882d11@oss.qualcomm.com>
+ <20250724-hamoa_initial-v2-4-91b00c882d11@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,28 +104,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250725052225.23510-1-rgumasta@nvidia.com>
+In-Reply-To: <20250724-hamoa_initial-v2-4-91b00c882d11@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/07/2025 07:22, Rajesh Gumasta wrote:
-> 4. The I2C bindings are known to fail the binding checks if the fix for
->    the I2C schema is not applied [1].
-> 5. The file i2c-controller-common.yaml is added as a place-holder for
->    defining the 'reg-settings' nodes for I2C controllers. However, this
->    is very much a place-holder for demostration purposes. Ideally, these
->    nodes would be part of the main I2C schema.
+On 24/07/2025 10:15, Yijie Yang wrote:
+> The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
+> the Hamoa IoT SoM and a carrier board. Together, they form a complete
+> embedded system capable of booting to UART.
 > 
-> Changes in V3:
-> - Renamed as 'generic register settings' as opposed to 'Tegra register
->   config settings'.
-> - Dropped all the associated code to focus on the DT bindings for now.
-> - Added a 'register-settings.yaml' as a top level binding.
-> - Made I2C register-setting timing properties generic I2C properties.
+> This change enables and overlays the following peripherals on the carrier
+> board:
+> - UART
+> - On-board regulators
+> - USB Type-C mux
+> - Pinctrl
+> - Embedded USB (EUSB) repeaters
+> - NVMe
+> - pmic-glink
+> - USB DisplayPorts
+> 
+> Written with contributions from Shuai Zhang (added Bluetooth) and Yongxing
+> Mou (added USB DisplayPorts).
+> 
+> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> ---
 
-
-Where are lore links to previous discussions? There is no v2 nor v1 in
-inbox.
+This still wasn't tested. Use the automated tools instead of community
+reviewers... Your internal guideline documents how to do it.
 
 Best regards,
 Krzysztof
