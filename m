@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-199596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99AA7B115AC
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 03:17:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E71EB11691
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 04:42:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 523837B601F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 01:15:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 183E33B32DE
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 02:41:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28B51B6CE9;
-	Fri, 25 Jul 2025 01:17:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49773235044;
+	Fri, 25 Jul 2025 02:42:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o+aJSYfp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q05+ipRq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6352BAF4;
-	Fri, 25 Jul 2025 01:17:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 168DE54F81;
+	Fri, 25 Jul 2025 02:42:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753406236; cv=none; b=LsM3ZeHzVOJcgYQQ5G1U2h9yc2Hq0KDsXkmEoB3x8iBvKtX0+pRx7ADC4TOePsNUv21PrOavabU9zjOf2wPpg5fULloJynByk3Ye3dGfC9/XRf2Tnl5ByuXRVcPTGNXoOei/NzaQIvAeS5jPy4mmuVazfM3CzOTUQX8Vity3HgY=
+	t=1753411325; cv=none; b=YnSYsgT7MNKlyAeebW7r+D71WELXNVe34YwDkFTgvBRTvy9VPdsLNumjyRRsdEqhjTd8Uf228NlC382OcebaUIRz1XBAIRZhg2VQxNW9m/GFjjpajyyCo+tUECZf7uIGy3nTjAKURZ7UoN+aFkM1wEfl3XuMYNYADOkdkPYepqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753406236; c=relaxed/simple;
-	bh=MnFJ7F8dY8RvB8dXoNRYk2Dv6tZAdeeE7q2scZZoEqo=;
+	s=arc-20240116; t=1753411325; c=relaxed/simple;
+	bh=/Wzdxi+FPpqqrFYqJSRrwfVEvytWS2E7haaA0G+djCQ=;
 	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=egdeXJG1exf/9WoYJFv3gqbE5qtZRzyGlxgwz06Ns/p5601+HmSqrYG8oGAcebUbDHDJYvwRl3VuGods9YRsVS7xqCxztuj3cUhmo7ZNcDPvpZimuT9MQbLwj1mjWKrb6SIGPqX/t80drPOK+idLC+KpW15uac4GEx+g9XaVa9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o+aJSYfp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35A8CC4CEED;
-	Fri, 25 Jul 2025 01:17:16 +0000 (UTC)
+	 To:Date:Message-ID; b=pLl8qMv0SX3aD4KC79S7bHbGJJ7X3G+Ujfm0wpM/dt4Lq9kk+ZxCbVU23iZ+I+HuVeFUAlZRvw5nOLwt7Pbk/J5nn+DFeLT+YU+LzKgnyPkYICEviPwL8FubZL3my3LU4WwA5W4t7m9aoUOr4l8nRpvbHVN0c1dQ9rOVWe3dTKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q05+ipRq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C483C4CEED;
+	Fri, 25 Jul 2025 02:42:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753406236;
-	bh=MnFJ7F8dY8RvB8dXoNRYk2Dv6tZAdeeE7q2scZZoEqo=;
+	s=k20201202; t=1753411324;
+	bh=/Wzdxi+FPpqqrFYqJSRrwfVEvytWS2E7haaA0G+djCQ=;
 	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=o+aJSYfpF5TboYnl9G/eoK+bTmhLeJ66iWVe6BHwQs3bR/2tvsw9pQxqOpyt0EOw2
-	 TR+gdWEvAmJfeENxYksaR7BmiI4XrAvoEULKXdbWDm2dxTG46REvQdPhjgS4S3qaiu
-	 0j9I2mS9GM//n0dGFnc+7f3FMdJ+u1Bc7g9v7KAbQCRDP8KD0RrIJD+IBXF5NqQFI1
-	 EXfKIEqY1uQMhAUY1IdgJO95MPT+5mwsfTHzxNbM6DN7n/QHnOFz7+s+mOt20WEbQE
-	 0vxfdpXeVLCMFrNzaKs8lLosT4jCFDObiDSRtGeW6R35BG9oAD3iEj581vNe6K8GyH
-	 BM0yjnIR2/5mg==
+	b=Q05+ipRqgOKM9ulQakC4Kame56xoZ1ktwQHG4p2XBCrUmptyrixMs8W8cOvssYCow
+	 SWBf+2skMIYvclwUtHY3/YFK/UX5AOCoBMWxcxUT+YeFIVQTbZIcuYEaoeKhX+kXrL
+	 01haOR6mUd1yntkZX/f/zSjiuWUpVAGqlXdf/koCEXeNHG3VB7H29ygNRZyoj3sFUL
+	 A6KVg7mtkASoNgEZNnRSwB8hVkUFf27iIQS1H3cqfbmhKC0LqxQ4/cYT6MhfoLaXah
+	 SlU7/TNbf8Q1pyv3YMZU7dZscywJvpjvS2DtoFSV9jHEbJU+w9gbw7JY3uNfDhvqdY
+	 Uh5du55PTEkEQ==
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -49,35 +49,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250623-rust-next-pwm-working-fan-for-sending-v5-8-0ca23747c23e@samsung.com>
-References: <20250623-rust-next-pwm-working-fan-for-sending-v5-0-0ca23747c23e@samsung.com> <CGME20250623180907eucas1p10c0ca6b667debcc8139402d97e4ef800@eucas1p1.samsung.com> <20250623-rust-next-pwm-working-fan-for-sending-v5-8-0ca23747c23e@samsung.com>
-Subject: Re: [PATCH v5 8/9] riscv: dts: thead: Add PVT node
+In-Reply-To: <20250704070356.1683992-9-apatel@ventanamicro.com>
+References: <20250704070356.1683992-1-apatel@ventanamicro.com> <20250704070356.1683992-9-apatel@ventanamicro.com>
+Subject: Re: [PATCH v8 08/24] dt-bindings: clock: Add RPMI clock service message proxy bindings
 From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-To: Albert Ou <aou@eecs.berkeley.edu>, Alex Gaynor <alex.gaynor@gmail.com>, Alexandre Ghiti <alex@ghiti.fr>, Alice Ryhl <aliceryhl@google.com>, Andreas Hindborg <a.hindborg@kernel.org>, Benno Lossin <lossin@kernel.org>, =?utf-8?q?Bj=C3=B6rn?= Roy Baron <bjorn3_gh@protonmail.com>, Boqun Feng <boqun.feng@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini <drew@pdp7.com>, Fu Wei <wefu@redhat.com>, Gary Guo <gary@garyguo.net>, Guo Ren <guoren@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Marek Szyprowski <m.szyprowski@samsung.com>, Michael Turquette <mturquette@baylibre.com>, Michal Wilczynski <m.wilczynski@samsung.com>, Miguel Ojeda <ojeda@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh@kernel.org>, Trevor Gross <tmgross@umich.edu>, Uwe =?utf-8?q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Date: Thu, 24 Jul 2025 18:17:15 -0700
-Message-ID: <175340623531.3513.5896709502242556676@lazor>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-acpi@vger.kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>, Conor Dooley <conor.dooley@microchip.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Anup Patel <apatel@ventanamicro.com>, Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, Rafael J . Wysocki <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Uwe =?utf-8?q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Date: Thu, 24 Jul 2025 19:42:03 -0700
+Message-ID: <175341132347.3513.7184287611040628050@lazor>
 User-Agent: alot/0.11
 
-Quoting Michal Wilczynski (2025-06-23 11:08:56)
-> Add PVT DT node for thermal sensor.
+Quoting Anup Patel (2025-07-04 00:03:40)
+> Add device tree bindings for the RPMI clock service group based
+> message proxy implemented by the SBI implementation (machine mode
+> firmware or hypervisor).
 >=20
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  arch/riscv/boot/dts/thead/th1520.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> The RPMI clock service group is defined by the RISC-V platform
+> management interface (RPMI) specification.
 >=20
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/=
-thead/th1520.dtsi
-> index 26996422e1efe5d2dde68819c2cec1c3fa782a23..bef30780034e06b07aa29b27b=
-0225ea891a4b531 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -669,6 +669,17 @@ padctrl_aosys: pinctrl@fffff4a000 {
->                         thead,pad-group =3D <1>;
->                 };
-> =20
-> +               pvt: pvt@fffff4e000 {
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+[...]
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clock-controller {
 
-Node name should probably be 'thermal-sensor@fffff4e000' then.
+Maybe the name should be 'clock-service' then? I don't understand SBI so
+not sure why this is in DT to begin with. Is something consuming this
+node? Or a driver is binding to it?
+
+> +        compatible =3D "riscv,rpmi-mpxy-clock";
+> +        mboxes =3D <&rpmi_shmem_mbox 0x8>;
+> +        riscv,sbi-mpxy-channel-id =3D <0x1000>;
+> +    };
 
