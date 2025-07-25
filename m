@@ -1,107 +1,152 @@
-Return-Path: <devicetree+bounces-199653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE025B11930
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 09:30:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 878A8B11974
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 10:00:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5F401C84CC4
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 07:30:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B04C65A11D6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 08:00:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E28B2BD5BC;
-	Fri, 25 Jul 2025 07:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A77C2283C92;
+	Fri, 25 Jul 2025 08:00:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uF3OAXrh"
+	dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b="OJ4MGAsi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www571.your-server.de (www571.your-server.de [78.46.3.230])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6DCF2BD59B;
-	Fri, 25 Jul 2025 07:30:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805072BF000;
+	Fri, 25 Jul 2025 08:00:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.46.3.230
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753428602; cv=none; b=Uon+oFDBy89wSaG5Cx3ELyuDCVuDu2nFtlmqfGHo2IdoLgG2ca2Q6RNRY5irU3oUIAkxbfxtAe5RIF/7giXaelKMBqx02BI9aOkvK92ULcQHdw9WrI+ThvvPtGt6reYUy1PD9xxNABUeyZ5rNWk8sT3LCpoQswxBiKgOXQmeoXk=
+	t=1753430414; cv=none; b=G6t1pm8XZKnH4px169pQUxD+NhGHYHxPitp0KuOrnwU5b9Ylk/zMCcHHQwFgPtSWR9p6ixZiYCTht7JCazrzgnZUkj3xJaHxjiKtCCOzXvQCCjFWTLdw6F4OmZP+Sgjb6z6n0OXUUOkyHJ0IHdtBKXBpF4n7Ga2LIar19RZCYfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753428602; c=relaxed/simple;
-	bh=VsBUVIq/j+r7AHbQ4ytPSRI1voy8+67A4EX8tCplsAM=;
+	s=arc-20240116; t=1753430414; c=relaxed/simple;
+	bh=fJrnu7NHG3y3u91nx9CIzDrr7WItx4fMYcF3H7U3WeA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lOz4Oro78UH8s4BUANM78KgTpuNOS/DyyDnx6sO9ATHjRUbk/k8zIYPW+gcsLM8keGZBlVpD4vhwtVTTk12EpaVGc2jdwmgpgyjFFNx5XtCBQzOi5nMyhjUXdI+/SUhEDJMzkTFNAyKyiZsDJSWry9x1SVxcssw5v7nVD6YS3P0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uF3OAXrh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E71E3C4CEE7;
-	Fri, 25 Jul 2025 07:29:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753428602;
-	bh=VsBUVIq/j+r7AHbQ4ytPSRI1voy8+67A4EX8tCplsAM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uF3OAXrhjTurG/QT8dpeU7/K2QQM3EpzbggdyjfaomTXEbXChflQHD3scmNhrTZeO
-	 cRTeRCq6xKGtizCzR+OEfr1fN2gr9ugSmY9hz+IFaEJCA1FQTsKEu6i2Rha74pc7+k
-	 VgJJvOKZXZapWxIqIizDBy7A85Mqz+pMkGEmnB62nXTT6xvEh1nMzlFlGWxnVZJ8KS
-	 RYISKevmUgrwox4gNcEPblZAjYhWdr+mTfiNZeuqNQcIXgFCtgVikTQN3jrwQnQkOL
-	 orJuWcai5U2TgDkL1KQ26vhyS0MT0LFBQJ31ZUZEyd5ONRvvGzfCIgPY1+sM/PWtQi
-	 6vkBA7fjXBCHg==
-Date: Fri, 25 Jul 2025 08:29:56 +0100
-From: Simon Horman <horms@kernel.org>
-To: Tristram.Ha@microchip.com
-Cc: Woojung.Huh@microchip.com, andrew@lunn.ch, olteanv@gmail.com,
-	kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, maxime.chevallier@bootlin.com,
-	davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-	marex@denx.de, UNGLinuxDriver@microchip.com,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=D6Y5/eoQJ04aTIipDug0yPQJgGlB5yWcuYzumGlfmjqjvohBdKWgbOyBSAQ2JQOcaQvgf3fDxL2xq5DPdeFebUEeO5GCr9WYMKYTeMEjsX6PZXZZGGRcq2pqhKUzME1or9xybO8H13Mta59fh5eMshGd6UbkBRD+q4s1niaDokE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de; spf=pass smtp.mailfrom=it-klinger.de; dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b=OJ4MGAsi; arc=none smtp.client-ip=78.46.3.230
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=it-klinger.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=it-klinger.de; s=default2502; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=o+EP3Do08PQClXT7GYUtMCIwfhK/g0y4AnYJ4Vvgafg=; b=OJ4MGAsih65d3KdHgEjNfEeOvo
+	5njU05g94/vGd9bZ7N2rN5p7/I20XFjR88HQHDfN7aNPHjnDpDArsh9YzKzPNUqhBJjncOv/FggqQ
+	H2waoulHyAeHV43A+/tdHn5dzEAnGiE4zIwNe1nmOYsCbfU6lA2zcW0oyihmCuYVRmPadTS9Z/OJl
+	Ocrv0uCGxmTPGjNvozscMQ6uipHZaYc3jwDf4NSpu3HFmCVuQgUFTpXI45kUO6FgUiH6GAslG7QyT
+	U+SeTYnPzjXLaVo4++TA/lpDOH8UPCiNrEssK9rpsB3pubu4uSiyU6v6M076TKpMcmE+ouucnS9eB
+	K7mhoo9w==;
+Received: from sslproxy03.your-server.de ([88.198.220.132])
+	by www571.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <ak@it-klinger.de>)
+	id 1ufCuc-000FK8-2n;
+	Fri, 25 Jul 2025 09:32:14 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ak@it-klinger.de>)
+	id 1ufCuc-000MgP-0K;
+	Fri, 25 Jul 2025 09:32:14 +0200
+Date: Fri, 25 Jul 2025 09:32:12 +0200
+From: Andreas Klinger <ak@it-klinger.de>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, lars@metafoo.de,
+	javier.carrasco.cruz@gmail.com, mazziesaccount@gmail.com,
+	arthur.becker@sentec.com, perdaniel.olsson@axis.com,
+	mgonellabolduc@dimonoff.com, muditsharma.info@gmail.com,
+	clamor95@gmail.com, emil.gedenryd@axis.com,
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v4 4/7] net: dsa: microchip: Use different
- registers for KSZ8463
-Message-ID: <20250725072956.GH1266901@horms.kernel.org>
-References: <20250719012106.257968-1-Tristram.Ha@microchip.com>
- <20250719012106.257968-5-Tristram.Ha@microchip.com>
- <20250720101703.GQ2459@horms.kernel.org>
- <20250720102224.GR2459@horms.kernel.org>
- <DM3PR11MB873641FBBF2A79E787F13877EC5FA@DM3PR11MB8736.namprd11.prod.outlook.com>
- <20250723162158.GJ1036606@horms.kernel.org>
- <DM3PR11MB87369E36CA76C1BB7C78CEB7EC5EA@DM3PR11MB8736.namprd11.prod.outlook.com>
- <20250724213556.GG1266901@horms.kernel.org>
- <DM3PR11MB87360DB5CDD47DF4A64FC33BEC59A@DM3PR11MB8736.namprd11.prod.outlook.com>
+Subject: Re: [PATCH v6 2/3] iio: light: add support for veml6046x00 RGBIR
+ color sensor
+Message-ID: <aIMy_BHJYNA20k-x@mail.your-server.de>
+References: <20250715085810.7679-1-ak@it-klinger.de>
+ <20250715085810.7679-3-ak@it-klinger.de>
+ <aHdWAUMMH43tIqV4@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4Q/B+VBomn8MKafC"
+Content-Disposition: inline
+In-Reply-To: <aHdWAUMMH43tIqV4@smile.fi.intel.com>
+X-Virus-Scanned: Clear (ClamAV 1.0.7/27709/Thu Jul 24 10:35:45 2025)
+
+
+--4Q/B+VBomn8MKafC
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DM3PR11MB87360DB5CDD47DF4A64FC33BEC59A@DM3PR11MB8736.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 25, 2025 at 12:17:26AM +0000, Tristram.Ha@microchip.com wrote:
-> > On Thu, Jul 24, 2025 at 02:28:56AM +0000, Tristram.Ha@microchip.com wrote:
-> > > > On Wed, Jul 23, 2025 at 02:25:27AM +0000, Tristram.Ha@microchip.com wrote:
-> > > > > > On Sun, Jul 20, 2025 at 11:17:03AM +0100, Simon Horman wrote:
-> > > > > > > On Fri, Jul 18, 2025 at 06:21:03PM -0700, Tristram.Ha@microchip.com
-> > wrote:
+Hi Andy,
 
-...
+thanks for the detailed review again. Some comments below.
 
-> > I feel that we are talking past each other.
-> > Let's try to find a common understanding.
-> 
-> It is really about the register definition of this specific register.
-> In KSZ8863 when presenting in 16-bit the value is 0x07ff, but in KSZ8463
-> it is 0xff07.  It is the fault of the hardware to define such value.
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> schrieb am Mi, 16. Jul =
+10:34:
+> > +#define	VEML6046X00_GAIN_1          0x0
+> > +#define	VEML6046X00_GAIN_2          0x1
+> > +#define	VEML6046X00_GAIN_0_66       0x2
+> > +#define	VEML6046X00_GAIN_0_5        0x3
+>=20
+> Is it defined as hexadecimal in the datasheet? Otherwise use plain decimal
+> numbers.
 
-If the behaviour of this register is different to others, then I guess a
-special case is a reasonable approach. Although I would have thought there
-is a better way.
+It's in the datasheet defined exactly the way i did.
 
-I would suggest adding a comment to the code explaining that this is a
-special case. And I would suggest revisiting this if more special cases are
-needed.
+> > +static int veml6046x00_validate_part_id(struct veml6046x00_data *data)
+> > +{
+> > +	struct device *dev =3D regmap_get_device(data->regmap);
+> > +	unsigned int part_id;
+> > +	int ret;
+> > +	__le16 reg;
+> > +
+> > +	ret =3D regmap_bulk_read(data->regmap, VEML6046X00_REG_ID,
+> > +			       &reg, sizeof(reg));
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to read ID\n");
+> > +
+> > +	part_id =3D le16_to_cpu(reg);
+> > +	if (part_id !=3D 0x0001)
+> > +		dev_info(dev, "Unknown ID %#04x\n", part_id);
+>=20
+> For 0 it will print 0 and not 0x0000. Is it okay?
 
-> Note that in the new patch KSZ8463 SPI driver implements its own access
-> functions, so native mode is used instead and there is no automatic
-> swapping depending on the big-endian or little-endian format.  Still this
-> code is needed to program the register correctly.
+I just tried and it prints 0x00 if the part_id is 0.
 
-Thanks for taking time to respond to my questions.
-I think we should let the matter rest here.
+Best regards,
+
+Andreas
+
+
+--4Q/B+VBomn8MKafC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAABCgAdFiEE7/NrAFtB/Pj7rTUyyHDM+xwPAVEFAmiDMvwACgkQyHDM+xwP
+AVE3nQwAn6dBiOP/mFu9UJRXKjUpOTi1hawG/b4j5nlhW+rvpvu1YH/cuM9keq9k
+yogxPgs2XsUqE2OlHyS3PnHBJJ26gdegu2ezMudU8mzZQugIRdoEe7JbAvx8q1A6
+6nMU6vBEB9iUPCGMtFOz+e2E5CxHjkdmcuSlHh3LvkplQxmmbrv2dInH2JIBfyL+
+Nrn105vDeaL9V8WtxqDfAKhVzRZizMRANFVxmtjKW9ZKk5423K1qXvFsboqZsnqw
+85iPV4WcDJe5J13dVSZjMPJ/rrp2mlG5au0kBqGpnqbfvV5tWR5s9lhEKtJzx4ia
+t7jwoe9l9er9C2DCz08x6AvVMzUqParTNfPLdsTwpJhARD0ugimewBXN1A+IjQh5
+SXoWLizj3nwbzGAwE9MAiKdDdFDGeWLVWj3j02EUGBePQEf80xJ1zZgdnkMOP+mH
+gQcVe9jRLfk/vbWUTSYSY/7XY6Rwt+A0+wsH4dK9pVxaL5I4X71WdH4DUCKx7CdH
+yjl9L1hB
+=9+VA
+-----END PGP SIGNATURE-----
+
+--4Q/B+VBomn8MKafC--
 
