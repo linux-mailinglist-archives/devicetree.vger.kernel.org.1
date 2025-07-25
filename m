@@ -1,286 +1,372 @@
-Return-Path: <devicetree+bounces-199775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E424B11F92
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 15:53:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29D98B11FCE
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 16:08:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFC7A17FADE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 13:53:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AFF8179F4E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 14:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82F7218A6CF;
-	Fri, 25 Jul 2025 13:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6501E834F;
+	Fri, 25 Jul 2025 14:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b9ZVuhXb"
+	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="VpSyw4Bz";
+	dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="KRG78rdn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com [205.220.165.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 453722E36EC;
-	Fri, 25 Jul 2025 13:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753451584; cv=none; b=M5aul3SZOHmP1wsX+j+ybB4QQXQhubDIX7I4JidpmU/y/rPXuRKm6nZHdH8y+7mZg87j3RPRCmGhRnKnShIa1DvJK6l1M3L5xsm6lRQrqKubGPqL91Pj6Is14opY6wKDKEOtfWVkiVqsfKLqBK8ICTk32E0MIWzFwMtSR7QLIhk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753451584; c=relaxed/simple;
-	bh=oU729MW8v42O4+DLHvPxdMXGBdD9trCPOhSgmsjK+gc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ARkGOe/g29fUcex0NHCQrl8YtH+4BzPMwz7i4kTblGOwMYc7N4EhbOmD+LSS0pITHThRPye2kwRlSWpH0sgxQZle3lOVxEklE/Kj+ak03ZXxpqmLkGwjlkIV5WlSxatF4jxP8g+hjaejd+qxO9fU9RgrM6XmwnP3zrXRboK3AVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b9ZVuhXb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE9CEC4CEFB;
-	Fri, 25 Jul 2025 13:53:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753451583;
-	bh=oU729MW8v42O4+DLHvPxdMXGBdD9trCPOhSgmsjK+gc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=b9ZVuhXbGKIHEtNeDQ409+eweWUsMpZy22RxH5IYVSgYVj0smXsczXCUASbR2zcHv
-	 3ksOYLU+ClG7dHHSJ+Lt4FE/G7KvwGW0+pfW3u2UR/vDEetuGpKYDRCQ+lLQt4KCpf
-	 sK9LLsM232lfRTuEIc4KqR8jtYKmE5vneCGZrXauSdJNasK2ZhoQgsDfQ3HXft6Ldj
-	 EtCFba82wPZH9KWTOyHCA4J+0DnyTcHPPnNxE31XaHdXpcxGenB1C3uk02Ip1a0qst
-	 CQoISiWdQmhMgYyObVkGbQmHyq/y6IRmfBxZr8XwBKpfXMbb2x+l4rVma25VSgvnh9
-	 6afiH1EcbsCaQ==
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ae361e8ec32so357980766b.3;
-        Fri, 25 Jul 2025 06:53:03 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUMhMCWujJqn537gnq7cak26omRid2GFleXeDWTWHrunNR3zRE6H178amhSBr5ruMnM2RsckC792NRxzeeM@vger.kernel.org, AJvYcCUgLTvAZtfXHlQViZ2VjpnJPK4/kL5Rmspgiol237/bAubhy3RKi1OsW/zgcIH2a2Vh3dICiFnh6XfxJ11eEQJFkQ==@vger.kernel.org, AJvYcCVI45Cg8lw078u8p9MvKEzQTG7EyeUaxae8phMzKVK19GtcpPYJhMd0583w13zuysf1v6+3EYxl++2p@vger.kernel.org, AJvYcCWOH0KzHFFwtgin4FH0SONM+Ch1J7EWm0YmelhuFXqu2jgako29e1N5Rt97Xtm5ahVNpHnIzGCk42Y7ZVk=@vger.kernel.org, AJvYcCWmBlzJYZ3rkinc+3oCR5Kq7D8fslcaI5dXAu2KwffMw3iwIwUA8JXvAFP2nIc0mwRnVfB+yfAeGZsu1vfw@vger.kernel.org, AJvYcCWtcyGMVEWOCTA4Irv5zy+L0CMJUUtuZSzSVGDaVPFwDh7yUpHXN4PqvxEgzLU5WOlYPgxG423ZHUYmCGk=@vger.kernel.org, AJvYcCXdzMcXc/sFr6/dnQ/Eu6iJgvMgTt4ebrM0bqC6UqJfMWAujjArUjSEdyh9vs7RT2bbJ1v8kb8qkls2Iw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9XhWrW65cPhv8grzlW2yx+k7Q7tzqpGPcVE9rnW/4A0X3Xq7j
-	aIWM+rSiYcFgqBAI79BwoC/yu0476cqnbHEpgEfUVeZIoBhVh+9VjfsU1kSedAhh16jsa+nlRIN
-	/eDT0KxGsg3qb6ACh5OgvOWLIXNeBXg==
-X-Google-Smtp-Source: AGHT+IGMwaL+rmBfPzDJz4oey1pCXFPHKKw91Bot2wKSkFx4bXMvOHLEpxJUfZntcXB0BI+C/DLMALjqO45Bu9z0YRA=
-X-Received: by 2002:a17:907:6d0b:b0:ae3:5da3:1a23 with SMTP id
- a640c23a62f3a-af61750a50dmr235368466b.21.1753451582011; Fri, 25 Jul 2025
- 06:53:02 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51B4D1C6FF5;
+	Fri, 25 Jul 2025 14:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.165.32
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753452476; cv=fail; b=cwDJPHawVh70vGGXslRAddvUJqW9zwxia+kdwahOkZojWFP52+U1hENXe5r6GYfpiNJbVIv0I1vpthIBReei1tHJB0lhl5dICszXQGDZ11pYvsL7pdfTBZqmi9Wd8vOej6JT1umsT97t3DBTjGfiBMb9mGOpNjSX9icEfJ0+2zc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753452476; c=relaxed/simple;
+	bh=N/iWU7ieckn3eVd1YQQL2HlrRZGNduATvMVQB3hCDoI=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=W25GggYUL2IgS3X/BTTxRL3gI1xK3fB3rjktEzN8dXEHWdEo/QUTgZbRwJFkxQp4mi5KtKgFhXMJ3tB2zwLsP3HLFE15DZ6zAgX16UFacahy+0ETUYyfJ6tBkANuxznx1uHXOuvvz1z2mgspsm/EbHYaYuDFnlTEzKRjof9CYr0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=VpSyw4Bz; dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b=KRG78rdn; arc=fail smtp.client-ip=205.220.165.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
+Received: from pps.filterd (m0246617.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56PDfsCQ023049;
+	Fri, 25 Jul 2025 14:05:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	corp-2025-04-25; bh=3x+TxqOBzshQFjByeju9Y4xrkxfzzzoAww01WH/MlPg=; b=
+	VpSyw4BzV69pN1D4Ss7k/xR652S7qUjsZAv0apMK9Lqp2qvxzxE7GHREUR0NoZDV
+	wBbIcjUxL6jwRVWX3HnkkqQ1wDTbaiIS+GTQ/4Mk9TYEeWd0mWD6VnqgRSwdXdam
+	YOg5dy6eOTVIqRa6DAcVnXd9q7u3N85Pa/lnTKmw8shfIxf9ed0NwBGtCig3rS1R
+	b4srA4l9qFzkKISvcsUQrohbMB/PoarLzM5+WNfSHJ+CsGBkxPtPGm+T/RVQJSCQ
+	MwjC7gFe12bdEOzkn8Fj+6K4xzfULst6SE9fdDhXC5MNjjtnM1i6WIFmBmtUR7oO
+	/hBrc7N23Mbz86PllNB+ng==
+Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.appoci.oracle.com [147.154.114.232])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 483w1k14mx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 25 Jul 2025 14:05:21 +0000 (GMT)
+Received: from pps.filterd (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 56PD8imN010434;
+	Fri, 25 Jul 2025 14:05:20 GMT
+Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11on2072.outbound.protection.outlook.com [40.107.223.72])
+	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 4801td3nm1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 25 Jul 2025 14:05:20 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VdpVt8lViKBDDyIqFII1bdvszeGDxmPGKlXe3gUAZmilTk1llkMa+4g06Fkx0wSR2MkZsETWDijhOdnYpxXj4teMaPgOljH1vqYWUGdL+duCW3RCaJHwsIh2PaTT3cAR/d5NA7Ue5muba8kdo6CNiM1mGeMSGcF7/VQsnI3diBl3jeCg1JnQXr0N2nu+Pr+ccUtQlJ1pj4BBNxeExYjnzu5GiN+ktOFFQ1vhq3mLV1kc/sNvLq2PST7u1M5UTdJmEfOQKd5lbN56BNOBKRoR/5fXSWuogoADNaCnWex1tmb37U15npe734/PHBAmmJAk6T24gNg/nemxZ0zI0Yc4Aw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3x+TxqOBzshQFjByeju9Y4xrkxfzzzoAww01WH/MlPg=;
+ b=Pv4mfHEABfgdv9KqZ7moWcoC1yRYO6tK4411cSasmpKpDTXF/jHay7TcwgB5EMqTU9LGMXYYrtqd7xXOSPZN3w+zpAjbosqfh7q1HUsRdIJwpIUVC7IrCbmdfqB6/4SoKirSEgGiWkRkLAAgrcIT0LMf9KsWzvdYmwL4Bws5zIx9PxNKvqk8YRlhrqv6wJqr41C9ygDQIXrE7Q/CgEiPoRCrdTf7Csk6r7Px4EowfNVvT3+uq5fllnr01sqiYdkFGODo/qj/ixDlMxwdKdX9ETUjxDiIHO0b2ZxkJmG30z6EDZ+rngyzFBaXDB8fqJL6PAny7tBIqC3gRnPFBebABQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3x+TxqOBzshQFjByeju9Y4xrkxfzzzoAww01WH/MlPg=;
+ b=KRG78rdnCDDMmpb572sEA5a7P9J9E+NH1frfE4Oh0bgi9xUnRNbSSyUQs564NI+uFesg1FHiAmlYTyf5xOhBjUFIgkoAWb3/SuDMR68CtDsPcRXEXq3OOVUZKAnOZ+Lwgtens8q5CAqlRNOII+fokAlZ/cIlXx09+Sd/G/4/zo8=
+Received: from DS7PR10MB5328.namprd10.prod.outlook.com (2603:10b6:5:3a6::12)
+ by PH3PPF5FDE66ECB.namprd10.prod.outlook.com (2603:10b6:518:1::7a6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.23; Fri, 25 Jul
+ 2025 14:05:16 +0000
+Received: from DS7PR10MB5328.namprd10.prod.outlook.com
+ ([fe80::ea13:c6c1:9956:b29c]) by DS7PR10MB5328.namprd10.prod.outlook.com
+ ([fe80::ea13:c6c1:9956:b29c%5]) with mapi id 15.20.8964.023; Fri, 25 Jul 2025
+ 14:05:16 +0000
+Message-ID: <3502ed81-7d97-4a01-806f-5c5ae307b6af@oracle.com>
+Date: Fri, 25 Jul 2025 19:34:56 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v12 5/5] net: ti: prueth: Adds IEP support for
+ PRUETH on AM33x, AM43x and AM57x SOCs
+To: Parvathi Pudi <parvathi@couthit.com>, danishanwar@ti.com,
+        rogerq@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        ssantosh@kernel.org, richardcochran@gmail.com, s.hauer@pengutronix.de,
+        m-karicheri2@ti.com, glaroque@baylibre.com, afd@ti.com,
+        saikrishnag@marvell.com, m-malladi@ti.com, jacob.e.keller@intel.com,
+        kory.maincent@bootlin.com, diogo.ivo@siemens.com,
+        javier.carrasco.cruz@gmail.com, horms@kernel.org, s-anna@ti.com,
+        basharath@couthit.com
+Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        vadim.fedorenko@linux.dev, pratheesh@ti.com, prajith@ti.com,
+        vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com,
+        krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
+References: <20250724072535.3062604-1-parvathi@couthit.com>
+ <20250724091122.3064350-6-parvathi@couthit.com>
+Content-Language: en-US
+From: ALOK TIWARI <alok.a.tiwari@oracle.com>
+In-Reply-To: <20250724091122.3064350-6-parvathi@couthit.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P265CA0288.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:38f::16) To DS7PR10MB5328.namprd10.prod.outlook.com
+ (2603:10b6:5:3a6::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 25 Jul 2025 08:52:49 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJGNdp3Z0sXaEXWY8nqXD+0kSCo+BYCkcGstE7zcVVcXw@mail.gmail.com>
-X-Gm-Features: Ac12FXwKwOUzIhM63V196in4PCS6Bf2k_E9MkYLnnuY9m0IymXlzSXNHAMKf4rk
-Message-ID: <CAL_JsqJGNdp3Z0sXaEXWY8nqXD+0kSCo+BYCkcGstE7zcVVcXw@mail.gmail.com>
-Subject: Re: [PATCH 00/38] MediaTek devicetree/bindings warnings sanitization
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, herbert@gondor.apana.org.au, 
-	davem@davemloft.net, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, jassisinghbrar@gmail.com, mchehab@kernel.org, 
-	matthias.bgg@gmail.com, chunfeng.yun@mediatek.com, vkoul@kernel.org, 
-	kishon@kernel.org, sean.wang@kernel.org, linus.walleij@linaro.org, 
-	lgirdwood@gmail.com, broonie@kernel.org, andersson@kernel.org, 
-	mathieu.poirier@linaro.org, daniel.lezcano@linaro.org, tglx@linutronix.de, 
-	atenart@kernel.org, jitao.shi@mediatek.com, ck.hu@mediatek.com, 
-	houlong.wei@mediatek.com, kyrie.wu@mediatek.corp-partner.google.com, 
-	andy.teng@mediatek.com, tinghan.shen@mediatek.com, jiaxin.yu@mediatek.com, 
-	shane.chien@mediatek.com, olivia.wen@mediatek.com, granquet@baylibre.com, 
-	eugen.hristev@linaro.org, arnd@arndb.de, sam.shih@mediatek.com, 
-	jieyy.yang@mediatek.com, frank-w@public-files.de, mwalle@kernel.org, 
-	fparent@baylibre.com, linux-crypto@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org, 
-	linux-gpio@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
-	linux-sound@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR10MB5328:EE_|PH3PPF5FDE66ECB:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3d685fdd-264e-4182-2790-08ddcb8447c4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|366016|1800799024|921020|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SjYyTy9PUEJtWEJkRlk5aVRLcEloWFpwM0xSejR2b1o3QXF3WEVhUTUrb0RK?=
+ =?utf-8?B?UndwYWRxZCtEZmZXOWw1NE1USlNtc0JFbGZEbVdhUDVqa0FGZUlLVDd4ZFcr?=
+ =?utf-8?B?RDlPbWV1TnlEVnFiWXBpUWR3SCs0WnIvWTIyUzJyRkNNSk01K2lGbmw4OTho?=
+ =?utf-8?B?SEVudWZINlJ0ZXpvOVNTOFcrQlVLQjVjYVpOeVV2RGE3NGJxdkRMOHMxRnBz?=
+ =?utf-8?B?QWg4bW43RENaVkQ4WUtTNTJ0M2p3VmhFNUhkQytVbkRLcVV6cTNreWFFcUps?=
+ =?utf-8?B?NlJxRlBwZlNwYnJLZldHNlpUS2RKOUlZTDIwOE9MQ3dTMWYyMm5mbythZ1ln?=
+ =?utf-8?B?c0JmNWVwRFBRNVZSamNjZUticnFieVdpMURYRXpPVjVFam1mNWlHTGNvOGZ0?=
+ =?utf-8?B?MzdkZHNWVE1OQ1dCTkR5VVlPcTRCTmsvc3FjWnlSWUtDYmVkelFqWCtMUG9T?=
+ =?utf-8?B?MzQyZFdtaWtlNk9Db3BnbVlYMTNCMFdCSS9CUWJyY2pUK2pkM0h6NTAvN1Nx?=
+ =?utf-8?B?SzBlZ3NFQVFOTFp4cW4wUmxScWVBOTRTZDBzL05UR2xBbS9JTmZMWWNSd2JD?=
+ =?utf-8?B?MExTUnNPdWFQeSt4N0xRNnBBMUgyTldsdFMwbFlhS2JBVGVvVDRYa1RlL1VN?=
+ =?utf-8?B?dUlQVWRkdTc3cWl3Ty9uaU9pN2ZqTWg3RS9kT2M3eGozVGlUUFk5ME1NWlYw?=
+ =?utf-8?B?dXQ5U01sak9yeGlldDh0Slk0djM1ZUZ6WFdnTVRrTk92K1pBWldTRzg0TFhy?=
+ =?utf-8?B?NGlsY2RGQjZGNGZoODlkcmMvdXVVNTZHeEtwOXJpeHRrTjZkMmtTN0RWNm9s?=
+ =?utf-8?B?QWM2YVE0K0Z4LzlnQjJKcS9ta3dONDYyOXNPSGVIbFVWODI2RXVsb1ZJK2s3?=
+ =?utf-8?B?dmVIOEhOcS9GVjl5WUI3eXcvT3dPK3pyZytENTQ1MS9LeDdmNkdQb2U4Y0RW?=
+ =?utf-8?B?ckJuQlprNnQ3NExjamJ5NGFWd29LZGZBSlBRWDRuSXY4OGxIQkkwZHVoRHV0?=
+ =?utf-8?B?UHgzaGFXVk85Q3VXOFM1U3FCZnE4K3VFVWZ6c2RnWDZ5MStNczFrd3dxM3li?=
+ =?utf-8?B?ZzBZdGYrUHAzVjlaK2FVZGtaeENWbjhTQ2VWc1BzMFhTeGliU2FUNzRZdmND?=
+ =?utf-8?B?UkNmdFhkbFVKcndDMlVza3FhQkZ4azZDaFYwc3Jyeis3bjlJNXJRa2oveE5I?=
+ =?utf-8?B?YTFvam92UHMxa2dsRCtWTjRIUG9MMjFkdUZRWlp6a1lXYmJKQ3F6ZzdXM3JZ?=
+ =?utf-8?B?ek9Bc3JVTW1wSjVGRGU0Y1ZNRnVZcXZiRFZucE5BaVNLVmlzZm9RUkh0R0Ft?=
+ =?utf-8?B?blpya21xNkk3dVFtR0R6bmwrSlZMVFRkWjJITG14TXFzaVBBRW96OEJqVnlN?=
+ =?utf-8?B?aVVjcUZpMmhMbGpZcGZIOTVhQU1nbkpNaEFrZi85S2wrcTluaW9rZkdqTXA1?=
+ =?utf-8?B?NldGL0dibFlCemFWQmRWYzNHUEFnVlR6bnlqQWhWVUkyQndPLzFNdlk0dHo5?=
+ =?utf-8?B?d2sxeU1rOEpCRE1WdUZCbXJUR3haNlRSMEV1RFVaN05ydnFOOEZSd0VZaUFC?=
+ =?utf-8?B?c0IrdVFRSDVqdzN5NTZBTnhOWUJncCtrc2JnN2JTZFRGWm9nQjUyN0NLWGRQ?=
+ =?utf-8?B?OUhkQ1RrRGd4MUU3cGRqVkZPb2N2SHVraURudW4va3ZLdyt0MEthWnZMazdC?=
+ =?utf-8?B?bEprcWpYcDVVeXd4MDlNMDczTkdtZGxjMDBlcEYwSURIaHVJb1NFbXBPaDZs?=
+ =?utf-8?B?Rm5LU0ZieVRRbEphUzRBNm02eHZlVlNXM2lIczgyUzdzcEd3TTR6RzVBNWxB?=
+ =?utf-8?B?WFNHTkljc05PMnRLRC9BVndYQWhnbGR6RVo4MWtLS0hNdG9wUDNVUWVRM29U?=
+ =?utf-8?B?WFJocFNFZnRvckJSREl5blNaR05RUW91TDd4VGUyTG5LQmZvTGdXNXViUk1P?=
+ =?utf-8?B?RXZ0d1BwOFAzZlBvWi9QaG5pVTlIS05JTEo5WlpGZHJzcElWYy80K3cxMS90?=
+ =?utf-8?B?b0VCenY5K0d3PT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS7PR10MB5328.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(921020)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ZTEySkcvSW9JNENyTTUzTmROODJ6U0ZzcVBCRVVqN3VlbkVMNUg2Q2dMSXVP?=
+ =?utf-8?B?a3VBNVhtNGthYTkvOElMdGM2NEYwSjdOR0xBUFJ0Z3R5T3JjYzVQL01uTkFy?=
+ =?utf-8?B?LzhXSStZZnlTMjNMZUJPL2t6MXBiU0NCQUo4ZWxXWlJuRGhReGtpeTB1MGJM?=
+ =?utf-8?B?R3ZtOUV2N2J1Q045RG9Uano4ZTJNWU5lZFdHdDNWZTNOL2xHQVhqdjYxMnNo?=
+ =?utf-8?B?bkhSTlJVSk9QVkowUEtRaTltTTNvck1KM1FmeW9sUWUzWWY4bmlwZWs0N2Vj?=
+ =?utf-8?B?eUZJTitOaFpYL3BuaVY3anR0VEJEYUtpbGlPVDhodjJMbjBic0NpMG8wZWNV?=
+ =?utf-8?B?QTJ5MU15djB5UmJMSVRGbVhWcUR4YUdJcFNVVTB2WkNBaVVIY3h5cnN3UGpn?=
+ =?utf-8?B?UklzLzdRVE9SekkxSG1PVkI5WS9UdEVReldtRnlKeGtGMUJOa1ZNc25PRG5j?=
+ =?utf-8?B?N2Z0TXFoNHZ6SWpBQy9uYWxsOWFnTGR5eWF0Rm5Eb1psMzRzYzAza0E1akEv?=
+ =?utf-8?B?QnNoeTRseDRKdkViOGpCMWh5Q1pYcEhuNDEvMWh5UVdHbENBVDZlY0MzdkYv?=
+ =?utf-8?B?VUR4YlhpeDV4NU9pZDJDN2RxUzQ3dDBvaXBsc0hONUlrKzdtZk1DQkVWRVpB?=
+ =?utf-8?B?dFVNbVp6YUY0bWo0MXFjV05DVXpuY2dLaXRTdlBPU3lZRHJncUJSSStJVTZw?=
+ =?utf-8?B?WEM1d1FGbExHOXI5RUZzaFJNbUxlenk3YzM0RXBNZjBNK08wbzZLakVlVFRC?=
+ =?utf-8?B?VmNLV0pQaXViT2F0TkdCNjlGakVUN3kwR09lWmFBMk9kNS9UMWo3bGVSWGdS?=
+ =?utf-8?B?MnREQlA5eWFKekFLVjFjUFZ2b3RGQXZIVzJBZUZLQzBIN0NYejczaC9YYWds?=
+ =?utf-8?B?RXp3T2JCWTdna2U1aFpFL1pvOFBlOWJKVnQ1MmRPTm1KYWwxRllKZWJLT1pT?=
+ =?utf-8?B?dFlBSXRBRk5EN0FBUWJVWGdXanIzdlFzQnROZHlTUWw4NFVpSzEyclJEVzZn?=
+ =?utf-8?B?dmJoOEFaOTJmSStXN0VmSFhJbFRGbWdQR2xLQzEzS3ZtTGhlSURINVUwcXg1?=
+ =?utf-8?B?S1pLejI3T3pJQUlBNWdkL25rR0hCMWxtdXhMbk11dUwvMGtqK3FvUVFvSGpt?=
+ =?utf-8?B?a1RCRDNTazYwR01mdERDTktON1ZTeUwyZUpKL0RGTDVBVGg5eHByWTlrN0Vy?=
+ =?utf-8?B?N1psVkJQZW4wa2l2V2dkMEZQQ0s3akpGTXRBYWViRUtodWg5bThBZ21LZHB4?=
+ =?utf-8?B?cCtyQ1VFNStJVjNXbXdXUTA2RFdsaWJQVnZqMzRRTVREcjh5QTl2ZVEwaStF?=
+ =?utf-8?B?MzBvUzZZU2cyZSt0UFdzVEZvclZDcXh4ZEtHY0RKT0N3WmlGR2RyNitPVWtx?=
+ =?utf-8?B?OWRHQXRHUEhHTVlScnZBbFJhVjFHbC9xTlBHNUNydGowL0N6WXdLMHlyY0xN?=
+ =?utf-8?B?b1creVNaVm9FZ3I2T1lua28zbEF6aXhMN2pyVVR3M1FXOFVxK0ZOSU9yejNZ?=
+ =?utf-8?B?c1V2Y1lCdTl5enRUZW9kQnFDS1BPMGl6eWdZRm1IL2Q2QVJNaGM1SlJqbUJ6?=
+ =?utf-8?B?eWdiNW90SHhEQmJ0YStwdW0yLzFTTlcyMyt5WlY5YWtYMkJzQXRvVTF2dk5K?=
+ =?utf-8?B?VzVBVFN2MCs0TG56UThxWjNZQVhnTFBocWJxZDlXWjVSUWp5UzNCVkQxZHhl?=
+ =?utf-8?B?aGFPbEJtbm1wTzhJZVBIeXpnbmprSUJUUTNuVk41ZHFkYUdKTjFhTnQ2QkFv?=
+ =?utf-8?B?WVFncTBoV1BkWVRXbzRWa0wybWUraGo5S2VSVnFzRklCU0x1SGQzdEErSVBq?=
+ =?utf-8?B?TERROVU2cGEySVQ2Z05QSThhaitaYjhPZlROL1pZMXkvbjdIbTdpblA1bWhT?=
+ =?utf-8?B?SFJzRTBUTWgvcTJLeXoremVwd05WK1dzSGhQbHAzOThFTXN4ZFk5TlRIUkI0?=
+ =?utf-8?B?SzFhQW9UWmd6SDkrYnRtWGxFT0xZUy9oRDZzVjFteC9tWlozL1ZrMlh0QjZD?=
+ =?utf-8?B?ZmtPSjBabW04dzdGZ2s2Ylc5VU9tRFNvQzBmdkFrWGFuQWxsbzB6Y2ZFTTNZ?=
+ =?utf-8?B?NEo0Y0hIcDljVWh1SFJGcUsvNWlzWHdZekR0dHhDbGZReUhsT3JRM0V6Q0dE?=
+ =?utf-8?B?dHJSSmg2dHNUeHllZ3BWWm1BR2ppSFNOUjlkZU5wNjU0UnhtOHA2Zy9vZTlU?=
+ =?utf-8?B?OUE9PQ==?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	mJMJFgQubYmEy365ItH/f5wYGOa2qm5zuOL6mw/5tByCSVrsj/6qC+bFEy1mxB32gPv43tzzP6j2tSbdrp2uJbY7N4zMsekZcncPak1iS33cYAOox5PENE4mL0CnMCfGpdSyIDY0742DGCU7y7TI2D7lrQxFiFps/SItqh/maO5eKvcXsZNtZuCTd3y+qs8QeZQ5VJHRrCxdtt6DDQe1sk6UWxZ+Cf8gKY0EKjm8JWJBAaVfH8rnXT8I/dopolDnLFss1UbVm1MEaANvK1o8rErc0MICEFkMjhC6m2DIU5bcMXOgke7wUvz+FIBvNtdiUoRK+lIDSQa8vtGDkW6ngw5TSEglx+cXm8qNvHntlf8M+fUqWfsBtwlume3URi7YBAtnqx4c9WRyqGlY8Nl3BIWFaqksd0unfZyYDW9FYruGMq+EM9/hD78mp5fJAjW1lsJGYKeBC2INdfu/K5IYiJHTBg7UFsEV5tDw1P+hjXc9miRagFoHY4xLFnTK1d4h9iOYKo2zj5tf6/ha1o8nWh3+WcoRxI2XtR3OGWp+jQx0iO1XUxBm9TQphX8pexNJe5WMGAOwa0I47Gt+wumPWN2pXdK/t09jrQMTbBY8nDk=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d685fdd-264e-4182-2790-08ddcb8447c4
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR10MB5328.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2025 14:05:16.0654
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: K+DtLgp6ddAEGtxPwBCu0odfWxye1lnMmyCfdNXfEL0EGtDuAFbvRkwVXZKFdlqur29vIK5bP6SrYvtRb/gulEy7TXVYtotkshgkHLgBJak=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF5FDE66ECB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-25_04,2025-07-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 spamscore=0 phishscore=0
+ mlxscore=0 bulkscore=0 mlxlogscore=999 suspectscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2505160000
+ definitions=main-2507250120
+X-Proofpoint-GUID: zmranHEL0gkzxPo54Nl_3fOt8MQk4hXP
+X-Authority-Analysis: v=2.4 cv=LYE86ifi c=1 sm=1 tr=0 ts=68838f21 cx=c_pps
+ a=OOZaFjgC48PWsiFpTAqLcw==:117 a=OOZaFjgC48PWsiFpTAqLcw==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
+ a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=GoEa3M9JfhUA:10
+ a=sozttTNsAAAA:8 a=uMrLXzhIAAAA:8 a=aO1CQIxOwdWCwQYJ1lwA:9 a=QEXdDO2ut3YA:10
+ a=jlbCQfFxfIo9zxDJvpnn:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI1MDEyMSBTYWx0ZWRfX1msvy+fYHzZQ
+ aZh+8g5AMHhcrM5gdGUSieFgbCcca1XdiD9W4JNWJ+VClLkZilmt8dMKRUFkdrv8LfoEUzOny6f
+ uJ6C0gvYwytkTKKaKTwKBUuViwghR5SiVvpeoRT0LnPQrq3R1vWjnl5V3Yvsz0kiZ9pbbmpVOqB
+ qZjRn743arJtaglVFChdOqKH8jsZ4q4TW9aT15e8nRLuiT6QDOpZmfHjC4k8CaCH7ZPlOMXY2vs
+ TNTeK03bT8LNtvHuZ8z2GJt02ED/wrbBhNUaECN0CdP0QZ9h6OZvd3TgXzzeXjrag5OrSsx4dXl
+ ljO3Squ9636PNFTXD0qxg/4EouWn9tDGb0OO49CcEArMz74moRx6iIsDwskNG+STqQZA6R7lT2J
+ xJ3n04IRB7KRYGcTO4Kvfm7ykC2MZioZq/5EjKAWa8A6ZyCATIySq1l4vmlLfmU06wl72I3D
+X-Proofpoint-ORIG-GUID: zmranHEL0gkzxPo54Nl_3fOt8MQk4hXP
 
-On Thu, Jul 24, 2025 at 3:39=E2=80=AFAM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> As Rob pointed out, MediaTek devicetrees are *poor* in the dtbs_check
-> tests, and got an infinite load of warnings.
->
-> This series starts attacking this situation.
->
-> I didn't really count how many warnings I have resolved - it's a lot
-> of them anyway - and I think that this is a good start in any case.
 
-40 out of 125 (on arm64) fixed! Thanks! FYI, here's the ones that
-remain (first number is number of times the warning occurs):
 
-     29 (mediatek,mt8183-mfgcfg): 'power-domains' does not match any
-of the regexes: '^pinctrl-[0-9]+$'
-     29 failed to match any schema with compatible:
-['mediatek,mt8183-audiosys', 'syscon']
-     29 failed to match any schema with compatible: ['mediatek,mt8183-audio=
-']
-     27 (mediatek,mt8183-pinctrl): 'gpio-line-names' does not match
-any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
-     22 (mediatek,mt6359): '#sound-dai-cells' does not match any of
-the regexes: '^pinctrl-[0-9]+$'
-     14 failed to match any schema with compatible:
-['mediatek,mt8183_mt6358_ts3a227_max98357']
-     12 (mediatek,mt8186-mt6366-rt1019-rt5682s-sound): 'model' is a
-required property
-     12 failed to match any schema with compatible: ['mediatek,mt8173-mdp-r=
-sz']
-      9 (mediatek,mt8195-iommu-infra): interrupts: [[0, 795, 4, 0],
-[0, 796, 4, 0], [0, 797, 4, 0], [0, 798, 4, 0], [0, 799, 4, 0]] is too
-long
-      8 failed to match any schema with compatible: ['mediatek,mt8173-mdp-w=
-rot']
-      8 failed to match any schema with compatible:
-['mediatek,mt8173-mdp-rdma', 'mediatek,mt8173-mdp']
-      6 failed to match any schema with compatible:
-['mediatek,mt8183_da7219_rt1015p']
-      5 (mediatek,mt7986-eth): interrupts: [[0, 196, 4], [0, 197, 4],
-[0, 198, 4], [0, 199, 4]] is too short
-      5 failed to match any schema with compatible:
-['mediatek,mt8183_mt6358_ts3a227_rt1015p']
-      4 (mediatek,mt8173-mmsys): 'assigned-clock-rates',
-'assigned-clocks' do not match any of the regexes: '^pinctrl-[0-9]+$'
-      4 (mediatek,mt8173-disp-ufoe): 'mediatek,gce-client-reg' does
-not match any of the regexes: '^pinctrl-[0-9]+$'
-      4 (mediatek,mt8173-disp-od): 'mediatek,gce-client-reg' does not
-match any of the regexes: '^pinctrl-[0-9]+$'
-      4 (mediatek,mt6360): #interrupt-cells: 1 was expected
-      4 failed to match any schema with compatible: ['mediatek,mt8173-vpu']
-      4 failed to match any schema with compatible: ['mediatek,mt8173-mdp-w=
-dma']
-      4 failed to match any schema with compatible: ['mediatek,mt8173-mdp-r=
-dma']
-      4 failed to match any schema with compatible: ['mediatek,mt7622-pcie'=
-]
-      3 (mediatek,mt8192-audsys): 'mt8192-afe-pcm' does not match any
-of the regexes: '^pinctrl-[0-9]+$'
-      3 (mediatek,mt8173-thermal): Unevaluated properties are not
-allowed ('bank0-supply', 'bank1-supply' were unexpected)
-      3 (mediatek,mt8173-pinctrl): 'gpio-line-names' does not match
-any of the regexes: '^pinctrl-[0-9]+$', 'pins$'
-      3 (mediatek,mt8173-dsi): Unevaluated properties are not allowed
-('ports' was unexpected)
-      3 (mediatek,mt8173-dsi): ports: 'port@1' is a required property
-      3 (mediatek,mt8173-dsi): ports: 'port@0' is a required property
-      3 failed to match any schema with compatible: ['mediatek,mt8173-rt565=
-0']
-      2 (mediatek,mt8192_mt6359_rt1015p_rt5682): 'model' is a required prop=
-erty
-      2 (mediatek,mt8192-i2c): Unevaluated properties are not allowed
-('clock-stretch-ns' was unexpected)
-      2 (mediatek,mt8186-spmi): Unevaluated properties are not allowed
-('interrupts' was unexpected)
-      2 (mediatek,mt7986-tphy): usb-phy@700:reg: [[0, 1792], [0,
-2304]] is too long
-      2 (mediatek,mt7622-pwrap): 'regulators' does not match any of
-the regexes: '^pinctrl-[0-9]+$'
-      2 (mediatek,mt7622-pciesys): compatible: 'oneOf' conditional
-failed, one must be fixed:
-      2 (mediatek,mt7622-audsys): audio-controller: 'power-domains' is
-a required property
-      2 (mediatek,mt7622-audsys): audio-controller:clock-names:
-['infra_sys_audio_clk', 'top_audio_mux1_sel
-', 'top_audio_mux2_sel', 'top_audio_a1sys_hp', 'top_audio_a2sys_hp',
-'i2s0_src_sel', 'i2s1_src_sel', 'i2s2_
-src_sel', 'i2s3_src_sel', 'i2s0_src_div', 'i2s1_src_div',
-'i2s2_src_div', 'i2s3_src_div', 'i2s0_mclk_en', '
-i2s1_mclk_en', 'i2s2_mclk_en', 'i2s3_mclk_en', 'i2so0_hop_ck',
-'i2so1_hop_ck', 'i2so2_hop_ck', 'i2so3_hop_c
-k', 'i2si0_hop_ck', 'i2si1_hop_ck', 'i2si2_hop_ck', 'i2si3_hop_ck',
-'asrc0_out_ck', 'asrc1_out_ck', 'asrc2_
-out_ck', 'asrc3_out_ck', 'audio_afe_pd', 'audio_afe_conn_pd',
-'audio_a1sys_pd', 'audio_a2sys_pd'] is too sh
-ort
-      2 (mediatek,mt7622-audio): 'power-domains' is a required property
-      2 (mediatek,mt7622-audio): clock-names: ['infra_sys_audio_clk',
-'top_audio_mux1_sel', 'top_audio_mux2
-_sel', 'top_audio_a1sys_hp', 'top_audio_a2sys_hp', 'i2s0_src_sel',
-'i2s1_src_sel', 'i2s2_src_sel', 'i2s3_sr
-c_sel', 'i2s0_src_div', 'i2s1_src_div', 'i2s2_src_div',
-'i2s3_src_div', 'i2s0_mclk_en', 'i2s1_mclk_en', 'i2
-s2_mclk_en', 'i2s3_mclk_en', 'i2so0_hop_ck', 'i2so1_hop_ck',
-'i2so2_hop_ck', 'i2so3_hop_ck', 'i2si0_hop_ck'
-, 'i2si1_hop_ck', 'i2si2_hop_ck', 'i2si3_hop_ck', 'asrc0_out_ck',
-'asrc1_out_ck', 'asrc2_out_ck', 'asrc3_ou
-t_ck', 'audio_afe_pd', 'audio_afe_conn_pd', 'audio_a1sys_pd',
-'audio_a2sys_pd'] is too short
-      2 (mediatek,mt6795-mmsys): 'assigned-clock-rates',
-'assigned-clocks' do not match any of the regexes: '^pinctrl-[0-9]+$'
-      2 (mediatek,mt6795-mmc): Unevaluated properties are not allowed
-('pinctrl-names' was unexpected)
-      2 (mediatek,mt6795-mmc): pinctrl-names: ['default'] is too short
-      2 (mediatek,mt6795-mmc): 'pinctrl-1' is a required property
-      2 (mediatek,mt6795-disp-ufoe): 'mediatek,gce-client-reg' does
-not match any of the regexes: '^pinctrl-[0-9]+$'
-      2 (mediatek,mt6795-disp-od): 'mediatek,gce-client-reg' does not
-match any of the regexes: '^pinctrl-[0-9]+$'
-      2 failed to match any schema with compatible:
-['mediatek,mt8183_da7219_max98357']
-      2 failed to match any schema with compatible:
-['mediatek,mt7622-scpsys', 'syscon']
-      2 failed to match any schema with compatible: ['mediatek,mt6797-scpsy=
-s']
-      2 failed to match any schema with compatible:
-['mediatek,mt6380-regulator']
-      2 failed to match any schema with compatible: ['mediatek,mt2712-pcie'=
-]
-      1 (mediatek,mt8516-topckgen): compatible: 'oneOf' conditional
-failed, one must be fixed:
-      1 (mediatek,mt8516-apmixedsys): compatible: 'oneOf' conditional
-failed, one must be fixed:
-      1 (mediatek,mt8186-mt6366-rt5682s-max98360-sound): 'model' is a
-required property
-      1 (mediatek,mt8186-cci): 'proc-supply' is a required property
-      1 (mediatek,mt8183-pinctrl): 'i2c0', 'i2c1', 'i2c2', 'i2c3',
-'i2c4', 'i2c5', 'mmc0', 'mmc0default', 'mmc1', 'mmc1default', 'pwm1',
-'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the
-regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
-      1 (mediatek,mt8183-pinctrl): 'i2c0', 'i2c1', 'i2c2', 'i2c3',
-'i2c4', 'i2c5', 'i2c6', 'keyboard' do not match any of the regexes:
-'-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
-      1 (mediatek,mt8183-pinctrl): bt-pins-wakeup: 'piins-bt-wakeup'
-does not match any of the regexes: '^pinctrl-[0-9]+$', '^pins'
-      1 (mediatek,mt8173-pwrap): 'power-domains' does not match any of
-the regexes: '^pinctrl-[0-9]+$'
-      1 (mediatek,mt7622-pinctrl): 'asm-sel-hog' does not match any of
-the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
-      1 (mediatek,mt7622-audsys): audio-controller:clocks: [[2, 2],
-[18, 80], [18, 81], [18, 107], [18, 108], [18, 89], [18, 90], [18,
-91], [18, 92], [18, 95], [18, 96], [18, 97], [18, 98], [18, 103], [18,
-104], [18, 105], [18, 106], [38, 8], [38, 9], [38, 10], [38, 11], [38,
-4], [38, 5], [38, 6], [38, 7], [38, 14], [38, 15], [38, 39], [38, 40],
-[38, 0], [38, 46], [38, 17], [38, 18]] is too short
-      1 (mediatek,mt7622-audsys): audio-controller:clocks: [[2, 2],
-[18, 80], [18, 81], [18, 107], [18, 108], [18, 89], [18, 90], [18,
-91], [18, 92], [18, 95], [18, 96], [18, 97], [18, 98], [18, 103], [18,
-104], [18, 105], [18, 106], [37, 8], [37, 9], [37, 10], [37, 11], [37,
-4], [37, 5], [37, 6], [37, 7], [37, 14], [37, 15], [37, 39], [37, 40],
-[37, 0], [37, 46], [37, 17], [37, 18]] is too short
-      1 (mediatek,mt7622-audio): clocks: [[2, 2], [18, 80], [18, 81],
-[18, 107], [18, 108], [18, 89], [18, 90], [18, 91], [18, 92], [18,
-95], [18, 96], [18, 97], [18, 98], [18, 103], [18, 104], [18, 105],
-[18, 106], [38, 8], [38, 9], [38, 10], [38, 11], [38, 4], [38, 5],
-[38, 6], [38, 7], [38, 14], [38, 15], [38, 39], [38, 40], [38, 0],
-[38, 46], [38, 17], [38, 18]] is too short
-      1 (mediatek,mt7622-audio): clocks: [[2, 2], [18, 80], [18, 81],
-[18, 107], [18, 108], [18, 89], [18, 90], [18, 91], [18, 92], [18,
-95], [18, 96], [18, 97], [18, 98], [18, 103], [18, 104], [18, 105],
-[18, 106], [37, 8], [37, 9], [37, 10], [37, 11], [37, 4], [37, 5],
-[37, 6], [37, 7], [37, 14], [37, 15], [37, 39], [37, 40], [37, 0],
-[37, 46], [37, 17], [37, 18]] is too short
-      1 (mediatek,mt7531): 'interrupts' is a dependency of
-'interrupt-controller'
-      1 (mediatek,mt6357): 'adc' does not match any of the regexes:
-'^pinctrl-[0-9]+$'
-      1 (mediatek,mt6331): regulators:compatible: 'oneOf' conditional
-failed, one must be fixed:
-      1 (mediatek,mt6331-regulator): 'ldo-vio28' does not match any of
-the regexes: '^buck-v(core2|io18|dvfs11|dvfs12|dvfs13|dvfs14)$',
-'^ldo-(avdd32aud|vauxa32)$',
-'^ldo-v(dig18|emc33|ibr|mc|mch|mipi|rtc|sim1|sim2|sram|usb10)$',
-'^ldo-vcam(a|af|d|io)$', '^ldo-vgp[1234]$', '^ldo-vtcxo[12]$',
-'^pinctrl-[0-9]+$'
-      1 (mediatek,mt6331-regulator): ldo-vcamio:regulator-name:0:
-'vcam_io' does not match '^vcam(a|_af|d|io)$'
-      1 (mediatek,mt6331): 'mt6332-led' does not match any of the
-regexes: '^pinctrl-[0-9]+$'
-      1 failed to match any schema with compatible:
-['mediatek,mt6779-audio', 'syscon']
-      1 failed to match any schema with compatible:
-['mediatek,mt2712-scpsys', 'syscon']
+On 7/24/2025 2:40 PM, Parvathi Pudi wrote:
+> Added API hooks for IEP module (legacy 32-bit model) to support
+> timestamping requests from application.
+> 
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> Signed-off-by: Andrew F. Davis <afd@ti.com>
+> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
+> ---
+>   drivers/net/ethernet/ti/icssg/icss_iep.c      | 103 ++++++++++++++++++
+>   drivers/net/ethernet/ti/icssm/icssm_prueth.c  |  72 +++++++++++-
+>   drivers/net/ethernet/ti/icssm/icssm_prueth.h  |   2 +
+>   .../net/ethernet/ti/icssm/icssm_prueth_ptp.h  |  85 +++++++++++++++
+>   4 files changed, 260 insertions(+), 2 deletions(-)
+>   create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ptp.h
+> 
+> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c b/drivers/net/ethernet/ti/icssg/icss_iep.c
+> index 2a1c43316f46..59aca63e2fe5 100644
+> --- a/drivers/net/ethernet/ti/icssg/icss_iep.c
+> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
+> @@ -968,11 +968,114 @@ static const struct icss_iep_plat_data am654_icss_iep_plat_data = {
+>   	.config = &am654_icss_iep_regmap_config,
+>   };
+>   
+> +static const struct icss_iep_plat_data am57xx_icss_iep_plat_data = {
+> +	.flags = ICSS_IEP_64BIT_COUNTER_SUPPORT |
+> +		 ICSS_IEP_SLOW_COMPEN_REG_SUPPORT,
+> +	.reg_offs = {
+> +		[ICSS_IEP_GLOBAL_CFG_REG] = 0x00,
+> +		[ICSS_IEP_COMPEN_REG] = 0x08,
+> +		[ICSS_IEP_SLOW_COMPEN_REG] = 0x0C,
+
+using both uppercase and lowercase hex
+
+> +		[ICSS_IEP_COUNT_REG0] = 0x10,
+> +		[ICSS_IEP_COUNT_REG1] = 0x14,
+> +		[ICSS_IEP_CAPTURE_CFG_REG] = 0x18,
+> +		[ICSS_IEP_CAPTURE_STAT_REG] = 0x1c,
+> +
+> +		[ICSS_IEP_CAP6_RISE_REG0] = 0x50,
+> +		[ICSS_IEP_CAP6_RISE_REG1] = 0x54,
+> +
+> +		[ICSS_IEP_CAP7_RISE_REG0] = 0x60,
+> +		[ICSS_IEP_CAP7_RISE_REG1] = 0x64,
+> +
+> +		[ICSS_IEP_CMP_CFG_REG] = 0x70,
+> +		[ICSS_IEP_CMP_STAT_REG] = 0x74,
+> +		[ICSS_IEP_CMP0_REG0] = 0x78,
+> +		[ICSS_IEP_CMP0_REG1] = 0x7c,
+> +		[ICSS_IEP_CMP1_REG0] = 0x80,
+> +		[ICSS_IEP_CMP1_REG1] = 0x84,
+> +
+> +		[ICSS_IEP_CMP8_REG0] = 0xc0,
+> +		[ICSS_IEP_CMP8_REG1] = 0xc4,
+> +		[ICSS_IEP_SYNC_CTRL_REG] = 0x180,
+> +		[ICSS_IEP_SYNC0_STAT_REG] = 0x188,
+> +		[ICSS_IEP_SYNC1_STAT_REG] = 0x18c,
+> +		[ICSS_IEP_SYNC_PWIDTH_REG] = 0x190,
+> +		[ICSS_IEP_SYNC0_PERIOD_REG] = 0x194,
+> +		[ICSS_IEP_SYNC1_DELAY_REG] = 0x198,
+> +		[ICSS_IEP_SYNC_START_REG] = 0x19c,
+> +	},
+> +	.config = &am654_icss_iep_regmap_config,
+> +};
+> +
+> +static bool am335x_icss_iep_valid_reg(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case ICSS_IEP_GLOBAL_CFG_REG ... ICSS_IEP_CAPTURE_STAT_REG:
+> +	case ICSS_IEP_CAP6_RISE_REG0:
+> +	case ICSS_IEP_CMP_CFG_REG ... ICSS_IEP_CMP0_REG0:
+> +	case ICSS_IEP_CMP8_REG0 ... ICSS_IEP_SYNC_START_REG:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +
+> +	return false;
+
+Redundant code after default return
+
+> +}
+> +
+[clip]
+>   
+> @@ -1434,12 +1490,19 @@ static int icssm_prueth_probe(struct platform_device *pdev)
+>   		}
+>   	}
+>   
+> +	prueth->iep = icss_iep_get(np);
+> +	if (IS_ERR(prueth->iep)) {
+> +		ret = PTR_ERR(prueth->iep);
+> +		dev_err(dev, "unable to get IEP\n");
+> +		goto netdev_exit;
+> +	}
+> +
+>   	/* register the network devices */
+>   	if (eth0_node) {
+>   		ret = register_netdev(prueth->emac[PRUETH_MAC0]->ndev);
+>   		if (ret) {
+>   			dev_err(dev, "can't register netdev for port MII0");
+> -			goto netdev_exit;
+> +			goto iep_put;
+>   		}
+>   
+>   		prueth->registered_netdevs[PRUETH_MAC0] =
+> @@ -1473,6 +1536,9 @@ static int icssm_prueth_probe(struct platform_device *pdev)
+>   		unregister_netdev(prueth->registered_netdevs[i]);
+>   	}
+>   
+> +iep_put:
+> +	icss_iep_put(prueth->iep);
+
+prueth->iep = NULL; avoid potential use-after-free
+
+> +
+>   netdev_exit:
+>   	for (i = 0; i < PRUETH_NUM_MACS; i++) {
+>   		eth_node = prueth->eth_node[i];
+> @@ -1541,6 +1607,8 @@ static void icssm_prueth_remove(struct platform_device *pdev)
+>   						 &prueth->mem[i]);
+>   	}
+>   
+> +	icss_iep_put(prueth->iep);
+> +
+>   	pruss_put(prueth->pruss);
+>   
+
+Thanks,
+Alok
 
