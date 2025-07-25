@@ -1,174 +1,183 @@
-Return-Path: <devicetree+bounces-199755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F37DB11DD2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 13:44:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63857B11CC2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 12:46:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD9CC3B739B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 11:44:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A5A91C87AB4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 10:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A09462E6D0D;
-	Fri, 25 Jul 2025 11:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0CFD23BD05;
+	Fri, 25 Jul 2025 10:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="FPIz8jWv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="X7fKBOwx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B7741E1E16
-	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 11:44:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9EB14A4F9;
+	Fri, 25 Jul 2025 10:46:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753443895; cv=none; b=IaTTpBCrJKy+x2L2BSxIIXrEqKmWwHEoXww9ou1RkHHFup6vfrEBW4GVv2aGsW3WR2XKpTbcuFcAsBShpbbJGOKEoW47ZsOINtlc+DeNcWMuVFzryRfrWYhYNbsoDrEhFdL2dy8UhdhiRTZPJkYI+58MX5clDQykKexit2iS4ZA=
+	t=1753440395; cv=none; b=ML5V8peVHNTZCdRPHJQPITtcXjyZtsHLfdNh4ZfeXrUP2QV3sqFrl00jOQUpAs2/944b1Y1YIdc/s8eVZaebX0YzrJSYzrLHxMJ6ol79ooesYxWtmZMid4f7cQsylYUygXpZonRBIna/M3CG7X46Rlc9UDjM/dP1hHZu+VSS0pY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753443895; c=relaxed/simple;
-	bh=KqH01V/ZQOGZhBJpHb3zgphhQB1Sh25Ttt4gkVmURXc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Vix+osnavm0EzQZ+QaJMfU6M66tN/oZ8ztJUCZE3Zs32Lo5QhzbNFQ2bqdHXmkk25h/OsZwFqFTYvbygUXljka2D4sJtZX10C1lB0OQOr91pISI5aCQ7+YOpG/dI1RTJLTulb9VybxN/l88St8vw4cWrqvkDgUrz8WQiEQI+nRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=FPIz8jWv; arc=none smtp.client-ip=209.85.161.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-615a256240bso941984eaf.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 04:44:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1753443893; x=1754048693; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YfE909p8Iq119G3J/2SxiBSXlMMdz4SFa3hpgANK2k8=;
-        b=FPIz8jWvNLQJmAL99yYs6aqmLaMqxU3oLsUhsy1AzypyyOBN8Y7JyKvfwCovoY5N9Z
-         LMR5Oqa7bbTYbBVEsHevR4qKVpcZ7LT81HT8RRKpmdPz8U5Zx0bCqxKmc4SSdf6pDdW0
-         rtFtukF37mOEay9hmX40EJ/NIdL6kh099M/kI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753443893; x=1754048693;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YfE909p8Iq119G3J/2SxiBSXlMMdz4SFa3hpgANK2k8=;
-        b=QYfAJ1mJsbWoNR3G6Q3Mykh9HxFJMDOY6Srr5V7OOZEvwVaB2wIRA31VOXgUTp9fwu
-         8XD6Xruej2Q/r3CG8aLnpwTFYVW9VrS++H8yXVmZjUGMbsTj+c0CKHVMD6S7C4cel3vX
-         e66W/pgYHJ3cPZHFBQJklsqIb/HIOemKPl4JAjqAb2I43VKYTNoAlDzXvbm3i+SOySRH
-         aNmod6/vaf5epv2du7tSzzGMkb3R4RFt9Pvs+3cx4/uoo4+yrk5uQIzmS7Rqn29E4K8h
-         CeG6nIsbTjanDd6rDKDFUiV6xBtNNZkQD0fWWyRTRV1Fhn1jl/Iaa9ial5jHhSRH6+9w
-         WfKA==
-X-Forwarded-Encrypted: i=1; AJvYcCV81COG11CyvdsQHS/siF6S+1/itekvLuloe0e8JlXN1Zc6oIK5eNNSz/GJDC3r6ac5YZctpaUx3e6t@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZT14xLbmfRL5OgY4ybkX1QcDv52hMKDPbeT+cXKVZKJP6dMQE
-	ZaIt/g8FkopQxjDqJQ/GLXnGXT0Lr1nVWx33iPhkzq+DpQS0qNVF5PxlJ1ejfeDMr8eUJ2168Se
-	YwBt5ZA==
-X-Gm-Gg: ASbGncupPqjssFlJUgJ3Ii1ALrZLhYioBpj70Ujkol/S6L3Dt2GH2NcL+RLu5+rBUGE
-	8f5JlWqrVkwB+TkcpsSwNKlG0OdEtPEtJLT6ZoqBgHNkXMtU5nONQC4VJk2zr9Suy7lT7kxXm4j
-	LX6uDWOscGRSvMt+xlgwsDmwpaDPGR9r72KNwFhWfGkw695lcXTJVd81TOPQ5Xv1DanpR0T1G+f
-	4xa5Z2OriuX0+tC+G5M8SBzBvWmwM9lkdc1u1V91a1J9lUksLS97Yx+5VTQvX+TEQZSe0HPwTYN
-	1QUt1n8bjUviBJOdR+sGb/9xXbRK3Jd7k4EVt08LAMBdvGPPbRHybhEzy7TsEOvSCdVvmRq55lA
-	qQ/qaUZSZtWT0Qo7I45CKjon2rm1SyVGpjIDmRRpNmIabYdOBdJ2T7phNi48UEg==
-X-Google-Smtp-Source: AGHT+IEB5lG2QZx5LFwnAnS2ouqWAcGBFr7+eLwE9ecsuQ88hoH48CxLFAYz3ZWQhemeCtD4SYQGIA==
-X-Received: by 2002:a05:6870:8289:b0:2d0:3078:e730 with SMTP id 586e51a60fabf-30701cc3b74mr956032fac.3.1753443892770;
-        Fri, 25 Jul 2025 04:44:52 -0700 (PDT)
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com. [209.85.167.174])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-306f75dbe86sm559214fac.1.2025.07.25.04.44.52
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Jul 2025 04:44:52 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-41b7d124016so1031516b6e.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 04:44:52 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVTAH0VshwICFTy5TlI0q5bG8LCGiyJOstAQegcuoQhDf9UE2ikyAJE+I1ol9VGd9C5HVFr1G4I8NBM@vger.kernel.org
-X-Received: by 2002:a05:6102:3713:b0:4e9:b7e3:bdcd with SMTP id
- ada2fe7eead31-4fa3fad468amr285963137.12.1753440273293; Fri, 25 Jul 2025
- 03:44:33 -0700 (PDT)
+	s=arc-20240116; t=1753440395; c=relaxed/simple;
+	bh=vY4NI0ylYQoFxth8beeKDC8Pbmq/zB9SSUiYtZNglfI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Snj+oo4aWrqEAIvsqQFjskA59wMmOUKCvKGvOuibqyBCWyi7PfZv+1KJEmHeWXbEXAqjtCpY5EcsMyYVPoopcPm38FLiou3Cdj5VPEYbtvRYBkIEYgjou3cy4FuwQi+di9b58vUcuVYhNkXsqmM1l4nEHqn+2yviY+Eq9Sd5ga0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=X7fKBOwx; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56PAkNbO2163931;
+	Fri, 25 Jul 2025 05:46:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1753440383;
+	bh=mrRSD3PbZTPAHVSh/yIWQ6kP6ELKmzfyM3fZUnn2niM=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=X7fKBOwxApS4IoduzRVtbBYQu/sYtQFJLtz/Lq3y0UbRkIFschtdBwNGgzoztH4tj
+	 kGUivju/mcixXVJjJNuUCE4uphyZoX8GD3jNlJiglRVhuv1MqE/M3B9AmPvh7eg9R6
+	 OA+8ItOIqJWvFU8+RfY+RFuHrlNOGOJvc+yY7U48=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56PAkNG82237368
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 25 Jul 2025 05:46:23 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 25
+ Jul 2025 05:46:23 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 25 Jul 2025 05:46:23 -0500
+Received: from [172.24.18.25] (lt5cd2489kgj.dhcp.ti.com [172.24.18.25])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56PAkJ6l1924763;
+	Fri, 25 Jul 2025 05:46:19 -0500
+Message-ID: <d15078ef-9a3a-47f6-a1c8-b9eed911e945@ti.com>
+Date: Fri, 25 Jul 2025 16:16:18 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com> <20250724083914.61351-24-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250724083914.61351-24-angelogioacchino.delregno@collabora.com>
-From: Fei Shao <fshao@chromium.org>
-Date: Fri, 25 Jul 2025 18:43:57 +0800
-X-Gmail-Original-Message-ID: <CAC=S1njhu11nHpyMULbK6PE-BLrBMq+d397pDU6gBzgo7xivXg@mail.gmail.com>
-X-Gm-Features: Ac12FXyc7RkTIKa4HnSlf_SM-GYdwIREUn6AcAkOBKhNuekdCdvFzy29o7Ufs68
-Message-ID: <CAC=S1njhu11nHpyMULbK6PE-BLrBMq+d397pDU6gBzgo7xivXg@mail.gmail.com>
-Subject: Re: [PATCH 23/38] arm64: dts: mediatek: mt7986a: Fix PCI-Express
- T-PHY node address
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, 
-	daniel.lezcano@linaro.org, mwalle@kernel.org, devicetree@vger.kernel.org, 
-	linus.walleij@linaro.org, linux-remoteproc@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	olivia.wen@mediatek.com, shane.chien@mediatek.com, linux-gpio@vger.kernel.org, 
-	linux-phy@lists.infradead.org, airlied@gmail.com, simona@ffwll.ch, 
-	herbert@gondor.apana.org.au, jassisinghbrar@gmail.com, jiaxin.yu@mediatek.com, 
-	andy.teng@mediatek.com, chunfeng.yun@mediatek.com, jieyy.yang@mediatek.com, 
-	chunkuang.hu@kernel.org, conor+dt@kernel.org, jitao.shi@mediatek.com, 
-	p.zabel@pengutronix.de, arnd@arndb.de, kishon@kernel.org, 
-	kyrie.wu@mediatek.corp-partner.google.com, maarten.lankhorst@linux.intel.com, 
-	tinghan.shen@mediatek.com, mripard@kernel.org, ck.hu@mediatek.com, 
-	broonie@kernel.org, eugen.hristev@linaro.org, houlong.wei@mediatek.com, 
-	matthias.bgg@gmail.com, tglx@linutronix.de, mchehab@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, granquet@baylibre.com, 
-	sam.shih@mediatek.com, mathieu.poirier@linaro.org, fparent@baylibre.com, 
-	andersson@kernel.org, sean.wang@kernel.org, linux-sound@vger.kernel.org, 
-	lgirdwood@gmail.com, vkoul@kernel.org, linux-crypto@vger.kernel.org, 
-	tzimmermann@suse.de, atenart@kernel.org, krzk+dt@kernel.org, 
-	linux-media@vger.kernel.org, davem@davemloft.net
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] arm64: dts: ti: k3-j721s2-main: Add interrupts
+ property
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <vaishnav.a@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <imx@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+        <u-kumar1@ti.com>
+References: <20250714092708.3944641-1-y-abhilashchandra@ti.com>
+ <20250714092708.3944641-2-y-abhilashchandra@ti.com>
+ <72545187-4605-40bb-9c68-54670c2e5332@ti.com>
+ <05a07a03-3f59-489b-ae55-5f454266bafb@ti.com>
+ <457e2428-f766-4e8d-bfb0-32084de45b5a@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <457e2428-f766-4e8d-bfb0-32084de45b5a@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Jul 24, 2025 at 5:49=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> The PCIe TPHY is under the soc bus, which provides MMIO, and all
-> nodes under that must use the bus, otherwise those would clearly
-> be out of place.
->
-> Add ranges to the PCIe tphy and assign the address to the main
-> node to silence a dtbs_check warning, and fix the children to
-> use the MMIO range of t-phy.
->
-> Fixes: 963c3b0c47ec ("arm64: dts: mediatek: fix t-phy unit name")
-> Fixes: 918aed7abd2d ("arm64: dts: mt7986: add pcie related device nodes")
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
 
-Reviewed-by: Fei Shao <fshao@chromium.org>
+On 7/22/2025 11:20 AM, Yemike Abhilash Chandra wrote:
+> Hi Udit,
+>
+> Thanks for the review.
+>
+> On 21/07/25 19:40, Kumar, Udit wrote:
+>>
+>> On 7/21/2025 7:37 PM, Kumar, Udit wrote:
+>>>
+>>> On 7/14/2025 2:57 PM, Yemike Abhilash Chandra wrote:
+>>>> Add interrupts property for CDNS CSI2RX. Interrupt IDs are taken 
+>>>> from the
+>>>> J721S2 TRM [0].
+>>>>
+>>>> Interrupt Line      | Source Interrupt
+>>>> --------------------|----------------------------
+>>>> GIC500SS_SPI_IN_153 | CSI_RX_IF1_CSI_ERR_IRQ_0
+>>>> GIC500SS_SPI_IN_152 | CSI_RX_IF1_CSI_IRQ_0
+>>>> GIC500SS_SPI_IN_157 | CSI_RX_IF2_CSI_ERR_IRQ_0
+>>>> GIC500SS_SPI_IN_156 | CSI_RX_IF2_CSI_IRQ_0
+>>>>
+>>>> [0]: https://www.ti.com/lit/zip/spruj28
+>>>>
+>>>> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+>>>> ---
+>>>>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 6 ++++++
+>>>>   1 file changed, 6 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi 
+>>>> b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+>>>> index 62f45377a2c9..6f32a2b0c40c 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+>>>> @@ -1248,6 +1248,9 @@ ti_csi2rx0: ticsi2rx@4500000 {
+>>>>           cdns_csi2rx0: csi-bridge@4504000 {
+>>>>               compatible = "ti,j721e-csi2rx", "cdns,csi2rx";
+>>>>               reg = <0x00 0x04504000 0x00 0x1000>;
+>>>> +            interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
+>>>> +                     <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
+>>>
+>>> Just cosmetic thing, if you are doing v2 then consider 152 first , 
+>>> followed by 153.
+>>>
+>>> Otherwise
+>>>
+>>> Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+>>
+>>
+>> Sorry, sent too fast, offset of 32 missing .
+>>
+>
+> From what I’ve seen, the SPI interrupt IDs on J721S2 start from 0,
+> so I don’t think we need to subtract the 32 offset.
+>
+>
+> Interrupt Input Line   Interrupt ID    Source Interrupt
+> -------------------------------------------------------------
+> GIC500SS_SPI_IN_00     0               ESM0_ESM_INT_CFG_LVL_0
+>
+> To confirm this, I’ve latched onto the correct interrupt line, and
+> my IRQ handler is getting triggered as expected. I’m also seeing the
+> desired output [0].
+>
+> Let me know if I might be missing anything.
+>
 
-> ---
->  arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+Thanks for update and please retain Reviewed-by
+
+
+> [0]: 
+> https://gist.github.com/Yemike-Abhilash-Chandra/f46587ec1ef72671ee31803dd93434b4
 >
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/=
-dts/mediatek/mt7986a.dtsi
-> index 559990dcd1d1..3211905b6f86 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -428,16 +428,16 @@ pcie_intc: interrupt-controller {
->                         };
->                 };
+> Thanks and Regards
+> Yemike Abhilash Chandra
 >
-> -               pcie_phy: t-phy {
-> +               pcie_phy: t-phy@11c00000 {
->                         compatible =3D "mediatek,mt7986-tphy",
->                                      "mediatek,generic-tphy-v2";
-> -                       ranges;
-> -                       #address-cells =3D <2>;
-> -                       #size-cells =3D <2>;
-> +                       ranges =3D <0 0 0x11c00000 0x20000>;
-> +                       #address-cells =3D <1>;
-> +                       #size-cells =3D <1>;
->                         status =3D "disabled";
->
-> -                       pcie_port: pcie-phy@11c00000 {
-> -                               reg =3D <0 0x11c00000 0 0x20000>;
-> +                       pcie_port: pcie-phy@0 {
-> +                               reg =3D <0 0x20000>;
->                                 clocks =3D <&clk40m>;
->                                 clock-names =3D "ref";
->                                 #phy-cells =3D <1>;
-> --
-> 2.50.1
->
->
+>>
+>>>
+>>>> +            interrupt-names = "error_irq", "irq";
+>>>>               clocks = <&k3_clks 38 3>, <&k3_clks 38 1>, <&k3_clks 
+>>>> 38 3>,
+>>>>                   <&k3_clks 38 3>, <&k3_clks 38 4>, <&k3_clks 38 4>;
+>>>>               clock-names = "sys_clk", "p_clk", "pixel_if0_clk",
+>>>> @@ -1301,6 +1304,9 @@ ti_csi2rx1: ticsi2rx@4510000 {
+>>>>           cdns_csi2rx1: csi-bridge@4514000 {
+>>>>               compatible = "ti,j721e-csi2rx", "cdns,csi2rx";
+>>>>               reg = <0x00 0x04514000 0x00 0x1000>;
+>>>> +            interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
+>>>> +                     <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +            interrupt-names = "error_irq", "irq";
+>>>>               clocks = <&k3_clks 39 3>, <&k3_clks 39 1>, <&k3_clks 
+>>>> 39 3>,
+>>>>                   <&k3_clks 39 3>, <&k3_clks 39 4>, <&k3_clks 39 4>;
+>>>>               clock-names = "sys_clk", "p_clk", "pixel_if0_clk",
 
