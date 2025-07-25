@@ -1,149 +1,115 @@
-Return-Path: <devicetree+bounces-199644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15263B118E4
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 09:10:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 899F3B118E9
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 09:12:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E3011C23049
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 07:10:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7B9B16761C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 07:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B840F291861;
-	Fri, 25 Jul 2025 07:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5403B291C0A;
+	Fri, 25 Jul 2025 07:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="vEY7oeG+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f5DjHfnL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE74F1F1311;
-	Fri, 25 Jul 2025 07:09:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 294B028937A;
+	Fri, 25 Jul 2025 07:11:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753427401; cv=none; b=ECdUs7knAHm7spQhDcGBcc+sShbhTD+zxPRMiMArW5KHazdQ2w3GxMv8Cm0dQx2KSi/Ddym8S6p4+bHEC8v2zIuZXhtAVrjCeOJuiJr8rVWOPLLIoXOFu2NvaFhUo0vS3lFobTrN+pkKyRAbLvAQGala3uXvj0BkCK6aXRrh334=
+	t=1753427517; cv=none; b=RIkXiDbSKopTyKw1x4GgWqMrSjIRpsYg+DB78eXFaMyv4jUGx6SDvhve4ZxEeaa8lJQpDFOjAWaDPmdxKBKb1oisQ8C6jVJiJfIXqLCgoUxEVPyLgr/B7CbLxmkUkxkZc6A+7YfAohdyCvmE9xA7sFrGjgOqkyMArafPuQlVYDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753427401; c=relaxed/simple;
-	bh=JL30bk1jn1jV9pISqgo+bWdb/5RDGbJ7aIr53ikjD6E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PAkZSrYxsD+3hLDT9Jwz6D0ULPbNJkscx9VakEkk/BQHphQOeGFJm56lDthZ4SCzgGewLz5hc3nDbm6PYPj28yYWOGXpGB0+2LNVjzN7upfz+DZP987mNBhq5Xq8lLUMV6dw53zA8zU1Wm9gCWEvJiEZCRCX43xP7BskAC/isG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=vEY7oeG+; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56P61XZi009176;
-	Fri, 25 Jul 2025 09:09:25 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	LzqH02+hJ/0E8n+RTM+yEwFitfKa/gSQdkGVRRTXJhc=; b=vEY7oeG+pNnop6/X
-	Y9urlffHn9wPzkQ2Is/FDs6FmFPNXT3zTb3jyMz3lmY7QPMwpHHlMXBmXHaer/PU
-	0K0P0ulWgakiEqWGw1l11dPWR/0Is+mSEQnefGwkZ3l/7cXUl6SA3HJ2CRdoyG1I
-	FdmL8tUHYqCtB98XPDPWNBGYyLXEwDmWXM7P+PtbfkAkPayNHbYAgdZ3XfNJ2Zbc
-	CmgC/QaDxklOmCvKhJ7nMI4NpBlPKOB2X2y39VEgc7AEaz1kO+m3wWAhQP0OsPLr
-	FY38beWUv0pV94PWCAt8crCejpNCdBfw4cLvaHFaeaNLHLfxgTQP0XVsBJXJZTO6
-	L/feBQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 483w5rsn0e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Jul 2025 09:09:24 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4812F40044;
-	Fri, 25 Jul 2025 09:07:57 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8B10578175F;
-	Fri, 25 Jul 2025 09:06:35 +0200 (CEST)
-Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 25 Jul
- 2025 09:06:34 +0200
-Message-ID: <ce0cb3ba-2373-479f-a8f3-3a89ffb0a1b1@foss.st.com>
-Date: Fri, 25 Jul 2025 09:06:33 +0200
+	s=arc-20240116; t=1753427517; c=relaxed/simple;
+	bh=NIrSmkNaqlrDP1N8LHUNlwi4EoCzvpR2Fghdour3+lI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oJB4WwjT+/EfycChdKBilzZZmCXvCUUMw81DapJwN0oHUUo1KGYhwHcsKOHIffOggRA/8zF6RInE43/TMv22csLm2ASjaxWB3jJlnh01aP63l3Y1qqKKr7NbNoEtJwD3ALfgWEd8w40hmVgez8+0j0aD4E405jf7wic/VjWQwqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f5DjHfnL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B42CC4CEE7;
+	Fri, 25 Jul 2025 07:11:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753427517;
+	bh=NIrSmkNaqlrDP1N8LHUNlwi4EoCzvpR2Fghdour3+lI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f5DjHfnLxJRHxrPjixKz9e3HA4B5jay/iIi78te15+dbbNIE0kXL8+FKl9usFF17H
+	 hAyffWg4KLQWOsMgfLORmx9/b7N2uUrlXzbivw7rMtDcUphHTjr9GvssiRqDWArnaZ
+	 +vgPEilcy1tEERdqMPT7SZlKBiJy/OuTEQmufjIJv+falGZ9toEzooVaRQALQs587P
+	 8OX7gJrzRuWL4bneig6TgESlt7wUYZ8El/1dMOhJUzD22CJ/Z+oHqxqj8umMYS5Nfn
+	 StEOFycqJoRP376PkhQ7dbRiTk9AluSEuQB+X1uR9qr7hNNDOX+oLX0+C2Vexiy8lE
+	 5UN6/xybxXzWw==
+Date: Fri, 25 Jul 2025 09:11:54 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Simon Horman <horms@kernel.org>, Felix Fietkau <nbd@nbd.name>, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v5 1/7] dt-bindings: net: airoha: npu: Add
+ memory regions used for wlan offload
+Message-ID: <20250725-amiable-strict-pudu-5cce71@kuoka>
+References: <20250723-airoha-en7581-wlan-offlaod-v5-0-da92e0f8c497@kernel.org>
+ <20250723-airoha-en7581-wlan-offlaod-v5-1-da92e0f8c497@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 05/20] dt-bindings: memory: factorise LPDDR props into
- SDRAM props
-To: Julius Werner <jwerner@chromium.org>
-CC: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Gabriel Fernandez
-	<gabriel.fernandez@foss.st.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Le
- Goffic <legoffic.clement@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-perf-users@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-References: <20250723-ddrperfm-upstream-v4-0-1aa53ca319f4@foss.st.com>
- <20250723-ddrperfm-upstream-v4-5-1aa53ca319f4@foss.st.com>
- <CAODwPW_kex5Agqxg_i-XC308scEpUJU0me55G7iZ8nB9LC0acg@mail.gmail.com>
- <204401b4-b483-47e2-ae73-0994b39bd30c@foss.st.com>
- <CAODwPW9drKEAMfQvQHV8eMTyf5KCHB4SN400JiUs0pgjoXy=sw@mail.gmail.com>
-Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <CAODwPW9drKEAMfQvQHV8eMTyf5KCHB4SN400JiUs0pgjoXy=sw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-25_02,2025-07-24_01,2025-03-28_01
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250723-airoha-en7581-wlan-offlaod-v5-1-da92e0f8c497@kernel.org>
 
-Hi Julius,
-
-On 7/25/25 00:33, Julius Werner wrote:
->>> I don't think this will identify a part unambiguously, I would expect
->>> the DDR revision ID to be specific to the part number. (In fact, we're
->>> also not sure whether manufacturer+revision identifies LPDDR parts
->>> unambiguously for every vendor, we just didn't have anything more to
->>> work with there.) I would suggest to use either `ddrX-YYYY,AAA...,ZZ`
->>> or `ddrX-YYYY,ZZ,AAA...` (where AAA... is the part number string from
->>> SPD 329-348 without the trailing spaces). The first version looks a
->>> bit more natural but it might get confusing on the off chance that
->>> someone uses a comma in a part number string.
->>
->> The first one seems better indeed.
->> If the manufacturer put a comma in the part number we should handle it
->> at a software level to me and if it is a devicetree error it is up to
->> the devicetree writer to fix it.
->> What do you think ?
-
-I meant exactly what you are stating below :-)
-
+On Wed, Jul 23, 2025 at 07:19:50PM +0200, Lorenzo Bianconi wrote:
+> Document memory regions used by Airoha EN7581 NPU for wlan traffic
+> offloading. The brand new added memory regions do not introduce any
+> backward compatibility issues since they will be used just to offload
+> traffic to/from the MT76 wireless NIC and the MT76 probing will not fail
+> if these memory regions are not provide, it will just disable offloading
+> via the NPU module.
 > 
-> Not sure what you mean by "handle it at a software level"? Using comma
-> characters in the part number is not illegal according to the SPD
-> spec, as far as I can tell.
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  .../devicetree/bindings/net/airoha,en7581-npu.yaml    | 19 +++++++++++++++----
+>  1 file changed, 15 insertions(+), 4 deletions(-)
 > 
-> That said, it is still possible to disambiguate this as long as the
-> revision number is always there, you just have to look for the last
-> comma from the end (so e.g. the string `ddr4-1234,some,part,567,89`
-> could be unambiguously parsed as manufacturer ID 0x1234, part number
-> `some,part,567` and revision ID 0x89, the parsing code just needs to
-> be a bit careful). So maybe this is not actually a problem.
+> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> index 76dd97c3fb4004674dc30a54c039c1cc19afedb3..f99d60f75bb03931a1c4f35066c72c709e337fd2 100644
+> --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> @@ -41,9 +41,18 @@ properties:
+>        - description: wlan irq line5
+>  
+>    memory-region:
+> -    maxItems: 1
+> -    description:
+> -      Memory used to store NPU firmware binary.
+
+I still do not get why this cannot be kept backwards compatible. I
+looked at your driver code and NPU offload support RFC, and they look
+correct. Yet what stops any future developer from changing:
+
+	mt76_npu_init(mdev, pci_resource_start(pdev, 0),
+		pdev->bus && pci_domain_nr(pdev->bus) ? 3 : 2);
+
+into:
+
+	ret = mt76_npu_init(...)
+	if (ret)
+		goto err...;
+
+? Why would anyone NOT DO such change in the future?
+
+I think I asked about this last time as well - why you cannot keep new
+entries optional (minItems: 1)?
 
 Best regards,
-Clément
+Krzysztof
+
 
