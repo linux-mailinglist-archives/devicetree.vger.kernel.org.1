@@ -1,108 +1,130 @@
-Return-Path: <devicetree+bounces-199773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F43B11F54
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 15:27:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9170EB11F62
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 15:33:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C11861CE2C64
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 13:28:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CCB91C83560
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 13:33:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE1832ED17B;
-	Fri, 25 Jul 2025 13:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C41A17A2FA;
+	Fri, 25 Jul 2025 13:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rxztm1Zg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lfG8J1ZY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D0877111;
-	Fri, 25 Jul 2025 13:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 623C39475;
+	Fri, 25 Jul 2025 13:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753450070; cv=none; b=dd0L9izse7V8nVClVBftEnjeQlXvazJAPY/Y4fg99aiz/5v1b+ayKRROJIIEFCvhG2cERU1ZTAPfR4M3LEHpxrI/jJHLgnWGWc7ZtVa6rKksoqYUTcEJhwKDPebgF5S3t1iwoTL0wTbVPosKHM5+/yd1ZluQ93cQtM7NSkEwcPk=
+	t=1753450401; cv=none; b=K8rmMl2LTx4uFWRw4gE9d2HJO/BNInxJUjjU+khXGLPnDW5w3aXVNvrW0CjTHDlQL/mimR8m4Za3jFpScef4gUar2HmwRwfG77fyMnEyQpglhOC7n1lRZ9Mw1zY6PyDJLt7zbidB/FZFMIjoTaDbAL9pMlcED+I5wcs5zeZ0eDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753450070; c=relaxed/simple;
-	bh=lXb0UAkdLRBZEl2w236QgUTKNdJI4nqMaBIkSJhUt1A=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=J/+sBV9bmtsU+mntYsGJqXD7W37UcSoBQa1Rl80M5N27aya5H4AP/NygjRJURxcAdggs2I3H+RuHfGRFf/xG/zh9+SC3290KhYPIahDIsTJUn3cKidzgtEHdMZZaf+bZmvVt4PdEYEYJbqew7fycYYG/G1fsEENTi12Mtycs0fI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rxztm1Zg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD9A8C4CEE7;
-	Fri, 25 Jul 2025 13:27:49 +0000 (UTC)
+	s=arc-20240116; t=1753450401; c=relaxed/simple;
+	bh=4sLg+EgwqWBjfXcv702Eo7YeTtmXUWeXtD0WMZD6lzk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fThT4qp77EFQ7sTzW8fFULIrzbYu7zNONqps+sg7Ks892RnzMpTNcbYfIVfL4OiS1Zb1Bl4OsweevhmYutD1usyGK8Fs9cy2wgu37xDRD3Bn+47LgfwuJ5jzv0APbNwIB94zFziYwDoDvDdJg4SBBGxgwOkBw7jnx/3+9CDZR80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lfG8J1ZY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26014C4CEE7;
+	Fri, 25 Jul 2025 13:33:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753450070;
-	bh=lXb0UAkdLRBZEl2w236QgUTKNdJI4nqMaBIkSJhUt1A=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Rxztm1Zg2BICuHOgdxuDU8E9XunHZYswcsJQky0leSQJM08JMEmbEaovz3Zcw9p0j
-	 5mfj1jIkSKLGMNg0L82YL1dxB/BtBYatXGCCvpH9at9O9fLl5j0kgG/WEIN7y6y1XH
-	 PTaYC43Cvv9GXvkxGo/uhMuJOgV0VQMpsB+GZm7FsnnIiAWqBzF1GNxzntz/+MFiBH
-	 IC8tBuHIgCdKuRipxJPpKnUjaE3itoHmfUAGscGFSUgpQDcfhF2DqhV+MTz6zYF1WS
-	 oV/qTCl+tLpQguthUMBDg3Mir5PfyXvTK/APP5UVVkWYPb5I9jf6Xuo6ue9JyApvYQ
-	 TjPbM4i2uvlfQ==
-Date: Fri, 25 Jul 2025 08:27:49 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1753450401;
+	bh=4sLg+EgwqWBjfXcv702Eo7YeTtmXUWeXtD0WMZD6lzk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lfG8J1ZYge9rQfMdIjnNWaiO2gfQrQ9IsCXlFsd+wJxDFqlCdMscUUU1gbGVSHyl0
+	 GqfLYocX+kvZVztkDqYHHFi35cn24idMgUKn0vOVJrWgQlVKuVpINp6q8YB+Xq3K17
+	 r8JeUMVzjEDu+cVzXGKeiKKX7e6Y4tbG59TdqFuMqpbSqIbphFdUWR9EvEGnjH+N4L
+	 b+GuY5xLdirFG0sYXkU65PvNGApRYi/L/uXp/VrgYTNFyfQEMNNGvsb0FCSqcblL5w
+	 L4pgP6iKPDE/bYi8jcmFs64TiZPxTzxf3o6jbqAV5/kEfng0xpesMOVRgOv5wvhhlg
+	 2VzEtkscE3njg==
+Date: Fri, 25 Jul 2025 14:33:15 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shuah@kernel.org, kuninori.morimoto.gx@renesas.com
+Subject: Re: [Guidance Request] LFX Mentee looking to contribute to ASoC / DT
+Message-ID: <aIOHm4AOrhHBf6Xv@finisterre.sirena.org.uk>
+References: <CANBuOYpLNAtLVWBvR9E74Ju4cM1K7H_bS2Z_UhthQFrJaZXmiQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Daniel Thompson <danielt@kernel.org>, Helge Deller <deller@gmx.de>, 
- linux-fbdev@vger.kernel.org, Lee Jones <lee@kernel.org>, 
- Fabio Estevam <festevam@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org, 
- linux-leds@vger.kernel.org, Pavel Machek <pavel@kernel.org>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>
-To: Maud Spierings <maudspierings@gocontroll.com>
-In-Reply-To: <20250725-max25014-v1-1-0e8cce92078e@gocontroll.com>
-References: <20250725-max25014-v1-0-0e8cce92078e@gocontroll.com>
- <20250725-max25014-v1-1-0e8cce92078e@gocontroll.com>
-Message-Id: <175345006903.1002291.4212198267952446360.robh@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: backlight: Add max25014 bindings
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lMv1BgC/185tsbyF"
+Content-Disposition: inline
+In-Reply-To: <CANBuOYpLNAtLVWBvR9E74Ju4cM1K7H_bS2Z_UhthQFrJaZXmiQ@mail.gmail.com>
+X-Cookie: Do not cut switchbacks.
 
 
-On Fri, 25 Jul 2025 13:09:23 +0200, Maud Spierings wrote:
-> The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
-> with intgrated boost controller.
-> 
-> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
-> ---
->  .../bindings/leds/backlight/maxim,max25014.yaml    | 78 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 ++
->  2 files changed, 83 insertions(+)
-> 
+--lMv1BgC/185tsbyF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Fri, Jul 25, 2025 at 12:50:15AM +0200, Jihed Chaibi wrote:
 
-yamllint warnings/errors:
+> My name is Jihed Chaibi. I am currently a mentee in the Linux
+> Foundation Mentorship Program, working with Shuah Khan.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.example.dtb: backlight@6f (maxim,max25014): Unevaluated properties are not allowed ('bl-name' was unexpected)
-	from schema $id: http://devicetree.org/schemas/leds/backlight/maxim,max25014.yaml#
+> With a professional background in embedded systems and a strong
+> personal interest in audio that extends to my own projects, the ASoC
+> subsystem seems like the perfect place to blend these two passions.
+> I'm eager to apply my experience with hardware bring-up and Device
+> Trees by becoming an active contributor.
 
-doc reference errors (make refcheckdocs):
+That's great.  To be honest it sounds like you're already very up to
+speed so I'm not sure I'm going to have anything here that isn't pretty
+generic.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250725-max25014-v1-1-0e8cce92078e@gocontroll.com
+> As I look to deepen my involvement, I am writing to seek advice on
+> where I can best apply my efforts. I'm particularly interested in
+> finding a substantive task where my skills would be a good fit, such
+> as:
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+>     - Enabling audio support for a new board using Device Trees.
+>     - Assisting with bug fixes or small feature additions in the ASoC C drivers.
+>     - Tackling items from the TODO list where my DT experience would
+> be applicable.
+>     - Helping with other driver enhancements or cleanups within the
+> ASoC framework.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> Any guidance on finding a suitable project would be highly appreciated!
 
-pip3 install dtschema --upgrade
+One big thing with embedded stuff like this is hardware access to test -
+an awful lot of stuff is going to be hard to work on just purely with
+software.  Given that it's probably useful to take a look at what
+systems you have or can readily get hold of and then consider what
+problems they have that might be good to work on - things like board
+enablement would be an obvious example there, and it's common that
+boards have some support but pretty basic so there's useful things can
+be done extending that (eg, leaving a lot of features unused and just
+supporting basic playback/capture).  Knowing what you've got to hand
+would make it a lot easier to suggest concrete ideas.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+It's worth noting that a lot of x86 laptops these days are ASoC based,
+their SoCs are built in the same way as mobile SoCs, so might be worth
+considering those too.
 
+--lMv1BgC/185tsbyF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiDh5cACgkQJNaLcl1U
+h9CWQQf7B2QcAHti/sJu183O5pFVKe9roafrx7nvoXYFFdIEWb+3yyhESKB3w2wM
+tBxB1/aJ6lBIMq3gDpCM3ZlHWP+qEbMtE97b+HseeRtRWxyN3OfaqMYbnVUxDpEz
+jqHDtaGZLz6q71XiJ4y1JDwBMZodBsbxhDbuQbFItHJpud+HsqGIraWaQlmtaW04
+gIScLb+lW0ULXFrzA2OHPiw5CD2qZmVRkiiP5XhiEq2Qx82EQJygaTr8LZd6raLu
+zjuwdHP+uR2VFLBqCUFvGeoeIn8BFgRIg6qBv+Gum7UR+/uIRHpenE4x1FSP/AQ1
+eAq3HlVxaVckvDhrsgRaQQ4P45w3kA==
+=Ra9K
+-----END PGP SIGNATURE-----
+
+--lMv1BgC/185tsbyF--
 
