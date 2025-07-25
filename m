@@ -1,111 +1,105 @@
-Return-Path: <devicetree+bounces-199830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F11CB126C6
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 00:17:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D41B126D0
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 00:18:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F5771CC4831
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 22:18:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 030CE16446F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 22:18:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355AC24886A;
-	Fri, 25 Jul 2025 22:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9B28254AE7;
+	Fri, 25 Jul 2025 22:18:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qYpcDD6n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WOLR8Ymm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A873EAF9;
-	Fri, 25 Jul 2025 22:17:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85F2BEAF9;
+	Fri, 25 Jul 2025 22:18:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753481845; cv=none; b=dxpviaL7YvZE8KWgjNRNUsBJvxO0782x+BYOQ1z8L6x6ADdVCI/SXHNIIT5bhGXxlCwNkNwNeLW7sgK5hUoNZPs7wREENRjLWD+Dg2+cauc0SdTrYHenKws6AnqBvC3pjOprbHtz5n8sJrff6V8cLVQvWSouVlHMwrTWB91MEsQ=
+	t=1753481911; cv=none; b=ABPBgO3W/rUPJ2eGe9KcjSHbMkNlfRrXruI5Gk2pa7i42w6KGO4u7xHQq8hfkVgyPUsW+Jp171ouqpwbe5wYbO/PBIpiEtNDi1bEZ8J8VfBRkZTgWLEF9rMkZTe5+qAfjdiC+nnD+hGGAjlsd8UUrqENjfT+S56uX+xwUynnkTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753481845; c=relaxed/simple;
-	bh=z04vTW0gQGPvGaJMG8kNPz5saOFKvL63gvlNjB70bYY=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=azRmGZUhEihhKFnx3rZA1dSOIZvrgMOfkexmmZ+Kco41mdFIxQaCY3AqKVxOqPG4s61BAPi0VHdj670J6jq41Owb5hA9BtOvruQN7qHR1RSFffrV+ufUYNeCRb6khn4TNmGeoqn16Q6eg5/59fLuzkIzvdt6QsE4aQ4AlPppNlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qYpcDD6n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 777CFC4CEE7;
-	Fri, 25 Jul 2025 22:17:24 +0000 (UTC)
+	s=arc-20240116; t=1753481911; c=relaxed/simple;
+	bh=CGiveRG0F4ZRe38E+iuFBLXGZzwDIfze3JyfGxabL28=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CfqLksAOyZ6u+dqzODSq+D5cLvKbYW+UxGJE0SOxu1njOASzEtoky1AaYwwGxoox2AAUfLxaW3PvAov5tQh7yix05ttt5itZy/+T4zPJV+qjGCyewv/nWu9KtFOIcKHIL/1ph7qjmSHY81ipt5EhcNllO20tNXXAakl2mD4sm9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WOLR8Ymm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DE6DC4CEE7;
+	Fri, 25 Jul 2025 22:18:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753481844;
-	bh=z04vTW0gQGPvGaJMG8kNPz5saOFKvL63gvlNjB70bYY=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=qYpcDD6ncI95em36eR4MHWpzYbZ26xsvD8M/3rlMjf5BejvLN2oX/cX1+WUi26fl+
-	 /jfkmDBi5tqiSyicsP/woDXY4BWN9vhVcfMmESt6sL1kE+46jvlEOSdN5u7FM0pDyS
-	 C5vEzaXAD3JpwTg+CRYYx5Vl8evFuQca1fXPbiljFev/r9N1pUTa5503+DDH9KzvfN
-	 vx1vUQjjYvhnNau5zki/ZP0sa/cTar1TvXzFYIZxDqMInu68kvzZbZyXZ4UgHMywrw
-	 0rbTxlaF8zdMoLLn/Rm58cMyzHDWDBAneVx5jKDN+YaE67xo16mf4tH/KQqn/v9OPH
-	 +b/7L5fHzcPww==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33E98383BF5B;
-	Fri, 25 Jul 2025 22:17:43 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1753481911;
+	bh=CGiveRG0F4ZRe38E+iuFBLXGZzwDIfze3JyfGxabL28=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=WOLR8Ymm6P4gOv/050K6B7gAqqQ522Hc4yVFoRh0Txi/+d6pnHEvinr6VyqQaqiEA
+	 bxQnFJuEEnj7oYMsnEMoEErRuOv/lEKf4G8F8o4I8JgGJJe7tQJ7TPu30EPv5TtPmB
+	 TgFF13w2d8O/ZVN2wSV1XMPdxfekwZwndLuw7WOmF8YUgK8WGy8nS8+2MoQ3miW9D5
+	 h/j0GodhjKDmBrmN9c4cHX3EL7TIzRTUnEBkaEgjEbwvM9pyADb2unstM7FKhhIKCt
+	 zPXGo3Ns7XsRtMSkFLuV5KImnLI+gKqqIo0FE0sRPdPOzyoddQDDDdZbcBO92/XWBj
+	 9siEB3HNpDhtw==
+Date: Fri, 25 Jul 2025 15:18:29 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Richard Cochran
+ <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
+ <andrew@lunn.ch>
+Subject: Re: [net-next v16 04/12] net: mtip: The L2 switch driver for imx287
+Message-ID: <20250725151829.40bd5f4e@kernel.org>
+In-Reply-To: <20250724223318.3068984-5-lukma@denx.de>
+References: <20250724223318.3068984-1-lukma@denx.de>
+	<20250724223318.3068984-5-lukma@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v2 0/7] net: dsa: b53: mmap: Add bcm63xx EPHY
- power
- control
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175348186199.3265195.5950781092157699342.git-patchwork-notify@kernel.org>
-Date: Fri, 25 Jul 2025 22:17:41 +0000
-References: <20250724035300.20497-1-kylehendrydev@gmail.com>
-In-Reply-To: <20250724035300.20497-1-kylehendrydev@gmail.com>
-To: Kyle Hendry <kylehendrydev@gmail.com>
-Cc: florian.fainelli@broadcom.com, andrew@lunn.ch, olteanv@gmail.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux@armlinux.org.uk, noltari@gmail.com, jonas.gorski@gmail.com,
- f.fainelli@gmail.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hello:
+On Fri, 25 Jul 2025 00:33:10 +0200 Lukasz Majewski wrote:
+> +	for (i = 0; i < SWITCH_EPORT_NUMBER; i++) {
+> +		fep->ndev[i] = alloc_netdev(sizeof(struct mtip_ndev_priv),
+> +					    fep->ndev_name[i], NET_NAME_USER,
+> +					    ether_setup);
+> +		if (!fep->ndev[i]) {
+> +			ret = -ENOMEM;
+> +			break;
+> +		}
+> +
+> +		fep->ndev[i]->ethtool_ops = &mtip_ethtool_ops;
+> +		fep->ndev[i]->netdev_ops = &mtip_netdev_ops;
+> +		SET_NETDEV_DEV(fep->ndev[i], &pdev->dev);
+> +
+> +		priv = netdev_priv(fep->ndev[i]);
+> +		priv->dev = fep->ndev[i];
+> +		priv->fep = fep;
+> +		priv->portnum = i + 1;
+> +		fep->ndev[i]->irq = fep->irq;
+> +
+> +		mtip_setup_mac(fep->ndev[i]);
+> +
+> +		ret = register_netdev(fep->ndev[i]);
+> +		if (ret) {
+> +			dev_err(&fep->ndev[i]->dev,
+> +				"%s: ndev %s register err: %d\n", __func__,
+> +				fep->ndev[i]->name, ret);
+> +			break;
+> +		}
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Wed, 23 Jul 2025 20:52:39 -0700 you wrote:
-> The gpio controller on some bcm63xx SoCs has a register for
-> controlling functionality of the internal fast ethernet phys.
-> These patches allow the b53 driver to enable/disable phy
-> power.
-> 
-> The register also contains reset bits which will be set by
-> a reset driver in another patch series:
-> https://lore.kernel.org/all/20250715234605.36216-1-kylehendrydev@gmail.com/
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next,v2,1/7] net: dsa: b53: Add phy_enable(), phy_disable() methods
-    https://git.kernel.org/netdev/net-next/c/be7a79145d85
-  - [net-next,v2,2/7] dt-bindings: net: dsa: b53: Document brcm,gpio-ctrl property
-    https://git.kernel.org/netdev/net-next/c/cce3563875c7
-  - [net-next,v2,3/7] net: dsa: b53: Define chip IDs for more bcm63xx SoCs
-    https://git.kernel.org/netdev/net-next/c/fcf02a462fab
-  - [net-next,v2,4/7] net: dsa: b53: mmap: Add syscon reference and register layout for bcm63268
-    https://git.kernel.org/netdev/net-next/c/aed2aaa3c963
-  - [net-next,v2,5/7] net: dsa: b53: mmap: Add register layout for bcm6318
-    https://git.kernel.org/netdev/net-next/c/c251304ab021
-  - [net-next,v2,6/7] net: dsa: b53: mmap: Add register layout for bcm6368
-    https://git.kernel.org/netdev/net-next/c/e8e13073dff7
-  - [net-next,v2,7/7] net: dsa: b53: mmap: Implement bcm63xx ephy power control
-    https://git.kernel.org/netdev/net-next/c/5ac00023852d
-
-You are awesome, thank you!
+Error handling in case of register_netdev() still buggy, AFAICT.
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+pw-bot: cr
 
