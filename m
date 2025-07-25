@@ -1,142 +1,141 @@
-Return-Path: <devicetree+bounces-199797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0AD5B121BE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 18:17:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27069B1228C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 19:05:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CE7D7BC3C0
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 16:15:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 360A31CE55AA
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 17:05:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E9D2EF2AA;
-	Fri, 25 Jul 2025 16:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8DDE2F002C;
+	Fri, 25 Jul 2025 17:04:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="RxjoTNGA"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="lMYRbbWd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com [95.215.58.186])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 686382EF289
-	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 16:16:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1D12EF66B;
+	Fri, 25 Jul 2025 17:04:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.186
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753460188; cv=none; b=boexHSzXMsxbG2CA4I6KsIFwUdm6DHeRctVXUDcBwJNDjUydcOevDTTavzSJyJIZUwI8FcdzABsZJanic7t01NCfliYIB8ZZ6fACOd8qj4xegV1dh0tf4mROugcubE+M26LvKqLPfDaoZvZY3j0cLClx8MA147aB5FreKJHgYYA=
+	t=1753463047; cv=none; b=svOUo6wbeD8ys8HiUJqTtrbzOWvsGUKl1EwkB5iX+Ny5x7HVY64LJBbeLsMlAz1Uu2pmSa88SRxMlJMeC9hIrJKT0JT2syyTVksOayzM/SSvwQiL93+Ius/d0LEn1aMWoIf8q5SEQa+VMPkGIZ/shJhcG+4KM/l/ewQ4B9WfReI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753460188; c=relaxed/simple;
-	bh=G6cKxpFpNKWSetLJHJ3pQ6zg1bL/LOkHThhiObiZaiA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=e5TS6viZwfDC7WsRQqlwGB4KK2/R9mBucGhARdKOHstdQh0djqioRj2iQqoesJR4pDqpI1AXkBqkaOYkMI6r4QqLplbLvln1qdKx/Hq1kXv/BHTVhRInQAIgFzsON2uHifQGXHcDDPkYXqLmVvx5O0/slU4+WuaVYPrW9dS9wZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=RxjoTNGA; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-32cdc9544ceso20128881fa.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 09:16:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1753460184; x=1754064984; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VOo595UD81PW4Cz1UFmTlajy9wRb7dyhybVVNSTeWD4=;
-        b=RxjoTNGADffczmoCgzq8vqRTkAAT2YiyseHpZvygnUhkFtdREp6OT0XRzRckbk1Qg2
-         /PBKREDSYxOnmxXdkBwD4T0KBwiDnnipayFkuOA5jgFx+Xaka61ozxbiqbqpC6BtSEgi
-         nwCi1Y7dy1Ve8EaF2shU716RzX14iJRZwzfQa+qpO/jZdFK0DONZyeilNNb28muOA0JY
-         kQ9I2DUCvfFzdfLb7XR3kVLk3Fz2sN6qdc6aU3n8ddH+Y8BCprNR36wkI+Qlse17pp3r
-         3cci7ZtSHSiPN5+s/nqwKlHlc4zmK1sLdFxsiln0DBO3+XcBGACtTW+QrK8RXnlRTJfZ
-         O9mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753460184; x=1754064984;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VOo595UD81PW4Cz1UFmTlajy9wRb7dyhybVVNSTeWD4=;
-        b=Uc90vHFJReFzWFcqlhMEcjKbtqIOrUcJx626tQnyZZB9cYvlEG4oYlAjDah6L2E+UF
-         c/leWslNNeS0aMNIkbUcHWLAWgpW/vb9uVae37yFn1+2k/WLW7KxH1WCxCmS/KBgK1SI
-         pGW4n3Gt9LU1B5sYcwu7Z2/vJEu2J1XUkG9N4GGCSiNdL5Hg57veobaarbvAcf44pKD1
-         kNZ/FXyWw5p3EPIAZ50tH1eLtPfwqstW22fee/uBg1wQ3YsH22hJ9bJWGOBm4Enn+YLJ
-         Aoi6Fgu723yC8rJW8qgtuErsf7VSQkRe2boNa4+gcqmGXQc9Knwn+a9cmVPWJTK5N3IZ
-         VR6w==
-X-Forwarded-Encrypted: i=1; AJvYcCX1AeQXBgBSzzS0z1+ZFxGwRD6oa9rZN4v6kCmOMaqm3quLv7O/5udfbJmW4dxTew6pW5pkr0Xqbo6D@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0GcEDAlgijwm+bAeeHIQX2JLzD56j8RLJICuHZGSPG3zLk+gW
-	FDFKJXr5zlDoXLPp5V9diU6inSWVq942ev2gYTDiAoMj0yEZdkbJdwSxWEuvW7rWGD9qoN0PGT0
-	rUoiF4TW+IhBe6DJ51byIqDLrJVncdq7olXnVuoz15A==
-X-Gm-Gg: ASbGncv+NlL3U6jgNpPrwjwMX4qko1DvouPolSLoz9SemoaNMMn5M5aVgpzJla0cVDN
-	VarD9bU7cfHBr1MpTykQK43pnOv3Acxv28fSPgLhpRvoSASIgG4AgIaA6amhyQ7x6yIS4fCX5ZC
-	Rh0+OJgZ26AKpNlCyOgg8hsc8eb1pysCmj5C124HV61GeDti2FKfHuodULm3P64+36PEFar2OE7
-	Ho9wBk=
-X-Google-Smtp-Source: AGHT+IFIuUIEQS0zyr6rBam/nD3H+hqGiiProGvcAqPkV/NrJ9CSjPmlKsQWWtSCr8nBHng2+tmatocM0hZ4PbG8CJs=
-X-Received: by 2002:a05:651c:1503:b0:32b:5672:41fb with SMTP id
- 38308e7fff4ca-331ee74cc42mr12092821fa.19.1753460184460; Fri, 25 Jul 2025
- 09:16:24 -0700 (PDT)
+	s=arc-20240116; t=1753463047; c=relaxed/simple;
+	bh=XRPXn4b8DSkRHKtIXSlfRWZ/7dKLmVHQ9WRzD4Ora/A=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=htjcsD+EQCIQw6khDop33F1876TUFNkXuh3Tzxx5MFA/Pwod2VSy0PMiv5932TAfxQwkXxfwrGy83vq26jX27daxk7JZX60yn42zQuArtVxsufNBaOjSgNCWaftaxsd6lTo4rjPLKGGglyWlz1kVrPfoDpt5pIbcmxYH2qi/n98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=lMYRbbWd; arc=none smtp.client-ip=95.215.58.186
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250704070356.1683992-1-apatel@ventanamicro.com>
- <20250704070356.1683992-9-apatel@ventanamicro.com> <175341132347.3513.7184287611040628050@lazor>
-In-Reply-To: <175341132347.3513.7184287611040628050@lazor>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Fri, 25 Jul 2025 21:46:12 +0530
-X-Gm-Features: Ac12FXyJjR2ZAcC8iSDmp338bf2ZOm1s9QD7gpAd84fmChTRX_UPxaRyR5VVtyQ
-Message-ID: <CAK9=C2UDV3xCpKxZmT4NsRvN=hCcQrcx0fr-QFD2fuOrqmXmHA@mail.gmail.com>
-Subject: Re: [PATCH v8 08/24] dt-bindings: clock: Add RPMI clock service
- message proxy bindings
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Thomas Gleixner <tglx@linutronix.de>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1753463031;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Q6NaXMg9fbROH9LvIGCHCsqgrXQO+KbOb0QRffIyTME=;
+	b=lMYRbbWdVu9phJd7Q2DFv8Z9C2qAH919I0996wblEzzaVBasc+xxHGRU3M3Zp05/pBarYR
+	tB2bdt8xpLkn39yB2WOvU6IJWD0DC5EMcw+JgDP4EsDb8Jdld4Ez0FLfLVTYGjZaplAUO2
+	YWHNsenPJXB2mqKwteYxOdHxKQHmH4J+/BArnDso+N7Os0hUvCMmo6+8qC/FRW0/h7I6bU
+	1P81Lf5C/IEpTYiv5xnCC2RruYkXNWI8Dtqf4J7TzOqI4wNKEh/edzIuFgECkD6YXY0mjG
+	KqBQ6Le2cM+47oAUOI/htPjC8cwqHguDZwGRdYlP2Qp9xbe8kGGBfqEcFFYJ9w==
+Content-Type: multipart/signed;
+ boundary=8c1edd4abc64afa689b98190459caaa658628e964ab805c9823f0dd1a1b2;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Fri, 25 Jul 2025 19:03:29 +0200
+Message-Id: <DBLARE9EUGTB.1AIKSIZBIXHIJ@cknow.org>
+Cc: "Chen Wang" <unicorn_wang@outlook.com>, "Drew Fustini" <drew@pdp7.com>,
+ <linux-rockchip@lists.infradead.org>
+Subject: Re: [PATCH v6 1/8] mmc: sdhci-of-dwcmshc: add common bulk optional
+ clocks support
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Adrian Hunter" <adrian.hunter@intel.com>, "Robin Murphy"
+ <robin.murphy@arm.com>, "Chen Wang" <unicornxw@gmail.com>,
+ <aou@eecs.berkeley.edu>, <conor+dt@kernel.org>, <guoren@kernel.org>,
+ <inochiama@outlook.com>, <jszhang@kernel.org>,
+ <krzysztof.kozlowski+dt@linaro.org>, <palmer@dabbelt.com>,
+ <paul.walmsley@sifive.com>, <robh@kernel.org>, <ulf.hansson@linaro.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mmc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+ <chao.wei@sophgo.com>, <haijiao.liu@sophgo.com>,
+ <xiaoguang.xing@sophgo.com>, <tingzhu.wang@sophgo.com>
+References: <cover.1722847198.git.unicorn_wang@outlook.com>
+ <e57e8c51da81f176b49608269a884f840903e78e.1722847198.git.unicorn_wang@outlook.com> <f81b88df-9959-4968-a60a-b7efd3d5ea24@arm.com> <99899915-2730-41c7-b71a-f8d97bb6e59c@intel.com> <DBKCYCNRNTMZ.1XJU81M6EE2D0@cknow.org> <30cb2e71-5e0b-4fa0-b0e0-3263d9aa8712@intel.com>
+In-Reply-To: <30cb2e71-5e0b-4fa0-b0e0-3263d9aa8712@intel.com>
+X-Migadu-Flow: FLOW_OUT
+
+--8c1edd4abc64afa689b98190459caaa658628e964ab805c9823f0dd1a1b2
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-On Fri, Jul 25, 2025 at 8:12=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> wro=
-te:
+On Thu Jul 24, 2025 at 4:57 PM CEST, Adrian Hunter wrote:
+> On 24/07/2025 17:33, Diederik de Haas wrote:
+>> On Wed Jul 23, 2025 at 7:33 AM CEST, Adrian Hunter wrote:
+>>> On 22/07/2025 21:33, Robin Murphy wrote:
+>>>> A bit late for a "review", but Diederik and I have just been
+>>>> IRC-debugging a crash on RK3568 which by inspection seems to be caused
+>>>> by this patch:
+>>>>
+>>>> On 2024-08-05 10:17 am, Chen Wang wrote:
+>>>>> From: Chen Wang <unicorn_wang@outlook.com>
+>>>>>
+>>>>> In addition to the required core clock and optional
+>>>>> bus clock, the soc will expand its own clocks, so
+>>>>> the bulk clock mechanism is abstracted.
+>>>>>
+>>>>> Note, I call the bulk clocks as "other clocks" due
+>>>>> to the bus clock has been called as "optional".
+>>>>>
+>>>>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+>>>>> Tested-by: Drew Fustini <drew@pdp7.com> # TH1520
+>>>>> Tested-by: Inochi Amaoto <inochiama@outlook.com> # Duo and Huashan Pi
+>>>>> ---
+>>>
+>>> Presumably the problem has gone away with:
+>>>
+>>> 	commit 91a001a1a0749e5d24606d46ac5dfd4433c00956
+>>> 	Author: Binbin Zhou <zhoubinbin@loongson.cn>
+>>> 	Date:   Sat Jun 7 15:39:01 2025 +0800
+>>>
+>>> 	    mmc: sdhci-of-dwcmshc: Drop the use of sdhci_pltfm_free()
+>>>
+>>> which is in next.
+>>>
+>>> In which case a separate fix is needed for stable.
+>>=20
+>> Adding that patch to my 6.16-rc7 kernel indeed stopped the OOPSies.
+>> Thanks!
 >
-> Quoting Anup Patel (2025-07-04 00:03:40)
-> > Add device tree bindings for the RPMI clock service group based
-> > message proxy implemented by the SBI implementation (machine mode
-> > firmware or hypervisor).
-> >
-> > The RPMI clock service group is defined by the RISC-V platform
-> > management interface (RPMI) specification.
-> >
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> [...]
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    clock-controller {
+> You need the other patches that it depends on, otherwise you are
+> just leaking the memory.  Refer:
 >
-> Maybe the name should be 'clock-service' then? I don't understand SBI so
-> not sure why this is in DT to begin with. Is something consuming this
-> node? Or a driver is binding to it?
+> 	https://lore.kernel.org/all/cover.1749127796.git.zhoubinbin@loongson.cn/
 
-SBI is a syscall style interface between SBI implementation (aka
-M-mode firmware or hypervisor) and supervisor software (aka
-Linux kernel).
+Also with the other patches, the OOPSies stopped :-)
 
-We have DT based drivers in OpenSBI (M-mode firmware). This
-binding allows Clock message proxy driver to be probed on the
-OpenSBI side. The clock message proxy driver allows Linux
-RPMI clock driver to send RPMI messages via OpenSBI as
-proxy thereby sharing the RPMI transport between OpenSBI
-and Linux kernel.
+Cheers,
+  Diederik
 
-Regards,
-Anup
+--8c1edd4abc64afa689b98190459caaa658628e964ab805c9823f0dd1a1b2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaIO47QAKCRDXblvOeH7b
+bh72AQCh2k0eqJiG8Ya5dmzENE7WFUBjyOZZW10vyWI/TozQJAEAlJekvqK7tuae
+XFsYO2aDmaIN1Y0pZTJ7d2kzkrzxwQk=
+=ZwZn
+-----END PGP SIGNATURE-----
+
+--8c1edd4abc64afa689b98190459caaa658628e964ab805c9823f0dd1a1b2--
 
